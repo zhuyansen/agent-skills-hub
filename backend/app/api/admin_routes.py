@@ -1,0 +1,298 @@
+"""Admin API routes with simple token-based authentication."""
+import json
+import logging
+from typing import Optional
+
+from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Query
+from sqlalchemy import desc
+from sqlalchemy.orm import Session
+
+from app.config import settings
+from app.database import get_db
+from app.models.admin import ExtraRepo, SearchQuery, SkillMaster
+from app.models.skill import Skill, SyncLog
+from app.schemas.admin import (
+    ExtraRepoCreate,
+    ExtraRepoResponse,
+    MasterCreate,
+    MasterResponse,
+    MasterUpdate,
+    SearchQueryCreate,
+    SearchQueryResponse,
+    SkillUpdateAdmin,
+)
+from app.schemas.skill import SkillResponse
+
+logger = logging.getLogger(__name__)
+admin_router = APIRouter(prefix="/api/admin")
+
+
+def verify_admin(authorization: str = Header(default="")) -> None:
+    """Simple bearer token authentication."""
+    if not settings.admin_token:
+        raise HTTPException(403, "Admin token not configured")
+    expected = f"Bearer {settings.admin_token}"
+    if authorization != expected:
+        raise HTTPException(401, "Invalid admin token")
+
+
+# ═══ Masters CRUD ═══
+
+@admin_router.get("/masters", response_model=list[MasterResponse])
+def list_masters(
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[MasterResponse]:
+    masters = db.query(SkillMaster).order_by(desc(SkillMaster.id)).all()
+    return [MasterResponse.model_validate(m) for m in masters]
+
+
+@admin_router.post("/masters", response_model=MasterResponse)
+def create_master(
+    data: MasterCreate,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> MasterResponse:
+    existing = db.query(SkillMaster).filter(SkillMaster.github == data.github).first()
+    if existing:
+        raise HTTPException(400, f"Master '{data.github}' already exists")
+    master = SkillMaster(
+        github=data.github,
+        name=data.name,
+        github_aliases=json.dumps(data.github_aliases),
+        x_handle=data.x_handle,
+        bio=data.bio,
+        tags=json.dumps(data.tags),
+        x_followers=data.x_followers,
+        x_posts_count=data.x_posts_count,
+        x_notes=data.x_notes,
+    )
+    db.add(master)
+    db.commit()
+    db.refresh(master)
+    return MasterResponse.model_validate(master)
+
+
+@admin_router.put("/masters/{master_id}", response_model=MasterResponse)
+def update_master(
+    master_id: int,
+    data: MasterUpdate,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> MasterResponse:
+    master = db.query(SkillMaster).filter(SkillMaster.id == master_id).first()
+    if not master:
+        raise HTTPException(404, "Master not found")
+    if data.name is not None:
+        master.name = data.name
+    if data.github_aliases is not None:
+        master.github_aliases = json.dumps(data.github_aliases)
+    if data.x_handle is not None:
+        master.x_handle = data.x_handle
+    if data.bio is not None:
+        master.bio = data.bio
+    if data.tags is not None:
+        master.tags = json.dumps(data.tags)
+    if data.is_active is not None:
+        master.is_active = data.is_active
+    if data.x_followers is not None:
+        master.x_followers = data.x_followers
+    if data.x_posts_count is not None:
+        master.x_posts_count = data.x_posts_count
+    if data.x_verified_at is not None:
+        master.x_verified_at = data.x_verified_at
+    if data.x_notes is not None:
+        master.x_notes = data.x_notes
+    db.commit()
+    db.refresh(master)
+    return MasterResponse.model_validate(master)
+
+
+@admin_router.delete("/masters/{master_id}")
+def delete_master(
+    master_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    master = db.query(SkillMaster).filter(SkillMaster.id == master_id).first()
+    if not master:
+        raise HTTPException(404, "Master not found")
+    master.is_active = False
+    db.commit()
+    return {"message": "Master deactivated"}
+
+
+# ═══ Extra Repos CRUD ═══
+
+@admin_router.get("/extra-repos", response_model=list[ExtraRepoResponse])
+def list_extra_repos(
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[ExtraRepoResponse]:
+    repos = db.query(ExtraRepo).order_by(desc(ExtraRepo.id)).all()
+    return [ExtraRepoResponse.model_validate(r) for r in repos]
+
+
+@admin_router.post("/extra-repos", response_model=ExtraRepoResponse)
+def create_extra_repo(
+    data: ExtraRepoCreate,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> ExtraRepoResponse:
+    existing = db.query(ExtraRepo).filter(ExtraRepo.full_name == data.full_name).first()
+    if existing:
+        raise HTTPException(400, f"Repo '{data.full_name}' already exists")
+    repo = ExtraRepo(full_name=data.full_name)
+    db.add(repo)
+    db.commit()
+    db.refresh(repo)
+    return ExtraRepoResponse.model_validate(repo)
+
+
+@admin_router.delete("/extra-repos/{repo_id}")
+def delete_extra_repo(
+    repo_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
+    if not repo:
+        raise HTTPException(404, "Repo not found")
+    db.delete(repo)
+    db.commit()
+    return {"message": "Repo removed"}
+
+
+# ═══ Search Queries CRUD ═══
+
+@admin_router.get("/search-queries", response_model=list[SearchQueryResponse])
+def list_search_queries(
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[SearchQueryResponse]:
+    queries = db.query(SearchQuery).order_by(desc(SearchQuery.id)).all()
+    return [SearchQueryResponse.model_validate(q) for q in queries]
+
+
+@admin_router.post("/search-queries", response_model=SearchQueryResponse)
+def create_search_query(
+    data: SearchQueryCreate,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> SearchQueryResponse:
+    existing = db.query(SearchQuery).filter(SearchQuery.query == data.query).first()
+    if existing:
+        raise HTTPException(400, "Query already exists")
+    query = SearchQuery(query=data.query)
+    db.add(query)
+    db.commit()
+    db.refresh(query)
+    return SearchQueryResponse.model_validate(query)
+
+
+@admin_router.delete("/search-queries/{query_id}")
+def delete_search_query(
+    query_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    query = db.query(SearchQuery).filter(SearchQuery.id == query_id).first()
+    if not query:
+        raise HTTPException(404, "Query not found")
+    db.delete(query)
+    db.commit()
+    return {"message": "Query removed"}
+
+
+# ═══ Skills Admin ═══
+
+@admin_router.get("/skills", response_model=list[SkillResponse])
+def list_admin_skills(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(50, ge=1, le=200),
+    search: Optional[str] = Query(None),
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[SkillResponse]:
+    query = db.query(Skill).order_by(desc(Skill.score))
+    if search:
+        pattern = f"%{search}%"
+        query = query.filter(
+            Skill.repo_name.ilike(pattern)
+            | Skill.author_name.ilike(pattern)
+            | Skill.description.ilike(pattern)
+        )
+    items = query.offset((page - 1) * page_size).limit(page_size).all()
+    return [SkillResponse.model_validate(s) for s in items]
+
+
+@admin_router.put("/skills/{skill_id}", response_model=SkillResponse)
+def update_skill_admin(
+    skill_id: int,
+    data: SkillUpdateAdmin,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> SkillResponse:
+    skill = db.query(Skill).filter(Skill.id == skill_id).first()
+    if not skill:
+        raise HTTPException(404, "Skill not found")
+    for field, value in data.model_dump(exclude_unset=True).items():
+        setattr(skill, field, value)
+    db.commit()
+    db.refresh(skill)
+    return SkillResponse.model_validate(skill)
+
+
+@admin_router.delete("/skills/{skill_id}")
+def delete_skill_admin(
+    skill_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    skill = db.query(Skill).filter(Skill.id == skill_id).first()
+    if not skill:
+        raise HTTPException(404, "Skill not found")
+    db.delete(skill)
+    db.commit()
+    return {"message": "Skill deleted"}
+
+
+# ═══ Sync Management ═══
+
+@admin_router.get("/sync-logs")
+def list_sync_logs(
+    limit: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[dict]:
+    logs = db.query(SyncLog).order_by(desc(SyncLog.started_at)).limit(limit).all()
+    return [
+        {
+            "id": log.id,
+            "started_at": log.started_at.isoformat() if log.started_at else None,
+            "finished_at": log.finished_at.isoformat() if log.finished_at else None,
+            "status": log.status,
+            "repos_found": log.repos_found,
+            "repos_new": log.repos_new,
+            "repos_updated": log.repos_updated,
+            "error_message": log.error_message,
+        }
+        for log in logs
+    ]
+
+
+@admin_router.post("/sync")
+def trigger_admin_sync(
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    from app.scheduler.jobs import run_sync
+
+    sync_log = SyncLog(status="running")
+    db.add(sync_log)
+    db.commit()
+    db.refresh(sync_log)
+
+    background_tasks.add_task(run_sync, sync_log.id)
+    return {"message": "Sync started", "sync_id": sync_log.id}
