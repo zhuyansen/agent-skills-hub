@@ -184,6 +184,51 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
   return { ...skill, compatible_skills } as SkillDetail;
 }
 
+export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
+  const sb = ensureSupabase();
+
+  // slug = "owner/repo" = repo_full_name
+  const { data: skill, error } = await sb
+    .from("skills")
+    .select("*")
+    .eq("repo_full_name", slug)
+    .single();
+  if (error) throw new Error(error.message);
+
+  // Fetch compositions
+  const { data: comps } = await sb
+    .from("skill_compositions")
+    .select("compatible_skill_id, compatibility_score, reason")
+    .eq("skill_id", skill.id)
+    .order("compatibility_score", { ascending: false })
+    .limit(5);
+
+  const compatible_skills = [];
+  if (comps && comps.length > 0) {
+    const ids = comps.map((c) => c.compatible_skill_id);
+    const { data: others } = await sb
+      .from("skills")
+      .select("id, repo_name, score")
+      .in("id", ids);
+
+    const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
+    for (const c of comps) {
+      const other = othersMap.get(c.compatible_skill_id);
+      if (other) {
+        compatible_skills.push({
+          skill_id: other.id,
+          skill_name: other.repo_name,
+          skill_score: other.score ?? 0,
+          compatibility_score: c.compatibility_score,
+          reason: c.reason,
+        });
+      }
+    }
+  }
+
+  return { ...skill, compatible_skills } as SkillDetail;
+}
+
 export async function sbFetchLanguageStats(): Promise<{ language: string; count: number }[]> {
   const sb = ensureSupabase();
   const { data, error } = await sb.from("v_language_stats").select("*");

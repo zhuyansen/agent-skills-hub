@@ -89,6 +89,18 @@ export interface SkillsQueryParams {
   size_category?: string;
 }
 
+// Landing page pre-rendered data (single-request bundle)
+export interface LandingData {
+  stats: Stats;
+  trending: Skill[];
+  rising: Skill[];
+  top_rated: Skill[];
+  hall_of_fame: Skill[];
+  recently_updated: Skill[];
+  languages: { language: string; count: number }[];
+  generated_at: string;
+}
+
 // Admin types
 export interface MasterData {
   id: number;
@@ -111,6 +123,9 @@ export interface ExtraRepoData {
   id: number;
   full_name: string;
   is_active: boolean;
+  status: string; // "pending" | "approved" | "rejected"
+  submitted_by: string | null;
+  reviewed_at: string | null;
   created_at: string;
 }
 

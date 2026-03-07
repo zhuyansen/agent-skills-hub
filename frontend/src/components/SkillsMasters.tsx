@@ -31,10 +31,15 @@ export function SkillsMasters() {
 
   return (
     <section className="mb-8">
-      <div className="flex items-center gap-2 mb-4">
-        <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128H9m6 0a5.972 5.972 0 00-.786-3.07M9 19.128v-.003c0-1.113.285-2.16.786-3.07M9 19.128H3.375a4.125 4.125 0 017.533-2.493M9 19.128a5.972 5.972 0 01.786-3.07m4.428 0a9.36 9.36 0 00-4.428 0M12 10.5a3.75 3.75 0 110-7.5 3.75 3.75 0 010 7.5z"/></svg>
-        <h2 className="text-lg font-bold text-gray-900">{t("masters.title")}</h2>
-        <span className="text-sm text-gray-400">{t("masters.subtitle")}</span>
+      <div className="mb-4">
+        <div className="flex items-center gap-2">
+          <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128H9m6 0a5.972 5.972 0 00-.786-3.07M9 19.128v-.003c0-1.113.285-2.16.786-3.07M9 19.128H3.375a4.125 4.125 0 017.533-2.493M9 19.128a5.972 5.972 0 01.786-3.07m4.428 0a9.36 9.36 0 00-4.428 0M12 10.5a3.75 3.75 0 110-7.5 3.75 3.75 0 010 7.5z"/></svg>
+          <h2 className="text-lg font-bold text-gray-900">{t("masters.title")}</h2>
+          <span className="text-sm text-gray-400">{t("masters.subtitle")}</span>
+        </div>
+        <p className="text-xs text-gray-400 mt-1.5 ml-7">
+          {t("masters.warning")}
+        </p>
       </div>
 
       {/* Curated masters - featured cards */}
@@ -143,11 +148,6 @@ export function SkillsMasters() {
           </div>
         ))}
       </div>
-
-      {/* Note about X data */}
-      <p className="text-xs text-gray-400 mb-4 px-1">
-        {t("masters.warning")}
-      </p>
 
       {/* Discovered / Emerging masters */}
       {discovered.length > 0 && (

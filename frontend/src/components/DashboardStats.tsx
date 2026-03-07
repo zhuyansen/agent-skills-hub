@@ -46,7 +46,18 @@ export function DashboardStats({ stats }: Props) {
           <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{t("stats.avgScore")}</div>
         </div>
         <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-          <div className="text-xl sm:text-2xl font-bold text-green-600">{timeAgo(stats.last_sync_at)}</div>
+          <div className="flex items-center gap-2">
+            <div className="text-xl sm:text-2xl font-bold text-green-600">{timeAgo(stats.last_sync_at)}</div>
+            {stats.last_sync_status === "completed" && (
+              <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" title="Sync healthy" />
+            )}
+            {stats.last_sync_status === "running" && (
+              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse shrink-0" title="Sync running" />
+            )}
+            {stats.last_sync_status === "failed" && (
+              <span className="w-2 h-2 rounded-full bg-red-400 shrink-0" title="Sync failed" />
+            )}
+          </div>
           <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{t("stats.lastSync")}</div>
         </div>
       </div>

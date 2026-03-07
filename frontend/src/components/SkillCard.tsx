@@ -1,5 +1,7 @@
 import type { Skill } from "../types/skill";
 import { parseTags, timeAgo } from "../utils/time";
+import { CompareButton } from "./CompareButton";
+import { FavoriteButton } from "./FavoriteButton";
 import { PlatformBadges } from "./PlatformBadges";
 import { ScoreBadge } from "./ScoreBadge";
 import { SizeBadge } from "./SizeBadge";
@@ -87,7 +89,11 @@ export function SkillCard({ skill, onSelect, onShowDetail }: Props) {
           </svg>
           {skill.forks.toLocaleString()}
         </span>
-        <span className="ml-auto text-gray-300">{timeAgo(skill.last_commit_at)}</span>
+        <span className="ml-auto flex items-center gap-1">
+          <span className="text-gray-300 mr-1">{timeAgo(skill.last_commit_at)}</span>
+          <CompareButton skill={skill} size="sm" />
+          <FavoriteButton skillId={skill.id} size="sm" />
+        </span>
       </div>
     </div>
   );

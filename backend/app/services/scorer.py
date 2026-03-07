@@ -1,4 +1,5 @@
 import logging
+import math
 from datetime import datetime, timezone
 from typing import List
 
@@ -13,7 +14,13 @@ logger = logging.getLogger(__name__)
 
 
 class ScoringEngine:
-    """Computes a 0-100 quality score for each skill using weighted normalization."""
+    """Computes a 0-100 quality score for each skill.
+
+    v2 improvements:
+    - Log normalization for stars/forks/followers/commits (reduces outlier dominance)
+    - Exponential time decay for recency (smooth curve instead of step function)
+    - Momentum uses z-score instead of min-max (better distribution)
+    """
 
     WEIGHTS = {
         "stars": 0.18,
@@ -46,23 +53,34 @@ class ScoringEngine:
         if not skills:
             return 0
 
-        stars_vals = [s.stars for s in skills]
-        forks_vals = [s.forks for s in skills]
-        followers_vals = [s.author_followers for s in skills]
-        commits_vals = [s.total_commits for s in skills]
+        # Pre-compute log values for normalization (reduces outlier dominance)
+        stars_log = [math.log1p(s.stars) for s in skills]
+        forks_log = [math.log1p(s.forks) for s in skills]
+        followers_log = [math.log1p(s.author_followers) for s in skills]
+        commits_log = [math.log1p(s.total_commits) for s in skills]
+
+        # Momentum: compute z-score stats
         deltas = [s.stars - (s.prev_stars or 0) for s in skills]
+        delta_mean = sum(deltas) / len(deltas) if deltas else 0
+        delta_std = (
+            math.sqrt(sum((d - delta_mean) ** 2 for d in deltas) / len(deltas))
+            if deltas
+            else 1
+        )
+        if delta_std < 1:
+            delta_std = 1  # avoid division by near-zero
 
         updated = 0
-        for skill in skills:
-            norm_stars = self._minmax(skill.stars, stars_vals)
-            norm_forks = self._minmax(skill.forks, forks_vals)
-            norm_followers = self._minmax(skill.author_followers, followers_vals)
-            norm_commits = self._minmax(skill.total_commits, commits_vals)
+        for i, skill in enumerate(skills):
+            norm_stars = self._log_normalize(stars_log[i], stars_log)
+            norm_forks = self._log_normalize(forks_log[i], forks_log)
+            norm_followers = self._log_normalize(followers_log[i], followers_log)
+            norm_commits = self._log_normalize(commits_log[i], commits_log)
             ir = self._issue_resolution_rate(skill)
-            recency = self._recency_score(skill)
+            recency = self._recency_decay(skill)
             quality = (skill.quality_score or 0) / 100.0  # normalize to 0-1
             size_bonus = self._size_bonus(skill)
-            momentum = self._momentum_score(skill, deltas)
+            momentum = self._momentum_zscore(skill, delta_mean, delta_std)
             skill.star_momentum = round(momentum, 3)
 
             raw = (
@@ -84,11 +102,17 @@ class ScoringEngine:
         return updated
 
     @staticmethod
-    def _minmax(value: int, all_values: List[int]) -> float:
-        lo, hi = min(all_values), max(all_values)
-        if hi == lo:
+    def _log_normalize(log_value: float, all_log_values: List[float]) -> float:
+        """Normalize using log1p values to reduce outlier dominance.
+
+        log1p(stars) compresses the range: a repo with 100k stars won't
+        dominate 100x more than one with 1k stars (only ~2.3x in log space).
+        """
+        lo = min(all_log_values)
+        hi = max(all_log_values)
+        if hi <= lo:
             return 0.0
-        return (value - lo) / (hi - lo)
+        return (log_value - lo) / (hi - lo)
 
     @staticmethod
     def _issue_resolution_rate(skill: Skill) -> float:
@@ -99,34 +123,36 @@ class ScoringEngine:
         return max(0.0, min(1.0, closed / total))
 
     @staticmethod
-    def _recency_score(skill: Skill) -> float:
+    def _recency_decay(skill: Skill) -> float:
+        """Exponential time decay: e^(-0.01 * age_days).
+
+        - 1 day old  -> 0.99
+        - 30 days    -> 0.74
+        - 90 days    -> 0.41
+        - 180 days   -> 0.17
+        - 365 days   -> 0.026
+
+        Much smoother than the old step function.
+        """
         if not skill.last_commit_at:
-            return 0.15
+            return 0.05
         now = datetime.now(timezone.utc)
         last = skill.last_commit_at
         if last.tzinfo is None:
             last = last.replace(tzinfo=timezone.utc)
-        days = (now - last).days
-        if days <= 30:
-            return 1.0
-        if days <= 90:
-            return 0.9
-        if days <= 180:
-            return 0.7
-        if days <= 365:
-            return 0.4
-        return 0.15
+        days = max((now - last).total_seconds() / 86400, 0)
+        return math.exp(-0.01 * days)
 
     @staticmethod
-    def _momentum_score(skill: Skill, all_deltas: List[int]) -> float:
-        """Score based on star growth since last sync. Returns 0-1 (0.5 = neutral)."""
+    def _momentum_zscore(skill: Skill, mean: float, std: float) -> float:
+        """Z-score momentum: how many standard deviations above the mean.
+
+        Clamp to [0, 1] for scoring. 0.5 = average growth.
+        """
         delta = skill.stars - (skill.prev_stars or 0)
-        if not all_deltas:
-            return 0.5
-        lo, hi = min(all_deltas), max(all_deltas)
-        if hi == lo:
-            return 0.5
-        return max(0.0, min(1.0, (delta - lo) / (hi - lo)))
+        z = (delta - mean) / std
+        # Map z-score to 0-1: z=0 -> 0.5, z=2 -> ~0.95, z=-2 -> ~0.05
+        return max(0.0, min(1.0, 0.5 + 0.25 * z))
 
     @staticmethod
     def _size_bonus(skill: Skill) -> float:

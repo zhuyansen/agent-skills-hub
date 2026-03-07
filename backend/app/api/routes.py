@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import JSONResponse, Response
 from sqlalchemy import desc, func
 from sqlalchemy.orm import Session
 
@@ -23,6 +24,17 @@ from app.schemas.skill import (
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api")
+
+
+def _cached_json(data, max_age: int = 300) -> JSONResponse:
+    """Return a JSONResponse with Cache-Control header.
+
+    max_age is in seconds. Default 5 minutes.
+    """
+    return JSONResponse(
+        content=data,
+        headers={"Cache-Control": f"public, max-age={max_age}, s-maxage={max_age}"},
+    )
 
 
 @router.get("/skills", response_model=PaginatedSkillsResponse)
@@ -97,6 +109,38 @@ def list_skills_by_category(
     )
 
 
+@router.get("/skills/by-slug/{owner}/{repo}", response_model=SkillDetailResponse)
+def get_skill_by_slug(owner: str, repo: str, db: Session = Depends(get_db)) -> SkillDetailResponse:
+    """Look up a skill by owner/repo slug (repo_full_name)."""
+    full_name = f"{owner}/{repo}"
+    skill = db.query(Skill).filter(Skill.repo_full_name == full_name).first()
+    if not skill:
+        raise HTTPException(status_code=404, detail="Skill not found")
+
+    compositions = (
+        db.query(SkillComposition)
+        .filter(SkillComposition.skill_id == skill.id)
+        .order_by(desc(SkillComposition.compatibility_score))
+        .limit(5)
+        .all()
+    )
+    compatible_skills = []
+    for comp in compositions:
+        other = db.query(Skill).filter(Skill.id == comp.compatible_skill_id).first()
+        if other:
+            compatible_skills.append(SkillCompositionItem(
+                skill_id=other.id,
+                skill_name=other.repo_name,
+                skill_score=other.score or 0.0,
+                compatibility_score=comp.compatibility_score,
+                reason=comp.reason,
+            ))
+
+    detail = SkillDetailResponse.model_validate(skill)
+    detail.compatible_skills = compatible_skills
+    return detail
+
+
 @router.get("/skills/{skill_id}", response_model=SkillDetailResponse)
 def get_skill(skill_id: int, db: Session = Depends(get_db)) -> SkillDetailResponse:
     skill = db.query(Skill).filter(Skill.id == skill_id).first()
@@ -127,8 +171,9 @@ def get_skill(skill_id: int, db: Session = Depends(get_db)) -> SkillDetailRespon
     return detail
 
 
-@router.get("/stats", response_model=StatsResponse)
-def get_stats(db: Session = Depends(get_db)) -> StatsResponse:
+@router.get("/stats")
+def get_stats(db: Session = Depends(get_db)):
+    """Dashboard stats. Cached for 1 hour."""
     total = db.query(func.count(Skill.id)).scalar() or 0
     avg = db.query(func.avg(Skill.score)).scalar() or 0.0
 
@@ -142,35 +187,129 @@ def get_stats(db: Session = Depends(get_db)) -> StatsResponse:
 
     last_sync = db.query(SyncLog).order_by(desc(SyncLog.started_at)).first()
 
-    return StatsResponse(
+    resp = StatsResponse(
         total_skills=total,
         categories=categories,
         avg_score=round(float(avg), 1),
         last_sync_at=last_sync.started_at if last_sync else None,
         last_sync_status=last_sync.status if last_sync else None,
     )
+    return _cached_json(resp.model_dump(mode="json"), max_age=3600)  # 1 hour
 
 
-@router.get("/categories", response_model=list[CategoryCount])
-def list_categories(db: Session = Depends(get_db)) -> list[CategoryCount]:
+@router.get("/sync-status")
+def get_sync_status(db: Session = Depends(get_db)):
+    """Public sync health endpoint. Returns last sync info and health status.
+
+    Cached for 5 minutes.
+    """
+    # Last completed sync
+    last_completed = (
+        db.query(SyncLog)
+        .filter(SyncLog.status == "completed")
+        .order_by(desc(SyncLog.finished_at))
+        .first()
+    )
+    # Last sync attempt (any status)
+    last_attempt = db.query(SyncLog).order_by(desc(SyncLog.started_at)).first()
+
+    # Recent 5 sync logs for history
+    recent_logs = (
+        db.query(SyncLog)
+        .order_by(desc(SyncLog.started_at))
+        .limit(5)
+        .all()
+    )
+
+    now = datetime.now(timezone.utc)
+    overdue_threshold_hours = 10  # 8h interval + 2h grace period
+
+    health = "healthy"
+    message = ""
+
+    if not last_completed:
+        health = "unknown"
+        message = "No completed sync found"
+    else:
+        finished = last_completed.finished_at
+        if finished and finished.tzinfo is None:
+            from datetime import timezone as tz
+            finished = finished.replace(tzinfo=tz.utc)
+        hours_since = (now - finished).total_seconds() / 3600 if finished else 999
+        if hours_since > overdue_threshold_hours:
+            health = "overdue"
+            message = f"Last successful sync was {hours_since:.1f}h ago (threshold: {overdue_threshold_hours}h)"
+        else:
+            message = f"Last sync completed {hours_since:.1f}h ago"
+
+    # Count stuck "running" logs (started > 2h ago, still running)
+    two_hours_ago = now - timedelta(hours=2)
+    stuck_count = (
+        db.query(func.count(SyncLog.id))
+        .filter(SyncLog.status == "running")
+        .filter(SyncLog.started_at < two_hours_ago)
+        .scalar() or 0
+    )
+    if stuck_count > 0:
+        message += f". {stuck_count} stuck sync(s) detected."
+
+    data = {
+        "health": health,
+        "message": message,
+        "last_completed": {
+            "id": last_completed.id,
+            "started_at": last_completed.started_at.isoformat() if last_completed and last_completed.started_at else None,
+            "finished_at": last_completed.finished_at.isoformat() if last_completed and last_completed.finished_at else None,
+            "repos_found": last_completed.repos_found if last_completed else 0,
+            "repos_updated": last_completed.repos_updated if last_completed else 0,
+            "repos_new": last_completed.repos_new if last_completed else 0,
+        } if last_completed else None,
+        "last_attempt": {
+            "id": last_attempt.id,
+            "started_at": last_attempt.started_at.isoformat() if last_attempt and last_attempt.started_at else None,
+            "status": last_attempt.status if last_attempt else None,
+            "error_message": last_attempt.error_message if last_attempt else None,
+        } if last_attempt else None,
+        "recent_logs": [
+            {
+                "id": log.id,
+                "started_at": log.started_at.isoformat() if log.started_at else None,
+                "finished_at": log.finished_at.isoformat() if log.finished_at else None,
+                "status": log.status,
+                "repos_found": log.repos_found,
+                "repos_new": log.repos_new,
+            }
+            for log in recent_logs
+        ],
+        "stuck_running_count": stuck_count,
+    }
+
+    return _cached_json(data, max_age=300)  # 5 minutes
+
+
+@router.get("/categories")
+def list_categories(db: Session = Depends(get_db)):
+    """Category list. Cached for 1 hour."""
     rows = (
         db.query(Skill.category, func.count(Skill.id))
         .group_by(Skill.category)
         .order_by(func.count(Skill.id).desc())
         .all()
     )
-    return [CategoryCount(name=name, count=count) for name, count in rows]
+    data = [CategoryCount(name=name, count=count).model_dump(mode="json") for name, count in rows]
+    return _cached_json(data, max_age=3600)  # 1 hour
 
 
-@router.get("/trending", response_model=list[SkillResponse])
+@router.get("/trending")
 def get_trending(
     days: int = Query(7, ge=1, le=30),
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db),
-) -> list[SkillResponse]:
+):
     """Trending skills: high stars relative to repo age (star velocity).
 
     Formula: stars / max(age_in_days, 1). Only repos with >= 50 stars.
+    Cached for 5 minutes.
     """
     since = datetime.now(timezone.utc) - timedelta(days=days)
     items = (
@@ -190,16 +329,17 @@ def get_trending(
         return skill.stars / age_days
 
     ranked = sorted(items, key=star_velocity, reverse=True)[:limit]
-    return [SkillResponse.model_validate(s) for s in ranked]
+    data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in ranked]
+    return _cached_json(data, max_age=300)  # 5 min
 
 
-@router.get("/rising", response_model=list[SkillResponse])
+@router.get("/rising")
 def get_rising(
     days: int = Query(7, ge=1, le=30),
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db),
-) -> list[SkillResponse]:
-    """New & rising: repos created in the last N days, sorted by stars."""
+):
+    """New & rising: repos created in the last N days, sorted by stars. Cached 5 min."""
     since = datetime.now(timezone.utc) - timedelta(days=days)
     items = (
         db.query(Skill)
@@ -208,7 +348,8 @@ def get_rising(
         .limit(limit)
         .all()
     )
-    return [SkillResponse.model_validate(s) for s in items]
+    data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in items]
+    return _cached_json(data, max_age=300)  # 5 min
 
 
 @router.get("/masters")
@@ -312,30 +453,32 @@ def get_masters(db: Session = Depends(get_db)) -> list[dict]:
             "discovered": True,
         })
 
-    return results + discovered[:10]
+    data = results + discovered[:10]
+    return _cached_json(data, max_age=600)  # 10 min
 
 
-@router.get("/top-rated", response_model=list[SkillResponse])
+@router.get("/top-rated")
 def get_top_rated(
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db),
-) -> list[SkillResponse]:
-    """All-time highest scored skills."""
+):
+    """All-time highest scored skills. Cached for 10 minutes."""
     items = (
         db.query(Skill)
         .order_by(desc(Skill.score))
         .limit(limit)
         .all()
     )
-    return [SkillResponse.model_validate(s) for s in items]
+    data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in items]
+    return _cached_json(data, max_age=600)  # 10 min
 
 
-@router.get("/most-starred", response_model=list[SkillResponse])
+@router.get("/most-starred")
 def get_most_starred(
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db),
-) -> list[SkillResponse]:
-    """Community classics: time-tested repos (>6 months old, 100+ stars)."""
+):
+    """Community classics: time-tested repos (>6 months old, 100+ stars). Cached 10 min."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=180)
     items = (
         db.query(Skill)
@@ -346,15 +489,16 @@ def get_most_starred(
         .limit(limit)
         .all()
     )
-    return [SkillResponse.model_validate(s) for s in items]
+    data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in items]
+    return _cached_json(data, max_age=600)  # 10 min
 
 
-@router.get("/recently-updated", response_model=list[SkillResponse])
+@router.get("/recently-updated")
 def get_recently_updated(
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db),
-) -> list[SkillResponse]:
-    """Skills most recently pushed to GitHub."""
+):
+    """Skills most recently pushed to GitHub. Cached 5 min."""
     items = (
         db.query(Skill)
         .filter(Skill.last_commit_at.isnot(None))
@@ -362,15 +506,16 @@ def get_recently_updated(
         .limit(limit)
         .all()
     )
-    return [SkillResponse.model_validate(s) for s in items]
+    data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in items]
+    return _cached_json(data, max_age=300)  # 5 min
 
 
 @router.get("/language-stats")
 def get_language_stats(
     limit: int = Query(10, ge=1, le=30),
     db: Session = Depends(get_db),
-) -> list[dict]:
-    """Top programming languages across all skills."""
+):
+    """Top programming languages across all skills. Cached 1 hour."""
     rows = (
         db.query(Skill.language, func.count(Skill.id))
         .filter(Skill.language != "")
@@ -379,14 +524,15 @@ def get_language_stats(
         .limit(limit)
         .all()
     )
-    return [{"language": lang, "count": count} for lang, count in rows]
+    data = [{"language": lang, "count": count} for lang, count in rows]
+    return _cached_json(data, max_age=3600)  # 1 hour
 
 
 @router.get("/platforms")
 def get_platform_stats(
     db: Session = Depends(get_db),
-) -> list[dict]:
-    """Platform distribution across all skills."""
+):
+    """Platform distribution across all skills. Cached 1 hour."""
     all_skills = db.query(Skill.platforms).filter(Skill.platforms != "[]").all()
     platform_counts: dict[str, int] = {}
     for (platforms_json,) in all_skills:
@@ -397,4 +543,513 @@ def get_platform_stats(
         except (json.JSONDecodeError, TypeError):
             continue
     sorted_platforms = sorted(platform_counts.items(), key=lambda x: x[1], reverse=True)
-    return [{"platform": name, "count": count} for name, count in sorted_platforms]
+    data = [{"platform": name, "count": count} for name, count in sorted_platforms]
+    return _cached_json(data, max_age=3600)  # 1 hour
+
+
+@router.post("/submit-skill")
+def submit_skill(
+    body: dict,
+    db: Session = Depends(get_db),
+) -> dict:
+    """Community skill submission — anyone can submit a GitHub repo URL.
+    Adds it to extra_repos for next sync."""
+    from app.models.admin import ExtraRepo
+
+    repo_url = body.get("repo_url", "").strip()
+    if not repo_url:
+        raise HTTPException(status_code=400, detail="repo_url is required")
+
+    # Extract full_name from URL: github.com/owner/repo → owner/repo
+    import re
+    match = re.match(r"(?:https?://)?github\.com/([^/]+/[^/]+?)(?:\.git)?/?$", repo_url)
+    if not match:
+        raise HTTPException(status_code=400, detail="Invalid GitHub repository URL")
+
+    full_name = match.group(1)
+
+    # Check if already exists in skills
+    existing_skill = db.query(Skill).filter(Skill.repo_full_name == full_name).first()
+    if existing_skill:
+        return {"status": "already_tracked", "message": f"{full_name} is already in our database", "skill_id": existing_skill.id}
+
+    # Check if already submitted
+    existing_extra = db.query(ExtraRepo).filter(ExtraRepo.full_name == full_name).first()
+    if existing_extra:
+        return {"status": "already_submitted", "message": f"{full_name} has already been submitted and is pending review"}
+
+    # Add to extra repos with 'pending' status for admin review
+    new_extra = ExtraRepo(full_name=full_name, is_active=False, status="pending")
+    db.add(new_extra)
+    db.commit()
+    db.refresh(new_extra)
+
+    logger.info("Community submitted skill (pending review): %s", full_name)
+    return {"status": "submitted", "message": f"{full_name} has been submitted! It will be reviewed by our team and included after approval."}
+
+
+@router.post("/subscribe")
+def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
+    """Subscribe to the weekly newsletter. Sends a verification email."""
+    import re
+    import secrets
+    import httpx
+    from app.config import settings
+    from app.models.skill import Subscriber
+
+    email = body.get("email", "").strip().lower()
+    if not email or not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
+        raise HTTPException(status_code=400, detail="Invalid email address")
+
+    # Check if already subscribed
+    existing = db.query(Subscriber).filter(Subscriber.email == email).first()
+    if existing:
+        if existing.is_active and existing.verified:
+            return {"status": "ok", "message": "You're already subscribed and verified!"}
+        if existing.is_active and not existing.verified:
+            # Re-send verification token
+            token = secrets.token_urlsafe(32)
+            existing.verification_token = token
+            db.commit()
+            _send_verification_email(email, token, settings, logger)
+            return {"status": "ok", "message": "Verification email re-sent. Please check your inbox."}
+        # Re-activate
+        existing.is_active = True
+        token = secrets.token_urlsafe(32)
+        existing.verification_token = token
+        existing.verified = False
+        db.commit()
+        _send_verification_email(email, token, settings, logger)
+    else:
+        token = secrets.token_urlsafe(32)
+        new_sub = Subscriber(email=email, is_active=True, verified=False, verification_token=token)
+        db.add(new_sub)
+        db.commit()
+        _send_verification_email(email, token, settings, logger)
+
+    logger.info("Newsletter subscription (pending verification): %s", email)
+    return {"status": "ok", "message": "Please check your email to confirm your subscription."}
+
+
+def _send_verification_email(email: str, token: str, settings, logger) -> None:
+    """Send verification email via BillionMail if configured."""
+    if not settings.billionmail_api_url or not settings.billionmail_api_key:
+        logger.info("BillionMail not configured, skipping verification email for %s (token: %s)", email, token)
+        return
+
+    import httpx
+
+    site_url = settings.site_url if hasattr(settings, "site_url") else "https://agent-skills-hub.com"
+    verify_url = f"{site_url}/api/verify-email?token={token}"
+
+    try:
+        resp = httpx.post(
+            f"{settings.billionmail_api_url}/api/batch_mail/api/send",
+            headers={
+                "X-API-Key": settings.billionmail_api_key,
+                "Content-Type": "application/json",
+            },
+            json={
+                "recipient": email,
+                "attribs": {
+                    "source": "agent-skills-hub",
+                    "type": "verification",
+                    "verify_url": verify_url,
+                },
+            },
+            timeout=10.0,
+        )
+        if resp.status_code == 200:
+            logger.info("Verification email sent via BillionMail: %s", email)
+        else:
+            logger.warning("BillionMail API returned %d: %s", resp.status_code, resp.text[:200])
+    except Exception as exc:
+        logger.warning("BillionMail API call failed: %s", exc)
+
+
+@router.get("/verify-email")
+def verify_email(token: str = Query(...), db: Session = Depends(get_db)):
+    """Verify a subscriber's email address using the token from the verification email."""
+    from app.models.skill import Subscriber
+
+    subscriber = db.query(Subscriber).filter(Subscriber.verification_token == token).first()
+    if not subscriber:
+        raise HTTPException(status_code=400, detail="Invalid or expired verification token")
+
+    if subscriber.verified:
+        return Response(
+            content="<html><body><h2>Email already verified!</h2><p>You're already subscribed. You can close this page.</p></body></html>",
+            media_type="text/html",
+        )
+
+    subscriber.verified = True
+    subscriber.verified_at = datetime.now(timezone.utc)
+    subscriber.verification_token = None  # Consume the token
+    db.commit()
+
+    logger.info("Email verified: %s", subscriber.email)
+    return Response(
+        content="<html><body><h2>Email verified successfully!</h2><p>Thank you for subscribing to Agent Skills Hub newsletter. You can close this page.</p></body></html>",
+        media_type="text/html",
+    )
+
+
+@router.get("/feed.xml")
+def rss_feed(
+    limit: int = Query(30, ge=1, le=100),
+    db: Session = Depends(get_db),
+) -> Response:
+    """RSS 2.0 feed of latest skills added or updated."""
+    items = (
+        db.query(Skill)
+        .filter(Skill.last_commit_at.isnot(None))
+        .order_by(desc(Skill.last_synced))
+        .limit(limit)
+        .all()
+    )
+
+    site_url = "https://agent-skills-hub.com"
+
+    def _rfc822(dt: Optional[datetime]) -> str:
+        if not dt:
+            return ""
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+    def _escape(text: str) -> str:
+        return (
+            text.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+        )
+
+    item_xml_parts = []
+    for skill in items:
+        desc_text = _escape(skill.description or "No description")
+        score_str = f"Score: {skill.score:.1f}" if skill.score else ""
+        stars_str = f"Stars: {skill.stars}" if skill.stars else ""
+        cat_str = skill.category or "uncategorized"
+
+        item_xml_parts.append(
+            f"""    <item>
+      <title>{_escape(skill.repo_full_name)}</title>
+      <link>{_escape(skill.repo_url)}</link>
+      <guid isPermaLink="false">skill-{skill.id}</guid>
+      <description>{desc_text} | {score_str} | {stars_str}</description>
+      <category>{_escape(cat_str)}</category>
+      <pubDate>{_rfc822(skill.last_commit_at)}</pubDate>
+    </item>"""
+        )
+
+    last_build = _rfc822(datetime.now(timezone.utc))
+    items_xml = "\n".join(item_xml_parts)
+
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Agent Skills Hub - Latest Skills</title>
+    <link>{site_url}</link>
+    <description>Discover and compare open-source Agent Skills, tools and MCP servers. Auto-updated every 8 hours.</description>
+    <language>en</language>
+    <lastBuildDate>{last_build}</lastBuildDate>
+    <atom:link href="{site_url}/api/feed.xml" rel="self" type="application/rss+xml"/>
+{items_xml}
+  </channel>
+</rss>"""
+
+    return Response(
+        content=xml,
+        media_type="application/rss+xml; charset=utf-8",
+        headers={"Cache-Control": "public, max-age=1800, s-maxage=1800"},  # 30 min
+    )
+
+
+@router.get("/sitemap.xml")
+def sitemap(db: Session = Depends(get_db)) -> Response:
+    """Auto-generated sitemap for SEO. Includes all skill detail pages."""
+    site_url = "https://zhuyansen.github.io/agent-skills-hub"
+
+    skills = (
+        db.query(Skill.repo_full_name, Skill.last_synced, Skill.score)
+        .order_by(desc(Skill.score))
+        .all()
+    )
+
+    urls = []
+    # Homepage
+    urls.append(
+        f"""  <url>
+    <loc>{site_url}/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>"""
+    )
+    # Explore tab
+    urls.append(
+        f"""  <url>
+    <loc>{site_url}/?tab=explore</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>"""
+    )
+
+    for full_name, last_synced, score in skills:
+        lastmod = ""
+        if last_synced:
+            if last_synced.tzinfo is None:
+                last_synced = last_synced.replace(tzinfo=timezone.utc)
+            lastmod = f"\n    <lastmod>{last_synced.strftime('%Y-%m-%d')}</lastmod>"
+        # Higher-scored skills get higher priority
+        priority = min(0.9, 0.4 + (score or 0) / 200) if score else 0.4
+        urls.append(
+            f"""  <url>
+    <loc>{site_url}/skill/{full_name}</loc>{lastmod}
+    <changefreq>weekly</changefreq>
+    <priority>{priority:.1f}</priority>
+  </url>"""
+        )
+
+    urls_xml = "\n".join(urls)
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls_xml}
+</urlset>"""
+
+    return Response(
+        content=xml,
+        media_type="application/xml; charset=utf-8",
+        headers={"Cache-Control": "public, max-age=3600, s-maxage=3600"},  # 1 hour
+    )
+
+
+# ═══ Workflow category metadata ═══
+_WORKFLOW_META: dict[str, dict] = {
+    "claude-skill": {
+        "icon": "sparkles",
+        "title_zh": "Claude 技能",
+        "title_en": "Claude Skills",
+        "description_zh": "为 Claude 量身打造的实用技能",
+        "description_en": "Purpose-built skills for Claude",
+        "sort_order": 1,
+    },
+    "mcp-server": {
+        "icon": "server",
+        "title_zh": "MCP 服务器",
+        "title_en": "MCP Servers",
+        "description_zh": "模型上下文协议工具集合",
+        "description_en": "Model Context Protocol tool collection",
+        "sort_order": 2,
+    },
+    "ai-skill": {
+        "icon": "cpu",
+        "title_zh": "AI 技能",
+        "title_en": "AI Skills",
+        "description_zh": "跨平台 AI 技能与插件",
+        "description_en": "Cross-platform AI skills & plugins",
+        "sort_order": 3,
+    },
+    "agent-tool": {
+        "icon": "wrench",
+        "title_zh": "Agent 工具",
+        "title_en": "Agent Tools",
+        "description_zh": "AI Agent 框架与工具",
+        "description_en": "AI Agent frameworks & tools",
+        "sort_order": 4,
+    },
+    "entertainment": {
+        "icon": "music",
+        "title_zh": "生活娱乐",
+        "title_en": "Entertainment",
+        "description_zh": "音乐、游戏等趣味技能",
+        "description_en": "Music, games & fun skills",
+        "sort_order": 5,
+    },
+    "codex-skill": {
+        "icon": "code",
+        "title_zh": "Codex 技能",
+        "title_en": "Codex Skills",
+        "description_zh": "OpenAI Codex 专属技能",
+        "description_en": "OpenAI Codex skills",
+        "sort_order": 6,
+    },
+    "llm-plugin": {
+        "icon": "puzzle",
+        "title_zh": "LLM 插件",
+        "title_en": "LLM Plugins",
+        "description_zh": "大语言模型插件与扩展",
+        "description_en": "LLM plugins & extensions",
+        "sort_order": 7,
+    },
+    "youmind-plugin": {
+        "icon": "puzzle",
+        "title_zh": "YouMind 插件",
+        "title_en": "YouMind Plugins",
+        "description_zh": "YouMind 平台专属插件",
+        "description_en": "YouMind platform plugins",
+        "sort_order": 8,
+    },
+}
+
+
+@router.get("/workflows")
+def get_workflows(db: Session = Depends(get_db)):
+    """Dynamic skill workflows grouped by category.
+
+    Returns top skills per category (min 2 skills). Cached for 10 minutes.
+    """
+    cat_rows = (
+        db.query(Skill.category, func.count(Skill.id))
+        .group_by(Skill.category)
+        .having(func.count(Skill.id) >= 2)
+        .all()
+    )
+
+    workflows = []
+    for cat_name, count in cat_rows:
+        meta = _WORKFLOW_META.get(cat_name)
+        if not meta:
+            continue  # skip uncategorized etc.
+
+        skills = (
+            db.query(Skill)
+            .filter(Skill.category == cat_name)
+            .order_by(desc(Skill.score))
+            .limit(4)
+            .all()
+        )
+
+        workflows.append({
+            "id": cat_name,
+            "icon": meta["icon"],
+            "title_zh": meta["title_zh"],
+            "title_en": meta["title_en"],
+            "description_zh": meta["description_zh"],
+            "description_en": meta["description_en"],
+            "sort_order": meta["sort_order"],
+            "skill_count": count,
+            "skills": [
+                {
+                    "repo_name": s.repo_name,
+                    "repo_full_name": s.repo_full_name,
+                    "description": s.description or "",
+                    "stars": s.stars,
+                    "score": round(s.score, 1) if s.score else 0,
+                    "author_name": s.author_name,
+                }
+                for s in skills
+            ],
+        })
+
+    # Sort by predefined order
+    workflows.sort(key=lambda w: w.get("sort_order", 99))
+    for w in workflows:
+        w.pop("sort_order", None)
+
+    return _cached_json(workflows, max_age=600)  # 10 min
+
+
+@router.get("/landing")
+def get_landing_data(db: Session = Depends(get_db)):
+    """Pre-rendered landing page data: bundles stats + trending + top-rated + hall-of-fame +
+    recently-updated + categories + languages into a single cached response.
+
+    Eliminates waterfall requests on first page load. Cached for 10 minutes.
+    """
+    now = datetime.now(timezone.utc)
+
+    # 1. Stats
+    total = db.query(func.count(Skill.id)).scalar() or 0
+    avg = db.query(func.avg(Skill.score)).scalar() or 0.0
+    cat_rows = (
+        db.query(Skill.category, func.count(Skill.id))
+        .group_by(Skill.category)
+        .order_by(func.count(Skill.id).desc())
+        .all()
+    )
+    last_sync = db.query(SyncLog).order_by(desc(SyncLog.started_at)).first()
+    stats = {
+        "total_skills": total,
+        "avg_score": round(float(avg), 1),
+        "categories": [{"name": name, "count": count} for name, count in cat_rows],
+        "last_sync_at": last_sync.started_at.isoformat() if last_sync and last_sync.started_at else None,
+        "last_sync_status": last_sync.status if last_sync else None,
+    }
+
+    # 2. Trending (star velocity, last 7 days)
+    since_7 = now - timedelta(days=7)
+    trending_raw = (
+        db.query(Skill)
+        .filter(Skill.stars >= 50, Skill.created_at.isnot(None), Skill.created_at >= since_7)
+        .all()
+    )
+
+    def _velocity(s: Skill) -> float:
+        c = s.created_at
+        if c.tzinfo is None:
+            c = c.replace(tzinfo=timezone.utc)
+        return s.stars / max((now - c).total_seconds() / 86400, 1)
+
+    trending = sorted(trending_raw, key=_velocity, reverse=True)[:10]
+    trending_data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in trending]
+
+    # 3. Rising (new this week)
+    rising_raw = (
+        db.query(Skill)
+        .filter(Skill.created_at >= since_7)
+        .order_by(desc(Skill.stars))
+        .limit(10)
+        .all()
+    )
+    rising_data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in rising_raw]
+
+    # 4. Top rated
+    top_rated = (
+        db.query(Skill).order_by(desc(Skill.score)).limit(10).all()
+    )
+    top_rated_data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in top_rated]
+
+    # 5. Hall of fame (community classics, >6 months, 100+ stars)
+    cutoff = now - timedelta(days=180)
+    hall = (
+        db.query(Skill)
+        .filter(Skill.stars >= 100, Skill.created_at.isnot(None), Skill.created_at <= cutoff)
+        .order_by(desc(Skill.stars))
+        .limit(10)
+        .all()
+    )
+    hall_data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in hall]
+
+    # 6. Recently updated
+    recent = (
+        db.query(Skill)
+        .filter(Skill.last_commit_at.isnot(None))
+        .order_by(desc(Skill.last_commit_at))
+        .limit(10)
+        .all()
+    )
+    recent_data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in recent]
+
+    # 7. Language stats
+    lang_rows = (
+        db.query(Skill.language, func.count(Skill.id))
+        .filter(Skill.language != "")
+        .group_by(Skill.language)
+        .order_by(func.count(Skill.id).desc())
+        .limit(10)
+        .all()
+    )
+    languages = [{"language": lang, "count": cnt} for lang, cnt in lang_rows]
+
+    landing = {
+        "stats": stats,
+        "trending": trending_data,
+        "rising": rising_data,
+        "top_rated": top_rated_data,
+        "hall_of_fame": hall_data,
+        "recently_updated": recent_data,
+        "languages": languages,
+        "generated_at": now.isoformat(),
+    }
+    return _cached_json(landing, max_age=600)  # 10 min

@@ -29,6 +29,10 @@ class ExtraRepo(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     full_name = Column(String(255), unique=True, nullable=False)
     is_active = Column(Boolean, default=True)
+    # Review workflow: pending → approved / rejected
+    status = Column(String(20), default="pending")  # pending, approved, rejected
+    submitted_by = Column(String(255), nullable=True)  # optional: email or IP
+    reviewed_at = Column(DateTime, nullable=True)
     created_at = Column(DateTime, server_default=func.now())
 
 

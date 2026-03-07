@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, Text
+from sqlalchemy import Boolean, Column, DateTime, Float, Index, Integer, String, Text
 from sqlalchemy.sql import func
 
 from app.database import Base
@@ -6,6 +6,15 @@ from app.database import Base
 
 class Skill(Base):
     __tablename__ = "skills"
+    __table_args__ = (
+        # Composite indexes for common query patterns
+        Index("ix_skills_category_score", "category", "score"),
+        Index("ix_skills_last_commit_at", "last_commit_at"),
+        Index("ix_skills_stars", "stars"),
+        Index("ix_skills_last_synced", "last_synced"),
+        Index("ix_skills_author_name", "author_name"),
+        Index("ix_skills_created_at", "created_at"),
+    )
 
     id = Column(Integer, primary_key=True, autoincrement=True)
 
@@ -102,3 +111,16 @@ class SyncLog(Base):
     repos_updated = Column(Integer, default=0)
     repos_new = Column(Integer, default=0)
     error_message = Column(Text, nullable=True)
+
+
+class Subscriber(Base):
+    __tablename__ = "subscribers"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(255), unique=True, nullable=False, index=True)
+    subscribed_at = Column(DateTime, server_default=func.now())
+    is_active = Column(Boolean, default=True)
+    # Email verification
+    verified = Column(Boolean, default=False)
+    verification_token = Column(String(64), nullable=True, index=True)
+    verified_at = Column(DateTime, nullable=True)

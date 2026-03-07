@@ -15,12 +15,18 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 logger = logging.getLogger(__name__)
 
 # Override DATABASE_URL to use Supabase if available
-supabase_url = os.environ.get("SUPABASE_DB_URL")
+supabase_url = os.environ.get("SUPABASE_DB_URL", "").strip()
+database_url = os.environ.get("DATABASE_URL", "").strip()
+
 if supabase_url:
     os.environ["DATABASE_URL"] = supabase_url
     logger.info("Using Supabase PostgreSQL database")
+elif database_url:
+    logger.info("Using DATABASE_URL: %s", database_url[:30] + "...")
 else:
-    logger.info("Using local SQLite database")
+    # Ensure a valid default — remove empty DATABASE_URL if set by CI
+    os.environ.pop("DATABASE_URL", None)
+    logger.info("Using default local SQLite database")
 
 from app.scheduler.jobs import sync_all_skills  # noqa: E402
 

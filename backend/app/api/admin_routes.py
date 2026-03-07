@@ -1,6 +1,7 @@
 """Admin API routes with simple token-based authentication."""
 import json
 import logging
+from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, Header, HTTPException, Query
@@ -10,7 +11,7 @@ from sqlalchemy.orm import Session
 from app.config import settings
 from app.database import get_db
 from app.models.admin import ExtraRepo, SearchQuery, SkillMaster
-from app.models.skill import Skill, SyncLog
+from app.models.skill import Skill, Subscriber, SyncLog
 from app.schemas.admin import (
     ExtraRepoCreate,
     ExtraRepoResponse,
@@ -163,6 +164,40 @@ def delete_extra_repo(
     return {"message": "Repo removed"}
 
 
+@admin_router.put("/extra-repos/{repo_id}/approve")
+def approve_extra_repo(
+    repo_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Approve a pending community submission. Makes it active for next sync."""
+    repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
+    if not repo:
+        raise HTTPException(404, "Repo not found")
+    repo.status = "approved"
+    repo.is_active = True
+    repo.reviewed_at = datetime.now(timezone.utc)
+    db.commit()
+    return {"message": f"Repo '{repo.full_name}' approved and will be included in next sync"}
+
+
+@admin_router.put("/extra-repos/{repo_id}/reject")
+def reject_extra_repo(
+    repo_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Reject a pending community submission."""
+    repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
+    if not repo:
+        raise HTTPException(404, "Repo not found")
+    repo.status = "rejected"
+    repo.is_active = False
+    repo.reviewed_at = datetime.now(timezone.utc)
+    db.commit()
+    return {"message": f"Repo '{repo.full_name}' rejected"}
+
+
 # ═══ Search Queries CRUD ═══
 
 @admin_router.get("/search-queries", response_model=list[SearchQueryResponse])
@@ -255,6 +290,42 @@ def delete_skill_admin(
     db.delete(skill)
     db.commit()
     return {"message": "Skill deleted"}
+
+
+# ═══ Subscribers Management ═══
+
+@admin_router.get("/subscribers")
+def list_subscribers(
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[dict]:
+    """List all newsletter subscribers."""
+    subs = db.query(Subscriber).order_by(desc(Subscriber.id)).all()
+    return [
+        {
+            "id": s.id,
+            "email": s.email,
+            "subscribed_at": s.subscribed_at.isoformat() if s.subscribed_at else None,
+            "is_active": s.is_active,
+            "verified": s.verified,
+            "verified_at": s.verified_at.isoformat() if s.verified_at else None,
+        }
+        for s in subs
+    ]
+
+
+@admin_router.delete("/subscribers/{sub_id}")
+def delete_subscriber(
+    sub_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    sub = db.query(Subscriber).filter(Subscriber.id == sub_id).first()
+    if not sub:
+        raise HTTPException(404, "Subscriber not found")
+    db.delete(sub)
+    db.commit()
+    return {"message": f"Subscriber '{sub.email}' removed"}
 
 
 # ═══ Sync Management ═══

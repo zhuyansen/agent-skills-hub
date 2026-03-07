@@ -1,6 +1,7 @@
 import type {
   CategoryCount,
   ExtraRepoData,
+  LandingData,
   MasterData,
   PaginatedSkills,
   SearchQueryData,
@@ -21,6 +22,7 @@ import {
   sbFetchMostStarred,
   sbFetchRecentlyUpdated,
   sbFetchSkillDetail,
+  sbFetchSkillBySlug,
   sbFetchLanguageStats,
   sbFetchMasters,
 } from "./supabaseClient";
@@ -91,9 +93,33 @@ export async function fetchRecentlyUpdated(limit = 10): Promise<Skill[]> {
   return request<Skill[]>(`/api/recently-updated?limit=${limit}`);
 }
 
+export async function fetchQuickSearch(query: string, limit = 8): Promise<Skill[]> {
+  if (!query.trim()) return [];
+  if (USE_SUPABASE) {
+    const sb = supabase!;
+    const pat = `%${query}%`;
+    const { data, error } = await sb
+      .from("skills")
+      .select("id,repo_full_name,repo_name,repo_url,description,author_name,author_avatar_url,stars,score,category,language,platforms,size_category,repo_size_kb,author_followers,forks,open_issues,total_issues,total_commits,topics,license,star_momentum,project_type,last_commit_at,created_at,last_synced,quality_completeness,quality_clarity,quality_specificity,quality_examples,quality_agent_readiness,quality_score,readme_size,readme_structure_score,estimated_tokens,homepage_url")
+      .or(`repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`)
+      .order("score", { ascending: false })
+      .limit(limit);
+    if (error) throw new Error(error.message);
+    return (data ?? []) as Skill[];
+  }
+  return request<Skill[]>(`/api/skills?search=${encodeURIComponent(query)}&page_size=${limit}&sort_by=score&sort_order=desc`).then(
+    (r: any) => r.items || r,
+  );
+}
+
 export async function fetchSkillDetail(id: number): Promise<SkillDetail> {
   if (USE_SUPABASE) return sbFetchSkillDetail(id);
   return request<SkillDetail>(`/api/skills/${id}`);
+}
+
+export async function fetchSkillBySlug(slug: string): Promise<SkillDetail> {
+  if (USE_SUPABASE) return sbFetchSkillBySlug(slug);
+  return request<SkillDetail>(`/api/skills/by-slug/${encodeURIComponent(slug)}`);
 }
 
 export async function fetchLanguageStats(): Promise<{ language: string; count: number }[]> {
@@ -134,6 +160,46 @@ export interface Master {
 export async function fetchMasters(): Promise<Master[]> {
   if (USE_SUPABASE) return sbFetchMasters();
   return request<Master[]>("/api/masters");
+}
+
+// ═══ Landing Page Bundle (single-request for all overview data) ═══
+
+export async function fetchLandingData(): Promise<LandingData> {
+  // Landing endpoint only available via FastAPI backend
+  if (USE_SUPABASE) {
+    // Fallback: fetch all individually and combine
+    const [stats, trending, rising, topRated, hallOfFame, recentlyUpdated, languages] =
+      await Promise.all([
+        fetchStats(),
+        fetchTrending(10),
+        fetchRising(7, 10),
+        fetchTopRated(10),
+        fetchMostStarred(10),
+        fetchRecentlyUpdated(10),
+        fetchLanguageStats(),
+      ]);
+    return {
+      stats,
+      trending,
+      rising,
+      top_rated: topRated,
+      hall_of_fame: hallOfFame,
+      recently_updated: recentlyUpdated,
+      languages,
+      generated_at: new Date().toISOString(),
+    };
+  }
+  return request<LandingData>("/api/landing");
+}
+
+// ═══ Community Submission ═══
+
+export async function submitSkill(repoUrl: string): Promise<{ status: string; message: string; skill_id?: number }> {
+  return request("/api/submit-skill", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ repo_url: repoUrl }),
+  });
 }
 
 // ═══ Admin API ═══
@@ -192,6 +258,14 @@ export async function adminDeleteExtraRepo(token: string, id: number): Promise<v
   await request(`/api/admin/extra-repos/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
+export async function adminApproveExtraRepo(token: string, id: number): Promise<{ message: string }> {
+  return request(`/api/admin/extra-repos/${id}/approve`, { method: "PUT", headers: adminHeaders(token) });
+}
+
+export async function adminRejectExtraRepo(token: string, id: number): Promise<{ message: string }> {
+  return request(`/api/admin/extra-repos/${id}/reject`, { method: "PUT", headers: adminHeaders(token) });
+}
+
 export async function adminFetchSearchQueries(token: string): Promise<SearchQueryData[]> {
   return request<SearchQueryData[]>("/api/admin/search-queries", { headers: adminHeaders(token) });
 }
@@ -206,6 +280,25 @@ export async function adminCreateSearchQuery(token: string, query: string): Prom
 
 export async function adminDeleteSearchQuery(token: string, id: number): Promise<void> {
   await request(`/api/admin/search-queries/${id}`, { method: "DELETE", headers: adminHeaders(token) });
+}
+
+// ═══ Admin Subscribers ═══
+
+export interface SubscriberData {
+  id: number;
+  email: string;
+  subscribed_at: string | null;
+  is_active: boolean;
+  verified: boolean;
+  verified_at: string | null;
+}
+
+export async function adminFetchSubscribers(token: string): Promise<SubscriberData[]> {
+  return request<SubscriberData[]>("/api/admin/subscribers", { headers: adminHeaders(token) });
+}
+
+export async function adminDeleteSubscriber(token: string, id: number): Promise<void> {
+  await request(`/api/admin/subscribers/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
 export async function adminFetchSyncLogs(token: string): Promise<SyncLogData[]> {

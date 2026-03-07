@@ -1,0 +1,172 @@
+import { Link } from "react-router-dom";
+import { useI18n } from "../i18n/I18nContext";
+
+export function SiteFooter() {
+  const { t, lang } = useI18n();
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <footer className="bg-gray-900 text-gray-300 mt-12">
+      {/* Main footer content */}
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+          {/* Brand column */}
+          <div className="col-span-2 sm:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-3">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" strokeWidth="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              <span className="text-white font-bold text-sm">Agent Skills Hub</span>
+            </Link>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              {lang === "zh"
+                ? "发现和比较开源 Agent Skills、工具和 MCP 服务器。数据来自 GitHub，每8小时自动更新。"
+                : "Discover and compare open-source Agent Skills, tools and MCP servers. Data sourced from GitHub, auto-updated every 8 hours."}
+            </p>
+          </div>
+
+          {/* Navigation column */}
+          <div>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
+              {lang === "zh" ? "导航" : "Navigation"}
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t("tab.overview")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/?tab=explore" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  {t("tab.explore")}
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("newsletter")}
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {lang === "zh" ? "订阅周报" : "Newsletter"}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("submit-skill")}
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {lang === "zh" ? "提交技能" : "Submit Skill"}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources column */}
+          <div>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
+              {lang === "zh" ? "资源" : "Resources"}
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="/api/feed.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                  RSS Feed
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/api/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Sitemap
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/api/stats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  API
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Community column */}
+          <div>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
+              {lang === "zh" ? "社区" : "Community"}
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="https://github.com/ZhuYansen/agent-skills-hub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/GoSailGlobal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  X (Twitter)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
+          <span>
+            &copy; {new Date().getFullYear()} Agent Skills Hub. {lang === "zh" ? "保留所有权利" : "All rights reserved"}.
+          </span>
+          <span className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              {t("footer.autoUpdated")}
+            </span>
+            <span className="text-gray-600">·</span>
+            <span>
+              by{" "}
+              <a
+                href="https://x.com/GoSailGlobal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Jason Zhu
+              </a>
+            </span>
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}

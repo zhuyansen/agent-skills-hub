@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 
 import httpx
@@ -13,17 +13,42 @@ logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
 
 SEARCH_QUERIES = [
+    # ── Core MCP ecosystem ──
     "mcp-server in:name,topics",
     "claude-mcp in:name,description,topics",
     "model-context-protocol in:name,description,topics",
     "mcp in:topics language:python",
     "mcp in:topics language:typescript",
-    "agent-tools in:name,description,topics",
-    "codex-skills in:name,description,topics",
-    "youmind in:name,description,topics",
+    "mcp-tool in:name,topics",
+    "mcp-plugin in:name,description,topics",
+    # ── Claude / Anthropic skills ──
     "claude-skill in:name,description,topics",
+    "claude-code-skill in:name,description,topics",
+    "claude-code in:topics",
+    "anthropic in:topics language:python",
+    "anthropic in:topics language:typescript",
+    # ── Agent tools & frameworks ──
+    "agent-tools in:name,description,topics",
     "ai-agent-tool in:name,description,topics",
+    "agent-skill in:name,topics",
     "llm-tool in:name,description,topics",
+    "llm-agent in:name,topics stars:>10",
+    "ai-tools in:topics stars:>20",
+    # ── Codex / OpenAI agent skills ──
+    "codex-skills in:name,description,topics",
+    "codex-cli in:name,topics",
+    "openai-agent in:name,topics",
+    "openai-tool in:name,topics",
+    # ── Gemini / Google agent skills ──
+    "gemini-agent in:name,topics",
+    "gemini-tool in:name,description,topics",
+    # ── YouMind / other platforms ──
+    "youmind in:name,description,topics",
+    "youmind-plugin in:name,topics",
+    # ── Trending topics (broader discovery) ──
+    "function-calling in:topics language:python stars:>50",
+    "tool-use in:topics language:typescript stars:>50",
+    "ai-automation in:topics stars:>20",
 ]
 
 # Masters / influencers whose repos should always be collected
@@ -80,11 +105,25 @@ async def _github_request(
     return resp.json()
 
 
-async def sync_all_skills(sync_log_id: Optional[int] = None) -> None:
+def _get_last_successful_sync(db: "Session") -> Optional[datetime]:
+    """Get the timestamp of the last successful sync for incremental mode."""
+    from app.models.skill import SyncLog
+    last = (
+        db.query(SyncLog)
+        .filter(SyncLog.status == "completed")
+        .order_by(SyncLog.finished_at.desc())
+        .first()
+    )
+    return last.finished_at if last else None
+
+
+async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool = True) -> None:
     """Main scheduled sync: fetch GitHub data, clean, upsert, and re-score.
 
     Args:
         sync_log_id: If provided, reuse an existing SyncLog instead of creating a new one.
+        incremental: If True, only fetch repos pushed since last successful sync.
+                     Falls back to full sync if no previous sync found.
     """
     from app.database import SessionLocal
     from app.models.skill import Skill, SyncLog
@@ -109,14 +148,65 @@ async def sync_all_skills(sync_log_id: Optional[int] = None) -> None:
         all_repos: dict[str, dict] = {}
         owner_cache: dict[str, int] = {}
 
+        # ── Incremental sync: determine pushed:> filter ──
+        pushed_filter = ""
+        if incremental:
+            last_sync_at = _get_last_successful_sync(db)
+            if last_sync_at:
+                # Add 1-hour buffer to avoid missing edge cases
+                since = last_sync_at - timedelta(hours=1)
+                pushed_filter = f" pushed:>{since.strftime('%Y-%m-%dT%H:%M:%SZ')}"
+                logger.info("Incremental sync: fetching repos pushed after %s", since.isoformat())
+            else:
+                logger.info("No previous sync found, performing full sync")
+
+        # ── Load DB-managed search queries (admin panel) & merge with hardcoded ──
+        all_queries = list(SEARCH_QUERIES)
+        try:
+            from app.models.admin import SearchQuery as SQModel
+            db_queries = db.query(SQModel).filter(SQModel.is_active == True).all()  # noqa: E712
+            for sq in db_queries:
+                if sq.query not in all_queries:
+                    all_queries.append(sq.query)
+            if db_queries:
+                logger.info("Loaded %d additional search queries from DB", len(db_queries))
+        except Exception as exc:
+            logger.warning("Could not load DB search queries: %s", exc)
+
+        # ── Load DB-managed extra repos ──
+        extra_repos_list = list(EXTRA_REPOS)
+        try:
+            from app.models.admin import ExtraRepo as ERModel
+            db_extras = db.query(ERModel).filter(ERModel.is_active == True).all()  # noqa: E712
+            for er in db_extras:
+                if er.full_name not in extra_repos_list:
+                    extra_repos_list.append(er.full_name)
+            if db_extras:
+                logger.info("Loaded %d additional extra repos from DB", len(db_extras))
+        except Exception as exc:
+            logger.warning("Could not load DB extra repos: %s", exc)
+
+        # ── Load DB-managed masters ──
+        masters_list = list(MASTERS_USERS)
+        try:
+            from app.models.admin import SkillMaster as SMModel
+            db_masters = db.query(SMModel).filter(SMModel.is_active == True).all()  # noqa: E712
+            for m in db_masters:
+                if m.github not in masters_list:
+                    masters_list.append(m.github)
+        except Exception:
+            pass
+
         async with httpx.AsyncClient(timeout=30.0) as client:
-            for query in SEARCH_QUERIES:
+            for query in all_queries:
+                # Append pushed:> filter for incremental sync
+                effective_query = query + pushed_filter if pushed_filter else query
                 try:
                     for page in range(1, 4):  # up to 3 pages
                         data = await _github_request(
                             client,
                             "https://api.github.com/search/repositories",
-                            params={"q": query, "per_page": 100, "page": page, "sort": "stars"},
+                            params={"q": effective_query, "per_page": 100, "page": page, "sort": "stars"},
                         )
                         items = data.get("items", [])
                         for repo in items:
@@ -131,7 +221,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None) -> None:
                 await asyncio.sleep(3)
 
             # ── Phase 2: Fetch repos for masters (by username) ──
-            for username in MASTERS_USERS:
+            for username in masters_list:
                 try:
                     for page in range(1, 4):
                         data = await _github_request(
@@ -155,7 +245,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None) -> None:
             logger.info("After masters fetch: %d unique repos", len(all_repos))
 
             # ── Phase 3: Fetch curated extra repos ──
-            for full_name in EXTRA_REPOS:
+            for full_name in extra_repos_list:
                 if full_name in all_repos:
                     continue
                 try:
@@ -169,7 +259,15 @@ async def sync_all_skills(sync_log_id: Optional[int] = None) -> None:
                 except Exception as exc:
                     logger.error("Extra repo fetch failed [%s]: %s", full_name, exc)
 
-            # Enrich with owner followers
+            # ── Phase 4: Enrich with owner followers ──
+            # In incremental mode, pre-load existing owner followers from DB to skip API calls
+            if pushed_filter:
+                existing_skills = db.query(Skill.author_name, Skill.author_followers).all()
+                for name, followers in existing_skills:
+                    if name and name not in owner_cache:
+                        owner_cache[name] = followers or 0
+                logger.info("Pre-loaded %d owner followers from DB cache", len(owner_cache))
+
             count = 0
             for fn, repo in all_repos.items():
                 owner_login = repo.get("owner", {}).get("login", "")

@@ -10,6 +10,10 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5173,http://localhost:3000"
     admin_token: str = ""
 
+    # BillionMail newsletter integration
+    billionmail_api_url: str = ""  # e.g. https://mail.yourdomain.com
+    billionmail_api_key: str = ""
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 

@@ -55,6 +55,9 @@ class ExtraRepoResponse(BaseModel):
     id: int
     full_name: str
     is_active: bool = True
+    status: str = "pending"
+    submitted_by: Optional[str] = None
+    reviewed_at: Optional[datetime] = None
     created_at: Optional[datetime] = None
 
     model_config = {"from_attributes": True}
