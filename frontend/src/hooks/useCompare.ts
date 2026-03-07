@@ -2,7 +2,7 @@ import { useCallback, useSyncExternalStore } from "react";
 import type { Skill } from "../types/skill";
 
 const STORAGE_KEY = "ash_compare";
-const MAX_COMPARE = 3;
+const MAX_COMPARE = 4;
 
 // External store with cached snapshot (same pattern as useFavorites)
 let listeners: (() => void)[] = [];

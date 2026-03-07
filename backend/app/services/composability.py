@@ -18,9 +18,23 @@ class ComposabilityEngine:
     MAX_RECOMMENDATIONS = 5
     MIN_THRESHOLD = 0.45
 
-    def compute_all(self, db: Session) -> int:
-        db.query(SkillComposition).delete()
-        db.flush()
+    def compute_all(self, db: Session, changed_ids: set[int] | None = None) -> int:
+        """Compute composability links.
+
+        Args:
+            changed_ids: If provided, only recompute for these skill IDs
+                         (delete their old links, recompute against all).
+                         If None, full recompute for all skills.
+        """
+        if changed_ids:
+            db.query(SkillComposition).filter(
+                SkillComposition.skill_id.in_(changed_ids)
+            ).delete(synchronize_session=False)
+            db.flush()
+            logger.info("Incremental composability: recomputing for %d changed skills", len(changed_ids))
+        else:
+            db.query(SkillComposition).delete()
+            db.flush()
 
         skills = db.query(Skill).filter(Skill.stars >= 5).all()
         if not skills:
@@ -53,8 +67,15 @@ class ComposabilityEngine:
         for i, s in enumerate(skills):
             platforms_by_idx[i] = set(json.loads(s.platforms)) if s.platforms else set()
 
+        # Determine which skills to process
+        if changed_ids:
+            process_indices = [i for i, s in enumerate(skills) if s.id in changed_ids]
+        else:
+            process_indices = list(range(len(skills)))
+
         count = 0
-        for i, skill in enumerate(skills):
+        for i in process_indices:
+            skill = skills[i]
             sim_row = cosine_similarity(tfidf_matrix[i : i + 1], tfidf_matrix).flatten()
 
             candidates = []
@@ -135,5 +156,5 @@ class ComposabilityEngine:
                 logger.info("Composability: %d/%d skills processed", i + 1, len(skills))
 
         db.commit()
-        logger.info("Computed %d composition links for %d skills", count, len(skills))
+        logger.info("Computed %d composition links for %d/%d skills", count, len(process_indices), len(skills))
         return count

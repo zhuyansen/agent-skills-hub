@@ -42,8 +42,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Agent Skills Hub API",
-    version="0.1.0",
+    description="Discover and compare open-source Agent Skills, tools & MCP servers. "
+                "Browse 5000+ skills with quality scoring, composability analysis, and more.",
+    version="7.2.0",
     lifespan=lifespan,
+    docs_url="/docs",
+    redoc_url="/redoc",
 )
 
 app.add_middleware(

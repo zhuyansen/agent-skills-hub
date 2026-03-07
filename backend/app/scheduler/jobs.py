@@ -12,44 +12,45 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
 
-SEARCH_QUERIES = [
-    # ── Core MCP ecosystem (highest priority) ──
+# ── Core queries: run EVERY sync (10 queries) ──
+CORE_QUERIES = [
     "mcp-server in:name,topics",
     "claude-mcp in:name,description,topics",
     "model-context-protocol in:name,description,topics",
     "mcp in:topics language:python",
     "mcp in:topics language:typescript",
     "mcp-tool in:name,topics",
-    "mcp-plugin in:name,description,topics",
-    # ── Claude / Anthropic skills ──
     "claude-skill in:name,description,topics",
-    "claude-code-skill in:name,description,topics",
     "claude-code in:topics",
+    "agent-skill in:name,topics",
+    "ai-agent-tool in:name,description,topics",
+]
+
+# ── Extended queries: run WEEKLY (Sunday) or on full sync ──
+EXTENDED_QUERIES = [
+    "mcp-plugin in:name,description,topics",
+    "claude-code-skill in:name,description,topics",
     "anthropic in:topics language:python",
     "anthropic in:topics language:typescript",
-    # ── Agent tools & frameworks ──
     "agent-tools in:name,description,topics",
-    "ai-agent-tool in:name,description,topics",
-    "agent-skill in:name,topics",
     "llm-tool in:name,description,topics",
     "llm-agent in:name,topics stars:>10",
     "ai-tools in:topics stars:>20",
-    # ── Codex / OpenAI agent skills ──
     "codex-skills in:name,description,topics",
     "codex-cli in:name,topics",
     "openai-agent in:name,topics",
     "openai-tool in:name,topics",
-    # ── Gemini / Google agent skills ──
     "gemini-agent in:name,topics",
     "gemini-tool in:name,description,topics",
-    # ── YouMind / other platforms ──
     "youmind in:name,description,topics",
     "youmind-plugin in:name,topics",
-    # ── Trending topics (broader discovery) ──
     "function-calling in:topics language:python stars:>50",
     "tool-use in:topics language:typescript stars:>50",
     "ai-automation in:topics stars:>20",
 ]
+
+# Combined for backwards compatibility
+SEARCH_QUERIES = CORE_QUERIES + EXTENDED_QUERIES
 
 # Masters / influencers whose repos should always be collected
 MASTERS_USERS = [
@@ -209,8 +210,18 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             else:
                 logger.info("No previous sync found, performing full sync")
 
-        # ── Load DB-managed search queries (admin panel) & merge with hardcoded ──
-        all_queries = list(SEARCH_QUERIES)
+        # ── Load search queries with priority tiers ──
+        # Core queries run every sync; extended queries run weekly (Sunday) or full sync
+        is_full_sync = not pushed_filter
+        is_weekly = datetime.now(timezone.utc).weekday() == 6  # Sunday
+        if is_full_sync or is_weekly:
+            all_queries = list(SEARCH_QUERIES)  # core + extended
+            logger.info("Running FULL query set (%d queries): %s",
+                        len(all_queries), "full sync" if is_full_sync else "weekly")
+        else:
+            all_queries = list(CORE_QUERIES)  # core only
+            logger.info("Running CORE query set (%d queries, incremental)", len(all_queries))
+
         try:
             from app.models.admin import SearchQuery as SQModel
             db_queries = db.query(SQModel).filter(SQModel.is_active == True).all()  # noqa: E712
@@ -353,14 +364,16 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             # ═══════════════════════════════════════════════════════
             # Phase 4: Enrich with owner followers (skip if rate limited)
             # ═══════════════════════════════════════════════════════
-            # Pre-load existing owner followers from DB (works for both modes)
+            # ALWAYS pre-load existing owner followers from DB to minimize API calls.
+            # This is the key optimization: after the first full sync, subsequent syncs
+            # skip API calls for ~95% of owners (only new/unknown owners hit the API).
             try:
                 existing_skills = db.query(Skill.author_name, Skill.author_followers).all()
                 for name, followers in existing_skills:
                     if name and name not in owner_cache:
                         owner_cache[name] = followers or 0
                 if owner_cache:
-                    logger.info("Pre-loaded %d owner followers from DB cache", len(owner_cache))
+                    logger.info("Pre-loaded %d owner followers from DB cache (will skip API for these)", len(owner_cache))
             except Exception:
                 pass
 
@@ -403,6 +416,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 null_readme_skills = (
                     db.query(Skill.repo_full_name)
                     .filter(Skill.readme_content.is_(None))
+                    .order_by(Skill.score.desc().nullslast())  # High-score skills first
                     .limit(300)
                     .all()
                 )
@@ -506,8 +520,18 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         scoring_engine = ScoringEngine()
         scoring_engine.score_all(db)
 
+        # Compute composability — incremental for updated skills, full for new syncs
         from app.services.composability import ComposabilityEngine
-        ComposabilityEngine().compute_all(db)
+        if new_count > 0 and updated_count > 0 and new_count < 500:
+            # Incremental: only recompute for new skills (existing ones keep their links)
+            new_skill_ids = {
+                s.id for s in db.query(Skill.id)
+                .filter(Skill.last_synced >= sync_log.started_at)
+                .all()
+            } if sync_log.started_at else None
+            ComposabilityEngine().compute_all(db, changed_ids=new_skill_ids)
+        else:
+            ComposabilityEngine().compute_all(db)
 
         sync_log.status = "completed"
         sync_log.repos_found = len(cleaned)

@@ -109,7 +109,7 @@ export function ComparePage() {
           <h2 className="text-sm font-medium text-gray-400 uppercase tracking-wide mb-4">
             {t("detail.qualityAnalysis")}
           </h2>
-          <div className={`grid gap-4 ${skills.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+          <div className={`grid gap-4 ${skills.length === 2 ? "grid-cols-2" : skills.length === 3 ? "grid-cols-3" : "grid-cols-4"}`}>
             {skills.map((s) => (
               <div key={s.id} className="text-center">
                 <div className="flex justify-center mb-2">
