@@ -69,14 +69,30 @@ def main():
         ]
         logger.info("Found %d verified subscribers", len(recipients))
 
-        # 2. Get trending skills (top 10 by star_momentum)
-        trending_raw = (
-            db.query(Skill)
-            .filter(Skill.score > 0)
-            .order_by(desc(Skill.star_momentum))
-            .limit(10)
-            .all()
-        )
+        # 2. Get trending skills
+        # Try star_momentum first; fall back to stars DESC if momentum data unavailable
+        has_momentum = db.query(func.count(Skill.id)).filter(Skill.star_momentum > 0).scalar() or 0
+
+        if has_momentum > 0:
+            trending_raw = (
+                db.query(Skill)
+                .filter(Skill.star_momentum > 0)
+                .order_by(desc(Skill.star_momentum))
+                .limit(10)
+                .all()
+            )
+            logger.info("Using star_momentum for trending (%d skills with momentum)", has_momentum)
+        else:
+            # Fallback: top skills by stars (well-known projects)
+            trending_raw = (
+                db.query(Skill)
+                .filter(Skill.stars > 100)
+                .order_by(desc(Skill.stars))
+                .limit(10)
+                .all()
+            )
+            logger.info("Fallback: using stars DESC for trending (no momentum data)")
+
         trending_data = [
             {
                 "repo_name": s.repo_name,
@@ -94,7 +110,8 @@ def main():
         # 3. Stats
         total_skills = db.query(func.count(Skill.id)).scalar() or 0
         week_ago = datetime.now(timezone.utc) - timedelta(days=7)
-        new_skills = db.query(Skill).filter(Skill.first_seen >= week_ago).count()
+        # Use created_at (GitHub repo creation date) instead of first_seen (DB insert date)
+        new_skills = db.query(Skill).filter(Skill.created_at >= week_ago).count()
 
         logger.info("Stats: total=%d, new_this_week=%d", total_skills, new_skills)
 
