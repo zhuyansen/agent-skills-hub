@@ -400,3 +400,58 @@ BEGIN
     RETURN result;
 END;
 $$;
+
+-- ═══ 7. Fix v_rising view (was incorrectly using star_momentum > 0) ═══
+DROP VIEW IF EXISTS v_rising CASCADE;
+CREATE OR REPLACE VIEW v_rising AS
+SELECT *
+FROM skills
+WHERE created_at >= NOW() - INTERVAL '7 days'
+ORDER BY stars DESC
+LIMIT 20;
+
+-- ═══ 8. Organization Builders RPC (aggregated from skills table) ═══
+CREATE OR REPLACE FUNCTION get_org_builders()
+RETURNS JSON
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+  result JSON;
+BEGIN
+  SELECT COALESCE(json_agg(row_to_json(org)), '[]'::json)
+  INTO result
+  FROM (
+    SELECT
+      s.author_name AS github,
+      s.author_name AS name,
+      s.author_avatar_url AS avatar_url,
+      COUNT(*) AS repo_count,
+      SUM(s.stars) AS total_stars,
+      json_agg(
+        json_build_object(
+          'id', s.id,
+          'repo_name', s.repo_name,
+          'repo_full_name', s.repo_full_name,
+          'repo_url', s.repo_url,
+          'description', COALESCE(s.description, ''),
+          'stars', s.stars,
+          'score', COALESCE(s.quality_score, 0),
+          'category', s.category
+        ) ORDER BY s.stars DESC
+      ) AS top_repos
+    FROM skills s
+    WHERE s.author_name NOT IN (SELECT sm.github FROM skill_masters sm WHERE sm.is_active = TRUE)
+      AND s.author_name NOT IN (
+        SELECT jsonb_array_elements_text(sm.github_aliases::jsonb)
+        FROM skill_masters sm WHERE sm.is_active = TRUE
+      )
+    GROUP BY s.author_name, s.author_avatar_url
+    HAVING COUNT(*) >= 3 AND SUM(s.stars) >= 10000
+    ORDER BY SUM(s.stars) DESC
+    LIMIT 20
+  ) org;
+
+  RETURN result;
+END;
+$$;

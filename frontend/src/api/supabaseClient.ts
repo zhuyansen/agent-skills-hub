@@ -291,6 +291,42 @@ export async function sbFetchLandingData(): Promise<LandingData> {
   };
 }
 
+// ═══ Organization Builders (aggregated from skills table) ═══
+
+export interface OrgBuilder {
+  github: string;
+  name: string;
+  avatar_url: string;
+  repo_count: number;
+  total_stars: number;
+  top_repos: {
+    id: number;
+    repo_name: string;
+    repo_full_name: string;
+    repo_url: string;
+    description: string;
+    stars: number;
+    score: number;
+    category: string;
+  }[];
+}
+
+export async function sbFetchOrgBuilders(): Promise<OrgBuilder[]> {
+  const sb = ensureSupabase();
+  const { data, error } = await sb.rpc("get_org_builders");
+  if (error) throw new Error(error.message);
+
+  const orgs = (data ?? []) as any[];
+  return orgs.map((o) => ({
+    github: o.github,
+    name: o.name,
+    avatar_url: o.avatar_url || `https://avatars.githubusercontent.com/${o.github}`,
+    repo_count: o.repo_count,
+    total_stars: o.total_stars,
+    top_repos: (o.top_repos || []).slice(0, 5),
+  }));
+}
+
 export async function sbFetchMasters(): Promise<Master[]> {
   const sb = ensureSupabase();
   const { data, error } = await sb.rpc("get_masters");

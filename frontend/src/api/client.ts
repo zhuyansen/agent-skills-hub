@@ -26,6 +26,7 @@ import {
   sbFetchLanguageStats,
   sbFetchLandingData,
   sbFetchMasters,
+  sbFetchOrgBuilders,
   sbSubmitSkill,
   sbSubscribe,
   sbVerifyEmail,
@@ -167,6 +168,13 @@ export interface Master {
 export async function fetchMasters(): Promise<Master[]> {
   if (USE_SUPABASE) return sbFetchMasters();
   return request<Master[]>("/api/masters");
+}
+
+export type { OrgBuilder } from "./supabaseClient";
+
+export async function fetchOrgBuilders(): Promise<import("./supabaseClient").OrgBuilder[]> {
+  if (USE_SUPABASE) return sbFetchOrgBuilders();
+  return []; // FastAPI fallback not implemented yet
 }
 
 // ═══ Landing Page Bundle (single-request for all overview data) ═══
