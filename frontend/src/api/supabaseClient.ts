@@ -482,18 +482,22 @@ export async function sbSubmitSkill(
     };
   }
 
-  // Check if already submitted in extra_repos
-  const { data: submitted } = await sb
-    .from("extra_repos")
-    .select("id, status")
-    .eq("full_name", fullName)
-    .maybeSingle();
+  // Check if already submitted in extra_repos (may fail if SELECT RLS is not set)
+  try {
+    const { data: submitted } = await sb
+      .from("extra_repos")
+      .select("id, status")
+      .eq("full_name", fullName)
+      .maybeSingle();
 
-  if (submitted) {
-    return {
-      status: "already_submitted",
-      message: `This repo has already been submitted (status: ${submitted.status || "pending"})`,
-    };
+    if (submitted) {
+      return {
+        status: "already_submitted",
+        message: `This repo has already been submitted (status: ${submitted.status || "pending"})`,
+      };
+    }
+  } catch {
+    // SELECT may be blocked by RLS — skip dedup check, INSERT will handle unique constraint
   }
 
   // Insert new submission
@@ -505,6 +509,10 @@ export async function sbSubmitSkill(
   });
 
   if (error) {
+    // Unique constraint violation = already submitted
+    if (error.code === "23505") {
+      return { status: "already_submitted", message: "This repo has already been submitted" };
+    }
     return { status: "error", message: error.message };
   }
 
