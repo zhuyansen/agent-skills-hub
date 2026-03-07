@@ -96,7 +96,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
             <div className="flex items-center gap-2 mb-2">
               <img
                 src={skill.author_avatar_url}
-                alt=""
+                alt={skill.author_name} loading="lazy"
                 className="w-8 h-8 rounded-full border border-gray-100"
               />
               <div className="min-w-0 flex-1">

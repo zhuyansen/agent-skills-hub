@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { Skill } from "../types/skill";
 import { parseTags, timeAgo } from "../utils/time";
 import { CompareButton } from "./CompareButton";
@@ -12,7 +13,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
+export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
   const tags = parseTags(skill.topics).slice(0, 3);
 
   return (
@@ -25,7 +26,7 @@ export function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
         <ScoreBadge score={skill.score} showTier />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 mb-0.5">
-            <img src={skill.author_avatar_url} alt="" className="w-4 h-4 rounded-full" />
+            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-4 h-4 rounded-full" />
             <span className="text-xs text-gray-400 truncate">{skill.author_name}</span>
             {skill.star_momentum >= 0.05 && (
               <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded bg-orange-50 text-orange-500 border border-orange-100 shrink-0">
@@ -97,4 +98,4 @@ export function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
       </div>
     </div>
   );
-}
+});

@@ -55,7 +55,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
                 <ScoreBadge score={skill.score} size="sm" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <img src={skill.author_avatar_url} alt="" className="w-5 h-5 rounded-full" />
+                <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-5 h-5 rounded-full" />
                 <span className="text-xs text-gray-500">{skill.author_name}</span>
               </div>
               <h3
@@ -88,7 +88,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
             className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <span className="text-sm font-bold text-gray-400 w-6 text-center">{i + 4}</span>
-            <img src={skill.author_avatar_url} alt="" className="w-7 h-7 rounded-full" />
+            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-7 h-7 rounded-full" />
             <div className="flex-1 min-w-0">
               <span
                 onClick={(e) => {

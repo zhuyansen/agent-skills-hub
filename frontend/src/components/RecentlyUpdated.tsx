@@ -43,7 +43,7 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
             {/* Avatar */}
             <img
               src={skill.author_avatar_url}
-              alt=""
+              alt={skill.author_name} loading="lazy"
               className="w-9 h-9 rounded-full border border-gray-100"
             />
 
