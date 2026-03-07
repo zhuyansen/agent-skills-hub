@@ -27,15 +27,22 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
   const [tab, setTab] = useState<"hot" | "rising">("hot");
 
   useEffect(() => {
-    // Skip fetch if data was provided via props
-    if (initialHot && initialHot.length > 0) return;
-    fetchTrending(10).then(setHot).catch(console.error);
+    if (initialHot && initialHot.length > 0) setHot(initialHot);
   }, [initialHot]);
 
   useEffect(() => {
-    if (initialRising && initialRising.length > 0) return;
-    fetchRising(7, 10).then(setRising).catch(console.error);
+    if (initialRising && initialRising.length > 0) setRising(initialRising);
   }, [initialRising]);
+
+  useEffect(() => {
+    if (hot.length > 0) return;
+    fetchTrending(10).then(setHot).catch(console.error);
+  }, [hot.length]);
+
+  useEffect(() => {
+    if (rising.length > 0) return;
+    fetchRising(7, 10).then(setRising).catch(console.error);
+  }, [rising.length]);
 
   const items = tab === "hot" ? hot : rising;
   if (hot.length === 0 && rising.length === 0) return null;

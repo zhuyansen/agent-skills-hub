@@ -15,10 +15,16 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
   const { t } = useI18n();
   const [items, setItems] = useState<Skill[]>(initialData ?? []);
 
+  // Sync prop → state when landing data arrives asynchronously
   useEffect(() => {
-    if (initialData && initialData.length > 0) return;
-    fetchMostStarred(10).then(setItems).catch(console.error);
+    if (initialData && initialData.length > 0) setItems(initialData);
   }, [initialData]);
+
+  // Fallback: fetch independently if no initial data
+  useEffect(() => {
+    if (items.length > 0) return;
+    fetchMostStarred(10).then(setItems).catch(console.error);
+  }, [items.length]);
 
   if (items.length === 0) return null;
 

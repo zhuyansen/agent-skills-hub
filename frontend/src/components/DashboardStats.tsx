@@ -32,17 +32,26 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
   const [trendingSkills, setTrendingSkills] = useState<Skill[]>(initialTrending ?? []);
   const [showCharts, setShowCharts] = useState(false);
 
+  // Sync props → state when landing data arrives asynchronously
   useEffect(() => {
-    if (initialLanguages && initialLanguages.length > 0) return;
-    fetchLanguageStats().then(setLangs).catch(console.error);
+    if (initialLanguages && initialLanguages.length > 0) setLangs(initialLanguages);
   }, [initialLanguages]);
 
-  // Lazy-load trending data when charts are expanded (skip if provided via props)
+  useEffect(() => {
+    if (initialTrending && initialTrending.length > 0) setTrendingSkills(initialTrending);
+  }, [initialTrending]);
+
+  // Fallback: fetch independently if no initial data provided
+  useEffect(() => {
+    if (langs.length > 0) return;
+    fetchLanguageStats().then(setLangs).catch(console.error);
+  }, [langs.length]);
+
+  // Lazy-load trending data when charts are expanded
   useEffect(() => {
     if (!showCharts || trendingSkills.length > 0) return;
-    if (initialTrending && initialTrending.length > 0) return;
     fetchTrending(15).then(setTrendingSkills).catch(console.error);
-  }, [showCharts, trendingSkills.length, initialTrending]);
+  }, [showCharts, trendingSkills.length]);
 
   if (!stats) return null;
 

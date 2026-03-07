@@ -16,9 +16,13 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
   const [items, setItems] = useState<Skill[]>(initialData ?? []);
 
   useEffect(() => {
-    if (initialData && initialData.length > 0) return;
-    fetchRecentlyUpdated(8).then(setItems).catch(console.error);
+    if (initialData && initialData.length > 0) setItems(initialData);
   }, [initialData]);
+
+  useEffect(() => {
+    if (items.length > 0) return;
+    fetchRecentlyUpdated(8).then(setItems).catch(console.error);
+  }, [items.length]);
 
   if (items.length === 0) return null;
 
