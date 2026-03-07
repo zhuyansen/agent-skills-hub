@@ -9,7 +9,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function SkillTable({ skills, onSelect, onShowDetail }: Props) {
+export function SkillTable({ skills, onSelect: _onSelect, onShowDetail }: Props) {
   const { t } = useI18n();
 
   return (

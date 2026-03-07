@@ -1,6 +1,6 @@
 interface Props {
   score: number;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
   showTier?: boolean;
 }
 
@@ -34,14 +34,14 @@ export function ScoreBadge({ score, size = "md", showTier = false }: Props) {
   if (showTier) {
     const tier = getTier(score);
     // Compact: score number on top, tier letter below, all inside one unified element
-    const w = size === "sm" ? "w-10" : "w-12";
-    const h = size === "sm" ? "h-12" : "h-16";
+    const w = size === "sm" ? "w-10" : size === "lg" ? "w-14" : "w-12";
+    const h = size === "sm" ? "h-12" : size === "lg" ? "h-18" : "h-16";
     return (
       <div className={`${w} ${h} ${color} border rounded-xl flex flex-col items-center justify-center shrink-0`}>
-        <span className={`${size === "sm" ? "text-sm" : "text-lg"} font-bold leading-none`}>
+        <span className={`${size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-lg"} font-bold leading-none`}>
           {score.toFixed(0)}
         </span>
-        <span className={`${size === "sm" ? "text-[9px]" : "text-[10px]"} font-bold opacity-60 leading-none mt-0.5`}>
+        <span className={`${size === "sm" ? "text-[9px]" : size === "lg" ? "text-xs" : "text-[10px]"} font-bold opacity-60 leading-none mt-0.5`}>
           {tier}
         </span>
       </div>

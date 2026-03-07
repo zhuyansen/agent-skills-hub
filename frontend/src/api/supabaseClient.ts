@@ -56,7 +56,7 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
 
   const total = count ?? 0;
   return {
-    items: (data ?? []) as Skill[],
+    items: (data ?? []) as unknown as Skill[],
     total,
     page: params.page,
     page_size: params.page_size,
@@ -96,7 +96,7 @@ export async function sbFetchTrending(limit = 10): Promise<Skill[]> {
     .select(SKILL_COLUMNS)
     .limit(limit);
   if (error) throw new Error(error.message);
-  return (data ?? []) as Skill[];
+  return (data ?? []) as unknown as Skill[];
 }
 
 export async function sbFetchRising(_days = 7, limit = 10): Promise<Skill[]> {
@@ -106,7 +106,7 @@ export async function sbFetchRising(_days = 7, limit = 10): Promise<Skill[]> {
     .select(SKILL_COLUMNS)
     .limit(limit);
   if (error) throw new Error(error.message);
-  return (data ?? []) as Skill[];
+  return (data ?? []) as unknown as Skill[];
 }
 
 export async function sbFetchTopRated(limit = 10): Promise<Skill[]> {
@@ -116,7 +116,7 @@ export async function sbFetchTopRated(limit = 10): Promise<Skill[]> {
     .select(SKILL_COLUMNS)
     .limit(limit);
   if (error) throw new Error(error.message);
-  return (data ?? []) as Skill[];
+  return (data ?? []) as unknown as Skill[];
 }
 
 export async function sbFetchMostStarred(limit = 10): Promise<Skill[]> {
@@ -126,7 +126,7 @@ export async function sbFetchMostStarred(limit = 10): Promise<Skill[]> {
     .select(SKILL_COLUMNS)
     .limit(limit);
   if (error) throw new Error(error.message);
-  return (data ?? []) as Skill[];
+  return (data ?? []) as unknown as Skill[];
 }
 
 export async function sbFetchRecentlyUpdated(limit = 10): Promise<Skill[]> {
@@ -136,7 +136,7 @@ export async function sbFetchRecentlyUpdated(limit = 10): Promise<Skill[]> {
     .select(SKILL_COLUMNS)
     .limit(limit);
   if (error) throw new Error(error.message);
-  return (data ?? []) as Skill[];
+  return (data ?? []) as unknown as Skill[];
 }
 
 export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {

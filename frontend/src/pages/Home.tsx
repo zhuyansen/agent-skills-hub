@@ -72,7 +72,7 @@ export function Home() {
     navigate(`/skill/${skill.repo_full_name}`);
   }, [navigate]);
 
-  const handleShowDetailPanel = useCallback((skill: Skill) => {
+  const _handleShowDetailPanel = useCallback((skill: Skill) => {
     setDetailSkill(skill);
   }, []);
 

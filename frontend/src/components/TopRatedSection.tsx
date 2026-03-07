@@ -10,7 +10,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function TopRatedSection({ onSelect, onShowDetail }: Props) {
+export function TopRatedSection({ onSelect: _onSelect, onShowDetail }: Props) {
   const { t } = useI18n();
   const [items, setItems] = useState<Skill[]>([]);
 

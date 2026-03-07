@@ -10,7 +10,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function HallOfFame({ onSelect, onShowDetail }: Props) {
+export function HallOfFame({ onSelect: _onSelect, onShowDetail }: Props) {
   const { t } = useI18n();
   const [items, setItems] = useState<Skill[]>([]);
 

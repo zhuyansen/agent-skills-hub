@@ -12,7 +12,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function SkillCard({ skill, onSelect, onShowDetail }: Props) {
+export function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
   const tags = parseTags(skill.topics).slice(0, 3);
 
   return (

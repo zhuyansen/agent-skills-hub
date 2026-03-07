@@ -18,7 +18,7 @@ interface Props {
   onShowDetail?: (skill: Skill) => void;
 }
 
-export function TrendingSection({ onSelect, onShowDetail }: Props) {
+export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
   const { t } = useI18n();
   const [hot, setHot] = useState<Skill[]>([]);
   const [rising, setRising] = useState<Skill[]>([]);
