@@ -82,9 +82,9 @@ export function Home() {
     <div className="min-h-screen bg-gray-50">
       <Helmet>
         <title>Agent Skills Hub - Discover Agent Skills, Tools & MCP Servers</title>
-        <meta name="description" content="Discover and compare open-source Agent Skills, tools and MCP servers. Browse 4000+ skills with quality scoring." />
-        <meta property="og:title" content="Agent Skills Hub" />
-        <meta property="og:description" content="Discover and compare open-source Agent Skills, tools and MCP servers" />
+        <meta name="description" content="Discover, compare and explore 7800+ open-source Agent Skills, AI tools, MCP servers and Claude skills." />
+        <meta property="og:title" content="Agent Skills Hub - Discover Agent Skills, Tools & MCP Servers" />
+        <meta property="og:description" content="Discover, compare and explore 7800+ open-source Agent Skills, AI tools, MCP servers and Claude skills." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
