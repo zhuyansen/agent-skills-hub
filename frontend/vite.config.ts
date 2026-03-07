@@ -7,6 +7,15 @@ export default defineConfig({
   // Without custom domain on GitHub Pages → "/agent-skills-hub/"
   base: "/",
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          recharts: ["recharts"],
+        },
+      },
+    },
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:8000',

@@ -7,6 +7,7 @@ import { SkillDetailPage } from "./pages/SkillDetailPage";
 import { ComparePage } from "./pages/ComparePage";
 import { CompareBar } from "./components/CompareBar";
 import { AdminLayout } from "./pages/admin/AdminLayout";
+import { VerifyEmailPage } from "./pages/VerifyEmailPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/skill/:id" element={<SkillDetailPage />} />
               <Route path="/skill/:owner/:repo" element={<SkillDetailPage />} />
               <Route path="/compare" element={<ComparePage />} />
+              <Route path="/verify-email" element={<VerifyEmailPage />} />
               <Route path="/admin/*" element={<AdminLayout />} />
             </Routes>
             <CompareBar />

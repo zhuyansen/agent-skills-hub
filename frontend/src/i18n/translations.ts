@@ -168,6 +168,33 @@ export const translations = {
     "sync.running": "同步中...",
     "sync.failed": "同步失败",
 
+    // Auth
+    "auth.signIn": "登录",
+    "auth.signUp": "注册",
+    "auth.signOut": "退出登录",
+    "auth.welcome": "欢迎回来",
+    "auth.createAccount": "创建账号",
+    "auth.resetPassword": "重置密码",
+    "auth.google": "使用 Google 登录",
+    "auth.or": "或",
+    "auth.email": "邮箱",
+    "auth.password": "密码（至少6位）",
+    "auth.sendReset": "发送重置链接",
+    "auth.forgotPassword": "忘记密码？",
+    "auth.noAccount": "没有账号？注册",
+    "auth.hasAccount": "已有账号？登录",
+    "auth.backToSignIn": "返回登录",
+    "auth.resetSent": "密码重置链接已发送至您的邮箱",
+    "auth.confirmEmail": "请检查邮箱并点击确认链接",
+    "auth.authFailed": "认证失败",
+    "auth.favorites": "我的收藏",
+
+    // Charts
+    "chart.categoryDist": "分类分布",
+    "chart.languageDist": "语言分布",
+    "chart.starTrend": "Star 趋势 Top 10",
+    "chart.skills": "技能数",
+
     // Footer
     "footer.source": "Agent Skills Hub · 数据来自 GitHub",
     "footer.autoUpdated": "每8小时自动更新",
@@ -337,6 +364,33 @@ export const translations = {
     "sync.overdue": "Sync Overdue",
     "sync.running": "Syncing...",
     "sync.failed": "Sync Failed",
+
+    // Auth
+    "auth.signIn": "Sign In",
+    "auth.signUp": "Sign Up",
+    "auth.signOut": "Sign Out",
+    "auth.welcome": "Welcome Back",
+    "auth.createAccount": "Create Account",
+    "auth.resetPassword": "Reset Password",
+    "auth.google": "Continue with Google",
+    "auth.or": "or",
+    "auth.email": "Email",
+    "auth.password": "Password (min 6 characters)",
+    "auth.sendReset": "Send Reset Link",
+    "auth.forgotPassword": "Forgot password?",
+    "auth.noAccount": "Don't have an account? Sign Up",
+    "auth.hasAccount": "Already have an account? Sign In",
+    "auth.backToSignIn": "Back to Sign In",
+    "auth.resetSent": "Password reset link sent to your email",
+    "auth.confirmEmail": "Check your email for a confirmation link",
+    "auth.authFailed": "Authentication failed",
+    "auth.favorites": "My Favorites",
+
+    // Charts
+    "chart.categoryDist": "Category Distribution",
+    "chart.languageDist": "Language Distribution",
+    "chart.starTrend": "Star Trend Top 10",
+    "chart.skills": "Skills",
 
     "footer.source": "Agent Skills Hub · Data sourced from GitHub",
     "footer.autoUpdated": "Auto-updated every 8 hours",

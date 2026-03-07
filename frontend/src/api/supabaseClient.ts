@@ -556,22 +556,113 @@ export async function sbSubmitSkill(
   };
 }
 
+// Generate a random verification token
+function generateToken(): string {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let token = "";
+  const arr = new Uint8Array(32);
+  crypto.getRandomValues(arr);
+  for (const byte of arr) {
+    token += chars[byte % chars.length];
+  }
+  return token;
+}
+
 export async function sbSubscribe(
   email: string,
 ): Promise<{ status: string; message: string }> {
   const sb = ensureSupabase();
 
-  const { error } = await sb.from("subscribers").insert({ email });
+  // Check if already subscribed
+  const { data: existing } = await sb
+    .from("subscribers")
+    .select("id, is_active, verified")
+    .eq("email", email)
+    .maybeSingle();
+
+  if (existing) {
+    if (existing.is_active && existing.verified) {
+      return { status: "already", message: "You are already subscribed and verified!" };
+    }
+    // Re-subscribe: update with new token
+    const token = generateToken();
+    await sb
+      .from("subscribers")
+      .update({
+        is_active: true,
+        verified: false,
+        verification_token: token,
+      })
+      .eq("id", existing.id);
+
+    // Trigger verification email via RPC (if configured)
+    try {
+      await sb.rpc("send_verification_email", { p_email: email, p_token: token });
+    } catch {
+      // Silent fail — email may be sent by cron job or admin
+    }
+
+    return { status: "success", message: "Please check your email and click the verification link." };
+  }
+
+  // New subscriber
+  const token = generateToken();
+  const { error } = await sb.from("subscribers").insert({
+    email,
+    verification_token: token,
+    verified: false,
+  });
 
   if (error) {
-    // Unique constraint violation = already subscribed
     if (error.code === "23505") {
       return { status: "already", message: "You are already subscribed!" };
     }
     return { status: "error", message: error.message };
   }
 
-  return { status: "success", message: "Subscribed successfully!" };
+  // Trigger verification email via RPC (if configured)
+  try {
+    await sb.rpc("send_verification_email", { p_email: email, p_token: token });
+  } catch {
+    // Silent fail — email will be sent by admin/backend
+  }
+
+  return { status: "success", message: "Please check your email and click the verification link." };
+}
+
+export async function sbVerifyEmail(
+  token: string,
+): Promise<{ status: string; message: string }> {
+  const sb = ensureSupabase();
+
+  const { data: subscriber, error: fetchErr } = await sb
+    .from("subscribers")
+    .select("id, verified")
+    .eq("verification_token", token)
+    .maybeSingle();
+
+  if (fetchErr || !subscriber) {
+    return { status: "error", message: "Invalid or expired verification token." };
+  }
+
+  if (subscriber.verified) {
+    return { status: "already", message: "Email already verified!" };
+  }
+
+  const { error: updateErr } = await sb
+    .from("subscribers")
+    .update({
+      verified: true,
+      verified_at: new Date().toISOString(),
+      verification_token: null,
+    })
+    .eq("id", subscriber.id);
+
+  if (updateErr) {
+    return { status: "error", message: updateErr.message };
+  }
+
+  return { status: "success", message: "Email verified successfully!" };
 }
 
 export async function sbSubmitMasterApplication(

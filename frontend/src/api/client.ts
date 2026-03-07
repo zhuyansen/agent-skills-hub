@@ -28,6 +28,7 @@ import {
   sbFetchMasters,
   sbSubmitSkill,
   sbSubscribe,
+  sbVerifyEmail,
   sbSubmitMasterApplication,
 } from "./supabaseClient";
 
@@ -211,6 +212,14 @@ export async function submitMasterApplication(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ github, name, bio, repo_urls: repoUrls }),
   });
+}
+
+// ═══ Email Verification ═══
+
+export async function verifyEmail(token: string): Promise<{ status: string; message: string }> {
+  if (USE_SUPABASE) return sbVerifyEmail(token);
+  // FastAPI backend handles it via redirect, so this is for SPA verification
+  return request(`/api/verify-email?token=${encodeURIComponent(token)}`);
 }
 
 // ═══ Admin API ═══

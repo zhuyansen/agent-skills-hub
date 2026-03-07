@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { LanguageToggle } from "./LanguageToggle";
+import { AuthButton } from "./AuthButton";
 import { useI18n } from "../i18n/I18nContext";
 import { useStats } from "../hooks/useStats";
 import { timeAgo } from "../utils/time";
@@ -91,6 +92,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               </svg>
             </a>
             <LanguageToggle />
+            <AuthButton />
             {/* Newsletter CTA button */}
             <button
               onClick={scrollToNewsletter}

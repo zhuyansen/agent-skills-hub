@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { fetchLanguageStats } from "../api/client";
+import { fetchLanguageStats, fetchTrending } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
-import type { Stats } from "../types/skill";
+import type { Skill, Stats } from "../types/skill";
 import { timeAgo } from "../utils/time";
+import { CategoryPieChart } from "./charts/CategoryPieChart";
+import { LanguageBarChart } from "./charts/LanguageBarChart";
+import { StarTrendChart } from "./charts/StarTrendChart";
 
 const LANG_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
@@ -24,10 +27,18 @@ interface Props {
 export function DashboardStats({ stats }: Props) {
   const { t } = useI18n();
   const [langs, setLangs] = useState<{ language: string; count: number }[]>([]);
+  const [trendingSkills, setTrendingSkills] = useState<Skill[]>([]);
+  const [showCharts, setShowCharts] = useState(false);
 
   useEffect(() => {
     fetchLanguageStats().then(setLangs).catch(console.error);
   }, []);
+
+  // Lazy-load trending data when charts are expanded
+  useEffect(() => {
+    if (!showCharts || trendingSkills.length > 0) return;
+    fetchTrending(15).then(setTrendingSkills).catch(console.error);
+  }, [showCharts, trendingSkills.length]);
 
   if (!stats) return null;
 
@@ -117,6 +128,32 @@ export function DashboardStats({ stats }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Toggle for interactive charts */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setShowCharts(!showCharts)}
+          className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-500 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors cursor-pointer"
+        >
+          <svg className={`w-3.5 h-3.5 transition-transform ${showCharts ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+          {showCharts ? t("trending.showLess") : t("chart.categoryDist")}
+        </button>
+      </div>
+
+      {/* Interactive Charts (collapsible) */}
+      {showCharts && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+          <CategoryPieChart categories={stats.categories} total={stats.total_skills} />
+          <LanguageBarChart languages={langs} />
+          {trendingSkills.length > 0 && (
+            <div className="lg:col-span-2">
+              <StarTrendChart skills={trendingSkills} />
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }
