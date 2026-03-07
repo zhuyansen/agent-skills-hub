@@ -176,6 +176,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
     _rate_limit_reset_at = 0
 
     db = SessionLocal()
+    sync_log_id_ref = sync_log_id  # Track for session refresh later
+
     if sync_log_id:
         sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id).first()
         if not sync_log:
@@ -188,6 +190,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         db.add(sync_log)
         db.commit()
         db.refresh(sync_log)
+
+    sync_log_id_ref = sync_log.id  # Always capture the actual ID
 
     try:
         all_repos: dict[str, dict] = {}
@@ -444,32 +448,59 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         cleaner = DataCleaner()
         cleaned = cleaner.process(list(all_repos.values()))
 
-        new_count, updated_count = 0, 0
-        for repo_data in cleaned:
-            existing = (
-                db.query(Skill)
-                .filter(Skill.repo_full_name == repo_data["repo_full_name"])
-                .first()
-            )
-            if existing:
-                existing.prev_stars = existing.stars  # capture before overwrite
-                for key, val in repo_data.items():
-                    setattr(existing, key, val)
-                readme = readme_cache.get(existing.repo_full_name)
-                if readme:
-                    existing.readme_content = readme
-                    existing.readme_size = len(readme)
-                updated_count += 1
-            else:
-                new_skill = Skill(**repo_data)
-                readme = readme_cache.get(repo_data.get("repo_full_name", ""))
-                if readme:
-                    new_skill.readme_content = readme
-                    new_skill.readme_size = len(readme)
-                db.add(new_skill)
-                new_count += 1
+        # Refresh DB session — the old connection may have been killed by
+        # PgBouncer during the long API-fetch phase (10-20 min idle).
+        sync_log_id_ref = sync_log.id
+        db.close()
+        db = SessionLocal()
+        sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
 
-        db.commit()
+        BATCH_SIZE = 200
+        new_count, updated_count = 0, 0
+        for i, repo_data in enumerate(cleaned):
+            try:
+                existing = (
+                    db.query(Skill)
+                    .filter(Skill.repo_full_name == repo_data["repo_full_name"])
+                    .first()
+                )
+                if existing:
+                    existing.prev_stars = existing.stars  # capture before overwrite
+                    for key, val in repo_data.items():
+                        setattr(existing, key, val)
+                    readme = readme_cache.get(existing.repo_full_name)
+                    if readme:
+                        existing.readme_content = readme
+                        existing.readme_size = len(readme)
+                    updated_count += 1
+                else:
+                    new_skill = Skill(**repo_data)
+                    readme = readme_cache.get(repo_data.get("repo_full_name", ""))
+                    if readme:
+                        new_skill.readme_content = readme
+                        new_skill.readme_size = len(readme)
+                    db.add(new_skill)
+                    new_count += 1
+            except Exception as row_exc:
+                logger.warning("Upsert failed for %s: %s", repo_data.get("repo_full_name", "?"), row_exc)
+                db.rollback()
+
+            # Batch commit every BATCH_SIZE records to avoid huge transactions
+            if (i + 1) % BATCH_SIZE == 0:
+                try:
+                    db.commit()
+                    logger.info("Batch commit: %d/%d processed (%d new, %d updated)", i + 1, len(cleaned), new_count, updated_count)
+                except Exception as batch_exc:
+                    logger.error("Batch commit failed at %d: %s", i + 1, batch_exc)
+                    db.rollback()
+
+        # Final commit for remaining records
+        try:
+            db.commit()
+        except Exception as final_exc:
+            logger.error("Final commit failed: %s", final_exc)
+            db.rollback()
+
         logger.info("Database upsert complete: %d new, %d updated", new_count, updated_count)
 
         scoring_engine = ScoringEngine()
@@ -501,11 +532,17 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         )
 
     except Exception as exc:
-        sync_log.status = "failed"
-        sync_log.error_message = str(exc)[:1000]
-        sync_log.finished_at = datetime.now(timezone.utc)
-        db.commit()
         logger.exception("Sync job failed")
+        try:
+            db.rollback()
+            sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
+            if sync_log:
+                sync_log.status = "failed"
+                sync_log.error_message = str(exc)[:1000]
+                sync_log.finished_at = datetime.now(timezone.utc)
+                db.commit()
+        except Exception:
+            logger.error("Could not update sync log after failure: %s", exc)
     finally:
         db.close()
 
