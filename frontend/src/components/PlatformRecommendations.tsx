@@ -11,7 +11,7 @@ export function PlatformRecommendations() {
   const { t, lang } = useI18n();
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       <div className="mb-4">
         <h2 className="text-lg font-bold text-gray-900">{t("platforms.title")}</h2>
         <p className="text-sm text-gray-500 mt-1">{t("platforms.subtitle")}</p>

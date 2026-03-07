@@ -118,7 +118,7 @@ export function ScenarioWorkflows() {
   const navigate = useNavigate();
 
   return (
-    <section className="mt-10">
+    <section className="mb-10">
       <div className="mb-6">
         <h2 className="text-lg font-bold text-gray-900">
           {t("scenarios.title")}

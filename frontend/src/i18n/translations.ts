@@ -93,6 +93,15 @@ export const translations = {
     // Header
     "header.newsletter": "免费订阅周报",
 
+    // Section Navigation
+    "nav.trending": "热门趋势",
+    "nav.masters": "技能大师",
+    "nav.recent": "最近更新",
+    "nav.topRated": "最高评分",
+    "nav.categories": "分类精选",
+    "nav.workflows": "场景组合",
+    "nav.newsletter": "订阅",
+
     // Scenarios
     "scenarios.title": "场景推荐组合",
     "scenarios.subtitle": "精选场景化工作流，多技能协同完成任务",
@@ -238,6 +247,15 @@ export const translations = {
 
     // Header
     "header.newsletter": "Free Weekly Newsletter",
+
+    // Section Navigation
+    "nav.trending": "Trending",
+    "nav.masters": "Masters",
+    "nav.recent": "Recent",
+    "nav.topRated": "Top Rated",
+    "nav.categories": "Categories",
+    "nav.workflows": "Workflows",
+    "nav.newsletter": "Newsletter",
 
     // Scenarios
     "scenarios.title": "Scenario Workflows",

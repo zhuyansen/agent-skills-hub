@@ -34,7 +34,7 @@ export function DashboardStats({ stats }: Props) {
   const totalLangs = langs.reduce((s, l) => s + l.count, 0) || 1;
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       {/* Stat Cards — 3 key metrics */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">

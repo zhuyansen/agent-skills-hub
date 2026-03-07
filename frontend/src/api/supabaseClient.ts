@@ -111,12 +111,33 @@ export async function sbFetchRising(_days = 7, limit = 10): Promise<Skill[]> {
 
 export async function sbFetchTopRated(limit = 10): Promise<Skill[]> {
   const sb = ensureSupabase();
+
+  // Try the v_top_rated view first (filters WHERE score > 0)
   const { data, error } = await sb
     .from("v_top_rated")
     .select(SKILL_COLUMNS)
     .limit(limit);
-  if (error) throw new Error(error.message);
-  return (data ?? []) as unknown as Skill[];
+
+  if (!error && data && data.length > 0) {
+    return data as unknown as Skill[];
+  }
+
+  // Fallback: query skills table directly using quality_score
+  const { data: fallbackData, error: fallbackError } = await sb
+    .from("skills")
+    .select(SKILL_COLUMNS)
+    .gt("quality_score", 0)
+    .order("quality_score", { ascending: false })
+    .limit(limit);
+
+  if (fallbackError) throw new Error(fallbackError.message);
+
+  // Map quality_score to score so the UI displays it correctly
+  const skills = (fallbackData ?? []) as unknown as Skill[];
+  return skills.map((s) => ({
+    ...s,
+    score: s.score && s.score > 0 ? s.score : (s as any).quality_score ?? 0,
+  }));
 }
 
 export async function sbFetchMostStarred(limit = 10): Promise<Skill[]> {
@@ -243,7 +264,106 @@ export async function sbFetchMasters(): Promise<Master[]> {
 
   // The function returns { masters: [...], emerging: [...] }
   const result = data as { masters: Master[]; emerging: Master[] };
-  return [...(result.masters ?? []), ...(result.emerging ?? [])];
+  const masters = result.masters ?? [];
+  const emerging = result.emerging ?? [];
+
+  // Fallback to hardcoded data when the skill_masters table is empty
+  if (masters.length === 0 && emerging.length === 0) {
+    return getFallbackMasters();
+  }
+
+  return [...masters, ...emerging];
+}
+
+function getFallbackMasters(): Master[] {
+  const hardcodedMasters: Master[] = [
+    {
+      github: "joeseesun",
+      name: "Joe See Sun",
+      x_handle: "joeseesun",
+      bio: "Prolific skill builder, author of qiaomu design tools",
+      tags: ["skill-builder", "design", "productivity"],
+      avatar_url: "https://avatars.githubusercontent.com/u/joeseesun",
+      repo_count: 8,
+      total_stars: 2000,
+      x_followers: 5000,
+      x_posts_count: 200,
+      x_verified_at: null,
+      x_notes: null,
+      top_repos: [
+        {
+          id: 1,
+          repo_name: "qiaomu-design-advisor",
+          repo_full_name: "joeseesun/qiaomu-design-advisor",
+          repo_url: "https://github.com/joeseesun/qiaomu-design-advisor",
+          description: "UI/UX design advisor",
+          stars: 500,
+          score: 56,
+          category: "claude-skill",
+        },
+      ],
+      discovered: false,
+    },
+    {
+      github: "Panniantong",
+      name: "Panniantong",
+      x_handle: null,
+      bio: "Agent-Reach creator",
+      tags: ["agent-tool", "twitter"],
+      avatar_url: "https://avatars.githubusercontent.com/u/Panniantong",
+      repo_count: 3,
+      total_stars: 800,
+      x_followers: 0,
+      x_posts_count: 0,
+      x_verified_at: null,
+      x_notes: null,
+      top_repos: [
+        {
+          id: 2,
+          repo_name: "Agent-Reach",
+          repo_full_name: "Panniantong/Agent-Reach",
+          repo_url: "https://github.com/Panniantong/Agent-Reach",
+          description: "Read X content",
+          stars: 400,
+          score: 50,
+          category: "agent-tool",
+        },
+      ],
+      discovered: false,
+    },
+  ];
+
+  const hardcodedEmerging: Master[] = [
+    {
+      github: "JimLiu",
+      name: "JimLiu",
+      x_handle: null,
+      bio: null,
+      tags: ["content-creation"],
+      avatar_url: "https://avatars.githubusercontent.com/u/JimLiu",
+      repo_count: 2,
+      total_stars: 600,
+      x_followers: 0,
+      x_posts_count: 0,
+      x_verified_at: null,
+      x_notes: null,
+      top_repos: [
+        {
+          id: 3,
+          repo_name: "baoyu-skills",
+          repo_full_name: "JimLiu/baoyu-skills",
+          repo_url: "https://github.com/JimLiu/baoyu-skills",
+          description: "Content creation skills",
+          stars: 300,
+          score: 45,
+          category: "claude-skill",
+        },
+      ],
+      discovered: true,
+    },
+  ];
+
+  return [...hardcodedMasters, ...hardcodedEmerging];
 }
 
 export async function sbFetchLastSyncAt(): Promise<string | null> {

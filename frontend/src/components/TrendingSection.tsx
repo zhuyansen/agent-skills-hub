@@ -23,19 +23,17 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
   const [hot, setHot] = useState<Skill[]>([]);
   const [rising, setRising] = useState<Skill[]>([]);
   const [tab, setTab] = useState<"hot" | "rising">("hot");
-  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     fetchTrending(10).then(setHot).catch(console.error);
     fetchRising(7, 10).then(setRising).catch(console.error);
   }, []);
 
-  const allItems = tab === "hot" ? hot : rising;
-  const items = showAll ? allItems : allItems.slice(0, 5);
+  const items = tab === "hot" ? hot : rising;
   if (hot.length === 0 && rising.length === 0) return null;
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
         <div className="flex items-center gap-2">
           <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 23c-3.866 0-7-3.134-7-7 0-3.037 1.952-5.877 5-8 .928-.646 1.713-1.397 2.3-2.3.395-.608.7-1.28.7-2.2 0 3 2 5.5 2 5.5s1-1.5 1-3.5c3.048 2.123 5 4.963 5 8 0 3.866-3.134 7-7 7zm0-2c2.761 0 5-2.239 5-5 0-1.555-.629-3.06-1.693-4.32C14.44 13.08 13 14.5 12 14.5s-2.44-1.42-3.307-2.82C7.629 12.94 7 14.445 7 16c0 2.761 2.239 5 5 5z"/></svg>
@@ -45,7 +43,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
         {/* Sub-tabs */}
         <div className="flex sm:ml-auto bg-gray-100 rounded-lg p-0.5 self-start">
           <button
-            onClick={() => { setTab("hot"); setShowAll(false); }}
+            onClick={() => setTab("hot")}
             className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
               tab === "hot" ? "bg-white text-orange-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
             }`}
@@ -54,7 +52,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
             {t("trending.starVelocity")}
           </button>
           <button
-            onClick={() => { setTab("rising"); setShowAll(false); }}
+            onClick={() => setTab("rising")}
             className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
               tab === "rising" ? "bg-white text-green-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
             }`}
@@ -123,17 +121,6 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
           </div>
         ))}
       </div>
-
-      {allItems.length > 5 && (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-colors"
-          >
-            {showAll ? t("trending.showLess") : t("trending.showMore")}
-          </button>
-        </div>
-      )}
     </section>
   );
 }

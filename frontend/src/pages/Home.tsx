@@ -94,19 +94,31 @@ export function Home() {
         {tab === "overview" && (
           <div className="animate-fade-in-up">
             <DashboardStats stats={stats} />
-            <TrendingSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
-            <RecentlyUpdated onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div id="trending">
+              <TrendingSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+            </div>
+            <div id="masters">
+              <SkillsMasters />
+            </div>
+            <div id="recent">
+              <RecentlyUpdated onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+            </div>
+            <div id="top-rated" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
               <TopRatedSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
               <HallOfFame onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
             </div>
             <div id="newsletter">
               <NewsletterSubscribe />
             </div>
-            <ScenarioWorkflows />
-            <SkillWorkflows />
-            <PlatformRecommendations />
-            <SkillsMasters />
+            <div id="categories">
+              <SkillWorkflows />
+            </div>
+            <div id="workflows">
+              <ScenarioWorkflows />
+            </div>
+            <div id="platforms">
+              <PlatformRecommendations />
+            </div>
             <div id="submit-skill">
               <SubmitSkill />
             </div>

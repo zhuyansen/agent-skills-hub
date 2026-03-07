@@ -24,7 +24,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail }: Props) {
   const rest = items.slice(3);
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       <div className="flex items-center gap-2 mb-4">
         <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.5 3.5h3a1 1 0 011 1v2a3 3 0 01-3 3h-1M7.5 3.5h-3a1 1 0 00-1 1v2a3 3 0 003 3h1M8 3.5h8v5a4 4 0 01-8 0v-5zM10 14.5v2.5h4v-2.5M8 20h8"/></svg>
         <h2 className="text-lg font-bold text-gray-900">{t("hallOfFame.title")}</h2>

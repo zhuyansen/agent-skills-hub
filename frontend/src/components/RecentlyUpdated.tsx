@@ -21,7 +21,7 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <section className="mb-8">
+    <section className="mb-10">
       <div className="flex items-center gap-2 mb-4">
         <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
         <h2 className="text-lg font-bold text-gray-900">{t("recentlyUpdated.title")}</h2>
