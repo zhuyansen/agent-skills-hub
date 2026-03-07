@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "../i18n/I18nContext";
-
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
+import { subscribe } from "../api/client";
 
 export function NewsletterSubscribe() {
   const { t } = useI18n();
@@ -16,16 +15,17 @@ export function NewsletterSubscribe() {
     setStatus("loading");
     setMessage("");
     try {
-      const res = await fetch(`${API_BASE}/api/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Subscription failed");
-      setStatus("success");
-      setMessage(data.message || t("newsletter.success"));
-      setEmail("");
+      const res = await subscribe(email.trim());
+      if (res.status === "already") {
+        setStatus("success");
+        setMessage(res.message);
+      } else if (res.status === "success") {
+        setStatus("success");
+        setMessage(res.message || t("newsletter.success"));
+        setEmail("");
+      } else {
+        throw new Error(res.message);
+      }
     } catch (err: any) {
       setStatus("error");
       setMessage(err.message || t("newsletter.error"));

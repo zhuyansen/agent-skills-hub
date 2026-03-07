@@ -25,6 +25,9 @@ import {
   sbFetchSkillBySlug,
   sbFetchLanguageStats,
   sbFetchMasters,
+  sbSubmitSkill,
+  sbSubscribe,
+  sbSubmitMasterApplication,
 } from "./supabaseClient";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
@@ -195,10 +198,37 @@ export async function fetchLandingData(): Promise<LandingData> {
 // ═══ Community Submission ═══
 
 export async function submitSkill(repoUrl: string): Promise<{ status: string; message: string; skill_id?: number }> {
+  if (USE_SUPABASE) return sbSubmitSkill(repoUrl);
   return request("/api/submit-skill", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ repo_url: repoUrl }),
+  });
+}
+
+export async function subscribe(email: string): Promise<{ status: string; message: string }> {
+  if (USE_SUPABASE) return sbSubscribe(email);
+  const res = await fetch(`${API_BASE}/api/subscribe`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail || "Subscription failed");
+  return { status: "success", message: data.message || "Subscribed!" };
+}
+
+export async function submitMasterApplication(
+  github: string,
+  name: string,
+  bio: string,
+  repoUrls: string[],
+): Promise<{ status: string; message: string }> {
+  if (USE_SUPABASE) return sbSubmitMasterApplication(github, name, bio, repoUrls);
+  return request("/api/submit-master", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ github, name, bio, repo_urls: repoUrls }),
   });
 }
 

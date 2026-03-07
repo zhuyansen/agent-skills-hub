@@ -372,3 +372,108 @@ export async function sbFetchLastSyncAt(): Promise<string | null> {
   if (error) return null;
   return data as string | null;
 }
+
+// ═══ Write operations (Supabase direct) ═══
+
+export async function sbSubmitSkill(
+  repoUrl: string,
+): Promise<{ status: string; message: string; skill_id?: number }> {
+  const sb = ensureSupabase();
+
+  // Extract owner/repo from URL
+  const match = repoUrl.match(/github\.com\/([^/]+\/[^/]+)/);
+  if (!match) {
+    return { status: "error", message: "Invalid GitHub URL" };
+  }
+  const fullName = match[1].replace(/\.git$/, "");
+
+  // Check if already in skills table
+  const { data: existing } = await sb
+    .from("skills")
+    .select("id")
+    .eq("repo_full_name", fullName)
+    .maybeSingle();
+
+  if (existing) {
+    return {
+      status: "already_tracked",
+      message: "This skill is already tracked!",
+      skill_id: existing.id,
+    };
+  }
+
+  // Check if already submitted in extra_repos
+  const { data: submitted } = await sb
+    .from("extra_repos")
+    .select("id, status")
+    .eq("full_name", fullName)
+    .maybeSingle();
+
+  if (submitted) {
+    return {
+      status: "already_submitted",
+      message: `This repo has already been submitted (status: ${submitted.status || "pending"})`,
+    };
+  }
+
+  // Insert new submission
+  const { error } = await sb.from("extra_repos").insert({
+    full_name: fullName,
+    is_active: false,
+    status: "pending",
+    submitted_by: "community",
+  });
+
+  if (error) {
+    return { status: "error", message: error.message };
+  }
+
+  return {
+    status: "submitted",
+    message: "Submitted successfully! It will be reviewed by our team.",
+  };
+}
+
+export async function sbSubscribe(
+  email: string,
+): Promise<{ status: string; message: string }> {
+  const sb = ensureSupabase();
+
+  const { error } = await sb.from("subscribers").insert({ email });
+
+  if (error) {
+    // Unique constraint violation = already subscribed
+    if (error.code === "23505") {
+      return { status: "already", message: "You are already subscribed!" };
+    }
+    return { status: "error", message: error.message };
+  }
+
+  return { status: "success", message: "Subscribed successfully!" };
+}
+
+export async function sbSubmitMasterApplication(
+  github: string,
+  name: string,
+  bio: string,
+  repoUrls: string[],
+): Promise<{ status: string; message: string }> {
+  const sb = ensureSupabase();
+
+  const { error } = await sb.from("master_applications").insert({
+    github,
+    name,
+    bio,
+    repo_urls: JSON.stringify(repoUrls),
+    status: "pending",
+  });
+
+  if (error) {
+    return { status: "error", message: error.message };
+  }
+
+  return {
+    status: "submitted",
+    message: "Application submitted! We will review it soon.",
+  };
+}

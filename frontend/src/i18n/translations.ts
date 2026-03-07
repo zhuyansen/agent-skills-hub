@@ -89,6 +89,15 @@ export const translations = {
     "submit.title": "提交一个 Skill",
     "submit.subtitle": "知道一个好用的 Agent Skill？提交 GitHub 仓库链接，经审核通过后将被收录",
     "submit.button": "提交",
+    "submit.tabSkill": "提交技能",
+    "submit.tabMaster": "大师认证",
+    "submit.masterTitle": "申请 Skills Master 认证",
+    "submit.masterSubtitle": "你是多个优质技能的作者？提交申请，经审核通过后将获得大师认证",
+    "submit.masterGithub": "GitHub 用户名",
+    "submit.masterName": "显示名称",
+    "submit.masterBio": "个人简介（选填）",
+    "submit.masterRepos": "代表作仓库 URL（每行一个）",
+    "submit.masterButton": "提交申请",
 
     // Header
     "header.newsletter": "免费订阅周报",
@@ -244,6 +253,15 @@ export const translations = {
     "submit.title": "Submit a Skill",
     "submit.subtitle": "Know a great Agent Skill? Submit the GitHub repo URL and it will be reviewed by our team before inclusion",
     "submit.button": "Submit",
+    "submit.tabSkill": "Submit Skill",
+    "submit.tabMaster": "Master Certification",
+    "submit.masterTitle": "Apply for Skills Master",
+    "submit.masterSubtitle": "Author of multiple quality skills? Apply for master certification and get verified",
+    "submit.masterGithub": "GitHub username",
+    "submit.masterName": "Display name",
+    "submit.masterBio": "Short bio (optional)",
+    "submit.masterRepos": "Representative repo URLs (one per line)",
+    "submit.masterButton": "Submit Application",
 
     // Header
     "header.newsletter": "Free Weekly Newsletter",

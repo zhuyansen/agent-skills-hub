@@ -23,6 +23,7 @@ export function SyncPage({ token }: Props) {
   useEffect(() => { load(); }, [load]);
 
   const handleSync = async () => {
+    if (!window.confirm("Are you sure you want to trigger a sync? This will fetch and update all skills data.")) return;
     setSyncing(true);
     try {
       await adminTriggerSync(token);
