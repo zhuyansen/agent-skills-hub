@@ -31,10 +31,16 @@ export const translations = {
     "masters.verified": "VERIFIED",
     "masters.warning":
       "X账号和GitHub存在映射错误问题，具体以实际为准。Masters每日由管理员通过社媒数据人工审核更新。",
+    "masters.followers": "粉丝",
+    "masters.posts": "帖子",
+    "masters.repos": "仓库",
+    "masters.totalStars": "总 Stars",
+    "masters.showLess": "收起",
+    "masters.more": "更多",
 
-    "emerging.title": "新锐开发者",
-    "emerging.subtitle": "崭露头角的新开发者，值得关注",
-    "emerging.rising": "RISING",
+    "emerging.title": "组织构建者",
+    "emerging.subtitle": "活跃的组织和团队，贡献多个高质量项目",
+    "emerging.rising": "ORG",
 
     // Dashboard
     "stats.totalSkills": "技能总数",
@@ -197,10 +203,16 @@ export const translations = {
     "masters.verified": "VERIFIED",
     "masters.warning":
       "X/GitHub account mapping may have discrepancies. Masters are manually reviewed daily by admins using social media data.",
+    "masters.followers": "followers",
+    "masters.posts": "posts",
+    "masters.repos": "repos",
+    "masters.totalStars": "total stars",
+    "masters.showLess": "Show less",
+    "masters.more": "more",
 
-    "emerging.title": "Emerging Builders",
-    "emerging.subtitle": "Rising developers with community-recognized work",
-    "emerging.rising": "RISING",
+    "emerging.title": "Organization Builders",
+    "emerging.subtitle": "Active organizations and teams contributing multiple quality projects",
+    "emerging.rising": "ORG",
 
     "stats.totalSkills": "Total Skills",
     "stats.avgScore": "Avg Score",

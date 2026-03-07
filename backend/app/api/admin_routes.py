@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.database import get_db
-from app.models.admin import ExtraRepo, SearchQuery, SkillMaster
+from app.models.admin import ExtraRepo, MasterApplication, SearchQuery, SkillMaster
 from app.models.skill import Skill, Subscriber, SyncLog
 from app.schemas.admin import (
     ExtraRepoCreate,
@@ -469,3 +469,80 @@ def trigger_admin_sync(
 
     background_tasks.add_task(run_sync, sync_log.id)
     return {"message": "Sync started", "sync_id": sync_log.id}
+
+
+# ═══ Master Applications Review ═══
+
+@admin_router.get("/master-applications")
+def list_master_applications(
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> list[dict]:
+    apps = db.query(MasterApplication).order_by(desc(MasterApplication.id)).all()
+    return [
+        {
+            "id": a.id,
+            "github": a.github,
+            "name": a.name,
+            "bio": a.bio,
+            "repo_urls": a.repo_urls or "[]",
+            "status": a.status,
+            "created_at": a.created_at.isoformat() if a.created_at else None,
+        }
+        for a in apps
+    ]
+
+
+@admin_router.put("/master-applications/{app_id}/approve")
+def approve_master_application(
+    app_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Approve a master application. Creates skill_masters entry + extra_repos for their repos."""
+    import re as re_mod
+
+    app = db.query(MasterApplication).filter(MasterApplication.id == app_id).first()
+    if not app:
+        raise HTTPException(404, "Application not found")
+
+    app.status = "approved"
+
+    # Auto-create skill_masters entry
+    existing = db.query(SkillMaster).filter(SkillMaster.github == app.github).first()
+    if not existing:
+        master = SkillMaster(
+            github=app.github,
+            name=app.name,
+            bio=app.bio,
+            tags="[]",
+        )
+        db.add(master)
+
+    # Auto-add repos to extra_repos
+    repo_urls = json.loads(app.repo_urls) if app.repo_urls else []
+    for url in repo_urls:
+        match = re_mod.search(r"github\.com/([^/]+/[^/]+)", url)
+        if match:
+            full_name = match.group(1).rstrip(".git")
+            existing_repo = db.query(ExtraRepo).filter(ExtraRepo.full_name == full_name).first()
+            if not existing_repo:
+                repo = ExtraRepo(full_name=full_name, is_active=True, status="approved")
+                db.add(repo)
+
+    db.commit()
+    return {"message": f"Application for '{app.github}' approved. Master created."}
+
+
+@admin_router.put("/master-applications/{app_id}/reject")
+def reject_master_application(
+    app_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    app = db.query(MasterApplication).filter(MasterApplication.id == app_id).first()
+    if not app:
+        raise HTTPException(404, "Application not found")
+    app.status = "rejected"
+    db.commit()
+    return {"message": f"Application for '{app.github}' rejected"}

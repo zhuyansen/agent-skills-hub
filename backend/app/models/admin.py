@@ -43,3 +43,15 @@ class SearchQuery(Base):
     query = Column(String(500), unique=True, nullable=False)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, server_default=func.now())
+
+
+class MasterApplication(Base):
+    __tablename__ = "master_applications"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    github = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False)
+    bio = Column(Text, nullable=True)
+    repo_urls = Column(Text, default="[]")
+    status = Column(String(20), default="pending")
+    created_at = Column(DateTime, server_default=func.now())

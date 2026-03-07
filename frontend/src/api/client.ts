@@ -24,6 +24,7 @@ import {
   sbFetchSkillDetail,
   sbFetchSkillBySlug,
   sbFetchLanguageStats,
+  sbFetchLandingData,
   sbFetchMasters,
   sbSubmitSkill,
   sbSubscribe,
@@ -168,29 +169,9 @@ export async function fetchMasters(): Promise<Master[]> {
 // ═══ Landing Page Bundle (single-request for all overview data) ═══
 
 export async function fetchLandingData(): Promise<LandingData> {
-  // Landing endpoint only available via FastAPI backend
   if (USE_SUPABASE) {
-    // Fallback: fetch all individually and combine
-    const [stats, trending, rising, topRated, hallOfFame, recentlyUpdated, languages] =
-      await Promise.all([
-        fetchStats(),
-        fetchTrending(10),
-        fetchRising(7, 10),
-        fetchTopRated(10),
-        fetchMostStarred(10),
-        fetchRecentlyUpdated(10),
-        fetchLanguageStats(),
-      ]);
-    return {
-      stats,
-      trending,
-      rising,
-      top_rated: topRated,
-      hall_of_fame: hallOfFame,
-      recently_updated: recentlyUpdated,
-      languages,
-      generated_at: new Date().toISOString(),
-    };
+    // Single RPC call replaces 7+ individual requests
+    return sbFetchLandingData();
   }
   return request<LandingData>("/api/landing");
 }
@@ -351,4 +332,28 @@ export async function adminFetchSkills(
 
 export async function adminDeleteSkill(token: string, id: number): Promise<void> {
   await request(`/api/admin/skills/${id}`, { method: "DELETE", headers: adminHeaders(token) });
+}
+
+// ═══ Admin Master Applications ═══
+
+export interface MasterApplicationData {
+  id: number;
+  github: string;
+  name: string;
+  bio: string | null;
+  repo_urls: string;
+  status: string;
+  created_at: string;
+}
+
+export async function adminFetchMasterApplications(token: string): Promise<MasterApplicationData[]> {
+  return request<MasterApplicationData[]>("/api/admin/master-applications", { headers: adminHeaders(token) });
+}
+
+export async function adminApproveMasterApplication(token: string, id: number): Promise<{ message: string }> {
+  return request(`/api/admin/master-applications/${id}/approve`, { method: "PUT", headers: adminHeaders(token) });
+}
+
+export async function adminRejectMasterApplication(token: string, id: number): Promise<{ message: string }> {
+  return request(`/api/admin/master-applications/${id}/reject`, { method: "PUT", headers: adminHeaders(token) });
 }

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { MastersPage } from "./MastersPage";
+import { MasterApplicationsPage } from "./MasterApplicationsPage";
 import { ExtraReposPage } from "./ExtraReposPage";
 import { SearchQueriesPage } from "./SearchQueriesPage";
 import { SkillsPage } from "./SkillsPage";
 import { SubscribersPage } from "./SubscribersPage";
 import { SyncPage } from "./SyncPage";
 
-type AdminTab = "masters" | "skills" | "repos" | "queries" | "subscribers" | "sync";
+type AdminTab = "masters" | "applications" | "skills" | "repos" | "queries" | "subscribers" | "sync";
 
 const TABS: { key: AdminTab; label: string }[] = [
   { key: "masters", label: "Masters" },
+  { key: "applications", label: "Applications" },
   { key: "skills", label: "Skills" },
   { key: "repos", label: "Extra Repos" },
   { key: "queries", label: "Search Queries" },
@@ -107,6 +109,7 @@ export function AdminLayout() {
       {/* Content */}
       <main className="max-w-7xl mx-auto px-4 py-6">
         {tab === "masters" && <MastersPage token={token} />}
+        {tab === "applications" && <MasterApplicationsPage token={token} />}
         {tab === "skills" && <SkillsPage token={token} />}
         {tab === "repos" && <ExtraReposPage token={token} />}
         {tab === "queries" && <SearchQueriesPage token={token} />}

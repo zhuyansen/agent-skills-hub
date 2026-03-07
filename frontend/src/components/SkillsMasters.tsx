@@ -20,7 +20,7 @@ export function SkillsMasters() {
       const cleaned = data.map((m) => ({
         ...m,
         top_repos: (m.top_repos || []).filter((r) => r.stars > 0),
-      })).filter((m) => m.total_stars > 0 || m.x_followers > 0);
+      })).filter((m) => m.total_stars > 0 || m.x_followers > 0 || !m.discovered);
       setMasters(cleaned);
     }).catch(console.error);
   }, []);
@@ -85,12 +85,12 @@ export function SkillsMasters() {
                     </a>
                     {m.x_followers > 0 && (
                       <span className="ml-1 text-gray-400">
-                        · {formatCount(m.x_followers)} followers
+                        · {formatCount(m.x_followers)} {t("masters.followers")}
                       </span>
                     )}
                     {m.x_posts_count > 0 && (
                       <span className="ml-1 text-gray-400">
-                        · {formatCount(m.x_posts_count)} posts
+                        · {formatCount(m.x_posts_count)} {t("masters.posts")}
                       </span>
                     )}
                   </span>
@@ -105,13 +105,13 @@ export function SkillsMasters() {
                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
-                <strong>{m.repo_count}</strong> repos
+                <strong>{m.repo_count}</strong> {t("masters.repos")}
               </span>
               <span className="flex items-center gap-1 text-gray-600">
                 <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
-                <strong>{m.total_stars >= 1000 ? `${(m.total_stars / 1000).toFixed(1)}k` : m.total_stars}</strong> total stars
+                <strong>{m.total_stars >= 1000 ? `${(m.total_stars / 1000).toFixed(1)}k` : m.total_stars}</strong> {t("masters.totalStars")}
               </span>
             </div>
 
@@ -187,7 +187,7 @@ export function SkillsMasters() {
                         </span>
                       </div>
                       <div className="flex items-center gap-3 text-xs text-gray-500">
-                        <span>{m.repo_count} repos</span>
+                        <span>{m.repo_count} {t("masters.repos")}</span>
                         <span className="flex items-center gap-0.5">
                           <svg className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -222,7 +222,7 @@ export function SkillsMasters() {
                       onClick={() => setExpandedIdx(isExpanded ? null : i)}
                       className="text-xs text-purple-500 hover:text-purple-700 mt-1 font-medium"
                     >
-                      {isExpanded ? "Show less" : `+${m.top_repos.length - 2} more`}
+                      {isExpanded ? t("masters.showLess") : `+${m.top_repos.length - 2} ${t("masters.more")}`}
                     </button>
                   )}
                 </div>

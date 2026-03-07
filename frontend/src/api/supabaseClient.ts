@@ -5,6 +5,7 @@
 import { supabase } from "../lib/supabase";
 import type {
   CategoryCount,
+  LandingData,
   PaginatedSkills,
   Skill,
   SkillDetail,
@@ -40,8 +41,15 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
   if (params.size_category) query = query.eq("size_category", params.size_category);
   if (params.platform) query = query.ilike("platforms", `%"${params.platform}"%`);
   if (params.search) {
-    const pat = `%${params.search}%`;
-    query = query.or(`repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`);
+    const trimmed = params.search.trim();
+    const words = trimmed.split(/\s+/).filter(Boolean);
+    // Use Full Text Search for multi-word queries; ILIKE fallback for short/single-char queries
+    if (words.length >= 2) {
+      query = query.textSearch("search_vector", trimmed, { type: "websearch" });
+    } else {
+      const pat = `%${trimmed}%`;
+      query = query.or(`repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`);
+    }
   }
 
   const ascending = params.sort_order === "asc";
@@ -255,6 +263,32 @@ export async function sbFetchLanguageStats(): Promise<{ language: string; count:
   const { data, error } = await sb.from("v_language_stats").select("*");
   if (error) throw new Error(error.message);
   return (data ?? []) as { language: string; count: number }[];
+}
+
+// ═══ Landing page single-RPC optimization ═══
+
+export async function sbFetchLandingData(): Promise<LandingData> {
+  const sb = ensureSupabase();
+  const { data, error } = await sb.rpc("get_landing_data");
+  if (error) throw new Error(error.message);
+
+  const d = data as any;
+  return {
+    stats: {
+      total_skills: d.stats?.total_skills ?? 0,
+      avg_score: d.stats?.avg_score ?? 0,
+      categories: (d.categories ?? []) as CategoryCount[],
+      last_sync_at: d.stats?.last_sync_at ?? null,
+      last_sync_status: d.stats?.last_sync_status ?? null,
+    },
+    trending: (d.trending ?? []) as Skill[],
+    rising: (d.rising ?? []) as Skill[],
+    top_rated: (d.top_rated ?? []) as Skill[],
+    hall_of_fame: (d.hall_of_fame ?? []) as Skill[],
+    recently_updated: (d.recently_updated ?? []) as Skill[],
+    languages: (d.languages ?? []) as { language: string; count: number }[],
+    generated_at: new Date().toISOString(),
+  };
 }
 
 export async function sbFetchMasters(): Promise<Master[]> {
