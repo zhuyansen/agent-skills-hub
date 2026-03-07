@@ -671,7 +671,7 @@ def rss_feed(
         .all()
     )
 
-    site_url = "https://agent-skills-hub.com"
+    site_url = settings.site_url or "https://agentskillshub.top"
 
     def _rfc822(dt: Optional[datetime]) -> str:
         if not dt:

@@ -58,6 +58,7 @@ MASTERS_USERS = [
     "joeseesun",  # vista8 / 向阳乔木
     "dotey", "JimLiu",  # dotey / 宝玉
     "Panniantong",
+    "abczsl520",  # Node.js 架构 / 中文记忆修复 / 调试方法论
 ]
 
 # Specific repos to always include (manually curated)
@@ -73,6 +74,14 @@ EXTRA_REPOS = [
     "joeseesun/knowledge-site-creator",
     "joeseesun/qiaomu-music-player-spotify",
     "joeseesun/qiaomu-design-advisor",
+    # abczsl520 skills
+    "abczsl520/nodejs-project-arch",
+    "abczsl520/openclaw-memory-cn",
+    "abczsl520/debug-methodology",
+    "abczsl520/bug-audit-skill",
+    "abczsl520/codex-review",
+    "abczsl520/browser-use-skill",
+    "abczsl520/game-quality-gates",
 ]
 
 # ── Rate Limit Management ──

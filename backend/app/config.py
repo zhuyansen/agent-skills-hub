@@ -16,8 +16,8 @@ class Settings(BaseSettings):
 
     # Resend email integration (recommended — free 3000 emails/month)
     resend_api_key: str = ""  # e.g. re_xxxxxxxx
-    email_from: str = "Agent Skills Hub <noreply@agent-skills-hub.com>"
-    site_url: str = "https://agent-skills-hub.com"
+    email_from: str = "Agent Skills Hub <noreply@agentskillshub.top>"
+    site_url: str = "https://agentskillshub.top"
 
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
