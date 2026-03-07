@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  // For GitHub Pages: /agent-skills-hub/
-  // For local dev: /
-  base: process.env.GITHUB_ACTIONS ? "/agent-skills-hub/" : "/",
+  // Custom domain (agentskillshub.top) → "/"
+  // Without custom domain on GitHub Pages → "/agent-skills-hub/"
+  base: "/",
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {

@@ -104,7 +104,7 @@ export function SkillDetailPage() {
         <meta property="og:title" content={`${detail.repo_name} | Agent Skills Hub`} />
         <meta property="og:description" content={ogDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://zhuyansen.github.io/agent-skills-hub/skill/${detail.id}`} />
+        <meta property="og:url" content={`https://agentskillshub.top/skill/${detail.repo_full_name}`} />
         <meta property="og:image" content={detail.author_avatar_url} />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />

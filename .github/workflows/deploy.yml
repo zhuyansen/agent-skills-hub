@@ -3,8 +3,6 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches: [main]
-    paths:
-      - "frontend/**"
   workflow_run:
     workflows: ["Sync Skills Data"]
     types: [completed]

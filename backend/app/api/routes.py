@@ -858,7 +858,7 @@ def rss_feed(
 @router.get("/sitemap.xml")
 def sitemap(db: Session = Depends(get_db)) -> Response:
     """Auto-generated sitemap for SEO. Includes all skill detail pages."""
-    site_url = "https://zhuyansen.github.io/agent-skills-hub"
+    site_url = settings.site_url or "https://agentskillshub.top"
 
     skills = (
         db.query(Skill.repo_full_name, Skill.last_synced, Skill.score)
