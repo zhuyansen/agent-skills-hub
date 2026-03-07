@@ -27,6 +27,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 import { useUrlParams } from "../hooks/useUrlParams";
 import { useStats } from "../hooks/useStats";
+import { useLandingData } from "../hooks/useLandingData";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 export function Home() {
@@ -34,6 +35,7 @@ export function Home() {
   const navigate = useNavigate();
   const { params, tab, setTab, updateParams, setPage } = useUrlParams();
   const { stats, categories } = useStats();
+  const { data: landingData } = useLandingData();
   const [view, setView] = useState<"card" | "table">("card");
 
   // Explore tab data
@@ -93,19 +95,40 @@ export function Home() {
         {/* Overview Tab */}
         {tab === "overview" && (
           <div className="animate-fade-in-up">
-            <DashboardStats stats={stats} />
+            <DashboardStats
+              stats={landingData?.stats ?? stats}
+              initialLanguages={landingData?.languages}
+              initialTrending={landingData?.trending}
+            />
             <div id="trending">
-              <TrendingSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+              <TrendingSection
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialHot={landingData?.trending}
+                initialRising={landingData?.rising}
+              />
             </div>
             <div id="masters">
               <SkillsMasters />
             </div>
             <div id="recent">
-              <RecentlyUpdated onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+              <RecentlyUpdated
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialData={landingData?.recently_updated}
+              />
             </div>
             <div id="top-rated" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-              <TopRatedSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
-              <HallOfFame onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+              <TopRatedSection
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialData={landingData?.top_rated}
+              />
+              <HallOfFame
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialData={landingData?.hall_of_fame}
+              />
             </div>
             <div id="newsletter">
               <NewsletterSubscribe />

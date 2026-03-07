@@ -22,23 +22,27 @@ const LANG_COLORS: Record<string, string> = {
 
 interface Props {
   stats: Stats | null;
+  initialLanguages?: { language: string; count: number }[];
+  initialTrending?: Skill[];
 }
 
-export function DashboardStats({ stats }: Props) {
+export function DashboardStats({ stats, initialLanguages, initialTrending }: Props) {
   const { t } = useI18n();
-  const [langs, setLangs] = useState<{ language: string; count: number }[]>([]);
-  const [trendingSkills, setTrendingSkills] = useState<Skill[]>([]);
+  const [langs, setLangs] = useState<{ language: string; count: number }[]>(initialLanguages ?? []);
+  const [trendingSkills, setTrendingSkills] = useState<Skill[]>(initialTrending ?? []);
   const [showCharts, setShowCharts] = useState(false);
 
   useEffect(() => {
+    if (initialLanguages && initialLanguages.length > 0) return;
     fetchLanguageStats().then(setLangs).catch(console.error);
-  }, []);
+  }, [initialLanguages]);
 
-  // Lazy-load trending data when charts are expanded
+  // Lazy-load trending data when charts are expanded (skip if provided via props)
   useEffect(() => {
     if (!showCharts || trendingSkills.length > 0) return;
+    if (initialTrending && initialTrending.length > 0) return;
     fetchTrending(15).then(setTrendingSkills).catch(console.error);
-  }, [showCharts, trendingSkills.length]);
+  }, [showCharts, trendingSkills.length, initialTrending]);
 
   if (!stats) return null;
 

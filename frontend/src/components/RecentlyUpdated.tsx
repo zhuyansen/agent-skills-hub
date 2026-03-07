@@ -8,15 +8,17 @@ import { ProjectTypeBadge } from "./ProjectTypeBadge";
 interface Props {
   onSelect?: (skill: Skill) => void;
   onShowDetail?: (skill: Skill) => void;
+  initialData?: Skill[];
 }
 
-export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail }: Props) {
+export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData }: Props) {
   const { t } = useI18n();
-  const [items, setItems] = useState<Skill[]>([]);
+  const [items, setItems] = useState<Skill[]>(initialData ?? []);
 
   useEffect(() => {
+    if (initialData && initialData.length > 0) return;
     fetchRecentlyUpdated(8).then(setItems).catch(console.error);
-  }, []);
+  }, [initialData]);
 
   if (items.length === 0) return null;
 

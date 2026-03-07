@@ -16,18 +16,26 @@ function formatVelocity(stars: number, createdAt: string | null): string {
 interface Props {
   onSelect?: (skill: Skill) => void;
   onShowDetail?: (skill: Skill) => void;
+  initialHot?: Skill[];
+  initialRising?: Skill[];
 }
 
-export function TrendingSection({ onSelect: _onSelect, onShowDetail }: Props) {
+export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot, initialRising }: Props) {
   const { t } = useI18n();
-  const [hot, setHot] = useState<Skill[]>([]);
-  const [rising, setRising] = useState<Skill[]>([]);
+  const [hot, setHot] = useState<Skill[]>(initialHot ?? []);
+  const [rising, setRising] = useState<Skill[]>(initialRising ?? []);
   const [tab, setTab] = useState<"hot" | "rising">("hot");
 
   useEffect(() => {
+    // Skip fetch if data was provided via props
+    if (initialHot && initialHot.length > 0) return;
     fetchTrending(10).then(setHot).catch(console.error);
+  }, [initialHot]);
+
+  useEffect(() => {
+    if (initialRising && initialRising.length > 0) return;
     fetchRising(7, 10).then(setRising).catch(console.error);
-  }, []);
+  }, [initialRising]);
 
   const items = tab === "hot" ? hot : rising;
   if (hot.length === 0 && rising.length === 0) return null;
