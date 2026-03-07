@@ -124,3 +124,5 @@ class Subscriber(Base):
     verified = Column(Boolean, default=False)
     verification_token = Column(String(64), nullable=True, index=True)
     verified_at = Column(DateTime, nullable=True)
+    # Unsubscribe
+    unsubscribe_token = Column(String(64), nullable=True, unique=True, index=True)

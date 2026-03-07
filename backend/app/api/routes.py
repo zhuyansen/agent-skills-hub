@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse, Response
 from sqlalchemy import desc, func
 from sqlalchemy.orm import Session
 
+from app.config import settings
 from app.database import get_db
 from app.models.admin import SkillMaster
 from app.models.skill import Skill, SkillComposition, SyncLog
@@ -617,11 +618,18 @@ def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
         token = secrets.token_urlsafe(32)
         existing.verification_token = token
         existing.verified = False
+        existing.unsubscribe_token = secrets.token_urlsafe(32)
         db.commit()
         send_verification_email(email, token)
     else:
         token = secrets.token_urlsafe(32)
-        new_sub = Subscriber(email=email, is_active=True, verified=False, verification_token=token)
+        new_sub = Subscriber(
+            email=email,
+            is_active=True,
+            verified=False,
+            verification_token=token,
+            unsubscribe_token=secrets.token_urlsafe(32),
+        )
         db.add(new_sub)
         db.commit()
         send_verification_email(email, token)
@@ -632,8 +640,13 @@ def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
 
 @router.get("/verify-email")
 def verify_email(token: str = Query(...), db: Session = Depends(get_db)):
-    """Verify a subscriber's email address using the token from the verification email."""
+    """Verify a subscriber's email address using the token from the verification email.
+
+    After verification, sends a welcome email with this week's trending skills.
+    """
+    import secrets
     from app.models.skill import Subscriber
+    from app.services.email_service import send_welcome_email
 
     subscriber = db.query(Subscriber).filter(Subscriber.verification_token == token).first()
     if not subscriber:
@@ -641,20 +654,133 @@ def verify_email(token: str = Query(...), db: Session = Depends(get_db)):
 
     if subscriber.verified:
         return Response(
-            content="<html><body><h2>Email already verified!</h2><p>You're already subscribed. You can close this page.</p></body></html>",
+            content=_verified_html("Email already verified!", "You're already subscribed. You can close this page."),
             media_type="text/html",
         )
 
     subscriber.verified = True
     subscriber.verified_at = datetime.now(timezone.utc)
     subscriber.verification_token = None  # Consume the token
+    # Ensure unsubscribe token exists
+    if not subscriber.unsubscribe_token:
+        subscriber.unsubscribe_token = secrets.token_urlsafe(32)
     db.commit()
 
     logger.info("Email verified: %s", subscriber.email)
+
+    # ── Send welcome email with trending skills ──
+    try:
+        from sqlalchemy import desc as _desc
+
+        trending_raw = (
+            db.query(Skill)
+            .filter(Skill.score > 0)
+            .order_by(_desc(Skill.star_momentum))
+            .limit(5)
+            .all()
+        )
+        trending_data = [
+            {
+                "repo_name": s.repo_name,
+                "description": s.description or "",
+                "stars": s.stars,
+                "repo_url": s.repo_url,
+                "score": round(s.score, 1) if s.score else 0,
+                "category": s.category,
+                "star_momentum": s.star_momentum or 0,
+            }
+            for s in trending_raw
+        ]
+        total_skills = db.query(func.count(Skill.id)).scalar() or 0
+        unsub_url = f"{settings.site_url}/api/unsubscribe?token={subscriber.unsubscribe_token}"
+
+        send_welcome_email(
+            email=subscriber.email,
+            trending_skills=trending_data,
+            total_skills=total_skills,
+            unsubscribe_url=unsub_url,
+        )
+        logger.info("Welcome email sent to %s", subscriber.email)
+    except Exception as exc:
+        logger.warning("Failed to send welcome email to %s: %s", subscriber.email, exc)
+
     return Response(
-        content="<html><body><h2>Email verified successfully!</h2><p>Thank you for subscribing to Agent Skills Hub newsletter. You can close this page.</p></body></html>",
+        content=_verified_html(
+            "Email verified successfully! &#127881;",
+            "Thank you for subscribing! A welcome email with this week's trending skills has been sent to your inbox. "
+            "You'll receive weekly updates every Monday.",
+        ),
         media_type="text/html",
     )
+
+
+def _verified_html(title: str, message: str) -> str:
+    """Pretty HTML page for verification result."""
+    return f"""\
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title></head>
+<body style="margin:0;padding:60px 20px;background:#f4f4f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;">
+<div style="max-width:480px;margin:0 auto;background:#fff;border-radius:12px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <div style="font-size:48px;margin-bottom:16px;">&#9989;</div>
+  <h2 style="color:#1a1a2e;margin:0 0 12px;">{title}</h2>
+  <p style="color:#4a5568;line-height:1.6;">{message}</p>
+  <a href="{settings.site_url}" style="display:inline-block;margin-top:20px;padding:12px 28px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">
+    Visit Agent Skills Hub
+  </a>
+</div>
+</body>
+</html>"""
+
+
+@router.get("/unsubscribe")
+def unsubscribe(token: str = Query(...), db: Session = Depends(get_db)):
+    """One-click unsubscribe via token link in emails."""
+    from app.models.skill import Subscriber
+
+    subscriber = db.query(Subscriber).filter(Subscriber.unsubscribe_token == token).first()
+    if not subscriber:
+        raise HTTPException(status_code=400, detail="Invalid unsubscribe link")
+
+    if not subscriber.is_active:
+        return Response(
+            content=_unsubscribe_html("Already unsubscribed", "You've already been removed from our mailing list."),
+            media_type="text/html",
+        )
+
+    subscriber.is_active = False
+    db.commit()
+    logger.info("Unsubscribed: %s", subscriber.email)
+
+    return Response(
+        content=_unsubscribe_html(
+            "Unsubscribed successfully",
+            "You've been removed from the Agent Skills Hub newsletter. "
+            "You can re-subscribe anytime on our website.",
+        ),
+        media_type="text/html",
+    )
+
+
+def _unsubscribe_html(title: str, message: str) -> str:
+    """Pretty HTML page for unsubscribe result."""
+    return f"""\
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title></head>
+<body style="margin:0;padding:60px 20px;background:#f4f4f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;">
+<div style="max-width:480px;margin:0 auto;background:#fff;border-radius:12px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <div style="font-size:48px;margin-bottom:16px;">&#128075;</div>
+  <h2 style="color:#1a1a2e;margin:0 0 12px;">{title}</h2>
+  <p style="color:#4a5568;line-height:1.6;">{message}</p>
+  <a href="{settings.site_url}" style="display:inline-block;margin-top:20px;padding:12px 28px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">
+    Visit Agent Skills Hub
+  </a>
+</div>
+</body>
+</html>"""
 
 
 @router.get("/feed.xml")

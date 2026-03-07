@@ -372,19 +372,30 @@ def send_newsletter_email(
     new_skills = db.query(Skill).filter(Skill.first_seen >= week_ago).count()
 
     if test_email:
-        # Test mode: send to a specific email
-        recipients = [test_email]
+        # Test mode: send to a specific email (no unsubscribe token needed)
+        recipients = [{"email": test_email, "unsubscribe_token": ""}]
         logger.info("Sending test newsletter to: %s", test_email)
     else:
         # Production: send to all verified, active subscribers
+        import secrets
         verified_subs = (
             db.query(Subscriber)
             .filter(Subscriber.is_active == True, Subscriber.verified == True)  # noqa: E712
             .all()
         )
-        recipients = [s.email for s in verified_subs]
-        if not recipients:
+        if not verified_subs:
             return {"status": "error", "message": "No verified subscribers found"}
+
+        # Ensure all subscribers have unsubscribe tokens
+        for sub in verified_subs:
+            if not sub.unsubscribe_token:
+                sub.unsubscribe_token = secrets.token_urlsafe(32)
+        db.commit()
+
+        recipients = [
+            {"email": s.email, "unsubscribe_token": s.unsubscribe_token or ""}
+            for s in verified_subs
+        ]
         logger.info("Sending newsletter to %d verified subscribers", len(recipients))
 
     result = send_newsletter(
