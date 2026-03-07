@@ -262,17 +262,97 @@ export async function sbFetchMasters(): Promise<Master[]> {
   const { data, error } = await sb.rpc("get_masters");
   if (error) throw new Error(error.message);
 
-  // The function returns { masters: [...], emerging: [...] }
-  const result = data as { masters: Master[]; emerging: Master[] };
-  const masters = result.masters ?? [];
-  const emerging = result.emerging ?? [];
+  // The RPC returns { masters: [...], emerging: [...] } with stats but missing
+  // avatar_url, top_repos, repo_count — we need to enrich the data.
+  interface RpcMaster {
+    github: string;
+    name: string;
+    x_handle: string | null;
+    bio: string | null;
+    tags: string[];
+    github_aliases: string[];
+    x_followers: number;
+    x_posts_count: number;
+    x_notes: string | null;
+    total_stars: number;
+    skill_count: number;
+    avg_score: number;
+    is_verified: boolean;
+  }
+
+  const result = data as { masters: RpcMaster[]; emerging: RpcMaster[] };
+  const allRpc = [...(result.masters ?? []), ...(result.emerging ?? [])];
 
   // Fallback to hardcoded data when the skill_masters table is empty
-  if (masters.length === 0 && emerging.length === 0) {
+  if (allRpc.length === 0) {
     return getFallbackMasters();
   }
 
-  return [...masters, ...emerging];
+  // Collect all github usernames (+ aliases) to fetch their top repos
+  const githubNames: string[] = [];
+  for (const m of allRpc) {
+    githubNames.push(m.github);
+    if (m.github_aliases) {
+      for (const alias of m.github_aliases) githubNames.push(alias);
+    }
+  }
+
+  // Fetch top repos for all masters in one query
+  const { data: repos } = await sb
+    .from("skills")
+    .select("id,repo_name,repo_full_name,repo_url,description,stars,score,category,author_name")
+    .in("author_name", githubNames)
+    .order("stars", { ascending: false })
+    .limit(100);
+
+  // Group repos by author
+  const reposByAuthor = new Map<string, typeof repos>();
+  for (const r of (repos ?? [])) {
+    const key = r.author_name?.toLowerCase();
+    if (!reposByAuthor.has(key)) reposByAuthor.set(key, []);
+    reposByAuthor.get(key)!.push(r);
+  }
+
+  // Enrich masters
+  const enriched: Master[] = allRpc.map((m) => {
+    const authorKeys = [m.github, ...(m.github_aliases || [])];
+    const topRepos: Master["top_repos"] = [];
+    for (const key of authorKeys) {
+      const reps = reposByAuthor.get(key.toLowerCase()) ?? [];
+      for (const r of reps) {
+        if (topRepos.length >= 5) break;
+        topRepos.push({
+          id: r.id,
+          repo_name: r.repo_name,
+          repo_full_name: r.repo_full_name,
+          repo_url: r.repo_url,
+          description: r.description || "",
+          stars: r.stars,
+          score: r.score ?? 0,
+          category: r.category,
+        });
+      }
+    }
+
+    return {
+      github: m.github,
+      name: m.name,
+      x_handle: m.x_handle,
+      bio: m.bio,
+      tags: Array.isArray(m.tags) ? m.tags : [],
+      avatar_url: `https://avatars.githubusercontent.com/${m.github}`,
+      repo_count: m.skill_count,
+      total_stars: m.total_stars,
+      x_followers: m.x_followers,
+      x_posts_count: m.x_posts_count,
+      x_verified_at: null,
+      x_notes: m.x_notes,
+      top_repos: topRepos,
+      discovered: !m.is_verified,
+    };
+  });
+
+  return enriched;
 }
 
 function getFallbackMasters(): Master[] {

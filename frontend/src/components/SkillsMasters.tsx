@@ -15,11 +15,12 @@ export function SkillsMasters() {
 
   useEffect(() => {
     fetchMasters().then((data) => {
-      // Filter out masters with 0 total stars, and remove 0-star repos from top_repos
+      // Clean up: remove 0-star repos from top_repos
+      // Keep masters who have stars OR X followers (verified masters may not have repos synced yet)
       const cleaned = data.map((m) => ({
         ...m,
-        top_repos: m.top_repos.filter((r) => r.stars > 0),
-      })).filter((m) => m.total_stars > 0);
+        top_repos: (m.top_repos || []).filter((r) => r.stars > 0),
+      })).filter((m) => m.total_stars > 0 || m.x_followers > 0);
       setMasters(cleaned);
     }).catch(console.error);
   }, []);
