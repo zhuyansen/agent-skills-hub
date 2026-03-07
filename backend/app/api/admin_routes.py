@@ -328,6 +328,97 @@ def delete_subscriber(
     return {"message": f"Subscriber '{sub.email}' removed"}
 
 
+@admin_router.post("/newsletter/send")
+def send_newsletter_email(
+    body: dict = None,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Send weekly newsletter to all verified subscribers (or a specific email for testing).
+
+    Request body (optional):
+      - test_email: Send only to this email (for testing)
+    """
+    from app.services.email_service import send_newsletter
+
+    body = body or {}
+    test_email = body.get("test_email", "").strip()
+
+    # Get trending skills
+    trending = (
+        db.query(Skill)
+        .filter(Skill.score > 0)
+        .order_by(desc(Skill.star_momentum))
+        .limit(10)
+        .all()
+    )
+    trending_data = [
+        {
+            "repo_name": s.repo_name,
+            "description": s.description or "",
+            "stars": s.stars,
+            "repo_url": s.repo_url,
+            "score": s.score,
+            "category": s.category,
+            "star_momentum": s.star_momentum or 0,
+        }
+        for s in trending
+    ]
+
+    # Stats
+    from datetime import timedelta
+    total_skills = db.query(Skill).count()
+    week_ago = datetime.now(timezone.utc) - timedelta(days=7)
+    new_skills = db.query(Skill).filter(Skill.first_seen >= week_ago).count()
+
+    if test_email:
+        # Test mode: send to a specific email
+        recipients = [test_email]
+        logger.info("Sending test newsletter to: %s", test_email)
+    else:
+        # Production: send to all verified, active subscribers
+        verified_subs = (
+            db.query(Subscriber)
+            .filter(Subscriber.is_active == True, Subscriber.verified == True)  # noqa: E712
+            .all()
+        )
+        recipients = [s.email for s in verified_subs]
+        if not recipients:
+            return {"status": "error", "message": "No verified subscribers found"}
+        logger.info("Sending newsletter to %d verified subscribers", len(recipients))
+
+    result = send_newsletter(
+        recipients=recipients,
+        trending_skills=trending_data,
+        new_skills_count=new_skills,
+        total_skills=total_skills,
+    )
+    return {"status": "ok", **result}
+
+
+@admin_router.post("/newsletter/test-verification")
+def test_verification_email(
+    body: dict,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Send a test verification email to a specific address."""
+    import secrets
+    from app.services.email_service import send_verification_email
+
+    email = body.get("email", "").strip()
+    if not email:
+        raise HTTPException(400, "Email is required")
+
+    token = secrets.token_urlsafe(32)
+    ok = send_verification_email(email, token)
+    return {
+        "status": "ok" if ok else "error",
+        "message": f"Verification email {'sent' if ok else 'failed'} to {email}",
+        "token": token,
+    }
+
+
 # ═══ Sync Management ═══
 
 @admin_router.get("/sync-logs")

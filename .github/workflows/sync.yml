@@ -8,6 +8,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 120  # Allow up to 2 hours for rate limit waits
     defaults:
       run:
         working-directory: backend

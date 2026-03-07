@@ -593,9 +593,8 @@ def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
     """Subscribe to the weekly newsletter. Sends a verification email."""
     import re
     import secrets
-    import httpx
-    from app.config import settings
     from app.models.skill import Subscriber
+    from app.services.email_service import send_verification_email
 
     email = body.get("email", "").strip().lower()
     if not email or not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
@@ -611,7 +610,7 @@ def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
             token = secrets.token_urlsafe(32)
             existing.verification_token = token
             db.commit()
-            _send_verification_email(email, token, settings, logger)
+            send_verification_email(email, token)
             return {"status": "ok", "message": "Verification email re-sent. Please check your inbox."}
         # Re-activate
         existing.is_active = True
@@ -619,52 +618,16 @@ def subscribe_newsletter(body: dict, db: Session = Depends(get_db)) -> dict:
         existing.verification_token = token
         existing.verified = False
         db.commit()
-        _send_verification_email(email, token, settings, logger)
+        send_verification_email(email, token)
     else:
         token = secrets.token_urlsafe(32)
         new_sub = Subscriber(email=email, is_active=True, verified=False, verification_token=token)
         db.add(new_sub)
         db.commit()
-        _send_verification_email(email, token, settings, logger)
+        send_verification_email(email, token)
 
     logger.info("Newsletter subscription (pending verification): %s", email)
     return {"status": "ok", "message": "Please check your email to confirm your subscription."}
-
-
-def _send_verification_email(email: str, token: str, settings, logger) -> None:
-    """Send verification email via BillionMail if configured."""
-    if not settings.billionmail_api_url or not settings.billionmail_api_key:
-        logger.info("BillionMail not configured, skipping verification email for %s (token: %s)", email, token)
-        return
-
-    import httpx
-
-    site_url = settings.site_url if hasattr(settings, "site_url") else "https://agent-skills-hub.com"
-    verify_url = f"{site_url}/api/verify-email?token={token}"
-
-    try:
-        resp = httpx.post(
-            f"{settings.billionmail_api_url}/api/batch_mail/api/send",
-            headers={
-                "X-API-Key": settings.billionmail_api_key,
-                "Content-Type": "application/json",
-            },
-            json={
-                "recipient": email,
-                "attribs": {
-                    "source": "agent-skills-hub",
-                    "type": "verification",
-                    "verify_url": verify_url,
-                },
-            },
-            timeout=10.0,
-        )
-        if resp.status_code == 200:
-            logger.info("Verification email sent via BillionMail: %s", email)
-        else:
-            logger.warning("BillionMail API returned %d: %s", resp.status_code, resp.text[:200])
-    except Exception as exc:
-        logger.warning("BillionMail API call failed: %s", exc)
 
 
 @router.get("/verify-email")
