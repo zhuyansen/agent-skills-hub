@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
 
 SEARCH_QUERIES = [
-    # ── Core MCP ecosystem ──
+    # ── Core MCP ecosystem (highest priority) ──
     "mcp-server in:name,topics",
     "claude-mcp in:name,description,topics",
     "model-context-protocol in:name,description,topics",
@@ -75,13 +75,36 @@ EXTRA_REPOS = [
 ]
 
 
+class RateLimitExhausted(Exception):
+    """Raised when GitHub API rate limit is fully exhausted and we should stop."""
+    pass
+
+
+# Global flag to track rate limit state within a sync session
+_rate_limit_exhausted = False
+_rate_limit_reset_at = 0
+
+
 async def _github_request(
     client: httpx.AsyncClient,
     url: str,
     params: Optional[dict] = None,
     retry: int = 0,
 ) -> dict[str, Any]:
-    if retry > 2:
+    global _rate_limit_exhausted, _rate_limit_reset_at
+
+    # If rate limit already known to be exhausted, fail fast
+    if _rate_limit_exhausted:
+        if time.time() < _rate_limit_reset_at:
+            raise RateLimitExhausted(f"Rate limit exhausted until {_rate_limit_reset_at}")
+        else:
+            # Reset window has passed, try again
+            _rate_limit_exhausted = False
+
+    if retry > 1:
+        # Max 2 retries (3 total attempts). If still failing, mark rate exhausted.
+        _rate_limit_exhausted = True
+        logger.warning("Max retries reached for %s, marking rate limit exhausted", url[:80])
         return {"items": [], "total_count": 0}
 
     headers = {"Accept": "application/vnd.github.v3+json"}
@@ -90,12 +113,28 @@ async def _github_request(
 
     resp = await client.get(url, headers=headers, params=params)
 
+    # Check remaining rate limit from headers
+    remaining = int(resp.headers.get("X-RateLimit-Remaining", "999"))
+    if remaining <= 5 and remaining >= 0:
+        reset_ts = int(resp.headers.get("X-RateLimit-Reset", "0"))
+        if reset_ts:
+            _rate_limit_reset_at = reset_ts
+        logger.warning("Rate limit nearly exhausted: %d remaining, reset at %d", remaining, reset_ts)
+
     if resp.status_code in (403, 429):
         reset_ts = int(resp.headers.get("X-RateLimit-Reset", "0"))
-        wait = max(reset_ts - time.time(), 0) + 5 if reset_ts else 60
-        wait = min(wait, 120)
-        logger.warning("Rate limited (%d). Sleeping %.0fs", resp.status_code, wait)
-        await asyncio.sleep(wait)
+        wait_time = max(reset_ts - time.time(), 0) + 5 if reset_ts else 60
+        wait_time = min(wait_time, 60)  # Max 60s wait per retry (down from 120)
+
+        if reset_ts:
+            _rate_limit_reset_at = reset_ts
+
+        logger.warning(
+            "Rate limited (%d). Retry %d/1, sleeping %.0fs (reset at %s)",
+            resp.status_code, retry, wait_time,
+            datetime.fromtimestamp(reset_ts).strftime('%H:%M:%S') if reset_ts else "unknown"
+        )
+        await asyncio.sleep(wait_time)
         return await _github_request(client, url, params, retry + 1)
 
     if resp.status_code == 422:
@@ -125,10 +164,16 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         incremental: If True, only fetch repos pushed since last successful sync.
                      Falls back to full sync if no previous sync found.
     """
+    global _rate_limit_exhausted, _rate_limit_reset_at
+
     from app.database import SessionLocal
     from app.models.skill import Skill, SyncLog
     from app.services.data_cleaner import DataCleaner
     from app.services.scorer import ScoringEngine
+
+    # Reset global rate limit state for this sync session
+    _rate_limit_exhausted = False
+    _rate_limit_reset_at = 0
 
     db = SessionLocal()
     if sync_log_id:
@@ -197,9 +242,17 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         except Exception:
             pass
 
+        # ═══════════════════════════════════════════════════════
+        # Phase 1: Search GitHub for repos
+        # ═══════════════════════════════════════════════════════
+        skipped_queries = 0
         async with httpx.AsyncClient(timeout=30.0) as client:
-            for query in all_queries:
-                # Append pushed:> filter for incremental sync
+            for i, query in enumerate(all_queries):
+                # Skip remaining queries if rate limited
+                if _rate_limit_exhausted:
+                    skipped_queries += 1
+                    continue
+
                 effective_query = query + pushed_filter if pushed_filter else query
                 try:
                     for page in range(1, 4):  # up to 3 pages
@@ -216,37 +269,65 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                         if len(items) < 100:
                             break
                         await asyncio.sleep(2.5)
+                except RateLimitExhausted:
+                    logger.warning("Rate limit exhausted during search phase at query %d/%d", i + 1, len(all_queries))
+                    skipped_queries += 1
                 except Exception as exc:
                     logger.error("Search failed [%s]: %s", query, exc)
-                await asyncio.sleep(3)
+                await asyncio.sleep(2)
 
-            # ── Phase 2: Fetch repos for masters (by username) ──
-            for username in masters_list:
-                try:
-                    for page in range(1, 4):
-                        data = await _github_request(
-                            client,
-                            f"https://api.github.com/users/{username}/repos",
-                            params={"per_page": 100, "page": page, "sort": "stars"},
-                        )
-                        # user repos endpoint returns a list, not search-style dict
-                        items = data if isinstance(data, list) else data.get("items", [])
-                        for repo in items:
-                            fn = repo.get("full_name", "")
-                            if fn and fn not in all_repos:
-                                all_repos[fn] = repo
-                        if len(items) < 100:
-                            break
-                        await asyncio.sleep(1)
-                except Exception as exc:
-                    logger.error("Masters fetch failed [%s]: %s", username, exc)
-                await asyncio.sleep(1)
+            if skipped_queries:
+                logger.warning("Skipped %d search queries due to rate limit", skipped_queries)
+            logger.info("Phase 1 complete: %d unique repos from search", len(all_repos))
 
-            logger.info("After masters fetch: %d unique repos", len(all_repos))
+            # ═══════════════════════════════════════════════════════
+            # Phase 2: Fetch repos for masters (by username)
+            # ═══════════════════════════════════════════════════════
+            skipped_masters = 0
+            if not _rate_limit_exhausted:
+                for username in masters_list:
+                    if _rate_limit_exhausted:
+                        skipped_masters += 1
+                        continue
+                    try:
+                        for page in range(1, 4):
+                            data = await _github_request(
+                                client,
+                                f"https://api.github.com/users/{username}/repos",
+                                params={"per_page": 100, "page": page, "sort": "stars"},
+                            )
+                            # user repos endpoint returns a list, not search-style dict
+                            items = data if isinstance(data, list) else data.get("items", [])
+                            for repo in items:
+                                fn = repo.get("full_name", "")
+                                if fn and fn not in all_repos:
+                                    all_repos[fn] = repo
+                            if len(items) < 100:
+                                break
+                            await asyncio.sleep(1)
+                    except RateLimitExhausted:
+                        logger.warning("Rate limit hit during masters fetch, skipping remaining masters")
+                        skipped_masters += 1
+                    except Exception as exc:
+                        logger.error("Masters fetch failed [%s]: %s", username, exc)
+                    await asyncio.sleep(1)
+            else:
+                skipped_masters = len(masters_list)
+                logger.warning("Skipping all masters due to rate limit exhaustion")
 
-            # ── Phase 3: Fetch curated extra repos ──
+            if skipped_masters:
+                logger.warning("Skipped %d/%d masters due to rate limit", skipped_masters, len(masters_list))
+            logger.info("Phase 2 complete: %d unique repos after masters", len(all_repos))
+
+            # ═══════════════════════════════════════════════════════
+            # Phase 3: Fetch curated extra repos
+            # ═══════════════════════════════════════════════════════
+            skipped_extras = 0
             for full_name in extra_repos_list:
                 if full_name in all_repos:
+                    continue
+                if _rate_limit_exhausted:
+                    skipped_extras += 1
                     continue
                 try:
                     repo_data = await _github_request(
@@ -256,73 +337,109 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                         all_repos[full_name] = repo_data
                         logger.info("Added extra repo %s", full_name)
                     await asyncio.sleep(1)
+                except RateLimitExhausted:
+                    skipped_extras += 1
                 except Exception as exc:
                     logger.error("Extra repo fetch failed [%s]: %s", full_name, exc)
 
-            # ── Phase 4: Enrich with owner followers ──
-            # In incremental mode, pre-load existing owner followers from DB to skip API calls
-            if pushed_filter:
+            if skipped_extras:
+                logger.warning("Skipped %d extra repos due to rate limit", skipped_extras)
+            logger.info("Phase 3 complete: %d unique repos total", len(all_repos))
+
+            # ═══════════════════════════════════════════════════════
+            # Phase 4: Enrich with owner followers (skip if rate limited)
+            # ═══════════════════════════════════════════════════════
+            # Pre-load existing owner followers from DB (works for both modes)
+            try:
                 existing_skills = db.query(Skill.author_name, Skill.author_followers).all()
                 for name, followers in existing_skills:
                     if name and name not in owner_cache:
                         owner_cache[name] = followers or 0
-                logger.info("Pre-loaded %d owner followers from DB cache", len(owner_cache))
+                if owner_cache:
+                    logger.info("Pre-loaded %d owner followers from DB cache", len(owner_cache))
+            except Exception:
+                pass
 
-            count = 0
+            enriched_count = 0
+            skipped_enrichment = 0
             for fn, repo in all_repos.items():
                 owner_login = repo.get("owner", {}).get("login", "")
                 if owner_login and owner_login not in owner_cache:
-                    try:
-                        user_data = await _github_request(
-                            client, f"https://api.github.com/users/{owner_login}"
-                        )
-                        owner_cache[owner_login] = user_data.get("followers", 0)
-                        await asyncio.sleep(0.3)
-                    except Exception:
+                    if _rate_limit_exhausted:
+                        # Use 0 as default when rate limited
                         owner_cache[owner_login] = 0
+                        skipped_enrichment += 1
+                    else:
+                        try:
+                            user_data = await _github_request(
+                                client, f"https://api.github.com/users/{owner_login}"
+                            )
+                            owner_cache[owner_login] = user_data.get("followers", 0)
+                            enriched_count += 1
+                            await asyncio.sleep(0.3)
+                        except RateLimitExhausted:
+                            owner_cache[owner_login] = 0
+                            skipped_enrichment += 1
+                        except Exception:
+                            owner_cache[owner_login] = 0
                 repo["_owner_followers"] = owner_cache.get(owner_login, 0)
-                # open_issues_count from GitHub API actually includes PRs;
-                # use it as total_issues for scoring (closed = total - open)
                 repo["_total_issues"] = repo.get("open_issues_count", 0) + repo.get("_closed_issues", 0)
                 repo["_total_commits"] = repo.get("_total_commits", 0)
-                count += 1
-                if count % 100 == 0:
-                    logger.info("Enriched %d/%d repos", count, len(all_repos))
 
-        # ── Phase 4: Fetch README content (incremental, max 300 per sync) ──
+            if skipped_enrichment:
+                logger.warning("Skipped enrichment for %d owners due to rate limit", skipped_enrichment)
+            logger.info("Phase 4 complete: enriched %d owners, skipped %d", enriched_count, skipped_enrichment)
+
+        # ═══════════════════════════════════════════════════════
+        # Phase 5: Fetch README content (only if we have API quota)
+        # ═══════════════════════════════════════════════════════
         readme_cache: dict[str, str] = {}
-        try:
-            null_readme_skills = (
-                db.query(Skill.repo_full_name)
-                .filter(Skill.readme_content.is_(None))
-                .limit(300)
-                .all()
-            )
-            readme_targets = {r.repo_full_name for r in null_readme_skills} & set(all_repos.keys())
-            if readme_targets:
-                logger.info("Fetching README for %d skills", len(readme_targets))
-                readme_headers = {"Accept": "application/vnd.github.raw"}
-                if settings.github_token:
-                    readme_headers["Authorization"] = f"Bearer {settings.github_token}"
-                async with httpx.AsyncClient(timeout=30.0) as readme_client:
-                    fetched = 0
-                    for full_name in readme_targets:
-                        try:
-                            resp = await readme_client.get(
-                                f"https://api.github.com/repos/{full_name}/readme",
-                                headers=readme_headers,
-                            )
-                            if resp.status_code == 200:
-                                readme_cache[full_name] = resp.text[:50000]
-                            fetched += 1
-                            if fetched % 50 == 0:
-                                logger.info("README fetch: %d/%d", fetched, len(readme_targets))
-                            await asyncio.sleep(0.5)
-                        except Exception:
-                            pass
-                logger.info("README fetch complete: %d/%d successful", len(readme_cache), len(readme_targets))
-        except Exception as exc:
-            logger.warning("README fetch phase failed: %s", exc)
+        if not _rate_limit_exhausted:
+            try:
+                null_readme_skills = (
+                    db.query(Skill.repo_full_name)
+                    .filter(Skill.readme_content.is_(None))
+                    .limit(300)
+                    .all()
+                )
+                readme_targets = {r.repo_full_name for r in null_readme_skills} & set(all_repos.keys())
+                if readme_targets:
+                    logger.info("Fetching README for %d skills", len(readme_targets))
+                    readme_headers = {"Accept": "application/vnd.github.raw"}
+                    if settings.github_token:
+                        readme_headers["Authorization"] = f"Bearer {settings.github_token}"
+                    async with httpx.AsyncClient(timeout=30.0) as readme_client:
+                        fetched = 0
+                        for full_name in readme_targets:
+                            try:
+                                resp = await readme_client.get(
+                                    f"https://api.github.com/repos/{full_name}/readme",
+                                    headers=readme_headers,
+                                )
+                                if resp.status_code == 200:
+                                    readme_cache[full_name] = resp.text[:50000]
+                                elif resp.status_code in (403, 429):
+                                    logger.warning("Rate limited during README fetch, stopping")
+                                    break
+                                fetched += 1
+                                if fetched % 50 == 0:
+                                    logger.info("README fetch: %d/%d", fetched, len(readme_targets))
+                                await asyncio.sleep(0.5)
+                            except Exception:
+                                pass
+                    logger.info("README fetch complete: %d/%d successful", len(readme_cache), len(readme_targets))
+            except Exception as exc:
+                logger.warning("README fetch phase failed: %s", exc)
+        else:
+            logger.info("Skipping README fetch phase due to rate limit")
+
+        # ═══════════════════════════════════════════════════════
+        # Phase 6: Clean, upsert, and score
+        # ═══════════════════════════════════════════════════════
+        if not all_repos:
+            raise Exception("No repos found — sync produced empty result (rate limit may have blocked all queries)")
+
+        logger.info("Processing %d repos for database upsert...", len(all_repos))
 
         cleaner = DataCleaner()
         cleaned = cleaner.process(list(all_repos.values()))
@@ -353,6 +470,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 new_count += 1
 
         db.commit()
+        logger.info("Database upsert complete: %d new, %d updated", new_count, updated_count)
 
         scoring_engine = ScoringEngine()
         scoring_engine.score_all(db)
@@ -365,11 +483,21 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         sync_log.repos_new = new_count
         sync_log.repos_updated = updated_count
         sync_log.finished_at = datetime.now(timezone.utc)
+
+        # Add note about rate limiting if it occurred
+        if _rate_limit_exhausted:
+            sync_log.error_message = (
+                f"Partial sync: rate limit hit. Skipped {skipped_queries} queries, "
+                f"{skipped_masters} masters, {skipped_enrichment} enrichments. "
+                f"Still wrote {len(cleaned)} repos."
+            )
+
         db.commit()
 
         logger.info(
-            "Sync completed: %d found, %d new, %d updated",
+            "Sync completed: %d found, %d new, %d updated%s",
             len(cleaned), new_count, updated_count,
+            " (partial due to rate limit)" if _rate_limit_exhausted else "",
         )
 
     except Exception as exc:
