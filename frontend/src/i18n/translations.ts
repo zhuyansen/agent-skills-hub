@@ -104,6 +104,16 @@ export const translations = {
     "submit.masterBio": "个人简介（选填）",
     "submit.masterRepos": "代表作仓库 URL（每行一个）",
     "submit.masterButton": "提交申请",
+    "submit.tabWorkflow": "场景工作流",
+    "submit.workflowTitle": "提交场景工作流",
+    "submit.workflowSubtitle": "分享你的多技能协作方案，经审核后将在场景推荐中展示",
+    "submit.workflowName": "工作流名称",
+    "submit.workflowDesc": "简短描述（选填）",
+    "submit.workflowSteps": "工作流步骤（至少2个）",
+    "submit.workflowStepName": "技能名称",
+    "submit.workflowStepDesc": "步骤说明",
+    "submit.workflowAddStep": "添加步骤",
+    "submit.workflowButton": "提交工作流",
 
     // Header
     "header.newsletter": "免费订阅周报",
@@ -301,6 +311,16 @@ export const translations = {
     "submit.masterBio": "Short bio (optional)",
     "submit.masterRepos": "Representative repo URLs (one per line)",
     "submit.masterButton": "Submit Application",
+    "submit.tabWorkflow": "Workflow",
+    "submit.workflowTitle": "Submit Scenario Workflow",
+    "submit.workflowSubtitle": "Share your multi-skill workflow recipe. Approved workflows will be featured in scenario recommendations",
+    "submit.workflowName": "Workflow name",
+    "submit.workflowDesc": "Short description (optional)",
+    "submit.workflowSteps": "Workflow steps (at least 2)",
+    "submit.workflowStepName": "Skill name",
+    "submit.workflowStepDesc": "Step description",
+    "submit.workflowAddStep": "Add step",
+    "submit.workflowButton": "Submit Workflow",
 
     // Header
     "header.newsletter": "Free Weekly Newsletter",

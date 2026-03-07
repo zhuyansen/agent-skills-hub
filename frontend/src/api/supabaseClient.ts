@@ -451,7 +451,7 @@ function getFallbackMasters(): Master[] {
     {
       github: "JimLiu",
       name: "JimLiu",
-      x_handle: null,
+      x_handle: "dotey",
       bio: null,
       tags: ["content-creation"],
       avatar_url: "https://avatars.githubusercontent.com/u/JimLiu",
@@ -688,6 +688,33 @@ export async function sbSubmitMasterApplication(
   return {
     status: "submitted",
     message: "Application submitted! We will review it soon.",
+  };
+}
+
+// ═══ Workflow Submission ═══
+
+export async function sbSubmitWorkflow(
+  name: string,
+  description: string,
+  steps: { name: string; slug: string; description: string }[],
+): Promise<{ status: string; message: string }> {
+  const sb = ensureSupabase();
+
+  const { error } = await sb.from("submitted_workflows").insert({
+    name,
+    description,
+    steps: JSON.stringify(steps),
+    submitted_by: "community",
+    status: "pending",
+  });
+
+  if (error) {
+    return { status: "error", message: error.message };
+  }
+
+  return {
+    status: "submitted",
+    message: "Workflow submitted! It will be reviewed by our team.",
   };
 }
 

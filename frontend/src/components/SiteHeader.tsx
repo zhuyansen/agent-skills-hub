@@ -147,7 +147,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     key={sec.id}
                     onClick={() => {
                       const el = document.getElementById(sec.id);
-                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
                     }}
                     className="px-2.5 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                   >

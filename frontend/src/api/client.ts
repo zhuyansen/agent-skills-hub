@@ -30,6 +30,7 @@ import {
   sbSubscribe,
   sbVerifyEmail,
   sbSubmitMasterApplication,
+  sbSubmitWorkflow,
   sbAdminAction,
 } from "./supabaseClient";
 
@@ -212,6 +213,21 @@ export async function submitMasterApplication(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ github, name, bio, repo_urls: repoUrls }),
+  });
+}
+
+// ═══ Workflow Submission ═══
+
+export async function submitWorkflow(
+  name: string,
+  description: string,
+  steps: { name: string; slug: string; description: string }[],
+): Promise<{ status: string; message: string }> {
+  if (USE_SUPABASE) return sbSubmitWorkflow(name, description, steps);
+  return request("/api/submit-workflow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, description, steps }),
   });
 }
 

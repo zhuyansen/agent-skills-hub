@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { submitSkill, submitMasterApplication } from "../api/client";
+import { submitSkill, submitMasterApplication, submitWorkflow } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
 import type { TransKey } from "../i18n/translations";
 
-type SubmitTab = "skill" | "master";
+type SubmitTab = "skill" | "master" | "workflow";
 
 export function SubmitSkill() {
   const { t } = useI18n();
@@ -42,12 +42,27 @@ export function SubmitSkill() {
             </svg>
             {t("submit.tabMaster")}
           </button>
+          <button
+            onClick={() => setActiveTab("workflow")}
+            className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
+              activeTab === "workflow"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            {t("submit.tabWorkflow")}
+          </button>
         </div>
 
         {activeTab === "skill" ? (
           <SkillForm t={t} navigate={navigate} />
-        ) : (
+        ) : activeTab === "master" ? (
           <MasterForm t={t} />
+        ) : (
+          <WorkflowForm t={t} />
         )}
       </div>
     </section>
@@ -232,6 +247,184 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
             <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
           )}
           {t("submit.masterButton")}
+        </button>
+      </form>
+
+      {result && (
+        <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
+          result.status === "submitted"
+            ? "bg-green-50 text-green-700 border border-green-100"
+            : "bg-red-50 text-red-700 border border-red-100"
+        }`}>
+          {result.status === "submitted" && (
+            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          )}
+          {result.message}
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── Workflow Submission Form ── */
+interface WorkflowStep {
+  name: string;
+  slug: string;
+  description: string;
+}
+
+function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [steps, setSteps] = useState<WorkflowStep[]>([
+    { name: "", slug: "", description: "" },
+    { name: "", slug: "", description: "" },
+  ]);
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState<{ status: string; message: string } | null>(null);
+
+  const updateStep = (idx: number, field: keyof WorkflowStep, value: string) => {
+    setSteps((prev) => prev.map((s, i) => (i === idx ? { ...s, [field]: value } : s)));
+  };
+
+  const addStep = () => {
+    if (steps.length < 5) {
+      setSteps((prev) => [...prev, { name: "", slug: "", description: "" }]);
+    }
+  };
+
+  const removeStep = (idx: number) => {
+    if (steps.length > 2) {
+      setSteps((prev) => prev.filter((_, i) => i !== idx));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || submitting) return;
+    const validSteps = steps.filter((s) => s.name.trim() && s.slug.trim());
+    if (validSteps.length < 2) return;
+    setSubmitting(true);
+    setResult(null);
+    try {
+      const res = await submitWorkflow(name.trim(), description.trim(), validSteps);
+      setResult(res);
+      if (res.status === "submitted") {
+        setName("");
+        setDescription("");
+        setSteps([
+          { name: "", slug: "", description: "" },
+          { name: "", slug: "", description: "" },
+        ]);
+      }
+    } catch (err: any) {
+      setResult({ status: "error", message: err.message || "Submission failed" });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const validStepCount = steps.filter((s) => s.name.trim() && s.slug.trim()).length;
+
+  return (
+    <>
+      <div className="flex items-start gap-3 mb-4">
+        <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+          <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h3 className="font-semibold text-gray-900">{t("submit.workflowTitle")}</h3>
+          <p className="text-sm text-gray-500 mt-0.5">{t("submit.workflowSubtitle")}</p>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => { setName(e.target.value); setResult(null); }}
+            placeholder={t("submit.workflowName")}
+            required
+            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          />
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder={t("submit.workflowDesc")}
+            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+          />
+        </div>
+
+        {/* Workflow steps */}
+        <div className="space-y-2">
+          <label className="text-xs font-medium text-gray-500">{t("submit.workflowSteps")}</label>
+          {steps.map((step, idx) => (
+            <div key={idx} className="flex items-start gap-2">
+              <span className="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-2.5">
+                {idx + 1}
+              </span>
+              <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <input
+                  type="text"
+                  value={step.name}
+                  onChange={(e) => updateStep(idx, "name", e.target.value)}
+                  placeholder={t("submit.workflowStepName")}
+                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+                <input
+                  type="text"
+                  value={step.slug}
+                  onChange={(e) => updateStep(idx, "slug", e.target.value)}
+                  placeholder="owner/repo"
+                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+                <input
+                  type="text"
+                  value={step.description}
+                  onChange={(e) => updateStep(idx, "description", e.target.value)}
+                  placeholder={t("submit.workflowStepDesc")}
+                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+              {steps.length > 2 && (
+                <button
+                  type="button"
+                  onClick={() => removeStep(idx)}
+                  className="mt-2 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          ))}
+          {steps.length < 5 && (
+            <button
+              type="button"
+              onClick={addStep}
+              className="text-xs text-purple-500 hover:text-purple-700 font-medium cursor-pointer"
+            >
+              + {t("submit.workflowAddStep")}
+            </button>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={!name.trim() || validStepCount < 2 || submitting}
+          className="w-full sm:w-auto px-5 py-2.5 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+        >
+          {submitting && (
+            <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+          )}
+          {t("submit.workflowButton")}
         </button>
       </form>
 
