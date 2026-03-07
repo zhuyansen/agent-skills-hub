@@ -14,7 +14,9 @@ export function SiteFooter() {
     if (isHome && isOverview) {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
         return;
       }
     }
@@ -23,7 +25,11 @@ export function SiteFooter() {
     navigate("/");
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+      }
     }, 300);
   };
 
@@ -31,7 +37,7 @@ export function SiteFooter() {
     <footer className="bg-gray-900 text-gray-300 mt-12">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
@@ -45,80 +51,30 @@ export function SiteFooter() {
             </p>
           </div>
 
-          {/* Navigation column */}
+          {/* Navigation column — section links */}
           <div>
             <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
               {lang === "zh" ? "导航" : "Navigation"}
             </h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  {t("tab.overview")}
-                </Link>
-              </li>
-              <li>
-                <Link to="/?tab=explore" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  {t("tab.explore")}
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToSection("newsletter")}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  {lang === "zh" ? "订阅周报" : "Newsletter"}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToSection("submit-skill")}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  {lang === "zh" ? "提交技能" : "Submit Skill"}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources column */}
-          <div>
-            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
-              {lang === "zh" ? "资源" : "Resources"}
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="/api/feed.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5"
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                  </svg>
-                  RSS Feed
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/api/sitemap.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  Sitemap
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/api/stats"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
-                >
-                  API
-                </a>
-              </li>
+              {[
+                { id: "trending", zh: "热门趋势", en: "Trending" },
+                { id: "masters", zh: "技能大师", en: "Masters" },
+                { id: "top-rated", zh: "高分项目", en: "Top Rated" },
+                { id: "categories", zh: "分类浏览", en: "Categories" },
+                { id: "workflows", zh: "工作流", en: "Workflows" },
+                { id: "newsletter", zh: "订阅周报", en: "Newsletter" },
+                { id: "submit-skill", zh: "提交技能", en: "Submit Skill" },
+              ].map((sec) => (
+                <li key={sec.id}>
+                  <button
+                    onClick={() => navigateToSection(sec.id)}
+                    className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
+                  >
+                    {lang === "zh" ? sec.zh : sec.en}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -153,6 +109,12 @@ export function SiteFooter() {
                   </svg>
                   X (Twitter)
                 </a>
+              </li>
+              <li>
+                <Link to="/?tab=explore" className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+                  {t("tab.explore")}
+                </Link>
               </li>
             </ul>
           </div>

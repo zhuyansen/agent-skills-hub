@@ -147,7 +147,11 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     key={sec.id}
                     onClick={() => {
                       const el = document.getElementById(sec.id);
-                      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "center" });
+                        el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+                        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+                      }
                     }}
                     className="px-2.5 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                   >

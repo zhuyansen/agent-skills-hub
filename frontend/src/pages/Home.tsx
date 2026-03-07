@@ -111,6 +111,9 @@ export function Home() {
             <div id="masters">
               <SkillsMasters />
             </div>
+            <div id="newsletter">
+              <NewsletterSubscribe />
+            </div>
             <div id="recent">
               <RecentlyUpdated
                 onSelect={handleOpenRepo}
@@ -129,9 +132,6 @@ export function Home() {
                 onShowDetail={handleShowDetail}
                 initialData={landingData?.hall_of_fame}
               />
-            </div>
-            <div id="newsletter">
-              <NewsletterSubscribe />
             </div>
             <div id="categories">
               <SkillWorkflows />
