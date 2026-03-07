@@ -1,12 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 
 export function SiteFooter() {
   const { t, lang } = useI18n();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const navigateToSection = (id: string) => {
+    // If already on home overview page, just scroll
+    const isHome = location.pathname === "/" || location.pathname === "";
+    const isOverview = !new URLSearchParams(location.search).get("tab") || new URLSearchParams(location.search).get("tab") === "overview";
+
+    if (isHome && isOverview) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+
+    // Otherwise navigate to home overview, then scroll after render
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
   };
 
   return (
@@ -45,7 +63,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection("newsletter")}
+                  onClick={() => navigateToSection("newsletter")}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   {lang === "zh" ? "订阅周报" : "Newsletter"}
@@ -53,7 +71,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection("submit-skill")}
+                  onClick={() => navigateToSection("submit-skill")}
                   className="text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   {lang === "zh" ? "提交技能" : "Submit Skill"}

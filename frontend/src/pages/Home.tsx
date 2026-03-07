@@ -104,13 +104,13 @@ export function Home() {
               <TopRatedSection onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
               <HallOfFame onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
             </div>
+            <div id="newsletter">
+              <NewsletterSubscribe />
+            </div>
             <ScenarioWorkflows />
             <SkillWorkflows />
             <PlatformRecommendations />
             <SkillsMasters />
-            <div id="newsletter">
-              <NewsletterSubscribe />
-            </div>
             <div id="submit-skill">
               <SubmitSkill />
             </div>

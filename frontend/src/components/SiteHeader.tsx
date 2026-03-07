@@ -19,12 +19,27 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const { stats } = useStats();
 
   const scrollToNewsletter = () => {
-    const el = document.getElementById("newsletter");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      // Briefly highlight the section
-      el.classList.add("ring-2", "ring-indigo-300");
-      setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300"), 2000);
+    const tryScroll = () => {
+      const el = document.getElementById("newsletter");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Briefly highlight the section
+        el.classList.add("ring-2", "ring-indigo-300");
+        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300"), 2000);
+        return true;
+      }
+      return false;
+    };
+
+    if (tryScroll()) return;
+
+    // If newsletter section not found (on explore tab or detail page), navigate home first
+    if (onTabChange) {
+      onTabChange("overview");
+      setTimeout(tryScroll, 300);
+    } else {
+      navigate("/");
+      setTimeout(tryScroll, 300);
     }
   };
 
