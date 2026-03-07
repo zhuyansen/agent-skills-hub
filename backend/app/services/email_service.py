@@ -194,7 +194,7 @@ def _newsletter_email_html(
     """Generate a weekly newsletter HTML email."""
     inner = _header_html(
         "&#129302; Agent Skills Hub Weekly",
-        "Your weekly digest of trending Agent Skills",
+        "Your weekly digest of new Agent Skills &amp; Tools",
     )
 
     # Stats bar
@@ -211,8 +211,8 @@ def _newsletter_email_html(
         <span style="font-size:12px;color:#94a3b8;">New This Week</span>
       </td>
       <td style="text-align:center;width:33%;">
-        <span style="font-size:24px;font-weight:700;color:#f59e0b;">&#128293;</span><br>
-        <span style="font-size:12px;color:#94a3b8;">Trending</span>
+        <span style="font-size:24px;font-weight:700;color:#f59e0b;">&#127381;</span><br>
+        <span style="font-size:12px;color:#94a3b8;">Hot New Skills</span>
       </td>
     </tr>
     </table>
@@ -222,8 +222,8 @@ def _newsletter_email_html(
     trending_rows = _trending_rows_html(trending_skills)
     inner += f"""\
   <tr><td style="padding:24px 40px 8px;">
-    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#128293; Trending This Week</h2>
-    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">Top skills by momentum &amp; community growth</p>
+    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#127381; New This Week</h2>
+    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">Hottest new skills &amp; tools launched this week</p>
   </td></tr>
   <tr><td style="padding:0 24px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">

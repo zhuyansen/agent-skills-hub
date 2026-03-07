@@ -69,21 +69,20 @@ def main():
         ]
         logger.info("Found %d verified subscribers", len(recipients))
 
-        # 2. Get trending skills
-        # Try star_momentum first; fall back to stars DESC if momentum data unavailable
-        has_momentum = db.query(func.count(Skill.id)).filter(Skill.star_momentum > 0).scalar() or 0
+        week_ago = datetime.now(timezone.utc) - timedelta(days=7)
 
-        if has_momentum > 0:
-            trending_raw = (
-                db.query(Skill)
-                .filter(Skill.star_momentum > 0)
-                .order_by(desc(Skill.star_momentum))
-                .limit(10)
-                .all()
-            )
-            logger.info("Using star_momentum for trending (%d skills with momentum)", has_momentum)
-        else:
-            # Fallback: top skills by stars (well-known projects)
+        # 2. Get new skills this week (created on GitHub in last 7 days), ordered by stars
+        trending_raw = (
+            db.query(Skill)
+            .filter(Skill.created_at >= week_ago)
+            .order_by(desc(Skill.stars))
+            .limit(10)
+            .all()
+        )
+        logger.info("Got new-this-week skills: %d", len(trending_raw))
+
+        # If no new skills this week, fall back to top by stars
+        if not trending_raw:
             trending_raw = (
                 db.query(Skill)
                 .filter(Skill.stars > 100)
@@ -91,7 +90,7 @@ def main():
                 .limit(10)
                 .all()
             )
-            logger.info("Fallback: using stars DESC for trending (no momentum data)")
+            logger.info("Fallback: using top stars (no new skills this week)")
 
         trending_data = [
             {
@@ -109,8 +108,6 @@ def main():
 
         # 3. Stats
         total_skills = db.query(func.count(Skill.id)).scalar() or 0
-        week_ago = datetime.now(timezone.utc) - timedelta(days=7)
-        # Use created_at (GitHub repo creation date) instead of first_seen (DB insert date)
         new_skills = db.query(Skill).filter(Skill.created_at >= week_ago).count()
 
         logger.info("Stats: total=%d, new_this_week=%d", total_skills, new_skills)
