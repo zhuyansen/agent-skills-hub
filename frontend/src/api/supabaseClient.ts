@@ -690,3 +690,20 @@ export async function sbSubmitMasterApplication(
     message: "Application submitted! We will review it soon.",
   };
 }
+
+// ═══ Admin RPC (single router for all admin operations) ═══
+
+export async function sbAdminAction<T = unknown>(
+  token: string,
+  action: string,
+  payload: Record<string, unknown> = {},
+): Promise<T> {
+  const sb = ensureSupabase();
+  const { data, error } = await sb.rpc("admin_action", {
+    admin_token: token,
+    action,
+    payload,
+  });
+  if (error) throw new Error(error.message);
+  return data as T;
+}

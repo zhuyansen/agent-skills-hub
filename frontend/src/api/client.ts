@@ -30,6 +30,7 @@ import {
   sbSubscribe,
   sbVerifyEmail,
   sbSubmitMasterApplication,
+  sbAdminAction,
 } from "./supabaseClient";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
@@ -222,7 +223,7 @@ export async function verifyEmail(token: string): Promise<{ status: string; mess
   return request(`/api/verify-email?token=${encodeURIComponent(token)}`);
 }
 
-// ═══ Admin API ═══
+// ═══ Admin API (auto-switches between Supabase RPC and FastAPI) ═══
 
 function adminHeaders(token: string): HeadersInit {
   return {
@@ -232,6 +233,7 @@ function adminHeaders(token: string): HeadersInit {
 }
 
 export async function adminFetchMasters(token: string): Promise<MasterData[]> {
+  if (USE_SUPABASE) return sbAdminAction<MasterData[]>(token, "fetch_masters");
   return request<MasterData[]>("/api/admin/masters", { headers: adminHeaders(token) });
 }
 
@@ -239,6 +241,16 @@ export async function adminCreateMaster(
   token: string,
   data: { github: string; name: string; github_aliases?: string[]; x_handle?: string; bio?: string; tags?: string[] }
 ): Promise<MasterData> {
+  if (USE_SUPABASE) {
+    return sbAdminAction<MasterData>(token, "create_master", {
+      github: data.github,
+      name: data.name,
+      github_aliases: JSON.stringify(data.github_aliases ?? []),
+      x_handle: data.x_handle ?? null,
+      bio: data.bio ?? null,
+      tags: JSON.stringify(data.tags ?? []),
+    });
+  }
   return request<MasterData>("/api/admin/masters", {
     method: "POST",
     headers: adminHeaders(token),
@@ -251,6 +263,19 @@ export async function adminUpdateMaster(
   id: number,
   data: Partial<{ name: string; github_aliases: string[]; x_handle: string; bio: string; tags: string[]; is_active: boolean; x_followers: number; x_posts_count: number; x_notes: string }>
 ): Promise<MasterData> {
+  if (USE_SUPABASE) {
+    const payload: Record<string, unknown> = { id };
+    if (data.name !== undefined) payload.name = data.name;
+    if (data.github_aliases !== undefined) payload.github_aliases = JSON.stringify(data.github_aliases);
+    if (data.x_handle !== undefined) payload.x_handle = data.x_handle;
+    if (data.bio !== undefined) payload.bio = data.bio;
+    if (data.tags !== undefined) payload.tags = JSON.stringify(data.tags);
+    if (data.is_active !== undefined) payload.is_active = data.is_active;
+    if (data.x_followers !== undefined) payload.x_followers = data.x_followers;
+    if (data.x_posts_count !== undefined) payload.x_posts_count = data.x_posts_count;
+    if (data.x_notes !== undefined) payload.x_notes = data.x_notes;
+    return sbAdminAction<MasterData>(token, "update_master", payload);
+  }
   return request<MasterData>(`/api/admin/masters/${id}`, {
     method: "PUT",
     headers: adminHeaders(token),
@@ -259,14 +284,17 @@ export async function adminUpdateMaster(
 }
 
 export async function adminDeleteMaster(token: string, id: number): Promise<void> {
+  if (USE_SUPABASE) { await sbAdminAction(token, "delete_master", { id }); return; }
   await request(`/api/admin/masters/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
 export async function adminFetchExtraRepos(token: string): Promise<ExtraRepoData[]> {
+  if (USE_SUPABASE) return sbAdminAction<ExtraRepoData[]>(token, "fetch_extra_repos");
   return request<ExtraRepoData[]>("/api/admin/extra-repos", { headers: adminHeaders(token) });
 }
 
 export async function adminCreateExtraRepo(token: string, full_name: string): Promise<ExtraRepoData> {
+  if (USE_SUPABASE) return sbAdminAction<ExtraRepoData>(token, "create_extra_repo", { full_name });
   return request<ExtraRepoData>("/api/admin/extra-repos", {
     method: "POST",
     headers: adminHeaders(token),
@@ -275,22 +303,27 @@ export async function adminCreateExtraRepo(token: string, full_name: string): Pr
 }
 
 export async function adminDeleteExtraRepo(token: string, id: number): Promise<void> {
+  if (USE_SUPABASE) { await sbAdminAction(token, "delete_extra_repo", { id }); return; }
   await request(`/api/admin/extra-repos/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
 export async function adminApproveExtraRepo(token: string, id: number): Promise<{ message: string }> {
+  if (USE_SUPABASE) return sbAdminAction<{ message: string }>(token, "approve_extra_repo", { id });
   return request(`/api/admin/extra-repos/${id}/approve`, { method: "PUT", headers: adminHeaders(token) });
 }
 
 export async function adminRejectExtraRepo(token: string, id: number): Promise<{ message: string }> {
+  if (USE_SUPABASE) return sbAdminAction<{ message: string }>(token, "reject_extra_repo", { id });
   return request(`/api/admin/extra-repos/${id}/reject`, { method: "PUT", headers: adminHeaders(token) });
 }
 
 export async function adminFetchSearchQueries(token: string): Promise<SearchQueryData[]> {
+  if (USE_SUPABASE) return sbAdminAction<SearchQueryData[]>(token, "fetch_search_queries");
   return request<SearchQueryData[]>("/api/admin/search-queries", { headers: adminHeaders(token) });
 }
 
 export async function adminCreateSearchQuery(token: string, query: string): Promise<SearchQueryData> {
+  if (USE_SUPABASE) return sbAdminAction<SearchQueryData>(token, "create_search_query", { query });
   return request<SearchQueryData>("/api/admin/search-queries", {
     method: "POST",
     headers: adminHeaders(token),
@@ -299,6 +332,7 @@ export async function adminCreateSearchQuery(token: string, query: string): Prom
 }
 
 export async function adminDeleteSearchQuery(token: string, id: number): Promise<void> {
+  if (USE_SUPABASE) { await sbAdminAction(token, "delete_search_query", { id }); return; }
   await request(`/api/admin/search-queries/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
@@ -314,18 +348,22 @@ export interface SubscriberData {
 }
 
 export async function adminFetchSubscribers(token: string): Promise<SubscriberData[]> {
+  if (USE_SUPABASE) return sbAdminAction<SubscriberData[]>(token, "fetch_subscribers");
   return request<SubscriberData[]>("/api/admin/subscribers", { headers: adminHeaders(token) });
 }
 
 export async function adminDeleteSubscriber(token: string, id: number): Promise<void> {
+  if (USE_SUPABASE) { await sbAdminAction(token, "delete_subscriber", { id }); return; }
   await request(`/api/admin/subscribers/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
 export async function adminFetchSyncLogs(token: string): Promise<SyncLogData[]> {
+  if (USE_SUPABASE) return sbAdminAction<SyncLogData[]>(token, "fetch_sync_logs");
   return request<SyncLogData[]>("/api/admin/sync-logs", { headers: adminHeaders(token) });
 }
 
 export async function adminTriggerSync(token: string): Promise<{ message: string; sync_id: number }> {
+  if (USE_SUPABASE) return sbAdminAction<{ message: string; sync_id: number }>(token, "trigger_sync");
   return request("/api/admin/sync", { method: "POST", headers: adminHeaders(token) });
 }
 
@@ -334,12 +372,14 @@ export async function adminFetchSkills(
   page = 1,
   search?: string
 ): Promise<Skill[]> {
+  if (USE_SUPABASE) return sbAdminAction<Skill[]>(token, "fetch_skills", { page, search: search ?? "" });
   const sp = new URLSearchParams({ page: String(page), page_size: "50" });
   if (search) sp.set("search", search);
   return request<Skill[]>(`/api/admin/skills?${sp}`, { headers: adminHeaders(token) });
 }
 
 export async function adminDeleteSkill(token: string, id: number): Promise<void> {
+  if (USE_SUPABASE) { await sbAdminAction(token, "delete_skill", { id }); return; }
   await request(`/api/admin/skills/${id}`, { method: "DELETE", headers: adminHeaders(token) });
 }
 
@@ -356,13 +396,16 @@ export interface MasterApplicationData {
 }
 
 export async function adminFetchMasterApplications(token: string): Promise<MasterApplicationData[]> {
+  if (USE_SUPABASE) return sbAdminAction<MasterApplicationData[]>(token, "fetch_master_applications");
   return request<MasterApplicationData[]>("/api/admin/master-applications", { headers: adminHeaders(token) });
 }
 
 export async function adminApproveMasterApplication(token: string, id: number): Promise<{ message: string }> {
+  if (USE_SUPABASE) return sbAdminAction<{ message: string }>(token, "approve_master_application", { id });
   return request(`/api/admin/master-applications/${id}/approve`, { method: "PUT", headers: adminHeaders(token) });
 }
 
 export async function adminRejectMasterApplication(token: string, id: number): Promise<{ message: string }> {
+  if (USE_SUPABASE) return sbAdminAction<{ message: string }>(token, "reject_master_application", { id });
   return request(`/api/admin/master-applications/${id}/reject`, { method: "PUT", headers: adminHeaders(token) });
 }
