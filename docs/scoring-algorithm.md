@@ -1,77 +1,84 @@
-# Scoring Algorithm Design Document
+# Scoring Algorithm v3
+
+> Inspired by [SkillsBench](https://arxiv.org/abs/2602.12670) (arXiv:2602.12670)
 
 ## Overview
 
-The scoring engine computes a **0-100 composite quality score** for each Agent Skill repository. The goal is to surface actively maintained, community-validated projects while penalizing abandoned or low-quality repos.
+The scoring engine computes a **0-100 composite quality score** combining 10 weighted signals. v3 integrates findings from SkillsBench, which benchmarked 84 tasks across 7 agent-model configurations with 7,308 trajectories.
 
-## Raw Metrics
+## Key Changes from v2
 
-| Symbol | Metric | Source |
+| Change | Rationale (Paper Finding) |
+|--------|--------------------------|
+| README length: optimal range replaces "longer=better" | Finding 6: Comprehensive Skills hurt (-2.9pp), Detailed best (+18.8pp) |
+| New: Procedural Content dimension (12%) | Section 2.1: Skills must contain procedural guidance, not just facts |
+| New: Instruction Quality dimension (10%) | Section 2.4: Output paths, constraints, success criteria matter |
+| New: Domain bonus signal (5%) | Table 4: Healthcare +51.9pp vs Software Eng +4.5pp |
+| Quality weight 20% → 25% | Finding 1: Skill quality is the #1 performance predictor |
+| Stars weight 18% → 15% | Stars don't correlate well with actual agent performance |
+
+## Quality Dimensions (8)
+
+| Dimension | Weight | Key Signals |
+|-----------|--------|-------------|
+| Completeness | 12% | README (optimal range), license, description, stars |
+| Clarity | 12% | Description quality, topics, naming |
+| Specificity | 12% | Language, topic count, category, size |
+| Examples | 10% | Code blocks (not just README size), commits |
+| README Structure | 15% | Sections, code blocks, optimal length (1-5K best) |
+| Agent Readiness | 17% | Install, tools/API, usage, config, compliance |
+| **Procedural Content** | **12%** | Step-by-step, numbered lists, sequence words, shell commands |
+| **Instruction Quality** | **10%** | Output paths, success criteria, constraints, structured requirements |
+
+## Composite Score (10 signals → 0-100)
+
+| Signal | Weight | Method |
 |--------|--------|--------|
-| S | Stars | `repo.stargazers_count` |
-| F | Forks | `repo.forks_count` |
-| AF | Author Followers | `owner.followers` |
-| IR | Issue Resolution Rate | `closed_issues / total_issues` |
-| C | Total Commits | commit count from API |
-| D | Days Since Last Commit | `now - pushed_at` |
+| Quality | 25% | 8-dimension aggregate |
+| Stars | 15% | log1p normalization |
+| Recency | 11% | Exponential decay e^(-0.01d) |
+| Issue Resolution | 10% | closed/total, neutral if none |
+| Forks | 8% | log1p |
+| Commits | 8% | log1p |
+| Momentum | 7% | Z-score star growth |
+| Author Followers | 6% | log1p |
+| Size Bonus | 5% | micro:1.0, small:0.8, medium:0.5, large:0.2 |
+| **Domain Bonus** | **5%** | Category + topic specialization |
 
-## Step 1: Min-Max Normalization
+## README Length Scoring (v3)
 
-For metrics S, F, AF, C — apply Min-Max scaling across the entire dataset:
+Paper Finding 6: "Moderate-length Skills outperform comprehensive ones"
 
-```
-norm(x) = (x - x_min) / (x_max - x_min)
-```
+| README Length | Completeness | Structure | Rationale |
+|--------------|-------------|-----------|-----------|
+| 2K-8K chars | 0.35 (max) | 0.20 (max) | "Detailed": optimal |
+| 8K-15K chars | 0.30 | 0.15 | Getting verbose |
+| 15K+ chars | 0.25 | 0.05-0.10 | "Comprehensive": diminishing returns |
+| 500-2K chars | 0.15 | 0.05 | Too brief |
 
-When `x_max == x_min`, `norm(x) = 0`. This maps every metric to [0, 1].
+## Procedural Content Detection
 
-**Issue Resolution Rate** is already in [0, 1], so no normalization needed. When a repo has zero total issues, IR defaults to 0.5 (neutral).
+Inspired by SkillsBench Section 2.1 — Skills must provide "procedural content" (how-to, workflows, SOPs).
 
-## Step 2: Time Decay Penalty (Recency)
+| Signal | Max Score | What We Detect |
+|--------|-----------|---------------|
+| Procedure headings | 0.20 | "## Steps", "## Workflow", "## How-to" |
+| Numbered steps | 0.25 | "1. Do X", "2. Do Y" patterns |
+| Sequence words | 0.15 | "first", "then", "next", "finally" |
+| Action verbs | 0.15 | "run", "execute", "configure", "deploy" |
+| Procedural description | 0.10 | Description mentions "guide", "workflow", "tutorial" |
+| Shell command blocks | 0.15 | ```bash code blocks |
 
-A step-function penalty based on time since last commit:
+## Domain Bonus
 
-| Days Since Last Commit | Recency Score |
-|----------------------|---------------|
-| 0-30 | 1.0 |
-| 31-90 | 0.9 |
-| 91-180 | 0.7 |
-| 181-365 | 0.4 |
-| >365 | 0.15 |
+SkillsBench Table 4 shows specialized domains benefit most from Skills:
 
-**Rationale**: A step function maps to how developers intuitively judge project health ("updated this month" vs "dead for over a year"). The severe drop at 6+ months prevents stale projects from dominating rankings.
+| Domain | Skills Δ | Our Bonus |
+|--------|----------|-----------|
+| Healthcare, Medical | +51.9pp | +0.3 topic bonus |
+| Manufacturing | +41.9pp | +0.25 topic bonus |
+| Cybersecurity | +23.2pp | +0.2 topic bonus |
+| Finance | +15.1pp | +0.2 topic bonus |
+| Software Engineering | +4.5pp | +0.0 (well-covered) |
 
-## Step 3: Weighted Composite Score
-
-```
-Score = (0.30 × norm(Stars)
-       + 0.15 × norm(Forks)
-       + 0.10 × norm(Author_Followers)
-       + 0.15 × Issue_Resolution_Rate
-       + 0.15 × norm(Commits)
-       + 0.15 × Recency) × 100
-```
-
-## Weight Rationale
-
-| Metric | Weight | Reasoning |
-|--------|--------|-----------|
-| Stars | 0.30 | Strongest signal of community interest; most universally available metric |
-| Forks | 0.15 | Indicates people building on top of the tool; practical adoption signal |
-| Author Followers | 0.10 | Proxy for author credibility, but lower weight because large orgs inflate this |
-| Issue Resolution | 0.15 | Maintenance quality signal; shows whether authors respond to community |
-| Commits | 0.15 | Development activity depth; consistent effort indicator |
-| Recency | 0.15 | Freshness of the project; penalizes abandoned repos |
-
-Total: 1.00
-
-## Expected Behavior
-
-- A recently updated repo with 500 stars, active issue management, and 100+ commits scores **70-90**
-- A popular but abandoned repo (1000+ stars, no commits in 2 years) scores **30-50**
-- A new repo with few stars but active development scores **20-40**
-- A fork with minimal activity scores **5-15**
-
-## Database Table
-
-See `backend/app/models/skill.py` — the `score` column (Float, indexed) stores the computed score. Scores are recalculated after each sync cycle.
+Category-level bonuses: `claude-skill` (0.8) > `agent-tool`/`codex-skill` (0.7) > `mcp-server` (0.6) > `ai-skill` (0.6) > `uncategorized` (0.3)
