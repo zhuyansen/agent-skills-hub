@@ -52,4 +52,5 @@ class TokenEstimator:
         code_tokens = int(repo_kb * self.CODE_TOKENS_PER_KB * lang_coeff * effective_ratio)
         readme_tokens = int(readme_chars * self.README_TOKENS_PER_CHAR)
 
-        return code_tokens + readme_tokens
+        # Cap to PostgreSQL INTEGER max to avoid NumericValueOutOfRange
+        return min(code_tokens + readme_tokens, 2_147_483_647)
