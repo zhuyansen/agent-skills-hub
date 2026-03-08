@@ -16,6 +16,11 @@ export const translations = {
     "trending.subtitle": "最近爆火的项目，跟上最新趋势",
     "trending.starVelocity": "Star 增速",
     "trending.newThisWeek": "本周新项目",
+    "trending.starVelocityHistory": "Star 增速榜",
+    "trending.prevWeek": "上一周",
+    "trending.nextWeek": "下一周",
+    "trending.currentWeek": "本周",
+    "trending.noHistory": "暂无历史数据",
     "trending.showMore": "查看更多",
     "trending.showLess": "收起",
 
@@ -227,6 +232,11 @@ export const translations = {
     "trending.subtitle": "Hottest projects recently, stay on top of trends",
     "trending.starVelocity": "Star Velocity",
     "trending.newThisWeek": "New This Week",
+    "trending.starVelocityHistory": "Star Velocity History",
+    "trending.prevWeek": "Previous Week",
+    "trending.nextWeek": "Next Week",
+    "trending.currentWeek": "This Week",
+    "trending.noHistory": "No history data available",
     "trending.showMore": "Show More",
     "trending.showLess": "Show Less",
 

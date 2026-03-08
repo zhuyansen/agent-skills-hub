@@ -610,6 +610,9 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         else:
             ComposabilityEngine().compute_all(db)
 
+        # Take weekly trending snapshot (non-fatal if fails)
+        maybe_take_weekly_snapshot(db)
+
         sync_log.status = "completed"
         sync_log.repos_found = len(cleaned)
         sync_log.repos_new = new_count
@@ -636,6 +639,85 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             logger.error("Could not update sync log after failure: %s", exc)
     finally:
         db.close()
+
+
+def maybe_take_weekly_snapshot(db: "Session") -> None:
+    """Take a weekly trending snapshot if none exists for the current week.
+
+    Called at the end of each sync. Captures top 20 trending skills
+    (by star velocity) for the current Monday→Sunday week.
+    """
+    from app.models.skill import Skill, WeeklyTrendingSnapshot
+
+    try:
+        # Determine current week boundaries (Monday start)
+        today = datetime.now(timezone.utc).date()
+        week_start = today - timedelta(days=today.weekday())  # Monday
+        week_end = week_start + timedelta(days=6)  # Sunday
+
+        # Check if snapshot already exists for this week
+        existing = (
+            db.query(WeeklyTrendingSnapshot)
+            .filter(WeeklyTrendingSnapshot.week_start == week_start)
+            .first()
+        )
+        if existing:
+            logger.debug("Weekly snapshot already exists for %s", week_start)
+            return
+
+        # Compute star velocity for trending skills (same logic as v_trending)
+        now = datetime.now(timezone.utc)
+        since = now - timedelta(days=7)
+        candidates = (
+            db.query(Skill)
+            .filter(Skill.stars >= 50)
+            .filter(Skill.created_at.isnot(None))
+            .filter(Skill.created_at >= since)
+            .all()
+        )
+
+        def star_velocity(skill: Skill) -> float:
+            created = skill.created_at
+            if created.tzinfo is None:
+                created = created.replace(tzinfo=timezone.utc)
+            age_days = max((now - created).total_seconds() / 86400, 1)
+            return skill.stars / age_days
+
+        ranked = sorted(candidates, key=star_velocity, reverse=True)[:20]
+
+        if not ranked:
+            logger.info("No trending skills to snapshot for week %s", week_start)
+            return
+
+        for i, skill in enumerate(ranked):
+            snapshot = WeeklyTrendingSnapshot(
+                week_start=week_start,
+                week_end=week_end,
+                rank=i + 1,
+                skill_id=skill.id,
+                repo_full_name=skill.repo_full_name,
+                repo_name=skill.repo_name,
+                author_name=skill.author_name,
+                author_avatar_url=skill.author_avatar_url or "",
+                stars=skill.stars,
+                star_velocity=round(star_velocity(skill), 2),
+                description=skill.description or "",
+                repo_url=skill.repo_url or "",
+                category=skill.category or "",
+                created_at_snap=skill.created_at,
+                last_commit_at_snap=skill.last_commit_at,
+            )
+            db.add(snapshot)
+
+        db.commit()
+        logger.info("📸 Weekly trending snapshot taken for %s: %d skills", week_start, len(ranked))
+
+    except Exception as exc:
+        logger.warning("Weekly snapshot failed (non-fatal): %s", exc)
+        try:
+            db.rollback()
+        except Exception:
+            pass
 
 
 def run_sync(sync_log_id: int) -> None:

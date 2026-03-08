@@ -89,6 +89,28 @@ class Skill(Base):
     last_synced = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
 
+class WeeklyTrendingSnapshot(Base):
+    __tablename__ = "weekly_trending_snapshots"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    week_start = Column(DateTime, nullable=False)
+    week_end = Column(DateTime, nullable=False)
+    rank = Column(Integer, nullable=False)
+    skill_id = Column(Integer, nullable=False)
+    repo_full_name = Column(String(255), nullable=False)
+    repo_name = Column(String(255), nullable=False)
+    author_name = Column(String(255), nullable=False)
+    author_avatar_url = Column(String(512), default="")
+    stars = Column(Integer, nullable=False)
+    star_velocity = Column(Float, nullable=False)
+    description = Column(Text, default="")
+    repo_url = Column(String(512), default="")
+    category = Column(String(100), default="")
+    created_at_snap = Column(DateTime, nullable=True)
+    last_commit_at_snap = Column(DateTime, nullable=True)
+    snapshot_taken_at = Column(DateTime, server_default=func.now())
+
+
 class SkillComposition(Base):
     __tablename__ = "skill_compositions"
 

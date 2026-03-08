@@ -27,6 +27,8 @@ import {
   sbFetchLandingData,
   sbFetchMasters,
   sbFetchOrgBuilders,
+  sbFetchTrendingWeeks,
+  sbFetchTrendingHistory,
   sbSubmitSkill,
   sbSubscribe,
   sbVerifyEmail,
@@ -84,6 +86,16 @@ export async function fetchTrending(limit = 10): Promise<Skill[]> {
 export async function fetchRising(days = 7, limit = 10): Promise<Skill[]> {
   if (USE_SUPABASE) return sbFetchRising(days, limit);
   return request<Skill[]>(`/api/rising?days=${days}&limit=${limit}`);
+}
+
+export async function fetchTrendingWeeks(): Promise<import("../types/skill").TrendingWeek[]> {
+  if (USE_SUPABASE) return sbFetchTrendingWeeks();
+  return request<import("../types/skill").TrendingWeek[]>("/api/trending/weeks", { cache: "no-store" });
+}
+
+export async function fetchTrendingHistory(weekStart: string): Promise<import("../types/skill").WeeklyTrendingEntry[]> {
+  if (USE_SUPABASE) return sbFetchTrendingHistory(weekStart);
+  return request<import("../types/skill").WeeklyTrendingEntry[]>(`/api/trending/history?week_start=${weekStart}`, { cache: "no-store" });
 }
 
 export async function fetchTopRated(limit = 10): Promise<Skill[]> {

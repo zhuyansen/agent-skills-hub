@@ -291,6 +291,22 @@ export async function sbFetchLandingData(): Promise<LandingData> {
   };
 }
 
+// ═══ Weekly Trending History ═══
+
+export async function sbFetchTrendingWeeks(): Promise<import("../types/skill").TrendingWeek[]> {
+  const sb = ensureSupabase();
+  const { data, error } = await sb.rpc("get_trending_weeks");
+  if (error) throw new Error(error.message);
+  return (data ?? []) as import("../types/skill").TrendingWeek[];
+}
+
+export async function sbFetchTrendingHistory(weekStart: string): Promise<import("../types/skill").WeeklyTrendingEntry[]> {
+  const sb = ensureSupabase();
+  const { data, error } = await sb.rpc("get_trending_history", { p_week_start: weekStart });
+  if (error) throw new Error(error.message);
+  return (data ?? []) as import("../types/skill").WeeklyTrendingEntry[];
+}
+
 // ═══ Organization Builders (aggregated from skills table) ═══
 
 export interface OrgBuilder {

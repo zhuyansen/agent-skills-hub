@@ -101,6 +101,29 @@ export interface LandingData {
   generated_at: string;
 }
 
+// Weekly trending history
+export interface WeeklyTrendingEntry {
+  rank: number;
+  skill_id: number;
+  repo_full_name: string;
+  repo_name: string;
+  author_name: string;
+  author_avatar_url: string;
+  stars: number;
+  star_velocity: number;
+  description: string;
+  repo_url: string;
+  category: string;
+  created_at_snap: string | null;
+  last_commit_at_snap: string | null;
+}
+
+export interface TrendingWeek {
+  week_start: string;
+  week_end: string;
+  snapshot_count: number;
+}
+
 // Admin types
 export interface MasterData {
   id: number;

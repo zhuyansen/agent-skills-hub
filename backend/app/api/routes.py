@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from app.config import settings
 from app.database import get_db
 from app.models.admin import SkillMaster
-from app.models.skill import Skill, SkillComposition, SyncLog
+from app.models.skill import Skill, SkillComposition, SyncLog, WeeklyTrendingSnapshot
 from app.schemas.skill import (
     CategoryCount,
     PaginatedSkillsResponse,
@@ -351,6 +351,69 @@ def get_rising(
     )
     data = [SkillResponse.model_validate(s).model_dump(mode="json") for s in items]
     return _cached_json(data, max_age=300)  # 5 min
+
+
+@router.get("/trending/weeks")
+def get_trending_weeks(db: Session = Depends(get_db)):
+    """List available weekly trending snapshots. Cached 10 min."""
+    rows = (
+        db.query(
+            WeeklyTrendingSnapshot.week_start,
+            WeeklyTrendingSnapshot.week_end,
+            func.count(WeeklyTrendingSnapshot.id),
+        )
+        .group_by(WeeklyTrendingSnapshot.week_start, WeeklyTrendingSnapshot.week_end)
+        .order_by(WeeklyTrendingSnapshot.week_start.desc())
+        .all()
+    )
+    data = [
+        {
+            "week_start": row[0].strftime("%Y-%m-%d") if row[0] else None,
+            "week_end": row[1].strftime("%Y-%m-%d") if row[1] else None,
+            "snapshot_count": row[2],
+        }
+        for row in rows
+    ]
+    return _cached_json(data, max_age=600)
+
+
+@router.get("/trending/history")
+def get_trending_history(
+    week_start: str = Query(..., description="Week start date YYYY-MM-DD"),
+    db: Session = Depends(get_db),
+):
+    """Get trending history for a specific week. Cached 10 min."""
+    try:
+        # Parse as date, then convert to datetime for comparison with DateTime column
+        ws_date = datetime.strptime(week_start[:10], "%Y-%m-%d")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format, use YYYY-MM-DD")
+
+    rows = (
+        db.query(WeeklyTrendingSnapshot)
+        .filter(WeeklyTrendingSnapshot.week_start == ws_date)
+        .order_by(WeeklyTrendingSnapshot.rank)
+        .all()
+    )
+    data = [
+        {
+            "rank": r.rank,
+            "skill_id": r.skill_id,
+            "repo_full_name": r.repo_full_name,
+            "repo_name": r.repo_name,
+            "author_name": r.author_name,
+            "author_avatar_url": r.author_avatar_url,
+            "stars": r.stars,
+            "star_velocity": r.star_velocity,
+            "description": r.description,
+            "repo_url": r.repo_url,
+            "category": r.category,
+            "created_at_snap": r.created_at_snap.isoformat() if r.created_at_snap else None,
+            "last_commit_at_snap": r.last_commit_at_snap.isoformat() if r.last_commit_at_snap else None,
+        }
+        for r in rows
+    ]
+    return _cached_json(data, max_age=600)
 
 
 @router.get("/masters")
