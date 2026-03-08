@@ -5,15 +5,6 @@ import type { Skill } from "../types/skill";
 import type { WeeklyTrendingEntry, TrendingWeek } from "../types/skill";
 import { formatStars, timeAgo } from "../utils/time";
 
-function formatVelocity(stars: number, createdAt: string | null): string {
-  if (!createdAt) return "";
-  const ageDays = Math.max((Date.now() - new Date(createdAt).getTime()) / 86400000, 1);
-  const v = stars / ageDays;
-  if (v >= 1000) return `${(v / 1000).toFixed(1)}k/day`;
-  if (v >= 1) return `${v.toFixed(0)}/day`;
-  return `${(v * 7).toFixed(0)}/week`;
-}
-
 function formatWeekRange(weekStart: string, weekEnd: string): string {
   const start = new Date(weekStart + "T00:00:00");
   const end = new Date(weekEnd + "T00:00:00");
