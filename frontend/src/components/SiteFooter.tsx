@@ -14,7 +14,7 @@ export function SiteFooter() {
     if (isHome && isOverview) {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
         el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
         setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
         return;
@@ -26,7 +26,7 @@ export function SiteFooter() {
     setTimeout(() => {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
         el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
         setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
       }

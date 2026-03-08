@@ -100,7 +100,7 @@ export function Home() {
               initialLanguages={landingData?.languages}
               initialTrending={landingData?.trending}
             />
-            <div id="trending">
+            <div id="trending" className="scroll-mt-44">
               <TrendingSection
                 onSelect={handleOpenRepo}
                 onShowDetail={handleShowDetail}
@@ -108,20 +108,20 @@ export function Home() {
                 initialRising={landingData?.rising}
               />
             </div>
-            <div id="masters">
+            <div id="masters" className="scroll-mt-44">
               <SkillsMasters />
             </div>
-            <div id="newsletter">
+            <div id="newsletter" className="scroll-mt-44">
               <NewsletterSubscribe />
             </div>
-            <div id="recent">
+            <div id="recent" className="scroll-mt-44">
               <RecentlyUpdated
                 onSelect={handleOpenRepo}
                 onShowDetail={handleShowDetail}
                 initialData={landingData?.recently_updated}
               />
             </div>
-            <div id="top-rated" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <div id="top-rated" className="scroll-mt-44 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
               <TopRatedSection
                 onSelect={handleOpenRepo}
                 onShowDetail={handleShowDetail}
@@ -133,10 +133,10 @@ export function Home() {
                 initialData={landingData?.hall_of_fame}
               />
             </div>
-            <div id="categories">
+            <div id="categories" className="scroll-mt-44">
               <SkillWorkflows />
             </div>
-            <div id="workflows">
+            <div id="workflows" className="scroll-mt-44">
               <ScenarioWorkflows />
             </div>
             <div id="platforms">

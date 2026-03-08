@@ -22,7 +22,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
     const tryScroll = () => {
       const el = document.getElementById("newsletter");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
         // Briefly highlight the section
         el.classList.add("ring-2", "ring-indigo-300");
         setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300"), 2000);
@@ -148,7 +148,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     onClick={() => {
                       const el = document.getElementById(sec.id);
                       if (el) {
-                        el.scrollIntoView({ behavior: "smooth", block: "center" });
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
                         el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
                         setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
                       }
