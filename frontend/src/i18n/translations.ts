@@ -3,6 +3,9 @@ export const translations = {
     // Header
     "header.subtitle": "发现和比较开源 Agent Skills、工具和 MCP 服务",
     "header.lastUpdated": "最后更新:",
+    "header.wechat": "微信联系",
+    "header.wechatScan": "微信扫码添加好友",
+    "header.wechatTip": "扫一扫添加好友，交流 Agent Skills",
 
     // Tabs
     "tab.overview": "概览",
@@ -213,6 +216,9 @@ export const translations = {
     "header.subtitle":
       "Discover and compare open-source Agent skills, tools & MCP servers",
     "header.lastUpdated": "Last updated:",
+    "header.wechat": "WeChat",
+    "header.wechatScan": "Scan to add on WeChat",
+    "header.wechatTip": "Scan to connect and discuss Agent Skills",
 
     "tab.overview": "Overview",
     "tab.explore": "Explore All",

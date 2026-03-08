@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LanguageToggle } from "./LanguageToggle";
 import { useI18n } from "../i18n/I18nContext";
@@ -17,6 +18,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const { t } = useI18n();
   const navigate = useNavigate();
   const { stats } = useStats();
+  const [showWechat, setShowWechat] = useState(false);
 
   const scrollToNewsletter = () => {
     const tryScroll = () => {
@@ -90,6 +92,49 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
+            {/* WeChat contact button */}
+            <div className="relative">
+              <button
+                onClick={() => setShowWechat(!showWechat)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 cursor-pointer"
+                title={t("header.wechat")}
+                aria-label="WeChat"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05a6.13 6.13 0 01-.247-1.722c0-3.647 3.39-6.605 7.57-6.605.63 0 1.246.066 1.84.178C17.99 4.504 13.773 2.188 8.691 2.188zm-2.6 4.408c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.017 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm5.44 0c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.016 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm4.294 4.287c-3.65 0-6.614 2.528-6.614 5.646 0 3.118 2.963 5.646 6.614 5.646a7.8 7.8 0 002.222-.325.636.636 0 01.526.074l1.403.823a.24.24 0 00.122.04c.118 0 .213-.097.213-.215 0-.053-.021-.104-.035-.155l-.288-1.093a.432.432 0 01.156-.488c1.35-.995 2.21-2.466 2.21-4.107 0-3.118-2.963-5.646-6.614-5.646h.085zm-2.834 2.94c.411 0 .744.334.744.745a.745.745 0 11-.744-.745zm5.297 0c.411 0 .744.334.744.745a.745.745 0 11-.744-.745z"/>
+                </svg>
+              </button>
+              {/* WeChat QR code popup */}
+              {showWechat && (
+                <>
+                  {/* Backdrop */}
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setShowWechat(false)}
+                  />
+                  {/* Popup card */}
+                  <div className="absolute right-0 top-10 z-50 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 w-64 animate-in fade-in slide-in-from-top-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-700">{t("header.wechatScan")}</span>
+                      <button
+                        onClick={() => setShowWechat(false)}
+                        className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 cursor-pointer"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <img
+                      src="/wechat-qr.jpg"
+                      alt="WeChat QR Code"
+                      className="w-full rounded-lg border border-gray-100"
+                    />
+                    <p className="text-xs text-gray-400 text-center mt-2">{t("header.wechatTip")}</p>
+                  </div>
+                </>
+              )}
+            </div>
             <LanguageToggle />
             {/* Newsletter CTA button */}
             <button
