@@ -26,6 +26,16 @@ CORE_QUERIES = [
     "ai-agent-tool in:name,description,topics",
 ]
 
+# ── OpenClaw / NanoClaw ecosystem queries ──
+OPENCLAW_QUERIES = [
+    "openclaw in:topics stars:>50",
+    "openclaw-skills in:topics",
+    "nanoclaw in:topics,name stars:>50",
+    "clawdbot in:topics stars:>50",
+    "clawhub in:topics",
+    "openclaw-plugin in:topics stars:>50",
+]
+
 # ── Extended queries: run WEEKLY (Sunday) or on full sync ──
 EXTENDED_QUERIES = [
     "mcp-plugin in:name,description,topics",
@@ -38,6 +48,8 @@ EXTENDED_QUERIES = [
     "ai-tools in:topics stars:>20",
     "codex-skills in:name,description,topics",
     "codex-cli in:name,topics",
+    "codex in:topics stars:>100",
+    "agent-skills in:topics stars:>50",
     "openai-agent in:name,topics",
     "openai-tool in:name,topics",
     "gemini-agent in:name,topics",
@@ -50,7 +62,7 @@ EXTENDED_QUERIES = [
 ]
 
 # Combined for backwards compatibility
-SEARCH_QUERIES = CORE_QUERIES + EXTENDED_QUERIES
+SEARCH_QUERIES = CORE_QUERIES + OPENCLAW_QUERIES + EXTENDED_QUERIES
 
 # Masters / influencers whose repos should always be collected
 MASTERS_USERS = [
@@ -317,8 +329,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             logger.info("Running FULL query set (%d queries): %s",
                         len(all_queries), "full sync" if is_full_sync else "weekly")
         else:
-            all_queries = list(CORE_QUERIES)
-            logger.info("Running CORE query set (%d queries, incremental)", len(all_queries))
+            all_queries = list(CORE_QUERIES) + list(OPENCLAW_QUERIES)
+            logger.info("Running CORE + OPENCLAW query set (%d queries, incremental)", len(all_queries))
 
         try:
             from app.models.admin import SearchQuery as SQModel
