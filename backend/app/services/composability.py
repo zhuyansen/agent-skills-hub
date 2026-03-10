@@ -152,8 +152,9 @@ class ComposabilityEngine:
                 )
                 count += 1
 
-            if (i + 1) % 500 == 0:
-                logger.info("Composability: %d/%d skills processed", i + 1, len(skills))
+            if (i + 1) % 200 == 0:
+                db.commit()
+                logger.info("Composability: %d/%d skills processed, %d links committed", i + 1, len(process_indices), count)
 
         db.commit()
         logger.info("Computed %d composition links for %d/%d skills", count, len(process_indices), len(skills))
