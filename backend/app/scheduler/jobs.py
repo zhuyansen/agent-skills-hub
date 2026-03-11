@@ -563,7 +563,9 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         # Refresh DB session — old connection may have been killed by
         # PgBouncer during the long API-fetch phase (could be 30-90 min).
-        sync_log_id_ref = sync_log.id
+        # NOTE: sync_log_id_ref was already saved at the start of the function
+        # (line ~307). Do NOT access sync_log.id here — the connection may be
+        # dead and SQLAlchemy's lazy-load will fail.
         db.close()
         db = SessionLocal()
         sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
