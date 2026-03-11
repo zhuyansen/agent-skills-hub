@@ -141,8 +141,9 @@ class ComposabilityEngine:
                     candidates.append((candidate, score, "+".join(reasons)))
 
             candidates.sort(key=lambda x: x[1], reverse=True)
+            batch_items = []
             for comp_skill, cscore, reason in candidates[: self.MAX_RECOMMENDATIONS]:
-                db.add(
+                batch_items.append(
                     SkillComposition(
                         skill_id=skill.id,
                         compatible_skill_id=comp_skill.id,
@@ -151,6 +152,11 @@ class ComposabilityEngine:
                     )
                 )
                 count += 1
+
+            # Flush each skill's compositions individually to avoid giant INSERT
+            if batch_items:
+                db.add_all(batch_items)
+                db.flush()
 
             if (i + 1) % 200 == 0:
                 db.commit()
