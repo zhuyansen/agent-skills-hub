@@ -94,6 +94,10 @@ EXTRA_REPOS = [
     "abczsl520/codex-review",
     "abczsl520/browser-use-skill",
     "abczsl520/game-quality-gates",
+    # MediaCrawler - multi-platform social media crawler (45k+ stars)
+    "NanmiCoder/MediaCrawler",
+    # x-tweet-fetcher - fetch tweets without login/API keys (OpenClaw skill)
+    "ythx-101/x-tweet-fetcher",
 ]
 
 # ── Rate Limit Management ──
