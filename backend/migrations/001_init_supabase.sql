@@ -236,7 +236,7 @@ BEGIN
                        )
                 ) agg ON TRUE
                 WHERE sm.is_active = TRUE
-                  AND sm.x_followers >= 1000
+                  AND (sm.x_followers >= 1000 OR sm.force_verified = TRUE)
                 ORDER BY sm.x_followers DESC
             ) m
         ), '[]'::json),
@@ -271,6 +271,7 @@ BEGIN
                 ) agg ON TRUE
                 WHERE sm.is_active = TRUE
                   AND (sm.x_followers < 1000 OR sm.x_followers IS NULL)
+                  AND (sm.force_verified IS NULL OR sm.force_verified = FALSE)
                 ORDER BY COALESCE(agg.total_stars, 0) DESC
             ) e
         ), '[]'::json)
