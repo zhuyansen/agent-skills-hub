@@ -1,15 +1,23 @@
 /**
- * Build-time sitemap generator.
- * Fetches all skill data from Supabase and generates sitemap.xml.
+ * Build-time sitemap generator — V2 (Split + Quality-Filtered).
  *
- * Features:
- *   - Tiered priority based on star count
- *   - <lastmod> from last_commit_at for every skill page
- *   - Category pages included as intermediate hierarchy
- *   - Differentiated changefreq (weekly for popular, monthly for rest)
+ * Changes from V1:
+ *   - Sitemap index with split sub-sitemaps (top/mid/standard/categories)
+ *   - Only includes indexed pages (stars >= 50, or stars >= 20 with content)
+ *   - Excludes noindex pages to match generate-skill-pages.mjs logic
+ *
+ * Output:
+ *   public/sitemap.xml           — sitemap index
+ *   public/sitemap-static.xml    — homepage
+ *   public/sitemap-categories.xml — category pages
+ *   public/sitemap-top.xml       — stars >= 100
+ *   public/sitemap-mid.xml       — stars 50-99
+ *   public/sitemap-rest.xml      — stars 20-49 (with content)
  *
  * Run: node scripts/generate-sitemap.mjs
  */
+
+import { writeFileSync } from "fs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -21,7 +29,6 @@ const CATEGORIES = [
   "prompt-library", "ai-coding-assistant", "uncategorized",
 ];
 
-/** Get tiered priority based on star count */
 function getPriority(stars) {
   if (stars >= 1000) return "0.9";
   if (stars >= 500) return "0.8";
@@ -30,13 +37,21 @@ function getPriority(stars) {
   return "0.5";
 }
 
+/** Mirror the indexing logic from generate-skill-pages.mjs */
+function shouldIndex(skill) {
+  if (skill.stars >= 50) return true;
+  if (skill.stars >= 20 && skill.readme_size && skill.readme_size > 100) return true;
+  if (skill.stars >= 20 && skill.description && skill.description.length > 80) return true;
+  return false;
+}
+
 async function fetchAllSkills() {
   const skills = [];
   let offset = 0;
   const limit = 1000;
 
   while (true) {
-    const url = `${SUPABASE_URL}/rest/v1/skills?select=repo_full_name,stars,last_commit_at,category&order=stars.desc&offset=${offset}&limit=${limit}`;
+    const url = `${SUPABASE_URL}/rest/v1/skills?select=repo_full_name,stars,last_commit_at,category,description,readme_size&order=stars.desc&offset=${offset}&limit=${limit}`;
     const res = await fetch(url, {
       headers: {
         apikey: SUPABASE_ANON_KEY,
@@ -52,67 +67,110 @@ async function fetchAllSkills() {
   return skills;
 }
 
-function buildSitemap(skills) {
+function buildUrlEntries(skills) {
   const today = new Date().toISOString().split("T")[0];
-  const urls = [];
+  return skills.map((skill) => {
+    const encoded = encodeURI(`${SITE}/skill/${skill.repo_full_name}`);
+    const priority = getPriority(skill.stars);
+    const changefreq = skill.stars >= 500 ? "weekly" : "monthly";
+    const lastmod = skill.last_commit_at ? skill.last_commit_at.split("T")[0] : today;
+    return `  <url>
+    <loc>${encoded}</loc>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+    <lastmod>${lastmod}</lastmod>
+  </url>`;
+  });
+}
 
-  // 1. Homepage — highest priority
-  urls.push(`  <url>
+function wrapUrlset(entries) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join("\n")}
+</urlset>`;
+}
+
+function buildSitemapIndex(files) {
+  const today = new Date().toISOString().split("T")[0];
+  const entries = files.map((f) => `  <sitemap>
+    <loc>${SITE}/${f}</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>`);
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join("\n")}
+</sitemapindex>`;
+}
+
+async function main() {
+  console.log("Fetching skills from Supabase...");
+  const allSkills = await fetchAllSkills();
+  console.log(`Found ${allSkills.length} total skills`);
+
+  // Filter to only indexed skills
+  const indexedSkills = allSkills.filter(shouldIndex);
+  const noindexCount = allSkills.length - indexedSkills.length;
+  console.log(`Indexed: ${indexedSkills.length}, Noindex: ${noindexCount}`);
+
+  const today = new Date().toISOString().split("T")[0];
+
+  // Split by tier
+  const topSkills = indexedSkills.filter((s) => s.stars >= 100);
+  const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
+  const restSkills = indexedSkills.filter((s) => s.stars < 50);
+
+  // 1. sitemap-static.xml
+  const staticEntries = [
+    `  <url>
     <loc>${SITE}/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <lastmod>${today}</lastmod>
-  </url>`);
+  </url>`,
+  ];
+  writeFileSync("public/sitemap-static.xml", wrapUrlset(staticEntries));
+  console.log(`sitemap-static.xml: 1 URL`);
 
-  // 2. Category pages — high priority intermediate layer
-  for (const cat of CATEGORIES) {
-    urls.push(`  <url>
+  // 2. sitemap-categories.xml
+  const catEntries = CATEGORIES.map((cat) => `  <url>
     <loc>${SITE}/category/${cat}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <lastmod>${today}</lastmod>
   </url>`);
-  }
+  writeFileSync("public/sitemap-categories.xml", wrapUrlset(catEntries));
+  console.log(`sitemap-categories.xml: ${CATEGORIES.length} URLs`);
 
-  // 3. Skill pages — tiered priority + lastmod
-  for (const skill of skills) {
-    const encoded = encodeURI(`${SITE}/skill/${skill.repo_full_name}`);
-    const priority = getPriority(skill.stars);
-    const changefreq = skill.stars >= 500 ? "weekly" : "monthly";
-    const lastmod = skill.last_commit_at
-      ? skill.last_commit_at.split("T")[0]
-      : today;
+  // 3. sitemap-top.xml (stars >= 100)
+  const topEntries = buildUrlEntries(topSkills);
+  writeFileSync("public/sitemap-top.xml", wrapUrlset(topEntries));
+  console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 100)`);
 
-    urls.push(`  <url>
-    <loc>${encoded}</loc>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-    <lastmod>${lastmod}</lastmod>
-  </url>`);
-  }
+  // 4. sitemap-mid.xml (stars 50-99)
+  const midEntries = buildUrlEntries(midSkills);
+  writeFileSync("public/sitemap-mid.xml", wrapUrlset(midEntries));
+  console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join("\n")}
-</urlset>`;
-}
+  // 5. sitemap-rest.xml (stars 20-49 with content)
+  const restEntries = buildUrlEntries(restSkills);
+  writeFileSync("public/sitemap-rest.xml", wrapUrlset(restEntries));
+  console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49 with content)`);
 
-async function main() {
-  console.log("Fetching skills from Supabase...");
-  const skills = await fetchAllSkills();
-  console.log(`Found ${skills.length} skills`);
+  // 6. sitemap.xml (index)
+  const sitemapFiles = [
+    "sitemap-static.xml",
+    "sitemap-categories.xml",
+    "sitemap-top.xml",
+    "sitemap-mid.xml",
+  ];
+  if (restSkills.length > 0) sitemapFiles.push("sitemap-rest.xml");
 
-  const { writeFileSync } = await import("fs");
-  const xml = buildSitemap(skills);
-  writeFileSync("public/sitemap.xml", xml);
+  writeFileSync("public/sitemap.xml", buildSitemapIndex(sitemapFiles));
+  console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  // Stats
-  const high = skills.filter((s) => s.stars >= 1000).length;
-  const mid = skills.filter((s) => s.stars >= 100 && s.stars < 1000).length;
-  const low = skills.length - high - mid;
-  console.log(`Sitemap: ${skills.length + CATEGORIES.length + 1} URLs`);
-  console.log(`  Priority tiers: ${high} high (0.9), ${mid} mid (0.7-0.8), ${low} standard (0.5-0.6)`);
-  console.log(`  Category pages: ${CATEGORIES.length}`);
+  const totalUrls = 1 + CATEGORIES.length + indexedSkills.length;
+  console.log(`Total indexed URLs: ${totalUrls} (excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);

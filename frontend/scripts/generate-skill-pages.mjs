@@ -1,20 +1,13 @@
 /**
- * Build-time static HTML generator for SEO.
+ * Build-time static HTML generator for SEO — V2 (Quality-First).
  *
- * Problem: GitHub Pages SPA serves 404.html (HTTP 404) for /skill/* routes.
- *          Google sees 404 + empty <div id="root"> → refuses to index.
- *          Even with HTTP 200, thin content causes "Crawled - not indexed".
- *
- * Solution: Generate /skill/{owner}/{repo}/index.html with RICH content:
- *          - Unique <title>, description, OG/Twitter tags, JSON-LD
- *          - README excerpt inside <div id="root"> (visible pre-JS)
- *          - Breadcrumb navigation (Home > Category > Skill)
- *          - Compatible skills internal links
- *          - Topics as tag links
- *          - Quick Facts (stars, language, quality, dates, platforms)
- *          - BreadcrumbList + SoftwareSourceCode JSON-LD
- *
- * Also generates /category/{slug}/index.html for internal link hierarchy.
+ * Key changes from V1:
+ *   - noindex for low-quality pages (stars < 50 or no README + no description)
+ *   - README excerpt expanded to 600+ chars for Google's 500-word quality gate
+ *   - FAQ section auto-generated per page
+ *   - "Same Category" links block (top 10 by stars in same category)
+ *   - "Same Language" links block (top 5 by stars in same language)
+ *   - Content word-count targets: 500+ for indexed pages
  *
  * Run: node scripts/generate-skill-pages.mjs  (after vite build)
  */
@@ -78,18 +71,15 @@ function stripMarkdown(md) {
 }
 
 /** Truncate text to ~maxLen chars at word/sentence boundary */
-function truncate(text, maxLen = 300) {
+function truncate(text, maxLen = 600) {
   if (!text || text.length <= maxLen) return text || "";
   const sub = text.slice(0, maxLen);
-  // Try to break at sentence end
   const sentEnd = sub.lastIndexOf(". ");
   if (sentEnd > maxLen * 0.5) return sub.slice(0, sentEnd + 1);
-  // Break at word boundary
   const wordEnd = sub.lastIndexOf(" ");
   return wordEnd > 0 ? sub.slice(0, wordEnd) + "..." : sub + "...";
 }
 
-/** Parse JSON array string safely */
 function parseJsonArray(s) {
   if (!s) return [];
   try {
@@ -100,7 +90,6 @@ function parseJsonArray(s) {
   }
 }
 
-/** Extract <script src>, <link rel="modulepreload|stylesheet"> from built index.html */
 function extractAssetTags(html) {
   const scriptTags = [];
   const linkTags = [];
@@ -116,6 +105,15 @@ function extractAssetTags(html) {
   return { scriptTags, linkTags };
 }
 
+/** Decide if a page should be indexed */
+function shouldIndex(skill) {
+  // Index if: stars >= 50, OR (stars >= 20 AND has readme or description > 80 chars)
+  if (skill.stars >= 50) return true;
+  if (skill.stars >= 20 && skill.readme_content && skill.readme_content.length > 100) return true;
+  if (skill.stars >= 20 && skill.description && skill.description.length > 80) return true;
+  return false;
+}
+
 /* ── fetch skills from Supabase ────────────────── */
 
 async function fetchAllSkills() {
@@ -127,6 +125,7 @@ async function fetchAllSkills() {
     "stars", "forks", "description", "category", "language", "score", "license",
     "readme_content", "last_commit_at", "created_at", "topics",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",
+    "open_issues", "total_commits",
   ].join(",");
 
   while (true) {
@@ -140,9 +139,9 @@ async function fetchAllSkills() {
     const data = await res.json();
     if (!data.length) break;
     for (const row of data) {
-      // Truncate readme_content immediately to save memory (~600 chars is enough)
+      // Keep more README for expanded content (1500 chars)
       if (row.readme_content) {
-        row.readme_content = row.readme_content.slice(0, 800);
+        row.readme_content = row.readme_content.slice(0, 1500);
       }
       skills.push(row);
     }
@@ -152,9 +151,8 @@ async function fetchAllSkills() {
   return skills;
 }
 
-/** Fetch all skill compositions in one batch */
 async function fetchAllCompositions() {
-  const comps = new Map(); // skill_id → [{compatible_skill_id, compatibility_score, reason}]
+  const comps = new Map();
   let offset = 0;
   const limit = 1000;
 
@@ -180,14 +178,15 @@ async function fetchAllCompositions() {
 
 /* ── build HTML for one skill ──────────────────── */
 
-function buildSkillHtml(skill, assetTags, compositions, skillById) {
+function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex) {
   const {
     repo_full_name, repo_name, author_name, author_avatar_url,
     stars, forks, description, category, language, score, license,
     readme_content, last_commit_at, created_at, topics,
-    quality_score, platforms, estimated_tokens,
+    quality_score, platforms, estimated_tokens, open_issues, total_commits,
   } = skill;
 
+  const indexed = shouldIndex(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
   const pageUrl = `${SITE}/skill/${repo_full_name}`;
   const ghUrl = `https://github.com/${repo_full_name}`;
@@ -198,19 +197,14 @@ function buildSkillHtml(skill, assetTags, compositions, skillById) {
     ? `${description.slice(0, 140)}${description.length > 140 ? "..." : ""} ${starsK(stars)} stars.`
     : `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars on GitHub.`;
 
-  // README excerpt (key differentiation per page)
+  // README excerpt — expanded to 600 chars for content depth
   const readmeText = stripMarkdown(readme_content);
   const excerpt = readmeText
-    ? truncate(readmeText, 300)
+    ? truncate(readmeText, 600)
     : (description || `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name}.`);
 
-  // Parse topics
   const topicsList = parseJsonArray(topics);
-
-  // Parse platforms
   const platformsList = parseJsonArray(platforms);
-
-  // Build keywords from topics + basics
   const keywords = [repo_name, author_name, catLabel, ...topicsList.slice(0, 5), "Agent Skills", "GitHub"].join(", ");
 
   // Compatible skills internal links
@@ -220,7 +214,44 @@ function buildSkillHtml(skill, assetTags, compositions, skillById) {
     return { name: target.repo_name, slug: target.repo_full_name, score: c.compatibility_score, reason: c.reason };
   }).filter(Boolean);
 
-  // JSON-LD: SoftwareSourceCode (enhanced)
+  // Same-category links (top 10, excluding self)
+  const sameCatSkills = (categoryIndex.get(category) || [])
+    .filter((s) => s.repo_full_name !== repo_full_name)
+    .slice(0, 10);
+
+  // Same-language links (top 5, excluding self)
+  const sameLangSkills = language
+    ? (languageIndex.get(language) || [])
+      .filter((s) => s.repo_full_name !== repo_full_name)
+      .slice(0, 5)
+    : [];
+
+  // Auto-generated FAQ
+  const faqItems = [];
+  faqItems.push({
+    q: `What is ${repo_name}?`,
+    a: description
+      ? `${repo_name} is ${description.slice(0, 200)}. It is categorized as a ${catLabel} with ${starsK(stars)} GitHub stars.`
+      : `${repo_name} is an open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} GitHub stars.`,
+  });
+  if (language) {
+    faqItems.push({
+      q: `What programming language is ${repo_name} written in?`,
+      a: `${repo_name} is primarily written in ${language}. ${topicsList.length > 0 ? `It covers topics such as ${topicsList.slice(0, 3).join(", ")}.` : ""}`,
+    });
+  }
+  faqItems.push({
+    q: `How do I install or use ${repo_name}?`,
+    a: `You can find installation instructions and usage details in the ${repo_name} GitHub repository at github.com/${repo_full_name}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
+  });
+  if (license && license !== "NOASSERTION") {
+    faqItems.push({
+      q: `What license does ${repo_name} use?`,
+      a: `${repo_name} is released under the ${license} license, making it free to use and modify according to the license terms.`,
+    });
+  }
+
+  // JSON-LD: SoftwareSourceCode
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
@@ -228,11 +259,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById) {
     url: pageUrl,
     codeRepository: ghUrl,
     description: description || `${catLabel} by ${author_name}`,
-    author: {
-      "@type": "Person",
-      name: author_name,
-      url: `https://github.com/${author_name}`,
-    },
+    author: { "@type": "Person", name: author_name, url: `https://github.com/${author_name}` },
     programmingLanguage: language || undefined,
     license: license && license !== "NOASSERTION" ? `https://spdx.org/licenses/${license}` : undefined,
     dateCreated: created_at ? formatDate(created_at) : undefined,
@@ -258,43 +285,93 @@ function buildSkillHtml(skill, assetTags, compositions, skillById) {
     ],
   });
 
+  // JSON-LD: FAQPage
+  const faqLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  });
+
   const { scriptTags, linkTags } = assetTags;
 
-  // Build Quick Facts rows
+  // Quick Facts rows — expanded
   const factsRows = [
     `<tr><td>Stars</td><td>${stars.toLocaleString()}</td></tr>`,
-    `<tr><td>Forks</td><td>${forks.toLocaleString()}</td></tr>`,
+    `<tr><td>Forks</td><td>${(forks || 0).toLocaleString()}</td></tr>`,
     language ? `<tr><td>Language</td><td>${esc(language)}</td></tr>` : "",
     `<tr><td>Category</td><td><a href="/category/${esc(category)}">${esc(catLabel)}</a></td></tr>`,
     license && license !== "NOASSERTION" ? `<tr><td>License</td><td>${esc(license)}</td></tr>` : "",
-    quality_score ? `<tr><td>Quality</td><td>${quality_score}/100</td></tr>` : "",
+    quality_score ? `<tr><td>Quality Score</td><td>${quality_score}/100</td></tr>` : "",
+    total_commits ? `<tr><td>Total Commits</td><td>${total_commits.toLocaleString()}</td></tr>` : "",
+    open_issues ? `<tr><td>Open Issues</td><td>${open_issues}</td></tr>` : "",
     last_commit_at ? `<tr><td>Last Updated</td><td>${formatDate(last_commit_at)}</td></tr>` : "",
     created_at ? `<tr><td>Created</td><td>${formatDate(created_at)}</td></tr>` : "",
     platformsList.length ? `<tr><td>Platforms</td><td>${esc(platformsList.join(", "))}</td></tr>` : "",
     estimated_tokens ? `<tr><td>Est. Tokens</td><td>~${(estimated_tokens / 1000).toFixed(0)}k</td></tr>` : "",
   ].filter(Boolean).join("\n          ");
 
-  // Build topics HTML
+  // Topics HTML
   const topicsHtml = topicsList.length > 0
     ? `<div style="margin:12px 0;display:flex;flex-wrap:wrap;gap:6px">${topicsList.slice(0, 10).map((t) => `<a href="/?search=${encodeURIComponent(t)}" style="display:inline-block;padding:2px 10px;border-radius:12px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none">${esc(t)}</a>`).join("")}</div>`
     : "";
 
-  // Build compatible skills HTML
+  // Compatible skills HTML
   const compsHtml = compLinks.length > 0
     ? `<section style="margin-top:20px">
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Compatible Skills</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:8px">These tools work well together with ${esc(repo_name)} for enhanced workflows:</p>
         <ul style="list-style:none;padding:0">${compLinks.map((c) => `
           <li style="margin:6px 0"><a href="/skill/${esc(c.slug)}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(c.name)}</a> <span style="color:#94a3b8;font-size:13px">— ${esc(c.reason)} (${Math.round(c.score * 100)}%)</span></li>`).join("")}
         </ul>
       </section>`
     : "";
 
+  // Same-category links HTML
+  const sameCatHtml = sameCatSkills.length > 0
+    ? `<section style="margin-top:20px">
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">More ${esc(catLabel)} Tools</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:8px">Explore other popular ${esc(catLabel.toLowerCase())} tools:</p>
+        <ul style="list-style:none;padding:0">${sameCatSkills.map((s) => `
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
+        </ul>
+        <a href="/category/${esc(category)}" style="color:#4f46e5;font-size:14px">View all ${esc(catLabel)} tools →</a>
+      </section>`
+    : "";
+
+  // Same-language links HTML
+  const sameLangHtml = sameLangSkills.length > 0
+    ? `<section style="margin-top:20px">
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Popular ${esc(language)} Agent Tools</h2>
+        <ul style="list-style:none;padding:0">${sameLangSkills.map((s) => `
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(CATEGORY_LABELS[s.category] || "AI Tool")}</span></li>`).join("")}
+        </ul>
+      </section>`
+    : "";
+
+  // FAQ HTML
+  const faqHtml = `<section style="margin-top:24px">
+      <h2 style="font-size:18px;color:#1e293b;margin-bottom:12px">Frequently Asked Questions</h2>
+      ${faqItems.map((f) => `<details style="margin:8px 0;border:1px solid #e2e8f0;border-radius:8px;padding:12px">
+        <summary style="cursor:pointer;font-weight:500;color:#1e293b">${esc(f.q)}</summary>
+        <p style="margin:8px 0 0;color:#475569;line-height:1.6">${esc(f.a)}</p>
+      </details>`).join("\n      ")}
+    </section>`;
+
+  // noindex meta tag for low-quality pages
+  const robotsMeta = indexed
+    ? ""
+    : `\n  <meta name="robots" content="noindex, follow" />`;
+
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />${robotsMeta}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />
   <meta name="keywords" content="${esc(keywords)}" />
@@ -326,6 +403,10 @@ ${jsonLd}
   <!-- JSON-LD: BreadcrumbList -->
   <script type="application/ld+json">
 ${breadcrumbLd}
+  </script>
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+${faqLd}
   </script>
 
   <link rel="preconnect" href="https://vknzzecmzsfmohglpfgm.supabase.co" />
@@ -374,6 +455,15 @@ ${breadcrumbLd}
       <!-- Compatible Skills -->
       ${compsHtml}
 
+      <!-- Same Category -->
+      ${sameCatHtml}
+
+      <!-- Same Language -->
+      ${sameLangHtml}
+
+      <!-- FAQ -->
+      ${faqHtml}
+
       <!-- Links -->
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
         <a href="${esc(ghUrl)}" style="display:inline-block;padding:8px 20px;background:#1e293b;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">View on GitHub &rarr;</a>
@@ -398,7 +488,6 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
 
   const { scriptTags, linkTags } = assetTags;
 
-  // JSON-LD: CollectionPage
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -417,7 +506,6 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
     },
   }, null, 2);
 
-  // Breadcrumb JSON-LD
   const breadcrumbLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -427,7 +515,6 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
     ],
   });
 
-  // Skill list rows
   const skillRows = catSkills.slice(0, 100).map((s, i) => {
     const desc = s.description ? esc(s.description.slice(0, 100)) : "";
     return `<tr>
@@ -438,7 +525,6 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
       </tr>`;
   }).join("\n      ");
 
-  // Other categories links
   const otherCats = allCategories
     .filter((c) => c !== catSlug)
     .map((c) => `<a href="/category/${esc(c)}" style="display:inline-block;padding:4px 12px;margin:3px;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:13px;text-decoration:none">${esc(CATEGORY_LABELS[c] || c)}</a>`)
@@ -481,7 +567,6 @@ ${breadcrumbLd}
 <body>
   <div id="root">
     <div style="max-width:900px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
-      <!-- Breadcrumb -->
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
         <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
         <span style="margin:0 6px">&gt;</span>
@@ -491,13 +576,11 @@ ${breadcrumbLd}
       <h1 style="font-size:28px;margin:0 0 8px">${esc(catLabel)} Tools</h1>
       <p style="color:#64748b;margin:0 0 20px">${catSkills.length}+ open-source ${esc(catLabel.toLowerCase())} tools ranked by stars</p>
 
-      <!-- Other categories -->
       <div style="margin-bottom:24px">
         <span style="font-size:13px;color:#94a3b8;margin-right:8px">Also browse:</span>
         ${otherCats}
       </div>
 
-      <!-- Skill table -->
       <table style="width:100%;border-collapse:collapse">
         <thead>
           <tr style="border-bottom:2px solid #e2e8f0;text-align:left">
@@ -529,27 +612,43 @@ ${breadcrumbLd}
 async function main() {
   const distDir = "dist";
 
-  // 1. Read built index.html → extract asset tags
   const indexHtml = readFileSync(join(distDir, "index.html"), "utf-8");
   const assetTags = extractAssetTags(indexHtml);
   console.log(`Assets: ${assetTags.scriptTags.length} scripts, ${assetTags.linkTags.length} links`);
 
-  // 2. Fetch skills
   console.log("Fetching skills from Supabase...");
   const skills = await fetchAllSkills();
   console.log(`Fetched ${skills.length} skills`);
 
-  // 3. Fetch compositions
   console.log("Fetching compositions...");
   const compositions = await fetchAllCompositions();
   console.log(`Fetched compositions for ${compositions.size} skills`);
 
-  // 4. Build lookup map: id → skill
+  // Build lookup maps
   const skillById = new Map(skills.map((s) => [s.id, s]));
 
-  // 5. Generate skill pages
+  // Build category index: category → top skills (by stars)
+  const categoryIndex = new Map();
+  for (const s of skills) {
+    if (!categoryIndex.has(s.category)) categoryIndex.set(s.category, []);
+    const arr = categoryIndex.get(s.category);
+    if (arr.length < 15) arr.push(s); // already sorted by stars desc
+  }
+
+  // Build language index: language → top skills (by stars)
+  const languageIndex = new Map();
+  for (const s of skills) {
+    if (!s.language) continue;
+    if (!languageIndex.has(s.language)) languageIndex.set(s.language, []);
+    const arr = languageIndex.get(s.language);
+    if (arr.length < 10) arr.push(s);
+  }
+
+  // Generate skill pages
   let ok = 0;
   let skipped = 0;
+  let indexedCount = 0;
+  let noindexCount = 0;
   const t0 = Date.now();
 
   for (const skill of skills) {
@@ -565,15 +664,18 @@ async function main() {
     const skillComps = compositions.get(skill.id) || [];
     writeFileSync(
       join(dir, "index.html"),
-      buildSkillHtml(skill, assetTags, skillComps, skillById),
+      buildSkillHtml(skill, assetTags, skillComps, skillById, categoryIndex, languageIndex),
     );
     ok++;
+
+    if (shouldIndex(skill)) indexedCount++;
+    else noindexCount++;
   }
 
   const elapsed1 = ((Date.now() - t0) / 1000).toFixed(1);
-  console.log(`Skill pages: ${ok} generated, ${skipped} skipped (${elapsed1}s)`);
+  console.log(`Skill pages: ${ok} generated (${indexedCount} indexed, ${noindexCount} noindex), ${skipped} skipped (${elapsed1}s)`);
 
-  // 6. Generate category pages
+  // Generate category pages
   const t1 = Date.now();
   const allCategories = Object.keys(CATEGORY_LABELS);
   let catCount = 0;
