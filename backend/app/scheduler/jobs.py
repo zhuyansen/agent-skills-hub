@@ -501,6 +501,12 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # ═══════════════════════════════════════════════════════
         readme_cache: dict[str, str] = {}
         try:
+            # Clear any invalid transaction state from previous phases
+            # (PgBouncer may have killed the connection during long API fetches)
+            try:
+                db.rollback()
+            except Exception:
+                pass
             null_readme_skills = (
                 db.query(Skill.repo_full_name)
                 .filter(Skill.readme_content.is_(None))
@@ -564,6 +570,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         BATCH_SIZE = 200
         new_count, updated_count = 0, 0
+        new_repo_names = []  # Track truly new skill repo names for composability
         for i, repo_data in enumerate(cleaned):
             try:
                 existing = (
@@ -587,6 +594,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                         new_skill.readme_content = readme
                         new_skill.readme_size = len(readme)
                     db.add(new_skill)
+                    new_repo_names.append(repo_data.get("repo_full_name", ""))
                     new_count += 1
             except Exception as row_exc:
                 logger.warning("Upsert failed for %s: %s", repo_data.get("repo_full_name", "?"), row_exc)
@@ -612,14 +620,19 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         scoring_engine.score_all(db)
 
         from app.services.composability import ComposabilityEngine
-        if new_count > 0 and updated_count > 0 and new_count < 500:
+        if new_count > 0 and new_repo_names:
+            # Only recompute composability for truly NEW skills, not all updated ones.
+            # Using last_synced >= started_at would include all updated skills (thousands),
+            # making composability take hours. Instead, only pass new skill IDs.
             new_skill_ids = {
                 s.id for s in db.query(Skill.id)
-                .filter(Skill.last_synced >= sync_log.started_at)
+                .filter(Skill.repo_full_name.in_(new_repo_names))
                 .all()
-            } if sync_log.started_at else None
+            }
+            logger.info("Composability: %d truly new skills (not %d updated)", len(new_skill_ids), updated_count)
             ComposabilityEngine().compute_all(db, changed_ids=new_skill_ids)
         else:
+            logger.info("Composability: full recompute (no new skills or first run)")
             ComposabilityEngine().compute_all(db)
 
         # Take weekly trending snapshot (non-fatal if fails)

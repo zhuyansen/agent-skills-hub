@@ -1,6 +1,7 @@
 """Compute skill composability using TF-IDF similarity + ecosystem analysis."""
 import json
 import logging
+import time
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -17,6 +18,7 @@ class ComposabilityEngine:
 
     MAX_RECOMMENDATIONS = 5
     MIN_THRESHOLD = 0.45
+    TIME_BUDGET_SECONDS = 45 * 60  # 45 minutes max for composability
 
     def compute_all(self, db: Session, changed_ids: set[int] | None = None) -> int:
         """Compute composability links.
@@ -74,7 +76,18 @@ class ComposabilityEngine:
             process_indices = list(range(len(skills)))
 
         count = 0
-        for i in process_indices:
+        start_time = time.monotonic()
+        for idx_pos, i in enumerate(process_indices):
+            # Time budget check
+            elapsed = time.monotonic() - start_time
+            if elapsed > self.TIME_BUDGET_SECONDS:
+                logger.warning(
+                    "Composability time budget exceeded (%.0fs > %ds). "
+                    "Processed %d/%d skills, %d links. Stopping early.",
+                    elapsed, self.TIME_BUDGET_SECONDS, idx_pos, len(process_indices), count,
+                )
+                break
+
             skill = skills[i]
             sim_row = cosine_similarity(tfidf_matrix[i : i + 1], tfidf_matrix).flatten()
 
