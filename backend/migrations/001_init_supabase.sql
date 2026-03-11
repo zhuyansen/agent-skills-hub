@@ -136,11 +136,11 @@ CREATE INDEX IF NOT EXISTS ix_subscribers_token ON subscribers(verification_toke
 -- ═══ 3. VIEWS ═══
 
 CREATE OR REPLACE VIEW v_stats AS
-SELECT
-    COUNT(*) AS total_skills,
-    ROUND(COALESCE(AVG(score), 0)::numeric, 1) AS avg_score,
-    (SELECT started_at FROM sync_logs ORDER BY started_at DESC LIMIT 1) AS last_sync_at,
-    (SELECT status FROM sync_logs ORDER BY started_at DESC LIMIT 1) AS last_sync_status
+SELECT count(*)::integer AS total_skills,
+    COALESCE(round(avg(NULLIF(quality_score, 0::double precision))::numeric, 1), 0::numeric)::double precision AS avg_score,
+    count(DISTINCT category)::integer AS category_count,
+    (SELECT finished_at FROM sync_logs WHERE status = 'completed' ORDER BY finished_at DESC LIMIT 1) AS last_sync_at,
+    (SELECT status FROM sync_logs ORDER BY id DESC LIMIT 1) AS last_sync_status
 FROM skills;
 
 CREATE OR REPLACE VIEW v_categories AS
