@@ -202,7 +202,7 @@ export async function fetchLandingData(): Promise<LandingData> {
 // ═══ Community Submission ═══
 
 export async function submitSkill(repoUrl: string): Promise<{ status: string; message: string; skill_id?: number }> {
-  if (USE_SUPABASE) return sbSubmitSkill(repoUrl);
+  if (supabase) return sbSubmitSkill(repoUrl);
   return request("/api/submit-skill", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -211,7 +211,8 @@ export async function submitSkill(repoUrl: string): Promise<{ status: string; me
 }
 
 export async function subscribe(email: string): Promise<{ status: string; message: string }> {
-  if (USE_SUPABASE) return sbSubscribe(email);
+  // Always prefer Supabase for subscribe (works without backend)
+  if (supabase) return sbSubscribe(email);
   const res = await fetch(`${API_BASE}/api/subscribe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -228,7 +229,7 @@ export async function submitMasterApplication(
   bio: string,
   repoUrls: string[],
 ): Promise<{ status: string; message: string }> {
-  if (USE_SUPABASE) return sbSubmitMasterApplication(github, name, bio, repoUrls);
+  if (supabase) return sbSubmitMasterApplication(github, name, bio, repoUrls);
   return request("/api/submit-master", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -243,7 +244,7 @@ export async function submitWorkflow(
   description: string,
   steps: { name: string; slug: string; description: string }[],
 ): Promise<{ status: string; message: string }> {
-  if (USE_SUPABASE) return sbSubmitWorkflow(name, description, steps);
+  if (supabase) return sbSubmitWorkflow(name, description, steps);
   return request("/api/submit-workflow", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -254,7 +255,7 @@ export async function submitWorkflow(
 // ═══ Email Verification ═══
 
 export async function verifyEmail(token: string): Promise<{ status: string; message: string }> {
-  if (USE_SUPABASE) return sbVerifyEmail(token);
+  if (supabase) return sbVerifyEmail(token);
   // FastAPI backend handles it via redirect, so this is for SPA verification
   return request(`/api/verify-email?token=${encodeURIComponent(token)}`);
 }

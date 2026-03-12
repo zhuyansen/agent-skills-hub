@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LanguageToggle } from "./LanguageToggle";
 import { useI18n } from "../i18n/I18nContext";
 import { useStats } from "../hooks/useStats";
@@ -17,7 +17,6 @@ interface Props {
 
 export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const { t } = useI18n();
-  const navigate = useNavigate();
   const { stats } = useStats();
   const [showWechat, setShowWechat] = useState(false);
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
