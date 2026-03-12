@@ -574,7 +574,13 @@ ${breadcrumbLd}
       </nav>
 
       <h1 style="font-size:28px;margin:0 0 8px">${esc(catLabel)} Tools</h1>
-      <p style="color:#64748b;margin:0 0 20px">${catSkills.length}+ open-source ${esc(catLabel.toLowerCase())} tools ranked by stars</p>
+      <p style="color:#64748b;margin:0 0 16px">${catSkills.length}+ open-source ${esc(catLabel.toLowerCase())} tools ranked by stars</p>
+
+      <section style="margin:0 0 24px;padding:16px 20px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;line-height:1.7">
+        <h2 style="font-size:16px;margin:0 0 8px;color:#334155">What are ${esc(catLabel)} tools?</h2>
+        <p style="margin:0 0 8px;font-size:14px;color:#475569">${esc(catLabel)} tools are open-source packages that extend AI coding agents like Claude Code, OpenAI Codex, Gemini CLI, and other AI assistants. They provide specialized capabilities ranging from code generation and debugging to API integration and workflow automation.</p>
+        <p style="margin:0;font-size:14px;color:#475569">Agent Skills Hub indexes ${catSkills.length}+ ${esc(catLabel.toLowerCase())} tools from GitHub, ranked by community adoption (stars), code quality scores, and compatibility with popular AI agents. The top languages in this category are ${catSkills.slice(0, 50).reduce((langs, s) => { if (s.language && !langs.includes(s.language)) langs.push(s.language); return langs; }, []).slice(0, 5).join(", ") || "various languages"}.</p>
+      </section>
 
       <div style="margin-bottom:24px">
         <span style="font-size:13px;color:#94a3b8;margin-right:8px">Also browse:</span>
@@ -700,6 +706,22 @@ async function main() {
 
   const totalElapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`Total: ${ok + catCount} pages in ${totalElapsed}s`);
+
+  // Update dist/index.html with actual skill count (for SEO meta tags)
+  const indexPath = join(distDir, "index.html");
+  try {
+    let indexHtml = readFileSync(indexPath, "utf-8");
+    const countK = Math.floor(skills.length / 1000) * 1000;
+    const countStr = countK.toLocaleString() + "+";
+    // Replace any "X,000+" pattern in meta descriptions
+    const updated = indexHtml.replace(/\d{1,3},000\+/g, countStr);
+    if (updated !== indexHtml) {
+      writeFileSync(indexPath, updated);
+      console.log(`Updated dist/index.html: skill count → ${countStr}`);
+    }
+  } catch (e) {
+    console.warn("Could not update index.html count:", e.message);
+  }
 }
 
 main().catch((err) => {

@@ -63,14 +63,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-      - uses: actions/checkout@v4
+      - name: Fetch live sitemaps
+        run: |
+          mkdir -p sitemaps
+          for f in sitemap-static sitemap-categories sitemap-top sitemap-mid sitemap-rest; do
+            curl -sL "https://agentskillshub.top/${f}.xml" -o "sitemaps/${f}.xml" 2>/dev/null || true
+          done
 
       - name: Submit to IndexNow (Bing + Yandex)
         run: |
           INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
 
-          # Extract all URLs from dist sitemaps
-          URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml 2>/dev/null || true)
+          # Extract all URLs from downloaded sitemaps
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' sitemaps/sitemap*.xml 2>/dev/null || true)
 
           if [ -z "$URLS" ]; then
             echo "No sitemap URLs found, skipping IndexNow"

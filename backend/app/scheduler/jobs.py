@@ -68,7 +68,7 @@ SEARCH_QUERIES = CORE_QUERIES + OPENCLAW_QUERIES + EXTENDED_QUERIES
 MASTERS_USERS = [
     "op7418", "zarazhangrui",
     "joeseesun",  # vista8 / 向阳乔木
-    "dotey", "JimLiu",  # dotey / 宝玉
+    "JimLiu",  # 宝玉 (dotey account deleted/private)
     "Panniantong",
     "abczsl520",  # Node.js 架构 / 中文记忆修复 / 调试方法论
 ]
