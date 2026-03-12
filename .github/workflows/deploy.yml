@@ -58,3 +58,46 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify-search-engines:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ping Google Sitemap
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://agentskillshub.top/sitemap.xml"
+          echo "Google sitemap ping sent"
+
+      - name: Submit to IndexNow (Bing/Yandex)
+        run: |
+          INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
+
+          # Extract all URLs from sitemaps (up to 10,000)
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml 2>/dev/null || \
+                 grep -o '<loc>[^<]*</loc>' frontend/public/sitemap*.xml 2>/dev/null | sed 's/<[^>]*>//g')
+
+          # If no dist sitemaps, build them first
+          if [ -z "$URLS" ]; then
+            cd frontend && npm ci && npm run build && cd ..
+            URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml)
+          fi
+
+          # Format as JSON array
+          URL_JSON=$(echo "$URLS" | head -10000 | jq -R -s 'split("\n") | map(select(length > 0))')
+          URL_COUNT=$(echo "$URLS" | head -10000 | wc -l)
+
+          echo "Submitting $URL_COUNT URLs to IndexNow..."
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{
+              \"host\": \"agentskillshub.top\",
+              \"key\": \"${INDEXNOW_KEY}\",
+              \"keyLocation\": \"https://agentskillshub.top/${INDEXNOW_KEY}.txt\",
+              \"urlList\": ${URL_JSON}
+            }")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          echo "IndexNow response: HTTP $HTTP_CODE"
