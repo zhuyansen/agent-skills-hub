@@ -65,39 +65,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ping Google Sitemap
-        run: |
-          curl -s "https://www.google.com/ping?sitemap=https://agentskillshub.top/sitemap.xml"
-          echo "Google sitemap ping sent"
-
-      - name: Submit to IndexNow (Bing/Yandex)
+      - name: Submit to IndexNow (Bing + Yandex)
         run: |
           INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
 
-          # Extract all URLs from sitemaps (up to 10,000)
-          URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml 2>/dev/null || \
-                 grep -o '<loc>[^<]*</loc>' frontend/public/sitemap*.xml 2>/dev/null | sed 's/<[^>]*>//g')
+          # Extract all URLs from dist sitemaps
+          URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml 2>/dev/null || true)
 
-          # If no dist sitemaps, build them first
           if [ -z "$URLS" ]; then
-            cd frontend && npm ci && npm run build && cd ..
-            URLS=$(grep -oP '(?<=<loc>)[^<]+' frontend/dist/sitemap*.xml)
+            echo "No sitemap URLs found, skipping IndexNow"
+            exit 0
           fi
 
-          # Format as JSON array
           URL_JSON=$(echo "$URLS" | head -10000 | jq -R -s 'split("\n") | map(select(length > 0))')
-          URL_COUNT=$(echo "$URLS" | head -10000 | wc -l)
-
+          URL_COUNT=$(echo "$URLS" | head -10000 | wc -l | tr -d ' ')
           echo "Submitting $URL_COUNT URLs to IndexNow..."
 
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d "{
-              \"host\": \"agentskillshub.top\",
-              \"key\": \"${INDEXNOW_KEY}\",
-              \"keyLocation\": \"https://agentskillshub.top/${INDEXNOW_KEY}.txt\",
-              \"urlList\": ${URL_JSON}
-            }")
+          PAYLOAD="{\"host\":\"agentskillshub.top\",\"key\":\"${INDEXNOW_KEY}\",\"keyLocation\":\"https://agentskillshub.top/${INDEXNOW_KEY}.txt\",\"urlList\":${URL_JSON}}"
 
-          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
-          echo "IndexNow response: HTTP $HTTP_CODE"
+          # Submit to Yandex (reliable)
+          YANDEX_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://yandex.com/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" -d "$PAYLOAD")
+          echo "Yandex: HTTP $YANDEX_CODE"
+
+          # Submit to Bing (may need time for key verification)
+          BING_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://www.bing.com/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" -d "$PAYLOAD")
+          echo "Bing: HTTP $BING_CODE"
+
+          # Fallback: submit top 50 individually to Bing if bulk fails
+          if [ "$BING_CODE" != "200" ] && [ "$BING_CODE" != "202" ]; then
+            echo "Bing bulk failed, submitting top 50 individually..."
+            echo "$URLS" | head -50 | while read url; do
+              curl -s -o /dev/null -w "%{http_code} $url\n" \
+                "https://www.bing.com/indexnow?url=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$url', safe=''))")&key=${INDEXNOW_KEY}"
+            done
+          fi
