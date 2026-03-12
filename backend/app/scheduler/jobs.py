@@ -98,6 +98,8 @@ EXTRA_REPOS = [
     "NanmiCoder/MediaCrawler",
     # x-tweet-fetcher - fetch tweets without login/API keys (OpenClaw skill)
     "ythx-101/x-tweet-fetcher",
+    # Cloudflare official Agent Skills (601 stars)
+    "cloudflare/skills",
 ]
 
 # ── Rate Limit Management ──
