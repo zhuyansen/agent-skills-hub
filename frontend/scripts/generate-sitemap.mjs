@@ -129,7 +129,7 @@ async function main() {
     <lastmod>${today}</lastmod>
   </url>`,
   ];
-  writeFileSync("public/sitemap-static.xml", wrapUrlset(staticEntries));
+  writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
   console.log(`sitemap-static.xml: 1 URL`);
 
   // 2. sitemap-categories.xml — only include categories that have skills
@@ -142,22 +142,22 @@ async function main() {
     <priority>0.85</priority>
     <lastmod>${today}</lastmod>
   </url>`);
-  writeFileSync("public/sitemap-categories.xml", wrapUrlset(catEntries));
+  writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
   console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (${CATEGORIES.length - catsWithSkills.length} empty categories excluded)`);
 
   // 3. sitemap-top.xml (stars >= 100)
   const topEntries = buildUrlEntries(topSkills);
-  writeFileSync("public/sitemap-top.xml", wrapUrlset(topEntries));
+  writeFileSync("dist/sitemap-top.xml", wrapUrlset(topEntries));
   console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 100)`);
 
   // 4. sitemap-mid.xml (stars 50-99)
   const midEntries = buildUrlEntries(midSkills);
-  writeFileSync("public/sitemap-mid.xml", wrapUrlset(midEntries));
+  writeFileSync("dist/sitemap-mid.xml", wrapUrlset(midEntries));
   console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
 
   // 5. sitemap-rest.xml (stars 20-49 with content)
   const restEntries = buildUrlEntries(restSkills);
-  writeFileSync("public/sitemap-rest.xml", wrapUrlset(restEntries));
+  writeFileSync("dist/sitemap-rest.xml", wrapUrlset(restEntries));
   console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49 with content)`);
 
   // 6. sitemap.xml (index)
@@ -169,7 +169,7 @@ async function main() {
   ];
   if (restSkills.length > 0) sitemapFiles.push("sitemap-rest.xml");
 
-  writeFileSync("public/sitemap.xml", buildSitemapIndex(sitemapFiles));
+  writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
   const totalUrls = 1 + catsWithSkills.length + indexedSkills.length;
