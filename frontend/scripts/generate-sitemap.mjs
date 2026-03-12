@@ -132,15 +132,18 @@ async function main() {
   writeFileSync("public/sitemap-static.xml", wrapUrlset(staticEntries));
   console.log(`sitemap-static.xml: 1 URL`);
 
-  // 2. sitemap-categories.xml
-  const catEntries = CATEGORIES.map((cat) => `  <url>
-    <loc>${SITE}/category/${cat}</loc>
+  // 2. sitemap-categories.xml — only include categories that have skills
+  const catsWithSkills = CATEGORIES.filter((cat) =>
+    allSkills.some((s) => s.category === cat)
+  );
+  const catEntries = catsWithSkills.map((cat) => `  <url>
+    <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <lastmod>${today}</lastmod>
   </url>`);
   writeFileSync("public/sitemap-categories.xml", wrapUrlset(catEntries));
-  console.log(`sitemap-categories.xml: ${CATEGORIES.length} URLs`);
+  console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (${CATEGORIES.length - catsWithSkills.length} empty categories excluded)`);
 
   // 3. sitemap-top.xml (stars >= 100)
   const topEntries = buildUrlEntries(topSkills);
@@ -169,7 +172,7 @@ async function main() {
   writeFileSync("public/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + CATEGORIES.length + indexedSkills.length;
+  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length;
   console.log(`Total indexed URLs: ${totalUrls} (excluded ${noindexCount} low-quality pages)`);
 }
 
