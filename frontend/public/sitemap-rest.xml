@@ -25,28 +25,16 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/crawlbase/crawlbase-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-11-25</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/machinelearningZH/simply-simplify-language</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-12-26</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Bobsilvio/ha-claude</loc>
+    <loc>https://agentskillshub.top/skill/crawlbase/crawlbase-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/dazeb/markdown-downloader</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-07-18</lastmod>
+    <lastmod>2025-11-25</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/atlas-bear/osint-ai-guide</loc>
@@ -58,7 +46,13 @@
     <loc>https://agentskillshub.top/skill/thienanblog/awesome-ai-agent-skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/dazeb/markdown-downloader</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-07-18</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/spences10/svelte-skills-kit</loc>
@@ -103,10 +97,22 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/didilili/ai-agents-from-zero</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/plexyai/plura</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-19</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/HaD0Yun/Gopeak-godot-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/dkondo/agent-tackle-box</loc>
@@ -128,12 +134,6 @@
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/GongRzhe/APIWeaver</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-06-18</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/sangddn/prompt_builder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-06-18</lastmod>
@@ -169,16 +169,16 @@
     <lastmod>2024-05-07</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/sangddn/prompt_builder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-06-18</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/transilienceai/communitytools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-14</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/LongLiveY96/chatcube</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-06</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/moshehbenavraham/Ultimate-Agent-Directory</loc>
@@ -190,7 +190,7 @@
     <loc>https://agentskillshub.top/skill/Bria-AI/bria-skill</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/EXboys/skilllite</loc>
@@ -211,12 +211,6 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/HaD0Yun/Gopeak-godot-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/r-huijts/ns-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -232,13 +226,19 @@
     <loc>https://agentskillshub.top/skill/Lekssays/codebadger</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/dliedke/ClaudeCodeExtension</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/nataliapc/mcp-openmsx</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/shiquda/roadmap-skill</loc>
@@ -253,6 +253,12 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/mikeoller82/VideoGraphAI</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/hoornet/home-mind</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -263,12 +269,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/mikeoller82/VideoGraphAI</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/yfedoseev/fossil-mcp</loc>
@@ -295,10 +295,10 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/nataliapc/mcp-openmsx</loc>
+    <loc>https://agentskillshub.top/skill/tlehman/litprog-skill</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/proflead/codex-skills-library</loc>
@@ -307,10 +307,40 @@
     <lastmod>2026-01-21</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/lgbarn/shipyard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/dealfluence/adeu</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/MagicCube/agentara</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/itxaiohanglover/mcp-codestyle-server</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/lulu-sk/CodexFlow</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/elias-ba/ask</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-28</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/vstorm-co/pydantic-ai-backend</loc>
@@ -319,10 +349,10 @@
     <lastmod>2026-02-27</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/elias-ba/ask</loc>
+    <loc>https://agentskillshub.top/skill/quolo-ai/quolo</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2024-11-23</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/The1Studio/theone-training-skills</loc>
@@ -337,22 +367,10 @@
     <lastmod>2025-05-24</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/lulu-sk/CodexFlow</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/Mburdo/knowledge_and_vibes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-12-28</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/VjayC/SRT-Subtitle-Translator-Validator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/loglux/SpeakItAI</loc>
@@ -361,16 +379,10 @@
     <lastmod>2025-06-14</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/quolo-ai/quolo</loc>
+    <loc>https://agentskillshub.top/skill/VjayC/SRT-Subtitle-Translator-Validator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2024-11-23</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/agent-ecosystem/skill-validator</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Eversmile12/create-8004-agent</loc>
@@ -379,19 +391,19 @@
     <lastmod>2026-03-04</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/didilili/ai-agents-from-zero</loc>
+    <loc>https://agentskillshub.top/skill/Jeffrey0117/ClaudeBot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/huhx0015/HXAudioPlayer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/itxaiohanglover/mcp-codestyle-server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/huhx0015/HXAudioPlayer</loc>
+    <loc>https://agentskillshub.top/skill/AsiaOstrich/universal-dev-standards</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -409,12 +421,6 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/digitranslab/allama</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/s-nagaev/chibi</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -425,6 +431,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-04-20</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/WillEhrendreich/SageFs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/digitranslab/allama</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/tusgino/llm-code-reviewer</loc>
@@ -445,13 +463,19 @@
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AsiaOstrich/universal-dev-standards</loc>
+    <loc>https://agentskillshub.top/skill/patrickfreyer/apple-mail-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/patrickfreyer/apple-mail-mcp</loc>
+    <loc>https://agentskillshub.top/skill/destinyfrancis/openclaw-knowledge-distiller</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/diegomarino/claude-toolshed</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -469,12 +493,6 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/destinyfrancis/openclaw-knowledge-distiller</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/hoangsonww/Agentic-AI-Pipeline</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -485,6 +503,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/UsamaK98/python-notebook-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-06-24</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/applied-artificial-intelligence/claude-code-toolkit</loc>
@@ -505,12 +529,6 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/UsamaK98/python-notebook-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-06-24</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/saurabhsharma2u/search-console-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -520,7 +538,7 @@
     <loc>https://agentskillshub.top/skill/jellydn/my-ai-tools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/qrak/LLM_trader</loc>
@@ -535,10 +553,10 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/diegomarino/claude-toolshed</loc>
+    <loc>https://agentskillshub.top/skill/educlopez/codevator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/guyskk/claude-code-supervisor</loc>
@@ -565,22 +583,28 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/JustasMonkev/mcp-accessibility-scanner</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/pescheckit/python-gpt-po</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-03</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/zavocc/JakeyBot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-20</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/flashvenom/quickfire</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-07</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/zavocc/JakeyBot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-20</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/efforthye/fast-filesystem-mcp</loc>
@@ -593,12 +617,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/WillEhrendreich/SageFs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/sodiumsun/snackcache</loc>
@@ -643,7 +661,7 @@
     <lastmod>2025-08-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/haiphucnguyen/askimo</loc>
+    <loc>https://agentskillshub.top/skill/Cedriccmh/claude-code-skill-scrapling</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -653,6 +671,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-01</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/haiphucnguyen/askimo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/yunshiuan/llm-agent-opinion-dynamics</loc>
@@ -667,13 +691,31 @@
     <lastmod>2026-03-02</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/JustasMonkev/mcp-accessibility-scanner</loc>
+    <loc>https://agentskillshub.top/skill/AIObjectives/tttc-light-js</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/hlhr202/Conductor-for-all</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/hlhr202/Conductor-for-all</loc>
+    <loc>https://agentskillshub.top/skill/steipete/songsee</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/manutej/luxor-claude-marketplace</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-01-25</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/havingautism/Qurio</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -689,12 +731,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2024-08-08</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/havingautism/Qurio</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-07</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/imbue-ai/latchkey</loc>
@@ -736,25 +772,7 @@
     <loc>https://agentskillshub.top/skill/gtanczyk/genaicode</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/AIObjectives/tttc-light-js</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/manutej/luxor-claude-marketplace</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-01-25</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/steipete/songsee</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/FalconEYE-ai/FalconEYE</loc>
@@ -769,6 +787,18 @@
     <lastmod>2026-02-28</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/facebookresearch/polymath</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-08-12</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/AbhaySingh71/AI-Lawyer-RAG-with-Deepseek</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/joylarkin/AI-Coding-Landscape</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -781,22 +811,16 @@
     <lastmod>2026-01-22</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/facebookresearch/polymath</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-08-12</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/Saganaki22/ContentMachine</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-02</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AlvaroHoux/gem-guard</loc>
+    <loc>https://agentskillshub.top/skill/coding-by-feng/ai-agent-session-center</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-12-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/krishnavalliappan/JobScout</loc>
@@ -823,28 +847,28 @@
     <lastmod>2025-12-17</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/rwliebs/Dossier</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/Arkya-AI/claude-additional-models-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-15</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/culpur/cstrike</loc>
+    <loc>https://agentskillshub.top/skill/AlvaroHoux/gem-guard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-12-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/rwliebs/Dossier</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AbhaySingh71/AI-Lawyer-RAG-with-Deepseek</loc>
+    <loc>https://agentskillshub.top/skill/culpur/cstrike</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-07-15</lastmod>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/yepcode/mcp-server-js</loc>
@@ -865,13 +889,13 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ukkit/memcord</loc>
+    <loc>https://agentskillshub.top/skill/nj19257/FastSkills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/nj19257/FastSkills</loc>
+    <loc>https://agentskillshub.top/skill/ukkit/memcord</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -881,6 +905,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-08</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/appleweed/UnrealMCPBridge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-14</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/The-Focus-AI/june-2025-coding-agent-report</loc>
@@ -899,12 +929,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/coding-by-feng/ai-agent-session-center</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/OutlineDriven/outline-driven-development</loc>
@@ -937,16 +961,22 @@
     <lastmod>2025-11-28</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/appleweed/UnrealMCPBridge</loc>
+    <loc>https://agentskillshub.top/skill/ThierryN/fire-flow</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-02-14</lastmod>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/hmake98/nestjs-starter</loc>
+    <loc>https://agentskillshub.top/skill/aklofas/kicad-happy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/mstrYoda/llm-agents-example</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-01-05</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/FranciscoMoretti/ai-registry</loc>
@@ -967,16 +997,22 @@
     <lastmod>2025-12-08</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/OptimiLabs/velocity</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-05</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/regression-io/coder-config</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-07</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/OptimiLabs/velocity</loc>
+    <loc>https://agentskillshub.top/skill/hmake98/nestjs-starter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/conorluddy/ContextPods</loc>
@@ -991,10 +1027,10 @@
     <lastmod>2026-03-06</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/mstrYoda/llm-agents-example</loc>
+    <loc>https://agentskillshub.top/skill/clawmax/openclaw-docs-i18n</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-01-05</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/treylom/prompt-engineering-skills</loc>
@@ -1009,10 +1045,10 @@
     <lastmod>2026-01-03</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ThierryN/fire-flow</loc>
+    <loc>https://agentskillshub.top/skill/second-state/fintool</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/heyixuan2/bambu-studio-ai</loc>
@@ -1031,6 +1067,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/majidmanzarpour/workspace-cli</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/AI-Tools-Inc/awesome-ai-tools</loc>
@@ -1105,7 +1147,7 @@
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/majidmanzarpour/workspace-cli</loc>
+    <loc>https://agentskillshub.top/skill/jefflester/claude-skills-supercharged</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -1117,10 +1159,28 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Alex8791-cyber/cognithor</loc>
+    <loc>https://agentskillshub.top/skill/dunialabs/peta-core</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/kevinswiber/mmdflux</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/roampal-ai/roampal-core</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Alex8791-cyber/cognithor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Cerno-AI/Cerno-Agentic-Local-Deep-Research</loc>
@@ -1159,40 +1219,40 @@
     <lastmod>2025-11-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/kevinswiber/mmdflux</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/Epistates/turbovault</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/aklofas/kicad-happy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/jefflester/claude-skills-supercharged</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/dunialabs/peta-core</loc>
+    <loc>https://agentskillshub.top/skill/Astoriel/dbt-doctor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/pan94u/forge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/JacobHuang91/prompt-refiner</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-12-23</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/runtm-ai/runtm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-24</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/miounet11/ccjk</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/adenaufal/anti-slop-writing</loc>
@@ -1205,18 +1265,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2023-08-21</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/JacobHuang91/prompt-refiner</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-12-23</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/miounet11/ccjk</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/kraklabs/mie</loc>
@@ -1273,7 +1321,7 @@
     <lastmod>2025-06-26</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/pan94u/forge</loc>
+    <loc>https://agentskillshub.top/skill/tomohiro-owada/devrag</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -1285,25 +1333,13 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/clawmax/openclaw-docs-i18n</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/attilaszasz/sdd-pilot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/CodeLogicIncEngineering/codelogic-mcp-server</loc>
+    <loc>https://agentskillshub.top/skill/Donchitos/Claude-Code-Game-Studios</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Donchitos/Claude-Code-Game-Studios</loc>
+    <loc>https://agentskillshub.top/skill/CodeLogicIncEngineering/codelogic-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
@@ -1315,10 +1351,22 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/bradAGI/awesome-cli-coding-agents</loc>
+    <loc>https://agentskillshub.top/skill/SuperMe-AI-Skills/niw-skill-suite</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-08</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/AR6420/Hail_Hydra</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/navado/ESP32MCPServer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/tokentopapp/tokentop</loc>
@@ -1339,18 +1387,6 @@
     <lastmod>2025-07-22</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/roampal-ai/roampal-core</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-06</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/eltociear/awesome-molt-ecosystem</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/dralkh/seerai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1367,6 +1403,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/mehdihadeli/AIAssist</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-07-14</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/bsmi021/mcp-gemini-server</loc>
@@ -1387,10 +1429,10 @@
     <lastmod>2024-01-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/mehdihadeli/AIAssist</loc>
+    <loc>https://agentskillshub.top/skill/bradAGI/awesome-cli-coding-agents</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-07-14</lastmod>
+    <lastmod>2026-03-09</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/VienLi/lark-tools-mcp</loc>
@@ -1399,34 +1441,40 @@
     <lastmod>2025-05-14</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/eltociear/awesome-molt-ecosystem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/johnzfitch/claude-warden</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/navado/ESP32MCPServer</loc>
+    <loc>https://agentskillshub.top/skill/attilaszasz/sdd-pilot</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/SuperMe-AI-Skills/niw-skill-suite</loc>
+    <loc>https://agentskillshub.top/skill/GitGuardian/ggmcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AR6420/Hail_Hydra</loc>
+    <loc>https://agentskillshub.top/skill/PatrickSys/codebase-context</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/htdt/godogen</loc>
+    <loc>https://agentskillshub.top/skill/IvanMurzak/Unity-AI-Animation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/hkust-nlp/AgentVista</loc>
@@ -1435,10 +1483,10 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/sh3ll3x3c/native-devtools-mcp</loc>
+    <loc>https://agentskillshub.top/skill/hnewcity/KiroaaS</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/latent-variable/epstein-ranker</loc>
@@ -1451,6 +1499,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/agents-squads/squads-cli</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/goern/forgejo-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/llm-use/llm-use</loc>
@@ -1477,10 +1537,10 @@
     <lastmod>2024-12-29</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/JimLiu/Lucene.Net.Analysis.MMSeg</loc>
+    <loc>https://agentskillshub.top/skill/Pradumnasaraf/gencli</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2013-05-27</lastmod>
+    <lastmod>2025-08-30</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/LinkedInLearning/building-custom-agents-with-the-openai-assistant-api--asi--3366139</loc>
@@ -1489,10 +1549,22 @@
     <lastmod>2023-12-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Pradumnasaraf/gencli</loc>
+    <loc>https://agentskillshub.top/skill/JimLiu/Lucene.Net.Analysis.MMSeg</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-08-30</lastmod>
+    <lastmod>2013-05-27</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/sh3ll3x3c/native-devtools-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/htdt/godogen</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/alexandephilia/clov-ai</loc>
@@ -1504,7 +1576,7 @@
     <loc>https://agentskillshub.top/skill/ThirdKeyAI/Symbiont</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-12</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Vighne7185/worm-gpt</loc>
@@ -1513,25 +1585,19 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/agents-squads/squads-cli</loc>
+    <loc>https://agentskillshub.top/skill/jfarcand/mirroir-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/joshuadavidthomas/llm-uv-tool</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/simonkurtz-MSFT/drawio-mcp-server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/IvanMurzak/Unity-AI-Animation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/obie/skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -1549,10 +1615,16 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ruska-ai/llm-server</loc>
+    <loc>https://agentskillshub.top/skill/ljagiello/ctf-skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-06-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/obie/skills</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/inceptyon-labs/TARS</loc>
@@ -1561,10 +1633,22 @@
     <lastmod>2026-01-25</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/henkisdabro/wookstar-claude-plugins</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-03</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/elvismdev/mem0-mcp-selfhosted</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-28</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/ruska-ai/llm-server</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-06-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/chuvadenovembro/script-to-use-codex-cli-on-remote-server-without-visual-environment</loc>
@@ -1589,12 +1673,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-01-15</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/henkisdabro/wookstar-claude-plugins</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-03</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/dabit3/skill-audit</loc>
@@ -1627,16 +1705,28 @@
     <lastmod>2026-02-24</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ljagiello/ctf-skills</loc>
+    <loc>https://agentskillshub.top/skill/netresearch/jira-skill</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/PatrickSys/codebase-context</loc>
+    <loc>https://agentskillshub.top/skill/sopaco/cowork-forge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/FalkorDB/FalkorDB-MCPServer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/TheaterWalker/Davinchi-Resolve-Studio-v20.3-Windows</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-28</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/sstklen/claude-api-cost-optimization</loc>
@@ -1649,12 +1739,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-02</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/TheaterWalker/Davinchi-Resolve-Studio-v20.3-Windows</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-28</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/mingcheng/aigitcommit</loc>
@@ -1673,6 +1757,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-07-13</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/madsnorgaard/drupal-agent-resources</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/RapierCraft/Perplexity-Comet-MCP</loc>
@@ -1696,37 +1786,25 @@
     <loc>https://agentskillshub.top/skill/himkt/config</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/jfarcand/mirroir-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/FalkorDB/FalkorDB-MCPServer</loc>
+    <loc>https://agentskillshub.top/skill/TenureAI/PhD-Zero</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/sopaco/cowork-forge</loc>
+    <loc>https://agentskillshub.top/skill/DataKitchen/dataops-observability-agents</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/agenticloops-ai/agentic-ai-engineering</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-07</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/mohammed97ashraf/LLM_Agri_Bot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-04-17</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/0xrdan/claude-router</loc>
@@ -1741,16 +1819,16 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/mohammed97ashraf/LLM_Agri_Bot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-04-17</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/CodeAlive-AI/agents-reflection-skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-01</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/redf0x1/camofox-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/UnityGameStudio/Gemini-Unity-Package</loc>
@@ -1759,34 +1837,16 @@
     <lastmod>2025-12-04</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/bearlike/Assistant</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-02</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/Dicklesworthstone/mcp_agent_mail_rust</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/xiaobei930/cc-best</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/goern/forgejo-mcp</loc>
+    <loc>https://agentskillshub.top/skill/redf0x1/camofox-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/brianirish/laravel-mcp-companion</loc>
+    <loc>https://agentskillshub.top/skill/bearlike/Assistant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-02</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/situ2001/unplugin-mcp</loc>
@@ -1795,10 +1855,28 @@
     <lastmod>2026-03-06</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/brianirish/laravel-mcp-companion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Dicklesworthstone/mcp_agent_mail_rust</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/myriade-ai/agentlys</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/xiaobei930/cc-best</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/purplefish-ai/factory-factory</loc>
@@ -1807,10 +1885,16 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/matlab/skills</loc>
+    <loc>https://agentskillshub.top/skill/Shaivpidadi/FreeRide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-01-28</lastmod>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/techwolf-ai/ai-first-toolkit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/coinmarketcap-official/skills-for-ai-agents-by-CoinMarketCap</loc>
@@ -1831,16 +1915,22 @@
     <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/alvesvaren/zod-to-openai-tool</loc>
+    <loc>https://agentskillshub.top/skill/matlab/skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2024-11-28</lastmod>
+    <lastmod>2026-01-28</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/hodgesmr/agent-fecfile</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-04</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/alvesvaren/zod-to-openai-tool</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2024-11-28</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/AgriciDaniel/claude-code-essentials-vs-code</loc>
@@ -1855,10 +1945,22 @@
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/yiwenlu66/PiloTY</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/AIS2Lab/MCPSecBench</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/AndrewKochulab/jarvis-dashboard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/geekjourneyx/awesome-ai-video-prompts</loc>
@@ -1867,34 +1969,28 @@
     <lastmod>2026-01-04</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/hnewcity/KiroaaS</loc>
+    <loc>https://agentskillshub.top/skill/49Agents/49Agents</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/techwolf-ai/ai-first-toolkit</loc>
+    <loc>https://agentskillshub.top/skill/gabrielserrao/pyrestoolbox-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/spences10/claude-statusline-powerline</loc>
+    <loc>https://agentskillshub.top/skill/cookjohn/cnki-skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Exadra37/ai-intent-driven-development</loc>
+    <loc>https://agentskillshub.top/skill/rocklambros/zerg</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-01-27</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/gvaibhav/TAM-MCP-Server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-06-22</lastmod>
+    <lastmod>2026-03-02</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/arnab2001/git-repo-parser</loc>
@@ -1903,10 +1999,22 @@
     <lastmod>2025-11-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Azure-Samples/openai-mcp-agent-dotnet</loc>
+    <loc>https://agentskillshub.top/skill/spences10/claude-statusline-powerline</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-10-29</lastmod>
+    <lastmod>2026-03-05</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/gvaibhav/TAM-MCP-Server</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-06-22</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Exadra37/ai-intent-driven-development</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-01-27</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/RobThePCGuy/Claude-Patent-Creator</loc>
@@ -1927,16 +2035,16 @@
     <lastmod>2025-03-21</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/Azure-Samples/openai-mcp-agent-dotnet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-10-29</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/arunpshankar/AgenticSearch</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-01-16</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/rocklambros/zerg</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-02</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/phughesmcr/deno-mcp-template</loc>
@@ -1963,19 +2071,13 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/The-AI-Alliance/semiont</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/doobidoo/MCP-Context-Provider</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/TenureAI/PhD-Zero</loc>
+    <loc>https://agentskillshub.top/skill/The-AI-Alliance/semiont</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -1985,18 +2087,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-12-24</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/YosefHayim/ebay-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/antiv/mate</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/redhat-community-ai-tools/UnifAI</loc>
@@ -2011,6 +2101,30 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/YosefHayim/ebay-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/antiv/mate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/bonigarcia/context-engineering</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/steipete/cli</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-27</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/codescene-oss/codescene-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2023,22 +2137,16 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/bonigarcia/context-engineering</loc>
+    <loc>https://agentskillshub.top/skill/cosmix/loom</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/steipete/cli</loc>
+    <loc>https://agentskillshub.top/skill/AnkleBreaker-Studio/unity-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-02-27</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/cookjohn/cnki-skills</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/AlfonsSkills/SkillSync</loc>
@@ -2047,22 +2155,28 @@
     <lastmod>2026-01-23</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/PV-Bhat/gemsuite-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-03-17</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/eliranwong/agentmake</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-07</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/borghei/Claude-Skills</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/Joncik91/ucai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-01</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/PV-Bhat/gemsuite-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-03-17</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/zebbern/claude-code-mcp</loc>
@@ -2077,10 +2191,10 @@
     <lastmod>2026-01-27</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/borghei/Claude-Skills</loc>
+    <loc>https://agentskillshub.top/skill/803/skills-supply</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-01-17</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/ben-vargas/ai-sdk-provider-codex-cli</loc>
@@ -2093,6 +2207,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/razbakov/skills-manager</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/YouMind-OpenLab/awesome-seedream-4.5</loc>
@@ -2113,10 +2233,10 @@
     <lastmod>2025-11-18</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/803/skills-supply</loc>
+    <loc>https://agentskillshub.top/skill/agenticnotetaking/eidos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-03-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/smixs/skill-conductor</loc>
@@ -2155,16 +2275,22 @@
     <lastmod>2025-09-04</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/agenticnotetaking/eidos</loc>
+    <loc>https://agentskillshub.top/skill/pillarhq/pillar</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/aayoawoyemi/Ori-Mnemos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/kahliburke/Kaimon.jl</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/imprvhub/mcp-claude-spotify</loc>
@@ -2179,7 +2305,13 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/barkain/claude-code-workflow-orchestration</loc>
+    <loc>https://agentskillshub.top/skill/stolot0mt0m/claude-chromium-native-messaging</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/yotsuda/PowerShell.MCP</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2195,6 +2327,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2024-08-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/kennethleungty/Wikipedia-Scraping-with-LLM-Agents</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2024-01-03</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/skyffel/airbyte-connector-generator-poc</loc>
@@ -2227,16 +2365,10 @@
     <lastmod>2026-02-22</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/gabrielserrao/pyrestoolbox-mcp</loc>
+    <loc>https://agentskillshub.top/skill/optave/codegraph</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/razbakov/skills-manager</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-05</lastmod>
+    <lastmod>2026-03-12</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/3spky5u-oss/HandsOn</loc>
@@ -2245,22 +2377,10 @@
     <lastmod>2026-03-07</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/optave/codegraph</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/calvingit/ai-tools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/kennethleungty/Wikipedia-Scraping-with-LLM-Agents</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2024-01-03</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/rafeekpro/ClaudeAutoPM</loc>
@@ -2269,19 +2389,13 @@
     <lastmod>2026-03-05</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/pillarhq/pillar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/TaterTotterson/Tater</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/SkeneTechnologies/skene</loc>
+    <loc>https://agentskillshub.top/skill/barkain/claude-code-workflow-orchestration</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2299,12 +2413,6 @@
     <lastmod>2025-12-02</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/stolot0mt0m/claude-chromium-native-messaging</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/i365dev/llm_agent</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2317,16 +2425,16 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AmadeusITGroup/prompt-registry</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/yotsuda/PowerShell.MCP</loc>
+    <loc>https://agentskillshub.top/skill/SkeneTechnologies/skene</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/AmadeusITGroup/prompt-registry</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/bug-ops/mcpls</loc>
@@ -2336,6 +2444,12 @@
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/IvanMurzak/Unity-AI-ProBuilder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/wyre-technology/autotask-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2359,12 +2473,6 @@
     <lastmod>2026-02-02</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/icebaker/nano-bots-spec</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2024-06-23</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/CommandCodeAI/agent-skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2375,6 +2483,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/AnkleBreaker-Studio/unity-mcp-plugin</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/icebaker/nano-bots-spec</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2024-06-23</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/rhyang2021/ARIA</loc>
@@ -2389,10 +2509,16 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/Supervertaler/Supervertaler-Workbench</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/elophanto/EloPhanto</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/michaelbeijer/Supervertaler</loc>
@@ -2401,19 +2527,25 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/wyre-technology/autotask-mcp</loc>
+    <loc>https://agentskillshub.top/skill/ory/lumen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/Supervertaler/Supervertaler-Workbench</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/myysophia/cli-agent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/microsoft/skills-for-copilot-studio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/workstream-labs/workstreams</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -2437,12 +2569,6 @@
     <lastmod>2026-02-26</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/PKU-AICare/ColaCare</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-10-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/mrvladd-d/memobank</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2453,6 +2579,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-10-29</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/PKU-AICare/ColaCare</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-10-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/UseAI-pro/openclaw-skills-security</loc>
@@ -2473,12 +2605,6 @@
     <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/SamurAIGPT/awesome-nano-banana</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-09-08</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/gabrielmaialva33/winx-code-agent</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2497,16 +2623,28 @@
     <lastmod>2026-02-24</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/SamurAIGPT/awesome-nano-banana</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/dalisecurity/Fray</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/agynio/platform</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/JimmyLv/bibigpt-skill</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/AutomatosAI/automatos-ai</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Saki-tw/ChatGemini_SakiTool</loc>
@@ -2515,10 +2653,16 @@
     <lastmod>2026-02-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Genesis1231/EVA</loc>
+    <loc>https://agentskillshub.top/skill/infranodus/skills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Genesis1231/EVA</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/zaynkorai/mailflow</loc>
@@ -2527,13 +2671,13 @@
     <lastmod>2025-07-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/CalvinSturm/LocalAgent</loc>
+    <loc>https://agentskillshub.top/skill/AutomatosAI/automatos-ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/workstream-labs/workstreams</loc>
+    <loc>https://agentskillshub.top/skill/CalvinSturm/LocalAgent</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -2548,10 +2692,16 @@
     <loc>https://agentskillshub.top/skill/Libertai/libertai-agents</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/ryaker/zora</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/promptfoo/evil-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -2563,16 +2713,46 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/infranodus/skills</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/johnxie/awesome-code-docs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Stage-11-Agentics/lattice</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/paulhkang94/markview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/DoSomeForFun/kuafu</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/DarkNoah/aime-chat</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/microsoft/Agent365-devTools</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-12</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/tirth8205/code-review-graph</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/guillehr2/Excel-MCP-Server-Master</loc>
@@ -2593,10 +2773,28 @@
     <lastmod>2025-08-15</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/chongdashu/threejs-forest-census</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-12-31</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/The-Swarm-Corporation/AdvancedResearch</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-10-09</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/Dicklesworthstone/chat_shared_conversation_to_file</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-03</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/WaterplanAI/agentic-config</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-06</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/genoshide/mention-network-bot</loc>
@@ -2609,30 +2807,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/chongdashu/threejs-forest-census</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-12-31</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/WaterplanAI/agentic-config</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-06</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/The-Swarm-Corporation/AdvancedResearch</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-10-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/AnkleBreaker-Studio/unity-mcp-plugin</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/aimasteracc/tree-sitter-analyzer</loc>
@@ -2674,19 +2848,7 @@
     <loc>https://agentskillshub.top/skill/delexw/claude-code-misc</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/doITmagic/rag-code-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/alexk-dev/golemcore-bot</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-12</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/lk-aa/LLM-Agent-HandsOn</loc>
@@ -2707,16 +2869,10 @@
     <lastmod>2025-08-04</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/yaalalabs/agent-kernel</loc>
+    <loc>https://agentskillshub.top/skill/doITmagic/rag-code-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/Filippo-Venturini/ctxvault</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/PolicyEngine/policyengine-claude</loc>
@@ -2725,10 +2881,10 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/khanhbkqt/spawn-agent</loc>
+    <loc>https://agentskillshub.top/skill/alexk-dev/golemcore-bot</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-12</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/dhyansraj/mcp-mesh</loc>
@@ -2737,16 +2893,10 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/microsoft/Agent365-devTools</loc>
+    <loc>https://agentskillshub.top/skill/yaalalabs/agent-kernel</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/DarkNoah/aime-chat</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/AndyShaman/claude-statusline</loc>
@@ -2755,28 +2905,58 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/tirth8205/code-review-graph</loc>
+    <loc>https://agentskillshub.top/skill/Filippo-Venturini/ctxvault</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/DoSomeForFun/kuafu</loc>
+    <loc>https://agentskillshub.top/skill/simion/reviewd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/khanhbkqt/spawn-agent</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/TheQmaks/areclaw</loc>
+    <loc>https://agentskillshub.top/skill/CloudLLM-ai/cloudllm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/ghchen99/mcp-musescore</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/cabinlab/claude-code-sdk-docker</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/redis-developer/adk-redis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/agentarea/agentarea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/zero8dotdev/smriti</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package</loc>
@@ -2815,6 +2995,18 @@
     <lastmod>2026-02-23</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/yisan/SheerID-Verification-Tool-Platinum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-04</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/diegorafs/Chrome-DevTools-MCP</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-12-21</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/xPOURY4/Gemini-Page-Insights</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2827,37 +3019,13 @@
     <lastmod>2026-02-22</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/diegorafs/Chrome-DevTools-MCP</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-12-21</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/agynio/platform</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/yisan/SheerID-Verification-Tool-Platinum</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-04</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/NihadMemmedli/quorvex_ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-01</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/RosyGameStudio/forge-gpu</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/zw008/VMware-AIops</loc>
+    <loc>https://agentskillshub.top/skill/ntorga/agent-starter-kit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2875,13 +3043,25 @@
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/shrijayan/itwillsync</loc>
+    <loc>https://agentskillshub.top/skill/zw008/VMware-AIops</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/amalik/convoke-agents</loc>
+    <loc>https://agentskillshub.top/skill/man0l/ai-directories</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/RosyGameStudio/forge-gpu</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/shrijayan/itwillsync</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2905,6 +3085,18 @@
     <lastmod>2026-03-08</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/TheQmaks/areclaw</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/amalik/convoke-agents</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/BlockRunAI/blockrun-agent-wallet</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2923,34 +3115,16 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/zero8dotdev/smriti</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/cabinlab/claude-code-sdk-docker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/redis-developer/adk-redis</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/agentarea/agentarea</loc>
+    <loc>https://agentskillshub.top/skill/CommonHuman-Lab/hexstrike-ai-community-edition</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ntorga/agent-starter-kit</loc>
+    <loc>https://agentskillshub.top/skill/howardpen9/kimi-code-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/HeiCg/svelte-grab</loc>
@@ -2959,13 +3133,25 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ckelsoe/claude-skill-prompt-architect</loc>
+    <loc>https://agentskillshub.top/skill/streamnative/streamnative-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AnkleBreaker-Studio/unity-mcp-server</loc>
+    <loc>https://agentskillshub.top/skill/ywatanabe1989/scitex-python</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/cortexaiofficial/Autonomous-AI-Trading-Agent-MCP-Flash-Arb-Engine</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Daghis/teamcity-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -2977,22 +3163,10 @@
     <lastmod>2026-02-27</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/kcosr/assistant</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/kbhujbal/Multi-Agent-AI-Travel-Advisor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-11-15</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/vignesh07/aqua</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-12-13</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/liqiongyu/lenny_skills_plus</loc>
@@ -3019,10 +3193,16 @@
     <lastmod>2024-05-30</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/pypy66/multimodel-chat</loc>
+    <loc>https://agentskillshub.top/skill/kcosr/assistant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-01-03</lastmod>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/vignesh07/aqua</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-12-13</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Maksof-waqarahmed/Web-Development-01-HTML-CSS-JS</loc>
@@ -3055,16 +3235,22 @@
     <lastmod>2026-01-24</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/SShadowS/bc-webclient-mcp-server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-11-26</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/wjessup/github-mcp-server-review-tools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/pypy66/multimodel-chat</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-01-03</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/ckelsoe/claude-skill-prompt-architect</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/antl3x/ToolRAG</loc>
@@ -3073,10 +3259,16 @@
     <lastmod>2025-03-29</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ravitemer/mcp-registry</loc>
+    <loc>https://agentskillshub.top/skill/ondata/ckan-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/SShadowS/bc-webclient-mcp-server</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-11-26</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Summoner-Network/summoner-agents</loc>
@@ -3085,13 +3277,7 @@
     <lastmod>2026-02-19</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/comfortablynumb/claudito</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/streamnative/streamnative-mcp-server</loc>
+    <loc>https://agentskillshub.top/skill/ravitemer/mcp-registry</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -3106,10 +3292,10 @@
     <loc>https://agentskillshub.top/skill/tombelieber/claude-view</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/AndrewKochulab/jarvis-dashboard</loc>
+    <loc>https://agentskillshub.top/skill/comfortablynumb/claudito</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-08</lastmod>
@@ -3133,22 +3319,28 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Daghis/teamcity-mcp</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/leeguooooo/agent-cli-to-api</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/glauberlima/claude-code-statusline</loc>
+    <loc>https://agentskillshub.top/skill/Noah4ever/ai-chat-speed-booster</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/aws-solutions-library-samples/guidance-for-deploying-sap-abap-accelerator-for-amazon-q-developer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/Jinjos/vibe-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/dkships/pm-copilot</loc>
@@ -3157,31 +3349,13 @@
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/ory/lumen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/ywatanabe1989/scitex-python</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/Qiskit/mcp-servers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/daniel3303/AgentQL</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/cortexaiofficial/Autonomous-AI-Trading-Agent-MCP-Flash-Arb-Engine</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-10</lastmod>
@@ -3205,12 +3379,6 @@
     <lastmod>2025-04-14</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/najafiseo/OpenAI-tool</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2023-04-08</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/emreertunc/translateR</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -3227,6 +3395,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-26</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/najafiseo/OpenAI-tool</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2023-04-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/sammwyy/aish</loc>
@@ -3247,28 +3421,28 @@
     <lastmod>2025-12-20</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/goker/vibe-coding-101-for-software-engineers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-22</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/taazkareem/clickup-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/SaurabhSSB/SaurabhSSB</loc>
+    <loc>https://agentskillshub.top/skill/goker/vibe-coding-101-for-software-engineers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-02-22</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/xKevIsDev/nextjs-bolt</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2025-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/SaurabhSSB/SaurabhSSB</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-07</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/DmitryPogrebnoy/ruby-agent-skills</loc>
@@ -3295,16 +3469,28 @@
     <lastmod>2026-02-01</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/francescoalemanno/raijin-mono</loc>
+    <loc>https://agentskillshub.top/skill/chocks/locode</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/jameswebb68/vscreen</loc>
+    <loc>https://agentskillshub.top/skill/LNS2905/mcp-beads-village</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/glauberlima/claude-code-statusline</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/francescoalemanno/raijin-mono</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Eruditi/CE-MCP-Plugin</loc>
@@ -3319,16 +3505,16 @@
     <lastmod>2025-09-29</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/geekjourneyx/mind-skills</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-08</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/BellaBe/lean-os</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-03</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/geekjourneyx/mind-skills</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-02-08</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/David-Precoil/testing-business-ideas-with-claude</loc>
@@ -3337,7 +3523,13 @@
     <lastmod>2026-03-09</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/chocks/locode</loc>
+    <loc>https://agentskillshub.top/skill/jameswebb68/vscreen</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/vladkesler/initrunner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -3349,34 +3541,22 @@
     <lastmod>2026-02-13</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/bigsk1/claude-plus</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-09-13</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/DareDev256/fcpxml-mcp-server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/keysersoose/claude-agent-builder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-06</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/kodustech/awesome-agent-skills</loc>
+    <loc>https://agentskillshub.top/skill/paradime-io/dbt-llm-evals</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-01-27</lastmod>
+    <lastmod>2026-02-10</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/RBKunnela/ALMA-memory</loc>
+    <loc>https://agentskillshub.top/skill/bigsk1/claude-plus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2025-09-13</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Swarno-Coder/PersonalGPT</loc>
@@ -3385,16 +3565,22 @@
     <lastmod>2023-07-23</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/metaskills/llama-chat-history-using-zeps-memory-and-knowledge-graph</loc>
+    <loc>https://agentskillshub.top/skill/DareDev256/fcpxml-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2024-12-14</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/matteocervelli/llms</loc>
+    <loc>https://agentskillshub.top/skill/RBKunnela/ALMA-memory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2026-03-03</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/kodustech/awesome-agent-skills</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-01-27</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Siddhu7007/screen-time-api-agent-skill</loc>
@@ -3403,10 +3589,22 @@
     <lastmod>2026-02-14</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/metaskills/llama-chat-history-using-zeps-memory-and-knowledge-graph</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2024-12-14</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/UBOS-tech/AI-Chatbot-Starter-Kit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2024-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/matteocervelli/llms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-11-17</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/Arxchibobo/claude-Reconstruction</loc>
@@ -3421,22 +3619,10 @@
     <lastmod>2026-01-06</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/Hariharanpugazh/GenAI-Tools-Gemini-API</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2025-08-20</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/yfge/TalkReplay</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-02-03</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/izam-mohammed/GemInsights</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2024-03-01</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/ssdeanx/AgentStack</loc>
@@ -3463,10 +3649,34 @@
     <lastmod>2023-09-21</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/Hariharanpugazh/GenAI-Tools-Gemini-API</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/izam-mohammed/GemInsights</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2024-03-01</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/kdpa-llc/local-skills-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-02</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/abczsl520/nodejs-project-arch</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-08</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/abczsl520/bug-audit-skill</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-06</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/houarnu166/skillful-agent-system-builder</loc>
@@ -3517,31 +3727,25 @@
     <lastmod>2023-12-13</lastmod>
   </url>
   <url>
-    <loc>https://agentskillshub.top/skill/pstuart/Barista</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-08</lastmod>
-  </url>
-  <url>
     <loc>https://agentskillshub.top/skill/wsbs20/claude-code-aso-skill</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
   </url>
   <url>
+    <loc>https://agentskillshub.top/skill/pstuart/Barista</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-08</lastmod>
+  </url>
+  <url>
     <loc>https://agentskillshub.top/skill/dynamics365ninja/d365fo-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/teknovizier/tekla_mcp_server</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/ondata/ckan-mcp-server</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-11</lastmod>
@@ -3557,18 +3761,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/paradime-io/dbt-llm-evals</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-02-10</lastmod>
-  </url>
-  <url>
-    <loc>https://agentskillshub.top/skill/SnapdragonPartners/maestro</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2026-03-11</lastmod>
   </url>
   <url>
     <loc>https://agentskillshub.top/skill/nkosi-fang/CodexSwitcher</loc>
@@ -3599,5 +3791,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <lastmod>2026-03-09</lastmod>
+  </url>
+  <url>
+    <loc>https://agentskillshub.top/skill/SnapdragonPartners/maestro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-03-11</lastmod>
   </url>
 </urlset>

@@ -179,6 +179,20 @@ export function SkillWorkflows() {
                 </button>
               ))}
             </div>
+
+            {/* View All link */}
+            <div className="border-t border-gray-100 pt-3 mt-3">
+              <button
+                onClick={() => navigate(`/?tab=explore&category=${wf.id}`)}
+                className="w-full flex items-center justify-center gap-1.5 text-sm text-blue-500 hover:text-blue-700 font-medium transition-colors cursor-pointer group"
+              >
+                {t("workflows.viewAll").replace("{count}", wf.skill_count.toLocaleString())}
+                {" "}{lang === "zh" ? (wf.title_zh) : (wf.title_en)}
+                <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         ))}
       </div>

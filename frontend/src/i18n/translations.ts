@@ -142,6 +142,7 @@ export const translations = {
     // Workflows
     "workflows.title": "分类精选",
     "workflows.subtitle": "按类别浏览高评分技能，发现更多可能",
+    "workflows.viewAll": "查看全部 {count} 个",
 
     // Platforms
     "platforms.title": "平台推荐",
@@ -170,6 +171,12 @@ export const translations = {
     "newsletter.button": "订阅",
     "newsletter.success": "请查收确认邮件，点击链接完成验证即可订阅成功。",
     "newsletter.error": "订阅失败，请稍后重试",
+    "newsletter.benefits1": "每周热门 Skills 精选",
+    "newsletter.benefits2": "新项目抢先看",
+    "newsletter.benefits3": "开发者动态速递",
+    "newsletter.socialProof": "已有 {count}+ 开发者订阅",
+    "newsletter.successTitle": "订阅成功!",
+    "newsletter.checkEmail": "请查收确认邮件，点击链接完成验证即可",
 
     // Compare
     "compare.title": "对比",
@@ -206,6 +213,12 @@ export const translations = {
     "auth.confirmEmail": "请检查邮箱并点击确认链接",
     "auth.authFailed": "认证失败",
     "auth.favorites": "我的收藏",
+
+    // Hero
+    "hero.title": "发现 {count} Agent Skills",
+    "hero.subtitle": "为你的 AI 工作流找到最好的开源工具、MCP Server 和 AI Skills",
+    "hero.trending": "热门",
+    "hero.searchPlaceholder": "搜索 MCP 服务器、Claude 技能、Agent 工具...",
 
     // Charts
     "chart.categoryDist": "分类分布",
@@ -357,6 +370,7 @@ export const translations = {
     // Workflows
     "workflows.title": "Browse by Category",
     "workflows.subtitle": "Top-rated skills organized by category",
+    "workflows.viewAll": "View all {count}",
 
     // Platforms
     "platforms.title": "Discover More",
@@ -384,6 +398,12 @@ export const translations = {
     "newsletter.placeholder": "your@email.com",
     "newsletter.button": "Subscribe",
     "newsletter.success": "Please check your email and click the verification link to complete your subscription.",
+    "newsletter.benefits1": "Weekly trending skills curated",
+    "newsletter.benefits2": "New projects first look",
+    "newsletter.benefits3": "Developer highlights digest",
+    "newsletter.socialProof": "Join {count}+ developers",
+    "newsletter.successTitle": "Subscribed!",
+    "newsletter.checkEmail": "Check your email and click the verification link",
     "newsletter.error": "Subscription failed, please try again later",
 
     // Compare
@@ -427,6 +447,12 @@ export const translations = {
     "chart.languageDist": "Language Distribution",
     "chart.starTrend": "Star Trend Top 10",
     "chart.skills": "Skills",
+
+    // Hero
+    "hero.title": "Discover {count} Agent Skills",
+    "hero.subtitle": "Find the best open-source tools, MCP servers, and AI skills for your workflow",
+    "hero.trending": "Trending",
+    "hero.searchPlaceholder": "Search MCP servers, Claude skills, agent tools...",
 
     "footer.source": "Agent Skills Hub · Data sourced from GitHub",
     "footer.autoUpdated": "Auto-updated every 8 hours",

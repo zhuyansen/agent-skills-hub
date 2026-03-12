@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { fetchSkills } from "../api/client";
 import { CategoryFilter } from "../components/CategoryFilter";
 import { DashboardStats } from "../components/DashboardStats";
+import { HeroSection } from "../components/HeroSection";
 import { HallOfFame } from "../components/HallOfFame";
 import { RecentlyUpdated } from "../components/RecentlyUpdated";
 import { Pagination } from "../components/Pagination";
@@ -95,10 +96,13 @@ export function Home() {
         {/* Overview Tab */}
         {tab === "overview" && (
           <div className="animate-fade-in-up">
-            <DashboardStats
+            {/* Hero: headline + search + trending tags + key stats */}
+            <HeroSection
               stats={landingData?.stats ?? stats}
-              initialLanguages={landingData?.languages}
-              initialTrending={landingData?.trending}
+              onSearch={(query) => {
+                updateParams({ search: query });
+                setTab("explore");
+              }}
             />
             <div id="trending" className="scroll-mt-44">
               <TrendingSection
@@ -106,6 +110,21 @@ export function Home() {
                 onShowDetail={handleShowDetail}
                 initialHot={landingData?.trending}
                 initialRising={landingData?.rising}
+              />
+            </div>
+            <div id="categories" className="scroll-mt-44">
+              <SkillWorkflows />
+            </div>
+            <div id="top-rated" className="scroll-mt-44 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+              <TopRatedSection
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialData={landingData?.top_rated}
+              />
+              <HallOfFame
+                onSelect={handleOpenRepo}
+                onShowDetail={handleShowDetail}
+                initialData={landingData?.hall_of_fame}
               />
             </div>
             <div id="masters" className="scroll-mt-44">
@@ -121,21 +140,11 @@ export function Home() {
                 initialData={landingData?.recently_updated}
               />
             </div>
-            <div id="top-rated" className="scroll-mt-44 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-              <TopRatedSection
-                onSelect={handleOpenRepo}
-                onShowDetail={handleShowDetail}
-                initialData={landingData?.top_rated}
-              />
-              <HallOfFame
-                onSelect={handleOpenRepo}
-                onShowDetail={handleShowDetail}
-                initialData={landingData?.hall_of_fame}
-              />
-            </div>
-            <div id="categories" className="scroll-mt-44">
-              <SkillWorkflows />
-            </div>
+            <DashboardStats
+              stats={landingData?.stats ?? stats}
+              initialLanguages={landingData?.languages}
+              initialTrending={landingData?.trending}
+            />
             <div id="workflows" className="scroll-mt-44">
               <ScenarioWorkflows />
             </div>

@@ -102,3 +102,8 @@ body {
 .stagger-children > *:nth-child(19) { animation-delay: 720ms; }
 .stagger-children > *:nth-child(20) { animation-delay: 760ms; }
 .stagger-children > *:nth-child(n+21) { animation-delay: 800ms; }
+
+/* Hero section gradient background */
+.hero-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 50%, #eef2ff 100%);
+}

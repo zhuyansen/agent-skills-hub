@@ -103,7 +103,7 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
         <div className="bg-white border border-gray-200 rounded-xl p-5">
           <h3 className="font-semibold text-gray-900 mb-4">{t("stats.categoryDist")}</h3>
           <div className="space-y-3">
-            {stats.categories.map((cat) => {
+            {stats.categories.filter((cat) => cat.name !== "uncategorized").map((cat) => {
               const pct = (cat.count / stats.total_skills) * 100;
               const color = CAT_COLORS[cat.name] || "#94a3b8";
               return (

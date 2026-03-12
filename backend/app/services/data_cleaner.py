@@ -9,15 +9,103 @@ logger = logging.getLogger(__name__)
 class DataCleaner:
     """Normalizes raw GitHub API responses into Skill-ready dicts."""
 
+    # ── Primary keyword matching (checked first via substring in searchable) ──
     CATEGORY_KEYWORDS: Dict[str, List[str]] = {
-        "mcp-server": ["mcp", "model-context-protocol", "claude-mcp", "mcp-server"],
-        "codex-skill": ["codex", "openai-codex", "codex-skill", "codex skill"],
-        "agent-tool": ["agent-tool", "ai-agent", "langchain-tool", "crewai-tool", "agent-framework", "agent-skill", "agent skill"],
+        "mcp-server": [
+            "mcp", "model-context-protocol", "claude-mcp", "mcp-server",
+            "mcp-tool", "mcp-client", "mcp-plugin",
+        ],
+        "claude-skill": [
+            "claude-skill", "claude-tool", "claude skill",
+            "claude-code skill", "claude code skill",
+            "claude code tool", "claude code template",
+            "claude code hook", "claude code config",
+            "for claude code", "claude code usage",
+            "claude code best practice", "claude code monitor",
+            "claude code agent", "claude code cli",
+            "claude code workflow", "claude code custom",
+            "claude desktop",
+        ],
+        "codex-skill": [
+            "codex", "openai-codex", "codex-skill", "codex skill",
+            "openclaw skill", "openclaw plugin", "openclaw-skill",
+        ],
+        "agent-tool": [
+            "agent-tool", "ai-agent", "langchain-tool", "crewai-tool",
+            "agent-framework", "agent-skill", "agent skill",
+            "agent platform", "agent sdk", "agent runtime",
+            "agent harness", "multi-agent", "multi agent",
+            "agentic framework", "agent orchestrat",
+            "autonomous agent", "coding agent",
+            "agent infrastructure", "agentic coding",
+            "agent workflow", "agent builder", "ai agent",
+            "agent-native", "agentic ai",
+        ],
         "youmind-plugin": ["youmind"],
-        "claude-skill": ["claude-skill", "claude-tool", "claude skill", "claude-code skill", "claude code skill"],
-        "llm-plugin": ["llm-tool", "llm-plugin", "llm-extension"],
-        "ai-skill": ["ai-skill", "ai skill", "cursor-skill", "windsurf-skill", "antigravity skill", "antigravity-skill"],
+        "llm-plugin": [
+            "llm-tool", "llm-plugin", "llm-extension",
+            "llm framework", "llm library",
+        ],
+        "ai-skill": [
+            "ai-skill", "ai skill", "cursor-skill", "windsurf-skill",
+            "antigravity skill", "antigravity-skill",
+            "cursor rules", "cursor rule", "vibe-coding", "vibe coding",
+        ],
     }
+
+    # ── Topic-based classification (checked after primary keywords) ──
+    TOPIC_CATEGORY_MAP: Dict[str, str] = {
+        # Exact topic → category
+        "mcp": "mcp-server",
+        "model-context-protocol": "mcp-server",
+        "mcp-server": "mcp-server",
+        "mcp-servers": "mcp-server",
+        "claude-code-skill": "claude-skill",
+        "claude-skill": "claude-skill",
+        "claudecode": "claude-skill",
+        "claude-code": "claude-skill",  # broad: claude-code topic → claude-skill
+        "anthropic-claude": "claude-skill",
+        "claude-ai": "claude-skill",
+        "codex-skill": "codex-skill",
+        "openclaw-skill": "codex-skill",
+        "openclaw": "codex-skill",
+        "clawdbot": "codex-skill",
+        "agent-framework": "agent-tool",
+        "agentic-ai": "agent-tool",
+        "llm-agent": "agent-tool",
+        "llm-agents": "agent-tool",
+        "multi-agent": "agent-tool",
+        "autonomous-agent": "agent-tool",
+        "agent-tool": "agent-tool",
+        "agent-sdk": "agent-tool",
+        "agentic": "agent-tool",
+        "agent-workflow": "agent-tool",
+        "ai-agents": "agent-tool",
+        "multiagent": "agent-tool",
+        "agent-platform": "agent-tool",
+        "ai-tools": "agent-tool",
+        "cursor-skill": "ai-skill",
+        "windsurf-skill": "ai-skill",
+        "vibe-coding": "ai-skill",
+        "cursor-rules": "ai-skill",
+        "ai-coding": "ai-skill",
+        "llm-tool": "llm-plugin",
+        "llm-plugin": "llm-plugin",
+        "llm-framework": "llm-plugin",
+    }
+
+    # ── Broad description-based AI detection (last resort) ──
+    AI_KEYWORDS = [
+        "ai", "llm", "gpt", "openai", "anthropic", "claude",
+        "machine learning", "deep learning", "language model",
+        "chatgpt", "gemini", "deepseek", "ollama", "inference",
+        "embedding", "vector", "rag", "retrieval", "fine-tun",
+    ]
+    TOOL_KEYWORDS = [
+        "tool", "framework", "library", "sdk", "platform",
+        "toolkit", "system", "engine", "service", "application",
+        "pipeline", "workflow", "suite", "client",
+    ]
 
     def process(self, raw_repos: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Clean, deduplicate, and categorize a batch of raw repo data."""
@@ -82,16 +170,33 @@ class DataCleaner:
         return "large"
 
     def _classify(self, repo: Dict[str, Any]) -> str:
-        """Assign category based on keyword matching."""
-        searchable = " ".join([
-            repo.get("full_name", ""),
-            repo.get("description") or "",
-            " ".join(repo.get("topics") or []),
-        ]).lower()
+        """Assign category based on multi-pass keyword matching.
 
+        Pass 1: Primary keyword matching in combined searchable text.
+        Pass 2: Exact topic matching via TOPIC_CATEGORY_MAP.
+        Pass 3: Broad AI + tool detection from description.
+        """
+        description = (repo.get("description") or "").lower()
+        full_name = repo.get("full_name", "").lower()
+        topics = [t.lower() for t in (repo.get("topics") or [])]
+        searchable = f"{full_name} {description} {' '.join(topics)}"
+
+        # Pass 1: Primary keyword matching (fastest, most specific)
         for category, keywords in self.CATEGORY_KEYWORDS.items():
             if any(kw in searchable for kw in keywords):
                 return category
+
+        # Pass 2: Exact topic matching
+        for topic in topics:
+            if topic in self.TOPIC_CATEGORY_MAP:
+                return self.TOPIC_CATEGORY_MAP[topic]
+
+        # Pass 3: Broad AI + tool detection → agent-tool
+        has_ai = any(kw in description for kw in self.AI_KEYWORDS)
+        has_tool = any(kw in description for kw in self.TOOL_KEYWORDS)
+        if has_ai and has_tool:
+            return "agent-tool"
+
         return "uncategorized"
 
     def _infer_project_type(self, repo: Dict[str, Any]) -> str:
