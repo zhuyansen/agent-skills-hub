@@ -20,6 +20,17 @@ const LANG_COLORS: Record<string, string> = {
   Kotlin: "#A97BFF",
 };
 
+const CAT_COLORS: Record<string, string> = {
+  "mcp-server": "#6366f1",
+  "uncategorized": "#94a3b8",
+  "agent-tool": "#3b82f6",
+  "codex-skill": "#10b981",
+  "claude-skill": "#f59e0b",
+  "llm-plugin": "#8b5cf6",
+  "ai-skill": "#ec4899",
+  "youmind-plugin": "#14b8a6",
+};
+
 interface Props {
   stats: Stats | null;
   initialLanguages?: { language: string; count: number }[];
@@ -88,56 +99,68 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
 
       {/* Category Distribution + Language Bar */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Categories */}
+        {/* Categories — colorful horizontal bars */}
         <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="font-semibold text-gray-900 mb-3">{t("stats.categoryDist")}</h3>
-          <div className="space-y-2">
+          <h3 className="font-semibold text-gray-900 mb-4">{t("stats.categoryDist")}</h3>
+          <div className="space-y-3">
             {stats.categories.map((cat) => {
-              const pct = ((cat.count / stats.total_skills) * 100).toFixed(1);
+              const pct = (cat.count / stats.total_skills) * 100;
+              const color = CAT_COLORS[cat.name] || "#94a3b8";
               return (
-                <div key={cat.name} className="flex items-center gap-3">
-                  <span className="text-xs text-gray-600 w-28 truncate">{cat.name}</span>
-                  <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div key={cat.name}>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: color }} />
+                      <span className="text-sm text-gray-700 font-medium">{cat.name}</span>
+                    </div>
+                    <span className="text-sm text-gray-500 tabular-nums">{cat.count.toLocaleString()}<span className="text-gray-400 ml-1 text-xs">({pct.toFixed(1)}%)</span></span>
+                  </div>
+                  <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 rounded-full transition-all"
-                      style={{ width: `${pct}%` }}
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${pct}%`, backgroundColor: color }}
                     />
                   </div>
-                  <span className="text-xs text-gray-400 w-16 text-right">{cat.count} ({pct}%)</span>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Languages */}
+        {/* Languages — stacked bar + grid legend */}
         <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="font-semibold text-gray-900 mb-3">{t("stats.topLanguages")}</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">{t("stats.topLanguages")}</h3>
           {/* Stacked Bar */}
-          <div className="flex h-4 rounded-full overflow-hidden mb-4">
-            {langs.map((l) => (
+          <div className="flex h-5 rounded-lg overflow-hidden mb-4 shadow-inner bg-gray-50">
+            {langs.slice(0, 8).map((l) => (
               <div
                 key={l.language}
-                className="h-full transition-all"
+                className="h-full transition-all duration-500 hover:opacity-80 cursor-default relative group"
                 style={{
                   width: `${(l.count / totalLangs) * 100}%`,
                   backgroundColor: LANG_COLORS[l.language] || "#94a3b8",
                 }}
-                title={`${l.language}: ${l.count}`}
+                title={`${l.language}: ${l.count.toLocaleString()}`}
               />
             ))}
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-            {langs.map((l) => (
-              <div key={l.language} className="flex items-center gap-1.5 text-xs">
-                <span
-                  className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: LANG_COLORS[l.language] || "#94a3b8" }}
-                />
-                <span className="text-gray-600">{l.language}</span>
-                <span className="text-gray-400">{l.count}</span>
-              </div>
-            ))}
+          {/* Legend grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {langs.slice(0, 12).map((l) => {
+              const langPct = ((l.count / totalLangs) * 100).toFixed(1);
+              return (
+                <div key={l.language} className="flex items-center gap-2 py-1 px-2 rounded-md hover:bg-gray-50 transition-colors">
+                  <span
+                    className="w-3 h-3 rounded-sm shrink-0"
+                    style={{ backgroundColor: LANG_COLORS[l.language] || "#94a3b8" }}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <span className="text-xs font-medium text-gray-700 truncate block">{l.language}</span>
+                    <span className="text-[10px] text-gray-400">{l.count.toLocaleString()} ({langPct}%)</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

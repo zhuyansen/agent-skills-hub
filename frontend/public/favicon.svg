@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="url(#bg)"/>
+  <!-- Robot head -->
+  <rect x="8" y="12" width="16" height="12" rx="3" fill="white" opacity="0.95"/>
+  <!-- Eyes -->
+  <circle cx="13" cy="18" r="2" fill="#3b82f6"/>
+  <circle cx="19" cy="18" r="2" fill="#6366f1"/>
+  <!-- Eye shine -->
+  <circle cx="13.7" cy="17.3" r="0.6" fill="white"/>
+  <circle cx="19.7" cy="17.3" r="0.6" fill="white"/>
+  <!-- Antenna -->
+  <line x1="16" y1="12" x2="16" y2="7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="16" cy="6" r="2" fill="white" opacity="0.9"/>
+  <!-- Smile -->
+  <path d="M13 21 Q16 23 19 21" fill="none" stroke="#6366f1" stroke-width="1.2" stroke-linecap="round"/>
+</svg>
