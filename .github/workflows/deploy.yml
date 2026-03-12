@@ -82,27 +82,31 @@ jobs:
             exit 0
           fi
 
-          URL_JSON=$(echo "$URLS" | head -10000 | jq -R -s 'split("\n") | map(select(length > 0))')
-          URL_COUNT=$(echo "$URLS" | head -10000 | wc -l | tr -d ' ')
-          echo "Submitting $URL_COUNT URLs to IndexNow..."
+          URL_COUNT=$(echo "$URLS" | wc -l | tr -d ' ')
+          echo "Found $URL_COUNT URLs, submitting in batches of 2000..."
 
-          PAYLOAD="{\"host\":\"agentskillshub.top\",\"key\":\"${INDEXNOW_KEY}\",\"keyLocation\":\"https://agentskillshub.top/${INDEXNOW_KEY}.txt\",\"urlList\":${URL_JSON}}"
+          # Submit in batches of 2000 (IndexNow limit is 10000)
+          BATCH=0
+          echo "$URLS" | while mapfile -t -n 2000 CHUNK && [ ${#CHUNK[@]} -gt 0 ]; do
+            BATCH=$((BATCH+1))
+            BATCH_COUNT=${#CHUNK[@]}
+            echo "Batch $BATCH: $BATCH_COUNT URLs"
 
-          # Submit to Yandex (reliable)
-          YANDEX_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://yandex.com/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" -d "$PAYLOAD")
-          echo "Yandex: HTTP $YANDEX_CODE"
+            # Build JSON payload via file to avoid argument list too long
+            URL_JSON=$(printf '%s\n' "${CHUNK[@]}" | jq -R -s 'split("\n") | map(select(length > 0))')
+            cat > /tmp/indexnow_payload.json <<EOJSON
+          {"host":"agentskillshub.top","key":"${INDEXNOW_KEY}","keyLocation":"https://agentskillshub.top/${INDEXNOW_KEY}.txt","urlList":${URL_JSON}}
+          EOJSON
 
-          # Submit to Bing (may need time for key verification)
-          BING_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://www.bing.com/indexnow" \
-            -H "Content-Type: application/json; charset=utf-8" -d "$PAYLOAD")
-          echo "Bing: HTTP $BING_CODE"
+            # Submit to Yandex
+            YANDEX_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://yandex.com/indexnow" \
+              -H "Content-Type: application/json; charset=utf-8" -d @/tmp/indexnow_payload.json)
+            echo "  Yandex: HTTP $YANDEX_CODE"
 
-          # Fallback: submit top 50 individually to Bing if bulk fails
-          if [ "$BING_CODE" != "200" ] && [ "$BING_CODE" != "202" ]; then
-            echo "Bing bulk failed, submitting top 50 individually..."
-            echo "$URLS" | head -50 | while read url; do
-              curl -s -o /dev/null -w "%{http_code} $url\n" \
-                "https://www.bing.com/indexnow?url=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$url', safe=''))")&key=${INDEXNOW_KEY}"
-            done
-          fi
+            # Submit to Bing
+            BING_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://www.bing.com/indexnow" \
+              -H "Content-Type: application/json; charset=utf-8" -d @/tmp/indexnow_payload.json)
+            echo "  Bing: HTTP $BING_CODE"
+          done
+
+          echo "IndexNow submission complete."
