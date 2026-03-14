@@ -305,9 +305,11 @@ def send_newsletter(
         logger.error("Resend API key not configured, cannot send newsletter")
         return {"sent": 0, "failed": 0, "total": len(recipients), "error": "Resend API key not configured"}
 
+    import time
+
     sent, failed = 0, 0
 
-    for recipient in recipients:
+    for i, recipient in enumerate(recipients):
         email = recipient["email"]
         unsub_token = recipient.get("unsubscribe_token", "")
         unsubscribe_url = f"{settings.site_url}/api/unsubscribe?token={unsub_token}" if unsub_token else ""
@@ -322,6 +324,10 @@ def send_newsletter(
             sent += 1
         else:
             failed += 1
+
+        # Resend free tier: max 2 requests/second
+        if i < len(recipients) - 1:
+            time.sleep(0.6)
 
     logger.info("Newsletter sent: %d/%d successful, %d failed", sent, len(recipients), failed)
     return {"sent": sent, "failed": failed, "total": len(recipients)}
