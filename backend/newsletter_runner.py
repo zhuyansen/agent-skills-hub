@@ -30,7 +30,7 @@ else:
 
 from app.config import settings  # noqa: E402
 from app.database import SessionLocal  # noqa: E402
-from app.models.skill import Skill, Subscriber  # noqa: E402
+from app.models.skill import Skill, Subscriber, WeeklyTrendingSnapshot  # noqa: E402
 from app.services.email_service import send_newsletter  # noqa: E402
 
 from sqlalchemy import desc, func  # noqa: E402
@@ -76,55 +76,61 @@ def main():
         ]
         logger.info("Found %d verified subscribers", len(recipients))
 
-        week_ago = datetime.now(timezone.utc) - timedelta(days=7)
+        # 2. Get latest week from weekly_trending_snapshots (Star Velocity History)
+        latest_week = (
+            db.query(WeeklyTrendingSnapshot.week_start, WeeklyTrendingSnapshot.week_end)
+            .order_by(desc(WeeklyTrendingSnapshot.week_start))
+            .first()
+        )
 
-        # 2. Get new skills this week (created on GitHub in last 7 days), ordered by stars
+        if not latest_week:
+            logger.error("No weekly_trending_snapshots data found. Exiting.")
+            return
+
+        week_start, week_end = latest_week
+        logger.info("Using week: %s – %s", week_start, week_end)
+
         trending_raw = (
-            db.query(Skill)
-            .filter(Skill.created_at >= week_ago)
-            .order_by(desc(Skill.stars))
-            .limit(10)
+            db.query(WeeklyTrendingSnapshot)
+            .filter(WeeklyTrendingSnapshot.week_start == week_start)
+            .order_by(desc(WeeklyTrendingSnapshot.star_velocity))
+            .limit(20)
             .all()
         )
-        logger.info("Got new-this-week skills: %d", len(trending_raw))
-
-        # If no new skills this week, fall back to top by stars
-        if not trending_raw:
-            trending_raw = (
-                db.query(Skill)
-                .filter(Skill.stars > 100)
-                .order_by(desc(Skill.stars))
-                .limit(10)
-                .all()
-            )
-            logger.info("Fallback: using top stars (no new skills this week)")
+        logger.info("Got %d trending skills from Star Velocity History", len(trending_raw))
 
         trending_data = [
             {
+                "rank": s.rank,
                 "repo_name": s.repo_name,
+                "repo_full_name": s.repo_full_name,
+                "author_name": s.author_name,
+                "author_avatar_url": s.author_avatar_url or "",
                 "description": s.description or "",
                 "stars": s.stars,
+                "star_velocity": round(s.star_velocity, 1) if s.star_velocity else 0,
                 "repo_url": s.repo_url,
-                "score": round(s.score, 1) if s.score else 0,
                 "category": s.category,
-                "star_momentum": s.star_momentum or 0,
             }
             for s in trending_raw
         ]
-        logger.info("Got %d trending skills for newsletter", len(trending_data))
 
         # 3. Stats
         total_skills = db.query(func.count(Skill.id)).scalar() or 0
-        new_skills = db.query(Skill).filter(Skill.created_at >= week_ago).count()
 
-        logger.info("Stats: total=%d, new_this_week=%d", total_skills, new_skills)
+        # Format week period string: "Mar 9 – Mar 15, 2026"
+        ws = week_start if isinstance(week_start, datetime) else datetime.fromisoformat(str(week_start))
+        we = week_end if isinstance(week_end, datetime) else datetime.fromisoformat(str(week_end))
+        week_period = f"{ws.strftime('%b %-d')} – {we.strftime('%b %-d, %Y')}"
+
+        logger.info("Stats: total=%d, week=%s, skills_in_ranking=%d", total_skills, week_period, len(trending_data))
 
         # 4. Send!
         result = send_newsletter(
             recipients=recipients,
             trending_skills=trending_data,
-            new_skills_count=new_skills,
             total_skills=total_skills,
+            week_period=week_period,
         )
 
         logger.info(

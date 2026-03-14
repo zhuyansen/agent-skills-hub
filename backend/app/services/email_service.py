@@ -92,6 +92,58 @@ def _trending_rows_html(trending_skills: list, max_items: int = 10) -> str:
     return rows
 
 
+def _velocity_rows_html(trending_skills: list, max_items: int = 20) -> str:
+    """Build Star Velocity History ranking rows for newsletter."""
+    rows = ""
+    for i, skill in enumerate(trending_skills[:max_items]):
+        name = skill.get("repo_name", "unknown")
+        author = skill.get("author_name", "")
+        desc = skill.get("description", "")[:100]
+        stars = skill.get("stars", 0)
+        velocity = skill.get("star_velocity", 0)
+        url = skill.get("repo_url", "#")
+        category = skill.get("category", "")
+
+        # Format velocity display
+        if velocity >= 1000:
+            vel_str = f"{velocity/1000:.1f}k/day"
+        else:
+            vel_str = f"{velocity:.0f}/day"
+
+        # Format stars display
+        if stars >= 1000:
+            stars_str = f"&#11088; {stars/1000:.1f}k"
+        else:
+            stars_str = f"&#11088; {stars:,}"
+
+        # Rank badge colors: top 3 orange, rest gray
+        rank_bg = "#ea580c" if i < 3 else "#94a3b8"
+
+        rows += f"""\
+    <tr>
+      <td style="padding:12px 14px;border-bottom:1px solid #f1f5f9;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:28px;vertical-align:top;padding-top:2px;">
+            <span style="display:inline-block;width:24px;height:24px;background:{rank_bg};color:#fff;border-radius:50%;text-align:center;line-height:24px;font-size:11px;font-weight:700;">{i+1}</span>
+          </td>
+          <td style="padding-left:10px;">
+            <a href="{url}" style="color:#1e293b;font-weight:600;text-decoration:none;font-size:14px;">{name}</a>
+            <span style="color:#94a3b8;font-size:12px;margin-left:4px;">{author}</span>
+            <br>
+            <span style="color:#ea580c;font-weight:600;font-size:12px;">{vel_str}</span>
+            <span style="color:#64748b;font-size:12px;margin-left:8px;">{desc}</span>
+          </td>
+          <td style="width:70px;text-align:right;vertical-align:top;white-space:nowrap;">
+            <span style="color:#f59e0b;font-size:12px;">{stars_str}</span>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>"""
+    return rows
+
+
 # ═══════════════════════════════════════════════════════
 # 1. Verification Email
 # ═══════════════════════════════════════════════════════
@@ -187,47 +239,43 @@ def _welcome_email_html(
 
 def _newsletter_email_html(
     trending_skills: list,
-    new_skills_count: int,
     total_skills: int,
+    week_period: str,
     unsubscribe_url: str = "",
 ) -> str:
-    """Generate a weekly newsletter HTML email."""
+    """Generate a weekly newsletter HTML email matching Star Velocity History format."""
     inner = _header_html(
-        "&#129302; Agent Skills Hub Weekly",
-        "Your weekly digest of new Agent Skills &amp; Tools",
+        "&#128293; Star Velocity History",
+        f"Top 20 fastest-growing skills — {week_period}",
     )
 
     # Stats bar
     inner += f"""\
-  <tr><td style="padding:20px 40px;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+  <tr><td style="padding:16px 40px;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
     <table width="100%" cellpadding="0" cellspacing="0">
     <tr>
-      <td style="text-align:center;width:33%;">
-        <span style="font-size:24px;font-weight:700;color:#4f46e5;">{total_skills:,}</span><br>
+      <td style="text-align:center;width:50%;">
+        <span style="font-size:22px;font-weight:700;color:#4f46e5;">{total_skills:,}</span><br>
         <span style="font-size:12px;color:#94a3b8;">Total Skills</span>
       </td>
-      <td style="text-align:center;width:33%;">
-        <span style="font-size:24px;font-weight:700;color:#10b981;">+{new_skills_count}</span><br>
-        <span style="font-size:12px;color:#94a3b8;">New This Week</span>
-      </td>
-      <td style="text-align:center;width:33%;">
-        <span style="font-size:24px;font-weight:700;color:#f59e0b;">&#127381;</span><br>
-        <span style="font-size:12px;color:#94a3b8;">Hot New Skills</span>
+      <td style="text-align:center;width:50%;">
+        <span style="font-size:22px;font-weight:700;color:#ea580c;">{len(trending_skills)}</span><br>
+        <span style="font-size:12px;color:#94a3b8;">In This Ranking</span>
       </td>
     </tr>
     </table>
   </td></tr>"""
 
-    # Trending
-    trending_rows = _trending_rows_html(trending_skills)
+    # Velocity ranking rows
+    velocity_rows = _velocity_rows_html(trending_skills)
     inner += f"""\
   <tr><td style="padding:24px 40px 8px;">
-    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#127381; New This Week</h2>
-    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">Hottest new skills &amp; tools launched this week</p>
+    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#128293; Weekly Top 20</h2>
+    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">{week_period} · Ranked by star velocity (stars/day)</p>
   </td></tr>
-  <tr><td style="padding:0 24px 24px;">
+  <tr><td style="padding:0 16px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
-    {trending_rows}
+    {velocity_rows}
     </table>
   </td></tr>"""
 
@@ -235,7 +283,7 @@ def _newsletter_email_html(
     inner += f"""\
   <tr><td style="padding:0 40px 32px;text-align:center;">
     <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
-    <tr><td style="background:#4f46e5;border-radius:8px;">
+    <tr><td style="background:#ea580c;border-radius:8px;">
       <a href="{settings.site_url}" style="display:inline-block;padding:14px 32px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;">
         Explore All Skills &#8594;
       </a>
@@ -293,8 +341,8 @@ def send_welcome_email(
 def send_newsletter(
     recipients: list[dict],
     trending_skills: list[dict],
-    new_skills_count: int,
     total_skills: int,
+    week_period: str = "",
 ) -> dict:
     """Send weekly newsletter to all verified subscribers.
 
@@ -314,10 +362,11 @@ def send_newsletter(
         unsub_token = recipient.get("unsubscribe_token", "")
         unsubscribe_url = f"{settings.site_url}/api/unsubscribe?token={unsub_token}" if unsub_token else ""
 
-        html = _newsletter_email_html(trending_skills, new_skills_count, total_skills, unsubscribe_url)
+        html = _newsletter_email_html(trending_skills, total_skills, week_period, unsubscribe_url)
+        subject = f"Star Velocity History — {week_period}" if week_period else "Agent Skills Weekly"
         ok = _send_via_resend(
             to=email,
-            subject=f"Agent Skills Weekly: {new_skills_count} new skills this week",
+            subject=subject,
             html=html,
         )
         if ok:
