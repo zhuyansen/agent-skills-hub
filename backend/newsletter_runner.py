@@ -39,6 +39,13 @@ from sqlalchemy import desc, func  # noqa: E402
 def main():
     logger.info("Starting newsletter runner...")
 
+    # Safety: only send on Monday (weekday 0) unless --force flag is passed
+    now_utc = datetime.now(timezone.utc)
+    force = "--force" in sys.argv
+    if now_utc.weekday() != 0 and not force:
+        logger.warning("Today is not Monday (weekday=%d). Use --force to override. Exiting.", now_utc.weekday())
+        return
+
     if not settings.resend_api_key:
         logger.error("RESEND_API_KEY not configured. Exiting.")
         sys.exit(1)
