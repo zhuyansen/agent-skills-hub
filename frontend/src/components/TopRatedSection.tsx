@@ -52,7 +52,7 @@ export function TopRatedSection({ onSelect: _onSelect, onShowDetail, initialData
               {i + 1}
             </span>
             <ScoreBadge score={skill.score} size="sm" showTier />
-            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-7 h-7 rounded-full border border-gray-100" />
+            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={28} height={28} className="w-7 h-7 rounded-full border border-gray-100" />
             <div className="flex-1 min-w-0">
               <span
                 onClick={(e) => {

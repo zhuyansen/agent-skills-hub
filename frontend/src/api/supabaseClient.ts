@@ -33,6 +33,17 @@ function ensureSupabase() {
   return supabase;
 }
 
+/** Simple retry wrapper for flaky network calls */
+async function withRetry<T>(fn: () => Promise<T>, retries = 1, delay = 1000): Promise<T> {
+  try {
+    return await fn();
+  } catch (err) {
+    if (retries <= 0) throw err;
+    await new Promise((r) => setTimeout(r, delay));
+    return withRetry(fn, retries - 1, delay);
+  }
+}
+
 export async function sbFetchSkills(params: SkillsQueryParams): Promise<PaginatedSkills> {
   const sb = ensureSupabase();
   let query = sb.from("skills").select(SKILL_COLUMNS, { count: "exact" });
@@ -73,21 +84,23 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
 }
 
 export async function sbFetchStats(): Promise<Stats> {
-  const sb = ensureSupabase();
-  const { data, error } = await sb.from("v_stats").select("*").single();
-  if (error) throw new Error(error.message);
+  return withRetry(async () => {
+    const sb = ensureSupabase();
+    const { data, error } = await sb.from("v_stats").select("*").single();
+    if (error) throw new Error(error.message);
 
-  // Also fetch categories
-  const { data: cats, error: catErr } = await sb.from("v_categories").select("*");
-  if (catErr) throw new Error(catErr.message);
+    // Also fetch categories
+    const { data: cats, error: catErr } = await sb.from("v_categories").select("*");
+    if (catErr) throw new Error(catErr.message);
 
-  return {
-    total_skills: data.total_skills,
-    avg_score: data.avg_score,
-    categories: (cats ?? []) as CategoryCount[],
-    last_sync_at: data.last_sync_at,
-    last_sync_status: data.last_sync_status,
-  };
+    return {
+      total_skills: data.total_skills,
+      avg_score: data.avg_score,
+      categories: (cats ?? []) as CategoryCount[],
+      last_sync_at: data.last_sync_at,
+      last_sync_status: data.last_sync_status,
+    };
+  });
 }
 
 export async function sbFetchCategories(): Promise<CategoryCount[]> {
@@ -268,27 +281,29 @@ export async function sbFetchLanguageStats(): Promise<{ language: string; count:
 // ═══ Landing page single-RPC optimization ═══
 
 export async function sbFetchLandingData(): Promise<LandingData> {
-  const sb = ensureSupabase();
-  const { data, error } = await sb.rpc("get_landing_data");
-  if (error) throw new Error(error.message);
+  return withRetry(async () => {
+    const sb = ensureSupabase();
+    const { data, error } = await sb.rpc("get_landing_data");
+    if (error) throw new Error(error.message);
 
-  const d = data as any;
-  return {
-    stats: {
-      total_skills: d.stats?.total_skills ?? 0,
-      avg_score: d.stats?.avg_score ?? 0,
-      categories: (d.categories ?? []) as CategoryCount[],
-      last_sync_at: d.stats?.last_sync_at ?? null,
-      last_sync_status: d.stats?.last_sync_status ?? null,
-    },
-    trending: (d.trending ?? []) as Skill[],
-    rising: (d.rising ?? []) as Skill[],
-    top_rated: (d.top_rated ?? []) as Skill[],
-    hall_of_fame: (d.hall_of_fame ?? []) as Skill[],
-    recently_updated: (d.recently_updated ?? []) as Skill[],
-    languages: (d.languages ?? []) as { language: string; count: number }[],
-    generated_at: new Date().toISOString(),
-  };
+    const d = data as any;
+    return {
+      stats: {
+        total_skills: d.stats?.total_skills ?? 0,
+        avg_score: d.stats?.avg_score ?? 0,
+        categories: (d.categories ?? []) as CategoryCount[],
+        last_sync_at: d.stats?.last_sync_at ?? null,
+        last_sync_status: d.stats?.last_sync_status ?? null,
+      },
+      trending: (d.trending ?? []) as Skill[],
+      rising: (d.rising ?? []) as Skill[],
+      top_rated: (d.top_rated ?? []) as Skill[],
+      hall_of_fame: (d.hall_of_fame ?? []) as Skill[],
+      recently_updated: (d.recently_updated ?? []) as Skill[],
+      languages: (d.languages ?? []) as { language: string; count: number }[],
+      generated_at: new Date().toISOString(),
+    };
+  });
 }
 
 // ═══ Weekly Trending History ═══

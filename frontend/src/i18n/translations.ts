@@ -7,6 +7,9 @@ export const translations = {
     "header.wechatScan": "微信扫码添加好友",
     "header.wechatTip": "扫一扫添加好友，交流 Agent Skills",
 
+    // Common
+    "common.showAll": "展开全部 {count} 个 →",
+
     // Tabs
     "tab.overview": "概览",
     "tab.explore": "浏览全部",
@@ -237,6 +240,8 @@ export const translations = {
     "header.wechat": "WeChat",
     "header.wechatScan": "Scan to add on WeChat",
     "header.wechatTip": "Scan to connect and discuss Agent Skills",
+
+    "common.showAll": "Show all {count} →",
 
     "tab.overview": "Overview",
     "tab.explore": "Explore All",

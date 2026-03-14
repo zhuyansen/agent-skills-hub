@@ -16,7 +16,7 @@ interface Props {
 export function ProjectTypeBadge({ type }: Props) {
   const cfg = TYPE_CONFIG[type] || TYPE_CONFIG["tool"];
   return (
-    <span className={`px-1.5 py-0.5 text-[10px] font-medium rounded border ${cfg.color}`}>
+    <span className={`px-1.5 py-0.5 text-[10px] font-medium rounded border whitespace-nowrap shrink-0 ${cfg.color}`}>
       {cfg.label}
     </span>
   );

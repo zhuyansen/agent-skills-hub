@@ -14,6 +14,7 @@ interface Props {
 export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData }: Props) {
   const { t } = useI18n();
   const [items, setItems] = useState<Skill[]>(initialData ?? []);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     if (initialData && initialData.length > 0) setItems(initialData);
@@ -34,16 +35,17 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
         <span className="text-sm text-gray-400 hidden sm:inline">{t("recentlyUpdated.subtitle")}</span>
       </div>
       <div className="bg-white border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-50">
-        {items.map((skill) => (
+        {items.map((skill, i) => (
           <div
             key={skill.id}
             onClick={() => onShowDetail?.(skill)}
-            className="flex items-center gap-3 px-4 py-3 hover:bg-green-50/40 transition-colors cursor-pointer group"
+            className={`flex items-center gap-3 px-4 py-3 hover:bg-green-50/40 transition-colors cursor-pointer group${i >= 4 && !expanded ? " hidden sm:flex" : ""}`}
           >
             {/* Avatar */}
             <img
               src={skill.author_avatar_url}
               alt={skill.author_name} loading="lazy"
+              width={36} height={36}
               className="w-9 h-9 rounded-full border border-gray-100"
             />
 
@@ -85,6 +87,14 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
           </div>
         ))}
       </div>
+      {items.length > 4 && !expanded && (
+        <button
+          onClick={() => setExpanded(true)}
+          className="sm:hidden w-full py-2.5 mt-2 text-xs text-blue-500 font-medium cursor-pointer"
+        >
+          {t("common.showAll").replace("{count}", String(items.length))}
+        </button>
+      )}
     </section>
   );
 }

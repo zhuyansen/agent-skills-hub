@@ -145,7 +145,7 @@ export function HeroSection({ stats, onSearch }: Props) {
                       onMouseEnter={() => setActiveIdx(i)}
                       className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${i === activeIdx ? "bg-blue-50" : "hover:bg-gray-50"}`}
                     >
-                      <img src={skill.author_avatar_url} alt="" className="w-8 h-8 rounded-full shrink-0" />
+                      <img src={skill.author_avatar_url} alt="" width={32} height={32} className="w-8 h-8 rounded-full shrink-0" />
                       <div className="flex-1 min-w-0 text-left">
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-semibold text-gray-900 truncate">{skill.repo_name}</span>

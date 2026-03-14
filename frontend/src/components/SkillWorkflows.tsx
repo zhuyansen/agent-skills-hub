@@ -46,26 +46,27 @@ const USE_SUPABASE = !!supabase && !API_BASE;
 
 async function fetchWorkflowsFromSupabase(): Promise<WorkflowData[]> {
   if (!supabase) return [];
+  const sb = supabase;
 
   const categories = Object.keys(WORKFLOW_META);
+
+  // Parallel: 6 requests instead of 12 sequential (skills + count in same query)
+  const results = await Promise.all(
+    categories.map(async (cat) => {
+      const { data: skills, count, error } = await sb
+        .from("skills")
+        .select("repo_name,repo_full_name,description,stars,score,quality_score,author_name", { count: "exact" })
+        .eq("category", cat)
+        .order("stars", { ascending: false })
+        .limit(4);
+      return { cat, skills, count, error };
+    })
+  );
+
   const workflows: WorkflowData[] = [];
-
-  for (const cat of categories) {
-    const meta = WORKFLOW_META[cat];
-    const { data: skills, error } = await supabase
-      .from("skills")
-      .select("repo_name,repo_full_name,description,stars,score,quality_score,author_name")
-      .eq("category", cat)
-      .order("stars", { ascending: false })
-      .limit(4);
-
+  for (const { cat, skills, count, error } of results) {
     if (error || !skills || skills.length < 2) continue;
-
-    const { count } = await supabase
-      .from("skills")
-      .select("id", { count: "exact", head: true })
-      .eq("category", cat);
-
+    const meta = WORKFLOW_META[cat];
     workflows.push({
       id: cat,
       icon: meta.icon,

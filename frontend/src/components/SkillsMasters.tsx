@@ -59,6 +59,8 @@ export function SkillsMasters() {
                   <img
                     src={m.avatar_url}
                     alt=""
+                    loading="lazy"
+                    width={56} height={56}
                     className="w-14 h-14 rounded-full border-2 border-indigo-200 shadow-sm"
                   />
                   <div className="flex-1 min-w-0">
@@ -177,6 +179,8 @@ export function SkillsMasters() {
                     <img
                       src={o.avatar_url}
                       alt=""
+                      loading="lazy"
+                      width={40} height={40}
                       className="w-10 h-10 rounded-full border border-gray-100"
                     />
                     <div className="flex-1 min-w-0">

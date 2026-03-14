@@ -24,6 +24,25 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const [nlStatus, setNlStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [nlMessage, setNlMessage] = useState("");
   const nlRef = useRef<HTMLDivElement>(null);
+  const subNavRef = useRef<HTMLDivElement>(null);
+  const [navScroll, setNavScroll] = useState({ left: false, right: false });
+
+  // Sub-nav scroll indicator
+  useEffect(() => {
+    const el = subNavRef.current;
+    if (!el) return;
+    const check = () => {
+      setNavScroll({
+        left: el.scrollLeft > 4,
+        right: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
+      });
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => { el.removeEventListener("scroll", check); ro.disconnect(); };
+  }, [tab]);
 
   // Close newsletter popup on Escape
   useEffect(() => {
@@ -262,31 +281,39 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             </div>
             {/* Section quick navigation (overview tab only) */}
             {tab === "overview" && (
-              <div className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide">
-                {[
-                  { id: "trending", label: t("nav.trending") },
-                  { id: "masters", label: t("nav.masters") },
-                  { id: "recent", label: t("nav.recent") },
-                  { id: "top-rated", label: t("nav.topRated") },
-                  { id: "categories", label: t("nav.categories") },
-                  { id: "workflows", label: t("nav.workflows") },
-                  { id: "newsletter", label: t("nav.newsletter") },
-                ].map((sec) => (
-                  <button
-                    key={sec.id}
-                    onClick={() => {
-                      const el = document.getElementById(sec.id);
-                      if (el) {
-                        el.scrollIntoView({ behavior: "smooth", block: "start" });
-                        el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
-                        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
-                      }
-                    }}
-                    className="px-2.5 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-                  >
-                    {sec.label}
-                  </button>
-                ))}
+              <div className="relative">
+                {navScroll.left && (
+                  <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                )}
+                <div ref={subNavRef} className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide">
+                  {[
+                    { id: "trending", label: t("nav.trending") },
+                    { id: "masters", label: t("nav.masters") },
+                    { id: "recent", label: t("nav.recent") },
+                    { id: "top-rated", label: t("nav.topRated") },
+                    { id: "categories", label: t("nav.categories") },
+                    { id: "workflows", label: t("nav.workflows") },
+                    { id: "newsletter", label: t("nav.newsletter") },
+                  ].map((sec) => (
+                    <button
+                      key={sec.id}
+                      onClick={() => {
+                        const el = document.getElementById(sec.id);
+                        if (el) {
+                          el.scrollIntoView({ behavior: "smooth", block: "start" });
+                          el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+                          setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+                        }
+                      }}
+                      className="px-2.5 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                    >
+                      {sec.label}
+                    </button>
+                  ))}
+                </div>
+                {navScroll.right && (
+                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+                )}
               </div>
             )}
           </div>

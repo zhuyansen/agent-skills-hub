@@ -14,6 +14,7 @@ interface Props {
 export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: Props) {
   const { t } = useI18n();
   const [items, setItems] = useState<Skill[]>(initialData ?? []);
+  const [expanded, setExpanded] = useState(false);
 
   // Sync prop → state when landing data arrives asynchronously
   useEffect(() => {
@@ -55,7 +56,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
                 <ScoreBadge score={skill.score} size="sm" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-5 h-5 rounded-full" />
+                <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={20} height={20} className="w-5 h-5 rounded-full" />
                 <span className="text-xs text-gray-500">{skill.author_name}</span>
               </div>
               <h3
@@ -80,7 +81,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
       </div>
 
       {/* 4-10 Compact List */}
-      <div className="bg-white border border-gray-200 rounded-xl divide-y divide-gray-100">
+      <div className={`bg-white border border-gray-200 rounded-xl divide-y divide-gray-100${!expanded ? " hidden sm:block" : ""}`}>
         {rest.map((skill, i) => (
           <div
             key={skill.id}
@@ -88,7 +89,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
             className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <span className="text-sm font-bold text-gray-400 w-6 text-center">{i + 4}</span>
-            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-7 h-7 rounded-full" />
+            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={28} height={28} className="w-7 h-7 rounded-full" />
             <div className="flex-1 min-w-0">
               <span
                 onClick={(e) => {
@@ -113,6 +114,14 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
           </div>
         ))}
       </div>
+      {rest.length > 0 && !expanded && (
+        <button
+          onClick={() => setExpanded(true)}
+          className="sm:hidden w-full py-2.5 mt-2 text-xs text-blue-500 font-medium cursor-pointer"
+        >
+          {t("common.showAll").replace("{count}", String(rest.length + 3))}
+        </button>
+      )}
     </section>
   );
 }

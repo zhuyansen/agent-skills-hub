@@ -26,7 +26,7 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
         <ScoreBadge score={skill.score} showTier />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 mb-0.5">
-            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" className="w-4 h-4 rounded-full" />
+            <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={16} height={16} className="w-4 h-4 rounded-full" />
             <span className="text-xs text-gray-400 truncate">{skill.author_name}</span>
             {skill.star_momentum >= 0.05 && (
               <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded bg-orange-50 text-orange-500 border border-orange-100 shrink-0">

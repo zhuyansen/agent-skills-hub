@@ -33,6 +33,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
   const [weekIdx, setWeekIdx] = useState(0);
   const [historyItems, setHistoryItems] = useState<WeeklyTrendingEntry[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
+  const [risingExpanded, setRisingExpanded] = useState(false);
 
   useEffect(() => {
     if (initialHot && initialHot.length > 0) setHot(initialHot);
@@ -182,7 +183,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
             <div
               key={skill.id}
               onClick={() => onShowDetail?.(skill)}
-              className="relative bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-orange-200 hover:-translate-y-0.5 transition-all cursor-pointer group"
+              className={`relative bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-orange-200 hover:-translate-y-0.5 transition-all cursor-pointer group${i >= 4 && !risingExpanded ? " hidden sm:block" : ""}`}
             >
               {/* Rank badge */}
               <div className={`absolute -top-2 -left-2 w-7 h-7 rounded-full text-white text-xs flex items-center justify-center font-bold shadow-md ${
@@ -196,6 +197,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
                 <img
                   src={skill.author_avatar_url}
                   alt={skill.author_name} loading="lazy"
+                  width={32} height={32}
                   className="w-8 h-8 rounded-full border border-gray-100"
                 />
                 <div className="min-w-0 flex-1">
@@ -230,6 +232,14 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
             </div>
           ))}
         </div>
+      )}
+      {tab === "rising" && items.length > 4 && !risingExpanded && (
+        <button
+          onClick={() => setRisingExpanded(true)}
+          className="sm:hidden w-full py-2.5 mt-2 text-xs text-blue-500 font-medium cursor-pointer"
+        >
+          {t("common.showAll").replace("{count}", String(items.length))}
+        </button>
       )}
 
       {/* Grid: history tab */}
@@ -269,6 +279,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
                 <img
                   src={entry.author_avatar_url}
                   alt={entry.author_name} loading="lazy"
+                  width={32} height={32}
                   className="w-8 h-8 rounded-full border border-gray-100"
                 />
                 <div className="min-w-0 flex-1">

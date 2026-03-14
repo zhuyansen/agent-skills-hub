@@ -111,6 +111,8 @@ export function SkillDetailPage() {
         <meta name="twitter:title" content={`${detail.repo_name} | Agent Skills Hub`} />
         <meta name="twitter:description" content={ogDescription} />
         <meta name="twitter:image" content={detail.author_avatar_url} />
+        {/* Canonical URL */}
+        <link rel="canonical" href={`https://agentskillshub.top/skill/${detail.repo_full_name}`} />
       </Helmet>
 
       {/* Shared Navigation Bar */}

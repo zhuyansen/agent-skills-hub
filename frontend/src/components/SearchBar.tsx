@@ -208,7 +208,7 @@ export function SearchBar({ value, onChange }: Props) {
                     i === activeIdx ? "bg-blue-50" : "hover:bg-gray-50"
                   }`}
                 >
-                  <img src={skill.author_avatar_url} alt="" className="w-7 h-7 rounded-full shrink-0" />
+                  <img src={skill.author_avatar_url} alt="" width={28} height={28} className="w-7 h-7 rounded-full shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium text-gray-900 truncate">
