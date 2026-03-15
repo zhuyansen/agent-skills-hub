@@ -29,6 +29,7 @@ import {
   sbFetchOrgBuilders,
   sbFetchTrendingWeeks,
   sbFetchTrendingHistory,
+  sbFetchNewThisWeek,
   sbSubmitSkill,
   sbSubscribe,
   sbVerifyEmail,
@@ -111,6 +112,12 @@ export async function fetchMostStarred(limit = 10): Promise<Skill[]> {
 export async function fetchRecentlyUpdated(limit = 10): Promise<Skill[]> {
   if (USE_SUPABASE) return sbFetchRecentlyUpdated(limit);
   return request<Skill[]>(`/api/recently-updated?limit=${limit}`);
+}
+
+export async function fetchNewThisWeek(limit = 10): Promise<Skill[]> {
+  if (USE_SUPABASE) return sbFetchNewThisWeek(limit);
+  // Fallback: use rising endpoint
+  return request<Skill[]>(`/api/rising?days=7&limit=${limit}`);
 }
 
 export async function fetchQuickSearch(query: string, limit = 8): Promise<Skill[]> {

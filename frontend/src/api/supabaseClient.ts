@@ -21,7 +21,7 @@ const SKILL_COLUMNS = [
   "stars", "forks", "open_issues", "total_issues", "total_commits",
   "language", "category", "topics", "license",
   "score", "star_momentum", "project_type",
-  "last_commit_at", "created_at", "last_synced",
+  "last_commit_at", "created_at", "last_synced", "first_seen",
   "quality_completeness", "quality_clarity", "quality_specificity", "quality_examples",
   "quality_agent_readiness", "quality_score",
   "size_category", "repo_size_kb", "readme_size", "readme_structure_score",
@@ -61,6 +61,28 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
       const pat = `%${trimmed}%`;
       query = query.or(`repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`);
     }
+  }
+
+  // Quality tier filter (S/A/B/C/D checkboxes)
+  if (params.quality_tiers) {
+    const tiers = params.quality_tiers.split(",");
+    const conditions: string[] = [];
+    for (const tier of tiers) {
+      switch (tier) {
+        case "S": conditions.push("quality_score.gte.80"); break;
+        case "A": conditions.push("and(quality_score.gte.65,quality_score.lt.80)"); break;
+        case "B": conditions.push("and(quality_score.gte.50,quality_score.lt.65)"); break;
+        case "C": conditions.push("and(quality_score.gte.35,quality_score.lt.50)"); break;
+        case "D": conditions.push("quality_score.lt.35"); break;
+      }
+    }
+    if (conditions.length > 0) {
+      query = query.or(conditions.join(","));
+    }
+  }
+  // Min stars filter
+  if (params.min_stars) {
+    query = query.gte("stars", params.min_stars);
   }
 
   const ascending = params.sort_order === "asc";
@@ -304,6 +326,21 @@ export async function sbFetchLandingData(): Promise<LandingData> {
       generated_at: new Date().toISOString(),
     };
   });
+}
+
+// ═══ New This Week (first_seen within 7 days) ═══
+
+export async function sbFetchNewThisWeek(limit = 10): Promise<Skill[]> {
+  const sb = ensureSupabase();
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const { data, error } = await sb
+    .from("skills")
+    .select(SKILL_COLUMNS)
+    .gte("first_seen", sevenDaysAgo)
+    .order("stars", { ascending: false })
+    .limit(limit);
+  if (error) throw new Error(error.message);
+  return (data ?? []) as unknown as Skill[];
 }
 
 // ═══ Weekly Trending History ═══

@@ -61,6 +61,14 @@ export const translations = {
     "stats.categoryDist": "分类分布",
     "stats.topLanguages": "热门语言",
 
+    // Filter
+    "filter.qualityGrade": "质量等级",
+    "filter.starsRange": "Stars 范围",
+
+    // Search
+    "search.recent": "最近搜索",
+    "search.clearRecent": "清除",
+
     // Explore
     "explore.size": "大小:",
     "explore.platform": "平台:",
@@ -151,6 +159,18 @@ export const translations = {
     "platforms.title": "平台推荐",
     "platforms.subtitle": "发现更多 Agent Skills 的好去处",
 
+    // Sort
+    "sort.qualityScore": "质量评分",
+    "sort.momentum": "增速趋势",
+
+    // Badges
+    "badge.new": "新",
+    "badge.quality": "质量",
+    "card.updated": "更新于",
+    "card.install": "安装",
+    "card.copied": "已复制",
+    "card.upvoteComingSoon": "投票功能即将上线",
+
     // Score & Quality
     "score.tier": "Tier",
     "score.completeness": "完整性",
@@ -229,6 +249,26 @@ export const translations = {
     "chart.starTrend": "Star 趋势 Top 10",
     "chart.skills": "技能数",
 
+    // New This Week
+    "newThisWeek.title": "本周新增",
+    "newThisWeek.subtitle": "最近 7 天首次收录的项目",
+
+    // Newsletter Inline
+    "newsletter.inlineTitle": "订阅周报，获取最新趋势",
+
+    // FAQ
+    "faq.title": "常见问题",
+    "faq.q1": "什么是 Agent Skills Hub？",
+    "faq.a1": "Agent Skills Hub 是一个发现和比较开源 AI Agent 技能的平台，收录了 7800+ 个 GitHub 上的 Agent Skills、MCP 服务器、Claude 技能和 AI 工具。所有数据每 8 小时自动更新。",
+    "faq.q2": "质量评分是如何计算的？",
+    "faq.a2": "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
+    "faq.q3": "如何提交我的项目？",
+    "faq.a3": "在首页底部的「提交一个 Skill」区域，粘贴你的 GitHub 仓库链接并提交。我们的团队会进行审核，通过后会自动收录并计算评分。",
+    "faq.q4": "什么是 MCP Server？",
+    "faq.a4": "MCP（Model Context Protocol）是 Anthropic 推出的模型上下文协议，MCP Server 是实现了该协议的工具服务，可以让 AI 模型安全地与外部数据和工具交互。",
+    "faq.q5": "Star 增速榜是什么？",
+    "faq.a5": "Star 增速榜（Star Velocity History）根据 stars/天 计算项目热度，每周快照一次。增速越高说明项目越受关注。我们每周一通过邮件发送 Top 20 排名。",
+
     // Footer
     "footer.source": "Agent Skills Hub · 数据来自 GitHub",
     "footer.autoUpdated": "每8小时自动更新",
@@ -291,6 +331,14 @@ export const translations = {
     "stats.lastSync": "Last Sync",
     "stats.categoryDist": "Category Distribution",
     "stats.topLanguages": "Top Languages",
+
+    // Filter
+    "filter.qualityGrade": "Quality Grade",
+    "filter.starsRange": "Stars Range",
+
+    // Search
+    "search.recent": "Recent",
+    "search.clearRecent": "Clear",
 
     "explore.size": "Size:",
     "explore.platform": "Platform:",
@@ -381,6 +429,18 @@ export const translations = {
     "platforms.title": "Discover More",
     "platforms.subtitle": "Platforms to find more Agent Skills",
 
+    // Sort
+    "sort.qualityScore": "Quality",
+    "sort.momentum": "Trending",
+
+    // Badges
+    "badge.new": "NEW",
+    "badge.quality": "Quality",
+    "card.updated": "Updated",
+    "card.install": "Install",
+    "card.copied": "Copied",
+    "card.upvoteComingSoon": "Upvotes coming soon",
+
     // Score & Quality
     "score.tier": "Tier",
     "score.completeness": "Complete",
@@ -458,6 +518,26 @@ export const translations = {
     "hero.subtitle": "Find the best open-source tools, MCP servers, and AI skills for your workflow",
     "hero.trending": "Trending",
     "hero.searchPlaceholder": "Search MCP servers, Claude skills, agent tools...",
+
+    // New This Week
+    "newThisWeek.title": "New This Week",
+    "newThisWeek.subtitle": "Skills first indexed in the last 7 days",
+
+    // Newsletter Inline
+    "newsletter.inlineTitle": "Subscribe for weekly trends",
+
+    // FAQ
+    "faq.title": "Frequently Asked Questions",
+    "faq.q1": "What is Agent Skills Hub?",
+    "faq.a1": "Agent Skills Hub is a platform for discovering and comparing open-source AI Agent skills, featuring 7,800+ GitHub repos including Agent Skills, MCP servers, Claude skills, and AI tools. All data is auto-updated every 8 hours.",
+    "faq.q2": "How are quality scores calculated?",
+    "faq.a2": "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
+    "faq.q3": "How do I submit my project?",
+    "faq.a3": "Use the 'Submit a Skill' section at the bottom of the homepage. Paste your GitHub repo URL and submit. Our team will review it, and approved projects will be automatically indexed and scored.",
+    "faq.q4": "What is an MCP Server?",
+    "faq.a4": "MCP (Model Context Protocol) is a protocol by Anthropic that enables AI models to securely interact with external data and tools. MCP Servers implement this protocol to provide tool services to AI assistants.",
+    "faq.q5": "What is the Star Velocity History?",
+    "faq.a5": "Star Velocity History ranks projects by stars/day, snapshotted weekly. Higher velocity indicates more community interest. We send the Top 20 ranking via email every Monday.",
 
     "footer.source": "Agent Skills Hub · Data sourced from GitHub",
     "footer.autoUpdated": "Auto-updated every 8 hours",

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchQuickSearch } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
+import { useRecentSearches } from "../hooks/useRecentSearches";
 import type { Skill } from "../types/skill";
 
 interface Props {
@@ -14,6 +15,7 @@ const HOT_KEYWORDS = ["mcp-server", "claude", "agent", "codex", "python", "types
 export function SearchBar({ value, onChange }: Props) {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const { searches: recentSearches, addSearch, clearSearches } = useRecentSearches();
   const [local, setLocal] = useState(value);
   const [results, setResults] = useState<Skill[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -86,6 +88,8 @@ export function SearchBar({ value, onChange }: Props) {
     if (!showDropdown || results.length === 0) {
       if (e.key === "Enter") {
         setShowDropdown(false);
+        // Record search
+        if (local.trim()) addSearch(local.trim());
       }
       return;
     }
@@ -103,8 +107,10 @@ export function SearchBar({ value, onChange }: Props) {
         if (activeIdx >= 0 && activeIdx < results.length) {
           navigate(`/skill/${results[activeIdx].repo_full_name}`);
           setShowDropdown(false);
+          addSearch(results[activeIdx].repo_name);
         } else {
           setShowDropdown(false);
+          if (local.trim()) addSearch(local.trim());
         }
         break;
       case "Escape":
@@ -114,9 +120,7 @@ export function SearchBar({ value, onChange }: Props) {
   };
 
   const handleFocus = () => {
-    if (local.trim() || results.length > 0) {
-      setShowDropdown(true);
-    }
+    setShowDropdown(true);
   };
 
   const handleHotKeyword = (keyword: string) => {
@@ -124,6 +128,7 @@ export function SearchBar({ value, onChange }: Props) {
     onChange(keyword);
     doQuickSearch(keyword);
     setShowDropdown(true);
+    addSearch(keyword);
     inputRef.current?.focus();
   };
 
@@ -168,6 +173,38 @@ export function SearchBar({ value, onChange }: Props) {
       {/* Dropdown */}
       {showDropdown && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-50">
+          {/* Recent searches when empty */}
+          {!local.trim() && recentSearches.length > 0 && (
+            <div className="px-3 py-2 border-b border-gray-100">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-gray-400 uppercase tracking-wide">{t("search.recent")}</span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    clearSearches();
+                  }}
+                  className="text-[10px] text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+                >
+                  {t("search.clearRecent")}
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {recentSearches.map((query) => (
+                  <button
+                    key={query}
+                    onClick={() => handleHotKeyword(query)}
+                    className="px-2 py-0.5 text-xs bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors cursor-pointer flex items-center gap-1"
+                  >
+                    <svg className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {query}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Hot keywords when empty */}
           {!local.trim() && (
             <div className="px-3 py-2.5 border-b border-gray-100">
@@ -202,6 +239,7 @@ export function SearchBar({ value, onChange }: Props) {
                   onClick={() => {
                     navigate(`/skill/${skill.repo_full_name}`);
                     setShowDropdown(false);
+                    addSearch(skill.repo_name);
                   }}
                   onMouseEnter={() => setActiveIdx(i)}
                   className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${

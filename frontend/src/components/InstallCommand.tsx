@@ -6,7 +6,7 @@ interface Props {
   skill: Skill;
 }
 
-function getInstallCommands(skill: Skill): { label: string; command: string; primary?: boolean }[] {
+export function getInstallCommands(skill: Skill): { label: string; command: string; primary?: boolean }[] {
   const commands: { label: string; command: string; primary?: boolean }[] = [];
   const platforms = parsePlatforms(skill.platforms);
   const category = skill.category?.toLowerCase() || "";
@@ -64,7 +64,7 @@ function getInstallCommands(skill: Skill): { label: string; command: string; pri
   return commands;
 }
 
-function parsePlatforms(platforms: string): string[] {
+export function parsePlatforms(platforms: string): string[] {
   try {
     return JSON.parse(platforms || "[]");
   } catch {

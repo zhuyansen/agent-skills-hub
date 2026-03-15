@@ -23,6 +23,7 @@ export interface Skill {
   last_commit_at: string | null;
   created_at: string | null;
   last_synced: string | null;
+  first_seen: string | null;
 
   // Quality scoring (4 dimensions)
   quality_completeness: number;
@@ -81,12 +82,14 @@ export interface Stats {
 export interface SkillsQueryParams {
   page: number;
   page_size: number;
-  sort_by: "score" | "stars" | "last_commit_at" | "created_at";
+  sort_by: "score" | "stars" | "last_commit_at" | "created_at" | "quality_score" | "star_momentum";
   sort_order: "asc" | "desc";
   search?: string;
   category?: string;
   platform?: string;
   size_category?: string;
+  quality_tiers?: string; // comma-separated: "S,A,B"
+  min_stars?: number;
 }
 
 // Landing page pre-rendered data (single-request bundle)

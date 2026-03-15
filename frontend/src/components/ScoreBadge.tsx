@@ -58,4 +58,16 @@ export function ScoreBadge({ score, size = "md", showTier = false }: Props) {
   );
 }
 
+/** Compact quality tier badge for card/table use */
+export function QualityBadge({ score }: { score: number }) {
+  if (!score || score <= 0) return null;
+  const tier = getTier(score);
+  const color = getScoreColor(score);
+  return (
+    <span className={`px-1.5 py-0.5 text-[9px] font-bold rounded ${color}`}>
+      Q:{tier}
+    </span>
+  );
+}
+
 export { getTier, getTierColor, getScoreColor };

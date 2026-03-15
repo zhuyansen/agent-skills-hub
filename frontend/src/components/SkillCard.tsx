@@ -1,10 +1,11 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import type { Skill } from "../types/skill";
-import { parseTags, timeAgo } from "../utils/time";
+import { isNew, isRecentlyUpdated, parseTags, timeAgo } from "../utils/time";
 import { CompareButton } from "./CompareButton";
 import { FavoriteButton } from "./FavoriteButton";
+import { getInstallCommands } from "./InstallCommand";
 import { PlatformBadges } from "./PlatformBadges";
-import { ScoreBadge } from "./ScoreBadge";
+import { QualityBadge, ScoreBadge } from "./ScoreBadge";
 import { SizeBadge } from "./SizeBadge";
 
 interface Props {
@@ -15,6 +16,23 @@ interface Props {
 
 export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, onShowDetail }: Props) {
   const tags = parseTags(skill.topics).slice(0, 3);
+  const [installCopied, setInstallCopied] = useState(false);
+
+  const handleCopyInstall = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      const commands = getInstallCommands(skill);
+      const primary = commands.find((c) => c.primary) || commands[0];
+      await navigator.clipboard.writeText(primary.command);
+      setInstallCopied(true);
+      setTimeout(() => setInstallCopied(false), 2000);
+    } catch {
+      // silent fail
+    }
+  };
+
+  const skillIsNew = isNew(skill.first_seen);
+  const recentlyUpdated = isRecentlyUpdated(skill.last_commit_at);
 
   return (
     <div
@@ -28,11 +46,20 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
           <div className="flex items-center gap-1.5 mb-0.5">
             <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={16} height={16} className="w-4 h-4 rounded-full" />
             <span className="text-xs text-gray-400 truncate">{skill.author_name}</span>
-            {skill.star_momentum >= 0.05 && (
-              <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded bg-orange-50 text-orange-500 border border-orange-100 shrink-0">
-                HOT
-              </span>
-            )}
+            {/* Badges: Quality + HOT + NEW */}
+            <span className="ml-auto flex items-center gap-1 shrink-0">
+              {skill.quality_score > 0 && <QualityBadge score={skill.quality_score} />}
+              {skill.star_momentum >= 0.05 && (
+                <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-orange-50 text-orange-500 border border-orange-100">
+                  HOT
+                </span>
+              )}
+              {skillIsNew && (
+                <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-green-50 text-green-600 border border-green-100">
+                  NEW
+                </span>
+              )}
+            </span>
           </div>
           <h3
             onClick={(e) => {
@@ -62,6 +89,12 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
         {skill.size_category && skill.size_category !== "unknown" && (
           <SizeBadge sizeCategory={skill.size_category} sizeKb={skill.repo_size_kb} />
         )}
+        {/* Updated time tag */}
+        {skill.last_commit_at && (
+          <span className={`px-1.5 py-0.5 text-[10px] rounded ${recentlyUpdated ? "bg-green-50 text-green-600" : "bg-gray-50 text-gray-400"}`}>
+            {timeAgo(skill.last_commit_at)}
+          </span>
+        )}
         {tags.map((tag) => (
           <span key={tag} className="px-1.5 py-0.5 text-[10px] rounded bg-gray-50 text-gray-400">
             {tag}
@@ -76,7 +109,7 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
         </div>
       )}
 
-      {/* Bottom: Stars + Forks + Time */}
+      {/* Bottom: Stars + Forks + Actions */}
       <div className="mt-2.5 flex items-center gap-3 text-xs text-gray-400">
         <span className="flex items-center gap-1">
           <svg className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
@@ -91,7 +124,28 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
           {skill.forks.toLocaleString()}
         </span>
         <span className="ml-auto flex items-center gap-1">
-          <span className="text-gray-300 mr-1">{timeAgo(skill.last_commit_at)}</span>
+          {/* Upvote placeholder */}
+          <span className="flex items-center gap-0.5 text-gray-300 cursor-not-allowed" title="Coming soon">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </span>
+          {/* Copy install command */}
+          <button
+            onClick={handleCopyInstall}
+            className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-100 transition-colors cursor-pointer"
+            title={installCopied ? "Copied!" : "Copy install command"}
+          >
+            {installCopied ? (
+              <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            ) : (
+              <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            )}
+          </button>
           <CompareButton skill={skill} size="sm" />
           <FavoriteButton skillId={skill.id} size="sm" />
         </span>

@@ -26,8 +26,11 @@ export function useUrlParams() {
     const category = searchParams.get("category") || undefined;
     const platform = searchParams.get("platform") || undefined;
     const size_category = searchParams.get("size_category") || undefined;
+    const quality_tiers = searchParams.get("quality_tiers") || undefined;
+    const min_stars_raw = searchParams.get("min_stars");
+    const min_stars = min_stars_raw ? parseInt(min_stars_raw, 10) : undefined;
 
-    return { page, page_size, sort_by, sort_order, search, category, platform, size_category };
+    return { page, page_size, sort_by, sort_order, search, category, platform, size_category, quality_tiers, min_stars };
   }, [searchParams]);
 
   const tab = (searchParams.get("tab") || "overview") as "overview" | "explore";

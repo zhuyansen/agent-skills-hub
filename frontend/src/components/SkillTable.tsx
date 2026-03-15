@@ -1,6 +1,7 @@
 import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
-import { timeAgo } from "../utils/time";
+import { isNew, timeAgo } from "../utils/time";
+import { getTier } from "./ScoreBadge";
 import { ScoreBadge } from "./ScoreBadge";
 
 interface Props {
@@ -37,15 +38,20 @@ export function SkillTable({ skills, onSelect: _onSelect, onShowDetail }: Props)
                   <ScoreBadge score={skill.score} size="sm" showTier />
                 </td>
                 <td className="px-4 py-3">
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(skill.repo_url, "_blank", "noopener");
-                    }}
-                    className="font-medium text-gray-900 hover:text-blue-600 hover:underline transition-colors cursor-pointer"
-                  >
-                    {skill.repo_name}
-                  </span>
+                  <div className="flex items-center gap-1">
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(skill.repo_url, "_blank", "noopener");
+                      }}
+                      className="font-medium text-gray-900 hover:text-blue-600 hover:underline transition-colors cursor-pointer"
+                    >
+                      {skill.repo_name}
+                    </span>
+                    {isNew(skill.first_seen) && (
+                      <span className="px-1 py-0.5 text-[9px] font-bold rounded bg-green-50 text-green-600">NEW</span>
+                    )}
+                  </div>
                   <div className="text-xs text-gray-400 mt-0.5">{skill.author_name}</div>
                 </td>
                 <td className="px-4 py-3 hidden md:table-cell">
@@ -64,6 +70,7 @@ export function SkillTable({ skills, onSelect: _onSelect, onShowDetail }: Props)
                       />
                     </div>
                     <span className="text-xs text-gray-500 tabular-nums w-6">{Math.round(skill.quality_score)}</span>
+                    <span className="text-[9px] font-bold text-gray-400">{getTier(skill.quality_score)}</span>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-right tabular-nums">{skill.stars.toLocaleString()}</td>
