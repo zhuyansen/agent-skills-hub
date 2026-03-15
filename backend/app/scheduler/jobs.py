@@ -675,10 +675,12 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
 
 def maybe_take_weekly_snapshot(db: "Session") -> None:
-    """Take a weekly trending snapshot if none exists for the current week.
+    """Update the weekly trending snapshot on every sync.
 
     Called at the end of each sync. Captures top 20 trending skills
     (by star velocity) for the current Monday→Sunday week.
+    Deletes and re-inserts the current week's data each time so the
+    snapshot always reflects the latest state.
     """
     from app.models.skill import Skill, WeeklyTrendingSnapshot
 
@@ -688,24 +690,22 @@ def maybe_take_weekly_snapshot(db: "Session") -> None:
         week_start = today - timedelta(days=today.weekday())  # Monday
         week_end = week_start + timedelta(days=6)  # Sunday
 
-        # Check if snapshot already exists for this week
-        existing = (
+        # Delete existing snapshot for the current week (will be re-created)
+        deleted = (
             db.query(WeeklyTrendingSnapshot)
             .filter(WeeklyTrendingSnapshot.week_start == week_start)
-            .first()
+            .delete()
         )
-        if existing:
-            logger.debug("Weekly snapshot already exists for %s", week_start)
-            return
+        if deleted:
+            logger.info("Deleted %d existing snapshot rows for week %s", deleted, week_start)
 
-        # Compute star velocity for trending skills (same logic as v_trending)
+        # Compute star velocity for ALL skills with enough stars
+        # Uses stars/age formula — covers both new and established projects
         now = datetime.now(timezone.utc)
-        since = now - timedelta(days=7)
         candidates = (
             db.query(Skill)
-            .filter(Skill.stars >= 50)
+            .filter(Skill.stars >= 20)
             .filter(Skill.created_at.isnot(None))
-            .filter(Skill.created_at >= since)
             .all()
         )
 
@@ -743,7 +743,7 @@ def maybe_take_weekly_snapshot(db: "Session") -> None:
             db.add(snapshot)
 
         db.commit()
-        logger.info("📸 Weekly trending snapshot taken for %s: %d skills", week_start, len(ranked))
+        logger.info("📸 Weekly trending snapshot updated for %s: %d skills", week_start, len(ranked))
 
     except Exception as exc:
         logger.warning("Weekly snapshot failed (non-fatal): %s", exc)
