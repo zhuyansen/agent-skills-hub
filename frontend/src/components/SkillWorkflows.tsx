@@ -116,8 +116,8 @@ export function SkillWorkflows() {
       <div className="mb-5">
         <div className="flex items-center gap-2">
           <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-          <h2 className="text-lg font-bold text-gray-900">{t("workflows.title")}</h2>
-          <span className="text-sm text-gray-400">{t("workflows.subtitle")}</span>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{t("workflows.title")}</h2>
+          <span className="text-sm text-gray-400 dark:text-gray-500">{t("workflows.subtitle")}</span>
         </div>
       </div>
 
@@ -125,21 +125,21 @@ export function SkillWorkflows() {
         {workflows.map((wf) => (
           <div
             key={wf.id}
-            className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+            className="bg-white dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={iconPaths[wf.icon] || iconPaths.sparkles} />
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-gray-900 text-sm">
+                <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
                   {lang === "zh" ? wf.title_zh : wf.title_en}
                 </h3>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-400 dark:text-gray-500">
                   {lang === "zh" ? wf.description_zh : wf.description_en}
-                  <span className="ml-2 text-gray-300">
+                  <span className="ml-2 text-gray-300 dark:text-gray-600">
                     {wf.skill_count} {lang === "zh" ? "个技能" : "skills"}
                   </span>
                 </p>
@@ -151,29 +151,29 @@ export function SkillWorkflows() {
                 <button
                   key={skill.repo_full_name}
                   onClick={() => navigate(`/skill/${skill.repo_full_name}`)}
-                  className="w-full flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-blue-50 transition-colors group text-left"
+                  className="w-full flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors group text-left"
                 >
-                  <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px] font-bold shrink-0">
+                  <span className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-[10px] font-bold shrink-0">
                     {idx + 1}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm font-medium text-gray-800 group-hover:text-blue-600 transition-colors block truncate">
+                    <span className="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 transition-colors block truncate">
                       {skill.repo_name}
                     </span>
-                    <span className="text-xs text-gray-400 block truncate">
+                    <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">
                       {skill.description}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     {skill.stars > 0 && (
-                      <span className="text-xs text-gray-300 flex items-center gap-0.5">
+                      <span className="text-xs text-gray-300 dark:text-gray-600 flex items-center gap-0.5">
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                         {skill.stars >= 1000 ? `${(skill.stars / 1000).toFixed(1)}k` : skill.stars}
                       </span>
                     )}
-                    <svg className="w-3.5 h-3.5 text-gray-300 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-gray-300 dark:text-gray-600 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -182,7 +182,7 @@ export function SkillWorkflows() {
             </div>
 
             {/* View All link */}
-            <div className="border-t border-gray-100 pt-3 mt-3">
+            <div className="border-t border-gray-100 dark:border-gray-800 pt-3 mt-3">
               <button
                 onClick={() => navigate(`/?tab=explore&category=${wf.id}`)}
                 className="w-full flex items-center justify-center gap-1.5 text-sm text-blue-500 hover:text-blue-700 font-medium transition-colors cursor-pointer group"

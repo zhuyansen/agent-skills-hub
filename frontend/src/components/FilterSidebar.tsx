@@ -41,14 +41,14 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
     <aside className="w-56 shrink-0 space-y-5">
       {/* Quality Grade */}
       <div>
-        <h4 className="text-xs font-semibold uppercase text-gray-500 mb-2 tracking-wide">
+        <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
           {t("filter.qualityGrade")}
         </h4>
         <div className="space-y-1">
           {TIERS.map((tier, i) => (
             <label
               key={tier}
-              className="flex items-center gap-2 py-1 px-2 rounded-md hover:bg-gray-50 cursor-pointer transition-colors"
+              className="flex items-center gap-2 py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors"
             >
               <input
                 type="checkbox"
@@ -59,7 +59,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
               <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${getScoreColor(TIER_SCORES[i])}`}>
                 {tier}
               </span>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
                 {tier === "S" ? "≥80" : tier === "A" ? "65-79" : tier === "B" ? "50-64" : tier === "C" ? "35-49" : "<35"}
               </span>
             </label>
@@ -69,7 +69,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
 
       {/* Stars Range */}
       <div>
-        <h4 className="text-xs font-semibold uppercase text-gray-500 mb-2 tracking-wide">
+        <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
           {t("filter.starsRange")}
         </h4>
         <div className="flex flex-wrap gap-1">
@@ -80,7 +80,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.min_stars === value
                   ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-blue-300"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
               }`}
             >
               {label}
@@ -91,14 +91,14 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
 
       {/* Category */}
       <div>
-        <h4 className="text-xs font-semibold uppercase text-gray-500 mb-2 tracking-wide">
+        <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
           {t("table.category")}
         </h4>
         <div className="space-y-0.5 max-h-48 overflow-y-auto">
           <button
             onClick={() => onUpdate({ category: undefined })}
             className={`w-full text-left px-2 py-1 text-xs rounded transition-colors cursor-pointer ${
-              !params.category ? "bg-blue-50 text-blue-700 font-medium" : "text-gray-600 hover:bg-gray-50"
+              !params.category ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
             }`}
           >
             All
@@ -108,11 +108,11 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
               key={cat.name}
               onClick={() => onUpdate({ category: params.category === cat.name ? undefined : cat.name })}
               className={`w-full text-left px-2 py-1 text-xs rounded transition-colors cursor-pointer flex items-center justify-between ${
-                params.category === cat.name ? "bg-blue-50 text-blue-700 font-medium" : "text-gray-600 hover:bg-gray-50"
+                params.category === cat.name ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               }`}
             >
               <span className="truncate">{cat.name}</span>
-              <span className="text-gray-400 text-[10px] shrink-0">{cat.count}</span>
+              <span className="text-gray-400 dark:text-gray-500 text-[10px] shrink-0">{cat.count}</span>
             </button>
           ))}
         </div>
@@ -120,7 +120,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
 
       {/* Size */}
       <div>
-        <h4 className="text-xs font-semibold uppercase text-gray-500 mb-2 tracking-wide">
+        <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
           {t("explore.size").replace(":", "")}
         </h4>
         <div className="flex flex-wrap gap-1">
@@ -131,7 +131,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.size_category === s
                   ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-blue-300"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
               }`}
             >
               {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -142,7 +142,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
 
       {/* Platform */}
       <div>
-        <h4 className="text-xs font-semibold uppercase text-gray-500 mb-2 tracking-wide">
+        <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
           {t("explore.platform").replace(":", "")}
         </h4>
         <div className="flex flex-wrap gap-1">
@@ -153,7 +153,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.platform === p
                   ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-blue-300"
+                  : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
               }`}
             >
               {p.charAt(0).toUpperCase() + p.slice(1)}

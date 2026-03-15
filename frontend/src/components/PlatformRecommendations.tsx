@@ -13,8 +13,8 @@ export function PlatformRecommendations() {
   return (
     <section className="mb-10">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gray-900">{t("platforms.title")}</h2>
-        <p className="text-sm text-gray-500 mt-1">{t("platforms.subtitle")}</p>
+        <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{t("platforms.title")}</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t("platforms.subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -24,13 +24,13 @@ export function PlatformRecommendations() {
             href={p.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center text-center p-5 bg-white rounded-xl border border-gray-200 hover:shadow-lg hover:border-blue-200 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center text-center p-5 bg-white dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-700 hover:-translate-y-0.5 transition-all group"
           >
             <svg className="w-8 h-8 mb-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={iconPaths[p.icon] || iconPaths.globe}/></svg>
-            <h3 className="font-semibold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm group-hover:text-blue-600 transition-colors">
               {p.name}
             </h3>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               {lang === "zh" ? p.description_zh : p.description_en}
             </p>
             <span className="mt-3 text-xs text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">

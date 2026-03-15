@@ -100,6 +100,8 @@ EXTRA_REPOS = [
     "ythx-101/x-tweet-fetcher",
     # Cloudflare official Agent Skills (601 stars)
     "cloudflare/skills",
+    # agent-fetch - full-content web fetcher for AI agents (186 stars)
+    "teng-lin/agent-fetch",
 ]
 
 # ── Rate Limit Management ──

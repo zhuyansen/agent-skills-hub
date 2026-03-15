@@ -21,7 +21,7 @@ export function NewsletterInline() {
 
   if (status === "success") {
     return (
-      <div className="my-6 px-4 py-3 bg-green-50 border border-green-200 rounded-xl text-center text-sm text-green-700">
+      <div className="my-6 px-4 py-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl text-center text-sm text-green-700 dark:text-green-400">
         <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
@@ -31,12 +31,12 @@ export function NewsletterInline() {
   }
 
   return (
-    <div className="my-6 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 rounded-xl px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
+    <div className="my-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-100 dark:border-indigo-800 rounded-xl px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
       <div className="flex items-center gap-2 shrink-0">
         <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
-        <span className="text-sm font-medium text-indigo-700">{t("newsletter.inlineTitle")}</span>
+        <span className="text-sm font-medium text-indigo-700 dark:text-indigo-400">{t("newsletter.inlineTitle")}</span>
       </div>
       <form onSubmit={handleSubmit} className="flex items-center gap-2 flex-1 w-full sm:w-auto">
         <input
@@ -44,7 +44,7 @@ export function NewsletterInline() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t("newsletter.placeholder")}
-          className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-0"
+          className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-0"
           required
         />
         <button

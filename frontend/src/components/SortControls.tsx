@@ -15,7 +15,7 @@ export function SortControls({ sortBy, sortOrder, onSortByChange, onSortOrderCha
       <select
         value={sortBy}
         onChange={(e) => onSortByChange(e.target.value as SkillsQueryParams["sort_by"])}
-        className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="score">Score</option>
         <option value="stars">Stars</option>
@@ -26,7 +26,7 @@ export function SortControls({ sortBy, sortOrder, onSortByChange, onSortOrderCha
       </select>
       <button
         onClick={() => onSortOrderChange(sortOrder === "desc" ? "asc" : "desc")}
-        className="p-2 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+        className="p-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         title={sortOrder === "desc" ? "Descending" : "Ascending"}
       >
         {sortOrder === "desc" ? (

@@ -20,8 +20,8 @@ export function FavoriteButton({ skillId, size = "md" }: Props) {
       }}
       className={`${sz} flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
         active
-          ? "bg-red-50 text-red-500 hover:bg-red-100"
-          : "bg-gray-50 text-gray-300 hover:bg-gray-100 hover:text-red-400"
+          ? "bg-red-50 dark:bg-red-900/30 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/50"
+          : "bg-gray-50 dark:bg-gray-800 text-gray-300 dark:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-red-400"
       }`}
       aria-label={active ? "Remove from favorites" : "Add to favorites"}
       title={active ? "Remove from favorites" : "Add to favorites"}

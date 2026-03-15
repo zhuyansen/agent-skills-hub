@@ -72,15 +72,15 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
     <section className="mb-10">
       {/* Stat Cards — 3 key metrics */}
       <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-          <div className="text-xl sm:text-2xl font-bold text-gray-900">{stats.total_skills.toLocaleString()}</div>
-          <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{t("stats.totalSkills")}</div>
+        <div className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-3 sm:p-4">
+          <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">{stats.total_skills.toLocaleString()}</div>
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("stats.totalSkills")}</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
+        <div className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-3 sm:p-4">
           <div className="text-xl sm:text-2xl font-bold text-blue-600">{stats.avg_score.toFixed(1)}</div>
-          <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{t("stats.avgScore")}</div>
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("stats.avgScore")}</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
+        <div className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-3 sm:p-4">
           <div className="flex items-center gap-2">
             <div className="text-xl sm:text-2xl font-bold text-green-600">{timeAgo(stats.last_sync_at)}</div>
             {stats.last_sync_status === "completed" && (
@@ -93,15 +93,15 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
               <span className="w-2 h-2 rounded-full bg-red-400 shrink-0" title="Sync failed" />
             )}
           </div>
-          <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{t("stats.lastSync")}</div>
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("stats.lastSync")}</div>
         </div>
       </div>
 
       {/* Category Distribution + Language Bar */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Categories — colorful horizontal bars */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="font-semibold text-gray-900 mb-4">{t("stats.categoryDist")}</h3>
+        <div className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">{t("stats.categoryDist")}</h3>
           <div className="space-y-3">
             {stats.categories.filter((cat) => cat.name !== "uncategorized").map((cat) => {
               const pct = (cat.count / stats.total_skills) * 100;
@@ -111,11 +111,11 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: color }} />
-                      <span className="text-sm text-gray-700 font-medium">{cat.name}</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-200 font-medium">{cat.name}</span>
                     </div>
-                    <span className="text-sm text-gray-500 tabular-nums">{cat.count.toLocaleString()}<span className="text-gray-400 ml-1 text-xs">({pct.toFixed(1)}%)</span></span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">{cat.count.toLocaleString()}<span className="text-gray-400 dark:text-gray-500 ml-1 text-xs">({pct.toFixed(1)}%)</span></span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                  <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{ width: `${pct}%`, backgroundColor: color }}
@@ -128,10 +128,10 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
         </div>
 
         {/* Languages — stacked bar + grid legend */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="font-semibold text-gray-900 mb-4">{t("stats.topLanguages")}</h3>
+        <div className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">{t("stats.topLanguages")}</h3>
           {/* Stacked Bar */}
-          <div className="flex h-5 rounded-lg overflow-hidden mb-4 shadow-inner bg-gray-50">
+          <div className="flex h-5 rounded-lg overflow-hidden mb-4 shadow-inner bg-gray-50 dark:bg-gray-700">
             {langs.slice(0, 8).map((l) => (
               <div
                 key={l.language}
@@ -149,14 +149,14 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
             {langs.slice(0, 12).map((l) => {
               const langPct = ((l.count / totalLangs) * 100).toFixed(1);
               return (
-                <div key={l.language} className="flex items-center gap-2 py-1 px-2 rounded-md hover:bg-gray-50 transition-colors">
+                <div key={l.language} className="flex items-center gap-2 py-1 px-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <span
                     className="w-3 h-3 rounded-sm shrink-0"
                     style={{ backgroundColor: LANG_COLORS[l.language] || "#94a3b8" }}
                   />
                   <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-gray-700 truncate block">{l.language}</span>
-                    <span className="text-[10px] text-gray-400">{l.count.toLocaleString()} ({langPct}%)</span>
+                    <span className="text-xs font-medium text-gray-700 dark:text-gray-200 truncate block">{l.language}</span>
+                    <span className="text-[10px] text-gray-400 dark:text-gray-500">{l.count.toLocaleString()} ({langPct}%)</span>
                   </div>
                 </div>
               );
@@ -169,7 +169,7 @@ export function DashboardStats({ stats, initialLanguages, initialTrending }: Pro
       <div className="flex justify-center mt-4">
         <button
           onClick={() => setShowCharts(!showCharts)}
-          className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-500 hover:text-blue-600 bg-white border border-gray-200 rounded-lg hover:border-blue-200 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-blue-600 bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-200 dark:hover:border-blue-700 transition-colors cursor-pointer"
         >
           <svg className={`w-3.5 h-3.5 transition-transform ${showCharts ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

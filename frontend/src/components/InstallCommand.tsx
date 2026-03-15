@@ -109,8 +109,8 @@ export function InstallCommand({ skill }: Props) {
               onClick={() => setActiveIdx(i)}
               className={`px-2.5 py-1 text-xs rounded-md transition-colors cursor-pointer ${
                 i === activeIdx
-                  ? "bg-blue-100 text-blue-700 font-medium"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                  ? "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium"
+                  : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
               {cmd.label}
@@ -120,7 +120,7 @@ export function InstallCommand({ skill }: Props) {
       )}
 
       {/* Command display with copy button */}
-      <div className="flex items-center gap-2 bg-gray-900 rounded-lg pl-4 pr-2 py-2.5 group">
+      <div className="flex items-center gap-2 bg-gray-900 dark:bg-gray-950 rounded-lg pl-4 pr-2 py-2.5 group">
         <code className="flex-1 text-sm text-green-400 font-mono truncate select-all">
           {active.command}
         </code>

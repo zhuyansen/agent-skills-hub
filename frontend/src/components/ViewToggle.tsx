@@ -5,11 +5,11 @@ interface Props {
 
 export function ViewToggle({ view, onChange }: Props) {
   return (
-    <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+    <div className="flex border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
       <button
         onClick={() => onChange("card")}
         className={`p-2 transition-colors ${
-          view === "card" ? "bg-blue-600 text-white" : "bg-white text-gray-500 hover:bg-gray-50"
+          view === "card" ? "bg-blue-600 text-white" : "bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
         }`}
         title="Card view"
       >
@@ -20,7 +20,7 @@ export function ViewToggle({ view, onChange }: Props) {
       <button
         onClick={() => onChange("table")}
         className={`p-2 transition-colors ${
-          view === "table" ? "bg-blue-600 text-white" : "bg-white text-gray-500 hover:bg-gray-50"
+          view === "table" ? "bg-blue-600 text-white" : "bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
         }`}
         title="Table view"
       >

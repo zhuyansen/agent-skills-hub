@@ -25,13 +25,13 @@ export function Pagination({ page, totalPages, onPageChange }: Props) {
       <button
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
-        className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg bg-white disabled:opacity-40 hover:bg-gray-50 transition-colors"
+        className="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
       >
         Prev
       </button>
       {pages.map((p, i) =>
         p === "..." ? (
-          <span key={`dots-${i}`} className="px-2 text-gray-400">...</span>
+          <span key={`dots-${i}`} className="px-2 text-gray-400 dark:text-gray-500">...</span>
         ) : (
           <button
             key={p}
@@ -39,7 +39,7 @@ export function Pagination({ page, totalPages, onPageChange }: Props) {
             className={`w-9 h-9 text-sm rounded-lg border transition-colors ${
               p === page
                 ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
             }`}
           >
             {p}
@@ -49,7 +49,7 @@ export function Pagination({ page, totalPages, onPageChange }: Props) {
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}
-        className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg bg-white disabled:opacity-40 hover:bg-gray-50 transition-colors"
+        className="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
       >
         Next
       </button>

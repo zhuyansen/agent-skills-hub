@@ -86,7 +86,7 @@ export function Home() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
         <title>Agent Skills Hub - Discover Agent Skills, Tools & MCP Servers</title>
         <meta name="description" content="Discover, compare and explore 7800+ open-source Agent Skills, AI tools, MCP servers and Claude skills." />
@@ -235,7 +235,7 @@ export function Home() {
                 />
               </div>
               <div className="flex flex-wrap items-center gap-2 mb-6">
-                <span className="text-xs text-gray-400">{t("explore.size")}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">{t("explore.size")}</span>
                 {["micro", "small", "medium", "large"].map((s) => (
                   <button
                     key={s}
@@ -243,14 +243,14 @@ export function Home() {
                     className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                       params.size_category === s
                         ? "bg-blue-600 text-white border-blue-600"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-blue-300"
+                        : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
                     }`}
                   >
                     {s.charAt(0).toUpperCase() + s.slice(1)}
                   </button>
                 ))}
-                <span className="text-xs text-gray-300 mx-1">|</span>
-                <span className="text-xs text-gray-400">{t("explore.platform")}</span>
+                <span className="text-xs text-gray-300 dark:text-gray-600 mx-1">|</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">{t("explore.platform")}</span>
                 {["python", "node", "go", "docker", "claude", "mcp"].map((p) => (
                   <button
                     key={p}
@@ -258,7 +258,7 @@ export function Home() {
                     className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                       params.platform === p
                         ? "bg-blue-600 text-white border-blue-600"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-blue-300"
+                        : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
                     }`}
                   >
                     {p.charAt(0).toUpperCase() + p.slice(1)}
@@ -282,7 +282,7 @@ export function Home() {
               <div className="flex-1 min-w-0">
                 {/* Error */}
                 {error && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm">
                     {error}
                   </div>
                 )}
@@ -293,7 +293,7 @@ export function Home() {
                 {/* Results */}
                 {!loading && data && data.items.length > 0 && (
                   <>
-                    <div className="text-sm text-gray-400 mb-3">
+                    <div className="text-sm text-gray-400 dark:text-gray-500 mb-3">
                       {t("explore.showing")} {(data.page - 1) * data.page_size + 1}-
                       {Math.min(data.page * data.page_size, data.total)} {t("explore.of")}{" "}
                       {data.total.toLocaleString()} {t("explore.skills")}
@@ -318,9 +318,9 @@ export function Home() {
                 {/* Empty State */}
                 {!loading && data && data.items.length === 0 && (
                   <div className="text-center py-16">
-                    <svg className="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-                    <h3 className="text-lg font-medium text-gray-700">{t("explore.noResults")}</h3>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <svg className="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+                    <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">{t("explore.noResults")}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                       {t("explore.noResultsHint")}
                     </p>
                   </div>

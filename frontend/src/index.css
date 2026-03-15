@@ -17,6 +17,12 @@ body {
   min-height: 100vh;
 }
 
+.dark body,
+:root.dark body {
+  background-color: #0b1120;
+  color: #e2e8f0;
+}
+
 /* Slide-in panel animation */
 @keyframes slide-in-right {
   from {
@@ -106,4 +112,7 @@ body {
 /* Hero section gradient background */
 .hero-gradient {
   background: linear-gradient(180deg, #ffffff 0%, #eff6ff 50%, #eef2ff 100%);
+}
+.dark .hero-gradient {
+  background: linear-gradient(180deg, #0b1120 0%, #111827 50%, #0f172a 100%);
 }

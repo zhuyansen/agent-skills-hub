@@ -14,7 +14,7 @@ export function CategoryFilter({ categories, selected, onSelect }: Props) {
         className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
           !selected
             ? "bg-blue-600 text-white border-blue-600"
-            : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+            : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
         }`}
       >
         All
@@ -26,7 +26,7 @@ export function CategoryFilter({ categories, selected, onSelect }: Props) {
           className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
             selected === cat.name
               ? "bg-blue-600 text-white border-blue-600"
-              : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+              : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
           }`}
         >
           {cat.name}

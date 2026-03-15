@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { LanguageToggle } from "./LanguageToggle";
+import { ThemeToggle } from "./ThemeToggle";
 import { useI18n } from "../i18n/I18nContext";
 import { useStats } from "../hooks/useStats";
 import { timeAgo } from "../utils/time";
@@ -87,22 +88,22 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-white via-white to-blue-50/50 border-b border-gray-200 sticky top-0 z-10 backdrop-blur-sm">
+    <header className="bg-gradient-to-r from-white via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between mb-3">
           <div className="min-w-0">
             <Link to="/" className="flex items-center gap-2 group">
-              <h1 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" strokeWidth="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 <span className="truncate group-hover:text-blue-600 transition-colors">Agent Skills Hub</span>
               </h1>
             </Link>
-            <p className="text-xs sm:text-sm text-gray-500 mt-0.5 hidden sm:block">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block">
               {t("header.subtitle")}
             </p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span className="text-sm text-gray-400 items-center gap-1.5 hidden lg:flex">
+            <span className="text-sm text-gray-400 dark:text-gray-500 items-center gap-1.5 hidden lg:flex">
               <span className="w-2 h-2 rounded-full bg-green-400" />
               {t("header.lastUpdated")} {stats ? timeAgo(stats.last_sync_at) : "..."}
             </span>
@@ -111,7 +112,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               href="https://github.com/ZhuYansen/agent-skills-hub"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
               title="GitHub"
               aria-label="GitHub repository"
             >
@@ -124,7 +125,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               href="https://x.com/GoSailGlobal"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
               title="X (Twitter)"
               aria-label="Follow on X"
             >
@@ -136,7 +137,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             <div className="relative">
               <button
                 onClick={() => setShowWechat(!showWechat)}
-                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 cursor-pointer"
                 title={t("header.wechat")}
                 aria-label="WeChat"
               >
@@ -153,12 +154,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     onClick={() => setShowWechat(false)}
                   />
                   {/* Popup card */}
-                  <div className="absolute right-0 top-10 z-50 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 w-64 animate-in fade-in slide-in-from-top-2">
+                  <div className="absolute right-0 top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 w-64 animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-700">{t("header.wechatScan")}</span>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("header.wechatScan")}</span>
                       <button
                         onClick={() => setShowWechat(false)}
-                        className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 cursor-pointer"
+                        className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -168,13 +169,14 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     <img
                       src="/wechat-qr.jpg"
                       alt="WeChat QR Code"
-                      className="w-full rounded-lg border border-gray-100"
+                      className="w-full rounded-lg border border-gray-100 dark:border-gray-700"
                     />
                     <p className="text-xs text-gray-400 text-center mt-2">{t("header.wechatTip")}</p>
                   </div>
                 </>
               )}
             </div>
+            <ThemeToggle />
             <LanguageToggle />
             {/* Newsletter CTA button + popup */}
             <div className="relative" ref={nlRef}>
@@ -190,12 +192,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               {showNewsletterPopup && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowNewsletterPopup(false)} />
-                  <div className="absolute right-0 top-10 z-50 bg-white rounded-xl shadow-2xl border border-gray-200 p-5 w-80 animate-in fade-in slide-in-from-top-2">
+                  <div className="absolute right-0 top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-5 w-80 animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-sm font-semibold text-gray-900">{t("newsletter.title")}</h4>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t("newsletter.title")}</h4>
                       <button
                         onClick={() => setShowNewsletterPopup(false)}
-                        className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 cursor-pointer"
+                        className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -205,17 +207,17 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
 
                     {nlStatus === "success" ? (
                       <div className="text-center py-4">
-                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                          <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        <p className="text-sm font-medium text-gray-900">{t("newsletter.successTitle")}</p>
-                        <p className="text-xs text-gray-500 mt-1">{t("newsletter.checkEmail")}</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t("newsletter.successTitle")}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t("newsletter.checkEmail")}</p>
                       </div>
                     ) : (
                       <>
-                        <p className="text-xs text-gray-500 mb-3">{t("newsletter.subtitle")}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{t("newsletter.subtitle")}</p>
                         <form onSubmit={handleNlSubmit} className="space-y-2">
                           <input
                             type="email"
@@ -223,7 +225,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                             onChange={(e) => { setNlEmail(e.target.value); if (nlStatus !== "idle") setNlStatus("idle"); }}
                             placeholder={t("newsletter.placeholder")}
                             required
-                            className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             aria-label="Email address"
                           />
                           <button
@@ -255,13 +257,13 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
         {/* Tab Navigation or Breadcrumb */}
         {showTabs && onTabChange ? (
           <div className="-mb-3 sm:-mb-4">
-            <div className="flex items-center gap-1 border-b border-gray-100 pb-0">
+            <div className="flex items-center gap-1 border-b border-gray-100 dark:border-gray-800 pb-0">
               <button
                 onClick={() => onTabChange("overview")}
                 className={`px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                   tab === "overview"
                     ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 }`}
               >
                 <svg className="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
@@ -272,7 +274,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 className={`px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
                   tab === "explore"
                     ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 }`}
               >
                 <svg className="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
@@ -283,7 +285,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             {tab === "overview" && (
               <div className="relative">
                 {navScroll.left && (
-                  <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                  <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
                 )}
                 <div ref={subNavRef} className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide">
                   {[
@@ -305,29 +307,29 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                           setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
                         }
                       }}
-                      className="px-2.5 py-1 text-xs text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                      className="px-2.5 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       {sec.label}
                     </button>
                   ))}
                 </div>
                 {navScroll.right && (
-                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
                 )}
               </div>
             )}
           </div>
         ) : breadcrumb && breadcrumb.length > 0 ? (
-          <div className="flex items-center gap-2 text-sm -mb-3 sm:-mb-4 pb-2 border-b border-gray-100">
+          <div className="flex items-center gap-2 text-sm -mb-3 sm:-mb-4 pb-2 border-b border-gray-100 dark:border-gray-800">
             <Link to="/" className="text-gray-400 hover:text-blue-600 transition-colors">
               {t("tab.overview")}
             </Link>
             {breadcrumb.map((item, i) => (
               <span key={i} className="flex items-center gap-2">
-                <svg className="w-3 h-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 text-gray-300 dark:text-gray-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-                <span className="text-gray-700 font-medium truncate">{item.label}</span>
+                <span className="text-gray-700 dark:text-gray-200 font-medium truncate">{item.label}</span>
               </span>
             ))}
           </div>

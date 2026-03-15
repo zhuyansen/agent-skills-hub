@@ -23,10 +23,10 @@ export function CompareButton({ skill, size = "md" }: Props) {
       disabled={disabled}
       className={`${sz} flex items-center justify-center rounded-lg transition-colors cursor-pointer ${
         active
-          ? "bg-blue-50 text-blue-500 hover:bg-blue-100"
+          ? "bg-blue-50 dark:bg-blue-900/30 text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900/50"
           : disabled
-          ? "bg-gray-50 text-gray-200 cursor-not-allowed"
-          : "bg-gray-50 text-gray-300 hover:bg-gray-100 hover:text-blue-400"
+          ? "bg-gray-50 dark:bg-gray-800 text-gray-200 dark:text-gray-700 cursor-not-allowed"
+          : "bg-gray-50 dark:bg-gray-800 text-gray-300 dark:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-400"
       }`}
       aria-label={active ? "Remove from compare" : "Add to compare"}
       title={active ? "Remove from compare" : disabled ? "Max 3 skills" : "Add to compare"}

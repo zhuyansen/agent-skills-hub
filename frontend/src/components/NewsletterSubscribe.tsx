@@ -34,7 +34,7 @@ export function NewsletterSubscribe() {
 
   return (
     <section className="mt-8 mb-6">
-      <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 rounded-2xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
+      <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 dark:from-indigo-800 dark:via-purple-800 dark:to-indigo-900 rounded-2xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />

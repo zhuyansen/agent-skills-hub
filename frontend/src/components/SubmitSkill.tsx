@@ -13,15 +13,15 @@ export function SubmitSkill() {
 
   return (
     <section className="mt-10 mb-4">
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 p-5 sm:p-6">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800/80 dark:to-gray-800/80 rounded-xl border border-blue-100 dark:border-gray-700 p-5 sm:p-6">
         {/* Tab selector */}
-        <div className="flex items-center gap-1 mb-4 bg-white/60 rounded-lg p-1 border border-blue-100">
+        <div className="flex items-center gap-1 mb-4 bg-white/60 dark:bg-gray-900/60 rounded-lg p-1 border border-blue-100 dark:border-gray-700">
           <button
             onClick={() => setActiveTab("skill")}
             className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
               activeTab === "skill"
                 ? "bg-blue-600 text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@ export function SubmitSkill() {
             className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
               activeTab === "master"
                 ? "bg-indigo-600 text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@ export function SubmitSkill() {
             className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
               activeTab === "workflow"
                 ? "bg-purple-600 text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,14 +99,14 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
   return (
     <>
       <div className="flex items-start gap-3 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
+          <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900">{t("submit.title")}</h3>
-          <p className="text-sm text-gray-500 mt-0.5">{t("submit.subtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.title")}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.subtitle")}</p>
         </div>
       </div>
 
@@ -116,7 +116,7 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
           value={url}
           onChange={(e) => { setUrl(e.target.value); setResult(null); }}
           placeholder="https://github.com/owner/repo"
-          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-1 px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-label="GitHub repository URL"
         />
         <button
@@ -134,12 +134,12 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
       {result && (
         <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
           result.status === "submitted"
-            ? "bg-green-50 text-green-700 border border-green-100"
+            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
             : result.status === "already_tracked"
-            ? "bg-blue-50 text-blue-700 border border-blue-100"
+            ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-100 dark:border-blue-800"
             : result.status === "already_submitted"
-            ? "bg-yellow-50 text-yellow-700 border border-yellow-100"
-            : "bg-red-50 text-red-700 border border-red-100"
+            ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800"
+            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
         }`}>
           {result.status === "submitted" && (
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,14 +190,14 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
   return (
     <>
       <div className="flex items-start gap-3 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
+          <svg className="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900">{t("submit.masterTitle")}</h3>
-          <p className="text-sm text-gray-500 mt-0.5">{t("submit.masterSubtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.masterTitle")}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.masterSubtitle")}</p>
         </div>
       </div>
 
@@ -209,7 +209,7 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
             onChange={(e) => { setGithub(e.target.value); setResult(null); }}
             placeholder={t("submit.masterGithub")}
             required
-            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             aria-label="GitHub username"
           />
           <input
@@ -218,7 +218,7 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
             onChange={(e) => { setName(e.target.value); setResult(null); }}
             placeholder={t("submit.masterName")}
             required
-            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             aria-label="Display name"
           />
         </div>
@@ -227,7 +227,7 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           placeholder={t("submit.masterBio")}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          className="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           aria-label="Bio"
         />
         <textarea
@@ -235,7 +235,7 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
           onChange={(e) => setRepoUrls(e.target.value)}
           placeholder={t("submit.masterRepos")}
           rows={3}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+          className="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
           aria-label="Repository URLs"
         />
         <button
@@ -253,8 +253,8 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
       {result && (
         <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
           result.status === "submitted"
-            ? "bg-green-50 text-green-700 border border-green-100"
-            : "bg-red-50 text-red-700 border border-red-100"
+            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
+            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
         }`}>
           {result.status === "submitted" && (
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -331,14 +331,14 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
   return (
     <>
       <div className="flex items-start gap-3 mb-4">
-        <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center shrink-0">
+          <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900">{t("submit.workflowTitle")}</h3>
-          <p className="text-sm text-gray-500 mt-0.5">{t("submit.workflowSubtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.workflowTitle")}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.workflowSubtitle")}</p>
         </div>
       </div>
 
@@ -350,23 +350,23 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
             onChange={(e) => { setName(e.target.value); setResult(null); }}
             placeholder={t("submit.workflowName")}
             required
-            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           />
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder={t("submit.workflowDesc")}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           />
         </div>
 
         {/* Workflow steps */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-gray-500">{t("submit.workflowSteps")}</label>
+          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">{t("submit.workflowSteps")}</label>
           {steps.map((step, idx) => (
             <div key={idx} className="flex items-start gap-2">
-              <span className="w-5 h-5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-2.5">
+              <span className="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-2.5">
                 {idx + 1}
               </span>
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -375,28 +375,28 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
                   value={step.name}
                   onChange={(e) => updateStep(idx, "name", e.target.value)}
                   placeholder={t("submit.workflowStepName")}
-                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
                 <input
                   type="text"
                   value={step.slug}
                   onChange={(e) => updateStep(idx, "slug", e.target.value)}
                   placeholder="owner/repo"
-                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
                 <input
                   type="text"
                   value={step.description}
                   onChange={(e) => updateStep(idx, "description", e.target.value)}
                   placeholder={t("submit.workflowStepDesc")}
-                  className="px-3 py-2 border border-gray-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
               {steps.length > 2 && (
                 <button
                   type="button"
                   onClick={() => removeStep(idx)}
-                  className="mt-2 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+                  className="mt-2 text-gray-400 dark:text-gray-500 hover:text-red-500 transition-colors cursor-pointer"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -431,8 +431,8 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
       {result && (
         <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
           result.status === "submitted"
-            ? "bg-green-50 text-green-700 border border-green-100"
-            : "bg-red-50 text-red-700 border border-red-100"
+            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
+            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
         }`}>
           {result.status === "submitted" && (
             <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
