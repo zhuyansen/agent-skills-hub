@@ -102,6 +102,12 @@ EXTRA_REPOS = [
     "cloudflare/skills",
     # agent-fetch - full-content web fetcher for AI agents (186 stars)
     "teng-lin/agent-fetch",
+    # great-product-skills - Cursor skills for full-cycle product development (81 stars)
+    "sukilll/great-product-skills",
+    # cc-switch-cli - Claude Code/Codex/Gemini CLI config manager (1085 stars)
+    "SaladDay/cc-switch-cli",
+    # openclaw-wx-echo - WeChat AI assistant, OpenClaw skill (81 stars)
+    "laolin5564/openclaw-wx-echo",
 ]
 
 # ── Rate Limit Management ──
