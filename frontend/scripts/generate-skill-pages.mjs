@@ -482,7 +482,7 @@ ${faqLd}
 
 function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   const catLabel = CATEGORY_LABELS[catSlug] || "AI Tool";
-  const pageUrl = `${SITE}/category/${catSlug}`;
+  const pageUrl = `${SITE}/category/${catSlug}/`;
   const title = `Best ${catLabel} Tools - Open Source Agent Skills | Agent Skills Hub`;
   const metaDesc = `Discover the top ${catSkills.length}+ open-source ${catLabel} tools. Browse by stars, quality, and compatibility on Agent Skills Hub.`;
 

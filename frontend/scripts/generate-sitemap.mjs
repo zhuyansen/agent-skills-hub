@@ -137,7 +137,7 @@ async function main() {
     allSkills.some((s) => s.category === cat)
   );
   const catEntries = catsWithSkills.map((cat) => `  <url>
-    <loc>${SITE}/category/${cat}</loc>
+    <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <lastmod>${today}</lastmod>

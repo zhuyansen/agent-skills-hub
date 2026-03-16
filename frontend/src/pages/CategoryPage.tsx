@@ -65,7 +65,7 @@ export function CategoryPage() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://agentskillshub.top/category/${slug}`} />
+        <link rel="canonical" href={`https://agentskillshub.top/category/${slug}/`} />
       </Helmet>
 
       <SiteHeader />
