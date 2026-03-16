@@ -76,9 +76,12 @@ def main():
         ]
         logger.info("Found %d verified subscribers", len(recipients))
 
-        # 2. Get latest week from weekly_trending_snapshots (Star Velocity History)
+        # 2. Get latest COMPLETED week from weekly_trending_snapshots
+        # Use week_end <= today so we send last week's data, not the current in-progress week
+        today = now_utc.date()
         latest_week = (
             db.query(WeeklyTrendingSnapshot.week_start, WeeklyTrendingSnapshot.week_end)
+            .filter(WeeklyTrendingSnapshot.week_end <= today)
             .order_by(desc(WeeklyTrendingSnapshot.week_start))
             .first()
         )

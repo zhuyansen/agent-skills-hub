@@ -374,9 +374,9 @@ def send_newsletter(
         else:
             failed += 1
 
-        # Resend free tier: max 2 requests/second
+        # Resend free tier: max 2 requests/second, use 1.2s to be safe
         if i < len(recipients) - 1:
-            time.sleep(0.6)
+            time.sleep(1.2)
 
     logger.info("Newsletter sent: %d/%d successful, %d failed", sent, len(recipients), failed)
     return {"sent": sent, "failed": failed, "total": len(recipients)}
@@ -385,31 +385,42 @@ def send_newsletter(
 # ── Transport layer ──
 
 def _send_via_resend(to: str, subject: str, html: str) -> bool:
-    """Send email using Resend API."""
-    try:
-        resp = httpx.post(
-            "https://api.resend.com/emails",
-            headers={
-                "Authorization": f"Bearer {settings.resend_api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "from": settings.email_from,
-                "to": [to],
-                "subject": subject,
-                "html": html,
-            },
-            timeout=15.0,
-        )
-        if resp.status_code in (200, 201):
-            logger.info("Email sent via Resend to %s (subject: %s)", to, subject[:50])
-            return True
-        else:
-            logger.warning("Resend API returned %d: %s", resp.status_code, resp.text[:300])
+    """Send email using Resend API with retry on 429."""
+    import time
+
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            resp = httpx.post(
+                "https://api.resend.com/emails",
+                headers={
+                    "Authorization": f"Bearer {settings.resend_api_key}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "from": settings.email_from,
+                    "to": [to],
+                    "subject": subject,
+                    "html": html,
+                },
+                timeout=15.0,
+            )
+            if resp.status_code in (200, 201):
+                logger.info("Email sent via Resend to %s (subject: %s)", to, subject[:50])
+                return True
+            elif resp.status_code == 429:
+                wait = 2 ** attempt + 1  # 2s, 3s, 5s
+                logger.warning("Resend 429 rate limit for %s, retry %d/%d in %ds", to, attempt + 1, max_retries, wait)
+                time.sleep(wait)
+                continue
+            else:
+                logger.warning("Resend API returned %d: %s", resp.status_code, resp.text[:300])
+                return False
+        except Exception as exc:
+            logger.warning("Resend API call failed for %s: %s", to, exc)
             return False
-    except Exception as exc:
-        logger.warning("Resend API call failed for %s: %s", to, exc)
-        return False
+    logger.warning("Resend failed after %d retries for %s", max_retries, to)
+    return False
 
 
 def _send_via_billionmail(email: str, token: str, verify_url: str) -> bool:
