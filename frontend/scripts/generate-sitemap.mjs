@@ -24,10 +24,8 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo";
 const SITE = "https://agentskillshub.top";
 
-const CATEGORIES = [
-  "mcp-server", "claude-skill", "codex-skill", "agent-tool",
-  "prompt-library", "ai-coding-assistant", "uncategorized",
-];
+// Dynamically fetched from DB — no hardcoded list needed
+// Old hardcoded list removed to prevent 404s from empty categories
 
 function getPriority(stars) {
   if (stars >= 1000) return "0.9";
@@ -37,12 +35,11 @@ function getPriority(stars) {
   return "0.5";
 }
 
-/** Mirror the indexing logic from generate-skill-pages.mjs */
+/** Only include high-value pages in sitemap to optimize crawl budget.
+ *  Pages below this threshold still get generated (with noindex) but
+ *  are NOT submitted to Google, preserving crawl budget for quality pages. */
 function shouldIndex(skill) {
-  if (skill.stars >= 50) return true;
-  if (skill.stars >= 20 && skill.readme_size && skill.readme_size > 100) return true;
-  if (skill.stars >= 20 && skill.description && skill.description.length > 80) return true;
-  return false;
+  return skill.stars >= 50;
 }
 
 async function fetchAllSkills() {
@@ -115,10 +112,9 @@ async function main() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  // Split by tier
+  // Split by tier (only stars >= 50 now)
   const topSkills = indexedSkills.filter((s) => s.stars >= 100);
   const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
-  const restSkills = indexedSkills.filter((s) => s.stars < 50);
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -132,10 +128,8 @@ async function main() {
   writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
   console.log(`sitemap-static.xml: 1 URL`);
 
-  // 2. sitemap-categories.xml — only include categories that have skills
-  const catsWithSkills = CATEGORIES.filter((cat) =>
-    allSkills.some((s) => s.category === cat)
-  );
+  // 2. sitemap-categories.xml — derive categories from actual data (no hardcoded list)
+  const catsWithSkills = [...new Set(allSkills.map((s) => s.category))].filter(Boolean);
   const catEntries = catsWithSkills.map((cat) => `  <url>
     <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
@@ -143,7 +137,7 @@ async function main() {
     <lastmod>${today}</lastmod>
   </url>`);
   writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
-  console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (${CATEGORIES.length - catsWithSkills.length} empty categories excluded)`);
+  console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (derived from data)`);
 
   // 3. sitemap-top.xml (stars >= 100)
   const topEntries = buildUrlEntries(topSkills);
@@ -155,25 +149,19 @@ async function main() {
   writeFileSync("dist/sitemap-mid.xml", wrapUrlset(midEntries));
   console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
 
-  // 5. sitemap-rest.xml (stars 20-49 with content)
-  const restEntries = buildUrlEntries(restSkills);
-  writeFileSync("dist/sitemap-rest.xml", wrapUrlset(restEntries));
-  console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49 with content)`);
-
-  // 6. sitemap.xml (index)
+  // 5. sitemap.xml (index) — no rest tier, focus crawl budget on quality pages
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
     "sitemap-top.xml",
     "sitemap-mid.xml",
   ];
-  if (restSkills.length > 0) sitemapFiles.push("sitemap-rest.xml");
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
   const totalUrls = 1 + catsWithSkills.length + indexedSkills.length;
-  console.log(`Total indexed URLs: ${totalUrls} (excluded ${noindexCount} low-quality pages)`);
+  console.log(`Total sitemap URLs: ${totalUrls} (stars >= 50 only, excluded ${noindexCount} low-star pages)`);
 }
 
 main().catch(console.error);

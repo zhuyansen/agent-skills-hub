@@ -24,7 +24,7 @@ import { TrendingSection } from "../components/TrendingSection";
 import { ViewToggle } from "../components/ViewToggle";
 import { SubmitSkill } from "../components/SubmitSkill";
 import { NewsletterSubscribe } from "../components/NewsletterSubscribe";
-import { NewsletterInline } from "../components/NewsletterInline";
+
 import { NewThisWeek } from "../components/NewThisWeek";
 import { FAQSection } from "../components/FAQSection";
 import { FilterSidebar } from "../components/FilterSidebar";
@@ -129,9 +129,6 @@ export function Home() {
               <div id="categories" className="scroll-mt-44">
                 <SkillWorkflows />
               </div>
-            </LazySection>
-            <LazySection>
-              <NewsletterInline />
             </LazySection>
             <LazySection>
               <div id="top-rated" className="scroll-mt-44 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">

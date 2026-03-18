@@ -25,8 +25,10 @@ const CATEGORY_LABELS = {
   "claude-skill": "Claude Skill",
   "codex-skill": "Codex Skill",
   "agent-tool": "Agent Tool",
-  "prompt-library": "Prompt Library",
-  "ai-coding-assistant": "AI Coding Assistant",
+  "ai-skill": "AI Skill",
+  "llm-plugin": "LLM Plugin",
+  "youmind-plugin": "YouMind Plugin",
+  "education": "Education",
   uncategorized: "AI Tool",
 };
 
@@ -681,9 +683,9 @@ async function main() {
   const elapsed1 = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`Skill pages: ${ok} generated (${indexedCount} indexed, ${noindexCount} noindex), ${skipped} skipped (${elapsed1}s)`);
 
-  // Generate category pages
+  // Generate category pages — use actual categories from data, not hardcoded list
   const t1 = Date.now();
-  const allCategories = Object.keys(CATEGORY_LABELS);
+  const allCategories = [...new Set(skills.map((s) => s.category))].filter(Boolean);
   let catCount = 0;
 
   for (const catSlug of allCategories) {
