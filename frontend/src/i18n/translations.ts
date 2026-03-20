@@ -256,6 +256,19 @@ export const translations = {
     // Newsletter Inline
     "newsletter.inlineTitle": "订阅周报，获取最新趋势",
 
+    // Install Guide
+    "guide.title": "如何使用这些 Skills",
+    "guide.subtitle": "三步上手，快速集成到你的 AI 工作流",
+    "guide.step1.title": "浏览发现",
+    "guide.step1.desc": "通过分类、排序、搜索找到适合的 Skill",
+    "guide.step2.title": "查看详情",
+    "guide.step2.desc": "了解安装方式、功能特性和质量评分",
+    "guide.step3.title": "一键安装",
+    "guide.step3.desc": "复制安装命令，在 Claude Code / MCP 客户端中运行",
+
+    // Category chips
+    "chips.quickFilter": "快速筛选",
+
     // FAQ
     "faq.title": "常见问题",
     "faq.q1": "什么是 Agent Skills Hub？",
@@ -525,6 +538,19 @@ export const translations = {
 
     // Newsletter Inline
     "newsletter.inlineTitle": "Subscribe for weekly trends",
+
+    // Install Guide
+    "guide.title": "How to Use These Skills",
+    "guide.subtitle": "Get started in 3 simple steps",
+    "guide.step1.title": "Browse & Discover",
+    "guide.step1.desc": "Find the right skill by category, sorting, or search",
+    "guide.step2.title": "View Details",
+    "guide.step2.desc": "Check install methods, features, and quality scores",
+    "guide.step3.title": "One-Click Install",
+    "guide.step3.desc": "Copy the install command and run it in Claude Code / MCP client",
+
+    // Category chips
+    "chips.quickFilter": "Quick Filter",
 
     // FAQ
     "faq.title": "Frequently Asked Questions",

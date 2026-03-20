@@ -160,38 +160,52 @@ export function ScenarioWorkflows() {
               </div>
             </div>
 
-            <div className="space-y-1.5">
+            {/* Call chain visualization */}
+            <div className="relative">
               {sc.steps.map((step, idx) => (
-                <button
-                  key={step.name}
-                  onClick={() => navigate(`/skill/${step.slug}`)}
-                  className="w-full flex items-center gap-2.5 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors group text-left"
-                >
-                  <span className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-[10px] font-bold shrink-0">
-                    {idx + 1}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-blue-600 transition-colors block truncate">
-                      {step.name}
-                    </span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">
-                      {lang === "zh" ? step.description_zh : step.description_en}
-                    </span>
-                  </div>
-                  <svg
-                    className="w-3.5 h-3.5 text-gray-300 dark:text-gray-600 group-hover:text-blue-400 transition-colors shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div key={step.name} className="relative">
+                  {/* Connector line between steps */}
+                  {idx < sc.steps.length - 1 && (
+                    <div className="absolute left-[9px] top-[32px] w-0.5 h-[calc(100%-8px)] bg-gradient-to-b from-blue-300 dark:from-blue-600 to-blue-100 dark:to-blue-800/30" />
+                  )}
+                  <button
+                    onClick={() => navigate(`/skill/${step.slug}`)}
+                    className="w-full flex items-start gap-3 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors group text-left relative z-10"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
+                    {/* Step node */}
+                    <div className="mt-0.5 w-[18px] h-[18px] rounded-full border-2 border-blue-400 dark:border-blue-500 bg-white dark:bg-gray-900 flex items-center justify-center shrink-0">
+                      <div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-blue-600 transition-colors truncate">
+                          {step.name}
+                        </span>
+                        {idx < sc.steps.length - 1 && (
+                          <svg className="w-3 h-3 text-gray-300 dark:text-gray-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        )}
+                      </div>
+                      <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">
+                        {lang === "zh" ? step.description_zh : step.description_en}
+                      </span>
+                    </div>
+                    <svg
+                      className="w-3.5 h-3.5 text-gray-300 dark:text-gray-600 group-hover:text-blue-400 transition-colors shrink-0 mt-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
               ))}
             </div>
           </div>

@@ -28,6 +28,8 @@ import { NewsletterSubscribe } from "../components/NewsletterSubscribe";
 import { NewThisWeek } from "../components/NewThisWeek";
 import { FAQSection } from "../components/FAQSection";
 import { FilterSidebar } from "../components/FilterSidebar";
+import { InstallGuide } from "../components/InstallGuide";
+import { CategoryChips } from "../components/CategoryChips";
 import { SiteHeader } from "../components/SiteHeader";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { SiteFooter } from "../components/SiteFooter";
@@ -110,6 +112,7 @@ export function Home() {
                 setTab("explore");
               }}
             />
+            <CategoryChips onSelect={(category) => { updateParams({ category }); setTab("explore"); }} />
             <div id="trending" className="scroll-mt-44">
               {landingLoading && !landingData ? (
                 <SkeletonTrending />
@@ -178,6 +181,9 @@ export function Home() {
                 initialLanguages={landingData?.languages}
                 initialTrending={landingData?.trending}
               />
+            </LazySection>
+            <LazySection>
+              <InstallGuide />
             </LazySection>
             <LazySection>
               <div id="workflows" className="scroll-mt-44">
