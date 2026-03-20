@@ -88,7 +88,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-white via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10 backdrop-blur-sm">
+    <header className="bg-gradient-to-r from-white via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between mb-3">
           <div className="min-w-0">
