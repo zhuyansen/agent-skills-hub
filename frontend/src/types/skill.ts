@@ -44,6 +44,9 @@ export interface Skill {
 
   // Token budget
   estimated_tokens: number;
+
+  // Security
+  security_grade: string | null;
 }
 
 export interface SkillCompositionItem {

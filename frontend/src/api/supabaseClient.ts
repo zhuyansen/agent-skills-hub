@@ -26,6 +26,7 @@ const SKILL_COLUMNS = [
   "quality_agent_readiness", "quality_score",
   "size_category", "repo_size_kb", "readme_size", "readme_structure_score",
   "platforms", "estimated_tokens",
+  "security_grade",
 ].join(",");
 
 function ensureSupabase() {

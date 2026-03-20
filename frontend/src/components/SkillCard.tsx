@@ -6,6 +6,7 @@ import { FavoriteButton } from "./FavoriteButton";
 import { getInstallCommands } from "./InstallCommand";
 import { PlatformBadges } from "./PlatformBadges";
 import { QualityBadge, ScoreBadge } from "./ScoreBadge";
+import { SecurityBadge } from "./SecurityBadge";
 import { SizeBadge } from "./SizeBadge";
 
 interface Props {
@@ -49,6 +50,7 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
             {/* Badges: Quality + HOT + NEW */}
             <span className="ml-auto flex items-center gap-1 shrink-0">
               {skill.quality_score > 0 && <QualityBadge score={skill.quality_score} />}
+              <SecurityBadge grade={skill.security_grade} />
               {skill.star_momentum >= 0.05 && (
                 <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-orange-50 dark:bg-orange-900/30 text-orange-500 border border-orange-100 dark:border-orange-800">
                   HOT

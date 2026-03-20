@@ -266,6 +266,11 @@ export const translations = {
     "guide.step3.title": "一键安装",
     "guide.step3.desc": "复制安装命令，在 Claude Code / MCP 客户端中运行",
 
+    // Security
+    "security.safe": "安全",
+    "security.caution": "注意",
+    "security.unsafe": "风险",
+
     // Category chips
     "chips.quickFilter": "快速筛选",
 
@@ -548,6 +553,11 @@ export const translations = {
     "guide.step2.desc": "Check install methods, features, and quality scores",
     "guide.step3.title": "One-Click Install",
     "guide.step3.desc": "Copy the install command and run it in Claude Code / MCP client",
+
+    // Security
+    "security.safe": "Safe",
+    "security.caution": "Caution",
+    "security.unsafe": "Unsafe",
 
     // Category chips
     "chips.quickFilter": "Quick Filter",

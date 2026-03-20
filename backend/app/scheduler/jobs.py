@@ -651,6 +651,14 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             logger.info("Composability: full recompute (no new skills or first run)")
             ComposabilityEngine().compute_all(db)
 
+        # Security scan (non-fatal if fails)
+        try:
+            from app.services.security_scanner import SecurityScanner
+            sec_stats = SecurityScanner().scan_all(db)
+            logger.info("Security scan: %s", sec_stats)
+        except Exception as e:
+            logger.warning("Security scan failed (non-fatal): %s", e)
+
         # Take weekly trending snapshot (non-fatal if fails)
         maybe_take_weekly_snapshot(db)
 

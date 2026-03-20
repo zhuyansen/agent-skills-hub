@@ -84,6 +84,10 @@ class Skill(Base):
     # Token budget
     estimated_tokens = Column(Integer, default=0)
 
+    # Security
+    security_grade = Column(String, default="unknown")
+    security_flags = Column(Text, default="[]")
+
     # Internal timestamps
     first_seen = Column(DateTime, server_default=func.now())
     last_synced = Column(DateTime, server_default=func.now(), onupdate=func.now())

@@ -7,6 +7,7 @@ import { QualityRadar } from "../components/QualityRadar";
 import { ScoreBadge } from "../components/ScoreBadge";
 import { ProjectTypeBadge } from "../components/ProjectTypeBadge";
 import { PlatformBadges } from "../components/PlatformBadges";
+import { SecurityBadge } from "../components/SecurityBadge";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { FavoriteButton } from "../components/FavoriteButton";
@@ -162,6 +163,7 @@ export function SkillDetailPage() {
                     {detail.license}
                   </span>
                 )}
+                <SecurityBadge grade={detail.security_grade} />
               </div>
 
               {/* Platforms */}
