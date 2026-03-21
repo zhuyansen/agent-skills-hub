@@ -210,7 +210,8 @@ export async function fetchLandingData(): Promise<LandingData> {
 
 export async function analyzeRepo(repoUrl: string): Promise<import("../types/analyzer").AnalyzerResult> {
   // Analyzer always goes through the backend API (needs GitHub API + LLM)
-  const base = API_BASE || "";
+  // In production, use dedicated ANALYZER_API_URL (Railway); in dev, use local backend
+  const base = import.meta.env.VITE_ANALYZER_API_URL || API_BASE || "";
   const res = await fetch(`${base}/api/analyzer/scan`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

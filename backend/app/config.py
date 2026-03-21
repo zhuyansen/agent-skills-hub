@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     supabase_service_role_key: str = ""
     github_token: str = ""
     sync_interval_hours: int = 8
-    cors_origins: str = "http://localhost:5173,http://localhost:3000"
+    cors_origins: str = "http://localhost:5173,http://localhost:3000,https://agentskillshub.top,https://www.agentskillshub.top"
     admin_token: str = ""
 
     # BillionMail newsletter integration
