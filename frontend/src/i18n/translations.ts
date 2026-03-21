@@ -145,6 +145,7 @@ export const translations = {
     "nav.categories": "分类精选",
     "nav.workflows": "场景组合",
     "nav.newsletter": "订阅",
+    "nav.analyzer": "安全分析",
 
     // Scenarios
     "scenarios.title": "场景推荐组合",
@@ -433,6 +434,7 @@ export const translations = {
     "nav.categories": "Categories",
     "nav.workflows": "Workflows",
     "nav.newsletter": "Newsletter",
+    "nav.analyzer": "Analyzer",
 
     // Scenarios
     "scenarios.title": "Scenario Workflows",

@@ -87,6 +87,8 @@ class Skill(Base):
     # Security
     security_grade = Column(String, default="unknown")
     security_flags = Column(Text, default="[]")
+    security_llm_grade = Column(String, nullable=True)
+    security_llm_analysis = Column(Text, nullable=True)
 
     # Internal timestamps
     first_seen = Column(DateTime, server_default=func.now())

@@ -1205,3 +1205,232 @@ def get_landing_data(db: Session = Depends(get_db)):
         "generated_at": now.isoformat(),
     }
     return _cached_json(landing, max_age=600)  # 10 min
+
+
+# ═══ Security Analyzer (on-demand scanning) ═══
+
+# Simple in-memory rate limiter
+_analyzer_requests: dict[str, list[float]] = {}
+_ANALYZER_RATE_LIMIT = 10  # per minute per IP
+_ANALYZER_WINDOW = 60  # seconds
+
+
+def _check_rate_limit(client_ip: str) -> bool:
+    """Return True if request is allowed, False if rate-limited."""
+    import time
+    now = time.time()
+    reqs = _analyzer_requests.get(client_ip, [])
+    # Clean old entries
+    reqs = [t for t in reqs if now - t < _ANALYZER_WINDOW]
+    if len(reqs) >= _ANALYZER_RATE_LIMIT:
+        _analyzer_requests[client_ip] = reqs
+        return False
+    reqs.append(now)
+    _analyzer_requests[client_ip] = reqs
+    return True
+
+
+@router.post("/analyzer/scan")
+def analyzer_scan(
+    body: dict,
+    db: Session = Depends(get_db),
+):
+    """On-demand security analysis for any GitHub repo URL.
+
+    1. Parses repo URL → owner/repo
+    2. Checks if already indexed in DB
+    3. If not, fetches from GitHub API
+    4. Runs rule-based security scan
+    5. If flagged + API key available, runs LLM deep analysis
+    6. Returns combined results
+    """
+    import re as _re
+    import time
+
+    repo_url = body.get("repo_url", "").strip()
+    if not repo_url:
+        raise HTTPException(status_code=400, detail="repo_url is required")
+
+    # Parse GitHub URL
+    match = _re.match(
+        r"(?:https?://)?github\.com/([^/]+/[^/]+?)(?:\.git)?/?$", repo_url
+    )
+    if not match:
+        raise HTTPException(status_code=400, detail="Invalid GitHub repository URL")
+
+    full_name = match.group(1)
+
+    # Check if already indexed
+    existing = db.query(Skill).filter(Skill.repo_full_name == full_name).first()
+
+    if existing:
+        # Return existing data
+        from app.services.security_scanner import SecurityScanner
+
+        rule_grade = existing.security_grade or "unknown"
+        rule_flags = json.loads(existing.security_flags or "[]")
+        llm_analysis = None
+        llm_grade = existing.security_llm_grade
+
+        if existing.security_llm_analysis:
+            try:
+                llm_analysis = json.loads(existing.security_llm_analysis)
+            except json.JSONDecodeError:
+                pass
+
+        # If no LLM analysis yet and flagged, try now
+        if (
+            not llm_analysis
+            and rule_grade in ("caution", "unsafe")
+            and existing.readme_content
+            and settings.anthropic_api_key
+        ):
+            try:
+                from app.services.llm_security_analyzer import LLMSecurityAnalyzer
+
+                analyzer = LLMSecurityAnalyzer(settings.anthropic_api_key)
+                llm_analysis = analyzer.analyze_single(
+                    existing.readme_content,
+                    {
+                        "full_name": existing.repo_full_name,
+                        "stars": existing.stars or 0,
+                        "license": existing.license or "none",
+                        "category": existing.category or "unknown",
+                        "description": existing.description or "",
+                        "flags": rule_flags,
+                    },
+                )
+                llm_grade = llm_analysis.get("grade", rule_grade)
+                # Persist
+                existing.security_llm_grade = llm_grade
+                existing.security_llm_analysis = json.dumps(llm_analysis)
+                db.commit()
+            except Exception as e:
+                logger.warning("LLM analysis failed for %s: %s", full_name, e)
+
+        final_grade = llm_grade or rule_grade
+
+        return {
+            "repo": {
+                "full_name": existing.repo_full_name,
+                "stars": existing.stars,
+                "description": existing.description,
+                "license": existing.license,
+                "category": existing.category,
+                "repo_url": existing.repo_url,
+            },
+            "indexed": True,
+            "security": {
+                "rule_grade": rule_grade,
+                "llm_grade": llm_grade,
+                "final_grade": final_grade,
+                "flags": rule_flags,
+                "llm_analysis": llm_analysis,
+            },
+            "quality": {
+                "score": existing.quality_score,
+                "completeness": existing.quality_completeness,
+                "clarity": existing.quality_clarity,
+                "specificity": existing.quality_specificity,
+                "examples": existing.quality_examples,
+                "agent_readiness": existing.quality_agent_readiness,
+            },
+        }
+
+    # Not indexed — fetch from GitHub
+    import httpx
+
+    headers = {}
+    if settings.github_token:
+        headers["Authorization"] = f"token {settings.github_token}"
+    headers["Accept"] = "application/vnd.github.v3+json"
+
+    try:
+        with httpx.Client(timeout=15) as client:
+            # Fetch repo info
+            repo_resp = client.get(
+                f"https://api.github.com/repos/{full_name}", headers=headers
+            )
+            if repo_resp.status_code == 404:
+                raise HTTPException(
+                    status_code=404, detail=f"Repository {full_name} not found"
+                )
+            repo_resp.raise_for_status()
+            repo_info = repo_resp.json()
+
+            # Fetch README
+            readme_resp = client.get(
+                f"https://api.github.com/repos/{full_name}/readme",
+                headers={**headers, "Accept": "application/vnd.github.v3.raw"},
+            )
+            readme_content = readme_resp.text if readme_resp.status_code == 200 else ""
+
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(
+            status_code=e.response.status_code,
+            detail=f"GitHub API error: {e.response.status_code}",
+        )
+    except httpx.RequestError as e:
+        raise HTTPException(status_code=502, detail=f"GitHub API unreachable: {str(e)}")
+
+    # Run rule-based scan
+    from app.services.security_scanner import SecurityScanner
+
+    # Create a temporary Skill-like object for scanning
+    class _TempSkill:
+        def __init__(self, readme, stars, license_name):
+            self.readme_content = readme
+            self.stars = stars
+            self.license = license_name
+
+    license_info = repo_info.get("license") or {}
+    license_name = license_info.get("spdx_id", "") if isinstance(license_info, dict) else ""
+
+    temp_skill = _TempSkill(readme_content, repo_info.get("stargazers_count", 0), license_name)
+    scanner = SecurityScanner()
+    rule_grade, rule_flags = scanner.scan_single(temp_skill)
+
+    # LLM deep analysis if flagged
+    llm_analysis = None
+    llm_grade = None
+    if rule_grade in ("caution", "unsafe") and readme_content and settings.anthropic_api_key:
+        try:
+            from app.services.llm_security_analyzer import LLMSecurityAnalyzer
+
+            analyzer = LLMSecurityAnalyzer(settings.anthropic_api_key)
+            llm_analysis = analyzer.analyze_repo_readme(
+                readme_content,
+                {
+                    "full_name": full_name,
+                    "stargazers_count": repo_info.get("stargazers_count", 0),
+                    "license": license_name,
+                    "category": "unknown",
+                    "description": repo_info.get("description", ""),
+                    "flags": rule_flags,
+                },
+            )
+            llm_grade = llm_analysis.get("grade", rule_grade)
+        except Exception as e:
+            logger.warning("LLM on-demand analysis failed for %s: %s", full_name, e)
+
+    final_grade = llm_grade or rule_grade
+
+    return {
+        "repo": {
+            "full_name": full_name,
+            "stars": repo_info.get("stargazers_count", 0),
+            "description": repo_info.get("description", ""),
+            "license": license_name,
+            "category": None,
+            "repo_url": repo_info.get("html_url", f"https://github.com/{full_name}"),
+        },
+        "indexed": False,
+        "security": {
+            "rule_grade": rule_grade,
+            "llm_grade": llm_grade,
+            "final_grade": final_grade,
+            "flags": rule_flags,
+            "llm_analysis": llm_analysis,
+        },
+        "quality": None,
+    }

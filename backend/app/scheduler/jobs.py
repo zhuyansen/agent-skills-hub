@@ -659,6 +659,17 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         except Exception as e:
             logger.warning("Security scan failed (non-fatal): %s", e)
 
+        # LLM deep analysis for caution/unsafe skills (non-fatal, requires API key)
+        try:
+            if settings.anthropic_api_key:
+                from app.services.llm_security_analyzer import LLMSecurityAnalyzer
+                llm_stats = LLMSecurityAnalyzer(settings.anthropic_api_key).analyze_flagged(db)
+                logger.info("LLM security analysis: %s", llm_stats)
+            else:
+                logger.info("LLM security analysis skipped (no ANTHROPIC_API_KEY)")
+        except Exception as e:
+            logger.warning("LLM security analysis failed (non-fatal): %s", e)
+
         # Take weekly trending snapshot (non-fatal if fails)
         maybe_take_weekly_snapshot(db)
 

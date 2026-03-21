@@ -206,6 +206,23 @@ export async function fetchLandingData(): Promise<LandingData> {
   return request<LandingData>("/api/landing");
 }
 
+// ═══ Security Analyzer (always uses backend API) ═══
+
+export async function analyzeRepo(repoUrl: string): Promise<import("../types/analyzer").AnalyzerResult> {
+  // Analyzer always goes through the backend API (needs GitHub API + LLM)
+  const base = API_BASE || "";
+  const res = await fetch(`${base}/api/analyzer/scan`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ repo_url: repoUrl }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || `Analysis failed (${res.status})`);
+  }
+  return res.json();
+}
+
 // ═══ Community Submission ═══
 
 export async function submitSkill(repoUrl: string): Promise<{ status: string; message: string; skill_id?: number }> {

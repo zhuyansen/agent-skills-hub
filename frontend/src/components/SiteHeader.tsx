@@ -312,6 +312,16 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                       {sec.label}
                     </button>
                   ))}
+                  {/* Analyzer link (separate page, not scroll target) */}
+                  <Link
+                    to="/analyzer"
+                    className="px-2.5 py-1 text-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 font-medium flex items-center gap-1"
+                  >
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 1a1 1 0 011 1v.586l5.707 2.853A1 1 0 0117 6.414V10a7 7 0 01-7 7 7 7 0 01-7-7V6.414a1 1 0 01.293-.975L9 2.586V2a1 1 0 011-1z" clipRule="evenodd" />
+                    </svg>
+                    {t("nav.analyzer")}
+                  </Link>
                 </div>
                 {navScroll.right && (
                   <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
