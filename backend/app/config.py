@@ -14,8 +14,13 @@ class Settings(BaseSettings):
     billionmail_api_url: str = ""  # e.g. https://mail.yourdomain.com
     billionmail_api_key: str = ""
 
-    # Anthropic API (optional — for LLM security analysis, Phase 2)
-    anthropic_api_key: str = ""  # e.g. sk-ant-api03-...
+    # LLM API (optional — for LLM security analysis, Phase 2)
+    # Supports OpenAI-compatible APIs: MiniMax, OpenAI, etc.
+    llm_api_key: str = ""  # MiniMax API key
+    llm_base_url: str = "https://api.minimax.chat/v1"  # MiniMax endpoint
+    llm_model: str = "MiniMax-Text-01"  # Model name
+    # Legacy — still checked for backward compat
+    anthropic_api_key: str = ""
 
     # Resend email integration (recommended — free 3000 emails/month)
     resend_api_key: str = ""  # e.g. re_xxxxxxxx

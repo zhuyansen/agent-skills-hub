@@ -661,12 +661,17 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         # LLM deep analysis for caution/unsafe skills (non-fatal, requires API key)
         try:
-            if settings.anthropic_api_key:
+            llm_key = settings.llm_api_key or settings.anthropic_api_key
+            if llm_key:
                 from app.services.llm_security_analyzer import LLMSecurityAnalyzer
-                llm_stats = LLMSecurityAnalyzer(settings.anthropic_api_key).analyze_flagged(db)
+                llm_stats = LLMSecurityAnalyzer(
+                    api_key=llm_key,
+                    model=settings.llm_model,
+                    base_url=settings.llm_base_url,
+                ).analyze_flagged(db)
                 logger.info("LLM security analysis: %s", llm_stats)
             else:
-                logger.info("LLM security analysis skipped (no ANTHROPIC_API_KEY)")
+                logger.info("LLM security analysis skipped (no LLM_API_KEY)")
         except Exception as e:
             logger.warning("LLM security analysis failed (non-fatal): %s", e)
 

@@ -1,14 +1,16 @@
 """
-LLM Security Analyzer — Uses Claude Haiku for semantic security analysis.
+LLM Security Analyzer — Uses LLM for semantic security analysis.
 
 Phase 2: For skills flagged as caution/unsafe by the rule-based scanner,
-this service provides deeper semantic analysis using Anthropic's Claude API.
+this service provides deeper semantic analysis using an LLM API.
 
-Cost estimate: ~$0.5 for 500 skills (Haiku pricing).
+Supports OpenAI-compatible APIs (MiniMax, OpenAI, etc.) and Anthropic.
+Default: MiniMax MiniMax-Text-01 via OpenAI-compatible endpoint.
 """
 
 import json
 import logging
+import re
 import time
 from typing import Optional
 
@@ -66,18 +68,24 @@ Provide your security analysis as JSON."""
 
 
 class LLMSecurityAnalyzer:
-    """Uses Claude Haiku for semantic security analysis of flagged skills."""
+    """LLM-based security analyzer. Supports OpenAI-compatible APIs (MiniMax, etc.)."""
 
-    def __init__(self, api_key: str, model: str = "claude-haiku-4-0"):
+    def __init__(
+        self,
+        api_key: str,
+        model: str = "MiniMax-Text-01",
+        base_url: str = "https://api.minimax.chat/v1",
+    ):
         self.api_key = api_key
         self.model = model
+        self.base_url = base_url
         self._client = None
 
     @property
     def client(self):
         if self._client is None:
-            import anthropic
-            self._client = anthropic.Anthropic(api_key=self.api_key)
+            from openai import OpenAI
+            self._client = OpenAI(api_key=self.api_key, base_url=self.base_url)
         return self._client
 
     def analyze_single(self, readme: str, metadata: dict) -> dict:
@@ -94,13 +102,18 @@ class LLMSecurityAnalyzer:
 
         for attempt in range(3):
             try:
-                response = self.client.messages.create(
+                response = self.client.chat.completions.create(
                     model=self.model,
                     max_tokens=1024,
-                    system=SYSTEM_PROMPT,
-                    messages=[{"role": "user", "content": user_prompt}],
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
                 )
-                text = response.content[0].text.strip()
+                text = response.choices[0].message.content.strip()
+                # Strip markdown fences if present
+                text = re.sub(r'^```(?:json)?\s*', '', text)
+                text = re.sub(r'\s*```$', '', text)
                 # Parse JSON response
                 result = json.loads(text)
                 # Validate required fields

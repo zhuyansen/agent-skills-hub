@@ -1283,12 +1283,13 @@ def analyzer_scan(
             not llm_analysis
             and rule_grade in ("caution", "unsafe")
             and existing.readme_content
-            and settings.anthropic_api_key
+            and (settings.llm_api_key or settings.anthropic_api_key)
         ):
             try:
                 from app.services.llm_security_analyzer import LLMSecurityAnalyzer
 
-                analyzer = LLMSecurityAnalyzer(settings.anthropic_api_key)
+                _key = settings.llm_api_key or settings.anthropic_api_key
+                analyzer = LLMSecurityAnalyzer(api_key=_key, model=settings.llm_model, base_url=settings.llm_base_url)
                 llm_analysis = analyzer.analyze_single(
                     existing.readme_content,
                     {
@@ -1393,11 +1394,12 @@ def analyzer_scan(
     # LLM deep analysis if flagged
     llm_analysis = None
     llm_grade = None
-    if rule_grade in ("caution", "unsafe") and readme_content and settings.anthropic_api_key:
+    _llm_key = settings.llm_api_key or settings.anthropic_api_key
+    if rule_grade in ("caution", "unsafe") and readme_content and _llm_key:
         try:
             from app.services.llm_security_analyzer import LLMSecurityAnalyzer
 
-            analyzer = LLMSecurityAnalyzer(settings.anthropic_api_key)
+            analyzer = LLMSecurityAnalyzer(api_key=_llm_key, model=settings.llm_model, base_url=settings.llm_base_url)
             llm_analysis = analyzer.analyze_repo_readme(
                 readme_content,
                 {
