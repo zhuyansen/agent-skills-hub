@@ -47,6 +47,9 @@ export interface Skill {
 
   // Security
   security_grade: string | null;
+
+  // Official
+  is_official?: boolean;
 }
 
 export interface SkillCompositionItem {

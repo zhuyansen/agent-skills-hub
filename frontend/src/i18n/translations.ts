@@ -275,6 +275,17 @@ export const translations = {
     // Category chips
     "chips.quickFilter": "快速筛选",
 
+    // Ecosystem navigation
+    "ecosystem.skills": "AI Skills",
+    "ecosystem.skillsDesc": "教 AI 怎么做事的技能包 — 编程、设计、写作、营销",
+    "ecosystem.mcp-servers": "MCP Servers",
+    "ecosystem.mcp-serversDesc": "给 AI 访问外部世界的能力 — API、数据库、文件系统",
+    "ecosystem.frameworks": "Frameworks & Tools",
+    "ecosystem.frameworksDesc": "驱动 AI Agent 的开源引擎 — 框架、编排、自动化",
+
+    // Official badge
+    "badge.official": "官方",
+
     // FAQ
     "faq.title": "常见问题",
     "faq.q1": "什么是 Agent Skills Hub？",
@@ -563,6 +574,17 @@ export const translations = {
 
     // Category chips
     "chips.quickFilter": "Quick Filter",
+
+    // Ecosystem navigation
+    "ecosystem.skills": "AI Skills",
+    "ecosystem.skillsDesc": "Teach AI HOW to do things — coding, design, writing, marketing",
+    "ecosystem.mcp-servers": "MCP Servers",
+    "ecosystem.mcp-serversDesc": "Give AI ACCESS to the outside world — APIs, databases, file systems",
+    "ecosystem.frameworks": "Frameworks & Tools",
+    "ecosystem.frameworksDesc": "Open-source engines powering AI agents — frameworks, orchestration, automation",
+
+    // Official badge
+    "badge.official": "Official",
 
     // FAQ
     "faq.title": "Frequently Asked Questions",

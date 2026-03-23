@@ -6,6 +6,7 @@ import { FavoriteButton } from "./FavoriteButton";
 import { getInstallCommands } from "./InstallCommand";
 import { PlatformBadges } from "./PlatformBadges";
 import { QualityBadge, ScoreBadge } from "./ScoreBadge";
+import { OfficialBadge } from "./OfficialBadge";
 import { SecurityBadge } from "./SecurityBadge";
 import { SizeBadge } from "./SizeBadge";
 
@@ -49,6 +50,7 @@ export const SkillCard = memo(function SkillCard({ skill, onSelect: _onSelect, o
             <span className="text-xs text-gray-400 dark:text-gray-500 truncate">{skill.author_name}</span>
             {/* Badges: Quality + HOT + NEW */}
             <span className="ml-auto flex items-center gap-1 shrink-0">
+              <OfficialBadge isOfficial={skill.is_official} />
               {skill.quality_score > 0 && <QualityBadge score={skill.quality_score} />}
               <SecurityBadge grade={skill.security_grade} />
               {skill.star_momentum >= 0.05 && (

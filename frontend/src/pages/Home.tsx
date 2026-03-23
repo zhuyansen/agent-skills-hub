@@ -29,7 +29,10 @@ import { NewThisWeek } from "../components/NewThisWeek";
 import { FAQSection } from "../components/FAQSection";
 import { FilterSidebar } from "../components/FilterSidebar";
 import { InstallGuide } from "../components/InstallGuide";
-import { CategoryChips } from "../components/CategoryChips";
+import { EcosystemNav } from "../components/EcosystemNav";
+import { SubcategoryChips } from "../components/SubcategoryChips";
+import { getCategoriesForLayer } from "../utils/ecosystem";
+import { inferSubcategory } from "../utils/subcategories";
 import { SiteHeader } from "../components/SiteHeader";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { SiteFooter } from "../components/SiteFooter";
@@ -51,6 +54,10 @@ export function Home() {
   const [data, setData] = useState<PaginatedSkills | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [subcategory, setSubcategory] = useState<string | null>(null);
+
+  // Clear subcategory when category changes
+  useEffect(() => { setSubcategory(null); }, [params.category]);
 
   // Fetch explore data when params change & tab is explore
   useEffect(() => {
@@ -112,7 +119,10 @@ export function Home() {
                 setTab("explore");
               }}
             />
-            <CategoryChips onSelect={(category) => { updateParams({ category }); setTab("explore"); }} />
+            <EcosystemNav
+              onSelectCategory={(category) => { updateParams({ category }); setTab("explore"); }}
+              onSelectLayer={(layer) => { updateParams({ category: getCategoriesForLayer(layer).join(",") }); setTab("explore"); }}
+            />
             <div id="trending" className="scroll-mt-44">
               {landingLoading && !landingData ? (
                 <SkeletonTrending />
@@ -283,6 +293,15 @@ export function Home() {
 
               {/* Main content */}
               <div className="flex-1 min-w-0">
+                {/* Subcategory chips — show when category is selected */}
+                {params.category && (
+                  <SubcategoryChips
+                    category={params.category}
+                    selected={subcategory}
+                    onSelect={setSubcategory}
+                  />
+                )}
+
                 {/* Error */}
                 {error && (
                   <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm">
@@ -294,21 +313,25 @@ export function Home() {
                 {loading && <SkeletonCards count={6} />}
 
                 {/* Results */}
-                {!loading && data && data.items.length > 0 && (
+                {!loading && data && data.items.length > 0 && (() => {
+                  const filteredItems = subcategory
+                    ? data.items.filter((s) => inferSubcategory(s) === subcategory)
+                    : data.items;
+                  return (
                   <>
                     <div className="text-sm text-gray-400 dark:text-gray-500 mb-3">
-                      {t("explore.showing")} {(data.page - 1) * data.page_size + 1}-
+                      {t("explore.showing")} {subcategory ? `${filteredItems.length} / ` : ""}{(data.page - 1) * data.page_size + 1}-
                       {Math.min(data.page * data.page_size, data.total)} {t("explore.of")}{" "}
                       {data.total.toLocaleString()} {t("explore.skills")}
                     </div>
                     {view === "card" ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 stagger-children">
-                        {data.items.map((skill) => (
+                        {filteredItems.map((skill) => (
                           <SkillCard key={skill.id} skill={skill} onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
                         ))}
                       </div>
                     ) : (
-                      <SkillTable skills={data.items} onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
+                      <SkillTable skills={filteredItems} onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
                     )}
                     <Pagination
                       page={data.page}
@@ -316,7 +339,8 @@ export function Home() {
                       onPageChange={setPage}
                     />
                   </>
-                )}
+                  );
+                })()}
 
                 {/* Empty State */}
                 {!loading && data && data.items.length === 0 && (

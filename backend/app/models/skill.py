@@ -90,6 +90,9 @@ class Skill(Base):
     security_llm_grade = Column(String, nullable=True)
     security_llm_analysis = Column(Text, nullable=True)
 
+    # Official flag
+    is_official = Column(Boolean, default=False, server_default="false")
+
     # Internal timestamps
     first_seen = Column(DateTime, server_default=func.now())
     last_synced = Column(DateTime, server_default=func.now(), onupdate=func.now())

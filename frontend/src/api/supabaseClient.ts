@@ -27,6 +27,7 @@ const SKILL_COLUMNS = [
   "size_category", "repo_size_kb", "readme_size", "readme_structure_score",
   "platforms", "estimated_tokens",
   "security_grade",
+  "is_official",
 ].join(",");
 
 function ensureSupabase() {
@@ -49,7 +50,14 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
   const sb = ensureSupabase();
   let query = sb.from("skills").select(SKILL_COLUMNS, { count: "exact" });
 
-  if (params.category) query = query.eq("category", params.category);
+  if (params.category) {
+    // Support comma-separated categories (for layer filtering)
+    if (params.category.includes(",")) {
+      query = query.in("category", params.category.split(","));
+    } else {
+      query = query.eq("category", params.category);
+    }
+  }
   if (params.size_category) query = query.eq("size_category", params.size_category);
   if (params.platform) query = query.ilike("platforms", `%"${params.platform}"%`);
   if (params.search) {

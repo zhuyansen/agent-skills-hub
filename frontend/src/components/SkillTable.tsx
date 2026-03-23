@@ -3,6 +3,7 @@ import type { Skill } from "../types/skill";
 import { isNew, timeAgo } from "../utils/time";
 import { getTier } from "./ScoreBadge";
 import { ScoreBadge } from "./ScoreBadge";
+import { OfficialBadge } from "./OfficialBadge";
 import { SecurityBadge } from "./SecurityBadge";
 
 interface Props {
@@ -52,6 +53,7 @@ export function SkillTable({ skills, onSelect: _onSelect, onShowDetail }: Props)
                     {isNew(skill.first_seen) && (
                       <span className="px-1 py-0.5 text-[9px] font-bold rounded bg-green-50 dark:bg-green-900/30 text-green-600">NEW</span>
                     )}
+                    <OfficialBadge isOfficial={skill.is_official} />
                     <SecurityBadge grade={skill.security_grade} />
                   </div>
                   <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{skill.author_name}</div>

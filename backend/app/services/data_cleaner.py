@@ -154,6 +154,7 @@ class DataCleaner:
             "repo_size_kb": repo.get("size", 0),
             "size_category": self._categorize_size(repo.get("size", 0)),
             "project_type": self._infer_project_type(repo),
+            "is_official": self._is_official(repo),
         }
 
     @staticmethod
@@ -198,6 +199,14 @@ class DataCleaner:
             return "agent-tool"
 
         return "uncategorized"
+
+    OFFICIAL_ORGS = {"anthropics", "modelcontextprotocol", "openai", "microsoft", "google"}
+
+    @staticmethod
+    def _is_official(repo: Dict[str, Any]) -> bool:
+        """Check if repo belongs to an official org."""
+        owner = (repo.get("owner") or {}).get("login", "").lower()
+        return owner in DataCleaner.OFFICIAL_ORGS
 
     def _infer_project_type(self, repo: Dict[str, Any]) -> str:
         """Infer project type from category, name, topics, and description."""
