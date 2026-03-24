@@ -17,7 +17,16 @@ export interface AnalyzerSecurity {
   llm_grade: string | null;
   final_grade: string;
   flags: string[];
+  flag_details?: FlagDetail[];
+  trust_tier?: number;
+  trust_label?: string;
   llm_analysis: LLMAnalysis | null;
+}
+
+export interface FlagDetail {
+  name: string;
+  severity: "critical" | "high" | "medium" | "low";
+  description: string;
 }
 
 export interface AnalyzerRepo {

@@ -1311,6 +1311,14 @@ def analyzer_scan(
 
         final_grade = llm_grade or rule_grade
 
+        # Trust tier & flag details
+        from app.services.security_scanner import SecurityScanner as _SC, _get_trust_tier
+        _tier = _get_trust_tier(existing)
+        _flag_details = [
+            {"name": f, "severity": _SC.get_flag_severity(f), "description": _SC.get_flag_description(f)}
+            for f in rule_flags
+        ]
+
         return {
             "repo": {
                 "full_name": existing.repo_full_name,
@@ -1326,6 +1334,9 @@ def analyzer_scan(
                 "llm_grade": llm_grade,
                 "final_grade": final_grade,
                 "flags": rule_flags,
+                "flag_details": _flag_details,
+                "trust_tier": _tier,
+                "trust_label": _SC.get_trust_tier_label(_tier),
                 "llm_analysis": llm_analysis,
             },
             "quality": {
@@ -1379,15 +1390,17 @@ def analyzer_scan(
 
     # Create a temporary Skill-like object for scanning
     class _TempSkill:
-        def __init__(self, readme, stars, license_name):
+        def __init__(self, readme, stars, license_name, author):
             self.readme_content = readme
             self.stars = stars
             self.license = license_name
+            self.author_name = author
 
     license_info = repo_info.get("license") or {}
     license_name = license_info.get("spdx_id", "") if isinstance(license_info, dict) else ""
+    owner_login = (repo_info.get("owner") or {}).get("login", "unknown")
 
-    temp_skill = _TempSkill(readme_content, repo_info.get("stargazers_count", 0), license_name)
+    temp_skill = _TempSkill(readme_content, repo_info.get("stargazers_count", 0), license_name, owner_login)
     scanner = SecurityScanner()
     rule_grade, rule_flags = scanner.scan_single(temp_skill)
 
@@ -1417,6 +1430,14 @@ def analyzer_scan(
 
     final_grade = llm_grade or rule_grade
 
+    # Trust tier & flag details
+    from app.services.security_scanner import SecurityScanner as _SC2, _get_trust_tier as _gtt2
+    _tier2 = _gtt2(temp_skill)
+    _flag_details2 = [
+        {"name": f, "severity": _SC2.get_flag_severity(f), "description": _SC2.get_flag_description(f)}
+        for f in rule_flags
+    ]
+
     return {
         "repo": {
             "full_name": full_name,
@@ -1432,6 +1453,9 @@ def analyzer_scan(
             "llm_grade": llm_grade,
             "final_grade": final_grade,
             "flags": rule_flags,
+            "flag_details": _flag_details2,
+            "trust_tier": _tier2,
+            "trust_label": _SC2.get_trust_tier_label(_tier2),
             "llm_analysis": llm_analysis,
         },
         "quality": None,
