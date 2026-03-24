@@ -8,28 +8,60 @@ function formatCount(n: number): string {
   return String(n);
 }
 
+async function fetchWithRetry<T>(fn: () => Promise<T>, retries = 2): Promise<T> {
+  for (let i = 0; i <= retries; i++) {
+    try { return await fn(); } catch (e) {
+      if (i === retries) throw e;
+      await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
+    }
+  }
+  throw new Error("unreachable");
+}
+
 export function SkillsMasters() {
   const { t } = useI18n();
   const [masters, setMasters] = useState<Master[]>([]);
   const [orgs, setOrgs] = useState<OrgBuilder[]>([]);
   const [expandedOrgIdx, setExpandedOrgIdx] = useState<number | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetchMasters().then((data) => {
-      const cleaned = data.map((m) => ({
-        ...m,
-        top_repos: (m.top_repos || []).filter((r) => r.stars > 0),
-      })).filter((m) => m.total_stars > 0 || m.x_followers > 0 || !m.discovered);
-      setMasters(cleaned);
-    }).catch(console.error);
-
-    fetchOrgBuilders().then((data) => {
-      setOrgs(data.filter((o) => o.total_stars > 0));
-    }).catch(console.error);
+    let cancelled = false;
+    Promise.all([
+      fetchWithRetry(fetchMasters).then((data) => {
+        if (cancelled) return;
+        const cleaned = data.map((m) => ({
+          ...m,
+          top_repos: (m.top_repos || []).filter((r) => r.stars > 0),
+        })).filter((m) => m.total_stars > 0 || m.x_followers > 0 || !m.discovered);
+        setMasters(cleaned);
+      }),
+      fetchWithRetry(fetchOrgBuilders).then((data) => {
+        if (cancelled) return;
+        setOrgs(data.filter((o) => o.total_stars > 0));
+      }),
+    ]).catch(console.error).finally(() => { if (!cancelled) setLoaded(true); });
+    return () => { cancelled = true; };
   }, []);
 
   const curated = masters.filter((m) => !m.discovered);
 
+  // Show skeleton while loading, hide only after loaded with no data
+  if (!loaded) {
+    return (
+      <section className="mb-10">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+          <div className="w-32 h-5 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="h-24 bg-gray-100 dark:bg-gray-800 rounded-xl animate-pulse" />
+          ))}
+        </div>
+      </section>
+    );
+  }
   if (curated.length === 0 && orgs.length === 0) return null;
 
   return (
