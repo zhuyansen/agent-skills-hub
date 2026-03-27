@@ -302,9 +302,14 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                       onClick={() => {
                         const el = document.getElementById(sec.id);
                         if (el) {
+                          // First scroll triggers LazySection rendering via IntersectionObserver
                           el.scrollIntoView({ behavior: "smooth", block: "start" });
-                          el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
-                          setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+                          // Retry after lazy content renders & layout stabilizes
+                          setTimeout(() => {
+                            el.scrollIntoView({ behavior: "smooth", block: "start" });
+                            el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+                            setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+                          }, 400);
                         }
                       }}
                       className="px-2.5 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"

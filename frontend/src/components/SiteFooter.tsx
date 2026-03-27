@@ -11,12 +11,20 @@ export function SiteFooter() {
     const isHome = location.pathname === "/" || location.pathname === "";
     const isOverview = !new URLSearchParams(location.search).get("tab") || new URLSearchParams(location.search).get("tab") === "overview";
 
-    if (isHome && isOverview) {
-      const el = document.getElementById(id);
-      if (el) {
+    const scrollToEl = (el: HTMLElement) => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Retry after lazy content renders & layout stabilizes
+      setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
         setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+      }, 400);
+    };
+
+    if (isHome && isOverview) {
+      const el = document.getElementById(id);
+      if (el) {
+        scrollToEl(el);
         return;
       }
     }
@@ -25,11 +33,7 @@ export function SiteFooter() {
     navigate("/");
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
-        setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
-      }
+      if (el) scrollToEl(el);
     }, 300);
   };
 
@@ -37,7 +41,7 @@ export function SiteFooter() {
     <footer className="bg-gray-900 dark:bg-gray-950 text-gray-300 mt-12">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
@@ -73,6 +77,33 @@ export function SiteFooter() {
                   >
                     {lang === "zh" ? sec.zh : sec.en}
                   </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Best Tools column */}
+          <div>
+            <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">
+              {lang === "zh" ? "最佳工具" : "Best Tools"}
+            </h4>
+            <ul className="space-y-2">
+              {[
+                { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
+                { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },
+                { slug: "code-review", zh: "代码审查", en: "Code Review" },
+                { slug: "claude-code-skills", zh: "Claude 技能", en: "Claude Skills" },
+                { slug: "workflow-automation", zh: "工作流自动化", en: "Workflow Automation" },
+                { slug: "security-audit", zh: "安全审计", en: "Security Audit" },
+                { slug: "prompt-engineering", zh: "提示工程", en: "Prompt Engineering" },
+              ].map((s) => (
+                <li key={s.slug}>
+                  <a
+                    href={`/best/${s.slug}/`}
+                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    {lang === "zh" ? s.zh : s.en}
+                  </a>
                 </li>
               ))}
             </ul>

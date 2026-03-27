@@ -30,6 +30,7 @@ import { FAQSection } from "../components/FAQSection";
 import { FilterSidebar } from "../components/FilterSidebar";
 import { InstallGuide } from "../components/InstallGuide";
 import { EcosystemNav } from "../components/EcosystemNav";
+import { ScenarioTagCloud } from "../components/ScenarioTagCloud";
 import { SubcategoryChips } from "../components/SubcategoryChips";
 import { getCategoriesForLayer } from "../utils/ecosystem";
 import { inferSubcategory } from "../utils/subcategories";
@@ -123,6 +124,7 @@ export function Home() {
               onSelectCategory={(category) => { updateParams({ category }); setTab("explore"); }}
               onSelectLayer={(layer) => { updateParams({ category: getCategoriesForLayer(layer).join(",") }); setTab("explore"); }}
             />
+            <ScenarioTagCloud />
             <div id="trending" className="scroll-mt-44">
               {landingLoading && !landingData ? (
                 <SkeletonTrending />
@@ -138,53 +140,55 @@ export function Home() {
             <LazySection>
               <NewThisWeek onShowDetail={handleShowDetail} />
             </LazySection>
-            <LazySection>
-              <div id="categories" className="scroll-mt-44">
+            <div id="categories" className="scroll-mt-44">
+              <LazySection>
                 <SkillWorkflows />
-              </div>
-            </LazySection>
-            <LazySection>
-              <div id="top-rated" className="scroll-mt-44 grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-                {landingLoading && !landingData ? (
-                  <>
-                    <SkeletonList />
-                    <SkeletonHallOfFame />
-                  </>
-                ) : (
-                  <>
-                    <TopRatedSection
-                      onSelect={handleOpenRepo}
-                      onShowDetail={handleShowDetail}
-                      initialData={landingData?.top_rated}
-                    />
-                    <HallOfFame
-                      onSelect={handleOpenRepo}
-                      onShowDetail={handleShowDetail}
-                      initialData={landingData?.hall_of_fame}
-                    />
-                  </>
-                )}
-              </div>
-            </LazySection>
-            <LazySection>
-              <div id="masters" className="scroll-mt-44">
+              </LazySection>
+            </div>
+            <div id="top-rated" className="scroll-mt-44">
+              <LazySection>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                  {landingLoading && !landingData ? (
+                    <>
+                      <SkeletonList />
+                      <SkeletonHallOfFame />
+                    </>
+                  ) : (
+                    <>
+                      <TopRatedSection
+                        onSelect={handleOpenRepo}
+                        onShowDetail={handleShowDetail}
+                        initialData={landingData?.top_rated}
+                      />
+                      <HallOfFame
+                        onSelect={handleOpenRepo}
+                        onShowDetail={handleShowDetail}
+                        initialData={landingData?.hall_of_fame}
+                      />
+                    </>
+                  )}
+                </div>
+              </LazySection>
+            </div>
+            <div id="masters" className="scroll-mt-44">
+              <LazySection>
                 <SkillsMasters />
-              </div>
-            </LazySection>
-            <LazySection>
-              <div id="newsletter" className="scroll-mt-44">
+              </LazySection>
+            </div>
+            <div id="newsletter" className="scroll-mt-44">
+              <LazySection>
                 <NewsletterSubscribe />
-              </div>
-            </LazySection>
-            <LazySection>
-              <div id="recent" className="scroll-mt-44">
+              </LazySection>
+            </div>
+            <div id="recent" className="scroll-mt-44">
+              <LazySection>
                 <RecentlyUpdated
                   onSelect={handleOpenRepo}
                   onShowDetail={handleShowDetail}
                   initialData={landingData?.recently_updated}
                 />
-              </div>
-            </LazySection>
+              </LazySection>
+            </div>
             <LazySection>
               <DashboardStats
                 stats={landingData?.stats ?? stats}
@@ -195,24 +199,24 @@ export function Home() {
             <LazySection>
               <InstallGuide />
             </LazySection>
-            <LazySection>
-              <div id="workflows" className="scroll-mt-44">
+            <div id="workflows" className="scroll-mt-44">
+              <LazySection>
                 <ScenarioWorkflows />
-              </div>
-            </LazySection>
-            <LazySection>
-              <div id="platforms">
+              </LazySection>
+            </div>
+            <div id="platforms">
+              <LazySection>
                 <PlatformRecommendations />
-              </div>
-            </LazySection>
+              </LazySection>
+            </div>
             <LazySection>
               <FAQSection />
             </LazySection>
-            <LazySection minHeight="100px">
-              <div id="submit-skill">
+            <div id="submit-skill">
+              <LazySection minHeight="100px">
                 <SubmitSkill />
-              </div>
-            </LazySection>
+              </LazySection>
+            </div>
           </div>
         )}
 
