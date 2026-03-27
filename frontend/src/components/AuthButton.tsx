@@ -79,7 +79,7 @@ export function AuthButton() {
           {user.user_metadata?.avatar_url ? (
             <img
               src={user.user_metadata.avatar_url}
-              alt=""
+              alt="User avatar"
               className="w-7 h-7 rounded-full"
             />
           ) : (

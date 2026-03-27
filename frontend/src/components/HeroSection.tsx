@@ -56,7 +56,7 @@ export function HeroSection({ stats, onSearch }: Props) {
     if (e.key === "Enter") {
       e.preventDefault();
       if (activeIdx >= 0 && activeIdx < results.length) {
-        navigate(`/skill/${results[activeIdx].repo_full_name}`);
+        navigate(`/skill/${results[activeIdx].repo_full_name}/`);
         setShowDropdown(false);
       } else if (query.trim()) {
         onSearch(query);
@@ -90,9 +90,9 @@ export function HeroSection({ stats, onSearch }: Props) {
     <section className="hero-gradient -mx-4 px-4 pt-10 pb-8 sm:pt-14 sm:pb-10 mb-6">
       <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* Main headline */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">
           {t("hero.title").replace("{count}", countDisplay)}
-        </h2>
+        </h1>
         <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
           {t("hero.subtitle")}
         </p>
@@ -141,11 +141,11 @@ export function HeroSection({ stats, onSearch }: Props) {
                   {results.map((skill, i) => (
                     <div
                       key={skill.id}
-                      onClick={() => { navigate(`/skill/${skill.repo_full_name}`); setShowDropdown(false); }}
+                      onClick={() => { navigate(`/skill/${skill.repo_full_name}/`); setShowDropdown(false); }}
                       onMouseEnter={() => setActiveIdx(i)}
                       className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${i === activeIdx ? "bg-indigo-50 dark:bg-indigo-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-700"}`}
                     >
-                      <img src={skill.author_avatar_url} alt="" width={32} height={32} className="w-8 h-8 rounded-full shrink-0" />
+                      <img src={skill.author_avatar_url} alt={skill.author_name} width={32} height={32} className="w-8 h-8 rounded-full shrink-0" />
                       <div className="flex-1 min-w-0 text-left">
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{skill.repo_name}</span>

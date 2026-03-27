@@ -143,7 +143,7 @@ export function ComparePage() {
                 {skills.map((s) => (
                   <th key={s.id} className="text-center px-4 py-3">
                     <div className="flex items-center justify-center gap-2">
-                      <img src={s.author_avatar_url} alt="" className="w-5 h-5 rounded-full" />
+                      <img src={s.author_avatar_url} alt={s.author_name} className="w-5 h-5 rounded-full" />
                       <a
                         href={s.repo_url}
                         target="_blank"

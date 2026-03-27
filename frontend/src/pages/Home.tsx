@@ -87,11 +87,11 @@ export function Home() {
 
   const handleShowDetail = useCallback((skill: Skill) => {
     // Navigate using slug (owner/repo) for SEO-friendly URLs
-    navigate(`/skill/${skill.repo_full_name}`);
+    navigate(`/skill/${skill.repo_full_name}/`);
   }, [navigate]);
 
   const handleNavigateSkill = useCallback(async (skillId: number) => {
-    navigate(`/skill/${skillId}`);
+    navigate(`/skill/${skillId}/`);
   }, [navigate]);
 
   return (

@@ -52,7 +52,7 @@ export function CategoryPage() {
 
   const handleShowDetail = useCallback(
     (skill: Skill) => {
-      navigate(`/skill/${skill.repo_full_name}`);
+      navigate(`/skill/${skill.repo_full_name}/`);
     },
     [navigate],
   );
@@ -94,7 +94,7 @@ export function CategoryPage() {
           {ALL_CATEGORIES.filter((c) => c !== slug).map((c) => (
             <Link
               key={c}
-              to={`/category/${c}`}
+              to={`/category/${c}/`}
               className="px-3 py-1 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-indigo-300 hover:text-indigo-600 transition-colors"
             >
               {CATEGORY_LABELS[c]}

@@ -190,7 +190,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 
   const indexed = shouldIndex(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
-  const pageUrl = `${SITE}/skill/${repo_full_name}`;
+  const pageUrl = `${SITE}/skill/${repo_full_name}/`;
   const ghUrl = `https://github.com/${repo_full_name}`;
   const ogImage = `${SITE}/og-image.png`;
 
@@ -282,7 +282,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: catLabel, item: `${SITE}/category/${category}` },
+      { "@type": "ListItem", position: 2, name: catLabel, item: `${SITE}/category/${category}/` },
       { "@type": "ListItem", position: 3, name: repo_name, item: pageUrl },
     ],
   });
@@ -305,7 +305,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     `<tr><td>Stars</td><td>${stars.toLocaleString()}</td></tr>`,
     `<tr><td>Forks</td><td>${(forks || 0).toLocaleString()}</td></tr>`,
     language ? `<tr><td>Language</td><td>${esc(language)}</td></tr>` : "",
-    `<tr><td>Category</td><td><a href="/category/${esc(category)}">${esc(catLabel)}</a></td></tr>`,
+    `<tr><td>Category</td><td><a href="/category/${esc(category)}/">${esc(catLabel)}</a></td></tr>`,
     license && license !== "NOASSERTION" ? `<tr><td>License</td><td>${esc(license)}</td></tr>` : "",
     quality_score ? `<tr><td>Quality Score</td><td>${quality_score}/100</td></tr>` : "",
     total_commits ? `<tr><td>Total Commits</td><td>${total_commits.toLocaleString()}</td></tr>` : "",
@@ -327,7 +327,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Compatible Skills</h2>
         <p style="color:#64748b;font-size:14px;margin-bottom:8px">These tools work well together with ${esc(repo_name)} for enhanced workflows:</p>
         <ul style="list-style:none;padding:0">${compLinks.map((c) => `
-          <li style="margin:6px 0"><a href="/skill/${esc(c.slug)}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(c.name)}</a> <span style="color:#94a3b8;font-size:13px">— ${esc(c.reason)} (${Math.round(c.score * 100)}%)</span></li>`).join("")}
+          <li style="margin:6px 0"><a href="/skill/${esc(c.slug)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(c.name)}</a> <span style="color:#94a3b8;font-size:13px">— ${esc(c.reason)} (${Math.round(c.score * 100)}%)</span></li>`).join("")}
         </ul>
       </section>`
     : "";
@@ -338,9 +338,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">More ${esc(catLabel)} Tools</h2>
         <p style="color:#64748b;font-size:14px;margin-bottom:8px">Explore other popular ${esc(catLabel.toLowerCase())} tools:</p>
         <ul style="list-style:none;padding:0">${sameCatSkills.map((s) => `
-          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
         </ul>
-        <a href="/category/${esc(category)}" style="color:#4f46e5;font-size:14px">View all ${esc(catLabel)} tools →</a>
+        <a href="/category/${esc(category)}/" style="color:#4f46e5;font-size:14px">View all ${esc(catLabel)} tools →</a>
       </section>`
     : "";
 
@@ -349,7 +349,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     ? `<section style="margin-top:20px">
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Popular ${esc(language)} Agent Tools</h2>
         <ul style="list-style:none;padding:0">${sameLangSkills.map((s) => `
-          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(CATEGORY_LABELS[s.category] || "AI Tool")}</span></li>`).join("")}
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(CATEGORY_LABELS[s.category] || "AI Tool")}</span></li>`).join("")}
         </ul>
       </section>`
     : "";
@@ -424,7 +424,7 @@ ${faqLd}
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
         <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
         <span style="margin:0 6px">&gt;</span>
-        <a href="/category/${esc(category)}" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
+        <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
         <span style="margin:0 6px">&gt;</span>
         <span>${esc(repo_name)}</span>
       </nav>
@@ -433,7 +433,7 @@ ${faqLd}
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}</h1>
       <p style="color:#64748b;margin:0 0 16px">
         by <a href="https://github.com/${esc(author_name)}" style="color:#4f46e5;text-decoration:none">${esc(author_name)}</a>
-        &middot; <a href="/category/${esc(category)}" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
+        &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
         &middot; &#9733; ${starsK(stars)}
       </p>
 
@@ -469,7 +469,7 @@ ${faqLd}
       <!-- Links -->
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
         <a href="${esc(ghUrl)}" style="display:inline-block;padding:8px 20px;background:#1e293b;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">View on GitHub &rarr;</a>
-        <a href="/category/${esc(category)}" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">Browse ${esc(catLabel)} tools</a>
+        <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">Browse ${esc(catLabel)} tools</a>
       </div>
     </div>
   </div>
@@ -502,7 +502,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
       itemListElement: catSkills.slice(0, 20).map((s, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `${SITE}/skill/${s.repo_full_name}`,
+        url: `${SITE}/skill/${s.repo_full_name}/`,
         name: s.repo_name,
       })),
     },
@@ -521,7 +521,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
     const desc = s.description ? esc(s.description.slice(0, 100)) : "";
     return `<tr>
         <td style="padding:8px 4px;font-size:14px;color:#64748b">${i + 1}</td>
-        <td style="padding:8px"><a href="/skill/${esc(s.repo_full_name)}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
+        <td style="padding:8px"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
         <td style="padding:8px;text-align:right;white-space:nowrap;font-size:14px">&#9733; ${starsK(s.stars)}</td>
         <td style="padding:8px;color:#64748b;font-size:13px">${esc(s.language || "")}</td>
       </tr>`;
@@ -529,7 +529,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
 
   const otherCats = allCategories
     .filter((c) => c !== catSlug)
-    .map((c) => `<a href="/category/${esc(c)}" style="display:inline-block;padding:4px 12px;margin:3px;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:13px;text-decoration:none">${esc(CATEGORY_LABELS[c] || c)}</a>`)
+    .map((c) => `<a href="/category/${esc(c)}/" style="display:inline-block;padding:4px 12px;margin:3px;border-radius:16px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:13px;text-decoration:none">${esc(CATEGORY_LABELS[c] || c)}</a>`)
     .join("");
 
   return `<!doctype html>

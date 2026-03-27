@@ -169,7 +169,7 @@ export function ScenarioWorkflows() {
                     <div className="absolute left-[9px] top-[32px] w-0.5 h-[calc(100%-8px)] bg-gradient-to-b from-blue-300 dark:from-blue-600 to-blue-100 dark:to-blue-800/30" />
                   )}
                   <button
-                    onClick={() => navigate(`/skill/${step.slug}`)}
+                    onClick={() => navigate(`/skill/${step.slug}/`)}
                     className="w-full flex items-start gap-3 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors group text-left relative z-10"
                   >
                     {/* Step node */}

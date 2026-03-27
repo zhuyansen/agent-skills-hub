@@ -105,7 +105,7 @@ export function SearchBar({ value, onChange }: Props) {
       case "Enter":
         e.preventDefault();
         if (activeIdx >= 0 && activeIdx < results.length) {
-          navigate(`/skill/${results[activeIdx].repo_full_name}`);
+          navigate(`/skill/${results[activeIdx].repo_full_name}/`);
           setShowDropdown(false);
           addSearch(results[activeIdx].repo_name);
         } else {
@@ -237,7 +237,7 @@ export function SearchBar({ value, onChange }: Props) {
                 <div
                   key={skill.id}
                   onClick={() => {
-                    navigate(`/skill/${skill.repo_full_name}`);
+                    navigate(`/skill/${skill.repo_full_name}/`);
                     setShowDropdown(false);
                     addSearch(skill.repo_name);
                   }}
@@ -246,7 +246,7 @@ export function SearchBar({ value, onChange }: Props) {
                     i === activeIdx ? "bg-blue-50 dark:bg-blue-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-700"
                   }`}
                 >
-                  <img src={skill.author_avatar_url} alt="" width={28} height={28} className="w-7 h-7 rounded-full shrink-0" />
+                  <img src={skill.author_avatar_url} alt={skill.author_name} width={28} height={28} className="w-7 h-7 rounded-full shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">

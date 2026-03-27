@@ -356,7 +356,7 @@ function ResultsDisplay({ result, isZh }: { result: FullResult; isZh: boolean })
 
       {result.indexed && (
         <div className="text-center">
-          <Link to={`/skill/${repo.full_name}`} className="inline-flex items-center gap-1.5 text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+          <Link to={`/skill/${repo.full_name}/`} className="inline-flex items-center gap-1.5 text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
             {isZh ? "查看完整详情页 →" : "View full detail page →"}
           </Link>
         </div>

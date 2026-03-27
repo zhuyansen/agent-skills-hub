@@ -90,7 +90,7 @@ export function SkillsMasters() {
                 <div className="flex items-start gap-4 mb-4">
                   <img
                     src={m.avatar_url}
-                    alt=""
+                    alt={m.name}
                     loading="lazy"
                     width={56} height={56}
                     className="w-14 h-14 rounded-full border-2 border-indigo-200 dark:border-indigo-700 shadow-sm"
@@ -210,7 +210,7 @@ export function SkillsMasters() {
                   <div className="flex items-center gap-3 mb-2">
                     <img
                       src={o.avatar_url}
-                      alt=""
+                      alt={o.github}
                       loading="lazy"
                       width={40} height={40}
                       className="w-10 h-10 rounded-full border border-gray-100 dark:border-gray-800"

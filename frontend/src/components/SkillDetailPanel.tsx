@@ -54,7 +54,7 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
           <div className="flex-1 min-w-0">
             <h2 className="font-bold text-gray-900 dark:text-gray-100 truncate">{data.repo_name}</h2>
             <div className="flex items-center gap-2 mt-0.5">
-              <img src={data.author_avatar_url} alt="" className="w-4 h-4 rounded-full" />
+              <img src={data.author_avatar_url} alt={data.author_name} className="w-4 h-4 rounded-full" />
               <span className="text-xs text-gray-500 dark:text-gray-400">{data.author_name}</span>
             </div>
           </div>

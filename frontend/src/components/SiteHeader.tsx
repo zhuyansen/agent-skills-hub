@@ -93,10 +93,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
         <div className="flex items-center justify-between mb-3">
           <div className="min-w-0">
             <Link to="/" className="flex items-center gap-2 group">
-              <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
                 <svg className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" strokeWidth="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 <span className="truncate group-hover:text-blue-600 transition-colors">Agent Skills Hub</span>
-              </h1>
+              </span>
             </Link>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block">
               {t("header.subtitle")}

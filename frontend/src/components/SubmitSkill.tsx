@@ -84,7 +84,7 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
       const res = await submitSkill(url.trim());
       setResult(res);
       if (res.status === "already_tracked" && res.skill_id) {
-        setTimeout(() => navigate(`/skill/${res.skill_id}`), 1500);
+        setTimeout(() => navigate(`/skill/${res.skill_id}/`), 1500);
       }
       if (res.status === "submitted") {
         setUrl("");

@@ -67,7 +67,7 @@ async function fetchAllSkills() {
 function buildUrlEntries(skills) {
   const today = new Date().toISOString().split("T")[0];
   return skills.map((skill) => {
-    const encoded = encodeURI(`${SITE}/skill/${skill.repo_full_name}`);
+    const encoded = encodeURI(`${SITE}/skill/${skill.repo_full_name}/`);
     const priority = getPriority(skill.stars);
     const changefreq = skill.stars >= 500 ? "weekly" : "monthly";
     const lastmod = skill.last_commit_at ? skill.last_commit_at.split("T")[0] : today;

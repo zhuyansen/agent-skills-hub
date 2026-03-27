@@ -22,7 +22,7 @@ export function CompareBar() {
               key={item.id}
               className="flex items-center gap-1.5 px-2.5 py-1.5 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-full text-xs shrink-0"
             >
-              <img src={item.author_avatar_url} alt="" className="w-4 h-4 rounded-full" />
+              <img src={item.author_avatar_url} alt={item.author_name} className="w-4 h-4 rounded-full" />
               <span className="text-blue-700 dark:text-blue-300 font-medium max-w-24 truncate">{item.repo_name}</span>
               <button
                 onClick={() => removeFromCompare(item.id)}
