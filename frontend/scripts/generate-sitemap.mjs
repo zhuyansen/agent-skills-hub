@@ -17,7 +17,7 @@
  * Run: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync } from "fs";
+import { writeFileSync, readdirSync } from "fs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -157,7 +157,26 @@ async function main() {
   writeFileSync("dist/sitemap-rest.xml", wrapUrlset(restEntries));
   console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49, quality qualified)`);
 
-  // 6. sitemap.xml (index) — all tiers of indexed skills
+  // 6. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
+  let scenarioCount = 0;
+  try {
+    const scenarioSlugs = readdirSync("dist/best");
+    const scenarioEntries = scenarioSlugs
+      .filter((slug) => !slug.startsWith("."))
+      .map((slug) => `  <url>
+    <loc>${SITE}/best/${slug}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>${today}</lastmod>
+  </url>`);
+    writeFileSync("dist/sitemap-scenarios.xml", wrapUrlset(scenarioEntries));
+    scenarioCount = scenarioEntries.length;
+    console.log(`sitemap-scenarios.xml: ${scenarioCount} URLs`);
+  } catch {
+    console.log("sitemap-scenarios.xml: skipped (no dist/best/ directory)");
+  }
+
+  // 7. sitemap.xml (index) — all tiers of indexed skills
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
@@ -165,12 +184,15 @@ async function main() {
     "sitemap-mid.xml",
     "sitemap-rest.xml",
   ];
+  if (scenarioCount > 0) {
+    sitemapFiles.push("sitemap-scenarios.xml");
+  }
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length}, excluded ${noindexCount} low-quality pages)`);
+  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount;
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length} + scenarios ${scenarioCount}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);

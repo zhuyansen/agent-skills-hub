@@ -24,3 +24,8 @@ frontend/dist/
 .DS_Store
 Thumbs.db
 tools/union-search-skill
+
+# Project-specific
+ops/daily-data/
+supabase/.temp/
+.mcp.json
