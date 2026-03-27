@@ -35,11 +35,13 @@ function getPriority(stars) {
   return "0.5";
 }
 
-/** Only include high-value pages in sitemap to optimize crawl budget.
- *  Pages below this threshold still get generated (with noindex) but
- *  are NOT submitted to Google, preserving crawl budget for quality pages. */
+/** Unified indexing logic — matches generate-skill-pages.mjs shouldIndex().
+ *  Pages meeting these criteria get indexed (no noindex meta) AND submitted in sitemap. */
 function shouldIndex(skill) {
-  return skill.stars >= 50;
+  if (skill.stars >= 50) return true;
+  if (skill.stars >= 20 && skill.readme_size && skill.readme_size > 100) return true;
+  if (skill.stars >= 20 && skill.description && skill.description.length > 80) return true;
+  return false;
 }
 
 async function fetchAllSkills() {
@@ -112,9 +114,10 @@ async function main() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  // Split by tier (only stars >= 50 now)
+  // Split by tier
   const topSkills = indexedSkills.filter((s) => s.stars >= 100);
   const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
+  const restSkills = indexedSkills.filter((s) => s.stars < 50);
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -149,19 +152,25 @@ async function main() {
   writeFileSync("dist/sitemap-mid.xml", wrapUrlset(midEntries));
   console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
 
-  // 5. sitemap.xml (index) — no rest tier, focus crawl budget on quality pages
+  // 5. sitemap-rest.xml (stars 20-49 with good README/description — newly indexed)
+  const restEntries = buildUrlEntries(restSkills);
+  writeFileSync("dist/sitemap-rest.xml", wrapUrlset(restEntries));
+  console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49, quality qualified)`);
+
+  // 6. sitemap.xml (index) — all tiers of indexed skills
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
     "sitemap-top.xml",
     "sitemap-mid.xml",
+    "sitemap-rest.xml",
   ];
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
   const totalUrls = 1 + catsWithSkills.length + indexedSkills.length;
-  console.log(`Total sitemap URLs: ${totalUrls} (stars >= 50 only, excluded ${noindexCount} low-star pages)`);
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);

@@ -43,6 +43,11 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
 
+      - name: Create IndexNow key verification file
+        run: |
+          INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
+          echo "$INDEXNOW_KEY" > dist/${INDEXNOW_KEY}.txt
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -199,10 +199,10 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     ? `${description.slice(0, 140)}${description.length > 140 ? "..." : ""} ${starsK(stars)} stars.`
     : `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars on GitHub.`;
 
-  // README excerpt — expanded to 600 chars for content depth
+  // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
   const excerpt = readmeText
-    ? truncate(readmeText, 600)
+    ? truncate(readmeText, 1200)
     : (description || `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name}.`);
 
   const topicsList = parseJsonArray(topics);
@@ -665,6 +665,14 @@ async function main() {
       skipped++;
       continue;
     }
+
+    // Phase 2.1: Only generate pages for skills worth crawling (stars >= 20 or indexed)
+    const indexed = shouldIndex(skill);
+    if (!indexed && skill.stars < 20) {
+      skipped++;
+      continue;
+    }
+
     const [owner, repo] = parts;
     const dir = join(distDir, "skill", owner, repo);
     mkdirSync(dir, { recursive: true });
@@ -676,7 +684,7 @@ async function main() {
     );
     ok++;
 
-    if (shouldIndex(skill)) indexedCount++;
+    if (indexed) indexedCount++;
     else noindexCount++;
   }
 
