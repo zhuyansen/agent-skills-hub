@@ -249,14 +249,11 @@ ${breadcrumbLd}
 ${faqLd}
   </script>
 
-  <link rel="preconnect" href="https://vknzzecmzsfmohglpfgm.supabase.co" />
-  <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
-  ${scriptTags.join("\n  ")}
-  ${linkTags.join("\n  ")}
+  <!-- Static page: no SPA JavaScript, CSS only -->
+  ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
 </head>
 <body>
-  <div id="root">
-    <div style="max-width:900px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
+  <div style="max-width:900px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
       <!-- Breadcrumb -->
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
         <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
@@ -314,10 +311,6 @@ ${faqLd}
         <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Explore All 25,000+ Skills on Agent Skills Hub</a>
       </div>
     </div>
-  </div>
-  <noscript>
-    <p style="text-align:center;padding:20px">Enable JavaScript for the full interactive experience.</p>
-  </noscript>
 </body>
 </html>`;
 }
