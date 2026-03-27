@@ -12,7 +12,21 @@ import { CategoryPage } from "./pages/CategoryPage";
 import { VerifyEmailPage } from "./pages/VerifyEmailPage";
 import { AnalyzerPage } from "./pages/AnalyzerPage";
 
+function StaticPage() {
+  // For paths like /best/*, /category/*, /skill/* that have pre-rendered static HTML,
+  // don't replace the content — just return null so the static HTML remains visible.
+  return null;
+}
+
 function App() {
+  // If we're on a static-only path (pre-rendered at build time), don't hydrate the SPA
+  const path = window.location.pathname;
+  const isStaticOnly = path.startsWith("/best/");
+
+  if (isStaticOnly) {
+    return <StaticPage />;
+  }
+
   return (
     <ErrorBoundary>
       <AuthProvider>
