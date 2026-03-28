@@ -175,31 +175,51 @@ function buildStaticHeader() {
     })();
   </script>
   <style>
+    /* Header */
     .dark #site-header{background:#111827!important;border-color:#374151!important}
     .dark .brand-text{color:#f3f4f6!important}
     .dark .nav-link{color:#9ca3af!important}
     .dark .nav-link-active{color:#818cf8!important}
     .dark #theme-toggle{border-color:#4b5563!important;color:#9ca3af!important}
     .dark #lang-toggle{border-color:#4b5563!important;color:#9ca3af!important}
+    /* Body */
     .dark body{background:#0f172a!important;color:#e2e8f0!important}
+    /* Typography */
     .dark h1,.dark h2{color:#f1f5f9!important}
     .dark p{color:#94a3b8!important}
-    .dark a{color:#818cf8!important}
+    .dark a:not(.cta-btn){color:#818cf8!important}
+    .dark .cta-btn{color:#fff!important}
     .dark nav span{color:#94a3b8!important}
-    .dark details{border-color:#374151!important;background:#1e293b!important}
-    .dark summary{color:#f1f5f9!important}
-    .dark details p{color:#94a3b8!important}
-    .dark div[style*="border:1px solid #e2e8f0"]{border-color:#374151!important;background:#1e293b!important}
-    .dark div[style*="background:#fff"]{background:#1e293b!important}
-    .dark div[style*="color:#1e293b"]{color:#f1f5f9!important}
-    .dark span[style*="color:#64748b"]{color:#94a3b8!important}
-    .dark div[style*="color:#64748b"]{color:#94a3b8!important}
-    .dark span[style*="color:#94a3b8"]{color:#64748b!important}
-    .dark div[style*="background:#f8fafc"]{background:#0f172a!important}
+    .dark nav a{color:#818cf8!important}
+    /* Scenario cards (index page) */
+    .dark .scenario-card{border-color:#374151!important;background:#1e293b!important}
+    .dark .scenario-card .sc-title{color:#f1f5f9!important}
+    .dark .scenario-card .sc-desc{color:#94a3b8!important}
+    .dark .scenario-card .sc-count{color:#818cf8!important}
+    /* Skill cards (detail pages) */
+    .dark .skill-card{border-color:#374151!important;background:#1e293b!important}
+    .dark .skill-card .sk-name{color:#818cf8!important}
+    .dark .skill-card .sk-author{color:#64748b!important}
+    .dark .skill-card .sk-meta{color:#94a3b8!important}
+    .dark .skill-card .sk-desc{color:#94a3b8!important}
+    .dark .skill-card .sk-cat{background:#312e81!important;color:#a5b4fc!important}
+    .dark .sk-quickstart{background:#0f172a!important}
+    .dark .sk-quickstart strong{color:#94a3b8!important}
+    .dark .sk-quickstart span{color:#64748b!important}
+    /* Table */
     .dark table{color:#e2e8f0!important}
     .dark tr{border-color:#374151!important}
     .dark th{color:#94a3b8!important}
+    .dark td{color:#cbd5e1!important}
     .dark td a{color:#818cf8!important}
+    /* Details / FAQ */
+    .dark details{border-color:#374151!important;background:#1e293b!important}
+    .dark summary{color:#f1f5f9!important}
+    .dark details p{color:#94a3b8!important}
+    /* Related tags */
+    .dark .related-tag{background:#312e81!important;color:#a5b4fc!important;border-color:#4338ca!important}
+    /* Divider */
+    .dark #site-header span[style*="color:#e2e8f0"]{color:#4b5563!important}
   </style>`;
 }
 
@@ -216,14 +236,14 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
 
   // Group scenarios by rough category
   const groups = [
-    { label: "MCP Tools", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory"] },
-    { label: "Code & Development", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools"] },
-    { label: "AI & ML", icon: "🤖", slugs: ["prompt-engineering", "model-evaluation", "claude-code-skills", "codex-skills"] },
-    { label: "Security", icon: "🔒", slugs: ["security-audit", "secret-detection", "authentication"] },
-    { label: "Data & Search", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization"] },
-    { label: "Content & Writing", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation"] },
-    { label: "DevOps & Automation", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
-    { label: "Communication", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
+    { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory"] },
+    { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools"] },
+    { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["prompt-engineering", "model-evaluation", "claude-code-skills", "codex-skills"] },
+    { label: "Security", zh: "安全", icon: "🔒", slugs: ["security-audit", "secret-detection", "authentication"] },
+    { label: "Data & Search", zh: "数据与搜索", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization"] },
+    { label: "Content & Writing", zh: "内容创作", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation"] },
+    { label: "DevOps & Automation", zh: "DevOps 与自动化", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
+    { label: "Communication", zh: "通讯集成", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
   ];
 
   const groupsHtml = groups.map((g) => {
@@ -232,12 +252,12 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
         const sc = scenarios.find((s) => s.slug === slug);
         if (!sc || !scenarioSkillCounts[slug]) return null;
         const count = scenarioSkillCounts[slug];
-        return `<a href="/best/${esc(slug)}/" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid #e2e8f0;border-radius:10px;background:#fff;text-decoration:none;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.borderColor='#818cf8';this.style.boxShadow='0 2px 8px rgba(79,70,229,.1)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.boxShadow='none'">
+        return `<a href="/best/${esc(slug)}/" class="scenario-card" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid #e2e8f0;border-radius:10px;background:#fff;text-decoration:none;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.borderColor='#818cf8';this.style.boxShadow='0 2px 8px rgba(79,70,229,.1)'" onmouseout="this.style.borderColor=''" >
           <div>
-            <div style="font-weight:600;color:#1e293b;font-size:14px">${esc(sc.title)}</div>
-            <div style="color:#64748b;font-size:12px;margin-top:2px">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
+            <div class="sc-title" style="font-weight:600;color:#1e293b;font-size:14px">${esc(sc.title)}</div>
+            <div class="sc-desc" style="color:#64748b;font-size:12px;margin-top:2px">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
           </div>
-          <span style="color:#4f46e5;font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools →</span>
+          <span class="sc-count" style="color:#4f46e5;font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools →</span>
         </a>`;
       })
       .filter(Boolean)
@@ -247,7 +267,7 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
 
     return `<div style="margin-bottom:28px">
       <h2 style="font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px">
-        <span>${g.icon}</span> ${esc(g.label)}
+        <span>${g.icon}</span> <span data-zh="${esc(g.zh)}" data-en="${esc(g.label)}">${esc(g.label)}</span>
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px">
         ${items}
@@ -298,7 +318,7 @@ ${breadcrumbLd}
     <p style="color:#64748b;margin:0 0 28px;line-height:1.6" data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
     ${groupsHtml}
     <div style="margin:32px 0;text-align:center">
-      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" class="cta-btn" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
   </div>
 </body>
@@ -374,27 +394,27 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
     const qs = extractQuickStart(s.readme_content);
     const qsHtml = qs
-      ? `<div style="margin-top:8px;padding:8px 12px;background:#f8fafc;border-radius:6px;font-size:13px">
+      ? `<div class="sk-quickstart" style="margin-top:8px;padding:8px 12px;background:#f8fafc;border-radius:6px;font-size:13px">
           <strong style="color:#334155">Quick Start:</strong>
           <span style="color:#475569"> ${esc(qs.text.slice(0, 150))}${qs.text.length > 150 ? "..." : ""}</span>
           ${qs.code ? `<pre style="margin:6px 0 0;padding:8px;background:#1e293b;color:#e2e8f0;border-radius:4px;overflow-x:auto;font-size:12px"><code>${esc(qs.code.slice(0, 300))}</code></pre>` : ""}
         </div>`
       : "";
 
-    return `<div style="margin:16px 0;padding:16px 20px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+    return `<div class="skill-card" style="margin:16px 0;padding:16px 20px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:${i < 3 ? "#f59e0b" : "#94a3b8"};color:#fff;font-weight:700;font-size:14px;margin-right:8px">${i + 1}</span>
-            <a href="/skill/${esc(s.repo_full_name)}/" style="color:#1e293b;text-decoration:none;font-size:18px;font-weight:600">${esc(s.repo_name)}</a>
-            <span style="color:#94a3b8;font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
+            <a class="sk-name" href="/skill/${esc(s.repo_full_name)}/" style="color:#1e293b;text-decoration:none;font-size:18px;font-weight:600">${esc(s.repo_name)}</a>
+            <span class="sk-author" style="color:#94a3b8;font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
           </div>
-          <div style="display:flex;gap:12px;font-size:14px;color:#64748b">
+          <div class="sk-meta" style="display:flex;gap:12px;font-size:14px;color:#64748b">
             <span>&#9733; ${starsK(s.stars)}</span>
             ${s.language ? `<span>${esc(s.language)}</span>` : ""}
-            <span style="color:#4f46e5;font-size:12px;padding:2px 8px;background:#f0f0ff;border-radius:8px">${esc(catLabel)}</span>
+            <span class="sk-cat" style="color:#4f46e5;font-size:12px;padding:2px 8px;background:#f0f0ff;border-radius:8px">${esc(catLabel)}</span>
           </div>
         </div>
-        <p style="margin:8px 0 0;color:#475569;line-height:1.5;font-size:14px">${esc(s.description || "")}</p>
+        <p class="sk-desc" style="margin:8px 0 0;color:#475569;line-height:1.5;font-size:14px">${esc(s.description || "")}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
           <a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;font-size:13px;text-decoration:none">View Details &rarr;</a>
@@ -419,7 +439,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     .map((slug) => {
       const rel = allScenarios.find((s) => s.slug === slug);
       if (!rel) return null;
-      return `<a href="/best/${esc(slug)}/" style="display:inline-block;padding:6px 14px;margin:4px;border-radius:20px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none;border:1px solid #e0e0ff">${esc(rel.title)}</a>`;
+      return `<a href="/best/${esc(slug)}/" class="related-tag" style="display:inline-block;padding:6px 14px;margin:4px;border-radius:20px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none;border:1px solid #e0e0ff">${esc(rel.title)}</a>`;
     })
     .filter(Boolean)
     .join("\n        ");
@@ -527,7 +547,7 @@ ${faqLd}
 
       <!-- CTA -->
       <div style="margin:32px 0;text-align:center">
-        <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+        <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" class="cta-btn" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
       </div>
     </div>
 </body>
