@@ -23,7 +23,7 @@ export function ScenarioTagCloud() {
   const { lang } = useI18n();
 
   return (
-    <section className="mb-10">
+    <section id="scenarios" className="scroll-mt-44 mb-10">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-lg">🔥</span>
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
@@ -44,7 +44,7 @@ export function ScenarioTagCloud() {
           </a>
         ))}
         <a
-          href="/best/web-scraping/"
+          href="/best/"
           className="px-3 py-1.5 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-all"
         >
           {lang === "zh" ? `全部 41 个场景 →` : `All 41 scenarios →`}

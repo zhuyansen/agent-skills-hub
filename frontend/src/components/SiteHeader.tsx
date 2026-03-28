@@ -294,6 +294,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     { id: "recent", label: t("nav.recent") },
                     { id: "top-rated", label: t("nav.topRated") },
                     { id: "categories", label: t("nav.categories") },
+                    { id: "scenarios", label: t("nav.scenarios") },
                     { id: "workflows", label: t("nav.workflows") },
                     { id: "newsletter", label: t("nav.newsletter") },
                   ].map((sec) => (

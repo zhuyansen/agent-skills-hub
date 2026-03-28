@@ -89,6 +89,133 @@ function extractQuickStart(readmeContent) {
   return null;
 }
 
+/* ── Static header (shared across /best/* pages) ── */
+
+function buildStaticHeader() {
+  return `<header style="background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px)">
+    <div style="max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span style="font-weight:700;font-size:15px;color:#111827">Agent Skills Hub</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:16px;font-size:13px">
+        <a href="/" style="color:#6b7280;text-decoration:none">Home</a>
+        <a href="/best/" style="color:#4f46e5;text-decoration:none;font-weight:500">Best Tools</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+      </nav>
+    </div>
+  </header>`;
+}
+
+/* ── Index page builder (/best/) ────────────────── */
+
+function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
+  const pageUrl = `${SITE}/best/`;
+  const year = new Date().getFullYear();
+  const title = `Best AI Agent Tools by Scenario (${year}) | Agent Skills Hub`;
+  const metaDesc = "Browse 40+ curated scenario guides to find the best AI agent tools, MCP servers, and Claude skills for your specific use case.";
+  const ogImage = `${SITE}/og-image.png`;
+
+  const { linkTags } = assetTags;
+
+  // Group scenarios by rough category
+  const groups = [
+    { label: "MCP Tools", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory"] },
+    { label: "Code & Development", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools"] },
+    { label: "AI & ML", icon: "🤖", slugs: ["prompt-engineering", "model-evaluation", "claude-code-skills", "codex-skills"] },
+    { label: "Security", icon: "🔒", slugs: ["security-audit", "secret-detection", "authentication"] },
+    { label: "Data & Search", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization"] },
+    { label: "Content & Writing", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation"] },
+    { label: "DevOps & Automation", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
+    { label: "Communication", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
+  ];
+
+  const groupsHtml = groups.map((g) => {
+    const items = g.slugs
+      .map((slug) => {
+        const sc = scenarios.find((s) => s.slug === slug);
+        if (!sc || !scenarioSkillCounts[slug]) return null;
+        const count = scenarioSkillCounts[slug];
+        return `<a href="/best/${esc(slug)}/" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid #e2e8f0;border-radius:10px;background:#fff;text-decoration:none;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.borderColor='#818cf8';this.style.boxShadow='0 2px 8px rgba(79,70,229,.1)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.boxShadow='none'">
+          <div>
+            <div style="font-weight:600;color:#1e293b;font-size:14px">${esc(sc.title)}</div>
+            <div style="color:#64748b;font-size:12px;margin-top:2px">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
+          </div>
+          <span style="color:#4f46e5;font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools →</span>
+        </a>`;
+      })
+      .filter(Boolean)
+      .join("\n        ");
+
+    if (!items) return "";
+
+    return `<div style="margin-bottom:28px">
+      <h2 style="font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px">
+        <span>${g.icon}</span> ${esc(g.label)}
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px">
+        ${items}
+      </div>
+    </div>`;
+  }).join("\n    ");
+
+  const breadcrumbLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+      { "@type": "ListItem", position: 2, name: "Best Tools", item: pageUrl },
+    ],
+  });
+
+  const totalScenarios = Object.keys(scenarioSkillCounts).length;
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(metaDesc)}" />
+  <meta property="og:title" content="${esc(title)}" />
+  <meta property="og:description" content="${esc(metaDesc)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${esc(pageUrl)}" />
+  <meta property="og:image" content="${esc(ogImage)}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="${esc(pageUrl)}" />
+  <script type="application/ld+json">
+${breadcrumbLd}
+  </script>
+  ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
+</head>
+<body style="margin:0;font-family:system-ui,-apple-system,sans-serif;color:#1e293b;background:#f8fafc">
+  ${buildStaticHeader()}
+  <div style="max-width:900px;margin:0 auto;padding:32px 20px">
+    <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
+      <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
+      <span style="margin:0 6px">&gt;</span>
+      <span>Best Tools</span>
+    </nav>
+    <h1 style="font-size:28px;margin:0 0 8px">Best AI Agent Tools by Scenario</h1>
+    <p style="color:#64748b;margin:0 0 28px;line-height:1.6">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
+    ${groupsHtml}
+    <div style="margin:32px 0;text-align:center">
+      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Explore All 25,000+ Skills on Agent Skills Hub</a>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
 /* ── HTML builder ────────────────────────────────── */
 
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
@@ -252,8 +379,9 @@ ${faqLd}
   <!-- Static page: no SPA JavaScript, CSS only -->
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
 </head>
-<body>
-  <div style="max-width:900px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
+<body style="margin:0;font-family:system-ui,-apple-system,sans-serif;color:#1e293b;background:#f8fafc">
+  ${buildStaticHeader()}
+  <div style="max-width:900px;margin:0 auto;padding:32px 20px">
       <!-- Breadcrumb -->
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
         <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
@@ -341,6 +469,7 @@ async function main() {
   // Generate pages
   let generated = 0;
   let skipped = 0;
+  const scenarioSkillCounts = {};
   const t0 = Date.now();
 
   for (const scenario of scenarios) {
@@ -350,6 +479,8 @@ async function main() {
       skipped++;
       continue;
     }
+
+    scenarioSkillCounts[scenario.slug] = skills.length;
 
     const dir = join(DIST, "best", scenario.slug);
     mkdirSync(dir, { recursive: true });
@@ -361,8 +492,17 @@ async function main() {
     generated++;
   }
 
+  // Generate /best/ index page
+  const bestDir = join(DIST, "best");
+  mkdirSync(bestDir, { recursive: true });
+  writeFileSync(
+    join(bestDir, "index.html"),
+    buildIndexHtml(scenarios, scenarioSkillCounts, assetTags),
+  );
+  console.log(`  \u2713 /best/ (index page, ${Object.keys(scenarioSkillCounts).length} scenarios)`);
+
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
-  console.log(`\nScenario pages: ${generated} generated, ${skipped} skipped (${elapsed}s)`);
+  console.log(`\nScenario pages: ${generated} generated + 1 index, ${skipped} skipped (${elapsed}s)`);
 }
 
 main().catch((err) => {
