@@ -29,7 +29,10 @@
     "description": "Browse the best MCP server tools for database access, SQL queries, and data management with AI agents.",
     "match": {
       "categories": ["mcp-server"],
-      "keywords": ["database", "sql", "postgres", "mysql", "sqlite", "mongodb", "redis", "supabase", "prisma", "db"],
+      "primary_keywords": ["database", "sql", "postgres", "mysql", "sqlite", "mongodb"],
+      "secondary_keywords": ["redis", "supabase", "prisma", "db", "query", "table"],
+      "exclude_keywords": ["browser", "screenshot", "playwright", "filesystem", "file manager"],
+      "topic_matches": ["database", "sql", "postgresql", "mysql", "sqlite", "mongodb", "redis"],
       "min_results": 5,
       "max_results": 10
     },
@@ -41,7 +44,10 @@
     "description": "Explore MCP tools that let AI agents control browsers, navigate pages, and automate web interactions.",
     "match": {
       "categories": ["mcp-server"],
-      "keywords": ["browser", "chrome", "playwright", "puppeteer", "selenium", "web automation", "CDP", "headless"],
+      "primary_keywords": ["browser", "chrome", "playwright", "puppeteer", "CDP"],
+      "secondary_keywords": ["selenium", "web automation", "headless", "navigate", "screenshot"],
+      "exclude_keywords": ["database", "sql", "filesystem", "memory", "knowledge graph"],
+      "topic_matches": ["browser", "chrome", "playwright", "puppeteer", "selenium", "web-automation"],
       "min_results": 5,
       "max_results": 10
     },
@@ -53,7 +59,10 @@
     "description": "Find MCP server tools for file management, directory operations, and local filesystem access from AI agents.",
     "match": {
       "categories": ["mcp-server"],
-      "keywords": ["filesystem", "file", "directory", "folder", "path", "fs", "storage", "disk"],
+      "primary_keywords": ["filesystem", "file system", "directory", "file manager"],
+      "secondary_keywords": ["folder", "path", "fs", "storage", "disk", "file"],
+      "exclude_keywords": ["database", "sql", "browser", "chrome", "memory", "knowledge"],
+      "topic_matches": ["filesystem", "file-system", "file-manager"],
       "min_results": 5,
       "max_results": 10
     },
@@ -65,7 +74,10 @@
     "description": "Discover MCP tools that connect AI agents to external APIs, REST endpoints, and third-party services.",
     "match": {
       "categories": ["mcp-server"],
-      "keywords": ["api", "rest", "graphql", "http", "endpoint", "webhook", "integration", "openapi", "swagger"],
+      "primary_keywords": ["api", "rest", "graphql", "openapi", "swagger"],
+      "secondary_keywords": ["http", "endpoint", "webhook", "integration"],
+      "exclude_keywords": ["database", "sql", "browser", "chrome", "filesystem", "memory"],
+      "topic_matches": ["api", "rest-api", "graphql", "openapi", "swagger"],
       "min_results": 5,
       "max_results": 10
     },
@@ -77,7 +89,10 @@
     "description": "Browse MCP tools for persistent memory, knowledge graphs, and context management in AI agent workflows.",
     "match": {
       "categories": ["mcp-server"],
-      "keywords": ["memory", "knowledge", "context", "graph", "rag", "embedding", "vector", "recall", "persistent"],
+      "primary_keywords": ["memory", "knowledge graph", "persistent memory", "context management"],
+      "secondary_keywords": ["knowledge", "context", "rag", "embedding", "vector", "recall", "persistent"],
+      "exclude_keywords": ["database server", "sql", "browser", "chrome", "filesystem"],
+      "topic_matches": ["memory", "knowledge-graph", "rag", "context"],
       "min_results": 5,
       "max_results": 10
     },

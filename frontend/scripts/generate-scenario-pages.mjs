@@ -23,9 +23,20 @@ const DIST = "dist";
 /* ── Skill matching ──────────────────────────────── */
 
 function matchSkills(scenario, allSkills) {
-  const { categories, keywords, min_results = 5, max_results = 10 } = scenario.match;
+  const m = scenario.match;
+  const categories = m.categories || [];
+  const min_results = m.min_results || 5;
+  const max_results = m.max_results || 10;
 
-  const kwLower = keywords.map((k) => k.toLowerCase());
+  // Support tiered keywords: primary (+8), secondary/keywords (+3)
+  const primaryKw = (m.primary_keywords || []).map((k) => k.toLowerCase());
+  const secondaryKw = (m.secondary_keywords || m.keywords || []).map((k) => k.toLowerCase());
+  // If no primary_keywords defined, treat keywords as secondary (backward compat)
+  if (primaryKw.length === 0 && m.keywords) {
+    // Legacy format: all keywords are secondary
+  }
+  const excludeKw = (m.exclude_keywords || []).map((k) => k.toLowerCase());
+  const topicMatches = (m.topic_matches || []).map((k) => k.toLowerCase());
 
   const scored = [];
   for (const skill of allSkills) {
@@ -33,27 +44,49 @@ function matchSkills(scenario, allSkills) {
 
     let matchScore = 0;
 
-    // Category match (highest weight)
+    // Category match (weight: 15)
     if (categories.length > 0 && categories.includes(skill.category)) {
-      matchScore += 10;
+      matchScore += 15;
     }
 
-    // Keyword matches in description, repo_name, topics
+    // Build searchable text
     const desc = (skill.description || "").toLowerCase();
     const name = (skill.repo_name || "").toLowerCase();
-    const topics = parseJsonArray(skill.topics).map((t) => t.toLowerCase());
-    const allText = `${desc} ${name} ${topics.join(" ")}`;
+    const topicsArr = parseJsonArray(skill.topics).map((t) => t.toLowerCase());
+    const topicSet = new Set(topicsArr);
+    const allText = `${desc} ${name} ${topicsArr.join(" ")}`;
 
-    for (const kw of kwLower) {
+    // Exclude keywords — hard negative
+    let excluded = false;
+    for (const kw of excludeKw) {
       if (allText.includes(kw)) {
-        matchScore += 3;
+        excluded = true;
+        break;
       }
+    }
+    if (excluded) continue;
+
+    // Primary keywords (+8 each)
+    for (const kw of primaryKw) {
+      if (allText.includes(kw)) matchScore += 8;
+    }
+
+    // Secondary keywords (+3 each)
+    for (const kw of secondaryKw) {
+      if (allText.includes(kw)) matchScore += 3;
+    }
+
+    // Topic exact match (+5 each, GitHub topics are author-curated)
+    for (const tm of topicMatches) {
+      if (topicSet.has(tm)) matchScore += 5;
     }
 
     if (matchScore > 0) {
-      // Boost by quality score
+      // Quality boost (0~1)
       const qualityBoost = (skill.score || 0) / 100;
-      scored.push({ skill, matchScore: matchScore + qualityBoost });
+      // Stars log boost (100★=2, 1K★=3, 10K★=4)
+      const starsBoost = Math.log10(Math.max(skill.stars || 1, 1));
+      scored.push({ skill, matchScore: matchScore + qualityBoost + starsBoost });
     }
   }
 
@@ -61,7 +94,7 @@ function matchSkills(scenario, allSkills) {
   scored.sort((a, b) => b.matchScore - a.matchScore || b.skill.stars - a.skill.stars);
 
   const results = scored.slice(0, max_results).map((s) => s.skill);
-  if (results.length < min_results) return null; // Not enough matches
+  if (results.length < min_results) return null;
 
   return results;
 }
@@ -92,26 +125,82 @@ function extractQuickStart(readmeContent) {
 /* ── Static header (shared across /best/* pages) ── */
 
 function buildStaticHeader() {
-  return `<header style="background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px)">
+  return `<header id="site-header" style="background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px)">
     <div style="max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
       <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
         <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span style="font-weight:700;font-size:15px;color:#111827">Agent Skills Hub</span>
+        <span style="font-weight:700;font-size:15px;color:#111827" class="brand-text">Agent Skills Hub</span>
       </a>
-      <nav style="display:flex;align-items:center;gap:16px;font-size:13px">
-        <a href="/" style="color:#6b7280;text-decoration:none">Home</a>
-        <a href="/best/" style="color:#4f46e5;text-decoration:none;font-weight:500">Best Tools</a>
-        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px">
+      <nav style="display:flex;align-items:center;gap:12px;font-size:13px">
+        <a href="/" style="color:#6b7280;text-decoration:none" class="nav-link">Home</a>
+        <a href="/best/" style="color:#4f46e5;text-decoration:none;font-weight:500" class="nav-link-active">Best Tools</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px" class="nav-link">
           <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px">
+        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px" class="nav-link">
           <svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           X
         </a>
+        <span style="color:#e2e8f0;font-size:16px">|</span>
+        <!-- Dark mode toggle -->
+        <button id="theme-toggle" onclick="(function(){var d=document.documentElement,t=d.classList.toggle('dark');localStorage.setItem('theme',t?'dark':'light');document.getElementById('theme-icon-light').style.display=t?'none':'block';document.getElementById('theme-icon-dark').style.display=t?'block':'none'})()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;color:#6b7280" title="Toggle dark mode">
+          <svg id="theme-icon-light" style="width:16px;height:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <svg id="theme-icon-dark" style="width:16px;height:16px;display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
+        <!-- Language toggle -->
+        <button id="lang-toggle" onclick="(function(){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.textContent=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});document.getElementById('lang-toggle').textContent=c==='zh'?'EN':'中文'})()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:12px;font-weight:600;color:#6b7280">中文</button>
       </nav>
     </div>
-  </header>`;
+  </header>
+  <script>
+    // Apply saved theme
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+        document.documentElement.classList.add('dark');
+        var il=document.getElementById('theme-icon-light');
+        var id=document.getElementById('theme-icon-dark');
+        if(il)il.style.display='none';
+        if(id)id.style.display='block';
+      }
+      // Apply saved lang
+      var l=localStorage.getItem('lang')||'en';
+      document.documentElement.lang=l==='zh'?'zh-CN':'en';
+      var lb=document.getElementById('lang-toggle');
+      if(lb)lb.textContent=l==='zh'?'EN':'中文';
+      document.querySelectorAll('[data-zh]').forEach(function(el){
+        el.textContent=l==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en');
+      });
+    })();
+  </script>
+  <style>
+    .dark #site-header{background:#111827!important;border-color:#374151!important}
+    .dark .brand-text{color:#f3f4f6!important}
+    .dark .nav-link{color:#9ca3af!important}
+    .dark .nav-link-active{color:#818cf8!important}
+    .dark #theme-toggle{border-color:#4b5563!important;color:#9ca3af!important}
+    .dark #lang-toggle{border-color:#4b5563!important;color:#9ca3af!important}
+    .dark body{background:#0f172a!important;color:#e2e8f0!important}
+    .dark h1,.dark h2{color:#f1f5f9!important}
+    .dark p{color:#94a3b8!important}
+    .dark a{color:#818cf8!important}
+    .dark nav span{color:#94a3b8!important}
+    .dark details{border-color:#374151!important;background:#1e293b!important}
+    .dark summary{color:#f1f5f9!important}
+    .dark details p{color:#94a3b8!important}
+    .dark div[style*="border:1px solid #e2e8f0"]{border-color:#374151!important;background:#1e293b!important}
+    .dark div[style*="background:#fff"]{background:#1e293b!important}
+    .dark div[style*="color:#1e293b"]{color:#f1f5f9!important}
+    .dark span[style*="color:#64748b"]{color:#94a3b8!important}
+    .dark div[style*="color:#64748b"]{color:#94a3b8!important}
+    .dark span[style*="color:#94a3b8"]{color:#64748b!important}
+    .dark div[style*="background:#f8fafc"]{background:#0f172a!important}
+    .dark table{color:#e2e8f0!important}
+    .dark tr{border-color:#374151!important}
+    .dark th{color:#94a3b8!important}
+    .dark td a{color:#818cf8!important}
+  </style>`;
 }
 
 /* ── Index page builder (/best/) ────────────────── */
@@ -201,15 +290,15 @@ ${breadcrumbLd}
   ${buildStaticHeader()}
   <div style="max-width:900px;margin:0 auto;padding:32px 20px">
     <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
-      <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
+      <a href="/" style="color:#4f46e5;text-decoration:none" data-zh="首页" data-en="Home">Home</a>
       <span style="margin:0 6px">&gt;</span>
-      <span>Best Tools</span>
+      <span data-zh="最佳工具" data-en="Best Tools">Best Tools</span>
     </nav>
-    <h1 style="font-size:28px;margin:0 0 8px">Best AI Agent Tools by Scenario</h1>
-    <p style="color:#64748b;margin:0 0 28px;line-height:1.6">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
+    <h1 style="font-size:28px;margin:0 0 8px" data-zh="按场景发现最佳 AI Agent 工具" data-en="Best AI Agent Tools by Scenario">Best AI Agent Tools by Scenario</h1>
+    <p style="color:#64748b;margin:0 0 28px;line-height:1.6" data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
     ${groupsHtml}
     <div style="margin:32px 0;text-align:center">
-      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
   </div>
 </body>
@@ -384,24 +473,26 @@ ${faqLd}
   <div style="max-width:900px;margin:0 auto;padding:32px 20px">
       <!-- Breadcrumb -->
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
-        <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
+        <a href="/" style="color:#4f46e5;text-decoration:none" data-zh="首页" data-en="Home">Home</a>
         <span style="margin:0 6px">&gt;</span>
-        <span>Best Tools for ${esc(scenario.title)}</span>
+        <a href="/best/" style="color:#4f46e5;text-decoration:none" data-zh="最佳工具" data-en="Best Tools">Best Tools</a>
+        <span style="margin:0 6px">&gt;</span>
+        <span>${esc(scenario.title)}</span>
       </nav>
 
       <!-- Title -->
-      <h1 style="font-size:28px;margin:0 0 8px">Best AI Agent Skills for ${esc(scenario.title)}</h1>
+      <h1 style="font-size:28px;margin:0 0 8px" data-zh="最佳 ${esc(scenario.title)} AI 工具" data-en="Best AI Agent Skills for ${esc(scenario.title)}">Best AI Agent Skills for ${esc(scenario.title)}</h1>
       <p style="color:#64748b;margin:0 0 20px;line-height:1.6">${esc(scenario.description)}</p>
 
       <!-- Skill Cards -->
       <section>
-        <h2 style="font-size:20px;margin:0 0 12px">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
+        <h2 style="font-size:20px;margin:0 0 12px" data-zh="Top ${skills.length} ${esc(scenario.title)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
       ${skillCardsHtml}
       </section>
 
       <!-- Comparison Table -->
       <section style="margin-top:32px">
-        <h2 style="font-size:20px;margin:0 0 12px">Comparison</h2>
+        <h2 style="font-size:20px;margin:0 0 12px" data-zh="对比" data-en="Comparison">Comparison</h2>
         <div style="overflow-x:auto">
           <table style="width:100%;border-collapse:collapse;font-size:14px">
             <thead>
@@ -422,7 +513,7 @@ ${faqLd}
 
       <!-- Related Scenarios -->
       ${relatedHtml ? `<section style="margin-top:32px">
-        <h2 style="font-size:18px;margin:0 0 12px">Related Categories</h2>
+        <h2 style="font-size:18px;margin:0 0 12px" data-zh="相关场景" data-en="Related Categories">Related Categories</h2>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
         ${relatedHtml}
         </div>
@@ -430,13 +521,13 @@ ${faqLd}
 
       <!-- FAQ -->
       <section style="margin-top:32px">
-        <h2 style="font-size:18px;margin:0 0 12px">Frequently Asked Questions</h2>
+        <h2 style="font-size:18px;margin:0 0 12px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
       ${faqHtml}
       </section>
 
       <!-- CTA -->
       <div style="margin:32px 0;text-align:center">
-        <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Explore All 25,000+ Skills on Agent Skills Hub</a>
+        <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
       </div>
     </div>
 </body>
