@@ -505,5 +505,173 @@
       "max_results": 10
     },
     "related": ["claude-code-skills", "code-completion", "mcp-api"]
+  },
+  {
+    "slug": "ai-agent-framework",
+    "title": "AI Agent Frameworks",
+    "description": "Compare the best frameworks for building autonomous AI agents — from single-agent SDKs to multi-agent orchestration platforms.",
+    "match": {
+      "categories": ["agent-tool"],
+      "primary_keywords": ["agent framework", "agent sdk", "agent platform", "autonomous agent"],
+      "secondary_keywords": ["framework", "sdk", "runtime", "harness", "agent", "agentic"],
+      "topic_matches": ["agent", "ai-agent", "autonomous-agent", "agent-framework"],
+      "min_results": 5,
+      "max_results": 10
+    },
+    "related": ["multi-agent", "prompt-engineering", "workflow-automation"]
+  },
+  {
+    "slug": "multi-agent",
+    "title": "Multi-Agent Orchestration",
+    "description": "Find tools for building and orchestrating multi-agent systems where AI agents collaborate, delegate, and coordinate tasks.",
+    "match": {
+      "categories": ["agent-tool"],
+      "primary_keywords": ["multi-agent", "multi agent", "orchestrat", "crew", "swarm"],
+      "secondary_keywords": ["fleet", "collaborate", "delegate", "coordinate", "supervisor"],
+      "topic_matches": ["multi-agent", "multiagent", "agent-orchestration"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["ai-agent-framework", "workflow-automation", "prompt-engineering"]
+  },
+  {
+    "slug": "local-llm",
+    "title": "Local LLM Tools",
+    "description": "Run AI models locally with privacy and no API costs. Find the best tools for self-hosted LLM inference, fine-tuning, and deployment.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["local", "ollama", "llama", "self-hosted", "on-premise"],
+      "secondary_keywords": ["gguf", "ggml", "quantiz", "inference", "vllm", "llamacpp", "mlx"],
+      "topic_matches": ["ollama", "llama", "local-ai", "self-hosted"],
+      "min_results": 5,
+      "max_results": 10
+    },
+    "related": ["ai-agent-framework", "prompt-engineering", "model-evaluation"]
+  },
+  {
+    "slug": "mcp-for-notion",
+    "title": "MCP Tools for Notion",
+    "description": "Connect AI agents to Notion workspaces — read pages, create databases, manage tasks, and automate workflows via MCP servers.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": ["notion"],
+      "secondary_keywords": ["workspace", "page", "block", "notion api"],
+      "topic_matches": ["notion", "notion-api"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["mcp-api", "mcp-database", "workflow-automation"]
+  },
+  {
+    "slug": "mcp-for-github",
+    "title": "MCP Tools for GitHub",
+    "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": ["github"],
+      "secondary_keywords": ["pull request", "issue", "repo", "actions", "gh"],
+      "topic_matches": ["github", "github-api", "github-actions"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["git-tools", "code-review", "ci-cd"]
+  },
+  {
+    "slug": "mcp-for-google",
+    "title": "MCP Tools for Google Services",
+    "description": "Connect AI agents to Google Workspace — Gmail, Drive, Calendar, Sheets, and more through MCP server integrations.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": ["google", "gmail", "google drive", "google sheets"],
+      "secondary_keywords": ["calendar", "gdrive", "gsheet", "workspace", "gcp"],
+      "topic_matches": ["google", "gmail", "google-drive", "google-calendar"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["mcp-api", "email-automation", "workflow-automation"]
+  },
+  {
+    "slug": "ai-code-editor",
+    "title": "AI Code Editors",
+    "description": "Compare AI-powered code editors and IDE extensions that supercharge your development workflow with intelligent assistance.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["code editor", "ide", "vscode", "neovim", "cursor"],
+      "secondary_keywords": ["editor", "extension", "plugin", "lsp", "intellisense"],
+      "topic_matches": ["code-editor", "ide", "vscode", "neovim", "editor"],
+      "min_results": 5,
+      "max_results": 10
+    },
+    "related": ["code-completion", "debugging", "code-review"]
+  },
+  {
+    "slug": "api-testing",
+    "title": "API Testing & Mocking",
+    "description": "Find AI tools for API testing, endpoint validation, mock servers, and automated API documentation.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["api test", "api mock", "postman", "httpie"],
+      "secondary_keywords": ["endpoint", "mock server", "api doc", "openapi", "swagger", "insomnia"],
+      "topic_matches": ["api-testing", "mock", "api-documentation"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["mcp-api", "test-generation", "ci-cd"]
+  },
+  {
+    "slug": "knowledge-base",
+    "title": "Knowledge Base & RAG",
+    "description": "Build AI-powered knowledge bases with retrieval-augmented generation (RAG) — ingest documents, search semantically, and answer questions.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["knowledge base", "rag", "retrieval augmented", "qa"],
+      "secondary_keywords": ["document", "ingest", "question answer", "chatbot", "embedding"],
+      "topic_matches": ["rag", "knowledge-base", "question-answering", "retrieval"],
+      "min_results": 5,
+      "max_results": 10
+    },
+    "related": ["semantic-search", "vector-database", "mcp-memory"]
+  },
+  {
+    "slug": "text-to-speech",
+    "title": "Text-to-Speech & Voice",
+    "description": "Find AI tools for text-to-speech synthesis, voice cloning, speech recognition, and audio processing.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["text to speech", "tts", "voice", "speech"],
+      "secondary_keywords": ["audio", "whisper", "elevenlabs", "speech recognition", "stt", "transcri"],
+      "topic_matches": ["tts", "text-to-speech", "voice", "speech", "whisper"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["content-writing", "translation", "summarization"]
+  },
+  {
+    "slug": "web-development",
+    "title": "AI Web Development",
+    "description": "Find AI tools that help build websites and web applications — from UI generation to full-stack scaffolding.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["web development", "frontend", "react", "nextjs", "web app"],
+      "secondary_keywords": ["html", "css", "tailwind", "ui", "component", "scaffold", "fullstack"],
+      "topic_matches": ["web-development", "frontend", "react", "nextjs", "web-app"],
+      "min_results": 5,
+      "max_results": 10
+    },
+    "related": ["code-completion", "browser-automation", "image-generation"]
+  },
+  {
+    "slug": "database-migration",
+    "title": "Database Migration & Schema Tools",
+    "description": "AI tools for database schema design, migration management, and data modeling.",
+    "match": {
+      "categories": [],
+      "primary_keywords": ["migration", "schema", "data model"],
+      "secondary_keywords": ["orm", "prisma", "drizzle", "typeorm", "sequelize", "alembic", "flyway"],
+      "topic_matches": ["migration", "schema", "orm", "database-schema"],
+      "min_results": 3,
+      "max_results": 10
+    },
+    "related": ["mcp-database", "code-completion", "refactoring"]
   }
 ]

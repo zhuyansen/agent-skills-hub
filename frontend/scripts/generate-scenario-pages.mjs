@@ -218,9 +218,30 @@ function buildStaticHeader() {
     .dark details p{color:#94a3b8!important}
     /* Related tags */
     .dark .related-tag{background:#312e81!important;color:#a5b4fc!important;border-color:#4338ca!important}
+    /* NEW badge */
+    .dark .new-badge{background:#064e3b!important;color:#6ee7b7!important}
+    /* Newsletter box */
+    .dark .nl-box{background:linear-gradient(135deg,#1e1b4b,#0f172a)!important;border-color:#4338ca!important}
+    .dark .nl-box h3{color:#f1f5f9!important}
+    .dark .nl-box p{color:#94a3b8!important}
+    .dark .nl-box input{background:#1e293b!important;border-color:#4b5563!important;color:#e2e8f0!important}
     /* Divider */
     .dark #site-header span[style*="color:#e2e8f0"]{color:#4b5563!important}
   </style>`;
+}
+
+/* ── Newsletter CTA (shared) ─────────────────────── */
+
+function buildNewsletterCta() {
+  return `<div style="margin:32px 0;padding:24px;border:1px solid #e0e7ff;border-radius:12px;background:linear-gradient(135deg,#eef2ff,#f0f9ff);text-align:center" class="nl-box">
+    <h3 style="margin:0 0 6px;font-size:18px;color:#1e293b" data-zh="订阅每周 AI 工具精选" data-en="Get Weekly AI Tool Picks">Get Weekly AI Tool Picks</h3>
+    <p style="margin:0 0 14px;font-size:13px;color:#64748b" data-zh="每周一发送 Top 20 增速最快的 AI 工具，免费订阅。" data-en="Top 20 fastest-growing AI tools delivered every Monday. Free.">Top 20 fastest-growing AI tools delivered every Monday. Free.</p>
+    <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='Subscribing...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/subscribers',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Prefer':'return=minimal'},body:JSON.stringify({email:em})}).then(function(r){if(r.ok||r.status===409){btn.textContent='Subscribed!';btn.style.background='#059669'}else{btn.textContent='Try again';btn.disabled=false}}).catch(function(){btn.textContent='Try again';btn.disabled=false});return false})(event)" style="display:flex;gap:8px;justify-content:center;max-width:400px;margin:0 auto">
+      <input id="nl-email" type="email" placeholder="your@email.com" required style="flex:1;padding:8px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none" />
+      <button id="nl-btn" type="submit" style="padding:8px 18px;background:#4f46e5;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer" class="cta-btn" data-zh="订阅" data-en="Subscribe">Subscribe</button>
+    </form>
+    <p style="margin:8px 0 0;font-size:11px;color:#94a3b8" data-zh="无垃圾邮件，随时退订。" data-en="No spam, unsubscribe anytime.">No spam, unsubscribe anytime.</p>
+  </div>`;
 }
 
 /* ── Index page builder (/best/) ────────────────── */
@@ -236,12 +257,12 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
 
   // Group scenarios by rough category
   const groups = [
-    { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory"] },
-    { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools"] },
-    { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["prompt-engineering", "model-evaluation", "claude-code-skills", "codex-skills"] },
+    { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory", "mcp-for-notion", "mcp-for-github", "mcp-for-google"] },
+    { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools", "ai-code-editor", "web-development", "api-testing"] },
+    { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["ai-agent-framework", "multi-agent", "prompt-engineering", "model-evaluation", "local-llm", "claude-code-skills", "codex-skills"] },
     { label: "Security", zh: "安全", icon: "🔒", slugs: ["security-audit", "secret-detection", "authentication"] },
-    { label: "Data & Search", zh: "数据与搜索", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization"] },
-    { label: "Content & Writing", zh: "内容创作", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation"] },
+    { label: "Data & Search", zh: "数据与搜索", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization", "knowledge-base", "database-migration"] },
+    { label: "Content & Writing", zh: "内容创作", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation", "text-to-speech"] },
     { label: "DevOps & Automation", zh: "DevOps 与自动化", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
     { label: "Communication", zh: "通讯集成", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
   ];
@@ -317,6 +338,7 @@ ${breadcrumbLd}
     <h1 style="font-size:28px;margin:0 0 8px" data-zh="按场景发现最佳 AI Agent 工具" data-en="Best AI Agent Tools by Scenario">Best AI Agent Tools by Scenario</h1>
     <p style="color:#64748b;margin:0 0 28px;line-height:1.6" data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
     ${groupsHtml}
+    ${buildNewsletterCta()}
     <div style="margin:32px 0;text-align:center">
       <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" class="cta-btn" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
@@ -390,8 +412,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   });
 
   // Skill cards HTML
+  const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const skillCardsHtml = skills.map((s, i) => {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
+    const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
     const qs = extractQuickStart(s.readme_content);
     const qsHtml = qs
       ? `<div class="sk-quickstart" style="margin-top:8px;padding:8px 12px;background:#f8fafc;border-radius:6px;font-size:13px">
@@ -405,7 +429,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:${i < 3 ? "#f59e0b" : "#94a3b8"};color:#fff;font-weight:700;font-size:14px;margin-right:8px">${i + 1}</span>
-            <a class="sk-name" href="/skill/${esc(s.repo_full_name)}/" style="color:#1e293b;text-decoration:none;font-size:18px;font-weight:600">${esc(s.repo_name)}</a>
+            <a class="sk-name" href="/skill/${esc(s.repo_full_name)}/" style="color:#1e293b;text-decoration:none;font-size:18px;font-weight:600">${esc(s.repo_name)}</a>${isNew ? `<span class="new-badge" style="display:inline-block;margin-left:6px;padding:1px 6px;font-size:10px;font-weight:700;color:#059669;background:#d1fae5;border-radius:4px;vertical-align:middle">NEW</span>` : ""}
             <span class="sk-author" style="color:#94a3b8;font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
           </div>
           <div class="sk-meta" style="display:flex;gap:12px;font-size:14px;color:#64748b">
@@ -544,6 +568,9 @@ ${faqLd}
         <h2 style="font-size:18px;margin:0 0 12px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
       ${faqHtml}
       </section>
+
+      <!-- Newsletter -->
+      ${buildNewsletterCta()}
 
       <!-- CTA -->
       <div style="margin:32px 0;text-align:center">
