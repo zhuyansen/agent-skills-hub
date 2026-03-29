@@ -44,7 +44,7 @@ export const translations = {
       "X账号和GitHub存在映射错误问题，具体以实际为准。Masters每日由管理员通过社媒数据人工审核更新。",
     "masters.followers": "粉丝",
     "masters.posts": "帖子",
-    "masters.repos": "仓库",
+    "masters.repos": "项目",
     "masters.totalStars": "总 Stars",
     "masters.showLess": "收起",
     "masters.more": "更多",
@@ -240,10 +240,10 @@ export const translations = {
     "auth.favorites": "我的收藏",
 
     // Hero
-    "hero.title": "发现 {count} Agent Skills",
-    "hero.subtitle": "为你的 AI 工作流找到最好的开源工具、MCP Server 和 AI Skills",
+    "hero.title": "发现 {count}+ 最佳开源 AI Agent 工具",
+    "hero.subtitle": "搜索、对比开源 AI Agent Skills、MCP Server 和开发者自动化工具，每 8 小时自动更新",
     "hero.trending": "热门",
-    "hero.searchPlaceholder": "搜索 MCP 服务器、Claude 技能、Agent 工具...",
+    "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
     // Charts
     "chart.categoryDist": "分类分布",
@@ -290,7 +290,7 @@ export const translations = {
     // FAQ
     "faq.title": "常见问题",
     "faq.q1": "什么是 Agent Skills Hub？",
-    "faq.a1": "Agent Skills Hub 是一个发现和比较开源 AI Agent 技能的平台，收录了 7800+ 个 GitHub 上的 Agent Skills、MCP 服务器、Claude 技能和 AI 工具。所有数据每 8 小时自动更新。",
+    "faq.a1": "Agent Skills Hub 是开发者发现、对比和使用开源 AI Agent 工具的最佳平台，收录 40,000+ 个 AI Agent Skills、MCP 服务器和自动化工具，质量评分体系 + 每 8 小时自动更新。",
     "faq.q2": "质量评分是如何计算的？",
     "faq.a2": "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
     "faq.q3": "如何提交我的项目？",
@@ -347,7 +347,7 @@ export const translations = {
       "X/GitHub account mapping may have discrepancies. Masters are manually reviewed daily by admins using social media data.",
     "masters.followers": "followers",
     "masters.posts": "posts",
-    "masters.repos": "repos",
+    "masters.repos": "tools",
     "masters.totalStars": "total stars",
     "masters.showLess": "Show less",
     "masters.more": "more",
@@ -547,10 +547,10 @@ export const translations = {
     "chart.skills": "Skills",
 
     // Hero
-    "hero.title": "Discover {count} Agent Skills",
-    "hero.subtitle": "Find the best open-source tools, MCP servers, and AI skills for your workflow",
+    "hero.title": "Discover {count}+ Best Open-Source AI Agent Tools",
+    "hero.subtitle": "Search, compare and automate with the best AI agent skills, MCP servers, and developer tools. Auto-updated every 8 hours.",
     "hero.trending": "Trending",
-    "hero.searchPlaceholder": "Search MCP servers, Claude skills, agent tools...",
+    "hero.searchPlaceholder": "Search AI agent tools, MCP servers, automation skills...",
 
     // New This Week
     "newThisWeek.title": "New This Week",
@@ -591,7 +591,7 @@ export const translations = {
     // FAQ
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What is Agent Skills Hub?",
-    "faq.a1": "Agent Skills Hub is a platform for discovering and comparing open-source AI Agent skills, featuring 7,800+ GitHub repos including Agent Skills, MCP servers, Claude skills, and AI tools. All data is auto-updated every 8 hours.",
+    "faq.a1": "Agent Skills Hub is the best platform for developers to discover, compare, and automate with 40,000+ open-source AI agent tools, MCP servers, and automation skills. Quality-scored and auto-updated every 8 hours.",
     "faq.q2": "How are quality scores calculated?",
     "faq.a2": "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
     "faq.q3": "How do I submit my project?",
