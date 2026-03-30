@@ -1,0 +1,55 @@
+name: "🏷️ Claim Your Tool"
+description: Claim ownership of your tool listed on Agent Skills Hub
+title: "Claim: {repo_full_name}"
+labels: ["claim-tool"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Claim Your Tool on Agent Skills Hub
+
+        If you're the author/maintainer of a tool listed on [agentskillshub.top](https://agentskillshub.top), you can claim it to get a **verified badge** on your tool's page.
+
+        ### How verification works
+        After submitting this form, we'll verify ownership by checking:
+        1. Your GitHub username matches the repo owner/contributor
+        2. (Optional) Add `agentskillshub.top` to your repo description or README for instant verification
+
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: "Full name of your repo (e.g., owner/repo)"
+      placeholder: "owner/repo-name"
+    validations:
+      required: true
+
+  - type: input
+    id: github_username
+    attributes:
+      label: Your GitHub Username
+      description: "Must be the repo owner or a contributor"
+      placeholder: "your-github-username"
+    validations:
+      required: true
+
+  - type: input
+    id: x_handle
+    attributes:
+      label: "X (Twitter) Handle (optional)"
+      description: "For your profile on Agent Skills Hub"
+      placeholder: "@yourhandle"
+
+  - type: input
+    id: website
+    attributes:
+      label: "Website (optional)"
+      description: "Your personal or project website"
+      placeholder: "https://example.com"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes"
+      description: "Anything else you'd like us to know"
+      placeholder: "e.g., I'd like to update the description..."
