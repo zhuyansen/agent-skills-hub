@@ -2,8 +2,8 @@ name: Weekly Newsletter
 
 on:
   schedule:
-    # Every Monday at 9:00 AM UTC (5:00 PM Beijing Time)
-    - cron: "0 9 * * 1"
+    # Every Monday at 1:00 AM UTC (9:00 AM Beijing Time)
+    - cron: "0 1 * * 1"
   workflow_dispatch: # Manual trigger for testing
 
 jobs:
