@@ -77,12 +77,13 @@ def main():
         logger.info("Found %d verified subscribers", len(recipients))
 
         # 2. Get NEW skills this week (first_seen in the last 7 days)
+        # Order by star gain (stars - prev_stars) to highlight momentum, not just big repos
         seven_days_ago = now_utc - timedelta(days=7)
         new_skills_raw = (
             db.query(Skill)
             .filter(Skill.first_seen >= seven_days_ago)
-            .filter(Skill.stars >= 50)  # minimum quality threshold
-            .order_by(desc(Skill.stars))
+            .filter(Skill.stars >= 20)  # lower threshold to catch rising projects
+            .order_by(desc(Skill.stars - Skill.prev_stars), desc(Skill.stars))
             .limit(20)
             .all()
         )
