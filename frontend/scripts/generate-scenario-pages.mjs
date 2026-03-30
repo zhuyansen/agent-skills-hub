@@ -528,6 +528,18 @@ ${faqLd}
       <h1 style="font-size:28px;margin:0 0 8px" data-zh="最佳 ${esc(scenario.title)} AI 工具" data-en="Best AI Agent Skills for ${esc(scenario.title)}">Best AI Agent Skills for ${esc(scenario.title)}</h1>
       <p style="color:#64748b;margin:0 0 20px;line-height:1.6">${esc(scenario.description)}</p>
 
+      <!-- Quick Pick -->
+      ${skills.length > 0 ? `<div style="background:linear-gradient(135deg,#eef2ff,#f0fdf4);border:1px solid #c7d2fe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font-size:20px">⚡</span>
+        <div style="flex:1;min-width:200px">
+          <span style="font-weight:700;color:#1e293b" data-zh="快速推荐" data-en="Quick Pick">Quick Pick</span>
+          <span style="color:#475569" data-zh="— 只选一个的话，用" data-en="— If you only pick one, go with"> — If you only pick one, go with </span>
+          <a href="${SITE}/skill/${esc(skills[0].repo_full_name)}/" style="color:#4f46e5;font-weight:700;text-decoration:none">${esc(skills[0].repo_name)}</a>
+          <span style="color:#94a3b8;font-size:13px;margin-left:4px">★ ${starsK(skills[0].stars)}</span>
+          ${skills[0].description ? `<span style="color:#64748b;font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
+        </div>
+      </div>` : ""}
+
       <!-- Skill Cards -->
       <section>
         <h2 style="font-size:20px;margin:0 0 12px" data-zh="Top ${skills.length} ${esc(scenario.title)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
