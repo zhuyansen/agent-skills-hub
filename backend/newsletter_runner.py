@@ -76,8 +76,35 @@ def main():
         ]
         logger.info("Found %d verified subscribers", len(recipients))
 
-        # 2. Get latest COMPLETED week from weekly_trending_snapshots
-        # Use week_end <= today so we send last week's data, not the current in-progress week
+        # 2. Get NEW skills this week (first_seen in the last 7 days)
+        seven_days_ago = now_utc - timedelta(days=7)
+        new_skills_raw = (
+            db.query(Skill)
+            .filter(Skill.first_seen >= seven_days_ago)
+            .filter(Skill.stars >= 50)  # minimum quality threshold
+            .order_by(desc(Skill.stars))
+            .limit(20)
+            .all()
+        )
+        logger.info("Got %d new skills this week (first_seen >= %s)", len(new_skills_raw), seven_days_ago.date())
+
+        new_skills_data = [
+            {
+                "repo_name": s.repo_name,
+                "repo_full_name": s.repo_full_name,
+                "author_name": s.author_name,
+                "author_avatar_url": s.author_avatar_url or "",
+                "description": s.description or "",
+                "stars": s.stars,
+                "star_gain": (s.stars - s.prev_stars) if s.prev_stars else 0,
+                "repo_url": s.repo_url,
+                "category": s.category,
+                "created_at": str(s.created_at)[:10] if s.created_at else "",
+            }
+            for s in new_skills_raw
+        ]
+
+        # 3. Get Top 5 trending (velocity) for a small highlight section
         today = now_utc.date()
         latest_week = (
             db.query(WeeklyTrendingSnapshot.week_start, WeeklyTrendingSnapshot.week_end)
@@ -86,51 +113,44 @@ def main():
             .first()
         )
 
-        if not latest_week:
-            logger.error("No weekly_trending_snapshots data found. Exiting.")
-            return
+        trending_data = []
+        if latest_week:
+            week_start, week_end = latest_week
+            trending_raw = (
+                db.query(WeeklyTrendingSnapshot)
+                .filter(WeeklyTrendingSnapshot.week_start == week_start)
+                .order_by(desc(WeeklyTrendingSnapshot.star_velocity))
+                .limit(5)
+                .all()
+            )
+            trending_data = [
+                {
+                    "repo_name": s.repo_name,
+                    "repo_full_name": s.repo_full_name,
+                    "author_name": s.author_name,
+                    "description": s.description or "",
+                    "stars": s.stars,
+                    "star_velocity": round(s.star_velocity, 1) if s.star_velocity else 0,
+                    "repo_url": s.repo_url,
+                }
+                for s in trending_raw
+            ]
 
-        week_start, week_end = latest_week
-        logger.info("Using week: %s – %s", week_start, week_end)
-
-        trending_raw = (
-            db.query(WeeklyTrendingSnapshot)
-            .filter(WeeklyTrendingSnapshot.week_start == week_start)
-            .order_by(desc(WeeklyTrendingSnapshot.star_velocity))
-            .limit(20)
-            .all()
-        )
-        logger.info("Got %d trending skills from Star Velocity History", len(trending_raw))
-
-        trending_data = [
-            {
-                "rank": s.rank,
-                "repo_name": s.repo_name,
-                "repo_full_name": s.repo_full_name,
-                "author_name": s.author_name,
-                "author_avatar_url": s.author_avatar_url or "",
-                "description": s.description or "",
-                "stars": s.stars,
-                "star_velocity": round(s.star_velocity, 1) if s.star_velocity else 0,
-                "repo_url": s.repo_url,
-                "category": s.category,
-            }
-            for s in trending_raw
-        ]
-
-        # 3. Stats
+        # 4. Stats
         total_skills = db.query(func.count(Skill.id)).scalar() or 0
 
-        # Format week period string: "Mar 9 – Mar 15, 2026"
-        ws = week_start if isinstance(week_start, datetime) else datetime.fromisoformat(str(week_start))
-        we = week_end if isinstance(week_end, datetime) else datetime.fromisoformat(str(week_end))
-        week_period = f"{ws.strftime('%b %-d')} – {we.strftime('%b %-d, %Y')}"
+        # Format week period string
+        week_end_date = today
+        week_start_date = today - timedelta(days=6)
+        week_period = f"{week_start_date.strftime('%b %-d')} – {week_end_date.strftime('%b %-d, %Y')}"
 
-        logger.info("Stats: total=%d, week=%s, skills_in_ranking=%d", total_skills, week_period, len(trending_data))
+        logger.info("Stats: total=%d, week=%s, new=%d, trending=%d",
+                     total_skills, week_period, len(new_skills_data), len(trending_data))
 
-        # 4. Send!
+        # 5. Send!
         result = send_newsletter(
             recipients=recipients,
+            new_skills=new_skills_data,
             trending_skills=trending_data,
             total_skills=total_skills,
             week_period=week_period,

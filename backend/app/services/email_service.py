@@ -102,21 +102,17 @@ def _velocity_rows_html(trending_skills: list, max_items: int = 20) -> str:
         stars = skill.get("stars", 0)
         velocity = skill.get("star_velocity", 0)
         url = skill.get("repo_url", "#")
-        category = skill.get("category", "")
 
-        # Format velocity display
         if velocity >= 1000:
             vel_str = f"{velocity/1000:.1f}k/day"
         else:
             vel_str = f"{velocity:.0f}/day"
 
-        # Format stars display
         if stars >= 1000:
             stars_str = f"&#11088; {stars/1000:.1f}k"
         else:
             stars_str = f"&#11088; {stars:,}"
 
-        # Rank badge colors: top 3 orange, rest gray
         rank_bg = "#ea580c" if i < 3 else "#94a3b8"
 
         rows += f"""\
@@ -132,6 +128,67 @@ def _velocity_rows_html(trending_skills: list, max_items: int = 20) -> str:
             <span style="color:#94a3b8;font-size:12px;margin-left:4px;">{author}</span>
             <br>
             <span style="color:#ea580c;font-weight:600;font-size:12px;">{vel_str}</span>
+            <span style="color:#64748b;font-size:12px;margin-left:8px;">{desc}</span>
+          </td>
+          <td style="width:70px;text-align:right;vertical-align:top;white-space:nowrap;">
+            <span style="color:#f59e0b;font-size:12px;">{stars_str}</span>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>"""
+    return rows
+
+
+def _new_skills_rows_html(new_skills: list, max_items: int = 20) -> str:
+    """Build New This Week ranking rows for newsletter."""
+    rows = ""
+    for i, skill in enumerate(new_skills[:max_items]):
+        name = skill.get("repo_name", "unknown")
+        author = skill.get("author_name", "")
+        desc = skill.get("description", "")[:100]
+        stars = skill.get("stars", 0)
+        star_gain = skill.get("star_gain", 0)
+        url = skill.get("repo_url", "#")
+        category = skill.get("category", "")
+        site_url = settings.site_url or "https://agentskillshub.top"
+        full_name = skill.get("repo_full_name", "")
+        skill_page_url = f"{site_url}/skill/{full_name}/"
+
+        if stars >= 1000:
+            stars_str = f"&#11088; {stars/1000:.1f}k"
+        else:
+            stars_str = f"&#11088; {stars:,}"
+
+        gain_str = f"+{star_gain:,}" if star_gain > 0 else "new"
+        gain_color = "#10b981" if star_gain > 100 else "#ea580c" if star_gain > 0 else "#6b7280"
+
+        # Category badge color
+        cat_colors = {
+            "mcp-server": "#7c3aed",
+            "claude-skill": "#ea580c",
+            "codex-skill": "#2563eb",
+            "agent-tool": "#10b981",
+            "ai-skill": "#f59e0b",
+        }
+        cat_color = cat_colors.get(category, "#6b7280")
+
+        rank_bg = "#10b981" if i < 3 else "#94a3b8"
+
+        rows += f"""\
+    <tr>
+      <td style="padding:12px 14px;border-bottom:1px solid #f1f5f9;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:28px;vertical-align:top;padding-top:2px;">
+            <span style="display:inline-block;width:24px;height:24px;background:{rank_bg};color:#fff;border-radius:50%;text-align:center;line-height:24px;font-size:11px;font-weight:700;">{i+1}</span>
+          </td>
+          <td style="padding-left:10px;">
+            <a href="{skill_page_url}" style="color:#1e293b;font-weight:600;text-decoration:none;font-size:14px;">{name}</a>
+            <span style="color:#94a3b8;font-size:12px;margin-left:4px;">{author}</span>
+            <span style="display:inline-block;padding:1px 6px;background:{cat_color}18;color:{cat_color};border-radius:8px;font-size:10px;margin-left:6px;">{category}</span>
+            <br>
+            <span style="color:{gain_color};font-weight:600;font-size:12px;">{gain_str}</span>
             <span style="color:#64748b;font-size:12px;margin-left:8px;">{desc}</span>
           </td>
           <td style="width:70px;text-align:right;vertical-align:top;white-space:nowrap;">
@@ -238,15 +295,18 @@ def _welcome_email_html(
 # ═══════════════════════════════════════════════════════
 
 def _newsletter_email_html(
+    new_skills: list,
     trending_skills: list,
     total_skills: int,
     week_period: str,
     unsubscribe_url: str = "",
 ) -> str:
-    """Generate a weekly newsletter HTML email matching Star Velocity History format."""
+    """Generate a weekly newsletter HTML email with New This Week + Top Trending."""
+    site_url = settings.site_url or "https://agentskillshub.top"
+
     inner = _header_html(
-        "&#128293; Star Velocity History",
-        f"Top 20 fastest-growing skills — {week_period}",
+        "&#127381; New This Week",
+        f"{len(new_skills)} fresh AI agent tools discovered — {week_period}",
     )
 
     # Stats bar
@@ -254,24 +314,42 @@ def _newsletter_email_html(
   <tr><td style="padding:16px 40px;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
     <table width="100%" cellpadding="0" cellspacing="0">
     <tr>
-      <td style="text-align:center;width:50%;">
+      <td style="text-align:center;width:33%;">
         <span style="font-size:22px;font-weight:700;color:#4f46e5;">{total_skills:,}</span><br>
         <span style="font-size:12px;color:#94a3b8;">Total Skills</span>
       </td>
-      <td style="text-align:center;width:50%;">
+      <td style="text-align:center;width:34%;">
+        <span style="font-size:22px;font-weight:700;color:#10b981;">{len(new_skills)}</span><br>
+        <span style="font-size:12px;color:#94a3b8;">New This Week</span>
+      </td>
+      <td style="text-align:center;width:33%;">
         <span style="font-size:22px;font-weight:700;color:#ea580c;">{len(trending_skills)}</span><br>
-        <span style="font-size:12px;color:#94a3b8;">In This Ranking</span>
+        <span style="font-size:12px;color:#94a3b8;">Top Trending</span>
       </td>
     </tr>
     </table>
   </td></tr>"""
 
-    # Velocity ranking rows
-    velocity_rows = _velocity_rows_html(trending_skills)
+    # New This Week section (main content)
+    new_rows = _new_skills_rows_html(new_skills)
     inner += f"""\
   <tr><td style="padding:24px 40px 8px;">
-    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#128293; Weekly Top 20</h2>
-    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">{week_period} · Ranked by star velocity (stars/day)</p>
+    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#127381; New This Week — Top 20</h2>
+    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">{week_period} · Newly indexed AI agent tools, ranked by stars</p>
+  </td></tr>
+  <tr><td style="padding:0 16px 24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+    {new_rows}
+    </table>
+  </td></tr>"""
+
+    # Top Trending section (compact, top 5)
+    if trending_skills:
+        velocity_rows = _velocity_rows_html(trending_skills, max_items=5)
+        inner += f"""\
+  <tr><td style="padding:8px 40px 8px;">
+    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:16px;">&#128293; Still Trending</h2>
+    <p style="color:#94a3b8;font-size:12px;margin:0 0 12px;">Fastest-growing this week by star velocity</p>
   </td></tr>
   <tr><td style="padding:0 16px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
@@ -283,8 +361,8 @@ def _newsletter_email_html(
     inner += f"""\
   <tr><td style="padding:0 40px 32px;text-align:center;">
     <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
-    <tr><td style="background:#ea580c;border-radius:8px;">
-      <a href="{settings.site_url}" style="display:inline-block;padding:14px 32px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;">
+    <tr><td style="background:#4f46e5;border-radius:8px;">
+      <a href="{site_url}" style="display:inline-block;padding:14px 32px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;">
         Explore All Skills &#8594;
       </a>
     </td></tr>
@@ -340,6 +418,7 @@ def send_welcome_email(
 
 def send_newsletter(
     recipients: list[dict],
+    new_skills: list[dict],
     trending_skills: list[dict],
     total_skills: int,
     week_period: str = "",
@@ -347,6 +426,8 @@ def send_newsletter(
     """Send weekly newsletter to all verified subscribers.
 
     recipients: list of dicts with 'email' and 'unsubscribe_token' keys.
+    new_skills: list of newly indexed skills this week.
+    trending_skills: list of top trending skills (velocity).
     Returns dict with sent/failed/total counts.
     """
     if not settings.resend_api_key:
@@ -362,8 +443,8 @@ def send_newsletter(
         unsub_token = recipient.get("unsubscribe_token", "")
         unsubscribe_url = f"{settings.site_url}/api/unsubscribe?token={unsub_token}" if unsub_token else ""
 
-        html = _newsletter_email_html(trending_skills, total_skills, week_period, unsubscribe_url)
-        subject = f"Star Velocity History — {week_period}" if week_period else "Agent Skills Weekly"
+        html = _newsletter_email_html(new_skills, trending_skills, total_skills, week_period, unsubscribe_url)
+        subject = f"New This Week — {week_period}" if week_period else "Agent Skills Weekly"
         ok = _send_via_resend(
             to=email,
             subject=subject,
