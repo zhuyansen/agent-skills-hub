@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# Static files are served first, then these rules apply
+
+# SPA fallback for all non-static paths
+/*    /index.html   200

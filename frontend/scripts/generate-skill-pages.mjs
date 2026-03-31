@@ -282,6 +282,7 @@ ${faqLd}
   <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
   ${scriptTags.join("\n  ")}
   ${linkTags.join("\n  ")}
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <div id="root">
@@ -432,6 +433,7 @@ ${breadcrumbLd}
   <link rel="preconnect" href="https://vknzzecmzsfmohglpfgm.supabase.co" />
   ${scriptTags.join("\n  ")}
   ${linkTags.join("\n  ")}
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
   <div id="root">

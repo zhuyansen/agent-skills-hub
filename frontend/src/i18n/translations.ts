@@ -273,6 +273,10 @@ export const translations = {
     "security.caution": "注意",
     "security.unsafe": "风险",
 
+    // Combo Recommendations
+    "combo.title": "推荐组合",
+    "combo.hint": "这些工具搭配使用效果更佳",
+
     // Category chips
     "chips.quickFilter": "快速筛选",
 
@@ -573,6 +577,10 @@ export const translations = {
     "security.safe": "Safe",
     "security.caution": "Caution",
     "security.unsafe": "Unsafe",
+
+    // Combo Recommendations
+    "combo.title": "Combo Recommendations",
+    "combo.hint": "These tools work great together",
 
     // Category chips
     "chips.quickFilter": "Quick Filter",

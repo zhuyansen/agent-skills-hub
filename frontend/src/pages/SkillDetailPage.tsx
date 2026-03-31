@@ -13,6 +13,7 @@ import { InstallCommand } from "../components/InstallCommand";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { ComboRecommendation } from "../components/ComboRecommendation";
 import type { SkillDetail } from "../types/skill";
 
 export function SkillDetailPage() {
@@ -258,6 +259,16 @@ export function SkillDetailPage() {
             </div>
           </div>
         </div>
+
+        {/* Combo Recommendations */}
+        <ComboRecommendation
+          currentSkill={{
+            repo_full_name: detail.repo_full_name,
+            topics: detail.topics,
+            description: detail.description,
+            repo_name: detail.repo_name,
+          }}
+        />
 
         {/* Compatible Skills */}
         {detail.compatible_skills && detail.compatible_skills.length > 0 && (

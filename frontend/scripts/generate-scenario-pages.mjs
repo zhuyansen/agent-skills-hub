@@ -125,31 +125,31 @@ function extractQuickStart(readmeContent) {
 /* ── Static header (shared across /best/* pages) ── */
 
 function buildStaticHeader() {
-  return `<header id="site-header" style="background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:40;backdrop-filter:blur(8px)">
-    <div style="max-width:900px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
+  return `<header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
       <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
         <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span style="font-weight:700;font-size:15px;color:#111827" class="brand-text">Agent Skills Hub</span>
+        <span class="bp-brand">Agent Skills Hub</span>
       </a>
-      <nav style="display:flex;align-items:center;gap:12px;font-size:13px">
-        <a href="/" style="color:#6b7280;text-decoration:none" class="nav-link">Home</a>
-        <a href="/best/" style="color:#4f46e5;text-decoration:none;font-weight:500" class="nav-link-active">Best Tools</a>
-        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px" class="nav-link">
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Home</a>
+        <a href="/best/" class="bp-nav-link bp-nav-link--active">Best Tools</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
           <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" style="color:#6b7280;text-decoration:none;display:flex;align-items:center;gap:4px" class="nav-link">
+        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
           <svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           X
         </a>
-        <span style="color:#e2e8f0;font-size:16px">|</span>
+        <span style="color:var(--bp-border);font-size:16px">|</span>
         <!-- Dark mode toggle -->
-        <button id="theme-toggle" onclick="(function(){var d=document.documentElement,t=d.classList.toggle('dark');localStorage.setItem('theme',t?'dark':'light');document.getElementById('theme-icon-light').style.display=t?'none':'block';document.getElementById('theme-icon-dark').style.display=t?'block':'none'})()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;color:#6b7280" title="Toggle dark mode">
+        <button id="theme-toggle" onclick="(function(){var d=document.documentElement,t=d.classList.toggle('dark');localStorage.setItem('theme',t?'dark':'light');document.getElementById('theme-icon-light').style.display=t?'none':'block';document.getElementById('theme-icon-dark').style.display=t?'block':'none'})()" class="bp-icon-btn" title="Toggle dark mode" style="display:flex;align-items:center">
           <svg id="theme-icon-light" style="width:16px;height:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
           <svg id="theme-icon-dark" style="width:16px;height:16px;display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
         </button>
         <!-- Language toggle -->
-        <button id="lang-toggle" onclick="(function(){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.textContent=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});document.getElementById('lang-toggle').textContent=c==='zh'?'EN':'中文'})()" style="background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:12px;font-weight:600;color:#6b7280">中文</button>
+        <button id="lang-toggle" onclick="(function(){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.textContent=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});document.getElementById('lang-toggle').textContent=c==='zh'?'EN':'中文'})()" class="bp-icon-btn" style="font-size:12px;font-weight:600">中文</button>
       </nav>
     </div>
   </header>
@@ -173,74 +173,20 @@ function buildStaticHeader() {
         el.textContent=l==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en');
       });
     })();
-  </script>
-  <style>
-    /* Header */
-    .dark #site-header{background:#111827!important;border-color:#374151!important}
-    .dark .brand-text{color:#f3f4f6!important}
-    .dark .nav-link{color:#9ca3af!important}
-    .dark .nav-link-active{color:#818cf8!important}
-    .dark #theme-toggle{border-color:#4b5563!important;color:#9ca3af!important}
-    .dark #lang-toggle{border-color:#4b5563!important;color:#9ca3af!important}
-    /* Body */
-    .dark body{background:#0f172a!important;color:#e2e8f0!important}
-    /* Typography */
-    .dark h1,.dark h2{color:#f1f5f9!important}
-    .dark p{color:#94a3b8!important}
-    .dark a:not(.cta-btn){color:#818cf8!important}
-    .dark .cta-btn{color:#fff!important}
-    .dark nav span{color:#94a3b8!important}
-    .dark nav a{color:#818cf8!important}
-    /* Scenario cards (index page) */
-    .dark .scenario-card{border-color:#374151!important;background:#1e293b!important}
-    .dark .scenario-card .sc-title{color:#f1f5f9!important}
-    .dark .scenario-card .sc-desc{color:#94a3b8!important}
-    .dark .scenario-card .sc-count{color:#818cf8!important}
-    /* Skill cards (detail pages) */
-    .dark .skill-card{border-color:#374151!important;background:#1e293b!important}
-    .dark .skill-card .sk-name{color:#818cf8!important}
-    .dark .skill-card .sk-author{color:#64748b!important}
-    .dark .skill-card .sk-meta{color:#94a3b8!important}
-    .dark .skill-card .sk-desc{color:#94a3b8!important}
-    .dark .skill-card .sk-cat{background:#312e81!important;color:#a5b4fc!important}
-    .dark .sk-quickstart{background:#0f172a!important}
-    .dark .sk-quickstart strong{color:#94a3b8!important}
-    .dark .sk-quickstart span{color:#64748b!important}
-    /* Table */
-    .dark table{color:#e2e8f0!important}
-    .dark tr{border-color:#374151!important}
-    .dark th{color:#94a3b8!important}
-    .dark td{color:#cbd5e1!important}
-    .dark td a{color:#818cf8!important}
-    /* Details / FAQ */
-    .dark details{border-color:#374151!important;background:#1e293b!important}
-    .dark summary{color:#f1f5f9!important}
-    .dark details p{color:#94a3b8!important}
-    /* Related tags */
-    .dark .related-tag{background:#312e81!important;color:#a5b4fc!important;border-color:#4338ca!important}
-    /* NEW badge */
-    .dark .new-badge{background:#064e3b!important;color:#6ee7b7!important}
-    /* Newsletter box */
-    .dark .nl-box{background:linear-gradient(135deg,#1e1b4b,#0f172a)!important;border-color:#4338ca!important}
-    .dark .nl-box h3{color:#f1f5f9!important}
-    .dark .nl-box p{color:#94a3b8!important}
-    .dark .nl-box input{background:#1e293b!important;border-color:#4b5563!important;color:#e2e8f0!important}
-    /* Divider */
-    .dark #site-header span[style*="color:#e2e8f0"]{color:#4b5563!important}
-  </style>`;
+  </script>`;
 }
 
 /* ── Newsletter CTA (shared) ─────────────────────── */
 
 function buildNewsletterCta() {
-  return `<div style="margin:32px 0;padding:24px;border:1px solid #e0e7ff;border-radius:12px;background:linear-gradient(135deg,#eef2ff,#f0f9ff);text-align:center" class="nl-box">
-    <h3 style="margin:0 0 6px;font-size:18px;color:#1e293b" data-zh="订阅每周 AI 工具精选" data-en="Get Weekly AI Tool Picks">Get Weekly AI Tool Picks</h3>
-    <p style="margin:0 0 14px;font-size:13px;color:#64748b" data-zh="每周一发送 Top 20 增速最快的 AI 工具，免费订阅。" data-en="Top 20 fastest-growing AI tools delivered every Monday. Free.">Top 20 fastest-growing AI tools delivered every Monday. Free.</p>
-    <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='Subscribing...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/subscribers',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Prefer':'return=minimal'},body:JSON.stringify({email:em})}).then(function(r){if(r.ok||r.status===409){btn.textContent='Subscribed!';btn.style.background='#059669'}else{btn.textContent='Try again';btn.disabled=false}}).catch(function(){btn.textContent='Try again';btn.disabled=false});return false})(event)" style="display:flex;gap:8px;justify-content:center;max-width:400px;margin:0 auto">
-      <input id="nl-email" type="email" placeholder="your@email.com" required style="flex:1;padding:8px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none" />
-      <button id="nl-btn" type="submit" style="padding:8px 18px;background:#4f46e5;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer" class="cta-btn" data-zh="订阅" data-en="Subscribe">Subscribe</button>
+  return `<div class="bp-newsletter">
+    <h3 data-zh="订阅每周 AI 工具精选" data-en="Get Weekly AI Tool Picks">Get Weekly AI Tool Picks</h3>
+    <p data-zh="每周一发送 Top 20 增速最快的 AI 工具，免费订阅。" data-en="Top 20 fastest-growing AI tools delivered every Monday. Free.">Top 20 fastest-growing AI tools delivered every Monday. Free.</p>
+    <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='Subscribing...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/subscribers',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Prefer':'return=minimal'},body:JSON.stringify({email:em})}).then(function(r){if(r.ok||r.status===409){btn.textContent='Subscribed!';btn.style.background='#059669'}else{btn.textContent='Try again';btn.disabled=false}}).catch(function(){btn.textContent='Try again';btn.disabled=false});return false})(event)" class="bp-newsletter-form" style="max-width:400px;margin:0 auto">
+      <input id="nl-email" type="email" placeholder="your@email.com" required class="bp-newsletter-input" style="flex:1" />
+      <button id="nl-btn" type="submit" class="bp-newsletter-btn cta-btn" data-zh="订阅" data-en="Subscribe">Subscribe</button>
     </form>
-    <p style="margin:8px 0 0;font-size:11px;color:#94a3b8" data-zh="无垃圾邮件，随时退订。" data-en="No spam, unsubscribe anytime.">No spam, unsubscribe anytime.</p>
+    <p style="margin:8px 0 0;font-size:11px;color:var(--bp-text-muted)" data-zh="无垃圾邮件，随时退订。" data-en="No spam, unsubscribe anytime.">No spam, unsubscribe anytime.</p>
   </div>`;
 }
 
@@ -273,12 +219,12 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
         const sc = scenarios.find((s) => s.slug === slug);
         if (!sc || !scenarioSkillCounts[slug]) return null;
         const count = scenarioSkillCounts[slug];
-        return `<a href="/best/${esc(slug)}/" class="scenario-card" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid #e2e8f0;border-radius:10px;background:#fff;text-decoration:none;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.borderColor='#818cf8';this.style.boxShadow='0 2px 8px rgba(79,70,229,.1)'" onmouseout="this.style.borderColor=''" >
+        return `<a href="/best/${esc(slug)}/" class="bp-card" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;text-decoration:none">
           <div>
-            <div class="sc-title" style="font-weight:600;color:#1e293b;font-size:14px">${esc(sc.title)}</div>
-            <div class="sc-desc" style="color:#64748b;font-size:12px;margin-top:2px">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
+            <div class="bp-card-title" style="font-size:14px">${esc(sc.title)}</div>
+            <div class="bp-card-desc" style="font-size:12px;margin-top:2px;margin-bottom:0">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
           </div>
-          <span class="sc-count" style="color:#4f46e5;font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools →</span>
+          <span style="color:var(--bp-link);font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools &rarr;</span>
         </a>`;
       })
       .filter(Boolean)
@@ -287,7 +233,7 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
     if (!items) return "";
 
     return `<div style="margin-bottom:28px">
-      <h2 style="font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px">
+      <h2 class="bp-section-title" style="font-size:18px;display:flex;align-items:center;gap:8px">
         <span>${g.icon}</span> <span data-zh="${esc(g.zh)}" data-en="${esc(g.label)}">${esc(g.label)}</span>
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px">
@@ -325,22 +271,26 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
   <script type="application/ld+json">
 ${breadcrumbLd}
   </script>
+  <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
 </head>
-<body style="margin:0;font-family:system-ui,-apple-system,sans-serif;color:#1e293b;background:#f8fafc">
+<body class="bp-body">
   ${buildStaticHeader()}
-  <div style="max-width:900px;margin:0 auto;padding:32px 20px">
-    <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
-      <a href="/" style="color:#4f46e5;text-decoration:none" data-zh="首页" data-en="Home">Home</a>
+  <div class="bp-container">
+    <nav class="bp-breadcrumb">
+      <a href="/" data-zh="首页" data-en="Home">Home</a>
       <span style="margin:0 6px">&gt;</span>
       <span data-zh="最佳工具" data-en="Best Tools">Best Tools</span>
     </nav>
-    <h1 style="font-size:28px;margin:0 0 8px" data-zh="按场景发现最佳 AI Agent 工具" data-en="Best AI Agent Tools by Scenario">Best AI Agent Tools by Scenario</h1>
-    <p style="color:#64748b;margin:0 0 28px;line-height:1.6" data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
+    <div class="bp-hero">
+      <h1 data-zh="按场景发现最佳 AI Agent 工具" data-en="Best AI Agent Tools by Scenario">Best AI Agent Tools by Scenario</h1>
+      <p data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
+    </div>
     ${groupsHtml}
     ${buildNewsletterCta()}
     <div style="margin:32px 0;text-align:center">
-      <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" class="cta-btn" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
   </div>
 </body>
@@ -418,43 +368,43 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
     const qs = extractQuickStart(s.readme_content);
     const qsHtml = qs
-      ? `<div class="sk-quickstart" style="margin-top:8px;padding:8px 12px;background:#f8fafc;border-radius:6px;font-size:13px">
-          <strong style="color:#334155">Quick Start:</strong>
-          <span style="color:#475569"> ${esc(qs.text.slice(0, 150))}${qs.text.length > 150 ? "..." : ""}</span>
-          ${qs.code ? `<pre style="margin:6px 0 0;padding:8px;background:#1e293b;color:#e2e8f0;border-radius:4px;overflow-x:auto;font-size:12px"><code>${esc(qs.code.slice(0, 300))}</code></pre>` : ""}
+      ? `<div style="margin-top:8px;padding:8px 12px;background:var(--bp-bg-alt);border-radius:6px;font-size:13px">
+          <strong style="color:var(--bp-text-slate)">Quick Start:</strong>
+          <span style="color:var(--bp-text-slate)"> ${esc(qs.text.slice(0, 150))}${qs.text.length > 150 ? "..." : ""}</span>
+          ${qs.code ? `<pre class="bp-code"><code>${esc(qs.code.slice(0, 300))}</code></pre>` : ""}
         </div>`
       : "";
 
-    return `<div class="skill-card" style="margin:16px 0;padding:16px 20px;border:1px solid #e2e8f0;border-radius:12px;background:#fff">
+    return `<div class="bp-card" style="margin:16px 0">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
-            <span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:${i < 3 ? "#f59e0b" : "#94a3b8"};color:#fff;font-weight:700;font-size:14px;margin-right:8px">${i + 1}</span>
-            <a class="sk-name" href="/skill/${esc(s.repo_full_name)}/" style="color:#1e293b;text-decoration:none;font-size:18px;font-weight:600">${esc(s.repo_name)}</a>${isNew ? `<span class="new-badge" style="display:inline-block;margin-left:6px;padding:1px 6px;font-size:10px;font-weight:700;color:#059669;background:#d1fae5;border-radius:4px;vertical-align:middle">NEW</span>` : ""}
-            <span class="sk-author" style="color:#94a3b8;font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
+            <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>
+            <a class="bp-card-title" href="/skill/${esc(s.repo_full_name)}/" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? `<span class="bp-badge-new">NEW</span>` : ""}
+            <span style="color:var(--bp-text-muted);font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
           </div>
-          <div class="sk-meta" style="display:flex;gap:12px;font-size:14px;color:#64748b">
+          <div class="bp-card-meta">
             <span>&#9733; ${starsK(s.stars)}</span>
             ${s.language ? `<span>${esc(s.language)}</span>` : ""}
-            <span class="sk-cat" style="color:#4f46e5;font-size:12px;padding:2px 8px;background:#f0f0ff;border-radius:8px">${esc(catLabel)}</span>
+            <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)">${esc(catLabel)}</span>
           </div>
         </div>
-        <p class="sk-desc" style="margin:8px 0 0;color:#475569;line-height:1.5;font-size:14px">${esc(s.description || "")}</p>
+        <p class="bp-card-desc" style="margin:8px 0 0">${esc(s.description || "")}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
-          <a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;font-size:13px;text-decoration:none">View Details &rarr;</a>
-          <a href="https://github.com/${esc(s.repo_full_name)}" style="color:#64748b;font-size:13px;text-decoration:none">GitHub &rarr;</a>
+          <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none">View Details &rarr;</a>
+          <a href="https://github.com/${esc(s.repo_full_name)}" style="color:var(--bp-text-secondary);font-size:13px;text-decoration:none">GitHub &rarr;</a>
         </div>
       </div>`;
   }).join("\n      ");
 
   // Comparison table
   const compRows = skills.map((s) => {
-    return `<tr style="border-bottom:1px solid #f1f5f9">
-          <td style="padding:8px"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a></td>
-          <td style="padding:8px;text-align:right">&#9733; ${starsK(s.stars)}</td>
-          <td style="padding:8px">${esc(s.language || "\u2014")}</td>
-          <td style="padding:8px">${esc(s.license && s.license !== "NOASSERTION" ? s.license : "\u2014")}</td>
-          <td style="padding:8px;text-align:right">${s.score ? Math.round(s.score) : "\u2014"}</td>
+    return `<tr>
+          <td><a href="/skill/${esc(s.repo_full_name)}/" style="font-weight:500">${esc(s.repo_name)}</a></td>
+          <td style="text-align:right">&#9733; ${starsK(s.stars)}</td>
+          <td>${esc(s.language || "\u2014")}</td>
+          <td>${esc(s.license && s.license !== "NOASSERTION" ? s.license : "\u2014")}</td>
+          <td style="text-align:right">${s.score ? Math.round(s.score) : "\u2014"}</td>
         </tr>`;
   }).join("\n        ");
 
@@ -463,15 +413,15 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     .map((slug) => {
       const rel = allScenarios.find((s) => s.slug === slug);
       if (!rel) return null;
-      return `<a href="/best/${esc(slug)}/" class="related-tag" style="display:inline-block;padding:6px 14px;margin:4px;border-radius:20px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none;border:1px solid #e0e0ff">${esc(rel.title)}</a>`;
+      return `<a href="/best/${esc(slug)}/" class="bp-related-tag">${esc(rel.title)}</a>`;
     })
     .filter(Boolean)
     .join("\n        ");
 
   // FAQ HTML
-  const faqHtml = faqItems.map((f) => `<details style="margin:8px 0;border:1px solid #e2e8f0;border-radius:8px;padding:12px">
-        <summary style="cursor:pointer;font-weight:500;color:#1e293b">${esc(f.q)}</summary>
-        <p style="margin:8px 0 0;color:#475569;line-height:1.6">${esc(f.a)}</p>
+  const faqHtml = faqItems.map((f) => `<details style="margin:8px 0;border:1px solid var(--bp-border);border-radius:8px;padding:12px;background:var(--bp-card-bg)">
+        <summary style="cursor:pointer;font-weight:500;color:var(--bp-text)">${esc(f.q)}</summary>
+        <p style="margin:8px 0 0;color:var(--bp-text-secondary);line-height:1.6">${esc(f.a)}</p>
       </details>`).join("\n      ");
 
   return `<!doctype html>
@@ -510,54 +460,58 @@ ${faqLd}
   </script>
 
   <!-- Static page: no SPA JavaScript, CSS only -->
+  <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
 </head>
-<body style="margin:0;font-family:system-ui,-apple-system,sans-serif;color:#1e293b;background:#f8fafc">
+<body class="bp-body">
   ${buildStaticHeader()}
-  <div style="max-width:900px;margin:0 auto;padding:32px 20px">
+  <div class="bp-container">
       <!-- Breadcrumb -->
-      <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
-        <a href="/" style="color:#4f46e5;text-decoration:none" data-zh="首页" data-en="Home">Home</a>
+      <nav class="bp-breadcrumb">
+        <a href="/" data-zh="首页" data-en="Home">Home</a>
         <span style="margin:0 6px">&gt;</span>
-        <a href="/best/" style="color:#4f46e5;text-decoration:none" data-zh="最佳工具" data-en="Best Tools">Best Tools</a>
+        <a href="/best/" data-zh="最佳工具" data-en="Best Tools">Best Tools</a>
         <span style="margin:0 6px">&gt;</span>
         <span>${esc(scenario.title)}</span>
       </nav>
 
-      <!-- Title -->
-      <h1 style="font-size:28px;margin:0 0 8px" data-zh="最佳 ${esc(scenario.title)} AI 工具" data-en="Best AI Agent Skills for ${esc(scenario.title)}">Best AI Agent Skills for ${esc(scenario.title)}</h1>
-      <p style="color:#64748b;margin:0 0 20px;line-height:1.6">${esc(scenario.description)}</p>
+      <!-- Hero -->
+      <div class="bp-hero">
+        <h1 data-zh="最佳 ${esc(scenario.title)} AI 工具" data-en="Best AI Agent Skills for ${esc(scenario.title)}">Best AI Agent Skills for ${esc(scenario.title)}</h1>
+        <p>${esc(scenario.description)}</p>
+      </div>
 
       <!-- Quick Pick -->
-      ${skills.length > 0 ? `<div style="background:linear-gradient(135deg,#eef2ff,#f0fdf4);border:1px solid #c7d2fe;border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      ${skills.length > 0 ? `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
         <div style="flex:1;min-width:200px">
-          <span style="font-weight:700;color:#1e293b" data-zh="快速推荐" data-en="Quick Pick">Quick Pick</span>
-          <span style="color:#475569" data-zh="— 只选一个的话，用" data-en="— If you only pick one, go with"> — If you only pick one, go with </span>
-          <a href="${SITE}/skill/${esc(skills[0].repo_full_name)}/" style="color:#4f46e5;font-weight:700;text-decoration:none">${esc(skills[0].repo_name)}</a>
-          <span style="color:#94a3b8;font-size:13px;margin-left:4px">★ ${starsK(skills[0].stars)}</span>
-          ${skills[0].description ? `<span style="color:#64748b;font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
+          <span class="bp-quick-pick-label" data-zh="快速推荐" data-en="Quick Pick">Quick Pick</span>
+          <span class="bp-quick-pick-text" data-zh="— 只选一个的话，用" data-en="— If you only pick one, go with"> — If you only pick one, go with </span>
+          <a href="${SITE}/skill/${esc(skills[0].repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(skills[0].repo_name)}</a>
+          <span style="color:var(--bp-text-muted);font-size:13px;margin-left:4px">★ ${starsK(skills[0].stars)}</span>
+          ${skills[0].description ? `<span style="color:var(--bp-text-secondary);font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
         </div>
       </div>` : ""}
 
       <!-- Skill Cards -->
       <section>
-        <h2 style="font-size:20px;margin:0 0 12px" data-zh="Top ${skills.length} ${esc(scenario.title)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
+        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.title)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
       ${skillCardsHtml}
       </section>
 
       <!-- Comparison Table -->
       <section style="margin-top:32px">
-        <h2 style="font-size:20px;margin:0 0 12px" data-zh="对比" data-en="Comparison">Comparison</h2>
-        <div style="overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse;font-size:14px">
+        <h2 class="bp-section-title" data-zh="对比" data-en="Comparison">Comparison</h2>
+        <div class="bp-table-wrap">
+          <table class="bp-table">
             <thead>
-              <tr style="border-bottom:2px solid #e2e8f0;text-align:left">
-                <th style="padding:8px;color:#64748b">Tool</th>
-                <th style="padding:8px;color:#64748b;text-align:right">Stars</th>
-                <th style="padding:8px;color:#64748b">Language</th>
-                <th style="padding:8px;color:#64748b">License</th>
-                <th style="padding:8px;color:#64748b;text-align:right">Score</th>
+              <tr>
+                <th>Tool</th>
+                <th style="text-align:right">Stars</th>
+                <th>Language</th>
+                <th>License</th>
+                <th style="text-align:right">Score</th>
               </tr>
             </thead>
             <tbody>
@@ -569,15 +523,15 @@ ${faqLd}
 
       <!-- Related Scenarios -->
       ${relatedHtml ? `<section style="margin-top:32px">
-        <h2 style="font-size:18px;margin:0 0 12px" data-zh="相关场景" data-en="Related Categories">Related Categories</h2>
-        <div style="display:flex;flex-wrap:wrap;gap:4px">
+        <h2 class="bp-section-title" style="font-size:18px" data-zh="相关场景" data-en="Related Categories">Related Categories</h2>
+        <div class="bp-related">
         ${relatedHtml}
         </div>
       </section>` : ""}
 
       <!-- FAQ -->
-      <section style="margin-top:32px">
-        <h2 style="font-size:18px;margin:0 0 12px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
+      <section style="margin-top:32px" class="bp-faq">
+        <h2 class="bp-section-title" style="font-size:18px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
       ${faqHtml}
       </section>
 
@@ -586,7 +540,7 @@ ${faqLd}
 
       <!-- CTA -->
       <div style="margin:32px 0;text-align:center">
-        <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" class="cta-btn" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+        <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
       </div>
     </div>
 </body>
