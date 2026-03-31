@@ -162,7 +162,7 @@ async function main() {
   try {
     const scenarioSlugs = readdirSync("dist/best");
     const scenarioEntries = scenarioSlugs
-      .filter((slug) => !slug.startsWith("."))
+      .filter((slug) => !slug.startsWith(".") && slug !== "index.html")
       .map((slug) => `  <url>
     <loc>${SITE}/best/${slug}/</loc>
     <changefreq>weekly</changefreq>

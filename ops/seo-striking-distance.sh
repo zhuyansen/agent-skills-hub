@@ -278,7 +278,41 @@ from collections import Counter
 DOMAIN = "${DOMAIN}"
 SITE_URL = "${SITE_URL}"
 OUTPUT_DIR = "${OUTPUT_DIR}"
+PROJECT_ROOT = "${PROJECT_ROOT}"
 today = datetime.now().strftime("%Y-%m-%d")
+
+# Load scenario keywords for semantic matching
+SCENARIO_DATA = {}
+scenario_json_path = os.path.join(PROJECT_ROOT, "frontend", "scripts", "scenario-keywords.json")
+try:
+    with open(scenario_json_path) as f:
+        scenarios = json.load(f)
+    for sc in scenarios:
+        slug = sc["slug"]
+        # Collect all matchable terms for this scenario
+        match_info = sc.get("match", {})
+        terms = set()
+        # Add slug parts
+        terms.update(slug.split("-"))
+        # Add title words (lowercased)
+        terms.update(sc.get("title", "").lower().split())
+        # Add keywords from match config
+        for key in ["keywords", "primary_keywords", "secondary_keywords"]:
+            for kw_phrase in match_info.get(key, []):
+                terms.update(kw_phrase.lower().split())
+        # Add category slugs
+        for cat in match_info.get("categories", []):
+            terms.update(cat.split("-"))
+        # Add topic matches
+        for topic in match_info.get("topic_matches", []):
+            terms.update(topic.lower().split("-"))
+        SCENARIO_DATA[slug] = {
+            "terms": terms,
+            "title": sc.get("title", slug),
+            "categories": match_info.get("categories", []),
+        }
+except Exception as e:
+    print(f"Warning: Could not load scenario-keywords.json: {e}", file=sys.stderr)
 
 # Target keywords we want to rank for
 TARGET_KEYWORDS = {
@@ -365,6 +399,131 @@ for ptype, count in type_counts.most_common():
 print()
 
 # Keyword-to-page mapping analysis
+# Priority: scenario > compare > category > skill > home/other
+PAGE_TYPE_PRIORITY = {"scenario": 4, "compare": 3, "category": 2, "skill": 1, "home": 0, "other": 0}
+
+def match_keyword_to_page(kw, page_map):
+    """Match a keyword to the best page using scenario-aware logic.
+
+    Strategy:
+    1. Check scenario pages first — use scenario-keywords.json terms for
+       semantic matching (not just slug word overlap).
+    2. Then check category/compare pages by slug overlap.
+    3. Fall back to skill pages only if nothing better found.
+    4. Among equal scores, prefer higher-priority page types.
+    """
+    kw_lower = kw.lower()
+    kw_words = set(kw_lower.split())
+    # Remove stop words for matching; keep domain terms (ai, agent) but strip
+    # generic English words and SEO filler that appear in every scenario
+    stop_words = {"the", "a", "an", "for", "with", "and", "or", "to", "of", "in",
+                  "on", "is", "how", "best", "top", "open", "source", "list",
+                  "2026", "2025", "tool", "tools"}
+    kw_content_words = kw_words - stop_words
+    # Ensure we always have at least one word to match against
+    if not kw_content_words:
+        kw_content_words = kw_words - {"the", "a", "an", "for", "with", "and", "or", "to", "of", "in", "on", "is"}
+
+    def fuzzy_overlap(words_a, words_b):
+        """Count matches allowing prefix/stem overlap (e.g. debug~debugging)."""
+        count = 0
+        for wa in words_a:
+            for wb in words_b:
+                if wa == wb or wa.startswith(wb) or wb.startswith(wa):
+                    count += 1
+                    break
+        return count
+
+    best_match = None
+    best_score = 0
+    best_priority = -1
+
+    # --- Phase 1: Match against scenario pages using scenario keyword data ---
+    for url, meta in page_map.items():
+        if meta["type"] != "scenario":
+            continue
+        slug = meta["slug"]
+        if slug not in SCENARIO_DATA:
+            continue
+
+        sc = SCENARIO_DATA[slug]
+        sc_terms = sc["terms"]
+        slug_words = set(slug.split("-"))
+
+        # Check how many keyword content words appear in scenario terms
+        # Use fuzzy matching to handle stems (debug/debugging, scrape/scraping)
+        overlap = fuzzy_overlap(kw_content_words, sc_terms)
+        if not kw_content_words:
+            continue
+        score = overlap / len(kw_content_words)
+
+        # Bonus: keyword contains "best"/"top" and this is a /best/ page
+        if any(w in kw_words for w in ["best", "top"]):
+            score += 0.15
+
+        # Bonus: slug words appear directly in the keyword (fuzzy)
+        slug_in_kw = fuzzy_overlap(slug_words, kw_content_words)
+        if slug_in_kw > 0:
+            score += 0.2 * (slug_in_kw / len(slug_words))
+
+        priority = PAGE_TYPE_PRIORITY["scenario"]
+        if score > best_score or (score == best_score and priority > best_priority):
+            best_score = score
+            best_match = url
+            best_priority = priority
+
+    # --- Phase 2: Match against compare pages ---
+    for url, meta in page_map.items():
+        if meta["type"] != "compare":
+            continue
+        slug_words = set(re.split(r'[-_/]', meta["slug"].lower()))
+        overlap = len(kw_content_words & slug_words)
+        score = overlap / len(kw_content_words) if kw_content_words else 0
+
+        if any(w in kw_words for w in ["vs", "comparison", "compare"]):
+            score += 0.3
+
+        priority = PAGE_TYPE_PRIORITY["compare"]
+        if score > best_score or (score == best_score and priority > best_priority):
+            best_score = score
+            best_match = url
+            best_priority = priority
+
+    # --- Phase 3: Match against category pages ---
+    for url, meta in page_map.items():
+        if meta["type"] != "category":
+            continue
+        slug_words = set(re.split(r'[-_/]', meta["slug"].lower()))
+        overlap = len(kw_content_words & slug_words)
+        score = overlap / len(kw_content_words) if kw_content_words else 0
+
+        if any(w in kw_words for w in ["framework", "server", "skill", "category"]):
+            score += 0.15
+
+        priority = PAGE_TYPE_PRIORITY["category"]
+        if score > best_score or (score == best_score and priority > best_priority):
+            best_score = score
+            best_match = url
+            best_priority = priority
+
+    # --- Phase 4: Match against skill pages (only if no good match yet) ---
+    if best_score < 0.4:
+        for url, meta in page_map.items():
+            if meta["type"] != "skill":
+                continue
+            slug_words = set(re.split(r'[-_/]', meta["slug"].lower()))
+            overlap = len(kw_content_words & slug_words)
+            score = overlap / len(kw_content_words) if kw_content_words else 0
+
+            priority = PAGE_TYPE_PRIORITY["skill"]
+            if score > best_score or (score == best_score and priority > best_priority):
+                best_score = score
+                best_match = url
+                best_priority = priority
+
+    return best_match, best_score
+
+
 print("## Keyword Coverage Analysis")
 print()
 print("For each target keyword, which of our pages is the best match?")
@@ -377,26 +536,7 @@ for group_name, keywords in TARGET_KEYWORDS.items():
     print("|---|---|---|---|")
 
     for kw in keywords:
-        kw_words = set(kw.lower().split())
-        best_match = None
-        best_score = 0
-
-        for url, meta in page_map.items():
-            slug_words = set(re.split(r'[-_/]', meta["slug"].lower()))
-            overlap = len(kw_words & slug_words)
-            score = overlap / len(kw_words) if kw_words else 0
-
-            # Bonus for page type relevance
-            if meta["type"] == "scenario" and any(w in kw for w in ["best", "top", "tool"]):
-                score += 0.2
-            if meta["type"] == "category" and any(w in kw for w in ["framework", "server", "skill"]):
-                score += 0.2
-            if meta["type"] == "compare" and any(w in kw for w in ["vs", "comparison", "compare"]):
-                score += 0.3
-
-            if score > best_score:
-                best_score = score
-                best_match = url
+        best_match, best_score = match_keyword_to_page(kw, page_map)
 
         if best_match and best_score > 0.2:
             short_url = best_match.replace(SITE_URL, "")
@@ -422,14 +562,8 @@ print()
 missing_pages = []
 for group_name, keywords in TARGET_KEYWORDS.items():
     for kw in keywords:
-        kw_words = set(kw.lower().split())
-        found = False
-        for url, meta in page_map.items():
-            slug_words = set(re.split(r'[-_/]', meta["slug"].lower()))
-            if len(kw_words & slug_words) / max(len(kw_words), 1) > 0.3:
-                found = True
-                break
-        if not found:
+        best_match, best_score = match_keyword_to_page(kw, page_map)
+        if not best_match or best_score <= 0.3:
             slug = kw.replace(" ", "-").lower()
             missing_pages.append((kw, slug))
 
