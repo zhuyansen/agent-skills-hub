@@ -1,0 +1,12 @@
+[
+  {"a": "langchain-ai/langgraph", "b": "crewAIInc/crewAI", "slug": "langgraph-vs-crewai", "keywords": ["langgraph vs crewai", "multi agent framework comparison"]},
+  {"a": "langchain-ai/langchain", "b": "langchain-ai/langgraph", "slug": "langchain-vs-langgraph", "keywords": ["langchain vs langgraph", "langchain orchestration comparison"]},
+  {"a": "n8n-io/n8n", "b": "langflow-ai/langflow", "slug": "n8n-vs-langflow", "keywords": ["n8n vs langflow", "ai workflow automation comparison"]},
+  {"a": "ollama/ollama", "b": "open-webui/open-webui", "slug": "ollama-vs-open-webui", "keywords": ["ollama vs open webui", "local ai interface comparison"]},
+  {"a": "anthropics/claude-code", "b": "anthropics/skills", "slug": "claude-code-vs-claude-skills", "keywords": ["claude code vs claude skills", "anthropic tools comparison"]},
+  {"a": "microsoft/autogen", "b": "crewAIInc/crewAI", "slug": "autogen-vs-crewai", "keywords": ["autogen vs crewai", "multi agent comparison"]},
+  {"a": "browser-use/browser-use", "b": "anthropics/claude-code", "slug": "browser-use-vs-claude-code", "keywords": ["browser use vs claude code", "ai automation comparison"]},
+  {"a": "modelcontextprotocol/servers", "b": "punkpeye/awesome-mcp-servers", "slug": "official-mcp-vs-awesome-mcp", "keywords": ["mcp servers official vs community", "mcp server list comparison"]},
+  {"a": "github/github-mcp-server", "b": "czlonkowski/n8n-mcp", "slug": "github-mcp-vs-n8n-mcp", "keywords": ["github mcp vs n8n mcp", "mcp server comparison"]},
+  {"a": "langchain-ai/deepagents", "b": "microsoft/autogen", "slug": "deepagents-vs-autogen", "keywords": ["deepagents vs autogen", "ai agent framework comparison"]}
+]

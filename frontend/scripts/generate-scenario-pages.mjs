@@ -302,52 +302,53 @@ ${breadcrumbLd}
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const pageUrl = `${SITE}/best/${scenario.slug}/`;
   const year = new Date().getFullYear();
-  const title = `Best ${skills.length} AI Tools for ${scenario.title} (${year}) | Agent Skills Hub`;
+  const title = `Best ${skills.length} AI Tools for ${scenario.title} in ${year} | Agent Skills Hub`;
   const metaDesc = scenario.description;
   const ogImage = `${SITE}/og-image.png`;
 
   const { scriptTags, linkTags } = assetTags;
 
-  // JSON-LD: ItemList
+  // JSON-LD: ItemList (top 10 items max)
+  const itemListSkills = skills.slice(0, 10);
   const itemListLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `Best AI Tools for ${scenario.title}`,
-    description: scenario.description,
-    url: pageUrl,
-    numberOfItems: skills.length,
-    itemListElement: skills.map((s, i) => ({
+    name: `Best ${scenario.title} Tools ${year}`,
+    numberOfItems: itemListSkills.length,
+    itemListElement: itemListSkills.map((s, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${SITE}/skill/${s.repo_full_name}/`,
       name: s.repo_name,
-      description: s.description || `${s.repo_name} by ${s.author_name}`,
+      url: `${SITE}/skill/${s.repo_full_name}/`,
     })),
   }, null, 2);
 
-  // JSON-LD: BreadcrumbList
+  // JSON-LD: BreadcrumbList (3-level)
   const breadcrumbLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: `Best ${scenario.title} Tools`, item: pageUrl },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      { "@type": "ListItem", position: 2, name: "Best Tools", item: `${SITE}/best/` },
+      { "@type": "ListItem", position: 3, name: scenario.title },
     ],
   });
 
   // FAQ
+  const scenarioLower = scenario.title.toLowerCase();
+  const top3Names = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
   const faqItems = [
     {
-      q: `What are the best AI tools for ${scenario.title.toLowerCase()}?`,
-      a: `The top ${scenario.title.toLowerCase()} tools include ${skills.slice(0, 3).map((s) => s.repo_name).join(", ")}. These are ranked by our composite score based on GitHub stars, community activity, and code quality.`,
+      q: `What are the best ${scenarioLower} tools in ${year}?`,
+      a: `The top ${scenarioLower} tools in ${year} include ${top3Names}. These tools are ranked by community adoption (GitHub stars) and quality metrics.`,
     },
     {
-      q: `Are these ${scenario.title.toLowerCase()} tools free to use?`,
-      a: `Most tools listed here are open-source. ${skills.filter((s) => s.license && s.license !== "NOASSERTION").length} out of ${skills.length} have explicit open-source licenses, making them free to use and modify.`,
+      q: `How many ${scenarioLower} tools are available?`,
+      a: `Agent Skills Hub indexes ${skills.length} ${scenarioLower} tools, updated daily from GitHub. Browse the full list at agentskillshub.top.`,
     },
     {
-      q: `How do I choose the right ${scenario.title.toLowerCase()} tool?`,
-      a: `Consider your tech stack (language compatibility), project scale (stars indicate community trust), and specific features you need. Use the comparison table above to evaluate side by side.`,
+      q: `Are these ${scenarioLower} tools free to use?`,
+      a: `Most tools listed are open source and free. Check each tool's license on its GitHub repository for specific terms.`,
     },
   ];
 
@@ -478,7 +479,7 @@ ${faqLd}
 
       <!-- Hero -->
       <div class="bp-hero">
-        <h1 data-zh="最佳 ${esc(scenario.title)} AI 工具" data-en="Best AI Agent Skills for ${esc(scenario.title)}">Best AI Agent Skills for ${esc(scenario.title)}</h1>
+        <h1 data-zh="最佳 ${esc(scenario.title)} AI 工具 (${year})" data-en="Best AI Agent Skills for ${esc(scenario.title)} in ${year}">Best AI Agent Skills for ${esc(scenario.title)} in ${year}</h1>
         <p>${esc(scenario.description)}</p>
       </div>
 

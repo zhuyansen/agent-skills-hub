@@ -462,3 +462,15 @@
 .bp-text-center { text-align: center; }
 .bp-mt-0 { margin-top: 0; }
 .bp-mb-0 { margin-bottom: 0; }
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .bp-hero { padding: 20px; }
+  .bp-hero h1 { font-size: 22px; }
+  .bp-nav-links { gap: 8px; }
+  /* Stack comparison description cards on mobile */
+  section[style*="grid-template-columns: 1fr 1fr"],
+  section[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}

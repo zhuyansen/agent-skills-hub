@@ -176,7 +176,33 @@ async function main() {
     console.log("sitemap-scenarios.xml: skipped (no dist/best/ directory)");
   }
 
-  // 7. sitemap.xml (index) — all tiers of indexed skills
+  // 7. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
+  let comparisonCount = 0;
+  try {
+    const compareSlugs = readdirSync("dist/compare");
+    const comparisonEntries = compareSlugs
+      .filter((slug) => !slug.startsWith(".") && slug !== "index.html")
+      .map((slug) => `  <url>
+    <loc>${SITE}/compare/${slug}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <lastmod>${today}</lastmod>
+  </url>`);
+    // Also add the /compare/ index page
+    comparisonEntries.unshift(`  <url>
+    <loc>${SITE}/compare/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>${today}</lastmod>
+  </url>`);
+    writeFileSync("dist/sitemap-comparisons.xml", wrapUrlset(comparisonEntries));
+    comparisonCount = comparisonEntries.length;
+    console.log(`sitemap-comparisons.xml: ${comparisonCount} URLs`);
+  } catch {
+    console.log("sitemap-comparisons.xml: skipped (no dist/compare/ directory)");
+  }
+
+  // 8. sitemap.xml (index) — all tiers of indexed skills
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
@@ -187,12 +213,15 @@ async function main() {
   if (scenarioCount > 0) {
     sitemapFiles.push("sitemap-scenarios.xml");
   }
+  if (comparisonCount > 0) {
+    sitemapFiles.push("sitemap-comparisons.xml");
+  }
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length} + scenarios ${scenarioCount}, excluded ${noindexCount} low-quality pages)`);
+  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount;
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);
