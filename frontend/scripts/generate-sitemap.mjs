@@ -127,9 +127,33 @@ async function main() {
     <priority>1.0</priority>
     <lastmod>${today}</lastmod>
   </url>`,
+    `  <url>
+    <loc>${SITE}/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
+    `  <url>
+    <loc>${SITE}/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
+    `  <url>
+    <loc>${SITE}/privacy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
+    `  <url>
+    <loc>${SITE}/terms/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
   ];
   writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
-  console.log(`sitemap-static.xml: 1 URL`);
+  console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);
 
   // 2. sitemap-categories.xml — derive categories from actual data (no hardcoded list)
   const catsWithSkills = [...new Set(allSkills.map((s) => s.category))].filter(Boolean);

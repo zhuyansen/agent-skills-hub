@@ -459,6 +459,18 @@ ${faqLd}
     <div style="margin:32px 0;text-align:center">
       <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
+
+    <!-- Footer -->
+    <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">About</a>
+        <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">Blog</a>
+        <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">Privacy</a>
+        <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">Terms</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
+      </div>
+      <p style="margin:0">&copy; ${year} Agent Skills Hub. Open-source project.</p>
+    </footer>
   </div>
 </body>
 </html>`;
@@ -543,6 +555,18 @@ ${breadcrumbLd}
     <div style="margin:32px 0;text-align:center">
       <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
     </div>
+
+    <!-- Footer -->
+    <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">About</a>
+        <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">Blog</a>
+        <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">Privacy</a>
+        <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">Terms</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
+      </div>
+      <p style="margin:0">&copy; ${year} Agent Skills Hub. Open-source project.</p>
+    </footer>
   </div>
 </body>
 </html>`;
