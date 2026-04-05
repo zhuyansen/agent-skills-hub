@@ -297,6 +297,39 @@ ${breadcrumbLd}
 </html>`;
 }
 
+/* ── AEO Content Section ────────────────────────────── */
+
+function buildAeoSection(scenario, skills, year) {
+  const scenarioTitle = scenario.title;
+  const top3 = skills.slice(0, 3).map(s => s.repo_name);
+  const topLanguages = [...new Set(skills.map(s => s.language).filter(Boolean))].slice(0, 3);
+  const avgStars = Math.round(skills.reduce((sum, s) => sum + (s.stars || 0), 0) / skills.length);
+  const openSourceCount = skills.filter(s => s.license && s.license !== 'NOASSERTION').length;
+
+  return `<!-- AEO: Answer Engine Optimization Section -->
+      <section class="bp-aeo-section" style="margin:32px 0;padding:24px;background:var(--bp-bg-alt);border-radius:12px;border:1px solid var(--bp-border)">
+        <h2 class="bp-section-title" style="font-size:20px;margin-bottom:20px" data-zh="${esc(scenarioTitle)} 完整指南 (${year})" data-en="The Complete Guide to ${esc(scenarioTitle)} Tools (${year})">The Complete Guide to ${esc(scenarioTitle)} Tools (${year})</h2>
+
+        <!-- What -->
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="什么是 ${esc(scenarioTitle)} 工具？" data-en="What Are ${esc(scenarioTitle)} Tools?">What Are ${esc(scenarioTitle)} Tools?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="${esc(scenarioTitle)} 工具是一类专注于帮助开发者和团队解决 ${esc(scenarioTitle.toLowerCase())} 相关任务的 AI 驱动软件。这些工具通常以开源形式发布在 GitHub 上，支持通过 MCP（Model Context Protocol）、Claude Skills 或独立 Agent 框架集成到现有工作流中。在 Agent Skills Hub 上，我们收录了 ${skills.length} 个经过质量评分的 ${esc(scenarioTitle.toLowerCase())} 工具，覆盖${topLanguages.join('、')}等主流编程语言。" data-en="${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.">${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.</p>
+        </div>
+
+        <!-- Why -->
+        <div style="margin-bottom:24px">
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(scenarioTitle)} 工具？" data-en="Why Use ${esc(scenarioTitle)} Tools?">Why Use ${esc(scenarioTitle)} Tools?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(scenarioTitle)} 工具能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
+        </div>
+
+        <!-- How -->
+        <div>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(scenarioTitle)} 工具？" data-en="How to Choose the Best ${esc(scenarioTitle)} Tool?">How to Choose the Best ${esc(scenarioTitle)} Tool?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(scenarioTitle.toLowerCase())} 工具时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（本列表中最常见的语言是 ${topLanguages[0] || 'Python'}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始——它在 Star 数和质量评分上都名列前茅。" data-en="When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.">When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.</p>
+        </div>
+      </section>`;
+}
+
 /* ── HTML builder ────────────────────────────────── */
 
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
@@ -494,6 +527,8 @@ ${faqLd}
           ${skills[0].description ? `<span style="color:var(--bp-text-secondary);font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
         </div>
       </div>` : ""}
+
+      ${buildAeoSection(scenario, skills, year)}
 
       <!-- Skill Cards -->
       <section>

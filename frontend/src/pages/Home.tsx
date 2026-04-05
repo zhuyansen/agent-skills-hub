@@ -31,6 +31,8 @@ import { FilterSidebar } from "../components/FilterSidebar";
 import { InstallGuide } from "../components/InstallGuide";
 import { EcosystemNav } from "../components/EcosystemNav";
 import { ScenarioTagCloud } from "../components/ScenarioTagCloud";
+import { ProblemSection } from "../components/ProblemSection";
+import { HowItWorksSection } from "../components/HowItWorksSection";
 import { SubcategoryChips } from "../components/SubcategoryChips";
 import { getCategoriesForLayer } from "../utils/ecosystem";
 import { inferSubcategory } from "../utils/subcategories";
@@ -125,6 +127,8 @@ export function Home() {
               onSelectLayer={(layer) => { updateParams({ category: getCategoriesForLayer(layer).join(",") }); setTab("explore"); }}
             />
             <ScenarioTagCloud />
+            <ProblemSection />
+            <HowItWorksSection />
             <div id="trending" className="scroll-mt-44">
               {landingLoading && !landingData ? (
                 <SkeletonTrending />

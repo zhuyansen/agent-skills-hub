@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How We Secure 43,000+ AI Agent Tools: A Solo Developer's Security Journey | Agent Skills Hub</title>
+  <meta name="description" content="From zero security to 27 detection rules, 5-tier trust hierarchy, and LLM-powered analysis. How one developer built a multi-layered security system for the largest AI agent tool directory." />
+  <meta name="keywords" content="AI agent security, MCP server security, agent skills safety, SlowMist, trust hierarchy, RLS, supply chain security" />
+  <meta property="og:title" content="How We Secure 43,000+ AI Agent Tools | Agent Skills Hub" />
+  <meta property="og:description" content="From zero security to 27 detection rules and 5-tier trust hierarchy. A solo developer's security journey." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/securing-43k-ai-tools/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
+  <meta property="article:published_time" content="2026-04-05" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How We Secure 43,000+ AI Agent Tools" />
+  <meta name="twitter:description" content="27 detection rules, 5-tier trust, LLM analysis. One developer's security journey." />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/securing-43k-ai-tools/" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How We Secure 43,000+ AI Agent Tools: A Solo Developer's Security Journey",
+  "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"},
+  "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top"},
+  "datePublished": "2026-04-05",
+  "dateModified": "2026-04-05",
+  "description": "From zero security to 27 detection rules, 5-tier trust hierarchy, and LLM-powered analysis.",
+  "mainEntityOfPage": "https://agentskillshub.top/blog/securing-43k-ai-tools/",
+  "keywords": ["AI agent security", "MCP server security", "supply chain", "trust hierarchy"]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentskillshub.top/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agentskillshub.top/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Securing 43K+ AI Tools"}
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <style>
+    .article-body { max-width: 720px; margin: 0 auto; }
+    .article-body h2 { font-size: 22px; font-weight: 700; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--bp-border); color: var(--bp-text); }
+    .article-body h3 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; color: var(--bp-text); }
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.9; margin: 0 0 16px; font-size: 15px; }
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.8; margin: 0 0 16px; padding-left: 24px; font-size: 15px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--bp-link); }
+    .article-body pre { background: var(--bp-bg-alt); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 0 0 16px; font-size: 13px; line-height: 1.6; }
+    .article-body pre code { background: none; padding: 0; }
+    .article-body blockquote { border-left: 3px solid var(--bp-link); padding: 12px 16px; margin: 0 0 16px; background: var(--bp-bg-alt); border-radius: 0 8px 8px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; }
+    .article-body a { color: var(--bp-link); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .article-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 12px 0 32px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+    .timeline-item { display: flex; gap: 16px; margin: 12px 0; padding: 12px 16px; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 8px; }
+    .timeline-date { min-width: 80px; font-size: 13px; font-weight: 600; color: var(--bp-link); }
+    .timeline-desc { font-size: 14px; color: var(--bp-text-secondary); }
+    .ref-card { display: block; padding: 12px 16px; margin: 8px 0; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 8px; text-decoration: none; transition: border-color 0.2s; }
+    .ref-card:hover { border-color: var(--bp-link); text-decoration: none; }
+    .ref-card-title { font-size: 15px; font-weight: 600; color: var(--bp-text); }
+    .ref-card-desc { font-size: 13px; color: var(--bp-text-muted); margin-top: 4px; }
+    .ref-card-stars { font-size: 12px; color: var(--bp-link); }
+    .phase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 16px 0; }
+    .phase-card { padding: 20px; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 10px; }
+    .phase-card h4 { margin: 0 0 8px; font-size: 16px; color: var(--bp-text); }
+    .phase-card p { margin: 0; font-size: 14px; color: var(--bp-text-secondary); line-height: 1.6; }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .flag-table th { text-align: left; padding: 8px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 8px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); }
+    .flag-table tr:hover td { background: var(--bp-bg-alt); }
+    .severity-critical { color: #dc2626; font-weight: 600; }
+    .severity-high { color: #ea580c; font-weight: 600; }
+    .severity-medium { color: #ca8a04; }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="bp-brand">Agent Skills Hub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/best/" class="bp-nav-link">Trending</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="bp-container">
+    <nav class="bp-breadcrumb">
+      <a href="/">Home</a>
+      <span style="margin:0 6px">&gt;</span>
+      <a href="/blog/">Blog</a>
+      <span style="margin:0 6px">&gt;</span>
+      <span>Securing 43K+ AI Tools</span>
+    </nav>
+
+    <article class="article-body">
+      <h1 style="font-size:28px;line-height:1.3;margin:24px 0 0;color:var(--bp-text)">How We Secure 43,000+ AI Agent Tools: A Solo Developer's Security Journey</h1>
+
+      <div class="article-meta">
+        <span>By <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>April 5, 2026</span>
+        <span>&middot;</span>
+        <span>12 min read</span>
+        <span class="article-tag">Security</span>
+        <span class="article-tag">Open Source</span>
+      </div>
+
+      <blockquote>
+        <p>When you run a directory of 43,000+ AI agent tools, every new repository is a potential attack vector. This is the story of how we went from zero security to a multi-layered defense system — built by one developer, inspired by the open-source community.</p>
+      </blockquote>
+
+      <h2>The Wake-Up Call</h2>
+
+      <p>Agent Skills Hub started as a simple idea: index every AI agent tool on GitHub and help developers find the right one. We built the crawler, the scoring engine, the frontend. By March 2026, we had 25,000+ repositories indexed. Life was good.</p>
+
+      <p>Then we started noticing things.</p>
+
+      <p>A "Claude Code skill" that piped environment variables to an external server via <code>curl</code>. An "MCP server" that silently installed a cron job to download and execute remote scripts. A "productivity tool" whose README contained base64-encoded payloads.</p>
+
+      <p>We were indexing these tools. Linking to them. Recommending them in our scenario pages. And we had zero security scanning.</p>
+
+      <p>That was the wake-up call.</p>
+
+      <h2>The Timeline</h2>
+
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 20</span>
+        <span class="timeline-desc"><strong>Phase 1</strong> — First rule-based security scanner. Basic regex patterns for <code>curl|bash</code>, <code>rm -rf</code>, credential access. Three grades: safe/caution/unsafe.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 21</span>
+        <span class="timeline-desc"><strong>Phase 2</strong> — Added LLM deep analysis for flagged repos. Used MiniMax API (OpenAI-compatible) to reduce false positives. Built interactive Analyzer page.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 24</span>
+        <span class="timeline-desc"><strong>Phase 3</strong> — Discovered SlowMist's Agent Security Framework. Rewrote entire scanner with 11 red-flag categories and 5-tier trust hierarchy.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 24</span>
+        <span class="timeline-desc"><strong>Phase 3.5</strong> — Converted Analyzer to pure frontend. No backend dependency — security scanning runs entirely in the browser.</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 31</span>
+        <span class="timeline-desc"><strong>Phase 4</strong> — Fixed critical RLS vulnerabilities on subscribers table. Moved to SECURITY DEFINER RPC pattern for all write operations.</span>
+      </div>
+
+      <p>Five commits. Eleven days. From zero to a multi-layered security system.</p>
+
+      <h2>Phase 1: The Naive Scanner</h2>
+
+      <p>The first version was embarrassingly simple. A handful of regex patterns looking for obvious red flags:</p>
+
+      <pre><code>// V1: "Is this obviously malicious?"
+if (readme.match(/curl.*\|.*bash/)) grade = "unsafe";
+if (readme.match(/rm\s+-rf\s+\//)) grade = "unsafe";
+if (readme.match(/\.env/)) grade = "caution";</code></pre>
+
+      <p>It caught the obvious stuff. But it also flagged every legitimate tool that had <code>curl | bash</code> install instructions (which is... most of them). The false positive rate was terrible.</p>
+
+      <p>We needed something smarter.</p>
+
+      <h2>Phase 2: LLM as Second Opinion</h2>
+
+      <p>The idea was simple: let the regex scanner do the fast first pass, then send flagged repos to an LLM for semantic analysis. The LLM could understand context — a <code>curl | bash</code> installing Homebrew is fine; a <code>curl | bash</code> downloading from a random IP is not.</p>
+
+      <p>We built a system prompt that explicitly lists common false positives:</p>
+
+      <pre><code>Common FALSE POSITIVES to watch for:
+- curl|bash install scripts for well-known package managers
+- API key configuration instructions (OPENAI_API_KEY, etc.)
+- sudo usage in Docker setup or system package installation
+- eval() in legitimate template engines or REPL tools</code></pre>
+
+      <p>Initially we used the Anthropic API, but switched to MiniMax's OpenAI-compatible endpoint for cost efficiency. The LLM returns structured JSON with grade, confidence score, and specific findings with mitigations.</p>
+
+      <p>This cut false positives significantly. But the rule engine itself was still too primitive.</p>
+
+      <h2>Phase 3: The SlowMist Rewrite</h2>
+
+      <p>Everything changed when we discovered <a href="https://github.com/slowmist/slowmist-agent-security">slowmist/slowmist-agent-security</a> (302 stars).</p>
+
+      <p>SlowMist is a well-known blockchain security team. Their Agent Security Framework defines 11 categories of red flags specifically for AI agent tools. Not generic security patterns — agent-specific threats like memory theft, agent config exfiltration, and skill supply chain attacks.</p>
+
+      <p>We rewrote the entire scanner around their framework.</p>
+
+      <h3>The 11 Red-Flag Categories</h3>
+
+      <table class="flag-table">
+        <thead>
+          <tr><th>#</th><th>Category</th><th>What It Catches</th><th>Example Pattern</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Data Exfiltration</td><td>Sending local data to external servers</td><td><code>curl -d $(cat ~/.ssh/id_rsa)</code></td></tr>
+          <tr><td>2</td><td>Credential Harvest</td><td>Extracting API keys from environment</td><td><code>env | grep -i key</code></td></tr>
+          <tr><td>3</td><td>Sensitive Dir Access</td><td>Reading SSH keys, AWS credentials</td><td><code>cat ~/.aws/credentials</code></td></tr>
+          <tr><td>4</td><td>Agent Memory Theft</td><td>Stealing agent memory/identity files</td><td><code>cat MEMORY.md | curl</code></td></tr>
+          <tr><td>5</td><td>Dynamic Code Exec</td><td>Running obfuscated/dynamic code</td><td><code>base64 -d | bash</code></td></tr>
+          <tr><td>6</td><td>Privilege Escalation</td><td>Gaining root access</td><td><code>chmod 777</code>, <code>chown root</code></td></tr>
+          <tr><td>7</td><td>Persistence</td><td>Surviving reboots via cron/bashrc</td><td><code>crontab</code>, <code>>> ~/.bashrc</code></td></tr>
+          <tr><td>8</td><td>Reverse Shell</td><td>Opening backdoor connections</td><td><code>nc -e /bin/sh</code></td></tr>
+          <tr><td>9</td><td>Destructive</td><td>Wiping filesystem</td><td><code>rm -rf /</code></td></tr>
+          <tr><td>10</td><td>Obfuscation</td><td>Hiding malicious intent</td><td>hex-encoded payloads, rot13+eval</td></tr>
+          <tr><td>11</td><td>Supply Chain</td><td>Install-and-execute attacks</td><td><code>npm install x && node x</code></td></tr>
+        </tbody>
+      </table>
+
+      <p>Category #4 — Agent Memory Theft — was the eye-opener. Traditional security scanners don't look for <code>MEMORY.md</code> or <code>SOUL.md</code> exfiltration. But in the AI agent world, these files contain your entire context, preferences, and work history. Stealing them is the agent equivalent of identity theft.</p>
+
+      <h3>The Trust Hierarchy</h3>
+
+      <p>Not all red flags are equal. A <code>sudo</code> command in an Anthropic official repo is very different from a <code>sudo</code> command in a zero-star repo with no license.</p>
+
+      <p>We implemented a 5-tier trust hierarchy that adjusts severity based on the source:</p>
+
+      <table class="flag-table">
+        <thead>
+          <tr><th>Tier</th><th>Label</th><th>Criteria</th><th>Effect on Grading</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Official Org</td><td>anthropics, openai, google, microsoft, nvidia...</td><td>High flags &rarr; caution (not unsafe)</td></tr>
+          <tr><td>2</td><td>Known Security Team</td><td>slowmist, trailofbits, openzeppelin...</td><td>High flags &rarr; caution</td></tr>
+          <tr><td>3</td><td>High-Star + Licensed</td><td>&ge;1,000 stars + open-source license</td><td>High flags &rarr; caution</td></tr>
+          <tr><td>4</td><td>Moderate Trust</td><td>&ge;100 stars + license</td><td>Single high flag &rarr; caution; multiple &rarr; unsafe</td></tr>
+          <tr><td>5</td><td>Unknown Source</td><td>Everything else</td><td>Any high flag &rarr; unsafe</td></tr>
+        </tbody>
+      </table>
+
+      <p>The key insight: <strong>trust is not binary</strong>. A graduated system catches real threats while giving established projects the benefit of the doubt.</p>
+
+      <h3>Code Block Awareness</h3>
+
+      <p>One subtle but critical feature: the scanner checks if a pattern match occurs inside a Markdown code block. A <code>curl | bash</code> in a README's prose is suspicious. The same pattern inside a fenced code block (teaching users how to install) is usually legitimate.</p>
+
+      <pre><code>function isInCodeBlock(text, pos) {
+  const before = text.slice(0, pos);
+  return (before.split("```").length - 1) % 2 === 1;
+}</code></pre>
+
+      <p>This single function eliminated about 40% of false positives.</p>
+
+      <h2>Phase 4: Database Security</h2>
+
+      <p>While building the content security layer, we discovered something worse: our database was wide open.</p>
+
+      <p>The subscribers table — containing email addresses of 58 newsletter subscribers — had permissive Row Level Security (RLS) policies. The Supabase anon key (which is public, embedded in frontend JavaScript) could:</p>
+
+      <ul>
+        <li><strong>SELECT all rows</strong> — anyone could dump all subscriber emails</li>
+        <li><strong>UPDATE any row</strong> — anyone could modify verification status</li>
+        <li><strong>DELETE any row</strong> — anyone could unsubscribe other users</li>
+      </ul>
+
+      <p>The fix: remove all direct table access and move everything to <code>SECURITY DEFINER</code> RPC functions:</p>
+
+      <pre><code>-- Before: direct table access (DANGEROUS)
+INSERT INTO subscribers (email) VALUES ('user@example.com');
+
+-- After: controlled RPC (SAFE)
+SELECT subscribe('user@example.com');
+-- Function handles validation, token generation, duplicate check
+-- Runs with elevated privileges, returns only status string</code></pre>
+
+      <p>Three functions — <code>subscribe()</code>, <code>verify_email()</code>, <code>unsubscribe()</code> — each with strict input validation and minimal return data. The anon key can call these RPCs but cannot touch the table directly.</p>
+
+      <p>A gotcha we hit: PostgreSQL's <code>gen_random_bytes()</code> lives in the <code>extensions</code> schema. Our initial migration failed because we set <code>search_path = public</code> without including <code>extensions</code>. A subtle bug that only showed up in production.</p>
+
+      <h2>The Architecture Today</h2>
+
+      <div class="phase-grid">
+        <div class="phase-card">
+          <h4>Layer 1: Rule Engine</h4>
+          <p>27 regex patterns across 3 severity levels (critical/high/medium). Pure string matching, zero API calls. Runs in &lt;10ms per repo. Available both server-side (Python) and client-side (TypeScript).</p>
+        </div>
+        <div class="phase-card">
+          <h4>Layer 2: Trust Hierarchy</h4>
+          <p>5-tier source reputation system. Adjusts severity grades based on author org, star count, and license presence. Prevents false positives on established projects.</p>
+        </div>
+        <div class="phase-card">
+          <h4>Layer 3: LLM Analysis</h4>
+          <p>Semantic deep-dive for flagged repos. Understands context, identifies false positives, returns structured findings with confidence scores.</p>
+        </div>
+        <div class="phase-card">
+          <h4>Layer 4: Database RLS</h4>
+          <p>SECURITY DEFINER RPC functions for all write operations. Zero direct table access from frontend. Anon key is truly read-only.</p>
+        </div>
+      </div>
+
+      <h2>Numbers</h2>
+
+      <ul>
+        <li><strong>27</strong> security detection rules (2 critical + 16 high + 9 medium)</li>
+        <li><strong>5</strong> trust tiers with graduated severity adjustment</li>
+        <li><strong>11</strong> red-flag categories from SlowMist framework</li>
+        <li><strong>3</strong> SECURITY DEFINER RPC functions protecting subscriber data</li>
+        <li><strong>&lt;10ms</strong> per-repo scan time (pure regex, no API calls)</li>
+        <li><strong>~40%</strong> false positive reduction from code block awareness</li>
+        <li><strong>5</strong> commits over 11 days to build the entire system</li>
+      </ul>
+
+      <h2>Projects That Inspired Us</h2>
+
+      <a href="https://github.com/slowmist/slowmist-agent-security" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">slowmist/slowmist-agent-security</span>
+          <span class="ref-card-stars">&#9733; 302</span>
+        </div>
+        <div class="ref-card-desc">The foundation of our scanner. 11 red-flag categories designed specifically for AI agent security.</div>
+      </a>
+
+      <a href="https://github.com/bruc3van/agent-skills-guard" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">bruc3van/agent-skills-guard</span>
+          <span class="ref-card-stars">&#9733; 323</span>
+        </div>
+        <div class="ref-card-desc">Desktop app for Agent Skills security scanning and visual management. Built with Rust.</div>
+      </a>
+
+      <a href="https://github.com/seojoonkim/prompt-guard" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">seojoonkim/prompt-guard</span>
+          <span class="ref-card-stars">&#9733; 140</span>
+        </div>
+        <div class="ref-card-desc">Multi-language prompt injection defense system. Informed our thinking on agent input security.</div>
+      </a>
+
+      <a href="https://github.com/gendigitalinc/sage" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">gendigitalinc/sage</span>
+          <span class="ref-card-stars">&#9733; 162</span>
+        </div>
+        <div class="ref-card-desc">Agent Detection &amp; Response (ADR) layer. The concept of runtime agent monitoring influenced our trust hierarchy.</div>
+      </a>
+
+      <a href="https://github.com/cordum-io/cordum" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">cordum-io/cordum</span>
+          <span class="ref-card-stars">&#9733; 457</span>
+        </div>
+        <div class="ref-card-desc">Open agent control plane. Pre-execution policy governance for autonomous AI agents.</div>
+      </a>
+
+      <a href="https://github.com/asamassekou10/ship-safe" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">asamassekou10/ship-safe</span>
+          <span class="ref-card-stars">&#9733; 335</span>
+        </div>
+        <div class="ref-card-desc">CLI security scanner for the agentic era. Detects CI/CD misconfigs and agent supply chain attacks.</div>
+      </a>
+
+      <a href="https://github.com/requie/LLMSecurityGuide" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">requie/LLMSecurityGuide</span>
+          <span class="ref-card-stars">&#9733; 61</span>
+        </div>
+        <div class="ref-card-desc">Comprehensive LLM security reference covering OWASP Top 10 for LLM applications.</div>
+      </a>
+
+      <a href="https://arxiv.org/abs/2602.12670" class="ref-card" target="_blank" rel="noopener">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="ref-card-title">SkillsBench (arXiv:2602.12670)</span>
+          <span class="ref-card-stars">Paper</span>
+        </div>
+        <div class="ref-card-desc">84 tasks, 7,308 trajectories. The academic foundation for our quality scoring engine (v3), which feeds into trust assessment.</div>
+      </a>
+
+      <h2>Lessons Learned</h2>
+
+      <h3>1. Agent-specific threats are real</h3>
+      <p>Traditional security tools miss agent-specific attack vectors. Nobody was scanning for <code>MEMORY.md</code> exfiltration or <code>.claude/sessions</code> theft before SlowMist published their framework. If you're building in the agent ecosystem, you need agent-aware security.</p>
+
+      <h3>2. Trust hierarchy beats binary classification</h3>
+      <p>Early versions classified everything as safe or unsafe. This was useless — too many false positives on legitimate tools, and users stopped paying attention. The 5-tier trust system lets us say "this pattern is concerning, but the source is reputable, so proceed with caution" instead of just "UNSAFE".</p>
+
+      <h3>3. Client-side scanning is underrated</h3>
+      <p>Our scanner runs entirely in the browser (TypeScript). No API calls, no backend dependency. Users can analyze any GitHub repo in real-time without us ever seeing their query. Privacy by architecture.</p>
+
+      <h3>4. RLS is not security by default</h3>
+      <p>Supabase's Row Level Security creates a false sense of safety. Enabling RLS without writing proper policies is worse than no RLS — it makes you think you're protected when you're not. Always audit your policies with the anon key.</p>
+
+      <h3>5. The community is the best security team</h3>
+      <p>Every project listed above was found through our own directory. We index 43,000+ tools, and the security tools in our own index taught us how to secure the directory itself. That's the beauty of open source.</p>
+
+      <h2>What's Next</h2>
+
+      <ul>
+        <li><strong>Automated scanning in sync pipeline</strong> — flag new repos during ingestion, not just on-demand</li>
+        <li><strong>Security badges on skill pages</strong> — show scan results directly on each tool's detail page</li>
+        <li><strong>Community reporting</strong> — let users flag suspicious tools and contribute detection rules</li>
+        <li><strong>Supply chain graph</strong> — track dependency relationships between agent tools</li>
+      </ul>
+
+      <p>The AI agent ecosystem is growing at 500+ new repos per week. Security can't be an afterthought. If you're building agent tools, consider running our scanner on your own README — or better yet, contribute to <a href="https://github.com/slowmist/slowmist-agent-security">SlowMist's framework</a>.</p>
+
+      <p style="margin-top:32px;padding-top:16px;border-top:1px solid var(--bp-border);font-size:14px;color:var(--bp-text-muted)">
+        <strong>Try the scanner</strong>: Visit <a href="https://agentskillshub.top">Agent Skills Hub</a> and click "Analyzer" to scan any GitHub repo in real-time.
+        <br />
+        <strong>Source code</strong>: Our scanner is open-source at <a href="https://github.com/ZhuYansen/agent-skills-hub">github.com/ZhuYansen/agent-skills-hub</a>.
+      </p>
+    </article>
+
+    <!-- Newsletter -->
+    <div class="bp-newsletter" style="margin-top:40px">
+      <h3>Get Weekly AI Tool Picks</h3>
+      <p>Top 20 fastest-growing AI tools delivered every Monday. Free.</p>
+      <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='Subscribing...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/rpc/subscribe',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo'},body:JSON.stringify({p_email:em})}).then(function(r){if(r.ok){btn.textContent='Subscribed!';btn.style.background='#059669'}else{btn.textContent='Try again';btn.disabled=false}}).catch(function(){btn.textContent='Try again';btn.disabled=false});return false})(event)" class="bp-newsletter-form" style="max-width:400px;margin:0 auto">
+        <input id="nl-email" type="email" placeholder="your@email.com" required class="bp-newsletter-input" style="flex:1" />
+        <button id="nl-btn" type="submit" class="bp-newsletter-btn cta-btn">Subscribe</button>
+      </form>
+      <p style="margin:8px 0 0;font-size:11px;color:var(--bp-text-muted)">No spam, unsubscribe anytime.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">About</a>
+        <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">Blog</a>
+        <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">Privacy</a>
+        <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">Terms</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
+      </div>
+      <p style="margin:0">&copy; 2026 Agent Skills Hub. Open-source project.</p>
+    </footer>
+  </div>
+</body>
+</html>
