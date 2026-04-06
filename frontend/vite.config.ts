@@ -12,6 +12,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           recharts: ["recharts"],
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
         },
       },
     },

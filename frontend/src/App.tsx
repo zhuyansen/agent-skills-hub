@@ -1,16 +1,36 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { I18nProvider } from "./i18n/I18nContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Home } from "./pages/Home";
-import { SkillDetailPage } from "./pages/SkillDetailPage";
-import { ComparePage } from "./pages/ComparePage";
 import { CompareBar } from "./components/CompareBar";
-import { AdminLayout } from "./pages/admin/AdminLayout";
-import { CategoryPage } from "./pages/CategoryPage";
-import { VerifyEmailPage } from "./pages/VerifyEmailPage";
-import { AnalyzerPage } from "./pages/AnalyzerPage";
+
+const SkillDetailPage = lazy(() =>
+  import("./pages/SkillDetailPage").then((m) => ({ default: m.SkillDetailPage }))
+);
+const CategoryPage = lazy(() =>
+  import("./pages/CategoryPage").then((m) => ({ default: m.CategoryPage }))
+);
+const ComparePage = lazy(() =>
+  import("./pages/ComparePage").then((m) => ({ default: m.ComparePage }))
+);
+const AnalyzerPage = lazy(() =>
+  import("./pages/AnalyzerPage").then((m) => ({ default: m.AnalyzerPage }))
+);
+const VerifyEmailPage = lazy(() =>
+  import("./pages/VerifyEmailPage").then((m) => ({ default: m.VerifyEmailPage }))
+);
+const AdminLayout = lazy(() =>
+  import("./pages/admin/AdminLayout").then((m) => ({ default: m.AdminLayout }))
+);
+
+const PAGE_FALLBACK = (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
+  </div>
+);
 
 function App() {
   return (
@@ -19,17 +39,19 @@ function App() {
         <ThemeProvider>
         <I18nProvider>
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/skill/:id" element={<SkillDetailPage />} />
-              <Route path="/skill/:owner/:repo" element={<SkillDetailPage />} />
-              <Route path="/category/:slug" element={<CategoryPage />} />
-              <Route path="/compare" element={<ComparePage />} />
-              <Route path="/analyzer" element={<AnalyzerPage />} />
-              <Route path="/verify-email" element={<VerifyEmailPage />} />
-              <Route path="/admin/*" element={<AdminLayout />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <Suspense fallback={PAGE_FALLBACK}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/skill/:id" element={<SkillDetailPage />} />
+                <Route path="/skill/:owner/:repo" element={<SkillDetailPage />} />
+                <Route path="/category/:slug" element={<CategoryPage />} />
+                <Route path="/compare" element={<ComparePage />} />
+                <Route path="/analyzer" element={<AnalyzerPage />} />
+                <Route path="/verify-email" element={<VerifyEmailPage />} />
+                <Route path="/admin/*" element={<AdminLayout />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
             <CompareBar />
           </BrowserRouter>
         </I18nProvider>
