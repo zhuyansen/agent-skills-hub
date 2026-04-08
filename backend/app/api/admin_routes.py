@@ -198,6 +198,106 @@ def reject_extra_repo(
     return {"message": f"Repo '{repo.full_name}' rejected"}
 
 
+# ═══ Extra Repos Security Pre-Scan ═══
+
+@admin_router.post("/extra-repos/{repo_id}/scan")
+def scan_extra_repo(
+    repo_id: int,
+    db: Session = Depends(get_db),
+    _: None = Depends(verify_admin),
+) -> dict:
+    """Pre-approval security scan: fetch README from GitHub, run security scanner.
+
+    Returns risk assessment without approving. Helps admin make informed decisions.
+    """
+    import os
+    import requests
+
+    repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
+    if not repo:
+        raise HTTPException(404, "Repo not found")
+
+    full_name = repo.full_name
+    gh_token = os.getenv("GITHUB_TOKEN", "")
+    headers = {"Accept": "application/vnd.github.v3+json"}
+    if gh_token:
+        headers["Authorization"] = f"token {gh_token}"
+
+    # Fetch repo metadata
+    repo_resp = requests.get(
+        f"https://api.github.com/repos/{full_name}",
+        headers=headers,
+        timeout=15,
+    )
+    if repo_resp.status_code != 200:
+        return {
+            "status": "error",
+            "message": f"GitHub API returned {repo_resp.status_code} for {full_name}",
+            "recommendation": "reject",
+        }
+
+    repo_data = repo_resp.json()
+
+    # Fetch README content
+    readme_resp = requests.get(
+        f"https://api.github.com/repos/{full_name}/readme",
+        headers={**headers, "Accept": "application/vnd.github.v3.raw"},
+        timeout=15,
+    )
+    readme_content = readme_resp.text if readme_resp.status_code == 200 else ""
+
+    # Build a temporary Skill-like object for the scanner
+    from app.services.security_scanner import SecurityScanner, _get_trust_tier
+
+    temp_skill = Skill(
+        repo_full_name=full_name,
+        repo_name=full_name.split("/")[-1],
+        author_name=full_name.split("/")[0],
+        description=repo_data.get("description", ""),
+        stars=repo_data.get("stargazers_count", 0),
+        license=repo_data.get("license", {}).get("spdx_id") if repo_data.get("license") else None,
+        readme_content=readme_content[:15000],
+    )
+
+    scanner = SecurityScanner()
+    grade, flags = scanner.scan_single(temp_skill)
+    trust_tier = _get_trust_tier(temp_skill)
+
+    # Build recommendation
+    if grade == "reject":
+        recommendation = "reject"
+    elif grade == "unsafe":
+        recommendation = "reject"
+    elif grade == "caution":
+        recommendation = "review_carefully"
+    else:
+        recommendation = "approve"
+
+    flag_details = [
+        {
+            "flag": f,
+            "severity": scanner.get_flag_severity(f),
+            "description": scanner.get_flag_description(f),
+        }
+        for f in flags
+    ]
+
+    return {
+        "status": "scanned",
+        "full_name": full_name,
+        "stars": repo_data.get("stargazers_count", 0),
+        "description": repo_data.get("description", ""),
+        "license": repo_data.get("license", {}).get("spdx_id") if repo_data.get("license") else None,
+        "has_readme": bool(readme_content),
+        "readme_length": len(readme_content),
+        "security_grade": grade,
+        "trust_tier": trust_tier,
+        "trust_tier_label": scanner.get_trust_tier_label(trust_tier),
+        "flags": flag_details,
+        "recommendation": recommendation,
+    }
+
+
 # ═══ Search Queries CRUD ═══
 
 @admin_router.get("/search-queries", response_model=list[SearchQueryResponse])

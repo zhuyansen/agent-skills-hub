@@ -18,17 +18,18 @@ logger = logging.getLogger(__name__)
 
 
 class QualityAnalyzer:
-    """Scores skills on 8 quality dimensions using locally available data.
+    """Scores skills on 9 quality dimensions using locally available data.
 
     Dimensions:
-    1. Completeness (12%) - README, description, license, stars
-    2. Clarity (12%) - Description quality, topics, naming
-    3. Specificity (12%) - Language focus, topic count, category
-    4. Examples (10%) - Code examples, commits, contributors
-    5. README Structure (15%) - Sections, code blocks, badges, TOC
-    6. Agent Readiness (17%) - Install, tools, usage, config, compliance
-    7. Procedural Content (12%) - Step-by-step, workflows, SOP (NEW from paper)
-    8. Instruction Quality (10%) - Output paths, constraints, success criteria (NEW from paper)
+    1. Completeness (11%) - README, description, license, stars
+    2. Clarity (11%) - Description quality, topics, naming
+    3. Specificity (11%) - Language focus, topic count, category
+    4. Examples (9%) - Code examples, commits, contributors
+    5. README Structure (14%) - Sections, code blocks, badges, TOC
+    6. Agent Readiness (16%) - Install, tools, usage, config, compliance
+    7. Procedural Content (10%) - Step-by-step, workflows, SOP
+    8. Instruction Quality (9%) - Output paths, constraints, success criteria
+    9. Security Awareness (9%) - Permission docs, sandboxing, trust boundaries
     """
 
     def analyze_all(self, db: Session) -> int:
@@ -70,6 +71,35 @@ class QualityAnalyzer:
         r"(?i)run\s+(the\s+)?(following|this|these)",     # "Run the following"
         r"(?i)(execute|invoke|call)\s+(the\s+)?",         # Action verbs
     ]
+
+    # Patterns indicating security awareness (inspired by ClawKeeper)
+    SECURITY_AWARENESS_PATTERNS = {
+        "permission_docs": [
+            r"(?i)^#{1,3}\s*(security|permissions?|access\s*control|auth)",
+            r"(?i)^#{1,3}\s*(trust|safety|privacy|sandbo[xk])",
+            r"(?i)(required\s+permissions?|scope[sd]?|capabilities)",
+        ],
+        "sandboxing": [
+            r"(?i)(sandbox|isolat|container|docker|jail|chroot)",
+            r"(?i)(safe\s*mode|restricted|read[- ]only|no[- ]exec)",
+            r"(?i)(allowedTools|allowed_tools|tool[- ]?whitelist)",
+        ],
+        "trust_boundaries": [
+            r"(?i)(trust\s*(tier|level|boundar|hierarch|model))",
+            r"(?i)(validate|sanitize|escape|filter)\s*(input|output|data)",
+            r"(?i)(rate[- ]limit|throttl|quota|abuse|injection)",
+        ],
+        "credential_safety": [
+            r"(?i)(env(ironment)?\s*var|\.env\s*file|secret[- ]?manag)",
+            r"(?i)(do\s*not|never|don.t)\s*(hardcode|commit|share)\s*(secret|key|token|password)",
+            r"(?i)(vault|keychain|credential\s*store|secret\s*store)",
+        ],
+        "threat_model": [
+            r"(?i)(threat\s*model|attack\s*(surface|vector)|risk\s*assess)",
+            r"(?i)(prompt\s*inject|data\s*exfil|privilege\s*escalat)",
+            r"(?i)(audit\s*log|compliance|OWASP|CVE|CWE)",
+        ],
+    }
 
     # Patterns indicating instruction quality (from paper Section 2.4)
     INSTRUCTION_QUALITY_PATTERNS = {
@@ -113,31 +143,32 @@ class QualityAnalyzer:
 
         procedural = self._procedural_content(skill)
         instruction_q = self._instruction_quality(skill)
+        security_aw = self._security_awareness(skill)
 
         if skill.readme_content:
-            # 8-dimension weighted scoring when README content is available
-            # Weights inspired by SkillsBench: agent readiness + procedural content
-            # are the strongest predictors of actual skill effectiveness
+            # 9-dimension weighted scoring when README content is available
             skill.quality_score = (
-                skill.quality_completeness * 0.12
-                + skill.quality_clarity * 0.12
-                + skill.quality_specificity * 0.12
-                + skill.quality_examples * 0.10
-                + readme_struct * 0.15
-                + agent_ready * 0.17
-                + procedural * 0.12
-                + instruction_q * 0.10
+                skill.quality_completeness * 0.11
+                + skill.quality_clarity * 0.11
+                + skill.quality_specificity * 0.11
+                + skill.quality_examples * 0.09
+                + readme_struct * 0.14
+                + agent_ready * 0.16
+                + procedural * 0.10
+                + instruction_q * 0.09
+                + security_aw * 0.09
             ) * 100
         else:
-            # 6-dimension scoring without README (procedural & instruction need content)
+            # Without README: security_awareness gets minimal weight
             skill.quality_score = (
                 skill.quality_completeness * 0.20
                 + skill.quality_clarity * 0.20
                 + skill.quality_specificity * 0.20
                 + skill.quality_examples * 0.15
                 + agent_ready * 0.15
-                + procedural * 0.05
-                + instruction_q * 0.05
+                + procedural * 0.04
+                + instruction_q * 0.03
+                + security_aw * 0.03
             ) * 100
 
     def _completeness(self, skill: Skill) -> float:
@@ -504,6 +535,69 @@ class QualityAnalyzer:
                 generic_blocks = len(re.findall(r"```", content)) // 2
                 if generic_blocks >= 2:
                     score += 0.05
+
+        return min(score, 1.0)
+
+    def _security_awareness(self, skill: Skill) -> float:
+        """Evaluate security awareness in docs (ClawKeeper-inspired).
+
+        Skills that document permissions, sandboxing, trust boundaries,
+        and credential safety are more trustworthy for agent consumption.
+        """
+        content = (skill.readme_content or "")[:15000]
+        desc = (skill.description or "").lower()
+        topics = json.loads(skill.topics) if skill.topics else []
+        topics_lower = " ".join(topics).lower()
+        if not content and not desc:
+            return 0.0
+
+        score = 0.0
+
+        # 1. Permission / security documentation (max 0.25)
+        if content:
+            perm_matches = sum(
+                1 for p in self.SECURITY_AWARENESS_PATTERNS["permission_docs"]
+                if re.search(p, content, re.MULTILINE)
+            )
+            score += min(perm_matches * 0.09, 0.25)
+
+        # 2. Sandboxing / isolation mentions (max 0.20)
+        if content:
+            sandbox_matches = sum(
+                1 for p in self.SECURITY_AWARENESS_PATTERNS["sandboxing"]
+                if re.search(p, content)
+            )
+            score += min(sandbox_matches * 0.07, 0.20)
+
+        # 3. Trust boundary awareness (max 0.20)
+        if content:
+            trust_matches = sum(
+                1 for p in self.SECURITY_AWARENESS_PATTERNS["trust_boundaries"]
+                if re.search(p, content)
+            )
+            score += min(trust_matches * 0.07, 0.20)
+
+        # 4. Credential safety practices (max 0.20)
+        combined = f"{content} {desc}"
+        cred_matches = sum(
+            1 for p in self.SECURITY_AWARENESS_PATTERNS["credential_safety"]
+            if re.search(p, combined)
+        )
+        score += min(cred_matches * 0.07, 0.20)
+
+        # 5. Threat model / compliance (max 0.15)
+        if content:
+            threat_matches = sum(
+                1 for p in self.SECURITY_AWARENESS_PATTERNS["threat_model"]
+                if re.search(p, content)
+            )
+            score += min(threat_matches * 0.05, 0.15)
+
+        # Bonus: security-related topics (max 0.10)
+        sec_topics = ["security", "safety", "sandbox", "privacy",
+                      "auth", "permissions", "trust"]
+        topic_bonus = sum(1 for t in sec_topics if t in topics_lower)
+        score += min(topic_bonus * 0.05, 0.10)
 
         return min(score, 1.0)
 

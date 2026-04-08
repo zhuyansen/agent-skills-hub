@@ -642,13 +642,50 @@ def submit_skill(
     if existing_extra:
         return {"status": "already_submitted", "message": f"{full_name} has already been submitted and is pending review"}
 
+    # Quick pre-scan: fetch README and run security scanner
+    risk_note = ""
+    try:
+        import os
+        import requests as http_req
+        gh_token = os.getenv("GITHUB_TOKEN", "")
+        gh_headers = {"Accept": "application/vnd.github.v3+json"}
+        if gh_token:
+            gh_headers["Authorization"] = f"token {gh_token}"
+
+        readme_resp = http_req.get(
+            f"https://api.github.com/repos/{full_name}/readme",
+            headers={**gh_headers, "Accept": "application/vnd.github.v3.raw"},
+            timeout=10,
+        )
+        if readme_resp.status_code == 200:
+            from app.services.security_scanner import SecurityScanner
+            temp_skill = Skill(
+                repo_full_name=full_name,
+                repo_name=full_name.split("/")[-1],
+                author_name=full_name.split("/")[0],
+                stars=0,
+                readme_content=readme_resp.text[:15000],
+            )
+            grade, flags = SecurityScanner().scan_single(temp_skill)
+            risk_note = f"security_grade={grade},flags={len(flags)}"
+            if grade in ("reject", "unsafe"):
+                logger.warning(
+                    "Community submission %s flagged as %s: %s",
+                    full_name, grade, flags,
+                )
+    except Exception as scan_err:
+        logger.debug("Pre-scan skipped for %s: %s", full_name, scan_err)
+
     # Add to extra repos with 'pending' status for admin review
     new_extra = ExtraRepo(full_name=full_name, is_active=False, status="pending")
     db.add(new_extra)
     db.commit()
     db.refresh(new_extra)
 
-    logger.info("Community submitted skill (pending review): %s", full_name)
+    logger.info(
+        "Community submitted skill (pending review): %s [%s]",
+        full_name, risk_note or "no-scan",
+    )
     return {"status": "submitted", "message": f"{full_name} has been submitted! It will be reviewed by our team and included after approval."}
 
 
