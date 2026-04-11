@@ -38,7 +38,10 @@ BLOCK_PATTERNS = [
     (r'sk_live_[0-9a-zA-Z]{24,}', 'Stripe Live Key'),
     (r'-----BEGIN[A-Z ]*PRIVATE KEY-----', 'Private Key'),
     (r're_[0-9a-zA-Z]{20,}', 'Resend API Key'),
-    (r'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6', 'Supabase Service Role JWT'),
+    # Supabase service_role JWT: payload contains base64 of "role":"service_role"
+    # Marker: cm9sZSI6InNlcnZpY2 (stable across all Supabase projects)
+    # Anon key is public/read-only, intentionally not blocked
+    (r'eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]*cm9sZSI6InNlcnZpY2[A-Za-z0-9_-]+', 'Supabase Service Role JWT'),
     (r'sk-[0-9a-zA-Z]{32,}', 'OpenAI API Key'),
     (r'AIza[0-9A-Za-z_-]{35}', 'Google API Key'),
 ]

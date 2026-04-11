@@ -111,3 +111,27 @@ When modifying these critical files, require extra scrutiny:
 - `email_service.py` — rate limiting, subscriber privacy
 - `sync_runner.py` — GitHub API quota, data integrity
 - Any file in `supabase/migrations/` — irreversible schema changes
+
+## Hard Stops (Waza-inspired)
+
+Absolute rules. If any are violated, stop and fix before proceeding.
+
+### Forbidden Actions
+- **Never run destructive DB operations** without explicit user confirmation: `DELETE`, `DROP`, `TRUNCATE`, `UPDATE ... SET ... WHERE 1=1`
+- **Never hardcode secrets** in source files. The `secret-scan.sh` hook will block, but don't even attempt it.
+- **Never push to main without build passing**: `cd frontend && npm run build` must succeed.
+- **Never send emails to all subscribers** without `--force` flag confirmation. Default: test with single email first.
+- **Never modify RLS policies** via migration without documenting the security impact.
+
+### Forbidden Phrases in Code
+These phrases in comments or commit messages trigger mandatory review:
+- "should work now" → must include test evidence
+- "trivial change" → must explain why it's trivial
+- "temporary fix" / "TODO: fix later" → must create a tracking issue or fix properly
+- "works on my machine" → must verify in CI
+
+### Escalation Rules
+- Same bug after 2 fix attempts → stop, re-read the error, check assumptions
+- API returning unexpected data → check Supabase RPC definition before changing frontend
+- Build failing on CI but passing locally → check Node/env version mismatch first
+- 3+ files changed in a "quick fix" → probably not quick, reconsider scope

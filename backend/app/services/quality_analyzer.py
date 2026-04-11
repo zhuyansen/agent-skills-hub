@@ -371,12 +371,18 @@ class QualityAnalyzer:
         elif any(kw in desc_lower for kw in [".env", "config", "settings"]):
             score += 0.08
 
-        # 5. Skill/MCP compliance (max 0.15)
+        # 5. Skill/MCP compliance + frontmatter (max 0.15)
         compliance_text = f"{content} {topics_lower} {name_lower}"
+        # YAML frontmatter with name/description (Waza-style standard)
+        has_frontmatter = bool(content and re.search(
+            r"^---\s*\n(?:.*\n)*?(?:name|description)\s*:", content[:500], re.MULTILINE
+        ))
+        if has_frontmatter:
+            score += 0.08  # standardized skill definition
         if any(kw in compliance_text for kw in ["skill.md", "mcp.json", "tool-config"]):
-            score += 0.10
+            score += 0.04
         if any(kw in name_lower for kw in ["skill", "mcp", "tool", "agent", "server"]):
-            score += 0.05
+            score += 0.03
 
         # 6. Description quality for agent activation (max 0.15)
         if desc:
