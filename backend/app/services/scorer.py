@@ -73,19 +73,23 @@ class ScoringEngine:
         "javascript": 0.0, "python": 0.0,
     }
 
-    def score_all(self, db: Session) -> int:
-        """Re-score every skill: quality analysis, platform inference, token estimation, then scoring."""
+    def score_all(self, db: Session, batch_size: int = 500) -> int:
+        """Re-score every skill with batch commits to avoid PgBouncer timeouts.
+
+        Phases: quality analysis → platform inference → token estimation → scoring.
+        Each phase commits in batches of `batch_size` rows to keep transactions short.
+        """
         # Run quality analysis first (populates quality_* fields)
         analyzer = QualityAnalyzer()
-        analyzer.analyze_all(db)
+        analyzer.analyze_all(db, batch_size=batch_size)
 
         # Infer platforms
         inferrer = PlatformInferrer()
-        inferrer.infer_all(db)
+        inferrer.infer_all(db, batch_size=batch_size)
 
         # Estimate tokens
         estimator = TokenEstimator()
-        estimator.estimate_all(db)
+        estimator.estimate_all(db, batch_size=batch_size)
 
         # Now compute overall scores
         skills: List[Skill] = db.query(Skill).all()
@@ -137,6 +141,11 @@ class ScoringEngine:
             )
             skill.score = round(raw * 100, 1)
             updated += 1
+
+            # Batch commit to avoid PgBouncer transaction timeout
+            if (i + 1) % batch_size == 0:
+                db.commit()
+                logger.info("Score batch commit: %d/%d", i + 1, len(skills))
 
         db.commit()
         logger.info("Scored %d skills", updated)

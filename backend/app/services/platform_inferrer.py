@@ -66,11 +66,13 @@ class PlatformInferrer:
         "makefile": "cli",
     }
 
-    def infer_all(self, db: Session) -> int:
+    def infer_all(self, db: Session, batch_size: int = 500) -> int:
         skills = db.query(Skill).all()
-        for skill in skills:
+        for i, skill in enumerate(skills):
             platforms = self._infer(skill)
             skill.platforms = json.dumps(platforms)
+            if (i + 1) % batch_size == 0:
+                db.commit()
         db.commit()
         return len(skills)
 

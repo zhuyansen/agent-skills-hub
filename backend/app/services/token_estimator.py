@@ -33,10 +33,12 @@ class TokenEstimator:
         "Shell": 0.05,
     }
 
-    def estimate_all(self, db: Session) -> int:
+    def estimate_all(self, db: Session, batch_size: int = 500) -> int:
         skills = db.query(Skill).all()
-        for skill in skills:
+        for i, skill in enumerate(skills):
             skill.estimated_tokens = self._estimate(skill)
+            if (i + 1) % batch_size == 0:
+                db.commit()
         db.commit()
         return len(skills)
 

@@ -632,8 +632,25 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         logger.info("Database upsert complete: %d new, %d updated", new_count, updated_count)
 
+        # Refresh DB connection before scoring — the upsert phase may have
+        # taken minutes and PgBouncer could have closed the connection.
+        try:
+            db.rollback()
+        except Exception:
+            pass
+        db.close()
+        db = SessionLocal()
+
         scoring_engine = ScoringEngine()
         scoring_engine.score_all(db)
+
+        # Refresh DB connection before composability
+        try:
+            db.rollback()
+        except Exception:
+            pass
+        db.close()
+        db = SessionLocal()
 
         from app.services.composability import ComposabilityEngine
         if new_count > 0 and new_repo_names:
@@ -702,6 +719,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 db.commit()
         except Exception:
             logger.error("Could not update sync log after failure: %s", exc)
+        # Re-raise so sync_runner.py exits with code 1
+        raise
     finally:
         db.close()
 
