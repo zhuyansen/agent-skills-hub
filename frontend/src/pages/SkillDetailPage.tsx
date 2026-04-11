@@ -14,11 +14,16 @@ import { FavoriteButton } from "../components/FavoriteButton";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ComboRecommendation } from "../components/ComboRecommendation";
+import { RelatedSkills } from "../components/RelatedSkills";
 import type { SkillDetail } from "../types/skill";
 
 export function SkillDetailPage() {
   const { t } = useI18n();
-  const { id, owner, repo } = useParams<{ id?: string; owner?: string; repo?: string }>();
+  const { id, owner, repo } = useParams<{
+    id?: string;
+    owner?: string;
+    repo?: string;
+  }>();
   const navigate = useNavigate();
   const [detail, setDetail] = useState<SkillDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -63,7 +68,9 @@ export function SkillDetailPage() {
         <div className="flex items-center justify-center py-32">
           <div className="text-center">
             <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-sm text-gray-400 dark:text-gray-500 mt-3">{t("detail.loading")}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500 mt-3">
+              {t("detail.loading")}
+            </p>
           </div>
         </div>
       </div>
@@ -76,13 +83,38 @@ export function SkillDetailPage() {
         <SiteHeader breadcrumb={[{ label: "Error" }]} />
         <div className="flex items-center justify-center py-32">
           <div className="text-center">
-            <svg className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            <svg
+              className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+              />
             </svg>
-            <h2 className="text-lg font-medium text-gray-700 dark:text-gray-200">{error || "Skill not found"}</h2>
-            <Link to="/" className="mt-4 inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <h2 className="text-lg font-medium text-gray-700 dark:text-gray-200">
+              {error || "Skill not found"}
+            </h2>
+            <Link
+              to="/"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
               </svg>
               {t("detail.backToHome")}
             </Link>
@@ -103,18 +135,30 @@ export function SkillDetailPage() {
         <title>{`${detail.repo_name} - Agent Skills Hub`}</title>
         <meta name="description" content={ogDescription} />
         {/* Open Graph */}
-        <meta property="og:title" content={`${detail.repo_name} | Agent Skills Hub`} />
+        <meta
+          property="og:title"
+          content={`${detail.repo_name} | Agent Skills Hub`}
+        />
         <meta property="og:description" content={ogDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://agentskillshub.top/skill/${detail.repo_full_name}/`} />
+        <meta
+          property="og:url"
+          content={`https://agentskillshub.top/skill/${detail.repo_full_name}/`}
+        />
         <meta property="og:image" content={detail.author_avatar_url} />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={`${detail.repo_name} | Agent Skills Hub`} />
+        <meta
+          name="twitter:title"
+          content={`${detail.repo_name} | Agent Skills Hub`}
+        />
         <meta name="twitter:description" content={ogDescription} />
         <meta name="twitter:image" content={detail.author_avatar_url} />
         {/* Canonical URL */}
-        <link rel="canonical" href={`https://agentskillshub.top/skill/${detail.repo_full_name}/`} />
+        <link
+          rel="canonical"
+          href={`https://agentskillshub.top/skill/${detail.repo_full_name}/`}
+        />
       </Helmet>
 
       {/* Shared Navigation Bar */}
@@ -127,7 +171,11 @@ export function SkillDetailPage() {
             <ScoreBadge score={detail.score} size="lg" showTier />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <img src={detail.author_avatar_url} alt={detail.author_name} className="w-6 h-6 rounded-full" />
+                <img
+                  src={detail.author_avatar_url}
+                  alt={detail.author_name}
+                  className="w-6 h-6 rounded-full"
+                />
                 <a
                   href={`https://github.com/${detail.author_name}`}
                   target="_blank"
@@ -140,9 +188,13 @@ export function SkillDetailPage() {
                   <FavoriteButton skillId={detail.id} />
                 </div>
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{detail.repo_name}</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                {detail.repo_name}
+              </h1>
               {detail.description && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{detail.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                  {detail.description}
+                </p>
               )}
 
               {/* Metadata badges */}
@@ -157,7 +209,10 @@ export function SkillDetailPage() {
                   </span>
                 )}
                 {detail.size_category && detail.size_category !== "unknown" && (
-                  <SizeBadge sizeCategory={detail.size_category} sizeKb={detail.repo_size_kb} />
+                  <SizeBadge
+                    sizeCategory={detail.size_category}
+                    sizeKb={detail.repo_size_kb}
+                  />
                 )}
                 {detail.license && (
                   <span className="px-2.5 py-1 text-xs rounded-full bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 border border-green-100 dark:border-green-800">
@@ -200,19 +255,69 @@ export function SkillDetailPage() {
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: t("detail.stars"), value: detail.stars.toLocaleString(), icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z", color: "text-amber-400" },
-                { label: t("detail.forks"), value: detail.forks.toLocaleString(), icon: "M6 3a3 3 0 00-3 3v2.6a3 3 0 001 2.24V18a3 3 0 003 3h10a3 3 0 003-3v-7.16A3 3 0 0021 8.6V6a3 3 0 00-3-3H6z", color: "text-gray-400 dark:text-gray-500" },
-                { label: t("detail.issues"), value: detail.open_issues.toLocaleString(), icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z", color: "text-gray-400 dark:text-gray-500" },
-                { label: t("detail.tokens"), value: detail.estimated_tokens > 0 ? `~${(detail.estimated_tokens / 1000).toFixed(0)}k` : "-", icon: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z", color: "text-gray-400 dark:text-gray-500" },
-                { label: t("detail.commits"), value: detail.total_commits.toLocaleString(), icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2", color: "text-gray-400 dark:text-gray-500" },
-                { label: t("detail.followers"), value: detail.author_followers.toLocaleString(), icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z", color: "text-gray-400 dark:text-gray-500" },
+                {
+                  label: t("detail.stars"),
+                  value: detail.stars.toLocaleString(),
+                  icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z",
+                  color: "text-amber-400",
+                },
+                {
+                  label: t("detail.forks"),
+                  value: detail.forks.toLocaleString(),
+                  icon: "M6 3a3 3 0 00-3 3v2.6a3 3 0 001 2.24V18a3 3 0 003 3h10a3 3 0 003-3v-7.16A3 3 0 0021 8.6V6a3 3 0 00-3-3H6z",
+                  color: "text-gray-400 dark:text-gray-500",
+                },
+                {
+                  label: t("detail.issues"),
+                  value: detail.open_issues.toLocaleString(),
+                  icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+                  color: "text-gray-400 dark:text-gray-500",
+                },
+                {
+                  label: t("detail.tokens"),
+                  value:
+                    detail.estimated_tokens > 0
+                      ? `~${(detail.estimated_tokens / 1000).toFixed(0)}k`
+                      : "-",
+                  icon: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z",
+                  color: "text-gray-400 dark:text-gray-500",
+                },
+                {
+                  label: t("detail.commits"),
+                  value: detail.total_commits.toLocaleString(),
+                  icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+                  color: "text-gray-400 dark:text-gray-500",
+                },
+                {
+                  label: t("detail.followers"),
+                  value: detail.author_followers.toLocaleString(),
+                  icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z",
+                  color: "text-gray-400 dark:text-gray-500",
+                },
               ].map((stat) => (
-                <div key={stat.label} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center">
-                  <svg className={`w-4 h-4 mx-auto ${stat.color} mb-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
+                <div
+                  key={stat.label}
+                  className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center"
+                >
+                  <svg
+                    className={`w-4 h-4 mx-auto ${stat.color} mb-1`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d={stat.icon}
+                    />
                   </svg>
-                  <div className="text-sm font-bold text-gray-900 dark:text-gray-100">{stat.value}</div>
-                  <div className="text-[10px] text-gray-400 dark:text-gray-500">{stat.label}</div>
+                  <div className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] text-gray-400 dark:text-gray-500">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -236,15 +341,29 @@ export function SkillDetailPage() {
             </div>
             <div className="space-y-2">
               {[
-                { label: t("detail.completeness"), value: detail.quality_completeness },
+                {
+                  label: t("detail.completeness"),
+                  value: detail.quality_completeness,
+                },
                 { label: t("detail.clarity"), value: detail.quality_clarity },
-                { label: t("detail.specificity"), value: detail.quality_specificity },
+                {
+                  label: t("detail.specificity"),
+                  value: detail.quality_specificity,
+                },
                 { label: t("detail.examples"), value: detail.quality_examples },
-                { label: t("detail.structure"), value: detail.readme_structure_score },
-                { label: t("detail.agentReadiness"), value: detail.quality_agent_readiness },
+                {
+                  label: t("detail.structure"),
+                  value: detail.readme_structure_score,
+                },
+                {
+                  label: t("detail.agentReadiness"),
+                  value: detail.quality_agent_readiness,
+                },
               ].map((dim) => (
                 <div key={dim.label} className="flex items-center gap-3">
-                  <span className="text-xs text-gray-500 dark:text-gray-400 w-24">{dim.label}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 w-24">
+                    {dim.label}
+                  </span>
                   <div className="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-blue-500 rounded-full transition-all"
@@ -290,7 +409,9 @@ export function SkillDetailPage() {
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-100 block truncate">
                       {cs.skill_name}
                     </span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">{cs.reason}</span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">
+                      {cs.reason}
+                    </span>
                   </div>
                   <span className="text-xs text-green-600 dark:text-green-400 font-medium whitespace-nowrap">
                     {(cs.compatibility_score * 100).toFixed(0)}%
@@ -300,6 +421,13 @@ export function SkillDetailPage() {
             </div>
           </div>
         )}
+
+        {/* Related Skills (same category) */}
+        <RelatedSkills
+          category={detail.category}
+          currentRepo={detail.repo_full_name}
+          stars={detail.stars}
+        />
       </main>
 
       <SiteFooter />

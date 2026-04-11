@@ -12,8 +12,9 @@ class DataCleaner:
     # ── Primary keyword matching (checked first via substring in searchable) ──
     CATEGORY_KEYWORDS: Dict[str, List[str]] = {
         "mcp-server": [
-            "mcp", "model-context-protocol", "claude-mcp", "mcp-server",
-            "mcp-tool", "mcp-client", "mcp-plugin",
+            "mcp", "model-context-protocol", "model context protocol",
+            "claude-mcp", "mcp-server", "mcp-tool", "mcp-client",
+            "mcp-plugin", "mcp server", "mcp tool",
         ],
         "claude-skill": [
             "claude-skill", "claude-tool", "claude skill",
@@ -24,11 +25,13 @@ class DataCleaner:
             "claude code best practice", "claude code monitor",
             "claude code agent", "claude code cli",
             "claude code workflow", "claude code custom",
-            "claude desktop",
+            "claude desktop", "claudekit", "claude skills",
         ],
         "codex-skill": [
             "codex", "openai-codex", "codex-skill", "codex skill",
             "openclaw skill", "openclaw plugin", "openclaw-skill",
+            "openclaw", "hermes agent", "hermes-agent",
+            "openshell", "clawbot", "clawdbot",
         ],
         "agent-tool": [
             "agent-tool", "ai-agent", "langchain-tool", "crewai-tool",
@@ -39,7 +42,11 @@ class DataCleaner:
             "autonomous agent", "coding agent",
             "agent infrastructure", "agentic coding",
             "agent workflow", "agent builder", "ai agent",
-            "agent-native", "agentic ai",
+            "agent-native", "agentic ai", "agentic",
+            "ai pair programming", "ai assistant",
+            "ai-powered", "gui agent", "web agent",
+            "ai coding tool", "ai coding assistant",
+            "ai harness",
         ],
         "youmind-plugin": ["youmind"],
         "llm-plugin": [
@@ -50,6 +57,7 @@ class DataCleaner:
             "ai-skill", "ai skill", "cursor-skill", "windsurf-skill",
             "antigravity skill", "antigravity-skill",
             "cursor rules", "cursor rule", "vibe-coding", "vibe coding",
+            "copilot skill", "copilot agent",
         ],
     }
 
@@ -60,16 +68,19 @@ class DataCleaner:
         "model-context-protocol": "mcp-server",
         "mcp-server": "mcp-server",
         "mcp-servers": "mcp-server",
+        "mcp-client": "mcp-server",
         "claude-code-skill": "claude-skill",
         "claude-skill": "claude-skill",
         "claudecode": "claude-skill",
-        "claude-code": "claude-skill",  # broad: claude-code topic → claude-skill
+        "claude-code": "claude-skill",
         "anthropic-claude": "claude-skill",
         "claude-ai": "claude-skill",
         "codex-skill": "codex-skill",
         "openclaw-skill": "codex-skill",
         "openclaw": "codex-skill",
         "clawdbot": "codex-skill",
+        "hermes-agent": "codex-skill",
+        "openshell": "codex-skill",
         "agent-framework": "agent-tool",
         "agentic-ai": "agent-tool",
         "llm-agent": "agent-tool",
@@ -84,11 +95,25 @@ class DataCleaner:
         "multiagent": "agent-tool",
         "agent-platform": "agent-tool",
         "ai-tools": "agent-tool",
+        "rag": "agent-tool",
+        "retrieval-augmented-generation": "agent-tool",
+        "knowledge-graph": "agent-tool",
+        "fine-tuning": "agent-tool",
+        "ai-assistant": "agent-tool",
+        "chatbot": "agent-tool",
+        "automation": "agent-tool",
         "cursor-skill": "ai-skill",
         "windsurf-skill": "ai-skill",
         "vibe-coding": "ai-skill",
         "cursor-rules": "ai-skill",
         "ai-coding": "ai-skill",
+        "copilot": "ai-skill",
+        "agent": "agent-tool",
+        "llm": "llm-plugin",
+        "llms": "llm-plugin",
+        "openai": "agent-tool",
+        "ollama": "agent-tool",
+        "deepseek": "agent-tool",
         "llm-tool": "llm-plugin",
         "llm-plugin": "llm-plugin",
         "llm-framework": "llm-plugin",
@@ -100,12 +125,22 @@ class DataCleaner:
         "machine learning", "deep learning", "language model",
         "chatgpt", "gemini", "deepseek", "ollama", "inference",
         "embedding", "vector", "rag", "retrieval", "fine-tun",
+        "copilot", "agent", "chatbot", "ai-powered",
+        "text-to-sql", "natural language",
     ]
     TOOL_KEYWORDS = [
         "tool", "framework", "library", "sdk", "platform",
         "toolkit", "system", "engine", "service", "application",
         "pipeline", "workflow", "suite", "client",
+        "assistant", "bot", "cli", "extension", "proxy",
+        "gateway", "server", "app", "builder",
     ]
+
+    # ── Org-based classification (highest priority for known orgs) ──
+    ORG_CATEGORY_MAP: Dict[str, str] = {
+        "modelcontextprotocol": "mcp-server",
+        "anthropics": "claude-skill",
+    }
 
     def process(self, raw_repos: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Clean, deduplicate, and categorize a batch of raw repo data."""
@@ -173,7 +208,8 @@ class DataCleaner:
     def _classify(self, repo: Dict[str, Any]) -> str:
         """Assign category based on multi-pass keyword matching.
 
-        Pass 1: Primary keyword matching in combined searchable text.
+        Pass 0: Org-based detection (known orgs).
+        Pass 1: Primary keyword matching in combined text.
         Pass 2: Exact topic matching via TOPIC_CATEGORY_MAP.
         Pass 3: Broad AI + tool detection from description.
         """
@@ -181,6 +217,11 @@ class DataCleaner:
         full_name = repo.get("full_name", "").lower()
         topics = [t.lower() for t in (repo.get("topics") or [])]
         searchable = f"{full_name} {description} {' '.join(topics)}"
+
+        # Pass 0: Org-based detection (highest priority)
+        org = full_name.split("/")[0] if "/" in full_name else ""
+        if org in self.ORG_CATEGORY_MAP:
+            return self.ORG_CATEGORY_MAP[org]
 
         # Pass 1: Primary keyword matching (fastest, most specific)
         for category, keywords in self.CATEGORY_KEYWORDS.items():

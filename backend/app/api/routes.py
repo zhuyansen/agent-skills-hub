@@ -642,8 +642,9 @@ def submit_skill(
     if existing_extra:
         return {"status": "already_submitted", "message": f"{full_name} has already been submitted and is pending review"}
 
-    # Quick pre-scan: fetch README and run security scanner
+    # Quick pre-scan with 3-tier fallback cascade (Waza fetch.sh inspired)
     risk_note = ""
+    readme_content = ""
     try:
         import os
         import requests as http_req
@@ -652,19 +653,32 @@ def submit_skill(
         if gh_token:
             gh_headers["Authorization"] = f"token {gh_token}"
 
+        # Tier 1: GitHub API (authoritative)
         readme_resp = http_req.get(
             f"https://api.github.com/repos/{full_name}/readme",
             headers={**gh_headers, "Accept": "application/vnd.github.v3.raw"},
             timeout=10,
         )
-        if readme_resp.status_code == 200:
+        if readme_resp.status_code == 200 and len(readme_resp.text) > 5:
+            readme_content = readme_resp.text[:15000]
+        else:
+            # Tier 2: raw.githubusercontent.com (no API quota)
+            raw_resp = http_req.get(
+                f"https://raw.githubusercontent.com/{full_name}/HEAD/README.md",
+                timeout=8,
+            )
+            if raw_resp.status_code == 200 and len(raw_resp.text) > 5:
+                readme_content = raw_resp.text[:15000]
+            # Tier 3: skip scan, mark as unscanned (don't block submission)
+
+        if readme_content:
             from app.services.security_scanner import SecurityScanner
             temp_skill = Skill(
                 repo_full_name=full_name,
                 repo_name=full_name.split("/")[-1],
                 author_name=full_name.split("/")[0],
                 stars=0,
-                readme_content=readme_resp.text[:15000],
+                readme_content=readme_content,
             )
             grade, flags = SecurityScanner().scan_single(temp_skill)
             risk_note = f"security_grade={grade},flags={len(flags)}"
@@ -673,7 +687,10 @@ def submit_skill(
                     "Community submission %s flagged as %s: %s",
                     full_name, grade, flags,
                 )
+        else:
+            risk_note = "unscanned:no_readme"
     except Exception as scan_err:
+        risk_note = f"unscanned:error"
         logger.debug("Pre-scan skipped for %s: %s", full_name, scan_err)
 
     # Add to extra repos with 'pending' status for admin review
@@ -1057,10 +1074,10 @@ _WORKFLOW_META: dict[str, dict] = {
     },
     "codex-skill": {
         "icon": "code",
-        "title_zh": "Codex 技能",
-        "title_en": "Codex Skills",
-        "description_zh": "OpenAI Codex 专属技能",
-        "description_en": "OpenAI Codex skills",
+        "title_zh": "OpenClaw 生态",
+        "title_en": "OpenClaw Ecosystem",
+        "description_zh": "OpenClaw / Hermes Agent 生态工具与技能",
+        "description_en": "OpenClaw / Hermes Agent ecosystem tools & skills",
         "sort_order": 6,
     },
     "llm-plugin": {

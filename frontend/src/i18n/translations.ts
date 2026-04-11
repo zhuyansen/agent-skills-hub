@@ -83,6 +83,8 @@ export const translations = {
     "detail.qualityAnalysis": "质量分析",
     "detail.scoreBreakdown": "评分细分",
     "detail.compatibleSkills": "兼容技能",
+    "detail.relatedSkills": "同类推荐",
+    "detail.viewAll": "查看全部",
     "detail.viewOnGitHub": "在 GitHub 上查看",
     "detail.loading": "加载中...",
     "detail.stars": "Stars",
@@ -112,12 +114,14 @@ export const translations = {
 
     // Submit
     "submit.title": "提交一个 Skill",
-    "submit.subtitle": "知道一个好用的 Agent Skill？提交 GitHub 仓库链接，经审核通过后将被收录",
+    "submit.subtitle":
+      "知道一个好用的 Agent Skill？提交 GitHub 仓库链接，经审核通过后将被收录",
     "submit.button": "提交",
     "submit.tabSkill": "提交技能",
     "submit.tabMaster": "大师认证",
     "submit.masterTitle": "申请 Skills Master 认证",
-    "submit.masterSubtitle": "你是多个优质技能的作者？提交申请，经审核通过后将获得大师认证",
+    "submit.masterSubtitle":
+      "你是多个优质技能的作者？提交申请，经审核通过后将获得大师认证",
     "submit.masterGithub": "GitHub 用户名",
     "submit.masterName": "显示名称",
     "submit.masterBio": "个人简介（选填）",
@@ -125,7 +129,8 @@ export const translations = {
     "submit.masterButton": "提交申请",
     "submit.tabWorkflow": "场景工作流",
     "submit.workflowTitle": "提交场景工作流",
-    "submit.workflowSubtitle": "分享你的多技能协作方案，经审核后将在场景推荐中展示",
+    "submit.workflowSubtitle":
+      "分享你的多技能协作方案，经审核后将在场景推荐中展示",
     "submit.workflowName": "工作流名称",
     "submit.workflowDesc": "简短描述（选填）",
     "submit.workflowSteps": "工作流步骤（至少2个）",
@@ -191,7 +196,8 @@ export const translations = {
 
     // Newsletter
     "newsletter.title": "订阅周报",
-    "newsletter.subtitle": "每周接收最新 Agent Skills 趋势、热门项目和开发者动态",
+    "newsletter.subtitle":
+      "每周接收最新 Agent Skills 趋势、热门项目和开发者动态",
     "newsletter.placeholder": "your@email.com",
     "newsletter.button": "订阅",
     "newsletter.success": "请查收确认邮件，点击链接完成验证即可订阅成功。",
@@ -241,7 +247,8 @@ export const translations = {
 
     // Hero
     "hero.title": "发现 {count}+ 最佳开源 AI Agent 工具",
-    "hero.subtitle": "搜索、对比开源 AI Agent Skills、MCP Server 和开发者自动化工具，每 8 小时自动更新",
+    "hero.subtitle":
+      "搜索、对比开源 AI Agent Skills、MCP Server 和开发者自动化工具，每 8 小时自动更新",
     "hero.trending": "热门",
     "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
@@ -284,7 +291,8 @@ export const translations = {
     "ecosystem.skills": "AI Skills",
     "ecosystem.skillsDesc": "教 AI 怎么做事的技能包 — 编程、设计、写作、营销",
     "ecosystem.mcp-servers": "MCP Servers",
-    "ecosystem.mcp-serversDesc": "给 AI 访问外部世界的能力 — API、数据库、文件系统",
+    "ecosystem.mcp-serversDesc":
+      "给 AI 访问外部世界的能力 — API、数据库、文件系统",
     "ecosystem.frameworks": "Frameworks & Tools",
     "ecosystem.frameworksDesc": "驱动 AI Agent 的开源引擎 — 框架、编排、自动化",
 
@@ -294,15 +302,20 @@ export const translations = {
     // FAQ
     "faq.title": "常见问题",
     "faq.q1": "什么是 Agent Skills Hub？",
-    "faq.a1": "Agent Skills Hub 是开发者发现、对比和使用开源 AI Agent 工具的最佳平台，收录 40,000+ 个 AI Agent Skills、MCP 服务器和自动化工具，质量评分体系 + 每 8 小时自动更新。",
+    "faq.a1":
+      "Agent Skills Hub 是开发者发现、对比和使用开源 AI Agent 工具的最佳平台，收录 40,000+ 个 AI Agent Skills、MCP 服务器和自动化工具，质量评分体系 + 每 8 小时自动更新。",
     "faq.q2": "质量评分是如何计算的？",
-    "faq.a2": "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
+    "faq.a2":
+      "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
     "faq.q3": "如何提交我的项目？",
-    "faq.a3": "在首页底部的「提交一个 Skill」区域，粘贴你的 GitHub 仓库链接并提交。我们的团队会进行审核，通过后会自动收录并计算评分。",
+    "faq.a3":
+      "在首页底部的「提交一个 Skill」区域，粘贴你的 GitHub 仓库链接并提交。我们的团队会进行审核，通过后会自动收录并计算评分。",
     "faq.q4": "什么是 MCP Server？",
-    "faq.a4": "MCP（Model Context Protocol）是 Anthropic 推出的模型上下文协议，MCP Server 是实现了该协议的工具服务，可以让 AI 模型安全地与外部数据和工具交互。",
+    "faq.a4":
+      "MCP（Model Context Protocol）是 Anthropic 推出的模型上下文协议，MCP Server 是实现了该协议的工具服务，可以让 AI 模型安全地与外部数据和工具交互。",
     "faq.q5": "Star 增速榜是什么？",
-    "faq.a5": "Star 增速榜（Star Velocity History）根据 stars/天 计算项目热度，每周快照一次。增速越高说明项目越受关注。我们每周一通过邮件发送 Top 20 排名。",
+    "faq.a5":
+      "Star 增速榜（Star Velocity History）根据 stars/天 计算项目热度，每周快照一次。增速越高说明项目越受关注。我们每周一通过邮件发送 Top 20 排名。",
 
     // Footer
     "footer.source": "Agent Skills Hub · 数据来自 GitHub",
@@ -334,7 +347,8 @@ export const translations = {
     "trending.showLess": "Show Less",
 
     "recentlyUpdated.title": "Recently Updated",
-    "recentlyUpdated.subtitle": "Actively maintained projects with recent commits",
+    "recentlyUpdated.subtitle":
+      "Actively maintained projects with recent commits",
 
     "topRated.title": "Top Rated",
     "topRated.subtitle": "Highest quality scores across all dimensions",
@@ -357,7 +371,8 @@ export const translations = {
     "masters.more": "more",
 
     "emerging.title": "Organization Builders",
-    "emerging.subtitle": "Active organizations and teams contributing multiple quality projects",
+    "emerging.subtitle":
+      "Active organizations and teams contributing multiple quality projects",
     "emerging.rising": "ORG",
 
     "stats.totalSkills": "Total Skills",
@@ -388,6 +403,8 @@ export const translations = {
     "detail.qualityAnalysis": "Quality Analysis",
     "detail.scoreBreakdown": "Score Breakdown",
     "detail.compatibleSkills": "Compatible Skills",
+    "detail.relatedSkills": "Related Skills",
+    "detail.viewAll": "View all",
     "detail.viewOnGitHub": "View on GitHub",
     "detail.loading": "Loading details...",
     "detail.stars": "Stars",
@@ -417,12 +434,14 @@ export const translations = {
 
     // Submit
     "submit.title": "Submit a Skill",
-    "submit.subtitle": "Know a great Agent Skill? Submit the GitHub repo URL and it will be reviewed by our team before inclusion",
+    "submit.subtitle":
+      "Know a great Agent Skill? Submit the GitHub repo URL and it will be reviewed by our team before inclusion",
     "submit.button": "Submit",
     "submit.tabSkill": "Submit Skill",
     "submit.tabMaster": "Master Certification",
     "submit.masterTitle": "Apply for Skills Master",
-    "submit.masterSubtitle": "Author of multiple quality skills? Apply for master certification and get verified",
+    "submit.masterSubtitle":
+      "Author of multiple quality skills? Apply for master certification and get verified",
     "submit.masterGithub": "GitHub username",
     "submit.masterName": "Display name",
     "submit.masterBio": "Short bio (optional)",
@@ -430,7 +449,8 @@ export const translations = {
     "submit.masterButton": "Submit Application",
     "submit.tabWorkflow": "Workflow",
     "submit.workflowTitle": "Submit Scenario Workflow",
-    "submit.workflowSubtitle": "Share your multi-skill workflow recipe. Approved workflows will be featured in scenario recommendations",
+    "submit.workflowSubtitle":
+      "Share your multi-skill workflow recipe. Approved workflows will be featured in scenario recommendations",
     "submit.workflowName": "Workflow name",
     "submit.workflowDesc": "Short description (optional)",
     "submit.workflowSteps": "Workflow steps (at least 2)",
@@ -496,10 +516,12 @@ export const translations = {
 
     // Newsletter
     "newsletter.title": "Weekly Newsletter",
-    "newsletter.subtitle": "Get weekly updates on trending Agent Skills, hot projects, and developer highlights",
+    "newsletter.subtitle":
+      "Get weekly updates on trending Agent Skills, hot projects, and developer highlights",
     "newsletter.placeholder": "your@email.com",
     "newsletter.button": "Subscribe",
-    "newsletter.success": "Please check your email and click the verification link to complete your subscription.",
+    "newsletter.success":
+      "Please check your email and click the verification link to complete your subscription.",
     "newsletter.benefits1": "Weekly trending skills curated",
     "newsletter.benefits2": "New projects first look",
     "newsletter.benefits3": "Developer highlights digest",
@@ -552,9 +574,11 @@ export const translations = {
 
     // Hero
     "hero.title": "Discover {count}+ Best Open-Source AI Agent Tools",
-    "hero.subtitle": "Search, compare and automate with the best AI agent skills, MCP servers, and developer tools. Auto-updated every 8 hours.",
+    "hero.subtitle":
+      "Search, compare and automate with the best AI agent skills, MCP servers, and developer tools. Auto-updated every 8 hours.",
     "hero.trending": "Trending",
-    "hero.searchPlaceholder": "Search AI agent tools, MCP servers, automation skills...",
+    "hero.searchPlaceholder":
+      "Search AI agent tools, MCP servers, automation skills...",
 
     // New This Week
     "newThisWeek.title": "New This Week",
@@ -571,7 +595,8 @@ export const translations = {
     "guide.step2.title": "View Details",
     "guide.step2.desc": "Check install methods, features, and quality scores",
     "guide.step3.title": "One-Click Install",
-    "guide.step3.desc": "Copy the install command and run it in Claude Code / MCP client",
+    "guide.step3.desc":
+      "Copy the install command and run it in Claude Code / MCP client",
 
     // Security
     "security.safe": "Safe",
@@ -587,11 +612,14 @@ export const translations = {
 
     // Ecosystem navigation
     "ecosystem.skills": "AI Skills",
-    "ecosystem.skillsDesc": "Teach AI HOW to do things — coding, design, writing, marketing",
+    "ecosystem.skillsDesc":
+      "Teach AI HOW to do things — coding, design, writing, marketing",
     "ecosystem.mcp-servers": "MCP Servers",
-    "ecosystem.mcp-serversDesc": "Give AI ACCESS to the outside world — APIs, databases, file systems",
+    "ecosystem.mcp-serversDesc":
+      "Give AI ACCESS to the outside world — APIs, databases, file systems",
     "ecosystem.frameworks": "Frameworks & Tools",
-    "ecosystem.frameworksDesc": "Open-source engines powering AI agents — frameworks, orchestration, automation",
+    "ecosystem.frameworksDesc":
+      "Open-source engines powering AI agents — frameworks, orchestration, automation",
 
     // Official badge
     "badge.official": "Official",
@@ -599,15 +627,20 @@ export const translations = {
     // FAQ
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What is Agent Skills Hub?",
-    "faq.a1": "Agent Skills Hub is the best platform for developers to discover, compare, and automate with 40,000+ open-source AI agent tools, MCP servers, and automation skills. Quality-scored and auto-updated every 8 hours.",
+    "faq.a1":
+      "Agent Skills Hub is the best platform for developers to discover, compare, and automate with 40,000+ open-source AI agent tools, MCP servers, and automation skills. Quality-scored and auto-updated every 8 hours.",
     "faq.q2": "How are quality scores calculated?",
-    "faq.a2": "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
+    "faq.a2":
+      "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
     "faq.q3": "How do I submit my project?",
-    "faq.a3": "Use the 'Submit a Skill' section at the bottom of the homepage. Paste your GitHub repo URL and submit. Our team will review it, and approved projects will be automatically indexed and scored.",
+    "faq.a3":
+      "Use the 'Submit a Skill' section at the bottom of the homepage. Paste your GitHub repo URL and submit. Our team will review it, and approved projects will be automatically indexed and scored.",
     "faq.q4": "What is an MCP Server?",
-    "faq.a4": "MCP (Model Context Protocol) is a protocol by Anthropic that enables AI models to securely interact with external data and tools. MCP Servers implement this protocol to provide tool services to AI assistants.",
+    "faq.a4":
+      "MCP (Model Context Protocol) is a protocol by Anthropic that enables AI models to securely interact with external data and tools. MCP Servers implement this protocol to provide tool services to AI assistants.",
     "faq.q5": "What is the Star Velocity History?",
-    "faq.a5": "Star Velocity History ranks projects by stars/day, snapshotted weekly. Higher velocity indicates more community interest. We send the Top 20 ranking via email every Monday.",
+    "faq.a5":
+      "Star Velocity History ranks projects by stars/day, snapshotted weekly. Higher velocity indicates more community interest. We send the Top 20 ranking via email every Monday.",
 
     "footer.source": "Agent Skills Hub · Data sourced from GitHub",
     "footer.autoUpdated": "Auto-updated every 8 hours",

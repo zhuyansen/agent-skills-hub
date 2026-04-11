@@ -12,7 +12,7 @@ import type { PaginatedSkills, Skill } from "../types/skill";
 const CATEGORY_LABELS: Record<string, string> = {
   "mcp-server": "MCP Server",
   "claude-skill": "Claude Skill",
-  "codex-skill": "Codex Skill",
+  "codex-skill": "OpenClaw Ecosystem",
   "agent-tool": "Agent Tool",
   "prompt-library": "Prompt Library",
   "ai-coding-assistant": "AI Coding Assistant",
@@ -65,7 +65,10 @@ export function CategoryPage() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://agentskillshub.top/category/${slug}/`} />
+        <link
+          rel="canonical"
+          href={`https://agentskillshub.top/category/${slug}/`}
+        />
       </Helmet>
 
       <SiteHeader />
