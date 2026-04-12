@@ -695,6 +695,9 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # Take weekly trending snapshot (non-fatal if fails)
         maybe_take_weekly_snapshot(db)
 
+        # Re-fetch sync_log — DB session may have been refreshed during
+        # scoring/composability phases, detaching the old ORM object.
+        sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
         sync_log.status = "completed"
         sync_log.repos_found = len(cleaned)
         sync_log.repos_new = new_count
@@ -710,15 +713,21 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
     except Exception as exc:
         logger.exception("Sync job failed")
         try:
-            db.rollback()
+            # Get a fresh connection — the current one may be dead
+            try:
+                db.rollback()
+            except Exception:
+                pass
+            db.close()
+            db = SessionLocal()
             sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
             if sync_log:
                 sync_log.status = "failed"
                 sync_log.error_message = str(exc)[:1000]
                 sync_log.finished_at = datetime.now(timezone.utc)
                 db.commit()
-        except Exception:
-            logger.error("Could not update sync log after failure: %s", exc)
+        except Exception as log_exc:
+            logger.error("Could not update sync log after failure: %s", log_exc)
         # Re-raise so sync_runner.py exits with code 1
         raise
     finally:
