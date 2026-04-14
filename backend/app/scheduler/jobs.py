@@ -108,6 +108,8 @@ EXTRA_REPOS = [
     "SaladDay/cc-switch-cli",
     # openclaw-wx-echo - WeChat AI assistant, OpenClaw skill (81 stars)
     "laolin5564/openclaw-wx-echo",
+    # seo-audit-skill - SEO audit agent skill with HTML reports (248 stars)
+    "JeffLi1993/seo-audit-skill",
 ]
 
 # ── Rate Limit Management ──
