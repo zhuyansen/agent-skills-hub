@@ -94,19 +94,29 @@ class ScoringEngine:
         estimator.estimate_all(db, batch_size=batch_size,
                                repo_names=changed_repo_names)
 
-        # Scoring normalization needs ALL skills for correct min/max
-        skills: List[Skill] = db.query(Skill).all()
-        if not skills:
+        # Load lightweight tuples for global normalization stats
+        # (avoids loading full ORM objects for 54K+ skills)
+        from sqlalchemy import text
+        rows = db.execute(text(
+            "SELECT id, stars, forks, author_followers, total_commits, "
+            "prev_stars, open_issues, total_issues, last_commit_at, "
+            "quality_score, repo_size_kb, category, topics, language, "
+            "star_momentum, repo_full_name "
+            "FROM skills"
+        )).fetchall()
+        if not rows:
             return 0
 
-        # Pre-compute log values for normalization (reduces outlier dominance)
-        stars_log = [math.log1p(s.stars) for s in skills]
-        forks_log = [math.log1p(s.forks) for s in skills]
-        followers_log = [math.log1p(s.author_followers) for s in skills]
-        commits_log = [math.log1p(s.total_commits) for s in skills]
+        logger.info("Computing normalization stats from %d skills", len(rows))
 
-        # Momentum: compute z-score stats
-        deltas = [s.stars - (s.prev_stars or 0) for s in skills]
+        # Pre-compute log values for normalization
+        stars_log = [math.log1p(r.stars or 0) for r in rows]
+        forks_log = [math.log1p(r.forks or 0) for r in rows]
+        followers_log = [math.log1p(r.author_followers or 0) for r in rows]
+        commits_log = [math.log1p(r.total_commits or 0) for r in rows]
+
+        # Momentum z-score stats
+        deltas = [(r.stars or 0) - (r.prev_stars or 0) for r in rows]
         delta_mean = sum(deltas) / len(deltas) if deltas else 0
         delta_std = (
             math.sqrt(sum((d - delta_mean) ** 2 for d in deltas) / len(deltas))
@@ -114,21 +124,31 @@ class ScoringEngine:
             else 1
         )
         if delta_std < 1:
-            delta_std = 1  # avoid division by near-zero
+            delta_std = 1
 
-        updated = 0
-        for i, skill in enumerate(skills):
+        # Build set of changed repo names for filtering
+        changed_set = set(changed_repo_names) if changed_repo_names else None
+
+        # Score only changed skills (or all if no filter)
+        updates = []
+        for i, row in enumerate(rows):
+            if changed_set and row.repo_full_name not in changed_set:
+                continue
+
             norm_stars = self._log_normalize(stars_log[i], stars_log)
             norm_forks = self._log_normalize(forks_log[i], forks_log)
             norm_followers = self._log_normalize(followers_log[i], followers_log)
             norm_commits = self._log_normalize(commits_log[i], commits_log)
-            ir = self._issue_resolution_rate(skill)
-            recency = self._recency_decay(skill)
-            quality = (skill.quality_score or 0) / 100.0  # normalize to 0-1
-            size_bonus = self._size_bonus(skill)
-            momentum = self._momentum_zscore(skill, delta_mean, delta_std)
-            domain_bonus = self._domain_bonus(skill)
-            skill.star_momentum = round(momentum, 3)
+            ir = self._issue_resolution_rate_raw(
+                row.total_issues or 0, row.open_issues or 0)
+            recency = self._recency_decay_raw(row.last_commit_at)
+            quality = (row.quality_score or 0) / 100.0
+            size_bonus = self._size_bonus_raw(row.repo_size_kb or 0)
+            momentum = self._momentum_zscore_raw(
+                row.stars or 0, row.prev_stars or 0,
+                delta_mean, delta_std)
+            domain_bonus = self._domain_bonus_raw(
+                row.category, row.topics)
 
             raw = (
                 self.WEIGHTS["stars"] * norm_stars
@@ -142,17 +162,32 @@ class ScoringEngine:
                 + self.WEIGHTS["momentum"] * momentum
                 + self.WEIGHTS["domain_bonus"] * domain_bonus
             )
-            skill.score = round(raw * 100, 1)
-            updated += 1
+            updates.append({
+                "id": row.id,
+                "score": round(raw * 100, 1),
+                "star_momentum": round(momentum, 3),
+            })
 
-            # Batch commit to avoid PgBouncer transaction timeout
-            if (i + 1) % batch_size == 0:
-                db.commit()
-                logger.info("Score batch commit: %d/%d", i + 1, len(skills))
+        # Bulk UPDATE via raw SQL in batches (much faster than ORM)
+        logger.info("Updating scores for %d skills via bulk SQL", len(updates))
+        for batch_start in range(0, len(updates), batch_size):
+            batch = updates[batch_start:batch_start + batch_size]
+            for item in batch:
+                db.execute(text(
+                    "UPDATE skills SET score = :score, "
+                    "star_momentum = :momentum WHERE id = :id"
+                ), {"score": item["score"],
+                    "momentum": item["star_momentum"],
+                    "id": item["id"]})
+            db.commit()
+            if (batch_start + batch_size) % 2000 == 0 or \
+               batch_start + batch_size >= len(updates):
+                logger.info("Score update: %d/%d",
+                            min(batch_start + batch_size, len(updates)),
+                            len(updates))
 
-        db.commit()
-        logger.info("Scored %d skills", updated)
-        return updated
+        logger.info("Scored %d skills", len(updates))
+        return len(updates)
 
     @staticmethod
     def _log_normalize(log_value: float, all_log_values: List[float]) -> float:
@@ -256,3 +291,59 @@ class ScoringEngine:
         score += max_topic_bonus
 
         return min(score, 1.0)
+
+    # ── Raw-value variants (for SQL-row scoring without ORM) ──
+
+    @staticmethod
+    def _issue_resolution_rate_raw(total_issues: int, open_issues: int) -> float:
+        if total_issues == 0:
+            return 0.5
+        closed = total_issues - open_issues
+        return max(0.0, min(1.0, closed / total_issues))
+
+    @staticmethod
+    def _recency_decay_raw(pushed_at) -> float:
+        if not pushed_at:
+            return 0.05
+        now = datetime.now(timezone.utc)
+        last = pushed_at
+        if hasattr(last, 'tzinfo') and last.tzinfo is None:
+            last = last.replace(tzinfo=timezone.utc)
+        days = max((now - last).total_seconds() / 86400, 0)
+        return math.exp(-0.01 * days)
+
+    @staticmethod
+    def _momentum_zscore_raw(stars: int, prev_stars: int,
+                             mean: float, std: float) -> float:
+        delta = stars - (prev_stars or 0)
+        z = (delta - mean) / std
+        return max(0.0, min(1.0, 0.5 + 0.25 * z))
+
+    @staticmethod
+    def _size_bonus_raw(size_kb: int) -> float:
+        if size_kb <= 0:
+            return 0.3
+        if size_kb <= 100:
+            return 1.0
+        if size_kb <= 500:
+            return 0.8
+        if size_kb <= 5000:
+            return 0.5
+        return 0.2
+
+    def _domain_bonus_raw(self, category: str, topics_json: str) -> float:
+        score = 0.0
+        score += self.DOMAIN_BONUS.get(category or "uncategorized", 0.3)
+        try:
+            topics = json.loads(topics_json) if topics_json else []
+        except (json.JSONDecodeError, TypeError):
+            topics = []
+        max_topic_bonus = 0.0
+        for topic in topics:
+            topic_lower = topic.lower()
+            for keyword, bonus in self.TOPIC_DOMAIN_BONUS.items():
+                if keyword in topic_lower:
+                    max_topic_bonus = max(max_topic_bonus, bonus)
+        score += max_topic_bonus
+        return min(score, 1.0)
+
