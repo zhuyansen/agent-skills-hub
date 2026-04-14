@@ -62,9 +62,10 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const ogImage = `${SITE}/og-image.png`;
 
   const title = `${repo_name} - ${catLabel} by ${author_name} | Agent Skills Hub`;
+  const descTrunc = description ? description.slice(0, 110) : "";
   const metaDesc = description
-    ? `${description.slice(0, 140)}${description.length > 140 ? "..." : ""} ${starsK(stars)} stars.`
-    : `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars on GitHub.`;
+    ? `${descTrunc}${description.length > 110 ? "..." : ""} Open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars.`
+    : `${repo_name} is an open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} GitHub stars. Discover features, quality score, and compatible tools.`;
 
   // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
@@ -135,11 +136,10 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     dateModified: last_commit_at ? formatDate(last_commit_at) : undefined,
     keywords: topicsList.length ? topicsList.join(", ") : undefined,
     applicationCategory: catLabel,
-    aggregateRating: stars > 0 ? {
-      "@type": "AggregateRating",
-      ratingValue: Math.min(5, (score || 0) / 20).toFixed(1),
-      bestRating: "5",
-      ratingCount: stars,
+    interactionStatistic: stars > 0 ? {
+      "@type": "InteractionCounter",
+      interactionType: "https://schema.org/LikeAction",
+      userInteractionCount: stars,
     } : undefined,
   }, null, 2);
 
@@ -240,7 +240,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />${robotsMeta}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />${robotsMeta}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />
   <meta name="keywords" content="${esc(keywords)}" />
@@ -298,7 +299,7 @@ ${faqLd}
       </nav>
 
       <!-- Title & Author -->
-      <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}</h1>
+      <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)} — ${esc(catLabel)} by ${esc(author_name)}</h1>
       <p style="color:#64748b;margin:0 0 16px">
         by <a href="https://github.com/${esc(author_name)}" style="color:#4f46e5;text-decoration:none">${esc(author_name)}</a>
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>

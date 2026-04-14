@@ -72,7 +72,7 @@ export function RelatedSkills({ category, currentRepo, stars }: Props) {
           >
             <img
               src={s.author_avatar_url}
-              alt=""
+              alt={`${s.repo_name} author avatar`}
               className="w-8 h-8 rounded-full shrink-0"
             />
             <div className="flex-1 min-w-0">

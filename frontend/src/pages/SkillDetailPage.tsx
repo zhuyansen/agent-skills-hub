@@ -125,8 +125,8 @@ export function SkillDetailPage() {
   }
 
   const ogDescription = detail.description
-    ? detail.description.slice(0, 160)
-    : `${detail.repo_name} - ${detail.category} skill with ${detail.stars} stars`;
+    ? `${detail.description.slice(0, 120)} Open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} stars.`
+    : `${detail.repo_name} is an open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} GitHub stars.`;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -190,6 +190,9 @@ export function SkillDetailPage() {
               </div>
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                 {detail.repo_name}
+                <span className="text-base font-normal text-gray-400 dark:text-gray-500 ml-2">
+                  — {detail.category} by {detail.author_name}
+                </span>
               </h1>
               {detail.description && (
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
