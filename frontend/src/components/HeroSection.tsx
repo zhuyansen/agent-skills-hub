@@ -40,7 +40,10 @@ export function HeroSection({ stats, onSearch }: Props) {
     setSearching(true);
     searchTimer.current = setTimeout(() => {
       fetchQuickSearch(q, 6)
-        .then((items) => { setResults(items); setSearching(false); })
+        .then((items) => {
+          setResults(items);
+          setSearching(false);
+        })
         .catch(() => setSearching(false));
     }, 200);
   }, []);
@@ -82,12 +85,15 @@ export function HeroSection({ stats, onSearch }: Props) {
   const countDisplay = `${Math.floor(totalSkills / 1000).toLocaleString()},000+`;
 
   // Extract category counts
-  const mcpCount = stats?.categories.find((c) => c.name === "mcp-server")?.count ?? 6500;
-  const claudeCount = stats?.categories.find((c) => c.name === "claude-skill")?.count ?? 2200;
-  const agentCount = stats?.categories.find((c) => c.name === "agent-tool")?.count ?? 5000;
+  const mcpCount =
+    stats?.categories.find((c) => c.name === "mcp-server")?.count ?? 6500;
+  const claudeCount =
+    stats?.categories.find((c) => c.name === "claude-skill")?.count ?? 2200;
+  const agentCount =
+    stats?.categories.find((c) => c.name === "agent-tool")?.count ?? 5000;
 
   return (
-    <section className="hero-gradient -mx-4 px-4 pt-10 pb-8 sm:pt-14 sm:pb-10 mb-6">
+    <section className="hero-gradient -mx-4 px-4 pt-10 pb-8 sm:pt-14 sm:pb-10 mb-6 relative z-20">
       <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* Main headline */}
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">
@@ -101,9 +107,16 @@ export function HeroSection({ stats, onSearch }: Props) {
         <div className="relative max-w-2xl mx-auto mb-5" ref={containerRef}>
           <svg
             className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 z-10"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
           <input
             ref={inputRef}
@@ -111,19 +124,30 @@ export function HeroSection({ stats, onSearch }: Props) {
             value={query}
             onChange={(e) => handleChange(e.target.value)}
             onKeyDown={handleKeyDown}
-            onFocus={() => { if (query.trim() || results.length > 0) setShowDropdown(true); }}
+            onFocus={() => {
+              if (query.trim() || results.length > 0) setShowDropdown(true);
+            }}
             placeholder={t("hero.searchPlaceholder")}
             aria-label="Search skills"
             className="w-full pl-12 pr-12 py-4 border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
           />
           {query && (
             <button
-              onClick={() => { setQuery(""); setResults([]); setShowDropdown(false); }}
+              onClick={() => {
+                setQuery("");
+                setResults([]);
+                setShowDropdown(false);
+              }}
               className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer z-10"
               aria-label="Clear"
             >
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           )}
@@ -141,23 +165,44 @@ export function HeroSection({ stats, onSearch }: Props) {
                   {results.map((skill, i) => (
                     <div
                       key={skill.id}
-                      onClick={() => { navigate(`/skill/${skill.repo_full_name}/`); setShowDropdown(false); }}
+                      onClick={() => {
+                        navigate(`/skill/${skill.repo_full_name}/`);
+                        setShowDropdown(false);
+                      }}
                       onMouseEnter={() => setActiveIdx(i)}
                       className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${i === activeIdx ? "bg-indigo-50 dark:bg-indigo-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-700"}`}
                     >
-                      <img src={skill.author_avatar_url} alt={skill.author_name} width={32} height={32} className="w-8 h-8 rounded-full shrink-0" />
+                      <img
+                        src={skill.author_avatar_url}
+                        alt={skill.author_name}
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 rounded-full shrink-0"
+                      />
                       <div className="flex-1 min-w-0 text-left">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{skill.repo_name}</span>
-                          <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">{skill.author_name}</span>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
+                            {skill.repo_name}
+                          </span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">
+                            {skill.author_name}
+                          </span>
                         </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{skill.description}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                          {skill.description}
+                        </p>
                       </div>
                       <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-0.5 shrink-0">
-                        <svg className="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          className="w-3.5 h-3.5 text-amber-400"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
-                        {skill.stars >= 1000 ? `${(skill.stars / 1000).toFixed(1)}k` : skill.stars.toLocaleString()}
+                        {skill.stars >= 1000
+                          ? `${(skill.stars / 1000).toFixed(1)}k`
+                          : skill.stars.toLocaleString()}
                       </span>
                     </div>
                   ))}
@@ -174,7 +219,9 @@ export function HeroSection({ stats, onSearch }: Props) {
 
         {/* Trending tags */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-          <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">{t("hero.trending")}:</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">
+            {t("hero.trending")}:
+          </span>
           {TRENDING_TAGS.map((tag) => (
             <button
               key={tag}
@@ -189,23 +236,39 @@ export function HeroSection({ stats, onSearch }: Props) {
         {/* Key stats */}
         <div className="flex items-center justify-center gap-6 sm:gap-10">
           <div className="text-center">
-            <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">{totalSkills.toLocaleString()}+</div>
-            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Skills</div>
+            <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {totalSkills.toLocaleString()}+
+            </div>
+            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+              Skills
+            </div>
           </div>
           <div className="w-px h-8 bg-gray-300 dark:bg-gray-700" />
           <div className="text-center">
-            <div className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">{mcpCount.toLocaleString()}+</div>
-            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">MCP Servers</div>
+            <div className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+              {mcpCount.toLocaleString()}+
+            </div>
+            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+              MCP Servers
+            </div>
           </div>
           <div className="w-px h-8 bg-gray-300 dark:bg-gray-700" />
           <div className="text-center">
-            <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">{claudeCount.toLocaleString()}+</div>
-            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Claude Skills</div>
+            <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
+              {claudeCount.toLocaleString()}+
+            </div>
+            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+              Claude Skills
+            </div>
           </div>
           <div className="w-px h-8 bg-gray-300 dark:bg-gray-700 hidden sm:block" />
           <div className="text-center hidden sm:block">
-            <div className="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">{agentCount.toLocaleString()}+</div>
-            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Agent Tools</div>
+            <div className="text-xl sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              {agentCount.toLocaleString()}+
+            </div>
+            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+              Agent Tools
+            </div>
           </div>
         </div>
       </div>
