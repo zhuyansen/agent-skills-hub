@@ -206,6 +206,7 @@ export const translations = {
     "newsletter.benefits2": "新项目抢先看",
     "newsletter.benefits3": "开发者动态速递",
     "newsletter.socialProof": "已有 {count}+ 开发者订阅",
+    "newsletter.frequency": "📬 每周一发送，精选本周最热 AI 工具",
     "newsletter.successTitle": "订阅成功!",
     "newsletter.checkEmail": "请查收确认邮件，点击链接完成验证即可",
 
@@ -526,6 +527,7 @@ export const translations = {
     "newsletter.benefits2": "New projects first look",
     "newsletter.benefits3": "Developer highlights digest",
     "newsletter.socialProof": "Join {count}+ developers",
+    "newsletter.frequency": "📬 Sent every Monday — top AI tools of the week",
     "newsletter.successTitle": "Subscribed!",
     "newsletter.checkEmail": "Check your email and click the verification link",
     "newsletter.error": "Subscription failed, please try again later",

@@ -20,17 +20,24 @@ export function SyncPage({ token }: Props) {
       .finally(() => setLoading(false));
   }, [token]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleSync = async () => {
-    if (!window.confirm("Are you sure you want to trigger a sync? This will fetch and update all skills data.")) return;
+    if (
+      !window.confirm(
+        "Are you sure you want to trigger a sync? This will fetch and update all skills data.",
+      )
+    )
+      return;
     setSyncing(true);
     try {
       await adminTriggerSync(token);
       // Wait a bit then refresh logs
       setTimeout(load, 2000);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     } finally {
       setSyncing(false);
     }
@@ -63,7 +70,11 @@ export function SyncPage({ token }: Props) {
         </div>
       </div>
 
-      {error && <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">{error}</div>}
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">
+          {error}
+        </div>
+      )}
 
       {loading ? (
         <div className="text-sm text-gray-400">Loading...</div>
@@ -72,34 +83,63 @@ export function SyncPage({ token }: Props) {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">ID</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Status</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Started</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Finished</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Found</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">New</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Updated</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Error</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  ID
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Status
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Started
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Finished
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Found
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  New
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Updated
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Error
+                </th>
               </tr>
             </thead>
             <tbody>
               {logs.map((log) => (
-                <tr key={log.id} className="border-b border-gray-50 hover:bg-gray-50">
+                <tr
+                  key={log.id}
+                  className="border-b border-gray-50 hover:bg-gray-50"
+                >
                   <td className="px-4 py-3 text-gray-500">{log.id}</td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 text-xs rounded-full ${statusColor(log.status)}`}>
+                    <span
+                      className={`px-2 py-0.5 text-xs rounded-full ${statusColor(log.status)}`}
+                    >
                       {log.status}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {log.started_at ? new Date(log.started_at).toLocaleString() : "-"}
+                    {log.started_at
+                      ? new Date(log.started_at).toLocaleString()
+                      : "-"}
                   </td>
                   <td className="px-4 py-3 text-gray-500 text-xs">
-                    {log.finished_at ? new Date(log.finished_at).toLocaleString() : "-"}
+                    {log.finished_at
+                      ? new Date(log.finished_at).toLocaleString()
+                      : "-"}
                   </td>
                   <td className="px-4 py-3 text-right">{log.repos_found}</td>
-                  <td className="px-4 py-3 text-right text-green-600">{log.repos_new}</td>
-                  <td className="px-4 py-3 text-right text-blue-600">{log.repos_updated}</td>
+                  <td className="px-4 py-3 text-right text-green-600">
+                    {log.repos_new}
+                  </td>
+                  <td className="px-4 py-3 text-right text-blue-600">
+                    {log.repos_updated}
+                  </td>
                   <td className="px-4 py-3 text-xs text-red-500 max-w-[200px] truncate">
                     {log.error_message || "-"}
                   </td>

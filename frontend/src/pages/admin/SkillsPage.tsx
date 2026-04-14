@@ -14,15 +14,20 @@ export function SkillsPage({ token }: Props) {
   const [page, setPage] = useState(1);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const load = useCallback((p: number, s: string) => {
-    setLoading(true);
-    adminFetchSkills(token, p, s || undefined)
-      .then(setSkills)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, [token]);
+  const load = useCallback(
+    (p: number, s: string) => {
+      setLoading(true);
+      adminFetchSkills(token, p, s || undefined)
+        .then(setSkills)
+        .catch((e) => setError(e.message))
+        .finally(() => setLoading(false));
+    },
+    [token],
+  );
 
-  useEffect(() => { load(page, search); }, [load, page, search]);
+  useEffect(() => {
+    load(page, search);
+  }, [load, page, search]);
 
   const handleSearchChange = (val: string) => {
     clearTimeout(debounceRef.current);
@@ -37,19 +42,25 @@ export function SkillsPage({ token }: Props) {
     try {
       await adminDeleteSkill(token, id);
       load(page, search);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Skills Management</h2>
+        <h2 className="text-lg font-semibold text-gray-900">
+          Skills Management
+        </h2>
         <div className="text-sm text-gray-400">{skills.length} results</div>
       </div>
 
-      {error && <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">{error}</div>}
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">
+          {error}
+        </div>
+      )}
 
       <input
         defaultValue={search}
@@ -65,20 +76,39 @@ export function SkillsPage({ token }: Props) {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Name</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Author</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Category</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Stars</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Score</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Name
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Author
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Category
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Stars
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Score
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
               {skills.map((s) => (
-                <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50">
+                <tr
+                  key={s.id}
+                  className="border-b border-gray-50 hover:bg-gray-50"
+                >
                   <td className="px-4 py-3">
-                    <div className="font-medium truncate max-w-[200px]">{s.repo_name}</div>
-                    <div className="text-xs text-gray-400 truncate">{s.repo_full_name}</div>
+                    <div className="font-medium truncate max-w-[200px]">
+                      {s.repo_name}
+                    </div>
+                    <div className="text-xs text-gray-400 truncate">
+                      {s.repo_full_name}
+                    </div>
                   </td>
                   <td className="px-4 py-3 text-gray-500">{s.author_name}</td>
                   <td className="px-4 py-3">
@@ -86,8 +116,12 @@ export function SkillsPage({ token }: Props) {
                       {s.category}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-right">{s.stars.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right font-medium">{s.score.toFixed(1)}</td>
+                  <td className="px-4 py-3 text-right">
+                    {s.stars.toLocaleString()}
+                  </td>
+                  <td className="px-4 py-3 text-right font-medium">
+                    {s.score.toFixed(1)}
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => handleDelete(s.id, s.repo_name)}

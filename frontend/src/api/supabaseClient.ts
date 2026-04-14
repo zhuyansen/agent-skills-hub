@@ -16,16 +16,43 @@ import type { Master } from "./client";
 
 // Columns to SELECT for list queries (exclude readme_content to save bandwidth)
 const SKILL_COLUMNS = [
-  "id", "repo_full_name", "repo_name", "repo_url", "description", "homepage_url",
-  "author_name", "author_avatar_url", "author_followers",
-  "stars", "forks", "open_issues", "total_issues", "total_commits",
-  "language", "category", "topics", "license",
-  "score", "star_momentum", "project_type",
-  "last_commit_at", "created_at", "last_synced", "first_seen",
-  "quality_completeness", "quality_clarity", "quality_specificity", "quality_examples",
-  "quality_agent_readiness", "quality_score",
-  "size_category", "repo_size_kb", "readme_size", "readme_structure_score",
-  "platforms", "estimated_tokens",
+  "id",
+  "repo_full_name",
+  "repo_name",
+  "repo_url",
+  "description",
+  "homepage_url",
+  "author_name",
+  "author_avatar_url",
+  "author_followers",
+  "stars",
+  "forks",
+  "open_issues",
+  "total_issues",
+  "total_commits",
+  "language",
+  "category",
+  "topics",
+  "license",
+  "score",
+  "star_momentum",
+  "project_type",
+  "last_commit_at",
+  "created_at",
+  "last_synced",
+  "first_seen",
+  "quality_completeness",
+  "quality_clarity",
+  "quality_specificity",
+  "quality_examples",
+  "quality_agent_readiness",
+  "quality_score",
+  "size_category",
+  "repo_size_kb",
+  "readme_size",
+  "readme_structure_score",
+  "platforms",
+  "estimated_tokens",
   "security_grade",
   "is_official",
 ].join(",");
@@ -36,7 +63,11 @@ function ensureSupabase() {
 }
 
 /** Simple retry wrapper for flaky network calls */
-async function withRetry<T>(fn: () => Promise<T>, retries = 1, delay = 1000): Promise<T> {
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  retries = 1,
+  delay = 1000,
+): Promise<T> {
   try {
     return await fn();
   } catch (err) {
@@ -46,7 +77,9 @@ async function withRetry<T>(fn: () => Promise<T>, retries = 1, delay = 1000): Pr
   }
 }
 
-export async function sbFetchSkills(params: SkillsQueryParams): Promise<PaginatedSkills> {
+export async function sbFetchSkills(
+  params: SkillsQueryParams,
+): Promise<PaginatedSkills> {
   const sb = ensureSupabase();
   let query = sb.from("skills").select(SKILL_COLUMNS, { count: "exact" });
 
@@ -58,8 +91,10 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
       query = query.eq("category", params.category);
     }
   }
-  if (params.size_category) query = query.eq("size_category", params.size_category);
-  if (params.platform) query = query.ilike("platforms", `%"${params.platform}"%`);
+  if (params.size_category)
+    query = query.eq("size_category", params.size_category);
+  if (params.platform)
+    query = query.ilike("platforms", `%"${params.platform}"%`);
   if (params.search) {
     const trimmed = params.search.trim();
     const words = trimmed.split(/\s+/).filter(Boolean);
@@ -68,7 +103,9 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
       query = query.textSearch("search_vector", trimmed, { type: "websearch" });
     } else {
       const pat = `%${trimmed}%`;
-      query = query.or(`repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`);
+      query = query.or(
+        `repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`,
+      );
     }
   }
 
@@ -78,11 +115,21 @@ export async function sbFetchSkills(params: SkillsQueryParams): Promise<Paginate
     const conditions: string[] = [];
     for (const tier of tiers) {
       switch (tier) {
-        case "S": conditions.push("quality_score.gte.80"); break;
-        case "A": conditions.push("and(quality_score.gte.65,quality_score.lt.80)"); break;
-        case "B": conditions.push("and(quality_score.gte.50,quality_score.lt.65)"); break;
-        case "C": conditions.push("and(quality_score.gte.35,quality_score.lt.50)"); break;
-        case "D": conditions.push("quality_score.lt.35"); break;
+        case "S":
+          conditions.push("quality_score.gte.80");
+          break;
+        case "A":
+          conditions.push("and(quality_score.gte.65,quality_score.lt.80)");
+          break;
+        case "B":
+          conditions.push("and(quality_score.gte.50,quality_score.lt.65)");
+          break;
+        case "C":
+          conditions.push("and(quality_score.gte.35,quality_score.lt.50)");
+          break;
+        case "D":
+          conditions.push("quality_score.lt.35");
+          break;
       }
     }
     if (conditions.length > 0) {
@@ -121,7 +168,9 @@ export async function sbFetchStats(): Promise<Stats> {
     if (error) throw new Error(error.message);
 
     // Also fetch categories
-    const { data: cats, error: catErr } = await sb.from("v_categories").select("*");
+    const { data: cats, error: catErr } = await sb
+      .from("v_categories")
+      .select("*");
     if (catErr) throw new Error(catErr.message);
 
     return {
@@ -188,7 +237,7 @@ export async function sbFetchTopRated(limit = 10): Promise<Skill[]> {
   const skills = (fallbackData ?? []) as unknown as Skill[];
   return skills.map((s) => ({
     ...s,
-    score: s.score && s.score > 0 ? s.score : (s as any).quality_score ?? 0,
+    score: s.score && s.score > 0 ? s.score : (s.quality_score ?? 0),
   }));
 }
 
@@ -302,7 +351,9 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
   return { ...skill, compatible_skills } as SkillDetail;
 }
 
-export async function sbFetchLanguageStats(): Promise<{ language: string; count: number }[]> {
+export async function sbFetchLanguageStats(): Promise<
+  { language: string; count: number }[]
+> {
   const sb = ensureSupabase();
   const { data, error } = await sb.from("v_language_stats").select("*");
   if (error) throw new Error(error.message);
@@ -317,7 +368,22 @@ export async function sbFetchLandingData(): Promise<LandingData> {
     const { data, error } = await sb.rpc("get_landing_data");
     if (error) throw new Error(error.message);
 
-    const d = data as any;
+    interface RpcLandingData {
+      stats?: {
+        total_skills?: number;
+        avg_score?: number;
+        last_sync_at?: string | null;
+        last_sync_status?: string | null;
+      };
+      categories?: CategoryCount[];
+      trending?: Skill[];
+      rising?: Skill[];
+      top_rated?: Skill[];
+      hall_of_fame?: Skill[];
+      recently_updated?: Skill[];
+      languages?: { language: string; count: number }[];
+    }
+    const d = data as RpcLandingData;
     return {
       stats: {
         total_skills: d.stats?.total_skills ?? 0,
@@ -341,7 +407,9 @@ export async function sbFetchLandingData(): Promise<LandingData> {
 
 export async function sbFetchNewThisWeek(limit = 10): Promise<Skill[]> {
   const sb = ensureSupabase();
-  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const sevenDaysAgo = new Date(
+    Date.now() - 7 * 24 * 60 * 60 * 1000,
+  ).toISOString();
   const { data, error } = await sb
     .from("skills")
     .select(SKILL_COLUMNS)
@@ -354,16 +422,22 @@ export async function sbFetchNewThisWeek(limit = 10): Promise<Skill[]> {
 
 // ═══ Weekly Trending History ═══
 
-export async function sbFetchTrendingWeeks(): Promise<import("../types/skill").TrendingWeek[]> {
+export async function sbFetchTrendingWeeks(): Promise<
+  import("../types/skill").TrendingWeek[]
+> {
   const sb = ensureSupabase();
   const { data, error } = await sb.rpc("get_trending_weeks");
   if (error) throw new Error(error.message);
   return (data ?? []) as import("../types/skill").TrendingWeek[];
 }
 
-export async function sbFetchTrendingHistory(weekStart: string): Promise<import("../types/skill").WeeklyTrendingEntry[]> {
+export async function sbFetchTrendingHistory(
+  weekStart: string,
+): Promise<import("../types/skill").WeeklyTrendingEntry[]> {
   const sb = ensureSupabase();
-  const { data, error } = await sb.rpc("get_trending_history", { p_week_start: weekStart });
+  const { data, error } = await sb.rpc("get_trending_history", {
+    p_week_start: weekStart,
+  });
   if (error) throw new Error(error.message);
   return (data ?? []) as import("../types/skill").WeeklyTrendingEntry[];
 }
@@ -393,11 +467,12 @@ export async function sbFetchOrgBuilders(): Promise<OrgBuilder[]> {
   const { data, error } = await sb.rpc("get_org_builders");
   if (error) throw new Error(error.message);
 
-  const orgs = (data ?? []) as any[];
+  const orgs = (data ?? []) as Partial<OrgBuilder>[];
   return orgs.map((o) => ({
-    github: o.github,
-    name: o.name,
-    avatar_url: o.avatar_url || `https://avatars.githubusercontent.com/${o.github}`,
+    github: o.github ?? "",
+    name: o.name ?? "",
+    avatar_url:
+      o.avatar_url || `https://avatars.githubusercontent.com/${o.github}`,
     repo_count: o.repo_count,
     total_stars: o.total_stars,
     top_repos: (o.top_repos || []).slice(0, 5),
@@ -447,14 +522,16 @@ export async function sbFetchMasters(): Promise<Master[]> {
   // Fetch top repos for all masters in one query
   const { data: repos } = await sb
     .from("skills")
-    .select("id,repo_name,repo_full_name,repo_url,description,stars,score,category,author_name")
+    .select(
+      "id,repo_name,repo_full_name,repo_url,description,stars,score,category,author_name",
+    )
     .in("author_name", githubNames)
     .order("stars", { ascending: false })
     .limit(100);
 
   // Group repos by author
   const reposByAuthor = new Map<string, typeof repos>();
-  for (const r of (repos ?? [])) {
+  for (const r of repos ?? []) {
     const key = r.author_name?.toLowerCase();
     if (!reposByAuthor.has(key)) reposByAuthor.set(key, []);
     reposByAuthor.get(key)!.push(r);
@@ -600,221 +677,12 @@ export async function sbFetchLastSyncAt(): Promise<string | null> {
   return data as string | null;
 }
 
-// ═══ Write operations (Supabase direct) ═══
-
-export async function sbSubmitSkill(
-  repoUrl: string,
-): Promise<{ status: string; message: string; skill_id?: number }> {
-  const sb = ensureSupabase();
-
-  // Extract owner/repo from URL
-  const match = repoUrl.match(/github\.com\/([^/]+\/[^/]+)/);
-  if (!match) {
-    return { status: "error", message: "Invalid GitHub URL" };
-  }
-  const fullName = match[1].replace(/\.git$/, "");
-
-  // Check if already in skills table
-  const { data: existing } = await sb
-    .from("skills")
-    .select("id")
-    .eq("repo_full_name", fullName)
-    .maybeSingle();
-
-  if (existing) {
-    return {
-      status: "already_tracked",
-      message: "This skill is already tracked!",
-      skill_id: existing.id,
-    };
-  }
-
-  // Check if already submitted in extra_repos (may fail if SELECT RLS is not set)
-  try {
-    const { data: submitted } = await sb
-      .from("extra_repos")
-      .select("id, status")
-      .eq("full_name", fullName)
-      .maybeSingle();
-
-    if (submitted) {
-      return {
-        status: "already_submitted",
-        message: `This repo has already been submitted (status: ${submitted.status || "pending"})`,
-      };
-    }
-  } catch {
-    // SELECT may be blocked by RLS — skip dedup check, INSERT will handle unique constraint
-  }
-
-  // Insert new submission
-  const { error } = await sb.from("extra_repos").insert({
-    full_name: fullName,
-    is_active: false,
-    status: "pending",
-    submitted_by: "community",
-  });
-
-  if (error) {
-    // Unique constraint violation = already submitted
-    if (error.code === "23505") {
-      return { status: "already_submitted", message: "This repo has already been submitted" };
-    }
-    return { status: "error", message: error.message };
-  }
-
-  return {
-    status: "submitted",
-    message: "Submitted successfully! It will be reviewed by our team.",
-  };
-}
-
-export async function sbSubscribe(
-  email: string,
-): Promise<{ status: string; message: string }> {
-  const sb = ensureSupabase();
-
-  // Use SECURITY DEFINER RPC — no direct table access needed
-  const { data, error } = await sb.rpc("subscribe", { p_email: email });
-  if (error) {
-    return { status: "error", message: error.message };
-  }
-
-  const result = data as { status?: string; token?: string; error?: string };
-
-  if (result.error) {
-    return { status: "error", message: result.error === "invalid_email" ? "Invalid email address." : result.error };
-  }
-
-  // Map RPC statuses to the UI-expected statuses
-  switch (result.status) {
-    case "already_subscribed":
-      return { status: "already", message: "You are already subscribed and verified!" };
-    case "reactivated":
-      return { status: "success", message: "Welcome back! Your subscription has been reactivated." };
-    case "pending_verification": {
-      // Trigger verification email via RPC (if configured)
-      try {
-        await sb.rpc("send_verification_email", { p_email: email, p_token: result.token });
-      } catch {
-        // Silent fail — email may be sent by cron job or admin
-      }
-      return { status: "success", message: "Please check your email and click the verification link." };
-    }
-    case "created": {
-      // Trigger verification email via RPC (if configured)
-      try {
-        await sb.rpc("send_verification_email", { p_email: email, p_token: result.token });
-      } catch {
-        // Silent fail — email will be sent by admin/backend
-      }
-      return { status: "success", message: "Please check your email and click the verification link." };
-    }
-    default:
-      return { status: "error", message: "Unexpected response." };
-  }
-}
-
-export async function sbVerifyEmail(
-  token: string,
-): Promise<{ status: string; message: string }> {
-  const sb = ensureSupabase();
-
-  // Use SECURITY DEFINER RPC — no direct table access needed
-  const { data, error } = await sb.rpc("verify_email", { p_token: token });
-  if (error) {
-    return { status: "error", message: error.message };
-  }
-
-  const result = data as { status?: string; email?: string; error?: string };
-
-  if (result.error) {
-    switch (result.error) {
-      case "invalid_token":
-        return { status: "error", message: "Invalid verification token." };
-      case "token_not_found":
-        return { status: "error", message: "Invalid or expired verification token." };
-      default:
-        return { status: "error", message: result.error };
-    }
-  }
-
-  switch (result.status) {
-    case "already_verified":
-      return { status: "already", message: "Email already verified!" };
-    case "verified":
-      return { status: "success", message: "Email verified successfully!" };
-    default:
-      return { status: "error", message: "Unexpected response." };
-  }
-}
-
-export async function sbSubmitMasterApplication(
-  github: string,
-  name: string,
-  bio: string,
-  repoUrls: string[],
-): Promise<{ status: string; message: string }> {
-  const sb = ensureSupabase();
-
-  const { error } = await sb.from("master_applications").insert({
-    github,
-    name,
-    bio,
-    repo_urls: JSON.stringify(repoUrls),
-    status: "pending",
-  });
-
-  if (error) {
-    return { status: "error", message: error.message };
-  }
-
-  return {
-    status: "submitted",
-    message: "Application submitted! We will review it soon.",
-  };
-}
-
-// ═══ Workflow Submission ═══
-
-export async function sbSubmitWorkflow(
-  name: string,
-  description: string,
-  steps: { name: string; slug: string; description: string }[],
-): Promise<{ status: string; message: string }> {
-  const sb = ensureSupabase();
-
-  const { error } = await sb.from("submitted_workflows").insert({
-    name,
-    description,
-    steps: JSON.stringify(steps),
-    submitted_by: "community",
-    status: "pending",
-  });
-
-  if (error) {
-    return { status: "error", message: error.message };
-  }
-
-  return {
-    status: "submitted",
-    message: "Workflow submitted! It will be reviewed by our team.",
-  };
-}
-
-// ═══ Admin RPC (single router for all admin operations) ═══
-
-export async function sbAdminAction<T = unknown>(
-  token: string,
-  action: string,
-  payload: Record<string, unknown> = {},
-): Promise<T> {
-  const sb = ensureSupabase();
-  const { data, error } = await sb.rpc("admin_action", {
-    admin_token: token,
-    action,
-    payload,
-  });
-  if (error) throw new Error(error.message);
-  return data as T;
-}
+// Write operations moved to ./supabaseWrite.ts
+export {
+  sbSubmitSkill,
+  sbSubscribe,
+  sbVerifyEmail,
+  sbSubmitMasterApplication,
+  sbSubmitWorkflow,
+  sbAdminAction,
+} from "./supabaseWrite";

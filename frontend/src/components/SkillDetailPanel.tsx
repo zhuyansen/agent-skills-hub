@@ -52,18 +52,39 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
         <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-5 py-4 flex items-center gap-3 z-10">
           <ScoreBadge score={data.score} size="sm" />
           <div className="flex-1 min-w-0">
-            <h2 className="font-bold text-gray-900 dark:text-gray-100 truncate">{data.repo_name}</h2>
+            <h2 className="font-bold text-gray-900 dark:text-gray-100 truncate">
+              {data.repo_name}
+            </h2>
             <div className="flex items-center gap-2 mt-0.5">
-              <img src={data.author_avatar_url} alt={data.author_name} className="w-4 h-4 rounded-full" />
-              <span className="text-xs text-gray-500 dark:text-gray-400">{data.author_name}</span>
+              <img
+                src={data.author_avatar_url}
+                alt={data.author_name}
+                loading="lazy"
+                width={16}
+                height={16}
+                className="w-4 h-4 rounded-full"
+              />
+              <span className="text-xs text-gray-500 dark:text-gray-400">
+                {data.author_name}
+              </span>
             </div>
           </div>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -71,7 +92,9 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
         <div className="px-5 py-4 space-y-6">
           {/* Description */}
           {data.description && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{data.description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              {data.description}
+            </p>
           )}
 
           {/* Metadata badges */}
@@ -86,7 +109,10 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
               </span>
             )}
             {data.size_category && data.size_category !== "unknown" && (
-              <SizeBadge sizeCategory={data.size_category} sizeKb={data.repo_size_kb} />
+              <SizeBadge
+                sizeCategory={data.size_category}
+                sizeKb={data.repo_size_kb}
+              />
             )}
           </div>
 
@@ -103,17 +129,53 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
           {/* Stats row */}
           <div className="grid grid-cols-4 gap-3">
             {[
-              { label: t("detail.stars"), value: data.stars.toLocaleString(), icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" },
-              { label: t("detail.forks"), value: data.forks.toLocaleString(), icon: "M6 3a3 3 0 00-3 3v2.6a3 3 0 001 2.24V18a3 3 0 003 3h10a3 3 0 003-3v-7.16A3 3 0 0021 8.6V6a3 3 0 00-3-3H6z" },
-              { label: t("detail.issues"), value: data.open_issues.toLocaleString(), icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-              { label: t("detail.tokens"), value: data.estimated_tokens > 0 ? `~${(data.estimated_tokens / 1000).toFixed(0)}k` : "-", icon: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" },
+              {
+                label: t("detail.stars"),
+                value: data.stars.toLocaleString(),
+                icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z",
+              },
+              {
+                label: t("detail.forks"),
+                value: data.forks.toLocaleString(),
+                icon: "M6 3a3 3 0 00-3 3v2.6a3 3 0 001 2.24V18a3 3 0 003 3h10a3 3 0 003-3v-7.16A3 3 0 0021 8.6V6a3 3 0 00-3-3H6z",
+              },
+              {
+                label: t("detail.issues"),
+                value: data.open_issues.toLocaleString(),
+                icon: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+              },
+              {
+                label: t("detail.tokens"),
+                value:
+                  data.estimated_tokens > 0
+                    ? `~${(data.estimated_tokens / 1000).toFixed(0)}k`
+                    : "-",
+                icon: "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z",
+              },
             ].map((stat) => (
-              <div key={stat.label} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center">
-                <svg className="w-4 h-4 mx-auto text-gray-400 dark:text-gray-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
+              <div
+                key={stat.label}
+                className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center"
+              >
+                <svg
+                  className="w-4 h-4 mx-auto text-gray-400 dark:text-gray-500 mb-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d={stat.icon}
+                  />
                 </svg>
-                <div className="text-sm font-bold text-gray-900 dark:text-gray-100">{stat.value}</div>
-                <div className="text-[10px] text-gray-400 dark:text-gray-500">{stat.label}</div>
+                <div className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] text-gray-400 dark:text-gray-500">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -143,15 +205,29 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
             </h4>
             <div className="space-y-2">
               {[
-                { label: t("detail.completeness"), value: data.quality_completeness },
+                {
+                  label: t("detail.completeness"),
+                  value: data.quality_completeness,
+                },
                 { label: t("detail.clarity"), value: data.quality_clarity },
-                { label: t("detail.specificity"), value: data.quality_specificity },
+                {
+                  label: t("detail.specificity"),
+                  value: data.quality_specificity,
+                },
                 { label: t("detail.examples"), value: data.quality_examples },
-                { label: t("detail.structure"), value: data.readme_structure_score },
-                { label: t("detail.agentReadiness"), value: data.quality_agent_readiness },
+                {
+                  label: t("detail.structure"),
+                  value: data.readme_structure_score,
+                },
+                {
+                  label: t("detail.agentReadiness"),
+                  value: data.quality_agent_readiness,
+                },
               ].map((dim) => (
                 <div key={dim.label} className="flex items-center gap-3">
-                  <span className="text-xs text-gray-500 dark:text-gray-400 w-28">{dim.label}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 w-28">
+                    {dim.label}
+                  </span>
                   <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-blue-500 rounded-full transition-all"
@@ -170,9 +246,12 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
           {loading ? (
             <div className="text-center py-4">
               <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">{t("detail.loading")}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                {t("detail.loading")}
+              </p>
             </div>
-          ) : detail?.compatible_skills && detail.compatible_skills.length > 0 ? (
+          ) : detail?.compatible_skills &&
+            detail.compatible_skills.length > 0 ? (
             <div>
               <h4 className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
                 {t("detail.compatibleSkills")}
@@ -183,7 +262,9 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
                     key={cs.skill_id}
                     onClick={() => onNavigateSkill?.(cs.skill_id)}
                     className={`flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg ${
-                      onNavigateSkill ? "cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors" : ""
+                      onNavigateSkill
+                        ? "cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                        : ""
                     }`}
                   >
                     <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">
@@ -193,10 +274,13 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
                       <span className="text-sm font-medium text-gray-900 dark:text-gray-100 block truncate">
                         {cs.skill_name}
                       </span>
-                      <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">{cs.reason}</span>
+                      <span className="text-xs text-gray-400 dark:text-gray-500 block truncate">
+                        {cs.reason}
+                      </span>
                     </div>
                     <span className="text-xs text-green-600 dark:text-green-400 font-medium whitespace-nowrap">
-                      {(cs.compatibility_score * 100).toFixed(0)}% {t("detail.match")}
+                      {(cs.compatibility_score * 100).toFixed(0)}%{" "}
+                      {t("detail.match")}
                     </span>
                   </div>
                 ))}

@@ -22,14 +22,33 @@ export function CompareBar() {
               key={item.id}
               className="flex items-center gap-1.5 px-2.5 py-1.5 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-full text-xs shrink-0"
             >
-              <img src={item.author_avatar_url} alt={item.repo_full_name.split("/")[0]} className="w-4 h-4 rounded-full" />
-              <span className="text-blue-700 dark:text-blue-300 font-medium max-w-24 truncate">{item.repo_name}</span>
+              <img
+                src={item.author_avatar_url}
+                alt={item.repo_full_name.split("/")[0]}
+                loading="lazy"
+                width={16}
+                height={16}
+                className="w-4 h-4 rounded-full"
+              />
+              <span className="text-blue-700 dark:text-blue-300 font-medium max-w-24 truncate">
+                {item.repo_name}
+              </span>
               <button
                 onClick={() => removeFromCompare(item.id)}
                 className="ml-0.5 text-blue-400 dark:text-blue-500 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer"
               >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>

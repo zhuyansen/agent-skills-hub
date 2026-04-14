@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { submitSkill, submitMasterApplication, submitWorkflow } from "../api/client";
+import {
+  submitSkill,
+  submitMasterApplication,
+  submitWorkflow,
+} from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
 import type { TransKey } from "../i18n/translations";
 
@@ -24,8 +28,18 @@ export function SubmitSkill() {
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
             </svg>
             {t("submit.tabSkill")}
           </button>
@@ -37,8 +51,18 @@ export function SubmitSkill() {
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
             </svg>
             {t("submit.tabMaster")}
           </button>
@@ -50,8 +74,18 @@ export function SubmitSkill() {
                 : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             }`}
           >
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
             </svg>
             {t("submit.tabWorkflow")}
           </button>
@@ -70,10 +104,20 @@ export function SubmitSkill() {
 }
 
 /* ── Skill Submission Form ── */
-function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: ReturnType<typeof useNavigate> }) {
+function SkillForm({
+  t,
+  navigate,
+}: {
+  t: (key: TransKey) => string;
+  navigate: ReturnType<typeof useNavigate>;
+}) {
   const [url, setUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<{ status: string; message: string; skill_id?: number } | null>(null);
+  const [result, setResult] = useState<{
+    status: string;
+    message: string;
+    skill_id?: number;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,8 +133,11 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
       if (res.status === "submitted") {
         setUrl("");
       }
-    } catch (err: any) {
-      setResult({ status: "error", message: err.message || "Submission failed" });
+    } catch (err: unknown) {
+      setResult({
+        status: "error",
+        message: err instanceof Error ? err.message : "Submission failed",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -100,13 +147,27 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
     <>
       <div className="flex items-start gap-3 mb-4">
         <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          <svg
+            className="w-5 h-5 text-blue-600 dark:text-blue-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.title")}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.subtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+            {t("submit.title")}
+          </h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+            {t("submit.subtitle")}
+          </p>
         </div>
       </div>
 
@@ -114,7 +175,10 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
         <input
           type="text"
           value={url}
-          onChange={(e) => { setUrl(e.target.value); setResult(null); }}
+          onChange={(e) => {
+            setUrl(e.target.value);
+            setResult(null);
+          }}
           placeholder="https://github.com/owner/repo"
           className="flex-1 px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-label="GitHub repository URL"
@@ -132,18 +196,30 @@ function SkillForm({ t, navigate }: { t: (key: TransKey) => string; navigate: Re
       </form>
 
       {result && (
-        <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
-          result.status === "submitted"
-            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
-            : result.status === "already_tracked"
-            ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-100 dark:border-blue-800"
-            : result.status === "already_submitted"
-            ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800"
-            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
-        }`}>
+        <div
+          className={`mt-3 px-3 py-2 rounded-lg text-sm ${
+            result.status === "submitted"
+              ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
+              : result.status === "already_tracked"
+                ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-100 dark:border-blue-800"
+                : result.status === "already_submitted"
+                  ? "bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800"
+                  : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
+          }`}
+        >
           {result.status === "submitted" && (
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           )}
           {result.message}
@@ -160,7 +236,10 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
   const [bio, setBio] = useState("");
   const [repoUrls, setRepoUrls] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<{ status: string; message: string } | null>(null);
+  const [result, setResult] = useState<{
+    status: string;
+    message: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -172,7 +251,12 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
         .split("\n")
         .map((s) => s.trim())
         .filter(Boolean);
-      const res = await submitMasterApplication(github.trim(), name.trim(), bio.trim(), urls);
+      const res = await submitMasterApplication(
+        github.trim(),
+        name.trim(),
+        bio.trim(),
+        urls,
+      );
       setResult(res);
       if (res.status === "submitted") {
         setGithub("");
@@ -180,8 +264,11 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
         setBio("");
         setRepoUrls("");
       }
-    } catch (err: any) {
-      setResult({ status: "error", message: err.message || "Submission failed" });
+    } catch (err: unknown) {
+      setResult({
+        status: "error",
+        message: err instanceof Error ? err.message : "Submission failed",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -191,13 +278,27 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
     <>
       <div className="flex items-start gap-3 mb-4">
         <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <svg
+            className="w-5 h-5 text-indigo-600 dark:text-indigo-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+            />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.masterTitle")}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.masterSubtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+            {t("submit.masterTitle")}
+          </h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+            {t("submit.masterSubtitle")}
+          </p>
         </div>
       </div>
 
@@ -206,7 +307,10 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
           <input
             type="text"
             value={github}
-            onChange={(e) => { setGithub(e.target.value); setResult(null); }}
+            onChange={(e) => {
+              setGithub(e.target.value);
+              setResult(null);
+            }}
             placeholder={t("submit.masterGithub")}
             required
             className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -215,7 +319,10 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
           <input
             type="text"
             value={name}
-            onChange={(e) => { setName(e.target.value); setResult(null); }}
+            onChange={(e) => {
+              setName(e.target.value);
+              setResult(null);
+            }}
             placeholder={t("submit.masterName")}
             required
             className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -251,14 +358,26 @@ function MasterForm({ t }: { t: (key: TransKey) => string }) {
       </form>
 
       {result && (
-        <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
-          result.status === "submitted"
-            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
-            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
-        }`}>
+        <div
+          className={`mt-3 px-3 py-2 rounded-lg text-sm ${
+            result.status === "submitted"
+              ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
+              : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
+          }`}
+        >
           {result.status === "submitted" && (
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           )}
           {result.message}
@@ -283,10 +402,19 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
     { name: "", slug: "", description: "" },
   ]);
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState<{ status: string; message: string } | null>(null);
+  const [result, setResult] = useState<{
+    status: string;
+    message: string;
+  } | null>(null);
 
-  const updateStep = (idx: number, field: keyof WorkflowStep, value: string) => {
-    setSteps((prev) => prev.map((s, i) => (i === idx ? { ...s, [field]: value } : s)));
+  const updateStep = (
+    idx: number,
+    field: keyof WorkflowStep,
+    value: string,
+  ) => {
+    setSteps((prev) =>
+      prev.map((s, i) => (i === idx ? { ...s, [field]: value } : s)),
+    );
   };
 
   const addStep = () => {
@@ -309,7 +437,11 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
     setSubmitting(true);
     setResult(null);
     try {
-      const res = await submitWorkflow(name.trim(), description.trim(), validSteps);
+      const res = await submitWorkflow(
+        name.trim(),
+        description.trim(),
+        validSteps,
+      );
       setResult(res);
       if (res.status === "submitted") {
         setName("");
@@ -319,26 +451,45 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
           { name: "", slug: "", description: "" },
         ]);
       }
-    } catch (err: any) {
-      setResult({ status: "error", message: err.message || "Submission failed" });
+    } catch (err: unknown) {
+      setResult({
+        status: "error",
+        message: err.message || "Submission failed",
+      });
     } finally {
       setSubmitting(false);
     }
   };
 
-  const validStepCount = steps.filter((s) => s.name.trim() && s.slug.trim()).length;
+  const validStepCount = steps.filter(
+    (s) => s.name.trim() && s.slug.trim(),
+  ).length;
 
   return (
     <>
       <div className="flex items-start gap-3 mb-4">
         <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <svg
+            className="w-5 h-5 text-purple-600 dark:text-purple-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{t("submit.workflowTitle")}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t("submit.workflowSubtitle")}</p>
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+            {t("submit.workflowTitle")}
+          </h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+            {t("submit.workflowSubtitle")}
+          </p>
         </div>
       </div>
 
@@ -347,7 +498,10 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
           <input
             type="text"
             value={name}
-            onChange={(e) => { setName(e.target.value); setResult(null); }}
+            onChange={(e) => {
+              setName(e.target.value);
+              setResult(null);
+            }}
             placeholder={t("submit.workflowName")}
             required
             className="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -363,7 +517,9 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
 
         {/* Workflow steps */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">{t("submit.workflowSteps")}</label>
+          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+            {t("submit.workflowSteps")}
+          </label>
           {steps.map((step, idx) => (
             <div key={idx} className="flex items-start gap-2">
               <span className="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-[10px] font-bold shrink-0 mt-2.5">
@@ -387,7 +543,9 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
                 <input
                   type="text"
                   value={step.description}
-                  onChange={(e) => updateStep(idx, "description", e.target.value)}
+                  onChange={(e) =>
+                    updateStep(idx, "description", e.target.value)
+                  }
                   placeholder={t("submit.workflowStepDesc")}
                   className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
@@ -398,8 +556,18 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
                   onClick={() => removeStep(idx)}
                   className="mt-2 text-gray-400 dark:text-gray-500 hover:text-red-500 transition-colors cursor-pointer"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               )}
@@ -429,14 +597,26 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
       </form>
 
       {result && (
-        <div className={`mt-3 px-3 py-2 rounded-lg text-sm ${
-          result.status === "submitted"
-            ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
-            : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
-        }`}>
+        <div
+          className={`mt-3 px-3 py-2 rounded-lg text-sm ${
+            result.status === "submitted"
+              ? "bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800"
+              : "bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800"
+          }`}
+        >
           {result.status === "submitted" && (
-            <svg className="w-4 h-4 inline -mt-0.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 inline -mt-0.5 mr-1.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           )}
           {result.message}

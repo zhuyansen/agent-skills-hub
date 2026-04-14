@@ -22,7 +22,9 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const [showWechat, setShowWechat] = useState(false);
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
   const [nlEmail, setNlEmail] = useState("");
-  const [nlStatus, setNlStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [nlStatus, setNlStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [nlMessage, setNlMessage] = useState("");
   const nlRef = useRef<HTMLDivElement>(null);
   const subNavRef = useRef<HTMLDivElement>(null);
@@ -42,7 +44,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
     el.addEventListener("scroll", check, { passive: true });
     const ro = new ResizeObserver(check);
     ro.observe(el);
-    return () => { el.removeEventListener("scroll", check); ro.disconnect(); };
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
   }, [tab]);
 
   // Close newsletter popup on Escape
@@ -61,7 +66,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
       const timer = setTimeout(() => {
         setShowNewsletterPopup(false);
         // Reset after close animation
-        setTimeout(() => { setNlStatus("idle"); setNlEmail(""); }, 300);
+        setTimeout(() => {
+          setNlStatus("idle");
+          setNlEmail("");
+        }, 300);
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -81,9 +89,9 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
       } else {
         throw new Error(res.message);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setNlStatus("error");
-      setNlMessage(err.message || t("newsletter.error"));
+      setNlMessage(err instanceof Error ? err.message : t("newsletter.error"));
     }
   };
 
@@ -94,8 +102,31 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
           <div className="min-w-0">
             <Link to="/" className="flex items-center gap-2 group">
               <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" strokeWidth="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                <span className="truncate group-hover:text-blue-600 transition-colors">Agent Skills Hub</span>
+                <svg
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect
+                    x="3"
+                    y="11"
+                    width="18"
+                    height="10"
+                    rx="2"
+                    strokeWidth="1.5"
+                  />
+                  <circle cx="9" cy="16" r="1.5" fill="currentColor" />
+                  <circle cx="15" cy="16" r="1.5" fill="currentColor" />
+                  <path
+                    d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <span className="truncate group-hover:text-blue-600 transition-colors">
+                  Agent Skills Hub
+                </span>
               </span>
             </Link>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block">
@@ -105,7 +136,8 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <span className="text-sm text-gray-400 dark:text-gray-500 items-center gap-1.5 hidden lg:flex">
               <span className="w-2 h-2 rounded-full bg-green-400" />
-              {t("header.lastUpdated")} {stats ? timeAgo(stats.last_sync_at) : "..."}
+              {t("header.lastUpdated")}{" "}
+              {stats ? timeAgo(stats.last_sync_at) : "..."}
             </span>
             {/* GitHub repo link */}
             <a
@@ -143,7 +175,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               aria-label="RSS Feed"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795 0 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.742-7.099-15.783-15.839-15.82zm0-8.18v4.819c12.376.051 22.41 10.087 22.461 22.419h4.539c-.062-14.896-12.149-27.005-27-27.238z"/>
+                <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795 0 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.742-7.099-15.783-15.839-15.82zm0-8.18v4.819c12.376.051 22.41 10.087 22.461 22.419h4.539c-.062-14.896-12.149-27.005-27-27.238z" />
               </svg>
             </a>
             {/* WeChat contact button */}
@@ -154,8 +186,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 title={t("header.wechat")}
                 aria-label="WeChat"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05a6.13 6.13 0 01-.247-1.722c0-3.647 3.39-6.605 7.57-6.605.63 0 1.246.066 1.84.178C17.99 4.504 13.773 2.188 8.691 2.188zm-2.6 4.408c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.017 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm5.44 0c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.016 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm4.294 4.287c-3.65 0-6.614 2.528-6.614 5.646 0 3.118 2.963 5.646 6.614 5.646a7.8 7.8 0 002.222-.325.636.636 0 01.526.074l1.403.823a.24.24 0 00.122.04c.118 0 .213-.097.213-.215 0-.053-.021-.104-.035-.155l-.288-1.093a.432.432 0 01.156-.488c1.35-.995 2.21-2.466 2.21-4.107 0-3.118-2.963-5.646-6.614-5.646h.085zm-2.834 2.94c.411 0 .744.334.744.745a.745.745 0 11-.744-.745zm5.297 0c.411 0 .744.334.744.745a.745.745 0 11-.744-.745z"/>
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05a6.13 6.13 0 01-.247-1.722c0-3.647 3.39-6.605 7.57-6.605.63 0 1.246.066 1.84.178C17.99 4.504 13.773 2.188 8.691 2.188zm-2.6 4.408c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.017 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm5.44 0c.56 0 1.016.455 1.016 1.016 0 .56-.456 1.016-1.016 1.016-.56 0-1.016-.456-1.016-1.016 0-.56.456-1.016 1.016-1.016zm4.294 4.287c-3.65 0-6.614 2.528-6.614 5.646 0 3.118 2.963 5.646 6.614 5.646a7.8 7.8 0 002.222-.325.636.636 0 01.526.074l1.403.823a.24.24 0 00.122.04c.118 0 .213-.097.213-.215 0-.053-.021-.104-.035-.155l-.288-1.093a.432.432 0 01.156-.488c1.35-.995 2.21-2.466 2.21-4.107 0-3.118-2.963-5.646-6.614-5.646h.085zm-2.834 2.94c.411 0 .744.334.744.745a.745.745 0 11-.744-.745zm5.297 0c.411 0 .744.334.744.745a.745.745 0 11-.744-.745z" />
                 </svg>
               </button>
               {/* WeChat QR code popup */}
@@ -169,13 +205,25 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                   {/* Popup card */}
                   <div className="absolute right-0 top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 w-64 animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("header.wechatScan")}</span>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                        {t("header.wechatScan")}
+                      </span>
                       <button
                         onClick={() => setShowWechat(false)}
                         className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -184,7 +232,9 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                       alt="WeChat QR Code"
                       className="w-full rounded-lg border border-gray-100 dark:border-gray-700"
                     />
-                    <p className="text-xs text-gray-400 text-center mt-2">{t("header.wechatTip")}</p>
+                    <p className="text-xs text-gray-400 text-center mt-2">
+                      {t("header.wechatTip")}
+                    </p>
                   </div>
                 </>
               )}
@@ -197,23 +247,50 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 onClick={() => setShowNewsletterPopup(!showNewsletterPopup)}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium cursor-pointer"
               >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
                 </svg>
-                <span className="hidden sm:inline">{t("header.newsletter")}</span>
+                <span className="hidden sm:inline">
+                  {t("header.newsletter")}
+                </span>
               </button>
               {showNewsletterPopup && (
                 <>
-                  <div className="fixed inset-0 z-40" onClick={() => setShowNewsletterPopup(false)} />
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setShowNewsletterPopup(false)}
+                  />
                   <div className="absolute right-0 top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-5 w-80 animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t("newsletter.title")}</h4>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                        {t("newsletter.title")}
+                      </h4>
                       <button
                         onClick={() => setShowNewsletterPopup(false)}
                         className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -221,21 +298,40 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     {nlStatus === "success" ? (
                       <div className="text-center py-4">
                         <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-2">
-                          <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          <svg
+                            className="w-6 h-6 text-green-600 dark:text-green-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M5 13l4 4L19 7"
+                            />
                           </svg>
                         </div>
-                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t("newsletter.successTitle")}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t("newsletter.checkEmail")}</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                          {t("newsletter.successTitle")}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          {t("newsletter.checkEmail")}
+                        </p>
                       </div>
                     ) : (
                       <>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{t("newsletter.subtitle")}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                          {t("newsletter.subtitle")}
+                        </p>
                         <form onSubmit={handleNlSubmit} className="space-y-2">
                           <input
                             type="email"
                             value={nlEmail}
-                            onChange={(e) => { setNlEmail(e.target.value); if (nlStatus !== "idle") setNlStatus("idle"); }}
+                            onChange={(e) => {
+                              setNlEmail(e.target.value);
+                              if (nlStatus !== "idle") setNlStatus("idle");
+                            }}
                             placeholder={t("newsletter.placeholder")}
                             required
                             className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -253,10 +349,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                           </button>
                         </form>
                         {nlStatus === "error" && (
-                          <p className="text-xs text-red-500 mt-2">{nlMessage}</p>
+                          <p className="text-xs text-red-500 mt-2">
+                            {nlMessage}
+                          </p>
                         )}
                         <p className="text-center text-[11px] text-gray-400 mt-3">
-                          {t("newsletter.socialProof").replace("{count}", "500")}
+                          {t("newsletter.frequency")}
                         </p>
                       </>
                     )}
@@ -279,7 +377,19 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 }`}
               >
-                <svg className="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+                <svg
+                  className="w-4 h-4 inline -mt-0.5 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
+                  />
+                </svg>
                 {t("tab.overview")}
               </button>
               <button
@@ -290,7 +400,19 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 }`}
               >
-                <svg className="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+                <svg
+                  className="w-4 h-4 inline -mt-0.5 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
                 {t("tab.explore")}
               </button>
             </div>
@@ -300,7 +422,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 {navScroll.left && (
                   <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
                 )}
-                <div ref={subNavRef} className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide">
+                <div
+                  ref={subNavRef}
+                  className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide"
+                >
                   {[
                     { id: "trending", label: t("nav.trending") },
                     { id: "masters", label: t("nav.masters") },
@@ -317,12 +442,30 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                         const el = document.getElementById(sec.id);
                         if (el) {
                           // First scroll triggers LazySection rendering via IntersectionObserver
-                          el.scrollIntoView({ behavior: "smooth", block: "start" });
+                          el.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                           // Retry after lazy content renders & layout stabilizes
                           setTimeout(() => {
-                            el.scrollIntoView({ behavior: "smooth", block: "start" });
-                            el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
-                            setTimeout(() => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"), 2000);
+                            el.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                            el.classList.add(
+                              "ring-2",
+                              "ring-indigo-300",
+                              "rounded-xl",
+                            );
+                            setTimeout(
+                              () =>
+                                el.classList.remove(
+                                  "ring-2",
+                                  "ring-indigo-300",
+                                  "rounded-xl",
+                                ),
+                              2000,
+                            );
                           }, 400);
                         }
                       }}
@@ -336,8 +479,16 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     to="/analyzer"
                     className="px-2.5 py-1 text-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 font-medium flex items-center gap-1"
                   >
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 1a1 1 0 011 1v.586l5.707 2.853A1 1 0 0117 6.414V10a7 7 0 01-7 7 7 7 0 01-7-7V6.414a1 1 0 01.293-.975L9 2.586V2a1 1 0 011-1z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 1a1 1 0 011 1v.586l5.707 2.853A1 1 0 0117 6.414V10a7 7 0 01-7 7 7 7 0 01-7-7V6.414a1 1 0 01.293-.975L9 2.586V2a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     {t("nav.analyzer")}
                   </Link>
@@ -350,15 +501,30 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
           </div>
         ) : breadcrumb && breadcrumb.length > 0 ? (
           <div className="flex items-center gap-2 text-sm -mb-3 sm:-mb-4 pb-2 border-b border-gray-100 dark:border-gray-800">
-            <Link to="/" className="text-gray-400 hover:text-blue-600 transition-colors">
+            <Link
+              to="/"
+              className="text-gray-400 hover:text-blue-600 transition-colors"
+            >
               {t("tab.overview")}
             </Link>
             {breadcrumb.map((item, i) => (
               <span key={i} className="flex items-center gap-2">
-                <svg className="w-3 h-3 text-gray-300 dark:text-gray-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-3 h-3 text-gray-300 dark:text-gray-600 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
-                <span className="text-gray-700 dark:text-gray-200 font-medium truncate">{item.label}</span>
+                <span className="text-gray-700 dark:text-gray-200 font-medium truncate">
+                  {item.label}
+                </span>
               </span>
             ))}
           </div>

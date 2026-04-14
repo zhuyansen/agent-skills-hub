@@ -11,6 +11,7 @@ import { SecurityBadge } from "../components/SecurityBadge";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { FavoriteButton } from "../components/FavoriteButton";
+import { ShareButtons } from "../components/ShareButtons";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ComboRecommendation } from "../components/ComboRecommendation";
@@ -184,8 +185,12 @@ export function SkillDetailPage() {
                 >
                   {detail.author_name}
                 </a>
-                <div className="ml-auto">
+                <div className="ml-auto flex items-center gap-2">
                   <FavoriteButton skillId={detail.id} />
+                  <ShareButtons
+                    url={`https://agentskillshub.top/skill/${detail.repo_full_name}/`}
+                    title={`${detail.repo_name} — ${detail.category} by ${detail.author_name}`}
+                  />
                 </div>
               </div>
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">

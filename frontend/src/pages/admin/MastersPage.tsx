@@ -27,11 +27,24 @@ export function MastersPage({ token }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ github: "", name: "", x_handle: "", bio: "", tags: "", github_aliases: "" });
+  const [form, setForm] = useState({
+    github: "",
+    name: "",
+    x_handle: "",
+    bio: "",
+    tags: "",
+    github_aliases: "",
+  });
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editForm, setEditForm] = useState<EditFormState>({
-    name: "", x_handle: "", bio: "", tags: "", github_aliases: "",
-    x_followers: "", x_posts_count: "", x_notes: "",
+    name: "",
+    x_handle: "",
+    bio: "",
+    tags: "",
+    github_aliases: "",
+    x_followers: "",
+    x_posts_count: "",
+    x_notes: "",
   });
 
   const load = useCallback(() => {
@@ -42,7 +55,9 @@ export function MastersPage({ token }: Props) {
       .finally(() => setLoading(false));
   }, [token]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleCreate = async () => {
     if (!form.github || !form.name) return;
@@ -63,11 +78,18 @@ export function MastersPage({ token }: Props) {
         github_aliases: aliases.length ? aliases : undefined,
         tags: tagList.length ? tagList : undefined,
       });
-      setForm({ github: "", name: "", x_handle: "", bio: "", tags: "", github_aliases: "" });
+      setForm({
+        github: "",
+        name: "",
+        x_handle: "",
+        bio: "",
+        tags: "",
+        github_aliases: "",
+      });
       setShowForm(false);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -76,8 +98,8 @@ export function MastersPage({ token }: Props) {
     try {
       await adminDeleteMaster(token, id);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -129,8 +151,8 @@ export function MastersPage({ token }: Props) {
       });
       setEditingId(null);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -149,7 +171,12 @@ export function MastersPage({ token }: Props) {
       {error && (
         <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg flex items-center justify-between">
           {error}
-          <button onClick={() => setError("")} className="text-red-500 hover:text-red-700 ml-2">✕</button>
+          <button
+            onClick={() => setError("")}
+            className="text-red-500 hover:text-red-700 ml-2"
+          >
+            ✕
+          </button>
         </div>
       )}
 
@@ -188,7 +215,9 @@ export function MastersPage({ token }: Props) {
             />
             <input
               value={form.github_aliases}
-              onChange={(e) => setForm({ ...form, github_aliases: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, github_aliases: e.target.value })
+              }
               placeholder="GitHub aliases (comma separated)"
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
             />
@@ -207,116 +236,184 @@ export function MastersPage({ token }: Props) {
       ) : (
         <>
           {/* Edit panel (shows above table when editing) */}
-          {editingId !== null && (() => {
-            const m = masters.find((x) => x.id === editingId);
-            if (!m) return null;
-            return (
-              <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-blue-800">
-                    Editing: {m.github}
-                  </h3>
-                  <div className="space-x-2">
-                    <button onClick={handleSaveEdit} className="px-3 py-1.5 text-xs bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
-                      Save
-                    </button>
-                    <button onClick={() => setEditingId(null)} className="px-3 py-1.5 text-xs bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                      Cancel
-                    </button>
+          {editingId !== null &&
+            (() => {
+              const m = masters.find((x) => x.id === editingId);
+              if (!m) return null;
+              return (
+                <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-semibold text-blue-800">
+                      Editing: {m.github}
+                    </h3>
+                    <div className="space-x-2">
+                      <button
+                        onClick={handleSaveEdit}
+                        className="px-3 py-1.5 text-xs bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={() => setEditingId(null)}
+                        className="px-3 py-1.5 text-xs bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        Name
+                      </label>
+                      <input
+                        value={editForm.name}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, name: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        X Handle
+                      </label>
+                      <input
+                        value={editForm.x_handle}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, x_handle: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        X Followers
+                      </label>
+                      <input
+                        value={editForm.x_followers}
+                        onChange={(e) =>
+                          setEditForm({
+                            ...editForm,
+                            x_followers: e.target.value,
+                          })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                        type="number"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        X Posts
+                      </label>
+                      <input
+                        value={editForm.x_posts_count}
+                        onChange={(e) =>
+                          setEditForm({
+                            ...editForm,
+                            x_posts_count: e.target.value,
+                          })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                        type="number"
+                      />
+                    </div>
+                    <div className="lg:col-span-2">
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        Bio
+                      </label>
+                      <input
+                        value={editForm.bio}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, bio: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        Tags (comma separated)
+                      </label>
+                      <input
+                        value={editForm.tags}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, tags: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        GitHub Aliases (comma sep)
+                      </label>
+                      <input
+                        value={editForm.github_aliases}
+                        onChange={(e) =>
+                          setEditForm({
+                            ...editForm,
+                            github_aliases: e.target.value,
+                          })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                      />
+                    </div>
+                    <div className="lg:col-span-4">
+                      <label className="text-xs text-gray-500 mb-1 block">
+                        Notes
+                      </label>
+                      <input
+                        value={editForm.x_notes}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, x_notes: e.target.value })
+                        }
+                        className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
+                        placeholder="Admin notes..."
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">Name</label>
-                    <input
-                      value={editForm.name}
-                      onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">X Handle</label>
-                    <input
-                      value={editForm.x_handle}
-                      onChange={(e) => setEditForm({ ...editForm, x_handle: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">X Followers</label>
-                    <input
-                      value={editForm.x_followers}
-                      onChange={(e) => setEditForm({ ...editForm, x_followers: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                      type="number"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">X Posts</label>
-                    <input
-                      value={editForm.x_posts_count}
-                      onChange={(e) => setEditForm({ ...editForm, x_posts_count: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                      type="number"
-                    />
-                  </div>
-                  <div className="lg:col-span-2">
-                    <label className="text-xs text-gray-500 mb-1 block">Bio</label>
-                    <input
-                      value={editForm.bio}
-                      onChange={(e) => setEditForm({ ...editForm, bio: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">Tags (comma separated)</label>
-                    <input
-                      value={editForm.tags}
-                      onChange={(e) => setEditForm({ ...editForm, tags: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-gray-500 mb-1 block">GitHub Aliases (comma sep)</label>
-                    <input
-                      value={editForm.github_aliases}
-                      onChange={(e) => setEditForm({ ...editForm, github_aliases: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                    />
-                  </div>
-                  <div className="lg:col-span-4">
-                    <label className="text-xs text-gray-500 mb-1 block">Notes</label>
-                    <input
-                      value={editForm.x_notes}
-                      onChange={(e) => setEditForm({ ...editForm, x_notes: e.target.value })}
-                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
-                      placeholder="Admin notes..."
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
+              );
+            })()}
 
           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 border-b border-gray-100">
                 <tr>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">GitHub</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">Name</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">X Handle</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">Followers</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">Posts</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">Tags</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500">Active</th>
-                  <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    GitHub
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Name
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    X Handle
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Followers
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Posts
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Tags
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Active
+                  </th>
+                  <th className="text-right px-4 py-3 font-medium text-gray-500">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {masters.map((m) => {
                   const tags = (() => {
-                    try { const p = JSON.parse(m.tags || "[]"); return Array.isArray(p) ? p : []; }
-                    catch { return []; }
+                    try {
+                      const p = JSON.parse(m.tags || "[]");
+                      return Array.isArray(p) ? p : [];
+                    } catch {
+                      return [];
+                    }
                   })();
                   return (
                     <tr
@@ -327,33 +424,55 @@ export function MastersPage({ token }: Props) {
                       <td className="px-4 py-3">{m.name}</td>
                       <td className="px-4 py-3 text-gray-500">
                         {m.x_handle ? (
-                          <a href={`https://x.com/${m.x_handle}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                          <a
+                            href={`https://x.com/${m.x_handle}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                          >
                             @{m.x_handle}
                           </a>
-                        ) : "-"}
+                        ) : (
+                          "-"
+                        )}
                       </td>
-                      <td className="px-4 py-3 text-gray-500">{m.x_followers?.toLocaleString() || "0"}</td>
-                      <td className="px-4 py-3 text-gray-500">{m.x_posts_count?.toLocaleString() || "0"}</td>
+                      <td className="px-4 py-3 text-gray-500">
+                        {m.x_followers?.toLocaleString() || "0"}
+                      </td>
+                      <td className="px-4 py-3 text-gray-500">
+                        {m.x_posts_count?.toLocaleString() || "0"}
+                      </td>
                       <td className="px-4 py-3">
                         <div className="flex flex-wrap gap-1">
                           {tags.slice(0, 3).map((tag: string) => (
-                            <span key={tag} className="px-1.5 py-0.5 text-[10px] bg-gray-100 text-gray-600 rounded">
+                            <span
+                              key={tag}
+                              className="px-1.5 py-0.5 text-[10px] bg-gray-100 text-gray-600 rounded"
+                            >
                               {tag}
                             </span>
                           ))}
                           {tags.length > 3 && (
-                            <span className="text-[10px] text-gray-400">+{tags.length - 3}</span>
+                            <span className="text-[10px] text-gray-400">
+                              +{tags.length - 3}
+                            </span>
                           )}
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`px-2 py-0.5 text-xs rounded-full ${m.is_active ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+                        <span
+                          className={`px-2 py-0.5 text-xs rounded-full ${m.is_active ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
+                        >
                           {m.is_active ? "Yes" : "No"}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-right space-x-2 whitespace-nowrap">
                         <button
-                          onClick={() => editingId === m.id ? setEditingId(null) : startEdit(m)}
+                          onClick={() =>
+                            editingId === m.id
+                              ? setEditingId(null)
+                              : startEdit(m)
+                          }
                           className={`text-xs ${editingId === m.id ? "text-amber-600 hover:text-amber-800" : "text-blue-500 hover:text-blue-700"}`}
                         >
                           {editingId === m.id ? "Editing..." : "Edit"}

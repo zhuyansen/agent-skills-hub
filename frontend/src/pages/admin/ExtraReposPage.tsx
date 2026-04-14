@@ -23,7 +23,9 @@ export function ExtraReposPage({ token }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [newRepo, setNewRepo] = useState("");
-  const [filter, setFilter] = useState<"all" | "pending" | "approved" | "rejected">("all");
+  const [filter, setFilter] = useState<
+    "all" | "pending" | "approved" | "rejected"
+  >("all");
 
   const load = useCallback(() => {
     setLoading(true);
@@ -33,7 +35,9 @@ export function ExtraReposPage({ token }: Props) {
       .finally(() => setLoading(false));
   }, [token]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleAdd = async () => {
     if (!newRepo.includes("/")) return;
@@ -41,8 +45,8 @@ export function ExtraReposPage({ token }: Props) {
       await adminCreateExtraRepo(token, newRepo.trim());
       setNewRepo("");
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -50,8 +54,8 @@ export function ExtraReposPage({ token }: Props) {
     try {
       await adminApproveExtraRepo(token, id);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -59,8 +63,8 @@ export function ExtraReposPage({ token }: Props) {
     try {
       await adminRejectExtraRepo(token, id);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
@@ -69,18 +73,21 @@ export function ExtraReposPage({ token }: Props) {
     try {
       await adminDeleteExtraRepo(token, id);
       load();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Unknown error");
     }
   };
 
-  const filtered = filter === "all" ? repos : repos.filter((r) => r.status === filter);
+  const filtered =
+    filter === "all" ? repos : repos.filter((r) => r.status === filter);
   const pendingCount = repos.filter((r) => r.status === "pending").length;
 
   return (
     <div>
       <div className="flex items-center gap-3 mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Submissions & Extra Repos</h2>
+        <h2 className="text-lg font-semibold text-gray-900">
+          Submissions & Extra Repos
+        </h2>
         {pendingCount > 0 && (
           <span className="px-2 py-0.5 text-xs font-bold bg-yellow-100 text-yellow-700 rounded-full">
             {pendingCount} pending
@@ -88,7 +95,11 @@ export function ExtraReposPage({ token }: Props) {
         )}
       </div>
 
-      {error && <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">{error}</div>}
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-lg">
+          {error}
+        </div>
+      )}
 
       {/* Add new repo */}
       <div className="flex gap-2 mb-4">
@@ -114,7 +125,9 @@ export function ExtraReposPage({ token }: Props) {
             key={f}
             onClick={() => setFilter(f)}
             className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-              filter === f ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+              filter === f
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-500 hover:text-gray-700"
             }`}
           >
             {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -130,22 +143,36 @@ export function ExtraReposPage({ token }: Props) {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Full Name</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Status</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-500">Submitted</th>
-                <th className="text-right px-4 py-3 font-medium text-gray-500">Actions</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Full Name
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Status
+                </th>
+                <th className="text-left px-4 py-3 font-medium text-gray-500">
+                  Submitted
+                </th>
+                <th className="text-right px-4 py-3 font-medium text-gray-500">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-gray-400">
+                  <td
+                    colSpan={4}
+                    className="px-4 py-8 text-center text-gray-400"
+                  >
                     No submissions found
                   </td>
                 </tr>
               )}
               {filtered.map((r) => (
-                <tr key={r.id} className="border-b border-gray-50 hover:bg-gray-50">
+                <tr
+                  key={r.id}
+                  className="border-b border-gray-50 hover:bg-gray-50"
+                >
                   <td className="px-4 py-3">
                     <a
                       href={`https://github.com/${r.full_name}`}
@@ -157,7 +184,9 @@ export function ExtraReposPage({ token }: Props) {
                     </a>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${statusBadge[r.status] || statusBadge.pending}`}>
+                    <span
+                      className={`px-2 py-0.5 text-xs font-medium rounded-full border ${statusBadge[r.status] || statusBadge.pending}`}
+                    >
                       {r.status}
                     </span>
                   </td>

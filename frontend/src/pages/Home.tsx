@@ -1,16 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkills } from "../api/client";
 import { CategoryFilter } from "../components/CategoryFilter";
-import { DashboardStats } from "../components/DashboardStats";
+
+const DashboardStats = lazy(() =>
+  import("../components/DashboardStats").then((m) => ({
+    default: m.DashboardStats,
+  })),
+);
 import { HeroSection } from "../components/HeroSection";
 import { LazySection } from "../components/LazySection";
 import { HallOfFame } from "../components/HallOfFame";
 import { RecentlyUpdated } from "../components/RecentlyUpdated";
 import { Pagination } from "../components/Pagination";
 import { SearchBar } from "../components/SearchBar";
-import { SkeletonCards, SkeletonTrending, SkeletonList, SkeletonHallOfFame } from "../components/SkeletonCards";
+import {
+  SkeletonCards,
+  SkeletonTrending,
+  SkeletonList,
+  SkeletonHallOfFame,
+} from "../components/SkeletonCards";
 import { SkillCard } from "../components/SkillCard";
 import { SkillDetailPanel } from "../components/SkillDetailPanel";
 import { SkillTable } from "../components/SkillTable";
@@ -60,7 +70,9 @@ export function Home() {
   const [subcategory, setSubcategory] = useState<string | null>(null);
 
   // Clear subcategory when category changes
-  useEffect(() => { setSubcategory(null); }, [params.category]);
+  useEffect(() => {
+    setSubcategory(null);
+  }, [params.category]);
 
   // Fetch explore data when params change & tab is explore
   useEffect(() => {
@@ -78,7 +90,9 @@ export function Home() {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [params, tab]);
 
   // Skill detail panel (for overview sections)
@@ -88,22 +102,41 @@ export function Home() {
     window.open(skill.repo_url, "_blank", "noopener");
   }, []);
 
-  const handleShowDetail = useCallback((skill: Skill) => {
-    // Navigate using slug (owner/repo) for SEO-friendly URLs
-    navigate(`/skill/${skill.repo_full_name}/`);
-  }, [navigate]);
+  const handleShowDetail = useCallback(
+    (skill: Skill) => {
+      // Navigate using slug (owner/repo) for SEO-friendly URLs
+      navigate(`/skill/${skill.repo_full_name}/`);
+    },
+    [navigate],
+  );
 
-  const handleNavigateSkill = useCallback(async (skillId: number) => {
-    navigate(`/skill/${skillId}/`);
-  }, [navigate]);
+  const handleNavigateSkill = useCallback(
+    async (skillId: number) => {
+      navigate(`/skill/${skillId}/`);
+    },
+    [navigate],
+  );
+
+  const totalSkills =
+    landingData?.stats?.total_skills ?? stats?.total_skills ?? 54000;
+  const skillCount = `${Math.floor(totalSkills / 1000).toLocaleString()},000+`;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
-        <title>Agent Skills Hub - Discover Agent Skills, Tools & MCP Servers</title>
-        <meta name="description" content="Discover, compare and explore 7800+ open-source Agent Skills, AI tools, MCP servers and Claude skills." />
-        <meta property="og:title" content="Agent Skills Hub - Discover Agent Skills, Tools & MCP Servers" />
-        <meta property="og:description" content="Discover, compare and explore 7800+ open-source Agent Skills, AI tools, MCP servers and Claude skills." />
+        <title>Agent Skills Hub — Best AI Agent Tools & MCP Servers</title>
+        <meta
+          name="description"
+          content={`Discover ${skillCount} open-source AI agent tools, MCP servers, and developer automation skills. Quality-scored and compared, auto-updated every 8 hours.`}
+        />
+        <meta
+          property="og:title"
+          content="Agent Skills Hub — Best AI Agent Tools & MCP Servers"
+        />
+        <meta
+          property="og:description"
+          content={`Discover ${skillCount} open-source AI agent tools, MCP servers, and developer automation skills. Quality-scored and compared, auto-updated every 8 hours.`}
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -123,8 +156,16 @@ export function Home() {
               }}
             />
             <EcosystemNav
-              onSelectCategory={(category) => { updateParams({ category }); setTab("explore"); }}
-              onSelectLayer={(layer) => { updateParams({ category: getCategoriesForLayer(layer).join(",") }); setTab("explore"); }}
+              onSelectCategory={(category) => {
+                updateParams({ category });
+                setTab("explore");
+              }}
+              onSelectLayer={(layer) => {
+                updateParams({
+                  category: getCategoriesForLayer(layer).join(","),
+                });
+                setTab("explore");
+              }}
             />
             <ScenarioTagCloud />
             <ProblemSection />
@@ -194,11 +235,17 @@ export function Home() {
               </LazySection>
             </div>
             <LazySection>
-              <DashboardStats
-                stats={landingData?.stats ?? stats}
-                initialLanguages={landingData?.languages}
-                initialTrending={landingData?.trending}
-              />
+              <Suspense
+                fallback={
+                  <div className="h-64 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />
+                }
+              >
+                <DashboardStats
+                  stats={landingData?.stats ?? stats}
+                  initialLanguages={landingData?.languages}
+                  initialTrending={landingData?.trending}
+                />
+              </Suspense>
             </LazySection>
             <LazySection>
               <InstallGuide />
@@ -240,7 +287,9 @@ export function Home() {
                   sortBy={params.sort_by}
                   sortOrder={params.sort_order}
                   onSortByChange={(sort_by) => updateParams({ sort_by })}
-                  onSortOrderChange={(sort_order) => updateParams({ sort_order })}
+                  onSortOrderChange={(sort_order) =>
+                    updateParams({ sort_order })
+                  }
                 />
                 <ViewToggle view={view} onChange={setView} />
               </div>
@@ -256,11 +305,18 @@ export function Home() {
                 />
               </div>
               <div className="flex flex-wrap items-center gap-2 mb-6">
-                <span className="text-xs text-gray-400 dark:text-gray-500">{t("explore.size")}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {t("explore.size")}
+                </span>
                 {["micro", "small", "medium", "large"].map((s) => (
                   <button
                     key={s}
-                    onClick={() => updateParams({ size_category: params.size_category === s ? undefined : s })}
+                    onClick={() =>
+                      updateParams({
+                        size_category:
+                          params.size_category === s ? undefined : s,
+                      })
+                    }
                     className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                       params.size_category === s
                         ? "bg-blue-600 text-white border-blue-600"
@@ -270,21 +326,31 @@ export function Home() {
                     {s.charAt(0).toUpperCase() + s.slice(1)}
                   </button>
                 ))}
-                <span className="text-xs text-gray-300 dark:text-gray-600 mx-1">|</span>
-                <span className="text-xs text-gray-400 dark:text-gray-500">{t("explore.platform")}</span>
-                {["python", "node", "go", "docker", "claude", "mcp"].map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => updateParams({ platform: params.platform === p ? undefined : p })}
-                    className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
-                      params.platform === p
-                        ? "bg-blue-600 text-white border-blue-600"
-                        : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
-                    }`}
-                  >
-                    {p.charAt(0).toUpperCase() + p.slice(1)}
-                  </button>
-                ))}
+                <span className="text-xs text-gray-300 dark:text-gray-600 mx-1">
+                  |
+                </span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {t("explore.platform")}
+                </span>
+                {["python", "node", "go", "docker", "claude", "mcp"].map(
+                  (p) => (
+                    <button
+                      key={p}
+                      onClick={() =>
+                        updateParams({
+                          platform: params.platform === p ? undefined : p,
+                        })
+                      }
+                      className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
+                        params.platform === p
+                          ? "bg-blue-600 text-white border-blue-600"
+                          : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-300"
+                      }`}
+                    >
+                      {p.charAt(0).toUpperCase() + p.slice(1)}
+                    </button>
+                  ),
+                )}
               </div>
             </div>
 
@@ -321,40 +387,71 @@ export function Home() {
                 {loading && <SkeletonCards count={6} />}
 
                 {/* Results */}
-                {!loading && data && data.items.length > 0 && (() => {
-                  const filteredItems = subcategory
-                    ? data.items.filter((s) => inferSubcategory(s) === subcategory)
-                    : data.items;
-                  return (
-                  <>
-                    <div className="text-sm text-gray-400 dark:text-gray-500 mb-3">
-                      {t("explore.showing")} {subcategory ? `${filteredItems.length} / ` : ""}{(data.page - 1) * data.page_size + 1}-
-                      {Math.min(data.page * data.page_size, data.total)} {t("explore.of")}{" "}
-                      {data.total.toLocaleString()} {t("explore.skills")}
-                    </div>
-                    {view === "card" ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 stagger-children">
-                        {filteredItems.map((skill) => (
-                          <SkillCard key={skill.id} skill={skill} onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
-                        ))}
-                      </div>
-                    ) : (
-                      <SkillTable skills={filteredItems} onSelect={handleOpenRepo} onShowDetail={handleShowDetail} />
-                    )}
-                    <Pagination
-                      page={data.page}
-                      totalPages={data.total_pages}
-                      onPageChange={setPage}
-                    />
-                  </>
-                  );
-                })()}
+                {!loading &&
+                  data &&
+                  data.items.length > 0 &&
+                  (() => {
+                    const filteredItems = subcategory
+                      ? data.items.filter(
+                          (s) => inferSubcategory(s) === subcategory,
+                        )
+                      : data.items;
+                    return (
+                      <>
+                        <div className="text-sm text-gray-400 dark:text-gray-500 mb-3">
+                          {t("explore.showing")}{" "}
+                          {subcategory ? `${filteredItems.length} / ` : ""}
+                          {(data.page - 1) * data.page_size + 1}-
+                          {Math.min(data.page * data.page_size, data.total)}{" "}
+                          {t("explore.of")} {data.total.toLocaleString()}{" "}
+                          {t("explore.skills")}
+                        </div>
+                        {view === "card" ? (
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 stagger-children">
+                            {filteredItems.map((skill) => (
+                              <SkillCard
+                                key={skill.id}
+                                skill={skill}
+                                onSelect={handleOpenRepo}
+                                onShowDetail={handleShowDetail}
+                              />
+                            ))}
+                          </div>
+                        ) : (
+                          <SkillTable
+                            skills={filteredItems}
+                            onSelect={handleOpenRepo}
+                            onShowDetail={handleShowDetail}
+                          />
+                        )}
+                        <Pagination
+                          page={data.page}
+                          totalPages={data.total_pages}
+                          onPageChange={setPage}
+                        />
+                      </>
+                    );
+                  })()}
 
                 {/* Empty State */}
                 {!loading && data && data.items.length === 0 && (
                   <div className="text-center py-16">
-                    <svg className="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-                    <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">{t("explore.noResults")}</h3>
+                    <svg
+                      className="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                      />
+                    </svg>
+                    <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
+                      {t("explore.noResults")}
+                    </h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                       {t("explore.noResultsHint")}
                     </p>
