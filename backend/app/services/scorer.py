@@ -73,25 +73,28 @@ class ScoringEngine:
         "javascript": 0.0, "python": 0.0,
     }
 
-    def score_all(self, db: Session, batch_size: int = 500) -> int:
-        """Re-score every skill with batch commits to avoid PgBouncer timeouts.
+    def score_all(self, db: Session, batch_size: int = 500,
+                  changed_repo_names: list[str] | None = None) -> int:
+        """Re-score skills with batch commits to avoid PgBouncer timeouts.
 
-        Phases: quality analysis → platform inference → token estimation → scoring.
-        Each phase commits in batches of `batch_size` rows to keep transactions short.
+        If changed_repo_names is given, only run quality/platform/token analysis
+        on those skills (incremental mode). Scoring normalization still uses all
+        skills for correct min/max calculations.
         """
-        # Run quality analysis first (populates quality_* fields)
+        # Run quality/platform/token only on changed skills (or all if first run)
         analyzer = QualityAnalyzer()
-        analyzer.analyze_all(db, batch_size=batch_size)
+        analyzer.analyze_all(db, batch_size=batch_size,
+                             repo_names=changed_repo_names)
 
-        # Infer platforms
         inferrer = PlatformInferrer()
-        inferrer.infer_all(db, batch_size=batch_size)
+        inferrer.infer_all(db, batch_size=batch_size,
+                           repo_names=changed_repo_names)
 
-        # Estimate tokens
         estimator = TokenEstimator()
-        estimator.estimate_all(db, batch_size=batch_size)
+        estimator.estimate_all(db, batch_size=batch_size,
+                               repo_names=changed_repo_names)
 
-        # Now compute overall scores
+        # Scoring normalization needs ALL skills for correct min/max
         skills: List[Skill] = db.query(Skill).all()
         if not skills:
             return 0

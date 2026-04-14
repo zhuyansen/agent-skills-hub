@@ -322,6 +322,20 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
     sync_log_id_ref = sync_log.id
 
+    # Clean up stuck "running" sync logs from previous failed runs
+    stuck_logs = (
+        db.query(SyncLog)
+        .filter(SyncLog.status == "running", SyncLog.id != sync_log_id_ref)
+        .all()
+    )
+    if stuck_logs:
+        for sl in stuck_logs:
+            sl.status = "failed"
+            sl.error_message = "Marked as failed: stuck in running state"
+            sl.finished_at = datetime.now(timezone.utc)
+        db.commit()
+        logger.info("Cleaned up %d stuck sync logs", len(stuck_logs))
+
     try:
         all_repos: dict[str, dict] = {}
         owner_cache: dict[str, int] = {}
@@ -643,8 +657,13 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         db.close()
         db = SessionLocal()
 
+        # Incremental scoring: only analyze quality/platform/tokens for
+        # skills touched in this sync (new + updated), not all 54K+.
+        # This reduces scoring time from ~90 min to ~10 min.
+        changed_names = [r["repo_full_name"] for r in cleaned]
+        logger.info("Scoring %d changed skills (incremental mode)", len(changed_names))
         scoring_engine = ScoringEngine()
-        scoring_engine.score_all(db)
+        scoring_engine.score_all(db, changed_repo_names=changed_names)
 
         # Refresh DB connection before composability
         try:

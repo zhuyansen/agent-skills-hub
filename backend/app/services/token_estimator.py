@@ -33,13 +33,21 @@ class TokenEstimator:
         "Shell": 0.05,
     }
 
-    def estimate_all(self, db: Session, batch_size: int = 500) -> int:
-        skills = db.query(Skill).all()
+    def estimate_all(self, db: Session, batch_size: int = 500,
+                     repo_names: list[str] | None = None) -> int:
+        """Estimate tokens for skills. If repo_names given, only those."""
+        if repo_names:
+            skills = (db.query(Skill)
+                      .filter(Skill.repo_full_name.in_(repo_names))
+                      .all())
+        else:
+            skills = db.query(Skill).all()
         for i, skill in enumerate(skills):
             skill.estimated_tokens = self._estimate(skill)
             if (i + 1) % batch_size == 0:
                 db.commit()
         db.commit()
+        logger.info("Token estimation: %d skills", len(skills))
         return len(skills)
 
     def _estimate(self, skill: Skill) -> int:

@@ -32,13 +32,21 @@ class QualityAnalyzer:
     9. Security Awareness (9%) - Permission docs, sandboxing, trust boundaries
     """
 
-    def analyze_all(self, db: Session, batch_size: int = 500) -> int:
-        skills = db.query(Skill).all()
+    def analyze_all(self, db: Session, batch_size: int = 500,
+                    repo_names: list[str] | None = None) -> int:
+        """Analyze quality for skills. If repo_names given, only those."""
+        if repo_names:
+            skills = (db.query(Skill)
+                      .filter(Skill.repo_full_name.in_(repo_names))
+                      .all())
+        else:
+            skills = db.query(Skill).all()
         for i, skill in enumerate(skills):
             self._analyze(skill)
             if (i + 1) % batch_size == 0:
                 db.commit()
         db.commit()
+        logger.info("Quality analysis: %d skills", len(skills))
         return len(skills)
 
     # Section headings that indicate good README structure
