@@ -114,10 +114,12 @@ async function main() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  // Split by tier
+  // Split by tier — prioritize crawl budget for higher-value pages
   const topSkills = indexedSkills.filter((s) => s.stars >= 100);
   const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
-  const restSkills = indexedSkills.filter((s) => s.stars < 50);
+  // Only include 30+ star pages in sitemap to conserve crawl budget
+  // (pages with 20-29 stars still get generated but aren't submitted to Google)
+  const restSkills = indexedSkills.filter((s) => s.stars >= 30 && s.stars < 50);
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -125,12 +127,6 @@ async function main() {
     <loc>${SITE}/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>${today}</lastmod>
-  </url>`,
-    `  <url>
-    <loc>${SITE}/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
     <lastmod>${today}</lastmod>
   </url>`,
     `  <url>

@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block query parameter URLs from indexing (SPA search/filter states)
+Disallow: /*?search=
+Disallow: /*?tab=
+Disallow: /*?page=
+Disallow: /*?sort=
+
 Sitemap: https://agentskillshub.top/sitemap.xml
