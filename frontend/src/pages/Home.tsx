@@ -29,6 +29,8 @@ import { SkillWorkflows } from "../components/SkillWorkflows";
 import { PlatformRecommendations } from "../components/PlatformRecommendations";
 import { SortControls } from "../components/SortControls";
 import { SkillsMasters } from "../components/SkillsMasters";
+import { fetchMasters, fetchOrgBuilders } from "../api/client";
+import type { Master, OrgBuilder } from "../api/client";
 import { TopRatedSection } from "../components/TopRatedSection";
 import { TrendingSection } from "../components/TrendingSection";
 import { ViewToggle } from "../components/ViewToggle";
@@ -62,6 +64,41 @@ export function Home() {
   const { stats, categories } = useStats();
   const { data: landingData, loading: landingLoading } = useLandingData();
   const [view, setView] = useState<"card" | "table">("card");
+
+  // Prefetch Masters data eagerly (don't wait for LazySection)
+  const [prefetchedMasters, setPrefetchedMasters] = useState<
+    Master[] | undefined
+  >();
+  const [prefetchedOrgs, setPrefetchedOrgs] = useState<
+    OrgBuilder[] | undefined
+  >();
+  useEffect(() => {
+    let cancelled = false;
+    fetchMasters()
+      .then((data) => {
+        if (!cancelled) {
+          const cleaned = data
+            .map((m) => ({
+              ...m,
+              top_repos: (m.top_repos || []).filter((r) => r.stars > 0),
+            }))
+            .filter(
+              (m) => m.total_stars > 0 || m.x_followers > 0 || !m.discovered,
+            );
+          setPrefetchedMasters(cleaned);
+        }
+      })
+      .catch(() => {});
+    fetchOrgBuilders()
+      .then((data) => {
+        if (!cancelled)
+          setPrefetchedOrgs(data.filter((o) => o.total_stars > 0));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Explore tab data
   const [data, setData] = useState<PaginatedSkills | null>(null);
@@ -217,7 +254,10 @@ export function Home() {
             </div>
             <div id="masters" className="scroll-mt-44">
               <LazySection>
-                <SkillsMasters />
+                <SkillsMasters
+                  prefetchedMasters={prefetchedMasters}
+                  prefetchedOrgs={prefetchedOrgs}
+                />
               </LazySection>
             </div>
             <div id="newsletter" className="scroll-mt-44">
