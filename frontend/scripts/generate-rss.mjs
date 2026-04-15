@@ -114,6 +114,5 @@ async function main() {
 }
 
 main().catch((e) => {
-  console.error("RSS generation failed:", e);
-  process.exit(1);
+  console.warn("⚠️  RSS generation failed (non-fatal):", e.message || e);
 });
