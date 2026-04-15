@@ -473,8 +473,8 @@ export async function sbFetchOrgBuilders(): Promise<OrgBuilder[]> {
     name: o.name ?? "",
     avatar_url:
       o.avatar_url || `https://avatars.githubusercontent.com/${o.github}`,
-    repo_count: o.repo_count,
-    total_stars: o.total_stars,
+    repo_count: o.repo_count ?? 0,
+    total_stars: o.total_stars ?? 0,
     top_repos: (o.top_repos || []).slice(0, 5),
   }));
 }

@@ -454,7 +454,7 @@ function WorkflowForm({ t }: { t: (key: TransKey) => string }) {
     } catch (err: unknown) {
       setResult({
         status: "error",
-        message: err.message || "Submission failed",
+        message: err instanceof Error ? err.message : "Submission failed",
       });
     } finally {
       setSubmitting(false);
