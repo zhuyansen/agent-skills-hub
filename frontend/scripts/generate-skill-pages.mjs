@@ -17,7 +17,7 @@ import { join } from "path";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray,
-  extractAssetTags, shouldIndex, fetchAllSkills,
+  extractAssetTags, shouldIndex, fetchAllSkills, MIN_STARS_FOR_PAGE,
 } from "./shared-utils.mjs";
 
 async function fetchAllCompositions() {
@@ -77,22 +77,22 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const platformsList = parseJsonArray(platforms);
   const keywords = [repo_name, author_name, catLabel, ...topicsList.slice(0, 5), "Agent Skills", "GitHub"].join(", ");
 
-  // Compatible skills internal links
-  const compLinks = compositions.slice(0, 5).map((c) => {
+  // Compatible skills internal links (only to indexed pages)
+  const compLinks = compositions.slice(0, 8).map((c) => {
     const target = skillById.get(c.compatible_skill_id);
-    if (!target) return null;
+    if (!target || !shouldIndex(target)) return null;
     return { name: target.repo_name, slug: target.repo_full_name, score: c.compatibility_score, reason: c.reason };
-  }).filter(Boolean);
+  }).filter(Boolean).slice(0, 5);
 
-  // Same-category links (top 10, excluding self)
+  // Same-category links (top 10, excluding self, only indexed pages)
   const sameCatSkills = (categoryIndex.get(category) || [])
-    .filter((s) => s.repo_full_name !== repo_full_name)
+    .filter((s) => s.repo_full_name !== repo_full_name && shouldIndex(s))
     .slice(0, 10);
 
-  // Same-language links (top 5, excluding self)
+  // Same-language links (top 5, excluding self, only indexed pages)
   const sameLangSkills = language
     ? (languageIndex.get(language) || [])
-      .filter((s) => s.repo_full_name !== repo_full_name)
+      .filter((s) => s.repo_full_name !== repo_full_name && shouldIndex(s))
       .slice(0, 5)
     : [];
 
@@ -536,9 +536,9 @@ async function main() {
       continue;
     }
 
-    // Phase 2.1: Only generate pages for skills worth crawling (stars >= 20 or indexed)
+    // Phase 2.1: Only generate pages for skills worth crawling (stars >= MIN_STARS_FOR_PAGE)
     const indexed = shouldIndex(skill);
-    if (!indexed && skill.stars < 20) {
+    if (skill.stars < MIN_STARS_FOR_PAGE) {
       skipped++;
       continue;
     }
