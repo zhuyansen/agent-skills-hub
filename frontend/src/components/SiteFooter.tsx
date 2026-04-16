@@ -73,7 +73,7 @@ export function SiteFooter() {
                 />
               </svg>
               <span className="text-white font-bold text-sm">
-                Agent Skills Hub
+                AgentSkillsHub
               </span>
             </Link>
             <p className="text-xs text-gray-500 leading-relaxed">
@@ -264,7 +264,7 @@ export function SiteFooter() {
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
           <span>
-            &copy; {new Date().getFullYear()} Agent Skills Hub.{" "}
+            &copy; {new Date().getFullYear()} AgentSkillsHub.{" "}
             {lang === "zh" ? "保留所有权利" : "All rights reserved"}.
           </span>
           <span className="flex items-center gap-3">

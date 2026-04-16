@@ -274,7 +274,7 @@ export function AnalyzerPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
         <title>
-          {isZh ? "安全分析器" : "Security Analyzer"} — Agent Skills Hub
+          {isZh ? "安全分析器" : "Security Analyzer"} — AgentSkillsHub
         </title>
         <meta
           name="description"

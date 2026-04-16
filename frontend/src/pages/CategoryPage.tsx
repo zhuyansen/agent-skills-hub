@@ -57,8 +57,8 @@ export function CategoryPage() {
     [navigate],
   );
 
-  const title = `Best ${catLabel} Tools - Open Source Agent Skills | Agent Skills Hub`;
-  const description = `Discover the top open-source ${catLabel} tools. Browse by stars, quality, and compatibility on Agent Skills Hub.`;
+  const title = `Best ${catLabel} Tools - Open Source Agent Skills | AgentSkillsHub`;
+  const description = `Discover the top open-source ${catLabel} tools. Browse by stars, quality, and compatibility on AgentSkillsHub.`;
 
   return (
     <>

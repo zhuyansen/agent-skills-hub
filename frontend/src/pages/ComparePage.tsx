@@ -191,7 +191,7 @@ export function ComparePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>{`Compare: ${skills.map((s) => s.repo_name).join(" vs ")} - Agent Skills Hub`}</title>
+        <title>{`Compare: ${skills.map((s) => s.repo_name).join(" vs ")} - AgentSkillsHub`}</title>
       </Helmet>
 
       <SiteHeader breadcrumb={[{ label: t("compare.title") }]} />

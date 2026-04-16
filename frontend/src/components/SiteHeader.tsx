@@ -125,7 +125,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                   />
                 </svg>
                 <span className="truncate group-hover:text-blue-600 transition-colors">
-                  Agent Skills Hub
+                  AgentSkillsHub
                 </span>
               </span>
             </Link>
