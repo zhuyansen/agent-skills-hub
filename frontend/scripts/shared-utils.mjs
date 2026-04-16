@@ -96,13 +96,11 @@ export function extractAssetTags(html) {
 /** Decide if a page should be indexed */
 export function shouldIndex(skill) {
   if (skill.stars >= 50) return true;
-  if (skill.stars >= 30 && skill.readme_content && skill.readme_content.length > 100) return true;
-  if (skill.stars >= 30 && skill.description && skill.description.length > 80) return true;
   return false;
 }
 
 /** Minimum stars to generate a static page at all */
-export const MIN_STARS_FOR_PAGE = 30;
+export const MIN_STARS_FOR_PAGE = 50;
 
 /** Fetch all skills from Supabase (paginated) */
 export async function fetchAllSkills() {

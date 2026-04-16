@@ -3,8 +3,8 @@
  *
  * Changes from V1:
  *   - Sitemap index with split sub-sitemaps (top/mid/standard/categories)
- *   - Only includes indexed pages (stars >= 50, or stars >= 20 with content)
- *   - Excludes noindex pages to match generate-skill-pages.mjs logic
+ *   - Only includes indexed pages (stars >= 50)
+ *   - Excludes low-star pages to conserve crawl budget
  *
  * Output:
  *   public/sitemap.xml           — sitemap index
@@ -12,7 +12,6 @@
  *   public/sitemap-categories.xml — category pages
  *   public/sitemap-top.xml       — stars >= 100
  *   public/sitemap-mid.xml       — stars 50-99
- *   public/sitemap-rest.xml      — stars 20-49 (with content)
  *
  * Run: node scripts/generate-sitemap.mjs
  */
@@ -36,11 +35,9 @@ function getPriority(stars) {
 }
 
 /** Unified indexing logic — matches generate-skill-pages.mjs shouldIndex().
- *  Pages meeting these criteria get indexed (no noindex meta) AND submitted in sitemap. */
+ *  Only 50+ star pages get indexed and submitted in sitemap. */
 function shouldIndex(skill) {
   if (skill.stars >= 50) return true;
-  if (skill.stars >= 20 && skill.readme_size && skill.readme_size > 100) return true;
-  if (skill.stars >= 20 && skill.description && skill.description.length > 80) return true;
   return false;
 }
 
@@ -117,9 +114,6 @@ async function main() {
   // Split by tier — prioritize crawl budget for higher-value pages
   const topSkills = indexedSkills.filter((s) => s.stars >= 100);
   const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
-  // Only include 30+ star pages in sitemap to conserve crawl budget
-  // (pages with 20-29 stars still get generated but aren't submitted to Google)
-  const restSkills = indexedSkills.filter((s) => s.stars >= 30 && s.stars < 50);
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -172,12 +166,7 @@ async function main() {
   writeFileSync("dist/sitemap-mid.xml", wrapUrlset(midEntries));
   console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
 
-  // 5. sitemap-rest.xml (stars 20-49 with good README/description — newly indexed)
-  const restEntries = buildUrlEntries(restSkills);
-  writeFileSync("dist/sitemap-rest.xml", wrapUrlset(restEntries));
-  console.log(`sitemap-rest.xml: ${restSkills.length} URLs (stars 20-49, quality qualified)`);
-
-  // 6. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
+  // 5. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
   let scenarioCount = 0;
   try {
     const scenarioSlugs = readdirSync("dist/best");
@@ -196,7 +185,7 @@ async function main() {
     console.log("sitemap-scenarios.xml: skipped (no dist/best/ directory)");
   }
 
-  // 7. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
+  // 6. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
   let comparisonCount = 0;
   try {
     const compareSlugs = readdirSync("dist/compare");
@@ -222,13 +211,12 @@ async function main() {
     console.log("sitemap-comparisons.xml: skipped (no dist/compare/ directory)");
   }
 
-  // 8. sitemap.xml (index) — all tiers of indexed skills
+  // 7. sitemap.xml (index) — all tiers of indexed skills
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
     "sitemap-top.xml",
     "sitemap-mid.xml",
-    "sitemap-rest.xml",
   ];
   if (scenarioCount > 0) {
     sitemapFiles.push("sitemap-scenarios.xml");
@@ -241,7 +229,7 @@ async function main() {
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
   const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + rest ${restSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount}, excluded ${noindexCount} low-quality pages)`);
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);
