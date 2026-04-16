@@ -1,6 +1,6 @@
-# Agent Skills Hub
+# AgentSkillsHub
 
-> Discover, evaluate, and compare 6,000+ open-source Agent Skills, MCP servers, and AI tools.
+> Discover, evaluate, and compare 55,000+ open-source Agent Skills, MCP servers, and AI tools.
 
 🌐 **Live**: [agentskillshub.top](https://agentskillshub.top) · 📰 [Newsletter](https://agentskillshub.top/#newsletter) · 𝕏 [Follow](https://x.com/GoSailGlobal)
 
