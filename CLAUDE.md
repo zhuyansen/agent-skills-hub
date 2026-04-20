@@ -2,6 +2,46 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Architecture Decisions (Non-negotiable)
+
+These are locked-in decisions from past session postmortems. Do NOT deviate without explicit user approval.
+
+1. **Data persistence**: Always use Supabase (production) or local Postgres (dev) for any multi-user data. **NEVER use localStorage as the primary data layer** for features that involve more than one user or cross-device sync. localStorage is only acceptable for per-device UI preferences (theme, language, collapsed sidebars).
+2. **Language**: TypeScript strict mode. No `any` types — use `unknown` + type guards or proper generics.
+3. **Frontend framework**: React 19 + React Router 7 + Vite. Do not introduce Next.js or other meta-frameworks here — the Hub is a pure SPA with build-time SEO page generation.
+4. **Styling**: Tailwind CSS 4 with `@custom-variant dark (&:where(.dark, .dark *))` for dark mode. No CSS-in-JS libraries.
+5. **Deployment**: GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`). Never introduce a new hosting platform without reviewing the domain + SSL + CDN setup first.
+
+## UI & Visual Work
+
+- After every visual change, take a screenshot (via preview_screenshot) and verify against user intent before moving on.
+- Do NOT change colors, spacing, typography, or theme values unless the user explicitly asks. "Fix this bug" never means "redesign the palette".
+- Use hex codes, not adjectives. If the user says "a bit darker", ask for a specific hex before guessing.
+- When in doubt, preview_inspect the element for computed styles rather than eyeballing a screenshot.
+
+## Tool Installation & CLI Usage
+
+Before installing or using any CLI tool, first verify in a sub-agent or quick search:
+1. Does the tool exist on npm/pip/crates.io and is it actively maintained (commit in last 90 days)?
+2. What exactly can it do — and can it NOT do (e.g., search-only vs. booking; read-only vs. write)?
+3. What are the authentication requirements (API key, OAuth, cookie, manual QR login)?
+4. Are there any known platform constraints (macOS SIP, Windows-only, requires sudo)?
+
+State these findings upfront before the user invests time. Do not assume capability.
+
+## Task Agents Pattern
+
+For open-ended research, tool verification, or parallel exploration, spawn a sub-agent via the Agent tool instead of doing it inline:
+
+- Tool capability verification: "Verify tool X exists, list its actual capabilities, flag any gaps."
+- Multi-source research: "Compare 3 alternatives and return a decision matrix."
+- Codebase discovery: "Find how feature X is implemented across the repo."
+
+This keeps the main conversation clean and catches capability gaps before you commit to an approach. See `~/.claude/skills/newsite/SKILL.md` for the standardized web-project workflow.
+
+---
+
+
 ## Build & Dev Commands
 
 ```bash
