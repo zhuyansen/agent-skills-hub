@@ -173,10 +173,26 @@ async function main() {
   writeFileSync("dist/sitemap-top.xml", wrapUrlset(topEntries));
   console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 100)`);
 
-  // 4. sitemap-mid.xml (stars 50-99)
-  const midEntries = buildUrlEntries(midSkills);
-  writeFileSync("dist/sitemap-mid.xml", wrapUrlset(midEntries));
-  console.log(`sitemap-mid.xml: ${midSkills.length} URLs (stars 50-99)`);
+  // Clean up any stale sitemap-mid.xml from previous builds so Google stops
+  // seeing it. (GitHub Pages serves whatever is in dist/; orphan files persist.)
+  try {
+    const { unlinkSync, existsSync } = await import("fs");
+    if (existsSync("dist/sitemap-mid.xml")) {
+      unlinkSync("dist/sitemap-mid.xml");
+      console.log("  (removed stale dist/sitemap-mid.xml from previous build)");
+    }
+  } catch (e) {
+    // non-fatal
+  }
+
+  // NOTE: sitemap-mid.xml (stars 50-99) is intentionally NOT generated.
+  // Decision 2026-04-21: Google had ~1,500 "discovered-not-indexed" pages in this
+  // tier competing for crawl budget with 4,000+ high-star pages. Removing mid
+  // tier from sitemap lets Google focus on stars >= 100. Pages with 50-99 stars
+  // are still generated (MIN_STARS_FOR_PAGE = 50) and reachable via internal
+  // links + category pages, so users still find them; Google just isn't pushed
+  // to crawl them via sitemap. Revisit in 4-6 weeks.
+  console.log(`sitemap-mid.xml: SKIPPED (${midSkills.length} URLs intentionally excluded, stars 50-99)`);
 
   // 5. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
   let scenarioCount = 0;
@@ -223,12 +239,12 @@ async function main() {
     console.log("sitemap-comparisons.xml: skipped (no dist/compare/ directory)");
   }
 
-  // 7. sitemap.xml (index) — all tiers of indexed skills
+  // 7. sitemap.xml (index) — only top-tier to conserve crawl budget
   const sitemapFiles = [
     "sitemap-static.xml",
     "sitemap-categories.xml",
     "sitemap-top.xml",
-    "sitemap-mid.xml",
+    // "sitemap-mid.xml" intentionally excluded — see comment above
   ];
   if (scenarioCount > 0) {
     sitemapFiles.push("sitemap-scenarios.xml");
