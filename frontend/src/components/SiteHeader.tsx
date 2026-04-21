@@ -134,6 +134,29 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             </p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Commercialization nav links — desktop only */}
+            <Link
+              to="/verified-creator/"
+              className="hidden md:inline-flex items-center gap-1 px-2.5 py-1 text-sm text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 rounded-lg transition-colors font-medium"
+              title="Verified Creator Program"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4zm-1.4 14.6L6 12l1.4-1.4 3.2 3.2 6.2-6.2L18.2 9l-7.6 7.6z" />
+              </svg>
+              <span>Creators</span>
+            </Link>
+            <Link
+              to="/business/"
+              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 rounded-lg transition-colors font-medium"
+              title="For Business — Enterprise plans"
+            >
+              For Business
+            </Link>
             <span className="text-sm text-gray-400 dark:text-gray-500 items-center gap-1.5 hidden lg:flex">
               <span className="w-2 h-2 rounded-full bg-green-400" />
               {t("header.lastUpdated")}{" "}
