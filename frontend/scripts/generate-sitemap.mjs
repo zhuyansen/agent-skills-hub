@@ -141,6 +141,18 @@ async function main() {
     <priority>0.4</priority>
     <lastmod>${today}</lastmod>
   </url>`,
+    `  <url>
+    <loc>${SITE}/verified-creator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
+    `  <url>
+    <loc>${SITE}/business/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>${today}</lastmod>
+  </url>`,
   ];
   writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
   console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);

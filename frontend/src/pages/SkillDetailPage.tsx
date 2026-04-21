@@ -16,6 +16,12 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ComboRecommendation } from "../components/ComboRecommendation";
 import { RelatedSkills } from "../components/RelatedSkills";
+import { VerifiedBadge } from "../components/VerifiedBadge";
+import { ContactCreatorModal } from "../components/ContactCreatorModal";
+import {
+  getVerifiedCreator,
+  isVerifiedCreator,
+} from "../data/verifiedCreators";
 import type { SkillDetail } from "../types/skill";
 
 export function SkillDetailPage() {
@@ -29,6 +35,7 @@ export function SkillDetailPage() {
   const [detail, setDetail] = useState<SkillDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     // Support both /skill/:id (numeric) and /skill/:owner/:repo (slug)
@@ -185,6 +192,13 @@ export function SkillDetailPage() {
                 >
                   {detail.author_name}
                 </a>
+                {isVerifiedCreator(detail.author_name) && (
+                  <VerifiedBadge
+                    size="sm"
+                    showLabel
+                    tier={getVerifiedCreator(detail.author_name)?.tier}
+                  />
+                )}
                 <div className="ml-auto flex items-center gap-2">
                   <FavoriteButton skillId={detail.id} />
                   <ShareButtons
@@ -251,8 +265,22 @@ export function SkillDetailPage() {
               {t("detail.viewOnGitHub")}
             </a>
             <InstallCommand skill={detail} />
+            <button
+              onClick={() => setContactOpen(true)}
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-medium text-sm cursor-pointer"
+              title="Contact the creator for consulting, customization, or collaboration"
+            >
+              💬 Contact Creator
+            </button>
           </div>
         </div>
+
+        <ContactCreatorModal
+          open={contactOpen}
+          onClose={() => setContactOpen(false)}
+          githubUsername={detail.author_name}
+          repoFullName={detail.repo_full_name}
+        />
 
         {/* Stats + Quality Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">

@@ -26,6 +26,16 @@ const VerifyEmailPage = lazy(() =>
     default: m.VerifyEmailPage,
   })),
 );
+const VerifiedCreatorPage = lazy(() =>
+  import("./pages/VerifiedCreatorPage").then((m) => ({
+    default: m.VerifiedCreatorPage,
+  })),
+);
+const BusinessPage = lazy(() =>
+  import("./pages/BusinessPage").then((m) => ({
+    default: m.BusinessPage,
+  })),
+);
 const AdminLayout = lazy(() =>
   import("./pages/admin/AdminLayout").then((m) => ({ default: m.AdminLayout })),
 );
@@ -55,6 +65,16 @@ function App() {
                   <Route path="/compare" element={<ComparePage />} />
                   <Route path="/analyzer" element={<AnalyzerPage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />
+                  <Route
+                    path="/verified-creator"
+                    element={<VerifiedCreatorPage />}
+                  />
+                  <Route
+                    path="/verified-creator/"
+                    element={<VerifiedCreatorPage />}
+                  />
+                  <Route path="/business" element={<BusinessPage />} />
+                  <Route path="/business/" element={<BusinessPage />} />
                   <Route path="/admin/*" element={<AdminLayout />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
