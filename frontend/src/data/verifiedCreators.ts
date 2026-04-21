@@ -33,44 +33,20 @@ export interface VerifiedCreator {
 }
 
 /**
- * Seed list — these are Hub's hand-picked founding verified creators.
- * Real commercial verification happens via the /verified-creator/ application page.
+ * Real Verified Creators only. NEVER add someone here without their explicit consent.
+ *
+ * Entries must satisfy ALL of:
+ *   1. Creator has applied via /verified-creator/ (email or DM to @GoSailGlobal)
+ *   2. Creator has paid the annual fee OR been explicitly gifted founding status
+ *   3. Hub has replied and confirmed admission (with tier, tagline, contact channels
+ *      they want publicly shown)
+ *
+ * Unauthorized listing = privacy violation + misrepresentation. Never bulk-seed.
  */
 export const VERIFIED_CREATORS: VerifiedCreator[] = [
-  // Real commercialization cases referenced in the strategic article
-  {
-    github: "lovstudio",
-    name: "南川 (lovstudio)",
-    since: "2026-04",
-    tier: "founding",
-    tagline:
-      "Agent Skill 商业化三角不可能定理作者。Lovstudio pro-skills 年费会员制。",
-    contact: { website: "https://lovstudio.ai/agent" },
-  },
-  {
-    github: "tw93",
-    name: "tw93",
-    since: "2026-04",
-    tier: "founding",
-    tagline: "Waza 系列 Skill 作者。Pake、kami 等项目创作者。",
-    contact: { x: "@HiTw93" },
-  },
-  {
-    github: "antfu",
-    name: "Anthony Fu",
-    since: "2026-04",
-    tier: "founding",
-    tagline: "Vue/Nuxt/Vite 核心维护者。antfu/skills 作者。",
-    contact: { x: "@antfu7", website: "https://antfu.me" },
-  },
-  {
-    github: "garrytan",
-    name: "Garry Tan",
-    since: "2026-04",
-    tier: "founding",
-    tagline: "YC CEO。gstack Claude Code 15 Skill 工程团队框架。",
-    contact: { x: "@garrytan" },
-  },
+  // No verified creators yet. The program just launched on 2026-04-21 and is
+  // invitation-only for the first cohort. Creators who apply and are admitted
+  // will appear here (one entry per creator, with their consented contact info).
 ];
 
 /**

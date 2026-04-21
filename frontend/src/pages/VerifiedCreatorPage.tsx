@@ -145,7 +145,18 @@ export function VerifiedCreatorPage() {
           </div>
         </section>
 
-        {foundingMembers.length > 0 && (
+        {foundingMembers.length === 0 ? (
+          <section className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 text-center">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              Founding Members
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl mx-auto">
+              暂无 · 首批邀请制进行中。想成为首批认证作者，请发邮件申请。
+              我们会在评估后公开每位获认证者的名字与联系渠道——只有在得到本人
+              明确同意之后。
+            </p>
+          </section>
+        ) : (
           <section className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-5">
               Founding Members
