@@ -247,9 +247,9 @@ export const translations = {
     "auth.favorites": "我的收藏",
 
     // Hero
-    "hero.title": "发现 {count}+ 最佳开源 AI Agent 工具",
+    "hero.title": "{count} Claude Skills、MCP Server 与 Agent 工具",
     "hero.subtitle":
-      "搜索、对比开源 AI Agent Skills、MCP Server 和开发者自动化工具，每 8 小时自动更新",
+      "开源目录 · 10 维质量评分 · 每 8 小时刷新 · 30 秒内找到、对比、上手",
     "hero.trending": "热门",
     "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
@@ -575,9 +575,9 @@ export const translations = {
     "chart.skills": "Skills",
 
     // Hero
-    "hero.title": "Discover {count}+ Best Open-Source AI Agent Tools",
+    "hero.title": "{count} Claude Skills, MCP Servers & Agent Tools",
     "hero.subtitle":
-      "Search, compare and automate with the best AI agent skills, MCP servers, and developer tools. Auto-updated every 8 hours.",
+      "The open-source directory. Quality-scored on 10 dimensions. Refreshed every 8 hours. Find, compare, install in 30 seconds.",
     "hero.trending": "Trending",
     "hero.searchPlaceholder":
       "Search AI agent tools, MCP servers, automation skills...",

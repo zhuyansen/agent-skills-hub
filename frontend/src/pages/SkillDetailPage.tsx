@@ -140,12 +140,12 @@ export function SkillDetailPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>{`${detail.repo_name} - AgentSkillsHub`}</title>
+        <title>{`${detail.repo_full_name} · AgentSkillsHub`}</title>
         <meta name="description" content={ogDescription} />
         {/* Open Graph */}
         <meta
           property="og:title"
-          content={`${detail.repo_name} | AgentSkillsHub`}
+          content={`${detail.repo_full_name} · AgentSkillsHub`}
         />
         <meta property="og:description" content={ogDescription} />
         <meta property="og:type" content="website" />
@@ -158,7 +158,7 @@ export function SkillDetailPage() {
         <meta name="twitter:card" content="summary" />
         <meta
           name="twitter:title"
-          content={`${detail.repo_name} | AgentSkillsHub`}
+          content={`${detail.repo_full_name} · AgentSkillsHub`}
         />
         <meta name="twitter:description" content={ogDescription} />
         <meta name="twitter:image" content={detail.author_avatar_url} />

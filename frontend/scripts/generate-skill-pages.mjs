@@ -61,7 +61,10 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const ghUrl = `https://github.com/${repo_full_name}`;
   const ogImage = `${SITE}/og-image.png`;
 
-  const title = `${repo_name} - ${catLabel} by ${author_name} | Agent Skills Hub`;
+  // SEO-optimized title: exact repo_full_name matches brand-name queries
+  // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
+  // Full name goes first so Google SERP shows it at line 1.
+  const title = `${repo_full_name} · AgentSkillsHub`;
   const descTrunc = description ? description.slice(0, 110) : "";
   const metaDesc = description
     ? `${descTrunc}${description.length > 110 ? "..." : ""} Open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars.`
@@ -354,8 +357,8 @@ ${faqLd}
 function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   const catLabel = CATEGORY_LABELS[catSlug] || "AI Tool";
   const pageUrl = `${SITE}/category/${catSlug}/`;
-  const title = `Best ${catLabel} Tools - Open Source Agent Skills | Agent Skills Hub`;
-  const metaDesc = `Discover the top ${catSkills.length}+ open-source ${catLabel} tools. Browse by stars, quality, and compatibility on Agent Skills Hub.`;
+  const title = `${catLabel} — ${catSkills.length}+ Open-Source Skills · AgentSkillsHub`;
+  const metaDesc = `Browse ${catSkills.length}+ open-source ${catLabel} — quality-scored, ranked by stars, compared side-by-side. Updated every 8 hours.`;
 
   const { scriptTags, linkTags } = assetTags;
 
