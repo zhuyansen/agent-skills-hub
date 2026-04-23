@@ -348,8 +348,12 @@ function buildAeoSection(scenario, skills, year) {
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const pageUrl = `${SITE}/best/${scenario.slug}/`;
   const year = new Date().getFullYear();
-  const title = `Best ${skills.length} AI Tools for ${scenario.title} in ${year} | Agent Skills Hub`;
-  const metaDesc = scenario.description;
+  // SEO: keep title ≤ 60 chars so Google SERP doesn't truncate.
+  // aaron-he-zhu/seo-geo-claude-skills audit flagged 66-char titles as truncated.
+  const title = `Best ${scenario.title} Tools (${year}) · AgentSkillsHub`;
+  // Meta ≤ 160 chars: use scenario description but hard-truncate to 155.
+  const rawDesc = scenario.description || "";
+  const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152) + "..." : rawDesc;
   const ogImage = `${SITE}/og-image.png`;
 
   const { scriptTags, linkTags } = assetTags;

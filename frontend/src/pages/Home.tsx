@@ -161,16 +161,14 @@ export function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
-        <title>
-          AgentSkillsHub — Claude Skills / MCP Server / Agent Tools Directory
-        </title>
+        <title>Claude Skills Directory · MCP Servers · AgentSkillsHub</title>
         <meta
           name="description"
-          content={`The open-source directory for Claude Skills, MCP Servers & Agent Tools. ${skillCount} skills · quality-scored on 10 dimensions · refreshed every 8 hours. Find, compare, install.`}
+          content={`The open-source Claude Skills Directory. ${skillCount} MCP Servers, Codex Skills & Agent Tools. Quality-scored. Updated every 8 hours. Find, compare, install.`}
         />
         <meta
           property="og:title"
-          content="AgentSkillsHub — Claude Skills / MCP Server / Agent Tools Directory"
+          content="Claude Skills Directory · MCP Servers · AgentSkillsHub"
         />
         <meta
           property="og:description"

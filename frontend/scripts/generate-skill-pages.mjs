@@ -122,10 +122,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
   // Full name goes first so Google SERP shows it at line 1.
   const title = `${repo_full_name} · AgentSkillsHub`;
-  const descTrunc = description ? description.slice(0, 110) : "";
+  // SEO: meta description ≤ 160 chars with CTA tail.
+  // aaron-he-zhu/seo-geo-claude-skills audit flagged missing CTA verb.
+  const descTrunc = description ? description.slice(0, 95) : "";
+  const descEllipsis = description && description.length > 95 ? "..." : "";
   const metaDesc = description
-    ? `${descTrunc}${description.length > 110 ? "..." : ""} Open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} stars.`
-    : `${repo_name} is an open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} GitHub stars. Discover features, quality score, and compatible tools.`;
+    ? `${descTrunc}${descEllipsis} Open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · Compare alternatives on AgentSkillsHub.`
+    : `${repo_name} — open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · Find alternatives and compare on AgentSkillsHub.`;
 
   // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
@@ -270,10 +273,11 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     : "";
 
   // Alternatives HTML — explicitly targets "{repo_name} alternative" queries
+  // (exact-phrase match matters for SERP snippets — per aaron-he-zhu audit).
   const alternativesHtml = alternatives.length > 0
     ? `<section style="margin-top:20px">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Top Alternatives to ${esc(repo_name)}</h2>
-        <p style="color:#64748b;font-size:14px;margin-bottom:12px">If you're comparing ${esc(repo_name)} with other ${esc(catLabel.toLowerCase())} tools, these ${alternatives.length} projects are the closest alternatives on Agent Skills Hub — ranked by topic overlap, star count, and community traction.</p>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${esc(repo_name)} alternative? Top ${alternatives.length} similar tools</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">Looking for a ${esc(repo_name)} alternative? If you're comparing ${esc(repo_name)} with other ${esc(catLabel.toLowerCase())} tools, these ${alternatives.length} projects are the closest alternatives on Agent Skills Hub — ranked by topic overlap, star count, and community traction.</p>
         <ul style="list-style:none;padding:0">${alternatives.map((a) => {
           const altDesc = a.description ? esc(a.description.slice(0, 110)) : "";
           return `
