@@ -4,10 +4,7 @@
     "title": "Web Scraping",
     "description": "Discover the best AI agent skills and MCP tools for web scraping, data extraction, and automated crawling from websites.",
     "match": {
-      "categories": [
-        "web-scraping",
-        "crawler"
-      ],
+      "categories": ["web-scraping", "crawler"],
       "keywords": [
         "scrape",
         "scraping",
@@ -22,20 +19,14 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "browser-automation",
-      "data-pipeline",
-      "rss-monitoring"
-    ]
+    "related": ["browser-automation", "data-pipeline", "rss-monitoring"]
   },
   {
     "slug": "code-review",
     "title": "Code Review",
     "description": "Find the top AI-powered code review tools that help you catch bugs, enforce style, and improve code quality automatically.",
     "match": {
-      "categories": [
-        "code-review"
-      ],
+      "categories": ["code-review"],
       "keywords": [
         "code review",
         "code-review",
@@ -48,20 +39,14 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "test-generation",
-      "code-completion",
-      "debugging"
-    ]
+    "related": ["test-generation", "code-completion", "debugging"]
   },
   {
     "slug": "mcp-database",
     "title": "MCP Database Tools",
     "description": "Browse the best MCP server tools for database access, SQL queries, and data management with AI agents.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
+      "categories": ["mcp-server"],
       "primary_keywords": [
         "database",
         "sql",
@@ -97,20 +82,14 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "mcp-api",
-      "data-pipeline",
-      "mcp-filesystem"
-    ]
+    "related": ["mcp-api", "data-pipeline", "mcp-filesystem"]
   },
   {
     "slug": "mcp-browser",
     "title": "MCP Browser Automation",
     "description": "Explore MCP tools that let AI agents control browsers, navigate pages, and automate web interactions.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
+      "categories": ["mcp-server"],
       "primary_keywords": [
         "browser",
         "chrome",
@@ -143,34 +122,21 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "web-scraping",
-      "browser-automation",
-      "mcp-api"
-    ]
+    "related": ["web-scraping", "browser-automation", "mcp-api"]
   },
   {
     "slug": "mcp-filesystem",
     "title": "MCP Filesystem Tools",
     "description": "Find MCP server tools for file management, directory operations, and local filesystem access from AI agents.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
+      "categories": ["mcp-server"],
       "primary_keywords": [
         "filesystem",
         "file system",
         "directory",
         "file manager"
       ],
-      "secondary_keywords": [
-        "folder",
-        "path",
-        "fs",
-        "storage",
-        "disk",
-        "file"
-      ],
+      "secondary_keywords": ["folder", "path", "fs", "storage", "disk", "file"],
       "exclude_keywords": [
         "database",
         "sql",
@@ -179,41 +145,20 @@
         "memory",
         "knowledge"
       ],
-      "topic_matches": [
-        "filesystem",
-        "file-system",
-        "file-manager"
-      ],
+      "topic_matches": ["filesystem", "file-system", "file-manager"],
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "mcp-database",
-      "mcp-memory",
-      "mcp-api"
-    ]
+    "related": ["mcp-database", "mcp-memory", "mcp-api"]
   },
   {
     "slug": "mcp-api",
     "title": "MCP API Integration",
     "description": "Discover MCP tools that connect AI agents to external APIs, REST endpoints, and third-party services.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
-      "primary_keywords": [
-        "api",
-        "rest",
-        "graphql",
-        "openapi",
-        "swagger"
-      ],
-      "secondary_keywords": [
-        "http",
-        "endpoint",
-        "webhook",
-        "integration"
-      ],
+      "categories": ["mcp-server"],
+      "primary_keywords": ["api", "rest", "graphql", "openapi", "swagger"],
+      "secondary_keywords": ["http", "endpoint", "webhook", "integration"],
       "exclude_keywords": [
         "database",
         "sql",
@@ -222,30 +167,18 @@
         "filesystem",
         "memory"
       ],
-      "topic_matches": [
-        "api",
-        "rest-api",
-        "graphql",
-        "openapi",
-        "swagger"
-      ],
+      "topic_matches": ["api", "rest-api", "graphql", "openapi", "swagger"],
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "mcp-database",
-      "mcp-browser",
-      "workflow-automation"
-    ]
+    "related": ["mcp-database", "mcp-browser", "workflow-automation"]
   },
   {
     "slug": "mcp-memory",
     "title": "MCP Memory & Knowledge",
     "description": "Browse MCP tools for persistent memory, knowledge graphs, and context management in AI agent workflows.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
+      "categories": ["mcp-server"],
       "primary_keywords": [
         "memory",
         "knowledge graph",
@@ -268,20 +201,11 @@
         "chrome",
         "filesystem"
       ],
-      "topic_matches": [
-        "memory",
-        "knowledge-graph",
-        "rag",
-        "context"
-      ],
+      "topic_matches": ["memory", "knowledge-graph", "rag", "context"],
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "semantic-search",
-      "vector-database",
-      "mcp-database"
-    ]
+    "related": ["semantic-search", "vector-database", "mcp-database"]
   },
   {
     "slug": "test-generation",
@@ -304,11 +228,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-review",
-      "debugging",
-      "code-completion"
-    ]
+    "related": ["code-review", "debugging", "code-completion"]
   },
   {
     "slug": "code-completion",
@@ -328,11 +248,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-review",
-      "test-generation",
-      "refactoring"
-    ]
+    "related": ["code-review", "test-generation", "refactoring"]
   },
   {
     "slug": "security-audit",
@@ -356,10 +272,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "secret-detection",
-      "code-review"
-    ]
+    "related": ["secret-detection", "code-review"]
   },
   {
     "slug": "secret-detection",
@@ -380,10 +293,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "security-audit",
-      "code-review"
-    ]
+    "related": ["security-audit", "code-review"]
   },
   {
     "slug": "content-writing",
@@ -404,11 +314,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "translation",
-      "summarization",
-      "document-parsing"
-    ]
+    "related": ["translation", "summarization", "document-parsing"]
   },
   {
     "slug": "translation",
@@ -427,10 +333,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "summarization"
-    ]
+    "related": ["content-writing", "summarization"]
   },
   {
     "slug": "summarization",
@@ -449,11 +352,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "document-parsing",
-      "translation"
-    ]
+    "related": ["content-writing", "document-parsing", "translation"]
   },
   {
     "slug": "document-parsing",
@@ -474,11 +373,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "summarization",
-      "data-pipeline"
-    ]
+    "related": ["content-writing", "summarization", "data-pipeline"]
   },
   {
     "slug": "workflow-automation",
@@ -499,11 +394,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "ci-cd",
-      "email-automation",
-      "social-media"
-    ]
+    "related": ["ci-cd", "email-automation", "social-media"]
   },
   {
     "slug": "ci-cd",
@@ -525,11 +416,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "workflow-automation",
-      "monitoring",
-      "container-management"
-    ]
+    "related": ["workflow-automation", "monitoring", "container-management"]
   },
   {
     "slug": "monitoring",
@@ -550,11 +437,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "ci-cd",
-      "debugging",
-      "workflow-automation"
-    ]
+    "related": ["ci-cd", "debugging", "workflow-automation"]
   },
   {
     "slug": "semantic-search",
@@ -574,11 +457,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "vector-database",
-      "document-parsing",
-      "mcp-memory"
-    ]
+    "related": ["vector-database", "document-parsing", "mcp-memory"]
   },
   {
     "slug": "vector-database",
@@ -599,36 +478,49 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "semantic-search",
-      "mcp-memory",
-      "mcp-database"
-    ]
+    "related": ["semantic-search", "mcp-memory", "mcp-database"]
   },
   {
     "slug": "browser-automation",
     "title": "Browser Automation",
-    "description": "Explore tools for automated browser testing, web interaction, and UI automation with AI agents.",
+    "description": "Open-source browser automation tools for AI agents — Playwright, Puppeteer, Chrome DevTools, and computer-use MCP servers. Rank-ordered by stars, quality score, and community activity. Updated every 8 hours.",
     "match": {
       "categories": [],
-      "keywords": [
-        "browser",
-        "automation",
+      "primary_keywords": [
+        "browser automation",
         "playwright",
         "puppeteer",
         "selenium",
+        "browser-use",
+        "computer use"
+      ],
+      "secondary_keywords": [
+        "browser",
+        "headless",
+        "chrome",
+        "chromium",
+        "webdriver",
         "cypress",
         "e2e",
-        "ui test"
+        "ui test",
+        "web agent",
+        "web scraping",
+        "screenshot",
+        "devtools"
+      ],
+      "topic_matches": [
+        "playwright",
+        "puppeteer",
+        "selenium",
+        "browser-automation",
+        "browser-use",
+        "web-automation",
+        "headless-browser"
       ],
       "min_results": 5,
-      "max_results": 10
+      "max_results": 30
     },
-    "related": [
-      "web-scraping",
-      "mcp-browser",
-      "test-generation"
-    ]
+    "related": ["web-scraping", "mcp-browser", "test-generation"]
   },
   {
     "slug": "data-pipeline",
@@ -648,11 +540,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "web-scraping",
-      "document-parsing",
-      "mcp-database"
-    ]
+    "related": ["web-scraping", "document-parsing", "mcp-database"]
   },
   {
     "slug": "rss-monitoring",
@@ -672,11 +560,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "web-scraping",
-      "content-writing",
-      "social-media"
-    ]
+    "related": ["web-scraping", "content-writing", "social-media"]
   },
   {
     "slug": "prompt-engineering",
@@ -695,11 +579,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "model-evaluation",
-      "content-writing",
-      "code-completion"
-    ]
+    "related": ["model-evaluation", "content-writing", "code-completion"]
   },
   {
     "slug": "model-evaluation",
@@ -719,10 +599,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "prompt-engineering",
-      "test-generation"
-    ]
+    "related": ["prompt-engineering", "test-generation"]
   },
   {
     "slug": "slack-integration",
@@ -730,20 +607,11 @@
     "description": "Find AI agent tools that integrate with Slack for notifications, chatbots, and workflow automation.",
     "match": {
       "categories": [],
-      "keywords": [
-        "slack",
-        "slack bot",
-        "slack integration",
-        "slack mcp"
-      ],
+      "keywords": ["slack", "slack bot", "slack integration", "slack mcp"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "discord-bot",
-      "notification",
-      "workflow-automation"
-    ]
+    "related": ["discord-bot", "notification", "workflow-automation"]
   },
   {
     "slug": "discord-bot",
@@ -751,39 +619,52 @@
     "description": "Explore AI-powered Discord bot tools for community management, moderation, and automated responses.",
     "match": {
       "categories": [],
-      "keywords": [
-        "discord",
-        "discord bot",
-        "discord integration"
-      ],
+      "keywords": ["discord", "discord bot", "discord integration"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "slack-integration",
-      "telegram-bot",
-      "notification"
-    ]
+    "related": ["slack-integration", "telegram-bot", "notification"]
   },
   {
     "slug": "telegram-bot",
     "title": "Telegram Bot",
-    "description": "Find tools for building AI-powered Telegram bots with agent capabilities.",
+    "description": "Open-source Telegram bot frameworks, MCP servers, and AI agent integrations. Build automation bots, ChatGPT/Claude-powered assistants, and Telegram connectors — ranked by stars and quality.",
     "match": {
       "categories": [],
-      "keywords": [
-        "telegram",
+      "primary_keywords": [
         "telegram bot",
-        "telegram integration"
+        "telegram-bot",
+        "telegram integration",
+        "telegram api",
+        "python-telegram-bot",
+        "telegraf",
+        "aiogram"
       ],
+      "secondary_keywords": [
+        "telegram",
+        "tg bot",
+        "bot framework",
+        "chatbot",
+        "telegram ai",
+        "telegram agent",
+        "telegram client"
+      ],
+      "topic_matches": [
+        "telegram",
+        "telegram-bot",
+        "telegram-api",
+        "bot",
+        "chatbot",
+        "telegraf",
+        "aiogram",
+        "pyrogram",
+        "telethon"
+      ],
+      "exclude_keywords": ["telegram channel parser", "telegram backup"],
       "min_results": 3,
-      "max_results": 10
+      "max_results": 30
     },
-    "related": [
-      "discord-bot",
-      "slack-integration",
-      "notification"
-    ]
+    "related": ["discord-bot", "slack-integration", "notification"]
   },
   {
     "slug": "email-automation",
@@ -802,11 +683,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "workflow-automation",
-      "notification",
-      "content-writing"
-    ]
+    "related": ["workflow-automation", "notification", "content-writing"]
   },
   {
     "slug": "social-media",
@@ -827,11 +704,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "rss-monitoring",
-      "email-automation"
-    ]
+    "related": ["content-writing", "rss-monitoring", "email-automation"]
   },
   {
     "slug": "debugging",
@@ -851,11 +724,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-review",
-      "test-generation",
-      "monitoring"
-    ]
+    "related": ["code-review", "test-generation", "monitoring"]
   },
   {
     "slug": "refactoring",
@@ -874,11 +743,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "code-review",
-      "code-completion",
-      "debugging"
-    ]
+    "related": ["code-review", "code-completion", "debugging"]
   },
   {
     "slug": "container-management",
@@ -899,11 +764,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "ci-cd",
-      "monitoring",
-      "workflow-automation"
-    ]
+    "related": ["ci-cd", "monitoring", "workflow-automation"]
   },
   {
     "slug": "git-tools",
@@ -924,11 +785,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-review",
-      "ci-cd",
-      "workflow-automation"
-    ]
+    "related": ["code-review", "ci-cd", "workflow-automation"]
   },
   {
     "slug": "image-generation",
@@ -949,10 +806,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "document-parsing"
-    ]
+    "related": ["content-writing", "document-parsing"]
   },
   {
     "slug": "notification",
@@ -971,11 +825,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "slack-integration",
-      "email-automation",
-      "monitoring"
-    ]
+    "related": ["slack-integration", "email-automation", "monitoring"]
   },
   {
     "slug": "cli-tools",
@@ -994,11 +844,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "workflow-automation",
-      "git-tools",
-      "debugging"
-    ]
+    "related": ["workflow-automation", "git-tools", "debugging"]
   },
   {
     "slug": "authentication",
@@ -1019,11 +865,7 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "security-audit",
-      "secret-detection",
-      "mcp-api"
-    ]
+    "related": ["security-audit", "secret-detection", "mcp-api"]
   },
   {
     "slug": "data-visualization",
@@ -1044,20 +886,14 @@
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "data-pipeline",
-      "monitoring",
-      "document-parsing"
-    ]
+    "related": ["data-pipeline", "monitoring", "document-parsing"]
   },
   {
     "slug": "claude-code-skills",
     "title": "Claude Code Skills",
     "description": "Browse the best skills and extensions for Claude Code, Anthropic's AI coding assistant.",
     "match": {
-      "categories": [
-        "claude-skill"
-      ],
+      "categories": ["claude-skill"],
       "keywords": [
         "claude code",
         "claude skill",
@@ -1067,43 +903,26 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "mcp-database",
-      "mcp-browser",
-      "code-completion"
-    ]
+    "related": ["mcp-database", "mcp-browser", "code-completion"]
   },
   {
     "slug": "codex-skills",
     "title": "OpenAI Codex Skills",
     "description": "Find the best skills and plugins for OpenAI Codex, the AI coding agent.",
     "match": {
-      "categories": [
-        "codex-skill"
-      ],
-      "keywords": [
-        "codex",
-        "openai",
-        "codex skill",
-        "codex plugin"
-      ],
+      "categories": ["codex-skill"],
+      "keywords": ["codex", "openai", "codex skill", "codex plugin"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "claude-code-skills",
-      "code-completion",
-      "mcp-api"
-    ]
+    "related": ["claude-code-skills", "code-completion", "mcp-api"]
   },
   {
     "slug": "ai-agent-framework",
     "title": "AI Agent Frameworks",
     "description": "Compare the best frameworks for building autonomous AI agents — from single-agent SDKs to multi-agent orchestration platforms.",
     "match": {
-      "categories": [
-        "agent-tool"
-      ],
+      "categories": ["agent-tool"],
       "primary_keywords": [
         "agent framework",
         "agent sdk",
@@ -1127,20 +946,14 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "multi-agent",
-      "prompt-engineering",
-      "workflow-automation"
-    ]
+    "related": ["multi-agent", "prompt-engineering", "workflow-automation"]
   },
   {
     "slug": "multi-agent",
     "title": "Multi-Agent Orchestration",
     "description": "Find tools for building and orchestrating multi-agent systems where AI agents collaborate, delegate, and coordinate tasks.",
     "match": {
-      "categories": [
-        "agent-tool"
-      ],
+      "categories": ["agent-tool"],
       "primary_keywords": [
         "multi-agent",
         "multi agent",
@@ -1155,11 +968,7 @@
         "coordinate",
         "supervisor"
       ],
-      "topic_matches": [
-        "multi-agent",
-        "multiagent",
-        "agent-orchestration"
-      ],
+      "topic_matches": ["multi-agent", "multiagent", "agent-orchestration"],
       "min_results": 3,
       "max_results": 10
     },
@@ -1191,97 +1000,47 @@
         "llamacpp",
         "mlx"
       ],
-      "topic_matches": [
-        "ollama",
-        "llama",
-        "local-ai",
-        "self-hosted"
-      ],
+      "topic_matches": ["ollama", "llama", "local-ai", "self-hosted"],
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "ai-agent-framework",
-      "prompt-engineering",
-      "model-evaluation"
-    ]
+    "related": ["ai-agent-framework", "prompt-engineering", "model-evaluation"]
   },
   {
     "slug": "mcp-for-notion",
     "title": "MCP Tools for Notion",
     "description": "Connect AI agents to Notion workspaces — read pages, create databases, manage tasks, and automate workflows via MCP servers.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
-      "primary_keywords": [
-        "notion"
-      ],
-      "secondary_keywords": [
-        "workspace",
-        "page",
-        "block",
-        "notion api"
-      ],
-      "topic_matches": [
-        "notion",
-        "notion-api"
-      ],
+      "categories": ["mcp-server"],
+      "primary_keywords": ["notion"],
+      "secondary_keywords": ["workspace", "page", "block", "notion api"],
+      "topic_matches": ["notion", "notion-api"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "mcp-api",
-      "mcp-database",
-      "workflow-automation"
-    ]
+    "related": ["mcp-api", "mcp-database", "workflow-automation"]
   },
   {
     "slug": "mcp-for-github",
     "title": "MCP Tools for GitHub",
     "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
-      "primary_keywords": [
-        "github"
-      ],
-      "secondary_keywords": [
-        "pull request",
-        "issue",
-        "repo",
-        "actions",
-        "gh"
-      ],
-      "topic_matches": [
-        "github",
-        "github-api",
-        "github-actions"
-      ],
+      "categories": ["mcp-server"],
+      "primary_keywords": ["github"],
+      "secondary_keywords": ["pull request", "issue", "repo", "actions", "gh"],
+      "topic_matches": ["github", "github-api", "github-actions"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "git-tools",
-      "code-review",
-      "ci-cd"
-    ]
+    "related": ["git-tools", "code-review", "ci-cd"]
   },
   {
     "slug": "mcp-for-google",
     "title": "MCP Tools for Google Services",
     "description": "Connect AI agents to Google Workspace — Gmail, Drive, Calendar, Sheets, and more through MCP server integrations.",
     "match": {
-      "categories": [
-        "mcp-server"
-      ],
-      "primary_keywords": [
-        "google",
-        "gmail",
-        "google drive",
-        "google sheets"
-      ],
+      "categories": ["mcp-server"],
+      "primary_keywords": ["google", "gmail", "google drive", "google sheets"],
       "secondary_keywords": [
         "calendar",
         "gdrive",
@@ -1289,20 +1048,11 @@
         "workspace",
         "gcp"
       ],
-      "topic_matches": [
-        "google",
-        "gmail",
-        "google-drive",
-        "google-calendar"
-      ],
+      "topic_matches": ["google", "gmail", "google-drive", "google-calendar"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "mcp-api",
-      "email-automation",
-      "workflow-automation"
-    ]
+    "related": ["mcp-api", "email-automation", "workflow-automation"]
   },
   {
     "slug": "ai-code-editor",
@@ -1310,13 +1060,7 @@
     "description": "Compare AI-powered code editors and IDE extensions that supercharge your development workflow with intelligent assistance.",
     "match": {
       "categories": [],
-      "primary_keywords": [
-        "code editor",
-        "ide",
-        "vscode",
-        "neovim",
-        "cursor"
-      ],
+      "primary_keywords": ["code editor", "ide", "vscode", "neovim", "cursor"],
       "secondary_keywords": [
         "editor",
         "extension",
@@ -1324,21 +1068,11 @@
         "lsp",
         "intellisense"
       ],
-      "topic_matches": [
-        "code-editor",
-        "ide",
-        "vscode",
-        "neovim",
-        "editor"
-      ],
+      "topic_matches": ["code-editor", "ide", "vscode", "neovim", "editor"],
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-completion",
-      "debugging",
-      "code-review"
-    ]
+    "related": ["code-completion", "debugging", "code-review"]
   },
   {
     "slug": "api-testing",
@@ -1346,12 +1080,7 @@
     "description": "Find AI tools for API testing, endpoint validation, mock servers, and automated API documentation.",
     "match": {
       "categories": [],
-      "primary_keywords": [
-        "api test",
-        "api mock",
-        "postman",
-        "httpie"
-      ],
+      "primary_keywords": ["api test", "api mock", "postman", "httpie"],
       "secondary_keywords": [
         "endpoint",
         "mock server",
@@ -1360,19 +1089,11 @@
         "swagger",
         "insomnia"
       ],
-      "topic_matches": [
-        "api-testing",
-        "mock",
-        "api-documentation"
-      ],
+      "topic_matches": ["api-testing", "mock", "api-documentation"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "mcp-api",
-      "test-generation",
-      "ci-cd"
-    ]
+    "related": ["mcp-api", "test-generation", "ci-cd"]
   },
   {
     "slug": "knowledge-base",
@@ -1402,11 +1123,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "semantic-search",
-      "vector-database",
-      "mcp-memory"
-    ]
+    "related": ["semantic-search", "vector-database", "mcp-memory"]
   },
   {
     "slug": "text-to-speech",
@@ -1414,12 +1131,7 @@
     "description": "Find AI tools for text-to-speech synthesis, voice cloning, speech recognition, and audio processing.",
     "match": {
       "categories": [],
-      "primary_keywords": [
-        "text to speech",
-        "tts",
-        "voice",
-        "speech"
-      ],
+      "primary_keywords": ["text to speech", "tts", "voice", "speech"],
       "secondary_keywords": [
         "audio",
         "whisper",
@@ -1428,21 +1140,11 @@
         "stt",
         "transcri"
       ],
-      "topic_matches": [
-        "tts",
-        "text-to-speech",
-        "voice",
-        "speech",
-        "whisper"
-      ],
+      "topic_matches": ["tts", "text-to-speech", "voice", "speech", "whisper"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "content-writing",
-      "translation",
-      "summarization"
-    ]
+    "related": ["content-writing", "translation", "summarization"]
   },
   {
     "slug": "web-development",
@@ -1476,11 +1178,7 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": [
-      "code-completion",
-      "browser-automation",
-      "image-generation"
-    ]
+    "related": ["code-completion", "browser-automation", "image-generation"]
   },
   {
     "slug": "database-migration",
@@ -1488,11 +1186,7 @@
     "description": "AI tools for database schema design, migration management, and data modeling.",
     "match": {
       "categories": [],
-      "primary_keywords": [
-        "migration",
-        "schema",
-        "data model"
-      ],
+      "primary_keywords": ["migration", "schema", "data model"],
       "secondary_keywords": [
         "orm",
         "prisma",
@@ -1502,20 +1196,11 @@
         "alembic",
         "flyway"
       ],
-      "topic_matches": [
-        "migration",
-        "schema",
-        "orm",
-        "database-schema"
-      ],
+      "topic_matches": ["migration", "schema", "orm", "database-schema"],
       "min_results": 3,
       "max_results": 10
     },
-    "related": [
-      "mcp-database",
-      "code-completion",
-      "refactoring"
-    ]
+    "related": ["mcp-database", "code-completion", "refactoring"]
   },
   {
     "slug": "skill-management-tools",
@@ -1592,10 +1277,6 @@
       "min_results": 6,
       "max_results": 12
     },
-    "related": [
-      "claude-code-skills",
-      "cli-tools",
-      "workflow-automation"
-    ]
+    "related": ["claude-code-skills", "cli-tools", "workflow-automation"]
   }
 ]
