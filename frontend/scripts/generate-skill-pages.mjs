@@ -45,9 +45,66 @@ async function fetchAllCompositions() {
   return comps;
 }
 
+/* ── Alternatives: topic-overlap + size-similar ── */
+
+/**
+ * Find alternative skills to the current one.
+ * Strategy:
+ *   1) Prefer same-category skills with overlapping topics (intent match).
+ *   2) Filter: different author, star range 0.2x..5x (similar scale).
+ *   3) Fall back to same-category top-star if not enough topic overlap.
+ * Returns up to `limit` skills.
+ */
+function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
+  const currentTopics = parseJsonArray(skill.topics).map((t) => t.toLowerCase());
+  const minStars = Math.max(50, Math.floor(skill.stars * 0.2));
+  const maxStars = Math.max(100, Math.ceil(skill.stars * 5));
+
+  const scored = new Map(); // repo_full_name -> {skill, score}
+
+  const consider = (candidate, baseScore) => {
+    if (!candidate) return;
+    if (candidate.repo_full_name === skill.repo_full_name) return;
+    if (candidate.author_name && skill.author_name && candidate.author_name === skill.author_name) return;
+    if (candidate.stars < minStars || candidate.stars > maxStars) return;
+    if (!shouldIndex(candidate)) return;
+
+    // Topic overlap bonus
+    const candTopics = parseJsonArray(candidate.topics).map((t) => t.toLowerCase());
+    let overlap = 0;
+    for (const t of currentTopics) {
+      if (candTopics.includes(t)) overlap++;
+    }
+
+    const starsBoost = Math.log10(Math.max(candidate.stars, 1));
+    const total = baseScore + overlap * 4 + starsBoost;
+    const existing = scored.get(candidate.repo_full_name);
+    if (!existing || existing.score < total) {
+      scored.set(candidate.repo_full_name, { skill: candidate, score: total });
+    }
+  };
+
+  // Pass 1: skills sharing any topic
+  for (const topic of currentTopics) {
+    const sharers = topicIndex.get(topic) || [];
+    for (const s of sharers) consider(s, 5);
+  }
+
+  // Pass 2: same-category top-star fallback (weighted lower so topic matches win)
+  const sameCat = categoryIndex.get(skill.category) || [];
+  for (const s of sameCat) consider(s, 1);
+
+  const sorted = [...scored.values()]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((x) => x.skill);
+
+  return sorted;
+}
+
 /* ── build HTML for one skill ──────────────────── */
 
-function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex) {
+function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
   const {
     repo_full_name, repo_name, author_name, author_avatar_url,
     stars, forks, description, category, language, score, license,
@@ -99,6 +156,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
       .slice(0, 5)
     : [];
 
+  // Alternatives — topic overlap + similar size, different author, same category preferred
+  const alternatives = findAlternatives(skill, categoryIndex, topicIndex, 6);
+
   // Auto-generated FAQ
   const faqItems = [];
   faqItems.push({
@@ -121,6 +181,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     faqItems.push({
       q: `What license does ${repo_name} use?`,
       a: `${repo_name} is released under the ${license} license, making it free to use and modify according to the license terms.`,
+    });
+  }
+  if (alternatives.length > 0) {
+    const altNames = alternatives.slice(0, 3).map((a) => a.repo_name).join(", ");
+    faqItems.push({
+      q: `What are the best alternatives to ${repo_name}?`,
+      a: `The top alternatives to ${repo_name} on Agent Skills Hub include ${altNames}. Each offers a different approach to the same problem space — compare them side-by-side by stars, quality score, and community activity.`,
     });
   }
 
@@ -198,6 +265,24 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
         <p style="color:#64748b;font-size:14px;margin-bottom:8px">These tools work well together with ${esc(repo_name)} for enhanced workflows:</p>
         <ul style="list-style:none;padding:0">${compLinks.map((c) => `
           <li style="margin:6px 0"><a href="/skill/${esc(c.slug)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(c.name)}</a> <span style="color:#94a3b8;font-size:13px">— ${esc(c.reason)} (${Math.round(c.score * 100)}%)</span></li>`).join("")}
+        </ul>
+      </section>`
+    : "";
+
+  // Alternatives HTML — explicitly targets "{repo_name} alternative" queries
+  const alternativesHtml = alternatives.length > 0
+    ? `<section style="margin-top:20px">
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Top Alternatives to ${esc(repo_name)}</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">If you're comparing ${esc(repo_name)} with other ${esc(catLabel.toLowerCase())} tools, these ${alternatives.length} projects are the closest alternatives on Agent Skills Hub — ranked by topic overlap, star count, and community traction.</p>
+        <ul style="list-style:none;padding:0">${alternatives.map((a) => {
+          const altDesc = a.description ? esc(a.description.slice(0, 110)) : "";
+          return `
+          <li style="margin:8px 0;padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
+            <a href="/skill/${esc(a.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:600">${esc(a.repo_name)}</a>
+            <span style="color:#94a3b8;font-size:13px"> by ${esc(a.author_name)} · ⭐ ${starsK(a.stars)}</span>
+            ${altDesc ? `<p style="margin:4px 0 0;color:#475569;font-size:13px;line-height:1.5">${altDesc}</p>` : ""}
+          </li>`;
+        }).join("")}
         </ul>
       </section>`
     : "";
@@ -328,6 +413,9 @@ ${faqLd}
 
       <!-- Compatible Skills -->
       ${compsHtml}
+
+      <!-- Alternatives (directly targets "X alternative" queries) -->
+      ${alternativesHtml}
 
       <!-- Same Category -->
       ${sameCatHtml}
@@ -525,6 +613,20 @@ async function main() {
     if (arr.length < 10) arr.push(s);
   }
 
+  // Build topic index: topic(lowercase) → top skills (by stars) that have it.
+  // Cap per-topic list to keep Alternatives lookup O(topics * limit).
+  const topicIndex = new Map();
+  for (const s of skills) {
+    if (!s.topics) continue;
+    const topics = parseJsonArray(s.topics);
+    for (const t of topics) {
+      const key = t.toLowerCase();
+      if (!topicIndex.has(key)) topicIndex.set(key, []);
+      const arr = topicIndex.get(key);
+      if (arr.length < 40) arr.push(s); // already sorted by stars desc
+    }
+  }
+
   // Generate skill pages
   let ok = 0;
   let skipped = 0;
@@ -553,7 +655,7 @@ async function main() {
     const skillComps = compositions.get(skill.id) || [];
     writeFileSync(
       join(dir, "index.html"),
-      buildSkillHtml(skill, assetTags, skillComps, skillById, categoryIndex, languageIndex),
+      buildSkillHtml(skill, assetTags, skillComps, skillById, categoryIndex, languageIndex, topicIndex),
     );
     ok++;
 
