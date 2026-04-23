@@ -95,6 +95,11 @@ export async function sbFetchSkills(
     query = query.eq("size_category", params.size_category);
   if (params.platform)
     query = query.ilike("platforms", `%"${params.platform}"%`);
+  if (params.author) {
+    // Author GitHub logins are case-insensitive in git but stored with original
+    // casing — use ilike with exact match so /author/Anthropic/ == /author/anthropic/.
+    query = query.ilike("author_name", params.author);
+  }
   if (params.search) {
     const trimmed = params.search.trim();
     const words = trimmed.split(/\s+/).filter(Boolean);

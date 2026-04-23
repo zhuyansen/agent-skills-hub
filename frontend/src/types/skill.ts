@@ -88,7 +88,13 @@ export interface Stats {
 export interface SkillsQueryParams {
   page: number;
   page_size: number;
-  sort_by: "score" | "stars" | "last_commit_at" | "created_at" | "quality_score" | "star_momentum";
+  sort_by:
+    | "score"
+    | "stars"
+    | "last_commit_at"
+    | "created_at"
+    | "quality_score"
+    | "star_momentum";
   sort_order: "asc" | "desc";
   search?: string;
   category?: string;
@@ -96,6 +102,7 @@ export interface SkillsQueryParams {
   size_category?: string;
   quality_tiers?: string; // comma-separated: "S,A,B"
   min_stars?: number;
+  author?: string; // case-insensitive match on author_name (GitHub login)
 }
 
 // Landing page pre-rendered data (single-request bundle)

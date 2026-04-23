@@ -213,6 +213,30 @@ async function main() {
     console.log("sitemap-scenarios.xml: skipped (no dist/best/ directory)");
   }
 
+  // 6a. sitemap-authors.xml — top-N author aggregation pages (/author/{username}/)
+  let authorCount = 0;
+  try {
+    const { readFileSync: rfs, existsSync } = await import("fs");
+    if (existsSync("dist/_authors-manifest.json")) {
+      const manifest = JSON.parse(rfs("dist/_authors-manifest.json", "utf-8"));
+      const authorEntries = manifest.map((a) => {
+        // Priority scales with total_stars: 500+ → 0.75, 100-499 → 0.65, rest → 0.55
+        const priority = a.total_stars >= 500 ? "0.75" : a.total_stars >= 100 ? "0.65" : "0.55";
+        return `  <url>
+    <loc>${SITE}/author/${encodeURIComponent(a.author_name)}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+    <lastmod>${today}</lastmod>
+  </url>`;
+      });
+      writeFileSync("dist/sitemap-authors.xml", wrapUrlset(authorEntries));
+      authorCount = authorEntries.length;
+      console.log(`sitemap-authors.xml: ${authorCount} URLs`);
+    }
+  } catch (e) {
+    console.log(`sitemap-authors.xml: skipped (${e.message})`);
+  }
+
   // 6. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
   let comparisonCount = 0;
   try {
@@ -252,12 +276,15 @@ async function main() {
   if (comparisonCount > 0) {
     sitemapFiles.push("sitemap-comparisons.xml");
   }
+  if (authorCount > 0) {
+    sitemapFiles.push("sitemap-authors.xml");
+  }
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount}, excluded ${noindexCount} low-quality pages)`);
+  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount + authorCount;
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);

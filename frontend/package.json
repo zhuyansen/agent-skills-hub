@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-sitemap.mjs && node scripts/submit-indexnow.mjs",
+    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-author-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-sitemap.mjs && node scripts/submit-indexnow.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

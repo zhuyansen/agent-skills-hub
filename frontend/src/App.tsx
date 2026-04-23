@@ -36,6 +36,9 @@ const BusinessPage = lazy(() =>
     default: m.BusinessPage,
   })),
 );
+const AuthorPage = lazy(() =>
+  import("./pages/AuthorPage").then((m) => ({ default: m.AuthorPage })),
+);
 const AdminLayout = lazy(() =>
   import("./pages/admin/AdminLayout").then((m) => ({ default: m.AdminLayout })),
 );
@@ -75,6 +78,8 @@ function App() {
                   />
                   <Route path="/business" element={<BusinessPage />} />
                   <Route path="/business/" element={<BusinessPage />} />
+                  <Route path="/author/:username" element={<AuthorPage />} />
+                  <Route path="/author/:username/" element={<AuthorPage />} />
                   <Route path="/admin/*" element={<AdminLayout />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

@@ -68,6 +68,7 @@ export async function fetchSkills(
   if (params.category) sp.set("category", params.category);
   if (params.platform) sp.set("platform", params.platform);
   if (params.size_category) sp.set("size_category", params.size_category);
+  if (params.author) sp.set("author", params.author);
   return request<PaginatedSkills>(`/api/skills?${sp}`);
 }
 
