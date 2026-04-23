@@ -1278,5 +1278,116 @@
       "max_results": 12
     },
     "related": ["claude-code-skills", "cli-tools", "workflow-automation"]
+  },
+  {
+    "slug": "free-mcp-servers",
+    "title": "Free MCP Servers",
+    "description": "100% open-source and free MCP servers for Claude Code, Claude Desktop, and agentic IDEs. MIT / Apache / BSD licensed — install and self-host without subscription, quota, or credit-card gate. Updated every 8 hours.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": [
+        "mcp server",
+        "mcp-server",
+        "model context protocol",
+        "open source mcp",
+        "free mcp"
+      ],
+      "secondary_keywords": [
+        "self-hosted",
+        "self host",
+        "mit license",
+        "apache license",
+        "bsd license"
+      ],
+      "topic_matches": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "claude-mcp"
+      ],
+      "exclude_keywords": ["paid", "subscription", "saas only"],
+      "license_filter": [
+        "MIT",
+        "Apache-2.0",
+        "BSD-3-Clause",
+        "BSD-2-Clause",
+        "ISC",
+        "MPL-2.0"
+      ],
+      "min_results": 10,
+      "max_results": 30
+    },
+    "related": ["mcp-database", "mcp-browser", "mcp-filesystem"]
+  },
+  {
+    "slug": "python-mcp-servers",
+    "title": "Python MCP Servers",
+    "description": "Open-source MCP servers written in Python — compatible with Claude Code, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity. FastMCP, Anthropic SDK, and MCP-CLI projects included.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": ["python mcp", "fastmcp", "mcp python", "python-mcp"],
+      "secondary_keywords": [
+        "mcp server",
+        "mcp-server",
+        "anthropic sdk",
+        "model context protocol"
+      ],
+      "topic_matches": ["python", "mcp", "mcp-server", "fastmcp"],
+      "language_filter": ["Python"],
+      "min_results": 10,
+      "max_results": 30
+    },
+    "related": ["free-mcp-servers", "typescript-mcp-servers", "mcp-database"]
+  },
+  {
+    "slug": "typescript-mcp-servers",
+    "title": "TypeScript MCP Servers",
+    "description": "Open-source MCP servers written in TypeScript / Node.js — ready to install into Claude Desktop, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity.",
+    "match": {
+      "categories": ["mcp-server"],
+      "primary_keywords": [
+        "typescript mcp",
+        "node mcp",
+        "nodejs mcp",
+        "mcp typescript"
+      ],
+      "secondary_keywords": [
+        "mcp server",
+        "mcp-server",
+        "model context protocol",
+        "@modelcontextprotocol/sdk"
+      ],
+      "topic_matches": ["typescript", "mcp", "mcp-server", "nodejs"],
+      "language_filter": ["TypeScript", "JavaScript"],
+      "min_results": 10,
+      "max_results": 30
+    },
+    "related": ["free-mcp-servers", "python-mcp-servers", "mcp-database"]
+  },
+  {
+    "slug": "open-webui-integrations",
+    "title": "Open WebUI Integrations",
+    "description": "Open-source tools, connectors, and functions for Open WebUI — ChatGPT-style self-hosted UI for local LLMs (Ollama, LM Studio, vLLM). Ranked by stars and community adoption.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "open webui",
+        "openwebui",
+        "open-webui",
+        "ollama webui"
+      ],
+      "secondary_keywords": [
+        "ollama",
+        "lm studio",
+        "local llm ui",
+        "self-hosted chat",
+        "webui tool",
+        "openai compatible"
+      ],
+      "topic_matches": ["openwebui", "open-webui", "ollama", "local-llm"],
+      "min_results": 5,
+      "max_results": 25
+    },
+    "related": ["free-mcp-servers", "local-llm", "self-hosted"]
   }
 ]

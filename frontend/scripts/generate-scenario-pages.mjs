@@ -37,10 +37,23 @@ function matchSkills(scenario, allSkills) {
   }
   const excludeKw = (m.exclude_keywords || []).map((k) => k.toLowerCase());
   const topicMatches = (m.topic_matches || []).map((k) => k.toLowerCase());
+  // New hard filters
+  const licenseFilter = (m.license_filter || []).map((k) => k.toUpperCase());
+  const languageFilter = (m.language_filter || []); // case-sensitive (matches GitHub's reported language)
 
   const scored = [];
   for (const skill of allSkills) {
     if (!shouldIndex(skill)) continue;
+
+    // Hard language filter
+    if (languageFilter.length > 0) {
+      if (!skill.language || !languageFilter.includes(skill.language)) continue;
+    }
+    // Hard license filter — exclude NOASSERTION and anything not in whitelist
+    if (licenseFilter.length > 0) {
+      const lic = (skill.license || "").toUpperCase();
+      if (!lic || lic === "NOASSERTION" || !licenseFilter.includes(lic)) continue;
+    }
 
     let matchScore = 0;
 
