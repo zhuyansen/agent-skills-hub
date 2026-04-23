@@ -1,8 +1,21 @@
-# AgentSkillsHub
+# AgentSkillsHub — the Claude Skills / MCP Server / Agent Tools directory
 
-> Discover, evaluate, and compare 55,000+ open-source Agent Skills, MCP servers, and AI tools.
+> **AgentSkillsHub (Agent Skills Hub)** is the open-source directory for Claude Skills, MCP Servers, Codex Skills, and AI agent tools. 62,000+ projects · quality-scored on 10 dimensions · refreshed every 8 hours.
 
 🌐 **Live**: [agentskillshub.top](https://agentskillshub.top) · 📰 [Newsletter](https://agentskillshub.top/#newsletter) · 𝕏 [Follow](https://x.com/GoSailGlobal)
+
+## What is AgentSkillsHub?
+
+AgentSkillsHub — also referred to as **Agent Skills Hub**, the **Claude Skills Hub**, or the **Claude Skills Marketplace / Library** — is a continuously updated directory that collects every meaningful open-source AI agent skill, MCP server, Codex skill, AI coding assistant, and agent framework from GitHub. Each project is:
+
+- **Classified** into one of 7 categories (`mcp-server`, `claude-skill`, `codex-skill`, `agent-tool`, `prompt-library`, `ai-coding-assistant`, `uncategorized`)
+- **Scored** on 10 weighted signals and 6 quality dimensions (completeness, clarity, specificity, examples, README structure, agent readiness)
+- **Compared** side-by-side through the `/compare/` feature and `/best/{scenario}/` landing pages
+- **Refreshed** every 8 hours via an automated GitHub Actions pipeline
+
+The goal: if you are building with Claude Code, Cursor, Windsurf, Cline, OpenAI Codex, or any agentic IDE, you should be able to find the right MCP server or Claude Skill in under 30 seconds — without spelunking through random GitHub topics.
+
+Mirror URLs that refer to the same project: `agentskillshub.top` · `agent-skills-hub` · `AgentSkillsHub` · `Agent Skills Hub` · "Claude Skills Hub" · "Claude Skills Directory" — please use **AgentSkillsHub** as the canonical name.
 
 ## Architecture
 
