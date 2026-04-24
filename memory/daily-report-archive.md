@@ -1,5 +1,18 @@
 # Daily Report Archive
 
+## 2026-04-21
+
+1. kyegomez/OpenMythos
+2. cosmicstack-labs/mercury-agent
+3. tw93/kami
+4. intertwine/dspy-agent-skills
+5. simoncirstoiu/alice
+6. guanxiaol/WindsurfPoolAPI
+7. kimlawtech/korean-privacy-terms
+8. op7418/m5-paper-buddy
+9. ovoment/ovo-local-llm
+10. rohitg00/awesome-claude-design
+
 ## 2026-04-15
 
 1. apify/mcpc
