@@ -392,10 +392,14 @@ ${faqLd}
 
       <!-- Title & Author -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)} — ${esc(catLabel)} by ${esc(author_name)}</h1>
-      <p style="color:#64748b;margin:0 0 16px">
+      <p style="color:#64748b;margin:0 0 8px">
         by <a href="https://github.com/${esc(author_name)}" style="color:#4f46e5;text-decoration:none">${esc(author_name)}</a>
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
         &middot; &#9733; ${starsK(stars)}
+      </p>
+      <!-- Freshness signal for E-E-A-T -->
+      <p style="color:#94a3b8;font-size:13px;margin:0 0 16px">
+        ${last_commit_at ? `Last updated: <time datetime="${last_commit_at}">${formatDate(last_commit_at)}</time> &middot; ` : ""}Indexed by AgentSkillsHub &middot; Auto-synced every 8h
       </p>
 
       <!-- README Excerpt -->
