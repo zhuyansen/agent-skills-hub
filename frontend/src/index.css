@@ -147,3 +147,168 @@ body {
 .dark .hero-gradient::after {
   background: radial-gradient(ellipse, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
 }
+
+/* Blue Book chapter prose — applied to .book-prose containers */
+.book-prose {
+  color: #1e293b;
+  font-size: 16px;
+  line-height: 1.78;
+}
+.dark .book-prose {
+  color: #e2e8f0;
+}
+.book-prose h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 2.4rem 0 0.8rem;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+.dark .book-prose h1 {
+  color: #f8fafc;
+}
+.book-prose h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 2rem 0 0.7rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.25rem;
+  color: #0f172a;
+}
+.dark .book-prose h2 {
+  border-top-color: #334155;
+  color: #f8fafc;
+}
+.book-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.4rem 0 0.5rem;
+  color: #1e293b;
+}
+.dark .book-prose h3 {
+  color: #e2e8f0;
+}
+.book-prose h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.1rem 0 0.4rem;
+  color: #334155;
+}
+.dark .book-prose h4 {
+  color: #cbd5e1;
+}
+.book-prose p {
+  margin: 0 0 1rem;
+}
+.book-prose a {
+  color: #4f46e5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.book-prose a:hover {
+  color: #6366f1;
+}
+.dark .book-prose a {
+  color: #818cf8;
+}
+.book-prose ul,
+.book-prose ol {
+  margin: 0 0 1rem;
+  padding-left: 1.6rem;
+}
+.book-prose li {
+  margin: 0.3rem 0;
+}
+.book-prose blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid #4f46e5;
+  background: #f8fafc;
+  color: #475569;
+  font-style: italic;
+}
+.dark .book-prose blockquote {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+.book-prose code {
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.92em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.dark .book-prose code {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+.book-prose pre {
+  margin: 1.2rem 0;
+  padding: 1rem 1.25rem;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+.book-prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+.book-prose img {
+  margin: 1.5rem auto;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #e2e8f0;
+}
+.dark .book-prose img {
+  border-color: #334155;
+}
+.book-prose table {
+  margin: 1.2rem 0;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.92em;
+}
+.book-prose th,
+.book-prose td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.dark .book-prose th,
+.dark .book-prose td {
+  border-color: #334155;
+}
+.book-prose th {
+  background: #f8fafc;
+  font-weight: 600;
+}
+.dark .book-prose th {
+  background: #1e293b;
+}
+.book-prose hr {
+  margin: 2.2rem 0;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+.dark .book-prose hr {
+  border-top-color: #334155;
+}
+.book-prose strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+.dark .book-prose strong {
+  color: #f8fafc;
+}
+.book-prose .anchor {
+  color: inherit;
+  text-decoration: none;
+}

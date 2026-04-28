@@ -39,6 +39,14 @@ const BusinessPage = lazy(() =>
 const AuthorPage = lazy(() =>
   import("./pages/AuthorPage").then((m) => ({ default: m.AuthorPage })),
 );
+const BookIndexPage = lazy(() =>
+  import("./pages/BookIndexPage").then((m) => ({ default: m.BookIndexPage })),
+);
+const BookChapterPage = lazy(() =>
+  import("./pages/BookChapterPage").then((m) => ({
+    default: m.BookChapterPage,
+  })),
+);
 const AdminLayout = lazy(() =>
   import("./pages/admin/AdminLayout").then((m) => ({ default: m.AdminLayout })),
 );
@@ -80,6 +88,10 @@ function App() {
                   <Route path="/business/" element={<BusinessPage />} />
                   <Route path="/author/:username" element={<AuthorPage />} />
                   <Route path="/author/:username/" element={<AuthorPage />} />
+                  <Route path="/book" element={<BookIndexPage />} />
+                  <Route path="/book/" element={<BookIndexPage />} />
+                  <Route path="/book/:slug" element={<BookChapterPage />} />
+                  <Route path="/book/:slug/" element={<BookChapterPage />} />
                   <Route path="/admin/*" element={<AdminLayout />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

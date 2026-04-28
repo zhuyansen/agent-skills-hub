@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-author-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-sitemap.mjs && node scripts/submit-indexnow.mjs",
+    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-author-pages.mjs && node scripts/generate-book-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-sitemap.mjs && node scripts/submit-indexnow.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -14,8 +14,12 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-helmet-async": "^3.0.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.13.1",
-    "recharts": "^3.8.0"
+    "recharts": "^3.8.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -157,6 +157,13 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             >
               For Business
             </Link>
+            <Link
+              to="/book/"
+              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
+              title="Skill 蓝皮书 2026 — 67K Skill 数据原生研究"
+            >
+              Blue Book
+            </Link>
             <span className="text-sm text-gray-400 dark:text-gray-500 items-center gap-1.5 hidden lg:flex">
               <span className="w-2 h-2 rounded-full bg-green-400" />
               {t("header.lastUpdated")}{" "}

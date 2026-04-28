@@ -219,6 +219,39 @@ async function main() {
     console.log("sitemap-scenarios.xml: skipped (no dist/best/ directory)");
   }
 
+  // 6b. sitemap-book.xml — Blue Book index + chapter pages
+  let bookCount = 0;
+  try {
+    const { readdirSync: rds, existsSync: exs } = await import("fs");
+    if (exs("dist/book")) {
+      const bookEntries = [];
+      // Index page first
+      bookEntries.push(`  <url>
+    <loc>${SITE}/book/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>${today}</lastmod>
+  </url>`);
+      // Chapter pages
+      const chapterSlugs = rds("dist/book").filter(
+        (slug) => !slug.startsWith(".") && slug !== "index.html" && slug !== "assets",
+      );
+      for (const slug of chapterSlugs) {
+        bookEntries.push(`  <url>
+    <loc>${SITE}/book/${slug}/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <lastmod>${today}</lastmod>
+  </url>`);
+      }
+      writeFileSync("dist/sitemap-book.xml", wrapUrlset(bookEntries));
+      bookCount = bookEntries.length;
+      console.log(`sitemap-book.xml: ${bookCount} URLs`);
+    }
+  } catch (e) {
+    console.log(`sitemap-book.xml: skipped (${e.message})`);
+  }
+
   // 6a. sitemap-authors.xml — top-N author aggregation pages (/author/{username}/)
   let authorCount = 0;
   try {
@@ -285,12 +318,15 @@ async function main() {
   if (authorCount > 0) {
     sitemapFiles.push("sitemap-authors.xml");
   }
+  if (bookCount > 0) {
+    sitemapFiles.push("sitemap-book.xml");
+  }
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount + authorCount;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount}, excluded ${noindexCount} low-quality pages)`);
+  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount + authorCount + bookCount;
+  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount} + book ${bookCount}, excluded ${noindexCount} low-quality pages)`);
 }
 
 main().catch(console.error);
