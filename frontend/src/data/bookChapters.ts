@@ -133,6 +133,46 @@ export const BOOK_CHAPTERS: BookChapter[] = [
     status: "published",
     wordCount: 4500,
   },
+  {
+    slug: "A-skill-design-cheatsheet",
+    number: 13,
+    part: "附录",
+    title: "附录 A · Skill 设计速查表（一页纸）",
+    summary:
+      "12 章浓缩成可打印 cheatsheet：写 description 的 10 条金科玉律 + 9×4 推荐矩阵 + 5 设计模式 × 9 类型交叉表 + 14 项发布前自检 + SKILL.md 骨架。",
+    status: "published",
+    wordCount: 1500,
+  },
+  {
+    slug: "B-hub-user-guide",
+    number: 14,
+    part: "附录",
+    title: "附录 B · AgentSkillsHub 使用指南",
+    summary:
+      "5 分钟上手 + 提交 Skill 流程 + 评分算法透明化（Quality Score 6 维 + Score 10 信号）+ RSS/API/Sitemap + Hub 不做的 6 件事。",
+    status: "published",
+    wordCount: 2000,
+  },
+  {
+    slug: "C-verified-creator-application",
+    number: 15,
+    part: "附录",
+    title: "附录 C · Verified Creator 申请流程",
+    summary:
+      "5 分钟自检 + Python 计算器 + 完整 YAML 申请表 + 审核时间线 + 撤销条件 + 给企业团队的批量路径。",
+    status: "published",
+    wordCount: 2000,
+  },
+  {
+    slug: "D-references-and-reading",
+    number: 16,
+    part: "附录",
+    title: "附录 D · 参考文献 + 延伸阅读",
+    summary:
+      "Anthropic 官方资料 + 中英 KOL 代表作 + 行业关键论文 + 每一章的「想深挖」推荐路径 + CC BY-NC-SA 4.0 授权 + 致谢。",
+    status: "published",
+    wordCount: 1500,
+  },
 ];
 
 export const PUBLISHED_CHAPTERS = BOOK_CHAPTERS.filter(
