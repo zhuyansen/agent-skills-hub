@@ -195,20 +195,22 @@ export const translations = {
     "table.updated": "更新",
 
     // Newsletter
-    "newsletter.title": "订阅周报",
+    "newsletter.title": "订阅周报，免费拿蓝皮书 PDF",
     "newsletter.subtitle":
-      "每周接收最新 Agent Skills 趋势、热门项目和开发者动态",
+      "确认邮件里附《Skill 蓝皮书 2026》全本 PDF 下载链接（130+ 页 / 12 章 / ~75K 字）+ 每周一最新 Agent Skills 趋势",
     "newsletter.placeholder": "your@email.com",
-    "newsletter.button": "订阅",
-    "newsletter.success": "请查收确认邮件，点击链接完成验证即可订阅成功。",
+    "newsletter.button": "订阅 + 拿 PDF",
+    "newsletter.success":
+      "请查收确认邮件——点击验证链接后立即解锁蓝皮书 PDF 下载。",
     "newsletter.error": "订阅失败，请稍后重试",
-    "newsletter.benefits1": "每周热门 Skills 精选",
-    "newsletter.benefits2": "新项目抢先看",
-    "newsletter.benefits3": "开发者动态速递",
+    "newsletter.benefits1": "蓝皮书 2026 全本 PDF（130+ 页）",
+    "newsletter.benefits2": "每周一周报：本周热门 Skills",
+    "newsletter.benefits3": "新项目抢先看 + 开发者动态",
     "newsletter.socialProof": "已有 {count}+ 开发者订阅",
-    "newsletter.frequency": "📬 每周一发送，精选本周最热 AI 工具",
-    "newsletter.successTitle": "订阅成功!",
-    "newsletter.checkEmail": "请查收确认邮件，点击链接完成验证即可",
+    "newsletter.frequency": "📬 每周一一封 · 不打扰 · 随时可退订",
+    "newsletter.successTitle": "订阅成功! 验证后立即拿 PDF",
+    "newsletter.checkEmail":
+      "请查收确认邮件，点击验证链接后解锁蓝皮书 PDF 下载",
 
     // Compare
     "compare.title": "对比",
@@ -264,7 +266,7 @@ export const translations = {
     "newThisWeek.subtitle": "最近 7 天首次收录的项目",
 
     // Newsletter Inline
-    "newsletter.inlineTitle": "订阅周报，获取最新趋势",
+    "newsletter.inlineTitle": "订阅周报 → 立即解锁《Skill 蓝皮书 2026》PDF",
 
     // Install Guide
     "guide.title": "如何使用这些 Skills",
@@ -516,20 +518,22 @@ export const translations = {
     "table.updated": "Updated",
 
     // Newsletter
-    "newsletter.title": "Weekly Newsletter",
+    "newsletter.title": "Subscribe → Get the free Blue Book PDF",
     "newsletter.subtitle":
-      "Get weekly updates on trending Agent Skills, hot projects, and developer highlights",
+      "Confirmation email includes the full PDF of the Skill Blue Book 2026 (130+ pages, 12 chapters, ~75K words) + weekly Agent Skills trends every Monday",
     "newsletter.placeholder": "your@email.com",
-    "newsletter.button": "Subscribe",
+    "newsletter.button": "Subscribe + Get PDF",
     "newsletter.success":
-      "Please check your email and click the verification link to complete your subscription.",
-    "newsletter.benefits1": "Weekly trending skills curated",
-    "newsletter.benefits2": "New projects first look",
-    "newsletter.benefits3": "Developer highlights digest",
+      "Check your email — click the verification link to unlock the Blue Book PDF download.",
+    "newsletter.benefits1": "Skill Blue Book 2026 full PDF (130+ pages)",
+    "newsletter.benefits2": "Weekly Monday digest: trending Skills",
+    "newsletter.benefits3": "New projects first look + dev highlights",
     "newsletter.socialProof": "Join {count}+ developers",
-    "newsletter.frequency": "📬 Sent every Monday — top AI tools of the week",
-    "newsletter.successTitle": "Subscribed!",
-    "newsletter.checkEmail": "Check your email and click the verification link",
+    "newsletter.frequency":
+      "📬 One email per Monday · No spam · Unsubscribe anytime",
+    "newsletter.successTitle": "Subscribed! Verify to unlock PDF",
+    "newsletter.checkEmail":
+      "Check email and click the verification link to unlock the Blue Book PDF",
     "newsletter.error": "Subscription failed, please try again later",
 
     // Compare
@@ -587,7 +591,8 @@ export const translations = {
     "newThisWeek.subtitle": "Skills first indexed in the last 7 days",
 
     // Newsletter Inline
-    "newsletter.inlineTitle": "Subscribe for weekly trends",
+    "newsletter.inlineTitle":
+      "Subscribe → unlock the free Skill Blue Book 2026 PDF",
 
     // Install Guide
     "guide.title": "How to Use These Skills",
