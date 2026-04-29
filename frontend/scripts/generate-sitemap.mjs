@@ -1,17 +1,24 @@
 /**
- * Build-time sitemap generator — V2 (Split + Quality-Filtered).
+ * Build-time sitemap generator — V3 (Aggressive crawl-budget conservation).
  *
- * Changes from V1:
- *   - Sitemap index with split sub-sitemaps (top/mid/standard/categories)
- *   - Only includes indexed pages (stars >= 50)
- *   - Excludes low-star pages to conserve crawl budget
+ * Changes from V2 (2026-04-29):
+ *   - sitemap-top.xml threshold: stars >= 100 → stars >= 500
+ *   - sitemap-authors.xml threshold: all 500 authors → only total_stars >= 1000
+ *     OR ≥ 5 skills (~50-150 authors)
+ *   - Reason: GSC showed 4,592 "Discovered – not indexed" pages — Google's
+ *     quality bar exceeded average page quality. Goal: shrink sitemap from
+ *     ~6,400 → ~2,000 URLs to redirect crawl budget to higher-signal pages.
  *
  * Output:
- *   public/sitemap.xml           — sitemap index
- *   public/sitemap-static.xml    — homepage
- *   public/sitemap-categories.xml — category pages
- *   public/sitemap-top.xml       — stars >= 100
- *   public/sitemap-mid.xml       — stars 50-99
+ *   dist/sitemap.xml           — sitemap index
+ *   dist/sitemap-static.xml    — homepage + static routes
+ *   dist/sitemap-categories.xml — category pages
+ *   dist/sitemap-top.xml       — Skills with stars >= 500
+ *   dist/sitemap-mid.xml       — SKIPPED (stars 50-499 reachable via internal links)
+ *   dist/sitemap-scenarios.xml — /best/{slug}/ pages
+ *   dist/sitemap-comparisons.xml — /compare/{slug}/ pages
+ *   dist/sitemap-authors.xml   — /author/{username}/ for total_stars >= 1000 OR ≥5 skills
+ *   dist/sitemap-book.xml      — /book/ + 12 chapters + 4 appendices
  *
  * Run: node scripts/generate-sitemap.mjs
  */
@@ -111,9 +118,13 @@ async function main() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  // Split by tier — prioritize crawl budget for higher-value pages
-  const topSkills = indexedSkills.filter((s) => s.stars >= 100);
-  const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 100);
+  // Split by tier — prioritize crawl budget for higher-value pages.
+  // 2026-04-29 update: GSC showed 4,592 "Discovered – not indexed" pages.
+  // Tightened threshold from 100 → 500 to redirect Google's crawl budget to
+  // the top ~1,500 pages instead of spreading across 4,000+ similar-looking
+  // template pages. Expected effect: indexing rate 30% → 60-70% within 30 days.
+  const topSkills = indexedSkills.filter((s) => s.stars >= 500);
+  const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 500);
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -174,10 +185,10 @@ async function main() {
   writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
   console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (derived from data)`);
 
-  // 3. sitemap-top.xml (stars >= 100)
+  // 3. sitemap-top.xml (stars >= 500)
   const topEntries = buildUrlEntries(topSkills);
   writeFileSync("dist/sitemap-top.xml", wrapUrlset(topEntries));
-  console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 100)`);
+  console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 500)`);
 
   // Clean up any stale sitemap-mid.xml from previous builds so Google stops
   // seeing it. (GitHub Pages serves whatever is in dist/; orphan files persist.)
@@ -191,14 +202,15 @@ async function main() {
     // non-fatal
   }
 
-  // NOTE: sitemap-mid.xml (stars 50-99) is intentionally NOT generated.
-  // Decision 2026-04-21: Google had ~1,500 "discovered-not-indexed" pages in this
-  // tier competing for crawl budget with 4,000+ high-star pages. Removing mid
-  // tier from sitemap lets Google focus on stars >= 100. Pages with 50-99 stars
-  // are still generated (MIN_STARS_FOR_PAGE = 50) and reachable via internal
-  // links + category pages, so users still find them; Google just isn't pushed
-  // to crawl them via sitemap. Revisit in 4-6 weeks.
-  console.log(`sitemap-mid.xml: SKIPPED (${midSkills.length} URLs intentionally excluded, stars 50-99)`);
+  // NOTE: sitemap-mid.xml is intentionally NOT generated.
+  // Decision 2026-04-29 (v2): GSC showed 4,592 "discovered-not-indexed" even
+  // with the prior 100-star threshold — Google's quality bar exceeded our
+  // average page quality. Tightened to stars >= 500 to give Google a leaner,
+  // higher-signal set. Mid pages (stars 50-499) are still reachable via
+  // internal links + /category/ + /best/ pages — Google just isn't pushed
+  // to crawl them via sitemap. Revisit in 30 days; if "discovered-not-indexed"
+  // drops below 1,500 we may relax back to 200 or 300.
+  console.log(`sitemap-mid.xml: SKIPPED (${midSkills.length} URLs intentionally excluded, stars 50-499)`);
 
   // 5. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
   let scenarioCount = 0;
@@ -253,14 +265,20 @@ async function main() {
   }
 
   // 6a. sitemap-authors.xml — top-N author aggregation pages (/author/{username}/)
+  // 2026-04-29 update: tightened from 500 → only authors with total_stars >= 1000
+  // OR ≥ 5 skills (combined the stars + prolific signal). Goal: redirect Google's
+  // crawl budget to ~50-150 high-signal author pages.
   let authorCount = 0;
   try {
     const { readFileSync: rfs, existsSync } = await import("fs");
     if (existsSync("dist/_authors-manifest.json")) {
       const manifest = JSON.parse(rfs("dist/_authors-manifest.json", "utf-8"));
-      const authorEntries = manifest.map((a) => {
-        // Priority scales with total_stars: 500+ → 0.75, 100-499 → 0.65, rest → 0.55
-        const priority = a.total_stars >= 500 ? "0.75" : a.total_stars >= 100 ? "0.65" : "0.55";
+      const filtered = manifest.filter(
+        (a) => a.total_stars >= 1000 || (a.skill_count && a.skill_count >= 5),
+      );
+      const authorEntries = filtered.map((a) => {
+        // Priority scales with total_stars: 5K+ → 0.80, 1K-5K → 0.70, rest → 0.65
+        const priority = a.total_stars >= 5000 ? "0.80" : a.total_stars >= 1000 ? "0.70" : "0.65";
         return `  <url>
     <loc>${SITE}/author/${encodeURIComponent(a.author_name)}/</loc>
     <changefreq>weekly</changefreq>
@@ -270,7 +288,7 @@ async function main() {
       });
       writeFileSync("dist/sitemap-authors.xml", wrapUrlset(authorEntries));
       authorCount = authorEntries.length;
-      console.log(`sitemap-authors.xml: ${authorCount} URLs`);
+      console.log(`sitemap-authors.xml: ${authorCount} URLs (filtered from ${manifest.length})`);
     }
   } catch (e) {
     console.log(`sitemap-authors.xml: skipped (${e.message})`);
