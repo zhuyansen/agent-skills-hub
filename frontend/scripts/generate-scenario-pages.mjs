@@ -287,6 +287,7 @@ ${breadcrumbLd}
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
   <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body class="bp-body">
   ${buildStaticHeader()}
@@ -384,23 +385,54 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     ],
   });
 
-  // FAQ
+  // FAQ — 6 substantive questions optimized for Google featured snippets + AI Overview
   const scenarioLower = scenario.title.toLowerCase();
   const top3Names = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
+  const top1 = skills[0];
+  const top2 = skills[1];
+  // Find first valid related scenario (with a title) for the "difference" FAQ
+  const relatedScenario = (scenario.related || [])
+    .map((slug) => allScenarios.find((s) => s.slug === slug))
+    .find((s) => s && s.title);
+
+  // Avoid double "tools tools" / "tool tool" when title already contains tools/servers/etc.
+  const titleHasNoun = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i.test(scenario.title);
+  const scenarioToolsPhrase = titleHasNoun ? scenarioLower : `${scenarioLower} tools`;
+  const scenarioToolPhrase = titleHasNoun ? scenarioLower : `${scenarioLower} tool`;
+  const articleA = titleHasNoun ? "" : (/^[aeiou]/i.test(scenarioLower) ? "an " : "a ");
+
   const faqItems = [
     {
-      q: `What are the best ${scenarioLower} tools in ${year}?`,
-      a: `The top ${scenarioLower} tools in ${year} include ${top3Names}. These tools are ranked by community adoption (GitHub stars) and quality metrics.`,
+      q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
+      a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${skills.length} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
     },
+    top1 && top2
+      ? {
+          q: `How do I choose between ${top1.repo_name} and ${top2.repo_name}?`,
+          a: `${top1.repo_name} (${starsK(top1.stars)} stars) is the most adopted choice for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${top2.repo_name} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${top1.repo_name} — it has the deepest community and the most examples online.`,
+        }
+      : null,
     {
-      q: `How many ${scenarioLower} tools are available?`,
-      a: `Agent Skills Hub indexes ${skills.length} ${scenarioLower} tools, updated daily from GitHub. Browse the full list at agentskillshub.top.`,
+      q: `When should I NOT use ${articleA}${scenarioToolPhrase}?`,
+      a: `Avoid pre-built ${scenarioToolsPhrase} when (1) your use case requires deep customization that the tool's plugin system doesn't support, (2) you have strict compliance requirements that ban third-party dependencies, (3) the tool's maintenance is inactive (last commit >6 months ago), or (4) your data volume is small enough that a 50-line custom script is cheaper than learning the tool. For most production workflows above 100 requests/day, the time savings from a maintained tool outweigh the customization loss.`,
     },
+    relatedScenario
+      ? {
+          q: `What's the difference between ${scenarioLower} and ${relatedScenario.title.toLowerCase()}?`,
+          a: `${scenario.title} focuses specifically on ${(scenario.description || `${scenarioLower} workflows`).toLowerCase().replace(/^discover the best ai agent skills and mcp tools for /, "").replace(/\.$/, "")}. ${relatedScenario.title} is a related but distinct category — see ${SITE}/best/${relatedScenario.slug}/ for those tools. The two often appear in the same agent pipeline but solve different problems: choose ${scenarioLower} when your primary goal is the specific task, and ${relatedScenario.title.toLowerCase()} when the workflow is broader.`,
+        }
+      : null,
+    top1
+      ? {
+          q: `Is ${top1.repo_name} better than building it yourself?`,
+          a: `For most teams, yes. ${top1.repo_name} has ${starsK(top1.stars)} stars worth of community testing, handles edge cases you haven't thought of, and ships with documentation. Build your own only when (1) your requirements are deeply non-standard, (2) you have a security/compliance reason to avoid OSS dependencies, or (3) the maintenance burden is small enough (<200 lines of code) that you'll save time long-term. The break-even point is usually around 2-3 weeks of dev time saved.`,
+        }
+      : null,
     {
-      q: `Are these ${scenarioLower} tools free to use?`,
-      a: `Most tools listed are open source and free. Check each tool's license on its GitHub repository for specific terms.`,
+      q: `Are these ${scenarioToolsPhrase} free to use?`,
+      a: `Most ${scenarioToolsPhrase} listed are open source under permissive licenses (MIT, Apache 2.0). A handful offer paid managed/cloud versions on top of free self-hosted core. Always check the LICENSE file on each tool's GitHub repository before commercial use — some use AGPL or non-commercial restrictions that may not fit your deployment model.`,
     },
-  ];
+  ].filter(Boolean);
 
   const faqLd = JSON.stringify({
     "@context": "https://schema.org",
@@ -514,6 +546,7 @@ ${faqLd}
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
   <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body class="bp-body">
   ${buildStaticHeader()}
