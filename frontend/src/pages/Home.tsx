@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkills } from "../api/client";
 import { CategoryFilter } from "../components/CategoryFilter";
@@ -34,7 +34,6 @@ import type { Master, OrgBuilder } from "../api/client";
 import { TopRatedSection } from "../components/TopRatedSection";
 import { TrendingSection } from "../components/TrendingSection";
 import { ViewToggle } from "../components/ViewToggle";
-import { SubmitSkill } from "../components/SubmitSkill";
 import { NewsletterSubscribe } from "../components/NewsletterSubscribe";
 
 import { NewThisWeek } from "../components/NewThisWeek";
@@ -304,9 +303,40 @@ export function Home() {
               <FAQSection />
             </LazySection>
             <div id="submit-skill">
-              <LazySection minHeight="100px">
-                <SubmitSkill />
-              </LazySection>
+              <Link
+                to="/submit/"
+                className="block mt-10 mb-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 sm:p-6 hover:border-indigo-500 hover:shadow-md hover:-translate-y-0.5 transition-all"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex-none w-12 h-12 bg-indigo-50 dark:bg-indigo-950/40 rounded-lg flex items-center justify-center">
+                    <svg
+                      className="w-6 h-6 text-indigo-600 dark:text-indigo-400"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Submit to the Hub
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                      Submit a Skill, compose a Workflow, or apply for Verified
+                      Creator
+                    </p>
+                  </div>
+                  <span className="flex-none text-indigo-600 dark:text-indigo-400 text-sm font-semibold whitespace-nowrap">
+                    Open →
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         )}

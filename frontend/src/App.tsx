@@ -36,6 +36,9 @@ const VerifiedCreatorApplicationPage = lazy(() =>
     default: m.VerifiedCreatorApplicationPage,
   })),
 );
+const SubmitPage = lazy(() =>
+  import("./pages/SubmitPage").then((m) => ({ default: m.SubmitPage })),
+);
 const BusinessPage = lazy(() =>
   import("./pages/BusinessPage").then((m) => ({
     default: m.BusinessPage,
@@ -97,6 +100,8 @@ function App() {
                     path="/verified-creator/apply/"
                     element={<VerifiedCreatorApplicationPage />}
                   />
+                  <Route path="/submit" element={<SubmitPage />} />
+                  <Route path="/submit/" element={<SubmitPage />} />
                   <Route path="/business" element={<BusinessPage />} />
                   <Route path="/business/" element={<BusinessPage />} />
                   <Route path="/author/:username" element={<AuthorPage />} />
