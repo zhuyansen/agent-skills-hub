@@ -208,7 +208,19 @@ export function VerifiedCreatorPage() {
           </section>
         )}
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
+          <Link
+            to="/verified-creator/apply/"
+            className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+          >
+            Apply for Verified Creator →
+          </Link>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
+            Manual review within 5 business days
+          </p>
+        </div>
+
+        <div className="mt-8 text-center">
           <Link
             to="/"
             className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition"

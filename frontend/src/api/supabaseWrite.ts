@@ -189,6 +189,44 @@ export async function sbSubmitMasterApplication(
   };
 }
 
+export interface VerifiedCreatorApplicationPayload {
+  display_name: string;
+  github_username: string;
+  skill_categories: string[];
+  timezone: string;
+  available_for_hire: boolean;
+  rate_min: number | null;
+  rate_max: number | null;
+  bio: string;
+}
+
+export async function sbSubmitVerifiedCreatorApplication(
+  payload: VerifiedCreatorApplicationPayload,
+): Promise<{ status: string; message: string }> {
+  const sb = ensureSupabase();
+
+  const { error } = await sb.from("verified_creator_applications").insert({
+    display_name: payload.display_name,
+    github_username: payload.github_username,
+    skill_categories: payload.skill_categories,
+    timezone: payload.timezone,
+    available_for_hire: payload.available_for_hire,
+    rate_min: payload.rate_min,
+    rate_max: payload.rate_max,
+    bio: payload.bio,
+    status: "pending",
+  });
+
+  if (error) {
+    return { status: "error", message: error.message };
+  }
+
+  return {
+    status: "submitted",
+    message: "Application submitted. We'll review within 5 business days.",
+  };
+}
+
 export async function sbSubmitWorkflow(
   name: string,
   description: string,

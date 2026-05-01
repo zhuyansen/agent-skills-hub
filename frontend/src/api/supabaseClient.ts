@@ -688,6 +688,8 @@ export {
   sbSubscribe,
   sbVerifyEmail,
   sbSubmitMasterApplication,
+  sbSubmitVerifiedCreatorApplication,
   sbSubmitWorkflow,
   sbAdminAction,
 } from "./supabaseWrite";
+export type { VerifiedCreatorApplicationPayload } from "./supabaseWrite";

@@ -34,9 +34,11 @@ import {
   sbSubscribe,
   sbVerifyEmail,
   sbSubmitMasterApplication,
+  sbSubmitVerifiedCreatorApplication,
   sbSubmitWorkflow,
   sbAdminAction,
 } from "./supabaseClient";
+import type { VerifiedCreatorApplicationPayload } from "./supabaseClient";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -293,6 +295,17 @@ export async function submitMasterApplication(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ github, name, bio, repo_urls: repoUrls }),
+  });
+}
+
+export async function submitVerifiedCreatorApplication(
+  payload: VerifiedCreatorApplicationPayload,
+): Promise<{ status: string; message: string }> {
+  if (supabase) return sbSubmitVerifiedCreatorApplication(payload);
+  return request("/api/submit-verified-creator-application", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
 }
 

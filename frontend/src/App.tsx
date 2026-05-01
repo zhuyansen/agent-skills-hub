@@ -31,6 +31,11 @@ const VerifiedCreatorPage = lazy(() =>
     default: m.VerifiedCreatorPage,
   })),
 );
+const VerifiedCreatorApplicationPage = lazy(() =>
+  import("./pages/VerifiedCreatorApplicationPage").then((m) => ({
+    default: m.VerifiedCreatorApplicationPage,
+  })),
+);
 const BusinessPage = lazy(() =>
   import("./pages/BusinessPage").then((m) => ({
     default: m.BusinessPage,
@@ -83,6 +88,14 @@ function App() {
                   <Route
                     path="/verified-creator/"
                     element={<VerifiedCreatorPage />}
+                  />
+                  <Route
+                    path="/verified-creator/apply"
+                    element={<VerifiedCreatorApplicationPage />}
+                  />
+                  <Route
+                    path="/verified-creator/apply/"
+                    element={<VerifiedCreatorApplicationPage />}
                   />
                   <Route path="/business" element={<BusinessPage />} />
                   <Route path="/business/" element={<BusinessPage />} />
