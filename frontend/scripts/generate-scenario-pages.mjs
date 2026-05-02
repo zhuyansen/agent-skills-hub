@@ -349,12 +349,25 @@ function buildAeoSection(scenario, skills, year) {
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const pageUrl = `${SITE}/best/${scenario.slug}/`;
   const year = new Date().getFullYear();
-  // SEO: keep title ≤ 60 chars so Google SERP doesn't truncate.
-  // aaron-he-zhu/seo-geo-claude-skills audit flagged 66-char titles as truncated.
-  const title = `Best ${scenario.title} Tools (${year}) · AgentSkillsHub`;
-  // Meta ≤ 160 chars: use scenario description but hard-truncate to 155.
-  const rawDesc = scenario.description || "";
-  const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152) + "..." : rawDesc;
+  // SEO: title ≤ 60 chars. New format (2026-05): "X: N Open-Source Tools Compared (YYYY)"
+  // Old "Best X Tools" got 0.1-0.3% CTR per GSC — sounded like wirecutter list, lost
+  // clicks to GitHub repos. New format signals comparison/decision support.
+  // Skip suffix when title already contains "Tools/Servers/Frameworks/etc."
+  const seoTitleHasNoun = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i.test(scenario.title);
+  const itemCount = skills.length;
+  const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
+  const title = `${scenario.title}: ${itemCount} Open-Source ${seoTitleHasNoun ? "" : "Tools "}Compared (${year})`.replace(/  +/g, " ");
+  // Meta ≤ 145 chars (Google SERP truncates at ~155, leave buffer for "...").
+  // Format: "{N} {open-source} {scenario}: {top names}. {value prop}."
+  // Trim at last word boundary to avoid mid-word cut.
+  const metaTopNames = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
+  const metaRaw =
+    `${itemCount} open-source ${seoTitleSubject.toLowerCase()} compared: ${metaTopNames}. ` +
+    `Stars, quality, use cases. Refreshed every 8h.`;
+  const metaDesc =
+    metaRaw.length <= 145
+      ? metaRaw
+      : metaRaw.slice(0, 145).replace(/\s+\S*$/, "") + "…";
   const ogImage = `${SITE}/og-image.png`;
 
   const { scriptTags, linkTags } = assetTags;
