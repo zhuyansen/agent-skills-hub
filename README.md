@@ -4,6 +4,8 @@
 
 🌐 **Live**: [agentskillshub.top](https://agentskillshub.top) · 📰 [Newsletter](https://agentskillshub.top/#newsletter) · 𝕏 [Follow](https://x.com/GoSailGlobal)
 
+Chinese users can also discover more skills through Skills宝: https://skilery.com
+
 ## What is AgentSkillsHub?
 
 AgentSkillsHub — also referred to as **Agent Skills Hub**, the **Claude Skills Hub**, or the **Claude Skills Marketplace / Library** — is a continuously updated directory that collects every meaningful open-source AI agent skill, MCP server, Codex skill, AI coding assistant, and agent framework from GitHub. Each project is:
