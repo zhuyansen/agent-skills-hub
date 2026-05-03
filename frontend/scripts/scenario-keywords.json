@@ -2015,5 +2015,212 @@
       "mcp-for-notion",
       "mcp-for-google"
     ]
+  },
+  {
+    "slug": "seo-tools",
+    "title": "SEO Tools",
+    "description": "SEO research and analysis MCP servers — keyword research, backlink analysis, SERP tracking, content briefs. Powered by Ahrefs, DataForSEO, and Google Search Console data.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "seo",
+        "seo mcp",
+        "keyword research",
+        "backlink analysis",
+        "serp tracker",
+        "dataseo",
+        "ahrefs"
+      ],
+      "secondary_keywords": [
+        "search engine optimization",
+        "ranking",
+        "search console",
+        "dataforseo",
+        "keyword difficulty",
+        "seo audit",
+        "content brief"
+      ],
+      "topic_matches": [
+        "seo",
+        "seo-tools",
+        "seo-mcp",
+        "search-engine-optimization",
+        "keyword-research"
+      ],
+      "min_results": 3,
+      "max_results": 30
+    },
+    "related": [
+      "content-writing",
+      "data-pipeline",
+      "semantic-search"
+    ]
+  },
+  {
+    "slug": "finance-mcp",
+    "title": "Finance MCP Servers",
+    "description": "Financial data MCP servers and CLIs for AI agents — stock quotes, personal finance, accounting, trading APIs, market analysis.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "finance mcp",
+        "stock mcp",
+        "trading mcp",
+        "financial data",
+        "monarch money",
+        "stock-sdk-mcp",
+        "polyclaw"
+      ],
+      "secondary_keywords": [
+        "finance",
+        "stock",
+        "trading",
+        "accounting",
+        "investing",
+        "portfolio",
+        "fintech",
+        "crypto mcp",
+        "polymarket"
+      ],
+      "topic_matches": [
+        "finance",
+        "finance-mcp",
+        "stock",
+        "trading",
+        "fintech",
+        "financial"
+      ],
+      "min_results": 3,
+      "max_results": 30
+    },
+    "related": [
+      "data-pipeline",
+      "data-visualization",
+      "saas-mcp"
+    ]
+  },
+  {
+    "slug": "ai-design",
+    "title": "AI Design Tools",
+    "description": "Design intelligence skills for AI coding agents — UI generation, design systems, prototyping, mockup-to-code via Google Stitch, Claude Design, and more.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "ai design",
+        "design agent",
+        "ui generation",
+        "stitch",
+        "stitch-kit",
+        "claude design",
+        "design to code"
+      ],
+      "secondary_keywords": [
+        "design system",
+        "ui design",
+        "mockup",
+        "prototype",
+        "figma to code",
+        "design tokens",
+        "design skill",
+        "screen generation"
+      ],
+      "topic_matches": [
+        "ai-design",
+        "design-agent",
+        "design-to-code",
+        "ui-generation",
+        "stitch",
+        "design-system"
+      ],
+      "min_results": 3,
+      "max_results": 30
+    },
+    "related": [
+      "web-development",
+      "code-completion",
+      "skill-management-tools"
+    ]
+  },
+  {
+    "slug": "agent-deployment",
+    "title": "Agent Deployment",
+    "description": "Deploy AI agents and Skills to production — gstack, Fly.io, Vercel, Cloudflare Workers, Modal. From local dev to scalable inference, including CI/CD pipelines.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "agent deployment",
+        "deploy agent",
+        "agent hosting",
+        "gstack",
+        "fly deploy",
+        "vercel agent",
+        "cloudflare workers"
+      ],
+      "secondary_keywords": [
+        "deploy",
+        "hosting",
+        "production",
+        "modal",
+        "render",
+        "railway",
+        "serverless agent",
+        "agent infra",
+        "edge deployment"
+      ],
+      "topic_matches": [
+        "deployment",
+        "agent-deployment",
+        "deploy",
+        "hosting",
+        "production-deployment"
+      ],
+      "min_results": 3,
+      "max_results": 30
+    },
+    "related": [
+      "ci-cd",
+      "container-management",
+      "saas-mcp"
+    ]
+  },
+  {
+    "slug": "voice-agent",
+    "title": "Voice Agents",
+    "description": "Real-time voice AI agents — speech-in/speech-out conversational systems with Whisper, ElevenLabs, OpenAI Realtime API, and Anthropic voice tools.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "voice agent",
+        "voice ai",
+        "realtime voice",
+        "voice assistant",
+        "elevenlabs",
+        "openai realtime",
+        "voice mcp"
+      ],
+      "secondary_keywords": [
+        "speech to speech",
+        "voice chat",
+        "audio agent",
+        "whisper agent",
+        "voice assistant",
+        "phone agent",
+        "audio mcp"
+      ],
+      "topic_matches": [
+        "voice",
+        "voice-agent",
+        "voice-ai",
+        "realtime-voice",
+        "speech-agent"
+      ],
+      "min_results": 3,
+      "max_results": 30
+    },
+    "related": [
+      "text-to-speech",
+      "speech-to-text",
+      "ai-agent-framework"
+    ]
   }
 ]
