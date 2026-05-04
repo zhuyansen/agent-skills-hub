@@ -608,7 +608,7 @@
   {
     "slug": "browser-automation",
     "title": "Browser Automation",
-    "description": "Open-source browser automation tools for AI agents — Playwright, Puppeteer, Chrome DevTools, and computer-use MCP servers. Rank-ordered by stars, quality score, and community activity. Updated every 8 hours.",
+    "description": "Open-source browser automation and data collection tools for AI agents — browser-use, MediaCrawler, Scrapling, playwright-mcp, agent-reach, OpenCLI, AutoCLI, mcp-chrome and more. 5 派系完整对比.",
     "match": {
       "categories": [],
       "primary_keywords": [
@@ -617,7 +617,22 @@
         "puppeteer",
         "selenium",
         "browser-use",
-        "computer use"
+        "computer use",
+        "browser-use",
+        "MediaCrawler",
+        "Scrapling",
+        "playwright-mcp",
+        "agent-reach",
+        "OpenCLI",
+        "AutoCLI",
+        "agent-browser",
+        "mcp-chrome",
+        "obscura",
+        "stagehand",
+        "browserbase",
+        "firecrawl",
+        "feedgrab",
+        "dev-browser"
       ],
       "secondary_keywords": [
         "browser",
@@ -631,7 +646,14 @@
         "web agent",
         "web scraping",
         "screenshot",
-        "devtools"
+        "devtools",
+        "scraper",
+        "crawler",
+        "headless-browser",
+        "browser-tools",
+        "browser-mcp",
+        "media-crawler",
+        "scrapling"
       ],
       "topic_matches": [
         "playwright",
@@ -640,10 +662,36 @@
         "browser-automation",
         "browser-use",
         "web-automation",
-        "headless-browser"
+        "headless-browser",
+        "scraper",
+        "web-scraping",
+        "browser-mcp",
+        "browser-tools",
+        "stagehand",
+        "media-crawler",
+        "browser-agent"
       ],
       "min_results": 5,
-      "max_results": 30
+      "max_results": 30,
+      "featured": [
+        "browser-use/browser-use",
+        "NanmiCoder/MediaCrawler",
+        "D4Vinci/Scrapling",
+        "microsoft/playwright-mcp",
+        "Panniantong/Agent-Reach",
+        "jackwener/OpenCLI",
+        "vercel-labs/agent-browser",
+        "h4ckf0r0day/obscura",
+        "nashsu/AutoCLI",
+        "browserbase/stagehand",
+        "hangwin/mcp-chrome",
+        "AgentDeskAI/browser-tools-mcp",
+        "firecrawl/firecrawl-mcp-server",
+        "SawyerHood/dev-browser",
+        "browserbase/skills",
+        "iBigQiang/feedgrab",
+        "nashsu/autocli-skill"
+      ]
     },
     "related": [
       "web-scraping",

@@ -40,10 +40,22 @@ function matchSkills(scenario, allSkills) {
   // New hard filters
   const licenseFilter = (m.license_filter || []).map((k) => k.toUpperCase());
   const languageFilter = (m.language_filter || []); // case-sensitive (matches GitHub's reported language)
+  // Featured anchors — force-include these specific repos at the top, bypass keyword scoring.
+  // Use to guarantee tweet/landing-page consistency for hand-picked headline projects.
+  // Format: ["owner/repo", ...] — case-insensitive match against repo_full_name.
+  const featuredFullNames = (m.featured || []).map((k) => k.toLowerCase());
 
   const scored = [];
+  const featured = [];  // separate list, force-injected at top, ordered by featuredFullNames index
+
   for (const skill of allSkills) {
     if (!shouldIndex(skill)) continue;
+
+    // Featured anchor — force include regardless of keyword match
+    if (featuredFullNames.length > 0 && featuredFullNames.includes((skill.repo_full_name || "").toLowerCase())) {
+      featured.push(skill);
+      continue;
+    }
 
     // Hard language filter
     if (languageFilter.length > 0) {
@@ -106,7 +118,18 @@ function matchSkills(scenario, allSkills) {
   // Sort by matchScore desc, then by stars desc
   scored.sort((a, b) => b.matchScore - a.matchScore || b.skill.stars - a.skill.stars);
 
-  const results = scored.slice(0, max_results).map((s) => s.skill);
+  // Featured first (in declared order), then keyword-matched results
+  featured.sort((a, b) => {
+    const ia = featuredFullNames.indexOf((a.repo_full_name || "").toLowerCase());
+    const ib = featuredFullNames.indexOf((b.repo_full_name || "").toLowerCase());
+    return ia - ib;
+  });
+  // Dedup: skip any scored skill that's already in featured
+  const featuredSet = new Set(featured.map((s) => (s.repo_full_name || "").toLowerCase()));
+  const dedupedScored = scored.filter((s) => !featuredSet.has((s.skill.repo_full_name || "").toLowerCase()));
+  const combined = [...featured, ...dedupedScored.map((s) => s.skill)];
+
+  const results = combined.slice(0, max_results);
   if (results.length < min_results) return null;
 
   return results;
