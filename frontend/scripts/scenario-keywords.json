@@ -2348,5 +2348,122 @@
       "code-completion",
       "ai-design"
     ]
+  },
+  {
+    "slug": "content-syndication",
+    "title": "Content Syndication",
+    "description": "Cross-platform content distribution skills for indie creators — publish once to X, LinkedIn, WeChat, XiaoHongShu, Bilibili, Telegram. agent-reach, MediaCrawler, qiaomu publishers, and platform-specific MCPs.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "content syndication",
+        "cross-platform publish",
+        "social distribution",
+        "agent-reach",
+        "media crawler",
+        "x article",
+        "wechat publish",
+        "xiaohongshu",
+        "social media",
+        "content distribution"
+      ],
+      "secondary_keywords": [
+        "publish",
+        "distribution",
+        "syndicate",
+        "social",
+        "twitter",
+        "linkedin",
+        "weibo",
+        "douyin",
+        "bilibili",
+        "rednote",
+        "threads"
+      ],
+      "topic_matches": [
+        "content-distribution",
+        "social-media",
+        "publishing",
+        "syndication",
+        "wechat",
+        "xiaohongshu",
+        "twitter",
+        "linkedin"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "Panniantong/Agent-Reach",
+        "NanmiCoder/MediaCrawler",
+        "mvanhorn/last30days-skill",
+        "xpzouying/xiaohongshu-mcp",
+        "JoeanAmier/XHS-Downloader",
+        "iBigQiang/feedgrab"
+      ]
+    },
+    "related": [
+      "telegram-bot",
+      "slack-integration",
+      "rss-monitoring"
+    ]
+  },
+  {
+    "slug": "personal-knowledge",
+    "title": "Personal Knowledge Skills",
+    "description": "Personal knowledge management skills for solo workers — Obsidian, Logseq, Notion, second-brain workflows. Connect your notes to AI agents and build a queryable second brain.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "obsidian skill",
+        "logseq",
+        "notion knowledge",
+        "second brain",
+        "personal knowledge",
+        "pkm",
+        "knowledge graph",
+        "notes mcp",
+        "obsidian-skills",
+        "obsidian plugin"
+      ],
+      "secondary_keywords": [
+        "obsidian",
+        "notion",
+        "wiki",
+        "knowledge base",
+        "notes",
+        "zettelkasten",
+        "roam",
+        "remnote",
+        "tana",
+        "heptabase",
+        "anki",
+        "readwise",
+        "second-brain"
+      ],
+      "topic_matches": [
+        "obsidian",
+        "notion",
+        "knowledge-management",
+        "pkm",
+        "second-brain",
+        "notes",
+        "knowledge-base"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "kepano/obsidian-skills",
+        "YishenTu/claudian",
+        "Ar9av/obsidian-wiki",
+        "SamurAIGPT/llm-wiki-agent",
+        "trapoom555/claude-paperloom",
+        "vanillaflava/llm-wiki-skills"
+      ]
+    },
+    "related": [
+      "knowledge-base",
+      "rag",
+      "agent-memory"
+    ]
   }
 ]
