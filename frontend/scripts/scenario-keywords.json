@@ -2270,5 +2270,83 @@
       "speech-to-text",
       "ai-agent-framework"
     ]
+  },
+  {
+    "slug": "business-diagnosis",
+    "title": "Business Diagnosis & Founder Skills",
+    "description": "AI skills for founders and operators — business diagnosis, PRD generation, GTM playbooks, YC frameworks, and named-PM/founder knowledge bases. From idea validation to launch.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "business diagnosis",
+        "founder skill",
+        "startup skill",
+        "yc framework",
+        "prd generation",
+        "mvp template",
+        "gtm skill",
+        "go-to-market",
+        "商业诊断",
+        "创业",
+        "founder playbook",
+        "lenny"
+      ],
+      "secondary_keywords": [
+        "business",
+        "founder",
+        "startup",
+        "advisor",
+        "consultant",
+        "product manager",
+        "pm skill",
+        "venture",
+        "pitch deck",
+        "swot",
+        "lean canvas",
+        "pmf",
+        "market validation",
+        "growth hack",
+        "launch playbook"
+      ],
+      "topic_matches": [
+        "business",
+        "founder",
+        "startup",
+        "yc",
+        "gtm",
+        "product-management",
+        "advisor",
+        "consulting",
+        "agentic-startup"
+      ],
+      "min_results": 5,
+      "max_results": 30,
+      "featured": [
+        "dontbesilent2025/dbskill",
+        "getagentseal/founder-playbook",
+        "rrred0324/senior-analyst",
+        "fleurytian/awesome-claude-skills",
+        "sahibzada-allahyar/YC-Killer",
+        "Deodat-Lawson/LaunchStack",
+        "rsmdt/the-startup",
+        "sidhq/YC-alum-ai-tools",
+        "joeseesun/qiaomu-design-advisor",
+        "joeseesun/lennys-podcast-newsletter",
+        "liyupi/yupi-skill",
+        "liyupi/ai-guide",
+        "onvoyage-ai/gtm-engineer-skills",
+        "gooseworks-ai/goose-skills",
+        "Gingiris/gingiris-launch",
+        "akseolabs-seo/AK-Threads-booster",
+        "KhazP/vibe-coding-prompt-template",
+        "peterfei/ai-agent-team",
+        "anombyte93/prd-taskmaster"
+      ]
+    },
+    "related": [
+      "claude-code-skills",
+      "code-completion",
+      "ai-design"
+    ]
   }
 ]
