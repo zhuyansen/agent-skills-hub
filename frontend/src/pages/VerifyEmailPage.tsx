@@ -85,7 +85,7 @@ export function VerifyEmailPage() {
                 <span className="text-3xl">📚</span>
                 <div className="text-left flex-1">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                    Skill 蓝皮书 2026 · v1.0
+                    Skill 蓝皮书 2026 · v1.1
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                     130+ pages · 12 chapters · ~75K words · 5.3 MB
@@ -93,7 +93,7 @@ export function VerifyEmailPage() {
                 </div>
               </div>
               <a
-                href="https://github.com/zhuyansen/skill-blue-book/releases/download/v1.0/skill-blue-book-2026-v1.0.pdf"
+                href="https://github.com/zhuyansen/skill-blue-book/releases/download/v1.1/skill-blue-book-2026-v1.1.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg text-center transition-colors"

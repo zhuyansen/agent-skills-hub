@@ -1,5 +1,44 @@
 # Daily Report Archive
 
+## 2026-05-03
+
+1. vibeforge1111/keep-codex-fast
+2. Hello-Application-XH/HelloGML
+3. 0xhimanshu/governor
+4. op7418/Night-Patrol
+5. rampstackco/claude-skills
+6. mrslimslim/gpt-image-canvas
+7. HarimxChoi/google-surf-mcp
+8. peter123023/awesome-claude-api
+9. dmae97/oh-my-kimichan
+10. CCCpan/ai-api-integration
+
+## 2026-04-30
+
+1. nexu-io/open-design
+2. openclaw/clawsweeper
+3. NyxTides/ppt-image-first
+4. skydoves/compose-performance-skills
+5. evanklem/evanflow
+6. AeternaLabsHQ/pullmd
+7. maria-rcks/clawd.rip
+8. getagentseal/founder-playbook
+9. steipete/wacrawl
+10. sparkfinderoven/r01-hesreallyhim-awesome-claude-code-security
+
+## 2026-04-25
+
+1. op7418/guizang-ppt-skill
+2. 0x0funky/agent-sprite-forge
+3. wuyoscar/gpt_image_2_skill
+4. seulee26/mckinsey-pptx
+5. joeseesun/qiaomu-blog-opensource
+6. alchaincyf/deepseek-v4-deep-dive
+7. akseolabs-seo/AK-Threads-booster
+8. SparkEngineAI/QuantClaw-plugin
+9. esengine/reasonix
+10. jiji262/claude-design-skill
+
 ## 2026-04-21
 
 1. kyegomez/OpenMythos

@@ -126,7 +126,7 @@ export function BookIndexPage() {
           {/* All 12 chapters complete — no pending list */}
           <div className="mt-8 pt-6 border-t border-dashed border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-              全 12 章完稿 · v1.0 · 2026-04-28 ·{" "}
+              全 12 章完稿 · v1.1 · 2026-05-04 ·{" "}
               <a
                 href="https://github.com/zhuyansen/skill-blue-book/releases"
                 target="_blank"

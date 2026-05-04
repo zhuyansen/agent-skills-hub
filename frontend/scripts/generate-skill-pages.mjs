@@ -376,6 +376,7 @@ ${faqLd}
   ${scriptTags.join("\n  ")}
   ${linkTags.join("\n  ")}
   <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body>
   <div id="root">
@@ -534,6 +535,7 @@ ${breadcrumbLd}
   ${scriptTags.join("\n  ")}
   ${linkTags.join("\n  ")}
   <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body>
   <div id="root">
