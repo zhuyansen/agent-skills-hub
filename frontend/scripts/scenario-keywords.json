@@ -2262,7 +2262,15 @@
         "production-deployment"
       ],
       "min_results": 3,
-      "max_results": 30
+      "max_results": 30,
+      "featured": [
+        "garrytan/gstack",
+        "PaddleHQ/paddle-mcp-server",
+        "JackLuguibin/OpenPawlet",
+        "vercel-labs/agent-browser",
+        "browserbase/skills",
+        "fluxa-agent-wallet/fluxa-agent-wallet"
+      ]
     },
     "related": [
       "ci-cd",
@@ -2503,6 +2511,202 @@
       "knowledge-base",
       "rag",
       "agent-memory"
+    ]
+  },
+  {
+    "slug": "ppt-presentation",
+    "title": "PPT & Presentation Skills",
+    "description": "AI skills for slide deck and presentation generation — guizang HTML decks, McKinsey-style PPTX, image-first PPT, marketing slides. From founder pitch to consulting deck.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "ppt",
+        "pptx",
+        "presentation",
+        "slide deck",
+        "guizang",
+        "mckinsey-pptx",
+        "ppt-image-first",
+        "magazine slides",
+        "deck"
+      ],
+      "secondary_keywords": [
+        "slides",
+        "powerpoint",
+        "keynote",
+        "pitch deck",
+        "horizontal swipe"
+      ],
+      "topic_matches": [
+        "ppt",
+        "pptx",
+        "presentation",
+        "slides",
+        "deck"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "op7418/guizang-ppt-skill",
+        "wuyoscar/gpt_image_2_skill",
+        "NyxTides/ppt-image-first",
+        "minhnv0807/fullstack-mkt-skills",
+        "seulee26/mckinsey-pptx"
+      ]
+    },
+    "related": [
+      "ai-design",
+      "image-generation",
+      "content-syndication"
+    ]
+  },
+  {
+    "slug": "skill-creation-tools",
+    "title": "Skill Creation & Meta-Tools",
+    "description": "Tools for creating, distilling, and managing AI Skills themselves — book→skill, repo→skill, codebase→skill, and cross-IDE skill sync. Meta-tools that build other skills.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "skill creator",
+        "create skill",
+        "make skill",
+        "skill forge",
+        "book to skill",
+        "skillify",
+        "meta skill",
+        "skill builder",
+        "skill management"
+      ],
+      "secondary_keywords": [
+        "skill template",
+        "skill scaffold",
+        "skill generator",
+        "skill library",
+        "skill collection",
+        "skill pack"
+      ],
+      "topic_matches": [
+        "skill-creator",
+        "meta-skill",
+        "skill-forge",
+        "skill-builder"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "asgard-ai-platform/skills",
+        "WoJiSama/skill-based-architecture",
+        "shanliuling/skills-link",
+        "virgiliojr94/book-to-skill",
+        "armelhbobdad/bmad-module-skill-forge",
+        "Emove/skillify-for-codex"
+      ]
+    },
+    "related": [
+      "claude-code-skills",
+      "codex-skills",
+      "agent-governance"
+    ]
+  },
+  {
+    "slug": "multi-ai-bridge",
+    "title": "Multi-AI Bridge & Cross-IDE Sync",
+    "description": "Run Claude + Codex + Gemini together, sync Skills across IDEs, route tasks between models. The orchestration layer for multi-model agentic workflows.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "multi-ai bridge",
+        "claude codex bridge",
+        "cross-ide",
+        "skills-link",
+        "multi-model",
+        "ai bridge",
+        "model router",
+        "harness sync"
+      ],
+      "secondary_keywords": [
+        "bridge",
+        "sync",
+        "router",
+        "multi-agent",
+        "cross-platform",
+        "claude codex",
+        "claude gemini",
+        "model collaboration"
+      ],
+      "topic_matches": [
+        "multi-ai",
+        "ai-bridge",
+        "cross-ide",
+        "model-router",
+        "harness"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "bfly123/claude_codex_bridge",
+        "mcpware/cross-code-organizer",
+        "shanliuling/skills-link",
+        "Chat2AnyLLM/awesome-claude-plugins",
+        "waybarrios/opencode-power-pack",
+        "iamzhihuix/skills-manage"
+      ]
+    },
+    "related": [
+      "agent-governance",
+      "claude-code-skills",
+      "codex-skills"
+    ]
+  },
+  {
+    "slug": "vibe-coding",
+    "title": "Vibe Coding Stack",
+    "description": "Indie hacker / solo dev coding stack — PRD → multi-agent build → ship. Templates for vibe coding, Ralph-loops, prd-taskmaster, ai-agent-team. The full pipeline.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "vibe coding",
+        "vibe-coding",
+        "ralph loop",
+        "prd-taskmaster",
+        "ai agent team",
+        "evanflow",
+        "loki-mode",
+        "armory"
+      ],
+      "secondary_keywords": [
+        "prd",
+        "tdd",
+        "indie hacker",
+        "solo dev",
+        "claude code workflow",
+        "agent team",
+        "tasks",
+        "ship workflow"
+      ],
+      "topic_matches": [
+        "vibe-coding",
+        "ralph",
+        "indie-hacker",
+        "agent-team",
+        "prd"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "michaelshimeles/ralphy",
+        "KhazP/vibe-coding-prompt-template",
+        "asklokesh/loki-mode",
+        "peterfei/ai-agent-team",
+        "Mathews-Tom/armory",
+        "evanklem/evanflow",
+        "anombyte93/prd-taskmaster"
+      ]
+    },
+    "related": [
+      "business-diagnosis",
+      "claude-code-skills",
+      "agent-governance"
     ]
   }
 ]
