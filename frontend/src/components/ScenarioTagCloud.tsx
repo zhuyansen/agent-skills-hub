@@ -47,7 +47,7 @@ export function ScenarioTagCloud() {
           href="/best/"
           className="px-3 py-1.5 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-all"
         >
-          {lang === "zh" ? `全部 53 个场景 →` : `All 53 scenarios →`}
+          {lang === "zh" ? `全部 71 个场景 →` : `All 71 scenarios →`}
         </a>
       </div>
     </section>
