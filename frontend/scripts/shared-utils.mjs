@@ -103,6 +103,44 @@ export function shouldIndex(skill) {
 export const MIN_STARS_FOR_PAGE = 50;
 
 /** Fetch all skills from Supabase (paginated) */
+/**
+ * Fetch all skills from Supabase with retry + threshold check.
+ *
+ * Why: 2026-05-04 and 2026-05-05 deploys silently shipped 0 scenarios
+ * because Supabase returned a transient 500. Old code parsed the error
+ * JSON, found `data.length === undefined`, broke out of the loop, and
+ * returned an empty array. Sitemap then deployed with 0 URLs and all
+ * /best/{slug}/ pages 404'd until manual redeploy.
+ *
+ * Fix: per-page retry (3x exponential backoff) + post-fetch threshold
+ * check (skills.length >= MIN_EXPECTED_SKILLS). If fewer skills than
+ * expected, throw → CI fails fast → no broken deploy.
+ */
+const MIN_EXPECTED_SKILLS = 5000;  // tighten as Hub grows; Hub is 70K+ as of 2026-05
+const MAX_RETRIES = 3;
+
+async function fetchPageWithRetry(url, headers, attempt = 1) {
+  try {
+    const res = await fetch(url, { headers });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} ${res.statusText}: ${(await res.text()).slice(0, 200)}`);
+    }
+    const data = await res.json();
+    if (!Array.isArray(data)) {
+      throw new Error(`Expected array, got: ${JSON.stringify(data).slice(0, 200)}`);
+    }
+    return data;
+  } catch (err) {
+    if (attempt >= MAX_RETRIES) {
+      throw new Error(`fetchPage failed after ${MAX_RETRIES} attempts: ${err.message}`);
+    }
+    const waitMs = 1000 * Math.pow(2, attempt - 1); // 1s, 2s, 4s
+    console.warn(`  ⚠ fetch attempt ${attempt} failed (${err.message.slice(0, 80)}); retrying in ${waitMs}ms...`);
+    await new Promise((r) => setTimeout(r, waitMs));
+    return fetchPageWithRetry(url, headers, attempt + 1);
+  }
+}
+
 export async function fetchAllSkills() {
   const skills = [];
   let offset = 0;
@@ -117,13 +155,10 @@ export async function fetchAllSkills() {
 
   while (true) {
     const url = `${SUPABASE_URL}/rest/v1/skills?select=${fields}&order=stars.desc&offset=${offset}&limit=${limit}`;
-    const res = await fetch(url, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
+    const data = await fetchPageWithRetry(url, {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
     });
-    const data = await res.json();
     if (!data.length) break;
     for (const row of data) {
       if (row.readme_content) {
@@ -134,5 +169,15 @@ export async function fetchAllSkills() {
     offset += limit;
     if (data.length < limit) break;
   }
+
+  // Threshold guard — fail fast in CI if Supabase returned suspiciously little
+  if (skills.length < MIN_EXPECTED_SKILLS) {
+    throw new Error(
+      `fetchAllSkills returned only ${skills.length} skills (expected >= ${MIN_EXPECTED_SKILLS}). ` +
+      `Likely Supabase transient failure. Refusing to deploy a broken sitemap. ` +
+      `Re-run the workflow.`
+    );
+  }
+  console.log(`  ✓ fetchAllSkills: ${skills.length} rows`);
   return skills;
 }
