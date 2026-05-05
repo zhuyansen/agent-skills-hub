@@ -7,6 +7,11 @@ export function SiteFooter() {
   const location = useLocation();
 
   const navigateToSection = (id: string) => {
+    // Special routes — navigate directly instead of scrolling
+    if (id === "blog") {
+      navigate("/blog/");
+      return;
+    }
     // If already on home overview page, just scroll
     const isHome = location.pathname === "/" || location.pathname === "";
     const isOverview =
@@ -95,6 +100,7 @@ export function SiteFooter() {
                 { id: "top-rated", zh: "高分项目", en: "Top Rated" },
                 { id: "categories", zh: "分类浏览", en: "Categories" },
                 { id: "workflows", zh: "工作流", en: "Workflows" },
+                { id: "blog", zh: "博客", en: "Blog" },
                 { id: "newsletter", zh: "订阅周报", en: "Newsletter" },
                 { id: "submit-skill", zh: "提交技能", en: "Submit Skill" },
               ].map((sec) => (
