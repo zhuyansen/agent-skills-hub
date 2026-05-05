@@ -1892,7 +1892,17 @@
         "ai-slop"
       ],
       "min_results": 5,
-      "max_results": 30
+      "max_results": 30,
+      "featured": [
+        "Leonxlnx/taste-skill",
+        "blader/humanizer",
+        "op7418/Humanizer-zh",
+        "voidborne-d/humanize-chinese",
+        "jalaalrd/anti-ai-slop-writing",
+        "matsuikentaro1/humanizer_academic",
+        "gabelul/slopbuster",
+        "MrGeDiao/stop-slop-zh"
+      ]
     },
     "related": [
       "code-quality",
@@ -1934,7 +1944,22 @@
         "ai-memory"
       ],
       "min_results": 5,
-      "max_results": 30
+      "max_results": 30,
+      "featured": [
+        "mem0ai/mem0",
+        "letta-ai/letta",
+        "doobidoo/mcp-memory-service",
+        "tensorlakeai/tensorlake-skills",
+        "Dataojitori/nocturne_memory",
+        "mnemon-dev/mnemon",
+        "syncable-dev/memtrace-public",
+        "agenvoy/Agenvoy",
+        "GuyMannDude/mnemo-cortex",
+        "XortexAI/XMem",
+        "buildingjoshbetter/TrueMemory",
+        "remember-md/remember",
+        "kunwar-shah/claudex"
+      ]
     },
     "related": [
       "knowledge-base",
@@ -2017,7 +2042,21 @@
         "compliance"
       ],
       "min_results": 5,
-      "max_results": 30
+      "max_results": 30,
+      "featured": [
+        "mattpocock/skills",
+        "vibeforge1111/keep-codex-fast",
+        "getagentseal/agentseal",
+        "Mathews-Tom/armory",
+        "liaohch3/claude-tap",
+        "EdoardoBambini/IAGA-Sentinel",
+        "Justin0504/Sovereign-OS",
+        "championswimmer/pi-context-prune",
+        "0xhimanshu/governor",
+        "basilisk-labs/agentplane",
+        "nizos/probity",
+        "Netxeo/skill-file-security"
+      ]
     },
     "related": [
       "ai-code-editor",
