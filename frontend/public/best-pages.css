@@ -15,7 +15,7 @@
   --bp-border-light: #f1f5f9;
   --bp-border-accent: #c7d2fe;
   --bp-card-bg: #fff;
-  --bp-card-shadow: 0 2px 8px rgba(79,70,229,.1);
+  --bp-card-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
   --bp-badge-green-bg: #d1fae5;
   --bp-badge-green-text: #059669;
   --bp-badge-purple-bg: #f0f0ff;
@@ -23,7 +23,7 @@
   --bp-gradient-hero: linear-gradient(135deg, #eef2ff, #f0f9ff);
   --bp-gradient-pick: linear-gradient(135deg, #eef2ff, #f0fdf4);
   --bp-gradient-footer: linear-gradient(135deg, #1e1b4b, #0f172a);
-  --bp-header-bg: rgba(255,255,255,0.95);
+  --bp-header-bg: rgba(255, 255, 255, 0.95);
   --bp-newsletter-bg: #f0f0ff;
   --bp-newsletter-border: #e0e0ff;
   --bp-code-bg: #1e293b;
@@ -55,7 +55,7 @@
   --bp-border-light: #1e293b;
   --bp-border-accent: #4338ca;
   --bp-card-bg: #1e293b;
-  --bp-card-shadow: 0 2px 8px rgba(0,0,0,.3);
+  --bp-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   --bp-badge-green-bg: #064e3b;
   --bp-badge-green-text: #34d399;
   --bp-badge-purple-bg: #1e1b4b;
@@ -63,7 +63,7 @@
   --bp-gradient-hero: linear-gradient(135deg, #1e1b4b, #0f172a);
   --bp-gradient-pick: linear-gradient(135deg, #1e1b4b, #064e3b);
   --bp-gradient-footer: linear-gradient(135deg, #020617, #0f172a);
-  --bp-header-bg: rgba(15,23,42,0.95);
+  --bp-header-bg: rgba(15, 23, 42, 0.95);
   --bp-newsletter-bg: #1e1b4b;
   --bp-newsletter-border: #312e81;
   --bp-code-bg: #020617;
@@ -188,6 +188,28 @@
   line-height: 1.6;
 }
 
+/* ===== Hero Stats Chips ===== */
+.bp-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.bp-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--bp-card-bg);
+  border: 1px solid var(--bp-border);
+  color: var(--bp-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 /* ===== Quick Pick ===== */
 .bp-quick-pick {
   background: var(--bp-gradient-pick);
@@ -226,7 +248,9 @@
   border-radius: 10px;
   padding: 20px;
   margin: 0 0 16px;
-  transition: box-shadow .15s, border-color .15s;
+  transition:
+    box-shadow 0.15s,
+    border-color 0.15s;
 }
 
 .bp-card:hover {
@@ -296,8 +320,12 @@
   flex-shrink: 0;
 }
 
-.bp-rank--gold { background: var(--bp-rank-gold); }
-.bp-rank--gray { background: var(--bp-rank-gray); }
+.bp-rank--gold {
+  background: var(--bp-rank-gold);
+}
+.bp-rank--gray {
+  background: var(--bp-rank-gray);
+}
 
 /* ===== Table ===== */
 .bp-table-wrap {
@@ -459,15 +487,27 @@
   margin: 32px 0 16px;
 }
 
-.bp-text-center { text-align: center; }
-.bp-mt-0 { margin-top: 0; }
-.bp-mb-0 { margin-bottom: 0; }
+.bp-text-center {
+  text-align: center;
+}
+.bp-mt-0 {
+  margin-top: 0;
+}
+.bp-mb-0 {
+  margin-bottom: 0;
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
-  .bp-hero { padding: 20px; }
-  .bp-hero h1 { font-size: 22px; }
-  .bp-nav-links { gap: 8px; }
+  .bp-hero {
+    padding: 20px;
+  }
+  .bp-hero h1 {
+    font-size: 22px;
+  }
+  .bp-nav-links {
+    gap: 8px;
+  }
   /* Stack comparison description cards on mobile */
   section[style*="grid-template-columns: 1fr 1fr"],
   section[style*="grid-template-columns:1fr 1fr"] {

@@ -378,6 +378,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   // Skip suffix when title already contains "Tools/Servers/Frameworks/etc."
   const seoTitleHasNoun = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i.test(scenario.title);
   const itemCount = skills.length;
+  const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
   const title = `${scenario.title}: ${itemCount} Open-Source ${seoTitleHasNoun ? "" : "Tools "}Compared (${year})`.replace(/  +/g, " ");
   // Meta ≤ 145 chars (Google SERP truncates at ~155, leave buffer for "...").
@@ -600,6 +601,11 @@ ${faqLd}
       <div class="bp-hero">
         <h1 data-zh="最佳 ${esc(scenario.title)} AI 工具 (${year})" data-en="Best AI Agent Skills for ${esc(scenario.title)} in ${year}">Best AI Agent Skills for ${esc(scenario.title)} in ${year}</h1>
         <p>${esc(scenario.description)}</p>
+        ${itemCount > 0 ? `<div class="bp-hero-stats">
+          <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.title)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
+          <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
+          <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
+        </div>` : ""}
       </div>
 
       <!-- Quick Pick -->
