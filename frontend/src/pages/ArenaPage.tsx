@@ -143,6 +143,33 @@ function pairKey(a: number, b: number, scenario: string): string {
   return `${scenario}:${Math.min(a, b)}-${Math.max(a, b)}`;
 }
 
+/** All recognized arena scenario tags — used by auto-classification. */
+const ARENA_TAG_SET = new Set(SCENARIOS.map((s) => s.tag));
+
+/**
+ * Auto-classify a custom pair into the right scenario based on shared tags.
+ *
+ * Priority:
+ *   1. If both skills carry the user-selected scenario tag → keep current.
+ *   2. Else if both share another arena scenario tag → switch to that.
+ *   3. Else → null (no clean fit; UI will warn the vote goes to current).
+ */
+function detectBestScenario(
+  left: ArenaSkill | null,
+  right: ArenaSkill | null,
+  current: string,
+): string | null {
+  if (!left || !right) return null;
+  const leftTags = new Set((left.tags || []).map((t) => t.toLowerCase()));
+  const rightTags = new Set((right.tags || []).map((t) => t.toLowerCase()));
+  const shared = [...leftTags].filter(
+    (t) => rightTags.has(t) && ARENA_TAG_SET.has(t),
+  );
+  if (shared.includes(current)) return current;
+  if (shared.length > 0) return shared[0];
+  return null;
+}
+
 export function ArenaPage() {
   const { lang } = useI18n();
   const [scenario, setScenario] = useState<string>(SCENARIOS[0].tag);
@@ -163,6 +190,33 @@ export function ArenaPage() {
     () => SCENARIOS.find((s) => s.tag === scenario) || SCENARIOS[0],
     [scenario],
   );
+
+  /**
+   * In Custom mode, the active scenario for the vote is auto-classified from
+   * the picked pair's shared tags. Falls back to current selected scenario
+   * if no clean tag overlap. Random mode just uses the selected scenario.
+   */
+  const detectedScenario = useMemo(
+    () =>
+      customMode ? detectBestScenario(customLeft, customRight, scenario) : null,
+    [customMode, customLeft, customRight, scenario],
+  );
+  const effectiveScenario = detectedScenario ?? scenario;
+  const detectedScenarioMeta = useMemo(
+    () =>
+      detectedScenario
+        ? SCENARIOS.find((s) => s.tag === detectedScenario)
+        : null,
+    [detectedScenario],
+  );
+  const customClassifyState: "ok" | "switched" | "cross" | "incomplete" =
+    !customMode || !customLeft || !customRight
+      ? "incomplete"
+      : detectedScenario === scenario
+        ? "ok"
+        : detectedScenario
+          ? "switched"
+          : "cross";
 
   // Load voter hash once on mount
   useEffect(() => {
@@ -285,17 +339,21 @@ export function ArenaPage() {
     if (!supabase || !voterHash || submitting) return;
     setSubmitting(true);
     try {
+      // In Custom mode, route the vote to the auto-classified scenario when
+      // the picked pair's shared tags point to a different leaderboard.
+      // Random mode always uses the selected scenario tab.
+      const voteScenario = customMode ? effectiveScenario : scenario;
       const { error: insErr } = await supabase.from("arena_votes").insert({
         winner_id: winner.id,
         loser_id: loser.id,
-        scenario_tag: scenario,
+        scenario_tag: voteScenario,
         voter_hash: voterHash,
       });
       // 23505 = duplicate key (already voted today) — silently move on
       if (insErr && insErr.code !== "23505") {
         throw insErr;
       }
-      recordVotedPair(pairKey(winner.id, loser.id, scenario));
+      recordVotedPair(pairKey(winner.id, loser.id, voteScenario));
       setVoteCount((v) => v + 1);
       setTotalVotes((v) => v + 1);
       // Refresh leaderboard every 3 votes (not every time, to keep it snappy)
@@ -442,6 +500,9 @@ export function ArenaPage() {
               onVote={(winner, loser) => submitVote(winner, loser)}
               submitting={submitting}
               lang={lang}
+              classifyState={customClassifyState}
+              detectedScenario={detectedScenarioMeta || null}
+              currentScenario={currentScenario}
             />
           ) : loading ? (
             <div className="flex items-center justify-center min-h-[300px]">
@@ -638,6 +699,8 @@ function ArenaCard({ skill, onVote, disabled, lang }: ArenaCardProps) {
 // Custom Battle: search 2 skills + PK them directly
 // ──────────────────────────────────────────────────────────────────
 
+type ScenarioMeta = (typeof SCENARIOS)[number];
+
 interface CustomBattleProps {
   left: ArenaSkill | null;
   right: ArenaSkill | null;
@@ -646,6 +709,9 @@ interface CustomBattleProps {
   onVote: (winner: ArenaSkill, loser: ArenaSkill) => void;
   submitting: boolean;
   lang: string;
+  classifyState: "ok" | "switched" | "cross" | "incomplete";
+  detectedScenario: ScenarioMeta | null;
+  currentScenario: ScenarioMeta;
 }
 
 function CustomBattle({
@@ -656,6 +722,9 @@ function CustomBattle({
   onVote,
   submitting,
   lang,
+  classifyState,
+  detectedScenario,
+  currentScenario,
 }: CustomBattleProps) {
   const ready = left && right && left.id !== right.id;
   return (
@@ -689,11 +758,34 @@ function CustomBattle({
         </div>
       )}
 
+      {/* Auto-classification banner — explains where the vote will be counted */}
+      {classifyState === "switched" && detectedScenario && (
+        <div className="mt-6 mx-auto max-w-2xl rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 px-4 py-3 text-sm text-emerald-800 dark:text-emerald-300 text-center">
+          <span className="font-semibold">📍 Auto-classified:</span>{" "}
+          {lang === "zh" ? "归入" : "vote will count toward"}{" "}
+          <strong>
+            {detectedScenario.emoji}{" "}
+            {lang === "zh" ? detectedScenario.zh : detectedScenario.label}
+          </strong>{" "}
+          <span className="text-xs opacity-75">
+            ({lang === "zh" ? "两个工具的标签共同点" : "based on shared tags"})
+          </span>
+        </div>
+      )}
+      {classifyState === "cross" && (
+        <div className="mt-6 mx-auto max-w-2xl rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 px-4 py-3 text-sm text-amber-800 dark:text-amber-300 text-center">
+          <span className="font-semibold">⚠️</span>{" "}
+          {lang === "zh"
+            ? `两个工具没有共同的场景标签，本次投票仍会归入 ${currentScenario.emoji} ${currentScenario.zh}（当前 tab）。`
+            : `These two share no arena category. Vote will fall back to ${currentScenario.emoji} ${currentScenario.label} (current tab).`}
+        </div>
+      )}
+
       {!ready && (
         <p className="text-center mt-6 text-sm text-gray-500 dark:text-gray-400">
           {lang === "zh"
-            ? "在两侧分别选一个工具，然后投票决出胜者。"
-            : "Pick one tool on each side, then vote for the winner."}
+            ? "在两侧分别选一个工具，然后投票决出胜者。系统会按两个工具的共同标签自动归类。"
+            : "Pick one tool on each side, then vote. The vote auto-routes to whichever scenario both tools share."}
         </p>
       )}
     </div>
