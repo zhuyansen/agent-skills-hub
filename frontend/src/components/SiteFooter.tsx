@@ -7,9 +7,10 @@ export function SiteFooter() {
   const location = useLocation();
 
   const navigateToSection = (id: string) => {
-    // Special routes — navigate directly instead of scrolling
+    // Special routes — navigate directly instead of scrolling.
+    // Blog is a static HTML page (not a SPA route), so we hard-navigate.
     if (id === "blog") {
-      navigate("/blog/");
+      window.location.href = "/blog/";
       return;
     }
     // If already on home overview page, just scroll

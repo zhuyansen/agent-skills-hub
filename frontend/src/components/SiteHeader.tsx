@@ -164,13 +164,14 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             >
               Blue Book
             </Link>
-            <Link
-              to="/blog/"
+            {/* Static HTML page — use <a href> not <Link> so browser hard-navigates */}
+            <a
+              href="/blog/"
               className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
               title="Blog — 长文 + 案例 + 深度分析"
             >
               Blog
-            </Link>
+            </a>
             <Link
               to="/arena/"
               className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"

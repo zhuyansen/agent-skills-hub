@@ -303,8 +303,10 @@ export function Home() {
               <FAQSection />
             </LazySection>
             <div id="blog">
-              <Link
-                to="/blog/skill-stack-solo-saas-2026/"
+              {/* Static HTML page — use <a href> so browser hard-navigates,
+                  bypassing React Router (which would 404 → redirect to /). */}
+              <a
+                href="/blog/skill-stack-solo-saas-2026/"
                 className="block mt-10 mb-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border border-indigo-200 dark:border-indigo-900 rounded-xl p-5 sm:p-6 hover:border-indigo-400 hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
                 <div className="flex items-center gap-4">
@@ -344,7 +346,7 @@ export function Home() {
                     Read →
                   </span>
                 </div>
-              </Link>
+              </a>
             </div>
             <div id="submit-skill">
               <Link
