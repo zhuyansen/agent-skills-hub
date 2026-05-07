@@ -27,6 +27,7 @@ interface ArenaSkill {
   description: string | null;
   language: string | null;
   tags: string[] | null;
+  star_momentum?: number | null;
 }
 
 interface LeaderRow {
@@ -168,27 +169,51 @@ export function ArenaPage() {
     getVoterHash().then(setVoterHash);
   }, []);
 
-  /** Fetch a fresh random pair for the current scenario. */
+  /** Fetch a fresh random pair for the current scenario.
+   *
+   * Pool quality strategy: combine "popular" + "currently surging" so the PK
+   * matches actual viable contenders rather than long-tail noise. Two parallel
+   * queries → 60 by stars + 40 by star_momentum → dedupe → random 2 from pool.
+   */
   const fetchPair = useCallback(async () => {
-    if (!supabase) return;
+    const sb = supabase;
+    if (!sb) return;
     setLoading(true);
     setError(null);
 
     try {
-      // Pull a small random sample then pick 2 distinct that the user hasn't voted on today.
-      // Using `.contains("tags", [scenario])` for GIN index; cap to stars>=50 for quality.
-      const { data, error: fetchErr } = await supabase
-        .from("skills")
-        .select(
-          "id,repo_full_name,repo_name,author_avatar_url,author_name,stars,description,language,tags",
-        )
-        .contains("tags", [scenario])
-        .gte("stars", 50)
-        .order("id", { ascending: false })
-        .limit(80);
+      const COLS =
+        "id,repo_full_name,repo_name,author_avatar_url,author_name,stars,description,language,tags,star_momentum";
 
-      if (fetchErr) throw fetchErr;
-      if (!data || data.length < 2) {
+      const [byStars, byMomentum] = await Promise.all([
+        sb
+          .from("skills")
+          .select(COLS)
+          .contains("tags", [scenario])
+          .gte("stars", 100)
+          .order("stars", { ascending: false })
+          .limit(60),
+        sb
+          .from("skills")
+          .select(COLS)
+          .contains("tags", [scenario])
+          .gte("stars", 50)
+          .gt("star_momentum", 0)
+          .order("star_momentum", { ascending: false })
+          .limit(40),
+      ]);
+
+      if (byStars.error) throw byStars.error;
+
+      // Dedupe by id, prefer the byStars row when same skill appears in both
+      const merged = new Map<number, ArenaSkill>();
+      for (const r of (byStars.data || []) as ArenaSkill[]) merged.set(r.id, r);
+      for (const r of (byMomentum.data || []) as ArenaSkill[]) {
+        if (!merged.has(r.id)) merged.set(r.id, r);
+      }
+      const pool = [...merged.values()];
+
+      if (pool.length < 2) {
         setError(
           lang === "zh"
             ? "该场景候选项不足"
@@ -201,18 +226,18 @@ export function ArenaPage() {
       const voted = getVotedPairsToday();
       // Try up to 25 random pairs to find one not yet voted today
       for (let attempt = 0; attempt < 25; attempt++) {
-        const i = Math.floor(Math.random() * data.length);
-        let j = Math.floor(Math.random() * data.length);
-        while (j === i) j = Math.floor(Math.random() * data.length);
-        const a = data[i] as ArenaSkill;
-        const b = data[j] as ArenaSkill;
+        const i = Math.floor(Math.random() * pool.length);
+        let j = Math.floor(Math.random() * pool.length);
+        while (j === i) j = Math.floor(Math.random() * pool.length);
+        const a = pool[i];
+        const b = pool[j];
         if (!voted.has(pairKey(a.id, b.id, scenario))) {
           setPair([a, b]);
           return;
         }
       }
       // All pairs in this batch already voted → pick anyway (server will reject dup)
-      setPair([data[0] as ArenaSkill, data[1] as ArenaSkill]);
+      setPair([pool[0], pool[1]]);
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to load pair";
       setError(msg);
@@ -776,11 +801,13 @@ function SkillSearch({
       return;
     }
     const handle = setTimeout(async () => {
+      const sb = supabase;
+      if (!sb) return;
       setLoading(true);
       try {
         const term = q.trim().replace(/[%_]/g, "");
         // Search by repo_full_name (e.g. "mem0ai/mem0") or repo_name ("mem0")
-        const { data } = await supabase
+        const { data } = await sb
           .from("skills")
           .select(
             "id,repo_full_name,repo_name,author_avatar_url,author_name,stars,description,language,tags",
