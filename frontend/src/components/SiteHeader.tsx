@@ -171,6 +171,13 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             >
               Blog
             </Link>
+            <Link
+              to="/arena/"
+              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              title="Arena — 6 场景下匿名投票，挑选最佳工具"
+            >
+              Arena 🥊
+            </Link>
             <span className="text-sm text-gray-400 dark:text-gray-500 items-center gap-1.5 hidden lg:flex">
               <span className="w-2 h-2 rounded-full bg-green-400" />
               {t("header.lastUpdated")}{" "}
