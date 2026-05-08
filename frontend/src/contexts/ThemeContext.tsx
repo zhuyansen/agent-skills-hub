@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -13,8 +19,9 @@ const Ctx = createContext<ThemeCtx>(null!);
 function getInitialTheme(): Theme {
   const stored = localStorage.getItem("theme") as Theme | null;
   if (stored === "light" || stored === "dark") return stored;
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
-  return "light";
+  // P0 visual refactor (2026-05-08): dark-first by default for new visitors.
+  // Returning users with an explicit stored preference still get their pick.
+  return "dark";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -48,9 +55,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const toggle = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
-    <Ctx.Provider value={{ theme, setTheme, toggle }}>
-      {children}
-    </Ctx.Provider>
+    <Ctx.Provider value={{ theme, setTheme, toggle }}>{children}</Ctx.Provider>
   );
 }
 

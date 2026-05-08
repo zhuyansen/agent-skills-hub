@@ -203,10 +203,11 @@ function buildStaticHeader() {
     </div>
   </header>
   <script>
-    // Apply saved theme
+    // Apply saved theme. P0 (2026-05-08): dark-first by default — only flip
+    // to light when the user explicitly stored it.
     (function(){
       var t=localStorage.getItem('theme');
-      if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+      if(t!=='light'){
         document.documentElement.classList.add('dark');
         var il=document.getElementById('theme-icon-light');
         var id=document.getElementById('theme-icon-dark');

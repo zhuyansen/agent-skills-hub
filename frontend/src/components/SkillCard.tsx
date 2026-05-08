@@ -44,7 +44,7 @@ export const SkillCard = memo(function SkillCard({
   return (
     <div
       onClick={() => onShowDetail?.(skill)}
-      className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-500 transition-all duration-150 cursor-pointer group"
+      className="bg-white dark:bg-[var(--bg-card)] border border-gray-200 dark:border-[var(--border)] rounded-xl p-4 hover:border-indigo-300 dark:hover:border-indigo-500/60 hover:bg-gray-50/50 dark:hover:bg-[var(--bg-elev)] transition-colors duration-150 cursor-pointer group"
     >
       {/* Top: Score + Author + Name */}
       <div className="flex items-start gap-3">

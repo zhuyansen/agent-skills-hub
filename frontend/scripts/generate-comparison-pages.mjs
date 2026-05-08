@@ -76,7 +76,7 @@ function buildStaticHeader() {
   <script>
     (function(){
       var t=localStorage.getItem('theme');
-      if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){
+      if(t!=='light'){
         document.documentElement.classList.add('dark');
         var il=document.getElementById('theme-icon-light');
         var id=document.getElementById('theme-icon-dark');

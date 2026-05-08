@@ -9,8 +9,8 @@
   --bp-text-muted: #94a3b8;
   --bp-text-slate: #475569;
   --bp-text-dark: #1e293b;
-  --bp-link: #4f46e5;
-  --bp-link-hover: #3b82f6;
+  --bp-link: #5b5fe9;
+  --bp-link-hover: #4347c7;
   --bp-border: #e2e8f0;
   --bp-border-light: #f1f5f9;
   --bp-border-accent: #c7d2fe;
@@ -38,34 +38,39 @@
   --bp-font: system-ui, -apple-system, sans-serif;
 }
 
-/* Dark mode overrides */
+/* Dark mode overrides — aligned to P0 token system in src/index.css.
+   New: deep navy bg, accent #7e80f5 for links, no gradient hero. */
 .dark {
-  --bp-bg: #0f172a;
-  --bp-bg-alt: #1e293b;
-  --bp-bg-dark: #0f172a;
-  --bp-bg-darker: #020617;
-  --bp-text: #e2e8f0;
-  --bp-text-secondary: #94a3b8;
-  --bp-text-muted: #64748b;
-  --bp-text-slate: #94a3b8;
-  --bp-text-dark: #e2e8f0;
-  --bp-link: #818cf8;
-  --bp-link-hover: #6366f1;
-  --bp-border: #334155;
-  --bp-border-light: #1e293b;
-  --bp-border-accent: #4338ca;
-  --bp-card-bg: #1e293b;
-  --bp-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --bp-badge-green-bg: #064e3b;
+  --bp-bg: #0a0e1a;
+  --bp-bg-alt: #14161f;
+  --bp-bg-dark: #0a0e1a;
+  --bp-bg-darker: #060810;
+  --bp-text: #ffffff;
+  --bp-text-secondary: #9ca3af;
+  --bp-text-muted: #6b7280;
+  --bp-text-slate: #9ca3af;
+  --bp-text-dark: #ffffff;
+  --bp-link: #7e80f5;
+  --bp-link-hover: #a3a4ff;
+  --bp-border: #1f2230;
+  --bp-border-light: #14161f;
+  --bp-border-accent: #4347c7;
+  --bp-card-bg: #14161f;
+  --bp-card-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+  --bp-badge-green-bg: rgba(16, 185, 129, 0.12);
   --bp-badge-green-text: #34d399;
-  --bp-badge-purple-bg: #1e1b4b;
-  --bp-badge-purple-text: #c7d2fe;
-  --bp-gradient-hero: linear-gradient(135deg, #1e1b4b, #0f172a);
-  --bp-gradient-pick: linear-gradient(135deg, #1e1b4b, #064e3b);
-  --bp-gradient-footer: linear-gradient(135deg, #020617, #0f172a);
-  --bp-header-bg: rgba(15, 23, 42, 0.95);
-  --bp-newsletter-bg: #1e1b4b;
-  --bp-newsletter-border: #312e81;
+  --bp-badge-purple-bg: rgba(91, 95, 233, 0.16);
+  --bp-badge-purple-text: #a3a4ff;
+  --bp-gradient-hero: var(--bp-bg);
+  --bp-gradient-pick: linear-gradient(
+    135deg,
+    rgba(91, 95, 233, 0.12),
+    rgba(16, 185, 129, 0.08)
+  );
+  --bp-gradient-footer: var(--bp-bg-darker);
+  --bp-header-bg: rgba(10, 14, 26, 0.92);
+  --bp-newsletter-bg: rgba(91, 95, 233, 0.08);
+  --bp-newsletter-border: #2a2d3a;
   --bp-code-bg: #020617;
   --bp-code-text: #e2e8f0;
   --bp-table-header-bg: #1e293b;

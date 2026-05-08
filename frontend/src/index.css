@@ -1,6 +1,63 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ──────────────────────────────────────────────────────────────────
+   Design tokens — P0 (2026-05-08)
+   Dark-first, accent purple #5B5FE9 (Linear/Anthropic family).
+   See refactor brief: dark default, replace indigo gradient hero,
+   subtle borders + step bg instead of glow shadows.
+   ────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Override Tailwind indigo scale — anchored on the new accent #5B5FE9.
+     Existing className `indigo-600` etc. auto-pick up the new hue. */
+  --color-indigo-50: #f3f3ff;
+  --color-indigo-100: #e5e6ff;
+  --color-indigo-200: #cccdff;
+  --color-indigo-300: #a3a4ff;
+  --color-indigo-400: #7e80f5;
+  --color-indigo-500: #6366ec;
+  --color-indigo-600: #5b5fe9; /* primary accent */
+  --color-indigo-700: #4347c7;
+  --color-indigo-800: #2f338e;
+  --color-indigo-900: #1c1f56;
+  --color-indigo-950: #11122e;
+}
+
+/* Semantic tokens — used directly via var() in custom CSS / static pages */
+:root {
+  --bg-base: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-elev: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-1: #0f172a;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --accent: #5b5fe9;
+  --accent-hover: #4347c7;
+  --accent-soft: #eef0ff;
+  --success: #10b981;
+  --warm: #f97316;
+  --danger: #ef4444;
+}
+
+:root.dark {
+  --bg-base: #0a0e1a;
+  --bg-card: #14161f;
+  --bg-elev: #1a1d29;
+  --border: #1f2230;
+  --border-strong: #2a2d3a;
+  --text-1: #ffffff;
+  --text-2: #9ca3af;
+  --text-3: #6b7280;
+  --accent: #7e80f5; /* slightly brighter on dark for contrast */
+  --accent-hover: #a3a4ff;
+  --accent-soft: #1c1f56;
+  --success: #34d399;
+  --warm: #fb923c;
+  --danger: #f87171;
+}
+
 /* Hide scrollbar for horizontal scroll nav */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -12,16 +69,11 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-1);
   min-height: 100vh;
-}
-
-.dark body,
-:root.dark body {
-  background-color: #0b1120;
-  color: #e2e8f0;
 }
 
 /* Slide-in panel animation */
@@ -59,8 +111,13 @@ body {
 
 /* Skeleton loading pulse */
 @keyframes skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .animate-skeleton {
@@ -88,42 +145,92 @@ body {
   opacity: 0;
   animation: fade-in-up 0.35s ease-out forwards;
 }
-.stagger-children > *:nth-child(1)  { animation-delay: 0ms; }
-.stagger-children > *:nth-child(2)  { animation-delay: 40ms; }
-.stagger-children > *:nth-child(3)  { animation-delay: 80ms; }
-.stagger-children > *:nth-child(4)  { animation-delay: 120ms; }
-.stagger-children > *:nth-child(5)  { animation-delay: 160ms; }
-.stagger-children > *:nth-child(6)  { animation-delay: 200ms; }
-.stagger-children > *:nth-child(7)  { animation-delay: 240ms; }
-.stagger-children > *:nth-child(8)  { animation-delay: 280ms; }
-.stagger-children > *:nth-child(9)  { animation-delay: 320ms; }
-.stagger-children > *:nth-child(10) { animation-delay: 360ms; }
-.stagger-children > *:nth-child(11) { animation-delay: 400ms; }
-.stagger-children > *:nth-child(12) { animation-delay: 440ms; }
-.stagger-children > *:nth-child(13) { animation-delay: 480ms; }
-.stagger-children > *:nth-child(14) { animation-delay: 520ms; }
-.stagger-children > *:nth-child(15) { animation-delay: 560ms; }
-.stagger-children > *:nth-child(16) { animation-delay: 600ms; }
-.stagger-children > *:nth-child(17) { animation-delay: 640ms; }
-.stagger-children > *:nth-child(18) { animation-delay: 680ms; }
-.stagger-children > *:nth-child(19) { animation-delay: 720ms; }
-.stagger-children > *:nth-child(20) { animation-delay: 760ms; }
-.stagger-children > *:nth-child(n+21) { animation-delay: 800ms; }
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 40ms;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 80ms;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 120ms;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 160ms;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 200ms;
+}
+.stagger-children > *:nth-child(7) {
+  animation-delay: 240ms;
+}
+.stagger-children > *:nth-child(8) {
+  animation-delay: 280ms;
+}
+.stagger-children > *:nth-child(9) {
+  animation-delay: 320ms;
+}
+.stagger-children > *:nth-child(10) {
+  animation-delay: 360ms;
+}
+.stagger-children > *:nth-child(11) {
+  animation-delay: 400ms;
+}
+.stagger-children > *:nth-child(12) {
+  animation-delay: 440ms;
+}
+.stagger-children > *:nth-child(13) {
+  animation-delay: 480ms;
+}
+.stagger-children > *:nth-child(14) {
+  animation-delay: 520ms;
+}
+.stagger-children > *:nth-child(15) {
+  animation-delay: 560ms;
+}
+.stagger-children > *:nth-child(16) {
+  animation-delay: 600ms;
+}
+.stagger-children > *:nth-child(17) {
+  animation-delay: 640ms;
+}
+.stagger-children > *:nth-child(18) {
+  animation-delay: 680ms;
+}
+.stagger-children > *:nth-child(19) {
+  animation-delay: 720ms;
+}
+.stagger-children > *:nth-child(20) {
+  animation-delay: 760ms;
+}
+.stagger-children > *:nth-child(n + 21) {
+  animation-delay: 800ms;
+}
 
-/* Hero section — theme-aware gradient */
+/* Hero section — calm, dark-first.
+   Removes the prior heavy multi-stop indigo gradient. Uses bg-base
+   (token-aware) + a single subtle accent radial. Dark mode shows a
+   slightly brighter glow for visual focus. */
 .hero-gradient {
-  background: linear-gradient(160deg, #eef2ff 0%, #e0e7ff 40%, #ede9fe 70%, #f0f4ff 100%);
+  background: var(--bg-base);
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--border);
 }
 .hero-gradient::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 60%;
-  height: 200%;
-  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  top: -40%;
+  left: -10%;
+  width: 70%;
+  height: 220%;
+  background: radial-gradient(
+    ellipse,
+    rgba(91, 95, 233, 0.08) 0%,
+    transparent 65%
+  );
   pointer-events: none;
 }
 .hero-gradient::after {
@@ -133,19 +240,27 @@ body {
   right: -10%;
   width: 50%;
   height: 160%;
-  background: radial-gradient(ellipse, rgba(79, 70, 229, 0.06) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(91, 95, 233, 0.05) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
-/* Dark mode hero */
-.dark .hero-gradient {
-  background: linear-gradient(160deg, #0b1120 0%, #111827 40%, #1a1040 70%, #0f172a 100%);
-}
 .dark .hero-gradient::before {
-  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(126, 128, 245, 0.12) 0%,
+    transparent 60%
+  );
 }
 .dark .hero-gradient::after {
-  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(126, 128, 245, 0.08) 0%,
+    transparent 65%
+  );
 }
 
 /* Blue Book chapter prose — applied to .book-prose containers */
