@@ -6,24 +6,30 @@ const STEPS = [
     icon: "🔄",
     titleEn: "Auto-Collect",
     titleZh: "自动采集",
-    descEn: "Every 8 hours, our crawler scans GitHub for new AI agent tools, MCP servers, and Claude skills across 25,000+ repositories.",
-    descZh: "每 8 小时，爬虫自动扫描 GitHub 上 25,000+ 仓库中的新 AI Agent 工具、MCP 服务器和 Claude 技能。",
+    descEn:
+      "Every 8 hours, our crawler scans GitHub for new AI agent tools, MCP servers, and Claude skills across 25,000+ repositories.",
+    descZh:
+      "每 8 小时，爬虫自动扫描 GitHub 上 25,000+ 仓库中的新 AI Agent 工具、MCP 服务器和 Claude 技能。",
   },
   {
     num: "02",
     icon: "⚡",
     titleEn: "Quality Scoring",
     titleZh: "质量评分",
-    descEn: "10 weighted signals — stars, maintenance, documentation, code quality — combined into a single 0-100 composite score.",
-    descZh: "10 项加权指标——Star 数、维护活跃度、文档质量、代码质量——综合为 0-100 的质量评分。",
+    descEn:
+      "10 weighted signals — stars, maintenance, documentation, code quality — combined into a single 0-100 composite score.",
+    descZh:
+      "10 项加权指标——Star 数、维护活跃度、文档质量、代码质量——综合为 0-100 的质量评分。",
   },
   {
     num: "03",
     icon: "🎯",
     titleEn: "Smart Matching",
     titleZh: "智能匹配",
-    descEn: "71 scenario pages match tools to your use case. Compare side-by-side, filter by category, language, or platform.",
-    descZh: "71 个场景页面将工具匹配到你的使用场景。支持并排对比、按分类/语言/平台筛选。",
+    descEn:
+      "76 scenario pages match tools to your use case. Compare side-by-side, filter by category, language, or platform.",
+    descZh:
+      "76 个场景页面将工具匹配到你的使用场景。支持并排对比、按分类/语言/平台筛选。",
   },
 ];
 

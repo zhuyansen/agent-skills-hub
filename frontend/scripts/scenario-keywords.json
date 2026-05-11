@@ -2890,5 +2890,73 @@
       "claude-code-skills",
       "agent-governance"
     ]
+  },
+  {
+    "slug": "job-hunting",
+    "title": "AI Job Hunting & Resume Skills",
+    "description": "AI-powered job search stack — resume tailoring, cover letter generation, interview copilots, LinkedIn automation, application auto-fillers, and cold outreach to recruiters. The full pipeline for landing your next role.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "resume",
+        "cv",
+        "cover letter",
+        "interview prep",
+        "interview copilot",
+        "job application",
+        "job search",
+        "job hunt",
+        "career coach",
+        "linkedin"
+      ],
+      "secondary_keywords": [
+        "recruiter",
+        "talent",
+        "ats",
+        "applicant tracking",
+        "career",
+        "outreach",
+        "auto apply",
+        "tailoring",
+        "personalize"
+      ],
+      "topic_matches": [
+        "resume",
+        "cv",
+        "interview",
+        "job-search",
+        "career",
+        "linkedin",
+        "cover-letter",
+        "job-application"
+      ],
+      "exclude_keywords": [
+        "resume session",
+        "resume conversation",
+        "resume task",
+        "auto-resume",
+        "session resume",
+        "video skill",
+        "interview my agent"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "featured": [
+        "santifer/career-ops",
+        "WeThinkIn/AIGC-Interview-Book",
+        "stickerdaniel/linkedin-mcp-server",
+        "Natively-AI-assistant/natively-cluely-ai-assistant",
+        "adhikasp/mcp-linkedin",
+        "kaymen99/Upwork-AI-jobs-applier",
+        "varunr89/resume-tailoring-skill",
+        "Paramchoudhary/ResumeSkills"
+      ],
+      "tag_matches": []
+    },
+    "related": [
+      "business-diagnosis",
+      "personal-knowledge",
+      "anti-slop"
+    ]
   }
 ]
