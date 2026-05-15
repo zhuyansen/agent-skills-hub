@@ -61,6 +61,11 @@ const AdminLayout = lazy(() =>
 const ArenaPage = lazy(() =>
   import("./pages/ArenaPage").then((m) => ({ default: m.ArenaPage })),
 );
+const EnterprisePage = lazy(() =>
+  import("./pages/EnterprisePage").then((m) => ({
+    default: m.EnterprisePage,
+  })),
+);
 
 const PAGE_FALLBACK = (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -116,6 +121,8 @@ function App() {
                   <Route path="/admin/*" element={<AdminLayout />} />
                   <Route path="/arena" element={<ArenaPage />} />
                   <Route path="/arena/" element={<ArenaPage />} />
+                  <Route path="/enterprise" element={<EnterprisePage />} />
+                  <Route path="/enterprise/" element={<EnterprisePage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </Suspense>

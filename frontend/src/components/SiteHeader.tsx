@@ -151,11 +151,11 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               <span>Creators</span>
             </Link>
             <Link
-              to="/business/"
-              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 rounded-lg transition-colors font-medium"
-              title="For Business — Enterprise plans"
+              to="/enterprise/"
+              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-indigo-200 dark:ring-indigo-900"
+              title="Enterprise — Trust Layer for AI Agent & MCP Deployment"
             >
-              For Business
+              Enterprise
             </Link>
             <Link
               to="/book/"
