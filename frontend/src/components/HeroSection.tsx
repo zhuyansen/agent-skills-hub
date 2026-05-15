@@ -95,6 +95,16 @@ export function HeroSection({ stats, onSearch }: Props) {
   return (
     <section className="hero-gradient -mx-4 px-4 pt-10 pb-8 sm:pt-14 sm:pb-10 mb-6 relative z-20">
       <div className="max-w-3xl mx-auto text-center relative z-10">
+        {/* B-path: thin enterprise banner — high signal, doesn't touch H1/SEO */}
+        <a
+          href="/enterprise/"
+          className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-900/60 hover:bg-indigo-100 dark:hover:bg-indigo-950/60 transition-colors"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+          NEW · Enterprise audit packages now available
+          <span className="ml-1">→</span>
+        </a>
+
         {/* Main headline */}
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">
           {t("hero.title").replace("{count}", countDisplay)}
@@ -269,6 +279,56 @@ export function HeroSection({ stats, onSearch }: Props) {
             <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
               Agent Tools
             </div>
+          </div>
+        </div>
+
+        {/* B-path Trust Signals — under the catalog stats, above the fold */}
+        <div className="mt-10 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold mb-4">
+            Trust Layer for AI Agent &amp; MCP Deployment
+          </div>
+          <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-rose-500 dark:text-rose-400">
+                43%
+              </div>
+              <div className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1 leading-tight">
+                of MCP servers have critical vulnerabilities
+              </div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                8h
+              </div>
+              <div className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1 leading-tight">
+                refresh on the entire skill catalog
+              </div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                $10K+
+              </div>
+              <div className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1 leading-tight">
+                saved per incident with pre-deploy audit
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-3 text-xs">
+            <a
+              href="/enterprise/"
+              className="inline-flex items-center px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full transition-colors"
+            >
+              Enterprise audit →
+            </a>
+            <span className="text-gray-400 dark:text-gray-500 self-center">
+              or
+            </span>
+            <a
+              href="#trending"
+              className="inline-flex items-center px-4 py-1.5 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-700 rounded-full transition-colors"
+            >
+              Browse free catalog
+            </a>
           </div>
         </div>
       </div>
