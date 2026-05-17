@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我用 10 周做了一个 86K 的 AI Skill 目录。为什么现在要转向。 | Agent Skills Hub</title>
+  <meta name="description" content="Agent Skills Hub 10 周收录了 86,000 个开源 AI skill。流量涨得飞快，月收入却是 $0。15 个用户访谈告诉我：发现 skill 从来不是问题 —— 这就是 Hub 从「目录」转向「AI agent 部署信任层」的原因。" />
+  <meta name="keywords" content="AI agent 目录, MCP 安全, agent 部署信任层, pivot, build in public, EU AI Act, SOC 2, 企业 AI" />
+  <meta property="og:title" content="我用 10 周做了一个 86K 的 AI Skill 目录。为什么现在要转向。" />
+  <meta property="og:description" content="流量涨得飞快，月收入却是 $0。15 个访谈告诉我：发现从来不是问题。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/pivot-to-trust-layer/zh/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
+  <meta property="article:published_time" content="2026-05-17" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="我用 10 周做了一个 86K AI Skill 目录。为什么现在要转向。" />
+  <meta name="twitter:description" content="流量涨得飞快，月收入却是 $0。15 个访谈的发现。" />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/pivot-to-trust-layer/zh/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/pivot-to-trust-layer/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
+  <style>
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+    .article-body > h1 { font-size: 34px; line-height: 1.25; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 16px; color: var(--bp-text); }
+    .article-body h2 { font-size: 25px; font-weight: 700; line-height: 1.35; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: normal; }
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-size: 17px; color: var(--bp-text); line-height: 1.78; }
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: var(--bp-bg-alt); border: 1px solid var(--bp-border); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; }
+    .lang-toggle a:hover { color: var(--bp-text); }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.6; }
+    .cta-box { margin: 40px 0 0; padding: 24px; border: 1px solid var(--bp-border); border-radius: 12px; background: var(--bp-bg-alt); }
+    .cta-box h3 { margin: 0 0 8px; }
+    .cta-btn { display: inline-block; margin-top: 12px; padding: 10px 22px; background: var(--bp-link); color: #fff; border-radius: 8px; font-weight: 600; font-size: 15px; }
+    .cta-btn:hover { border-bottom-color: transparent; }
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 27px; }
+      .article-body h2 { font-size: 21px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">Agent Skills Hub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">探索</a>
+        <a href="/best/" class="bp-nav-link">趋势</a>
+        <a href="/enterprise/" class="bp-nav-link">企业版</a>
+        <a href="/blog/zh/" class="bp-nav-link bp-nav-link--active">博客</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">首页</a> &gt; <a href="/blog/zh/">博客</a> &gt; <span>转向「信任层」</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/pivot-to-trust-layer/">EN</a>
+          <a href="/blog/pivot-to-trust-layer/zh/" class="active">中文</a>
+        </div>
+      </div>
+
+      <h1>我用 10 周做了一个 86K 的 AI Skill 目录。为什么现在要转向。</h1>
+
+      <div class="article-meta">
+        <span>作者 <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>2026 年 5 月 17 日</span>
+        <span>&middot;</span>
+        <span>9 分钟阅读</span>
+        <span class="article-tag">Build in Public</span>
+        <span class="article-tag">转向</span>
+        <span class="article-tag">企业</span>
+      </div>
+
+      <blockquote>
+        <p>Agent Skills Hub 用 10 周收录了 86,000 个开源 AI skill。流量涨得飞快，月收入却是 $0。然后我访谈了 15 个用户 —— 才意识到「发现」从来不是问题。</p>
+      </blockquote>
+
+      <h2>诚实的承认</h2>
+
+      <p>我在 2026 年 3 月 8 日上线了 Agent Skills Hub。10 周后，它收录了 <strong>86,000+ 个开源 AI agent skill 和 MCP server</strong>，对每一个都做了 10 个维度的质量评分，并且每 8 小时刷新一次整个目录。</p>
+
+      <p>SEO 流量来得比我预期快 —— 10 周内 Google Search Console 累计 6 万+ 曝光，分类页开始在一些真实搜索词上排到第一页。</p>
+
+      <p>而这一切带来的月收入，恰好是 <strong>$0</strong>。</p>
+
+      <p>这篇文章不是抱怨，恰恰相反。一个人能在 10 周里建出一个 86,000 条的目录 —— 这件事本身就暴露了问题。建目录很快。目录就是不值钱。下面是我学到的，以及 Hub 接下来去哪。</p>
+
+      <h2>目录陷阱</h2>
+
+      <p>让我起步的那个直觉，简单且错误：<strong>收录越多 skill = 价值越高</strong>。如果目录最大、最新，那它就是护城河，对吧？</p>
+
+      <p>不对。目录 —— npm、App Store、Product Hunt —— 是入口，不是产品。没人会为「能浏览目录」这件事付钱给目录。目录变现的是它<em>下游</em>的东西：托管、分发、信任、推荐位。清单本身免费，因为清单本身造起来很便宜。在我这里，是一个人 10 周的时间。</p>
+
+      <p>更糟的是，纯目录会把你卡在中间。Hub 太技术，做不成消费级 SEO 工具站（那种靠百万月访问量赚广告费的）；又太轻量，做不成严肃的企业平台。它服务的是开源生态的供给端 —— 那些<em>发布</em> skill 的开发者 —— 而这群人，定义上就不付费。他们是贡献者。</p>
+
+      <h2>15 个访谈告诉我的</h2>
+
+      <p>所以我停止了猜测，做了结构化访谈：5 个独立开发者、5 个企业决策者、5 个 skill 创作者，覆盖中美德三地 —— 行业涵盖科技、医疗、汽车、物流。</p>
+
+      <p>这三类人在几乎所有事上都意见相左。但有一点他们完全一致，而且不是我预期的那一点：</p>
+
+      <blockquote>
+        <p>「发现 skill 不难。评估它、验证它、安全部署它 —— 才是所有摩擦所在。」</p>
+      </blockquote>
+
+      <p>一位独立开发者兼 B2B SaaS 创始人说得很直白：<em>「靠谱不是能用，而是出错时不会系统瘫痪。少踩一个坑，比多一个功能值钱太多。」</em></p>
+
+      <p>一位大型科技企业的工程 VP：<em>「真正的卡点是身份认证、最小权限、失败回滚机制。没有这些，什么都别想上线。」</em></p>
+
+      <p>一位德国汽车行业的技术决策者：<em>「合规和可审计性不是排名问题，是前置硬要求。」</em></p>
+
+      <p>这个模式无法忽视。<strong>人们付费是为了消除风险，不是为了发现 skill。</strong> 发现只是入场券 —— 是门槛，不是价值。那些访谈里，每一分钱的付费意愿都站在安全、回滚、审计后面。而我的目录，恰好解决的是这条链路里没人愿意付费的那一环。</p>
+
+      <h2>43% 的问题</h2>
+
+      <p>然后我把 Hub 自己的扫描器对准了它一直在礼貌地编目的那个生态。结果令人不安。</p>
+
+      <p><strong>我们扫描的开源 MCP server 里，43% 带有严重安全漏洞</strong> —— 提示词注入、凭证泄露、或沙箱逃逸风险。不是边角案例。是接近一半。</p>
+
+      <p>越细看越糟。连接 5 个各含约 30 个工具的 MCP server，agent 还没干任何有用的事，就可能烧掉 100K+ token 的上下文。而 <code>stdio</code> 传输层有个毛病：出错时返回 <code>200 OK</code> —— 这意味着模型会在一个它从未被告知的失败之上，愉快地产生幻觉。</p>
+
+      <p>这一段重新定义了一切。「Hub 有 86,000 个 skill」不是价值主张。<strong>「这 86,000 里，哪些是真正能安全上生产的」—— 这才是。</strong> 43% 的漏洞率对 Hub 不是坏消息，是护城河。一个通过了真实审计的 skill，带有稀缺的、可证明的「可信溢价」。这个溢价，是企业愿意付费的，也是创作者愿意花钱去赢得的。</p>
+
+      <h2>新定位</h2>
+
+      <p>所以，从今天起，Agent Skills Hub 不再把自己描述为「目录」。新的那句话 —— 此后每一个页面、每一次 pitch、每一个决策都锚定它：</p>
+
+      <blockquote>
+        <p>Agent Skills Hub —— AI Agent 与 MCP 部署的信任层（Trust Layer）。</p>
+      </blockquote>
+
+      <p>具体来说，这意味着 Hub 坐在你的开发者和你的生产环境之间，提供四样东西：</p>
+
+      <ul>
+        <li><strong>部署前沙箱</strong> —— 用脱敏的、生产形态的数据，在隔离环境里跑一个 skill，遇到第一个异常就触发 kill switch。</li>
+        <li><strong>合规证据包</strong> —— 自动生成的 PDF，把每个 skill 映射到 SOC 2 控制项、ISO/IEC 42001 对齐、EU AI Act 2026 风险分级。就是你递给审计师的那份文件。</li>
+        <li><strong>全链路审计日志</strong> —— 每个 tool call、数据流、错误回放，可导出到你的 SIEM。</li>
+        <li><strong>SSO/SCIM + 细粒度 RBAC</strong> —— 对接 Okta、Auth0、Azure AD；skill 级别权限。</li>
+      </ul>
+
+      <p>设计原则直接来自访谈：<strong>嵌入企业既有流程</strong> —— IAM、CI/CD、SIEM —— 而不是要求企业去适应又一个新平台。</p>
+
+      <h2>什么变，什么不变</h2>
+
+      <p>如果你一直把 Hub 当免费目录用，对你来说几乎什么都不变：</p>
+
+      <table class="flag-table">
+        <thead><tr><th>不变</th><th>新增 / 升级</th></tr></thead>
+        <tbody>
+          <tr><td>86K+ 目录永久免费</td><td>/enterprise/ —— 企业审计 + 合规证据包</td></tr>
+          <tr><td>每 8 小时刷新</td><td>Verified Creator 升级为技术深度审计</td></tr>
+          <tr><td>开源、MIT、评分透明</td><td>蓝皮书重构为硬指标驱动</td></tr>
+        </tbody>
+      </table>
+
+      <p>蓝皮书尤其需要诚实。用户告诉我，他们希望它剔除营销型排行榜，重建在<strong>可复现的硬数据</strong>之上 —— 漏洞修复率、平均恢复时间（MTTR）、回滚率、延迟分布。建立在感性投票上的排行榜没有商业价值。建立在日志上的基准测试才有。所以，就这么重建。</p>
+
+      <h2>18 个月路线图</h2>
+
+      <p>三个阶段，按「谁先付费」排序：</p>
+
+      <ul>
+        <li><strong>Phase 1（0–3 月）—— 信任基础设施。</strong> <a href="/enterprise/">/enterprise/</a> MVP：SSO/SCIM、沙箱、审计日志导出、合规证据包。加上 Verified Creator 的技术深度审计升级。目标：首批 3–5 家企业 POC。</li>
+        <li><strong>Phase 2（4–9 月）—— 开发者工具链。</strong> IDE 插件（发现、试跑、版本锁定一体化），以及 Arena 重构为基准测试平台 —— 用自动化指标取代匿名投票。</li>
+        <li><strong>Phase 3（10–18 月）—— 创作者经济 + 国际合规。</strong> 多模型创作者变现，加上 Hub 自身的 SOC 2 Type II 和 ISO/IEC 42001 认证。</li>
+      </ul>
+
+      <h2>我的请求</h2>
+
+      <p>如果你的团队在 production 跑 AI agent —— 而且你被合规卡过 launch、出过提示词注入事故、或者干脆没有一个干净的办法在 MCP server 上生产前 audit 它 —— 我想跟你聊聊。</p>
+
+      <p>不是推销。是想搞懂。一个 30 分钟的通话，我们一起走一遍你当前的配置，在挂电话前我给你指出三个立即存在的风险。</p>
+
+      <p>这篇博客本身就是 build in public 的一部分。我会在每个阶段结束时发一份诚实的复盘 —— 什么有用、什么没用、真实数字是多少。下一篇复盘会告诉你这次转向到底对不对。</p>
+
+      <div class="cta-box">
+        <h3>在生产环境跑 AI agent？</h3>
+        <p style="margin:0;color:var(--bp-text-secondary)">预约 30 分钟通话。我们一起走一遍你当前的 MCP/agent 配置，当场指出三个立即存在的风险 —— 没有 slides，没有销售套路。</p>
+        <a class="cta-btn" href="/enterprise/">查看企业版方案 →</a>
+      </div>
+
+      <p style="margin-top:32px;color:var(--bp-text-muted);font-size:13px">
+        <em>Agent Skills Hub 是开源项目（MIT）。86K 目录永久免费。方法论与数据快照记录在 <a href="https://github.com/ZhuYansen/agent-skills-hub">github.com/ZhuYansen/agent-skills-hub</a>。</em>
+      </p>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Built an 86K AI Skill Directory in 10 Weeks. Here's Why I'm Changing Course. | Agent Skills Hub</title>
+  <meta name="description" content="Agent Skills Hub indexed 86,000 open-source AI skills in 10 weeks. Traffic grew fast. Revenue stayed at $0. Here's what 15 user interviews taught me — and why Hub is pivoting from directory to the trust layer for AI agent deployment." />
+  <meta name="keywords" content="AI agent directory, MCP server security, agent deployment trust, pivot, build in public, EU AI Act, SOC 2, enterprise AI" />
+  <meta property="og:title" content="I Built an 86K AI Skill Directory in 10 Weeks. Here's Why I'm Changing Course." />
+  <meta property="og:description" content="Traffic grew fast. Revenue stayed at $0. What 15 user interviews taught me about why discovery was never the problem." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
+  <meta property="article:published_time" content="2026-05-17" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="I Built an 86K AI Skill Directory in 10 Weeks. Here's Why I'm Pivoting." />
+  <meta name="twitter:description" content="Traffic grew fast. Revenue stayed at $0. What 15 interviews taught me." />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/pivot-to-trust-layer/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/pivot-to-trust-layer/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
+  <style>
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+    .article-body > h1 { font-size: 36px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin: 32px 0 16px; color: var(--bp-text); }
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); letter-spacing: -0.01em; }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; font-size: 17px; color: var(--bp-text); line-height: 1.7; }
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: var(--bp-bg-alt); border: 1px solid var(--bp-border); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; }
+    .lang-toggle a:hover { color: var(--bp-text); }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.5; }
+    .cta-box { margin: 40px 0 0; padding: 24px; border: 1px solid var(--bp-border); border-radius: 12px; background: var(--bp-bg-alt); }
+    .cta-box h3 { margin: 0 0 8px; }
+    .cta-btn { display: inline-block; margin-top: 12px; padding: 10px 22px; background: var(--bp-link); color: #fff; border-radius: 8px; font-weight: 600; font-size: 15px; }
+    .cta-btn:hover { border-bottom-color: transparent; }
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">Agent Skills Hub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/best/" class="bp-nav-link">Trending</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">Home</a> &gt; <a href="/blog/">Blog</a> &gt; <span>Pivoting to a Trust Layer</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/pivot-to-trust-layer/" class="active">EN</a>
+          <a href="/blog/pivot-to-trust-layer/zh/">中文</a>
+        </div>
+      </div>
+
+      <h1>I Built an 86K AI Skill Directory in 10 Weeks. Here's Why I'm Changing Course.</h1>
+
+      <div class="article-meta">
+        <span>By <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>May 17, 2026</span>
+        <span>&middot;</span>
+        <span>9 min read</span>
+        <span class="article-tag">Build in Public</span>
+        <span class="article-tag">Pivot</span>
+        <span class="article-tag">Enterprise</span>
+      </div>
+
+      <blockquote>
+        <p>Agent Skills Hub indexed 86,000 open-source AI skills in 10 weeks. Traffic grew fast. Revenue stayed at $0. Then I interviewed 15 users — and realized discovery was never the problem.</p>
+      </blockquote>
+
+      <h2>The Honest Admission</h2>
+
+      <p>I launched Agent Skills Hub on March 8, 2026. Ten weeks later it had indexed <strong>86,000+ open-source AI agent skills and MCP servers</strong>, scored every one of them across ten quality dimensions, and refreshed the whole catalog every eight hours.</p>
+
+      <p>The SEO traffic came faster than I expected — 60,000+ impressions in Google Search Console within those ten weeks, with category pages starting to rank on page one for real queries.</p>
+
+      <p>And the monthly revenue from all of it was exactly <strong>$0</strong>.</p>
+
+      <p>This post isn't a complaint. It's the opposite. The fact that one person could build an 86,000-item directory in ten weeks is <em>precisely</em> the thing that revealed the problem. Building the directory was fast. The directory just isn't worth much. Here's what I learned, and where Hub goes next.</p>
+
+      <h2>The Directory Trap</h2>
+
+      <p>The intuition that got me started was simple and wrong: <strong>more skills indexed = more value</strong>. If the catalog is the biggest and freshest, surely that's the moat.</p>
+
+      <p>It isn't. Directories — npm, the App Store, Product Hunt — are entry points, not products. Nobody pays the directory for the privilege of browsing it. The directory monetizes something <em>downstream</em>: hosting, distribution, trust, placement. The list itself is free because the list itself is cheap to make. Ten weeks of one person's time, in my case.</p>
+
+      <p>Worse, a pure directory leaves you stuck in the middle. Hub was too technical to become a consumer SEO tool site (the kind that earns ad revenue on a million monthly visits), and too lightweight to be a serious enterprise platform. It served the supply side of the open-source ecosystem — developers <em>publishing</em> skills — and that audience, by definition, doesn't pay. It contributes.</p>
+
+      <h2>What 15 Interviews Told Me</h2>
+
+      <p>So I stopped guessing and ran structured interviews: 5 independent developers, 5 enterprise decision-makers, and 5 skill creators, across the US, Germany, and China — spanning tech, healthcare, automotive, and logistics.</p>
+
+      <p>The three groups disagreed about almost everything. But on one point they were unanimous, and it wasn't the point I expected:</p>
+
+      <blockquote>
+        <p>"Finding a skill is easy. Evaluating it, verifying it, deploying it safely — that's where all the friction is."</p>
+      </blockquote>
+
+      <p>An independent developer and B2B SaaS founder put it bluntly: <em>"Reliable doesn't mean it runs. It means when it breaks, the system doesn't go down with it. Avoiding one landmine is worth more than ten extra features."</em></p>
+
+      <p>An engineering VP at a large tech company: <em>"The real blocker is identity, least-privilege, and a failure-rollback mechanism. Without those, nothing ships."</em></p>
+
+      <p>A German automotive technical decision-maker: <em>"Compliance and auditability aren't a ranking question. They're a hard prerequisite."</em></p>
+
+      <p>The pattern is impossible to miss. <strong>People pay to remove risk, not to discover skills.</strong> Discovery is table stakes — the price of entry, not the value. Every dollar of willingness-to-pay in those interviews sat behind security, rollback, and audit. My directory was solving the one link in the chain nobody would pay for.</p>
+
+      <h2>The 43% Problem</h2>
+
+      <p>Then I turned Hub's own scanners loose on the ecosystem it had been politely cataloguing. The result was uncomfortable.</p>
+
+      <p><strong>43% of the open-source MCP servers we scanned carry critical security vulnerabilities</strong> — prompt injection, credential leakage, or sandbox-escape risk. Not edge cases. Nearly half.</p>
+
+      <p>It gets worse the closer you look. Connecting five MCP servers, each exposing ~30 tools, can burn 100K+ tokens of context before the agent does anything useful. And the <code>stdio</code> transport layer has a habit of returning <code>200 OK</code> on actual errors — which means the model happily hallucinates on top of a failure it was never told about.</p>
+
+      <p>This is the part that reframed everything for me. "Hub has 86,000 skills" is not a value proposition. <strong>"Here are the skills in those 86,000 that are actually safe to put in production" — that is.</strong> The 43% vulnerability rate isn't bad news for Hub. It's the moat. A skill that passes a real audit carries a scarce, provable trust premium. That premium is something enterprises will pay for, and creators will pay to earn.</p>
+
+      <h2>The New Positioning</h2>
+
+      <p>So, as of today, Agent Skills Hub stops describing itself as a directory. The new sentence — the one every page, pitch, and decision now anchors to:</p>
+
+      <blockquote>
+        <p>Agent Skills Hub — the Trust Layer for AI Agent &amp; MCP Deployment.</p>
+      </blockquote>
+
+      <p>Concretely, that means Hub sits between your developers and your production environment, and provides four things:</p>
+
+      <ul>
+        <li><strong>Pre-deployment sandbox</strong> — run a skill against de-identified, production-shaped data in isolation, with a kill switch on first anomaly.</li>
+        <li><strong>Compliance evidence pack</strong> — an auto-generated PDF mapping each skill to SOC 2 controls, ISO/IEC 42001 alignment, and EU AI Act 2026 risk classification. The document you hand your auditor.</li>
+        <li><strong>Full-chain audit logs</strong> — every tool call, data flow, and error replay, exportable to your SIEM.</li>
+        <li><strong>SSO/SCIM + fine-grained RBAC</strong> — Okta, Auth0, Azure AD ready; skill-level permissions.</li>
+      </ul>
+
+      <p>The design principle, straight from the interviews: <strong>embed into the enterprise's existing workflow</strong> — IAM, CI/CD, SIEM — rather than asking the enterprise to adopt yet another platform.</p>
+
+      <h2>What Changes, What Stays</h2>
+
+      <p>If you've been using Hub as a free catalog, almost nothing changes for you:</p>
+
+      <table class="flag-table">
+        <thead><tr><th>Stays the same</th><th>What's new / upgraded</th></tr></thead>
+        <tbody>
+          <tr><td>86K+ catalog stays free, forever</td><td>/enterprise/ — audit + compliance evidence pack</td></tr>
+          <tr><td>8-hour refresh cycle</td><td>Verified Creator upgraded to deep technical audit</td></tr>
+          <tr><td>Open-source, MIT, transparent scoring</td><td>Blue Book rebuilt around hard metrics</td></tr>
+        </tbody>
+      </table>
+
+      <p>The Blue Book in particular needed honesty. Users told me they wanted it stripped of marketing leaderboards and rebuilt around <strong>reproducible hard data</strong> — vulnerability fix rate, mean time to recovery (MTTR), rollback rate, latency distribution. A leaderboard built on vibes has no commercial value. A benchmark built on logs does. So that's the rebuild.</p>
+
+      <h2>The 18-Month Roadmap</h2>
+
+      <p>Three phases, in order of who pays first:</p>
+
+      <ul>
+        <li><strong>Phase 1 (months 0–3) — Trust infrastructure.</strong> The <a href="/enterprise/">/enterprise/</a> MVP: SSO/SCIM, sandbox, audit log export, compliance evidence pack. Plus the deep-audit upgrade to Verified Creator. Target: first 3–5 enterprise POCs.</li>
+        <li><strong>Phase 2 (months 4–9) — Developer tooling.</strong> An IDE plugin (discover, test, version-lock in one flow) and the Arena rebuilt as a benchmark-testing platform with automated metrics instead of anonymous votes.</li>
+        <li><strong>Phase 3 (months 10–18) — Creator economy + international compliance.</strong> Multi-model creator monetization, plus SOC 2 Type II and ISO/IEC 42001 for Hub itself.</li>
+      </ul>
+
+      <h2>The Ask</h2>
+
+      <p>If your team runs AI agents in production — and you've been blocked by compliance at launch, had a prompt-injection incident, or simply have no clean way to audit an MCP server before it ships — I want to talk to you.</p>
+
+      <p>Not to sell. To understand. A 30-minute call where we walk through your current setup and I show you three immediate risks before the call ends.</p>
+
+      <p>This blog is itself part of building in public. I'll publish an honest retrospective at the end of every phase — what worked, what didn't, what the numbers actually were. The next one of those will tell you whether this pivot was right.</p>
+
+      <div class="cta-box">
+        <h3>Run AI agents in production?</h3>
+        <p style="margin:0;color:var(--bp-text-secondary)">Book a 30-minute call. We'll walk your current MCP/agent setup and surface three immediate risks — no slides, no sales theater.</p>
+        <a class="cta-btn" href="/enterprise/">See the Enterprise plan →</a>
+      </div>
+
+      <p style="margin-top:32px;color:var(--bp-text-muted);font-size:13px">
+        <em>Agent Skills Hub is an open-source project (MIT). The 86K catalog stays free. Methodology and data snapshots are documented at <a href="https://github.com/ZhuYansen/agent-skills-hub">github.com/ZhuYansen/agent-skills-hub</a>.</em>
+      </p>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>
