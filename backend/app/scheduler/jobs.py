@@ -735,7 +735,11 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # See supabase/migrations/013 (masters) + 014 (landing data).
         from sqlalchemy import text
 
-        for fn in ("refresh_master_aggregates", "refresh_landing_data"):
+        for fn in (
+            "refresh_master_aggregates",
+            "refresh_landing_data",
+            "refresh_org_builders",
+        ):
             try:
                 db.execute(text(f"SELECT {fn}()"))
                 db.commit()
