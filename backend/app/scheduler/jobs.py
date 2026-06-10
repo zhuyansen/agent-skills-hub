@@ -728,6 +728,22 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # Take weekly trending snapshot (non-fatal if fails)
         maybe_take_weekly_snapshot(db)
 
+        # Refresh homepage + masters caches so they reflect this sync.
+        # These RPCs pre-compute aggregates that would otherwise time out
+        # (57014) when run live against the full skills table. Non-fatal:
+        # a stale cache is far better than a failed sync.
+        # See supabase/migrations/013 (masters) + 014 (landing data).
+        from sqlalchemy import text
+
+        for fn in ("refresh_master_aggregates", "refresh_landing_data"):
+            try:
+                db.execute(text(f"SELECT {fn}()"))
+                db.commit()
+                logger.info("Refreshed cache: %s()", fn)
+            except Exception as exc:  # noqa: BLE001
+                db.rollback()
+                logger.warning("Cache refresh %s() failed (non-fatal): %s", fn, exc)
+
         # Re-fetch sync_log — DB session may have been refreshed during
         # scoring/composability phases, detaching the old ORM object.
         sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
