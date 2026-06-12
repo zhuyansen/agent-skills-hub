@@ -45,6 +45,7 @@ import { EcosystemNav } from "../components/EcosystemNav";
 import { ScenarioTagCloud } from "../components/ScenarioTagCloud";
 import { ProblemSection } from "../components/ProblemSection";
 import { HowItWorksSection } from "../components/HowItWorksSection";
+import { InstallCliSection } from "../components/InstallCliSection";
 import { SubcategoryChips } from "../components/SubcategoryChips";
 import { getCategoriesForLayer } from "../utils/ecosystem";
 import { inferSubcategory } from "../utils/subcategories";
@@ -207,6 +208,7 @@ export function Home() {
             <ScenarioTagCloud />
             <ProblemSection />
             <HowItWorksSection />
+            <InstallCliSection />
             <div id="trending" className="scroll-mt-44">
               {landingLoading && !landingData ? (
                 <SkeletonTrending />
