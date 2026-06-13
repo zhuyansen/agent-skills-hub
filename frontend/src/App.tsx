@@ -48,9 +48,6 @@ const BookChapterPage = lazy(() =>
 const AdminLayout = lazy(() =>
   import("./pages/admin/AdminLayout").then((m) => ({ default: m.AdminLayout })),
 );
-const ArenaPage = lazy(() =>
-  import("./pages/ArenaPage").then((m) => ({ default: m.ArenaPage })),
-);
 const EnterprisePage = lazy(() =>
   import("./pages/EnterprisePage").then((m) => ({
     default: m.EnterprisePage,
@@ -115,8 +112,8 @@ function App() {
                   <Route path="/book/:slug" element={<BookChapterPage />} />
                   <Route path="/book/:slug/" element={<BookChapterPage />} />
                   <Route path="/admin/*" element={<AdminLayout />} />
-                  <Route path="/arena" element={<ArenaPage />} />
-                  <Route path="/arena/" element={<ArenaPage />} />
+                  <Route path="/arena" element={<Navigate to="/" replace />} />
+                  <Route path="/arena/" element={<Navigate to="/" replace />} />
                   <Route path="/enterprise" element={<EnterprisePage />} />
                   <Route path="/enterprise/" element={<EnterprisePage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
