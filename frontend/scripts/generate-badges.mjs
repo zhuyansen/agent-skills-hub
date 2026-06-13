@@ -70,6 +70,8 @@ async function main() {
 }
 
 main().catch((e) => {
-  console.error("Badge generation failed:", e);
-  process.exit(1);
+  // Non-fatal: badges are a nice-to-have, and the source query intermittently
+  // hits Supabase 57014 (statement timeout) in CI. A transient timeout on a
+  // non-critical artifact must not fail the whole deploy (same policy as RSS).
+  console.warn(`⚠️  Badge generation failed (non-fatal): ${e.message}`);
 });
