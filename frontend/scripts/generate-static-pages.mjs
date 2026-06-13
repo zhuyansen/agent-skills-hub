@@ -15,25 +15,47 @@ import { join } from "path";
 
 const DIST = "dist";
 
-// /enterprise/ is the canonical B2B page — emit a real 200 SPA shell with its
-// own title/description/canonical, instead of relying on the 404.html fallback.
+// SPA routes that need a real 200 status (own title/description/canonical)
+// instead of relying on the 404.html fallback. The shell meta is English for
+// SEO; the SPA hydrates and switches language per the user's preference.
 const indexHtml = readFileSync(join(DIST, "index.html"), "utf-8");
-const entHtml = indexHtml
-  .replace(
-    /<title>[^<]+<\/title>/,
-    "<title>Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub</title>",
-  )
-  .replace(
-    /<meta name="description" content="[^"]+"/,
-    '<meta name="description" content="Audit 100,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence."',
-  )
-  .replace(
-    /<link rel="canonical" href="[^"]+"/,
-    '<link rel="canonical" href="https://agentskillshub.top/enterprise/"',
-  );
-mkdirSync(join(DIST, "enterprise"), { recursive: true });
-writeFileSync(join(DIST, "enterprise", "index.html"), entHtml);
-console.log("  ✓ /enterprise/index.html (SPA shell)");
+const SHELLS = [
+  {
+    path: "enterprise",
+    title:
+      "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
+    description:
+      "Audit 100,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
+  },
+  {
+    path: "submit",
+    title: "Submit to the Hub — AgentSkillsHub",
+    description:
+      "Submit a Skill, compose a Workflow, or apply for Verified Creator. Three ways to contribute to the AgentSkillsHub directory.",
+  },
+  {
+    path: "verified-creator/apply",
+    title: "Apply for Verified Creator — AgentSkillsHub",
+    description:
+      "Apply for the AgentSkillsHub Verified Creator badge. For serious Skill authors who want recognition, trending boost, and consulting matchmaking.",
+  },
+];
+
+for (const s of SHELLS) {
+  const html = indexHtml
+    .replace(/<title>[^<]+<\/title>/, `<title>${s.title}</title>`)
+    .replace(
+      /<meta name="description" content="[^"]+"/,
+      `<meta name="description" content="${s.description}"`,
+    )
+    .replace(
+      /<link rel="canonical" href="[^"]+"/,
+      `<link rel="canonical" href="https://agentskillshub.top/${s.path}/"`,
+    );
+  mkdirSync(join(DIST, s.path), { recursive: true });
+  writeFileSync(join(DIST, s.path, "index.html"), html);
+  console.log(`  ✓ /${s.path}/index.html (SPA shell)`);
+}
 
 // /business/ and /verified-creator/ were consolidated into /enterprise/.
 // Emit static redirect stubs so crawlers pass authority to /enterprise/ and
@@ -250,5 +272,5 @@ writeFileSync(join(aboutDir, "index.html"), aboutHtml);
 console.log(`  ✓ /about/index.html (standalone E-E-A-T page)`);
 
 console.log(
-  `Static pages: ${REDIRECTS.length} redirect stubs + /about/ generated`,
+  `Static pages: ${SHELLS.length} SPA shells + ${REDIRECTS.length} redirect stubs + /about/ generated`,
 );
