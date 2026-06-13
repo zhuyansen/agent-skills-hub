@@ -13,6 +13,7 @@ import {
   prevChapter,
   PUBLISHED_CHAPTERS,
 } from "../data/bookChapters";
+import { useI18n } from "../i18n/I18nContext";
 
 const CHAPTER_FILES = import.meta.glob("../../content/book/*.md", {
   query: "?raw",
@@ -34,6 +35,9 @@ function stripFrontmatter(md: string): string {
 }
 
 export function BookChapterPage() {
+  const { lang } = useI18n();
+  const isZh = lang === "zh";
+  const ch = (n: number) => (isZh ? `第 ${n} 章` : `Chapter ${n}`);
   const { slug } = useParams<{ slug: string }>();
   const chapter = slug ? findChapterBySlug(slug) : undefined;
   const raw = slug ? loadChapterMarkdown(slug) : null;
@@ -81,17 +85,17 @@ export function BookChapterPage() {
           </Link>
           <span className="mx-2">&gt;</span>
           <Link to="/book/" className="text-indigo-500 hover:text-indigo-600">
-            Skill 蓝皮书
+            {isZh ? "Skill 蓝皮书" : "Blue Book"}
           </Link>
           <span className="mx-2">&gt;</span>
           <span className="text-gray-600 dark:text-gray-300">
-            第 {chapter.number} 章
+            {ch(chapter.number)}
           </span>
         </nav>
 
         <header className="mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
           <p className="text-sm text-gray-400 dark:text-gray-500 mb-2">
-            {chapter.part} · 第 {chapter.number} 章
+            {chapter.part} · {ch(chapter.number)}
           </p>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
             {chapter.title}
@@ -121,9 +125,11 @@ export function BookChapterPage() {
               to={`/book/${prev.slug}/`}
               className="block rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-3 hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors"
             >
-              <div className="text-xs text-gray-400">← 上一章</div>
+              <div className="text-xs text-gray-400">
+                {isZh ? "← 上一章" : "← Previous"}
+              </div>
               <div className="text-sm font-medium text-gray-900 dark:text-white truncate mt-1">
-                第 {prev.number} 章 · {prev.title}
+                {ch(prev.number)} · {prev.title}
               </div>
             </Link>
           ) : (
@@ -134,9 +140,11 @@ export function BookChapterPage() {
               to={`/book/${next.slug}/`}
               className="block rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-3 hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-right"
             >
-              <div className="text-xs text-gray-400">下一章 →</div>
+              <div className="text-xs text-gray-400">
+                {isZh ? "下一章 →" : "Next →"}
+              </div>
               <div className="text-sm font-medium text-gray-900 dark:text-white truncate mt-1">
-                第 {next.number} 章 · {next.title}
+                {ch(next.number)} · {next.title}
               </div>
             </Link>
           ) : (
@@ -145,14 +153,16 @@ export function BookChapterPage() {
         </nav>
 
         <div className="text-center text-xs text-gray-400 dark:text-gray-500 mb-12">
-          已发布章节：{PUBLISHED_CHAPTERS.length}/12 ·{" "}
+          {isZh
+            ? `已发布章节:${PUBLISHED_CHAPTERS.length}/12 · `
+            : `Published: ${PUBLISHED_CHAPTERS.length}/12 · `}
           <a
             href="https://github.com/zhuyansen/skill-blue-book"
             target="_blank"
             rel="noopener noreferrer"
             className="text-indigo-500 hover:underline"
           >
-            GitHub 全本
+            {isZh ? "GitHub 全本" : "Full book on GitHub"}
           </a>
         </div>
       </main>

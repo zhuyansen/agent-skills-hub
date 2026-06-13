@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { submitVerifiedCreatorApplication } from "../api/client";
+import { useI18n } from "../i18n/I18nContext";
 
+// Submitted verbatim to the backend — keep these as the canonical English
+// vocabulary regardless of UI language.
 const SKILL_CATEGORIES = [
   "MCP Server",
   "Claude Skill",
@@ -34,6 +37,8 @@ const MAX_CATEGORIES = 3;
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function VerifiedCreatorApplicationPage() {
+  const { lang } = useI18n();
+  const isZh = lang === "zh";
   const [displayName, setDisplayName] = useState("");
   const [githubUsername, setGithubUsername] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
@@ -68,6 +73,7 @@ export function VerifiedCreatorApplicationPage() {
     if (!canSubmit || submitState === "submitting") return;
     setSubmitState("submitting");
     setErrorMessage("");
+    const failMsg = isZh ? "提交失败。" : "Submission failed.";
     try {
       const result = await submitVerifiedCreatorApplication({
         display_name: displayName.trim(),
@@ -83,13 +89,11 @@ export function VerifiedCreatorApplicationPage() {
         setSubmitState("success");
       } else {
         setSubmitState("error");
-        setErrorMessage(result.message || "Submission failed.");
+        setErrorMessage(result.message || failMsg);
       }
     } catch (err) {
       setSubmitState("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Submission failed.",
-      );
+      setErrorMessage(err instanceof Error ? err.message : failMsg);
     }
   }
 
@@ -97,7 +101,11 @@ export function VerifiedCreatorApplicationPage() {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
         <Helmet>
-          <title>Application Submitted — AgentSkillsHub</title>
+          <title>
+            {isZh
+              ? "申请已提交 — AgentSkillsHub"
+              : "Application Submitted — AgentSkillsHub"}
+          </title>
         </Helmet>
         <SiteHeader />
         <main className="max-w-xl mx-auto px-4 py-16">
@@ -119,17 +127,18 @@ export function VerifiedCreatorApplicationPage() {
               </svg>
             </div>
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-              Application submitted
+              {isZh ? "申请已提交" : "Application submitted"}
             </h1>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
-              We'll review within 5 business days. If approved, you'll get an
-              email with next steps.
+              {isZh
+                ? "我们会在 5 个工作日内审核。通过后会邮件告知你后续步骤。"
+                : "We'll review within 5 business days. If approved, you'll get an email with next steps."}
             </p>
             <Link
-              to="/verified-creator/"
+              to="/enterprise/"
               className="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors"
             >
-              Back to Verified Creator
+              {isZh ? "返回企业版" : "Back to Enterprise"}
             </Link>
           </div>
         </main>
@@ -141,10 +150,18 @@ export function VerifiedCreatorApplicationPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
-        <title>Apply for Verified Creator — AgentSkillsHub</title>
+        <title>
+          {isZh
+            ? "申请 Verified Creator — AgentSkillsHub"
+            : "Apply for Verified Creator — AgentSkillsHub"}
+        </title>
         <meta
           name="description"
-          content="Apply for the AgentSkillsHub Verified Creator badge. For serious Skill authors who want recognition, trending boost, and consulting matchmaking."
+          content={
+            isZh
+              ? "申请 AgentSkillsHub 的 Verified Creator 徽章。为想获得认可、热门加权与咨询撮合的严肃 Skill 作者而设。"
+              : "Apply for the AgentSkillsHub Verified Creator badge. For serious Skill authors who want recognition, trending boost, and consulting matchmaking."
+          }
         />
         <link
           rel="canonical"
@@ -156,20 +173,21 @@ export function VerifiedCreatorApplicationPage() {
       <main className="max-w-3xl mx-auto px-4 py-10 sm:py-14 pb-32">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-            Apply for Verified Creator
+            {isZh ? "申请 Verified Creator" : "Apply for Verified Creator"}
           </h1>
           <p className="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-            Tell us who you are, what you build, and how to reach you. Manual
-            review within 5 business days.
+            {isZh
+              ? "告诉我们你是谁、你做什么、怎么联系你。人工审核,5 个工作日内完成。"
+              : "Tell us who you are, what you build, and how to reach you. Manual review within 5 business days."}
           </p>
         </div>
 
         {/* Step indicator */}
         <div className="flex items-center justify-between mb-12 max-w-md mx-auto">
           {[
-            { n: 1, label: "Identity" },
-            { n: 2, label: "Skills" },
-            { n: 3, label: "Review" },
+            { n: 1, label: isZh ? "身份" : "Identity" },
+            { n: 2, label: isZh ? "技能" : "Skills" },
+            { n: 3, label: isZh ? "复核" : "Review" },
           ].map((step, i) => (
             <div
               key={step.n}
@@ -206,24 +224,28 @@ export function VerifiedCreatorApplicationPage() {
           {/* SECTION 1 */}
           <section>
             <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-4">
-              Section 1 · Identity
+              {isZh ? "第 1 节 · 身份" : "Section 1 · Identity"}
             </h2>
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 space-y-5">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Display Name <span className="text-red-500">*</span>
+                  {isZh ? "展示名" : "Display Name"}{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="How should we credit you?"
+                  placeholder={
+                    isZh ? "我们该如何署名你?" : "How should we credit you?"
+                  }
                   className="w-full px-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 focus:border-indigo-600 outline-none transition-all"
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  GitHub Username <span className="text-red-500">*</span>
+                  {isZh ? "GitHub 用户名" : "GitHub Username"}{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
@@ -244,16 +266,20 @@ export function VerifiedCreatorApplicationPage() {
           {/* SECTION 2 */}
           <section>
             <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-4">
-              Section 2 · Skills & Availability
+              {isZh
+                ? "第 2 节 · 技能与档期"
+                : "Section 2 · Skills & Availability"}
             </h2>
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                  Primary Skill Categories{" "}
+                  {isZh ? "主要技能分类" : "Primary Skill Categories"}{" "}
                   <span className="text-red-500">*</span>
                 </label>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-                  Choose 1-3 categories that best represent your work. (
+                  {isZh
+                    ? "选 1-3 个最能代表你工作的分类。("
+                    : "Choose 1-3 categories that best represent your work. ("}
                   {categories.length}/{MAX_CATEGORIES})
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -285,7 +311,8 @@ export function VerifiedCreatorApplicationPage() {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    Time Zone <span className="text-red-500">*</span>
+                    {isZh ? "时区" : "Time Zone"}{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={timezone}
@@ -301,7 +328,7 @@ export function VerifiedCreatorApplicationPage() {
                 </div>
                 <div>
                   <label className="flex items-center justify-between text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    <span>Available for Hire</span>
+                    <span>{isZh ? "接受合作" : "Available for Hire"}</span>
                     <button
                       type="button"
                       role="switch"
@@ -321,7 +348,9 @@ export function VerifiedCreatorApplicationPage() {
                     </button>
                   </label>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Allow teams to contact you for custom skill development.
+                    {isZh
+                      ? "允许团队就定制 skill 开发联系你。"
+                      : "Allow teams to contact you for custom skill development."}
                   </p>
                 </div>
               </div>
@@ -332,14 +361,14 @@ export function VerifiedCreatorApplicationPage() {
           {forHire && (
             <section>
               <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-4">
-                Section 3 · Consulting
+                {isZh ? "第 3 节 · 咨询" : "Section 3 · Consulting"}
               </h2>
               <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 space-y-5">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    Hourly Rate Range{" "}
+                    {isZh ? "时薪区间" : "Hourly Rate Range"}{" "}
                     <span className="text-gray-400 text-xs font-normal">
-                      (optional)
+                      {isZh ? "(可选)" : "(optional)"}
                     </span>
                   </label>
                   <div className="flex items-center gap-3">
@@ -352,7 +381,7 @@ export function VerifiedCreatorApplicationPage() {
                         min="0"
                         value={rateMin}
                         onChange={(e) => setRateMin(e.target.value)}
-                        placeholder="Min"
+                        placeholder={isZh ? "最低" : "Min"}
                         className="w-full pl-8 pr-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 focus:border-indigo-600 outline-none transition-all"
                       />
                     </div>
@@ -366,19 +395,20 @@ export function VerifiedCreatorApplicationPage() {
                         min="0"
                         value={rateMax}
                         onChange={(e) => setRateMax(e.target.value)}
-                        placeholder="Max"
+                        placeholder={isZh ? "最高" : "Max"}
                         className="w-full pl-8 pr-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 focus:border-indigo-600 outline-none transition-all"
                       />
                     </div>
                     <span className="text-sm text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap">
-                      USD / hr
+                      {isZh ? "美元 / 小时" : "USD / hr"}
                     </span>
                   </div>
                 </div>
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <label className="block text-sm font-semibold text-gray-900 dark:text-white">
-                      One-line Bio <span className="text-red-500">*</span>
+                      {isZh ? "一句话简介" : "One-line Bio"}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <span
                       className={`text-xs font-medium ${
@@ -394,7 +424,11 @@ export function VerifiedCreatorApplicationPage() {
                     value={bio}
                     onChange={(e) => setBio(e.target.value.slice(0, BIO_MAX))}
                     rows={3}
-                    placeholder="What problem do you solve best?"
+                    placeholder={
+                      isZh
+                        ? "你最擅长解决什么问题?"
+                        : "What problem do you solve best?"
+                    }
                     className="w-full px-4 py-2.5 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 focus:border-indigo-600 outline-none transition-all resize-none"
                   />
                 </div>
@@ -416,12 +450,12 @@ export function VerifiedCreatorApplicationPage() {
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                Verification Process
+                {isZh ? "认证流程" : "Verification Process"}
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
-                Our review team analyzes your GitHub contributions and indexed
-                Skills on Hub. Verified badges are awarded to authors with
-                sustained quality and clear documentation.
+                {isZh
+                  ? "审核团队会分析你的 GitHub 贡献与已收录在 Hub 的 Skill。认证徽章授予那些持续保持质量、文档清晰的作者。"
+                  : "Our review team analyzes your GitHub contributions and indexed Skills on Hub. Verified badges are awarded to authors with sustained quality and clear documentation."}
               </p>
             </div>
           </div>
@@ -438,7 +472,9 @@ export function VerifiedCreatorApplicationPage() {
       <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 z-40">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
           <div className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">
-            Manual review within 5 business days
+            {isZh
+              ? "人工审核,5 个工作日内"
+              : "Manual review within 5 business days"}
           </div>
           <button
             type="button"
@@ -453,8 +489,10 @@ export function VerifiedCreatorApplicationPage() {
             {submitState === "submitting" ? (
               <span className="flex items-center gap-2">
                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Submitting…
+                {isZh ? "提交中…" : "Submitting…"}
               </span>
+            ) : isZh ? (
+              "提交申请"
             ) : (
               "Submit Application"
             )}

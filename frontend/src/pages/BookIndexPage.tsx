@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { BOOK_CHAPTERS, PUBLISHED_CHAPTERS } from "../data/bookChapters";
+import { useI18n } from "../i18n/I18nContext";
 
 const TITLE =
   "Skill 蓝皮书 2026 · 67,000+ Skill 数据的原生研究 — AgentSkillsHub";
@@ -10,6 +11,8 @@ const DESCRIPTION =
   "Skill 蓝皮书 2026：基于 AgentSkillsHub 67,000+ 真实 Skill 数据的原生研究。Mahesh vs Barry / Gini 0.983 / 9 种类型 × 4 级路径 / Verified Creator 设计。7/12 章已发布，持续更新。";
 
 export function BookIndexPage() {
+  const { lang } = useI18n();
+  const isZh = lang === "zh";
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
@@ -41,7 +44,9 @@ export function BookIndexPage() {
             Home
           </Link>
           <span className="mx-2">&gt;</span>
-          <span className="text-gray-600 dark:text-gray-300">Skill 蓝皮书</span>
+          <span className="text-gray-600 dark:text-gray-300">
+            {isZh ? "Skill 蓝皮书" : "Blue Book"}
+          </span>
         </nav>
 
         <header className="mb-10">
@@ -52,14 +57,15 @@ export function BookIndexPage() {
             Skill 蓝皮书 2026
           </h1>
           <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
-            基于 AgentSkillsHub 67,000+ 真实 Skill 数据的原生研究——不是再写一遍
-            Anthropic 已经讲过的 Skill Spec，是去回答没人答过的问题：现在的
-            Skill 生态长什么样、谁活下来了、谁要饿死、还有 30% 的 Skill
-            写不出来。
+            {isZh
+              ? "基于 AgentSkillsHub 67,000+ 真实 Skill 数据的原生研究——不是再写一遍 Anthropic 已经讲过的 Skill Spec，是去回答没人答过的问题:现在的 Skill 生态长什么样、谁活下来了、谁要饿死、还有 30% 的 Skill 写不出来。"
+              : "Original research on the agent-skill ecosystem, grounded in 67,000+ real skills indexed by AgentSkillsHub — not a rehash of Anthropic's Skill Spec, but answers to the questions no one else has: what the ecosystem actually looks like, who survives, who starves, and the 30% of skills no one can write. (Chapters are written in Chinese.)"}
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
             <span className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium">
-              已发布 {PUBLISHED_CHAPTERS.length}/12 章
+              {isZh
+                ? `已发布 ${PUBLISHED_CHAPTERS.length}/12 章`
+                : `${PUBLISHED_CHAPTERS.length}/12 chapters published`}
             </span>
             <a
               href="https://github.com/zhuyansen/skill-blue-book"
@@ -67,7 +73,7 @@ export function BookIndexPage() {
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
             >
-              GitHub 全本 →
+              {isZh ? "GitHub 全本 →" : "Full book on GitHub →"}
             </a>
             <span className="text-gray-400">·</span>
             <span className="text-gray-400 dark:text-gray-500">
@@ -104,7 +110,7 @@ export function BookIndexPage() {
                       {c.number}
                     </div>
                     <div className="text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">
-                      章
+                      {isZh ? "章" : "CH"}
                     </div>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -126,14 +132,16 @@ export function BookIndexPage() {
           {/* All 12 chapters complete — no pending list */}
           <div className="mt-8 pt-6 border-t border-dashed border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-              全 12 章完稿 · v1.1 · 2026-05-04 ·{" "}
+              {isZh
+                ? "全 12 章完稿 · v1.1 · 2026-05-04 · "
+                : "All 12 chapters complete · v1.1 · 2026-05-04 · "}
               <a
                 href="https://github.com/zhuyansen/skill-blue-book/releases"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-indigo-500 hover:underline"
               >
-                下载 PDF →
+                {isZh ? "下载 PDF →" : "Download PDF →"}
               </a>
             </p>
           </div>
@@ -142,14 +150,12 @@ export function BookIndexPage() {
         {/* CTA */}
         <div className="mt-12 p-6 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            为什么有这本书
+            {isZh ? "为什么有这本书" : "Why this book exists"}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-            一年内 Skill 从「prompt 片段」涨成「Agent
-            系统的中枢」。但现有讨论几乎都是 Anthropic
-            官方文档的二次复述——而真正能说明白「这个生态长什么样、有什么病、要往哪去」的，只能用
-            Hub 自己的 67,000+ 数据来答。蓝皮书是这个工作的副产物——本来是 Hub
-            的内部研究，索性公开。
+            {isZh
+              ? "一年内 Skill 从「prompt 片段」涨成「Agent 系统的中枢」。但现有讨论几乎都是 Anthropic 官方文档的二次复述——而真正能说明白「这个生态长什么样、有什么病、要往哪去」的,只能用 Hub 自己的 67,000+ 数据来答。蓝皮书是这个工作的副产物——本来是 Hub 的内部研究,索性公开。"
+              : "In a year, skills grew from “prompt snippets” into the backbone of agent systems. Yet most writing on them just restates Anthropic's docs — the questions of what the ecosystem looks like, what's broken, and where it's heading can only be answered with Hub's own 67,000+ data points. This book is a by-product of that work: originally internal research, now public."}
           </p>
         </div>
       </main>
