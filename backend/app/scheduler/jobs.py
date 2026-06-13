@@ -541,7 +541,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 db.query(Skill.repo_full_name)
                 .filter(Skill.readme_content.is_(None))
                 .order_by(Skill.score.desc().nullslast())
-                .limit(300)
+                .limit(1000)
                 .all()
             )
             readme_targets = {r.repo_full_name for r in null_readme_skills} & set(all_repos.keys())
