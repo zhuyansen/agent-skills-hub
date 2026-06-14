@@ -196,39 +196,75 @@ def _is_in_code_block(text: str, match_pos: int) -> bool:
 class SecurityScanner:
     """Rule-based security scanner with SlowMist-inspired patterns and trust hierarchy."""
 
-    def scan_all(self, db: Session, batch_size: int = 1000) -> dict:
-        """Scan all skills with README content and set security_grade + security_flags."""
+    def scan_all(self, db: Session, batch_size: int = 500) -> dict:
+        """Scan all skills with README and set security_grade + security_flags.
+
+        Chunked + per-batch commit + keyset pagination by id. The old version
+        loaded every readme'd skill into memory and committed ~20K dirty rows +
+        an ~85K-row "no README → unknown" UPDATE in ONE transaction. On the 106K
+        table that single statement hit Supabase's statement_timeout (57014) and
+        the whole atomic transaction rolled back — so 0 grades were written even
+        though the scan "ran". Small batches keep each transaction well under the
+        timeout, release locks between batches, and make progress resumable: a
+        failed batch loses only that batch, not the whole run.
+        """
         stats = {"scanned": 0, "safe": 0, "caution": 0, "unsafe": 0, "reject": 0, "no_readme": 0}
 
-        skills = (
-            db.query(Skill)
-            .filter(Skill.readme_content.isnot(None))
-            .filter(Skill.readme_content != "")
-            .all()
-        )
+        # ── Phase 1: grade skills WITH README, keyset-paginated, commit per batch ──
+        last_id = 0
+        while True:
+            batch = (
+                db.query(Skill)
+                .filter(Skill.readme_content.isnot(None))
+                .filter(Skill.readme_content != "")
+                .filter(Skill.id > last_id)
+                .order_by(Skill.id.asc())
+                .limit(batch_size)
+                .all()
+            )
+            if not batch:
+                break
+            for skill in batch:
+                grade, flags = self._scan(skill)
+                skill.security_grade = grade
+                skill.security_flags = json.dumps(flags)
+                stats["scanned"] += 1
+                stats[grade] = stats.get(grade, 0) + 1
+            last_id = batch[-1].id
+            db.commit()
 
-        for skill in skills:
-            grade, flags = self._scan(skill)
-            skill.security_grade = grade
-            skill.security_flags = json.dumps(flags)
-            stats["scanned"] += 1
-            stats.setdefault(grade, 0)
-            stats[grade] = stats.get(grade, 0) + 1
+        # ── Phase 2: skills WITHOUT README → "unknown", chunked ──
+        # Only touch rows not already 'unknown' so this stays a near no-op on
+        # steady state instead of re-UPDATEing ~85K already-unknown rows.
+        last_id = 0
+        while True:
+            ids = [
+                r.id for r in (
+                    db.query(Skill.id)
+                    .filter((Skill.readme_content.is_(None)) | (Skill.readme_content == ""))
+                    .filter(Skill.security_grade.isnot(None))
+                    .filter(Skill.security_grade != "unknown")
+                    .filter(Skill.id > last_id)
+                    .order_by(Skill.id.asc())
+                    .limit(batch_size)
+                    .all()
+                )
+            ]
+            if not ids:
+                break
+            db.query(Skill).filter(Skill.id.in_(ids)).update(
+                {"security_grade": "unknown", "security_flags": "[]"},
+                synchronize_session=False,
+            )
+            stats["no_readme"] += len(ids)
+            last_id = ids[-1]
+            db.commit()
 
-        # Skills without README → "unknown"
-        no_readme_count = (
-            db.query(Skill)
-            .filter((Skill.readme_content.is_(None)) | (Skill.readme_content == ""))
-            .update({"security_grade": "unknown", "security_flags": "[]"}, synchronize_session=False)
-        )
-        stats["no_readme"] = no_readme_count
-
-        db.commit()
         logger.info(
             f"Security scan complete: {stats['scanned']} scanned, "
             f"{stats.get('safe', 0)} safe, {stats.get('caution', 0)} caution, "
             f"{stats.get('unsafe', 0)} unsafe, {stats.get('reject', 0)} reject, "
-            f"{stats['no_readme']} no README"
+            f"{stats['no_readme']} newly-unknown"
         )
         return stats
 
