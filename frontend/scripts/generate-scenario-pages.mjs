@@ -14,7 +14,7 @@ import { fileURLToPath } from "url";
 import {
   SITE, CATEGORY_LABELS,
   esc, starsK, stripMarkdown, parseJsonArray,
-  extractAssetTags, shouldIndex, fetchAllSkills,
+  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
 } from "./shared-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -723,6 +723,14 @@ async function main() {
   console.log("Fetching skills from Supabase...");
   const allSkills = await fetchAllSkills();
   console.log(`Fetched ${allSkills.length} skills`);
+
+  // readme_content is no longer in the bulk catalog — pull it only for the
+  // stars-gated subset (matches below the floor degrade to no quick-start).
+  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE);
+  for (const s of allSkills) {
+    const r = readmes.get(s.id);
+    if (r) s.readme_content = r;
+  }
 
   // Generate pages
   let generated = 0;

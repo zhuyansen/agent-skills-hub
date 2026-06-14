@@ -149,10 +149,15 @@ export async function fetchAllSkills() {
   const skills = [];
   let lastId = 0;
   const limit = 1000;
+  // NOTE: readme_content is deliberately NOT fetched here. It's a large TOASTed
+  // column; pulling it for all 106K rows (especially after the README backfill
+  // raised coverage to ~100%) made every keyset page exceed Supabase's
+  // statement_timeout → 57014 → failed deploys. Generators that need readme
+  // pull only the bounded high-star subset via fetchReadmeMap(minStars).
   const fields = [
     "id", "repo_full_name", "repo_name", "author_name", "author_avatar_url",
     "stars", "forks", "description", "category", "language", "score", "license",
-    "readme_content", "last_commit_at", "created_at", "topics", "tags",
+    "last_commit_at", "created_at", "topics", "tags",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",
     "open_issues", "total_commits",
   ].join(",");
@@ -170,9 +175,6 @@ export async function fetchAllSkills() {
     });
     if (!data.length) break;
     for (const row of data) {
-      if (row.readme_content) {
-        row.readme_content = row.readme_content.slice(0, 1500);
-      }
       skills.push(row);
     }
     lastId = data[data.length - 1].id;
@@ -189,4 +191,40 @@ export async function fetchAllSkills() {
   }
   console.log(`  ✓ fetchAllSkills: ${skills.length} rows`);
   return skills;
+}
+
+/**
+ * Fetch README excerpts (≤1500 chars) for skills with stars >= minStars.
+ *
+ * The heavy TOASTed readme_content column is kept OUT of fetchAllSkills so the
+ * 106K-row catalog stays light. Only generators that render readme (skill +
+ * scenario pages, both stars-gated) call this, and only for the bounded
+ * high-star subset they actually display. Server-side stars + not-null filters
+ * and a small page size keep each statement well under statement_timeout.
+ *
+ * Returns Map<id, readmeExcerpt>. Skills below the threshold (or without a
+ * readme) are simply absent → callers degrade gracefully (no readme snippet).
+ */
+export async function fetchReadmeMap(minStars) {
+  const map = new Map();
+  let lastId = 0;
+  const limit = 500; // readmes are large; smaller pages stay under the timeout
+  while (true) {
+    const url =
+      `${SUPABASE_URL}/rest/v1/skills?select=id,readme_content` +
+      `&stars=gte.${minStars}&readme_content=not.is.null` +
+      `&order=id.asc&id=gt.${lastId}&limit=${limit}`;
+    const data = await fetchPageWithRetry(url, {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    });
+    if (!data.length) break;
+    for (const row of data) {
+      if (row.readme_content) map.set(row.id, row.readme_content.slice(0, 1500));
+    }
+    lastId = data[data.length - 1].id;
+    if (data.length < limit) break;
+  }
+  console.log(`  ✓ fetchReadmeMap(stars>=${minStars}): ${map.size} readmes`);
+  return map;
 }

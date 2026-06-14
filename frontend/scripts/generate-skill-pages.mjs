@@ -17,7 +17,7 @@ import { join } from "path";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray,
-  extractAssetTags, shouldIndex, fetchAllSkills, MIN_STARS_FOR_PAGE,
+  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
 } from "./shared-utils.mjs";
 
 async function fetchAllCompositions() {
@@ -598,6 +598,14 @@ async function main() {
   console.log("Fetching skills from Supabase...");
   const skills = await fetchAllSkills();
   console.log(`Fetched ${skills.length} skills`);
+
+  // readme_content is no longer in the bulk catalog — pull it only for the
+  // stars-gated subset that actually renders a page, then attach by id.
+  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE);
+  for (const s of skills) {
+    const r = readmes.get(s.id);
+    if (r) s.readme_content = r;
+  }
 
   console.log("Fetching compositions...");
   const compositions = await fetchAllCompositions();
