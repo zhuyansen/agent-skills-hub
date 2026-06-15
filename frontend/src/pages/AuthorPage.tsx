@@ -86,7 +86,7 @@ export function AuthorPage() {
   const description = `Browse all ${total} open-source AI agent skills, MCP servers, and Claude skills by ${displayName}. Ranked by stars and quality score.`;
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -275,6 +275,6 @@ export function AuthorPage() {
       </main>
 
       <SiteFooter />
-    </>
+    </div>
   );
 }

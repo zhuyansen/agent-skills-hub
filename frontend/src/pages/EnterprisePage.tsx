@@ -102,7 +102,7 @@ export function EnterprisePage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{c.meta.title}</title>
         <meta name="description" content={c.meta.description} />
@@ -657,7 +657,7 @@ export function EnterprisePage() {
 
         <SiteFooter />
       </div>
-    </>
+    </div>
   );
 }
 

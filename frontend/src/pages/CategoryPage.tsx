@@ -61,7 +61,7 @@ export function CategoryPage() {
   const description = `Discover the top open-source ${catLabel} tools. Browse by stars, quality, and compatibility on AgentSkillsHub.`;
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -147,6 +147,6 @@ export function CategoryPage() {
       </main>
 
       <SiteFooter />
-    </>
+    </div>
   );
 }
