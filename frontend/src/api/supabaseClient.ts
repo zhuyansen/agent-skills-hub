@@ -166,6 +166,19 @@ export async function sbFetchSkills(
   };
 }
 
+/** Fetch skills by a list of ids (for the favorites collection page). Order is
+ *  not guaranteed by Postgres — callers re-order client-side if needed. */
+export async function sbFetchSkillsByIds(ids: number[]): Promise<Skill[]> {
+  if (!ids.length) return [];
+  const sb = ensureSupabase();
+  const { data, error } = await sb
+    .from("skills")
+    .select(SKILL_COLUMNS)
+    .in("id", ids);
+  if (error) throw new Error(error.message);
+  return (data ?? []) as unknown as Skill[];
+}
+
 export async function sbFetchStats(): Promise<Stats> {
   return withRetry(async () => {
     const sb = ensureSupabase();

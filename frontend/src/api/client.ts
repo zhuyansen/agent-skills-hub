@@ -14,6 +14,7 @@ import type {
 import { supabase } from "../lib/supabase";
 import {
   sbFetchSkills,
+  sbFetchSkillsByIds,
   sbFetchStats,
   sbFetchCategories,
   sbFetchTrending,
@@ -77,6 +78,12 @@ export async function fetchSkills(
 export async function fetchStats(): Promise<Stats> {
   if (USE_SUPABASE) return sbFetchStats();
   return request<Stats>("/api/stats");
+}
+
+export async function fetchSkillsByIds(ids: number[]): Promise<Skill[]> {
+  if (!ids.length) return [];
+  if (USE_SUPABASE) return sbFetchSkillsByIds(ids);
+  return request<Skill[]>(`/api/skills/by-ids?ids=${ids.join(",")}`);
 }
 
 export async function fetchCategories(): Promise<CategoryCount[]> {

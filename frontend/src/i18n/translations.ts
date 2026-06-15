@@ -4,6 +4,7 @@ export const translations = {
     "header.subtitle":
       "Claude Skills · MCP 服务器 · Agent 工具 — 发现、对比、上手",
     "header.lastUpdated": "最后更新:",
+    "header.favorites": "我的收藏",
     "header.wechat": "微信联系",
     "header.wechatScan": "微信扫码添加好友",
     "header.wechatTip": "扫一扫添加好友，交流 Agent Skills",
@@ -329,6 +330,7 @@ export const translations = {
     "header.subtitle":
       "Claude Skills · MCP Servers · Agent Tools — discover, compare, deploy",
     "header.lastUpdated": "Last updated:",
+    "header.favorites": "My Favorites",
     "header.wechat": "WeChat",
     "header.wechatScan": "Scan to add on WeChat",
     "header.wechatTip": "Scan to connect and discuss Agent Skills",

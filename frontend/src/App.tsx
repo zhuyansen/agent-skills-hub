@@ -53,6 +53,9 @@ const EnterprisePage = lazy(() =>
     default: m.EnterprisePage,
   })),
 );
+const FavoritesPage = lazy(() =>
+  import("./pages/FavoritesPage").then((m) => ({ default: m.FavoritesPage })),
+);
 
 const PAGE_FALLBACK = (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -116,6 +119,8 @@ function App() {
                   <Route path="/arena/" element={<Navigate to="/" replace />} />
                   <Route path="/enterprise" element={<EnterprisePage />} />
                   <Route path="/enterprise/" element={<EnterprisePage />} />
+                  <Route path="/favorites" element={<FavoritesPage />} />
+                  <Route path="/favorites/" element={<FavoritesPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </Suspense>
