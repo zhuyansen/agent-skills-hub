@@ -1,5 +1,109 @@
 # Daily Report Archive
 
+## 2026-06-15
+
+1. NVIDIA/SkillSpector
+2. rocketride-org/rocketride-server
+3. LiteLLM-Labs/litellm-agent-control-plane
+4. fujibee/agmsg
+5. kadevin/ilab-gpt-conjure
+6. chubbyguan/chubbyskills
+7. caidaoli/ccLoad
+8. tover0314-w/opentypeless
+9. worldwonderer/video-recap-skills
+10. Nanako0129/coralline
+
+## 2026-06-13
+
+1. DietrichGebert/ponytail
+2. joeseesun/qiaomu-goal-meta-skill
+3. DanMcInerney/architect-loop
+4. joeseesun/qiaomu-ai-prd
+5. Jia-Ethan/github-solution-research
+6. s0912758806p/agentic-sop-to-work
+7. csthink/dashmotion
+8. adysec/clawbot
+9. Lagunaswift/RockyVoice
+10. tmchow/illo-skill
+
+## 2026-06-11
+
+1. joeseesun/QMPrompter
+2. plannotator/effective-html
+3. alchaincyf/fanbox
+4. borhen68/TokenTamer
+5. infersports/infersports-skill
+6. serenakeyitan/awesome-agent-loops
+7. Jason904/ui-skill-lab
+8. ikunycj/gpt-team-register
+9. Haouo/paper2beamer-skills
+10. GuanhuaYe/codex-tmux-scroll
+
+## 2026-06-07
+
+1. zarazhangrui/beautiful-feishu-whiteboard
+2. anvia-hq/lexa
+3. couragec/llm-intern-skill
+4. wahahaazhe/knowgt
+5. skallekss/lolzteam-mcp
+6. temorozov/claude-tutors
+7. chrisryugj/archhub-mcp
+8. joeseesun/qiaomu-read-helper
+9. PatrickSUDO/fadacai-portfolio
+10. MerlijnW70/sota-scan
+
+## 2026-06-05
+
+1. op7418/guizang-social-card-skill
+2. helloianneo/ian-xiaohei-illustrations
+3. open-gsd/gsd-core
+4. joeseesun/wechat-radar
+5. withkynam/vibecode-pro-max-kit
+6. jdevalk/specification.website
+7. UditAkhourii/adhd
+8. liyue-aigc/female-portrait-director
+9. code-yeongyu/lazycodex
+10. JuneYaooo/nihaisha-tcm
+
+## 2026-05-23
+
+1. colbymchenry/codegraph
+2. lynote-ai/humanize-text
+3. open-gsd/get-shit-done-redux
+4. tanviet12/vbsec
+5. Patdolitse/piia-engram
+6. Belkins/ai-dive-deep
+7. alvinunreal/juice
+8. hoangnb24/harness-experimental
+9. bethington/ghidra-mcp
+10. ip2a/memorph
+
+## 2026-05-22
+
+1. Klotzkette/claude-fuer-deutsches-recht
+2. WUBING2023/PaperSpine
+3. hypnguyen1209/offensive-claude
+4. joeseesun/qiaomu-artist-style
+5. joeseesun/qiaomu-userscripts
+6. jiangmuran/claude-in-box
+7. wanshuiyin/ARIS-in-AI-Offer
+8. aqua5230/usage
+9. joeseesun/qiaomu-suno-master
+10. alchaincyf/huashu-weread
+
+## 2026-05-07
+
+1. zarazhangrui/beautiful-html-templates
+2. alvinunreal/claude-pets
+3. strukto-ai/mirage
+4. vibeforge1111/codex-visual-builder-guild
+5. alvinunreal/openpets
+6. louisedesadeleer/clipify
+7. robbrad/homeassistant-mcp
+8. nostrband/ServiceGraph
+9. egroup-labs/kept
+10. Netxeo/skill-file-security
+
 ## 2026-05-03
 
 1. vibeforge1111/keep-codex-fast
