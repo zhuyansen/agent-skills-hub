@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { BrowseMenu } from "./BrowseMenu";
 import { LanguageToggle } from "./LanguageToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { useI18n } from "../i18n/I18nContext";
@@ -134,6 +135,8 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             </p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Browse-by-type megamenu — desktop only */}
+            <BrowseMenu />
             {/* Commercialization nav links — desktop only */}
             <Link
               to="/verified-creator/apply/"
