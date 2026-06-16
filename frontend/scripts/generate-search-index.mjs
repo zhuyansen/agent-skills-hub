@@ -43,9 +43,63 @@
  *   o  is_official         0 | 1
  */
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { SUPABASE_URL, SUPABASE_ANON_KEY, parseJsonArray } from "./shared-utils.mjs";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Curated scenario definitions (English) + their Chinese titles/keywords. We use
+// these to tag each indexed skill with the bilingual keywords of the scenarios it
+// belongs to (field `kw`), so the CLI can match Chinese queries — most repo
+// descriptions are English-only — and rank scenario-relevant skills higher.
+const SCENARIOS = JSON.parse(
+  readFileSync(join(__dirname, "scenario-keywords.json"), "utf-8"),
+);
+const SCENARIO_ZH = JSON.parse(
+  readFileSync(join(__dirname, "scenario-zh.json"), "utf-8"),
+);
+const KW_MAX_SCENARIOS = 4; // cap scenarios merged per skill to bound index size
+
+const SCENARIO_MATCHERS = SCENARIOS.map((s) => {
+  const m = s.match || {};
+  const zh = SCENARIO_ZH[s.slug] || {};
+  return {
+    cats: new Set(m.categories || []),
+    tagMatches: (m.tag_matches || []).map((k) => k.toLowerCase()),
+    keywords: [
+      ...(m.primary_keywords || []),
+      ...(m.secondary_keywords || []),
+      ...(m.keywords || []),
+    ].map((k) => k.toLowerCase()),
+    // Keyword blob this scenario contributes: EN title + ZH title + ZH keywords.
+    kw: [s.title, zh.t, ...(zh.k || [])].filter(Boolean).join(" "),
+  };
+});
+
+/** Bilingual scenario keywords for the scenarios a skill belongs to. */
+function scenarioKw(r) {
+  const cat = r.category || "";
+  const tags = (Array.isArray(r.tags) ? r.tags : parseJsonArray(r.tags)).map(
+    (t) => String(t).toLowerCase(),
+  );
+  const text =
+    `${r.repo_name || ""} ${r.description || ""} ${tags.join(" ")}`.toLowerCase();
+  const hits = [];
+  for (const sc of SCENARIO_MATCHERS) {
+    const match =
+      sc.cats.has(cat) ||
+      sc.tagMatches.some((t) => tags.includes(t)) ||
+      sc.keywords.some((k) => text.includes(k));
+    if (match) {
+      hits.push(sc.kw);
+      if (hits.length >= KW_MAX_SCENARIOS) break;
+    }
+  }
+  return hits.join(" ");
+}
 
 // Same convention as generate-sitemap.mjs: write into dist/ (cwd === frontend/
 // during `npm run build`). dist/ is gitignored → no git bloat from the 6MB file.
@@ -126,6 +180,7 @@ function toRow(r) {
     g: r.security_grade || "unknown",
     k: r.estimated_tokens ?? 0,
     o: r.is_official ? 1 : 0,
+    w: scenarioKw(r), // bilingual scenario keywords (Chinese search + scenario boost)
   };
 }
 
