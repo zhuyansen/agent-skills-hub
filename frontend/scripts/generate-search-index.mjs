@@ -74,8 +74,13 @@ const SCENARIO_MATCHERS = SCENARIOS.map((s) => {
       ...(m.secondary_keywords || []),
       ...(m.keywords || []),
     ].map((k) => k.toLowerCase()),
-    // Keyword blob this scenario contributes: EN title + ZH title + ZH keywords.
-    kw: [s.title, zh.t, ...(zh.k || [])].filter(Boolean).join(" "),
+    // Keyword blob this scenario contributes — ZH ONLY (title + keywords).
+    // Deliberately NO English title: English scenario titles contain common
+    // words ("database", "tools") that polluted English search (vector database
+    // matched ~half the catalog) and shifted ranking toward weak scenario tags.
+    // ZH-only means English queries never touch `w` → English is byte-identical
+    // to before, while Chinese queries still reach English-described repos.
+    kw: [zh.t, ...(zh.k || [])].filter(Boolean).join(" "),
   };
 });
 
