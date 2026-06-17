@@ -1,5 +1,8 @@
 import { useI18n } from "../i18n/I18nContext";
 
+// Total curated scenarios — keep in sync with scripts/scenario-keywords.json.
+const SCENARIO_COUNT = 84;
+
 const HOT_SCENARIOS = [
   { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
   { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },
@@ -57,7 +60,10 @@ export function ScenarioTagCloud() {
           href="/best/"
           className="px-3 py-1.5 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-all"
         >
-          {lang === "zh" ? `全部 79 个场景 →` : `All 79 scenarios →`}
+          {/* Keep in sync with scenario-keywords.json count (currently 84) */}
+          {lang === "zh"
+            ? `全部 ${SCENARIO_COUNT} 个场景 →`
+            : `All ${SCENARIO_COUNT} scenarios →`}
         </a>
       </div>
     </section>
