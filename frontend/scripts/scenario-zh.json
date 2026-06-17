@@ -13,124 +13,568 @@
       "采集"
     ]
   },
-  "code-review": { "t": "代码审查", "k": ["代码评审", "审查"] },
-  "mcp-database": { "t": "MCP 数据库工具", "k": ["数据库"] },
-  "mcp-browser": { "t": "MCP 浏览器自动化", "k": ["浏览器自动化"] },
-  "mcp-filesystem": { "t": "MCP 文件系统工具", "k": ["文件系统"] },
-  "mcp-api": { "t": "MCP API 集成", "k": ["接口集成", "API 集成"] },
-  "mcp-memory": { "t": "MCP 记忆与知识", "k": ["记忆", "知识库"] },
+  "code-review": {
+    "t": "代码审查",
+    "k": [
+      "代码评审",
+      "审查"
+    ]
+  },
+  "mcp-database": {
+    "t": "MCP 数据库工具",
+    "k": [
+      "数据库"
+    ]
+  },
+  "mcp-browser": {
+    "t": "MCP 浏览器自动化",
+    "k": [
+      "浏览器自动化"
+    ]
+  },
+  "mcp-filesystem": {
+    "t": "MCP 文件系统工具",
+    "k": [
+      "文件系统"
+    ]
+  },
+  "mcp-api": {
+    "t": "MCP API 集成",
+    "k": [
+      "接口集成",
+      "API 集成"
+    ]
+  },
+  "mcp-memory": {
+    "t": "MCP 记忆与知识",
+    "k": [
+      "记忆",
+      "知识库"
+    ]
+  },
   "test-generation": {
     "t": "测试生成",
-    "k": ["单元测试", "自动测试", "测试用例"]
+    "k": [
+      "单元测试",
+      "自动测试",
+      "测试用例"
+    ]
   },
-  "code-completion": { "t": "代码补全与生成", "k": ["代码补全", "代码生成"] },
+  "code-completion": {
+    "t": "代码补全与生成",
+    "k": [
+      "代码补全",
+      "代码生成"
+    ]
+  },
   "security-audit": {
     "t": "安全审计",
-    "k": ["安全审查", "漏洞扫描", "安全检测"]
+    "k": [
+      "安全审查",
+      "漏洞扫描",
+      "安全检测"
+    ]
   },
-  "secret-detection": { "t": "密钥检测", "k": ["密钥泄露", "凭证检测"] },
-  "content-writing": { "t": "内容写作", "k": ["写作", "文案"] },
-  "translation": { "t": "翻译", "k": ["机器翻译", "翻译工具"] },
-  "summarization": { "t": "摘要总结", "k": ["总结", "摘要"] },
-  "document-parsing": { "t": "文档解析", "k": ["文档提取", "PDF 解析"] },
-  "workflow-automation": { "t": "工作流自动化", "k": ["自动化", "工作流"] },
-  "ci-cd": { "t": "CI/CD 与 DevOps", "k": ["持续集成", "部署"] },
-  "monitoring": { "t": "监控与可观测性", "k": ["监控", "告警", "可观测"] },
-  "semantic-search": { "t": "语义搜索", "k": ["向量搜索", "语义检索"] },
-  "vector-database": { "t": "向量数据库", "k": ["向量库", "embedding"] },
-  "browser-automation": { "t": "浏览器自动化", "k": ["自动化", "playwright"] },
-  "data-pipeline": { "t": "数据管道", "k": ["数据流水线", "ETL"] },
-  "rss-monitoring": { "t": "RSS 与订阅监控", "k": ["RSS", "订阅监控"] },
-  "prompt-engineering": { "t": "提示词工程", "k": ["提示词", "prompt"] },
-  "model-evaluation": { "t": "模型评估", "k": ["评测", "benchmark"] },
-  "slack-integration": { "t": "Slack 集成", "k": ["slack"] },
-  "discord-bot": { "t": "Discord 机器人", "k": ["discord", "机器人"] },
-  "telegram-bot": { "t": "Telegram 机器人", "k": ["telegram", "机器人"] },
-  "email-automation": { "t": "邮件自动化", "k": ["邮件", "email"] },
-  "social-media": { "t": "社交媒体工具", "k": ["社媒", "社交媒体"] },
-  "debugging": { "t": "调试", "k": ["debug", "排错"] },
-  "refactoring": { "t": "代码重构", "k": ["重构"] },
+  "secret-detection": {
+    "t": "密钥检测",
+    "k": [
+      "密钥泄露",
+      "凭证检测"
+    ]
+  },
+  "content-writing": {
+    "t": "内容写作",
+    "k": [
+      "写作",
+      "文案"
+    ]
+  },
+  "translation": {
+    "t": "翻译",
+    "k": [
+      "机器翻译",
+      "翻译工具"
+    ]
+  },
+  "summarization": {
+    "t": "摘要总结",
+    "k": [
+      "总结",
+      "摘要"
+    ]
+  },
+  "document-parsing": {
+    "t": "文档解析",
+    "k": [
+      "文档提取",
+      "PDF 解析"
+    ]
+  },
+  "workflow-automation": {
+    "t": "工作流自动化",
+    "k": [
+      "自动化",
+      "工作流"
+    ]
+  },
+  "ci-cd": {
+    "t": "CI/CD 与 DevOps",
+    "k": [
+      "持续集成",
+      "部署"
+    ]
+  },
+  "monitoring": {
+    "t": "监控与可观测性",
+    "k": [
+      "监控",
+      "告警",
+      "可观测"
+    ]
+  },
+  "semantic-search": {
+    "t": "语义搜索",
+    "k": [
+      "向量搜索",
+      "语义检索"
+    ]
+  },
+  "vector-database": {
+    "t": "向量数据库",
+    "k": [
+      "向量库",
+      "embedding"
+    ]
+  },
+  "browser-automation": {
+    "t": "浏览器自动化",
+    "k": [
+      "自动化",
+      "playwright"
+    ]
+  },
+  "data-pipeline": {
+    "t": "数据管道",
+    "k": [
+      "数据流水线",
+      "ETL"
+    ]
+  },
+  "rss-monitoring": {
+    "t": "RSS 与订阅监控",
+    "k": [
+      "RSS",
+      "订阅监控"
+    ]
+  },
+  "prompt-engineering": {
+    "t": "提示词工程",
+    "k": [
+      "提示词",
+      "prompt"
+    ]
+  },
+  "model-evaluation": {
+    "t": "模型评估",
+    "k": [
+      "评测",
+      "benchmark"
+    ]
+  },
+  "slack-integration": {
+    "t": "Slack 集成",
+    "k": [
+      "slack"
+    ]
+  },
+  "discord-bot": {
+    "t": "Discord 机器人",
+    "k": [
+      "discord",
+      "机器人"
+    ]
+  },
+  "telegram-bot": {
+    "t": "Telegram 机器人",
+    "k": [
+      "telegram",
+      "机器人"
+    ]
+  },
+  "email-automation": {
+    "t": "邮件自动化",
+    "k": [
+      "邮件",
+      "email"
+    ]
+  },
+  "social-media": {
+    "t": "社交媒体工具",
+    "k": [
+      "社媒",
+      "社交媒体"
+    ]
+  },
+  "debugging": {
+    "t": "调试",
+    "k": [
+      "debug",
+      "排错"
+    ]
+  },
+  "refactoring": {
+    "t": "代码重构",
+    "k": [
+      "重构"
+    ]
+  },
   "container-management": {
     "t": "容器与 Docker 工具",
-    "k": ["容器", "docker"]
+    "k": [
+      "容器",
+      "docker"
+    ]
   },
-  "git-tools": { "t": "Git 与版本控制", "k": ["git", "版本控制"] },
-  "image-generation": { "t": "图像生成", "k": ["生图", "AI 作画", "文生图"] },
-  "notification": { "t": "通知与告警", "k": ["通知", "告警"] },
-  "cli-tools": { "t": "命令行工具", "k": ["CLI", "终端工具"] },
-  "authentication": { "t": "认证与身份", "k": ["鉴权", "登录", "OAuth"] },
-  "data-visualization": { "t": "数据可视化", "k": ["可视化", "图表"] },
-  "claude-code-skills": { "t": "Claude Code 技能", "k": ["claude code"] },
-  "codex-skills": { "t": "OpenAI Codex 技能", "k": ["codex"] },
+  "git-tools": {
+    "t": "Git 与版本控制",
+    "k": [
+      "git",
+      "版本控制"
+    ]
+  },
+  "image-generation": {
+    "t": "图像生成",
+    "k": [
+      "生图",
+      "AI 作画",
+      "文生图"
+    ]
+  },
+  "notification": {
+    "t": "通知与告警",
+    "k": [
+      "通知",
+      "告警"
+    ]
+  },
+  "cli-tools": {
+    "t": "命令行工具",
+    "k": [
+      "CLI",
+      "终端工具"
+    ]
+  },
+  "authentication": {
+    "t": "认证与身份",
+    "k": [
+      "鉴权",
+      "登录",
+      "OAuth"
+    ]
+  },
+  "data-visualization": {
+    "t": "数据可视化",
+    "k": [
+      "可视化",
+      "图表"
+    ]
+  },
+  "claude-code-skills": {
+    "t": "Claude Code 技能",
+    "k": [
+      "claude code"
+    ]
+  },
+  "codex-skills": {
+    "t": "OpenAI Codex 技能",
+    "k": [
+      "codex"
+    ]
+  },
   "ai-agent-framework": {
     "t": "AI Agent 框架",
-    "k": ["agent 框架", "智能体框架"]
+    "k": [
+      "agent 框架",
+      "智能体框架"
+    ]
   },
-  "multi-agent": { "t": "多智能体编排", "k": ["多 agent", "多智能体"] },
-  "local-llm": { "t": "本地大模型工具", "k": ["本地 LLM", "本地模型"] },
-  "mcp-for-notion": { "t": "Notion 的 MCP 工具", "k": ["notion"] },
-  "mcp-for-github": { "t": "GitHub 的 MCP 工具", "k": ["github"] },
-  "mcp-for-google": { "t": "Google 服务的 MCP 工具", "k": ["google"] },
-  "ai-code-editor": { "t": "AI 代码编辑器", "k": ["代码编辑器"] },
+  "multi-agent": {
+    "t": "多智能体编排",
+    "k": [
+      "多 agent",
+      "多智能体"
+    ]
+  },
+  "local-llm": {
+    "t": "本地大模型工具",
+    "k": [
+      "本地 LLM",
+      "本地模型"
+    ]
+  },
+  "mcp-for-notion": {
+    "t": "Notion 的 MCP 工具",
+    "k": [
+      "notion"
+    ]
+  },
+  "mcp-for-github": {
+    "t": "GitHub 的 MCP 工具",
+    "k": [
+      "github"
+    ]
+  },
+  "mcp-for-google": {
+    "t": "Google 服务的 MCP 工具",
+    "k": [
+      "google"
+    ]
+  },
+  "ai-code-editor": {
+    "t": "AI 代码编辑器",
+    "k": [
+      "代码编辑器"
+    ]
+  },
   "api-testing": {
     "t": "API 测试与 Mock",
-    "k": ["接口测试", "API 测试", "mock"]
+    "k": [
+      "接口测试",
+      "API 测试",
+      "mock"
+    ]
   },
-  "knowledge-base": { "t": "知识库与 RAG", "k": ["知识库", "RAG"] },
+  "knowledge-base": {
+    "t": "知识库与 RAG",
+    "k": [
+      "知识库",
+      "RAG"
+    ]
+  },
   "text-to-speech": {
     "t": "文本转语音与配音",
-    "k": ["TTS", "语音合成", "配音"]
+    "k": [
+      "TTS",
+      "语音合成",
+      "配音"
+    ]
   },
-  "web-development": { "t": "AI 网站开发", "k": ["网站开发", "建站"] },
+  "web-development": {
+    "t": "AI 网站开发",
+    "k": [
+      "网站开发",
+      "建站"
+    ]
+  },
   "database-migration": {
     "t": "数据库迁移与表结构",
-    "k": ["数据库迁移", "schema"]
+    "k": [
+      "数据库迁移",
+      "schema"
+    ]
   },
   "skill-management-tools": {
     "t": "技能与 Agent 管理",
-    "k": ["技能管理", "agent 管理"]
+    "k": [
+      "技能管理",
+      "agent 管理"
+    ]
   },
-  "free-mcp-servers": { "t": "免费 MCP 服务器", "k": ["免费 MCP"] },
-  "python-mcp-servers": { "t": "Python MCP 服务器", "k": ["python mcp"] },
+  "free-mcp-servers": {
+    "t": "免费 MCP 服务器",
+    "k": [
+      "免费 MCP"
+    ]
+  },
+  "python-mcp-servers": {
+    "t": "Python MCP 服务器",
+    "k": [
+      "python mcp"
+    ]
+  },
   "typescript-mcp-servers": {
     "t": "TypeScript MCP 服务器",
-    "k": ["typescript mcp"]
+    "k": [
+      "typescript mcp"
+    ]
   },
-  "open-webui-integrations": { "t": "Open WebUI 集成", "k": ["open webui"] },
-  "anti-slop": { "t": "反 AI 味", "k": ["去 AI 味", "anti-slop"] },
-  "agent-memory": { "t": "Agent 记忆", "k": ["智能体记忆", "记忆"] },
-  "agent-security": { "t": "Agent 安全", "k": ["智能体安全"] },
-  "agent-governance": { "t": "Agent 治理", "k": ["智能体治理", "合规"] },
-  "saas-mcp": { "t": "SaaS MCP 服务器", "k": ["saas mcp"] },
-  "seo-tools": { "t": "SEO 工具", "k": ["SEO", "搜索引擎优化"] },
-  "finance-mcp": { "t": "金融 MCP 服务器", "k": ["金融", "财经"] },
-  "ai-design": { "t": "AI 设计工具", "k": ["设计", "UI 设计"] },
-  "agent-deployment": { "t": "Agent 部署", "k": ["智能体部署", "部署"] },
-  "voice-agent": { "t": "语音智能体", "k": ["语音 agent", "语音助手"] },
+  "open-webui-integrations": {
+    "t": "Open WebUI 集成",
+    "k": [
+      "open webui"
+    ]
+  },
+  "anti-slop": {
+    "t": "反 AI 味",
+    "k": [
+      "去 AI 味",
+      "anti-slop"
+    ]
+  },
+  "agent-memory": {
+    "t": "Agent 记忆",
+    "k": [
+      "智能体记忆",
+      "记忆"
+    ]
+  },
+  "agent-security": {
+    "t": "Agent 安全",
+    "k": [
+      "智能体安全"
+    ]
+  },
+  "agent-governance": {
+    "t": "Agent 治理",
+    "k": [
+      "智能体治理",
+      "合规"
+    ]
+  },
+  "saas-mcp": {
+    "t": "SaaS MCP 服务器",
+    "k": [
+      "saas mcp"
+    ]
+  },
+  "seo-tools": {
+    "t": "SEO 工具",
+    "k": [
+      "SEO",
+      "搜索引擎优化"
+    ]
+  },
+  "finance-mcp": {
+    "t": "金融 MCP 服务器",
+    "k": [
+      "金融",
+      "财经"
+    ]
+  },
+  "ai-design": {
+    "t": "AI 设计工具",
+    "k": [
+      "设计",
+      "UI 设计"
+    ]
+  },
+  "agent-deployment": {
+    "t": "Agent 部署",
+    "k": [
+      "智能体部署",
+      "部署"
+    ]
+  },
+  "voice-agent": {
+    "t": "语音智能体",
+    "k": [
+      "语音 agent",
+      "语音助手"
+    ]
+  },
   "business-diagnosis": {
     "t": "商业诊断与创始人技能",
-    "k": ["商业诊断", "创业"]
+    "k": [
+      "商业诊断",
+      "创业"
+    ]
   },
-  "content-syndication": { "t": "内容分发", "k": ["内容分发", "多平台发布"] },
-  "personal-knowledge": { "t": "个人知识管理", "k": ["个人知识库", "笔记"] },
-  "ppt-presentation": { "t": "PPT 与演示", "k": ["PPT", "幻灯片", "演示"] },
+  "content-syndication": {
+    "t": "内容分发",
+    "k": [
+      "内容分发",
+      "多平台发布"
+    ]
+  },
+  "personal-knowledge": {
+    "t": "个人知识管理",
+    "k": [
+      "个人知识库",
+      "笔记"
+    ]
+  },
+  "ppt-presentation": {
+    "t": "PPT 与演示",
+    "k": [
+      "PPT",
+      "幻灯片",
+      "演示"
+    ]
+  },
   "skill-creation-tools": {
     "t": "技能创建与元工具",
-    "k": ["技能创建", "skill 创建"]
+    "k": [
+      "技能创建",
+      "skill 创建"
+    ]
   },
   "multi-ai-bridge": {
     "t": "多 AI 桥接与跨 IDE 同步",
-    "k": ["多 AI", "跨 IDE"]
+    "k": [
+      "多 AI",
+      "跨 IDE"
+    ]
   },
   "vibe-coding": {
     "t": "Vibe Coding 工具栈",
-    "k": ["vibe coding", "氛围编程"]
+    "k": [
+      "vibe coding",
+      "氛围编程"
+    ]
   },
-  "job-hunting": { "t": "AI 求职与简历", "k": ["求职", "简历", "找工作"] },
-  "meeting-tools": { "t": "会议工具与转录", "k": ["会议", "转录", "会议纪要"] },
+  "job-hunting": {
+    "t": "AI 求职与简历",
+    "k": [
+      "求职",
+      "简历",
+      "找工作"
+    ]
+  },
+  "meeting-tools": {
+    "t": "会议工具与转录",
+    "k": [
+      "会议",
+      "转录",
+      "会议纪要"
+    ]
+  },
   "spreadsheet-ai": {
     "t": "表格与 Excel AI 工具",
-    "k": ["表格", "excel", "电子表格"]
+    "k": [
+      "表格",
+      "excel",
+      "电子表格"
+    ]
   },
-  "video-editing": { "t": "AI 视频剪辑与生成", "k": ["视频剪辑", "视频生成"] }
+  "video-editing": {
+    "t": "AI 视频剪辑与生成",
+    "k": [
+      "视频剪辑",
+      "视频生成"
+    ]
+  },
+  "deep-research": {
+    "t": "深度研究",
+    "k": [
+      "研究",
+      "调研",
+      "深度研究",
+      "文献综述",
+      "研究助手",
+      "深度调研"
+    ]
+  },
+  "productivity": {
+    "t": "效率与任务管理",
+    "k": [
+      "任务管理",
+      "待办",
+      "效率",
+      "todo",
+      "番茄钟",
+      "笔记",
+      "第二大脑",
+      "日程"
+    ]
+  }
 }

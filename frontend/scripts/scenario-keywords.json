@@ -3191,5 +3191,104 @@
       "ai-design",
       "voice-agent"
     ]
+  },
+  {
+    "slug": "deep-research",
+    "title": "AI Deep Research",
+    "description": "AI agent skills and MCP tools for deep research, multi-source investigation, literature review, fact-checking, and automated report generation.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "deep research",
+        "deep-research",
+        "research agent",
+        "research assistant",
+        "literature review",
+        "multi-source research"
+      ],
+      "secondary_keywords": [
+        "research",
+        "investigate",
+        "investigation",
+        "fact-check",
+        "citation",
+        "academic",
+        "literature",
+        "report generat",
+        "perplexity",
+        "web research",
+        "scholar",
+        "arxiv"
+      ],
+      "topic_matches": [
+        "research",
+        "deep-research",
+        "academic",
+        "literature"
+      ],
+      "exclude_keywords": [
+        "user research",
+        "ux research"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "tag_matches": [
+        "research"
+      ]
+    },
+    "related": [
+      "semantic-search",
+      "knowledge-base",
+      "summarization"
+    ]
+  },
+  {
+    "slug": "productivity",
+    "title": "Productivity & Task Management",
+    "description": "AI agent skills for productivity, task and todo management, note-taking, scheduling, reminders, and personal workflow automation.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "task management",
+        "todo",
+        "to-do",
+        "task manager",
+        "productivity",
+        "gtd",
+        "pomodoro",
+        "note-taking",
+        "second brain"
+      ],
+      "secondary_keywords": [
+        "notes",
+        "reminder",
+        "calendar",
+        "schedule",
+        "kanban",
+        "obsidian",
+        "todoist",
+        "planner",
+        "habit tracker"
+      ],
+      "topic_matches": [
+        "productivity",
+        "todo",
+        "task",
+        "notes",
+        "gtd",
+        "pomodoro"
+      ],
+      "exclude_keywords": [],
+      "min_results": 5,
+      "max_results": 25,
+      "tag_matches": [
+        "productivity"
+      ]
+    },
+    "related": [
+      "personal-knowledge",
+      "workflow-automation",
+      "meeting-tools"
+    ]
   }
 ]
