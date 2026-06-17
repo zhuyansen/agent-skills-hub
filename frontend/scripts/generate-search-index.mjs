@@ -61,7 +61,7 @@ const SCENARIOS = JSON.parse(
 const SCENARIO_ZH = JSON.parse(
   readFileSync(join(__dirname, "scenario-zh.json"), "utf-8"),
 );
-const KW_MAX_SCENARIOS = 4; // cap scenarios merged per skill to bound index size
+const KW_MAX_SCENARIOS = 8; // cap scenarios merged per skill to bound index size
 
 const SCENARIO_MATCHERS = SCENARIOS.map((s) => {
   const m = s.match || {};

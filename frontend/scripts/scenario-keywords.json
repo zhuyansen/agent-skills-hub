@@ -3290,5 +3290,142 @@
       "workflow-automation",
       "meeting-tools"
     ]
+  },
+  {
+    "slug": "paid-ads",
+    "title": "Paid Ads & PPC",
+    "description": "AI agent skills for paid advertising — Google Ads, Meta/Facebook ads, ad copy generation, campaign optimization, and PPC management.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "paid ads",
+        "google ads",
+        "facebook ads",
+        "meta ads",
+        "ad copy",
+        "ppc",
+        "ad campaign",
+        "ad creative"
+      ],
+      "secondary_keywords": [
+        "advertising",
+        "adwords",
+        "campaign optim",
+        "tiktok ads",
+        "linkedin ads",
+        "retargeting",
+        "ad generator"
+      ],
+      "topic_matches": [
+        "ads",
+        "advertising",
+        "ppc",
+        "adwords"
+      ],
+      "exclude_keywords": [
+        "adblock",
+        "ad blocker"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "tag_matches": [
+        "advertising"
+      ]
+    },
+    "related": [
+      "seo-tools",
+      "social-media",
+      "marketing-analytics"
+    ]
+  },
+  {
+    "slug": "lead-generation",
+    "title": "Lead Generation & CRM",
+    "description": "AI agent skills for lead generation, prospecting, CRM enrichment, cold outreach, and sales pipeline automation.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "lead generation",
+        "lead gen",
+        "prospecting",
+        "crm",
+        "cold outreach",
+        "cold email",
+        "sales pipeline",
+        "lead enrichment"
+      ],
+      "secondary_keywords": [
+        "leads",
+        "enrichment",
+        "outreach",
+        "sales",
+        "prospect",
+        "hubspot",
+        "salesforce",
+        "contact enrichment"
+      ],
+      "topic_matches": [
+        "leads",
+        "crm",
+        "sales",
+        "outreach",
+        "prospecting"
+      ],
+      "exclude_keywords": [],
+      "min_results": 5,
+      "max_results": 25,
+      "tag_matches": [
+        "crm"
+      ]
+    },
+    "related": [
+      "email-automation",
+      "paid-ads",
+      "social-media"
+    ]
+  },
+  {
+    "slug": "marketing-analytics",
+    "title": "Marketing Analytics & Reporting",
+    "description": "AI agent skills for marketing analytics, attribution, campaign reporting, web analytics, and growth dashboards.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "marketing analytics",
+        "attribution",
+        "campaign report",
+        "web analytics",
+        "google analytics",
+        "marketing dashboard",
+        "growth metric"
+      ],
+      "secondary_keywords": [
+        "ga4",
+        "conversion tracking",
+        "funnel analysis",
+        "marketing kpi",
+        "ad reporting",
+        "utm"
+      ],
+      "topic_matches": [
+        "analytics",
+        "attribution",
+        "marketing"
+      ],
+      "exclude_keywords": [
+        "code analytics",
+        "log analytics"
+      ],
+      "min_results": 5,
+      "max_results": 25,
+      "tag_matches": [
+        "analytics"
+      ]
+    },
+    "related": [
+      "data-visualization",
+      "seo-tools",
+      "paid-ads"
+    ]
   }
 ]
