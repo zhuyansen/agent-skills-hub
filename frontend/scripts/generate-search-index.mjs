@@ -77,6 +77,9 @@ const SCENARIO_MATCHERS = SCENARIOS.map((s) => {
       ...(m.secondary_keywords || []),
       ...(m.keywords || []),
     ].map((k) => k.toLowerCase()),
+    // Curated negatives — e.g. job-hunting excludes "auto-resume"/"resume task"
+    // so a task-resumer isn't tagged via the ambiguous "resume" keyword.
+    excludeKw: (m.exclude_keywords || []).map((k) => k.toLowerCase()),
     // Keyword blob this scenario contributes — ZH ONLY (title + keywords).
     // Deliberately NO English title: English scenario titles contain common
     // words ("database", "tools") that polluted English search (vector database
@@ -102,6 +105,7 @@ function scenarioKw(r) {
     `${r.repo_name || ""} ${r.description || ""} ${tags.join(" ")}`.toLowerCase();
   const scored = [];
   for (const sc of SCENARIO_MATCHERS) {
+    if (sc.excludeKw.some((k) => text.includes(k))) continue;
     const tagHits = sc.tagMatches.filter((t) => tags.includes(t)).length;
     const primHits = sc.primaryKw.filter((k) => text.includes(k)).length;
     const secHits = sc.secondaryKw.filter((k) => text.includes(k)).length;

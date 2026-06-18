@@ -2950,7 +2950,11 @@
     "match": {
       "categories": [],
       "primary_keywords": [
-        "resume",
+        "resume writing",
+        "resume builder",
+        "resume tailoring",
+        "build resume",
+        "tailor resume",
         "cv",
         "cover letter",
         "interview prep",
@@ -2989,7 +2993,12 @@
         "auto-resume",
         "session resume",
         "video skill",
-        "interview my agent"
+        "interview my agent",
+        "resumes claude",
+        "resume coding",
+        "resume cli",
+        "resume your",
+        "resumes the"
       ],
       "min_results": 5,
       "max_results": 25,
