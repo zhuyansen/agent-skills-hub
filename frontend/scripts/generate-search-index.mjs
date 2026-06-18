@@ -102,12 +102,18 @@ function scenarioKw(r) {
     `${r.repo_name || ""} ${r.description || ""} ${tags.join(" ")}`.toLowerCase();
   const scored = [];
   for (const sc of SCENARIO_MATCHERS) {
-    let score = 0;
-    if (sc.cats.has(cat)) score += 3;
-    score += sc.tagMatches.filter((t) => tags.includes(t)).length * 3;
-    score += sc.primaryKw.filter((k) => text.includes(k)).length * 3;
-    score += sc.secondaryKw.filter((k) => text.includes(k)).length;
-    if (score > 0) scored.push({ kw: sc.kw, score });
+    const tagHits = sc.tagMatches.filter((t) => tags.includes(t)).length;
+    const primHits = sc.primaryKw.filter((k) => text.includes(k)).length;
+    const secHits = sc.secondaryKw.filter((k) => text.includes(k)).length;
+    // A skill must match a keyword or tag to belong to a scenario. Category
+    // alone must NOT qualify: a broad bucket like `mcp-server` would otherwise
+    // tag EVERY MCP skill with sub-topic scenarios (mcp-database tagged 9070
+    // skills — 45% of the catalog). Category only boosts ranking once the
+    // sub-topic is confirmed by a keyword/tag.
+    if (tagHits + primHits + secHits === 0) continue;
+    const score =
+      (sc.cats.has(cat) ? 3 : 0) + tagHits * 3 + primHits * 3 + secHits;
+    scored.push({ kw: sc.kw, score });
   }
   return scored
     .sort((a, b) => b.score - a.score)
