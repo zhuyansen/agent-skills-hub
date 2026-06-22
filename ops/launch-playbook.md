@@ -162,24 +162,28 @@ Posting order (1/day): r/ClaudeAI → r/mcp → r/LocalLLaMA → r/AI_Agents →
 ## 5. GitHub plan  (🟢 = I draft, 🔴 = you publish)
 
 ### A. awesome-list PRs — highest ROI, permanent, dev-targeted (1–2 per day, not all at once)
-- [ ] 🔴 `punkpeye/awesome-mcp-servers` → Resources/Community section
-- [ ] 🔴 `wong2/awesome-mcp-servers` → Resources
-- [ ] 🔴 `modelcontextprotocol/servers` (official) → Resources
-- [ ] 🔴 `hesreallyhim/awesome-claude-code` → Tooling/Resources
-- [ ] 🔴 `e2b-dev/awesome-ai-agents` → Resources/Tools
-- [ ] 🔴 `Shubhamsaboo/awesome-llm-apps` → Resources
-- For each: read CONTRIBUTING.md, follow format exactly, vary the description (entries drafted below).
-- PR title pattern: `Add Agent Skills Hub to Resources` ; PR body: one line "adds a community directory + CLI that security-grades MCP servers/agent skills."
 
-Entries (vary per list):
-```
-punkpeye:   - [Agent Skills Hub](https://agentskillshub.top) - Searchable directory of 117K+ MCP servers and agent skills, each security-graded and quality-scored — audit any server before you install, from the terminal.
-wong2:      - [Agent Skills Hub](https://agentskillshub.top) - Open directory of MCP servers with security grades and quality scores, plus a CLI to search and audit any server.
-official:   - [Agent Skills Hub](https://agentskillshub.top) - Community directory that indexes and security-grades MCP servers across GitHub, with a free CLI to vet them before installing.
-claude:     - [Agent Skills Hub](https://agentskillshub.top) - Directory of 17K+ Claude Code skills, security-graded and quality-scored; vet skills with `npx @agentskillshub/cli`.
-e2b:        - [Agent Skills Hub](https://agentskillshub.top) - Trust layer for AI agent skills and MCP servers: 117K indexed, security-graded, auditable from the CLI before deployment.
-llm-apps:   - [Agent Skills Hub](https://agentskillshub.top) - Discover and security-audit open-source agent skills and MCP servers before adding them to your LLM app.
-```
+> Verified the two MCP lists' structure (2026-06): they're server CATALOGS, not resource lists.
+> A directory/site like ours is a weak fit there — target the broader resource lists first, and
+> use the correct home for the MCP ones. Always read CONTRIBUTING.md + match the section's exact
+> format (emoji flags, ordering) before opening the PR.
+
+**Good fit — do these first (Resources/Tools sections exist):**
+- [ ] 🔴 `hesreallyhim/awesome-claude-code` → Tooling/Resources section
+  `- [Agent Skills Hub](https://agentskillshub.top) - Directory of 17K+ Claude Code skills, security-graded and quality-scored; vet skills with \`npx @agentskillshub/cli\`.`
+- [ ] 🔴 `e2b-dev/awesome-ai-agents` → Resources/Tools section
+  `- [Agent Skills Hub](https://agentskillshub.top) - Trust layer for AI agent skills and MCP servers: 117K indexed, security-graded, auditable from the CLI before deployment.`
+- [ ] 🔴 `Shubhamsaboo/awesome-llm-apps` → Resources section (open an issue first if unsure)
+  `- [Agent Skills Hub](https://agentskillshub.top) - Discover and security-audit open-source agent skills and MCP servers before adding them to your LLM app.`
+
+**MCP lists — corrected homes (verified):**
+- [ ] 🔴 `modelcontextprotocol/servers` (official) → **ADDITIONAL.md**, NOT the README (README is server-impls + SDKs only; external resources live in ADDITIONAL.md).
+  `- [Agent Skills Hub](https://agentskillshub.top) - Directory that indexes and security-grades MCP servers across GitHub, with a free CLI to vet them before installing.`
+- [ ] 🔴 `punkpeye/awesome-mcp-servers` → weak fit (server catalog w/ emoji flags). Only `🔗 Aggregators` sort of fits, and that's for aggregator *servers*. Either skip, or match the Aggregators format exactly:
+  `- [Agent Skills Hub](https://agentskillshub.top) 📇 ☁️ - "Directory + CLI that indexes and security-grades 117K+ MCP servers and agent skills."`
+- [ ] 🔴 `wong2/awesome-mcp-servers` → check for a Resources/Community section at PR time; if it's server-only like punkpeye, skip.
+
+PR title: `Add Agent Skills Hub to <section>` · PR body (1 line): "Adds a directory + CLI that security-grades MCP servers / agent skills before install."
 
 ### B. Badge growth loop — distributed backlinks (mostly built)
 - [x] Badge upgraded to security grade (SAFE/CAUTION/…); one-click copy on each skill page (shipped 2fab373)
