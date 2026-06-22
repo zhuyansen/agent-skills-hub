@@ -29,3 +29,6 @@ tools/union-search-skill
 ops/daily-data/
 supabase/.temp/
 .mcp.json
+
+# LoopFlow runtime worktrees (keep loop defs, ignore generated worktrees)
+.loopflow/worktrees/
