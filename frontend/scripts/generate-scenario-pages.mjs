@@ -394,7 +394,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const itemCount = skills.length;
   const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
-  const title = `${scenario.title}: ${itemCount} Open-Source ${seoTitleHasNoun ? "" : "Tools "}Compared (${year})`.replace(/  +/g, " ");
+  const title = `${scenario.title}: ${itemCount} Open-Source ${seoTitleHasNoun ? "" : "Tools "}Compared (${year}) | Agent Skills Hub`.replace(/  +/g, " ");
   // Meta ≤ 145 chars (Google SERP truncates at ~155, leave buffer for "...").
   // Format: "{N} {open-source} {scenario}: {top names}. {value prop}."
   // Trim at last word boundary to avoid mid-word cut.

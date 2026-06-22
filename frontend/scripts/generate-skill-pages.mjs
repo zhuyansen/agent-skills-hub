@@ -121,14 +121,14 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // SEO-optimized title: exact repo_full_name matches brand-name queries
   // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
   // Full name goes first so Google SERP shows it at line 1.
-  const title = `${repo_full_name} · AgentSkillsHub`;
+  const title = `${repo_full_name} — security grade & quality score | Agent Skills Hub`;
   // SEO: meta description ≤ 160 chars with CTA tail.
   // aaron-he-zhu/seo-geo-claude-skills audit flagged missing CTA verb.
   const descTrunc = description ? description.slice(0, 95) : "";
   const descEllipsis = description && description.length > 95 ? "..." : "";
   const metaDesc = description
-    ? `${descTrunc}${descEllipsis} Open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · Compare alternatives on AgentSkillsHub.`
-    : `${repo_name} — open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · Find alternatives and compare on AgentSkillsHub.`;
+    ? `${descTrunc}${descEllipsis} Open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · security-graded on Agent Skills Hub.`
+    : `${repo_name} — open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · security-graded & quality-scored on Agent Skills Hub.`;
 
   // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
@@ -454,7 +454,7 @@ ${faqLd}
 function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   const catLabel = CATEGORY_LABELS[catSlug] || "AI Tool";
   const pageUrl = `${SITE}/category/${catSlug}/`;
-  const title = `${catLabel} — ${catSkills.length}+ Open-Source Skills · AgentSkillsHub`;
+  const title = `Best ${catLabel} — ${catSkills.length}+ Open-Source Skills & MCP Servers | Agent Skills Hub`;
   const metaDesc = `Browse ${catSkills.length}+ open-source ${catLabel} — quality-scored, ranked by stars, compared side-by-side. Updated every 8 hours.`;
 
   const { scriptTags, linkTags } = assetTags;

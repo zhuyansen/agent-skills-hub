@@ -141,7 +141,7 @@ export function SkillDetailPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>{`${detail.repo_full_name} · AgentSkillsHub`}</title>
+        <title>{`${detail.repo_full_name} — security grade & quality score | Agent Skills Hub`}</title>
         <meta name="description" content={ogDescription} />
         {/* Open Graph */}
         <meta
