@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我们给 117,854 个 AI Agent Skill 做了安全评级,结果如下 | Agent Skills Hub</title>
+  <meta name="description" content="我们用规则引擎扫了 117,854 个收录的 AI agent skill 和 MCP server。只有 17.7% 火到值得评级;在被评级的里面,每 32 个就有 1 个不安全。风险集中在长尾 —— 还有一个 agent 时代独有的新攻击面。" />
+  <meta name="keywords" content="AI agent 安全, MCP server 安全, agent skill 安全, 安全扫描, prompt injection, agent 记忆窃取, 供应链安全" />
+  <meta property="og:title" content="我们给 117,854 个 AI Agent Skill 做了安全评级,结果如下" />
+  <meta property="og:description" content="只有 17.7% 火到值得评级。被评级的里面每 32 个就有 1 个不安全。风险集中在长尾。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/securing-117k-ai-skills/zh/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
+  <meta property="article:published_time" content="2026-06-22" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="我们给 117,854 个 AI Agent Skill 做了安全评级" />
+  <meta name="twitter:description" content="只有 17.7% 被评级。被评级的里每 32 个就有 1 个不安全。风险在长尾。" />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/securing-117k-ai-skills/zh/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/securing-117k-ai-skills/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/securing-117k-ai-skills/zh/" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "我们给 117,854 个 AI Agent Skill 做了安全评级,结果如下",
+  "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"},
+  "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top"},
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "description": "用规则引擎扫了 117,854 个 AI agent skill 和 MCP server。只有 17.7% 被评级;被评级的每 32 个就有 1 个不安全。",
+  "mainEntityOfPage": "https://agentskillshub.top/blog/securing-117k-ai-skills/zh/",
+  "inLanguage": "zh-CN",
+  "keywords": ["AI agent 安全", "MCP server 安全", "agent 记忆窃取", "供应链", "安全扫描"]
+}
+  </script>
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
+  <style>
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+    .article-body > h1 { font-size: 34px; line-height: 1.25; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 16px; color: var(--bp-text); }
+    .article-body h2 { font-size: 25px; font-weight: 700; line-height: 1.35; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: normal; border-bottom: 2px solid var(--bp-link); }
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .article-body pre { background: var(--bp-bg-alt); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 0 0 18px; font-size: 13px; line-height: 1.6; }
+    .article-body pre code { background: none; padding: 0; }
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-size: 17px; color: var(--bp-text); line-height: 1.75; }
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); }
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.5; }
+    .flag-table tr:hover td { background: var(--bp-bg-alt); }
+    .chart { margin: 24px 0 28px; }
+    .chart-cap { font-size: 13px; color: var(--bp-text-muted); margin: 0 0 14px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin: 7px 0; font-size: 14px; }
+    .bar-label { flex: 0 0 150px; color: var(--bp-text-secondary); text-align: right; line-height: 1.3; }
+    .bar-track { flex: 1; height: 22px; background: var(--bp-bg-alt); border-radius: 4px; overflow: hidden; min-width: 40px; }
+    .bar-fill { height: 100%; border-radius: 4px; }
+    .bar-val { flex: 0 0 58px; font-weight: 600; color: var(--bp-text); font-size: 13px; }
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 26px; }
+      .article-body h2 { font-size: 21px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      .bar-label { flex-basis: 104px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">首页</a>
+        <a href="/enterprise/" class="bp-nav-link">企业版</a>
+        <a href="/book/" class="bp-nav-link">蓝皮书</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">博客</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){ document.documentElement.classList.add('dark'); }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <div class="bp-container">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px">
+        <a href="/">首页</a>
+        <span style="margin:0 6px">&gt;</span>
+        <a href="/blog/">博客</a>
+        <span style="margin:0 6px">&gt;</span>
+        <span>给 11.7 万 Skill 做安全评级</span>
+        <span style="margin:0 10px;color:var(--bp-border)">|</span>
+        <a href="/blog/securing-117k-ai-skills/">English</a>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <h1>我们给 117,854 个 AI Agent Skill 做了安全评级,结果如下</h1>
+
+      <div class="article-meta">
+        <span>作者 <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>2026 年 6 月 22 日</span>
+        <span>&middot;</span>
+        <span>8 分钟阅读</span>
+        <span class="article-tag">安全</span>
+        <span class="article-tag">数据</span>
+      </div>
+
+      <blockquote>
+        <p>真正让人不安的不是"有多少 skill 不安全",而是"有多少根本没人审过"。</p>
+      </blockquote>
+
+      <p>装一个 AI agent skill 或 MCP server,意味着把你的 shell、环境变量,以及越来越多的 —— agent 自己的配置和记忆 —— 交给一段不受信任的代码。发现从来不是难点,有几万个可挑;难的是知道你挑中的那个能不能安全运行。</p>
+
+      <p>于是我们扫了整个目录。下面是诚实的全貌。</p>
+
+      <h2>我们怎么扫的</h2>
+
+      <p>一个规则引擎,借鉴 <a href="https://github.com/slowmist/slowmist-agent-security" target="_blank" rel="noopener">SlowMist 的 Agent Security Framework</a> 及其 11 类红旗。它对每个 skill 的 README 和代码做静态检查,找具体模式:数据外泄(<code>curl -d $(...)</code>)、凭证收割(<code>env | grep -i token</code>)、读取 <code>.env</code> / <code>.ssh</code> / <code>.aws</code>、<code>curl | sh</code> 安装脚本、提权、持久化、密钥外泄组合。每个 skill 给一个评级 —— <strong>safe / caution / unsafe / reject</strong> —— 外加它命中的具体 flag。没有 README 或太新拉不到的,保持 <strong>unknown</strong>。</p>
+
+      <p>这是刻意设计的<em>第一层</em>:它查模式,不查意图。看起来干净的 skill 仍可能在语义上做坏事 —— 那是按需深扫该管的。但在 11.7 万的规模下,正是这层模式扫描让整个目录变得"可审计"。</p>
+
+      <h2>发现 1 —— 82% 的目录从没被评级过</h2>
+
+      <p>在 <strong>117,854</strong> 个收录的 skill 里,只有 <strong>20,853 个(17.7%)</strong> 跨过 5 星 —— 也就是"火到值得评级"的门槛。剩下 <strong>约 9.7 万个,实际上未经审计。</strong></p>
+
+      <p>这是大多数目录刻意回避的头条。"我们有 11.7 万个 skill"不是卖点。真正重要的是有多少你能真正信任,而对于长尾,诚实的答案是:没人看过。</p>
+
+      <h2>发现 2 —— 被评级的 skill 里,每 32 个就有 1 个不安全</h2>
+
+      <p>这 20,853 个被评级的 skill,评级分布如下:</p>
+
+      <div class="chart">
+        <p class="chart-cap">安全评级分布 —— 被评级的 skill(stars &ge; 5,n = 20,853)</p>
+        <div class="bar-row"><span class="bar-label">safe 安全</span><span class="bar-track"><span class="bar-fill" style="width:85.5%;background:#16a34a"></span></span><span class="bar-val">85.5%</span></div>
+        <div class="bar-row"><span class="bar-label">caution 留意</span><span class="bar-track"><span class="bar-fill" style="width:5.3%;background:#ca8a04"></span></span><span class="bar-val">5.3%</span></div>
+        <div class="bar-row"><span class="bar-label">unsafe 不安全</span><span class="bar-track"><span class="bar-fill" style="width:3.0%;background:#dc2626"></span></span><span class="bar-val">3.0%</span></div>
+        <div class="bar-row"><span class="bar-label">reject 拒绝</span><span class="bar-track"><span class="bar-fill" style="width:1.5%;background:#991b1b"></span></span><span class="bar-val">0.1%</span></div>
+        <div class="bar-row"><span class="bar-label">unknown 未审</span><span class="bar-track"><span class="bar-fill" style="width:6.1%;background:#9ca3af"></span></span><span class="bar-val">6.1%</span></div>
+      </div>
+
+      <p><strong>8.4% 带有安全顾虑。3.1%(约每 32 个 1 个)是 unsafe 或 reject。</strong> 不是那种危言耸听的 40%,但也绝非没事:在这个目录的体量下,这相当于约 650 个你真不该闭眼装的 skill,和其它所有结果混在同一个搜索列表里。</p>
+
+      <h2>发现 3 —— 越火越安全,风险集中在长尾</h2>
+
+      <p>把被评级的 skill 按 star 数分层,unsafe/reject 占比断崖式下跌:</p>
+
+      <div class="chart">
+        <p class="chart-cap">unsafe + reject 占比,按热度分层</p>
+        <div class="bar-row"><span class="bar-label">5&ndash;20&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:82%;background:#dc2626"></span></span><span class="bar-val">4.1%</span></div>
+        <div class="bar-row"><span class="bar-label">20&ndash;100&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:74%;background:#dc2626"></span></span><span class="bar-val">3.7%</span></div>
+        <div class="bar-row"><span class="bar-label">100&ndash;1,000&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:18%;background:#f87171"></span></span><span class="bar-val">0.9%</span></div>
+        <div class="bar-row"><span class="bar-label">1,000&#9733;+</span><span class="bar-track"><span class="bar-fill" style="width:8%;background:#f87171"></span></span><span class="bar-val">0.4%</span></div>
+      </div>
+
+      <p>你<em>听说过</em>的那个 skill 几乎肯定没问题。危险的是你为某个冷门需求搜索时随手抓到的那个 7 星仓库 —— 恰恰是目录本该帮上忙、却通常帮不上的时刻。</p>
+
+      <h2>发现 4 —— 红旗里藏着一个 agent 时代独有的新攻击面</h2>
+
+      <p>在 1,000 个被标记 skill 的样本里,最常见的 flag:</p>
+
+      <div class="chart">
+        <p class="chart-cap">最常见红旗 &mdash; <span style="color:#ea580c">橙色 = agent 原生</span>(读取你 agent 的配置 / 记忆)</p>
+        <div class="bar-row"><span class="bar-label">sudo 使用</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:#6b7280"></span></span><span class="bar-val">483</span></div>
+        <div class="bar-row"><span class="bar-label">后台服务安装</span><span class="bar-track"><span class="bar-fill" style="width:31%;background:#6b7280"></span></span><span class="bar-val">152</span></div>
+        <div class="bar-row"><span class="bar-label">curl | shell</span><span class="bar-track"><span class="bar-fill" style="width:20%;background:#6b7280"></span></span><span class="bar-val">99</span></div>
+        <div class="bar-row"><span class="bar-label">agent 配置窃取</span><span class="bar-track"><span class="bar-fill" style="width:18%;background:#ea580c"></span></span><span class="bar-val">87</span></div>
+        <div class="bar-row"><span class="bar-label">隧道服务</span><span class="bar-track"><span class="bar-fill" style="width:14%;background:#6b7280"></span></span><span class="bar-val">66</span></div>
+        <div class="bar-row"><span class="bar-label">eval()</span><span class="bar-track"><span class="bar-fill" style="width:11%;background:#6b7280"></span></span><span class="bar-val">52</span></div>
+        <div class="bar-row"><span class="bar-label">敏感环境变量</span><span class="bar-track"><span class="bar-fill" style="width:7%;background:#6b7280"></span></span><span class="bar-val">34</span></div>
+        <div class="bar-row"><span class="bar-label">agent 记忆窃取</span><span class="bar-track"><span class="bar-fill" style="width:5%;background:#ea580c"></span></span><span class="bar-val">23</span></div>
+        <div class="bar-row"><span class="bar-label">后门安装</span><span class="bar-track"><span class="bar-fill" style="width:2%;background:#6b7280"></span></span><span class="bar-val">11</span></div>
+      </div>
+
+      <p>经典的 shell 风险占大头。但看 <code>agent 配置窃取</code>(87)和 <code>agent 记忆窃取</code>(23):<strong>读取你 agent 配置和记忆文件的 skill。</strong> 这不是服务器漏洞 —— 这是一个只因为你在跑 agent 才存在的新攻击面。你的 Claude/MCP 配置、你存下的上下文、你那些"代持"的凭证。威胁模型变了,而大多数目录还没注意到。</p>
+
+      <h2>发现 5 —— 风险集中在哪</h2>
+
+      <p>按 category 看 unsafe/reject 占比(样本 &ge; 150):</p>
+
+      <table class="flag-table">
+        <thead><tr><th>类别</th><th>样本</th><th>unsafe / reject</th></tr></thead>
+        <tbody>
+          <tr><td><code>claude-skill</code></td><td>3,386</td><td>3.7%</td></tr>
+          <tr><td><code>mcp-server</code></td><td>8,970</td><td>3.4%</td></tr>
+          <tr><td><code>codex-skill</code></td><td>2,656</td><td>3.2%</td></tr>
+          <tr><td><code>agent-tool</code></td><td>4,779</td><td>2.5%</td></tr>
+        </tbody>
+      </table>
+
+      <p>恰恰是 skill/MCP 这些**跑在你 agent <em>内部</em>**的格式,风险最高。而这正是重点。</p>
+
+      <h2>那该怎么办</h2>
+
+      <p>在你已经工作的地方,装之前先看一眼信任信号:</p>
+
+      <pre><code>npx @agentskillshub/cli search "postgres mcp" --safe
+npx @agentskillshub/cli audit owner/repo</code></pre>
+
+      <p>每条结果都带它的评级和命中的具体 flag。<code>--safe</code> 会隐藏所有未审计及更差的。</p>
+
+      <h2>诚实的免责声明(因为这正是全部的意义)</h2>
+
+      <ul>
+        <li><strong>我们的 3% 是下限,不是上限。</strong> 学术深度分析(如 <a href="https://arxiv.org/abs/2601.10338" target="_blank" rel="noopener">Liu et al., 2026,arXiv:2601.10338,n=31,132</a>)给出的 agent skill 漏洞率高达 26.1%,因为它们分析语义而非仅仅模式。我们的规则引擎是刻意保守的第一遍 —— 只在命中具体红旗时才标 <code>unsafe</code>。把 3% 读作"问题的下限"。</li>
+        <li><strong>规则扫描 &ne; 完整。</strong> 模式匹配只查模式。语义后门需要更深的审查 —— 那是按需层,不是这一层。</li>
+        <li><strong>&#9711; unknown 不等于"大概没事"。</strong> 它的意思是<em>没人审过</em>。9.7 万的目录是 unknown。我们如实标灰,不美化。</li>
+        <li><strong>所有数字都可复核。</strong> 每个评级都能在站上和 CLI 里看到。自己重算一遍。</li>
+      </ul>
+
+      <p>一个只告诉你好消息的信任层,就不配叫信任层。关于这 9.7 万个 skill,我们能说的最有用的一句话是:我们还不知道 —— 而且我们会当面告诉你。</p>
+
+      <p style="margin-top:32px;padding-top:16px;border-top:1px solid var(--bp-border);font-size:14px;color:var(--bp-text-muted)">
+        <strong>装之前先查</strong>:<code>npx @agentskillshub/cli search "&lt;你需要的能力&gt;" --safe</code>,或在 <a href="https://agentskillshub.top">agentskillshub.top</a> 浏览被评级的 skill。
+        <br />
+        <strong>团队/企业</strong>:更深的单 skill 审计 + 合规证据,见 <a href="https://agentskillshub.top/enterprise/">agentskillshub.top/enterprise</a>。
+      </p>
+    </article>
+
+    <div class="bp-newsletter" style="margin-top:40px">
+      <h3>每周 AI Skill 精选</h3>
+      <p>每周一,增速最快、已做安全评级的 Top 20 AI agent skill。免费。</p>
+      <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='订阅中...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/rpc/subscribe',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo'},body:JSON.stringify({p_email:em})}).then(function(r){if(r.ok){btn.textContent='已订阅!';btn.style.background='#059669'}else{btn.textContent='重试';btn.disabled=false}}).catch(function(){btn.textContent='重试';btn.disabled=false});return false})(event)" class="bp-newsletter-form" style="max-width:400px;margin:0 auto">
+        <input id="nl-email" type="email" placeholder="your@email.com" required class="bp-newsletter-input" style="flex:1" />
+        <button id="nl-btn" type="submit" class="bp-newsletter-btn cta-btn">订阅</button>
+      </form>
+      <p style="margin:8px 0 0;font-size:11px;color:var(--bp-text-muted)">无垃圾邮件,随时退订。</p>
+    </div>
+
+    <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">关于</a>
+        <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">博客</a>
+        <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">隐私</a>
+        <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">条款</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
+      </div>
+      <p style="margin:0">&copy; 2026 Agent Skills Hub. 开源项目。</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>

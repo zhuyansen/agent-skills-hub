@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Security-Graded 117,854 AI Agent Skills. Here's What We Found. | Agent Skills Hub</title>
+  <meta name="description" content="We ran a rule-based security scan over 117,854 indexed AI agent skills and MCP servers. Only 17.7% are popular enough to be graded; among those, 1 in 32 is unsafe. The risk lives in the long tail — and a new agent-native attack surface." />
+  <meta name="keywords" content="AI agent security, MCP server security, agent skills safety, security scan, prompt injection, agent memory theft, supply chain security" />
+  <meta property="og:title" content="We Security-Graded 117,854 AI Agent Skills. Here's What We Found." />
+  <meta property="og:description" content="Only 17.7% are popular enough to be graded. Among graded skills, 1 in 32 is unsafe. The risk lives in the long tail." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/securing-117k-ai-skills/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
+  <meta property="article:published_time" content="2026-06-22" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="We Security-Graded 117,854 AI Agent Skills" />
+  <meta name="twitter:description" content="Only 17.7% are graded. 1 in 32 graded skills is unsafe. The risk lives in the long tail." />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/securing-117k-ai-skills/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/securing-117k-ai-skills/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/securing-117k-ai-skills/zh/" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "We Security-Graded 117,854 AI Agent Skills. Here's What We Found.",
+  "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"},
+  "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top"},
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "description": "A rule-based security scan of 117,854 indexed AI agent skills and MCP servers. Only 17.7% are graded; 1 in 32 graded skills is unsafe.",
+  "mainEntityOfPage": "https://agentskillshub.top/blog/securing-117k-ai-skills/",
+  "keywords": ["AI agent security", "MCP server security", "agent memory theft", "supply chain", "security scan"]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentskillshub.top/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agentskillshub.top/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Security-Grading 117K AI Skills"}
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
+  <style>
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+    .article-body > h1 { font-size: 36px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin: 32px 0 16px; color: var(--bp-text); }
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); letter-spacing: -0.01em; }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .article-body pre { background: var(--bp-bg-alt); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 0 0 18px; font-size: 13px; line-height: 1.6; }
+    .article-body pre code { background: none; padding: 0; }
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; font-size: 17px; color: var(--bp-text); line-height: 1.7; }
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.5; }
+    .flag-table tr:hover td { background: var(--bp-bg-alt); }
+    .chart { margin: 24px 0 28px; }
+    .chart-cap { font-size: 13px; color: var(--bp-text-muted); margin: 0 0 14px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin: 7px 0; font-size: 14px; }
+    .bar-label { flex: 0 0 168px; color: var(--bp-text-secondary); text-align: right; line-height: 1.3; }
+    .bar-track { flex: 1; height: 22px; background: var(--bp-bg-alt); border-radius: 4px; overflow: hidden; min-width: 40px; }
+    .bar-fill { height: 100%; border-radius: 4px; }
+    .bar-val { flex: 0 0 58px; font-weight: 600; color: var(--bp-text); font-size: 13px; }
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      .bar-label { flex-basis: 110px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <svg style="width:24px;height:24px;color:#3b82f6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="9" cy="16" r="1.5" fill="currentColor"/><circle cx="15" cy="16" r="1.5" fill="currentColor"/><path d="M12 2v4M8 7h8a2 2 0 012 2v2H6V9a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/book/" class="bp-nav-link">Blue Book</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){ document.documentElement.classList.add('dark'); }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <div class="bp-container">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px">
+        <a href="/">Home</a>
+        <span style="margin:0 6px">&gt;</span>
+        <a href="/blog/">Blog</a>
+        <span style="margin:0 6px">&gt;</span>
+        <span>Security-Grading 117K AI Skills</span>
+        <span style="margin:0 10px;color:var(--bp-border)">|</span>
+        <a href="/blog/securing-117k-ai-skills/zh/">中文</a>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <h1>We Security-Graded 117,854 AI Agent Skills. Here's What We Found.</h1>
+
+      <div class="article-meta">
+        <span>By <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>June 22, 2026</span>
+        <span>&middot;</span>
+        <span>8 min read</span>
+        <span class="article-tag">Security</span>
+        <span class="article-tag">Data</span>
+      </div>
+
+      <blockquote>
+        <p>The uncomfortable part isn't the skills that are unsafe. It's how few have been checked at all.</p>
+      </blockquote>
+
+      <p>Installing an AI agent skill or MCP server means handing untrusted code your shell, your environment variables, and increasingly your agent's own config and memory. Discovery is easy — there are tens of thousands to pick from. Knowing whether the one you found is safe to run is not.</p>
+
+      <p>So we scanned the whole catalog. Here's the honest picture.</p>
+
+      <h2>How we scanned</h2>
+
+      <p>A rule-based scanner, modeled on <a href="https://github.com/slowmist/slowmist-agent-security" target="_blank" rel="noopener">SlowMist's Agent Security Framework</a> and its 11 red-flag categories. It runs static checks over each skill's README and code, looking for concrete patterns: outbound data exfiltration (<code>curl -d $(...)</code>), credential harvesting (<code>env | grep -i token</code>), reading <code>.env</code> / <code>.ssh</code> / <code>.aws</code>, <code>curl | sh</code> install scripts, privilege escalation, persistence, and secret-exfil combos. Each skill gets a grade — <strong>safe / caution / unsafe / reject</strong> — plus the specific flags it tripped. Skills with no README or too new to fetch stay <strong>unknown</strong>.</p>
+
+      <p>This is deliberately a <em>first</em> layer: it catches patterns, not intent. A clean-looking skill can still do something semantically nasty; that's what an on-demand deep scan is for. But at 117K scale, the pattern layer is what makes the catalog auditable at all.</p>
+
+      <h2>Finding 1 — 82% of the catalog has never been graded</h2>
+
+      <p>Of <strong>117,854</strong> indexed skills, only <strong>20,853 (17.7%)</strong> clear 5 stars — the threshold where a skill is popular enough to be worth grading. The other <strong>~97,000 are effectively unaudited.</strong></p>
+
+      <p>This is the headline most directories bury. "We have 117K skills" is not a feature. The number that matters is how many you can actually trust, and for the long tail the honest answer is: nobody has looked.</p>
+
+      <h2>Finding 2 — Among graded skills, 1 in 32 is unsafe or worse</h2>
+
+      <p>For the 20,853 graded skills, here's the grade distribution:</p>
+
+      <div class="chart">
+        <p class="chart-cap">Security grade distribution — graded skills (stars &ge; 5, n = 20,853)</p>
+        <div class="bar-row"><span class="bar-label">safe</span><span class="bar-track"><span class="bar-fill" style="width:85.5%;background:#16a34a"></span></span><span class="bar-val">85.5%</span></div>
+        <div class="bar-row"><span class="bar-label">caution</span><span class="bar-track"><span class="bar-fill" style="width:5.3%;background:#ca8a04"></span></span><span class="bar-val">5.3%</span></div>
+        <div class="bar-row"><span class="bar-label">unsafe</span><span class="bar-track"><span class="bar-fill" style="width:3.0%;background:#dc2626"></span></span><span class="bar-val">3.0%</span></div>
+        <div class="bar-row"><span class="bar-label">reject</span><span class="bar-track"><span class="bar-fill" style="width:1.5%;background:#991b1b"></span></span><span class="bar-val">0.1%</span></div>
+        <div class="bar-row"><span class="bar-label">unknown</span><span class="bar-track"><span class="bar-fill" style="width:6.1%;background:#9ca3af"></span></span><span class="bar-val">6.1%</span></div>
+      </div>
+
+      <p><strong>8.4% carry a security concern. 3.1% — about 1 in 32 — are unsafe or reject.</strong> Not a crisis-grade 40%, but not nothing: at this catalog's size that's roughly 650 graded skills you genuinely should not run blind, sitting in the same search results as everything else.</p>
+
+      <h2>Finding 3 — Popularity predicts safety. The risk lives in the long tail.</h2>
+
+      <p>Split the graded skills by star count and the unsafe/reject rate falls off a cliff:</p>
+
+      <div class="chart">
+        <p class="chart-cap">Share flagged unsafe or reject, by popularity tier</p>
+        <div class="bar-row"><span class="bar-label">5&ndash;20&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:82%;background:#dc2626"></span></span><span class="bar-val">4.1%</span></div>
+        <div class="bar-row"><span class="bar-label">20&ndash;100&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:74%;background:#dc2626"></span></span><span class="bar-val">3.7%</span></div>
+        <div class="bar-row"><span class="bar-label">100&ndash;1,000&#9733;</span><span class="bar-track"><span class="bar-fill" style="width:18%;background:#f87171"></span></span><span class="bar-val">0.9%</span></div>
+        <div class="bar-row"><span class="bar-label">1,000&#9733;+</span><span class="bar-track"><span class="bar-fill" style="width:8%;background:#f87171"></span></span><span class="bar-val">0.4%</span></div>
+      </div>
+
+      <p>The skill you've <em>heard of</em> is almost certainly fine. The danger is the obscure 7-star repo you'd grab from a search for a niche task — exactly the moment a directory is supposed to help, and usually doesn't.</p>
+
+      <h2>Finding 4 — The red flags include a new, agent-native attack surface</h2>
+
+      <p>Most common flags among a sample of 1,000 flagged skills:</p>
+
+      <div class="chart">
+        <p class="chart-cap">Most common red flags &mdash; <span style="color:#ea580c">orange = agent-native</span> (reads your agent's config / memory)</p>
+        <div class="bar-row"><span class="bar-label">sudo usage</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:#6b7280"></span></span><span class="bar-val">483</span></div>
+        <div class="bar-row"><span class="bar-label">background service install</span><span class="bar-track"><span class="bar-fill" style="width:31%;background:#6b7280"></span></span><span class="bar-val">152</span></div>
+        <div class="bar-row"><span class="bar-label">curl | shell</span><span class="bar-track"><span class="bar-fill" style="width:20%;background:#6b7280"></span></span><span class="bar-val">99</span></div>
+        <div class="bar-row"><span class="bar-label">agent config theft</span><span class="bar-track"><span class="bar-fill" style="width:18%;background:#ea580c"></span></span><span class="bar-val">87</span></div>
+        <div class="bar-row"><span class="bar-label">tunnel service</span><span class="bar-track"><span class="bar-fill" style="width:14%;background:#6b7280"></span></span><span class="bar-val">66</span></div>
+        <div class="bar-row"><span class="bar-label">eval()</span><span class="bar-track"><span class="bar-fill" style="width:11%;background:#6b7280"></span></span><span class="bar-val">52</span></div>
+        <div class="bar-row"><span class="bar-label">sensitive env vars</span><span class="bar-track"><span class="bar-fill" style="width:7%;background:#6b7280"></span></span><span class="bar-val">34</span></div>
+        <div class="bar-row"><span class="bar-label">agent memory theft</span><span class="bar-track"><span class="bar-fill" style="width:5%;background:#ea580c"></span></span><span class="bar-val">23</span></div>
+        <div class="bar-row"><span class="bar-label">backdoor install</span><span class="bar-track"><span class="bar-fill" style="width:2%;background:#6b7280"></span></span><span class="bar-val">11</span></div>
+      </div>
+
+      <p>The classic shell risks dominate. But look at <code>agent config theft</code> (87) and <code>agent memory theft</code> (23): <strong>skills that read your agent's configuration and memory files.</strong> That's not a server exploit — it's a new attack surface that only exists because you're running an agent. Your Claude/MCP config, your stored context, your credentials-by-proxy. The threat model moved, and most directories haven't noticed.</p>
+
+      <h2>Finding 5 — Where the risk concentrates</h2>
+
+      <p>By category, the unsafe/reject rate (samples &ge; 150):</p>
+
+      <table class="flag-table">
+        <thead><tr><th>Category</th><th>Sample</th><th>Unsafe / reject</th></tr></thead>
+        <tbody>
+          <tr><td><code>claude-skill</code></td><td>3,386</td><td>3.7%</td></tr>
+          <tr><td><code>mcp-server</code></td><td>8,970</td><td>3.4%</td></tr>
+          <tr><td><code>codex-skill</code></td><td>2,656</td><td>3.2%</td></tr>
+          <tr><td><code>agent-tool</code></td><td>4,779</td><td>2.5%</td></tr>
+        </tbody>
+      </table>
+
+      <p>The skill/MCP formats themselves — the ones that run <em>inside</em> your agent — carry the most risk. Which is exactly the point.</p>
+
+      <h2>What to do about it</h2>
+
+      <p>Check the trust signal <em>before</em> you install, from where you already work:</p>
+
+      <pre><code>npx @agentskillshub/cli search "postgres mcp" --safe
+npx @agentskillshub/cli audit owner/repo</code></pre>
+
+      <p>Every result carries its grade and the specific flags it tripped. <code>--safe</code> hides anything unaudited or worse.</p>
+
+      <h2>The honest caveats (because that's the whole point)</h2>
+
+      <ul>
+        <li><strong>Our 3% is a floor, not a ceiling.</strong> Academic deep-analysis studies (e.g. <a href="https://arxiv.org/abs/2601.10338" target="_blank" rel="noopener">Liu et al., 2026, arXiv:2601.10338, n=31,132</a>) put the agent-skill vulnerability rate at 26.1%, because they analyze semantics, not just patterns. Our rule-based first pass deliberately under-claims — it only marks <code>unsafe</code> on concrete red flags. Read 3% as the lower bound of a bigger problem.</li>
+        <li><strong>Rule-based &ne; complete.</strong> Pattern matching catches patterns. Semantic backdoors need a deeper look — that's the on-demand layer, not this.</li>
+        <li><strong>&#9711; unknown is not "probably fine."</strong> It means <em>no one has checked.</em> 97K of the catalog is unknown. We label it gray and don't dress it up.</li>
+        <li><strong>All numbers are reproducible.</strong> Every grade is visible on the site and via the CLI. Re-derive them yourself.</li>
+      </ul>
+
+      <p>A trust layer that only told you the good news wouldn't be one. The most useful thing we can say about 97,000 skills is that we don't yet know — and we'll tell you that to your face.</p>
+
+      <p style="margin-top:32px;padding-top:16px;border-top:1px solid var(--bp-border);font-size:14px;color:var(--bp-text-muted)">
+        <strong>Check before you install</strong>: <code>npx @agentskillshub/cli search "&lt;what you need&gt;" --safe</code> &middot; or browse graded skills at <a href="https://agentskillshub.top">agentskillshub.top</a>.
+        <br />
+        <strong>For teams</strong>: deeper per-skill audits and compliance evidence at <a href="https://agentskillshub.top/enterprise/">agentskillshub.top/enterprise</a>.
+      </p>
+    </article>
+
+    <div class="bp-newsletter" style="margin-top:40px">
+      <h3>Get Weekly AI Skill Picks</h3>
+      <p>Top 20 fastest-growing, security-graded AI agent skills every Monday. Free.</p>
+      <form id="nl-form" onsubmit="return (function(e){e.preventDefault();var em=document.getElementById('nl-email').value;if(!em)return false;var btn=document.getElementById('nl-btn');btn.textContent='Subscribing...';btn.disabled=true;fetch('https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/rpc/subscribe',{method:'POST',headers:{'Content-Type':'application/json','apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo'},body:JSON.stringify({p_email:em})}).then(function(r){if(r.ok){btn.textContent='Subscribed!';btn.style.background='#059669'}else{btn.textContent='Try again';btn.disabled=false}}).catch(function(){btn.textContent='Try again';btn.disabled=false});return false})(event)" class="bp-newsletter-form" style="max-width:400px;margin:0 auto">
+        <input id="nl-email" type="email" placeholder="your@email.com" required class="bp-newsletter-input" style="flex:1" />
+        <button id="nl-btn" type="submit" class="bp-newsletter-btn cta-btn">Subscribe</button>
+      </form>
+      <p style="margin:8px 0 0;font-size:11px;color:var(--bp-text-muted)">No spam, unsubscribe anytime.</p>
+    </div>
+
+    <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+        <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">About</a>
+        <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">Blog</a>
+        <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">Privacy</a>
+        <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">Terms</a>
+        <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
+      </div>
+      <p style="margin:0">&copy; 2026 Agent Skills Hub. Open-source project.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>
