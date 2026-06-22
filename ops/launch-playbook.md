@@ -12,6 +12,16 @@ deeper semantic study: 26.1% (Liu et al. 2026, arXiv:2601.10338).
 Discipline: vary anchor text + descriptions; one channel/sub per day; lead with the finding, not the product;
 links in body-end or comment on strict subs; never cross-post identical text.
 
+### Messaging guardrails (aligned with the new blog)
+The report now frames the data honestly — keep the launch copy matched so nothing contradicts the post:
+- **3% is a FLOOR, not "the vuln rate."** Always pair it with the cited ceiling: 26.1% (Liu et al. 2026, arXiv:2601.10338). Rule-based catches patterns, not intent — that's *why* it's a floor.
+- **The deeper layers are ROADMAP, not live.** Semantic LLM review = built, being enabled. SkillSpector deep audit (AST/taint/YARA) = in development, on-demand/enterprise. If asked "do you deep-scan everything?" → "No. Rule-based across the catalog today; semantic + AST/taint deep audit run per-skill on request, and are rolling out." NEVER imply the 117K got deep-scanned.
+- **Every number is sourced.** The old unsourced "43%" is retired everywhere — don't reintroduce it.
+- **The one-line story**: "not the deepest look at one skill — the broadest honest look at all of them."
+
+Deeper-layers talking point (for HN/Reddit replies + the PH pitch, framed as roadmap):
+> Layer 1 (rule-based) is what graded the catalog. A semantic LLM pass and a per-skill AST/taint/YARA deep audit (NVIDIA SkillSpector) are the on-demand/enterprise layers — coming soon, run per-skill not catalog-wide. That's exactly why today's 3% is a floor.
+
 ---
 
 ## 1. Hacker News  🔴 you post
@@ -78,6 +88,9 @@ links in body-end or comment on strict subs; never cross-post identical text.
 
 或装之前先查任意 skill:
 `npx @agentskillshub/cli audit owner/repo`
+
+**可选回复推文(自评论,补可信度 + 路线图,防"才 3%?"质疑):**
+> 补一句诚实的:这 3% 是规则扫描的**下限** —— 只查模式不查意图。学术深度分析(Liu et al. 2026, arXiv:2601.10338)给的是 26.1%。我们正在上语义复核 + 单 skill 的 AST/污点深扫(按需),所以真实问题只会比 3% 大,不会更小。
 
 ---
 
