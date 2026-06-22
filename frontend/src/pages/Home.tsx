@@ -163,18 +163,21 @@ export function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
-        <title>Claude Skills Directory · MCP Servers · AgentSkillsHub</title>
+        <title>
+          Agent Skills Hub — Security-Graded Claude Skills &amp; MCP Server
+          Directory
+        </title>
         <meta
           name="description"
-          content={`The open-source Claude Skills Directory. ${skillCount} MCP Servers, Codex Skills & Agent Tools. Quality-scored. Updated every 8 hours. Find, compare, install.`}
+          content={`Agent Skills Hub helps you find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded and quality-scored, refreshed every 8 hours.`}
         />
         <meta
           property="og:title"
-          content="Claude Skills Directory · MCP Servers · AgentSkillsHub"
+          content="Agent Skills Hub — Security-Graded Claude Skills & MCP Server Directory"
         />
         <meta
           property="og:description"
-          content={`${skillCount} Claude Skills, MCP Servers & Agent Tools — quality-scored, filtered, refreshed every 8 hours.`}
+          content={`Agent Skills Hub helps you find Claude skills & MCP servers without guessing what's safe — every entry security-graded and quality-scored, refreshed every 8 hours.`}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
