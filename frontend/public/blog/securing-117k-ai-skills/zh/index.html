@@ -155,6 +155,15 @@
 
       <p>所以这不是我们对单个 skill 能做的最深的审查 —— 而是我们对全部 skill 能做的最诚实的全景。需要对某个具体 skill 做深度审计,就去 <a href="https://agentskillshub.top/enterprise/">agentskillshub.top/enterprise</a>。</p>
 
+      <div style="border:1px solid var(--bp-border);border-radius:12px;padding:16px 20px;margin:24px 0;background:var(--bp-bg-alt)">
+        <div style="font-size:14px;font-weight:600;color:var(--bp-text);margin-bottom:10px">路线图 —— 更深的两层 <span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600;background:var(--bp-badge-purple-bg);color:var(--bp-badge-purple-text);vertical-align:1px">待上线</span></div>
+        <ul style="margin:0">
+          <li><strong>LLM 语义复核</strong> —— 用 LLM 对被标记的 skill 判断意图(这个 <code>curl | sh</code> 是在装 Homebrew,还是在偷密钥?),降低误报。代码已具备,待启用。</li>
+          <li><strong>单 skill 深度审计</strong> —— AST + 污点 + YARA 分析(基于 NVIDIA 开源的 <a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">SkillSpector</a>),对单个 skill 按需触发。开发中,企业层。</li>
+        </ul>
+        <p style="margin:10px 0 0;font-size:13px;color:var(--bp-text-muted)">这两层按设计都不对全库跑,所以本报告的数字仍是规则级的 —— 也仍是下限。</p>
+      </div>
+
       <h2>发现 1 —— 82% 的目录从没被评级过</h2>
 
       <p>在 <strong>117,854</strong> 个收录的 skill 里,只有 <strong>20,853 个(17.7%)</strong> 跨过 5 星 —— 也就是"火到值得评级"的门槛。剩下 <strong>约 9.7 万个,实际上未经审计。</strong></p>

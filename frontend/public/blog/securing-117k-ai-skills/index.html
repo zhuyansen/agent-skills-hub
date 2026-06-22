@@ -165,6 +165,15 @@
 
       <p>So this isn't the deepest look we can take at one skill — it's the broadest honest look we can take at all of them. If you need a deep audit on a specific skill, that's <a href="https://agentskillshub.top/enterprise/">agentskillshub.top/enterprise</a>.</p>
 
+      <div style="border:1px solid var(--bp-border);border-radius:12px;padding:16px 20px;margin:24px 0;background:var(--bp-bg-alt)">
+        <div style="font-size:14px;font-weight:600;color:var(--bp-text);margin-bottom:10px">On the roadmap — the deeper layers <span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600;background:var(--bp-badge-purple-bg);color:var(--bp-badge-purple-text);vertical-align:1px">Coming soon</span></div>
+        <ul style="margin:0">
+          <li><strong>Semantic LLM review</strong> — an LLM judges intent on flagged skills (is this <code>curl | sh</code> installing Homebrew, or stealing a key?) to cut false positives. Built; being enabled.</li>
+          <li><strong>Deep per-skill audit</strong> — AST + taint + YARA analysis (via NVIDIA's open-source <a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">SkillSpector</a>) for a single skill, on demand. In development; the enterprise layer.</li>
+        </ul>
+        <p style="margin:10px 0 0;font-size:13px;color:var(--bp-text-muted)">Neither runs across the catalog (by design), so the numbers in this report stay rule-based — and stay a floor.</p>
+      </div>
+
       <h2>Finding 1 — 82% of the catalog has never been graded</h2>
 
       <p>Of <strong>117,854</strong> indexed skills, only <strong>20,853 (17.7%)</strong> clear 5 stars — the threshold where a skill is popular enough to be worth grading. The other <strong>~97,000 are effectively unaudited.</strong></p>
