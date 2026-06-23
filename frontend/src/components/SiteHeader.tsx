@@ -370,14 +370,16 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                   className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide"
                 >
                   {[
-                    { id: "trending", label: t("nav.trending") },
-                    { id: "masters", label: t("nav.masters") },
-                    { id: "recent", label: t("nav.recent") },
-                    { id: "top-rated", label: t("nav.topRated") },
-                    { id: "categories", label: t("nav.categories") },
+                    // Order MUST match the section order rendered in Home.tsx —
+                    // otherwise clicking tabs left-to-right scrolls up and down.
                     { id: "scenarios", label: t("nav.scenarios") },
-                    { id: "workflows", label: t("nav.workflows") },
+                    { id: "trending", label: t("nav.trending") },
+                    { id: "categories", label: t("nav.categories") },
+                    { id: "top-rated", label: t("nav.topRated") },
+                    { id: "masters", label: t("nav.masters") },
                     { id: "newsletter", label: t("nav.newsletter") },
+                    { id: "recent", label: t("nav.recent") },
+                    { id: "workflows", label: t("nav.workflows") },
                   ].map((sec) => (
                     <button
                       key={sec.id}

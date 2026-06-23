@@ -210,7 +210,9 @@ export function Home() {
                 setTab("explore");
               }}
             />
-            <ScenarioTagCloud />
+            <div id="scenarios" className="scroll-mt-44">
+              <ScenarioTagCloud />
+            </div>
             <ProblemSection />
             <HowItWorksSection />
             <InstallCliSection />
