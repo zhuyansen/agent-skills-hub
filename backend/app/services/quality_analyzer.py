@@ -30,7 +30,15 @@ class QualityAnalyzer:
     7. Procedural Content (10%) - Step-by-step, workflows, SOP
     8. Instruction Quality (9%) - Output paths, constraints, success criteria
     9. Security Awareness (9%) - Permission docs, sandboxing, trust boundaries
+
+    v4 (2026-06): re-weighted (advanced dims downweighted) + final power-curve
+    calibration so the 0-100 scale is actually used. See backend/sim_quality.py.
     """
+
+    # Final calibration: quality_score = (weighted_raw ** CALIBRATION_CURVE) * 100.
+    # <1 lifts the compressed mid/top across the scale (smooth, monotonic, no
+    # inflation/clamping). Validated on a random stars>=5 sample.
+    CALIBRATION_CURVE = 0.65
 
     def analyze_all(self, db: Session, batch_size: int = 500,
                     repo_names: list[str] | None = None) -> int:
@@ -156,30 +164,40 @@ class QualityAnalyzer:
         security_aw = self._security_awareness(skill)
 
         if skill.readme_content:
-            # 9-dimension weighted scoring when README content is available
-            skill.quality_score = (
-                skill.quality_completeness * 0.11
-                + skill.quality_clarity * 0.11
-                + skill.quality_specificity * 0.11
-                + skill.quality_examples * 0.09
-                + readme_struct * 0.14
-                + agent_ready * 0.16
-                + procedural * 0.10
-                + instruction_q * 0.09
-                + security_aw * 0.09
-            ) * 100
+            # 9-dimension weighted scoring when README content is available.
+            # v4 recalibration: the 3 "advanced doc" dims (procedural/instruction/
+            # security) averaged ~0.13-0.43 across the catalog and, at their old
+            # 28% combined weight, capped even browser-use at ~54 and let nothing
+            # break 75. Shift ~16% of their weight onto the achievable core dims
+            # (agent/structure/examples/completeness), then apply CALIBRATION_CURVE
+            # so the compressed band spreads across the scale (median 39→~67,
+            # top→~81) without inflating — see backend/sim_quality.py validation.
+            raw = (
+                skill.quality_completeness * 0.14
+                + skill.quality_clarity * 0.13
+                + skill.quality_specificity * 0.10
+                + skill.quality_examples * 0.12
+                + readme_struct * 0.16
+                + agent_ready * 0.18
+                + procedural * 0.06
+                + instruction_q * 0.06
+                + security_aw * 0.05
+            )
+            skill.quality_score = (raw ** self.CALIBRATION_CURVE) * 100
         else:
-            # Without README: security_awareness gets minimal weight
-            skill.quality_score = (
-                skill.quality_completeness * 0.20
-                + skill.quality_clarity * 0.20
+            # Without README: weight concentrates on metadata dims (the README-based
+            # dims are ~0). Same calibration curve so these aren't all stuck at 20-30.
+            raw = (
+                skill.quality_completeness * 0.22
+                + skill.quality_clarity * 0.22
                 + skill.quality_specificity * 0.20
-                + skill.quality_examples * 0.15
-                + agent_ready * 0.15
-                + procedural * 0.04
-                + instruction_q * 0.03
-                + security_aw * 0.03
-            ) * 100
+                + skill.quality_examples * 0.16
+                + agent_ready * 0.16
+                + procedural * 0.02
+                + instruction_q * 0.01
+                + security_aw * 0.01
+            )
+            skill.quality_score = (raw ** self.CALIBRATION_CURVE) * 100
 
     def _completeness(self, skill: Skill) -> float:
         """How complete is the project? README, description, license, etc."""
