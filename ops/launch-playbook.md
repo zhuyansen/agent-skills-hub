@@ -248,3 +248,28 @@ Etiquette: SAFE/high-quality only · personalize each · GitHub issue or Discuss
 - [ ] Badge outreach to 5–10 SAFE authors (target list below / in chat)
 - [ ] Pin `agent-skills-hub` + `agentskillshub-cli` on your GitHub profile
 - [ ] (optional) Reddit r/ClaudeAI post (copy in §4)
+
+---
+
+## Directory listings (paid + free)
+Directory listings = relevant backlink + some referral. Lower ROI than earned channels;
+do the free ones, pay only for genuinely-trafficked relevant directories.
+
+- [x] **Toolify.ai** — PAID $99 listed: https://www.toolify.ai/tool/agent-skils-hub
+  - [ ] ⚠️ **Fix the typo** — slug is `agent-skils-hub` (missing an `l`). Verify the DISPLAY NAME isn't also "Agent Skils Hub"; if so, edit listing → "Agent Skills Hub". Ask Toolify support to fix the slug → `agent-skills-hub`.
+  - Listing copy: Name `Agent Skills Hub` · tagline "Discover and security-grade AI agent skills & MCP servers before you install. 117K+ indexed, each security-graded and quality-scored — vet any skill from the terminal with `npx @agentskillshub/cli`." · site `https://agentskillshub.top` · category AI/Developer Tools.
+- [ ] **dang.ai** — FREE (requires reciprocal backlink to dang.ai)
+- [ ] **alternativeto.net** — FREE (after 2026-06-29, account-age 7d)
+- [ ] Skip: theresanaiforthat ($49), futurepedia ($497), the rest — marginal for pre-revenue.
+
+## Guest posts (paid content placements)
+Only topically-relevant ones, publish the security REPORT (content marketing), 1-2 max as a test.
+- [ ] **cyberpress.org** — security pub, best fit (publish the 117K report). Test this first.
+- [ ] aijourn.com / thedatascientist.com / programminginsider.com — relevant, test after cyberpress.
+- [ ] Skip: techbullion, martech.zone, techloy, entechonline, technoxyz, startupopinions.
+
+## Reddit / HN — account-trust gated (see notes)
+- HN post id 48659973 was auto-killed (new account). Emailed hn@ycombinator.com for reinstatement.
+- Reddit r/mcp + r/ClaudeAI removed (low-karma account, 5 karma). WARM UP first: comment in
+  r/LocalLLaMA / r/AI_Agents / r/AskNetsec / r/LLMDevs for 1-2 weeks → 50-100+ karma → then post.
+- NEVER buy paid upvote/post-for-you services (HN/Reddit detect → post killed + domain ban risk).
