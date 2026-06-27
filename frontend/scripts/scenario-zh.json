@@ -13,7 +13,8 @@
       "采集",
       "抓取网站",
       "网站抓取"
-    ]
+    ],
+    "d": "为网页抓取、数据提取与自动爬取精选最佳 AI Agent 工具与 MCP 服务器。"
   },
   "code-review": {
     "t": "代码审查",
@@ -23,13 +24,15 @@
       "审代码",
       "看代码",
       "代码检查"
-    ]
+    ],
+    "d": "自动捕捉 bug、统一代码风格、提升质量的顶级 AI 代码审查工具。"
   },
   "mcp-database": {
     "t": "MCP 数据库工具",
     "k": [
       "数据库"
-    ]
+    ],
+    "d": "用 AI agent 访问数据库、执行 SQL、管理数据的最佳 MCP 服务器工具。"
   },
   "mcp-browser": {
     "t": "MCP 浏览器自动化",
@@ -38,13 +41,15 @@
       "浏览器",
       "控制浏览器",
       "操作浏览器"
-    ]
+    ],
+    "d": "让 AI agent 控制浏览器、导航网页、自动化网页交互的 MCP 工具。"
   },
   "mcp-filesystem": {
     "t": "MCP 文件系统工具",
     "k": [
       "文件系统"
-    ]
+    ],
+    "d": "让 AI agent 管理文件、操作目录、访问本地文件系统的 MCP 工具。"
   },
   "mcp-api": {
     "t": "MCP API 集成",
@@ -54,14 +59,16 @@
       "接口",
       "调接口",
       "调用接口"
-    ]
+    ],
+    "d": "把 AI agent 接入外部 API、REST 端点与第三方服务的 MCP 工具。"
   },
   "mcp-memory": {
     "t": "MCP 记忆与知识",
     "k": [
       "记忆",
       "知识库"
-    ]
+    ],
+    "d": "为 AI agent 工作流提供持久记忆、知识图谱与上下文管理的 MCP 工具。"
   },
   "test-generation": {
     "t": "测试生成",
@@ -72,7 +79,8 @@
       "写测试",
       "测试编写",
       "写单测"
-    ]
+    ],
+    "d": "自动为代码库生成单元测试、集成测试与测试套件的 AI 工具。"
   },
   "code-completion": {
     "t": "代码补全与生成",
@@ -81,7 +89,8 @@
       "代码生成",
       "补全",
       "自动补全"
-    ]
+    ],
+    "d": "用智能建议帮你更快写代码的 AI 代码补全与生成工具。"
   },
   "security-audit": {
     "t": "安全审计",
@@ -92,7 +101,8 @@
       "漏洞",
       "扫漏洞",
       "代码安全"
-    ]
+    ],
+    "d": "用于安全审计、漏洞扫描与自动化渗透测试的最佳 AI agent 工具。"
   },
   "secret-detection": {
     "t": "密钥检测",
@@ -101,14 +111,16 @@
       "凭证检测",
       "密钥",
       "密钥检测"
-    ]
+    ],
+    "d": "在密钥、API key、凭证泄露引发安全事故前检测出来的工具。"
   },
   "content-writing": {
     "t": "内容写作",
     "k": [
       "写作",
       "文案"
-    ]
+    ],
+    "d": "用于自动写作、博客生成、文案与文本创作的 AI agent 技能。"
   },
   "translation": {
     "t": "翻译",
@@ -121,7 +133,8 @@
       "多语言",
       "互译",
       "中英互译"
-    ]
+    ],
+    "d": "面向多语言内容、i18n 与语言转换的 AI 翻译工具与 agent 技能。"
   },
   "summarization": {
     "t": "摘要总结",
@@ -132,28 +145,32 @@
       "文章总结",
       "概括",
       "划重点"
-    ]
+    ],
+    "d": "自动总结文档、文章、代码与对话的 AI 工具。"
   },
   "document-parsing": {
     "t": "文档解析",
     "k": [
       "文档提取",
       "PDF 解析"
-    ]
+    ],
+    "d": "解析 PDF、Word、表格,从非结构化文件提取结构化数据的工具。"
   },
   "workflow-automation": {
     "t": "工作流自动化",
     "k": [
       "自动化",
       "工作流"
-    ]
+    ],
+    "d": "自动化重复流程、任务编排与流程管理的 AI 工具。"
   },
   "ci-cd": {
     "t": "CI/CD 与 DevOps",
     "k": [
       "持续集成",
       "部署"
-    ]
+    ],
+    "d": "用于持续集成、自动化部署与 DevOps 流程的 AI agent 工具。"
   },
   "monitoring": {
     "t": "监控与可观测性",
@@ -165,7 +182,8 @@
       "性能监控",
       "日志监控",
       "健康检查"
-    ]
+    ],
+    "d": "智能告警下监控应用、日志、指标与系统健康的 AI 工具。"
   },
   "semantic-search": {
     "t": "语义搜索",
@@ -175,21 +193,24 @@
       "相似度搜索",
       "向量检索",
       "近似搜索"
-    ]
+    ],
+    "d": "理解语义而非仅关键词的 AI 语义搜索工具,适用于代码与文档。"
   },
   "vector-database": {
     "t": "向量数据库",
     "k": [
       "向量库",
       "embedding"
-    ]
+    ],
+    "d": "大规模存储与查询 AI 向量的向量数据库工具与集成。"
   },
   "browser-automation": {
     "t": "浏览器自动化",
     "k": [
       "自动化",
       "playwright"
-    ]
+    ],
+    "d": "面向 AI agent 的开源浏览器自动化与数据采集工具,5 大派系完整对比。"
   },
   "data-pipeline": {
     "t": "数据管道",
@@ -199,21 +220,24 @@
       "数据流",
       "数据处理",
       "数据集成"
-    ]
+    ],
+    "d": "用于搭建数据管道、ETL 流程与数据转换工作流的 AI 工具。"
   },
   "rss-monitoring": {
     "t": "RSS 与订阅监控",
     "k": [
       "RSS",
       "订阅监控"
-    ]
+    ],
+    "d": "用 AI agent 做 RSS 订阅监控、新闻聚合与内容追踪的工具。"
   },
   "prompt-engineering": {
     "t": "提示词工程",
     "k": [
       "提示词",
       "prompt"
-    ]
+    ],
+    "d": "面向 LLM 应用的提示词设计、测试、优化与管理工具。"
   },
   "model-evaluation": {
     "t": "模型评估",
@@ -224,27 +248,31 @@
       "跑分",
       "基准测试",
       "效果评测"
-    ]
+    ],
+    "d": "评估、跑分与对比 AI 模型表现和输出的工具。"
   },
   "slack-integration": {
     "t": "Slack 集成",
     "k": [
       "slack"
-    ]
+    ],
+    "d": "接入 Slack 做通知、聊天机器人与工作流自动化的 AI agent 工具。"
   },
   "discord-bot": {
     "t": "Discord 机器人",
     "k": [
       "discord",
       "机器人"
-    ]
+    ],
+    "d": "用于社群管理、内容审核与自动回复的 AI Discord 机器人工具。"
   },
   "telegram-bot": {
     "t": "Telegram 机器人",
     "k": [
       "telegram",
       "机器人"
-    ]
+    ],
+    "d": "开源 Telegram 机器人框架、MCP 服务器与 AI agent 集成,搭自动化与 AI 助手。"
   },
   "email-automation": {
     "t": "邮件自动化",
@@ -255,21 +283,24 @@
       "邮件营销",
       "EDM",
       "批量邮件"
-    ]
+    ],
+    "d": "用于邮件自动化、收件箱管理与智能邮件处理的 AI 工具。"
   },
   "social-media": {
     "t": "社交媒体工具",
     "k": [
       "社媒",
       "社交媒体"
-    ]
+    ],
+    "d": "用于社媒管理、发帖、分析与内容排期的 AI 工具。"
   },
   "debugging": {
     "t": "调试",
     "k": [
       "debug",
       "排错"
-    ]
+    ],
+    "d": "自动定位、诊断并修复代码 bug 的 AI 调试工具。"
   },
   "refactoring": {
     "t": "代码重构",
@@ -278,14 +309,16 @@
       "整理代码",
       "代码结构",
       "优化代码"
-    ]
+    ],
+    "d": "用于自动化代码重构、优化与架构改进的 AI 工具。"
   },
   "container-management": {
     "t": "容器与 Docker 工具",
     "k": [
       "容器",
       "docker"
-    ]
+    ],
+    "d": "用于 Docker 容器管理、Kubernetes 编排与云基础设施的 AI 工具。"
   },
   "git-tools": {
     "t": "Git 与版本控制",
@@ -297,7 +330,8 @@
       "拉取请求",
       "代码合并",
       "版本管理"
-    ]
+    ],
+    "d": "用于 Git 工作流自动化、提交信息生成与版本控制的 AI 工具。"
   },
   "image-generation": {
     "t": "图像生成",
@@ -313,14 +347,16 @@
       "图片",
       "绘图",
       "AI 画图"
-    ]
+    ],
+    "d": "以编程方式创建、编辑与处理图像的 AI 图像生成工具。"
   },
   "notification": {
     "t": "通知与告警",
     "k": [
       "通知",
       "告警"
-    ]
+    ],
+    "d": "让 AI agent 跨多渠道发送通知、告警与消息的工具。"
   },
   "cli-tools": {
     "t": "命令行工具",
@@ -329,7 +365,8 @@
       "终端工具",
       "命令行",
       "终端"
-    ]
+    ],
+    "d": "面向开发者的命令行 AI 工具与终端实用程序。"
   },
   "authentication": {
     "t": "认证与身份",
@@ -337,7 +374,8 @@
       "鉴权",
       "登录",
       "OAuth"
-    ]
+    ],
+    "d": "用于认证、OAuth、SSO 与身份管理的 AI agent 工具。"
   },
   "data-visualization": {
     "t": "数据可视化",
@@ -349,26 +387,30 @@
       "报表",
       "看板",
       "dashboard"
-    ]
+    ],
+    "d": "用于创建图表、看板与数据可视化呈现的 AI 工具。"
   },
   "claude-code-skills": {
     "t": "Claude Code 技能",
     "k": [
       "claude code"
-    ]
+    ],
+    "d": "Anthropic AI 编程助手 Claude Code 的最佳技能与扩展。"
   },
   "codex-skills": {
     "t": "OpenAI Codex 技能",
     "k": [
       "codex"
-    ]
+    ],
+    "d": "OpenAI AI 编程 agent Codex 的最佳技能与插件。"
   },
   "ai-agent-framework": {
     "t": "AI Agent 框架",
     "k": [
       "agent 框架",
       "智能体框架"
-    ]
+    ],
+    "d": "构建自主 AI agent 的最佳框架——从单 agent SDK 到多智能体编排平台。"
   },
   "multi-agent": {
     "t": "多智能体编排",
@@ -377,32 +419,37 @@
       "多智能体",
       "协作",
       "智能体协作"
-    ]
+    ],
+    "d": "构建与编排多智能体系统的工具,让 AI agent 协作、委派与协调任务。"
   },
   "local-llm": {
     "t": "本地大模型工具",
     "k": [
       "本地 LLM",
       "本地模型"
-    ]
+    ],
+    "d": "本地私有化运行 AI 模型、零 API 费用——自托管推理、微调与部署工具。"
   },
   "mcp-for-notion": {
     "t": "Notion 的 MCP 工具",
     "k": [
       "notion"
-    ]
+    ],
+    "d": "把 AI agent 接入 Notion——读页面、建数据库、管任务、自动化工作流。"
   },
   "mcp-for-github": {
     "t": "GitHub 的 MCP 工具",
     "k": [
       "github"
-    ]
+    ],
+    "d": "接入 GitHub 管理仓库、issue、PR、Actions 与代码审查的 MCP 工具。"
   },
   "mcp-for-google": {
     "t": "Google 服务的 MCP 工具",
     "k": [
       "google"
-    ]
+    ],
+    "d": "把 AI agent 接入 Google Workspace——Gmail、Drive、日历、Sheets 等。"
   },
   "ai-code-editor": {
     "t": "AI 代码编辑器",
@@ -410,7 +457,8 @@
       "代码编辑器",
       "编辑器",
       "AI编辑器"
-    ]
+    ],
+    "d": "用智能辅助强化开发流程的 AI 代码编辑器与 IDE 扩展对比。"
   },
   "api-testing": {
     "t": "API 测试与 Mock",
@@ -418,7 +466,8 @@
       "接口测试",
       "API 测试",
       "mock"
-    ]
+    ],
+    "d": "用于 API 测试、端点校验、Mock 服务与自动 API 文档的 AI 工具。"
   },
   "knowledge-base": {
     "t": "知识库与 RAG",
@@ -430,7 +479,8 @@
       "智能问答",
       "文档问答",
       "本地知识库"
-    ]
+    ],
+    "d": "用 RAG 检索增强构建 AI 知识库——导入文档、语义搜索、智能问答。"
   },
   "text-to-speech": {
     "t": "文本转语音与配音",
@@ -438,7 +488,8 @@
       "TTS",
       "语音合成",
       "配音"
-    ]
+    ],
+    "d": "用于文本转语音、声音克隆、语音识别与音频处理的 AI 工具。"
   },
   "web-development": {
     "t": "AI 网站开发",
@@ -448,85 +499,98 @@
       "网站",
       "做网站",
       "建网站"
-    ]
+    ],
+    "d": "帮你搭建网站与 Web 应用的 AI 工具——从 UI 生成到全栈脚手架。"
   },
   "database-migration": {
     "t": "数据库迁移与表结构",
     "k": [
       "数据库迁移",
       "schema"
-    ]
+    ],
+    "d": "用于数据库表结构设计、迁移管理与数据建模的 AI 工具。"
   },
   "skill-management-tools": {
     "t": "技能与 Agent 管理",
     "k": [
       "技能管理",
       "agent 管理"
-    ]
+    ],
+    "d": "跨 15+ AI 编程工具组织 Claude/Codex 技能与多智能体工作流的桌面应用、CLI 与会话管理器。"
   },
   "free-mcp-servers": {
     "t": "免费 MCP 服务器",
     "k": [
       "免费 MCP"
-    ]
+    ],
+    "d": "100% 开源免费的 MCP 服务器,MIT/Apache/BSD 许可,自托管无订阅无配额。"
   },
   "python-mcp-servers": {
     "t": "Python MCP 服务器",
     "k": [
       "python mcp"
-    ]
+    ],
+    "d": "Python 写的开源 MCP 服务器,兼容 Claude Code、Cursor、Windsurf、Cline。"
   },
   "typescript-mcp-servers": {
     "t": "TypeScript MCP 服务器",
     "k": [
       "typescript mcp"
-    ]
+    ],
+    "d": "TypeScript/Node.js 写的开源 MCP 服务器,即装即用于 Claude Desktop、Cursor 等。"
   },
   "open-webui-integrations": {
     "t": "Open WebUI 集成",
     "k": [
       "open webui"
-    ]
+    ],
+    "d": "Open WebUI 的开源工具、连接器与函数——本地 LLM 的 ChatGPT 式自托管界面。"
   },
   "anti-slop": {
     "t": "反 AI 味",
     "k": [
       "去 AI 味",
       "anti-slop"
-    ]
+    ],
+    "d": "开源 AI 文本去味器与 slop 检测器,去掉 AI 腔与多余破折号,支持代码/文稿/学术模式。"
   },
   "agent-memory": {
     "t": "Agent 记忆",
     "k": [
       "智能体记忆",
       "记忆"
-    ]
+    ],
+    "d": "AI agent 的长期记忆层——向量存储、情景回忆、语义压缩与跨会话持久上下文。"
   },
   "agent-security": {
     "t": "Agent 安全",
     "k": [
       "智能体安全"
-    ]
+    ],
+    "d": "AI agent 安全工具——扫描危险 Skills/MCP 配置、检测提示注入、审计工具权限。"
   },
   "agent-governance": {
     "t": "Agent 治理",
     "k": [
       "智能体治理",
       "合规"
-    ]
+    ],
+    "d": "AI 编程 agent 的治理、审计与纪律框架——确定性工作流、上下文预算、工具门控。"
   },
   "saas-mcp": {
     "t": "SaaS MCP 服务器",
     "k": [
       "saas mcp"
-    ]
+    ],
+    "d": "主流 SaaS 平台的官方 MCP 服务器——Box、Stripe、Notion、GitHub、Slack 等企业级集成。"
   },
   "seo-tools": {
     "t": "SEO 工具",
     "k": [
       "SEO",
       "搜索引擎优化"
-    ]
+    ],
+    "d": "SEO 研究与分析 MCP 服务器——关键词、外链、SERP 追踪,接 Ahrefs、DataForSEO、GSC 数据。"
   },
   "finance-mcp": {
     "t": "金融 MCP 服务器",
@@ -536,35 +600,40 @@
       "股票",
       "行情",
       "股市"
-    ]
+    ],
+    "d": "面向 AI agent 的金融数据 MCP 与 CLI——股票行情、个人理财、记账、交易 API、市场分析。"
   },
   "ai-design": {
     "t": "AI 设计工具",
     "k": [
       "设计",
       "UI 设计"
-    ]
+    ],
+    "d": "AI 编程 agent 的设计智能技能——UI 生成、设计系统、原型、稿转码,接 Google Stitch 等。"
   },
   "agent-deployment": {
     "t": "Agent 部署",
     "k": [
       "智能体部署",
       "部署"
-    ]
+    ],
+    "d": "把 AI agent 与 Skills 部署上线——gstack、Fly.io、Vercel、Cloudflare、Modal 等。"
   },
   "voice-agent": {
     "t": "语音智能体",
     "k": [
       "语音 agent",
       "语音助手"
-    ]
+    ],
+    "d": "实时语音 AI agent——语音进语音出的对话系统,接 Whisper、ElevenLabs、OpenAI Realtime。"
   },
   "business-diagnosis": {
     "t": "商业诊断与创始人技能",
     "k": [
       "商业诊断",
       "创业"
-    ]
+    ],
+    "d": "面向创始人的 AI 技能——商业诊断、PRD 生成、GTM 打法、YC 框架与名人 PM 知识库。"
   },
   "content-syndication": {
     "t": "内容分发",
@@ -573,14 +642,16 @@
       "多平台发布",
       "分发",
       "多平台"
-    ]
+    ],
+    "d": "独立创作者的跨平台内容分发——一次发布到 X、领英、公众号、小红书、B站、Telegram。"
   },
   "personal-knowledge": {
     "t": "个人知识管理",
     "k": [
       "个人知识库",
       "笔记"
-    ]
+    ],
+    "d": "个人知识管理技能——Obsidian、Logseq、Notion 第二大脑,把笔记接入 AI agent。"
   },
   "ppt-presentation": {
     "t": "AI PPT 与幻灯片生成",
@@ -592,28 +663,32 @@
       "演示文稿",
       "汇报材料",
       "keynote"
-    ]
+    ],
+    "d": "生成幻灯片与演示的 AI 技能——HTML deck、麦肯锡风 PPTX、图优先 PPT、营销幻灯。"
   },
   "skill-creation-tools": {
     "t": "技能创建与元工具",
     "k": [
       "技能创建",
       "skill 创建"
-    ]
+    ],
+    "d": "创建、提炼与管理 AI 技能本身的工具——书/仓库/代码库转技能,跨 IDE 技能同步。"
   },
   "multi-ai-bridge": {
     "t": "多 AI 桥接与跨 IDE 同步",
     "k": [
       "多 AI",
       "跨 IDE"
-    ]
+    ],
+    "d": "让 Claude+Codex+Gemini 协同、跨 IDE 同步 Skills、在模型间路由任务的编排层。"
   },
   "vibe-coding": {
     "t": "Vibe Coding 工具栈",
     "k": [
       "vibe coding",
       "氛围编程"
-    ]
+    ],
+    "d": "独立开发者的编码工具栈——PRD→多智能体构建→发布,vibe coding 全流程模板。"
   },
   "job-hunting": {
     "t": "AI 求职与简历",
@@ -625,7 +700,8 @@
       "投简历",
       "求职信",
       "内推"
-    ]
+    ],
+    "d": "AI 求职全栈——简历定制、求职信、面试副驾、领英自动化与冷启动触达招聘方。"
   },
   "meeting-tools": {
     "t": "会议工具与转录",
@@ -633,7 +709,8 @@
       "会议",
       "转录",
       "会议纪要"
-    ]
+    ],
+    "d": "AI 会议全栈——实时转录、自动纪要、行动项提取、多语字幕,接飞书/Zoom。"
   },
   "spreadsheet-ai": {
     "t": "表格与 Excel AI 工具",
@@ -641,7 +718,8 @@
       "表格",
       "excel",
       "电子表格"
-    ]
+    ],
+    "d": "Excel、Google Sheets、CSV 的 AI——自动公式、数据透视、读写 MCP、结构化提取与报表。"
   },
   "video-editing": {
     "t": "AI 视频剪辑与生成",
@@ -651,7 +729,8 @@
       "剪辑",
       "视频",
       "视频编辑"
-    ]
+    ],
+    "d": "开源 AI 视频全栈——字幕生成、多语配音、短视频制作、Remotion 程序化视频、播客转视频。"
   },
   "deep-research": {
     "t": "深度研究",
@@ -666,7 +745,8 @@
       "找资料",
       "资料搜集",
       "行业研究"
-    ]
+    ],
+    "d": "用于深度研究、多源调查、文献综述、事实核查与自动报告生成的 AI agent 技能与 MCP 工具。"
   },
   "productivity": {
     "t": "效率与任务管理",
@@ -683,7 +763,8 @@
       "清单",
       "日程管理",
       "时间管理"
-    ]
+    ],
+    "d": "用于效率、任务待办管理、笔记、日程、提醒与个人工作流自动化的 AI agent 技能。"
   },
   "paid-ads": {
     "t": "付费广告与投放",
@@ -694,7 +775,8 @@
       "投放",
       "广告文案",
       "竞价广告"
-    ]
+    ],
+    "d": "面向付费广告的 AI agent 技能——Google/Meta 广告、文案生成、投放优化与 PPC 管理。"
   },
   "lead-generation": {
     "t": "获客与 CRM",
@@ -706,7 +788,8 @@
       "CRM",
       "私域",
       "销售自动化"
-    ]
+    ],
+    "d": "面向获客的 AI agent 技能——线索挖掘、CRM 数据补全、冷触达与销售管道自动化。"
   },
   "marketing-analytics": {
     "t": "营销分析与报表",
@@ -717,6 +800,7 @@
       "营销报表",
       "增长分析",
       "数据分析"
-    ]
+    ],
+    "d": "面向营销分析的 AI agent 技能——归因、活动报表、Web 分析与增长看板。"
   }
 }

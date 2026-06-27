@@ -269,10 +269,12 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
         const sc = scenarios.find((s) => s.slug === slug);
         if (!sc || !scenarioSkillCounts[slug]) return null;
         const count = scenarioSkillCounts[slug];
+        const dEn = sc.description.slice(0, 80) + (sc.description.length > 80 ? "..." : "");
+        const dZh = sc.zhDesc.slice(0, 80) + (sc.zhDesc.length > 80 ? "..." : "");
         return `<a href="/best/${esc(slug)}/" class="bp-card" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;text-decoration:none">
           <div>
-            <div class="bp-card-title" style="font-size:14px">${esc(sc.title)}</div>
-            <div class="bp-card-desc" style="font-size:12px;margin-top:2px;margin-bottom:0">${esc(sc.description.slice(0, 80))}${sc.description.length > 80 ? "..." : ""}</div>
+            <div class="bp-card-title" style="font-size:14px" data-en="${esc(sc.title)}" data-zh="${esc(sc.zhTitle)}">${esc(sc.title)}</div>
+            <div class="bp-card-desc" style="font-size:12px;margin-top:2px;margin-bottom:0" data-en="${esc(dEn)}" data-zh="${esc(dZh)}">${esc(dEn)}</div>
           </div>
           <span style="color:var(--bp-link);font-size:12px;font-weight:500;white-space:nowrap;margin-left:12px">${count} tools &rarr;</span>
         </a>`;
@@ -352,6 +354,7 @@ ${breadcrumbLd}
 
 function buildAeoSection(scenario, skills, year) {
   const scenarioTitle = scenario.title;
+  const zt = scenario.zhTitle || scenarioTitle; // Chinese title for data-zh slots
   const top3 = skills.slice(0, 3).map(s => s.repo_name);
   const topLanguages = [...new Set(skills.map(s => s.language).filter(Boolean))].slice(0, 3);
   const avgStars = Math.round(skills.reduce((sum, s) => sum + (s.stars || 0), 0) / skills.length);
@@ -359,24 +362,24 @@ function buildAeoSection(scenario, skills, year) {
 
   return `<!-- AEO: Answer Engine Optimization Section -->
       <section class="bp-aeo-section" style="margin:32px 0;padding:24px;background:var(--bp-bg-alt);border-radius:12px;border:1px solid var(--bp-border)">
-        <h2 class="bp-section-title" style="font-size:20px;margin-bottom:20px" data-zh="${esc(scenarioTitle)} 完整指南 (${year})" data-en="The Complete Guide to ${esc(scenarioTitle)} Tools (${year})">The Complete Guide to ${esc(scenarioTitle)} Tools (${year})</h2>
+        <h2 class="bp-section-title" style="font-size:20px;margin-bottom:20px" data-zh="${esc(zt)} 完整指南 (${year})" data-en="The Complete Guide to ${esc(scenarioTitle)} Tools (${year})">The Complete Guide to ${esc(scenarioTitle)} Tools (${year})</h2>
 
         <!-- What -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="什么是 ${esc(scenarioTitle)} 工具？" data-en="What Are ${esc(scenarioTitle)} Tools?">What Are ${esc(scenarioTitle)} Tools?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="${esc(scenarioTitle)} 工具是一类专注于帮助开发者和团队解决 ${esc(scenarioTitle.toLowerCase())} 相关任务的 AI 驱动软件。这些工具通常以开源形式发布在 GitHub 上，支持通过 MCP（Model Context Protocol）、Claude Skills 或独立 Agent 框架集成到现有工作流中。在 Agent Skills Hub 上，我们收录了 ${skills.length} 个经过质量评分的 ${esc(scenarioTitle.toLowerCase())} 工具，覆盖${topLanguages.join('、')}等主流编程语言。" data-en="${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.">${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.</p>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="什么是 ${esc(zt)} 工具？" data-en="What Are ${esc(scenarioTitle)} Tools?">What Are ${esc(scenarioTitle)} Tools?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="${esc(zt)} 工具是一类专注于帮助开发者和团队解决 ${esc(zt)} 相关任务的 AI 驱动软件。这些工具通常以开源形式发布在 GitHub 上，支持通过 MCP（Model Context Protocol）、Claude Skills 或独立 Agent 框架集成到现有工作流中。在 Agent Skills Hub 上，我们收录了 ${skills.length} 个经过质量评分的 ${esc(zt)} 工具，覆盖${topLanguages.join('、')}等主流编程语言。" data-en="${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.">${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.</p>
         </div>
 
         <!-- Why -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(scenarioTitle)} 工具？" data-en="Why Use ${esc(scenarioTitle)} Tools?">Why Use ${esc(scenarioTitle)} Tools?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(scenarioTitle)} 工具能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(zt)} 工具？" data-en="Why Use ${esc(scenarioTitle)} Tools?">Why Use ${esc(scenarioTitle)} Tools?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(zt)} 工具能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
         </div>
 
         <!-- How -->
         <div>
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(scenarioTitle)} 工具？" data-en="How to Choose the Best ${esc(scenarioTitle)} Tool?">How to Choose the Best ${esc(scenarioTitle)} Tool?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(scenarioTitle.toLowerCase())} 工具时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（本列表中最常见的语言是 ${topLanguages[0] || 'Python'}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始——它在 Star 数和质量评分上都名列前茅。" data-en="When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.">When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.</p>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(zt)} 工具？" data-en="How to Choose the Best ${esc(scenarioTitle)} Tool?">How to Choose the Best ${esc(scenarioTitle)} Tool?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(zt)} 工具时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（本列表中最常见的语言是 ${topLanguages[0] || 'Python'}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始——它在 Star 数和质量评分上都名列前茅。" data-en="When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.">When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.</p>
         </div>
       </section>`;
 }
@@ -451,37 +454,51 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const scenarioToolsPhrase = titleHasNoun ? scenarioLower : `${scenarioLower} tools`;
   const scenarioToolPhrase = titleHasNoun ? scenarioLower : `${scenarioLower} tool`;
   const articleA = titleHasNoun ? "" : (/^[aeiou]/i.test(scenarioLower) ? "an " : "a ");
+  const zt = scenario.zhTitle || scenario.title; // Chinese title for the bilingual FAQ
+  const relZt = relatedScenario ? (relatedScenario.zhTitle || relatedScenario.title) : "";
 
   const faqItems = [
     {
       q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
       a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${skills.length} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
+      qZh: `${year} 年最好的${zt}工具有哪些？`,
+      aZh: `${year} 年顶尖的${zt}工具是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 6 个维度）和近期活跃度对 ${skills.length} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
     },
     top1 && top2
       ? {
           q: `How do I choose between ${top1.repo_name} and ${top2.repo_name}?`,
           a: `${top1.repo_name} (${starsK(top1.stars)} stars) is the most adopted choice for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${top2.repo_name} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${top1.repo_name} — it has the deepest community and the most examples online.`,
+          qZh: `${top1.repo_name} 和 ${top2.repo_name} 该怎么选？`,
+          aZh: `${top1.repo_name}（${starsK(top1.stars)} stars）是通用${zt}工作流中采用最广的选择${top1.language ? `，用 ${top1.language} 编写` : ""}。${top2.repo_name}（${starsK(top2.stars)} stars）是有力的替代${top2.language && top2.language !== top1.language ? `，改用 ${top2.language}` : ""}。按你现有技术栈来选：匹配团队已用的语言和运行时，把集成成本降到最低。拿不准就从 ${top1.repo_name} 开始——它社区最深、线上示例最多。`,
         }
       : null,
     {
       q: `When should I NOT use ${articleA}${scenarioToolPhrase}?`,
       a: `Avoid pre-built ${scenarioToolsPhrase} when (1) your use case requires deep customization that the tool's plugin system doesn't support, (2) you have strict compliance requirements that ban third-party dependencies, (3) the tool's maintenance is inactive (last commit >6 months ago), or (4) your data volume is small enough that a 50-line custom script is cheaper than learning the tool. For most production workflows above 100 requests/day, the time savings from a maintained tool outweigh the customization loss.`,
+      qZh: `什么情况下不该用${zt}工具？`,
+      aZh: `遇到以下情况建议别用现成的${zt}工具：（1）需求需要工具插件系统不支持的深度定制；（2）有严格合规要求、禁止第三方依赖；（3）工具维护停滞（上次提交超过 6 个月）；（4）数据量小到写个 50 行脚本比学这工具还省。对每天 100 次请求以上的生产工作流，维护良好的工具省下的时间通常盖过定制损失。`,
     },
     relatedScenario
       ? {
           q: `What's the difference between ${scenarioLower} and ${relatedScenario.title.toLowerCase()}?`,
           a: `${scenario.title} focuses specifically on ${(scenario.description || `${scenarioLower} workflows`).toLowerCase().replace(/^discover the best ai agent skills and mcp tools for /, "").replace(/\.$/, "")}. ${relatedScenario.title} is a related but distinct category — see ${SITE}/best/${relatedScenario.slug}/ for those tools. The two often appear in the same agent pipeline but solve different problems: choose ${scenarioLower} when your primary goal is the specific task, and ${relatedScenario.title.toLowerCase()} when the workflow is broader.`,
+          qZh: `${zt}和${relZt}有什么区别？`,
+          aZh: `${zt}专门聚焦${zt}相关的具体任务；${relZt}是相关但不同的类别——那类工具见 ${SITE}/best/${relatedScenario.slug}/。两者常出现在同一条 agent 流水线里，却解决不同问题：主目标是具体任务时选${zt}，工作流更宽泛时选${relZt}。`,
         }
       : null,
     top1
       ? {
           q: `Is ${top1.repo_name} better than building it yourself?`,
           a: `For most teams, yes. ${top1.repo_name} has ${starsK(top1.stars)} stars worth of community testing, handles edge cases you haven't thought of, and ships with documentation. Build your own only when (1) your requirements are deeply non-standard, (2) you have a security/compliance reason to avoid OSS dependencies, or (3) the maintenance burden is small enough (<200 lines of code) that you'll save time long-term. The break-even point is usually around 2-3 weeks of dev time saved.`,
+          qZh: `${top1.repo_name} 比自己造轮子更好吗？`,
+          aZh: `对多数团队是的。${top1.repo_name} 有 ${starsK(top1.stars)} 个 star 的社区验证，能处理你没想到的边界情况，还自带文档。只有当（1）需求高度非标准、（2）有安全/合规理由要避开开源依赖、或（3）维护负担小到（代码 <200 行）长期更省时，才值得自己造。盈亏平衡点通常在省下约 2-3 周开发时间。`,
         }
       : null,
     {
       q: `Are these ${scenarioToolsPhrase} free to use?`,
       a: `Most ${scenarioToolsPhrase} listed are open source under permissive licenses (MIT, Apache 2.0). A handful offer paid managed/cloud versions on top of free self-hosted core. Always check the LICENSE file on each tool's GitHub repository before commercial use — some use AGPL or non-commercial restrictions that may not fit your deployment model.`,
+      qZh: `这些${zt}工具免费吗？`,
+      aZh: `列表里多数${zt}工具是开源的，采用宽松许可（MIT、Apache 2.0）。少数在免费自托管内核之上提供付费托管/云版本。商用前务必查看每个工具 GitHub 仓库的 LICENSE——有些用 AGPL 或非商业限制，可能不适合你的部署模式。`,
     },
   ].filter(Boolean);
 
@@ -547,15 +564,15 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     .map((slug) => {
       const rel = allScenarios.find((s) => s.slug === slug);
       if (!rel) return null;
-      return `<a href="/best/${esc(slug)}/" class="bp-related-tag">${esc(rel.title)}</a>`;
+      return `<a href="/best/${esc(slug)}/" class="bp-related-tag" data-en="${esc(rel.title)}" data-zh="${esc(rel.zhTitle || rel.title)}">${esc(rel.title)}</a>`;
     })
     .filter(Boolean)
     .join("\n        ");
 
   // FAQ HTML
   const faqHtml = faqItems.map((f) => `<details style="margin:8px 0;border:1px solid var(--bp-border);border-radius:8px;padding:12px;background:var(--bp-card-bg)">
-        <summary style="cursor:pointer;font-weight:500;color:var(--bp-text)">${esc(f.q)}</summary>
-        <p style="margin:8px 0 0;color:var(--bp-text-secondary);line-height:1.6">${esc(f.a)}</p>
+        <summary style="cursor:pointer;font-weight:500;color:var(--bp-text)" data-en="${esc(f.q)}" data-zh="${esc(f.qZh || f.q)}">${esc(f.q)}</summary>
+        <p style="margin:8px 0 0;color:var(--bp-text-secondary);line-height:1.6" data-en="${esc(f.a)}" data-zh="${esc(f.aZh || f.a)}">${esc(f.a)}</p>
       </details>`).join("\n      ");
 
   return `<!doctype html>
@@ -613,10 +630,10 @@ ${faqLd}
 
       <!-- Hero -->
       <div class="bp-hero">
-        <h1 data-zh="最佳 ${esc(scenario.title)} AI 工具 (${year})" data-en="Best AI Agent Skills for ${esc(scenario.title)} in ${year}">Best AI Agent Skills for ${esc(scenario.title)} in ${year}</h1>
-        <p>${esc(scenario.description)}</p>
+        <h1 data-zh="最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})" data-en="Best AI Agent Skills for ${esc(scenario.title)} in ${year}">Best AI Agent Skills for ${esc(scenario.title)} in ${year}</h1>
+        <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
-          <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.title)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
+          <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
         </div>` : ""}
@@ -638,7 +655,7 @@ ${faqLd}
 
       <!-- Skill Cards -->
       <section>
-        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.title)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
+        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.zhTitle)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
       ${skillCardsHtml}
       </section>
 
@@ -649,11 +666,11 @@ ${faqLd}
           <table class="bp-table">
             <thead>
               <tr>
-                <th>Tool</th>
+                <th data-en="Tool" data-zh="工具">Tool</th>
                 <th style="text-align:right">Stars</th>
-                <th>Language</th>
-                <th>License</th>
-                <th style="text-align:right">Score</th>
+                <th data-en="Language" data-zh="语言">Language</th>
+                <th data-en="License" data-zh="许可证">License</th>
+                <th style="text-align:right" data-en="Score" data-zh="评分">Score</th>
               </tr>
             </thead>
             <tbody>
@@ -714,6 +731,16 @@ async function main() {
   }
   const scenarios = JSON.parse(readFileSync(keywordsPath, "utf-8"));
   console.log(`Loaded ${scenarios.length} scenario definitions`);
+
+  // Attach Chinese title/description (scenario-zh.json) so static pages can emit
+  // bilingual data-zh/data-en. Fall back to English if a slug is missing.
+  const zhPath = join(__dirname, "scenario-zh.json");
+  const zhMap = existsSync(zhPath) ? JSON.parse(readFileSync(zhPath, "utf-8")) : {};
+  for (const sc of scenarios) {
+    const z = zhMap[sc.slug] || {};
+    sc.zhTitle = z.t || sc.title;
+    sc.zhDesc = z.d || sc.description;
+  }
 
   // Load asset tags from built index.html
   const indexHtml = readFileSync(join(DIST, "index.html"), "utf-8");
