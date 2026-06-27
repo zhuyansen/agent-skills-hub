@@ -327,6 +327,30 @@ export const translations = {
     // Footer
     "footer.source": "AgentSkillsHub · 数据来自 GitHub",
     "footer.autoUpdated": "每8小时自动更新",
+
+    // Category & Author pages
+    "common.home": "首页",
+    "common.exploreAll": "探索全部技能",
+    "category.heading": "{cat} 工具",
+    "category.summary": "{n}+ 个开源 {cat} 工具，按 Star 排序",
+    "category.loading": "正在加载 {cat} 工具…",
+    "category.noSkills": "该分类下暂无技能。",
+    "author.breadcrumb": "作者",
+    "author.verified": "已认证",
+    "author.verifiedTitle": "已认证创作者 / 组织",
+    "author.intro":
+      "{name} 是 {n} 个开源 AI agent skill / MCP server 的作者{focus}，在 AgentSkillsHub 经质量评分与安全审计收录。",
+    "author.focus": "，主攻 {cat}",
+    "author.loading": "正在加载作者资料…",
+    "author.noSkillsYet": "该作者暂无技能。",
+    "author.statSkills": "技能",
+    "author.statStars": "Star（热门仓库）",
+    "author.statQuality": "平均质量",
+    "author.statSafe": "🟢 已审计安全",
+    "author.installLabel": "一键装 {name} 的精选 skill（喂给你的 agent）",
+    "author.copy": "复制",
+    "author.copied": "✓ 已复制",
+    "author.noPublicSkills": "未找到 {name} 的公开技能。",
   },
   en: {
     "header.subtitle":
@@ -658,6 +682,30 @@ export const translations = {
 
     "footer.source": "AgentSkillsHub · Data sourced from GitHub",
     "footer.autoUpdated": "Auto-updated every 8 hours",
+
+    // Category & Author pages
+    "common.home": "Home",
+    "common.exploreAll": "Explore All Skills",
+    "category.heading": "{cat} Tools",
+    "category.summary": "{n}+ open-source {cat} tools ranked by stars",
+    "category.loading": "Loading {cat} tools…",
+    "category.noSkills": "No skills found in this category.",
+    "author.breadcrumb": "Authors",
+    "author.verified": "Verified",
+    "author.verifiedTitle": "Verified creator / organization",
+    "author.intro":
+      "{name} is the author of {n} open-source AI agent skills / MCP servers{focus}, indexed on AgentSkillsHub with quality scoring and security audits.",
+    "author.focus": ", focused on {cat}",
+    "author.loading": "Loading author profile…",
+    "author.noSkillsYet": "No skills found for this author yet.",
+    "author.statSkills": "Skills",
+    "author.statStars": "Stars (top repos)",
+    "author.statQuality": "Avg quality",
+    "author.statSafe": "🟢 Audited safe",
+    "author.installLabel": "Install {name}'s top skills (feed to your agent)",
+    "author.copy": "Copy",
+    "author.copied": "✓ Copied",
+    "author.noPublicSkills": "No public skills found for {name}.",
   },
 } as const;
 

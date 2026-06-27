@@ -7,12 +7,14 @@ import { SkeletonCards } from "../components/SkeletonCards";
 import { Pagination } from "../components/Pagination";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { useI18n } from "../i18n/I18nContext";
 import { isVerifiedOrgAuthor } from "../data/verifiedOrgs";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const PAGE_SIZE = 30;
 
 export function AuthorPage() {
+  const { t } = useI18n();
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
   const [data, setData] = useState<PaginatedSkills | null>(null);
@@ -110,10 +112,12 @@ export function AuthorPage() {
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-400 dark:text-gray-500 mb-4">
           <Link to="/" className="text-indigo-500 hover:text-indigo-600">
-            Home
+            {t("common.home")}
           </Link>
           <span className="mx-2">&gt;</span>
-          <span className="text-gray-600 dark:text-gray-300">Authors</span>
+          <span className="text-gray-600 dark:text-gray-300">
+            {t("author.breadcrumb")}
+          </span>
           <span className="mx-2">&gt;</span>
           <span className="text-gray-600 dark:text-gray-300">
             {displayName}
@@ -139,7 +143,7 @@ export function AuthorPage() {
               {verified && (
                 <span
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 shrink-0"
-                  title="Verified creator/organization"
+                  title={t("author.verifiedTitle")}
                 >
                   <svg
                     width="14"
@@ -149,17 +153,28 @@ export function AuthorPage() {
                   >
                     <path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4zm-1.4 14.6L6 12l1.4-1.4 3.2 3.2 6.2-6.2L18.2 9l-7.6 7.6z" />
                   </svg>
-                  Verified
+                  {t("author.verified")}
                 </span>
               )}
             </h1>
             {/* SEO-friendly unique intro */}
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1.5 leading-relaxed max-w-2xl">
               {total > 0
-                ? `${displayName} 是 ${total} 个开源 AI agent skill / MCP server 的作者${profile?.topCategory ? `,主攻 ${profile.topCategory}` : ""},在 AgentSkillsHub 经质量评分与安全审计收录。`
+                ? t("author.intro")
+                    .replace("{name}", displayName)
+                    .replace("{n}", String(total))
+                    .replace(
+                      "{focus}",
+                      profile?.topCategory
+                        ? t("author.focus").replace(
+                            "{cat}",
+                            profile.topCategory,
+                          )
+                        : "",
+                    )
                 : loading
-                  ? "Loading author profile..."
-                  : "No skills found for this author yet."}
+                  ? t("author.loading")
+                  : t("author.noSkillsYet")}
             </p>
             <a
               href={`https://github.com/${displayName}`}
@@ -184,13 +199,16 @@ export function AuthorPage() {
         {total > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
             {[
-              { v: total.toLocaleString(), l: "Skills" },
+              { v: total.toLocaleString(), l: t("author.statSkills") },
               {
                 v: `${(profile?.totalStars || 0).toLocaleString()}+`,
-                l: "Stars (top repos)",
+                l: t("author.statStars"),
               },
-              { v: `${profile?.avgQuality || 0}/100`, l: "Avg quality" },
-              { v: `${profile?.safeCount || 0}`, l: "🟢 Audited safe" },
+              {
+                v: `${profile?.avgQuality || 0}/100`,
+                l: t("author.statQuality"),
+              },
+              { v: `${profile?.safeCount || 0}`, l: t("author.statSafe") },
             ].map((s) => (
               <div
                 key={s.l}
@@ -212,7 +230,7 @@ export function AuthorPage() {
           <div className="rounded-xl overflow-hidden border border-gray-800 bg-[#0d1117] shadow-sm mb-8">
             <div className="flex items-center justify-between px-4 py-2 border-b border-gray-800">
               <span className="text-[11px] text-gray-400 font-medium">
-                一键装 {displayName} 的精选 skill(喂给你的 agent)
+                {t("author.installLabel").replace("{name}", displayName)}
               </span>
               <button
                 onClick={() => {
@@ -223,7 +241,7 @@ export function AuthorPage() {
                 }}
                 className="text-xs px-2.5 py-1 rounded-md text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors cursor-pointer"
               >
-                {copied ? "✓ Copied" : "Copy"}
+                {copied ? t("author.copied") : t("author.copy")}
               </button>
             </div>
             <code className="block px-4 py-3 font-mono text-sm text-gray-100 overflow-x-auto whitespace-nowrap">
@@ -259,7 +277,18 @@ export function AuthorPage() {
           </>
         ) : (
           <p className="text-center text-gray-400 py-16">
-            No public skills found for <b>{displayName}</b>.
+            {(() => {
+              const [before, after] = t("author.noPublicSkills").split(
+                "{name}",
+              );
+              return (
+                <>
+                  {before}
+                  <b>{displayName}</b>
+                  {after}
+                </>
+              );
+            })()}
           </p>
         )}
 
@@ -269,7 +298,7 @@ export function AuthorPage() {
             to="/"
             className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
-            Explore All Skills
+            {t("common.exploreAll")}
           </Link>
         </div>
       </main>

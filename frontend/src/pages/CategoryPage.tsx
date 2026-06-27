@@ -7,6 +7,7 @@ import { SkeletonCards } from "../components/SkeletonCards";
 import { Pagination } from "../components/Pagination";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { useI18n } from "../i18n/I18nContext";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -19,16 +20,29 @@ const CATEGORY_LABELS: Record<string, string> = {
   uncategorized: "AI Tool",
 };
 
+const CATEGORY_LABELS_ZH: Record<string, string> = {
+  "mcp-server": "MCP 服务器",
+  "claude-skill": "Claude 技能",
+  "codex-skill": "OpenClaw 生态",
+  "agent-tool": "Agent 工具",
+  "prompt-library": "提示词库",
+  "ai-coding-assistant": "AI 编程助手",
+  uncategorized: "AI 工具",
+};
+
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS);
 
 export function CategoryPage() {
+  const { t, lang } = useI18n();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [data, setData] = useState<PaginatedSkills | null>(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
-  const catLabel = CATEGORY_LABELS[slug || ""] || slug || "AI Tool";
+  const labels = lang === "zh" ? CATEGORY_LABELS_ZH : CATEGORY_LABELS;
+  const catLabel =
+    labels[slug || ""] || slug || (lang === "zh" ? "AI 工具" : "AI Tool");
 
   const load = useCallback(() => {
     if (!slug) return;
@@ -77,19 +91,21 @@ export function CategoryPage() {
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-400 mb-4">
           <Link to="/" className="text-indigo-500 hover:text-indigo-600">
-            Home
+            {t("common.home")}
           </Link>
           <span className="mx-2">&gt;</span>
           <span className="text-gray-600">{catLabel}</span>
         </nav>
 
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          {catLabel} Tools
+          {t("category.heading").replace("{cat}", catLabel)}
         </h1>
         <p className="text-gray-500 mb-6">
           {data?.total
-            ? `${data.total}+ open-source ${catLabel.toLowerCase()} tools ranked by stars`
-            : `Loading ${catLabel.toLowerCase()} tools...`}
+            ? t("category.summary")
+                .replace("{n}", String(data.total))
+                .replace("{cat}", catLabel.toLowerCase())
+            : t("category.loading").replace("{cat}", catLabel.toLowerCase())}
         </p>
 
         {/* Other category links */}
@@ -100,7 +116,7 @@ export function CategoryPage() {
               to={`/category/${c}/`}
               className="px-3 py-1 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-indigo-300 hover:text-indigo-600 transition-colors"
             >
-              {CATEGORY_LABELS[c]}
+              {labels[c]}
             </Link>
           ))}
         </div>
@@ -131,7 +147,7 @@ export function CategoryPage() {
           </>
         ) : (
           <p className="text-center text-gray-400 py-16">
-            No skills found in this category.
+            {t("category.noSkills")}
           </p>
         )}
 
@@ -141,7 +157,7 @@ export function CategoryPage() {
             to="/"
             className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
-            Explore All Skills
+            {t("common.exploreAll")}
           </Link>
         </div>
       </main>
