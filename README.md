@@ -1,8 +1,8 @@
 # AgentSkillsHub — the Claude Skills / MCP Server / Agent Tools directory
 
-> **AgentSkillsHub (Agent Skills Hub)** is the open-source directory for Claude Skills, MCP Servers, Codex Skills, and AI agent tools. 62,000+ projects · quality-scored on 10 dimensions · refreshed every 8 hours.
+> **AgentSkillsHub (Agent Skills Hub)** is the open-source directory for Claude Skills, MCP Servers, Codex Skills, and AI agent tools. 117,000+ projects · **security-graded** + quality-scored on 10 dimensions · refreshed every 8 hours.
 
-🌐 **Live**: [agentskillshub.top](https://agentskillshub.top) · 📰 [Newsletter](https://agentskillshub.top/#newsletter) · 𝕏 [Follow](https://x.com/GoSailGlobal)
+🌐 **Live**: [agentskillshub.top](https://agentskillshub.top) · 🛡️ [Security Report](https://agentskillshub.top/blog/securing-117k-ai-skills/) · 🏢 [Enterprise](https://agentskillshub.top/enterprise/) · 📰 [Newsletter](https://agentskillshub.top/#newsletter) · 𝕏 [Follow](https://x.com/GoSailGlobal)
 
 ## What is AgentSkillsHub?
 
