@@ -305,8 +305,8 @@ def _newsletter_email_html(
     site_url = settings.site_url or "https://agentskillshub.top"
 
     inner = _header_html(
-        "&#127381; New This Week",
-        f"{len(new_skills)} fresh AI agent tools discovered — {week_period}",
+        "&#127381; New to the Hub This Week",
+        f"{len(new_skills)} AI agent tools newly added to the catalog — {week_period}",
     )
 
     # Stats bar
@@ -334,8 +334,8 @@ def _newsletter_email_html(
     new_rows = _new_skills_rows_html(new_skills)
     inner += f"""\
   <tr><td style="padding:24px 40px 8px;">
-    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#127381; New This Week — Top 20</h2>
-    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">{week_period} · Newly indexed AI agent tools, ranked by stars</p>
+    <h2 style="color:#1a1a2e;margin:0 0 4px;font-size:18px;">&#127381; New to the Hub — Top 20</h2>
+    <p style="color:#94a3b8;font-size:13px;margin:0 0 16px;">{week_period} · Newly added to the catalog this week, ranked by stars</p>
   </td></tr>
   <tr><td style="padding:0 16px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
@@ -444,7 +444,7 @@ def send_newsletter(
         unsubscribe_url = f"{settings.site_url}/api/unsubscribe?token={unsub_token}" if unsub_token else ""
 
         html = _newsletter_email_html(new_skills, trending_skills, total_skills, week_period, unsubscribe_url)
-        subject = f"New This Week — {week_period}" if week_period else "Agent Skills Weekly"
+        subject = f"New to the Hub — {week_period}" if week_period else "Agent Skills Weekly"
         ok = _send_via_resend(
             to=email,
             subject=subject,

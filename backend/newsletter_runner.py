@@ -82,14 +82,46 @@ def main():
         seven_days_ago = now_utc - timedelta(days=7)
         bulk_import_cutoff = datetime(2026, 3, 24, 0, 0, 0, tzinfo=timezone.utc)
         first_seen_start = max(seven_days_ago, bulk_import_cutoff)
-        new_skills_raw = (
+        # Pull a wider pool, then exclude non-tools + dedup near-duplicates down to 20.
+        # Exclude `uncategorized` (learning notes / personal pages, not agent tools).
+        pool = (
             db.query(Skill)
             .filter(Skill.first_seen >= first_seen_start)
+            .filter(Skill.category != "uncategorized")
             .order_by(desc(Skill.stars))
-            .limit(20)
+            .limit(80)
             .all()
         )
-        logger.info("Got %d new skills this week (first_seen >= %s)", len(new_skills_raw), seven_days_ago.date())
+        # Dedup near-duplicates, keeping the highest-star one (pool is star-desc ordered).
+        # Two dupe patterns both merge on identical description AND a shared signal:
+        #   - same author + same desc  → a rename by one author (e.g. two "videocut" repos)
+        #   - same repo name + same desc → a cross-author fork (e.g. two "gini-agent" repos)
+        # Merging only when desc AND (author OR name) match avoids collapsing genuinely
+        # different tools that share a short generic description.
+        _seen_author: set = set()
+        _seen_name: set = set()
+        new_skills_raw = []
+        for s in pool:
+            desc_norm = (s.description or "").strip().lower()[:100]
+            if desc_norm:
+                ak = (s.author_name or "", desc_norm)
+                nk = ((s.repo_name or "").lower(), desc_norm)
+                if ak in _seen_author or nk in _seen_name:
+                    continue
+                _seen_author.add(ak)
+                _seen_name.add(nk)
+            else:
+                # No description → key on full_name so empty-desc skills never over-merge.
+                if s.repo_full_name in _seen_author:
+                    continue
+                _seen_author.add(s.repo_full_name)
+            new_skills_raw.append(s)
+            if len(new_skills_raw) >= 20:
+                break
+        logger.info(
+            "New this week: %d after dedup+filter (from %d in pool, first_seen >= %s)",
+            len(new_skills_raw), len(pool), seven_days_ago.date(),
+        )
 
         new_skills_data = [
             {
