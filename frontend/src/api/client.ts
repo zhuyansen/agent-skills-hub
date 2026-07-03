@@ -199,6 +199,10 @@ export interface Master {
   x_handle: string | null;
   bio: string | null;
   tags: string[];
+  // Optional — present when the RPC/table provides them (used by AuthorPage
+  // to match aliases and show the verified-master badge).
+  github_aliases?: string[];
+  is_verified?: boolean;
   avatar_url: string;
   repo_count: number;
   total_stars: number;

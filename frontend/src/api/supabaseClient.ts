@@ -582,6 +582,8 @@ export async function sbFetchMasters(): Promise<Master[]> {
       x_handle: m.x_handle,
       bio: m.bio,
       tags: Array.isArray(m.tags) ? m.tags : [],
+      github_aliases: m.github_aliases ?? [],
+      is_verified: !!m.is_verified,
       avatar_url: `https://avatars.githubusercontent.com/${m.github}`,
       repo_count: m.skill_count,
       total_stars: m.total_stars,

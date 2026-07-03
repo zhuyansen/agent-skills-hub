@@ -29,6 +29,84 @@ const MIN_SKILLS = 3;                  // multi-skill authors need ≥3 skills�
 const MIN_TOTAL_STARS = 300;           // …AND ≥300 cumulative stars
 const SOLO_STAR_FLOOR = 1000;          // OR a single famous author (≥1000 stars)
 
+/** Fetch verified masters + org builders (the same RPCs the SPA uses) so
+ *  creator pages can be enriched LobeHub-style: real display name, bio, X
+ *  handle, verified status → Person/Organization JSON-LD + sameAs links.
+ *  Both are optional — a failed RPC degrades to plain author pages. */
+async function fetchCreatorProfiles() {
+  const rpc = async (fn) => {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: "{}",
+      });
+      return res.ok ? await res.json() : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const masterMap = new Map(); // lowercase github (or alias) → master row
+  const mastersData = await rpc("get_masters");
+  const allMasters = [
+    ...(mastersData?.masters ?? []),
+    ...(mastersData?.emerging ?? []),
+  ];
+  for (const m of allMasters) {
+    if (m.github) masterMap.set(String(m.github).toLowerCase(), m);
+    for (const alias of m.github_aliases ?? []) {
+      masterMap.set(String(alias).toLowerCase(), m);
+    }
+  }
+
+  const orgSet = new Set(); // lowercase github org names
+  const orgsData = await rpc("get_org_builders");
+  for (const o of Array.isArray(orgsData) ? orgsData : []) {
+    if (o.github) orgSet.add(String(o.github).toLowerCase());
+  }
+
+  console.log(`  Creator profiles: ${masterMap.size} master keys, ${orgSet.size} orgs`);
+  return { masterMap, orgSet };
+}
+
+/** Person/Organization JSON-LD — the entity signal LobeHub-style collection
+ *  pages feed Google/LLMs. sameAs ties the page to GitHub + X profiles. */
+function buildCreatorJsonLd(group, master, isOrg) {
+  const canonical = `${SITE}/author/${group.author_name}/`;
+  const displayName = master?.name || group.author_name;
+  const sameAs = [`https://github.com/${group.author_name}`];
+  if (master?.x_handle) {
+    sameAs.push(`https://x.com/${String(master.x_handle).replace(/^@/, "")}`);
+  }
+  const entity = {
+    "@context": "https://schema.org",
+    "@type": isOrg ? "Organization" : "Person",
+    name: displayName,
+    alternateName: group.author_name,
+    url: canonical,
+    ...(group.author_avatar_url ? { image: group.author_avatar_url } : {}),
+    ...(master?.bio ? { description: master.bio } : {}),
+    sameAs,
+  };
+  const list = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Top AI agent skills by ${displayName}`,
+    itemListElement: group.skills.slice(0, 8).map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: s.repo_name,
+      url: `${SITE}/skill/${s.repo_full_name}/`,
+    })),
+  };
+  return `\n  <script type="application/ld+json">\n${JSON.stringify(entity, null, 2)}\n  </script>\n  <script type="application/ld+json">\n${JSON.stringify(list, null, 2)}\n  </script>`;
+}
+
 /** Fetch skills with author data (minimum fields, all rows). */
 async function fetchAuthorSkills() {
   const skills = [];
@@ -61,8 +139,11 @@ async function fetchAuthorSkills() {
   return skills;
 }
 
-/** Group skills by author_name, sorted by total stars. */
-function groupByAuthor(skills) {
+/** Group skills by author_name, sorted by total stars.
+ *  `forceInclude` (lowercase names) bypasses the thin-page threshold — curated
+ *  masters/orgs always get a page (their bio/verified content isn't thin, and
+ *  the creator-flywheel play depends on every master having a shareable page). */
+function groupByAuthor(skills, forceInclude = new Set()) {
   const groups = new Map();
   for (const s of skills) {
     const key = s.author_name;
@@ -90,7 +171,8 @@ function groupByAuthor(skills) {
       : 0;
     const passesThreshold =
       (g.skills.length >= MIN_SKILLS && g.total_stars >= MIN_TOTAL_STARS) ||
-      g.total_stars >= SOLO_STAR_FLOOR;
+      g.total_stars >= SOLO_STAR_FLOOR ||
+      forceInclude.has(String(g.author_name).toLowerCase());
     if (passesThreshold) qualified.push(g);
   }
   qualified.sort((a, b) => b.total_stars - a.total_stars);
@@ -100,7 +182,7 @@ function groupByAuthor(skills) {
 /** Build an SEO-optimized <noscript> summary for crawlers. Unique per author
  *  (intro + trust summary + 8 skills) so Google has a reason to index it, not
  *  a thin near-duplicate list. */
-function buildSeoNoScript(group) {
+function buildSeoNoScript(group, master = null, isOrg = false) {
   const top = group.skills.slice(0, 8);
   const listItems = top
     .map((s) => {
@@ -116,22 +198,41 @@ function buildSeoNoScript(group) {
   const safeN = group.skills.filter((s) => s.security_grade === "safe").length;
   const scored = group.skills.filter((s) => typeof s.quality_score === "number");
   const avgQ = scored.length ? Math.round(scored.reduce((a, s) => a + s.quality_score, 0) / scored.length) : 0;
+  const displayName = master?.name || group.author_name;
+  const who = isOrg ? "organization behind" : "author of";
+  const verifiedLine = master?.is_verified
+    ? ` ${esc(displayName)} is a <strong>Verified Creator</strong> on AgentSkillsHub.`
+    : "";
+  const bioLine = master?.bio ? `<p>${esc(master.bio)}</p>` : "";
+  const xLink = master?.x_handle
+    ? ` · <a href="https://x.com/${esc(String(master.x_handle).replace(/^@/, ""))}" rel="noopener">Follow on X</a>`
+    : "";
   return `
     <noscript>
-      <h1>${esc(group.author_name)} — ${group.skills.length} Open-Source AI Agent Skills</h1>
-      <p><strong>${esc(group.author_name)}</strong> is the author of ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and security-graded${safeN ? ` — ${safeN} verified safe` : ""}.</p>
-      <h2>Top skills by ${esc(group.author_name)}</h2>
+      <h1>${esc(displayName)} — ${group.skills.length} Open-Source AI Agent Skills</h1>
+      <p><strong>${esc(displayName)}</strong> is the ${who} ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and security-graded${safeN ? ` — ${safeN} verified safe` : ""}.${verifiedLine}</p>
+      ${bioLine}
+      <h2>Top skills by ${esc(displayName)}</h2>
       <ul>${listItems}</ul>
-      <p><a href="https://github.com/${esc(group.author_name)}">View ${esc(group.author_name)} on GitHub</a> · <a href="${SITE}/">Explore audited agent skills</a></p>
+      <p><a href="https://github.com/${esc(group.author_name)}">View ${esc(group.author_name)} on GitHub</a>${xLink} · <a href="${SITE}/">Explore audited agent skills</a></p>
     </noscript>`;
 }
 
 /** Generate HTML file for one author. */
-function writeAuthorHtml(group, baseHtml) {
-  const title = `${group.author_name} — ${group.skills.length} Claude Skills & Agent Tools · AgentSkillsHub`;
-  const description = `Browse all ${group.skills.length} open-source AI agent skills, MCP servers, and Claude skills by ${group.author_name}. ${group.total_stars.toLocaleString()}+ GitHub stars. Ranked by stars and quality score.`;
+function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
+  const key = String(group.author_name).toLowerCase();
+  const master = masterMap.get(key) || null;
+  const isOrg = orgSet.has(key);
+  const displayName = master?.name || group.author_name;
+  // Name-search intent title (LobeHub pattern: "Guizang – Top 3 AI Agent
+  // Skills"): people Google the creator's NAME — lead with it, add the
+  // security angle only we can claim.
+  const safeCountForTitle = group.skills.filter((s) => s.security_grade === "safe").length;
+  const title = `${displayName} — Top ${group.skills.length} AI Agent Skills${safeCountForTitle ? " (Security-Graded)" : ""} · Agent Skills Hub`;
+  const description = `${displayName}'s AI agent skills: ${group.skills.length} open-source skills & MCP servers, ${group.total_stars.toLocaleString()}+ GitHub stars${safeCountForTitle ? `, ${safeCountForTitle} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
   const canonical = `${SITE}/author/${group.author_name}/`;
-  const noscript = buildSeoNoScript(group);
+  const noscript = buildSeoNoScript(group, master, isOrg);
+  const jsonLd = buildCreatorJsonLd(group, master, isOrg);
 
   let html = baseHtml
     .replace(/<title>[^<]+<\/title>/, `<title>${esc(title)}</title>`)
@@ -164,7 +265,9 @@ function writeAuthorHtml(group, baseHtml) {
     );
   }
 
-  // Inject SEO noscript right before closing </body>
+  // Inject Person/Organization + ItemList JSON-LD before </head>, and the
+  // SEO noscript right before closing </body>
+  html = html.replace("</head>", `${jsonLd}\n</head>`);
   html = html.replace("</body>", `${noscript}\n  </body>`);
 
   const outDir = join(DIST, "author", group.author_name);
@@ -179,13 +282,15 @@ async function main() {
   const skills = await fetchAuthorSkills();
   console.log(`  Loaded ${skills.length} skills`);
 
-  const groups = groupByAuthor(skills);
-  console.log(`  Qualified authors: ${groups.length} (≥${MIN_SKILLS} skills & ≥${MIN_TOTAL_STARS}★, or ≥${SOLO_STAR_FLOOR}★ solo; cap ${AUTHOR_LIMIT})`);
+  const profiles = await fetchCreatorProfiles();
+  const forceInclude = new Set([...profiles.masterMap.keys(), ...profiles.orgSet]);
+  const groups = groupByAuthor(skills, forceInclude);
+  console.log(`  Qualified authors: ${groups.length} (≥${MIN_SKILLS} skills & ≥${MIN_TOTAL_STARS}★, or ≥${SOLO_STAR_FLOOR}★ solo, or curated master/org; cap ${AUTHOR_LIMIT})`);
 
   let generated = 0;
   for (const g of groups) {
     try {
-      writeAuthorHtml(g, baseHtml);
+      writeAuthorHtml(g, baseHtml, profiles);
       generated++;
     } catch (err) {
       console.warn(`  ⚠ Failed to generate ${g.author_name}: ${err.message}`);
