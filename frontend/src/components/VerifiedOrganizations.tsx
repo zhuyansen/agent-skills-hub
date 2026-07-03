@@ -32,18 +32,25 @@ export function VerifiedOrganizations() {
         {VERIFIED_ORGANIZATIONS.map((org) => (
           <div key={org.github} className="surface surface-hover p-5">
             <div className="flex items-start gap-4">
-              <img
-                src={org.logo}
-                alt={org.name}
-                width={48}
-                height={48}
-                className="w-12 h-12 rounded-xl border border-[var(--border)] shrink-0"
-                loading="lazy"
-              />
+              <Link to={`/organization/${org.github}/`} className="shrink-0">
+                <img
+                  src={org.logo}
+                  alt={org.name}
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 rounded-xl border border-[var(--border)] hover:border-indigo-400 transition-colors"
+                  loading="lazy"
+                />
+              </Link>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
                   <h3 className="font-bold text-gray-900 dark:text-white truncate">
-                    {org.name}
+                    <Link
+                      to={`/organization/${org.github}/`}
+                      className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    >
+                      {org.name}
+                    </Link>
                   </h3>
                   <span
                     className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-emerald-500 text-white text-[10px] font-bold shrink-0"

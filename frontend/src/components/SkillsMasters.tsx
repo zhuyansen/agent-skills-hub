@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   fetchMasters,
   fetchOrgBuilders,
@@ -153,20 +154,29 @@ export function SkillsMasters({
                 key={m.github}
                 className="bg-gradient-to-br from-white to-indigo-50/30 dark:from-gray-800/80 dark:to-indigo-900/10 border border-indigo-100 dark:border-indigo-800 rounded-xl p-5 hover:shadow-lg transition-all"
               >
-                {/* Header */}
+                {/* Header — avatar + name link INTO our creator page (the
+                    homepage previously leaked all master traffic to github.com;
+                    the creator page is the shareable asset, keep users here). */}
                 <div className="flex items-start gap-4 mb-4">
-                  <img
-                    src={m.avatar_url}
-                    alt={m.name}
-                    loading="lazy"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14 rounded-full border-2 border-indigo-200 dark:border-indigo-700 shadow-sm"
-                  />
+                  <Link to={`/author/${m.github}/`} className="shrink-0">
+                    <img
+                      src={m.avatar_url}
+                      alt={m.name}
+                      loading="lazy"
+                      width={56}
+                      height={56}
+                      className="w-14 h-14 rounded-full border-2 border-indigo-200 dark:border-indigo-700 shadow-sm hover:border-indigo-400 transition-colors"
+                    />
+                  </Link>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                        {m.name}
+                        <Link
+                          to={`/author/${m.github}/`}
+                          className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                        >
+                          {m.name}
+                        </Link>
                       </h3>
                       <span className="px-1.5 py-0.5 text-[10px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full font-semibold">
                         {t("masters.verified")}
@@ -330,24 +340,27 @@ export function SkillsMasters({
                   className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md hover:border-purple-200 dark:hover:border-purple-700 transition-all"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <img
-                      src={o.avatar_url}
-                      alt={o.github}
-                      loading="lazy"
-                      width={40}
-                      height={40}
-                      className="w-10 h-10 rounded-full border border-gray-100 dark:border-gray-800"
-                    />
+                    <Link
+                      to={`/organization/${o.github}/`}
+                      className="shrink-0"
+                    >
+                      <img
+                        src={o.avatar_url}
+                        alt={o.github}
+                        loading="lazy"
+                        width={40}
+                        height={40}
+                        className="w-10 h-10 rounded-full border border-gray-100 dark:border-gray-800 hover:border-purple-300 transition-colors"
+                      />
+                    </Link>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <a
-                          href={`https://github.com/${o.github}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          to={`/organization/${o.github}/`}
                           className="font-semibold text-sm text-gray-900 dark:text-gray-100 hover:text-purple-600 transition-colors truncate block"
                         >
                           {o.github}
-                        </a>
+                        </Link>
                         <span className="px-1.5 py-0.5 text-[10px] bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full font-semibold shrink-0">
                           {t("emerging.rising")}
                         </span>

@@ -77,7 +77,7 @@ async function fetchCreatorProfiles() {
 /** Person/Organization JSON-LD — the entity signal LobeHub-style collection
  *  pages feed Google/LLMs. sameAs ties the page to GitHub + X profiles. */
 function buildCreatorJsonLd(group, master, isOrg) {
-  const canonical = `${SITE}/author/${group.author_name}/`;
+  const canonical = `${SITE}/${isOrg ? "organization" : "author"}/${group.author_name}/`;
   const displayName = master?.name || group.author_name;
   const sameAs = [`https://github.com/${group.author_name}`];
   if (master?.x_handle) {
@@ -230,7 +230,9 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   const safeCountForTitle = group.skills.filter((s) => s.security_grade === "safe").length;
   const title = `${displayName} — Top ${group.skills.length} AI Agent Skills${safeCountForTitle ? " (Security-Graded)" : ""} · Agent Skills Hub`;
   const description = `${displayName}'s AI agent skills: ${group.skills.length} open-source skills & MCP servers, ${group.total_stars.toLocaleString()}+ GitHub stars${safeCountForTitle ? `, ${safeCountForTitle} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
-  const canonical = `${SITE}/author/${group.author_name}/`;
+  // Orgs live at /organization/{name}/ (their canonical); people at /author/.
+  const ns = isOrg ? "organization" : "author";
+  const canonical = `${SITE}/${ns}/${group.author_name}/`;
   const noscript = buildSeoNoScript(group, master, isOrg);
   const jsonLd = buildCreatorJsonLd(group, master, isOrg);
 
@@ -270,9 +272,26 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   html = html.replace("</head>", `${jsonLd}\n</head>`);
   html = html.replace("</body>", `${noscript}\n  </body>`);
 
-  const outDir = join(DIST, "author", group.author_name);
+  const outDir = join(DIST, ns, group.author_name);
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "index.html"), html);
+
+  // Orgs briefly lived at /author/{org}/ (deployed 2026-07-03 morning) — leave
+  // a redirect stub there so old links and any early crawls consolidate onto
+  // the /organization/ canonical. Static hosting = meta refresh + canonical.
+  if (isOrg) {
+    const stubDir = join(DIST, "author", group.author_name);
+    mkdirSync(stubDir, { recursive: true });
+    writeFileSync(
+      join(stubDir, "index.html"),
+      `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>${esc(displayName)} — moved</title>
+<link rel="canonical" href="${canonical}">
+<meta http-equiv="refresh" content="0;url=${canonical}">
+<meta name="robots" content="noindex">
+</head><body><p>Moved to <a href="${canonical}">${canonical}</a></p></body></html>`,
+    );
+  }
 }
 
 async function main() {
@@ -304,6 +323,7 @@ async function main() {
     author_name: g.author_name,
     total_stars: g.total_stars,
     skill_count: g.skills.length,
+    is_org: profiles.orgSet.has(String(g.author_name).toLowerCase()),
   }));
   writeFileSync(
     join(DIST, "_authors-manifest.json"),

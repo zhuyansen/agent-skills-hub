@@ -111,6 +111,16 @@ function App() {
                   />
                   <Route path="/author/:username" element={<AuthorPage />} />
                   <Route path="/author/:username/" element={<AuthorPage />} />
+                  {/* Organizations get their own namespace; AuthorPage detects
+                      the route and renders Organization schema/labels. */}
+                  <Route
+                    path="/organization/:username"
+                    element={<AuthorPage />}
+                  />
+                  <Route
+                    path="/organization/:username/"
+                    element={<AuthorPage />}
+                  />
                   <Route path="/book" element={<BookIndexPage />} />
                   <Route path="/book/" element={<BookIndexPage />} />
                   <Route path="/book/:slug" element={<BookChapterPage />} />

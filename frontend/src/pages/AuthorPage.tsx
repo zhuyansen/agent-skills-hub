@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkills, fetchMasters, fetchOrgBuilders } from "../api/client";
 import type { Master } from "../api/client";
@@ -18,6 +18,10 @@ export function AuthorPage() {
   const { t } = useI18n();
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  // /organization/{name}/ is the canonical namespace for GitHub orgs;
+  // /author/{name}/ stays canonical for individual creators.
+  const isOrgRoute = location.pathname.startsWith("/organization/");
   const [data, setData] = useState<PaginatedSkills | null>(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -115,6 +119,11 @@ export function AuthorPage() {
   const total = data?.total ?? 0;
   const verified = isVerifiedOrgAuthor(githubName) || !!master?.is_verified;
   const xHandle = master?.x_handle?.replace(/^@/, "") || null;
+  // Entity type: org-builders RPC hit, curated verified-org list, or being on
+  // the /organization/ route all mean "organization".
+  const entityIsOrg = isOrg || isOrgRoute || isVerifiedOrgAuthor(githubName);
+  const canonicalPath = entityIsOrg ? "organization" : "author";
+  const canonicalUrl = `https://agentskillshub.top/${canonicalPath}/${username}/`;
   const installCmd = profile?.topRepos.length
     ? `npx @agentskillshub/cli install ${profile.topRepos.slice(0, 3).join(" ")}`
     : "";
@@ -124,10 +133,10 @@ export function AuthorPage() {
   const description = `${displayName}'s AI agent skills: ${total} open-source skills & MCP servers${profile?.safeCount ? `, ${profile.safeCount} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
   const personLd = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": isOrg ? "Organization" : "Person",
+    "@type": entityIsOrg ? "Organization" : "Person",
     name: displayName,
     alternateName: githubName,
-    url: `https://agentskillshub.top/author/${username}/`,
+    url: canonicalUrl,
     ...(profile?.avatar ? { image: profile.avatar } : {}),
     ...(master?.bio ? { description: master.bio } : {}),
     sameAs: [
@@ -141,10 +150,7 @@ export function AuthorPage() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link
-          rel="canonical"
-          href={`https://agentskillshub.top/author/${username}/`}
-        />
+        <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="profile" />

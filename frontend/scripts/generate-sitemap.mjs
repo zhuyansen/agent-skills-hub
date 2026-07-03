@@ -317,8 +317,10 @@ async function main() {
       const authorEntries = filtered.map((a) => {
         // Priority scales with total_stars: 5K+ → 0.80, 1K-5K → 0.70, rest → 0.65
         const priority = a.total_stars >= 5000 ? "0.80" : a.total_stars >= 1000 ? "0.70" : "0.65";
+        // Orgs live under /organization/ (their canonical); people under /author/.
+        const ns = a.is_org ? "organization" : "author";
         return `  <url>
-    <loc>${SITE}/author/${encodeURIComponent(a.author_name)}/</loc>
+    <loc>${SITE}/${ns}/${encodeURIComponent(a.author_name)}/</loc>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
     <lastmod>${today}</lastmod>
