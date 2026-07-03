@@ -5,10 +5,8 @@ import { useI18n } from "../i18n/I18nContext";
 // displayed command to the clean scoped form and reveals the npm link.
 // Published 2026-06-14: https://www.npmjs.com/package/@agentskillshub/cli
 const CLI_NPM_PUBLISHED = true;
-// Flip to true once @agentskillshub/mcp is published on npm. Until then the
-// config points at the GitHub repo (npx can run it directly), so the button
-// works the moment the repo is public — before the npm publish lands.
-const MCP_NPM_PUBLISHED = false;
+// Published 2026-07-03: https://www.npmjs.com/package/@agentskillshub/mcp
+const MCP_NPM_PUBLISHED = true;
 
 const CLI_CMD = CLI_NPM_PUBLISHED
   ? 'npx @agentskillshub/cli search "scrape a website" --safe'
