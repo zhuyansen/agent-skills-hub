@@ -58,9 +58,16 @@ export function AuthorPage() {
     };
   }, [username]);
 
+  // fetchError separates "the query returned zero rows" from "the query never
+  // arrived" (slow/flaky Supabase closing connections). Without it a transient
+  // network failure rendered as "No public skills found for {name}" — a lying
+  // empty state, worst possible message on a creator's own vanity page.
+  const [fetchError, setFetchError] = useState(false);
+
   const load = useCallback(() => {
     if (!username) return;
     setLoading(true);
+    setFetchError(false);
     fetchSkills({
       author: username,
       sort_by: "stars",
@@ -69,7 +76,10 @@ export function AuthorPage() {
       page_size: PAGE_SIZE,
     })
       .then(setData)
-      .catch(console.error)
+      .catch((err) => {
+        console.error(err);
+        setFetchError(true);
+      })
       .finally(() => setLoading(false));
   }, [username, page]);
 
@@ -354,6 +364,18 @@ export function AuthorPage() {
               </div>
             )}
           </>
+        ) : fetchError ? (
+          <div className="text-center py-16">
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              {t("author.loadError")}
+            </p>
+            <button
+              onClick={load}
+              className="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors cursor-pointer"
+            >
+              {t("author.retry")}
+            </button>
+          </div>
         ) : (
           <p className="text-center text-gray-400 py-16">
             {(() => {

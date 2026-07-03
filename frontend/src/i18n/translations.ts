@@ -369,6 +369,8 @@ export const translations = {
     "author.focus": "，主攻 {cat}",
     "author.loading": "正在加载作者资料…",
     "author.noSkillsYet": "该作者暂无技能。",
+    "author.loadError": "加载失败 —— 数据库暂时抖了一下,不是这位作者没有作品。",
+    "author.retry": "重试",
     "author.statSkills": "技能",
     "author.statStars": "Star（热门仓库）",
     "author.statQuality": "平均质量",
@@ -753,6 +755,9 @@ export const translations = {
     "author.focus": ", focused on {cat}",
     "author.loading": "Loading author profile…",
     "author.noSkillsYet": "No skills found for this author yet.",
+    "author.loadError":
+      "Failed to load — the database hiccuped, this creator's skills are still here.",
+    "author.retry": "Retry",
     "author.statSkills": "Skills",
     "author.statStars": "Stars (top repos)",
     "author.statQuality": "Avg quality",
