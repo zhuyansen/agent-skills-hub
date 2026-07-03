@@ -16,7 +16,6 @@ Zero cost: pure regex/string matching, no external API calls.
 import json
 import logging
 import re
-from typing import Optional
 
 from sqlalchemy.orm import Session
 

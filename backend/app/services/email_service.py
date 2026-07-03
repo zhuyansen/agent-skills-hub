@@ -1,7 +1,6 @@
 """Email service: send verification, welcome & newsletter emails via Resend or BillionMail."""
 
 import logging
-from typing import Optional
 
 import httpx
 
@@ -149,7 +148,6 @@ def _new_skills_rows_html(new_skills: list, max_items: int = 20) -> str:
         desc = skill.get("description", "")[:100]
         stars = skill.get("stars", 0)
         star_gain = skill.get("star_gain", 0)
-        url = skill.get("repo_url", "#")
         category = skill.get("category", "")
         site_url = settings.site_url or "https://agentskillshub.top"
         full_name = skill.get("repo_full_name", "")

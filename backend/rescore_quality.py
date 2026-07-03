@@ -9,7 +9,10 @@ Discipline (see memory: dont-overload-supabase, scan-all-single-transaction):
 
 Usage:  python rescore_quality.py [--start-id N] [--min-stars 5]
 """
-import os, sys, time, logging
+import os
+import sys
+import time
+import logging
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -49,7 +52,7 @@ def main():
                     qa._analyze(s)          # mutates quality_* fields in memory
                 db.commit()                 # one commit per chunk
                 break
-            except OperationalError as e:
+            except OperationalError:
                 db.rollback()
                 wait = min(2 ** attempt, 30)
                 log.warning(f"  conn dropped (attempt {attempt}/{MAX_RETRY}) @ id>{last_id}; reconnecting in {wait}s")

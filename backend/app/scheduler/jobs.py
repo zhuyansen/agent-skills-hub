@@ -6,6 +6,7 @@ from typing import Any, Optional
 
 import httpx
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from sqlalchemy.orm import Session
 
 from app.config import settings
 

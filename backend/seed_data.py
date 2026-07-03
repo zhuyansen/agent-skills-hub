@@ -5,9 +5,7 @@ Also searches for trending repos from the last 3 days.
 Run: cd backend && source venv/bin/activate && python seed_data.py
 """
 import asyncio
-import json
 import logging
-import sys
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Any

@@ -129,3 +129,29 @@ class TestSizeBonus:
 
     def test_large(self):
         assert ScoringEngine._size_bonus(_make_skill(repo_size_kb=10000)) == 0.2
+
+
+class TestFinalizeScore:
+    """The ×1.42 display rescale (2026-07-03). 127K DB rows were backfilled
+    with the same formula — if SCALE changes, the backfill must change too."""
+
+    def test_scale_matches_backfill_factor(self):
+        assert ScoringEngine.SCALE == 1.42
+
+    def test_known_values(self):
+        # Old empirical ceiling 66.8 → 94.9 (anthropics/skills).
+        assert ScoringEngine.finalize_score(0.668) == 94.9
+        assert ScoringEngine.finalize_score(0.0) == 0.0
+
+    def test_cap_at_100(self):
+        assert ScoringEngine.finalize_score(0.9) == 100.0
+        assert ScoringEngine.finalize_score(5.0) == 100.0
+
+    def test_monotonic_never_reorders(self):
+        raws = [i / 1000 for i in range(0, 1001, 7)]
+        scores = [ScoringEngine.finalize_score(r) for r in raws]
+        assert scores == sorted(scores)
+
+    def test_range_bounds(self):
+        for r in (0.0, 0.1, 0.5, 0.704, 0.71, 1.0):
+            assert 0.0 <= ScoringEngine.finalize_score(r) <= 100.0

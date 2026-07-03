@@ -1,6 +1,5 @@
 """V4 migration: Masters X data + project_type + agent_readiness."""
 import sqlite3
-import sys
 
 DB_PATH = "skills_hub.db"
 

@@ -690,7 +690,7 @@ def submit_skill(
         else:
             risk_note = "unscanned:no_readme"
     except Exception as scan_err:
-        risk_note = f"unscanned:error"
+        risk_note = "unscanned:error"
         logger.debug("Pre-scan skipped for %s: %s", full_name, scan_err)
 
     # Add to extra repos with 'pending' status for admin review
@@ -1299,7 +1299,6 @@ def analyzer_scan(
     6. Returns combined results
     """
     import re as _re
-    import time
 
     repo_url = body.get("repo_url", "").strip()
     if not repo_url:

@@ -50,6 +50,16 @@ class ScoringEngine:
     # them in sync if this ever changes.
     SCALE = 1.42
 
+    @classmethod
+    def finalize_score(cls, raw: float) -> float:
+        """Map the 0-1 weighted signal sum to the displayed 0-100 score.
+
+        Monotonic ×SCALE rescale capped at 100 — the composite is a ranking
+        index, so rescaling the display range never reorders anything.
+        Covered by tests/test_scorer.py.
+        """
+        return round(min(raw * 100 * cls.SCALE, 100.0), 1)
+
     # Domain specialization bonus — from SkillsBench Table 4
     # Paper shows Skills benefit varies hugely by domain:
     #   Healthcare: +51.9pp, Manufacturing: +41.9pp (high benefit)
@@ -174,7 +184,7 @@ class ScoringEngine:
             )
             updates.append({
                 "id": row.id,
-                "score": round(min(raw * 100 * self.SCALE, 100.0), 1),
+                "score": self.finalize_score(raw),
                 "star_momentum": round(momentum, 3),
             })
 

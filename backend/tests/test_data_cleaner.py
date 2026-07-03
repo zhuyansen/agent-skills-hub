@@ -1,7 +1,6 @@
 """Unit tests for DataCleaner."""
 
 import json
-from datetime import datetime, timezone
 
 from app.services.data_cleaner import DataCleaner
 

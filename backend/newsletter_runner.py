@@ -36,6 +36,40 @@ from app.services.email_service import send_newsletter  # noqa: E402
 from sqlalchemy import desc, func  # noqa: E402
 
 
+def select_new_skills(pool, limit=20):
+    """Dedup near-duplicate skills, keeping the highest-star one (pool must be
+    star-desc ordered). Two dupe patterns both merge on identical description
+    AND a shared signal:
+      - same author + same desc  → a rename by one author (e.g. two "videocut" repos)
+      - same repo name + same desc → a cross-author fork (e.g. two "gini-agent" repos)
+    Merging only when desc AND (author OR name) match avoids collapsing genuinely
+    different tools that share a short generic description.
+
+    Pure function over objects with .description/.author_name/.repo_name/
+    .repo_full_name — covered by tests/test_newsletter_selection.py.
+    """
+    seen_author, seen_name = set(), set()
+    picked = []
+    for s in pool:
+        desc_norm = (s.description or "").strip().lower()[:100]
+        if desc_norm:
+            ak = (s.author_name or "", desc_norm)
+            nk = ((s.repo_name or "").lower(), desc_norm)
+            if ak in seen_author or nk in seen_name:
+                continue
+            seen_author.add(ak)
+            seen_name.add(nk)
+        else:
+            # No description → key on full_name so empty-desc skills never over-merge.
+            if s.repo_full_name in seen_author:
+                continue
+            seen_author.add(s.repo_full_name)
+        picked.append(s)
+        if len(picked) >= limit:
+            break
+    return picked
+
+
 def main():
     logger.info("Starting newsletter runner...")
 
@@ -92,32 +126,7 @@ def main():
             .limit(80)
             .all()
         )
-        # Dedup near-duplicates, keeping the highest-star one (pool is star-desc ordered).
-        # Two dupe patterns both merge on identical description AND a shared signal:
-        #   - same author + same desc  → a rename by one author (e.g. two "videocut" repos)
-        #   - same repo name + same desc → a cross-author fork (e.g. two "gini-agent" repos)
-        # Merging only when desc AND (author OR name) match avoids collapsing genuinely
-        # different tools that share a short generic description.
-        _seen_author: set = set()
-        _seen_name: set = set()
-        new_skills_raw = []
-        for s in pool:
-            desc_norm = (s.description or "").strip().lower()[:100]
-            if desc_norm:
-                ak = (s.author_name or "", desc_norm)
-                nk = ((s.repo_name or "").lower(), desc_norm)
-                if ak in _seen_author or nk in _seen_name:
-                    continue
-                _seen_author.add(ak)
-                _seen_name.add(nk)
-            else:
-                # No description → key on full_name so empty-desc skills never over-merge.
-                if s.repo_full_name in _seen_author:
-                    continue
-                _seen_author.add(s.repo_full_name)
-            new_skills_raw.append(s)
-            if len(new_skills_raw) >= 20:
-                break
+        new_skills_raw = select_new_skills(pool, limit=20)
         logger.info(
             "New this week: %d after dedup+filter (from %d in pool, first_seen >= %s)",
             len(new_skills_raw), len(pool), seven_days_ago.date(),

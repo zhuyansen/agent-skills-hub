@@ -5,7 +5,6 @@ outputs a markdown report to backend/output/.
 """
 
 import os
-import json
 import datetime
 from pathlib import Path
 
@@ -73,7 +72,6 @@ def generate_report(skills: list, today: str) -> str:
 
     for i, s in enumerate(top10):
         name = s.get("repo_full_name", "")
-        repo = s.get("repo_name", "")
         desc = (s.get("description") or "")[:80]
         stars = s.get("stars", 0)
         prev = s.get("prev_stars", 0) or 0

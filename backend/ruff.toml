@@ -1,0 +1,21 @@
+# Ruff config — backend lint baseline (added 2026-07-03, /health follow-up).
+line-length = 120
+
+[lint]
+# Default rule set (E/F). Add more as the baseline gets cleaner.
+
+[lint.per-file-ignores]
+# Runner scripts intentionally set env vars (load_dotenv / DATABASE_URL) BEFORE
+# importing app.* — E402 (import not at top) is the designed pattern here, not
+# an accident. See newsletter_runner.py / sync_runner.py headers.
+"*_runner.py" = ["E402"]
+"test_newsletter.py" = ["E402"]
+"seed_data.py" = ["E402"]
+"add_masters.py" = ["E402"]
+"migrate_v2.py" = ["E402"]
+"migrate_v3.py" = ["E402"]
+"daily_report_generator.py" = ["E402"]
+"readme_backfill.py" = ["E402", "E701", "E702"]
+"rescore_quality.py" = ["E402", "E701", "E702"]
+# One-off analysis scripts, compressed style is fine.
+"sim_quality.py" = ["E402", "E701", "E731"]

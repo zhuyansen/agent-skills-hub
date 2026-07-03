@@ -14,7 +14,6 @@ supabase_url = os.environ.get("SUPABASE_DB_URL", "").strip()
 if supabase_url:
     os.environ["DATABASE_URL"] = supabase_url
 
-from app.config import settings  # noqa: E402
 from app.database import SessionLocal  # noqa: E402
 from app.models.skill import Skill, WeeklyTrendingSnapshot  # noqa: E402
 from app.services.email_service import send_newsletter  # noqa: E402
@@ -42,25 +41,11 @@ def main():
             .limit(80)
             .all()
         )
-        _seen_author: set = set()
-        _seen_name: set = set()
-        new_skills_raw = []
-        for s in pool:
-            desc_norm = (s.description or "").strip().lower()[:100]
-            if desc_norm:
-                ak = (s.author_name or "", desc_norm)
-                nk = ((s.repo_name or "").lower(), desc_norm)
-                if ak in _seen_author or nk in _seen_name:
-                    continue
-                _seen_author.add(ak)
-                _seen_name.add(nk)
-            else:
-                if s.repo_full_name in _seen_author:
-                    continue
-                _seen_author.add(s.repo_full_name)
-            new_skills_raw.append(s)
-            if len(new_skills_raw) >= 20:
-                break
+        # Single source of truth for the dedup — same function the Monday
+        # runner uses (and the unit tests cover).
+        from newsletter_runner import select_new_skills  # noqa: E402
+
+        new_skills_raw = select_new_skills(pool, limit=20)
         logger.info("New this week: %d after dedup+filter (from %d pool)", len(new_skills_raw), len(pool))
 
         new_skills_data = [

@@ -5,7 +5,8 @@ compares the current composite vs a proposed rebalanced+curved one, and prints
 the projected new distribution. Lets us validate the recalibration before any
 full re-scan.
 """
-import os, json, statistics as st
+import os
+import statistics as st
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
