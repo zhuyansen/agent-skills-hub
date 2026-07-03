@@ -165,6 +165,24 @@ export const translations = {
     "audit.hint":
       "免费 · 无需注册 · 已覆盖 117,000+ 个 AI agent skill 与 MCP server",
 
+    // Audit verdict card (skill detail page)
+    "auditCard.title": "安全审计结论",
+    "auditCard.method": "基础审计 · 规则扫描",
+    "auditCard.verdict.safe":
+      "已审查，未发现阻断性问题 —— 一般使用没问题。上生产前仍需确认凭证的处理方式。",
+    "auditCard.verdict.caution":
+      "存在需注意的信号 —— 个人尝试可以；接入品牌或生产环境前，请先核查凭证与维护者。",
+    "auditCard.verdict.unsafe":
+      "被标记为不安全 —— 不要用真实凭证或生产数据运行它。",
+    "auditCard.verdict.reject": "已拒绝 —— 存在已知严重问题，请避开。",
+    "auditCard.verdict.unknown":
+      "尚无人审计过它 —— 它是个黑盒。在信任它之前，请检查代码、它索要的凭证，以及维护者是谁。",
+    "auditCard.check.credentials": "它要什么凭证？凭证存在哪里？",
+    "auditCard.check.maintainer": "维护者可识别吗？仓库还在活跃维护吗？",
+    "auditCard.check.code": "装之前读一遍代码 —— 尤其是安装脚本和网络请求。",
+    "auditCard.rescan": "运行实时扫描",
+    "auditCard.deepAudit": "5 维深度审计（企业版）",
+
     // Scenarios
     "scenarios.title": "场景推荐组合",
     "scenarios.subtitle": "精选场景化工作流，多技能协同完成任务",
@@ -522,6 +540,27 @@ export const translations = {
     "audit.cta": "Check it — free",
     "audit.hint":
       "Free · No signup · Covers 117,000+ AI agent skills & MCP servers",
+
+    // Audit verdict card (skill detail page)
+    "auditCard.title": "Security audit verdict",
+    "auditCard.method": "Basic audit · rule-based scan",
+    "auditCard.verdict.safe":
+      "Reviewed, no blocking issues — reasonable for general use. Still confirm credential handling before production.",
+    "auditCard.verdict.caution":
+      "Has caution flags — fine for personal trials; review credentials and maintainer before brand or production use.",
+    "auditCard.verdict.unsafe":
+      "Flagged unsafe — do NOT run against real credentials or production data.",
+    "auditCard.verdict.reject": "Rejected — known serious problems. Avoid.",
+    "auditCard.verdict.unknown":
+      "Never audited by anyone — it's a black box. Check the code, the credentials it asks for, and who maintains it before you trust it.",
+    "auditCard.check.credentials":
+      "What credentials does it ask for, and where are they stored?",
+    "auditCard.check.maintainer":
+      "Is the maintainer identifiable and the repo actively maintained?",
+    "auditCard.check.code":
+      "Read the code before installing — especially install scripts and network calls.",
+    "auditCard.rescan": "Run a live scan",
+    "auditCard.deepAudit": "5-dimension deep audit (Enterprise)",
 
     // Scenarios
     "scenarios.title": "Scenario Workflows",

@@ -47,6 +47,9 @@ export interface Skill {
 
   // Security
   security_grade: string | null;
+  // Raw red-flag identifiers from the scanner; JSON string or array depending
+  // on the query path (detail uses select("*") so it comes through untyped).
+  security_flags?: string | string[] | null;
 
   // Official
   is_official?: boolean;

@@ -8,6 +8,7 @@ import { ScoreBadge } from "../components/ScoreBadge";
 import { ProjectTypeBadge } from "../components/ProjectTypeBadge";
 import { PlatformBadges } from "../components/PlatformBadges";
 import { SecurityBadge } from "../components/SecurityBadge";
+import { AuditVerdictCard } from "../components/AuditVerdictCard";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { BadgeEmbed } from "../components/BadgeEmbed";
@@ -283,6 +284,10 @@ export function SkillDetailPage() {
           githubUsername={detail.author_name}
           repoFullName={detail.repo_full_name}
         />
+
+        {/* Grade-first: the audit verdict answers "is this safe to install?"
+            before README/stats — the Trust Layer spine of the page. */}
+        <AuditVerdictCard skill={detail} />
 
         {/* Stats + Quality Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
