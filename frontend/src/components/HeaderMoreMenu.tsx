@@ -39,6 +39,20 @@ export function HeaderMoreMenu() {
         <>
           <div className="fixed inset-0 z-40" onClick={close} />
           <div className="absolute right-0 top-10 z-50 w-60 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-1.5 animate-in fade-in slide-in-from-top-2">
+            {/* Below lg the header's text links (Enterprise / Blue Book / Blog)
+                are hidden to stop the top bar overflowing over the logo — they
+                live here instead. lg:hidden avoids duplication on desktop. */}
+            <div className="lg:hidden border-b border-gray-100 dark:border-gray-700 mb-1.5 pb-1.5">
+              <a href="/enterprise/" className={itemCls}>
+                🏢 Enterprise
+              </a>
+              <a href="/book/" className={itemCls}>
+                📘 Blue Book
+              </a>
+              <a href="/blog/" className={itemCls}>
+                ✍️ Blog
+              </a>
+            </div>
             <a
               href="https://x.com/GoSailGlobal"
               target="_blank"

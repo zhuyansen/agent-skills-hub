@@ -127,7 +127,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 </span>
               </span>
             </Link>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block">
+            {/* truncate: the flex sibling is shrink-0, so at mid widths this
+                container gets squeezed — without truncate the tagline wraps
+                into a tall word-per-line column. */}
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block truncate">
               {t("header.subtitle")}
             </p>
           </div>
@@ -136,14 +139,14 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             <BrowseMenu />
             <Link
               to="/enterprise/"
-              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-indigo-200 dark:ring-indigo-900"
+              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-indigo-200 dark:ring-indigo-900"
               title="Enterprise — Trust Layer for AI Agent & MCP Deployment"
             >
               Enterprise
             </Link>
             <Link
               to="/book/"
-              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
+              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
               title="Skill 蓝皮书 2026 — 100K Skill 数据原生研究"
             >
               Blue Book
@@ -151,7 +154,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             {/* Static HTML page — use <a href> not <Link> so browser hard-navigates */}
             <a
               href="/blog/"
-              className="hidden sm:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
               title="Blog — 长文 + 案例 + 深度分析"
             >
               Blog

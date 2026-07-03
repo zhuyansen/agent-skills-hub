@@ -26,7 +26,7 @@ export function BrowseMenu() {
 
   return (
     <div
-      className="relative hidden md:block"
+      className="relative hidden lg:block"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
