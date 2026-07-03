@@ -23,7 +23,7 @@
  * Run: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync, readdirSync } from "fs";
+import { writeFileSync, readdirSync, existsSync } from "fs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -379,6 +379,11 @@ async function main() {
   }
   if (blogCount > 0) {
     sitemapFiles.push("sitemap-blog.xml");
+  }
+  // sitemap-audit.xml is written by generate-audit-pages.mjs (runs earlier in
+  // the build chain); register it if present.
+  if (existsSync("dist/sitemap-audit.xml")) {
+    sitemapFiles.push("sitemap-audit.xml");
   }
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
