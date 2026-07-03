@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { fetchSkills, fetchMasters } from "../api/client";
+import { fetchSkills, fetchMasters, fetchOrgBuilders } from "../api/client";
 import type { Master } from "../api/client";
 import { SkillCard } from "../components/SkillCard";
 import { SkeletonCards } from "../components/SkeletonCards";
@@ -23,8 +23,10 @@ export function AuthorPage() {
   const [page, setPage] = useState(1);
   const [copied, setCopied] = useState(false);
   // Curated master profile (skill_masters): real name, bio, X handle,
-  // verified status — the LobeHub-style creator-page enrichment.
+  // verified status — the LobeHub-style creator-page enrichment. isOrg flips
+  // the JSON-LD entity to Organization (GitHub orgs like anthropics).
   const [master, setMaster] = useState<Master | null>(null);
+  const [isOrg, setIsOrg] = useState(false);
 
   useEffect(() => {
     if (!username) return;
@@ -39,6 +41,12 @@ export function AuthorPage() {
             (m.github_aliases ?? []).some((a) => a.toLowerCase() === key),
         );
         setMaster(hit ?? null);
+      })
+      .catch(() => {});
+    fetchOrgBuilders()
+      .then((orgs) => {
+        if (cancelled) return;
+        setIsOrg(orgs.some((o) => o.github?.toLowerCase() === key));
       })
       .catch(() => {});
     return () => {
@@ -116,7 +124,7 @@ export function AuthorPage() {
   const description = `${displayName}'s AI agent skills: ${total} open-source skills & MCP servers${profile?.safeCount ? `, ${profile.safeCount} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
   const personLd = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Person",
+    "@type": isOrg ? "Organization" : "Person",
     name: displayName,
     alternateName: githubName,
     url: `https://agentskillshub.top/author/${username}/`,

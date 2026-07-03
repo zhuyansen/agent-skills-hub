@@ -40,6 +40,16 @@ class ScoringEngine:
         "domain_bonus": 0.05,   # NEW: domain-specific effectiveness
     }
 
+    # Display-scale factor. The 10 signals are partially anti-correlated (an
+    # established repo can't also have spike momentum; famous repos lose the
+    # size bonus), so the raw weighted sum empirically tops out ~67/100 —
+    # which reads as "the best repo in the catalog is a C+". The composite is
+    # a ranking INDEX, not a measurement, so a monotonic rescale is legitimate:
+    # ×1.42 puts the empirical ceiling at ~95 without changing any ordering.
+    # Existing rows were backfilled with the same factor (2026-07-03); keep
+    # them in sync if this ever changes.
+    SCALE = 1.42
+
     # Domain specialization bonus — from SkillsBench Table 4
     # Paper shows Skills benefit varies hugely by domain:
     #   Healthcare: +51.9pp, Manufacturing: +41.9pp (high benefit)
@@ -164,7 +174,7 @@ class ScoringEngine:
             )
             updates.append({
                 "id": row.id,
-                "score": round(raw * 100, 1),
+                "score": round(min(raw * 100 * self.SCALE, 100.0), 1),
                 "star_momentum": round(momentum, 3),
             })
 

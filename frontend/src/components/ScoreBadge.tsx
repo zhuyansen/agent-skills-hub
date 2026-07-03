@@ -4,27 +4,31 @@ interface Props {
   showTier?: boolean;
 }
 
+// Tiers re-cut for the ×1.42 composite rescale (2026-07-03): the raw sum
+// empirically topped out ~67, so the old S≥80 tier was unreachable dead code.
+// On the new scale (ceiling ≈95): S = the handful of all-time best, A = the
+// genuine top tier, B = solid, C = average.
 function getScoreColor(score: number): string {
-  if (score >= 80) return "bg-emerald-50 text-emerald-700 border-emerald-200";
-  if (score >= 65) return "bg-blue-50 text-blue-700 border-blue-200";
-  if (score >= 50) return "bg-amber-50 text-amber-700 border-amber-200";
-  if (score >= 35) return "bg-orange-50 text-orange-700 border-orange-200";
+  if (score >= 90) return "bg-emerald-50 text-emerald-700 border-emerald-200";
+  if (score >= 80) return "bg-blue-50 text-blue-700 border-blue-200";
+  if (score >= 60) return "bg-amber-50 text-amber-700 border-amber-200";
+  if (score >= 40) return "bg-orange-50 text-orange-700 border-orange-200";
   return "bg-gray-50 text-gray-600 border-gray-200";
 }
 
 function getTier(score: number): string {
-  if (score >= 80) return "S";
-  if (score >= 65) return "A";
-  if (score >= 50) return "B";
-  if (score >= 35) return "C";
+  if (score >= 90) return "S";
+  if (score >= 80) return "A";
+  if (score >= 60) return "B";
+  if (score >= 40) return "C";
   return "D";
 }
 
 function getTierColor(score: number): string {
-  if (score >= 80) return "text-emerald-600";
-  if (score >= 65) return "text-blue-600";
-  if (score >= 50) return "text-amber-600";
-  if (score >= 35) return "text-orange-600";
+  if (score >= 90) return "text-emerald-600";
+  if (score >= 80) return "text-blue-600";
+  if (score >= 60) return "text-amber-600";
+  if (score >= 40) return "text-orange-600";
   return "text-gray-500";
 }
 
