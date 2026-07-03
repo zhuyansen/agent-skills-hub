@@ -41,8 +41,14 @@ const SHELLS = [
   },
 ];
 
+// index.html no longer ships a hardcoded canonical (dual-tag fix) — inject a
+// placeholder once so the per-shell replace always has a target.
+const indexHtmlWithCanonical = indexHtml.includes('rel="canonical"')
+  ? indexHtml
+  : indexHtml.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
+
 for (const s of SHELLS) {
-  const html = indexHtml
+  const html = indexHtmlWithCanonical
     .replace(/<title>[^<]+<\/title>/, `<title>${s.title}</title>`)
     .replace(
       /<meta name="description" content="[^"]+"/,

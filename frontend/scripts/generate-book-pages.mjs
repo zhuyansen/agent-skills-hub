@@ -181,6 +181,11 @@ function mdToHtml(md) {
 }
 
 function customizeHtml(baseHtml, { title, description, canonical, ogImage, noscriptBody }) {
+  // index.html no longer ships a hardcoded canonical (dual-tag fix) — inject
+  // a placeholder so the replace below always has a target.
+  if (!baseHtml.includes('rel="canonical"')) {
+    baseHtml = baseHtml.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
+  }
   let html = baseHtml
     .replace(/<title>[^<]+<\/title>/, `<title>${esc(title)}</title>`)
     .replace(

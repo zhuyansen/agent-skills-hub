@@ -236,7 +236,13 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   const noscript = buildSeoNoScript(group, master, isOrg);
   const jsonLd = buildCreatorJsonLd(group, master, isOrg);
 
-  let html = baseHtml
+  let html = baseHtml;
+  // index.html no longer ships a hardcoded canonical (dual-tag fix) — inject
+  // a placeholder so the replace below always has a target.
+  if (!html.includes('rel="canonical"')) {
+    html = html.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
+  }
+  html = html
     .replace(/<title>[^<]+<\/title>/, `<title>${esc(title)}</title>`)
     .replace(
       /<meta name="description" content="[^"]+"/,

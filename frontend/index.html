@@ -36,8 +36,11 @@
     <meta name="twitter:image" content="https://agentskillshub.top/og-image.png" />
     <meta name="twitter:image:alt" content="AgentSkillsHub — 70,000+ Claude Skills & MCP Servers Directory" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://agentskillshub.top/" />
+    <!-- Canonical intentionally NOT set here: a hardcoded tag made every
+         SPA-rendered page ship TWO canonicals (this one + Helmet's), which
+         makes Google distrust both. Each page sets its own via react-helmet;
+         static generators inject theirs at build time (with a placeholder
+         fallback — see generate-author/book/static-pages). -->
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">

@@ -37,7 +37,7 @@ export function ComboRecommendation({ currentSkill }: ComboRecommendationProps) 
       parts.push(...currentSkill.repo_full_name.toLowerCase().split(/[/\-_]+/));
     }
     if (currentSkill.repo_name) {
-      parts.push(...currentSkill.repo_name.toLowerCase().split(/[\-_]+/));
+      parts.push(...currentSkill.repo_name.toLowerCase().split(/[-_]+/));
     }
 
     // topics (JSON string like '["mcp","agent"]')
@@ -45,7 +45,7 @@ export function ComboRecommendation({ currentSkill }: ComboRecommendationProps) 
       try {
         const topicsArr: string[] = JSON.parse(currentSkill.topics);
         for (const topic of topicsArr) {
-          parts.push(...topic.toLowerCase().split(/[\-_]+/));
+          parts.push(...topic.toLowerCase().split(/[-_]+/));
         }
       } catch {
         // not valid JSON, split as plain text

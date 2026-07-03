@@ -173,6 +173,9 @@ export function Home() {
           name="description"
           content={`Agent Skills Hub helps you find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded and quality-scored, refreshed every 8 hours.`}
         />
+        {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
+            homepage's lives here like every other page's. */}
+        <link rel="canonical" href="https://agentskillshub.top/" />
         <meta
           property="og:title"
           content="Agent Skills Hub — Security-Graded Claude Skills & MCP Server Directory"
