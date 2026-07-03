@@ -81,6 +81,7 @@ function App() {
                   <Route path="/category/:slug" element={<CategoryPage />} />
                   <Route path="/compare" element={<ComparePage />} />
                   <Route path="/analyzer" element={<AnalyzerPage />} />
+                  <Route path="/analyzer/" element={<AnalyzerPage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />
                   <Route
                     path="/verified-creator"

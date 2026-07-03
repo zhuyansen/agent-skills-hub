@@ -157,6 +157,14 @@ export const translations = {
     "nav.newsletter": "订阅",
     "nav.analyzer": "安全分析",
 
+    // Audit box (homepage conversion hook)
+    "audit.title": "这个 skill 安全吗？",
+    "audit.subtitle":
+      "粘贴任意 GitHub 仓库地址，立即查看安全评级、红旗信号和质量分 —— 装之前先审。",
+    "audit.cta": "免费检查",
+    "audit.hint":
+      "免费 · 无需注册 · 已覆盖 117,000+ 个 AI agent skill 与 MCP server",
+
     // Scenarios
     "scenarios.title": "场景推荐组合",
     "scenarios.subtitle": "精选场景化工作流，多技能协同完成任务",
@@ -506,6 +514,14 @@ export const translations = {
     "nav.workflows": "Workflows",
     "nav.newsletter": "Newsletter",
     "nav.analyzer": "Analyzer",
+
+    // Audit box (homepage conversion hook)
+    "audit.title": "Is this skill safe to install?",
+    "audit.subtitle":
+      "Paste any GitHub repo URL to get its security grade, red flags, and quality score — before you install.",
+    "audit.cta": "Check it — free",
+    "audit.hint":
+      "Free · No signup · Covers 117,000+ AI agent skills & MCP servers",
 
     // Scenarios
     "scenarios.title": "Scenario Workflows",

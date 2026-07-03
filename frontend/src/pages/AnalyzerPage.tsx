@@ -274,14 +274,16 @@ export function AnalyzerPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
         <title>
-          {isZh ? "安全分析器" : "Security Analyzer"} — AgentSkillsHub
+          {isZh
+            ? "这个 AI Skill / MCP Server 安全吗？免费安全检查 — Agent Skills Hub"
+            : "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub"}
         </title>
         <meta
           name="description"
           content={
             isZh
-              ? "分析任何 GitHub 仓库的安全风险"
-              : "Analyze security risks of any GitHub repository"
+              ? "粘贴任意 GitHub 仓库地址，立即获得安全评级、红旗信号和质量分。免费、无需注册，覆盖 117,000+ 个 AI agent skill 与 MCP server。"
+              : "Paste any GitHub repo URL to get an instant security grade, red flags, and quality score. Free, no signup — covering 117,000+ AI agent skills & MCP servers."
           }
         />
       </Helmet>

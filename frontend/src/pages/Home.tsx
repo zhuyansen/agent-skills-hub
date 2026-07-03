@@ -47,6 +47,7 @@ import { CuratedCollections } from "../components/CuratedCollections";
 import { ProblemSection } from "../components/ProblemSection";
 import { HowItWorksSection } from "../components/HowItWorksSection";
 import { InstallCliSection } from "../components/InstallCliSection";
+import { AuditBox } from "../components/AuditBox";
 import { SubcategoryChips } from "../components/SubcategoryChips";
 import { getCategoriesForLayer } from "../utils/ecosystem";
 import { inferSubcategory } from "../utils/subcategories";
@@ -197,6 +198,7 @@ export function Home() {
                 setTab("explore");
               }}
             />
+            <AuditBox />
             <CuratedCollections />
             <EcosystemNav
               onSelectCategory={(category) => {
