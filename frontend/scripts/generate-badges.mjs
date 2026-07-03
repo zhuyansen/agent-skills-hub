@@ -63,10 +63,22 @@ async function main() {
   const skills = await fetchAllSkills();
   console.log(`   Loaded ${skills.length} skills`);
 
+  // Badges only for the quality catalog (stars >= 5, same cut as the CLI
+  // search index). Unfiltered this wrote 127K SVG files — the single biggest
+  // dist bloat, and file COUNT is what makes the Pages artifact upload slow.
+  // <5★ repos have no audience to embed a badge; BadgeEmbed gates its UI on
+  // the same threshold so nobody gets handed a 404 snippet.
+  const MIN_STARS_FOR_BADGE = 5;
+
   let count = 0;
+  let skippedLowStars = 0;
   for (const skill of skills) {
     const fullName = skill.repo_full_name;
     if (!fullName || !fullName.includes("/")) continue;
+    if ((skill.stars || 0) < MIN_STARS_FOR_BADGE) {
+      skippedLowStars++;
+      continue;
+    }
 
     const svg = makeBadgeSvg(skill.security_grade);
     const outPath = `${DIST}/badge/${fullName}.svg`;
@@ -76,7 +88,7 @@ async function main() {
     count++;
   }
 
-  console.log(`   ✅ Generated ${count} badges → dist/badge/`);
+  console.log(`   ✅ Generated ${count} badges → dist/badge/ (skipped ${skippedLowStars} below ${MIN_STARS_FOR_BADGE}★)`);
 }
 
 main().catch((e) => {

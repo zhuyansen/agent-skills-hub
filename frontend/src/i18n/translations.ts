@@ -371,6 +371,17 @@ export const translations = {
     "author.noSkillsYet": "该作者暂无技能。",
     "author.loadError": "加载失败 —— 数据库暂时抖了一下,不是这位作者没有作品。",
     "author.retry": "重试",
+
+    // Deep audit offer ($49 concierge)
+    "deepAudit.title": "深度安全审计",
+    "deepAudit.per": "/ 仓库 · 48 小时交付",
+    "deepAudit.pitch":
+      "上面的免费扫描只是规则层。深度审计由人工完成 5 维分析,给你一份能拿去做上线决策的报告。",
+    "deepAudit.item1": "5 维:代码 · 凭证处理 · 维护者 · 供应链 · 运营风险",
+    "deepAudit.item2": "每条结论附可复现证据(文件:行号 / 命令输出)",
+    "deepAudit.item3": "任意公开 GitHub 仓库,含不在目录里的(私有库 +$30)",
+    "deepAudit.cta": "邮件下单 — $49",
+    "deepAudit.note": "先交付后付款,不满意不收费。",
     "author.statSkills": "技能",
     "author.statStars": "Star（热门仓库）",
     "author.statQuality": "平均质量",
@@ -758,6 +769,20 @@ export const translations = {
     "author.loadError":
       "Failed to load — the database hiccuped, this creator's skills are still here.",
     "author.retry": "Retry",
+
+    // Deep audit offer ($49 concierge)
+    "deepAudit.title": "Deep Security Audit",
+    "deepAudit.per": "/ repo · delivered in 48h",
+    "deepAudit.pitch":
+      "The free scan above is the rule-based layer. A deep audit is a human 5-dimension analysis — a report you can take to a production decision.",
+    "deepAudit.item1":
+      "5 dimensions: code · credentials · vendor · supply-chain · operational",
+    "deepAudit.item2":
+      "Every finding backed by reproducible evidence (file:line / command output)",
+    "deepAudit.item3":
+      "Any public GitHub repo, including ones outside the catalog (private +$30)",
+    "deepAudit.cta": "Order by email — $49",
+    "deepAudit.note": "Pay after delivery. Not satisfied — no charge.",
     "author.statSkills": "Skills",
     "author.statStars": "Stars (top repos)",
     "author.statQuality": "Avg quality",

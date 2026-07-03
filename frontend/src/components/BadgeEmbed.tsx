@@ -25,11 +25,26 @@ async function copyText(text: string): Promise<void> {
   }
 }
 
+// Badge SVGs are generated only for the quality catalog (stars >= 5, matches
+// generate-badges.mjs) — below that the file doesn't exist, so offering the
+// snippet would hand the author a 404.
+const MIN_STARS_FOR_BADGE = 5;
+
 export function BadgeEmbed({ skill }: Props) {
   const { lang } = useI18n();
   const isZh = lang === "zh";
   const [copied, setCopied] = useState(false);
   const snippet = buildSnippet(skill.repo_full_name);
+
+  if ((skill.stars || 0) < MIN_STARS_FOR_BADGE) {
+    return (
+      <p className="text-xs text-gray-400 dark:text-gray-500">
+        {isZh
+          ? `README 徽章将在仓库达到 ${MIN_STARS_FOR_BADGE}★ 后自动可用(每 8 小时刷新)。`
+          : `The README badge unlocks automatically once the repo reaches ${MIN_STARS_FOR_BADGE}★ (refreshed every 8h).`}
+      </p>
+    );
+  }
 
   const handleCopy = async () => {
     await copyText(snippet);

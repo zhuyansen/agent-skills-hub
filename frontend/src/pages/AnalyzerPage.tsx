@@ -11,6 +11,7 @@ import {
   type FlagDetail,
 } from "../utils/securityScanner";
 import { supabase } from "../lib/supabase";
+import { DeepAuditOffer } from "../components/DeepAuditOffer";
 
 const GRADE_CONFIG: Record<
   string,
@@ -387,7 +388,14 @@ export function AnalyzerPage() {
           </div>
         )}
 
-        {result && <ResultsDisplay result={result} isZh={isZh} />}
+        {result && (
+          <>
+            <ResultsDisplay result={result} isZh={isZh} />
+            {/* Paid conversion at the hottest-intent moment: right after the
+                free scan result. Concierge fulfillment (ops/deep-audit-sop.md). */}
+            <DeepAuditOffer repo={result.repo.full_name} />
+          </>
+        )}
 
         {!result && history.length > 0 && (
           <div className="mt-8">
