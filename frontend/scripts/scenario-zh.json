@@ -205,12 +205,12 @@
     "d": "大规模存储与查询 AI 向量的向量数据库工具与集成。"
   },
   "browser-automation": {
-    "t": "浏览器自动化",
+    "t": "AI 浏览器自动化:browser-use 与 Playwright MCP",
     "k": [
       "自动化",
       "playwright"
     ],
-    "d": "面向 AI agent 的开源浏览器自动化与数据采集工具,5 大派系完整对比。"
+    "d": "browser-use、playwright-mcp、MediaCrawler 等 20+ 开源 AI 浏览器自动化工具对比,带安全评级。"
   },
   "data-pipeline": {
     "t": "数据管道",

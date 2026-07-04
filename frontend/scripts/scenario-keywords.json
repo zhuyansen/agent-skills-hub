@@ -672,8 +672,8 @@
   },
   {
     "slug": "browser-automation",
-    "title": "Browser Automation",
-    "description": "Open-source browser automation and data collection tools for AI agents — browser-use, MediaCrawler, Scrapling, playwright-mcp, agent-reach, OpenCLI, AutoCLI, mcp-chrome and more. 5 派系完整对比.",
+    "title": "browser-use, Playwright MCP & AI Browser Agents",
+    "description": "browser-use, playwright-mcp, MediaCrawler, Scrapling, mcp-chrome and 20+ open-source AI browser agents compared — stars, security grade, and which to install.",
     "match": {
       "categories": [],
       "primary_keywords": [
