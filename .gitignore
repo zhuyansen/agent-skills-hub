@@ -32,3 +32,17 @@ supabase/.temp/
 
 # LoopFlow runtime worktrees (keep loop defs, ignore generated worktrees)
 .loopflow/worktrees/
+.gstack/
+
+# GSC API credentials — NEVER commit (OAuth client secret + user token)
+ops/gsc/credentials.json
+ops/gsc/token.json
+credentials.json
+token.json
+
+# GA MCP ADC credentials — NEVER commit
+ops/ga/adc.json
+
+# Plausible / Clarity API keys — NEVER commit
+ops/plausible/.api_key
+ops/clarity/.api_token
