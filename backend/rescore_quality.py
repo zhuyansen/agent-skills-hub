@@ -31,6 +31,9 @@ def arg(flag, default):
     return type(default)(sys.argv[sys.argv.index(flag) + 1]) if flag in sys.argv else default
 
 MIN_STARS = arg("--min-stars", 5)
+# Exclusive upper bound; -1 = no bound. Lets the stars<5 long-tail backfill run
+# as `--min-stars 0 --max-stars 5` without touching already-rescored rows.
+MAX_STARS = arg("--max-stars", -1)
 start_id = arg("--start-id", 0)
 
 def make_session():
@@ -44,10 +47,11 @@ def main():
     while True:
         for attempt in range(1, MAX_RETRY + 1):
             try:
-                chunk = (db.query(Skill)
-                         .filter(Skill.stars >= MIN_STARS, Skill.id > last_id)
-                         .order_by(Skill.id.asc())
-                         .limit(CHUNK).all())
+                q = (db.query(Skill)
+                     .filter(Skill.stars >= MIN_STARS, Skill.id > last_id))
+                if MAX_STARS >= 0:
+                    q = q.filter(Skill.stars < MAX_STARS)
+                chunk = q.order_by(Skill.id.asc()).limit(CHUNK).all()
                 for s in chunk:
                     qa._analyze(s)          # mutates quality_* fields in memory
                 db.commit()                 # one commit per chunk

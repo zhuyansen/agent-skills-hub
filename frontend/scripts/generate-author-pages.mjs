@@ -116,10 +116,15 @@ async function fetchAuthorSkills() {
   // statement_timeout the moment Supabase is slow → 57014 → failed deploy.
   // Author grouping re-sorts anyway, so fetch order doesn't matter.
   const limit = 300;
+  // Superset of every field SkillCard renders — the creator-data snapshot
+  // feeds real <SkillCard>s, and a missing numeric field (e.g. forks)
+  // crashes on .toLocaleString(). Keep in sync with SkillCard's accesses.
   const fields = [
     "id", "repo_full_name", "repo_name", "author_name", "author_avatar_url",
-    "stars", "description", "category", "score",
-    "quality_score", "security_grade",
+    "stars", "forks", "description", "category", "score",
+    "quality_score", "security_grade", "repo_url", "language", "topics",
+    "platforms", "size_category", "repo_size_kb", "last_commit_at",
+    "first_seen", "star_momentum",
   ].join(",");
 
   while (true) {
@@ -300,6 +305,57 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   }
 }
 
+/** Static per-creator data snapshot → dist/creator-data/{name}.json.
+ *  AuthorPage fetches this FIRST and only falls back to Supabase on a miss —
+ *  creator pages stop depending on a live DB that (observed 2026-07-03) can
+ *  take 6.5s/request or close connections outright. One flat namespace so the
+ *  client never has to guess /author/ vs /organization/. */
+function writeCreatorJson(group, { masterMap, orgSet }) {
+  const key = String(group.author_name).toLowerCase();
+  const master = masterMap.get(key) || null;
+  const isOrg = orgSet.has(key);
+  const items = group.skills.slice(0, 300).map((s) => ({
+    id: s.id,
+    repo_full_name: s.repo_full_name,
+    repo_name: s.repo_name,
+    repo_url: s.repo_url || `https://github.com/${s.repo_full_name}`,
+    author_name: s.author_name,
+    author_avatar_url: s.author_avatar_url || "",
+    description: s.description || "",
+    stars: s.stars || 0,
+    forks: s.forks || 0,
+    category: s.category || "",
+    language: s.language || null,
+    topics: s.topics || "[]",
+    platforms: s.platforms || "[]",
+    size_category: s.size_category || "unknown",
+    repo_size_kb: s.repo_size_kb || 0,
+    last_commit_at: s.last_commit_at || null,
+    first_seen: s.first_seen || null,
+    star_momentum: s.star_momentum ?? 0,
+    score: s.score ?? 0,
+    quality_score: s.quality_score ?? 0,
+    security_grade: s.security_grade || null,
+  }));
+  const payload = {
+    v: 1,
+    generated_at: new Date().toISOString(),
+    author_name: group.author_name,
+    display_name: master?.name || group.author_name,
+    avatar: group.author_avatar_url || "",
+    is_org: isOrg,
+    verified: !!master?.is_verified,
+    bio: master?.bio || null,
+    x_handle: master?.x_handle || null,
+    total: group.skills.length,
+    total_stars: group.total_stars,
+    items,
+  };
+  const dir = join(DIST, "creator-data");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, `${group.author_name}.json`), JSON.stringify(payload));
+}
+
 async function main() {
   console.log("👤 Generating author pages...");
   const baseHtml = readFileSync(join(DIST, "index.html"), "utf-8");
@@ -316,13 +372,14 @@ async function main() {
   for (const g of groups) {
     try {
       writeAuthorHtml(g, baseHtml, profiles);
+      writeCreatorJson(g, profiles);
       generated++;
     } catch (err) {
       console.warn(`  ⚠ Failed to generate ${g.author_name}: ${err.message}`);
     }
   }
 
-  console.log(`✅ Generated ${generated} author pages → dist/author/`);
+  console.log(`✅ Generated ${generated} author pages (+ creator-data JSON) → dist/`);
 
   // Write author list for sitemap generator to consume
   const sitemapList = groups.map((g) => ({

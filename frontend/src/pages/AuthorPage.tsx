@@ -31,9 +31,62 @@ export function AuthorPage() {
   // the JSON-LD entity to Organization (GitHub orgs like anthropics).
   const [master, setMaster] = useState<Master | null>(null);
   const [isOrg, setIsOrg] = useState(false);
+  // Full static snapshot (skills array) when /creator-data/{name}.json hits —
+  // client-side pagination over it, zero DB round-trips.
+  const [staticItems, setStaticItems] = useState<Skill[] | null>(null);
+
+  // "unknown" until the static probe resolves; the Supabase fallback effect
+  // waits for that so a static hit never fires DB queries at all.
+  const [staticState, setStaticState] = useState<"unknown" | "hit" | "miss">(
+    "unknown",
+  );
 
   useEffect(() => {
     if (!username) return;
+    let cancelled = false;
+    setStaticState("unknown");
+    setStaticItems(null);
+    // Static-first: build-time snapshot for the ~500 generated creators.
+    // Live Supabase (observed 6.5s/request, dropped connections) becomes a
+    // fallback for the long tail only.
+    fetch(`/creator-data/${encodeURIComponent(username)}.json`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error("miss");
+        const ct = res.headers.get("content-type") || "";
+        if (!ct.includes("json")) throw new Error("miss"); // SPA-fallback HTML
+        return res.json();
+      })
+      .then((snap) => {
+        if (cancelled) return;
+        setStaticItems(snap.items as Skill[]);
+        setIsOrg(!!snap.is_org);
+        if (
+          snap.display_name !== snap.author_name ||
+          snap.verified ||
+          snap.bio
+        ) {
+          setMaster({
+            github: snap.author_name,
+            name: snap.display_name,
+            x_handle: snap.x_handle,
+            bio: snap.bio,
+            is_verified: snap.verified,
+          } as Master);
+        }
+        setStaticState("hit");
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setStaticState("miss");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [username]);
+
+  useEffect(() => {
+    // Master/org enrichment via RPC only when the static snapshot missed.
+    if (!username || staticState !== "miss") return;
     let cancelled = false;
     const key = username.toLowerCase();
     fetchMasters()
@@ -56,7 +109,7 @@ export function AuthorPage() {
     return () => {
       cancelled = true;
     };
-  }, [username]);
+  }, [username, staticState]);
 
   // fetchError separates "the query returned zero rows" from "the query never
   // arrived" (slow/flaky Supabase closing connections). Without it a transient
@@ -66,6 +119,23 @@ export function AuthorPage() {
 
   const load = useCallback(() => {
     if (!username) return;
+    if (staticState === "unknown") return; // probe in flight — skeleton shows
+    if (staticState === "hit" && staticItems) {
+      // Client-side pagination over the build-time snapshot. Zero DB calls.
+      const total = staticItems.length;
+      const total_pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      setData({
+        items: staticItems.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+        total,
+        page,
+        page_size: PAGE_SIZE,
+        total_pages,
+      });
+      setFetchError(false);
+      setLoading(false);
+      return;
+    }
+    // Static miss (long-tail author) → live Supabase fallback.
     setLoading(true);
     setFetchError(false);
     fetchSkills({
@@ -81,7 +151,7 @@ export function AuthorPage() {
         setFetchError(true);
       })
       .finally(() => setLoading(false));
-  }, [username, page]);
+  }, [username, page, staticState, staticItems]);
 
   useEffect(() => {
     load();
