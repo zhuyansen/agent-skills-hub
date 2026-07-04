@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchQuickSearch } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
 import type { Skill, Stats } from "../types/skill";
@@ -249,15 +249,30 @@ export function HeroSection({ stats, onSearch }: Props) {
           ))}
         </div>
 
-        {/* Key stats — one disciplined treatment, no rainbow */}
+        {/* Key stats — one disciplined treatment, no rainbow.
+            Clickable: Clarity heatmap (2026-07-04) showed users dead-clicking
+            these numbers expecting them to filter — give them what they want. */}
         <div className="flex items-center justify-center gap-6 sm:gap-10">
           {[
-            { value: totalSkills.toLocaleString(), label: "Skills" },
-            { value: mcpCount.toLocaleString(), label: "MCP Servers" },
-            { value: claudeCount.toLocaleString(), label: "Claude Skills" },
+            {
+              value: totalSkills.toLocaleString(),
+              label: "Skills",
+              to: "/?tab=explore",
+            },
+            {
+              value: mcpCount.toLocaleString(),
+              label: "MCP Servers",
+              to: "/?tab=explore&category=mcp-server",
+            },
+            {
+              value: claudeCount.toLocaleString(),
+              label: "Claude Skills",
+              to: "/?tab=explore&category=claude-skill",
+            },
             {
               value: agentCount.toLocaleString(),
               label: "Agent Tools",
+              to: "/?tab=explore&category=agent-tool",
               hideMobile: true,
             },
           ].map((s, i) => (
@@ -267,17 +282,18 @@ export function HeroSection({ stats, onSearch }: Props) {
                   className={`w-px h-8 bg-[var(--border)] ${s.hideMobile ? "hidden sm:block" : ""}`}
                 />
               )}
-              <div
-                className={`text-center ${s.hideMobile ? "hidden sm:block" : ""}`}
+              <Link
+                to={s.to}
+                className={`text-center group/stat cursor-pointer ${s.hideMobile ? "hidden sm:block" : ""}`}
               >
-                <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tabular-nums">
+                <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tabular-nums group-hover/stat:text-indigo-600 dark:group-hover/stat:text-indigo-400 transition-colors">
                   {s.value}
                   <span className="text-[var(--text-3)]">+</span>
                 </div>
-                <div className="text-[11px] uppercase tracking-wider text-[var(--text-3)] mt-1">
+                <div className="text-[11px] uppercase tracking-wider text-[var(--text-3)] mt-1 group-hover/stat:text-[var(--text-2)] transition-colors">
                   {s.label}
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -289,36 +305,57 @@ export function HeroSection({ stats, onSearch }: Props) {
               ? "AI Agent 与 MCP 部署的信任层"
               : "Trust Layer for AI Agent & MCP Deployment"}
           </div>
+          {/* Clickable (Clarity dead-click fix): each stat routes to its
+              evidence — the report, the freshness feed, the enterprise pitch. */}
           <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-xl mx-auto">
             {[
               {
                 value: "26.1%",
+                href: "/blog/securing-117k-ai-skills/",
+                hard: true, // static blog page — bypass React Router
                 label: isZh
                   ? "的 agent skill 含安全漏洞"
                   : "of agent skills contain security vulnerabilities",
               },
               {
                 value: "8h",
+                href: "/?tab=overview#recent",
+                hard: false,
                 label: isZh
                   ? "全量 skill 目录刷新一次"
                   : "refresh on the entire skill catalog",
               },
               {
                 value: "$10K+",
+                href: "/enterprise/",
+                hard: false,
                 label: isZh
                   ? "部署前审计每次事故省下"
                   : "saved per incident with pre-deploy audit",
               },
-            ].map((s) => (
-              <div key={s.value}>
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tabular-nums">
-                  {s.value}
-                </div>
-                <div className="text-[11px] sm:text-xs text-[var(--text-3)] mt-1.5 leading-snug">
-                  {s.label}
-                </div>
-              </div>
-            ))}
+            ].map((s) => {
+              const cls =
+                "block group/trust cursor-pointer rounded-lg -m-2 p-2 hover:bg-[var(--bg-elev)] transition-colors";
+              const inner = (
+                <>
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tabular-nums group-hover/trust:text-indigo-600 dark:group-hover/trust:text-indigo-400 transition-colors">
+                    {s.value}
+                  </div>
+                  <div className="text-[11px] sm:text-xs text-[var(--text-3)] mt-1.5 leading-snug">
+                    {s.label}
+                  </div>
+                </>
+              );
+              return s.hard ? (
+                <a key={s.value} href={s.href} className={cls}>
+                  {inner}
+                </a>
+              ) : (
+                <Link key={s.value} to={s.href} className={cls}>
+                  {inner}
+                </Link>
+              );
+            })}
           </div>
           {/* Source attribution — honesty: the vuln stat is citable research */}
           <div className="mt-3 text-[10px] text-[var(--text-3)]">
@@ -339,12 +376,13 @@ export function HeroSection({ stats, onSearch }: Props) {
               {isZh ? "对齐合规框架" : "Audited against"}
             </span>
             {["SOC 2", "ISO/IEC 42001", "EU AI Act", "GDPR"].map((f) => (
-              <span
+              <a
                 key={f}
-                className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[var(--bg-elev)] text-[var(--text-2)] border border-[var(--border)]"
+                href="/enterprise/"
+                className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[var(--bg-elev)] text-[var(--text-2)] border border-[var(--border)] hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
                 {f}
-              </span>
+              </a>
             ))}
           </div>
           <div className="mt-7 flex flex-wrap justify-center items-center gap-3 text-sm">
