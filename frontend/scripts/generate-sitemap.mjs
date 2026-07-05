@@ -99,6 +99,15 @@ ${entries.join("\n")}
 </urlset>`;
 }
 
+// Variant with the xhtml namespace so entries can carry <xhtml:link hreflang>
+// alternates (Google's bilingual signal). Used by the blog sitemap.
+function wrapUrlsetI18n(entries) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>`;
+}
+
 function buildSitemapIndex(files) {
   const today = new Date().toISOString().split("T")[0];
   const entries = files.map((f) => `  <sitemap>
@@ -277,24 +286,37 @@ async function main() {
     const { readdirSync: rdb, existsSync: exb } = await import("fs");
     if (exb("dist/blog")) {
       const blogEntries = [];
-      const add = (path, priority) =>
+      // When a post has a zh twin, emit reciprocal hreflang alternates on BOTH
+      // URLs (en↔zh + x-default→en) so Google serves the right language.
+      const addPair = (enPath, zhPath, priority) => {
+        const alts =
+          zhPath &&
+          `
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${enPath}"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${SITE}${zhPath}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${enPath}"/>`;
         blogEntries.push(`  <url>
-    <loc>${SITE}${path}</loc>
+    <loc>${SITE}${enPath}</loc>
     <changefreq>monthly</changefreq>
     <priority>${priority}</priority>
-    <lastmod>${today}</lastmod>
+    <lastmod>${today}</lastmod>${alts || ""}
   </url>`);
-      add("/blog/", "0.8");
-      const slugs = rdb("dist/blog").filter((s) => !s.startsWith(".") && s !== "index.html");
-      for (const slug of slugs) {
-        if (slug === "zh") {
-          add("/blog/zh/", "0.6");
-          continue;
+        if (zhPath) {
+          blogEntries.push(`  <url>
+    <loc>${SITE}${zhPath}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>${(Number(priority) - 0.2).toFixed(1)}</priority>
+    <lastmod>${today}</lastmod>${alts}
+  </url>`);
         }
-        add(`/blog/${slug}/`, "0.8");
-        if (exb(`dist/blog/${slug}/zh/index.html`)) add(`/blog/${slug}/zh/`, "0.6");
+      };
+      addPair("/blog/", "/blog/zh/", "0.8"); // index has a zh twin
+      const slugs = rdb("dist/blog").filter((s) => !s.startsWith(".") && s !== "index.html" && s !== "zh");
+      for (const slug of slugs) {
+        const zh = exb(`dist/blog/${slug}/zh/index.html`) ? `/blog/${slug}/zh/` : null;
+        addPair(`/blog/${slug}/`, zh, "0.8");
       }
-      writeFileSync("dist/sitemap-blog.xml", wrapUrlset(blogEntries));
+      writeFileSync("dist/sitemap-blog.xml", wrapUrlsetI18n(blogEntries));
       blogCount = blogEntries.length;
       console.log(`sitemap-blog.xml: ${blogCount} URLs`);
     }

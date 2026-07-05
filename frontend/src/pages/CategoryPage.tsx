@@ -8,6 +8,7 @@ import { Pagination } from "../components/Pagination";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
+import { CATEGORY_COPY } from "../data/categoryCopy";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -71,8 +72,20 @@ export function CategoryPage() {
     [navigate],
   );
 
-  const title = `Best ${catLabel} Tools — Open-Source Skills & MCP Servers | Agent Skills Hub`;
-  const description = `Agent Skills Hub indexes the top open-source ${catLabel} skills & MCP servers — security-graded and quality-scored, browsable by stars, quality, and compatibility.`;
+  // Hand-written per-category copy (LobeHub pattern); fall back to the generic
+  // template for any slug not in the map.
+  const copy = slug ? CATEGORY_COPY[slug] : undefined;
+  const isZh = lang === "zh";
+  const title = copy
+    ? `${isZh ? copy.titleZh : copy.title} | Agent Skills Hub`
+    : `Best ${catLabel} Tools — Open-Source Skills & MCP Servers | Agent Skills Hub`;
+  const description = copy
+    ? isZh
+      ? copy.introZh
+      : copy.intro
+    : `Agent Skills Hub indexes the top open-source ${catLabel} skills & MCP servers — security-graded and quality-scored, browsable by stars, quality, and compatibility.`;
+  const heading = copy ? (isZh ? copy.headingZh : copy.heading) : null;
+  const intro = copy ? (isZh ? copy.introZh : copy.intro) : null;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -97,10 +110,16 @@ export function CategoryPage() {
           <span className="text-gray-600">{catLabel}</span>
         </nav>
 
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          {t("category.heading").replace("{cat}", catLabel)}
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          {heading || t("category.heading").replace("{cat}", catLabel)}
         </h1>
-        <p className="text-gray-500 mb-6">
+        {/* Hand-written value-prop (SEO body + human context) */}
+        {intro && (
+          <p className="text-[var(--text-2)] max-w-3xl leading-relaxed mb-3">
+            {intro}
+          </p>
+        )}
+        <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">
           {data?.total
             ? t("category.summary")
                 .replace("{n}", String(data.total))

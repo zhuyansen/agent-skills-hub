@@ -6,7 +6,9 @@ interface Props {
   skill: Skill;
 }
 
-export function getInstallCommands(skill: Skill): { label: string; command: string; primary?: boolean }[] {
+export function getInstallCommands(
+  skill: Skill,
+): { label: string; command: string; primary?: boolean }[] {
   const commands: { label: string; command: string; primary?: boolean }[] = [];
   const platforms = parsePlatforms(skill.platforms);
   const category = skill.category?.toLowerCase() || "";
@@ -26,8 +28,29 @@ export function getInstallCommands(skill: Skill): { label: string; command: stri
     });
   }
 
+  // Skill-category installs are agent-targetable (LobeHub `--agent` pattern):
+  // the same skill drops into different runtimes' skill dirs. `skills` CLI
+  // resolves the right path per agent.
+  if (category.includes("skill") || platforms.includes("claude-code")) {
+    for (const agent of ["cursor", "codex", "opencode"]) {
+      commands.push({
+        label:
+          agent === "cursor"
+            ? "Cursor"
+            : agent === "codex"
+              ? "Codex"
+              : "OpenCode",
+        command: `npx skills add ${name} --agent ${agent}`,
+      });
+    }
+  }
+
   // npx for Node/TypeScript
-  if (skill.language === "TypeScript" || skill.language === "JavaScript" || platforms.includes("node")) {
+  if (
+    skill.language === "TypeScript" ||
+    skill.language === "JavaScript" ||
+    platforms.includes("node")
+  ) {
     commands.push({
       label: "npx",
       command: `npx ${skill.repo_name}`,
@@ -75,7 +98,9 @@ export function parsePlatforms(platforms: string): string[] {
 export function InstallCommand({ skill }: Props) {
   const { t } = useI18n();
   const commands = getInstallCommands(skill);
-  const [activeIdx, setActiveIdx] = useState(commands.findIndex((c) => c.primary) || 0);
+  const [activeIdx, setActiveIdx] = useState(
+    commands.findIndex((c) => c.primary) || 0,
+  );
   const [copied, setCopied] = useState(false);
 
   const active = commands[activeIdx];
@@ -131,12 +156,32 @@ export function InstallCommand({ skill }: Props) {
           title={t("detail.copyCommand")}
         >
           {copied ? (
-            <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 text-green-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           ) : (
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              />
             </svg>
           )}
         </button>
