@@ -2,7 +2,10 @@
  * Hand-written per-category SEO copy (the LobeHub "Security by Default" pattern):
  * a unique H1, a distinct title, and a 2-sentence value-prop per category — so
  * each /category/ page reads as a purpose-built landing page, not a generic
- * "Best X Tools" template. Consumed by CategoryPage.tsx (SPA Helmet + intro).
+ * "Best X Tools" template. Consumed by CategoryPage.tsx (SPA Helmet + intro)
+ * AND — mirrored in scripts/category-copy.json — by generate-skill-pages.mjs
+ * for the static /category/ shell (the title + noscript body Google reads
+ * first). Keep the JSON's EN title/heading/intro in sync when editing here.
  */
 export interface CategoryCopy {
   /** SEO <title> (before the "| Agent Skills Hub" suffix) */

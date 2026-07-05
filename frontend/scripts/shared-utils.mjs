@@ -190,11 +190,15 @@ const MIN_EXPECTED_SKILLS = 5000;  // tighten as Hub grows; Hub is 70K+ as of 20
 // old 3 (~7s) gave up too soon when Supabase was briefly slow (e.g. warming
 // after a restart, or autovacuum), failing the whole deploy on a transient
 // 57014. Builds should ride out a slow DB, not abort.
-const MAX_RETRIES = 6;
+const MAX_RETRIES = 8;
 
 async function fetchPageWithRetry(url, headers, attempt = 1) {
   try {
-    const res = await fetch(url, { headers });
+    // Per-request timeout: without it a silently-hung connection (observed on
+    // slow local networks pulling all 22K rows) blocks the whole build forever
+    // instead of falling into the retry path. 20s is generous vs the ~2s a
+    // healthy 300-row page takes.
+    const res = await fetch(url, { headers, signal: AbortSignal.timeout(20000) });
     if (!res.ok) {
       throw new Error(`HTTP ${res.status} ${res.statusText}: ${(await res.text()).slice(0, 200)}`);
     }

@@ -13,12 +13,20 @@
  */
 
 import { readFileSync, mkdirSync, writeFileSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
 } from "./shared-utils.mjs";
+
+// Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
+// static /category/ shell shows this title + intro so Google reads the
+// purpose-built landing copy, not the generic template.
+const CATEGORY_COPY = JSON.parse(
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), "category-copy.json"), "utf-8"),
+);
 
 async function fetchAllCompositions() {
   const comps = new Map();
@@ -454,8 +462,14 @@ ${faqLd}
 function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   const catLabel = CATEGORY_LABELS[catSlug] || "AI Tool";
   const pageUrl = `${SITE}/category/${catSlug}/`;
-  const title = `Best ${catLabel} — ${catSkills.length}+ Open-Source Skills & MCP Servers | Agent Skills Hub`;
-  const metaDesc = `Browse ${catSkills.length}+ open-source ${catLabel} — quality-scored, ranked by stars, compared side-by-side. Updated every 8 hours.`;
+  const copy = CATEGORY_COPY[catSlug];
+  const title = copy
+    ? `${copy.title} | Agent Skills Hub`
+    : `Best ${catLabel} — ${catSkills.length}+ Open-Source Skills & MCP Servers | Agent Skills Hub`;
+  const metaDesc = copy
+    ? copy.intro
+    : `Browse ${catSkills.length}+ open-source ${catLabel} — quality-scored, ranked by stars, compared side-by-side. Updated every 8 hours.`;
+  const catHeading = copy ? copy.heading : `Best ${catLabel}`;
 
   const { scriptTags, linkTags } = assetTags;
 
@@ -546,12 +560,12 @@ ${breadcrumbLd}
         <span>${esc(catLabel)}</span>
       </nav>
 
-      <h1 style="font-size:28px;margin:0 0 8px">${esc(catLabel)} Tools</h1>
+      <h1 style="font-size:28px;margin:0 0 8px">${esc(catHeading)}</h1>
       <p style="color:#64748b;margin:0 0 16px">${catSkills.length}+ open-source ${esc(catLabel.toLowerCase())} tools ranked by stars</p>
 
       <section style="margin:0 0 24px;padding:16px 20px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;line-height:1.7">
         <h2 style="font-size:16px;margin:0 0 8px;color:#334155">What are ${esc(catLabel)} tools?</h2>
-        <p style="margin:0 0 8px;font-size:14px;color:#475569">${esc(catLabel)} tools are open-source packages that extend AI coding agents like Claude Code, OpenAI Codex, Gemini CLI, and other AI assistants. They provide specialized capabilities ranging from code generation and debugging to API integration and workflow automation.</p>
+        <p style="margin:0 0 8px;font-size:14px;color:#475569">${copy ? esc(copy.intro) : `${esc(catLabel)} tools are open-source packages that extend AI coding agents like Claude Code, OpenAI Codex, Gemini CLI, and other AI assistants. They provide specialized capabilities ranging from code generation and debugging to API integration and workflow automation.`}</p>
         <p style="margin:0;font-size:14px;color:#475569">Agent Skills Hub indexes ${catSkills.length}+ ${esc(catLabel.toLowerCase())} tools from GitHub, ranked by community adoption (stars), code quality scores, and compatibility with popular AI agents. The top languages in this category are ${catSkills.slice(0, 50).reduce((langs, s) => { if (s.language && !langs.includes(s.language)) langs.push(s.language); return langs; }, []).slice(0, 5).join(", ") || "various languages"}.</p>
       </section>
 

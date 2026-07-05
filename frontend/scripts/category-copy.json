@@ -1,0 +1,32 @@
+{
+  "mcp-server": {
+    "title": "Best Open-Source MCP Servers — Security-Graded & Compared",
+    "heading": "MCP Servers, Security-Graded Before You Connect",
+    "intro": ""
+  },
+  "claude-skill": {
+    "title": "Best Claude Skills — Open-Source, Quality-Scored",
+    "heading": "Claude Skills That Are Safe to Drop Into Claude Code",
+    "intro": ""
+  },
+  "codex-skill": {
+    "title": "OpenClaw Ecosystem Skills — Open-Source & Graded",
+    "heading": "OpenClaw & Codex Ecosystem Skills, Trust-Checked",
+    "intro": ""
+  },
+  "agent-tool": {
+    "title": "Best AI Agent Tools — Open-Source, Security-Graded",
+    "heading": "AI Agent Tools, Ranked by Signal Not Hype",
+    "intro": ""
+  },
+  "prompt-library": {
+    "title": "Best AI Prompt Libraries — Open-Source & Ranked",
+    "heading": "Open-Source Prompt Libraries Worth Reusing",
+    "intro": ""
+  },
+  "ai-coding-assistant": {
+    "title": "Best AI Coding Assistants — Open-Source, Compared",
+    "heading": "Open-Source AI Coding Assistants, Head to Head",
+    "intro": ""
+  }
+}
