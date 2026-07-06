@@ -3490,5 +3490,89 @@
       "seo-tools",
       "paid-ads"
     ]
+  },
+  {
+    "slug": "ppt-skills",
+    "title": "PPT, PowerPoint & Presentation Generation",
+    "description": "guizang-ppt-skill, PPTAgent, codex-ppt-skill, Office-PowerPoint-MCP and 20+ open-source AI skills that generate PPT, PowerPoint and presentation decks for Claude Code & Codex — stars, security grade, and which to install.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "powerpoint",
+        "presentation",
+        "ppt skill",
+        "ppt agent",
+        "ppt generat",
+        "pptx",
+        ".pptx",
+        "slide deck",
+        "slide generation",
+        "reveal.js",
+        "revealjs",
+        "slidev",
+        "beamer",
+        "marp",
+        "pptagent",
+        "google slides",
+        "keynote deck"
+      ],
+      "secondary_keywords": [
+        "ppt",
+        "slide",
+        "slides",
+        "deck",
+        "office",
+        "reveal",
+        "impress.js",
+        "academic presentation",
+        "html slides",
+        "talk"
+      ],
+      "topic_matches": [
+        "powerpoint",
+        "presentation",
+        "ppt",
+        "slides",
+        "slidev",
+        "reveal-js",
+        "pptx",
+        "slide-deck",
+        "marp"
+      ],
+      "min_results": 5,
+      "max_results": 30,
+      "featured": [
+        "op7418/guizang-ppt-skill",
+        "zarazhangrui/frontend-slides",
+        "icip-cas/PPTAgent",
+        "op7418/NanoBanana-PPT-Skills",
+        "ningzimu/codex-ppt-skill",
+        "GongRzhe/Office-PowerPoint-MCP-Server",
+        "johnson7788/MultiAgentPPT",
+        "JuneYaooo/gpt-image2-ppt-skills",
+        "sunbigfly/ppt-agent-skills",
+        "NyxTides/ppt-image-first",
+        "tfriedel/claude-office-skills",
+        "barun-saha/slide-deck-ai",
+        "ryanbbrown/revealjs-skill",
+        "Noi1r/beamer-skill",
+        "Gabberflast/academic-pptx-skill",
+        "ningzimu/image-to-editable-ppt-skill",
+        "AI272/speaker",
+        "rsrohan99/presenter",
+        "crazyykhllc-bit/CyberPPT",
+        "archlizheng/frontend-slides-editable"
+      ],
+      "tag_matches": [
+        "presentation",
+        "powerpoint"
+      ]
+    },
+    "related": [
+      "content-writing",
+      "claude-code-skills",
+      "codex-skills",
+      "image-generation"
+    ]
   }
 ]

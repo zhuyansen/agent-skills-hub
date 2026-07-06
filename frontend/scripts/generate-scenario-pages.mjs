@@ -258,7 +258,7 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
     { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["ai-agent-framework", "multi-agent", "prompt-engineering", "model-evaluation", "local-llm", "claude-code-skills", "codex-skills"] },
     { label: "Security", zh: "安全", icon: "🔒", slugs: ["security-audit", "secret-detection", "authentication"] },
     { label: "Data & Search", zh: "数据与搜索", icon: "📊", slugs: ["web-scraping", "semantic-search", "vector-database", "data-pipeline", "document-parsing", "data-visualization", "knowledge-base", "database-migration"] },
-    { label: "Content & Writing", zh: "内容创作", icon: "✍️", slugs: ["content-writing", "translation", "summarization", "image-generation", "text-to-speech"] },
+    { label: "Content & Writing", zh: "内容创作", icon: "✍️", slugs: ["content-writing", "ppt-skills", "translation", "summarization", "image-generation", "text-to-speech"] },
     { label: "DevOps & Automation", zh: "DevOps 与自动化", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
     { label: "Communication", zh: "通讯集成", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
   ];
