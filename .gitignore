@@ -46,3 +46,6 @@ ops/ga/adc.json
 # Plausible / Clarity API keys — NEVER commit
 ops/plausible/.api_key
 ops/clarity/.api_token
+
+ops/smithery/.api_key
+ops/research/out/

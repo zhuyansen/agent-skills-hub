@@ -60,6 +60,14 @@ the long tail. Read the write-up:
 | UNSAFE | 686 |
 | REJECT | 25 |
 
+**The key finding — risk is a long-tail problem.** UNSAFE/REJECT rate by
+popularity: 5–20★ = **3.8%**, 20–100★ = 3.7%, 100–1000★ = 0.9%, 1000★+ = **0.4%**.
+A ~9× gap between the long tail and the head — and the long tail is exactly where
+marketplaces provide no signal.
+
+Most common red-flags: `sudo_usage` (1,146), `service_persistence` (327),
+`curl_pipe_shell` (238), `agent_config_theft` (155), `tunnel_service` (137).
+
 ## Method & caveats
 
 Rule-based static scan across 11 SlowMist-derived red-flag categories. This is a
