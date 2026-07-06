@@ -2773,7 +2773,7 @@
   },
   {
     "slug": "ppt-presentation",
-    "title": "AI PPT & Slide Generators",
+    "title": "AI PPT, PowerPoint & Presentation Generators",
     "description": "AI skills for slide deck and presentation generation — guizang HTML decks, McKinsey-style PPTX, image-first PPT, marketing slides. From founder pitch to consulting deck.",
     "match": {
       "categories": [],
@@ -2785,32 +2785,80 @@
         "guizang",
         "mckinsey-pptx",
         "ppt-image-first",
-        "magazine slides"
+        "magazine slides",
+        "powerpoint",
+        "ppt skill",
+        "ppt agent",
+        "ppt generat",
+        ".pptx",
+        "slide generation",
+        "reveal.js",
+        "revealjs",
+        "slidev",
+        "beamer",
+        "marp",
+        "pptagent",
+        "google slides",
+        "keynote deck"
       ],
       "secondary_keywords": [
         "slides",
         "powerpoint",
         "keynote",
         "pitch deck",
-        "horizontal swipe"
+        "horizontal swipe",
+        "ppt",
+        "slide",
+        "deck",
+        "office",
+        "reveal",
+        "impress.js",
+        "academic presentation",
+        "html slides",
+        "talk"
       ],
       "topic_matches": [
         "ppt",
         "pptx",
         "presentation",
-        "slides"
+        "slides",
+        "powerpoint",
+        "slidev",
+        "reveal-js",
+        "slide-deck",
+        "marp"
       ],
       "min_results": 5,
-      "max_results": 25,
+      "max_results": 30,
       "featured": [
         "op7418/guizang-ppt-skill",
         "wuyoscar/gpt_image_2_skill",
         "NyxTides/ppt-image-first",
         "minhnv0807/fullstack-mkt-skills",
-        "seulee26/mckinsey-pptx"
+        "seulee26/mckinsey-pptx",
+        "zarazhangrui/frontend-slides",
+        "icip-cas/PPTAgent",
+        "op7418/NanoBanana-PPT-Skills",
+        "ningzimu/codex-ppt-skill",
+        "GongRzhe/Office-PowerPoint-MCP-Server",
+        "johnson7788/MultiAgentPPT",
+        "JuneYaooo/gpt-image2-ppt-skills",
+        "sunbigfly/ppt-agent-skills",
+        "tfriedel/claude-office-skills",
+        "barun-saha/slide-deck-ai",
+        "ryanbbrown/revealjs-skill",
+        "Noi1r/beamer-skill",
+        "Gabberflast/academic-pptx-skill",
+        "ningzimu/image-to-editable-ppt-skill",
+        "AI272/speaker",
+        "rsrohan99/presenter",
+        "crazyykhllc-bit/CyberPPT",
+        "archlizheng/frontend-slides-editable"
       ],
       "tag_matches": [
-        "ppt"
+        "ppt",
+        "presentation",
+        "powerpoint"
       ]
     },
     "related": [
@@ -3192,7 +3240,7 @@
   },
   {
     "slug": "video-editing",
-    "title": "AI Video Editing & Generation",
+    "title": "AI Video Generation & Editing: Seedance, Kling & Subtitles",
     "description": "Open-source AI video stack — subtitle generation, multilingual dubbing, short-video maker for TikTok/Reels/Shorts, Remotion programmatic video, podcast-to-video, automated captions and translations.",
     "match": {
       "categories": [],
@@ -3211,7 +3259,22 @@
         "subtitle translat",
         "video subtitling",
         "video translation",
-        "podcast video"
+        "podcast video",
+        "seedance",
+        "higgsfield",
+        "kling",
+        "sora",
+        "text-to-video",
+        "text to video",
+        "image-to-video",
+        "video generation",
+        "ai video",
+        "video agent",
+        "runway",
+        "ltx video",
+        "minimax video",
+        "veo",
+        "storyboard"
       ],
       "secondary_keywords": [
         "remotion",
@@ -3222,7 +3285,15 @@
         "video dubbing",
         "video editor",
         "video script",
-        "auto cut"
+        "auto cut",
+        "video",
+        "filmmaking",
+        "short film",
+        "ai film",
+        "video editing",
+        "comfyui",
+        "分镜",
+        "视频生成"
       ],
       "topic_matches": [
         "video",
@@ -3231,14 +3302,22 @@
         "reels",
         "remotion",
         "subtitle",
-        "captions"
+        "captions",
+        "text-to-video",
+        "video-generation",
+        "ai-video",
+        "seedance",
+        "kling",
+        "sora",
+        "image-to-video",
+        "video-agent"
       ],
       "exclude_keywords": [
         "video conferencing",
         "video call agent"
       ],
       "min_results": 5,
-      "max_results": 25,
+      "max_results": 30,
       "featured": [
         "WEIFENG2333/VideoCaptioner",
         "krillinai/KrillinAI",
@@ -3247,7 +3326,23 @@
         "digitalsamba/claude-code-video-toolkit",
         "gyoridavid/short-video-maker",
         "wshuyi/remotion-video-skill",
-        "op7418/Video-Wrapper-Skills"
+        "op7418/Video-Wrapper-Skills",
+        "MemeCalculate/moyin-creator",
+        "ArcReel/ArcReel",
+        "Lightricks/LTX-Desktop",
+        "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "HITsz-TMG/VideoClaw",
+        "MiniMax-AI/MiniMax-MCP",
+        "jau123/MeiGen-AI-Design-MCP",
+        "HITsz-TMG/AIGC-Claw",
+        "SamurAIGPT/Text-To-Video-AI",
+        "0xsline/StoryGen-Atelier",
+        "vargHQ/sdk",
+        "cclank/lanshu-awesome-ai-video-kit",
+        "Yuuhann1999/codex-storyboard",
+        "OSideMedia/higgsfield-ai-prompt-skill",
+        "mantoufan/seedance-prompts-skill",
+        "TornadoInsight/Sora-FullStack"
       ],
       "tag_matches": [
         "video"
@@ -3496,90 +3591,6 @@
     ]
   },
   {
-    "slug": "ppt-skills",
-    "title": "PPT, PowerPoint & Presentation Generation",
-    "description": "guizang-ppt-skill, PPTAgent, codex-ppt-skill, Office-PowerPoint-MCP and 20+ open-source AI skills that generate PPT, PowerPoint and presentation decks for Claude Code & Codex — stars, security grade, and which to install.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "powerpoint",
-        "presentation",
-        "ppt skill",
-        "ppt agent",
-        "ppt generat",
-        "pptx",
-        ".pptx",
-        "slide deck",
-        "slide generation",
-        "reveal.js",
-        "revealjs",
-        "slidev",
-        "beamer",
-        "marp",
-        "pptagent",
-        "google slides",
-        "keynote deck"
-      ],
-      "secondary_keywords": [
-        "ppt",
-        "slide",
-        "slides",
-        "deck",
-        "office",
-        "reveal",
-        "impress.js",
-        "academic presentation",
-        "html slides",
-        "talk"
-      ],
-      "topic_matches": [
-        "powerpoint",
-        "presentation",
-        "ppt",
-        "slides",
-        "slidev",
-        "reveal-js",
-        "pptx",
-        "slide-deck",
-        "marp"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "op7418/guizang-ppt-skill",
-        "zarazhangrui/frontend-slides",
-        "icip-cas/PPTAgent",
-        "op7418/NanoBanana-PPT-Skills",
-        "ningzimu/codex-ppt-skill",
-        "GongRzhe/Office-PowerPoint-MCP-Server",
-        "johnson7788/MultiAgentPPT",
-        "JuneYaooo/gpt-image2-ppt-skills",
-        "sunbigfly/ppt-agent-skills",
-        "NyxTides/ppt-image-first",
-        "tfriedel/claude-office-skills",
-        "barun-saha/slide-deck-ai",
-        "ryanbbrown/revealjs-skill",
-        "Noi1r/beamer-skill",
-        "Gabberflast/academic-pptx-skill",
-        "ningzimu/image-to-editable-ppt-skill",
-        "AI272/speaker",
-        "rsrohan99/presenter",
-        "crazyykhllc-bit/CyberPPT",
-        "archlizheng/frontend-slides-editable"
-      ],
-      "tag_matches": [
-        "presentation",
-        "powerpoint"
-      ]
-    },
-    "related": [
-      "content-writing",
-      "claude-code-skills",
-      "codex-skills",
-      "image-generation"
-    ]
-  },
-  {
     "slug": "obsidian-second-brain",
     "title": "Obsidian, Second Brain & LLM Wiki",
     "description": "kepano/obsidian-skills, mcp-obsidian, claude-obsidian, obsidian-wiki, karpathy-llm-wiki and 30+ open-source Obsidian, second-brain and LLM-wiki skills for Claude Code & Codex — stars, security grade, and which to install.",
@@ -3657,86 +3668,6 @@
       "agent-memory",
       "semantic-search",
       "document-parsing"
-    ]
-  },
-  {
-    "slug": "ai-video-generation",
-    "title": "Seedance, Kling, Sora & AI Video Generation",
-    "description": "moyin-creator, ArcReel, VideoClaw, higgsfield-seedance2-jineng, MiniMax-MCP and 30+ open-source AI video generation skills for Claude Code & Codex — Seedance, Kling, Sora, Higgsfield. Stars, security grade, and which to install.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "seedance",
-        "higgsfield",
-        "kling",
-        "sora",
-        "text-to-video",
-        "text to video",
-        "image-to-video",
-        "video generation",
-        "ai video",
-        "video agent",
-        "runway",
-        "ltx video",
-        "minimax video",
-        "veo",
-        "storyboard"
-      ],
-      "secondary_keywords": [
-        "video",
-        "filmmaking",
-        "short film",
-        "ai film",
-        "dubbing",
-        "video editing",
-        "remotion",
-        "comfyui",
-        "分镜",
-        "视频生成"
-      ],
-      "topic_matches": [
-        "text-to-video",
-        "video-generation",
-        "ai-video",
-        "seedance",
-        "kling",
-        "sora",
-        "image-to-video",
-        "video-agent"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "MemeCalculate/moyin-creator",
-        "ArcReel/ArcReel",
-        "FireRedTeam/FireRed-OpenStoryline",
-        "Lightricks/LTX-Desktop",
-        "YouMind-OpenLab/awesome-seedance-2-prompts",
-        "HITsz-TMG/VideoClaw",
-        "MiniMax-AI/MiniMax-MCP",
-        "jau123/MeiGen-AI-Design-MCP",
-        "HITsz-TMG/AIGC-Claw",
-        "SamurAIGPT/Text-To-Video-AI",
-        "0xsline/StoryGen-Atelier",
-        "vargHQ/sdk",
-        "cclank/lanshu-awesome-ai-video-kit",
-        "Yuuhann1999/codex-storyboard",
-        "OSideMedia/higgsfield-ai-prompt-skill",
-        "mantoufan/seedance-prompts-skill",
-        "TornadoInsight/Sora-FullStack",
-        "beshuaxian/higgsfield-seedance2-jineng",
-        "op7418/Seedance-Product-Video",
-        "Bomx/super-video-maker-skill"
-      ],
-      "tag_matches": [
-        "video"
-      ]
-    },
-    "related": [
-      "image-generation",
-      "content-writing",
-      "text-to-speech",
-      "prompt-engineering"
     ]
   }
 ]

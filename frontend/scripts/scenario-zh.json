@@ -803,20 +803,6 @@
     ],
     "d": "面向营销分析的 AI agent 技能——归因、活动报表、Web 分析与增长看板。"
   },
-  "ppt-skills": {
-    "t": "AI PPT 与演示文稿生成 Skills:guizang-ppt-skill、PPTAgent 等",
-    "k": [
-      "ppt",
-      "ppt 生成",
-      "ppt skill",
-      "演示文稿",
-      "幻灯片",
-      "powerpoint",
-      "codex ppt",
-      "ppt 制作"
-    ],
-    "d": "guizang-ppt-skill、PPTAgent、codex-ppt-skill、Office-PowerPoint-MCP 等 20+ 开源 AI PPT/演示文稿生成工具对比,带安全评级,适配 Claude Code 与 Codex。"
-  },
   "obsidian-second-brain": {
     "t": "Obsidian、第二大脑与 LLM Wiki Skills:kepano/obsidian-skills 等",
     "k": [
@@ -829,18 +815,5 @@
       "知识库"
     ],
     "d": "kepano/obsidian-skills、mcp-obsidian、claude-obsidian、obsidian-wiki、karpathy-llm-wiki 等 30+ 开源 Obsidian/第二大脑/LLM Wiki 工具对比,带安全评级,适配 Claude Code 与 Codex。"
-  },
-  "ai-video-generation": {
-    "t": "AI 视频生成 Skills:Seedance、Kling、Sora 等",
-    "k": [
-      "视频生成",
-      "ai视频",
-      "seedance",
-      "kling",
-      "文生视频",
-      "视频agent",
-      "分镜"
-    ],
-    "d": "moyin-creator、ArcReel、VideoClaw、higgsfield-seedance2-jineng 等 30+ 开源 AI 视频生成工具对比(Seedance/Kling/Sora/Higgsfield),带安全评级,适配 Claude Code 与 Codex。"
   }
 }
