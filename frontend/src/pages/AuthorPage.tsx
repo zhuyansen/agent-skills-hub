@@ -263,13 +263,21 @@ export function AuthorPage() {
         {/* Author header */}
         <div className="flex items-start gap-5 mb-6">
           {profile?.avatar ? (
-            <img
-              src={profile.avatar}
-              alt={displayName}
-              width={72}
-              height={72}
-              className="w-18 h-18 rounded-full border-2 border-gray-200 dark:border-gray-700 shrink-0"
-            />
+            <a
+              href={`https://github.com/${githubName}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0"
+              title={`${displayName} on GitHub`}
+            >
+              <img
+                src={profile.avatar}
+                alt={displayName}
+                width={72}
+                height={72}
+                className="w-18 h-18 rounded-full border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors"
+              />
+            </a>
           ) : (
             <div className="w-18 h-18 rounded-full bg-gray-200 dark:bg-gray-700 shrink-0" />
           )}
