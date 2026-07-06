@@ -45,6 +45,22 @@
 - **冷门细分 > 热门模型词**(排名易度):模型词截流拿意图,长尾拿排名,两条腿 = 印证我们 /best//audit/ 策略。
 - 小语种:子目录竞争小反哺整站权重,但**关键词不能直译要查本地真实搜索词**。中文 SEO 若认真推再用,优先级低。
 
+## 8. 数据四件套交叉验证法(2026-07-06 实战)
+**没有哪个工具单独够用 —— 交叉验证才抓得出单工具看不见的问题。**
+
+四件套分工:
+- **GSC**(`ops/gsc/fetch_gsc.py`,代理 7897)= 搜索曝光/点击/词。找主题、rising、品牌词。
+- **Plausible**(`ops/plausible/fetch_plausible.py`)= 真实 PV/来源/热门页。⚠️07-04 才建,历史短。
+- **Clarity**(`ops/clarity/fetch_clarity.py`,**必须直连**,10次/日)= 死点击/怒点/JS错。找 UX 摩擦。
+- **GA**(analytics-mcp,查 **property 485523739 + hostName** 过滤,别查空的 534610783)= 完整站内行为/转化。历史最全。
+
+**实战抓到的三类问题(单工具都看不见):**
+1. **重复页 keyword cannibalization**:GSC 视角只看词,看不出"我新建的 ppt-skills 和现有 ppt-presentation 抢同一批词"。**Plausible 的真实 PV 列表**才暴露现有页存在 → 合并到有历史的 slug、删新页。**教训:建场景页前先 `grep slug` 查现有 + 看 Plausible 热门页,别只信 GSC。**
+2. **GA 属性错位**:站点 gtag 数据流进「新媒体运营」(485523739),专属属性(534610783)是空的。**Plausible 数据少(07-04才建)会误导你以为流量小,GA 才是真规模(2837会话)**。交叉对比两个分析工具才发现。
+3. **死点击定位**:Clarity by-url 的 `Url` 字段(不是 url)+ `subTotal` 才是每页死点击数。热点=看着像按钮的 `<div>` 卡片/纯 `<img>` 头像。修法:能点的给链接,没干净目标的别硬加。
+
+**流程**:GSC 找主题 → **Plausible 查是否已有页(防重复)** → 目录查品类广度 → 建/合并 → GA 看转化 → Clarity 修 UX 摩擦。
+
 ## 立即可做(新增,非重复)
 1. 每周 `fetch_gsc.py brand` + compare,盯 rising queries(新词雷达)。
 2. Bing 站长 backlinks 扒竞品外链发布地 + 抄大佬新上关键词。
