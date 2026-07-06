@@ -3574,5 +3574,85 @@
       "codex-skills",
       "image-generation"
     ]
+  },
+  {
+    "slug": "obsidian-second-brain",
+    "title": "Obsidian, Second Brain & LLM Wiki",
+    "description": "kepano/obsidian-skills, mcp-obsidian, claude-obsidian, obsidian-wiki, karpathy-llm-wiki and 30+ open-source Obsidian, second-brain and LLM-wiki skills for Claude Code & Codex — stars, security grade, and which to install.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "obsidian",
+        "second brain",
+        "second-brain",
+        "llm wiki",
+        "llm-wiki",
+        "zettelkasten",
+        "personal knowledge",
+        "knowledge vault",
+        "note vault",
+        "obsidian mcp",
+        "obsidian skill",
+        "obsidian plugin",
+        "digital brain",
+        "pkm",
+        "note-taking agent"
+      ],
+      "secondary_keywords": [
+        "notes",
+        "vault",
+        "markdown notes",
+        "knowledge management",
+        "wiki",
+        "logseq",
+        "roam",
+        "note taking",
+        "memory layer",
+        "knowledge graph"
+      ],
+      "topic_matches": [
+        "obsidian",
+        "second-brain",
+        "pkm",
+        "zettelkasten",
+        "knowledge-management",
+        "note-taking",
+        "llm-wiki",
+        "knowledge-base"
+      ],
+      "min_results": 5,
+      "max_results": 30,
+      "featured": [
+        "kepano/obsidian-skills",
+        "YishenTu/claudian",
+        "codexu/note-gen",
+        "AgriciDaniel/claude-obsidian",
+        "MarkusPfundstein/mcp-obsidian",
+        "axtonliu/axton-obsidian-visual-skills",
+        "eugeniughelbur/obsidian-second-brain",
+        "Ar9av/obsidian-wiki",
+        "samuraigpt/llm-wiki-agent",
+        "coddingtonbear/obsidian-local-rest-api",
+        "RAIT-09/obsidian-agent-client",
+        "agenticnotetaking/arscontexta",
+        "inkeep/open-knowledge",
+        "bitbonsai/mcpvault",
+        "Astro-Han/karpathy-llm-wiki",
+        "lucasastorian/llmwiki",
+        "alchaincyf/obsidian-ai-orange-book",
+        "ballred/obsidian-claude-pkm",
+        "jacksteamdev/obsidian-mcp-tools",
+        "cyanheads/obsidian-mcp-server"
+      ],
+      "tag_matches": [
+        "obsidian"
+      ]
+    },
+    "related": [
+      "knowledge-base",
+      "agent-memory",
+      "semantic-search",
+      "document-parsing"
+    ]
   }
 ]

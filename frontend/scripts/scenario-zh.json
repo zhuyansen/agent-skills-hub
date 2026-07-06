@@ -816,5 +816,18 @@
       "ppt 制作"
     ],
     "d": "guizang-ppt-skill、PPTAgent、codex-ppt-skill、Office-PowerPoint-MCP 等 20+ 开源 AI PPT/演示文稿生成工具对比,带安全评级,适配 Claude Code 与 Codex。"
+  },
+  "obsidian-second-brain": {
+    "t": "Obsidian、第二大脑与 LLM Wiki Skills:kepano/obsidian-skills 等",
+    "k": [
+      "obsidian",
+      "第二大脑",
+      "笔记",
+      "知识管理",
+      "llm wiki",
+      "obsidian mcp",
+      "知识库"
+    ],
+    "d": "kepano/obsidian-skills、mcp-obsidian、claude-obsidian、obsidian-wiki、karpathy-llm-wiki 等 30+ 开源 Obsidian/第二大脑/LLM Wiki 工具对比,带安全评级,适配 Claude Code 与 Codex。"
   }
 }
