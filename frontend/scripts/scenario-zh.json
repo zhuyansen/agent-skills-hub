@@ -829,5 +829,18 @@
       "知识库"
     ],
     "d": "kepano/obsidian-skills、mcp-obsidian、claude-obsidian、obsidian-wiki、karpathy-llm-wiki 等 30+ 开源 Obsidian/第二大脑/LLM Wiki 工具对比,带安全评级,适配 Claude Code 与 Codex。"
+  },
+  "ai-video-generation": {
+    "t": "AI 视频生成 Skills:Seedance、Kling、Sora 等",
+    "k": [
+      "视频生成",
+      "ai视频",
+      "seedance",
+      "kling",
+      "文生视频",
+      "视频agent",
+      "分镜"
+    ],
+    "d": "moyin-creator、ArcReel、VideoClaw、higgsfield-seedance2-jineng 等 30+ 开源 AI 视频生成工具对比(Seedance/Kling/Sora/Higgsfield),带安全评级,适配 Claude Code 与 Codex。"
   }
 }

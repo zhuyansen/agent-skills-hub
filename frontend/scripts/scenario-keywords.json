@@ -1846,7 +1846,11 @@
         "manage extensions",
         "agent skills across",
         "coding agent skills",
-        "desktop app to manage ai"
+        "desktop app to manage ai",
+        "agent skill management",
+        "agent skill manager",
+        "agent skills management",
+        "ai agent skill management"
       ],
       "secondary_keywords": [
         "desktop app",
@@ -3653,6 +3657,86 @@
       "agent-memory",
       "semantic-search",
       "document-parsing"
+    ]
+  },
+  {
+    "slug": "ai-video-generation",
+    "title": "Seedance, Kling, Sora & AI Video Generation",
+    "description": "moyin-creator, ArcReel, VideoClaw, higgsfield-seedance2-jineng, MiniMax-MCP and 30+ open-source AI video generation skills for Claude Code & Codex — Seedance, Kling, Sora, Higgsfield. Stars, security grade, and which to install.",
+    "match": {
+      "categories": [],
+      "primary_keywords": [
+        "seedance",
+        "higgsfield",
+        "kling",
+        "sora",
+        "text-to-video",
+        "text to video",
+        "image-to-video",
+        "video generation",
+        "ai video",
+        "video agent",
+        "runway",
+        "ltx video",
+        "minimax video",
+        "veo",
+        "storyboard"
+      ],
+      "secondary_keywords": [
+        "video",
+        "filmmaking",
+        "short film",
+        "ai film",
+        "dubbing",
+        "video editing",
+        "remotion",
+        "comfyui",
+        "分镜",
+        "视频生成"
+      ],
+      "topic_matches": [
+        "text-to-video",
+        "video-generation",
+        "ai-video",
+        "seedance",
+        "kling",
+        "sora",
+        "image-to-video",
+        "video-agent"
+      ],
+      "min_results": 5,
+      "max_results": 30,
+      "featured": [
+        "MemeCalculate/moyin-creator",
+        "ArcReel/ArcReel",
+        "FireRedTeam/FireRed-OpenStoryline",
+        "Lightricks/LTX-Desktop",
+        "YouMind-OpenLab/awesome-seedance-2-prompts",
+        "HITsz-TMG/VideoClaw",
+        "MiniMax-AI/MiniMax-MCP",
+        "jau123/MeiGen-AI-Design-MCP",
+        "HITsz-TMG/AIGC-Claw",
+        "SamurAIGPT/Text-To-Video-AI",
+        "0xsline/StoryGen-Atelier",
+        "vargHQ/sdk",
+        "cclank/lanshu-awesome-ai-video-kit",
+        "Yuuhann1999/codex-storyboard",
+        "OSideMedia/higgsfield-ai-prompt-skill",
+        "mantoufan/seedance-prompts-skill",
+        "TornadoInsight/Sora-FullStack",
+        "beshuaxian/higgsfield-seedance2-jineng",
+        "op7418/Seedance-Product-Video",
+        "Bomx/super-video-maker-skill"
+      ],
+      "tag_matches": [
+        "video"
+      ]
+    },
+    "related": [
+      "image-generation",
+      "content-writing",
+      "text-to-speech",
+      "prompt-engineering"
     ]
   }
 ]
