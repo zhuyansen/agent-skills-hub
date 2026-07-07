@@ -28,6 +28,25 @@ const CATEGORY_COPY = JSON.parse(
   readFileSync(join(dirname(fileURLToPath(import.meta.url)), "category-copy.json"), "utf-8"),
 );
 
+// Reverse index: repo_full_name (lowercased) → scenarios that feature it. Lets
+// each skill page link UP to the /best/ scenario guides it anchors — feeds the
+// scenario pages internal-link equity from the high-star skill catalog. Uses
+// the curated `featured` list (precise, cheap), not the full keyword match.
+const FEATURED_IN_SCENARIOS = (() => {
+  const scenarios = JSON.parse(
+    readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
+  );
+  const map = new Map();
+  for (const sc of scenarios) {
+    for (const repo of sc.match?.featured || []) {
+      const key = repo.toLowerCase();
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push({ slug: sc.slug, title: sc.title });
+    }
+  }
+  return map;
+})();
+
 async function fetchAllCompositions() {
   const comps = new Map();
   let offset = 0;
@@ -131,6 +150,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     security_grade,
   );
   const auditUrl = `/audit/${repo_full_name}/`;
+  const scenariosFeaturing =
+    FEATURED_IN_SCENARIOS.get(repo_full_name.toLowerCase()) || [];
   const ogImage = `${SITE}/og-image.png`;
 
   // SEO-optimized title: exact repo_full_name matches brand-name queries
@@ -419,6 +440,9 @@ ${faqLd}
       </p>
       ${hasAudit ? `<p style="margin:0 0 16px">
         <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">&#128274; Is ${esc(repo_name)} safe to install? View the security audit &rarr;</a>
+      </p>` : ""}
+      ${scenariosFeaturing.length ? `<p style="margin:0 0 16px;font-size:14px;color:#475569">
+        Featured in: ${scenariosFeaturing.map((s) => `<a href="/best/${esc(s.slug)}/" style="color:#4f46e5;text-decoration:none">${esc(s.title)}</a>`).join(" &middot; ")}
       </p>` : ""}
 
       <!-- README Excerpt -->
