@@ -83,13 +83,14 @@ function flagLabel(f) {
   return String(f).replace(/[_-]+/g, " ");
 }
 
-function pageHtml(skill) {
+function pageHtml(skill, related = []) {
   const {
     repo_full_name, repo_name, author_name, description, stars, category,
     language, license, last_commit_at, quality_score, security_grade,
   } = skill;
   const g = GRADES[security_grade];
   const catLabel = CATEGORY_LABELS[category] || category || "AI agent tool";
+  const categoryUrl = category ? `/category/${category}/` : "/";
   const pageUrl = `${SITE}/audit/${repo_full_name}/`;
   const skillUrl = `${SITE}/skill/${repo_full_name}/`;
   const analyzerUrl = `/analyzer?repo=${encodeURIComponent(`https://github.com/${repo_full_name}`)}`;
@@ -125,7 +126,7 @@ function pageHtml(skill) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: "Security Audits", item: `${SITE}/analyzer` },
+      { "@type": "ListItem", position: 2, name: catLabel, item: `${SITE}${categoryUrl}` },
       { "@type": "ListItem", position: 3, name: repo_full_name, item: pageUrl },
     ],
   }, null, 2);
@@ -169,7 +170,7 @@ ${breadcrumbLd}
     <nav style="font-size:13px;color:#64748b;margin-bottom:20px">
       <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
       <span style="margin:0 6px">&gt;</span>
-      <a href="/analyzer" style="color:#4f46e5;text-decoration:none">Security Audits</a>
+      <a href="${esc(categoryUrl)}" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
       <span style="margin:0 6px">&gt;</span>
       <span>${esc(repo_full_name)}</span>
     </nav>
@@ -217,8 +218,14 @@ ${breadcrumbLd}
       <a href="${skillUrl}" style="border:1px solid #cbd5e1;color:#334155;text-decoration:none;padding:10px 20px;border-radius:10px;font-weight:600;font-size:14px">Full details &amp; install</a>
       <a href="/enterprise/" style="border:1px solid #cbd5e1;color:#334155;text-decoration:none;padding:10px 20px;border-radius:10px;font-weight:600;font-size:14px">5-dimension deep audit</a>
     </div>
-
-    <p style="font-size:12px;color:#94a3b8;line-height:1.6;border-top:1px solid #e2e8f0;padding-top:16px">
+${related.length ? `
+    <h2 style="font-size:18px;margin:24px 0 8px">Related ${esc(catLabel)} audits</h2>
+    <ul style="line-height:1.9;color:#475569;padding-left:20px;font-size:14px">
+      ${related.map((r) => `<li><a href="/audit/${esc(r.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">Is ${esc(r.repo_name)} safe?</a> <span style="color:#94a3b8">— ${GRADES[r.security_grade]?.label || "?"} · ★ ${starsK(r.stars)}</span></li>`).join("\n      ")}
+    </ul>
+    <p style="font-size:13px;margin:4px 0 0"><a href="${esc(categoryUrl)}" style="color:#4f46e5;text-decoration:none">Browse all ${esc(catLabel)} skills &rarr;</a></p>
+` : ""}
+    <p style="font-size:12px;color:#94a3b8;line-height:1.6;border-top:1px solid #e2e8f0;padding-top:16px;margin-top:28px">
       This is AgentSkillsHub's free basic audit: an automated rule-based scan covering SlowMist's 11 red-flag
       categories (credential exfiltration, obfuscated payloads, sandbox escape, prompt injection, and more) across
       117,000+ open-source AI agent skills and MCP servers, refreshed every 8 hours. A ${g.label} grade is a scan
@@ -245,12 +252,29 @@ async function main() {
     `  ${graded.length} graded skills (stars >= ${MIN_STARS_FOR_AUDIT}) of ${skills.length} total`,
   );
 
+  // Index audit-eligible skills by category so each audit page can link to its
+  // category's strongest siblings — turns the 7,900 dead-end audit pages into a
+  // connected mesh (internal-link equity flows instead of orphaning).
+  const RELATED_COUNT = 6;
+  const byCategory = new Map();
+  for (const s of graded) {
+    const c = s.category || "other";
+    if (!byCategory.has(c)) byCategory.set(c, []);
+    byCategory.get(c).push(s);
+  }
+  for (const arr of byCategory.values()) {
+    arr.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+  }
+
   const distDir = "dist";
   let written = 0;
   for (const skill of graded) {
+    const related = (byCategory.get(skill.category || "other") || [])
+      .filter((s) => s.repo_full_name !== skill.repo_full_name)
+      .slice(0, RELATED_COUNT);
     const dir = join(distDir, "audit", ...skill.repo_full_name.split("/"));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, "index.html"), pageHtml(skill));
+    writeFileSync(join(dir, "index.html"), pageHtml(skill, related));
     written++;
   }
   console.log(`  ✓ ${written} audit pages → dist/audit/`);
