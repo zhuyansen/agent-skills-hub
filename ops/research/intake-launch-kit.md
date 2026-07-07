@@ -82,7 +82,10 @@ hf upload $NS/agent-skills-security-grades ops/research/hf-dataset-card.md READM
 > Best,
 > Jason Zhu · agentskillshub.top
 
-**找谁**:发过 MCP/agent-security / LLM-supply-chain / npm-typosquatting 论文的作者;或你认识的任何有 cs.CR 记录的人。arXiv 也有 endorsement 页会给你一个 request link 填进邮件。
+**找谁**:发过 MCP/agent-security / LLM-supply-chain 论文的作者(有 cs.CR 记录);arXiv 提交时给你一个 request link 填进邮件。
+
+**🎯 第一目标(同题,最 warm)**:**Daniele Lunghi**(通讯作者),*Detecting Malicious Agent Skills in the Wild using Attention*(arXiv:2606.23416,cs.CR,Univ. Luxembourg/SnT,合著 Bacem Etteib · Tégawendé F. Bissyandé)。和我们完全同题,且我们 draft 的 Related Work **已引用他这篇** → ask 直接是"我论文里引了您的工作,想请您背书"。邮箱在 [PDF](https://arxiv.org/pdf/2606.23416) 第一页 / SnT 主页(arXiv 页面藏在 view-email 后)。
+备选:上面 Related Work 里其余几篇(2603.00195 / 2605.05868 / 2605.05274)的作者。
 
 ---
 

@@ -63,12 +63,28 @@ persistence (cron, service installation), tunneling/egress (reverse tunnels,
 outbound to non-declared hosts), privilege (unexpected `sudo`), and supply-chain
 (typosquatting, compromised or unpinned dependencies).
 
-**Related work.** Liu et al. (2026, arXiv:2601.10338) evaluate 31,132 skills
-under realistic conditions and report a 26.1% vulnerability rate under adversarial
-prompting; our work is complementary — broader coverage of the *published*
-ecosystem, a static supply-chain lens rather than a runtime-robustness lens, and
-a released dataset. [Add: MCP-security position papers; typosquatting studies in
-npm/PyPI as analogues.]
+**Related work.** Agent-skill and MCP security has drawn rapid attention in 2026.
+Closest to ours, Liu et al. (arXiv:2601.10338) evaluate 31,132 skills (of 42,447
+collected) with the SkillScan framework and report a 26.1% vulnerability rate;
+Etteib, Lunghi, and Bissyandé (arXiv:2606.23416) build an attention-based
+detector that locates malicious instruction spans in marketplace skills. A
+second line targets enforcement and formal guarantees: SkillScope
+(arXiv:2605.05868) proposes fine-grained least-privilege enforcement, while a
+formal supply-chain analysis (arXiv:2603.00195) and audit-runtime-gap work
+(arXiv:2605.05274) model the trust boundary explicitly. A third studies the MCP
+protocol itself — threat modeling and tool-poisoning (arXiv:2603.22489) and a
+defense-placement taxonomy (arXiv:2604.07551). These contribute detection
+methods, enforcement mechanisms, and threat taxonomies. Our contribution is
+orthogonal and complementary: the broadest static census of the *published*
+ecosystem to date (130,173 artifacts), a *released, citable* graded dataset, and
+a distributional finding — unsafe density is ~9× higher in the unranked long tail.
+To our knowledge no prior work releases a full graded dataset at this scale. We
+further relate to npm/PyPI typosquatting and compromised-dependency studies as
+supply-chain analogues.
+
+<!-- PRE-SUBMIT: verify each cited paper's one-line claim against its abstract;
+     titles/ids from a 2026-07 arXiv search. Add DOIs/venues if published. -->
+
 
 ## 3. Method
 
