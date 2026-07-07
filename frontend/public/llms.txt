@@ -1,0 +1,22 @@
+# Agent Skills Hub
+
+> Security-graded directory of 130,000+ open-source AI agent skills, Claude Skills, and MCP servers. Every popular skill gets a rule-based security grade (SAFE / CAUTION / UNSAFE / REJECT) before you install it — the trust layer for AI agent & MCP deployment. Data refreshed every 8 hours.
+
+## For AI agents
+
+- [skill.md](https://agentskillshub.top/skill.md): teaches an agent to search, audit, and install skills with the security grade checked BEFORE installing
+- MCP server: `npx -y @agentskillshub/mcp` — tools: search_skills, audit_skill, get_skill_install
+- CLI: `npx @agentskillshub/cli search <query>` — static CDN index, works offline after first run
+
+## Key pages
+
+- [Home](https://agentskillshub.top/): search the full catalog
+- [Security Analyzer](https://agentskillshub.top/analyzer): free live scan of any GitHub repo (11 red-flag categories)
+- [Scenario guides](https://agentskillshub.top/best/): curated best-of lists by use case, with security grades
+- [Security audits](https://agentskillshub.top/audit/): per-repo "is X safe to install?" pages
+- [Enterprise](https://agentskillshub.top/enterprise/): 5-dimension deep audits & compliance evidence
+
+## Data & research
+
+- [Dataset on HuggingFace](https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades): 130,173 graded skills/servers, CC BY 4.0 — cite freely
+- [Security survey write-up](https://agentskillshub.top/blog/securing-117k-ai-skills/): method + the long-tail risk finding (unsafe rate ~9× higher below 20 stars)
