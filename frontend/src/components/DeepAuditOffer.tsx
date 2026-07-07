@@ -6,15 +6,28 @@ import { trackEvent } from "../lib/analytics";
  * scan result (hottest intent moment). Fulfillment is manual per
  * ops/deep-audit-sop.md — sell it, deliver by hand, automate after 3 orders.
  *
- * PAYMENT_URL: paste your LemonSqueezy (or Stripe Payment Link) checkout URL to
- * flip the CTA from mailto to a real one-click checkout. Empty = mailto
- * fallback, so no broken button ever ships. LemonSqueezy is a merchant of
- * record (handles VAT + non-US payouts); create a $49 product, copy its
- * `/buy/<uuid>` link, paste it below. The repo is attached to the order via
- * custom data so fulfillment knows what to audit.
+ * PAYMENT_URL: paste a Stripe Payment Link (buy.stripe.com/...) or a
+ * LemonSqueezy buy link to flip the CTA from mailto to a real one-click
+ * checkout. Empty = mailto fallback, so no broken button ever ships.
+ *
+ * The repo under audit is attached to the order so fulfillment knows what to
+ * audit — provider-specific param, auto-detected from the URL:
+ *   - Stripe: client_reference_id (alphanumeric/dash/underscore only, so
+ *     "owner/repo" is sanitized to "owner--repo"; invalid values would be
+ *     silently dropped by Stripe)
+ *   - LemonSqueezy: checkout[custom][repo]
  */
 const PAYMENT_URL = "";
 const CONTACT = "m17551076169@gmail.com";
+
+function checkoutUrl(base: string, repo: string): string {
+  const sep = base.includes("?") ? "&" : "?";
+  if (base.includes("buy.stripe.com")) {
+    const ref = repo.replace(/[^a-zA-Z0-9_-]/g, "--").slice(0, 200);
+    return ref ? `${base}${sep}client_reference_id=${ref}` : base;
+  }
+  return `${base}${sep}checkout[custom][repo]=${encodeURIComponent(repo)}`;
+}
 
 export function DeepAuditOffer({ repo }: { repo?: string | null }) {
   const { t } = useI18n();
@@ -29,7 +42,7 @@ export function DeepAuditOffer({ repo }: { repo?: string | null }) {
 
   const paid = PAYMENT_URL.length > 0;
   const checkoutHref = paid
-    ? `${PAYMENT_URL}${PAYMENT_URL.includes("?") ? "&" : "?"}checkout[custom][repo]=${encodeURIComponent(repo || "")}`
+    ? checkoutUrl(PAYMENT_URL, repo || "")
     : `mailto:${CONTACT}?subject=${subject}&body=${body}`;
 
   return (
