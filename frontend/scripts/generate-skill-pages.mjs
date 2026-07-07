@@ -118,12 +118,19 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     stars, forks, description, category, language, score, license,
     readme_content, last_commit_at, created_at, topics,
     quality_score, platforms, estimated_tokens, open_issues, total_commits,
+    security_grade,
   } = skill;
 
   const indexed = shouldIndex(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
   const pageUrl = `${SITE}/skill/${repo_full_name}/`;
   const ghUrl = `https://github.com/${repo_full_name}`;
+  // /audit/ page exists only for graded skills (stars >= 50 + a real grade).
+  // Link to it so the audit island gets inbound equity from skill pages.
+  const hasAudit = ["safe", "caution", "unsafe", "reject"].includes(
+    security_grade,
+  );
+  const auditUrl = `/audit/${repo_full_name}/`;
   const ogImage = `${SITE}/og-image.png`;
 
   // SEO-optimized title: exact repo_full_name matches brand-name queries
@@ -410,6 +417,9 @@ ${faqLd}
       <p style="color:#94a3b8;font-size:13px;margin:0 0 16px">
         ${last_commit_at ? `Last updated: <time datetime="${last_commit_at}">${formatDate(last_commit_at)}</time> &middot; ` : ""}Indexed by AgentSkillsHub &middot; Auto-synced every 8h
       </p>
+      ${hasAudit ? `<p style="margin:0 0 16px">
+        <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">&#128274; Is ${esc(repo_name)} safe to install? View the security audit &rarr;</a>
+      </p>` : ""}
 
       <!-- README Excerpt -->
       <section style="margin:20px 0">
