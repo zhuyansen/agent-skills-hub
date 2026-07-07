@@ -1,0 +1,76 @@
+name: Analytics Daily Sweep
+
+# Runs the four-tool analytics sweep (GSC / GA / Plausible / Clarity) once a
+# day and writes a markdown digest to the run's Step Summary. Cloud-native:
+# no dependency on a local machine or the Clash proxy (GitHub runners are
+# outside China, so googleapis is reached directly). Does NOT push to main,
+# so it never triggers the deploy workflow. Raw JSON is uploaded as an
+# artifact for deeper review.
+#
+# GSC data lags ~2 days and Clarity caps at 10 API calls/day, so once daily is
+# the right cadence — running more often gains nothing.
+
+on:
+  schedule:
+    - cron: "0 1 * * *" # 01:00 UTC = 09:00 Asia/Shanghai (morning review)
+  workflow_dispatch: {} # manual "Run workflow" button for testing
+
+permissions:
+  contents: read
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ops/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r ops/requirements.txt
+
+      - name: Write credentials from secrets
+        env:
+          GSC_TOKEN_JSON: ${{ secrets.GSC_TOKEN_JSON }}
+          GA_ADC_JSON: ${{ secrets.GA_ADC_JSON }}
+          PLAUSIBLE_API_KEY: ${{ secrets.PLAUSIBLE_API_KEY }}
+          CLARITY_API_TOKEN: ${{ secrets.CLARITY_API_TOKEN }}
+        run: |
+          printf '%s' "$GSC_TOKEN_JSON" > ops/gsc/token.json
+          printf '%s' "$GA_ADC_JSON" > ops/ga/adc.json
+          printf '%s' "$PLAUSIBLE_API_KEY" > ops/plausible/.api_key
+          printf '%s' "$CLARITY_API_TOKEN" > ops/clarity/.api_token
+
+      # No proxy env set: requests/AuthorizedSession reach googleapis directly.
+      # `|| true` so one failing source (e.g. Clarity daily-limit) still lets
+      # the rest run and a partial digest be produced.
+      - name: GSC
+        run: |
+          python ops/gsc/fetch_gsc.py queries --days 90 || true
+          python ops/gsc/fetch_gsc.py compare --days 28 || true
+          python ops/gsc/fetch_gsc.py brand --days 90 || true
+
+      - name: Google Analytics
+        run: python ops/ga/fetch_ga.py dump --days 28 || true
+
+      - name: Plausible
+        run: python ops/plausible/fetch_plausible.py dump || true
+
+      - name: Clarity
+        run: python ops/clarity/fetch_clarity.py dump || true
+
+      - name: Build digest → Step Summary
+        run: python ops/analytics_digest.py >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload raw JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: analytics-out-${{ github.run_id }}
+          path: ops/*/out/*.json
+          retention-days: 30
+          if-no-files-found: warn

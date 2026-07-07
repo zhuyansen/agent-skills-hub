@@ -49,3 +49,6 @@ ops/clarity/.api_token
 
 ops/smithery/.api_key
 ops/research/out/
+
+# Analytics fetch outputs (regenerated; not secrets but noisy)
+ops/*/out/
