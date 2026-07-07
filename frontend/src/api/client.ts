@@ -12,6 +12,7 @@ import type {
   SyncLogData,
 } from "../types/skill";
 import { supabase } from "../lib/supabase";
+import { trackEvent } from "../lib/analytics";
 import {
   sbFetchSkills,
   sbFetchSkillsByIds,
@@ -284,15 +285,21 @@ export async function subscribe(
   email: string,
 ): Promise<{ status: string; message: string }> {
   // Always prefer Supabase for subscribe (works without backend)
-  if (supabase) return sbSubscribe(email);
-  const res = await fetch(`${API_BASE}/api/subscribe`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.detail || "Subscription failed");
-  return { status: "success", message: data.message || "Subscribed!" };
+  let result: { status: string; message: string };
+  if (supabase) {
+    result = await sbSubscribe(email);
+  } else {
+    const res = await fetch(`${API_BASE}/api/subscribe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "Subscription failed");
+    result = { status: "success", message: data.message || "Subscribed!" };
+  }
+  trackEvent("newsletter_subscribe");
+  return result;
 }
 
 export async function submitMasterApplication(

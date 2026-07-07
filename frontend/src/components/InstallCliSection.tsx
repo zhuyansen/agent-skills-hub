@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { useI18n } from "../i18n/I18nContext";
+import { trackEvent } from "../lib/analytics";
 
 // Flip to true once @agentskillshub/cli is published on npm — this swaps the
 // displayed command to the clean scoped form and reveals the npm link.
@@ -40,10 +41,11 @@ const GH_ICON =
 
 type Tab = "cli" | "mcp" | "agent";
 
-function CopyButton({ text }: { text: string }) {
+function CopyButton({ text, method }: { text: string; method: string }) {
   const [copied, setCopied] = useState(false);
   const copy = () => {
     navigator.clipboard?.writeText(text).then(() => {
+      trackEvent("install_command_copied", { method });
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     });
@@ -174,7 +176,7 @@ export function InstallCliSection() {
               <code className="flex-1 text-gray-100 overflow-x-auto whitespace-nowrap">
                 {CLI_CMD}
               </code>
-              <CopyButton text={CLI_CMD} />
+              <CopyButton text={CLI_CMD} method="cli" />
             </div>
           )}
           {tab === "mcp" && (
@@ -183,7 +185,7 @@ export function InstallCliSection() {
                 {MCP_CONFIG}
               </pre>
               <div className="absolute top-3 right-3">
-                <CopyButton text={MCP_CONFIG} />
+                <CopyButton text={MCP_CONFIG} method="mcp" />
               </div>
             </div>
           )}
@@ -195,7 +197,7 @@ export function InstallCliSection() {
               <p className="flex-1 text-gray-100 leading-relaxed text-left">
                 {AGENT_PROMPT}
               </p>
-              <CopyButton text={AGENT_PROMPT} />
+              <CopyButton text={AGENT_PROMPT} method="agent" />
             </div>
           )}
         </div>

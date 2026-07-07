@@ -11,6 +11,7 @@ import {
   type FlagDetail,
 } from "../utils/securityScanner";
 import { supabase } from "../lib/supabase";
+import { trackEvent } from "../lib/analytics";
 import { DeepAuditOffer } from "../components/DeepAuditOffer";
 
 const GRADE_CONFIG: Record<
@@ -242,6 +243,7 @@ export function AnalyzerPage() {
         };
 
         setResult(fullResult);
+        trackEvent("audit_run", { grade: scan.grade });
         saveHistory({ url: inputUrl, grade: scan.grade, time: Date.now() });
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : "Analysis failed");

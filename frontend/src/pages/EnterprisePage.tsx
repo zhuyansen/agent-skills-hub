@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
+import { trackEvent } from "../lib/analytics";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
@@ -144,6 +145,9 @@ export function EnterprisePage() {
               <div className="flex flex-wrap justify-center gap-3">
                 <a
                   href="#demo-form"
+                  onClick={() =>
+                    trackEvent("enterprise_cta_click", { cta: "hero" })
+                  }
                   className="inline-flex items-center px-7 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
                 >
                   {c.hero.ctaPrimary}
@@ -398,6 +402,12 @@ export function EnterprisePage() {
                           : tier.name === "Pro"
                             ? "mailto:m17551076169@gmail.com?subject=Hub%20Pro%20-%20Early%20Access"
                             : "/"
+                      }
+                      onClick={() =>
+                        trackEvent("enterprise_cta_click", {
+                          cta: "pricing",
+                          tier: tier.name,
+                        })
                       }
                       className={
                         tier.highlight
