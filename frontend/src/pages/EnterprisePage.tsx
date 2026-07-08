@@ -361,13 +361,31 @@ export function EnterprisePage() {
                 {c.pricing.sub}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-                {c.pricing.tiers.map((tier) => (
+                {c.pricing.tiers.map((tier) => {
+                  const ctaHref = tier.highlight
+                    ? "#demo-form"
+                    : tier.name === "Pro"
+                      ? "mailto:m17551076169@gmail.com?subject=Hub%20Pro%20-%20Early%20Access"
+                      : "/";
+                  return (
                   <div
                     key={tier.name}
+                    onClick={(e) => {
+                      // Whole card → its CTA. Clarity: pricing feature bullets
+                      // were the top /enterprise/ dead-click cluster (35%);
+                      // clicking a feature = "I want this tier". Inner <a>
+                      // (the CTA button) wins via the guard.
+                      if ((e.target as HTMLElement).closest("a")) return;
+                      trackEvent("enterprise_cta_click", {
+                        cta: "pricing-card",
+                        tier: tier.name,
+                      });
+                      window.location.href = ctaHref;
+                    }}
                     className={
                       tier.highlight
-                        ? "p-6 rounded-2xl border-2 border-indigo-500 dark:border-indigo-400 bg-gradient-to-b from-indigo-50/50 to-white dark:from-indigo-950/20 dark:to-[var(--bg-card)] relative"
-                        : "p-6 rounded-2xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
+                        ? "p-6 rounded-2xl border-2 border-indigo-500 dark:border-indigo-400 bg-gradient-to-b from-indigo-50/50 to-white dark:from-indigo-950/20 dark:to-[var(--bg-card)] relative cursor-pointer"
+                        : "p-6 rounded-2xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)] cursor-pointer"
                     }
                   >
                     {tier.highlight && (
@@ -396,13 +414,7 @@ export function EnterprisePage() {
                       ))}
                     </ul>
                     <a
-                      href={
-                        tier.highlight
-                          ? "#demo-form"
-                          : tier.name === "Pro"
-                            ? "mailto:m17551076169@gmail.com?subject=Hub%20Pro%20-%20Early%20Access"
-                            : "/"
-                      }
+                      href={ctaHref}
                       onClick={() =>
                         trackEvent("enterprise_cta_click", {
                           cta: "pricing",
@@ -418,7 +430,8 @@ export function EnterprisePage() {
                       {tier.cta}
                     </a>
                   </div>
-                ))}
+                  );
+                })}
               </div>
               <p className="text-center text-xs text-gray-500 dark:text-gray-500 mt-6">
                 {c.pricing.footnote}
