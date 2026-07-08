@@ -36,13 +36,22 @@
 - dominikmartn/hue(689★ 🟢)品牌固化成 skill,后续生成全贴牌
 - zanwei/design-dna(575★ 🟢)截图→定性风格 JSON(3 个月未更新)
 
-## 第 5 层 · UI 设计(@dingyi 那条的主场)
+## 第 5 层 · UI 设计(@dingyi 那条的完整 6 项,已用 agent-reach 抓全文核实)
 
+**dingyi 榜(2311❤,2026-03-17):**
+1. **pbakaus/impeccable**(44,457★ 🟢)17 个设计命令:/polish /audit /distill
+2. **ibelick/ui-skills**(3,604★,⏳收录中)= ui-skills.com,15 个独立 skills:baseline-ui(Tailwind 一致性)、fixing-accessibility、fixing-metadata(SEO 元数据)、fixing-motion-performance、12-principles-of-animation(迪士尼动画原则)
+3. **Leonxlnx/taste-skill**(56,486★ 🟢)taste(前端设计)+ redesign(升级旧项目)+ output(强制写完整代码)+ soft(高级感:字体/留白/层叠卡片/弹簧动画)
+4. better-auth/better-icons(1,137★,⏳收录中)MCP+skill,20 万+ 图标直接同步进项目
+5. carmahhawwari/ui-design-brain(835★,⏳收录中)60+ 组件最佳实践,5 种设计风格
+6. AI kit by Motion($299,闭源付费,不收录)动画专家 skill + CSS spring 生成
+
+**库内补充(dingyi 没提但量级更大):**
+- **nextlevelbuilder/ui-ux-pro-max-skill**(101,596★ 🟢)设计智能库,UI 设计品类星王
 - **nexu-io/open-design**(76,136★ 🟢)开源版 Claude Design
-- **pbakaus/impeccable**(44,457★ 🟢)17 个设计命令 /polish /audit /distill —— dingyi 榜首
 - alchaincyf/huashu-design(21,066★ 🟢)花叔 HTML 原生设计
 - Nutlope/hallmark(3,400★ 🟢)反 AI 味
-- "UI Skills"(dingyi #2,15 个独立 skills 含 baseline-ui;库内未精确匹配到仓库)
+- dominikmartn/nothing-design-skill(2,581★,⏳收录中)Nothing 风格 UI
 
 ## 第 6 层 · 测试 + 部署
 
