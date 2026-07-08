@@ -45,13 +45,15 @@ hf upload $NS/agent-skills-security-grades ops/research/hf-dataset-card.md READM
 
 **卡点**:arXiv **首次投 cs.CR 需要一个 endorser**(已在 cs.CR 发过文、有背书资格的人)。
 
-### 投稿前 checklist(提交当天)
-- [ ] **刷新所有数字**:提交当天从 Supabase 重跑(总数/graded/各 grade/长尾分桶)—— 草稿是 07-06 快照,数字每天变
-- [ ] **先发 HF 数据集**(A 部分),把 URL 填进论文 §6 Availability
-- [ ] 填 Appendix A:从 `backend/app/services/security_scanner.py` 抄全 43 条 red-flag
-- [ ] 排版:Overleaf + arXiv article class,~7 页
-- [ ] 拿到 endorser(见下)
+### 投稿前 checklist
+- [x] **数字已刷新**(2026-07-08 快照):131,933 总数 / 20,368 graded / UNSAFE+REJECT 664=3.3% / 长尾 **4.5% vs 0.4% ≈ 11×**(比初稿的 9× 更强)/ 85% unaudited
+- [x] **HF 数据集已发**,URL 已填进论文 §6(jasonzhuyansen/agent-skills-security-grades)
+- [x] Appendix A 已填:35 条 flag 全表(REJECT 2 / HIGH 23 / MEDIUM 10,从 security_scanner.py 提取)
+- [x] **LaTeX 已就绪:`ops/research/arxiv-paper.tex`** —— 整篇贴进 Overleaf(pdfLaTeX)即编译;已含仪器诚实段(未验证→描述统计定位 + 相对差距稳健性 + 与 Liu 26.1% 差异解释)
+- [ ] 拿到 endorser(目标:Bissyandé,见下)
+- [ ] 你:注册 arXiv → 开始提交拿背书码 → 发邮件 → 背书到手 → 上传 .tex → 提交
 - [ ] 提交后:给 The Register / BleepingComputer / kdnuggets 发 arXiv 链接(#1/#2 媒体外链)
+- [ ] 顺手:HF 卡片数字也用 07-08 快照同步一版(现在写的是 07-06 的 130,173)
 
 ### Endorser 邀请邮件草稿(你填收件人 + 发送)
 

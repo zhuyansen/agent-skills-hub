@@ -1,0 +1,280 @@
+% The Long Tail Is Unaudited — arXiv submission source.
+% Compile: paste into Overleaf (pdfLaTeX, article class). Numbers: live
+% Supabase snapshot 2026-07-08. Refresh via the queries in
+% ops/research/intake-launch-kit.md if submission slips by weeks.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\title{The Long Tail Is Unaudited:\\A Security Census of 131,933 Open-Source AI Agent Skills and MCP Servers}
+\author{Jason Zhu\\Independent researcher \quad \href{https://agentskillshub.top}{agentskillshub.top} \quad \texttt{m17551076169@gmail.com}}
+\date{Snapshot: July 8, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+AI coding agents (Claude Code, Cursor, OpenAI Codex, and others) increasingly
+install third-party ``skills'' and Model Context Protocol (MCP) servers that
+execute with the agent's full permissions and often its credentials. Yet the
+marketplaces that distribute these artifacts rank them by popularity and
+recency, not safety, and expose no per-item trust signal. We collect
+\textbf{131,933} open-source agent skills and MCP servers from GitHub and grade
+them with a rule-based scanner spanning 35 red-flag patterns derived from an
+established agent-security taxonomy. Of the \textbf{20,368} artifacts popular
+enough to grade ($\geq$5 stars), \textbf{3.3\%} are graded UNSAFE or REJECT
+($\approx$1 in 31) and \textbf{8.9\%} carry at least a CAUTION flag. Our
+central finding is distributional: the UNSAFE rate is \textbf{4.5\% in the
+low-star long tail (5--20 stars) versus 0.4\% among popular repositories
+(1,000+ stars)} --- an $\sim$11$\times$ gap --- while \textbf{85\% of the full
+catalog is unaudited}. Risk concentrates exactly where popularity ranking
+hides it and where no marketplace provides a signal. We release the complete
+graded dataset (131,933 rows, CC~BY~4.0) and the scanner rules.
+\end{abstract}
+
+\section{Introduction}
+
+An agent skill is a package of instructions, and often code, that teaches an
+AI agent to perform a task; an MCP server is a process that exposes tools to
+an agent over a standard protocol. Both run inside the trust boundary of the
+user's agent: a skill's install script runs on the user's machine, and an MCP
+server receives whatever credentials the agent holds. Installing one is a
+supply-chain decision, but it is presented to users as a one-click
+convenience.
+
+The marketplaces that have emerged (one indexes over 300K skills; others range
+from thousands to millions of monthly visits) rank by stars, installs, or
+recency. None, to our knowledge, ships a per-item security grade. That the
+single most-installed artifact on one such marketplace is a community-built
+``skill-vetter'' is direct evidence that users feel this gap and are
+improvising around it.
+
+We ask three empirical questions. (Q1)~How prevalent are unsafe artifacts
+across the open-source agent-skill ecosystem? (Q2)~How is that risk
+distributed with respect to popularity --- does the community's star signal
+already protect users? (Q3)~What categories of risk dominate? Our
+contributions:
+
+\begin{enumerate}
+  \item The broadest census of the published agent-skill ecosystem to date:
+        131,933 artifacts, refreshed on an 8-hour cycle.
+  \item An open, rule-based grader over 35 red-flag patterns in three
+        severity tiers (Appendix~A).
+  \item A released, citable dataset of grades, red-flags, and quality scores
+        --- to our knowledge the first full graded dataset at this scale.
+\end{enumerate}
+
+\section{Background, Threat Model, and Related Work}
+
+\textbf{Artifacts.} We consider skills (Claude Skills, Codex skills, and
+portable \texttt{SKILL.md} variants), MCP servers, and standalone agent
+tools. All can carry executable code (install hooks, Python entry points) and
+all are loaded into a running agent's context.
+
+\textbf{Threat classes.} We group risks into six families, mapped to concrete
+red-flags: credential exfiltration (reading \texttt{.env}, agent
+config/memory, tokens), obfuscated or remote code execution
+(\texttt{curl|sh}, \texttt{eval}, base64-decoded exec), persistence (cron,
+service installation, shell-rc injection), tunneling/egress (reverse shells,
+tunnel services), privilege (unexpected \texttt{sudo}, privileged
+containers), and supply-chain (runtime install-and-execute, typosquatting
+analogues).
+
+\textbf{Related work.} Agent-skill and MCP security has drawn rapid attention
+in 2026. Closest to ours, Liu et al.\ (arXiv:2601.10338) evaluate 31,132
+skills (of 42,447 collected) with the SkillScan framework and report a 26.1\%
+vulnerability rate; Etteib, Lunghi, and Bissyand\'e (arXiv:2606.23416) build
+an attention-based detector that locates malicious instruction spans in
+marketplace skills. A second line targets enforcement and formal guarantees:
+SkillScope (arXiv:2605.05868) proposes fine-grained least-privilege
+enforcement, while a formal supply-chain analysis (arXiv:2603.00195) and
+audit--runtime-gap work (arXiv:2605.05274) model the trust boundary
+explicitly. A third studies the MCP protocol itself: threat modeling and
+tool-poisoning (arXiv:2603.22489) and a defense-placement taxonomy
+(arXiv:2604.07551). These contribute detection methods, enforcement
+mechanisms, and threat taxonomies. Our contribution is orthogonal and
+complementary: the broadest static census of the \emph{published} ecosystem,
+a \emph{released} graded dataset, and a distributional finding --- unsafe
+density is an order of magnitude higher in the unranked long tail. We further
+relate to npm/PyPI typosquatting and compromised-dependency studies as
+supply-chain analogues.
+
+\section{Method}
+
+\textbf{Collection.} A six-phase pipeline runs every 8 hours: (1)~GitHub
+search across a fixed set of query patterns for the artifact types;
+(2)~verified-creator repository fetch; (3)~community submissions;
+(4)~owner/metadata enrichment; (5)~README fetch ($\leq$50\,KB); (6)~dedup by
+\texttt{owner/repo} and upsert. This yields 131,933 distinct artifacts at the
+July 8, 2026 snapshot.
+
+\textbf{Grading.} A static scanner matches each artifact's README, install
+scripts, configuration, and file tree against 35 red-flag patterns in three
+severity tiers (Appendix~A), producing a grade: SAFE (no risky pattern),
+CAUTION (accumulated medium-tier flags), UNSAFE (a high-tier pattern), or
+REJECT (a confirmed-malicious pattern). Artifacts below a popularity gate
+($<$5 stars) or lacking scannable content are marked UNAUDITED. We also
+compute a 0--100 quality score from documentation, structure, and maintenance
+signals (orthogonal to security; included in the dataset for context).
+
+\textbf{Honesty of the instrument.} The scanner is static and point-in-time.
+It is a \emph{floor, not a ceiling}: it catches declared patterns, not
+obfuscated intent or runtime behavior, and does not execute code. It has not
+yet been validated against a hand-labeled ground truth, so we present the
+percentages below as \emph{descriptive statistics of the released dataset},
+not as precise prevalence estimates. Two considerations bound the impact of
+this limitation. First, our central finding is \emph{relative}: unless the
+scanner's error rate varies systematically with repository popularity ---
+and we know of no mechanism by which regex matching would --- the
+$\sim$11$\times$ long-tail gap stands even if the absolute level shifts.
+Second, our numbers are not comparable to runtime evaluations: Liu et al.'s
+26.1\% measures vulnerability under adversarial prompting at runtime, while
+our 3.3\% measures statically declared dangerous patterns; the two measure
+different phenomena and can both be true. UNAUDITED means \emph{not
+assessed} --- it must not be read as ``safe.'' A validated, layered audit
+(LLM-assisted review plus sandboxed execution) is future work; the released
+dataset is the substrate for it.
+
+\section{Results}
+
+All numbers are from the live July 8, 2026 snapshot.
+
+\textbf{Prevalence (Q1).} Of 131,933 indexed artifacts, 20,368 are graded
+(15.4\%). Among graded: SAFE 18,563; CAUTION 1,141; UNSAFE 639; REJECT 25.
+Thus 664 (3.3\%, $\approx$1 in 31) are UNSAFE or REJECT and 1,805 (8.9\%) are
+CAUTION-or-worse.
+
+\textbf{Distribution by popularity (Q2) --- the central result.} The
+UNSAFE/REJECT rate falls monotonically with popularity
+(Table~\ref{tab:buckets}).
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+Star bucket & $n$ & UNSAFE/REJECT & rate \\
+\midrule
+5--20      & 8,386 & 374 & \textbf{4.5\%} \\
+20--100    & 6,160 & 243 & 3.9\% \\
+100--1,000 & 4,370 & 41  & 0.9\% \\
+1,000+     & 1,452 & 6   & \textbf{0.4\%} \\
+\bottomrule
+\end{tabular}
+\caption{UNSAFE/REJECT rate by popularity. The low-star tail carries
+$\sim$11$\times$ the unsafe density of the popular head.}
+\label{tab:buckets}
+\end{table}
+
+Popularity is weakly protective --- but the corollary is that \textbf{85\% of
+the catalog (111,565 artifacts) is UNAUDITED}, and the residual unsafe
+density is $\sim$11$\times$ higher in the low-star tail that no marketplace
+ranks or flags. The risk is precisely where users get the least signal.
+
+\textbf{Risk categories (Q3).} Among flagged artifacts, the most common
+red-flags are unexpected privilege (\texttt{sudo\_usage}, 1,114), service
+persistence (309), \texttt{curl|sh} remote execution (228), agent-config
+theft (148), tunneling (132), sensitive environment-variable access (103),
+and \texttt{eval} (99). Credential- and persistence-oriented flags --- the
+ones that matter most when an artifact runs with agent credentials --- are
+well represented.
+
+\textbf{By category.} UNSAFE rates are comparable across artifact types: MCP
+servers 3.5\% ($n$=8,775), Claude skills 3.9\% ($n$=3,320), Codex skills
+3.4\% ($n$=2,614), agent tools 2.6\% ($n$=4,659). No single artifact class is
+disproportionately dangerous; the problem is ecosystem-wide.
+
+\section{Discussion}
+
+The headline is not ``3.3\% are unsafe'' but \emph{where} the 3.3\% lives.
+Popularity ranking, the default on every marketplace, systematically routes
+users toward the safer head and provides no warning in the long tail where
+density is an order of magnitude higher. A per-install trust signal --- a
+grade shown before the install command --- directly addresses this, and costs
+the user nothing to read.
+
+Static grading has clear limits (\S3). It motivates layered auditing:
+LLM-assisted source review for intent, and sandboxed execution for behavior.
+We frame the released dataset as the substrate for that work: it provides the
+population, the sampling frame, and a baseline signal against which deeper
+audits can be measured.
+
+\section{Availability}
+
+\begin{itemize}
+  \item \textbf{Dataset:}
+        \href{https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades}{huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades}
+        (131,933 rows; parquet + CSV; CC~BY~4.0).
+  \item \textbf{Living version:} \href{https://agentskillshub.top}{agentskillshub.top},
+        regraded every 8 hours, with per-repository audit pages.
+  \item \textbf{Scanner rules:} the full pattern set is enumerated in
+        Appendix~A; source is open on GitHub.
+\end{itemize}
+
+\appendix
+\section{Red-Flag Patterns}
+
+The scanner evaluates 35 patterns in three tiers. A REJECT-tier match forces
+REJECT; a HIGH-tier match forces UNSAFE; MEDIUM-tier matches accumulate to
+CAUTION (2+). Verified-organization allowlists (anthropics, openai, google,
+\ldots) raise vendor trust and are not red-flags.
+
+\subsection*{REJECT tier (confirmed malicious, 2)}
+\small
+\begin{tabular}{lp{9cm}}
+\texttt{exfil\_secrets\_combo} & exfiltrates secrets via pipe to a network tool \\
+\texttt{backdoor\_install} & installs backdoor via shell startup + remote download \\
+\end{tabular}
+
+\subsection*{HIGH tier ($\rightarrow$ UNSAFE, 23)}
+\small
+\begin{tabular}{lp{9cm}}
+\texttt{data\_exfiltration} & sends local data to external server via curl POST \\
+\texttt{curl\_pipe\_shell} & downloads and executes remote script via \texttt{curl|bash} \\
+\texttt{wget\_pipe\_shell} & downloads and executes remote script via \texttt{wget|bash} \\
+\texttt{credential\_harvest} & harvests credentials from environment variables \\
+\texttt{env\_file\_read} & reads \texttt{.env} files which may contain secrets \\
+\texttt{sensitive\_dir\_access} & accesses \texttt{\textasciitilde/.ssh}, \texttt{\textasciitilde/.aws}, \texttt{\textasciitilde/.gnupg} \\
+\texttt{etc\_sensitive\_read} & reads \texttt{/etc/shadow}, \texttt{/etc/passwd} \\
+\texttt{agent\_memory\_theft} & accesses agent memory/identity files \\
+\texttt{agent\_config\_theft} & accesses agent configuration/session files \\
+\texttt{exec\_import} & executes dynamically imported Python code \\
+\texttt{base64\_exec} & decodes and pipes base64 data for execution \\
+\texttt{chmod\_dangerous} & sets dangerous permissions (777 or setuid) \\
+\texttt{write\_etc} & writes to system \texttt{/etc/} \\
+\texttt{privilege\_escalation} & attempts privilege escalation to root \\
+\texttt{cron\_persistence} & installs cron job for persistence \\
+\texttt{shell\_rc\_inject} & injects commands into shell startup files \\
+\texttt{service\_persistence} & installs persistent service/daemon \\
+\texttt{reverse\_shell} & opens reverse shell connection \\
+\texttt{dev\_tcp} & uses \texttt{/dev/tcp} (reverse-shell indicator) \\
+\texttt{rm\_rf\_root} & recursively deletes from root filesystem \\
+\texttt{obfuscated\_exec} & executes obfuscated/encoded Python code \\
+\texttt{hex\_encoded\_payload} & hex-encoded payload (possible obfuscation) \\
+\texttt{runtime\_install\_exec} & installs and immediately executes package at runtime \\
+\end{tabular}
+
+\subsection*{MEDIUM tier (2+ $\rightarrow$ CAUTION, 10)}
+\small
+\begin{tabular}{lp{9cm}}
+\texttt{sudo\_usage} & uses sudo for elevated privileges \\
+\texttt{docker\_privileged} & runs Docker container in privileged mode \\
+\texttt{fs\_root\_access} & reads root filesystem directory \\
+\texttt{sensitive\_env\_vars} & references multiple sensitive API keys/tokens \\
+\texttt{ssl\_disabled} & disables SSL/TLS certificate verification \\
+\texttt{eval\_usage} & uses \texttt{eval()} for dynamic code execution \\
+\texttt{raw\_ip\_request} & HTTP request to raw IP address \\
+\texttt{env\_access} & accesses environment variables programmatically \\
+\texttt{subprocess\_spawn} & spawns subprocesses for command execution \\
+\texttt{tunnel\_service} & uses tunneling service to expose local network \\
+\end{tabular}
+
+\section{Reproducibility}
+
+Collection query patterns, the 5-star grading gate, scanner version, and the
+snapshot date (2026-07-08) fully determine the released dataset. The dataset
+schema is documented on the HuggingFace card; the site regrades on an 8-hour
+cycle, so the living numbers drift from this snapshot by design.
+
+\end{document}
