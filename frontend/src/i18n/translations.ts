@@ -381,7 +381,10 @@ export const translations = {
     "deepAudit.item2": "每条结论附可复现证据(文件:行号 / 命令输出)",
     "deepAudit.item3": "任意公开 GitHub 仓库,含不在目录里的(私有库 +$30)",
     "deepAudit.cta": "邮件下单 — $49",
+    "deepAudit.ctaPay": "立即下单 — $49",
     "deepAudit.note": "先交付后付款,不满意不收费。",
+    "deepAudit.notePay":
+      "Stripe 安全支付 · 48 小时内交付报告 · 不满意全额退款。",
     "author.statSkills": "技能",
     "author.statStars": "Star（热门仓库）",
     "author.statQuality": "平均质量",
@@ -782,7 +785,10 @@ export const translations = {
     "deepAudit.item3":
       "Any public GitHub repo, including ones outside the catalog (private +$30)",
     "deepAudit.cta": "Order by email — $49",
+    "deepAudit.ctaPay": "Get my audit — $49",
     "deepAudit.note": "Pay after delivery. Not satisfied — no charge.",
+    "deepAudit.notePay":
+      "Secure checkout via Stripe · report within 48 hours · full refund if not satisfied.",
     "author.statSkills": "Skills",
     "author.statStars": "Stars (top repos)",
     "author.statQuality": "Avg quality",

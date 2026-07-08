@@ -17,7 +17,7 @@ import { trackEvent } from "../lib/analytics";
  *     silently dropped by Stripe)
  *   - LemonSqueezy: checkout[custom][repo]
  */
-const PAYMENT_URL = "";
+const PAYMENT_URL = "https://buy.stripe.com/00w3cu6arbkx27FdhW2VG05";
 const CONTACT = "m17551076169@gmail.com";
 
 function checkoutUrl(base: string, repo: string): string {
@@ -77,10 +77,10 @@ export function DeepAuditOffer({ repo }: { repo?: string | null }) {
           }
           className="inline-flex items-center px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
         >
-          {t("deepAudit.cta")}
+          {t(paid ? "deepAudit.ctaPay" : "deepAudit.cta")}
         </a>
         <span className="text-xs text-[var(--text-3)]">
-          {t("deepAudit.note")}
+          {t(paid ? "deepAudit.notePay" : "deepAudit.note")}
         </span>
       </div>
     </section>
