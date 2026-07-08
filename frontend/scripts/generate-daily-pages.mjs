@@ -32,12 +32,21 @@ function parseArchive(md) {
     const line = raw.trim();
     const dm = line.match(/^##\s+(\d{4}-\d{2}-\d{2})/);
     if (dm) {
-      cur = { date: dm[1], items: [] };
+      cur = { date: dm[1], items: [], trend: "" };
       days.push(cur);
       continue;
     }
     if (!cur || !line || line.startsWith("---") || line.startsWith("#")) continue;
     if (line.startsWith("（注") || line.startsWith("(注")) continue;
+    // The daily-report "🎯 今日趋势" summary line, if the archive carries it —
+    // the editorial synthesis that makes a report a report, not just a list.
+    if (/^(?:🎯|>?\s*(?:今日)?趋势\s*[:：])/u.test(line) && !/★|⭐|\/day/.test(line)) {
+      cur.trend = line
+        .replace(/^🎯\s*/u, "")
+        .replace(/^>?\s*(?:今日)?趋势\s*[:：]?\s*/u, "")
+        .trim();
+      continue;
+    }
     // Format-agnostic: an item line names an owner/repo and carries a
     // star/velocity marker. Covers "1. repo …（57★ 44/day）" and the older
     // "1️⃣ 🚀 repo — … ⭐524 145/day" alike.
@@ -117,7 +126,9 @@ const prettyDate = (d) =>
 function dayHtml(day, prev, next) {
   const url = `${SITE}/daily/${day.date}/`;
   const title = `New AI Agent Skills — ${day.date} | Agent Skills Hub`;
-  const desc = `Top ${day.items.length} new open-source AI agent skills & MCP servers on ${day.date}, ranked by star velocity: ${day.items.slice(0, 3).map((i) => i.repo.split("/")[1]).join(", ")}. Security-graded.`;
+  const desc = day.trend
+    ? `${day.trend} — top ${day.items.length} new AI agent skills & MCP servers on ${day.date}, security-graded.`
+    : `Top ${day.items.length} new open-source AI agent skills & MCP servers on ${day.date}, ranked by star velocity: ${day.items.slice(0, 3).map((i) => i.repo.split("/")[1]).join(", ")}. Security-graded.`;
   const ld = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -164,7 +175,8 @@ function dayHtml(day, prev, next) {
     <span>${day.date}</span>
   </nav>
   <h1 style="font-size:25px;margin:0 0 4px">New AI agent skills &amp; MCP servers</h1>
-  <p style="color:#64748b;margin:0 0 24px">${prettyDate(day.date)} · top ${day.items.length} by star velocity</p>
+  <p style="color:#64748b;margin:0 0 ${day.trend ? "14" : "24"}px">${prettyDate(day.date)} · top ${day.items.length} by star velocity</p>
+  ${day.trend ? `<p style="margin:0 0 24px;padding:12px 16px;background:#f8fafc;border-left:3px solid #4f46e5;border-radius:6px;color:#334155;font-size:14px;line-height:1.6">🎯 ${esc(day.trend)}</p>` : ""}
   <ul style="padding:0;margin:0">${rows}</ul>
   <div style="display:flex;justify-content:space-between;margin:28px 0 0;font-size:13px">
     ${navLink(prev, "‹ Older")}
