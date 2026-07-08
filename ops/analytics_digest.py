@@ -59,14 +59,36 @@ def main():
         for r in ga_src[:8]:
             print(f"- {r['sessionSource']} / {r.get('sessionMedium', '')} — {r['sessions']} sessions")
 
-    # ── Plausible ──
-    pl = load("plausible/out/source.json")
+    # ── GA conversion events — the funnel we instrumented; the numbers that
+    #    decide what to build next. 🎯 marks our custom events. ──
+    ga_ev = load("ga/out/events.json")
+    if ga_ev:
+        watch = {
+            "install_command_copied", "audit_run", "enterprise_cta_click",
+            "newsletter_subscribe", "deep_audit_checkout", "deep_audit_mailto",
+        }
+        custom = [r for r in ga_ev if r.get("eventName") in watch]
+        section("GA · 转化事件 🎯 (28天)")
+        if custom:
+            for r in custom:
+                print(f"- 🎯 **{r['eventName']}** — {r['eventCount']} 次 / {r['totalUsers']} 人")
+        else:
+            print("- (自定义转化事件尚无数据)")
+        missing = watch - {r.get("eventName") for r in ga_ev}
+        if missing:
+            print(f"- 未触发: {', '.join(sorted(missing))}")
+
+    # ── Plausible (rows are {metrics:[visitors,pageviews], dimensions:[name]}) ──
+    pl = load("plausible/out/sources.json") or load("plausible/out/source.json")
     if pl:
         section("Plausible · 来源")
         for r in pl[:8]:
-            v = r.get("visitors") or r.get("v") or "?"
-            name = r.get("source") or r.get("name") or "?"
-            print(f"- {name}: {v}")
+            try:
+                name = r["dimensions"][0]
+                v = r["metrics"][0]
+            except (KeyError, IndexError, TypeError):
+                continue
+            print(f"- {name}: {v} visitors")
 
     # ── Clarity ──
     ov = load("clarity/out/overview.json")

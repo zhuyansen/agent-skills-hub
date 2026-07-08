@@ -526,7 +526,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
         </div>`
       : "";
 
-    return `<div class="bp-card" style="margin:16px 0">
+    // Whole card navigates (Clarity: 36% of /best/ sessions dead-clicked the
+    // card body — only the title + footer links were live). Inner <a>s win
+    // naturally via the closest('a') guard.
+    return `<div class="bp-card" style="margin:16px 0;cursor:pointer" onclick="if(!event.target.closest('a'))window.location.href='/skill/${esc(s.repo_full_name)}/'">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>

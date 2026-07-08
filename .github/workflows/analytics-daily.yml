@@ -65,7 +65,17 @@ jobs:
         run: python ops/clarity/fetch_clarity.py dump || true
 
       - name: Build digest → Step Summary
-        run: python ops/analytics_digest.py >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          python ops/analytics_digest.py > digest.md
+          cat digest.md >> "$GITHUB_STEP_SUMMARY"
+
+      # Deliver, don't just display: a digest that sits in the Actions tab is a
+      # dashboard nobody opens. Email it to the operator every morning.
+      - name: Email digest (Resend)
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: python ops/send_digest_email.py digest.md
 
       - name: Upload raw JSON
         uses: actions/upload-artifact@v4
