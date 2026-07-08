@@ -64,10 +64,6 @@ export function NewThisWeek({ onShowDetail }: Props) {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
                 <span
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(skill.repo_url, "_blank", "noopener");
-                  }}
                   className="font-medium text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline transition-colors truncate cursor-pointer"
                 >
                   {skill.repo_name}

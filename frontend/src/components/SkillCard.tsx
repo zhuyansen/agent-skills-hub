@@ -92,13 +92,12 @@ export const SkillCard = memo(function SkillCard({
               )}
             </span>
           </div>
-          <h3
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(skill.repo_url, "_blank", "noopener");
-            }}
-            className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate group-hover:text-blue-600 transition-colors"
-          >
+          {/* Title clicks bubble to the card's detail handler. It used to
+              window.open(GitHub) — Clarity showed those clicks registering
+              as dead (popup blockers + pre-hydration), and detail is what a
+              title click means everywhere else on the site. GitHub stays one
+              click away via the card's repo link. */}
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate group-hover:text-blue-600 transition-colors">
             {skill.repo_name}
           </h3>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2 leading-relaxed">

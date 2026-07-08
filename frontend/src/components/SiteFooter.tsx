@@ -294,10 +294,16 @@ export function SiteFooter() {
             {lang === "zh" ? "保留所有权利" : "All rights reserved"}.
           </span>
           <span className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5">
+            {/* The pulsing dot reads as interactive — Clarity's top homepage
+                dead-click cluster was this footer bar. Give the click a
+                destination: "auto-updated" → what's new today. */}
+            <a
+              href="/daily/"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
               {t("footer.autoUpdated")}
-            </span>
+            </a>
             <span className="text-gray-600">·</span>
             <span>
               by{" "}

@@ -55,10 +55,6 @@ export function TopRatedSection({ onSelect: _onSelect, onShowDetail, initialData
             <img src={skill.author_avatar_url} alt={skill.author_name} loading="lazy" width={28} height={28} className="w-7 h-7 rounded-full border border-gray-100 dark:border-gray-800" />
             <div className="flex-1 min-w-0">
               <span
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(skill.repo_url, "_blank", "noopener");
-                }}
                 className="font-medium text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline transition-colors truncate block cursor-pointer"
               >
                 {skill.repo_name}

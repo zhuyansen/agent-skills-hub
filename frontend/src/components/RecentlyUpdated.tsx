@@ -53,10 +53,6 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <span
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(skill.repo_url, "_blank", "noopener");
-                  }}
                   className="font-semibold text-sm text-gray-900 dark:text-gray-100 hover:text-green-600 hover:underline transition-colors truncate cursor-pointer"
                 >
                   {skill.repo_name}

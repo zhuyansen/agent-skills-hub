@@ -206,10 +206,6 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
               </div>
 
               <h3
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(skill.repo_url, "_blank", "noopener");
-                }}
                 className="font-semibold text-sm text-gray-900 dark:text-gray-100 truncate hover:text-orange-600 hover:underline transition-colors cursor-pointer"
               >
                 {skill.repo_name}
