@@ -1,5 +1,85 @@
 # Daily Report Archive
 
+## 2026-07-01
+
+1. SMJAI/open-memory-protocol — 🆕 可移植 AI 记忆开放标准，跨工具/会话/设备互通（57★ 44/day）
+2. 0xMassi/pocketdev — 🆕 一条命令跑你已付费的 AI 编程 CLI，手机远程可用（72★ 43/day）
+3. helmorx/agent-os — 🆕 AI Agent 看护者，从想法到上线全程守护减少返工（28★ 28/day）
+4. guhcostan/claude-mega-brain — 🆕 给 Claude Code 注入项目知识库的 OKF 上下文引擎（45★ 27/day）
+5. zarazhangrui/reading-block — 🆕 一键存文章，每存 5 篇自动在 Google 日历排阅读时段（54★ 24/day）
+6. liangdabiao/weekend-city-trip — 🆕 5 分钟深调任意中国城市周末玩法的 agent skill（34★ 20/day）
+7. beefiker/superloopy — 🆕 轻量 Codex 循环 harness，带严格证据门控（35★ 17/day）
+8. linxidnju/OpenTag — 🆕 开源 Slack 原生 agent 网关，团队讨论路由给 Claude Code（46★ 12/day）
+9. mingchen666/Reviva — 🆕 本地优先 AI 学习工作台，围绕自有资料问答/笔记/复习（25★ 10/day）
+10. sudoHG/codex-reset-credits-skill — 🆕 查询 Codex 重置额度到期时间的技能与手册（24★ 8/day）
+
+> 注：本日榜单顶端 vel 前 18 名为协同刷星垃圾集群（全部 152★、2026-06-28 创建、HTML、SEO 堆砌标题「…2026」），已剔除。真正留榜的高速项目（Deepseek-API/FlareMo/loom-notes/ponytail-lite/Agent-Span/AngleCraft/fable-5-desktop）均已在近日存档推荐过，去重后本榜全部为新入榜项目。
+
+## 2026-06-30
+
+1. sums001/Deepseek-API — 🆕 逆向 Deepseek 为 OpenAI 兼容 API，免密钥直连 V4/R1（104★ 39/day）
+2. ahmadrj80/claude-fable-5-free-desktop-app — 免费 Fable 5/Claude 跨平台桌面客户端（47★ 30/day）
+3. Polaris-Aeterna/loom-notes — 🚀 XeLaTeX 填空式学习笔记 Claude 技能（73★ 28/day，昨日21★ +52）
+4. oxbshw/Agent-Span — 🆕 AI Agent 联网网关，52 渠道 92 MCP 工具 Rust 自愈后端（29★ 26/day）
+5. ilindaniel/ponytail-lite — 阻止 agent 过度工程化，Ponytail 精简版（41★ 24/day）
+6. xiaohuailabs/xiaohu-ip-studio — 开源中文配图技能 + IP 角色库（95★ 22/day）
+7. Ezeafk/awesome-agent-skills — 🆕 精选可复用 AI agent 技能/工作流合集（81★ 18/day）
+8. MADEVAL/AngleCraft — 7+2 新闻角度把枯燥话题变高互动内容（44★ 16/day）
+9. MageByte-Zero/spec-superflow — 🆕 Spec-first AI 编程工作流插件（OpenSpec+Superpowers，7 平台）（49★ 12/day）
+10. realchendahuang/FlareMo — Cloudflare 原生个人知识管理，兼容 Memos API（35★ 12/day）
+
+## 2026-06-29
+
+1. ahmadrj80/claude-fable-5-free-desktop-app — 🆕 免费 Fable 5 / Claude 跨平台桌面客户端（47★ 47/day）
+2. ilindaniel/ponytail-lite — 🆕 阻止 agent 过度工程化，Ponytail 精简版（41★ 41/day）
+3. xiaohuailabs/xiaohu-ip-studio — 🚀 开源中文配图技能 + IP 角色库（95★ 29/day +29）
+4. MADEVAL/AngleCraft — 7+2 新闻角度把枯燥话题变高互动内容（44★ +24）
+5. realchendahuang/FlareMo — 🆕 Cloudflare 原生个人知识管理，兼容 Memos API（35★ 18/day）
+6. cclank/lanshu-animated-architecture-diagram — 手绘风动画架构图 Codex 技能（46★ +16）
+7. Polaris-Aeterna/loom-notes — XeLaTeX 填空式学习笔记 Claude 技能（21★ +13）
+8. saidsurucu/dergipark-skill — 🆕 DergiPark 学术检索 Claude-in-Chrome 技能（19★ 10/day）
+9. Cuimao777/eterna-image2image-skill — 双语图生图 Codex 技能（电影级调色）（29★ +10）
+10. XBuilderLAB/cheat-on-skill — AI 时代找高薪×学得动×抗AI 工作的陪跑技能（20★ +9）
+
+## 2026-06-28
+
+1. MADEVAL/AngleCraft — 🆕 7+2 新闻角度把枯燥话题变高互动内容（44★ 44/day）
+2. xiaohuailabs/xiaohu-ip-studio — 🚀 开源中文配图技能 + IP 角色库（95★ 43/day +43）
+3. samuto69/claude-ai-desktop-app — 免费 Claude Code 桌面客户端，多模型本地路由（101★ +34）
+4. cclank/lanshu-animated-architecture-diagram — 手绘风动画架构图 Codex 技能（46★ +25）
+5. Polaris-Aeterna/loom-notes — 🆕 XeLaTeX 填空式学习笔记 Claude 技能（21★ 21/day）
+6. XBuilderLAB/cheat-on-skill — 🆕 AI 时代找高薪×学得动工作的陪跑技能（20★ 18/day）
+7. Cuimao777/eterna-image2image-skill — 双语图生图 Codex 技能（电影级调色）（29★ +15）
+8. codertesla/ai-coding-deals — AI 编程工具省钱指南（32★ +12）
+9. PenghaoJiang/auto-paper-collecter — LLM 论文聚合科研雷达（32★ +11）
+10. KeGong-XKK/Personal-Comparative-Advantage-Engine-PCAE — 个人优势发现引擎 Claude 技能（20★ +9）
+
+## 2026-06-27
+
+1. benchflow-ai/awesome-evals — AI Agent 构建/评估资源库（论文/工具/benchmark，460★ 158/day）
+2. amplifthq/opentag — Slack/GitHub 的开源 @agent 提及，路由给 Codex/Claude Code
+3. xiaohuailabs/xiaohu-ip-studio — 开源中文配图技能 + IP 角色库
+4. samuto69/claude-ai-desktop-app — 免费 Claude Code 桌面客户端，多模型代理
+5. cclank/lanshu-animated-architecture-diagram — 手绘风动画架构图 Codex 技能
+6. Cuimao777/eterna-image2image-skill — 双语图生图 Codex 技能（电影级调色）
+7. KeGong-XKK/Personal-Comparative-Advantage-Engine-PCAE — 个人优势发现引擎 Claude 技能
+8. PenghaoJiang/auto-paper-collecter — LLM 论文聚合科研雷达
+9. codertesla/ai-coding-deals — AI 编程工具省钱指南
+10. pexni/smails — Agent 原生一次性邮箱（Cloudflare Workers + MCP）
+
+## 2026-06-26
+
+1. agentscope-ai/AgentTeams — 开源多智能体协作 OS，人在环中编排
+2. mourner/flamebearer — 火焰图 CPU 性能分析，人机皆可读
+3. inkeep/open-knowledge — AI 原生 Markdown 编辑器 + LLM Wiki
+4. AtomicBot-ai/Atomic-Chat — 本地私有化大模型推理引擎
+5. Anil-matcha/open-claude-tag — 自托管 Slack AI 队友
+6. duckbugio/flock — 自主 AI 开发团队机器人
+7. ClawRunr/JavaClaw — Java 版 OpenClaw（Spring Boot）
+8. Sheldenshi/gini-agent — 会记忆会学习的 agent（周涨 674★）
+9. iagooar/qqqa — 终端极速 LLM，qq 问答 qa 执行
+10. xiaopu-ai/web-design — Claude Code 网页设计技能，先规范后代码
+
 ## 2026-06-15
 
 1. NVIDIA/SkillSpector

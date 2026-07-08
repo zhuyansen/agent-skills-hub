@@ -404,6 +404,9 @@ async function main() {
   if (blogCount > 0) {
     sitemapFiles.push("sitemap-blog.xml");
   }
+  if (existsSync("dist/sitemap-daily.xml")) {
+    sitemapFiles.push("sitemap-daily.xml");
+  }
   // sitemap-audit.xml is written by generate-audit-pages.mjs (runs earlier in
   // the build chain); register it if present.
   if (existsSync("dist/sitemap-audit.xml")) {

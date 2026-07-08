@@ -8,9 +8,13 @@ export function SiteFooter() {
 
   const navigateToSection = (id: string) => {
     // Special routes — navigate directly instead of scrolling.
-    // Blog is a static HTML page (not a SPA route), so we hard-navigate.
+    // Blog and Daily are static HTML pages (not SPA routes), so hard-navigate.
     if (id === "blog") {
       window.location.href = "/blog/";
+      return;
+    }
+    if (id === "daily") {
+      window.location.href = "/daily/";
       return;
     }
     // If already on home overview page, just scroll
@@ -101,6 +105,7 @@ export function SiteFooter() {
                 { id: "top-rated", zh: "高分项目", en: "Top Rated" },
                 { id: "categories", zh: "分类浏览", en: "Categories" },
                 { id: "workflows", zh: "工作流", en: "Workflows" },
+                { id: "daily", zh: "每日新增", en: "Daily New" },
                 { id: "blog", zh: "博客", en: "Blog" },
                 { id: "newsletter", zh: "订阅周报", en: "Newsletter" },
                 { id: "submit-skill", zh: "提交技能", en: "Submit Skill" },
