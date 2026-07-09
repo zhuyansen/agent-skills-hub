@@ -36,7 +36,8 @@ def main():
     conv = md.count("🎯 **")
     subject = f"📊 数据日报 {today} · {conv} 个转化事件在动"
 
-    body = f"""<div style="font-family:system-ui,-apple-system,sans-serif;max-width:720px">
+    # lang="zh" stops Gmail's "this email appears to be in English" banner
+    body = f"""<div lang="zh" style="font-family:system-ui,-apple-system,sans-serif;max-width:720px">
 <pre style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap">{html.escape(md)}</pre>
 <p style="font-size:12px;color:#888">AgentSkillsHub · Analytics Daily Sweep ·
 原始 JSON 在 GitHub Actions artifact(留 30 天)</p>
@@ -50,7 +51,13 @@ def main():
     )
     if r.status_code >= 300:
         sys.exit(f"Resend {r.status_code}: {r.text[:300]}")
-    print(f"✓ digest emailed to {to} ({subject})")
+    # Log Resend's email id so a lost message can be traced in their dashboard
+    rid = ""
+    try:
+        rid = r.json().get("id", "")
+    except ValueError:
+        pass
+    print(f"✓ digest emailed to {to} ({subject}) resend_id={rid}")
 
 
 if __name__ == "__main__":
