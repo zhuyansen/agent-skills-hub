@@ -151,7 +151,14 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             >
               Blue Book
             </Link>
-            {/* Static HTML page — use <a href> not <Link> so browser hard-navigates */}
+            {/* Static HTML pages — use <a href> not <Link> so browser hard-navigates */}
+            <a
+              href="/daily/"
+              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              title="Daily — 每日新鲜 skills 精选 Top 10"
+            >
+              Daily
+            </a>
             <a
               href="/blog/"
               className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
