@@ -1,6 +1,6 @@
 ---
 # HuggingFace dataset card — paste as README.md of the dataset repo.
-# Create at: huggingface.co/new-dataset  →  agentskillshub/agent-skills-security-grades
+# Create at: huggingface.co/new-dataset  →  jasonzhuyansen/agent-skills-security-grades
 license: cc-by-4.0
 task_categories:
   - tabular-classification
@@ -80,7 +80,7 @@ the live site.
 
 ```python
 from datasets import load_dataset
-ds = load_dataset("agentskillshub/agent-skills-security-grades")
+ds = load_dataset("jasonzhuyansen/agent-skills-security-grades")
 ```
 
 ## Citation
@@ -90,7 +90,7 @@ ds = load_dataset("agentskillshub/agent-skills-security-grades")
   title  = {The Long Tail Is Unaudited: A Security Survey of 130,000 Open-Source AI Agent Skills},
   author = {Zhu, Jason},
   year   = {2026},
-  note   = {Dataset: huggingface.co/datasets/agentskillshub/agent-skills-security-grades},
+  note   = {Dataset: huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades},
   url    = {https://agentskillshub.top}
 }
 ```

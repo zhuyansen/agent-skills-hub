@@ -539,14 +539,15 @@
     "match": {
       "categories": [],
       "keywords": [
-        "workflow",
-        "automation",
-        "automate",
-        "orchestrat",
-        "pipeline",
-        "scheduler",
-        "cron",
-        "task"
+        "workflow automation",
+        "workflow engine",
+        "workflow builder",
+        "process automation",
+        "task automation",
+        "automate workflow",
+        "task scheduler",
+        "job scheduler",
+        "cron"
       ],
       "min_results": 5,
       "max_results": 10,
@@ -600,10 +601,12 @@
         "observability",
         "alert",
         "metric",
-        "log",
-        "trace",
+        "log monitoring",
+        "logging",
+        "tracing",
+        "distributed trace",
         "dashboard",
-        "health"
+        "health check"
       ],
       "min_results": 3,
       "max_results": 10
@@ -3036,6 +3039,7 @@
       "primary_keywords": [
         "resume writing",
         "resume builder",
+        "resume-builder",
         "resume tailoring",
         "build resume",
         "tailor resume",

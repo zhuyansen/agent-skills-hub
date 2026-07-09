@@ -40,7 +40,17 @@ FIELDS = [
 ]
 
 def make_session():
-    eng = create_engine(os.environ["SUPABASE_DB_URL"], pool_pre_ping=True, pool_recycle=300)
+    eng = create_engine(
+        os.environ["SUPABASE_DB_URL"], pool_pre_ping=True, pool_recycle=300,
+        # A silent connection hang (observed: 2h stall at 0 CPU) blocks forever
+        # without these — keepalives detect the dead peer, statement_timeout
+        # bounds any single query, and the OperationalError retry path takes over.
+        connect_args={
+            "keepalives": 1, "keepalives_idle": 30,
+            "keepalives_interval": 10, "keepalives_count": 3,
+            "options": "-c statement_timeout=120000",
+        },
+    )
     return sessionmaker(bind=eng)()
 
 def bulk_update_sql(rows):
