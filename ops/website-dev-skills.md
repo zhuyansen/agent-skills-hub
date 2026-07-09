@@ -10,7 +10,7 @@
 |---|---|---|---|
 | obra/superpowers | **249,249** | 🟢 | 头脑风暴→计划→TDD→验证 全流程纪律,最重也最全 |
 | garrytan/gstack | 120,402 | 🟢 | ship/qa/review/retro 一套斜杠命令,偏"创业节奏" |
-| EveryInc/compound-engineering-plugin | — | ⚠️ 未收录 | @jingwangtalk 三选一里的第三个(收录缺口,待 sync)|
+| EveryInc/compound-engineering-plugin | 22,841 | 🟢 | Every 官方"复利工程",沉淀可复用工程资产(07-09 已收录)|
 
 ## 第 1 层 · 元能力(让 AI 会造 skill)
 
@@ -40,10 +40,10 @@
 
 **dingyi 榜(2311❤,2026-03-17):**
 1. **pbakaus/impeccable**(44,457★ 🟢)17 个设计命令:/polish /audit /distill
-2. **ibelick/ui-skills**(3,604★,⏳收录中)= ui-skills.com,15 个独立 skills:baseline-ui(Tailwind 一致性)、fixing-accessibility、fixing-metadata(SEO 元数据)、fixing-motion-performance、12-principles-of-animation(迪士尼动画原则)
+2. **ibelick/ui-skills**(3,610★ 🟢)= ui-skills.com,15 个独立 skills:baseline-ui(Tailwind 一致性)、fixing-accessibility、fixing-metadata(SEO 元数据)、fixing-motion-performance、12-principles-of-animation(迪士尼动画原则)
 3. **Leonxlnx/taste-skill**(56,486★ 🟢)taste(前端设计)+ redesign(升级旧项目)+ output(强制写完整代码)+ soft(高级感:字体/留白/层叠卡片/弹簧动画)
-4. better-auth/better-icons(1,137★,⏳收录中)MCP+skill,20 万+ 图标直接同步进项目
-5. carmahhawwari/ui-design-brain(835★,⏳收录中)60+ 组件最佳实践,5 种设计风格
+4. better-auth/better-icons(1,137★ 🟢)MCP+skill,20 万+ 图标直接同步进项目
+5. carmahhawwari/ui-design-brain(835★ 🟢)60+ 组件最佳实践,5 种设计风格
 6. AI kit by Motion($299,闭源付费,不收录)动画专家 skill + CSS spring 生成
 
 **库内补充(dingyi 没提但量级更大):**
@@ -51,7 +51,7 @@
 - **nexu-io/open-design**(76,136★ 🟢)开源版 Claude Design
 - alchaincyf/huashu-design(21,066★ 🟢)花叔 HTML 原生设计
 - Nutlope/hallmark(3,400★ 🟢)反 AI 味
-- dominikmartn/nothing-design-skill(2,581★,⏳收录中)Nothing 风格 UI
+- dominikmartn/nothing-design-skill(2,601★,已收录待扫描)Nothing 风格 UI
 
 ## 第 6 层 · 测试 + 部署
 

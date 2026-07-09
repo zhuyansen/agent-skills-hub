@@ -1,5 +1,22 @@
 # Daily Report Archive
 
+## 2026-07-09
+1. op7418/guizang-material-illustration — 🆕 归藏新作:生成带字解释图、图表美化与参考配图的材质插画 skill（310★ 310/day）
+2. EveryInc/compound-engineering-plugin — Every 官方"复利工程"插件,让 Claude Code/Codex 沉淀可复用工程资产（22,841★ 84/day）
+3. chuspeeism/dashiAI-ppt-skill — 生成浏览器内可直接编辑的演示文稿,改稿不用重新生成（1,418★ 41/day）
+4. AI-Builder-Club/skills — 代码库 harness + 循环工程师,给 agent 套持续迭代作业流（789★ 33/day）
+5. dominikmartn/nothing-design-skill — hue 作者新作:一键生成 Nothing 设计风 UI（2,601★ 27/day）
+6. Ed1s0nZ/CyberStrikeAI — 面向网安的 agentic 执行层,把安全工具串成自动化攻防流水线（5,022★ 21/day）
+7. ibelick/ui-skills — 设计工程师 15 件套:Tailwind 一致性、无障碍、动效性能修复（3,610★ 20/day）
+8. JSingletonAI/DejaVu — 私有可携带的 AI 记忆,跨工具跨会话带着走（501★ 10/day）
+9. dsphper/lanhu-mcp — 蓝湖出品:自动分析需求并生成前后端代码的团队协作 MCP（1,885★ 9/day）
+10. better-auth/better-icons — better-auth 官方:20 万+ 图标搜索直取,自动同步进项目（1,137★ 7/day）
+🎯 今日趋势：设计类狂占 4 席（归藏材质插画/Nothing 风/ui-skills/better-icons），Every 复利工程官方插件补录即上榜；均按 velocity 排序。
+
+> 注：本批多为"新收录的成名项目"（07-08 社区补录缺口集中入库），🆕 仅归藏材质插画（07-07 创建）一项；42,641★ 的 sickn33/agentic-awesome-skills 因单仓爆星账号（作者其余仓库均 <20★）+ unknown 评级存疑，保守排除待扫描复核；与全部 249 个历史推荐零重复。
+
+---
+
 ## 2026-07-01
 
 1. SMJAI/open-memory-protocol — 🆕 可移植 AI 记忆开放标准，跨工具/会话/设备互通（57★ 44/day）
