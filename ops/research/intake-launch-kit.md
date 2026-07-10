@@ -131,3 +131,15 @@ cookie 带不动 OAuth,需要你登录一次:
 1. bing.com/webmasters → Sign In(微软账号)
 2. Add Site → 选 **"Import from Google Search Console"**(一键继承 GSC 验证,不用挂 meta/DNS)
 3. 开通后两个宝藏:**Index Explorer**(已收录/已提交比 = 排水水位)· **Backlinks 工具**(免费输入 lobehub.com / smithery.ai 看它们的外链源,照着铺)
+
+---
+
+## E. 进水口 backlog(按 ROI 排,开完 A-D 后照单走)
+
+1. **Zenodo DOI**(10 分钟):zenodo.org 上传数据集 → 免费 DOI → 不等 arXiv 即"可引用文献"
+2. **Awesome 列表 PR**(各 15 分钟):向 awesome-mcp-servers / awesome-claude-code / awesome-claude-skills 提 PR 收录我们(高星 README dofollow)
+3. **Wikidata 实体**(15 分钟):自助建 AgentSkillsHub 条目,喂知识图谱
+4. **AlternativeTo + StackShare**(各 15 分钟):免费收录,"alternative" 场景阵地
+5. **Papers with Code**(10 分钟,等 arXiv):挂数据集页,链 arXiv+HF
+6. **Product Hunt**(1-2 天筹备):唯一没打过的大战役,建议 arXiv/媒体波之后
+7. **HARO / Featured.com**(持续):拿"1/30 不安全"数据当专家引用饵
