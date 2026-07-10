@@ -1,3 +1,21 @@
+# 本周行动板(2026-07-10 定版)
+
+| # | 进水口 | 谁 | 动作 | 状态 |
+|---|---|---|---|---|
+| 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ⏸ 等一句"提" |
+| 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ⏸ 等一句"跑" |
+| 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
+| 4 | **Wikidata 实体** | 🧑 你 15 分钟 | 照 intake kit F3 填五个字段 | ⏳ |
+| 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | 文案抄 kit F4;标 LobeHub/Smithery alternatives | ⏳ |
+| 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ⏳ 🆕 |
+| 7 | creati.ai 验收 | 🧑 你 5 分钟 | 收录页 F12 跑 rel 检查 + 向客服要 9 链清单 | ⏳ |
+| — | arXiv→媒体→Reddit/HN | 等背书 | 弹药链不拆开动 | ⏸ |
+| — | PH / PwC / HARO | 押后 | arXiv 波之后 | ⏸ |
+
+**周末验收口径**:外链域 32 → 50+(Bing 报表复查);GA 来源出现新 referral。
+
+---
+
 # 外链建设 Todolist — agentskillshub.top
 
 > 目标:稳定增长高质量外链,提升域名权威 + 开发者精准流量。

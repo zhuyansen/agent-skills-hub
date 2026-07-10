@@ -59,7 +59,7 @@
 - F2 gh CLI(验刷星:单仓爆星+作者其余仓库<20★;查作者履历)
 - F3 无头浏览器 + Chrome cookie 导入(X 长文抓取 / Clarity 后台热力图)
 - F4 agent-reach(多平台抓取:X/Reddit/微信等)
-- F5 [候选·未实战] Ahrefs Webmaster Tools 免费版 —— 自家外链监控,等外链开始进来再上
+- F5 Ahrefs Webmaster Tools 免费版(ahrefs.com/webmaster-tools)—— 自家外链/健康监控,Bing 之外第二视角;注册后验证域名(可复用 GSC 授权或 DNS),看 Backlinks + Site Audit 两个报表
 
 ## 四、避坑指南(15 条,每条一个伤疤)
 
