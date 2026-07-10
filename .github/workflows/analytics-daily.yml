@@ -12,7 +12,9 @@ name: Analytics Daily Sweep
 
 on:
   schedule:
-    - cron: "0 1 * * *" # 01:00 UTC = 09:00 Asia/Shanghai (morning review)
+    # 00:20 UTC — GitHub queues scheduled runs 0-40 min late, so the mail
+    # actually lands ~08:30-09:00 Beijing, before the morning check.
+    - cron: "20 0 * * *"
   workflow_dispatch: {} # manual "Run workflow" button for testing
 
 permissions:
