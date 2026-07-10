@@ -8,7 +8,7 @@
 | 4 | **Wikidata 实体** | 🧑 你 15 分钟 | ✅ 07-10 全绿:[Q140478987](https://www.wikidata.org/wiki/Q140478987) — P31=website(带 reference)· P856=agentskillshub.top · P571=2026;站点 sameAs 双向确认已上线 | ✅ |
 | 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | ✅ AlternativeTo 上线([收录页](https://alternativeto.net/software/agent-skills-hub/about/));❌ StackShare 拒收("does not fit supported categories"——它只收 SaaS/技术栈组件,目录站不在框内,**放弃不再试**) | ✅(半) |
 | 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ✅ 07-10 开通 |
-| 7 | creati.ai 验收 | 🧑 你 5 分钟 | 收录页 F12 跑 rel 检查 + 向客服要 9 链清单 | ⏳ |
+| 7 | creati.ai 验收 | 🧑 你 5 分钟 | ✅ 07-10 收录页验毕:4 链中 **3 条 dofollow**(2 条带 utm_source=creati.ai,GA 归因干净)+1 nofollow —— 真权重位,$79 值。**剩:向客服要 9 链完整清单**(本页仅 4 条) | ✅(剩要清单) |
 | — | arXiv→媒体→Reddit/HN | 等背书 | 弹药链不拆开动 | ⏸ |
 | — | PH / PwC / HARO | 押后 | arXiv 波之后 | ⏸ |
 
@@ -362,7 +362,7 @@ Happy to share the open dataset or a longer quote.
 | punkpeye/awesome-mcp-servers | 最大 MCP 列表 | 存量 [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) 刷新:117K→130K(条目+标题) | ⏳ 待 merge(4 月开的) |
 | ComposioHQ/awesome-claude-skills | 67K | 存量 [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 刷新:67K→130K + 安全分级定位(条目+PR 描述) | ⏳ 待 merge(4 月开的) |
 | modelcontextprotocol/servers(官方) | — | 存量 [#4060](https://github.com/modelcontextprotocol/servers/pull/4060) 仍 OPEN | ⏳ 待 merge |
-| wong2/awesome-mcp-servers | 4.2K | ⚠️ 仓库开了互动限制,API 提不了 PR。分支已推好,**你浏览器点这个链接试**: https://github.com/zhuyansen/awesome-mcp-servers-1/pull/new/add-agent-skills-hub | 🧑 需人工 |
+| wong2/awesome-mcp-servers | 4.2K | ❌ 07-10 实锤:仓库 **PR 和 issue 双关闭**("An owner has disabled the ability to open pull requests"),列表只出不进、纯站长自选 —— 划掉,不再碰 | ❌ 无路 |
 | hesreallyhim/awesome-claude-code | 49.7K | ⚠️ 明文禁 PR/CLI,只收 Web 表单 issue 且**须真人提交**;且 CONTRIBUTING 说暂停收件("disabling recommendations for a little while")。**先不提**,等它重开。表单: https://github.com/hesreallyhim/awesome-claude-code/issues/new?template=recommend-resource.yml ;届时填:URL=agentskillshub.top,描述(一行、无 emoji、陈述式)="Searchable directory of 130,000+ open-source Claude skills and MCP servers with a security grade and quality score per entry, refreshed every 8 hours." | ⏸ 等重开 |
 
 **纪律复盘**:锚文本三家三样 ✅;一列表一 PR ✅;e2b-dev/awesome-ai-agents 格式不合(agent 项目档案体)主动跳过,不硬塞 ✅。
