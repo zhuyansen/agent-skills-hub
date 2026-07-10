@@ -59,6 +59,22 @@ def main():
         for r in ga_src[:8]:
             print(f"- {r['sessionSource']} / {r.get('sessionMedium', '')} — {r['sessions']} sessions")
 
+        # GEO water level (water-system ①b): sessions referred by AI
+        # assistants. The whole point of llms.txt / the dataset / MCP
+        # distribution — surface it daily instead of eyeballing the list.
+        AI_SRC = ("chatgpt", "openai", "perplexity", "doubao", "gemini",
+                  "copilot", "claude", "kimi", "deepseek", "you.com", "phind")
+        geo = [r for r in ga_src
+               if any(k in (r.get("sessionSource") or "").lower() for k in AI_SRC)
+               or (r.get("sessionMedium") or "") == "ai-assistant"]
+        section("GEO 水位 · AI 引荐(①b 进水口)")
+        if geo:
+            total = sum(int(r["sessions"]) for r in geo)
+            print(f"- **合计 {total} sessions** ← " + " · ".join(
+                f"{r['sessionSource']} {r['sessions']}" for r in geo))
+        else:
+            print("- (本期无 AI 引荐来源)")
+
     # ── GA conversion events — the funnel we instrumented; the numbers that
     #    decide what to build next. 🎯 marks our custom events. ──
     ga_ev = load("ga/out/events.json")

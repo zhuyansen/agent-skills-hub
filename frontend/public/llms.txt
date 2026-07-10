@@ -11,6 +11,7 @@
 ## Key pages
 
 - [Home](https://agentskillshub.top/): search the full catalog
+- [Daily new skills](https://agentskillshub.top/daily/): top 10 new AI agent skills every day, ranked by star velocity, security-graded
 - [Security Analyzer](https://agentskillshub.top/analyzer): free live scan of any GitHub repo (11 red-flag categories)
 - [Scenario guides](https://agentskillshub.top/best/): curated best-of lists by use case, with security grades
 - [Security audits](https://agentskillshub.top/audit/): per-repo "is X safe to install?" pages

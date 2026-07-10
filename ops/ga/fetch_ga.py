@@ -112,7 +112,7 @@ def main():
     if cmd in ("sources", "dump"):
         print("── 流量来源 ──")
         rows = run_report(sess, ["sessionSource", "sessionMedium"],
-                          ["sessions", "activeUsers"], days, order_metric="sessions", limit=25)
+                          ["sessions", "activeUsers"], days, order_metric="sessions", limit=60)
         table(rows, "sessionSource", ["sessionMedium", "sessions"])
         save("sources", rows)
     if cmd in ("events", "dump"):
