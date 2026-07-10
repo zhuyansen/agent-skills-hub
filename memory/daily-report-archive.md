@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-10
+1. Nanako0129/pilotfish — 🆕 编排多模型协作:前沿模型规划、廉价模型执行、末端验证的 Claude Code 编排层（257★ 128/day）
+2. oso95/scroll-world — 🆕 生成滚动穿越式沉浸落地页,Higgsfield 驱动的 Claude Code 技能（355★ 89/day）
+3. ohad6k/ditto — 🆕 挖掘 Claude/Codex 日志,自动生成本地专属 you.md 人设档案（68★ 34/day）
+4. bolivestilo/Homekit — 🆕 赋予 AI agent 直接操控 Apple Home:开灯、锁门、读传感器（66★ 33/day）
+5. dennykim123/claude-codex-battery — 🆕 用 macOS 菜单栏电池图标实时显示 Claude/Codex 额度用量（63★ 32/day）
+6. pmlaowangba-lab/laowangba-pmprototype-skill — 🆕 生成含信息架构与设计门禁的产品原型,直通 Figma 工作流（28★ 28/day）
+7. Sahir619/fable-method — 🆕 复刻 Fable 5 工作法为通用技能,附守护质量的 eval（79★ 20/day）
+8. frenzymath/Danus — 🆕 用事实图记忆编排数学推理智能体,攻克复杂证明（32★ 11/day）
+9. drpwchen/paper-radar — 🆕 聚合数十个期刊/PubMed 源,按兴趣打分的个人论文学习雷达（83★ 8/day）
+10. carmahhawwari/ui-design-brain — 给 AI agent 灌注真实 UI 组件知识:最佳实践与布局范式（837★ 6/day）
+🎯 今日趋势：10 席中 9 个为两周内新建,清一色围绕"给 agent 装外设"的轻量单点工具——多模型编排、额度电池、记忆档案、Apple Home 直控,小而美当道。
+> 注：去重范围=与全部 259 个历史推荐(截至 07-09)零重复。排除项:ilysenko/codex-desktop-linux(2,245★)因单仓爆星、作者其余仓库全 0★ 且 prev_stars=0 无增速轨迹,按红线保守排除待复核;sickn33/agentic-awesome-skills(42,730★,近乎停滞 +20/日)延续 07-09 存疑排除;SylphxAI/rag-server-mcp 自标 DEPRECATED 排除。🆕 判定=created_at 在 2026-06-26 之后共 9 项,仅 ui-design-brain(02-28 建)为老项目。pilotfish 安全评级 caution,入选因增速居首,已在文案标注。
+
+---
+
 ## 2026-07-09
 1. op7418/guizang-material-illustration — 🆕 归藏新作:生成带字解释图、图表美化与参考配图的材质插画 skill（310★ 310/day）
 2. EveryInc/compound-engineering-plugin — Every 官方"复利工程"插件,让 Claude Code/Codex 沉淀可复用工程资产（22,841★ 84/day）
