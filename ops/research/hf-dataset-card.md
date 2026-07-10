@@ -83,6 +83,12 @@ from datasets import load_dataset
 ds = load_dataset("jasonzhuyansen/agent-skills-security-grades")
 ```
 
+## Mirrors & DOI
+
+- **Archived snapshot with DOI**: [10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799) (Zenodo, CSV)
+- **Kaggle mirror**: [kaggle.com/datasets/yansenzhu/agent-skills-security-grades](https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades)
+- **Example analysis notebook**: [Kaggle: 130K Security Grades Analysis](https://www.kaggle.com/code/yansenzhu/ai-agent-skills-130k-security-grades-analysis)
+
 ## Citation
 
 ```
@@ -90,6 +96,7 @@ ds = load_dataset("jasonzhuyansen/agent-skills-security-grades")
   title  = {The Long Tail Is Unaudited: A Security Survey of 130,000 Open-Source AI Agent Skills},
   author = {Zhu, Jason},
   year   = {2026},
+  doi    = {10.5281/zenodo.21292799},
   note   = {Dataset: huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades},
   url    = {https://agentskillshub.top}
 }

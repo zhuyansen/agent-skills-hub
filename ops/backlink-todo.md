@@ -4,9 +4,9 @@
 |---|---|---|---|---|
 | 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
 | 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ✅ 07-10 清完我这半:**libhunt 已收录**([页面](https://www.libhunt.com/r/agent-skills-hub),自动过审)· deepwiki ✅ · SKILL.md 已挂进 MCP 仓库(喂 3 个被动爬取站)· 5 站确认死站/无入口划掉 · **剩 6 站需你人工**(见 §Tier 1 战报,文案已备)|
-| 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
-| 4 | **Wikidata 实体** | 🧑 你 15 分钟 | ✅ 07-10 建成 [Q140478987](https://www.wikidata.org/wiki/Q140478987)(账号 JasonZhu0526);已回织进站点 sameAs。**剩 3 条 statement 待加**:P31=website · P856=https://agentskillshub.top · P571=2026;顺手确认邮箱 | 🔶 差 statements |
-| 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | ✅ AlternativeTo 07-10 上线([收录页](https://alternativeto.net/software/agent-skills-hub/about/)),已回织 sameAs;**StackShare 还没提**(文案 kit F4) | 🔶 剩 StackShare |
+| 3 | **Zenodo DOI** | 🧑 你 10 分钟 | ✅ 07-10 发布:[10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799)(CC-BY-4.0);已回填论文 §Availability + HF 卡片(HF 推送待网络恢复)+ sameAs | ✅ |
+| 4 | **Wikidata 实体** | 🧑 你 15 分钟 | ✅ 07-10 全绿:[Q140478987](https://www.wikidata.org/wiki/Q140478987) — P31=website(带 reference)· P856=agentskillshub.top · P571=2026;站点 sameAs 双向确认已上线 | ✅ |
+| 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | ✅ AlternativeTo 上线([收录页](https://alternativeto.net/software/agent-skills-hub/about/));❌ StackShare 拒收("does not fit supported categories"——它只收 SaaS/技术栈组件,目录站不在框内,**放弃不再试**) | ✅(半) |
 | 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ✅ 07-10 开通 |
 | 7 | creati.ai 验收 | 🧑 你 5 分钟 | 收录页 F12 跑 rel 检查 + 向客服要 9 链清单 | ⏳ |
 | — | arXiv→媒体→Reddit/HN | 等背书 | 弹药链不拆开动 | ⏸ |
@@ -376,6 +376,13 @@ Happy to share the open dataset or a longer quote.
 | 2026-07-10 | BehiSecc/awesome-claude-skills | awesome PR | "open directory of 130,000+…" | pending | PR #445 |
 | 2026-07-10 | punkpeye #9142 / Composio #747 | 存量刷新 | 117K/67K → 130K + 安全分级 | pending | 数字保鲜 |
 | 2026-07-10 | deepwiki.com | 自动收录 | 仓库页已存在(200) | ✅ | Tier1 划掉 |
+| 2026-07-10 | Zenodo | 数据集 DOI | [10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799) | ✅ live | DR 90+ · 可引用文献 |
+| 2026-07-10 | Dev.to | 教程文(2 dofollow) | [how-to-vet-an-mcp-server](https://dev.to/yansen_zhu_9b0dae1c4cc0da/how-to-vet-an-mcp-server-before-you-install-it-i-graded-130000-to-find-out-2gh6) | ✅ live | DR 90 |
+| 2026-07-10 | Kaggle Code | 分析 notebook(3 回链) | [130k-security-grades-analysis](https://www.kaggle.com/code/yansenzhu/ai-agent-skills-130k-security-grades-analysis) | ✅ live | DR 90 |
+| 2026-07-10 | Wikidata | 实体+3 statements | Q140478987 ↔ sameAs 双向 | ✅ live | 知识图谱 |
+| 2026-07-10 | AlternativeTo | 收录页 | agent-skills-hub | ✅ live | DA 80+ |
+| 2026-07-10 | StackShare | 提交 | — | ❌ 拒收 | 类目不符,放弃 |
+| 2026-07-10 | libhunt.com | 仓库收录 | [/r/agent-skills-hub](https://www.libhunt.com/r/agent-skills-hub) | ✅ live | 自动过审 |
 |  |  |  |  |  |  |
 
 ---
