@@ -337,3 +337,21 @@ Happy to share the open dataset or a longer quote.
 - **节奏**:同一平台别一天发多条;awesome PR 一天最多 1–2 个。
 - **nofollow 也要**:Reddit/HN 多是 nofollow,但带真实流量 + 提及信号,照做。
 - **记录**:跟踪表是为了不重复、能复盘哪类渠道转化高。
+
+## 付费导航站台账(累计 $266)
+| 站 | 花费 | 日期 | 承诺 | 验收状态 |
+|---|---|---|---|---|
+| Toolify | $99 | ~06月 | 收录页 | ✅ 已见 GA referral(40 sessions/28d)|
+| aibase | $39 | ~06月 | 收录页 | GA 未单独现身,待查 |
+| TAAFT | $49 | ~06月 | 收录页 | GA 未单独现身,待查 |
+| creati.ai | $79 | 2026-07-10 | **9 条外链** | ⏳ 待验:dofollow?指向?(Cloudflare 拦自动验证,人工查:见下)|
+
+### creati.ai 验收方法(浏览器 20 秒)
+1. 打开我们在 creati.ai 的收录页
+2. F12 控制台粘贴:
+```js
+[...document.querySelectorAll('a[href*="agentskillshub"]')].map(a=>({href:a.href,rel:a.rel||'✅dofollow'}))
+```
+3. 看输出:rel 含 "nofollow" = 只买到流量位;空/✅ = 真 SEO 权重
+4. 9 条外链若分布在多个页面(分类页/榜单页),向 creati.ai 客服要清单逐条验
+### 度量:GA 来源里盯 creati.ai referral(日报 digest 会自动带出);GSC/Bing Backlinks 2-4 周后应出现 creati.ai 域
