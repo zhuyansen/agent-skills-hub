@@ -419,13 +419,14 @@ Happy to share the open dataset or a longer quote.
 - [x] **deepwiki.com — 早已收录**(deepwiki.com/zhuyansen/agent-skills-hub 200)
 - [x] **findskills.org / skillsmp.com / openskillindex.com — 被动爬取站**:三站都自动爬 GitHub 的 SKILL.md,已给 agentskillshub-mcp 仓库补 SKILL.md(commit 07d8d539),等它们下轮爬取,2-4 周复查
 
-**🧑 需你人工(6 站,文案见下方"通用提交文案")**
-- [ ] **skillget.dev** — GitHub OAuth 登录后提交 repo:skillget.dev/listings/new(最快,一次点击授权)
-- [ ] **navi.tools** — navi.tools/en/submit,只填 2 字段(网址+邮箱),72h 审核,dofollow;上线可能推销付费位,免费档先试
-- [ ] **mdskills.ai** — mdskills.ai/submit,需注册(GitHub/Google 登录均可)
-- [ ] **free2aitools.com** — 它的提交通道是 GitHub Discussions(github.com/mosesy5688-cell/ai-nexus/discussions,选 Show and tell),仓库限制了 API 发帖,你浏览器发,正文抄"通用提交文案"
-- [ ] **skillavatars.com / aitoolnet.com** — 双双 403 拦自动化;浏览器手动找 submit 入口,找不到就放弃(aitoolnet 疑似付费,别掏钱)
-- [ ] ⚠️ **popularaitools.ai** — 只有付费档(€99 起),**建议跳过**(低 DA 付费目录 ROI 低,台账 $266 已够多)
+**🧑 人工提交(07-10 完成 3/6)**
+- [x] **skillget.dev** ✅ 07-10 已提交
+- [x] **navi.tools** ✅ 07-10 已提交(72h 审核,dofollow;盯 GA referral 验收)
+- [x] **mdskills.ai** ✅ 07-10 已提交(有人工审核队列)
+- [ ] **free2aitools.com** — 入口不在站上,在它的 GitHub Discussions。**预填链接(点开即成稿,按 Start discussion 即可)**:
+      https://github.com/mosesy5688-cell/ai-nexus/discussions/new?category=show-and-tell&title=Submit%20tool%3A%20Agent%20Skills%20Hub%20%E2%80%94%20security-graded%20directory%20of%20130%2C000%2B%20agent%20skills%20%26%20MCP%20servers&body=%2A%2AName%2A%2A%3A%20Agent%20Skills%20Hub%0A%2A%2AURL%2A%2A%3A%20https%3A//agentskillshub.top%0A%2A%2ACategory%2A%2A%3A%20Developer%20Tools%20/%20AI%20Agents%0A%2A%2APricing%2A%2A%3A%20Free%2C%20no%20login%0A%2A%2ADescription%2A%2A%3A%20Searchable%20directory%20of%20130%2C000%2B%20open-source%20AI%20agent%20skills%20and%20MCP%20servers%2C%20refreshed%20every%208%20hours.%20Every%20entry%20carries%20a%20quality%20score%20and%20a%20SAFE/CAUTION/UNSAFE%20security%20grade.%20Also%20available%20as%20a%20CLI%20%28npx%20%40agentskillshub/cli%29%20and%20MCP%20server%20%28npx%20%40agentskillshub/mcp%29.%20Open%20source%20%28MIT%29%3B%20graded%20dataset%20CC-BY-4.0%20on%20Hugging%20Face.%0A%0AThanks%20for%20maintaining%20the%20index%21
+- [x] ❌ **skillavatars.com** — 划掉:唯一联系方式是 iCloud 隐私中继邮箱,拒收外部邮件(550 Delivery not authorized),无提交路径
+- [x] ❌ **aitoolnet.com** — 划掉:submit 页 $9.9 付费。虽便宜但低 DA 付费目录 ROI 低、rel 属性不明,台账 $266 已够,不再给付费目录掏钱(popularaitools €99 同理跳过)
 
 **❌ 划掉(5 站,别再回头看)**
 - mcp-container.com / mytoolist.com(无提交入口)· model-context-protocol.com(无流程,只能发邮件)· mcp-servers.info(疑似死站)· mcpmark.ai(是 MCP 基准测试站,不是目录,不适用)
