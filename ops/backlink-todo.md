@@ -7,12 +7,25 @@
 | 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
 | 4 | **Wikidata 实体** | 🧑 你 15 分钟 | 照 intake kit F3 填五个字段 | ⏳ |
 | 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | 文案抄 kit F4;标 LobeHub/Smithery alternatives | ⏳ |
-| 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ⏳ 🆕 |
+| 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ✅ 07-10 开通 |
 | 7 | creati.ai 验收 | 🧑 你 5 分钟 | 收录页 F12 跑 rel 检查 + 向客服要 9 链清单 | ⏳ |
 | — | arXiv→媒体→Reddit/HN | 等背书 | 弹药链不拆开动 | ⏸ |
 | — | PH / PwC / HARO | 押后 | arXiv 波之后 | ⏸ |
 
 **周末验收口径**:外链域 32 → 50+(Bing 报表复查);GA 来源出现新 referral。
+
+## Ahrefs 基线(2026-07-10 首测,以后每月对账)
+
+| 指标 | 值 | 解读 |
+|---|---|---|
+| **DR** | **6** | 权重线问题的量化病根:品牌词 pos 11、pos50+ 词、Ahrefs 关键词 0 —— 全由它解释 |
+| UR(首页) | 4.4 | — |
+| Backlinks / Ref.domains | 10.7K / **313** | 比 Bing 的 32 域多 10 倍(Ahrefs 索引含大量采集站/镜像,质量子集依旧小)|
+| Organic keywords / traffic | **0 / 0** | Ahrefs 词库有量级门槛,我们的长尾位次进不了它的索引 —— **不代表没流量**(GSC 实测每天 ~8 clicks),别恐慌 |
+| **AI responses(全平台)** | **0** | Ahrefs 新出的 AI 引用指数(抽样热门 prompt);GA 实测已有 40 会话 AI 引荐 —— 说明引用发生在它的抽样之外。**这是 ①b GEO 的第三块水位表,每月看** |
+
+**验收基准**:本周行动(Awesome/Tier1/Zenodo/Wikidata)+ arXiv 之后,下月对账看 DR 6 → ? 和 AI responses 0 → ?
+
 
 ---
 
