@@ -5,8 +5,8 @@
 | 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
 | 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ✅ 07-10 清完我这半:**libhunt 已收录**([页面](https://www.libhunt.com/r/agent-skills-hub),自动过审)· deepwiki ✅ · SKILL.md 已挂进 MCP 仓库(喂 3 个被动爬取站)· 5 站确认死站/无入口划掉 · **剩 6 站需你人工**(见 §Tier 1 战报,文案已备)|
 | 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
-| 4 | **Wikidata 实体** | 🧑 你 15 分钟 | 照 intake kit F3 填五个字段 | ⏳ |
-| 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | 文案抄 kit F4;标 LobeHub/Smithery alternatives | ⏳ |
+| 4 | **Wikidata 实体** | 🧑 你 15 分钟 | ✅ 07-10 建成 [Q140478987](https://www.wikidata.org/wiki/Q140478987)(账号 JasonZhu0526);已回织进站点 sameAs。**剩 3 条 statement 待加**:P31=website · P856=https://agentskillshub.top · P571=2026;顺手确认邮箱 | 🔶 差 statements |
+| 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | ✅ AlternativeTo 07-10 上线([收录页](https://alternativeto.net/software/agent-skills-hub/about/)),已回织 sameAs;**StackShare 还没提**(文案 kit F4) | 🔶 剩 StackShare |
 | 6 | **Ahrefs 免费站长版** | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ✅ 07-10 开通 |
 | 7 | creati.ai 验收 | 🧑 你 5 分钟 | 收录页 F12 跑 rel 检查 + 向客服要 9 链清单 | ⏳ |
 | — | arXiv→媒体→Reddit/HN | 等背书 | 弹药链不拆开动 | ⏸ |
