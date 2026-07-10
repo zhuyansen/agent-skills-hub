@@ -387,13 +387,14 @@ Happy to share the open dataset or a longer quote.
 - **nofollow 也要**:Reddit/HN 多是 nofollow,但带真实流量 + 提及信号,照做。
 - **记录**:跟踪表是为了不重复、能复盘哪类渠道转化高。
 
-## 付费导航站台账(累计 $266)
+## 付费导航站台账(累计 $275.9)
 | 站 | 花费 | 日期 | 承诺 | 验收状态 |
 |---|---|---|---|---|
 | Toolify | $99 | ~06月 | 收录页 | ✅ 已见 GA referral(40 sessions/28d)|
 | aibase | $39 | ~06月 | 收录页 | GA 未单独现身,待查 |
 | TAAFT | $49 | ~06月 | 收录页 | GA 未单独现身,待查 |
 | creati.ai | $79 | 2026-07-10 | **9 条外链** | ⏳ 待验:dofollow?指向?(Cloudflare 拦自动验证,人工查:见下)|
+| aitoolnet | $9.9 | 2026-07-10 | 收录页 | ⏳ 上线后:F12 查 rel + GA 盯 aitoolnet referral |
 
 ### creati.ai 验收方法(浏览器 20 秒)
 1. 打开我们在 creati.ai 的收录页
@@ -423,10 +424,9 @@ Happy to share the open dataset or a longer quote.
 - [x] **skillget.dev** ✅ 07-10 已提交
 - [x] **navi.tools** ✅ 07-10 已提交(72h 审核,dofollow;盯 GA referral 验收)
 - [x] **mdskills.ai** ✅ 07-10 已提交(有人工审核队列)
-- [ ] **free2aitools.com** — 入口不在站上,在它的 GitHub Discussions。**预填链接(点开即成稿,按 Start discussion 即可)**:
-      https://github.com/mosesy5688-cell/ai-nexus/discussions/new?category=show-and-tell&title=Submit%20tool%3A%20Agent%20Skills%20Hub%20%E2%80%94%20security-graded%20directory%20of%20130%2C000%2B%20agent%20skills%20%26%20MCP%20servers&body=%2A%2AName%2A%2A%3A%20Agent%20Skills%20Hub%0A%2A%2AURL%2A%2A%3A%20https%3A//agentskillshub.top%0A%2A%2ACategory%2A%2A%3A%20Developer%20Tools%20/%20AI%20Agents%0A%2A%2APricing%2A%2A%3A%20Free%2C%20no%20login%0A%2A%2ADescription%2A%2A%3A%20Searchable%20directory%20of%20130%2C000%2B%20open-source%20AI%20agent%20skills%20and%20MCP%20servers%2C%20refreshed%20every%208%20hours.%20Every%20entry%20carries%20a%20quality%20score%20and%20a%20SAFE/CAUTION/UNSAFE%20security%20grade.%20Also%20available%20as%20a%20CLI%20%28npx%20%40agentskillshub/cli%29%20and%20MCP%20server%20%28npx%20%40agentskillshub/mcp%29.%20Open%20source%20%28MIT%29%3B%20graded%20dataset%20CC-BY-4.0%20on%20Hugging%20Face.%0A%0AThanks%20for%20maintaining%20the%20index%21
+- [x] ❌ **free2aitools.com** — 划掉:API 发帖 FORBIDDEN、预填链接也发不出(仓库锁了外部 discussion),无可用提交路径;它聚合开放数据,有缘自然收录
 - [x] ❌ **skillavatars.com** — 划掉:唯一联系方式是 iCloud 隐私中继邮箱,拒收外部邮件(550 Delivery not authorized),无提交路径
-- [x] ❌ **aitoolnet.com** — 划掉:submit 页 $9.9 付费。虽便宜但低 DA 付费目录 ROI 低、rel 属性不明,台账 $266 已够,不再给付费目录掏钱(popularaitools €99 同理跳过)
+- [x] 💰 **aitoolnet.com** — 07-10 已付 $9.9 提交(用户决策);验收进付费台账
 
 **❌ 划掉(5 站,别再回头看)**
 - mcp-container.com / mytoolist.com(无提交入口)· model-context-protocol.com(无流程,只能发邮件)· mcp-servers.info(疑似死站)· mcpmark.ai(是 MCP 基准测试站,不是目录,不适用)
