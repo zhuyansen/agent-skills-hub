@@ -2,7 +2,7 @@ export const translations = {
   zh: {
     // Header
     "header.subtitle":
-      "Claude Skills · MCP 服务器 · Agent 工具 — 发现、对比、上手",
+      "Claude Skills · MCP 服务器 · Agent 工具 — 发现、对比、安全上手",
     "header.lastUpdated": "最后更新:",
     "header.favorites": "我的收藏",
     "header.more": "更多",
@@ -281,7 +281,7 @@ export const translations = {
     // Hero
     "hero.title": "{count} Claude Skills、MCP Server 与 Agent 工具",
     "hero.subtitle":
-      "开源目录 · 10 维质量评分 · 每 8 小时刷新 · 30 秒内找到、对比、上手",
+      "开源目录 · 安全评级 · 10 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
     "hero.trending": "热门",
     "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
@@ -396,7 +396,7 @@ export const translations = {
   },
   en: {
     "header.subtitle":
-      "Claude Skills · MCP Servers · Agent Tools — discover, compare, deploy",
+      "Claude Skills · MCP Servers · Agent Tools — discover, compare, deploy safely",
     "header.lastUpdated": "Last updated:",
     "header.favorites": "My Favorites",
     "header.more": "More",
@@ -683,7 +683,7 @@ export const translations = {
     // Hero
     "hero.title": "{count} Claude Skills, MCP Servers & Agent Tools",
     "hero.subtitle":
-      "The open-source directory. Quality-scored on 10 dimensions. Refreshed every 8 hours. Find, compare, install in 30 seconds.",
+      "The open-source directory. Security-graded, quality-scored on 10 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
     "hero.trending": "Trending",
     "hero.searchPlaceholder":
       "Search AI agent tools, MCP servers, automation skills...",
@@ -737,7 +737,7 @@ export const translations = {
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What is AgentSkillsHub?",
     "faq.a1":
-      "AgentSkillsHub is the best platform for developers to discover, compare, and automate with 100,000+ open-source AI agent tools, MCP servers, and automation skills. Quality-scored and auto-updated every 8 hours.",
+      "AgentSkillsHub is the security-graded directory of open-source AI agent tools, MCP servers, and automation skills — quality-scored and auto-updated every 8 hours.",
     "faq.q2": "How are quality scores calculated?",
     "faq.a2":
       "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",

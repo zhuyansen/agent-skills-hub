@@ -165,24 +165,24 @@ export function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
+        {/* 62 chars — mirrors index.html exactly (SERP truncates ~60-65) */}
         <title>
-          Agent Skills Hub — Security-Graded Claude Skills &amp; MCP Server
-          Directory
+          Agent Skills Hub — Security-Graded Claude Skills &amp; MCP Servers
         </title>
         <meta
           name="description"
-          content={`Agent Skills Hub helps you find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded and quality-scored, refreshed every 8 hours.`}
+          content={`Find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded, quality-scored, refreshed every 8 hours.`}
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
             homepage's lives here like every other page's. */}
         <link rel="canonical" href="https://agentskillshub.top/" />
         <meta
           property="og:title"
-          content="Agent Skills Hub — Security-Graded Claude Skills & MCP Server Directory"
+          content="Agent Skills Hub — Security-Graded Claude Skills & MCP Servers"
         />
         <meta
           property="og:description"
-          content={`Agent Skills Hub helps you find Claude skills & MCP servers without guessing what's safe — every entry security-graded and quality-scored, refreshed every 8 hours.`}
+          content={`Find Claude skills & MCP servers without guessing what's safe. Every entry security-graded, quality-scored, refreshed every 8 hours.`}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
