@@ -30,99 +30,142 @@
 | 8 | ❌ **堆更多撑子页** | — | 饱和后边际趋零,还引发自相竞争 |
 | 9 | ❌ **改 pos 50+ 词的标题** | — | 权威病,措辞无效,纯浪费 |
 
-## 三、工具必上清单(六类,带说明)
+## 三、工具必上清单(六类 · 安装教程 · 详细用法)
+
+### 六类怎么区分(先分清再往下看)
+
+| 类 | 管什么 | 一句话区分 | 跑的频率 |
+|---|---|---|---|
+| **A 站长后台** | 搜索引擎怎么看你 | 数据来自**搜索引擎自家**,最权威但滞后 2-3 天 | 日扫(自动)+ 周看 |
+| **B 行为分析** | 用户进站后干了什么 | 数据来自**你自己埋的脚本**,近实时 | 日扫(自动) |
+| **C 转化埋点** | 水做没做功(钱和意图) | 不是"看数据的工具",是**造数据的开关** —— 装一次,永久产出 | 装一次 |
+| **D 自动化/仪式** | 让数据每天自己找你 | 不产生新数据,解决的是**"没人天天看"** | 建一次,常驻 |
+| **E 发布 CLI** | 把资产推到站外 | 六类里唯一**向外写**的 = 开进水口的手 | 有弹药就发 |
+| **F 体检/侦察** | 发现问题(自己)和机会(竞品) | 按需拉出来用,**不日常跑** | 月检/事件驱动 |
+
+记忆法:**A/B 是水位表,C 是水表阀门,D 是值班员,E 是挖渠的锹,F 是巡堤的手电。**
+
+---
 
 ### A. 站长后台(搜索引擎自家:管收录、词、外链)
 
-- **A1 GSC(Google Search Console API)**
-  是什么:Google 官方的搜索表现数据源 —— 每个词的曝光/点击/位次。
-  我们怎么用:`ops/gsc/fetch_gsc.py`,五个子命令(queries/compare/brand/pages/dump);compare 抓 rising 词 = 新词雷达;brand 盯品牌词位次。
-  坑:数据滞后 ~2 天;国内必须走 Clash 代理 + requests 传输(httplib2 不认代理,见避坑 14)。
+- **A1 GSC(Google Search Console)**
+  是什么:Google 官方搜索表现数据 —— 每个词的曝光/点击/位次,SEO 的第一水位表。
+  安装:①search.google.com/search-console 添加域名资源(DNS 验证);②API:Google Cloud 建项目 → 启用 Search Console API → 下载 OAuth `credentials.json` 放 `ops/gsc/` → 首跑弹浏览器授权,生成 `token.json`(两个文件都已 gitignore)。
+  用法:`python ops/gsc/fetch_gsc.py <子命令>`,五个子命令 —— `queries`(周热词)/ `compare`(环比,抓 rising 词 = 新词雷达)/ `brand`(品牌词位次)/ `pages`(页面榜)/ `dump`(全量)。每周跑 brand + compare 是最低仪式。
+  坑:数据滞后 ~2 天;国内必须 Clash 代理 7897 + requests 传输(httplib2 不认代理,避坑 14)。
 
 - **A2 Bing Webmaster**
-  是什么:必应站长后台,给两样 Google 不给的东西。
-  我们怎么用:①Index Explorer 看"已收录/已提交比"= 排水水位;②Backlinks 免费对比任意竞品外链(lobehub 490 域 vs 我们 32 就是它查的)。
-  坑:验证走 XML 文件最稳(GSC 导入不一定弹);数据也有几天滞后。
+  是什么:必应站长后台,给两样 Google 不给的:①Index Explorer(已收录/已提交比 = 排水水位);②**Backlinks 免费查任意竞品外链**(lobehub 490 域 vs 我们 32 就是它查的)。
+  安装:bing.com/webmasters 微软账号登录 → Add Site → 下载 `BingSiteAuth.xml` 放站点根目录(我们放 `frontend/public/`)→ Verify。
+  用法:无 API,月看两次 dashboard —— Index Explorer 记收录比;Backlinks → "Any site" 输入竞品域名,导 CSV 做投放清单(Tier1 ~17 站就是这么来的)。
+  坑:"Import from GSC" 不一定弹,XML 文件验证最稳;数据滞后几天。
 
 - **A3 [候选·未实战] Yandex Webmaster**
-  触发条件:GSC 里出现稳定俄语流量再上,现在不动。
+  触发条件:GSC 出现稳定俄语流量再上,现在不动。
 
 ### B. 行为分析四件套(看用户在站上干什么)
 
 - **B1 GA4**
   是什么:站内行为 + 转化事件的权威数据源,历史最全。
-  我们怎么用:`ops/ga/fetch_ga.py`(REST 直连,不依赖 MCP);看热门页/来源/转化事件;GEO 水位(AI 引荐)从它的 sources 里算。
-  坑:先确认 gtag 流向哪个 property —— 我们的数据在"新媒体运营"(485523739)里,专属 property 是空的(避坑 4);查询必须带 hostName 过滤。
+  安装:①analytics.google.com 建 property → gtag 片段进 `index.html`;②API:`ops/ga/make_adc.py` 生成 ADC 凭证 `ops/ga/adc.json`(gitignore)。
+  用法:`python ops/ga/fetch_ga.py` —— 热门页/来源(limit 60)/转化事件;GEO 水位(AI 引荐会话)从 sources 里按 AI_SRC 元组算。
+  坑:**先确认 gtag 流向哪个 property** —— 我们的数据在"新媒体运营"(485523739),专属 property 是空的(避坑 4);查询必须带 hostName 过滤。
 
 - **B2 Plausible**
   是什么:轻量隐私友好的真实 PV 统计,近实时。
-  我们怎么用:`ops/plausible/fetch_plausible.py`;热门页列表是"建页前查重"的关键一环(靠它抓到 ppt 重复页自相竞争)。
-  坑:站点 2026-07-04 才建,此前数据为 0 属正常;数据格式是 {metrics,dimensions} 数组。
+  安装:plausible.io 建站点 → script 片段进 `index.html`;API key 存 `ops/plausible/.api_key`(gitignore)。
+  用法:`python ops/plausible/fetch_plausible.py` —— 热门页 + 来源;**建页前查重的关键一环**(靠它抓到 ppt 重复页自相竞争);utm 归因看付费导航站回报。
+  坑:站点 2026-07-04 才建,此前数据 0 属正常;返回格式是 `{metrics,dimensions}` 数组,不是扁平 JSON。
 
 - **B3 Clarity**
-  是什么:微软免费的死点击/怒点/录屏/热力图。
-  我们怎么用:`ops/clarity/fetch_clarity.py`(每日 10 次限额);死点击率是 UX 摩擦主指标(12.15%→10.57% 就是它验证的)。
-  坑:API 只到页面级;元素级必须进 dashboard 热力图(无头浏览器+cookie 可进);clarity.ms 必须直连不走代理。
+  是什么:微软免费的死点击/怒点/录屏/热力图 —— UX 摩擦水位表。
+  安装:clarity.microsoft.com 建项目 → script 进 `index.html`;API token 存 `ops/clarity/.api_token`(gitignore)。
+  用法:`python ops/clarity/fetch_clarity.py`(每日 10 次限额,省着用);死点击率是主指标(12.15%→10.57% 的实验就是它验证的)。
+  坑:API 只到页面级;**元素级定位必须进 dashboard 热力图**(heatmapType=3,无头浏览器+cookie 可进);clarity.ms 必须直连不走代理。
 
 ### C. 转化埋点(看钱和意图)
 
 - **C1 gtag 自定义事件**
-  是什么:GA4 的转化打点,漏斗可见性的全部来源。
-  我们怎么用:`src/lib/analytics.ts` 类型安全封装;起步四件:install_command_copied / audit_run / enterprise_cta_click / newsletter_subscribe,后加 deep_audit_checkout。
-  坑:没埋点 = 盲飞(我们盲飞了 10 周);事件要在"确认成功"后触发,别在点击瞬间。
+  是什么:GA4 转化打点,漏斗可见性的全部来源。
+  安装:`frontend/src/lib/analytics.ts` 类型安全封装(gtag 不存在时 no-op,无 any),组件里 `trackEvent("事件名")` 即可。
+  用法:起步四件 —— install_command_copied / audit_run / enterprise_cta_click / newsletter_subscribe,后加 deep_audit_checkout;digest 邮件标题自带当日转化数。
+  坑:没埋点 = 盲飞(我们盲飞了 10 周);事件在"确认成功"后触发,别在点击瞬间。
 
 - **C2 Stripe Payment Link**
-  是什么:零后端的收银台,本身就是最诚实的计量器。
-  我们怎么用:$49 深度审计;client_reference_id 把 repo 附进订单(斜杠要转义成 --);PAYMENT_URL 空则回退 mailto,永不出死按钮。
-  坑:mailto 是转化杀手(避坑 7);文案要跟着付费模式换("先交付后付款"≠预付费)。
+  是什么:零后端收银台,本身就是最诚实的计量器。
+  安装:Stripe Dashboard → Payment Links → 建 $49 产品 → 复制 URL 填进 `DeepAuditOffer.tsx` 的 `PAYMENT_URL`。
+  用法:`client_reference_id` 把 repo 名附进订单(只许字母数字/横线/下划线,`/`→`--`);PAYMENT_URL 为空自动回退 mailto,永不出死按钮。
+  坑:mailto 是转化杀手(避坑 7);文案跟着付费模式换("先交付后付款"≠预付费)。
 
 ### D. 自动化/仪式(让数据自己来找你)
 
 - **D1 GitHub Actions cron(云端日扫)**
-  是什么:每天 08:30 前四件套全跑一遍 + Resend 邮件进收件箱。
-  我们怎么用:`.github/workflows/analytics-daily.yml`;凭证走 Secrets;digest 标题自带转化事件数,扫一眼知道漏斗动没动。
-  坑:GitHub schedule 有 0-40 分钟排队延迟,送达时刻要设计在用户习惯之前(避坑 11);邮件带 lang="zh" 防 Gmail 误判。
+  是什么:每天 08:30 前 A/B 四件套全跑一遍 + Resend 邮件进收件箱,不依赖本机开机。
+  安装:`.github/workflows/analytics-daily.yml`(cron `20 0 * * *`);凭证进 Secrets:`gh secret set GSC_TOKEN_JSON < ops/gsc/token.json`(其余 GA_ADC_JSON / PLAUSIBLE_API_KEY / CLARITY_API_TOKEN 同理);Resend 发信走 `ops/send_digest_email.py`。
+  用法:收件箱扫标题(自带转化数)→ 异常才点开;digest 汇总脚本 `ops/analytics_digest.py`,每个 fetcher 挂 `|| true` 防单点断链。
+  坑:GitHub schedule 有 0-40 分钟排队延迟,送达时刻设计在用户习惯**之前**(避坑 11);邮件 lang="zh" 防 Gmail 误判。
 
-- **D2 本地 scheduled task**
-  是什么:桌面 App 的定时会话(带完整本地环境:venv/凭证/git)。
-  我们怎么用:日报每天 08:19(生成→去重→归档→push→X 文案);周复盘每周一 09:09(3 胜 3 忧 + 恰好 1 个实验)。
-  坑:App 关着就顺延到下次启动;首次点 Run now 预授权工具,否则每天卡权限弹窗。
+- **D2 本地 scheduled task(桌面 App 定时会话)**
+  是什么:带完整本地环境(venv/凭证/git)的定时 Claude 会话 —— 能干活,不只是能报数。
+  安装:会话里说"每天 8 点帮我跑 X"即建;任务定义在 `~/.claude/scheduled-tasks/`,prompt 必须自包含(未来会话看不到当前上下文)。
+  用法:日报每天 08:19(生成→去重→归档→push→X 文案);周复盘每周一 09:09(3 胜 3 忧 + 恰好 1 个实验,只读不改)。
+  坑:App 关着就顺延到下次启动;**首次必点 Run now 预授权工具**,否则每天卡权限弹窗。
 
 - **D3 IndexNow**
   是什么:向 Bing/Yandex 即时推送新 URL 的协议,收录加速。
-  我们怎么用:build 链末尾 `submit-indexnow.mjs` 自动提交,零维护。
+  安装:根目录放 key 文件 + build 链末尾挂 `submit-indexnow.mjs`,一次配好零维护。
 
 ### E. 发布/进水口 CLI(把资产推出去)
 
-- **E1 hf(HuggingFace)**:数据集进水口一号。`hf auth login` → `repos create --repo-type dataset` → `upload`。坑:组织命名空间要先在网页建,否则 403。
-- **E2 kaggle**:数据集镜像。新版是 KGAT_ token 存 `~/.kaggle/access_token`(没有 kaggle.json 了);**创建必须带 `-u` 否则默认私有=零反链价值**;id 用真用户名不是显示名。
-- **E3 npm**:CLI/MCP 包 = 常驻分发。坑:国内镜像会毒化 lockfile 和 publish,`--registry` 显式指 npmjs。
-- **E4 mcpb**:Smithery 打包(`npx @anthropic-ai/mcpb pack`);manifest 里别带 tools 数组(400)。
-- **E5 Overleaf**:arXiv 只收 LaTeX;pdfLaTeX + article 类;裸 `|` 和 `\~{}` 是渲染陷阱。
+- **E1 hf(HuggingFace CLI)** —— 数据集进水口一号(DR~90)
+  安装:`brew install huggingface-cli`(命令叫 `hf`);huggingface.co/settings/tokens 建 **WRITE** 权限 token → `hf auth login` 粘入。
+  用法:`hf repos create <ns>/<name> --repo-type dataset` → `hf upload <ns>/<name> <文件> --repo-type dataset`(卡片文件上传时重命名 README.md)。
+  坑:组织命名空间要先在网页建好,否则 403;上传的卡片数字用"地板数"(避坑 6)。
+
+- **E2 kaggle CLI** —— 数据集镜像(又一个 DR~90)
+  安装:`backend/venv` 里 `pip install kaggle`(系统 pip 有 PEP 668 拦截);新版 token 是 KGAT_ 开头,存 `~/.kaggle/access_token`(**没有 kaggle.json 了**)。
+  用法:数据目录放 `dataset-metadata.json`(id 用**真实用户名**如 yansenzhu,不是带空格的显示名)→ `kaggle datasets create -p <目录> -u`。
+  坑:**必须带 `-u` 否则默认私有 = 零反链价值**(我们踩过,删了重建)。
+
+- **E3 npm** —— CLI/MCP 包 = 常驻分发(装进 agent 不走搜索)
+  安装:`npm login`(账号绑组织 @agentskillshub)。
+  用法:`npm publish --registry https://registry.npmjs.org` 显式指官源。
+  坑:国内淘宝镜像会毒化 lockfile 和 publish(避坑教训),永远显式 `--registry`。
+
+- **E4 mcpb(Smithery/MCP 打包)**
+  用法:`npx @anthropic-ai/mcpb pack`;manifest 里别带 tools 数组(会 400)。
+
+- **E5 Overleaf(arXiv 投稿)**
+  是什么:arXiv 只收 LaTeX,Overleaf 是零安装的在线编译器。
+  用法:整篇 `arxiv-paper.tex` 粘入 → pdfLaTeX + article 文档类即编译。
+  坑:正文裸 `|` 和 `\~{}` 是渲染陷阱;标题控制在 ~62 字符。
 
 ### F. 体检/侦察(发现问题和机会)
 
 - **F1 AITDK 类 SEO 体检插件**
-  是什么:浏览器插件,10 秒读出任意页的 title/desc/keywords 长度与实体。
-  我们怎么用:每月扫一遍首页+核心页;它 10 秒暴露了我们仨月没发现的 Helmet 覆盖旧 title(避坑 5)。
+  安装:Chrome 商店装 AITDK(或同类 SEO Meta 插件)。
+  用法:每月扫首页+核心模板页,10 秒读出 title/desc/keywords 长度与实体;它 10 秒暴露了我们仨月没发现的 Helmet 覆盖旧 title(避坑 5)。
 
 - **F2 gh CLI**
-  是什么:GitHub 官方 CLI,侦察利器。
-  我们怎么用:验刷星(`gh api users/X/repos` 看作者履历:单仓爆星+其余全<20★=嫌疑);查仓库真实星数/规范大小写;搜 awesome 列表。
+  安装:`brew install gh` → `gh auth login`。
+  用法:验刷星(`gh api users/X/repos` 看作者履历:单仓爆星+其余全<20★=嫌疑,避坑 9);查真实星数/规范大小写;`gh search repos` 搜 awesome 列表;`gh secret set` 管 CI 凭证;`gh run rerun --failed` 救 deploy 抽风。
 
 - **F3 无头浏览器 + Chrome cookie 导入**
-  是什么:gstack browse,把你浏览器的登录态借给自动化。
-  我们怎么用:进 Clarity 后台抓元素级热力图、抓 X 长文(note_tweet 只有这条路);**必须先 goto 目标域再 import**;OAuth 型登录(Bing/微软账号)借不动,别硬闯验证码。
-  纪律:用完 `$B stop`,登录态不留。
+  是什么:把你浏览器的登录态借给自动化,进"API 不给的后台"。
+  用法:进 Clarity 元素级热力图、抓 X 长文(note_tweet 只有这条路);**必须先 goto 目标域再 import cookies**。
+  坑:OAuth 型登录(Bing/微软账号)cookie 借不动,别硬闯验证码。纪律:用完立即 stop,登录态不留。
 
 - **F4 agent-reach**
-  是什么:多平台抓取安装器(X/Reddit/微信/YouTube 等 13 平台)。
-  我们怎么用:xreach 抓推文(undici 不认环境变量代理,坑);Jina Reader 兜底任意网页。
+  安装:`pip install https://github.com/Panniantong/agent-reach/archive/main.zip` → `agent-reach install --env=auto` → `agent-reach doctor` 看通道状态。
+  用法:xreach 抓推文/时间线;Jina Reader(`r.jina.ai/<URL>`)兜底任意网页转 markdown。
+  坑:undici 系 CLI 不认环境变量代理(避坑 14)。
 
 - **F5 Ahrefs Webmaster Tools 免费版**
-  是什么:第三方外链/站点健康监控(ahrefs.com/webmaster-tools),Bing 之外第二视角,免费版够用。
-  我们怎么用:注册→验证域名(GSC 授权最快)→盯两个报表:Backlinks(新增/丢失外链,付费外链验收用)+ Site Audit(技术健康)。
-  坑:免费版只能看自己验证的站,竞品外链还得靠 Bing(A2)。
+  是什么:第三方权威/外链/技术健康监控 —— DR 是行业通用的"水库压强表",还有 AI responses 面板(第三块 GEO 水位表)。
+  安装:ahrefs.com/webmaster-tools 注册 → 验证域名(**GSC 一键导入最快**)→ 进 Site Explorer。
+  用法:月看一次 —— ①Overview 记 DR/引用域(我们基线 2026-07-10:**DR 6 · 引用域 313**);②Backlinks 验收付费外链;③Site Audit:**免费版上限 5,000 页,Limits 填 5000**,模板站采样足够(一个模板 bug 修一次=修全站),周五自动爬,看四类:断链/301 链、孤儿页、canonical、零入链页;④AI responses 面板月记(基线 0)。
+  坑:免费版只能看自己验证的站,竞品外链还得靠 Bing(A2);Organic keywords 显示 0 是它的词库门槛,别恐慌,以 GSC 为准。
 
 ## 四、避坑指南(15 条,每条一个伤疤)
 
