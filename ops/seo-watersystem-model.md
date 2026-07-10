@@ -37,6 +37,7 @@
 ## 判断清单(接手任何站先问)
 
 - **进水口开了吗?** 有几条真实高权威 dofollow 外链?没有 = 先开源头,别急着建页。
+- **提交前查过对方收什么吗?** 每个收录平台有自己的"本体论"(只收 SaaS/只收 skill/只收基准),名字像目录 ≠ 是目录;通道(PR/issue/表单)开没开先探再动手。
 - **AI 爬虫进得来吗?** robots.txt 别挡 GPTBot/ClaudeBot/PerplexityBot —— 挡了等于焊死 GEO 进水口;llms.txt / skill.md 给 agent 专用读法。
 - **名字和域名自带信任吗?** 类目描述词当品牌名 + 低信任后缀(.top/.xyz)= 品牌词难排的两刀。新站避开;老站靠权重线(数据集/论文/PR)补。
 - **有孤儿页吗?** 抓代表页数内链:只往 home/pricing 导、不连 hub/兄弟页 = 断管,先通管。
@@ -62,6 +63,10 @@
 - **活水**:日报每天产出却只发社媒,从未落成网页(错失的活水)
 - **回流**:Clarity 实测高跳出、查完即走;"评级变化告警"是天然回访理由
 - **checklist 首次 dogfood** 就抓到自己 llms.txt 404,当场补上
+- **进水口三态**(07-10 清 17 站实证):自动过审型(LibHunt 单字段秒收)/ 被动爬取型(挂规范 SKILL.md 即被收录,不收提交)/ 关门型(wong2 PR+issue 双关"只出不进"、StackShare 本体论不符、iCloud 中继邮箱无路)—— 三态判型 5 分钟,判错浪费半天
+- **实体双环**:Wikidata P856 指站 + 站内 sameAs 指回 QID = 双向确认;UI 陷阱是把属性名填进值框(P31=“instance of”),验证必须用 EntityData API 查 claims,不能只看页面
+- **数据集一鱼三吃**:同一份 CSV → HF/Kaggle 数据集 + Zenodo DOI(10 分钟即"可引用文献",不等论文)+ Kaggle 分析 notebook + Dev.to 教程文,每个衍生品都是独立回链
+- **开出去的 PR 也会烂**:4 月的 awesome PR 里数字停在 67K/117K,刷新到现值 + 补新定位才有 merge 相;提交前先 `gh pr list --author` 查重
 
 ---
 *配套:`ops/gefei-seo-playbook.md`(哥飞方法论)· `ops/research/intake-launch-kit.md`(进水口弹药)*
