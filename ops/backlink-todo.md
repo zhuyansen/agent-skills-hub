@@ -2,8 +2,8 @@
 
 | # | 进水口 | 谁 | 动作 | 状态 |
 |---|---|---|---|---|
-| 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ⏸ 等一句"提" |
-| 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ⏸ 等一句"跑" |
+| 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
+| 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | 🔄 07-10 侦察中;deepwiki ✅ 已有我们仓库页;npm.io 整站 503 待复查 |
 | 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
 | 4 | **Wikidata 实体** | 🧑 你 15 分钟 | 照 intake kit F3 填五个字段 | ⏳ |
 | 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | 文案抄 kit F4;标 LobeHub/Smithery alternatives | ⏳ |
@@ -353,11 +353,29 @@ Happy to share the open dataset or a longer quote.
 
 ---
 
+## Awesome PR 战报(2026-07-10 "提"点火)
+
+| 列表 | 星数 | 动作 | 状态 |
+|---|---|---|---|
+| travisvn/awesome-claude-skills | 14K | 新 PR [#965](https://github.com/travisvn/awesome-claude-skills/pull/965),Tools 区,"searchable directory…security grade" | ⏳ 待 merge |
+| BehiSecc/awesome-claude-skills | 9.8K | 新 PR [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445),Collections 区(agentskill.sh 旁),"open directory…" | ⏳ 待 merge |
+| punkpeye/awesome-mcp-servers | 最大 MCP 列表 | 存量 [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) 刷新:117K→130K(条目+标题) | ⏳ 待 merge(4 月开的) |
+| ComposioHQ/awesome-claude-skills | 67K | 存量 [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 刷新:67K→130K + 安全分级定位(条目+PR 描述) | ⏳ 待 merge(4 月开的) |
+| modelcontextprotocol/servers(官方) | — | 存量 [#4060](https://github.com/modelcontextprotocol/servers/pull/4060) 仍 OPEN | ⏳ 待 merge |
+| wong2/awesome-mcp-servers | 4.2K | ⚠️ 仓库开了互动限制,API 提不了 PR。分支已推好,**你浏览器点这个链接试**: https://github.com/zhuyansen/awesome-mcp-servers-1/pull/new/add-agent-skills-hub | 🧑 需人工 |
+| hesreallyhim/awesome-claude-code | 49.7K | ⚠️ 明文禁 PR/CLI,只收 Web 表单 issue 且**须真人提交**;且 CONTRIBUTING 说暂停收件("disabling recommendations for a little while")。**先不提**,等它重开。表单: https://github.com/hesreallyhim/awesome-claude-code/issues/new?template=recommend-resource.yml ;届时填:URL=agentskillshub.top,描述(一行、无 emoji、陈述式)="Searchable directory of 130,000+ open-source Claude skills and MCP servers with a security grade and quality score per entry, refreshed every 8 hours." | ⏸ 等重开 |
+
+**纪律复盘**:锚文本三家三样 ✅;一列表一 PR ✅;e2b-dev/awesome-ai-agents 格式不合(agent 项目档案体)主动跳过,不硬塞 ✅。
+**跟进**:每周一复盘时 `gh pr list` 查五个 PR 状态;被 merge 一个,Bing/Ahrefs 2-4 周后应见 github.com 引用域。
+
 ## 进度跟踪表(每发一条记一行)
 
 | 日期 | 站点/渠道 | 类型 | 提交内容/锚文本 | 状态 | DR/备注 |
 |---|---|---|---|---|---|
-| 2026-06-13 | (示例)punkpeye/awesome-mcp-servers | awesome PR | "AgentSkillsHub — 10万+ skill 目录" | pending | 待 merge |
+| 2026-07-10 | travisvn/awesome-claude-skills | awesome PR | "searchable directory…SAFE/CAUTION/UNSAFE" | pending | PR #965 |
+| 2026-07-10 | BehiSecc/awesome-claude-skills | awesome PR | "open directory of 130,000+…" | pending | PR #445 |
+| 2026-07-10 | punkpeye #9142 / Composio #747 | 存量刷新 | 117K/67K → 130K + 安全分级 | pending | 数字保鲜 |
+| 2026-07-10 | deepwiki.com | 自动收录 | 仓库页已存在(200) | ✅ | Tier1 划掉 |
 |  |  |  |  |  |  |
 
 ---
