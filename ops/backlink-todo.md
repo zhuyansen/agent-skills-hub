@@ -61,7 +61,7 @@
 | 1 | **arXiv**(cs.CR 发论文) | 学术引用源 | DR 90+ | dofollow(PDF/HTML 内链) | 需 endorser + 真论文 | 中 | ✅ 高(看内容不看域名) | 已有 130K 数据集论文草稿。最高权威 + "study 不是 tool" 定位,被后续论文/媒体反复引 |
 | 2 | **Hugging Face Datasets** | 数据集托管 | DR 90+ | dofollow(dataset card 内链) | 免费,传 parquet+card | 低 | ✅ 高 | 已有 `hf-dataset-card.md` + 导出好的 parquet/csv。card 内链回站,HF 页本身进 Google+被 LLM 抓 |
 | 3 | **GitHub `awesome-claude-skills` 系列 PR** | awesome list | 各 repo DR 中-高 | nofollow(GitHub) | 提 PR | 低 | ✅ 高 | 真实存在多个:travisvn / ComposioHQ / BehiSecc / mingrath / GetBindu / Chat2AnyLLM。开发者精准 + GEO 高(LLM 训练重 awesome-list) |
-| 4 | **GitHub `awesome-mcp-servers` / 官方 servers PR** | awesome list | DR 高 | nofollow | 提 PR | 低 | ✅ 高 | punkpeye ✅已开PR / wong2 / modelcontextprotocol/servers。见 mcp-registry 文件 |
+| 4 | **GitHub `awesome-mcp-servers` / 官方 servers PR** | awesome list | DR 高 | nofollow | 提 PR | 低 | ✅ 高 | punkpeye #9142 ⏳ / 官方 #4060 ⏳ / wong2 ❌双关闭。状态见 §Tier1-A |
 | 5 | **Hacker News — Show HN** | 社区讨论 | DR 90 | nofollow | 需账号+硬故事 | 中 | ✅ 高 | 用"审计了 13 万 skill,83% 无人审计"这个数据故事发,不是"看我的目录"。前 6h 全程回帖 |
 | 6 | **Product Hunt** | 工具目录/发布 | DR 90 | dofollow(产品页) | 需账号+发布日 | 中 | ✅ 高 | 单日流量+dofollow 大爆发;择 hunter、按 launch-playbook 走 |
 | 7 | **Reddit** r/ClaudeAI · r/mcp · r/LocalLLaMA · r/ChatGPTCoding | 社区讨论 | DR 90 | nofollow | 需养号真回答 | 中 | ✅ 高 | GEO 极高(ChatGPT ~12% / Perplexity ~18% 引 Reddit)。搜 "where find MCP servers" 类真问题作答 |
@@ -273,21 +273,27 @@ Happy to share the open dataset or a longer quote.
 
 ## Tier 1 · 一次性高价值提交(两周内做完,DR 高、一劳永逸)
 
-### A. GitHub awesome 列表 PR(最高优先 —— DR 高、开发者精准、永久)
-给这些列表提 PR,把 Hub 作为「discovery / directory」资源加进去。🟢 文案我起草。
+### A. GitHub awesome 列表 PR(状态版,07-10 大清点后)
 
-- [ ] `punkpeye/awesome-mcp-servers`(MCP 最大列表)→ 加到 "Resources / Directories"
-- [ ] `wong2/awesome-mcp-servers`
-- [ ] `modelcontextprotocol/servers`(官方)→ README 的社区资源区
-- [ ] `hesreallyhim/awesome-claude-code` / `awesome-claude-code-agents`
-- [ ] `e2b-dev/awesome-ai-agents`
-- [ ] `Shubhamsaboo/awesome-llm-apps`
-- [ ] `f/awesome-chatgpt-prompts` 类(若有 skills 区)
-- [ ] **已核实存在的 `awesome-claude-skills` 列表(逐个提"Directories/Resources"区,草稿 3)**:
-      `travisvn/awesome-claude-skills` · `ComposioHQ/awesome-claude-skills` · `BehiSecc/awesome-claude-skills` ·
-      `mingrath/awesome-claude-skills` · `GetBindu/awesome-claude-code-and-skills` · `Chat2AnyLLM/awesome-claude-skills` ·
-      `rohitg00/awesome-claude-code-toolkit` · `jqueryscript/awesome-claude-code`
-- [ ] 继续搜 `awesome-mcp` / `awesome-claude` 新兴列表,逐个提(一天≤2)
+**在途(周一复盘 `gh pr list` 逐个查)**
+- [x] `punkpeye/awesome-mcp-servers` → PR #9142(4月开,07-10 刷新 130K)⏳
+- [x] `modelcontextprotocol/servers`(官方)→ PR #4060 ⏳
+- [x] `travisvn/awesome-claude-skills`(14K★)→ PR #965 ⏳
+- [x] `ComposioHQ/awesome-claude-skills`(67K★)→ PR #747(4月开,07-10 刷新)⏳
+- [x] `BehiSecc/awesome-claude-skills`(9.8K★)→ PR #445 ⏳
+
+**判死 / 暂缓(别再花时间)**
+- [x] ❌ `wong2/awesome-mcp-servers` — PR+issue 双关闭,只出不进
+- [x] ⏸ `hesreallyhim/awesome-claude-code`(49.7K★)— 暂停收件,重开后走 Web 表单(见战报)
+- [x] ❌ `e2b-dev/awesome-ai-agents` — agent 项目档案体,目录站不合格式
+- [x] ❌ `mingrath/awesome-claude-skills` — 3★,不值一个 PR
+
+**第二波候选(第一波有 merge 后再提,一天≤2)**
+- [ ] `rohitg00/awesome-claude-code-toolkit`(2.3K★)
+- [ ] `jqueryscript/awesome-claude-code`(460★)
+- [ ] `GetBindu/awesome-claude-code-and-skills`(162★)· `Chat2AnyLLM/awesome-claude-skills`(141★)
+- [ ] `Shubhamsaboo/awesome-llm-apps`(117K★,先核格式是否收目录)
+- [ ] 继续搜 `awesome-mcp` / `awesome-claude` 新兴列表
 
 ### B. AI / SaaS 工具目录(一次性提交,多为 dofollow)
 🔴 大多需你账号提交;🟢 描述文案我写好你贴。
@@ -341,15 +347,24 @@ Happy to share the open dataset or a longer quote.
 
 ---
 
-## ⭐ 本周先发这 3 个(为什么)
+## ⭐ 本周三优先(07-10 复盘:全部完成)
 
-> 用一句话选:**先建"资产"(别人愿意引的东西),再让资产去攒链** —— 这样绕开了 `.top` + 通用品牌词的双重不信任,靠数据说话。
+1. ~~HF 数据集~~ ✅ 已上线 + Kaggle 镜像 + Zenodo DOI(学术三连收官)
+2. ~~awesome PR~~ ✅ 5 个在途(含官方)
+3. HN Show HN → **移入 arXiv 弹药链**(等论文上线当天发,弹药更硬)
 
-1. **Hugging Face 数据集页(草稿 2)** —— 本周第一个,因为**零门槛、零审核、纯 dofollow、DR 90+**。card 已写好、parquet 已导出,今天就能建库上线。它同时是后面 arXiv / HN / HARO 三条草稿共用的"权威锚点"(都指向同一个开放数据集),先立起来。
-2. **Hacker News Show HN(草稿 4)** —— 因为**故事已经成立**("13 万 skill,83% 无人审计"),而且 HN 是 GEO 高地 + 会外溢到二次报道/Reddit。等 HF 数据集上线后当天发,评论里挂数据集链,一次点燃流量+讨论+潜在媒体注意。
-3. **awesome-claude-skills PR ×2(草稿 3)** —— 因为**最省力、最精准、可立即做**:已核实 6+ 个真实 repo,我能直接起草 PR,加到 Resources 区。开发者精准流量 + LLM 训练重 awesome-list(GEO)。本周挑 travisvn + ComposioHQ 两个先提(锚文本各异)。
+## 🚀 下一波弹药(2026-07-10 定,按周排)
 
-> arXiv(草稿 1)是**最高价值但最慢**(要 endorser + 定稿),本周并行启动"约 endorser",不进本周交付。PH(草稿 6)按 launch-playbook 择日,不抢本周。
+> 原则不变:先资产后攒链。本波主题:**发布台 + 实体 + 自传播工具**。
+
+| 周 | 动作 | 谁 | 说明 |
+|---|---|---|---|
+| 下周二起(每周发 1 站) | **indie 发布台四小站**:Uneed → Fazier → Microlaunch → Peerlist | 🧑 各 15min | 免费档、多 dofollow、开发者精准;文案用数据故事("扫了 130K,83% 无人审计"),别用目录腔 |
+| 下周 | **openalternative.co** | 🤖 先侦察 | 开源替代品目录,正对 "LobeHub 开源替代" 语义位;以 agent-skills-hub 主仓提交 |
+| 下周 | **Crunchbase 免费档案** | 🧑 15min | DR 91 实体信号,与 Wikidata Q140478987 交叉确认,治品牌词 pos 11 |
+| 周末档 | **HF Space "Is this skill safe?"** | 🤖 半天出活 🧑 按发送 | Gradio 单框查询器,读 HF 数据集零后端;DR 90 dofollow + GEO 饵 + 可自传播 |
+| arXiv 上线日 | **弹药链点火** | 🧑 提交 → 🤖 备料 | 媒体 pitch(Register/BleepingComputer/kdnuggets)→ 3 天后 Show HN → Papers with Code → PH → HARO |
+| 下月 | **badge 战役(P2 大石头)** | 🤖 分批执行器 | github.com 450 域金矿;给 SAFE 级仓库发徽章通知,按周分批防 spam |
 
 ---
 
@@ -383,6 +398,10 @@ Happy to share the open dataset or a longer quote.
 | 2026-07-10 | AlternativeTo | 收录页 | agent-skills-hub | ✅ live | DA 80+ |
 | 2026-07-10 | StackShare | 提交 | — | ❌ 拒收 | 类目不符,放弃 |
 | 2026-07-10 | libhunt.com | 仓库收录 | [/r/agent-skills-hub](https://www.libhunt.com/r/agent-skills-hub) | ✅ live | 自动过审 |
+| 2026-07-10 | skillget.dev / navi.tools / mdskills.ai | 目录提交 ×3 | 通用文案 | ⏳ 审核中 | navi 承诺 dofollow/72h |
+| 2026-07-10 | aitoolnet.com | 付费收录 $9.9 | 通用文案 | ⏳ 待上线 | 上线后验 rel |
+| 2026-07-10 | agentskillshub-mcp 仓库 | SKILL.md 被动钩子 | commit 07d8d539 | ⏳ 等爬取 | 喂 findskills/skillsmp/openskillindex |
+| 2026-07-10 | creati.ai | 付费验收 | 收录页 3/4 dofollow(2 条带 utm) | ✅ 部分验毕 | 剩向客服要 9 链清单 |
 |  |  |  |  |  |  |
 
 ---
