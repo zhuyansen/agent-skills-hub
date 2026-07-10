@@ -7,9 +7,9 @@ const STEPS = [
     titleEn: "Auto-Collect",
     titleZh: "自动采集",
     descEn:
-      "Our crawler continuously scans GitHub for new AI agent tools, MCP servers, and Claude skills across 100,000+ repositories.",
+      "Our crawler continuously scans GitHub for new AI agent tools, MCP servers, and Claude skills across 130,000+ repositories.",
     descZh:
-      "爬虫持续扫描 GitHub 上 100,000+ 仓库中的新 AI Agent 工具、MCP 服务器和 Claude 技能。",
+      "爬虫持续扫描 GitHub 上 130,000+ 仓库中的新 AI Agent 工具、MCP 服务器和 Claude 技能。",
   },
   {
     num: "02",

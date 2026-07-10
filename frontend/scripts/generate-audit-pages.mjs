@@ -97,7 +97,7 @@ function pageHtml(skill, related = []) {
   const flags = parseJsonArray(skill.security_flags);
 
   const title = `Is ${repo_name} Safe? Security Audit of ${repo_full_name} — Agent Skills Hub`;
-  const metaDesc = `${repo_full_name} security audit: graded ${g.label} by AgentSkillsHub's scan of 117,000+ AI agent skills & MCP servers. ${
+  const metaDesc = `${repo_full_name} security audit: graded ${g.label} by AgentSkillsHub's scan of 130,000+ AI agent skills & MCP servers. ${
     flags.length ? `${flags.length} flag${flags.length > 1 ? "s" : ""} found. ` : "No dangerous patterns found. "
   }Quality score ${Math.round(quality_score || 0)}/100.`;
 
@@ -228,7 +228,7 @@ ${related.length ? `
     <p style="font-size:12px;color:#94a3b8;line-height:1.6;border-top:1px solid #e2e8f0;padding-top:16px;margin-top:28px">
       This is AgentSkillsHub's free basic audit: an automated rule-based scan covering SlowMist's 11 red-flag
       categories (credential exfiltration, obfuscated payloads, sandbox escape, prompt injection, and more) across
-      117,000+ open-source AI agent skills and MCP servers, refreshed every 8 hours. A ${g.label} grade is a scan
+      130,000+ open-source AI agent skills and MCP servers, refreshed every 8 hours. A ${g.label} grade is a scan
       result, not a guarantee &mdash; deep 5-dimension audits (code &middot; credentials &middot; vendor &middot;
       supply-chain &middot; operational) are available for <a href="/enterprise/" style="color:#4f46e5">enterprise</a>.
       Audited: ${formatDate(new Date().toISOString())}.

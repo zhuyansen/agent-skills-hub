@@ -163,7 +163,7 @@ export const translations = {
       "粘贴任意 GitHub 仓库地址，立即查看安全评级、红旗信号和质量分 —— 装之前先审。",
     "audit.cta": "免费检查",
     "audit.hint":
-      "免费 · 无需注册 · 已覆盖 117,000+ 个 AI agent skill 与 MCP server",
+      "免费 · 无需注册 · 已覆盖 130,000+ 个 AI agent skill 与 MCP server",
 
     // Audit verdict card (skill detail page)
     "auditCard.title": "安全审计结论",
@@ -336,7 +336,7 @@ export const translations = {
     "faq.title": "常见问题",
     "faq.q1": "什么是 AgentSkillsHub？",
     "faq.a1":
-      "AgentSkillsHub 是开发者发现、对比和使用开源 AI Agent 工具的最佳平台，收录 100,000+ 个 AI Agent Skills、MCP 服务器和自动化工具，质量评分体系 + 每 8 小时自动更新。",
+      "AgentSkillsHub 是开源 AI Agent 工具的安全评级目录，收录 130,000+ 个 Agent Skills、MCP 服务器和自动化工具，安全评级 + 质量评分 + 每 8 小时自动更新。",
     "faq.q2": "质量评分是如何计算的？",
     "faq.a2":
       "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
@@ -555,7 +555,7 @@ export const translations = {
       "Paste any GitHub repo URL to get its security grade, red flags, and quality score — before you install.",
     "audit.cta": "Check it — free",
     "audit.hint":
-      "Free · No signup · Covers 117,000+ AI agent skills & MCP servers",
+      "Free · No signup · Covers 130,000+ AI agent skills & MCP servers",
 
     // Audit verdict card (skill detail page)
     "auditCard.title": "Security audit verdict",

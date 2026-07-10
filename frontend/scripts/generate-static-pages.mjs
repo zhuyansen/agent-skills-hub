@@ -25,7 +25,7 @@ const SHELLS = [
     title:
       "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
     description:
-      "Audit 100,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
+      "Audit 130,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
   },
   {
     path: "submit",
@@ -206,7 +206,7 @@ const aboutHtml = `<!doctype html>
     <section>
       <h2 data-en="What we track" data-zh="我们追踪什么">What we track</h2>
       <div class="metrics">
-        <div class="metric"><div class="num">62,000+</div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
+        <div class="metric"><div class="num">130,000+</div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
         <div class="metric"><div class="num">7</div><div class="label" data-en="categories" data-zh="分类">categories</div></div>
         <div class="metric"><div class="num">58</div><div class="label" data-en="scenario pages" data-zh="场景页">scenario pages</div></div>
         <div class="metric"><div class="num">8h</div><div class="label" data-en="refresh cadence" data-zh="刷新频率">refresh cadence</div></div>

@@ -285,8 +285,8 @@ export function AnalyzerPage() {
           name="description"
           content={
             isZh
-              ? "粘贴任意 GitHub 仓库地址，立即获得安全评级、红旗信号和质量分。免费、无需注册，覆盖 117,000+ 个 AI agent skill 与 MCP server。"
-              : "Paste any GitHub repo URL to get an instant security grade, red flags, and quality score. Free, no signup — covering 117,000+ AI agent skills & MCP servers."
+              ? "粘贴任意 GitHub 仓库地址，立即获得安全评级、红旗信号和质量分。免费、无需注册，覆盖 130,000+ 个 AI agent skill 与 MCP server。"
+              : "Paste any GitHub repo URL to get an instant security grade, red flags, and quality score. Free, no signup — covering 130,000+ AI agent skills & MCP servers."
           }
         />
       </Helmet>
