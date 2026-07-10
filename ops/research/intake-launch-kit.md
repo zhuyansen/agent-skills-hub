@@ -97,3 +97,37 @@ hf upload $NS/agent-skills-security-grades ops/research/hf-dataset-card.md READM
 3. 论文上线后 → 媒体 pitch(又是进水口)。
 
 **这三步全是进水口。开完,水库开始蓄水,底下铺好的管子(内链拓扑)就有水流了。**
+
+---
+
+## C. Kaggle 数据集镜像(~10 分钟,DR-93 第二条数据进水口)
+
+**已就绪**:parquet/csv 在 `ops/research/out/`(HF 同款数据)。
+
+**你的步骤**:
+1. kaggle.com 登录 → 头像 → Settings → API → **Create New Token**(下载 kaggle.json)
+2. ```bash
+   mkdir -p ~/.kaggle && mv ~/Downloads/kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
+   pip install kaggle
+   cd /Users/zhuyansen/content/agent-skills-hub
+   mkdir -p /tmp/kaggle-ds && cp ops/research/out/agent-skills-security-grades.csv /tmp/kaggle-ds/
+   cat > /tmp/kaggle-ds/dataset-metadata.json << 'META'
+   {
+     "title": "AI Agent Skills Security Grades (130K)",
+     "id": "<你的kaggle用户名>/agent-skills-security-grades",
+     "licenses": [{"name": "CC-BY-4.0"}],
+     "subtitle": "Security grades for 130,000+ open-source AI agent skills & MCP servers",
+     "description": "Mirror of huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades — rule-based security grades (SAFE/CAUTION/UNSAFE/REJECT), red flags, and quality scores from agentskillshub.top, refreshed snapshot. Key finding: unsafe rate is ~11x higher in the low-star long tail."
+   }
+   META
+   # 把 <你的kaggle用户名> 换掉,然后:
+   kaggle datasets create -p /tmp/kaggle-ds
+   ```
+3. 上线后把 URL 发回,加进 Organization sameAs + 论文 §6
+
+## D. Bing Webmaster(~2 分钟,⑦排水水位表 + 竞品外链侦察)
+
+cookie 带不动 OAuth,需要你登录一次:
+1. bing.com/webmasters → Sign In(微软账号)
+2. Add Site → 选 **"Import from Google Search Console"**(一键继承 GSC 验证,不用挂 meta/DNS)
+3. 开通后两个宝藏:**Index Explorer**(已收录/已提交比 = 排水水位)· **Backlinks 工具**(免费输入 lobehub.com / smithery.ai 看它们的外链源,照着铺)
