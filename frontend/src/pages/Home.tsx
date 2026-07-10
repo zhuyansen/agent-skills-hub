@@ -171,7 +171,11 @@ export function Home() {
         </title>
         <meta
           name="description"
-          content={`Find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded, quality-scored, refreshed every 8 hours.`}
+          content={
+            lang === "zh"
+              ? `找 Claude 技能和 MCP 服务器,不用猜哪个安全:${skillCount} 个条目全部安全分级、质量评分,每 8 小时刷新。`
+              : `Find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded, quality-scored, refreshed every 8 hours.`
+          }
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
             homepage's lives here like every other page's. */}

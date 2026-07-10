@@ -38,6 +38,10 @@ if (typeof Node === "function" && Node.prototype) {
 const isStaticOnlyPage = window.location.pathname.startsWith("/best/");
 
 if (!isStaticOnlyPage) {
+  // index.html carries a static <meta name="description"> so non-JS crawlers
+  // and og scrapers always see one. Once React mounts, Helmet owns the tag
+  // (language-aware zh/en) — drop the static copy or the page serves two.
+  document.querySelector('meta[name="description"]:not([data-rh])')?.remove();
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <HelmetProvider>
