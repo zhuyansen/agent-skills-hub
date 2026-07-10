@@ -355,3 +355,30 @@ Happy to share the open dataset or a longer quote.
 3. 看输出:rel 含 "nofollow" = 只买到流量位;空/✅ = 真 SEO 权重
 4. 9 条外链若分布在多个页面(分类页/榜单页),向 creati.ai 客服要清单逐条验
 ### 度量:GA 来源里盯 creati.ai referral(日报 digest 会自动带出);GSC/Bing Backlinks 2-4 周后应出现 creati.ai 域
+
+## Bing 竞品外链踩点(2026-07-10,agentskillshub 32 域 vs lobehub ~490 域)
+
+### 结构洞察
+- LobeHub 第一护城河 = github.com 450 条(README/issues 提及)vs 我们 2 条 → **badge 战役直接对标这块**
+- 它 ~100 条来自自家产品群(lobechat/vidol/pho.chat)—— 虚高,不可复制,忽略
+- 我们第一外链域 = jasonzhu.ai(330,自有)→ 真第三方外链≈个位数
+
+### Tier 1 · 自助提交,本周可清(它有我没有,均为收录型)
+- [ ] libhunt.com(它 165 条)— GitHub 项目索引站,提交仓库
+- [ ] skillavatars.com(116)— skills 目录
+- [ ] mcpmark.ai(150)· mcp-container.com(106)· mcpworld.com(80)· mcp-servers.info · model-context-protocol.com — **MCP 目录集群**,我们的 MCP server 挨个提交
+- [ ] findskills.org(54)· mdskills.ai(30)· skillsmp.com(23)· skillget.dev(17)· openskillindex.com — **skills 目录集群**
+- [ ] navi.tools(49)· mytoolist.com(84)· free2aitools.com(21)· aitoolnet.com · popularaitools.ai — AI 工具导航
+- [ ] deepwiki.com(17)— 仓库 wiki 化,提交主仓
+- [ ] npm.io(80)— npm 包索引,查我们两个包被收录没
+
+### Tier 2 · 随星数自动来(不用动,盯着)
+gitstar-ranking · trendshift.io · gittrend · fossies.org · ecosyste.ms(已有 27)
+
+### Tier 3 · 战略型(已在 backlog/规划中)
+- github.com 450 条 → **P2 badge 战役**(对手最大金矿)
+- producthunt.com(40)→ backlog #6 PH 发布
+- dev.to(29 vs 我们 1)→ 寄生虫 SEO,等 arXiv 弹药
+- linkedin.com(45 vs 0)→ 暂不开新平台(避坑 15)
+
+### 验收:每清一个,2-4 周后应在本报告复查中出现
