@@ -3,7 +3,7 @@
 | # | 进水口 | 谁 | 动作 | 状态 |
 |---|---|---|---|---|
 | 1 | **Awesome 列表 PR** ×3 | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
-| 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | 🔄 07-10 侦察中;deepwiki ✅ 已有我们仓库页;npm.io 整站 503 待复查 |
+| 2 | **Tier 1 自助收录** ~17 站 | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ✅ 07-10 清完我这半:**libhunt 已收录**([页面](https://www.libhunt.com/r/agent-skills-hub),自动过审)· deepwiki ✅ · SKILL.md 已挂进 MCP 仓库(喂 3 个被动爬取站)· 5 站确认死站/无入口划掉 · **剩 6 站需你人工**(见 §Tier 1 战报,文案已备)|
 | 3 | **Zenodo DOI** | 🧑 你 10 分钟 | GitHub OAuth 登录 zenodo.org→拖 CSV→Publish→**DOI 发回** | ⏳ |
 | 4 | **Wikidata 实体** | 🧑 你 15 分钟 | 照 intake kit F3 填五个字段 | ⏳ |
 | 5 | **AlternativeTo + StackShare** | 🧑 你 各 15 分钟 | 文案抄 kit F4;标 LobeHub/Smithery alternatives | ⏳ |
@@ -412,14 +412,32 @@ Happy to share the open dataset or a longer quote.
 - 它 ~100 条来自自家产品群(lobechat/vidol/pho.chat)—— 虚高,不可复制,忽略
 - 我们第一外链域 = jasonzhu.ai(330,自有)→ 真第三方外链≈个位数
 
-### Tier 1 · 自助提交,本周可清(它有我没有,均为收录型)
-- [ ] libhunt.com(它 165 条)— GitHub 项目索引站,提交仓库
-- [ ] skillavatars.com(116)— skills 目录
-- [ ] mcpmark.ai(150)· mcp-container.com(106)· mcpworld.com(80)· mcp-servers.info · model-context-protocol.com — **MCP 目录集群**,我们的 MCP server 挨个提交
-- [ ] findskills.org(54)· mdskills.ai(30)· skillsmp.com(23)· skillget.dev(17)· openskillindex.com — **skills 目录集群**
-- [ ] navi.tools(49)· mytoolist.com(84)· free2aitools.com(21)· aitoolnet.com · popularaitools.ai — AI 工具导航
-- [ ] deepwiki.com(17)— 仓库 wiki 化,提交主仓
-- [ ] npm.io(80)— npm 包索引,查我们两个包被收录没
+### Tier 1 战报(2026-07-10 "跑"点火,17 站全部侦察完毕)
+
+**✅ 已完成(🤖)**
+- [x] **libhunt.com — 已收录**:表单自动过审,页面 [libhunt.com/r/agent-skills-hub](https://www.libhunt.com/r/agent-skills-hub) 已 200
+- [x] **deepwiki.com — 早已收录**(deepwiki.com/zhuyansen/agent-skills-hub 200)
+- [x] **findskills.org / skillsmp.com / openskillindex.com — 被动爬取站**:三站都自动爬 GitHub 的 SKILL.md,已给 agentskillshub-mcp 仓库补 SKILL.md(commit 07d8d539),等它们下轮爬取,2-4 周复查
+
+**🧑 需你人工(6 站,文案见下方"通用提交文案")**
+- [ ] **skillget.dev** — GitHub OAuth 登录后提交 repo:skillget.dev/listings/new(最快,一次点击授权)
+- [ ] **navi.tools** — navi.tools/en/submit,只填 2 字段(网址+邮箱),72h 审核,dofollow;上线可能推销付费位,免费档先试
+- [ ] **mdskills.ai** — mdskills.ai/submit,需注册(GitHub/Google 登录均可)
+- [ ] **free2aitools.com** — 它的提交通道是 GitHub Discussions(github.com/mosesy5688-cell/ai-nexus/discussions,选 Show and tell),仓库限制了 API 发帖,你浏览器发,正文抄"通用提交文案"
+- [ ] **skillavatars.com / aitoolnet.com** — 双双 403 拦自动化;浏览器手动找 submit 入口,找不到就放弃(aitoolnet 疑似付费,别掏钱)
+- [ ] ⚠️ **popularaitools.ai** — 只有付费档(€99 起),**建议跳过**(低 DA 付费目录 ROI 低,台账 $266 已够多)
+
+**❌ 划掉(5 站,别再回头看)**
+- mcp-container.com / mytoolist.com(无提交入口)· model-context-protocol.com(无流程,只能发邮件)· mcp-servers.info(疑似死站)· mcpmark.ai(是 MCP 基准测试站,不是目录,不适用)
+
+**⏳ 待复查**:npm.io 整站 503(它自己挂了),改天查 @agentskillshub/cli 和 /mcp 收录没
+
+### 通用提交文案(人工 6 站通用)
+- **Name**: Agent Skills Hub
+- **URL**: https://agentskillshub.top
+- **Category**: Developer Tools / AI Agents
+- **Description**: Searchable directory of 130,000+ open-source AI agent skills and MCP servers with a security grade (SAFE/CAUTION/UNSAFE) and quality score per entry, refreshed every 8 hours. Free, no login.
+- **Pricing**: Free · **Open source**: github.com/zhuyansen/agent-skills-hub(MIT)
 
 ### Tier 2 · 随星数自动来(不用动,盯着)
 gitstar-ranking · trendshift.io · gittrend · fossies.org · ecosyste.ms(已有 27)
