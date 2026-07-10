@@ -33,32 +33,33 @@
 ## 三、工具必上清单(六类)
 
 **A. 站长后台**(搜索引擎自家:收录/词/外链)
-- GSC API(词/位次/rising;代理坑见避坑 14)
-- Bing Webmaster(已收录/已提交比 = 排水水位;Backlinks 免费扒竞品外链)
-- [候选·未实战] Yandex Webmaster —— GSC 出现俄语流量再上
+- A1 GSC API(词/位次/rising;代理坑见避坑 14)
+- A2 Bing Webmaster(已收录/已提交比 = 排水水位;Backlinks 免费扒竞品外链)
+- A3 [候选·未实战] Yandex Webmaster —— GSC 出现俄语流量再上
 
 **B. 行为分析四件套**(看用户)
-- GA4(转化事件;先确认 gtag 流向哪个 property —— 见避坑 4)
-- Plausible(轻量真 PV;靠它抓到重复页自相竞争)
-- Clarity(免费元素级死点击/录屏;API 只到页面级,元素级须进 dashboard 热力图)
+- B1 GA4(转化事件;先确认 gtag 流向哪个 property —— 见避坑 4)
+- B2 Plausible(轻量真 PV;靠它抓到重复页自相竞争)
+- B3 Clarity(免费元素级死点击/录屏;API 只到页面级,元素级须进 dashboard 热力图)
 
 **C. 转化埋点**(看钱)
-- gtag 自定义事件 ×4 起步:install/audit/cta/subscribe
-- Stripe Payment Link(收银台本身就是计量器:client_reference_id 附单)
+- C1 gtag 自定义事件 ×4 起步:install/audit/cta/subscribe
+- C2 Stripe Payment Link(收银台本身就是计量器:client_reference_id 附单)
 
 **D. 自动化/仪式**(让数据自己来找你)
-- GitHub Actions cron(四件套日扫 + Resend 邮件送达)
-- 本地 scheduled task(日报每天 / 周复盘每周一)
-- IndexNow(build 链里挂 submit-indexnow,收录加速)
+- D1 GitHub Actions cron(四件套日扫 + Resend 邮件送达)
+- D2 本地 scheduled task(日报每天 / 周复盘每周一)
+- D3 IndexNow(build 链里挂 submit-indexnow,收录加速)
 
 **E. 发布/进水口 CLI**
-- hf · kaggle(数据集)· npm(CLI/MCP 包)· mcpb(Smithery 打包)· Overleaf(arXiv)
+- E1 hf · E2 kaggle(数据集)· E3 npm(CLI/MCP 包)· E4 mcpb(Smithery 打包)· E5 Overleaf(arXiv)
 
 **F. 体检/侦察**
-- AITDK 类 SEO 体检插件:每月扫核心页 —— 10 秒暴露了我们仨月没发现的 Helmet 覆盖
-- gh CLI(验刷星:单仓爆星+作者其余仓库<20★;查作者履历)
-- 无头浏览器 + Chrome cookie 导入(X 长文抓取 / Clarity 后台热力图)
-- [候选·未实战] Ahrefs Webmaster Tools 免费版 —— 自家外链监控,等外链开始进来再上
+- F1 AITDK 类 SEO 体检插件:每月扫核心页 —— 10 秒暴露了我们仨月没发现的 Helmet 覆盖
+- F2 gh CLI(验刷星:单仓爆星+作者其余仓库<20★;查作者履历)
+- F3 无头浏览器 + Chrome cookie 导入(X 长文抓取 / Clarity 后台热力图)
+- F4 agent-reach(多平台抓取:X/Reddit/微信等)
+- F5 [候选·未实战] Ahrefs Webmaster Tools 免费版 —— 自家外链监控,等外链开始进来再上
 
 ## 四、避坑指南(15 条,每条一个伤疤)
 

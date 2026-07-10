@@ -143,3 +143,31 @@ cookie 带不动 OAuth,需要你登录一次:
 5. **Papers with Code**(10 分钟,等 arXiv):挂数据集页,链 arXiv+HF
 6. **Product Hunt**(1-2 天筹备):唯一没打过的大战役,建议 arXiv/媒体波之后
 7. **HARO / Featured.com**(持续):拿"1/30 不安全"数据当专家引用饵
+
+---
+
+## F. 本周四连开(1-4 号候选,全部零依赖)
+
+### F1. Zenodo DOI(10 分钟)
+1. zenodo.org → Log in(可直接 **GitHub 账号 OAuth**)
+2. 右上 + → New upload → 拖入 `ops/research/out/agent-skills-security-grades.csv`
+3. 填表:Title=`AI Agent Skills Security Grades (130K)` · Type=Dataset · License=CC-BY-4.0
+   Description 抄 HF 卡片首段 + 加一句 `Mirror: huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades`
+4. Publish → 拿到 DOI(形如 10.5281/zenodo.XXXXX)→ **发回给我**:回填 HF 卡片 + 论文 + sameAs
+
+### F2. Awesome 列表 PR(我提,你只点准)
+目标(提交前用 gh 现查星数/规则):punkpeye/awesome-mcp-servers、awesome-claude-code 系、awesome-claude-skills 系
+拟好的条目:
+- MCP 列表:`[Agent Skills Hub](https://github.com/zhuyansen/agentskillshub-mcp) - Search 130,000+ MCP servers & agent skills with security grades checked before install.`
+- Claude 列表:`[Agent Skills Hub](https://agentskillshub.top) - Security-graded directory of 130,000+ Claude skills & MCP servers, refreshed every 8 hours.`
+纪律:每列表读 CONTRIBUTING、按其格式与字母序插入、一 PR 一列表、绝不批量群发(会被标 spam)
+
+### F3. Wikidata 实体(15 分钟)
+wikidata.org → Create a new Item:
+- Label(en): Agent Skills Hub · Description(en): security-graded directory of open-source AI agent skills and MCP servers
+- 声明:instance of=website · official website=https://agentskillshub.top · founded=2026
+- 别名:AgentSkillsHub
+
+### F4. AlternativeTo + StackShare(各 15 分钟)
+- alternativeto.net → Add application:名称/官网/描述(抄 62 字 title 那套)· 标 alternatives:LobeHub、Smithery、mcp.so
+- stackshare.io → Add tool:分类 Developer Tools / AI
