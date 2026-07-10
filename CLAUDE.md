@@ -51,6 +51,10 @@ cd frontend && npm install && npm run dev
 # Build (includes TypeScript check + sitemap + skill page generation)
 cd frontend && npm run build
 
+# 快速校验(仅 tsc + vite,~2 分钟,不清 dist)—— 改 meta/文案/组件后推 main 前用它满足"build 必须过"红线。
+# CI deploy 永远跑全量 build,静态页不会丢;本地全量只在改了 generate-* 脚本或数据管道时才需要。
+cd frontend && npm run build:check
+
 # Lint
 cd frontend && npm run lint
 

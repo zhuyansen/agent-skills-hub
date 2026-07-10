@@ -159,3 +159,21 @@ SYNC_INTERVAL_HOURS=8          # Sync frequency
 
 - [Scoring Algorithm](docs/scoring-algorithm.md) — Full scoring design
 - [System Architecture](docs/system-architecture.md) — Detailed pipeline reference
+
+## Community
+
+**Submit a tool**: use the [Submit Skill form](https://agentskillshub.top/#submit-skill) on the homepage, or open an issue — community submissions land in the next 8-hour sync.
+
+**Discuss**: [GitHub Discussions](https://github.com/zhuyansen/agent-skills-hub/discussions) — methodology questions, false-positive reports, and feature requests all welcome. Every verified false-positive report improves next month's numbers.
+
+### Contributors
+
+Thanks to everyone who has submitted tools or data corrections:
+
+[@VictorVVedtion](https://github.com/VictorVVedtion) · [@gregkonush](https://github.com/gregkonush) · [@kriptoburak](https://github.com/kriptoburak) · [@nbeai](https://github.com/nbeai)
+
+*Submitted a tool that got indexed? Add this badge to your README:*
+
+```markdown
+[![Listed on Agent Skills Hub](https://img.shields.io/badge/Agent_Skills_Hub-listed-2ea44f)](https://agentskillshub.top)
+```
