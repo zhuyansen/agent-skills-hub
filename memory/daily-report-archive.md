@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-11
+1. MadsLorentzen/ai-job-search — 在本地跑的 AI 求职框架:自动评估职位、批量生成申请,全程 Claude Code 驱动（20,419★ 178/day）
+2. Moore-developers/moore-wechat-article-downloader — 🆕 同步公众号文章进本地情报库,存精选评论供 Codex/Claude 做内容研究（236★ 79/day）
+3. ucsandman/marketing-studio — 🆕 敲一条 /marketing 命令,渲染产品全套发布营销物料（39★ 39/day）
+4. Jane-xiaoer/paper-collage-ad-codex — 🆕 打通剪纸拼贴广告全流程:本地语音克隆+动画+配乐一条龙（33★ 33/day）
+5. Raymondhou0917/speak-human-tw — 🆕 去 AI 味改写:抓 38 种 AI 写作痕迹,顺手校正繁中用语与标点（95★ 32/day）
+6. mindsdb/mindshub — 让 AI 干实活:随时换模型、沉淀成果不重来的 AI 数据操作层（39,393★ 14/day）
+7. yuting0624/antigravity-for-claude-code — 把 Antigravity(Gemini)CLI 变成 Claude Code 协作子智能体,智能路由（142★ 6/day）
+8. study8677/repobrain — 给代码库装大脑:在 Claude Code 里像 ChatGPT 一样问你的仓库（1,295★ 6/day）
+9. handmux/handmux — 🆕 基于 tmux 的手机 vibe-coding 座舱,随时驾驭 Claude/Codex 会话（56★ 4/day）
+10. Wangnov/Codex-App-Manager — 跨平台管理 Codex 桌面版:安装/增量更新/干净卸载,内置国内镜像自更新（117★ 3/day）
+🎯 今日趋势：内容生产类霸榜——公众号情报库/剪纸广告/去AI味改写/全套营销物料占 5 席且多为一周内新建;顶端由 ai-job-search(178★/天)与 mindshub 两个成名项目补录登顶。
+> 注：去重范围=与全部 269 个历史推荐(截至 07-10)零重复。排除项:armin5872/OptiQra(30★)单仓爆星、作者其余仓库全 0★ 且属自推 SEO 工具,保守排除;adamholter/hive-mind-landing-page(151★)同为单仓爆星(他仓 1-2★)且是营销落地页而非真 skill,排除;ilysenko/codex-desktop-linux 延续 07-10 存疑排除;sickn33/agentic-awesome-skills(42,757★,近乎停滞)延续存疑排除;SylphxAI/rag-server-mcp 自标 DEPRECATED、prest/beikeshop 为非 agent 领域老项目,均排除。🆕 判定=created_at 在 2026-06-27 之后共 5 项(Moore-wechat/marketing-studio/paper-collage/speak-human-tw/handmux)。
+
+---
+
 ## 2026-07-10
 1. Nanako0129/pilotfish — 🆕 编排多模型协作:前沿模型规划、廉价模型执行、末端验证的 Claude Code 编排层（257★ 128/day）
 2. oso95/scroll-world — 🆕 生成滚动穿越式沉浸落地页,Higgsfield 驱动的 Claude Code 技能（355★ 89/day）
