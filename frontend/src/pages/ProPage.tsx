@@ -71,9 +71,9 @@ function UpgradeCard({ zh }: { zh: boolean }) {
           : "Full README search · 200 results/page · CSV/JSON export · API access"}
       </p>
       <p className="text-lg font-semibold my-3 text-indigo-700 dark:text-indigo-300">
-        ¥599/{zh ? "年" : "yr"}
+        ¥365/{zh ? "年" : "yr"}
         <span className="ml-2 text-sm font-normal">
-          {zh ? "早鸟 ¥299" : "early bird ¥299"}
+          {zh ? "早鸟 ¥199" : "early bird ¥199"}
         </span>
       </p>
       <a

@@ -1,7 +1,7 @@
 # Pro 会员搜索 — 安全影响说明 + 上线手册
 
 > 对应迁移:`supabase/migrations/017_pro_membership.sql`
-> 定价决策(2026-07-11 定):**¥599/年,早鸟 ¥299**,key 按年发,到期不自动续。
+> 定价决策(2026-07-11 定):**¥365/年,早鸟 ¥199**,key 按年发,到期不自动续。
 > 产品红线:**基础搜索永远免费**(SEO/流量命脉);只锁深度:README 全文 · 200 条/页 · 导出 · API(RPC 即 API)。
 > 已免费的能力(多词全文、组合筛选)**绝不**重新包装成付费 —— 信任层品牌不吃这个亏。
 
@@ -23,7 +23,7 @@
 
 ## 运营流程
 
-- **发 key**:`python ops/issue_member_key.py 会员邮箱 [--note 早鸟299]` → 把 `ash_pro_...` 明文发会员(入会欢迎语),明文不留存
+- **发 key**:`python ops/issue_member_key.py 会员邮箱 [--note 早鸟199]` → 把 `ash_pro_...` 明文发会员(入会欢迎语),明文不留存
 - **撤销**:`python ops/issue_member_key.py --revoke ash_pro_xxx`(泄露/退款场景)
 - **API 用法**(就是 RPC,给会员的文档一句话):
   `curl 'https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/rpc/pro_search' -H 'apikey: <站点公开anon key>' -H 'Content-Type: application/json' -d '{"p_key":"ash_pro_你的key","p_query":"browser automation sandbox"}'`
@@ -31,7 +31,7 @@
 
 ## 权益表(对外口径,jasonzhu.ai/club 用)
 
-| 能力 | 免费 | Pro(¥599/年,早鸟 ¥299) |
+| 能力 | 免费 | Pro(¥365/年,早鸟 ¥199) |
 |---|---|---|
 | 名称/作者/描述/tag 搜索 + 组合筛选 | ✅ | ✅ |
 | **README 深度全文检索**(13 万仓库正文命中) | ❌ | ✅ |

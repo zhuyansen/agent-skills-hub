@@ -2,8 +2,8 @@
 """Issue (or revoke) a Pro member key. Manual, low-volume — run per new member.
 
 Usage:
-  python ops/issue_member_key.py member@email.com                # ¥599 standard, 1y
-  python ops/issue_member_key.py member@email.com --note 早鸟299  # early bird, 1y
+  python ops/issue_member_key.py member@email.com                # ¥365 standard, 1y
+  python ops/issue_member_key.py member@email.com --note 早鸟199  # early bird, 1y
   python ops/issue_member_key.py --revoke ash_pro_xxxx           # revoke a leaked key
 
 Prints the RAW key exactly once — only the sha256 hash is stored. Send the raw
@@ -50,7 +50,7 @@ def main() -> int:
         return 0
 
     email = args[0]
-    note = args[args.index("--note") + 1] if "--note" in args else "标准599"
+    note = args[args.index("--note") + 1] if "--note" in args else "标准365"
     raw = "ash_pro_" + secrets.token_urlsafe(24)
     h = hashlib.sha256(raw.encode()).hexdigest()
     cur.execute(
