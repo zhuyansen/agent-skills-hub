@@ -192,6 +192,21 @@ perfect, and I'd genuinely like feedback on the taxonomy.
 ```
 > 周二 9am ET 发;前 6h 全程回帖。数据集链放**评论**里(帖里放太多链易被降权)。
 
+### Reddit 作战卡 v2(2026-07-11,吸收 Alisa 230 万 views 复盘 mp.weixin.qq.com/s/r_xvZtQ_fm9qW5-ntV1G4w)
+
+**为什么升级优先级**:Perplexity 46.7% 的 AI 引用来自 Reddit、Google AIO 占 21% —— Reddit 是 ①b GEO 的主放大器,不是 nofollow 鸡肋。昨天日报 perplexity 刚现身(3 会话),这是杠杆点。
+
+**三个修正(对照旧草稿 5)**:
+1. **养号先行,今天就开始,不等 arXiv**:CQS(贡献者质量分)需要周级积累。姿势:选定 r/mcp + r/ClaudeAI 垂直深耕,每天 20 分钟看 Rising、点赞、写 20 词+的干货评论;不买号、不去 karma 农场、先别带任何链接。arXiv 弹药到位时账号才是热的。
+2. **评论寄生改打长尾新帖**:泛词(best mcp servers)搜出的是老帖,新评论易被 Automod 干掉;用具体场景词找 7 天内新帖 + 盯 Rising。**回自己老帖补 UPDATE 是成功率最高的动作**(时间戳体:"UPDATE (Aug 2026): numbers refreshed…"——月报每月给一次全帖保鲜的理由)。
+3. **首帖用数据故事体**(文章实测最易起量的形式):"I security-graded 130,000 MCP servers — 83% have never been audited. Patterns inside." 正文 TL;DR+表格(对人对 LLM 都友好),链接放评论区,发后前 2 小时守评论。
+
+**官网反哺(新增,零成本)**:
+- [ ] blog 写一篇 slug 带 reddit 的承接页:`/blog/safe-mcp-servers-reddit/`("Safe MCP Servers: What Reddit Users Actually Recommend")—— LLM 检索会在 query 里带 "reddit",这是承接位
+- [ ] 把 Reddit 上关于 MCP 安全的高频真问题收进 audit/best 页 FAQ(比拍脑袋写的更贴真实搜索意图)
+
+**节奏**:养号从现在起日常化(⏱ 每天 20 分钟,人时红线内);发帖等 arXiv 弹药链点火同波打。
+
 ### 草稿 5 — Reddit r/mcp(#7)· (nofollow · 🔴 真人养号 · 通过率 中)
 **不要开新帖推广**。搜 "how do I know if an MCP server is safe" / "where to find MCP servers" 真问题,作答后自然带链:
 ```
