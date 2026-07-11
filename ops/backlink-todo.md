@@ -402,6 +402,8 @@ Happy to share the open dataset or a longer quote.
 | 2026-07-10 | aitoolnet.com | 付费收录 $9.9 | 通用文案 | ⏳ 待上线 | 上线后验 rel |
 | 2026-07-10 | agentskillshub-mcp 仓库 | SKILL.md 被动钩子 | commit 07d8d539 | ⏳ 等爬取 | 喂 findskills/skillsmp/openskillindex |
 | 2026-07-10 | creati.ai | 付费验收 | 收录页 3/4 dofollow(2 条带 utm) | ✅ 部分验毕 | 剩向客服要 9 链清单 |
+| 2026-07-11 | **techbullion.com(计划外!)** | 媒体文章 dofollow | ["Framework for Agent Tool Selection"](https://techbullion.com/from-data-overload-to-data-driven-decisions-a-framework-for-agent-tool-selection/) 正文链首页,`rel="follow"` 实测 | ✅ 自然长出 | 科技媒体 DA 60 级;GA 已 50 sessions;①a 第一条自来媒体链 |
+| 2026-07-11 | xmsumi.com 苏米客(计划外) | 中文博客推荐 | GA 201 sessions(当日第三大源,>2× Google organic);具体文章待定位:浏览器搜 `site:xmsumi.com agentskillshub` | 🔍 待定位 | 定位后感谢作者+谈互链 |
 |  |  |  |  |  |  |
 
 ---
