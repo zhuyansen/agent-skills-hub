@@ -18,9 +18,18 @@
 | 2026-07-10(基线) | **6** | 4.4 | 313 | 0(词库门槛,以 GSC 为准) | **0**(GA 实测 40 会话,引用在其抽样外) | $275.9 | DR 6 = 权威病量化;本月对账看 arXiv+外链波的效果 |
 | 2026-08-10 | | | | | | | ← 第一次月对账 |
 
-## 在途验收窗口(到期就查,查完移进上表备注)
+## Ahrefs Site Audit 基线(2026-07-11 首爬,5,006 页采样)
 
-- **2026-07-11(周五)**:Ahrefs Site Audit 首爬报告(断链/孤儿页/canonical/零入链四类)
+| 指标 | 值 | 判定 |
+|---|---|---|
+| **Health Score** | **62(Fair)** | 基线,周五自动爬看趋势 |
+| 孤儿页(采样内) | 1,871 | **audit 页=采样假象**(其唯一入链的 skill 父页没被爬到);**author/organization 页=真孤儿**(skill 页根本没链 author 页,待修);skill 页=部分假象 |
+| 404 | 2(`gege-circle/.github` skill+audit) | 根因:**仓库名叫 `.github` 的组织配置仓**(库里共 30 个)不是 skill,生成了坏 URL;42 条内链指向它 |
+| 3xx | 3 | 忽略 |
+| Title 过长 | 3,666 | 模板级(audit 页标题式样超 60 字符),P3 |
+| Meta desc 过长 | 3,368 | 同上,P3 |
+
+## 在途验收窗口(到期就查,查完移进上表备注)
 - **2026-07-13(周一)**:5 个 awesome PR 状态(`gh pr list`);Bing 引用域 32 → ?(本周口径 50+)
 - **2026-07-24 前后(2 周)**:libhunt/skillget/navi/mdskills/aitoolnet/creati 9 链 在 Bing/Ahrefs 报表现身?SKILL.md 三站爬到没?
 - **2026-08-10**:DR 6 → ?;AI responses 0 → ?(arXiv 若上线,重点看)
