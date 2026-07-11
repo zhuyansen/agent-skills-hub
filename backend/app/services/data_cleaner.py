@@ -149,9 +149,16 @@ class DataCleaner:
 
         for repo in raw_repos:
             full_name = repo.get("full_name", "")
-            if not full_name or full_name in seen:
+            # GitHub repo names are case-insensitive: dedupe on lower() or a
+            # renamed-casing repo becomes a second catalog row.
+            key = full_name.lower()
+            if not full_name or key in seen:
                 continue
-            seen.add(full_name)
+            # `.github` is an org-profile config repo, never a skill — and its
+            # dot-path URL 404s on GitHub Pages.
+            if repo.get("name", "") == ".github":
+                continue
+            seen.add(key)
 
             cleaned = self._clean_single(repo)
             if cleaned:

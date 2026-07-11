@@ -661,6 +661,33 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         logger.info("Database upsert complete: %d new, %d updated", new_count, updated_count)
 
+        # Case-dedup backstop: GitHub repo names are case-insensitive, so a
+        # casing rename between syncs leaves the old row behind as a duplicate.
+        # Keep the most recently synced row per lower(repo_full_name).
+        try:
+            from sqlalchemy import text as _text
+            dedup_result = db.execute(_text("""
+                DELETE FROM skills s USING (
+                    SELECT id, row_number() OVER (
+                        PARTITION BY lower(repo_full_name)
+                        ORDER BY last_synced DESC NULLS LAST,
+                                 stars DESC NULLS LAST, id DESC
+                    ) AS rn
+                    FROM skills
+                    WHERE lower(repo_full_name) IN (
+                        SELECT lower(repo_full_name) FROM skills
+                        GROUP BY 1 HAVING count(*) > 1
+                    )
+                ) d
+                WHERE s.id = d.id AND d.rn > 1
+            """))
+            db.commit()
+            if dedup_result.rowcount:
+                logger.info("Case-dedup removed %d stale duplicate rows", dedup_result.rowcount)
+        except Exception as dedup_exc:
+            logger.warning("Case-dedup skipped: %s", dedup_exc)
+            db.rollback()
+
         # Refresh DB connection before scoring — the upsert phase may have
         # taken minutes and PgBouncer could have closed the connection.
         try:
