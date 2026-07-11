@@ -18,7 +18,7 @@
  * Run: node scripts/generate-audit-pages.mjs  (after vite build)
  */
 
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import {
   SITE, CATEGORY_LABELS, esc, starsK, formatDate, parseJsonArray,
@@ -79,6 +79,19 @@ const GRADES = {
 };
 
 /** Human-readable red-flag names (scanner emits snake_case identifiers). */
+
+/** Internal creator-page link when the static page exists (author pages are
+ *  generated first in the build chain); falls back to GitHub. Un-orphans
+ *  /author/ + /organization/ pages — Ahrefs 2026-07-11 found them link-less. */
+function creatorLinkHtml(author) {
+  const name = esc(author);
+  if (existsSync(`dist/organization/${author}/index.html`))
+    return `<a href="/organization/${name}/" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+  if (existsSync(`dist/author/${author}/index.html`))
+    return `<a href="/author/${name}/" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+  return `<a href="https://github.com/${name}" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+}
+
 function flagLabel(f) {
   return String(f).replace(/[_-]+/g, " ");
 }
@@ -178,7 +191,7 @@ ${breadcrumbLd}
     <h1 style="font-size:26px;margin:0 0 6px">Is ${esc(repo_name)} safe to install?</h1>
     <p style="color:#64748b;margin:0 0 20px">
       Security audit of <a href="https://github.com/${esc(repo_full_name)}" rel="noopener" style="color:#4f46e5;text-decoration:none">${esc(repo_full_name)}</a>
-      &middot; ${esc(catLabel)} by ${esc(author_name)} &middot; ★ ${starsK(stars)}
+      &middot; ${esc(catLabel)} by ${creatorLinkHtml(author_name)} &middot; ★ ${starsK(stars)}
     </p>
 
     <!-- Verdict card -->

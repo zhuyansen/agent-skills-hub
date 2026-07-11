@@ -215,7 +215,7 @@ function buildStaticHeader() {
         if(id)id.style.display='block';
       }
       // Apply saved lang
-      var l=localStorage.getItem('lang')||'en';
+      var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');
       document.documentElement.lang=l==='zh'?'zh-CN':'en';
       var lb=document.getElementById('lang-toggle');
       if(lb)lb.textContent=l==='zh'?'EN':'中文';

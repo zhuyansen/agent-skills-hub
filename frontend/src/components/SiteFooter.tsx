@@ -294,6 +294,20 @@ export function SiteFooter() {
             {lang === "zh" ? "保留所有权利" : "All rights reserved"}.
           </span>
           <span className="flex items-center gap-3">
+            {/* Directory-listing badges (reciprocal verification links). */}
+            <a
+              href="https://turbo0.com/item/agentskillshub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://img.turbo0.com/badge-listed-dark.svg"
+                alt="Listed on Turbo0"
+                className="h-7 w-auto"
+                loading="lazy"
+              />
+            </a>
+            <span className="text-gray-600">·</span>
             {/* The pulsing dot reads as interactive — Clarity's top homepage
                 dead-click cluster was this footer bar. Give the click a
                 destination: "auto-updated" → what's new today. */}

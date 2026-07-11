@@ -186,14 +186,12 @@ export function SkillDetailPage() {
                   alt={detail.author_name}
                   className="w-6 h-6 rounded-full"
                 />
-                <a
-                  href={`https://github.com/${detail.author_name}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to={`/author/${detail.author_name}/`}
                   className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {detail.author_name}
-                </a>
+                </Link>
                 {isVerifiedCreator(detail.author_name) && (
                   <VerifiedBadge
                     size="sm"

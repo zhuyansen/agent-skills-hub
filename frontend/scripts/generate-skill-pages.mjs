@@ -12,7 +12,7 @@
  * Run: node scripts/generate-skill-pages.mjs  (after vite build)
  */
 
-import { readFileSync, mkdirSync, writeFileSync } from "fs";
+import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import {
@@ -82,6 +82,19 @@ async function fetchAllCompositions() {
  *   3) Fall back to same-category top-star if not enough topic overlap.
  * Returns up to `limit` skills.
  */
+
+/** Internal creator-page link when the static page exists (author pages are
+ *  generated first in the build chain); falls back to GitHub. Un-orphans
+ *  /author/ + /organization/ pages — Ahrefs 2026-07-11 found them link-less. */
+function creatorLinkHtml(author) {
+  const name = esc(author);
+  if (existsSync(`dist/organization/${author}/index.html`))
+    return `<a href="/organization/${name}/" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+  if (existsSync(`dist/author/${author}/index.html`))
+    return `<a href="/author/${name}/" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+  return `<a href="https://github.com/${name}" style="color:#4f46e5;text-decoration:none">${name}</a>`;
+}
+
 function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
   const currentTopics = parseJsonArray(skill.topics).map((t) => t.toLowerCase());
   const minStars = Math.max(50, Math.floor(skill.stars * 0.2));
@@ -430,7 +443,7 @@ ${faqLd}
       <!-- Title & Author -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)} — ${esc(catLabel)} by ${esc(author_name)}</h1>
       <p style="color:#64748b;margin:0 0 8px">
-        by <a href="https://github.com/${esc(author_name)}" style="color:#4f46e5;text-decoration:none">${esc(author_name)}</a>
+        by ${creatorLinkHtml(author_name)}
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
         &middot; &#9733; ${starsK(stars)}
       </p>

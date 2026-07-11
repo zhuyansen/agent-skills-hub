@@ -270,7 +270,7 @@ const aboutHtml = `<!doctype html>
       <p data-en="Last updated: 2026-04-24 · Published by Jason Zhu · MIT licensed · <a href='/'>Back to Home</a>" data-zh="最后更新：2026-04-24 · 发布者 Jason Zhu · MIT 许可 · <a href='/'>返回首页</a>">Last updated: 2026-04-24 · Published by Jason Zhu · MIT licensed · <a href="/">Back to Home</a></p>
     </footer>
   </div>
-  <script>(function(){var l=localStorage.getItem('lang')||'en';document.documentElement.lang=l==='zh'?'zh-CN':'en';var b=document.getElementById('lang-toggle');if(b)b.textContent=l==='zh'?'EN':'中文';if(l==='zh')document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=el.getAttribute('data-zh')});})();</script>
+  <script>(function(){var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');document.documentElement.lang=l==='zh'?'zh-CN':'en';var b=document.getElementById('lang-toggle');if(b)b.textContent=l==='zh'?'EN':'中文';if(l==='zh')document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=el.getAttribute('data-zh')});})();</script>
 </body>
 </html>`;
 

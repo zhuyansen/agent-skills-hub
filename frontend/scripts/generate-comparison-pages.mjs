@@ -83,7 +83,7 @@ function buildStaticHeader() {
         if(il)il.style.display='none';
         if(id)id.style.display='block';
       }
-      var l=localStorage.getItem('lang')||'en';
+      var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');
       document.documentElement.lang=l==='zh'?'zh-CN':'en';
       var lb=document.getElementById('lang-toggle');
       if(lb)lb.textContent=l==='zh'?'EN':'中文';
