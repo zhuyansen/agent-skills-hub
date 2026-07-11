@@ -71,10 +71,15 @@ function UpgradeCard({ zh }: { zh: boolean }) {
           : "Full README search · 200 results/page · CSV/JSON export · API access"}
       </p>
       <p className="text-lg font-semibold my-3 text-indigo-700 dark:text-indigo-300">
-        ¥365/{zh ? "年" : "yr"}
+        {zh ? "早鸟前 100 名 ¥199/年" : "First 100 members: ¥199/yr"}
         <span className="ml-2 text-sm font-normal">
-          {zh ? "早鸟 ¥199" : "early bird ¥199"}
+          {zh ? "之后 ¥365/年" : "then ¥365/yr"}
         </span>
+      </p>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+        {zh
+          ? "续费同价 —— 以哪个价加入,续费永远锁定哪个价"
+          : "Renewals locked at your joining price, forever"}
       </p>
       <a
         href={CLUB_URL}
