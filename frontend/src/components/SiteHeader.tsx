@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
   const [nlEmail, setNlEmail] = useState("");
   const [nlStatus, setNlStatus] = useState<
@@ -143,6 +143,17 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               title="Enterprise — Trust Layer for AI Agent & MCP Deployment"
             >
               Enterprise
+            </Link>
+            <Link
+              to="/pro/"
+              className="hidden lg:inline-flex items-center gap-1 px-3 py-1 text-sm text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-amber-300 dark:ring-amber-800"
+              title={
+                lang === "zh"
+                  ? "Pro 深度搜索 — README 全文 · 200 条 · 导出 · API"
+                  : "Pro deep search — full README · 200 results · export · API"
+              }
+            >
+              ⚡ Pro
             </Link>
             <Link
               to="/book/"
