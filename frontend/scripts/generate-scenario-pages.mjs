@@ -394,10 +394,15 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   // clicks to GitHub repos. New format signals comparison/decision support.
   // Skip suffix when title already contains "Tools/Servers/Frameworks/etc."
   const seoTitleHasNoun = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i.test(scenario.title);
+  // Only drop the "Tools" suffix when the title literally says "tool(s)" —
+  // titles ending in "Skills"/"Servers" still want "Open-Source Tools Compared"
+  // (else you get a dangling "…Open-Source Compared").
+  const titleHasToolWord = /\btools?\b/i.test(scenario.title);
+  const titleHasSkillWord = /\bskills?\b/i.test(scenario.title);
   const itemCount = skills.length;
   const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
-  const title = `${scenario.title}: ${itemCount} Open-Source ${seoTitleHasNoun ? "" : "Tools "}Compared (${year}) | Agent Skills Hub`.replace(/  +/g, " ");
+  const title = `${scenario.title}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year}) | Agent Skills Hub`.replace(/  +/g, " ");
   // Meta ≤ 145 chars (Google SERP truncates at ~155, leave buffer for "...").
   // Format: "{N} {open-source} {scenario}: {top names}. {value prop}."
   // Trim at last word boundary to avoid mid-word cut.
@@ -633,7 +638,7 @@ ${faqLd}
 
       <!-- Hero -->
       <div class="bp-hero">
-        <h1 data-zh="最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})" data-en="Best AI Agent Skills for ${esc(scenario.title)} in ${year}">Best AI Agent Skills for ${esc(scenario.title)} in ${year}</h1>
+        <h1 data-zh="${titleHasSkillWord ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}">${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}</h1>
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
           <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
