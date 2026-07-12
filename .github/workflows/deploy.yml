@@ -41,6 +41,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_TRIAL_PRO_KEY: ${{ secrets.VITE_TRIAL_PRO_KEY }}
         run: npm run build
 
       - name: Create IndexNow key verification file

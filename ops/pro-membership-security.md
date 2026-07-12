@@ -37,6 +37,30 @@
   `curl 'https://vknzzecmzsfmohglpfgm.supabase.co/rest/v1/rpc/pro_search' -H 'apikey: <站点公开anon key>' -H 'Content-Type: application/json' -d '{"p_key":"ash_pro_你的key","p_query":"browser automation sandbox"}'`
 - key 到期续费 = 重新 issue(旧 key revoke);**续费价 = note 里记录的入会价**(早鸟199 永远 199)。早鸟名额:`SELECT count(*) FROM member_keys WHERE note='早鸟199'` 到 100 停售
 
+### 会员欢迎信模板(三种用法 —— 发信时把 `ash_pro_你的key` 替换成该会员的真 key)
+
+> ⚠️ **安全红线**:真 key 只出现在**发给单个会员的这封信**里。公开页 `/pro/`、git、社媒、文档一律用占位符 `ash_pro_你的key`。真 key 进公开面 = 付费墙当场失效(任何人复制即白嫖),必须 `--revoke` 重发。
+
+```
+欢迎加入 Agent Skills Hub Pro 🎉 你的会员 Key:
+ash_pro_你的key   ← 换成真 key
+
+三种用法(不用注册、不用登录):
+
+① 网页端:打开 https://agentskillshub.top/pro/,把 Key 粘进输入框,即刻解锁全库深度搜索、社区精选榜、Top3 解读。
+
+② CLI:
+ASH_PRO_KEY=ash_pro_你的key npx @agentskillshub/cli search "关键词"
+
+③ MCP(Claude Code):
+claude mcp add agentskillshub -e ASH_PRO_KEY=ash_pro_你的key -- npx -y @agentskillshub/mcp
+配好后 agent 会自动用 pro_search 工具做全库深度检索。
+
+Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会价)。
+```
+
+> `/pro/` 页内也内置了这份"三种用法"折叠说明(`ProPage.tsx` 的 `UsageHelp`),同样用占位符 —— 会员登录粘 Key 后照着换即可。
+
 ## 权益表(对外口径,jasonzhu.ai/club 用)
 
 | 能力 | 免费 | Pro(前 100 名 ¥199/年,后 ¥365/年,续费锁价) |

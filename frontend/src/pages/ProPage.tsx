@@ -17,9 +17,18 @@ const CATEGORIES = [
   "llm-plugin",
 ];
 const GRADES = ["safe", "caution", "unsafe", "reject", "unknown"];
-const CLUB_URL = "https://jasonzhu.ai/club";
+const CLUB_URL = "https://jasonzhu.ai/zh/club";
 
-type GateState = "idle" | "unauthorized" | "backend_missing" | "error";
+// Public 3-use trial: visitors with no key of their own get a shared, revocable
+// trial key (VITE_TRIAL_PRO_KEY) and TRIAL_LIMIT free searches, counted in
+// localStorage. Client-side count is a conversion nudge, not a hard wall — the
+// trial key is public-by-design; abuse is capped by revoking that one key.
+const TRIAL_KEY = import.meta.env.VITE_TRIAL_PRO_KEY || "";
+const TRIAL_LIMIT = 3;
+const TRIAL_STORAGE = "pro_trial_used";
+
+type GateState =
+  "idle" | "unauthorized" | "trial_exhausted" | "backend_missing" | "error";
 
 interface RpcError {
   code?: string;
@@ -59,11 +68,23 @@ function download(name: string, mime: string, content: string): void {
   URL.revokeObjectURL(url);
 }
 
-function UpgradeCard({ zh }: { zh: boolean }) {
+function UpgradeCard({
+  zh,
+  exhausted = false,
+}: {
+  zh: boolean;
+  exhausted?: boolean;
+}) {
   return (
     <div className="max-w-xl mx-auto mt-10 p-8 rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50 dark:bg-indigo-950/40 text-center">
       <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-        {zh ? "Pro 深度搜索是会员权益" : "Pro search is a member benefit"}
+        {exhausted
+          ? zh
+            ? `${TRIAL_LIMIT} 次免费试用已用完`
+            : `You've used all ${TRIAL_LIMIT} free trial searches`
+          : zh
+            ? "Pro 深度搜索是会员权益"
+            : "Pro search is a member benefit"}
       </h2>
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
         {zh
@@ -90,6 +111,60 @@ function UpgradeCard({ zh }: { zh: boolean }) {
         {zh ? "加入会员,领取 Key →" : "Join the club to get a key →"}
       </a>
     </div>
+  );
+}
+
+const KEY_PLACEHOLDER = "ash_pro_你的key";
+
+function CodeLine({ children }: { children: string }) {
+  return (
+    <code className="block w-full overflow-x-auto whitespace-pre rounded-lg bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-3 py-2 text-xs font-mono text-gray-800 dark:text-gray-200">
+      {children}
+    </code>
+  );
+}
+
+function UsageHelp({ zh }: { zh: boolean }) {
+  return (
+    <details className="mt-10 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 px-5 py-4">
+      <summary className="cursor-pointer text-sm font-semibold text-gray-900 dark:text-white select-none">
+        {zh ? "三种用法 · 拿到 Key 后怎么用" : "Three ways to use your key"}
+      </summary>
+      <div className="mt-4 space-y-5 text-sm text-gray-700 dark:text-gray-300">
+        <div>
+          <p className="font-medium mb-1">
+            {zh
+              ? "① 网页端 —— 不用注册、不用登录"
+              : "① Web — no signup, no login"}
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            {zh
+              ? "打开本页,把 Key 粘进上方输入框,即刻解锁全库深度搜索、社区精选榜与 Top 3 解读。Key 存在你本地浏览器,不上传。"
+              : "Open this page, paste your key into the field above — instantly unlocks full-catalog deep search, the community board, and Top 3 picks. The key stays in your browser."}
+          </p>
+        </div>
+        <div>
+          <p className="font-medium mb-1">{zh ? "② CLI" : "② CLI"}</p>
+          <CodeLine>{`ASH_PRO_KEY=${KEY_PLACEHOLDER} npx @agentskillshub/cli search "${zh ? "关键词" : "keyword"}"`}</CodeLine>
+        </div>
+        <div>
+          <p className="font-medium mb-1">
+            {zh ? "③ MCP(Claude Code)" : "③ MCP (Claude Code)"}
+          </p>
+          <CodeLine>{`claude mcp add agentskillshub -e ASH_PRO_KEY=${KEY_PLACEHOLDER} -- npx -y @agentskillshub/mcp`}</CodeLine>
+          <p className="mt-1 text-gray-500 dark:text-gray-400">
+            {zh
+              ? "配好后,agent 会自动调用 pro_search 工具做全库深度检索。"
+              : "Once added, the agent automatically uses the pro_search tool for deep-catalog retrieval."}
+          </p>
+        </div>
+        <p className="text-xs text-gray-400 dark:text-gray-500 border-t border-gray-200 dark:border-gray-800 pt-3">
+          {zh
+            ? "把上面的 ash_pro_你的key 换成欢迎信里发给你的那把 Key。Key 是你的会员凭证,请勿公开分享。"
+            : "Replace ash_pro_你的key with the key sent in your welcome email. It's your membership credential — don't share it publicly."}
+        </p>
+      </div>
+    </details>
   );
 }
 
@@ -125,6 +200,9 @@ export default function ProPage() {
   const [loading, setLoading] = useState(false);
   const [gate, setGate] = useState<GateState>("idle");
   const [searched, setSearched] = useState(false);
+  const [trialUsed, setTrialUsed] = useState(() =>
+    Number(localStorage.getItem(TRIAL_STORAGE) || 0),
+  );
 
   const saveKey = (v: string) => {
     setMemberKey(v);
@@ -132,14 +210,25 @@ export default function ProPage() {
   };
 
   const runSearch = useCallback(async () => {
-    if (!supabase || !memberKey) {
+    if (!supabase) {
+      setGate("backend_missing");
+      return;
+    }
+    // Own key → unlimited. No key → shared trial key, capped at TRIAL_LIMIT.
+    const usingTrial = !memberKey;
+    const activeKey = memberKey || TRIAL_KEY;
+    if (!activeKey) {
       setGate("unauthorized");
+      return;
+    }
+    if (usingTrial && trialUsed >= TRIAL_LIMIT) {
+      setGate("trial_exhausted");
       return;
     }
     setLoading(true);
     setGate("idle");
     const { data, error } = await supabase.rpc("pro_search", {
-      p_key: memberKey,
+      p_key: activeKey,
       p_query: query || null,
       p_category: category || null,
       p_min_security: grade || null,
@@ -153,7 +242,15 @@ export default function ProPage() {
       return;
     }
     setRows((data ?? []) as Skill[]);
-  }, [memberKey, query, category, grade]);
+    if (usingTrial) {
+      const n = trialUsed + 1;
+      setTrialUsed(n);
+      localStorage.setItem(TRIAL_STORAGE, String(n));
+    }
+  }, [memberKey, query, category, grade, trialUsed]);
+
+  const trialActive = !memberKey && !!TRIAL_KEY;
+  const trialLeft = Math.max(0, TRIAL_LIMIT - trialUsed);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -177,12 +274,17 @@ export default function ProPage() {
             : "Full README text · combined filters · 200/page · export. Basic search stays free — this is the deep end."}
         </p>
         <p className="text-sm mb-6">
-          <a href="/pro/board/" className="text-amber-700 dark:text-amber-400 font-semibold hover:underline">
-            {zh ? "⭐ 会员精选榜 —— 提名 · 投票 · top3 每周转发 →" : "⭐ Pro Picks — nominate · vote · top 3 reposted weekly →"}
+          <a
+            href="/pro/board/"
+            className="text-amber-700 dark:text-amber-400 font-semibold hover:underline"
+          >
+            {zh
+              ? "⭐ 会员精选榜 —— 提名 · 投票 · top3 每周转发 →"
+              : "⭐ Pro Picks — nominate · vote · top 3 reposted weekly →"}
           </a>
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-2 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2 mb-1">
           <input
             type="password"
             value={memberKey}
@@ -191,6 +293,47 @@ export default function ProPage() {
             className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm"
           />
         </div>
+        {trialActive && (
+          <p className="text-xs mb-4 text-gray-500 dark:text-gray-400">
+            {trialLeft > 0 ? (
+              zh ? (
+                <>
+                  没有 Key?直接搜就行 —— 免费试用还剩{" "}
+                  <b className="text-indigo-600 dark:text-indigo-400">
+                    {trialLeft}
+                  </b>{" "}
+                  / {TRIAL_LIMIT} 次。想无限用?
+                  <a
+                    href={CLUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    开通 Pro →
+                  </a>
+                </>
+              ) : (
+                <>
+                  No key? Just search — {trialLeft} of {TRIAL_LIMIT} free trials
+                  left.{" "}
+                  <a
+                    href={CLUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    Go Pro →
+                  </a>
+                </>
+              )
+            ) : zh ? (
+              "免费试用已用完 —— 开通 Pro 无限深度搜索。"
+            ) : (
+              "Free trials used up — go Pro for unlimited deep search."
+            )}
+          </p>
+        )}
+        {!trialActive && <div className="mb-4" />}
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
           <input
             value={query}
@@ -237,6 +380,7 @@ export default function ProPage() {
         </div>
 
         {gate === "unauthorized" && <UpgradeCard zh={zh} />}
+        {gate === "trial_exhausted" && <UpgradeCard zh={zh} exhausted />}
         {gate === "backend_missing" && (
           <p className="text-sm text-amber-600 mt-6">
             {zh
@@ -302,6 +446,8 @@ export default function ProPage() {
             {zh ? "没有命中结果。" : "No results."}
           </p>
         )}
+
+        <UsageHelp zh={zh} />
       </main>
       <SiteFooter />
     </div>
