@@ -1,5 +1,5 @@
 -- 017_pro_membership.sql
--- Pro membership gate for AgentSkillsHub club (¥599 tier).
+-- Pro membership gate for AgentSkillsHub club (¥365/yr tier, early-bird ¥199).
 --
 -- Freemium principle: basic search stays 100% open (SEO/traffic depend on it).
 -- Only DEPTH is gated: README-inclusive full-text + higher page cap + export
@@ -11,14 +11,11 @@
 -- readme_search_vector backfill touches ~133K rows and MUST be chunked
 -- (scan_all single-transaction timeout scar, migration 003 era).
 
--- ── 1. Extensions ────────────────────────────────────────────────
-CREATE EXTENSION IF NOT EXISTS pgcrypto;   -- digest() for key hashing
-
 -- ── 2. Member keys (PII: email) ──────────────────────────────────
 -- Keys are stored HASHED (sha256). A DB leak never exposes usable keys.
 CREATE TABLE IF NOT EXISTS member_keys (
   id          bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  key_hash    text NOT NULL UNIQUE,          -- encode(digest(raw_key,'sha256'),'hex')
+  key_hash    text NOT NULL UNIQUE,          -- encode(sha256(raw_key::bytea),'hex')
   email       text NOT NULL,
   tier        text NOT NULL DEFAULT 'pro',
   created_at  timestamptz NOT NULL DEFAULT now(),
@@ -82,7 +79,7 @@ DECLARE
 BEGIN
   SELECT EXISTS (
     SELECT 1 FROM member_keys
-    WHERE key_hash = encode(digest(p_key, 'sha256'), 'hex')
+    WHERE key_hash = encode(sha256(p_key::bytea), 'hex')
       AND revoked = false
       AND (expires_at IS NULL OR expires_at > now())
   ) INTO v_valid;
