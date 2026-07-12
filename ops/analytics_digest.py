@@ -29,6 +29,25 @@ def section(title):
 def main():
     print("# 数据四件套日报 · Analytics Daily Digest")
 
+    # Health banner: a missing source means its fetcher FAILED (auth/quota),
+    # NOT that the metric is zero. Silent truncation once let a digest report
+    # "0 conversions" when GA had actually crashed (07-12 token-expiry scar).
+    down = [
+        name
+        for name, probe in (
+            ("GSC", "gsc/out/queries.json"),
+            ("GA", "ga/out/pages.json"),
+            ("Plausible", "plausible/out/sources.json"),
+            ("Clarity", "clarity/out/overview.json"),
+        )
+        if not (load(probe) or (name == "Plausible" and load("plausible/out/source.json")))
+    ]
+    if down:
+        print(
+            f"\n> ⚠️ **数据源未出数:{', '.join(down)}** — 这是抓取失败(多为凭证过期),"
+            f"不是指标为 0。相关板块缺失/转化数不可信,先修凭证再解读。\n"
+        )
+
     # ── GSC ──
     q = load("gsc/out/queries.json")
     if q:

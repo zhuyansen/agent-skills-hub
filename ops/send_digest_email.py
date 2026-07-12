@@ -32,9 +32,14 @@ def main():
     # Beijing date for the subject (runner is UTC; 01:00 UTC = 09:00 CST)
     today = datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
     # Surface the conversion-event count in the subject so a glance tells you
-    # whether the funnel moved without even opening the mail.
-    conv = md.count("🎯 **")
-    subject = f"📊 数据日报 {today} · {conv} 个转化事件在动"
+    # whether the funnel moved without even opening the mail. If a source fetch
+    # failed (banner present), a "0" would be a lie — flag the outage instead
+    # of reporting a false all-clear (07-12 GA-token-expiry scar).
+    if "⚠️ **数据源未出数" in md:
+        subject = f"📊 数据日报 {today} · ⚠️ 数据源故障(见正文)"
+    else:
+        conv = md.count("🎯 **")
+        subject = f"📊 数据日报 {today} · {conv} 个转化事件在动"
 
     # lang="zh" stops Gmail's "this email appears to be in English" banner
     body = f"""<div lang="zh" style="font-family:system-ui,-apple-system,sans-serif;max-width:720px">
