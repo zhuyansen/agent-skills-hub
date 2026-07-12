@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-12
+1. GreyGunG/grokbuild-proxy — 🆕 自托管 Grok Build 代理,一键把 Grok 接进 Claude Code 与 OpenAI 兼容端（98★ 49/day）
+2. Alisa0808/vox-director — 🆕 输入一个话题,云端自动产出 Vox 风剪纸解说/广告视频（45★ 45/day）
+3. opitaru-sys/deck-dna — 🆕 提取团队设计稿的设计DNA,批量生成同风格 PPTX（20★ 20/day）
+4. inclusionAI/Avernet — 🆕 蚂蚁 inclusionAI 出品:让智能体互联互通、协同执行的分布式协调平台（95★ 19/day）
+5. TristanBrotherton/openclaw-voice-call-realtime — 🆕 给 AI 助手一部电话:Twilio+OpenAI 实时语音打真实电话的 OpenClaw 插件（57★ 19/day）
+6. ZeKaiNie/universal-examprep-skill — 把课件/笔记/真题变成分章速成教材的临考突击教练技能（250★ 15/day）
+7. chrichuang218/ai-learning-coach — 🆕 在真实项目中边做边学:自适应对话+证据驱动的 Codex 私教（150★ 12/day）
+8. KyrieCheungYep/ky-markdown-rebuilder — 🆕 把版式复杂的文档重建成页面对齐的干净 Markdown（73★ 9/day）
+9. solider-shuwen/shuttleslide — 🆕 为 AI 打造的 PPT↔HTML 双向工具库,多轮编辑保真不丢格式（87★ 8/day）
+10. mcncarl/agent-memory-vault — 🆕 给 Claude/Codex 建 Markdown 共享记忆库,SQLite+向量+Git 审计（144★ 7/day）
+🎯 今日趋势：文档/教育生产工具霸榜——PPT重建/Markdown重构/临考速成/私教占 5 席;其余为接入基建(Grok代理/分布式协调/记忆库)与多模态(剪纸视频/AI电话),8/10 为两周内新建。
+> 注：去重范围=与全部 279 个历史推荐(截至 07-11)零重复。排除项:nhevers/project-r0x(122★/日)作者其余仓库全 0-2★ 唯此单仓单日爆星、且属 x402/Robinhood Chain 加密金融性质,双重刷星/拉盘嫌疑,保守排除;yacuo/check-cc(67★)为 Claude 账号风险检测工具,涉规避检测灰色地带排除;mindsdb/mindshub、MadsLorentzen/ai-job-search 等 9 项延续 07-11 已推荐去重;tinyplex/tinybase、prest/prest、mariadb-operator 等非 agent 领域老库(prev_stars=0 新收录)排除。🆕 判定=created_at 在 2026-06-28 之后共 8 项(仅 universal-examprep-skill 06-24、agent-memory-vault 06-20 为稍早项目)。agent-memory-vault 安全评级 caution(文件系统读写),入选已在注中标明。
+
+---
+
 ## 2026-07-11
 1. MadsLorentzen/ai-job-search — 在本地跑的 AI 求职框架:自动评估职位、批量生成申请,全程 Claude Code 驱动（20,419★ 178/day）
 2. Moore-developers/moore-wechat-article-downloader — 🆕 同步公众号文章进本地情报库,存精选评论供 Codex/Claude 做内容研究（236★ 79/day）
