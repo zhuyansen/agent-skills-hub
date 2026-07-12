@@ -27,6 +27,12 @@ const TRIAL_KEY = import.meta.env.VITE_TRIAL_PRO_KEY || "";
 const TRIAL_LIMIT = 3;
 const TRIAL_STORAGE = "pro_trial_used";
 
+// Share-to-earn: sharing the page once raises the trial cap by SHARE_BONUS.
+// One-time per browser (localStorage), same client-side-nudge philosophy.
+const SHARE_BONUS = 3;
+const SHARE_STORAGE = "pro_share_claimed";
+const SHARE_URL = "https://agentskillshub.top/pro/?ref=share";
+
 type GateState =
   "idle" | "unauthorized" | "trial_exhausted" | "backend_missing" | "error";
 
@@ -203,6 +209,10 @@ export default function ProPage() {
   const [trialUsed, setTrialUsed] = useState(() =>
     Number(localStorage.getItem(TRIAL_STORAGE) || 0),
   );
+  const [shareClaimed, setShareClaimed] = useState(
+    () => localStorage.getItem(SHARE_STORAGE) === "1",
+  );
+  const [shareMsg, setShareMsg] = useState("");
 
   const saveKey = (v: string) => {
     setMemberKey(v);
@@ -221,7 +231,8 @@ export default function ProPage() {
       setGate("unauthorized");
       return;
     }
-    if (usingTrial && trialUsed >= TRIAL_LIMIT) {
+    const limit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
+    if (usingTrial && trialUsed >= limit) {
       setGate("trial_exhausted");
       return;
     }
@@ -247,10 +258,42 @@ export default function ProPage() {
       setTrialUsed(n);
       localStorage.setItem(TRIAL_STORAGE, String(n));
     }
-  }, [memberKey, query, category, grade, trialUsed]);
+  }, [memberKey, query, category, grade, trialUsed, shareClaimed]);
+
+  const onShare = useCallback(async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Agent Skills Hub Pro",
+          url: SHARE_URL,
+        });
+      } else {
+        await navigator.clipboard.writeText(SHARE_URL);
+      }
+    } catch {
+      // user dismissed the share sheet — still grant the copy fallback below
+    }
+    if (!shareClaimed) {
+      setShareClaimed(true);
+      localStorage.setItem(SHARE_STORAGE, "1");
+      if (gate === "trial_exhausted") setGate("idle");
+      setShareMsg(
+        zh
+          ? "已复制链接 · +3 次已到账 🎉"
+          : "Link copied · +3 searches added 🎉",
+      );
+    } else {
+      setShareMsg(
+        zh
+          ? "链接已复制(分享奖励已领过)"
+          : "Link copied (share bonus already claimed)",
+      );
+    }
+  }, [shareClaimed, gate, zh]);
 
   const trialActive = !memberKey && !!TRIAL_KEY;
-  const trialLeft = Math.max(0, TRIAL_LIMIT - trialUsed);
+  const effectiveLimit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
+  const trialLeft = Math.max(0, effectiveLimit - trialUsed);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -294,44 +337,67 @@ export default function ProPage() {
           />
         </div>
         {trialActive && (
-          <p className="text-xs mb-4 text-gray-500 dark:text-gray-400">
-            {trialLeft > 0 ? (
-              zh ? (
-                <>
-                  没有 Key?直接搜就行 —— 免费试用还剩{" "}
-                  <b className="text-indigo-600 dark:text-indigo-400">
-                    {trialLeft}
-                  </b>{" "}
-                  / {TRIAL_LIMIT} 次。想无限用?
-                  <a
-                    href={CLUB_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                  >
-                    开通 Pro →
-                  </a>
-                </>
+          <div className="mb-4">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {trialLeft > 0 ? (
+                zh ? (
+                  <>
+                    没有 Key?直接搜就行 —— 免费试用还剩{" "}
+                    <b className="text-indigo-600 dark:text-indigo-400">
+                      {trialLeft}
+                    </b>{" "}
+                    / {effectiveLimit} 次。想无限用?
+                    <a
+                      href={CLUB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                    >
+                      开通 Pro →
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    No key? Just search — {trialLeft} of {effectiveLimit} free
+                    trials left.{" "}
+                    <a
+                      href={CLUB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                    >
+                      Go Pro →
+                    </a>
+                  </>
+                )
+              ) : zh ? (
+                shareClaimed ? (
+                  "免费试用已用完 —— 开通 Pro 无限深度搜索。"
+                ) : (
+                  "免费试用已用完 —— 分享 +3 次继续,或开通 Pro。"
+                )
+              ) : shareClaimed ? (
+                "Free trials used up — go Pro for unlimited deep search."
               ) : (
-                <>
-                  No key? Just search — {trialLeft} of {TRIAL_LIMIT} free trials
-                  left.{" "}
-                  <a
-                    href={CLUB_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                  >
-                    Go Pro →
-                  </a>
-                </>
-              )
-            ) : zh ? (
-              "免费试用已用完 —— 开通 Pro 无限深度搜索。"
-            ) : (
-              "Free trials used up — go Pro for unlimited deep search."
-            )}
-          </p>
+                "Free trials used up — share for +3 more, or go Pro."
+              )}
+            </p>
+            <div className="mt-1.5 flex items-center gap-3">
+              {!shareClaimed && (
+                <button
+                  onClick={onShare}
+                  className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  🔗 {zh ? "分享得 +3 次搜索" : "Share for +3 searches"}
+                </button>
+              )}
+              {shareMsg && (
+                <span className="text-xs text-green-600 dark:text-green-400">
+                  {shareMsg}
+                </span>
+              )}
+            </div>
+          </div>
         )}
         {!trialActive && <div className="mb-4" />}
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
@@ -380,7 +446,29 @@ export default function ProPage() {
         </div>
 
         {gate === "unauthorized" && <UpgradeCard zh={zh} />}
-        {gate === "trial_exhausted" && <UpgradeCard zh={zh} exhausted />}
+        {gate === "trial_exhausted" && (
+          <>
+            <UpgradeCard zh={zh} exhausted />
+            {!shareClaimed && (
+              <div className="text-center mt-3">
+                <button
+                  onClick={onShare}
+                  className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  🔗{" "}
+                  {zh
+                    ? "先别走 —— 分享得 +3 次搜索"
+                    : "Wait — share for +3 more"}
+                </button>
+              </div>
+            )}
+            {shareMsg && (
+              <p className="text-center text-sm text-green-600 dark:text-green-400 mt-2">
+                {shareMsg}
+              </p>
+            )}
+          </>
+        )}
         {gate === "backend_missing" && (
           <p className="text-sm text-amber-600 mt-6">
             {zh
