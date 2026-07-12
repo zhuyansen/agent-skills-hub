@@ -39,6 +39,22 @@ const SHELLS = [
     description:
       "Apply for the AgentSkillsHub Verified Creator badge. For serious Skill authors who want recognition, trending boost, and consulting matchmaking.",
   },
+  // Member (noindex) pages — shells only for a clean 200 on direct links; the
+  // page itself carries robots=noindex so these don't enter the index.
+  {
+    path: "pro",
+    title: "Pro Deep Search — Agent Skills Hub",
+    description:
+      "Member-only deep search: full README-text search across 130,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, and API access.",
+    noindex: true,
+  },
+  {
+    path: "pro/board",
+    title: "Pro Picks — Member Curation Board · Agent Skills Hub",
+    description:
+      "Pro members nominate and vote for the best agent skills; the top 3 each week get featured. Only SAFE-graded repos are eligible.",
+    noindex: true,
+  },
 ];
 
 // index.html no longer ships a hardcoded canonical (dual-tag fix) — inject a
@@ -48,7 +64,7 @@ const indexHtmlWithCanonical = indexHtml.includes('rel="canonical"')
   : indexHtml.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
 
 for (const s of SHELLS) {
-  const html = indexHtmlWithCanonical
+  let html = indexHtmlWithCanonical
     .replace(/<title>[^<]+<\/title>/, `<title>${s.title}</title>`)
     .replace(
       /<meta name="description" content="[^"]+"/,
@@ -58,6 +74,15 @@ for (const s of SHELLS) {
       /<link rel="canonical" href="[^"]+"/,
       `<link rel="canonical" href="https://agentskillshub.top/${s.path}/"`,
     );
+  // Member pages want a clean 200 (they're linked to directly) but must NOT be
+  // indexed — bake robots=noindex into the raw shell so non-JS crawlers obey it
+  // too, not only the Helmet tag after hydration.
+  if (s.noindex) {
+    html = html.replace(
+      "</head>",
+      '<meta name="robots" content="noindex" />\n</head>',
+    );
+  }
   mkdirSync(join(DIST, s.path), { recursive: true });
   writeFileSync(join(DIST, s.path, "index.html"), html);
   console.log(`  ✓ /${s.path}/index.html (SPA shell)`);
