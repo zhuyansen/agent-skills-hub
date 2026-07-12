@@ -260,36 +260,48 @@ export default function ProPage() {
     }
   }, [memberKey, query, category, grade, trialUsed, shareClaimed]);
 
+  // Bonus credits ONLY on a genuine share to an external channel — a completed
+  // native share sheet, or opening the X compose tab. A cancelled sheet or a
+  // blocked popup grants nothing. Bonus is one-time; re-sharing still spreads
+  // the link but adds no more credits.
+  const grantShareBonus = useCallback(() => {
+    if (shareClaimed) {
+      setShareMsg(zh ? "已分享 —— 奖励每人一次" : "Already claimed — one-time");
+      return;
+    }
+    setShareClaimed(true);
+    localStorage.setItem(SHARE_STORAGE, "1");
+    if (gate === "trial_exhausted") setGate("idle");
+    setShareMsg(zh ? "分享成功 · +3 次已到账 🎉" : "Shared · +3 added 🎉");
+  }, [shareClaimed, gate, zh]);
+
   const onShare = useCallback(async () => {
-    try {
-      if (navigator.share) {
+    const text = zh
+      ? "13 万+ AI agent skill 的安全分级目录,Pro 深度搜索免费试:"
+      : "Security-graded directory of 130k+ AI agent skills — try Pro deep search free:";
+    if (navigator.share) {
+      try {
         await navigator.share({
           title: "Agent Skills Hub Pro",
+          text,
           url: SHARE_URL,
         });
-      } else {
-        await navigator.clipboard.writeText(SHARE_URL);
+        grantShareBonus(); // resolves only when a target was actually chosen
+      } catch {
+        setShareMsg(zh ? "未完成分享,未 +3" : "Share not completed — no bonus");
       }
-    } catch {
-      // user dismissed the share sheet — still grant the copy fallback below
+      return;
     }
-    if (!shareClaimed) {
-      setShareClaimed(true);
-      localStorage.setItem(SHARE_STORAGE, "1");
-      if (gate === "trial_exhausted") setGate("idle");
+    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      text,
+    )}&url=${encodeURIComponent(SHARE_URL)}`;
+    const win = window.open(intent, "_blank", "noopener,noreferrer");
+    if (win) grantShareBonus();
+    else
       setShareMsg(
-        zh
-          ? "已复制链接 · +3 次已到账 🎉"
-          : "Link copied · +3 searches added 🎉",
+        zh ? "弹窗被拦截,请允许后重试" : "Popup blocked — allow it and retry",
       );
-    } else {
-      setShareMsg(
-        zh
-          ? "链接已复制(分享奖励已领过)"
-          : "Link copied (share bonus already claimed)",
-      );
-    }
-  }, [shareClaimed, gate, zh]);
+  }, [grantShareBonus, zh]);
 
   const trialActive = !memberKey && !!TRIAL_KEY;
   const effectiveLimit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
@@ -383,14 +395,19 @@ export default function ProPage() {
               )}
             </p>
             <div className="mt-1.5 flex items-center gap-3">
-              {!shareClaimed && (
-                <button
-                  onClick={onShare}
-                  className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
-                >
-                  🔗 {zh ? "分享得 +3 次搜索" : "Share for +3 searches"}
-                </button>
-              )}
+              <button
+                onClick={onShare}
+                className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+              >
+                🔗{" "}
+                {shareClaimed
+                  ? zh
+                    ? "再分享 →"
+                    : "Share again →"
+                  : zh
+                    ? "分享得 +3 次搜索"
+                    : "Share for +3 searches"}
+              </button>
               {shareMsg && (
                 <span className="text-xs text-green-600 dark:text-green-400">
                   {shareMsg}
