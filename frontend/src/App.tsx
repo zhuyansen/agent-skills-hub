@@ -57,6 +57,7 @@ const FavoritesPage = lazy(() =>
   import("./pages/FavoritesPage").then((m) => ({ default: m.FavoritesPage })),
 );
 const ProPage = lazy(() => import("./pages/ProPage"));
+const ProBoardPage = lazy(() => import("./pages/ProBoardPage"));
 
 const PAGE_FALLBACK = (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -100,6 +101,8 @@ function App() {
                     path="/verified-creator/apply/"
                     element={<VerifiedCreatorApplicationPage />}
                   />
+                  <Route path="/pro/board" element={<ProBoardPage />} />
+                  <Route path="/pro/board/" element={<ProBoardPage />} />
                   <Route path="/pro" element={<ProPage />} />
                   <Route path="/pro/" element={<ProPage />} />
                   <Route path="/submit" element={<SubmitPage />} />

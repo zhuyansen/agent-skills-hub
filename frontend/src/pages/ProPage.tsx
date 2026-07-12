@@ -176,6 +176,11 @@ export default function ProPage() {
             ? "README 全文 · 组合筛选 · 200 条/页 · 导出 —— 基础搜索永远免费,这里只做深水区。"
             : "Full README text · combined filters · 200/page · export. Basic search stays free — this is the deep end."}
         </p>
+        <p className="text-sm mb-6">
+          <a href="/pro/board/" className="text-amber-700 dark:text-amber-400 font-semibold hover:underline">
+            {zh ? "⭐ 会员精选榜 —— 提名 · 投票 · top3 每周转发 →" : "⭐ Pro Picks — nominate · vote · top 3 reposted weekly →"}
+          </a>
+        </p>
 
         <div className="flex flex-col sm:flex-row gap-2 mb-3">
           <input
