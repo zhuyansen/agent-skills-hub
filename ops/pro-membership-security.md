@@ -5,6 +5,14 @@
 > 产品红线:**基础搜索永远免费**(SEO/流量命脉);只锁深度:README 全文 · 200 条/页 · 导出 · API(RPC 即 API)。
 > 已免费的能力(多词全文、组合筛选)**绝不**重新包装成付费 —— 信任层品牌不吃这个亏。
 
+## ✅ 上线状态(2026-07-11 已激活)
+
+- 迁移 017 已应用生产;假 key→42501、真 key 通过、Python↔PG sha256 哈希一致 全部实测
+- 回填完成:**135,044 行 readme_search_vector 全填,0 残留 NULL**,零错误(分块守住 57014 伤疤)
+- 深度验证:README 搜 "sandbox escape" = 200 命中 vs 免费层 3 命中(**66× 深度差,付费价值坐实**)
+- 修复:pgcrypto digest → 内置 sha256(避开 Supabase extensions schema 陷阱)
+- **发首批早鸟命令**:`backend/venv/bin/python ops/issue_member_key.py 真实邮箱 --note 早鸟199`
+
 ## RLS / 权限变更审查(Hard Stop 要求)
 
 | 变更 | 内容 | 安全影响 |
