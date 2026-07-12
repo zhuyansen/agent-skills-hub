@@ -173,8 +173,8 @@ export function Home() {
           name="description"
           content={
             lang === "zh"
-              ? `找 Claude 技能和 MCP 服务器,不用猜哪个安全:${skillCount} 个条目全部安全分级、质量评分,每 8 小时刷新。`
-              : `Find Claude skills & MCP servers without guessing what's safe. Every one of ${skillCount} entries is security-graded, quality-scored, refreshed every 8 hours.`
+              ? `Agent Skills Hub —— ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具的安全分级目录,装前先查安不安全,质量评分,每 8 小时刷新。`
+              : `Agent Skills Hub: a security-graded directory of ${skillCount} Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours.`
           }
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
@@ -186,7 +186,7 @@ export function Home() {
         />
         <meta
           property="og:description"
-          content={`Find Claude skills & MCP servers without guessing what's safe. Every entry security-graded, quality-scored, refreshed every 8 hours.`}
+          content={`Agent Skills Hub: a security-graded directory of Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours.`}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
