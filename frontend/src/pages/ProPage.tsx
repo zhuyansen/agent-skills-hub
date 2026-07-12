@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -174,6 +174,73 @@ function UsageHelp({ zh }: { zh: boolean }) {
   );
 }
 
+function SharePanel({
+  zh,
+  claimed,
+  onCopied,
+  msg,
+}: {
+  zh: boolean;
+  claimed: boolean;
+  onCopied: (ok: boolean) => void;
+  msg: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const doCopy = async () => {
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(SHARE_URL);
+      ok = true;
+    } catch {
+      const el = inputRef.current;
+      if (el) {
+        el.focus();
+        el.select();
+        try {
+          ok = document.execCommand("copy");
+        } catch {
+          ok = false;
+        }
+      }
+    }
+    onCopied(ok);
+  };
+  return (
+    <div className="mt-2 max-w-md">
+      <div className="flex items-stretch gap-2">
+        <input
+          ref={inputRef}
+          readOnly
+          value={SHARE_URL}
+          onFocus={(e) => e.currentTarget.select()}
+          className="flex-1 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-xs text-gray-600 dark:text-gray-300"
+        />
+        <button
+          onClick={doCopy}
+          className="px-4 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-medium hover:bg-indigo-500 whitespace-nowrap"
+        >
+          {claimed
+            ? zh
+              ? "复制"
+              : "Copy"
+            : zh
+              ? "复制链接 +3"
+              : "Copy link +3"}
+        </button>
+      </div>
+      {msg ? (
+        <p className="mt-1 text-xs text-green-600 dark:text-green-400">{msg}</p>
+      ) : (
+        <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+          {zh
+            ? "复制后粘到 X / 微信 / 小红书都行,首次复制 +3 次搜索"
+            : "Paste anywhere — X / WeChat / DM. First copy grants +3 searches"}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function ResultRow({ s }: { s: Skill }) {
   return (
     <tr className="border-b border-gray-100 dark:border-gray-800">
@@ -213,6 +280,7 @@ export default function ProPage() {
     () => localStorage.getItem(SHARE_STORAGE) === "1",
   );
   const [shareMsg, setShareMsg] = useState("");
+  const [shareOpen, setShareOpen] = useState(false);
 
   const saveKey = (v: string) => {
     setMemberKey(v);
@@ -260,48 +328,39 @@ export default function ProPage() {
     }
   }, [memberKey, query, category, grade, trialUsed, shareClaimed]);
 
-  // Bonus credits ONLY on a genuine share to an external channel — a completed
-  // native share sheet, or opening the X compose tab. A cancelled sheet or a
-  // blocked popup grants nothing. Bonus is one-time; re-sharing still spreads
-  // the link but adds no more credits.
+  // Bonus is credited on copying the share link (the universal action before
+  // pasting into any channel — WeChat / X / XHS / DM). One-time; copying again
+  // still lets you re-share but adds no more credits.
   const grantShareBonus = useCallback(() => {
     if (shareClaimed) {
-      setShareMsg(zh ? "已分享 —— 奖励每人一次" : "Already claimed — one-time");
+      setShareMsg(
+        zh ? "链接已复制(奖励每人一次)" : "Copied (bonus is one-time)",
+      );
       return;
     }
     setShareClaimed(true);
     localStorage.setItem(SHARE_STORAGE, "1");
     if (gate === "trial_exhausted") setGate("idle");
-    setShareMsg(zh ? "分享成功 · +3 次已到账 🎉" : "Shared · +3 added 🎉");
+    setShareMsg(
+      zh ? "已复制链接 · +3 次已到账 🎉" : "Link copied · +3 added 🎉",
+    );
   }, [shareClaimed, gate, zh]);
 
-  const onShare = useCallback(async () => {
-    const text = zh
-      ? "13 万+ AI agent skill 的安全分级目录,Pro 深度搜索免费试:"
-      : "Security-graded directory of 130k+ AI agent skills — try Pro deep search free:";
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Agent Skills Hub Pro",
-          text,
-          url: SHARE_URL,
-        });
-        grantShareBonus(); // resolves only when a target was actually chosen
-      } catch {
-        setShareMsg(zh ? "未完成分享,未 +3" : "Share not completed — no bonus");
+  // Grant regardless (the link is visible for manual copy) — copy is a nudge,
+  // not a wall. If the copy call itself failed, nudge the manual shortcut.
+  const handleCopied = useCallback(
+    (ok: boolean) => {
+      grantShareBonus();
+      if (!ok) {
+        setShareMsg(
+          zh
+            ? "链接已选中,请按 Cmd/Ctrl+C 复制"
+            : "Link selected — press Cmd/Ctrl+C",
+        );
       }
-      return;
-    }
-    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      text,
-    )}&url=${encodeURIComponent(SHARE_URL)}`;
-    const win = window.open(intent, "_blank", "noopener,noreferrer");
-    if (win) grantShareBonus();
-    else
-      setShareMsg(
-        zh ? "弹窗被拦截,请允许后重试" : "Popup blocked — allow it and retry",
-      );
-  }, [grantShareBonus, zh]);
+    },
+    [grantShareBonus, zh],
+  );
 
   const trialActive = !memberKey && !!TRIAL_KEY;
   const effectiveLimit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
@@ -394,9 +453,9 @@ export default function ProPage() {
                 "Free trials used up — share for +3 more, or go Pro."
               )}
             </p>
-            <div className="mt-1.5 flex items-center gap-3">
+            <div className="mt-1.5">
               <button
-                onClick={onShare}
+                onClick={() => setShareOpen((v) => !v)}
                 className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
               >
                 🔗{" "}
@@ -408,10 +467,13 @@ export default function ProPage() {
                     ? "分享得 +3 次搜索"
                     : "Share for +3 searches"}
               </button>
-              {shareMsg && (
-                <span className="text-xs text-green-600 dark:text-green-400">
-                  {shareMsg}
-                </span>
+              {shareOpen && (
+                <SharePanel
+                  zh={zh}
+                  claimed={shareClaimed}
+                  onCopied={handleCopied}
+                  msg={shareMsg}
+                />
               )}
             </div>
           </div>
@@ -467,9 +529,9 @@ export default function ProPage() {
           <>
             <UpgradeCard zh={zh} exhausted />
             {!shareClaimed && (
-              <div className="text-center mt-3">
+              <div className="mt-3 flex flex-col items-center">
                 <button
-                  onClick={onShare}
+                  onClick={() => setShareOpen((v) => !v)}
                   className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
                 >
                   🔗{" "}
@@ -477,12 +539,15 @@ export default function ProPage() {
                     ? "先别走 —— 分享得 +3 次搜索"
                     : "Wait — share for +3 more"}
                 </button>
+                {shareOpen && (
+                  <SharePanel
+                    zh={zh}
+                    claimed={shareClaimed}
+                    onCopied={handleCopied}
+                    msg={shareMsg}
+                  />
+                )}
               </div>
-            )}
-            {shareMsg && (
-              <p className="text-center text-sm text-green-600 dark:text-green-400 mt-2">
-                {shareMsg}
-              </p>
             )}
           </>
         )}
