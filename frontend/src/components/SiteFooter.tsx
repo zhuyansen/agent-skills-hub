@@ -129,6 +129,7 @@ export function SiteFooter() {
             </h4>
             <ul className="space-y-2">
               {[
+                { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
                 { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
                 { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },
                 { slug: "code-review", zh: "代码审查", en: "Code Review" },

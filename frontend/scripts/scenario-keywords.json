@@ -331,7 +331,12 @@
       "min_results": 5,
       "max_results": 10
     },
-    "related": ["translation", "summarization", "document-parsing"]
+    "related": [
+      "translation",
+      "summarization",
+      "document-parsing",
+      "ppt-presentation"
+    ]
   },
   {
     "slug": "translation",
@@ -960,7 +965,7 @@
       "max_results": 10,
       "tag_matches": ["image-generation", "text-to-image"]
     },
-    "related": ["content-writing", "document-parsing"]
+    "related": ["content-writing", "document-parsing", "ppt-presentation"]
   },
   {
     "slug": "notification",
@@ -1921,7 +1926,12 @@
         "zanwei/design-dna"
       ]
     },
-    "related": ["web-development", "code-completion", "skill-management-tools"]
+    "related": [
+      "web-development",
+      "code-completion",
+      "skill-management-tools",
+      "ppt-presentation"
+    ]
   },
   {
     "slug": "agent-deployment",

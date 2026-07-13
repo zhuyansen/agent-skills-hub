@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/I18nContext";
 const SCENARIO_COUNT = 84;
 
 const HOT_SCENARIOS = [
+  { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
   { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
   { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },
   { slug: "mcp-browser", zh: "MCP 浏览器", en: "MCP Browser" },
