@@ -100,7 +100,8 @@ def main():
     if ga_ev:
         watch = {
             "install_command_copied", "audit_run", "enterprise_cta_click",
-            "newsletter_subscribe", "deep_audit_checkout", "deep_audit_mailto",
+            "newsletter_subscribe", "audit_pro_upsell_click",
+            # deep_audit_checkout/mailto retired 2026-07-13 ($49 → Pro upsell)
         }
         custom = [r for r in ga_ev if r.get("eventName") in watch]
         section("GA · 转化事件 🎯 (28天)")

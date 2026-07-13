@@ -140,10 +140,15 @@ function saveHistory(item: HistoryItem) {
 }
 
 function parseGitHubUrl(url: string): string | null {
-  const m = url
-    .trim()
-    .match(/(?:https?:\/\/)?github\.com\/([^/]+\/[^/]+?)(?:\.git)?\/?$/);
-  return m ? m[1] : null;
+  const s = url.trim();
+  // Full URL form: https://github.com/owner/repo
+  const m = s.match(
+    /(?:https?:\/\/)?github\.com\/([^/]+\/[^/]+?)(?:\.git)?\/?$/,
+  );
+  if (m) return m[1];
+  // Bare owner/repo form — internal "audit this repo" links pass this.
+  const bare = s.match(/^([^/\s]+\/[^/\s]+?)(?:\.git)?\/?$/);
+  return bare ? bare[1] : null;
 }
 
 export function AnalyzerPage() {
@@ -393,9 +398,13 @@ export function AnalyzerPage() {
         {result && (
           <>
             <ResultsDisplay result={result} isZh={isZh} />
-            {/* Paid conversion at the hottest-intent moment: right after the
-                free scan result. Concierge fulfillment (ops/deep-audit-sop.md). */}
-            <DeepAuditOffer repo={result.repo.full_name} />
+            {/* Paid exit at the hottest-intent moment: right after the free
+                scan. Grade-aware Pro upsell (retired $49 concierge 2026-07-13). */}
+            <DeepAuditOffer
+              repo={result.repo.full_name}
+              grade={result.scan.grade}
+              flagCount={result.scan.flags.length}
+            />
           </>
         )}
 

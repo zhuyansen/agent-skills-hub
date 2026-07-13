@@ -1,86 +1,77 @@
+import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { trackEvent } from "../lib/analytics";
 
 /**
- * The first paid offer: $49 concierge deep audit, surfaced right after a free
- * scan result (hottest intent moment). Fulfillment is manual per
- * ops/deep-audit-sop.md — sell it, deliver by hand, automate after 3 orders.
+ * The paid exit after a free rule-based scan — a Pro upsell, grade-aware.
  *
- * PAYMENT_URL: paste a Stripe Payment Link (buy.stripe.com/...) or a
- * LemonSqueezy buy link to flip the CTA from mailto to a real one-click
- * checkout. Empty = mailto fallback, so no broken button ever ships.
+ * The $49 one-time concierge audit was retired 2026-07-13 (0 conversions in 28d
+ * + manual fulfilment didn't scale + $49 sat in the price/audience no-man's-land
+ * between individuals and enterprise). Monetization now flows into Pro, which
+ * you're already pushing: full-README deep search, 200/page, export, API — the
+ * self-serve deep layer for actually vetting a repo. The CTA points at /pro/,
+ * where the 3-use free trial lives, chaining scan → trial → subscription.
  *
- * The repo under audit is attached to the order so fulfillment knows what to
- * audit — provider-specific param, auto-detected from the URL:
- *   - Stripe: client_reference_id (alphanumeric/dash/underscore only, so
- *     "owner/repo" is sanitized to "owner--repo"; invalid values would be
- *     silently dropped by Stripe)
- *   - LemonSqueezy: checkout[custom][repo]
+ * Copy is grade-aware (fear on flags, sign-off/evidence on green) but never
+ * FUD — the Trust Layer brand can't cry wolf.
  */
-const PAYMENT_URL = "https://buy.stripe.com/00w3cu6arbkx27FdhW2VG05";
-const CONTACT = "m17551076169@gmail.com";
+const RISKY_GRADES = new Set(["caution", "unsafe", "reject"]);
 
-function checkoutUrl(base: string, repo: string): string {
-  const sep = base.includes("?") ? "&" : "?";
-  if (base.includes("buy.stripe.com")) {
-    const ref = repo.replace(/[^a-zA-Z0-9_-]/g, "--").slice(0, 200);
-    return ref ? `${base}${sep}client_reference_id=${ref}` : base;
-  }
-  return `${base}${sep}checkout[custom][repo]=${encodeURIComponent(repo)}`;
-}
+export function DeepAuditOffer({
+  repo,
+  grade,
+  flagCount = 0,
+}: {
+  repo?: string | null;
+  grade?: string | null;
+  flagCount?: number;
+}) {
+  const { lang } = useI18n();
+  const zh = lang === "zh";
+  const g = (grade || "unknown").toLowerCase();
+  const risky = RISKY_GRADES.has(g);
 
-export function DeepAuditOffer({ repo }: { repo?: string | null }) {
-  const { t } = useI18n();
-  const subject = encodeURIComponent(
-    `Deep audit request${repo ? `: ${repo}` : ""}`,
-  );
-  const body = encodeURIComponent(
-    `Repo: ${repo || "https://github.com/owner/repo"}\n` +
-      `Use case (personal / brand / production): \n` +
-      `Anything specific to look at: \n`,
-  );
+  const headline = risky
+    ? zh
+      ? `检测到 ${flagCount} 个安全标记 —— 上生产前该再确认`
+      : `${flagCount} security flag${flagCount === 1 ? "" : "s"} found — confirm before you ship`
+    : zh
+      ? "绿灯 ✓ 上生产前想要更硬的证据?"
+      : "Green light ✓ Want harder evidence before you ship?";
 
-  const paid = PAYMENT_URL.length > 0;
-  const checkoutHref = paid
-    ? checkoutUrl(PAYMENT_URL, repo || "")
-    : `mailto:${CONTACT}?subject=${subject}&body=${body}`;
+  const pitch = risky
+    ? zh
+      ? "Pro 深度检索能在 13 万仓库正文里查同类问题是怎么被修的,导出证据清单、脚本化复核 —— 把「看着可疑」变成「说得清为什么」。"
+      : "Pro deep search cross-checks how similar issues got fixed across 130k repos' README text, exports an evidence list, and scripts the review — turning 'looks risky' into 'here's exactly why'."
+    : zh
+      ? "Pro:README 全文深度检索 · 200 条/页 · CSV/JSON 导出 · API —— 给合规签核和生产决策留一份可复现的证据。"
+      : "Pro: full-README deep search · 200/page · CSV/JSON export · API — a reproducible evidence trail for sign-off and production decisions.";
 
   return (
     <section className="mt-6 rounded-xl border border-indigo-200 dark:border-indigo-500/30 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-indigo-950/40 dark:via-transparent dark:to-purple-950/30 p-5 sm:p-6">
-      <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
-        <h3 className="text-base font-bold text-gray-900 dark:text-white">
-          {t("deepAudit.title")}
-        </h3>
-        <span className="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">
-          $49
-        </span>
-        <span className="text-xs text-[var(--text-3)]">
-          {t("deepAudit.per")}
-        </span>
-      </div>
-      <p className="text-sm text-[var(--text-2)] leading-relaxed mb-3">
-        {t("deepAudit.pitch")}
+      <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
+        {headline}
+      </h3>
+      <p className="text-sm text-[var(--text-2)] leading-relaxed mb-4">
+        {pitch}
       </p>
-      <ul className="text-xs text-[var(--text-2)] space-y-1 mb-4 list-disc list-inside">
-        <li>{t("deepAudit.item1")}</li>
-        <li>{t("deepAudit.item2")}</li>
-        <li>{t("deepAudit.item3")}</li>
-      </ul>
       <div className="flex flex-wrap items-center gap-3">
-        <a
-          href={checkoutHref}
-          {...(paid ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        <Link
+          to="/pro/"
           onClick={() =>
-            trackEvent(paid ? "deep_audit_checkout" : "deep_audit_mailto", {
+            trackEvent("audit_pro_upsell_click", {
+              grade: g,
               repo: repo || undefined,
             })
           }
           className="inline-flex items-center px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
         >
-          {t(paid ? "deepAudit.ctaPay" : "deepAudit.cta")}
-        </a>
+          {zh
+            ? "用 Pro 深挖 —— 免费试 3 次 →"
+            : "Vet deeper with Pro — 3 free tries →"}
+        </Link>
         <span className="text-xs text-[var(--text-3)]">
-          {t(paid ? "deepAudit.notePay" : "deepAudit.note")}
+          {zh ? "基础扫描永远免费" : "Basic scan stays free"}
         </span>
       </div>
     </section>
