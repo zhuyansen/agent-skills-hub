@@ -233,6 +233,18 @@ export function HeroSection({ stats, onSearch }: Props) {
           )}
         </div>
 
+        {/* Audit funnel entry — parallel to search: "find a skill" vs "vet a repo" */}
+        <div className="-mt-1 mb-6 text-sm">
+          <Link
+            to="/analyzer"
+            className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            {isZh
+              ? "🔍 或粘贴任意 GitHub 仓库 → 免费安全审计"
+              : "🔍 or paste any GitHub repo → free security audit"}
+          </Link>
+        </div>
+
         {/* Trending tags */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">
