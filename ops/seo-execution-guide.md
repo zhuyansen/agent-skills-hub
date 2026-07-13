@@ -192,7 +192,7 @@
 17. **平台本体论先对表**:每个收录站只收特定实体 —— StackShare 只收技术栈组件(目录站拒收)、mcpmark 是基准测试站不是目录、skillavatars 唯一联系方式是拒收外件的 iCloud 中继。**名字像目录 ≠ 是目录**,17 站里 8 站是这么划掉的。
 18. **开出去的 PR 会烂**:4 月的两个 awesome PR 数字停在 67K/117K 没人管。定期 `gh pr list --author <me> --state open` 巡检 + 刷新数字/定位 = 提高 merge 相;新提交前同一命令先查重,防重复 PR 被标 spam。
 19. **Wikidata 左框属性、右框值**:属性名填进值框会产出 "X instance of 'instance of'" 这种废声明;验收不能看页面,要 `Special:EntityData/QID.json` 查 claims。空壳实体(0 statement)对知识图谱无效,P31/P856 是底线。
-20. **高曝光 0 点击 = 查词页标题错位(可复用巡检)**:排上去了却没人点,不是权重问题,是**SERP 那行字对不上搜索意图**。案例:`"ppt-master codex skill"` 簇 1,100+ 曝光、pos 2.5-5、**0 点击** —— 落在 `/best/ppt-presentation/`,但标题写"AI PowerPoint Generators"(有 PPT 没 codex/skill),搜的人看不到目标就划走。修法:**标题重定向到真实查询词**("PPT Skills for Codex & Claude Code",3/3 命中)+ 描述名点具体 skill(让摘要命中)。**周巡检套路**:GSC 扫 `pos<10 && ctr≈0` 的词 → 看落地页标题含不含它的查询词 → 不含就是错位,改标题一句话把白漏曝光转点击,比堆新页划算。⚠️ 目标页的具体 skill 本就在页上,差的只是标题 signal;别误判成"没有这个内容"。
+20. **高曝光 0 点击 = 查词页标题错位(可复用巡检)**:排上去了却没人点,不是权重问题,是**SERP 那行字对不上搜索意图**。案例:`"ppt-master codex skill"` 簇 1,100+ 曝光、pos 2.5-5、**0 点击** —— 落在 `/best/ppt-presentation/`,但标题写"AI PowerPoint Generators"(有 PPT 没 codex/skill),搜的人看不到目标就划走。修法:**标题重定向到真实查询词**("PPT Skills for Codex & Claude Code",3/3 命中)+ 描述名点具体 skill(让摘要命中)。**周巡检套路**:GSC 扫 `pos<10 && ctr≈0` 的词 → 看落地页标题含不含它的查询词 → 不含就是错位,改标题一句话把白漏曝光转点击,比堆新页划算。⚠️ 目标页的具体 skill 本就在页上,差的只是标题 signal;别误判成"没有这个内容"。⚠️⚠️ **假阳性:导航型查询**(搜确切仓库名如 `ar9av/obsidian-wiki`)。2026-07-13 巡检踩过:593 曝光、pos 2.7、CTR 1.69% 看着像错位,实为**导航词——GitHub 稳吃 #1,我们 #2-3 只能捡漏,低 CTR 是天花板不是 bug**,改标题也救不回来。判别:查询词是不是 `owner/repo` 或专有名词 + SERP #1 是不是官方源(GitHub/官网)。是就跳过,别浪费在改标题上。真正能修的是"泛意图查词页"(ppt skills / browser automation 这种),不是导航词。
 
 ---
 *更新纪律:只加带伤疤的条目。没有新伤疤就不要动这份文件。*
