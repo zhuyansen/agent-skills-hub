@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-13
+1. cosmtrek/mindwalk — 🆕 在代码库 3D 地图上回放编码智能体的每一步操作轨迹（317★ 79/day）
+2. pengchujin/jzsub — 🆕 丢一条视频链接,自动交付最高画质+封面+GPT 双语字幕 MP4（134★ 45/day）
+3. Intuition-Lab/personal-model — 🆕 把跨 App 行为聚成可检视的个人模型,供 MCP 智能体调用（68★ 23/day）
+4. alexgreensh/outsourcerer — 🆕 把杂活委派给其他 harness 与模型,主会话只留核心上下文（31★ 10/day）
+5. scasella/claude-dynamic-workflows-codex — 在本地 Codex(GPT)后端跑 Claude Code 动态工作流,附运行查看器（247★ 6/day）
+6. tmwgsicp/wechat-download-api — 开源公众号文章抓取+RSS 订阅 API,带 IP 代理池反风控可接 MCP（799★ 6/day）
+7. msitarzewski/agency-agents-app — 浏览、安装、追踪 agent 人格档案的原生桌面应用（186★ 5/day）
+8. Zhenyu98/codex-chatgpt-bridge — 为 Codex 与 ChatGPT 搭安全桥,交接编码活省 token 且本地执行可控（103★ 5/day）
+9. willytop8/OpenCode-goal-plugin — 给 OpenCode 加持久化、安全上限与证据门控的目标工作流（179★ 3/day）
+10. smithersai/smithers — 全程可观测的智能体工作流:实时看每步、回退、分叉、重放任意运行（318★ 2/day）
+🎯 今日趋势：velocity 顶端全被两周内新项目包揽(mindwalk/jzsub/personal-model/outsourcerer 4 席 🆕);主题集中在"给编码 agent 装仪表盘/记忆/桥接"——3D 会话回放、跨 App 个人模型、多 harness 委派、Codex↔ChatGPT 桥、可观测时间旅行工作流。
+> 注：去重范围=与全部 289 个历史推荐(截至 07-12)零重复。排除项:djfksjd/ir-search(129★/46 日)作者其余仓库全 0-1★、用户名随机键盘串、单仓 2 日爆星,典型刷星账号,保守排除;kitforai/kitforai(59★)为单仓宣传型 org(SDK/hub 站,无历史积累),排除;domanski-ai/headroom(24★)与 jordan-edai/codex-reset-watcher(103★)均属额度监控菜单栏工具,与 07-10 已推 dennykim123/claude-codex-battery 同质,排除;tinyplex/tinybase、mariadb-operator、yinguangyao/blog 等非 agent 老库(prev_stars=0 新收录)排除;nhevers/project-r0x、yacuo/check-cc 延续 07-12 存疑排除。🆕 判定=created_at 在 2026-06-29 之后共 4 项。smithers/personal-model 等成名或成熟项目按 velocity 补位。
+
+---
+
 ## 2026-07-12
 1. GreyGunG/grokbuild-proxy — 🆕 自托管 Grok Build 代理,一键把 Grok 接进 Claude Code 与 OpenAI 兼容端（98★ 49/day）
 2. Alisa0808/vox-director — 🆕 输入一个话题,云端自动产出 Vox 风剪纸解说/广告视频（45★ 45/day）
