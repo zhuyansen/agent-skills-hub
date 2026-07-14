@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-14
+1. Kappaemme-git/codex-first-customer-finder-skill — 🆕 从公开信号里挖出有证据支撑的潜在首批客户（289★ 144/day）
+2. zhangxiaoqiang1991/luopan — 🆕 研究行业的钱与权力,判断一家公司是否值得投资或加入（234★ 23/day）
+3. clawkwork/clawk — 🆕 给 AI 编码智能体开一次性、断网隔离的 Linux 沙箱 VM（152★ 19/day）
+4. calesthio/generative-media-skills — 🆕 打包图像/视频/音频/配音全套生成式媒体制作技能（55★ 18/day）
+5. ivorpad/mercadona-cli — 让智能体逛 Mercadona 超市:搜商品、比价、备购物车（304★ 17/day）
+6. herry2059/project-os-for-codex — 🆕 给 Codex 项目装控制台:Git 上下文、可视进度、受限 MCP（83★ 17/day）
+7. sparklabx/drawio-ai-kit — 教 AI 画出规整好看的 draw.io 图,声明式布局引擎（447★ 17/day）
+8. omnimind-ai/OmniBot — 把手机变成能操作终端、跑各类任务的随身 AI 智能体（1,897★ 16/day）
+9. itsthelore/WayfinderRouter — 确定性地把查询在本地与云端大模型间智能分流的 CLI（382★ 14/day）
+10. sandbaseai/managed-agents — 🆕 本地跑多智能体系统,兼容任意模型的开源 agent 运行时（40★ 13/day）
+🎯 今日趋势：10 席 6 个为两周内新建(codex-first-customer-finder 以 144★/天断层领跑);主题两极分化——一半是垂直单点技能(挖首批客户/行业投研/生成式媒体/超市代购/draw.io 制图),另一半是给编码 agent 铺运行环境的基建(隔离沙箱 clawk、Codex 控制台 project-os、本地多智能体运行时 managed-agents、本地云端模型分流 WayfinderRouter)。
+> 注：去重范围=与全部 299 个历史推荐(截至 07-13)零重复。排除项:AlephAITech/WorkBuddyGuide(479★/4天)为单仓 org、无历史积累的产品软文型"蓝皮书",单仓爆星保守排除;jordan-edai/codex-reset-watcher(102★)、domanski-ai/headroom(73★)、change-42-yhmm/quota-float(208★)均为额度监控/轮换菜单栏工具,与近日已推同质排除;cporter202/API-mega-list(7207★)、chengzuopeng/stock-sdk(1694★)、boxed-dev/cognidb 等非 agent 技能的通用清单/SDK 排除;umutxyp/Seo-Promt-Master(2022 建)、ASCIT31/Dark-Moon(2024 建)等老库低增速排除;chuspeeism/dashi-ppt-skill 与 07-09 已推 dashiAI-ppt-skill 系同项目排除;tmwgsicp/wechat-download-api、cosmtrek/mindwalk、pengchujin/jzsub、alexgreensh/outsourcerer 均 07-13 已推排除。zhangxiaoqiang1991/luopan 命中"单仓爆星+他仓个位数"红旗,但作者 6+ 仓库主题一致(投研/职业工具)、增速温和(23★/天)非集群刷星,复核后保留。🆕 判定=created_at 在 2026-06-30 之后共 6 项。
+
+---
+
 ## 2026-07-13
 1. cosmtrek/mindwalk — 🆕 在代码库 3D 地图上回放编码智能体的每一步操作轨迹（317★ 79/day）
 2. pengchujin/jzsub — 🆕 丢一条视频链接,自动交付最高画质+封面+GPT 双语字幕 MP4（134★ 45/day）
