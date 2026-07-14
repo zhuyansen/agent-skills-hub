@@ -74,6 +74,7 @@ EXTRA_REPOS = [
     "joeseesun/knowledge-site-creator",
     "joeseesun/qiaomu-music-player-spotify",
     "joeseesun/qiaomu-design-advisor",
+    "vbkotecha/aiservices-api",  # AgentServices — x402 paid APIs for AI agents (37 MCP tools, 41 paid endpoints)
 ]
 
 # Additional: trending repos from last 3 days
