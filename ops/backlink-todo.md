@@ -418,9 +418,15 @@ Happy to share the open dataset or a longer quote.
 | 2026-07-10 | agentskillshub-mcp 仓库 | SKILL.md 被动钩子 | commit 07d8d539 | ⏳ 等爬取 | 喂 findskills/skillsmp/openskillindex |
 | 2026-07-10 | creati.ai | 付费验收 | 收录页 3/4 dofollow(2 条带 utm) | ✅ 部分验毕 | 剩向客服要 9 链清单 |
 | 2026-07-11 | turbo0.com | 目录收录+徽章互链 | [turbo0.com/item/agentskillshub](https://turbo0.com/item/agentskillshub);dark 徽章已入站点 footer(验证用) | ⏳ 待其验证通过 | 徽章位可扩展,后续 Fazier/Uneed 同位 |
-| 2026-07-11 | **techbullion.com(计划外!)** | 媒体文章 dofollow | ["Framework for Agent Tool Selection"](https://techbullion.com/from-data-overload-to-data-driven-decisions-a-framework-for-agent-tool-selection/) 正文链首页,`rel="follow"` 实测 | ✅ 自然长出 | 科技媒体 DA 60 级;GA 已 50 sessions;①a 第一条自来媒体链 |
+| 2026-07-11 | **techbullion.com(计划外!)** | 媒体文章 dofollow | ["Framework for Agent Tool Selection"](https://techbullion.com/from-data-overload-to-data-driven-decisions-a-framework-for-agent-tool-selection/) 正文链首页,`rel="follow"` 实测 | ✅ 自然长出 | 科技媒体 DA 60 级;GA 已 50 sessions;①a 第一条自来媒体链;07-16 复验 `follow external noopener` ×2(1条http→301) |
 | 2026-07-11 | xmsumi.com 苏米客(计划外) | 中文博客横评 dofollow | [《10 个主流 AI Agent Skill 市场平台横向对比》](https://www.xmsumi.com/detail/2925) 列第 7,`rel="noopener"` 无 nofollow ✅;201 sessions | ✅ 已定位 | ⚠️ 条目数据旧(写 29K,实际 134K、无安全分级卖点)→ 联系作者致谢+供新数据;文内竞情:腾讯云 SkillHub、Qoder 58K |
+| 2026-07-16 | programminginsider.com | 客座文章 dofollow ×2 | ["The 26.1% Problem"](https://programminginsider.com/the-26-1-percent-problem-why-one-independent-researcher-started-grading-every-ai-skill-on-github/) 正文链首页 ×2,`rel="noopener"`(无 nofollow)| ✅ dofollow 验毕 | 客座 5 连之一;https 干净 |
+| 2026-07-16 | nerdbot.com | 客座文章 dofollow ×2 | ["AI Agents: Grade Before Deployment"](https://nerdbot.com/2026/07/07/ai-agents-grade-before-deployment/)(07-07 刊)×2,`rel` 全空 | ✅ dofollow 验毕 | 5 连里最干净(裸链无任何 rel) |
+| 2026-07-16 | thedatascientist.com | 客座文章 dofollow ×2 | ["The Team Problem"](https://thedatascientist.com/the-team-problem-how-inconsistent-tool-evaluation-wastes-engineering-cycles/) ×2,`rel="noopener"` | ✅ dofollow 验毕 | ⚠️ 两条均 `http://`→走 301,权重仍传;以后投稿统一给 https |
+| 2026-07-16 | aijourn.com | 客座文章 dofollow ×2 | ["When Discovery Becomes the Bottleneck"](https://aijourn.com/when-discovery-becomes-the-bottleneck-rethinking-how-we-find-production-ready-agent-tools/) ×2,`rel="noopener"` | ✅ dofollow 验毕 | 1条 https + 1条 http(301) |
 |  |  |  |  |  |  |
+
+> **✅ 客座媒体 5 连账本(2026-07-16 DevTools 逐篇验 rel)**:programminginsider · nerdbot · thedatascientist · techbullion · aijourn —— **5 域名 × 2 链 = 10 条 dofollow,零 nofollow**。判定口径:只有 `nofollow/sponsored/ugc` 阻断权重;`noopener/external/follow` 均无 SEO 影响。已知瑕疵:3 篇共 4 条 `http://` 链走一跳 301(损耗可忽略,不值得催编辑改)。下次 Bing/Ahrefs 对 ref-domains 时,这 5 个域名应在列表内;缺谁查谁。
 
 ---
 
