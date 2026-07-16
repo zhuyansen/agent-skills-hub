@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-16
+1. blitzdotdev/blitzos — 🆕 让云端 agent 开机即知你的工作,合上笔记本也继续干活（108★ 36/day）
+2. Jia-Ethan/codex-keysmith — 跨版本部署 Codex 指令,支持试运行/备份/钩子隔离与恢复（576★ 32/day）
+3. pax-beehive/paxm — 🆕 给 Codex/Claude/OpenCode 建跨工具通用的持久记忆层（113★ 16/day）
+4. Stack-Cairn/LiveAgent — 可 WebUI 访问的 AI Agent 桌面客户端,支持自定义扩展（532★ 10/day）
+5. jasonsuhari/gridbash — 🆕 一屏并排跑 Codex/Claude/Gemini 等多个 CLI 智能体（101★ 9/day）
+6. Optim-Agent/optim-agent — 🆕 把 LLM 智能体当超参优化器,自动调模型参数（71★ 8/day）
+7. ai4s-research/ai4s-skills — 科研全流程 agent 技能:选题/文献综述/实验/论文写作（147★ 8/day）
+8. Dryxio/auto-re-agent — 用 Ghidra+LLM 逆向重建并验证 C/C++ 函数的开源 agent（1,042★ 7/day）
+9. SenmuuuuW/universal-diagnostic-tutor-skill — 诊断优先的 STEM/AI 私教:讲概念、查理解、补短板（133★ 7/day）
+10. ayuayue/PiDeck — 本地统一管理 pi/Codex/Claude 会话的桌面工作台,可恢复历史（256★ 6/day）
+🎯 今日趋势：velocity 榜被"给编码 agent 铺运行环境"主导——云端开机即工作(blitzos)、跨工具记忆(paxm)、多 CLI 并排终端(gridbash)、会话工作台(PiDeck)、桌面客户端(LiveAgent)、指令跨版本部署(codex-keysmith)六席均为 agent 基建;另四席是垂直单点技能:LLM 超参优化、AI4Science、逆向工程、STEM 私教。4/10 为两周内新建。
+> 注：去重范围=与全部历史推荐(截至 07-14 约 309 个)零重复。排除项:musistudio/claude-code-router(35,816★)为成名巨型项目新收录,但近两日 gain 仅 10★、created 2025-02 距今 500+ 天,按 velocity 公式会严重失真(71/day 非真实增速),为保数据诚实排除;SigNoz/signoz(29,792★,通用可观测平台)、bojieli/ai-agent-book(374★,书稿仓库)、Furyton/awesome-language-model-analysis、jbesomi/awesome-autonomous-agents(论文/awesome 清单)、aws-samples/sample-amazon-bedrock(官方示例)均非 agent 技能排除;William-Lu-stack/Flawless(637★/6天,unknown)单仓爆星、作者其余 5 仓全 0★(旧号 Notes/Matlab/个人主页),典型刷星红旗保守排除;anasu1/text-humanizer(492★)账号仅此一仓零其他轨迹、通用去AI味主题无法验证增长真实性,保守排除;pyang5166/gbro-collage-broll(101★/1天)单仓 1 日爆星、他仓 0-1★,虽主题(半调纸拼贴 B-roll)与近日热门中文媒体技能一致但仅 1 日数据+单仓命中红旗,保守排除;Goldentrii/AgentRecall-X(308★)与作者 04-12 已推 AgentRecall 同概念(持久记忆)同作者视为重复;KimYx0207 系列(Kim_Service/findskill/SkillSemgrep/claude-memory-3layer)同作者 4 仓集群、星数低位自推嫌疑整体排除;chatgptopenai56/ChatGPT-5.6-Free-Codex(21★)SEO 堆砌"免费下载"引流仓排除;drpwchen/paper-review-and-digest 与 07-10 已推 drpwchen/paper-radar 同作者近日项目为多样性让位;wybzsngw/router-vpn、zidage/AlcedoStudio、KomorGiaoGiao/FirstCoder 分别为网络教程/照片软件/简历自推,非 agent 技能排除。🆕 判定=created_at 在 2026-07-02 之后共 4 项(blitzos/paxm/gridbash/optim-agent)。Dryxio/auto-re-agent(1,042★)命中"高星"但作者有 ghidra-ai-bridge(60★)/ariane(38★)等连贯逆向工程作品集,非单仓爆星,复核后保留。
+
+---
+
 ## 2026-07-14
 1. Kappaemme-git/codex-first-customer-finder-skill — 🆕 从公开信号里挖出有证据支撑的潜在首批客户（289★ 144/day）
 2. zhangxiaoqiang1991/luopan — 🆕 研究行业的钱与权力,判断一家公司是否值得投资或加入（234★ 23/day）
