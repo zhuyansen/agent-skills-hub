@@ -104,10 +104,24 @@ def main():
             # deep_audit_checkout/mailto retired 2026-07-13 ($49 → Pro upsell)
         }
         custom = [r for r in ga_ev if r.get("eventName") in watch]
+        # Bot-pollution flag (scar 2026-07-16): 851 audit_run/day from one
+        # Singapore DC scraper poisoned the funnel KPI. If a single country
+        # holds ≥60% of an event (and volume is non-trivial), say so inline.
+        geo = load("ga/out/events_geo.json") or []
+        conc = {}
+        for ev in watch:
+            rows = [g for g in geo if g.get("eventName") == ev]
+            total = sum(int(g["eventCount"]) for g in rows)
+            if total >= 50 and rows:
+                top = max(rows, key=lambda g: int(g["eventCount"]))
+                share = int(top["eventCount"]) / total
+                if share >= 0.6:
+                    conc[ev] = f" ⚠️ {int(share*100)}% 来自 {top['country']},疑似机器流量"
         section("GA · 转化事件 🎯 (28天)")
         if custom:
             for r in custom:
-                print(f"- 🎯 **{r['eventName']}** — {r['eventCount']} 次 / {r['totalUsers']} 人")
+                flag = conc.get(r["eventName"], "")
+                print(f"- 🎯 **{r['eventName']}** — {r['eventCount']} 次 / {r['totalUsers']} 人{flag}")
         else:
             print("- (自定义转化事件尚无数据)")
         missing = watch - {r.get("eventName") for r in ga_ev}

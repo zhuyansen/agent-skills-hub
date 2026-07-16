@@ -121,6 +121,12 @@ def main():
                           days, order_metric="eventCount", limit=30)
         table(rows, "eventName", ["eventCount", "totalUsers"])
         save("events", rows)
+        # Bot-pollution radar: same events sliced by country. 2026-07-16 lesson —
+        # 851 audit_run in one day, 670 from a single Singapore DC scraper; raw
+        # counts misled the funnel KPI. Digest uses this to flag concentration.
+        geo = run_report(sess, ["eventName", "country"], ["eventCount"],
+                         days, order_metric="eventCount", limit=200)
+        save("events_geo", geo)
 
 
 if __name__ == "__main__":
