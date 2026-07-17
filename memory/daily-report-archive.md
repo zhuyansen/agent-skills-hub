@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-17
+1. HeiGeAi/heige-codex-skin-studio — 🆕 给 Codex Desktop 一键换肤,CDP 注入零改应用,9 套预设+图片取色（118★ 59/day）
+2. stephenleo/OpenMicro — 🆕 用游戏手柄操控 Codex 等编码 harness,复刻 Micro 手感（30★ 30/day）
+3. ohmiler/gridgeist — 🆕 把产品意图转成严谨视觉系统,摆脱通用 AI SaaS 味（61★ 15/day）
+4. xuzhougeng/wisp-science — 本地优先的科研工作台:Python/R 计算加生信 MCP 一站跑（152★ 9/day）
+5. JunsW/feature-track — 🆕 把共享记忆写进仓库,让多个编码智能体记住功能脉络（78★ 7/day）
+6. iqbalmh18/brave-api — 🆕 免密钥直连 Brave 搜索,给 agent 白嫖联网能力（42★ 4/day）
+7. mrwogu/promptscript — 把提示词当代码管:跨编码助手统一下发、审计与部署（490★ 3/day）
+8. alfonso0512/research-writing-skill — 30 个模板覆盖论文全流程:润色、综述、投稿回复、基金申请（313★ 3/day）
+9. Staks-sor/ai-free — 本地开源 AI 客户端:接 DeepSeek/Qwen,带记忆、语音与浏览（130★ 2/day）
+10. addsumtech/slides_maker — 把论文代码文档变成可原生编辑的 PPTX,图表不糊（62★ 2/day）
+🎯 今日趋势：velocity 顶端被"给 Codex 装外设"包揽——换肤工作室以 59★/天领跑、游戏手柄操控 harness、免密钥搜索接口三席均为两周内新建;中段转向生产工具(本地科研工作台/论文写作 30 模板/PPTX 生成)3 席;工程基建仅剩仓库级共享记忆与提示词治理 2 席。5/10 为两周内新建。
+> 注：去重范围=与全部历史推荐(截至 07-16 约 319 个)零重复。排除项:ohad6k/emulo(189★)与 07-10 已推 ohad6k/ditto 同作者同描述(挖日志生成 you.md),视为同项目改名排除;musistudio/claude-code-router、Goldentrii/AgentRecall-X、William-Lu-stack/Flawless、KimYx0207 四仓集群、chatgptopenai56/ChatGPT-5.6-Free-Codex、pyang5166/gbro-collage-broll、Dryxio/auto-re-agent、Stack-Cairn/LiveAgent、ayuayue/PiDeck、blitzdotdev/blitzos、jasonsuhari/gridbash、SenmuuuuW/universal-diagnostic-tutor-skill 均延续 07-15/07-16 已推或已排除;PostHog/posthog(35,711★)、clidey/whodb(4,927★)、codewithMUHILAN/Lightswind-UI-Library、retentioneering-tools 为通用平台/组件库非 agent 技能排除;Furyton/awesome-language-model-analysis、jbesomi/awesome-autonomous-agents、feststelltaste/awesome-agentic-software-modernization、kangise/ecommerce-ai-roadmap 为 awesome 清单排除;aws-samples/sample-amazon-bedrock-for-beginners 官方示例排除。刷星复核:CodeDrobe/skills(131★/2 天,65/day 本可居首)所属 org 07-15 建、仅 3 仓且另两仓 1★/10★,无任何历史轨迹的单仓宣传型 org,按 kitforai 先例保守排除;aiwenjie777/codex-skin-skill(22★)账号仅此一仓、与 heige-codex-skin-studio 同主题同两日,无轨迹保守排除;alexpilotto/uxon-ai(23★)账号 2 仓均 07-16 同日建、零历史,按 OptiQra 先例排除。ohmiler/gridgeist 命中"他仓个位数+单仓爆星"红旗,但账号自 2017 年起有连续真实开发轨迹(教程/demo 仓),复核后保留;HeiGeAi 有 HeiGe-PPT/Design/GEO-SEO 等数月连贯作品集,非单仓爆星,保留。iqbalmh18/brave-api 属逆向免密钥接口(同 06-30 已推 Deepseek-API 先例)入选。🆕 判定=created_at 在 2026-07-03 之后共 5 项(skin-studio/OpenMicro/gridgeist/feature-track/brave-api);wisp-science(07-01 建,距今 16 天)超出两周窗口不标 🆕。
+
+---
+
 ## 2026-07-16
 1. blitzdotdev/blitzos — 🆕 让云端 agent 开机即知你的工作,合上笔记本也继续干活（108★ 36/day）
 2. Jia-Ethan/codex-keysmith — 跨版本部署 Codex 指令,支持试运行/备份/钩子隔离与恢复（576★ 32/day）
