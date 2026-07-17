@@ -1,23 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366ec"/>
-      <stop offset="100%" style="stop-color:#4347c7"/>
-    </linearGradient>
-  </defs>
-  <!-- Rounded square background -->
-  <rect x="1" y="1" width="30" height="30" rx="7" fill="url(#bg)"/>
-  <!-- Robot head -->
-  <rect x="8" y="12" width="16" height="12" rx="3" fill="white" opacity="0.95"/>
-  <!-- Eyes -->
-  <circle cx="13" cy="18" r="2" fill="#5B5FE9"/>
-  <circle cx="19" cy="18" r="2" fill="#7E80F5"/>
-  <!-- Eye shine -->
-  <circle cx="13.7" cy="17.3" r="0.6" fill="white"/>
-  <circle cx="19.7" cy="17.3" r="0.6" fill="white"/>
-  <!-- Antenna -->
-  <line x1="16" y1="12" x2="16" y2="7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-  <circle cx="16" cy="6" r="2" fill="white" opacity="0.9"/>
-  <!-- Smile -->
-  <path d="M13 21 Q16 23 19 21" fill="none" stroke="#6366f1" stroke-width="1.2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="350.95 190.72 133.48 133.48">
+  <defs><style>.cls-1 {
+        fill: #040731;
+      }
+
+      .cls-2 {
+        fill: #feaf0a;
+      }
+
+      .cls-3 {
+        fill: #6526fd;
+      }
+
+      .cls-4 {
+        fill: #641efd;
+      }
+
+      .cls-5 {
+        fill: #6121fd;
+      }</style></defs>
+    <path class="cls-4" d="M429.29,217.89h16.29c8.41,0,15.23,6.82,15.23,15.23v12.92c0,2.63,2.14,4.77,4.77,4.77h8.48c2.63,0,4.77-2.14,4.77-4.77v-16.19c0-16.98-13.77-30.75-30.75-30.75h-18.79c-2.63,0-4.77,2.14-4.77,4.77v9.25c0,2.63,2.14,4.77,4.77,4.77Z"/>
+  <path class="cls-4" d="M375.24,246.04v-12.92c0-8.41,6.82-15.23,15.23-15.23h16.98c2.63,0,4.77-2.14,4.77-4.77v-9.25c0-2.63-2.14-4.77-4.77-4.77h-19.56c-16.98,0-30.75,13.77-30.75,30.75v16.19c0,2.63,2.14,4.77,4.77,4.77h8.56c2.63,0,4.77-2.14,4.77-4.77Z"/>
+  <path class="cls-4" d="M407.45,297.15h-16.98c-8.41,0-15.23-6.82-15.23-15.23v-13.96c0-2.63-2.14-4.77-4.77-4.77h-8.56c-2.63,0-4.77,2.14-4.77,4.77v17.38c0,16.98,13.77,30.75,30.75,30.75h19.56c2.63,0,4.77-2.14,4.77-4.77v-9.41c0-2.63-2.14-4.77-4.77-4.77Z"/>
+  <path class="cls-4" d="M460.81,267.97v13.96c0,8.41-6.82,15.23-15.23,15.23h-16.29c-2.63,0-4.77,2.14-4.77,4.77v9.41c0,2.63,2.14,4.77,4.77,4.77h18.79c16.98,0,30.75-13.77,30.75-30.75v-17.38c0-2.63-2.14-4.77-4.77-4.77h-8.48c-2.63,0-4.77,2.14-4.77,4.77Z"/>
+  <rect class="cls-2" x="390.25" y="248.66" width="18.8" height="18.04" rx="4.89" ry="4.89"/>
+  <rect class="cls-2" x="427.27" y="248.66" width="18.8" height="18.04" rx="4.89" ry="4.89"/>
 </svg>
