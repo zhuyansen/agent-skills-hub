@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-18
+1. KlaatAI/klaatcode — 🆕 开源终端编码智能体:Claude Code 级精度加智能模型路由省 token（108★ 108/day）
+2. PromptPartner/agentsmith — 🆕 给任意模型套通用操作 harness:精简内核加按工种加载模块（189★ 95/day）
+3. erickong/penecho — 🆕 跳出对话框思考:手写/公式/图示的 AI 共享空间推理画布（169★ 42/day）
+4. capitalone/VulnHunter — 🆕 Capital One 出品:以攻击者视角主动扫源码找漏洞的安全智能体（368★ 33/day）
+5. oil-oil/codex-team-mode — 🆕 给 Codex 编队:开发/研究/文档/数据各派专职子智能体协同（24★ 24/day）
+6. vakovalskii/qwen-native-agents — 🆕 用 Qwen 原生方言构建并调教 Qwen3.x 智能体,提取自 qwen-code（24★ 24/day）
+7. VKirill/claude-lane-stack — 🆕 多智能体并行编码:AGY/Grok/Codex 分道加文件契约加自动合并主干（125★ 18/day）
+8. addxai/ReflectWorld — 🆕 面向实体的多模态记忆:让智能体记住开放式视频流里的人事物（64★ 13/day）
+9. KuiChi-x/reverseloom — 🆕 把整个浏览器交给大模型:本地浏览器智能体加网页逆向,可点抓可下载（23★ 12/day）
+10. rollingSirius/equity-research-skill — 🆕 生成机构级个股投研报告:九章结构加多方法估值交叉验证（28★ 7/day）
+🎯 今日趋势：velocity 榜清一色两周内新建(10/10 🆕)——顶端 5 席全在"给编码智能体搭运行骨架":终端编码 agent(klaatcode 108★/天领跑)、通用操作 harness、Codex 编队、Qwen 原生 agent、多道并行自动合并;其余 5 席为多模态记忆(ReflectWorld)、浏览器逆向 agent(reverseloom)、Capital One 攻击者视角安全扫描、共享推理画布与机构级投研,单点垂直各占一格。
+> 注：去重范围=与全部历史推荐(截至 07-17 约 329 个)零重复。排除项:ohmiler/gridgeist(07-17 已推)、Staks-sor/ai-free(07-17 已推)、ohad6k/emulo(07-17 已排除,与 ditto 同项目)、CodeDrobe/skills 与 aiwenjie777/codex-skin-skill 与 alexpilotto/uxon-ai(均 07-17 已排除的单仓爆星/零轨迹账号,轨迹未改延续排除);PostHog/posthog(36,305★)、clidey/whodb(4,929★)、chmonitor/chmonitor(ClickHouse 监控)、Marve10s/Better-Fullstack(脚手架)为通用平台/工具非 agent 技能排除;loulanyue/awesome-claude-notes、adriannoes/awesome-agentic-ai、kangise/ecommerce-ai-roadmap、josephsenior/Agentic-Design-Patterns 为 awesome/清单类排除;leon7482/chatgpt-plus-codex(SEO 代充教程)、alexafinode/claude-arbitrage-bot(以太坊套利机器人,金融拉盘嫌疑)排除;Xposed-Modules-Repo/com.niki914.nexus.agentic 为 Xposed 自动镜像命名空间排除;lusipad/unofficial-codex-app-offline、avaritiachaos/qoder-proxy("仅供学习"代理)为非官方重打包/灰色代理排除;HUANGCHIHHUNGLeo/claude-real-video(1,712★)按 velocity 公式得 95/天但 prev_stars=1705 近日仅 +7、created 06-30 距今 18 天已停滞,公式严重失真按 claude-code-router 先例排除。刷星复核:PromptPartner(账号 02-01 建、另有 bexio-mcp-server 24★ 真实商业 MCP,非零轨迹,入选);KlaatAI(org 早于发布已建 homebrew tap,属正规产品发布,入选);VKirill(2016 老号、多真实仓,入选);其余 capitalone(信誉大厂)、oil-oil(beautify-github-readme 783★ 等多爆款真实作者)、ogulcancelik(herdr 17,830★)、cablate(mcp-google-map 392★)、rollingSirius(2012 老号+同日 IBKR 交易面板)均有连贯真实轨迹,复核后入选或备选。🆕 判定=created_at 在 2026-07-04 之后共 10 项,全部命中两周窗口。
+
+---
+
 ## 2026-07-17
 1. HeiGeAi/heige-codex-skin-studio — 🆕 给 Codex Desktop 一键换肤,CDP 注入零改应用,9 套预设+图片取色（118★ 59/day）
 2. stephenleo/OpenMicro — 🆕 用游戏手柄操控 Codex 等编码 harness,复刻 Micro 手感（30★ 30/day）
