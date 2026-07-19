@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-19
+1. anshulforyou/grandma — 🆕 给 Claude Code 建随工作自学的持久记忆层,纯 Markdown 按上下文分区（87★ 7/day）
+2. rebelytics/one-skill-to-rule-them-all — 观察你的工作会话,自动构建并持续改进所有技能(含它自身)的元技能（1068★ 7/day）
+3. cablate/baton — 🆕 少派活多交付:给多智能体协作装可靠交付的调度治理层（62★ 7/day）
+4. tester-army/scout — 🆕 给 AI 智能体配一套 API 测试工具箱,自动跑接口验证（25★ 5/day）
+5. ianustec/openwebui-generate-documents — 🆕 给 Open WebUI 装原生 Word 生成:封面/样式表格/目录一键出稿（46★ 5/day）
+6. SpecterOps/Jailbreaker-CE — 本地评测聊天机器人与智能体抗越狱、抗提示注入的能力（66★ 3/day）
+7. madhavajay/alex — 🆕 用一个本地代理统管所有 token 供应商,Claude/Codex/Gemini 随心路由（29★ 3/day）
+8. loulanyue/spec-kit-zh — 把规范驱动开发工具包中文化,通吃 Codex/Claude/Cursor 编码智能体（263★ 2/day）
+9. Cold-IQ/ColdIQ-s-GTM-Skills — 打包 137 个销售触发点+34 封邮件模板+11 套 GTM 打法的增长技能（212★ 1/day）
+10. langgenius/mosoo — Dify 团队出品:Cloudflare 原生开源智能体运行时,内置隔离与 API 端点（39★ 1/day）
+🎯 今日趋势：velocity 榜前五清一色两周内新建,主题集中在"给编码智能体铺地基"——持久记忆(grandma 7★/天领跑)、多智能体调度治理(baton)、API 测试(scout)、多供应商 token 代理(alex);flagship 由 rebelytics 元技能补位(1068★,能自我构建并改进所有技能);中段是文档生成(Open WebUI 原生 Word)、SpecterOps 越狱/提示注入安全评测与中文规范驱动开发,尾部为 GTM 销售技能与 Dify 系 Cloudflare 智能体运行时。5/10 为两周内新建。
+> 注：去重范围=与全部历史推荐(截至 07-18 约 339 个)零重复。48h 内 first_seen 且 ≥20★ 共 68 条,去重后候选充足未放宽窗口。排除项:07-18 已推(KlaatAI/klaatcode、PromptPartner/agentsmith、erickong/penecho、capitalone/VulnHunter、oil-oil/codex-team-mode、vakovalskii/qwen-native-agents、VKirill/claude-lane-stack、addxai/ReflectWorld、rollingSirius/equity-research-skill)延续去重;07-18 已排除项(HUANGCHIHHUNGLeo/claude-real-video 停滞失真、leon7482/chatgpt-plus-codex 代充教程、alexafinode/claude-arbitrage-bot 以太坊套利、lusipad/unofficial-codex-app-offline 与 avaritiachaos/qoder-proxy 非官方重打包/灰色代理、Marve10s/Better-Fullstack 脚手架、chmonitor/chmonitor ClickHouse 监控、Xposed-Modules-Repo/* 自动镜像、loulanyue/awesome-claude-notes 与 adriannoes/awesome-agentic-ai 与 josephsenior/Agentic-Design-Patterns 清单类)延续排除;新排除:OpenLAIR/dr-claw(1035★)单仓一枝独秀(次高仓仅 68★)+描述空泛营销("massive AI Doctors"/"Best IDE")+unknown 评级+prev_stars=0 无法验证真实增速,按 claude-code-router 先例保守排除;NextWeb4/deepseek-translation-studio(30★)账号 07-07~07-12 一周内批量建 lan-file-transfer/phone-record-manager/folder-locker/yaml-proxy-editor 等 5 仓、星数雷同(95~165★)呈协同刷星集群,整号排除;Da7-Tech/mind(42★)账号 2026-05 建、18 仓多为 0★、单仓爆星,young 号红旗保守排除;sergezuber/FABULA-LLM-5(56★,3.7/天本可入选)账号其余仓库全为 0★ fork、无原创热门作品,单仓爆星保守排除待复核;speedpy/speedpy(Django 脚手架)、open-metadata/openmetadata-demo(官方示例)、tangosdev/sm64ds-decomp(反编译工程非 agent 技能)、heartleo/hn-cli(HN 阅读器)、mesh/mesh-mcp(占位 demo)、cuongducle/codex-linux(Codex 桌面 Linux 重打包,同已排除 codex-desktop-linux)、Nexis-AI/NexBench 与 kansoku-trade/kansoku(链上/炒股金融性质)均非通用 agent 技能或涉金融性质排除。刷星复核入选说明:rebelytics(skills 专业作者,awesome-claude-skills v1/v2+peec-ai 连贯轨迹);anshulforyou/grandma 命中"他仓个位数+单仓爆星"红旗,但账号 2019 年真实老号、gain 仅 +2 非突刺、Claude 记忆层主题可信,复核后保留并在此标注;cablate(mcp-google-map 393★等多爆款真实作者)、SpecterOps(知名攻防安全机构 BloodHound 出品方)、langgenius(Dify 团队)、loulanyue(2016 老号、interview-notes 298★ 长期轨迹)、madhavajay(2012 老号 210 仓 261 粉)、ianustec(Open WebUI 工具连贯作品集)、Cold-IQ(真实 B2B 外呼品牌、GTM 内容充实,单仓 org 但非 throwaway)均有连贯真实轨迹入选。🆕 判定=created_at 在 2026-07-05 之后共 5 项(grandma/baton/scout/openwebui-generate-documents/alex)。
+
+---
+
 ## 2026-07-18
 1. KlaatAI/klaatcode — 🆕 开源终端编码智能体:Claude Code 级精度加智能模型路由省 token（108★ 108/day）
 2. PromptPartner/agentsmith — 🆕 给任意模型套通用操作 harness:精简内核加按工种加载模块（189★ 95/day）
