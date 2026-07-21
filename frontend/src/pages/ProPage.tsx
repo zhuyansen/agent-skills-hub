@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import type { Skill } from "../types/skill";
 import { SiteHeader } from "../components/SiteHeader";
@@ -122,10 +122,41 @@ function UpgradeCard({
 
 const KEY_PLACEHOLDER = "ash_pro_你的key";
 
+// Click-to-copy: Clarity (07-21) showed devs habitually click code blocks
+// expecting copy — that was a top dead-click surface on /pro/.
 function CodeLine({ children }: { children: string }) {
+  const [copied, setCopied] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(children);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // clipboard blocked — select the text so Cmd/Ctrl+C finishes the job
+      const el = ref.current;
+      if (el) {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      }
+    }
+  };
   return (
-    <code className="block w-full overflow-x-auto whitespace-pre rounded-lg bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-3 py-2 text-xs font-mono text-gray-800 dark:text-gray-200">
+    <code
+      ref={ref}
+      onClick={copy}
+      title="Click to copy"
+      className="relative block w-full overflow-x-auto whitespace-pre rounded-lg bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-3 py-2 text-xs font-mono text-gray-800 dark:text-gray-200 cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors"
+    >
       {children}
+      {copied && (
+        <span className="absolute right-2 top-1.5 text-[10px] font-sans text-green-600 dark:text-green-400 bg-gray-100 dark:bg-gray-900 pl-2">
+          ✓ Copied
+        </span>
+      )}
     </code>
   );
 }
@@ -241,9 +272,18 @@ function SharePanel({
   );
 }
 
+// Whole row navigates: Clarity (07-21) showed 35% of /pro/ sessions dead-
+// clicking non-link cells — users treat the row as the click target.
 function ResultRow({ s }: { s: Skill }) {
+  const navigate = useNavigate();
   return (
-    <tr className="border-b border-gray-100 dark:border-gray-800">
+    <tr
+      onClick={(e) => {
+        if ((e.target as HTMLElement).closest("a")) return; // let the Link be a Link
+        navigate(`/skill/${s.repo_full_name}/`);
+      }}
+      className="border-b border-gray-100 dark:border-gray-800 cursor-pointer hover:bg-indigo-50/60 dark:hover:bg-indigo-950/30 transition-colors"
+    >
       <td className="py-2 pr-3">
         <Link
           to={`/skill/${s.repo_full_name}/`}
