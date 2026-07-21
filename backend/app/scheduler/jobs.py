@@ -601,6 +601,29 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         db = SessionLocal()
         sync_log = db.query(SyncLog).filter(SyncLog.id == sync_log_id_ref).first()
 
+        # ── Content-policy filter (2026-07-19) ──
+        # blocked_repos = manually removed rows that must never re-ingest.
+        # The description pattern catches clone-spam of the same propaganda
+        # repos (they respawn under new names with identical descriptions);
+        # the name pattern blocks new political-topic repos per site policy.
+        import re as _re  # noqa: WPS433
+        from sqlalchemy import text as _sql_text  # noqa: WPS433
+        try:
+            _blocked = {r[0] for r in db.execute(_sql_text("SELECT full_name FROM blocked_repos")).fetchall()}
+        except Exception:
+            _blocked = set()
+        _prop_re = _re.compile(r"(反中共政治宣传|Anti Chinese government propaganda|大陆修宪香港恶法|六四|法轮|天安门)", _re.I)
+        _pol_name_re = _re.compile(r"\b(election|politics|political|propaganda)\b", _re.I)
+        _pre_filter = len(cleaned)
+        cleaned = [
+            r for r in cleaned
+            if r.get("repo_full_name") not in _blocked
+            and not _prop_re.search(r.get("description") or "")
+            and not _pol_name_re.search(r.get("repo_full_name") or "")
+        ]
+        if len(cleaned) != _pre_filter:
+            logger.info("Content-policy filter dropped %d repos", _pre_filter - len(cleaned))
+
         # Inline import to avoid circular at module load
         from app.services.tag_extractor import extract_tags  # noqa: WPS433
 
