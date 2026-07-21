@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-21
+1. hoainho/img2threejs — 🆕 把参考图重建成代码级、可动画的 Three.js 3D 模型,全程质量门控（819★ 137/day）
+2. joeseesun/qiaomu-cut-skill — 🆕 治理素材、出双语字幕、做品牌包装,可复现渲染的智能视频导演（168★ 56/day）
+3. RinDig/icm-architect — 🆕 把任意流程/想法/问题设计成 ICM 工作区,用文件夹结构当智能体架构（133★ 44/day）
+4. 0xsline/OpenChatCut — 🆕 本地优先的对话式 AI 视频剪辑,多轨时间线+Agent Skills+MCP（88★ 15/day）
+5. yc-duan/fastctx — 🆕 给智能体一套省上下文的仓库读取工具,快而不占 token（MCP）（60★ 15/day）
+6. Vincentwei1021/video-shotcraft — 🆕 用 Remotion 做电影感产品视频:106 张镜头配方卡+161 段动效（24★ 12/day）
+7. illiahaidar/mcptrustchecker — 🆕 扫描 MCP 服务器安全,读真实发布的 npm/PyPI 源码而非清单（79★ 10/day）
+8. worldwonderer/novel-to-game — 🆕 把任意小说改造成可玩游戏:7 技能改编流水线,通吃 Claude/Codex/Kimi（25★ 8/day）
+9. LeonardNJU/code-humanizer — 🆕 去代码 AI 味:清除重复辅助函数、try-import 兜底等生成式冗余（31★ 5/day）
+10. chussum/mobius — 🆕 macOS 菜单栏一键切换 Claude Code/Codex/Desktop 账号,自动容灾（35★ 4/day）
+🎯 今日趋势：velocity 榜 10/10 全部两周内新建,媒体/创作生产工具霸榜——图生 3D(img2threejs 以 137★/天断层领跑)、对话式视频剪辑(OpenChatCut)、智能视频导演(qiaomu-cut)、Remotion 镜头库(video-shotcraft)、小说改游戏(novel-to-game)5 席;其余为智能体基建(省上下文仓库工具 fastctx、菜单栏账号切换 mobius、ICM 文件夹架构 icm-architect)、MCP 服务器安全扫描(mcptrustchecker)与代码去 AI 味(code-humanizer)各占一格。
+> 注：去重范围=与全部历史推荐(截至 07-19 约 349 个)零重复。48h 内 first_seen 且 ≥20★ 共 64 条,去重后候选充足未放宽窗口。排除项(成名/老库新收录、prev_stars=0 或近日 gain 极小致 velocity 公式失真,按 claude-code-router 先例保数据诚实排除):KKKKhazix/khazix-skills(17,293★,数字生命卡兹克名作,但 prev0+04-06 建无法验证近期增速)、OpenByteInc/QuantDinger(9,786★ gain 仅+11 且加密量化金融性质)、Agenta-AI/agenta(4,313★ gain0 平台非技能)、breferrari/obsidian-mind(3,375★ prev0 老库)、edison7009/EchoBird(gain+6)、kentcdodds/kody(gain+2)、Mixar-AI/mixar-app(gain+1)、daniel3303/Equibles 与 OpenByteInc(金融终端性质)、gomarble-ai/facebook-ads-mcp-server(prev0 无描述)、LeoYeAI/myclaw-bench 与 kirilxd 系列 与 loganhc-09 等(prev0 老库)、emperorclaw(gain 负)均排除;RiccardoBiosas/awesome-MLSecOps 与 lilialla/awesome-legal-ai-zh 为 awesome 清单排除;melgarafael/DeskcommCRM(unsafe 评级)排除;drpwchen/paper-fetch 与作者近日已推 paper-radar/paper-review 同系为多样性让位。刷星复核排除:SeanJ1ang/design-judge-skills(112★,账号仅此 1 仓、6 粉、零历史轨迹,按 aiwenjie777/uxon-ai 先例保守排除)、smallchao/EvoForge(79★,2014 老号但 0 粉、其余 16 仓全 0★,单仓爆星红旗排除)、olsenbrands/fable-foreman(66★,2025-10 新号仅 2 仓 2 粉、单仓承星,保守排除)。刷星复核入选说明:hoainho(2019 老号 118 仓,另有 react-debugger-extension 20★/podium-studio 等连贯作品,gain +166 真实)、joeseesun(乔木,1668 粉、anything-to-notebooklm 5597★ 等海量真作)、RinDig(icm-architect 基于其 Interpreted-Context-Methdology 872★,同系连贯)、0xsline(StoryGen-Atelier 935★/short-drama 846★ 多爆款媒体作者)、yc-duan(fastctx 171★/incipit 93★/api-image 67★ 多仓真实)、Vincentwei1021(2016 老号 53 仓、Synapse/kronos-guide 连贯)、worldwonderer(oh-story-claudecode 4379★/video-recap-skills 400★ 名作者)、LeonardNJU(VocoType-linux 183★ 连贯 Linux 工具)、chussum(2016 老号 100 仓 42 粉)、illiahaidar(2024 号 55 粉,MCP 安全工具主题真实,mcptrustchecker 读真实源码有实用价值)均有连贯真实轨迹入选;illiahaidar 命中"他仓 0-1★"轻红旗但主题可信+55 粉,复核后保留并标注。🆕 判定=created_at 在 2026-07-07 之后共 10 项(全部命中两周窗口,10/10 🆕)。
+
+---
+
 ## 2026-07-19
 1. anshulforyou/grandma — 🆕 给 Claude Code 建随工作自学的持久记忆层,纯 Markdown 按上下文分区（87★ 7/day）
 2. rebelytics/one-skill-to-rule-them-all — 观察你的工作会话,自动构建并持续改进所有技能(含它自身)的元技能（1068★ 7/day）
