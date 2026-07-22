@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-22
+1. powerycy/goutoujunshi — 🆕 先接住情绪再分析关系,给出可执行策略的 Codex 恋爱军师（312★ 156/day）
+2. duolahypercho/codex-router — 🆕 给 Codex 换外部模型:Kimi/DeepSeek 引导授权,可安全迁移回滚（136★ 45/day）
+3. 0xwilliamortiz/agents-council — 🆕 开个智能体议会:Codex/Gemini 等多 CLI 在 Claude Code 里协同（90★ 45/day）
+4. Prism-Shadow/penguin-harness — 🆕 用一套自我改进的 harness 高效驱动 1000+ 模型（90★ 30/day）
+5. risa-labs-inc/BossConsole — 🆕 用 JVM 原生多线程操作台统管各路 AI 智能体,告别 Electron（30★ 30/day）
+6. drpwchen/textbook-to-note — 🆕 把 PDF 教科书变成可检索知识库与带引用笔记,图表原样保留（56★ 19/day）
+7. aipoch/open-science — 搭一套模型无关的开源科研工作台,加速科学发现全流程（317★ 17/day）
+8. joeseesun/qiaomu-model-cli — 🆕 并发调用本机 Grok 4.5/Kimi K3/Claude Code,带实时心跳与独立日志（21★ 11/day）
+9. osolmaz/pi-workflows — 🆕 给 pi 编码智能体装工作流引擎:JSON 控制流加实时终端查看器（30★ 8/day）
+10. hhyqhh/inno-agent — 三层记忆的开源个人学习智能体:学习者画像/知识库/跨会话沉淀（354★ 6/day）
+🎯 今日趋势：中文情感垂直技能罕见登顶(恋爱军师 156★/天断层第一,两日 +117),其余榜位由"给编码智能体换引擎、搭议会"的基建包揽 6 席——外部模型路由(codex-router)、多 CLI 议会(agents-council)、千模型 harness(penguin-harness)、JVM 原生操作台(BossConsole)、本机模型并发调用(qiaomu-model-cli)、pi 工作流引擎(pi-workflows);学习科研占 3 席(教科书转笔记、开源科研工作台、三层记忆学习智能体)。8/10 为两周内新建。
+> 注：去重范围=与全部历史推荐(截至 07-21 约 359 个)零重复。48h 内 first_seen 且 ≥20★ 共 87 条,去重后候选充足未放宽窗口。排除项:07-21 已推(Vincentwei1021/video-shotcraft、0xsline/OpenChatCut、RinDig/icm-architect、illiahaidar/mcptrustchecker、LeonardNJU/code-humanizer)延续去重;penecho/penecho 与 07-18 已推 erickong/penecho 为同项目迁入独立 org,视为重复排除;07-21 已排除项(KKKKhazix/khazix-skills、edison7009/EchoBird、kentcdodds/kody、Mixar-AI/mixar-app、gomarble-ai/facebook-ads-mcp-server、LeoYeAI/myclaw-bench、loganhc-09、kirilxd 系列、emperorclaw、smallchao/EvoForge、SeanJ1ang/design-judge-skills、melgarafael/DeskcommCRM)延续排除。新排除:event-catalog/eventcatalog(2021 老库架构文档工具)、router-for-me/EasyCLIProxyAPI(858★ prev0 2025-09 老库,velocity 公式失真)、Anil-matcha/ai-creator-academy(gain 仅 +1 的 2023 老库课程)、SamurAIGPT/AI-Influencer-Generator 与 initializ/forge 与 pranshuchittora/simvyn 与 wanghuan9/skilldock(均 prev0 老库新收录,无法验证真实增速);Anil-matcha/awesome-openclaw 与 awesome-hermes-agent、bytedoger/awesome-OpenPrice、QuesmaOrg/awesome-ai-tokenomics、obviousworks/Claude-AI-skills-collection-2026 为 awesome/清单类排除;Kronova/asset-intel-orchestration-engine(RWA 代币化)、AIPAYagent/aipay-protocol(USDC 托管)、Erfaniaa/LLM-Auto-Trader(加密交易机器人)、mars-tw/anti-gambling-trader-tw(交易胜率鉴定)为金融性质排除;firstintent/ccteam(unsafe 评级)排除;microsoft/Resource2Skill 与 google-gemini/gemini-managed-agents-templates 为大厂无描述/官方模板仓,velocity 低且非社区技能排除。刷星复核排除:livetennisapi/livetennisapi-mcp(249★ 62/day 本可居次席)所属 org 07-18 建、5 仓中其余 4 仓全 0★,典型单仓宣传型 org,按 kitforai 先例保守排除;icebird1998/drawio-scientific-illustrator(127★ 13/day)账号 2024 建仅 2 仓、1 粉、他仓 1★,单仓爆星红旗按 uxon-ai 先例排除。刷星复核入选说明:powerycy(2018 老号 63 粉,DeepKg 174★/Lic2020 103★/TPlinker 61★ 连贯 NLP 作品集,gain +117 真实)、duolahypercho(2022 号,fusion-fable 457★/andrej-karpathy-skills 173★ 多爆款)、Prism-Shadow(org 2025-10 建但 agenthub 99★/GDPevo 33★/context9 28★ 多仓承星非单仓)、risa-labs-inc(org 2024 建 43 仓,MagicPencil/cursor-auto-continue 等多仓有星)、joeseesun(乔木,海量真作)、osolmaz(2012 老号 301 粉 103 仓)、aipoch(medical-research-skills 1498★ 同系连贯)、hhyqhh(2017 老号 64 粉,Relation 103★ 连贯科研作品)、MartinDelophy 备选(2015 老号 119 仓)均有真实轨迹;0xwilliamortiz 命中"2024 新号 0 粉"轻红旗,但 7 仓中 agents-council 91★/andrej-karpathy-skills 66★/yoinks 50★ 三仓均有星、非单仓承星,复核后保留并标注;shigella520/MindTrain(6.2/day)命中"他仓个位数"红旗且落榜外,未入选。🆕 判定=created_at 在 2026-07-08 之后共 8 项(goutoujunshi/codex-router/agents-council/penguin-harness/BossConsole/textbook-to-note/qiaomu-model-cli/pi-workflows);open-science(07-03)与 inno-agent(05-28)超窗不标。drpwchen 07-21 曾因同系多样性让位,本次 textbook-to-note 为教科书转笔记的独立主题,复核后入选。
+
+---
+
 ## 2026-07-21
 1. hoainho/img2threejs — 🆕 把参考图重建成代码级、可动画的 Three.js 3D 模型,全程质量门控（819★ 137/day）
 2. joeseesun/qiaomu-cut-skill — 🆕 治理素材、出双语字幕、做品牌包装,可复现渲染的智能视频导演（168★ 56/day）
