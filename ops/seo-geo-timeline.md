@@ -99,6 +99,22 @@
 | 07-10 | 权威基线 | **DR 6 · 引用域 313(Ahrefs)/ 32(Bing 优质)· 品牌词 pos 11 · Ahrefs AI responses 0** |
 | 07-10 | 付费台账 | $275.9(Toolify 唯一验出回报) |
 
+## 2026-07-23(P7:方法论 v2 —— 大师库对照修订)
+
+- **07-23** 十个出海公众号全库对照(毅行/增长心流/程艺/吴就业/Small-Bets/niko/七鹿/哥飞/赫兹/良辰美,~3900 篇筛读):产出 `ops/research/masters-review-2026-07.md` 总汇 → **五件套 v2 修订落地**(KGR 冷启动阈值补洞 · ①c 平台原生市场进水口 · GEO"被提及>被链接" · 48h 新词 SLA · 分批上线纪律 · 收款风控 C2b · 避坑 21-25)+ 新档四份(payment-ops / subscription-playbook / paid-ads-playbook / channel-decision-tree)
+- 修正三处既有错误:FAQPage 富结果已死(2026-05 下线,AEO 定位改 GEO/转化用途)· keywords meta 体检项删除(TDK→TDH)· "竞品外链只能靠 Bing"表述放宽
+
+## 远期候选(大师库产出,未排期)
+
+- /daily/ 加 LiveBlogPosting schema(CNN 验证的活水实现)
+- GPTs 分发:"Skill Safety Checker" GPTs,Actions 接 CDN index(GPTs 页本身被 Google 收录)
+- audit 报告 "share this report" 按钮;badge 第三方 README 引用数入 ⑧ 水位("产品即链接")
+- GSC 对表 "cli agent" 词簇(七鹿点名 CLI-to-Agent 目录为热门方向),有曝光则建 /best/ 页
+- $49 → $69-99 提价评估(AppSumo 数据支持,待漏斗验证付费意愿后)
+- GEO 实操数据产品化为内容资产(AEO/GEO 工具是当下最大母题集群,中文空白)
+- quality_analyzer.py 增补维度评估:富媒体 / Information Gain / E-E-A-T Experience
+- 小语种成本收益重评(GPT 翻译成本已低 + 10 倍流量案例;严守"一次 1-2 语言 + 只翻 hub 层"红线)
+
 ## 教训时间轴(何时踩的坑 → 何时立的规矩)
 
 - 04-26 GA 接错 property → **07-04 才发现**(盲飞 10 周教训:数据先行)
