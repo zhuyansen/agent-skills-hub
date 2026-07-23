@@ -104,6 +104,12 @@
 - **07-23** 十个出海公众号全库对照(毅行/增长心流/程艺/吴就业/Small-Bets/niko/七鹿/哥飞/赫兹/良辰美,~3900 篇筛读):产出 `ops/research/masters-review-2026-07.md` 总汇 → **五件套 v2 修订落地**(KGR 冷启动阈值补洞 · ①c 平台原生市场进水口 · GEO"被提及>被链接" · 48h 新词 SLA · 分批上线纪律 · 收款风控 C2b · 避坑 21-25)+ 新档四份(payment-ops / subscription-playbook / paid-ads-playbook / channel-decision-tree)
 - 修正三处既有错误:FAQPage 富结果已死(2026-05 下线,AEO 定位改 GEO/转化用途)· keywords meta 体检项删除(TDK→TDH)· "竞品外链只能靠 Bing"表述放宽
 
+## 2026-07-23(P8:GEO 引用侧观测上线 + 外链两层论)
+
+- **07-23** GA key events 标记完成(audit_run 等 5 件,property 485523739)——投流 Gate 第 1 条解除、GEO 转化验证解卡
+- **07-23** 引用侧双水位表开通首读 🌊:**Bing AI Performance 359 citations/3mo · Clarity Citation 116/7d · SoA 15.76%**——"被引未点击"盲区实锤(引用量 ≈ GA 会话 9 倍);/audit/langgenius/dify 被引 10 次 = 信任层被 AI 当信源的直接证据;自然语言查询 "free authentication tools for autonomous agents" 落 /best/authentication/ = 场景页吃 AI 引用范式
+- **07-23** niko 会议(陈荣涛)拍板入档(`ops/research/niko-meeting-2026-07-23.md`):**外链两层论**(权重层=付费客座博客/高DR平台页,发现层=免费目录)写入模型 ①a;Adsy 采购+日 1-2 条纪律、Stripe 捐赠页并入 10b、GitHub 仓库广告位置换(10f);**拒绝**:PH 买票打榜、买 GitHub 星(信任层人设一票否决)
+
 ## 远期候选(大师库产出,未排期)
 
 - /daily/ 加 LiveBlogPosting schema(CNN 验证的活水实现)

@@ -33,6 +33,8 @@
 - **2026-07-13(周一)**:5 个 awesome PR 状态(`gh pr list`);Bing 引用域 32 → ?(本周口径 50+)
 - **2026-07-24 前后(2 周)**:libhunt/skillget/navi/mdskills/aitoolnet/creati 9 链 在 Bing/Ahrefs 报表现身?SKILL.md 三站爬到没?
 - **2026-08-10**:DR 6 → ?;AI responses 0 → ?(arXiv 若上线,重点看)
+- **付费外链首单(若下周启动)**:顺序 = Stripe 捐赠页(免费先做)→ Adsy 垂类站试单 1-2 条 → GitHub 仓库置换谈判;每条按 8 项清单 + 台账 ROI 门槛验收,支出记付费台账
+- **GEO 引用侧月检(每月 23 日前后)**:Bing AI Perf citations(基线 359/3mo)· Clarity Citation(基线 116/7d)· SoA(基线 15.76%)——三数进月表备注,看趋势不看单点
 
 ## 指标口径(防止将来自己骗自己)
 
