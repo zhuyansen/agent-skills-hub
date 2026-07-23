@@ -43,6 +43,15 @@
 - **转化事件**:deep_audit_checkout · enterprise_cta_click · install_command_copied · newsletter_subscribe 四件的周计数;checkout 事件带 value/currency 后可看转化金额
 - **死点击**:Clarity dead-click 会话占比,28 天窗口(注:Clarity API 只有 3 天窗,28 天口径实际来自 dashboard)
 
+## GEO 引用侧首批读数(2026-07-23 开通日,零成本双表上线)
+
+**Bing AI Performance(3 个月窗,Copilot 系)**:Total Citations **359** · Avg. Cited Pages 12。GA 同期 AI 引荐仅 ~40 会话 → **"被引未点击"盲区实锤(引用量≈会话量 9 倍)**。
+**Clarity AI Visibility Citation(7 天窗)**:Citations **116** · **Share of Authority 15.76%**(其他域名合计 620 次/84.24%)· AI referral traffic <1%。
+**被引 Top 页**(两表交叉):/skill/routatic/proxy(35/3mo)· /skill/waybarrios/opencode-power-pack(32)· 首页(30)· /skill/Noi1r/beamer-skill(13/7d)· **/audit/langgenius/dify(10)= 信任层被 AI 引用的直接证据** · /best/authentication/(5)。
+**Grounding queries 情报**:大头是具体 skill 名(opencode-power-pack 32、windy3f3f3f3f 系 22)+ 品牌词 agent skill hub(21,导航型)+ 真自然语言查询 "**free authentication tools for autonomous agents**"(5 次,SoA 20%,落 /best/authentication/)——后者是 /best/ 场景页吃 AI 引用的范式,选题池优先补同型 "free X tools for agents" 词。
+**顺手发现(Bing 首页三条红色建议,待处理)**:①近期新页未走 IndexNow;②sitemap 缺重要新页;③爬取容量受限(crawl capacity)——排水线待查项。
+**账号注意**:Bing Webmaster 登录身份 = **Google 主账号**(m17551076169@gmail.com),不是微软账号(WoodrowOlsonutt 那个微软号是空的,别用)。
+
 ## 新增观测项(2026-07-23 大师库对照起,进周/月表备注或下轮加列)
 
 - **前 20 名页面总数**(月):哥飞"新站毕业线"= 100 个(与单词 pos 阈值互补的整站校验;GSC pages 榜可算)
