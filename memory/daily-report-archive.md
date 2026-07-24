@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-24
+1. finna/Finn-loop — 🆕 用 spec/build/review 三技能给 Claude Code 装可复现软件工厂,人只管合并（124★ 62/day）
+2. TryCaspian/caspian-sdk — 🆕 给 AI agent 一个跨 Slack/微信/邮件/短信/X 的统一身份 SDK（175★ 44/day）
+3. wxtsky/CodeIsland — 在 MacBook 刘海实时看 13 款 AI 编码工具状态,直接审批回复（2199★ 20/day）
+4. kadevin/ilab-conjure — GPT-image-2 图片生成工作台,内置图库/模板/多任务并发本地队列（643★ 14/day）
+5. izeigerman/claude-thermos — 🆕 自动给 Claude 会话保温,不再苦等冷启动（55★ 14/day）
+6. ToolMonsters/handoff-skill — 🆕 把当前对话一键转成交接文档,任意 LLM 无缝接手（27★ 14/day）
+7. coji/natural-japanese — 🆕 把日语工作文档写得更易读,议事录/报告去 AI 味,含形态素分析检测（108★ 9/day）
+8. MemTensor/memmy-agent — 🆕 给所有 AI 装一份共享记忆:一个 agent 一份记忆,全家通用（69★ 9/day）
+9. erayendes/app-store-connect-mcp — 🆕 用 982 个工具的 MCP 接管 App Store Connect,自动管上架发布（35★ 7/day）
+10. Yila-AI/sci-ssci-skills — 🆕 规划/起草/修订/润色 SCI/SSCI 论文的开源技能,全程保留证据链（48★ 7/day）
+🎯 今日趋势：velocity 榜前二为断层新技能(软件工厂 62★/天、跨平台身份 SDK 44★/天),8/10 为两周内新建;主线仍是"给编码智能体铺基建"——三技能软件工厂(Finn-loop)、会话保温(claude-thermos)、全 AI 共享记忆(memmy-agent)、刘海状态面板(CodeIsland)、对话交接(handoff-skill)包揽 5 席;其余为跨平台身份 SDK、App Store Connect 自动化、GPT-image 工作台、日语文档与 SCI 论文技能各占垂直一格。
+> 注：去重范围=与全部历史推荐(截至 07-22 约 369 个)逐条比对零重复。48h 内 first_seen 且 ≥20★ 共 69 条,去重后候选充足未放宽窗口。按 velocity=stars÷max(距 created_at 天数,1) 排序。刷星复核排除:Finderchangchang/codex-autoskin(107★ 13.4/day 本可居第 6)账号 2014 老号但其余仓库全为 2016-17 年 3-10★ 学生项目、近十年无开发轨迹却突然单仓爆星,且与 07-17 已推 HeiGeAi/heige-codex-skin-studio 及已排除 aiwenjie777/codex-skin-skill 属同"Codex 换肤"克隆集群,按 aiwenjie777/uxon-ai 先例保守排除;KaichenCurry/TabNexus(28★ 9.3/day)账号 2024 建仅 2 粉、其余仓库全 0-2★ 学生练习,单仓爆星红旗排除;VinvAI/VinvAI(21★)为 2026-07 新建 0 粉、仅 2 仓的自名 promo org,按 kitforai 先例排除;bish-x/creator-vibe(21★)1 日爆星+仅 21★ 数据过薄保守落榜。其他排除:ariacom/Seal-Report(.Net 报表工具 2015 老库)、PxyUp/fitter、BangyiZhang/xmind-generator-mcp、laurentvv/crawl4ai-mcp-llm、vishalmysore/a2ajava、ihuzaifashoukat/x-use、wende/cicada 等 prev_stars=0 老库新收录(velocity 公式失真按 claude-code-router 先例排除);DataTalksClub/ai-dev-tools-zoomcamp 与 sunkencity999/blasphemer(LLM 去审查 fork)非通用 agent 技能排除。刷星复核入选说明:finna(2012 老号 42 粉,Finn-loop 单仓爆星但账号真实+skill 主题可信,按 anshulforyou/grandma 先例保留并标注)、TryCaspian(真实身份产品 org,Caspian 213★+caspian-sdk 175★ 双实仓非单仓)、wxtsky(byob 129★ 作者,CodeIsland 2199★ 为成名项目补录,prev0 故 velocity 取生涯均值)、kadevin(2012 老号,ilab-conjure 为详实的 GPT-image WebUI 产品,单仓但无集群刷星,标注保留)、izeigerman(SQLMesh 系 91 粉多仓真作)、coji(2008 老号 161 粉)、MemTensor(MemOS 10k★ 官方 org)、lencx(opsail 备选,ChatGPT 54k★ 名家)均有连贯真实轨迹。🆕 判定=created_at 在 2026-07-10 之后共 8 项;wxtsky/CodeIsland(04-06)与 kadevin/ilab-conjure(06-08)超两周窗口不标。
+
+---
+
 ## 2026-07-22
 1. powerycy/goutoujunshi — 🆕 先接住情绪再分析关系,给出可执行策略的 Codex 恋爱军师（312★ 156/day）
 2. duolahypercho/codex-router — 🆕 给 Codex 换外部模型:Kimi/DeepSeek 引导授权,可安全迁移回滚（136★ 45/day）
