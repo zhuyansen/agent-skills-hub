@@ -15,15 +15,37 @@
    ⚠️ 多产品共用一个 Stripe 账户时只有一个身份——该字段**同时印在所有收据/账单上**,为外链改它会污染其他产品的收据品牌。
    ⚠️ 改完有缓存,页面几小时内才刷新;Custom webpage 编辑器内可能有独立字段,以编辑器为准。
 
-## 验收方法(任何"平台页拿链"玩法通用,先验后动手)
+## 验收方法(任何"平台页/客座文/目录页拿链"通用,先验后动手)
+
+### 层 1 · 页面级:链在不在、rel 干不干净(发链当天就能验)
+
+**A. 浏览器 Console 一行式**(首选:过 JS 渲染 + 登录墙,客座 5 连就是这么验的)——打开目标页按 F12,Console 粘贴:
+
+```js
+[...document.querySelectorAll('a[href*="agentskillshub"]')].map(a=>({href:a.href,rel:a.rel||'✅dofollow'}))
+```
+
+- 返回 `[]` = 页面根本没链到你(或走 JS/base64 跳转,如 feizhuke 的 `/go/`——不传权重)
+- `rel` 含 `nofollow`/`ugc`/`sponsored` 任一 = 不传 DR;`noopener`/`noreferrer`/`external`/`follow` 均无害
+- 顺带核对 href 指向对不对(共用账户最易指错站)
+
+**B. curl 原始 HTML**(交叉验证:爬虫第一眼看到的是这个,能揪出"只有 JS 渲染才出现"的弱链):
 
 ```bash
 curl -sL <平台页URL> | grep -oE '<a[^>]*href="https?://[^"]*"[^>]*>' | grep 你的域名
 ```
-看三样:
-- **有没有链**(不是 JS 跳转/base64 跳转——那种不传权重,如 feizhuke 的 /go/)
-- **rel 属性**:含 `nofollow` / `ugc` / `sponsored` 任一 = 不传 DR(Ahrefs DR 只算 dofollow)
-- **指向对不对**(共用账户最易指错站)
+
+**C. AITDK 扩展**(可视化替代:装 aitdk.com 浏览器扩展,开目标页看 Links 面板,外链列表带 follow/nofollow 标注,适合不想开 Console 的场合)
+
+### 层 2 · 索引级:搜索引擎认没认(层 1 干净 ≠ 已入账,要等收录)
+
+| 工具 | 时效 | 看什么 | 备注 |
+|---|---|---|---|
+| **Ahrefs**(免费站长版,已开通) | 天级,最快 | Site Explorer → Backlinks → 搜来源域名,每条链带 **Follow/NoFollow/UGC 标** | DR 只算 dofollow;新链几天内可见 |
+| **Bing Webmaster** | 周级,较勤 | 外链报告 → ref-domains 列表找来源域 | 我们本就每周对 Bing ref-domains 水位 |
+| **GSC 链接报告** | **3-6 周批量快照,最慢** | 链接 → 外部链接 → 导出"最新链接"grep 来源域 | ⚠️ 先看报告内最新"上次抓取日期"判断可比性(07-16 踩过:报告停在 06-10,验 7 月新链是徒劳);不显示 rel |
+
+**判定口径:层 1 rel 干净 + 层 2 任一工具收录,才算权重真入账。** 层 1 脏(nofollow/跳转)则层 2 不用等——流量链另算,权重链记零。
 
 ## 实测结果(2026-07-24)
 
