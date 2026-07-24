@@ -325,6 +325,17 @@ export function SiteFooter() {
               />
             </a>
             <span className="text-gray-600">·</span>
+            {/* Stripe Climate: 0.5% of revenue → carbon removal. Trust signal
+                only — the badge iframe link is rel=nofollow, no SEO intent. */}
+            <iframe
+              src="https://climate.stripe.com/badge/MOvGBj?theme=dark&size=small&locale=en-US"
+              title="Stripe Climate member"
+              width="380"
+              height="38"
+              loading="lazy"
+              className="border-0 max-w-full"
+            />
+            <span className="text-gray-600">·</span>
             {/* The pulsing dot reads as interactive — Clarity's top homepage
                 dead-click cluster was this footer bar. Give the click a
                 destination: "auto-updated" → what's new today. */}
