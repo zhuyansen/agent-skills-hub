@@ -432,6 +432,7 @@ Happy to share the open dataset or a longer quote.
 ---
 
 ## 注意(别踩坑)
+- **Stripe Climate 捐赠页提权已死(2026-07-24 实测)**:niko 会议(陈荣涛)"开捐赠页拿 DR90 外链→DR30"一条**作废**——实开 0.5% 承诺+发布页(climate.stripe.com/gx406l)后验源码,商家回链是 `rel="ugc nofollow"`(Stripe 已反滥用),Ahrefs DR 只算 dofollow,提权前提不成立。且回链读"公开业务信息→网站"字段(多产品共用账户会指错站,该字段还影响收据品牌,别乱改)。**结论:此类"平台捐赠页/公益页拿链"玩法一律先验 rel 再动手。**
 - **价值优先**:Reddit/HN 重 spam 检测,先做真贡献再带链,否则封号 + 反效果。
 - **锚文本多样**:别全是 "AgentSkillsHub" —— 混用 "MCP server directory"、"open agent skills catalog"、裸 URL。
 - **节奏**:同一平台别一天发多条;awesome PR 一天最多 1–2 个。
