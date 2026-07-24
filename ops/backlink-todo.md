@@ -9,7 +9,7 @@
 | 5 | ~~**AlternativeTo + StackShare**~~ | 🧑 你 各 15 分钟 | ✅ AlternativeTo 上线([收录页](https://alternativeto.net/software/agent-skills-hub/about/));❌ StackShare 拒收("does not fit supported categories"——它只收 SaaS/技术栈组件,目录站不在框内,**放弃不再试**) | ✅(半) |
 | 6 | ~~**Ahrefs 免费站长版**~~ | 🧑 你 10 分钟 | ahrefs.com/webmaster-tools 注册→验证域名(GSC 授权最快)→外链监控第二视角 | ✅ 07-10 开通 |
 | 7 | ~~creati.ai 验收~~ | 🧑 你 5 分钟 | ✅ 07-10 收录页验毕:4 链中 **3 条 dofollow**(2 条带 utm_source=creati.ai,GA 归因干净)+1 nofollow —— 真权重位,$79 值。**剩:向客服要 9 链完整清单**(本页仅 4 条) | ✅(剩要清单) |
-| — | arXiv→媒体→Reddit/HN | ✅ **已提交 07-11**(submit/7800686,processing;cs.CR 主+cs.SE 交叉);等正式 ID 点火弹药链 | 🔄 moderation 中 |
+| — | arXiv→媒体→Reddit/HN | ❌ **07-24 被拒**(submit/7800686)。弹药链改引信:媒体 pitch 换 Zenodo DOI 当学术凭证(已有 10.5281/zenodo.21292799);预印本转投 TechRxiv/SSRN 评估中;Show HN 本就不依赖 arXiv | 🔄 换道 |
 | — | PH / PwC / HARO | 押后 | arXiv 波之后 | ⏸ |
 
 **周末验收口径**:外链域 32 → 50+(Bing 报表复查);GA 来源出现新 referral。
