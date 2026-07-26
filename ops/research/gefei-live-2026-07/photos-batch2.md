@@ -24,3 +24,10 @@
   - Step 3 验证 PMF + 确定 ICP 与 negative ICP;**建议用快渠道验证:广告、红人、Cold Outreach**。
   - Step 4 深挖 use case + buyer journey(Awareness→Evaluation→Purchase→Usage→Re-Purchase→Advocacy);B2B 旅程是 Exploration↔Evaluation 双循环,营销工具很难完整跟踪。
   - Step 5 明确各渠道在转化路径的位置(线下 events/meetups;线上 paid ads/SEO/cold outreach/influencer/social/email/partnership)。
+
+## 校勘:线上完整版(s.web.cafe/gefei-2026.html,2026-07-26 核对)
+
+以线上版为 canonical,与现场照片版差异:
+1. **多一页**:「案例剖析·换个语言再来一遍」(第 25 页)——照片没拍到,aireel 打法可跨语言复制。
+2. **主力页数据已更新**:/image-to-video 月流 239,372、拿 **390 个关键词**排名(美国 222 个)——现场版口径是"221 个词/6.7 万月流",线上版是更新后的数字,引用时用 390/23.9 万。
+3. KGR/KDROI 公式、工具页(seo.web.cafe/kd + 蓝海词挖掘/GSC 模拟器/收入目标拆解)、词根模板与照片版一致,已互验。
