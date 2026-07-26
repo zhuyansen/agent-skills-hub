@@ -425,6 +425,7 @@ Happy to share the open dataset or a longer quote.
 | 2026-07-16 | thedatascientist.com | 客座文章 dofollow ×2 | ["The Team Problem"](https://thedatascientist.com/the-team-problem-how-inconsistent-tool-evaluation-wastes-engineering-cycles/) ×2,`rel="noopener"` | ✅ dofollow 验毕 | ⚠️ 两条均 `http://`→走 301,权重仍传;以后投稿统一给 https |
 | 2026-07-16 | aijourn.com | 客座文章 dofollow ×2 | ["When Discovery Becomes the Bottleneck"](https://aijourn.com/when-discovery-becomes-the-bottleneck-rethinking-how-we-find-production-ready-agent-tools/) ×2,`rel="noopener"` | ✅ dofollow 验毕 | 1条 https + 1条 http(301) |
 | 2026-07-24 | feizhuke.com 非猪AI导航(计划外) | 中文导航收录页 | [专属页](https://feizhuke.com/sites/agent-skills-hub.html);外链为 base64 /go/ 跳转(非直链) | ✅ 已定位 | 真流量 39 sessions/天进 GA top8;SEO 权重弱(跳转链),价值在引流不在权重;与 xmsumi 同类中文水源 |
+| 2026-07-26 | mcpservers.org(DR68) | MCP 注册站收录页 | [servers/zhuyansen/agentskillshub-mcp](https://mcpservers.org/servers/zhuyansen/agentskillshub-mcp) — README 全渲染,45 处提及,Browse Skills 按钮直链首页 | ✅ 上线·层1验毕 | 域名直链全 nofollow;dofollow 仅 GitHub 仓库链(二跳);价值=DR68 品牌曝光+开发者流量+GEO(LLM 常引此类列表);07-10 表单→07-26 上线 |
 |  |  |  |  |  |  |
 
 > **✅ 客座媒体 5 连账本(2026-07-16 DevTools 逐篇验 rel)**:programminginsider · nerdbot · thedatascientist · techbullion · aijourn —— **5 域名 × 2 链 = 10 条 dofollow,零 nofollow**。判定口径:只有 `nofollow/sponsored/ugc` 阻断权重;`noopener/external/follow` 均无 SEO 影响。已知瑕疵:3 篇共 4 条 `http://` 链走一跳 301(损耗可忽略,不值得催编辑改)。下次 Bing/Ahrefs 对 ref-domains 时,这 5 个域名应在列表内;缺谁查谁。

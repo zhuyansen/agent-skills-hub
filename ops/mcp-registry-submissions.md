@@ -6,9 +6,9 @@
 |---|---|---|
 | npm | ✅ 已发布 | https://www.npmjs.com/package/@agentskillshub/mcp |
 | **Glama** | ✅ **自动收录**(发布半小时内爬到,含 3 个 tool 子页) | https://glama.ai/mcp/servers/zhuyansen/agentskillshub-mcp |
-| **mcp.so** | ✅ 已提交(GitHub issue) | https://github.com/chatmcp/mcpso/issues/2992 |
+| **mcp.so** | ⏳ issue 仍 OPEN(07-26 查,两周未处理) | https://github.com/chatmcp/mcpso/issues/2992 |
 | **awesome-mcp-servers** | ✅ PR 已开(🤖🤖🤖) | https://github.com/punkpeye/awesome-mcp-servers/pull/9142 |
-| **mcpservers.org** | 📋 网页表单,要邮箱 → 下面即贴 | https://mcpservers.org/submit |
+| **mcpservers.org** | ✅ **07-26 确认上线**(07-10 表单提交,~2周过审)| [收录页](https://mcpservers.org/servers/zhuyansen/agentskillshub-mcp) · DR68 · README 全渲染 45 处提及;⚠️ 域名直链全 `nofollow`,唯一 dofollow 是 GitHub 仓库链(二跳权重);价值=流量/品牌/GEO |
 | **PulseMCP** | ⏳ 自动爬虫(大概率几天内自己收录);想加速用表单 → 下面即贴 | https://www.pulsemcp.com/submit |
 | **Smithery** | 📋 要登录他们账号 → 下面命令 | https://smithery.ai |
 
