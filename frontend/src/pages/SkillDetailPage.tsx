@@ -266,6 +266,7 @@ export function SkillDetailPage() {
             </a>
             <Link
               to={`/analyzer?repo=${detail.repo_full_name}`}
+              state={{ autorun: true }}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors font-medium text-sm cursor-pointer"
             >
               {t("detail.auditRepo")}

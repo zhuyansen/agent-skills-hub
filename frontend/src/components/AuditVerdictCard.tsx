@@ -120,6 +120,7 @@ export function AuditVerdictCard({ skill }: { skill: SkillDetail }) {
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
         <Link
           to={`/analyzer?repo=${encodeURIComponent(`https://github.com/${skill.repo_full_name}`)}`}
+          state={{ autorun: true }}
           className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
         >
           {t("auditCard.rescan")} →

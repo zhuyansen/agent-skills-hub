@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
@@ -267,13 +267,18 @@ export function AnalyzerPage() {
     [repoUrl, doScan],
   );
 
-  // Auto-scan if ?repo= param
+  // Auto-scan ONLY on internal navigation (skill-page button / AuditBox pass
+  // Router state.autorun). Direct/external ?repo= visits get a prefilled input
+  // + one explicit click — kills the Singapore scraper's zero-click harvesting
+  // (2026-07-26: 97% of audit_run events were DC bot traffic) while keeping
+  // the in-site funnel instant. Humans arriving via shared links click once.
+  const location = useLocation();
   useEffect(() => {
     const repo = searchParams.get("repo");
-    if (repo && !result && !loading) {
-      setRepoUrl(repo);
-      doScan(repo);
-    }
+    if (!repo || result || loading) return;
+    setRepoUrl(repo);
+    const internalNav = (location.state as { autorun?: boolean } | null)?.autorun === true;
+    if (internalNav) doScan(repo);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const isZh = lang === "zh";
