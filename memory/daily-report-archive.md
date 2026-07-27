@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-07-27
+1. danilo-znamerovszkij/draw-your-font — 🆕 把手写照片变成真字体(TTF/WOFF/WOFF2),全本地零上传免费开源（93★ 19/day）
+2. sandeepbazar/ocm-mcp-server — 🆕 让 AI 智能体经 OCM 统管多集群 Kubernetes 机群的 MCP 服务器（33★ 16/day）
+3. k-telux/OpticalModeler — 🆕 把二维光子学原理图重建成可物理审计的 Blender 光学模型,证据门控（173★ 14/day）
+4. abullaisi/upwork-skills — 🆕 给 Upwork 自由职业者的智能体技能包,源自真实 Top Rated Plus 打法（59★ 12/day）
+5. letta-ai/trajectory — 把各 harness 会话统一转成轨迹格式供智能体消费,Letta 出品（186★ 11/day）
+6. syrizelink/OpenFic — 跨平台 AI Native 一站式小说创作工具,主打 Vibe Writing 写作流（281★ 10/day）
+7. larashero3-dotcom/lieflat-charts — 🆕 给 AI 智能体的单色数据可视化技能,一键把数据变精致可交互 HTML 图表（106★ 10/day）
+8. asimons81/hermes-field-kit — 🆕 给 Hermes Agent 的实战检验开源技能套件,即装即用（55★ 8/day）
+9. RTFM-IT-Services-LLC/msp-claude-skills — 🆕 面向 MSP 托管服务商的 Claude 技能合集,打包日常运维工作流（47★ 5/day）
+10. edgehero/pi-dispatch — 🆕 把 pi 编码智能体跑成服务:按需/定时/GitHub issue-PR 触发（52★ 4/day）
+🎯 今日趋势：本批无断层爆款、velocity 普遍 <20/天,主题高度分散——8/10 为两周内新建却各据一格垂直:手写造字(draw-your-font 19★/天领跑)、光子学 Blender 建模、单色数据可视化、小说创作、Upwork 接单技能;智能体基建收缩到 5 席——会话轨迹统一格式(Letta trajectory)、pi 服务化(pi-dispatch)、OCM 多集群 MCP、Hermes 技能套件与 MSP 运维合集,均按 velocity 排序。
+> 注：去重范围=与全部历史推荐(截至 07-24 约 379 个)逐条比对零重复。48h 内 first_seen 且 ≥20★ 共 75 条,去重+排除劣质候选(prev0 老库新收录、金融、awesome 清单、gain0 停滞)后清洁池不足 10,按规则放宽至 72h 补充。刷星复核排除:makecindy/cindy(443★ 87/day 本可断层登顶)账号 2026-07-20 建仅 7 天、3 仓中另 cindy-protocol 仅 2★,3 天建号即单仓爆星+"protocol"疑蹭币,按 kitforai/uxon-ai 先例保守排除;img2threejs/img2threejs(5418★)与 07-21 已推 hoainho/img2threejs 同项目迁独立 org 视为重复;asdecided/WayfinderRouter 与 07-14 已推 itsthelore/WayfinderRouter 同名项目视为重复;bridgeservantpyre/claude-code 描述抄 Anthropic 官方为镜像仓排除;0xwilliamortiz/openclaude-improved(98★ 1日)与 provencher/codex-skills(27★ 1日)数据过薄+空泛排除;duxweb/ReTheme 与 JasonSTong/codex-theme-studio 属 Codex 换肤克隆集群(同 heige-codex-skin-studio 先例)排除;charleslee8266/cardnav-web(AI 账号购买导航)灰色排除;simonlin1212 系(a-stock-data/astock-peg/globalpercent/global-stock-data)与 vybenetwork/solana-mcp-vybe、psyb0t/mt5-httpapi 为金融/加密性质排除;medusajs/medusa、composio-community/awesome-* 、nuwa-skills/awesome-nuwa、ChaoYue0307/awesome-loop-engineering、gavischneider/awesome-llm-wiki 为通用平台/awesome 清单排除;openstatusHQ/openstatus、jacob-bd/gemini-notebook-mcp-cli、21st-dev/magic-mcp、codedogQBY/ReadAny、vulnersCom/api、AB498/computer-control-mcp 等 prev0 老库新收录(velocity 公式失真)按 claude-code-router 先例排除;innocommerce/innoshop、off-grid-ai/OGAM、AndrewDryga/emisar、owl234/ARL-Next、NimaChu/xiaohongshu-content-creator、raymondchins/agentmap、iops-leo/claude-slim、limboo-ai/limboo、Kentucky-ai/opentakeoff 等 gain≤1 停滞排除;realchendahuang/pi-config、tamdogood/builder-essential-skills 为个人配置/私用仓排除。刷星复核入选说明:danilo-znamerovszkij(2017 老号 20 仓,c-atlas 56★ 等连贯真作,draw-your-font 主题独特)、letta-ai(letta 23970★ 顶级 org)、k-telux(2021 号 30 仓真实物理/LabView 科研轨迹,OpticalModeler 单仓承星但账号真实,按 gridgeist 先例保留)、syrizelink(2020 号,OpenFic 另有 OpenFic-Doc/mintlify-docs 配套仓=真实产品)、asimons81(42 粉 18 仓 hermes-* 全系有星,分布式承星非单仓)、larashero3-dotcom(2026-02 号但 writing-dna-skill 281★/lieflat-charts 266★/soul.skill 43★ 多仓分布承星,非单仓爆星,按 Prism-Shadow 先例保留)、edgehero(2014 老号 29 粉真实轨迹)、abullaisi(2021 号 20 粉,upwork 主题可信,他仓 0★ 轻红旗保留标注)、sandeepbazar(2013 老号,ocm-mcp 为具体 k8s/OCM 技术仓;同日建 4 个 0★ 私用仓属个人整理非爆星集群,标注保留)均有可辨真实轨迹。🆕 判定=created_at 在 2026-07-13 之后共 8 项(draw-your-font/ocm-mcp-server/OpticalModeler/upwork-skills/lieflat-charts/hermes-field-kit/msp-claude-skills/pi-dispatch);trajectory(07-10)与 OpenFic(06-28)超两周窗口不标。
+
+---
+
 ## 2026-07-24
 1. finna/Finn-loop — 🆕 用 spec/build/review 三技能给 Claude Code 装可复现软件工厂,人只管合并（124★ 62/day）
 2. TryCaspian/caspian-sdk — 🆕 给 AI agent 一个跨 Slack/微信/邮件/短信/X 的统一身份 SDK（175★ 44/day）
