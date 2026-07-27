@@ -64,7 +64,7 @@ curl -sL <平台页URL> | grep -oE '<a[^>]*href="https?://[^"]*"[^>]*>' | grep �
 | 07-24 初验 | 发布公共页 gx406l | 回链 `brickrecipes.ai` + `rel="ugc nofollow"` → 判死 |
 | 07-24 改字段后 | 用户改 Business details→Website 为 agentskillshub.top(Stripe 审核 2-3 天) | **未传导**,仍 brickrecipes + ugc nofollow —— 证实公共页网址是发布时快照,不实时联动 |
 | 07-24 徽章验 | badge/MOvGBj 原始 HTML | **零外链锚点**(交互走 JS)→ 徽章本身也不构成外链 |
-| 待 07-27 | Stripe 审核过后终验一次 | 翻过来就补记一行;没翻就此封存(nofollow 反正不入账) |
+| 07-27 终验 | 账户审核期已过,curl 复验 | **仍 brickrecipes + ugc nofollow → 永久封存**,此线关闭 |
 
 站内徽章已上线页脚(commit 024ef70,信任信号定位)。
 
