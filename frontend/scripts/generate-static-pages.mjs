@@ -66,6 +66,25 @@ const SHELLS = [
       "Pro members nominate and vote for the best agent skills; the top 3 each week get featured. Only SAFE-graded repos are eligible.",
     noindex: true,
   },
+  {
+    // Landing page for newsletter verification links. Transactional, so
+    // noindex — but it MUST return 200: subscribers arrive here straight from
+    // their inbox, and link-checkers/security scanners treat a 404 as broken.
+    path: "verify-email",
+    title: "Verify your email — Agent Skills Hub",
+    description:
+      "Confirm your subscription to the Agent Skills Hub weekly newsletter.",
+    noindex: true,
+  },
+  {
+    // Per-device localStorage page — zero SEO value, but a shell keeps it out
+    // of GSC's 404 bucket and makes shared links resolve cleanly.
+    path: "favorites",
+    title: "My favorites — Agent Skills Hub",
+    description:
+      "Skills you saved on this device. Stored locally in your browser, never uploaded.",
+    noindex: true,
+  },
 ];
 
 // index.html no longer ships a hardcoded canonical (dual-tag fix) — inject a
@@ -105,6 +124,9 @@ for (const s of SHELLS) {
 const REDIRECTS = [
   { path: "business", to: "/enterprise/" },
   { path: "verified-creator", to: "/enterprise/" },
+  // Legacy route: the SPA client-side-redirects /arena → /, but with no static
+  // file Google only ever saw a 404. A stub passes the authority instead.
+  { path: "arena", to: "/" },
 ];
 
 for (const r of REDIRECTS) {
