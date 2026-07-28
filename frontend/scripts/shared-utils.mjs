@@ -153,6 +153,15 @@ export function extractAssetTags(html) {
   for (const m of html.matchAll(/<script[^>]+src="[^"]*"[^>]*><\/script>/g)) {
     scriptTags.push(m[0]);
   }
+  // MEASUREMENT BUG FIX (2026-07-28): the loop above only matches scripts WITH
+  // src, so index.html's inline gtag bootstrap (which DEFINES window.gtag) was
+  // never copied into static shells. Static pages loaded gtag/js but gtag()
+  // stayed undefined → trackEvent() no-op'd → every custom conversion event
+  // was silently dropped for sessions entering via a static page (i.e. all
+  // organic search landings). Carry the inline GA bootstrap over too.
+  for (const m of html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/g)) {
+    if (/\bgtag\s*\(/.test(m[0])) scriptTags.push(m[0]);
+  }
   for (const m of html.matchAll(/<link[^>]+>/g)) {
     const tag = m[0];
     if (tag.includes("modulepreload") || tag.includes("stylesheet")) {
