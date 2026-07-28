@@ -18,7 +18,18 @@ const DIST = "dist";
 // SPA routes that need a real 200 status (own title/description/canonical)
 // instead of relying on the 404.html fallback. The shell meta is English for
 // SEO; the SPA hydrates and switches language per the user's preference.
-const indexHtml = readFileSync(join(DIST, "index.html"), "utf-8");
+// Freshness signal (GEO audit 2026-07-28): AI engines weight recency, but a
+// hardcoded dateModified rots into a lie. Stamp it at build time instead —
+// deploy runs on every push AND after each 8-hourly sync, so the date stays
+// honest on its own. Written back to dist/index.html so the SPA entry and every
+// shell generated from it below carry the same value.
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+let indexHtml = readFileSync(join(DIST, "index.html"), "utf-8");
+if (indexHtml.includes("__BUILD_DATE__")) {
+  indexHtml = indexHtml.replaceAll("__BUILD_DATE__", BUILD_DATE);
+  writeFileSync(join(DIST, "index.html"), indexHtml);
+  console.log(`  ✓ dateModified stamped ${BUILD_DATE}`);
+}
 const SHELLS = [
   {
     path: "enterprise",

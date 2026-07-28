@@ -25,10 +25,32 @@ import {
   fetchAllSkills,
 } from "./shared-utils.mjs";
 
-// Matches MIN_STARS_FOR_PAGE (skill pages). At 20 this produced 11.7K pages /
-// 99MB, pushing dist toward GitHub Pages' 1GB cap — 50 keeps the head of the
-// "is X safe" query volume and leaves the long tail to the live /analyzer.
-const MIN_STARS_FOR_AUDIT = 50;
+// ── Eligibility (tightened 2026-07-28 on 28-day GSC evidence) ──────────────
+// 8,638 audit pages earned 0 clicks and 1 impression in 28 days, while 85
+// /best/ pages earned 315 clicks. They were also 73% of the sitemap (8,638 /
+// 11,769) — pure crawl-budget drag, and the likeliest cause of the 305
+// "crawled, not indexed" + 422 "discovered, not indexed" backlog.
+//
+// Root cause is Information Gain, not volume: an audit page for an obscure
+// 50-star repo that is SAFE with no flags is ~438 words of pure template —
+// exactly what Google's 2026-03 "scaled content abuse" policy targets
+// (which no longer distinguishes AI-generated from hand-made).
+//
+// So a page must now EARN its existence one of two ways:
+//   1. Real audience — stars >= 500, where "is X safe?" is a query people
+//      actually type; or
+//   2. Real story — any flagged grade (caution/unsafe/reject) at stars >= 50,
+//      where the page carries findings that exist nowhere else.
+// 8,638 → ~2,891 pages (-67%). The long tail stays served by live /analyzer.
+const MIN_STARS_FOR_AUDIT = 50; // floor for the flagged path
+const POPULAR_STARS_FOR_AUDIT = 500; // "is X safe?" has real query volume here
+const FLAGGED_GRADES = new Set(["caution", "unsafe", "reject"]);
+
+function isAuditWorthy(skill) {
+  const stars = skill.stars || 0;
+  if (stars >= POPULAR_STARS_FOR_AUDIT) return true;
+  return stars >= MIN_STARS_FOR_AUDIT && FLAGGED_GRADES.has(skill.security_grade);
+}
 
 const GRADES = {
   safe: {
@@ -258,11 +280,13 @@ async function main() {
     (s) =>
       s.security_grade &&
       GRADES[s.security_grade] &&
-      (s.stars || 0) >= MIN_STARS_FOR_AUDIT &&
+      isAuditWorthy(s) &&
       s.repo_full_name?.includes("/"),
   );
+  const flaggedCount = graded.filter((s) => FLAGGED_GRADES.has(s.security_grade)).length;
   console.log(
-    `  ${graded.length} graded skills (stars >= ${MIN_STARS_FOR_AUDIT}) of ${skills.length} total`,
+    `  ${graded.length} audit-worthy skills of ${skills.length} total ` +
+      `(>=${POPULAR_STARS_FOR_AUDIT}★ or flagged>=${MIN_STARS_FOR_AUDIT}★; ${flaggedCount} flagged)`,
   );
 
   // Index audit-eligible skills by category so each audit page can link to its
