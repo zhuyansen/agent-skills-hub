@@ -28,6 +28,17 @@ const SHELLS = [
       "Audit 130,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
   },
   {
+    // Core free tool — was missing a shell, so GitHub Pages served 404.html for
+    // /analyzer (and every /analyzer?repo=… share link). GSC 2026-07-28 listed
+    // those among "未找到 404": an indexable, linkable tool page that Google
+    // could never index and that produced no unfurl card when shared.
+    path: "analyzer",
+    title:
+      "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub",
+    description:
+      "Paste any GitHub repo URL for an instant security analysis: 11 red-flag categories from the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.",
+  },
+  {
     path: "submit",
     title: "Submit to the Hub — AgentSkillsHub",
     description:
