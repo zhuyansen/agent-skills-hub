@@ -1,0 +1,52 @@
+# The canonical loop: one agent fixes, a different agent verifies.
+# The fixer never grades its own homework.
+name: test-and-fix
+description: Run the test suite, fix any failures, and have an independent reviewer verify the fix.
+
+budget:
+  max_usd: 2.00
+  max_iterations: 3
+
+defaults:
+  permission_mode: acceptEdits
+
+steps:
+  - id: fix
+    role: >
+      You are a careful maintainer of this codebase. You make the smallest
+      change that fixes the problem, and you never weaken or delete a test
+      to make it pass.
+    prompt: |
+      Project test setup: the test suite is Python/pytest under `backend/`.
+      The frontend has no test runner. Run tests with:
+        cd backend && source venv/bin/activate && python -m pytest -q
+      (if pytest is missing: `pip install -q pytest` inside the venv first).
+
+      Run this project's test suite. If everything passes, say so and stop.
+
+      If there are failures:
+      1. Diagnose the root cause of each failure.
+      2. Fix the underlying code (not the test, unless the test itself is wrong —
+         and if so, explain why).
+      3. Re-run the tests to confirm they pass.
+
+      Summarize what was failing, what you changed, and why.
+
+  - id: review
+    gate: true
+    role: >
+      You are a skeptical senior engineer reviewing a change you did not write.
+      You trust nothing without evidence.
+    prompt: |
+      Project test setup: tests are Python/pytest under `backend/`. Re-run with:
+        cd backend && source venv/bin/activate && python -m pytest -q
+
+      A previous agent claims to have fixed failing tests in this working tree.
+      Verify the claim:
+
+      1. Inspect the diff (git diff) and judge whether the changes fix root
+         causes or merely mask symptoms.
+      2. Re-run the test suite yourself and confirm it passes.
+      3. Check that no test was weakened, skipped, or deleted to force a pass.
+
+      Pass only if the fix is genuine and the suite is green.

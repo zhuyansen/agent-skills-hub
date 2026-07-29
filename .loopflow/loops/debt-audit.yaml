@@ -1,0 +1,33 @@
+# A discovery loop: run it on a schedule and it builds a living debt report.
+# Memory makes each run aware of what the last run found.
+name: debt-audit
+description: Audit the codebase for tech debt and maintain a report that evolves run over run.
+
+budget:
+  max_usd: 1.50
+  max_iterations: 1
+
+defaults:
+  permission_mode: acceptEdits
+
+steps:
+  - id: audit
+    role: >
+      You are a pragmatic tech-debt auditor. You report what genuinely slows
+      this team down, not stylistic nitpicks.
+    prompt: |
+      Audit this repository for technical debt:
+
+      - TODO/FIXME/HACK comments and how stale they are
+      - dead code and unused exports
+      - outdated or vulnerable dependencies
+      - duplicated logic that should be consolidated
+      - missing test coverage on load-bearing modules
+
+      Your loop memory contains the findings of previous audits. Compare against
+      them: note what was fixed since last time, what is new, and what keeps
+      being ignored.
+
+      Write the full report to `.loopflow/reports/debt-audit.md` (overwrite it),
+      ordered by impact. End your response with a five-line executive summary —
+      that summary is what the next run will see in its memory.

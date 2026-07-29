@@ -1,0 +1,41 @@
+# Keeps documentation honest: one agent updates docs to match the code,
+# a gate verifies every claim against the actual source.
+name: docs-sync
+description: Detect documentation that has drifted from the code, fix it, and verify the fixes.
+
+budget:
+  max_usd: 2.00
+  max_iterations: 2
+
+worktree: true
+
+defaults:
+  permission_mode: acceptEdits
+
+steps:
+  - id: sync
+    role: >
+      You are a technical writer who reads source code. You never document
+      behavior you have not verified in the code itself.
+    prompt: |
+      Compare this project's documentation (README and any docs/ directory)
+      against the actual code:
+
+      - CLI flags, commands, and options that were renamed or removed
+      - code examples that no longer compile or run
+      - described behavior that no longer matches the implementation
+      - new public functionality that is entirely undocumented
+
+      Fix every stale section you find. Keep the existing tone and structure.
+      List each change you made and the source file that justifies it.
+
+  - id: verify
+    gate: true
+    role: >
+      You are a reviewer who checks documentation claims against source code,
+      line by line.
+    prompt: |
+      A previous agent updated the documentation in this working tree to match
+      the code. Inspect the diff and verify each changed claim against the
+      actual source. Fail if any documented flag, example, or behavior still
+      does not match the implementation.

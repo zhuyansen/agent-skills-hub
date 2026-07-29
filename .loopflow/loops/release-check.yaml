@@ -1,0 +1,63 @@
+# Run before every release cut. One agent fixes everything blocking the
+# release; a gate verifies the fixes are genuine before you tag.
+#
+# Covers: failing tests, lint errors, coverage regression, and debug
+# artifacts left in the diff. Adapt the prompts to match your project's
+# specific toolchain (e.g. replace "npm test" with "pnpm test", add
+# "cargo clippy", etc.).
+name: release-check
+description: Fix all pre-release blockers — tests, lint, coverage — and verify fixes are real.
+
+budget:
+  max_usd: 4.00
+  max_iterations: 3
+
+defaults:
+  permission_mode: acceptEdits
+
+steps:
+  - id: fix
+    role: >
+      You are a careful maintainer preparing a release. You fix root causes —
+      never symptoms. You never modify test assertions to make a test pass,
+      and you never delete or skip a test to make coverage look clean.
+    prompt: |
+      This project is about to cut a release. Run the full pre-release checklist:
+
+      1. Run the test suite. Fix any failures at the root cause — not by
+         modifying tests or lowering thresholds.
+      2. Run the linter (if configured). Fix any errors; treat warnings as
+         errors if they appear on changed lines.
+      3. Check that code coverage meets the project threshold. If it has
+         dropped, add tests for the uncovered paths — do not lower the
+         threshold.
+      4. Scan the diff for anything that should not ship: debug statements,
+         console.log calls added during development, TODO comments introduced
+         on this branch, commented-out code blocks.
+
+      Summarize what was failing, the root cause of each issue, and exactly
+      what you changed.
+
+  - id: verify
+    gate: true
+    role: >
+      You are a skeptical senior engineer doing a final release sign-off.
+      You did not write these fixes. You verify every claim with evidence —
+      you never take another agent's word for it.
+    prompt: |
+      The previous agent claims the codebase is release-ready. Verify that.
+
+      1. Run the test suite yourself — confirm it is actually green.
+      2. Run git diff — read every changed line in the source files.
+      3. For each fix: does it address the root cause, or does it just make
+         the symptom disappear? Look specifically for: lowered thresholds,
+         weakened assertions, skipped tests, swallowed exceptions.
+      4. Check that no debug code, stray logs, or development artifacts
+         remain in the diff.
+      5. If coverage was an issue: confirm the new tests actually exercise
+         the logic, not just inflate the line count.
+
+      VERDICT: PASS — if the codebase is genuinely release-ready.
+      VERDICT: FAIL — if anything is wrong. Be specific: your feedback is
+      the only instruction the next agent gets, so name the exact file,
+      line, and issue.

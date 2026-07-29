@@ -54,3 +54,11 @@ ops/research/out/
 
 # Analytics fetch outputs (regenerated; not secrets but noisy)
 ops/*/out/
+
+# ── Generated artifacts (regenerable; keep the repo diff honest) ──
+# 2026-07-29: these accumulated to ~15K untracked lines, drowning real code
+# changes in the diff view. They are tool OUTPUT, not source.
+ops/output/
+ops/crucible-sim-runs/
+.loopflow/memory/
+.DS_Store
