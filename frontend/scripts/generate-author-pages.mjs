@@ -278,9 +278,10 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
     );
   }
 
-  // Inject Person/Organization + ItemList JSON-LD before </head>, and the
-  // SEO noscript right before closing </body>
-  html = html.replace("</head>", `${jsonLd}\n</head>`);
+  // Inject Person/Organization + ItemList JSON-LD + analytics before </head>,
+  // and the SEO noscript right before closing </body>. Author pages derive
+  // from index.html but stripped GA — see analyticsTags() note (2026-07-29).
+  html = html.replace("</head>", `${jsonLd}\n${analyticsTags()}\n</head>`);
   html = html.replace("</body>", `${noscript}\n  </body>`);
 
   const outDir = join(DIST, ns, group.author_name);
@@ -300,6 +301,7 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
 <link rel="canonical" href="${canonical}">
 <meta http-equiv="refresh" content="0;url=${canonical}">
 <meta name="robots" content="noindex">
+${analyticsTags()}
 </head><body><p>Moved to <a href="${canonical}">${canonical}</a></p></body></html>`,
     );
   }

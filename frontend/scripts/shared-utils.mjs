@@ -147,6 +147,32 @@ export function parseJsonArray(s) {
   }
 }
 
+/**
+ * Analytics snippet for hand-built static templates.
+ *
+ * 2026-07-29: an audit of every generated page type found GA missing from the
+ * ones that build their own <head> instead of borrowing index.html's asset
+ * tags — including /best/ scenario pages, which earn 73% of all site clicks
+ * (315 of 434 in 28 days). Those sessions were invisible in GA entirely: no
+ * pageviews, no conversion events. The GA-vs-Plausible gap we had been
+ * writing off as bot noise was substantially this.
+ *
+ * Every static template must emit this. Keep the property ID in sync with
+ * index.html.
+ */
+export const GA_MEASUREMENT_ID = "G-0F5GCX6MCV";
+
+export function analyticsTags() {
+  return `<script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.outbound-links.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });
+  </script>`;
+}
+
 export function extractAssetTags(html) {
   const scriptTags = [];
   const linkTags = [];

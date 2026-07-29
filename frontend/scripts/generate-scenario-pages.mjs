@@ -15,6 +15,7 @@ import {
   SITE, CATEGORY_LABELS,
   esc, starsK, stripMarkdown, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
+  analyticsTags,
 } from "./shared-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -325,7 +326,7 @@ ${breadcrumbLd}
   </script>
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
-  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  ${analyticsTags()}
   <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body class="bp-body">
@@ -621,7 +622,7 @@ ${faqLd}
   <!-- Static page: no SPA JavaScript, CSS only -->
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
-  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.js"></script>
+  ${analyticsTags()}
   <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body class="bp-body">
