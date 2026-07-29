@@ -13,7 +13,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { SUPABASE_URL, SUPABASE_ANON_KEY, SITE, esc, starsK } from "./shared-utils.mjs";
+import { SUPABASE_URL, SUPABASE_ANON_KEY, SITE, esc, starsK, analyticsTags } from "./shared-utils.mjs";
 
 const DIST = "dist";
 // Tightened to stop thin author pages from diluting crawl budget. GSC showed

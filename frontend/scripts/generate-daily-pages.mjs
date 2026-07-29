@@ -14,7 +14,7 @@
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { SITE, esc, starsK } from "./shared-utils.mjs";
+import { SITE, esc, starsK, analyticsTags } from "./shared-utils.mjs";
 
 const ARCHIVE = join(
   dirname(fileURLToPath(import.meta.url)),
