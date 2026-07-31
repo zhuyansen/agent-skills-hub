@@ -8,8 +8,25 @@ interface Props {
 
 const SITE = "https://agentskillshub.top";
 
-function buildSnippet(fullName: string): string {
+function buildBadge(fullName: string): string {
   return `[![Security-graded by Agent Skills Hub](${SITE}/badge/${fullName}.svg)](${SITE}/skill/${fullName}/)`;
+}
+
+// Badge + install line as ONE snippet. Distribution insight (2026-07-31): a
+// third-party vendor skill (ParkStatic) listed three rival hubs' install
+// commands in its README and ours was absent — authors copy whatever the hub
+// hands them, and we were only handing out a badge. Shipping the install line
+// in the same clipboard payload is the cheapest route into that default list.
+// `ash install` is real (CLI v0.4.0) and prints the security grade before the
+// install command — that safety step is the reason to prefer it, so the
+// snippet says so instead of just being another install line.
+function buildSnippet(fullName: string): string {
+  return `${buildBadge(fullName)}
+
+\`\`\`bash
+# Check the security grade, then install
+npx @agentskillshub/cli install ${fullName}
+\`\`\``;
 }
 
 async function copyText(text: string): Promise<void> {
@@ -64,19 +81,19 @@ export function BadgeEmbed({ skill }: Props) {
         />
         <span className="text-xs text-gray-500 dark:text-gray-400">
           {isZh
-            ? "把安全评级挂到你的 README"
-            : "Add the security grade to your README"}
+            ? "把安全评级 + 安装命令挂到你的 README"
+            : "Add the security grade + install command to your README"}
         </span>
       </div>
-      <div className="flex items-center gap-2 bg-gray-900 dark:bg-gray-950 rounded-lg pl-4 pr-2 py-2.5">
-        <code className="flex-1 text-xs text-green-400 font-mono truncate select-all">
+      <div className="flex items-start gap-2 bg-gray-900 dark:bg-gray-950 rounded-lg pl-4 pr-2 py-2.5">
+        <code className="flex-1 text-xs text-green-400 font-mono whitespace-pre-wrap break-all select-all">
           {snippet}
         </code>
         <button
           onClick={handleCopy}
           className="shrink-0 w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-700 transition-colors text-gray-400 hover:text-white cursor-pointer"
-          aria-label={isZh ? "复制徽章代码" : "Copy badge snippet"}
-          title={isZh ? "复制徽章代码" : "Copy badge snippet"}
+          aria-label={isZh ? "复制片段" : "Copy snippet"}
+          title={isZh ? "复制片段" : "Copy snippet"}
         >
           {copied ? (
             <svg
