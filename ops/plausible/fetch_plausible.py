@@ -14,6 +14,8 @@ import json
 import os
 import sys
 
+import time
+
 import requests
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -44,7 +46,21 @@ def q(metrics, dimensions=None, date_range=None, filters=None, limit=100):
     if filters:
         body["filters"] = filters
     body["pagination"] = {"limit": limit}
-    r = S.post(API, json=body, timeout=30)
+    # Retry transient network failures. 2026-07-31: a single 30s read timeout
+    # in CI killed the whole Plausible source for the day — the digest then
+    # showed a "source down" banner instead of numbers. One flaky request
+    # should not cost a day of data.
+    last = None
+    for attempt in range(3):
+        try:
+            r = S.post(API, json=body, timeout=60)
+            break
+        except requests.exceptions.RequestException as exc:
+            last = exc
+            if attempt < 2:
+                time.sleep(3 * (attempt + 1))
+    else:
+        raise last
     r.raise_for_status()
     return r.json().get("results", [])
 
