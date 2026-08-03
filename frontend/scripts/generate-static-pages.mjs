@@ -12,6 +12,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
+import { analyticsTags } from "./shared-utils.mjs";
 
 const DIST = "dist";
 
@@ -168,6 +169,7 @@ const aboutHtml = `<!doctype html>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>About &amp; Methodology — AgentSkillsHub</title>
+  ${analyticsTags()}
   <meta name="description" content="AgentSkillsHub is built by Jason Zhu, an independent researcher tracking open-source AI agent ecosystems. Learn about the team, 10-dimension quality scoring methodology, and editorial principles." />
   <meta name="keywords" content="agentskillshub about, jason zhu, claude skills methodology, skill quality scoring, editorial team" />
   <link rel="canonical" href="https://agentskillshub.top/about/" />
@@ -248,8 +250,6 @@ const aboutHtml = `<!doctype html>
     .cta:hover { background: #4338ca; }
   </style>
 
-  <script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.outbound-links.js"></script>
-  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>
 </head>
 <body>
   <div class="container">

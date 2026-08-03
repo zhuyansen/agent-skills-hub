@@ -162,6 +162,12 @@ export function parseJsonArray(s) {
  */
 export const GA_MEASUREMENT_ID = "G-0F5GCX6MCV";
 
+// Microsoft Clarity (session recordings + heatmaps). 2026-08-03: analyticsTags()
+// shipped GA+Plausible but not Clarity, so /author/ pages stayed invisible to
+// the UX-friction dashboard — the same "half a source of truth" mistake as
+// scar #27, one layer down. All three tools now live here, together.
+const CLARITY_SNIPPET = `<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wh16g932g8");</script>`;
+
 export function analyticsTags() {
   return `<script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.outbound-links.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
@@ -170,7 +176,8 @@ export function analyticsTags() {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });
-  </script>`;
+  </script>
+  ${CLARITY_SNIPPET}`;
 }
 
 export function extractAssetTags(html) {
@@ -185,8 +192,12 @@ export function extractAssetTags(html) {
   // stayed undefined → trackEvent() no-op'd → every custom conversion event
   // was silently dropped for sessions entering via a static page (i.e. all
   // organic search landings). Carry the inline GA bootstrap over too.
+  // 2026-08-03: also carry the Clarity bootstrap. Borrowing-type generators
+  // (skill/comparison) previously relied on their own hardcoded copy; once
+  // analyticsTags() became the single source, those copies were removed, so
+  // this matcher must cover every inline analytics script — not just gtag.
   for (const m of html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/g)) {
-    if (/\bgtag\s*\(/.test(m[0])) scriptTags.push(m[0]);
+    if (/\bgtag\s*\(|clarity\.ms/.test(m[0])) scriptTags.push(m[0]);
   }
   for (const m of html.matchAll(/<link[^>]+>/g)) {
     const tag = m[0];
