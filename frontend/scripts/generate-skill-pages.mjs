@@ -146,7 +146,7 @@ function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
 
 function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
   const {
-    repo_full_name, repo_name, author_name, author_avatar_url,
+    repo_full_name, repo_url, repo_name, author_name, author_avatar_url,
     stars, forks, description, category, language, score, license,
     readme_content, last_commit_at, created_at, topics,
     quality_score, platforms, estimated_tokens, open_issues, total_commits,
@@ -156,7 +156,12 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const indexed = shouldIndex(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
   const pageUrl = `${SITE}/skill/${repo_full_name}/`;
-  const ghUrl = `https://github.com/${repo_full_name}`;
+  // repo_url, not a re-derivation from repo_full_name: the two diverge when a
+  // repo's canonical home moves and we retarget the link while freezing the
+  // indexed page slug. The SPA already reads repo_url — the static shell used
+  // to disagree with it, so crawlers saw a stale link the hydrated page didn't.
+  const ghUrl = repo_url || `https://github.com/${repo_full_name}`;
+  const ghLabel = ghUrl.replace(/^https?:\/\//, "");
   // /audit/ page exists only for graded skills (stars >= 50 + a real grade).
   // Link to it so the audit island gets inbound equity from skill pages.
   const hasAudit = ["safe", "caution", "unsafe", "reject"].includes(
@@ -227,7 +232,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   }
   faqItems.push({
     q: `How do I install or use ${repo_name}?`,
-    a: `You can find installation instructions and usage details in the ${repo_name} GitHub repository at github.com/${repo_full_name}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
+    a: `You can find installation instructions and usage details in the ${repo_name} GitHub repository at ${ghLabel}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
   });
   if (license && license !== "NOASSERTION") {
     faqItems.push({

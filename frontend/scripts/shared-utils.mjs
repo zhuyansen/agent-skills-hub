@@ -280,7 +280,12 @@ export async function fetchAllSkills() {
   // statement_timeout → 57014 → failed deploys. Generators that need readme
   // pull only the bounded high-star subset via fetchReadmeMap(minStars).
   const fields = [
-    "id", "repo_full_name", "repo_name", "author_name", "author_avatar_url",
+    // repo_url is the authoritative GitHub link. It is USUALLY
+    // https://github.com/<repo_full_name>, but not always: when a repo is
+    // deleted or its canonical home moves, we retarget repo_url while keeping
+    // repo_full_name frozen so the indexed /skill/<name>/ URL (and its search
+    // equity) survives. Generators must render repo_url, never re-derive it.
+    "id", "repo_full_name", "repo_url", "repo_name", "author_name", "author_avatar_url",
     "stars", "forks", "description", "category", "language", "score", "license",
     "last_commit_at", "created_at", "topics", "tags",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",
