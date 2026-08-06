@@ -5,7 +5,7 @@
  *   - Aggregate skills by author_name.
  *   - Pre-render the Top N authors by total_stars (N = AUTHOR_LIMIT).
  *   - Each file is index.html with customized <title>, description, canonical,
- *     and a <noscript> SEO body listing the author's top skills (for crawlers).
+ *     and a shell body listing the author's top skills (crawlers + first paint).
  *   - Everyone else still works via the SPA fallback at runtime.
  *
  * Run: node scripts/generate-author-pages.mjs  (after vite build)
@@ -13,7 +13,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { SUPABASE_URL, SUPABASE_ANON_KEY, SITE, esc, starsK, analyticsTags } from "./shared-utils.mjs";
+import { SUPABASE_URL, SUPABASE_ANON_KEY, SITE, esc, starsK, analyticsTags, replaceShellContent } from "./shared-utils.mjs";
 
 const DIST = "dist";
 // Tightened to stop thin author pages from diluting crawl budget. GSC showed
@@ -184,9 +184,18 @@ function groupByAuthor(skills, forceInclude = new Set()) {
   return qualified.slice(0, AUTHOR_LIMIT);
 }
 
-/** Build an SEO-optimized <noscript> summary for crawlers. Unique per author
+/** Build the author's own pre-hydration shell content. Unique per author
  *  (intro + trust summary + 8 skills) so Google has a reason to index it, not
- *  a thin near-duplicate list. */
+ *  a thin near-duplicate list.
+ *
+ *  This used to be wrapped in <noscript>, which meant real visitors never saw
+ *  it — they saw the HOMEPAGE copy that came along with index.html (its own
+ *  <h1>, category grid and scenario list all live inside #root), and then
+ *  watched React swap the whole thing out for the author page. Clarity caught
+ *  the result on 2026-08-05: /author/asgeirtj/ logged 26 dead clicks and 7
+ *  rage clicks in a SINGLE session — someone clicking homepage tiles that
+ *  hydration had already replaced. Rendering it for real also stops every
+ *  author page from shipping a duplicate homepage <h1> and body. */
 function buildSeoNoScript(group, master = null, isOrg = false) {
   const top = group.skills.slice(0, 8);
   const listItems = top
@@ -213,14 +222,12 @@ function buildSeoNoScript(group, master = null, isOrg = false) {
     ? ` · <a href="https://x.com/${esc(String(master.x_handle).replace(/^@/, ""))}" rel="noopener">Follow on X</a>`
     : "";
   return `
-    <noscript>
       <h1>${esc(displayName)} — ${group.skills.length} Open-Source AI Agent Skills</h1>
       <p><strong>${esc(displayName)}</strong> is the ${who} ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and security-graded${safeN ? ` — ${safeN} verified safe` : ""}.${verifiedLine}</p>
       ${bioLine}
       <h2>Top skills by ${esc(displayName)}</h2>
       <ul>${listItems}</ul>
-      <p><a href="https://github.com/${esc(group.author_name)}">View ${esc(group.author_name)} on GitHub</a>${xLink} · <a href="${SITE}/">Explore audited agent skills</a></p>
-    </noscript>`;
+      <p><a href="https://github.com/${esc(group.author_name)}">View ${esc(group.author_name)} on GitHub</a>${xLink} · <a href="${SITE}/">Explore audited agent skills</a></p>`;
 }
 
 /** Generate HTML file for one author. */
@@ -238,7 +245,7 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   // Orgs live at /organization/{name}/ (their canonical); people at /author/.
   const ns = isOrg ? "organization" : "author";
   const canonical = `${SITE}/${ns}/${group.author_name}/`;
-  const noscript = buildSeoNoScript(group, master, isOrg);
+  const shellBody = buildSeoNoScript(group, master, isOrg);
   const jsonLd = buildCreatorJsonLd(group, master, isOrg);
 
   let html = baseHtml;
@@ -278,11 +285,13 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
     );
   }
 
-  // Inject Person/Organization + ItemList JSON-LD + analytics before </head>,
-  // and the SEO noscript right before closing </body>. Author pages derive
-  // from index.html but stripped GA — see analyticsTags() note (2026-07-29).
+  // Inject Person/Organization + ItemList JSON-LD + analytics before </head>.
+  // Author pages derive from index.html but stripped GA — see analyticsTags()
+  // note (2026-07-29).
   html = html.replace("</head>", `${jsonLd}\n${analyticsTags()}\n</head>`);
-  html = html.replace("</body>", `${noscript}\n  </body>`);
+  // Swap the homepage placeholder inside #root for this author's own content,
+  // rather than appending after it — see replaceShellContent().
+  html = replaceShellContent(html, shellBody);
 
   const outDir = join(DIST, ns, group.author_name);
   mkdirSync(outDir, { recursive: true });

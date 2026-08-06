@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [detail, setDetail] = useState<SkillDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -285,6 +285,21 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
                   </div>
                 ))}
               </div>
+            </div>
+          ) : null}
+
+          {/* Repo-gone notice. The page stays live and indexed — "what happened
+              to <repo>?" is a real query nobody else answers — but the GitHub
+              button below would otherwise drop the visitor on a 404 with no
+              explanation. */}
+          {data.repo_status === "gone" ? (
+            <div className="mb-3 px-3 py-2.5 rounded-xl border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/40 text-xs text-red-800 dark:text-red-300">
+              <strong className="block mb-0.5">
+                {lang === "zh" ? "仓库已下架" : "Repository no longer available"}
+              </strong>
+              {lang === "zh"
+                ? `${data.repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`
+                : `${data.repo_full_name} returns 404 on GitHub — deleted, or its owner's account was removed. The data here is our last successful snapshot.`}
             </div>
           ) : null}
 

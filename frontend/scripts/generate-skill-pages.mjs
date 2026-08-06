@@ -17,7 +17,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
-  esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray,
+  esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
 } from "./shared-utils.mjs";
 
@@ -162,6 +162,21 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // to disagree with it, so crawlers saw a stale link the hydrated page didn't.
   const ghUrl = repo_url || `https://github.com/${repo_full_name}`;
   const ghLabel = ghUrl.replace(/^https?:\/\//, "");
+  // Repos that 404 on GitHub (deleted, or the owning account was removed).
+  // These pages stay indexed on purpose: "what happened to <repo>?" is a real
+  // query with real volume — /skill/Manavarya09/design-extract/ still ranks
+  // pos 4.3 for its own name — and nowhere else on the web answers it. What we
+  // owe the visitor is an honest label, not a link that dumps them on a 404.
+  const isGone = skill.repo_status === "gone";
+  const goneBanner = isGone
+    ? `<div style="margin:16px 0;padding:12px 16px;border:1px solid #fecaca;background:#fef2f2;border-radius:8px;font-size:14px;color:#991b1b">
+        <strong ${biAttrs("Repository no longer available", "仓库已下架")}>Repository no longer available</strong>
+        <span ${biAttrs(
+          `— ${repo_full_name} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.`,
+          `—— ${repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`,
+        )}>&mdash; ${esc(repo_full_name)} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.</span>
+      </div>`
+    : "";
   // /audit/ page exists only for graded skills (stars >= 50 + a real grade).
   // Link to it so the audit island gets inbound equity from skill pages.
   const hasAudit = ["safe", "caution", "unsafe", "reject"].includes(
@@ -446,6 +461,7 @@ ${faqLd}
 
       <!-- Title & Author -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)} — ${esc(catLabel)} by ${esc(author_name)}</h1>
+      ${goneBanner}
       <p style="color:#64748b;margin:0 0 8px">
         by ${creatorLinkHtml(author_name)}
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>

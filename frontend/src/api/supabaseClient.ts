@@ -20,6 +20,7 @@ const SKILL_COLUMNS = [
   "repo_full_name",
   "repo_name",
   "repo_url",
+  "repo_status",
   "description",
   "homepage_url",
   "author_name",

@@ -60,13 +60,26 @@ def github_token():
     for label, tok in candidates:
         if not tok:
             continue
-        r = requests.get("https://api.github.com/rate_limit",
-                         headers={"Authorization": f"Bearer {tok}"}, timeout=TIMEOUT)
-        if r.ok:
-            remaining = r.json()["resources"]["core"]["remaining"]
-            print(f"使用 {label}(剩余额度 {remaining})", file=sys.stderr)
-            return tok
-        print(f"跳过 {label}:HTTP {r.status_code}", file=sys.stderr)
+        # Retry: the local proxy drops connections intermittently, and a
+        # transient blip here used to abort the whole run before probing
+        # anything. Only a real HTTP rejection should disqualify a token.
+        for attempt in range(RETRIES):
+            try:
+                r = requests.get("https://api.github.com/rate_limit",
+                                 headers={"Authorization": f"Bearer {tok}"},
+                                 timeout=TIMEOUT)
+            except requests.RequestException as e:
+                if attempt == RETRIES - 1:
+                    print(f"跳过 {label}:网络不通({type(e).__name__})", file=sys.stderr)
+                    break
+                time.sleep(2 * (attempt + 1))
+                continue
+            if r.ok:
+                remaining = r.json()["resources"]["core"]["remaining"]
+                print(f"使用 {label}(剩余额度 {remaining})", file=sys.stderr)
+                return tok
+            print(f"跳过 {label}:HTTP {r.status_code}", file=sys.stderr)
+            break
     raise SystemExit("没有可用的 GitHub token —— 跑 `gh auth login`,或更新 backend/.env 的 GITHUB_TOKEN")
 
 
@@ -101,6 +114,32 @@ def session_for_thread(token):
     return s
 
 
+def write_status(results):
+    """Persist probe verdicts to skills.repo_status.
+
+    Only ever writes rows this run actually probed, and never writes 'live' over
+    a row it failed to reach — an inconclusive probe becomes 'unknown', so a
+    proxy outage can't silently launder dead repos back into the live catalog.
+    """
+    load_dotenv(os.path.join(ROOT, "..", "backend", ".env"))
+    conn = psycopg2.connect(os.environ["SUPABASE_DB_URL"], connect_timeout=30)
+    try:
+        cur = conn.cursor()
+        for status, names in results.items():
+            if not names:
+                continue
+            cur.execute(
+                """UPDATE skills
+                   SET repo_status = %s, repo_status_checked_at = now()
+                   WHERE repo_full_name = ANY(%s)""",
+                (status, names),
+            )
+            print(f"  {status}: {cur.rowcount} 行", file=sys.stderr)
+        conn.commit()
+    finally:
+        conn.close()
+
+
 def probe(token, row):
     """Return (row, status) — 404 means gone, 200 alive, else inconclusive."""
     name = row[0]
@@ -120,23 +159,36 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--min-stars", type=int, default=500)
     ap.add_argument("--limit", type=int, default=1000)
+    ap.add_argument("--write", action="store_true",
+                    help="persist verdicts to skills.repo_status (default: report only)")
+    ap.add_argument("--apply-from-json", action="store_true",
+                    help="skip probing; replay the last run's verdicts into the DB")
     args = ap.parse_args()
+
+    if args.apply_from_json:
+        with open(os.path.join(OUT_DIR, "repo-status-buckets.json")) as f:
+            write_status(json.load(f))
+        return
 
     rows = fetch_candidates(args.min_stars, args.limit)
     print(f"探测 {len(rows)} 个候选(stars>={args.min_stars},{STALE_DAYS}天+未同步)…", file=sys.stderr)
 
     token = github_token()
     dead, alive, unknown = [], 0, 0
+    buckets = {"gone": [], "live": [], "unknown": []}
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
         for row, status in pool.map(lambda r: probe(token, r), rows):
             name, stars, synced = row
             if status == 404:
                 dead.append({"repo_full_name": name, "stars": stars,
                              "last_synced": str(synced)})
+                buckets["gone"].append(name)
             elif status == 200:
                 alive += 1
+                buckets["live"].append(name)
             else:
                 unknown += 1
+                buckets["unknown"].append(name)
 
     dead.sort(key=lambda d: -d["stars"])
     os.makedirs(OUT_DIR, exist_ok=True)
@@ -151,6 +203,21 @@ def main():
         for d in dead[:20]:
             print(f"  {d['stars']:>6}★  {d['repo_full_name']}")
     print(f"\n完整名单: ops/output/dead-repos.json")
+
+    # Persist the verdicts BEFORE touching the DB. A transient DNS failure on
+    # the write once discarded a completed 4,262-repo sweep, which would have
+    # meant re-spending the whole GitHub rate-limit budget to recover it. With
+    # the buckets on disk, a failed write is replayable via --apply-from-json.
+    buckets_path = os.path.join(OUT_DIR, "repo-status-buckets.json")
+    with open(buckets_path, "w") as f:
+        json.dump(buckets, f, indent=2, ensure_ascii=False)
+    print(f"判定结果: {buckets_path}")
+
+    if args.write:
+        print("\n写回 skills.repo_status …", file=sys.stderr)
+        write_status(buckets)
+    else:
+        print("(只读模式 —— 加 --write 才会写回数据库)")
 
 
 if __name__ == "__main__":

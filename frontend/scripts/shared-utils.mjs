@@ -208,6 +208,33 @@ export function extractAssetTags(html) {
   return { scriptTags, linkTags };
 }
 
+// index.html carries the HOMEPAGE's pre-hydration copy inside #root, fenced by
+// these markers. Generators that clone index.html as their shell must swap that
+// copy for their own — otherwise the page paints homepage content (including
+// the homepage <h1>) until React mounts and replaces it. Clarity measured what
+// that costs on 2026-08-05: /author/asgeirtj/ took 26 dead clicks and 7 rage
+// clicks in one session, from someone clicking homepage tiles that hydration
+// had already swapped out. It also duplicated the homepage <h1> and body across
+// every generated author page.
+const SHELL_START = "<!--SHELL-CONTENT-START-->";
+const SHELL_END = "<!--SHELL-CONTENT-END-->";
+
+/** Swap the homepage placeholder inside #root for this page's own content. */
+export function replaceShellContent(html, content) {
+  const from = html.indexOf(SHELL_START);
+  const to = html.indexOf(SHELL_END);
+  // Throw rather than fall back to appending: a silent fallback would leave the
+  // homepage copy in place and look like it worked, which is the exact failure
+  // mode this function exists to end.
+  if (from === -1 || to === -1 || to < from) {
+    throw new Error(
+      `shell markers missing from index.html — expected ${SHELL_START} … ${SHELL_END}`,
+    );
+  }
+  return html.slice(0, from + SHELL_START.length) + "\n" + content + "\n      " +
+    html.slice(to);
+}
+
 /** Decide if a page should be indexed */
 export function shouldIndex(skill) {
   if (skill.stars >= 50) return true;
@@ -285,7 +312,7 @@ export async function fetchAllSkills() {
     // deleted or its canonical home moves, we retarget repo_url while keeping
     // repo_full_name frozen so the indexed /skill/<name>/ URL (and its search
     // equity) survives. Generators must render repo_url, never re-derive it.
-    "id", "repo_full_name", "repo_url", "repo_name", "author_name", "author_avatar_url",
+    "id", "repo_full_name", "repo_url", "repo_status", "repo_name", "author_name", "author_avatar_url",
     "stars", "forks", "description", "category", "language", "score", "license",
     "last_commit_at", "created_at", "topics", "tags",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",

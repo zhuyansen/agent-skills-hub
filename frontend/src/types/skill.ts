@@ -3,6 +3,8 @@ export interface Skill {
   repo_full_name: string;
   repo_name: string;
   repo_url: string;
+  /** GitHub liveness at last probe — "gone" means the repo 404s. */
+  repo_status?: "live" | "gone" | "unknown";
   description: string;
   homepage_url: string;
   author_name: string;

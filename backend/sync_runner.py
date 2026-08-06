@@ -33,6 +33,12 @@ from app.scheduler.jobs import sync_all_skills  # noqa: E402
 
 def main():
     logger.info("Starting sync runner...")
+    # Preflight the credential. An expired token doesn't crash the sync — GitHub
+    # answers 401, search returns nothing, and the run "succeeds" having indexed
+    # zero repos. Fail here, where the message names the actual problem.
+    from app.config import resolve_github_token  # noqa: PLC0415
+    os.environ["GITHUB_TOKEN"] = resolve_github_token(verify=True)
+
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
