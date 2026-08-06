@@ -458,7 +458,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                   ))}
                   {/* Analyzer link (separate page, not scroll target) */}
                   <Link
-                    to="/analyzer"
+                    to="/analyzer/"
                     className="px-2.5 py-1 text-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 font-medium flex items-center gap-1"
                   >
                     <svg

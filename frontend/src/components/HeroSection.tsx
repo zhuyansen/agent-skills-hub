@@ -236,7 +236,7 @@ export function HeroSection({ stats, onSearch }: Props) {
         {/* Audit funnel entry — parallel to search: "find a skill" vs "vet a repo" */}
         <div className="-mt-1 mb-6 text-sm">
           <Link
-            to="/analyzer"
+            to="/analyzer/"
             className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             {isZh
