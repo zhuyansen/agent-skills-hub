@@ -4,7 +4,7 @@
  *   - dist/book/{slug}/index.html  (one per published chapter)
  *
  * Each is a copy of dist/index.html with customized <title>, description,
- * canonical, and a <noscript> body with the chapter prose so crawlers
+ * canonical, and a shell body with the chapter prose so crawlers
  * see the content without executing JS.
  *
  * Run after vite build, before generate-sitemap.mjs.
@@ -12,6 +12,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
+import { replaceShellContent } from "./shared-utils.mjs";
 
 const DIST = "dist";
 const BOOK_DIR = "content/book";
@@ -216,11 +217,15 @@ function customizeHtml(baseHtml, { title, description, canonical, ogImage, noscr
     );
   }
 
+  // Swap the homepage placeholder inside #root rather than appending after it.
+  // Appending left index.html's own <h1> and category grid painted on every
+  // chapter until React mounted — Clarity 2026-08-07 measured the cost after
+  // the same bug was fixed on author pages: /book/ch06-types-and-tiers/ and
+  // /book/ch01-mahesh-to-barry/ jumped to 89 and 77 dead clicks, the top two
+  // non-homepage sources on the site. Un-noscript'd too, so the chapter prose
+  // is what visitors actually see pre-hydration.
   if (noscriptBody) {
-    html = html.replace(
-      "</body>",
-      `<noscript>\n${noscriptBody}\n</noscript>\n</body>`,
-    );
+    html = replaceShellContent(html, noscriptBody);
   }
 
   return html;

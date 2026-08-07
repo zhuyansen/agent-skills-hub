@@ -12,7 +12,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { analyticsTags } from "./shared-utils.mjs";
+import { analyticsTags, replaceShellContent } from "./shared-utils.mjs";
 
 const DIST = "dist";
 
@@ -125,6 +125,17 @@ for (const s of SHELLS) {
       '<meta name="robots" content="noindex" />\n</head>',
     );
   }
+  // Give the shell its OWN pre-hydration content. Without this it is a verbatim
+  // copy of index.html, so /analyzer/, /pro/ and /enterprise/ each painted the
+  // homepage — its <h1>, category grid and scenario list — until React mounted
+  // and replaced the lot. Same defect Clarity caught on author pages
+  // (2026-08-05: 26 dead clicks in one session); these shells carried it too,
+  // and /analyzer/ is the busiest page on the site.
+  const heading = s.h1 || s.title.split(/[·—|]/)[0].trim();
+  html = replaceShellContent(
+    html,
+    `<h1>${heading}</h1>\n      <p>${s.description}</p>\n      <p><a href="/">Agent Skills Hub</a></p>`,
+  );
   mkdirSync(join(DIST, s.path), { recursive: true });
   writeFileSync(join(DIST, s.path, "index.html"), html);
   console.log(`  ✓ /${s.path}/index.html (SPA shell)`);
