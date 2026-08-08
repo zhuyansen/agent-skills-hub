@@ -144,6 +144,14 @@ def main():
     ov = load("clarity/out/overview.json")
     if ov and isinstance(ov, list):
         section("Clarity · UX 摩擦")
+        # Say which window these came from. Clarity's numbers are a 1-3 day
+        # ROLLING window, so a fix shipped yesterday is still averaged against
+        # pre-fix days — reading a flat number as "the fix didn't work" is the
+        # trap this line exists to prevent.
+        meta = load("clarity/out/overview.meta.json") or {}
+        if meta.get("numOfDays"):
+            print(f"*(滚动窗口 {meta['numOfDays']} 天 · 抓取 {str(meta.get('fetched_at',''))[:16]}"
+                  f" —— 昨天上线的改动只占其中一天,别据此下结论)*\n")
         for m in ov:
             name = m.get("metricName", "")
             if name in ("DeadClickCount", "RageClickCount", "QuickbackClick", "ScriptErrorCount"):

@@ -11,6 +11,7 @@ Usage:
   python ops/clarity/fetch_clarity.py show              # 读本地 dump 摘要(不耗请求数)
 """
 import json
+from datetime import datetime, timezone
 import os
 import sys
 
@@ -57,7 +58,16 @@ def main():
         r.raise_for_status()
         p = os.path.join(OUT, f"{name}.json")
         json.dump(r.json(), open(p, "w"), ensure_ascii=False, indent=1)
-        print(f"  → {p}")
+        # Stamp the window alongside the data. On 2026-08-08 a --days 1 run hit
+        # the 429 quota and exited before writing, leaving the previous 3-day
+        # file in place — which then got read as "the last 24 hours" and nearly
+        # became a claim that a fix had landed. An unlabelled file cannot be
+        # told apart from a stale one; a labelled one can.
+        json.dump(
+            {"numOfDays": int(days), "fetched_at": datetime.now(timezone.utc).isoformat()},
+            open(os.path.join(OUT, f"{name}.meta.json"), "w"), indent=1,
+        )
+        print(f"  → {p}  (窗口 {days} 天)")
     print("完成(消耗 3/10 每日请求)。指标含:死点击 DeadClick、怒点 RageClick、过度滚动、JS 错误、会话时长等")
 
 
