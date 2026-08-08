@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-import requests
+import httpx
 from pydantic_settings import BaseSettings
 
 
@@ -56,13 +56,17 @@ def _gh_cli_token() -> str:
 
 
 def _token_works(token: str) -> bool:
+    # httpx, not requests: requests is NOT in requirements.txt, and importing it
+    # at config.py's module scope broke every CI sync for two days (2026-08-06
+    # 03:15Z -> 08-08, six missed runs) with ModuleNotFoundError. config.py is
+    # imported by everything, so it must not reach past the declared deps.
     if not token:
         return False
     try:
-        return requests.get(
+        return httpx.get(
             "https://api.github.com/rate_limit",
-            headers={"Authorization": f"Bearer {token}"}, timeout=15).ok
-    except requests.RequestException:
+            headers={"Authorization": f"Bearer {token}"}, timeout=15).is_success
+    except httpx.HTTPError:
         return False  # can't confirm it works → don't claim it does
 
 

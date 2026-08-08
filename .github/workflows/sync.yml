@@ -111,6 +111,13 @@ jobs:
     needs: sync
     if: failure()
     runs-on: ubuntu-latest
+    # Without this the job's token is read-only and issue creation dies with
+    # "Resource not accessible by integration" — which is exactly what happened
+    # 2026-08-06..08: sync broke, failed six times, and the alarm that should
+    # have said so failed silently alongside it. A failure notifier that cannot
+    # notify is worse than none, because it looks like coverage.
+    permissions:
+      issues: write
     steps:
       - name: Create failure issue
         uses: actions/github-script@v7
