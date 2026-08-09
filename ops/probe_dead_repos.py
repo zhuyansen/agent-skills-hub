@@ -83,19 +83,22 @@ def github_token():
     raise SystemExit("没有可用的 GitHub token —— 跑 `gh auth login`,或更新 backend/.env 的 GITHUB_TOKEN")
 
 
-def fetch_candidates(min_stars, limit):
+def fetch_candidates(min_stars, limit, stale_days):
+    """Stalest-first, so repeated runs sweep the backlog instead of re-checking
+    the same head every time."""
     load_dotenv(os.path.join(ROOT, "..", "backend", ".env"))
     conn = psycopg2.connect(os.environ["SUPABASE_DB_URL"], connect_timeout=20)
     try:
         cur = conn.cursor()
         cur.execute(
-            f"""SELECT repo_full_name, stars, last_synced
+            """SELECT repo_full_name, stars, last_synced
                 FROM skills
-                WHERE last_synced < now() - interval '{STALE_DAYS} days'
+                WHERE last_synced < now() - make_interval(days => %s)
                   AND stars >= %s
-                ORDER BY stars DESC
+                  AND repo_status <> 'gone'
+                ORDER BY last_synced ASC
                 LIMIT %s""",
-            (min_stars, limit),
+            (stale_days, min_stars, limit),
         )
         return cur.fetchall()
     finally:
@@ -140,25 +143,66 @@ def write_status(results):
         conn.close()
 
 
+def write_stats(rows):
+    """Refresh stars/forks/last_commit from the probe payloads.
+
+    prev_stars is only moved when the value actually changed, so star_velocity
+    (computed as stars - prev_stars) still reflects a real delta rather than
+    being zeroed by every no-op refresh.
+    """
+    if not rows:
+        return
+    load_dotenv(os.path.join(ROOT, "..", "backend", ".env"))
+    conn = psycopg2.connect(os.environ["SUPABASE_DB_URL"], connect_timeout=30)
+    try:
+        cur = conn.cursor()
+        changed = 0
+        for name, stars, forks, issues, pushed in rows:
+            cur.execute(
+                """UPDATE skills
+                   SET prev_stars = CASE WHEN stars <> %s THEN stars ELSE prev_stars END,
+                       stars = %s, forks = %s, open_issues = %s,
+                       last_commit_at = %s, last_synced = now()
+                   WHERE repo_full_name = %s AND stars IS DISTINCT FROM %s""",
+                (stars, stars, forks, issues, pushed, name, stars),
+            )
+            changed += cur.rowcount
+        conn.commit()
+        print(f"  刷新 star 变化的行: {changed}/{len(rows)}", file=sys.stderr)
+    finally:
+        conn.close()
+
+
 def probe(token, row):
-    """Return (row, status) — 404 means gone, 200 alive, else inconclusive."""
+    """Return (row, status, payload). 404 = gone, 200 = alive, None = unknown.
+
+    The 200 response already carries stars/forks/pushed_at, so the liveness
+    probe doubles as a data refresh at zero extra quota. That matters because
+    sync CANNOT refresh these rows: it discovers repos via search with a
+    `pushed:>LAST_SYNC` filter, so a repo that stops being pushed is never
+    re-fetched and its star count freezes forever. mattpocock/skills sat at
+    173,857 while GitHub showed 210,101 — a 21% understatement on a top-3
+    repo, frozen since 2026-07-16. 56% of the repos we generate pages for were
+    14+ days stale.
+    """
     name = row[0]
     s = session_for_thread(token)
     for attempt in range(RETRIES):
         try:
             r = s.get(f"https://api.github.com/repos/{name}", timeout=TIMEOUT)
-            return row, r.status_code
+            return row, r.status_code, (r.json() if r.status_code == 200 else None)
         except requests.RequestException:
             _local.session = None
             s = session_for_thread(token)
             time.sleep(1 + attempt)
-    return row, None
+    return row, None, None
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--min-stars", type=int, default=500)
     ap.add_argument("--limit", type=int, default=1000)
+    ap.add_argument("--stale-days", type=int, default=STALE_DAYS)
     ap.add_argument("--write", action="store_true",
                     help="persist verdicts to skills.repo_status (default: report only)")
     ap.add_argument("--apply-from-json", action="store_true",
@@ -170,14 +214,20 @@ def main():
             write_status(json.load(f))
         return
 
-    rows = fetch_candidates(args.min_stars, args.limit)
-    print(f"探测 {len(rows)} 个候选(stars>={args.min_stars},{STALE_DAYS}天+未同步)…", file=sys.stderr)
+    rows = fetch_candidates(args.min_stars, args.limit, args.stale_days)
+    print(f"探测 {len(rows)} 个候选(stars>={args.min_stars},{args.stale_days}天+未同步)…", file=sys.stderr)
 
     token = github_token()
     dead, alive, unknown = [], 0, 0
     buckets = {"gone": [], "live": [], "unknown": []}
+    fresh = []
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        for row, status in pool.map(lambda r: probe(token, r), rows):
+        for row, status, payload in pool.map(lambda r: probe(token, r), rows):
+            if payload:
+                fresh.append((payload["full_name"], payload["stargazers_count"],
+                              payload.get("forks_count") or 0,
+                              payload.get("open_issues_count") or 0,
+                              payload.get("pushed_at")))
             name, stars, synced = row
             if status == 404:
                 dead.append({"repo_full_name": name, "stars": stars,
@@ -216,6 +266,7 @@ def main():
     if args.write:
         print("\n写回 skills.repo_status …", file=sys.stderr)
         write_status(buckets)
+        write_stats(fresh)
     else:
         print("(只读模式 —— 加 --write 才会写回数据库)")
 

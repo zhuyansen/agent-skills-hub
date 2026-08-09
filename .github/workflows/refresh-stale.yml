@@ -1,0 +1,84 @@
+name: Refresh stale catalog rows
+
+# Sync discovers repos via GitHub SEARCH with a `pushed:>LAST_SYNC` filter, so a
+# repo that stops being pushed is never re-fetched — its stars freeze at
+# whatever they were on its last commit day, forever. On 2026-08-09
+# mattpocock/skills (a top-3 repo) showed 173,857 while GitHub had 210,105: a
+# 21% understatement, frozen since 07-16. 56% of the repos we generate pages for
+# were 14+ days stale. "Auto-updated every 8 hours" was only true for repos
+# under active development.
+#
+# This job closes that gap from the other side: it walks the STALEST rows and
+# GETs /repos/{name} directly, which needs no search and no push activity. The
+# same response answers "does this still exist?", so liveness and freshness cost
+# one request between them.
+#
+# Scheduled at 04/12/20 UTC — deliberately offset from sync (00/08/16 UTC) so
+# the two never write concurrently.
+
+on:
+  schedule:
+    - cron: "0 4,12,20 * * *"
+  workflow_dispatch:
+    inputs:
+      min_stars:
+        description: "Minimum stars to consider"
+        default: "50"
+      limit:
+        description: "Max repos this run (1 GitHub API call each)"
+        default: "1200"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Explicit, not backend/requirements.txt: this script needs three
+      # packages, and requests is not a backend dependency. Pulling the backend
+      # set in would install FastAPI/SQLAlchemy for nothing — and pretending
+      # requests belongs there is what broke sync for two days on 2026-08-06.
+      - name: Install deps
+        run: pip install requests psycopg2-binary python-dotenv
+
+      - name: Refresh stalest rows
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          python ops/probe_dead_repos.py \
+            --min-stars "${{ github.event.inputs.min_stars || '50' }}" \
+            --stale-days 14 \
+            --limit "${{ github.event.inputs.limit || '1200' }}" \
+            --write
+
+      - name: Upload verdicts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: repo-status
+          path: ops/output/*.json
+          retention-days: 30
+
+  notify-failure:
+    needs: refresh
+    if: failure()
+    runs-on: ubuntu-latest
+    # Read-only tokens make issue creation fail with "Resource not accessible
+    # by integration" — which is how sync's two-day outage went unannounced.
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Refresh-stale workflow failed",
+              body: `Stale-row refresh failed. [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            });
