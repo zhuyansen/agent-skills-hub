@@ -71,9 +71,21 @@ export function EnterprisePage() {
       return;
     }
     if (!form.full_name || !form.email || !form.company || !form.use_case) {
+      // Track validation rejections separately. 11 people reached this form and
+      // none of them landed in enterprise_leads; without this we cannot tell
+      // "nobody tried" from "everybody tried and the form pushed them back".
+      trackEvent("enterprise_lead_invalid", {
+        missing: [
+          !form.full_name && "full_name",
+          !form.email && "email",
+          !form.company && "company",
+          !form.use_case && "use_case",
+        ].filter(Boolean).join(","),
+      });
       setError(c.form.errMissing);
       return;
     }
+    trackEvent("enterprise_lead_attempt", { team_size: form.team_size || "unset" });
     setSubmitting(true);
     setError(null);
     try {
@@ -93,9 +105,20 @@ export function EnterprisePage() {
         p_source: "enterprise_page",
       });
       if (rpcErr) throw rpcErr;
+      // The event that actually means money is downstream of everything else on
+      // this page, and it was the one event not instrumented.
+      trackEvent("enterprise_lead_submitted", {
+        team_size: form.team_size || "unset",
+        industry: form.industry || "unset",
+      });
       setSubmitted(true);
       setForm(EMPTY_FORM);
     } catch (e) {
+      // A failing RPC looks identical to an uninterested visitor in the funnel.
+      // Name it, so a broken write can never masquerade as no demand.
+      trackEvent("enterprise_lead_failed", {
+        reason: e instanceof Error ? e.message.slice(0, 100) : "unknown",
+      });
       setError(e instanceof Error ? e.message : c.form.errGeneric);
     } finally {
       setSubmitting(false);
@@ -362,11 +385,14 @@ export function EnterprisePage() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                 {c.pricing.tiers.map((tier) => {
-                  const ctaHref = tier.highlight
-                    ? "#demo-form"
-                    : tier.name === "Pro"
-                      ? "mailto:m17551076169@gmail.com?subject=Hub%20Pro%20-%20Early%20Access"
-                      : "/";
+                  // Pro used to point at a mailto:. Most browsers have no mail
+                  // client configured, so the click did nothing at all — and it
+                  // still fired enterprise_cta_click, which is part of why 28
+                  // days produced 13 clicks from 11 people and ZERO rows in
+                  // enterprise_leads. The lead form is the only capture path
+                  // that exists, so every paid tier routes to it.
+                  const isPaid = tier.highlight || tier.name === "Pro";
+                  const ctaHref = isPaid ? "#demo-form" : "/";
                   return (
                   <div
                     key={tier.name}
@@ -376,10 +402,14 @@ export function EnterprisePage() {
                       // clicking a feature = "I want this tier". Inner <a>
                       // (the CTA button) wins via the guard.
                       if ((e.target as HTMLElement).closest("a")) return;
-                      trackEvent("enterprise_cta_click", {
-                        cta: "pricing-card",
-                        tier: tier.name,
-                      });
+                      // Only paid tiers count as purchase intent. Firing
+                      // enterprise_cta_click on the Free card mixed "I want the
+                      // free catalog" into the one metric that is supposed to
+                      // mean "I might pay", making the funnel unreadable.
+                      trackEvent(
+                        isPaid ? "enterprise_cta_click" : "free_tier_click",
+                        { cta: "pricing-card", tier: tier.name },
+                      );
                       window.location.href = ctaHref;
                     }}
                     className={
@@ -416,10 +446,10 @@ export function EnterprisePage() {
                     <a
                       href={ctaHref}
                       onClick={() =>
-                        trackEvent("enterprise_cta_click", {
-                          cta: "pricing",
-                          tier: tier.name,
-                        })
+                        trackEvent(
+                          isPaid ? "enterprise_cta_click" : "free_tier_click",
+                          { cta: "pricing", tier: tier.name },
+                        )
                       }
                       className={
                         tier.highlight
