@@ -149,15 +149,39 @@ def main():
         # pre-fix days — reading a flat number as "the fix didn't work" is the
         # trap this line exists to prevent.
         meta = load("clarity/out/overview.meta.json") or {}
-        if meta.get("numOfDays"):
-            print(f"*(滚动窗口 {meta['numOfDays']} 天 · 抓取 {str(meta.get('fetched_at',''))[:16]}"
-                  f" —— 昨天上线的改动只占其中一天,别据此下结论)*\n")
+        days = meta.get("numOfDays")
+        if days:
+            print(f"*(滚动窗口 {days} 天 · 抓取 {str(meta.get('fetched_at',''))[:16]}"
+                  f" —— 刚上线的改动只占其中一天,别据此下结论)*\n")
+
+        # Clarity separates human from bot sessions and reports both. That makes
+        # it the only CLEAN absolute traffic number we have: GA's totals are
+        # bot-inflated (~5.5x on 2026-08-10) and Plausible has been 402 since
+        # 08-04. This sat unread in the payload for six days while the digest
+        # kept saying no trustworthy baseline existed.
+        traffic = next((m for m in ov if m.get("metricName") == "Traffic"), None)
+        if traffic and traffic.get("information"):
+            t = traffic["information"][0]
+            human = int(t.get("totalSessionCount", 0))
+            bot = int(t.get("totalBotSessionCount", 0))
+            if human or bot:
+                share = bot / (human + bot) * 100 if (human + bot) else 0
+                per_day = human / days if days else human
+                print(f"**真人流量基线(Clarity,已剔除机器):约 {per_day:.0f} 会话/天**"
+                      f" — {days}天共 {human:,} 真人 / {bot:,} 机器,机器占 {share:.0f}%\n")
         for m in ov:
             name = m.get("metricName", "")
             if name in ("DeadClickCount", "RageClickCount", "QuickbackClick", "ScriptErrorCount"):
                 info = m.get("information", [{}])
                 pct = info[0].get("sessionsWithMetricPercentage", "?") if info else "?"
-                print(f"- {name}: {pct}% sessions")
+                # Print the COUNT next to the rate. sessionsWithMetricPercentage
+                # is the share of sessions with >=1 event — when session volume
+                # drops, it rises even as the problem shrinks. On 2026-08-10 dead
+                # clicks fell 420 -> 347 while that rate went 13.6% -> 16.4%, and
+                # the rate alone read as a regression. Never track one without
+                # the other.
+                total = info[0].get("subTotal", "?") if info else "?"
+                print(f"- {name}: {pct}% sessions · 共 {total} 次")
 
     print("\n---\n*生成: ops/analytics_digest.py · 数据源 ops/*/out/*.json*")
 
