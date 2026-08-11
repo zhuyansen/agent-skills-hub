@@ -37,6 +37,15 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
   }, [onClose]);
 
   const data = detail ?? skill;
+  // A dead entry whose repo_url was retargeted at a DIFFERENT repository — the
+  // banner must name it as a separate project, or "this repo 404s" sitting
+  // above a working GitHub button reads as "the project moved here".
+  const substituteRepo =
+    data?.repo_status === "gone" &&
+    data.repo_url &&
+    !data.repo_url.toLowerCase().endsWith(`/${data.repo_full_name.toLowerCase()}`)
+      ? data.repo_url.replace(/^https?:\/\/github\.com\//, "")
+      : null;
 
   return (
     <>
@@ -300,6 +309,13 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
               {lang === "zh"
                 ? `${data.repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`
                 : `${data.repo_full_name} returns 404 on GitHub — deleted, or its owner's account was removed. The data here is our last successful snapshot.`}
+              {substituteRepo ? (
+                <span className="block mt-1.5">
+                  {lang === "zh"
+                    ? `下方链接指向 ${substituteRepo} —— 那是另一位作者解决同类问题的独立项目,并非本项目的延续。`
+                    : `The link below points to ${substituteRepo}, a separate project by a different author that solves the same problem — not a continuation of this one.`}
+                </span>
+              ) : null}
             </div>
           ) : null}
 

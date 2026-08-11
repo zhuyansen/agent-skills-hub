@@ -168,13 +168,31 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // pos 4.3 for its own name — and nowhere else on the web answers it. What we
   // owe the visitor is an honest label, not a link that dumps them on a 404.
   const isGone = skill.repo_status === "gone";
+  // A dead entry whose repo_url was retargeted at a DIFFERENT repository. The
+  // two changes that produce this shipped days apart and neither knew about the
+  // other, so /skill/Manavarya09/design-extract/ ended up saying "this repo
+  // returns 404" directly above a "View on GitHub" button pointing at
+  // arvindrk/extract-design-system — a live repo by a different author, with
+  // nothing marking it as a different project. A reader can only conclude the
+  // project moved there. It did not: different owner, different creation date,
+  // different name, 3,334 stars against 167. Implying succession is a worse
+  // failure for a trust-layer site than either the dead link or the bare label.
+  const substitute = isGone && repo_url &&
+    !repo_url.toLowerCase().endsWith(`/${repo_full_name.toLowerCase()}`)
+    ? repo_url.replace(/^https?:\/\/github\.com\//, "")
+    : null;
+  const goneEn = `— ${repo_full_name} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.`;
+  const goneZh = `—— ${repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`;
+  const subEn = substitute
+    ? ` The GitHub link below points to ${substitute}, a SEPARATE project by a different author that solves the same problem — not a continuation of this one.`
+    : "";
+  const subZh = substitute
+    ? ` 下方 GitHub 链接指向 ${substitute},那是另一位作者解决同类问题的**独立项目**,并非本项目的延续。`
+    : "";
   const goneBanner = isGone
     ? `<div style="margin:16px 0;padding:12px 16px;border:1px solid #fecaca;background:#fef2f2;border-radius:8px;font-size:14px;color:#991b1b">
         <strong ${biAttrs("Repository no longer available", "仓库已下架")}>Repository no longer available</strong>
-        <span ${biAttrs(
-          `— ${repo_full_name} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.`,
-          `—— ${repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`,
-        )}>&mdash; ${esc(repo_full_name)} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.</span>
+        <span ${biAttrs(goneEn + subEn, goneZh + subZh)}>${esc(goneEn + subEn)}</span>
       </div>`
     : "";
   // /audit/ page exists only for graded skills (stars >= 50 + a real grade).
@@ -512,7 +530,11 @@ ${faqLd}
 
       <!-- Links -->
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
-        <a href="${esc(ghUrl)}" style="display:inline-block;padding:8px 20px;background:#1e293b;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">View on GitHub &rarr;</a>
+        <a href="${esc(ghUrl)}" style="display:inline-block;padding:8px 20px;background:#1e293b;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" ${
+          substitute
+            ? biAttrs(`View alternative: ${substitute} →`, `查看替代项目:${substitute} →`)
+            : biAttrs("View on GitHub →", "在 GitHub 上查看 →")
+        }>${substitute ? `View alternative: ${esc(substitute)} &rarr;` : "View on GitHub &rarr;"}</a>
         <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">Browse ${esc(catLabel)} tools</a>
       </div>
     </div>
