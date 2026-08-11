@@ -98,11 +98,22 @@ def main():
     #    decide what to build next. 🎯 marks our custom events. ──
     ga_ev = load("ga/out/events.json")
     if ga_ev:
+        # The enterprise funnel, in order. Instrumenting events without adding
+        # them here makes them invisible — exactly what happened to the five
+        # added on 2026-08-10: they shipped, fired, and never reached the report.
+        # Anything new goes in the same commit as the trackEvent call.
         watch = {
             "install_command_copied", "audit_run", "enterprise_cta_click",
             "newsletter_subscribe", "audit_pro_upsell_click",
+            "free_tier_click",
+            "enterprise_lead_attempt", "enterprise_lead_submitted",
+            "enterprise_lead_invalid", "enterprise_lead_failed",
             # deep_audit_checkout/mailto retired 2026-07-13 ($49 → Pro upsell)
         }
+        # Print the paid funnel as a chain so a drop-off is visible as a shape,
+        # not as five numbers the reader has to order themselves.
+        FUNNEL = ["enterprise_cta_click", "enterprise_lead_attempt",
+                  "enterprise_lead_submitted"]
         custom = [r for r in ga_ev if r.get("eventName") in watch]
         # Bot-pollution flag (scar 2026-07-16): 851 audit_run/day from one
         # Singapore DC scraper poisoned the funnel KPI. If a single country
@@ -124,7 +135,15 @@ def main():
                 print(f"- 🎯 **{r['eventName']}** — {r['eventCount']} 次 / {r['totalUsers']} 人{flag}")
         else:
             print("- (自定义转化事件尚无数据)")
-        missing = watch - {r.get("eventName") for r in ga_ev}
+        counts = {r.get("eventName"): int(r["eventCount"]) for r in ga_ev}
+        chain = " → ".join(f"{e.replace('enterprise_', '').replace('lead_', '')} {counts.get(e, 0)}"
+                           for e in FUNNEL)
+        print(f"\n**企业漏斗**: {chain}")
+        if counts.get("enterprise_lead_invalid"):
+            print(f"  ↳ 被必填项挡回: {counts['enterprise_lead_invalid']} 次")
+        if counts.get("enterprise_lead_failed"):
+            print(f"  ↳ ⚠️ 写入失败: {counts['enterprise_lead_failed']} 次 —— 这是故障不是没需求")
+        missing = watch - set(counts)
         if missing:
             print(f"- 未触发: {', '.join(sorted(missing))}")
 

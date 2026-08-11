@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { CopyablePre } from "../components/CopyableCode";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import {
@@ -112,6 +113,7 @@ export function BookChapterPage() {
               rehypeSlug,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
+            components={{ pre: CopyablePre }}
           >
             {markdown}
           </ReactMarkdown>
