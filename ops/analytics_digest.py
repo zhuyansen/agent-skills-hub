@@ -178,6 +178,29 @@ def main():
         # bot-inflated (~5.5x on 2026-08-10) and Plausible has been 402 since
         # 08-04. This sat unread in the payload for six days while the digest
         # kept saying no trustworthy baseline existed.
+        # Per-session, not total. Totals rank by traffic, so a page with 346
+        # sessions and normal friction (0.4 dead clicks each) outranks one where
+        # a single session racked up 54 — and the second is the actual bug. Every
+        # real defect found so far had this signature: /author/asgeirtj/ at 26
+        # in one session, /book/ch02 at 54. The aggregate rate never showed them.
+        by_url = load("clarity/out/by-url.json") or []
+        dead = next((m for m in by_url if m.get("metricName") == "DeadClickCount"), None)
+        if dead:
+            rows = []
+            for r in dead.get("information", []):
+                n, sess = int(r.get("subTotal", 0) or 0), int(r.get("sessionsCount", 0) or 0)
+                if n >= 10 and sess:
+                    rows.append((n / sess, n, sess, r["Url"].replace("https://agentskillshub.top", "")))
+            rows.sort(reverse=True)
+            if rows:
+                print("\n**摩擦最集中的页面(按每会话,>=10次才计)**\n")
+                print("| 页面 | 每会话 | 次数 | 会话 |")
+                print("|---|--:|--:|--:|")
+                for per, n, sess, url in rows[:6]:
+                    flag = " ⚠️" if per >= 5 else ""
+                    print(f"| {url[:46]} | **{per:.1f}**{flag} | {n} | {sess} |")
+                print("\n*每会话 >=5 次通常是页面缺陷,不是流量大;拿这一列去 Clarity 看回放。*\n")
+
         traffic = next((m for m in ov if m.get("metricName") == "Traffic"), None)
         if traffic and traffic.get("information"):
             t = traffic["information"][0]
