@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkillDetail, fetchSkillBySlug } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
@@ -33,7 +33,6 @@ export function SkillDetailPage() {
     owner?: string;
     repo?: string;
   }>();
-  const navigate = useNavigate();
   const [detail, setDetail] = useState<SkillDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -63,13 +62,6 @@ export function SkillDetailPage() {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [id, owner, repo]);
-
-  const handleNavigateSkill = useCallback(
-    (skillId: number) => {
-      navigate(`/skill/${skillId}/`);
-    },
-    [navigate],
-  );
 
   if (loading) {
     return (
@@ -445,10 +437,15 @@ export function SkillDetailPage() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {detail.compatible_skills.map((cs) => (
-                <div
+                // A real <Link>, not a div+navigate(): the old handler built
+                // /skill/<numeric-id>/, which React Router renders on a
+                // client-side hop but GitHub Pages 404s on any direct load —
+                // so refreshing, sharing or opening in a new tab broke. A link
+                // also restores cmd-click, right-click-copy, and crawlability.
+                <Link
                   key={cs.skill_id}
-                  onClick={() => handleNavigateSkill(cs.skill_id)}
-                  className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  to={`/skill/${cs.repo_full_name}/`}
+                  className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors no-underline"
                 >
                   <div className="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">
                     {cs.skill_score.toFixed(0)}
@@ -464,7 +461,7 @@ export function SkillDetailPage() {
                   <span className="text-xs text-green-600 dark:text-green-400 font-medium whitespace-nowrap">
                     {(cs.compatibility_score * 100).toFixed(0)}%
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

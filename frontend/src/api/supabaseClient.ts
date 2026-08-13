@@ -304,7 +304,7 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
     const ids = comps.map((c) => c.compatible_skill_id);
     const { data: others } = await sb
       .from("skills")
-      .select("id, repo_name, score")
+      .select("id, repo_full_name, repo_name, score")
       .in("id", ids);
 
     const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
@@ -313,6 +313,7 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
       if (other) {
         compatible_skills.push({
           skill_id: other.id,
+          repo_full_name: other.repo_full_name,
           skill_name: other.repo_name,
           skill_score: other.score ?? 0,
           compatibility_score: c.compatibility_score,
@@ -349,7 +350,7 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
     const ids = comps.map((c) => c.compatible_skill_id);
     const { data: others } = await sb
       .from("skills")
-      .select("id, repo_name, score")
+      .select("id, repo_full_name, repo_name, score")
       .in("id", ids);
 
     const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
@@ -358,6 +359,7 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
       if (other) {
         compatible_skills.push({
           skill_id: other.id,
+          repo_full_name: other.repo_full_name,
           skill_name: other.repo_name,
           skill_score: other.score ?? 0,
           compatibility_score: c.compatibility_score,

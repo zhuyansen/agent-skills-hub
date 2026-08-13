@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchSkillDetail } from "../api/client";
+import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import type { Skill, SkillDetail } from "../types/skill";
 import { QualityRadar } from "./QualityRadar";
@@ -267,14 +268,14 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
               </h4>
               <div className="space-y-2">
                 {detail.compatible_skills.map((cs) => (
-                  <div
+                  // Real link for the same reason as SkillDetailPage: the
+                  // numeric-id route only survives a client-side hop and 404s
+                  // on reload or share.
+                  <Link
                     key={cs.skill_id}
+                    to={`/skill/${cs.repo_full_name}/`}
                     onClick={() => onNavigateSkill?.(cs.skill_id)}
-                    className={`flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg ${
-                      onNavigateSkill
-                        ? "cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
-                        : ""
-                    }`}
+                    className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg no-underline cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                   >
                     <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">
                       {cs.skill_score.toFixed(0)}
@@ -291,7 +292,7 @@ export function SkillDetailPanel({ skill, onClose, onNavigateSkill }: Props) {
                       {(cs.compatibility_score * 100).toFixed(0)}%{" "}
                       {t("detail.match")}
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

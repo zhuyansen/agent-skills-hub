@@ -59,6 +59,10 @@ export interface Skill {
 
 export interface SkillCompositionItem {
   skill_id: number;
+  /** owner/repo — the canonical page slug. Without it these rows could only
+   *  build /skill/<numeric-id>/, which the SPA renders but GitHub Pages 404s
+   *  on any direct load, refresh or share. */
+  repo_full_name: string;
   skill_name: string;
   skill_score: number;
   compatibility_score: number;
