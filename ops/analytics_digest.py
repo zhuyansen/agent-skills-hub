@@ -106,13 +106,15 @@ def main():
             "install_command_copied", "audit_run", "enterprise_cta_click",
             "newsletter_subscribe", "audit_pro_upsell_click",
             "free_tier_click",
+            "enterprise_form_viewed", "enterprise_form_started",
             "enterprise_lead_attempt", "enterprise_lead_submitted",
             "enterprise_lead_invalid", "enterprise_lead_failed",
             # deep_audit_checkout/mailto retired 2026-07-13 ($49 → Pro upsell)
         }
         # Print the paid funnel as a chain so a drop-off is visible as a shape,
         # not as five numbers the reader has to order themselves.
-        FUNNEL = ["enterprise_cta_click", "enterprise_lead_attempt",
+        FUNNEL = ["enterprise_cta_click", "enterprise_form_viewed",
+                  "enterprise_form_started", "enterprise_lead_attempt",
                   "enterprise_lead_submitted"]
         custom = [r for r in ga_ev if r.get("eventName") in watch]
         # Bot-pollution flag (scar 2026-07-16): 851 audit_run/day from one
@@ -136,8 +138,9 @@ def main():
         else:
             print("- (自定义转化事件尚无数据)")
         counts = {r.get("eventName"): int(r["eventCount"]) for r in ga_ev}
-        chain = " → ".join(f"{e.replace('enterprise_', '').replace('lead_', '')} {counts.get(e, 0)}"
-                           for e in FUNNEL)
+        chain = " → ".join(
+            f"{e.replace('enterprise_', '').replace('lead_', '').replace('form_', '')} {counts.get(e, 0)}"
+            for e in FUNNEL)
         print(f"\n**企业漏斗**: {chain}")
         if counts.get("enterprise_lead_invalid"):
             print(f"  ↳ 被必填项挡回: {counts['enterprise_lead_invalid']} 次")

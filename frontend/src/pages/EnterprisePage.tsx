@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -61,8 +61,41 @@ export function EnterprisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const onChange = <K extends keyof FormState>(key: K, value: string) =>
+  // The funnel had nothing between "clicked a paid CTA" and "submitted".
+  // 2026-08-14 it reads cta_click 10 -> attempt 0, which is consistent with
+  // three completely different stories: they never reached the form, they saw
+  // it and walked away, or they started typing and gave up. Those need
+  // different fixes, so measure which one it is rather than guessing.
+  // Clarity says /enterprise/ carries 4.5 dead clicks per session across 19
+  // sessions, but its API stops at URL granularity and cannot say what was
+  // clicked — these two events are what turn that into an answerable question.
+  const formSeen = useRef(false);
+  const formStarted = useRef(false);
+  useEffect(() => {
+    const el = document.getElementById("demo-form");
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting) && !formSeen.current) {
+          formSeen.current = true;
+          trackEvent("enterprise_form_viewed", {});
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const onChange = <K extends keyof FormState>(key: K, value: string) => {
+    // First keystroke in any field = they engaged, not just landed.
+    if (!formStarted.current && value) {
+      formStarted.current = true;
+      trackEvent("enterprise_form_started", { first_field: String(key) });
+    }
     setForm((f) => ({ ...f, [key]: value }));
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
