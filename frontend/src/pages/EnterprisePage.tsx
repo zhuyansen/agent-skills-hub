@@ -74,6 +74,11 @@ export function EnterprisePage() {
   useEffect(() => {
     const el = document.getElementById("demo-form");
     if (!el) return;
+    // threshold 0, not 0.25. The form section is 2,340px tall, so the highest
+    // ratio a 667px phone viewport can ever reach is 0.29 — and a 568px one
+    // tops out at 0.243 and would NEVER fire. "Viewed" has to mean "entered
+    // the viewport", or the metric silently under-reports on exactly the
+    // devices most likely to struggle with a form this far down the page.
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting) && !formSeen.current) {
@@ -82,11 +87,34 @@ export function EnterprisePage() {
           io.disconnect();
         }
       },
-      { threshold: 0.25 },
+      { threshold: 0 },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  // Scroll explicitly instead of trusting the bare #demo-form hash jump. The
+  // form sits 33,236px down a 37,551px page — 88.5% of the way, ~46 screens on
+  // a laptop. 2026-08-15 the funnel read cta_click 14 -> form_viewed 4: ten of
+  // fourteen people asked to see it and never did. A native hash jump across
+  // that distance has too many ways to be silently swallowed (hash routing,
+  // late layout shifting the target, the browser restoring a prior position),
+  // and none of them are distinguishable from the outside. An explicit
+  // scrollIntoView removes the whole class of failure, and focusing the first
+  // field means arriving is unmistakable rather than something the reader has
+  // to notice.
+  const goToForm = (e: React.MouseEvent) => {
+    const el = document.getElementById("demo-form");
+    if (!el) return; // let the href do whatever it can
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", "#demo-form");
+    setTimeout(() => {
+      el.querySelector<HTMLInputElement>("input, textarea, select")?.focus({
+        preventScroll: true,
+      });
+    }, 600);
+  };
 
   const onChange = <K extends keyof FormState>(key: K, value: string) => {
     // First keystroke in any field = they engaged, not just landed.
@@ -201,9 +229,10 @@ export function EnterprisePage() {
               <div className="flex flex-wrap justify-center gap-3">
                 <a
                   href="#demo-form"
-                  onClick={() =>
-                    trackEvent("enterprise_cta_click", { cta: "hero" })
-                  }
+                  onClick={(e) => {
+                    trackEvent("enterprise_cta_click", { cta: "hero" });
+                    goToForm(e);
+                  }}
                   className="inline-flex items-center px-7 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
                 >
                   {c.hero.ctaPrimary}
@@ -443,7 +472,8 @@ export function EnterprisePage() {
                         isPaid ? "enterprise_cta_click" : "free_tier_click",
                         { cta: "pricing-card", tier: tier.name },
                       );
-                      window.location.href = ctaHref;
+                      if (isPaid) goToForm(e);
+                      else window.location.href = ctaHref;
                     }}
                     className={
                       tier.highlight
@@ -478,12 +508,13 @@ export function EnterprisePage() {
                     </ul>
                     <a
                       href={ctaHref}
-                      onClick={() =>
+                      onClick={(e) => {
                         trackEvent(
                           isPaid ? "enterprise_cta_click" : "free_tier_click",
                           { cta: "pricing", tier: tier.name },
-                        )
-                      }
+                        );
+                        if (isPaid) goToForm(e);
+                      }}
                       className={
                         tier.highlight
                           ? "block w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
