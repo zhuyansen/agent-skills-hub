@@ -407,11 +407,11 @@ async function main() {
   if (existsSync("dist/sitemap-daily.xml")) {
     sitemapFiles.push("sitemap-daily.xml");
   }
-  // sitemap-audit.xml is written by generate-audit-pages.mjs (runs earlier in
-  // the build chain); register it if present.
-  if (existsSync("dist/sitemap-audit.xml")) {
-    sitemapFiles.push("sitemap-audit.xml");
-  }
+  // sitemap-audit.xml is deliberately NOT generated or registered any more —
+  // 3,194 submitted URLs earned 9 impressions and 0 clicks over 90 days while
+  // consuming crawl budget. See the note in generate-audit-pages.mjs. The
+  // pages and their internal links are untouched; only the "crawl these first"
+  // request is withdrawn.
 
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);

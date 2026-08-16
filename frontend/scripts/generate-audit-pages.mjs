@@ -18,7 +18,7 @@
  * Run: node scripts/generate-audit-pages.mjs  (after vite build)
  */
 
-import { mkdirSync, writeFileSync, existsSync } from "fs";
+import { mkdirSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import {
   SITE, CATEGORY_LABELS, esc, starsK, formatDate, parseJsonArray,
@@ -316,19 +316,29 @@ async function main() {
   }
   console.log(`  ✓ ${written} audit pages → dist/audit/`);
 
-  // Sitemap for the audit pages (registered in the sitemap index separately).
-  const today = new Date().toISOString().slice(0, 10);
-  const urls = graded
-    .map(
-      (s) =>
-        `  <url><loc>${SITE}/audit/${esc(s.repo_full_name)}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>`,
-    )
-    .join("\n");
-  writeFileSync(
-    join(distDir, "sitemap-audit.xml"),
-    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
-  );
-  console.log("  ✓ sitemap-audit.xml");
+  // No sitemap for audit pages, deliberately.
+  //
+  // 90-day GSC measurement (2026-08-16): 3,194 audit URLs were submitted and
+  // earned 9 impressions and 0 clicks between them. Over the same window 43
+  // /best/ scenario pages produced 867 clicks — 71% of the site's total. The
+  // audit set is a large share of the 5,582 URLs Google reports as
+  // "discovered – currently not indexed": we were spending crawl budget asking
+  // it to prioritise pages it had already judged, and that judgement is a
+  // site-wide quality signal, not a per-page one.
+  //
+  // The pages STAY. They are the badge landing target and part of the trust
+  // narrative, they remain internally linked from every skill page, and Google
+  // can still crawl them. We just stop asking it to go first. If audit pages
+  // ever develop real search demand, re-add the file here and register it in
+  // generate-sitemap.mjs.
+  //
+  // Remove any file left by an earlier build, or the stale copy in dist/ keeps
+  // being served and registered after this change.
+  const staleAuditSitemap = join(distDir, "sitemap-audit.xml");
+  if (existsSync(staleAuditSitemap)) {
+    rmSync(staleAuditSitemap);
+    console.log("  ✓ removed stale sitemap-audit.xml");
+  }
 }
 
 main().catch((err) => {
