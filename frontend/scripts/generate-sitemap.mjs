@@ -3,7 +3,7 @@
  *
  * Changes from V2 (2026-04-29):
  *   - sitemap-top.xml threshold: stars >= 100 → stars >= 500
- *   - sitemap-authors.xml threshold: all 500 authors → only total_stars >= 1000
+ *   - sitemap-authors.xml: WITHDRAWN 2026-08-16 (0.052 clicks per submitted URL)
  *     OR ≥ 5 skills (~50-150 authors)
  *   - Reason: GSC showed 4,592 "Discovered – not indexed" pages — Google's
  *     quality bar exceeded average page quality. Goal: shrink sitemap from
@@ -17,13 +17,13 @@
  *   dist/sitemap-mid.xml       — SKIPPED (stars 50-499 reachable via internal links)
  *   dist/sitemap-scenarios.xml — /best/{slug}/ pages
  *   dist/sitemap-comparisons.xml — /compare/{slug}/ pages
- *   dist/sitemap-authors.xml   — /author/{username}/ for total_stars >= 1000 OR ≥5 skills
+ *   (no author sitemap — pages stay live and linked, just not prioritised for crawl)
  *   dist/sitemap-book.xml      — /book/ + 12 chapters + 4 appendices
  *
  * Run: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync, readdirSync, existsSync } from "fs";
+import { writeFileSync, readdirSync, existsSync, rmSync } from "fs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -324,36 +324,31 @@ async function main() {
     console.log(`sitemap-blog.xml: skipped (${e.message})`);
   }
 
-  // 6a. sitemap-authors.xml — top-N author aggregation pages (/author/{username}/)
-  // 2026-04-29 update: tightened from 500 → only authors with total_stars >= 1000
-  // OR ≥ 5 skills (combined the stars + prolific signal). Goal: redirect Google's
-  // crawl budget to ~50-150 high-signal author pages.
-  let authorCount = 0;
-  try {
-    const { readFileSync: rfs, existsSync } = await import("fs");
-    if (existsSync("dist/_authors-manifest.json")) {
-      const manifest = JSON.parse(rfs("dist/_authors-manifest.json", "utf-8"));
-      const filtered = manifest.filter(
-        (a) => a.total_stars >= 1000 || (a.skill_count && a.skill_count >= 5),
-      );
-      const authorEntries = filtered.map((a) => {
-        // Priority scales with total_stars: 5K+ → 0.80, 1K-5K → 0.70, rest → 0.65
-        const priority = a.total_stars >= 5000 ? "0.80" : a.total_stars >= 1000 ? "0.70" : "0.65";
-        // Orgs live under /organization/ (their canonical); people under /author/.
-        const ns = a.is_org ? "organization" : "author";
-        return `  <url>
-    <loc>${SITE}/${ns}/${encodeURIComponent(a.author_name)}/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>${priority}</priority>
-    <lastmod>${today}</lastmod>
-  </url>`;
-      });
-      writeFileSync("dist/sitemap-authors.xml", wrapUrlset(authorEntries));
-      authorCount = authorEntries.length;
-      console.log(`sitemap-authors.xml: ${authorCount} URLs (filtered from ${manifest.length})`);
-    }
-  } catch (e) {
-    console.log(`sitemap-authors.xml: skipped (${e.message})`);
+  // 6a. Author pages are deliberately NOT in the sitemap.
+  //
+  // 90-day GSC measurement (2026-08-16): 500 submitted author URLs produced 26
+  // clicks — 0.052 clicks per submitted URL, against 10.2 for the 85 /best/
+  // scenario pages. That is a 196x gap, and the budget is finite: URL
+  // inspection showed /best/security-audit/ (37 internal links) and
+  // /best/mcp-browser/ (39) as "unknown to Google, never crawled", while
+  // /best/telegram-bot/ with 3 links is indexed and earning 9,548 impressions.
+  // Internal linking had no explanatory power — the pages Google never reached
+  // simply lost the crawl-budget auction, and author pages were bidding.
+  //
+  // This was already tightened once (2026-04-29, 500 → stars>=1000 or >=5
+  // skills) and the return stayed flat, which is the signal that the problem is
+  // the page type, not the threshold.
+  //
+  // The pages STAY: they are the creator-flywheel surface, every master/org has
+  // a shareable URL, skill pages link to them, and they remain crawlable. Only
+  // the "crawl these first" request is withdrawn. Restore by reinstating this
+  // block and the sitemapFiles.push below.
+  const authorCount = 0;
+  // A stale file from an earlier build would keep being served and counted;
+  // drop it explicitly rather than relying on dist/ being clean.
+  if (existsSync("dist/sitemap-authors.xml")) {
+    rmSync("dist/sitemap-authors.xml");
+    console.log("sitemap-authors.xml: removed (withdrawn from sitemap)");
   }
 
   // 6. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
@@ -396,7 +391,7 @@ async function main() {
     sitemapFiles.push("sitemap-comparisons.xml");
   }
   if (authorCount > 0) {
-    sitemapFiles.push("sitemap-authors.xml");
+  // (author sitemap withdrawn — see 6a)
   }
   if (bookCount > 0) {
     sitemapFiles.push("sitemap-book.xml");
@@ -416,8 +411,13 @@ async function main() {
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
-  const totalUrls = 1 + catsWithSkills.length + indexedSkills.length + scenarioCount + comparisonCount + authorCount + bookCount;
-  console.log(`Total sitemap URLs: ${totalUrls} (indexed: top ${topSkills.length} + mid ${midSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount} + book ${bookCount}, excluded ${noindexCount} low-quality pages)`);
+  // Count what is actually EMITTED, not what qualified. This line used to add
+  // midSkills (6,963 URLs deliberately skipped) into the "indexed" total and
+  // reported 9,896 when 2,974 were submitted — a build log that overstates the
+  // ask by 3.3x is how crawl-budget problems stay invisible.
+  const totalUrls = 1 + catsWithSkills.length + topSkills.length + scenarioCount + comparisonCount + authorCount + bookCount;
+  console.log(`Total sitemap URLs SUBMITTED: ${totalUrls} (top ${topSkills.length} + categories ${catsWithSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount} + book ${bookCount})`);
+  console.log(`  withheld on purpose: mid ${midSkills.length} (50-499★) + audit + authors — pages stay live, just not prioritised for crawl`);
 }
 
 main().catch(console.error);
