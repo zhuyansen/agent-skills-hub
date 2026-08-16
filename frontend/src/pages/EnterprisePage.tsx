@@ -532,106 +532,15 @@ export function EnterprisePage() {
               </p>
             </section>
 
-            {/* ── VERIFIED CREATOR (folded from /verified-creator/) ── */}
-            <section className="mb-20">
-              <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-8 sm:p-10">
-                <div className="max-w-3xl mx-auto text-center">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                    {c.creator.h2}
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-300 mb-7 max-w-2xl mx-auto leading-relaxed">
-                    {c.creator.sub}
-                  </p>
-                  <ul className="grid sm:grid-cols-2 gap-3 text-left max-w-2xl mx-auto mb-8">
-                    {c.creator.benefits.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
-                      >
-                        <span className="text-emerald-500 flex-none mt-0.5">
-                          ✓
-                        </span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    to="/verified-creator/apply/"
-                    className="inline-block px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
-                  >
-                    {c.creator.cta}
-                  </Link>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
-                    {c.creator.note}
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* ── WHY TRUST US ──────────────────────────────────── */}
-            <section className="mb-20">
-              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-3">
-                {c.trust.h2}
-              </h2>
-              <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-                {c.trust.sub}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                {c.trust.items.map((item) => (
-                  <div
-                    key={item.title}
-                    className="p-6 rounded-xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
-                  >
-                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="text-center">
-                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-4">
-                  {c.trust.orgsLabel}
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-gray-400 dark:text-gray-500">
-                  {ENTERPRISE_ORGS.map((org) => (
-                    <span key={org}>{org}</span>
-                  ))}
-                </div>
-                <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-3">
-                  {c.trust.orgsNote}
-                </p>
-              </div>
-            </section>
-
-            {/* ── FAQ ───────────────────────────────────────────── */}
-            <section className="mb-20">
-              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-                {c.faq.h2}
-              </h2>
-              <div className="max-w-3xl mx-auto space-y-3">
-                {c.faq.items.map((item, i) => (
-                  <details
-                    key={i}
-                    className="group p-4 rounded-lg border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
-                  >
-                    <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between items-center">
-                      <span>{item.q}</span>
-                      <span className="text-indigo-600 group-open:rotate-45 transition-transform text-xl">
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {item.a}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </section>
-
-            {/* ── DEMO FORM ─────────────────────────────────────── */}
+            {/* ── DEMO FORM ─── moved directly beneath PRICING ───────
+                 It used to sit at 88.5% of a 37,551px page, 8,340px below
+                 the pricing block, behind the creator off-ramp, the trust
+                 section and the FAQ. The funnel read cta_click 14 →
+                 form_viewed 4: ten of fourteen people asked to see it and
+                 never did. Intent peaks the moment someone finishes reading
+                 a price, so the form answers it there instead of after four
+                 more screens — and the off-ramp for non-buyers now comes
+                 AFTER the form, not between the price and the ask. */}
             <section
               id="demo-form"
               className="max-w-3xl mx-auto mb-20 p-8 rounded-2xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
@@ -769,6 +678,106 @@ export function EnterprisePage() {
                 </form>
               )}
             </section>
+
+            {/* ── VERIFIED CREATOR (folded from /verified-creator/) ── */}
+            <section className="mb-20">
+              <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 p-8 sm:p-10">
+                <div className="max-w-3xl mx-auto text-center">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                    {c.creator.h2}
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-7 max-w-2xl mx-auto leading-relaxed">
+                    {c.creator.sub}
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-3 text-left max-w-2xl mx-auto mb-8">
+                    {c.creator.benefits.map((b) => (
+                      <li
+                        key={b}
+                        className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
+                      >
+                        <span className="text-emerald-500 flex-none mt-0.5">
+                          ✓
+                        </span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/verified-creator/apply/"
+                    className="inline-block px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
+                  >
+                    {c.creator.cta}
+                  </Link>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                    {c.creator.note}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* ── WHY TRUST US ──────────────────────────────────── */}
+            <section className="mb-20">
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-3">
+                {c.trust.h2}
+              </h2>
+              <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                {c.trust.sub}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                {c.trust.items.map((item) => (
+                  <div
+                    key={item.title}
+                    className="p-6 rounded-xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
+                  >
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-4">
+                  {c.trust.orgsLabel}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-gray-400 dark:text-gray-500">
+                  {ENTERPRISE_ORGS.map((org) => (
+                    <span key={org}>{org}</span>
+                  ))}
+                </div>
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-3">
+                  {c.trust.orgsNote}
+                </p>
+              </div>
+            </section>
+
+            {/* ── FAQ ───────────────────────────────────────────── */}
+            <section className="mb-20">
+              <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+                {c.faq.h2}
+              </h2>
+              <div className="max-w-3xl mx-auto space-y-3">
+                {c.faq.items.map((item, i) => (
+                  <details
+                    key={i}
+                    className="group p-4 rounded-lg border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)]"
+                  >
+                    <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between items-center">
+                      <span>{item.q}</span>
+                      <span className="text-indigo-600 group-open:rotate-45 transition-transform text-xl">
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {item.a}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
           </div>
         </main>
 
