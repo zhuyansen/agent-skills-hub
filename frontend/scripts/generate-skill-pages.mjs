@@ -209,13 +209,61 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
   // Full name goes first so Google SERP shows it at line 1.
   const title = `${repo_full_name} — security grade & quality score | Agent Skills Hub`;
-  // SEO: meta description ≤ 160 chars with CTA tail.
-  // aaron-he-zhu/seo-geo-claude-skills audit flagged missing CTA verb.
-  const descTrunc = description ? description.slice(0, 95) : "";
-  const descEllipsis = description && description.length > 95 ? "..." : "";
-  const metaDesc = description
-    ? `${descTrunc}${descEllipsis} Open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · security-graded on Agent Skills Hub.`
-    : `${repo_name} — open-source ${catLabel.toLowerCase()} by ${author_name} · ${starsK(stars)}★ · security-graded & quality-scored on Agent Skills Hub.`;
+  // Lead the snippet with the VERDICT, not the repo's own blurb.
+  //
+  // Nearly every query these pages win is what Google's rater guidelines call a
+  // Website query — specifically an "imperfect URL query" (§12.7.3): strings
+  // like [manavarya09/design-extract] or [ppt master codex] that look like a
+  // URL but do not load. The user has one specific page in mind, and its target
+  // is the GitHub repo, which will always outrank us for it.
+  //
+  // §20.0 says what the runner-up slot is for: "Results that give reviews and
+  // reputation information can be very helpful for a URL query" — a review site
+  // rates Highly Meets for [potterybarn.com]. And it draws the line we were on
+  // the wrong side of: "websites that offer usage statistics about a website
+  // are not usually helpful results for URL queries."
+  //
+  // The old description was exactly that — the repo's own blurb (which GitHub
+  // already shows, so zero added value) plus a star count. It never stated the
+  // one thing only we have. The grade goes first now; the blurb only fills the
+  // remaining room.
+  const GRADE_COPY = {
+    safe: "SAFE",
+    caution: "CAUTION",
+    unsafe: "UNSAFE",
+    reject: "REJECT",
+  };
+  const gradeLabel = GRADE_COPY[security_grade];
+  const qualityPart = typeof quality_score === "number"
+    ? ` · quality ${Math.round(quality_score)}/100`
+    : "";
+  // A deleted repo must not be advertised as SAFE. That grade describes a
+  // snapshot of code that no longer exists, and this is the highest-CTR page
+  // type we have — /skill/Manavarya09/design-extract/ runs 18.6% at position
+  // 3.7 precisely because it answers "what happened to this repo?" honestly.
+  // Saying "SAFE" in the snippet and "no longer available" on the page would
+  // trade that away.
+  const verdict = isGone
+    ? `Repository deleted from GitHub. Last audit before removal: ${gradeLabel || "ungraded"}${qualityPart}.`
+    : gradeLabel
+      ? `Security grade: ${gradeLabel}${qualityPart}.`
+      : `Not yet audited${qualityPart}.`;
+  // Measure the real prefix rather than estimating it — the previous arithmetic
+  // undercounted the fixed clause and produced 185-189 char descriptions, which
+  // Google truncates around 155.
+  // Build in priority order and stop when the budget runs out, so a long repo
+  // name can never push the description past what Google shows (~155). The
+  // verdict is never sacrificed; the clause after it is, then the blurb.
+  const LIMIT = 155;
+  const clause = isGone
+    ? ` Archived record of ${repo_full_name} on Agent Skills Hub.`
+    : ` Independent audit of ${repo_full_name} against 11 red-flag categories.`;
+  let metaDesc = verdict;
+  if (metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
+  const room = LIMIT - metaDesc.length - 1;
+  if (description && room > 25) {
+    metaDesc += ` ${description.slice(0, room).trim()}${description.length > room ? "…" : ""}`;
+  }
 
   // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
