@@ -586,6 +586,47 @@ export function EnterprisePage() {
                       required
                       maxLength={200}
                     />
+                  </div>
+
+                  <FormTextarea
+                    label={c.form.fields.useCase}
+                    placeholder={c.form.fields.useCasePlaceholder}
+                    value={form.use_case}
+                    onChange={(v) => onChange("use_case", v)}
+                    required
+                    maxLength={2000}
+                  />
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  </div>
+
+
+                  {error && (
+                    <div className="p-3 rounded-md bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-sm text-red-700 dark:text-red-400">
+                      {error}
+                    </div>
+                  )}
+
+
+                  {/* Everything past the four required fields is collapsed.
+                      The CTA promises a 30-minute conversation; the form was
+                      behaving like a procurement questionnaire, asking for
+                      budget and compliance requirements before a word had been
+                      exchanged. Measured over three days: 16 CTA clicks, 9
+                      people reached the form, and enterprise_form_started
+                      stayed at 0 — nobody typed a single character. No field is
+                      removed and nothing stops being captured; the first screen
+                      just stops looking like work. */}
+                  <details className="group rounded-xl border border-gray-200 dark:border-[var(--border)] px-4 py-3">
+                    <summary className="cursor-pointer list-none text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center justify-between">
+                      <span>
+                        {lang === "zh"
+                          ? "补充信息(可选,能让这次沟通更有针对性)"
+                          : "Add context (optional — helps us prepare)"}
+                      </span>
+                      <span className="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
+                    </summary>
+                    <div className="mt-4 space-y-4">
                     <FormField
                       label={c.form.fields.role}
                       placeholder={c.form.fields.rolePlaceholder}
@@ -607,18 +648,6 @@ export function EnterprisePage() {
                       onChange={(v) => onChange("industry", v)}
                       maxLength={100}
                     />
-                  </div>
-
-                  <FormTextarea
-                    label={c.form.fields.useCase}
-                    placeholder={c.form.fields.useCasePlaceholder}
-                    value={form.use_case}
-                    onChange={(v) => onChange("use_case", v)}
-                    required
-                    maxLength={2000}
-                  />
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       label={c.form.fields.stack}
                       placeholder={c.form.fields.stackPlaceholder}
@@ -647,8 +676,6 @@ export function EnterprisePage() {
                       options={c.form.budgets}
                       lang={lang}
                     />
-                  </div>
-
                   <FormTextarea
                     label={c.form.fields.message}
                     placeholder={c.form.fields.messagePlaceholder}
@@ -657,12 +684,8 @@ export function EnterprisePage() {
                     maxLength={2000}
                     rows={3}
                   />
-
-                  {error && (
-                    <div className="p-3 rounded-md bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-sm text-red-700 dark:text-red-400">
-                      {error}
                     </div>
-                  )}
+                  </details>
 
                   <button
                     type="submit"
