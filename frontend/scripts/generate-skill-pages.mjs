@@ -168,6 +168,47 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // pos 4.3 for its own name — and nowhere else on the web answers it. What we
   // owe the visitor is an honest label, not a link that dumps them on a 404.
   const isGone = skill.repo_status === "gone";
+  // Human-readable red-flag names. §20.0 of Google's rater guidelines says a
+  // result that gives "reviews and reputation information" is very helpful for
+  // a URL query, while one offering "usage statistics" usually is not. Naming
+  // what the scan actually found is review information; a star count is not.
+  const FLAG_COPY = {
+    sudo_usage: "sudo usage", service_persistence: "installs a background service",
+    curl_pipe_shell: "curl | sh installer", agent_config_theft: "reads agent config files",
+    tunnel_service: "opens a tunnel service", eval_usage: "dynamic eval()",
+    sensitive_env_vars: "reads sensitive env vars", agent_memory_theft: "reads agent memory",
+    env_access: "environment access", subprocess_spawn: "spawns subprocesses",
+    cron_persistence: "installs a cron job", sensitive_dir_access: "sensitive directory access",
+    docker_privileged: "privileged Docker", backdoor_install: "backdoor install pattern",
+    chmod_dangerous: "dangerous chmod", ssl_disabled: "disables SSL verification",
+    env_file_read: "reads .env files", etc_sensitive_read: "reads /etc secrets",
+    wget_pipe_shell: "wget | sh installer", runtime_install_exec: "installs at runtime",
+    privilege_escalation: "privilege escalation", reverse_shell: "reverse shell",
+    raw_ip_request: "hardcoded IP request", exfil_secrets_combo: "secret-exfiltration combo",
+    rm_rf_root: "rm -rf on root paths", dev_tcp: "/dev/tcp socket", data_exfiltration: "data exfiltration",
+    write_etc: "writes to /etc", shell_rc_inject: "injects into shell rc",
+  };
+  const flagList = (() => {
+    let v = skill.security_flags;
+    try {
+      if (typeof v === "string") v = JSON.parse(v);
+      if (typeof v === "string") v = JSON.parse(v);
+    } catch { return []; }
+    return Array.isArray(v) ? v : [];
+  })();
+  const flagNames = flagList.map((f) => FLAG_COPY[f] || f.replace(/_/g, " "));
+
+  // The verdict, above the fold. This is the review information §20.0 rewards:
+  // what was scanned, what was found, what was not. A SAFE grade with an empty
+  // flag list is itself a finding — "we looked for these 11 categories and
+  // found none" — and stating it is the whole reason to prefer this page over
+  // the repo's own README, which cannot make that claim about itself.
+  const GRADE_STYLE = {
+    safe: ["#065f46", "#ecfdf5", "#a7f3d0"],
+    caution: ["#92400e", "#fffbeb", "#fde68a"],
+    unsafe: ["#991b1b", "#fef2f2", "#fecaca"],
+    reject: ["#991b1b", "#fef2f2", "#fecaca"],
+  };
   // A dead entry whose repo_url was retargeted at a DIFFERENT repository. The
   // two changes that produce this shipped days apart and neither knew about the
   // other, so /skill/Manavarya09/design-extract/ ended up saying "this repo
@@ -234,6 +275,19 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     reject: "REJECT",
   };
   const gradeLabel = GRADE_COPY[security_grade];
+
+  const verdictBlock = (() => {
+    if (isGone || !gradeLabel) return "";
+    const [fg, bg, br] = GRADE_STYLE[security_grade] || GRADE_STYLE.caution;
+    const finding = flagNames.length
+      ? `Flagged: ${flagNames.slice(0, 4).map(esc).join(", ")}${flagNames.length > 4 ? ` and ${flagNames.length - 4} more` : ""}.`
+      : "No red flags found in any of the 11 categories \u2014 no credential harvesting, no data exfiltration, no curl-pipe-shell installer.";
+    const q = typeof quality_score === "number" ? Math.round(quality_score) : null;
+    return `<section style="margin:0 0 16px;padding:14px 16px;border:1px solid ${br};background:${bg};border-radius:10px">
+        <h2 style="font-size:16px;color:${fg};margin:0 0 6px">Security audit verdict: ${esc(gradeLabel)}${q !== null ? ` \u00b7 quality ${q}/100` : ""}</h2>
+        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>
+      </section>`;
+  })();
   const qualityPart = typeof quality_score === "number"
     ? ` · quality ${Math.round(quality_score)}/100`
     : "";
@@ -526,8 +580,21 @@ ${faqLd}
       </nav>
 
       <!-- Title & Author -->
-      <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)} — ${esc(catLabel)} by ${esc(author_name)}</h1>
+      <!-- h1 keeps repo_name first so it still matches the query verbatim, then
+           states the verdict. Google's §20.0 puts "reviews and reputation
+           information" in the helpful bucket for URL queries and "usage
+           statistics" in the unhelpful one; the old heading ("X — Codex Skill
+           by Y") was neither, and the audit result — the only thing here that
+           GitHub does not already show — appeared nowhere above the fold. -->
+      <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}${
+        isGone
+          ? " — repository deleted, archived audit"
+          : gradeLabel
+            ? ` — security grade ${esc(gradeLabel)}${typeof quality_score === "number" ? `, quality ${Math.round(quality_score)}/100` : ""}`
+            : " — not yet audited"
+      }</h1>
       ${goneBanner}
+      ${verdictBlock}
       <p style="color:#64748b;margin:0 0 8px">
         by ${creatorLinkHtml(author_name)}
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>

@@ -1,0 +1,190 @@
+{
+ "window": [
+  "2026-07-17",
+  "2026-08-14"
+ ],
+ "captured": "2026-08-17",
+ "metric": "imperfect URL queries → /skill/ pages, quoted-operator queries excluded",
+ "queries": 512,
+ "impressions": 4595,
+ "clicks": 32,
+ "ctr_pct": 0.7,
+ "avg_position": 14.54,
+ "top": [
+  {
+   "query": "laravel pao",
+   "impressions": 348,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 8.4
+  },
+  {
+   "query": "laravel/pao",
+   "impressions": 310,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 8.4
+  },
+  {
+   "query": "safishamsi/graphify",
+   "impressions": 251,
+   "clicks": 1,
+   "ctr": 0.4,
+   "position": 7.5
+  },
+  {
+   "query": "safishamsi graphify",
+   "impressions": 169,
+   "clicks": 2,
+   "ctr": 1.18,
+   "position": 7.5
+  },
+  {
+   "query": "graphify codex",
+   "impressions": 160,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 9.6
+  },
+  {
+   "query": "videocaptioner",
+   "impressions": 143,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 7.1
+  },
+  {
+   "query": "octogent",
+   "impressions": 132,
+   "clicks": 1,
+   "ctr": 0.76,
+   "position": 6.5
+  },
+  {
+   "query": "super agent party",
+   "impressions": 111,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 7.7
+  },
+  {
+   "query": "ar9av/obsidian-wiki",
+   "impressions": 87,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 3.0
+  },
+  {
+   "query": "ningzimu/codex-ppt-skill",
+   "impressions": 57,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 3.5
+  },
+  {
+   "query": "phuryn/claude-usage",
+   "impressions": 57,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 2.4
+  },
+  {
+   "query": "moyin creator",
+   "impressions": 51,
+   "clicks": 1,
+   "ctr": 1.96,
+   "position": 5
+  },
+  {
+   "query": "samuraigpt/llm-wiki-agent",
+   "impressions": 48,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 2.6
+  },
+  {
+   "query": "graphify safishamsi",
+   "impressions": 45,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 8.4
+  },
+  {
+   "query": "manavarya09/design-extract",
+   "impressions": 42,
+   "clicks": 13,
+   "ctr": 30.95,
+   "position": 2.7
+  },
+  {
+   "query": "octogent claude",
+   "impressions": 38,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 5.5
+  },
+  {
+   "query": "site:agentskillshub.top",
+   "impressions": 35,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 25.7
+  },
+  {
+   "query": "site:agentskillshub.top",
+   "impressions": 34,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 41.4
+  },
+  {
+   "query": "graphify skill codex",
+   "impressions": 33,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 8.5
+  },
+  {
+   "query": "anton agent",
+   "impressions": 30,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 8.4
+  },
+  {
+   "query": "codex graphify",
+   "impressions": 30,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 10.1
+  },
+  {
+   "query": "cc gateway",
+   "impressions": 28,
+   "clicks": 1,
+   "ctr": 3.57,
+   "position": 13.3
+  },
+  {
+   "query": "llm wiki skill",
+   "impressions": 25,
+   "clicks": 1,
+   "ctr": 4.0,
+   "position": 13.4
+  },
+  {
+   "query": "ar9av",
+   "impressions": 25,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "query": "haowjy/creative-writing-skills",
+   "impressions": 24,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 6.0
+  }
+ ]
+}
