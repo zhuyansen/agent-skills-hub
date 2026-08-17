@@ -14,6 +14,7 @@ Usage (from backend venv):
 Output goes to stdout as aligned tables AND ops/gsc/out/*.json for AI analysis.
 """
 import json
+import re
 import os
 import sys
 from datetime import date, timedelta
@@ -88,7 +89,40 @@ def arg(flag, default):
     return type(default)(sys.argv[sys.argv.index(flag) + 1]) if flag in sys.argv else default
 
 
-def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT):
+# ── Search-operator queries ──────────────────────────────────────────────────
+# Rank trackers and competitive monitors query Google with operators; humans
+# essentially never do. Measured over 90 days on this property: 173 such
+# queries, 5,186 impressions, and exactly ZERO clicks — 13.3% of all
+# impressions. 153 of them are permutations of the same term
+# ("ppt-master" codex skill, "ppt-master" "codex" "skill", …), 95% landing on
+# /best/ppt-presentation/ — one party probing who ranks for ppt skills.
+#
+# We cannot stop third parties from searching. What we can stop is letting
+# their traffic distort our numbers, and it distorts three at once: impressions
+# up, CTR down, and average POSITION better than reality — operator queries face
+# far less competition, ranking ~5.2 against ~15.6 for real ones.
+#
+# Filtering here rather than in each consumer: the digest already excluded
+# quoted queries from one table while compare.json, opportunities.py and the
+# baselines all still counted them. One filter, applied at fetch, and every
+# downstream reader inherits clean data. The excluded rows are saved beside the
+# clean ones so the exclusion is auditable rather than invisible.
+OPERATOR_PATTERNS = (
+    re.compile(r'"'),                                   # exact-match quotes
+    re.compile(r"\b(site|inurl|intitle|intext|filetype):", re.I),
+    re.compile(r"(^|\s)-\w"),                            # term exclusion
+    re.compile(r"\*"),                                   # wildcard
+    re.compile(r"\bOR\b"),                              # explicit OR
+)
+
+
+def is_operator_query(q):
+    """True if the query uses a search operator — i.e. a tool, not a person."""
+    return any(p.search(q or "") for p in OPERATOR_PATTERNS)
+
+
+def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT,
+          include_operators=False):
     from urllib.parse import quote
     body = {
         "startDate": str(start),
@@ -99,7 +133,7 @@ def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT):
     if filters:
         body["dimensionFilterGroups"] = [{"filters": filters}]
     rows = api_post(svc, f"/sites/{quote(site, safe='')}/searchAnalytics/query", body).get("rows", [])
-    return [
+    out = [
         {
             **{d: r["keys"][i] for i, d in enumerate(dimensions)},
             "clicks": r["clicks"],
@@ -109,6 +143,17 @@ def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT):
         }
         for r in rows
     ]
+    # Only meaningful when the query text is present; a page- or date-dimensioned
+    # pull has nothing to filter on and passes through untouched.
+    if "query" in dimensions and not include_operators:
+        clean = [r for r in out if not is_operator_query(r["query"])]
+        dropped = len(out) - len(clean)
+        if dropped:
+            di = sum(r["impressions"] for r in out) - sum(r["impressions"] for r in clean)
+            dc = sum(r["clicks"] for r in out) - sum(r["clicks"] for r in clean)
+            print(f"  (剔除 {dropped} 个搜索操作符查询:曝光 {di:,},点击 {dc})", file=sys.stderr)
+        return clean
+    return out
 
 
 def table(rows, key, top=25):
@@ -147,6 +192,13 @@ def main():
         rows = query(svc, site, start, end, ["query"])
         table(rows, "query")
         save("queries", rows)
+        # Save what was excluded too. A filter nobody can inspect is just a
+        # different way of being wrong — this lets the digest state the size of
+        # the exclusion, and lets anyone check the detector is not eating real
+        # queries.
+        everything = query(svc, site, start, end, ["query"], include_operators=True)
+        operators = [r for r in everything if is_operator_query(r["query"])]
+        save("queries-operators", operators)
     elif cmd == "brand":
         # Brand-word monitor: are we #1 for our own name? Watch as awareness
         # grows (the copycat agentskillshub.dev + our github repo outrank the

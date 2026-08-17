@@ -58,15 +58,21 @@ def main():
         # at once: impressions up, CTR down, and average POSITION better than
         # reality (operator queries face less competition, ranking 5.2 against
         # 15.6 for real ones). An aggregate that mixes them in is unreadable.
-        bots = [r for r in q if '"' in r["query"]]
-        humans = [r for r in q if '"' not in r["query"]]
+        # queries.json is already operator-free — fetch_gsc.py filters at the
+        # source so compare.json, the baselines and opportunities.py all inherit
+        # the same clean set. The excluded rows are saved beside it; read them
+        # to state the size of the exclusion rather than re-deriving it here
+        # with a narrower rule than the fetcher uses.
+        bots = load("gsc/out/queries-operators.json") or []
+        humans = q
         if bots:
             bi = sum(r["impressions"] for r in bots)
-            ti = sum(r["impressions"] for r in q) or 1
             bc = sum(r["clicks"] for r in bots)
-            print(f"> 已剔除 **{len(bots)} 个带引号的机器查询**"
+            ti = (sum(r["impressions"] for r in q) + bi) or 1
+            print(f"> 已剔除 **{len(bots)} 个搜索操作符查询**"
                   f"(曝光 {bi:,},占 {bi/ti*100:.1f}%,点击 {bc})——"
-                  f"精确匹配操作符是排名监控工具在跑,不是真人。\n")
+                  f"引号/site:/减号等操作符是排名监控工具在跑,不是真人。"
+                  f"名单见 `ops/gsc/out/queries-operators.json`。\n")
         section("GSC · 热门搜索词 (Top 10,真人)")
         print("| query | clicks | impr | ctr% | pos |")
         print("|---|--:|--:|--:|--:|")
