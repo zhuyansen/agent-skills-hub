@@ -27,9 +27,40 @@ import psycopg2
 from dotenv import load_dotenv
 
 load_dotenv('backend/.env')
-tok = subprocess.run(['gh','auth','token'], capture_output=True, text=True,
-                     env={k:v for k,v in os.environ.items()
-                          if k not in ('GH_TOKEN','GITHUB_TOKEN')}).stdout.strip()
+def github_token():
+    """Env first, gh CLI second — and verify before using either.
+
+    CI has GITHUB_TOKEN and no gh login; a laptop has the reverse, and its
+    backend/.env may carry an expired token that `gh` will happily echo back
+    because it honours GH_TOKEN/GITHUB_TOKEN from the environment. Assuming one
+    or the other is how sync stayed broken for two days on 2026-08-06.
+    """
+    clean = {k: v for k, v in os.environ.items()
+             if k not in ('GH_TOKEN', 'GITHUB_TOKEN')}
+    candidates = [('GITHUB_TOKEN env', os.environ.get('GITHUB_TOKEN', ''))]
+    try:
+        candidates.append(('gh auth token', subprocess.run(
+            ['gh', 'auth', 'token'], capture_output=True, text=True,
+            env=clean, timeout=10).stdout.strip()))
+    except (OSError, subprocess.SubprocessError):
+        pass
+    for label, t in candidates:
+        if not t:
+            continue
+        try:
+            req = urllib.request.Request(
+                'https://api.github.com/rate_limit',
+                headers={'Authorization': f'Bearer {t}'})
+            remaining = json.load(urllib.request.urlopen(req, timeout=15))[
+                'resources']['search']['remaining']
+            print(f"使用 {label}(search 额度剩余 {remaining})", flush=True)
+            return t
+        except Exception:
+            print(f"跳过 {label}:GitHub 拒绝或网络不通", flush=True)
+    raise SystemExit('没有可用的 GitHub token')
+
+
+tok = github_token()
 
 QUERIES = [
     'agent+skill+in:name,description+stars:>200',
@@ -68,15 +99,37 @@ conn = psycopg2.connect(os.environ['SUPABASE_DB_URL'], connect_timeout=30)
 cur = conn.cursor()
 cur.execute("SELECT lower(repo_full_name) FROM skills")
 have = {r[0] for r in cur.fetchall()}
+# Every status counts as "known", including 'rejected'. Keyword search returns
+# false positives — a Linux sysadmin quiz, a conference-deadline tracker — and
+# without somewhere to record that decision the weekly alert would re-report
+# them forever and stop being read. Marking one rejected in extra_repos is how
+# you tell this scan "we looked, it is not a skill".
 cur.execute("SELECT lower(full_name) FROM extra_repos")
 have |= {r[0] for r in cur.fetchall()}
 conn.close()
 
 missing = [v for k, v in found.items() if k.lower() not in have]
 missing.sort(key=lambda i: -i['stargazers_count'])
-json.dump([{'full_name': i['full_name'], 'stars': i['stargazers_count'],
-            'description': i['description']} for i in missing],
-          open('/tmp/missing_repos.json','w'), ensure_ascii=False, indent=1)
-print(f"\nGitHub 命中 {len(found)} 个,未收录 {len(missing)} 个")
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
+os.makedirs(OUT_DIR, exist_ok=True)
+rows = [{'full_name': i['full_name'], 'stars': i['stargazers_count'],
+         'description': i['description']} for i in missing]
+json.dump(rows, open(os.path.join(OUT_DIR, 'missing-repos.json'), 'w'),
+          ensure_ascii=False, indent=1)
+
+# Machine-readable summary so the workflow can decide whether to raise an issue
+# without re-parsing human output.
+big = [r for r in rows if r['stars'] >= 5000]
+summary = {'scanned': len(found), 'missing': len(missing),
+           'missing_over_5k': len(big),
+           'top': rows[:20]}
+json.dump(summary, open(os.path.join(OUT_DIR, 'missing-repos-summary.json'), 'w'),
+          ensure_ascii=False, indent=1)
+gh_out = os.environ.get('GITHUB_OUTPUT')
+if gh_out:
+    with open(gh_out, 'a') as f:
+        f.write(f"missing={len(missing)}\nmissing_over_5k={len(big)}\n")
+
+print(f"\nGitHub 命中 {len(found)} 个,未收录 {len(missing)} 个(其中 >=5000★ 的 {len(big)} 个)")
 for i in missing[:30]:
     print(f"  {i['stargazers_count']:>7,}★  {i['full_name']:<46} {(i['description'] or '')[:44]}")

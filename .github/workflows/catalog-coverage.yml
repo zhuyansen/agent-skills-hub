@@ -1,0 +1,110 @@
+name: Catalog coverage scan
+
+# Measures what the catalog is MISSING. Sync discovers repos through a fixed set
+# of GitHub search queries, so anything they do not phrase its way never enters
+# the catalog — and until 2026-08-20 nothing measured that. Three gaps had been
+# found by hand in three days, including google/skills (18,520 stars) and
+# openai/codex-plugin-cc (32,065). The first automated run put the gap at 201 of
+# 711, or 28%.
+#
+# Report only. It never writes to `skills`; ingestion stays a reviewed step via
+# extra_repos, so a bad search query can never pollute the catalog on its own.
+#
+# Weekly, Saturday 06:00 UTC — clear of sync (00/08/16), refresh-stale
+# (04/12/20) and the Monday newsletter, so nothing competes for the DB or the
+# GitHub search quota (30 req/min, and this run makes ~24).
+
+on:
+  schedule:
+    - cron: "0 6 * * 6"
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    outputs:
+      missing: ${{ steps.scan.outputs.missing }}
+      missing_over_5k: ${{ steps.scan.outputs.missing_over_5k }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Explicit, not backend/requirements.txt — this script needs two packages,
+      # and claiming a dependency the backend does not ship is what broke sync
+      # for two days on 2026-08-06.
+      - name: Install deps
+        run: pip install psycopg2-binary python-dotenv
+
+      - name: Scan
+        id: scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python ops/find_missing_repos.py
+
+      - name: Upload diff
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-coverage
+          path: ops/output/missing-repos*.json
+          retention-days: 90
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 目录覆盖扫描" >> $GITHUB_STEP_SUMMARY
+          echo "未收录 **${{ steps.scan.outputs.missing }}** 个,其中 >=5000★ 的 **${{ steps.scan.outputs.missing_over_5k }}** 个" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          python -c "
+          import json
+          d = json.load(open('ops/output/missing-repos-summary.json'))
+          for r in d['top']:
+              print(f\"{r['stars']:>8,}★  {r['full_name']}\")
+          " >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+  raise-issue:
+    needs: scan
+    # Only when something substantial is absent. A handful of small repos is the
+    # normal state of a catalog that syncs every 8 hours; a 5,000-star repo we
+    # have never heard of is a discovery failure worth a person's attention.
+    if: always() && needs.scan.outputs.missing_over_5k != '' && needs.scan.outputs.missing_over_5k != '0'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const n = '${{ needs.scan.outputs.missing_over_5k }}';
+            const total = '${{ needs.scan.outputs.missing }}';
+            const title = `目录覆盖:${n} 个 5000★+ 仓库未收录`;
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'catalog-coverage',
+            });
+            const body = [
+              `本周扫描发现 **${total}** 个未收录仓库,其中 **${n}** 个星数 >= 5000。`,
+              ``,
+              `完整名单在这次运行的 \`catalog-coverage\` artifact 里(\`missing-repos.json\`)。`,
+              ``,
+              `处理方式:核对后写入 \`extra_repos\`(status=approved),下一轮 sync 会抓取。`,
+              `**不要直接写 \`skills\` 表** —— 收录要走人工确认这一步。`,
+              ``,
+              `[查看运行](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            ].join('\n');
+            if (open.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['catalog-coverage'],
+              });
+            }
