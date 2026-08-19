@@ -22,8 +22,8 @@ on:
   workflow_dispatch:
     inputs:
       min_stars:
-        description: "Minimum stars to consider"
-        default: "50"
+        description: "Minimum stars to consider (keep under the 50-star page threshold)"
+        default: "20"
       limit:
         description: "Max repos this run (1 GitHub API call each)"
         default: "1200"
@@ -51,7 +51,7 @@ jobs:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: |
           python ops/probe_dead_repos.py \
-            --min-stars "${{ github.event.inputs.min_stars || '50' }}" \
+            --min-stars "${{ github.event.inputs.min_stars || '20' }}" \
             --stale-days 14 \
             --limit "${{ github.event.inputs.limit || '1200' }}" \
             --write

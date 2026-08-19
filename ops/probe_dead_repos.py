@@ -85,7 +85,18 @@ def github_token():
 
 def fetch_candidates(min_stars, limit, stale_days):
     """Stalest-first, so repeated runs sweep the backlog instead of re-checking
-    the same head every time."""
+    the same head every time.
+
+    NOTE the floor is applied to a STALE star count, which is the number this
+    job exists to correct — so it can exclude exactly the rows that need it
+    most. s1dashu/ip-as-logo-skill sat at 46 in the database while GitHub showed
+    562: a 12x understatement, permanently invisible to a >=50 filter, and
+    therefore permanently below MIN_STARS_FOR_PAGE with no page generated for a
+    562-star repo. 3,537 rows were in that trap on 2026-08-18.
+
+    Callers should keep min_stars well under the page threshold (the workflow
+    uses 20 against a threshold of 50) so repos climbing toward it are swept in
+    rather than locked out by the very number that is wrong."""
     load_dotenv(os.path.join(ROOT, "..", "backend", ".env"))
     conn = psycopg2.connect(os.environ["SUPABASE_DB_URL"], connect_timeout=20)
     try:
