@@ -1,2991 +1,3695 @@
 [
-  {
-    "slug": "web-scraping",
-    "title": "Web Scraping",
-    "description": "Discover the best AI agent skills and MCP tools for web scraping, data extraction, and automated crawling from websites.",
-    "match": {
-      "categories": ["web-scraping", "crawler"],
-      "keywords": [
-        "scrape",
-        "scraping",
-        "crawl",
-        "crawler",
-        "spider",
-        "selenium",
-        "playwright",
-        "puppeteer",
-        "headless"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["web-scraping", "browser"]
-    },
-    "related": ["browser-automation", "data-pipeline", "rss-monitoring"]
-  },
-  {
-    "slug": "code-review",
-    "title": "Code Review",
-    "description": "Find the top AI-powered code review tools that help you catch bugs, enforce style, and improve code quality automatically.",
-    "match": {
-      "categories": ["code-review"],
-      "keywords": [
-        "code review",
-        "code-review",
-        "lint",
-        "linter",
-        "static analysis",
-        "code quality",
-        "review"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["code-review"]
-    },
-    "related": ["test-generation", "code-completion", "debugging"]
-  },
-  {
-    "slug": "mcp-database",
-    "title": "MCP Database Tools",
-    "description": "Browse the best MCP server tools for database access, SQL queries, and data management with AI agents.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "database",
-        "sql",
-        "postgres",
-        "mysql",
-        "sqlite",
-        "mongodb"
-      ],
-      "secondary_keywords": [
-        "redis",
-        "supabase",
-        "prisma",
-        "db",
-        "query",
-        "table"
-      ],
-      "exclude_keywords": [
-        "browser",
-        "screenshot",
-        "playwright",
-        "filesystem",
-        "file manager",
-        "memories",
-        "agent memory",
-        "ai memory",
-        "memory system",
-        "agent-memory",
-        "mem0"
-      ],
-      "topic_matches": [
-        "database",
-        "sql",
-        "postgresql",
-        "mysql",
-        "sqlite",
-        "mongodb",
-        "redis"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["database"]
-    },
-    "related": ["mcp-api", "data-pipeline", "mcp-filesystem"]
-  },
-  {
-    "slug": "mcp-browser",
-    "title": "MCP Browser Automation",
-    "description": "Explore MCP tools that let AI agents control browsers, navigate pages, and automate web interactions.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "browser",
-        "chrome",
-        "playwright",
-        "puppeteer",
-        "CDP"
-      ],
-      "secondary_keywords": [
-        "selenium",
-        "web automation",
-        "headless",
-        "navigate",
-        "screenshot"
-      ],
-      "exclude_keywords": [
-        "database",
-        "sql",
-        "filesystem",
-        "memory",
-        "knowledge graph"
-      ],
-      "topic_matches": [
-        "browser",
-        "chrome",
-        "playwright",
-        "puppeteer",
-        "selenium",
-        "web-automation"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["browser"]
-    },
-    "related": ["web-scraping", "browser-automation", "mcp-api"]
-  },
-  {
-    "slug": "mcp-filesystem",
-    "title": "MCP Filesystem Tools",
-    "description": "Find MCP server tools for file management, directory operations, and local filesystem access from AI agents.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "filesystem",
-        "file system",
-        "directory",
-        "file manager"
-      ],
-      "secondary_keywords": ["folder", "path", "fs", "storage", "disk", "file"],
-      "exclude_keywords": [
-        "database",
-        "sql",
-        "browser",
-        "chrome",
-        "memory",
-        "knowledge"
-      ],
-      "topic_matches": ["filesystem", "file-system", "file-manager"],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": []
-    },
-    "related": ["mcp-database", "mcp-memory", "mcp-api"]
-  },
-  {
-    "slug": "mcp-api",
-    "title": "MCP API Integration",
-    "description": "Discover MCP tools that connect AI agents to external APIs, REST endpoints, and third-party services.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": ["api", "rest", "graphql", "openapi", "swagger"],
-      "secondary_keywords": ["http", "endpoint", "webhook", "integration"],
-      "exclude_keywords": [
-        "database",
-        "sql",
-        "browser",
-        "chrome",
-        "filesystem",
-        "memory"
-      ],
-      "topic_matches": ["api", "rest-api", "graphql", "openapi", "swagger"],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": []
-    },
-    "related": ["mcp-database", "mcp-browser", "workflow-automation"]
-  },
-  {
-    "slug": "mcp-memory",
-    "title": "MCP Memory & Knowledge",
-    "description": "Browse MCP tools for persistent memory, knowledge graphs, and context management in AI agent workflows.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "memory",
-        "knowledge graph",
-        "persistent memory",
-        "context management"
-      ],
-      "secondary_keywords": [
-        "knowledge",
-        "context",
-        "rag",
-        "embedding",
-        "vector",
-        "recall",
-        "persistent"
-      ],
-      "exclude_keywords": [
-        "database server",
-        "sql",
-        "browser",
-        "chrome",
-        "filesystem"
-      ],
-      "topic_matches": ["memory", "knowledge-graph", "rag", "context"],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["agent-memory"]
-    },
-    "related": ["semantic-search", "vector-database", "mcp-database"]
-  },
-  {
-    "slug": "test-generation",
-    "title": "Test Generation",
-    "description": "Find AI tools that automatically generate unit tests, integration tests, and test suites for your codebase.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "test generation",
-        "test-generation",
-        "unit test",
-        "testing",
-        "test suite",
-        "tdd",
-        "coverage",
-        "jest",
-        "pytest",
-        "vitest"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["testing"]
-    },
-    "related": ["code-review", "debugging", "code-completion"]
-  },
-  {
-    "slug": "code-completion",
-    "title": "Code Completion & Generation",
-    "description": "Discover AI-powered code completion and generation tools that help you write code faster with intelligent suggestions.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "code completion",
-        "code generation",
-        "copilot",
-        "autocomplete",
-        "code assist",
-        "coding",
-        "codegen"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["code-completion"]
-    },
-    "related": ["code-review", "test-generation", "refactoring"]
-  },
-  {
-    "slug": "security-audit",
-    "title": "Security Auditing",
-    "description": "Find the best AI agent tools for security auditing, vulnerability scanning, and automated penetration testing.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "security",
-        "audit",
-        "vulnerability",
-        "pentest",
-        "penetration",
-        "scan",
-        "cve",
-        "exploit",
-        "devsecops",
-        "sast",
-        "dast"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["agent-security"]
-    },
-    "related": ["secret-detection", "code-review"]
-  },
-  {
-    "slug": "secret-detection",
-    "title": "Secret Detection",
-    "description": "Discover tools that detect leaked secrets, API keys, and credentials in your codebase before they cause security incidents.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "secret",
-        "credential",
-        "api key",
-        "token",
-        "password",
-        "leak",
-        "gitleaks",
-        "trufflehog"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["agent-security"]
-    },
-    "related": ["security-audit", "code-review"]
-  },
-  {
-    "slug": "content-writing",
-    "title": "Content Writing",
-    "description": "Find AI agent skills for automated content writing, blog generation, copywriting, and text creation.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "content",
-        "writing",
-        "blog",
-        "article",
-        "copywriting",
-        "text generation",
-        "markdown",
-        "documentation"
-      ],
-      "min_results": 5,
-      "max_results": 10
-    },
-    "related": [
-      "translation",
-      "summarization",
-      "document-parsing",
-      "ppt-presentation"
-    ]
-  },
-  {
-    "slug": "translation",
-    "title": "Translation",
-    "description": "Explore AI translation tools and agent skills for multilingual content, i18n, and language conversion.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "translat",
-        "i18n",
-        "multilingual",
-        "language",
-        "localization",
-        "l10n"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["translation"]
-    },
-    "related": ["content-writing", "summarization"]
-  },
-  {
-    "slug": "summarization",
-    "title": "Summarization",
-    "description": "Find AI tools that automatically summarize documents, articles, code, and conversations.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "summariz",
-        "summary",
-        "digest",
-        "tldr",
-        "abstract",
-        "condense"
-      ],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["content-writing", "document-parsing", "translation"]
-  },
-  {
-    "slug": "document-parsing",
-    "title": "Document Parsing",
-    "description": "Discover tools for parsing PDFs, Word documents, spreadsheets, and extracting structured data from unstructured files.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "document",
-        "parsing",
-        "pdf",
-        "docx",
-        "xlsx",
-        "ocr",
-        "extract",
-        "parser"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["document"],
-      "featured": [
-        "PDFMathTranslate/PDFMathTranslate",
-        "yusufkaraaslan/Skill_Seekers",
-        "joeseesun/qiaomu-anything-to-notebooklm",
-        "chrisryugj/kordoc",
-        "SylphxAI/pdf-reader-mcp",
-        "magicyuan876/mineru-tianshu",
-        "opendatalab/MinerU-Document-Explorer",
-        "deusyu/translate-book"
-      ]
-    },
-    "related": ["content-writing", "summarization", "data-pipeline"]
-  },
-  {
-    "slug": "workflow-automation",
-    "title": "Workflow Automation",
-    "description": "Find AI tools for automating repetitive workflows, task orchestration, and process management.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "workflow automation",
-        "workflow engine",
-        "workflow builder",
-        "process automation",
-        "task automation",
-        "automate workflow",
-        "task scheduler",
-        "job scheduler",
-        "cron"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["workflow"]
-    },
-    "related": ["ci-cd", "email-automation", "social-media"]
-  },
-  {
-    "slug": "ci-cd",
-    "title": "CI/CD & DevOps",
-    "description": "Browse AI agent tools for continuous integration, deployment automation, and DevOps workflows.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "ci/cd",
-        "cicd",
-        "ci-cd",
-        "deploy",
-        "github actions",
-        "devops",
-        "pipeline",
-        "build",
-        "release"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["ci-cd"]
-    },
-    "related": ["workflow-automation", "monitoring", "container-management"]
-  },
-  {
-    "slug": "monitoring",
-    "title": "Monitoring & Observability",
-    "description": "Find AI tools for monitoring applications, logs, metrics, and system health with intelligent alerting.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "monitor",
-        "observability",
-        "alert",
-        "metric",
-        "log monitoring",
-        "logging",
-        "tracing",
-        "distributed trace",
-        "dashboard",
-        "health check"
-      ],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["ci-cd", "debugging", "workflow-automation"]
-  },
-  {
-    "slug": "semantic-search",
-    "title": "Semantic Search",
-    "description": "Discover AI-powered semantic search tools that understand meaning, not just keywords, for code and documents.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "semantic search",
-        "vector search",
-        "embedding",
-        "similarity",
-        "retrieval",
-        "rag",
-        "search engine"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["semantic-search", "embedding"]
-    },
-    "related": ["vector-database", "document-parsing", "mcp-memory"]
-  },
-  {
-    "slug": "vector-database",
-    "title": "Vector Database",
-    "description": "Find vector database tools and integrations for storing and querying AI embeddings at scale.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "vector",
-        "pinecone",
-        "weaviate",
-        "qdrant",
-        "chroma",
-        "milvus",
-        "faiss",
-        "vector db"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["vector-db"]
-    },
-    "related": ["semantic-search", "mcp-memory", "mcp-database"]
-  },
-  {
-    "slug": "browser-automation",
-    "title": "browser-use, Playwright MCP & AI Browser Agents",
-    "description": "browser-use, playwright-mcp, MediaCrawler, Scrapling, mcp-chrome and 20+ open-source AI browser agents compared — stars, security grade, and which to install.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "browser automation",
-        "playwright",
-        "puppeteer",
-        "selenium",
-        "browser-use",
-        "computer use",
-        "browser-use",
-        "MediaCrawler",
-        "Scrapling",
-        "playwright-mcp",
-        "agent-reach",
-        "OpenCLI",
-        "AutoCLI",
-        "agent-browser",
-        "mcp-chrome",
-        "obscura",
-        "stagehand",
-        "browserbase",
-        "firecrawl",
-        "feedgrab",
-        "dev-browser"
-      ],
-      "secondary_keywords": [
-        "browser",
-        "headless",
-        "chrome",
-        "chromium",
-        "webdriver",
-        "cypress",
-        "e2e",
-        "ui test",
-        "web agent",
-        "web scraping",
-        "screenshot",
-        "devtools",
-        "scraper",
-        "crawler",
-        "headless-browser",
-        "browser-tools",
-        "browser-mcp",
-        "media-crawler",
-        "scrapling"
-      ],
-      "topic_matches": [
-        "playwright",
-        "puppeteer",
-        "selenium",
-        "browser-automation",
-        "browser-use",
-        "web-automation",
-        "headless-browser",
-        "scraper",
-        "web-scraping",
-        "browser-mcp",
-        "browser-tools",
-        "stagehand",
-        "media-crawler",
-        "browser-agent"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "browser-use/browser-use",
-        "NanmiCoder/MediaCrawler",
-        "D4Vinci/Scrapling",
-        "microsoft/playwright-mcp",
-        "Panniantong/Agent-Reach",
-        "jackwener/OpenCLI",
-        "vercel-labs/agent-browser",
-        "h4ckf0r0day/obscura",
-        "nashsu/AutoCLI",
-        "browserbase/stagehand",
-        "hangwin/mcp-chrome",
-        "AgentDeskAI/browser-tools-mcp",
-        "firecrawl/firecrawl-mcp-server",
-        "SawyerHood/dev-browser",
-        "browserbase/skills",
-        "iBigQiang/feedgrab",
-        "nashsu/autocli-skill"
-      ],
-      "tag_matches": ["browser"]
-    },
-    "related": ["web-scraping", "mcp-browser", "test-generation"]
-  },
-  {
-    "slug": "data-pipeline",
-    "title": "Data Pipeline",
-    "description": "Find AI tools for building data pipelines, ETL processes, and data transformation workflows.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "data pipeline",
-        "etl",
-        "data transform",
-        "data processing",
-        "batch",
-        "stream",
-        "ingest"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["data-pipeline"],
-      "primary_keywords": [
-        "etl",
-        "data pipeline",
-        "airflow",
-        "dagster",
-        "prefect",
-        "data ingestion",
-        "data orchestration"
-      ],
-      "secondary_keywords": []
-    },
-    "related": ["web-scraping", "document-parsing", "mcp-database"]
-  },
-  {
-    "slug": "rss-monitoring",
-    "title": "RSS & Feed Monitoring",
-    "description": "Discover tools for RSS feed monitoring, news aggregation, and content tracking with AI agents.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "rss",
-        "feed",
-        "news",
-        "monitor",
-        "aggregat",
-        "atom",
-        "syndication"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["rss"]
-    },
-    "related": ["web-scraping", "content-writing", "social-media"]
-  },
-  {
-    "slug": "prompt-engineering",
-    "title": "Prompt Engineering",
-    "description": "Find tools for prompt design, testing, optimization, and management for LLM applications.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "prompt",
-        "prompt engineering",
-        "prompt template",
-        "prompt management",
-        "langchain",
-        "llamaindex"
-      ],
-      "min_results": 5,
-      "max_results": 10
-    },
-    "related": ["model-evaluation", "content-writing", "code-completion"]
-  },
-  {
-    "slug": "model-evaluation",
-    "title": "Model Evaluation",
-    "description": "Discover tools for evaluating, benchmarking, and comparing AI model performance and outputs.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "eval",
-        "benchmark",
-        "evaluat",
-        "compare",
-        "leaderboard",
-        "quality",
-        "accuracy"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["evaluation", "benchmark"],
-      "primary_keywords": [
-        "model evaluation",
-        "llm eval",
-        "eval harness",
-        "evaluation framework",
-        "promptfoo",
-        "ragas",
-        "lm-eval",
-        "deepeval"
-      ],
-      "secondary_keywords": ["leaderboard", "evals"],
-      "exclude_keywords": [
-        "agent memory",
-        "ai memory",
-        "memory system",
-        "memories"
-      ]
-    },
-    "related": ["prompt-engineering", "test-generation"]
-  },
-  {
-    "slug": "slack-integration",
-    "title": "Slack Integration",
-    "description": "Find AI agent tools that integrate with Slack for notifications, chatbots, and workflow automation.",
-    "match": {
-      "categories": [],
-      "keywords": ["slack", "slack bot", "slack integration", "slack mcp"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["slack"]
-    },
-    "related": ["discord-bot", "notification", "workflow-automation"]
-  },
-  {
-    "slug": "discord-bot",
-    "title": "Discord Bot",
-    "description": "Explore AI-powered Discord bot tools for community management, moderation, and automated responses.",
-    "match": {
-      "categories": [],
-      "keywords": ["discord", "discord bot", "discord integration"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["discord"]
-    },
-    "related": ["slack-integration", "telegram-bot", "notification"]
-  },
-  {
-    "slug": "telegram-bot",
-    "title": "Telegram Bot",
-    "description": "Open-source Telegram bot frameworks, MCP servers, and AI agent integrations. Build automation bots, ChatGPT/Claude-powered assistants, and Telegram connectors — ranked by stars and quality.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "telegram bot",
-        "telegram-bot",
-        "telegram integration",
-        "telegram api",
-        "python-telegram-bot",
-        "telegraf",
-        "aiogram"
-      ],
-      "secondary_keywords": [
-        "telegram",
-        "tg bot",
-        "bot framework",
-        "chatbot",
-        "telegram ai",
-        "telegram agent",
-        "telegram client"
-      ],
-      "topic_matches": [
-        "telegram",
-        "telegram-bot",
-        "telegram-api",
-        "bot",
-        "chatbot",
-        "telegraf",
-        "aiogram",
-        "pyrogram",
-        "telethon"
-      ],
-      "exclude_keywords": ["telegram channel parser", "telegram backup"],
-      "min_results": 3,
-      "max_results": 30,
-      "tag_matches": ["telegram"]
-    },
-    "related": ["discord-bot", "slack-integration", "notification"]
-  },
-  {
-    "slug": "email-automation",
-    "title": "Email Automation",
-    "description": "Discover AI tools for email automation, inbox management, and intelligent email processing.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "email",
-        "mail",
-        "smtp",
-        "inbox",
-        "newsletter",
-        "email automation"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["email"],
-      "featured": [
-        "enescingoz/awesome-n8n-templates",
-        "zubair-trabzada/ai-marketing-claude",
-        "growthenginenowoslawski/coldoutboundskills",
-        "joeseesun/lennys-podcast-newsletter",
-        "CosmoBlk/email-marketing-bible",
-        "GongRzhe/Gmail-MCP-Server",
-        "kaymen99/langgraph-email-automation",
-        "agenticmail/agenticmail"
-      ]
-    },
-    "related": ["workflow-automation", "notification", "content-writing"]
-  },
-  {
-    "slug": "social-media",
-    "title": "Social Media Tools",
-    "description": "Find AI tools for social media management, posting, analytics, and content scheduling.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "social media",
-        "twitter",
-        "x.com",
-        "instagram",
-        "linkedin",
-        "social",
-        "posting",
-        "tweet"
-      ],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["content-writing", "rss-monitoring", "email-automation"]
-  },
-  {
-    "slug": "debugging",
-    "title": "Debugging",
-    "description": "Find AI-powered debugging tools that help identify, diagnose, and fix bugs in your code automatically.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "debug",
-        "debugger",
-        "troubleshoot",
-        "error",
-        "fix",
-        "diagnos",
-        "trace"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["debugging"]
-    },
-    "related": ["code-review", "test-generation", "monitoring"]
-  },
-  {
-    "slug": "refactoring",
-    "title": "Code Refactoring",
-    "description": "Discover AI tools for automated code refactoring, optimization, and architectural improvements.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "refactor",
-        "restructur",
-        "clean code",
-        "optimize",
-        "modernize",
-        "migration"
-      ],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["code-review", "code-completion", "debugging"]
-  },
-  {
-    "slug": "container-management",
-    "title": "Container & Docker Tools",
-    "description": "Find AI tools for Docker container management, Kubernetes orchestration, and cloud infrastructure.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "docker",
-        "container",
-        "kubernetes",
-        "k8s",
-        "helm",
-        "compose",
-        "cloud",
-        "infrastructure"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["container"]
-    },
-    "related": ["ci-cd", "monitoring", "workflow-automation"]
-  },
-  {
-    "slug": "git-tools",
-    "title": "Git & Version Control",
-    "description": "Explore AI tools for Git workflow automation, commit message generation, and version control management.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "git",
-        "commit",
-        "branch",
-        "merge",
-        "pull request",
-        "version control",
-        "github",
-        "gitlab"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["git-tools"]
-    },
-    "related": ["code-review", "ci-cd", "workflow-automation"]
-  },
-  {
-    "slug": "image-generation",
-    "title": "Image Generation",
-    "description": "Find AI image generation tools that create, edit, and manipulate images programmatically.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "image generation",
-        "text-to-image",
-        "text to image",
-        "generate image",
-        "image generator",
-        "stable diffusion",
-        "midjourney",
-        "dall-e",
-        "flux",
-        "comfyui",
-        "diffusion model",
-        "ai art",
-        "ai image",
-        "nano banana"
-      ],
-      "secondary_keywords": [
-        "img2img",
-        "inpainting",
-        "image editing",
-        "imagen",
-        "sdxl",
-        "image model"
-      ],
-      "exclude_keywords": [
-        "text generation",
-        "screenshot",
-        "image recognition",
-        "ocr",
-        "image classification"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["image-generation", "text-to-image"]
-    },
-    "related": ["content-writing", "document-parsing", "ppt-presentation"]
-  },
-  {
-    "slug": "notification",
-    "title": "Notification & Alerting",
-    "description": "Find tools for sending notifications, alerts, and messages across multiple channels from AI agents.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "notification",
-        "alert",
-        "notify",
-        "push",
-        "webhook",
-        "message"
-      ],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["slack-integration", "email-automation", "monitoring"]
-  },
-  {
-    "slug": "cli-tools",
-    "title": "CLI Tools",
-    "description": "Discover command-line AI tools and terminal utilities for developers.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "cli",
-        "command line",
-        "terminal",
-        "shell",
-        "bash",
-        "console"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["cli"]
-    },
-    "related": ["workflow-automation", "git-tools", "debugging"]
-  },
-  {
-    "slug": "authentication",
-    "title": "Authentication & Identity",
-    "description": "Find AI agent tools for authentication, OAuth, SSO, and identity management.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "auth",
-        "oauth",
-        "sso",
-        "login",
-        "identity",
-        "jwt",
-        "token",
-        "session"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["auth"]
-    },
-    "related": ["security-audit", "secret-detection", "mcp-api"]
-  },
-  {
-    "slug": "data-visualization",
-    "title": "Data Visualization",
-    "description": "Explore AI tools for creating charts, dashboards, and visual representations of data.",
-    "match": {
-      "categories": [],
-      "keywords": [
-        "visualization",
-        "chart",
-        "graph",
-        "dashboard",
-        "plot",
-        "d3",
-        "recharts",
-        "echarts"
-      ],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["data-visualization"]
-    },
-    "related": ["data-pipeline", "monitoring", "document-parsing"]
-  },
-  {
-    "slug": "claude-code-skills",
-    "title": "Claude Code Skills",
-    "description": "Browse the best skills and extensions for Claude Code, Anthropic's AI coding assistant.",
-    "match": {
-      "categories": ["claude-skill"],
-      "keywords": [
-        "claude code",
-        "claude skill",
-        "claude extension",
-        "anthropic"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["claude", "skill"]
-    },
-    "related": ["mcp-database", "mcp-browser", "code-completion"],
-    "broad": true
-  },
-  {
-    "slug": "codex-skills",
-    "title": "OpenAI Codex Skills",
-    "description": "Find the best skills and plugins for OpenAI Codex, the AI coding agent.",
-    "match": {
-      "categories": ["codex-skill"],
-      "keywords": ["codex", "openai", "codex skill", "codex plugin"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["codex", "skill"]
-    },
-    "related": ["claude-code-skills", "code-completion", "mcp-api"],
-    "broad": true
-  },
-  {
-    "slug": "ai-agent-framework",
-    "title": "AI Agent Frameworks",
-    "description": "Compare the best frameworks for building autonomous AI agents — from single-agent SDKs to multi-agent orchestration platforms.",
-    "match": {
-      "categories": ["agent-tool"],
-      "primary_keywords": [
-        "agent framework",
-        "agent sdk",
-        "agent platform",
-        "autonomous agent"
-      ],
-      "secondary_keywords": [
-        "framework",
-        "sdk",
-        "runtime",
-        "harness",
-        "agent",
-        "agentic"
-      ],
-      "topic_matches": [
-        "agent",
-        "ai-agent",
-        "autonomous-agent",
-        "agent-framework"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["agent-framework"]
-    },
-    "related": ["multi-agent", "prompt-engineering", "workflow-automation"],
-    "broad": true
-  },
-  {
-    "slug": "multi-agent",
-    "title": "Multi-Agent Orchestration",
-    "description": "Find tools for building and orchestrating multi-agent systems where AI agents collaborate, delegate, and coordinate tasks.",
-    "match": {
-      "categories": ["agent-tool"],
-      "primary_keywords": [
-        "multi-agent",
-        "multi agent",
-        "orchestrat",
-        "crew",
-        "swarm"
-      ],
-      "secondary_keywords": [
-        "fleet",
-        "collaborate",
-        "delegate",
-        "coordinate",
-        "supervisor"
-      ],
-      "topic_matches": ["multi-agent", "multiagent", "agent-orchestration"],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": [
-      "ai-agent-framework",
-      "workflow-automation",
-      "prompt-engineering"
-    ]
-  },
-  {
-    "slug": "local-llm",
-    "title": "Local LLM Tools",
-    "description": "Run AI models locally with privacy and no API costs. Find the best tools for self-hosted LLM inference, fine-tuning, and deployment.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "local",
-        "ollama",
-        "llama",
-        "self-hosted",
-        "on-premise"
-      ],
-      "secondary_keywords": [
-        "gguf",
-        "ggml",
-        "quantiz",
-        "inference",
-        "vllm",
-        "llamacpp",
-        "mlx"
-      ],
-      "topic_matches": ["ollama", "llama", "local-ai", "self-hosted"],
-      "min_results": 5,
-      "max_results": 10
-    },
-    "related": ["ai-agent-framework", "prompt-engineering", "model-evaluation"]
-  },
-  {
-    "slug": "mcp-for-notion",
-    "title": "MCP Tools for Notion",
-    "description": "Connect AI agents to Notion workspaces — read pages, create databases, manage tasks, and automate workflows via MCP servers.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": ["notion"],
-      "secondary_keywords": ["workspace", "page", "block", "notion api"],
-      "topic_matches": ["notion", "notion-api"],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["mcp-api", "mcp-database", "workflow-automation"]
-  },
-  {
-    "slug": "mcp-for-github",
-    "title": "MCP Tools for GitHub",
-    "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": ["github"],
-      "secondary_keywords": ["pull request", "issue", "repo", "actions", "gh"],
-      "topic_matches": ["github", "github-api", "github-actions"],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["git-tools", "code-review", "ci-cd"]
-  },
-  {
-    "slug": "mcp-for-google",
-    "title": "MCP Tools for Google Services",
-    "description": "Connect AI agents to Google Workspace — Gmail, Drive, Calendar, Sheets, and more through MCP server integrations.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": ["google", "gmail", "google drive", "google sheets"],
-      "secondary_keywords": [
-        "calendar",
-        "gdrive",
-        "gsheet",
-        "workspace",
-        "gcp"
-      ],
-      "topic_matches": ["google", "gmail", "google-drive", "google-calendar"],
-      "min_results": 3,
-      "max_results": 10
-    },
-    "related": ["mcp-api", "email-automation", "workflow-automation"]
-  },
-  {
-    "slug": "ai-code-editor",
-    "title": "AI Code Editors",
-    "description": "Compare AI-powered code editors and IDE extensions that supercharge your development workflow with intelligent assistance.",
-    "match": {
-      "categories": [],
-      "primary_keywords": ["code editor", "ide", "vscode", "neovim", "cursor"],
-      "secondary_keywords": [
-        "editor",
-        "extension",
-        "plugin",
-        "lsp",
-        "intellisense"
-      ],
-      "topic_matches": ["code-editor", "ide", "vscode", "neovim", "editor"],
-      "min_results": 5,
-      "max_results": 10
-    },
-    "related": ["code-completion", "debugging", "code-review"]
-  },
-  {
-    "slug": "api-testing",
-    "title": "API Testing & Mocking",
-    "description": "Find AI tools for API testing, endpoint validation, mock servers, and automated API documentation.",
-    "match": {
-      "categories": [],
-      "primary_keywords": ["api test", "api mock", "postman", "httpie"],
-      "secondary_keywords": [
-        "endpoint",
-        "mock server",
-        "api doc",
-        "openapi",
-        "swagger",
-        "insomnia"
-      ],
-      "topic_matches": ["api-testing", "mock", "api-documentation"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["testing"]
-    },
-    "related": ["mcp-api", "test-generation", "ci-cd"]
-  },
-  {
-    "slug": "knowledge-base",
-    "title": "Knowledge Base & RAG",
-    "description": "Build AI-powered knowledge bases with retrieval-augmented generation (RAG) — ingest documents, search semantically, and answer questions.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "knowledge base",
-        "rag",
-        "retrieval augmented",
-        "qa"
-      ],
-      "secondary_keywords": [
-        "document",
-        "ingest",
-        "question answer",
-        "chatbot",
-        "embedding"
-      ],
-      "topic_matches": [
-        "rag",
-        "knowledge-base",
-        "question-answering",
-        "retrieval"
-      ],
-      "min_results": 5,
-      "max_results": 10,
-      "tag_matches": ["knowledge-base"]
-    },
-    "related": ["semantic-search", "vector-database", "mcp-memory"]
-  },
-  {
-    "slug": "text-to-speech",
-    "title": "Text-to-Speech & Voice",
-    "description": "Find AI tools for text-to-speech synthesis, voice cloning, speech recognition, and audio processing.",
-    "match": {
-      "categories": [],
-      "primary_keywords": ["text to speech", "tts", "voice", "speech"],
-      "secondary_keywords": [
-        "audio",
-        "whisper",
-        "elevenlabs",
-        "speech recognition",
-        "stt",
-        "transcri"
-      ],
-      "topic_matches": ["tts", "text-to-speech", "voice", "speech", "whisper"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["voice"]
-    },
-    "related": ["content-writing", "translation", "summarization"]
-  },
-  {
-    "slug": "web-development",
-    "title": "AI Web Development",
-    "description": "Find AI tools that help build websites and web applications — from UI generation to full-stack scaffolding.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "web development",
-        "frontend",
-        "react",
-        "nextjs",
-        "web app"
-      ],
-      "secondary_keywords": [
-        "html",
-        "css",
-        "tailwind",
-        "ui",
-        "component",
-        "scaffold",
-        "fullstack"
-      ],
-      "topic_matches": [
-        "web-development",
-        "frontend",
-        "react",
-        "nextjs",
-        "web-app"
-      ],
-      "min_results": 5,
-      "max_results": 10
-    },
-    "related": ["code-completion", "browser-automation", "image-generation"]
-  },
-  {
-    "slug": "database-migration",
-    "title": "Database Migration & Schema Tools",
-    "description": "AI tools for database schema design, migration management, and data modeling.",
-    "match": {
-      "categories": [],
-      "primary_keywords": ["migration", "schema", "data model"],
-      "secondary_keywords": [
-        "orm",
-        "prisma",
-        "drizzle",
-        "typeorm",
-        "sequelize",
-        "alembic",
-        "flyway"
-      ],
-      "topic_matches": ["migration", "schema", "orm", "database-schema"],
-      "min_results": 3,
-      "max_results": 10,
-      "tag_matches": ["database"]
-    },
-    "related": ["mcp-database", "code-completion", "refactoring"]
-  },
-  {
-    "slug": "skill-management-tools",
-    "title": "Skill & Agent Management",
-    "description": "Desktop apps, CLI package managers, and session managers for organizing Claude Code skills, Codex skills, and multi-agent workflows across 15+ AI coding tools.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "skill manager",
-        "skills manager",
-        "session manager",
-        "agent manager",
-        "package manager for ai",
-        "package manager for agent",
-        "config manager",
-        "plugin manager",
-        "claude code gui",
-        "manage claude code",
-        "manage multiple",
-        "manage your codex",
-        "manage agent skills",
-        "skills across",
-        "skills in one place",
-        "organize skills",
-        "agent workstation",
-        "browse, edit, and manage",
-        "gui app and toolkit",
-        "manage interactive claude",
-        "sync skills across",
-        "manage, sync, and organize",
-        "manage configurations across",
-        "manage extensions",
-        "agent skills across",
-        "coding agent skills",
-        "desktop app to manage ai",
-        "agent skill management",
-        "agent skill manager",
-        "agent skills management",
-        "ai agent skill management"
-      ],
-      "secondary_keywords": [
-        "desktop app",
-        "macos app",
-        "tui for claude",
-        "tui for ai",
-        "sync them",
-        "cross-platform desktop",
-        "lightweight desktop",
-        "gui app",
-        "web ui for claude",
-        "install, and manage",
-        "sync configurations"
-      ],
-      "exclude_keywords": [
-        "scrape",
-        "scraping",
-        "crawler",
-        "pentest",
-        "wallet",
-        "trading",
-        "penetration",
-        "carbon footprint",
-        "turn any webpage",
-        "mcp host",
-        "mcp client",
-        "documentation mcp",
-        "all-in-one assistant"
-      ],
-      "topic_matches": [
-        "skill-management",
-        "skills-manager",
-        "session-manager",
-        "claude-code-manager",
-        "agent-manager",
-        "package-manager",
-        "claude-code-ui"
-      ],
-      "min_results": 6,
-      "max_results": 12,
-      "tag_matches": ["skill"]
-    },
-    "related": ["claude-code-skills", "cli-tools", "workflow-automation"],
-    "broad": true
-  },
-  {
-    "slug": "free-mcp-servers",
-    "title": "Free MCP Servers",
-    "description": "100% open-source and free MCP servers for Claude Code, Claude Desktop, and agentic IDEs. MIT / Apache / BSD licensed — install and self-host without subscription, quota, or credit-card gate. Updated every 8 hours.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "mcp server",
-        "mcp-server",
-        "model context protocol",
-        "open source mcp",
-        "free mcp"
-      ],
-      "secondary_keywords": [
-        "self-hosted",
-        "self host",
-        "mit license",
-        "apache license",
-        "bsd license"
-      ],
-      "topic_matches": [
-        "mcp",
-        "mcp-server",
-        "model-context-protocol",
-        "claude-mcp"
-      ],
-      "exclude_keywords": ["paid", "subscription", "saas only"],
-      "license_filter": [
-        "MIT",
-        "Apache-2.0",
-        "BSD-3-Clause",
-        "BSD-2-Clause",
-        "ISC",
-        "MPL-2.0"
-      ],
-      "min_results": 10,
-      "max_results": 30,
-      "tag_matches": ["mcp"]
-    },
-    "related": ["mcp-database", "mcp-browser", "mcp-filesystem"],
-    "broad": true
-  },
-  {
-    "slug": "python-mcp-servers",
-    "title": "Python MCP Servers",
-    "description": "Open-source MCP servers written in Python — compatible with Claude Code, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity. FastMCP, Anthropic SDK, and MCP-CLI projects included.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": ["python mcp", "fastmcp", "mcp python", "python-mcp"],
-      "secondary_keywords": [
-        "mcp server",
-        "mcp-server",
-        "anthropic sdk",
-        "model context protocol"
-      ],
-      "topic_matches": ["python", "mcp", "mcp-server", "fastmcp"],
-      "language_filter": ["Python"],
-      "min_results": 10,
-      "max_results": 30,
-      "tag_matches": ["mcp", "python"]
-    },
-    "related": ["free-mcp-servers", "typescript-mcp-servers", "mcp-database"],
-    "broad": true
-  },
-  {
-    "slug": "typescript-mcp-servers",
-    "title": "TypeScript MCP Servers",
-    "description": "Open-source MCP servers written in TypeScript / Node.js — ready to install into Claude Desktop, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity.",
-    "match": {
-      "categories": ["mcp-server"],
-      "primary_keywords": [
-        "typescript mcp",
-        "node mcp",
-        "nodejs mcp",
-        "mcp typescript"
-      ],
-      "secondary_keywords": [
-        "mcp server",
-        "mcp-server",
-        "model context protocol",
-        "@modelcontextprotocol/sdk"
-      ],
-      "topic_matches": ["typescript", "mcp", "mcp-server", "nodejs"],
-      "language_filter": ["TypeScript", "JavaScript"],
-      "min_results": 10,
-      "max_results": 30,
-      "tag_matches": ["mcp", "typescript"]
-    },
-    "related": ["free-mcp-servers", "python-mcp-servers", "mcp-database"],
-    "broad": true
-  },
-  {
-    "slug": "open-webui-integrations",
-    "title": "Open WebUI Integrations",
-    "description": "Open-source tools, connectors, and functions for Open WebUI — ChatGPT-style self-hosted UI for local LLMs (Ollama, LM Studio, vLLM). Ranked by stars and community adoption.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "open webui",
-        "openwebui",
-        "open-webui",
-        "ollama webui"
-      ],
-      "secondary_keywords": [
-        "ollama",
-        "lm studio",
-        "local llm ui",
-        "self-hosted chat",
-        "webui tool",
-        "openai compatible"
-      ],
-      "topic_matches": ["openwebui", "open-webui", "ollama", "local-llm"],
-      "min_results": 5,
-      "max_results": 25
-    },
-    "related": ["free-mcp-servers", "local-llm", "self-hosted"]
-  },
-  {
-    "slug": "anti-slop",
-    "title": "Anti-Slop",
-    "description": "Open-source AI text humanizers and slop detectors — strip 'delve', 'tapestry', em-dash clusters, and other AI tells. Code, prose, and academic modes.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "anti-slop",
-        "anti slop",
-        "humanizer",
-        "ai humanizer",
-        "deslop",
-        "slop detector",
-        "slopbuster",
-        "taste skill"
-      ],
-      "secondary_keywords": [
-        "humanize",
-        "humanize ai",
-        "ai writing",
-        "ai detection",
-        "ai patterns",
-        "humanizer-zh",
-        "blader humanizer",
-        "stop slop"
-      ],
-      "topic_matches": [
-        "humanizer",
-        "anti-slop",
-        "ai-humanizer",
-        "deslop",
-        "ai-text-humanizer",
-        "ai-slop"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "Leonxlnx/taste-skill",
-        "blader/humanizer",
-        "op7418/Humanizer-zh",
-        "voidborne-d/humanize-chinese",
-        "jalaalrd/anti-ai-slop-writing",
-        "matsuikentaro1/humanizer_academic",
-        "gabelul/slopbuster",
-        "MrGeDiao/stop-slop-zh"
-      ],
-      "tag_matches": ["anti-slop"]
-    },
-    "related": ["code-quality", "writing-tools"]
-  },
-  {
-    "slug": "agent-memory",
-    "title": "Agent Memory",
-    "description": "Long-term memory layers for AI agents — vector stores, episodic recall, semantic compression, and persistent context across sessions.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "agent memory",
-        "long-term memory",
-        "memory layer",
-        "memory mcp",
-        "agent context",
-        "mem0",
-        "letta",
-        "mnemo",
-        "xmem"
-      ],
-      "secondary_keywords": [
-        "memory",
-        "memtrace",
-        "mnemo-cortex",
-        "episodic",
-        "vector memory",
-        "context retention",
-        "persistent memory",
-        "memory coprocessor"
-      ],
-      "topic_matches": [
-        "memory",
-        "agent-memory",
-        "long-term-memory",
-        "memory-mcp",
-        "ai-memory"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "mem0ai/mem0",
-        "letta-ai/letta",
-        "doobidoo/mcp-memory-service",
-        "tensorlakeai/tensorlake-skills",
-        "Dataojitori/nocturne_memory",
-        "mnemon-dev/mnemon",
-        "syncable-dev/memtrace-public",
-        "agenvoy/Agenvoy",
-        "GuyMannDude/mnemo-cortex",
-        "XortexAI/XMem",
-        "buildingjoshbetter/TrueMemory",
-        "remember-md/remember",
-        "kunwar-shah/claudex"
-      ],
-      "tag_matches": ["agent-memory"]
-    },
-    "related": ["knowledge-base", "rag", "mcp-database"]
-  },
-  {
-    "slug": "agent-security",
-    "title": "Agent Security",
-    "description": "Security tools for AI agents — scan dangerous Skills/MCP configs, detect prompt injection, audit tool permissions, and harden agent supply chains.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "agent security",
-        "agent safety",
-        "skill security",
-        "mcp security",
-        "ai security audit",
-        "agentseal",
-        "prompt injection",
-        "slowmist"
-      ],
-      "secondary_keywords": [
-        "security",
-        "skill scan",
-        "agent audit",
-        "supply chain",
-        "bug bounty",
-        "vulnerability scan",
-        "ai security",
-        "agent harden"
-      ],
-      "topic_matches": [
-        "agent-security",
-        "ai-security",
-        "skill-security",
-        "mcp-security",
-        "security-audit"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "tag_matches": ["agent-security"]
-    },
-    "related": ["code-quality", "ci-cd"]
-  },
-  {
-    "slug": "agent-governance",
-    "title": "Agent Governance",
-    "description": "Governance, audit, and discipline frameworks for AI coding agents — deterministic workflows, context budgets, tool gating, usage tracking.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "agent governance",
-        "agent audit",
-        "agent discipline",
-        "ai governance",
-        "agent compliance",
-        "governor",
-        "agentplane",
-        "probity"
-      ],
-      "secondary_keywords": [
-        "context budget",
-        "tool gating",
-        "usage tracking",
-        "keep-codex-fast"
-      ],
-      "topic_matches": [
-        "governance",
-        "agent-governance",
-        "codex-governance",
-        "audit",
-        "compliance"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "mattpocock/skills",
-        "vibeforge1111/keep-codex-fast",
-        "getagentseal/agentseal",
-        "Mathews-Tom/armory",
-        "liaohch3/claude-tap",
-        "EdoardoBambini/IAGA-Sentinel",
-        "Justin0504/Sovereign-OS",
-        "championswimmer/pi-context-prune",
-        "0xhimanshu/governor",
-        "basilisk-labs/agentplane",
-        "nizos/probity",
-        "Netxeo/skill-file-security"
-      ],
-      "tag_matches": ["agent-governance"]
-    },
-    "related": ["ai-code-editor", "code-quality"]
-  },
-  {
-    "slug": "saas-mcp",
-    "title": "SaaS MCP Servers",
-    "description": "Official MCP servers from major SaaS platforms — Box, Dokploy, Stripe, Notion, GitHub, Slack and more. Production-grade enterprise integrations.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "saas mcp",
-        "official mcp",
-        "enterprise mcp",
-        "stripe mcp",
-        "notion mcp",
-        "slack mcp",
-        "dokploy mcp",
-        "box mcp"
-      ],
-      "secondary_keywords": [
-        "saas",
-        "official",
-        "enterprise",
-        "production mcp",
-        "vendor mcp",
-        "platform mcp",
-        "github mcp"
-      ],
-      "topic_matches": [
-        "saas-mcp",
-        "official-mcp",
-        "enterprise-mcp",
-        "vendor-mcp"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "tag_matches": ["saas"]
-    },
-    "related": ["mcp-for-github", "mcp-for-notion", "mcp-for-google"]
-  },
-  {
-    "slug": "seo-tools",
-    "title": "SEO Tools",
-    "description": "SEO research and analysis MCP servers — keyword research, backlink analysis, SERP tracking, content briefs. Powered by Ahrefs, DataForSEO, and Google Search Console data.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "seo",
-        "seo mcp",
-        "keyword research",
-        "backlink analysis",
-        "serp tracker",
-        "dataseo",
-        "ahrefs"
-      ],
-      "secondary_keywords": [
-        "search engine optimization",
-        "ranking",
-        "search console",
-        "dataforseo",
-        "keyword difficulty",
-        "seo audit",
-        "content brief"
-      ],
-      "topic_matches": [
-        "seo",
-        "seo-tools",
-        "seo-mcp",
-        "search-engine-optimization",
-        "keyword-research"
-      ],
-      "min_results": 3,
-      "max_results": 30
-    },
-    "related": ["content-writing", "data-pipeline", "semantic-search"]
-  },
-  {
-    "slug": "finance-mcp",
-    "title": "Finance MCP Servers",
-    "description": "Financial data MCP servers and CLIs for AI agents — stock quotes, personal finance, accounting, trading APIs, market analysis.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "finance mcp",
-        "stock mcp",
-        "trading mcp",
-        "financial data",
-        "monarch money",
-        "stock-sdk-mcp",
-        "polyclaw"
-      ],
-      "secondary_keywords": [
-        "finance",
-        "stock",
-        "trading",
-        "accounting",
-        "investing",
-        "portfolio",
-        "fintech",
-        "crypto mcp",
-        "polymarket"
-      ],
-      "topic_matches": [
-        "finance",
-        "finance-mcp",
-        "stock",
-        "trading",
-        "fintech",
-        "financial"
-      ],
-      "min_results": 3,
-      "max_results": 30,
-      "tag_matches": []
-    },
-    "related": ["data-pipeline", "data-visualization", "saas-mcp"]
-  },
-  {
-    "slug": "ai-design",
-    "title": "AI Design Tools",
-    "description": "Design intelligence skills for AI coding agents — UI generation, design systems, prototyping, mockup-to-code via Google Stitch, Claude Design, and more.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "ai design",
-        "design agent",
-        "ui generation",
-        "stitch",
-        "stitch-kit",
-        "claude design",
-        "design to code"
-      ],
-      "secondary_keywords": [
-        "design system",
-        "ui design",
-        "mockup",
-        "prototype",
-        "figma to code",
-        "design tokens",
-        "design skill",
-        "screen generation"
-      ],
-      "topic_matches": [
-        "ai-design",
-        "design-agent",
-        "design-to-code",
-        "ui-generation",
-        "stitch",
-        "design-system"
-      ],
-      "min_results": 3,
-      "max_results": 30,
-      "featured": [
-        "nexu-io/open-design",
-        "GLips/Figma-Context-MCP",
-        "alchaincyf/huashu-design",
-        "google-labs-code/stitch-skills",
-        "OpenCoworkAI/open-codesign",
-        "joeseesun/qiaomu-mondo-poster-design",
-        "op7418/logo-generator-skill",
-        "zanwei/design-dna"
-      ]
-    },
-    "related": [
-      "web-development",
-      "code-completion",
-      "skill-management-tools",
-      "ppt-presentation"
-    ]
-  },
-  {
-    "slug": "agent-deployment",
-    "title": "Agent Deployment",
-    "description": "Deploy AI agents and Skills to production — gstack, Fly.io, Vercel, Cloudflare Workers, Modal. From local dev to scalable inference, including CI/CD pipelines.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "agent deployment",
-        "deploy agent",
-        "agent hosting",
-        "gstack",
-        "fly deploy",
-        "vercel agent",
-        "cloudflare workers"
-      ],
-      "secondary_keywords": [
-        "deploy",
-        "hosting",
-        "production",
-        "modal",
-        "render",
-        "railway",
-        "serverless agent",
-        "agent infra",
-        "edge deployment"
-      ],
-      "topic_matches": [
-        "deployment",
-        "agent-deployment",
-        "deploy",
-        "hosting",
-        "production-deployment"
-      ],
-      "min_results": 3,
-      "max_results": 30,
-      "featured": [
-        "garrytan/gstack",
-        "PaddleHQ/paddle-mcp-server",
-        "JackLuguibin/OpenPawlet",
-        "vercel-labs/agent-browser",
-        "browserbase/skills",
-        "fluxa-agent-wallet/fluxa-agent-wallet"
-      ],
-      "tag_matches": ["agent-deployment"]
-    },
-    "related": ["ci-cd", "container-management", "saas-mcp"]
-  },
-  {
-    "slug": "voice-agent",
-    "title": "Voice Agents",
-    "description": "Real-time voice AI agents — speech-in/speech-out conversational systems with Whisper, ElevenLabs, OpenAI Realtime API, and Anthropic voice tools.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "voice agent",
-        "voice ai",
-        "realtime voice",
-        "voice assistant",
-        "elevenlabs",
-        "openai realtime",
-        "voice mcp"
-      ],
-      "secondary_keywords": [
-        "speech to speech",
-        "voice chat",
-        "audio agent",
-        "whisper agent",
-        "voice assistant",
-        "phone agent",
-        "audio mcp"
-      ],
-      "topic_matches": [
-        "voice",
-        "voice-agent",
-        "voice-ai",
-        "realtime-voice",
-        "speech-agent"
-      ],
-      "min_results": 3,
-      "max_results": 30,
-      "tag_matches": ["voice"]
-    },
-    "related": ["text-to-speech", "speech-to-text", "ai-agent-framework"]
-  },
-  {
-    "slug": "business-diagnosis",
-    "title": "Business Diagnosis & Founder Skills",
-    "description": "AI skills for founders and operators — business diagnosis, PRD generation, GTM playbooks, YC frameworks, and named-PM/founder knowledge bases. From idea validation to launch.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "business diagnosis",
-        "founder skill",
-        "startup skill",
-        "yc framework",
-        "prd generation",
-        "mvp template",
-        "gtm skill",
-        "go-to-market",
-        "商业诊断",
-        "创业",
-        "founder playbook",
-        "lenny"
-      ],
-      "secondary_keywords": [
-        "business",
-        "founder",
-        "startup",
-        "advisor",
-        "consultant",
-        "product manager",
-        "pm skill",
-        "venture",
-        "pitch deck",
-        "swot",
-        "lean canvas",
-        "pmf",
-        "market validation",
-        "growth hack",
-        "launch playbook"
-      ],
-      "topic_matches": [
-        "business",
-        "founder",
-        "startup",
-        "yc",
-        "gtm",
-        "product-management",
-        "advisor",
-        "consulting",
-        "agentic-startup"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "dontbesilent2025/dbskill",
-        "getagentseal/founder-playbook",
-        "rrred0324/senior-analyst",
-        "fleurytian/awesome-claude-skills",
-        "sahibzada-allahyar/YC-Killer",
-        "Deodat-Lawson/LaunchStack",
-        "rsmdt/the-startup",
-        "sidhq/YC-alum-ai-tools",
-        "joeseesun/qiaomu-design-advisor",
-        "joeseesun/lennys-podcast-newsletter",
-        "liyupi/yupi-skill",
-        "liyupi/ai-guide",
-        "onvoyage-ai/gtm-engineer-skills",
-        "gooseworks-ai/goose-skills",
-        "Gingiris/gingiris-launch",
-        "akseolabs-seo/AK-Threads-booster",
-        "KhazP/vibe-coding-prompt-template",
-        "peterfei/ai-agent-team",
-        "anombyte93/prd-taskmaster"
-      ],
-      "tag_matches": ["business-diagnosis"]
-    },
-    "related": ["claude-code-skills", "code-completion", "ai-design"]
-  },
-  {
-    "slug": "content-syndication",
-    "title": "Content Syndication",
-    "description": "Cross-platform content distribution skills for indie creators — publish once to X, LinkedIn, WeChat, XiaoHongShu, Bilibili, Telegram. agent-reach, MediaCrawler, qiaomu publishers, and platform-specific MCPs.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "content syndication",
-        "cross-platform publish",
-        "social distribution",
-        "agent-reach",
-        "media crawler",
-        "x article",
-        "wechat publish",
-        "xiaohongshu",
-        "social media",
-        "content distribution"
-      ],
-      "secondary_keywords": [
-        "publish",
-        "distribution",
-        "syndicate",
-        "social",
-        "twitter",
-        "linkedin",
-        "weibo",
-        "douyin",
-        "bilibili",
-        "rednote",
-        "threads"
-      ],
-      "topic_matches": [
-        "content-distribution",
-        "social-media",
-        "publishing",
-        "syndication",
-        "wechat",
-        "xiaohongshu",
-        "twitter",
-        "linkedin"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "Panniantong/Agent-Reach",
-        "NanmiCoder/MediaCrawler",
-        "mvanhorn/last30days-skill",
-        "xpzouying/xiaohongshu-mcp",
-        "JoeanAmier/XHS-Downloader",
-        "iBigQiang/feedgrab"
-      ],
-      "tag_matches": ["content-syndication"]
-    },
-    "related": ["telegram-bot", "slack-integration", "rss-monitoring"]
-  },
-  {
-    "slug": "personal-knowledge",
-    "title": "Personal Knowledge Skills",
-    "description": "Personal knowledge management skills for solo workers — Obsidian, Logseq, Notion, second-brain workflows. Connect your notes to AI agents and build a queryable second brain.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "obsidian skill",
-        "logseq",
-        "notion knowledge",
-        "second brain",
-        "personal knowledge",
-        "pkm",
-        "knowledge graph",
-        "notes mcp",
-        "obsidian-skills",
-        "obsidian plugin"
-      ],
-      "secondary_keywords": [
-        "obsidian",
-        "notion",
-        "wiki",
-        "knowledge base",
-        "notes",
-        "zettelkasten",
-        "roam",
-        "remnote",
-        "tana",
-        "heptabase",
-        "anki",
-        "readwise",
-        "second-brain"
-      ],
-      "topic_matches": [
-        "obsidian",
-        "notion",
-        "knowledge-management",
-        "pkm",
-        "second-brain",
-        "notes",
-        "knowledge-base"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "kepano/obsidian-skills",
-        "YishenTu/claudian",
-        "Ar9av/obsidian-wiki",
-        "SamurAIGPT/llm-wiki-agent",
-        "trapoom555/claude-paperloom",
-        "vanillaflava/llm-wiki-skills"
-      ],
-      "tag_matches": ["personal-knowledge"]
-    },
-    "related": ["knowledge-base", "rag", "agent-memory"]
-  },
-  {
-    "slug": "ppt-presentation",
-    "title": "PPT Skills for Codex & Claude Code",
-    "description": "Best Codex & Claude Code PPT skills, security-graded: ppt-master, codex-ppt-skill, image-to-editable-ppt, guizang HTML decks, McKinsey-style PPTX. Vet before you install.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "ppt",
-        "pptx",
-        "presentation",
-        "slide deck",
-        "guizang",
-        "mckinsey-pptx",
-        "ppt-image-first",
-        "magazine slides",
-        "powerpoint",
-        "ppt skill",
-        "ppt agent",
-        "ppt generat",
-        ".pptx",
-        "slide generation",
-        "reveal.js",
-        "revealjs",
-        "slidev",
-        "beamer",
-        "marp",
-        "pptagent",
-        "google slides",
-        "keynote deck"
-      ],
-      "secondary_keywords": [
-        "slides",
-        "powerpoint",
-        "keynote",
-        "pitch deck",
-        "horizontal swipe",
-        "ppt",
-        "slide",
-        "deck",
-        "office",
-        "reveal",
-        "impress.js",
-        "academic presentation",
-        "html slides",
-        "talk"
-      ],
-      "topic_matches": [
-        "ppt",
-        "pptx",
-        "presentation",
-        "slides",
-        "powerpoint",
-        "slidev",
-        "reveal-js",
-        "slide-deck",
-        "marp"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "op7418/guizang-ppt-skill",
-        "wuyoscar/gpt_image_2_skill",
-        "NyxTides/ppt-image-first",
-        "minhnv0807/fullstack-mkt-skills",
-        "seulee26/mckinsey-pptx",
-        "zarazhangrui/frontend-slides",
-        "icip-cas/PPTAgent",
-        "op7418/NanoBanana-PPT-Skills",
-        "ningzimu/codex-ppt-skill",
-        "GongRzhe/Office-PowerPoint-MCP-Server",
-        "johnson7788/MultiAgentPPT",
-        "JuneYaooo/gpt-image2-ppt-skills",
-        "sunbigfly/ppt-agent-skills",
-        "tfriedel/claude-office-skills",
-        "barun-saha/slide-deck-ai",
-        "ryanbbrown/revealjs-skill",
-        "Noi1r/beamer-skill",
-        "Gabberflast/academic-pptx-skill",
-        "ningzimu/image-to-editable-ppt-skill",
-        "AI272/speaker",
-        "rsrohan99/presenter",
-        "crazyykhllc-bit/CyberPPT",
-        "archlizheng/frontend-slides-editable"
-      ],
-      "tag_matches": ["ppt", "presentation", "powerpoint"]
-    },
-    "related": ["ai-design", "image-generation", "content-syndication"]
-  },
-  {
-    "slug": "skill-creation-tools",
-    "title": "Skill Creation & Meta-Tools",
-    "description": "Tools for creating, distilling, and managing AI Skills themselves — book→skill, repo→skill, codebase→skill, and cross-IDE skill sync. Meta-tools that build other skills.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "skill creator",
-        "create skill",
-        "make skill",
-        "skill forge",
-        "book to skill",
-        "skillify",
-        "meta skill",
-        "skill builder",
-        "skill management"
-      ],
-      "secondary_keywords": [
-        "skill template",
-        "skill scaffold",
-        "skill generator",
-        "skill library",
-        "skill collection",
-        "skill pack"
-      ],
-      "topic_matches": [
-        "skill-creator",
-        "meta-skill",
-        "skill-forge",
-        "skill-builder"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "asgard-ai-platform/skills",
-        "WoJiSama/skill-based-architecture",
-        "shanliuling/skills-link",
-        "virgiliojr94/book-to-skill",
-        "armelhbobdad/bmad-module-skill-forge",
-        "Emove/skillify-for-codex"
-      ],
-      "tag_matches": ["skill-creation", "skill"]
-    },
-    "related": ["claude-code-skills", "codex-skills", "agent-governance"],
-    "broad": true
-  },
-  {
-    "slug": "multi-ai-bridge",
-    "title": "Multi-AI Bridge & Cross-IDE Sync",
-    "description": "Run Claude + Codex + Gemini together, sync Skills across IDEs, route tasks between models. The orchestration layer for multi-model agentic workflows.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "multi-ai bridge",
-        "claude codex bridge",
-        "cross-ide",
-        "skills-link",
-        "multi-model",
-        "ai bridge",
-        "model router",
-        "harness sync"
-      ],
-      "secondary_keywords": [
-        "bridge",
-        "sync",
-        "router",
-        "multi-agent",
-        "cross-platform",
-        "claude codex",
-        "claude gemini",
-        "model collaboration"
-      ],
-      "topic_matches": [
-        "multi-ai",
-        "ai-bridge",
-        "cross-ide",
-        "model-router",
-        "harness"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "bfly123/claude_codex_bridge",
-        "mcpware/cross-code-organizer",
-        "shanliuling/skills-link",
-        "Chat2AnyLLM/awesome-claude-plugins",
-        "waybarrios/opencode-power-pack",
-        "iamzhihuix/skills-manage"
-      ],
-      "tag_matches": ["multi-agent"]
-    },
-    "related": ["agent-governance", "claude-code-skills", "codex-skills"]
-  },
-  {
-    "slug": "vibe-coding",
-    "title": "Vibe Coding Stack",
-    "description": "Indie hacker / solo dev coding stack — PRD → multi-agent build → ship. Templates for vibe coding, Ralph-loops, prd-taskmaster, ai-agent-team. The full pipeline.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "vibe coding",
-        "vibe-coding",
-        "ralph loop",
-        "prd-taskmaster",
-        "ai agent team",
-        "evanflow",
-        "loki-mode",
-        "armory"
-      ],
-      "secondary_keywords": [
-        "prd",
-        "tdd",
-        "indie hacker",
-        "solo dev",
-        "claude code workflow",
-        "agent team",
-        "tasks",
-        "ship workflow"
-      ],
-      "topic_matches": [
-        "vibe-coding",
-        "ralph",
-        "indie-hacker",
-        "agent-team",
-        "prd"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "michaelshimeles/ralphy",
-        "KhazP/vibe-coding-prompt-template",
-        "asklokesh/loki-mode",
-        "peterfei/ai-agent-team",
-        "Mathews-Tom/armory",
-        "evanklem/evanflow",
-        "anombyte93/prd-taskmaster"
-      ],
-      "tag_matches": ["vibe-coding"]
-    },
-    "related": ["business-diagnosis", "claude-code-skills", "agent-governance"]
-  },
-  {
-    "slug": "job-hunting",
-    "title": "AI Job Hunting & Resume Skills",
-    "description": "AI-powered job search stack — resume tailoring, cover letter generation, interview copilots, LinkedIn automation, application auto-fillers, and cold outreach to recruiters. The full pipeline for landing your next role.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "resume writing",
-        "resume builder",
-        "resume-builder",
-        "resume tailoring",
-        "build resume",
-        "tailor resume",
-        "cv",
-        "cover letter",
-        "interview prep",
-        "interview copilot",
-        "job application",
-        "job search",
-        "job hunt",
-        "career coach",
-        "linkedin"
-      ],
-      "secondary_keywords": [
-        "recruiter",
-        "talent",
-        "ats",
-        "applicant tracking",
-        "career",
-        "outreach",
-        "auto apply",
-        "tailoring",
-        "personalize"
-      ],
-      "topic_matches": [
-        "resume",
-        "cv",
-        "interview",
-        "job-search",
-        "career",
-        "linkedin",
-        "cover-letter",
-        "job-application"
-      ],
-      "exclude_keywords": [
-        "resume session",
-        "resume conversation",
-        "resume task",
-        "auto-resume",
-        "session resume",
-        "video skill",
-        "interview my agent",
-        "resumes claude",
-        "resume coding",
-        "resume cli",
-        "resume your",
-        "resumes the"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "santifer/career-ops",
-        "WeThinkIn/AIGC-Interview-Book",
-        "stickerdaniel/linkedin-mcp-server",
-        "Natively-AI-assistant/natively-cluely-ai-assistant",
-        "adhikasp/mcp-linkedin",
-        "kaymen99/Upwork-AI-jobs-applier",
-        "varunr89/resume-tailoring-skill",
-        "Paramchoudhary/ResumeSkills"
-      ],
-      "tag_matches": []
-    },
-    "related": ["business-diagnosis", "personal-knowledge", "anti-slop"]
-  },
-  {
-    "slug": "meeting-tools",
-    "title": "Meeting Tools & Transcription",
-    "description": "AI meeting stack — real-time transcription, automatic minutes, action item extraction, multilingual captions, audio capture, Lark/Feishu/Zoom integration. Every standup, sales call, podcast covered.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "transcrib",
-        "transcription",
-        "meeting note",
-        "meeting minute",
-        "meeting record",
-        "meeting copilot",
-        "speech-to-text",
-        "speech to text",
-        "stt",
-        "whisper",
-        "subtitle",
-        "live caption"
-      ],
-      "secondary_keywords": [
-        "audio capture",
-        "asr",
-        "speaker diarization",
-        "diarize",
-        "zoom",
-        "teams",
-        "feishu meeting",
-        "lark meeting",
-        "conference call",
-        "voice note",
-        "voice memo",
-        "real-time",
-        "echo cancellation"
-      ],
-      "topic_matches": [
-        "transcription",
-        "meeting",
-        "whisper",
-        "stt",
-        "speech-to-text",
-        "subtitle",
-        "asr",
-        "audio"
-      ],
-      "exclude_keywords": [
-        "agent orchestration",
-        "agent team",
-        "multi-agent",
-        "video editing",
-        "video generator",
-        "youtube transcript"
-      ],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "silverstein/minutes",
-        "Laxcorp-Research/project-raven",
-        "video-db/call.md",
-        "XimilalaXiang/DeLive",
-        "jarrodwatts/claude-stt",
-        "JimLiu/whisper-subtitles",
-        "10xChengTu/input0",
-        "zarazhangrui/lark-minutes-tasks"
-      ],
-      "tag_matches": ["voice"]
-    },
-    "related": ["voice-agent", "personal-knowledge", "workflow-automation"]
-  },
-  {
-    "slug": "spreadsheet-ai",
-    "title": "Spreadsheet & Excel AI Tools",
-    "description": "AI for Excel, Google Sheets, CSV — automated formulas, pivot tables, data summarization, MCP servers for read/write, structured extraction, agent-driven reporting. The full data layer for non-engineers.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "spreadsheet",
-        "excel",
-        "google sheet",
-        "xlsx",
-        "csv",
-        "pivot table",
-        "excel automation",
-        "excel agent",
-        "sheet automation"
-      ],
-      "secondary_keywords": [
-        "data summarizer",
-        "report generation",
-        "data analysis",
-        "formula",
-        "table extraction",
-        "structured json",
-        "google drive"
-      ],
-      "topic_matches": [
-        "excel",
-        "spreadsheet",
-        "google-sheets",
-        "xlsx",
-        "csv",
-        "data-analysis"
-      ],
-      "exclude_keywords": ["video", "ppt only", "meeting"],
-      "min_results": 5,
-      "max_results": 25,
-      "featured": [
-        "haris-musa/excel-mcp-server",
-        "negokaz/excel-mcp-server",
-        "xing5/mcp-google-sheets",
-        "tfriedel/claude-office-skills",
-        "coffeefuelbump/csv-data-summarizer-claude-skill",
-        "sbroenne/mcp-server-excel",
-        "SylvianAI/sv-excel-agent",
-        "isaacphi/mcp-gdrive"
-      ],
-      "tag_matches": []
-    },
-    "related": ["data-visualization", "data-pipeline", "document-parsing"]
-  },
-  {
-    "slug": "video-editing",
-    "title": "AI Video Generation & Editing: Seedance, Kling & Subtitles",
-    "description": "Open-source AI video stack — subtitle generation, multilingual dubbing, short-video maker for TikTok/Reels/Shorts, Remotion programmatic video, podcast-to-video, automated captions and translations.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "video editing",
-        "video edit",
-        "video generator",
-        "video maker",
-        "video automation",
-        "shorts",
-        "tiktok",
-        "reels",
-        "instagram reel",
-        "captions",
-        "subtitle generation",
-        "subtitle translat",
-        "video subtitling",
-        "video translation",
-        "podcast video",
-        "seedance",
-        "higgsfield",
-        "kling",
-        "sora",
-        "text-to-video",
-        "text to video",
-        "image-to-video",
-        "video generation",
-        "ai video",
-        "video agent",
-        "runway",
-        "ltx video",
-        "minimax video",
-        "veo",
-        "storyboard"
-      ],
-      "secondary_keywords": [
-        "remotion",
-        "ffmpeg",
-        "yt-shorts",
-        "youtube shorts",
-        "dubbing",
-        "video dubbing",
-        "video editor",
-        "video script",
-        "auto cut",
-        "video",
-        "filmmaking",
-        "short film",
-        "ai film",
-        "video editing",
-        "comfyui",
-        "分镜",
-        "视频生成"
-      ],
-      "topic_matches": [
-        "video",
-        "shorts",
-        "tiktok",
-        "reels",
-        "remotion",
-        "subtitle",
-        "captions",
-        "text-to-video",
-        "video-generation",
-        "ai-video",
-        "seedance",
-        "kling",
-        "sora",
-        "image-to-video",
-        "video-agent"
-      ],
-      "exclude_keywords": ["video conferencing", "video call agent"],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "WEIFENG2333/VideoCaptioner",
-        "krillinai/KrillinAI",
-        "FireRedTeam/FireRed-OpenStoryline",
-        "Ceeon/videocut-skills",
-        "digitalsamba/claude-code-video-toolkit",
-        "gyoridavid/short-video-maker",
-        "wshuyi/remotion-video-skill",
-        "op7418/Video-Wrapper-Skills",
-        "MemeCalculate/moyin-creator",
-        "ArcReel/ArcReel",
-        "Lightricks/LTX-Desktop",
-        "YouMind-OpenLab/awesome-seedance-2-prompts",
-        "HITsz-TMG/VideoClaw",
-        "MiniMax-AI/MiniMax-MCP",
-        "jau123/MeiGen-AI-Design-MCP",
-        "HITsz-TMG/AIGC-Claw",
-        "SamurAIGPT/Text-To-Video-AI",
-        "0xsline/StoryGen-Atelier",
-        "vargHQ/sdk",
-        "cclank/lanshu-awesome-ai-video-kit",
-        "Yuuhann1999/codex-storyboard",
-        "OSideMedia/higgsfield-ai-prompt-skill",
-        "mantoufan/seedance-prompts-skill",
-        "TornadoInsight/Sora-FullStack"
-      ],
-      "tag_matches": ["video"]
-    },
-    "related": ["content-syndication", "ai-design", "voice-agent"]
-  },
-  {
-    "slug": "deep-research",
-    "title": "AI Deep Research",
-    "description": "AI agent skills and MCP tools for deep research, multi-source investigation, literature review, fact-checking, and automated report generation.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "deep research",
-        "deep-research",
-        "research agent",
-        "research assistant",
-        "literature review",
-        "multi-source research"
-      ],
-      "secondary_keywords": [
-        "research",
-        "investigate",
-        "investigation",
-        "fact-check",
-        "citation",
-        "academic",
-        "literature",
-        "report generat",
-        "perplexity",
-        "web research",
-        "scholar",
-        "arxiv"
-      ],
-      "topic_matches": ["research", "deep-research", "academic", "literature"],
-      "exclude_keywords": ["user research", "ux research"],
-      "min_results": 5,
-      "max_results": 25,
-      "tag_matches": ["research"]
-    },
-    "related": ["semantic-search", "knowledge-base", "summarization"]
-  },
-  {
-    "slug": "productivity",
-    "title": "Productivity & Task Management",
-    "description": "AI agent skills for productivity, task and todo management, note-taking, scheduling, reminders, and personal workflow automation.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "task management",
-        "todo",
-        "to-do",
-        "task manager",
-        "productivity",
-        "gtd",
-        "pomodoro",
-        "note-taking",
-        "second brain"
-      ],
-      "secondary_keywords": [
-        "notes",
-        "reminder",
-        "calendar",
-        "schedule",
-        "kanban",
-        "obsidian",
-        "todoist",
-        "planner",
-        "habit tracker"
-      ],
-      "topic_matches": [
-        "productivity",
-        "todo",
-        "task",
-        "notes",
-        "gtd",
-        "pomodoro"
-      ],
-      "exclude_keywords": [],
-      "min_results": 5,
-      "max_results": 25,
-      "tag_matches": ["productivity"]
-    },
-    "related": ["personal-knowledge", "workflow-automation", "meeting-tools"]
-  },
-  {
-    "slug": "paid-ads",
-    "title": "Paid Ads & PPC",
-    "description": "AI agent skills for paid advertising — Google Ads, Meta/Facebook ads, ad copy generation, campaign optimization, and PPC management.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "paid ads",
-        "google ads",
-        "facebook ads",
-        "meta ads",
-        "ad copy",
-        "ppc",
-        "ad campaign",
-        "ad creative"
-      ],
-      "secondary_keywords": [
-        "advertising",
-        "adwords",
-        "campaign optim",
-        "tiktok ads",
-        "linkedin ads",
-        "retargeting",
-        "ad generator"
-      ],
-      "topic_matches": ["ads", "advertising", "ppc", "adwords"],
-      "exclude_keywords": ["adblock", "ad blocker"],
-      "min_results": 5,
-      "max_results": 25,
-      "tag_matches": ["advertising"]
-    },
-    "related": ["seo-tools", "social-media", "marketing-analytics"]
-  },
-  {
-    "slug": "lead-generation",
-    "title": "Lead Generation & CRM",
-    "description": "AI agent skills for lead generation, prospecting, CRM enrichment, cold outreach, and sales pipeline automation.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "lead generation",
-        "lead gen",
-        "prospecting",
-        "crm",
-        "cold outreach",
-        "cold email",
-        "sales pipeline",
-        "lead enrichment"
-      ],
-      "secondary_keywords": [
-        "leads",
-        "enrichment",
-        "outreach",
-        "sales",
-        "prospect",
-        "hubspot",
-        "salesforce",
-        "contact enrichment"
-      ],
-      "topic_matches": ["leads", "crm", "sales", "outreach", "prospecting"],
-      "exclude_keywords": [],
-      "min_results": 5,
-      "max_results": 25,
-      "tag_matches": ["crm"]
-    },
-    "related": ["email-automation", "paid-ads", "social-media"]
-  },
-  {
-    "slug": "marketing-analytics",
-    "title": "Marketing Analytics & Reporting",
-    "description": "AI agent skills for marketing analytics, attribution, campaign reporting, web analytics, and growth dashboards.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "marketing analytics",
-        "attribution",
-        "campaign report",
-        "web analytics",
-        "google analytics",
-        "marketing dashboard",
-        "growth metric"
-      ],
-      "secondary_keywords": [
-        "ga4",
-        "conversion tracking",
-        "funnel analysis",
-        "marketing kpi",
-        "ad reporting",
-        "utm"
-      ],
-      "topic_matches": ["analytics", "attribution", "marketing"],
-      "exclude_keywords": ["code analytics", "log analytics"],
-      "min_results": 5,
-      "max_results": 25,
-      "tag_matches": ["analytics"]
-    },
-    "related": ["data-visualization", "seo-tools", "paid-ads"]
-  },
-  {
-    "slug": "obsidian-second-brain",
-    "title": "Obsidian, Second Brain & LLM Wiki",
-    "description": "kepano/obsidian-skills, mcp-obsidian, claude-obsidian, obsidian-wiki, karpathy-llm-wiki and 30+ open-source Obsidian, second-brain and LLM-wiki skills for Claude Code & Codex — stars, security grade, and which to install.",
-    "match": {
-      "categories": [],
-      "primary_keywords": [
-        "obsidian",
-        "second brain",
-        "second-brain",
-        "llm wiki",
-        "llm-wiki",
-        "zettelkasten",
-        "personal knowledge",
-        "knowledge vault",
-        "note vault",
-        "obsidian mcp",
-        "obsidian skill",
-        "obsidian plugin",
-        "digital brain",
-        "pkm",
-        "note-taking agent"
-      ],
-      "secondary_keywords": [
-        "notes",
-        "vault",
-        "markdown notes",
-        "knowledge management",
-        "wiki",
-        "logseq",
-        "roam",
-        "note taking",
-        "memory layer",
-        "knowledge graph"
-      ],
-      "topic_matches": [
-        "obsidian",
-        "second-brain",
-        "pkm",
-        "zettelkasten",
-        "knowledge-management",
-        "note-taking",
-        "llm-wiki",
-        "knowledge-base"
-      ],
-      "min_results": 5,
-      "max_results": 30,
-      "featured": [
-        "kepano/obsidian-skills",
-        "YishenTu/claudian",
-        "codexu/note-gen",
-        "AgriciDaniel/claude-obsidian",
-        "MarkusPfundstein/mcp-obsidian",
-        "axtonliu/axton-obsidian-visual-skills",
-        "eugeniughelbur/obsidian-second-brain",
-        "Ar9av/obsidian-wiki",
-        "samuraigpt/llm-wiki-agent",
-        "coddingtonbear/obsidian-local-rest-api",
-        "RAIT-09/obsidian-agent-client",
-        "agenticnotetaking/arscontexta",
-        "inkeep/open-knowledge",
-        "bitbonsai/mcpvault",
-        "Astro-Han/karpathy-llm-wiki",
-        "lucasastorian/llmwiki",
-        "alchaincyf/obsidian-ai-orange-book",
-        "ballred/obsidian-claude-pkm",
-        "jacksteamdev/obsidian-mcp-tools",
-        "cyanheads/obsidian-mcp-server"
-      ],
-      "tag_matches": ["obsidian"]
-    },
-    "related": [
-      "knowledge-base",
-      "agent-memory",
-      "semantic-search",
-      "document-parsing"
-    ]
-  }
+ {
+  "slug": "web-scraping",
+  "title": "Web Scraping",
+  "description": "Discover the best AI agent skills and MCP tools for web scraping, data extraction, and automated crawling from websites.",
+  "match": {
+   "categories": [
+    "web-scraping",
+    "crawler"
+   ],
+   "keywords": [
+    "scrape",
+    "scraping",
+    "crawl",
+    "crawler",
+    "spider",
+    "selenium",
+    "playwright",
+    "puppeteer",
+    "headless"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "web-scraping",
+    "browser"
+   ]
+  },
+  "related": [
+   "browser-automation",
+   "data-pipeline",
+   "rss-monitoring"
+  ]
+ },
+ {
+  "slug": "code-review",
+  "title": "Code Review",
+  "description": "Find the top AI-powered code review tools that help you catch bugs, enforce style, and improve code quality automatically.",
+  "match": {
+   "categories": [
+    "code-review"
+   ],
+   "keywords": [
+    "code review",
+    "code-review",
+    "lint",
+    "linter",
+    "static analysis",
+    "code quality",
+    "review"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "code-review"
+   ]
+  },
+  "related": [
+   "test-generation",
+   "code-completion",
+   "debugging"
+  ]
+ },
+ {
+  "slug": "mcp-database",
+  "title": "MCP Database Tools",
+  "description": "Browse the best MCP server tools for database access, SQL queries, and data management with AI agents.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "database",
+    "sql",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "mongodb"
+   ],
+   "secondary_keywords": [
+    "redis",
+    "supabase",
+    "prisma",
+    "db",
+    "query",
+    "table"
+   ],
+   "exclude_keywords": [
+    "browser",
+    "screenshot",
+    "playwright",
+    "filesystem",
+    "file manager",
+    "memories",
+    "agent memory",
+    "ai memory",
+    "memory system",
+    "agent-memory",
+    "mem0"
+   ],
+   "topic_matches": [
+    "database",
+    "sql",
+    "postgresql",
+    "mysql",
+    "sqlite",
+    "mongodb",
+    "redis"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "database"
+   ]
+  },
+  "related": [
+   "mcp-api",
+   "data-pipeline",
+   "mcp-filesystem"
+  ]
+ },
+ {
+  "slug": "mcp-browser",
+  "title": "MCP Browser Automation",
+  "description": "Explore MCP tools that let AI agents control browsers, navigate pages, and automate web interactions.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "browser",
+    "chrome",
+    "playwright",
+    "puppeteer",
+    "CDP"
+   ],
+   "secondary_keywords": [
+    "selenium",
+    "web automation",
+    "headless",
+    "navigate",
+    "screenshot"
+   ],
+   "exclude_keywords": [
+    "database",
+    "sql",
+    "filesystem",
+    "memory",
+    "knowledge graph"
+   ],
+   "topic_matches": [
+    "browser",
+    "chrome",
+    "playwright",
+    "puppeteer",
+    "selenium",
+    "web-automation"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "browser"
+   ]
+  },
+  "related": [
+   "web-scraping",
+   "browser-automation",
+   "mcp-api"
+  ]
+ },
+ {
+  "slug": "mcp-filesystem",
+  "title": "MCP Filesystem Tools",
+  "description": "Find MCP server tools for file management, directory operations, and local filesystem access from AI agents.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "filesystem",
+    "file system",
+    "directory",
+    "file manager"
+   ],
+   "secondary_keywords": [
+    "folder",
+    "path",
+    "fs",
+    "storage",
+    "disk",
+    "file"
+   ],
+   "exclude_keywords": [
+    "database",
+    "sql",
+    "browser",
+    "chrome",
+    "memory",
+    "knowledge"
+   ],
+   "topic_matches": [
+    "filesystem",
+    "file-system",
+    "file-manager"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": []
+  },
+  "related": [
+   "mcp-database",
+   "mcp-memory",
+   "mcp-api"
+  ]
+ },
+ {
+  "slug": "mcp-api",
+  "title": "MCP API Integration",
+  "description": "Discover MCP tools that connect AI agents to external APIs, REST endpoints, and third-party services.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "api",
+    "rest",
+    "graphql",
+    "openapi",
+    "swagger"
+   ],
+   "secondary_keywords": [
+    "http",
+    "endpoint",
+    "webhook",
+    "integration"
+   ],
+   "exclude_keywords": [
+    "database",
+    "sql",
+    "browser",
+    "chrome",
+    "filesystem",
+    "memory"
+   ],
+   "topic_matches": [
+    "api",
+    "rest-api",
+    "graphql",
+    "openapi",
+    "swagger"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": []
+  },
+  "related": [
+   "mcp-database",
+   "mcp-browser",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "mcp-memory",
+  "title": "MCP Memory & Knowledge",
+  "description": "Browse MCP tools for persistent memory, knowledge graphs, and context management in AI agent workflows.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "memory",
+    "knowledge graph",
+    "persistent memory",
+    "context management"
+   ],
+   "secondary_keywords": [
+    "knowledge",
+    "context",
+    "rag",
+    "embedding",
+    "vector",
+    "recall",
+    "persistent"
+   ],
+   "exclude_keywords": [
+    "database server",
+    "sql",
+    "browser",
+    "chrome",
+    "filesystem"
+   ],
+   "topic_matches": [
+    "memory",
+    "knowledge-graph",
+    "rag",
+    "context"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "agent-memory"
+   ]
+  },
+  "related": [
+   "semantic-search",
+   "vector-database",
+   "mcp-database"
+  ]
+ },
+ {
+  "slug": "test-generation",
+  "title": "Test Generation",
+  "description": "Find AI tools that automatically generate unit tests, integration tests, and test suites for your codebase.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "test generation",
+    "test-generation",
+    "unit test",
+    "testing",
+    "test suite",
+    "tdd",
+    "coverage",
+    "jest",
+    "pytest",
+    "vitest"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "testing"
+   ]
+  },
+  "related": [
+   "code-review",
+   "debugging",
+   "code-completion"
+  ]
+ },
+ {
+  "slug": "code-completion",
+  "title": "Code Completion & Generation",
+  "description": "Discover AI-powered code completion and generation tools that help you write code faster with intelligent suggestions.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "code completion",
+    "code generation",
+    "copilot",
+    "autocomplete",
+    "code assist",
+    "coding",
+    "codegen"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "code-completion"
+   ]
+  },
+  "related": [
+   "code-review",
+   "test-generation",
+   "refactoring"
+  ]
+ },
+ {
+  "slug": "security-audit",
+  "title": "Security Auditing",
+  "description": "Find the best AI agent tools for security auditing, vulnerability scanning, and automated penetration testing.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "security",
+    "audit",
+    "vulnerability",
+    "pentest",
+    "penetration",
+    "scan",
+    "cve",
+    "exploit",
+    "devsecops",
+    "sast",
+    "dast"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "agent-security"
+   ],
+   "featured": [
+    "mukul975/Anthropic-Cybersecurity-Skills",
+    "anthropics/claude-code-security-review",
+    "openai/codex-security",
+    "trailofbits/skills",
+    "0x4m4/hexstrike-ai",
+    "promptfoo/promptfoo"
+   ]
+  },
+  "related": [
+   "secret-detection",
+   "code-review"
+  ]
+ },
+ {
+  "slug": "secret-detection",
+  "title": "Secret Detection",
+  "description": "Discover tools that detect leaked secrets, API keys, and credentials in your codebase before they cause security incidents.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "secret",
+    "credential",
+    "api key",
+    "token",
+    "password",
+    "leak",
+    "gitleaks",
+    "trufflehog"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "agent-security"
+   ]
+  },
+  "related": [
+   "security-audit",
+   "code-review"
+  ]
+ },
+ {
+  "slug": "content-writing",
+  "title": "Content Writing",
+  "description": "Find AI agent skills for automated content writing, blog generation, copywriting, and text creation.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "content",
+    "writing",
+    "blog",
+    "article",
+    "copywriting",
+    "text generation",
+    "markdown",
+    "documentation"
+   ],
+   "min_results": 5,
+   "max_results": 10
+  },
+  "related": [
+   "translation",
+   "summarization",
+   "document-parsing",
+   "ppt-presentation"
+  ]
+ },
+ {
+  "slug": "translation",
+  "title": "Translation",
+  "description": "Explore AI translation tools and agent skills for multilingual content, i18n, and language conversion.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "translat",
+    "i18n",
+    "multilingual",
+    "language",
+    "localization",
+    "l10n"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "translation"
+   ]
+  },
+  "related": [
+   "content-writing",
+   "summarization"
+  ]
+ },
+ {
+  "slug": "summarization",
+  "title": "Summarization",
+  "description": "Find AI tools that automatically summarize documents, articles, code, and conversations.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "summariz",
+    "summary",
+    "digest",
+    "tldr",
+    "abstract",
+    "condense"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "content-writing",
+   "document-parsing",
+   "translation"
+  ]
+ },
+ {
+  "slug": "document-parsing",
+  "title": "Document Parsing",
+  "description": "Discover tools for parsing PDFs, Word documents, spreadsheets, and extracting structured data from unstructured files.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "document",
+    "parsing",
+    "pdf",
+    "docx",
+    "xlsx",
+    "ocr",
+    "extract",
+    "parser"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "document"
+   ],
+   "featured": [
+    "PDFMathTranslate/PDFMathTranslate",
+    "yusufkaraaslan/Skill_Seekers",
+    "joeseesun/qiaomu-anything-to-notebooklm",
+    "chrisryugj/kordoc",
+    "SylphxAI/pdf-reader-mcp",
+    "magicyuan876/mineru-tianshu",
+    "opendatalab/MinerU-Document-Explorer",
+    "deusyu/translate-book"
+   ]
+  },
+  "related": [
+   "content-writing",
+   "summarization",
+   "data-pipeline"
+  ]
+ },
+ {
+  "slug": "workflow-automation",
+  "title": "Workflow Automation",
+  "description": "Find AI tools for automating repetitive workflows, task orchestration, and process management.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "workflow automation",
+    "workflow engine",
+    "workflow builder",
+    "process automation",
+    "task automation",
+    "automate workflow",
+    "task scheduler",
+    "job scheduler",
+    "cron"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "workflow"
+   ]
+  },
+  "related": [
+   "ci-cd",
+   "email-automation",
+   "social-media"
+  ]
+ },
+ {
+  "slug": "ci-cd",
+  "title": "CI/CD & DevOps",
+  "description": "Browse AI agent tools for continuous integration, deployment automation, and DevOps workflows.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "ci/cd",
+    "cicd",
+    "ci-cd",
+    "deploy",
+    "github actions",
+    "devops",
+    "pipeline",
+    "build",
+    "release"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "ci-cd"
+   ]
+  },
+  "related": [
+   "workflow-automation",
+   "monitoring",
+   "container-management"
+  ]
+ },
+ {
+  "slug": "monitoring",
+  "title": "Monitoring & Observability",
+  "description": "Find AI tools for monitoring applications, logs, metrics, and system health with intelligent alerting.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "monitor",
+    "observability",
+    "alert",
+    "metric",
+    "log monitoring",
+    "logging",
+    "tracing",
+    "distributed trace",
+    "dashboard",
+    "health check"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "ci-cd",
+   "debugging",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "semantic-search",
+  "title": "Semantic Search",
+  "description": "Discover AI-powered semantic search tools that understand meaning, not just keywords, for code and documents.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "semantic search",
+    "vector search",
+    "embedding",
+    "similarity",
+    "retrieval",
+    "rag",
+    "search engine"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "semantic-search",
+    "embedding"
+   ]
+  },
+  "related": [
+   "vector-database",
+   "document-parsing",
+   "mcp-memory"
+  ]
+ },
+ {
+  "slug": "vector-database",
+  "title": "Vector Database",
+  "description": "Find vector database tools and integrations for storing and querying AI embeddings at scale.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "vector",
+    "pinecone",
+    "weaviate",
+    "qdrant",
+    "chroma",
+    "milvus",
+    "faiss",
+    "vector db"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "vector-db"
+   ]
+  },
+  "related": [
+   "semantic-search",
+   "mcp-memory",
+   "mcp-database"
+  ]
+ },
+ {
+  "slug": "browser-automation",
+  "title": "browser-use, Playwright MCP & AI Browser Agents",
+  "description": "browser-use, playwright-mcp, MediaCrawler, Scrapling, mcp-chrome and 20+ open-source AI browser agents compared — stars, security grade, and which to install.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "browser automation",
+    "playwright",
+    "puppeteer",
+    "selenium",
+    "browser-use",
+    "computer use",
+    "browser-use",
+    "MediaCrawler",
+    "Scrapling",
+    "playwright-mcp",
+    "agent-reach",
+    "OpenCLI",
+    "AutoCLI",
+    "agent-browser",
+    "mcp-chrome",
+    "obscura",
+    "stagehand",
+    "browserbase",
+    "firecrawl",
+    "feedgrab",
+    "dev-browser"
+   ],
+   "secondary_keywords": [
+    "browser",
+    "headless",
+    "chrome",
+    "chromium",
+    "webdriver",
+    "cypress",
+    "e2e",
+    "ui test",
+    "web agent",
+    "web scraping",
+    "screenshot",
+    "devtools",
+    "scraper",
+    "crawler",
+    "headless-browser",
+    "browser-tools",
+    "browser-mcp",
+    "media-crawler",
+    "scrapling"
+   ],
+   "topic_matches": [
+    "playwright",
+    "puppeteer",
+    "selenium",
+    "browser-automation",
+    "browser-use",
+    "web-automation",
+    "headless-browser",
+    "scraper",
+    "web-scraping",
+    "browser-mcp",
+    "browser-tools",
+    "stagehand",
+    "media-crawler",
+    "browser-agent"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "browser-use/browser-use",
+    "NanmiCoder/MediaCrawler",
+    "D4Vinci/Scrapling",
+    "microsoft/playwright-mcp",
+    "Panniantong/Agent-Reach",
+    "jackwener/OpenCLI",
+    "vercel-labs/agent-browser",
+    "h4ckf0r0day/obscura",
+    "nashsu/AutoCLI",
+    "browserbase/stagehand",
+    "hangwin/mcp-chrome",
+    "AgentDeskAI/browser-tools-mcp",
+    "firecrawl/firecrawl-mcp-server",
+    "SawyerHood/dev-browser",
+    "browserbase/skills",
+    "iBigQiang/feedgrab",
+    "nashsu/autocli-skill"
+   ],
+   "tag_matches": [
+    "browser"
+   ]
+  },
+  "related": [
+   "web-scraping",
+   "mcp-browser",
+   "test-generation"
+  ]
+ },
+ {
+  "slug": "data-pipeline",
+  "title": "Data Pipeline",
+  "description": "Find AI tools for building data pipelines, ETL processes, and data transformation workflows.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "data pipeline",
+    "etl",
+    "data transform",
+    "data processing",
+    "batch",
+    "stream",
+    "ingest"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "data-pipeline"
+   ],
+   "primary_keywords": [
+    "etl",
+    "data pipeline",
+    "airflow",
+    "dagster",
+    "prefect",
+    "data ingestion",
+    "data orchestration"
+   ],
+   "secondary_keywords": []
+  },
+  "related": [
+   "web-scraping",
+   "document-parsing",
+   "mcp-database"
+  ]
+ },
+ {
+  "slug": "rss-monitoring",
+  "title": "RSS & Feed Monitoring",
+  "description": "Discover tools for RSS feed monitoring, news aggregation, and content tracking with AI agents.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "rss",
+    "feed",
+    "news",
+    "monitor",
+    "aggregat",
+    "atom",
+    "syndication"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "rss"
+   ]
+  },
+  "related": [
+   "web-scraping",
+   "content-writing",
+   "social-media"
+  ]
+ },
+ {
+  "slug": "prompt-engineering",
+  "title": "Prompt Engineering",
+  "description": "Find tools for prompt design, testing, optimization, and management for LLM applications.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "prompt",
+    "prompt engineering",
+    "prompt template",
+    "prompt management",
+    "langchain",
+    "llamaindex"
+   ],
+   "min_results": 5,
+   "max_results": 10
+  },
+  "related": [
+   "model-evaluation",
+   "content-writing",
+   "code-completion"
+  ]
+ },
+ {
+  "slug": "model-evaluation",
+  "title": "Model Evaluation",
+  "description": "Discover tools for evaluating, benchmarking, and comparing AI model performance and outputs.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "eval",
+    "benchmark",
+    "evaluat",
+    "compare",
+    "leaderboard",
+    "quality",
+    "accuracy"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "evaluation",
+    "benchmark"
+   ],
+   "primary_keywords": [
+    "model evaluation",
+    "llm eval",
+    "eval harness",
+    "evaluation framework",
+    "promptfoo",
+    "ragas",
+    "lm-eval",
+    "deepeval"
+   ],
+   "secondary_keywords": [
+    "leaderboard",
+    "evals"
+   ],
+   "exclude_keywords": [
+    "agent memory",
+    "ai memory",
+    "memory system",
+    "memories"
+   ]
+  },
+  "related": [
+   "prompt-engineering",
+   "test-generation"
+  ]
+ },
+ {
+  "slug": "slack-integration",
+  "title": "Slack Integration",
+  "description": "Find AI agent tools that integrate with Slack for notifications, chatbots, and workflow automation.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "slack",
+    "slack bot",
+    "slack integration",
+    "slack mcp"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "slack"
+   ]
+  },
+  "related": [
+   "discord-bot",
+   "notification",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "discord-bot",
+  "title": "Discord Bot",
+  "description": "Explore AI-powered Discord bot tools for community management, moderation, and automated responses.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "discord",
+    "discord bot",
+    "discord integration"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "discord"
+   ]
+  },
+  "related": [
+   "slack-integration",
+   "telegram-bot",
+   "notification"
+  ]
+ },
+ {
+  "slug": "telegram-bot",
+  "title": "Telegram Bot",
+  "description": "Open-source Telegram bot frameworks, MCP servers, and AI agent integrations. Build automation bots, ChatGPT/Claude-powered assistants, and Telegram connectors — ranked by stars and quality.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "telegram bot",
+    "telegram-bot",
+    "telegram integration",
+    "telegram api",
+    "python-telegram-bot",
+    "telegraf",
+    "aiogram"
+   ],
+   "secondary_keywords": [
+    "telegram",
+    "tg bot",
+    "bot framework",
+    "chatbot",
+    "telegram ai",
+    "telegram agent",
+    "telegram client"
+   ],
+   "topic_matches": [
+    "telegram",
+    "telegram-bot",
+    "telegram-api",
+    "bot",
+    "chatbot",
+    "telegraf",
+    "aiogram",
+    "pyrogram",
+    "telethon"
+   ],
+   "exclude_keywords": [
+    "telegram channel parser",
+    "telegram backup"
+   ],
+   "min_results": 3,
+   "max_results": 30,
+   "tag_matches": [
+    "telegram"
+   ]
+  },
+  "related": [
+   "discord-bot",
+   "slack-integration",
+   "notification"
+  ]
+ },
+ {
+  "slug": "email-automation",
+  "title": "Email Automation",
+  "description": "Discover AI tools for email automation, inbox management, and intelligent email processing.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "email",
+    "mail",
+    "smtp",
+    "inbox",
+    "newsletter",
+    "email automation"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "email"
+   ],
+   "featured": [
+    "enescingoz/awesome-n8n-templates",
+    "zubair-trabzada/ai-marketing-claude",
+    "growthenginenowoslawski/coldoutboundskills",
+    "joeseesun/lennys-podcast-newsletter",
+    "CosmoBlk/email-marketing-bible",
+    "GongRzhe/Gmail-MCP-Server",
+    "kaymen99/langgraph-email-automation",
+    "agenticmail/agenticmail"
+   ]
+  },
+  "related": [
+   "workflow-automation",
+   "notification",
+   "content-writing"
+  ]
+ },
+ {
+  "slug": "social-media",
+  "title": "Social Media Tools",
+  "description": "Find AI tools for social media management, posting, analytics, and content scheduling.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "social media",
+    "twitter",
+    "x.com",
+    "instagram",
+    "linkedin",
+    "social",
+    "posting",
+    "tweet"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "content-writing",
+   "rss-monitoring",
+   "email-automation"
+  ]
+ },
+ {
+  "slug": "debugging",
+  "title": "Debugging",
+  "description": "Find AI-powered debugging tools that help identify, diagnose, and fix bugs in your code automatically.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "debug",
+    "debugger",
+    "troubleshoot",
+    "error",
+    "fix",
+    "diagnos",
+    "trace"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "debugging"
+   ]
+  },
+  "related": [
+   "code-review",
+   "test-generation",
+   "monitoring"
+  ]
+ },
+ {
+  "slug": "refactoring",
+  "title": "Code Refactoring",
+  "description": "Discover AI tools for automated code refactoring, optimization, and architectural improvements.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "refactor",
+    "restructur",
+    "clean code",
+    "optimize",
+    "modernize",
+    "migration"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "code-review",
+   "code-completion",
+   "debugging"
+  ]
+ },
+ {
+  "slug": "container-management",
+  "title": "Container & Docker Tools",
+  "description": "Find AI tools for Docker container management, Kubernetes orchestration, and cloud infrastructure.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "docker",
+    "container",
+    "kubernetes",
+    "k8s",
+    "helm",
+    "compose",
+    "cloud",
+    "infrastructure"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "container"
+   ]
+  },
+  "related": [
+   "ci-cd",
+   "monitoring",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "git-tools",
+  "title": "Git & Version Control",
+  "description": "Explore AI tools for Git workflow automation, commit message generation, and version control management.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "git",
+    "commit",
+    "branch",
+    "merge",
+    "pull request",
+    "version control",
+    "github",
+    "gitlab"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "git-tools"
+   ]
+  },
+  "related": [
+   "code-review",
+   "ci-cd",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "image-generation",
+  "title": "Image Generation",
+  "description": "Find AI image generation tools that create, edit, and manipulate images programmatically.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "image generation",
+    "text-to-image",
+    "text to image",
+    "generate image",
+    "image generator",
+    "stable diffusion",
+    "midjourney",
+    "dall-e",
+    "flux",
+    "comfyui",
+    "diffusion model",
+    "ai art",
+    "ai image",
+    "nano banana"
+   ],
+   "secondary_keywords": [
+    "img2img",
+    "inpainting",
+    "image editing",
+    "imagen",
+    "sdxl",
+    "image model"
+   ],
+   "exclude_keywords": [
+    "text generation",
+    "screenshot",
+    "image recognition",
+    "ocr",
+    "image classification"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "image-generation",
+    "text-to-image"
+   ]
+  },
+  "related": [
+   "content-writing",
+   "document-parsing",
+   "ppt-presentation"
+  ]
+ },
+ {
+  "slug": "notification",
+  "title": "Notification & Alerting",
+  "description": "Find tools for sending notifications, alerts, and messages across multiple channels from AI agents.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "notification",
+    "alert",
+    "notify",
+    "push",
+    "webhook",
+    "message"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "slack-integration",
+   "email-automation",
+   "monitoring"
+  ]
+ },
+ {
+  "slug": "cli-tools",
+  "title": "CLI Tools",
+  "description": "Discover command-line AI tools and terminal utilities for developers.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "cli",
+    "command line",
+    "terminal",
+    "shell",
+    "bash",
+    "console"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "cli"
+   ]
+  },
+  "related": [
+   "workflow-automation",
+   "git-tools",
+   "debugging"
+  ]
+ },
+ {
+  "slug": "authentication",
+  "title": "Authentication & Identity",
+  "description": "Find AI agent tools for authentication, OAuth, SSO, and identity management.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "auth",
+    "oauth",
+    "sso",
+    "login",
+    "identity",
+    "jwt",
+    "token",
+    "session"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "auth"
+   ]
+  },
+  "related": [
+   "security-audit",
+   "secret-detection",
+   "mcp-api"
+  ]
+ },
+ {
+  "slug": "data-visualization",
+  "title": "Data Visualization",
+  "description": "Explore AI tools for creating charts, dashboards, and visual representations of data.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "visualization",
+    "chart",
+    "graph",
+    "dashboard",
+    "plot",
+    "d3",
+    "recharts",
+    "echarts"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "data-visualization"
+   ]
+  },
+  "related": [
+   "data-pipeline",
+   "monitoring",
+   "document-parsing"
+  ]
+ },
+ {
+  "slug": "claude-code-skills",
+  "title": "Claude Code Skills",
+  "description": "Browse the best skills and extensions for Claude Code, Anthropic's AI coding assistant.",
+  "match": {
+   "categories": [
+    "claude-skill"
+   ],
+   "keywords": [
+    "claude code",
+    "claude skill",
+    "claude extension",
+    "anthropic"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "claude",
+    "skill"
+   ]
+  },
+  "related": [
+   "mcp-database",
+   "mcp-browser",
+   "code-completion"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "codex-skills",
+  "title": "OpenAI Codex Skills",
+  "description": "Find the best skills and plugins for OpenAI Codex, the AI coding agent.",
+  "match": {
+   "categories": [
+    "codex-skill"
+   ],
+   "keywords": [
+    "codex",
+    "openai",
+    "codex skill",
+    "codex plugin"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "codex",
+    "skill"
+   ]
+  },
+  "related": [
+   "claude-code-skills",
+   "code-completion",
+   "mcp-api"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "ai-agent-framework",
+  "title": "AI Agent Frameworks",
+  "description": "Compare the best frameworks for building autonomous AI agents — from single-agent SDKs to multi-agent orchestration platforms.",
+  "match": {
+   "categories": [
+    "agent-tool"
+   ],
+   "primary_keywords": [
+    "agent framework",
+    "agent sdk",
+    "agent platform",
+    "autonomous agent"
+   ],
+   "secondary_keywords": [
+    "framework",
+    "sdk",
+    "runtime",
+    "harness",
+    "agent",
+    "agentic"
+   ],
+   "topic_matches": [
+    "agent",
+    "ai-agent",
+    "autonomous-agent",
+    "agent-framework"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "agent-framework"
+   ]
+  },
+  "related": [
+   "multi-agent",
+   "prompt-engineering",
+   "workflow-automation"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "multi-agent",
+  "title": "Multi-Agent Orchestration",
+  "description": "Find tools for building and orchestrating multi-agent systems where AI agents collaborate, delegate, and coordinate tasks.",
+  "match": {
+   "categories": [
+    "agent-tool"
+   ],
+   "primary_keywords": [
+    "multi-agent",
+    "multi agent",
+    "orchestrat",
+    "crew",
+    "swarm"
+   ],
+   "secondary_keywords": [
+    "fleet",
+    "collaborate",
+    "delegate",
+    "coordinate",
+    "supervisor"
+   ],
+   "topic_matches": [
+    "multi-agent",
+    "multiagent",
+    "agent-orchestration"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "ai-agent-framework",
+   "workflow-automation",
+   "prompt-engineering"
+  ]
+ },
+ {
+  "slug": "local-llm",
+  "title": "Local LLM Tools",
+  "description": "Run AI models locally with privacy and no API costs. Find the best tools for self-hosted LLM inference, fine-tuning, and deployment.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "local",
+    "ollama",
+    "llama",
+    "self-hosted",
+    "on-premise"
+   ],
+   "secondary_keywords": [
+    "gguf",
+    "ggml",
+    "quantiz",
+    "inference",
+    "vllm",
+    "llamacpp",
+    "mlx"
+   ],
+   "topic_matches": [
+    "ollama",
+    "llama",
+    "local-ai",
+    "self-hosted"
+   ],
+   "min_results": 5,
+   "max_results": 10
+  },
+  "related": [
+   "ai-agent-framework",
+   "prompt-engineering",
+   "model-evaluation"
+  ]
+ },
+ {
+  "slug": "mcp-for-notion",
+  "title": "MCP Tools for Notion",
+  "description": "Connect AI agents to Notion workspaces — read pages, create databases, manage tasks, and automate workflows via MCP servers.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "notion"
+   ],
+   "secondary_keywords": [
+    "workspace",
+    "page",
+    "block",
+    "notion api"
+   ],
+   "topic_matches": [
+    "notion",
+    "notion-api"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "mcp-api",
+   "mcp-database",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "mcp-for-github",
+  "title": "MCP Tools for GitHub",
+  "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "github"
+   ],
+   "secondary_keywords": [
+    "pull request",
+    "issue",
+    "repo",
+    "actions",
+    "gh"
+   ],
+   "topic_matches": [
+    "github",
+    "github-api",
+    "github-actions"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "git-tools",
+   "code-review",
+   "ci-cd"
+  ]
+ },
+ {
+  "slug": "mcp-for-google",
+  "title": "MCP Tools for Google Services",
+  "description": "Connect AI agents to Google Workspace — Gmail, Drive, Calendar, Sheets, and more through MCP server integrations.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "google",
+    "gmail",
+    "google drive",
+    "google sheets"
+   ],
+   "secondary_keywords": [
+    "calendar",
+    "gdrive",
+    "gsheet",
+    "workspace",
+    "gcp"
+   ],
+   "topic_matches": [
+    "google",
+    "gmail",
+    "google-drive",
+    "google-calendar"
+   ],
+   "min_results": 3,
+   "max_results": 10
+  },
+  "related": [
+   "mcp-api",
+   "email-automation",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "ai-code-editor",
+  "title": "AI Code Editors",
+  "description": "Compare AI-powered code editors and IDE extensions that supercharge your development workflow with intelligent assistance.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "code editor",
+    "ide",
+    "vscode",
+    "neovim",
+    "cursor"
+   ],
+   "secondary_keywords": [
+    "editor",
+    "extension",
+    "plugin",
+    "lsp",
+    "intellisense"
+   ],
+   "topic_matches": [
+    "code-editor",
+    "ide",
+    "vscode",
+    "neovim",
+    "editor"
+   ],
+   "min_results": 5,
+   "max_results": 10
+  },
+  "related": [
+   "code-completion",
+   "debugging",
+   "code-review"
+  ]
+ },
+ {
+  "slug": "api-testing",
+  "title": "API Testing & Mocking",
+  "description": "Find AI tools for API testing, endpoint validation, mock servers, and automated API documentation.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "api test",
+    "api mock",
+    "postman",
+    "httpie"
+   ],
+   "secondary_keywords": [
+    "endpoint",
+    "mock server",
+    "api doc",
+    "openapi",
+    "swagger",
+    "insomnia"
+   ],
+   "topic_matches": [
+    "api-testing",
+    "mock",
+    "api-documentation"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "testing"
+   ]
+  },
+  "related": [
+   "mcp-api",
+   "test-generation",
+   "ci-cd"
+  ]
+ },
+ {
+  "slug": "knowledge-base",
+  "title": "Knowledge Base & RAG",
+  "description": "Build AI-powered knowledge bases with retrieval-augmented generation (RAG) — ingest documents, search semantically, and answer questions.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "knowledge base",
+    "rag",
+    "retrieval augmented",
+    "qa"
+   ],
+   "secondary_keywords": [
+    "document",
+    "ingest",
+    "question answer",
+    "chatbot",
+    "embedding"
+   ],
+   "topic_matches": [
+    "rag",
+    "knowledge-base",
+    "question-answering",
+    "retrieval"
+   ],
+   "min_results": 5,
+   "max_results": 10,
+   "tag_matches": [
+    "knowledge-base"
+   ]
+  },
+  "related": [
+   "semantic-search",
+   "vector-database",
+   "mcp-memory"
+  ]
+ },
+ {
+  "slug": "text-to-speech",
+  "title": "Text-to-Speech & Voice",
+  "description": "Find AI tools for text-to-speech synthesis, voice cloning, speech recognition, and audio processing.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "text to speech",
+    "tts",
+    "voice",
+    "speech"
+   ],
+   "secondary_keywords": [
+    "audio",
+    "whisper",
+    "elevenlabs",
+    "speech recognition",
+    "stt",
+    "transcri"
+   ],
+   "topic_matches": [
+    "tts",
+    "text-to-speech",
+    "voice",
+    "speech",
+    "whisper"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "voice"
+   ]
+  },
+  "related": [
+   "content-writing",
+   "translation",
+   "summarization"
+  ]
+ },
+ {
+  "slug": "web-development",
+  "title": "AI Web Development",
+  "description": "Find AI tools that help build websites and web applications — from UI generation to full-stack scaffolding.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "web development",
+    "frontend",
+    "react",
+    "nextjs",
+    "web app"
+   ],
+   "secondary_keywords": [
+    "html",
+    "css",
+    "tailwind",
+    "ui",
+    "component",
+    "scaffold",
+    "fullstack"
+   ],
+   "topic_matches": [
+    "web-development",
+    "frontend",
+    "react",
+    "nextjs",
+    "web-app"
+   ],
+   "min_results": 5,
+   "max_results": 10
+  },
+  "related": [
+   "code-completion",
+   "browser-automation",
+   "image-generation"
+  ]
+ },
+ {
+  "slug": "database-migration",
+  "title": "Database Migration & Schema Tools",
+  "description": "AI tools for database schema design, migration management, and data modeling.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "migration",
+    "schema",
+    "data model"
+   ],
+   "secondary_keywords": [
+    "orm",
+    "prisma",
+    "drizzle",
+    "typeorm",
+    "sequelize",
+    "alembic",
+    "flyway"
+   ],
+   "topic_matches": [
+    "migration",
+    "schema",
+    "orm",
+    "database-schema"
+   ],
+   "min_results": 3,
+   "max_results": 10,
+   "tag_matches": [
+    "database"
+   ]
+  },
+  "related": [
+   "mcp-database",
+   "code-completion",
+   "refactoring"
+  ]
+ },
+ {
+  "slug": "skill-management-tools",
+  "title": "Skill & Agent Management",
+  "description": "Desktop apps, CLI package managers, and session managers for organizing Claude Code skills, Codex skills, and multi-agent workflows across 15+ AI coding tools.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "skill manager",
+    "skills manager",
+    "session manager",
+    "agent manager",
+    "package manager for ai",
+    "package manager for agent",
+    "config manager",
+    "plugin manager",
+    "claude code gui",
+    "manage claude code",
+    "manage multiple",
+    "manage your codex",
+    "manage agent skills",
+    "skills across",
+    "skills in one place",
+    "organize skills",
+    "agent workstation",
+    "browse, edit, and manage",
+    "gui app and toolkit",
+    "manage interactive claude",
+    "sync skills across",
+    "manage, sync, and organize",
+    "manage configurations across",
+    "manage extensions",
+    "agent skills across",
+    "coding agent skills",
+    "desktop app to manage ai",
+    "agent skill management",
+    "agent skill manager",
+    "agent skills management",
+    "ai agent skill management"
+   ],
+   "secondary_keywords": [
+    "desktop app",
+    "macos app",
+    "tui for claude",
+    "tui for ai",
+    "sync them",
+    "cross-platform desktop",
+    "lightweight desktop",
+    "gui app",
+    "web ui for claude",
+    "install, and manage",
+    "sync configurations"
+   ],
+   "exclude_keywords": [
+    "scrape",
+    "scraping",
+    "crawler",
+    "pentest",
+    "wallet",
+    "trading",
+    "penetration",
+    "carbon footprint",
+    "turn any webpage",
+    "mcp host",
+    "mcp client",
+    "documentation mcp",
+    "all-in-one assistant"
+   ],
+   "topic_matches": [
+    "skill-management",
+    "skills-manager",
+    "session-manager",
+    "claude-code-manager",
+    "agent-manager",
+    "package-manager",
+    "claude-code-ui"
+   ],
+   "min_results": 6,
+   "max_results": 12,
+   "tag_matches": [
+    "skill"
+   ]
+  },
+  "related": [
+   "claude-code-skills",
+   "cli-tools",
+   "workflow-automation"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "free-mcp-servers",
+  "title": "Free MCP Servers",
+  "description": "100% open-source and free MCP servers for Claude Code, Claude Desktop, and agentic IDEs. MIT / Apache / BSD licensed — install and self-host without subscription, quota, or credit-card gate. Updated every 8 hours.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "mcp server",
+    "mcp-server",
+    "model context protocol",
+    "open source mcp",
+    "free mcp"
+   ],
+   "secondary_keywords": [
+    "self-hosted",
+    "self host",
+    "mit license",
+    "apache license",
+    "bsd license"
+   ],
+   "topic_matches": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "claude-mcp"
+   ],
+   "exclude_keywords": [
+    "paid",
+    "subscription",
+    "saas only"
+   ],
+   "license_filter": [
+    "MIT",
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "BSD-2-Clause",
+    "ISC",
+    "MPL-2.0"
+   ],
+   "min_results": 10,
+   "max_results": 30,
+   "tag_matches": [
+    "mcp"
+   ]
+  },
+  "related": [
+   "mcp-database",
+   "mcp-browser",
+   "mcp-filesystem"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "python-mcp-servers",
+  "title": "Python MCP Servers",
+  "description": "Open-source MCP servers written in Python — compatible with Claude Code, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity. FastMCP, Anthropic SDK, and MCP-CLI projects included.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "python mcp",
+    "fastmcp",
+    "mcp python",
+    "python-mcp"
+   ],
+   "secondary_keywords": [
+    "mcp server",
+    "mcp-server",
+    "anthropic sdk",
+    "model context protocol"
+   ],
+   "topic_matches": [
+    "python",
+    "mcp",
+    "mcp-server",
+    "fastmcp"
+   ],
+   "language_filter": [
+    "Python"
+   ],
+   "min_results": 10,
+   "max_results": 30,
+   "tag_matches": [
+    "mcp",
+    "python"
+   ]
+  },
+  "related": [
+   "free-mcp-servers",
+   "typescript-mcp-servers",
+   "mcp-database"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "typescript-mcp-servers",
+  "title": "TypeScript MCP Servers",
+  "description": "Open-source MCP servers written in TypeScript / Node.js — ready to install into Claude Desktop, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity.",
+  "match": {
+   "categories": [
+    "mcp-server"
+   ],
+   "primary_keywords": [
+    "typescript mcp",
+    "node mcp",
+    "nodejs mcp",
+    "mcp typescript"
+   ],
+   "secondary_keywords": [
+    "mcp server",
+    "mcp-server",
+    "model context protocol",
+    "@modelcontextprotocol/sdk"
+   ],
+   "topic_matches": [
+    "typescript",
+    "mcp",
+    "mcp-server",
+    "nodejs"
+   ],
+   "language_filter": [
+    "TypeScript",
+    "JavaScript"
+   ],
+   "min_results": 10,
+   "max_results": 30,
+   "tag_matches": [
+    "mcp",
+    "typescript"
+   ]
+  },
+  "related": [
+   "free-mcp-servers",
+   "python-mcp-servers",
+   "mcp-database"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "open-webui-integrations",
+  "title": "Open WebUI Integrations",
+  "description": "Open-source tools, connectors, and functions for Open WebUI — ChatGPT-style self-hosted UI for local LLMs (Ollama, LM Studio, vLLM). Ranked by stars and community adoption.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "open webui",
+    "openwebui",
+    "open-webui",
+    "ollama webui"
+   ],
+   "secondary_keywords": [
+    "ollama",
+    "lm studio",
+    "local llm ui",
+    "self-hosted chat",
+    "webui tool",
+    "openai compatible"
+   ],
+   "topic_matches": [
+    "openwebui",
+    "open-webui",
+    "ollama",
+    "local-llm"
+   ],
+   "min_results": 5,
+   "max_results": 25
+  },
+  "related": [
+   "free-mcp-servers",
+   "local-llm",
+   "self-hosted"
+  ]
+ },
+ {
+  "slug": "anti-slop",
+  "title": "Anti-Slop",
+  "description": "Open-source AI text humanizers and slop detectors — strip 'delve', 'tapestry', em-dash clusters, and other AI tells. Code, prose, and academic modes.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "anti-slop",
+    "anti slop",
+    "humanizer",
+    "ai humanizer",
+    "deslop",
+    "slop detector",
+    "slopbuster",
+    "taste skill"
+   ],
+   "secondary_keywords": [
+    "humanize",
+    "humanize ai",
+    "ai writing",
+    "ai detection",
+    "ai patterns",
+    "humanizer-zh",
+    "blader humanizer",
+    "stop slop"
+   ],
+   "topic_matches": [
+    "humanizer",
+    "anti-slop",
+    "ai-humanizer",
+    "deslop",
+    "ai-text-humanizer",
+    "ai-slop"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "Leonxlnx/taste-skill",
+    "blader/humanizer",
+    "op7418/Humanizer-zh",
+    "voidborne-d/humanize-chinese",
+    "jalaalrd/anti-ai-slop-writing",
+    "matsuikentaro1/humanizer_academic",
+    "gabelul/slopbuster",
+    "MrGeDiao/stop-slop-zh"
+   ],
+   "tag_matches": [
+    "anti-slop"
+   ]
+  },
+  "related": [
+   "code-quality",
+   "writing-tools"
+  ]
+ },
+ {
+  "slug": "agent-memory",
+  "title": "Agent Memory",
+  "description": "Long-term memory layers for AI agents — vector stores, episodic recall, semantic compression, and persistent context across sessions.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "agent memory",
+    "long-term memory",
+    "memory layer",
+    "memory mcp",
+    "agent context",
+    "mem0",
+    "letta",
+    "mnemo",
+    "xmem"
+   ],
+   "secondary_keywords": [
+    "memory",
+    "memtrace",
+    "mnemo-cortex",
+    "episodic",
+    "vector memory",
+    "context retention",
+    "persistent memory",
+    "memory coprocessor"
+   ],
+   "topic_matches": [
+    "memory",
+    "agent-memory",
+    "long-term-memory",
+    "memory-mcp",
+    "ai-memory"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "mem0ai/mem0",
+    "letta-ai/letta",
+    "doobidoo/mcp-memory-service",
+    "tensorlakeai/tensorlake-skills",
+    "Dataojitori/nocturne_memory",
+    "mnemon-dev/mnemon",
+    "syncable-dev/memtrace-public",
+    "agenvoy/Agenvoy",
+    "GuyMannDude/mnemo-cortex",
+    "XortexAI/XMem",
+    "buildingjoshbetter/TrueMemory",
+    "remember-md/remember",
+    "kunwar-shah/claudex"
+   ],
+   "tag_matches": [
+    "agent-memory"
+   ]
+  },
+  "related": [
+   "knowledge-base",
+   "rag",
+   "mcp-database"
+  ]
+ },
+ {
+  "slug": "agent-security",
+  "title": "Agent Security",
+  "description": "Security tools for AI agents — scan dangerous Skills/MCP configs, detect prompt injection, audit tool permissions, and harden agent supply chains.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "agent security",
+    "agent safety",
+    "skill security",
+    "mcp security",
+    "ai security audit",
+    "agentseal",
+    "prompt injection",
+    "slowmist"
+   ],
+   "secondary_keywords": [
+    "security",
+    "skill scan",
+    "agent audit",
+    "supply chain",
+    "bug bounty",
+    "vulnerability scan",
+    "ai security",
+    "agent harden"
+   ],
+   "topic_matches": [
+    "agent-security",
+    "ai-security",
+    "skill-security",
+    "mcp-security",
+    "security-audit"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "tag_matches": [
+    "agent-security"
+   ],
+   "featured": [
+    "mukul975/Anthropic-Cybersecurity-Skills",
+    "anthropics/claude-code-security-review",
+    "openai/codex-security",
+    "trailofbits/skills",
+    "promptfoo/promptfoo"
+   ]
+  },
+  "related": [
+   "code-quality",
+   "ci-cd"
+  ]
+ },
+ {
+  "slug": "agent-governance",
+  "title": "Agent Governance",
+  "description": "Governance, audit, and discipline frameworks for AI coding agents — deterministic workflows, context budgets, tool gating, usage tracking.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "agent governance",
+    "agent audit",
+    "agent discipline",
+    "ai governance",
+    "agent compliance",
+    "governor",
+    "agentplane",
+    "probity"
+   ],
+   "secondary_keywords": [
+    "context budget",
+    "tool gating",
+    "usage tracking",
+    "keep-codex-fast"
+   ],
+   "topic_matches": [
+    "governance",
+    "agent-governance",
+    "codex-governance",
+    "audit",
+    "compliance"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "mattpocock/skills",
+    "vibeforge1111/keep-codex-fast",
+    "getagentseal/agentseal",
+    "Mathews-Tom/armory",
+    "liaohch3/claude-tap",
+    "EdoardoBambini/IAGA-Sentinel",
+    "Justin0504/Sovereign-OS",
+    "championswimmer/pi-context-prune",
+    "0xhimanshu/governor",
+    "basilisk-labs/agentplane",
+    "nizos/probity",
+    "Netxeo/skill-file-security"
+   ],
+   "tag_matches": [
+    "agent-governance"
+   ]
+  },
+  "related": [
+   "ai-code-editor",
+   "code-quality"
+  ]
+ },
+ {
+  "slug": "saas-mcp",
+  "title": "SaaS MCP Servers",
+  "description": "Official MCP servers from major SaaS platforms — Box, Dokploy, Stripe, Notion, GitHub, Slack and more. Production-grade enterprise integrations.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "saas mcp",
+    "official mcp",
+    "enterprise mcp",
+    "stripe mcp",
+    "notion mcp",
+    "slack mcp",
+    "dokploy mcp",
+    "box mcp"
+   ],
+   "secondary_keywords": [
+    "saas",
+    "official",
+    "enterprise",
+    "production mcp",
+    "vendor mcp",
+    "platform mcp",
+    "github mcp"
+   ],
+   "topic_matches": [
+    "saas-mcp",
+    "official-mcp",
+    "enterprise-mcp",
+    "vendor-mcp"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "tag_matches": [
+    "saas"
+   ]
+  },
+  "related": [
+   "mcp-for-github",
+   "mcp-for-notion",
+   "mcp-for-google"
+  ]
+ },
+ {
+  "slug": "seo-tools",
+  "title": "SEO Tools",
+  "description": "SEO research and analysis MCP servers — keyword research, backlink analysis, SERP tracking, content briefs. Powered by Ahrefs, DataForSEO, and Google Search Console data.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "seo",
+    "seo mcp",
+    "keyword research",
+    "backlink analysis",
+    "serp tracker",
+    "dataseo",
+    "ahrefs"
+   ],
+   "secondary_keywords": [
+    "search engine optimization",
+    "ranking",
+    "search console",
+    "dataforseo",
+    "keyword difficulty",
+    "seo audit",
+    "content brief"
+   ],
+   "topic_matches": [
+    "seo",
+    "seo-tools",
+    "seo-mcp",
+    "search-engine-optimization",
+    "keyword-research"
+   ],
+   "min_results": 3,
+   "max_results": 30
+  },
+  "related": [
+   "content-writing",
+   "data-pipeline",
+   "semantic-search"
+  ]
+ },
+ {
+  "slug": "finance-mcp",
+  "title": "Finance MCP Servers",
+  "description": "Financial data MCP servers and CLIs for AI agents — stock quotes, personal finance, accounting, trading APIs, market analysis.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "finance mcp",
+    "stock mcp",
+    "trading mcp",
+    "financial data",
+    "monarch money",
+    "stock-sdk-mcp",
+    "polyclaw"
+   ],
+   "secondary_keywords": [
+    "finance",
+    "stock",
+    "trading",
+    "accounting",
+    "investing",
+    "portfolio",
+    "fintech",
+    "crypto mcp",
+    "polymarket"
+   ],
+   "topic_matches": [
+    "finance",
+    "finance-mcp",
+    "stock",
+    "trading",
+    "fintech",
+    "financial"
+   ],
+   "min_results": 3,
+   "max_results": 30,
+   "tag_matches": []
+  },
+  "related": [
+   "data-pipeline",
+   "data-visualization",
+   "saas-mcp"
+  ]
+ },
+ {
+  "slug": "ai-design",
+  "title": "AI Design Tools",
+  "description": "Design intelligence skills for AI coding agents — UI generation, design systems, prototyping, mockup-to-code via Google Stitch, Claude Design, and more.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "ai design",
+    "design agent",
+    "ui generation",
+    "stitch",
+    "stitch-kit",
+    "claude design",
+    "design to code"
+   ],
+   "secondary_keywords": [
+    "design system",
+    "ui design",
+    "mockup",
+    "prototype",
+    "figma to code",
+    "design tokens",
+    "design skill",
+    "screen generation"
+   ],
+   "topic_matches": [
+    "ai-design",
+    "design-agent",
+    "design-to-code",
+    "ui-generation",
+    "stitch",
+    "design-system"
+   ],
+   "min_results": 3,
+   "max_results": 30,
+   "featured": [
+    "nexu-io/open-design",
+    "GLips/Figma-Context-MCP",
+    "alchaincyf/huashu-design",
+    "google-labs-code/stitch-skills",
+    "OpenCoworkAI/open-codesign",
+    "joeseesun/qiaomu-mondo-poster-design",
+    "op7418/logo-generator-skill",
+    "zanwei/design-dna"
+   ]
+  },
+  "related": [
+   "web-development",
+   "code-completion",
+   "skill-management-tools",
+   "ppt-presentation"
+  ]
+ },
+ {
+  "slug": "agent-deployment",
+  "title": "Agent Deployment",
+  "description": "Deploy AI agents and Skills to production — gstack, Fly.io, Vercel, Cloudflare Workers, Modal. From local dev to scalable inference, including CI/CD pipelines.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "agent deployment",
+    "deploy agent",
+    "agent hosting",
+    "gstack",
+    "fly deploy",
+    "vercel agent",
+    "cloudflare workers"
+   ],
+   "secondary_keywords": [
+    "deploy",
+    "hosting",
+    "production",
+    "modal",
+    "render",
+    "railway",
+    "serverless agent",
+    "agent infra",
+    "edge deployment"
+   ],
+   "topic_matches": [
+    "deployment",
+    "agent-deployment",
+    "deploy",
+    "hosting",
+    "production-deployment"
+   ],
+   "min_results": 3,
+   "max_results": 30,
+   "featured": [
+    "garrytan/gstack",
+    "PaddleHQ/paddle-mcp-server",
+    "JackLuguibin/OpenPawlet",
+    "vercel-labs/agent-browser",
+    "browserbase/skills",
+    "fluxa-agent-wallet/fluxa-agent-wallet"
+   ],
+   "tag_matches": [
+    "agent-deployment"
+   ]
+  },
+  "related": [
+   "ci-cd",
+   "container-management",
+   "saas-mcp"
+  ]
+ },
+ {
+  "slug": "voice-agent",
+  "title": "Voice Agents",
+  "description": "Real-time voice AI agents — speech-in/speech-out conversational systems with Whisper, ElevenLabs, OpenAI Realtime API, and Anthropic voice tools.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "voice agent",
+    "voice ai",
+    "realtime voice",
+    "voice assistant",
+    "elevenlabs",
+    "openai realtime",
+    "voice mcp"
+   ],
+   "secondary_keywords": [
+    "speech to speech",
+    "voice chat",
+    "audio agent",
+    "whisper agent",
+    "voice assistant",
+    "phone agent",
+    "audio mcp"
+   ],
+   "topic_matches": [
+    "voice",
+    "voice-agent",
+    "voice-ai",
+    "realtime-voice",
+    "speech-agent"
+   ],
+   "min_results": 3,
+   "max_results": 30,
+   "tag_matches": [
+    "voice"
+   ]
+  },
+  "related": [
+   "text-to-speech",
+   "speech-to-text",
+   "ai-agent-framework"
+  ]
+ },
+ {
+  "slug": "business-diagnosis",
+  "title": "Business Diagnosis & Founder Skills",
+  "description": "AI skills for founders and operators — business diagnosis, PRD generation, GTM playbooks, YC frameworks, and named-PM/founder knowledge bases. From idea validation to launch.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "business diagnosis",
+    "founder skill",
+    "startup skill",
+    "yc framework",
+    "prd generation",
+    "mvp template",
+    "gtm skill",
+    "go-to-market",
+    "商业诊断",
+    "创业",
+    "founder playbook",
+    "lenny"
+   ],
+   "secondary_keywords": [
+    "business",
+    "founder",
+    "startup",
+    "advisor",
+    "consultant",
+    "product manager",
+    "pm skill",
+    "venture",
+    "pitch deck",
+    "swot",
+    "lean canvas",
+    "pmf",
+    "market validation",
+    "growth hack",
+    "launch playbook"
+   ],
+   "topic_matches": [
+    "business",
+    "founder",
+    "startup",
+    "yc",
+    "gtm",
+    "product-management",
+    "advisor",
+    "consulting",
+    "agentic-startup"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "dontbesilent2025/dbskill",
+    "getagentseal/founder-playbook",
+    "rrred0324/senior-analyst",
+    "fleurytian/awesome-claude-skills",
+    "sahibzada-allahyar/YC-Killer",
+    "Deodat-Lawson/LaunchStack",
+    "rsmdt/the-startup",
+    "sidhq/YC-alum-ai-tools",
+    "joeseesun/qiaomu-design-advisor",
+    "joeseesun/lennys-podcast-newsletter",
+    "liyupi/yupi-skill",
+    "liyupi/ai-guide",
+    "onvoyage-ai/gtm-engineer-skills",
+    "gooseworks-ai/goose-skills",
+    "Gingiris/gingiris-launch",
+    "akseolabs-seo/AK-Threads-booster",
+    "KhazP/vibe-coding-prompt-template",
+    "peterfei/ai-agent-team",
+    "anombyte93/prd-taskmaster"
+   ],
+   "tag_matches": [
+    "business-diagnosis"
+   ]
+  },
+  "related": [
+   "claude-code-skills",
+   "code-completion",
+   "ai-design"
+  ]
+ },
+ {
+  "slug": "content-syndication",
+  "title": "Content Syndication",
+  "description": "Cross-platform content distribution skills for indie creators — publish once to X, LinkedIn, WeChat, XiaoHongShu, Bilibili, Telegram. agent-reach, MediaCrawler, qiaomu publishers, and platform-specific MCPs.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "content syndication",
+    "cross-platform publish",
+    "social distribution",
+    "agent-reach",
+    "media crawler",
+    "x article",
+    "wechat publish",
+    "xiaohongshu",
+    "social media",
+    "content distribution"
+   ],
+   "secondary_keywords": [
+    "publish",
+    "distribution",
+    "syndicate",
+    "social",
+    "twitter",
+    "linkedin",
+    "weibo",
+    "douyin",
+    "bilibili",
+    "rednote",
+    "threads"
+   ],
+   "topic_matches": [
+    "content-distribution",
+    "social-media",
+    "publishing",
+    "syndication",
+    "wechat",
+    "xiaohongshu",
+    "twitter",
+    "linkedin"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "Panniantong/Agent-Reach",
+    "NanmiCoder/MediaCrawler",
+    "mvanhorn/last30days-skill",
+    "xpzouying/xiaohongshu-mcp",
+    "JoeanAmier/XHS-Downloader",
+    "iBigQiang/feedgrab"
+   ],
+   "tag_matches": [
+    "content-syndication"
+   ]
+  },
+  "related": [
+   "telegram-bot",
+   "slack-integration",
+   "rss-monitoring"
+  ]
+ },
+ {
+  "slug": "personal-knowledge",
+  "title": "Personal Knowledge Skills",
+  "description": "Personal knowledge management skills for solo workers — Obsidian, Logseq, Notion, second-brain workflows. Connect your notes to AI agents and build a queryable second brain.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "obsidian skill",
+    "logseq",
+    "notion knowledge",
+    "second brain",
+    "personal knowledge",
+    "pkm",
+    "knowledge graph",
+    "notes mcp",
+    "obsidian-skills",
+    "obsidian plugin"
+   ],
+   "secondary_keywords": [
+    "obsidian",
+    "notion",
+    "wiki",
+    "knowledge base",
+    "notes",
+    "zettelkasten",
+    "roam",
+    "remnote",
+    "tana",
+    "heptabase",
+    "anki",
+    "readwise",
+    "second-brain"
+   ],
+   "topic_matches": [
+    "obsidian",
+    "notion",
+    "knowledge-management",
+    "pkm",
+    "second-brain",
+    "notes",
+    "knowledge-base"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "kepano/obsidian-skills",
+    "YishenTu/claudian",
+    "Ar9av/obsidian-wiki",
+    "SamurAIGPT/llm-wiki-agent",
+    "trapoom555/claude-paperloom",
+    "vanillaflava/llm-wiki-skills"
+   ],
+   "tag_matches": [
+    "personal-knowledge"
+   ]
+  },
+  "related": [
+   "knowledge-base",
+   "rag",
+   "agent-memory"
+  ]
+ },
+ {
+  "slug": "ppt-presentation",
+  "title": "PPT Skills for Codex & Claude Code",
+  "description": "Best Codex & Claude Code PPT skills, security-graded: ppt-master, codex-ppt-skill, image-to-editable-ppt, guizang HTML decks, McKinsey-style PPTX. Vet before you install.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "ppt",
+    "pptx",
+    "presentation",
+    "slide deck",
+    "guizang",
+    "mckinsey-pptx",
+    "ppt-image-first",
+    "magazine slides",
+    "powerpoint",
+    "ppt skill",
+    "ppt agent",
+    "ppt generat",
+    ".pptx",
+    "slide generation",
+    "reveal.js",
+    "revealjs",
+    "slidev",
+    "beamer",
+    "marp",
+    "pptagent",
+    "google slides",
+    "keynote deck"
+   ],
+   "secondary_keywords": [
+    "slides",
+    "powerpoint",
+    "keynote",
+    "pitch deck",
+    "horizontal swipe",
+    "ppt",
+    "slide",
+    "deck",
+    "office",
+    "reveal",
+    "impress.js",
+    "academic presentation",
+    "html slides",
+    "talk"
+   ],
+   "topic_matches": [
+    "ppt",
+    "pptx",
+    "presentation",
+    "slides",
+    "powerpoint",
+    "slidev",
+    "reveal-js",
+    "slide-deck",
+    "marp"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "op7418/guizang-ppt-skill",
+    "wuyoscar/gpt_image_2_skill",
+    "NyxTides/ppt-image-first",
+    "minhnv0807/fullstack-mkt-skills",
+    "seulee26/mckinsey-pptx",
+    "zarazhangrui/frontend-slides",
+    "icip-cas/PPTAgent",
+    "op7418/NanoBanana-PPT-Skills",
+    "ningzimu/codex-ppt-skill",
+    "GongRzhe/Office-PowerPoint-MCP-Server",
+    "johnson7788/MultiAgentPPT",
+    "JuneYaooo/gpt-image2-ppt-skills",
+    "sunbigfly/ppt-agent-skills",
+    "tfriedel/claude-office-skills",
+    "barun-saha/slide-deck-ai",
+    "ryanbbrown/revealjs-skill",
+    "Noi1r/beamer-skill",
+    "Gabberflast/academic-pptx-skill",
+    "ningzimu/image-to-editable-ppt-skill",
+    "AI272/speaker",
+    "rsrohan99/presenter",
+    "crazyykhllc-bit/CyberPPT",
+    "archlizheng/frontend-slides-editable"
+   ],
+   "tag_matches": [
+    "ppt",
+    "presentation",
+    "powerpoint"
+   ]
+  },
+  "related": [
+   "ai-design",
+   "image-generation",
+   "content-syndication"
+  ]
+ },
+ {
+  "slug": "skill-creation-tools",
+  "title": "Skill Creation & Meta-Tools",
+  "description": "Tools for creating, distilling, and managing AI Skills themselves — book→skill, repo→skill, codebase→skill, and cross-IDE skill sync. Meta-tools that build other skills.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "skill creator",
+    "create skill",
+    "make skill",
+    "skill forge",
+    "book to skill",
+    "skillify",
+    "meta skill",
+    "skill builder",
+    "skill management"
+   ],
+   "secondary_keywords": [
+    "skill template",
+    "skill scaffold",
+    "skill generator",
+    "skill library",
+    "skill collection",
+    "skill pack"
+   ],
+   "topic_matches": [
+    "skill-creator",
+    "meta-skill",
+    "skill-forge",
+    "skill-builder"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "asgard-ai-platform/skills",
+    "WoJiSama/skill-based-architecture",
+    "shanliuling/skills-link",
+    "virgiliojr94/book-to-skill",
+    "armelhbobdad/bmad-module-skill-forge",
+    "Emove/skillify-for-codex"
+   ],
+   "tag_matches": [
+    "skill-creation",
+    "skill"
+   ]
+  },
+  "related": [
+   "claude-code-skills",
+   "codex-skills",
+   "agent-governance"
+  ],
+  "broad": true
+ },
+ {
+  "slug": "multi-ai-bridge",
+  "title": "Multi-AI Bridge & Cross-IDE Sync",
+  "description": "Run Claude + Codex + Gemini together, sync Skills across IDEs, route tasks between models. The orchestration layer for multi-model agentic workflows.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "multi-ai bridge",
+    "claude codex bridge",
+    "cross-ide",
+    "skills-link",
+    "multi-model",
+    "ai bridge",
+    "model router",
+    "harness sync"
+   ],
+   "secondary_keywords": [
+    "bridge",
+    "sync",
+    "router",
+    "multi-agent",
+    "cross-platform",
+    "claude codex",
+    "claude gemini",
+    "model collaboration"
+   ],
+   "topic_matches": [
+    "multi-ai",
+    "ai-bridge",
+    "cross-ide",
+    "model-router",
+    "harness"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "bfly123/claude_codex_bridge",
+    "mcpware/cross-code-organizer",
+    "shanliuling/skills-link",
+    "Chat2AnyLLM/awesome-claude-plugins",
+    "waybarrios/opencode-power-pack",
+    "iamzhihuix/skills-manage"
+   ],
+   "tag_matches": [
+    "multi-agent"
+   ]
+  },
+  "related": [
+   "agent-governance",
+   "claude-code-skills",
+   "codex-skills"
+  ]
+ },
+ {
+  "slug": "vibe-coding",
+  "title": "Vibe Coding Stack",
+  "description": "Indie hacker / solo dev coding stack — PRD → multi-agent build → ship. Templates for vibe coding, Ralph-loops, prd-taskmaster, ai-agent-team. The full pipeline.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "vibe coding",
+    "vibe-coding",
+    "ralph loop",
+    "prd-taskmaster",
+    "ai agent team",
+    "evanflow",
+    "loki-mode",
+    "armory"
+   ],
+   "secondary_keywords": [
+    "prd",
+    "tdd",
+    "indie hacker",
+    "solo dev",
+    "claude code workflow",
+    "agent team",
+    "tasks",
+    "ship workflow"
+   ],
+   "topic_matches": [
+    "vibe-coding",
+    "ralph",
+    "indie-hacker",
+    "agent-team",
+    "prd"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "michaelshimeles/ralphy",
+    "KhazP/vibe-coding-prompt-template",
+    "asklokesh/loki-mode",
+    "peterfei/ai-agent-team",
+    "Mathews-Tom/armory",
+    "evanklem/evanflow",
+    "anombyte93/prd-taskmaster"
+   ],
+   "tag_matches": [
+    "vibe-coding"
+   ]
+  },
+  "related": [
+   "business-diagnosis",
+   "claude-code-skills",
+   "agent-governance"
+  ]
+ },
+ {
+  "slug": "job-hunting",
+  "title": "AI Job Hunting & Resume Skills",
+  "description": "AI-powered job search stack — resume tailoring, cover letter generation, interview copilots, LinkedIn automation, application auto-fillers, and cold outreach to recruiters. The full pipeline for landing your next role.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "resume writing",
+    "resume builder",
+    "resume-builder",
+    "resume tailoring",
+    "build resume",
+    "tailor resume",
+    "cv",
+    "cover letter",
+    "interview prep",
+    "interview copilot",
+    "job application",
+    "job search",
+    "job hunt",
+    "career coach",
+    "linkedin"
+   ],
+   "secondary_keywords": [
+    "recruiter",
+    "talent",
+    "ats",
+    "applicant tracking",
+    "career",
+    "outreach",
+    "auto apply",
+    "tailoring",
+    "personalize"
+   ],
+   "topic_matches": [
+    "resume",
+    "cv",
+    "interview",
+    "job-search",
+    "career",
+    "linkedin",
+    "cover-letter",
+    "job-application"
+   ],
+   "exclude_keywords": [
+    "resume session",
+    "resume conversation",
+    "resume task",
+    "auto-resume",
+    "session resume",
+    "video skill",
+    "interview my agent",
+    "resumes claude",
+    "resume coding",
+    "resume cli",
+    "resume your",
+    "resumes the"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "santifer/career-ops",
+    "WeThinkIn/AIGC-Interview-Book",
+    "stickerdaniel/linkedin-mcp-server",
+    "Natively-AI-assistant/natively-cluely-ai-assistant",
+    "adhikasp/mcp-linkedin",
+    "kaymen99/Upwork-AI-jobs-applier",
+    "varunr89/resume-tailoring-skill",
+    "Paramchoudhary/ResumeSkills"
+   ],
+   "tag_matches": []
+  },
+  "related": [
+   "business-diagnosis",
+   "personal-knowledge",
+   "anti-slop"
+  ]
+ },
+ {
+  "slug": "meeting-tools",
+  "title": "Meeting Tools & Transcription",
+  "description": "AI meeting stack — real-time transcription, automatic minutes, action item extraction, multilingual captions, audio capture, Lark/Feishu/Zoom integration. Every standup, sales call, podcast covered.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "transcrib",
+    "transcription",
+    "meeting note",
+    "meeting minute",
+    "meeting record",
+    "meeting copilot",
+    "speech-to-text",
+    "speech to text",
+    "stt",
+    "whisper",
+    "subtitle",
+    "live caption"
+   ],
+   "secondary_keywords": [
+    "audio capture",
+    "asr",
+    "speaker diarization",
+    "diarize",
+    "zoom",
+    "teams",
+    "feishu meeting",
+    "lark meeting",
+    "conference call",
+    "voice note",
+    "voice memo",
+    "real-time",
+    "echo cancellation"
+   ],
+   "topic_matches": [
+    "transcription",
+    "meeting",
+    "whisper",
+    "stt",
+    "speech-to-text",
+    "subtitle",
+    "asr",
+    "audio"
+   ],
+   "exclude_keywords": [
+    "agent orchestration",
+    "agent team",
+    "multi-agent",
+    "video editing",
+    "video generator",
+    "youtube transcript"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "silverstein/minutes",
+    "Laxcorp-Research/project-raven",
+    "video-db/call.md",
+    "XimilalaXiang/DeLive",
+    "jarrodwatts/claude-stt",
+    "JimLiu/whisper-subtitles",
+    "10xChengTu/input0",
+    "zarazhangrui/lark-minutes-tasks"
+   ],
+   "tag_matches": [
+    "voice"
+   ]
+  },
+  "related": [
+   "voice-agent",
+   "personal-knowledge",
+   "workflow-automation"
+  ]
+ },
+ {
+  "slug": "spreadsheet-ai",
+  "title": "Spreadsheet & Excel AI Tools",
+  "description": "AI for Excel, Google Sheets, CSV — automated formulas, pivot tables, data summarization, MCP servers for read/write, structured extraction, agent-driven reporting. The full data layer for non-engineers.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "spreadsheet",
+    "excel",
+    "google sheet",
+    "xlsx",
+    "csv",
+    "pivot table",
+    "excel automation",
+    "excel agent",
+    "sheet automation"
+   ],
+   "secondary_keywords": [
+    "data summarizer",
+    "report generation",
+    "data analysis",
+    "formula",
+    "table extraction",
+    "structured json",
+    "google drive"
+   ],
+   "topic_matches": [
+    "excel",
+    "spreadsheet",
+    "google-sheets",
+    "xlsx",
+    "csv",
+    "data-analysis"
+   ],
+   "exclude_keywords": [
+    "video",
+    "ppt only",
+    "meeting"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "featured": [
+    "haris-musa/excel-mcp-server",
+    "negokaz/excel-mcp-server",
+    "xing5/mcp-google-sheets",
+    "tfriedel/claude-office-skills",
+    "coffeefuelbump/csv-data-summarizer-claude-skill",
+    "sbroenne/mcp-server-excel",
+    "SylvianAI/sv-excel-agent",
+    "isaacphi/mcp-gdrive"
+   ],
+   "tag_matches": []
+  },
+  "related": [
+   "data-visualization",
+   "data-pipeline",
+   "document-parsing"
+  ]
+ },
+ {
+  "slug": "video-editing",
+  "title": "AI Video Generation & Editing: Seedance, Kling & Subtitles",
+  "description": "Open-source AI video stack — subtitle generation, multilingual dubbing, short-video maker for TikTok/Reels/Shorts, Remotion programmatic video, podcast-to-video, automated captions and translations.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "video editing",
+    "video edit",
+    "video generator",
+    "video maker",
+    "video automation",
+    "shorts",
+    "tiktok",
+    "reels",
+    "instagram reel",
+    "captions",
+    "subtitle generation",
+    "subtitle translat",
+    "video subtitling",
+    "video translation",
+    "podcast video",
+    "seedance",
+    "higgsfield",
+    "kling",
+    "sora",
+    "text-to-video",
+    "text to video",
+    "image-to-video",
+    "video generation",
+    "ai video",
+    "video agent",
+    "runway",
+    "ltx video",
+    "minimax video",
+    "veo",
+    "storyboard"
+   ],
+   "secondary_keywords": [
+    "remotion",
+    "ffmpeg",
+    "yt-shorts",
+    "youtube shorts",
+    "dubbing",
+    "video dubbing",
+    "video editor",
+    "video script",
+    "auto cut",
+    "video",
+    "filmmaking",
+    "short film",
+    "ai film",
+    "video editing",
+    "comfyui",
+    "分镜",
+    "视频生成"
+   ],
+   "topic_matches": [
+    "video",
+    "shorts",
+    "tiktok",
+    "reels",
+    "remotion",
+    "subtitle",
+    "captions",
+    "text-to-video",
+    "video-generation",
+    "ai-video",
+    "seedance",
+    "kling",
+    "sora",
+    "image-to-video",
+    "video-agent"
+   ],
+   "exclude_keywords": [
+    "video conferencing",
+    "video call agent"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "WEIFENG2333/VideoCaptioner",
+    "krillinai/KrillinAI",
+    "FireRedTeam/FireRed-OpenStoryline",
+    "Ceeon/videocut-skills",
+    "digitalsamba/claude-code-video-toolkit",
+    "gyoridavid/short-video-maker",
+    "wshuyi/remotion-video-skill",
+    "op7418/Video-Wrapper-Skills",
+    "MemeCalculate/moyin-creator",
+    "ArcReel/ArcReel",
+    "Lightricks/LTX-Desktop",
+    "YouMind-OpenLab/awesome-seedance-2-prompts",
+    "HITsz-TMG/VideoClaw",
+    "MiniMax-AI/MiniMax-MCP",
+    "jau123/MeiGen-AI-Design-MCP",
+    "HITsz-TMG/AIGC-Claw",
+    "SamurAIGPT/Text-To-Video-AI",
+    "0xsline/StoryGen-Atelier",
+    "vargHQ/sdk",
+    "cclank/lanshu-awesome-ai-video-kit",
+    "Yuuhann1999/codex-storyboard",
+    "OSideMedia/higgsfield-ai-prompt-skill",
+    "mantoufan/seedance-prompts-skill",
+    "TornadoInsight/Sora-FullStack"
+   ],
+   "tag_matches": [
+    "video"
+   ]
+  },
+  "related": [
+   "content-syndication",
+   "ai-design",
+   "voice-agent"
+  ]
+ },
+ {
+  "slug": "deep-research",
+  "title": "AI Deep Research",
+  "description": "AI agent skills and MCP tools for deep research, multi-source investigation, literature review, fact-checking, and automated report generation.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "deep research",
+    "deep-research",
+    "research agent",
+    "research assistant",
+    "literature review",
+    "multi-source research"
+   ],
+   "secondary_keywords": [
+    "research",
+    "investigate",
+    "investigation",
+    "fact-check",
+    "citation",
+    "academic",
+    "literature",
+    "report generat",
+    "perplexity",
+    "web research",
+    "scholar",
+    "arxiv"
+   ],
+   "topic_matches": [
+    "research",
+    "deep-research",
+    "academic",
+    "literature"
+   ],
+   "exclude_keywords": [
+    "user research",
+    "ux research"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "tag_matches": [
+    "research"
+   ]
+  },
+  "related": [
+   "semantic-search",
+   "knowledge-base",
+   "summarization"
+  ]
+ },
+ {
+  "slug": "productivity",
+  "title": "Productivity & Task Management",
+  "description": "AI agent skills for productivity, task and todo management, note-taking, scheduling, reminders, and personal workflow automation.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "task management",
+    "todo",
+    "to-do",
+    "task manager",
+    "productivity",
+    "gtd",
+    "pomodoro",
+    "note-taking",
+    "second brain"
+   ],
+   "secondary_keywords": [
+    "notes",
+    "reminder",
+    "calendar",
+    "schedule",
+    "kanban",
+    "obsidian",
+    "todoist",
+    "planner",
+    "habit tracker"
+   ],
+   "topic_matches": [
+    "productivity",
+    "todo",
+    "task",
+    "notes",
+    "gtd",
+    "pomodoro"
+   ],
+   "exclude_keywords": [],
+   "min_results": 5,
+   "max_results": 25,
+   "tag_matches": [
+    "productivity"
+   ]
+  },
+  "related": [
+   "personal-knowledge",
+   "workflow-automation",
+   "meeting-tools"
+  ]
+ },
+ {
+  "slug": "paid-ads",
+  "title": "Paid Ads & PPC",
+  "description": "AI agent skills for paid advertising — Google Ads, Meta/Facebook ads, ad copy generation, campaign optimization, and PPC management.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "paid ads",
+    "google ads",
+    "facebook ads",
+    "meta ads",
+    "ad copy",
+    "ppc",
+    "ad campaign",
+    "ad creative"
+   ],
+   "secondary_keywords": [
+    "advertising",
+    "adwords",
+    "campaign optim",
+    "tiktok ads",
+    "linkedin ads",
+    "retargeting",
+    "ad generator"
+   ],
+   "topic_matches": [
+    "ads",
+    "advertising",
+    "ppc",
+    "adwords"
+   ],
+   "exclude_keywords": [
+    "adblock",
+    "ad blocker"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "tag_matches": [
+    "advertising"
+   ]
+  },
+  "related": [
+   "seo-tools",
+   "social-media",
+   "marketing-analytics"
+  ]
+ },
+ {
+  "slug": "lead-generation",
+  "title": "Lead Generation & CRM",
+  "description": "AI agent skills for lead generation, prospecting, CRM enrichment, cold outreach, and sales pipeline automation.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "lead generation",
+    "lead gen",
+    "prospecting",
+    "crm",
+    "cold outreach",
+    "cold email",
+    "sales pipeline",
+    "lead enrichment"
+   ],
+   "secondary_keywords": [
+    "leads",
+    "enrichment",
+    "outreach",
+    "sales",
+    "prospect",
+    "hubspot",
+    "salesforce",
+    "contact enrichment"
+   ],
+   "topic_matches": [
+    "leads",
+    "crm",
+    "sales",
+    "outreach",
+    "prospecting"
+   ],
+   "exclude_keywords": [],
+   "min_results": 5,
+   "max_results": 25,
+   "tag_matches": [
+    "crm"
+   ]
+  },
+  "related": [
+   "email-automation",
+   "paid-ads",
+   "social-media"
+  ]
+ },
+ {
+  "slug": "marketing-analytics",
+  "title": "Marketing Analytics & Reporting",
+  "description": "AI agent skills for marketing analytics, attribution, campaign reporting, web analytics, and growth dashboards.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "marketing analytics",
+    "attribution",
+    "campaign report",
+    "web analytics",
+    "google analytics",
+    "marketing dashboard",
+    "growth metric"
+   ],
+   "secondary_keywords": [
+    "ga4",
+    "conversion tracking",
+    "funnel analysis",
+    "marketing kpi",
+    "ad reporting",
+    "utm"
+   ],
+   "topic_matches": [
+    "analytics",
+    "attribution",
+    "marketing"
+   ],
+   "exclude_keywords": [
+    "code analytics",
+    "log analytics"
+   ],
+   "min_results": 5,
+   "max_results": 25,
+   "tag_matches": [
+    "analytics"
+   ]
+  },
+  "related": [
+   "data-visualization",
+   "seo-tools",
+   "paid-ads"
+  ]
+ },
+ {
+  "slug": "obsidian-second-brain",
+  "title": "Obsidian, Second Brain & LLM Wiki",
+  "description": "kepano/obsidian-skills, mcp-obsidian, claude-obsidian, obsidian-wiki, karpathy-llm-wiki and 30+ open-source Obsidian, second-brain and LLM-wiki skills for Claude Code & Codex — stars, security grade, and which to install.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "obsidian",
+    "second brain",
+    "second-brain",
+    "llm wiki",
+    "llm-wiki",
+    "zettelkasten",
+    "personal knowledge",
+    "knowledge vault",
+    "note vault",
+    "obsidian mcp",
+    "obsidian skill",
+    "obsidian plugin",
+    "digital brain",
+    "pkm",
+    "note-taking agent"
+   ],
+   "secondary_keywords": [
+    "notes",
+    "vault",
+    "markdown notes",
+    "knowledge management",
+    "wiki",
+    "logseq",
+    "roam",
+    "note taking",
+    "memory layer",
+    "knowledge graph"
+   ],
+   "topic_matches": [
+    "obsidian",
+    "second-brain",
+    "pkm",
+    "zettelkasten",
+    "knowledge-management",
+    "note-taking",
+    "llm-wiki",
+    "knowledge-base"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "kepano/obsidian-skills",
+    "YishenTu/claudian",
+    "codexu/note-gen",
+    "AgriciDaniel/claude-obsidian",
+    "MarkusPfundstein/mcp-obsidian",
+    "axtonliu/axton-obsidian-visual-skills",
+    "eugeniughelbur/obsidian-second-brain",
+    "Ar9av/obsidian-wiki",
+    "samuraigpt/llm-wiki-agent",
+    "coddingtonbear/obsidian-local-rest-api",
+    "RAIT-09/obsidian-agent-client",
+    "agenticnotetaking/arscontexta",
+    "inkeep/open-knowledge",
+    "bitbonsai/mcpvault",
+    "Astro-Han/karpathy-llm-wiki",
+    "lucasastorian/llmwiki",
+    "alchaincyf/obsidian-ai-orange-book",
+    "ballred/obsidian-claude-pkm",
+    "jacksteamdev/obsidian-mcp-tools",
+    "cyanheads/obsidian-mcp-server"
+   ],
+   "tag_matches": [
+    "obsidian"
+   ]
+  },
+  "related": [
+   "knowledge-base",
+   "agent-memory",
+   "semantic-search",
+   "document-parsing"
+  ]
+ }
 ]
