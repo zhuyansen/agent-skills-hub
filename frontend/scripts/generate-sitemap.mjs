@@ -23,7 +23,7 @@
  * Run: node scripts/generate-sitemap.mjs
  */
 
-import { writeFileSync, readdirSync, existsSync, rmSync } from "fs";
+import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -230,9 +230,18 @@ async function main() {
   // 5. sitemap-scenarios.xml — scenario landing pages (/best/{slug}/)
   let scenarioCount = 0;
   try {
+    // Retired scenarios carry noindex; submitting them would ask Google to
+    // prioritise pages we have just told it not to index. Read the same source
+    // of truth the page generator uses rather than re-deriving the list.
+    const retiredSlugs = new Set(
+      JSON.parse(
+        readFileSync(new URL("./scenario-keywords.json", import.meta.url), "utf-8"),
+      ).filter((s) => s.retired).map((s) => s.slug),
+    );
     const scenarioSlugs = readdirSync("dist/best");
     const scenarioEntries = scenarioSlugs
-      .filter((slug) => !slug.startsWith(".") && slug !== "index.html")
+      .filter((slug) => !slug.startsWith(".") && slug !== "index.html"
+                        && !retiredSlugs.has(slug))
       .map((slug) => `  <url>
     <loc>${SITE}/best/${slug}/</loc>
     <changefreq>weekly</changefreq>

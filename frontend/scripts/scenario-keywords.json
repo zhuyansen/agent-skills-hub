@@ -211,7 +211,8 @@
    "mcp-database",
    "mcp-memory",
    "mcp-api"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "mcp-api",
@@ -335,7 +336,8 @@
    "code-review",
    "debugging",
    "code-completion"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "code-completion",
@@ -362,7 +364,8 @@
    "code-review",
    "test-generation",
    "refactoring"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "security-audit",
@@ -400,7 +403,8 @@
   "related": [
    "secret-detection",
    "code-review"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "secret-detection",
@@ -478,7 +482,8 @@
   "related": [
    "content-writing",
    "summarization"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "summarization",
@@ -501,7 +506,8 @@
    "content-writing",
    "document-parsing",
    "translation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "document-parsing",
@@ -539,7 +545,8 @@
    "content-writing",
    "summarization",
    "data-pipeline"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "workflow-automation",
@@ -568,7 +575,8 @@
    "ci-cd",
    "email-automation",
    "social-media"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "ci-cd",
@@ -597,7 +605,8 @@
    "workflow-automation",
    "monitoring",
    "container-management"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "monitoring",
@@ -624,7 +633,8 @@
    "ci-cd",
    "debugging",
    "workflow-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "semantic-search",
@@ -652,7 +662,8 @@
    "vector-database",
    "document-parsing",
    "mcp-memory"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "vector-database",
@@ -680,7 +691,8 @@
    "semantic-search",
    "mcp-memory",
    "mcp-database"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "browser-automation",
@@ -814,7 +826,8 @@
    "web-scraping",
    "document-parsing",
    "mcp-database"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "rss-monitoring",
@@ -841,7 +854,8 @@
    "web-scraping",
    "content-writing",
    "social-media"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "prompt-engineering",
@@ -911,7 +925,8 @@
   "related": [
    "prompt-engineering",
    "test-generation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "slack-integration",
@@ -935,7 +950,8 @@
    "discord-bot",
    "notification",
    "workflow-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "discord-bot",
@@ -958,7 +974,8 @@
    "slack-integration",
    "telegram-bot",
    "notification"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "telegram-bot",
@@ -1045,7 +1062,8 @@
    "workflow-automation",
    "notification",
    "content-writing"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "social-media",
@@ -1070,7 +1088,8 @@
    "content-writing",
    "rss-monitoring",
    "email-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "debugging",
@@ -1097,7 +1116,8 @@
    "code-review",
    "test-generation",
    "monitoring"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "refactoring",
@@ -1148,7 +1168,8 @@
    "ci-cd",
    "monitoring",
    "workflow-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "git-tools",
@@ -1176,7 +1197,8 @@
    "code-review",
    "ci-cd",
    "workflow-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "image-generation",
@@ -1249,7 +1271,8 @@
    "slack-integration",
    "email-automation",
    "monitoring"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "cli-tools",
@@ -1303,7 +1326,8 @@
    "security-audit",
    "secret-detection",
    "mcp-api"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "data-visualization",
@@ -1331,7 +1355,8 @@
    "data-pipeline",
    "monitoring",
    "document-parsing"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "claude-code-skills",
@@ -1428,7 +1453,8 @@
    "prompt-engineering",
    "workflow-automation"
   ],
-  "broad": true
+  "broad": true,
+  "retired": true
  },
  {
   "slug": "multi-agent",
@@ -1672,7 +1698,8 @@
    "mcp-api",
    "test-generation",
    "ci-cd"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "knowledge-base",
@@ -1748,7 +1775,8 @@
    "content-writing",
    "translation",
    "summarization"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "web-development",
@@ -1786,7 +1814,8 @@
    "code-completion",
    "browser-automation",
    "image-generation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "database-migration",
@@ -1824,7 +1853,8 @@
    "mcp-database",
    "code-completion",
    "refactoring"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "skill-management-tools",
@@ -2089,7 +2119,8 @@
    "free-mcp-servers",
    "local-llm",
    "self-hosted"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "anti-slop",
@@ -3199,7 +3230,8 @@
    "voice-agent",
    "personal-knowledge",
    "workflow-automation"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "spreadsheet-ai",
@@ -3473,7 +3505,8 @@
    "personal-knowledge",
    "workflow-automation",
    "meeting-tools"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "paid-ads",
@@ -3520,7 +3553,8 @@
    "seo-tools",
    "social-media",
    "marketing-analytics"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "lead-generation",
@@ -3566,7 +3600,8 @@
    "email-automation",
    "paid-ads",
    "social-media"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "marketing-analytics",
@@ -3610,7 +3645,8 @@
    "data-visualization",
    "seo-tools",
    "paid-ads"
-  ]
+  ],
+  "retired": true
  },
  {
   "slug": "obsidian-second-brain",

@@ -591,7 +591,16 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />
-  <meta name="keywords" content="${esc(scenario.title)}, AI tools, agent skills, MCP tools, ${scenario.slug}" />
+  <meta name="keywords" content="${esc(scenario.title)}, AI tools, agent skills, MCP tools, ${scenario.slug}" />${scenario.retired ? `
+  <!-- Retired 2026-08-23. A 90-day audit of all 85 scenario pages: three
+       produced 89% of the clicks, and these 36 produced 17 between them. Most
+       target generic tool queries — [database migration tools] sat at position
+       51, [workflow automation] at 39 — where the SERP belongs to the tools
+       themselves and a directory cannot win. The page stays live and stays
+       internally linked; only the request to index it is withdrawn, so the
+       crawl budget reaches the 49 pages that can earn. noindex+follow keeps the
+       outbound links flowing to the skill pages. -->
+  <meta name="robots" content="noindex, follow" />` : ""}
 
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(metaDesc)}" />
