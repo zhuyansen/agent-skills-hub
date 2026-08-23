@@ -402,18 +402,68 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const itemCount = skills.length;
   const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
-  const title = `${scenario.title}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year}) | Agent Skills Hub`.replace(/  +/g, " ");
-  // Meta ≤ 145 chars (Google SERP truncates at ~155, leave buffer for "...").
-  // Format: "{N} {open-source} {scenario}: {top names}. {value prop}."
-  // Trim at last word boundary to avoid mid-word cut.
+  // Lead with the security verdict, not the count.
+  //
+  // The old title and description said "{N} open-source X compared: {three
+  // repo names}. Stars, quality, use cases." Every listicle on the SERP can
+  // write that, and the star count is exactly what Google's rater guidelines
+  // (§20.0) call "usage statistics ... not usually helpful". The one claim no
+  // competing list can make — that every tool here has been independently
+  // security-graded — appeared nowhere. Same fix already applied to skill
+  // pages, same reasoning.
+  const graded = skills.filter((s) => ["safe", "caution", "unsafe", "reject"].includes(s.security_grade));
+  const safeN = graded.filter((s) => s.security_grade === "safe").length;
+  const flaggedN = graded.length - safeN;
+  // Only claim a verdict when most of the set actually carries one — a "12
+  // SAFE" headline over a mostly-ungraded list would be the kind of overstated
+  // number this whole change exists to remove.
+  const canClaim = graded.length >= Math.max(3, Math.ceil(itemCount * 0.6));
+  const verdict = canClaim
+    ? `${safeN} rated SAFE${flaggedN ? `, ${flaggedN} flagged` : ""}`
+    : "";
+
+  // Google shows roughly the first 60 characters of a title. Several scenario
+  // titles are long enough on their own ("browser-use, Playwright MCP & AI
+  // Browser Agents") that a verdict appended after them lands at character 90
+  // and is truncated away — the change would ship and be invisible. Trim the
+  // subject at a comma boundary so the verdict always arrives inside the
+  // visible window, and drop the brand suffix when it would not fit anyway
+  // (Google appends the site name itself).
+  const subjectFull = scenario.title;
+  const subject = (() => {
+    if (subjectFull.length <= 34) return subjectFull;
+    // Cut at a word boundary, then drop a dangling conjunction or stub word —
+    // a naive slice produced "browser-use, Playwright MCP & AI B:", which
+    // reads as a typo in the SERP and undoes the credibility the verdict buys.
+    let t = subjectFull.slice(0, 34);
+    t = t.slice(0, t.lastIndexOf(" "));
+    // Peel trailing stubs until the phrase ends on a real word. One pass left
+    // "browser-use, Playwright MCP & AI" — the conjunction was gone but the
+    // two-letter fragment after it was not.
+    for (let i = 0; i < 4; i++) {
+      const next = t
+        .replace(/\s*[,&:+\-|]\s*$/, "")
+        .replace(/\s+(and|or|for|with|the|a|an|ai|to|in|on|of)$/i, "");
+      if (next === t) break;
+      t = next;
+    }
+    return t.trim() || subjectFull.split(/[,:]/)[0].trim();
+  })();
+  const head = canClaim
+    ? `${subject}: ${itemCount} Compared, ${verdict} (${year})`
+    : `${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`;
+  const title = (head.length <= 52 ? `${head} | Agent Skills Hub` : head).replace(/  +/g, " ");
+
   const metaTopNames = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
-  const metaRaw =
-    `${itemCount} open-source ${seoTitleSubject.toLowerCase()} compared: ${metaTopNames}. ` +
-    `Stars, quality, use cases. Refreshed every 8h.`;
+  const metaRaw = canClaim
+    ? `${itemCount} ${seoTitleSubject.toLowerCase()}, independently security-graded: ${verdict}. ` +
+      `Scanned against 11 red-flag categories. ${metaTopNames}.`
+    : `${itemCount} open-source ${seoTitleSubject.toLowerCase()} compared: ${metaTopNames}. ` +
+      `Quality-scored and refreshed every 8h.`;
   const metaDesc =
-    metaRaw.length <= 145
+    metaRaw.length <= 155
       ? metaRaw
-      : metaRaw.slice(0, 145).replace(/\s+\S*$/, "") + "…";
+      : metaRaw.slice(0, 155).replace(/\s+\S*$/, "") + "…";
   const ogImage = `${SITE}/og-image.png`;
 
   const { scriptTags, linkTags } = assetTags;
