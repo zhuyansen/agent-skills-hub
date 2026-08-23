@@ -1,0 +1,129 @@
+{
+ "window": [
+  "2026-07-23",
+  "2026-08-20"
+ ],
+ "captured": "2026-08-23",
+ "note": "冻结于 2026-08-23:36 页 noindex + 结论前置标题/描述 上线当天",
+ "kept_49": {
+  "pages": 26,
+  "impressions": 27272,
+  "clicks": 551,
+  "ctr_pct": 2.02,
+  "avg_position": 13.65
+ },
+ "retired_36": {
+  "pages": 16,
+  "impressions": 3532,
+  "clicks": 7,
+  "ctr_pct": 0.2,
+  "avg_position": 39.1
+ },
+ "top_kept": [
+  {
+   "page": "https://agentskillshub.top/best/ppt-presentation/",
+   "impressions": 13337,
+   "clicks": 424,
+   "ctr": 3.18,
+   "position": 7.8
+  },
+  {
+   "page": "https://agentskillshub.top/best/skill-management-tools/",
+   "impressions": 3188,
+   "clicks": 50,
+   "ctr": 1.57,
+   "position": 15.2
+  },
+  {
+   "page": "https://agentskillshub.top/best/telegram-bot/",
+   "impressions": 3123,
+   "clicks": 31,
+   "ctr": 0.99,
+   "position": 8.4
+  },
+  {
+   "page": "https://agentskillshub.top/best/browser-automation/",
+   "impressions": 2055,
+   "clicks": 1,
+   "ctr": 0.05,
+   "position": 30.8
+  },
+  {
+   "page": "https://agentskillshub.top/best/code-review/",
+   "impressions": 698,
+   "clicks": 8,
+   "ctr": 1.15,
+   "position": 27.5
+  },
+  {
+   "page": "https://agentskillshub.top/best/ai-design/",
+   "impressions": 520,
+   "clicks": 6,
+   "ctr": 1.15,
+   "position": 19.2
+  },
+  {
+   "page": "https://agentskillshub.top/best/web-scraping/",
+   "impressions": 501,
+   "clicks": 0,
+   "ctr": 0,
+   "position": 40.3
+  },
+  {
+   "page": "https://agentskillshub.top/best/secret-detection/",
+   "impressions": 390,
+   "clicks": 6,
+   "ctr": 1.54,
+   "position": 26.9
+  },
+  {
+   "page": "https://agentskillshub.top/best/local-llm/",
+   "impressions": 388,
+   "clicks": 1,
+   "ctr": 0.26,
+   "position": 20.1
+  },
+  {
+   "page": "https://agentskillshub.top/best/knowledge-base/",
+   "impressions": 367,
+   "clicks": 2,
+   "ctr": 0.54,
+   "position": 17.3
+  },
+  {
+   "page": "https://agentskillshub.top/best/multi-agent/",
+   "impressions": 336,
+   "clicks": 3,
+   "ctr": 0.89,
+   "position": 35.8
+  },
+  {
+   "page": "https://agentskillshub.top/best/refactoring/",
+   "impressions": 334,
+   "clicks": 2,
+   "ctr": 0.6,
+   "position": 30.7
+  },
+  {
+   "page": "https://agentskillshub.top/best/image-generation/",
+   "impressions": 314,
+   "clicks": 3,
+   "ctr": 0.96,
+   "position": 14.8
+  },
+  {
+   "page": "https://agentskillshub.top/best/video-editing/",
+   "impressions": 264,
+   "clicks": 1,
+   "ctr": 0.38,
+   "position": 12.6
+  },
+  {
+   "page": "https://agentskillshub.top/best/cli-tools/",
+   "impressions": 252,
+   "clicks": 2,
+   "ctr": 0.79,
+   "position": 30.0
+  }
+ ]
+}
