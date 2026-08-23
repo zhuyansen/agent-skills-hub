@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-23
+1. CopilotKit/OpenBot — 🆕 给每个 AI 同事配一台自己的电脑，每步操作全留痕（2277★ 455.4/day）
+2. Binaryify/open-kimi-ppt-skill — 让智能体直出可编辑 PPTX，附带本地浏览器编辑器（1599★ 94.1/day）
+3. VictorTaelin/OptMem — 用 426 token 的提示词给智能体接上永久记忆（1443★ 51.5/day）
+4. unclecode/modelprint — 🆕 在浏览器里给 API 端点验指纹，查清背后到底是谁（51★ 51.0/day）
+5. furkankly/zoetrope — 🆕 把 Claude Code 会话画成实时流程图，终端浏览器都能看（132★ 33.0/day）
+6. only-cli/oc — 🆕 把任意网站压成智能体专用 CLI，几百 token 读完一页（117★ 29.2/day）
+7. joe960913/Jixu — 🆕 用可恢复线程和显式副作用边界，写不怕崩的 TS 智能体（104★ 26.0/day）
+8. OpenLabs-so/oa-design — 🆕 把整套设计语言打包成技能，组件配方连类型一起给（36★ 18.0/day）
+9. KimGLee/Cambium — 给 LLM 维护的知识库立治理标准，每次改动可审计（230★ 12.8/day）
+10. Juror-AI/juror — 用自家 GitHub Actions 跑代码评审，替掉按月付费的 Greptile（176★ 11.0/day）
+🎯 今日趋势：72h 候选池 **298 条**，沿用 08-21 定下的口径先剔除 **241 条(81%)建仓已超 45 天**的回填老仓(velocity 取生涯均值失真)，再去掉 **20 条历史已推荐**，清洁候选 **37 条**——比昨日的 32 条略有回暖，但仍是**连续第四期真实新仓偏紧**；本期头名 **455.4★/天**是存档近半月最高增速，CopilotKit 官方下场做"每个智能体独占一台电脑"的 OpenBot，五天 2277★ 直接把长尾拉开断层，与昨日"无爆款靠数量凑数"形成反转；主线是 **"给智能体配独立运行环境+可审计边界"共四席**(第 1 席一人一机全程留痕、第 7 席用可恢复线程和显式副作用边界扛崩溃、第 9 席给知识库改动立治理标准、第 10 席把代码评审搬回自家 Actions)，**"可审计/可恢复"取代昨日的"提交门禁"成为新的规矩关键词**；第二组是**"给智能体省 token 的介质压缩"三席**(直出 PPTX 的 open-kimi-ppt-skill、426 token 接永久记忆的 OptMem、把网站压成几百 token CLI 的 oc)，三席分别压缩产出物、记忆和网页输入，**Victor Taelin 与 Binaryify 两位老牌作者同期在榜为存档首次**；非主线两席落在会话可视化(zoetrope 把 Claude Code 跑成实时流程图)与设计系统技能化(oa-design)；6/10 为两周内新建，第 2/3/9/10 席(08-05、07-25、08-04、08-06)出窗不标 🆕；中位数 31.1★/天，为昨日 6.7 的 4.6 倍。
+> 注：去重覆盖存档全部 60 期共 610 条(591 个唯一 repo)，本期 20 条候选因历史已推荐被剔除。排除项：①**刷星嫌疑五个**——keith-yan/vibe-service-guardian(账号 6 月建、0 关注者、名下仅此 1 仓、112★/0 fork、堆 15 个 SEO 标签)、liyuqin606-del/packrehearsal(2 关注者，其余 5 仓命名为"2""111"且全 0★，108★/0 fork)、adnanakil/nobuzz(28 仓其余全 1★、2 关注者，两天 174★)、LB623/no-negative-echo(账号去年 12 月建、0 关注者、其余仓 1-2★)、bendrape1-byte/silk-design(3 仓 3 关注者，一天 34★)，均符合"单仓爆星+名下其余个位数星"特征，宁可保守排除；②jinwyp/open-ppt-skill 贡献者为 Binaryify 本人且无 topics、248 fork 对 122★，判为第 2 席的镜像仓，剔除；③turkiyeyapayzekaakademisi/llm-rag-memory-ai-agents 无描述无 topics、117★对 1 fork，判为课程宣传仓；④maria-rcks/endless(32★ 32.0/day)入围后复查 GitHub 返回 404，仓库已删或转私，剔除。🆕 判定：created_at 在 2026-08-09 之后。
+
+---
+
 ## 2026-08-22
 1. jinzijian/EvoTrace — 🆕 把真实编码轨迹编译成可验证可交易的训练资产（84★ 42.0/day）
 2. addyosmani/factory — 🆕 给 Claude Code 和 Codex 一套参考级软件流水线（85★ 28.3/day）
