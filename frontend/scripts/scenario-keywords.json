@@ -764,22 +764,9 @@
    "max_results": 30,
    "featured": [
     "browser-use/browser-use",
-    "NanmiCoder/MediaCrawler",
-    "D4Vinci/Scrapling",
     "microsoft/playwright-mcp",
-    "Panniantong/Agent-Reach",
-    "jackwener/OpenCLI",
-    "vercel-labs/agent-browser",
-    "h4ckf0r0day/obscura",
-    "nashsu/AutoCLI",
     "browserbase/stagehand",
-    "hangwin/mcp-chrome",
-    "AgentDeskAI/browser-tools-mcp",
-    "firecrawl/firecrawl-mcp-server",
-    "SawyerHood/dev-browser",
-    "browserbase/skills",
-    "iBigQiang/feedgrab",
-    "nashsu/autocli-skill"
+    "executeautomation/mcp-playwright"
    ],
    "tag_matches": [
     "browser"
