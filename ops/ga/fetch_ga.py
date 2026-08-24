@@ -58,6 +58,19 @@ def run_report(sess, dimensions, metrics, days, order_metric=None, limit=25):
     r = sess.post(f"{API}:runReport", json=body, timeout=60)
     r.raise_for_status()
     data = r.json()
+    # Say so when the response was cut off. GA4 returns rowCount (the true
+    # total) alongside however many rows the limit allowed, and silently
+    # handing back the truncated slice is how a partial answer becomes a wrong
+    # conclusion: on 2026-08-23 a [eventName, date] pull at limit=500 returned
+    # 500 of 858 rows, audit_run kept only 5 of its 43 days, and "truncated"
+    # was read as "the event never fired again". Same failure mode this repo
+    # already guards against in the Clarity fetcher and the GSC operator
+    # filter — an honest absence beats a confident wrong number.
+    total = int(data.get("rowCount", 0) or 0)
+    returned = len(data.get("rows", []))
+    if total > returned:
+        print(f"  ⚠️ GA 返回被截断: {returned}/{total} 行(limit={limit})——"
+              f"提高 limit 再读,否则缺失会被当成 0", file=sys.stderr)
     dim_n = len(dimensions)
     rows = []
     for row in data.get("rows", []):
