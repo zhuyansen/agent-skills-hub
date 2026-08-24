@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-24
+1. duty1g/x64dbg-mcp-server — 🆕 把 x64dbg 全套调试能力开给 AI，断点内存寄存器随叫随到（1051★ 525.5/day）
+2. nateherkai/scroll-craft — 🆕 让 Claude 自己截图验收，做出滚动即时间轴的高级网页（487★ 243.5/day）
+3. rome-os/rome — 🆕 给个人 AI 智能体做操作系统，自带应用商店和云端入口（118★ 118.0/day）
+4. kgoedecke/doop — 🆕 把设计画布做成多人房间，人和智能体同屏一起动手（157★ 78.5/day）
+5. bam-bam-2/solo-skills — 🆕 打包一人公司的 26 个智能体技能，附整套执行脚本（156★ 78.0/day）
+6. Leonxlnx/unlazy — 治 AI 偷懒：任务拆 N 层，每层都给满时间预算（1145★ 76.3/day）
+7. joeseesun/qmreader-ios — 🆕 用原生 iOS 读中文长文，翻译和乔木体改写一键完成（63★ 63.0/day）
+8. Claycui828/ASu-resume-skills — 🆕 生成高密度技术履历，再用证据优先的标准审一遍（163★ 14.8/day）
+9. sodiumsun/agenttrail — 🆕 实时盯住 Claude、Codex、Cursor 的每一步调用与改动（41★ 13.7/day）
+10. grpcer/ownmem — 🆕 用一套 Markdown 文件，给五种编码智能体共享记忆（109★ 13.6/day）
+🎯 今日趋势：72h 候选池 **111 条**，按 08-21 定下的口径剔除 **59 条(53%)建仓超 45 天**的回填老仓与 **5 条历史已推荐**，清洁候选 **47 条**——池子规模只有昨日 298 条的三分之一，但真实新仓占比反而是近一周最高；本期最猛的一档在**"把重型专业工具整个交给智能体"**：头名 x64dbg-mcp-server 用 Zig 写原生插件，两天 1051★、**525.5★/天**，逆向调试器第一次整台开放给 MCP 客户端，第 4 席 doop 则把设计画布做成人机同屏的多人房间，两席都不是再造一个智能体，而是**把已有专业软件的操作面开出去**；第二组是**"管住智能体怎么干活"共四席**(第 6 席 unlazy 用深度树逼模型不敷衍、第 9 席 agenttrail 实时盯住三家 CLI 的每步调用、第 10 席 ownmem 用一套 Markdown 给五种智能体共享记忆、第 3 席 rome 干脆做成 OS)，**"防偷懒/可观测/跨工具记忆"取代昨日的"可审计"成为新关键词**；第三组是**技能包生产力套装三席**(scroll-craft 做滚动叙事网页、solo-skills 韩国一人公司 26 个技能、ASu-resume-skills 高密度履历审计)，其中 solo-skills 是存档**首次出现韩语社区技能包**；非主线一席是乔木的原生 iOS 中文阅读器；**9/10 为两周内新建，其中 6 席建仓不足 48 小时**，新鲜度为存档最高一期，第 6 席 unlazy 建于 08-09 差一天出窗故不标 🆕；中位数 77.2★/天，为昨日 31.1 的 2.5 倍。
+> 注：去重覆盖存档全部 61 期共 610 条(601 个唯一 repo)，本期 5 条候选因历史已推荐被剔除。排除项：①**ShadowAqueduct/watermark-remover 双重理由剔除**——按 760★/天本可居首，但账号 08-01 新建、0 关注者、名下另一仓 0★，且工具功能是抹除多家 AI 水印与 C2PA 出处元数据，属规避内容溯源，不予推荐；②Tiger3807861189/J-Space-Cognition-Suite-V3.7(3018★) 账号 07-20 新建、纯数字后缀、名下仅 2 仓却双双破千星，判为刷星集群；③vibeinging/dsh-desktop(627★) 经 GitHub API 确认为已推荐过的 deepseek-harness-desktop-app 改名，同仓剔除；④actonos/actonos 140★对 0 fork、组织 08-16 新建且 0 关注者，保守排除；⑤alchaincyf/douban-movie-assistant(33★/天) 作者可信，但功能为探测第三方播放片源，版权存疑不列入；⑥继续排除 08-23 已认定的五个刷星嫌疑账号，maria-rcks/endless 仍为 404。入选项复核：第 5 席 bam-bam-2 虽仅 7 关注者，但 156★对 53 fork(24%)属真实使用，第 10 席 grpcer 名下两个独立产品均有星，均判为社群传播而非刷星。🆕 判定：created_at 在 2026-08-10 之后。
+
+---
+
 ## 2026-08-23
 1. CopilotKit/OpenBot — 🆕 给每个 AI 同事配一台自己的电脑，每步操作全留痕（2277★ 455.4/day）
 2. Binaryify/open-kimi-ppt-skill — 让智能体直出可编辑 PPTX，附带本地浏览器编辑器（1599★ 94.1/day）
