@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-25
+1. alchaincyf/huashu-excel — 🆕 洗净脏表再交付，让 AI 算出的每个数字都经得起追问（117★ 117.0/day）
+2. itshen/source-reading-methodology — 🆕 带 AI 四阶段精读大仓，每条论断都回溯到源码行（107★ 107.0/day）
+3. truespar/sentio — 🆕 给每个智能体发一个真邮箱，收信回信全走 API（70★ 70.0/day）
+4. zenstory-ai/drama-skills — 打通 AI 短剧全链路：剧本、分镜、提示词到成片审查（1047★ 26.8/day）
+5. yanhua1010/self-media-content-workflow — 把自媒体从选题到分发拆成模块，换工具照样跑（382★ 11.6/day）
+6. bojieli/agentreach — 🆕 让编码智能体接管任意 SSH 机器，服务器碰不到智能体（94★ 9.4/day）
+7. haorantang97/TArt — 开一间 Codex 视觉技能市集，黑笔插画风格随取随用（270★ 9.0/day）
+8. scarletkc/Perenna — 🆕 用 Git 仓库给智能体存永久记忆，轻到一条命令装完（20★ 6.7/day）
+9. moskoo/xxg-portrait-rebuild-light — 🆕 重修人像照片只换光线质感，保住本人长相（75★ 5.8/day）
+10. svy04/ballast — 🆕 在完全外行的领域从地基开始，把目标一路建到落地（59★ 5.4/day）
+🎯 今日趋势：72h 候选池 **116 条**，建仓 45 天内 **56 条**，剔除历史已推荐 **17 条**后清洁候选 **39 条**——池子规模与昨日 111 条持平，但**顶部断层比昨日更陡**：前三席全是 08-23 当天建仓的新仓（117.0/107.0/70.0★/天），第 4 席直接掉到 26.8，**中位数只有 10.5★/天，是昨日 77.2 的七分之一**，说明爆款集中在极窄的头部而长尾整体转冷；主线是**"给智能体补基建，而不是再造一个智能体"共四席**（第 3 席 sentio 用 Rust 给每个智能体发真实邮箱、能按租户隔离跑上千个收件箱，第 6 席 agentreach 让编码智能体接管任意 SSH 机器且"服务器拿不到你的智能体"，第 8 席 Perenna 用 Git 仓库当永久记忆层，第 2 席 source-reading-methodology 则补方法论——**"邮箱/远程/记忆"三件基础能力同期出现，是存档里第一次**）；第二组是**内容生产四席**（drama-skills 短剧全链路、self-media-content-workflow 自媒体模块化、TArt 的 Codex 视觉技能市集、xxg-portrait-rebuild-light 人像重修），其中 drama-skills 以 1047★ 为本期星数之最但建仓已 39 天；**中文作者占 6/10**（花叔 alchaincyf 9634 粉、李博杰 bojieli 1836 粉、itshen、yanhua1010、zenstory-ai、moskoo），为存档中中文占比最高的一期；**7/10 为两周内新建**，第 1、2、3 席建仓不足 48 小时。
+> 注：去重覆盖 repo 内 archive 全部 62 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重后 **3367 个仓库名**），45 天内候选 56 条中 **17 条命中历史**，今日十席零重复。⚠️查询口径：延续 08-21/08-22 的修正，按 `created_at DESC` 取 72h 内 ≥20★（任务书原定 `stars DESC LIMIT 150` 仍会被回填老仓吃满），**该修正继续保留**。排除项：①**zenstory-ai/novel-to-game（696★ 18.8/day 本可居第 5）**——经 GitHub API 确认与 07-21 已推荐的 worldwonderer/novel-to-game 为同一仓（作者把个人号迁到组织号 zenstory-ai），按 08-24 的 dsh-desktop 先例判为改名同仓剔除；同组织的 video-recap-skills 亦已于 07-21 推荐，仅 drama-skills 为首次入选；②**Akimiya-z/codex-guard（44★ 11.0/day 本可居第 6）**——账号 2025-10 建、1 关注者，名下另 6 仓全为 0-1★ 而单仓 53★，且 4 个 forker 中 `zihanw52-design` 与 `zihanw-dev` 为同名双小号，命中假号农场特征，按 keith-yan/vibe-service-guardian 先例保守排除；③Tiger3807861189/J-Space-Cognition-Suite-V3.7（3018★ 91.5/day 本可居第 3）、vibeinging/dsh-desktop（627★ 57.0/day）、alchaincyf/douban-movie-assistant（36★）三条**沿用 08-24 的已决排除**（刷星集群 / 已推荐仓改名 / 片源探测版权存疑），不再复议；④actonos/actonos（139★ 17.4/day）组织 08-16 新建、1 关注者、**139★ 对 0 fork 0 issue**，连续第二期保守排除。入选项复核：第 9 席 moskoo 名下 30 仓仅此一仓 78★ 表面命中"单仓承星"，但 **14 fork（18%）+ 11 watcher** 的真实使用比远高于刷星仓的 0-2% 带，判为社群传播；第 3 席 truespar 虽为 2026-02 新建组织且仅 1 仓，但 12 个 forker（dporkka、suryatmodulus、mrorigo、nzhenev 等）均为有历史的真实开发者，予以保留；第 10 席 svy04 forker 含 2 个后缀型小号但作者另有 66★/17★ 连贯作品，保留并留待下期复核。🆕 判定：created_at 在 2026-08-11 之后。
+
+---
+
 ## 2026-08-24
 1. duty1g/x64dbg-mcp-server — 🆕 把 x64dbg 全套调试能力开给 AI，断点内存寄存器随叫随到（1051★ 525.5/day）
 2. nateherkai/scroll-craft — 🆕 让 Claude 自己截图验收，做出滚动即时间轴的高级网页（487★ 243.5/day）
