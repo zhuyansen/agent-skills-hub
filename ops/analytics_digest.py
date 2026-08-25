@@ -168,6 +168,19 @@ def main():
             f"{e.replace('enterprise_', '').replace('lead_', '').replace('form_', '')} {counts.get(e, 0)}"
             for e in FUNNEL)
         print(f"\n**企业漏斗**: {chain}")
+        # These stages are NOT strictly nested and the arrow notation implies
+        # they are. form_viewed fires from an IntersectionObserver, so anyone
+        # who scrolls the page far enough counts — with or without ever
+        # clicking a CTA. On 2026-08-25 that produced "cta_click 13 → viewed
+        # 18", a funnel where a later stage outnumbers an earlier one, which is
+        # impossible for a real funnel and reads as a data error. Say what it
+        # actually means rather than leaving the reader to reconcile it.
+        for prev, nxt in zip(FUNNEL, FUNNEL[1:]):
+            if counts.get(nxt, 0) > counts.get(prev, 0):
+                print(f"  ↳ 注:{nxt.replace('enterprise_','')} ({counts.get(nxt,0)}) "
+                      f"高于 {prev.replace('enterprise_','')} ({counts.get(prev,0)}) —— "
+                      f"form_viewed 由滚动触发,不要求先点 CTA,两者不是包含关系")
+                break
         if counts.get("enterprise_lead_invalid"):
             print(f"  ↳ 被必填项挡回: {counts['enterprise_lead_invalid']} 次")
         if counts.get("enterprise_lead_failed"):
