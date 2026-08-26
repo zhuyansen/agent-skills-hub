@@ -238,10 +238,22 @@ def main():
                 print("\n**摩擦最集中的页面(按每会话,>=10次才计)**\n")
                 print("| 页面 | 每会话 | 次数 | 会话 |")
                 print("|---|--:|--:|--:|")
+                # The ⚠️ needs at least two sessions. Its record with one:
+                # /author/asgeirtj/ (26) and /book/ch02 (54) were the same real
+                # shell bug in the same week; every single-session hit since —
+                # james-design, /analyzer?repo=, claude-obsidian, VideoCaptioner
+                # — checked out healthy under investigation. One visitor
+                # clicking 23 times is one visitor, not a page defect, and an
+                # alarm that fires daily on those trains the reader to skip the
+                # column. The rows stay visible because they are still data;
+                # only the alarm is withheld.
                 for per, n, sess, url in rows[:6]:
-                    flag = " ⚠️" if per >= 5 else ""
-                    print(f"| {url[:46]} | **{per:.1f}**{flag} | {n} | {sess} |")
-                print("\n*每会话 >=5 次通常是页面缺陷,不是流量大;拿这一列去 Clarity 看回放。*\n")
+                    flag = " ⚠️" if per >= 5 and sess >= 2 else ""
+                    note = " ·单会话" if sess == 1 else ""
+                    print(f"| {url[:46]} | **{per:.1f}**{flag}{note} | {n} | {sess} |")
+                print("\n*⚠️ = 每会话 >=5 次且横跨 >=2 个会话,才算页面缺陷。"
+                      "单会话高频是一个访客的行为,不是页面的问题 —— "
+                      "此前 5 次单会话告警查下来页面都是健康的。*\n")
 
         traffic = next((m for m in ov if m.get("metricName") == "Traffic"), None)
         if traffic and traffic.get("information"):
