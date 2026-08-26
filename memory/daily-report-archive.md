@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-26
+1. Stupidoodle/swissdevjobs-cli — 🆕 翻遍七国 4700 个明码标薪技术岗，终端里直接投递（57★ 48.9/day）
+2. lencx/Minke — 🆕 给 DeepSeek Harness 配桌面客户端，三大系统装插件即用（514★ 47.1/day）
+3. forcewake/hermes-conductor — 🆕 一个指挥台调度多个编码 CLI，不信智能体的自述战报（63★ 28.4/day）
+4. context-labs/whip — 🆕 拿 Go 写轻量编码智能体内核，模型按供应商随取随换（29★ 5.7/day）
+5. tester-army/unbox-ai — 🆕 把智能体的上下文和调用链摊开看，排错不再靠猜（21★ 4.5/day）
+6. xi-zhao/OpenQuantum — 🆕 把量子计算搬进智能体工作台，Qiskit 与 MCP 一起调（45★ 4.3/day）
+7. Cuongyd196/auto-compare-video — 用一套模板批量产知识对比短视频，配音分镜全自动（130★ 4.0/day）
+8. yinxulai/one-switch — 给 Codex 和 Claude Code 架本地网关，供应商挂了自动切（52★ 3.6/day）
+9. PNGTRID/AnvilWiki — 套模板搭游戏 wiki，Astro 加 Cloudflare 零成本上线（48★ 3.3/day）
+10. scarletkc/agents — 给三种编码智能体定共用规范，技能库直接复用（133★ 3.0/day）
+🎯 今日趋势：72h 候选池 **130 条**，但**建仓 45 天内只有 44 条、剔重后清洁候选仅 23 条**（昨日 39 条），池子被回填老仓吃掉 **86 条（占清洁候选 79%）**；**中位数掉到 3.6★/天，是昨日 10.5 的三分之一、前日 77.2 的二十分之一**，且超过 10★/天的清洁候选剔除刷星嫌疑后**只剩 3 条**——连续第三天的顶部降速在今天变成断供，榜单后半段全部落进 3-5★/天的长尾。
+> 注：去重覆盖 repo 内 archive 全部 63 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重后 **3145 个仓库名**），45 天内 44 条候选中 **21 条命中历史**，今日十席零重复。查询口径：延续 08-21 起的修正，按 `created_at DESC` 取 72h 内 ≥20★ 共 130 条（任务书原定 `stars DESC LIMIT 150` 会被回填老仓吃满），并在评选前再套 45 天建仓窗——今日这层过滤剔掉的 86 条里包含 titanwings/distilly（23942★）、web-infra-dev/midscene（14695★，建仓 764 天）等，它们的"velocity"纯属回填假象，不予入选。排除项：①**KurosawaGeeker/femboy-skill（50★ 50.0/day 本可居首）**——账号 2018 年建、29 仓星数分布正常，非刷星，但 README 自设 18+ 门槛且含成人性健康内容，本榜与 X 推文均无年龄闸门，按渠道适配性剔除，项目本身无问题；②**Hoylon/peerbridge-mcp（136★ 16.5/day 本可居第 4）**——账号 06-26 建、0 关注者、**名下仅此一仓**，137★ 对 **0 fork / 0 watcher / 0 issue**，与 08-24 起排除的 actonos/actonos 特征完全一致，判为刷星；③keyline-icons/keyline-icons（21★ 3.6/day）——组织 08-13 新建、单仓、0 fork/0 watcher，且实为 shadcn/ui 图标集而非智能体工具，双重理由剔除；④Tiger3807861189/J-Space-Cognition-Suite-V3.7、vibeinging/dsh-desktop、alchaincyf/douban-movie-assistant、actonos/actonos 四条**沿用既往已决排除**，不再复议。入选项复核：第 1 席安全评级为 unsafe，唯一命中项是 README 的 `curl | sh` 安装命令（`security_flags: ["curl_pipe_shell"]`），非恶意代码，如实标注不影响入选；第 2 席经 GitHub API 确认 vibeinging/dsh-desktop 与 ningbainb/deepseek-harness-desktop 均独立存在、未重定向到 Minke，lencx 名下此前只推荐过 lencx/skills，判为不同仓；第 7/9 席 fork 率高达 66%/69%（86 fork、33 fork），符合模板仓被真实套用的形态而非刷星；第 10 席作者 scarletkc 昨日以 Perenna 入选，本仓为独立产品，按仓级去重保留。🆕 判定：created_at 在 2026-08-12 之后（8 条命中 6 条，one-switch 与 AnvilWiki 建仓 14.5/14.4 天差之毫厘，不标）。
+
+---
+
 ## 2026-08-25
 1. alchaincyf/huashu-excel — 🆕 洗净脏表再交付，让 AI 算出的每个数字都经得起追问（117★ 117.0/day）
 2. itshen/source-reading-methodology — 🆕 带 AI 四阶段精读大仓，每条论断都回溯到源码行（107★ 107.0/day）
