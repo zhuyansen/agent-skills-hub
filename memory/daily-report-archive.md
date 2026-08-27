@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-27
+1. Ayueh0102/Ronnier-skill — 🆕 把八十年色彩科学装进 Claude Code，随身带个色度学教授（38★ 38.0/day）
+2. Aqua-123/pstack-for-codex — 🆕 把 pstack 搬进 Codex，45 个技能配 23 套工程剧本（26★ 26.0/day）
+3. chengyansen-ai/h3-multimodal-lora-training — 🆕 十步证据链训多模态 LoRA，低显存也能跑音视频联合（21★ 10.5/day）
+4. Prysai/Prysai-LLM-Playbook — 从第一个任务教到稳定产出，八种语言的大模型上手手册（127★ 7.5/day）
+5. pulseaiclub/phi — 用 Go 写终端编码智能体，挂再多 MCP 也不撑爆上下文（161★ 7.0/day）
+6. owainlewis/machinist — 把一条 GitHub issue 自动做成经独立评审的 PR（207★ 5.0/day）
+7. taxueseek/argo — 给智能体配专用搜索，中英学术代码金融八路一起查（111★ 2.8/day）
+8. Nemo0000/codex-pet-usage-companion — 🆕 在 Windows 桌面养只 Codex 宠物，顺手盯住额度用量（32★ 2.7/day）
+9. sarrazola/openlivery — 🆕 替代理商批量上线白标 WhatsApp 智能体，随时转人工（27★ 2.2/day）
+10. JingxuanC/causal-memory — 记住每个决策带来的结果，上下文压缩也冲不掉（49★ 1.6/day）
+🎯 今日趋势：72h 候选池 **121 条**，建仓 45 天内 **35 条**，剔重后清洁候选仅 **18 条**（昨日 23、前日 39），**中位数跌到 2.5★/天**（昨日 3.6、前日 10.5），**榜首只有 38.0★/天，是近两周十四期里最低的一次**——降速进入第四天且已蔓延到头部，前三席全是不足 40★ 的当日/两日新仓；结构上出现存档里少见的一幕：**十席中 4 席是把整套专业知识打包成 skill**（第 1 席色彩科学 CIE/CIEDE2000/CIECAM02 完整中文笔记、第 3 席多模态 LoRA 训练与审计、第 4 席八语种大模型上手课、第 2 席 45 技能 + 23 套工程剧本），**知识型 skill 首次在数量上压过工具型**（基建三席：phi 的终端智能体内核、machinist 的 issue→PR 软件工厂、argo 的智能体专用搜索）；剩余三席分散在桌面小工具、白标 WhatsApp 部署和记忆层，**没有一席星数过 300**，与 08-25 前三席动辄 70-117★/天的形态判若两期。
+> 注：去重覆盖 repo 内 archive 全部 64 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重后 **3374 个仓库名**），45 天内 35 条候选中 **17 条命中历史**，今日十席零重复。查询口径：延续 08-21 起的修正，按 `created_at DESC` 取 72h 内 ≥20★ 共 121 条（任务书原定 `stars DESC LIMIT 150` 会被回填老仓吃满），评选前再套 45 天建仓窗——今日这层剔掉 86 条，其中 trailhq/Graft（4890★、建仓 54 天、90.6/day 本可居首）、zenstory-ai/oh-story-claudecode（6110★、126 天）、Awarexone/Agentic-Bug-Hunter（4419★、171 天）、justlovemaki/AIClient2API（8696★、402 天）全属"老仓刚被收录"的 velocity 假象，不予入选。**本期最重要的一条排除：shengjidaguai-china/goutoujunshi（2480★ 67.0/day 本可居首）**——狗头军师已于 **07-21 以 `powerycy/goutoujunshi` 入选过**，本次是同一项目迁入新建组织（README 徽章仍指向 powerycy，唯一贡献者 powerycy 31 次提交），按 07-22 `penecho/penecho` 与 `erickong/penecho` 的迁库先例判为重复排除；项目本身经复核为真实传播（07-20 建仓、31 提交、12.5MB 代码、277 fork 且最早 12 个 forker 为分散的中文真实账号），**排除理由仅是去重，不是质量或刷星问题**。第二条排除：alijancb/subio-mcp（34★ 1.7/day 本可居第 10）——2022 老号但名下仅 2 仓、另一仓 0★，**34★ 对 0 fork / 0 watcher**，命中既往判掉 Hoylon/peerbridge-mcp、actonos/actonos 的同一反常比例，按"宁可保守"剔除，第 10 席由 JingxuanC/causal-memory（1.6/day，仅低 0.1）递补。入选项刷星复核：第 1 席 Ayueh0102 为 2022 老号、他仓全 0★ 属轻红旗，但 4 个 forker 分散真实、内容为可验证的色度学长文，量级仅 38★ 不构成"爆星"，保留并标注；第 2 席 Aqua-123（2021 号 32 仓，星数呈 1-3 的正常长尾）、第 6 席 owainlewis（2011 老号 1622 粉，名下有 16209★ 作品）、第 7 席 taxueseek（26 仓多仓有星）、第 10 席 JingxuanC（2019 号 67 仓、10 个 open issue）均轨迹真实；第 4 席 Prysai 与第 5 席 pulseaiclub 均为 2026-07/08 新建组织的单仓承星，属轻红旗，但 forker 名单分散、CI 与多语言文档齐备，复核后保留；第 9 席 openlivery 的 27★/24 fork 高 fork 率符合白标模板被真实套用的形态。🆕 判定：created_at 在 2026-08-13 之后（5 条：Ronnier-skill 08-26、pstack-for-codex 08-26、h3-multimodal-lora-training 08-24、codex-pet-usage-companion 08-14、openlivery 08-14）；Prysai-LLM-Playbook（08-09）、phi（08-03）、argo（07-18）、machinist（07-16）、causal-memory（07-26）超窗不标。全部十席 security_grade 为 unknown（尚未进入扫描队列），非风险信号。
+
+---
+
 ## 2026-08-26
 1. Stupidoodle/swissdevjobs-cli — 🆕 翻遍七国 4700 个明码标薪技术岗，终端里直接投递（57★ 48.9/day）
 2. lencx/Minke — 🆕 给 DeepSeek Harness 配桌面客户端，三大系统装插件即用（514★ 47.1/day）
