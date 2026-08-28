@@ -125,5 +125,14 @@
    "ctr": 0.79,
    "position": 30.0
   }
- ]
+ ],
+ "crawl_check_2026_08_28": {
+  "sampled_retired": 8,
+  "recrawled_since_ship": 0,
+  "never_crawled": 3,
+  "indexed_but_stale": 5,
+  "last_crawl_range": "2026-07-22 .. 2026-08-18",
+  "note": "noindex 尚未被 Google 看见。noindex 与「撤出 sitemap」同日执行,而 sitemap 正是促使重抓的主要信号 —— 顺序错了:标准做法是先加 noindex、保留在 sitemap 里直到被处理,再撤出。后果:抓取预算收益(提交 URL 数下降)已经兑现,但索引清理收益要等自然重抓,可能数周到数月。对比时不要把「已撤页面仍有曝光」读成「撤除无效」。",
+  "if_index_cleanup_becomes_urgent": "临时把这 36 页重新放回 sitemap,等 Google 处理完 noindex 后再撤出。"
+ }
 }
