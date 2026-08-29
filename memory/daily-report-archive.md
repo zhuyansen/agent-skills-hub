@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-29
+1. Nanako0129/sepia — 🆕 洗掉 AI 腔，按场景规则重修小说与职场文稿的叙事骨架（337★ 337.0/day）
+2. camilleroux/genart-skill — 🆕 用哈希种子生成确定性艺术图，可直接上链铸造（80★ 80.0/day）
+3. joeseesun/qiaomu-syc — 🆕 复刻克制短句加数字锚点的散文体，改写中文情感叙事（58★ 38.9/day）
+4. Endokelp/Only-Skill-You-Need — 🆕 只装第一个技能，之后每个任务自动路由到当下最优技能（37★ 31.7/day）
+5. LinklyAI/best-skills — 汇十余个社区数据，每日更新 Agent 技能安装量与增速榜（290★ 16.2/day）
+6. tt-a1i/simplify-codebase — 🆕 先证明再删，剔掉偶然复杂度且不改变原有行为（67★ 14.0/day）
+7. Innate-Labs/Noobi.ai — 一句话生成可玩的浏览器小游戏，本地跑还带自动评审（241★ 12.5/day）
+8. pinoox/neuromesh — 🆕 仿生上下文引擎，给编码助手装一层神经态运行时（71★ 10.7/day）
+9. sandbox-quantum/switch — 把任意智能体接进 Slack/Teams/Discord，开源可自托管（409★ 9.4/day）
+10. xzf-thu/VoiceMem — 🆕 给语音助手配实时记忆，边聊边记住情绪与偏好（86★ 7.4/day）
+🎯 今日趋势：72h 候选池 **107 条**，45 天内建仓 **43 条**，剔重后 32 条、再剔刷星/越狱/SEO 嫌疑 **9 条**，可选池只剩 **23 条**；但榜首 sepia **单日 337★**，是 08-21 修正口径以来唯一破 300★/天的项目，**连跌四天的降速在头部被打断**（前日榜首仅 38.0★/天）。结构上更反常：**写作与艺术类创作技能包揽前三席**（去 AI 腔叙事修复、哈希种子生成艺术、中文克制散文体），长期霸榜的编码基建被挤到第 6 席之后，工具型只剩 simplify-codebase、neuromesh、switch、VoiceMem 四席且**全部低于 15★/天**——"内容创作 skill"第二天压过"工程基建 skill"，且这次是靠头部星数而非单纯席位数取胜。
+> 注：去重覆盖 repo 内 archive 全 65 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重 **3286 个仓库名**），43 条候选中 11 条命中历史，今日十席零重复。查询口径：因 08-28 漏发，本期直接按 72h 拉取（`created_at DESC`、stars ≥20，共 107 条；任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），再套 45 天建仓窗剔掉 64 条。排除项（均按"宁可保守"原则剔除，非坐实刷星）：XiaoDuoYa/codex-with-chatgpt（291★/0.6 天，账号 4 关注者、其余 7 仓 0-5★）、totec448-spec/chat-on-steroids（502★，账号仅 3 仓、其余 0-4★）、hkqr/my-free-code（126★，账号共 2 仓、另一仓 0★）、singula-ai/alego（76★，1 关注者、另一仓 1★）、crane-in-clear-sky/WorkWit-AI-Agent（88★，账号 9 天前注册、0 关注者、仅此一仓）、calmrocks/ai-engineer-notebooks（363★）与 haorantang97/LabArt（274★）同属单仓爆星、其余仓个位数；另按红线排除 DavidCarliez/trustmebro（伪造工具输出绕过 LLM 护栏）与 fangmumu111-bot/chatgpt-plus-pro-codex-cn-guide（bot 账号 + SEO 堆砌标题）。🆕 判定：created_at 距今 ≤14 天，本期 7 席命中；best-skills（17.9 天）、Noobi.ai（19.3 天）、switch（43.7 天）不标。
+
+---
+
 ## 2026-08-27
 1. Ayueh0102/Ronnier-skill — 🆕 把八十年色彩科学装进 Claude Code，随身带个色度学教授（38★ 38.0/day）
 2. Aqua-123/pstack-for-codex — 🆕 把 pstack 搬进 Codex，45 个技能配 23 套工程剧本（26★ 26.0/day）
