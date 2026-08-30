@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-30
+1. cbrock84/headcount — 🆕 把 Claude Code 编成一家公司，15+ 部门 125+ 技能可单独安装（21★ 16.8/day）
+2. zidniryi/unbagrnd — 🆕 抠图去背景全程本地运行，三大桌面平台开源免费（40★ 7.4/day）
+3. FerroxLabs/wayland — 让智能体自己感知环境、推理决策并持续进化（591★ 6.9/day）
+4. katipally/openlive — 端侧跑通完整语音闭环，替掉 ElevenLabs 与实时语音 API（265★ 5.2/day）
+5. keli-wen/agy-staff — 🆕 雇 Gemini 的 Antigravity CLI 给 Claude/Codex 当快手外援（50★ 4.4/day）
+6. jaredrhod/ai-visualizer — 🆕 给语音智能体配张脸，四套全屏可视化零依赖直接跑（48★ 3.6/day）
+7. moonlin1213/cove-book-forge-mcp — 🆕 把 PDF/EPUB 电子书熬成可安装的 Agent 技能包（30★ 3.4/day）
+8. ibelick/mesurer — 悬停即测的 UI 检查器，把视觉反馈直接喂回编码智能体（384★ 2.7/day）
+9. GeekatplayStudio/Meshwright — 🆕 查出 3D 模型打不出来的原因，自动修复并给出验证（22★ 2.7/day）
+10. devkitshq/notifkit — 搭一套自托管通知基建，多渠道业务消息统一分发（102★ 2.3/day）
+🎯 今日趋势：72h 候选池 **110 条**，剔重 24 条后 86 条，其中 45 天内新建的只剩 **16 条**——榜首 headcount 仅 **16.8★/天**，对比昨日榜首 337★/天，**头部速度一天内塌了 20 倍**，前日"内容创作压过工程基建"的爆点没有续上。结构上回摆得更彻底：十席里 **6 席在给智能体补"感官与外设"**（openlive 的端侧语音闭环、ai-visualizer 的脸、wayland 的环境感知、mesurer 的 UI 检查、Meshwright 的 3D 网格、notifkit 的通知管道），纯"写技能包/提示词"只剩 headcount 与 cove-book-forge-mcp 两席，写作类技能今日**零入榜**。
+> 注：去重覆盖 repo 内 archive 全 66 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重 **3330 个仓库名**），110 条候选中 24 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（`stars DESC` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)。🆕 判定：created_at 在 2026-08-16 之后，今日 6 席。排除项（均按"宁可保守"原则，非坐实刷星）：**nevertoday/xxd-panel-028**（67★ 10.2/天，坐实排除——该账号 08-29 单日批量建了 xxd-panel-001 至 -100 共约 100 个编号仓库，典型 SEO 集群）、omaekumiko2-create/kru（87★，账号仅此 1 仓、0 关注者）、Morningstar202604/agentseed-mcp（账号 08-24 才注册却已 47 仓，其余全 ≤4★）、Derpyu520/qq-bridge（账号 2 仓、2 关注者，单仓 93★）、malevrigns/atlas-agent-control-plane（其余 24 仓全 0-1★，单仓 71★）、blogminhquy/javis-os（183★ 但无仓库描述，无法给出可信中文摘要）、KrishMunot/awesome-startup（2333★ 但建仓 3909 天，属老仓回填非新鲜项目）。数据口径提醒：**headcount 的 21★ 是 first_seen 时刻的数据库快照**（该仓建仓不足 48 小时即被收录），其 GitHub 实时星数已远高于此，本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-08-29
 1. Nanako0129/sepia — 🆕 洗掉 AI 腔，按场景规则重修小说与职场文稿的叙事骨架（337★ 337.0/day）
 2. camilleroux/genart-skill — 🆕 用哈希种子生成确定性艺术图，可直接上链铸造（80★ 80.0/day）
