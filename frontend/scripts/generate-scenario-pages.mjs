@@ -15,7 +15,7 @@ import {
   SITE, CATEGORY_LABELS,
   esc, starsK, stripMarkdown, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
-  analyticsTags,
+  analyticsTags, trustBlock,
 } from "./shared-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -759,6 +759,10 @@ ${faqLd}
         <h2 class="bp-section-title" style="font-size:18px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
       ${faqHtml}
       </section>
+
+      <!-- Trust / methodology: every scenario page now shows SAFE/CAUTION
+           counts, so every one makes a security claim and must explain it. -->
+      ${trustBlock()}
 
       <!-- Newsletter -->
       ${buildNewsletterCta()}

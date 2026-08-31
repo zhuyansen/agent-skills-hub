@@ -18,7 +18,7 @@ import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
-  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
+  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -642,6 +642,9 @@ ${faqLd}
 
       <!-- FAQ -->
       ${faqHtml}
+
+      <!-- Trust / methodology (E-E-A-T: how the grade is made, who is responsible) -->
+      ${trustBlock()}
 
       <!-- Links -->
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
