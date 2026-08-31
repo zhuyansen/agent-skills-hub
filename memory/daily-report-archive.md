@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-08-31
+1. useagenthq/useagent — 🆕 派活给自带云电脑的智能体，用你的订阅额度直接交成品（129★ 115.7/day）
+2. semihtalii/brink — 🆕 把三家编码助手的额度余量钉在菜单栏，用超前预警（44★ 27.3/day）
+3. aleksandr-alhoff/seo-landing — 🆕 让编码智能体当技术 SEO，落地页直冲 100 分性能（52★ 24.0/day）
+4. Vincentwei1021/video-talkcraft — 🆕 把编码助手变口播动效工作室，讲解视频一条龙产出（146★ 17.6/day）
+5. rokbenko/quackd — 🆕 给两条腿的小机器人装脑子，说句话它就照着做（25★ 9.5/day）
+6. grapefruit0205/click — 🆕 把需求先谈成方案再落地，改动经审批才动代码（33★ 8.3/day）
+7. TidyFactor/Styler — 🆕 在代码库里直接做视觉设计，改样式不必来回截图对稿（93★ 7.7/day）
+8. sololabstr/uisight — 🆕 让 AI 量得出屏幕上的间距尺寸，移动端桌面端都能测（101★ 7.7/day）
+9. Adkid-Zephyr/anti-defensive-writing-Skill — 剔掉论文里的防御性废话，20KB 轻量规则直接可用（138★ 7.2/day）
+10. tettethu/VibeGame — 用多智能体自我迭代做游戏，边跑边改直到能玩（124★ 6.7/day）
+🎯 今日趋势：72h 候选池 **120 条**，45 天内建仓 46 条，剔重 20 条后清洁候选 **26 条**，中位数 **7.0★/天**（昨日榜首才 16.8）；榜首 useagent **单日 115.7★/天，把昨日的头部塌方一次性追回近 7 倍**，且十席里 **8 席是两周内新仓**，断供只持续了一天。结构上出现新的集中：**4 席在补"智能体的眼睛与手感"**（Styler 在库内改视觉、uisight 能量出屏幕尺寸、video-talkcraft 出口播动效、quackd 驱动实体双足机器人），**2 席专治额度焦虑**（brink 钉在菜单栏的余量预警、被剔除的白嫖导航同源），SEO/GEO 技能包在 seo-landing 上重新冒头；纯写作类只剩第 9 席一条。
+> 注：去重覆盖 repo 内 archive 全 67 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重 **3349 个仓库名**），46 条 45 天内候选中 20 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉 74 条回填老仓。排除项（均按"宁可保守"，非坐实刷星）：①**24vojo-coder/rembg-gui-batch（150★ 70.6/day 本可居第 2）**——GitHub API 查 owner 与 repo 均返回 404，账号或仓库已删除/改名，无法核实，直接剔除；②**Ryze-AI-Adgent/open-seo-mcp-skills（59★ 38.4/day 本可居第 2）**——59★ 对 **0 fork / 0 watcher**，组织名下另 4 仓全 0★，仅 9 次提交，命中既往判掉 Hoylon/peerbridge-mcp、actonos/actonos 的同一反常比例；③**ewsun22/codex-manager（53★ 14.6/day 本可居第 5）**——同为 **0 fork / 0 watcher**，账号 2019 年建但名下仅此一仓，按与②相同标准一并剔除；④**panxunying/ai-coding-welfare（233★ 24.2/day 本可居第 3）**——项目本身真实（2014 老号、267★/17 fork、内容与提交均正常），**排除理由是渠道适配**：内容为"免费白嫖 Claude Code / Codex 的中转站与公益站合集"，此类转售中转普遍违反上游服务条款，与本站信任层定位不符，按 08-26 femboy-skill 的同一逻辑剔除，非质量或刷星问题；第 10 席由 tettethu/VibeGame 递补。入选项刷星复核：第 1 席 useagent 虽为 08-21 新建组织、0 关注者、仅 2 fork，但 100 次提交出自同一位可查实的长期开发者、代码 35MB，属真实产品首发形态，保留；第 3 席 aleksandr-alhoff 名下仅 1 仓属轻红旗，但 11 watcher / 5 fork / 70 提交轨迹正常；第 4 席 Vincentwei1021（89 粉，名下 video-shotcraft 6810★）、第 5 席 rokbenko（119 粉，ai-playground 320★）、第 9 席 Adkid-Zephyr（165 粉、31 仓）均为已有作品的老账号；第 6 席 click 由两位具名开发者提交 75 次；第 7 席 TidyFactor 为 08-18 新建组织但同时有 Marketing/Design 等配套仓，形态像真实小团队。🆕 判定：created_at 在 2026-08-17 之后，今日 8 席；anti-defensive-writing-Skill（19.2 天）与 VibeGame（18.4 天）超窗不标。全部十席 security_grade 除第 1 席为 safe 外均为 unknown（尚未进入扫描队列），非风险信号。
+
+---
+
 ## 2026-08-30
 1. cbrock84/headcount — 🆕 把 Claude Code 编成一家公司，15+ 部门 125+ 技能可单独安装（21★ 16.8/day）
 2. zidniryi/unbagrnd — 🆕 抠图去背景全程本地运行，三大桌面平台开源免费（40★ 7.4/day）
