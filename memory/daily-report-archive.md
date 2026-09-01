@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-01
+1. 555cute/r20-quantum-trader — 🆕 让大模型自己迭代交易策略，六类资产一个终端跑通（36★ 19.0/day）
+2. heyman333/agent-notion-template-docs — 🆕 锁死文档结构与视觉，让智能体写出 Notion 式文稿（28★ 18.5/day）
+3. nickname21kmr/gameops-investigator — 🆕 查游戏线上事故只读取证，结论必须附可复现证据（26★ 14.7/day）
+4. joeynyc/awesome-microduck — 🆕 汇齐双足小机器人的模拟器、策略与智能体工具链（30★ 12.1/day）
+5. Dicklesworthstone/dwarf_fortress_mcp — 🆕 让智能体接管矮人要塞，每步操作可回放可回滚（20★ 7.9/day）
+6. mosonlab/anneal — 🆕 只写规格就交活，规划评审实现合并全程无人值守（64★ 5.0/day）
+7. Aisland-SJL/dsh-usage — 给 DeepSeek Harness 配常驻额度面板，用量热力图全本地（76★ 4.7/day）
+8. angelwzr/linux-phone-porting — 🆕 带着编码智能体把主线 Linux 移植进安卓手机（43★ 4.5/day）
+9. konnga/skill-buddy — 用桌面工作台统管技能与 MCP，多家智能体一处同步（85★ 3.3/day）
+10. hieuphung97/dely — 🆕 把需求先谈成设计契约，隔离会话实现再独立评审（32★ 2.8/day）
+🎯 今日趋势：72h 候选池 **111 条**，45 天内建仓 48 条，剔重 22 条、剔刷星/SEO 嫌疑 9 条后清洁候选只剩 **17 条**，中位数 **3.3★/天**（昨日 7.0）；**榜首只有 19.0★/天，是本存档 69 期里最低的一次头部**（昨日 115.7，前日 16.8，08-27 的 38.0 此前是纪录），且十席**无一超过 100★**——昨日"断供只持续一天"的判断没有兑现，头部在一天内又塌回去六倍。结构上出现存档里少见的一幕：**6 席在把智能体推向代码之外的真实系统**（量化交易终端、游戏线上事故取证、双足机器人工具链、矮人要塞长周期治理、主线 Linux 手机移植、Notion 式文档产出），纯"编码工程流程"只剩 anneal、dely、skill-buddy 三席且全部低于 5★/天；连续两天占据多席的"智能体感官/UI 测量"类今日**零入榜**。
+> 注：去重覆盖 repo 内 archive 全 68 期 + 记忆区早期存档与 fresh-skills 存档（合并小写去重 **2565 个仓库名**），48 条 45 天内候选中 22 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉 63 条回填老仓。排除项（均按"宁可保守"，非坐实刷星）：①**Tyche-MKR/scientific-agent-skills（50★ 47.8/day 本可居首）**——账号 08-21 才注册，十天内批量建了 11 个仓，其中 `xoreos`、`CS-SmartQQBot`、`smart-react-native-router-flux` 等多个已知项目的改名重传件**星数齐刷刷卡在 18-25★**，属同源集群形态，加之标题自称 "The #1 Agent Skills library"，整体剔除；②**Genevieveyes/ai-social-content-automation-de（72★ 3.2/day）、Montgomery66/massive-passive-ai-blueprint（74★ 2.9/day）、MaximilianYes/Youtube-seo-cheatsheet（71★ 2.8/day）**——三者同一模板：账号注册后 6-40 分钟内即建仓、仓库体积仅 6-9KB 的纯 markdown、**70 上下星数对 0 fork / 0 watcher**，判为同一批 SEO 引流集群；③**jklthinking/retinue（82★ 4.2/day 本可居第 7）**——账号在 07-21~07-24 三天内批量建了 worldcup-predictor、nichecraft、summoner 等约 30 个仓且**全部 0★**，仅此一仓 85★ 且只有 2 fork / 0 watcher；④**wei63w/pm-manager（96★ 2.3/day）、roy-tong/AgentMeasure（35★ 2.1/day）、makralabs/makra（21★ 1.7/day）**——均为 **0 fork / 0 watcher** 承星，命中既往判掉 Hoylon/peerbridge-mcp、alijancb/subio-mcp 的同一反常比例；⑤**repotracer/repotracer（21★ 2.3/day）**——组织 08-23 12:07 注册、12:10 即建此唯一仓，且描述文案（"让 Codex 订阅多撑 2.7 倍"）与仓库名毫不相干，疑为引流壳。入选项刷星复核：第 1 席 555cute 虽 0 关注者、另两仓仅 1★，但 36★ 对 **12 fork** 的比例是刷星账号极少具备的，保留并标注轻红旗；第 3 席 nickname21kmr 账号 0 关注者，但有 10 watcher / 4 fork，且名下另有 fgo-liveops 数据分析等同领域仓，形态像真实游戏运营从业者；第 5 席 Dicklesworthstone 为 3247 粉的知名开发者（206 仓），20★ 属真实冷启动；第 7 席 Aisland-SJL 账号虽新（05-31），但 dsh-worktable 415★、dsh-reminder 17★ 构成连贯的 DSH 生态作品线，非单仓爆星；第 2 席 heyman333（2016 号 / 307 粉 / 262 仓）、第 4 席 joeynyc（169 粉 / 52 仓）、第 8 席 angelwzr（2012 号）、第 9 席 konnga（2016 号）、第 10 席 hieuphung97（2019 号 / 16 粉）均轨迹正常；第 6 席 mosonlab 名下仅 3 仓属轻红旗，但 11 fork、2 个真实 open issue、22MB 代码量支持保留。🆕 判定：created_at 在 2026-08-18 之后，今日 8 席；dsh-usage（16.1 天）与 skill-buddy（26.1 天）超窗不标。十席 security_grade 仅第 5、7 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。
+
+---
+
 ## 2026-08-31
 1. useagenthq/useagent — 🆕 派活给自带云电脑的智能体，用你的订阅额度直接交成品（129★ 115.7/day）
 2. semihtalii/brink — 🆕 把三家编码助手的额度余量钉在菜单栏，用超前预警（44★ 27.3/day）
