@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-02
+1. AlephAITech/DoubaoWorkGuide — 🆕 把豆包用成工作系统，教程、技能与多智能体流程全配齐（58★ 58.0/day）
+2. ara-mkr/Wonder-Pill — 🆕 把头脑风暴翻成反向假设思维导图，逼出被忽略的解法（42★ 42.0/day）
+3. boyang-hu/website-rebuild-skill — 复刻整站前端，从压缩代码逐行还原并自动比对验收（654★ 31.1/day）
+4. joeseesun/qiaomu-book-reader — 🆕 在 Obsidian 里读 EPUB 与 PDF，中文排版优先（27★ 27.0/day）
+5. leenkcool/Blue-Whale-Harness — 汇总 1819 个 DeepSeek Harness 真插件，技能与 MCP 一处可查（189★ 9.9/day）
+6. psinetron/echoes-vault-codex — 给 Codex 装跨会话长期记忆，知识库按 Obsidian 方式组织（143★ 8.4/day）
+7. tigerless-labs/influencer-discovery — 自动挖达人并补全联系方式，把投放线索做成流水线（140★ 5.0/day）
+8. hashfunction/MarkuprPlus — 录屏口述一个 Bug，直接产出智能体读得懂的结构化报告（62★ 4.1/day）
+9. levi-qiao/herdr-agent-quota — 按凭据隔离多家智能体的额度与缓存，用量一眼可控（45★ 2.6/day）
+10. logisky/logisheets-mcp — 🆕 给智能体一张真能推理的表格，Excel 公式确定性求值（28★ 2.2/day）
+🎯 今日趋势：72h 候选池 **122 条**，45 天内建仓 53 条，剔重 34 条、剔刷星嫌疑 3 条后清洁候选 **16 条**，中位数 **3.4★/天**（昨日 3.3，基本持平）；榜首 DoubaoWorkGuide **58.0★/天**，比昨日创纪录低点 19.0 回升三倍，但**连续第二天十席无一破百**，头部依旧在低位横盘。结构上出现存档中少见的两点：**中文母语项目罕见地占了前四中的三席**（豆包工作系统指南、整站复刻技能、Obsidian 中文电子书阅读器），前两席都是"把某个大模型/某项工作方法做成体系化手册"而非工具；**另有 4 席在治理智能体自己的资产**（echoes-vault 的跨会话记忆、herdr 的额度与缓存隔离、Blue-Whale 的 1819 个插件目录、logisheets 的确定性表格），昨日主导的"智能体推向真实系统"一类今日只剩 influencer-discovery 一条延续。
+> 注：去重覆盖 repo 内 archive 全 69 期 + 记忆区早期存档与 fresh-skills 存档（机械提取合并小写去重 **3304 个仓库名**，未靠人工目测），53 条 45 天内候选中 34 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉 69 条回填老仓。排除项（均按"宁可保守"，非坐实刷星）：①**neuronto/agentic-resource-discovery（51★ 50.0/day 本可居第 2）**——账号同一天（08-31）批量建了 ard-docs、ard-connectors、mcp-registry、awesome-mcp-servers 等 6 个仓**全部 0★**，其中一个直接叫 `empty-shell-do-not-use`，仅此一仓 51★ 且 **0 fork / 1 watcher / 0 关注者**，属单仓爆星＋空壳集群形态；②**MariusOTB/OpenTrade-Agent（131★ 18.7/day 本可居第 5）**——账号 2026-07-14 单日批量建了约 39 个仓，内容是 Qwen-VL、SoundStream、RT-X、TinyGPTV 等**知名项目的改名重传件且全部 0★**，仅此一仓爆星，且 **199 fork 反超 131★**、0 watcher，命中 09-01 判掉 Tyche-MKR 的同一形态；③**jermaine123123/agent-context-editor（46★ 2.1/day）**——账号 2026-04 注册，名下 5 仓中 4 个与本仓**同日（08-18）建立且全部 0★**，本仓 0 watcher / 1 关注者，按与①相同标准一并剔除。入选项刷星复核：第 1 席 AlephAITech 为 07-02 新建组织但名下 WorkBuddyGuide 已 2740★/386 fork，属同一作品线的续作，412MB 内容量支持保留；第 2 席 ara-mkr 账号 05-10 注册属轻红旗，但 07-19 的 claude-artisan 已 69★/4 fork，非单仓爆星；第 3 席 boyang-hu（2014 号）654★ 对 **137 fork** 比例健康；第 4 席 joeseesun 为 1912 粉、200 仓的中文作者（08-29 曾以另一仓入榜）；第 5 席 leenkcool 189★/**70 fork** 且有 BWH-desktop、deepseek-harness 配套仓；第 6 席 psinetron 名下 echoes-vault-opencode、opencode-visualiser 各 157★ 构成连贯作品线（本仓 1 fork 属轻红旗）；第 7 席 tigerless-labs 组织有 autoharness 1391★、cost-xray 632★ 等多个成功仓；第 8 席 hashfunction（2012 号）62★/28 fork＋3 个真实 open issue；第 9 席 levi-qiao 有 longgraph-skill 67★ 打底；第 10 席 logisky 组织自 2022 年起维护 LogiSheets 166★，MCP 仓为其延伸。🆕 判定：created_at 在 2026-08-19 之后，今日 4 席；MarkuprPlus（15.1 天）、echoes-vault-codex（17.7 天）等超窗不标。十席 security_grade 有第 3、5、9 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，第 1、2、4 席建仓不足 48 小时即被收录，GitHub 实时星数已高于此（如 DoubaoWorkGuide 实时 77★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-01
 1. 555cute/r20-quantum-trader — 🆕 让大模型自己迭代交易策略，六类资产一个终端跑通（36★ 19.0/day）
 2. heyman333/agent-notion-template-docs — 🆕 锁死文档结构与视觉，让智能体写出 Notion 式文稿（28★ 18.5/day）
