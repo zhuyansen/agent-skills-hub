@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-03
+1. 2akouwu/reverify — 🆕 把逆向结论逐条拿二进制核验，AI 不再瞎编偏移与结构（576★ 194.8/day）
+2. LunarXuan/image-prompt-reverse — 🆕 反推参考图的完整提示词，构图光影材质逐项还原（117★ 92.4/day）
+3. aaronyi97/image-story-video-wizard — 🆕 从选题到成片一步步带做，图文故事视频全程确认推进（52★ 52.0/day）
+4. bsab/italia-mcp-servers — 🆕 收齐意大利公共数据与法规的 33 个 MCP 服务器（53★ 33.8/day）
+5. lotchuazzz-crypto/papergraph-mcp — 🆕 把 arXiv 论文拆成定理依赖图，智能体可逐条查证（20★ 20.0/day）
+6. ashutoshsinghpr7/wikiskill — 🆕 把智能体的踩坑经验沉成维基，技能自己迭代进化（65★ 15.7/day）
+7. sharith45/atlas-Assistant — 🆕 本地语音助手接管电脑与 WhatsApp，连来电都能应答（36★ 11.4/day）
+8. panaversity/ksor — 给组织建一份权威知识底账，人与智能体共用一套事实（140★ 8.4/day）
+9. clayzhang-TW/claude-academic-workflow-zh — 用七周课程带教育研究者跑通 Claude 学术写作流（70★ 4.7/day）
+10. Ephemeral-AI-Lab/layerfs — 给每个智能体一套用完即弃的文件系统分身，零拷贝隔离（94★ 3.9/day）
+🎯 今日趋势：72h 候选池 **113 条**，45 天内建仓 46 条，剔重 27 条、剔刷星/可信度嫌疑 6 条后清洁候选 **13 条**，中位数 **11.4★/天**（昨日 3.4，前日 3.3）——**头部横盘三天后一次性掀翻**：榜首 reverify **194.8★/天**，是昨日榜首 58.0 的 3.4 倍、09-01 纪录低点 19.0 的十倍，且时隔三天重新出现破百席位（前两席 194.8 与 92.4）。结构上最集中的一条线是**"给 AI 的输出配上可核验的地基"，占 4 席**：reverify 把逆向结论对着二进制逐条验、papergraph 把论文拆成可追证据的定理依赖图、wikiskill 把踩坑经验沉成会自我迭代的维基、ksor 给组织建唯一权威知识底账——都在治同一个病，即模型说得像真的但没有底账可对。第二条线是**多模态生产工具占 3 席**（图片提示词反推、图文故事视频全流程、本地语音助手接管电脑与来电），昨日主导的"治理智能体自身资产"今日只剩 layerfs 一条延续。
+> 注：去重覆盖 repo 内 archive 全 70 期 + 记忆区早期存档与 fresh-skills 存档（机械提取合并小写去重 **3663 个仓库名**，未靠人工目测），46 条 45 天内候选中 27 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉 67 条回填老仓。**方法论修正（重要）**：前两期（09-01 Tyche-MKR、09-02 MariusOTB）判掉的"名下批量存在知名项目改名重传件且全部 0★"形态，今日复核时补查了 `fork` 字段——本期两个头部候选 2akouwu 与 LunarXuan 名下那批 next.js / vscode / systemd / php-src 等 0★ 仓 **`fork=true`，是正常的 GitHub fork 行为，不是改名重传**，故未按该规则排除；今后此项判定必须先看 `fork` 标志，只有 `fork=false` 的重传件才算集群证据。排除项（均按"宁可保守"，非坐实刷星）：①**Tiger3807861189/GLM-5.3-Flash-J-Space-Capability-Realization-Report（1029★ 58.8/day 本可居第 2）**——**排除理由是可信度而非刷星**：该仓 open issues 里多位用户公开质疑其 Terminal Bench 2.1 成绩无法复现、指其"让 AI 编纂报告"，并有两条 issue 明确抗议提问被删（"为什么要删issue"／"为啥把质疑的issue删掉了？"），一个自我宣称的跑分报告在结论争议未澄清、且删除质疑的情况下不适合进本站信任层榜单；②**yuzushi-dev/Sando（53★ 5.2/day）与 yuzushi-dev/session-handoff（54★ 2.5/day）**——同一账号两仓星数雷同（53／54）且**双双 0 fork / 0 watcher**，名下其余 18 仓几乎全 0★，命中既往判掉 wei63w/pm-manager、roy-tong/AgentMeasure 的同一反常比例；③**coldteadotai/pr-lens（55★ 4.1/day）**——组织 0 关注者、名下仅 2 仓（另一仓是自家 demo 且 0★），本仓 **0 fork / 0 watcher** 承 55★，按与②相同标准剔除；④**wdhwg001/csift（28★ 1.6/day）**与**OcHub-team/OcHub（21★ 0.5/day）**——同为 0 fork / 0 watcher 承星，一并剔除（后者 velocity 本也进不了十席）。入选项刷星复核：第 1 席 2akouwu 为 2015 老号，576★ 对 **118 fork** 是刷星账号极少具备的比例，仅 8 次提交／93KB 属轻红旗但内容与描述自洽；第 2 席 LunarXuan 账号 06-26 才注册且这是其唯一原创仓（轻红旗），但 125★ 对 **11 fork** 比例健康，其余仓均为真 fork 而非空壳；第 3 席 aaronyi97 有 kids-blessing-video-wizard、overseas-ops-network 等连贯作品线，星数逐仓递进而非单仓爆发；第 4 席 bsab（2014 号 / 24 粉）仓内带 CI、link-check、Pages 三条真实工作流；第 5 席 lotchuazzz-crypto 名下仅 2 仓属轻红旗，但有 CI、v0.4.0 发布记录与 383KB 代码，20★ 属真实冷启动；第 6 席 ashutoshsinghpr7（2019 号 / 66 仓）为 arXiv:2608.27454 的实现且有 3 个真实 open issue；第 7 席 sharith45 名下另有 atlas-code 配套仓、11 fork / 3 watcher、11MB 打包体积；第 8 席 panaversity 为知名教育组织，141★ 对 **27 fork / 25 watcher** 且 11 个 open issue；第 9 席 clayzhang-TW 名下仅此 1 仓属轻红旗，但 25 万字＋43 图＋12 份附录的体量与 8 fork 支持保留；第 10 席 Ephemeral-AI-Lab 有 CI、发布说明与公开的 Discord/X 运营账号。🆕 判定：created_at 在 2026-08-20 之后，今日 7 席；ksor（16.7 天）、claude-academic-workflow-zh（14.9 天）、layerfs（24.0 天）超窗不标。十席 security_grade 仅第 2、4 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，第 1、2、3 席建仓不足 3 天即被收录，GitHub 实时星数已高于此（如 reverify 实时 583★、image-prompt-reverse 125★、image-story-video-wizard 70★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-02
 1. AlephAITech/DoubaoWorkGuide — 🆕 把豆包用成工作系统，教程、技能与多智能体流程全配齐（58★ 58.0/day）
 2. ara-mkr/Wonder-Pill — 🆕 把头脑风暴翻成反向假设思维导图，逼出被忽略的解法（42★ 42.0/day）
