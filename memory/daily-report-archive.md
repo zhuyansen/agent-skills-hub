@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-04
+1. op7418/guizang-yingzao-skill — 🆕 把随手拍的建筑街巷重绘成中式编辑海报，配中文展示字（133★ 88.5/day）
+2. hi-nikola/hand-drawn-explainer-video-nikola — 🆕 把文稿或字幕做成边讲边画的手绘视频，直接交付成片（58★ 34.2/day）
+3. frontier-harness-eval/eval — 🆕 同题实测九款编码助手，通过率与每题成本一起摆出来（112★ 31.9/day）
+4. Junhan2/oh-my-fable — 🆕 按会话场景自动切换提示规则，把 Fable 5.1 用出上限（35★ 21.0/day）
+5. juliodelimas/jmeter-mcp-server — 🆕 用对话搭 JMeter 压测计划，跑完直接读回报告（62★ 7.6/day）
+6. xcjy8bao/pi-plugin-signal-grep — 🆕 让智能体搜代码先给结论，大范围提问也不刷屏（54★ 7.2/day）
+7. cocoyes/zhizhi-agent-runtime — 🆕 用 Go 跑无状态智能体运行时，失败可回退可重规划（21★ 5.9/day）
+8. liujianyu20021122/RTL-ASS — 🆕 用开源 EDA 工具链写 RTL 并自动验证，不绑定厂商（22★ 5.8/day）
+9. trussary/vietnamese-language-skill — 让 Claude 写出越南语职场母语口吻，而非翻译腔（70★ 4.7/day）
+10. bybit-exchange/svg-diagram — 手工级 SVG 直出架构图流程图时序图，统一一套风格（100★ 4.7/day）
+🎯 今日趋势：72h 候选池 **114 条**，45 天内建仓 50 条，剔重 27 条、剔刷星嫌疑 4 条后清洁候选 **19 条**，中位数 **4.7★/天**（昨日 11.4，前日 3.4）——**昨日那波头部爆发只持续一天**：榜首 op7418/营造 88.5★/天，仅为昨日 194.8 的 45%，但仍是本周第二高，破百席位重新归零。结构上出现存档里少见的**"专业工种垂直渗透"，占 3 席**：RTL-ASS 用开源 EDA 工具链做芯片前端编码与验证、jmeter-mcp-server 把性能压测搬进对话、svg-diagram 由 bybit 交易所出品专攻架构图排版——技能生态正从通用编码往有行业门槛的工种里钻，这三席背后都是各自领域的既有工具链而非通用 LLM 封装。第二条线是**中文作者包揽前两席且都是"素材直出成品内容"的视觉生产工具**（营造把街拍重绘成编辑海报、Nikola 把文稿做成边讲边画的手绘视频，两仓体积各 64MB 与 74MB，均为重资产模板库）。另有一个新品类首次入榜：第 3 席 FrontierHarness 用 30 道题 × 12 种配置 × 360 次运行同题实测九款编码 harness，把通过率与每题成本并列，是本存档首次出现的"给编码助手做选型评测"类目。
+> 注：去重覆盖 repo 内 archive 全 71 期 + 记忆区早期存档与 fresh-skills 存档（机械提取合并小写去重 **3718 个仓库名**，未靠人工目测），50 条 45 天内候选中 27 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉 64 条回填老仓。已按昨日订正的方法论执行：对"名下批量 0★ 同名知名项目"一律先查 `fork` 标志，今日无候选命中 `fork=false` 的改名重传形态。排除项（均按"宁可保守"，非坐实刷星）：①**MrZoyo/deslop-GPT（71★ 6.5/day 本可居第 5）**——**0 fork / 0 watcher** 承 74★，账号 2018 年建、名下其余 33 仓几乎全 0★，命中既往判掉 yuzushi-dev/Sando、coldteadotai/pr-lens 的同一反常比例；②**mdwsk88/ms-365-21v-mcp-server（98★ 4.1/day）**——同为 **0 fork / 0 watcher** 承 100★，账号名下仅 3 仓且另两仓 0★，虽有 9 个 open issue 仍按同一标准剔除；③**qkycir-123/dsh-run2skill（62★ 4.0/day）**——账号 **2026-08-18 注册、次日即建此仓**，0 关注者 / 0 watcher，64★ 仅对 2 fork，属新号单仓爆星形态；④**WildChildForLife/lantern（25★ 0.8/day）**——0 fork / 0 watcher 承星，velocity 本也进不了十席，一并剔除。入选项刷星复核：第 1 席 op7418 为 **4743 粉的知名中文创作者**，名下 guizang-social-card-skill 6822★、material-illustration 1100★、pilot-harness 261★ 构成长期作品线，无需存疑；第 2 席 hi-nikola 账号 2019 年建但名下其余 16 仓均为个人站点类且 0★，属轻红旗，78★ 对 **9 fork** 比例尚可、README 署真实 X 账号并承诺持续维护，保留；第 3 席 frontier-harness-eval 组织 09-02 才建（轻红旗），但有 frontierharness.org 在线榜单、外部博客与 **4 个真实第三方功能请求 issue**（要求加 Cursor、MiniMax、Copilot 评测档），**与昨日判掉的 Tiger3807861189 跑分报告有本质区别——后者的 issue 是成绩无法复现的质疑且被删帖，本仓无任何结果争议**，故保留，但仍提示其为自办评测、非独立第三方；第 4 席 Junhan2（2022 号）名下 gemini-nanobanana-mcp 11★，轨迹正常；第 5 席 juliodelimas 为 **617 粉的巴西测试领域知名作者**（53 仓）；第 6 席 xcjy8bao 账号 04-09 注册且仅此一仓有星（轻红旗），但仓内挂 CI 与 CodeQL 两条真实工作流；第 7 席 cocoyes（2016 号 / 108 仓）有 zhizhi-website 配套仓、69MB 代码量；第 8 席 liujianyu20021122 为 0 关注者新号（轻红旗），但 22★ 对 3 fork / 2 watcher 比例正常，属真实冷启动；第 9 席 trussary 组织 71★ 对 **14 fork** 比例健康；第 10 席 bybit-exchange 为真实交易所官方组织。🆕 判定：created_at 在 2026-08-21 之后，今日 8 席；vietnamese-language-skill（14.9 天）与 svg-diagram（21.4 天）超窗不标。十席 security_grade 有第 4、5、10 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，第 1、2、4 席建仓不足两天即被收录，GitHub 实时星数已高于此（如营造实时 149★、手绘视频 78★、oh-my-fable 45★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-03
 1. 2akouwu/reverify — 🆕 把逆向结论逐条拿二进制核验，AI 不再瞎编偏移与结构（576★ 194.8/day）
 2. LunarXuan/image-prompt-reverse — 🆕 反推参考图的完整提示词，构图光影材质逐项还原（117★ 92.4/day）
