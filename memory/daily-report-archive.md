@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-05
+1. mrpulor-gh/nuphus — 🆕 让智能体真在桌面上动手，手机当第二块屏同步盯（51★ 3.9/day）
+2. Tencent/wave-mcp — 读芯片仿真波形直接定位问题，腾讯开源且免授权（143★ 3.7/day）
+3. Osteoporosis/luna-chat-coder — 不装本地智能体，在普通网页聊天里跑完整开发闭环（61★ 3.6/day）
+4. deckflow/deckprobe — 不打开文件就探明 PDF 与 Office 内部构造，Rust 直出（107★ 3.5/day）
+5. tt-11-dd/tether-ai — 用 DeepSeek 改真实代码库，每次动手都过一道权限闸（64★ 3.3/day）
+6. edvardgrishin27/nativeprompt — 同一句提示词按各家官方规则重写，每处改动附出处（116★ 3.3/day）
+7. ruiwang20010702/foursday — 先验明发信人身份，再让 Codex 进真实项目交活（103★ 3.0/day）
+8. fujitoid/key-amnesia — 让智能体用得上你的密码与密钥，却始终看不到明文（69★ 1.6/day）
+9. kyungseo/learnstead — 从概念讲到实操验证，本地大模型与 RAG 的成体系教材（34★ 1.4/day）
+10. Viy1204/recruiting-copilot — 跑通招聘全流程，Boss 直聘与猎聘双通道寻源初筛（52★ 0.9/day）
+🎯 今日趋势：72h 候选池 **114 条**，45 天内建仓仅 50 条，剔重 41 条后清洁候选只剩 **9 条**——这是本存档记录到的**最枯的一天**，被迫把建仓窗从 45 天放宽到 60 天才凑满十席；中位数 **3.3★/天**（昨日 4.7、前日 11.4），榜首 nuphus 仅 **3.9★/天**，连昨日榜首 88.5 的二十分之一都不到，**十席全部落在 0.9–3.9 这一个数量级内，头部与末位差距不足 5 倍**，是存档里从未出现过的极度扁平形态。结构上唯一成线的是**"给智能体划安全边界"，占 4 席**：key-amnesia 让密钥可用但不可见、tether-ai 每次动手过权限闸、foursday 先验明发信人身份再干活、luna-chat-coder 干脆不给聊天窗口碰你电脑的权限——这批都不谈能力上限，只谈"它能碰到什么"。第二条线是**专业工种垂直渗透延续昨日势头**（腾讯 wave-mcp 做 RTL 波形调试、deckprobe 做文档二进制探针、recruiting-copilot 做招聘寻源），且首次出现**大厂官方仓入榜第 2 席**。语种上罕见地散开：俄语（nativeprompt）、韩语（learnstead、luna-chat-coder）、中文（nuphus、foursday、recruiting-copilot）各据一方，英语项目反而不占多数。
+> 注：去重覆盖 repo 内 archive 全 72 期（730 条推荐记录，逐期通读非抽样）+ 记忆区早期存档与 fresh-skills 存档，机械提取合并小写去重 **3789 个仓库名**，50 条 45 天内候选中 **41 条命中历史**（命中率 82%，为存档最高），今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)。**建仓窗放宽说明**：45 天窗内清洁候选仅 9 条且其中 2 条被刷星判定剔除，不足十席，故本期例外放宽至 60 天，补入 recruiting-copilot（56.8 天）一席，其余九席仍在 45 天内；此为凑数补位而非口径变更，明日恢复 45 天。排除项：①**六仓集群坐实刷星（本期唯一一次坐实而非存疑）**——angieruiz17/claude-fintech-skills（143★）、angieruiz17/codex-gpt-plugin（138★）、Alice53211/auth-codex-plugin（135★）、Weebapp003/tradingview-mcp（133★）、JesusRS1/stock-trade-finance-api（140★）、dabberman456/finance-mcp-app（91★）：**fork 数 936／1048／959／439／2591 全面反超星数 5–28 倍**，全部 0 watcher、账号 0–1 关注者，前四仓创建时间集中在 **2026-07-08 同一两小时窗口内**，是典型的批量 fork 机器人形态，六仓一并剔除；②**guardana/guardana（89★ 1.9/day）与 assaio/assaio（76★ 1.6/day）**——同为 **0 fork / 0 watcher** 承星，按既往判掉 coldteadotai/pr-lens、mdwsk88 的同一标准剔除，二者若保留本可占第 8、9 席；③**career-ops-hq/career-ops（70032★）**——按公式算得 460★/天居首，但仓龄 **152 天**、prev_stars 69993 说明本期实际只涨 39 星，属老仓回填导致的 velocity 失真，按建仓窗剔除。入选项刷星复核：第 1 席 mrpulor-gh 名下 nuphus-mcp 已 293★（本仓为其桌面端续作、非同仓改名，nuphus-mcp 仍独立存续），12 fork / 10.9MB；第 2 席为**腾讯官方组织**，16 fork / 8 watcher / 12MB，无需存疑；第 3 席 Osteoporosis 为 2015 老号，名下 fast_websocket_client 29★ 构成既有轨迹，11 fork 比例健康；第 4 席 deckflow 组织名下 deckhtml 23★、deckuse 9★、deckops 9★ 构成连贯的 deck 系产品线；第 5 席 tt-11-dd 账号 07-24 才注册且仅此一仓有星（**轻红旗**），但 73★ 对 9 fork 比例正常、有 tether-site 配套仓与 npm 包 tether-agent-core，判为真实冷启动；第 6 席 edvardgrishin27 名下 frameproof 24★、superstack-plugin 10★ 呈梯度分布，仓内挂 2433 条测试；第 7 席 ruiwang20010702 名下 cryptobot 16★，仓内有 check/security/release 三条真实 CI；第 8 席 fujitoid 为 2019 老号但**名下仅此 1 仓、1 关注者、0 watcher（轻红旗）**，因 3 fork 不为零、且有 PyPI 发布、Discord、wiki 与测试工作流，未达既往"0 fork / 0 watcher"的剔除线，保留但在此明示；第 9 席 kyungseo 为 2012 老号、63 粉，名下 skillstead 78★、spring-boot-jwt-vue3 40★ 长期轨迹清晰；第 10 席 Viy1204 名下 boss-daily-brief 104★、liepin-cli 12★、hr-skills 7★ 构成完整 HR 产品线，13 fork 比例健康。🆕 判定：created_at 在 2026-08-22 之后，**今日仅 1 席**（nuphus，13.2 天），为存档最低——本身即是候选池枯竭的直接读数；其余九席仓龄 17.1–56.8 天，全部超窗不标。十席 security_grade **全部为 unknown**（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数略高于此（如 wave-mcp 实时 151★、deckprobe 110★、tether-ai 73★、learnstead 35★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-04
 1. op7418/guizang-yingzao-skill — 🆕 把随手拍的建筑街巷重绘成中式编辑海报，配中文展示字（133★ 88.5/day）
 2. hi-nikola/hand-drawn-explainer-video-nikola — 🆕 把文稿或字幕做成边讲边画的手绘视频，直接交付成片（58★ 34.2/day）
