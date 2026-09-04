@@ -238,22 +238,25 @@ def main():
                 print("\n**摩擦最集中的页面(按每会话,>=10次才计)**\n")
                 print("| 页面 | 每会话 | 次数 | 会话 |")
                 print("|---|--:|--:|--:|")
-                # The ⚠️ needs at least two sessions. Its record with one:
-                # /author/asgeirtj/ (26) and /book/ch02 (54) were the same real
-                # shell bug in the same week; every single-session hit since —
-                # james-design, /analyzer?repo=, claude-obsidian, VideoCaptioner
-                # — checked out healthy under investigation. One visitor
-                # clicking 23 times is one visitor, not a page defect, and an
-                # alarm that fires daily on those trains the reader to skip the
-                # column. The rows stay visible because they are still data;
-                # only the alarm is withheld.
+                # The numbers alone cannot classify a friction row — proven
+                # repeatedly. Single-session-high has meant a real shell bug
+                # (asgeirtj 26, book ch02 54), a by-design sub-50★ 404 fallback
+                # (james-design 15, human-in-loop 41), AND a clicky visitor on a
+                # healthy page (claude-obsidian 23). Magnitude 23 sits between a
+                # 15 fallback and a 26 bug, so no per-session threshold
+                # separates them. The only reliable classifier is what the URL
+                # actually serves. So the ⚠️ is kept deliberately rare — a
+                # defect hitting >=3 distinct visitors, which no noise ever did —
+                # and the real value is the 30-second check spelled out below.
                 for per, n, sess, url in rows[:6]:
-                    flag = " ⚠️" if per >= 5 and sess >= 2 else ""
+                    flag = " ⚠️" if per >= 5 and sess >= 3 else ""
                     note = " ·单会话" if sess == 1 else ""
                     print(f"| {url[:46]} | **{per:.1f}**{flag}{note} | {n} | {sess} |")
-                print("\n*⚠️ = 每会话 >=5 次且横跨 >=2 个会话,才算页面缺陷。"
-                      "单会话高频是一个访客的行为,不是页面的问题 —— "
-                      "此前 5 次单会话告警查下来页面都是健康的。*\n")
+                print("\n*判别一行高摩擦,curl 一下该 URL 即可,别靠数字猜:*\n"
+                      "*· HTTP 404 → 低星页(<50★)无静态页,SPA 兜底空白,已知成因非 bug*\n"
+                      "*· 200 且含 \"Browse by Category\" → 壳子画了首页内容,是 bug,要修*\n"
+                      "*· 200 且干净 → 一个手快的访客,噪音*\n"
+                      "*⚠️ 只在 >=5次/会话且>=3会话时亮(缺陷波及多人)—— 此前所有单/双会话告警查下来非空即已知。*\n")
 
         traffic = next((m for m in ov if m.get("metricName") == "Traffic"), None)
         if traffic and traffic.get("information"):
