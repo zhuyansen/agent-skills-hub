@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-06
+1. Rion-Wu-tech/wechat-intelligence-hub — 🆕 把本地微信聊天翻成情报库，待回复与承诺一并盯住（444★ 274.8/day）
+2. Razshy/Wiggle — 🆕 复刻 Claude 跑代码的那台沙箱虚拟机，可自建自跑（35★ 17.9/day）
+3. vicoa-ai/vicoa — 🆕 调度一队编码智能体干活，手机桌面与服务器通用（109★ 12.7/day）
+4. axelfreeman/marketing-mindset — 🆕 让智能体先按营销人思路判断，再给具体打法（51★ 11.3/day）
+5. hopechen067/MapStage — 现场调地图与地球投影，卫星地形参数一键导出（289★ 11.2/day）
+6. doxaras/claude-rotate — 🆕 把多个 Claude 订阅串成一条代理，撞限流自动换号（21★ 8.6/day）
+7. Dpro-at/Tel-Agent — 把任意电话线接上任意大模型，自托管自带密钥（169★ 8.2/day）
+8. bighadj22/codflow — 给阿尔及利亚货到付款电商建全栈，零手续费自托管（82★ 5.0/day）
+9. ZSeven-W/craft-skills — 给每个技能划定触发边界与前向测试，评测驱动而非提示词堆（147★ 4.4/day）
+10. ArihantDeva/heimdall — 给编码智能体跨仓库的长期记忆，只用 CPU 排序检索（64★ 3.9/day）
+🎯 今日趋势：72h 候选池 **115 条**，剔重 23 条后清洁候选 92 条，45 天建仓窗内 **24 条**——比昨日的 9 条翻了近三倍，**枯竭只持续了一天**。中位数 **9.9★/天**（昨日 3.3、前日 4.7），榜首微信情报库 **274.8★/天**，是昨日榜首 3.9 的 **70 倍**，也是 08-29（337.0）以来八天新高；十席从 274.8 一路排到 3.9，**头部与末位差 70 倍**，与昨日"全挤在一个数量级内"的极度扁平形态正好相反。结构上最集中的一条线是**"把闭源产品的能力搬回自己机器上"，占 4 席**：Wiggle 直接复刻了 Anthropic 内部代号的那台沙箱虚拟机（连 40 份 skills playbook 与 LibreOffice 版本一起打包，可在 Docker/e2b/Modal 上重跑）、claude-rotate 把多个 Claude Max/Pro 订阅串成一条自建代理并在撞限流时自动换号、Tel-Agent 让任意电话线接任意大模型且自带密钥、微信情报库则强调只读本地库、不取密钥不 Hook 微信——这批都不做新能力，只把别人托管的东西挪进自己可控的边界里。第二条线是**垂直行业渗透延续三日势头**（MapStage 做地图/地形可视化调参、Tel-Agent 做电话客服、codflow 专做阿尔及利亚货到付款电商），第三条是**方法论型技能占 2 席**（marketing-mindset 让智能体先按 15 年 B2B 营销人的判断路径出观点再给战术、craft-skills 给每个技能明确触发边界与前向测试）。语种上中文项目重回榜首，但十席中英语项目占多数。
+> 注：去重覆盖 repo 内 archive 全 73 期（730 条推荐记录）+ 记忆区早期存档与 fresh-skills 存档，机械提取合并小写去重 **3721 个仓库名**，115 条候选中 23 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前再套 45 天建仓窗剔掉回填老仓；本期候选充足，**已恢复 45 天窗，昨日 60 天的例外放宽未延续**。排除项：①**livetennisapi/polymarket-tennis（323★ 16.9/day 本可居第 2）**——组织 07-18 才建，名下 53 仓里十余个是同一个 livetennisapi 产品套在 logseq / maubot / nonebot / trmnl / uebersicht / slack-machine / tap 等各种集成外壳上的仓、**全部 0★ 且集中在 08-16~08-20 四天内批量建立**，属程序化 SEO 铺仓集群；本仓 **284 fork 对 323★（88%）**也逼近昨日坐实的 fork 反超形态，整体剔除；②**chigwell/Penelopa.ai（62★ 10.9/day 本可居第 6）**——**0 fork / 0 watcher** 承 62★，命中既往判掉 MrZoyo/deslop-GPT、coldteadotai/pr-lens 的同一机械标准。**需明示**：作者 chigwell 是 2018 年建号、598 仓、131 粉的真实活跃开发者，此条属按既定阈值保守剔除而非刷星指控，若后续 fork/watcher 转正可回补；③**xcjy8bao/baoer_signal_grep（61★ 6.3/day）**——与 09-04 第 6 席 `xcjy8bao/pi-plugin-signal-grep` 是同一作者同一产品的另一个仓名，按"同一项目不重复推荐"剔除，非质量问题；④45–60 天窗内的 **pueschel88/Tradingview-MCP（133★）与 Matchameleon/gpt-codex-plugin（142★）**——与昨日**坐实**的六仓 fork 机器人集群（Weebapp003/tradingview-mcp、angieruiz17/codex-gpt-plugin 等）同名同题材、星数同样卡在 130–145 区间，判为同一批量产集群的另外两个马甲，即使放宽建仓窗也不予考虑。入选项刷星复核：第 1 席 489★ 对 **227 fork（46%）**、**0 watcher**，fork 占比是作者前作（grok-video-workflow 126★/19 fork、ai-daily-briefing 163★/24 fork，均约 15%）的三倍，属**轻红旗**，故**抽查了 15 个 fork 账号**——建号年份散布 2013–2025、公开仓数 4–942、多个有真实粉丝，不是批量马甲，加之 1.5MB 代码量与作者两个成功前作，保留；第 2 席 Razshy（2021 号 / 39 仓）57★ 对 **44 fork（77%）**同样偏高，但沙箱镜像本就是"fork 下来自己跑"的形态，3 watcher、30MB 实镜像、附 v1.0-live-rootfs 发布，保留；第 3 席 vicoa-ai 组织 2025-12 建，名下 vicoa-open 12★、opencode-vicoa 27★ 构成连贯产品线，47MB 代码 + Discord/X 运营；第 4 席 axelfreeman 名下 yandex-wordstat-guide 33★、voice-to-article 21★ 呈梯度分布，仓内同时备了 Claude/Cursor/Codex/ChatGPT/Grok 五套入口；第 5 席 hopechen067 为 2019 老号但**名下仅此 1 仓（轻红旗）**，333★ 对 47 fork / 4 watcher / 2 issue 比例健康、32MB 资源并有 GitHub Pages 在线 demo，保留；第 6 席 doxaras 为 **2010 年老号 / 57 仓 / 25 粉**，1 fork 不为零且挂真实 tests 工作流，未达"0 fork / 0 watcher"剔除线；第 7 席 Dpro-at 169★ 对 **50 fork / 24 个 open issue**，是本期社区活跃度最高的一仓；第 8 席 bighadj22（2023 号 / 25 粉 / 13 仓）85★ 对 16 fork，11MB 真实全栈代码；第 9 席 ZSeven-W 组织名下 **openpencil 5839★**、dsh-ios 275★、dsh-openpencil 162★，无需存疑；第 10 席 ArihantDeva 名下仅 8 仓属轻红旗，但有 npm 包 `@arihantdeva/heimdall`、CI 工作流与 7.8MB 代码，判为真实冷启动。🆕 判定：created_at 在 2026-08-23 之后，今日 **5 席**（第 1 席 1.6 天、第 2 席 2.0 天、第 6 席 2.6 天、第 4 席 4.5 天、第 3 席 8.6 天），较昨日仅 1 席明显回升；其余五席仓龄 16.5–33.7 天，超窗不标。十席 security_grade 中第 1、6、7 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数已高于此（如微信情报库实时 489★、MapStage 333★、vicoa 118★、Wiggle 57★、codflow 85★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-05
 1. mrpulor-gh/nuphus — 🆕 让智能体真在桌面上动手，手机当第二块屏同步盯（51★ 3.9/day）
 2. Tencent/wave-mcp — 读芯片仿真波形直接定位问题，腾讯开源且免授权（143★ 3.7/day）
