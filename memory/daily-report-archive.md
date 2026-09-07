@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-07
+1. alchaincyf/huashu-mac-use — 🆕 让智能体操控 Mac 上没有 API 的原生应用，每步留取证（82★ 82.0/day）
+2. hsandhu/mobilecode — 🆕 在 opencode 基础上直接构建并预览 iOS 与安卓项目（115★ 50.8/day）
+3. jangtrinh/design-os-3d-blender — 🆕 给 Blender 5.2 配一套智能体操作系统，执行成败自判（29★ 20.8/day）
+4. fidetolabs/qanat — 🆕 把量化因子写成 DAG 工作流，让智能体建模回测一条龙（21★ 11.7/day）
+5. pinloop-ai/pinloop-cli — 让编码智能体替你翻一万个岗位，逐条判过再排（137★ 9.4/day）
+6. plannotator/artifact-server — 🆕 自建一套 Claude Code 制品服务，开源可私有部署（119★ 8.8/day）
+7. techjarves/Mobile-Harness — 把编码智能体装进安卓手机，带 Linux 终端随身开发（90★ 5.0/day）
+8. templetongroup/radiant — 在 Mac 上跑本地编码工作台，云端与本地模型同屏调度（45★ 2.3/day）
+9. phuryn/bug-hunt-bench — 🆕 拿两个生产仓的 105 个真实 bug，横评各家前沿模型（27★ 2.1/day）
+10. REX-codebase/fable-mode — 🆕 给编码智能体加时间锁与证据回执，越权即拦（22★ 2.1/day）
+🎯 今日趋势：72h 候选池 **104 条**，剔重 17 条后清洁候选 87 条，45 天建仓窗内 **22 条**——比昨日的 24 条基本持平，连续两日维持在健康水位。窗内中位数 **3.7★/天**（昨日 9.9），榜首 macOS 原生应用操控 **82.0★/天**，只有昨日榜首 274.8 的三成，**头尾差 205 倍**（82.0 → 0.4），是本周分布最陡的一天：前四席全部在 11★/天以上，第五席起直接掉到 9.4，此后一路缓降至 2.1。结构上最集中的一条线是**"把编码智能体搬到某一块具体屏幕上"，独占 4 席**：huashu-mac-use 让智能体去点 Mac 上那些压根没有 API 的原生 app（读后台、写操作不打扰用户、每一步留取证）、mobilecode 在 opencode 上加出 iOS/安卓的真实构建与预览、Mobile-Harness 干脆把整个编码 IDE 连 Linux 终端塞进安卓手机、radiant 则在 Mac 上做本地工作台把云端与本地模型摆到同一屏调度——四者都不新造模型能力，只解决"这套东西到底跑在我哪台设备上"。第二条线是**垂直领域纵深，占 3 席且彼此毫不相干**（Blender 5.2 三维建模、量化因子 DAG 回测、一万个岗位的求职筛选），说明智能体外壳正在往越来越窄的行业里钻。第三条线是**治理与评测占 2 席**（fable-mode 给智能体上机械时间锁与证据门回执、bug-hunt-bench 用两个生产仓的 105 个真实 bug 横评前沿模型），这类"管住它/量住它"的项目在榜上已连续第三天出现。十席星数合计 687★。
+> 注：去重覆盖 repo 内 archive 全 74 期（750 条推荐记录、731 个唯一仓）+ 记忆区早期存档与 fresh-skills 存档，机械提取合并小写去重 **3968 个仓库名**，104 条候选中 17 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC LIMIT 300`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前套 45 天建仓窗剔掉回填老仓。排除项：①**RankSpotAI/awesome-seo-agent-skills（86★ 86.0/day 本可居第 1）与 RankSpotAI/awesome-seo-mcp（53★ 53.0/day 本可居第 3）**——该组织 09-06 当天 **12:32、12:47、12:53 三个时间点连开三个 awesome 清单仓**（awesome-seo-mcp / awesome-seo-agent-skills / awesome-geo-tools），体积仅 13–24KB，一天内分别收 86/88/85★ **且全部 0 fork、1 watcher**，而组织此前两个真实仓（rankspot-skill、docs）至今 **0★**——同日批量建仓、星数雷同、清单型 SEO 堆砌三项特征全中，判为刷星集群，整组剔除；②**aimeoa/hanshuang-codex（20★ 19.1/day）**——自述为针对 GPT 5.6 的"破甲实验项目"，属模型越狱方向，不属工具类推荐范围；③**DenisSergeevitch/game-sensitivity-coach（23★ 23.0/day 本可居第 3）**——**0 fork / 0 watcher** 承 23★，命中既往判掉 chigwell/Penelopa.ai、MrZoyo/deslop-GPT 的同一机械标准。**需明示**：作者 DenisSergeevitch 是 2012 年建号、45 仓、1020 粉的真实开发者，仓龄仅 14 小时、fork/watcher 尚未来得及积累，此条属按既定阈值保守剔除而非刷星指控，若明日 fork/watcher 转正可回补。**第 2 席需明示**：mobilecode 自述为 opencode 的 fork，但非 GitHub 派生仓（isFork=false），314MB 代码里加的是 iOS/安卓真实构建与预览链路，属实质衍生而非镜像，故保留并在描述中写明其基座。入选项刷星复核：第 1 席 alchaincyf 为 **9885 粉丝的知名中文作者**、84 仓，146★ 对 18 fork，20MB 代码，无需存疑；第 2 席 hsandhu 为 **2009 年老号**，名下 HSInstagram 75★ 构成历史，124★ 对 13 fork；第 3 席 jangtrinh 名下有 **design-os 产品线共 8 个同前缀仓**（design-os 11★、design-os-figma-plugin 4★、design-os-code2flow 5★ 呈梯度），103MB 资源，判为真实产品线；第 4 席 fidetolabs **建号 09-03、名下仅此 1 仓（轻红旗）**，但 55★ 对 **8 fork / 3 watcher** 比例健康、2.4MB 代码，未达剔除线，保留并标注；第 5 席 pinloop-ai 组织 156★ 对 22 fork，昨日仍在推送；第 6 席 plannotator 组织名下 **effective-html 3017★、herdr-annotate 385★**，25 仓产品矩阵，无需存疑；第 7 席 techjarves **1320 粉**，131★ 对 **45 fork / 5 open issue**，是本期社区活跃度最高的一仓；第 8 席 templetongroup 仅 1 粉属轻红旗，但名下 14 仓呈 53/4/1/0 的自然梯度、22MB 代码且本周仍在推送，判为真实冷启动；第 9 席 phuryn **1116 粉 / 33 仓**；第 10 席 REX-codebase 名下 UI-UX-skill 3★、Ultradian 26MB 等 5 仓构成连贯轨迹，1 fork / 1 watcher 未达"0 fork / 0 watcher"剔除线。🆕 判定：created_at 在 2026-08-24 之后，今日 **7 席**（第 1 席 0.8 天、第 3 席 1.4 天、第 4 席 1.8 天、第 2 席 2.3 天、第 10 席 10.7 天、第 9 席 12.9 天、第 6 席 13.5 天），较昨日 5 席继续回升；第 5 席 14.6 天、第 7 席 17.9 天、第 8 席 19.3 天超窗不标。十席 security_grade 中第 2、5 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数已高于此（如 huashu-mac-use 实时 146★、mobilecode 124★、design-os-3d-blender 41★、qanat 55★、pinloop-cli 156★、Mobile-Harness 131★、radiant 53★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-06
 1. Rion-Wu-tech/wechat-intelligence-hub — 🆕 把本地微信聊天翻成情报库，待回复与承诺一并盯住（444★ 274.8/day）
 2. Razshy/Wiggle — 🆕 复刻 Claude 跑代码的那台沙箱虚拟机，可自建自跑（35★ 17.9/day）
