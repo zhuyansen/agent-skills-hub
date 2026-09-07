@@ -30,6 +30,13 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo";
 const SITE = "https://agentskillshub.top";
 
+// Sitemap generation is crawl-budget-critical: a partial or empty sitemap
+// withdraws thousands of skill URLs from Google, so a transient Supabase blip
+// must NOT be allowed to ship one. Retry each page, and refuse to emit if the
+// fetch comes back implausibly small (the catalog is 180K+ rows).
+const FETCH_MAX_RETRIES = 4;
+const MIN_EXPECTED_SKILLS = 10000;
+
 // Dynamically fetched from DB — no hardcoded list needed
 // Old hardcoded list removed to prevent 404s from empty categories
 
@@ -58,22 +65,40 @@ async function fetchAllSkills() {
   // (57014), failing deploys. Ordering by the indexed `id` PK keeps each page O(limit).
   while (true) {
     const url = `${SUPABASE_URL}/rest/v1/skills?select=id,repo_full_name,stars,last_commit_at,category,description,readme_size&order=id.asc&id=gt.${lastId}&limit=${limit}`;
-    const res = await fetch(url, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
-    });
-    const data = await res.json();
-    if (!Array.isArray(data)) {
-      throw new Error(`Sitemap skills fetch failed: ${JSON.stringify(data).slice(0, 200)}`);
-    }
+    // Retry a single page before giving up: Supabase timeout (57014) and 402
+    // blips are transient, and one flaky page must not abort the whole sitemap.
+    // If every retry fails we throw — main() turns that into a non-zero exit so
+    // the build FAILS instead of silently shipping a decimated sitemap.
+    const data = await fetchPage(url, lastId);
     if (!data.length) break;
     skills.push(...data);
     lastId = data[data.length - 1].id;
     if (data.length < limit) break;
   }
   return skills;
+}
+
+async function fetchPage(url, lastId) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+      });
+      const data = await res.json();
+      if (Array.isArray(data)) return data;
+      throw new Error(`non-array response: ${JSON.stringify(data).slice(0, 200)}`);
+    } catch (err) {
+      if (attempt >= FETCH_MAX_RETRIES) {
+        throw new Error(
+          `Sitemap skills fetch failed after ${FETCH_MAX_RETRIES} tries (id>${lastId}): ${err.message}`,
+        );
+      }
+      await new Promise((r) => setTimeout(r, 1000 * attempt));
+    }
+  }
 }
 
 function buildUrlEntries(skills) {
@@ -125,6 +150,13 @@ async function main() {
   console.log("Fetching skills from Supabase...");
   const allSkills = await fetchAllSkills();
   console.log(`Found ${allSkills.length} total skills`);
+  // Last line of defence: a fetch that "succeeded" but returned far too few rows
+  // must not overwrite good sitemaps with a gutted one. Refuse rather than ship.
+  if (allSkills.length < MIN_EXPECTED_SKILLS) {
+    throw new Error(
+      `Sitemap aborted: only ${allSkills.length} skills fetched (< ${MIN_EXPECTED_SKILLS}) — refusing to ship a partial sitemap`,
+    );
+  }
 
   // Filter to only indexed skills
   const indexedSkills = allSkills.filter(shouldIndex);
@@ -429,4 +461,11 @@ async function main() {
   console.log(`  withheld on purpose: mid ${midSkills.length} (50-499★) + audit + authors — pages stay live, just not prioritised for crawl`);
 }
 
-main().catch(console.error);
+main().catch((err) => {
+  // Fail LOUD. The build chains with `&&`, so a non-zero exit stops it before
+  // submit-indexnow and keeps the previous good deploy — the opposite of the old
+  // `.catch(console.error)`, which printed the error, exited 0, and let a broken
+  // or stale sitemap ship as if the build had succeeded.
+  console.error(err);
+  process.exit(1);
+});

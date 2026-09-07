@@ -2149,7 +2149,6 @@
     "Leonxlnx/taste-skill",
     "blader/humanizer",
     "op7418/Humanizer-zh",
-    "voidborne-d/humanize-chinese",
     "jalaalrd/anti-ai-slop-writing",
     "matsuikentaro1/humanizer_academic",
     "gabelul/slopbuster",
@@ -2550,8 +2549,7 @@
     "PaddleHQ/paddle-mcp-server",
     "JackLuguibin/OpenPawlet",
     "vercel-labs/agent-browser",
-    "browserbase/skills",
-    "fluxa-agent-wallet/fluxa-agent-wallet"
+    "browserbase/skills"
    ],
    "tag_matches": [
     "agent-deployment"
@@ -3132,7 +3130,6 @@
     "WeThinkIn/AIGC-Interview-Book",
     "stickerdaniel/linkedin-mcp-server",
     "Natively-AI-assistant/natively-cluely-ai-assistant",
-    "adhikasp/mcp-linkedin",
     "kaymen99/Upwork-AI-jobs-applier",
     "varunr89/resume-tailoring-skill",
     "Paramchoudhary/ResumeSkills"
@@ -3692,7 +3689,7 @@
     "axtonliu/axton-obsidian-visual-skills",
     "eugeniughelbur/obsidian-second-brain",
     "Ar9av/obsidian-wiki",
-    "samuraigpt/llm-wiki-agent",
+    "SamurAIGPT/llm-wiki-agent",
     "coddingtonbear/obsidian-local-rest-api",
     "RAIT-09/obsidian-agent-client",
     "agenticnotetaking/arscontexta",

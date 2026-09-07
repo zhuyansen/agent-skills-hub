@@ -37,15 +37,25 @@ def main():
         for name, probe in (
             ("GSC", "gsc/out/queries.json"),
             ("GA", "ga/out/pages.json"),
-            ("Plausible", "plausible/out/sources.json"),
             ("Clarity", "clarity/out/overview.json"),
         )
-        if not (load(probe) or (name == "Plausible" and load("plausible/out/source.json")))
+        if not load(probe)
     ]
     if down:
         print(
             f"\n> ⚠️ **数据源未出数:{', '.join(down)}** — 这是抓取失败(凭证过期 or 网络超时,查 CI 日志定性),"
             f"不是指标为 0。相关板块缺失/转化数不可信,先修凭证再解读。\n"
+        )
+    # Plausible is a PAID source, and the site has been locked (API 402 "missing
+    # active subscription") since the free trial lapsed ~2026-08-03. That is a
+    # billing state, not an infra failure — kept apart from the list above so the
+    # digest stops sending anyone to "check CI logs / fix credentials" every day
+    # for something only a subscription renewal (or retiring the source) fixes.
+    if not (load("plausible/out/sources.json") or load("plausible/out/source.json")):
+        print(
+            "\n> ℹ️ **Plausible 未出数:订阅到期、站点被锁**(API 402,非凭证/网络问题)。"
+            "付费源,GA4/GSC/Clarity 已覆盖同类流量/来源指标;恢复须在 plausible.io 续订,"
+            "否则建议从日报管道退役。\n"
         )
 
     # ── GSC ──

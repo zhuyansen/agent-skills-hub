@@ -114,9 +114,15 @@ def main():
     cap = int(sys.argv[1]) if len(sys.argv) > 1 else 999999
     c = psycopg2.connect(DB_URL)
     cur = c.cursor()
+    # readme_content = '' (empty string) is NOT NULL, so an `IS NULL`-only
+    # filter skips it forever — a repo ingested with a blank README (an artifact
+    # of the extra_repos path) stays permanently ungraded and invisible to every
+    # healer. gozen3ji/consulting-pptx-skill sat at grade=unknown while its
+    # GitHub repo had a 14 KB README, because the row held '' not NULL. Catch
+    # both. (2026-09-05)
     cur.execute(
         "SELECT repo_full_name FROM skills "
-        "WHERE stars >= 5 AND readme_content IS NULL "
+        "WHERE stars >= 5 AND (readme_content IS NULL OR readme_content = '') "
         "ORDER BY score DESC NULLS LAST LIMIT %s", (cap,))
     targets = [r[0] for r in cur.fetchall()]
     cur.close(); c.close()

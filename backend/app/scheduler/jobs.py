@@ -538,9 +538,14 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 db.rollback()
             except Exception:
                 pass
+            # Catch '' as well as NULL: a row ingested with a blank README (an
+            # extra_repos artifact) is NOT NULL, so an IS NULL-only filter skips
+            # it forever, leaving a featured skill permanently ungraded
+            # (gozen3ji/consulting-pptx-skill, 2026-09-05).
+            from sqlalchemy import or_ as _or  # noqa: WPS433
             null_readme_skills = (
                 db.query(Skill.repo_full_name)
-                .filter(Skill.readme_content.is_(None))
+                .filter(_or(Skill.readme_content.is_(None), Skill.readme_content == ""))
                 .order_by(Skill.score.desc().nullslast())
                 .limit(1000)
                 .all()
