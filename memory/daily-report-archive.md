@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-08
+1. LerSent001/holo-card — 🆕 生成带视差流光的 3D 全息卡片网页，可选接 API 出图（132★ 132.0/day）
+2. HRuiCcc/RuiC-card-skill — 🆕 做可拖转的 3D 闪卡网页，附可直接改的 Blender 工程（102★ 79.3/day）
+3. Albertchamberlain/Awesome-OKF — 🆕 收齐开放知识格式的工具与提案，给智能体一套通用底座（102★ 75.1/day）
+4. noskillish/bankmcp — 🆕 让智能体只读接进你的银行账户，自托管走开放银行接口（86★ 69.4/day）
+5. daishuge/pcb-skill — 🆕 把硬件想法一路推到可量产 PCB，选型布线打样全包（54★ 54.0/day）
+6. pax-beehive/dsh-hub-cli — 给 DSH 插件市场配官方命令行，装插件与解析依赖一条龙（261★ 18.2/day）
+7. joeseesun/qiaomu-ai-rss — 🆕 在 Obsidian 里读中文 AI 快讯，自动改写翻译存成笔记（23★ 15.4/day）
+8. Sidiora-Labs/LayerX-Network — 给自主智能体记账与结算，执行结果可确定复现（375★ 15.1/day）
+9. qunqin24/Pulse — 🆕 在 Mac 菜单栏盯住五家编码工具的额度余量（71★ 7.7/day）
+10. wanshuiyin/ALIGN-Agentic-Loop-Image-GeneratioN — 🆕 不用扩散模型画图，让智能体用 p5.js 反复看图改代码（22★ 7.4/day）
+🎯 今日趋势：72h 候选池 **114 条**，剔重 14 条后清洁候选 100 条，45 天建仓窗内 **29 条**——比昨日的 22 条继续回升，是本周窗内最厚的一天。窗内中位数 **4.5★/天**（昨日 3.7），榜首全息卡片技能 **132.0★/天**，比昨日榜首 82.0 高出六成，**头尾差 17.8 倍**（132.0 → 7.4），远比昨日的 205 倍平缓：前五席全部在 54★/天以上且彼此咬得很紧，第六席起断崖掉到 18.2，此后缓降至 7.4，形成"陡峭头部 + 平坦长尾"的两段式。结构上最刺眼的是**视觉特效技能同题材霸占前二席**：RuiC-card-skill 09-07 07:56 建仓、holo-card 同日 16:18 建仓，相隔仅 8 小时，都是"一句话生成可拖转、会流光、带景深的 3D 闪卡网页"，前者附可直接改的 Blender 工程、后者多一条 API 出图链路——这是本档案里第一次出现两个独立作者在同一天撞进同一个细分玩法并双双冲上榜首，说明"给编码智能体派视觉活儿"正在形成可复制的模板。第二条线是**生态基建占 2 席**（Awesome-OKF 把开放知识格式的工具、插件、技能与提案收成一份目录，dsh-hub-cli 给 DSH 插件市场配官方命令行与依赖解析器），都不做终端功能，只铺"东西放在哪、怎么装"的地基。第三条线是**往真金白银的领域扎，占 3 席且一个比一个硬**：bankmcp 让智能体经开放银行接口只读接进真实银行账户、pcb-skill 把一个硬件想法从原理图一路推到选型布线打样、LayerX-Network 给自主智能体做可确定复现的记账与结算——这三者失手的代价都不是"重跑一次"。第四条线是**成本与产能监控延续**（Pulse 在 Mac 菜单栏同时盯 Claude Code、Codex、Antigravity、OpenCode Go、Kimi Code 五家的额度余量）。第十席 ALIGN 是本期最反直觉的一条：完全不用扩散或自回归图像模型，让编码智能体用 p5.js 画、看结果、再改代码地循环逼近。十席星数合计 1228★。
+> 注：去重覆盖 repo 内 archive 全 75 期 + 记忆区早期存档与 fresh-skills 存档，机械提取合并小写去重 **3873 个仓库名**，114 条候选中 14 条命中历史，今日十席零重复。查询口径：72h 窗口、stars ≥20、`created_at DESC LIMIT 300`（任务书原定 `stars DESC LIMIT 150` 会被老仓回填吃满），velocity = stars ÷ max(距 created_at 天数, 1)，评选前套 45 天建仓窗剔掉回填老仓。排除项：①**Finyacupola10/athfoujf（286★ 9.5/day）**——仓名为无意义随机串、描述堆砌"Claude Opus 2026 Pro Toolkit"，286★ 承 **0 fork / 0 watcher / 0 issue**，160KB 空壳，判为诱导型垃圾仓，直接剔除；②**r1c7/CluxMate（85★ 5.4/day 本可居第 6）**——**0 fork / 0 watcher** 承 85★，命中既往判掉 chigwell/Penelopa.ai、DenisSergeevitch/game-sensitivity-coach 的同一机械标准。**需明示**：作者 r1c7 是 2017 年建号、名下 SlowFastNetworks 350★ 的真实开发者，此条属按既定阈值保守剔除而非刷星指控；③**bsab/france-mcp-servers（81★ 42.9/day 本可居第 6）**——同样 **0 fork / 0 watcher** 承 82★，仓内 3 个 open issue **全部由作者本人开贴**（"来测一个法国 MCP 服务器""还缺哪个"），不构成外部参与证据，按同一标准剔除。**需明示**：作者 bsab 为 2014 年建号 / 31 仓，09-01 建的姊妹仓 italia-mcp-servers 已收 97★，产品线真实，若 fork/watcher 转正可回补；④**SeeRay11/OpenFlow（97★ 4.5/day）**——库内 security_grade 为 **caution**，按惯例不进推荐位。入选项刷星复核：第 1 席 LerSent001 名下 **orb 已收 643★**（08-14 建），holo-card 实时 154★ 对 **16 fork**、6.5MB 资源、今日仍在推送，真实产品线；第 2 席 HRuiCcc **建号仅 17 天（轻红旗）**，但 5 仓呈 110/36/9/2/1 自然梯度、110★ 对 **13 fork / 1 issue**、4.3MB 含 Blender 工程文件，未达剔除线，保留并标注；第 3 席 Albertchamberlain 为 **2019 年建号 / 76 仓 / 43 粉**，前作 Awesome-MCP 25★ 构成同类目历史，4 watcher / 2 fork；第 4 席 noskillish 名下 slides 67★ 构成历史，123★ 对 **22 fork**，0 watcher 属轻红旗但 fork 比例（18%）健康；第 5 席 daishuge 为 **2023 号 / 30 仓 / 14 粉**，名下 easyeda-mcp-fix、bambu-a2l-cleaner、mi-remote-gateway 等硬件仓构成连贯专业轨迹，ai_werewolf 33★，64★ 对 11 fork / 1 watcher；第 6 席 pax-beehive 组织名下 **paxm 421★**，9 仓产品矩阵，261★ 对 5 fork / 5 watcher / 2 issue；第 7 席 joeseesun（乔木）为知名中文 AI 作者，60MB 真实代码 / 4 fork；第 8 席 Sidiora-Labs 组织 **198 粉**，名下 machine-genome 163★、centra-llm-agents 122★ 呈梯度，本仓 314MB 代码、**71 fork / 47 个 open issue**，是本期社区活跃度最高的一仓；第 9 席 qunqin24 名下 22 仓、Aurora-MBTI 28★，73★ 对 11 fork；第 10 席 wanshuiyin **341 粉**，名下 Auto-claude-code-research-in-sleep **15880★**、ARIS-in-AI-Offer 442★、HERO-Anti-OverDefense 434★，无需存疑（本仓 1 fork / 0 watcher 属新仓未积累，作者履历一票通过）。🆕 判定：created_at 在 2026-08-25 之后，今日 **8 席**（第 5 席 0.2 天、第 1 席 0.9 天、第 4 席 1.2 天、第 2 席 1.3 天、第 3 席 1.4 天、第 7 席 1.5 天、第 10 席 3.0 天、第 9 席 9.2 天），较昨日 7 席再进一步，且**前七席仓龄全部在 48 小时内**，是本档案里头部最"新鲜"的一期；第 6 席 14.4 天、第 8 席 24.8 天超窗不标。十席 security_grade 中第 3、8 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数已高于此（如 holo-card 实时 154★、RuiC-card-skill 110★、bankmcp 131★、pcb-skill 64★、Pulse 73★、ALIGN 23★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-07
 1. alchaincyf/huashu-mac-use — 🆕 让智能体操控 Mac 上没有 API 的原生应用，每步留取证（82★ 82.0/day）
 2. hsandhu/mobilecode — 🆕 在 opencode 基础上直接构建并预览 iOS 与安卓项目（115★ 50.8/day）
