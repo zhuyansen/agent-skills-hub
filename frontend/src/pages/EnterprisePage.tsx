@@ -131,29 +131,34 @@ export function EnterprisePage() {
       setError("Supabase not configured.");
       return;
     }
-    if (!form.full_name || !form.email || !form.company || !form.use_case) {
-      // Track validation rejections separately. 11 people reached this form and
-      // none of them landed in enterprise_leads; without this we cannot tell
-      // "nobody tried" from "everybody tried and the form pushed them back".
+    if (!form.email || !form.use_case) {
+      // Low-friction audit offer: only email + what-to-audit are required. Name
+      // and company moved to the optional section (synthesised below), so the
+      // ask is two fields, not five. Track rejections separately so we can still
+      // tell "nobody tried" from "everybody tried and the form pushed them back".
       trackEvent("enterprise_lead_invalid", {
         missing: [
-          !form.full_name && "full_name",
           !form.email && "email",
-          !form.company && "company",
           !form.use_case && "use_case",
         ].filter(Boolean).join(","),
       });
       setError(c.form.errMissing);
       return;
     }
+    // enterprise_leads requires non-empty full_name (1–100) and company (1–200),
+    // enforced server-side in submit_enterprise_lead. When the visitor didn't
+    // volunteer them, derive both from the email so the RPC validation passes
+    // without a schema change — sales enriches the real values on follow-up.
+    const emailLocal = (form.email.split("@")[0] || "there").slice(0, 100);
+    const emailDomain = (form.email.split("@")[1] || "unknown").slice(0, 200);
     trackEvent("enterprise_lead_attempt", { team_size: form.team_size || "unset" });
     setSubmitting(true);
     setError(null);
     try {
       const { error: rpcErr } = await supabase.rpc("submit_enterprise_lead", {
-        p_full_name: form.full_name,
+        p_full_name: form.full_name || emailLocal,
         p_email: form.email,
-        p_company: form.company,
+        p_company: form.company || emailDomain,
         p_use_case: form.use_case,
         p_role_title: form.role_title || null,
         p_team_size: form.team_size || null,
@@ -563,30 +568,14 @@ export function EnterprisePage() {
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FormField
-                      label={c.form.fields.full_name}
-                      value={form.full_name}
-                      onChange={(v) => onChange("full_name", v)}
-                      required
-                      maxLength={100}
-                    />
-                    <FormField
-                      label={c.form.fields.email}
-                      value={form.email}
-                      onChange={(v) => onChange("email", v)}
-                      required
-                      type="email"
-                      maxLength={200}
-                    />
-                    <FormField
-                      label={c.form.fields.company}
-                      value={form.company}
-                      onChange={(v) => onChange("company", v)}
-                      required
-                      maxLength={200}
-                    />
-                  </div>
+                  <FormField
+                    label={c.form.fields.email}
+                    value={form.email}
+                    onChange={(v) => onChange("email", v)}
+                    required
+                    type="email"
+                    maxLength={200}
+                  />
 
                   <FormTextarea
                     label={c.form.fields.useCase}
@@ -597,10 +586,6 @@ export function EnterprisePage() {
                     maxLength={2000}
                   />
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  </div>
-
-
                   {error && (
                     <div className="p-3 rounded-md bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-sm text-red-700 dark:text-red-400">
                       {error}
@@ -608,25 +593,38 @@ export function EnterprisePage() {
                   )}
 
 
-                  {/* Everything past the four required fields is collapsed.
-                      The CTA promises a 30-minute conversation; the form was
-                      behaving like a procurement questionnaire, asking for
-                      budget and compliance requirements before a word had been
-                      exchanged. Measured over three days: 16 CTA clicks, 9
-                      people reached the form, and enterprise_form_started
-                      stayed at 0 — nobody typed a single character. No field is
-                      removed and nothing stops being captured; the first screen
-                      just stops looking like work. */}
+                  {/* The visible ask is now two fields: work email + what to
+                      audit. Collapsing the optional fields wasn't enough —
+                      across 28 days the demo-booking form drew 35 views, 1
+                      start, 0 submissions. So the offer itself changed from
+                      "book a 30-minute call" to "we'll email you a free audit",
+                      and name/company moved in here (synthesised from the email
+                      when left blank). Nothing stops being captured; the entry
+                      point just stops asking for a meeting. */}
                   <details className="group rounded-xl border border-gray-200 dark:border-[var(--border)] px-4 py-3">
                     <summary className="cursor-pointer list-none text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center justify-between">
                       <span>
                         {lang === "zh"
-                          ? "补充信息(可选,能让这次沟通更有针对性)"
-                          : "Add context (optional — helps us prepare)"}
+                          ? "补充信息(可选,能让审计更有针对性)"
+                          : "Add context (optional — helps us tailor the audit)"}
                       </span>
                       <span className="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
                     </summary>
                     <div className="mt-4 space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <FormField
+                        label={c.form.fields.full_name}
+                        value={form.full_name}
+                        onChange={(v) => onChange("full_name", v)}
+                        maxLength={100}
+                      />
+                      <FormField
+                        label={c.form.fields.company}
+                        value={form.company}
+                        onChange={(v) => onChange("company", v)}
+                        maxLength={200}
+                      />
+                    </div>
                     <FormField
                       label={c.form.fields.role}
                       placeholder={c.form.fields.rolePlaceholder}
