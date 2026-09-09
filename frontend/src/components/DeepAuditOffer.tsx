@@ -41,8 +41,8 @@ export function DeepAuditOffer({
 
   const pitch = risky
     ? zh
-      ? "Pro 深度检索能在 13 万仓库正文里查同类问题是怎么被修的,导出证据清单、脚本化复核 —— 把「看着可疑」变成「说得清为什么」。"
-      : "Pro deep search cross-checks how similar issues got fixed across 130k repos' README text, exports an evidence list, and scripts the review — turning 'looks risky' into 'here's exactly why'."
+      ? "Pro 深度检索能在 18.6 万仓库正文里查同类问题是怎么被修的,导出证据清单、脚本化复核 —— 把「看着可疑」变成「说得清为什么」。"
+      : "Pro deep search cross-checks how similar issues got fixed across 186k repos' README text, exports an evidence list, and scripts the review — turning 'looks risky' into 'here's exactly why'."
     : zh
       ? "Pro:README 全文深度检索 · 200 条/页 · CSV/JSON 导出 · API —— 给合规签核和生产决策留一份可复现的证据。"
       : "Pro: full-README deep search · 200/page · CSV/JSON export · API — a reproducible evidence trail for sign-off and production decisions.";
