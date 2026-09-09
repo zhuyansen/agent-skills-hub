@@ -412,7 +412,7 @@ export default function ProPage() {
         <title>Pro Search — Agent Skills Hub</title>
         <meta
           name="description"
-          content="Member-only deep search: full README-text search across 130,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, API access."
+          content="Member-only deep search: full README-text search across 186,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, API access."
         />
         <meta name="robots" content="noindex" />
       </Helmet>

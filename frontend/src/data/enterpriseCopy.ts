@@ -119,7 +119,7 @@ export const EN: EnterpriseCopy = {
     title:
       "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
     description:
-      "Security-grade 130,000+ open-source agent skills and MCP servers, and deep-audit any of them before it touches production. Deploy-time security scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and audit-ready evidence — SOC 2, ISO 42001, EU AI Act.",
+      "Security-grade the open-source agent-skill & MCP ecosystem — 186,000+ indexed, 24,000+ graded — and deep-audit any of them before it touches production. Deploy-time security scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and audit-ready evidence — SOC 2, ISO 42001, EU AI Act.",
   },
   hero: {
     badge: "The Trust Layer for AI Agent & MCP Deployment",
@@ -127,7 +127,7 @@ export const EN: EnterpriseCopy = {
     h1b: "Without the Audit Panic.",
     sub: "Deploy-time security scanning, sandbox validation, and audit-ready compliance evidence for every MCP server and agent skill you ship — mapped to SOC 2, ISO/IEC 42001, and the EU AI Act.",
     ctaPrimary: "Get a free security audit →",
-    ctaSecondary: "Browse 130,000+ security-graded skills free",
+    ctaSecondary: "Browse 186,000+ skills free",
     note: "No slides, no sales theater · We email you 3 real risks in your stack, graded, within 48h",
   },
   band: {
@@ -150,7 +150,7 @@ export const EN: EnterpriseCopy = {
       sub: "of agent skills, per Liu et al. 2026 (arXiv:2601.10338, n=31,132) — the risk your team inherits",
     },
     {
-      stat: "130,000+",
+      stat: "186,000+",
       label: "Skills under continuous scanning",
       sub: "re-scanned every 8 hours across the open-source ecosystem",
     },
@@ -450,7 +450,7 @@ export const ZH: EnterpriseCopy = {
   meta: {
     title: "企业版 · AI Agent 与 MCP 部署的信任层 | Agent Skills Hub",
     description:
-      "对 130,000+ 开源 agent skill 与 MCP server 做安全评级,并在进入生产前对任意一个做深度审计。部署前安全扫描、沙箱验证、许可证/SBOM 合规、企业内网镜像、审计级证据包 —— 对齐 SOC 2、ISO 42001、欧盟 AI 法案。",
+      "对开源 agent skill 与 MCP 生态做安全评级 —— 已收录 186,000+、已评级 24,000+ —— 并在进入生产前对任意一个做深度审计。部署前安全扫描、沙箱验证、许可证/SBOM 合规、企业内网镜像、审计级证据包 —— 对齐 SOC 2、ISO 42001、欧盟 AI 法案。",
   },
   hero: {
     badge: "AI Agent 与 MCP 部署的信任层",
@@ -458,7 +458,7 @@ export const ZH: EnterpriseCopy = {
     h1b: "不用再为审计提心吊胆。",
     sub: "为你上线的每个 MCP server 与 agent skill 提供部署前安全扫描、沙箱验证、审计级合规证据 —— 对齐 SOC 2、ISO/IEC 42001 与欧盟 AI 法案。",
     ctaPrimary: "免费领安全审计报告 →",
-    ctaSecondary: "免费浏览 10 万+ 已评级 skill",
+    ctaSecondary: "免费浏览 186,000+ skill",
     note: "没有 PPT,没有销售套路 · 48 小时内邮件给你指出技术栈里 3 个真实风险",
   },
   band: {
@@ -480,7 +480,7 @@ export const ZH: EnterpriseCopy = {
       sub: "开源 agent skill 的占比,据 Liu et al. 2026(arXiv:2601.10338,n=31,132)—— 这是你团队继承的风险",
     },
     {
-      stat: "130,000+",
+      stat: "186,000+",
       label: "持续扫描中的 skill",
       sub: "覆盖整个开源生态,每 8 小时重扫一次",
     },

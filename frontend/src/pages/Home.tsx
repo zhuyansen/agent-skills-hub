@@ -173,8 +173,8 @@ export function Home() {
           name="description"
           content={
             lang === "zh"
-              ? `Agent Skills Hub —— ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具的安全分级目录,装前先查安不安全,质量评分,每 8 小时刷新。`
-              : `Agent Skills Hub: a security-graded directory of ${skillCount} Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours.`
+              ? `Agent Skills Hub —— 收录 ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具,其中 24,000+ 已安全评级,装前先查,质量评分,每 8 小时刷新。`
+              : `Agent Skills Hub: ${skillCount} Claude skills, MCP servers & agent tools indexed, 24,000+ security-graded — vet any skill before you install. Refreshed every 8 hours.`
           }
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
