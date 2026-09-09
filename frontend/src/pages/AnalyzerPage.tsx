@@ -410,6 +410,21 @@ export function AnalyzerPage() {
               grade={result.scan.grade}
               flagCount={result.scan.flags.length}
             />
+            {/* Ladder step: one repo vetted → offer to vet the whole owner at
+                once. Reads stored grades from the index, so it's instant. */}
+            <div className="mt-4 text-center text-sm">
+              <Link
+                to={`/org-audit/?owner=${encodeURIComponent(result.repo.full_name.split("/")[0])}`}
+                onClick={() =>
+                  trackEvent("org_audit_entry_click", { from: "analyzer" })
+                }
+                className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+              >
+                {isZh
+                  ? `🏢 一次审计 ${result.repo.full_name.split("/")[0]} 的全部 repo →`
+                  : `🏢 Audit all of ${result.repo.full_name.split("/")[0]}'s repos at once →`}
+              </Link>
+            </div>
           </>
         )}
 

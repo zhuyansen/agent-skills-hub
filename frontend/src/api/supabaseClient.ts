@@ -78,6 +78,42 @@ async function withRetry<T>(
   }
 }
 
+export interface OrgAuditRow {
+  repo_full_name: string;
+  repo_name: string;
+  security_grade: string | null;
+  quality_score: number | null;
+  stars: number;
+  category: string | null;
+}
+
+/**
+ * Batch security audit for one GitHub owner. Reads stored grades straight from
+ * the index — author_name is btree + trigram indexed, so this is a single fast
+ * query with no GitHub API calls and no 60-req/hr rate limit (the reason a
+ * live per-repo scan can't do "audit my whole org"). Every grade returned here
+ * is also public on that skill's own page; the batch view is a convenience, not
+ * privileged data — which is why the Pro gate is honor-system, not a hard wall.
+ */
+export async function sbFetchOrgAudit(owner: string): Promise<OrgAuditRow[]> {
+  const sb = ensureSupabase();
+  const clean = owner.trim().replace(/^@/, "").replace(/\/.*$/, "");
+  if (!clean) return [];
+  return withRetry(async () => {
+    const { data, error } = await sb
+      .from("skills")
+      .select(
+        "repo_full_name,repo_name,security_grade,quality_score,stars,category",
+      )
+      .ilike("author_name", clean)
+      .neq("repo_status", "gone")
+      .order("stars", { ascending: false })
+      .limit(500);
+    if (error) throw error;
+    return (data ?? []) as OrgAuditRow[];
+  });
+}
+
 export async function sbFetchSkills(
   params: SkillsQueryParams,
 ): Promise<PaginatedSkills> {

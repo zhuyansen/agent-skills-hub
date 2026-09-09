@@ -21,6 +21,9 @@ const ComparePage = lazy(() =>
 const AnalyzerPage = lazy(() =>
   import("./pages/AnalyzerPage").then((m) => ({ default: m.AnalyzerPage })),
 );
+const OrgAuditPage = lazy(() =>
+  import("./pages/OrgAuditPage").then((m) => ({ default: m.OrgAuditPage })),
+);
 const VerifyEmailPage = lazy(() =>
   import("./pages/VerifyEmailPage").then((m) => ({
     default: m.VerifyEmailPage,
@@ -84,6 +87,8 @@ function App() {
                   <Route path="/compare" element={<ComparePage />} />
                   <Route path="/analyzer" element={<AnalyzerPage />} />
                   <Route path="/analyzer/" element={<AnalyzerPage />} />
+                  <Route path="/org-audit" element={<OrgAuditPage />} />
+                  <Route path="/org-audit/" element={<OrgAuditPage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />
                   <Route
                     path="/verified-creator"
