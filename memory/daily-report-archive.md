@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-09
+1. okf-memory/okf-agent-memory — 🆕 给编码智能体配 Git 原生长期记忆，纯 Go 无外部数据库（479★ 151.8/day）
+2. bsab/france-mcp-servers — 🆕 收齐法国公共数据与法条的 MCP 服务，按领域分好目录（81★ 34.9/day）
+3. Gentleman-Programming/gentle-ai — 一处配好六家编码智能体，记忆、技能与 MCP 全打包（6446★ 33.4/day）
+4. joeseesun/qiaomu-book-reader-legacy — 🆕 在 Obsidian 里读 EPUB 与 PDF，划线就地问 AI 并回链原文（240★ 31.8/day）
+5. punkpeye/awesome-remote-mcp-servers — 🆕 汇总免装即用的远程 MCP 服务，由 MCP 目录作者亲编（31★ 30.5/day）
+6. yuezhiai/jonex — 把多模态文件解析成本体知识库，供智能体直接检索（1019★ 19.7/day）
+7. Kuddev/pebrel — 给 Windows 配 GPU 加速终端，专为跑 AI 命令行工具打磨（691★ 10.5/day）
+8. DenisSergeevitch/game-sensitivity-coach — 🆕 按证据调游戏鼠标灵敏度，跨游戏换算还带录像复盘（23★ 10.3/day）
+9. GCWing/OpenBitFun — 用 Rust 跑通用智能体运行时，配桌面端接管软件外的活（2105★ 9.6/day）
+10. OpenPetsHQ/openpets — 在桌面养会动的宠物，插件 SDK 直连编码智能体（1166★ 9.2/day）
+🎯 今日趋势：72h 候选池 **117 条**，剔重 16 条后清洁候选 101 条，45 天建仓窗内 **29 条**——与昨日持平，连续两天守住本周高位。窗内中位数 **3.7★/天**（昨日 4.5，小幅回落），榜首 okf-agent-memory **151.8★/天**，比昨日榜首 132.0 再高一成五，且星数 479★ 是昨日榜首的 3.6 倍——**头部含金量比昨天更实**。**头尾差 16.5 倍**（151.8 → 9.2），与昨日 17.8 倍几乎一致，但形态完全不同：昨日是"前五席全在 54 以上"的宽厚头部，今天是**单点断崖**——第一名 151.8 之后直接掉到 34.9，第二到第五席挤在 30-35 的窄带里，第六席起缓降至 9.2，是"一枝独秀 + 密集腰部"的结构。最值得记的是 **OKF（开放知识格式）连续第二天上榜且量级跃升**：昨日第三席 Awesome-OKF 只是把生态收成目录（102★），今天 okf-agent-memory 直接交出实现——纯 Go 写的 Git 原生记忆层，落地 Google OKF v0.2，亚 300 微秒 BM25 检索、内嵌 MCP 服务、零外部数据库，宣称削掉 80% token 冗余；**一个规范在 48 小时内从"有人整理目录"走到"有人给出可跑实现"**，这是本档案里首次观察到的生态成型速度。第二条线是 **MCP 目录基建占 2 席且都是"垂直切分"**：bsab 把在意大利版（italia-mcp-servers 96★）验证过的打法原样复制到法国，专收公共数据、法条与政务服务；punkpeye（94k★ awesome-mcp-servers 作者）新开远程 MCP 专辑，只收免安装即用的——**目录赛道已经从"收全"转向"按可用性和国别切细"**。第三条线是**桌面运行时占 3 席**（pebrel 给 Windows 做 GPU 加速终端专伺候 AI 命令行、OpenBitFun 用 Rust 跑通用智能体运行时、openpets 把桌面宠物做成插件平台接编码智能体），共同点是都不做"又一个编码智能体"，而是抢它跑起来之后的那块桌面。第八席 game-sensitivity-coach 是本期最出圈的一条：把"调游戏鼠标灵敏度"做成正经 agent skill，带跨游戏换算与录像复盘，说明技能形态正在往软件开发以外的日常场景外溢。十席星数合计 12,281★，接近昨日 1,228★ 的十倍。
+> 注：去重范围＝archive 全部 76 个日期段、770 条记录、751 个去重 repo，今日 117 条候选中命中 16 条历史推荐已剔除。**排除刷星嫌疑 3 项**：①**RankSpotAI/awesome-seo-agent-skills 与 awesome-seo-mcp 整组排除**——`gh api` 查得该账号 awesome-seo-mcp、awesome-seo-agent-skills、awesome-geo-tools 三仓**同为 2026-09-06 建仓**，星数 33/42/32 高度雷同，仓名清一色 SEO/GEO 关键词堆砌，账号其余仓库（rankspot-skill、docs）全为 0★，符合"同日创建＋星数雷同＋SEO 堆砌标题"的集群特征；②**Finyacupola10/athfoujf（287★ 9.4/day）排除**——账号名下仅此一仓、仓名为无意义乱码而描述自称"Claude Opus 2026 Pro Toolkit"，名实严重不符；③**aimeoa/hanshuang-codex（20★）排除**——自述为大模型破甲实验项目，不属技能工具范畴。**保守放行并留档说明 1 项**：okf-memory 组织建于 09-05、名下另两仓 0★，形式上接近单仓爆星，但同时具备 homebrew-tap 与 github.io 两条真实分发设施，且 OKF 生态昨日已由独立作者 Albertchamberlain 佐证，判为生态浪潮而非刷星，予以收录。bsab 经查为 2017 年起的老账号（django-unifi-portal 83★），france-mcp-servers 系其意大利版成功打法的国别复制，非集群刷星。🆕 判定＝created_at 距今 14 天内，本期 5 条命中（okf-agent-memory 09-05、france-mcp-servers 09-06、qiaomu-book-reader-legacy 09-01、awesome-remote-mcp-servers 09-08、game-sensitivity-coach 09-06）；gentle-ai（02-27）、jonex（07-19）、pebrel（07-05）、OpenBitFun（02-02）、openpets（05-04）均超窗不标。因 48h 窗内去重后候选不足 10，已按流程放宽至 72h。
+
+---
+
 ## 2026-09-08
 1. LerSent001/holo-card — 🆕 生成带视差流光的 3D 全息卡片网页，可选接 API 出图（132★ 132.0/day）
 2. HRuiCcc/RuiC-card-skill — 🆕 做可拖转的 3D 闪卡网页，附可直接改的 Blender 工程（102★ 79.3/day）
