@@ -1,6 +1,6 @@
 # Agent Skills Hub
 
-> Security-graded directory of 130,000+ open-source AI agent skills, Claude Skills, and MCP servers. Every popular skill gets a rule-based security grade (SAFE / CAUTION / UNSAFE / REJECT) before you install it — the trust layer for AI agent & MCP deployment. Data refreshed every 8 hours.
+> Directory of 186,000+ open-source AI agent skills, Claude Skills, and MCP servers, of which 24,000+ carry a rule-based security grade — including 93% of skills over 100 stars and 98% over 1,000. Every popular skill gets a grade (SAFE / CAUTION / UNSAFE / REJECT) before you install it — the trust layer for AI agent & MCP deployment. Data refreshed every 8 hours.
 
 ## For AI agents
 

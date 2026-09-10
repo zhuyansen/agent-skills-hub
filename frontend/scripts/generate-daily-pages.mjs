@@ -110,7 +110,7 @@ const NEWSLETTER = `
 
 const FOOT = `
   <p style="font-size:12px;color:#94a3b8;margin-top:28px;border-top:1px solid #e2e8f0;padding-top:14px">
-    Picks ranked by star velocity from <a href="/" style="color:#4f46e5;text-decoration:none">Agent Skills Hub</a>'s scan of 130,000+ open-source AI agent skills &amp; MCP servers, security-graded &amp; refreshed every 8 hours.
+    Picks ranked by star velocity from <a href="/" style="color:#4f46e5;text-decoration:none">Agent Skills Hub</a>'s scan of 186,000+ open-source AI agent skills &amp; MCP servers, security-graded &amp; refreshed every 8 hours.
   </p>
 </div></body></html>`;
 

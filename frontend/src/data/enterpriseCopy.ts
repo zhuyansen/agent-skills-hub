@@ -280,7 +280,7 @@ export const EN: EnterpriseCopy = {
         price: "$0",
         unit: "Forever · no card",
         features: [
-          "Browse the full 100K skill catalog",
+          "Browse the full 186K skill catalog",
           "Quality score + 6-dimension breakdown",
           "Basic security scan per skill",
           "Scenario & comparison pages",
@@ -290,17 +290,16 @@ export const EN: EnterpriseCopy = {
       },
       {
         name: "Pro",
-        price: "$49",
-        unit: "/mo · per developer · no sales call",
+        price: "From ¥199/yr",
+        unit: "· annual membership",
         features: [
           "Everything in Free",
-          "API access (catalog + scores)",
-          "Skill version lock + auto-rollback",
-          "Audit-log export (per-developer)",
-          "Vulnerability alerts for your skills",
+          "Full README-text deep search",
+          "200 results/page · CSV/JSON export",
+          "API access",
           "Email support",
         ],
-        cta: "Request early access",
+        cta: "See Pro →",
       },
       {
         name: "Enterprise",
@@ -325,7 +324,7 @@ export const EN: EnterpriseCopy = {
   },
   creator: {
     h2: "Are you a skill creator, not a buyer?",
-    sub: "The Verified Creator program certifies serious skill authors — audited, trusted, and surfaced above the 100K-skill noise.",
+    sub: "The Verified Creator program certifies serious skill authors — audited, trusted, and surfaced above the 186K-skill noise.",
     benefits: [
       "Authenticated ✓ badge on your skill pages and cards",
       "Featured slot in Verified Organizations (rankings stay objective, never paid)",
@@ -610,7 +609,7 @@ export const ZH: EnterpriseCopy = {
         price: "$0",
         unit: "永久 · 无需信用卡",
         features: [
-          "浏览完整 10 万 skill 目录",
+          "浏览完整 186K skill 目录",
           "质量分 + 6 维拆解",
           "每个 skill 基础安全扫描",
           "场景页与对比页",
@@ -620,17 +619,16 @@ export const ZH: EnterpriseCopy = {
       },
       {
         name: "Pro",
-        price: "$49",
-        unit: "/月 · 每开发者 · 无需销售对接",
+        price: "¥199/年起",
+        unit: "· 年度会员",
         features: [
           "免费版全部功能",
-          "API 访问(目录 + 评分)",
-          "Skill 版本锁定 + 自动回滚",
-          "审计日志导出(开发者级)",
-          "你依赖的 skill 漏洞告警",
+          "README 全文深度检索",
+          "200 条/页 · CSV/JSON 导出",
+          "API 访问",
           "邮件支持",
         ],
-        cta: "申请抢先体验",
+        cta: "了解 Pro →",
       },
       {
         name: "企业版",
@@ -655,7 +653,7 @@ export const ZH: EnterpriseCopy = {
   },
   creator: {
     h2: "你是 skill 作者,不是采购方?",
-    sub: "Verified Creator 计划为严肃的 skill 作者做认证 —— 审计过、可信、在 10 万 skill 的噪音里被看见。",
+    sub: "Verified Creator 计划为严肃的 skill 作者做认证 —— 审计过、可信、在 186K skill 的噪音里被看见。",
     benefits: [
       "Skill 详情页与卡片带认证 ✓ 徽章",
       "进入 Verified Organizations 展示位(排名始终客观、不接受付费)",

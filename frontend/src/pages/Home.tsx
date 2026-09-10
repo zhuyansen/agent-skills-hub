@@ -173,8 +173,8 @@ export function Home() {
           name="description"
           content={
             lang === "zh"
-              ? `Agent Skills Hub —— 收录 ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具,其中 24,000+ 已安全评级,装前先查,质量评分,每 8 小时刷新。`
-              : `Agent Skills Hub: ${skillCount} Claude skills, MCP servers & agent tools indexed, 24,000+ security-graded — vet any skill before you install. Refreshed every 8 hours.`
+              ? `Agent Skills Hub —— 收录 ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具,每个热门的都已安全评级(100★+ 的 93%),装前先查,每 8 小时刷新。`
+              : `Agent Skills Hub: ${skillCount} Claude skills, MCP servers & agent tools indexed, every popular one security-graded (93% of 100★+) — vet any skill before you install. Refreshed every 8 hours.`
           }
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the

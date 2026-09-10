@@ -37,7 +37,7 @@ const SHELLS = [
     title:
       "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
     description:
-      "Audit 130,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
+      "Audit 186,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
   },
   {
     // Core free tool — was missing a shell, so GitHub Pages served 404.html for
@@ -49,6 +49,19 @@ const SHELLS = [
       "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub",
     description:
       "Paste any GitHub repo URL for an instant security analysis: 11 red-flag categories from the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.",
+  },
+  {
+    // Batch-audit tool (Pro ladder), shipped 2026-09-09 WITHOUT a shell — so
+    // GitHub Pages served 404.html for /org-audit/ and every /org-audit/?owner=…
+    // share link. A live HTTP 404 renders fine for a click-through (the SPA
+    // fallback hydrates) but never produces an unfurl card, which kills the
+    // whole "share an org's audit" loop. noindex to match the page's own Helmet.
+    path: "org-audit",
+    title:
+      "Batch Security Audit — Vet a Whole GitHub Org · Agent Skills Hub",
+    description:
+      "Enter a GitHub org or user to see the security grade of every skill and MCP server it ships — vet your whole stack at once instead of one repo at a time.",
+    noindex: true,
   },
   {
     path: "submit",
@@ -68,7 +81,7 @@ const SHELLS = [
     path: "pro",
     title: "Pro Deep Search — Agent Skills Hub",
     description:
-      "Member-only deep search: full README-text search across 130,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, and API access.",
+      "Member-only deep search: full README-text search across 186,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, and API access.",
     noindex: true,
   },
   {
@@ -286,7 +299,7 @@ const aboutHtml = `<!doctype html>
     <section>
       <h2 data-en="What we track" data-zh="我们追踪什么">What we track</h2>
       <div class="metrics">
-        <div class="metric"><div class="num">130,000+</div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
+        <div class="metric"><div class="num">186,000+</div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
         <div class="metric"><div class="num">7</div><div class="label" data-en="categories" data-zh="分类">categories</div></div>
         <div class="metric"><div class="num">58</div><div class="label" data-en="scenario pages" data-zh="场景页">scenario pages</div></div>
         <div class="metric"><div class="num">8h</div><div class="label" data-en="refresh cadence" data-zh="刷新频率">refresh cadence</div></div>
