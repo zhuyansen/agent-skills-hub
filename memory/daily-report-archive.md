@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-11
+1. mizzlelover/gongwen-gbt9704-skill — 🆕 按国标 GB/T 9704 排中文公文，直接产出可编辑 DOCX（290★ 166.1/day）
+2. xiaYuTian11/maskit — 🆕 在本地给大模型请求自动打码，回复时流式还原隐私数据（43★ 26.2/day）
+3. ProjectDXAI/continuous-record-llm-trading-agents — 🆕 公开交易智能体半年实盘记录，23 万轮数据与图表全放出（92★ 9.6/day）
+4. gesta-run/subpool — 🆕 自托管团队 AI 订阅池，一份订阅多人轻量共享（71★ 8.1/day）
+5. xjli360/sealeap-amazon-skills — 覆盖亚马逊选品、上架、广告与库存的可复用运营技能（92★ 4.5/day）
+6. bydtesla1609/intent-debugger — 把说不清的想法整理成可核对需求清单，动手前先对齐边界（72★ 3.5/day）
+7. oil-oil/oil-skill-creator — 创建、评审并改进 Skill，逐项查边界、配置与执行稳定性（57★ 3.1/day）
+8. himovo/movo — 🆕 把 DeepSeek Harness 改造成自托管企业智能体平台，自带治理后台（25★ 2.6/day）
+9. ejboy/agent-scripts — 压缩 Maven、npm 与 Go 测试输出，给编码智能体省 token（106★ 2.5/day）
+10. XhinLiang/awsl — 本地持久运行 Claude Code 工作流脚本，支持断点续跑与预算（108★ 2.4/day）
+🎯 今日趋势：72h 候选池 **122 条**，剔重 25 条后清洁候选 97 条，45 天建仓窗内只剩 **16 条**——比前三日的 29 条少了近一半，是本周最薄的一天，窗内中位数 **2.55★/天**（昨日 3.5，连续第四天回落）。但**头部反弹了**：榜首 gongwen-gbt9704-skill **166.1★/天**，是昨日榜首 30.0 的 5.5 倍，一个"按国标排公文"的中文技能 1.7 天拿下 290★、实时已有 **67 fork**，fork 率 18% 说明是真有人拿去用。**头尾差 69 倍**（166.1 → 2.4），远陡于昨日的 8.1 倍——第二席起直接掉到 26.2，第五席起全部在 5 以下，是"一个爆款 + 一条贴地长尾"。结构上最明显的一条线是**自托管与本地优先占 5 席**：maskit 在本地给大模型请求打码再流式还原、subpool 把 AI 订阅做成团队自托管池、movo 把 DeepSeek Harness 包成带治理后台的企业私有平台、agent-scripts 与 awsl 都标榜 local-first——**继昨日"可观测数据不外传"之后，隐私与成本控制正从监控层下沉到请求层与订阅层**。第二条线是**Skill 工程化本身占 2 席**：oil-skill-creator（作者 oil-motion 2,349★）专做技能的评审与发布前体检，intent-debugger 在写代码之前先把需求逐条澄清，两者都在补"技能怎么写对、任务怎么说清"这一段。垂直落地上，中文公文与亚马逊电商运营各占一席，技能继续往办公与商业场景外溢。十席星数合计 **956★**，是昨日 429★ 的 2.2 倍。
+> 注：去重范围＝repo 内 archive 全部 78 个日期段，并入记忆区 daily-report-archive 与 fresh-skills-archive，机械提取小写去重后**比对基数 3,904 个仓库名**（与昨日 4,112 的差值来自提取正则收紧，全部历史日期段均已覆盖）；今日 122 条候选中命中 25 条历史推荐已剔除，十席零重复。查询口径：48h 窗内套 45 天建仓窗后清洁候选仅 **7 条**（不足 10），按流程放宽至 **72h**、stars ≥20、`created_at DESC LIMIT 300`（沿用 09-08 起的修正口径），velocity = stars ÷ max(距 created_at 天数, 1)。**排除刷星嫌疑 1 项**：AhmadHassan-BTed/Jantt（26★ 1.5/day，窗内第 13）——作者名下 AhSilence 125★、Attendify 123★、SoulMatrix 122★、CoDiver 120★、B 120★、EQAI 119★、RoseWish 119★，**七个不相关仓库星数挤在 119-125 的窄带**，命中"星数雷同集群"标准，即便未进前十也明确判掉。入选项刷星复核：第 1 席 mizzlelover 建号 2025-07、名下 11 仓仅 portrait-prompt-atlas 7★，属**单仓爆星（轻红旗）**，但 376★ 对 **67 fork（18%）** 是本期最强的外部使用信号，保留并标注；stargazers 接口对该仓返回 404，未能抽样，已如实记录；第 2 席 xiaYuTian11 为 2018 建号 / 76 仓，本仓 10 fork + 1 issue；第 3 席 ProjectDXAI 为 2024 年建的组织，名下 labrat 239★（4 fork），**本仓 0 fork / 0 watcher 偏薄（轻红旗）**，且性质是论文数据与图表而非可调用工具，因组织履历真实、内容具体（6 个月、两支机队、231,638 轮记录）保留并标注；第 4 席 gesta-run 组织 2026-07 建、其余 4 仓均 0★，本仓 7 fork 属真实参与，轻红旗保留；第 5 席 xjli360 为 2018 建号 / 31 粉，SoulDance-Official 40★ 构成历史，11 fork；第 6 席 bydtesla1609 名下 18/16/16/15/14/13 呈**自然星数梯度**，13 fork；第 7 席 oil-oil 为 **2019 建号 / 1,086 粉**，oil-motion 2,349★、beautify-github-readme 1,742★，履历一票通过；第 8 席 himovo 组织与仓库**同日两分钟内创建、名下仅 1 仓（轻红旗）**，GitHub 显示 36 个 open issue 但**绝大多数是 dependabot 依赖升级 PR**，真实外部 issue 作者 3 人、6 fork，未达剔除线，保留并如实说明；第 9 席 ejboy 为 2012 建号，awesome-efficient-devtools 161★；第 10 席 XhinLiang 为 2015 建号 / 151 粉，LunarCalendar 192★、MDPreference 164★，老牌 Android 开发者。🆕 判定＝created_at 距今 14 天内，本期 **5 席**命中（gongwen 09-09、maskit 09-09、subpool 09-02、continuous-record 09-01、movo 09-01）；sealeap-amazon-skills（20.6 天）、intent-debugger（20.8 天）、oil-skill-creator（18.7 天）、agent-scripts（42.4 天）、awsl（44.1 天）超窗不标。十席 security_grade 中第 1 席为 safe，其余为 unknown（尚未进入扫描队列），非风险信号；本期无 caution 项入选。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数已高于此（如 gongwen 实时 376★、maskit 77★、sealeap 97★、agent-scripts 184★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-10
 1. Devesh-Shirsath/spotkit — 🆕 把功能描述画成极简 SVG 产品插图，同套设计系统不跑偏（47★ 30.0/day）
 2. feitangyuan/motion-web — 🆕 用原生 Three.js 建动效优先的创意网站，带真实物理与自动验收（41★ 20.1/day）
