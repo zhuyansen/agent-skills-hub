@@ -111,6 +111,10 @@ EXTRA_REPOS = [
     "laolin5564/openclaw-wx-echo",
     # seo-audit-skill - SEO audit agent skill with HTML reports (248 stars)
     "JeffLi1993/seo-audit-skill",
+    # You.com official Agent Skills - web search, research, finance, and
+    # integration-discovery skills + MCP server configs for Claude Code,
+    # Codex, Cursor, Copilot CLI, Kimi Code, OpenCode, OpenClaw, Pi, Hermes
+    "youdotcom-oss/agent-skills",
 ]
 
 # ── Rate Limit Management ──
