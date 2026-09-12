@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, type ComponentPropsWithoutRef } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
@@ -15,6 +15,23 @@ import {
   PUBLISHED_CHAPTERS,
 } from "../data/bookChapters";
 import { useI18n } from "../i18n/I18nContext";
+
+// In-book cross-links are authored as relative markdown filenames, e.g.
+// [第 2 章](ch02-three-layer-loading.md). react-markdown emits <a href="ch02-…md">,
+// which resolves under the current /book/<slug>/ path to a 404 — the dead-click
+// source Clarity kept flagging on chapter pages (ch01 ~22 dead clicks/session).
+// Rewrite those to the real route; leave external, anchor and mailto links alone.
+function BookLink({ href = "", children }: ComponentPropsWithoutRef<"a">) {
+  const md = href.match(/^\.{0,2}\/?([A-Za-z0-9_-]+)\.md(#.*)?$/);
+  if (md) return <Link to={`/book/${md[1]}/${md[2] || ""}`}>{children}</Link>;
+  if (/^https?:\/\//.test(href))
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  return <a href={href}>{children}</a>;
+}
 
 const CHAPTER_FILES = import.meta.glob("../../content/book/*.md", {
   query: "?raw",
@@ -113,7 +130,7 @@ export function BookChapterPage() {
               rehypeSlug,
               [rehypeAutolinkHeadings, { behavior: "wrap" }],
             ]}
-            components={{ pre: CopyablePre }}
+            components={{ pre: CopyablePre, a: BookLink }}
           >
             {markdown}
           </ReactMarkdown>
