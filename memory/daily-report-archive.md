@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-13
+1. blixvip/MotionClone — 🆕 把参考视频还原成可编辑动效工程，对比后导出 MP4（109★ 35.2/day）
+2. xiaomoBoy/pi-bluebook — 🆕 从安装到子智能体，手把手学透 Pi 编码智能体的中文蓝皮书（119★ 25.5/day）
+3. panda-sandeep/dearagent — 🆕 给智能体配专属收件邮箱，自托管在 Cloudflare Workers 并带 MCP（21★ 12.1/day）
+4. Skyltliu/LocoAgent — 🆕 从零手写轻量编码智能体，工具调用、会话持久与多模型齐备（47★ 4.5/day）
+5. Neko3000/deepseek-whalechan — 锁定 DeepSeek 鲸娘角色规范与素材库，每次生成形象不走样（96★ 4.4/day）
+6. franksong2702/dsh-codex-connect — 让 DeepSeek Harness 用 ChatGPT 登录调用 Codex 模型与生图（104★ 3.4/day）
+7. dslsdzc/rev-skills — 打包 122 个逆向工程技能，覆盖恶意软件分析、固件与 CTF（54★ 2.0/day）
+8. Siteation/magento2-debugbar — 给 Magento 2 加调试栏，请求剖析经 MCP 直接交给智能体（26★ 1.0/day）
+9. subhraneel2005/fuck-my-resume — 一键用 AI 改写简历，再陪你模拟面试并上排行榜（21★ 0.7/day）
+10. Zuehlke/labview-mcp — 把 LabVIEW 接进 AI 智能体，让模型直接读写测控程序（26★ 0.7/day）
+🎯 今日趋势：48h 候选池 **100 条**，剔重 13 条后清洁候选 87 条，45 天建仓窗内仅 **14 条**，窗内中位数 **3.9★/天**，只有昨日 7.3 的一半，**头部明显降温**：榜首 MotionClone **35.2★/天**，是昨日榜首 215.9 的六分之一，破十的只有前三席，十席星数合计 **623★**（昨日 1,856★）。结构上两条线最清楚：一是 **DeepSeek Harness 生态占 2 席**（dsh-codex-connect 给 DSH 接 ChatGPT 账号与生图、deepseek-whalechan 给 DeepSeek 鲸娘做角色一致性技能），另有一条同生态插件因刷星嫌疑被剔，继 09-11 movo、09-12 oh-story-dsh 之后，DSH 插件已连续三天上榜；二是 **MCP 往垂直行业工具里钻，本期 3 席**：Magento 2 电商调试栏、LabVIEW 测控、智能体专属邮箱，**MCP 的接入对象正从通用开发工具转向具体行业软件**。另有 2 席是"学怎么造智能体"（pi-bluebook 中文教程、LocoAgent 从零手写），入门教学类需求依旧稳定。
+> 注：去重范围＝repo 内 archive 全部 80 个日期段、810 条推荐记录，并入记忆区 daily-report-archive（emoji 编号格式）与 fresh-skills-archive，机械提取小写去重后**比对基数 1,538 个仓库名**；今日 100 条候选中命中 13 条历史推荐已剔除（reelbench-skills、3dviz-pro-max、gongwen-gbt9704-skill、anything2explainer、html-visualizer、subpool、continuous-record-llm-trading-agents、beamer2pptx、tonghuasun-agent、oil-skill-creator、sealeap-amazon-skills、oh-story-dsh、nami），十席零重复。查询口径：以 72h、stars ≥20、`created_at DESC LIMIT 300` 拉超集（沿用 09-08 起的修正口径），但 45 天建仓窗内的 14 条清洁候选 first_seen **全部落在 34h 以内**，48h 口径本身已够 10 条，未实际放宽；velocity = stars ÷ max(距 created_at 天数, 1)；建仓窗外高星老仓（corsair 333 天、zeron 54.6 天、reactive-resume 等回填项）按惯例不参评。**排除 4 项**：①**antibrow/dsh-antibrow（124★ 4.6/day，本可居第 3）排除**——实时 170★ 对 **0 fork 却有 167 个 watcher**，watcher 数几乎等于星数，属典型"点星＋点关注"农场形态；账号 2026-03 建、仅 1 粉，名下 antibrow 398★、anti-detect-browser-skills 308★ 同为反检测指纹浏览器单主题集群，且功能本身是指纹伪装／规避检测，双重理由判掉；②**OneCuriousLearner/anyplane（98★ 2.8/day）维持排除**——09-12 已按零外部使用证据保守排除，今日实时 99★ 仍 **0 fork / 1 watcher / 0 issue**，星数 24 小时仅 +3，理由不变；③**wynx1123/ai-welfare-hub（38★ 3.2/day，本可居第 7）排除**——内容是 Claude/Codex 免费额度"公益站"与 API 中转站导航加自动签到，非 Agent 技能本身，且中转转售官方额度属灰色地带；账号 0 粉，名下 edgetunnel、v2rase 等代理类仓，不宜推荐；④**vpntuijian-jichangtuijian/vpntuijian-jichangtuijian.github.io（21★ 1.4/day）维持排除**——VPN／机场推荐 SEO 堆砌站，仓名与账号名同为关键词串。入选项刷星复核：第 1 席 blixvip 为 2025-12 建号 / 5 粉，名下余仓 0-1★，属**单仓爆星（轻红旗）**，但实时 121★ 对 6 fork、配在线工作室与完整 Windows 本地运行文档、README 主动标注"还原为近似"，产品形态具体，保留并标注；第 2 席 xiaomoBoy 为 **2018 建号**，claude-writing-skills 32★ 构成同域履历，实时 155★ 对 9 fork＋1 issue；第 3 席 panda-sandeep 为 **2014 建号 / 275 粉**，epigram 405★，履历扎实；第 4 席 Skyltliu 为 2021 建号 / 仅 1 粉，47★ 对 **0 fork（轻红旗）**，但名下 LiDAR、All_About_DP、CS415MPs 等是连贯的学生学习轨迹，星数无异常跳变，保留并标注；第 5 席 Neko3000 为 **2015 建号 / 53 仓**，Monotone 202★、Iris.iOS 67★，老牌 iOS 开发者，98★ 对 8 fork；第 6 席 franksong2702 为 2023 建号，103★ 对 **30 fork（29%）＋10 issue**，本期最强外部使用信号；第 7 席 dslsdzc 为 2023 建号 / 15 粉 / 28 仓，54★ 对 8 fork，内容为逆向与安全分析教学技能，按安全研究／CTF 用途收录；第 8 席 Siteation 为 **2018 年建的组织 / 77 仓**，magento2-pagespeed 26★ 等 Magento 插件线完整，README 注明 202 个单测；第 9 席 subhraneel2005 为 2023 建号 / 54 粉 / 97 仓，21★ 对 4 fork；第 10 席 Zuehlke 为 **2014 年建的组织 / 81 粉**，ConfZ 262★、poinz 159★，26★ 对 **12 fork（46%）**，同组织另有 teststand-mcp 24★，本期 fork 率最高。🆕 判定＝created_at 距今 14 天内，本期 **4 席**命中（MotionClone 09-10、pi-bluebook 09-08、dearagent 09-11、LocoAgent 09-02）；deepseek-whalechan（21.7 天）、magento2-debugbar（25.6 天）、rev-skills（26.5 天）、fuck-my-resume（28.4 天）、dsh-codex-connect（30.2 天）、labview-mcp（39.8 天）超窗不标。十席 security_grade 均为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数部分已高于此（MotionClone 121★、pi-bluebook 155★），本表按"只用查询结果"红线保留快照值；第 9、10 席 velocity 同显 0.7，按未取整值（0.739 > 0.652）排序。
+
+---
+
 ## 2026-09-12
 1. Vincentwei1021/anything2explainer — 🆕 输入一个主题，产出带旁白字幕的讲解动画，每帧用代码画（734★ 215.9/day）
 2. eternityspring/reelbench-skills — 🆕 拆解 AI 视频镜头与工作流，把学习笔记做成可调用技能（143★ 143.0/day）
