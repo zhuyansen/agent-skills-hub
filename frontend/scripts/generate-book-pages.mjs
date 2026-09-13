@@ -188,6 +188,10 @@ function customizeHtml(baseHtml, { title, description, canonical, ogImage, noscr
     baseHtml = baseHtml.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
   }
   let html = baseHtml
+    // Book content is Chinese-only; index.html's <html lang="en"> mislabels
+    // every chapter for crawlers and screen readers. (The SPA re-syncs lang to
+    // the reader's UI language on hydrate; this corrects the crawler-facing shell.)
+    .replace(/<html lang="[^"]*">/, '<html lang="zh-CN">')
     .replace(/<title>[^<]+<\/title>/, `<title>${esc(title)}</title>`)
     .replace(
       /<meta name="description" content="[^"]+"/,
