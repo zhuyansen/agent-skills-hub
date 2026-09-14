@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-14
+1. oguzhankayan/turkish-native — 🆕 让 AI 写出地道土耳其语，清掉机翻腔与生硬的本地化文案（57★ 26.1/day）
+2. danium/lateral-thinking — 给编码智能体装上德博诺 8 种横向思维技法，并按问题自动路由（307★ 4.6/day）
+3. 88lin/computer-repair-skill — 把 AI 智能体变成电脑维修助手，64 个 Playbook 先取证再动手（216★ 4.3/day）
+4. chosuicide/beatscope — 在本地分析音乐节拍，为创作者和智能体生成可复现的卡点视频（69★ 3.7/day）
+5. JayPokale/Chisle — 从行文、代码与工具输出三路压缩，削减编码智能体的 token 账单（253★ 3.3/day）
+6. mshykhov/telegram-mcp-readonly — 🆕 以只读方式把 Telegram 接进 MCP，搜聊天、读消息、下附件（20★ 2.5/day）
+7. Berserk-hub150/skillhawk — 安装前扫描 Agent Skills 与 MCP 配置，零依赖揪出危险技能（57★ 2.0/day）
+8. aka-kika/the-librarian — 按需调取已装技能，不让整个技能库常驻上下文吃 token（41★ 0.7/day）
+9. LobsterQBA/loop-agent — 用一个 Python 小应用演示智能体调用工具、存结果与重启后回忆（26★ 0.7/day）
+10. omartelo/lich — 在终端里统一 AI 编码流程，真实 PTY、git worktree、diff 与 PR 一站搞定（42★ 0.6/day）
+🎯 今日趋势：72h 候选池 **95 条**，剔重 22 条后清洁候选 73 条，45 天建仓窗内仅 **8 条**（窗内中位数 **3.1★/天**），再剔 3 条刷星／灰色项只剩 6 条，**本档案首次放宽到 90 天建仓窗**才凑满十席，新仓供给明显见底：榜首 turkish-native **26.1★/天**，第二席起全部跌破 5，十席星数合计 **1,088★**。主线是**"给智能体上约束"占 6 席**：Chisle 与 the-librarian 两席专砍 token 开销（一个压行文与工具输出，一个让技能库不常驻上下文），skillhawk 在安装前扫描危险技能，computer-repair-skill 把"先取证、再计划、确认后修改"写进 64 个 Playbook，telegram-mcp-readonly 干脆只给只读权限，lich 把 PTY、worktree 与 PR 收进同一终端；**社区关注点正从"让智能体多做事"转向"让它省着做、安全地做"**。另有 turkish-native 与 lateral-thinking 两席把写作语感、思维方法做成技能，**软技能类技能开始跑出百星以上的量**。
+> 注：去重范围＝repo 内 archive 全部 81 个日期段，并入记忆区 daily-report-archive 与 fresh-skills-archive，机械提取小写去重后**比对基数 4,124 个 owner/repo 字符串**（含路径类噪声，只会多剔不会漏剔）；今日 95 条候选中命中 22 条历史推荐已剔除（含 09-13 全部十席与 reelbench-skills、oh-story-dsh、beamer2pptx、nami、html-visualizer、birdview、tracecrate、vera，以及往期已判排除的 dsh-antibrow、anyplane、ai-welfare-hub、vpntuijian 站），十席零重复。查询口径：72h、stars ≥20、`ORDER BY stars DESC LIMIT 300` 拉超集（实得 95 条，未触顶）；48h 口径清洁候选中 45 天建仓窗内仅 6 条，不足 10 条，已按流程放宽至 72h；72h 窗内仍只有 8 条，**再将建仓窗从惯例 45 天放宽到 90 天**（窗内 17 条），第 2、3、5、8、10 席（50-76 天）即因此入围，均为 first_seen 在 72h 内的首次收录项，非回填老仓；90 天窗外的 vibe-coding-cn（295 天）、reactive-resume、Douyin_TikTok_Download_API、pipeshub-ai、Z3r0 等高星老仓按惯例不参评。velocity = stars ÷ max(距 created_at 天数, 1)。**排除 4 项**：①**ivyfan-toowell/IvyClaw（38★ 36.5/day，本可居第 1）排除**——账号 2026-08 建、仅 4 粉、名下 3 仓，同号的 Traveling 仓与 IvyClaw **同日（09-13）创建、无描述却一天内拿到 21★**，属"新号＋同日建仓＋双仓同步起星"的集群形态；项目本身（LangGraph 多智能体研发系统）内容完整，但按"宁可保守"排除，如后续出现外部使用证据可复议；②**jolo-build/jolo（30★ 7.9/day，本可居第 2）排除**——组织 09-09 建、0 粉，建仓次日即 30★ 后**完全停滞**（prev_stars=30），实时 **0 fork / 0 watcher**，名下仅一个 homebrew-tap 0★，与 09-12 判掉的 fantasy-football-manager 同为"新组织＋零 fork＋星数冻结"形态；③**mingzitaichangduozaishuhoumian/chat2claude（43★ 1.4/day）排除**——账号在建仓**前一天**注册、名下仅此 1 仓、0 watcher，功能是把 ChatGPT/Codex 账号会话转成 Claude Code 与 OpenAI 兼容接口可调用的 API，订阅会话转接口属服务条款灰色地带，双重理由判掉；④**nihannihu/watermark-remover-ai（26★ 0.5/day）排除**——批量去除视频与图片水印，易被用于规避版权标识，不宜推荐。入选项刷星复核（GitHub stargazers 接口本次返回 404，未能抽样点星人，改以账号履历＋fork/issue 比判定）：第 1 席 oguzhankayan 为 2023 建号 / 3 粉，名下余仓 0-1★，属**单仓爆星（轻红旗）**，但实时 70★ 对 4 fork＋1 issue、主题是小语种写作的具体刚需，保留并标注；第 2 席 danium 为 **2011 建号**，practicaltypography 29★ 构成历史，307★ 对 23 fork；第 3 席 88lin 为 2022 建号 / **171 粉 / 117 仓**，video_vip 4,890★、workbuddy-auto-signin 262★，星数从 161 涨到 216 呈自然增长，219★ 对 24 fork，security_grade=safe；第 4 席 chosuicide 为 2026-03 建号 / 2 粉（轻红旗），但 69★ 对 **9 fork（13%）＋3 watcher**，名下 travelmind、plan-validator 构成连贯的个人开发轨迹，保留并标注；第 5 席 JayPokale 为 2022 建号 / 35 仓，余仓 0★，属**单仓爆星（轻红旗）**，但 262★ 对 19 fork、建仓 76 天星数平缓累积，保留并标注；第 6 席 mshykhov 为 2021 建号 / 31 粉 / 31 仓，20★ 对 1 fork＋2 issue，体量小但干净；第 7 席 Berserk-hub150 为 2021 建号 / **3,610 粉**，moodle-ai-skill-navigator 218★，57★ 对 **19 fork（33%）**，需说明其最近 100 条 issue/PR 中 38 条为作者本人、44 条为 github-actions 机器人所开，其余 18 条来自 15 位外部用户，fork 数真实可信；第 8 席 aka-kika 为 2025 建号 / 17 粉，hig-mcp 34★、kika-obsidian-mcp 15★ 构成同域 MCP 履历；第 9 席 LobsterQBA 为 2022 建号 / 16 仓，26★ 对 **6 fork（23%）**；第 10 席 omartelo 为 2023 建号 / **153 粉**，lazyovpn、laeca 等构成连贯作品线，42★ 对 5 fork＋4 issue。第 8、9 席 velocity 同显 0.7，按未取整值（0.703 > 0.697）排序。🆕 判定＝created_at 距今 14 天内，本期 **2 席**命中（turkish-native 09-11、telegram-mcp-readonly 09-06）；beatscope（18.9 天）、skillhawk（28.7 天）、loop-agent（37.3 天）及 90 天放宽窗内的 5 席均超窗不标。十席 security_grade 中第 3 席为 safe，其余 9 席为 unknown（尚未进入扫描队列），非风险信号。数据口径提醒：**表中 stars 为 first_seen 时刻的数据库快照**，GitHub 实时星数部分已高于此（turkish-native 70★、Chisle 262★），本表按"只用查询结果"红线保留快照值。
+
+---
+
 ## 2026-09-13
 1. blixvip/MotionClone — 🆕 把参考视频还原成可编辑动效工程，对比后导出 MP4（109★ 35.2/day）
 2. xiaomoBoy/pi-bluebook — 🆕 从安装到子智能体，手把手学透 Pi 编码智能体的中文蓝皮书（119★ 25.5/day）
