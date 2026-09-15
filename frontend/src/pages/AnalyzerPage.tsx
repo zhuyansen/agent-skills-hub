@@ -225,7 +225,11 @@ export function AnalyzerPage() {
         const gh = await fetchGitHubRepo(fullName);
 
         // 3. Run browser-side security scan
-        const scan = scanReadme(gh.readme, gh.author, gh.stars, gh.license);
+        // Repo + homepage let the scanner tell a project's own installer from an untrusted one.
+        const scan = scanReadme(gh.readme, gh.author, gh.stars, gh.license, {
+          repoFullName: fullName,
+          homepage: gh.homepage,
+        });
 
         // If we had existing scan from DB and README was empty on GitHub, use DB data
         if (!gh.readme && existingGrade && existingGrade !== "unknown") {

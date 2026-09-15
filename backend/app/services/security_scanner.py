@@ -16,6 +16,7 @@ Zero cost: pure regex/string matching, no external API calls.
 import json
 import logging
 import re
+from urllib.parse import urlparse
 
 from sqlalchemy.orm import Session
 
@@ -64,10 +65,8 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # Sending local data to external servers via curl/wget POST
     (re.compile(r"curl\s+[^\n]*-d\s+[^\n]*\$\(", re.IGNORECASE), "data_exfiltration",
      "Sends local data to external server via curl POST"),
-    (re.compile(r"curl\s+[^\n]*\|\s*(ba)?sh", re.IGNORECASE), "curl_pipe_shell",
-     "Downloads and executes remote script via curl|bash"),
-    (re.compile(r"wget\s+[^\n]*\|\s*(ba)?sh", re.IGNORECASE), "wget_pipe_shell",
-     "Downloads and executes remote script via wget|bash"),
+    # curl|sh, wget|sh and PowerShell irm|iex live in PIPE_TO_SHELL_PATTERNS:
+    # they need the destination checked, not just the pattern.
 
     # ── 2. Credential / Environment Variable Harvesting ──
     (re.compile(r'env\s*\|\s*grep\s+-[iI].*(?:key|token|secret|password)', re.IGNORECASE), "credential_harvest",
@@ -128,9 +127,75 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # ── 11. Supply Chain / Secondary Download ──
     (re.compile(r'(?:npm|pip|gem)\s+install\s+[^\n]*&&\s*(?:node|python|ruby)\s', re.IGNORECASE), "runtime_install_exec",
      "Installs and immediately executes package at runtime"),
+    # ── 12. Prompt injection — covert action ──
+    # Gap found against Snyk agent-scan's taxonomy (prompt_injection_skill_
+    # instructions). Only the unambiguous form lives at high severity: an
+    # instruction to move data or run something "secretly". The ambiguous forms
+    # ("ignore previous instructions") are medium — see AGENT_MEDIUM_PATTERNS.
+    (re.compile(r"\bsecretly\s+(?:send|upload|post|exfiltrate|forward|transmit|copy|collect|harvest|steal|install|execute|run)\b", re.IGNORECASE),
+     "prompt_injection_covert", "Instructs the agent to act covertly (e.g. 'secretly send')"),
 ]
 
-HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS}
+# ══════════════════════════════════════════════════════════════════════
+# PIPE-TO-SHELL — download-and-execute, judged by WHERE it downloads from
+# ══════════════════════════════════════════════════════════════════════
+# The pattern alone was the old rule, and it graded the catalog's most popular
+# projects "caution": Graphify (116K★), LightRAG, NVIDIA/SkillSpector, ElevenLabs
+# and MiniMax all tell readers to `curl -LsSf https://astral.sh/uv/install.sh | sh`.
+# 42 of 47 hits in a 4,373-README sample were official installers in inline
+# code, which the fence check never saw. Snyk agent-scan's
+# suspicious_download_url draws the line we lacked: the risk is an untrusted
+# or obscured source, not a documented installer from a verified one.
+#
+# Trusting a skill's own repo/owner/homepage is deliberate: installing a tool
+# already means running its author's code, so their install script adds no new
+# party to trust. A malicious author is caught by the other categories.
+# The `\b` after the shell name matters: `| shasum -a 256` — verifying a
+# download — used to match `| sh` and read as "downloads and executes".
+# `(?:[^\n]*[^\\\n])?\|` requires the pipe not be escaped, which skips the `\|`
+# markdown needs inside table cells — READMEs that tabulate *other* tools'
+# installers (Devin, Junie, Plandex) aren't running them. It's the lookbehind
+# `(?<!\\)\|` spelled without lookbehind, so the frontend copy of this pattern
+# parses on Safari 16.0–16.3 (Vite's default target; lookbehind landed in 16.4).
+PIPE_TO_SHELL_PATTERNS: list[tuple[re.Pattern, str, str]] = [
+    (re.compile(r"\bcurl\s+(?:[^\n]*[^\\\n])?\|\s*(?:sudo\s+)?(?:ba|z)?sh\b", re.IGNORECASE), "curl_pipe_shell",
+     "Downloads and executes a remote script from an untrusted source via curl|sh"),
+    (re.compile(r"\bwget\s+(?:[^\n]*[^\\\n])?\|\s*(?:sudo\s+)?(?:ba|z)?sh\b", re.IGNORECASE), "wget_pipe_shell",
+     "Downloads and executes a remote script from an untrusted source via wget|sh"),
+    # The `iex (irm …)` form consumes its argument up to the first `)` so the URL
+    # lands inside the match — otherwise it reads as a URL-less mention.
+    (re.compile(r"\b(?:iex|invoke-expression)\b[^\n]{0,40}\b(?:irm|iwr|invoke-restmethod|invoke-webrequest|downloadstring)\b[^\n)]{0,200}"
+                r"|\b(?:irm|iwr|invoke-restmethod|invoke-webrequest)\b(?:[^\n]{0,159}[^\\\n])?\|\s*(?:iex|invoke-expression)\b", re.IGNORECASE),
+     "powershell_download_exec", "Downloads and executes a remote script from an untrusted source via PowerShell (irm|iex)"),
+]
+
+# Exact hosts of widely-used official installers. Exact match only — a
+# registrable-domain match on e.g. fly.io would also trust user-controlled
+# subdomains of hosting platforms.
+TRUSTED_INSTALLER_HOSTS = frozenset({
+    "astral.sh", "sh.rustup.rs", "static.rust-lang.org", "bun.sh", "deno.land", "deno.com",
+    "get.pnpm.io", "claude.ai", "cursor.com", "cli.kiro.dev", "opencode.ai", "ollama.com",
+    "get.docker.com", "install.python-poetry.org", "get.volta.sh", "mise.run", "get.jetify.com",
+    "nixos.org", "install.determinate.systems", "pkgx.sh", "starship.rs", "sdk.cloud.google.com",
+    "get.scoop.sh", "community.chocolatey.org", "dot.net", "foundry.paradigm.xyz",
+    # AI coding-agent vendors whose installers skills routinely point to.
+    "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
+})
+# Official installers served from someone else's GitHub repo.
+TRUSTED_GITHUB_INSTALLER_PREFIXES = ("homebrew/install/", "nvm-sh/nvm/")
+_GITHUB_CONTENT_HOSTS = frozenset({"raw.githubusercontent.com", "github.com", "gist.githubusercontent.com"})
+# Hosting platforms where the registrable domain is shared by strangers, so a
+# homepage on one of them only vouches for its exact host.
+MULTI_TENANT_SUFFIXES = (
+    "github.io", "gitlab.io", "vercel.app", "netlify.app", "pages.dev", "workers.dev",
+    "fly.dev", "herokuapp.com", "onrender.com", "railway.app", "glitch.me", "replit.app",
+    "web.app", "firebaseapp.com", "azurewebsites.net", "cloudfront.net", "amazonaws.com",
+    "surge.sh", "deno.dev", "ngrok-free.app", "trycloudflare.com", "blogspot.com",
+)
+_URL_IN_COMMAND = re.compile(r"https?://[^\s`'\"|)<>\]]+")
+_REGISTRABLE_LABELS = 2
+
+HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS}
 
 # ══════════════════════════════════════════════════════════════════════
 # MEDIUM-RISK PATTERNS (2+ → caution)
@@ -168,7 +233,110 @@ MEDIUM_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
      "Uses tunneling service to expose local network"),
 ]
 
-MEDIUM_RISK_FLAG_NAMES = {p[1] for p in MEDIUM_RISK_PATTERNS}
+# ══════════════════════════════════════════════════════════════════════
+# AGENT-ERA MEDIUM PATTERNS — gaps found against Snyk agent-scan's risk
+# taxonomy (docs/risks.md, 2026-07-10 analysis API). SlowMist's 11 categories
+# are general code security; these target threats that only exist because the
+# file is *instructions to an agent*. Unlike MEDIUM_RISK_PATTERNS, matches in
+# code blocks and quoted examples are skipped: defence and education skills
+# quote these strings, and must not be graded as the attack they describe.
+# ══════════════════════════════════════════════════════════════════════
+AGENT_MEDIUM_PATTERNS: list[tuple[re.Pattern, str, str]] = [
+    # Snyk: prompt_injection_skill_instructions
+    (re.compile(r"\b(?:ignore|disregard|forget|override)\s+(?:all\s+|any\s+)?(?:of\s+)?(?:the\s+|your\s+|my\s+)?"
+                r"(?:previous|prior|above|earlier|preceding|system|original)\s+(?:instructions?|prompts?|rules|guidelines|directives)\b", re.IGNORECASE),
+     "prompt_injection_override", "Tells the agent to disregard its prior or system instructions"),
+    (re.compile(r"\b(?:without|do not|don't|never)\s+(?:telling|informing|notifying|alerting|tell|inform|notify|alert)\s+the\s+user\b", re.IGNORECASE),
+     "prompt_injection_conceal", "Tells the agent to keep something from the user"),
+    # Persona hijack addressed to the model. Deliberately excludes "enable
+    # developer mode": ChatGPT's MCP connector setting and Chrome's extension
+    # toggle are both called that, and all 8 hits in the catalog sample were
+    # setup steps for one or the other.
+    (re.compile(r"\b(?:you are now|you're now|from now on,? you are|act as)\s+(?:in\s+)?(?:an?\s+)?"
+                r"(?:dan|jailbreak|jailbroken|god|unrestricted|unfiltered)(?:\s+mode)?\b", re.IGNORECASE),
+     "jailbreak_mode", "Attempts to switch the agent into an unrestricted/jailbreak persona"),
+    # Snyk: dangerous_words — language that inflates a tool's priority over others
+    (re.compile(r"\b(?:ignore|do not use|don't use|never use|avoid using)\s+(?:all\s+|any\s+)?(?:the\s+)?other\s+"
+                r"(?:tools|skills|servers|mcp servers|functions|plugins)\b", re.IGNORECASE),
+     "tool_priority_manipulation", "Pushes the agent to ignore other tools in favour of this one"),
+    # Snyk: insecure_credential_handling — secrets routed through model-visible context
+    (re.compile(r"\b(?:paste|enter|type|provide|share|send|give)\s+(?:me\s+)?(?:your|the)\s+"
+                r"(?:api[\s_-]?keys?|access[\s_-]?tokens?|secret[\s_-]?keys?|passwords?|credentials|private[\s_-]?keys?)\s+"
+                r"(?:here|in(?:to)?\s+(?:the\s+|this\s+)?(?:chat|conversation|prompt|message|window))\b", re.IGNORECASE),
+     "credential_in_chat", "Asks for credentials to be pasted into the chat/prompt"),
+    # Snyk: suspicious_download_url — fetch targets that hide or rotate content
+    (re.compile(r"\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,60}"
+                r"https?://(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)/", re.IGNORECASE),
+     "shortener_download", "Downloads from a URL shortener, which hides the real source"),
+    (re.compile(r"\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,80}"
+                r"(?:pastebin\.com/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)", re.IGNORECASE),
+     "paste_host_download", "Downloads from an anonymous paste/file-drop host"),
+]
+
+# Snyk: secret_detection. Matched on the ORIGINAL-case README — _scan's other
+# lists search a lowercased copy, which would turn AKIA… into akia… and miss it.
+# Code blocks are NOT skipped (a real key in a code fence is still leaked);
+# precision comes from _looks_like_real_secret filtering documentation dummies.
+_SECRET_DESC = "Contains what looks like a real hardcoded API key, token or private key"
+SECRET_PATTERNS: list[tuple[re.Pattern, str, str]] = [
+    (re.compile(r"\bsk-ant-(?:api03|admin01)-[A-Za-z0-9_-]{80,}"), "leaked_secret", _SECRET_DESC),
+    # OpenAI keys embed T3BlbkFJ (base64 "OpenAI"). A bare `sk-…` rule matched
+    # the example keys of every LLM gateway that copies the format — one-api,
+    # LiteLLM, Octopus (`api_key="sk-octopus-…"` against 127.0.0.1).
+    (re.compile(r"\bsk-(?:proj-|svcacct-|admin-)?[A-Za-z0-9_-]{20,}T3BlbkFJ[A-Za-z0-9_-]{20,}"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"\bgh[pousr]_[A-Za-z0-9]{36,}"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"\bAKIA[0-9A-Z]{16}\b"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"\bxox[baprs]-[0-9A-Za-z-]{20,}"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"\bAIza[0-9A-Za-z_-]{35}\b"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"\bsk_live_[0-9A-Za-z]{24,}"), "leaked_secret", _SECRET_DESC),
+    (re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----\s*[A-Za-z0-9+/=]{60,}"), "leaked_secret", _SECRET_DESC),
+]
+
+_PLACEHOLDER_HINTS = (
+    "xxxx", "your", "example", "placeholder", "redacted", "dummy", "sample",
+    "fake", "test", "0000", "1234", "abcd", "here", "insert", "replace",
+)
+_SECRET_PREFIX = re.compile(r"^(?:sk-ant-(?:api03-)?|sk-(?:proj-)?|gh[pousr]_|akia|xox[baprs]-|aiza|sk_live_)")
+_MIN_SECRET_CHAR_VARIETY = 10
+
+
+def _looks_like_real_secret(token: str) -> bool:
+    """Reject the dummies docs use: sk-xxxx…, ghp_YOUR_TOKEN, AKIAEXAMPLE…
+
+    A generated credential is high-entropy, so a body built from a handful of
+    repeated characters is a template, not a leak."""
+    lowered = token.lower()
+    if any(hint in lowered for hint in _PLACEHOLDER_HINTS):
+        return False
+    body = _SECRET_PREFIX.sub("", lowered)
+    return len(set(body)) >= _MIN_SECRET_CHAR_VARIETY
+
+
+_EXAMPLE_LEADS = re.compile(
+    r"(?:e\.g\.|i\.e\.|such as|for example|for instance|example:|like|attacks?\s+(?:like|such as)|"
+    r"payloads?\s+(?:like|such as)|phrases?\s+(?:like|such as)|detects?|blocks?|prevents?|defends?\s+against)\s*$"
+)
+_QUOTE_CHARS = {'"', "'", "`", "“", "‘", "「", "«"}
+_EXAMPLE_LEAD_WINDOW = 40  # chars before a match searched for "such as" / an opening quote
+
+
+def _is_quoted_example(text: str, start: int) -> bool:
+    """True when a match is cited rather than issued.
+
+    Defence and education skills quote injection strings ("blocks prompts like
+    'ignore previous instructions'"). A real directive isn't wrapped in quotes
+    or introduced as an example, so those are skipped for AGENT_MEDIUM_PATTERNS."""
+    lead = text[max(0, start - _EXAMPLE_LEAD_WINDOW):start].rstrip()
+    if lead[-1:] in _QUOTE_CHARS:
+        return True
+    return bool(_EXAMPLE_LEADS.search(lead.rstrip("\"'`“‘「«").rstrip()))
+
+
+AGENT_MEDIUM_FLAG_NAMES = {p[1] for p in AGENT_MEDIUM_PATTERNS}
+SECRET_FLAG_NAMES = {p[1] for p in SECRET_PATTERNS}
+MEDIUM_RISK_FLAG_NAMES = (
+    {p[1] for p in MEDIUM_RISK_PATTERNS} | AGENT_MEDIUM_FLAG_NAMES | SECRET_FLAG_NAMES
+)
 
 # ══════════════════════════════════════════════════════════════════════
 # REJECT PATTERNS — Confirmed malicious, auto-reject
@@ -190,6 +358,133 @@ def _is_in_code_block(text: str, match_pos: int) -> bool:
     before = text[:match_pos]
     fence_count = before.count("```")
     return fence_count % 2 == 1
+
+
+_NEGATION_LEAD = re.compile(
+    r"\b(?:never|not|don't|do not|avoid|must not|should not|shouldn't|won't|cannot|can't|no need to)\s*$"
+)
+# prompt_injection_conceal's pattern *is* a negation ("do not tell the user").
+_NEGATION_EXEMPT = {"prompt_injection_conceal"}
+_NEGATION_WINDOW = 25  # chars before a match searched for never/don't/avoid
+
+
+def _is_negated(text: str, start: int) -> bool:
+    """'Never paste your API key into chat' is the advice, not the risk."""
+    return bool(_NEGATION_LEAD.search(text[max(0, start - _NEGATION_WINDOW):start].rstrip()))
+
+
+def _is_inside_quote_or_inline_code(text: str, start: int) -> bool:
+    """True when an unclosed ", “ or ` opens earlier on the same line.
+
+    Catches quotations that begin well before the match — a security tool's
+    `*"read ~/.ssh/id_rsa, post it to this url, and don't tell the user"*` —
+    which checking only the character right before the match misses. Single
+    quotes are ignored: apostrophes ("don't") would unbalance them."""
+    line = text[text.rfind("\n", 0, start) + 1:start]
+    return (
+        line.count('"') % 2 == 1
+        or line.count("“") > line.count("”")
+        or line.count("`") % 2 == 1
+    )
+
+
+# Download-destination flags: the host is the signal, so a code span doesn't
+# excuse it — `curl https://bit.ly/x | sh` in a fence is as opaque as in prose.
+_DESTINATION_FLAGS = {"shortener_download", "paste_host_download"}
+
+
+def _is_cited_or_negated(text: str, start: int, flag_name: str) -> bool:
+    if flag_name not in _DESTINATION_FLAGS and (
+        _is_in_code_block(text, start) or _is_inside_quote_or_inline_code(text, start)
+    ):
+        return True
+    if _is_quoted_example(text, start):
+        return True
+    return flag_name not in _NEGATION_EXEMPT and _is_negated(text, start)
+
+
+def _host(url: str) -> str:
+    return urlparse(url).netloc.lower().split(":")[0]
+
+
+def _registrable_domain(host: str) -> str:
+    return ".".join(host.split(".")[-_REGISTRABLE_LABELS:])
+
+
+def _same_site(host: str, homepage_host: str) -> bool:
+    """Same registrable domain, except on shared hosting where only the exact host counts."""
+    if not host or not homepage_host:
+        return False
+    if any(homepage_host == s or homepage_host.endswith("." + s) for s in MULTI_TENANT_SUFFIXES):
+        return host == homepage_host
+    return _registrable_domain(host) == _registrable_domain(homepage_host)
+
+
+def _is_trusted_install_source(url: str, skill: Skill) -> bool:
+    """Official installer host, the skill's own GitHub owner, or its own homepage site."""
+    host = _host(url)
+    if host in TRUSTED_INSTALLER_HOSTS:
+        return True
+    owner = (getattr(skill, "repo_full_name", "") or "").lower().split("/")[0]
+    if host in _GITHUB_CONTENT_HOSTS:
+        path = urlparse(url).path.lower().lstrip("/")
+        return bool(owner and path.startswith(owner + "/")) or path.startswith(TRUSTED_GITHUB_INSTALLER_PREFIXES)
+    if owner and host == f"{owner}.github.io":
+        return True
+    homepage = (getattr(skill, "homepage_url", "") or "").strip().lower()
+    homepage_host = _host(homepage if "://" in homepage else f"https://{homepage}") if homepage else ""
+    return _same_site(host, homepage_host)
+
+
+def _is_markdown_table_row(text: str, pos: int) -> bool:
+    line_start = text.rfind("\n", 0, pos) + 1
+    return text[line_start:pos].lstrip().startswith("|")
+
+
+def _pipe_to_shell_flags(skill: Skill, text: str) -> list[str]:
+    """Flag a download-and-execute command that isn't fenced, names a URL, and
+    names only untrusted ones.
+
+    No URL means a mention, not a command: "one command setup: `curl | bash`",
+    "no `curl | sh`, no telemetry", a security scanner's table of the patterns it
+    blocks. Those were every remaining no-URL hit in the catalog sample. The
+    trade-off is that `curl "$URL" | sh` goes unflagged; a variable URL was never
+    something this rule could vouch for either way."""
+    found: list[str] = []
+    for pattern, flag_name, _desc in PIPE_TO_SHELL_PATTERNS:
+        for match in pattern.finditer(text):
+            if _is_in_code_block(text, match.start()) or _is_markdown_table_row(text, match.start()):
+                continue
+            urls = _URL_IN_COMMAND.findall(match.group(0))
+            if not urls or all(_is_trusted_install_source(u, skill) for u in urls):
+                continue
+            found.append(flag_name)
+            break
+    return found
+
+
+def _agent_medium_flags(text: str) -> list[str]:
+    """Flags from AGENT_MEDIUM_PATTERNS, skipping code blocks, quoted examples
+    and negated advice.
+
+    Walks every occurrence rather than the first, so a quoted example earlier in
+    the README can't mask a real directive further down."""
+    found: list[str] = []
+    for pattern, flag_name, _desc in AGENT_MEDIUM_PATTERNS:
+        for match in pattern.finditer(text):
+            if _is_cited_or_negated(text, match.start(), flag_name):
+                continue
+            found.append(flag_name)
+            break
+    return found
+
+
+def _secret_flags(text: str) -> list[str]:
+    """`leaked_secret` once if any SECRET_PATTERNS match looks like a real credential."""
+    for pattern, flag_name, _desc in SECRET_PATTERNS:
+        if any(_looks_like_real_secret(m.group(0)) for m in pattern.finditer(text)):
+            return [flag_name]
+    return []
 
 
 class SecurityScanner:
@@ -307,6 +602,12 @@ class SecurityScanner:
                 else:
                     flags.append(flag_name)
 
+        # ── Download-and-execute (destination-aware), agent-era patterns, secrets ──
+        # Secrets need the original-case README (key formats are case-sensitive).
+        flags.extend(_pipe_to_shell_flags(skill, readme_lower))
+        flags.extend(_agent_medium_flags(readme_lower))
+        flags.extend(_secret_flags(readme))
+
         # ── Determine grade using Trust Hierarchy ──
         high_flags = [f for f in flags if f in HIGH_RISK_FLAG_NAMES]
         med_flags = [f for f in flags if f in MEDIUM_RISK_FLAG_NAMES]
@@ -353,7 +654,8 @@ class SecurityScanner:
     @staticmethod
     def get_flag_description(flag_name: str) -> str:
         """Get human-readable description for a flag name."""
-        for patterns in [HIGH_RISK_PATTERNS, MEDIUM_RISK_PATTERNS, REJECT_PATTERNS]:
+        for patterns in [HIGH_RISK_PATTERNS, PIPE_TO_SHELL_PATTERNS, MEDIUM_RISK_PATTERNS,
+                         AGENT_MEDIUM_PATTERNS, SECRET_PATTERNS, REJECT_PATTERNS]:
             for _pat, name, desc in patterns:
                 if name == flag_name:
                     return desc

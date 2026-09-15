@@ -1,7 +1,12 @@
 /**
  * Browser-side Security Scanner — mirrors backend security_scanner.py
- * Inspired by SlowMist Agent Security Framework (11 red-flag categories).
- * Pure regex, zero external dependencies.
+ * Inspired by SlowMist Agent Security Framework (11 red-flag categories), plus
+ * agent-era rules and destination-aware pipe-to-shell from the Snyk agent-scan
+ * taxonomy. Pure regex, zero external dependencies.
+ *
+ * The backend scanner is the source of truth — it grades the catalog on every
+ * sync. Keep the pattern lists, trust lists and grading here in step with it,
+ * or /analyzer/ will contradict the grade printed on the same repo's page.
  */
 
 export interface FlagDetail {
@@ -61,8 +66,7 @@ const REJECT_PATTERNS: PatternDef[] = [
 const HIGH_PATTERNS: PatternDef[] = [
   // 1. Data Exfiltration
   [/curl\s+[^\n]*-d\s+[^\n]*\$\(/i, "data_exfiltration", "high", "Sends local data to external server via curl POST"],
-  [/curl\s+[^\n]*\|\s*(ba)?sh/i, "curl_pipe_shell", "high", "Downloads and executes remote script via curl|bash"],
-  [/wget\s+[^\n]*\|\s*(ba)?sh/i, "wget_pipe_shell", "high", "Downloads and executes remote script via wget|bash"],
+  // curl|sh, wget|sh and irm|iex live in PIPE_PATTERNS — they need the destination checked.
   // 2. Credential Harvest
   [/env\s*\|\s*grep\s+-[iI].*(?:key|token|secret|password)/i, "credential_harvest", "high", "Harvests credentials from environment variables"],
   [/cat\s+[^\n]*\.env\b/i, "env_file_read", "high", "Reads .env files which may contain secrets"],
@@ -93,7 +97,74 @@ const HIGH_PATTERNS: PatternDef[] = [
   [/\\x[0-9a-f]{2}\\x[0-9a-f]{2}\\x[0-9a-f]{2}/i, "hex_encoded_payload", "high", "Contains hex-encoded payload"],
   // 11. Supply Chain
   [/(?:npm|pip|gem)\s+install\s+[^\n]*&&\s*(?:node|python|ruby)\s/i, "runtime_install_exec", "high", "Installs and immediately executes package at runtime"],
+  // 12. Prompt injection — covert action (Snyk: prompt_injection_skill_instructions)
+  [/\bsecretly\s+(?:send|upload|post|exfiltrate|forward|transmit|copy|collect|harvest|steal|install|execute|run)\b/i, "prompt_injection_covert", "high", "Instructs the agent to act covertly (e.g. 'secretly send')"],
 ];
+
+// Download-and-execute, judged by WHERE it downloads from (Snyk:
+// suspicious_download_url). See the backend scanner for the catalog evidence.
+const PIPE_PATTERNS: PatternDef[] = [
+  [/\bcurl\s+(?:[^\n]*[^\\\n])?\|\s*(?:sudo\s+)?(?:ba|z)?sh\b/gi, "curl_pipe_shell", "high", "Downloads and executes a remote script from an untrusted source via curl|sh"],
+  [/\bwget\s+(?:[^\n]*[^\\\n])?\|\s*(?:sudo\s+)?(?:ba|z)?sh\b/gi, "wget_pipe_shell", "high", "Downloads and executes a remote script from an untrusted source via wget|sh"],
+  [/\b(?:iex|invoke-expression)\b[^\n]{0,40}\b(?:irm|iwr|invoke-restmethod|invoke-webrequest|downloadstring)\b[^\n)]{0,200}|\b(?:irm|iwr|invoke-restmethod|invoke-webrequest)\b(?:[^\n]{0,159}[^\\\n])?\|\s*(?:iex|invoke-expression)\b/gi, "powershell_download_exec", "high", "Downloads and executes a remote script from an untrusted source via PowerShell (irm|iex)"],
+];
+
+const TRUSTED_INSTALLER_HOSTS = new Set([
+  "astral.sh", "sh.rustup.rs", "static.rust-lang.org", "bun.sh", "deno.land", "deno.com",
+  "get.pnpm.io", "claude.ai", "cursor.com", "cli.kiro.dev", "opencode.ai", "ollama.com",
+  "get.docker.com", "install.python-poetry.org", "get.volta.sh", "mise.run", "get.jetify.com",
+  "nixos.org", "install.determinate.systems", "pkgx.sh", "starship.rs", "sdk.cloud.google.com",
+  "get.scoop.sh", "community.chocolatey.org", "dot.net", "foundry.paradigm.xyz",
+  "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
+]);
+const TRUSTED_GITHUB_INSTALLER_PREFIXES = ["homebrew/install/", "nvm-sh/nvm/"];
+const GITHUB_CONTENT_HOSTS = new Set(["raw.githubusercontent.com", "github.com", "gist.githubusercontent.com"]);
+const MULTI_TENANT_SUFFIXES = [
+  "github.io", "gitlab.io", "vercel.app", "netlify.app", "pages.dev", "workers.dev",
+  "fly.dev", "herokuapp.com", "onrender.com", "railway.app", "glitch.me", "replit.app",
+  "web.app", "firebaseapp.com", "azurewebsites.net", "cloudfront.net", "amazonaws.com",
+  "surge.sh", "deno.dev", "ngrok-free.app", "trycloudflare.com", "blogspot.com",
+];
+const URL_IN_COMMAND = /https?:\/\/[^\s`'"|)<>\]]+/g;
+const REGISTRABLE_LABELS = 2;
+
+// Agent-era medium patterns (Snyk taxonomy). Code spans, quoted examples and
+// negated advice are skipped for the text-directive rules.
+const AGENT_MED_PATTERNS: PatternDef[] = [
+  [/\b(?:ignore|disregard|forget|override)\s+(?:all\s+|any\s+)?(?:of\s+)?(?:the\s+|your\s+|my\s+)?(?:previous|prior|above|earlier|preceding|system|original)\s+(?:instructions?|prompts?|rules|guidelines|directives)\b/gi, "prompt_injection_override", "medium", "Tells the agent to disregard its prior or system instructions"],
+  [/\b(?:without|do not|don't|never)\s+(?:telling|informing|notifying|alerting|tell|inform|notify|alert)\s+the\s+user\b/gi, "prompt_injection_conceal", "medium", "Tells the agent to keep something from the user"],
+  [/\b(?:you are now|you're now|from now on,? you are|act as)\s+(?:in\s+)?(?:an?\s+)?(?:dan|jailbreak|jailbroken|god|unrestricted|unfiltered)(?:\s+mode)?\b/gi, "jailbreak_mode", "medium", "Attempts to switch the agent into an unrestricted/jailbreak persona"],
+  [/\b(?:ignore|do not use|don't use|never use|avoid using)\s+(?:all\s+|any\s+)?(?:the\s+)?other\s+(?:tools|skills|servers|mcp servers|functions|plugins)\b/gi, "tool_priority_manipulation", "medium", "Pushes the agent to ignore other tools in favour of this one"],
+  [/\b(?:paste|enter|type|provide|share|send|give)\s+(?:me\s+)?(?:your|the)\s+(?:api[\s_-]?keys?|access[\s_-]?tokens?|secret[\s_-]?keys?|passwords?|credentials|private[\s_-]?keys?)\s+(?:here|in(?:to)?\s+(?:the\s+|this\s+)?(?:chat|conversation|prompt|message|window))\b/gi, "credential_in_chat", "medium", "Asks for credentials to be pasted into the chat/prompt"],
+  [/\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,60}https?:\/\/(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)\//gi, "shortener_download", "medium", "Downloads from a URL shortener, which hides the real source"],
+  [/\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,80}(?:pastebin\.com\/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)/gi, "paste_host_download", "medium", "Downloads from an anonymous paste/file-drop host"],
+];
+const DESTINATION_FLAGS = new Set(["shortener_download", "paste_host_download"]);
+const NEGATION_EXEMPT = new Set(["prompt_injection_conceal"]);
+
+// Snyk: secret_detection — matched on the ORIGINAL-case README (AKIA… is case-sensitive).
+const SECRET_DESC = "Contains what looks like a real hardcoded API key, token or private key";
+const SECRET_PATTERNS: PatternDef[] = [
+  [/\bsk-ant-(?:api03|admin01)-[A-Za-z0-9_-]{80,}/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bsk-(?:proj-|svcacct-|admin-)?[A-Za-z0-9_-]{20,}T3BlbkFJ[A-Za-z0-9_-]{20,}/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bgh[pousr]_[A-Za-z0-9]{36,}/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bAKIA[0-9A-Z]{16}\b/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bxox[baprs]-[0-9A-Za-z-]{20,}/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bAIza[0-9A-Za-z_-]{35}\b/g, "leaked_secret", "medium", SECRET_DESC],
+  [/\bsk_live_[0-9A-Za-z]{24,}/g, "leaked_secret", "medium", SECRET_DESC],
+  [/-----BEGIN (?:RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----\s*[A-Za-z0-9+/=]{60,}/g, "leaked_secret", "medium", SECRET_DESC],
+];
+const PLACEHOLDER_HINTS = [
+  "xxxx", "your", "example", "placeholder", "redacted", "dummy", "sample",
+  "fake", "test", "0000", "1234", "abcd", "here", "insert", "replace",
+];
+const SECRET_PREFIX = /^(?:sk-ant-(?:api03-)?|sk-(?:proj-)?|gh[pousr]_|akia|xox[baprs]-|aiza|sk_live_)/;
+const MIN_SECRET_CHAR_VARIETY = 10;
+const EXAMPLE_LEADS = /(?:e\.g\.|i\.e\.|such as|for example|for instance|example:|like|attacks?\s+(?:like|such as)|payloads?\s+(?:like|such as)|phrases?\s+(?:like|such as)|detects?|blocks?|prevents?|defends?\s+against)\s*$/;
+const QUOTE_CHARS = new Set(['"', "'", "`", "“", "‘", "「", "«"]);
+const EXAMPLE_LEAD_WINDOW = 40;
+const NEGATION_LEAD = /\b(?:never|not|don't|do not|avoid|must not|should not|shouldn't|won't|cannot|can't|no need to)\s*$/;
+const NEGATION_WINDOW = 25;
 
 const MED_PATTERNS: PatternDef[] = [
   [/\bsudo\b/, "sudo_usage", "medium", "Uses sudo for elevated privileges"],
@@ -109,16 +180,126 @@ const MED_PATTERNS: PatternDef[] = [
 ];
 
 const REJECT_NAMES = new Set(REJECT_PATTERNS.map(p => p[1]));
-const HIGH_NAMES = new Set(HIGH_PATTERNS.map(p => p[1]));
-const MED_NAMES = new Set(MED_PATTERNS.map(p => p[1]));
+const HIGH_NAMES = new Set([...HIGH_PATTERNS, ...PIPE_PATTERNS].map(p => p[1]));
+const MED_NAMES = new Set([...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS].map(p => p[1]));
 
 // All patterns indexed by flag name for description lookup
-const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...MED_PATTERNS];
+const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS];
 const DESC_MAP = new Map(ALL_PATTERNS.map(([, name, sev, desc]) => [name, { severity: sev, description: desc }]));
+
+export interface ScanContext {
+  /** owner/repo — the skill's own GitHub owner is a trusted install source. */
+  repoFullName?: string;
+  /** Project homepage — its site is a trusted install source. */
+  homepage?: string;
+}
 
 function isInCodeBlock(text: string, pos: number): boolean {
   const before = text.slice(0, pos);
   return (before.split("```").length - 1) % 2 === 1;
+}
+
+function lineBefore(text: string, pos: number): string {
+  return text.slice(text.lastIndexOf("\n", pos - 1) + 1, pos);
+}
+
+function isInsideQuoteOrInlineCode(text: string, pos: number): boolean {
+  const line = lineBefore(text, pos);
+  const count = (s: string) => line.split(s).length - 1;
+  return count('"') % 2 === 1 || count("“") > count("”") || count("`") % 2 === 1;
+}
+
+function isQuotedExample(text: string, pos: number): boolean {
+  const lead = text.slice(Math.max(0, pos - EXAMPLE_LEAD_WINDOW), pos).trimEnd();
+  if (QUOTE_CHARS.has(lead.slice(-1))) return true;
+  return EXAMPLE_LEADS.test(lead.replace(/["'`“‘「«]+$/, "").trimEnd());
+}
+
+function isNegated(text: string, pos: number): boolean {
+  return NEGATION_LEAD.test(text.slice(Math.max(0, pos - NEGATION_WINDOW), pos).trimEnd());
+}
+
+function isCitedOrNegated(text: string, pos: number, name: string): boolean {
+  if (!DESTINATION_FLAGS.has(name) && (isInCodeBlock(text, pos) || isInsideQuoteOrInlineCode(text, pos))) return true;
+  if (isQuotedExample(text, pos)) return true;
+  return !NEGATION_EXEMPT.has(name) && isNegated(text, pos);
+}
+
+function hostOf(url: string): string {
+  try {
+    return new URL(url.includes("://") ? url : `https://${url}`).hostname.toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+function registrableDomain(host: string): string {
+  return host.split(".").slice(-REGISTRABLE_LABELS).join(".");
+}
+
+function sameSite(host: string, homepageHost: string): boolean {
+  if (!host || !homepageHost) return false;
+  if (MULTI_TENANT_SUFFIXES.some(s => homepageHost === s || homepageHost.endsWith(`.${s}`))) return host === homepageHost;
+  return registrableDomain(host) === registrableDomain(homepageHost);
+}
+
+function isTrustedInstallSource(url: string, ctx: ScanContext): boolean {
+  const host = hostOf(url);
+  if (TRUSTED_INSTALLER_HOSTS.has(host)) return true;
+  const owner = (ctx.repoFullName ?? "").toLowerCase().split("/")[0];
+  if (GITHUB_CONTENT_HOSTS.has(host)) {
+    let path = "";
+    try { path = new URL(url).pathname.toLowerCase().replace(/^\//, ""); } catch { return false; }
+    return (!!owner && path.startsWith(`${owner}/`)) || TRUSTED_GITHUB_INSTALLER_PREFIXES.some(p => path.startsWith(p));
+  }
+  if (owner && host === `${owner}.github.io`) return true;
+  return sameSite(host, ctx.homepage ? hostOf(ctx.homepage.trim()) : "");
+}
+
+function isMarkdownTableRow(text: string, pos: number): boolean {
+  return lineBefore(text, pos).trimStart().startsWith("|");
+}
+
+function pipeToShellFlags(text: string, ctx: ScanContext): string[] {
+  const found: string[] = [];
+  for (const [re, name] of PIPE_PATTERNS) {
+    for (const m of text.matchAll(re)) {
+      const pos = m.index ?? 0;
+      if (isInCodeBlock(text, pos) || isMarkdownTableRow(text, pos)) continue;
+      const urls = m[0].match(URL_IN_COMMAND) ?? [];
+      if (urls.length === 0 || urls.every(u => isTrustedInstallSource(u, ctx))) continue;
+      found.push(name);
+      break;
+    }
+  }
+  return found;
+}
+
+function agentMediumFlags(text: string): string[] {
+  const found: string[] = [];
+  for (const [re, name] of AGENT_MED_PATTERNS) {
+    for (const m of text.matchAll(re)) {
+      if (isCitedOrNegated(text, m.index ?? 0, name)) continue;
+      found.push(name);
+      break;
+    }
+  }
+  return found;
+}
+
+function looksLikeRealSecret(token: string): boolean {
+  const lowered = token.toLowerCase();
+  if (PLACEHOLDER_HINTS.some(h => lowered.includes(h))) return false;
+  return new Set(lowered.replace(SECRET_PREFIX, "")).size >= MIN_SECRET_CHAR_VARIETY;
+}
+
+function secretFlags(original: string): string[] {
+  for (const [re, name] of SECRET_PATTERNS) {
+    for (const m of original.matchAll(re)) {
+      if (looksLikeRealSecret(m[0])) return [name];
+    }
+  }
+  return [];
 }
 
 /**
@@ -129,9 +310,11 @@ export function scanReadme(
   author: string,
   stars: number,
   license: string | null,
+  context: ScanContext = {},
 ): ScanResult {
   const flags: string[] = [];
-  const text = readme.slice(0, 15000).toLowerCase();
+  const original = readme.slice(0, 15000);
+  const text = original.toLowerCase();
   const trustTier = getTrustTier(author, stars, license);
 
   // Check REJECT patterns
@@ -165,6 +348,9 @@ export function scanReadme(
       }
     }
   }
+
+  // Download-and-execute (destination-aware), agent-era patterns, leaked secrets
+  flags.push(...pipeToShellFlags(text, context), ...agentMediumFlags(text), ...secretFlags(original));
 
   // Grade determination with trust hierarchy
   const highFlags = flags.filter(f => HIGH_NAMES.has(f));
@@ -211,6 +397,7 @@ export async function fetchGitHubRepo(fullName: string): Promise<{
   license: string | null;
   author: string;
   repoUrl: string;
+  homepage: string;
   readme: string;
 }> {
   const [repoResp, readmeResp] = await Promise.all([
@@ -237,6 +424,7 @@ export async function fetchGitHubRepo(fullName: string): Promise<{
     license: repo.license?.spdx_id || null,
     author: repo.owner?.login || "unknown",
     repoUrl: repo.html_url || `https://github.com/${fullName}`,
+    homepage: repo.homepage || "",
     readme,
   };
 }
