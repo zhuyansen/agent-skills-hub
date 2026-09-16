@@ -180,6 +180,8 @@ TRUSTED_INSTALLER_HOSTS = frozenset({
     "get.scoop.sh", "community.chocolatey.org", "dot.net", "foundry.paradigm.xyz",
     # AI coding-agent vendors whose installers skills routinely point to.
     "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
+    # Vendor installers that third-party guides quote verbatim.
+    "openclaw.ai", "app.primeintellect.ai", "jimeng.jianying.com",
 })
 # Official installers served from someone else's GitHub repo.
 TRUSTED_GITHUB_INSTALLER_PREFIXES = ("homebrew/install/", "nvm-sh/nvm/")
@@ -194,6 +196,7 @@ MULTI_TENANT_SUFFIXES = (
 )
 _URL_IN_COMMAND = re.compile(r"https?://[^\s`'\"|)<>\]]+")
 _REGISTRABLE_LABELS = 2
+_MIN_OWNER_DOMAIN_MATCH = 5
 
 HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS}
 
@@ -243,11 +246,15 @@ MEDIUM_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
 # ══════════════════════════════════════════════════════════════════════
 AGENT_MEDIUM_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # Snyk: prompt_injection_skill_instructions
-    (re.compile(r"\b(?:ignore|disregard|forget|override)\s+(?:all\s+|any\s+)?(?:of\s+)?(?:the\s+|your\s+|my\s+)?"
-                r"(?:previous|prior|above|earlier|preceding|system|original)\s+(?:instructions?|prompts?|rules|guidelines|directives)\b", re.IGNORECASE),
-     "prompt_injection_override", "Tells the agent to disregard its prior or system instructions"),
-    (re.compile(r"\b(?:without|do not|don't|never)\s+(?:telling|informing|notifying|alerting|tell|inform|notify|alert)\s+the\s+user\b", re.IGNORECASE),
-     "prompt_injection_conceal", "Tells the agent to keep something from the user"),
+    # prompt_injection_override and prompt_injection_conceal were removed after
+    # the full-catalog re-grade: 11 hits, 11 false positives. "override the
+    # system prompt" is a documented CLI flag (av/mi, clido-cli); injection
+    # guards and threat tables list the attack they detect; a paper title is
+    # "Ignore Previous Prompt"; and "never tell the user what it thinks the user
+    # wants to hear" is an anti-sycophancy rule, not concealment. A skill file
+    # IS instructions, and this ecosystem documents these exact phrases, so a
+    # regex cannot separate issuing one from describing one. Judging that needs
+    # the LLM pass sync already runs over caution/unsafe rows.
     # Persona hijack addressed to the model. Deliberately excludes "enable
     # developer mode": ChatGPT's MCP connector setting and Chrome's extension
     # toggle are both called that, and all 8 hits in the catalog sample were
@@ -265,10 +272,10 @@ AGENT_MEDIUM_PATTERNS: list[tuple[re.Pattern, str, str]] = [
                 r"(?:here|in(?:to)?\s+(?:the\s+|this\s+)?(?:chat|conversation|prompt|message|window))\b", re.IGNORECASE),
      "credential_in_chat", "Asks for credentials to be pasted into the chat/prompt"),
     # Snyk: suspicious_download_url — fetch targets that hide or rotate content
-    (re.compile(r"\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,60}"
+    (re.compile(r"\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,60}"
                 r"https?://(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)/", re.IGNORECASE),
      "shortener_download", "Downloads from a URL shortener, which hides the real source"),
-    (re.compile(r"\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,80}"
+    (re.compile(r"\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,80}"
                 r"(?:pastebin\.com/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)", re.IGNORECASE),
      "paste_host_download", "Downloads from an anonymous paste/file-drop host"),
 ]
@@ -320,6 +327,12 @@ _QUOTE_CHARS = {'"', "'", "`", "“", "‘", "「", "«"}
 _EXAMPLE_LEAD_WINDOW = 40  # chars before a match searched for "such as" / an opening quote
 
 
+def _has_example_lead(text: str, start: int) -> bool:
+    """True when the match is introduced as an example ("such as", "blocks …")."""
+    lead = text[max(0, start - _EXAMPLE_LEAD_WINDOW):start].rstrip()
+    return bool(_EXAMPLE_LEADS.search(lead.rstrip("\"'`“‘「«").rstrip()))
+
+
 def _is_quoted_example(text: str, start: int) -> bool:
     """True when a match is cited rather than issued.
 
@@ -329,7 +342,7 @@ def _is_quoted_example(text: str, start: int) -> bool:
     lead = text[max(0, start - _EXAMPLE_LEAD_WINDOW):start].rstrip()
     if lead[-1:] in _QUOTE_CHARS:
         return True
-    return bool(_EXAMPLE_LEADS.search(lead.rstrip("\"'`“‘「«").rstrip()))
+    return _has_example_lead(text, start)
 
 
 AGENT_MEDIUM_FLAG_NAMES = {p[1] for p in AGENT_MEDIUM_PATTERNS}
@@ -363,8 +376,9 @@ def _is_in_code_block(text: str, match_pos: int) -> bool:
 _NEGATION_LEAD = re.compile(
     r"\b(?:never|not|don't|do not|avoid|must not|should not|shouldn't|won't|cannot|can't|no need to)\s*$"
 )
-# prompt_injection_conceal's pattern *is* a negation ("do not tell the user").
-_NEGATION_EXEMPT = {"prompt_injection_conceal"}
+# Flags whose own wording is a negation, so _is_negated would always clear them.
+# Empty since the two rules that needed it were removed; kept as the hook.
+_NEGATION_EXEMPT: set[str] = set()
 _NEGATION_WINDOW = 25  # chars before a match searched for never/don't/avoid
 
 
@@ -394,9 +408,13 @@ _DESTINATION_FLAGS = {"shortener_download", "paste_host_download"}
 
 
 def _is_cited_or_negated(text: str, start: int, flag_name: str) -> bool:
-    if flag_name not in _DESTINATION_FLAGS and (
-        _is_in_code_block(text, start) or _is_inside_quote_or_inline_code(text, start)
-    ):
+    if flag_name in _DESTINATION_FLAGS:
+        # The opaque host is the whole signal, so no code span or surrounding
+        # quote excuses it — and a command written in inline code starts right
+        # after a backtick, which the quote check would read as a citation.
+        # Only an explicit "such as …" or a negation can clear it.
+        return _has_example_lead(text, start) or _is_negated(text, start)
+    if _is_in_code_block(text, start) or _is_inside_quote_or_inline_code(text, start):
         return True
     if _is_quoted_example(text, start):
         return True
@@ -420,6 +438,25 @@ def _same_site(host: str, homepage_host: str) -> bool:
     return _registrable_domain(host) == _registrable_domain(homepage_host)
 
 
+def _owner_matches_domain(owner: str, host: str) -> bool:
+    """A project's own domain: the GitHub owner and the domain label agree.
+
+    todoforai/edge ships `irm https://todofor.ai/edge.ps1 | iex`, memohai/Memoh
+    uses memoh.sh, netclaw-dev/netclaw uses netclaw.dev — an exact match misses
+    all three, so accept when one is a prefix of the other. Shared-hosting
+    domains are excluded: owner "vercelapp" must not vouch for evil.vercel.app.
+    Exploiting this needs control of the matching domain, which is the
+    definition of shipping from your own site."""
+    registrable = _registrable_domain(host)
+    if registrable in MULTI_TENANT_SUFFIXES:
+        return False
+    normalize = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())  # noqa: E731
+    o, label = normalize(owner), normalize(registrable.split(".")[0])
+    if min(len(o), len(label)) < _MIN_OWNER_DOMAIN_MATCH:
+        return False
+    return o.startswith(label) or label.startswith(o)
+
+
 def _is_trusted_install_source(url: str, skill: Skill) -> bool:
     """Official installer host, the skill's own GitHub owner, or its own homepage site."""
     host = _host(url)
@@ -429,7 +466,7 @@ def _is_trusted_install_source(url: str, skill: Skill) -> bool:
     if host in _GITHUB_CONTENT_HOSTS:
         path = urlparse(url).path.lower().lstrip("/")
         return bool(owner and path.startswith(owner + "/")) or path.startswith(TRUSTED_GITHUB_INSTALLER_PREFIXES)
-    if owner and host == f"{owner}.github.io":
+    if owner and (host == f"{owner}.github.io" or _owner_matches_domain(owner, host)):
         return True
     homepage = (getattr(skill, "homepage_url", "") or "").strip().lower()
     homepage_host = _host(homepage if "://" in homepage else f"https://{homepage}") if homepage else ""

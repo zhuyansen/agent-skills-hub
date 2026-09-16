@@ -116,6 +116,7 @@ const TRUSTED_INSTALLER_HOSTS = new Set([
   "nixos.org", "install.determinate.systems", "pkgx.sh", "starship.rs", "sdk.cloud.google.com",
   "get.scoop.sh", "community.chocolatey.org", "dot.net", "foundry.paradigm.xyz",
   "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
+  "openclaw.ai", "app.primeintellect.ai", "jimeng.jianying.com",
 ]);
 const TRUSTED_GITHUB_INSTALLER_PREFIXES = ["homebrew/install/", "nvm-sh/nvm/"];
 const GITHUB_CONTENT_HOSTS = new Set(["raw.githubusercontent.com", "github.com", "gist.githubusercontent.com"]);
@@ -127,20 +128,22 @@ const MULTI_TENANT_SUFFIXES = [
 ];
 const URL_IN_COMMAND = /https?:\/\/[^\s`'"|)<>\]]+/g;
 const REGISTRABLE_LABELS = 2;
+const MIN_OWNER_DOMAIN_MATCH = 5;
 
 // Agent-era medium patterns (Snyk taxonomy). Code spans, quoted examples and
 // negated advice are skipped for the text-directive rules.
 const AGENT_MED_PATTERNS: PatternDef[] = [
-  [/\b(?:ignore|disregard|forget|override)\s+(?:all\s+|any\s+)?(?:of\s+)?(?:the\s+|your\s+|my\s+)?(?:previous|prior|above|earlier|preceding|system|original)\s+(?:instructions?|prompts?|rules|guidelines|directives)\b/gi, "prompt_injection_override", "medium", "Tells the agent to disregard its prior or system instructions"],
-  [/\b(?:without|do not|don't|never)\s+(?:telling|informing|notifying|alerting|tell|inform|notify|alert)\s+the\s+user\b/gi, "prompt_injection_conceal", "medium", "Tells the agent to keep something from the user"],
+  // prompt_injection_override / _conceal removed — 11 hits, 11 false positives
+  // at catalog scale (documented --system-prompt flags, injection guards listing
+  // what they detect, a paper title, an anti-sycophancy rule). See the backend.
   [/\b(?:you are now|you're now|from now on,? you are|act as)\s+(?:in\s+)?(?:an?\s+)?(?:dan|jailbreak|jailbroken|god|unrestricted|unfiltered)(?:\s+mode)?\b/gi, "jailbreak_mode", "medium", "Attempts to switch the agent into an unrestricted/jailbreak persona"],
   [/\b(?:ignore|do not use|don't use|never use|avoid using)\s+(?:all\s+|any\s+)?(?:the\s+)?other\s+(?:tools|skills|servers|mcp servers|functions|plugins)\b/gi, "tool_priority_manipulation", "medium", "Pushes the agent to ignore other tools in favour of this one"],
   [/\b(?:paste|enter|type|provide|share|send|give)\s+(?:me\s+)?(?:your|the)\s+(?:api[\s_-]?keys?|access[\s_-]?tokens?|secret[\s_-]?keys?|passwords?|credentials|private[\s_-]?keys?)\s+(?:here|in(?:to)?\s+(?:the\s+|this\s+)?(?:chat|conversation|prompt|message|window))\b/gi, "credential_in_chat", "medium", "Asks for credentials to be pasted into the chat/prompt"],
-  [/\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,60}https?:\/\/(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)\//gi, "shortener_download", "medium", "Downloads from a URL shortener, which hides the real source"],
-  [/\b(?:curl|wget|download|irm|iwr|invoke-webrequest)\b[^\n]{0,80}(?:pastebin\.com\/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)/gi, "paste_host_download", "medium", "Downloads from an anonymous paste/file-drop host"],
+  [/\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,60}https?:\/\/(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)\//gi, "shortener_download", "medium", "Downloads from a URL shortener, which hides the real source"],
+  [/\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,80}(?:pastebin\.com\/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)/gi, "paste_host_download", "medium", "Downloads from an anonymous paste/file-drop host"],
 ];
 const DESTINATION_FLAGS = new Set(["shortener_download", "paste_host_download"]);
-const NEGATION_EXEMPT = new Set(["prompt_injection_conceal"]);
+const NEGATION_EXEMPT = new Set<string>();
 
 // Snyk: secret_detection — matched on the ORIGINAL-case README (AKIA… is case-sensitive).
 const SECRET_DESC = "Contains what looks like a real hardcoded API key, token or private key";
@@ -209,10 +212,15 @@ function isInsideQuoteOrInlineCode(text: string, pos: number): boolean {
   return count('"') % 2 === 1 || count("“") > count("”") || count("`") % 2 === 1;
 }
 
+function hasExampleLead(text: string, pos: number): boolean {
+  const lead = text.slice(Math.max(0, pos - EXAMPLE_LEAD_WINDOW), pos).trimEnd();
+  return EXAMPLE_LEADS.test(lead.replace(/["'`“‘「«]+$/, "").trimEnd());
+}
+
 function isQuotedExample(text: string, pos: number): boolean {
   const lead = text.slice(Math.max(0, pos - EXAMPLE_LEAD_WINDOW), pos).trimEnd();
   if (QUOTE_CHARS.has(lead.slice(-1))) return true;
-  return EXAMPLE_LEADS.test(lead.replace(/["'`“‘「«]+$/, "").trimEnd());
+  return hasExampleLead(text, pos);
 }
 
 function isNegated(text: string, pos: number): boolean {
@@ -220,7 +228,11 @@ function isNegated(text: string, pos: number): boolean {
 }
 
 function isCitedOrNegated(text: string, pos: number, name: string): boolean {
-  if (!DESTINATION_FLAGS.has(name) && (isInCodeBlock(text, pos) || isInsideQuoteOrInlineCode(text, pos))) return true;
+  // Destination flags: the opaque host is the whole signal, so no code span or
+  // surrounding quote excuses it (a command in inline code starts right after a
+  // backtick). Only an explicit "such as ..." or a negation can clear it.
+  if (DESTINATION_FLAGS.has(name)) return hasExampleLead(text, pos) || isNegated(text, pos);
+  if (isInCodeBlock(text, pos) || isInsideQuoteOrInlineCode(text, pos)) return true;
   if (isQuotedExample(text, pos)) return true;
   return !NEGATION_EXEMPT.has(name) && isNegated(text, pos);
 }
@@ -243,6 +255,15 @@ function sameSite(host: string, homepageHost: string): boolean {
   return registrableDomain(host) === registrableDomain(homepageHost);
 }
 
+function ownerMatchesDomain(owner: string, host: string): boolean {
+  const registrable = registrableDomain(host);
+  if (MULTI_TENANT_SUFFIXES.includes(registrable)) return false;
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const o = norm(owner), label = norm(registrable.split(".")[0]);
+  if (Math.min(o.length, label.length) < MIN_OWNER_DOMAIN_MATCH) return false;
+  return o.startsWith(label) || label.startsWith(o);
+}
+
 function isTrustedInstallSource(url: string, ctx: ScanContext): boolean {
   const host = hostOf(url);
   if (TRUSTED_INSTALLER_HOSTS.has(host)) return true;
@@ -252,7 +273,7 @@ function isTrustedInstallSource(url: string, ctx: ScanContext): boolean {
     try { path = new URL(url).pathname.toLowerCase().replace(/^\//, ""); } catch { return false; }
     return (!!owner && path.startsWith(`${owner}/`)) || TRUSTED_GITHUB_INSTALLER_PREFIXES.some(p => path.startsWith(p));
   }
-  if (owner && host === `${owner}.github.io`) return true;
+  if (owner && (host === `${owner}.github.io` || ownerMatchesDomain(owner, host))) return true;
   return sameSite(host, ctx.homepage ? hostOf(ctx.homepage.trim()) : "");
 }
 
