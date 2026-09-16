@@ -217,25 +217,13 @@ export async function sbFetchSkillsByIds(ids: number[]): Promise<Skill[]> {
 }
 
 export async function sbFetchStats(): Promise<Stats> {
-  return withRetry(async () => {
-    const sb = ensureSupabase();
-    const { data, error } = await sb.from("v_stats").select("*").single();
-    if (error) throw new Error(error.message);
-
-    // Also fetch categories
-    const { data: cats, error: catErr } = await sb
-      .from("v_categories")
-      .select("*");
-    if (catErr) throw new Error(catErr.message);
-
-    return {
-      total_skills: data.total_skills,
-      avg_score: data.avg_score,
-      categories: (cats ?? []) as CategoryCount[],
-      last_sync_at: data.last_sync_at,
-      last_sync_status: data.last_sync_status,
-    };
-  });
+  // v_stats aggregates COUNT(*) + COUNT(DISTINCT category) + AVG over all 191K
+  // rows of a table wide with readme_content, and now exceeds the statement
+  // timeout (57014). The header calls this on every page, so a failing query
+  // here retried per mounted component was ~4 dead queries a page view.
+  // get_landing_data() serves the same five numbers from the cached row that
+  // migration 014 added, and already folds categories into stats.
+  return (await sbFetchLandingData()).stats;
 }
 
 export async function sbFetchCategories(): Promise<CategoryCount[]> {
