@@ -13,7 +13,7 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
 
-# ── Core queries: run EVERY sync (10 queries) ──
+# ── Core queries: run EVERY sync (11 queries) ──
 CORE_QUERIES = [
     "mcp-server in:name,topics",
     "claude-mcp in:name,description,topics",
@@ -25,6 +25,14 @@ CORE_QUERIES = [
     "claude-code in:topics",
     "agent-skill in:name,topics",
     "ai-agent-tool in:name,description,topics",
+    # Vendor-neutral skill repos say "agent skills" in the description and tag
+    # generic topics ("ai", "skills"), so no query above sees them. Dry run
+    # 2026-09-17: of the top 300 by stars, 74 non-fork repos were missing from
+    # the catalog — cloudflare/security-audit-skill (8K★), expo/skills,
+    # microsoft/waza, TanStack/cli — and 215 visitors hit a 404 for
+    # jtydhr88/screenwriting-skills (1.2K★). The singular form returns the same
+    # set (GitHub stems it); "SKILL.md in:readme" was rejected as ~all noise.
+    '"agent skills" in:description stars:>50',
 ]
 
 # ── OpenClaw / NanoClaw ecosystem queries ──
