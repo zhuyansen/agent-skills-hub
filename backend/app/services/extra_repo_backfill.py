@@ -7,8 +7,11 @@ name every sync regardless of push date, which makes that table the channel.
 Backfill rows carry BACKFILL_TAG in submitted_by, and the pipeline uses it to
 tell them apart from curated extras:
   - backfill_extra_repos.py keeps at most IN_FLIGHT_LIMIT of them active and
-    retires each once it is ingested (curated rows stay active and refresh on
-    every sync);
+    retires each once it is in skills with a README, which is what the scanner
+    needs to grade it (curated rows stay active and refresh on every sync);
+  - the sync fetches their README in the same run that inserts them. A new row
+    is never a README target otherwise, and once retired it is never fetched
+    again, so it would stay ungraded for good;
   - the upsert sets prev_stars = stars on their first insert, so years of
     stars don't count as a single day's gain in scoring or the daily report;
   - the newsletter and the daily report don't list them as new. That follows
@@ -28,8 +31,9 @@ BACKFILL_TAG = "backfill-agent-skills-2026-09"
 CANDIDATES_FILE = Path(__file__).resolve().parents[2] / "data" / "backfill_agent_skills_2026-09.json"
 # About one sync's worth. Every active row costs one GET /repos/{name} per sync.
 IN_FLIGHT_LIMIT = 100
-# A row still missing from skills after this many completed syncs was dropped by
-# the pipeline (renamed, deleted or filtered out), so stop fetching it.
+# A row still missing from skills, or still without a README, after this many
+# completed syncs was dropped (renamed, deleted, filtered) or has no README to
+# fetch, so stop fetching it.
 GIVE_UP_AFTER_SYNCS = 2
 
 
@@ -62,27 +66,29 @@ def load_candidates(path: Path = CANDIDATES_FILE) -> list[str]:
 def plan_backfill(
     candidates: list[str],
     in_catalog: set[str],
+    with_readme: set[str],
     existing: dict[str, ExistingRow],
     limit: int = IN_FLIGHT_LIMIT,
     give_up_after: int = GIVE_UP_AFTER_SYNCS,
 ) -> BackfillPlan:
     """Decide which backfill rows to retire and which candidates to activate.
 
-    in_catalog holds lowercased names already in skills. existing maps a
-    lowercased name to its extra_repos row, tagged or not. Untagged rows belong
-    to curated or community submissions and are never touched.
+    in_catalog and with_readme hold lowercased names in skills, the second only
+    those with a README. existing maps a lowercased name to its extra_repos
+    row, tagged or not. Untagged rows belong to curated or community
+    submissions and are never touched.
     """
     plan = BackfillPlan(ingested_total=sum(1 for c in candidates if c.lower() in in_catalog))
-    _retire(plan, existing, in_catalog, give_up_after)
+    _retire(plan, existing, with_readme, give_up_after)
     _activate(plan, candidates, in_catalog, existing, limit)
     return plan
 
 
-def _retire(plan: BackfillPlan, existing: dict[str, ExistingRow], in_catalog: set[str], give_up_after: int) -> None:
+def _retire(plan: BackfillPlan, existing: dict[str, ExistingRow], with_readme: set[str], give_up_after: int) -> None:
     for key, row in existing.items():
         if not (row.tagged and row.is_active):
             continue
-        if key in in_catalog:
+        if key in with_readme:
             plan.retire_ingested.append(row.full_name)
         elif row.completed_syncs_since_activation >= give_up_after:
             plan.retire_stuck.append(row.full_name)

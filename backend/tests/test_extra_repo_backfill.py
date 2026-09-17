@@ -16,35 +16,35 @@ def row(name, active=True, tagged=True, syncs=0):
 
 
 def test_first_run_activates_up_to_limit_in_priority_order():
-    plan = plan_backfill(CANDIDATES, in_catalog=set(), existing={}, limit=3)
+    plan = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing={}, limit=3)
     assert plan.activate == ["owner/repo-0", "owner/repo-1", "owner/repo-2"]
     assert plan.queued == 7
     assert not plan.retire_ingested and not plan.retire_stuck
 
 
 def test_candidates_already_indexed_are_never_activated():
-    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0"}, existing={}, limit=2)
+    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0"}, with_readme=set(), existing={}, limit=2)
     assert plan.activate == ["owner/repo-1", "owner/repo-2"]
     assert plan.ingested_total == 1
 
 
 def test_in_flight_rows_use_up_slots():
     existing = {**row("owner/repo-0"), **row("owner/repo-1")}
-    plan = plan_backfill(CANDIDATES, in_catalog=set(), existing=existing, limit=3)
+    plan = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing=existing, limit=3)
     assert plan.in_flight == 2
     assert plan.activate == ["owner/repo-2"]
 
 
-def test_ingested_rows_retire_and_free_their_slots():
+def test_rows_with_a_readme_retire_and_free_their_slots():
     existing = {**row("owner/repo-0"), **row("owner/repo-1")}
-    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0", "owner/repo-1"}, existing=existing, limit=2)
+    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0", "owner/repo-1"}, with_readme={"owner/repo-0", "owner/repo-1"}, existing=existing, limit=2)
     assert sorted(plan.retire_ingested) == ["owner/repo-0", "owner/repo-1"]
     assert plan.activate == ["owner/repo-2", "owner/repo-3"]
 
 
 def test_rows_that_never_ingest_are_given_up_after_enough_syncs():
     existing = {**row("owner/repo-0", syncs=1), **row("owner/repo-1", syncs=2)}
-    plan = plan_backfill(CANDIDATES, in_catalog=set(), existing=existing, limit=2, give_up_after=2)
+    plan = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing=existing, limit=2, give_up_after=2)
     assert plan.retire_stuck == ["owner/repo-1"]
     assert plan.in_flight == 1
     assert plan.activate == ["owner/repo-2"]
@@ -52,28 +52,28 @@ def test_rows_that_never_ingest_are_given_up_after_enough_syncs():
 
 def test_untagged_rows_belong_to_someone_else_and_are_left_alone():
     existing = {**row("owner/repo-0", tagged=False), **row("owner/repo-1", active=False, tagged=False)}
-    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0"}, existing=existing, limit=5)
+    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0"}, with_readme={"owner/repo-0"}, existing=existing, limit=5)
     assert not plan.retire_ingested and not plan.retire_stuck
     assert "owner/repo-0" not in plan.activate and "owner/repo-1" not in plan.activate
 
 
 def test_retired_rows_are_not_reactivated():
     existing = row("owner/repo-0", active=False)
-    plan = plan_backfill(CANDIDATES, in_catalog=set(), existing=existing, limit=1)
+    plan = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing=existing, limit=1)
     assert plan.activate == ["owner/repo-1"]
 
 
 def test_matching_is_case_insensitive():
-    plan = plan_backfill(["Owner/Repo-A"], in_catalog={"owner/repo-a"}, existing={}, limit=5)
+    plan = plan_backfill(["Owner/Repo-A"], in_catalog={"owner/repo-a"}, with_readme=set(), existing={}, limit=5)
     assert plan.activate == []
 
 
 def test_rerun_without_a_sync_changes_nothing():
-    first = plan_backfill(CANDIDATES, in_catalog=set(), existing={}, limit=3)
+    first = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing={}, limit=3)
     existing = {}
     for name in first.activate:
         existing.update(row(name))
-    second = plan_backfill(CANDIDATES, in_catalog=set(), existing=existing, limit=3)
+    second = plan_backfill(CANDIDATES, in_catalog=set(), with_readme=set(), existing=existing, limit=3)
     assert second.activate == [] and second.in_flight == 3
 
 
@@ -86,3 +86,23 @@ def test_committed_candidate_file_is_well_formed():
     ordered = load_candidates()
     stars = {r["full_name"]: r["stars"] for r in rows}
     assert [stars[n] for n in ordered] == sorted(stars.values(), reverse=True)
+
+
+def test_ingested_without_a_readme_stays_in_flight_for_another_sync():
+    # First batch, 2026-09-17: all 100 inserted, none with a README (the sync
+    # never fetched READMEs for new rows). Retiring them then would have left
+    # them ungraded for good.
+    existing = {**row("owner/repo-0", syncs=1), **row("owner/repo-1", syncs=1)}
+    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0", "owner/repo-1"}, with_readme={"owner/repo-1"},
+                         existing=existing, limit=2)
+    assert plan.retire_ingested == ["owner/repo-1"]
+    assert plan.in_flight == 1
+    assert plan.activate == ["owner/repo-2"]
+
+
+def test_in_skills_but_still_no_readme_is_given_up_after_enough_syncs():
+    existing = row("owner/repo-0", syncs=2)
+    plan = plan_backfill(CANDIDATES, in_catalog={"owner/repo-0"}, with_readme=set(), existing=existing,
+                         limit=1, give_up_after=2)
+    assert plan.retire_stuck == ["owner/repo-0"]
+    assert plan.activate == ["owner/repo-1"]

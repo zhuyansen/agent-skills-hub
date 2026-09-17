@@ -57,11 +57,15 @@ def fetch_existing(db, candidates):
     return existing
 
 
-def fetch_in_catalog(db, candidates):
-    """Candidates already in skills. Exact match keeps this on the unique index;
-    candidate names come from the GitHub API, which is also where sync gets them."""
-    rows = db.execute(text("SELECT repo_full_name FROM skills WHERE repo_full_name = ANY(:names)"), {"names": candidates})
-    return {r[0].lower() for r in rows}
+def fetch_catalog_state(db, candidates):
+    """(in skills, in skills with a README), as lowercased names. Exact match keeps
+    this on the unique index; candidate names come from the GitHub API, which is
+    also where sync gets them."""
+    rows = db.execute(text(
+        "SELECT repo_full_name, (readme_content IS NOT NULL AND readme_content <> '') "
+        "FROM skills WHERE repo_full_name = ANY(:names)"
+    ), {"names": candidates}).fetchall()
+    return {r[0].lower() for r in rows}, {r[0].lower() for r in rows if r[1]}
 
 
 def apply_plan(db, plan):
@@ -80,12 +84,12 @@ def apply_plan(db, plan):
 
 def report(plan, total):
     logger.info(
-        "backfill %s: %d/%d ingested | retired now: %d ingested, %d given up | in flight: %d | activating: %d | queued: %d",
+        "backfill %s: %d/%d in skills | retired now: %d with README, %d given up | in flight: %d | activating: %d | queued: %d",
         BACKFILL_TAG, plan.ingested_total, total, len(plan.retire_ingested), len(plan.retire_stuck),
         plan.in_flight, len(plan.activate), plan.queued,
     )
     for name in plan.retire_stuck:
-        logger.warning("given up (not in skills after enough syncs): %s", name)
+        logger.warning("given up (not in skills, or no README, after enough syncs): %s", name)
 
 
 def main():
@@ -95,7 +99,8 @@ def main():
     try:
         db.execute(text(f"SET LOCAL statement_timeout = '{STATEMENT_TIMEOUT}'"))
         db.execute(text(f"SET LOCAL lock_timeout = '{LOCK_TIMEOUT}'"))
-        plan = plan_backfill(candidates, fetch_in_catalog(db, candidates), fetch_existing(db, candidates))
+        in_catalog, with_readme = fetch_catalog_state(db, candidates)
+        plan = plan_backfill(candidates, in_catalog, with_readme, fetch_existing(db, candidates))
         report(plan, len(candidates))
         if dry_run:
             logger.info("dry run: nothing written. would activate: %s", plan.activate[:10])

@@ -563,6 +563,19 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 .all()
             )
             readme_targets = {r.repo_full_name for r in null_readme_skills} & set(all_repos.keys())
+            # Backfilled repos are fetched by name for a sync or two and then
+            # retired. A new row is never in null_readme_skills, so without this
+            # they would never get a README and the scanner could never grade
+            # them. Fetch theirs in the same sync that inserts them.
+            backfill_pending = [fn for fn in all_repos if fn.lower() in backfill_names]
+            if backfill_pending:
+                have_readme = {
+                    r.repo_full_name
+                    for r in db.query(Skill.repo_full_name)
+                    .filter(Skill.repo_full_name.in_(backfill_pending))
+                    .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
+                }
+                readme_targets |= set(backfill_pending) - have_readme
             if readme_targets:
                 logger.info("Fetching README for %d skills", len(readme_targets))
                 async with httpx.AsyncClient(timeout=30.0) as readme_client:
