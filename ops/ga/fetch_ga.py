@@ -33,6 +33,27 @@ HOST_FILTER = {
     }
 }
 
+# Headless browsers run our gtag, and GA4 has no bot filter that catches them.
+# No real display has these screens. Measured 2026-09-17 over 28 days they were
+# 43,109 of 50,202 sessions (86%) — the digest was reporting a bot's traffic:
+#   1366x1366  Mac-Chrome UA, Singapore DC, a fresh profile every session. Each
+#              Wednesday 00-03h it deep-links /analyzer/?repo= for ~1,500 repos
+#              (which auto-scans), making /analyzer/ look like the #2 page.
+#   1280x1200  Windows-Chrome UA, Singapore. Walks 16,590 distinct pages one
+#              session each: 47 engaged sessions out of 20,428.
+#   1280x1280  Same shape, 220 sessions, 8 engaged.
+# Every report excludes them, so pages/sources/events all read the human set;
+# dump saves what was dropped to automation.json so the digest can say how much.
+AUTOMATION_SCREENS = ["1366x1366", "1280x1200", "1280x1280"]
+_AUTOMATION = {"filter": {"fieldName": "screenResolution",
+                          "inListFilter": {"values": AUTOMATION_SCREENS}}}
+
+
+def traffic_filter(automation=False):
+    """Our host, minus known automation — or only the automation, to measure it."""
+    screens = _AUTOMATION if automation else {"notExpression": _AUTOMATION}
+    return {"andGroup": {"expressions": [HOST_FILTER, screens]}}
+
 
 def session():
     creds = Credentials.from_authorized_user_file(ADC, SCOPES)
@@ -45,12 +66,12 @@ def arg(flag, default):
     return type(default)(sys.argv[sys.argv.index(flag) + 1]) if flag in sys.argv else default
 
 
-def run_report(sess, dimensions, metrics, days, order_metric=None, limit=25):
+def run_report(sess, dimensions, metrics, days, order_metric=None, limit=25, automation=False):
     body = {
         "dateRanges": [{"startDate": f"{days}daysAgo", "endDate": "today"}],
         "dimensions": [{"name": d} for d in dimensions],
         "metrics": [{"name": m} for m in metrics],
-        "dimensionFilter": HOST_FILTER,
+        "dimensionFilter": traffic_filter(automation),
         "limit": limit,
     }
     if order_metric:
@@ -117,6 +138,10 @@ def main():
         tot_v = sum(int(r["screenPageViews"]) for r in rows)
         print(f"  {days}天: sessions={tot_s} users={tot_u} pageviews={tot_v}")
         save("overview", rows)
+        bots = run_report(sess, ["screenResolution"], ["sessions", "screenPageViews"],
+                          days, order_metric="sessions", automation=True)
+        print(f"  已剔除自动化: sessions={sum(int(r['sessions']) for r in bots)}")
+        save("automation", bots)
     if cmd in ("pages", "dump"):
         print("── 热门页 ──")
         rows = run_report(sess, ["pagePath"], PAGE_METRICS, days, order_metric="screenPageViews", limit=30)

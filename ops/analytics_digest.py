@@ -26,6 +26,47 @@ def section(title):
     print(f"\n## {title}\n")
 
 
+# GA counting more than this multiple of Clarity's human sessions means bots
+# are still in the numbers. Before the automation filter it was 4.1x.
+GA_TO_HUMAN_ALARM = 2.0
+# A page viewed this many times per session is being reloaded by a script: a
+# Linux box in Reims loaded / 8,261 times in 22 sessions on 2026-09-10. Real
+# visitors returning to / through the SPA sit near 2.
+RELOAD_VIEWS_PER_SESSION = 3
+RELOAD_MIN_VIEWS = 500
+
+
+def clarity_humans_per_day():
+    """Clarity's human (non-bot) sessions per day, or None if unavailable."""
+    ov = load("clarity/out/overview.json")
+    days = (load("clarity/out/overview.meta.json") or {}).get("numOfDays")
+    traffic = next((m for m in ov or [] if m.get("metricName") == "Traffic"), None)
+    if not (days and traffic and traffic.get("information")):
+        return None
+    return int(traffic["information"][0].get("totalSessionCount", 0)) / days
+
+
+def print_ga_exclusion():
+    """State the automation GA dropped, and alarm if what's left still isn't human."""
+    auto = load("ga/out/automation.json") or []
+    days = load("ga/out/overview.json") or []
+    kept = sum(int(r["sessions"]) for r in days)
+    if auto:
+        dropped = sum(int(r["sessions"]) for r in auto)
+        share = dropped / ((dropped + kept) or 1) * 100
+        detail = " / ".join(f"{r['screenResolution']} {int(r['sessions']):,}" for r in auto)
+        print(f"> 已剔除 **GA 自动化流量 {dropped:,} 会话**(占 {share:.0f}%:{detail})——"
+              f"真实设备没有这种屏幕,是机房里的无头浏览器。明细见 `ops/ga/out/automation.json`。\n")
+    human = clarity_humans_per_day()
+    if days and human:
+        ratio = kept / len(days) / human
+        if ratio > GA_TO_HUMAN_ALARM:
+            print(f"> ⚠️ 剔除后 GA 仍有 {kept/len(days):.0f} 会话/天,是 Clarity 真人基线 "
+                  f"{human:.0f}/天 的 **{ratio:.1f} 倍** —— 大概率出现了新的爬虫指纹。"
+                  f"下面的 GA 数先别用,查 screenResolution 分布,把新指纹加进 "
+                  f"`fetch_ga.py` 的 AUTOMATION_SCREENS。\n")
+
+
 def main():
     print("# 数据四件套日报 · Analytics Daily Digest")
 
@@ -100,6 +141,7 @@ def main():
             print(f"- **+{r.get('d_clicks', 0)}** {r['query'][:50]}")
 
     # ── GA ──
+    print_ga_exclusion()
     ga_pages = load("ga/out/pages.json")
     if ga_pages:
         section("GA · 热门页 (Top 10)")
@@ -107,7 +149,10 @@ def main():
         print("|---|--:|--:|--:|")
         for r in ga_pages[:10]:
             b = round(float(r.get("bounceRate", 0)) * 100)
-            print(f"| {r['pagePath'][:40]} | {r['screenPageViews']} | {r['sessions']} | {b}% |")
+            v, n = int(r["screenPageViews"]), int(r["sessions"]) or 1
+            flag = (f" ⚠️ 每会话 {v/n:.1f} 次,疑似刷新脚本"
+                    if v >= RELOAD_MIN_VIEWS and v / n >= RELOAD_VIEWS_PER_SESSION else "")
+            print(f"| {r['pagePath'][:40]} | {v}{flag} | {r['sessions']} | {b}% |")
     ga_src = load("ga/out/sources.json")
     if ga_src:
         section("GA · 流量来源 (Top 8)")
