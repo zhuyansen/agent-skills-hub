@@ -30,10 +30,12 @@ else:
 
 from app.config import settings  # noqa: E402
 from app.database import SessionLocal  # noqa: E402
+from app.models.admin import ExtraRepo  # noqa: E402
 from app.models.skill import Skill, Subscriber, WeeklyTrendingSnapshot  # noqa: E402
+from app.services.extra_repo_backfill import BACKFILL_TAG  # noqa: E402
 from app.services.email_service import send_newsletter  # noqa: E402
 
-from sqlalchemy import desc, func  # noqa: E402
+from sqlalchemy import desc, func, select  # noqa: E402
 
 
 def select_new_skills(pool, limit=20):
@@ -118,10 +120,14 @@ def main():
         first_seen_start = max(seven_days_ago, bulk_import_cutoff)
         # Pull a wider pool, then exclude non-tools + dedup near-duplicates down to 20.
         # Exclude `uncategorized` (learning notes / personal pages, not agent tools).
+        # Like bulk_import_cutoff, keep the backfill of missed repos out. It
+        # spans several syncs, so no date cutoff can isolate it; its tag can.
+        backfilled = select(ExtraRepo.full_name).where(ExtraRepo.submitted_by == BACKFILL_TAG)
         pool = (
             db.query(Skill)
             .filter(Skill.first_seen >= first_seen_start)
             .filter(Skill.category != "uncategorized")
+            .filter(Skill.repo_full_name.notin_(backfilled))
             .order_by(desc(Skill.stars))
             .limit(80)
             .all()

@@ -100,6 +100,16 @@ jobs:
               labels: ['token-expiry'],
             });
 
+      - name: Top up repo backfill queue
+        # Paced catch-up of repos the search queries never matched; see
+        # backend/app/services/extra_repo_backfill.py. It runs in this job, before
+        # the sync, so its writes can never overlap one. A failure here must not
+        # cost a sync, so it doesn't fail the job.
+        continue-on-error: true
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python backfill_extra_repos.py
+
       - name: Run sync
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

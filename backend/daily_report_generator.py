@@ -8,6 +8,8 @@ import os
 import datetime
 from pathlib import Path
 
+from app.services.extra_repo_backfill import BACKFILL_TAG
+
 # Try psycopg2 first (CI), fall back to httpx+Supabase REST
 try:
     import sqlalchemy
@@ -52,9 +54,12 @@ def fetch_via_db(cutoff_iso: str):
                    first_seen, created_at, star_momentum
             FROM skills
             WHERE first_seen >= :cutoff AND stars >= 20
+              -- Backfilled repos are old repos we caught up on, not fresh ones.
+              -- See app/services/extra_repo_backfill.py.
+              AND repo_full_name NOT IN (SELECT full_name FROM extra_repos WHERE submitted_by = :backfill_tag)
             ORDER BY star_momentum DESC NULLS LAST, stars DESC
             LIMIT 50
-        """), {"cutoff": cutoff_iso}).fetchall()
+        """), {"cutoff": cutoff_iso, "backfill_tag": BACKFILL_TAG}).fetchall()
     return [dict(r._mapping) for r in rows]
 
 

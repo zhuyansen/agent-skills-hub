@@ -384,12 +384,16 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         # ── Load DB-managed extra repos ──
         extra_repos_list = list(EXTRA_REPOS)
+        backfill_names: set[str] = set()
         try:
             from app.models.admin import ExtraRepo as ERModel
+            from app.services.extra_repo_backfill import BACKFILL_TAG
             db_extras = db.query(ERModel).filter(ERModel.is_active == True).all()  # noqa: E712
             for er in db_extras:
                 if er.full_name not in extra_repos_list:
                     extra_repos_list.append(er.full_name)
+                if er.submitted_by == BACKFILL_TAG:
+                    backfill_names.add(er.full_name.lower())
             if db_extras:
                 logger.info("Loaded %d additional extra repos from DB", len(db_extras))
         except Exception as exc:
@@ -670,6 +674,11 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                     updated_count += 1
                 else:
                     new_skill = Skill(**repo_data)
+                    # A backfilled repo arrives with years of stars at once. With
+                    # prev_stars left at 0, scoring and the daily report would
+                    # count all of them as one day's gain.
+                    if repo_data.get("repo_full_name", "").lower() in backfill_names:
+                        new_skill.prev_stars = new_skill.stars
                     readme = readme_cache.get(repo_data.get("repo_full_name", ""))
                     if readme:
                         new_skill.readme_content = readme
