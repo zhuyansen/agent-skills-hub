@@ -78,6 +78,33 @@ async function withRetry<T>(
   }
 }
 
+// How long a shared request's result is reused. Sync runs every 8 hours, so a
+// minute of reuse never serves stale data; it only collapses duplicates.
+const SHARED_REUSE_MS = 60_000;
+
+/**
+ * Collapse concurrent identical requests into one. A page mounts the same data
+ * hook several times — the header alone mounts useStats three times — and each
+ * instance used to fire its own request. Crawlers make that expensive: they run
+ * our JS in a fresh profile every session, so every visit is a cold cache
+ * (43K automated sessions in 28 days, measured 2026-09-17). A failed request is
+ * dropped at once so the next caller retries instead of inheriting the error.
+ */
+function shareRequest<T>(fetcher: () => Promise<T>): () => Promise<T> {
+  let entry: { startedAt: number; result: Promise<T> } | null = null;
+  return () => {
+    const now = Date.now();
+    if (!entry || now - entry.startedAt >= SHARED_REUSE_MS) {
+      const result = fetcher();
+      entry = { startedAt: now, result };
+      result.catch(() => {
+        if (entry?.result === result) entry = null;
+      });
+    }
+    return entry.result;
+  };
+}
+
 export interface OrgAuditRow {
   repo_full_name: string;
   repo_name: string;
@@ -407,7 +434,11 @@ export async function sbFetchLanguageStats(): Promise<
 
 // ═══ Landing page single-RPC optimization ═══
 
-export async function sbFetchLandingData(): Promise<LandingData> {
+// Home mounts useLandingData, and useStats (five mounts) reads the same RPC, so a
+// cold visit fetched this 74KB payload six times before it was shared.
+export const sbFetchLandingData = shareRequest(fetchLandingData);
+
+async function fetchLandingData(): Promise<LandingData> {
   return withRetry(async () => {
     const sb = ensureSupabase();
     const { data, error } = await sb.rpc("get_landing_data");
@@ -717,7 +748,11 @@ function getFallbackMasters(): Master[] {
   return [...hardcodedMasters, ...hardcodedEmerging];
 }
 
-export async function sbFetchLastSyncAt(): Promise<string | null> {
+// Every useCachedQuery instance probes this before deciding whether to refetch,
+// and a page mounts about six of them: six identical RPCs per page view.
+export const sbFetchLastSyncAt = shareRequest(probeLastSyncAt);
+
+async function probeLastSyncAt(): Promise<string | null> {
   const sb = ensureSupabase();
   const { data, error } = await sb.rpc("get_last_sync_at");
   if (error) return null;
