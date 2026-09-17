@@ -98,12 +98,12 @@ Core tables:
 - `weekly_trending_snapshots`: weekly Top 20 by star_velocity (used for newsletter + Trending page)
 - `skill_masters`: verified creators with GitHub + X profiles
 - `subscribers`: newsletter (email verification via token)
-- `extra_repos`: community-submitted repos (pending/approved/rejected)
+- `extra_repos`: repos fetched by name on every sync, regardless of push date. Holds curated and community submissions (pending/approved/rejected; only `is_active` rows sync) and paced backfills tagged in `submitted_by`
 
 Important: No `star_velocity` column on `skills` — compute as `(stars - prev_stars)`. The `first_seen` field = when skill was first indexed.
 
 ### CI/CD (`.github/workflows/`)
-- `sync.yml`: Every 8 hours, runs `sync_runner.py` against Supabase
+- `sync.yml`: Every 8 hours, tops up the `extra_repos` backfill queue (`backfill_extra_repos.py`), then runs `sync_runner.py` against Supabase
 - `deploy.yml`: On push to main (or after sync), builds frontend and deploys to GitHub Pages
 - `newsletter.yml`: Mondays 9:00 UTC, sends weekly trending email to verified subscribers
 
@@ -119,7 +119,7 @@ GitHub Secrets mirror these for CI workflows.
 
 - Supabase anon key is read-only (RLS). Writes require the service role key.
 - Newsletter only sends to `verified=true AND is_active=true` subscribers.
-- Sync is incremental on weekdays (`pushed:>LAST_SYNC_TIMESTAMP`), full on Sundays.
+- Every sync is incremental: search is filtered to repos pushed since the last completed sync (minus 1h). Sunday only adds EXTENDED_QUERIES to the query set; it does not re-crawl. A full crawl happens only when no completed sync exists. So a dormant repo that no query matched never enters the catalog on its own: backfill it through `extra_repos` (see `backend/app/services/extra_repo_backfill.py`).
 - Frontend build output goes to `frontend/dist/`, deployed via GitHub Pages with custom domain `agentskillshub.top`.
 - Vite dev server proxies `/api` to `localhost:8000` (configured in `vite.config.ts`).
 
