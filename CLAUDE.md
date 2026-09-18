@@ -119,7 +119,7 @@ GitHub Secrets mirror these for CI workflows.
 
 - Supabase anon key is read-only (RLS). Writes require the service role key.
 - Newsletter only sends to `verified=true AND is_active=true` subscribers.
-- Every sync is incremental: search is filtered to repos pushed since the last completed sync (minus 1h). Sunday only adds EXTENDED_QUERIES to the query set; it does not re-crawl. A full crawl happens only when no completed sync exists. So a dormant repo that no query matched never enters the catalog on its own: backfill it through `extra_repos` (see `backend/app/services/extra_repo_backfill.py`).
+- Every sync is incremental: search is filtered to repos pushed since the last completed sync (minus 1h). The one exception is a query bounded by `created:>=`, which skips that filter (`sync_selection.with_push_filter`) so a dated wave of new repos is fetched in full. Every sync runs the full query set: the `search_queries` table mirrors all hardcoded queries and is appended each run, so the Sunday switch to EXTENDED_QUERIES changes nothing. A full crawl happens only when no completed sync exists. So a dormant repo that no query matched never enters the catalog on its own: backfill it through `extra_repos` (see `backend/app/services/extra_repo_backfill.py`).
 - Frontend build output goes to `frontend/dist/`, deployed via GitHub Pages with custom domain `agentskillshub.top`.
 - Vite dev server proxies `/api` to `localhost:8000` (configured in `vite.config.ts`).
 

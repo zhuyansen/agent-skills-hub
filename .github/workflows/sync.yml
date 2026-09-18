@@ -5,6 +5,13 @@ on:
     - cron: "0 */8 * * *" # Every 8 hours
   workflow_dispatch: # Manual trigger
 
+# One sync at a time. A manual run that lands on a scheduled one (cron starts
+# drift by hours) queues behind it instead of writing to the database alongside
+# it. Queued runs are not cancelled mid-flight.
+concurrency:
+  group: sync-skills
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest

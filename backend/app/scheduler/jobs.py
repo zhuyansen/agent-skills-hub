@@ -9,6 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from sqlalchemy.orm import Session
 
 from app.config import settings
+from app.services.sync_selection import select_new_repo_readme_targets, with_push_filter
 
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
@@ -33,6 +34,13 @@ CORE_QUERIES = [
     # jtydhr88/screenwriting-skills (1.2K★). The singular form returns the same
     # set (GitHub stems it); "SKILL.md in:readme" was rejected as ~all noise.
     '"agent skills" in:description stars:>50',
+    # TypeSafe released its Jev decision model on 2026-09-16; two days later
+    # 726 repos named or described with "jev" existed and the catalog had 2 of
+    # the 22 with 50+ stars. created:>= keeps out older namesakes (JeVois, Jevons,
+    # Scala's Typesafe) and exempts these from the incremental pushed:> filter
+    # (see sync_selection.with_push_filter), so the whole wave is fetched.
+    "jev in:name,description,topics created:>=2026-09-15",
+    "typesafe in:name,description,topics created:>=2026-09-15",
 ]
 
 # ── OpenClaw / NanoClaw ecosystem queries ──
@@ -286,6 +294,17 @@ async def _github_request(
     return resp.json()
 
 
+def _existing_repo_names(db: "Session", names: list[str], chunk: int = 1000) -> set[str]:
+    """Which of these repos are already in skills (exact match, on the unique index)."""
+    from app.models.skill import Skill  # inline like the rest of this module, avoids a circular import
+
+    found: set[str] = set()
+    for i in range(0, len(names), chunk):
+        rows = db.query(Skill.repo_full_name).filter(Skill.repo_full_name.in_(names[i:i + chunk])).all()
+        found.update(r.repo_full_name for r in rows)
+    return found
+
+
 def _get_last_successful_sync(db: "Session") -> Optional[datetime]:
     """Get the timestamp of the last successful sync for incremental mode."""
     from app.models.skill import SyncLog
@@ -425,7 +444,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             # ═══════════════════════════════════════════════════════
             search_start = time.time()
             for i, query in enumerate(all_queries):
-                effective_query = query + pushed_filter if pushed_filter else query
+                effective_query = with_push_filter(query, pushed_filter)
                 try:
                     for page in range(1, 4):  # up to 3 pages per query
                         data = await _github_request(
@@ -576,6 +595,9 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                     .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
                 }
                 readme_targets |= set(backfill_pending) - have_readme
+            # Repos not in skills yet are never in null_readme_skills, so a new
+            # row used to go ungraded until some later sync fetched it again.
+            readme_targets |= select_new_repo_readme_targets(all_repos, _existing_repo_names(db, list(all_repos)))
             if readme_targets:
                 logger.info("Fetching README for %d skills", len(readme_targets))
                 async with httpx.AsyncClient(timeout=30.0) as readme_client:
