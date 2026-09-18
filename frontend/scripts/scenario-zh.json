@@ -533,5 +533,16 @@
       "知识库"
     ],
     "d": "kepano/obsidian-skills、mcp-obsidian、claude-obsidian、obsidian-wiki、karpathy-llm-wiki 等 30+ 开源 Obsidian/第二大脑/LLM Wiki 工具对比,带安全评级,适配 Claude Code 与 Codex。"
+  },
+  "typesafe-jev": {
+    "t": "TypeSafe Jev",
+    "k": [
+      "Jev",
+      "TypeSafe",
+      "Jev 模型",
+      "判断模型",
+      "决策模型"
+    ],
+    "d": "基于 TypeSafe Jev 决策模型的开源项目,逐个做了安全评级:jev-ultrafast 浏览器 agent、openjev、fast-jev-compaction、Jev 代码审查工具和 MCP 服务器。装之前先查一查。"
   }
 }

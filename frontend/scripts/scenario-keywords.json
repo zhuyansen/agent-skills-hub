@@ -3715,7 +3715,7 @@
  },
  {
   "slug": "typesafe-jev",
-  "title": "TypeSafe Jev Projects & Integrations",
+  "title": "TypeSafe Jev",
   "description": "Open-source projects built on TypeSafe's Jev decision model, security-graded: the jev-ultrafast browser agent, openjev, fast-jev-compaction, Jev code review tools and MCP servers. Vet before you install.",
   "match": {
    "categories": [],
