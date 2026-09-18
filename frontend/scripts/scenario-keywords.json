@@ -3712,5 +3712,65 @@
    "semantic-search",
    "document-parsing"
   ]
+ },
+ {
+  "slug": "typesafe-jev",
+  "title": "TypeSafe Jev Projects & Integrations",
+  "description": "Open-source projects built on TypeSafe's Jev decision model, security-graded: the jev-ultrafast browser agent, openjev, fast-jev-compaction, Jev code review and MCP servers. Check which ones send your data to TypeSafe's API before you install.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "typesafe jev",
+    "typesafe/jev",
+    "typesafe's jev",
+    "jev model",
+    "jev decision",
+    "jev-powered",
+    "powered by jev",
+    "with jev",
+    "on jev",
+    "jev-",
+    "-jev",
+    "openjev",
+    "jevlike",
+    " jev ",
+    " jev.",
+    " jev,",
+    "typesafe.ai"
+   ],
+   "secondary_keywords": [],
+   "topic_matches": [
+    "jev",
+    "typesafe-jev",
+    "typesafe-ai"
+   ],
+   "exclude_keywords": [
+    "jevois",
+    "jevons",
+    "jeveassets",
+    "eve online",
+    "eve-online",
+    "jevix",
+    "jeva",
+    "mon-usdc",
+    "kuru",
+    "curated list",
+    "awesome-"
+   ],
+   "min_results": 5,
+   "max_results": 30,
+   "featured": [
+    "browser-use/jev-ultrafast",
+    "TheoLeeCJ/openjev",
+    "tamaratran/fast-jev-compaction",
+    "awlevin/typesafe-computer-use"
+   ],
+   "tag_matches": []
+  },
+  "related": [
+   "browser-automation",
+   "code-review",
+   "model-evaluation"
+  ]
  }
 ]
