@@ -37,6 +37,11 @@ function matchSkills(scenario, allSkills) {
     // Legacy format: all keywords are secondary
   }
   const excludeKw = (m.exclude_keywords || []).map((k) => k.toLowerCase());
+  // Optional gate: at least one must appear in the description or repo name.
+  // Topics don't count, because repos stuff them with every trending tag: a
+  // generic skills collection from February tagged itself "jev" among 18
+  // topics and landed on the Jev page.
+  const requiredKw = (m.required_keywords || []).map((k) => k.toLowerCase());
   const topicMatches = (m.topic_matches || []).map((k) => k.toLowerCase());
   // Curated normalized tags from skills.tags TEXT[] column. Higher precision
   // than topics because they're computed from a controlled vocabulary.
@@ -99,6 +104,7 @@ function matchSkills(scenario, allSkills) {
       }
     }
     if (excluded) continue;
+    if (requiredKw.length > 0 && !requiredKw.some((kw) => `${desc} ${name}`.includes(kw))) continue;
 
     // Primary keywords (+8 each)
     for (const kw of primaryKw) {

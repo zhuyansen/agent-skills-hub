@@ -3765,7 +3765,11 @@
     "tamaratran/fast-jev-compaction",
     "awlevin/typesafe-computer-use"
    ],
-   "tag_matches": []
+   "tag_matches": [],
+   "required_keywords": [
+    "jev",
+    "typesafe"
+   ]
   },
   "related": [
    "browser-automation",
