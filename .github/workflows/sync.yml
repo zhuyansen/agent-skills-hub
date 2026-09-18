@@ -124,6 +124,17 @@ jobs:
           DATABASE_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: python sync_runner.py
 
+      - name: Record cold-start priors
+        # Prospective experiment (supabase/migrations/023_cold_start_priors.sql): score
+        # repos first seen in the last 3 days with a Jev day-one prior (<=150 calls, ~$0.01)
+        # and fill 14-day star outcomes from skills.stars. Runs after the sync in the same
+        # job so it never overlaps one; a failure must not cost the sync, so it can't fail the job.
+        continue-on-error: true
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python cold_start_priors.py
+
   notify-failure:
     needs: sync
     if: failure()
