@@ -174,7 +174,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // what the scan actually found is review information; a star count is not.
   const FLAG_COPY = {
     sudo_usage: "sudo usage", service_persistence: "installs a background service",
-    curl_pipe_shell: "curl | sh from an untrusted host", agent_config_theft: "reads agent config files",
+    curl_pipe_shell: "curl | sh from an untrusted host", agent_config_theft: "sends agent config files off the machine",
     tunnel_service: "opens a tunnel service", eval_usage: "dynamic eval()",
     sensitive_env_vars: "reads sensitive env vars", agent_memory_theft: "reads agent memory",
     env_access: "environment access", subprocess_spawn: "spawns subprocesses",

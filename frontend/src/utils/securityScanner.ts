@@ -58,6 +58,28 @@ function getTrustTier(author: string, stars: number, license: string | null): nu
 // ══════════════════════════════════════════════════════════════════
 type PatternDef = [RegExp, string, FlagDetail["severity"], string];
 
+// Mirrors _AGENT_SECRET_PATH / _REMOTE_TARGET / _OUTBOUND / _AGENT_CONFIG_THEFT in
+// the backend. Composed as strings so the pieces stay diffable against Python;
+// no lookbehind anywhere (Vite's default target includes Safari 16.0–16.3).
+const AGENT_SECRET_PATH =
+  "(?:~?/?\\.(?:claude|openclaw|cursor|codex)(?:\\.json\\b|/(?:settings|sessions|memory|projects|history|\\.?credentials|auth|mcp)\\S*)"
+  + "|claude_desktop_config\\.json)";
+const REMOTE_TARGET =
+  "(?:https?://|\\d{1,3}(?:\\.\\d{1,3}){3}"
+  + "|[a-z0-9-]+\\.(?:com|net|org|io|dev|xyz|app|sh|ai|co|me|top|site|online|cloud|ru|cn)\\b)";
+// curl's `-F` is left out on purpose: the scan runs on a lowercased README, where
+// it collides with `-f` (fail) in `curl -fsSL … -o ~/.claude/settings.json`.
+const OUTBOUND =
+  "(?:\\|\\s*(?:curl|wget|nc|ncat|netcat|socat|ssh)\\b"
+  + "|\\b(?:curl|wget)\\b[^\\n]*(?:https?://|\\s-(?:d|t)\\b|--(?:data(?:-binary)?|form|upload-file))"
+  + "|\\b(?:scp|rsync)\\b[^\\n]*\\S+@\\S+:"
+  + "|/dev/tcp/"
+  + `|\\b(?:send|upload|post|exfiltrate|transmit|forward|submit)(?:s|ed|ing)?\\b[^\\n]{0,60}\\b(?:to|at)\\s+${REMOTE_TARGET})`;
+const AGENT_CONFIG_THEFT =
+  `\\b(?:cat|cp|read|tar|zip|base64|xxd|type|curl|wget)s?\\b[^\\n]*${AGENT_SECRET_PATH}[^\\n]*${OUTBOUND}`
+  + `|\\b(?:curl|wget)\\b[^\\n]*(?:\\s-(?:d|t)\\b|--(?:data(?:-binary)?|form|upload-file))[^\\n]*@?${AGENT_SECRET_PATH}`
+  + `|\\b(?:scp|rsync)\\b[^\\n]*${AGENT_SECRET_PATH}[^\\n]*\\S+@\\S+:`;
+
 const REJECT_PATTERNS: PatternDef[] = [
   [/(?:cat|cp)\s+[^\n]*\.(?:ssh|aws|env)[^\n]*\|\s*(?:curl|nc|wget)/i, "exfil_secrets_combo", "critical", "Exfiltrates secrets via pipe to network tool"],
   [/(?:crontab|bashrc|zshrc)[^\n]*(?:curl|wget|nc)/i, "backdoor_install", "critical", "Installs backdoor via shell startup + remote download"],
@@ -75,7 +97,10 @@ const HIGH_PATTERNS: PatternDef[] = [
   [/(?:cat|cp|mv|rm|read)\s+[^\n]*\/etc\/(?:shadow|passwd)/i, "etc_sensitive_read", "high", "Reads sensitive system files (/etc/shadow, /etc/passwd)"],
   // 4. Agent Memory Theft
   [/(?:cat|cp|read|curl)[^\n]*(?:MEMORY\.md|USER\.md|SOUL\.md|IDENTITY\.md)/i, "agent_memory_theft", "high", "Accesses agent memory/identity files"],
-  [/(?:cat|cp|read)[^\n]*\.(?:claude|openclaw|cursor)\/(?:settings|sessions|memory)/i, "agent_config_theft", "high", "Accesses agent configuration/session files"],
+  // Read verb + agent secret path + outbound destination on one line. The bare
+  // `cat|cp|read … .claude/settings` form was 168/168 false positives at catalog
+  // scale ("mcp" contains "cp"; every Claude Code tool documents settings.json).
+  [new RegExp(AGENT_CONFIG_THEFT, "i"), "agent_config_theft", "high", "Reads agent configuration/session/credential files and sends them out"],
   // 5. Dynamic Code Exec
   [/exec\s*\(\s*__import__/i, "exec_import", "high", "Executes dynamically imported Python code"],
   [/base64\s+(-d|--decode)\s*\|/i, "base64_exec", "high", "Decodes and pipes base64 data for execution"],
@@ -86,7 +111,7 @@ const HIGH_PATTERNS: PatternDef[] = [
   // 7. Persistence
   [/(?:crontab|\/etc\/cron)/i, "cron_persistence", "high", "Installs cron job for persistence"],
   [/>>?\s*~\/\.(?:bashrc|zshrc|profile|bash_profile)/i, "shell_rc_inject", "high", "Injects commands into shell startup files"],
-  [/(?:systemctl\s+enable|launchd|plist|LoginItems)/i, "service_persistence", "high", "Installs persistent service/daemon"],
+  // service_persistence moved to AGENT_MED_PATTERNS (medium, context-aware): 368/368 false positives as `launchd|plist`.
   // 8. Reverse Shell
   [/(nc|ncat|netcat)\s+-[elp]/i, "reverse_shell", "high", "Opens reverse shell connection"],
   [/\/dev\/tcp\//i, "dev_tcp", "high", "Uses /dev/tcp for network connection"],
@@ -141,6 +166,10 @@ const AGENT_MED_PATTERNS: PatternDef[] = [
   [/\b(?:paste|enter|type|provide|share|send|give)\s+(?:me\s+)?(?:your|the)\s+(?:api[\s_-]?keys?|access[\s_-]?tokens?|secret[\s_-]?keys?|passwords?|credentials|private[\s_-]?keys?)\s+(?:here|in(?:to)?\s+(?:the\s+|this\s+)?(?:chat|conversation|prompt|message|window))\b/gi, "credential_in_chat", "medium", "Asks for credentials to be pasted into the chat/prompt"],
   [/\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,60}https?:\/\/(?:bit\.ly|tinyurl\.com|is\.gd|goo\.gl|rb\.gy|cutt\.ly|shorturl\.at|t\.ly|v\.gd)\//gi, "shortener_download", "medium", "Downloads from a URL shortener, which hides the real source"],
   [/\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,80}(?:pastebin\.com\/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)/gi, "paste_host_download", "medium", "Downloads from an anonymous paste/file-drop host"],
+  // SlowMist 7 (persistence), demoted from HIGH: only the explicit install
+  // command, outside code spans. A documented daemon is a capability, not a
+  // threat; persistence + remote download is REJECT's backdoor_install.
+  [/\b(?:launchctl\s+(?:load|bootstrap|enable|submit)\b|systemctl\s+(?:--user\s+)?enable\b|sc(?:\.exe)?\s+create\b|schtasks(?:\.exe)?\s+\/create\b|reg(?:\.exe)?\s+add\s+[^\n]*\\run\b|(?:cp|mv|tee|>)[ \t]*[^\n]*library\/launch(?:agents|daemons)\/)/gi, "service_persistence", "medium", "Installs a persistent service/daemon (launchd, systemd, Task Scheduler)"],
 ];
 const DESTINATION_FLAGS = new Set(["shortener_download", "paste_host_download"]);
 const NEGATION_EXEMPT = new Set<string>();

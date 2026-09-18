@@ -56,6 +56,35 @@ def _get_trust_tier(skill: Skill) -> int:
     return 5
 
 
+# Files an agent host keeps secrets or transcripts in: Claude Code / Cursor /
+# Codex / OpenClaw settings (hook + MCP env blocks), `~/.claude.json` and
+# `claude_desktop_config.json` (MCP servers with API keys), `.credentials.json`
+# (OAuth), sessions/projects/history (transcripts).
+_AGENT_SECRET_PATH = (
+    r"(?:~?/?\.(?:claude|openclaw|cursor|codex)(?:\.json\b|/(?:settings|sessions|memory|projects|history|\.?credentials|auth|mcp)\S*)"
+    r"|claude_desktop_config\.json)"
+)
+_REMOTE_TARGET = (
+    r"(?:https?://|\d{1,3}(?:\.\d{1,3}){3}"
+    r"|[a-z0-9-]+\.(?:com|net|org|io|dev|xyz|app|sh|ai|co|me|top|site|online|cloud|ru|cn)\b)"
+)
+# Where the file goes: piped to a network tool, a curl/wget upload, scp/rsync
+# to a remote, /dev/tcp, or a prose instruction to send it to a host. curl's
+# `-F` is left out on purpose: the scan runs on a lowercased README, where it
+# collides with `-f` (fail) in `curl -fsSL … -o ~/.claude/settings.json`.
+_OUTBOUND = (
+    r"(?:\|\s*(?:curl|wget|nc|ncat|netcat|socat|ssh)\b"
+    r"|\b(?:curl|wget)\b[^\n]*(?:https?://|\s-(?:d|t)\b|--(?:data(?:-binary)?|form|upload-file))"
+    r"|\b(?:scp|rsync)\b[^\n]*\S+@\S+:"
+    r"|/dev/tcp/"
+    r"|\b(?:send|upload|post|exfiltrate|transmit|forward|submit)(?:s|ed|ing)?\b[^\n]{0,60}\b(?:to|at)\s+" + _REMOTE_TARGET + ")"
+)
+_AGENT_CONFIG_THEFT = (
+    r"\b(?:cat|cp|read|tar|zip|base64|xxd|type|curl|wget)s?\b[^\n]*" + _AGENT_SECRET_PATH + r"[^\n]*" + _OUTBOUND
+    + r"|\b(?:curl|wget)\b[^\n]*(?:\s-(?:d|t)\b|--(?:data(?:-binary)?|form|upload-file))[^\n]*@?" + _AGENT_SECRET_PATH
+    + r"|\b(?:scp|rsync)\b[^\n]*" + _AGENT_SECRET_PATH + r"[^\n]*\S+@\S+:"
+)
+
 # ══════════════════════════════════════════════════════════════════════
 # HIGH-RISK PATTERNS — SlowMist 11 Categories
 # Any single match (outside code blocks) → unsafe
@@ -83,8 +112,14 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # ── 4. Agent Identity / Memory File Theft ──
     (re.compile(r'(?:cat|cp|read|curl)[^\n]*(?:MEMORY\.md|USER\.md|SOUL\.md|IDENTITY\.md)', re.IGNORECASE), "agent_memory_theft",
      "Accesses agent memory/identity files"),
-    (re.compile(r'(?:cat|cp|read)[^\n]*\.(?:claude|openclaw|cursor)/(?:settings|sessions|memory)', re.IGNORECASE), "agent_config_theft",
-     "Accesses agent configuration/session files"),
+    # Theft means the file leaves the machine, so the rule wants a read verb,
+    # an agent secret path AND an outbound destination on one line. The old
+    # form — any `cat|cp|read` substring followed by `.claude/settings` — was
+    # 168 hits, 168 false positives at catalog scale: `.claude/settings.json`
+    # is where every Claude Code tool tells its users to add hooks, permissions
+    # or MCP servers, and "mcp" contains "cp", "already" contains "read".
+    (re.compile(_AGENT_CONFIG_THEFT, re.IGNORECASE), "agent_config_theft",
+     "Reads agent configuration/session/credential files and sends them out"),
 
     # ── 5. Dynamic Code Execution from External Input ──
     (re.compile(r"exec\s*\(\s*__import__", re.IGNORECASE), "exec_import",
@@ -105,8 +140,8 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
      "Installs cron job for persistence"),
     (re.compile(r'>>?\s*~/\.(?:bashrc|zshrc|profile|bash_profile)', re.IGNORECASE), "shell_rc_inject",
      "Injects commands into shell startup files"),
-    (re.compile(r'(?:systemctl\s+enable|launchd|plist|LoginItems)', re.IGNORECASE), "service_persistence",
-     "Installs persistent service/daemon"),
+    # service_persistence moved to AGENT_MEDIUM_PATTERNS (medium, context-aware):
+    # `launchd|plist|LoginItems` was 368 hits, 368 false positives.
 
     # ── 8. Reverse Shell ──
     (re.compile(r"(nc|ncat|netcat)\s+-[elp]", re.IGNORECASE), "reverse_shell",
@@ -278,6 +313,21 @@ AGENT_MEDIUM_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     (re.compile(r"\b(?:curl|wget|irm|iwr|invoke-webrequest|invoke-restmethod)\b[^\n]{0,80}"
                 r"(?:pastebin\.com/raw|transfer\.sh|paste\.ee|hastebin\.com|0x0\.st|temp\.sh|catbox\.moe|anonfiles)", re.IGNORECASE),
      "paste_host_download", "Downloads from an anonymous paste/file-drop host"),
+    # SlowMist 7 (persistence), demoted from HIGH_RISK_PATTERNS. The old rule
+    # `systemctl enable|launchd|plist|LoginItems` scored 368 hits and 368 false
+    # positives across the catalog: "simplistic", "launchdarkly", "mcptoplist",
+    # Info.plist in every iOS skill, and — the bulk — daemons the README
+    # documents installing (`openclaw onboard --install-daemon`, "runs under
+    # launchd/systemd"). A background service is a capability, not a threat, and
+    # a regex can't tell a documented one from a hidden one; the dangerous combo
+    # (persistence + remote download) is REJECT_PATTERNS' backdoor_install. What
+    # remains is the explicit install command itself, at medium, outside code
+    # spans, so an unknown-source README that *tells* a reader to load a launch
+    # agent in prose still surfaces it on the audit page.
+    (re.compile(r"\b(?:launchctl\s+(?:load|bootstrap|enable|submit)\b|systemctl\s+(?:--user\s+)?enable\b|sc(?:\.exe)?\s+create\b"
+                r"|schtasks(?:\.exe)?\s+/create\b|reg(?:\.exe)?\s+add\s+[^\n]*\\run\b"
+                r"|(?:cp|mv|tee|>)[ \t]*[^\n]*library/launch(?:agents|daemons)/)", re.IGNORECASE),
+     "service_persistence", "Installs a persistent service/daemon (launchd, systemd, Task Scheduler)"),
 ]
 
 # Snyk: secret_detection. Matched on the ORIGINAL-case README — _scan's other
