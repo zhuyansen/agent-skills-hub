@@ -27,7 +27,9 @@ function matchSkills(scenario, allSkills) {
   const m = scenario.match;
   const categories = m.categories || [];
   const min_results = m.min_results || 5;
-  const max_results = m.max_results || 10;
+  // null means no cap: a live wave like TypeSafe Jev keeps adding notable
+  // repos, and a fixed cap pushed 263★ projects off the page.
+  const max_results = m.max_results === null ? Infinity : m.max_results || 10;
 
   // Support tiered keywords: primary (+8), secondary/keywords (+3)
   const primaryKw = (m.primary_keywords || []).map((k) => k.toLowerCase());
@@ -136,7 +138,11 @@ function matchSkills(scenario, allSkills) {
   }
 
   // Sort by matchScore desc, then by stars desc
-  scored.sort((a, b) => b.matchScore - a.matchScore || b.skill.stars - a.skill.stars);
+  // Default: keyword relevance first. sort: "stars" suits pages where every
+  // match is on-topic (enforced by required_keywords), so keyword count only
+  // measures how wordy a description is.
+  if (m.sort === "stars") scored.sort((a, b) => b.skill.stars - a.skill.stars);
+  else scored.sort((a, b) => b.matchScore - a.matchScore || b.skill.stars - a.skill.stars);
 
   // Featured first (in declared order), then keyword-matched results
   featured.sort((a, b) => {

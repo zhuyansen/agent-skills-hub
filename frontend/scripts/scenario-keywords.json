@@ -3758,7 +3758,7 @@
     "awesome-"
    ],
    "min_results": 5,
-   "max_results": 30,
+   "max_results": null,
    "featured": [
     "browser-use/jev-ultrafast",
     "TheoLeeCJ/openjev",
@@ -3769,7 +3769,8 @@
    "required_keywords": [
     "jev",
     "typesafe"
-   ]
+   ],
+   "sort": "stars"
   },
   "related": [
    "browser-automation",
