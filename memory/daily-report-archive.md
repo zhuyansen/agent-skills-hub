@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-19
+1. TheoLeeCJ/SemIf — 🆕 用开源小模型在家用 3090 上复刻 Jev 式语义判断，浏览器即可试跑（1616★ 539.5/day）
+2. mcncarl/jianying-headless — 🆕 让智能体在本机生成并修改剪映草稿，调用剪映引擎直接导出 MP4（1084★ 296.0/day）
+3. TianyuCodings/NanoJev — 🆕 复刻 Jev 的 0.6B 并行决策模型，开源数据集与完整训练流程（402★ 271.0/day）
+4. dabit3/jev-experiments — 🆕 汇集 Devin 构建的多个 Jev 低延迟应用演示，各附测试与截图（239★ 203.9/day）
+5. jaredpalmer/kev — 🆕 在 Qwen2.5-0.5B 上训练类 Jev 决策模型，MacBook 即可训练运行（173★ 134.3/day）
+6. realZachi/pg-jev — 🆕 用一句自然语言在 Postgres 里筛选、排序和分类数据行（170★ 128.8/day）
+7. superagents-lab/jev-search — 🆕 让 Jev 挑选信源与检索词，并按相关度排序网页搜索结果（127★ 90.6/day）
+8. dbreunig/building-with-jev-skill — 🆕 教编码智能体写好调用 Jev 的程序，覆盖问题设计与置信阈值（104★ 81.5/day）
+9. kiyoakii/is-gpt-nerfed — 🆕 在 Mac 本地检测 Codex 是否偷换模型或悄悄调低推理强度（131★ 35.2/day）
+10. kunchenguid/vision — 挖掘仓库提交历史起草 VISION.md，再用极端假设压力测试（325★ 8.0/day）
+🎯 今日趋势：TypeSafe Jev 发布第三天，生态井喷：45 天建仓窗内清洁候选前 15 名有 **13 条是 Jev 相关**（窗内中位数 **11.8星/天**），十席星数合计 **4,371★**、**9 席 🆕**；Jev 主线占 **7 席**且分成三路——**开源复刻**（SemIf、NanoJev、kev 三个 0.5B–4B 小模型直接吐概率不解码）、**接进现有工具**（pg-jev 进 Postgres、jev-search 进搜索）、**开发者配套**（jev-experiments 演示集、building-with-jev-skill 写法指南）；另一条线是**智能体接管本地桌面软件**：jianying-headless 直接驱动剪映出片。
+> 注：去重范围＝repo 内 archive 全部 **86 个日期段、870 个编号条目**，并入记忆区 daily-report-archive 与 fresh-skills-archive 机械提取，小写去重后**比对基数 4,480 个 owner/repo 字符串**（含路径类噪声，只会多剔不会漏剔），另对十席 owner 做了名称级 grep（mcncarl、kunchenguid 等均未在往期出现），十席**零重复**。查询口径：以 72h、stars ≥20、`ORDER BY stars DESC LIMIT 300` 拉超集，**实得 300 条已触顶**，命中历史推荐 40 条剔除后清洁候选 260 条（大量 stars=prev_stars 的存量回填老仓，窗外高星项如 gnipbao/story-to-handdrawn-video 59.8 天、rpamis/comet、writing-dna-skill 等按惯例不参评）；十席 first_seen **全部落在 48h 以内**（最晚 vision 38.4h），**未放宽到 72h**，因此 judegomila/OnCo（166★ 11.8/day，first_seen 48.6h，恰超 48h 口径）未参评。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天。**本期排除 6 项**：①**kyotofin/tax-doc-classifier（134★ 134.0/day，本可居第 6）**：组织 06-06 建、**1 粉、名下仅此 1 仓**，49KB 的商业产品演示仓、README 宣称"261 份 IRS 表格 100% 准确"无可复核，属"新号单仓速涨"形态，保守排除；②**cobanov/awesome-jev（121★）与 fatwang2/awesome-jev（122★）**：同日出现的两份 Jev 项目目录，内容高度重叠且为清单类，按清单类先例不入榜（本站 /best/typesafe-jev/ 已覆盖该意图）；③**wy-coliney/jev-browser-use（111★ 111.0/day）**：账号 6 粉、名下仅 2 仓（另一仓 0★），属单仓爆星形态，且与 **jkudish/jev-browser（113★ 83.8/day）**同为"Jev 驱动浏览器"方向（昨日亦因同方向排除 vlad-terin/jev-browser），为控制单一生态占比两者一并让位；④**hr98w/jev-visual（111★ 78.4/day）**：与已入选的 NanoJev、kev 同属"类 Jev 小模型复刻"，第三个同类项让位。入选项刷星复核（`gh api` 抽查账号履历与 fork/watcher/issue）：第 1 席 TheoLeeCJ 为 **2016 建号 / 55 粉**，其余仓最高 llama4-computer-use 47★，**属单仓爆星形态（轻红旗）**，但实时 1,628★ 对 **106 fork＋6 issue**、MIT、附 WebGPU 浏览器演示与 21 题对照回放，README 明示**与 Jev/TypeSafe 无隶属关系、只复刻接口模式不复刻模型**（原名 OpenJev），⚠️本地跑需 CUDA 显卡；第 2 席 mcncarl 为 181 粉的独立开发者，名下 **yichen-skills 3,765★** 构成履历，实时 1,122★ 对 **530 fork（47%，偏高）**，prev_stars=0 属首次收录，⚠️README 自述为**私有源预览**、**非剪映官方 SDK**、仅适配 macOS 剪映专业版 11.5.0/11.4.2 且"尚不保证任意电脑安装即用"，LICENSE 为 NOASSERTION；第 3 席 TianyuCodings 为 2019 建号 / 17 粉，名下 EdiVal 32★、Diffusion_Trusted_Q_Learning 28★ 构成研究履历，419★ 对 **40 fork**、MIT、模型与数据集均开源在 Hugging Face；第 4 席 dabit3 为 **7,765 粉**的 Nader Dabit（现供职 Cognition），245★ 对 20 fork＋17 issue，⚠️**未声明 LICENSE**；第 5 席 jaredpalmer 为 **10,371 粉**的 tsdx（11,463★）作者、现任 Cognition 工程副总裁，Apache-2.0，⚠️仅在 Apple Silicon 上测试、CUDA 未测；第 6 席 realZachi 为 2022 建号，名下 shotluma 127★、typesafe-adblock 49★，172★ 对 10 fork，⚠️LICENSE 为 NOASSERTION，每行判断均需调用 Jev 远端 API（按量计费）；第 7 席 superagents-lab 为 Search1API 团队组织（xcode27-skills 324★、search1api-mcp 173★），134★ 对 20 fork、MIT，⚠️需自备 Search1API 与 TypeSafe 两把 key，非 TypeSafe 官方产品；第 8 席 dbreunig 为 **2009 建号**、whenwords 1,323★ 作者，7KB 纯技能文档，⚠️未声明 LICENSE；第 9 席 kiyoakii 为 2017 建号 / 82 粉，名下其余仓最高 9★（轻红旗），但 135★ 对 4 fork、MIT、15MB 仓含完整插件与指纹库说明，全程本地运行不上传，保留并标注；第 10 席 kunchenguid 为 **6,143 粉**、no-mistakes 8,556★ 作者，327★ 对 14 fork、MIT。🆕 判定＝created_at 距今 14 天内，本期 **9 席**命中（jianying-headless、is-gpt-nerfed 09-15，SemIf 09-16，NanoJev、jev-experiments、kev、pg-jev、jev-search、building-with-jev-skill 09-17）；vision（08-09，40.4 天）超窗不标。十席 security_grade **全部为 safe**。数据口径提醒：**表中 stars 为数据库快照**，部分 GitHub 实时星数已高于此（SemIf 1,628★、jianying-headless 1,122★、NanoJev 419★、kev 191★），本表按"只用查询结果"红线保留快照值计算 velocity 与排位。
+
+---
+
 ## 2026-09-18
 1. kuhnhomeuk-cell/procedural-film — 🆕 把一个话题做成 30 秒竖屏短片，画面与配乐全由 JavaScript 生成（75★ 75.0/day）
 2. NiazMorshed2007/jev-review — 🆕 以本地 MCP 给编码智能体持续打代码质量分，接入 Claude Code 与 Codex（62★ 62.0/day）
