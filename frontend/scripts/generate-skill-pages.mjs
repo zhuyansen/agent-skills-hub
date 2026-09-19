@@ -181,7 +181,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     cron_persistence: "installs a cron job", sensitive_dir_access: "sensitive directory access",
     docker_privileged: "privileged Docker", backdoor_install: "backdoor install pattern",
     chmod_dangerous: "dangerous chmod", ssl_disabled: "disables SSL verification",
-    env_file_read: "reads .env files", etc_sensitive_read: "reads /etc secrets",
+    etc_sensitive_read: "reads /etc secrets",
     wget_pipe_shell: "wget | sh from an untrusted host", runtime_install_exec: "installs at runtime",
     powershell_download_exec: "irm | iex from an untrusted host",
     prompt_injection_covert: "tells the agent to act covertly",

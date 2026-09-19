@@ -91,7 +91,9 @@ const HIGH_PATTERNS: PatternDef[] = [
   // curl|sh, wget|sh and irm|iex live in PIPE_PATTERNS — they need the destination checked.
   // 2. Credential Harvest
   [/env\s*\|\s*grep\s+-[iI].*(?:key|token|secret|password)/i, "credential_harvest", "high", "Harvests credentials from environment variables"],
-  [/cat\s+[^\n]*\.env\b/i, "env_file_read", "high", "Reads .env files which may contain secrets"],
+  // env_file_read (`cat … .env`) was removed 2026-09-19: 11 catalog hits, all
+  // false positives. Eight were security tools listing what they block (pi-jev,
+  // Full reasoning beside the Python rule list (the source of truth).
   // 3. Sensitive Dir Access
   [/(?:cat|cp|mv|rm|read)\s+[^\n]*~\/\.(?:ssh|aws|gnupg|config\/gcloud)/i, "sensitive_dir_access", "high", "Accesses sensitive directories (~/.ssh, ~/.aws)"],
   [/(?:cat|cp|mv|rm|read)\s+[^\n]*\/etc\/(?:shadow|passwd)/i, "etc_sensitive_read", "high", "Reads sensitive system files (/etc/shadow, /etc/passwd)"],

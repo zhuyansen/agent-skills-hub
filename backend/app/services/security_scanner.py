@@ -100,8 +100,12 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # ── 2. Credential / Environment Variable Harvesting ──
     (re.compile(r'env\s*\|\s*grep\s+-[iI].*(?:key|token|secret|password)', re.IGNORECASE), "credential_harvest",
      "Harvests credentials from environment variables"),
-    (re.compile(r'cat\s+[^\n]*\.env\b', re.IGNORECASE), "env_file_read",
-     "Reads .env files which may contain secrets"),
+    # env_file_read (`cat … .env`) was removed 2026-09-19: 11 catalog hits, all
+    # false positives. Eight were security tools listing what they block (pi-jev,
+    # sensitive-canary, occasio, agent-rules-audit ...), one matched "LongCat" in
+    # a table row that later said `.env.example`, one told users to check their
+    # own keys. Reading a local .env isn't the risk. Sending it out is, and
+    # exfil_secrets_combo (reject) and data_exfiltration already catch that.
 
     # ── 3. Sensitive File System Access ──
     (re.compile(r'(?:cat|cp|mv|rm|read)\s+[^\n]*~/\.(?:ssh|aws|gnupg|config/gcloud)', re.IGNORECASE), "sensitive_dir_access",
