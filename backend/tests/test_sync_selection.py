@@ -1,5 +1,5 @@
 """Pure fetch decisions extracted from scheduler/jobs.py."""
-from app.services.sync_selection import select_new_repo_readme_targets, with_push_filter
+from app.services.sync_selection import select_readme_targets, with_push_filter
 
 PUSHED = " pushed:>2026-09-18T01:00:00Z"
 
@@ -22,16 +22,17 @@ def repo(stars):
     return {"stargazers_count": stars}
 
 
-def test_only_repos_not_yet_in_skills_are_targets():
-    all_repos = {"a/known": repo(900), "b/new": repo(10)}
-    assert select_new_repo_readme_targets(all_repos, known_names={"a/known"}) == {"b/new"}
+def test_only_repos_without_a_readme_are_targets():
+    # a/graded has a README; b/new isn't in skills; c/ungraded is, but without one
+    all_repos = {"a/graded": repo(900), "b/new": repo(10), "c/ungraded": repo(50)}
+    assert select_readme_targets(all_repos, have_readme={"a/graded"}) == {"b/new", "c/ungraded"}
 
 
 def test_cap_keeps_the_most_starred_new_repos():
     all_repos = {"a/one": repo(5), "b/two": repo(2635), "c/three": repo(914), "d/four": repo(None)}
-    assert select_new_repo_readme_targets(all_repos, known_names=set(), limit=2) == {"b/two", "c/three"}
+    assert select_readme_targets(all_repos, have_readme=set(), limit=2) == {"b/two", "c/three"}
 
 
 def test_missing_star_counts_sort_last_and_do_not_crash():
     all_repos = {"a/nostars": {}, "b/some": repo(3)}
-    assert select_new_repo_readme_targets(all_repos, known_names=set(), limit=1) == {"b/some"}
+    assert select_readme_targets(all_repos, have_readme=set(), limit=1) == {"b/some"}

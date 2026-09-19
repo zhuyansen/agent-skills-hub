@@ -9,7 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from sqlalchemy.orm import Session
 
 from app.config import settings
-from app.services.sync_selection import select_new_repo_readme_targets, with_push_filter
+from app.services.sync_selection import select_readme_targets, with_push_filter
 
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
@@ -294,13 +294,19 @@ async def _github_request(
     return resp.json()
 
 
-def _existing_repo_names(db: "Session", names: list[str], chunk: int = 1000) -> set[str]:
-    """Which of these repos are already in skills (exact match, on the unique index)."""
+def _repo_names_with_readme(db: "Session", names: list[str], chunk: int = 1000) -> set[str]:
+    """Which of these repos are in skills with a non-empty README (exact match, on
+    the unique index; `<> ''` is decided from the stored length, no detoasting)."""
     from app.models.skill import Skill  # inline like the rest of this module, avoids a circular import
 
     found: set[str] = set()
     for i in range(0, len(names), chunk):
-        rows = db.query(Skill.repo_full_name).filter(Skill.repo_full_name.in_(names[i:i + chunk])).all()
+        rows = (
+            db.query(Skill.repo_full_name)
+            .filter(Skill.repo_full_name.in_(names[i:i + chunk]))
+            .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
+            .all()
+        )
         found.update(r.repo_full_name for r in rows)
     return found
 
@@ -595,9 +601,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                     .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
                 }
                 readme_targets |= set(backfill_pending) - have_readme
-            # Repos not in skills yet are never in null_readme_skills, so a new
-            # row used to go ungraded until some later sync fetched it again.
-            readme_targets |= select_new_repo_readme_targets(all_repos, _existing_repo_names(db, list(all_repos)))
+            # Everything this sync saw that still has no README, new or not.
+            readme_targets |= select_readme_targets(all_repos, _repo_names_with_readme(db, list(all_repos)))
             if readme_targets:
                 logger.info("Fetching README for %d skills", len(readme_targets))
                 async with httpx.AsyncClient(timeout=30.0) as readme_client:

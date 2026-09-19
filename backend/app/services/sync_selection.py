@@ -5,10 +5,10 @@ the GitHub API.
 """
 from __future__ import annotations
 
-# New repos get their README in the sync that inserts them, most-starred first.
+# Repos seen in a sync that have no README yet get one, most-starred first.
 # Each fetch costs ~0.75s with the rate-limit pause, so 400 adds about 5 minutes;
 # the slowest syncs already take ~97 of the job's 120-minute timeout.
-NEW_REPO_README_LIMIT = 400
+README_FETCH_LIMIT = 400
 
 
 def with_push_filter(query: str, pushed_filter: str) -> str:
@@ -24,15 +24,19 @@ def with_push_filter(query: str, pushed_filter: str) -> str:
     return query + pushed_filter
 
 
-def select_new_repo_readme_targets(
-    all_repos: dict[str, dict], known_names: set[str], limit: int = NEW_REPO_README_LIMIT
+def select_readme_targets(
+    all_repos: dict[str, dict], have_readme: set[str], limit: int = README_FETCH_LIMIT
 ) -> set[str]:
-    """Repos seen in this sync that aren't in skills yet, most-starred first, capped.
+    """Repos seen in this sync without a README yet, most-starred first, capped.
 
-    Without this a new row got no README until some later sync fetched it again,
-    and most never were: the 2026-09-17 12:56 sync inserted 369 rows and fetched
-    8 READMEs. No README means the scanner cannot grade the repo.
+    That covers new repos and existing rows that never got one. No README means
+    the scanner can't grade the repo. New rows used to wait for a later sync
+    that fetched them again, and most never were: the 2026-09-17 12:56 sync
+    inserted 369 rows and fetched 8 READMEs. Existing rows fell outside the
+    top-1000-by-score pass: Dicklesworthstone/skillranker, listed on
+    /best/typesafe-jev/ and returned by every sync, stayed ungraded although
+    GitHub has its 113KB README.
     """
-    new = [name for name in all_repos if name not in known_names]
-    new.sort(key=lambda name: -(all_repos[name].get("stargazers_count") or 0))
-    return set(new[:limit])
+    missing = [name for name in all_repos if name not in have_readme]
+    missing.sort(key=lambda name: -(all_repos[name].get("stargazers_count") or 0))
+    return set(missing[:limit])
