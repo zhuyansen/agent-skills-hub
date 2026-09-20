@@ -54,12 +54,14 @@ def keyword_issued(item: dict) -> int:
 
 
 def main() -> None:
-    items = [it for it in json.load(open(OUT / "adjudicated-handlabels.json")) if it["y_human"] >= 0]
-    y = [it["y_human"] for it in items]
-    judge = {}
+    raw = json.load(open(OUT / "adjudicated-handlabels.json"))
     path = OUT / "judge_haiku.json"
-    if path.exists():
-        judge = {r["i"]: r for r in json.loads(path.read_text())}
+    if path.exists():  # keyed by position in the original, unfiltered list
+        for r in json.loads(path.read_text()):
+            raw[r["i"]]["judge"] = r
+    items = [it for it in raw if it["y_human"] >= 0]
+    y = [it["y_human"] for it in items]
+    judge = [it.get("judge") for it in items]
 
     print(f"items: {len(items)} · issued: {sum(y)} ({sum(y)/len(y):.1%}) · cited: {len(y)-sum(y)}\n")
     print(f"{'adjudicator':34s} {'AUC':>6s}  {'prec':>6s} {'recall':>6s} {'acc':>6s}")
@@ -73,10 +75,10 @@ def main() -> None:
     row("scanner citation heuristic", [], [int(not it["heuristic_cited"]) for it in items])
     row("in a code fence", [], [int(it["in_fence"]) for it in items])
     row("keyword/table baseline", [], [keyword_issued(it) for it in items])
-    if judge:
-        row("independent judge (Haiku)", [judge[i]["confidence"] / 100 * (1 if judge[i]["label"] == "ISSUED" else -1)
-                                          for i, _ in enumerate(items)],
-            [int(judge[i]["label"] == "ISSUED") for i, _ in enumerate(items)])
+    if all(judge):
+        row("independent judge (Haiku)",
+            [j["confidence"] / 100 * (1 if j["label"] == "ISSUED" else -1) for j in judge],
+            [int(j["label"] == "ISSUED") for j in judge])
     row("Jev: issues_it alone", [it["jev"]["issues_it"] for it in items],
         [int(it["jev"]["issues_it"] > 0.5) for it in items])
     row("Jev: 4-question combo", [it["jev_score"] for it in items],

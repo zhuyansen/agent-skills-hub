@@ -43,6 +43,7 @@ so 44.5% of what the audit pages show is a citation.
 | scanner's own citation heuristic | — | 0.333 | 0.136 | 0.370 |
 | inside a code fence | — | 0.892 | 0.500 | 0.689 |
 | keyword + markdown-table baseline | — | 0.701 | 0.924 | 0.739 |
+| independent judge, one shot (Haiku) | 0.755 | 0.805 | 0.500 | 0.655 |
 | Jev, `issues_it` alone | 0.819 | 0.656 | 0.924 | 0.689 |
 | **Jev, 4-question combo** | **0.916** [0.865, 0.957] | 0.917 | 0.667 | 0.782 |
 | keyword AND Jev > 0 | — | 0.836 | 0.924 | **0.857** |
@@ -92,11 +93,17 @@ catalog re-scan is ~2,300 flag instances, so pennies; an incremental sync is les
 
 ## Caveats
 
-- Hand labels are mine (Claude Opus 5); a second independent labeler is only partly a
-  check on that, since it is also an Anthropic model. Jev is a different vendor, so the
-  Jev-vs-labels comparison is not self-scoring — but "issued vs cited" is a judgement
-  call at the margin (`~/.aws/amazonq/mcp.json` is literally ~/.aws access), and the
-  label definition, not the model, decides those.
+- Hand labels are mine (Claude Opus 5). A blind second labeler (Haiku, same prompt, no
+  access to the labels) agreed on **65.5%** — and that 34% disagreement is the honest
+  error bar on this ground truth, not noise to be tidied away. It is not random: the
+  judge calls a markdown table row CITED even when the cell holds the install command the
+  reader is meant to run (`| windows | winget install python… |`), and I call that
+  ISSUED. Where a flag's *name* implies malice but its *claim text* is literal
+  (`agent_memory_theft` = "accesses agent memory/identity files"), I labelled toward the
+  name and both models labelled toward the text — they are probably right. **Labels were
+  not revised after seeing any model's answers.**
+- The judge is also an Anthropic model, so its agreement bounds my idiosyncrasy, not a
+  family-wide one. Jev is a different vendor, so Jev-vs-labels is at least not self-scoring.
 - n=119. The AUC CI is ±0.05; per-flag rates from 5-6 items are directional only.
 - Some misfires are rule-scope defects a second pass should not be asked to fix:
   all 7 `raw_ip_request` hits are `127.0.0.1`, and `write_etc` fires on
