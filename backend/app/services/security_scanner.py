@@ -409,12 +409,32 @@ MEDIUM_RISK_FLAG_NAMES = (
 # REJECT PATTERNS — Confirmed malicious, auto-reject
 # ══════════════════════════════════════════════════════════════════════
 REJECT_PATTERNS: list[tuple[re.Pattern, str, str]] = [
-    # Exfiltrate + send combo
-    (re.compile(r'(?:cat|cp)\s+[^\n]*\.(?:ssh|aws|env)[^\n]*\|\s*(?:curl|nc|wget)', re.IGNORECASE), "exfil_secrets_combo",
-     "Exfiltrates secrets via pipe to network tool"),
-    # Backdoor installer
-    (re.compile(r'(?:crontab|bashrc|zshrc)[^\n]*(?:curl|wget|nc)', re.IGNORECASE), "backdoor_install",
-     "Installs backdoor via shell startup + remote download"),
+    # Exfiltrate + send combo. `nc` needs its own word boundary here too, and the
+    # match must be issued rather than cited: every catalog hit outside a fence
+    # was a security tool printing the attack it blocks — hoophq/leash's
+    # "`cat ~/.aws/credentials | curl …` — and leash blocks it before it runs",
+    # node9-proxy's table row of pipe-chain exfiltration payloads.
+    (re.compile(r'(?:cat|cp)\s+[^\n]*\.(?:ssh|aws|env)[^\n]*\|\s*(?:curl|wget|nc|ncat|netcat)\b', re.IGNORECASE),
+     "exfil_secrets_combo", "Exfiltrates secrets via pipe to network tool"),
+    # Backdoor installer. The old rule was `(?:crontab|bashrc|zshrc)[^\n]*(?:curl|wget|nc)`:
+    # 31 catalog hits, 31 false positives, and not one of them contained a
+    # command — every single hit was `nc` inside an ordinary word (take
+    # prece-dence, for persist-ence, then rela-unch, run o-nce) on a line that
+    # merely mentions ~/.zshrc. paypal/AI-Toolkit was publicly rejected for the
+    # sentence "Use settings.json, not ~/.zshrc". Naming a startup file is not a
+    # backdoor; writing a downloaded payload into one is, so the fetch and the
+    # persistence must now be wired together on the same line.
+    (re.compile(
+        # curl/wget whose output is appended to a startup file or piped to crontab
+        r'\b(?:curl|wget)\b[^\n]*?(?:\|[ \t]*crontab\b'
+        r'|>>?[ \t]*[^\n]*?(?:bashrc|zshrc|bash_profile|\.profile|crontab|launchagents|launchdaemons))'
+        # a cron entry or crontab edit that fetches a remote payload
+        r'|(?:crontab[ \t]+-|/etc/cron|\*[ \t]+\*[ \t]+\*[ \t]+\*)[^\n]*?\b(?:curl|wget)\b[^\n]*?https?://'
+        # a reverse shell (nc -e) hung off a startup file or cron job
+        r'|(?:crontab|bashrc|zshrc|bash_profile|/etc/cron|launchagents)[^\n]*?\b(?:nc|ncat)\b[ \t]+[^\n]*?-[a-z]*e[ \t]'
+        r'|\b(?:nc|ncat)\b[ \t]+[^\n]*?-[a-z]*e[ \t][^\n]*?(?:crontab|bashrc|zshrc|bash_profile|/etc/cron|launchagents)',
+        re.IGNORECASE),
+     "backdoor_install", "Writes a downloaded payload into a shell startup file or cron job"),
 ]
 
 REJECT_FLAG_NAMES = {p[1] for p in REJECT_PATTERNS}
@@ -441,6 +461,11 @@ def _is_negated(text: str, start: int) -> bool:
     return bool(_NEGATION_LEAD.search(text[max(0, start - _NEGATION_WINDOW):start].rstrip()))
 
 
+def _is_inline_code(text: str, start: int) -> bool:
+    """True when an unclosed backtick opens earlier on the same line."""
+    return text[text.rfind("\n", 0, start) + 1:start].count("`") % 2 == 1
+
+
 def _is_inside_quote_or_inline_code(text: str, start: int) -> bool:
     """True when an unclosed ", “ or ` opens earlier on the same line.
 
@@ -462,6 +487,15 @@ _DESTINATION_FLAGS = {"shortener_download", "paste_host_download"}
 
 
 def _is_cited_or_negated(text: str, start: int, flag_name: str) -> bool:
+    if flag_name in REJECT_FLAG_NAMES:
+        # A real backdoor one-liner is full of double quotes — `echo "…" >>
+        # ~/.bashrc` is the canonical form — so the quote check that clears
+        # other flags would clear the threat itself. Markdown inline code is the
+        # citation marker that matters here: a security tool writes the attack
+        # it blocks as `cat ~/.aws/credentials | curl …`, inside backticks, in a
+        # sentence or a table cell.
+        return (_is_in_code_block(text, start) or _is_inline_code(text, start)
+                or _has_example_lead(text, start) or _is_negated(text, start))
     if flag_name in _DESTINATION_FLAGS:
         # The opaque host is the whole signal, so no code span or surrounding
         # quote excuses it — and a command written in inline code starts right
@@ -661,9 +695,14 @@ class SecurityScanner:
         trust_tier = _get_trust_tier(skill)
 
         # ── Check REJECT patterns first (auto-reject) ──
+        # Reject is the harshest verdict the site issues, so a payload that is
+        # quoted rather than run must not earn it — security tools print the
+        # attacks they block. The citation check the agent rules already use
+        # applies here too, and a later real match still counts if an earlier
+        # one turns out to be a citation.
         for pattern, flag_name, _desc in REJECT_PATTERNS:
-            match = pattern.search(readme_lower)
-            if match and not _is_in_code_block(readme_lower, match.start()):
+            if any(not _is_cited_or_negated(readme_lower, m.start(), flag_name)
+                   for m in pattern.finditer(readme_lower)):
                 flags.append(flag_name)
 
         if any(f in REJECT_FLAG_NAMES for f in flags):

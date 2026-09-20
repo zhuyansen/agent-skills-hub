@@ -81,8 +81,16 @@ const AGENT_CONFIG_THEFT =
   + `|\\b(?:scp|rsync)\\b[^\\n]*${AGENT_SECRET_PATH}[^\\n]*\\S+@\\S+:`;
 
 const REJECT_PATTERNS: PatternDef[] = [
-  [/(?:cat|cp)\s+[^\n]*\.(?:ssh|aws|env)[^\n]*\|\s*(?:curl|nc|wget)/i, "exfil_secrets_combo", "critical", "Exfiltrates secrets via pipe to network tool"],
-  [/(?:crontab|bashrc|zshrc)[^\n]*(?:curl|wget|nc)/i, "backdoor_install", "critical", "Installs backdoor via shell startup + remote download"],
+  // `nc` needs a word boundary, and the payload must be issued rather than
+  // cited — every catalog hit outside a code fence was a security tool
+  // printing the attack it blocks.
+  [/(?:cat|cp)\s+[^\n]*\.(?:ssh|aws|env)[^\n]*\|\s*(?:curl|wget|nc|ncat|netcat)\b/i, "exfil_secrets_combo", "critical", "Exfiltrates secrets via pipe to network tool"],
+  // The old rule `(?:crontab|bashrc|zshrc)[^\n]*(?:curl|wget|nc)` produced 31
+  // catalog hits and 31 false positives: every one matched `nc` inside an
+  // ordinary word (prece-dence, persist-ence, rela-unch) on a line that just
+  // mentions ~/.zshrc. Mentioning a startup file is not a backdoor; writing a
+  // downloaded payload into one is.
+  [/\b(?:curl|wget)\b[^\n]*?(?:\|[ \t]*crontab\b|>>?[ \t]*[^\n]*?(?:bashrc|zshrc|bash_profile|\.profile|crontab|launchagents|launchdaemons))|(?:crontab[ \t]+-|\/etc\/cron|\*[ \t]+\*[ \t]+\*[ \t]+\*)[^\n]*?\b(?:curl|wget)\b[^\n]*?https?:\/\/|(?:crontab|bashrc|zshrc|bash_profile|\/etc\/cron|launchagents)[^\n]*?\b(?:nc|ncat)\b[ \t]+[^\n]*?-[a-z]*e[ \t]|\b(?:nc|ncat)\b[ \t]+[^\n]*?-[a-z]*e[ \t][^\n]*?(?:crontab|bashrc|zshrc|bash_profile|\/etc\/cron|launchagents)/i, "backdoor_install", "critical", "Writes a downloaded payload into a shell startup file or cron job"],
 ];
 
 const HIGH_PATTERNS: PatternDef[] = [
@@ -258,7 +266,29 @@ function isNegated(text: string, pos: number): boolean {
   return NEGATION_LEAD.test(text.slice(Math.max(0, pos - NEGATION_WINDOW), pos).trimEnd());
 }
 
+/** Index of the first match that is issued rather than cited, or -1. */
+function firstUncited(re: RegExp, text: string, name: string): number {
+  const scan = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+  for (let m = scan.exec(text); m; m = scan.exec(text)) {
+    if (!isCitedOrNegated(text, m.index, name)) return m.index;
+    if (scan.lastIndex === m.index) scan.lastIndex++;
+  }
+  return -1;
+}
+
+function isInlineCode(text: string, pos: number): boolean {
+  return (lineBefore(text, pos).split("`").length - 1) % 2 === 1;
+}
+
 function isCitedOrNegated(text: string, pos: number, name: string): boolean {
+  // Reject flags: a real backdoor one-liner is full of double quotes
+  // (`echo "…" >> ~/.bashrc`), so the quote check would clear the threat
+  // itself. Markdown inline code is the citation marker that matters here —
+  // a security tool writes the attack it blocks inside backticks.
+  if (REJECT_NAMES.has(name)) {
+    return isInCodeBlock(text, pos) || isInlineCode(text, pos)
+      || hasExampleLead(text, pos) || isNegated(text, pos);
+  }
   // Destination flags: the opaque host is the whole signal, so no code span or
   // surrounding quote excuses it (a command in inline code starts right after a
   // backtick). Only an explicit "such as ..." or a negation can clear it.
@@ -369,10 +399,11 @@ export function scanReadme(
   const text = original.toLowerCase();
   const trustTier = getTrustTier(author, stars, license);
 
-  // Check REJECT patterns
+  // Check REJECT patterns. Reject is the harshest verdict the site issues, so a
+  // quoted payload must not earn it, and a later real match still counts if an
+  // earlier one turns out to be a citation.
   for (const [re, name] of REJECT_PATTERNS) {
-    const m = re.exec(text);
-    if (m && !isInCodeBlock(text, m.index)) flags.push(name);
+    if (firstUncited(re, text, name) !== -1) flags.push(name);
   }
 
   if (flags.some(f => REJECT_NAMES.has(f))) {
