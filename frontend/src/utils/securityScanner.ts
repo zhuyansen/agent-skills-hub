@@ -75,6 +75,12 @@ const OUTBOUND =
   + "|\\b(?:scp|rsync)\\b[^\\n]*\\S+@\\S+:"
   + "|/dev/tcp/"
   + `|\\b(?:send|upload|post|exfiltrate|transmit|forward|submit)(?:s|ed|ing)?\\b[^\\n]{0,60}\\b(?:to|at)\\s+${REMOTE_TARGET})`;
+const CRED_DIR = String.raw`~\/\.(?:ssh|aws|gnupg|config\/gcloud)`;
+const CRED_DIR_EXFIL =
+  String.raw`\b(?:cat|cp|mv|read|tar|zip|base64|xxd|type|curl|wget)s?\b[^\n]*` + CRED_DIR + String.raw`[^\n]*` + OUTBOUND +
+  String.raw`|\b(?:curl|wget)\b[^\n]*(?:\s-(?:d|t)\b|--(?:data(?:-binary)?|form|upload-file))[^\n]*@?` + CRED_DIR +
+  String.raw`|\b(?:scp|rsync)\b[^\n]*` + CRED_DIR + String.raw`[^\n]*\S+@\S+:`;
+
 const AGENT_CONFIG_THEFT =
   `\\b(?:cat|cp|read|tar|zip|base64|xxd|type|curl|wget)s?\\b[^\\n]*${AGENT_SECRET_PATH}[^\\n]*${OUTBOUND}`
   + `|\\b(?:curl|wget)\\b[^\\n]*(?:\\s-(?:d|t)\\b|--(?:data(?:-binary)?|form|upload-file))[^\\n]*@?${AGENT_SECRET_PATH}`
@@ -103,8 +109,12 @@ const HIGH_PATTERNS: PatternDef[] = [
   // false positives. Eight were security tools listing what they block (pi-jev,
   // Full reasoning beside the Python rule list (the source of truth).
   // 3. Sensitive Dir Access
-  [/(?:cat|cp|mv|rm|read)\s+[^\n]*~\/\.(?:ssh|aws|gnupg|config\/gcloud)/i, "sensitive_dir_access", "high", "Accesses sensitive directories (~/.ssh, ~/.aws)"],
-  [/(?:cat|cp|mv|rm|read)\s+[^\n]*\/etc\/(?:shadow|passwd)/i, "etc_sensitive_read", "high", "Reads sensitive system files (/etc/shadow, /etc/passwd)"],
+  // 40 catalog hits, 0 credential thefts: 33 were guard tools printing the read they
+  // block, the rest were ~/.ssh/config and ~/.aws/amazonq/mcp.json. Sending it somewhere
+  // is the threat, so this needs the same outbound destination as agent_config_theft.
+  [new RegExp(CRED_DIR_EXFIL, "i"), "sensitive_dir_access", "high", "Reads SSH/cloud credentials and sends them off the machine"],
+  // /etc/passwd is world-readable and carried all 7 catalog hits, 6 of them "blocked" docs.
+  [/(?:cat|cp|mv|rm|read)\s+[^\n]*\/etc\/shadow/i, "etc_sensitive_read", "high", "Reads the shadow password file"],
   // 4. Agent Memory Theft
   [/(?:cat|cp|read|curl)[^\n]*(?:MEMORY\.md|USER\.md|SOUL\.md|IDENTITY\.md)/i, "agent_memory_theft", "high", "Accesses agent memory/identity files"],
   // Read verb + agent secret path + outbound destination on one line. The bare
@@ -115,11 +125,12 @@ const HIGH_PATTERNS: PatternDef[] = [
   [/exec\s*\(\s*__import__/i, "exec_import", "high", "Executes dynamically imported Python code"],
   [/base64\s+(-d|--decode)\s*\|/i, "base64_exec", "high", "Decodes and pipes base64 data for execution"],
   // 6. Privilege Escalation
-  [/chmod\s+(?:777|[+]s)\b/, "chmod_dangerous", "high", "Sets dangerous file permissions (777 or setuid)"],
-  [/>\s*\/etc\//i, "write_etc", "high", "Writes to system /etc/ directory"],
+  // chmod_dangerous removed 2026-09-20: 28 catalog hits, 28 false positives, every one a
+  // guard tool naming `chmod 777` in a deny list, a severity table or demo-gif alt text.
+  [/(?:^|[\s;|&`"'])>>?\s*\/etc\//im, "write_etc", "high", "Writes to system /etc/ directory"],
   [/(?:chown\s+root|visudo|\/etc\/sudoers)/i, "privilege_escalation", "high", "Attempts privilege escalation to root"],
   // 7. Persistence
-  [/(?:crontab|\/etc\/cron)/i, "cron_persistence", "high", "Installs cron job for persistence"],
+  // cron_persistence is MEDIUM now — see the note beside it there.
   [/>>?\s*~\/\.(?:bashrc|zshrc|profile|bash_profile)/i, "shell_rc_inject", "high", "Injects commands into shell startup files"],
   // service_persistence moved to AGENT_MED_PATTERNS (medium, context-aware): 368/368 false positives as `launchd|plist`.
   // 8. Reverse Shell
@@ -209,13 +220,20 @@ const NEGATION_LEAD = /\b(?:never|not|don't|do not|avoid|must not|should not|sho
 const NEGATION_WINDOW = 25;
 
 const MED_PATTERNS: PatternDef[] = [
+  // Demoted from high 2026-09-20 on the service_persistence argument: a scheduler the
+  // README documents installing is a capability, not a threat.
+  [/(?:crontab|\/etc\/cron)/i, "cron_persistence", "medium", "Installs cron job for persistence"],
   [/\bsudo\b/, "sudo_usage", "medium", "Uses sudo for elevated privileges"],
   [/--privileged/i, "docker_privileged", "medium", "Runs Docker in privileged mode"],
   [/fs\.readdir\s*\(\s*['"]\//, "fs_root_access", "medium", "Reads root filesystem directory"],
   [/(OPENAI_API_KEY|ANTHROPIC_API_KEY|AWS_SECRET|GITHUB_TOKEN)/i, "sensitive_env_vars", "medium", "References sensitive API keys/tokens"],
   [/verify\s*=\s*False|NODE_TLS_REJECT_UNAUTHORIZED\s*=\s*['"]?0/i, "ssl_disabled", "medium", "Disables SSL/TLS verification"],
-  [/\beval\s*\(/, "eval_usage", "medium", "Uses eval() for dynamic code execution"],
-  [/(?:fetch|requests?\.\w+|axios|got|http\.get)\s*\(\s*["']http:\/\/\d+\.\d+\.\d+\.\d+/i, "raw_ip_request", "medium", "Makes HTTP request to raw IP address"],
+  // `\beval\s*\(` matched the word "eval" before any parenthetical ("quick eval (~2s)",
+  // "routing eval (102 cases)") — ~70 of 117 catalog hits — plus `model.eval()` and
+  // `page.$$eval(…)`. A real call has an argument, no space and no receiver.
+  [/(?:^|[^.$\w])eval\((?=[^)\s])/m, "eval_usage", "medium", "Uses eval() for dynamic code execution"],
+  // Every catalog hit was http://127.0.0.1 — a local dev server, not a suspicious host.
+  [/(?:fetch|requests?\.\w+|axios|got|http\.get)\s*\(\s*["']http:\/\/(?!127\.|0\.0\.0\.0|10\.|192\.168\.|169\.254\.|172\.(?:1[6-9]|2\d|3[01])\.)\d+\.\d+\.\d+\.\d+/i, "raw_ip_request", "medium", "Makes HTTP request to raw IP address"],
   [/(?:process\.env|os\.environ|os\.getenv)\s*\[/i, "env_access", "medium", "Accesses environment variables programmatically"],
   [/(?:subprocess\.(?:run|Popen|call)|child_process\.(?:exec|spawn))/i, "subprocess_spawn", "medium", "Spawns subprocesses for command execution"],
   [/(?:ngrok|serveo|localtunnel)/i, "tunnel_service", "medium", "Uses tunneling service"],
@@ -266,6 +284,18 @@ function isNegated(text: string, pos: number): boolean {
   return NEGATION_LEAD.test(text.slice(Math.max(0, pos - NEGATION_WINDOW), pos).trimEnd());
 }
 
+/** Index of the first match that reads as issued, or -1. `fenced` skips code blocks
+ *  (HIGH's long-standing rule); MEDIUM never had one. */
+function firstIssued(re: RegExp, text: string, fenced = true, inlineExcused = false): number {
+  const scan = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+  for (let m = scan.exec(text); m; m = scan.exec(text)) {
+    if (!(fenced && isInCodeBlock(text, m.index)) && !documentsRatherThanIssues(text, m.index)
+        && !(inlineExcused && isInlineCode(text, m.index))) return m.index;
+    if (scan.lastIndex === m.index) scan.lastIndex++;
+  }
+  return -1;
+}
+
 /** Index of the first match that is issued rather than cited, or -1. */
 function firstUncited(re: RegExp, text: string, name: string): number {
   const scan = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
@@ -274,6 +304,25 @@ function firstUncited(re: RegExp, text: string, name: string): number {
     if (scan.lastIndex === m.index) scan.lastIndex++;
   }
   return -1;
+}
+
+// "Read a secret, send it out" written as inline code inside a sentence is a citation,
+// not a command — the same reasoning REJECT uses.
+const EXFIL_SHAPED = new Set(["agent_config_theft", "sensitive_dir_access"]);
+
+const DOC_VERBS =
+  /\b(?:block(?:s|ed|ing)?|den(?:y|ies|ied)|detect(?:s|ed|ion|ing)?|prevent(?:s|ed|ing)?|warn(?:s|ed|ing)?|refus(?:e|es|ed)|reject(?:s|ed)|scan(?:s|ned|ning|ner)?|intercept(?:s|ed)?|flags?\s+(?:on|when)|deny\s*-?\s*list|denylist|blocklist|dangerous\s+(?:patterns?|commands?|operations?))\b|拦截|禁止|检测|阻止|扫描|危险操作/;
+
+/** True when the line catalogues behaviour instead of instructing it — a rule table, a
+ *  deny list, a severity row. The biggest single source of false positives here is a
+ *  security tool printing what it stops. */
+function documentsRatherThanIssues(text: string, pos: number): boolean {
+  const start = text.lastIndexOf("\n", pos - 1) + 1;
+  const end = text.indexOf("\n", pos);
+  const line = text.slice(start, end < 0 ? undefined : end);
+  const stripped = line.trim();
+  if ((stripped.startsWith("|") || stripped.startsWith("> |")) && (line.split("|").length - 1) >= 2) return true;
+  return DOC_VERBS.test(line) || hasExampleLead(text, pos) || isNegated(text, pos);
 }
 
 function isInlineCode(text: string, pos: number): boolean {
@@ -413,17 +462,20 @@ export function scanReadme(
 
   // Check HIGH patterns
   for (const [re, name] of HIGH_PATTERNS) {
-    const m = re.exec(text);
-    if (m && !isInCodeBlock(text, m.index)) flags.push(name);
+    if (firstIssued(re, text, true, EXFIL_SHAPED.has(name)) !== -1) flags.push(name);
   }
 
-  // Check MED patterns
+  // Check MED patterns. These had no context check at all, which is why a guard tool's
+  // rule table graded it.
   for (const [re, name] of MED_PATTERNS) {
-    const m = re.exec(text);
+    const m = firstIssued(re, text, false) !== -1;
     if (m) {
       if (name === "sensitive_env_vars") {
+        // `original`, not `readme`: Python counts over the same 15K slice. Lowercased
+        // because distinct spellings of one key are still one key.
         const envCount = new Set(
-          readme.match(/(OPENAI_API_KEY|ANTHROPIC_API_KEY|AWS_SECRET|GITHUB_TOKEN)/gi) || []
+          (original.match(/(OPENAI_API_KEY|ANTHROPIC_API_KEY|AWS_SECRET|GITHUB_TOKEN)/gi) || [])
+            .map(k => k.toLowerCase())
         ).size;
         if (envCount >= 3) flags.push(name);
       } else {

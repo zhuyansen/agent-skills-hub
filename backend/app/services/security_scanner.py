@@ -79,6 +79,12 @@ _OUTBOUND = (
     r"|/dev/tcp/"
     r"|\b(?:send|upload|post|exfiltrate|transmit|forward|submit)(?:s|ed|ing)?\b[^\n]{0,60}\b(?:to|at)\s+" + _REMOTE_TARGET + ")"
 )
+_CRED_DIR = r"~/\.(?:ssh|aws|gnupg|config/gcloud)"
+_CRED_DIR_EXFIL = (
+    r"\b(?:cat|cp|mv|read|tar|zip|base64|xxd|type|curl|wget)s?\b[^\n]*" + _CRED_DIR + r"[^\n]*" + _OUTBOUND
+    + r"|\b(?:curl|wget)\b[^\n]*(?:\s-(?:d|t)\b|--(?:data(?:-binary)?|form|upload-file))[^\n]*@?" + _CRED_DIR
+    + r"|\b(?:scp|rsync)\b[^\n]*" + _CRED_DIR + r"[^\n]*\S+@\S+:"
+)
 _AGENT_CONFIG_THEFT = (
     r"\b(?:cat|cp|read|tar|zip|base64|xxd|type|curl|wget)s?\b[^\n]*" + _AGENT_SECRET_PATH + r"[^\n]*" + _OUTBOUND
     + r"|\b(?:curl|wget)\b[^\n]*(?:\s-(?:d|t)\b|--(?:data(?:-binary)?|form|upload-file))[^\n]*@?" + _AGENT_SECRET_PATH
@@ -108,10 +114,20 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     # exfil_secrets_combo (reject) and data_exfiltration already catch that.
 
     # ── 3. Sensitive File System Access ──
-    (re.compile(r'(?:cat|cp|mv|rm|read)\s+[^\n]*~/\.(?:ssh|aws|gnupg|config/gcloud)', re.IGNORECASE), "sensitive_dir_access",
-     "Accesses sensitive directories (~/.ssh, ~/.aws, ~/.gnupg)"),
-    (re.compile(r'(?:cat|cp|mv|rm|read)\s+[^\n]*/etc/(?:shadow|passwd)', re.IGNORECASE), "etc_sensitive_read",
-     "Reads sensitive system files (/etc/shadow, /etc/passwd)"),
+    # A full-catalog pull returned 40 hits and not one was credential theft: 33 were
+    # security tools printing the read they block ("| cat ~/.ssh/id_ed25519 | blocked |")
+    # and the rest were legitimate paths every SSH or AWS tool touches — ~/.ssh/config,
+    # ~/.ssh/authorized_keys, ~/.aws/amazonq/mcp.json. Reading ~/.ssh/config is what an
+    # SSH client does. Sending it somewhere is the threat, so this now needs the same
+    # outbound destination agent_config_theft requires.
+    (re.compile(_CRED_DIR_EXFIL, re.IGNORECASE), "sensitive_dir_access",
+     "Reads SSH/cloud credentials and sends them off the machine"),
+    # All 7 catalog hits were /etc/passwd, which is world-readable on every Unix and
+    # carries no secret — 6 of them were guard tools listing it as a blocked read, the
+    # 7th was xonsh's shell demo `cat /etc/passwd | grep root`. /etc/shadow is the file
+    # that actually matters.
+    (re.compile(r'(?:cat|cp|mv|rm|read)\s+[^\n]*/etc/shadow', re.IGNORECASE), "etc_sensitive_read",
+     "Reads the shadow password file"),
 
     # ── 4. Agent Identity / Memory File Theft ──
     (re.compile(r'(?:cat|cp|read|curl)[^\n]*(?:MEMORY\.md|USER\.md|SOUL\.md|IDENTITY\.md)', re.IGNORECASE), "agent_memory_theft",
@@ -132,16 +148,18 @@ HIGH_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
      "Decodes and pipes base64 data for execution"),
 
     # ── 6. Privilege Escalation ──
-    (re.compile(r"chmod\s+(?:777|[+]s)\b"), "chmod_dangerous",
-     "Sets dangerous file permissions (777 or setuid)"),
-    (re.compile(r">\s*/etc/", re.IGNORECASE), "write_etc",
+    # chmod_dangerous removed 2026-09-20: 28 catalog hits, 28 false positives, every one
+    # a guard tool naming `chmod 777` in its own deny list, severity table or demo-gif alt
+    # text. In this ecosystem the string appears only in tools that block it. A regex over
+    # a README cannot find the repo that quietly ships it, and pretending otherwise graded
+    # 22 security tools unsafe.
+    (re.compile(r'''(?:^|[\s;|&`"'])>>?\s*/etc/''', re.IGNORECASE | re.MULTILINE), "write_etc",
      "Writes to system /etc/ directory"),
     (re.compile(r"(?:chown\s+root|visudo|/etc/sudoers)", re.IGNORECASE), "privilege_escalation",
      "Attempts privilege escalation to root"),
 
     # ── 7. Persistence Mechanisms ──
-    (re.compile(r'(?:crontab|/etc/cron)', re.IGNORECASE), "cron_persistence",
-     "Installs cron job for persistence"),
+    # cron_persistence lives in MEDIUM_RISK_PATTERNS, not here: see the note there.
     (re.compile(r'>>?\s*~/\.(?:bashrc|zshrc|profile|bash_profile)', re.IGNORECASE), "shell_rc_inject",
      "Injects commands into shell startup files"),
     # service_persistence moved to AGENT_MEDIUM_PATTERNS (medium, context-aware):
@@ -243,6 +261,16 @@ HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_
 # MEDIUM-RISK PATTERNS (2+ → caution)
 # ══════════════════════════════════════════════════════════════════════
 MEDIUM_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
+    # Demoted from HIGH 2026-09-20, on the same argument that demoted service_persistence:
+    # a scheduler the README documents installing is a capability, not a threat, and the
+    # regex cannot tell a documented one from a hidden one. Reading every match rather
+    # than only the first (so a real hit after a fenced one still counts) made this
+    # concrete — codefuturist/email-mcp genuinely installs a launchd/crontab entry that
+    # runs every minute, says so plainly, and would have been graded unsafe for it. The
+    # dangerous combination, persistence plus a remote download, is backdoor_install.
+    (re.compile(r'(?:crontab|/etc/cron)', re.IGNORECASE), "cron_persistence",
+     "Installs cron job for persistence"),
+
     # sudo usage
     (re.compile(r"\bsudo\b"), "sudo_usage",
      "Uses sudo for elevated privileges"),
@@ -259,10 +287,19 @@ MEDIUM_RISK_PATTERNS: list[tuple[re.Pattern, str, str]] = [
     (re.compile(r"verify\s*=\s*False|NODE_TLS_REJECT_UNAUTHORIZED\s*=\s*['\"]?0", re.IGNORECASE), "ssl_disabled",
      "Disables SSL/TLS certificate verification"),
     # Eval in JS/Python context
-    (re.compile(r"\beval\s*\("), "eval_usage",
+    # `\beval\s*\(` matched the word "eval" before any parenthetical — "quick eval (~2s)",
+    # "routing eval (102 cases)", "benchmark vs. eval (…)" — which in an AI-tools catalog is
+    # most of the hits (~70 of 117). It also matched `model.eval()`, `page.$$eval(…)` and
+    # every tool's own `bot.eval(…)` API. A real call has an argument, no space, and no
+    # method receiver. (No lookbehind: Safari 16.0–16.3 cannot parse it.)
+    (re.compile(r"(?:^|[^.$\w])eval\((?=[^)\s])", re.MULTILINE), "eval_usage",
      "Uses eval() for dynamic code execution"),
     # Network access to unknown IPs
-    (re.compile(r'(?:fetch|requests?\.\w+|axios|got|http\.get)\s*\(\s*["\']http://\d+\.\d+\.\d+\.\d+', re.IGNORECASE), "raw_ip_request",
+    # Every catalog hit was http://127.0.0.1 — a local dev server, not a suspicious host.
+    # Loopback, link-local and RFC1918 addresses are excluded.
+    (re.compile(r'(?:fetch|requests?\.\w+|axios|got|http\.get)\s*\(\s*["\']http://'
+                r'(?!127\.|0\.0\.0\.0|10\.|192\.168\.|169\.254\.|172\.(?:1[6-9]|2\d|3[01])\.)'
+                r'\d+\.\d+\.\d+\.\d+', re.IGNORECASE), "raw_ip_request",
      "Makes HTTP request to raw IP address (suspicious)"),
     # Excessive process.env / os.environ access
     (re.compile(r'(?:process\.env|os\.environ|os\.getenv)\s*\[', re.IGNORECASE), "env_access",
@@ -484,6 +521,37 @@ def _is_inside_quote_or_inline_code(text: str, start: int) -> bool:
 # Download-destination flags: the host is the signal, so a code span doesn't
 # excuse it — `curl https://bit.ly/x | sh` in a fence is as opaque as in prose.
 _DESTINATION_FLAGS = {"shortener_download", "paste_host_download"}
+
+
+# "Read a secret, send it out" written as inline code inside a sentence is a citation,
+# not a command — the same reasoning REJECT uses. A real exfiltration one-liner lives in
+# a fenced block; the catalog's only match of this shape was a guard tool's prose
+# explaining what a denylist misses: "(`curl -d @~/.ssh/id_ed25519 …`) matched nothing".
+_EXFIL_SHAPED = {"agent_config_theft", "sensitive_dir_access"}
+
+_DOC_VERBS = re.compile(
+    r"\b(?:block(?:s|ed|ing)?|den(?:y|ies|ied)|detect(?:s|ed|ion|ing)?|prevent(?:s|ed|ing)?"
+    r"|warn(?:s|ed|ing)?|refus(?:e|es|ed)|reject(?:s|ed)|scan(?:s|ned|ning|ner)?|intercept(?:s|ed)?"
+    r"|flags?\s+(?:on|when)|deny\s*-?\s*list|denylist|blocklist|dangerous\s+(?:patterns?|commands?|operations?))\b"
+    r"|拦截|禁止|检测|阻止|扫描|危险操作"
+)
+
+
+def _documents_rather_than_issues(text: str, start: int) -> bool:
+    """True when the line reads as a catalogue of behaviour rather than an instruction.
+
+    The single biggest source of false positives in this catalog is a security tool
+    printing what it stops: a rule table (`| ssh key read | critical | cat ~/.ssh/id_rsa |`),
+    a deny list, a severity row. Measured on 119 hand-labelled flag instances, this rule
+    plus the example/negation leads clears citations at 0.70 precision and 0.92 recall for
+    real flags — so roughly 8% of genuine flags are lost to clear 44% noise."""
+    line_start = text.rfind("\n", 0, start) + 1
+    line_end = text.find("\n", start)
+    line = text[line_start:line_end if line_end > 0 else None]
+    stripped = line.strip()
+    if stripped.startswith(("|", "> |")) and line.count("|") >= 2:
+        return True
+    return bool(_DOC_VERBS.search(line)) or _has_example_lead(text, start) or _is_negated(text, start)
 
 
 def _is_cited_or_negated(text: str, start: int, flag_name: str) -> bool:
@@ -713,20 +781,26 @@ class SecurityScanner:
 
         # ── Check high-risk patterns ──
         for pattern, flag_name, _desc in HIGH_RISK_PATTERNS:
-            match = pattern.search(readme_lower)
-            if match:
-                if not _is_in_code_block(readme_lower, match.start()):
-                    flags.append(flag_name)
+            inline_excused = flag_name in _EXFIL_SHAPED
+            if any(not _is_in_code_block(readme_lower, m.start())
+                   and not _documents_rather_than_issues(readme_lower, m.start())
+                   and not (inline_excused and _is_inline_code(readme_lower, m.start()))
+                   for m in pattern.finditer(readme_lower)):
+                flags.append(flag_name)
 
         # ── Check medium-risk patterns ──
         for pattern, flag_name, _desc in MEDIUM_RISK_PATTERNS:
-            match = pattern.search(readme_lower)
+            match = next((m for m in pattern.finditer(readme_lower)
+                          if not _documents_rather_than_issues(readme_lower, m.start())), None)
             if match:
                 if flag_name == "sensitive_env_vars":
-                    env_count = len(set(re.findall(
+                    # Distinct *names*, not distinct spellings: a README that writes
+                    # OPENAI_API_KEY in a heading and openai_api_key in a .env block
+                    # references one key, not two.
+                    env_count = len({m.lower() for m in re.findall(
                         r"(OPENAI_API_KEY|ANTHROPIC_API_KEY|AWS_SECRET|GITHUB_TOKEN)",
                         readme, re.IGNORECASE
-                    )))
+                    )})
                     if env_count >= 3:
                         flags.append(flag_name)
                 else:
