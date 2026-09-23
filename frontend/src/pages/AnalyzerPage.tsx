@@ -50,6 +50,14 @@ const GRADE_CONFIG: Record<
     border: "border-red-200 dark:border-red-800",
     icon: "✕",
   },
+  unknown: {
+    label: "No README",
+    labelZh: "无 README",
+    color: "text-gray-600 dark:text-gray-300",
+    bg: "bg-gray-50 dark:bg-gray-800/40",
+    border: "border-gray-200 dark:border-gray-700",
+    icon: "?",
+  },
   reject: {
     label: "Reject",
     labelZh: "拒绝",
@@ -410,11 +418,13 @@ export function AnalyzerPage() {
             <ResultsDisplay result={result} isZh={isZh} />
             {/* Paid exit at the hottest-intent moment: right after the free
                 scan. Grade-aware Pro upsell (retired $49 concierge 2026-07-13). */}
-            <DeepAuditOffer
-              repo={result.repo.full_name}
-              grade={result.scan.grade}
-              flagCount={result.scan.flags.length}
-            />
+            {result.scan.grade !== "unknown" && (
+              <DeepAuditOffer
+                repo={result.repo.full_name}
+                grade={result.scan.grade}
+                flagCount={result.scan.flags.length}
+              />
+            )}
             {/* Ladder step: one repo vetted → offer to vet the whole owner at
                 once. Reads stored grades from the index, so it's instant. */}
             <div className="mt-4 text-center text-sm">
@@ -509,7 +519,11 @@ function ResultsDisplay({
               )}
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              {scan.flags.length === 0
+              {scan.grade === "unknown"
+                ? isZh
+                  ? "GitHub 上没有可读取的 README，无法做规则扫描 —— 这不等于安全。"
+                  : "No README could be read from GitHub, so there was nothing to scan — this is not a clean result."
+                : scan.flags.length === 0
                 ? isZh
                   ? "未检测到危险模式，该仓库通过安全扫描。"
                   : "No dangerous patterns detected. This repository passed the security scan."
@@ -638,7 +652,7 @@ function ResultsDisplay({
               </div>
             ))}
           </div>
-        ) : (
+        ) : scan.grade === "unknown" ? null : (
           <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20 text-center">
             <span className="text-green-600 dark:text-green-400 text-sm font-medium">
               ✓{" "}

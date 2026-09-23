@@ -16,7 +16,7 @@ export interface FlagDetail {
 }
 
 export interface ScanResult {
-  grade: "safe" | "caution" | "unsafe" | "reject";
+  grade: "safe" | "caution" | "unsafe" | "reject" | "unknown";
   flags: string[];
   flagDetails: FlagDetail[];
   trustTier: number;
@@ -447,6 +447,9 @@ export function scanReadme(
   const original = readme.slice(0, 15000);
   const text = original.toLowerCase();
   const trustTier = getTrustTier(author, stars, license);
+  // No README (a 404, or the unauthenticated readme call failed): nothing to
+  // grade is not "safe". Mirrors the Python rule path.
+  if (!original) return _buildResult("unknown", [], trustTier);
 
   // Check REJECT patterns. Reject is the harshest verdict the site issues, so a
   // quoted payload must not earn it, and a later real match still counts if an

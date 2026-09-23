@@ -38,12 +38,14 @@ interface Copy {
   errGeneric: string;
 }
 
-function copyFor(zh: boolean, risky: boolean, owner: string, flagCount: number): Copy {
+function copyFor(zh: boolean, risky: boolean, unknown: boolean, owner: string, flagCount: number): Copy {
   if (zh) {
     return {
-      headline: risky
-        ? `这个仓库有 ${flagCount} 个标记 —— 你们整套 agent 栈呢?`
-        : `这个是干净的 —— 你们跑的其他 MCP server 呢?`,
+      headline: unknown
+        ? "这个仓库没有可评的 README —— 要我们看看你们整套栈吗?"
+        : risky
+          ? `这个仓库有 ${flagCount} 个标记 —— 你们整套 agent 栈呢?`
+          : `这个是干净的 —— 你们跑的其他 MCP server 呢?`,
       pitch: `留下工作邮箱,48 小时内收到一份分级安全审计:${owner} 名下的仓库,加上你们自己的 MCP/agent 栈里的主要风险。不约电话,不做 PPT。`,
       placeholder: "工作邮箱",
       submit: "把审计发我 →",
@@ -56,9 +58,11 @@ function copyFor(zh: boolean, risky: boolean, owner: string, flagCount: number):
     };
   }
   return {
-    headline: risky
-      ? `${flagCount} flag${flagCount === 1 ? "" : "s"} in this repo — what about your whole agent stack?`
-      : "This one's clean — what about the other MCP servers you run?",
+    headline: unknown
+      ? "No README here to grade — want us to audit your whole stack instead?"
+      : risky
+        ? `${flagCount} flag${flagCount === 1 ? "" : "s"} in this repo — what about your whole agent stack?`
+        : "This one's clean — what about the other MCP servers you run?",
     pitch: `Leave a work email and get a graded security audit within 48h: the repos under ${owner}, plus the top risks in your own MCP/agent stack. No call, no slides.`,
     placeholder: "Work email",
     submit: "Email me the audit →",
@@ -83,7 +87,7 @@ export function AuditLeadCapture({
   const { lang } = useI18n();
   const g = (grade || "unknown").toLowerCase();
   const owner = repo.split("/")[0];
-  const c = copyFor(lang === "zh", RISKY_GRADES.has(g), owner, flagCount);
+  const c = copyFor(lang === "zh", RISKY_GRADES.has(g), g === "unknown", owner, flagCount);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
