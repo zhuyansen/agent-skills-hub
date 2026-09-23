@@ -10,24 +10,27 @@
 
 import { mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
-import { SUPABASE_URL, SUPABASE_ANON_KEY, fetchAllSkills } from "./shared-utils.mjs";
+import { SUPABASE_URL, SUPABASE_ANON_KEY, fetchAllSkills, gradeState } from "./shared-utils.mjs";
 
 const DIST = "dist";
 
-// security_grade → badge label + color. Unknown/missing → UNAUDITED (honest gray).
+// security_grade → badge label + color. Ungraded → honest gray: NO README when
+// GitHub has none to grade, UNAUDITED while the fetch or the grade is pending.
 const GRADE_STYLE = {
   safe: { text: "SAFE", color: "#16a34a" },
   caution: { text: "CAUTION", color: "#ca8a04" },
   unsafe: { text: "UNSAFE", color: "#dc2626" },
   reject: { text: "REJECT", color: "#991b1b" },
 };
-function gradeStyle(grade) {
-  return GRADE_STYLE[grade] || { text: "UNAUDITED", color: "#6b7280" };
+const UNGRADED_GRAY = "#6b7280";
+function gradeStyle(grade, state) {
+  if (GRADE_STYLE[grade]) return GRADE_STYLE[grade];
+  return { text: state === "no_readme" ? "NO README" : "UNAUDITED", color: UNGRADED_GRAY };
 }
 
-function makeBadgeSvg(grade) {
+function makeBadgeSvg(grade, state) {
   const label = "Agent Skills Hub";
-  const g = gradeStyle(grade);
+  const g = gradeStyle(grade, state);
 
   // Approximate text widths (6.5px/char left, 7px/char right).
   const labelWidth = Math.max(label.length * 6.5 + 16, 118);
@@ -80,7 +83,7 @@ async function main() {
       continue;
     }
 
-    const svg = makeBadgeSvg(skill.security_grade);
+    const svg = makeBadgeSvg(skill.security_grade, gradeState(skill));
     const outPath = `${DIST}/badge/${fullName}.svg`;
 
     mkdirSync(dirname(outPath), { recursive: true });

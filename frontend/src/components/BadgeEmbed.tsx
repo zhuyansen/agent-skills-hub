@@ -9,7 +9,8 @@ interface Props {
 const SITE = "https://agentskillshub.top";
 
 function buildBadge(fullName: string): string {
-  return `[![Security-graded by Agent Skills Hub](${SITE}/badge/${fullName}.svg)](${SITE}/skill/${fullName}/)`;
+  // "status", not "graded": an ungraded repo's badge reads UNAUDITED or NO README.
+  return `[![Security status by Agent Skills Hub](${SITE}/badge/${fullName}.svg)](${SITE}/skill/${fullName}/)`;
 }
 
 // Badge + install line as ONE snippet. Distribution insight (2026-07-31): a

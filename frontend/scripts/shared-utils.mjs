@@ -277,6 +277,16 @@ export function shouldIndex(skill) {
 /** Minimum stars to generate a static page at all */
 export const MIN_STARS_FOR_PAGE = 50;
 
+/** Why a row does or doesn't have a grade (backend/app/services/readme_coverage.py):
+ *  graded · pending (README fetched, graded at the next sync) · no_readme (GitHub has
+ *  none, so it can't be graded) · not_fetched (queued for the backfill). */
+export function gradeState(s) {
+  if (s.security_grade && s.security_grade !== "unknown") return "graded";
+  if ((s.readme_size || 0) > 0) return "pending";
+  if (s.readme_fetched_at) return "no_readme";
+  return "not_fetched";
+}
+
 /** Fetch all skills from Supabase (paginated) */
 /**
  * Fetch all skills from Supabase with retry + threshold check.
@@ -350,6 +360,8 @@ export async function fetchAllSkills() {
     "last_commit_at", "created_at", "topics", "tags",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",
     "open_issues", "total_commits", "security_grade", "security_flags",
+    // Why a row is ungraded (see gradeState below); the marker is written by the sync and the backfill.
+    "readme_size", "readme_fetched_at",
   ].join(",");
 
   // Keyset pagination by primary key. Deep OFFSET (offset=77000&order=stars.desc)

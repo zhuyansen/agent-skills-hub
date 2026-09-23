@@ -18,7 +18,7 @@ import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
-  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock,
+  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -311,7 +311,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     ? `Repository deleted from GitHub. Last audit before removal: ${gradeLabel || "ungraded"}${qualityPart}.`
     : gradeLabel
       ? `Security grade: ${gradeLabel}${qualityPart}.`
-      : `Not yet audited${qualityPart}.`;
+      : gradeState(skill) === "no_readme"
+        ? `No README on GitHub, so it cannot be security-graded${qualityPart}.`
+        : `Not yet audited${qualityPart}.`;
   // Measure the real prefix rather than estimating it — the previous arithmetic
   // undercounted the fixed clause and produced 185-189 char descriptions, which
   // Google truncates around 155.
@@ -600,7 +602,9 @@ ${faqLd}
           ? " — repository deleted, archived audit"
           : gradeLabel
             ? ` — security grade ${esc(gradeLabel)}${typeof quality_score === "number" ? `, quality ${Math.round(quality_score)}/100` : ""}`
-            : " — not yet audited"
+            : gradeState(skill) === "no_readme"
+              ? " — no README to audit"
+              : " — not yet audited"
       }</h1>
       ${goneBanner}
       ${verdictBlock}

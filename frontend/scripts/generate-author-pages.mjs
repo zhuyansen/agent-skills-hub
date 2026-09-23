@@ -210,6 +210,11 @@ function buildSeoNoScript(group, master = null, isOrg = false) {
   // trust summary
   const cats = [...new Set(group.skills.map((s) => s.category).filter(Boolean))].slice(0, 4).join(", ");
   const safeN = group.skills.filter((s) => s.security_grade === "safe").length;
+  // Author pages list long tails; only claim "security-graded" for what actually is.
+  const gradedN = group.skills.filter((s) => s.security_grade && s.security_grade !== "unknown").length;
+  const gradedPhrase = gradedN === group.skills.length
+    ? "security-graded"
+    : `security-graded where a README exists (${gradedN} of ${group.skills.length})`;
   const scored = group.skills.filter((s) => typeof s.quality_score === "number");
   const avgQ = scored.length ? Math.round(scored.reduce((a, s) => a + s.quality_score, 0) / scored.length) : 0;
   const displayName = master?.name || group.author_name;
@@ -223,7 +228,7 @@ function buildSeoNoScript(group, master = null, isOrg = false) {
     : "";
   return `
       <h1>${esc(displayName)} — ${group.skills.length} Open-Source AI Agent Skills</h1>
-      <p><strong>${esc(displayName)}</strong> is the ${who} ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and security-graded${safeN ? ` — ${safeN} verified safe` : ""}.${verifiedLine}</p>
+      <p><strong>${esc(displayName)}</strong> is the ${who} ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and ${gradedPhrase}${safeN ? ` — ${safeN} verified safe` : ""}.${verifiedLine}</p>
       ${bioLine}
       <h2>Top skills by ${esc(displayName)}</h2>
       <ul>${listItems}</ul>
