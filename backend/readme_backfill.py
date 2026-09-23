@@ -1,148 +1,235 @@
 #!/usr/bin/env python3
+"""README backfill — fetch READMEs for ungraded repos the sync never revisits.
+
+The sync fetches READMEs only for repos its incremental search returned in that
+run, so a dormant repo that entered the catalog without one stayed ungraded
+forever: on 2026-09-23, 7,711 live repos with >=5 stars and 49,867 with 1-4.
+This walks those rows most-starred first and records every definite answer
+through app/services/readme_coverage.py, the rule the sync uses too. The next
+sync grades what it fetched.
+
+Scheduled by .github/workflows/readme-backfill.yml at 03/11/19 UTC, between
+syncs. One request per second globally (4 threads fill latency gaps) and one
+autocommit UPDATE per row — the load the instance tolerated in June, when 8
+workers alongside an index build made its REST API 504. Stops early when the
+GitHub quota the sync shares falls under QUOTA_FLOOR, or a sync is queued or
+running.
+
+Env:  GH_TOKEN; SUPABASE_DB_URL (or backend/.env);
+      GITHUB_REPOSITORY + ACTIONS_TOKEN (optional) to see a running sync.
+Args: --floor N (5)  --cap N (1500)  --allow-floor-drop
 """
-README backfill — fetch missing READMEs for quality skills (stars>=5) so the
-existing SecurityScanner can grade them, driving down the ~99% `unknown` rate.
+from __future__ import annotations
 
-Concurrent: a thread pool fills the per-request latency gaps, while a single
-global pacer keeps the *total* request rate just under GitHub's 5000/hr
-(≈1.3/s) so we never trip 429s regardless of per-call latency. Resume-able
-(only NULL readme), idempotent. A 404 (no README) writes "" so it isn't
-retried and the scanner correctly leaves it ungraded.
-
-Env:  GH_TOKEN (e.g. `gh auth token`), SUPABASE_DB_URL (from backend/.env)
-Args: [max_count]  cap this run (default all); pass e.g. 100 to validate.
-"""
-
+import argparse
+import json
 import os
 import re
 import sys
 import threading
 import time
+import urllib.error
 import urllib.request
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
-import psycopg2
+from app.services.readme_coverage import MISSING_README_SQL
 
-GH_TOKEN = os.environ["GH_TOKEN"].strip()
-# Lowered from 8→4 after the 8-worker run + a concurrent trigram index build
-# overloaded the Supabase instance (REST started 504-ing even on trivial
-# queries, degrading the live site). 4 workers + 1s global pace keeps DB write
-# pressure gentle while still ~5x the original single-thread rate.
 WORKERS = 4
-MIN_INTERVAL = 1.0  # seconds between request *starts*, globally → ≤1/s
+MIN_INTERVAL = 1.0      # seconds between request starts, globally
+QUOTA_FLOOR = 1500      # leave this much of the shared token for the next sync
+DEFAULT_FLOOR = 5       # first tier: repos someone looks at
+LOW_FLOOR = 1           # second tier; 0-star repos are never fetched
+DROP_BELOW = 50         # first tier counts as done below this many candidates
+CHUNK = 100             # rows between quota / running-sync checks
+DEFAULT_CAP = 1500
+README_MAX = 50000
+HTTP_TIMEOUT = 30
 
-_pace_lock = threading.Lock()
-_last_start = [0.0]
+CANDIDATE_SQL = (
+    "SELECT repo_full_name FROM skills "
+    "WHERE security_grade = 'unknown' AND repo_status IS DISTINCT FROM 'gone' "
+    f"AND stars >= %(floor)s AND {MISSING_README_SQL} "
+    "ORDER BY stars DESC LIMIT %(cap)s"
+)
+COUNT_SQL = CANDIDATE_SQL.split(" ORDER BY")[0].replace("SELECT repo_full_name", "SELECT count(*)")
+WRITE_SQL = (
+    "UPDATE skills SET readme_content = %s, readme_size = %s, readme_fetched_at = now() "
+    "WHERE repo_full_name = %s AND (readme_content IS NULL OR readme_content = '')"
+)
 
 
-def _pace():
-    with _pace_lock:
-        wait = MIN_INTERVAL - (time.time() - _last_start[0])
-        if wait > 0:
-            time.sleep(wait)
-        _last_start[0] = time.time()
+def clamp_floor(floor: int) -> int:
+    return max(floor, LOW_FLOOR)
 
 
-def db_url():
-    for line in open(os.path.join(os.path.dirname(__file__), ".env")):
-        m = re.match(r'\s*SUPABASE_DB_URL\s*=\s*["\']?([^"\'\n]+)', line)
-        if m:
-            return m.group(1).strip()
+def choose_floor(first_tier_left: int, allow_drop: bool) -> int:
+    return LOW_FLOOR if allow_drop and first_tier_left < DROP_BELOW else DEFAULT_FLOOR
+
+
+def quota_exhausted(remaining: int) -> bool:
+    return remaining < QUOTA_FLOOR
+
+
+class Pacer:
+    def __init__(self, interval: float):
+        self.interval, self.lock, self.last = interval, threading.Lock(), 0.0
+
+    def wait(self) -> None:
+        with self.lock:
+            delay = self.interval - (time.time() - self.last)
+            if delay > 0:
+                time.sleep(delay)
+            self.last = time.time()
+
+
+def db_url() -> str:
+    env_file = Path(__file__).with_name(".env")
+    if env_file.exists():
+        for line in env_file.read_text().splitlines():
+            m = re.match(r'\s*SUPABASE_DB_URL\s*=\s*["\']?([^"\'\n]+)', line)
+            if m:
+                return m.group(1).strip()
     return os.environ["SUPABASE_DB_URL"]
 
 
-DB_URL = db_url()
-_local = threading.local()
-
-
-def conn():
-    if not getattr(_local, "conn", None):
-        _local.conn = psycopg2.connect(DB_URL)
-        _local.conn.autocommit = True
-    return _local.conn
-
-
-def fetch_readme(full_name):
-    """Return (text, remaining). text='' for 404/empty, None to skip."""
+def fetch(full_name: str, token: str, pacer: Pacer) -> tuple[str, str | None, int]:
+    """('ok', text, remaining) | ('absent', '', remaining) | ('error', None, remaining).
+    urllib follows the 301 GitHub sends for a renamed repo."""
     req = urllib.request.Request(
         f"https://api.github.com/repos/{full_name}/readme",
-        headers={"Authorization": f"Bearer {GH_TOKEN}",
-                 "Accept": "application/vnd.github.raw",
-                 "User-Agent": "ash-readme-backfill"},
-    )
-    for attempt in range(4):
-        _pace()
+        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github.raw",
+                 "User-Agent": "agentskillshub-readme-backfill"})
+    pacer.wait()
+    try:
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
+            remaining = int(r.headers.get("X-RateLimit-Remaining", "5000"))
+            text = r.read().decode("utf-8", "replace")[:README_MAX]
+            return ("ok", text, remaining) if text.strip() else ("absent", "", remaining)
+    except urllib.error.HTTPError as e:
+        remaining = int(e.headers.get("X-RateLimit-Remaining", "5000"))
+        if e.code in (403, 429):
+            return "error", None, 0  # rate limited: the quota check ends the run
+        return ("absent", "", remaining) if e.code == 404 else ("error", None, remaining)
+    except Exception:  # noqa: BLE001 — URLError/SSL/timeout: try again next run
+        return "error", None, 5000
+
+
+def sync_active() -> bool:
+    """A sync queued or running on this repository (Actions API). False when
+    run locally without the Actions env; True when the API can't be read."""
+    repo, token = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("ACTIONS_TOKEN")
+    if not repo or not token:
+        return False
+    for status in ("in_progress", "queued"):
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{repo}/actions/workflows/sync.yml/runs?status={status}&per_page=1",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"})
         try:
-            with urllib.request.urlopen(req, timeout=30) as r:
-                rem = int(r.headers.get("X-RateLimit-Remaining", "5000"))
-                return r.read().decode("utf-8", "replace")[:50000], rem
-        except urllib.error.HTTPError as e:
-            rem = int(e.headers.get("X-RateLimit-Remaining", "5000"))
-            if e.code in (403, 429):
-                reset = int(e.headers.get("X-RateLimit-Reset", "0"))
-                wait = max(reset - int(time.time()), 5)
-                time.sleep(min(wait + 2, 3600))
-                continue
-            return "", rem  # 404 etc → store empty
-        except Exception:  # noqa: BLE001 — URLError/SSL/timeout: transient
-            if attempt == 3:
-                return None, 5000
-            time.sleep(1.5 * (attempt + 1))
-    return None, 5000
+            with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
+                if json.load(r).get("total_count", 0):
+                    return True
+        except Exception:  # noqa: BLE001 — can't tell: be safe
+            return True
+    return False
 
 
-def process(full):
-    text, rem = fetch_readme(full)
-    if text is None:
-        return "failed", rem
-    for attempt in range(4):
-        try:
-            with conn().cursor() as cur:
-                cur.execute(
-                    "UPDATE skills SET readme_content=%s, readme_size=%s "
-                    "WHERE repo_full_name=%s", (text, len(text), full))
-            return ("empty" if text == "" else "ok"), rem
-        except psycopg2.errors.DeadlockDetected:
-            time.sleep(0.5 * (attempt + 1))
-        except Exception:  # noqa: BLE001 — reset broken connection, retry
-            _local.conn = None
-            time.sleep(0.5 * (attempt + 1))
-    return "failed", rem
+class Writer:
+    """One autocommit connection per thread."""
+
+    def __init__(self, url: str):
+        self.url, self.local = url, threading.local()
+
+    def write(self, full_name: str, text: str) -> bool:
+        import psycopg2  # imported here so tests need no driver
+        for attempt in range(3):
+            try:
+                conn = getattr(self.local, "conn", None)
+                if conn is None:
+                    conn = self.local.conn = psycopg2.connect(self.url)
+                    conn.autocommit = True
+                with conn.cursor() as cur:
+                    cur.execute(WRITE_SQL, (text, len(text), full_name))
+                return True
+            except Exception:  # noqa: BLE001 — broken connection: reconnect and retry
+                self.local.conn = None
+                time.sleep(0.5 * (attempt + 1))
+        return False
 
 
-def main():
-    cap = int(sys.argv[1]) if len(sys.argv) > 1 else 999999
-    c = psycopg2.connect(DB_URL)
-    cur = c.cursor()
-    # readme_content = '' (empty string) is NOT NULL, so an `IS NULL`-only
-    # filter skips it forever — a repo ingested with a blank README (an artifact
-    # of the extra_repos path) stays permanently ungraded and invisible to every
-    # healer. gozen3ji/consulting-pptx-skill sat at grade=unknown while its
-    # GitHub repo had a 14 KB README, because the row held '' not NULL. Catch
-    # both. (2026-09-05)
-    cur.execute(
-        "SELECT repo_full_name FROM skills "
-        "WHERE stars >= 5 AND (readme_content IS NULL OR readme_content = '') "
-        "ORDER BY score DESC NULLS LAST LIMIT %s", (cap,))
-    targets = [r[0] for r in cur.fetchall()]
-    cur.close(); c.close()
-    print(f"targets: {len(targets)} skills · {WORKERS} workers · ≤{1/MIN_INTERVAL:.1f}/s", flush=True)
+def candidates(url: str, floor: int, cap: int) -> list[str]:
+    import psycopg2
+    with psycopg2.connect(url) as conn, conn.cursor() as cur:
+        cur.execute("SET statement_timeout = '60s'")
+        cur.execute(CANDIDATE_SQL, {"floor": floor, "cap": cap})
+        return [r[0] for r in cur.fetchall()]
 
-    n = ok = empty = failed = 0
-    t0 = time.time()
-    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        futs = {ex.submit(process, f): f for f in targets}
-        for fut in as_completed(futs):
-            status, rem = fut.result()
-            n += 1
-            ok += status == "ok"; empty += status == "empty"; failed += status == "failed"
-            if n % 50 == 0:
-                rate = n / max(time.time() - t0, 1)
-                eta = int((len(targets) - n) / max(rate, 0.01) / 60)
-                print(f"  [{n}/{len(targets)}] ok={ok} empty404={empty} failed={failed} "
-                      f"gh={rem} · {rate:.1f}/s · ETA {eta}m", flush=True)
-    print(f"\n✓ done: ok={ok} empty404={empty} failed={failed}", flush=True)
+
+def count_first_tier(url: str) -> int:
+    import psycopg2
+    with psycopg2.connect(url) as conn, conn.cursor() as cur:
+        cur.execute("SET statement_timeout = '60s'")
+        cur.execute(COUNT_SQL, {"floor": DEFAULT_FLOOR})
+        return cur.fetchone()[0]
+
+
+def summarize(lines: list[str]) -> None:
+    text = "\n".join(lines)
+    print(text, flush=True)
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if path:
+        with open(path, "a") as f:
+            f.write(text + "\n")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--floor", type=int, default=DEFAULT_FLOOR)
+    ap.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    ap.add_argument("--allow-floor-drop", action="store_true")
+    args = ap.parse_args()
+
+    token, url = os.environ["GH_TOKEN"].strip(), db_url()
+    floor = clamp_floor(args.floor)
+    if args.allow_floor_drop and floor == DEFAULT_FLOOR:
+        left = count_first_tier(url)
+        floor = choose_floor(left, allow_drop=True)
+        print(f"first tier (>= {DEFAULT_FLOOR} stars) left: {left} -> floor {floor}", flush=True)
+    targets = candidates(url, floor, args.cap)
+    print(f"targets: {len(targets)} (floor {floor}, cap {args.cap}) · {WORKERS} workers · <= {1 / MIN_INTERVAL:.0f}/s",
+          flush=True)
+
+    pacer, writer = Pacer(MIN_INTERVAL), Writer(url)
+    counts = {"ok": 0, "absent": 0, "error": 0, "write_failed": 0}
+    stopped = ""
+
+    def one(full_name: str) -> int:
+        status, text, remaining = fetch(full_name, token, pacer)
+        if status != "error" and not writer.write(full_name, text or ""):
+            status = "write_failed"
+        counts[status] += 1
+        return remaining
+
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        for i in range(0, len(targets), CHUNK):
+            if sync_active():
+                stopped = "a sync is queued or running"
+                break
+            lowest = min(pool.map(one, targets[i:i + CHUNK]))
+            print(f"  [{min(i + CHUNK, len(targets))}/{len(targets)}] {counts} · quota {lowest}", flush=True)
+            if quota_exhausted(lowest):
+                stopped = f"GitHub quota {lowest} < {QUOTA_FLOOR}"
+                break
+
+    summarize([
+        "## README backfill",
+        f"- floor: {floor} stars · cap {args.cap} · targets {len(targets)}",
+        f"- fetched: {counts['ok']} · no README on GitHub: {counts['absent']} · "
+        f"errors (retried next run): {counts['error']} · write failures: {counts['write_failed']}",
+        f"- stopped early: {stopped}" if stopped else "- ran to the end of its batch",
+    ])
+    return 1 if counts["write_failed"] else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
