@@ -203,8 +203,7 @@ export function trustBlock() {
 
 
 export function analyticsTags() {
-  return `<script defer data-domain="agentskillshub.top" src="https://plausible.io/js/script.outbound-links.js"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
