@@ -820,8 +820,8 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
 
         # Security scan (non-fatal if fails)
         try:
-            from app.services.security_scanner import SecurityScanner
-            sec_stats = SecurityScanner().scan_all(db)
+            from app.services.grade_refresh import refresh_grades
+            sec_stats = refresh_grades(db)
             logger.info("Security scan: %s", sec_stats)
         except Exception as e:
             logger.warning("Security scan failed (non-fatal): %s", e)
