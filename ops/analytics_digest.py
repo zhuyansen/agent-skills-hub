@@ -190,6 +190,10 @@ def main():
             "enterprise_form_viewed", "enterprise_form_started",
             "enterprise_lead_attempt", "enterprise_lead_submitted",
             "enterprise_lead_invalid", "enterprise_lead_failed",
+            # Audit-result capture (2026-09-23): same stages, own event family,
+            # so this funnel prints on its own line next to the /enterprise/ one.
+            "audit_lead_viewed", "audit_lead_started", "audit_lead_attempt",
+            "audit_lead_submitted", "audit_lead_invalid", "audit_lead_failed",
             # deep_audit_checkout/mailto retired 2026-07-13 ($49 → Pro upsell)
         }
         # Print the paid funnel as a chain so a drop-off is visible as a shape,
@@ -197,6 +201,8 @@ def main():
         FUNNEL = ["enterprise_cta_click", "enterprise_form_viewed",
                   "enterprise_form_started", "enterprise_lead_attempt",
                   "enterprise_lead_submitted"]
+        AUDIT_FUNNEL = ["audit_run", "audit_lead_viewed", "audit_lead_started",
+                        "audit_lead_attempt", "audit_lead_submitted"]
         custom = [r for r in ga_ev if r.get("eventName") in watch]
         # Bot-pollution flag (scar 2026-07-16): 851 audit_run/day from one
         # Singapore DC scraper poisoned the funnel KPI. If a single country
@@ -219,10 +225,12 @@ def main():
         else:
             print("- (自定义转化事件尚无数据)")
         counts = {r.get("eventName"): int(r["eventCount"]) for r in ga_ev}
-        chain = " → ".join(
-            f"{e.replace('enterprise_', '').replace('lead_', '').replace('form_', '')} {counts.get(e, 0)}"
-            for e in FUNNEL)
-        print(f"\n**企业漏斗**: {chain}")
+
+        def chain(stages):
+            short = lambda e: e.replace("enterprise_", "").replace("audit_", "").replace("lead_", "").replace("form_", "")
+            return " → ".join(f"{short(e)} {counts.get(e, 0)}" for e in stages)
+
+        print(f"\n**企业漏斗**: {chain(FUNNEL)}")
         # These stages are NOT strictly nested and the arrow notation implies
         # they are. form_viewed fires from an IntersectionObserver, so anyone
         # who scrolls the page far enough counts — with or without ever
@@ -236,6 +244,12 @@ def main():
                       f"高于 {prev.replace('enterprise_','')} ({counts.get(prev,0)}) —— "
                       f"form_viewed 由滚动触发,不要求先点 CTA,两者不是包含关系")
                 break
+        # The same offer, placed at the audit result. The two lines are the
+        # experiment: same 48h promise, two surfaces, which one converts.
+        print(f"**审计页漏斗**: {chain(AUDIT_FUNNEL)}")
+        for stage in ("invalid", "failed"):
+            if counts.get(f"audit_lead_{stage}"):
+                print(f"  ↳ 审计页 {stage}: {counts[f'audit_lead_{stage}']} 次")
         if counts.get("enterprise_lead_invalid"):
             print(f"  ↳ 被必填项挡回: {counts['enterprise_lead_invalid']} 次")
         if counts.get("enterprise_lead_failed"):

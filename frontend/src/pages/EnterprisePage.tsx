@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
+import { submitEnterpriseLead } from "../lib/enterpriseLead";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
@@ -37,6 +38,13 @@ interface FormState {
   estimated_budget: string;
   message: string;
 }
+
+// Historical names, kept verbatim so the GA funnel stays comparable.
+const ENTERPRISE_LEAD_EVENTS = {
+  attempt: "enterprise_lead_attempt",
+  submitted: "enterprise_lead_submitted",
+  failed: "enterprise_lead_failed",
+};
 
 const EMPTY_FORM: FormState = {
   full_name: "",
@@ -145,46 +153,18 @@ export function EnterprisePage() {
       setError(c.form.errMissing);
       return;
     }
-    // enterprise_leads requires non-empty full_name (1–100) and company (1–200),
-    // enforced server-side in submit_enterprise_lead. When the visitor didn't
-    // volunteer them, derive both from the email so the RPC validation passes
-    // without a schema change — sales enriches the real values on follow-up.
-    const emailLocal = (form.email.split("@")[0] || "there").slice(0, 100);
-    const emailDomain = (form.email.split("@")[1] || "unknown").slice(0, 200);
-    trackEvent("enterprise_lead_attempt", { team_size: form.team_size || "unset" });
+    // Name/company synthesis, the RPC call and the attempt/submitted/failed
+    // events live in lib/enterpriseLead.ts, shared with the audit-result capture.
     setSubmitting(true);
     setError(null);
     try {
-      const { error: rpcErr } = await supabase.rpc("submit_enterprise_lead", {
-        p_full_name: form.full_name || emailLocal,
-        p_email: form.email,
-        p_company: form.company || emailDomain,
-        p_use_case: form.use_case,
-        p_role_title: form.role_title || null,
-        p_team_size: form.team_size || null,
-        p_industry: form.industry || null,
-        p_current_stack: form.current_stack || null,
-        p_compliance_requirements: form.compliance_requirements || null,
-        p_message: form.message || null,
-        p_timeline: form.timeline || null,
-        p_estimated_budget: form.estimated_budget || null,
-        p_source: "enterprise_page",
-      });
-      if (rpcErr) throw rpcErr;
-      // The event that actually means money is downstream of everything else on
-      // this page, and it was the one event not instrumented.
-      trackEvent("enterprise_lead_submitted", {
+      await submitEnterpriseLead(form, "enterprise_page", ENTERPRISE_LEAD_EVENTS, {
         team_size: form.team_size || "unset",
         industry: form.industry || "unset",
       });
       setSubmitted(true);
       setForm(EMPTY_FORM);
     } catch (e) {
-      // A failing RPC looks identical to an uninterested visitor in the funnel.
-      // Name it, so a broken write can never masquerade as no demand.
-      trackEvent("enterprise_lead_failed", {
-        reason: e instanceof Error ? e.message.slice(0, 100) : "unknown",
-      });
       setError(e instanceof Error ? e.message : c.form.errGeneric);
     } finally {
       setSubmitting(false);

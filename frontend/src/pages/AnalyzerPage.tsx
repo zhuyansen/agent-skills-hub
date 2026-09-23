@@ -13,6 +13,7 @@ import {
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
 import { DeepAuditOffer } from "../components/DeepAuditOffer";
+import { AuditLeadCapture } from "../components/AuditLeadCapture";
 
 const GRADE_CONFIG: Record<
   string,
@@ -429,6 +430,15 @@ export function AnalyzerPage() {
                   : `🏢 Audit all of ${result.repo.full_name.split("/")[0]}'s repos at once →`}
               </Link>
             </div>
+            {/* Last rung: repo → owner → your own stack. The enterprise lead
+                capture lives here, at the one moment with demonstrated security
+                intent — /enterprise/ ran two weeks at 0 submissions while 80
+                people ran audits on this page. */}
+            <AuditLeadCapture
+              repo={result.repo.full_name}
+              grade={result.scan.grade}
+              flagCount={result.scan.flags.length}
+            />
           </>
         )}
 
