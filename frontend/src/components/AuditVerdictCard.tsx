@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
+import { gradeState } from "../lib/gradeState";
 import type { SkillDetail } from "../types/skill";
 
 /**
@@ -44,6 +45,20 @@ const GRADE_STYLE: Record<
   },
 };
 
+// Strings live here, not in translations.ts (already past the 800-line limit).
+const UNGRADED_COPY = {
+  no_readme: {
+    label: "NO README",
+    en: "This repo has no README on GitHub, so it can't be rule-graded. Check the code, the credentials it asks for, and who maintains it before you trust it.",
+    zh: "这个仓库在 GitHub 上没有 README，无法做规则评级。在信任它之前，请检查代码、它索要的凭证，以及维护者是谁。",
+  },
+  pending: {
+    label: "GRADING",
+    en: "README fetched — its grade lands with the next sync (every 8 hours).",
+    zh: "README 已抓取，评级会在下一次同步时出来（每 8 小时一次）。",
+  },
+} as const;
+
 const VERDICT_KEY = {
   safe: "auditCard.verdict.safe",
   caution: "auditCard.verdict.caution",
@@ -64,7 +79,9 @@ function parseFlags(raw: SkillDetail["security_flags"]): string[] {
 }
 
 export function AuditVerdictCard({ skill }: { skill: SkillDetail }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const state = gradeState(skill);
+  const ungraded = state === "no_readme" || state === "pending" ? UNGRADED_COPY[state] : null;
   const grade: keyof typeof VERDICT_KEY =
     skill.security_grade && skill.security_grade in VERDICT_KEY
       ? (skill.security_grade as keyof typeof VERDICT_KEY)
@@ -82,7 +99,7 @@ export function AuditVerdictCard({ skill }: { skill: SkillDetail }) {
           className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-bold tracking-wide ${s.badge}`}
         >
           <span aria-hidden>{s.icon}</span>
-          {s.label}
+          {ungraded ? ungraded.label : s.label}
         </span>
         <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
           {t("auditCard.title")}
@@ -93,7 +110,7 @@ export function AuditVerdictCard({ skill }: { skill: SkillDetail }) {
       </div>
 
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-        {t(VERDICT_KEY[grade])}
+        {ungraded ? (lang === "zh" ? ungraded.zh : ungraded.en) : t(VERDICT_KEY[grade])}
       </p>
 
       {flags.length > 0 && (
