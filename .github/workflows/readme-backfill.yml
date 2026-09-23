@@ -1,0 +1,73 @@
+name: README backfill
+
+# Fetches READMEs for ungraded repos the sync never revisits (it fetches only
+# for repos its incremental search returned). The next sync grades them.
+# See docs/superpowers/specs/2026-09-23-grading-coverage-design.md.
+#
+# 03/11/19 UTC: after sync (00/08/16, up to 2h) and before refresh-stale
+# (04/12/20); the 45-minute timeout guarantees it is gone before refresh-stale
+# starts. It deliberately does NOT join sync's concurrency group: a run queued
+# into a group cancels that group's pending run, which could be a sync. The
+# script instead stops itself every 100 rows if a sync is queued or running.
+
+on:
+  schedule:
+    - cron: "0 3,11,19 * * *"
+  workflow_dispatch:
+    inputs:
+      cap:
+        description: "Max repos this run (1 GitHub API call each)"
+        default: "1500"
+      floor:
+        description: "Minimum stars (never below 1)"
+        default: "5"
+
+concurrency:
+  group: readme-backfill
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The script's only non-stdlib dependency; app.services.readme_coverage is pure.
+      - name: Install deps
+        run: pip install psycopg2-binary==2.9.9
+
+      - name: Backfill READMEs
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          ACTIONS_TOKEN: ${{ github.token }}
+        run: python readme_backfill.py --cap "${{ inputs.cap || '1500' }}" --floor "${{ inputs.floor || '5' }}"
+
+  notify-failure:
+    needs: backfill
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "README backfill failed",
+              body: `README backfill failed. [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            });
