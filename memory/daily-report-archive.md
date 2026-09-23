@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-23
+1. malevrigns/agent-jev — 🆕 用 6 亿参数小模型给智能体做快速决策，喂入任意状态直接出概率分布（175★ 130.4/day）
+2. miuuyy/Astra-Ares — 🆕 让 Jev 按任务难度自动调 Codex 推理强度，省下多余 token（113★ 113.0/day）
+3. JunMa11/MedJev — 🆕 从自由文本病历里批量抽取临床变量，院内单卡运行不外传病历（47★ 47.0/day）
+4. dorkitude/webctl — 🆕 给智能体配一个省 token 的网页搜索命令行，由 Jev 筛选结果（114★ 42.0/day）
+5. mmastrac/djev — 🆕 在 DiffusionGemma 上复现 Jev 式结构化决策，附 vLLM 示例服务（28★ 27.0/day）
+6. hqman/jev-browser-skill — 🆕 给定网站和目标，让 Jev 在隔离浏览器里自己选点击动作（26★ 26.0/day）
+7. peterfriese/jev-foundation-models — 🆕 用 Swift 6 把 Jev 决策模型接进苹果 Foundation Models 框架（29★ 22.3/day）
+8. RenaGao/jev-dataops — 🆕 用 Jev 做流式数据筛选与质量评估，接着自动训练 LoRA（42★ 21.7/day）
+9. hunkim/solar-mini4-jev — 🆕 把 Upstage Solar Mini4 包成 Jev 同款接口，改个地址即可替换（31★ 21.5/day）
+10. smkrv/jev-calibrate — 🆕 用你自己的标注校准 Jev 判定口径，留出集复核后再上线（31★ 20.1/day）
+🎯 今日趋势：TypeSafe Jev 发布第七天，十席 **10 席全 🆕、全部与 Jev 相关**，星数合计 **636★**（昨日 1,218★），头部热度明显回落；形态从"造替身"转向**垂直落地与跨生态接入**——医疗病历抽取（MedJev）、Codex 推理强度调度（Astra-Ares）、苹果 Swift 生态（jev-foundation-models）、韩国 Upstage 模型（solar-mini4-jev）各占一席，另有 agent-jev、djev 两家继续用开源底座复刻"一次前向出分布"。
+> 注：去重范围＝repo 内 archive 全部 90 个日期段编号条目，并入记忆区 daily-report-archive 与 fresh-skills-archive 机械提取，小写去重后比对基数 3,004 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔），211 条查询结果（72h、stars ≥20、LIMIT 300 未触顶）中命中历史推荐 27 条直接剔除；十席 first_seen 全部 ≤48h，未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗 45 天。**排除项**：①jev-chat/jev-chat-jarvis-mac（170★ 110.4/day）：与 09-22 判定刷星/刷 fork 的 jev-chat 组织同源，整组织排除；②ipenywis/laya-ultrafast、f/jev-leftpad、bilune/jev-design、kyle-pena-nlp/jevchat、SiliconLabAI/OpenJev、openlayer-ai/jevals、dealerdefi/Jevmind：沿用 09-22 排除理由；FBddcz/embodied-jev、brainstormity/Jev-X-Sentiment-Analysis、Yinsongxu/LLM2Jev、Promethe-us/awesome-jev 等沿用 09-21 排除且 first_seen 已出 48h 窗；③kydlikebtc/awesome-jev、Amal-David/awesome-jev 等清单类按先例不入榜；④Michael-Jiahao-Zhang/game-the-llm-reviewer（88★ 83.1/day，本可居第 3）：用途是改写论文以应对 LLM 审稿，存在操纵同行评审的滥用风险，且作者其余仓全部 ≤1★，不予推荐；⑤yibie/jev-engineering-zh（56★）：为他人文章的中文全译，LICENSE 为 NOASSERTION、授权无法核实，且非可用技能；⑥Liyucheng1997/332_lab-jev-chat（70★）：微信聊天意图判断，与 jev-chat 同题材，作者 217 仓最高 6★，单仓爆星形态；⑦ryana/jevify（169★ 43.5/day）：全仓仅 1 次提交、无 LICENSE，169★ 仅对 3 fork，作者其余仓最高 12★；⑧frankda/jev-poly-crypto-demo（涉加密交易、作者其余仓 ≤1★）、andududu/jeview（0 粉、3 仓）信号过薄。入选项复核（`gh api`）：第 1 席 malevrigns 10 粉、名下另有 105★ 仓，9 次提交、Apache-2.0，实时 205★ 对 12 fork，权重已放 Hugging Face（**轻红旗**：粉丝少，README 的 79.25% top-1 为自测）；第 2 席 miuuyy 201 粉、名下 **10,662★** 仓，MIT，⚠️全仓仅 1 次提交，需自备 GPT-6 Astra 与 Jev；第 3 席 JunMa11 为 **1,183 粉**医学 AI 研究者、名下 4,002★ 仓，Apache-2.0，⚠️新增字段需先标注数百份病历再训练；第 4 席 dorkitude 2009 建号 / 110 粉，**97 次提交**、MIT、13 fork；第 5 席 mmastrac 296 粉、名下 1,087★，Apache-2.0，⚠️依赖尚未合并的 vLLM PR；第 6 席 hqman 2010 建号 / 122 粉，Apache-2.0，⚠️需 Node 22.18+，非 npm 包；第 7 席 peterfriese 为 **1,129 粉**的 Firebase 开发者关系工程师，Apache-2.0；第 8 席 RenaGao 22 粉、其余仓最高 7★（**轻红旗**），15 次提交、MIT、5 fork，保留并标注；第 9 席 hunkim 为 **4,058 粉**的 Upstage 联合创始人 Sung Kim，21 次提交，⚠️未声明 LICENSE，需自备 Upstage key；第 10 席 smkrv 名下另有 82★ 仓，11 次提交、MIT。🆕 判定＝created_at 距今 14 天内，十席全部命中（09-20~09-22 建仓）。十席 security_grade 全部为 safe。表中 stars 为数据库快照，部分仓实时星数更高（agent-jev 205★、Astra-Ares 151★），按红线保留快照值。
+
+---
+
 ## 2026-09-22
 1. Rizzo-AI-Academy/rizzo-flow — 🆕 在本机把大模型变成只出结构化判断的决策器，一个 token 都不生成（225★ 176.6/day）
 2. TianyuCodings/JevHarness — 🆕 让大模型替你写 Jev 调用代码，再用执行轨迹反过来改进它（96★ 96.0/day）
