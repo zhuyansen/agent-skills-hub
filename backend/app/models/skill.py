@@ -81,6 +81,8 @@ class Skill(Base):
     readme_size = Column(Integer, default=0)
     readme_content = Column(Text, nullable=True)
     readme_structure_score = Column(Float, default=0.0)
+    # When a README fetch last got a definite answer (app/services/readme_coverage.py).
+    readme_fetched_at = Column(DateTime(timezone=True), nullable=True)
     file_count = Column(Integer, default=0)
 
     # Platform compatibility (JSON list)
@@ -92,6 +94,9 @@ class Skill(Base):
     # Security
     security_grade = Column(String, default="unknown")
     security_flags = Column(Text, default="[]")
+    # When this row was last graded, and by which rules (app/services/grade_refresh.py).
+    security_scanned_at = Column(DateTime(timezone=True), nullable=True)
+    scanner_version = Column(String(32), nullable=True)
     security_llm_grade = Column(String, nullable=True)
     security_llm_analysis = Column(Text, nullable=True)
 
