@@ -6,9 +6,11 @@ from typing import Any, Optional
 
 import httpx
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from sqlalchemy import func, not_, text
 from sqlalchemy.orm import Session
 
 from app.config import settings
+from app.services.readme_coverage import readme_update
 from app.services.sync_selection import select_readme_targets, with_push_filter
 
 logger = logging.getLogger(__name__)
@@ -294,17 +296,19 @@ async def _github_request(
     return resp.json()
 
 
-def _repo_names_with_readme(db: "Session", names: list[str], chunk: int = 1000) -> set[str]:
-    """Which of these repos are in skills with a non-empty README (exact match, on
-    the unique index; `<> ''` is decided from the stored length, no detoasting)."""
+def _repo_names_settled(db: "Session", names: list[str], chunk: int = 1000) -> set[str]:
+    """Which of these repos need no README fetch: they have one, or GitHub
+    recently confirmed they don't (app/services/readme_coverage.py). Exact
+    match on the unique index, in chunks."""
     from app.models.skill import Skill  # inline like the rest of this module, avoids a circular import
+    from app.services.readme_coverage import MISSING_README_SQL
 
     found: set[str] = set()
     for i in range(0, len(names), chunk):
         rows = (
             db.query(Skill.repo_full_name)
             .filter(Skill.repo_full_name.in_(names[i:i + chunk]))
-            .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
+            .filter(not_(text(MISSING_README_SQL)))
             .all()
         )
         found.update(r.repo_full_name for r in rows)
@@ -568,6 +572,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # Phase 5: Fetch README content
         # ═══════════════════════════════════════════════════════
         readme_cache: dict[str, str] = {}
+        readme_absent: set[str] = set()  # GitHub answered: no README (404 or empty)
         try:
             # Clear any invalid transaction state from previous phases
             # (PgBouncer may have killed the connection during long API fetches)
@@ -575,14 +580,12 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                 db.rollback()
             except Exception:
                 pass
-            # Catch '' as well as NULL: a row ingested with a blank README (an
-            # extra_repos artifact) is NOT NULL, so an IS NULL-only filter skips
-            # it forever, leaving a featured skill permanently ungraded
-            # (gozen3ji/consulting-pptx-skill, 2026-09-05).
-            from sqlalchemy import or_ as _or  # noqa: WPS433
+            # "Still needs a README" is one shared rule (readme_coverage.py): NULL,
+            # or '' without a marker, or '' whose no-README verdict has expired.
+            from app.services.readme_coverage import MISSING_README_SQL
             null_readme_skills = (
                 db.query(Skill.repo_full_name)
-                .filter(_or(Skill.readme_content.is_(None), Skill.readme_content == ""))
+                .filter(text(MISSING_README_SQL))
                 .order_by(Skill.score.desc().nullslast())
                 .limit(1000)
                 .all()
@@ -594,18 +597,13 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             # them. Fetch theirs in the same sync that inserts them.
             backfill_pending = [fn for fn in all_repos if fn.lower() in backfill_names]
             if backfill_pending:
-                have_readme = {
-                    r.repo_full_name
-                    for r in db.query(Skill.repo_full_name)
-                    .filter(Skill.repo_full_name.in_(backfill_pending))
-                    .filter(Skill.readme_content.isnot(None), Skill.readme_content != "")
-                }
-                readme_targets |= set(backfill_pending) - have_readme
-            # Everything this sync saw that still has no README, new or not.
-            readme_targets |= select_readme_targets(all_repos, _repo_names_with_readme(db, list(all_repos)))
+                readme_targets |= set(backfill_pending) - _repo_names_settled(db, backfill_pending)
+            # Everything this sync saw that still needs a README, new or not.
+            readme_targets |= select_readme_targets(all_repos, _repo_names_settled(db, list(all_repos)))
             if readme_targets:
                 logger.info("Fetching README for %d skills", len(readme_targets))
-                async with httpx.AsyncClient(timeout=30.0) as readme_client:
+                # A renamed repo answers 301; without following it the fetch read as "no README".
+                async with httpx.AsyncClient(timeout=30.0, follow_redirects=True) as readme_client:
                     await _ensure_rate_limit(readme_client, min_remaining=50)
 
                     readme_headers = {"Accept": "application/vnd.github.raw"}
@@ -620,7 +618,13 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                                 headers=readme_headers,
                             )
                             if resp.status_code == 200:
-                                readme_cache[full_name] = resp.text[:50000]
+                                body = resp.text[:50000]
+                                if body.strip():
+                                    readme_cache[full_name] = body
+                                else:
+                                    readme_absent.add(full_name)
+                            elif resp.status_code == 404:
+                                readme_absent.add(full_name)
                             elif resp.status_code in (403, 429):
                                 reset_ts = int(resp.headers.get("X-RateLimit-Reset", "0"))
                                 if reset_ts:
@@ -707,10 +711,10 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                     existing.prev_stars = existing.stars
                     for key, val in repo_data.items():
                         setattr(existing, key, val)
-                    readme = readme_cache.get(existing.repo_full_name)
-                    if readme:
-                        existing.readme_content = readme
-                        existing.readme_size = len(readme)
+                    name = existing.repo_full_name
+                    for col, val in readme_update(existing.readme_content, readme_cache.get(name),
+                                                  name in readme_absent, func.now()).items():
+                        setattr(existing, col, val)
                     updated_count += 1
                 else:
                     new_skill = Skill(**repo_data)
@@ -719,10 +723,10 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                     # count all of them as one day's gain.
                     if repo_data.get("repo_full_name", "").lower() in backfill_names:
                         new_skill.prev_stars = new_skill.stars
-                    readme = readme_cache.get(repo_data.get("repo_full_name", ""))
-                    if readme:
-                        new_skill.readme_content = readme
-                        new_skill.readme_size = len(readme)
+                    name = repo_data.get("repo_full_name", "")
+                    for col, val in readme_update(None, readme_cache.get(name),
+                                                  name in readme_absent, func.now()).items():
+                        setattr(new_skill, col, val)
                     db.add(new_skill)
                     new_repo_names.append(repo_data.get("repo_full_name", ""))
                     new_count += 1
