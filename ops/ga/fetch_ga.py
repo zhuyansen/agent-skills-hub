@@ -121,6 +121,7 @@ def save(name, data):
     print(f"  → {p} ({len(data)} rows)")
 
 
+RECENT_DAYS = 7
 PAGE_METRICS = ["screenPageViews", "sessions", "activeUsers", "bounceRate", "userEngagementDuration"]
 
 
@@ -159,6 +160,11 @@ def main():
                           days, order_metric="eventCount", limit=30)
         table(rows, "eventName", ["eventCount", "totalUsers"])
         save("events", rows)
+        # A short window beside the 28-day one. A funnel whose first stage has
+        # 28 days of history and whose later stages were instrumented yesterday
+        # reads as broken for a month; the digest prints new funnels over this.
+        save("events_7d", run_report(sess, ["eventName"], ["eventCount", "totalUsers"],
+                                     RECENT_DAYS, order_metric="eventCount", limit=30))
         # Bot-pollution radar: same events sliced by country. 2026-07-16 lesson —
         # 851 audit_run in one day, 670 from a single Singapore DC scraper; raw
         # counts misled the funnel KPI. Digest uses this to flag concentration.

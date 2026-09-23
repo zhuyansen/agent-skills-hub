@@ -226,9 +226,9 @@ def main():
             print("- (自定义转化事件尚无数据)")
         counts = {r.get("eventName"): int(r["eventCount"]) for r in ga_ev}
 
-        def chain(stages):
+        def chain(stages, table=counts):
             short = lambda e: e.replace("enterprise_", "").replace("audit_", "").replace("lead_", "").replace("form_", "")
-            return " → ".join(f"{short(e)} {counts.get(e, 0)}" for e in stages)
+            return " → ".join(f"{short(e)} {table.get(e, 0)}" for e in stages)
 
         print(f"\n**企业漏斗**: {chain(FUNNEL)}")
         # These stages are NOT strictly nested and the arrow notation implies
@@ -246,10 +246,15 @@ def main():
                 break
         # The same offer, placed at the audit result. The two lines are the
         # experiment: same 48h promise, two surfaces, which one converts.
-        print(f"**审计页漏斗**: {chain(AUDIT_FUNNEL)}")
+        # audit_run carries 28 days of history but the capture only exists
+        # since 2026-09-23, so this funnel prints over the sweep's 7-day pull —
+        # every stage on one window — and falls back to 28d until that exists.
+        recent = load("ga/out/events_7d.json") or []
+        counts7 = {r.get("eventName"): int(r["eventCount"]) for r in recent} if recent else counts
+        print(f"**审计页漏斗({'7天' if recent else '28天'})**: {chain(AUDIT_FUNNEL, counts7)}")
         for stage in ("invalid", "failed"):
-            if counts.get(f"audit_lead_{stage}"):
-                print(f"  ↳ 审计页 {stage}: {counts[f'audit_lead_{stage}']} 次")
+            if counts7.get(f"audit_lead_{stage}"):
+                print(f"  ↳ 审计页 {stage}: {counts7[f'audit_lead_{stage}']} 次")
         if counts.get("enterprise_lead_invalid"):
             print(f"  ↳ 被必填项挡回: {counts['enterprise_lead_invalid']} 次")
         if counts.get("enterprise_lead_failed"):
