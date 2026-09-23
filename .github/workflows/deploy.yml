@@ -19,6 +19,9 @@ concurrency:
 
 jobs:
   build:
+    # A failed sync can leave grades half-written; don't publish that. Pushes
+    # and manual runs always build.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     defaults:
       run:
