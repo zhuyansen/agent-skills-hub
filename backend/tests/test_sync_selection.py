@@ -1,5 +1,5 @@
 """Pure fetch decisions extracted from scheduler/jobs.py."""
-from app.services.sync_selection import select_readme_targets, with_push_filter
+from app.services.sync_selection import select_readme_targets, wave_slices, with_push_filter
 
 PUSHED = " pushed:>2026-09-18T01:00:00Z"
 
@@ -36,3 +36,12 @@ def test_cap_keeps_the_most_starred_new_repos():
 def test_missing_star_counts_sort_last_and_do_not_crash():
     all_repos = {"a/nostars": {}, "b/some": repo(3)}
     assert select_readme_targets(all_repos, have_readme=set(), limit=1) == {"b/some"}
+
+
+def test_wave_queries_get_star_band_slices():
+    q = "jev in:name,description,topics created:>=2026-09-15"
+    assert wave_slices(q) == [q + " stars:50..199", q + " stars:20..49"]
+
+
+def test_ordinary_queries_get_no_slices():
+    assert wave_slices("mcp-server in:name,topics") == []

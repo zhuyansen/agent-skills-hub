@@ -40,3 +40,16 @@ def select_readme_targets(
     missing = [name for name in all_repos if name not in have_readme]
     missing.sort(key=lambda name: -(all_repos[name].get("stargazers_count") or 0))
     return set(missing[:limit])
+
+
+# A wave query (created:>=) returns thousands of repos, sorted by stars, and the
+# sync reads 300. The top 300 covers everything a scenario page shows (>=50 stars),
+# but the 20-199 star tail — the repos the wave page will list next month — never
+# enters. Two star bands, each read to the same 3-page cap, catch it.
+WAVE_STAR_BANDS = ("stars:50..199", "stars:20..49")
+
+
+def wave_slices(query: str) -> list[str]:
+    if "created:>" not in query:
+        return []
+    return [f"{query} {band}" for band in WAVE_STAR_BANDS]

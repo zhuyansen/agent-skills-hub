@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.services.readme_coverage import readme_update
-from app.services.sync_selection import select_readme_targets, with_push_filter
+from app.services.sync_selection import wave_slices, select_readme_targets, with_push_filter
 
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
@@ -455,25 +455,30 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             search_start = time.time()
             for i, query in enumerate(all_queries):
                 effective_query = with_push_filter(query, pushed_filter)
-                try:
-                    for page in range(1, 4):  # up to 3 pages per query
-                        data = await _github_request(
-                            client,
-                            "https://api.github.com/search/repositories",
-                            params={"q": effective_query, "per_page": 100, "page": page, "sort": "stars"},
-                        )
-                        items = data.get("items", [])
-                        for repo in items:
-                            fn = repo.get("full_name", "")
-                            if fn and fn not in all_repos:
-                                all_repos[fn] = repo
-                        if len(items) < 100:
-                            break
-                        # Respect search rate limit: 30 req/min → ~2s per request
-                        await asyncio.sleep(2.5)
-                except Exception as exc:
-                    logger.error("Search failed [%s]: %s", query, exc)
-                await asyncio.sleep(2)
+                for variant in [effective_query, *wave_slices(effective_query)]:
+                    try:
+                        for page in range(1, 4):  # up to 3 pages per query
+                            data = await _github_request(
+                                client,
+                                "https://api.github.com/search/repositories",
+                                params={"q": variant, "per_page": 100, "page": page, "sort": "stars"},
+                            )
+                            items = data.get("items", [])
+                            for repo in items:
+                                fn = repo.get("full_name", "")
+                                if fn and fn not in all_repos:
+                                    all_repos[fn] = repo
+                            if len(items) < 100:
+                                break
+                            if page == 3:
+                                # Silent before: nobody knew the Jev wave query had 6,986 results.
+                                logger.warning("Search truncated at 300 for [%s]: total_count=%s",
+                                               variant, data.get("total_count"))
+                            # Respect search rate limit: 30 req/min → ~2s per request
+                            await asyncio.sleep(2.5)
+                    except Exception as exc:
+                        logger.error("Search failed [%s]: %s", variant, exc)
+                    await asyncio.sleep(2)
 
             logger.info("Phase 1 complete: %d unique repos from search (%.0fs)", len(all_repos), time.time() - search_start)
 
