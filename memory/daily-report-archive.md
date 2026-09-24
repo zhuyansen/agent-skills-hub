@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-24
+1. TheoLeeCJ/SemIf-OpenJev — 🆕 用开源模型在家用 3090 上复刻 Jev 式语义判断，直接读出选项概率（4071★ 518.2/day）
+2. anishfn/shapeshift — 🆕 让一个输入框边打字边变成对应界面，日程、清单、分账一框搞定（350★ 212.4/day）
+3. nokia-applied-research/AnyJev — 🆕 把任意大模型改造成 Jev 式决策器，免训练输出带概率的类型化判断（353★ 127.4/day）
+4. Alex314618-create/JevRev — 🆕 在大模型旁挂一层 Jev 决策，筛方案、查进度，省下无效 token（185★ 63.0/day）
+5. To3akaRin/mac-computer-use — 让任意大模型操控电脑，多平台可用，附 3D 建模实操案例（861★ 55.1/day）
+6. openqa-cn/jev-browser — 🆕 先给网页控件建索引再让 Jev 选点哪里，替代截图式浏览器自动化（45★ 45.0/day）
+7. virajbhartiya/laya-vs-jev — 🆕 让本地 Laya 与云端 Jev 同玩恐龙跳跃，实时对比决策指标（93★ 38.5/day）
+8. 1Panel-dev/laya-server — 🆕 自托管 Laya 决策模型的接口与网页端，兼容 TypeSafe Jev 接口（35★ 35.0/day）
+9. HeyPuter/builder — 🆕 用 AI 生成网站和应用，开源替代 Lovable、v0 等建站平台（98★ 34.3/day）
+10. AgriciDaniel/jev-seo — 🆕 输入一个首页网址即做实时 SEO 审计，由 Jev 评判并导出报告（60★ 30.1/day）
+🎯 今日趋势：TypeSafe Jev 发布第八天，十席星数合计 **6,151★**（昨日 636★），其中开源替身 SemIf 一仓独占 **4,071★**；十席 **8 席与 Jev 相关**，形态从"复刻模型"扩到**产品化应用**（shapeshift 输入框变界面、jev-seo 做 SEO 审计、jev-browser 做浏览器自动化），竞品 Laya 也迎来 1Panel 这样的成熟组织给它做自托管服务端。
+> 注：去重范围＝repo 内 archive 全部 91 个日期段、920 个编号条目，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 3,955 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（190 条，LIMIT 300 未触顶），命中历史推荐 44 条剔除；十席 first_seen 全部 ≤48h（最晚 AnyJev、laya-vs-jev 45h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天。**排除项**：①BinaryDeliverer/CodexDesk（222★ 222.0/day，本可居第 2）：账号 2026-07 新建、0 粉，其余 13 仓全部 0★，全仓仅 4 次提交却有 68 watcher，单仓爆星形态，判刷星嫌疑；②miqdadbadjuber/anti-slop（3,607★ 75.8/day）：建仓 47.6 天超出 45 天窗口，且作者其余仓全部 0★；③sevenevesai/riso-windowseat（126★ 107.4/day）：作者 4 粉、其余仓最高 5★、LICENSE 为 NOASSERTION，沿用 09-22 bilune 先例；④arimanyus/warrenduffer（印度股票日内交易机器人）、BnbAgentChainL2/bnb-agent-chain（BNB 链）：涉证券/加密交易，保守不推荐；⑤feder-cr/invisible_playwright_mcp 与 feder-cr/aihawk_mcp_server（各约 31.6K★）：同一老仓改名造成的重复收录，且主打反检测隐身浏览器，不予推荐；⑥Nisaka520/JevIntent（微信消息意图分析）：与 09-22/09-23 排除的 jev-chat 同题材，账号 08-29 新建、1 粉；⑦klauswg/jev-suite、klauswg/jev-guard：0 粉 0 fork，名下三仓星数雷同（36/35/32），集群嫌疑；⑧sc2musa/Jev_Star 无描述。入选项复核（`gh api`）：第 1 席 TheoLeeCJ 2016 建号 / 78 粉，实时 4,097★ 对 275 fork＋12 watcher，已合并多位外部贡献者 PR，MIT，自述与 TypeSafe 无关联；第 2 席 anishfn 61 粉、名下另有 20★ 仓，18 次提交、MIT，默认可离线关键词分类运行；第 3 席 nokia-applied-research 组织 2026-08 才建、18 粉（**轻红旗**：与诺基亚的隶属关系无法核实），29 次提交、Apache-2.0、61 fork；第 4 席 Alex314618-create 仅 7 粉、名下仅此 1 仓（**轻红旗**），但 50+ 次提交、MIT、有正式 release，保留并标注；第 5 席 To3akaRin 名下另有 110★ 仓，MIT，建仓 15.6 天不标 🆕；第 6 席 openqa-cn 组织 09-05 新建、3 粉（**轻红旗**），17 次提交、MIT；第 7 席 virajbhartiya 111 粉 / 107 仓，Apache-2.0；第 8 席 1Panel-dev 为 1,294 粉组织（名下 37,009★ 旗舰仓），58 次提交、Apache-2.0；第 9 席 HeyPuter 为 1,638 粉组织（Puter，名下 43,586★），Apache-2.0；第 10 席 AgriciDaniel 2,953 粉、名下 17,548★ 仓，MIT，⚠️仅 4 次提交，**security_grade 为 caution**。🆕 判定＝created_at 距今 14 天内，9 席命中，mac-computer-use（09-08 建仓）不标。security_grade：SemIf-OpenJev、JevRev、jev-browser、laya-server 为 unknown（尚未评级），jev-seo 为 caution，其余 safe。表中 stars 为数据库快照，部分仓实时更高（shapeshift 405★、AnyJev 384★、mac-computer-use 950★），按红线保留快照值。
+
+---
+
 ## 2026-09-23
 1. malevrigns/agent-jev — 🆕 用 6 亿参数小模型给智能体做快速决策，喂入任意状态直接出概率分布（175★ 130.4/day）
 2. miuuyy/Astra-Ares — 🆕 让 Jev 按任务难度自动调 Codex 推理强度，省下多余 token（113★ 113.0/day）
