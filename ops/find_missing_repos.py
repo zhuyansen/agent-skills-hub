@@ -13,8 +13,9 @@ openai/codex-plugin-cc (32,065). For a directory whose whole claim is
 completeness, first-party repos from Google and OpenAI being absent is not a
 long-tail problem.
 
-Run periodically; it writes the diff and never mutates the catalog. Ingestion is
-a separate, reviewed step via extra_repos.
+Run weekly. Report-only by default; --write records each verdict in extra_repos
+through the admission rule (backend/app/services/catalog_admission.py): approved
+rows go active for the next sync, pending rows wait for a /approve command.
 
 NOTE on filtering the results: match keywords by SUBSTRING, not \\b word
 boundaries. Chinese characters and underscores are word characters in Python's
@@ -106,30 +107,72 @@ have = {r[0] for r in cur.fetchall()}
 # you tell this scan "we looked, it is not a skill".
 cur.execute("SELECT lower(full_name) FROM extra_repos")
 have |= {r[0] for r in cur.fetchall()}
-conn.close()
+
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'backend'))
+from app.services.catalog_admission import SOURCE_AUTO, SOURCE_PENDING, admission, apply  # noqa: E402
+
+WRITE = '--write' in sys.argv
 
 missing = [v for k, v in found.items() if k.lower() not in have]
 missing.sort(key=lambda i: -i['stargazers_count'])
+tiers = {'approved': [], 'pending': [], 'excluded': []}
+for i in missing:
+    tiers[admission(i)].append(i)
+
+# Form submissions waiting in extra_repos join the review list so both roads meet in one issue.
+cur.execute("SELECT full_name FROM extra_repos WHERE status = 'pending' "
+            "AND (submitted_by IS NULL OR (submitted_by NOT LIKE 'coverage-%' "
+            "AND submitted_by NOT LIKE 'issue-%' AND submitted_by NOT LIKE 'command-%'))")
+form_pending = [r[0] for r in cur.fetchall()]
+
+written = {'approved': 0, 'pending': 0}
+if WRITE:
+    for verdict in ('approved', 'pending'):
+        for i in tiers[verdict]:
+            result = apply(conn, i['full_name'], verdict,
+                           SOURCE_AUTO if verdict == 'approved' else SOURCE_PENDING)
+            written[verdict] += result == verdict
+    conn.commit()
+conn.close()
+
+
+def line(i):
+    return f"- {i['full_name']} ★{i['stargazers_count']:,} — {(i['description'] or '')[:80]}"
+
+
+def review_line(name):
+    return f"- {name} · `/approve {name}` · `/reject {name}`"
+
+
+body = [f"本周扫描:GitHub 命中 {len(found)},未收录 {len(missing)}"
+        f"{'' if WRITE else '(report-only,未写库)'}。", ""]
+if tiers['approved']:
+    body += [f"## 已自动收录(≥1000★ 且命中主题词) {len(tiers['approved'])} 个 — 下轮 sync 可见", ""]
+    body += [line(i) for i in tiers['approved']] + [""]
+review_n = len(tiers['pending']) + len(form_pending)
+if review_n:
+    body += [f"## 待你定 {review_n} 个 — 回复命令即可", ""]
+    body += [f"{line(i)}\n  `/approve {i['full_name']}` · `/reject {i['full_name']}`" for i in tiers['pending']]
+    body += [review_line(n) for n in form_pending] + [""]
+body += [f"排除(fork/archived/清单):{len(tiers['excluded'])} 个,未列出。"]
+
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
 os.makedirs(OUT_DIR, exist_ok=True)
 rows = [{'full_name': i['full_name'], 'stars': i['stargazers_count'],
-         'description': i['description']} for i in missing]
-json.dump(rows, open(os.path.join(OUT_DIR, 'missing-repos.json'), 'w'),
-          ensure_ascii=False, indent=1)
-
-# Machine-readable summary so the workflow can decide whether to raise an issue
-# without re-parsing human output.
-big = [r for r in rows if r['stars'] >= 5000]
-summary = {'scanned': len(found), 'missing': len(missing),
-           'missing_over_5k': len(big),
-           'top': rows[:20]}
-json.dump(summary, open(os.path.join(OUT_DIR, 'missing-repos-summary.json'), 'w'),
-          ensure_ascii=False, indent=1)
+         'description': i['description'], 'verdict': admission(i)} for i in missing]
+json.dump(rows, open(os.path.join(OUT_DIR, 'missing-repos.json'), 'w'), ensure_ascii=False, indent=1)
+open(os.path.join(OUT_DIR, 'issue-body.md'), 'w').write("\n".join(body))
+summary = {'scanned': len(found), 'missing': len(missing), 'auto_admitted': len(tiers['approved']),
+           'to_review': review_n, 'written': written, 'top': rows[:20]}
+json.dump(summary, open(os.path.join(OUT_DIR, 'missing-repos-summary.json'), 'w'), ensure_ascii=False, indent=1)
 gh_out = os.environ.get('GITHUB_OUTPUT')
 if gh_out:
     with open(gh_out, 'a') as f:
-        f.write(f"missing={len(missing)}\nmissing_over_5k={len(big)}\n")
+        f.write(f"missing={len(missing)}\nto_review={review_n}\nauto_admitted={len(tiers['approved'])}\n")
 
-print(f"\nGitHub 命中 {len(found)} 个,未收录 {len(missing)} 个(其中 >=5000★ 的 {len(big)} 个)")
-for i in missing[:30]:
-    print(f"  {i['stargazers_count']:>7,}★  {i['full_name']:<46} {(i['description'] or '')[:44]}")
+print(f"\nGitHub 命中 {len(found)},未收录 {len(missing)}:自动收录 {len(tiers['approved'])}"
+      f"({'已写库' if WRITE else '未写库'}),待定 {review_n},排除 {len(tiers['excluded'])}")
+for verdict in ('approved', 'pending', 'excluded'):
+    for i in tiers[verdict]:
+        print(f"  {verdict:9s} {i['stargazers_count']:>7,}★  {i['full_name']:<46} {(i['description'] or '')[:40]}")

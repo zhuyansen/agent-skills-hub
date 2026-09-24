@@ -24,7 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       missing: ${{ steps.scan.outputs.missing }}
-      missing_over_5k: ${{ steps.scan.outputs.missing_over_5k }}
+      to_review: ${{ steps.scan.outputs.to_review }}
+      auto_admitted: ${{ steps.scan.outputs.auto_admitted }}
     steps:
       - uses: actions/checkout@v4
 
@@ -43,21 +44,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
-        run: python ops/find_missing_repos.py
+        run: python ops/find_missing_repos.py --write
 
       - name: Upload diff
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: catalog-coverage
-          path: ops/output/missing-repos*.json
+          path: |
+            ops/output/missing-repos*.json
+            ops/output/issue-body.md
           retention-days: 90
 
       - name: Summary
         if: always()
         run: |
           echo "### 目录覆盖扫描" >> $GITHUB_STEP_SUMMARY
-          echo "未收录 **${{ steps.scan.outputs.missing }}** 个,其中 >=5000★ 的 **${{ steps.scan.outputs.missing_over_5k }}** 个" >> $GITHUB_STEP_SUMMARY
+          echo "未收录 **${{ steps.scan.outputs.missing }}** 个:自动收录 **${{ steps.scan.outputs.auto_admitted }}**,待定 **${{ steps.scan.outputs.to_review }}**" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           python -c "
           import json
@@ -69,34 +72,28 @@ jobs:
 
   raise-issue:
     needs: scan
-    # Only when something substantial is absent. A handful of small repos is the
-    # normal state of a catalog that syncs every 8 hours; a 5,000-star repo we
-    # have never heard of is a discovery failure worth a person's attention.
-    if: always() && needs.scan.outputs.missing_over_5k != '' && needs.scan.outputs.missing_over_5k != '0'
+    # Whenever the scan found anything: the issue is where the maintainer sees
+    # what was auto-admitted and answers the rest with /approve or /reject.
+    if: always() && needs.scan.outputs.missing != '' && needs.scan.outputs.missing != '0'
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: catalog-coverage
+          path: ops/output
       - uses: actions/github-script@v7
         with:
           script: |
-            const n = '${{ needs.scan.outputs.missing_over_5k }}';
-            const total = '${{ needs.scan.outputs.missing }}';
-            const title = `目录覆盖:${n} 个 5000★+ 仓库未收录`;
+            const fs = require('fs');
+            const title = `目录覆盖:自动收录 ${'${{ needs.scan.outputs.auto_admitted }}'} 个,待定 ${'${{ needs.scan.outputs.to_review }}'} 个`;
             const { data: open } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo,
               state: 'open', labels: 'catalog-coverage',
             });
-            const body = [
-              `本周扫描发现 **${total}** 个未收录仓库,其中 **${n}** 个星数 >= 5000。`,
-              ``,
-              `完整名单在这次运行的 \`catalog-coverage\` artifact 里(\`missing-repos.json\`)。`,
-              ``,
-              `处理方式:核对后写入 \`extra_repos\`(status=approved),下一轮 sync 会抓取。`,
-              `**不要直接写 \`skills\` 表** —— 收录要走人工确认这一步。`,
-              ``,
-              `[查看运行](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
-            ].join('\n');
+            const body = fs.readFileSync('ops/output/issue-body.md', 'utf8')
+              + `\n\n[查看运行](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
             if (open.length) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner, repo: context.repo.repo,
