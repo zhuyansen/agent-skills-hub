@@ -1,0 +1,67 @@
+name: Submission triage
+
+# A 'Submit repository' issue gets a pre-review comment within minutes: the
+# admission rule (backend/app/services/catalog_admission.py) decides whether it
+# is admitted now or waits for a maintainer's /approve. Until 2026-09-24 nothing
+# read these issues at all.
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: "Issue number to triage"
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  triage:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, 'Submit repository:') || startsWith(github.event.issue.title, '[Submission]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      # The README preview runs the catalog's own scanner, which lives in the backend.
+      - name: Install deps
+        run: pip install -r backend/requirements.txt
+
+      - name: Load the issue
+        id: issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ github.event.inputs.issue || github.event.issue.number }}
+        run: |
+          echo "number=$N" >> "$GITHUB_OUTPUT"
+          gh issue view "$N" --json title --jq .title > /tmp/title
+          gh issue view "$N" --json body --jq .body > /tmp/body
+          echo "title<<EOF" >> "$GITHUB_OUTPUT"; cat /tmp/title >> "$GITHUB_OUTPUT"; echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Triage
+        id: triage
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          ISSUE_NUMBER: ${{ steps.issue.outputs.number }}
+          ISSUE_TITLE: ${{ steps.issue.outputs.title }}
+        run: |
+          export ISSUE_BODY="$(cat /tmp/body)"
+          python ops/triage_submission.py
+
+      - name: Comment, label, close
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ steps.issue.outputs.number }}
+          LABELS: ${{ steps.triage.outputs.labels }}
+          CLOSE: ${{ steps.triage.outputs.close }}
+        run: |
+          gh issue comment "$N" --body-file ops/output/comment.md
+          if [ -n "$LABELS" ]; then gh issue edit "$N" --add-label "$LABELS"; fi
+          if [ "$CLOSE" = "true" ]; then gh issue close "$N"; fi
