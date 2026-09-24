@@ -1,0 +1,45 @@
+name: Admission commands
+
+# /approve owner/repo and /reject owner/repo in an issue comment, from a
+# maintainer, flip the extra_repos row. The weekly coverage issue and the
+# submission pre-review both hand out these commands.
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  apply:
+    if: contains(github.event.comment.body, '/approve') || contains(github.event.comment.body, '/reject')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install psycopg2-binary
+
+      - name: Apply
+        id: apply
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_ASSOCIATION: ${{ github.event.comment.author_association }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: python ops/admission_command.py
+
+      - name: Reply
+        if: steps.apply.outputs.say == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          N: ${{ github.event.issue.number }}
+          CLOSE: ${{ steps.apply.outputs.close }}
+        run: |
+          gh issue comment "$N" --body-file ops/output/comment.md
+          if [ "$CLOSE" = "true" ]; then gh issue close "$N"; fi
