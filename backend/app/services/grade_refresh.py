@@ -6,8 +6,9 @@ hashes security_scanner.py, so any change to how a README is graded — a patter
 a helper, the trust tiers — changes it and forces a full re-grade, while edits
 here do not.
 
-A full pass runs when a README'd row carries a different scanner_version (the
-rules changed, or the row was graded before stamps existed) or SCAN_FULL=1.
+A full pass runs when a README'd row carries a different, non-null
+scanner_version (the rules changed) or SCAN_FULL=1. Never-stamped rows are
+incremental work, not a reason for a full pass.
 Otherwise only rows whose inputs moved since they were graded: a README fetched
 after the last grade, or stars/license/homepage changed (the sync and the
 stale-row probe bump last_synced only when a value actually changes). Before
@@ -66,14 +67,18 @@ def _has_readme():
 def full_scan_reason(db: Session | None) -> str | None:
     if os.environ.get("SCAN_FULL") == "1":
         return "SCAN_FULL=1"
+    # Only a row graded under DIFFERENT rules forces a full pass. Rows never
+    # stamped (every sync inserts some, with READMEs) take the incremental path,
+    # which already selects security_scanned_at IS NULL — treating them as a
+    # reason for a full pass made every sync full (2026-09-24, three runs).
     stale = (
         db.query(Skill.id)
         .filter(*_has_readme())
-        .filter(or_(Skill.scanner_version.is_(None), Skill.scanner_version != RULES_FINGERPRINT))
+        .filter(Skill.scanner_version.isnot(None), Skill.scanner_version != RULES_FINGERPRINT)
         .limit(1)
         .first()
     )
-    return "rules fingerprint changed or rows never stamped" if stale else None
+    return "rules fingerprint changed" if stale else None
 
 
 def _inputs_changed_since_graded():
