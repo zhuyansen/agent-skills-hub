@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-25
+1. mikehasa/golive-skill — 🆕 把智能体做好的应用一键上线，托管、数据库、域名、支付都走你自己的账号（537★ 364.2/day）
+2. togethercomputer/tev1 — 🆕 公开 Together AI 用 Qwen3.5-4B 微调 Jev 式决策模型的数据配方与权重（66★ 50.5/day）
+3. Liuziyu77/Valen — 🆕 自己训练能看图看视频的 Jev 式多模态决策模型，输入画面直接出概率（75★ 39.0/day）
+4. PyModel/jev-judge-mcp — 🆕 给 MCP 智能体接上 Jev 判定工具，按置信度自动放行、复核或升级（28★ 25.6/day）
+5. ThinkFlowLab/system1-agents — 🆕 用 Jev、Laya 等决策模型驱动浏览器、电脑与游戏智能体，开箱即跑（58★ 24.7/day）
+6. cclank/jevclip — 🆕 从字幕和脚本里挑出视频精华片段，生成带出处的摘要和剪辑（20★ 20.0/day）
+7. iamaamir/system-one — 🆕 用 TypeScript 写一次决策逻辑，即可在 Jev 或本地模型间随意切换（51★ 19.5/day）
+8. artemnovitckii/creator-lab — 🆕 抓取 Instagram 短视频脚本并归类开头钩子，对比哪类最能带互动（26★ 18.7/day）
+9. baibanbao/qu-ai-wei — 🆕 清理中文稿件里的 AI 腔，合并三家规则并裁决其中七处矛盾（25★ 16.3/day）
+10. mattn/go-jev — 🆕 用 Go 语言调用 Jev，附命令行工具，直接拿到是非、选择与打分结果（21★ 14.3/day）
+🎯 今日趋势：TypeSafe Jev 发布第九天，十席星数合计 **907★**（昨日 6,151★），热度继续回落；**8 席与 Jev 相关**，重心从"复刻模型"转向**开发者基建**——Together AI 公开 $17 微调配方（tev1）、Valen 补上视觉模态，Go/TypeScript SDK 与 MCP 接入各占一席；榜首 GoLive 则是与 Jev 无关的"智能体应用上线"技能，一仓独占 **537★**。
+> 注：去重范围＝repo 内 archive 全部 92 个日期段、930 个编号条目，并入记忆区 fresh-skills-archive 与 daily-report-archive 机械提取，小写去重后比对基数 4,839 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（172 条，LIMIT 300 未触顶），命中历史推荐 43 条剔除；十席 first_seen 全部 ≤48h（最晚 system-one 46h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天（LibreChat、OpenCreator、Auto-Company、MobileBuildMCP、tuios 等老仓新收录不入榜）。**排除项**：①michaelswissa/jevry（100★ 100.0/day，本可居第 2）：0 粉、名下仅此 1 仓，99★ 对 0 fork／0 watcher，全仓 7 次提交，单仓爆星形态；②allebee/jevk5（93★ 38.5/day）：9 粉、其余仓最高 2★，单仓爆星形态；③angel291592/Intent-Router（64★ 22.9/day）：0 粉、另一仓 0★；④palavogikos-collab/myDATA（33★ 21.9/day）：账号与仓库同日（09-23）新建、0 粉、名下仅此 1 仓；⑤Chuf-H/jev-tree（38★）：0 粉、其余仓 2★、仅 2 次提交；⑥tinnel123666888/OmniJev、AustinAWay/Working-Memory-Jev 无描述；⑦shengjidaguai-china/goutoujunshi-jev-chat、wuxie888/jev-yaba-wechat：微信读屏聊天意图助手，与 09-22 起排除的 jev-chat 同题材；⑧libingzheren/Jev-Mem（77★）：first_seen 60h 超出 48h 窗。入选项复核（`gh api`）：第 1 席 mikehasa 名下另有 754★ 仓，53 次提交、MIT，实时 877★ 对 60 fork；第 2 席 togethercomputer 为 Together AI 官方组织（1,129 粉，名下 8,983★），MIT，权重在 Hugging Face；第 3 席 Liuziyu77 143 粉、名下 2,277★ 仓，Apache-2.0，⚠️仅 4 次提交；第 4 席 PyModel 组织 08-13 新建、6 粉（**轻红旗**），但 51 次提交、有 CI、MIT，名下另有 43★ 仓；第 5 席 ThinkFlowLab 组织 09-20 新建、3 粉（**轻红旗**），名下另有 107★ 仓，Apache-2.0、10 fork；第 6 席 cclank 2017 建号 / 314 粉、名下 1,716★ 仓，MIT，⚠️security_grade 尚为 unknown；第 7 席 iamaamir 2014 建号，97 次提交，⚠️未声明 LICENSE；第 8 席 artemnovitckii 名下另有 100★ 仓，MIT，⚠️仅 2 次提交、需自备 Apify/Fireworks/Jev key；第 9 席 baibanbao 2014 建号 / 128 粉，MIT；第 10 席 mattn 为 **13,499 粉**的 Go 社区知名开发者，MIT。🆕 判定＝created_at 距今 14 天内，十席全部命中（09-22~09-24 建仓）。security_grade：jevclip 为 unknown，其余 safe。表中 stars 为数据库快照，部分仓实时更高（golive-skill 877★、tev1 88★、Valen 88★、qu-ai-wei 58★），按红线保留快照值。
+
+---
+
 ## 2026-09-24
 1. TheoLeeCJ/SemIf-OpenJev — 🆕 用开源模型在家用 3090 上复刻 Jev 式语义判断，直接读出选项概率（4071★ 518.2/day）
 2. anishfn/shapeshift — 🆕 让一个输入框边打字边变成对应界面，日程、清单、分账一框搞定（350★ 212.4/day）
