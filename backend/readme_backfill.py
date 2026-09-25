@@ -45,6 +45,8 @@ CHUNK = 100             # rows between quota / running-sync checks
 DEFAULT_CAP = 1500
 README_MAX = 50000
 HTTP_TIMEOUT = 30
+WRITE_FAIL_TOLERANCE = 0.05   # share of attempted rows
+WRITE_FAIL_TOLERANCE_MIN = 10
 
 CANDIDATE_SQL = (
     "SELECT repo_full_name FROM skills "
@@ -182,6 +184,11 @@ def summarize(lines: list[str]) -> None:
             f.write(text + "\n")
 
 
+def exit_code(counts: dict) -> int:
+    attempted = sum(counts.values())
+    return 1 if counts["write_failed"] > max(WRITE_FAIL_TOLERANCE_MIN, attempted * WRITE_FAIL_TOLERANCE) else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--floor", type=int, default=DEFAULT_FLOOR)
@@ -228,7 +235,7 @@ def main() -> int:
         f"errors (retried next run): {counts['error']} · write failures: {counts['write_failed']}",
         f"- stopped early: {stopped}" if stopped else "- ran to the end of its batch",
     ])
-    return 1 if counts["write_failed"] else 0
+    return exit_code(counts)
 
 
 if __name__ == "__main__":

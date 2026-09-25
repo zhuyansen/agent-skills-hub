@@ -38,3 +38,11 @@ def test_writes_never_replace_a_real_readme():
 def test_import_needs_no_credentials():
     # CI imports this module in tests without GH_TOKEN or a database.
     assert rb.main
+
+
+def test_one_transient_write_failure_does_not_fail_the_run():
+    assert rb.exit_code({"ok": 1216, "absent": 80, "error": 3, "write_failed": 1}) == 0
+
+
+def test_a_broken_database_fails_the_run():
+    assert rb.exit_code({"ok": 100, "absent": 0, "error": 0, "write_failed": 40}) == 1
