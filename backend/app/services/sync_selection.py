@@ -53,3 +53,18 @@ def wave_slices(query: str) -> list[str]:
     if "created:>" not in query:
         return []
     return [f"{query} {band}" for band in WAVE_STAR_BANDS]
+
+
+# Search results come sorted by stars, 100 per page. Three pages lost real repos:
+# in one 8-hour push window `claude-code in:topics` had 326 repos with >=50 stars
+# and `mcp-server` 611 with >=1 — 13 of 40 queries were cut at 300 every sync.
+# Keep paging while the page is full, its last row still has a star, and GitHub's
+# 1,000-result ceiling is not reached; the 0-star tail is not worth the requests.
+MAX_SEARCH_PAGES = 10
+PAGE_SIZE = 100
+
+
+def keep_paging(page: int, items: list[dict]) -> bool:
+    if len(items) < PAGE_SIZE or page >= MAX_SEARCH_PAGES:
+        return False
+    return (items[-1].get("stargazers_count") or 0) > 0

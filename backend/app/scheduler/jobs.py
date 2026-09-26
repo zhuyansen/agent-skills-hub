@@ -11,7 +11,9 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.services.readme_coverage import readme_update
-from app.services.sync_selection import wave_slices, select_readme_targets, with_push_filter
+from app.services.sync_selection import (
+    MAX_SEARCH_PAGES, PAGE_SIZE, keep_paging, select_readme_targets, wave_slices, with_push_filter,
+)
 
 logger = logging.getLogger(__name__)
 scheduler = AsyncIOScheduler()
@@ -453,34 +455,37 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             # Phase 1: Search GitHub for repos
             # ═══════════════════════════════════════════════════════
             search_start = time.time()
+            pages_read = 0
             for i, query in enumerate(all_queries):
                 effective_query = with_push_filter(query, pushed_filter)
                 for variant in [effective_query, *wave_slices(effective_query)]:
                     try:
-                        for page in range(1, 4):  # up to 3 pages per query
+                        for page in range(1, MAX_SEARCH_PAGES + 1):
                             data = await _github_request(
                                 client,
                                 "https://api.github.com/search/repositories",
-                                params={"q": variant, "per_page": 100, "page": page, "sort": "stars"},
+                                params={"q": variant, "per_page": PAGE_SIZE, "page": page, "sort": "stars"},
                             )
                             items = data.get("items", [])
+                            pages_read += 1
                             for repo in items:
                                 fn = repo.get("full_name", "")
                                 if fn and fn not in all_repos:
                                     all_repos[fn] = repo
-                            if len(items) < 100:
+                            if not keep_paging(page, items):
+                                if page == MAX_SEARCH_PAGES and len(items) == PAGE_SIZE and items[-1].get("stargazers_count"):
+                                    # GitHub's 1,000-result ceiling with starred repos still beyond it.
+                                    logger.warning("Search truncated at %d for [%s]: total_count=%s",
+                                                   MAX_SEARCH_PAGES * PAGE_SIZE, variant, data.get("total_count"))
                                 break
-                            if page == 3:
-                                # Silent before: nobody knew the Jev wave query had 6,986 results.
-                                logger.warning("Search truncated at 300 for [%s]: total_count=%s",
-                                               variant, data.get("total_count"))
                             # Respect search rate limit: 30 req/min → ~2s per request
                             await asyncio.sleep(2.5)
                     except Exception as exc:
                         logger.error("Search failed [%s]: %s", variant, exc)
                     await asyncio.sleep(2)
 
-            logger.info("Phase 1 complete: %d unique repos from search (%.0fs)", len(all_repos), time.time() - search_start)
+            logger.info("Phase 1 complete: %d unique repos from search, %d pages (%.0fs)",
+                        len(all_repos), pages_read, time.time() - search_start)
 
             # ── Inter-phase rate check ──
             await _ensure_rate_limit(client, min_remaining=50)

@@ -1,5 +1,5 @@
 """Pure fetch decisions extracted from scheduler/jobs.py."""
-from app.services.sync_selection import select_readme_targets, wave_slices, with_push_filter
+from app.services.sync_selection import MAX_SEARCH_PAGES, keep_paging, select_readme_targets, wave_slices, with_push_filter
 
 PUSHED = " pushed:>2026-09-18T01:00:00Z"
 
@@ -45,3 +45,20 @@ def test_wave_queries_get_star_band_slices():
 
 def test_ordinary_queries_get_no_slices():
     assert wave_slices("mcp-server in:name,topics") == []
+
+
+def page_of(last_stars, n=100):
+    return [{"stargazers_count": 50}] * (n - 1) + [{"stargazers_count": last_stars}]
+
+
+def test_a_full_page_ending_above_zero_stars_keeps_paging():
+    assert keep_paging(3, page_of(1))
+
+
+def test_the_zero_star_tail_stops_paging():
+    assert not keep_paging(3, page_of(0))
+
+
+def test_a_short_page_and_the_github_ceiling_stop_paging():
+    assert not keep_paging(2, page_of(5, n=40))
+    assert not keep_paging(MAX_SEARCH_PAGES, page_of(5))
