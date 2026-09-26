@@ -53,7 +53,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ACTIONS_TOKEN: ${{ github.token }}
-        run: python readme_backfill.py --cap "${{ inputs.cap || '1500' }}" --floor "${{ inputs.floor || '5' }}"
+        # --allow-floor-drop: once fewer than 50 repos >=5 stars remain, continue into the
+        # 1-4 star tier at the same pace (enabled 2026-09-26 after three incremental syncs
+        # held at 40-59 minutes; see docs/superpowers/specs/2026-09-23-grading-coverage-design.md).
+        run: python readme_backfill.py --cap "${{ inputs.cap || '1500' }}" --floor "${{ inputs.floor || '5' }}" --allow-floor-drop
 
   notify-failure:
     needs: backfill
