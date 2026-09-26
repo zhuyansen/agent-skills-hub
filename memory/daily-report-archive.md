@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-26
+1. google/artemis — 用自然语言指令驱动安卓手机端到端自动化，谷歌官方开源（9845★ 227.5/day）
+2. Hisn00w/ASu-skills — 用九个入口串起简历优化、岗位投递与面试准备的中文求职技能包（5124★ 114.6/day）
+3. codejunkie99/keel — 🆕 打造本地优先的 Mac 编码工作区，本地 Laya 与云端 Jev 决策可选（190★ 61.3/day）
+4. itsmostafa/system-one-connector — 🆕 通过 MCP 让智能体直连 Jev 等决策模型，又快又省地做评估（303★ 34.4/day）
+5. ollaya-dev/ollaya — 🆕 在本地拉取并运行 Laya 等开源决策模型，接口兼容 TypeSafe（60★ 28.6/day）
+6. UditAkhourii/quicksilver — 🆕 让 Claude Code 把批量判断交给 Jev，基准测试省下 86% token（26★ 26.0/day）
+7. mode-io/vllm-jev — 🆕 用 vLLM 原生部署 Jev 式决策模型，自建推理服务（22★ 16.3/day）
+8. jlowin/vibecheck — 🆕 把决策模型变成 Python 函数调用，是非、分类、打分一行搞定（26★ 13.0/day）
+9. alvarobartt/sys1 — 🆕 用 Rust 为开源决策模型提供 System One 兼容接口，支持动态批处理（45★ 12.3/day）
+10. NevaMind-AI/JevTown — 🆕 让 Jev 决定行动、大模型负责对话，打造无脚本的 AI 小镇模拟（37★ 10.4/day）
+🎯 今日趋势：TypeSafe Jev 发布第十天，**8 席与 Jev/Laya 决策模型相关**，且几乎全是**基建层**——本地运行（ollaya、keel）、推理服务（vllm-jev、Rust 版 sys1）、MCP 与 Python SDK 接入（system-one-connector、vibecheck）各占一席；榜首则是谷歌官方安卓自动化 ARTEMIS，一仓 **9,845★**，占十席合计 15,678★ 的六成多。
+> 注：去重范围＝repo 内 archive 全部 93 个日期段、940 个编号条目，并入记忆区 fresh-skills-archive 与 daily-report-archive 机械提取，小写去重后比对基数 4,887 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（167 条，LIMIT 300 未触顶），命中历史推荐 35 条剔除；十席 first_seen 全部 ≤48h（最晚 sys1 46h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天（herdr-auto-title、dsh-android、shell.online 等超窗老仓不入榜；artemis 43 天、ASu-skills 45 天为窗内老仓新收录，不标 🆕）。**排除项**：①chelinho139/wow-ai（84★ 29.8/day，本可居第 5）：security_grade=unsafe，保守不推；②XiaoPuOuO/openchatx-mcp（63★）：1 粉、其余仓全 0★，单仓爆星形态；③kerim0x1/bettercode（79★）：7 粉、其余仓 ≤1★，单仓爆星形态；④ilien-dev/quiron（40★）：1 粉，且 first_seen 53h 超出 48h 窗；⑤bodepudimuneendra-netizen/laya-jev-GraphRAG（32★）：1 粉、名下仅此 1 仓，first_seen 53h；⑥JimLiu/taohuayuan：3D 网页作品，uncategorized 且非 agent 工具。入选项复核（`gh api`）：第 1 席 google 官方组织，Apache-2.0，实时 9,886★ 对 988 fork／91 watcher；第 2 席 Hisn00w 仅 27 粉、其余仓最高 41★（**轻红旗**），但 292 fork、100+ 次提交、上过 Trendshift，按有机传播保留；第 3 席 codejunkie99 269 粉、名下另有 2,280★ 仓，MIT；第 4 席 itsmostafa 名下另有 1,158★ 仓，33 fork，MIT；第 5 席 ollaya-dev 组织 09-23 新建、7 粉（**轻红旗**），但 10 fork、Apache-2.0；第 6 席 UditAkhourii 122 粉、名下另有 4,287★ 仓，MIT；第 7 席 mode-io 组织 8 粉，Apache-2.0，⚠️0 fork；第 8 席 jlowin 为 2,389 粉的 FastMCP/Prefect 作者，⚠️未声明 LICENSE；第 9 席 alvarobartt 915 粉、名下 1,857★ 仓，⚠️LICENSE 为 NOASSERTION；第 10 席 NevaMind-AI 即 14,429★ 的 memU 团队，MIT，⚠️Jev 演示尚在分支。🆕 判定＝created_at 距今 14 天内，第 3–10 席命中（09-17~09-25 建仓）。security_grade：system-one-connector、quicksilver、vllm-jev 尚为 unknown，其余 safe。表中 stars 为数据库快照，部分仓实时更高（ollaya 163★、keel 209★、quicksilver 35★），按红线保留快照值。
+
+---
+
 ## 2026-09-25
 1. mikehasa/golive-skill — 🆕 把智能体做好的应用一键上线，托管、数据库、域名、支付都走你自己的账号（537★ 364.2/day）
 2. togethercomputer/tev1 — 🆕 公开 Together AI 用 Qwen3.5-4B 微调 Jev 式决策模型的数据配方与权重（66★ 50.5/day）
