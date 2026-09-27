@@ -46,6 +46,19 @@ README_QUALITY = 5000
 RELEVANT = 0.5
 HIGH, MID = 0.75, 0.50
 
+# Scripts, shot analysis and learning material: they make no video, the owner lists them.
+CRAFT = [
+    "eternityspring/reelbench-skills",
+    "jtydhr88/screenwriting-skills",
+    "wyuzhi/qisi-video-remix",
+    "adityaarsharma/youtube-marketing-skills",
+    "wocha-xiaoli/video-shot-analysis-feishu",
+    "liuliu-66-create/ll-video-decomposer",
+    "erduo1998-cell/video-script-builder",
+    "chenmisss/laoxu-video-script",
+    "sharon-laicc/viral-video-decomposer",
+]
+
 QUERIES = {
     "opus-5-5-video": {
         "wave": ['"opus 5.5" video in:name,description'],
@@ -63,10 +76,9 @@ QUERIES = {
         # away (a music video is not an agent tool; a screenwriting skill makes no video);
         # this is a list of names, not a rule, and nothing joins it without the owner
         # saying so.
-        "owner_admitted": ["ledbetterljoshua/functional-emotions-video",
-                           "eternityspring/reelbench-skills", "jtydhr88/screenwriting-skills"],
+        "owner_admitted": ["ledbetterljoshua/functional-emotions-video", *CRAFT],
         # Their type is the owner's too: what comes before the video, not the video.
-        "owner_kinds": {"eternityspring/reelbench-skills": "craft", "jtydhr88/screenwriting-skills": "craft"},
+        "owner_kinds": {name: "craft" for name in CRAFT},
         # Skills that live in a folder of a larger repo; reviewed from the folder's README.
         "sub_skill_kinds": {"EverMind-AI/Raven/skills/git-story-film": "explainer"},
     },
