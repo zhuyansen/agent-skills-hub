@@ -68,12 +68,12 @@ function matchSkills(scenario, allSkills) {
   // `reviewed_only`: the page lists the reviewed repos and nothing else, so it
   // and its GitHub list (generated from the same review) cannot drift apart.
   // A repo the keywords would let in waits until the review has seen it.
-  const reviewed = m.reviewed_only ? kindsFor(scenario.slug) : null;
+  const reviewedKinds = m.reviewed_only ? kindsFor(scenario.slug) : null;
 
   for (const skill of allSkills) {
     const fullName = (skill.repo_full_name || "").toLowerCase();
     if (excludedRepos.has(fullName)) continue;
-    if (reviewed && !reviewed.of(skill)) continue;
+    if (reviewedKinds && !reviewedKinds.of(skill)) continue;
     // A reviewed repo is on-topic by decision, so it skips the keyword rules
     // and the star floor, and sorts by stars like the rest. Two cases need it:
     // repos under the floor, and repos the keywords turn away by accident
@@ -370,6 +370,24 @@ function buildAeoSection(scenario, skills, year) {
 
 /* ── HTML builder ────────────────────────────────── */
 
+/** Skills that live in a folder of a larger repo (match.sub_skills). The
+ *  catalog is one row per repo, so the card borrows the parent's row for the
+ *  audit link and says whose stars it shows. It counts as an entry of the page
+ *  (owner's decision) with the grade of its own README and SKILL.md; it has no
+ *  stars of its own, so it sorts last and adds nothing to the star total. */
+function subSkillCards(scenario, allSkills) {
+  const wanted = scenario.match.sub_skills || [];
+  if (!wanted.length) return [];
+  const parents = new Map(allSkills.map((r) => [(r.repo_full_name || "").toLowerCase(), r]));
+  return wanted
+    .filter((x) => parents.has(x.repo.toLowerCase()))
+    .map((x) => ({
+      ...parents.get(x.repo.toLowerCase()), repo_name: x.name, description: x.description,
+      security_grade: x.grade, readme_content: "", created_at: x.added,
+      sub_path: x.path, list_key: `${x.repo}/${x.path}`,
+    }));
+}
+
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills = []) {
   const pageUrl = `${SITE}/best/${scenario.slug}/`;
   const year = new Date().getFullYear();
@@ -383,7 +401,8 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // (else you get a dangling "…Open-Source Compared").
   const titleHasToolWord = /\btools?\b/i.test(scenario.title);
   const titleHasSkillWord = /\bskills?\b/i.test(scenario.title);
-  const itemCount = skills.length;
+  const subCards = subSkillCards(scenario, allSkills);
+  const itemCount = skills.length + subCards.length;
   const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
   // Lead with the security verdict, not the count.
@@ -395,7 +414,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // competing list can make — that every tool here has been independently
   // security-graded — appeared nowhere. Same fix already applied to skill
   // pages, same reasoning.
-  const graded = skills.filter((s) => ["safe", "caution", "unsafe", "reject"].includes(s.security_grade));
+  const graded = [...skills, ...subCards].filter((s) => ["safe", "caution", "unsafe", "reject"].includes(s.security_grade));
   const safeN = graded.filter((s) => s.security_grade === "safe").length;
   const flaggedN = graded.length - safeN;
   // Only claim a verdict when most of the set actually carries one — a "12
@@ -503,7 +522,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const faqItems = [
     {
       q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
-      a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${skills.length} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
+      a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${itemCount} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
       qZh: `${year} 年最好的${zt}工具有哪些？`,
       aZh: `${year} 年顶尖的${zt}工具是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 6 个维度）和近期活跃度对 ${skills.length} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
     },
@@ -558,17 +577,6 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // Skill cards HTML
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const scenarioKinds = kindsFor(scenario.slug);
-  // A skill that lives in a folder of a larger repo (match.sub_skills). The
-  // catalog is one row per repo, so the card borrows the parent's row for the
-  // audit link and says whose stars it shows. It has no stars of its own:
-  // it sorts last and stays out of the page's totals and structured data.
-  const parents = new Map(allSkills.map((r) => [(r.repo_full_name || "").toLowerCase(), r]));
-  const subCards = (scenario.match.sub_skills || [])
-    .filter((x) => parents.has(x.repo.toLowerCase()))
-    .map((x) => ({
-      ...parents.get(x.repo.toLowerCase()), repo_name: x.name, description: x.description,
-      readme_content: "", created_at: x.added, sub_path: x.path, list_key: `${x.repo}/${x.path}`,
-    }));
   const cards = [...skills, ...subCards];
   const skillCardsHtml = cards.map((s, i) => {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
@@ -855,7 +863,7 @@ async function main() {
       continue;
     }
 
-    scenarioSkillCounts[scenario.slug] = skills.length;
+    scenarioSkillCounts[scenario.slug] = skills.length + subSkillCards(scenario, allSkills).length;
 
     const dir = join(DIST, "best", scenario.slug);
     mkdirSync(dir, { recursive: true });

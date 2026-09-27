@@ -173,8 +173,8 @@ def sub_skills(kind_of: dict, found_all) -> list[dict]:
     for item in scenario["match"].get("sub_skills", []):
         parent, key = github_row(item["repo"]), f"{item['repo']}/{item['path']}"
         if parent:
-            grade = (found_all([item["repo"]]).get(item["repo"]) or {}).get("security_grade")
-            rows.append({**parent, "description": item["description"], "security_grade": grade, "in_catalog": True,
+            rows.append({**parent, "description": item["description"], "security_grade": item.get("grade"),
+                         "in_catalog": True,
                          "kind": kind_of.get(key, "general"), "key": key, "path": item["path"], "label": item["name"]})
     return rows
 
