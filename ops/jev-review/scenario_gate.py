@@ -8,11 +8,13 @@ answer here was seen.
 
   collect  GitHub search under the floor, then the page's own keyword matcher
   judge    README + two Jev calls per repo (relevance, quality); cached on disk
-  report   table + the list for `match.admit_below_floor`
+  report   table + the list for `match.admit_reviewed`
   audit    the same relevance questions for repos already on the page (names from a
            JSON list); off-topic ones go to `match.exclude_repos`
 
-Usage: python ops/jev-review/scenario_gate.py <collect|judge|report> [slug]
+  types    what kind of video each repo on the page produces
+
+Usage: python ops/jev-review/scenario_gate.py <collect|judge|report|types> [slug]
        python ops/jev-review/scenario_gate.py audit <slug> <names.json>
 Env:   OPENROUTER_API_KEY (judge); gh CLI signed in (collect, judge)
 """
@@ -29,6 +31,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 SCENARIOS = ROOT / "frontend/scripts/scenario-keywords.json"
+KINDS_FILE = ROOT / "frontend/scripts/scenario-kinds.json"
 
 PAGE_FLOOR = 50          # frontend/scripts/shared-utils.mjs shouldIndex()
 GATE_FLOOR = 5           # below this a search returns thousands of empty repos
@@ -94,6 +97,36 @@ QUALITY = {
     "shareable_output": {"type": "noul", "instructions": {
         "question": "Is the output of `repo` the kind of thing people post publicly — a striking style, a recognizable format, a music video?"}},
 }
+# What kind of video comes out. Descriptive, one kind per question; a repo may score on
+# several, and its type is the highest score (TYPE_MIN or more), else "general".
+def _kind(question: str, focus: str) -> dict:
+    return {"type": "noul", "instructions": {"question": question, "focus": focus}}
+
+
+TYPES = {
+    "promo": _kind("Is the video `repo` produces a promotional video for a product, a brand or a launch?",
+                   "Product launch films, brand videos, ads, trailers for an app or a company."),
+    "explainer": _kind("Is the video `repo` produces an explainer or educational video?",
+                       "It teaches a topic or explains a concept: knowledge videos, tutorials, narrated lessons."),
+    "music": _kind("Is the video `repo` produces a music video, a lyric video or visuals set to a song?",
+                   "The soundtrack is a song and the picture follows it."),
+    "motion": _kind("Does `repo` produce short motion graphics rather than a full video?",
+                    "Animated logos, titles, UI animations, animated diagrams, GIFs, stickers."),
+    "shorts": _kind("Is the video `repo` produces a short social video for Reels, Shorts, TikTok or Douyin?",
+                    "Vertical format, talking-head or faceless channel videos, hooks and captions for a feed."),
+    "editing": _kind("Does `repo` edit footage that already exists rather than create video from nothing?",
+                     "Cutting, trimming, removing silences, adding b-roll or captions, recaps of a longer recording."),
+    "demo": _kind("Is the video `repo` produces a demo or walkthrough of software?",
+                  "App store previews, screen-recording walkthroughs, onboarding videos, code walkthroughs."),
+    "story": _kind("Is the video `repo` produces a story: an animated tale, a short drama or a cinematic scene?",
+                   "Characters, a plot, storyboards, shots; fiction rather than information."),
+    "avatar": _kind("Does the video `repo` produces show a digital human: an AI avatar or a virtual presenter?",
+                    "HeyGen-style avatars, lip-sync, talking photos, virtual anchors, cloned presenters."),
+    "general": _kind("Is `repo` a general-purpose video framework or skill collection, not tied to one kind of video?",
+                     "A rendering framework, a base toolkit, a bundle of many unrelated video skills."),
+}
+TYPE_MIN = 0.5
+
 QUALITY_KEYS = ("shows_result", "one_command_start", "specific_outcome", "complete_docs")
 HIT_KEYS = ("novel_angle", "shareable_output", "shows_result")
 
@@ -165,8 +198,26 @@ def readme_of(slug: str, repo: str) -> str:
     return "" if text.lstrip().startswith('{"message"') else text
 
 
+_BADGE = re.compile(r"\[?!\[[^\]]*\]\([^)]*(?:shields\.io|badge|badgen)[^)]*\)(?:\]\([^)]*\))?|<img[^>]*(?:shields\.io|badge)[^>]*>", re.I)
+_VIDEO = re.compile(r"<video[^>]*>|<source[^>]*>|https?://\S+\.(?:mp4|mov|webm)\b\S*|https?://github\.com/user-attachments/assets/\S+", re.I)
+_IMAGE = re.compile(r"!\[([^\]]*)\]\([^)]*\)|<img[^>]*?(?:alt=\"([^\"]*)\")?[^>]*>", re.I)
+_TAG = re.compile(r"<!--.*?-->|<[^>]+>|&[a-z]+;", re.S)
+
+
+def prose(readme: str) -> str:
+    """The README as a reader sees it: no badges, no HTML, media kept as [video] / [image].
+    A window cut from the raw file can be mostly markup: hypit-ai/hypit's first 3,500
+    characters were 63% tags, the questions never reached the line that says it is an
+    agent skill, and it was judged off-topic. Media stays as a token because removing it
+    took away the evidence for "shows the finished output" (-0.15 on average)."""
+    text = _VIDEO.sub(" [video] ", _BADGE.sub(" ", readme))
+    text = _IMAGE.sub(lambda m: f" [image: {(m.group(1) or m.group(2) or '').strip()}] ", text)
+    text = re.sub(r"[ \t]+", " ", _TAG.sub(" ", text))
+    return re.sub(r" *\n\s*\n\s*", "\n\n", text).strip()
+
+
 def ask(client, row: dict, readme: str, limit: int, questions: dict, full: bool) -> dict:
-    repo = {"name": row["repo"], "description": row["description"], "readme": readme[:limit]}
+    repo = {"name": row["repo"], "description": row["description"], "readme": prose(readme)[:limit]}
     if full:
         repo.update(created=row["created"], topics=row["topics"])
     res = client.decisions(json.dumps({"repo": repo}, ensure_ascii=False), questions)
@@ -225,6 +276,18 @@ def judge(slug: str, prefix: str = "") -> None:
     print(f"{len(done)} judged · models {sorted(client.models_seen)} · cost ${client.total_cost:.4f}")
 
 
+def keyword_blocked(slug: str) -> list[dict]:
+    """Repos above the floor that the review admits but the page's keywords turn away
+    (lemomo-ai/lemo-opuscar: "style prompt" in its description hit the exclude word
+    "prompt"). They need the admitted list to reach the page."""
+    path = out_dir(slug) / "page-judged.json"
+    if not path.exists():
+        return []
+    match = next(x for x in json.loads(SCENARIOS.read_text()) if x["slug"] == slug)["match"]
+    return [r for r in json.loads(path.read_text())
+            if verdict(r, slug) == "admit" and not matches_page(r, match)]
+
+
 def report(slug: str) -> None:
     rows = json.loads((out_dir(slug) / "judged.json").read_text())
     counts: dict[str, int] = {}
@@ -239,7 +302,72 @@ def report(slug: str) -> None:
         print(f"{r['repo'][:50]:50s} {r['stars']:>3} {r['created']} {r['tier']} {r['quality']:.2f} {r['hit_prior']:.2f} | "
               f"{r['makes_video']:.2f}  {r['agent_driven']:.2f}  {r['code_rendered']:.2f} {r['reusable_tool']:.2f} | "
               f"{'names it' if r['names_model'] else ''}")
-    (out_dir(slug) / "admitted.json").write_text(json.dumps([r["repo"] for r in admitted], indent=1))
+    names = [r["repo"] for r in admitted] + [r["repo"] for r in keyword_blocked(slug)]
+    (out_dir(slug) / "admitted.json").write_text(json.dumps(names, indent=1))
+
+
+def on_page(slug: str) -> list[dict]:
+    """Every repo the page will list: on-topic ones above the floor, admitted ones below."""
+    match = next(x for x in json.loads(SCENARIOS.read_text()) if x["slug"] == slug)["match"]
+    keep = {n.lower() for n in match.get("featured", [])}
+    above = json.loads((out_dir(slug) / "page-judged.json").read_text())
+    below = json.loads((out_dir(slug) / "judged.json").read_text())
+    rows = [r for r in above if r["verdict"] not in ("off_topic", "no_readme") or r["repo"].lower() in keep]
+    return rows + [r for r in below if r["verdict"] == "admit"]
+
+
+GENERAL_MIN = 0.6
+# Kinds too small to stand alone are filed under a neighbour. Measured 2026-09-27 on 168
+# repos: 4 avatar tools; 13 "demo" winners of which about 5 make demo videos.
+MERGED = {"avatar": "shorts", "demo": "promo"}
+# Two questions fire too easily at 0.5. "Set to a song" fits any video with background
+# music (half the music bucket was general Remotion skills); "a walkthrough of software"
+# fits most tools whose README walks through itself (manim_skill scored 0.68).
+STRICT = {"music": 0.8, "demo": 0.85}
+# Display order of the chips on the page.
+KIND_LABELS = [
+    {"id": "general", "icon": "🧱", "en": "Frameworks & toolkits", "zh": "框架与通用工具包"},
+    {"id": "promo", "icon": "📣", "en": "Promo & demos", "zh": "产品宣传与演示"},
+    {"id": "explainer", "icon": "🎓", "en": "Explainers", "zh": "讲解科普"},
+    {"id": "editing", "icon": "✂️", "en": "Editing", "zh": "剪辑与后期"},
+    {"id": "shorts", "icon": "📱", "en": "Shorts, social & avatars", "zh": "短视频、口播与数字人"},
+    {"id": "story", "icon": "📖", "en": "Stories & animation", "zh": "故事与动画"},
+    {"id": "motion", "icon": "🎞", "en": "Motion graphics", "zh": "动效与 Logo"},
+    {"id": "music", "icon": "🎵", "en": "Music videos", "zh": "音乐视频"},
+]
+
+
+def kind_of(scores: dict) -> str:
+    """One type per repo. A framework serves every kind of video, so it is filed as
+    general even when one kind also scores."""
+    if scores["general"] >= GENERAL_MIN:
+        return "general"
+    passed = {k: v for k, v in scores.items() if k != "general" and v >= STRICT.get(k, TYPE_MIN)}
+    if not passed:
+        return "general"
+    best = max(passed, key=passed.get)
+    return MERGED.get(best, best)
+
+
+def types(slug: str) -> None:
+    sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
+    from jse.openrouter import OpenRouter  # noqa: E402
+    client, path = OpenRouter(), out_dir(slug) / "types.json"
+    done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
+    for row in on_page(slug):
+        if row["repo"] in done:
+            done[row["repo"]]["kind"] = kind_of(done[row["repo"]]["scores"])
+            continue
+        scores = ask(client, row, readme_of(slug, row["repo"]), README_RELEVANCE, TYPES, full=True)
+        done[row["repo"]] = {"repo": row["repo"], "stars": row["stars"], "description": row["description"],
+                             "scores": scores, "kind": kind_of(scores)}
+        path.write_text(json.dumps(list(done.values()), ensure_ascii=False, indent=1))
+    print(f"{len(done)} typed · cost ${client.total_cost:.4f}")
+    listed = {r["repo"] for r in on_page(slug)}
+    kinds = json.loads(KINDS_FILE.read_text()) if KINDS_FILE.exists() else {}
+    kinds[slug] = {"kinds": KIND_LABELS,
+                   "repos": {k: v["kind"] for k, v in sorted(done.items()) if k in listed}}
+    KINDS_FILE.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
 
 
 def audit(slug: str, names_file: str) -> None:
@@ -264,4 +392,4 @@ if __name__ == "__main__":
     if step == "audit":
         audit(slug, sys.argv[3])
     else:
-        {"collect": collect, "judge": judge, "report": report}[step](slug)
+        {"collect": collect, "judge": judge, "report": report, "types": types}[step](slug)

@@ -15,8 +15,9 @@ import {
   SITE, CATEGORY_LABELS, CATEGORY_LABELS_ZH,
   esc, starsK, stripMarkdown, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
-  analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedBelowFloor,
+  analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
+import { kindsFor, kindAttrs, kindBarHtml, KIND_SCRIPT } from "./scenario-kinds.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -60,7 +61,7 @@ function matchSkills(scenario, allSkills) {
 
   const scored = [];
   const featured = [];  // separate list, force-injected at top, ordered by featuredFullNames index
-  const admitted = admittedBelowFloor([scenario]);
+  const admitted = admittedByReview([scenario]);
   // Repos the keyword matcher lets in but a README review found off-topic
   // (not the page's subject, or not something an agent operates).
   const excludedRepos = new Set((m.exclude_repos || []).map((k) => k.toLowerCase()));
@@ -68,12 +69,13 @@ function matchSkills(scenario, allSkills) {
   for (const skill of allSkills) {
     const fullName = (skill.repo_full_name || "").toLowerCase();
     if (excludedRepos.has(fullName)) continue;
-    // Under the floor only a reviewed repo gets in, and the review already
-    // decided it is on-topic: it skips the keyword score and sorts by stars.
-    if (!shouldIndex(skill)) {
-      if (admitted.has(fullName)) scored.push({ skill, matchScore: 1 });
-      continue;
-    }
+    // A reviewed repo is on-topic by decision, so it skips the keyword rules
+    // and the star floor, and sorts by stars like the rest. Two cases need it:
+    // repos under the floor, and repos the keywords turn away by accident
+    // ("style prompt" in a description hits the exclude word "prompt").
+    const reviewed = admitted.has(fullName) && !featuredFullNames.includes(fullName);
+    if (reviewed) scored.push({ skill, matchScore: 1 });
+    if (reviewed || !shouldIndex(skill)) continue;
 
     // Featured anchor — force include regardless of keyword match
     if (featuredFullNames.length > 0 && featuredFullNames.includes((skill.repo_full_name || "").toLowerCase())) {
@@ -550,6 +552,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
 
   // Skill cards HTML
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
+  const scenarioKinds = kindsFor(scenario.slug);
   const skillCardsHtml = skills.map((s, i) => {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
     const catLabelZh = CATEGORY_LABELS_ZH[s.category] || "AI 工具";
@@ -566,7 +569,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
     // Whole card navigates (Clarity: 36% of /best/ sessions dead-clicked the
     // card body — only the title + footer links were live). Inner <a>s win
     // naturally via the closest('a') guard.
-    return `<div class="bp-card" style="margin:16px 0;cursor:pointer" onclick="if(!event.target.closest('a'))window.location.href='/skill/${esc(s.repo_full_name)}/'">
+    return `<div class="bp-card"${kindAttrs(scenarioKinds, s)} style="margin:16px 0;cursor:pointer" onclick="if(!event.target.closest('a'))window.location.href='/skill/${esc(s.repo_full_name)}/'">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>
@@ -704,7 +707,11 @@ ${faqLd}
       <!-- Skill Cards -->
       <section>
         <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${skills.length} ${esc(seoTitleSubject)}">Top ${skills.length} ${esc(seoTitleSubject)}</h2>
+      ${kindBarHtml(scenarioKinds, skills)}
+      <div id="kind-cards">
       ${skillCardsHtml}
+      </div>
+      ${scenarioKinds ? KIND_SCRIPT : ""}
       </section>
 
       <!-- Comparison Table -->

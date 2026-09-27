@@ -469,6 +469,35 @@
   color: var(--bp-link);
 }
 
+/* ===== Type filter (scenario pages with kinds) ===== */
+.bp-kind-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.bp-kind-chip {
+  padding: 6px 14px;
+  background: var(--bp-bg-alt);
+  border: 1px solid var(--bp-border);
+  border-radius: 20px;
+  color: var(--bp-text-secondary);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.bp-kind-chip:hover,
+.bp-kind-chip[aria-pressed="true"] {
+  border-color: var(--bp-link);
+  color: var(--bp-link);
+}
+
+.bp-kind-chip[aria-pressed="true"] {
+  font-weight: 600;
+}
+
 /* ===== FAQ ===== */
 .bp-faq dt {
   font-weight: 600;

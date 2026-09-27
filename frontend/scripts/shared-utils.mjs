@@ -324,12 +324,12 @@ export const MIN_STARS_FOR_PAGE = 50;
 
 /** Repos that scenario pages admit under the 50-star floor. Stars say little
  *  about a repo from last week, so a page can admit one on what its README
- *  shows instead: `match.admit_below_floor`, written from the review in
+ *  shows instead: `match.admit_reviewed`, written from the review in
  *  ops/jev-review/scenario_gate.py. An admitted repo also gets a skill page
  *  (the card links to it), noindex like every page under the floor.
  *  Returns a Set of lowercased `owner/repo`. */
-export function admittedBelowFloor(scenarios) {
-  const names = scenarios.flatMap((s) => (s.match && s.match.admit_below_floor) || []);
+export function admittedByReview(scenarios) {
+  const names = scenarios.flatMap((s) => (s.match && s.match.admit_reviewed) || []);
   return new Set(names.map((n) => n.toLowerCase()));
 }
 

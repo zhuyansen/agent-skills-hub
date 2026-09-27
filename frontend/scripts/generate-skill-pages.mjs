@@ -19,7 +19,7 @@ import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
-  admittedBelowFloor,
+  admittedByReview,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -882,7 +882,7 @@ async function main() {
   const scenarioDefs = JSON.parse(
     readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
   );
-  const admitted = admittedBelowFloor(scenarioDefs);
+  const admitted = admittedByReview(scenarioDefs);
 
   // Generate skill pages
   let ok = 0;
