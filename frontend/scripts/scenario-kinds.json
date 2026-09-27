@@ -50,6 +50,12 @@
     "zh": "动效与 Logo"
    },
    {
+    "id": "craft",
+    "icon": "📝",
+    "en": "Scripts & learning",
+    "zh": "剧本与学习"
+   },
+   {
     "id": "music",
     "icon": "🎵",
     "en": "Music videos",
@@ -129,6 +135,7 @@
    "dlazy-ai/ai-product-video": "promo",
    "doublesq97-ui/su-card-to-video": "general",
    "erduo1998-cell/erduo-broll-loop-engineering": "editing",
+   "eternityspring/reelbench-skills": "craft",
    "fernandokaraka/remotion-motion-graphics-skill": "motion",
    "geekjourneyx/hyperframes-motion-director": "promo",
    "gloweaseco-leo/hyperdirector": "general",
@@ -158,6 +165,7 @@
    "jhartquist/claude-remotion-kickstart": "general",
    "jincheng2026/jc-remotion-skills": "editing",
    "jinjin1/scenewright": "explainer",
+   "jtydhr88/screenwriting-skills": "craft",
    "kakaxi12/vox-director-codex": "explainer",
    "kangarooking/director-skills": "general",
    "kangarooking/promo-creator-skills": "promo",

@@ -59,10 +59,14 @@ QUERIES = {
             "music video claude in:name,description",
         ],
         "names_model": r"opus[\s-]?5\.5",
-        # Decided by the owner, repo by repo (2026-09-27): music videos made with Opus 5.5.
-        # They are not agent tools, so the questions below turn them away; this is a list
-        # of names, not a rule, and nothing joins it without the owner saying so.
-        "owner_admitted": ["ledbetterljoshua/functional-emotions-video"],
+        # Decided by the owner, repo by repo (2026-09-27). The questions below turn these
+        # away (a music video is not an agent tool; a screenwriting skill makes no video);
+        # this is a list of names, not a rule, and nothing joins it without the owner
+        # saying so.
+        "owner_admitted": ["ledbetterljoshua/functional-emotions-video",
+                           "eternityspring/reelbench-skills", "jtydhr88/screenwriting-skills"],
+        # Their type is the owner's too: what comes before the video, not the video.
+        "owner_kinds": {"eternityspring/reelbench-skills": "craft", "jtydhr88/screenwriting-skills": "craft"},
         # Skills that live in a folder of a larger repo; reviewed from the folder's README.
         "sub_skill_kinds": {"EverMind-AI/Raven/skills/git-story-film": "explainer"},
     },
@@ -314,8 +318,8 @@ def on_page(slug: str) -> list[dict]:
     keep = {n.lower() for n in match.get("featured", [])}
     above = json.loads((out_dir(slug) / "page-judged.json").read_text())
     below = json.loads((out_dir(slug) / "judged.json").read_text())
-    rows = [r for r in above if r["verdict"] not in ("off_topic", "no_readme") or r["repo"].lower() in keep]
-    return rows + [r for r in below if r["verdict"] == "admit"]
+    rows = [r for r in above if verdict(r, slug) not in ("off_topic", "no_readme") or r["repo"].lower() in keep]
+    return rows + [r for r in below if verdict(r, slug) == "admit"]
 
 
 GENERAL_MIN = 0.6
@@ -337,6 +341,7 @@ KIND_LABELS = [
     {"id": "avatar", "icon": "🧑‍💼", "en": "Avatars", "zh": "数字人"},
     {"id": "story", "icon": "📖", "en": "Stories & animation", "zh": "故事与动画"},
     {"id": "motion", "icon": "🎞", "en": "Motion graphics", "zh": "动效与 Logo"},
+    {"id": "craft", "icon": "📝", "en": "Scripts & learning", "zh": "剧本与学习"},
     {"id": "music", "icon": "🎵", "en": "Music videos", "zh": "音乐视频"},
 ]
 
@@ -370,6 +375,7 @@ def types(slug: str) -> None:
     listed = {r["repo"] for r in on_page(slug)}
     kinds = json.loads(KINDS_FILE.read_text()) if KINDS_FILE.exists() else {}
     repos = {k: v["kind"] for k, v in sorted(done.items()) if k in listed}
+    repos.update({k: v for k, v in QUERIES[slug].get("owner_kinds", {}).items() if k in listed})
     repos.update(QUERIES[slug].get("sub_skill_kinds", {}))  # keyed by repo + folder
     kinds[slug] = {"kinds": KIND_LABELS, "repos": repos}
     KINDS_FILE.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")

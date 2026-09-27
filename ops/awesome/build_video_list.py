@@ -46,7 +46,9 @@ TEXT = {
                   "{n} repos, each one read and security-graded by [Agent Skills Hub]({site}{utm})."),
         "live": "Live page with filters: **[{page}]({page}{utm})** · refreshed every 8 hours",
         "rules_h": "How a repo gets on the list",
-        "rules": ["It makes or edits video or motion graphics. A 3D web page or a prompt collection does not count.",
+        "rules": ["It makes or edits video or motion graphics. A 3D web page or a prompt collection does not count. "
+                  "The few entries under *Scripts & learning* come before the video (screenwriting, shot "
+                  "analysis) and are listed by the maintainer's choice.",
                   "An agent operates it: a skill, a plugin, an MCP server, or a toolkit written for the agent.",
                   "It has a README. Without one it cannot be graded.",
                   "At 50 stars or more it is listed on topic alone. Under 50 it must also clear a README "
@@ -75,7 +77,8 @@ TEXT = {
                   "动效、剪辑、讲解、数字人。共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。"),
         "live": "带类型筛选的在线页面:**[{page}]({page}{utm})** · 每 8 小时刷新",
         "rules_h": "什么样的仓库能上榜",
-        "rules": ["它做视频、剪视频或做动效。3D 网页、提示词合集不算。",
+        "rules": ["它做视频、剪视频或做动效。3D 网页、提示词合集不算。"
+                  "\"剧本与学习\"一类里的少数条目属于视频的前期(编剧、拉片),由维护者指定收录。",
                   "它是给 agent 用的:skill、插件、MCP 服务器,或为 agent 写的工具包。",
                   "它有 README。没有 README 就没法评级。",
                   "50 星及以上只看是否切题;50 星以下还要过 README 质量线(展示成品、一条命令上手、"
