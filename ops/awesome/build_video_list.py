@@ -35,8 +35,8 @@ DESC_MAX = 150
 HTTP_TIMEOUT = 30
 FIELDS = "repo_full_name,security_grade"
 GRADES = {"safe": "SAFE", "caution": "CAUTION", "unsafe": "UNSAFE", "reject": "REJECT"}
-PREVIEWS = json.loads((Path(__file__).with_name("previews.json")).read_text())  # ops/awesome/previews.py
-PREVIEW_MAX_BYTES = 4_000_000   # heavier GIFs stay on the project's own page
+THUMBS: dict = {}               # repo -> thumbnail record, read from the list's own folder in main()
+ALBUM_POOL = 6                  # the album picks the best picture among a type's top repos
 ALBUM_COLUMNS = 3
 GALLERY_SIZE = 3
 TILE_WIDTH = 260
@@ -76,8 +76,9 @@ TEXT = {
         "made_h": "Made with Claude Opus 5.5", "made": "Projects whose README says they were built with the model.",
         "contents": "Contents", "cols": "| Repo | Stars | What it does | Security |",
         "album": "What these tools make", "repos": "repos", "view": "View the list",
-        "media": ("Preview images are loaded from each project's own README and belong to their authors. "
-                  "Nothing is copied into this repository. Open an issue to have one removed."),
+        "media": ("Preview images are reduced copies of pictures from each project's own README, included only "
+                  "for projects under a permissive license. Sources and licenses: "
+                  "[assets/previews/NOTICE.md](assets/previews/NOTICE.md). Open an issue to have one removed."),
         "filter": "Open this type on the live page, sorted by stars →", "in_repo": "in {repo}:",
         "pending": "pending", "grade_note": ("**Security** is the grade of the repo's README and install steps "
                                             "on Agent Skills Hub. *pending* means the catalog has not graded it yet."),
@@ -107,7 +108,8 @@ TEXT = {
         "made_h": "用 Claude Opus 5.5 做出来的", "made": "README 写明用这个模型做的项目。",
         "contents": "目录", "cols": "| 仓库 | 星数 | 做什么 | 安全评级 |",
         "album": "这些工具能做出什么", "repos": "个仓库", "view": "查看列表",
-        "media": "预览图取自各项目自己的 README,版权归原作者所有;本仓库没有复制任何图片。如需移除请提 issue。",
+        "media": ("预览图是各项目 README 里图片的缩小副本,只收录采用宽松许可证的项目,版权归原作者所有。"
+                  "来源和许可证见 [assets/previews/NOTICE.md](assets/previews/NOTICE.md)。如需移除请提 issue。"),
         "filter": "在在线页面打开这一类,按星数排序 →", "in_repo": "所在仓库 {repo}:",
         "pending": "待评级", "grade_note": "**安全评级**是 Agent Skills Hub 对仓库 README 和安装步骤的评级。*待评级*表示目录还没评到它。",
         "related_h": "相关合集",
@@ -156,7 +158,7 @@ def entries() -> tuple[list[dict], list[dict]]:
     rows = []
     for name in names:
         row = github_row(name)  # None when the repo is gone or private now
-        if row:
+        if row and name in found:  # the page shows catalog rows only: the list follows it
             grade = (found.get(name) or {}).get("security_grade")
             rows.append({**row, "security_grade": grade, "kind": kinds["repos"][name], "in_catalog": name in found})
     return kinds["kinds"], sorted(rows, key=lambda r: -r["stars"]) + sub_skills(kinds["repos"], found_all=catalog_rows)
@@ -212,14 +214,20 @@ def table(rows: list[dict], t: dict, lang: str = "en") -> list[str]:
 
 
 def previews_of(rows: list[dict]) -> list[dict]:
-    """The rows that have a preview light enough for a grid, most-starred first."""
-    return [r for r in rows if PREVIEWS.get(r["repo_full_name"], {}).get("bytes", PREVIEW_MAX_BYTES + 1) <= PREVIEW_MAX_BYTES]
+    """The rows that have a thumbnail, most-starred first."""
+    return [r for r in rows if r["repo_full_name"] in THUMBS]
 
 
 def picture(row: dict, width: int) -> str:
     name = row["repo_full_name"]
-    return (f'<a href="https://github.com/{name}"><img src="{PREVIEWS[name]["url"]}" width="{width}" '
-            f'alt="{name}"></a>')
+    return (f'<a href="https://github.com/{name}"><img src="assets/previews/{THUMBS[name]["file"]}" '
+            f'width="{width}" alt="{name}"></a>')
+
+
+def best_picture(rows: list[dict]) -> list[dict]:
+    """One row for the album: among the top repos, the picture most likely to show output."""
+    pool = previews_of(rows)[:ALBUM_POOL]
+    return sorted(pool, key=lambda r: -THUMBS[r["repo_full_name"]]["score"])[:1]
 
 
 def album(kinds: list[dict], rows: list[dict], lang: str, t: dict) -> list[str]:
@@ -227,7 +235,7 @@ def album(kinds: list[dict], rows: list[dict], lang: str, t: dict) -> list[str]:
     cells = []
     for k in kinds:
         mine = [r for r in rows if r["kind"] == k["id"]]
-        shown = previews_of(mine)[:1]
+        shown = best_picture(mine)
         image = (picture(shown[0], TILE_WIDTH) + "<br>") if shown else ""
         cells.append(f'<td align="center" valign="top" width="33%"><b>{k["icon"]} {k[lang]}</b><br>'
                      f'<sub>{len(mine)} {t["repos"]}</sub><br><br>{image}'
@@ -241,7 +249,8 @@ def album(kinds: list[dict], rows: list[dict], lang: str, t: dict) -> list[str]:
 
 def gallery(rows: list[dict]) -> list[str]:
     """Up to three pictures above a type's table, after the one the album shows."""
-    shown = previews_of(rows)[1:1 + GALLERY_SIZE]
+    tile = {r["repo_full_name"] for r in best_picture(rows)}
+    shown = [r for r in previews_of(rows) if r["repo_full_name"] not in tile][:GALLERY_SIZE]
     if not shown:
         return []
     cells = [f'<td align="center" valign="top">{picture(r, TILE_WIDTH)}<br><sub>'
@@ -279,6 +288,8 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
 def main() -> None:
     out = Path(sys.argv[1]).expanduser()
     (out / "data").mkdir(parents=True, exist_ok=True)
+    index = out / "assets/previews/index.json"
+    THUMBS.update(json.loads(index.read_text()) if index.exists() else {})
     kinds, rows = entries()
     for lang in TEXT:
         (out / TEXT[lang]["file"]).write_text(readme(lang, kinds, rows))

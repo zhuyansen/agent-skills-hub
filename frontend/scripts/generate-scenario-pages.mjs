@@ -65,10 +65,15 @@ function matchSkills(scenario, allSkills) {
   // Repos the keyword matcher lets in but a README review found off-topic
   // (not the page's subject, or not something an agent operates).
   const excludedRepos = new Set((m.exclude_repos || []).map((k) => k.toLowerCase()));
+  // `reviewed_only`: the page lists the reviewed repos and nothing else, so it
+  // and its GitHub list (generated from the same review) cannot drift apart.
+  // A repo the keywords would let in waits until the review has seen it.
+  const reviewed = m.reviewed_only ? kindsFor(scenario.slug) : null;
 
   for (const skill of allSkills) {
     const fullName = (skill.repo_full_name || "").toLowerCase();
     if (excludedRepos.has(fullName)) continue;
+    if (reviewed && !reviewed.of(skill)) continue;
     // A reviewed repo is on-topic by decision, so it skips the keyword rules
     // and the star floor, and sorts by stars like the rest. Two cases need it:
     // repos under the floor, and repos the keywords turn away by accident

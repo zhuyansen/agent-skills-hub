@@ -3994,6 +3994,7 @@
    "sub_skills": [
     {"repo": "EverMind-AI/Raven", "path": "skills/git-story-film", "name": "git-story-film", "added": "2026-09-27", "description": "Direct a two-minute hand-drawn animated film from a repository's Git history: story, character, storyboard, HTML review studio, then a 4K/60fps MP4."}
    ],
+   "reviewed_only": true,
    "exclude_repos": [
     "nexu-io/html-anything",
     "LottieFiles/motion-design-skill",
