@@ -3,7 +3,7 @@
 A scenario page lists repos with >= 50 stars. Below that, stars say little (a repo
 from last week has had no time to collect them), so the page admits a repo on what
 its README shows instead. The questions, weights and cut-offs are the ones used on
-2026-09-27 for the >= 50-star candidates of /best/opus-5-5-video/, fixed before any
+2026-09-27 for the >= 50-star candidates of /best/claude-video-skills/, fixed before any
 answer here was seen.
 
   collect  GitHub search under the floor, then the page's own keyword matcher
@@ -60,7 +60,7 @@ CRAFT = [
 ]
 
 QUERIES = {
-    "opus-5-5-video": {
+    "claude-video-skills": {
         "wave": ['"opus 5.5" video in:name,description'],
         "topic": [
             "hyperframes in:name,description,topics",
@@ -242,7 +242,7 @@ def ask(client, row: dict, readme: str, limit: int, questions: dict, full: bool)
     return {k: float(v.get("noul", 0)) for k, v in res.answers.items()}
 
 
-def verdict(row: dict, slug: str = "opus-5-5-video") -> str:
+def verdict(row: dict, slug: str = "claude-video-skills") -> str:
     if row["repo"] in QUERIES[slug].get("owner_admitted", []):
         return "admit"
     if not row["readme_chars"]:
@@ -411,7 +411,7 @@ def audit(slug: str, names_file: str) -> None:
 
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else "report"
-    slug = sys.argv[2] if len(sys.argv) > 2 else "opus-5-5-video"
+    slug = sys.argv[2] if len(sys.argv) > 2 else "claude-video-skills"
     if step == "audit":
         audit(slug, sys.argv[3])
     else:

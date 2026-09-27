@@ -1,6 +1,6 @@
 """Build the public list "awesome-claude-video-skills" from the video page's data.
 
-The list is the GitHub face of https://agentskillshub.top/best/opus-5-5-video/: the same
+The list is the GitHub face of https://agentskillshub.top/best/claude-video-skills/: the same
 repos, the same types, the same security grades. Nothing is curated here by hand; an
 entry is on the list because it is on the page (frontend/scripts/scenario-kinds.json,
 written by ops/jev-review/scenario_gate.py).
@@ -26,7 +26,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SLUG = "opus-5-5-video"
+SLUG = "claude-video-skills"
 SITE = "https://agentskillshub.top"
 PAGE = f"{SITE}/best/{SLUG}/"
 UTM = "?utm_source=github&utm_medium=awesome-list"

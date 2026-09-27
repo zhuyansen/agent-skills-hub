@@ -226,7 +226,7 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
   const groups = [
     // Model-wave pages first: they are the newest and were reachable only from search —
     // /best/typesafe-jev/ was the site's most-visited scenario page with no link to it here.
-    { label: "New Model Waves", zh: "模型浪潮", icon: "🌊", slugs: ["opus-5-5-video", "typesafe-jev"] },
+    { label: "New Model Waves", zh: "模型浪潮", icon: "🌊", slugs: ["claude-video-skills", "typesafe-jev"] },
     { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory", "mcp-for-notion", "mcp-for-github", "mcp-for-google"] },
     { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools", "ai-code-editor", "web-development", "api-testing"] },
     { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["ai-agent-framework", "multi-agent", "prompt-engineering", "model-evaluation", "local-llm", "claude-code-skills", "codex-skills"] },

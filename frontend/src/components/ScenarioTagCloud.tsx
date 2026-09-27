@@ -5,7 +5,7 @@ const SCENARIO_COUNT = 87;
 
 const HOT_SCENARIOS = [
   // Model-wave pages lead: newest, and until 2026-09-27 linked from nowhere on the site.
-  { slug: "opus-5-5-video", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
+  { slug: "claude-video-skills", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
   { slug: "typesafe-jev", zh: "TypeSafe Jev", en: "TypeSafe Jev" },
   { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
   { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },

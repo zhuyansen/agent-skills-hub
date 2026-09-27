@@ -545,7 +545,7 @@
     ],
     "d": "基于 TypeSafe Jev 决策模型的开源项目,逐个做了安全评级:jev-ultrafast 浏览器 agent、openjev、fast-jev-compaction、Jev 代码审查工具和 MCP 服务器。装之前先查一查。"
   },
-  "opus-5-5-video": {
+  "claude-video-skills": {
     "t": "Claude Code 与 Opus 5.5 视频 Skill",
     "k": [
       "Opus 5.5 视频",
