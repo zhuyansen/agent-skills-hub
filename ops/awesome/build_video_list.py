@@ -35,6 +35,23 @@ DESC_MAX = 150
 HTTP_TIMEOUT = 30
 FIELDS = "repo_full_name,security_grade"
 GRADES = {"safe": "SAFE", "caution": "CAUTION", "unsafe": "UNSAFE", "reject": "REJECT"}
+PREVIEWS = json.loads((Path(__file__).with_name("previews.json")).read_text())  # ops/awesome/previews.py
+PREVIEW_MAX_BYTES = 4_000_000   # heavier GIFs stay on the project's own page
+ALBUM_COLUMNS = 3
+GALLERY_SIZE = 3
+TILE_WIDTH = 260
+KIND_BLURB = {
+    "general": ("Rendering frameworks and all-round toolkits.", "渲染框架和通用工具包。"),
+    "promo": ("Product launch films, ads and demo videos.", "产品发布片、广告和演示视频。"),
+    "explainer": ("Knowledge videos, tutorials and narrated lessons.", "知识讲解、教程和旁白课程。"),
+    "editing": ("Cutting, captions, B-roll and recaps of existing footage.", "对已有素材做剪辑、字幕、B-roll 和解说。"),
+    "shorts": ("Vertical video for Reels, Shorts, TikTok and Douyin.", "面向 Reels、Shorts、TikTok、抖音的竖屏视频。"),
+    "avatar": ("Digital humans, virtual presenters and lip-sync.", "数字人、虚拟主播和口型同步。"),
+    "story": ("Animated tales, short dramas and cinematic scenes.", "动画故事、短剧和电影感场景。"),
+    "motion": ("Animated logos, titles, UI motion and GIFs.", "Logo 动画、标题、界面动效和 GIF。"),
+    "craft": ("What comes before the video: scripts, shot analysis, learning.", "视频的前期:剧本、拉片和学习。"),
+    "music": ("Music videos made in code.", "用代码做出来的音乐视频。"),
+}
 MADE_WITH = ("JohnHeibel/ClaudeAnimationBase", "JohnHeibel/PDoomVideo",
              "lemomo-ai/lemo-opuscar", "ledbetterljoshua/functional-emotions-video")
 
@@ -58,6 +75,9 @@ TEXT = {
                        "A repo near a cut-off can land on either side; open an issue if one is misfiled."),
         "made_h": "Made with Claude Opus 5.5", "made": "Projects whose README says they were built with the model.",
         "contents": "Contents", "cols": "| Repo | Stars | What it does | Security |",
+        "album": "What these tools make", "repos": "repos", "view": "View the list",
+        "media": ("Preview images are loaded from each project's own README and belong to their authors. "
+                  "Nothing is copied into this repository. Open an issue to have one removed."),
         "filter": "Open this type on the live page, sorted by stars →", "in_repo": "in {repo}:",
         "pending": "pending", "grade_note": ("**Security** is the grade of the repo's README and install steps "
                                             "on Agent Skills Hub. *pending* means the catalog has not graded it yet."),
@@ -86,6 +106,8 @@ TEXT = {
         "rules_note": "这些问题由决策模型逐个读 README 回答,不是人工挑选。卡在线上的仓库可能判到任一边,归错了请提 issue。",
         "made_h": "用 Claude Opus 5.5 做出来的", "made": "README 写明用这个模型做的项目。",
         "contents": "目录", "cols": "| 仓库 | 星数 | 做什么 | 安全评级 |",
+        "album": "这些工具能做出什么", "repos": "个仓库", "view": "查看列表",
+        "media": "预览图取自各项目自己的 README,版权归原作者所有;本仓库没有复制任何图片。如需移除请提 issue。",
         "filter": "在在线页面打开这一类,按星数排序 →", "in_repo": "所在仓库 {repo}:",
         "pending": "待评级", "grade_note": "**安全评级**是 Agent Skills Hub 对仓库 README 和安装步骤的评级。*待评级*表示目录还没评到它。",
         "related_h": "相关合集",
@@ -189,6 +211,44 @@ def table(rows: list[dict], t: dict, lang: str = "en") -> list[str]:
     return lines
 
 
+def previews_of(rows: list[dict]) -> list[dict]:
+    """The rows that have a preview light enough for a grid, most-starred first."""
+    return [r for r in rows if PREVIEWS.get(r["repo_full_name"], {}).get("bytes", PREVIEW_MAX_BYTES + 1) <= PREVIEW_MAX_BYTES]
+
+
+def picture(row: dict, width: int) -> str:
+    name = row["repo_full_name"]
+    return (f'<a href="https://github.com/{name}"><img src="{PREVIEWS[name]["url"]}" width="{width}" '
+            f'alt="{name}"></a>')
+
+
+def album(kinds: list[dict], rows: list[dict], lang: str, t: dict) -> list[str]:
+    """A grid of the types, each with one picture of what its tools make."""
+    cells = []
+    for k in kinds:
+        mine = [r for r in rows if r["kind"] == k["id"]]
+        shown = previews_of(mine)[:1]
+        image = (picture(shown[0], TILE_WIDTH) + "<br>") if shown else ""
+        cells.append(f'<td align="center" valign="top" width="33%"><b>{k["icon"]} {k[lang]}</b><br>'
+                     f'<sub>{len(mine)} {t["repos"]}</sub><br><br>{image}'
+                     f'<sub>{KIND_BLURB[k["id"]][lang == "zh"]}</sub><br>'
+                     f'<a href="#{anchor(k)}"><b>{t["view"]} →</b></a></td>')
+    lines = ["<table>"]
+    for i in range(0, len(cells), ALBUM_COLUMNS):
+        lines += ["<tr>", *cells[i:i + ALBUM_COLUMNS], "</tr>"]
+    return lines + ["</table>"]
+
+
+def gallery(rows: list[dict]) -> list[str]:
+    """Up to three pictures above a type's table, after the one the album shows."""
+    shown = previews_of(rows)[1:1 + GALLERY_SIZE]
+    if not shown:
+        return []
+    cells = [f'<td align="center" valign="top">{picture(r, TILE_WIDTH)}<br><sub>'
+             f'<a href="https://github.com/{r["repo_full_name"]}">{r["repo_full_name"]}</a></sub></td>' for r in shown]
+    return ["<table><tr>", *cells, "</tr></table>", ""]
+
+
 def anchor(kind: dict) -> str:
     return f"type-{kind['id']}"
 
@@ -200,16 +260,18 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
     count = lambda k: sum(r["kind"] == k["id"] for r in rows)  # noqa: E731
     out = [f"# {t['title']}", "", t["other"], "",
            t["pitch"].format(n=len(rows), site=SITE, utm=UTM), "", t["live"].format(page=PAGE, utm=UTM), "",
+           f"## {t['album']}", "", *album(used, rows, label, t), "",
            f"## {t['contents']}", "", f"- [{t['made_h']}](#made-with-opus-55)"]
     out += [f"- [{k['icon']} {k[label]}](#{anchor(k)}) ({count(k)})" for k in used]
     out += ["", f"## {t['rules_h']}", ""] + [f"{i}. {rule}" for i, rule in enumerate(t["rules"], 1)]
     out += ["", t["rules_note"], "", '<a id="made-with-opus-55"></a>', f"## {t['made_h']}", "", t["made"], ""]
     out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t, lang)
     for k in used:
+        mine = [r for r in rows if r["kind"] == k["id"]]
         out += ["", f'<a id="{anchor(k)}"></a>', f"## {k['icon']} {k[label]}", "",
-                f"[{t['filter']}]({PAGE}{UTM}#type-{k['id']})", ""]
+                f"[{t['filter']}]({PAGE}{UTM}#type-{k['id']})", "", *gallery(mine)]
         out += table([r for r in rows if r["kind"] == k["id"]], t, lang)
-    out += ["", t["grade_note"], "", f"## {t['related_h']}", ""] + [f"- {x}" for x in t["related"]]
+    out += ["", t["grade_note"], "", t["media"], "", f"## {t['related_h']}", ""] + [f"- {x}" for x in t["related"]]
     out += ["", f"## {t['contrib_h']}", "", t["contrib"], "", "---", "", t["data"].format(today=date.today().isoformat()), ""]
     return "\n".join(out)
 
