@@ -20,6 +20,20 @@ export const CATEGORY_LABELS = {
   uncategorized: "AI Tool",
 };
 
+/** Chinese badge text; product names (Claude Skill, Codex Skill) stay as-is,
+ *  the rest follows the wording the SPA uses. */
+export const CATEGORY_LABELS_ZH = {
+  "mcp-server": "MCP 服务器",
+  "claude-skill": "Claude Skill",
+  "codex-skill": "Codex Skill",
+  "agent-tool": "Agent 工具",
+  "ai-skill": "AI Skill",
+  "llm-plugin": "LLM 插件",
+  "youmind-plugin": "YouMind 插件",
+  "education": "教育",
+  uncategorized: "AI 工具",
+};
+
 export function esc(s) {
   if (!s) return "";
   return s
@@ -52,13 +66,67 @@ export function biSpan(en, zh, { tag = "span", attrs = "" } = {}) {
   return `<${tag} ${a}${biAttrs(en, zh)}>${esc(en)}</${tag}>`;
 }
 
+const ICON_GITHUB = `<svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+const ICON_X = `<svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+const ICON_MOON = `<svg id="theme-icon-light" style="width:16px;height:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>`;
+const ICON_SUN = `<svg id="theme-icon-dark" style="width:16px;height:16px;display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`;
+
+/* Saved theme + language for full-static pages. It runs right after the header,
+ * BEFORE the rest of the body is parsed, so the text swap has to run again on
+ * DOMContentLoaded. Without that the page recorded "zh" (button showed EN) while
+ * every node below the header stayed English, and the first click on the toggle
+ * switched to English — Chinese took two clicks (reported 2026-09-27). */
+const PREFS_SCRIPT = `<script>
+    (function(){
+      var root=document.documentElement;
+      function saved(k){try{return localStorage.getItem(k)}catch(e){return null}}
+      function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+      function show(id,on){var el=document.getElementById(id);if(el)el.style.display=on?'block':'none'}
+      function applyTheme(dark){root.classList.toggle('dark',dark);show('theme-icon-light',!dark);show('theme-icon-dark',dark)}
+      function currentLang(){return root.lang==='zh-CN'?'zh':'en'}
+      function applyLang(l){
+        root.lang=l==='zh'?'zh-CN':'en';
+        var b=document.getElementById('lang-toggle');
+        if(b)b.textContent=l==='zh'?'EN':'中文';
+        document.querySelectorAll('[data-zh]').forEach(function(el){
+          var v=el.getAttribute(l==='zh'?'data-zh':'data-en');
+          if(v!==null)el.textContent=v;
+        });
+      }
+      window.__bpToggleTheme=function(){var d=!root.classList.contains('dark');store('theme',d?'dark':'light');applyTheme(d)};
+      window.__bpToggleLang=function(){var l=currentLang()==='zh'?'en':'zh';store('lang',l);applyLang(l)};
+      applyTheme(saved('theme')!=='light');
+      var s=saved('lang');
+      applyLang(s==='zh'||s==='en'?s:(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en'));
+      document.addEventListener('DOMContentLoaded',function(){applyLang(currentLang())});
+    })();
+  </script>`;
+
+function navLink(href, en, zh, isActive) {
+  const cls = `bp-nav-link${isActive ? " bp-nav-link--active" : ""}`;
+  return `<a href="${href}" class="${cls}" ${biAttrs(en, zh)}>${en}</a>`;
+}
+
+function externalNavLink(href, icon, label) {
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
+          ${icon}
+          ${label}
+        </a>`;
+}
+
 /** Shared bilingual page chrome (header + dark-mode + language toggle + the
- *  apply-saved-prefs script that swaps every [data-zh] node on load). Used by
- *  every full-static generator so the language button exists and works.
- *  `active` ∈ {"home","best",null} highlights the matching nav link. */
-export function buildStaticHeader({ active = null } = {}) {
-  const navActive = (key) =>
-    active === key ? " bp-nav-link--active" : "";
+ *  saved-prefs script). Every full-static generator uses this one copy, so the
+ *  language button behaves the same on every page.
+ *  `active` ∈ {"home","best","compare",null} highlights the matching nav link;
+ *  `compare` / `x` add the Compare and X links that some sections show. */
+export function buildStaticHeader({ active = null, compare = false, x = false } = {}) {
+  const links = [
+    navLink("/", "Home", "首页", active === "home"),
+    compare ? navLink("/compare/", "Compare", "对比", active === "compare") : "",
+    navLink("/best/", "Best Tools", "最佳工具", active === "best"),
+    externalNavLink("https://github.com/ZhuYansen/agent-skills-hub", ICON_GITHUB, "GitHub"),
+    x ? externalNavLink("https://x.com/GoSailGlobal", ICON_X, "X") : "",
+  ].filter(Boolean);
   return `<header id="site-header" class="bp-header">
     <div class="bp-header-inner">
       <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
@@ -66,40 +134,17 @@ export function buildStaticHeader({ active = null } = {}) {
         <span class="bp-brand">Agent Skills Hub</span>
       </a>
       <nav class="bp-nav-links">
-        <a href="/" class="bp-nav-link${navActive("home")}" data-en="Home" data-zh="首页">Home</a>
-        <a href="/best/" class="bp-nav-link${navActive("best")}" data-en="Best Tools" data-zh="最佳工具">Best Tools</a>
-        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
-          <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          GitHub
-        </a>
+        ${links.join("\n        ")}
         <span style="color:var(--bp-border);font-size:16px">|</span>
-        <button id="theme-toggle" onclick="(function(){var d=document.documentElement,t=d.classList.toggle('dark');localStorage.setItem('theme',t?'dark':'light');document.getElementById('theme-icon-light').style.display=t?'none':'block';document.getElementById('theme-icon-dark').style.display=t?'block':'none'})()" class="bp-icon-btn" title="Toggle dark mode" style="display:flex;align-items:center">
-          <svg id="theme-icon-light" style="width:16px;height:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-          <svg id="theme-icon-dark" style="width:16px;height:16px;display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <button id="theme-toggle" onclick="window.__bpToggleTheme()" class="bp-icon-btn" title="Toggle dark mode" style="display:flex;align-items:center">
+          ${ICON_MOON}
+          ${ICON_SUN}
         </button>
-        <button id="lang-toggle" onclick="(function(){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.textContent=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});document.getElementById('lang-toggle').textContent=c==='zh'?'EN':'中文'})()" class="bp-icon-btn" style="font-size:12px;font-weight:600">中文</button>
+        <button id="lang-toggle" onclick="window.__bpToggleLang()" class="bp-icon-btn" style="font-size:12px;font-weight:600">中文</button>
       </nav>
     </div>
   </header>
-  <script>
-    (function(){
-      var t=localStorage.getItem('theme');
-      if(t!=='light'){
-        document.documentElement.classList.add('dark');
-        var il=document.getElementById('theme-icon-light');
-        var id=document.getElementById('theme-icon-dark');
-        if(il)il.style.display='none';
-        if(id)id.style.display='block';
-      }
-      var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');
-      document.documentElement.lang=l==='zh'?'zh-CN':'en';
-      var lb=document.getElementById('lang-toggle');
-      if(lb)lb.textContent=l==='zh'?'EN':'中文';
-      document.querySelectorAll('[data-zh]').forEach(function(el){
-        el.textContent=l==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en');
-      });
-    })();
-  </script>`;
+  ${PREFS_SCRIPT}`;
 }
 
 export function formatDate(iso) {

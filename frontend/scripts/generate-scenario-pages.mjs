@@ -12,10 +12,10 @@ import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import {
-  SITE, CATEGORY_LABELS,
+  SITE, CATEGORY_LABELS, CATEGORY_LABELS_ZH,
   esc, starsK, stripMarkdown, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
-  analyticsTags, trustBlock,
+  analyticsTags, trustBlock, buildStaticHeader, biSpan,
 } from "./shared-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -184,61 +184,6 @@ function extractQuickStart(readmeContent) {
   return null;
 }
 
-/* ── Static header (shared across /best/* pages) ── */
-
-function buildStaticHeader() {
-  return `<header id="site-header" class="bp-header">
-    <div class="bp-header-inner">
-      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
-        <img src="/favicon.svg" alt="" style="width:24px;height:24px" />
-        <span class="bp-brand">Agent Skills Hub</span>
-      </a>
-      <nav class="bp-nav-links">
-        <a href="/" class="bp-nav-link">Home</a>
-        <a href="/best/" class="bp-nav-link bp-nav-link--active">Best Tools</a>
-        <a href="https://github.com/ZhuYansen/agent-skills-hub" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
-          <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://x.com/GoSailGlobal" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
-          <svg style="width:14px;height:14px" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X
-        </a>
-        <span style="color:var(--bp-border);font-size:16px">|</span>
-        <!-- Dark mode toggle -->
-        <button id="theme-toggle" onclick="(function(){var d=document.documentElement,t=d.classList.toggle('dark');localStorage.setItem('theme',t?'dark':'light');document.getElementById('theme-icon-light').style.display=t?'none':'block';document.getElementById('theme-icon-dark').style.display=t?'block':'none'})()" class="bp-icon-btn" title="Toggle dark mode" style="display:flex;align-items:center">
-          <svg id="theme-icon-light" style="width:16px;height:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-          <svg id="theme-icon-dark" style="width:16px;height:16px;display:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-        </button>
-        <!-- Language toggle -->
-        <button id="lang-toggle" onclick="(function(){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.textContent=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});document.getElementById('lang-toggle').textContent=c==='zh'?'EN':'中文'})()" class="bp-icon-btn" style="font-size:12px;font-weight:600">中文</button>
-      </nav>
-    </div>
-  </header>
-  <script>
-    // Apply saved theme. P0 (2026-05-08): dark-first by default — only flip
-    // to light when the user explicitly stored it.
-    (function(){
-      var t=localStorage.getItem('theme');
-      if(t!=='light'){
-        document.documentElement.classList.add('dark');
-        var il=document.getElementById('theme-icon-light');
-        var id=document.getElementById('theme-icon-dark');
-        if(il)il.style.display='none';
-        if(id)id.style.display='block';
-      }
-      // Apply saved lang
-      var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');
-      document.documentElement.lang=l==='zh'?'zh-CN':'en';
-      var lb=document.getElementById('lang-toggle');
-      if(lb)lb.textContent=l==='zh'?'EN':'中文';
-      document.querySelectorAll('[data-zh]').forEach(function(el){
-        el.textContent=l==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en');
-      });
-    })();
-  </script>`;
-}
-
 /* ── Newsletter CTA (shared) ─────────────────────── */
 
 function buildNewsletterCta() {
@@ -350,7 +295,7 @@ ${breadcrumbLd}
   ${analyticsTags()}
 </head>
 <body class="bp-body">
-  ${buildStaticHeader()}
+  ${buildStaticHeader({ active: "best", x: true })}
   <div class="bp-container">
     <nav class="bp-breadcrumb">
       <a href="/" data-zh="首页" data-en="Home">Home</a>
@@ -452,6 +397,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   // (Google appends the site name itself).
   const subjectFull = scenario.title;
   const subject = (() => {
+    // `serp_subject` names the <title> subject outright, for a title whose
+    // trimmed form would lose the word the page exists for ("Video Skills for
+    // Claude Code & Opus 5.5" trimmed to "... Claude Code": the model was gone).
+    if (scenario.serp_subject) return scenario.serp_subject;
     if (subjectFull.length <= 34) return subjectFull;
     // Cut at a word boundary, then drop a dangling conjunction or stub word —
     // a naive slice produced "browser-use, Playwright MCP & AI B:", which
@@ -592,11 +541,12 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const skillCardsHtml = skills.map((s, i) => {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
+    const catLabelZh = CATEGORY_LABELS_ZH[s.category] || "AI 工具";
     const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
     const qs = extractQuickStart(s.readme_content);
     const qsHtml = qs
       ? `<div style="margin-top:8px;padding:8px 12px;background:var(--bp-bg-alt);border-radius:6px;font-size:13px">
-          <strong style="color:var(--bp-text-slate)">Quick Start:</strong>
+          ${biSpan("Quick Start:", "快速上手：", { tag: "strong", attrs: 'style="color:var(--bp-text-slate)"' })}
           <span style="color:var(--bp-text-slate)"> ${esc(qs.text.slice(0, 150))}${qs.text.length > 150 ? "..." : ""}</span>
           ${qs.code ? `<pre class="bp-code"><code>${esc(qs.code.slice(0, 300))}</code></pre>` : ""}
         </div>`
@@ -609,19 +559,19 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>
-            <a class="bp-card-title" href="/skill/${esc(s.repo_full_name)}/" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? `<span class="bp-badge-new">NEW</span>` : ""}
-            <span style="color:var(--bp-text-muted);font-size:13px;margin-left:8px">by ${esc(s.author_name)}</span>
+            <a class="bp-card-title" href="/skill/${esc(s.repo_full_name)}/" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
+            <span style="color:var(--bp-text-muted);font-size:13px;margin-left:8px" data-en="by ${esc(s.author_name)}" data-zh="作者 ${esc(s.author_name)}">by ${esc(s.author_name)}</span>
           </div>
           <div class="bp-card-meta">
             <span>&#9733; ${starsK(s.stars)}</span>
             ${s.language ? `<span>${esc(s.language)}</span>` : ""}
-            <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)">${esc(catLabel)}</span>
+            <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
         </div>
         <p class="bp-card-desc" style="margin:8px 0 0">${esc(s.description || "")}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
-          <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none">View Details &rarr;</a>
+          <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none" data-en="View Details →" data-zh="查看详情 →">View Details &rarr;</a>
           <a href="https://github.com/${esc(s.repo_full_name)}" style="color:var(--bp-text-secondary);font-size:13px;text-decoration:none">GitHub &rarr;</a>
         </div>
       </div>`;
@@ -704,7 +654,7 @@ ${faqLd}
   ${analyticsTags()}
 </head>
 <body class="bp-body">
-  ${buildStaticHeader()}
+  ${buildStaticHeader({ active: "best", x: true })}
   <div class="bp-container">
       <!-- Breadcrumb -->
       <nav class="bp-breadcrumb">
@@ -712,7 +662,7 @@ ${faqLd}
         <span style="margin:0 6px">&gt;</span>
         <a href="/best/" data-zh="最佳工具" data-en="Best Tools">Best Tools</a>
         <span style="margin:0 6px">&gt;</span>
-        <span>${esc(scenario.title)}</span>
+        <span data-en="${esc(scenario.title)}" data-zh="${esc(scenario.zhTitle)}">${esc(scenario.title)}</span>
       </nav>
 
       <!-- Hero -->
@@ -742,7 +692,7 @@ ${faqLd}
 
       <!-- Skill Cards -->
       <section>
-        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.zhTitle)} 工具" data-en="Top ${skills.length} ${esc(scenario.title)} Tools">Top ${skills.length} ${esc(scenario.title)} Tools</h2>
+        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${skills.length} ${esc(seoTitleSubject)}">Top ${skills.length} ${esc(seoTitleSubject)}</h2>
       ${skillCardsHtml}
       </section>
 
@@ -754,7 +704,7 @@ ${faqLd}
             <thead>
               <tr>
                 <th data-en="Tool" data-zh="工具">Tool</th>
-                <th style="text-align:right">Stars</th>
+                <th style="text-align:right" data-en="Stars" data-zh="星标">Stars</th>
                 <th data-en="Language" data-zh="语言">Language</th>
                 <th data-en="License" data-zh="许可证">License</th>
                 <th style="text-align:right" data-en="Score" data-zh="评分">Score</th>
@@ -796,13 +746,13 @@ ${faqLd}
       <!-- Footer -->
       <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
         <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
-          <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none">About</a>
-          <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none">Blog</a>
-          <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none">Privacy</a>
-          <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none">Terms</a>
+          <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="About" data-zh="关于">About</a>
+          <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Blog" data-zh="博客">Blog</a>
+          <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Privacy" data-zh="隐私">Privacy</a>
+          <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Terms" data-zh="条款">Terms</a>
           <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
         </div>
-        <p style="margin:0">&copy; ${year} Agent Skills Hub. Open-source project.</p>
+        <p style="margin:0" data-en="© ${year} Agent Skills Hub. Open-source project." data-zh="© ${year} Agent Skills Hub · 开源项目">&copy; ${year} Agent Skills Hub. Open-source project.</p>
       </footer>
     </div>
 </body>

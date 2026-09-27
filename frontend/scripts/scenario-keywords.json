@@ -3781,8 +3781,9 @@
  },
  {
   "slug": "opus-5-5-video",
-  "title": "Claude Opus 5.5 Video Skills",
-  "description": "Open-source skills and toolkits for making videos with Claude Opus 5.5 in Claude Code — HyperFrames, Remotion, motion graphics, video-editing agents and the music-video projects built with the model. Security-graded; most also run on other Claude and Codex models.",
+  "title": "Video Skills for Claude Code & Opus 5.5",
+  "serp_subject": "Claude Code & Opus 5.5 Video Skills",
+  "description": "Open-source skills and toolkits for making videos in Claude Code — HyperFrames, Remotion, motion graphics and video-editing agents — led by the two projects built with Claude Opus 5.5. The skills are not tied to one model: they run on any Claude or Codex model. Every repo is security-graded.",
   "match": {
    "categories": [],
    "primary_keywords": [
@@ -3868,11 +3869,11 @@
    "min_results": 5,
    "max_results": null,
    "featured": [
+    "JohnHeibel/ClaudeAnimationBase",
+    "JohnHeibel/PDoomVideo",
     "heygen-com/hyperframes",
     "remotion-dev/skills",
     "Vincentwei1021/video-shotcraft",
-    "JohnHeibel/PDoomVideo",
-    "JohnHeibel/ClaudeAnimationBase",
     "op7418/guizang-product-video-skill"
    ],
    "tag_matches": [],

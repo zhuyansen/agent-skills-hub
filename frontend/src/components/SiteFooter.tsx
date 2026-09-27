@@ -145,7 +145,7 @@ export function SiteFooter() {
             </h4>
             <ul className="space-y-2">
               {[
-                { slug: "opus-5-5-video", zh: "Opus 5.5 做视频", en: "Opus 5.5 Video" },
+                { slug: "opus-5-5-video", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
                 { slug: "typesafe-jev", zh: "TypeSafe Jev", en: "TypeSafe Jev" },
                 { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
                 { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
