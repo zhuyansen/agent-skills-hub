@@ -14,7 +14,10 @@ answer here was seen.
 
   types    what kind of video each repo on the page produces
 
+  add      review one repo the owner names and put it with the page's rows
+
 Usage: python ops/jev-review/scenario_gate.py <collect|judge|report|types> [slug]
+       python ops/jev-review/scenario_gate.py add <slug> <owner/repo>
        python ops/jev-review/scenario_gate.py audit <slug> <names.json>
 Env:   OPENROUTER_API_KEY (judge); gh CLI signed in (collect, judge)
 """
@@ -59,6 +62,10 @@ CRAFT = [
     "sharon-laicc/viral-video-decomposer",
 ]
 
+# Creative code that is not video in the strict sense (a real-time 3D scroll, hand-drawn
+# art with films among its outputs). Listed by the owner, filed under the nearest type.
+CREATIVE = {"JimLiu/taohuayuan": "story", "alexgreensh/anidoodle": "motion"}
+
 QUERIES = {
     "claude-video-skills": {
         "wave": ['"opus 5.5" video in:name,description'],
@@ -76,9 +83,9 @@ QUERIES = {
         # away (a music video is not an agent tool; a screenwriting skill makes no video);
         # this is a list of names, not a rule, and nothing joins it without the owner
         # saying so.
-        "owner_admitted": ["ledbetterljoshua/functional-emotions-video", *CRAFT],
+        "owner_admitted": ["ledbetterljoshua/functional-emotions-video", *CRAFT, *CREATIVE],
         # Their type is the owner's too: what comes before the video, not the video.
-        "owner_kinds": {name: "craft" for name in CRAFT},
+        "owner_kinds": {**{name: "craft" for name in CRAFT}, **CREATIVE},
         # Skills that live in a folder of a larger repo; reviewed from the folder's README.
         "sub_skill_kinds": {"EverMind-AI/Raven/skills/git-story-film": "explainer"},
     },
@@ -393,6 +400,19 @@ def types(slug: str) -> None:
     KINDS_FILE.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
 
 
+def add(slug: str, name: str) -> None:
+    """Review one repo and put it with the page's rows (for repos the owner names)."""
+    sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
+    from jse.openrouter import OpenRouter  # noqa: E402
+    meta = json.loads(gh([f"repos/{name}"]) or "{}")
+    row = judge_one(OpenRouter(), slug, slim(meta, "owner"), date.today())
+    path = out_dir(slug) / "page-judged.json"
+    rows = [r for r in json.loads(path.read_text()) if r["repo"] != row["repo"]] + [row]
+    path.write_text(json.dumps(rows, ensure_ascii=False, indent=1))
+    print(f"{row['repo']} {row['stars']} stars: video {row['makes_video']:.2f} agent {row['agent_driven']:.2f} "
+          f"quality {row['quality']:.2f} -> {row['verdict']}")
+
+
 def audit(slug: str, names_file: str) -> None:
     rows = []
     for name in json.loads(Path(names_file).read_text()):
@@ -412,7 +432,7 @@ def audit(slug: str, names_file: str) -> None:
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else "report"
     slug = sys.argv[2] if len(sys.argv) > 2 else "claude-video-skills"
-    if step == "audit":
-        audit(slug, sys.argv[3])
+    if step in ("audit", "add"):
+        {"audit": audit, "add": add}[step](slug, sys.argv[3])
     else:
         {"collect": collect, "judge": judge, "report": report, "types": types}[step](slug)
