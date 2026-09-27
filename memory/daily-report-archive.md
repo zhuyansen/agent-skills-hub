@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-27
+1. jub0t/Concat — 用开源免费的跨平台剪辑器替代剪映 CapCut，支持 MCP 让智能体动手剪片（3732★ 115.6/day）
+2. lemomo-ai/lemo-opuscar — 🆕 挑选 39 种电影风格提示词，每种附一部由 Claude Opus 5.5 纯代码生成的短片（76★ 76.0/day）
+3. YUTA-fywoo/jev-gui-delegate — 🆕 让 Codex 把 Windows 与 Chrome 图形界面操作委派给本地执行，由 Jev 做语义判断（108★ 71.6/day）
+4. brumar/chess-postmortem-skills — 🆕 用 Stockfish 给棋局做复盘，输出带注释棋谱、网页查看器和解说视频（37★ 30.9/day）
+5. kieranklaassen/truffler — 🆕 为 Rails 应用加上 Jev 驱动的搜索，建索引时打标签并理解查询意图（39★ 27.7/day）
+6. HarnessRouter/SystemOneHarness — 🆕 在本地或 Harness 云上运行 Jev 等 System One 决策模型（169★ 23.6/day）
+7. tomascupr/reelql — 🆕 丢进任意视频链接，返回一份类型化 JSON，给智能体装上"眼睛"（23★ 18.4/day）
+8. Rylaispirit/cinematic-video-prompt-skill — 🆕 速查镜头角度、运镜、布光与构图，写出电影感 AI 视频提示词（97★ 15.2/day）
+9. egma-ai/jev-code-reviewer — 🆕 审查代码行为而非只看 diff，由 Jev 排定人工关注优先级（76★ 9.5/day）
+10. blixvip/easyedit — 🆕 输入一部电影名，本地生成带字幕、踩点剪辑的粉丝混剪，无需 API key（89★ 8.2/day）
+🎯 今日趋势：**6 席是视频工具**——开源剪映替代 Concat（**3,732★**，占十席合计 4,446★ 的八成多）、Opus 写代码拍短片、视频转 JSON、电影感提示词、踩点混剪、棋局解说视频；TypeSafe Jev 发布第十一天，相关项目从昨日 8 席降到 **4 席**，且转向具体落地场景（GUI 委派、Rails 搜索、代码审查）。
+> 注：去重范围＝repo 内 archive 全部 94 个日期段，并入记忆区 fresh-skills-archive 与 daily-report-archive 机械提取，小写去重后比对基数 4,923 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（210 条，LIMIT 300 未触顶），命中历史推荐 26 条剔除；十席 first_seen 全部 ≤48h（最晚 easyedit 46h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天（crawl4ai、Tencent/BrowserSkill、LibreChat、humanlayer/skills、easy-stock 等超窗老仓新收录不入榜；Concat 32 天为窗内老仓新收录，不标 🆕）。**排除项**：①JoinArtisanVent/x-scraper-no-api（57★）、breakstageaxe61/genspark-claw（55★）、graygnatconsole/mcp-audit-tool（55★）：三个账号**同日（2026-03-25）注册**、均 2 粉 2 仓、其余仓 0★、各仅 3 次提交、各 1 fork，典型刷星集群，前者 security_grade 还为 caution；②tugrawork-creator/saas-motion-kit（90★ 56.8/day，本可居第 4）：账号 08-21 新建、4 粉、另一仓 0★、仅 5 次提交，单仓爆星形态；③awss1i/assay（96★）：账号 09-10 新建、名下 17 仓其余全 0★；④MichaelKinsy/PiG（141★）：12 粉、其余仓 ≤1★，单仓爆星形态；⑤555cute/astra-quant-agent（261★）：3 粉、其余仓 2★，且为自动交易、grade unknown；⑥meskhetian/linkedin-applicants-mcp（28★）：0 粉、另一仓 0★、0 fork；⑦imikerussell/beebots：uncategorized 的 OKX 交易机器人，涉及资金操作不推；⑧christianmat/jev-pokemon：uncategorized、无描述，游戏项目非 agent 工具；⑨alchaincyf/huashu-flash：first_seen 60h 超出 48h 窗。入选项复核（`gh api`）：第 1 席 jub0t 2019 建号 / 423 粉、名下另有 295★ 仓，AGPL-3.0，342 fork、100+ 次提交，实时 3,744★；第 2 席 lemomo-ai 7 粉（**轻红旗**），名下另有 35★ 仓、11 fork，⚠️仅 6 次提交、LICENSE 为 NOASSERTION；第 3 席 YUTA-fywoo 账号 05-20 新建、6 粉（**轻红旗**），名下另有 71★ 仓、6 watcher，⚠️未声明 LICENSE；第 4 席 brumar 2012 建号、名下另有 64★ 仓，⚠️LICENSE 为 NOASSERTION；第 5 席 kieranklaassen 788 粉的 Rails 社区开发者，MIT；第 6 席 HarnessRouter 名下另有 2,670★ 仓，Apache-2.0；第 7 席 tomascupr 210 粉、名下 447★ 仓，MIT，⚠️仅 1 次提交、0 fork；第 8 席 Rylaispirit 3 粉（**轻红旗**），但名下另有 57★ 仓、65 fork，MIT；第 9 席 egma-ai 3 粉、名下另有 139★ 仓，MIT；第 10 席 blixvip 名下另有 561★、332★ 仓，MIT。🆕 判定＝created_at 距今 14 天内，第 2–10 席命中（09-16~09-26 建仓）。security_grade：Concat、lemo-opuscar、chess-postmortem-skills 尚为 unknown，其余 safe。表中 stars 为数据库快照，部分仓实时更高（lemo-opuscar 107★、jev-gui-delegate 131★、cinematic-video-prompt-skill 102★），按红线保留快照值。
+
+---
+
 ## 2026-09-26
 1. google/artemis — 用自然语言指令驱动安卓手机端到端自动化，谷歌官方开源（9845★ 227.5/day）
 2. Hisn00w/ASu-skills — 用九个入口串起简历优化、岗位投递与面试准备的中文求职技能包（5124★ 114.6/day）
