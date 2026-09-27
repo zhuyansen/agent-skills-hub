@@ -56,6 +56,10 @@ QUERIES = {
             "music video claude in:name,description",
         ],
         "names_model": r"opus[\s-]?5\.5",
+        # Decided by the owner, repo by repo (2026-09-27): music videos made with Opus 5.5.
+        # They are not agent tools, so the questions below turn them away; this is a list
+        # of names, not a rule, and nothing joins it without the owner saying so.
+        "owner_admitted": ["ledbetterljoshua/functional-emotions-video"],
     },
 }
 
@@ -169,7 +173,9 @@ def ask(client, row: dict, readme: str, limit: int, questions: dict, full: bool)
     return {k: float(v.get("noul", 0)) for k, v in res.answers.items()}
 
 
-def verdict(row: dict) -> str:
+def verdict(row: dict, slug: str = "opus-5-5-video") -> str:
+    if row["repo"] in QUERIES[slug].get("owner_admitted", []):
+        return "admit"
     if not row["readme_chars"]:
         return "no_readme"
     if row["stars"] < GATE_FLOOR and not row["names_model"]:
@@ -195,7 +201,7 @@ def judge_one(client, slug: str, row: dict, today: date) -> dict:
                days=days, stars_per_day=row["stars"] / days)
     for key in RELEVANCE:
         out.setdefault(key, 0.0)
-    out["verdict"] = verdict(out)
+    out["verdict"] = verdict(out, slug)
     return out
 
 
@@ -223,7 +229,7 @@ def report(slug: str) -> None:
     rows = json.loads((out_dir(slug) / "judged.json").read_text())
     counts: dict[str, int] = {}
     for r in rows:
-        r["verdict"] = verdict(r)
+        r["verdict"] = verdict(r, slug)
         counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
     (out_dir(slug) / "judged.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
     print("verdicts:", counts)
