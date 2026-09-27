@@ -867,8 +867,10 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
         # (57014) when run live against the full skills table. Non-fatal:
         # a stale cache is far better than a failed sync.
         # See supabase/migrations/013 (masters) + 014 (landing data).
-        from sqlalchemy import text
-
+        # `text` is the module-level import. Importing it again here made it a
+        # local of this whole function, so the README phase above, which calls
+        # text(...) first, raised UnboundLocalError on every sync from
+        # 2026-09-23 to 2026-09-27 and fetched no README.
         for fn in (
             "refresh_master_aggregates",
             "refresh_landing_data",
