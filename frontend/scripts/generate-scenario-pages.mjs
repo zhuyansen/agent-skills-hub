@@ -687,6 +687,7 @@ ${faqLd}
           <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
+          ${scenario.github_list ? `<a class="bp-stat-chip" href="${esc(scenario.github_list)}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="⭐ GitHub 上的开源合集 ↗" data-en="⭐ Open-source list on GitHub ↗">⭐ Open-source list on GitHub ↗</a>` : ""}
         </div>` : ""}
       </div>
 
