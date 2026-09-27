@@ -17,7 +17,7 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
-import { kindsFor, kindAttrs, kindBarHtml, KIND_SCRIPT } from "./scenario-kinds.mjs";
+import { kindsFor, kindAttrs, kindBarHtml, KIND_SCRIPT, descZh } from "./scenario-kinds.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -582,7 +582,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
             <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
         </div>
-        <p class="bp-card-desc" style="margin:8px 0 0">${esc(s.description || "")}</p>
+        <p class="bp-card-desc" style="margin:8px 0 0" data-en="${esc(s.description || "")}" data-zh="${esc(descZh(s))}">${esc(s.description || "")}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
           <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none" data-en="View Details →" data-zh="查看详情 →">View Details &rarr;</a>

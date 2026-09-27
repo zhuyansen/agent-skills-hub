@@ -141,8 +141,13 @@ def stars(n: int) -> str:
     return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
 
 
-def describe(row: dict) -> str:
-    text = re.sub(r"\s+", " ", row.get("description") or "").replace("|", "\\|").strip()
+ZH = json.loads((ROOT / "frontend/scripts/scenario-desc-zh.json").read_text())
+
+
+def describe(row: dict, lang: str = "en") -> str:
+    original = row.get("description") or ""
+    chosen = (ZH.get(row["repo_full_name"]) or original) if lang == "zh" else original
+    text = re.sub(r"\s+", " ", chosen).replace("|", "\\|").strip()
     return text if len(text) <= DESC_MAX else text[:DESC_MAX - 1].rstrip() + "…"
 
 
@@ -154,11 +159,11 @@ def security(row: dict, t: dict) -> str:
     return f"[{label}]({SITE}/skill/{row['repo_full_name']}/{UTM})"
 
 
-def table(rows: list[dict], t: dict) -> list[str]:
+def table(rows: list[dict], t: dict, lang: str = "en") -> list[str]:
     lines = [t["cols"], "|---|---:|---|---|"]
     for r in rows:
         name = r["repo_full_name"]
-        lines.append(f"| [{name}](https://github.com/{name}) | {stars(r['stars'])} | {describe(r)} | {security(r, t)} |")
+        lines.append(f"| [{name}](https://github.com/{name}) | {stars(r['stars'])} | {describe(r, lang)} | {security(r, t)} |")
     return lines
 
 
@@ -177,11 +182,11 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
     out += [f"- [{k['icon']} {k[label]}](#{anchor(k)}) ({count(k)})" for k in used]
     out += ["", f"## {t['rules_h']}", ""] + [f"{i}. {rule}" for i, rule in enumerate(t["rules"], 1)]
     out += ["", t["rules_note"], "", '<a id="made-with-opus-55"></a>', f"## {t['made_h']}", "", t["made"], ""]
-    out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t)
+    out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t, lang)
     for k in used:
         out += ["", f'<a id="{anchor(k)}"></a>', f"## {k['icon']} {k[label]}", "",
                 f"[{t['filter']}]({PAGE}{UTM}#type-{k['id']})", ""]
-        out += table([r for r in rows if r["kind"] == k["id"]], t)
+        out += table([r for r in rows if r["kind"] == k["id"]], t, lang)
     out += ["", t["grade_note"], "", f"## {t['related_h']}", ""] + [f"- {x}" for x in t["related"]]
     out += ["", f"## {t['contrib_h']}", "", t["contrib"], "", "---", "", t["data"].format(today=date.today().isoformat()), ""]
     return "\n".join(out)

@@ -28,6 +28,14 @@ export function kindsFor(slug) {
   };
 }
 
+const DESC_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-desc-zh.json");
+const DESC_ZH = existsSync(DESC_PATH) ? JSON.parse(readFileSync(DESC_PATH, "utf-8")) : {};
+
+/** Chinese description of a repo, or its own description when none was written. */
+export function descZh(skill) {
+  return DESC_ZH[skill.repo_full_name] || skill.description || "";
+}
+
 /** Attributes for one card: its kind and its stars (the filter sorts by them). */
 export function kindAttrs(scenarioKinds, skill) {
   if (!scenarioKinds) return "";
