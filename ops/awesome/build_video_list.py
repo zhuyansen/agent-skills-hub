@@ -56,7 +56,7 @@ TEXT = {
                        "A repo near a cut-off can land on either side; open an issue if one is misfiled."),
         "made_h": "Made with Claude Opus 5.5", "made": "Projects whose README says they were built with the model.",
         "contents": "Contents", "cols": "| Repo | Stars | What it does | Security |",
-        "filter": "Open this type on the live page, sorted by stars →",
+        "filter": "Open this type on the live page, sorted by stars →", "in_repo": "in {repo}:",
         "pending": "pending", "grade_note": ("**Security** is the grade of the repo's README and install steps "
                                             "on Agent Skills Hub. *pending* means the catalog has not graded it yet."),
         "related_h": "Related collections",
@@ -83,7 +83,7 @@ TEXT = {
         "rules_note": "这些问题由决策模型逐个读 README 回答,不是人工挑选。卡在线上的仓库可能判到任一边,归错了请提 issue。",
         "made_h": "用 Claude Opus 5.5 做出来的", "made": "README 写明用这个模型做的项目。",
         "contents": "目录", "cols": "| 仓库 | 星数 | 做什么 | 安全评级 |",
-        "filter": "在在线页面打开这一类,按星数排序 →",
+        "filter": "在在线页面打开这一类,按星数排序 →", "in_repo": "所在仓库 {repo}:",
         "pending": "待评级", "grade_note": "**安全评级**是 Agent Skills Hub 对仓库 README 和安装步骤的评级。*待评级*表示目录还没评到它。",
         "related_h": "相关合集",
         "related": ["[opusvideo/awesome-claude-video](https://github.com/opusvideo/awesome-claude-video) —— "
@@ -134,7 +134,22 @@ def entries() -> tuple[list[dict], list[dict]]:
         if row:
             grade = (found.get(name) or {}).get("security_grade")
             rows.append({**row, "security_grade": grade, "kind": kinds["repos"][name], "in_catalog": name in found})
-    return kinds["kinds"], sorted(rows, key=lambda r: -r["stars"])
+    return kinds["kinds"], sorted(rows, key=lambda r: -r["stars"]) + sub_skills(kinds["repos"], found_all=catalog_rows)
+
+
+def sub_skills(kind_of: dict, found_all) -> list[dict]:
+    """Skills that live in a folder of a larger repo (match.sub_skills). Listed last in
+    their type: the stars shown are the parent repo's, not their own."""
+    scenario = next(x for x in json.loads((ROOT / "frontend/scripts/scenario-keywords.json").read_text())
+                    if x["slug"] == SLUG)
+    rows = []
+    for item in scenario["match"].get("sub_skills", []):
+        parent, key = github_row(item["repo"]), f"{item['repo']}/{item['path']}"
+        if parent:
+            grade = (found_all([item["repo"]]).get(item["repo"]) or {}).get("security_grade")
+            rows.append({**parent, "description": item["description"], "security_grade": grade, "in_catalog": True,
+                         "kind": kind_of.get(key, "general"), "key": key, "path": item["path"], "label": item["name"]})
+    return rows
 
 
 def stars(n: int) -> str:
@@ -146,7 +161,7 @@ ZH = json.loads((ROOT / "frontend/scripts/scenario-desc-zh.json").read_text())
 
 def describe(row: dict, lang: str = "en") -> str:
     original = row.get("description") or ""
-    chosen = (ZH.get(row["repo_full_name"]) or original) if lang == "zh" else original
+    chosen = (ZH.get(row.get("key") or row["repo_full_name"]) or original) if lang == "zh" else original
     text = re.sub(r"\s+", " ", chosen).replace("|", "\\|").strip()
     return text if len(text) <= DESC_MAX else text[:DESC_MAX - 1].rstrip() + "…"
 
@@ -163,6 +178,10 @@ def table(rows: list[dict], t: dict, lang: str = "en") -> list[str]:
     lines = [t["cols"], "|---|---:|---|---|"]
     for r in rows:
         name = r["repo_full_name"]
+        if r.get("path"):
+            link, shown = f"https://github.com/{name}/tree/HEAD/{r['path']}", f"{t['in_repo'].format(repo=name)}"
+            lines.append(f"| [{r['label']}]({link}) | {shown} {stars(r['stars'])} | {describe(r, lang)} | {security(r, t)} |")
+            continue
         lines.append(f"| [{name}](https://github.com/{name}) | {stars(r['stars'])} | {describe(r, lang)} | {security(r, t)} |")
     return lines
 
@@ -198,8 +217,8 @@ def main() -> None:
     kinds, rows = entries()
     for lang in TEXT:
         (out / TEXT[lang]["file"]).write_text(readme(lang, kinds, rows))
-    public = [{k: r[k] for k in ("repo_full_name", "stars", "description", "kind", "security_grade", "language", "license")}
-              for r in rows]
+    public = [{k: r.get(k) for k in ("repo_full_name", "path", "stars", "description", "kind", "security_grade",
+                                     "language", "license")} for r in rows]
     (out / "data/skills.json").write_text(json.dumps(
         {"generated": date.today().isoformat(), "source": PAGE, "kinds": kinds, "skills": public},
         ensure_ascii=False, indent=1) + "\n")

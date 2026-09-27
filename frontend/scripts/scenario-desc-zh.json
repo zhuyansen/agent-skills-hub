@@ -16,6 +16,7 @@
  "BusyBee3333/animated-explainer-skills": "把动画讲解视频做成单个 HTML 文件的 Claude Code skills：GSAP 编排模式、重叠检查器、ElevenLabs 配音",
  "Cassette-Editor/oh-my-cassette": "你的随身 AI 剪辑搭档：面向 Claude Code、Codex、Hermes 和 OpenCode 的 AI 视频剪辑插件与 MCP 服务器",
  "ChenShuo2004/cs-shotcraft-skill": "CS Skills 产品宣传片 skill：真实产品界面、镜头表运镜、152 张镜头配方卡与 Ink Press 模板，Remotion 出片",
+ "EverMind-AI/Raven/skills/git-story-film": "把一个仓库的 Git 历史拍成两分钟左右的手绘动画短片：故事、角色、分镜、浏览器预览，最后渲染 4K/60fps MP4",
  "Fagan1024/smart-video-editor": "会看画面的 AI 自动剪辑 Skill：先用视觉模型看懂素材再决定剪哪几秒",
  "Finderchangchang/promo-video-skill": "让 DeepSeek 这类便宜模型也能用 Remotion 做竖版宣传片的 skill，覆盖软件、餐饮、电商、教育、美业、文旅，中英双语",
  "FireRedTeam/FireRed-OpenStoryline": "AI 视频剪辑 agent：用自然语言交互、LLM 规划和工具编排做导演式剪辑，支持可复用的 Style Skills",

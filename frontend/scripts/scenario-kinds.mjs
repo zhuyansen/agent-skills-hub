@@ -17,6 +17,11 @@ const ALL = "all";
 
 const KINDS = existsSync(KINDS_PATH) ? JSON.parse(readFileSync(KINDS_PATH, "utf-8")) : {};
 
+/** A sub-skill is keyed by repo + folder, a repo by its name. */
+function listKey(skill) {
+  return skill.list_key || skill.repo_full_name || "";
+}
+
 /** `{ kinds, of(skill) }` for a scenario, or null when it has no kinds. */
 export function kindsFor(slug) {
   const entry = KINDS[slug];
@@ -24,7 +29,7 @@ export function kindsFor(slug) {
   const byRepo = new Map(Object.entries(entry.repos).map(([k, v]) => [k.toLowerCase(), v]));
   return {
     kinds: entry.kinds,
-    of: (skill) => byRepo.get((skill.repo_full_name || "").toLowerCase()) || "",
+    of: (skill) => byRepo.get(listKey(skill).toLowerCase()) || "",
   };
 }
 
@@ -33,13 +38,14 @@ const DESC_ZH = existsSync(DESC_PATH) ? JSON.parse(readFileSync(DESC_PATH, "utf-
 
 /** Chinese description of a repo, or its own description when none was written. */
 export function descZh(skill) {
-  return DESC_ZH[skill.repo_full_name] || skill.description || "";
+  return DESC_ZH[listKey(skill)] || skill.description || "";
 }
 
 /** Attributes for one card: its kind and its stars (the filter sorts by them). */
 export function kindAttrs(scenarioKinds, skill) {
   if (!scenarioKinds) return "";
-  return ` data-kind="${esc(scenarioKinds.of(skill))}" data-stars="${Number(skill.stars) || 0}"`;
+  const stars = skill.sub_path ? 0 : Number(skill.stars) || 0;
+  return ` data-kind="${esc(scenarioKinds.of(skill))}" data-stars="${stars}"`;
 }
 
 function chip(id, en, zh, count, pressed) {

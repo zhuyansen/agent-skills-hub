@@ -365,7 +365,7 @@ function buildAeoSection(scenario, skills, year) {
 
 /* ── HTML builder ────────────────────────────────── */
 
-function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
+function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills = []) {
   const pageUrl = `${SITE}/best/${scenario.slug}/`;
   const year = new Date().getFullYear();
   // SEO: title ≤ 60 chars. New format (2026-05): "X: N Open-Source Tools Compared (YYYY)"
@@ -553,10 +553,27 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
   // Skill cards HTML
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const scenarioKinds = kindsFor(scenario.slug);
-  const skillCardsHtml = skills.map((s, i) => {
+  // A skill that lives in a folder of a larger repo (match.sub_skills). The
+  // catalog is one row per repo, so the card borrows the parent's row for the
+  // audit link and says whose stars it shows. It has no stars of its own:
+  // it sorts last and stays out of the page's totals and structured data.
+  const parents = new Map(allSkills.map((r) => [(r.repo_full_name || "").toLowerCase(), r]));
+  const subCards = (scenario.match.sub_skills || [])
+    .filter((x) => parents.has(x.repo.toLowerCase()))
+    .map((x) => ({
+      ...parents.get(x.repo.toLowerCase()), repo_name: x.name, description: x.description,
+      readme_content: "", created_at: x.added, sub_path: x.path, list_key: `${x.repo}/${x.path}`,
+    }));
+  const cards = [...skills, ...subCards];
+  const skillCardsHtml = cards.map((s, i) => {
     const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
     const catLabelZh = CATEGORY_LABELS_ZH[s.category] || "AI 工具";
     const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
+    const githubUrl = `https://github.com/${s.repo_full_name}${s.sub_path ? `/tree/HEAD/${s.sub_path}` : ""}`;
+    const titleUrl = s.sub_path ? githubUrl : `/skill/${s.repo_full_name}/`;
+    const starsNote = s.sub_path
+      ? `<span data-en="&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}" data-zh="&#9733; ${starsK(s.stars)} · 所在仓库 ${esc(s.repo_full_name)}">&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}</span>`
+      : `<span>&#9733; ${starsK(s.stars)}</span>`;
     const qs = extractQuickStart(s.readme_content);
     const qsHtml = qs
       ? `<div style="margin-top:8px;padding:8px 12px;background:var(--bp-bg-alt);border-radius:6px;font-size:13px">
@@ -573,11 +590,11 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>
-            <a class="bp-card-title" href="/skill/${esc(s.repo_full_name)}/" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
+            <a class="bp-card-title" href="${esc(titleUrl)}" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
             <span style="color:var(--bp-text-muted);font-size:13px;margin-left:8px" data-en="by ${esc(s.author_name)}" data-zh="作者 ${esc(s.author_name)}">by ${esc(s.author_name)}</span>
           </div>
           <div class="bp-card-meta">
-            <span>&#9733; ${starsK(s.stars)}</span>
+            ${starsNote}
             ${s.language ? `<span>${esc(s.language)}</span>` : ""}
             <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
@@ -586,7 +603,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios) {
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
           <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none" data-en="View Details →" data-zh="查看详情 →">View Details &rarr;</a>
-          <a href="https://github.com/${esc(s.repo_full_name)}" style="color:var(--bp-text-secondary);font-size:13px;text-decoration:none">GitHub &rarr;</a>
+          <a href="${esc(githubUrl)}" style="color:var(--bp-text-secondary);font-size:13px;text-decoration:none">GitHub &rarr;</a>
         </div>
       </div>`;
   }).join("\n      ");
@@ -707,8 +724,8 @@ ${faqLd}
 
       <!-- Skill Cards -->
       <section>
-        <h2 class="bp-section-title" data-zh="Top ${skills.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${skills.length} ${esc(seoTitleSubject)}">Top ${skills.length} ${esc(seoTitleSubject)}</h2>
-      ${kindBarHtml(scenarioKinds, skills)}
+        <h2 class="bp-section-title" data-zh="Top ${cards.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${cards.length} ${esc(seoTitleSubject)}">Top ${cards.length} ${esc(seoTitleSubject)}</h2>
+      ${kindBarHtml(scenarioKinds, cards)}
       <div id="kind-cards">
       ${skillCardsHtml}
       </div>
@@ -839,7 +856,7 @@ async function main() {
     mkdirSync(dir, { recursive: true });
     writeFileSync(
       join(dir, "index.html"),
-      buildScenarioHtml(scenario, skills, assetTags, scenarios),
+      buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills),
     );
     console.log(`  \u2713 /best/${scenario.slug}/ (${skills.length} skills)`);
     generated++;

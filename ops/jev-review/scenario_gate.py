@@ -63,6 +63,8 @@ QUERIES = {
         # They are not agent tools, so the questions below turn them away; this is a list
         # of names, not a rule, and nothing joins it without the owner saying so.
         "owner_admitted": ["ledbetterljoshua/functional-emotions-video"],
+        # Skills that live in a folder of a larger repo; reviewed from the folder's README.
+        "sub_skill_kinds": {"EverMind-AI/Raven/skills/git-story-film": "explainer"},
     },
 }
 
@@ -367,8 +369,9 @@ def types(slug: str) -> None:
     print(f"{len(done)} typed · cost ${client.total_cost:.4f}")
     listed = {r["repo"] for r in on_page(slug)}
     kinds = json.loads(KINDS_FILE.read_text()) if KINDS_FILE.exists() else {}
-    kinds[slug] = {"kinds": KIND_LABELS,
-                   "repos": {k: v["kind"] for k, v in sorted(done.items()) if k in listed}}
+    repos = {k: v["kind"] for k, v in sorted(done.items()) if k in listed}
+    repos.update(QUERIES[slug].get("sub_skill_kinds", {}))  # keyed by repo + folder
+    kinds[slug] = {"kinds": KIND_LABELS, "repos": repos}
     KINDS_FILE.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
 
 
