@@ -1,9 +1,12 @@
 import { useI18n } from "../i18n/I18nContext";
 
 // Total curated scenarios — keep in sync with scripts/scenario-keywords.json.
-const SCENARIO_COUNT = 84;
+const SCENARIO_COUNT = 87;
 
 const HOT_SCENARIOS = [
+  // Model-wave pages lead: newest, and until 2026-09-27 linked from nowhere on the site.
+  { slug: "opus-5-5-video", zh: "Opus 5.5 做视频", en: "Opus 5.5 Video" },
+  { slug: "typesafe-jev", zh: "TypeSafe Jev", en: "TypeSafe Jev" },
   { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
   { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
   { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },

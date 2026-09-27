@@ -259,13 +259,16 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
   const pageUrl = `${SITE}/best/`;
   const year = new Date().getFullYear();
   const title = `Best AI Agent Tools by Scenario (${year}) | Agent Skills Hub`;
-  const metaDesc = "Browse 40+ curated scenario guides to find the best AI agent tools, MCP servers, and Claude skills for your specific use case.";
+  const metaDesc = `Browse ${scenarios.length} curated scenario guides to find the best AI agent tools, MCP servers, and Claude skills for your specific use case.`;
   const ogImage = `${SITE}/og-image.png`;
 
   const { linkTags } = assetTags;
 
   // Group scenarios by rough category
   const groups = [
+    // Model-wave pages first: they are the newest and were reachable only from search —
+    // /best/typesafe-jev/ was the site's most-visited scenario page with no link to it here.
+    { label: "New Model Waves", zh: "模型浪潮", icon: "🌊", slugs: ["opus-5-5-video", "typesafe-jev"] },
     { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory", "mcp-for-notion", "mcp-for-github", "mcp-for-google"] },
     { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools", "ai-code-editor", "web-development", "api-testing"] },
     { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["ai-agent-framework", "multi-agent", "prompt-engineering", "model-evaluation", "local-llm", "claude-code-skills", "codex-skills"] },
@@ -275,6 +278,12 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
     { label: "DevOps & Automation", zh: "DevOps 与自动化", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
     { label: "Communication", zh: "通讯集成", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
   ];
+
+  // Anything not placed in a group still gets listed. The groups are hand-written, so
+  // every scenario added without editing them used to vanish from this page: 31 of 87.
+  const grouped = new Set(groups.flatMap((g) => g.slugs));
+  const ungrouped = scenarios.filter((s) => !grouped.has(s.slug) && scenarioSkillCounts[s.slug]).map((s) => s.slug);
+  if (ungrouped.length) groups.push({ label: "More Scenarios", zh: "更多场景", icon: "🧭", slugs: ungrouped });
 
   const groupsHtml = groups.map((g) => {
     const items = g.slugs
