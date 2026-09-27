@@ -317,9 +317,10 @@ def on_page(slug: str) -> list[dict]:
 
 
 GENERAL_MIN = 0.6
-# Kinds too small to stand alone are filed under a neighbour. Measured 2026-09-27 on 168
-# repos: 4 avatar tools; 13 "demo" winners of which about 5 make demo videos.
-MERGED = {"avatar": "shorts", "demo": "promo"}
+# A kind too small to stand alone is filed under a neighbour: of 13 "demo" winners about
+# 5 make demo videos. Avatars are only 4 repos but keep their own chip (owner's decision,
+# 2026-09-27): people look for digital-human tools by that name.
+MERGED = {"demo": "promo"}
 # Two questions fire too easily at 0.5. "Set to a song" fits any video with background
 # music (half the music bucket was general Remotion skills); "a walkthrough of software"
 # fits most tools whose README walks through itself (manim_skill scored 0.68).
@@ -330,7 +331,8 @@ KIND_LABELS = [
     {"id": "promo", "icon": "📣", "en": "Promo & demos", "zh": "产品宣传与演示"},
     {"id": "explainer", "icon": "🎓", "en": "Explainers", "zh": "讲解科普"},
     {"id": "editing", "icon": "✂️", "en": "Editing", "zh": "剪辑与后期"},
-    {"id": "shorts", "icon": "📱", "en": "Shorts, social & avatars", "zh": "短视频、口播与数字人"},
+    {"id": "shorts", "icon": "📱", "en": "Shorts & social", "zh": "短视频与口播"},
+    {"id": "avatar", "icon": "🧑‍💼", "en": "Avatars", "zh": "数字人"},
     {"id": "story", "icon": "📖", "en": "Stories & animation", "zh": "故事与动画"},
     {"id": "motion", "icon": "🎞", "en": "Motion graphics", "zh": "动效与 Logo"},
     {"id": "music", "icon": "🎵", "en": "Music videos", "zh": "音乐视频"},

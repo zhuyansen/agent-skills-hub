@@ -28,8 +28,14 @@
    {
     "id": "shorts",
     "icon": "📱",
-    "en": "Shorts, social & avatars",
-    "zh": "短视频、口播与数字人"
+    "en": "Shorts & social",
+    "zh": "短视频与口播"
+   },
+   {
+    "id": "avatar",
+    "icon": "🧑‍💼",
+    "en": "Avatars",
+    "zh": "数字人"
    },
    {
     "id": "story",
@@ -56,7 +62,7 @@
    "Agentchengfeng/chengfeng-videocut-skills": "editing",
    "AgriciDaniel/claude-gif": "motion",
    "AgriciDaniel/claude-shorts": "editing",
-   "AgriciDaniel/lipnardo": "shorts",
+   "AgriciDaniel/lipnardo": "avatar",
    "Alisa0808/vox-director": "explainer",
    "AllenAI2014/remotion-guofeng-starter": "story",
    "AmazingAng/ccvideo": "promo",
@@ -89,7 +95,7 @@
    "Phantomlau3674/voxstylehub-steven": "explainer",
    "PoetCoderJun/MotionTalk": "editing",
    "Samin12/samin-reel-engine-plugin": "shorts",
-   "Upload-Post/avatar-mix": "shorts",
+   "Upload-Post/avatar-mix": "avatar",
    "VasiniDevi/motion-skills": "general",
    "Vincentwei1021/video-shotcraft": "promo",
    "Vincentwei1021/video-talkcraft": "explainer",
@@ -134,7 +140,7 @@
    "hassancs91/claude-youtube-editor": "editing",
    "hetpatel-11/Adobe_Premiere_Pro_MCP": "editing",
    "heygen-com/hyperframes": "general",
-   "heygen-com/skills": "shorts",
+   "heygen-com/skills": "avatar",
    "hi-nikola/hand-drawn-explainer-video-nikola": "explainer",
    "holy-templar/vox-animated-ad-mcp": "explainer",
    "hypit-ai/hypit": "general",
@@ -215,7 +221,7 @@
    "zenstory-ai/video-recap-skills": "editing",
    "zhenwusw/orca-motion-skill": "motion",
    "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill": "general",
-   "zlong6943-commits/football-prediction-avatar-video": "shorts",
+   "zlong6943-commits/football-prediction-avatar-video": "avatar",
    "znyupup/ai-video-editing-skill": "editing",
    "znyupup/knowledge-explainer-skill": "explainer",
    "zoglmk/codex-video-pipeline": "shorts"
