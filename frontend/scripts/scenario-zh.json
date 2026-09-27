@@ -544,5 +544,17 @@
       "决策模型"
     ],
     "d": "基于 TypeSafe Jev 决策模型的开源项目,逐个做了安全评级:jev-ultrafast 浏览器 agent、openjev、fast-jev-compaction、Jev 代码审查工具和 MCP 服务器。装之前先查一查。"
+  },
+  "opus-5-5-video": {
+    "t": "Claude Opus 5.5 做视频",
+    "k": [
+      "Opus 5.5 视频",
+      "Claude 做视频",
+      "视频 skill",
+      "动效",
+      "HyperFrames",
+      "Remotion"
+    ],
+    "d": "用 Claude Opus 5.5 在 Claude Code 里做视频的开源 skill 和工具包:HyperFrames、Remotion、动效、视频剪辑 agent,以及用这个模型做出来的音乐视频项目。逐个做了安全评级;多数也能在其他 Claude / Codex 模型上跑。"
   }
 }

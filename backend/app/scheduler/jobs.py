@@ -45,6 +45,13 @@ CORE_QUERIES = [
     # (see sync_selection.with_push_filter), so the whole wave is fetched.
     "jev in:name,description,topics created:>=2026-09-15",
     "typesafe in:name,description,topics created:>=2026-09-15",
+    # Code-driven video with Claude (2026-09-27, /best/opus-5-5-video/): after Opus 5.5
+    # shipped, repos that make music videos and motion graphics by writing code appeared
+    # daily; HyperFrames and Remotion skills are the tools they are built on.
+    '"opus 5.5" video in:name,description created:>=2026-09-15',
+    "hyperframes in:name,description,topics",
+    "remotion skill in:name,description,topics",
+    "claude video skill in:name,description",
 ]
 
 # ── OpenClaw / NanoClaw ecosystem queries ──
