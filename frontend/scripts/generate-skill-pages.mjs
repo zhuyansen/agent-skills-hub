@@ -19,6 +19,7 @@ import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
+  admittedBelowFloor,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -877,6 +878,12 @@ async function main() {
     }
   }
 
+  // Repos a scenario page lists under the star floor need a page to link to.
+  const scenarioDefs = JSON.parse(
+    readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
+  );
+  const admitted = admittedBelowFloor(scenarioDefs);
+
   // Generate skill pages
   let ok = 0;
   let skipped = 0;
@@ -893,7 +900,7 @@ async function main() {
 
     // Phase 2.1: Only generate pages for skills worth crawling (stars >= MIN_STARS_FOR_PAGE)
     const indexed = shouldIndex(skill);
-    if (skill.stars < MIN_STARS_FOR_PAGE) {
+    if (skill.stars < MIN_STARS_FOR_PAGE && !admitted.has(skill.repo_full_name.toLowerCase())) {
       skipped++;
       continue;
     }

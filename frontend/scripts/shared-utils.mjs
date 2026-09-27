@@ -322,6 +322,17 @@ export function shouldIndex(skill) {
 /** Minimum stars to generate a static page at all */
 export const MIN_STARS_FOR_PAGE = 50;
 
+/** Repos that scenario pages admit under the 50-star floor. Stars say little
+ *  about a repo from last week, so a page can admit one on what its README
+ *  shows instead: `match.admit_below_floor`, written from the review in
+ *  ops/jev-review/scenario_gate.py. An admitted repo also gets a skill page
+ *  (the card links to it), noindex like every page under the floor.
+ *  Returns a Set of lowercased `owner/repo`. */
+export function admittedBelowFloor(scenarios) {
+  const names = scenarios.flatMap((s) => (s.match && s.match.admit_below_floor) || []);
+  return new Set(names.map((n) => n.toLowerCase()));
+}
+
 /** Why a row does or doesn't have a grade (backend/app/services/readme_coverage.py):
  *  graded · pending (README fetched, graded at the next sync) · no_readme (GitHub has
  *  none, so it can't be graded) · not_fetched (queued for the backfill). */

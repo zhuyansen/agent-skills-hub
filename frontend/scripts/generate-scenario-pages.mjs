@@ -15,7 +15,7 @@ import {
   SITE, CATEGORY_LABELS, CATEGORY_LABELS_ZH,
   esc, starsK, stripMarkdown, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
-  analyticsTags, trustBlock, buildStaticHeader, biSpan,
+  analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedBelowFloor,
 } from "./shared-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -60,9 +60,16 @@ function matchSkills(scenario, allSkills) {
 
   const scored = [];
   const featured = [];  // separate list, force-injected at top, ordered by featuredFullNames index
+  const admitted = admittedBelowFloor([scenario]);
 
   for (const skill of allSkills) {
-    if (!shouldIndex(skill)) continue;
+    const fullName = (skill.repo_full_name || "").toLowerCase();
+    // Under the floor only a reviewed repo gets in, and the review already
+    // decided it is on-topic: it skips the keyword score and sorts by stars.
+    if (!shouldIndex(skill)) {
+      if (admitted.has(fullName)) scored.push({ skill, matchScore: 1 });
+      continue;
+    }
 
     // Featured anchor — force include regardless of keyword match
     if (featuredFullNames.length > 0 && featuredFullNames.includes((skill.repo_full_name || "").toLowerCase())) {
