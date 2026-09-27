@@ -9,8 +9,11 @@ answer here was seen.
   collect  GitHub search under the floor, then the page's own keyword matcher
   judge    README + two Jev calls per repo (relevance, quality); cached on disk
   report   table + the list for `match.admit_below_floor`
+  audit    the same relevance questions for repos already on the page (names from a
+           JSON list); off-topic ones go to `match.exclude_repos`
 
 Usage: python ops/jev-review/scenario_gate.py <collect|judge|report> [slug]
+       python ops/jev-review/scenario_gate.py audit <slug> <names.json>
 Env:   OPENROUTER_API_KEY (judge); gh CLI signed in (collect, judge)
 """
 from __future__ import annotations
@@ -171,13 +174,9 @@ def verdict(row: dict) -> str:
         return "no_readme"
     if row["stars"] < GATE_FLOOR and not row["names_model"]:
         return "below_gate_floor"
-    # The page has two kinds of entry: tools an agent operates, and videos made with the
-    # model. The second kind is not agent-operated, so it is admitted on naming the model
-    # (the precedent is JohnHeibel/PDoomVideo). Added after the first run, which had
-    # turned away a 44-star music video made with Opus 5.5; it changed that one verdict.
-    made_with_model = row["names_model"] and row["makes_video"] >= RELEVANT
-    agent_tool = row["makes_video"] >= RELEVANT and row["agent_driven"] >= RELEVANT
-    if not (agent_tool or made_with_model):
+    # Both must hold. A video made with the model but not operated by an agent (a
+    # finished music video, a demo) stays off the page: owner's rule, 2026-09-27.
+    if row["makes_video"] < RELEVANT or row["agent_driven"] < RELEVANT:
         return "off_topic"
     return "admit" if row["quality"] >= MID else "low_quality"
 
@@ -200,12 +199,12 @@ def judge_one(client, slug: str, row: dict, today: date) -> dict:
     return out
 
 
-def judge(slug: str) -> None:
+def judge(slug: str, prefix: str = "") -> None:
     sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
     from jse.openrouter import OpenRouter  # noqa: E402
-    client, path = OpenRouter(), out_dir(slug) / "judged.json"
+    client, path = OpenRouter(), out_dir(slug) / f"{prefix}judged.json"
     done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
-    rows = json.loads((out_dir(slug) / "candidates.json").read_text())
+    rows = json.loads((out_dir(slug) / f"{prefix}candidates.json").read_text())
     for i, row in enumerate(rows, 1):
         if row["repo"] in done:
             continue
@@ -237,6 +236,26 @@ def report(slug: str) -> None:
     (out_dir(slug) / "admitted.json").write_text(json.dumps([r["repo"] for r in admitted], indent=1))
 
 
+def audit(slug: str, names_file: str) -> None:
+    rows = []
+    for name in json.loads(Path(names_file).read_text()):
+        meta = json.loads(gh([f"repos/{name}"]) or "{}")
+        if meta.get("full_name"):
+            rows.append(slim(meta, "page"))
+    (out_dir(slug) / "page-candidates.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
+    judge(slug, prefix="page-")
+    judged = json.loads((out_dir(slug) / "page-judged.json").read_text())
+    off = sorted((r for r in judged if r["verdict"] in ("off_topic", "no_readme")), key=lambda r: -r["stars"])
+    print(f"\n{len(judged)} on the page · {len(off)} off-topic")
+    for r in off:
+        print(f"  {r['repo'][:46]:46s} {r['stars']:>6}★ video {r['makes_video']:.2f} agent {r['agent_driven']:.2f} "
+              f"| {r['description'][:70]}")
+
+
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else "report"
-    {"collect": collect, "judge": judge, "report": report}[step](sys.argv[2] if len(sys.argv) > 2 else "opus-5-5-video")
+    slug = sys.argv[2] if len(sys.argv) > 2 else "opus-5-5-video"
+    if step == "audit":
+        audit(slug, sys.argv[3])
+    else:
+        {"collect": collect, "judge": judge, "report": report}[step](slug)

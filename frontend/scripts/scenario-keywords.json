@@ -3881,7 +3881,6 @@
     "liangdabiao/story-handdrawn-video",
     "znyupup/knowledge-explainer-skill",
     "sunxiayi/make-blender-education-video-skill",
-    "ledbetterljoshua/functional-emotions-video",
     "trunghaiy/appshot",
     "BayramAnnakov/remotion-video-director",
     "Johnson-Jia/video-clipforge",
@@ -3983,6 +3982,23 @@
     "mrieck/demoday-claude-plugin",
     "aituberapp/ai-video-mcp",
     "icytear-svg/podcast-to-video"
+   ],
+   "exclude_repos": [
+    "nexu-io/html-anything",
+    "FireRedTeam/FireRed-OpenStoryline",
+    "LottieFiles/motion-design-skill",
+    "kylezantos/design-motion-principles",
+    "MartinDelophy/ai-video-editor",
+    "eternityspring/reelbench-skills",
+    "modelstudioai/cli",
+    "blixvip/MotionClone",
+    "molly554/replycueai_public",
+    "sugarforever/boring-video-studio",
+    "GML-MMGroup/ClipTalk",
+    "architectds/modeldock",
+    "wyuzhi/qisi-video-remix",
+    "naveen-annam/creativly.ai-brand-video-remotion",
+    "heygen-com/website-to-hyperframes-demo"
    ],
    "tag_matches": [],
    "required_keywords": [

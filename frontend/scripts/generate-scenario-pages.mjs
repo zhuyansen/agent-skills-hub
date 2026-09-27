@@ -61,9 +61,13 @@ function matchSkills(scenario, allSkills) {
   const scored = [];
   const featured = [];  // separate list, force-injected at top, ordered by featuredFullNames index
   const admitted = admittedBelowFloor([scenario]);
+  // Repos the keyword matcher lets in but a README review found off-topic
+  // (not the page's subject, or not something an agent operates).
+  const excludedRepos = new Set((m.exclude_repos || []).map((k) => k.toLowerCase()));
 
   for (const skill of allSkills) {
     const fullName = (skill.repo_full_name || "").toLowerCase();
+    if (excludedRepos.has(fullName)) continue;
     // Under the floor only a reviewed repo gets in, and the review already
     // decided it is on-topic: it skips the keyword score and sorts by stars.
     if (!shouldIndex(skill)) {
