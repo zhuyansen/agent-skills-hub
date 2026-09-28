@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-28
+1. LockedinLabs-AI/agent-console — 🆕 汇总多台机器上 Claude Code 与 Codex 的 token、缓存与花费，全程本地运行（440★ 57.7/day）
+2. ufo-ai/ufo-core — 🆕 开源面向企业业务的智能体操作系统，与 UFO 托管服务共用同一运行时（38★ 35.6/day）
+3. chuspeeism/awesome-opus-5-5-videos — 🆕 分类收录 Claude Opus 5.5 生成的视频案例，附作者与原帖链接（58★ 33.3/day）
+4. bestagentkits/motion-video-skill — 🆕 用 HyperFrames 生成踩点的 1080p 动效视频，自带 AI 配音（92★ 30.1/day）
+5. YeJe-cpu/SeeCut — 🆕 把数字人或真人口播自动精剪成网感短视频，AI 看片自检迭代（75★ 26.0/day）
+6. Finderchangchang/brewreel — 🆕 让 DeepSeek 等便宜模型一条命令做出竖版宣传片，内置广告法校验（57★ 24.8/day）
+7. mitkox/esf — 🆕 在隔离微虚拟机里自托管运行编码智能体，自动验证并留存补丁证据（164★ 18.8/day）
+8. makevoid/motion-graphics-music-video-skill — 🆕 只需一段音乐和一句提示词，让 Opus 5.5 生成动效音乐视频（21★ 12.1/day）
+9. BkashJEE/hermes-agent-archive — 🆕 归档 Hermes Agent 的工作流、技能与社区项目，每条注明出处（25★ 4.8/day）
+10. Heyosseus/sloppy — 静态分析 AI 智能体在 PHP 代码里留下的技术债，附 25 条规则与 Claude Code 钩子（82★ 4.5/day）
+🎯 今日趋势：视频工具连续第二天占 **5 席**（Opus 5.5 视频案例集、HyperFrames 动效、口播精剪、便宜模型出宣传片、音乐动效视频）；另有 3 席管的是**智能体本身**——用量账本 agent-console（**440★**，占十席合计 1,052★ 的四成多）、隔离沙箱软件工厂 esf、PHP 技术债扫描 sloppy；TypeSafe Jev 发布第十二天，相关项目首次 **0 席**入榜。
+> 注：去重范围＝repo 内 archive 全部 95 个日期段，并入记忆区 fresh-skills-archive 与 daily-report-archive 机械提取，小写去重后比对基数 4,985 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（283 条，LIMIT 300 未触顶），命中历史推荐 38 条剔除；十席 first_seen 全部 ≤48h（最晚 hermes-agent-archive 44h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天（herdr-auto-title 等超窗或窗边老仓不入榜）。**排除项**：①admte/orc-claude-plugin（108★ 70.5/day，本可居第 1）：组织仅 1 粉、其余仓全 0★、1 fork，单仓爆星形态；②moguzbulbul/blueprint-animation（58★ 58.0/day）：3 粉、其余仓全 0★，单仓爆星形态，且 uncategorized；③SkylarKitchen/skills（56★ 56.0/day）：18 粉、名下 55 仓其余 ≤2★，单仓爆星形态，保守不推；④aaddrick/building-with-typesafe-jev（90★）：first_seen 54h 超出 48h 窗；⑤joeseesun/qiaomu-home：uncategorized 个人起始页；⑥joetawil7/first-pass（40★）：0 粉、其余仓 0★、0 fork；⑦kurbaitaev/ghost-editor（62★）、itsAalaa7/adhd-study-coach（24★）：1–8 粉、其余仓全 0★；⑧FeiLiuEM/open-medical-jev（37★）：其余仓 ≤5★，保守不推；⑨aurorainfra/grev（39★）：2 粉组织、其余仓全 0★；⑩ledbetterljoshua/functional-emotions-video：音乐视频作品非工具，且其余仓 ≤2★；⑪0xethanq/astra-quant-agent（263★）：3 粉、其余仓 ≤2★，与 09-27 已排除的 555cute/astra-quant-agent 同名，且为自动交易；⑫lxsssssss/pdf-translate（101★）：0 粉、无描述、其余仓 0★；⑬z-liu-xiugou/research-workbench-assistant（126★）：0 粉、0 fork、名下仅此 1 仓；⑭Ablation-Tool/ablation、engenheirodevideo/get-brolls、Pikopod/pikopod、ccai40359-wq/multiagents-workflow：新号或 ≤7 粉且无其他有星仓；⑮Finderchangchang/promo-video-skill：与第 6 席同作者同功能，只取一席。入选项复核（`gh api`）：第 1 席 LockedinLabs-AI 组织 09-25 新建（**轻红旗**），但 66 粉、130 fork，MIT，macOS 构建已签名公证；第 2 席 ufo-ai 组织 8 粉、名下仅此 1 仓（**轻红旗**），6 fork、Apache-2.0，背后有 ufo.ai 托管服务；第 3 席 chuspeeism 228 粉、名下另有 8,914★ 仓，⚠️LICENSE 为 NOASSERTION；第 4 席 bestagentkits 57 粉、名下另有 215★ 仓，31 fork，MIT；第 5 席 YeJe-cpu 名下另有 468★ 仓，19 fork，⚠️LICENSE 为 NOASSERTION；第 6 席 Finderchangchang 2014 建号、名下另有 120★ 仓，Apache-2.0；第 7 席 mitkox 551 粉、名下另有 618★ 仓，MIT，为 Machinist 的独立分叉并注明上游；第 8 席 makevoid 2008 建号、387 粉，MIT；第 9 席 BkashJEE 9 粉、名下另有 49★、42★ 仓，MIT；第 10 席 Heyosseus 23 粉、名下另有 37★ 仓，MIT，⚠️仅 1 fork。🆕 判定＝created_at 距今 14 天内，第 1–9 席命中（09-19~09-27 建仓）；sloppy 09-10 建仓不标。security_grade：motion-video-skill、sloppy 为 safe，其余尚为 unknown。表中 stars 为数据库快照，部分仓实时更高（agent-console 549★、SeeCut 97★、brewreel 87★、awesome-opus-5-5-videos 76★、ufo-core 56★），按红线保留快照值。
+
+---
+
 ## 2026-09-27
 1. jub0t/Concat — 用开源免费的跨平台剪辑器替代剪映 CapCut，支持 MCP 让智能体动手剪片（3732★ 115.6/day）
 2. lemomo-ai/lemo-opuscar — 🆕 挑选 39 种电影风格提示词，每种附一部由 Claude Opus 5.5 纯代码生成的短片（76★ 76.0/day）
