@@ -714,7 +714,7 @@ ${faqLd}
         <h1 data-zh="${titleHasSkillWord ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}">${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}</h1>
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
-          <span class="bp-stat-chip" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</span>
+          <a class="bp-stat-chip" href="#kind-cards" style="text-decoration:none" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</a>
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
           ${scenario.github_list ? `<a class="bp-stat-chip" href="${esc(scenario.github_list)}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="⭐ GitHub 上的开源合集 ↗" data-en="⭐ Open-source list on GitHub ↗">⭐ Open-source list on GitHub ↗</a>` : ""}
