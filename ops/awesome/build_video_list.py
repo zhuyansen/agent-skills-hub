@@ -293,8 +293,12 @@ def main() -> None:
     kinds, rows = entries()
     for lang in TEXT:
         (out / TEXT[lang]["file"]).write_text(readme(lang, kinds, rows))
+    # In the README's order: by type as the sections run, then as each table runs. A commit
+    # made to the list on 2026-09-27 put the file in this order; the generator keeps it.
+    order = {k["id"]: i for i, k in enumerate(kinds)}
+    ranked = sorted(enumerate(rows), key=lambda p: (order.get(p[1]["kind"], len(order)), p[0]))
     public = [{k: r.get(k) for k in ("repo_full_name", "path", "stars", "description", "kind", "security_grade",
-                                     "language", "license")} for r in rows]
+                                     "language", "license")} for _, r in ranked]
     (out / "data/skills.json").write_text(json.dumps(
         {"generated": date.today().isoformat(), "source": PAGE, "kinds": kinds, "skills": public},
         ensure_ascii=False, indent=1) + "\n")
