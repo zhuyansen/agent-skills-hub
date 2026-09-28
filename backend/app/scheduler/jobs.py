@@ -6,7 +6,7 @@ from typing import Any, Optional
 
 import httpx
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from sqlalchemy import func, not_, text
+from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 
 from app.config import settings
@@ -310,18 +310,22 @@ def _repo_names_settled(db: "Session", names: list[str], chunk: int = 1000) -> s
     recently confirmed they don't (app/services/readme_coverage.py). Exact
     match on the unique index, in chunks."""
     from app.models.skill import Skill  # inline like the rest of this module, avoids a circular import
-    from app.services.readme_coverage import MISSING_README_SQL
+    from app.services.readme_coverage import HAS_README_SQL
 
     found: set[str] = set()
     for i in range(0, len(names), chunk):
-        rows = (
-            db.query(Skill.repo_full_name)
-            .filter(Skill.repo_full_name.in_(names[i:i + chunk]))
-            .filter(not_(text(MISSING_README_SQL)))
-            .all()
-        )
+        rows = _settled_query(db, names[i:i + chunk], HAS_README_SQL).all()
         found.update(r.repo_full_name for r in rows)
     return found
+
+
+def _settled_query(db: "Session", names: list[str], has_readme_sql: str):
+    from app.models.skill import Skill
+    return (
+        db.query(Skill.repo_full_name)
+        .filter(Skill.repo_full_name.in_(names))
+        .filter(text(has_readme_sql))
+    )
 
 
 def _get_last_successful_sync(db: "Session") -> Optional[datetime]:
@@ -657,7 +661,9 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                             pass
                 logger.info("README fetch complete: %d/%d successful", len(readme_cache), len(readme_targets))
         except Exception as exc:
-            logger.warning("README fetch phase failed: %s", exc)
+            # The type and the traceback: two bugs hid here for five days behind a
+            # message that was one line, and once an empty one (AssertionError).
+            logger.error("README fetch phase failed: %s: %s", type(exc).__name__, exc, exc_info=True)
 
         # ═══════════════════════════════════════════════════════
         # Phase 6: Clean, upsert, and score

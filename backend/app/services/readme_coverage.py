@@ -27,6 +27,11 @@ MISSING_README_SQL = (
 )
 
 
+# The opposite rule, as its own string: sqlalchemy's not_() refuses a text() clause
+# (it raises a bare AssertionError), which broke the sync's README phase.
+HAS_README_SQL = f"NOT {MISSING_README_SQL}"
+
+
 def readme_missing(content: str | None, fetched_at: datetime | None, now: datetime) -> bool:
     if content is None:
         return True

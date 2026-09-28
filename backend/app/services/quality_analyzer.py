@@ -13,6 +13,7 @@ import re
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
+from app.services.skill_batches import skill_batches
 
 logger = logging.getLogger(__name__)
 
@@ -43,19 +44,14 @@ class QualityAnalyzer:
     def analyze_all(self, db: Session, batch_size: int = 500,
                     repo_names: list[str] | None = None) -> int:
         """Analyze quality for skills. If repo_names given, only those."""
-        if repo_names:
-            skills = (db.query(Skill)
-                      .filter(Skill.repo_full_name.in_(repo_names))
-                      .all())
-        else:
-            skills = db.query(Skill).all()
-        for i, skill in enumerate(skills):
-            self._analyze(skill)
-            if (i + 1) % batch_size == 0:
-                db.commit()
-        db.commit()
-        logger.info("Quality analysis: %d skills", len(skills))
-        return len(skills)
+        count = 0
+        for batch in skill_batches(db, repo_names, batch_size):
+            for skill in batch:
+                self._analyze(skill)
+            db.commit()
+            count += len(batch)
+        logger.info("Quality analysis: %d skills", count)
+        return count
 
     # Section headings that indicate good README structure
     VALUABLE_SECTIONS = [
