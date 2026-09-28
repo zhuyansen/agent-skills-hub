@@ -60,11 +60,14 @@ CRAFT = [
     "erduo1998-cell/video-script-builder",
     "chenmisss/laoxu-video-script",
     "sharon-laicc/viral-video-decomposer",
+    "gnipbao/minimax-h3-video-reverse-skill",
 ]
 
-# Creative code that is not video in the strict sense (a real-time 3D scroll, hand-drawn
-# art with films among its outputs). Listed by the owner, filed under the nearest type.
-CREATIVE = {"JimLiu/taohuayuan": "story", "alexgreensh/anidoodle": "motion"}
+# Named by the owner although the review puts them under the line: creative code that is
+# not video in the strict sense (a real-time 3D scroll, hand-drawn art with films among its
+# outputs) and an editing skill whose README leads with subtitles (makes video 0.40).
+# Filed under the nearest type.
+CREATIVE = {"JimLiu/taohuayuan": "story", "alexgreensh/anidoodle": "motion", "JimLiu/baocut": "editing"}
 
 QUERIES = {
     "claude-video-skills": {
