@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-29
+1. KKKKhazix/AIHOT — 🆕 搭一个自己找热点、自动写日报的行业热点站，换信源和精选标准即可复用（1164★ 1164.0/day）
+2. scarletkc/seiso — 🆕 为 AI 写的项目文档定一套 Markdown 约定并自动校验，人和智能体都读得顺（126★ 74.6/day）
+3. disler/ten-levels-of-jev — 🆕 分十级演示 Jev 用法，从一个聪明的 if 判断到会自己调用 Jev 的编码智能体（63★ 41.2/day）
+4. RamitVishwakarma/Janus — 🆕 在 macOS 菜单栏一键切换多个 Claude Code 账号，并清理开发缓存（111★ 29.1/day）
+5. entropyconquers/simfleet — 🆕 统一调度并行的 React Native 开发，精简模拟器、共享原生构建缓存并标注智能体（76★ 21.3/day）
+6. gnipbao/minimax-h3-video-reverse-skill — 🆕 从真实视频反推 MiniMax H3 首帧与动态提示词，附中文教程与验证工具（131★ 15.0/day）
+7. uehaj/sys1grep — 🆕 按语义而非字面 grep 代码与文本，用 TypeSafe Jev 给每行打分并支持组合条件（145★ 14.3/day）
+8. levy-street/pokemon-claude-red — 🆕 展示 Claude Opus 5.5 纯代码重建的宝可梦红版，零图片文件、浏览器即玩（32★ 13.9/day）
+9. mohit67890/imajev — 🆕 本地运行能看图的 Jev 式类型化决策模型，输入照片与问题输出校准概率（73★ 12.7/day）
+10. INSANE0777/Awwwards-mcp — 🆕 给编码智能体接入获奖网站的设计灵感，可按截图检索并提取设计基因，免 API key（92★ 8.5/day）
+🎯 今日趋势：卡兹克的热点日报框架 AIHOT 上线首日 **1,164★**（占十席合计 1,953★ 的六成）；TypeSafe Jev 发布第十三天重回 **3 席**（十级教程、语义 grep、看图版 Jev），视频工具从连续两天 5–6 席降到 **2 席**，另有 3 席是给智能体配的开发者工具（账号切换、RN 模拟器调度、设计灵感 MCP）。
+> 注：去重范围＝repo 内 archive 全部 96 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,190 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（282 条，LIMIT 300 未触顶），命中历史推荐 48 条剔除；十席 first_seen 全部 ≤48h（最晚 pokemon-claude-red 46h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)，建仓窗沿用 45 天。**排除项**：①zhuyansen/awesome-claude-video-skills（210★ 101.0/day）、zhuyansen/awesome-opus-5.5-video（27★）：本站自有仓库，避免自荐；②Louis-CFM/coucou（83★ 62.0/day）：12 粉、名下其余仓 ≤1★，单仓爆星形态，保守不推；③echris6/motion-video-kit（66★）：1 粉、名下仅另 1 仓；④howseen-ai/claude-motion-design（53★）：09-20 新建组织 1 粉、其余仓 0★，且 security_grade 为 unsafe；⑤lyuyiqi/open-jev-fast（76★）：6 粉、其余仓 ≤3★，且 uncategorized；⑥guanmo-ai/awesome-ai-motion（24★）：08-14 新号 0 粉；⑦infusius/masala（85★）：09-18 新建组织 0 粉；⑧yanauto/opus-manager（41★）：1 粉、其余仓 ≤3★；⑨BnbAgenticChain/agentic-chain（84★）：链上代币项目；⑩brianhong-dev/omo-jev-plugin（22★）：星数过低且其余仓 ≤4★，保守不推。入选项复核（`gh api`）：第 1 席 KKKKhazix 3,664 粉、名下另有 21,000★ 仓，461 fork，MIT；第 2 席 scarletkc 2019 建号、名下另有 241★ 仓，MIT；第 3 席 disler 4,549 粉、名下另有 3,929★ 仓，MIT；第 4 席 RamitVishwakarma 2018 建号、42 仓但其余仓 ≤1★（**轻红旗**），10 fork，MIT；第 5 席 entropyconquers 名下另有 1,070★ 仓，MIT；第 6 席 gnipbao 2016 建号、181 粉、名下另有 2,105★ 仓，MIT；第 7 席 uehaj 2009 建号，⚠️LICENSE 为 NOASSERTION；第 8 席 levy-street 组织名下另有 2,269★ 仓，38 fork，⚠️无 LICENSE；第 9 席 mohit67890 2015 建号、其余仓 ≤4★（**轻红旗**），Apache-2.0；第 10 席 INSANE0777 79 仓、其余仓 ≤4★（**轻红旗**），MIT。🆕 判定＝created_at 距今 14 天内，十席全部命中（09-18~09-28 建仓）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（AIHOT 1,540★、pokemon-claude-red 40★），按红线保留快照值。
+
+---
+
 ## 2026-09-28
 1. LockedinLabs-AI/agent-console — 🆕 汇总多台机器上 Claude Code 与 Codex 的 token、缓存与花费，全程本地运行（440★ 57.7/day）
 2. ufo-ai/ufo-core — 🆕 开源面向企业业务的智能体操作系统，与 UFO 托管服务共用同一运行时（38★ 35.6/day）
