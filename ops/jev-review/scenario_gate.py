@@ -80,6 +80,11 @@ QUERIES = {
             "codex video skill in:name,description",
             "motion graphics skill in:name,description",
             "music video claude in:name,description",
+            # Added 2026-09-30: repos that say film or animation, not video, were never searched.
+            "claude animation skill in:name,description",
+            "claude film in:name,description",
+            "agent video skill in:name,description",
+            "remotion claude in:name,description,topics",
         ],
         "names_model": r"opus[\s-]?5\.5",
         # Decided by the owner, repo by repo (2026-09-27). The questions below turn these
