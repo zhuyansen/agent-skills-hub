@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-09-30
+1. PostHog/jeeves — 🆕 开源先推理再作答的 9B 类 Jev 决策模型，测试集准确率反超 Jev（291★ 291.0/day）
+2. blixvip/NullMotion — 🆕 把成片动效广告与 HyperFrames 黑白草稿逐帧对齐播放，可导出整段拆解视频（579★ 49.8/day）
+3. tunaarikaya/magaza-mcp — 🆕 用一个 MCP 服务同时管理 App Store Connect 与 Google Play，全程土耳其语（56★ 33.8/day）
+4. edenfunf/reelmimic — 🆕 给一段喜欢的视频，让 Claude Code 或 Codex 组成的团队做出同风格新片（35★ 22.2/day）
+5. huangbai-AI/one-prompt-video-skills — 🆕 一句话生成完整口播视频，串起写稿、数字人、B-roll 与 HyperFrames 合成（22★ 20.3/day）
+6. HRuiCcc/RuiC-motion-reel — 🆕 用纯代码渲染 15 秒 1080p 动态图形成片，连配乐也由代码合成（20★ 11.1/day）
+7. rhiever/evident-charts — 🆕 教编码智能体画清晰诚实的图表，出图前先自检数据与图形选择（49★ 10.9/day）
+8. luobosibing2/dsh-jev-plugin — 🆕 给 DeepSeek Harness 接入 Jev 决策层，负责挑技能、排文件与提醒跑偏（29★ 10.6/day）
+9. avbiswas/bev-train — 🆕 演示如何从 Qwen3 训练 Jev 式决策网络，附 15 万条数据集与直播笔记本（28★ 9.2/day）
+10. Rimagination/easyplot — 🆕 让智能体完成科研数据分析与出版级作图，默认 R/ggplot2，内置 335 套色带（58★ 8.5/day）
+🎯 今日趋势：TypeSafe Jev 发布第十四天，"自己训一个 Jev" 成了新方向——PostHog 开源的推理版 Jeeves 上线首日 **291★**，连同 Qwen3 训练教程、DeepSeek Harness 插件共 **3 席**；视频工具回升到 **4 席**（NullMotion 579★ 占十席合计 1,167★ 的一半），另有 **2 席**是教智能体画好图表（evident-charts、easyplot）。
+> 注：去重范围＝repo 内 archive 全部 97 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,225 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（184 条，LIMIT 300 未触顶），命中历史推荐 30 条剔除；十席 first_seen 全部 ≤48h（最晚 magaza-mcp、dsh-jev-plugin、bev-train 29h），48h 内候选足量，未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Twigpine/openclaude（33,570★ 184.2/day）：2026-04 建仓的老库本期才收录（prev_stars=0，velocity 公式失真，按 claude-code-router 先例），且 LICENSE 为 NOASSERTION，保守不推；②Moris-kr/ai-chatroom（35★ 28.5/day）：0 粉、名下其余仓 ≤2★，单仓爆星形态，且依赖用户登录态驱动多家网页版聊天，有服务条款风险；③awangwang123/jianhao-travel-planner（104★ 14.7/day）：2026-05 建号、0 粉、名下仅此 1 仓；④GetBrew/growth-engineer（117★）：0 粉组织、其余仓全为 0★；⑤limelit-co/open（144★）：07-24 新建组织仅 1 仓，fork 140 对 star 144，比例异常；⑥appeeky/aso-skills（2,104★）、akkie76/code-review-skills、OmniJev/OneJev：first_seen 超 48h，且前两者为老库。入选项复核（`gh api`）：第 1 席 PostHog 为 2020 年建的知名组织（2,222 粉、主仓 40,024★），MIT，DB 分类为 uncategorized 但非个人主页项目，保留；第 2 席 blixvip 为 2025-12 建号、22 粉，名下另有 348★、135★ 仓（已第三次入榜，前两次为不同仓），46 fork，⚠️无 LICENSE，README 带自家 nullmotion.com 产品导流；第 3 席 tunaarikaya 2023 建号、69 粉，MIT；第 4 席 edenfunf 2023 建号、13 粉、其余仓 ≤2★（**轻红旗**），MIT；第 5 席 huangbai-AI 2020 建号、109 粉、名下另有 250★ 仓，⚠️无 LICENSE；第 6 席 HRuiCcc 2026-08 建号，但名下另有 451★、107★ 仓，LICENSE 为 NOASSERTION；第 7 席 rhiever（Randal Olson）2012 建号、6,643 粉、名下另有 6,763★ 仓，MIT；第 8 席 luobosibing2 2021 建号、3 粉、名下另有 14★ 仓（**轻红旗**），MIT，README 自述为非官方社区插件；第 9 席 avbiswas 2015 建号、229 粉、名下另有 477★ 仓，⚠️无 LICENSE、自述仍在建设中，DB 分类 uncategorized 但为教程配套仓，保留；第 10 席 Rimagination 2019 建号、178 粉、名下另有 1,047★ 仓，MIT。🆕 判定＝created_at 距今 14 天内，十席全部命中（09-18~09-29 建仓）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（jeeves 315★、huangbai-AI/one-prompt-video-skills 51★），按红线保留快照值。
+
+---
+
 ## 2026-09-29
 1. KKKKhazix/AIHOT — 🆕 搭一个自己找热点、自动写日报的行业热点站，换信源和精选标准即可复用（1164★ 1164.0/day）
 2. scarletkc/seiso — 🆕 为 AI 写的项目文档定一套 Markdown 约定并自动校验，人和智能体都读得顺（126★ 74.6/day）
