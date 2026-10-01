@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-01
+1. rehan-remade/universal-modder — 🆕 让 Claude Code 给几乎任何 PC 游戏做 Mod，逆向、fal 生成美术到实机测试一条龙（677★ 677.0/day）
+2. pengchujin/livecanvas — 🆕 一句话生成带设计封面和动画的 Live 图，可直接存进手机相册（68★ 68.0/day）
+3. nanaism/yomiyasu — 🆕 去掉 AI 生成日文的不自然感，改写成读起来顺的人类日语（33★ 33.0/day）
+4. og2701/in-other-words — 🆕 用浏览器插件划掉冗长的 LinkedIn 帖子，只留一句它真正想说的话（22★ 14.6/day）
+5. Jwuthri/SelfJev — 🆕 开源复刻 Jev 接口的决策模型，单卡跑 Qwen3.5-4B 输出带概率的类型化答案（58★ 8.0/day）
+6. xjli360/sealeap-ecommerce-skills — 🆕 打包 194 个跨境电商技能，覆盖 Shopify、TikTok Shop、OZON 等八大平台（48★ 7.0/day）
+7. Changroro/code-video — 🆕 让智能体先调研主题，再渲染手绘加 8-bit 风格的宣传短片（44★ 6.1/day）
+8. sagochiko/aws-drawio-diagram-skill — 🆕 让 Claude Code 把 AWS 架构直接画成可编辑的 draw.io 文件（33★ 5.8/day）
+9. peterfriese/system-one-foundation-models — 🆕 用 Swift 6 把 Jev 决策模型接入苹果 Foundation Models 框架（54★ 5.8/day）
+10. lintsinghua/paint-mv-skills — 🆕 把一首歌和歌词变成手绘水彩风音乐视频，p5.brush 加 ffmpeg 全自动（27★ 4.8/day）
+🎯 今日趋势：游戏 Mod 智能体 universal-modder 上线首日 **677★**（占十席合计 1,045★ 的六成半）；视频生成仍占 **3 席**（Live 图、宣传短片、水彩 MV），TypeSafe Jev 发布第十五天保有 **2 席**（开源复刻 SelfJev、Swift 接入），另有 2 席是"去 AI 味"文字工具（日语改写、LinkedIn 帖子提炼）。
+> 注：去重范围＝repo 内 archive 全部 98 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,265 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（192 条，LIMIT 300 未触顶），命中历史推荐 36 条剔除；十席 first_seen 全部 ≤48h（最晚 SelfJev 45h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①VoltEmperorChaos/ai-agent-for-pc（50★）：09-19 新建号、0 粉、名下另一仓为乱码名 0★，且分发单个 Windows .exe，刷星+安全双重风险；②devilcoolyue/agentbox（31★）：security_grade 为 caution，保守不推；③probablysamir/drawa 与 HimalayanNomads/drawa：同一仓库迁移到 09-30 新建组织后在库里出现两行，归属未定暂缓；④browseros-ai/BrowserOS（13,782★）、aidanpark/openclaw-android、pashov/skills、Anil-matcha/open-dots、docker/skills、coi 等：建仓数月至数年的老库本期才收录，velocity 公式失真；⑤etosin/arc-draw、thinkany-ai/autojev、marcreichel/laya-php：first_seen 超 48h。入选项复核（`gh api`）：第 1 席 rehan-remade 2024 建号、20 粉、名下另有 49★、34★ 仓，MIT；第 2 席 pengchujin 2016 建号、250 粉、名下另有 233★ 仓，MIT；第 3 席 nanaism 2020 建号、6 粉、其余仓全为 0–1★（**轻红旗**），但实时已 361★、4 fork，增长形态像真实传播，MIT；第 4 席 og2701 2020 建号、3 粉，MIT；第 5 席 Jwuthri 2016 建号、92 粉、名下另有 1,421★ 仓，Apache-2.0；第 6 席 xjli360 2018 建号、53 粉、同系列 sealeap-amazon-skills 曾入榜，README 带 sealeap.cn 导流，MIT；第 7 席 Changroro 2019 建号、10 粉，MIT；第 8 席 sagochiko 2023 建号、3 粉、其余仓全 0★（**轻红旗**），Apache-2.0；第 9 席 peterfriese（Google 开发者关系）2010 建号、1,130 粉，Apache-2.0；第 10 席 lintsinghua 2023 建号、315 粉、名下另有 7,106★、4,283★ 仓，LICENSE 为 NOASSERTION。🆕 判定＝created_at 距今 14 天内，十席全部命中（09-21~09-30 建仓）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（universal-modder 863★、yomiyasu 361★、livecanvas 92★），按红线保留快照值。
+
+---
+
 ## 2026-09-30
 1. PostHog/jeeves — 🆕 开源先推理再作答的 9B 类 Jev 决策模型，测试集准确率反超 Jev（291★ 291.0/day）
 2. blixvip/NullMotion — 🆕 把成片动效广告与 HyperFrames 黑白草稿逐帧对齐播放，可导出整段拆解视频（579★ 49.8/day）
