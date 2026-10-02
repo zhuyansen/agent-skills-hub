@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-02
+1. Edwardxlai/easyread — 🆕 把英文论文读成通顺中文，本地 PDF 翻译、原文对照、边读边问 AI（514★ 277.2/day）
+2. justxor/claude-code-pro-course — 🆕 用俄语系统讲透 Claude Code，从 CLAUDE.md、技能、子智能体到钩子与 MCP（101★ 53.7/day）
+3. AnotiaWang/awesome-decision-models — 汇总 Jev 类决策模型的托管 API、开源权重、运行时与评测（597★ 40.1/day）
+4. vincentsch/explainroo — 🆕 让 AI 智能体做讲解视频和产品演示，本地配音、逐词字幕全开源免费（270★ 39.9/day）
+5. Tuskira/ai-agent-gateway — 🆕 拦在智能体前做网关，统一管控、审计 MCP 工具调用与大模型请求（33★ 33.0/day）
+6. flaviocopes/skillscout — 🆕 盘点编码智能体加载了哪些技能、谁能用，并统计每个技能的使用次数（43★ 23.5/day）
+7. joeseesun/qiaomu-rss-dsh — 🆕 在 DeepSeek Harness 里读 RSS，边读文章边和原生 AI 对话伴读（31★ 13.5/day）
+8. adunext/adu-motion-video — 🆕 挑模板和风格，用 Codex 或 Claude Code 把口播剪成动效视频，附 1.1 万个 Lottie 素材（40★ 11.2/day）
+9. MiniMax-AI/OpenAgentCore — 🆕 自托管复刻 OpenAI Agents API，内置多种原生智能体运行框架（105★ 9.3/day）
+10. tubeai-app/tubeai-skills — 🆕 给 YouTube 创作者的 Claude Code 剪辑插件，自动找素材、做动画、配音并粗剪（51★ 6.5/day）
+🎯 今日趋势：论文翻译工具 easyread 上线两天 **514★**（占十席合计 1,785★ 的近三成）；视频制作仍占 **3 席**（讲解视频、口播动效、YouTube 剪辑），另有 **3 席**是智能体基础设施（MCP 网关、技能盘点、自托管 Agents API），决策模型合集 awesome-decision-models 两周攒到 **597★**。
+> 注：去重范围＝repo 内 archive 全部 99 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,297 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（179 条，LIMIT 300 未触顶），命中历史推荐 27 条剔除；十席 first_seen 全部 ≤48h（最晚 qiaomu-rss-dsh、OpenAgentCore 42h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①CharlesFeng0314/JEV_sees（99★ 45.7/day）：2023 建号、4 粉、名下仅 3 仓且其余 2 仓均 0★，单仓爆星形态，DB 分类亦为 uncategorized，保守排除；②latent-spaces/brag（12,736★）、samugit83/redamon、Mahanaicoach/google-maps-scraper-kit、Rohithgilla12/data-peek、asdfgh1445/ctf-super-hub、onmyway133/claude-code-tips-tricks 等：建仓数月至数年（prev_stars=0）本期才收录，velocity 公式失真；③Twigpine/openclaude、browseros-ai/BrowserOS：已在 09-30/10-01 注中排除的老库；④vakovalskii/nd-video-studio、TimeLovercc/mojito、phprs-cms/kaletacms：first_seen 超 48h；⑤soloiaros/archies-appstore-lookup：security_grade 为 caution。入选项复核（`gh api`）：第 1 席 Edwardxlai 2023 建号、15 粉、其余仓 ≤12★（**轻红旗**），但 40 fork、实时 554★，增长形态像真实传播，MIT；第 2 席 justxor 2017 建号、105 粉、名下另有 384★、254★ 仓，MIT，DB 分类为 mcp-server 实为教程；第 3 席 AnotiaWang 2020 建号、96 粉、名下另有 2,219★ 仓，CC0-1.0，建仓 15 天不标 🆕；第 4 席 vincentsch 2013 建号、19 粉、名下另有 18★ 仓，MIT；第 5 席 Tuskira 为 2025-07 建的组织、3 粉、仅 2 仓（**轻红旗**），Apache-2.0；第 6 席 flaviocopes 2015 建号、2,384 粉，MIT；第 7 席 joeseesun（向阳乔木）2013 建号、2,065 粉、名下另有 6,178★ 仓，GPL-3.0，DB 分类 uncategorized 但非个人主页项目，保留；第 8 席 adunext 2013 建号、3 粉、其余仓 ≤7★（**轻红旗**），MIT；第 9 席 MiniMax-AI 官方组织（7,862 粉），MIT；第 10 席 tubeai-app 2025-11 建号、6 粉、仅此 1 仓（**轻红旗**），为 tubeai.app 产品官方插件，README 带自家服务导流，MIT。🆕 判定＝created_at 距今 14 天内，命中 9 席（09-21~10-01 建仓），awesome-decision-models 09-17 建仓不标。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（easyread 554★、claude-code-pro-course 166★、explainroo 304★、OpenAgentCore 125★），按红线保留快照值。
+
+---
+
 ## 2026-10-01
 1. rehan-remade/universal-modder — 🆕 让 Claude Code 给几乎任何 PC 游戏做 Mod，逆向、fal 生成美术到实机测试一条龙（677★ 677.0/day）
 2. pengchujin/livecanvas — 🆕 一句话生成带设计封面和动画的 Live 图，可直接存进手机相册（68★ 68.0/day）
