@@ -103,6 +103,14 @@
   "type": "image/jpeg",
   "bytes": 66897
  },
+ "Chamanrajragu/purffle-shorts": {
+  "repo": "Chamanrajragu/purffle-shorts",
+  "url": "https://raw.githubusercontent.com/Chamanrajragu/purffle-shorts/main/docs/formats.jpg",
+  "alt": "Frames from three PurffleShorts formats: a text-message story with chat bubbles ",
+  "score": 1.5,
+  "type": "image/jpeg",
+  "bytes": 136716
+ },
  "Changroro/code-video": {
   "repo": "Changroro/code-video",
   "url": "https://raw.githubusercontent.com/Changroro/code-video/HEAD/docs/gallery/brand-apple.gif",
@@ -279,6 +287,14 @@
   "type": "image/jpeg",
   "bytes": 28523
  },
+ "Yuuhann1999/agent-storyboard": {
+  "repo": "Yuuhann1999/agent-storyboard",
+  "url": "https://raw.githubusercontent.com/Yuuhann1999/agent-storyboard/HEAD/docs/assets/demo-fill.gif",
+  "alt": "素材生成后自动回填到分镜表",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 841720
+ },
  "Zane-0x5a/remotion-director": {
   "repo": "Zane-0x5a/remotion-director",
   "url": "https://raw.githubusercontent.com/Zane-0x5a/remotion-director/master/docs/assets/promos/promo-kimi-k3-thumb.webp",
@@ -302,6 +318,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 4867727
+ },
+ "adunext/adu-motion-video": {
+  "repo": "adunext/adu-motion-video",
+  "url": "https://raw.githubusercontent.com/adunext/adu-motion-video/HEAD/assets/demos/02-B.gif",
+  "alt": "02-B · 纸面聚合，局部静音预览",
+  "score": 4.6,
+  "type": "image/gif",
+  "bytes": 931712
  },
  "ahmdd4vd/MotionCraft": {
   "repo": "ahmdd4vd/MotionCraft",
@@ -382,6 +406,14 @@
   "score": -0.15,
   "type": "image/jpeg",
   "bytes": 17435
+ },
+ "crawfordxx/paper-cut-video-skill": {
+  "repo": "crawfordxx/paper-cut-video-skill",
+  "url": "https://raw.githubusercontent.com/crawfordxx/paper-cut-video-skill/HEAD/demo/character-layer-template.jpg",
+  "alt": "背景、后排、主角和前景人物分层模板预览",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 129361
  },
  "crimeacs/product-demo-director": {
   "repo": "crimeacs/product-demo-director",
@@ -543,6 +575,14 @@
   "type": "image/gif",
   "bytes": 4180819
  },
+ "hraness/slopcamera": {
+  "repo": "hraness/slopcamera",
+  "url": "https://raw.githubusercontent.com/hraness/slopcamera/HEAD/apps/web/media/rain-bottled-poster-479a32b54a03.webp",
+  "alt": "Rain, bottled: a still from a Slopcamera Blender showcase film, in which a cloud",
+  "score": 2.0,
+  "type": "image/webp",
+  "bytes": 36652
+ },
  "hub-ki/video-generation": {
   "repo": "hub-ki/video-generation",
   "url": "https://raw.githubusercontent.com/hub-ki/video-generation/HEAD/docs/media/hero.gif",
@@ -663,6 +703,14 @@
   "type": "image/gif",
   "bytes": 3485817
  },
+ "latent-variable/deep-learning-birthday": {
+  "repo": "latent-variable/deep-learning-birthday",
+  "url": "https://raw.githubusercontent.com/latent-variable/deep-learning-birthday/HEAD/docs/stills.jpg",
+  "alt": "Nine frames from the video (click to watch on YouTube)",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 503213
+ },
  "ledbetterljoshua/functional-emotions-video": {
   "repo": "ledbetterljoshua/functional-emotions-video",
   "url": "https://raw.githubusercontent.com/ledbetterljoshua/functional-emotions-video/HEAD/docs/lake-face.jpg",
@@ -678,6 +726,14 @@
   "score": 0.35,
   "type": "image/jpeg",
   "bytes": 57845
+ },
+ "liaojianquan9-source/ljq-broll-video-generator": {
+  "repo": "liaojianquan9-source/ljq-broll-video-generator",
+  "url": "https://raw.githubusercontent.com/liaojianquan9-source/ljq-broll-video-generator/HEAD/examples/kimi-k3-000-011/media/comparison-preview.gif",
+  "alt": "上方原视频效果，下方GPT-6 Astra加Remotion生成的复刻效果",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 6152987
  },
  "lintsinghua/paint-mv-skills": {
   "repo": "lintsinghua/paint-mv-skills",
@@ -702,6 +758,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 75993
+ },
+ "minosdevs/cinematic-film": {
+  "repo": "minosdevs/cinematic-film",
+  "url": "https://raw.githubusercontent.com/minosdevs/cinematic-film/HEAD/references/example-assets-sheet.png",
+  "alt": "Assets generated for the example film",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 2127021
  },
  "misbahsy/tiktok-ig-shorts": {
   "repo": "misbahsy/tiktok-ig-shorts",
@@ -863,6 +927,14 @@
   "type": "image/jpeg",
   "bytes": 297994
  },
+ "unclejobs-ai/motion-video-skill": {
+  "repo": "unclejobs-ai/motion-video-skill",
+  "url": "https://raw.githubusercontent.com/unclejobs-ai/motion-video-skill/HEAD/docs/assets/gate-demo.gif",
+  "alt": "gate clips 실행: BLOCK, 눈 검수 기록, PASS",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 923032
+ },
  "vibe-motion/remotion-code-motion-explainer": {
   "repo": "vibe-motion/remotion-code-motion-explainer",
   "url": "https://raw.githubusercontent.com/vibe-motion/remotion-code-motion-explainer/HEAD/assets/showcase/code-motion-capability-showcase.gif",
@@ -886,6 +958,14 @@
   "score": -2.65,
   "type": "image/png",
   "bytes": 359673
+ },
+ "vincentsch/explainroo": {
+  "repo": "vincentsch/explainroo",
+  "url": "https://raw.githubusercontent.com/vincentsch/explainroo/HEAD/docs/media/looks-light.webp",
+  "alt": "Frames from five example videos, one in each look: paper, clean, chalk, blueprin",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 126830
  },
  "welingtondesosa/video-motion": {
   "repo": "welingtondesosa/video-motion",

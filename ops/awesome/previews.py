@@ -100,13 +100,21 @@ def preview(repo: str, readme: str) -> dict | None:
 
 
 def find(cache: Path, out: Path, names: set[str] | None) -> None:
+    """Previews for repos whose README is in the cache and that have none yet. Earlier
+    finds are kept: the daily job starts with an empty cache (only the READMEs it read
+    that day), and a fresh write would drop every other repo's preview."""
+    known = json.loads(out.read_text()) if out.exists() else {}
+    if names is not None:
+        known = {repo: p for repo, p in known.items() if repo in names}
     jobs = [(p.stem.replace("__", "/", 1), p.read_text()) for p in sorted(cache.glob("*.md"))]
-    jobs = [(repo, text) for repo, text in jobs if repo.count("/") == 1 and (names is None or repo in names)]
+    jobs = [(repo, text) for repo, text in jobs
+            if repo.count("/") == 1 and repo not in known and (names is None or repo in names)]
     with ThreadPoolExecutor(WORKERS) as pool:
         found = [r for r in pool.map(lambda j: preview(*j), jobs) if r]
-    out.write_text(json.dumps({r["repo"]: r for r in found}, ensure_ascii=False, indent=1) + "\n")
-    gifs = sum(r["type"] == "image/gif" for r in found)
-    print(f"{len(found)} of {len(jobs)} repos have a usable preview ({gifs} GIFs)")
+    known.update({r["repo"]: r for r in found})
+    out.write_text(json.dumps(dict(sorted(known.items())), ensure_ascii=False, indent=1) + "\n")
+    gifs = sum(p["type"] == "image/gif" for p in known.values())
+    print(f"{len(found)} new previews from {len(jobs)} READMEs; {len(known)} repos have one ({gifs} GIFs)")
 
 
 def download(url: str) -> bytes:

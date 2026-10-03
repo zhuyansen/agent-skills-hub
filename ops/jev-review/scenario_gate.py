@@ -33,6 +33,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
+sys.path.insert(0, str(HERE))
 SCENARIOS = ROOT / "frontend/scripts/scenario-keywords.json"
 KINDS_FILE = ROOT / "frontend/scripts/scenario-kinds.json"
 
@@ -164,6 +165,14 @@ QUALITY_KEYS = ("shows_result", "one_command_start", "specific_outcome", "comple
 HIT_KEYS = ("novel_angle", "shareable_output", "shows_result")
 
 
+def state_dir(slug: str) -> Path:
+    """Review results kept in git: what was judged, the page's own rows, the types.
+    The daily job (ops/awesome/daily_video_pass.py) reads them to review only new repos."""
+    path = HERE / "state" / slug
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def out_dir(slug: str) -> Path:
     path = HERE / "out" / f"gate-{slug}"
     (path / "readme").mkdir(parents=True, exist_ok=True)
@@ -290,9 +299,8 @@ def judge_one(client, slug: str, row: dict, today: date) -> dict:
 
 
 def judge(slug: str, prefix: str = "") -> None:
-    sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
-    from jse.openrouter import OpenRouter  # noqa: E402
-    client, path = OpenRouter(), out_dir(slug) / f"{prefix}judged.json"
+    from jev_client import OpenRouter  # noqa: E402  (ops/jev-review/jev_client.py)
+    client, path = OpenRouter(), state_dir(slug) / f"{prefix}judged.json"
     done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
     rows = json.loads((out_dir(slug) / f"{prefix}candidates.json").read_text())
     for i, row in enumerate(rows, 1):
@@ -313,7 +321,7 @@ def keyword_blocked(slug: str) -> list[dict]:
     """Repos above the floor that the review admits but the page's keywords turn away
     (lemomo-ai/lemo-opuscar: "style prompt" in its description hit the exclude word
     "prompt"). They need the admitted list to reach the page."""
-    path = out_dir(slug) / "page-judged.json"
+    path = state_dir(slug) / "page-judged.json"
     if not path.exists():
         return []
     match = next(x for x in json.loads(SCENARIOS.read_text()) if x["slug"] == slug)["match"]
@@ -322,12 +330,12 @@ def keyword_blocked(slug: str) -> list[dict]:
 
 
 def report(slug: str) -> None:
-    rows = json.loads((out_dir(slug) / "judged.json").read_text())
+    rows = json.loads((state_dir(slug) / "judged.json").read_text())
     counts: dict[str, int] = {}
     for r in rows:
         r["verdict"] = verdict(r, slug)
         counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
-    (out_dir(slug) / "judged.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
+    (state_dir(slug) / "judged.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
     print("verdicts:", counts)
     admitted = sorted((r for r in rows if r["verdict"] == "admit"), key=lambda r: -r["stars"])
     print(f"\n{'repo':50s} {'★':>3} {'created':10s} 档 质量 爆款 | video agent code tool | model")
@@ -343,8 +351,8 @@ def on_page(slug: str) -> list[dict]:
     """Every repo the page will list: on-topic ones above the floor, admitted ones below."""
     match = next(x for x in json.loads(SCENARIOS.read_text()) if x["slug"] == slug)["match"]
     keep = {n.lower() for n in match.get("featured", [])}
-    above = json.loads((out_dir(slug) / "page-judged.json").read_text())
-    below = json.loads((out_dir(slug) / "judged.json").read_text())
+    above = json.loads((state_dir(slug) / "page-judged.json").read_text())
+    below = json.loads((state_dir(slug) / "judged.json").read_text())
     rows = [r for r in above if verdict(r, slug) not in ("off_topic", "no_readme") or r["repo"].lower() in keep]
     return rows + [r for r in below if verdict(r, slug) == "admit"]
 
@@ -386,9 +394,8 @@ def kind_of(scores: dict) -> str:
 
 
 def types(slug: str) -> None:
-    sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
-    from jse.openrouter import OpenRouter  # noqa: E402
-    client, path = OpenRouter(), out_dir(slug) / "types.json"
+    from jev_client import OpenRouter  # noqa: E402  (ops/jev-review/jev_client.py)
+    client, path = OpenRouter(), state_dir(slug) / "types.json"
     done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
     for row in on_page(slug):
         if row["repo"] in done:
@@ -410,11 +417,10 @@ def types(slug: str) -> None:
 
 def add(slug: str, name: str) -> None:
     """Review one repo and put it with the page's rows (for repos the owner names)."""
-    sys.path.insert(0, str(Path.home() / "content/jev-search-rerank-eval/src"))
-    from jse.openrouter import OpenRouter  # noqa: E402
+    from jev_client import OpenRouter  # noqa: E402  (ops/jev-review/jev_client.py)
     meta = json.loads(gh([f"repos/{name}"]) or "{}")
     row = judge_one(OpenRouter(), slug, slim(meta, "owner"), date.today())
-    path = out_dir(slug) / "page-judged.json"
+    path = state_dir(slug) / "page-judged.json"
     rows = [r for r in json.loads(path.read_text()) if r["repo"] != row["repo"]] + [row]
     path.write_text(json.dumps(rows, ensure_ascii=False, indent=1))
     print(f"{row['repo']} {row['stars']} stars: video {row['makes_video']:.2f} agent {row['agent_driven']:.2f} "
@@ -429,7 +435,7 @@ def audit(slug: str, names_file: str) -> None:
             rows.append(slim(meta, "page"))
     (out_dir(slug) / "page-candidates.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
     judge(slug, prefix="page-")
-    judged = json.loads((out_dir(slug) / "page-judged.json").read_text())
+    judged = json.loads((state_dir(slug) / "page-judged.json").read_text())
     off = sorted((r for r in judged if r["verdict"] in ("off_topic", "no_readme")), key=lambda r: -r["stars"])
     print(f"\n{len(judged)} on the page · {len(off)} off-topic")
     for r in off:

@@ -1,0 +1,106 @@
+name: Video page daily review
+
+# Once a day: find repos that appeared since the last run, have Jev review them, add the
+# ones that pass the page's rules to /best/claude-video-skills/ and to the GitHub list
+# zhuyansen/awesome-claude-video-skills, and post a report to the tracking issue.
+# Script: ops/awesome/daily_video_pass.py.
+#
+# 06:30 UTC: after the 03:xx sync usually ends. The script still waits (up to 45 min)
+# if a sync is queued or running, and skips the day if it does not end.
+
+on:
+  schedule:
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: video-daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install deps
+        run: |
+          pip install -r backend/requirements.txt pillow
+          sudo apt-get install -y --no-install-recommends ffmpeg > /dev/null
+
+      - name: Check out the GitHub list
+        uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-claude-video-skills
+          path: list-repo
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      # The list generator reads grades with the read-only anon key from frontend/.env.
+      - name: Write frontend/.env
+        run: |
+          printf 'VITE_SUPABASE_URL=%s\nVITE_SUPABASE_ANON_KEY=%s\n' \
+            "${{ secrets.VITE_SUPABASE_URL }}" "${{ secrets.VITE_SUPABASE_ANON_KEY }}" > frontend/.env
+
+      - name: Review and publish
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          FLATROUTER_API_KEY: ${{ secrets.FLATROUTER_API_KEY }}
+          FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          ACTIONS_TOKEN: ${{ github.token }}
+        run: python ops/awesome/daily_video_pass.py list-repo "$RUNNER_TEMP/report.md"
+
+      - name: Commit the site
+        id: site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/scripts/scenario-keywords.json frontend/scripts/scenario-desc-zh.json \
+                  frontend/scripts/scenario-kinds.json ops/awesome/previews.json ops/jev-review/state
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -q -m "content(best): daily video review $(date -u +%F)"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN does not start other workflows; dispatch the deploy.
+      - name: Deploy the site
+        if: steps.site.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
+
+      - name: Push the GitHub list
+        working-directory: list-repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -q -m "Daily update $(date -u +%F)"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
+
+      - name: Report
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f "$RUNNER_TEMP/report.md" ] || echo "## 视频页每日补充失败,见 [运行记录]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)" > "$RUNNER_TEMP/report.md"
+          printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/report.md"
+          cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+          issue=$(gh issue list --state open --search "视频页每日补充报告 in:title" --json number --jq '.[0].number')
+          [ -n "$issue" ] && gh issue comment "$issue" --body-file "$RUNNER_TEMP/report.md"
