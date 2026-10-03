@@ -12,7 +12,8 @@ catalog, with the read-only anon key, in one request per 60 names. A listed repo
 catalog has not ingested yet is shown as "pending" until a sync grades it.
 
 Since 10-03 it also builds zhuyansen/awesome-codex-ppt-skills for /best/ppt-presentation/
-(pass the slug); each list's text lives in LISTS below.
+and zhuyansen/awesome-typesafe-jev for /best/typesafe-jev/ (pass the slug); each list's
+text lives in LISTS below (the Jev list's in list_text_jev.py).
 
 Usage: python ops/awesome/build_video_list.py <output-dir> [slug]
 Env:   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY (read from frontend/.env); gh CLI
@@ -183,10 +184,23 @@ PPT_BLURB = {
     "convert": ("Papers, PDFs, articles and Markdown turned into slides.", "把论文、PDF、文章、Markdown 转成幻灯片。"),
 }
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from list_text_jev import JEV_BLURB, JEV_TEXT  # noqa: E402
+
+for _lang in ("en", "zh"):   # what the Jev list shares with the PPT list
+    JEV_TEXT[_lang] = {**PPT_TEXT[_lang], **JEV_TEXT[_lang]}
+
 LISTS = {
     "claude-video-skills": {"text": VIDEO_TEXT, "blurb": VIDEO_BLURB, "made_with": VIDEO_MADE_WITH},
     "ppt-presentation": {"text": PPT_TEXT, "blurb": PPT_BLURB, "made_with": ()},
+    "typesafe-jev": {"text": JEV_TEXT, "blurb": JEV_BLURB, "made_with": ()},
 }
+from list_text_pages import PAGE_LISTS  # noqa: E402
+
+for _slug, _cfg in PAGE_LISTS.items():
+    for _lang in ("en", "zh"):
+        _cfg["text"][_lang] = {**PPT_TEXT[_lang], **_cfg["text"][_lang]}
+    LISTS[_slug] = {"text": _cfg["text"], "blurb": _cfg["blurb"], "made_with": ()}
 TEXT, KIND_BLURB, MADE_WITH = VIDEO_TEXT, VIDEO_BLURB, VIDEO_MADE_WITH
 
 

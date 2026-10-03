@@ -667,7 +667,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
        themselves and a directory cannot win. The page stays live and stays
        internally linked; only the request to index it is withdrawn, so the
        crawl budget reaches the 49 pages that can earn. noindex+follow keeps the
-       outbound links flowing to the skill pages. -->
+       outbound links flowing to the skill pages.
+       Second round 2026-10-03: 21 pages with zero impressions in 90 days, all
+       "unknown to Google" by URL inspection, and video-editing, which the
+       reviewed /best/claude-video-skills/ page replaces (see_also links there). -->
   <meta name="robots" content="noindex, follow" />` : ""}
 
   <meta property="og:title" content="${esc(title)}" />
@@ -721,6 +724,7 @@ ${faqLd}
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
           ${scenario.github_list ? `<a class="bp-stat-chip" href="${esc(scenario.github_list)}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="⭐ GitHub 上的开源合集 ↗" data-en="⭐ Open-source list on GitHub ↗">⭐ Open-source list on GitHub ↗</a>` : ""}
+          ${scenario.see_also ? `<a class="bp-stat-chip" href="/best/${esc(scenario.see_also.slug)}/" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="${esc(scenario.see_also.zh)}" data-en="${esc(scenario.see_also.en)}">${esc(scenario.see_also.en)}</a>` : ""}
         </div>` : ""}
       </div>
 

@@ -12,11 +12,17 @@ import re
 import sys
 import time
 import urllib.request
+from pathlib import Path
 
 LISTS = {   # page slug -> its GitHub list repo
     "claude-video-skills": "zhuyansen/awesome-claude-video-skills",
     "ppt-presentation": "zhuyansen/awesome-codex-ppt-skills",
+    "typesafe-jev": "zhuyansen/awesome-typesafe-jev",
 }
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from list_text_pages import PAGE_LISTS  # noqa: E402
+
+LISTS.update({slug: cfg["repo"] for slug, cfg in PAGE_LISTS.items()})
 SLUG = sys.argv[1] if len(sys.argv) > 1 else "claude-video-skills"
 PAGE = f"https://agentskillshub.top/best/{SLUG}/"
 LIST = f"https://raw.githubusercontent.com/{LISTS[SLUG]}/main/data/skills.json"

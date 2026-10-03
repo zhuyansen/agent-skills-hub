@@ -121,6 +121,7 @@
  },
  {
   "slug": "mcp-browser",
+  "retired": true,
   "title": "MCP Browser Automation",
   "description": "Explore MCP tools that let AI agents control browsers, navigate pages, and automate web interactions.",
   "match": {
@@ -262,6 +263,7 @@
  },
  {
   "slug": "mcp-memory",
+  "retired": true,
   "title": "MCP Memory & Knowledge",
   "description": "Browse MCP tools for persistent memory, knowledge graphs, and context management in AI agent workflows.",
   "match": {
@@ -1518,6 +1520,7 @@
  },
  {
   "slug": "mcp-for-notion",
+  "retired": true,
   "title": "MCP Tools for Notion",
   "description": "Connect AI agents to Notion workspaces — read pages, create databases, manage tasks, and automate workflows via MCP servers.",
   "match": {
@@ -1616,6 +1619,7 @@
  },
  {
   "slug": "ai-code-editor",
+  "retired": true,
   "title": "AI Code Editors",
   "description": "Compare AI-powered code editors and IDE extensions that supercharge your development workflow with intelligent assistance.",
   "match": {
@@ -1934,6 +1938,7 @@
  },
  {
   "slug": "free-mcp-servers",
+  "retired": true,
   "title": "Free MCP Servers",
   "description": "100% open-source and free MCP servers for Claude Code, Claude Desktop, and agentic IDEs. MIT / Apache / BSD licensed — install and self-host without subscription, quota, or credit-card gate. Updated every 8 hours.",
   "match": {
@@ -1988,6 +1993,7 @@
  },
  {
   "slug": "python-mcp-servers",
+  "retired": true,
   "title": "Python MCP Servers",
   "description": "Open-source MCP servers written in Python — compatible with Claude Code, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity. FastMCP, Anthropic SDK, and MCP-CLI projects included.",
   "match": {
@@ -2031,6 +2037,7 @@
  },
  {
   "slug": "typescript-mcp-servers",
+  "retired": true,
   "title": "TypeScript MCP Servers",
   "description": "Open-source MCP servers written in TypeScript / Node.js — ready to install into Claude Desktop, Cursor, Windsurf, and Cline. Ranked by stars, quality score, and community activity.",
   "match": {
@@ -2165,6 +2172,7 @@
  },
  {
   "slug": "agent-memory",
+  "retired": true,
   "title": "Agent Memory",
   "description": "Long-term memory layers for AI agents — vector stores, episodic recall, semantic compression, and persistent context across sessions.",
   "match": {
@@ -2226,6 +2234,7 @@
  },
  {
   "slug": "agent-security",
+  "retired": true,
   "title": "Agent Security",
   "description": "Security tools for AI agents — scan dangerous Skills/MCP configs, detect prompt injection, audit tool permissions, and harden agent supply chains.",
   "match": {
@@ -2277,6 +2286,7 @@
  },
  {
   "slug": "agent-governance",
+  "retired": true,
   "title": "Agent Governance",
   "description": "Governance, audit, and discipline frameworks for AI coding agents — deterministic workflows, context budgets, tool gating, usage tracking.",
   "match": {
@@ -2331,6 +2341,7 @@
  },
  {
   "slug": "saas-mcp",
+  "retired": true,
   "title": "SaaS MCP Servers",
   "description": "Official MCP servers from major SaaS platforms — Box, Dokploy, Stripe, Notion, GitHub, Slack and more. Production-grade enterprise integrations.",
   "match": {
@@ -2374,6 +2385,7 @@
  },
  {
   "slug": "seo-tools",
+  "retired": true,
   "title": "SEO Tools",
   "description": "SEO research and analysis MCP servers — keyword research, backlink analysis, SERP tracking, content briefs. Powered by Ahrefs, DataForSEO, and Google Search Console data.",
   "match": {
@@ -2414,6 +2426,7 @@
  },
  {
   "slug": "finance-mcp",
+  "retired": true,
   "title": "Finance MCP Servers",
   "description": "Financial data MCP servers and CLIs for AI agents — stock quotes, personal finance, accounting, trading APIs, market analysis.",
   "match": {
@@ -2511,6 +2524,7 @@
  },
  {
   "slug": "agent-deployment",
+  "retired": true,
   "title": "Agent Deployment",
   "description": "Deploy AI agents and Skills to production — gstack, Fly.io, Vercel, Cloudflare Workers, Modal. From local dev to scalable inference, including CI/CD pipelines.",
   "match": {
@@ -2606,6 +2620,7 @@
  },
  {
   "slug": "business-diagnosis",
+  "retired": true,
   "title": "Business Diagnosis & Founder Skills",
   "description": "AI skills for founders and operators — business diagnosis, PRD generation, GTM playbooks, YC frameworks, and named-PM/founder knowledge bases. From idea validation to launch.",
   "match": {
@@ -2748,6 +2763,7 @@
  },
  {
   "slug": "personal-knowledge",
+  "retired": true,
   "title": "Personal Knowledge Skills",
   "description": "Personal knowledge management skills for solo workers — Obsidian, Logseq, Notion, second-brain workflows. Connect your notes to AI agents and build a queryable second brain.",
   "match": {
@@ -3052,6 +3068,7 @@
  },
  {
   "slug": "skill-creation-tools",
+  "retired": true,
   "title": "Skill Creation & Meta-Tools",
   "description": "Tools for creating, distilling, and managing AI Skills themselves — book→skill, repo→skill, codebase→skill, and cross-IDE skill sync. Meta-tools that build other skills.",
   "match": {
@@ -3105,6 +3122,7 @@
  },
  {
   "slug": "multi-ai-bridge",
+  "retired": true,
   "title": "Multi-AI Bridge & Cross-IDE Sync",
   "description": "Run Claude + Codex + Gemini together, sync Skills across IDEs, route tasks between models. The orchestration layer for multi-model agentic workflows.",
   "match": {
@@ -3212,6 +3230,7 @@
  },
  {
   "slug": "job-hunting",
+  "retired": true,
   "title": "AI Job Hunting & Resume Skills",
   "description": "AI-powered job search stack — resume tailoring, cover letter generation, interview copilots, LinkedIn automation, application auto-fillers, and cold outreach to recruiters. The full pipeline for landing your next role.",
   "match": {
@@ -3365,6 +3384,7 @@
  },
  {
   "slug": "spreadsheet-ai",
+  "retired": true,
   "title": "Spreadsheet & Excel AI Tools",
   "description": "AI for Excel, Google Sheets, CSV — automated formulas, pivot tables, data summarization, MCP servers for read/write, structured extraction, agent-driven reporting. The full data layer for non-engineers.",
   "match": {
@@ -3424,6 +3444,7 @@
  },
  {
   "slug": "video-editing",
+  "retired": true,
   "title": "AI Video Generation & Editing: Seedance, Kling & Subtitles",
   "description": "Open-source AI video stack — subtitle generation, multilingual dubbing, short-video maker for TikTok/Reels/Shorts, Remotion programmatic video, podcast-to-video, automated captions and translations.",
   "match": {
@@ -3536,10 +3557,16 @@
    "content-syndication",
    "ai-design",
    "voice-agent"
-  ]
+  ],
+  "see_also": {
+   "slug": "claude-video-skills",
+   "en": "🎬 230 reviewed video skills for Claude Code →",
+   "zh": "🎬 查看 230 个经审核的 Claude 视频 Skill →"
+  }
  },
  {
   "slug": "deep-research",
+  "retired": true,
   "title": "AI Deep Research",
   "description": "AI agent skills and MCP tools for deep research, multi-source investigation, literature review, fact-checking, and automated report generation.",
   "match": {
@@ -3861,6 +3888,7 @@
  {
   "slug": "typesafe-jev",
   "title": "TypeSafe Jev",
+  "github_list": "https://github.com/zhuyansen/awesome-typesafe-jev",
   "description": "Open-source projects built on TypeSafe's Jev decision model, security-graded: the jev-ultrafast browser agent, openjev, fast-jev-compaction, Jev code review tools and MCP servers. Vet before you install.",
   "match": {
    "categories": [],
@@ -3916,7 +3944,135 @@
     "jev",
     "typesafe"
    ],
-   "sort": "stars"
+   "sort": "stars",
+   "reviewed_only": true,
+   "admit_reviewed": [
+    "0xBakeer/arbiter",
+    "9pings/notjev",
+    "AIGNLAI/ReflexRoute",
+    "AntonioCoppe/jev-harness",
+    "Bentlybro/siftr",
+    "Bewinxed/jevgpt",
+    "BorisLeMeec/jev",
+    "Chuf-H/jev-tree",
+    "Code-Forge-AU/jev-llm",
+    "CommandCodeAI/cmd-mod-jev-nudge",
+    "Das-rebel/a3m-router",
+    "Emlembow/jev-graph-search",
+    "EmreKaplaner/rag-jev",
+    "FrancoisChastel/jev-code",
+    "GPT-AGI/OpenJev",
+    "Gaurav-Gosain/jev-go",
+    "Gestalt-Lab/jeff",
+    "HyunjunJeon/pi-quiet-ask",
+    "Jalil-g/Immune-Harness",
+    "Kiln-AI/jev_jsonschema",
+    "Kushwho/jev-codes",
+    "Nasrallah-AL/jev-cli",
+    "Nisaka520/JevBystander",
+    "Nuu-maan/pastewise",
+    "Nuu-maan/undertone",
+    "Olti1947/jev-java",
+    "OmniJev/PlayJev",
+    "Parthkomalwad/jevbrief",
+    "Peu77/JevFind",
+    "RevocGG/typesafe-jev-bridge",
+    "ShuhanSun/jev-oas-sentinel",
+    "Tech-Byte-Frontier/jevgate",
+    "TypeLLM/pijev",
+    "WiktorB2004/llama-index-jev",
+    "Xiaooolong/vev",
+    "abhixhek/jevcal",
+    "afshinm/laya-mps",
+    "amithgc/local-jev",
+    "ankit-aglawe/tinyjev",
+    "arnabgho/rlcd-lite",
+    "arunav25/jev-mcp",
+    "atharvamhaske/typesafe-sdk-go",
+    "backant-io/jevelry",
+    "bl888m/jev-bot",
+    "blakestone-x/jev-mcp",
+    "brainstormity/Jev-For-Dummies",
+    "buluoray/JevOnly",
+    "caiovicentino/jev-align",
+    "captain-corgi/typesafe-sdk-go",
+    "chopratejas/invalidate",
+    "cmungall/jevotron",
+    "cth9191/jev-compaction-plus",
+    "dani1005/book-aurora",
+    "daniel-farina/nitro",
+    "doronp/jevc",
+    "eminetto/typesafe-poc",
+    "emirbartu/jev-for-all",
+    "erkamyaman/jev-enforce",
+    "eugeniughelbur/jev-engineering",
+    "fabianboth/jevpipe",
+    "franckverrot/lev",
+    "genai-craft/openvons",
+    "goodrahstar/pdf-race",
+    "harshwasan/jev-sentinel",
+    "harshwasan/pi-jev-sentinel",
+    "hev/reranker",
+    "hotchpotch/jev-reranker",
+    "huanxueshengmou/panpan-jd-lens",
+    "hunkim/solar-mini4-jev",
+    "hwfengcs/any2jev",
+    "jiangkoumo/ego-decision-layer",
+    "jiangxiluning/Visual-Jev",
+    "jiawei686/jev-ultrafast-mcp",
+    "jkrup/jeveryword",
+    "keltokhy/jsort",
+    "kiwi0719/jev-edge",
+    "klauswg/jev-guard",
+    "kraayenjon/jev-linkedin-saved-classifier",
+    "kushals256/jevcache",
+    "leftspace89/JevBird",
+    "mattn/go-jev",
+    "mikekelly/s1m",
+    "mizchi/jev-test-filter",
+    "mountainMath/JevR",
+    "newfull5/malkuth",
+    "nexibeo/jev-browser-control",
+    "nexibeo/jev-cookbook",
+    "nico-martin/open-jev",
+    "noplan-inc/limpet",
+    "okooo5km/jev",
+    "olanotolu/jevbetter",
+    "reachjalil/jev-tree",
+    "romiluz13/jevmory",
+    "rorshopping/jev-on-a-laptop",
+    "rreinold/jev-serve",
+    "rupeshpoojary9/poorjev",
+    "safzanpirani/pi-jev-skill-picker",
+    "savka777/jev-search",
+    "scale-venture-partners/riff",
+    "shaharia-lab/jev-cli",
+    "shitianfang/jev-use",
+    "simonw/llm-typesafe",
+    "smkrv/jev-calibrate",
+    "stefafafan/jev",
+    "strangeloopcanon/dynajev",
+    "sufianetaouil/every",
+    "sumanmichael/jevlang",
+    "syumai/jevyoumean",
+    "teknium1/hermes-and-jev-play-minecraft",
+    "thusinh1969/BrighTO_Router",
+    "tostechbr/partway",
+    "us/jev-local",
+    "usail-hkust/JevLight",
+    "valentynkit/jev-belay",
+    "valentynkit/jev-commit",
+    "virolea/jev",
+    "win4r/jev-security-scan",
+    "win4r/jev-skill-suggester",
+    "y0usaf/jev-lm",
+    "yijunyu/jev-rs",
+    "yinhong-zhou/jevdo",
+    "yzfly/edgejev",
+    "zhangcy122/OpenJev",
+    "zhulinchng/jevper",
+    "zjunlp/JevLoop"
+   ]
   },
   "related": [
    "browser-automation",
@@ -4197,7 +4353,14 @@
     "syklayou-glitch/video-shotcraft"
    ],
    "sub_skills": [
-    {"repo": "EverMind-AI/Raven", "path": "skills/git-story-film", "name": "git-story-film", "added": "2026-09-27", "grade": "safe", "description": "Direct a two-minute hand-drawn animated film from a repository's Git history: story, character, storyboard, HTML review studio, then a 4K/60fps MP4."}
+    {
+     "repo": "EverMind-AI/Raven",
+     "path": "skills/git-story-film",
+     "name": "git-story-film",
+     "added": "2026-09-27",
+     "grade": "safe",
+     "description": "Direct a two-minute hand-drawn animated film from a repository's Git history: story, character, storyboard, HTML review studio, then a 4K/60fps MP4."
+    }
    ],
    "reviewed_only": true,
    "exclude_repos": [

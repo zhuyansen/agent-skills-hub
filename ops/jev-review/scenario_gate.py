@@ -31,6 +31,8 @@ import time
 from datetime import date
 from pathlib import Path
 
+from page_profiles import IS_SOFTWARE, PAGES, QUALITY as PAGE_QUALITY
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 sys.path.insert(0, str(HERE))
@@ -48,6 +50,8 @@ MAX_PAGES = 4
 README_RELEVANCE = 3500  # characters of README each question set reads
 README_QUALITY = 5000
 RELEVANT = 0.5
+JUDGE_WORKERS = 6        # repos reviewed at once
+JUDGE_CHUNK = 60         # results saved after each chunk
 HIGH, MID = 0.75, 0.50
 
 # Scripts, shot analysis and learning material: they make no video, the owner lists them.
@@ -114,7 +118,24 @@ QUERIES = {
         ],
         "names_model": r"(?!x)x",   # no model wave on this page
     },
+    "typesafe-jev": {
+        "wave": [],
+        "topic": [
+            "jev in:name,description",
+            "typesafe jev in:name,description,topics",
+            "jev decision in:name,description",
+            "jev agent in:name,description",
+            "jev mcp in:name,description",
+            "openjev in:name,description",
+        ],
+        "names_model": r"(?!x)x",
+    },
 }
+
+# The pages upgraded on 2026-10-03: no model wave, a broader keyword filter.
+QUERIES.update({slug: {"wave": [], "topic": page["queries"], "names_model": r"(?!x)x",
+                       "owner_admitted": page.get("owner_admitted", [])}
+                for slug, page in PAGES.items()})
 
 RELEVANCE = {
     "makes_video": {"type": "noul", "instructions": {
@@ -223,13 +244,73 @@ PPT_KIND_LABELS = [
     {"id": "convert", "icon": "📄", "en": "Docs to slides", "zh": "文档转 PPT"},
 ]
 
+JEV_RELEVANCE = {
+    "uses_jev": {"type": "noul", "instructions": {
+        "question": "Is `repo` built on TypeSafe's Jev decision model, or does it provide a Jev-compatible model, server or API?",
+        "focus": "It calls Jev, wraps it, or reimplements or replicates it. A passing mention, a prompt list or a "
+                 "collection of links does not count; a different project that is merely named Jev does not count."}},
+    "is_software": {"type": "noul", "instructions": {
+        "question": "Is `repo` software someone can install or run: a tool, library, app, plugin, server or model?",
+        "focus": "As opposed to a list of links, notes, a write-up, or an empty or placeholder repository."}},
+    "reusable_tool": PPT_RELEVANCE["reusable_tool"] if "PPT_RELEVANCE" in globals() else {"type": "noul", "instructions": {
+        "question": "Is `repo` a reusable tool someone installs, rather than a one-off demo?"}},
+}
+JEV_QUALITY = {
+    **{k: QUALITY[k] for k in ("one_command_start", "complete_docs")},
+    "shows_result": {"type": "noul", "instructions": {
+        "question": "Does `repo.readme` show it working — a screenshot, demo, benchmark or example output?"}},
+    "specific_outcome": {"type": "noul", "instructions": {
+        "question": "Does `repo.readme` state a concrete result the user gets, rather than general capability claims?",
+        "focus": "For example 'classifies tax document pages, 100% strict accuracy on 400 pages', not 'powerful AI decisions'."}},
+    "novel_angle": {"type": "noul", "instructions": {
+        "question": "Does `repo` do something visibly different from a thin wrapper around the Jev API?"}},
+    "shareable_output": {"type": "noul", "instructions": {
+        "question": "Is `repo` the kind of project people share — a striking demo, a benchmark result, a new capability?"}},
+}
+JEV_TYPES = {
+    "replica": _kind("Is `repo` an open model, server or method that reproduces or replaces Jev, to run locally or self-host?",
+                     "Open Jev-compatible models, replicas, training recipes, decision servers built on open models."),
+    "agent": _kind("Is `repo` an agent that acts: browser use, computer use, games, robots, autonomous task runners?",
+                   "Jev decides the next action of an agent that clicks, types, browses or plays."),
+    "devtool": _kind("Is `repo` a developer tool: a coding-agent plugin, code search or review, model routing, context compaction?",
+                     "Tools for people who write software, often plugins for Claude Code, Codex or Hermes."),
+    "sdk": _kind("Is `repo` a library, SDK, MCP server or API wrapper that lets other software call Jev?",
+                 "Client libraries, MCP servers, local endpoints, integrations for a language or framework."),
+    "business": _kind("Is `repo` an application for business data: classifying documents, finance, trading, support, workflows?",
+                      "Document splitting and classification, tax, invoices, trading systems, ticket triage."),
+    "consumer": _kind("Is `repo` an app for individuals: chat assistants, input methods, personal memory, phone or desktop helpers?",
+                      "Reply suggestions in chat apps, smart input boxes, personal notes and memory."),
+    "general": _kind("Is `repo` a general framework or toolkit that covers many uses of Jev, not one in particular?",
+                     "A large platform, a harness, or a collection of many unrelated Jev tools."),
+}
+JEV_KIND_LABELS = [
+    {"id": "general", "icon": "🧱", "en": "Frameworks", "zh": "综合框架"},
+    {"id": "replica", "icon": "🔁", "en": "Open replicas", "zh": "开源替代与复现"},
+    {"id": "agent", "icon": "🤖", "en": "Agents & computer use", "zh": "Agent 与电脑操作"},
+    {"id": "devtool", "icon": "🧩", "en": "Developer tools", "zh": "开发者工具"},
+    {"id": "sdk", "icon": "🔌", "en": "SDKs, MCP & APIs", "zh": "SDK、MCP 与接口"},
+    {"id": "business", "icon": "🏷", "en": "Classification & business", "zh": "分类与业务应用"},
+    {"id": "consumer", "icon": "💬", "en": "Chat & personal apps", "zh": "聊天与个人应用"},
+]
+
 QUALITY_KEYS = ("shows_result", "one_command_start", "specific_outcome", "complete_docs")
 HIT_KEYS = ("novel_angle", "shareable_output", "shows_result")
 
 
 def profile(slug: str) -> dict:
     """The question sets and types of a page. The video page's are the module constants
-    above (unchanged since 09-27); the ppt page has its own."""
+    above (unchanged since 09-27); the ppt and jev pages have their own; the pages
+    upgraded on 10-03 are in page_profiles.py."""
+    if slug in PAGES:
+        page = PAGES[slug]
+        return {"relevance": {"on_subject": page["subject"], "is_software": IS_SOFTWARE},
+                "quality": PAGE_QUALITY, "types": page["types"], "labels": page["labels"],
+                "topic": ("on_subject", "is_software"), "merged": {}, "strict": {}}
+    if slug == "typesafe-jev":
+        # Under 50 stars only the high tier: the 09-16 wave left 431 mid-or-better repos under
+        # the floor, 220 of them under 10 stars (10-03); a page of 600 cards buries the good ones.
+        return {"relevance": JEV_RELEVANCE, "quality": JEV_QUALITY, "types": JEV_TYPES, "labels": JEV_KIND_LABELS,
+                "topic": ("uses_jev", "is_software"), "merged": {}, "strict": {}, "below_min": HIGH}
     if slug == "ppt-presentation":
         return {"relevance": PPT_RELEVANCE, "quality": PPT_QUALITY, "types": PPT_TYPES, "labels": PPT_KIND_LABELS,
                 "topic": ("makes_slides", "agent_driven"), "merged": {}, "strict": {}}
@@ -312,9 +393,25 @@ def collect(slug: str) -> None:
 def readme_of(slug: str, repo: str) -> str:
     path = out_dir(slug) / "readme" / (repo.replace("/", "__") + ".md")
     if not path.exists():
-        path.write_text(gh([f"repos/{repo}/readme", "-H", "Accept: application/vnd.github.raw"]))
+        text = gh([f"repos/{repo}/readme", "-H", "Accept: application/vnd.github.raw"])
+        # A rate-limited answer is not "no README": raise so judge() skips the repo and a
+        # later run retries it, instead of caching the error as an empty README.
+        if "rate limit" in (_api_error(text) or "").lower():
+            raise RuntimeError(f"GitHub rate limit reading {repo}")
+        path.write_text(text)
     text = path.read_text()
-    return "" if text.lstrip().startswith('{"message"') else text
+    return "" if _api_error(text) is not None else text
+
+
+def _api_error(text: str) -> str | None:
+    """The message of a GitHub API error body ({"message": ...}, compact or indented), else None."""
+    if not text.lstrip().startswith("{"):
+        return None
+    try:
+        body = json.loads(text)
+    except ValueError:
+        return None
+    return str(body.get("message", "")) if isinstance(body, dict) and "message" in body else None
 
 
 _BADGE = re.compile(r"\[?!\[[^\]]*\]\([^)]*(?:shields\.io|badge|badgen)[^)]*\)(?:\]\([^)]*\))?|<img[^>]*(?:shields\.io|badge)[^>]*>", re.I)
@@ -354,7 +451,7 @@ def verdict(row: dict, slug: str = "claude-video-skills") -> str:
     # finished music video, a demo) stays off the page: owner's rule, 2026-09-27.
     if on_topic(row, slug) < RELEVANT:
         return "off_topic"
-    return "admit" if row["quality"] >= MID else "low_quality"
+    return "admit" if row["quality"] >= profile(slug).get("below_min", MID) else "low_quality"
 
 
 def judge_one(client, slug: str, row: dict, today: date) -> dict:
@@ -379,17 +476,24 @@ def judge(slug: str, prefix: str = "") -> None:
     from jev_client import OpenRouter  # noqa: E402  (ops/jev-review/jev_client.py)
     client, path = OpenRouter(), state_dir(slug) / f"{prefix}judged.json"
     done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
-    rows = json.loads((out_dir(slug) / f"{prefix}candidates.json").read_text())
-    for i, row in enumerate(rows, 1):
-        if row["repo"] in done:
-            continue
+    rows = [r for r in json.loads((out_dir(slug) / f"{prefix}candidates.json").read_text()) if r["repo"] not in done]
+
+    def one(row: dict) -> dict | None:
         try:
-            done[row["repo"]] = judge_one(client, slug, row, date.today())
+            return judge_one(client, slug, row, date.today())
         except Exception as exc:  # noqa: BLE001 — one bad repo must not lose the rest
             print(f"  skipped {row['repo']}: {str(exc)[:100]}", file=sys.stderr)
-        if i % 20 == 0:
+            return None
+
+    # A few at a time: one repo is a GitHub README fetch and two Jev calls, ~5 s in a row.
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(JUDGE_WORKERS) as pool:
+        for start in range(0, len(rows), JUDGE_CHUNK):
+            for out in pool.map(one, rows[start:start + JUDGE_CHUNK]):
+                if out:
+                    done[out["repo"]] = out
             path.write_text(json.dumps(list(done.values()), ensure_ascii=False, indent=1))
-            print(f"  [{i}/{len(rows)}] cost ${client.total_cost:.4f}", flush=True)
+            print(f"  [{min(start + JUDGE_CHUNK, len(rows))}/{len(rows)}] cost ${client.total_cost:.4f}", flush=True)
     path.write_text(json.dumps(list(done.values()), ensure_ascii=False, indent=1))
     print(f"{len(done)} judged · models {sorted(client.models_seen)} · cost ${client.total_cost:.4f}")
 
@@ -464,11 +568,12 @@ def kind_of(scores: dict, slug: str = "claude-video-skills") -> str:
     """One type per repo. A framework serves every kind of output, so it is filed as
     general even when one kind also scores."""
     p = profile(slug)
-    if scores["general"] >= GENERAL_MIN:
+    if scores.get("general", 0.0) >= GENERAL_MIN:
         return "general"
     passed = {k: v for k, v in scores.items() if k != "general" and v >= p["strict"].get(k, TYPE_MIN)}
     if not passed:
-        return "general"
+        # A page without a "general" chip files the repo under its closest type.
+        return "general" if "general" in scores else max(scores, key=scores.get)
     best = max(passed, key=passed.get)
     return p["merged"].get(best, best)
 

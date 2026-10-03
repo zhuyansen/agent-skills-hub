@@ -1,0 +1,4757 @@
+[
+ {
+  "repo": "kieranklaassen/truffler",
+  "stars": 50,
+  "description": "Sniff out the right record: Jev-powered search for Rails with index-time labels, query understanding, and streamed reranking on top of your own keyword and embedding search",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.15,
+   "sdk": 0.42,
+   "business": 0.17,
+   "consumer": 0.05,
+   "general": 0.18
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "obie/ruby_decision_model",
+  "stars": 51,
+  "description": "Ruby client for decision models such as Typesafe Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.21,
+   "sdk": 0.95,
+   "business": 0.44,
+   "consumer": 0.05,
+   "general": 0.43
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "yusukebe/hono-jev-router",
+  "stars": 51,
+  "description": "Route HTTP requests by meaning. A semantic router for Hono powered by Jev.",
+  "scores": {
+   "sdk": 0.8,
+   "business": 0.03,
+   "consumer": 0.03,
+   "general": 0.08,
+   "replica": 0.02,
+   "agent": 0.03,
+   "devtool": 0.61
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "skeptrunedev/jev-recruiter",
+  "stars": 52,
+  "description": "A Jev powered LinkedIn recruiting agent. Watch it browse relevant profiles, save links, and review evidence against your hiring brief.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.96,
+   "devtool": 0.23,
+   "sdk": 0.09,
+   "business": 0.08,
+   "consumer": 0.28,
+   "general": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "fidecastro/jevify",
+  "stars": 52,
+  "description": "Supersimple way to serve LLMs as a Jev-like endpoint",
+  "scores": {
+   "replica": 0.88,
+   "agent": 0.05,
+   "devtool": 0.35,
+   "sdk": 0.5,
+   "business": 0.61,
+   "consumer": 0.08,
+   "general": 0.55
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "leepokai/jev-guard",
+  "stars": 54,
+  "description": "Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.36,
+   "devtool": 0.97,
+   "sdk": 0.6,
+   "business": 0.02,
+   "consumer": 0.18,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "lykycy123/RoboJEV",
+  "stars": 54,
+  "description": "Two-stage JEV control of a Franka Panda in MuJoCo",
+  "scores": {
+   "replica": 0.43,
+   "agent": 0.67,
+   "devtool": 0.06,
+   "sdk": 0.09,
+   "business": 0.01,
+   "consumer": 0.03,
+   "general": 0.17
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "peterfriese/jev-foundation-models",
+  "stars": 54,
+  "description": "A lightweight, native Swift 6 bridge integrating TypeSafe AI's Jev System One decision model into Apple's Foundation Models framework.",
+  "scores": {
+   "replica": 0.36,
+   "agent": 0.05,
+   "devtool": 0.31,
+   "sdk": 0.94,
+   "business": 0.12,
+   "consumer": 0.05,
+   "general": 0.26
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "openroboto-ai/jev-robot-control",
+  "stars": 55,
+  "description": "",
+  "scores": {
+   "business": 0.02,
+   "consumer": 0.05,
+   "general": 0.1,
+   "replica": 0.16,
+   "agent": 0.62,
+   "devtool": 0.1,
+   "sdk": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "jonathanavis96/jev-kit",
+  "stars": 55,
+  "description": "Everything you need to run TypeSafe's Jev with Claude Code: a tool-call guard, tier guard, file search, browser agent, review, belay, compaction and installers.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.62,
+   "devtool": 0.96,
+   "sdk": 0.41,
+   "business": 0.03,
+   "consumer": 0.3,
+   "general": 0.83
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "deepanwadhwa/OpenDecision",
+  "stars": 57,
+  "description": "OpenDecision is an open-source semantic decision engine like typesafe's jev.",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.46,
+   "devtool": 0.14,
+   "sdk": 0.28,
+   "business": 0.68,
+   "consumer": 0.07,
+   "general": 0.68
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "bilune/jev-design",
+  "stars": 57,
+  "description": "Can a model design a dashboard? A console whose whole design system is generated at runtime by Jev from a one-sentence brief.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.05,
+   "devtool": 0.14,
+   "sdk": 0.09,
+   "business": 0.07,
+   "consumer": 0.06,
+   "general": 0.12
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "tomerglick57/Jevstiller",
+  "stars": 58,
+  "description": "Distill a repeated Jev classification task into a local model, on the fly — same answers, your hardware.",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.06,
+   "devtool": 0.48,
+   "sdk": 0.54,
+   "business": 0.56,
+   "consumer": 0.05,
+   "general": 0.18
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Mushroom-Systems/lichen",
+  "stars": 58,
+  "description": "A local, API-compatible replacement for Jev, TypeSafe's System One model",
+  "scores": {
+   "replica": 0.96,
+   "agent": 0.1,
+   "devtool": 0.13,
+   "sdk": 0.39,
+   "business": 0.39,
+   "consumer": 0.12,
+   "general": 0.18
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "henryklunaris/hey-jev",
+  "stars": 58,
+  "description": "",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.75,
+   "devtool": 0.05,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.85,
+   "general": 0.09
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "SAGAR-TAMANG/sarvam-jev",
+  "stars": 58,
+  "description": "Generation-free typed decisions on Indic LLMs. An open Jev-style inference engine on sarvam-1: constrained logit readout instead of autoregressive JSON. Runs client-side in the browser.",
+  "scores": {
+   "replica": 0.85,
+   "agent": 0.08,
+   "devtool": 0.22,
+   "sdk": 0.44,
+   "business": 0.54,
+   "consumer": 0.1,
+   "general": 0.16
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "kyu1204/jgrep",
+  "stars": 59,
+  "description": "grep for what code does, not what it's called. Semantic code search powered by TypeSafe Jev.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.97,
+   "sdk": 0.14,
+   "business": 0.02,
+   "consumer": 0.05,
+   "general": 0.08
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "patchy631/jev-as-judge",
+  "stars": 60,
+  "description": "",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.27,
+   "sdk": 0.11,
+   "business": 0.52,
+   "consumer": 0.05,
+   "general": 0.07
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "andududu/jeview",
+  "stars": 61,
+  "description": "An unofficial local visualizer for Jev (TypeSafe): a live view of every call your code makes. Not affiliated with TypeSafe AI.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.1,
+   "devtool": 0.85,
+   "sdk": 0.47,
+   "business": 0.11,
+   "consumer": 0.12,
+   "general": 0.25
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "RenaGao/jev-dataops",
+  "stars": 61,
+  "description": "An open-source JEV-powered workbench for streaming data selection, quality evaluation, automatic LoRA training and held-out model evaluation.",
+  "scores": {
+   "replica": 0.11,
+   "agent": 0.06,
+   "devtool": 0.16,
+   "sdk": 0.16,
+   "business": 0.12,
+   "consumer": 0.05,
+   "general": 0.56
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Jwuthri/SelfJev",
+  "stars": 61,
+  "description": "Open decisions model with Jev's API: typed answers (yes/no, choice, score, multi) with probabilities from forward passes, no generation. Qwen3.5-4B + LoRA, one GPU.",
+  "scores": {
+   "replica": 0.94,
+   "agent": 0.06,
+   "devtool": 0.3,
+   "sdk": 0.83,
+   "business": 0.73,
+   "consumer": 0.06,
+   "general": 0.46
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "burnigtm/jev-mcp",
+  "stars": 61,
+  "description": "MCP server that puts TypeSafe Jev on the coding loop in Cursor, Codex, and any MCP client",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.16,
+   "devtool": 0.97,
+   "sdk": 0.97,
+   "business": 0.04,
+   "consumer": 0.14,
+   "general": 0.49
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "TheoOliveira/pi-jev",
+  "stars": 61,
+  "description": "Semantic tool routing and typed System One decisions for the Pi coding agent using TypeSafe Jev",
+  "scores": {
+   "general": 0.41,
+   "replica": 0.05,
+   "agent": 0.21,
+   "devtool": 0.97,
+   "sdk": 0.56,
+   "business": 0.03,
+   "consumer": 0.24
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "bladedevoff/stuntd",
+  "stars": 61,
+  "description": "Local proxy that learns your app's typed LLM decisions and answers them with a Laya head. Jev and OpenAI compatible.",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.14,
+   "devtool": 0.81,
+   "sdk": 0.72,
+   "business": 0.62,
+   "consumer": 0.1,
+   "general": 0.31
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "HITsz-TMG/JevEmbed",
+  "stars": 63,
+  "description": "Meet JevEmbed — turn embeddings into decisions. Choose, score, and judge with your choice of embedding model.",
+  "scores": {
+   "replica": 0.75,
+   "agent": 0.12,
+   "devtool": 0.16,
+   "sdk": 0.7,
+   "business": 0.13,
+   "consumer": 0.08,
+   "general": 0.62
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Nisaka520/JevIntent",
+  "stars": 63,
+  "description": "微信（FkWeChat 插件）：长按消息分析意图 / 情绪 / 回复姿态，只在本机弹提示，对方无感知",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.03,
+   "sdk": 0.08,
+   "business": 0.03,
+   "consumer": 0.84,
+   "general": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "achimala/jev-paint",
+  "stars": 63,
+  "description": "Use Jev to make art!",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.04,
+   "devtool": 0.04,
+   "sdk": 0.08,
+   "business": 0.01,
+   "consumer": 0.14,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "peterfriese/system-one-foundation-models",
+  "stars": 63,
+  "description": "A lightweight, native Swift 6 bridge integrating TypeSafe AI's Jev System One decision model into Apple's Foundation Models framework.",
+  "scores": {
+   "replica": 0.39,
+   "agent": 0.05,
+   "devtool": 0.29,
+   "sdk": 0.94,
+   "business": 0.11,
+   "consumer": 0.05,
+   "general": 0.23
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "EliaAlberti/jev-rules",
+  "stars": 64,
+  "description": "Jev picks which of your rules apply to each prompt, so Claude only sees the ones that matter.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.07,
+   "devtool": 0.97,
+   "sdk": 0.16,
+   "business": 0.07,
+   "consumer": 0.34,
+   "general": 0.18
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "wobsoriano/oxlint-plugin-jev",
+  "stars": 66,
+  "description": "",
+  "scores": {
+   "sdk": 0.64,
+   "business": 0.02,
+   "consumer": 0.03,
+   "general": 0.18,
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.8
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "MiaoWuNYA/rikkahub-sillytavern-android",
+  "stars": 66,
+  "description": "安卓AI聊天端:开箱即聊，无损导入酒馆卡，缓存强省用量，Jev 决策，专属酒馆模式，防空回，多维记忆，前端卡支持，高定制主题，QQbot，AI群聊，插件系统，强兼容中转站。手机移动端原生支持，求 Star 收藏⭐Android AI Chatbox: lossless SillyTavern card import, aggressive cache optimization, Jev decisions, multi-dimensional memory, anti-blank-reply, proactive messages, AI group chat, SillyTavern themes, plugin system, Native mobile.RikkaHub",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.1,
+   "devtool": 0.04,
+   "sdk": 0.06,
+   "business": 0.02,
+   "consumer": 0.91,
+   "general": 0.12
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "bnsd55/jevmlx",
+  "stars": 69,
+  "description": "Jev-style parallel constrained decisions for any MLX model on Apple Silicon. Typed, schema-valid JSON in one forward pass.",
+  "scores": {
+   "replica": 0.84,
+   "agent": 0.05,
+   "devtool": 0.18,
+   "sdk": 0.84,
+   "business": 0.59,
+   "consumer": 0.13,
+   "general": 0.34
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "AboveColin/HA-Jev",
+  "stars": 69,
+  "description": "Ask your house a question, get a number back. Home Assistant integration for TypeSafe Jev: typed answers as sensors, four actions for automations, and a conversation agent for Assist.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.05,
+   "devtool": 0.04,
+   "sdk": 0.49,
+   "business": 0.02,
+   "consumer": 0.12,
+   "general": 0.49
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mizchi/jev-playground",
+  "stars": 72,
+  "description": "",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.54,
+   "devtool": 0.46,
+   "sdk": 0.62,
+   "business": 0.11,
+   "consumer": 0.08,
+   "general": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kikoncuo/jevfire",
+  "stars": 72,
+  "description": "JEV-inspired parallel decisions for CUDA LLMs. One context, many decisions. vLLM API, game-agent examples, and reproducible benchmarks.",
+  "scores": {
+   "replica": 0.79,
+   "agent": 0.58,
+   "devtool": 0.11,
+   "sdk": 0.71,
+   "business": 0.03,
+   "consumer": 0.08,
+   "general": 0.4
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "kyegomez/open-jev",
+  "stars": 72,
+  "description": "an open-source, from-first-principles reconstruction of the ideas behind TypeSafe AI's Jev, written in pytorch",
+  "scores": {
+   "replica": 0.79,
+   "agent": 0.08,
+   "devtool": 0.07,
+   "sdk": 0.33,
+   "business": 0.26,
+   "consumer": 0.11,
+   "general": 0.21
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "hyperspaceai/jevcache",
+  "stars": 75,
+  "description": "A decision cache for TypeSafe Jev-class models — memoize decisions so repeats are free, deterministic, and shareable. One 2 MB binary.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.08,
+   "devtool": 0.58,
+   "sdk": 0.47,
+   "business": 0.35,
+   "consumer": 0.1,
+   "general": 0.29
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "thinkany-ai/autojev",
+  "stars": 75,
+  "description": "The model router for AI agents.",
+  "scores": {
+   "replica": 0.26,
+   "agent": 0.08,
+   "devtool": 0.92,
+   "sdk": 0.35,
+   "business": 0.02,
+   "consumer": 0.41,
+   "general": 0.23
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "sharziki/semdecide",
+  "stars": 75,
+  "description": "Typed semantic decisions for Unix pipelines and CI, powered by TypeSafe AI Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.06,
+   "devtool": 0.41,
+   "sdk": 0.37,
+   "business": 0.72,
+   "consumer": 0.05,
+   "general": 0.49
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "yikangy873-gif/jev-desktop",
+  "stars": 75,
+  "description": "TypeSafe Jev action selection inside Codex Computer Use",
+  "scores": {
+   "replica": 0.13,
+   "agent": 0.92,
+   "devtool": 0.86,
+   "sdk": 0.31,
+   "business": 0.03,
+   "consumer": 0.48,
+   "general": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "AustinAWay/Working-Memory-Jev",
+  "stars": 76,
+  "description": "",
+  "scores": {
+   "general": 0.07,
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.05,
+   "sdk": 0.09,
+   "business": 0.03,
+   "consumer": 0.09
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "IAmUnbounded/save-token-jev-clean",
+  "stars": 79,
+  "description": "",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.08,
+   "devtool": 0.98,
+   "sdk": 0.52,
+   "business": 0.03,
+   "consumer": 0.43,
+   "general": 0.2
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Sheltercosmo/JevSDSQL",
+  "stars": 79,
+  "description": "A self-developing SQL database with JEV based semantic operators and natural language queries.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.05,
+   "devtool": 0.09,
+   "sdk": 0.4,
+   "business": 0.52,
+   "consumer": 0.09,
+   "general": 0.14
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Dimweaker/jev-libero",
+  "stars": 80,
+  "description": "Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks.",
+  "scores": {
+   "replica": 0.19,
+   "agent": 0.63,
+   "devtool": 0.07,
+   "sdk": 0.55,
+   "business": 0.01,
+   "consumer": 0.03,
+   "general": 0.36
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "f/jev-leftpad",
+  "stars": 84,
+  "description": "Left-pad strings with TypeSafe AI's Jev. For reasons.",
+  "scores": {
+   "business": 0.01,
+   "consumer": 0.04,
+   "general": 0.03,
+   "replica": 0.02,
+   "agent": 0.03,
+   "devtool": 0.14,
+   "sdk": 0.81
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "luobosibing2/dsh-jev-plugin",
+  "stars": 84,
+  "description": "Native DeepSeek Harness (DSH) plugin integrating TypeSafe Jev as a System One decision layer for agent selection, supervision, corrections, and approvals.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.25,
+   "devtool": 0.89,
+   "sdk": 0.36,
+   "business": 0.04,
+   "consumer": 0.15,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "PyModel/jev-judge-mcp",
+  "stars": 85,
+  "description": "Typed judgment tools for MCP agents. TypeSafe's Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, or escalate.",
+  "scores": {
+   "consumer": 0.1,
+   "general": 0.68,
+   "replica": 0.06,
+   "agent": 0.09,
+   "devtool": 0.95,
+   "sdk": 0.97,
+   "business": 0.15
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "1Panel-dev/laya-server",
+  "stars": 87,
+  "description": "A self-hosted API and web interface for Laya’s structured decision models, compatible with the TypeSafe Jev API format.",
+  "scores": {
+   "replica": 0.8,
+   "agent": 0.07,
+   "devtool": 0.13,
+   "sdk": 0.56,
+   "business": 0.23,
+   "consumer": 0.08,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "giuliosmall/pg_typesafe",
+  "stars": 87,
+  "description": "Pre-alpha PostgreSQL extension for TypeSafe AI (Jev) categorical classification",
+  "scores": {
+   "sdk": 0.89,
+   "business": 0.37,
+   "consumer": 0.04,
+   "general": 0.12,
+   "replica": 0.04,
+   "agent": 0.05,
+   "devtool": 0.09
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "realZachi/typesafe-adblock",
+  "stars": 88,
+  "description": "🧹 Fun project: a Chrome extension that asks a tiny AI decision model (TypeSafe Jev) \"is this DOM element an ad?\" and pops it off the page. BYOK, no backend, not a real ad blocker.",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.08,
+   "devtool": 0.03,
+   "sdk": 0.03,
+   "business": 0.01,
+   "consumer": 0.12,
+   "general": 0.03
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "lyuyiqi/open-jev-fast",
+  "stars": 89,
+  "description": "Faster inference backend for Open-Jev-27B: fused CUDA kernels, prefix tree, CUDA Graphs (B300, bf16)",
+  "scores": {
+   "replica": 0.94,
+   "agent": 0.08,
+   "devtool": 0.05,
+   "sdk": 0.53,
+   "business": 0.14,
+   "consumer": 0.08,
+   "general": 0.08
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "anteloc/ldraw-nova",
+  "stars": 91,
+  "description": "Agent tooling for generative LEGO models building, built with Astra and Opus 5.5, powered by Jev",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.21,
+   "devtool": 0.25,
+   "sdk": 0.06,
+   "business": 0.01,
+   "consumer": 0.11,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ellipsis-dev/blink",
+  "stars": 92,
+  "description": "Codebase search powered by Jev from @typesafe-ai",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.12,
+   "devtool": 0.95,
+   "sdk": 0.1,
+   "business": 0.04,
+   "consumer": 0.1,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Bodila51/grok-bot-jev",
+  "stars": 92,
+  "description": "Connect TypeSafe Jev to Grok Bot as a cheap decision layer - usage gates, skill template, examples",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.35,
+   "devtool": 0.87,
+   "sdk": 0.58,
+   "business": 0.07,
+   "consumer": 0.4,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "fazlerocks/jevmail",
+  "stars": 93,
+  "description": "Open-source AI email triage for Gmail. Sorts your inbox into Needs reply, Updates, Promos, Sales and Spam with Jev, TypeSafe AI's decision model, via Vercel AI Gateway. Read-only, runs locally, 1,000 emails in about a minute for 3 cents.",
+  "scores": {
+   "consumer": 0.43,
+   "general": 0.05,
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.04,
+   "sdk": 0.05,
+   "business": 0.27
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "arimanyus/warrenduffer",
+  "stars": 93,
+  "description": "AI-driven intraday trading bot for Indian stocks. Jev ranks the Nifty 50 every 15s; code sizes each trade and places the stop; orders go live through Zerodha Kite or Kotak Neo. Day replay, kill switch, daily loss halt, terminal dashboard.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.11,
+   "devtool": 0.03,
+   "sdk": 0.06,
+   "business": 0.88,
+   "consumer": 0.04,
+   "general": 0.05
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "AkashPriyadarshii/jev-seo",
+  "stars": 93,
+  "description": "Free Rust SEO and GEO toolkit powered by TypeSafe Jev: 58-rule audits, site crawls, AI citation checks, rank drift, CI gates, 15-tool MCP. Zero cost.",
+  "scores": {
+   "consumer": 0.06,
+   "general": 0.38,
+   "replica": 0.06,
+   "agent": 0.09,
+   "devtool": 0.85,
+   "sdk": 0.5,
+   "business": 0.02
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Ying-Kai-Liao/jev-browser",
+  "stars": 94,
+  "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.95,
+   "devtool": 0.49,
+   "sdk": 0.93,
+   "business": 0.03,
+   "consumer": 0.12,
+   "general": 0.24
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "kyle-pena-nlp/jevchat",
+  "stars": 95,
+  "description": "Turns Jev into a chatbot",
+  "scores": {
+   "replica": 0.11,
+   "agent": 0.05,
+   "devtool": 0.11,
+   "sdk": 0.24,
+   "business": 0.02,
+   "consumer": 0.48,
+   "general": 0.15
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "nassim-arifette/jevgrep",
+  "stars": 95,
+  "description": "Jev-powered semantic code search for coding agents — find behavior across repositories via CLI or MCP, with exact source excerpts and line numbers.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.98,
+   "sdk": 0.75,
+   "business": 0.02,
+   "consumer": 0.06,
+   "general": 0.07
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "pithings/advocaat",
+  "stars": 96,
+  "description": "A small, type-safe client for asking AI questions about your data, powered by TypeSafe Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.63,
+   "sdk": 0.89,
+   "business": 0.49,
+   "consumer": 0.1,
+   "general": 0.11
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "UditAkhourii/quicksilver",
+  "stars": 97,
+  "description": "Claude Code skill: hand bulk judgment calls to Jev. 86% fewer Claude tokens on a 12-task benchmark, up to 20x faster. One-line npx install.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.08,
+   "devtool": 0.98,
+   "sdk": 0.28,
+   "business": 0.36,
+   "consumer": 0.23,
+   "general": 0.18
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "AkashPriyadarshii/jev-curate",
+  "stars": 97,
+  "description": "High-throughput synthetic and pretraining dataset sifter for TypeSafe Jev. Rust streaming core, Parquet and JSONL I/O, typed Choice/Score/Noul judgments, speculative fan-out, 24.0 rows/sec measured.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.03,
+   "devtool": 0.16,
+   "sdk": 0.53,
+   "business": 0.06,
+   "consumer": 0.03,
+   "general": 0.18
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "nidhi-singh02/agent-router",
+  "stars": 100,
+  "description": "CLI that picks Cursor, Claude Code, Codex, or OpenCode + model/effort for a task, then launches it. Powered by Jev and Herdr",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.18,
+   "devtool": 0.98,
+   "sdk": 0.06,
+   "business": 0.02,
+   "consumer": 0.18,
+   "general": 0.07
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "PerryLink/jevcore",
+  "stars": 102,
+  "description": "TypeSafe Jev for DeepSeek Harness, the Model Context Protocol, and plain Node: typed judgments instead of prose, offline by default.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.15,
+   "devtool": 0.66,
+   "sdk": 0.95,
+   "business": 0.04,
+   "consumer": 0.08,
+   "general": 0.47
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "can1357/jegrep",
+  "stars": 103,
+  "description": "Semantic grep: find code by describing what you're looking for, powered by Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.96,
+   "sdk": 0.15,
+   "business": 0.03,
+   "consumer": 0.08,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "codegirl-007/jevlint",
+  "stars": 104,
+  "description": "A linter to codify code taste using Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.81,
+   "sdk": 0.12,
+   "business": 0.02,
+   "consumer": 0.03,
+   "general": 0.13
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Avinash-jetwani/jevmem",
+  "stars": 105,
+  "description": "Automatic project memory for Claude Code: decisions, rules and dead ends saved to JEVMEM.md in your repo, brought back next session. In the Claude plugin directory and on the MCP Registry.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.11,
+   "devtool": 0.98,
+   "sdk": 0.54,
+   "business": 0.02,
+   "consumer": 0.69,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "openqa-cn/jev-browser",
+  "stars": 105,
+  "description": "Jev Browser — indexed browser automation. Jev chooses the control, Playwright acts. A CodexQA skill.",
+  "scores": {
+   "consumer": 0.08,
+   "general": 0.12,
+   "replica": 0.12,
+   "agent": 0.9,
+   "devtool": 0.81,
+   "sdk": 0.16,
+   "business": 0.03
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ChetasLua/jevmeter",
+  "stars": 105,
+  "description": "Put a live Jev (TypeSafe) meter on any video: every sentence scored, rendered as a 16:9 edit",
+  "scores": {
+   "general": 0.13,
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.04,
+   "sdk": 0.08,
+   "business": 0.04,
+   "consumer": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "vinilana/jev-eval-agent",
+  "stars": 106,
+  "description": "",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.15,
+   "devtool": 0.35,
+   "sdk": 0.06,
+   "business": 0.07,
+   "consumer": 0.49,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ThinkFlowLab/system1-agents",
+  "stars": 107,
+  "description": "System 1 decision models (Jev, Laya, Cua-S1) as brain for agents: Browser use, computer use, games and robotics",
+  "scores": {
+   "consumer": 0.18,
+   "general": 0.71,
+   "replica": 0.18,
+   "agent": 0.91,
+   "devtool": 0.85,
+   "sdk": 0.74,
+   "business": 0.26
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kevinbadi/jev-voice",
+  "stars": 107,
+  "description": "Talk to your Mac. Local whisper.cpp + one Jev (TypeSafe) call per command + macOS automation.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.86,
+   "devtool": 0.12,
+   "sdk": 0.07,
+   "business": 0.02,
+   "consumer": 0.82,
+   "general": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "w3cj/jev-chat",
+  "stars": 108,
+  "description": "A tool calling chat bot built with Jev and no LLM.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.18,
+   "devtool": 0.17,
+   "sdk": 0.06,
+   "business": 0.03,
+   "consumer": 0.78,
+   "general": 0.13
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "egma-ai/jev-code-reviewer",
+  "stars": 108,
+  "description": "Review behavior, not just diffs. Jev prioritizes human attention; OpenAI explains the changes. Local CLI + agent skill + GitHub extension.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.09,
+   "devtool": 0.97,
+   "sdk": 0.28,
+   "business": 0.03,
+   "consumer": 0.15,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "JunMa11/MedJev",
+  "stars": 109,
+  "description": "",
+  "scores": {
+   "replica": 0.84,
+   "agent": 0.03,
+   "devtool": 0.05,
+   "sdk": 0.27,
+   "business": 0.1,
+   "consumer": 0.07,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "trungdq88/youtube-sponsor-detection",
+  "stars": 109,
+  "description": "Detect youtube sponsor segment with live audio and transcript powered by Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.21,
+   "devtool": 0.05,
+   "sdk": 0.06,
+   "business": 0.02,
+   "consumer": 0.17,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "virajbhartiya/laya-vs-jev",
+  "stars": 110,
+  "description": "Laya vs Jev: local MLX and hosted AI decisions playing T-Rex side by side, with live metrics and replay recording",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.76,
+   "devtool": 0.07,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.07,
+   "general": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Heman10x-NGU/Verdict-open-jev",
+  "stars": 110,
+  "description": "Non-autoregressive decision engine on ModernBERT (151M) with calibrated uncertainty (RLCD), TypeSafe AI Jev benchmark audit, and in-browser WebGPU playground",
+  "scores": {
+   "replica": 0.9,
+   "agent": 0.14,
+   "devtool": 0.19,
+   "sdk": 0.39,
+   "business": 0.31,
+   "consumer": 0.07,
+   "general": 0.15
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "OmniJev/OneJev",
+  "stars": 111,
+  "description": "🚀🚀 A multimodal System One decision model that gives calibrated answers to typed questions about screens, photos, video and text in one forward pass.",
+  "scores": {
+   "replica": 0.86,
+   "agent": 0.87,
+   "devtool": 0.16,
+   "sdk": 0.81,
+   "business": 0.17,
+   "consumer": 0.2,
+   "general": 0.14
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "datawhalechina/jev-cookbook",
+  "stars": 111,
+  "description": "⚡ 适合中国宝宝的 Jev 入门教程｜手把手带你了解关于 Jev 的一切——Jupyter Notebook 轻松实验，从三种问题原语到 18 篇实战配方、语音智能家居、模型评测与本地微调，全面掌握 System One 判断模型的开发范式",
+  "scores": {
+   "replica": 0.26,
+   "agent": 0.25,
+   "devtool": 0.15,
+   "sdk": 0.07,
+   "business": 0.05,
+   "consumer": 0.08,
+   "general": 0.56
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mmastrac/djev",
+  "stars": 112,
+  "description": "Jev-style structured decisions on DiffusionGemma: the example server from vLLM PR 57250",
+  "scores": {
+   "replica": 0.83,
+   "agent": 0.09,
+   "devtool": 0.18,
+   "sdk": 0.53,
+   "business": 0.6,
+   "consumer": 0.1,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "agent-labs-dev/fastbrowse",
+  "stars": 113,
+  "description": "A fast browser agent: Jev picks each action from what is on the page, an LLM reads and plans, and every claim in an answer cites a quote from the page.",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.96,
+   "devtool": 0.17,
+   "sdk": 0.27,
+   "business": 0.05,
+   "consumer": 0.1,
+   "general": 0.2
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "savka777/jev-use",
+  "stars": 114,
+  "description": "Say it, and your Mac does it. A computer-use harness on Jev that reads the screen through Accessibility. Fast, no vision model",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.95,
+   "devtool": 0.08,
+   "sdk": 0.08,
+   "business": 0.02,
+   "consumer": 0.65,
+   "general": 0.4
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "mizchi/jev-lint",
+  "stars": 114,
+  "description": "lint text in code by jev scorerer",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.87,
+   "sdk": 0.16,
+   "business": 0.04,
+   "consumer": 0.03,
+   "general": 0.33
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "NanmiCoder/jev-arena",
+  "stars": 116,
+  "description": "Jev 模型介绍与实测：通过 Choice / Score / Noul 将自然语言转为带类型的判断与概率，用于分类、评分和路由；支持与 DeepSeek 等模型对比评论打标、速度与结果，含 CSV/Excel 导入、原速回放与离线报告。",
+  "scores": {
+   "replica": 0.28,
+   "agent": 0.05,
+   "devtool": 0.3,
+   "sdk": 0.09,
+   "business": 0.28,
+   "consumer": 0.11,
+   "general": 0.28
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mrnugget/jev-shell-history",
+  "stars": 117,
+  "description": "Fish-style zsh history autosuggestions ranked by Jev (TypeSafe)",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.18,
+   "sdk": 0.14,
+   "business": 0.01,
+   "consumer": 0.74,
+   "general": 0.04
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "christianmat/jev-pokemon",
+  "stars": 118,
+  "description": "Jev, an AI decision model, plays Pokémon Red. It beat the game in 37h 40m.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.95,
+   "devtool": 0.06,
+   "sdk": 0.06,
+   "business": 0.01,
+   "consumer": 0.06,
+   "general": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "devagrawal09/stanley-code",
+  "stars": 118,
+  "description": "Bounded TypeSafe Jev workflows for coding agents.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.14,
+   "devtool": 0.95,
+   "sdk": 0.16,
+   "business": 0.04,
+   "consumer": 0.08,
+   "general": 0.33
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "michaelswissa/jevry",
+  "stars": 121,
+  "description": "Your browser. Ready to act. An MIT-licensed desktop browser agent for website tasks, cited research, and supported games.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.96,
+   "devtool": 0.08,
+   "sdk": 0.07,
+   "business": 0.04,
+   "consumer": 0.5,
+   "general": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "artemnovitckii/creator-lab",
+  "stars": 122,
+  "description": "Research Instagram Reel scripts with Apify, Jev, and Fireworks or Groq. Bring your own keys, compare hooks, and record the patterns.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.1,
+   "devtool": 0.08,
+   "sdk": 0.05,
+   "business": 0.04,
+   "consumer": 0.09,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "daseinlabs/open-jev",
+  "stars": 123,
+  "description": "Open Jev implementation with custom finetuning",
+  "scores": {
+   "replica": 0.96,
+   "agent": 0.56,
+   "devtool": 0.13,
+   "sdk": 0.86,
+   "business": 0.05,
+   "consumer": 0.17,
+   "general": 0.38
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "sdras/jev-webmcp-extension",
+  "stars": 124,
+  "description": "A small extension that demos the combination of Jev x WebMCP",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.44,
+   "devtool": 0.13,
+   "sdk": 0.06,
+   "business": 0.03,
+   "consumer": 0.31,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "zwliJay/jev-forge",
+  "stars": 126,
+  "description": "An open training and inference stack for Jev-style decision models.  Train models to score dynamic candidate branches from a shared prefix, with support for high-cardinality choice, calibration, and fast batched inference.",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.79,
+   "devtool": 0.12,
+   "sdk": 0.62,
+   "business": 0.04,
+   "consumer": 0.09,
+   "general": 0.51
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Dicklesworthstone/skillranker",
+  "stars": 127,
+  "description": "Rust CLI powered by Jev from TypeSafe.ai that ranks agent skills for the next step using live session context. Includes Claude Code hooks, structured JSON, abstention, and local feedback. Requires a TypeSafe API key.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.21,
+   "devtool": 0.94,
+   "sdk": 0.14,
+   "business": 0.04,
+   "consumer": 0.27,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "tinnel123666888/OmniJev",
+  "stars": 130,
+  "description": "",
+  "scores": {
+   "replica": 0.84,
+   "agent": 0.37,
+   "devtool": 0.05,
+   "sdk": 0.37,
+   "business": 0.05,
+   "consumer": 0.09,
+   "general": 0.18
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "allebee/jevk5",
+  "stars": 131,
+  "description": "JevK5: open-weight alternative to TypeSafe Jev. Typed decisions with probabilities in one forward pass; Apache-2.0 weights and code.",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.23,
+   "devtool": 0.13,
+   "sdk": 0.24,
+   "business": 0.65,
+   "consumer": 0.09,
+   "general": 0.12
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "cobusgreyling/Jev",
+  "stars": 131,
+  "description": "Unofficial TypeSafe Jev showcase — System One decisions, not chat.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.14,
+   "devtool": 0.73,
+   "sdk": 0.68,
+   "business": 0.26,
+   "consumer": 0.09,
+   "general": 0.72
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "YUTA-fywoo/jev-gui-delegate",
+  "stars": 131,
+  "description": "AI-assisted Windows and Chrome GUI delegation for Codex: task contracts, local execution, Jev semantic decisions, recovery and outcome verification.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.85,
+   "devtool": 0.9,
+   "sdk": 0.32,
+   "business": 0.04,
+   "consumer": 0.38,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "keltokhy/jgrep",
+  "stars": 133,
+  "description": "grep, but the pattern is a description. Filters lines by meaning with TypeSafe's Jev decision model: ~200 ms and a thousandth of a cent per line.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.03,
+   "devtool": 0.47,
+   "sdk": 0.11,
+   "business": 0.14,
+   "consumer": 0.09,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "socai-io/jev-social",
+  "stars": 140,
+  "description": "Open-source, local-first social media research agent for Instagram, TikTok, and LinkedIn. Jev routes read-only steps; socai CLI captures cited browser evidence.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.94,
+   "devtool": 0.15,
+   "sdk": 0.13,
+   "business": 0.02,
+   "consumer": 0.16,
+   "general": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "juspay/neurolink",
+  "stars": 142,
+  "description": "The pipe layer of an AI nervous system — one interface connecting provider neurons to your application, across three inference types: generate, stream, and a calibrated decide (via TypeSafe Jev). MCP-native, voice (TTS/STT/realtime), RAG, memory, file processors. Powers Tara, Yama and Clairvoyance at Juspay.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.09,
+   "devtool": 0.64,
+   "sdk": 0.72,
+   "business": 0.14,
+   "consumer": 0.08,
+   "general": 0.59
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "wquguru/dasheng",
+  "stars": 143,
+  "description": "大声读 — R2T2 流式 ASR 听，Jev 逐词判，英文朗读评分",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.03,
+   "devtool": 0.04,
+   "sdk": 0.12,
+   "business": 0.02,
+   "consumer": 0.2,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "uehaj/sys1grep",
+  "stars": 144,
+  "description": "grep by meaning, across languages. TypeSafe Jev scores every line against a meaning; combine meanings with AND/OR/NOT. 意味で探す grep。日本語で英語を、英語で日本語を検索できる",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.42,
+   "sdk": 0.23,
+   "business": 0.37,
+   "consumer": 0.08,
+   "general": 0.15
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "uehaj/jev-semgrep",
+  "stars": 145,
+  "description": "grep by meaning, across languages. TypeSafe Jev scores every line against a meaning; combine meanings with AND/OR/NOT. 意味で探す grep。日本語で英語を、英語で日本語を検索できる",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.03,
+   "devtool": 0.49,
+   "sdk": 0.17,
+   "business": 0.37,
+   "consumer": 0.1,
+   "general": 0.17
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "CharlesFeng0314/JEV_sees",
+  "stars": 146,
+  "description": "Eyes are All JEV Needs - real time visual devisions from RGB, video and RGB-D cameras.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.15,
+   "devtool": 0.07,
+   "sdk": 0.71,
+   "business": 0.02,
+   "consumer": 0.04,
+   "general": 0.22
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "libingzheren/Jev-Mem",
+  "stars": 146,
+  "description": "Jev-Mem: System-One Controlled Agentic Memory",
+  "scores": {
+   "replica": 0.21,
+   "agent": 0.12,
+   "devtool": 0.15,
+   "sdk": 0.39,
+   "business": 0.04,
+   "consumer": 0.3,
+   "general": 0.15
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "CTNicholas/jev-workflow-builder",
+  "stars": 149,
+  "description": "",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.14,
+   "devtool": 0.17,
+   "sdk": 0.1,
+   "business": 0.25,
+   "consumer": 0.08,
+   "general": 0.13
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "dbreunig/building-with-jev-skill",
+  "stars": 149,
+  "description": "A skill for writing and improving programs that call Jev, TypeSafe's System One model",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.08,
+   "devtool": 0.94,
+   "sdk": 0.08,
+   "business": 0.04,
+   "consumer": 0.22,
+   "general": 0.23
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "dorkitude/webctl",
+  "stars": 149,
+  "description": "Smart web search CLI for agents, backed by Jev. Saves a lot of tokens.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.12,
+   "devtool": 0.83,
+   "sdk": 0.15,
+   "business": 0.03,
+   "consumer": 0.33,
+   "general": 0.11
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "y0usaf/pi-jev",
+  "stars": 154,
+  "description": "TypeSafe Jev as a decision layer for the Pi coding agent: a measured tool-call gate plus jev_ask for typed, calibrated answers",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.45,
+   "devtool": 0.96,
+   "sdk": 0.59,
+   "business": 0.03,
+   "consumer": 0.26,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jexp/neo4jev",
+  "stars": 156,
+  "description": "Typesafe.ai System One Model Jev navigating a Neo4j graph by using a classifier over neighbouring relationships",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.1,
+   "devtool": 0.12,
+   "sdk": 0.24,
+   "business": 0.06,
+   "consumer": 0.07,
+   "general": 0.1
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "tamaratran/jev-pruner",
+  "stars": 158,
+  "description": "Claude Code plugin: trim long Bash output with TypeSafe Jev before the model sees it",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.06,
+   "devtool": 0.97,
+   "sdk": 0.21,
+   "business": 0.03,
+   "consumer": 0.31,
+   "general": 0.06
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "disler/ten-levels-of-jev",
+  "stars": 158,
+  "description": "Ten levels of Jev, from one smart if statement to a coding agent that reaches for Jev on its own",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.22,
+   "devtool": 0.74,
+   "sdk": 0.11,
+   "business": 0.12,
+   "consumer": 0.15,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kshetrajna12/reflex",
+  "stars": 161,
+  "description": "A small open decision model: state + typed questions -> calibrated probabilities. A Jev / System One re-creation on Qwen3.5.",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.09,
+   "devtool": 0.17,
+   "sdk": 0.36,
+   "business": 0.77,
+   "consumer": 0.12,
+   "general": 0.15
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "SiliconLabAI/OpenJev",
+  "stars": 162,
+  "description": "OpenSource Jev",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.16,
+   "devtool": 0.26,
+   "sdk": 0.68,
+   "business": 0.53,
+   "consumer": 0.12,
+   "general": 0.54
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Liyucheng1997/332_lab-jev-chat",
+  "stars": 165,
+  "description": "Jev Chat Assistant for Windows - 电脑版微信意图判断与 DeepSeek 建议回复",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.19,
+   "devtool": 0.04,
+   "sdk": 0.05,
+   "business": 0.03,
+   "consumer": 0.97,
+   "general": 0.15
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "brainstormity/Jev-X-Sentiment-Analysis",
+  "stars": 174,
+  "description": "",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.06,
+   "devtool": 0.06,
+   "sdk": 0.12,
+   "business": 0.81,
+   "consumer": 0.1,
+   "general": 0.06
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "aowang-ai/jev-trade",
+  "stars": 180,
+  "description": "Live Jev trader on Hyperliquid",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.11,
+   "devtool": 0.05,
+   "sdk": 0.09,
+   "business": 0.8,
+   "consumer": 0.05,
+   "general": 0.07
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "dealerdefi/Jevmind",
+  "stars": 183,
+  "description": "",
+  "scores": {
+   "replica": 0.35,
+   "agent": 0.39,
+   "devtool": 0.91,
+   "sdk": 0.53,
+   "business": 0.12,
+   "consumer": 0.16,
+   "general": 0.59
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "HarnessRouter/SystemOneHarness",
+  "stars": 192,
+  "description": "The System One harness for System One models. Run Jev and other System One models locally or directly on HarnessRouter.ai.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.71,
+   "devtool": 0.39,
+   "sdk": 0.53,
+   "business": 0.06,
+   "consumer": 0.08,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "togethercomputer/tev1",
+  "stars": 202,
+  "description": "Open-weight, Jev-inspired decision model finetuned on top of Qwen3.5 4B",
+  "scores": {
+   "replica": 0.77,
+   "agent": 0.12,
+   "devtool": 0.13,
+   "sdk": 0.16,
+   "business": 0.48,
+   "consumer": 0.07,
+   "general": 0.15
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "standardagents/jevpilot",
+  "stars": 208,
+  "description": "A playable Three.js driving simulator with Jev-powered autopilot",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.59,
+   "devtool": 0.06,
+   "sdk": 0.06,
+   "business": 0.01,
+   "consumer": 0.05,
+   "general": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "imikerussell/beebots",
+  "stars": 215,
+  "description": "Three AI trading bees on OKX, every decision by Jev. Paper trading by default. Not financial advice.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.23,
+   "devtool": 0.04,
+   "sdk": 0.04,
+   "business": 0.54,
+   "consumer": 0.05,
+   "general": 0.07
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "mode-io/vllm-jev",
+  "stars": 217,
+  "description": "Native vLLM serving for Jev decision models",
+  "scores": {
+   "replica": 0.88,
+   "agent": 0.26,
+   "devtool": 0.1,
+   "sdk": 0.77,
+   "business": 0.07,
+   "consumer": 0.07,
+   "general": 0.27
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "NiazMorshed2007/jev-review",
+  "stars": 231,
+  "description": "Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.98,
+   "sdk": 0.89,
+   "business": 0.02,
+   "consumer": 0.13,
+   "general": 0.06
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "RomanSlack/jev-drone",
+  "stars": 234,
+  "description": "Camera-only autonomous drone in MuJoCo with a small judgment model (TypeSafe Jev) in the loop at 2.5Hz",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.3,
+   "devtool": 0.03,
+   "sdk": 0.03,
+   "business": 0.01,
+   "consumer": 0.02,
+   "general": 0.04
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mohit67890/imajev",
+  "stars": 239,
+  "description": "Open Jev-style typed-decision model that also takes images: photo + app state + typed questions in, calibrated probabilities out, locally.",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.36,
+   "devtool": 0.08,
+   "sdk": 0.49,
+   "business": 0.77,
+   "consumer": 0.11,
+   "general": 0.23
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "monteduro/killmyidea",
+  "stars": 247,
+  "description": "Describe your startup idea. Jev decides: kill it, fix it or ship it.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.05,
+   "devtool": 0.09,
+   "sdk": 0.12,
+   "business": 0.04,
+   "consumer": 0.1,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Devin-AXIS/jev-dsh-decision",
+  "stars": 252,
+  "description": "Jev DSH 决策引擎｜面向 Agent Harness 的结构化决策插件。原生支持 DeepSeek Harness，通过 iPolloWork 支持 OpenCode、Codex Harness。",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.17,
+   "devtool": 0.93,
+   "sdk": 0.63,
+   "business": 0.05,
+   "consumer": 0.16,
+   "general": 0.23
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "FBddcz/embodied-jev",
+  "stars": 253,
+  "description": "EmbodiedJev: MuJoCo robot decision workbench with MiniCPM5-2B, Jev and compatible model APIs",
+  "scores": {
+   "replica": 0.4,
+   "agent": 0.53,
+   "devtool": 0.08,
+   "sdk": 0.15,
+   "business": 0.01,
+   "consumer": 0.07,
+   "general": 0.31
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "shengjidaguai-china/goutoujunshi-jev-chat",
+  "stars": 263,
+  "description": "狗头军师 Chat：Mac 微信读屏、关系分析与回复草稿悬浮窗",
+  "scores": {
+   "replica": 0.13,
+   "agent": 0.14,
+   "devtool": 0.05,
+   "sdk": 0.06,
+   "business": 0.04,
+   "consumer": 0.97,
+   "general": 0.12
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "FerryCorleone/crush-monitor",
+  "stars": 267,
+  "description": "Crush 好感监控器：用 Jev 分析微信聊天的情绪、意图和回复表现。本机部署，使用自己的 API Key。",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.03,
+   "sdk": 0.05,
+   "business": 0.02,
+   "consumer": 0.79,
+   "general": 0.04
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "0xNatoshi/jev-codex-router",
+  "stars": 274,
+  "description": "Per-turn model & reasoning routing for Codex, driven by Jev (TypeSafe System One): picks the model, thinking depth and speed mode for every turn.",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.1,
+   "devtool": 0.98,
+   "sdk": 0.49,
+   "business": 0.03,
+   "consumer": 0.29,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "vinilana/jev-gateway",
+  "stars": 284,
+  "description": "An easy way to use jev with your coding agent for tool calling reasoning",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.41,
+   "devtool": 0.97,
+   "sdk": 0.64,
+   "business": 0.02,
+   "consumer": 0.21,
+   "general": 0.38
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "logan-markewich/jeff",
+  "stars": 284,
+  "description": "A self-hosted drop-in replacement for TypeSafe's jev, powered by GliFormer.",
+  "scores": {
+   "replica": 0.96,
+   "agent": 0.06,
+   "devtool": 0.15,
+   "sdk": 0.72,
+   "business": 0.75,
+   "consumer": 0.1,
+   "general": 0.15
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "miuuyy/Astra-Ares",
+  "stars": 295,
+  "description": "Adaptive reasoning effort for GPT-6 during Codex tasks, powered by Jev to reduce token usage.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.26,
+   "devtool": 0.93,
+   "sdk": 0.21,
+   "business": 0.02,
+   "consumer": 0.12,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "sutro-sh/jev-align",
+  "stars": 302,
+  "description": "Build calibrated AI Functions from human feedback using Jev and GEPA.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.05,
+   "devtool": 0.39,
+   "sdk": 0.11,
+   "business": 0.32,
+   "consumer": 0.06,
+   "general": 0.2
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "itsmostafa/typesafe-mcp",
+  "stars": 304,
+  "description": "An mcp connector to evaluate anything fast and cheap. Give your AI agent direct access to typesafe ai's jev model and open weight models like laya",
+  "scores": {
+   "general": 0.36,
+   "replica": 0.15,
+   "agent": 0.09,
+   "devtool": 0.94,
+   "sdk": 0.93,
+   "business": 0.62,
+   "consumer": 0.26
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jkudish/jev-browser",
+  "stars": 304,
+  "description": "Browser use using Typesafe's Jev model",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.94,
+   "devtool": 0.83,
+   "sdk": 0.93,
+   "business": 0.03,
+   "consumer": 0.11,
+   "general": 0.17
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "lakeday-org/perch",
+  "stars": 315,
+  "description": "Semantic code linting with Jev",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.07,
+   "devtool": 0.94,
+   "sdk": 0.25,
+   "business": 0.02,
+   "consumer": 0.05,
+   "general": 0.2
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "codejunkie99/keel",
+  "stars": 324,
+  "description": "Local-first macOS coding workspace with local Laya and optional Jev decision selection",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.36,
+   "devtool": 0.92,
+   "sdk": 0.06,
+   "business": 0.03,
+   "consumer": 0.32,
+   "general": 0.15
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "malevrigns/agent-jev",
+  "stars": 334,
+  "description": "AgentJev-0.6B - a fast 'System One' decision model for AI Agents: feed it any unstructured state (diffs, traces, logs) and structured questions, get calibrated probability distributions back in one ~50ms forward pass. Zero output-token decoding.",
+  "scores": {
+   "replica": 0.6,
+   "agent": 0.29,
+   "devtool": 0.73,
+   "sdk": 0.54,
+   "business": 0.35,
+   "consumer": 0.06,
+   "general": 0.24
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "ekzhang/openjev-sglang",
+  "stars": 337,
+  "description": "Jev-compatible API endpoint based on open models (prefill-only)",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.09,
+   "devtool": 0.18,
+   "sdk": 0.73,
+   "business": 0.62,
+   "consumer": 0.09,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "itsmostafa/system-one-connector",
+  "stars": 340,
+  "description": "System One MCP connector to evaluate anything fast and cheap. Give your AI agent direct access to models like: Jev, D1, CLM and Laya",
+  "scores": {
+   "replica": 0.13,
+   "agent": 0.09,
+   "devtool": 0.95,
+   "sdk": 0.93,
+   "business": 0.64,
+   "consumer": 0.23,
+   "general": 0.39
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "kitze/unclutter",
+  "stars": 348,
+  "description": "WXT browser extension: Jev-powered page clutter removal with reusable template rules.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.11,
+   "devtool": 0.06,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.15,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "BillionsBobby/JevRouter",
+  "stars": 359,
+  "description": "A lightweight Jev-powered router for models, tools, and subagents",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.29,
+   "devtool": 0.95,
+   "sdk": 0.66,
+   "business": 0.05,
+   "consumer": 0.15,
+   "general": 0.42
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "moritzkremb/jev-voice-browser",
+  "stars": 379,
+  "description": "Control a real browser by voice. Jev (TypeSafe System One) decides intent + target in ~300 ms per spoken word; Playwright acts — often before you finish the sentence.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.95,
+   "devtool": 0.07,
+   "sdk": 0.07,
+   "business": 0.02,
+   "consumer": 0.42,
+   "general": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Yinsongxu/LLM2Jev",
+  "stars": 385,
+  "description": "Turn local language models into Jev-style structured decision models. Get results from text and images with prefill alone—no token-by-token decoding required.",
+  "scores": {
+   "replica": 0.86,
+   "agent": 0.11,
+   "devtool": 0.21,
+   "sdk": 0.42,
+   "business": 0.09,
+   "consumer": 0.09,
+   "general": 0.48
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Zefan-Cai/Open-Jev",
+  "stars": 388,
+  "description": "",
+  "scores": {
+   "replica": 0.81,
+   "agent": 0.07,
+   "devtool": 0.12,
+   "sdk": 0.3,
+   "business": 0.33,
+   "consumer": 0.13,
+   "general": 0.24
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "realZachi/pg-jev",
+  "stars": 392,
+  "description": "Ask your Postgres tables questions in plain language. A PostgreSQL extension powered by TypeSafe's Jev.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.02,
+   "devtool": 0.08,
+   "sdk": 0.66,
+   "business": 0.61,
+   "consumer": 0.04,
+   "general": 0.11
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "dabit3/jev-experiments",
+  "stars": 396,
+  "description": "",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.22,
+   "devtool": 0.1,
+   "sdk": 0.05,
+   "business": 0.04,
+   "consumer": 0.1,
+   "general": 0.27
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "PostHog/jeeves",
+  "stars": 399,
+  "description": "Jeeves – Reasoning improves Jev-like decision models",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.16,
+   "devtool": 0.09,
+   "sdk": 0.38,
+   "business": 0.17,
+   "consumer": 0.09,
+   "general": 0.12
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "notque/vexjoy-agent",
+  "stars": 425,
+  "description": "VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.29,
+   "devtool": 0.98,
+   "sdk": 0.12,
+   "business": 0.08,
+   "consumer": 0.13,
+   "general": 0.55
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "fhshaik/typesafe-mario",
+  "stars": 425,
+  "description": "A TypeSafe/Jev agent that plays Super Mario Bros. from structured emulator state.",
+  "scores": {
+   "agent": 0.96,
+   "devtool": 0.13,
+   "sdk": 0.15,
+   "business": 0.01,
+   "consumer": 0.06,
+   "general": 0.06,
+   "replica": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "droidrun/mobile-jev",
+  "stars": 431,
+  "description": "",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.9,
+   "devtool": 0.19,
+   "sdk": 0.18,
+   "business": 0.02,
+   "consumer": 0.39,
+   "general": 0.29
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "AgriciDaniel/jev-seo",
+  "stars": 481,
+  "description": "Live SEO audit for any website from one homepage URL, judged by Jev. PDF, XLSX and Markdown reports.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.35,
+   "devtool": 0.51,
+   "sdk": 0.17,
+   "business": 0.03,
+   "consumer": 0.12,
+   "general": 0.06
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jkudish/jev-mcp",
+  "stars": 483,
+  "description": "Fast, cheap, typed judgments from TypeSafe's Jev model, as MCP tools.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.06,
+   "devtool": 0.93,
+   "sdk": 0.97,
+   "business": 0.46,
+   "consumer": 0.14,
+   "general": 0.79
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kyotofin/tax-doc-classifier",
+  "stars": 490,
+  "description": "Tax document page classifier built on Jev decisions. 100% strict accuracy across 261 IRS forms, ~$0.001 per page.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.09,
+   "sdk": 0.56,
+   "business": 0.97,
+   "consumer": 0.04,
+   "general": 0.04
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "TianyuCodings/JevHarness",
+  "stars": 492,
+  "description": "LLM-authored task-specific Jev harnesses with optional full-trajectory reward reflection and GEPA evolution.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.62,
+   "devtool": 0.88,
+   "sdk": 0.22,
+   "business": 0.03,
+   "consumer": 0.21,
+   "general": 0.65
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "jerryjliu/docjev",
+  "stars": 497,
+  "description": "A very fast document classifier/splitter using Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.1,
+   "sdk": 0.7,
+   "business": 0.9,
+   "consumer": 0.06,
+   "general": 0.11
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "superagents-lab/jev-search",
+  "stars": 504,
+  "description": "Search the web with TypeSafe's Jev: source selection, query understanding and relevance ranking. Built with Search1API.",
+  "scores": {
+   "sdk": 0.07,
+   "business": 0.02,
+   "consumer": 0.17,
+   "general": 0.09,
+   "replica": 0.09,
+   "agent": 0.1,
+   "devtool": 0.11
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "gargpratyush/jev-router",
+  "stars": 523,
+  "description": "Route to the cheapest model in claude code for your task using jev-router",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.18,
+   "devtool": 0.98,
+   "sdk": 0.17,
+   "business": 0.03,
+   "consumer": 0.33,
+   "general": 0.17
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Liuziyu77/Valen",
+  "stars": 571,
+  "description": "Train a Jev-like multimodal model by yourself. System One Model, now with vision.",
+  "scores": {
+   "replica": 0.88,
+   "agent": 0.66,
+   "devtool": 0.07,
+   "sdk": 0.12,
+   "business": 0.06,
+   "consumer": 0.08,
+   "general": 0.19
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "rmalde/minecraft-agent",
+  "stars": 572,
+  "description": "Astra planner and JEV controller for Minecraft, with native recording, tested routes, and run verification.",
+  "scores": {
+   "replica": 0.19,
+   "agent": 0.96,
+   "devtool": 0.09,
+   "sdk": 0.09,
+   "business": 0.01,
+   "consumer": 0.07,
+   "general": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "featherless-ai/simple-jev",
+  "stars": 581,
+  "description": "Turn any open model into a classifier/jev endpoint",
+  "scores": {
+   "replica": 0.91,
+   "agent": 0.05,
+   "devtool": 0.14,
+   "sdk": 0.66,
+   "business": 0.25,
+   "consumer": 0.06,
+   "general": 0.46
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "razorback16/openjev",
+  "stars": 591,
+  "description": "Open, Jev-compatible System One decision server on DiffusionGemma",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.17,
+   "devtool": 0.25,
+   "sdk": 0.52,
+   "business": 0.61,
+   "consumer": 0.09,
+   "general": 0.44
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Sac-Y/Jev-cu",
+  "stars": 614,
+  "description": "",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.92,
+   "devtool": 0.89,
+   "sdk": 0.34,
+   "business": 0.03,
+   "consumer": 0.46,
+   "general": 0.34
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "thruwire/foreman",
+  "stars": 658,
+  "description": "An agent supervisor and software factory foreman powered by TypeSafe’s Jev model",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.17,
+   "devtool": 0.89,
+   "sdk": 0.13,
+   "business": 0.05,
+   "consumer": 0.06,
+   "general": 0.22
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "devagrawal09/jev-review",
+  "stars": 660,
+  "description": "A staged code-review workflow and local dashboard built with TypeSafe Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.93,
+   "sdk": 0.1,
+   "business": 0.06,
+   "consumer": 0.06,
+   "general": 0.08
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Alex314618-create/JevRev",
+  "stars": 703,
+  "description": "An LLM + Jev workflow that changes EVERYTHING. Boost your vertebrate brain with a spine inside.",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.48,
+   "devtool": 0.8,
+   "sdk": 0.38,
+   "business": 0.16,
+   "consumer": 0.12,
+   "general": 0.58
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jev-chat/jev-chat-windows",
+  "stars": 724,
+  "description": "JevChat-Windows：聊天窗口旁挂的回复辅助。窗口截图 + 本地离线 OCR 读对方消息 → Jev 判断意图 → 3 条候选一键填入，发送永远手动",
+  "scores": {
+   "replica": 0.13,
+   "agent": 0.09,
+   "devtool": 0.04,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.98,
+   "general": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "receptron/laya",
+  "stars": 731,
+  "description": "Run Laya, the open-source Jev-compatible System-1 decision model, from Node.js / TypeScript via ONNX Runtime",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.13,
+   "devtool": 0.2,
+   "sdk": 0.79,
+   "business": 0.81,
+   "consumer": 0.09,
+   "general": 0.1
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "anishfn/shapeshift",
+  "stars": 782,
+  "description": "An input that becomes what you mean: one text box that morphs into the right UI as you type. Powered by TypeSafe Jev, works offline.",
+  "scores": {
+   "devtool": 0.04,
+   "sdk": 0.05,
+   "business": 0.05,
+   "consumer": 0.91,
+   "general": 0.15,
+   "replica": 0.07,
+   "agent": 0.06
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "Rizzo-AI-Academy/rizzo-flow",
+  "stars": 797,
+  "description": "The open, local take on Jev: typed decisions from an LLM, without generating a single token",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.32,
+   "devtool": 0.19,
+   "sdk": 0.54,
+   "business": 0.2,
+   "consumer": 0.18,
+   "general": 0.32
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "wy-coliney/jev-browser-use",
+  "stars": 808,
+  "description": "5–10x faster browser operations: Jev clicks, Codex thinks and verifies. Built at EZCollegeApp.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.85,
+   "devtool": 0.91,
+   "sdk": 0.27,
+   "business": 0.04,
+   "consumer": 0.35,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "wfzyx/von",
+  "stars": 818,
+  "description": "The open-source System One decision model. Sub-15ms, non-autoregressive, local drop-in alternative to TypeSafe Jev.",
+  "scores": {
+   "replica": 0.94,
+   "agent": 0.45,
+   "devtool": 0.35,
+   "sdk": 0.34,
+   "business": 0.74,
+   "consumer": 0.09,
+   "general": 0.2
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "kerpopule/hermes-jev-skills",
+  "stars": 999,
+  "description": "Jev-powered model routing, memory, compaction, skill selection, computer and browser use for Hermes agents (also Claude Code and Codex)",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.38,
+   "devtool": 0.96,
+   "sdk": 0.5,
+   "business": 0.14,
+   "consumer": 0.31,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "nokia-applied-research/AnyJev",
+  "stars": 1017,
+  "description": "Turn any LLM into a Jev-style decision model: typed decisions, real probabilities, no training. (continue updating, welcome any issue and PR request)",
+  "scores": {
+   "replica": 0.9,
+   "agent": 0.08,
+   "devtool": 0.17,
+   "sdk": 0.87,
+   "business": 0.72,
+   "consumer": 0.05,
+   "general": 0.61
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ollaya-dev/ollaya",
+  "stars": 1128,
+  "description": "Run open decision models locally: pull and serve Laya, decider, NLI and GLiClass behind a TypeSafe-compatible API. Ollama for decision models.",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.08,
+   "devtool": 0.57,
+   "sdk": 0.68,
+   "business": 0.76,
+   "consumer": 0.11,
+   "general": 0.52
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "reticlehq/reticle",
+  "stars": 1147,
+  "description": "AI agents can generate code, but still struggle to understand what they build. Reticle brings Jev-style machine-native runtime perception to web & desktop applications.",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.55,
+   "devtool": 0.94,
+   "sdk": 0.59,
+   "business": 0.03,
+   "consumer": 0.12,
+   "general": 0.22
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "vinnylarouge/jevlike",
+  "stars": 1339,
+  "description": "",
+  "scores": {
+   "replica": 0.88,
+   "agent": 0.44,
+   "devtool": 0.07,
+   "sdk": 0.08,
+   "business": 0.15,
+   "consumer": 0.18,
+   "general": 0.35
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "TheoLeeCJ/openjev",
+  "stars": 1405,
+  "description": "Can we run something like Jev on a 3090 at home?",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.29,
+   "devtool": 0.36,
+   "sdk": 0.12,
+   "business": 0.16,
+   "consumer": 0.17,
+   "general": 0.32
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "dzhng/jevgrep",
+  "stars": 2072,
+  "description": "Find code by asking what it does. A CLI for coding agents that uses Jev to discover relevant files and source context.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.06,
+   "devtool": 0.98,
+   "sdk": 0.15,
+   "business": 0.02,
+   "consumer": 0.09,
+   "general": 0.08
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "TianyuCodings/NanoJev",
+  "stars": 2474,
+  "description": "A nano replica of Jev: parallel decisions, dynamic candidates, and an end-to-end training pipeline.",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.8,
+   "devtool": 0.06,
+   "sdk": 0.08,
+   "business": 0.02,
+   "consumer": 0.06,
+   "general": 0.14
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "TheoLeeCJ/SemIf",
+  "stars": 3873,
+  "description": "Semantic ifs from open models, on a 3090 at home. Independent; not affiliated with Jev or TypeSafe.",
+  "scores": {
+   "replica": 0.91,
+   "agent": 0.21,
+   "devtool": 0.4,
+   "sdk": 0.1,
+   "business": 0.2,
+   "consumer": 0.14,
+   "general": 0.34
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "TheoLeeCJ/SemIf-OpenJev",
+  "stars": 4659,
+  "description": "Semantic ifs from open models, on a 3090 at home. Independent; not affiliated with Jev or TypeSafe.",
+  "scores": {
+   "replica": 0.91,
+   "agent": 0.21,
+   "devtool": 0.41,
+   "sdk": 0.11,
+   "business": 0.23,
+   "consumer": 0.14,
+   "general": 0.33
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "tamaratran/fast-jev-compaction",
+  "stars": 7336,
+  "description": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbatim.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.08,
+   "devtool": 0.98,
+   "sdk": 0.77,
+   "business": 0.03,
+   "consumer": 0.36,
+   "general": 0.08
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jaredpalmer/kev",
+  "stars": 8331,
+  "description": "Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.1,
+   "devtool": 0.18,
+   "sdk": 0.26,
+   "business": 0.27,
+   "consumer": 0.09,
+   "general": 0.26
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "OpenByteInc/QuantDinger",
+  "stars": 12392,
+  "description": "Open-source AI Trading OS, agent trading, and vibe trading, with Jev System One integration. Research, build Python strategies, backtest, and paper/live trade across crypto, stocks, and forex. Launch your own multi-tenant trading SaaS with built-in user management, billing, payments, and settlement.",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.11,
+   "devtool": 0.09,
+   "sdk": 0.22,
+   "business": 0.64,
+   "consumer": 0.03,
+   "general": 0.37
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "browser-use/jev-ultrafast",
+  "stars": 21823,
+  "description": "Fastest and cheapest web agent",
+  "scores": {
+   "replica": 0.4,
+   "agent": 0.97,
+   "devtool": 0.19,
+   "sdk": 0.77,
+   "business": 0.03,
+   "consumer": 0.16,
+   "general": 0.29
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "awlevin/typesafe-computer-use",
+  "stars": 1149,
+  "description": "Computer use for about $0.0002 a step: OCR the screen, classify the next action with TypeSafe, click. macOS.",
+  "scores": {
+   "consumer": 0.45,
+   "general": 0.33,
+   "replica": 0.07,
+   "agent": 0.97,
+   "devtool": 0.11,
+   "sdk": 0.08,
+   "business": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Nuu-maan/pastewise",
+  "stars": 5,
+  "description": "Paste anything, get the right tool. JSON, JWTs, cron, stack traces and more. Powered by Jev.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.03,
+   "devtool": 0.4,
+   "sdk": 0.06,
+   "business": 0.06,
+   "consumer": 0.4,
+   "general": 0.34
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ShuhanSun/jev-oas-sentinel",
+  "stars": 5,
+  "description": "Catch breaking API behavior hidden in OpenAPI prose with deterministic checks and TypeSafe JEV System One semantic review.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.03,
+   "devtool": 0.67,
+   "sdk": 0.24,
+   "business": 0.03,
+   "consumer": 0.02,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "eugeniughelbur/jev-engineering",
+  "stars": 5,
+  "description": "Coding-agent tools on TypeSafe's Jev, measured in public. review-router: caught 13 of 13 CVE fixes a filename rule sent to a quick review. jev-gate: a strict second lock, 0 of 12 dangerous test commands ran where Claude Code's auto mode let 8 run.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.25,
+   "devtool": 0.97,
+   "sdk": 0.31,
+   "business": 0.05,
+   "consumer": 0.07,
+   "general": 0.53
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "nexibeo/jev-browser-control",
+  "stars": 5,
+  "description": "Let Claude code, chatgpt codex or control your own Chrome. Chrome extension + MCP server: Jev, TypeSafe's decision model, picks each click in ~0.5 s for a fraction of a cent. MIT, bring your own OpenRouter key.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.95,
+   "devtool": 0.75,
+   "sdk": 0.89,
+   "business": 0.03,
+   "consumer": 0.36,
+   "general": 0.2
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "jiangkoumo/ego-decision-layer",
+  "stars": 5,
+  "description": "Pluggable decision layer for the ego lite browser: one System One (Jev) call per step replaces the per-step LLM turn, and the backend can be swapped for a local OpenAI-compatible model. Fail-closed execution guards. The measured one — raw bench data, 16 suites, changelog with corrections.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.94,
+   "devtool": 0.73,
+   "sdk": 0.42,
+   "business": 0.02,
+   "consumer": 0.16,
+   "general": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "virolea/jev",
+  "stars": 5,
+  "description": "Ruby client for the typesafe AI Jev model",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.07,
+   "devtool": 0.18,
+   "sdk": 0.93,
+   "business": 0.42,
+   "consumer": 0.07,
+   "general": 0.3
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "Parthkomalwad/jevbrief",
+  "stars": 5,
+  "description": "Clean, traceable state briefings for TypeSafe's Jev model",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.15,
+   "devtool": 0.91,
+   "sdk": 0.79,
+   "business": 0.08,
+   "consumer": 0.07,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "buluoray/JevOnly",
+  "stars": 5,
+  "description": "Pure Jev that can \"type\" and drive towards task completion.",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.96,
+   "devtool": 0.27,
+   "sdk": 0.18,
+   "business": 0.04,
+   "consumer": 0.11,
+   "general": 0.6
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "rreinold/jev-serve",
+  "stars": 5,
+  "description": "Single logit inference runtime for all LLM models",
+  "scores": {
+   "replica": 0.91,
+   "agent": 0.05,
+   "devtool": 0.17,
+   "sdk": 0.63,
+   "business": 0.13,
+   "consumer": 0.09,
+   "general": 0.22
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "noplan-inc/limpet",
+  "stars": 5,
+  "description": "A Stop hook that stops your coding agent from stopping too early. Plain-language rules, judged by jev.",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.29,
+   "devtool": 0.98,
+   "sdk": 0.33,
+   "business": 0.02,
+   "consumer": 0.3,
+   "general": 0.08
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "sumanmichael/jevlang",
+  "stars": 5,
+  "description": "The simplest way to write decision workflows in Python. Python with a smart if.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.07,
+   "devtool": 0.76,
+   "sdk": 0.87,
+   "business": 0.75,
+   "consumer": 0.08,
+   "general": 0.52
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "usail-hkust/JevLight",
+  "stars": 5,
+  "description": "Jev-powered traffic signal control on CityFlow with structured phase and green-time decisions.",
+  "scores": {
+   "replica": 0.35,
+   "agent": 0.08,
+   "devtool": 0.06,
+   "sdk": 0.26,
+   "business": 0.01,
+   "consumer": 0.02,
+   "general": 0.26
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mountainMath/JevR",
+  "stars": 5,
+  "description": "R client for the TypeSafe Jev System One API",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.03,
+   "devtool": 0.13,
+   "sdk": 0.94,
+   "business": 0.44,
+   "consumer": 0.06,
+   "general": 0.4
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "newfull5/malkuth",
+  "stars": 5,
+  "description": "Jev like System One decision models for multilingual",
+  "scores": {
+   "replica": 0.84,
+   "agent": 0.06,
+   "devtool": 0.31,
+   "sdk": 0.15,
+   "business": 0.74,
+   "consumer": 0.08,
+   "general": 0.09
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Gestalt-Lab/jeff",
+  "stars": 5,
+  "description": "Jeff 1 — local open-weight typed decision / fact-checking model (Jev-compatible)",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.05,
+   "devtool": 0.14,
+   "sdk": 0.19,
+   "business": 0.14,
+   "consumer": 0.08,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "savka777/jev-search",
+  "stars": 5,
+  "description": "Fast deep research for the pi coding agent: reads up to 100 pages in full per round, Jev keeps only the passages that answer your questions.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.26,
+   "devtool": 0.94,
+   "sdk": 0.28,
+   "business": 0.05,
+   "consumer": 0.34,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Kushwho/jev-codes",
+  "stars": 5,
+  "description": "Audit your git diff against YAML coding-standards packs using TypeSafe's Jev model, from a CLI or your AI agent's command/skill.",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.05,
+   "devtool": 0.97,
+   "sdk": 0.36,
+   "business": 0.02,
+   "consumer": 0.09,
+   "general": 0.13
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "daniel-farina/nitro",
+  "stars": 5,
+  "description": "Grok Build with TypeSafe Jev routing tool selection once per turn: 22 to 40% cheaper on the same tasks",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.28,
+   "devtool": 0.97,
+   "sdk": 0.16,
+   "business": 0.03,
+   "consumer": 0.34,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "caiovicentino/jev-align",
+  "stars": 5,
+  "description": "Calibrated alignment verifier for LLM responses and agent plans — powered by Jev",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.05,
+   "devtool": 0.59,
+   "sdk": 0.6,
+   "business": 0.04,
+   "consumer": 0.06,
+   "general": 0.12
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "strangeloopcanon/dynajev",
+  "stars": 5,
+  "description": "Dynamic Jev: a Jev-style typed decision API on any stock open-weight LLM. Each question compiles its own readout head at request time; no training, no generation for closed answers.",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.07,
+   "devtool": 0.19,
+   "sdk": 0.76,
+   "business": 0.69,
+   "consumer": 0.11,
+   "general": 0.66
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Gaurav-Gosain/jev-go",
+  "stars": 5,
+  "description": "Go client for TypeSafe's System One API and its model Jev: typed judgments and calibrated probabilities instead of generated text",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.26,
+   "sdk": 0.97,
+   "business": 0.31,
+   "consumer": 0.06,
+   "general": 0.47
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "jkrup/jeveryword",
+  "stars": 5,
+  "description": "Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev.",
+  "scores": {
+   "business": 0.28,
+   "consumer": 0.11,
+   "general": 0.18,
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.57,
+   "sdk": 0.88
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "Peu77/JevFind",
+  "stars": 5,
+  "description": "Fast semantic code search powered by Jev. Find the relevant files, line ranges, and snippets",
+  "scores": {
+   "devtool": 0.97,
+   "sdk": 0.13,
+   "business": 0.02,
+   "consumer": 0.1,
+   "general": 0.06,
+   "replica": 0.03,
+   "agent": 0.04
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "hwfengcs/any2jev",
+  "stars": 6,
+  "description": "",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.08,
+   "devtool": 0.37,
+   "sdk": 0.43,
+   "business": 0.66,
+   "consumer": 0.06,
+   "general": 0.54
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Bentlybro/siftr",
+  "stars": 6,
+  "description": "Fast, cheap judgment for AI coding agents: semantic search, focused reads and list picking in ~2s. CLI + MCP server on TypeSafe Jev. Benchmarked on SWE-bench.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.07,
+   "devtool": 0.98,
+   "sdk": 0.52,
+   "business": 0.03,
+   "consumer": 0.14,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Olti1947/jev-java",
+  "stars": 6,
+  "description": "Idiomatic Java SDK for TypeSafe AI Jev System One decision engine",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.08,
+   "devtool": 0.16,
+   "sdk": 0.97,
+   "business": 0.6,
+   "consumer": 0.04,
+   "general": 0.48
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "brainstormity/Jev-For-Dummies",
+  "stars": 6,
+  "description": "",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.08,
+   "devtool": 0.2,
+   "sdk": 0.93,
+   "business": 0.16,
+   "consumer": 0.06,
+   "general": 0.28
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "EmreKaplaner/rag-jev",
+  "stars": 6,
+  "description": "Make room for useful evidence. Inspectable context selection for RAG, with Jev reranking and open benchmark studies.",
+  "scores": {
+   "replica": 0.11,
+   "agent": 0.02,
+   "devtool": 0.4,
+   "sdk": 0.93,
+   "business": 0.07,
+   "consumer": 0.07,
+   "general": 0.29
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "fabianboth/jevpipe",
+  "stars": 6,
+  "description": "Pipe anything into Jev, get typed decisions out. A Unix filter that lets agents offload bulk judgments to a System One model.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.07,
+   "devtool": 0.93,
+   "sdk": 0.24,
+   "business": 0.52,
+   "consumer": 0.18,
+   "general": 0.48
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "huanxueshengmou/panpan-jd-lens",
+  "stars": 6,
+  "description": "JEV结构化判断与本地规则的 Android 端助手，在 BOSS 直聘职位页梳理薪资、福利与隐形风险条款，提供原文依据和可复制的HR追问。",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.09,
+   "devtool": 0.03,
+   "sdk": 0.04,
+   "business": 0.11,
+   "consumer": 0.54,
+   "general": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "dani1005/book-aurora",
+  "stars": 6,
+  "description": "Jev reads a whole novel in seconds. Every passage becomes a row of colour.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.05,
+   "sdk": 0.08,
+   "business": 0.03,
+   "consumer": 0.1,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "y0usaf/jev-lm",
+  "stars": 6,
+  "description": "A word-level language model whose output layer is Jev: n-gram drafter, Noul chunk verification, bits-per-token eval",
+  "scores": {
+   "replica": 0.25,
+   "agent": 0.04,
+   "devtool": 0.14,
+   "sdk": 0.78,
+   "business": 0.02,
+   "consumer": 0.15,
+   "general": 0.16
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "arnabgho/rlcd-lite",
+  "stars": 6,
+  "description": "Simplified RL for Calibrated Decisions: parallel constrained JSON decoding + GRPO with proper-scoring-rule rewards + calibration eval (Jev/RLCD reconstruction)",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.07,
+   "devtool": 0.06,
+   "sdk": 0.08,
+   "business": 0.39,
+   "consumer": 0.08,
+   "general": 0.11
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "scale-venture-partners/riff",
+  "stars": 6,
+  "description": "A small, fast prose linter: ruff-style rule codes for writing, backed by TypeSafe's Jev model",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.02,
+   "devtool": 0.11,
+   "sdk": 0.08,
+   "business": 0.04,
+   "consumer": 0.08,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Code-Forge-AU/jev-llm",
+  "stars": 7,
+  "description": "",
+  "scores": {
+   "replica": 0.22,
+   "agent": 0.05,
+   "devtool": 0.09,
+   "sdk": 0.2,
+   "business": 0.02,
+   "consumer": 0.46,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "harshwasan/pi-jev-sentinel",
+  "stars": 7,
+  "description": "Pi coding-agent extension: TypeSafe Jev checks for tool calls, tool outputs and replies (prompt injection, approvals, secret scrubbing, task pinning)",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.34,
+   "devtool": 0.97,
+   "sdk": 0.14,
+   "business": 0.02,
+   "consumer": 0.35,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "cth9191/jev-compaction-plus",
+  "stars": 7,
+  "description": "Claude Code compaction in ~0.5 s instead of ~35 s: Jev keeps what's still needed word for word and moves the rest to a drawer file. Fork of fast-jev-compaction.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.07,
+   "devtool": 0.98,
+   "sdk": 0.16,
+   "business": 0.03,
+   "consumer": 0.55,
+   "general": 0.05
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "eminetto/typesafe-poc",
+  "stars": 7,
+  "description": "Prova de Conceito do Jev, modelo da typesafe.ai",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.05,
+   "devtool": 0.2,
+   "sdk": 0.4,
+   "business": 0.96,
+   "consumer": 0.04,
+   "general": 0.05
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "AIGNLAI/ReflexRoute",
+  "stars": 7,
+  "description": "Fast zero-shot and few-shot LLM routing powered by Jev.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.8,
+   "sdk": 0.76,
+   "business": 0.08,
+   "consumer": 0.07,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "arunav25/jev-mcp",
+  "stars": 7,
+  "description": "Connect JEV to MCP clients and compare its judgments against general-purpose LLMs using shared datasets and measurable accuracy.",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.05,
+   "devtool": 0.89,
+   "sdk": 0.96,
+   "business": 0.83,
+   "consumer": 0.14,
+   "general": 0.32
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "sufianetaouil/every",
+  "stars": 7,
+  "description": "Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.91,
+   "sdk": 0.17,
+   "business": 0.04,
+   "consumer": 0.07,
+   "general": 0.1
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "kraayenjon/jev-linkedin-saved-classifier",
+  "stars": 7,
+  "description": "Read your LinkedIn saved posts into a filterable board, classified by Jev.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.36,
+   "devtool": 0.08,
+   "sdk": 0.05,
+   "business": 0.12,
+   "consumer": 0.57,
+   "general": 0.04
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "Kiln-AI/jev_jsonschema",
+  "stars": 7,
+  "description": "Run a JSON Schema through TypeSafe's Jev API, and get JSON back.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.03,
+   "devtool": 0.34,
+   "sdk": 0.95,
+   "business": 0.16,
+   "consumer": 0.05,
+   "general": 0.14
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "doronp/jevc",
+  "stars": 8,
+  "description": "Compile agent policy prose into deterministic verdict programs: narrow evidence questions for the model, the verdict computed in code. Install: npm i -g jev-compiler",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.1,
+   "devtool": 0.95,
+   "sdk": 0.19,
+   "business": 0.04,
+   "consumer": 0.07,
+   "general": 0.48
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "us/jev-local",
+  "stars": 8,
+  "description": "Local Jev-compatible evaluation server: POST /v1/systemone with typed noul/choice/score, open weights, no waitlist",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.08,
+   "devtool": 0.33,
+   "sdk": 0.8,
+   "business": 0.18,
+   "consumer": 0.07,
+   "general": 0.3
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Nuu-maan/undertone",
+  "stars": 8,
+  "description": "A text box that tells you how your message sounds before you send it. Powered by Jev.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.03,
+   "devtool": 0.05,
+   "sdk": 0.06,
+   "business": 0.04,
+   "consumer": 0.75,
+   "general": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "WiktorB2004/llama-index-jev",
+  "stars": 8,
+  "description": "LlamaIndex reranker + router powered by TypeSafe Jev - typed scores/choices, cheaper than LLM-as-judge.",
+  "scores": {
+   "consumer": 0.05,
+   "general": 0.17,
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.42,
+   "sdk": 0.9,
+   "business": 0.1
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "leftspace89/JevBird",
+  "stars": 8,
+  "description": "",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.79,
+   "devtool": 0.06,
+   "sdk": 0.06,
+   "business": 0.01,
+   "consumer": 0.08,
+   "general": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "yinhong-zhou/jevdo",
+  "stars": 8,
+  "description": "Just Jev it. A Jev-first agent loop with reusable actions for DeepSeek Harness.",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.49,
+   "devtool": 0.96,
+   "sdk": 0.31,
+   "business": 0.04,
+   "consumer": 0.1,
+   "general": 0.59
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "jiangxiluning/Visual-Jev",
+  "stars": 9,
+  "description": "",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.22,
+   "devtool": 0.31,
+   "sdk": 0.11,
+   "business": 0.22,
+   "consumer": 0.13,
+   "general": 0.29
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "mikekelly/s1m",
+  "stars": 9,
+  "description": "High efficiency knowledge recall from an LLM Wiki powered by Jev",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.15,
+   "devtool": 0.64,
+   "sdk": 0.09,
+   "business": 0.05,
+   "consumer": 0.32,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Jalil-g/Immune-Harness",
+  "stars": 9,
+  "description": "Can we stop AI agents from going rogue before they take over the world?  Immune Harness is a security layer for AI agents. It checks every tool call before it runs and blocks the risky ones. When Jev catches a new attack, the harness writes a new policy, or rewrites an existing one to cover the new variant, and tests it before it goes live",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.11,
+   "devtool": 0.16,
+   "sdk": 0.15,
+   "business": 0.02,
+   "consumer": 0.05,
+   "general": 0.34
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Tech-Byte-Frontier/jevgate",
+  "stars": 9,
+  "description": "Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities",
+  "scores": {
+   "consumer": 0.04,
+   "general": 0.18,
+   "replica": 0.05,
+   "agent": 0.06,
+   "devtool": 0.96,
+   "sdk": 0.11,
+   "business": 0.02
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "captain-corgi/typesafe-sdk-go",
+  "stars": 9,
+  "description": "Community TypeSafe SDK in Golang",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.02,
+   "devtool": 0.14,
+   "sdk": 0.94,
+   "business": 0.4,
+   "consumer": 0.05,
+   "general": 0.38
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "reachjalil/jev-tree",
+  "stars": 9,
+  "description": "Recursive Jev choice over a taxonomy. Select from more than 255 options without breaking TypeSafe Jev's choice cap.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.06,
+   "devtool": 0.29,
+   "sdk": 0.91,
+   "business": 0.62,
+   "consumer": 0.07,
+   "general": 0.13
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "erkamyaman/jev-enforce",
+  "stars": 9,
+  "description": "📏 Claude Code plugin that makes Claude follow your AGENTS.md: every reply and edit checked by TypeSafe Jev ✅",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.05,
+   "devtool": 0.98,
+   "sdk": 0.19,
+   "business": 0.02,
+   "consumer": 0.17,
+   "general": 0.07
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "teknium1/hermes-and-jev-play-minecraft",
+  "stars": 10,
+  "description": "Hermes Agent plans, Jev (TypeSafe) picks bounded actions, Mineflayer executes: Minecraft with no screenshots or keypresses from a model. Includes the reproduction of rmalde/minecraft-agent's Ender Dragon run.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.95,
+   "devtool": 0.25,
+   "sdk": 0.15,
+   "business": 0.01,
+   "consumer": 0.09,
+   "general": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "backant-io/jevelry",
+  "stars": 10,
+  "description": "Use Jev everywhere to make & track decisions",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.21,
+   "devtool": 0.96,
+   "sdk": 0.8,
+   "business": 0.49,
+   "consumer": 0.21,
+   "general": 0.84
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "rupeshpoojary9/poorjev",
+  "stars": 10,
+  "description": "Open-source, local Jev alternative: a System One decision layer with provably calibrated confidence (ECE 0.170→0.071). Typed decisions, runs offline, no API key, no waitlist.",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.14,
+   "devtool": 0.67,
+   "sdk": 0.5,
+   "business": 0.67,
+   "consumer": 0.13,
+   "general": 0.52
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "franckverrot/lev",
+  "stars": 10,
+  "description": "Jev-style decision model based on LFM2.5-350M",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.1,
+   "devtool": 0.23,
+   "sdk": 0.68,
+   "business": 0.85,
+   "consumer": 0.09,
+   "general": 0.17
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "abhixhek/jevcal",
+  "stars": 10,
+  "description": "Stop guessing confidence thresholds: calibrate, threshold, and drift-check typed decision models (TypeSafe Jev) against an LLM teacher.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.41,
+   "sdk": 0.17,
+   "business": 0.74,
+   "consumer": 0.04,
+   "general": 0.23
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "romiluz13/jevmory",
+  "stars": 11,
+  "description": "Coding-agent memory where every fact is a verbatim quote graded by TypeSafe Jev's calibrated confidence. Local-first, SQLite receipts, zero dependencies.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.06,
+   "devtool": 0.97,
+   "sdk": 0.76,
+   "business": 0.03,
+   "consumer": 0.6,
+   "general": 0.11
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "bl888m/jev-bot",
+  "stars": 11,
+  "description": "JEV-powered market decision bot for stocks, crypto and memes. State in, BUY/SELL/HOLD/AVOID out, paper by default",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.1,
+   "devtool": 0.06,
+   "sdk": 0.13,
+   "business": 0.65,
+   "consumer": 0.05,
+   "general": 0.13
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Xiaooolong/vev",
+  "stars": 11,
+  "description": "Jev-like decision models that can also see images — open weights on Qwen3.5, run on your own GPU",
+  "scores": {
+   "replica": 0.96,
+   "agent": 0.17,
+   "devtool": 0.12,
+   "sdk": 0.55,
+   "business": 0.42,
+   "consumer": 0.09,
+   "general": 0.17
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "cmungall/jevotron",
+  "stars": 11,
+  "description": "CLI-first field-level anomaly detection for structured files and text, powered by Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.18,
+   "sdk": 0.11,
+   "business": 0.28,
+   "consumer": 0.08,
+   "general": 0.16
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "emirbartu/jev-for-all",
+  "stars": 11,
+  "description": "Jev for every agentic development workflow — the System One decision model wired into whatever harness an agent codes in: OpenCode today, Claude Code and Hermes adapters next.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.65,
+   "devtool": 0.97,
+   "sdk": 0.81,
+   "business": 0.06,
+   "consumer": 0.15,
+   "general": 0.76
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "okooo5km/jev",
+  "stars": 11,
+  "description": "Typed decisions from the shell: an unofficial stdlib-Python CLI and Agent Skill for TypeSafe's Jev model, via the TypeSafe API (default) or OpenRouter. Yes/no, choice and ordinal scores with calibrated probabilities, semantic grep and batch mode.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.07,
+   "devtool": 0.82,
+   "sdk": 0.15,
+   "business": 0.6,
+   "consumer": 0.25,
+   "general": 0.27
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Emlembow/jev-graph-search",
+  "stars": 11,
+  "description": "Jev-assisted retrieval and evidence-preserving inspection for local Markdown, Obsidian vaults, and Logseq Markdown graphs.",
+  "scores": {
+   "consumer": 0.7,
+   "general": 0.1,
+   "replica": 0.05,
+   "agent": 0.05,
+   "devtool": 0.67,
+   "sdk": 0.2,
+   "business": 0.08
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "harshwasan/jev-sentinel",
+  "stars": 12,
+  "description": "Pi coding-agent extension: TypeSafe Jev checks for tool calls, tool outputs and replies (prompt injection, approvals, secret scrubbing, task pinning)",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.3,
+   "devtool": 0.97,
+   "sdk": 0.13,
+   "business": 0.02,
+   "consumer": 0.4,
+   "general": 0.13
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "kushals256/jevcache",
+  "stars": 12,
+  "description": "MorrowCache — skip the chat call when the question is the same. OpenAI-compatible proxy. npm: @kushalicious/jevcache",
+  "scores": {
+   "replica": 0.18,
+   "agent": 0.02,
+   "devtool": 0.78,
+   "sdk": 0.56,
+   "business": 0.04,
+   "consumer": 0.14,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "HyunjunJeon/pi-quiet-ask",
+  "stars": 12,
+  "description": "TypeSafe Jev as the pi coding agent's quiet decision layer",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.49,
+   "devtool": 0.96,
+   "sdk": 0.38,
+   "business": 0.05,
+   "consumer": 0.19,
+   "general": 0.37
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "atharvamhaske/typesafe-sdk-go",
+  "stars": 12,
+  "description": "unofficial go sdk for typesafe ai. not affiliated with or endorsed by typesafe ai. a side project built to fill the missing go sdk gap, for the community to use.",
+  "scores": {
+   "business": 0.21,
+   "consumer": 0.05,
+   "general": 0.19,
+   "replica": 0.02,
+   "agent": 0.02,
+   "devtool": 0.1,
+   "sdk": 0.93
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "win4r/jev-security-scan",
+  "stars": 12,
+  "description": "使用 TypeSafe Jev 审查 Skill 与 MCP 可疑行为 | Review Agent Skills and MCP code with Jev, static evidence, and explicit coverage gaps",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.96,
+   "sdk": 0.11,
+   "business": 0.03,
+   "consumer": 0.17,
+   "general": 0.13
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "valentynkit/jev-commit",
+  "stars": 12,
+  "description": "pre-commit hook: one Jev call judges whether your commit message matches the diff, plus debug leftovers, scope creep, and a secret belt",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.88,
+   "sdk": 0.17,
+   "business": 0.02,
+   "consumer": 0.05,
+   "general": 0.05
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "amithgc/local-jev",
+  "stars": 13,
+  "description": "A local, offline System One server compatible with TypeSafe's Jev API. It answers typed yes/no, category and score questions with small open models.",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.08,
+   "devtool": 0.2,
+   "sdk": 0.75,
+   "business": 0.64,
+   "consumer": 0.11,
+   "general": 0.2
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "stefafafan/jev",
+  "stars": 13,
+  "description": "An unofficial, provider-neutral Unix client for Jev from TypeSafe AI. Written in Go.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.07,
+   "devtool": 0.77,
+   "sdk": 0.18,
+   "business": 0.12,
+   "consumer": 0.1,
+   "general": 0.24
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "genai-craft/openvons",
+  "stars": 13,
+  "description": "openvons (open-Jev): 有限選択肢に確率で答える判断層 — テキスト / 画像 / 日本語音声コマンド",
+  "scores": {
+   "replica": 0.85,
+   "agent": 0.18,
+   "devtool": 0.14,
+   "sdk": 0.81,
+   "business": 0.06,
+   "consumer": 0.2,
+   "general": 0.57
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "goodrahstar/pdf-race",
+  "stars": 13,
+  "description": "Docling → Jev vs Docling → Gemini 3.8 Flash vs Gemini reading the PDF: same documents, one clock, scored against arXiv's own metadata",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.06,
+   "devtool": 0.15,
+   "sdk": 0.07,
+   "business": 0.26,
+   "consumer": 0.07,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "hev/reranker",
+  "stars": 14,
+  "description": "Use Jev (TypeSafe's System One model) as a calibrated reranker: one call, up to 30 documents, a probability per document. Apache-2.0.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.02,
+   "devtool": 0.25,
+   "sdk": 0.91,
+   "business": 0.14,
+   "consumer": 0.06,
+   "general": 0.06
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "Nisaka520/JevBystander",
+  "stars": 15,
+  "description": "安卓无障碍版微信判读：只读屏、只弹 3 条 Toast（意图 / 情绪 / 着急 / 建议），不生成回复文案、不发送 · 零第三方依赖，APK 861 KB",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.02,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.85,
+   "general": 0.04
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "yzfly/edgejev",
+  "stars": 15,
+  "description": "离线可用的本地类型化决策：4 核 CPU 单题 15.6ms。Local & offline Jev / System One inference on CPU — ONNX + INT8, no torch at runtime. 支持 laya / kev / PlayJev",
+  "scores": {
+   "business": 0.71,
+   "consumer": 0.13,
+   "general": 0.6,
+   "replica": 0.97,
+   "agent": 0.24,
+   "devtool": 0.19,
+   "sdk": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "olanotolu/jevbetter",
+  "stars": 15,
+  "description": "A stronger one-pass scorer over a variable list of text options. Hashed n-gram encoder, rival-aware attention, gated head, temperature scaling — with a head-to-head benchmark vs the jevlike starter design.",
+  "scores": {
+   "replica": 0.87,
+   "agent": 0.15,
+   "devtool": 0.23,
+   "sdk": 0.15,
+   "business": 0.17,
+   "consumer": 0.14,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "AntonioCoppe/jev-harness",
+  "stars": 15,
+  "description": "Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job.",
+  "scores": {
+   "sdk": 0.87,
+   "business": 0.25,
+   "consumer": 0.07,
+   "general": 0.88,
+   "replica": 0.08,
+   "agent": 0.12,
+   "devtool": 0.74
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "CommandCodeAI/cmd-mod-jev-nudge",
+  "stars": 16,
+  "description": "Command Code mod: nudges the agent to keep going when it stops with work left, judged by Jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.29,
+   "devtool": 0.94,
+   "sdk": 0.17,
+   "business": 0.02,
+   "consumer": 0.36,
+   "general": 0.04
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "syumai/jevyoumean",
+  "stars": 16,
+  "description": "Semantic \"Did you mean?\" for any CLI — wraps commands and uses TypeSafe's Jev to match subcommand typos by intent, not edit distance.",
+  "scores": {
+   "devtool": 0.24,
+   "sdk": 0.12,
+   "business": 0.02,
+   "consumer": 0.15,
+   "general": 0.08,
+   "replica": 0.02,
+   "agent": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "GPT-AGI/OpenJev",
+  "stars": 16,
+  "description": "Opensource Jev",
+  "scores": {
+   "replica": 0.86,
+   "agent": 0.33,
+   "devtool": 0.55,
+   "sdk": 0.25,
+   "business": 0.23,
+   "consumer": 0.16,
+   "general": 0.57
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "yijunyu/jev-rs",
+  "stars": 17,
+  "description": "System One judgments (noul/choice/score) from any LLM in one prefill — a Rust, Jev-compatible /v1/systemone engine",
+  "scores": {
+   "replica": 0.93,
+   "agent": 0.18,
+   "devtool": 0.92,
+   "sdk": 0.9,
+   "business": 0.51,
+   "consumer": 0.12,
+   "general": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "zhulinchng/jevper",
+  "stars": 17,
+  "description": "Jev-shaped (TypeSafe System One) classification wrapper over OpenAI-like clients",
+  "scores": {
+   "replica": 0.31,
+   "agent": 0.04,
+   "devtool": 0.26,
+   "sdk": 0.94,
+   "business": 0.59,
+   "consumer": 0.06,
+   "general": 0.33
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "jiawei686/jev-ultrafast-mcp",
+  "stars": 18,
+  "description": "Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model macro replay, over the Chrome DevTools Protocol.",
+  "scores": {
+   "replica": 0.26,
+   "agent": 0.93,
+   "devtool": 0.88,
+   "sdk": 0.93,
+   "business": 0.03,
+   "consumer": 0.27,
+   "general": 0.17
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "simonw/llm-typesafe",
+  "stars": 19,
+  "description": "LLM plugin for accessing Jev and other TypeSafe AI models",
+  "scores": {
+   "sdk": 0.7,
+   "business": 0.65,
+   "consumer": 0.1,
+   "general": 0.33,
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.39
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "thusinh1969/BrighTO_Router",
+  "stars": 19,
+  "description": "BrighTO LLM Router: free open-source, ultra-fast self-hosted Rust LLM gateway for OpenAI/Anthropic APIs, SystemOne/JEV/DJEV decisions, Ollaya/Laya, load balancing, fallback routing, team keys and token budgets.",
+  "scores": {
+   "replica": 0.31,
+   "agent": 0.03,
+   "devtool": 0.42,
+   "sdk": 0.17,
+   "business": 0.03,
+   "consumer": 0.03,
+   "general": 0.16
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "9pings/notjev",
+  "stars": 20,
+  "description": "Super fast Jev like server, model agnostic, working with any OpenAI compatible endpoint",
+  "scores": {
+   "replica": 0.87,
+   "agent": 0.08,
+   "devtool": 0.37,
+   "sdk": 0.91,
+   "business": 0.24,
+   "consumer": 0.1,
+   "general": 0.37
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "valentynkit/jev-belay",
+  "stars": 20,
+  "description": "Claude Code Stop hook that blocks an unverified done: reads the transcript for evidence, asks Jev once, fails open on everything else",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.24,
+   "devtool": 0.97,
+   "sdk": 0.22,
+   "business": 0.03,
+   "consumer": 0.26,
+   "general": 0.04
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "afshinm/laya-mps",
+  "stars": 21,
+  "description": "Run Jev-style typed decisions locally on your Mac with low RAM usage and fast responses",
+  "scores": {
+   "sdk": 0.53,
+   "business": 0.55,
+   "consumer": 0.31,
+   "general": 0.08,
+   "replica": 0.78,
+   "agent": 0.24,
+   "devtool": 0.1
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "zjunlp/JevLoop",
+  "stars": 22,
+  "description": "The agent loop where decisions don't cost a large language model call. Zero deps, runs offline, no API key needed.",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.51,
+   "devtool": 0.8,
+   "sdk": 0.16,
+   "business": 0.04,
+   "consumer": 0.18,
+   "general": 0.61
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Nasrallah-AL/jev-cli",
+  "stars": 22,
+  "description": "Command-line tool for TypeSafe's Jev AI model",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.04,
+   "devtool": 0.42,
+   "sdk": 0.24,
+   "business": 0.28,
+   "consumer": 0.08,
+   "general": 0.7
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "chopratejas/invalidate",
+  "stars": 22,
+  "description": "The invalidation layer for AI memory. Every fact gets a lease; new evidence ends it. Built on TypeSafe Jev.",
+  "scores": {
+   "consumer": 0.51,
+   "general": 0.07,
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.38,
+   "sdk": 0.29,
+   "business": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "rorshopping/jev-on-a-laptop",
+  "stars": 24,
+  "description": "Unofficial study: Jev-style parallel typed decisions on stock 1.5B-8B models on an Apple Silicon laptop. Benchmarks, research notes, and a Hugging Face Space demo.",
+  "scores": {
+   "replica": 0.86,
+   "agent": 0.04,
+   "devtool": 0.11,
+   "sdk": 0.1,
+   "business": 0.46,
+   "consumer": 0.08,
+   "general": 0.21
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "keltokhy/jsort",
+  "stars": 25,
+  "description": "sort by meaning: order lines along a plain-English dimension, from pairwise comparisons judged by TypeSafe's Jev model",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.03,
+   "devtool": 0.12,
+   "sdk": 0.14,
+   "business": 0.15,
+   "consumer": 0.07,
+   "general": 0.17
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "tostechbr/partway",
+  "stars": 25,
+  "description": "Voice control for macOS that acts partway through your sentence, built on Jev (TypeSafe)",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.81,
+   "devtool": 0.03,
+   "sdk": 0.04,
+   "business": 0.02,
+   "consumer": 0.83,
+   "general": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "blakestone-x/jev-mcp",
+  "stars": 25,
+  "description": "MCP server for TypeSafe Jev: typed classify, score, check, match and screen for any agent, with confidence on every answer",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.06,
+   "devtool": 0.92,
+   "sdk": 0.97,
+   "business": 0.71,
+   "consumer": 0.17,
+   "general": 0.39
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "ankit-aglawe/tinyjev",
+  "stars": 27,
+  "description": "A tiny jev-like model that answers Choice, Score and Noul questions in one forward pass and returns calibrated probabilities. MLX or PyTorch, fully offline, System One compatible.",
+  "scores": {
+   "replica": 0.94,
+   "agent": 0.38,
+   "devtool": 0.18,
+   "sdk": 0.74,
+   "business": 0.73,
+   "consumer": 0.19,
+   "general": 0.2
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Bewinxed/jevgpt",
+  "stars": 30,
+  "description": "A chatbot built on a model that cannot generate text (TypeSafe AI's Jev, driven autoregressively)",
+  "scores": {
+   "devtool": 0.06,
+   "sdk": 0.13,
+   "business": 0.02,
+   "consumer": 0.61,
+   "general": 0.06,
+   "replica": 0.08,
+   "agent": 0.05
+  },
+  "kind": "consumer"
+ },
+ {
+  "repo": "smkrv/jev-calibrate",
+  "stars": 31,
+  "description": "Calibrate Jev questions against your own labels: tune criteria on labelled examples, confirm on a held-out set, get a verdict per question. Unofficial.",
+  "scores": {
+   "sdk": 0.12,
+   "business": 0.54,
+   "consumer": 0.07,
+   "general": 0.16,
+   "replica": 0.04,
+   "agent": 0.04,
+   "devtool": 0.26
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "win4r/jev-skill-suggester",
+  "stars": 32,
+  "description": "用 TypeSafe Jev 推荐已安装 Skill / Bounded installed-skill recommendations with TypeSafe Jev. Python CLI, Codex skill, bilingual docs and live examples.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.94,
+   "sdk": 0.16,
+   "business": 0.03,
+   "consumer": 0.44,
+   "general": 0.07
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "0xBakeer/arbiter",
+  "stars": 33,
+  "description": "Serve typed-decision (System 1) models — Laya or your own — on NVIDIA GPUs or Apple Silicon, with a Jev-compatible API and coding-agent integrations",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.13,
+   "devtool": 0.55,
+   "sdk": 0.76,
+   "business": 0.47,
+   "consumer": 0.1,
+   "general": 0.24
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "BorisLeMeec/jev",
+  "stars": 33,
+  "description": "A claude code plugin for jev",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.11,
+   "devtool": 0.98,
+   "sdk": 0.37,
+   "business": 0.03,
+   "consumer": 0.35,
+   "general": 0.16
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "mizchi/jev-test-filter",
+  "stars": 33,
+  "description": "Score every test against a git diff with Jev, and emit the filter arguments vitest, node:test, Playwright, cargo test and go test already understand",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.04,
+   "devtool": 0.95,
+   "sdk": 0.17,
+   "business": 0.02,
+   "consumer": 0.04,
+   "general": 0.09
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "shaharia-lab/jev-cli",
+  "stars": 34,
+  "description": "Command-line tool for TypeSafe AI's Jev model. Ask yes/no, multiple-choice and rubric questions about any text and get calibrated probabilities back. Answers become exit codes for shells and CI, JSON for scripts, and MCP tools for AI agents.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.09,
+   "devtool": 0.58,
+   "sdk": 0.45,
+   "business": 0.73,
+   "consumer": 0.07,
+   "general": 0.44
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "TypeLLM/pijev",
+  "stars": 34,
+  "description": "Permutation Invariant Jev",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.09,
+   "devtool": 0.25,
+   "sdk": 0.86,
+   "business": 0.54,
+   "consumer": 0.07,
+   "general": 0.18
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "nexibeo/jev-cookbook",
+  "stars": 35,
+  "description": "Practical, tested recipes for TypeSafe's Jev decision model on OpenRouter: support triage, database indexing, file organizing, tagging, taxonomies, dedupe, PII detection, extraction, search re-ranking and a browser agent.",
+  "scores": {
+   "sdk": 0.09,
+   "business": 0.8,
+   "consumer": 0.1,
+   "general": 0.8,
+   "replica": 0.03,
+   "agent": 0.37,
+   "devtool": 0.3
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "safzanpirani/pi-jev-skill-picker",
+  "stars": 36,
+  "description": "Rank Pi Agent Skills for the current task with TypeSafe Jev",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.06,
+   "devtool": 0.93,
+   "sdk": 0.17,
+   "business": 0.04,
+   "consumer": 0.66,
+   "general": 0.05
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "klauswg/jev-guard",
+  "stars": 36,
+  "description": "Real-time risk triage gateway for exchange deposits and withdrawals — Jev (TypeSafe System One) handles triage only; adjudication stays in deterministic code.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.02,
+   "devtool": 0.11,
+   "sdk": 0.16,
+   "business": 0.85,
+   "consumer": 0.02,
+   "general": 0.05
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "zhangcy122/OpenJev",
+  "stars": 37,
+  "description": "Self-evolving cognitive decision engine & TypeSafe Jev alternative. Deliberative decision flywheel ('explore first, crystallize later' System 2→1) with 100% option-order invariance. Typed probabilistic API (Choice, Noul, Score) for Open LLMs, Laya (ModernBERT), & commercial Jev with calibrated logprobs and adaptive safety guards.",
+  "scores": {
+   "replica": 0.83,
+   "agent": 0.25,
+   "devtool": 0.35,
+   "sdk": 0.86,
+   "business": 0.29,
+   "consumer": 0.08,
+   "general": 0.54
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "FrancoisChastel/jev-code",
+  "stars": 38,
+  "description": "Jev, TypeSafe's System One classifier, as a tool inside Claude Code, Codex, Pi, and OpenCode: typed classify, check, score, rank, and ask, plus one-command setup.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.08,
+   "devtool": 0.97,
+   "sdk": 0.92,
+   "business": 0.1,
+   "consumer": 0.22,
+   "general": 0.49
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "hotchpotch/jev-reranker",
+  "stars": 39,
+  "description": "Jev-powered relevance filtering and reranking for RAG in Python.",
+  "scores": {
+   "general": 0.1,
+   "replica": 0.03,
+   "agent": 0.02,
+   "devtool": 0.2,
+   "sdk": 0.92,
+   "business": 0.12,
+   "consumer": 0.06
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "nico-martin/open-jev",
+  "stars": 40,
+  "description": "open-jev is a browser-focused TypeScript library for typed decisions: one piece of text (the state) plus any number of typed questions go in, and one forward pass returns a calibrated probability distribution per question. Nothing is generated, so an answer is always one of the options you provided.",
+  "scores": {
+   "replica": 0.92,
+   "agent": 0.1,
+   "devtool": 0.12,
+   "sdk": 0.91,
+   "business": 0.39,
+   "consumer": 0.08,
+   "general": 0.46
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "kiwi0719/jev-edge",
+  "stars": 41,
+  "description": "Typed-judgment admission control at the traffic edge: three-layer prompt-injection and abuse filter for nginx/OpenResty, powered by TypeSafe Jev. Fail-open, cached, hot-reloadable.",
+  "scores": {
+   "replica": 0.12,
+   "agent": 0.02,
+   "devtool": 0.13,
+   "sdk": 0.52,
+   "business": 0.02,
+   "consumer": 0.02,
+   "general": 0.13
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "mattn/go-jev",
+  "stars": 41,
+  "description": "Go SDK and CLI for TypeSafe Jev: typed decisions (yes/no, choice, score) from a model",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.06,
+   "devtool": 0.19,
+   "sdk": 0.97,
+   "business": 0.51,
+   "consumer": 0.07,
+   "general": 0.4
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "shitianfang/jev-use",
+  "stars": 42,
+  "description": "Claude Code / Codex / pi plugin that hands agent steps needing no text output to Jev (TypeSafe's judgment model) — measured p50 ~230 ms and ~$0.02 per 1,000 judgments, with typed escalation back to the LLM",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.77,
+   "devtool": 0.98,
+   "sdk": 0.96,
+   "business": 0.04,
+   "consumer": 0.14,
+   "general": 0.57
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "Chuf-H/jev-tree",
+  "stars": 42,
+  "description": "Jev-native probability tree and graph runtime for verifiable multi-step decision making.",
+  "scores": {
+   "replica": 0.1,
+   "agent": 0.47,
+   "devtool": 0.19,
+   "sdk": 0.51,
+   "business": 0.09,
+   "consumer": 0.06,
+   "general": 0.25
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "hunkim/solar-mini4-jev",
+  "stars": 45,
+  "description": "",
+  "scores": {
+   "replica": 0.63,
+   "agent": 0.17,
+   "devtool": 0.4,
+   "sdk": 0.39,
+   "business": 0.22,
+   "consumer": 0.08,
+   "general": 0.12
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "OmniJev/PlayJev",
+  "stars": 47,
+  "description": "🚀🚀 A 0.8B JEV-like multimodal model playing GUI games directly from raw pixels.",
+  "scores": {
+   "replica": 0.89,
+   "agent": 0.93,
+   "devtool": 0.03,
+   "sdk": 0.11,
+   "business": 0.01,
+   "consumer": 0.04,
+   "general": 0.11
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Das-rebel/a3m-router",
+  "stars": 16,
+  "description": "⚡ Adaptive multi-model LLM router — 80+ providers, Jev System One single-pass routing (model=jev-auto), pheromone-trail failover, parallel ensemble merge. npm: adaptive-memory-multi-model-router",
+  "scores": {
+   "replica": 0.34,
+   "agent": 0.03,
+   "devtool": 0.77,
+   "sdk": 0.69,
+   "business": 0.04,
+   "consumer": 0.07,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "RevocGG/typesafe-jev-bridge",
+  "stars": 5,
+  "description": "Use the TypeSafe Jev decision model (System One) anywhere: zero-dependency OpenAI-compatible bridge for 9Router, Claude Code, Cursor, Cline & any OpenAI SDK. Typed yes/no, choice & score judgments via CLI or HTTP.",
+  "scores": {
+   "replica": 0.13,
+   "agent": 0.08,
+   "devtool": 0.95,
+   "sdk": 0.95,
+   "business": 0.48,
+   "consumer": 0.11,
+   "general": 0.75
+  },
+  "kind": "general"
+ }
+]
