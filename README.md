@@ -177,3 +177,8 @@ Thanks to everyone who has submitted tools or data corrections:
 ```markdown
 [![Listed on Agent Skills Hub](https://img.shields.io/badge/Agent_Skills_Hub-listed-2ea44f)](https://agentskillshub.top)
 ```
+
+## License
+
+The source code is [MIT](LICENSE). The hosted catalog data, the API and database behind
+agentskillshub.top, and the "Agent Skills Hub" name are not covered: see [NOTICE.md](NOTICE.md).
