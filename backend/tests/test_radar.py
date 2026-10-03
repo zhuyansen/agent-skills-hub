@@ -190,3 +190,40 @@ def test_sources_run_reports_a_new_name(monkeypatch, tmp_path):
     radar.sources_main(report, tmp_path, {"--sources", "--skip-db"})
     text = report.read_text()
     assert "**qwen3.9**" in text and "$0.072" in text
+
+
+# --- topics and mail ------------------------------------------------------------------------
+
+def test_topic_section_lists_matching_leads_repos_and_queries(monkeypatch):
+    monkeypatch.setattr(radar, "TOPICS", {"AI 视频": re.compile(r"\bvideo", re.I)})
+    lead = [{"term": "reelmimic", "examples": ["edenfunf/reelmimic: Show it a video you love"], "signals": ["②爆发"]},
+            {"term": "strata", "examples": ["Niko1221/Strata: Qwen3.8 on a gaming PC"], "signals": ["②爆发"]}]
+    blocks = {"breakout": {"repos": [{"repo": "a/motion-video-kit", "description": "video kit", "stars": 900, "velocity": 300},
+                                     {"repo": "Niko1221/Strata", "description": "Qwen3.8", "stars": 7700, "velocity": 870}]}}
+    gsc = {"queries": [{"query": "claude video skills", "impressions": 6, "page": "https://agentskillshub.top/best/x/"},
+                       {"query": "best ai scraping tools", "impressions": 3, "page": "/best/web-scraping/"}]}
+    text = "\n".join(radar.topic_lines(lead, blocks, gsc))
+    assert "reelmimic" in text and "motion-video-kit" in text and "claude video skills" in text
+    assert "strata" not in text.lower() and "scraping" not in text
+
+
+def test_mail_html_renders_tables():
+    import notify
+    out = notify.html("| a | b |\n|---|---|\n| 1 | 2 |")
+    assert "<table>" in out and "<td>1</td>" in out
+
+
+def test_mail_without_recipient_is_skipped(monkeypatch):
+    import notify
+    monkeypatch.delenv("RADAR_EMAIL_TO", raising=False)
+    assert notify.send("s", "x").startswith("skipped")
+
+
+def test_review_sends_one_trends_task_per_call():
+    # DataForSEO's live endpoint runs only the first task of a body (2026-10-03)
+    due = [("strata", date(2026, 9, 25), ["strata", "niko1221 strata", "niko strata", "a fourth"]), ("veo 3 free", date(2026, 10, 3), [])]
+    calls, plan = review.plan_calls(due, date(2026, 10, 17))
+    assert len(calls) == 4 and all(len(c["arguments"]["body"]) == 1 for c in calls)
+    assert [c["arguments"]["body"][0]["keywords"] for c in calls[:3]] == [["strata"], ["niko1221 strata"], ["niko strata"]]
+    assert calls[3]["arguments"]["body"][0]["keywords"] == ["veo 3 free"]
+    assert calls[0]["arguments"]["body"][0]["date_to"] == "2026-10-09" and calls[3]["arguments"]["body"][0]["date_to"] == "2026-10-17"

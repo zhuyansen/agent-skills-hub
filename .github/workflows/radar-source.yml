@@ -6,7 +6,7 @@ name: New-term radar · sources
 # a 9:30 post for a day. The 08:00 run lands an hour before radar-daily.yml, whose report
 # lists the ① leads of the last day.
 #
-# A run comments on the issue "新词雷达日报" only when it found a name or hit an error.
+# A run mails RADAR_EMAIL_TO only when it found a name or hit an error.
 # Leads go to radar_leads like the daily ones, and are reviewed the same way.
 #
 # AIsa: 24 accounts at $0.003, about $0.07 a run, $0.22 a day. The X vocabulary and HF's
@@ -23,7 +23,6 @@ concurrency:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   sources:
@@ -41,7 +40,7 @@ jobs:
             backend/requirements.txt
 
       - name: Install deps
-        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary
+        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary markdown
 
       - name: Restore the last run's vocabulary
         uses: actions/cache/restore@v4
@@ -68,14 +67,14 @@ jobs:
       - name: Report
         if: always()
         env:
-          GH_TOKEN: ${{ github.token }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          RADAR_EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
         run: |
           if [ ! -f "$RUNNER_TEMP/sources.md" ]; then
-            [ "${{ job.status }}" = "success" ] && { echo "没有新名字,不发评论" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+            [ "${{ job.status }}" = "success" ] && { echo "没有新名字,不发邮件" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
             echo "## 新词雷达 · ① 源头运行失败" > "$RUNNER_TEMP/sources.md"
           fi
           printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/sources.md"
           cat "$RUNNER_TEMP/sources.md" >> "$GITHUB_STEP_SUMMARY"
-          issue=$(gh issue list --state open --search "新词雷达日报 in:title" --json number --jq '.[0].number')
-          [ -n "$issue" ] || issue=$(gh issue create --title "新词雷达日报" --body "每天 09:00(北京时间)自动更新,见 .github/workflows/radar-daily.yml" | grep -o '[0-9]*$')
-          gh issue comment "$issue" --body-file "$RUNNER_TEMP/sources.md"
+          python ops/radar/notify.py "$RUNNER_TEMP/sources.md" "新词雷达 · ① 源头 $(TZ=Asia/Shanghai date +'%m-%d %H:00')"

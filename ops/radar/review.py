@@ -6,8 +6,9 @@ review()   takes up to PER_DAY leads first seen REVIEW_AFTER days ago or earlier
            and stores hit / miss / no_data plus how many days the radar was ahead.
 summary()  hit rate and median lead per signal over the last WINDOW days of verdicts.
 
-Each variant is its own Trends task: in one shared task the values share a 0-100 scale
-and a small term next to a big one reads 0. A variant "rose" when its peak after
+Each variant is its own call: in one shared task the values share a 0-100 scale and a
+small term next to a big one reads 0, and the live endpoint runs only the first task of
+a request's body (seen 2026-10-03), so tasks cannot be batched into one call either. A variant "rose" when its peak after
 first_seen clears its own baseline (mean before first_seen) by RISE_FACTOR and
 RISE_MIN; a word with an older meaning ("strata": strata rock, strata title) has a
 high baseline and does not rise, while "niko1221 strata" goes from 0 to something.
@@ -96,6 +97,20 @@ def _series(task: dict) -> list[tuple[date, int]]:
     return [(date.fromisoformat(p["date_from"]), int((p.get("values") or [0])[0] or 0)) for p in item.get("data", [])]
 
 
+def plan_calls(due: list[tuple], today: date) -> tuple[list[dict], list[tuple]]:
+    """One Trends call per search variant of each due lead, over its review window."""
+    calls, plan = [], []
+    for i, (term, first_seen, variants) in enumerate(due):
+        keys = (list(variants) or [term])[:MAX_VARIANTS]
+        window = {"date_from": (first_seen - timedelta(days=BEFORE_DAYS)).isoformat(),
+                  "date_to": min(first_seen + timedelta(days=REVIEW_AFTER), today).isoformat()}
+        ids = [f"r{i}v{j}" for j in range(len(keys))]
+        calls += [{"call_id": cid, "tool": TOOL, "arguments": {"body": [{"keywords": [k], **window}]}}
+                  for cid, k in zip(ids, keys)]
+        plan.append((ids, term, first_seen, keys))
+    return calls, plan
+
+
 def review(today: date | None = None) -> dict:
     from sqlalchemy import text
     today = today or date.today()
@@ -109,21 +124,14 @@ def review(today: date | None = None) -> dict:
     if not due:
         engine.dispose()
         return {"checked": [], "cost_micros": 0}
-    calls, plan = [], []
-    for i, (term, first_seen, variants) in enumerate(due):
-        keys = (list(variants) or [term])[:MAX_VARIANTS]
-        body = [{"keywords": [k], "date_from": (first_seen - timedelta(days=BEFORE_DAYS)).isoformat(),
-                 "date_to": min(first_seen + timedelta(days=REVIEW_AFTER), today).isoformat()} for k in keys]
-        calls.append({"call_id": f"r{i}", "tool": TOOL, "arguments": {"body": body}})
-        plan.append((f"r{i}", term, first_seen, keys))
+    calls, plan = plan_calls(due, today)
     data, cost = aisa.call_all(calls)
     checked = []
     with engine.begin() as conn:
-        for cid, term, first_seen, keys in plan:
-            if cid not in data:
+        for ids, term, first_seen, keys in plan:
+            if not all(cid in data for cid in ids):
                 continue   # stays due; tomorrow's run takes it again
-            tasks = data[cid].get("tasks") or []
-            per = {k: rose(_series(t), first_seen) for k, t in zip(keys, tasks)}
+            per = {k: rose(_series((data[cid].get("tasks") or [{}])[0]), first_seen) for cid, k in zip(ids, keys)}
             v, lead = verdict(per, first_seen)
             conn.execute(text("""
                 UPDATE radar_leads SET reviewed_at = now(), verdict = :v, lead_days = :lead,

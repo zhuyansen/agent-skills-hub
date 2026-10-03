@@ -9,7 +9,7 @@ name: New-term radar
 # Jev checks which are names of new things. Leads are kept in the table radar_leads
 # (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
 # report ends with each signal's hit rate. The report goes to the run summary and the
-# tracking issue "新词雷达日报". It writes only radar_leads; it never pushes to main.
+# mail to RADAR_EMAIL_TO (ops/radar/notify.py, Resend). It writes only radar_leads; it never pushes to main.
 #
 # AIsa here is only the review: up to 15 Trends tasks at $0.0012, under $0.02 a day.
 #
@@ -31,7 +31,6 @@ concurrency:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   radar:
@@ -49,7 +48,7 @@ jobs:
             backend/requirements.txt
 
       - name: Install deps
-        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary
+        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary markdown
 
       - name: Restore yesterday's snapshots
         uses: actions/cache/restore@v4
@@ -82,11 +81,11 @@ jobs:
       - name: Report
         if: always()
         env:
-          GH_TOKEN: ${{ github.token }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          RADAR_EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
         run: |
           [ -f "$RUNNER_TEMP/radar.md" ] || echo "## 新词雷达运行失败" > "$RUNNER_TEMP/radar.md"
           printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/radar.md"
           cat "$RUNNER_TEMP/radar.md" >> "$GITHUB_STEP_SUMMARY"
-          issue=$(gh issue list --state open --search "新词雷达日报 in:title" --json number --jq '.[0].number')
-          [ -n "$issue" ] || issue=$(gh issue create --title "新词雷达日报" --body "每天 09:00(北京时间)自动更新,见 .github/workflows/radar-daily.yml" | grep -o '[0-9]*$')
-          gh issue comment "$issue" --body-file "$RUNNER_TEMP/radar.md"
+          python ops/radar/notify.py "$RUNNER_TEMP/radar.md" "新词雷达 · 日报 $(TZ=Asia/Shanghai date +%m-%d)"

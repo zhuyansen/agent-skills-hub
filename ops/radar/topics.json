@@ -1,0 +1,4 @@
+{
+  "_note": "Topics the daily report lists apart: every lead, breakout repo and new GSC query whose text matches the pattern (case-insensitive regex). Watch lists for a topic are kept in radar_leads with the signal 'watch' and reviewed like any lead; see ops/research/ai-video-longtail-2026-10-03.",
+  "AI 视频": "\\bvideos?\\b|clip|animat|avatar|lip ?sync|talking photo|face ?swap|seedance|\\bveo\\b|\\bsora\\b|kling|hailuo|\\bwan ?2|\\bltx\\b|happy ?horse|live photo|\\bdanc|\\bkiss|music video|vlog|\\breels?\\b|tiktok|shorts|movie|film|motion|storyboard|remotion|hyperframes"
+}
