@@ -1,0 +1,11 @@
+{
+  "_note": "Signal ① accounts, read daily through AIsa (about 3000 micro-USD each). Labs post the names first; the bloggers are where 哥飞's playbook says new terms catch on (宝玉 dotey, 归藏 op7418). TeksEdge posted Strata on 9/25, the day after its first release. Read 5 accounts a batch (aisa.BATCH), about 10 s each: 24 accounts take about 4 minutes.",
+  "labs": [
+    "AnthropicAI", "claudeai", "OpenAI", "OpenAIDevs", "GoogleDeepMind", "GoogleAIStudio",
+    "Alibaba_Qwen", "deepseek_ai", "Kimi_Moonshot", "MiniMax__AI", "Zai_org", "xai",
+    "AIatMeta", "MistralAI", "huggingface", "cursor_ai"
+  ],
+  "bloggers": [
+    "dotey", "op7418", "_akhaliq", "TeksEdge", "simonw", "swyx", "karpathy", "rowancheung"
+  ]
+}

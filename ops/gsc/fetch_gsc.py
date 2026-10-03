@@ -122,7 +122,9 @@ def is_operator_query(q):
 
 
 def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT,
-          include_operators=False):
+          include_operators=False, data_state=None):
+    """data_state="all" adds the fresh, not yet final days (about one day behind instead
+    of three). Those numbers are revised later: good for spotting, not for reporting."""
     from urllib.parse import quote
     body = {
         "startDate": str(start),
@@ -130,6 +132,8 @@ def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT,
         "dimensions": dimensions,
         "rowLimit": limit,
     }
+    if data_state:
+        body["dataState"] = data_state
     if filters:
         body["dimensionFilterGroups"] = [{"filters": filters}]
     rows = api_post(svc, f"/sites/{quote(site, safe='')}/searchAnalytics/query", body).get("rows", [])

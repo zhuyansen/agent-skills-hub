@@ -1,9 +1,15 @@
 """Radar signal ③: pages competitors and aggregators added since yesterday.
 
-Reads the public sitemaps of four sites (approved 2026-10-03; LobeHub answers 503 and
-smithery lists only docs, so they are left out), keeps yesterday's URLs in a snapshot,
-and turns today's new URLs into terms. Only the shards that list tools, servers, skills
-or posts are read, about 70 requests a day, each site's robots.txt and crawl-delay kept.
+Reads the public sitemaps of five sites (approved 2026-10-03; smithery lists only docs,
+so it is left out), keeps yesterday's URLs in a snapshot, and turns today's new URLs
+into terms. Only the shards that list tools, servers, skills or posts are read, about 75
+requests a day, each site's robots.txt and crawl-delay kept.
+
+LobeHub's index (/sitemap-index.xml) mostly answers 503, its shards do not, so they are
+read directly, each as its own source: one shard down does not cost the others. Each
+shard is a list of about 200 entries in 17 languages, a featured list rather than the
+whole catalog, so a new URL there means "entered LobeHub's list". Locale prefixes are
+stripped, or one new entry would count as 17 new URLs.
 """
 from __future__ import annotations
 
@@ -22,12 +28,16 @@ RETRIES = 3
 RETRY_PAUSE = 10
 MIN_URLS = 3
 TOP = 25
-# site -> (index URL, shard filter, seconds between requests)
+_LOCALE = r"^(https?://[^/]+)/[a-z]{2}(?:-[A-Za-z]{2,4})?(?=/)"
+# site -> (index URL, shard filter or None when the URL is itself a shard,
+#          seconds between requests, locale prefix to strip or None)
 SOURCES = {
-    "glama": ("https://glama.ai/sitemap.xml", r"/(mcp-servers|mcp-remote-servers)/\d+\.xml$|mcp-keyword-reports|blog-posts", 2),
-    "mcp.so": ("https://mcp.so/sitemap.xml", r"section=(servers|agents|cli|clients|posts)\b", 2),
-    "skillsmp": ("https://skillsmp.com/sitemap.xml", r"/(skills-discovered|repositories-discovered|skills-popular)\.xml$", 5),
-    "toolify": ("https://www.toolify.ai/sitemap.xml", r"sitemap_(tools|openclaw_skills)_\d+\.xml$", 2),
+    "glama": ("https://glama.ai/sitemap.xml", r"/(mcp-servers|mcp-remote-servers)/\d+\.xml$|mcp-keyword-reports|blog-posts", 2, None),
+    "mcp.so": ("https://mcp.so/sitemap.xml", r"section=(servers|agents|cli|clients|posts)\b", 2, None),
+    "skillsmp": ("https://skillsmp.com/sitemap.xml", r"/(skills-discovered|repositories-discovered|skills-popular)\.xml$", 5, None),
+    "toolify": ("https://www.toolify.ai/sitemap.xml", r"sitemap_(tools|openclaw_skills)_\d+\.xml$", 2, None),
+    **{f"lobehub-{shard}": (f"https://lobehub.com/sitemap/{shard}.xml", None, 5, _LOCALE)
+       for shard in ("mcp", "skills", "agents", "blog")},
 }
 _LOC = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>")
 
@@ -48,13 +58,15 @@ def fetch(url: str) -> str:
     return ""
 
 
-def site_urls(index: str, shard: str, pause: float) -> set[str]:
-    shards = [u for u in _LOC.findall(fetch(index)) if re.search(shard, u.replace("&amp;", "&"))]
+def site_urls(index: str, shard: str | None, pause: float, locale: str | None = None) -> set[str]:
+    shards = [index] if shard is None else \
+        [u for u in _LOC.findall(fetch(index)) if re.search(shard, u.replace("&amp;", "&"))]
     urls: set[str] = set()
-    for u in shards:
-        time.sleep(pause)
+    for i, u in enumerate(shards):
+        if i or shard is not None:
+            time.sleep(pause)
         urls.update(x.replace("&amp;", "&") for x in _LOC.findall(fetch(u)))
-    return urls
+    return {re.sub(locale, r"\1", u) for u in urls} if locale else urls
 
 
 def slug_text(url: str) -> str:
@@ -68,11 +80,13 @@ def diff(snapshot_dir: Path) -> dict:
     """New URLs per site against the stored snapshot, then the terms that surge in them."""
     snapshot_dir.mkdir(parents=True, exist_ok=True)
     report, recent, baseline = {}, [], []
-    for site, (index, shard, pause) in SOURCES.items():
+    for i, (site, (index, shard, pause, locale)) in enumerate(SOURCES.items()):
         path = snapshot_dir / f"{site}.json.gz"
         old = set(json.loads(gzip.decompress(path.read_bytes()))) if path.exists() else None
         try:
-            now = site_urls(index, shard, pause)
+            if i and shard is None:
+                time.sleep(pause)   # LobeHub's shards come one after another from one host
+            now = site_urls(index, shard, pause, locale)
         except Exception as exc:  # noqa: BLE001 — one site down must not stop the others
             report[site] = {"error": str(exc)[:120]}
             continue

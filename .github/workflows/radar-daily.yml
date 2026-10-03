@@ -1,12 +1,21 @@
 name: New-term radar
 
-# Once a day, 09:00 Beijing: the terms that are starting to surge, from three signals
-# (ops/radar/radar.py): new GitHub repos in the catalog, pages competitors added to their
-# sitemaps since yesterday, and GSC queries seen for the first time. Jev checks which are
-# names of new things. The report goes to the run summary and the tracking issue
-# "新词雷达日报". Read-only: it never pushes to main.
+# Once a day, 09:00 Beijing: the terms that are starting to surge (ops/radar/radar.py),
+# earliest signal first: ① names the labs and AI bloggers posted on X (AIsa) and new
+# models on Hugging Face's trending list; ② a new GitHub repo taking off on its own, and
+# terms new repos in the catalog suddenly share; ③ pages competitors and LobeHub added
+# to their sitemaps since yesterday; ④ GSC queries seen for the first time (fresh data).
+# Jev checks which are names of new things. Leads are kept in the table radar_leads
+# (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
+# report ends with each signal's hit rate. The report goes to the run summary and the
+# tracking issue "新词雷达日报". It writes only radar_leads; it never pushes to main.
 #
-# Yesterday's competitor URLs live in the Actions cache (one entry per run, restored by
+# AIsa costs about $0.08 a day: 24 X accounts at $0.003, up to 15 Trends tasks at
+# $0.0012. Without the AISA_API_KEY secret those two parts report an error and the rest
+# runs as before.
+#
+# Yesterday's competitor URLs, the X vocabulary, HF's trending list and repo star counts
+# live in the Actions cache (one entry per run, restored by
 # prefix), so the repo does not grow. A missing cache only means the run builds a new
 # snapshot and reports no competitor diff that day.
 #
@@ -61,6 +70,8 @@ jobs:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap
 
       - name: Save today's snapshots

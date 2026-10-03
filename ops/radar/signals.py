@@ -4,7 +4,9 @@ github_surge   terms in the names and descriptions of repos created in the last 
                against repos created in the 30 days before, counted per owner. Repos are
                picked by GitHub creation date, not by first_seen: the extra_repos backfill
                adds old repos every sync and would read as a wave.
-gsc_new        queries with impressions in the last 7 days and none in the 56 before.
+gsc_new        queries with impressions in the last 3 days and none in the 56 before. Reads
+               GSC's fresh data (dataState=all): one day behind instead of three, at the
+               cost of numbers GSC still revises; the radar only needs "seen or not".
 """
 from __future__ import annotations
 
@@ -19,9 +21,9 @@ from terms import by_source, surges
 ROOT = Path(__file__).resolve().parents[2]
 RECENT_DAYS, BASELINE_DAYS = 3, 30
 GH_MIN_OWNERS = 5
-GSC_LAG_DAYS = 3
-GSC_RECENT, GSC_BEFORE = 7, 56
-GSC_MIN_IMPRESSIONS = 5
+GSC_LAG_DAYS = 1
+GSC_RECENT, GSC_BEFORE = 3, 56
+GSC_MIN_IMPRESSIONS = 3
 TOP = 25
 _ROWS = """
 SELECT author_name, repo_name || ' ' || coalesce(description, ''), created_at >= now() - make_interval(days => :recent)
@@ -80,7 +82,7 @@ def gsc_new() -> dict:
     site = g.pick_site(svc)
     end = date.today() - timedelta(days=GSC_LAG_DAYS)
     start = end - timedelta(days=GSC_RECENT - 1)
-    recent = g.query(svc, site, start, end, ["query", "page"], limit=25000)
+    recent = g.query(svc, site, start, end, ["query", "page"], limit=25000, data_state="all")
     before = g.query(svc, site, start - timedelta(days=GSC_BEFORE), start - timedelta(days=1), ["query"], limit=25000)
     seen = {r["query"] for r in before}
     fresh: dict[str, dict] = {}

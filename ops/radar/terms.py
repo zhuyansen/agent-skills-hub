@@ -36,6 +36,58 @@ def terms(text: str) -> set[str]:
     return keep | pairs
 
 
+_URL = re.compile(r"https?://\S+|@\w+")
+_TOKEN = re.compile(r"[A-Za-z0-9][\w.+\-]*[\w+]|[A-Za-z0-9]")
+
+
+def names(text: str, strong: bool = False) -> set[str]:
+    """Name-like phrases in prose (posts, model cards): capitalised words, words with a
+    digit (Qwen3.8, 27B) or inner capitals (HyperFrames); a number right after a name
+    joins it (Opus 5.5). Neighbouring name words join, up to three ("Qwen3.8 Flash
+    Next"); anything but spaces between two words (punctuation, a bracket, Chinese text)
+    ends the phrase. A phrase made only of stop words ("claude", "claude code") is
+    dropped; a stop word inside a name ("claude opus 5.5") is kept.
+
+    A capitalised word is often just the start of a sentence ("Lots", "Trained"). With
+    `strong`, only phrases holding a word that is unmistakably a name (a digit, inner
+    capitals, three or more capitals) are returned. Without it the caller must filter
+    by novelty: those ordinary words are seen every day. `terms()` is for names and
+    slugs; on prose it yields mostly ordinary bigrams."""
+    text = _URL.sub(" ", text or "")
+    out: set[str] = set()
+    run: list[tuple[str, bool]] = []
+
+    def flush() -> None:
+        for i in range(len(run)):
+            for j in range(i + 1, min(i + 3, len(run)) + 1):
+                part = run[i:j]
+                words = [w.lower().strip(".-") for w, _ in part]
+                if words[0].replace(".", "").isdigit() or all(w in STOP for w in words):
+                    continue
+                if strong and not any(sure for _, sure in part):
+                    continue
+                phrase = " ".join(words)
+                if len(phrase) >= MIN_LEN:
+                    out.add(phrase)
+        run.clear()
+
+    prev_end = 0
+    for m in _TOKEN.finditer(text):
+        if text[prev_end:m.start()].strip():
+            flush()
+        prev_end = m.end()
+        w = m.group().rstrip(".")
+        number = w.replace(".", "").isdigit()
+        sure = (any(c.isupper() for c in w[1:]) or (any(c.isdigit() for c in w) and not number)
+                or (w.isupper() and len(w) >= 3))
+        if sure or w[0].isupper() or (number and run):
+            run.append((w, sure))
+        else:
+            flush()
+    flush()
+    return out
+
+
 def _words(text: str) -> list[str]:
     words = [w.strip(".") for w in _SPLIT.split(text.lower())]
     return [w for w in words if len(w) >= MIN_LEN or any(c.isdigit() for c in w)]
