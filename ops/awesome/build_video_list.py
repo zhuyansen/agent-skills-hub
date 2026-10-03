@@ -234,7 +234,7 @@ def github_row(name: str) -> dict | None:
     meta = json.loads(out or "{}")
     if not meta.get("full_name"):
         return None
-    return {"repo_full_name": name, "stars": meta["stargazers_count"], "description": meta.get("description"),
+    return {"repo_full_name": meta["full_name"], "stars": meta["stargazers_count"], "description": meta.get("description"),
             "security_grade": None, "created_at": meta.get("created_at"), "language": meta.get("language"),
             "license": (meta.get("license") or {}).get("spdx_id")}
 
@@ -242,13 +242,18 @@ def github_row(name: str) -> dict | None:
 def entries() -> tuple[list[dict], list[dict]]:
     kinds = json.loads((ROOT / "frontend/scripts/scenario-kinds.json").read_text())[SLUG]
     names = sorted(kinds["repos"])
-    found = catalog_rows(names)
+    meta = {name: github_row(name) for name in names}   # None when the repo is gone or private now
+    # The review may hold a name in other letter case than the catalog (diaiq/... vs DiaIQ/...,
+    # 10-04); the page matches without case, so look up GitHub's own spelling as well.
+    found = {k.lower(): v for k, v in catalog_rows(names).items()}
+    retry = [m["repo_full_name"] for n, m in meta.items() if m and n.lower() not in found
+             and m["repo_full_name"] != n]
+    found.update({k.lower(): v for k, v in catalog_rows(retry).items()} if retry else {})
     rows = []
     for name in names:
-        row = github_row(name)  # None when the repo is gone or private now
-        if row and name in found:  # the page shows catalog rows only: the list follows it
-            grade = (found.get(name) or {}).get("security_grade")
-            rows.append({**row, "security_grade": grade, "kind": kinds["repos"][name], "in_catalog": name in found})
+        row, hit = meta[name], found.get(name.lower()) or found.get(((meta[name] or {}).get("repo_full_name") or "").lower())
+        if row and hit:  # the page shows catalog rows only: the list follows it
+            rows.append({**row, "security_grade": hit.get("security_grade"), "kind": kinds["repos"][name], "in_catalog": True})
     return kinds["kinds"], sorted(rows, key=lambda r: -r["stars"]) + sub_skills(kinds["repos"], found_all=catalog_rows)
 
 
