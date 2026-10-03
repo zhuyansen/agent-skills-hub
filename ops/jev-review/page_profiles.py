@@ -11,6 +11,9 @@ Each page names:
   types     one question per type; a repo gets the highest (TYPE_MIN or more)
   labels    the filter chips, in display order
   queries   GitHub searches, run in every star band
+  strict    pages that came out over 300 cards (owner's call, 10-03): topic 0.8 instead
+            of 0.5, and under 50 stars only the high quality tier
+  extra     further topic questions a repo must also pass (Codex: made mainly for Codex)
   words     a repo must contain one of these (name, description or topics) to be a
             candidate at all, and one of `also` when the page has it; Jev decides the rest
 """
@@ -95,6 +98,7 @@ PAGES = {
         "words": ["telegram"],
     },
     "browser-automation": {
+        "strict": True,
         "subject": _q("Is the main purpose of `repo` to let an AI agent operate a web browser: navigate, click, type, "
                       "fill forms or read pages?",
                       "Browser agents, browser MCP servers, browser skills and the infrastructure under them. A plain "
@@ -118,6 +122,7 @@ PAGES = {
         "words": ["browser", "playwright", "puppeteer", "chrome", "selenium", "web agent", "cdp"],
     },
     "code-review": {
+        "strict": True,
         "subject": _q("Is the main purpose of `repo` to review code with AI: pull requests, diffs, commits or a codebase?",
                       "It reads code and reports problems or suggestions. A linter with no AI, or a general coding "
                       "agent that can also review, does not count."),
@@ -140,6 +145,7 @@ PAGES = {
         "also": ["code", "pr ", "pull request", "diff", "commit", "claude", "codex", "agent", "llm", "ai "],
     },
     "ai-design": {
+        "strict": True,
         "subject": _q("Is the main purpose of `repo` to help an AI agent produce visual design: UI and UX, frontend "
                       "styling, design systems, graphics or brand visuals?",
                       "Design skills, design MCP servers and design-to-code tools. A UI component library with no "
@@ -166,6 +172,7 @@ PAGES = {
         "also": ["claude", "codex", "agent", "skill", "mcp", "ai ", "llm", "cursor", "gpt"],
     },
     "knowledge-base": {
+        "strict": True,
         "subject": _q("Is the main purpose of `repo` to build, maintain or query a knowledge base with an LLM or AI agent: "
                       "an LLM-maintained wiki, a RAG knowledge base, or documents an agent answers questions from?",
                       "The knowledge base is the product. A general chatbot, a vector database library on its own, or "
@@ -190,6 +197,11 @@ PAGES = {
         "also": ["claude", "codex", "agent", "llm", "ai ", "mcp", "skill", "gpt", "rag"],
     },
     "codex-skills": {
+        "strict": True,
+        # 1,929 repos passed "Codex is a named target": most were skills for every agent that
+        # list Codex among several. The page is for what is made for Codex (owner, 10-03).
+        "extra": {"codex_first": _q("Is `repo` made mainly for OpenAI Codex: Codex is its primary or first-class target "
+                                    "in the name or description, not one of several agents it also supports?")},
         "subject": _q("Is `repo` made for OpenAI Codex: a skill, plugin, subagent, MCP setup or workflow for the Codex "
                       "CLI, app or IDE extension, or a collection or tool for Codex skills?",
                       "Codex must be a named target. A skill written only for Claude Code does not count; one that "

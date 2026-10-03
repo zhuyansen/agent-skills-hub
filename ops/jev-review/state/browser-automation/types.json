@@ -1,0 +1,4412 @@
+[
+ {
+  "repo": "browser-use/browser-use",
+  "stars": 117038,
+  "description": "Agents that use the browser.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.23,
+   "skill": 0.33,
+   "infra": 0.79,
+   "extract": 0.4,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ChromeDevTools/chrome-devtools-mcp",
+  "stars": 52903,
+  "description": "Chrome DevTools for coding agents",
+  "scores": {
+   "agent": 0.18,
+   "mcp": 0.98,
+   "skill": 0.83,
+   "infra": 0.92,
+   "extract": 0.16,
+   "testing": 0.31
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "vercel-labs/agent-browser",
+  "stars": 43475,
+  "description": "Browser automation CLI for AI agents",
+  "scores": {
+   "agent": 0.41,
+   "mcp": 0.35,
+   "skill": 0.16,
+   "infra": 0.9,
+   "extract": 0.55,
+   "testing": 0.65
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "microsoft/playwright-mcp",
+  "stars": 37777,
+  "description": "Playwright MCP server",
+  "scores": {
+   "agent": 0.25,
+   "mcp": 0.97,
+   "skill": 0.77,
+   "infra": 0.7,
+   "extract": 0.68,
+   "testing": 0.55
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lightpanda-io/browser",
+  "stars": 35887,
+  "description": "Lightpanda: the headless browser designed for AI and automation",
+  "scores": {
+   "agent": 0.1,
+   "mcp": 0.15,
+   "skill": 0.05,
+   "infra": 0.97,
+   "extract": 0.78,
+   "testing": 0.18
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "feder-cr/invisible_playwright_mcp",
+  "stars": 31763,
+  "description": "Playwright MCP server undetected by anti-bots and captchas: AI agent browses the web on anti-detect stealth Firefox, Python, undetected browser automation, scraping, computer use.",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.97,
+   "skill": 0.87,
+   "infra": 0.84,
+   "extract": 0.78,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "feder-cr/aihawk_mcp_server",
+  "stars": 31623,
+  "description": "Anti-detect agentic stealth browser: undetected browsing, browser automation, Python AI web browsing agent, computer use, scraping, lead generation. No captchas.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.96,
+   "skill": 0.87,
+   "infra": 0.85,
+   "extract": 0.72,
+   "testing": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "feder-cr/AIHawk",
+  "stars": 31621,
+  "description": "Anti-detect agentic browser: undetected browsing, browser automation, MCP server, AI web browsing agent, computer use, scraping, lead generation. No captchas.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.92,
+   "skill": 0.79,
+   "infra": 0.84,
+   "extract": 0.66,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "jackwener/OpenCLI",
+  "stars": 29790,
+  "description": "Make Any Website into CLI & Use your logged-in browser by AI agent. ",
+  "scores": {
+   "agent": 0.45,
+   "mcp": 0.27,
+   "skill": 0.37,
+   "infra": 0.66,
+   "extract": 0.74,
+   "testing": 0.1
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "alibaba/page-agent",
+  "stars": 29270,
+  "description": "JavaScript in-page GUI agent. Control web interfaces with natural language.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.17,
+   "skill": 0.05,
+   "infra": 0.08,
+   "extract": 0.12,
+   "testing": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "h4ckf0r0day/obscura",
+  "stars": 28268,
+  "description": "The headless browser for AI agents and web scraping",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.2,
+   "skill": 0.07,
+   "infra": 0.97,
+   "extract": 0.94,
+   "testing": 0.11
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "browserbase/stagehand",
+  "stars": 25520,
+  "description": "The SDK to extract data and interact with any site on the web. Get started with Claude Code, Codex, Eve, Mastra, and more.",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.17,
+   "skill": 0.28,
+   "infra": 0.92,
+   "extract": 0.94,
+   "testing": 0.12
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "browser-use/jev-ultrafast",
+  "stars": 21853,
+  "description": "Fastest and cheapest web agent",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.26,
+   "skill": 0.08,
+   "infra": 0.81,
+   "extract": 0.19,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "citrolabs/ego-lite",
+  "stars": 16793,
+  "description": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
+  "scores": {
+   "agent": 0.67,
+   "mcp": 0.17,
+   "skill": 0.55,
+   "infra": 0.67,
+   "extract": 0.44,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "browser-use/web-ui",
+  "stars": 16609,
+  "description": "🖥️ Run AI Agent in your browser.",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.27,
+   "skill": 0.07,
+   "infra": 0.81,
+   "extract": 0.29,
+   "testing": 0.1
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "web-infra-dev/midscene",
+  "stars": 15063,
+  "description": "GUI Agent for E2E Testing",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.14,
+   "skill": 0.07,
+   "infra": 0.2,
+   "extract": 0.08,
+   "testing": 0.96
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "nanobrowser/nanobrowser",
+  "stars": 13857,
+  "description": "Open-Source Chrome extension for AI-powered web automation. Run multi-agent workflows using your own LLM API key. Alternative to OpenAI Operator.",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.16,
+   "skill": 0.07,
+   "infra": 0.28,
+   "extract": 0.31,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "browseros-ai/BrowserOS",
+  "stars": 13802,
+  "description": "🌐 The open-source Agentic browser; alternative to ChatGPT Atlas, Perplexity Comet, Dia.",
+  "scores": {
+   "agent": 0.86,
+   "mcp": 0.2,
+   "skill": 0.21,
+   "infra": 0.38,
+   "extract": 0.22,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hangwin/mcp-chrome",
+  "stars": 12461,
+  "description": "Chrome MCP Server is a Chrome extension-based Model Context Protocol (MCP) server that exposes your Chrome browser functionality to AI assistants like Claude, enabling complex browser automation, content analysis, and semantic search.",
+  "scores": {
+   "agent": 0.27,
+   "mcp": 0.97,
+   "skill": 0.8,
+   "infra": 0.61,
+   "extract": 0.62,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jo-inc/camofox-browser",
+  "stars": 11388,
+  "description": "Stealth headless browser for AI agents — bypass Cloudflare, bot detection, and anti-scraping. Drop-in Puppeteer/Playwright replacement.",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.59,
+   "skill": 0.07,
+   "infra": 0.97,
+   "extract": 0.92,
+   "testing": 0.1
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "microsoft/magentic-ui",
+  "stars": 10090,
+  "description": "MagenticLite is an experimental agent that works across the browser and local file system",
+  "scores": {
+   "agent": 0.88,
+   "mcp": 0.24,
+   "skill": 0.06,
+   "infra": 0.73,
+   "extract": 0.17,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ntegrals/openbrowser",
+  "stars": 9554,
+  "description": "Let AI agents browse the web. An autonomous toolkit for browser-based AI agents.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.31,
+   "skill": 0.12,
+   "infra": 0.89,
+   "extract": 0.8,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "eze-is/web-access",
+  "stars": 8694,
+  "description": "给 Claude Code 装上完整联网能力的 skill：三层通道调度 + 浏览器 CDP + 并行分治",
+  "scores": {
+   "agent": 0.75,
+   "mcp": 0.26,
+   "skill": 0.97,
+   "infra": 0.93,
+   "extract": 0.85,
+   "testing": 0.06
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Tencent/BrowserSkill",
+  "stars": 8074,
+  "description": "Let AI agents use your real, logged-in browser without interrupting your work. CLI + extension for browser automation across any shell-capable AI agent.",
+  "scores": {
+   "agent": 0.39,
+   "mcp": 0.3,
+   "skill": 0.89,
+   "infra": 0.55,
+   "extract": 0.34,
+   "testing": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "steel-dev/steel-browser",
+  "stars": 7729,
+  "description": "🔥 Open Source Browser API for AI Agents & Apps. Steel Browser is a batteries-included browser sandbox that lets you automate the web without worrying about infrastructure.",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.49,
+   "skill": 0.08,
+   "infra": 0.98,
+   "extract": 0.81,
+   "testing": 0.11
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "BrowserMCP/mcp",
+  "stars": 7155,
+  "description": "Browser MCP is a Model Context Provider (MCP) server that allows AI applications to control your browser",
+  "scores": {
+   "agent": 0.49,
+   "mcp": 0.96,
+   "skill": 0.76,
+   "infra": 0.6,
+   "extract": 0.17,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "SawyerHood/dev-browser",
+  "stars": 6644,
+  "description": "A Claude Skill to give your agent the ability to use a web browser",
+  "scores": {
+   "agent": 0.41,
+   "mcp": 0.26,
+   "skill": 0.95,
+   "infra": 0.91,
+   "extract": 0.3,
+   "testing": 0.18
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "epiral/bb-browser",
+  "stars": 6233,
+  "description": "Your browser is the API. CLI + MCP server for AI agents to control Chrome with your login state.",
+  "scores": {
+   "agent": 0.32,
+   "mcp": 0.84,
+   "skill": 0.79,
+   "infra": 0.48,
+   "extract": 0.72,
+   "testing": 0.05
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "browser-act/skills",
+  "stars": 6087,
+  "description": "Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to humans across platforms when stuck. Parallel multi-task execution, independent multi-session operation, isolated multi-account browsing.",
+  "scores": {
+   "agent": 0.66,
+   "mcp": 0.35,
+   "skill": 0.85,
+   "infra": 0.93,
+   "extract": 0.91,
+   "testing": 0.08
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "microsoft/Webwright",
+  "stars": 6023,
+  "description": "A simple SWE style browser agent framework that achieves SOTA results on long horizon web tasks. ",
+  "scores": {
+   "agent": 0.89,
+   "mcp": 0.21,
+   "skill": 0.56,
+   "infra": 0.7,
+   "extract": 0.2,
+   "testing": 0.14
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "antiwork/shortest",
+  "stars": 5675,
+  "description": "QA via natural language AI tests",
+  "scores": {
+   "agent": 0.52,
+   "mcp": 0.1,
+   "skill": 0.1,
+   "infra": 0.71,
+   "extract": 0.06,
+   "testing": 0.98
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "executeautomation/mcp-playwright",
+  "stars": 5661,
+  "description": "Playwright Model Context Protocol Server - Tool to automate Browsers and APIs in Claude Desktop, Cline, Cursor IDE and More 🔌",
+  "scores": {
+   "agent": 0.25,
+   "mcp": 0.97,
+   "skill": 0.92,
+   "infra": 0.7,
+   "extract": 0.47,
+   "testing": 0.8
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lexmount/moli",
+  "stars": 5300,
+  "description": "Best headless browser for AI agents. Lite, Fast, High-Compatibility. Built in Rust",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.39,
+   "skill": 0.1,
+   "infra": 0.97,
+   "extract": 0.9,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "magnitudedev/browser-agent",
+  "stars": 4135,
+  "description": "Open-source, vision-first browser agent",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.23,
+   "skill": 0.09,
+   "infra": 0.31,
+   "extract": 0.44,
+   "testing": 0.5
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "remorses/playwriter",
+  "stars": 3960,
+  "description": "Chrome extension & CLI to let agents control your browser. Runs Playwright snippets in a stateful sandbox. Available as CLI or MCP",
+  "scores": {
+   "agent": 0.29,
+   "mcp": 0.71,
+   "skill": 0.68,
+   "infra": 0.89,
+   "extract": 0.31,
+   "testing": 0.27
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "CopilotKit/openmuse",
+  "stars": 3786,
+  "description": "A personal agent with a browser, terminal, files, and work that keeps going built with CopilotKit and AG-UI.",
+  "scores": {
+   "agent": 0.87,
+   "mcp": 0.31,
+   "skill": 0.07,
+   "infra": 0.9,
+   "extract": 0.32,
+   "testing": 0.05
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "browserbase/mcp-server-browserbase",
+  "stars": 3412,
+  "description": "Allow LLMs to control a browser with Browserbase and Stagehand",
+  "scores": {
+   "agent": 0.53,
+   "mcp": 0.97,
+   "skill": 0.54,
+   "infra": 0.94,
+   "extract": 0.77,
+   "testing": 0.16
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lackeyjb/playwright-skill",
+  "stars": 3161,
+  "description": "General-purpose Playwright automation for coding agents",
+  "scores": {
+   "agent": 0.29,
+   "mcp": 0.07,
+   "skill": 0.93,
+   "infra": 0.54,
+   "extract": 0.14,
+   "testing": 0.69
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "keon/browser-control",
+  "stars": 3146,
+  "description": "A tiny, fast Rust CLI that drives a real browser over the Chrome DevTools Protocol — built for coding agents.",
+  "scores": {
+   "agent": 0.09,
+   "mcp": 0.08,
+   "skill": 0.09,
+   "infra": 0.95,
+   "extract": 0.37,
+   "testing": 0.22
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Player-YN/BrowserKitten",
+  "stars": 2881,
+  "description": "Paw Work - selection-first web agent for Chrome: select on the live page, describe the outcome, take away an editable office file. BYOK, sandboxed, no server.",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.12,
+   "skill": 0.06,
+   "infra": 0.69,
+   "extract": 0.27,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "agentrhq/webcmd",
+  "stars": 2637,
+  "description": "Self-learning agent browser",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.42,
+   "skill": 0.53,
+   "infra": 0.75,
+   "extract": 0.73,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "feder-cr/dots",
+  "stars": 2566,
+  "description": "Open-source dots for the web: an AI agent with its own browser, one that does not get blocked.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.28,
+   "skill": 0.32,
+   "infra": 0.71,
+   "extract": 0.4,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "vibheksoni/stealth-browser-mcp",
+  "stars": 2165,
+  "description": "The only browser automation that bypasses anti-bot systems. AI writes network hooks, clones UIs pixel-perfect via simple chat.",
+  "scores": {
+   "agent": 0.44,
+   "mcp": 0.95,
+   "skill": 0.6,
+   "infra": 0.94,
+   "extract": 0.75,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "A9T9/RPA",
+  "stars": 2060,
+  "description": "Browser and desktop automation with an MCP server for AI assistants. Record macros or write JavaScript to automate websites, extract data, and control desktop apps with OCR and image recognition.",
+  "scores": {
+   "agent": 0.31,
+   "mcp": 0.53,
+   "skill": 0.72,
+   "infra": 0.22,
+   "extract": 0.39,
+   "testing": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nottelabs/notte",
+  "stars": 2013,
+  "description": "Cloud browser infrastructure and web automation platform for your AI and coding agents",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.18,
+   "skill": 0.08,
+   "infra": 0.95,
+   "extract": 0.66,
+   "testing": 0.15
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "aeonfun/opendia",
+  "stars": 1925,
+  "description": "Connect your browser to AI models. Just use Dia on Chrome, Arc or Firefox.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.93,
+   "skill": 0.88,
+   "infra": 0.69,
+   "extract": 0.48,
+   "testing": 0.27
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "hyperbrowserai/HyperAgent",
+  "stars": 1585,
+  "description": "AI Browser Automation",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.21,
+   "skill": 0.1,
+   "infra": 0.35,
+   "extract": 0.7,
+   "testing": 0.13
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "oxylabs/browser-agent-py",
+  "stars": 1565,
+  "description": "AI Browser Agent is an advanced Browser AI tool developed by Oxylabs AI Studio that automates real user browsing tasks using natural language instructions.",
+  "scores": {
+   "agent": 0.81,
+   "mcp": 0.12,
+   "skill": 0.06,
+   "infra": 0.51,
+   "extract": 0.89,
+   "testing": 0.08
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "tinyfish-io/agentql",
+  "stars": 1476,
+  "description": "AgentQL is a suite of tools for connecting your AI to the web. Featuring a query language and Playwright integrations for interacting with elements and extracting data quickly, precisely, and at scale. Includes REST API, Python and JavaScript SDKs, browser debugger.",
+  "scores": {
+   "agent": 0.38,
+   "mcp": 0.18,
+   "skill": 0.1,
+   "infra": 0.56,
+   "extract": 0.96,
+   "testing": 0.28
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "browserwing/browserwing",
+  "stars": 1416,
+  "description": "BrowserWing turns your browser actions into MCP commands Or Claude Skill, allowing AI agents to control browsers efficiently and reliably. Say goodbye to slow, token-heavy LLM interactions — let agents call commands directly for faster automation. Perfect for AI-driven tasks, browser automation, and boosting productivity.",
+  "scores": {
+   "agent": 0.58,
+   "mcp": 0.81,
+   "skill": 0.54,
+   "infra": 0.87,
+   "extract": 0.89,
+   "testing": 0.09
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "bug0inc/qa-agent",
+  "stars": 1276,
+  "description": "The open-source Playwright library for AI browser regression testing with intelligent caching, auto-healing, and multi-model verification.",
+  "scores": {
+   "agent": 0.61,
+   "mcp": 0.1,
+   "skill": 0.06,
+   "infra": 0.38,
+   "extract": 0.08,
+   "testing": 0.99
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "AIPexStudio/AIPex",
+  "stars": 1252,
+  "description": "AIPex: AI browser automation assistant, no migration and privacy first. Alternative to Manus Browser Operator、 Claude Chrome and Agent Browser",
+  "scores": {
+   "mcp": 0.42,
+   "skill": 0.78,
+   "infra": 0.42,
+   "extract": 0.26,
+   "testing": 0.16,
+   "agent": 0.91
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "refreshdotdev/web-eval-agent",
+  "stars": 1238,
+  "description": "An MCP server that autonomously evaluates web applications.",
+  "scores": {
+   "testing": 0.97,
+   "agent": 0.9,
+   "mcp": 0.95,
+   "skill": 0.86,
+   "infra": 0.83,
+   "extract": 0.21
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "browserable/browserable",
+  "stars": 1208,
+  "description": "Open source and self-hostable browser automation library for AI agents",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.35,
+   "skill": 0.09,
+   "infra": 0.81,
+   "extract": 0.8,
+   "testing": 0.13
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "webbrain-one/webbrain",
+  "stars": 1190,
+  "description": "Open-source AI browser agent for Chrome and Firefox (monorepo) 🧠 ",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.12,
+   "skill": 0.05,
+   "infra": 0.3,
+   "extract": 0.38,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "nico-martin/gemma4-browser-extension",
+  "stars": 1159,
+  "description": "On-device AI agent Chrome extension powered by Transformers.js and Gemma 4",
+  "scores": {
+   "agent": 0.64,
+   "mcp": 0.15,
+   "skill": 0.05,
+   "infra": 0.09,
+   "extract": 0.63,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "platonai/Browser4",
+  "stars": 1148,
+  "description": "Browser4 — an AI-native browser engine for autonomous agents, intelligent extraction, and large-scale web automation.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.46,
+   "skill": 0.17,
+   "infra": 0.96,
+   "extract": 0.93,
+   "testing": 0.12
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "kernel/kernel-images",
+  "stars": 1075,
+  "description": "Browsers-as-a-service for automations and web agents",
+  "scores": {
+   "agent": 0.1,
+   "mcp": 0.23,
+   "skill": 0.06,
+   "infra": 0.98,
+   "extract": 0.14,
+   "testing": 0.27
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "LocoreMind/locoagent",
+  "stars": 1065,
+  "description": "AI-powered social media agent with real browser automation",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.21,
+   "skill": 0.45,
+   "infra": 0.89,
+   "extract": 0.19,
+   "testing": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "lennybase/browsernode",
+  "stars": 1056,
+  "description": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.34,
+   "skill": 0.12,
+   "infra": 0.7,
+   "extract": 0.32,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "leoning60/browsernode",
+  "stars": 1031,
+  "description": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.29,
+   "skill": 0.12,
+   "infra": 0.7,
+   "extract": 0.31,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Planetary-Computers/autotab-starter",
+  "stars": 1007,
+  "description": "Build browser agents for real world tasks",
+  "scores": {
+   "extract": 0.2,
+   "testing": 0.11,
+   "agent": 0.53,
+   "mcp": 0.13,
+   "skill": 0.09,
+   "infra": 0.39
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "antibrow/antibrow",
+  "stars": 991,
+  "description": "Kernel-level antidetect browser with the Playwright API you already write. Python + Node SDKs, MCP-ready, unlimited local profiles. Linux x64 + arm64, macOS Intel + Apple Silicon, Windows x64.",
+  "scores": {
+   "agent": 0.1,
+   "mcp": 0.18,
+   "skill": 0.09,
+   "infra": 0.94,
+   "extract": 0.53,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "cookjohn/cnki-skills",
+  "stars": 974,
+  "description": "CNKI (中国知网) skills for Claude Code — search, browse journals, download PDFs, export to Zotero via Chrome DevTools MCP",
+  "scores": {
+   "agent": 0.35,
+   "mcp": 0.12,
+   "skill": 0.82,
+   "infra": 0.9,
+   "extract": 0.93,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "Saik0s/mcp-browser-use",
+  "stars": 968,
+  "description": "",
+  "scores": {
+   "skill": 0.81,
+   "infra": 0.79,
+   "extract": 0.42,
+   "testing": 0.14,
+   "agent": 0.71,
+   "mcp": 0.96
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "cashew-labs/libretto",
+  "stars": 904,
+  "description": "The AI toolkit for building reliable browser automations",
+  "scores": {
+   "agent": 0.74,
+   "mcp": 0.4,
+   "skill": 0.76,
+   "infra": 0.81,
+   "extract": 0.85,
+   "testing": 0.22
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "vostride/agent-qa",
+  "stars": 900,
+  "description": "The self-improving QA agent for software teams. A test harness with memory. Write tests in natural language for web and mobile. agent-qa learns from every run, adapts to UI changes, and catches regressions before you ship.",
+  "scores": {
+   "agent": 0.77,
+   "mcp": 0.17,
+   "skill": 0.19,
+   "infra": 0.55,
+   "extract": 0.05,
+   "testing": 0.98
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "LvcidPsyche/auto-browser",
+  "stars": 896,
+  "description": "Give your AI agent a real browser — with a human in the loop. Open-source MCP-native browser agent.",
+  "scores": {
+   "agent": 0.38,
+   "mcp": 0.93,
+   "skill": 0.67,
+   "infra": 0.89,
+   "extract": 0.26,
+   "testing": 0.32
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "saffron-health/libretto",
+  "stars": 877,
+  "description": "The AI toolkit for building reliable browser automations",
+  "scores": {
+   "agent": 0.7,
+   "mcp": 0.42,
+   "skill": 0.78,
+   "infra": 0.8,
+   "extract": 0.84,
+   "testing": 0.23
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "kontext-security/browser-use-mcp-server",
+  "stars": 847,
+  "description": "Browse the web, directly from Cursor etc.",
+  "scores": {
+   "agent": 0.41,
+   "mcp": 0.98,
+   "skill": 0.86,
+   "infra": 0.77,
+   "extract": 0.33,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mvanhorn/agentcookie",
+  "stars": 844,
+  "description": "Your agent runs on a Mac that isn't your daily driver. agentcookie keeps its sessions in sync with the Mac you actually browse on, continuously, encrypted over Tailscale, so OpenClaw, Hermes, or any other agent runtime wakes up authenticated. macOS, peer-to-peer, no cloud middleman.",
+  "scores": {
+   "agent": 0.11,
+   "mcp": 0.11,
+   "skill": 0.06,
+   "infra": 0.93,
+   "extract": 0.11,
+   "testing": 0.08
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "browser-use/vibetest-use",
+  "stars": 833,
+  "description": "Vibetest MCP - automated QA testing using Browser-Use agents",
+  "scores": {
+   "agent": 0.48,
+   "mcp": 0.78,
+   "skill": 0.82,
+   "infra": 0.71,
+   "extract": 0.13,
+   "testing": 0.99
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "WJZ-P/gemini-skill",
+  "stars": 832,
+  "description": "gemini drawing MCP & skill through browser, can be used in openclaw or any agent that supports MCP. Gemini画图 MCP和sill，支持龙虾或任何agent使用٩(๑>◡<๑)۶",
+  "scores": {
+   "agent": 0.53,
+   "mcp": 0.95,
+   "skill": 0.22,
+   "infra": 0.96,
+   "extract": 0.35,
+   "testing": 0.07
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "kontext-dev/browser-use-mcp-server",
+  "stars": 811,
+  "description": "Browse the web, directly from Cursor etc.",
+  "scores": {
+   "agent": 0.43,
+   "mcp": 0.98,
+   "skill": 0.86,
+   "infra": 0.79,
+   "extract": 0.27,
+   "testing": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "wy-coliney/jev-browser-use",
+  "stars": 808,
+  "description": "5–10x faster browser operations: Jev clicks, Codex thinks and verifies. Built at EZCollegeApp.",
+  "scores": {
+   "agent": 0.52,
+   "mcp": 0.26,
+   "skill": 0.83,
+   "infra": 0.31,
+   "extract": 0.12,
+   "testing": 0.12
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "browser-use/browsercode",
+  "stars": 764,
+  "description": "The browser-native agent framework",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.34,
+   "skill": 0.11,
+   "infra": 0.94,
+   "extract": 0.45,
+   "testing": 0.25
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "sentient-engineering/jobber",
+  "stars": 733,
+  "description": "browser controlling AI agent that applies to relavant jobs on internet autonomously. join chat @ https://discord.gg/umgnyQU2K8",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.16,
+   "skill": 0.05,
+   "infra": 0.63,
+   "extract": 0.17,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "m1guelpf/browser-agent",
+  "stars": 719,
+  "description": "A browser AI agent, using GPT-4 (2023)",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.2,
+   "skill": 0.05,
+   "infra": 0.82,
+   "extract": 0.29,
+   "testing": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "antibrow/dsh-antibrow",
+  "stars": 688,
+  "description": "DeepSeek Harness plugin: give your agent a browser with a persistent identity - engine-level fingerprint spoofing, unlimited free local profiles, Android device emulation, passkeys that survive, and residential proxy egress.",
+  "scores": {
+   "agent": 0.38,
+   "mcp": 0.82,
+   "skill": 0.11,
+   "infra": 0.91,
+   "extract": 0.2,
+   "testing": 0.12
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Hao0321/claude-skill-social-post",
+  "stars": 677,
+  "description": "A Claude Code skill by Hao (駱君昊) that learns your Facebook voice and auto-posts to FB / IG / Threads / X with a 14-day content calendar. Mega-viral validated: 80K reach / 448 likes / 500 comments on first post. Includes Day 2 flop postmortem.",
+  "scores": {
+   "agent": 0.57,
+   "mcp": 0.28,
+   "skill": 0.9,
+   "infra": 0.81,
+   "extract": 0.28,
+   "testing": 0.11
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "sleepinginsummer/agent-browser-cli",
+  "stars": 627,
+  "description": "使用 agent-browser-cli 进行浏览器感知与控制。适用于标签页扫描/切换、页面 JS 执行、Cookie、CDP、contentSettings、截图、文件上传、下拉框点击、tmwd_cdp_bridge 初始化和 Web 工具排障",
+  "scores": {
+   "mcp": 0.43,
+   "skill": 0.68,
+   "infra": 0.89,
+   "extract": 0.62,
+   "testing": 0.37,
+   "agent": 0.2
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "normal-computing/fuji-web",
+  "stars": 599,
+  "description": "Fuji is an AI agent that lives in your browser's sidepanel. You can now get tasks done online with a single command!",
+  "scores": {
+   "infra": 0.19,
+   "extract": 0.26,
+   "testing": 0.06,
+   "agent": 0.96,
+   "mcp": 0.16,
+   "skill": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "different-ai/opencode-browser",
+  "stars": 593,
+  "description": "OpenCode plugin to automate Chrome. Inspired by Claude in Chrome.",
+  "scores": {
+   "extract": 0.44,
+   "testing": 0.18,
+   "agent": 0.21,
+   "mcp": 0.35,
+   "skill": 0.32,
+   "infra": 0.96
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "vignshwarar/AI-Employe",
+  "stars": 584,
+  "description": "Create browser automation as if you were teaching a human using GPT-4 Vision.",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.28,
+   "skill": 0.07,
+   "infra": 0.3,
+   "extract": 0.22,
+   "testing": 0.18
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hydro13/tandem-browser",
+  "stars": 576,
+  "description": "AI-Human symbiotic browser — browse the web as one entity",
+  "scores": {
+   "agent": 0.88,
+   "mcp": 0.71,
+   "skill": 0.19,
+   "infra": 0.63,
+   "extract": 0.27,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "sentient-engineering/sentient",
+  "stars": 573,
+  "description": "the framework/ sdk that lets you build browser controlling agents in 3 lines of code. join chat @ https://discord.gg/umgnyQU2K8",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.23,
+   "skill": 0.07,
+   "infra": 0.77,
+   "extract": 0.15,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Einsia/Browser-BC",
+  "stars": 558,
+  "description": "Agent behavior clone for browser using, targeting general GUI using and distributed trajectory collecting.",
+  "scores": {
+   "agent": 0.22,
+   "mcp": 0.17,
+   "skill": 0.4,
+   "infra": 0.43,
+   "extract": 0.15,
+   "testing": 0.08
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Johell1NS/browser-search",
+  "stars": 528,
+  "description": "A skill for AI agents: search the web with SearXNG, browse with Camofox, bypass protections with CloakBrowser. Anti-hallucination by design. Self-hosted, free, unlimited.",
+  "scores": {
+   "agent": 0.59,
+   "mcp": 0.28,
+   "skill": 0.86,
+   "infra": 0.77,
+   "extract": 0.93,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "only-cli/oc",
+  "stars": 528,
+  "description": "Turn any website into a compact CLI tailored for AI agents. Browse the web in hundreds of tokens, not tens of thousands.",
+  "scores": {
+   "agent": 0.11,
+   "mcp": 0.1,
+   "skill": 0.71,
+   "infra": 0.4,
+   "extract": 0.97,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "cookjohn/gs-skills",
+  "stars": 521,
+  "description": "Google Scholar skills for Claude Code — search, citation tracking, full-text access, and Zotero export via Chrome DevTools MCP",
+  "scores": {
+   "agent": 0.37,
+   "mcp": 0.12,
+   "skill": 0.78,
+   "infra": 0.88,
+   "extract": 0.95,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "BuilderIO/gpt-assistant",
+  "stars": 520,
+  "description": "An experiment to give an autonomous GPT agent access to a browser and have it accomplish tasks",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.38,
+   "skill": 0.05,
+   "infra": 0.75,
+   "extract": 0.34,
+   "testing": 0.11
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "BrowserOperator/browser-operator-core",
+  "stars": 510,
+  "description": "Browser Operator - The AI browser with built in Multi-Agent platform! Open source alternative to ChatGPT Atlas, Perplexity Comet, Dia and Microsoft CoPilot Edge Browser",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.26,
+   "skill": 0.07,
+   "infra": 0.33,
+   "extract": 0.43,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "OTA-Tech-AI/web-agent-protocol",
+  "stars": 506,
+  "description": "🌐Web Agent Protocol (WAP) - Record and replay user interactions in the browser with MCP support",
+  "scores": {
+   "agent": 0.65,
+   "mcp": 0.18,
+   "skill": 0.14,
+   "infra": 0.46,
+   "extract": 0.17,
+   "testing": 0.19
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "jumodada/Drissionpage-MCP-Server",
+  "stars": 487,
+  "description": "DrissionPage MCP Server · Browser automation for Claude Code, Codex, and MCP clients",
+  "scores": {
+   "agent": 0.11,
+   "mcp": 0.97,
+   "skill": 0.83,
+   "infra": 0.89,
+   "extract": 0.22,
+   "testing": 0.43
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Hacker-Valley-Media/Interceptor",
+  "stars": 485,
+  "description": "Browser automation and computer use for AI agents. One CLI and MCP server for your signed-in browser, native macOS apps, and real iPhones.",
+  "scores": {
+   "agent": 0.58,
+   "mcp": 0.81,
+   "skill": 0.28,
+   "infra": 0.39,
+   "extract": 0.31,
+   "testing": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "merajmehrabi/puppeteer-mcp-server",
+  "stars": 485,
+  "description": "This MCP server provides browser automation capabilities through Puppeteer, allowing interaction with both new browser instances and existing Chrome windows.",
+  "scores": {
+   "agent": 0.21,
+   "mcp": 0.97,
+   "skill": 0.41,
+   "infra": 0.88,
+   "extract": 0.43,
+   "testing": 0.23
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mozilla/firefox-devtools-mcp",
+  "stars": 456,
+  "description": "Model Context Protocol server for Firefox DevTools - enables AI assistants to inspect and control Firefox browser through WebDriver BiDi",
+  "scores": {
+   "agent": 0.21,
+   "mcp": 0.98,
+   "skill": 0.93,
+   "infra": 0.85,
+   "extract": 0.28,
+   "testing": 0.23
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "AMOS144/ZeroToken",
+  "stars": 455,
+  "description": "ZeroToken — Record once, automate forever. A lightweight MCP for agent-driven browser automation, script recording, and scheduled execution.",
+  "scores": {
+   "agent": 0.57,
+   "mcp": 0.95,
+   "skill": 0.16,
+   "infra": 0.9,
+   "extract": 0.48,
+   "testing": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "chenningling/Redbook-Search-Comment-MCP2.0",
+  "stars": 453,
+  "description": "这是一款基于 Playwright 开发的小红书自动搜索和评论工具，作为 MCP Server，可通过特定配置接入 MCP Client（如Claude for Desktop），帮助用户自动完成登录小红书、搜索关键词、获取笔记内容及发布AI生成评论等操作。",
+  "scores": {
+   "agent": 0.24,
+   "mcp": 0.88,
+   "skill": 0.4,
+   "infra": 0.76,
+   "extract": 0.86,
+   "testing": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "browser-use/bux",
+  "stars": 452,
+  "description": "Browser Use Box: a 24/7 Claude Code agent for Playwright-style browser automation with Browser Use Cloud, Telegram, and a real browser on any box you own.",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.35,
+   "skill": 0.38,
+   "infra": 0.92,
+   "extract": 0.3,
+   "testing": 0.13
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ComposioHQ/open-chatgpt-atlas",
+  "stars": 439,
+  "description": "Open Source and Free Alternative to ChatGPT Atlas.",
+  "scores": {
+   "agent": 0.81,
+   "mcp": 0.14,
+   "skill": 0.06,
+   "infra": 0.38,
+   "extract": 0.17,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "anomalyco/browser-control",
+  "stars": 435,
+  "description": "Local browser driver for trusted agents: control your existing Chromium browser through a small extension and local relay",
+  "scores": {
+   "agent": 0.08,
+   "mcp": 0.54,
+   "skill": 0.7,
+   "infra": 0.62,
+   "extract": 0.17,
+   "testing": 0.2
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "TheAgenticAI/TheAgenticBrowser",
+  "stars": 427,
+  "description": "Open-source AI agent for web automation and scraping.",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.3,
+   "skill": 0.08,
+   "infra": 0.49,
+   "extract": 0.94,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "cosinusalpha/webctl",
+  "stars": 419,
+  "description": "Browser automation via CLI — for humans and agents",
+  "scores": {
+   "agent": 0.49,
+   "mcp": 0.06,
+   "skill": 0.16,
+   "infra": 0.72,
+   "extract": 0.84,
+   "testing": 0.16
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "NotASithLord/peerd",
+  "stars": 417,
+  "description": "The first AI agent harness native to the browser. A browser extension that runs a full agent loop where you already work: it drives your tabs, spins up sandboxed compute (JS notebooks, WASM Linux VMs, client-side apps), and shares what it builds peer-to-peer. BYOK, no backend, no telemetry.",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.12,
+   "skill": 0.08,
+   "infra": 0.6,
+   "extract": 0.16,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "redf0x1/camofox-browser",
+  "stars": 408,
+  "description": "Anti-detection browser server for AI agents — REST API wrapping Camoufox engine with OpenClaw plugin support",
+  "scores": {
+   "agent": 0.22,
+   "mcp": 0.73,
+   "skill": 0.1,
+   "infra": 0.97,
+   "extract": 0.88,
+   "testing": 0.14
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "kunchenguid/chrome-devtools-axi",
+  "stars": 407,
+  "description": "The most agent-ergonomic browser automation",
+  "scores": {
+   "agent": 0.37,
+   "mcp": 0.17,
+   "skill": 0.61,
+   "infra": 0.9,
+   "extract": 0.71,
+   "testing": 0.2
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "moritzkremb/jev-voice-browser",
+  "stars": 379,
+  "description": "Control a real browser by voice. Jev (TypeSafe System One) decides intent + target in ~300 ms per spoken word; Playwright acts — often before you finish the sentence.",
+  "scores": {
+   "agent": 0.64,
+   "mcp": 0.24,
+   "skill": 0.04,
+   "infra": 0.83,
+   "extract": 0.1,
+   "testing": 0.07
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Castor6/tactus",
+  "stars": 376,
+  "description": "The first browser AI Agent extension to support Agent Skills, enabling AI to perform complex tasks through an expandable skill system. 🌟 Star if you like it! | 首个支持 Agent Skills 的浏览器 AI Agent 扩展，让 AI 通过可扩展技能系统执行复杂任务 🌟 如果喜欢请点个 Star！",
+  "scores": {
+   "agent": 0.62,
+   "mcp": 0.07,
+   "skill": 0.09,
+   "infra": 0.15,
+   "extract": 0.41,
+   "testing": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "mediastormDev/dream-to-video-skill",
+  "stars": 365,
+  "description": "AI agent skill that transforms dream descriptions into cinematic videos — auto-generates prompts, submits to Jimeng via browser automation, and downloads finished videos with post-processing effects.",
+  "scores": {
+   "testing": 0.02,
+   "agent": 0.5,
+   "mcp": 0.13,
+   "skill": 0.64,
+   "infra": 0.86,
+   "extract": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "justrach/kuri",
+  "stars": 363,
+  "description": "Browser automation, web crawling, and iOS + Android device control for AI agents. Zig-native, token-efficient CDP snapshots, HAR recording, native adb wire-protocol client, and a standalone fetcher.",
+  "scores": {
+   "agent": 0.8,
+   "mcp": 0.45,
+   "skill": 0.1,
+   "infra": 0.94,
+   "extract": 0.89,
+   "testing": 0.25
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "browser-use/browser-use-pi",
+  "stars": 361,
+  "description": "A tiny TypeScript web agent, hill climbed on real browser evals.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.28,
+   "skill": 0.09,
+   "infra": 0.96,
+   "extract": 0.5,
+   "testing": 0.15
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "iFurySt/open-browser-use",
+  "stars": 356,
+  "description": "🔮 Platform-neutral Browser Use for AI agents: real Chrome automation with a CLI + SDKs, no lock-in, dead simple.",
+  "scores": {
+   "agent": 0.74,
+   "mcp": 0.68,
+   "skill": 0.84,
+   "infra": 0.81,
+   "extract": 0.34,
+   "testing": 0.1
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "obra/superpowers-chrome",
+  "stars": 356,
+  "description": "Claude Code plugin for direct Chrome browser control via DevTools Protocol - zero dependencies",
+  "scores": {
+   "testing": 0.19,
+   "agent": 0.19,
+   "mcp": 0.76,
+   "skill": 0.95,
+   "infra": 0.96,
+   "extract": 0.18
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Bin-Huang/camoufox-cli",
+  "stars": 350,
+  "description": "Anti-detect browser automation CLI & Skills for AI agents — Camoufox-powered fingerprint spoofing, no bot-detectable Playwright leaks",
+  "scores": {
+   "agent": 0.22,
+   "mcp": 0.24,
+   "skill": 0.85,
+   "infra": 0.88,
+   "extract": 0.72,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "OyadotAI/oya-browser",
+  "stars": 349,
+  "description": "The browser control plane for AI agents. One API over Oya Cloud, Browserbase, Steel, Anchor, Browser Use and your own Chrome, with persistent personas, CAPTCHA and MFA handling, and live human takeover.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.76,
+   "skill": 0.78,
+   "infra": 0.95,
+   "extract": 0.4,
+   "testing": 0.1
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "instry/ocbot",
+  "stars": 342,
+  "description": "Your Web4 Agent",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.2,
+   "skill": 0.05,
+   "infra": 0.37,
+   "extract": 0.21,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "gojue/moling",
+  "stars": 338,
+  "description": "MoLing is a computer-use and browser-use based MCP server. It is a locally deployed, dependency-free office AI assistant.",
+  "scores": {
+   "agent": 0.55,
+   "mcp": 0.96,
+   "skill": 0.49,
+   "infra": 0.76,
+   "extract": 0.17,
+   "testing": 0.05
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "BetterWright/betterwright",
+  "stars": 324,
+  "description": "A persistent, policy-guarded Playwright browser for AI agents — network policy, encrypted credential vault, proof screenshots, and CAPTCHA solving. ",
+  "scores": {
+   "agent": 0.82,
+   "mcp": 0.58,
+   "skill": 0.23,
+   "infra": 0.93,
+   "extract": 0.64,
+   "testing": 0.2
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "mrpulor-gh/nuphus-mcp",
+  "stars": 315,
+  "description": "Desktop automation MCP server — computer use for any AI agent: control screen, windows, mouse/keyboard, and Chrome via Model Context Protocol (stdio). Not a DSH plugin — DSH users install dsh-nuphus-mcp.",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.98,
+   "skill": 0.48,
+   "infra": 0.79,
+   "extract": 0.1,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Unagi-cq/cdp-bridge-mcp",
+  "stars": 304,
+  "description": "MCP server that bridges clients to a real browser through CDP and a companion extension.",
+  "scores": {
+   "agent": 0.27,
+   "mcp": 0.97,
+   "skill": 0.48,
+   "infra": 0.93,
+   "extract": 0.77,
+   "testing": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jkudish/jev-browser",
+  "stars": 304,
+  "description": "Browser use using Typesafe's Jev model",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.89,
+   "skill": 0.83,
+   "infra": 0.86,
+   "extract": 0.77,
+   "testing": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "RunanywhereAI/on-device-browser-agent",
+  "stars": 302,
+  "description": "On-device AI browser automation using WebLLM. No cloud, no API keys, fully private.",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.16,
+   "skill": 0.08,
+   "infra": 0.49,
+   "extract": 0.43,
+   "testing": 0.11
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Jeomon/Web-Use",
+  "stars": 302,
+  "description": "Web-Use is a CDP powered Browser Agent",
+  "scores": {
+   "agent": 0.98,
+   "mcp": 0.42,
+   "skill": 0.26,
+   "infra": 0.89,
+   "extract": 0.45,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "VikashLoomba/MCP-Server-Playwright",
+  "stars": 299,
+  "description": "MCP server for browser automation using Playwright",
+  "scores": {
+   "agent": 0.14,
+   "mcp": 0.97,
+   "skill": 0.83,
+   "infra": 0.69,
+   "extract": 0.35,
+   "testing": 0.32
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "dondai44423/bladebro",
+  "stars": 295,
+  "description": "A Fully free agentic browser driver for AI , few tools, full control, real stealth, top-tier token efficiency.",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.9,
+   "skill": 0.34,
+   "infra": 0.94,
+   "extract": 0.61,
+   "testing": 0.12
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "PleasePrompto/google-ai-mode-skill",
+  "stars": 295,
+  "description": "Claude Code skill for free Google AI Mode search with citations. Zero-config setup, persistent browser profile, query optimization. Token-efficient web research.",
+  "scores": {
+   "agent": 0.34,
+   "mcp": 0.09,
+   "skill": 0.93,
+   "infra": 0.88,
+   "extract": 0.92,
+   "testing": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "iMeanAI/WebCanvas",
+  "stars": 280,
+  "description": "All-in-one Web Agent framework for post-training. Start building with a few clicks!",
+  "scores": {
+   "agent": 0.84,
+   "mcp": 0.13,
+   "skill": 0.06,
+   "infra": 0.56,
+   "extract": 0.18,
+   "testing": 0.33
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "billy-enrizky/openbrowser-ai",
+  "stars": 270,
+  "description": "OpenBrowser is a framework for intelligent browser automation. It combines direct CDP communication with a CodeAgent architecture, where the LLM writes Python code executed in a persistent namespace, to navigate, interact with, and extract information from web pages autonomously.",
+  "scores": {
+   "extract": 0.8,
+   "testing": 0.22,
+   "agent": 0.97,
+   "mcp": 0.65,
+   "skill": 0.34,
+   "infra": 0.95
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "gsd-build/gsd-browser",
+  "stars": 268,
+  "description": "A fast, native browser automation CLI built from the ground up for AI agents, powered by Chrome DevTools Protocol. 63 commands covering navigation, interaction, screenshots, accessibility, network mocking, visual diffing, test generation, and more — all from a single binary.",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.29,
+   "skill": 0.08,
+   "infra": 0.96,
+   "extract": 0.48,
+   "testing": 0.69
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "disler/bowser",
+  "stars": 265,
+  "description": "Agentic browser automation and ui testing system — built with composable skills, subagent, command, and justfile layered architecture for repeatable, deployable browser use.",
+  "scores": {
+   "agent": 0.82,
+   "mcp": 0.19,
+   "skill": 0.66,
+   "infra": 0.8,
+   "extract": 0.13,
+   "testing": 0.94
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "cloudflare/playwright-mcp",
+  "stars": 257,
+  "description": "Playwright MCP fork that works with Cloudflare Browser Rendering",
+  "scores": {
+   "agent": 0.52,
+   "mcp": 0.94,
+   "skill": 0.39,
+   "infra": 0.93,
+   "extract": 0.53,
+   "testing": 0.73
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "alchaincyf/huashu-chrome",
+  "stars": 255,
+  "description": "让任何 AI agent 操控你自己的 Chrome——带着全部登录态。MCP + Chrome 扩展，Claude Code / Codex / Cursor / Gemini CLI 通用。",
+  "scores": {
+   "agent": 0.8,
+   "mcp": 0.9,
+   "skill": 0.92,
+   "infra": 0.67,
+   "extract": 0.43,
+   "testing": 0.07
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "335234131/agent-browser-mcp",
+  "stars": 245,
+  "description": "让 Agent 直接操作真实 Chrome 的 MCP 服务，支持页面扫描、CDP、截图与物理输入",
+  "scores": {
+   "agent": 0.28,
+   "mcp": 0.98,
+   "skill": 0.73,
+   "infra": 0.87,
+   "extract": 0.62,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "CursorTouch/Web-Use",
+  "stars": 245,
+  "description": "Web-Use is a CDP powered Browser Agent",
+  "scores": {
+   "agent": 0.98,
+   "mcp": 0.48,
+   "skill": 0.48,
+   "infra": 0.88,
+   "extract": 0.43,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "noemica-io/open-claude-in-chrome",
+  "stars": 241,
+  "description": "Claude in Chrome, reverse-engineered and open-source. No domain blocklist. Any Chromium browser. Same 18 MCP tools, same performance.",
+  "scores": {
+   "agent": 0.84,
+   "mcp": 0.5,
+   "skill": 0.85,
+   "infra": 0.57,
+   "extract": 0.23,
+   "testing": 0.11
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "shaun0927/openchrome",
+  "stars": 238,
+  "description": "Open-source browser automation MCP server. Control your real Chrome from any AI agent.",
+  "scores": {
+   "agent": 0.32,
+   "mcp": 0.97,
+   "skill": 0.81,
+   "infra": 0.92,
+   "extract": 0.43,
+   "testing": 0.2
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "codefuse-ai/OpAgent",
+  "stars": 235,
+  "description": "The OpAgent framework is used to automate web browser operations, achieving State-of-the-Art (SOTA) performance on the WebArena benchmark.",
+  "scores": {
+   "agent": 0.98,
+   "mcp": 0.14,
+   "skill": 0.07,
+   "infra": 0.31,
+   "extract": 0.19,
+   "testing": 0.14
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "MigoXLab/webqa-agent",
+  "stars": 232,
+  "description": "Autonomous web browser agent that audits performance, functionality & UX for engineers and vibe-coding creators. 网站自主评估测试 Agent，支持 GUI/CLI 一键完成性能、功能使用与交互体验的测试评估",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.58,
+   "skill": 0.46,
+   "infra": 0.78,
+   "extract": 0.12,
+   "testing": 0.99
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "lidge-jun/agbrowse",
+  "stars": 231,
+  "description": "Ultimate browser automation toolkit for AI agents. Zero MCP token tax, JS evaluate, vision-click with DPR correction.",
+  "scores": {
+   "agent": 0.67,
+   "mcp": 0.08,
+   "skill": 0.12,
+   "infra": 0.96,
+   "extract": 0.76,
+   "testing": 0.26
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "fitchmultz/pi-agent-browser-native",
+  "stars": 230,
+  "description": "pi extension that exposes agent-browser as a native tool for browser automation",
+  "scores": {
+   "agent": 0.25,
+   "mcp": 0.45,
+   "skill": 0.12,
+   "infra": 0.79,
+   "extract": 0.28,
+   "testing": 0.17
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "socai-io/socai",
+  "stars": 226,
+  "description": "Agent that actually understands social platforms. Fast. Precise. Deep.",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.34,
+   "skill": 0.76,
+   "infra": 0.53,
+   "extract": 0.82,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "imjszhang/Deepseek-Cowork",
+  "stars": 221,
+  "description": "Open-source alternative to Claude Cowork - Browser automation & AI assistant powered by DeepSeek",
+  "scores": {
+   "agent": 0.72,
+   "mcp": 0.35,
+   "skill": 0.08,
+   "infra": 0.55,
+   "extract": 0.17,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "phibrowser/phibrowser-mac",
+  "stars": 220,
+  "description": "A modern browser for macOS. Agentic, local-first, native Swift, Chromium powered",
+  "scores": {
+   "agent": 0.75,
+   "mcp": 0.12,
+   "skill": 0.03,
+   "infra": 0.18,
+   "extract": 0.14,
+   "testing": 0.03
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "energypantry/agent-browser-runtime",
+  "stars": 212,
+  "description": "",
+  "scores": {
+   "agent": 0.76,
+   "mcp": 0.43,
+   "skill": 0.15,
+   "infra": 0.94,
+   "extract": 0.8,
+   "testing": 0.2
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "achiya-automation/safari-mcp",
+  "stars": 208,
+  "description": "Native Safari browser automation for AI agents. 98 tools via AppleScript — zero overhead, keeps logins, runs silently in background. Drop-in alternative to Chrome DevTools MCP with 40-60% less CPU/heat on Apple Silicon.",
+  "scores": {
+   "agent": 0.34,
+   "mcp": 0.97,
+   "skill": 0.89,
+   "infra": 0.49,
+   "extract": 0.26,
+   "testing": 0.12
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Fisfzy/dsh-ego-browser",
+  "stars": 206,
+  "description": "DSH（DeepSeek Harness）插件：把 ego-lite 浏览器（给 AI Agent 用的 Chromium）接入 HARNESS——13 个结构化 ego_* 工具（文本语义快照、语义定位点击、表单填充、截图、CDP 控制、任务空间隔离），内置 ego 运行时，Linux + Chrome 开箱即用，无需克隆官方仓库或手动构建。",
+  "scores": {
+   "agent": 0.55,
+   "mcp": 0.37,
+   "skill": 0.04,
+   "infra": 0.93,
+   "extract": 0.41,
+   "testing": 0.23
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "runtime-org/runtime",
+  "stars": 203,
+  "description": "Deterministic skills-based browser agent",
+  "scores": {
+   "agent": 0.83,
+   "mcp": 0.37,
+   "skill": 0.11,
+   "infra": 0.44,
+   "extract": 0.57,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "steerlabs/opensteer",
+  "stars": 203,
+  "description": "AI Browser Automation Framework",
+  "scores": {
+   "extract": 0.42,
+   "testing": 0.15,
+   "agent": 0.53,
+   "mcp": 0.34,
+   "skill": 0.21,
+   "infra": 0.94
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "agent-fun/browser-pilot",
+  "stars": 191,
+  "description": "Browser Pilot built on an openJiuwen framework.",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.34,
+   "skill": 0.11,
+   "infra": 0.33,
+   "extract": 0.41,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Areo-Joe/chrome-acp",
+  "stars": 190,
+  "description": "Connect to ACP agent in browser.",
+  "scores": {
+   "skill": 0.79,
+   "infra": 0.61,
+   "extract": 0.51,
+   "testing": 0.06,
+   "agent": 0.21,
+   "mcp": 0.35
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "fullselfbrowsing/FSB",
+  "stars": 190,
+  "description": "DOM-first AI browser automation for Chrome and MCP clients.",
+  "scores": {
+   "extract": 0.42,
+   "testing": 0.09,
+   "agent": 0.95,
+   "mcp": 0.46,
+   "skill": 0.88,
+   "infra": 0.26
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "softpudding/OpenBrowser",
+  "stars": 189,
+  "description": "A visual AI assistant powered by Qwen3.5 for browser automation",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.38,
+   "skill": 0.08,
+   "infra": 0.4,
+   "extract": 0.16,
+   "testing": 0.13
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "blackwhite084/playwright-plus-python-mcp",
+  "stars": 189,
+  "description": "",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.95,
+   "skill": 0.58,
+   "infra": 0.78,
+   "extract": 0.7,
+   "testing": 0.56
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "greekr4/playwright-bot-bypass",
+  "stars": 189,
+  "description": "Claude Code skill to bypass bot detection (Google CAPTCHA, etc.)",
+  "scores": {
+   "agent": 0.17,
+   "mcp": 0.19,
+   "skill": 0.95,
+   "infra": 0.8,
+   "extract": 0.5,
+   "testing": 0.41
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "williamkapke/kapture",
+  "stars": 185,
+  "description": "Chrome DevTools Extension that enables browser automation through MCP",
+  "scores": {
+   "agent": 0.28,
+   "mcp": 0.8,
+   "skill": 0.48,
+   "infra": 0.85,
+   "extract": 0.13,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "runablehq/mini-browser",
+  "stars": 184,
+  "description": "An agent first browser cli",
+  "scores": {
+   "agent": 0.35,
+   "mcp": 0.4,
+   "skill": 0.55,
+   "infra": 0.91,
+   "extract": 0.61,
+   "testing": 0.46
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "WiseriaAI/pie-ai-agent",
+  "stars": 182,
+  "description": "Browser-automation agent for Chrome — natural-language tasks executed through native tool calling, scoped Skills, CDP keyboard control, and a confirm-before-act security model. BYOK across 8 LLM providers (Claude, GPT, Gemini, DeepSeek + 4 China-region).",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.15,
+   "skill": 0.12,
+   "infra": 0.8,
+   "extract": 0.57,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Endokelp/Endoplexity",
+  "stars": 180,
+  "description": "Agentic browser control driven by your own Claude / Cursor subscriptions",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.56,
+   "skill": 0.89,
+   "infra": 0.86,
+   "extract": 0.45,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hanzili/comet-mcp",
+  "stars": 180,
+  "description": "MCP Server connecting to Perplexity Comet browser",
+  "scores": {
+   "agent": 0.51,
+   "mcp": 0.94,
+   "skill": 0.91,
+   "infra": 0.87,
+   "extract": 0.69,
+   "testing": 0.06
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "TickTockBent/charlotte",
+  "stars": 179,
+  "description": "Token-efficient browser MCP server — structured web pages for AI agents, not raw accessibility dumps",
+  "scores": {
+   "testing": 0.06,
+   "agent": 0.07,
+   "mcp": 0.92,
+   "skill": 0.42,
+   "infra": 0.55,
+   "extract": 0.97
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "hanzili/hanzi-browse",
+  "stars": 177,
+  "description": "let any ai agent use the local browser",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.53,
+   "skill": 0.91,
+   "infra": 0.45,
+   "extract": 0.39,
+   "testing": 0.13
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "vercel-labs/remote-agent-browser",
+  "stars": 170,
+  "description": "An agent-friendly, programmable browser in the cloud",
+  "scores": {
+   "agent": 0.38,
+   "mcp": 0.38,
+   "skill": 0.19,
+   "infra": 0.97,
+   "extract": 0.81,
+   "testing": 0.28
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "ihuzaifashoukat/x-use",
+  "stars": 170,
+  "description": "Browser-native AI agents for X (Twitter): multi-account, MCP-ready, no X API key required.",
+  "scores": {
+   "agent": 0.73,
+   "mcp": 0.88,
+   "skill": 0.82,
+   "infra": 0.76,
+   "extract": 0.1,
+   "testing": 0.03
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "steipete/sweetlink",
+  "stars": 170,
+  "description": "Connect your agent to your web app. Like playwright, but works in your current tab. Close the loop.",
+  "scores": {
+   "agent": 0.24,
+   "mcp": 0.43,
+   "skill": 0.35,
+   "infra": 0.89,
+   "extract": 0.4,
+   "testing": 0.77
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "DeepFundAI/ai-browser",
+  "stars": 168,
+  "description": "🤖 An AI-powered desktop automation agent built with Electron &   Next.js - Control your computer like manus, but as a native   desktop app, an ai browser!",
+  "scores": {
+   "agent": 0.85,
+   "mcp": 0.13,
+   "skill": 0.04,
+   "infra": 0.25,
+   "extract": 0.3,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "camhahu/browser",
+  "stars": 167,
+  "description": "The fastest, most token-efficient way for AI agents to control Chrome.",
+  "scores": {
+   "agent": 0.46,
+   "mcp": 0.51,
+   "skill": 0.55,
+   "infra": 0.86,
+   "extract": 0.52,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "multizenteam/multizen-browser",
+  "stars": 167,
+  "description": "Anti-detect browser for AI agents and human operators. Isolated Chromium profiles (cookies, fingerprint, proxy), driven through MCP.",
+  "scores": {
+   "agent": 0.35,
+   "mcp": 0.82,
+   "skill": 0.61,
+   "infra": 0.92,
+   "extract": 0.31,
+   "testing": 0.09
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "ReinforceNow/browserstation",
+  "stars": 164,
+  "description": "Infra-agnostic hosting framework for browser agents.",
+  "scores": {
+   "agent": 0.15,
+   "mcp": 0.23,
+   "skill": 0.06,
+   "infra": 0.98,
+   "extract": 0.53,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "esinecan/agentic-ai-browser",
+  "stars": 163,
+  "description": "AI-driven web automation agent that uses Playwright for browser interactions and LLM integration for intelligent decision-making. It's designed for reliable, adaptable web automation with robust element detection and contextual understanding. It's single agent by design, and it is built with getting solid benefit out of smaller models in mind.",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.23,
+   "skill": 0.1,
+   "infra": 0.59,
+   "extract": 0.4,
+   "testing": 0.16
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ythx-101/grok-bridge",
+  "stars": 160,
+  "description": "🌉 Turn SuperGrok into a REST API — Safari browser automation bridge for AI agents",
+  "scores": {
+   "agent": 0.22,
+   "mcp": 0.31,
+   "skill": 0.11,
+   "infra": 0.47,
+   "extract": 0.65,
+   "testing": 0.08
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "DebugBase/glance",
+  "stars": 156,
+  "description": "AI-powered browser automation MCP server for Claude Code. Navigate, click, screenshot, test — all from your terminal.",
+  "scores": {
+   "agent": 0.7,
+   "mcp": 0.97,
+   "skill": 0.92,
+   "infra": 0.83,
+   "extract": 0.22,
+   "testing": 0.93
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jasonmayes/WebAIAgent",
+  "stars": 145,
+  "description": "A Web AI Agent running entirely client side in browser, that's capable of controlling a fictional flights webpage, to get the job done by using Google's Gemma 2 (2B) model in JavaScript via WebGPU thanks to the MediaPipe Web LLM library, combined with some extra function calling logic to enable advanced user experiences. ",
+  "scores": {
+   "agent": 0.89,
+   "mcp": 0.08,
+   "skill": 0.04,
+   "infra": 0.07,
+   "extract": 0.13,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "socai-io/jev-social",
+  "stars": 142,
+  "description": "Open-source, local-first social media research agent for Instagram, TikTok, and LinkedIn. Jev routes read-only steps; socai CLI captures cited browser evidence.",
+  "scores": {
+   "agent": 0.83,
+   "mcp": 0.16,
+   "skill": 0.06,
+   "infra": 0.55,
+   "extract": 0.89,
+   "testing": 0.05
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "clark-labs-inc/clark-browser",
+  "stars": 141,
+  "description": "Fully stealth chromium for AI agents. Powering Clark agent. https://www.clarkchat.com",
+  "scores": {
+   "agent": 0.11,
+   "mcp": 0.14,
+   "skill": 0.05,
+   "infra": 0.94,
+   "extract": 0.33,
+   "testing": 0.16
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "unmodeled-tyler/vessel-browser",
+  "stars": 136,
+  "description": "Built from the ground-up for agents, Vessel Browser is an open source AI browser for Linux/Mac/Windows that provides a durable state, MCP control, and BYOK with full autonomous browsing. Use with Hermes Agent, OpenClaw, or connect to your favorite API provider.",
+  "scores": {
+   "agent": 0.71,
+   "mcp": 0.5,
+   "skill": 0.11,
+   "infra": 0.54,
+   "extract": 0.28,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "dom-actions/doma",
+  "stars": 136,
+  "description": "The open-source of DomA, an AI automation agent for the browser.",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.19,
+   "skill": 0.06,
+   "infra": 0.2,
+   "extract": 0.27,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "wxtsky/byob",
+  "stars": 132,
+  "description": "Bring Your Own Browser — let your AI agent use the Chrome you already have open",
+  "scores": {
+   "agent": 0.29,
+   "mcp": 0.97,
+   "skill": 0.87,
+   "infra": 0.41,
+   "extract": 0.55,
+   "testing": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "replica882/twitter-bridge-mcp",
+  "stars": 132,
+  "description": "Connect Claude.ai to Twitter/X via browser automation — no API key needed",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.94,
+   "skill": 0.26,
+   "infra": 0.92,
+   "extract": 0.71,
+   "testing": 0.04
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "igrigorik/AgentBoard",
+  "stars": 131,
+  "description": "A switchboard for AI in your browser: wire in any model, script WebMCP tools, connect remote MCP servers, bring your commands.",
+  "scores": {
+   "agent": 0.38,
+   "mcp": 0.25,
+   "skill": 0.13,
+   "infra": 0.32,
+   "extract": 0.23,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "YUTA-fywoo/jev-gui-delegate",
+  "stars": 131,
+  "description": "AI-assisted Windows and Chrome GUI delegation for Codex: task contracts, local execution, Jev semantic decisions, recovery and outcome verification.",
+  "scores": {
+   "agent": 0.6,
+   "mcp": 0.62,
+   "skill": 0.73,
+   "infra": 0.57,
+   "extract": 0.16,
+   "testing": 0.18
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "reliefeai/browser-relay",
+  "stars": 129,
+  "description": "Let AI agents share your everyday, logged-in Chrome through a Skill + CLI — locally or across multiple machines.",
+  "scores": {
+   "agent": 0.16,
+   "mcp": 0.39,
+   "skill": 0.83,
+   "infra": 0.9,
+   "extract": 0.11,
+   "testing": 0.08
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "JonaFly/RednoteMCP",
+  "stars": 127,
+  "description": "这是一个基于Playwright的小红书自动搜索和评论MCP，可以帮助用户自动登录小红书、搜索特定关键词、获取笔记内容以及发布智能评论。",
+  "scores": {
+   "extract": 0.77,
+   "testing": 0.05,
+   "agent": 0.24,
+   "mcp": 0.83,
+   "skill": 0.55,
+   "infra": 0.55
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "pamelafox/personal-linkedin-agent",
+  "stars": 122,
+  "description": "An agent to manage my personal LinkedIn account, using playwright for browser automation.",
+  "scores": {
+   "agent": 0.81,
+   "mcp": 0.11,
+   "skill": 0.05,
+   "infra": 0.68,
+   "extract": 0.36,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "michaelswissa/jevry",
+  "stars": 121,
+  "description": "Your browser. Ready to act. An MIT-licensed desktop browser agent for website tasks, cited research, and supported games.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.26,
+   "skill": 0.05,
+   "infra": 0.34,
+   "extract": 0.2,
+   "testing": 0.11
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "cookjohn/wos-skills",
+  "stars": 121,
+  "description": "Web of Science skills for Claude Code — search, browse, export, download academic papers via Chrome DevTools MCP",
+  "scores": {
+   "extract": 0.91,
+   "testing": 0.03,
+   "agent": 0.44,
+   "mcp": 0.15,
+   "skill": 0.78,
+   "infra": 0.84
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "sahajamit/promptwright",
+  "stars": 120,
+  "description": "Login-less, bring-your-own-key desktop agent that turns plain English into browser automation — and generates runnable Playwright, Cypress, and Selenium scripts.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.14,
+   "skill": 0.06,
+   "infra": 0.46,
+   "extract": 0.07,
+   "testing": 0.98
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "opentiny/webmcp-sdk",
+  "stars": 120,
+  "description": "OpenTiny NEXT-SDKs is a front-end AI and browser automation toolkit. It implements WebMCP + WebSkills to build AI-native apps, and leverages webmcp-cli to enable LLM agents to remote-control any webpage without source code modifications. OpenTiny NEXT-SDKs 是一套前端 AI 与浏览器自动化工具包。它通过 WebMCP + WebSkills 协议构建 AI 原生应用，并利用 webmcp-cli 实现了无需修改源码即可让大模型代理自动控制任",
+  "scores": {
+   "agent": 0.32,
+   "mcp": 0.27,
+   "skill": 0.13,
+   "infra": 0.2,
+   "extract": 0.22,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "redf0x1/camofox-mcp",
+  "stars": 116,
+  "description": "Anti-detection browser MCP server for AI agents — navigate, interact, and automate the web without getting blocked",
+  "scores": {
+   "agent": 0.3,
+   "mcp": 0.97,
+   "skill": 0.76,
+   "infra": 0.95,
+   "extract": 0.67,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "browsing-skills/browsing-skills",
+  "stars": 115,
+  "description": "Open-source registry of browser-automation skills for AI agents",
+  "scores": {
+   "agent": 0.09,
+   "mcp": 0.09,
+   "skill": 0.32,
+   "infra": 0.19,
+   "extract": 0.87,
+   "testing": 0.06
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "JasonHonKL/Openbrowser",
+  "stars": 114,
+  "description": "A browser designed for agent",
+  "scores": {
+   "agent": 0.31,
+   "mcp": 0.32,
+   "skill": 0.11,
+   "infra": 0.95,
+   "extract": 0.96,
+   "testing": 0.12
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "agent-labs-dev/fastbrowse",
+  "stars": 113,
+  "description": "A fast browser agent: Jev picks each action from what is on the page, an LLM reads and plans, and every claim in an answer cites a quote from the page.",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.28,
+   "skill": 0.09,
+   "infra": 0.53,
+   "extract": 0.5,
+   "testing": 0.14
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Musenn/finrpa-enterprise",
+  "stars": 113,
+  "description": "Financial AI Browser Automation Platform",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.27,
+   "skill": 0.05,
+   "infra": 0.55,
+   "extract": 0.62,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "mguozhen/social-bot",
+  "stars": 113,
+  "description": "Reddit & X auto-reply bot — browser-based, Claude AI generated replies for Solvea/VOC.ai",
+  "scores": {
+   "agent": 0.59,
+   "mcp": 0.08,
+   "skill": 0.06,
+   "infra": 0.63,
+   "extract": 0.39,
+   "testing": 0.03
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "neonwatty/job-apply-plugin",
+  "stars": 111,
+  "description": "AI-powered job application assistant for Claude Code and Codex - fills LinkedIn, Greenhouse, Ashby, and Workday applications",
+  "scores": {
+   "agent": 0.42,
+   "mcp": 0.2,
+   "skill": 0.82,
+   "infra": 0.41,
+   "extract": 0.23,
+   "testing": 0.03
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nanogenomic/ClaudeCodeBrowser",
+  "stars": 108,
+  "description": "MCP Firefox browser automation extension for Claude Code - screenshots, clicking, typing, page refresh, and AI-powered web interaction",
+  "scores": {
+   "agent": 0.45,
+   "mcp": 0.87,
+   "skill": 0.94,
+   "infra": 0.86,
+   "extract": 0.29,
+   "testing": 0.21
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "openqa-cn/jev-browser",
+  "stars": 105,
+  "description": "Jev Browser — indexed browser automation. Jev chooses the control, Playwright acts. A CodexQA skill.",
+  "scores": {
+   "agent": 0.64,
+   "mcp": 0.2,
+   "skill": 0.38,
+   "infra": 0.58,
+   "extract": 0.22,
+   "testing": 0.87
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "alexvilelabah/bah-browser",
+  "stars": 104,
+  "description": "Open-source AI browser agent — type plain-language commands and Bah operates the web for you. Works with cloud AI (DeepSeek, Mistral, NVIDIA) or local Ollama models.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.22,
+   "skill": 0.04,
+   "infra": 0.44,
+   "extract": 0.3,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "EndymionLee/PilotBrowseMCP",
+  "stars": 103,
+  "description": "A browser runtime that lets AI agents control your real Chrome browser via MCP. Agents can explore websites, generate operation manuals, and reuse them to save tokens.  AI操控你的真实浏览器。",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.95,
+   "skill": 0.76,
+   "infra": 0.5,
+   "extract": 0.7,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mozilla/pilo",
+  "stars": 102,
+  "description": "A powerful AI-powered web automation tool that helps you get answers and take actions in the browser.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.35,
+   "skill": 0.08,
+   "infra": 0.69,
+   "extract": 0.69,
+   "testing": 0.11
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "railsblueprint/blueprint-mcp",
+  "stars": 102,
+  "description": "MCP server for browser automation across Chrome, Firefox, and Safari using real browser profiles",
+  "scores": {
+   "agent": 0.57,
+   "mcp": 0.98,
+   "skill": 0.89,
+   "infra": 0.48,
+   "extract": 0.29,
+   "testing": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Salmonbird/evoui-browser",
+  "stars": 100,
+  "description": "Self-evolving browser automation for Codex, Claude Code, and Cursor—learn reusable site knowledge and safely replay verified routines with agent-browser.",
+  "scores": {
+   "agent": 0.15,
+   "mcp": 0.15,
+   "skill": 0.74,
+   "infra": 0.53,
+   "extract": 0.17,
+   "testing": 0.12
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "michaljach/opencode-browser",
+  "stars": 100,
+  "description": "Browser automation plugin for OpenCode AI editor - Control Chrome/Edge with AI, automate web testing, scraping & form filling via MCP integration",
+  "scores": {
+   "agent": 0.36,
+   "mcp": 0.45,
+   "skill": 0.08,
+   "infra": 0.56,
+   "extract": 0.43,
+   "testing": 0.37
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "lightpanda-io/agent-skill",
+  "stars": 99,
+  "description": "Lightpanda browser skill for openclaw",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.25,
+   "skill": 0.94,
+   "infra": 0.92,
+   "extract": 0.87,
+   "testing": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "jackwener/opencli-mcp",
+  "stars": 99,
+  "description": "OpenCLI reborn as an MCP-native browser runtime: Chrome-spawned host, object API + code mode, site capabilities, recon",
+  "scores": {
+   "agent": 0.53,
+   "mcp": 0.95,
+   "skill": 0.94,
+   "infra": 0.77,
+   "extract": 0.63,
+   "testing": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "CodingLucasLi/Clawome",
+  "stars": 96,
+  "description": "Clawome - AI Agent Browser | Smart Web Browsing Tool Give your AI agent eyes and hands on any website. Open-source smart browser tool for AI agents to efficiently browse, read, and interact with web pages.",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.48,
+   "skill": 0.09,
+   "infra": 0.82,
+   "extract": 0.9,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "sderosiaux/chrome-agent",
+  "stars": 95,
+  "description": "Web tasks that compile. Other browser tools tell your AI agent the click worked. chrome-agent reads the page back after every action and answers in JSON what actually happened. One 3 MB Rust binary, no Node, no cloud.",
+  "scores": {
+   "testing": 0.2,
+   "agent": 0.36,
+   "mcp": 0.29,
+   "skill": 0.66,
+   "infra": 0.96,
+   "extract": 0.9
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "atagon-GmbH/kogiqa-mcp",
+  "stars": 95,
+  "description": "This web browser has been designed to help your agent debug and develop complex web applications. (MCP Server)",
+  "scores": {
+   "agent": 0.84,
+   "mcp": 0.97,
+   "skill": 0.91,
+   "infra": 0.85,
+   "extract": 0.4,
+   "testing": 0.91
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Ying-Kai-Liao/jev-browser",
+  "stars": 94,
+  "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
+  "scores": {
+   "mcp": 0.87,
+   "skill": 0.36,
+   "infra": 0.68,
+   "extract": 0.18,
+   "testing": 0.2,
+   "agent": 0.85
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "michiosw/vibe",
+  "stars": 94,
+  "description": "Open-Source AI-powered web browser. Browse the web with your own LLM API key. Alternative to Dia / Comet.",
+  "scores": {
+   "agent": 0.53,
+   "mcp": 0.35,
+   "skill": 0.06,
+   "infra": 0.53,
+   "extract": 0.41,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hanzili/hanzi-in-chrome",
+  "stars": 94,
+  "description": "any llm browsing for you in chrome",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.5,
+   "skill": 0.91,
+   "infra": 0.45,
+   "extract": 0.49,
+   "testing": 0.13
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "void5tar/Curio",
+  "stars": 93,
+  "description": "A Chrome side-panel browser agent",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.15,
+   "skill": 0.09,
+   "infra": 0.23,
+   "extract": 0.41,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "beidald/liliumai",
+  "stars": 93,
+  "description": "Lilium AI: The ultimate personal AI agent framework for autonomous computer control. Featuring browser automation, shell execution, and multi-channel integration (WeChat/Telegram/Discord).",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.23,
+   "skill": 0.04,
+   "infra": 0.64,
+   "extract": 0.46,
+   "testing": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hdresearch/nolita",
+  "stars": 90,
+  "description": "Work with web-enabled agents quickly — whether running a quick task or bootstrapping a full-stack product.",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.35,
+   "skill": 0.07,
+   "infra": 0.85,
+   "extract": 0.66,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "alejandroqh/browser39",
+  "stars": 88,
+  "description": "A headless browser for AI agents that fetches modern web pages, runs JavaScript, manages sessions, and returns token-efficient Markdown.",
+  "scores": {
+   "agent": 0.32,
+   "mcp": 0.85,
+   "skill": 0.55,
+   "infra": 0.94,
+   "extract": 0.96,
+   "testing": 0.08
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "wiseria-ai-labs/pie-ai-agent",
+  "stars": 87,
+  "description": "Pie – free, open-source AI browser agent for Chrome. Reads pages & PDFs, fills forms, extracts data, automates tabs, hands off to Claude Code. BYOK or subscribe.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.14,
+   "skill": 0.17,
+   "infra": 0.73,
+   "extract": 0.8,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "anxuanzi/bua",
+  "stars": 86,
+  "description": "AI-powered browser automation for Go — describe tasks in plain English, let the agent handle the clicks.",
+  "scores": {
+   "agent": 0.97,
+   "mcp": 0.18,
+   "skill": 0.05,
+   "infra": 0.82,
+   "extract": 0.74,
+   "testing": 0.24
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "zpoint/vibe-seller",
+  "stars": 86,
+  "description": "跨境卖家的 AI 自动化框架（支持亚马逊、Noon、美客多、千牛等平台，紫鸟、Chrome 等浏览器），自由接入任意大模型(AI automation framework for cross-border sellers (supports Amazon, Noon, Mercado Libre, Qianniu and more; Ziniao, Chrome and other browsers). Freely connect any LLM.)",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.32,
+   "skill": 0.19,
+   "infra": 0.93,
+   "extract": 0.36,
+   "testing": 0.05
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "psyb0t/docker-stealthy-auto-browse",
+  "stars": 86,
+  "description": "Stealth browser automation that actually works. Runs Camoufox (custom Firefox) in Docker with zero Chrome DevTools Protocol exposure, real OS-level mouse and keyboard input via PyAutoGUI, and a JSON HTTP API + MCP server to control it all remotely. Watch it live via noVNC. ",
+  "scores": {
+   "agent": 0.29,
+   "mcp": 0.78,
+   "skill": 0.15,
+   "infra": 0.94,
+   "extract": 0.56,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "TMSSS05/google-flow-browser-mcp",
+  "stars": 85,
+  "description": "MCP server for controlling Google Flow via browser automation (Playwright + CDP)",
+  "scores": {
+   "agent": 0.29,
+   "mcp": 0.85,
+   "skill": 0.28,
+   "infra": 0.93,
+   "extract": 0.11,
+   "testing": 0.05
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "UHolli/browser-mcp",
+  "stars": 84,
+  "description": "Browse MCP for the web, directly from Cursor etc that bridges AI assistants to your local browser through a Chrome extension | MCP helper | MCP assistant | MCP browser",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.97,
+   "skill": 0.86,
+   "infra": 0.37,
+   "extract": 0.62,
+   "testing": 0.12
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "testomatio/explorbot",
+  "stars": 83,
+  "description": "AI Agent for Exploratory Browser Testing",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.19,
+   "skill": 0.07,
+   "infra": 0.57,
+   "extract": 0.21,
+   "testing": 0.99
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "djyde/browser-mcp",
+  "stars": 83,
+  "description": "A browser extension and MCP server that allows you to interact with the browser you are using.",
+  "scores": {
+   "agent": 0.15,
+   "mcp": 0.91,
+   "skill": 0.82,
+   "infra": 0.46,
+   "extract": 0.69,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "samihalawa/visual-ui-debug-agent-mcp",
+  "stars": 83,
+  "description": "Visual UI testing and debugging MCP server with Playwright, screenshots, DOM inspection, workflow validation, and visual diffs.",
+  "scores": {
+   "agent": 0.4,
+   "mcp": 0.97,
+   "skill": 0.5,
+   "infra": 0.93,
+   "extract": 0.22,
+   "testing": 0.98
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "zeke/faster-chrome-devtools-skill",
+  "stars": 83,
+  "description": "Agent skill that makes Chrome DevTools faster",
+  "scores": {
+   "agent": 0.5,
+   "mcp": 0.2,
+   "skill": 0.91,
+   "infra": 0.97,
+   "extract": 0.54,
+   "testing": 0.23
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Te29/mote",
+  "stars": 82,
+  "description": "A lightweight AI browser automation agent framework ",
+  "scores": {
+   "mcp": 0.27,
+   "skill": 0.08,
+   "infra": 0.56,
+   "extract": 0.38,
+   "testing": 0.14,
+   "agent": 0.92
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "SDLLL/claude-for-safari",
+  "stars": 82,
+  "description": "Give your AI Agent the power to control Safari on macOS. No extensions, no separate browser.",
+  "scores": {
+   "agent": 0.46,
+   "mcp": 0.36,
+   "skill": 0.93,
+   "infra": 0.12,
+   "extract": 0.49,
+   "testing": 0.1
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "suxrobGM/jobpilot",
+  "stars": 81,
+  "description": "An AI agent that applies to jobs for you - searches boards, tailors your resume, fills applications, messages recruiters. All from a real browser on your machine, on your Claude Code or Codex subscription.",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.33,
+   "skill": 0.82,
+   "infra": 0.5,
+   "extract": 0.33,
+   "testing": 0.03
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "NatsuFox/ClaudeChrome",
+  "stars": 80,
+  "description": "ClaudeChrome - Native browser context awareness for agents.",
+  "scores": {
+   "mcp": 0.39,
+   "skill": 0.92,
+   "infra": 0.41,
+   "extract": 0.87,
+   "testing": 0.23,
+   "agent": 0.82
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "vinayak-mehta/mcp-browser-use",
+  "stars": 80,
+  "description": "MCP server for browser-use",
+  "scores": {
+   "agent": 0.46,
+   "mcp": 0.95,
+   "skill": 0.81,
+   "infra": 0.66,
+   "extract": 0.5,
+   "testing": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "cookjohn/sd-skills",
+  "stars": 79,
+  "description": "ScienceDirect skills for Claude Code — search, browse, export, download academic papers via Chrome DevTools MCP",
+  "scores": {
+   "agent": 0.54,
+   "mcp": 0.14,
+   "skill": 0.8,
+   "infra": 0.9,
+   "extract": 0.95,
+   "testing": 0.04
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "MonkeySee-AI/rotunda",
+  "stars": 78,
+  "description": "🏛 An agent-first web browser",
+  "scores": {
+   "agent": 0.75,
+   "mcp": 0.35,
+   "skill": 0.13,
+   "infra": 0.91,
+   "extract": 0.81,
+   "testing": 0.15
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "SeldomQA/auto-wing",
+  "stars": 77,
+  "description": "auto-wing is a tool that uses LLM to assist automated testing",
+  "scores": {
+   "agent": 0.59,
+   "mcp": 0.09,
+   "skill": 0.05,
+   "infra": 0.39,
+   "extract": 0.08,
+   "testing": 0.97
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "idan-rubin/browserclaw",
+  "stars": 76,
+  "description": "The AI-native browser automation library. Snapshot + ref targeting — born from OpenClaw, built for agents, by agents.",
+  "scores": {
+   "agent": 0.04,
+   "mcp": 0.06,
+   "skill": 0.12,
+   "infra": 0.62,
+   "extract": 0.6,
+   "testing": 0.13
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "clawbrowser/clawbrowser",
+  "stars": 76,
+  "description": "Agent-native browser with fingerprint control and proxy support.",
+  "scores": {
+   "agent": 0.24,
+   "mcp": 0.29,
+   "skill": 0.21,
+   "infra": 0.97,
+   "extract": 0.28,
+   "testing": 0.16
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "hamelsmu/design-research",
+  "stars": 76,
+  "description": "Claude Code skill for comprehensive website design research using browser-automation agent teams",
+  "scores": {
+   "agent": 0.37,
+   "mcp": 0.07,
+   "skill": 0.42,
+   "infra": 0.29,
+   "extract": 0.86,
+   "testing": 0.06
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "AKCodez/identity-eraser",
+  "stars": 76,
+  "description": "Claude Code skill that removes your own personal info from people-search sites and data brokers (discovery + automated opt-outs in your own browser).",
+  "scores": {
+   "agent": 0.69,
+   "mcp": 0.07,
+   "skill": 0.63,
+   "infra": 0.3,
+   "extract": 0.45,
+   "testing": 0.03
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "SalesforceAIResearch/WALT",
+  "stars": 76,
+  "description": "Code for WALT – Web Agents that Learn Tools",
+  "scores": {
+   "agent": 0.85,
+   "mcp": 0.22,
+   "skill": 0.08,
+   "infra": 0.69,
+   "extract": 0.81,
+   "testing": 0.08
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "pmbstyle/gemini-browser-agent",
+  "stars": 75,
+  "description": "A browser agent with a Google Chrome extension that can work in your browser. Based on Google Gemini 2.5 computer use model.",
+  "scores": {
+   "extract": 0.16,
+   "testing": 0.1,
+   "agent": 0.93,
+   "mcp": 0.27,
+   "skill": 0.04,
+   "infra": 0.36
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "bitsky-tech/bridgic-browser",
+  "stars": 75,
+  "description": "LLM-driven browser automation library built on Playwright with 67 CLI/SDK tools, stable snapshot refs, and stealth mode.基于 Playwright 的 LLM 驱动浏览器自动化库，提供 67 个 CLI/SDK 工具、稳定快照引用（ref）与默认隐身模式，适用于 AI Agent 端到端网页操作。",
+  "scores": {
+   "agent": 0.42,
+   "mcp": 0.19,
+   "skill": 0.73,
+   "infra": 0.84,
+   "extract": 0.48,
+   "testing": 0.23
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "mitsuhiko/playwrightess-mcp",
+  "stars": 75,
+  "description": "An experiment of using playwright MCP via JavaScript",
+  "scores": {
+   "agent": 0.17,
+   "mcp": 0.87,
+   "skill": 0.7,
+   "infra": 0.78,
+   "extract": 0.38,
+   "testing": 0.75
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "freema/firefox-devtools-mcp",
+  "stars": 72,
+  "description": "Model Context Protocol server for Firefox DevTools - enables AI assistants to inspect and control Firefox browser through the Remote Debugging Protocol",
+  "scores": {
+   "agent": 0.22,
+   "mcp": 0.98,
+   "skill": 0.93,
+   "infra": 0.86,
+   "extract": 0.26,
+   "testing": 0.23
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "cortex-works/cortex-scout",
+  "stars": 71,
+  "description": "A unified web extraction and stateful automation engine for AI. Replaces heavy testing frameworks with token-optimized browser control, deep research, and HITL.",
+  "scores": {
+   "agent": 0.72,
+   "mcp": 0.9,
+   "skill": 0.19,
+   "infra": 0.97,
+   "extract": 0.97,
+   "testing": 0.43
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "invariantlabs-ai/playwright-computer-use",
+  "stars": 71,
+  "description": "Let Claude control a web browser on your machine.",
+  "scores": {
+   "agent": 0.81,
+   "mcp": 0.3,
+   "skill": 0.46,
+   "infra": 0.64,
+   "extract": 0.23,
+   "testing": 0.15
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "vanooo/upwork-mcp",
+  "stars": 70,
+  "description": "MCP (Model Context Protocol) server for Upwork via browser automation. Enables Claude Code to search jobs, manage proposals, messages, and contracts on Upwork.",
+  "scores": {
+   "agent": 0.34,
+   "mcp": 0.92,
+   "skill": 0.84,
+   "infra": 0.94,
+   "extract": 0.7,
+   "testing": 0.05
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "91fapiao-cn/playwright-browser-skill",
+  "stars": 70,
+  "description": "一个功能强大的浏览器自动化技能，基于 Playwright 构建，通过 MCP 协议为 OpenClaw 提供 101 完整的浏览器操作能力。OpenClaw skill for browser automation using Playwright - 101 tools for complete browser control",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.83,
+   "skill": 0.07,
+   "infra": 0.73,
+   "extract": 0.39,
+   "testing": 0.27
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "browser-use/browser-agent-template",
+  "stars": 70,
+  "description": "Fork-and-deploy Vercel eve agent that browses the web with a Browser Use cloud browser.",
+  "scores": {
+   "agent": 0.92,
+   "mcp": 0.26,
+   "skill": 0.06,
+   "infra": 0.89,
+   "extract": 0.77,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Automations-Project/VSCode-Perplexity-MCP",
+  "stars": 70,
+  "description": "Perplexity AI search, reasoning, research, and compute - MCP server, dashboard, and multi-IDE auto-config for VS Code.",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.86,
+   "skill": 0.74,
+   "infra": 0.89,
+   "extract": 0.43,
+   "testing": 0.05
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "debugg-ai/debugg-ai-mcp",
+  "stars": 68,
+  "description": "Zero-Config, Fully AI-Managed End-to-End Testing for all code gen platforms.",
+  "scores": {
+   "agent": 0.77,
+   "mcp": 0.95,
+   "skill": 0.6,
+   "infra": 0.76,
+   "extract": 0.14,
+   "testing": 0.98
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "swimmwatch/cloakbrowser-mcp",
+  "stars": 68,
+  "description": "⚡ CloakBrowser MCP server for AI agents: Playwright-powered browsing, clean tool forwarding, Docker support, and multi-session HTTP transport.",
+  "scores": {
+   "extract": 0.45,
+   "testing": 0.42,
+   "agent": 0.24,
+   "mcp": 0.98,
+   "skill": 0.78,
+   "infra": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "AllAboutAI-YT/surfagent",
+  "stars": 66,
+  "description": "Browser Automation For AI Agents",
+  "scores": {
+   "agent": 0.33,
+   "mcp": 0.51,
+   "skill": 0.45,
+   "infra": 0.91,
+   "extract": 0.88,
+   "testing": 0.11
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "aduermael/wb",
+  "stars": 65,
+  "description": "macOS 26+ browser CLI for agents: persistent sessions, compact JSON, screenshots, clicks/forms, JS eval, and live preview in under 2 MB.",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.21,
+   "skill": 0.43,
+   "infra": 0.61,
+   "extract": 0.25,
+   "testing": 0.21
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "sunmughan/meta-automation",
+  "stars": 64,
+  "description": "Autonomous AI Lead Generation, Social Discovery & Smart Conversational Growth Agent for Threads & Instagram. Multi-platform with native browser CDP.",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.27,
+   "skill": 0.08,
+   "infra": 0.89,
+   "extract": 0.18,
+   "testing": 0.03
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "JovaniPink/mcp-browser-use",
+  "stars": 62,
+  "description": "FastAPI MCP server that exposes browser-use automation through a testable Model Context Protocol boundary.",
+  "scores": {
+   "agent": 0.65,
+   "mcp": 0.97,
+   "skill": 0.26,
+   "infra": 0.8,
+   "extract": 0.47,
+   "testing": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Vael-KY/AI-Shopping-auto",
+  "stars": 58,
+  "description": "Playwright MCP + 支付宝 AI 付 全链路方案 无需codex/cc，AI 自己逛淘宝、选商品、下单、提交付款，人只需按指纹确认",
+  "scores": {
+   "agent": 0.81,
+   "mcp": 0.69,
+   "skill": 0.11,
+   "infra": 0.77,
+   "extract": 0.2,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Raidriar7170/browser-use-vision",
+  "stars": 57,
+  "description": "Vision-grounding plugin for browser-use agents with SoM, Florence-2, Vision–DOM alignment, adaptive visual context, and objective evaluation.",
+  "scores": {
+   "agent": 0.49,
+   "mcp": 0.09,
+   "skill": 0.05,
+   "infra": 0.31,
+   "extract": 0.49,
+   "testing": 0.12
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "darkamenosa/realbrowser",
+  "stars": 57,
+  "description": "Fast real-browser automation skill and CLI for Codex",
+  "scores": {
+   "agent": 0.65,
+   "mcp": 0.4,
+   "skill": 0.93,
+   "infra": 0.91,
+   "extract": 0.48,
+   "testing": 0.36
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "steel-dev/steel-mcp-server",
+  "stars": 56,
+  "description": " Cloud Chrome for MCP clients. Read pages that block plain fetches, fill forms, take screenshots, and hand the browser to a human when a login needs one.",
+  "scores": {
+   "skill": 0.93,
+   "infra": 0.96,
+   "extract": 0.87,
+   "testing": 0.08,
+   "agent": 0.37,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "presidio-oss/factif-ai",
+  "stars": 56,
+  "description": "AI-powered computer control for automated testing. Factifai uses vision models (Claude, GPT-4o, Gemini) to interact with applications naturally - clicking, typing, and verifying results just like a human would.",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.23,
+   "skill": 0.12,
+   "infra": 0.74,
+   "extract": 0.06,
+   "testing": 0.85
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "Epistates/MCPSafari",
+  "stars": 56,
+  "description": "MCPSafari: Native Safari MCP Server for AI Agents",
+  "scores": {
+   "agent": 0.43,
+   "mcp": 0.94,
+   "skill": 0.92,
+   "infra": 0.35,
+   "extract": 0.35,
+   "testing": 0.64
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "i207M/taxy-ai-backup",
+  "stars": 55,
+  "description": "TaxyAI: Open-source browser automation with GPT-4 (backup)",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.31,
+   "skill": 0.06,
+   "infra": 0.33,
+   "extract": 0.25,
+   "testing": 0.13
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "ndthanhdev/mcp-browser-kit",
+  "stars": 55,
+  "description": "An MCP Server that enables AI assistants to interact with your local browsers.",
+  "scores": {
+   "extract": 0.3,
+   "testing": 0.08,
+   "agent": 0.38,
+   "mcp": 0.95,
+   "skill": 0.6,
+   "infra": 0.44
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "WeaveMindAI/Webfurl",
+  "stars": 55,
+  "description": "A browser use AI agent that uses a compressed unfoldable representation of HTML for high token efficiency",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.55,
+   "skill": 0.09,
+   "infra": 0.66,
+   "extract": 0.87,
+   "testing": 0.06
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "zJay26/douyin-skills",
+  "stars": 53,
+  "description": "Local-first Agent Skills for safe social-web workflows—starting with Douyin and designed around reusable browser adapters.",
+  "scores": {
+   "agent": 0.54,
+   "mcp": 0.4,
+   "skill": 0.25,
+   "infra": 0.89,
+   "extract": 0.26,
+   "testing": 0.1
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "clark-maybe/mole-extension",
+  "stars": 52,
+  "description": "Mole - AI-powered browser assistant with workflow automation",
+  "scores": {
+   "agent": 0.94,
+   "mcp": 0.28,
+   "skill": 0.13,
+   "infra": 0.73,
+   "extract": 0.69,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Tort1k558/Camouflow",
+  "stars": 52,
+  "description": "Local-first browser automation with Camoufox and CloakBrowser: reviewed AI workflows, structured extraction, deterministic replay and local MCP/n8n integrations.",
+  "scores": {
+   "extract": 0.69,
+   "testing": 0.2,
+   "agent": 0.82,
+   "mcp": 0.21,
+   "skill": 0.07,
+   "infra": 0.83
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "AI-XiaoDao/ai-browser-mcp",
+  "stars": 52,
+  "description": "AI浏览器 MCP Server — Windows 本地浏览器自动化 MCP 服务端 · 334 个工具全量真机核验(0 失败/0 闪退) · Cursor/Claude Code/Claude Desktop/Trae 原生 stdio 直连 · Web Scraping · JS 逆向 · CDP 断点 · 指纹反检测 · 网络拦截 · 填表 RPA · FBrowser CEF 内核 · MIT 开源",
+  "scores": {
+   "agent": 0.35,
+   "mcp": 0.97,
+   "skill": 0.88,
+   "infra": 0.9,
+   "extract": 0.77,
+   "testing": 0.12
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ofershap/real-browser-mcp",
+  "stars": 52,
+  "description": "MCP server + Chrome extension that gives AI agents control of your real browser with existing sessions and logins",
+  "scores": {
+   "agent": 0.31,
+   "mcp": 0.89,
+   "skill": 0.92,
+   "infra": 0.41,
+   "extract": 0.11,
+   "testing": 0.33
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "hanelalo/browser-bridge",
+  "stars": 52,
+  "description": "让你的agent真的像你一样操控你的浏览器窗口",
+  "scores": {
+   "agent": 0.39,
+   "mcp": 0.57,
+   "skill": 0.83,
+   "infra": 0.27,
+   "extract": 0.62,
+   "testing": 0.13
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "serkan-ozal/browser-devtools-mcp-vscode-extension",
+  "stars": 52,
+  "description": "VSCode Extension for the Browser DevTools MCP Server which is a Playwright-based MCP server that exposes a live browser as a traceable, inspectable, debuggable and controllable execution environment for AI agents.",
+  "scores": {
+   "agent": 0.18,
+   "mcp": 0.71,
+   "skill": 0.87,
+   "infra": 0.88,
+   "extract": 0.21,
+   "testing": 0.69
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "lars-hagen/mcp-playwright-cdp",
+  "stars": 52,
+  "description": "Model Context Protocol server for Playwright with Chrome DevTools Protocol support",
+  "scores": {
+   "mcp": 0.98,
+   "skill": 0.41,
+   "infra": 0.93,
+   "extract": 0.25,
+   "testing": 0.36,
+   "agent": 0.15
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nicholmikey/chrome-tools-MCP",
+  "stars": 52,
+  "description": "",
+  "scores": {
+   "agent": 0.09,
+   "mcp": 0.95,
+   "skill": 0.76,
+   "infra": 0.96,
+   "extract": 0.38,
+   "testing": 0.19
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "tianrendong/pi-chrome",
+  "stars": 52,
+  "description": "Pi coding agent extension that gives Pi tools to use Chrome with user's existing profile",
+  "scores": {
+   "extract": 0.37,
+   "testing": 0.28,
+   "agent": 0.56,
+   "mcp": 0.4,
+   "skill": 0.05,
+   "infra": 0.72
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "PushpenderIndia/browsegenie",
+  "stars": 51,
+  "description": "AI Agent which can do any kind of Browser Automation Task & Web Scraping, just using a single prompt!",
+  "scores": {
+   "extract": 0.96,
+   "testing": 0.05,
+   "agent": 0.89,
+   "mcp": 0.4,
+   "skill": 0.07,
+   "infra": 0.51
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "RapierCraft/Perplexity-Comet-MCP",
+  "stars": 51,
+  "description": "MCP server connecting Claude Code to Perplexity Comet browser. Autonomous web browsing, agentic research, multi-tab management. Windows/WSL/macOS support. Smart completion detection, auto-reconnect, tab protection. Enhanced fork with 7 tools including comet_tabs.",
+  "scores": {
+   "mcp": 0.97,
+   "skill": 0.93,
+   "infra": 0.87,
+   "extract": 0.8,
+   "testing": 0.06,
+   "agent": 0.89
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lvqq/intelli-browser",
+  "stars": 51,
+  "description": "✨ Use natural language to control your browser, powered by LLM and playwright",
+  "scores": {
+   "agent": 0.91,
+   "mcp": 0.19,
+   "skill": 0.1,
+   "infra": 0.32,
+   "extract": 0.1,
+   "testing": 0.95
+  },
+  "kind": "testing"
+ },
+ {
+  "repo": "reindent/nanomachine",
+  "stars": 50,
+  "description": "Nanomachine is a Virtual Machine (VM) AI agent dashboard that enables intelligent operative system automation and control. It provides a modern, intuitive interface for interacting with AI agents that can navigate and perform tasks in web browsers, filesystems, and more.",
+  "scores": {
+   "agent": 0.71,
+   "mcp": 0.29,
+   "skill": 0.07,
+   "infra": 0.83,
+   "extract": 0.14,
+   "testing": 0.09
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Agent360dk/browser-mcp",
+  "stars": 50,
+  "description": "The browser tool that can stop and ask you. A 2FA code, a CAPTCHA, a choice only you can make: it asks on your screen, then carries on in the tab you were already signed into. 40 tools, any MCP client, MIT.",
+  "scores": {
+   "agent": 0.52,
+   "mcp": 0.96,
+   "skill": 0.97,
+   "infra": 0.58,
+   "extract": 0.24,
+   "testing": 0.3
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "web-mcp/web-mcp",
+  "stars": 50,
+  "description": "WEB MCP - One-Click Browser Empowerment",
+  "scores": {
+   "agent": 0.21,
+   "mcp": 0.78,
+   "skill": 0.6,
+   "infra": 0.61,
+   "extract": 0.26,
+   "testing": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "myers/cdp-cli",
+  "stars": 50,
+  "description": "Chrome DevTools CLI - MCP dumping tokens into your context?  This lets your coding buddy use grep and tail on it.",
+  "scores": {
+   "agent": 0.08,
+   "mcp": 0.3,
+   "skill": 0.45,
+   "infra": 0.97,
+   "extract": 0.41,
+   "testing": 0.29
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "steipete/canvas",
+  "stars": 50,
+  "description": "A browser canvas for your agents.",
+  "scores": {
+   "agent": 0.13,
+   "mcp": 0.38,
+   "skill": 0.15,
+   "infra": 0.92,
+   "extract": 0.12,
+   "testing": 0.37
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "modakbul-gongbang/chromux",
+  "stars": 40,
+  "description": "The only browser tool your agent needs. Real Chrome, in your agent's hands - its own private browsers, a headless crawl fleet, or the tab you're looking at right now. Every action verified. Every site remembered.",
+  "scores": {
+   "agent": 0.67,
+   "mcp": 0.61,
+   "skill": 0.47,
+   "infra": 0.96,
+   "extract": 0.7,
+   "testing": 0.12
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "coctostan/pi-agent-browser",
+  "stars": 34,
+  "description": "",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.43,
+   "skill": 0.14,
+   "infra": 0.9,
+   "extract": 0.71,
+   "testing": 0.1
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "TacosyHorchata/Pilot",
+  "stars": 32,
+  "description": "Chrome extension + MCP server — AI agents control a tab in your real browser, already logged in",
+  "scores": {
+   "agent": 0.5,
+   "mcp": 0.97,
+   "skill": 0.96,
+   "infra": 0.95,
+   "extract": 0.49,
+   "testing": 0.6
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "skillhq/flight-search",
+  "stars": 31,
+  "description": "Google Flights search skill for Claude Code — find flight prices and schedules via browser automation",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.09,
+   "skill": 0.46,
+   "infra": 0.49,
+   "extract": 0.92,
+   "testing": 0.03
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "Alqemist-labs/agent_ferrum",
+  "stars": 30,
+  "description": "Browser automation library optimized for AI agents. Wraps Ferrum (Chrome headless via CDP) with compact snapshots: accessibility tree + markdown.",
+  "scores": {
+   "agent": 0.21,
+   "mcp": 0.15,
+   "skill": 0.14,
+   "infra": 0.96,
+   "extract": 0.93,
+   "testing": 0.14
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "project-oxi/oxibrowser",
+  "stars": 29,
+  "description": "Headless browser in pure Rust — Servo-powered, CDP-compatible, designed for AI agents",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.31,
+   "skill": 0.06,
+   "infra": 0.97,
+   "extract": 0.95,
+   "testing": 0.18
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "cgoinglove/thursday-agent",
+  "stars": 28,
+  "description": "Talk, and a team of bots does the work in a real browser, a shell and your files while she keeps talking. Open source, runs on your machine, on your ChatGPT plan or an OpenAI key. npx thursday-agent",
+  "scores": {
+   "agent": 0.82,
+   "mcp": 0.24,
+   "skill": 0.07,
+   "infra": 0.64,
+   "extract": 0.17,
+   "testing": 0.04
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "libi/ko-browser",
+  "stars": 26,
+  "description": "A simple, fast, token-efficient browser for AI agents",
+  "scores": {
+   "infra": 0.66,
+   "extract": 0.57,
+   "testing": 0.13,
+   "agent": 0.35,
+   "mcp": 0.18,
+   "skill": 0.09
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "citrolabs/pi-chrome-use",
+  "stars": 25,
+  "description": "A real-browser CDP execution extension for Pi agents.",
+  "scores": {
+   "extract": 0.17,
+   "testing": 0.13,
+   "agent": 0.16,
+   "mcp": 0.14,
+   "skill": 0.05,
+   "infra": 0.91
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "DevinoSolutions/stealth-chrome-devtools-mcp",
+  "stars": 25,
+  "description": "Undetectable browser automation for AI agents via MCP. Stealth Chrome DevTools with smart profile management, anti-detection arg filtering, and CDP access.",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.96,
+   "skill": 0.94,
+   "infra": 0.97,
+   "extract": 0.46,
+   "testing": 0.12
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "ashaychangwani/imprint",
+  "stars": 24,
+  "description": "Record a browser workflow once, get a deterministic MCP tool your AI agent can call. Zero tokens at runtime. Postman for AI agents.",
+  "scores": {
+   "agent": 0.19,
+   "mcp": 0.54,
+   "skill": 0.61,
+   "infra": 0.89,
+   "extract": 0.6,
+   "testing": 0.09
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "guo6x/dsh-pilot",
+  "stars": 22,
+  "description": "Give your DSH agent hands: drive a real browser (Edge/Chrome over CDP) from the chat — ref-driven clicking, per-session browsers, and a live cockpit panel. Zero runtime deps, no API key.",
+  "scores": {
+   "agent": 0.82,
+   "mcp": 0.25,
+   "skill": 0.03,
+   "infra": 0.95,
+   "extract": 0.42,
+   "testing": 0.18
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "RobithYusuf/mcp-camoufox",
+  "stars": 21,
+  "description": "MCP server for stealth browser automation via Camoufox — 100+ tools, npx install, anti-bot stealth",
+  "scores": {
+   "extract": 0.5,
+   "testing": 0.13,
+   "agent": 0.36,
+   "mcp": 0.98,
+   "skill": 0.73,
+   "infra": 0.92
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "tuandm/verdict-cli",
+  "stars": 20,
+  "description": "Token-efficient browser verification for AI coding agents",
+  "scores": {
+   "testing": 0.81,
+   "agent": 0.13,
+   "mcp": 0.22,
+   "skill": 0.71,
+   "infra": 0.95,
+   "extract": 0.62
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "jiawei686/jev-ultrafast-mcp",
+  "stars": 18,
+  "description": "Hand a whole browser task off in one call: a decision model drives the page server-side, so a flow costs one call, not a turn per click. Ref-based element tables, code-checked assertions, zero-model macro replay, over the Chrome DevTools Protocol.",
+  "scores": {
+   "agent": 0.93,
+   "mcp": 0.97,
+   "skill": 0.89,
+   "infra": 0.94,
+   "extract": 0.32,
+   "testing": 0.15
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "bensyverson/sleepyhollow",
+  "stars": 16,
+  "description": "Lightweight headless WebKit browser designed for agents first",
+  "scores": {
+   "agent": 0.1,
+   "mcp": 0.13,
+   "skill": 0.09,
+   "infra": 0.95,
+   "extract": 0.91,
+   "testing": 0.74
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "protostatis/unbrowser",
+  "stars": 16,
+  "description": "Agent-native browser and MCP server for lightweight, Chrome-free web discovery, with explicit escalation to Unchained for browser-only flows.",
+  "scores": {
+   "agent": 0.28,
+   "mcp": 0.77,
+   "skill": 0.27,
+   "infra": 0.9,
+   "extract": 0.94,
+   "testing": 0.1
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "ulpi-io/browse",
+  "stars": 15,
+  "description": "Fast headless browser and native app automation CLI for AI coding agents — persistent Chromium via Playwright, camoufox stealth runtime, session multiplexing, MCP server, and Android/iOS/macOS app automation.",
+  "scores": {
+   "agent": 0.2,
+   "mcp": 0.7,
+   "skill": 0.46,
+   "infra": 0.95,
+   "extract": 0.64,
+   "testing": 0.34
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "yelban/camofox-browser-skills",
+  "stars": 15,
+  "description": "Claude Code skill for anti-detection browser automation using Camoufox (Firefox fork with C++ fingerprint spoofing)",
+  "scores": {
+   "agent": 0.26,
+   "mcp": 0.28,
+   "skill": 0.94,
+   "infra": 0.92,
+   "extract": 0.53,
+   "testing": 0.25
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "forvela/jev-agent-browser",
+  "stars": 13,
+  "description": "Fast, bounded browser agents powered by Jev and agent-browser — typed actions, research, classification, and safe orchestration.",
+  "scores": {
+   "agent": 0.86,
+   "mcp": 0.29,
+   "skill": 0.11,
+   "infra": 0.56,
+   "extract": 0.52,
+   "testing": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "AetherAI3/agent-browser",
+  "stars": 12,
+  "description": "See what your agent sees. Self-hosted Chrome for AI agents with bounded API control, live noVNC takeover, npm/PyPI clients, and MCP servers.",
+  "scores": {
+   "agent": 0.5,
+   "mcp": 0.89,
+   "skill": 0.32,
+   "infra": 0.95,
+   "extract": 0.36,
+   "testing": 0.11
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Kevin-Liu-01/Local-Search",
+  "stars": 12,
+  "description": "Small Rust CLI that turns your local browser into a structured search API for Claude Code, Codex, Cursor, OpenClaw, and shell agents—no hosted API key or metered search bill.",
+  "scores": {
+   "agent": 0.17,
+   "mcp": 0.21,
+   "skill": 0.82,
+   "infra": 0.9,
+   "extract": 0.94,
+   "testing": 0.05
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "idovmamane/dejevu",
+  "stars": 11,
+  "description": "Jev? Déjà vu. Browser agents that run on instinct, no Jev needed. One look at the page, one call to any open model, one action. Faster than the Jev demo on Google Flights.",
+  "scores": {
+   "agent": 0.95,
+   "mcp": 0.17,
+   "skill": 0.06,
+   "infra": 0.83,
+   "extract": 0.27,
+   "testing": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "kunchenguid/agent-browser-axi",
+  "stars": 10,
+  "description": "",
+  "scores": {
+   "agent": 0.23,
+   "mcp": 0.27,
+   "skill": 0.25,
+   "infra": 0.68,
+   "extract": 0.71,
+   "testing": 0.21
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "OpenRecruiterTools/linkedin-toolkit",
+  "stars": 9,
+  "description": "AI copilot for LinkedIn: an MCP server + Chrome extension that lets Claude, Cursor, or any agent search, research and reach out through your own logged-in browser, with a human approval queue. Open-source alternative to Waalaxy and PhantomBuster.",
+  "scores": {
+   "agent": 0.14,
+   "mcp": 0.87,
+   "skill": 0.85,
+   "infra": 0.18,
+   "extract": 0.27,
+   "testing": 0.04
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "krishnashakula/browsewright",
+  "stars": 9,
+  "description": "Give an LLM a URL and a goal — it drives a real browser, fills forms, and returns structured data. The browser that scripts itself.",
+  "scores": {
+   "agent": 0.96,
+   "mcp": 0.27,
+   "skill": 0.12,
+   "infra": 0.69,
+   "extract": 0.82,
+   "testing": 0.07
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Reqeique/browser-use-api",
+  "stars": 8,
+  "description": "A REST API wrapper compatible with the Browser-Use Cloud API v2 specification, enabling AI-powered browser automation through a standardized REST interface.",
+  "scores": {
+   "testing": 0.24,
+   "agent": 0.82,
+   "mcp": 0.31,
+   "skill": 0.07,
+   "infra": 0.89,
+   "extract": 0.69
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "OthmaneBlial/FreeComputerUse",
+  "stars": 8,
+  "description": "Local-first AI browser automation with Playwright. Use OpenAI, Grok, DeepSeek, Anthropic and compatible APIs—or ChatGPT/Claude Code subscriptions. Approve site access, watch each action, and replay proven workflows with zero model calls.",
+  "scores": {
+   "agent": 0.9,
+   "mcp": 0.2,
+   "skill": 0.11,
+   "infra": 0.54,
+   "extract": 0.43,
+   "testing": 0.09
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hrshx3o5o6/brocogni",
+  "stars": 8,
+  "description": " semantic browser observation for AI agents via MCP, 100% local, zero telemetry",
+  "scores": {
+   "agent": 0.51,
+   "mcp": 0.93,
+   "skill": 0.63,
+   "infra": 0.73,
+   "extract": 0.86,
+   "testing": 0.64
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "andalabx/ember",
+  "stars": 7,
+  "description": "Lightweight headless browser for AI agents",
+  "scores": {
+   "testing": 0.08,
+   "agent": 0.71,
+   "mcp": 0.68,
+   "skill": 0.08,
+   "infra": 0.96,
+   "extract": 0.96
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "Huzy85/fantoma",
+  "stars": 7,
+  "description": "Stealth browser for AI agents that runs on small local models. Read any site as Markdown, log in without an LLM, MCP server included.",
+  "scores": {
+   "agent": 0.78,
+   "mcp": 0.67,
+   "skill": 0.13,
+   "infra": 0.83,
+   "extract": 0.95,
+   "testing": 0.07
+  },
+  "kind": "extract"
+ },
+ {
+  "repo": "Abm32/runsight",
+  "stars": 6,
+  "description": " Autonomous agent that runs projects, explores them via browser, captures screenshots, and records demo videos - automatically. Pluggable agent skill for Kiro CLI, Claude, and Cursor.",
+  "scores": {
+   "agent": 0.87,
+   "mcp": 0.14,
+   "skill": 0.75,
+   "infra": 0.74,
+   "extract": 0.18,
+   "testing": 0.3
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "hubo1989/hyper-agent-browser",
+  "stars": 5,
+  "description": "Pure Browser Automation CLI for AI Agents - Fast, anti-detection, session persistence, @eN element references",
+  "scores": {
+   "agent": 0.46,
+   "mcp": 0.39,
+   "skill": 0.41,
+   "infra": 0.88,
+   "extract": 0.87,
+   "testing": 0.19
+  },
+  "kind": "infra"
+ },
+ {
+  "repo": "ochen1/chrome-devtools-mcp-mux",
+  "stars": 5,
+  "description": "Multiplex many MCP clients (e.g. multiple Claude Code instances) onto a single chrome-devtools-mcp + Chrome, with per-client tab isolation.",
+  "scores": {
+   "agent": 0.09,
+   "mcp": 0.87,
+   "skill": 0.7,
+   "infra": 0.94,
+   "extract": 0.07,
+   "testing": 0.14
+  },
+  "kind": "infra"
+ }
+]

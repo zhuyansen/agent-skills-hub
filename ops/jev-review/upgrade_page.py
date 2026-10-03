@@ -30,7 +30,7 @@ import scenario_gate as gate  # noqa: E402
 from page_profiles import is_candidate  # noqa: E402
 
 BANDS = ("stars:>=50", *gate.STAR_BANDS)
-DESC_WORKERS = 4
+DESC_WORKERS = 10
 DESC_SAVE = 10
 
 
@@ -89,6 +89,29 @@ def split(slug: str) -> None:
           f"({sum(r['stars'] < gate.PAGE_FLOOR for r in listed)} under 50)")
 
 
+def extra(slug: str) -> None:
+    """Ask a page's `extra` topic questions of the rows that pass everything else, so a
+    question added after the review costs one call per candidate, not a new review."""
+    from concurrent.futures import ThreadPoolExecutor
+    from jev_client import OpenRouter
+    from page_profiles import PAGES
+    questions = PAGES[slug].get("extra", {})
+    p, jev = gate.profile(slug), OpenRouter()
+    floor = p.get("topic_min", gate.RELEVANT)
+    for name in ("judged.json", "page-judged.json"):
+        path = gate.state_dir(slug) / name
+        rows = json.loads(path.read_text())
+        todo = [r for r in rows if any(k not in r for k in questions)
+                and min(r.get("on_subject", 0), r.get("is_software", 0)) >= floor]
+        ask = lambda r: gate.ask(jev, r, gate.readme_of(slug, r["repo"]), gate.README_RELEVANCE, questions, full=True)
+        with ThreadPoolExecutor(gate.JUDGE_WORKERS) as pool:
+            for row, answers in zip(todo, pool.map(ask, todo)):
+                row.update(answers)
+        path.write_text(json.dumps(rows, ensure_ascii=False, indent=1))
+        print(f"{name}: asked {len(todo)}")
+    print(f"{len(gate.on_page(slug))} listed now · {jev.tokens} tokens")
+
+
 def set_reviewed_only(slug: str, below: list[str]) -> None:
     """reviewed_only, sorted by stars, no cap; admit_reviewed holds the repos under 50 stars."""
     import daily_video_pass as dvp
@@ -115,14 +138,26 @@ def describe_all(dvp, jev, rows: list[dict]) -> dict[str, str]:
     return zh
 
 
-def publish(slug: str, catalog: str) -> None:
+def describe(slug: str) -> None:
+    """Chinese descriptions only, for pages published with --no-desc (10-03: FlatRouter gave
+    6-8 a minute, so pages went live first with English text and Chinese followed)."""
+    import daily_video_pass as dvp
+    from jev_client import OpenRouter
+    dvp.SLUG = slug
+    have = json.loads(dvp.DESC_ZH.read_text())
+    zh = describe_all(dvp, OpenRouter(), [r for r in gate.on_page(slug) if r["repo"] not in have])
+    print(f"{slug}: {sum(bool(v) for v in zh.values())}/{len(zh)} new zh descriptions")
+
+
+def publish(slug: str, catalog: str, with_desc: bool = True) -> None:
     import daily_video_pass as dvp
     from jev_client import OpenRouter
     dvp.SLUG = slug
     listed = gate.on_page(slug)
     set_reviewed_only(slug, [r["repo"] for r in listed if r["stars"] < gate.PAGE_FLOOR])
     jev = OpenRouter()
-    zh = describe_all(dvp, jev, [r for r in listed if r["repo"] not in json.loads(dvp.DESC_ZH.read_text())])
+    todo = [r for r in listed if r["repo"] not in json.loads(dvp.DESC_ZH.read_text())]
+    zh = describe_all(dvp, jev, todo) if with_desc else {}
     in_catalog = {r["full_name"].lower() for r in catalog_rows(catalog)}
     missing = [r["repo"] for r in listed if r["repo"].lower() not in in_catalog]
     db = dvp.queue_and_grade(missing) if missing else {"in_catalog": [], "queued_only": [], "graded": {}}
@@ -133,5 +168,6 @@ def publish(slug: str, catalog: str) -> None:
 
 if __name__ == "__main__":
     step, slug = sys.argv[1], sys.argv[2]
-    {"collect": lambda: collect(slug, sys.argv[3]), "split": lambda: split(slug),
-     "publish": lambda: publish(slug, sys.argv[3])}[step]()
+    {"collect": lambda: collect(slug, sys.argv[3]), "split": lambda: split(slug), "extra": lambda: extra(slug),
+     "publish": lambda: publish(slug, sys.argv[3], "--no-desc" not in sys.argv),
+     "describe": lambda: describe(slug)}[step]()

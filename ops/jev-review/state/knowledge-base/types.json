@@ -1,0 +1,4566 @@
+[
+ {
+  "repo": "infiniflow/ragflow",
+  "stars": 90924,
+  "description": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
+  "scores": {
+   "mcp": 0.23,
+   "docs_qa": 0.6,
+   "graph": 0.74,
+   "personal": 0.06,
+   "llm_wiki": 0.42,
+   "rag_platform": 0.84
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "colbymchenry/codegraph",
+  "stars": 72990,
+  "description": "Pre-indexed code knowledge graph, auto syncs on code changes, for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, CoPilot, and Hermes Agent — fewer tokens, fewer tool calls, 100% local",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.1,
+   "mcp": 0.72,
+   "docs_qa": 0.58,
+   "graph": 0.94,
+   "personal": 0.05
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "HKUDS/LightRAG",
+  "stars": 39948,
+  "description": "[EMNLP2025] LightRAG: Simple and Fast Retrieval-Augmented Generation",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.65,
+   "mcp": 0.21,
+   "docs_qa": 0.75,
+   "graph": 0.96,
+   "personal": 0.07
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "volcengine/OpenViking",
+  "stars": 39137,
+  "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+  "scores": {
+   "llm_wiki": 0.76,
+   "rag_platform": 0.6,
+   "mcp": 0.37,
+   "docs_qa": 0.48,
+   "graph": 0.2,
+   "personal": 0.31
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "chatchat-space/Langchain-Chatchat",
+  "stars": 38670,
+  "description": "Langchain-Chatchat（原Langchain-ChatGLM）基于 Langchain 与 ChatGLM, Qwen 与 Llama 等语言模型的 RAG 与 Agent 应用 | Langchain-Chatchat (formerly langchain-ChatGLM), local knowledge based LLM (like ChatGLM, Qwen and Llama) RAG and Agent app with langchain ",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.84,
+   "mcp": 0.28,
+   "docs_qa": 0.82,
+   "graph": 0.04,
+   "personal": 0.05
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "virgiliojr94/book-to-skill",
+  "stars": 33018,
+  "description": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.",
+  "scores": {
+   "llm_wiki": 0.15,
+   "rag_platform": 0.06,
+   "mcp": 0.4,
+   "docs_qa": 0.78,
+   "graph": 0.07,
+   "personal": 0.13
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "Tencent/WeKnora",
+  "stars": 31831,
+  "description": "Open-source LLM knowledge platform: turn raw documents into a queryable RAG, an autonomous reasoning agent, and a self-maintaining Wiki.",
+  "scores": {
+   "llm_wiki": 0.87,
+   "rag_platform": 0.91,
+   "mcp": 0.33,
+   "docs_qa": 0.82,
+   "graph": 0.13,
+   "personal": 0.13
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "topoteretes/cognee",
+  "stars": 31313,
+  "description": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory with small models for free",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.48,
+   "mcp": 0.41,
+   "docs_qa": 0.54,
+   "graph": 0.98,
+   "personal": 0.15
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "1Panel-dev/MaxKB",
+  "stars": 22900,
+  "description": "🔥 MaxKB is an open-source platform for building enterprise-grade agents.  强大易用的开源企业级智能体平台。",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.97,
+   "mcp": 0.24,
+   "docs_qa": 0.69,
+   "graph": 0.08,
+   "personal": 0.05
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "nashsu/llm_wiki",
+  "stars": 20169,
+  "description": "LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base — automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources。",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.54,
+   "mcp": 0.34,
+   "docs_qa": 0.74,
+   "graph": 0.92,
+   "personal": 0.91
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "AsyncFuncAI/deepwiki-open",
+  "stars": 17877,
+  "description": "Open Source DeepWiki: AI-Powered Wiki Generator for GitHub/Gitlab/Bitbucket Repositories. Join the discord: https://discord.gg/gMwThUMeme",
+  "scores": {
+   "llm_wiki": 0.73,
+   "rag_platform": 0.09,
+   "mcp": 0.11,
+   "docs_qa": 0.43,
+   "graph": 0.16,
+   "personal": 0.05
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "langchain-ai/openwiki",
+  "stars": 16933,
+  "description": "OpenWiki is a CLI that writes and maintains agent documentation for your codebase.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.13,
+   "mcp": 0.49,
+   "docs_qa": 0.73,
+   "graph": 0.51,
+   "personal": 0.17
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "AgriciDaniel/claude-obsidian",
+  "stars": 15332,
+  "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.14,
+   "mcp": 0.61,
+   "docs_qa": 0.6,
+   "graph": 0.89,
+   "personal": 0.78
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "OpenSPG/KAG",
+  "stars": 9081,
+  "description": "KAG is a logical form-guided reasoning and retrieval framework based on OpenSPG engine and LLMs.  It is used to build logical reasoning and factual Q&A solutions for professional domain knowledge bases. It can effectively overcome the shortcomings of the traditional RAG vector similarity calculation model.",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.24,
+   "mcp": 0.19,
+   "docs_qa": 0.51,
+   "graph": 0.97,
+   "personal": 0.05
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "xerrors/Yuxi",
+  "stars": 7248,
+  "description": "可私有部署的多租户知识智能体平台：统一 RAG、知识图谱、多智能体、MCP/Skills、沙盒与权限管理。Yuxi = Cloud Agents + Knowledge RAG, Self-hosted knowledge agent platform for RAG, knowledge graphs and multi-agent workflows.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.91,
+   "mcp": 0.23,
+   "docs_qa": 0.81,
+   "graph": 0.97,
+   "personal": 0.07
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "airweave-ai/airweave",
+  "stars": 6559,
+  "description": "Open-source context retrieval layer for AI agents",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.53,
+   "mcp": 0.35,
+   "docs_qa": 0.53,
+   "graph": 0.1,
+   "personal": 0.05
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "vitali87/code-graph-rag",
+  "stars": 5222,
+  "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
+  "scores": {
+   "rag_platform": 0.62,
+   "mcp": 0.77,
+   "docs_qa": 0.85,
+   "graph": 0.99,
+   "personal": 0.04,
+   "llm_wiki": 0.1
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "eugeniughelbur/obsidian-second-brain",
+  "stars": 4633,
+  "description": "Persistent memory for Claude Code and 6 other CLI agents, stored as plain markdown in your Obsidian vault. Stop re-explaining your projects, decisions and people every session. 45 commands: hybrid semantic search, self-rewriting notes, key-less web research, and scheduled agents that maintain the vault while you sleep.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.1,
+   "mcp": 0.83,
+   "docs_qa": 0.44,
+   "graph": 0.58,
+   "personal": 0.78
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "FlowElement-xinliuyuansu/m_flow",
+  "stars": 4511,
+  "description": "A bio-inspired cognitive memory engine — a new paradigm for Graph RAG.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.19,
+   "mcp": 0.44,
+   "docs_qa": 0.35,
+   "graph": 0.93,
+   "personal": 0.14
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "pipeshub-ai/pipeshub-ai",
+  "stars": 3809,
+  "description": "The open-source context layer for AI agents. PipesHub turns your company's knowledge (Slack, Drive, Jira, GitHub, Microsoft 365 and 40+ connectors) into a permission-aware workspace that agents can search, grep, navigate and cite. MCP, SDKs and built-in agents. Self-hosted.",
+  "scores": {
+   "rag_platform": 0.78,
+   "mcp": 0.75,
+   "docs_qa": 0.55,
+   "graph": 0.92,
+   "personal": 0.06,
+   "llm_wiki": 0.09
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "SamurAIGPT/llm-wiki-agent",
+  "stars": 3596,
+  "description": "A personal knowledge base that builds and maintains itself. Drop in sources — Claude (or Codex/Gemini) reads them, extracts knowledge, and maintains a persistent interlinked wiki. Works with Claude Code, Codex, OpenCode, Gemini CLI. No API key needed.",
+  "scores": {
+   "personal": 0.94,
+   "llm_wiki": 0.98,
+   "rag_platform": 0.15,
+   "mcp": 0.82,
+   "docs_qa": 0.78,
+   "graph": 0.95
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Ontos-AI/knowhere",
+  "stars": 3581,
+  "description": "Knowhere extracts, parses, and outputs structured chunks ready for AI Agents and RAG.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.57,
+   "mcp": 0.4,
+   "docs_qa": 0.69,
+   "graph": 0.81,
+   "personal": 0.15
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "agentscope-ai/ReMe",
+  "stars": 3541,
+  "description": "ReMe: Memory Management Kit for Agents - Remember Me, Refine Me.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.26,
+   "mcp": 0.43,
+   "docs_qa": 0.51,
+   "graph": 0.22,
+   "personal": 0.9
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Ar9av/obsidian-wiki",
+  "stars": 3510,
+  "description": "Framework for AI agents to build and maintain a digital brain through Obsidian wiki | Memory System for Agents",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.07,
+   "mcp": 0.6,
+   "docs_qa": 0.5,
+   "graph": 0.71,
+   "personal": 0.76
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "agenticnotetaking/arscontexta",
+  "stars": 3487,
+  "description": "Claude Code plugin that generates individualized knowledge systems from conversation. You describe how you think and work, have a conversation and get a complete second brain as markdown files you own.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.05,
+   "mcp": 0.17,
+   "docs_qa": 0.37,
+   "graph": 0.78,
+   "personal": 0.51
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "pingcap/autoflow",
+  "stars": 2978,
+  "description": "pingcap/autoflow is a Graph RAG based and conversational knowledge base tool built with TiDB Serverless Vector Storage. Demo: https://tidb.ai",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.86,
+   "mcp": 0.28,
+   "docs_qa": 0.58,
+   "graph": 0.96,
+   "personal": 0.14
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "zilliztech/memsearch",
+  "stars": 2649,
+  "description": "A persistent, unified memory layer for all your AI agents (e.g. Claude Code, Codex, DSH), backed by Markdown and Milvus.",
+  "scores": {
+   "llm_wiki": 0.5,
+   "rag_platform": 0.17,
+   "mcp": 0.64,
+   "docs_qa": 0.59,
+   "graph": 0.06,
+   "personal": 0.46
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "sdyckjq-lab/llm-wiki-skill",
+  "stars": 2519,
+  "description": "基于 Karpathy llm-wiki 方法论的个人知识库构建 Skill，支持多平台！",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.39,
+   "mcp": 0.86,
+   "docs_qa": 0.63,
+   "graph": 0.96,
+   "personal": 0.83
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Zleap-AI/SAG",
+  "stars": 2515,
+  "description": "A new SOTA for RAG — an original retrieval architecture and an open-source knowledge base for humans and agents.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.87,
+   "mcp": 0.44,
+   "docs_qa": 0.75,
+   "graph": 0.73,
+   "personal": 0.33
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "Astro-Han/karpathy-llm-wiki",
+  "stars": 2404,
+  "description": "Agent Skills-compatible LLM wiki for Claude Code, Cursor, and Codex. Build a Karpathy-style knowledge base from raw sources, citations, and linting.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.04,
+   "mcp": 0.93,
+   "docs_qa": 0.66,
+   "graph": 0.08,
+   "personal": 0.52
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "FlowElement-ai/m_flow",
+  "stars": 2389,
+  "description": "A bio-inspired cognitive memory engine — a new paradigm for Graph RAG.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.19,
+   "mcp": 0.48,
+   "docs_qa": 0.33,
+   "graph": 0.93,
+   "personal": 0.14
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "coleam00/mcp-crawl4ai-rag",
+  "stars": 2264,
+  "description": "Web Crawling and RAG Capabilities for AI Agents and AI Coding Assistants",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.13,
+   "mcp": 0.9,
+   "docs_qa": 0.53,
+   "graph": 0.54,
+   "personal": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "atomicstrata/llm-wiki-compiler",
+  "stars": 2157,
+  "description": "The knowledge compiler. Raw sources in, interlinked wiki out. Inspired by Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.32,
+   "mcp": 0.67,
+   "docs_qa": 0.69,
+   "graph": 0.64,
+   "personal": 0.26
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "tianma-if/edgeever",
+  "stars": 1979,
+  "description": "Open-source, AI-native knowledge base & Evernote alternative with native MCP. Zero-cost on Cloudflare or Docker.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.33,
+   "mcp": 0.25,
+   "docs_qa": 0.36,
+   "graph": 0.08,
+   "personal": 0.81
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "MicrosoftDocs/mcp",
+  "stars": 1880,
+  "description": "Official Microsoft Learn MCP Server and CLI tool – powering LLMs and AI agents with real-time, trusted Microsoft docs & code samples.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.08,
+   "mcp": 0.93,
+   "docs_qa": 0.88,
+   "graph": 0.09,
+   "personal": 0.03
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mex-memory/mex",
+  "stars": 1749,
+  "description": "Team memory for engineers and their AI agents. Lives in your repo. Shared through Git.",
+  "scores": {
+   "llm_wiki": 0.87,
+   "rag_platform": 0.09,
+   "mcp": 0.69,
+   "docs_qa": 0.53,
+   "graph": 0.91,
+   "personal": 0.11
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "lucasastorian/llmwiki",
+  "stars": 1659,
+  "description": "Open Source Implementation of Karpathy's LLM Wiki. Upload documents, connect your Claude account via MCP, and have it write your wiki ! ",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.78,
+   "mcp": 0.63,
+   "docs_qa": 0.7,
+   "graph": 0.67,
+   "personal": 0.96
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "finic-ai/rag-stack",
+  "stars": 1583,
+  "description": "🤖 Deploy a private ChatGPT alternative hosted within your VPC. 🔮 Connect it to your organization's knowledge base and use it as a corporate oracle. Supports open-source LLMs like Llama 2, Falcon, and GPT4All.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.85,
+   "mcp": 0.16,
+   "docs_qa": 0.84,
+   "graph": 0.04,
+   "personal": 0.05
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "axoviq-ai/synthadoc",
+  "stars": 1552,
+  "description": "Synthadoc: An open-source LLM knowledge compilation engine that turns raw documents into structured, local-first wikis. A transparent, human-readable alternative to traditional RAG, which can be self-managed and self-improved without the use of any tools.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.25,
+   "mcp": 0.34,
+   "docs_qa": 0.71,
+   "graph": 0.41,
+   "personal": 0.39
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "nduckmink/arkon",
+  "stars": 1486,
+  "description": "Arkon: Enterprise AI Knowledge Hub & MCP Server. Self-hosted knowledge base for teams to manage RAG contexts, access policies, and AI skills. Connect Claude and other LLMs via Model Context Protocol (MCP) for automated, secure organizational knowledge integration.",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.81,
+   "mcp": 0.92,
+   "docs_qa": 0.65,
+   "graph": 0.62,
+   "personal": 0.07
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "chunkhound/chunkhound",
+  "stars": 1442,
+  "description": "Your entire engineering context, deeply understood",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.27,
+   "mcp": 0.84,
+   "docs_qa": 0.75,
+   "graph": 0.14,
+   "personal": 0.06
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nvk/llm-wiki",
+  "stars": 1374,
+  "description": "LLM-compiled knowledge bases for any AI agent. Parallel multi-agent research, thesis-driven investigation, source ingestion, wiki compilation, querying, and artifact generation. ",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.18,
+   "mcp": 0.83,
+   "docs_qa": 0.55,
+   "graph": 0.24,
+   "personal": 0.43
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "shuyu-labs/AntSK",
+  "stars": 1326,
+  "description": "An AI knowledge base/agent built with .Net 9, AntBlazor, Semantic Kernel, and Kernel Memory, supporting local offline AI large models. It can run offline without an internet connection. Supports Aspire for monitoring application data.",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.94,
+   "mcp": 0.28,
+   "docs_qa": 0.64,
+   "graph": 0.5,
+   "personal": 0.08
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "study8677/repobrain",
+  "stars": 1325,
+  "description": "🧠 RepoBrain (formerly Antigravity) — Give your repo a brain. ChatGPT for your codebase: works in Claude Code, Cursor, Codex, Windsurf & more.",
+  "scores": {
+   "llm_wiki": 0.26,
+   "rag_platform": 0.18,
+   "mcp": 0.87,
+   "docs_qa": 0.87,
+   "graph": 0.2,
+   "personal": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "apecloud/ApeRAG",
+  "stars": 1317,
+  "description": "ApeRAG: Production-ready GraphRAG with multi-modal indexing, AI agents, MCP support, and scalable K8s deployment",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.91,
+   "mcp": 0.64,
+   "docs_qa": 0.66,
+   "graph": 0.97,
+   "personal": 0.08
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "coleam00/claude-memory-compiler",
+  "stars": 1296,
+  "description": "Give Claude Code a memory that evolves with your codebase. Hooks automatically capture sessions, the Claude Agent SDK extracts key decisions and lessons, and an LLM compiler organizes everything into structured, cross-referenced knowledge articles - inspired by Karpathy's LLM Knowledge Base architecture.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.04,
+   "mcp": 0.44,
+   "docs_qa": 0.6,
+   "graph": 0.12,
+   "personal": 0.85
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "study8677/antigravity-workspace-template",
+  "stars": 1294,
+  "description": "Give Claude Code, Cursor, Codex CLI a ChatGPT for your codebase. Multi-agent knowledge engine, grounded Q&A with file paths and line numbers. Works in any AI IDE.",
+  "scores": {
+   "llm_wiki": 0.3,
+   "rag_platform": 0.2,
+   "mcp": 0.88,
+   "docs_qa": 0.87,
+   "graph": 0.21,
+   "personal": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "yuezhiai/jonex",
+  "stars": 1261,
+  "description": "All-in-One Multimodal Parsing Engine + Ontology-Powered, LLM Wiki-Driven AI-Ready Knowledge Engine",
+  "scores": {
+   "llm_wiki": 0.72,
+   "rag_platform": 0.85,
+   "mcp": 0.42,
+   "docs_qa": 0.68,
+   "graph": 0.96,
+   "personal": 0.07
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "0xranx/OpenContext",
+  "stars": 1202,
+  "description": "A personal context store for AI agents and assistants—reuse your existing coding agent CLI (Codex/Claude/OpenCode) with built‑in Skills/tools and a desktop GUI to capture, search, and reuse project knowledge across agents and repos.",
+  "scores": {
+   "llm_wiki": 0.14,
+   "rag_platform": 0.24,
+   "mcp": 0.84,
+   "docs_qa": 0.42,
+   "graph": 0.08,
+   "personal": 0.68
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "chubbyguan/chubbyskills",
+  "stars": 1162,
+  "description": "把中文全渠道内容（抖音 / B站 / 小红书 / 公众号 / X / 播客）采集进个人知识库的 14 个 AI Skill：图文存图、视频转文字稿、字幕优先免 GPU，附带知识库 MCP server。 ｜ Ingest Chinese content into your personal knowledge base — image/video routing, subtitle-first transcription, and a KB MCP server.",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.11,
+   "mcp": 0.89,
+   "docs_qa": 0.69,
+   "graph": 0.05,
+   "personal": 0.65
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mrsibe/KnowNote",
+  "stars": 1154,
+  "description": "A local-first AI knowledge base & NotebookLM alternative built with Electron. More convenient, more lightweight, and understands you better!",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.74,
+   "mcp": 0.79,
+   "docs_qa": 0.86,
+   "graph": 0.05,
+   "personal": 0.79
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "BagelHole/DevOps-Security-Agent-Skills",
+  "stars": 1132,
+  "description": "Agent-ready DevOps, security, infrastructure, and compliance knowledge base with 80+ skills across Kubernetes, Terraform, AWS/Azure/GCP, AI platform operations, container hardening, SOC2/ISO27001, and incident response—plus ready-to-run scripts, templates, and playbooks for SRE, platform, and security teams.",
+  "scores": {
+   "llm_wiki": 0.24,
+   "rag_platform": 0.03,
+   "mcp": 0.54,
+   "docs_qa": 0.44,
+   "graph": 0.06,
+   "personal": 0.23
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jerry-ai-dev/MODULAR-RAG-MCP-SERVER",
+  "stars": 1072,
+  "description": "A modular RAG (Retrieval-Augmented Generation) system with MCP Server architecture. Using Skill to make AI follow each step of the spec and complete the code 100% by AI.",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.56,
+   "mcp": 0.87,
+   "docs_qa": 0.7,
+   "graph": 0.05,
+   "personal": 0.06
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "dmayboroda/minima",
+  "stars": 1047,
+  "description": "On-premises conversational RAG with configurable containers",
+  "scores": {
+   "docs_qa": 0.74,
+   "graph": 0.05,
+   "personal": 0.18,
+   "llm_wiki": 0.04,
+   "rag_platform": 0.75,
+   "mcp": 0.58
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "viddexa/autollm",
+  "stars": 1006,
+  "description": "Ship RAG based LLM web apps in seconds.",
+  "scores": {
+   "graph": 0.06,
+   "personal": 0.04,
+   "llm_wiki": 0.04,
+   "rag_platform": 0.44,
+   "mcp": 0.11,
+   "docs_qa": 0.7
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "mudler/LocalRecall",
+  "stars": 976,
+  "description": ":brain: 100% Local Memory layer and Knowledge base for agents with WebUI ",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.8,
+   "mcp": 0.49,
+   "docs_qa": 0.67,
+   "graph": 0.04,
+   "personal": 0.37
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "BaranziniLab/KG_RAG",
+  "stars": 947,
+  "description": "Empower Large Language Models (LLM) using Knowledge Graph based Retrieval-Augmented Generation (KG-RAG) for knowledge intensive tasks",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.21,
+   "mcp": 0.24,
+   "docs_qa": 0.45,
+   "graph": 0.97,
+   "personal": 0.04
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Deodat-Lawson/LaunchStack",
+  "stars": 890,
+  "description": "AI-powered StartUp Accelerator Engine built with Next.js, LangChain, PostgreSQL + pgvector. Upload, organize, and chat with documents. Includes predictive missing-document detection, role-based workflows, and page-level insight extraction.",
+  "scores": {
+   "graph": 0.85,
+   "personal": 0.11,
+   "llm_wiki": 0.09,
+   "rag_platform": 0.74,
+   "mcp": 0.21,
+   "docs_qa": 0.75
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "undefined-ui/second-brain-os",
+  "stars": 885,
+  "description": "An AI second brain that maintains itself. Full guide, starter vault, agent skills and scripts for a self-organizing knowledge base in Claude Code and Obsidian.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.06,
+   "mcp": 0.21,
+   "docs_qa": 0.48,
+   "graph": 0.77,
+   "personal": 0.76
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Jakedismo/codegraph-rust",
+  "stars": 885,
+  "description": "100% Rust implementation of code graphRAG with blazing fast AST+FastML parsing, surrealDB backend and advanced agentic code analysis tools through MCP for efficient code agent context management",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.31,
+   "mcp": 0.63,
+   "docs_qa": 0.74,
+   "graph": 0.98,
+   "personal": 0.04
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "kytmanov/obsidian-llm-wiki-local",
+  "stars": 828,
+  "description": "Karpathy’s LLM Wiki, 100% local with Ollama. Drop Markdown notes → AI extracts concepts → your Obsidian wiki auto-links and grows. Zero sharing. Your notes stay yours.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.09,
+   "mcp": 0.1,
+   "docs_qa": 0.56,
+   "graph": 0.38,
+   "personal": 0.84
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "aakarim/OpenLore",
+  "stars": 826,
+  "description": "A minimal, extensible, agent-native knowledge base that keeps shared context current and inspectable",
+  "scores": {
+   "llm_wiki": 0.39,
+   "rag_platform": 0.1,
+   "mcp": 0.87,
+   "docs_qa": 0.68,
+   "graph": 0.03,
+   "personal": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "verygoodplugins/automem",
+  "stars": 803,
+  "description": "Long-term memory for AI assistants. Graph + vector store that recalls decisions, relationships, and context across sessions.",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.3,
+   "mcp": 0.88,
+   "docs_qa": 0.34,
+   "graph": 0.97,
+   "personal": 0.46
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "rahilp/second-brain-cloudflare",
+  "stars": 800,
+  "description": "One memory layer, every AI tool. Store anything once — recall it in Claude, ChatGPT, Cursor, or any MCP client. Self-hosted on Cloudflare's free tier.",
+  "scores": {
+   "llm_wiki": 0.14,
+   "rag_platform": 0.51,
+   "mcp": 0.79,
+   "docs_qa": 0.45,
+   "graph": 0.21,
+   "personal": 0.81
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "AlmanacCode/codealmanac",
+  "stars": 791,
+  "description": "A codebase wiki for AI coding agents. Captures what the code can't say: decisions, flows, invariants, gotchas.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.2,
+   "mcp": 0.5,
+   "docs_qa": 0.68,
+   "graph": 0.16,
+   "personal": 0.18
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "NicholasSpisak/second-brain",
+  "stars": 734,
+  "description": "LLM-maintained personal knowledge base for Obsidian. Based on Andrej Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.07,
+   "mcp": 0.76,
+   "docs_qa": 0.61,
+   "graph": 0.41,
+   "personal": 0.88
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "agentic-box/memora",
+  "stars": 729,
+  "description": "Give your AI agents persistent, collective memory — with deduplicating absorb, supersession lineage, semantic search, and a graph UI. Speaks MCP.",
+  "scores": {
+   "llm_wiki": 0.4,
+   "rag_platform": 0.56,
+   "mcp": 0.93,
+   "docs_qa": 0.45,
+   "graph": 0.97,
+   "personal": 0.44
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ConardLi/rag-skill",
+  "stars": 714,
+  "description": "A Skill dedicated to local knowledge base retrieval",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.06,
+   "mcp": 0.89,
+   "docs_qa": 0.87,
+   "graph": 0.03,
+   "personal": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "swarmclawai/swarmvault",
+  "stars": 709,
+  "description": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Code / Codex / OpenClaw memory.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.54,
+   "mcp": 0.52,
+   "docs_qa": 0.61,
+   "graph": 0.97,
+   "personal": 0.75
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "GD4AI/obsidian-llm-wiki",
+  "stars": 680,
+  "description": "Karpathy's LLM Wiki implementation plugin for Obsidian - turns notes and PDFs into a linked, LLM-powered knowledge base with entity pages, concept pages, graph-powered Q&A, and local-first privacy.",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.1,
+   "mcp": 0.05,
+   "docs_qa": 0.63,
+   "graph": 0.95,
+   "personal": 0.22
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "GeminiLight/MindOS",
+  "stars": 677,
+  "description": "MindOS is a Human-AI Collaborative Mind System, where human thinks and agents act. Globally sync your mind for all agents: transparent, controllable, and evolving symbiotically.",
+  "scores": {
+   "llm_wiki": 0.48,
+   "rag_platform": 0.45,
+   "mcp": 0.66,
+   "docs_qa": 0.51,
+   "graph": 0.26,
+   "personal": 0.35
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Bessouat40/RAGLight",
+  "stars": 672,
+  "description": "RAGLight is a modular framework for Retrieval-Augmented Generation (RAG). It makes it easy to plug in different LLMs, embeddings, and vector stores, and now includes seamless MCP integration to connect external tools and data sources.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.49,
+   "mcp": 0.19,
+   "docs_qa": 0.64,
+   "graph": 0.05,
+   "personal": 0.06
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "lewislulu/llm-wiki-skill",
+  "stars": 655,
+  "description": "Karpathy-style LLM knowledge base Agent Skill for OpenClaw/Codex. Experimental — will iterate over time.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.07,
+   "mcp": 0.75,
+   "docs_qa": 0.49,
+   "graph": 0.17,
+   "personal": 0.46
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "iamzulx/crypto-rag",
+  "stars": 648,
+  "description": "Asisten crypto berbahasa Indonesia: RAG pengetahuan 267 topik + data pasar realtime (6 bursa, WebSocket, derivatif, on-chain, TVL, DeFi) + tool-calling agent + LLM synthesis",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.31,
+   "mcp": 0.37,
+   "docs_qa": 0.72,
+   "graph": 0.03,
+   "personal": 0.07
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "opendatalab/MinerU-Document-Explorer",
+  "stars": 637,
+  "description": "Agent-native knowledge engine with MCP tools for document indexing, wiki organization, fast retrieval and deep reading across PDF/DOCX/PPTX/Markdown",
+  "scores": {
+   "llm_wiki": 0.93,
+   "rag_platform": 0.38,
+   "mcp": 0.86,
+   "docs_qa": 0.85,
+   "graph": 0.14,
+   "personal": 0.2
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "docsagent/docsagent",
+  "stars": 625,
+  "description": "⚡ DocsAgent — give your AI agents instant, private access to your personal knowledge base (Zotero, Obsidian, Apple Notes supported now, local docs on the road). Native C++ search core: BM25 + passage ranking in ~15 ms. MCP server for Claude, Cursor, Cline & any MCP client.",
+  "scores": {
+   "graph": 0.05,
+   "personal": 0.38,
+   "llm_wiki": 0.05,
+   "rag_platform": 0.21,
+   "mcp": 0.96,
+   "docs_qa": 0.79
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "xoai/sage-wiki",
+  "stars": 619,
+  "description": "sage-wiki is a graph memory and knowledge base that AI agents and humans build and query together. Drop in documents; an LLM compiler turns them into an interlinked wiki with a knowledge graph. One Go binary scales it from a personal vault to a team hub to a company knowledge graph.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.66,
+   "mcp": 0.57,
+   "docs_qa": 0.62,
+   "graph": 0.98,
+   "personal": 0.62
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ggozad/haiku.rag",
+  "stars": 616,
+  "description": "Agentic RAG for local and self-hosted document search: hybrid retrieval, reranking and multimodal RAG on embedded LanceDB, with Docling parsing and an MCP server",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.73,
+   "mcp": 0.81,
+   "docs_qa": 0.83,
+   "graph": 0.05,
+   "personal": 0.2
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "zosmaai/pi-llm-wiki",
+  "stars": 600,
+  "description": "Self-maintaining, Obsidian-compatible knowledge base for pi — turn raw sources into an interlinked wiki that compounds. Native Open Knowledge Format (OKF) v0.2.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.13,
+   "mcp": 0.89,
+   "docs_qa": 0.57,
+   "graph": 0.25,
+   "personal": 0.79
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Ikalus1988/MisakaNet",
+  "stars": 519,
+  "description": "📚 A zero-dependency, git-backed micro-lesson library for AI Agents to asynchronously share and search verified debugging experience. | https://misakanet.org",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.17,
+   "mcp": 0.95,
+   "docs_qa": 0.6,
+   "graph": 0.09,
+   "personal": 0.12
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "rgem227/knoweldge-base",
+  "stars": 497,
+  "description": "Personal or team knowledge base, supports MCP API calls.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.54,
+   "mcp": 0.52,
+   "docs_qa": 0.71,
+   "graph": 0.05,
+   "personal": 0.36
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "green-dalii/obsidian-llm-wiki",
+  "stars": 458,
+  "description": "Karpathy's LLM Wiki implementation plugin for Obsidian - turns notes and PDFs into a linked, LLM-powered knowledge base with entity pages, concept pages, graph-powered Q&A, and local-first privacy.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.1,
+   "mcp": 0.05,
+   "docs_qa": 0.63,
+   "graph": 0.94,
+   "personal": 0.2
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Beever-AI/beever-atlas",
+  "stars": 450,
+  "description": "Your First LLM-Wiki Conversation Knowledge Base",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.84,
+   "mcp": 0.81,
+   "docs_qa": 0.39,
+   "graph": 0.96,
+   "personal": 0.11
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "awslabs/graphrag-toolkit",
+  "stars": 444,
+  "description": "Python toolkit for building graph-enhanced GenAI applications",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.11,
+   "mcp": 0.2,
+   "docs_qa": 0.51,
+   "graph": 0.98,
+   "personal": 0.05
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "zhuzhaoyun/Molio",
+  "stars": 431,
+  "description": "A local-first personal knowledge layer for AI agents. Build evolving knowledge spaces with LLM Wiki, knowledge graphs, and agent workflows.",
+  "scores": {
+   "llm_wiki": 0.9,
+   "rag_platform": 0.68,
+   "mcp": 0.44,
+   "docs_qa": 0.67,
+   "graph": 0.94,
+   "personal": 0.72
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "shannhk/llm-wikid",
+  "stars": 419,
+  "description": "Karpathy-style LLM knowledge base for Obsidian. Clone, run Claude Code, start building your second brain.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.04,
+   "mcp": 0.21,
+   "docs_qa": 0.48,
+   "graph": 0.28,
+   "personal": 0.93
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "RafalWilinski/mcp-apple-notes",
+  "stars": 415,
+  "description": "Talk with your notes in Claude. RAG over your Apple Notes using Model Context Protocol.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.1,
+   "mcp": 0.88,
+   "docs_qa": 0.64,
+   "graph": 0.04,
+   "personal": 0.25
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "shinpr/mcp-local-rag",
+  "stars": 405,
+  "description": "Local-first RAG server for developers. Semantic + keyword search for code and technical docs. Works with MCP or CLI. Fully private, zero setup.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.29,
+   "mcp": 0.97,
+   "docs_qa": 0.88,
+   "graph": 0.04,
+   "personal": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Pratiyush/llm-wiki",
+  "stars": 394,
+  "description": "LLM-powered knowledge base from your Claude Code, Codex CLI, Copilot, Cursor & Gemini sessions. Karpathy's LLM Wiki pattern — implemented and shipped.",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.26,
+   "mcp": 0.21,
+   "docs_qa": 0.55,
+   "graph": 0.77,
+   "personal": 0.66
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "benmaster82/Kwipu",
+  "stars": 374,
+  "description": "Ask questions across your Markdown notes using a fully local Graph RAG engine. Built for Obsidian vaults, works with any folder of Markdown files. Extracts entity-relation triples from wikilinks & YAML frontmatter, retrieves answers via hybrid search (vector + BM25 + temporal). Multilingual. No cloud. Runs on Ollama.",
+  "scores": {
+   "llm_wiki": 0.18,
+   "rag_platform": 0.8,
+   "mcp": 0.76,
+   "docs_qa": 0.51,
+   "graph": 0.98,
+   "personal": 0.28
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "smixs/agent-second-brain",
+  "stars": 367,
+  "description": "An always-on second brain you talk to. Voice notes in Telegram → typed, linked knowledge in your Obsidian vault. Runs 24/7 on the Claude subscription you already have.",
+  "scores": {
+   "llm_wiki": 0.82,
+   "rag_platform": 0.09,
+   "mcp": 0.25,
+   "docs_qa": 0.49,
+   "graph": 0.87,
+   "personal": 0.9
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "2dogsandanerd/Knowledge-Base-Self-Hosting-Kit",
+  "stars": 355,
+  "description": "A Docker-powered RAG system that understands the difference between code and prose. Ingest your codebase and documentation, then query them with full privacy and zero configuration.",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.89,
+   "mcp": 0.52,
+   "docs_qa": 0.9,
+   "graph": 0.05,
+   "personal": 0.2
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "software-mansion-labs/react-native-rag",
+  "stars": 345,
+  "description": "Private, local RAGs. Supercharge LLMs with your own knowledge base.",
+  "scores": {
+   "docs_qa": 0.63,
+   "graph": 0.05,
+   "personal": 0.07,
+   "llm_wiki": 0.05,
+   "rag_platform": 0.14,
+   "mcp": 0.16
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "andrea9293/mcp-documentation-server",
+  "stars": 342,
+  "description": "MCP Documentation Server - Bridge the AI Knowledge Gap.  ✨ Features: Document management • Gemini integration • AI-powered semantic search • File uploads • Smart chunking • Multilingual support • Zero-setup  🎯 Perfect for: New frameworks • API docs • Internal guides",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.78,
+   "mcp": 0.96,
+   "docs_qa": 0.8,
+   "graph": 0.04,
+   "personal": 0.26
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ergut/mcp-logseq",
+  "stars": 338,
+  "description": "MCP server to interact with LogSeq via its Local HTTP API - enabling AI assistants like Claude to seamlessly read, write, and manage your LogSeq graph.",
+  "scores": {
+   "llm_wiki": 0.14,
+   "rag_platform": 0.04,
+   "mcp": 0.97,
+   "docs_qa": 0.49,
+   "graph": 0.62,
+   "personal": 0.2
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nameforjt-afk/session-knowledge",
+  "stars": 336,
+  "description": "Turn your Claude Code session history into a searchable local knowledge base — 13 MCP tools, pure stdlib, nothing leaves your machine",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.1,
+   "mcp": 0.89,
+   "docs_qa": 0.38,
+   "graph": 0.04,
+   "personal": 0.43
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "gatelynch/llm-knowledge-base",
+  "stars": 333,
+  "description": "參考自Andrej Kapathy的llm-wiki概念，把原始素材、LLM 編譯後的知識、   探索中的思考，以及最終作品明確分層管理   的個人知識庫系統。",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.11,
+   "mcp": 0.32,
+   "docs_qa": 0.65,
+   "graph": 0.16,
+   "personal": 0.84
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "aayoawoyemi/Ori-Mnemos",
+  "stars": 328,
+  "description": "Local-first persistent agentic memory powered by Recursive Memory Harness (RMH). Open source must win.",
+  "scores": {
+   "llm_wiki": 0.42,
+   "rag_platform": 0.32,
+   "mcp": 0.82,
+   "docs_qa": 0.66,
+   "graph": 0.96,
+   "personal": 0.29
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ussumant/llm-wiki-compiler",
+  "stars": 325,
+  "description": "Claude Code plugin that compiles markdown knowledge files into a topic-based wiki. Implements Karpathy's LLM Knowledge Base pattern.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.11,
+   "mcp": 0.53,
+   "docs_qa": 0.66,
+   "graph": 0.41,
+   "personal": 0.23
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Ayanami0730/arag",
+  "stars": 323,
+  "description": "A-RAG: Agentic Retrieval-Augmented Generation via Hierarchical Retrieval Interfaces. State-of-the-art RAG framework with keyword, semantic, and chunk read tools for multi-hop QA.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.16,
+   "mcp": 0.36,
+   "docs_qa": 0.54,
+   "graph": 0.14,
+   "personal": 0.04
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "aa0101181514/tw-legal-rag",
+  "stars": 323,
+  "description": "台灣法律 MCP 伺服器 + CLI（免費、免註冊、免 API key）：2,250 萬筆裁判書、行政函釋、憲法法庭裁判，附引用查核。Free Taiwan legal MCP server for Claude/ChatGPT/Codex — bring your own LLM, retrieval-only.",
+  "scores": {
+   "rag_platform": 0.11,
+   "mcp": 0.9,
+   "docs_qa": 0.7,
+   "graph": 0.08,
+   "personal": 0.03,
+   "llm_wiki": 0.04
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "0xK3vin/MegaMemory",
+  "stars": 313,
+  "description": "Persistent project knowledge graph for coding agents. MCP server with semantic search, in-process embeddings, and web explorer.",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.15,
+   "mcp": 0.98,
+   "docs_qa": 0.44,
+   "graph": 0.98,
+   "personal": 0.19
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Jacobinwwey/obsidian-NotEMD",
+  "stars": 311,
+  "description": "A Easy way to create your own Knowledge-base! Notemd enhances your Obsidian workflow by integrating with various Large Language Models (LLMs) to process your notes, automatically generate wiki-links for key concepts, create corresponding concept notes, perform web research, and more.",
+  "scores": {
+   "llm_wiki": 0.87,
+   "rag_platform": 0.08,
+   "mcp": 0.08,
+   "docs_qa": 0.62,
+   "graph": 0.24,
+   "personal": 0.14
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "andylow92/file-system-like-github",
+  "stars": 296,
+  "description": "Self-improving, AI-native markdown vault you hand to an AI agent. GitHub-style file tree + Notion editing, exposed to Claude/Cursor via a built-in MCP server (24 tools): semantic & hybrid search, RAG, cited answers. Learns your voice from your edits; human-approved review queue. Local-first .md.",
+  "scores": {
+   "personal": 0.82,
+   "llm_wiki": 0.61,
+   "rag_platform": 0.46,
+   "mcp": 0.85,
+   "docs_qa": 0.58,
+   "graph": 0.51
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Qingyon-AI/Revornix",
+  "stars": 292,
+  "description": "Revornix is an open-source, local-first AI information/markdown workspace. It helps you collect fragmented inputs, turn them into structured knowledge, generate reports with images and podcast audio, and deliver the output through automated notifications.",
+  "scores": {
+   "rag_platform": 0.76,
+   "mcp": 0.16,
+   "docs_qa": 0.59,
+   "graph": 0.98,
+   "personal": 0.76,
+   "llm_wiki": 0.37
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Laurent00TT/pharos",
+  "stars": 292,
+  "description": "Pharos — local-first agentic RAG for your team's document library: multi-format ingest, hybrid retrieval, enterprise ACL, dual HTTP + MCP exits.",
+  "scores": {
+   "mcp": 0.83,
+   "docs_qa": 0.87,
+   "graph": 0.06,
+   "personal": 0.11,
+   "llm_wiki": 0.05,
+   "rag_platform": 0.87
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "ymj8903668-droid/trading-review-wiki",
+  "stars": 291,
+  "description": "A trading review knowledge base powered by LLM  专为交易者设计的 LLM 驱动知识库：快速复盘、交割单导入、FIFO 盈亏计算、个股归档与截图讨论。",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.38,
+   "mcp": 0.38,
+   "docs_qa": 0.72,
+   "graph": 0.75,
+   "personal": 0.67
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Govcraft/rust-docs-mcp-server",
+  "stars": 291,
+  "description": "🦀 Prevents outdated Rust code suggestions from AI assistants. This MCP server fetches current crate docs, uses embeddings/LLMs, and provides accurate context via a tool call.",
+  "scores": {
+   "llm_wiki": 0.02,
+   "rag_platform": 0.1,
+   "mcp": 0.93,
+   "docs_qa": 0.8,
+   "graph": 0.04,
+   "personal": 0.03
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "HarimxChoi/google-surf-mcp",
+  "stars": 290,
+  "description": "Turn Google Search, Papers, and Codebases into an Automatic Local Knowledge Graph for AI Agents.",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.23,
+   "mcp": 0.9,
+   "docs_qa": 0.72,
+   "graph": 0.98,
+   "personal": 0.7
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "lyonzin/knowledge-rag",
+  "stars": 288,
+  "description": "Local RAG MCP server for Claude Code — hybrid search (semantic + BM25), cross-encoder reranking, 13 MCP tools, 20 format parsers. Zero external servers, zero API keys.",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.22,
+   "mcp": 0.96,
+   "docs_qa": 0.76,
+   "graph": 0.07,
+   "personal": 0.15
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Lyra-stellAI/BYO-LLM-WIKI",
+  "stars": 280,
+  "description": "Build your own LLM-native WIKI (knowledge library). Search, extract, summarize, Q&A with contextual RAG, layered knowledge graph, and reinforced memory. Importantly use selected context to automatically generate skills, empowered by Claude subagents + CodeAct pipeline and gated by human review. **Try Live Demo**:  https://byo-wiki-demo.vercel.app",
+  "scores": {
+   "rag_platform": 0.83,
+   "mcp": 0.72,
+   "docs_qa": 0.54,
+   "graph": 0.98,
+   "personal": 0.91,
+   "llm_wiki": 0.85
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "lhh737/KnowledgeBase-RAG-LLM-System",
+  "stars": 273,
+  "description": "基于 Streamlit、LangChain 与 Chroma 的轻量级 RAG 学习项目，支持本地知识库上传、检索增强问答与聊天式交互。",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.46,
+   "mcp": 0.09,
+   "docs_qa": 0.73,
+   "graph": 0.03,
+   "personal": 0.12
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "tonbistudio/llm-wiki",
+  "stars": 264,
+  "description": "Open-source template for building LLM-powered knowledge bases following Karpathy's LLM Wiki pattern",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.09,
+   "mcp": 0.18,
+   "docs_qa": 0.61,
+   "graph": 0.36,
+   "personal": 0.36
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "kytmanov/synto",
+  "stars": 259,
+  "description": "More than just Karpathy’s LLM Wiki, 100% local with Ollama. Drop Markdown notes → AI extracts concepts → your Obsidian wiki auto-links and grows. Zero sharing. Your notes stay yours.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.12,
+   "mcp": 0.43,
+   "docs_qa": 0.52,
+   "graph": 0.32,
+   "personal": 0.83
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "KnowledgeXLab/LeanRAG",
+  "stars": 259,
+  "description": "(AAAI 2026) Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.16,
+   "mcp": 0.12,
+   "docs_qa": 0.65,
+   "graph": 0.98,
+   "personal": 0.06
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "shenmintao/marginalia",
+  "stars": 247,
+  "description": "A library-science-inspired personal knowledge management system with LLM agents",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.77,
+   "mcp": 0.43,
+   "docs_qa": 0.8,
+   "graph": 0.29,
+   "personal": 0.88
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "Laurent00TT/PharosRAG",
+  "stars": 243,
+  "description": "Pharos — local-first agentic RAG for your team's document library: multi-format ingest, hybrid retrieval, enterprise ACL, dual HTTP + MCP exits.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.86,
+   "mcp": 0.81,
+   "docs_qa": 0.88,
+   "graph": 0.06,
+   "personal": 0.1
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "Lyra-stellAI/BYO-WIKI",
+  "stars": 237,
+  "description": "Build your own LLM-native WIKI (knowledge library). Search, extract, summarize, Q&A with contextual RAG, layered knowledge graph, and reinforced memory. Most importantly you can use selected context to automatically generate skills, empowered by Claude subagents + CodeAct pipeline and gated by human review.",
+  "scores": {
+   "llm_wiki": 0.82,
+   "rag_platform": 0.82,
+   "mcp": 0.73,
+   "docs_qa": 0.49,
+   "graph": 0.98,
+   "personal": 0.93
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "aws-samples/serverless-rag-demo",
+  "stars": 224,
+  "description": "Amazon Bedrock Foundation models with Amazon Opensearch Serverless as a Vector DB",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.58,
+   "mcp": 0.13,
+   "docs_qa": 0.77,
+   "graph": 0.09,
+   "personal": 0.05
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "FreePeak/LeanKG",
+  "stars": 220,
+  "description": "LeanKG: Stop Burning Tokens. Start Coding Lean.",
+  "scores": {
+   "llm_wiki": 0.18,
+   "rag_platform": 0.24,
+   "mcp": 0.89,
+   "docs_qa": 0.64,
+   "graph": 0.96,
+   "personal": 0.14
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "boluo2077/deep-rag",
+  "stars": 214,
+  "description": "🔍 Deep RAG: Advanced Retrieval-Augmented Generation system that goes beyond vector search. Enables AI to perform multi-hop reasoning, negation queries, numerical comparisons & global aggregation on your knowledge base. Supports OpenAI, Anthropic, Google Gemini. Python FastAPI + React UI",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.91,
+   "mcp": 0.35,
+   "docs_qa": 0.64,
+   "graph": 0.09,
+   "personal": 0.12
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "EduardTalianu/erag",
+  "stars": 214,
+  "description": "an AI interaction tool with RAG hybrid search, conversation context, web content processing and structured data analysis with LLM / GPT",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.85,
+   "mcp": 0.24,
+   "docs_qa": 0.85,
+   "graph": 0.94,
+   "personal": 0.16
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "mduongvandinh/llm-wiki",
+  "stars": 213,
+  "description": "Hệ thống knowledge base cá nhân hoàn toàn tự động, vận hành bởi LLM. Dựa trên pattern LLM Wiki của Andrej Karpathy.",
+  "scores": {
+   "rag_platform": 0.05,
+   "mcp": 0.42,
+   "docs_qa": 0.75,
+   "graph": 0.16,
+   "personal": 0.95,
+   "llm_wiki": 0.97
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "aouicher/graphmind",
+  "stars": 207,
+  "description": "Local-first code intelligence for AI assistants. Turns your codebase into a knowledge graph your AI can query, navigate, and remember. 25 MCP tools.",
+  "scores": {
+   "mcp": 0.88,
+   "docs_qa": 0.71,
+   "graph": 0.97,
+   "personal": 0.07,
+   "llm_wiki": 0.06,
+   "rag_platform": 0.13
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "bulolo/CatWiki",
+  "stars": 196,
+  "description": "A fully functional knowledge base platform offering robust content management, AI-powered intelligent Q&A, and a modern user experience 一个功能完善的Agentic RAG知识库平台，提供强大的内容管理、AI 智能问答和现代化的用户体验",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.96,
+   "mcp": 0.16,
+   "docs_qa": 0.85,
+   "graph": 0.06,
+   "personal": 0.08
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "judegomila/OnCo",
+  "stars": 194,
+  "description": "OnCo: total information dominance on cancer. A public, cited knowledge graph of oncology with a website, JSON API, MCP server and CLI: one page per cancer, treatment, target, trial, institution, person and idea.",
+  "scores": {
+   "llm_wiki": 0.4,
+   "rag_platform": 0.17,
+   "mcp": 0.63,
+   "docs_qa": 0.53,
+   "graph": 0.98,
+   "personal": 0.05
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "stevereiner/flexible-graphrag",
+  "stars": 188,
+  "description": "Python, LlamaIndex, LangChain, 15 Property Graph, 4 RDF , 10 Vector, OpenSearch, Elasticsearch, Alfresco, Nuxeo DBs. 14 data sources (10 auto-sync), KG auto-building, Ontologies, LLMs, Docling, LlamaParse, LiteParse, GraphRAG, RAG, Hybrid Search, AI Chat. TypeScript React, Vue, Angular frontends, REST, MCP Server. Options: Langflow, CocoIndex",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.85,
+   "mcp": 0.51,
+   "docs_qa": 0.64,
+   "graph": 0.98,
+   "personal": 0.1
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "kfchou/wiki-skills",
+  "stars": 186,
+  "description": "LLM-maintained personal wiki skills for Claude Code — implements Karpathy's LLM Wiki pattern",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.05,
+   "mcp": 0.75,
+   "docs_qa": 0.54,
+   "graph": 0.15,
+   "personal": 0.79
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Graph-COM/SubgraphRAG",
+  "stars": 186,
+  "description": "[ICLR 2025] Simple is Effective: The Roles of Graphs and Large Language Models in Knowledge-Graph-Based Retrieval-Augmented Generation",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.1,
+   "mcp": 0.18,
+   "docs_qa": 0.61,
+   "graph": 0.94,
+   "personal": 0.03
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "willynikes2/knowledge-base-server",
+  "stars": 179,
+  "description": "Make every AI agent you use smarter. Persistent memory with SQLite FTS5, MCP server, Obsidian sync, and self-learning intelligence pipeline.",
+  "scores": {
+   "llm_wiki": 0.33,
+   "rag_platform": 0.58,
+   "mcp": 0.91,
+   "docs_qa": 0.63,
+   "graph": 0.12,
+   "personal": 0.56
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "domleca/llm-wiki",
+  "stars": 176,
+  "description": "",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.16,
+   "mcp": 0.1,
+   "docs_qa": 0.48,
+   "graph": 0.54,
+   "personal": 0.25
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "IssacW228/student-llm-wiki",
+  "stars": 176,
+  "description": "📚 Student LLM Wiki — AI-compiled knowledge base for university students. Drop course slides, get a persistent interlinked wiki. Feynman review, exam prep, confidence decay, cross-course connections. Based on Karpathy's LLM Wiki pattern. Works with Claude Cowork / Claude Code / Claudian + Obsidian.学生大语言模型维基百科——专为大学生打造的AI编译知识库。",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.06,
+   "mcp": 0.23,
+   "docs_qa": 0.72,
+   "graph": 0.26,
+   "personal": 0.76
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ascend-ai-coding/awesome-ascend-skills",
+  "stars": 174,
+  "description": "A comprehensive knowledge base for Huawei Ascend NPU development, structured as distributed Agent Skills. https://ascend-ai-coding.github.io/awesome-ascend-skills/",
+  "scores": {
+   "llm_wiki": 0.31,
+   "rag_platform": 0.04,
+   "mcp": 0.6,
+   "docs_qa": 0.49,
+   "graph": 0.04,
+   "personal": 0.13
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "alfadur7/llm-wiki-newsroom",
+  "stars": 169,
+  "description": "Harness engineering applied to knowledge production: a self-evolving multi-agent newsroom that turns your documents into a cross-linked markdown wiki. A \"reground\" loop pulls published pages back in before they go stale — writer ≠ reviewer, local-first, a structured alternative to RAG.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.08,
+   "mcp": 0.18,
+   "docs_qa": 0.76,
+   "graph": 0.9,
+   "personal": 0.75
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "andylow92/file-system-brain-mcp",
+  "stars": 167,
+  "description": "Self-improving, AI-native markdown vault you hand to an AI agent. GitHub-style file tree + Notion editing, exposed to Claude/Cursor via a built-in MCP server (24 tools): semantic & hybrid search, RAG, cited answers. Learns your voice from your edits; human-approved review queue. Local-first .md.",
+  "scores": {
+   "llm_wiki": 0.67,
+   "rag_platform": 0.49,
+   "mcp": 0.87,
+   "docs_qa": 0.62,
+   "graph": 0.53,
+   "personal": 0.78
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nanzhipro/Karpathy-llm-wiki-bootstrap-skill",
+  "stars": 166,
+  "description": "Installable skill + working example for building persistent, LLM-maintained Markdown wikis, based on Karpathy’s original LLM Wiki idea.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.07,
+   "mcp": 0.39,
+   "docs_qa": 0.58,
+   "graph": 0.31,
+   "personal": 0.26
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ali-kamali/Axon.MCP.Server",
+  "stars": 166,
+  "description": "Transform your codebase into an intelligent knowledge base for AI-powered development with Cursor IDE, Google AntiGravity, and MCP-enabled assistants",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.36,
+   "mcp": 0.9,
+   "docs_qa": 0.69,
+   "graph": 0.61,
+   "personal": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "entanglr/zettelkasten-mcp",
+  "stars": 164,
+  "description": "A Model Context Protocol (MCP) server that implements the Zettelkasten knowledge management methodology, allowing you to create, link, explore and synthesize atomic notes through Claude and other MCP-compatible clients.",
+  "scores": {
+   "llm_wiki": 0.33,
+   "rag_platform": 0.06,
+   "mcp": 0.86,
+   "docs_qa": 0.34,
+   "graph": 0.97,
+   "personal": 0.19
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Haaaiawd/Nexus-skills",
+  "stars": 163,
+  "description": "AI-native codebase intelligence skills — generate persistent .nexus-map/ knowledge bases and instantly query file structure, dependency graphs, and change impact. Built for Copilot, Cursor, and any tool-calling LLM. 面向 AI 编程助手的代码库感知技能——生成持久化知识图谱，精准查询文件结构、依赖关系与改动影响半径。",
+  "scores": {
+   "llm_wiki": 0.67,
+   "rag_platform": 0.05,
+   "mcp": 0.86,
+   "docs_qa": 0.66,
+   "graph": 0.92,
+   "personal": 0.07
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "selmakcby/knowledge-pipeline",
+  "stars": 161,
+  "description": "Terminal-vibe sunum + LLM-Wiki skill'i. Ham sohbetleri, şemayla disipline edilen büyüyen bir wiki'ye dönüştürme deseni.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.09,
+   "mcp": 0.33,
+   "docs_qa": 0.43,
+   "graph": 0.5,
+   "personal": 0.26
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "0xchamin/mcptube",
+  "stars": 161,
+  "description": "Transform YouTube videos into a compounding knowledge base with transcripts, vision analysis, and agentic search. Works as an MCP server for Claude, Copilot & more.",
+  "scores": {
+   "mcp": 0.9,
+   "docs_qa": 0.51,
+   "graph": 0.19,
+   "personal": 0.29,
+   "llm_wiki": 0.72,
+   "rag_platform": 0.33
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "dnotitia/akb",
+  "stars": 161,
+  "description": "AKB — Agent Knowledgebase. Organizational memory for AI agents: vault-scoped docs / tables / files unified by URI graph, served over MCP.",
+  "scores": {
+   "llm_wiki": 0.57,
+   "rag_platform": 0.46,
+   "mcp": 0.96,
+   "docs_qa": 0.6,
+   "graph": 0.91,
+   "personal": 0.22
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "liangdabiao/llm-wiki",
+  "stars": 156,
+  "description": "基于 [Karpathy llm-wiki]方法论，利用 AI 持续构建和维护你的个人知识库。支持从多种素材源（网页、推特、公众号、小红书、知乎、YouTube、PDF、本地文件）自动整理为结构化的 wiki，并通过 Quartz 发布为静态wiki知识库网站。 并通过 claude_agent_sdk 调用 claude agent 使用 llm-wiki ,提供api接口对外访问服务 。",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.4,
+   "mcp": 0.65,
+   "docs_qa": 0.71,
+   "graph": 0.71,
+   "personal": 0.87
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "serradura/okf",
+  "stars": 154,
+  "description": "OKF (Open Knowledge Format): Durable, structured memory for AI agents. Author, validate, consume, and maintain portable knowledge bundles through an ecosystem of Skills, MCP, an interactive graph, TUI, CLI, Docker, and a Claude Code plugin. 100% local.",
+  "scores": {
+   "llm_wiki": 0.82,
+   "rag_platform": 0.13,
+   "mcp": 0.54,
+   "docs_qa": 0.6,
+   "graph": 0.83,
+   "personal": 0.13
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "PieroSierra/SecondBrain",
+  "stars": 152,
+  "description": "A personal knowledge base that lives in this folder. Drop content in, have it organized automatically, ask questions, and get sourced answers — either through Claude Code slash commands or a local web dashboard.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.61,
+   "mcp": 0.41,
+   "docs_qa": 0.59,
+   "graph": 0.23,
+   "personal": 0.9
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "cablate/llm-atomic-wiki",
+  "stars": 149,
+  "description": "An extension of Karpathy's LLM Wiki pattern: atom layer, topic-branches, two-layer Lint. Distilled from running the pattern end-to-end.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.06,
+   "mcp": 0.12,
+   "docs_qa": 0.46,
+   "graph": 0.1,
+   "personal": 0.44
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "bybit-exchange/kaas",
+  "stars": 149,
+  "description": "Turn scattered notes, docs and transcripts into a queryable Markdown wiki — an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.56,
+   "mcp": 0.46,
+   "docs_qa": 0.66,
+   "graph": 0.08,
+   "personal": 0.34
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "sirmews/mcp-pinecone",
+  "stars": 149,
+  "description": "Model Context Protocol server to allow for reading and writing from Pinecone. Rudimentary RAG",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.08,
+   "mcp": 0.91,
+   "docs_qa": 0.52,
+   "graph": 0.05,
+   "personal": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Francis1998/scholar-rag-agent",
+  "stars": 149,
+  "description": "Local-first scientific literature RAG with quote-anchored evidence annotations, human paper screening, frozen provenance, and model-free research worksheets.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.24,
+   "mcp": 0.3,
+   "docs_qa": 0.85,
+   "graph": 0.74,
+   "personal": 0.1
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "MehmetGoekce/llm-wiki",
+  "stars": 147,
+  "description": "Build Karpathy's LLM Wiki with Claude Code. L1/L2 cache architecture. Logseq + Obsidian support.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.07,
+   "mcp": 0.52,
+   "docs_qa": 0.5,
+   "graph": 0.78,
+   "personal": 0.79
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "JetXu-LLM/DocMason",
+  "stars": 147,
+  "description": "DocMason is a repo-native agent that turns your complex office files into a local LLM knowledge base and your second brain. The repo is the app. Codex is the runtime.",
+  "scores": {
+   "llm_wiki": 0.13,
+   "rag_platform": 0.14,
+   "mcp": 0.54,
+   "docs_qa": 0.76,
+   "graph": 0.12,
+   "personal": 0.6
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "jztan/pdf-mcp",
+  "stars": 147,
+  "description": "MCP server that lets Claude Code and other AI agents read and search large PDFs, one file or a whole folder: agentic RAG with hybrid semantic + keyword search, selective page reads, tables, images, OCR, chart data, and multi-column/CJK layouts.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.13,
+   "mcp": 0.96,
+   "docs_qa": 0.92,
+   "graph": 0.04,
+   "personal": 0.06
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nashsu/llm_wiki_skill",
+  "stars": 146,
+  "description": "",
+  "scores": {
+   "llm_wiki": 0.43,
+   "rag_platform": 0.11,
+   "mcp": 0.94,
+   "docs_qa": 0.63,
+   "graph": 0.69,
+   "personal": 0.27
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "kothari-nikunj/llm-wiki",
+  "stars": 145,
+  "description": "Personal Wiki",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.29,
+   "mcp": 0.14,
+   "docs_qa": 0.57,
+   "graph": 0.11,
+   "personal": 0.95
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "psinetron/echoes-vault-codex",
+  "stars": 143,
+  "description": "Persistent memory plugin for Codex. Obsidian-style knowledge base that survives across sessions",
+  "scores": {
+   "llm_wiki": 0.8,
+   "rag_platform": 0.08,
+   "mcp": 0.54,
+   "docs_qa": 0.59,
+   "graph": 0.08,
+   "personal": 0.29
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Ciao1019/Petrichor",
+  "stars": 142,
+  "description": "A self-hosted knowledge platform for humans and AI agents — publish wikis, blogs, and portable Agent Skills.",
+  "scores": {
+   "graph": 0.86,
+   "personal": 0.29,
+   "llm_wiki": 0.83,
+   "rag_platform": 0.91,
+   "mcp": 0.44,
+   "docs_qa": 0.68
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "Mark393295827/third-brain-v7-skills",
+  "stars": 140,
+  "description": "agent wiki +engineering skills",
+  "scores": {
+   "personal": 0.46,
+   "llm_wiki": 0.94,
+   "rag_platform": 0.12,
+   "mcp": 0.59,
+   "docs_qa": 0.51,
+   "graph": 0.87
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "madarco/ragrabbit",
+  "stars": 136,
+  "description": "Open Source, Self-Hosted, AI Search and LLM.txt for your website",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.7,
+   "mcp": 0.48,
+   "docs_qa": 0.68,
+   "graph": 0.07,
+   "personal": 0.06
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "bitsofchris/openaugi",
+  "stars": 133,
+  "description": " Human memory, for agents. Scalable, private, personal knowledge base for any LLM provider.",
+  "scores": {
+   "llm_wiki": 0.46,
+   "rag_platform": 0.26,
+   "mcp": 0.79,
+   "docs_qa": 0.61,
+   "graph": 0.86,
+   "personal": 0.56
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ctxr-dev/llm-wiki-memory",
+  "stars": 130,
+  "description": "Local, git-versioned memory for AI coding agents. No RAG, no Docker, no external service. Capture, compile, recall over a local LLM wiki with on-device embeddings and an MCP server.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.07,
+   "mcp": 0.91,
+   "docs_qa": 0.56,
+   "graph": 0.05,
+   "personal": 0.62
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "NimaChu/my-wiki-skill",
+  "stars": 130,
+  "description": "Agent Skill for building evidence-backed Markdown knowledge bases with zero-cost setup, image-aware capture, automatic wiki maintenance, and an interactive knowledge graph—without requiring a RAG stack or Obsidian.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.09,
+   "mcp": 0.87,
+   "docs_qa": 0.64,
+   "graph": 0.95,
+   "personal": 0.85
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "aaronsb/knowledge-graph-system",
+  "stars": 128,
+  "description": "Kappa Graph — κ(G). A semantic knowledge graph where knowledge has weight. Extracts concepts, measures grounding strength, preserves disagreement, traces everything to source.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.44,
+   "mcp": 0.59,
+   "docs_qa": 0.69,
+   "graph": 0.98,
+   "personal": 0.16
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "frankchu91/mindbase-llm-wiki",
+  "stars": 126,
+  "description": "Karpathy's LLM Wiki idea as a product — an AI that builds and maintains a markdown wiki from your notes and sources. MCP server + web UI, runs on free local models (Ollama), no API key needed. MIT.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.05,
+   "mcp": 0.4,
+   "docs_qa": 0.6,
+   "graph": 0.1,
+   "personal": 0.94
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "uudam42/agent-memory-engine",
+  "stars": 126,
+  "description": "Memory Engine is a local-first MCP server that gives coding agents persistent, evidence-backed project memory. It automatically builds a project knowledge base, retrieves relevant architecture, constraints, incidents, and source context before complex tasks, and retains verified lessons after successful work. ",
+  "scores": {
+   "rag_platform": 0.21,
+   "mcp": 0.94,
+   "docs_qa": 0.56,
+   "graph": 0.24,
+   "personal": 0.14,
+   "llm_wiki": 0.18
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "guhcostan/claude-mega-brain",
+  "stars": 126,
+  "description": "OKF-powered knowledge context for Claude Code — injects your project's knowledge base at every session",
+  "scores": {
+   "llm_wiki": 0.13,
+   "rag_platform": 0.08,
+   "mcp": 0.45,
+   "docs_qa": 0.78,
+   "graph": 0.11,
+   "personal": 0.23
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "serradura/okf-gem",
+  "stars": 126,
+  "description": "Open Knowledge Format for coding agents. Author, validate, lint, search, and visualize portable Markdown knowledge bundles. The okf gem carries the agent skill, CLI, Ruby library, and an interactive graph; okf-mcp serves the same bundles to any MCP host. Docker and Claude Code plugin included, 100% local.",
+  "scores": {
+   "llm_wiki": 0.85,
+   "rag_platform": 0.1,
+   "mcp": 0.55,
+   "docs_qa": 0.61,
+   "graph": 0.84,
+   "personal": 0.11
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "radimsem/remindb",
+  "stars": 124,
+  "description": "An agentic memory database that cuts session tokens by 82–99%. One portable SQLite file — your agent's memory, anywhere.",
+  "scores": {
+   "llm_wiki": 0.22,
+   "rag_platform": 0.17,
+   "mcp": 0.94,
+   "docs_qa": 0.54,
+   "graph": 0.87,
+   "personal": 0.69
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "NimaChu/my-wiki",
+  "stars": 124,
+  "description": "Local-first AI knowledge app and Agent Skill with evidence-backed Wiki, an interactive knowledge universe, Viki Q&A, and shareable knowledge galaxies.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.57,
+   "mcp": 0.7,
+   "docs_qa": 0.68,
+   "graph": 0.95,
+   "personal": 0.87
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Mark393295827/third-brain-v5-skills",
+  "stars": 123,
+  "description": "agent wiki",
+  "scores": {
+   "llm_wiki": 0.93,
+   "rag_platform": 0.11,
+   "mcp": 0.52,
+   "docs_qa": 0.51,
+   "graph": 0.83,
+   "personal": 0.45
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "songzhuozhu/obsidian-llm-wiki",
+  "stars": 122,
+  "description": "Turn your LLM into a wiki maintainer. Inspired by Karpathy's LLM Wiki. Built for Obsidian, Claude Code & Codex. | 让   LLM 成为你的 wiki 维护者。受 Karpathy 的 LLM Wiki 启发。面向 Obsidian、Claude Code 和 Codex 构建。",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.08,
+   "mcp": 0.4,
+   "docs_qa": 0.57,
+   "graph": 0.55,
+   "personal": 0.55
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "AyanbekDos/memoriki",
+  "stars": 122,
+  "description": "Memoriki - LLM Wiki + MemPalace. Personal knowledge base with real memory.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.11,
+   "mcp": 0.28,
+   "docs_qa": 0.53,
+   "graph": 0.9,
+   "personal": 0.87
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ArihantDeva/heimdall",
+  "stars": 121,
+  "description": "A lightweight CPU only memory approach with ranked retrieval. Simple, yet effective.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.17,
+   "mcp": 0.73,
+   "docs_qa": 0.5,
+   "graph": 0.84,
+   "personal": 0.38
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "BingoWon/apple-rag-mcp",
+  "stars": 119,
+  "description": " MCP server providing AI agents with instant access to Apple developer documentation via RAG",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.13,
+   "mcp": 0.94,
+   "docs_qa": 0.86,
+   "graph": 0.06,
+   "personal": 0.04
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "zilliztech/mfs",
+  "stars": 119,
+  "description": "A context harness for AI agents: all your scattered context — code, memory, docs, databases, SaaS — in one searchable, browsable, file-like interface.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.41,
+   "mcp": 0.83,
+   "docs_qa": 0.58,
+   "graph": 0.08,
+   "personal": 0.19
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "SpillwaveSolutions/agent-brain",
+  "stars": 119,
+  "description": "Local-first RAG memory for AI agents: hybrid + GraphRAG search, MCP server with OAuth 2.1, plugin for Claude Code / OpenCode / Codex.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.39,
+   "mcp": 0.91,
+   "docs_qa": 0.8,
+   "graph": 0.95,
+   "personal": 0.15
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "HiAi-gg/docsmint",
+  "stars": 118,
+  "description": "Open-source knowledge base for people and AI agents. Rich-text editing, hybrid search, GraphRAG, and MCP. Self-host with Docker or use DocsMint Cloud.",
+  "scores": {
+   "llm_wiki": 0.17,
+   "rag_platform": 0.81,
+   "mcp": 0.69,
+   "docs_qa": 0.68,
+   "graph": 0.9,
+   "personal": 0.43
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "moyangzhan/langchain4j-aideepin-admin",
+  "stars": 118,
+  "description": "JAVA版本的检索增强生成(RAG)项目，包括知识库、搜索 | JAVA version of retrieval enhancement generation(RAG) project ,including knowledge base, search",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.54,
+   "mcp": 0.21,
+   "docs_qa": 0.63,
+   "graph": 0.08,
+   "personal": 0.08
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "praneybehl/llm-wiki-plugin",
+  "stars": 116,
+  "description": "Andrej Karpathy's LLM Wiki pattern as a skill & Claude Code plugin — turn accumulated sources into a self-maintaining, scalable markdown knowledge base.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.1,
+   "mcp": 0.92,
+   "docs_qa": 0.78,
+   "graph": 0.33,
+   "personal": 0.84
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Pengc-Sun/enterprise-rag-knowledge-base",
+  "stars": 115,
+  "description": "Enterprise-oriented RAG knowledge base system",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.9,
+   "mcp": 0.13,
+   "docs_qa": 0.75,
+   "graph": 0.04,
+   "personal": 0.06
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "gmickel/gno",
+  "stars": 115,
+  "description": "Local AI-powered document search and editing with first-in-class hybrid retrieval, LLM answers, WebUI, REST API and MCP support for AI clients.",
+  "scores": {
+   "llm_wiki": 0.17,
+   "rag_platform": 0.87,
+   "mcp": 0.8,
+   "docs_qa": 0.83,
+   "graph": 0.71,
+   "personal": 0.45
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "SherwinQ/karpathy-wiki",
+  "stars": 113,
+  "description": "基于 [Andrej Karpathy]提出的 [LLM Wiki 模式]构建的 Agent Skill，通过四阶段流水线将碎片化信息转化为结构化、可检索、持续增长的个人知识库。",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.09,
+   "mcp": 0.87,
+   "docs_qa": 0.56,
+   "graph": 0.55,
+   "personal": 0.74
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "dimknaf/braindb",
+  "stars": 110,
+  "description": "An \"LLM wiki\" upgraded to a real database — typed entities, graph relations, HTTP API, and a built-in natural-language agent.",
+  "scores": {
+   "llm_wiki": 0.17,
+   "rag_platform": 0.17,
+   "mcp": 0.46,
+   "docs_qa": 0.37,
+   "graph": 0.98,
+   "personal": 0.43
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ekadetov/llm-wiki",
+  "stars": 108,
+  "description": "LLM Wiki — Claude Code plugin for persistent, compounding knowledge bases in Obsidian",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.11,
+   "mcp": 0.6,
+   "docs_qa": 0.63,
+   "graph": 0.4,
+   "personal": 0.62
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "abubakarsiddik31/axiom-wiki",
+  "stars": 108,
+  "description": "Inspired by Andrej Karpathy's llm-wiki — the idea that LLMs should maintain a persistent, compounding wiki rather than re-derive answers from raw sources on every query. https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f ",
+  "scores": {
+   "docs_qa": 0.75,
+   "graph": 0.63,
+   "personal": 0.51,
+   "llm_wiki": 0.96,
+   "rag_platform": 0.13,
+   "mcp": 0.62
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "flamehaven01/Flamehaven-Filesearch",
+  "stars": 106,
+  "description": "Open-source semantic document search (RAG) engine with FastAPI and instant self-hosted deployment",
+  "scores": {
+   "llm_wiki": 0.14,
+   "rag_platform": 0.77,
+   "mcp": 0.26,
+   "docs_qa": 0.85,
+   "graph": 0.11,
+   "personal": 0.1
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "mtrnix/metronix-memory",
+  "stars": 106,
+  "description": "Self-hosted AI agent memory — MCP memory server with durable recall for agents",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.34,
+   "mcp": 0.94,
+   "docs_qa": 0.47,
+   "graph": 0.95,
+   "personal": 0.2
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Nazm-AI/open-hikmah",
+  "stars": 105,
+  "description": "An AI-powered Quran knowledge graph — place verses on a canvas and discover thematic, linguistic, and theological connections.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.22,
+   "mcp": 0.07,
+   "docs_qa": 0.5,
+   "graph": 0.97,
+   "personal": 0.08
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "jackwener/llm-wiki",
+  "stars": 104,
+  "description": "Agent-native persistent knowledge management — compile knowledge once, query forever.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.04,
+   "mcp": 0.47,
+   "docs_qa": 0.47,
+   "graph": 0.1,
+   "personal": 0.7
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "toolboxmd/karpathy-wiki",
+  "stars": 104,
+  "description": "Karpathy Wiki - Claude Code skills for building persistent, compounding knowledge bases. Based on Andrej Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.08,
+   "mcp": 0.56,
+   "docs_qa": 0.39,
+   "graph": 0.16,
+   "personal": 0.53
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "joungminsung/OpenDocuments",
+  "stars": 103,
+  "description": "Self-hosted RAG platform for AI document search across GitHub, Notion, Google Drive, local files, and web sources with citations.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.94,
+   "mcp": 0.73,
+   "docs_qa": 0.76,
+   "graph": 0.05,
+   "personal": 0.07
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "songs-aaa/shared-memory-vault",
+  "stars": 102,
+  "description": "A memory governance engine for multi-agent cloud knowledge bases — one knowledge base shared by every agent and every device, with consistency guaranteed. Pure Markdown, nine governance automations, zero dependencies.",
+  "scores": {
+   "llm_wiki": 0.74,
+   "rag_platform": 0.1,
+   "mcp": 0.48,
+   "docs_qa": 0.39,
+   "graph": 0.12,
+   "personal": 0.26
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "quanta-quest/quanta-quest",
+  "stars": 102,
+  "description": "AI-powered universal search for all your personal data, tailored just for you.  Goal:The world's first product with \"edge-side LLMs + consumer data localization\" as its core development direction.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.67,
+   "mcp": 0.17,
+   "docs_qa": 0.53,
+   "graph": 0.07,
+   "personal": 0.5
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "doum1004/llmwiki-cli",
+  "stars": 101,
+  "description": "CLI tool for LLM agents to build and maintain personal knowledge bases",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.09,
+   "mcp": 0.54,
+   "docs_qa": 0.66,
+   "graph": 0.7,
+   "personal": 0.26
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "plasma-ai/wiki",
+  "stars": 101,
+  "description": "Indexed knowledge bases with command-line tools for agents.",
+  "scores": {
+   "llm_wiki": 0.74,
+   "rag_platform": 0.27,
+   "mcp": 0.77,
+   "docs_qa": 0.66,
+   "graph": 0.08,
+   "personal": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "NulightJens/ai-second-brain-skills",
+  "stars": 100,
+  "description": "Two Claude Code skills for building a Karpathy-style LLM wiki — a compounding AI second brain. Install: git clone https://github.com/NulightJens/ai-second-brain-skills.git && ln -s $(pwd)/ai-second-brain-skills/llm-wiki-setup ~/.claude/skills/llm-wiki-setup && ln -s $(pwd)/ai-second-brain-skills/wiki-self-heal ~/.claude/skills/wiki-self-heal",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.05,
+   "mcp": 0.64,
+   "docs_qa": 0.49,
+   "graph": 0.18,
+   "personal": 0.46
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Albertchamberlain/Awesome-OKF",
+  "stars": 100,
+  "description": "OKF (Open Knowledge Format) — curated catalog of tools, plugins, skills, proposals, and docs for agent-friendly knowledge. YAML-driven, agent-searchable, MCP-ready.",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.09,
+   "mcp": 0.82,
+   "docs_qa": 0.46,
+   "graph": 0.15,
+   "personal": 0.15
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "klemensgc/modular-context-obsidian-plugin",
+  "stars": 99,
+  "description": "Modular Context | Karpathy LLM Knowledge Base + Gmail & G-Cal — multi-account MCP server for Claude Code, encrypted local-first",
+  "scores": {
+   "llm_wiki": 0.89,
+   "rag_platform": 0.11,
+   "mcp": 0.84,
+   "docs_qa": 0.39,
+   "graph": 0.46,
+   "personal": 0.7
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "MarcoPorcellato/matryca-plumber",
+  "stars": 98,
+  "description": "Local-first AI daemon for Logseq OG: background semantic indexing, link hygiene, and agent-ready CLI/MCP — edits Markdown on disk (no cloud, no Logseq API). Karpathy LLM-Wiki inspired.",
+  "scores": {
+   "llm_wiki": 0.57,
+   "rag_platform": 0.17,
+   "mcp": 0.7,
+   "docs_qa": 0.49,
+   "graph": 0.74,
+   "personal": 0.3
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "aws-samples/aws-agentic-document-assistant",
+  "stars": 98,
+  "description": "An agent based LLM assistant that extends RAG with batch entity extraction and SQL querying to improve performance on multi-step and analytical questions.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.3,
+   "mcp": 0.24,
+   "docs_qa": 0.71,
+   "graph": 0.08,
+   "personal": 0.04
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "Asklear/Klear-Team-Brain",
+  "stars": 98,
+  "description": "Turn your team's AI coding sessions, GitHub code, and docs into one shared, searchable memory — a self-hosted git truth store you query right from your editor over MCP.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.24,
+   "mcp": 0.72,
+   "docs_qa": 0.56,
+   "graph": 0.05,
+   "personal": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "IvenKooLab/loci",
+  "stars": 98,
+  "description": "A queryable second brain over your scattered notes and docs - hybrid retrieval (vector + BM25), section-level citations, and an MCP server so AI agents can use it. ~300 lines, no LangChain.",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.16,
+   "mcp": 0.87,
+   "docs_qa": 0.85,
+   "graph": 0.05,
+   "personal": 0.59
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "talirezun/the-curator",
+  "stars": 97,
+  "description": "Your brain, then your team's brain, then your agents' brain. Drop in documents and it compounds them into an interlinked markdown wiki you own — readable in Obsidian, synced through your own private GitHub repo. Share it with a cohort. Coding agents resume from it across sessions, models and machines.",
+  "scores": {
+   "llm_wiki": 0.86,
+   "rag_platform": 0.39,
+   "mcp": 0.36,
+   "docs_qa": 0.58,
+   "graph": 0.93,
+   "personal": 0.66
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "xingranya/GitHub-Stars-AI-Tools",
+  "stars": 97,
+  "description": "本地优先的 GitHub Stars AI 桌面应用，用于同步、摘要、标签、搜索和发现项目。Local-first AI desktop app for GitHub Stars.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.38,
+   "mcp": 0.06,
+   "docs_qa": 0.52,
+   "graph": 0.12,
+   "personal": 0.79
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "eleven-net-cn/llm-wiki-starter",
+  "stars": 94,
+  "description": "Create an LLM Wiki knowledge base in one command — based on Andrej Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.05,
+   "mcp": 0.13,
+   "docs_qa": 0.5,
+   "graph": 0.2,
+   "personal": 0.43
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "trapoom555/claude-paperloom",
+  "stars": 94,
+  "description": "Claude Code Plugin for Self-maintaining research knowledge graph for Claude Code + Obsidian",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.04,
+   "mcp": 0.4,
+   "docs_qa": 0.77,
+   "graph": 0.98,
+   "personal": 0.51
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "wanxueyao/MMGraphRAG",
+  "stars": 93,
+  "description": "MMGraphRAG is a multi-modal knowledge graph-based framework designed to enhance complex reasoning tasks, such as multi-modal document question-answering. It integrates text and image data into a fine-grained, structured knowledge graph, utilizing scene graphs for image data and a spectral clustering-based fusion module.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.57,
+   "mcp": 0.18,
+   "docs_qa": 0.81,
+   "graph": 0.99,
+   "personal": 0.06
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "HKUST-KnowComp/DeepRefine-Skill",
+  "stars": 92,
+  "description": "An agent skill to evolve the quality of LLM-Wiki (Graphify) at test time.",
+  "scores": {
+   "llm_wiki": 0.82,
+   "rag_platform": 0.09,
+   "mcp": 0.49,
+   "docs_qa": 0.53,
+   "graph": 0.93,
+   "personal": 0.17
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "The-AI-Alliance/semiont",
+  "stars": 92,
+  "description": "Semiont supports human+ai collaborative knowledge work.  Use it as: a Wiki, Knowledge Base, Context Graph, Semantic Layer, or Agentic Memory.",
+  "scores": {
+   "llm_wiki": 0.39,
+   "rag_platform": 0.55,
+   "mcp": 0.15,
+   "docs_qa": 0.59,
+   "graph": 0.82,
+   "personal": 0.13
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "zby/commonplace",
+  "stars": 91,
+  "description": "The theory of LLM wikis, running as one. A framework for agent-operated knowledge: typed, linked, review-gated markdown your agents execute.",
+  "scores": {
+   "graph": 0.25,
+   "personal": 0.34,
+   "llm_wiki": 0.88,
+   "rag_platform": 0.11,
+   "mcp": 0.27,
+   "docs_qa": 0.61
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "boluodaixue/paperpilot",
+  "stars": 91,
+  "description": "PaperPilot 是一个基于 LangGraph 的个人深度研究系统，通过递归 Deep Research × LLM Wiki × Obsidian，把一次性研究，沉淀为可追溯、可问答、可继续生长的长期知识。",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.19,
+   "mcp": 0.25,
+   "docs_qa": 0.68,
+   "graph": 0.35,
+   "personal": 0.64
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "skindhu/claude-deep-wiki",
+  "stars": 91,
+  "description": "🚀 基于 Claude Agent SDK 的智能代码分析工具 | AI-powered code analyzer that generates business-oriented knowledge base and PRD docs. Supports 165+ languages.",
+  "scores": {
+   "llm_wiki": 0.72,
+   "rag_platform": 0.06,
+   "mcp": 0.15,
+   "docs_qa": 0.61,
+   "graph": 0.18,
+   "personal": 0.07
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "iurykrieger/claude-bedrock",
+  "stars": 91,
+  "description": "Second Brain automation for Obsidian vaults — entity management, ingestion, compression, and sync via Claude Code skills",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.07,
+   "mcp": 0.58,
+   "docs_qa": 0.52,
+   "graph": 0.96,
+   "personal": 0.42
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "johnfkoo951/cmds-llm-wiki",
+  "stars": 90,
+  "description": "LLM Wiki template — Karpathy 3-layer pattern + Gold In Gold Out purpose gate + dual Claude Code·Codex harness (11 commands, 2 hooks, 18 web clipper templates)",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.09,
+   "mcp": 0.36,
+   "docs_qa": 0.61,
+   "graph": 0.2,
+   "personal": 0.67
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Tubo2333/obsidian-knowledge-brain",
+  "stars": 90,
+  "description": "AI agent skill that remembers every technical decision & bug fix across sessions — and learns from them. v4.0, MIT. | 跨会话记忆的AI编程助手知识大脑",
+  "scores": {
+   "llm_wiki": 0.59,
+   "rag_platform": 0.05,
+   "mcp": 0.93,
+   "docs_qa": 0.35,
+   "graph": 0.09,
+   "personal": 0.41
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "tpierrain/kenjaku",
+  "stars": 89,
+  "description": "Kenjaku is a Karpathy-style LLM wiki, reinforced where it counts with battle-tested software (including a local RAG).",
+  "scores": {
+   "llm_wiki": 0.75,
+   "rag_platform": 0.4,
+   "mcp": 0.34,
+   "docs_qa": 0.68,
+   "graph": 0.19,
+   "personal": 0.83
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "Lambenthan/empiricalwiki",
+  "stars": 89,
+  "description": "经管实证研究的 AI 知识库 — 从文献阅读到 Stata 执行，一条流水线串到底。基于 Karpathy 的 LLM-Wiki 理念，按实证研究 10 类实体（变量 / 数据集 / 模型 / 机制 / 假设 / 识别策略 / 稳健性 / 异质性 / 表格 / 论文）定制",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.21,
+   "mcp": 0.38,
+   "docs_qa": 0.7,
+   "graph": 0.95,
+   "personal": 0.71
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "seacen/omem",
+  "stars": 86,
+  "description": "OMem (Office Memory) — local-first memory that automatically ingests your real work (mail, calendar, notes, files) from where it already lives, into a Markdown wiki any AI agent can query. macOS today; Windows coming.",
+  "scores": {
+   "llm_wiki": 0.31,
+   "rag_platform": 0.11,
+   "mcp": 0.6,
+   "docs_qa": 0.5,
+   "graph": 0.06,
+   "personal": 0.41
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "georgesung/LLM-WikipediaQA",
+  "stars": 85,
+  "description": "Document Q&A on Wikipedia articles using LLMs",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.11,
+   "mcp": 0.09,
+   "docs_qa": 0.36,
+   "graph": 0.04,
+   "personal": 0.05
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "phoenix-zhou/logistics-industry-RAG",
+  "stars": 85,
+  "description": "This project is a local knowledge base \"Logistics Industry\" question-answering system based on the **RAG (Retrieval-Augmented Generation) technology**.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.37,
+   "mcp": 0.15,
+   "docs_qa": 0.84,
+   "graph": 0.03,
+   "personal": 0.08
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "byenzyme/enzyme",
+  "stars": 85,
+  "description": "Local-first compile step for knowledge bases. Save 350x cost, 1000x speed vs. frontier models",
+  "scores": {
+   "llm_wiki": 0.33,
+   "rag_platform": 0.17,
+   "mcp": 0.67,
+   "docs_qa": 0.34,
+   "graph": 0.15,
+   "personal": 0.35
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "dukesun99/Corpus2Skill",
+  "stars": 85,
+  "description": "Official Findings of EMNLP 2026 implementation of Corpus2Skill: compile a document corpus into a navigable skill hierarchy that LLM agents explore at query time, with document lookup instead of a serving-time vector-search service.",
+  "scores": {
+   "llm_wiki": 0.25,
+   "rag_platform": 0.13,
+   "mcp": 0.3,
+   "docs_qa": 0.64,
+   "graph": 0.04,
+   "personal": 0.06
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "fivetaku/llm-wiki",
+  "stars": 83,
+  "description": "raw 소스를 Claude Code가 위키로 합성·유지하는 영구 마크다운 지식베이스 템플릿 (LLM Wiki, Karpathy 패턴)",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.09,
+   "mcp": 0.28,
+   "docs_qa": 0.74,
+   "graph": 0.13,
+   "personal": 0.87
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "wfnuser/cowiki",
+  "stars": 82,
+  "description": "LLM Wiki, but multiplayer",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.26,
+   "mcp": 0.28,
+   "docs_qa": 0.51,
+   "graph": 0.17,
+   "personal": 0.17
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "vouchdev/vouch",
+  "stars": 82,
+  "description": "A git-native, review-gated knowledge base for AI agents: they propose writes, you approve them. Every claim cites a source, every change is a diff in your repo. MCP + CLI.",
+  "scores": {
+   "llm_wiki": 0.88,
+   "rag_platform": 0.14,
+   "mcp": 0.72,
+   "docs_qa": 0.43,
+   "graph": 0.21,
+   "personal": 0.6
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "kevins981/Socratic",
+  "stars": 81,
+  "description": "Socratic is a framework for building reliable vertical AI agents by letting human experts teach agents interactively, turning tacit domain knowledge into a continuously improving knowledge base.",
+  "scores": {
+   "llm_wiki": 0.29,
+   "rag_platform": 0.11,
+   "mcp": 0.15,
+   "docs_qa": 0.73,
+   "graph": 0.13,
+   "personal": 0.06
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "rohitg00/akbp",
+  "stars": 80,
+  "description": "Agent Knowledge Base Protocol.",
+  "scores": {
+   "llm_wiki": 0.86,
+   "rag_platform": 0.25,
+   "mcp": 0.54,
+   "docs_qa": 0.51,
+   "graph": 0.81,
+   "personal": 0.12
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "kangise/ecommerce-ai-skills",
+  "stars": 80,
+  "description": "Cross-border e-commerce AI knowledge base, read by people and installed by agents: 69 trilingual guides, 878 prompts, a 100-entity / 322-constraint ontology, and 9 skills as a Claude Code plugin or over MCP. Factual claims are dated and CI-verified. CC0.",
+  "scores": {
+   "llm_wiki": 0.42,
+   "rag_platform": 0.17,
+   "mcp": 0.76,
+   "docs_qa": 0.53,
+   "graph": 0.8,
+   "personal": 0.13
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "vakovalskii/ontoship",
+  "stars": 80,
+  "description": "md+git knowledge base: FTS5 search (bm25+trigram/fuzzy), HTML+graph, code-ontology linter, Claude Code plugin",
+  "scores": {
+   "llm_wiki": 0.84,
+   "rag_platform": 0.11,
+   "mcp": 0.67,
+   "docs_qa": 0.77,
+   "graph": 0.24,
+   "personal": 0.23
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "gavishap/omnia-vault",
+  "stars": 79,
+  "description": "Omnia Vault - the all-in-one project brain: an Obsidian LLM wiki, Graphify code graphs, a living plan that triages new videos against itself, and a Claude Code ⇄ Codex relay. Everything your project knows, in one clonable vault.",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.12,
+   "mcp": 0.27,
+   "docs_qa": 0.57,
+   "graph": 0.94,
+   "personal": 0.44
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "7xuanlu/wenlan",
+  "stars": 79,
+  "description": "Wenlan is a knowledge base for the AI-native age. Your AI agents capture what they learn, Wenlan keeps it current and distills it into source-cited wiki pages you can trust",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.46,
+   "mcp": 0.8,
+   "docs_qa": 0.56,
+   "graph": 0.58,
+   "personal": 0.8
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "streamient/streamient",
+  "stars": 79,
+  "description": "Open source memory infrastructure for AI and humans. Turn scattered knowledge into AI-ready context across Claude, Cursor, ChatGPT, and any MCP client.",
+  "scores": {
+   "llm_wiki": 0.17,
+   "rag_platform": 0.41,
+   "mcp": 0.78,
+   "docs_qa": 0.54,
+   "graph": 0.93,
+   "personal": 0.34
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "owenliang/llm-wiki",
+  "stars": 78,
+  "description": "The implementation of karpathy/llm-wiki.md",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.09,
+   "mcp": 0.33,
+   "docs_qa": 0.64,
+   "graph": 0.29,
+   "personal": 0.52
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "moonlarry/awesome-llm-paper-wiki",
+  "stars": 78,
+  "description": "由 LLM Agent 驱动的本地 Markdown 文献库管理与学术综述自动化系统",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.11,
+   "mcp": 0.76,
+   "docs_qa": 0.82,
+   "graph": 0.23,
+   "personal": 0.69
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "tuirk/Kompl",
+  "stars": 78,
+  "description": "A compounding LLM-wiki, best fit as a personal second brain that organizes and updates itself as it grows, zero upkeep.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.59,
+   "mcp": 0.69,
+   "docs_qa": 0.63,
+   "graph": 0.93,
+   "personal": 0.89
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "rav4nn/youtube-rag-scraper",
+  "stars": 77,
+  "description": "Scrape YouTube videos, extract transcripts, and build a semantic search AI knowledge base using RAG and FAISS.",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.25,
+   "mcp": 0.16,
+   "docs_qa": 0.66,
+   "graph": 0.03,
+   "personal": 0.07
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "PangHu1020/scholar-rag",
+  "stars": 77,
+  "description": "A beginner-friendly and extensible Agentic RAG project that demonstrates the full pipeline of document parsing, retrieval, reranking, workflow orchestration, tool calling, and answer generation, designed for both learning and secondary development.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.59,
+   "mcp": 0.22,
+   "docs_qa": 0.94,
+   "graph": 0.05,
+   "personal": 0.06
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "ndjordjevic/pin-llm-wiki",
+  "stars": 76,
+  "description": "Skill for Claude, Cursor & Copilot that automates the Karpathy LLM Wiki workflow: ingest web, GitHub, and YouTube URLs into a well-structured, citable, cross-referenced knowledge base with automatic linting.",
+  "scores": {
+   "rag_platform": 0.07,
+   "mcp": 0.59,
+   "docs_qa": 0.58,
+   "graph": 0.14,
+   "personal": 0.47,
+   "llm_wiki": 0.95
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "SenolIsci/mykg",
+  "stars": 75,
+  "description": "MyKG Knowledge Graph Engine: Turn raw files into knowledge graphs with induced ontology",
+  "scores": {
+   "llm_wiki": 0.63,
+   "rag_platform": 0.15,
+   "mcp": 0.64,
+   "docs_qa": 0.65,
+   "graph": 0.98,
+   "personal": 0.2
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "nozomio-labs/nia",
+  "stars": 73,
+  "description": "Nia is a context-augmentation layer for agents, primarily designed for coding agents. It provides them with an up-to-date knowledge base and improves their performance by 27%.",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.26,
+   "mcp": 0.91,
+   "docs_qa": 0.73,
+   "graph": 0.12,
+   "personal": 0.12
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "zcag/tela",
+  "stars": 73,
+  "description": "Open-source, self-hostable markdown team wiki with a built-in MCP server — so AI agents read, write, and search your docs as first-class teammates. Live multiplayer, semantic + full-text search. Go + PostgreSQL + React/Milkdown.",
+  "scores": {
+   "llm_wiki": 0.85,
+   "rag_platform": 0.48,
+   "mcp": 0.49,
+   "docs_qa": 0.66,
+   "graph": 0.1,
+   "personal": 0.07
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Geeksfino/kb-mcp-server",
+  "stars": 72,
+  "description": "Build a knowledge base into a tar.gz and give it to this MCP server, and it is ready to serve.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.41,
+   "mcp": 0.92,
+   "docs_qa": 0.74,
+   "graph": 0.92,
+   "personal": 0.1
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "kbrisso/byte-vision",
+  "stars": 72,
+  "description": "Byte-Vision is a privacy-first document intelligence platform that transforms static documents into an interactive, searchable knowledge base. Built on Elasticsearch with RAG (Retrieval-Augmented Generation) capabilities, it offers document parsing, OCR processing, and a modern UI.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.91,
+   "mcp": 0.15,
+   "docs_qa": 0.79,
+   "graph": 0.05,
+   "personal": 0.24
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "bahdotsh/indxr",
+  "stars": 72,
+  "description": "A fast codebase indexer and knowledge wiki for AI agents.",
+  "scores": {
+   "docs_qa": 0.67,
+   "graph": 0.31,
+   "personal": 0.11,
+   "llm_wiki": 0.88,
+   "rag_platform": 0.19,
+   "mcp": 0.93
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "krokozyab/Agent-Fusion",
+  "stars": 72,
+  "description": "Agent Fusion is a local RAG semantic search engine that gives AI agents instant access to your code, documentation (Markdown, Word, PDF). Query    your codebase from code agents without hallucinations. Runs 100% locally, includes a lightweight embedding model, and optional multi-agent task    orchestration. Deploy with a single JAR",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.26,
+   "mcp": 0.94,
+   "docs_qa": 0.89,
+   "graph": 0.83,
+   "personal": 0.06
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "sametbrr/llm-wiki-manager",
+  "stars": 71,
+  "description": "Skill for a persistent LLM-managed wiki — the LLM writes and cross-references while you curate sources.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.04,
+   "mcp": 0.78,
+   "docs_qa": 0.52,
+   "graph": 0.35,
+   "personal": 0.83
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "vanillaflava/llm-wiki-skills",
+  "stars": 69,
+  "description": "Turn your markdown vault into a compounding knowledge wiki (Karpathy inspired). Six agent skills - knowledge grows with every conversation. Works with Obsidian, Logseq, etc. or just folders on your local drive. Compiled memory for your LLM sessions. Crossplatform. GUI install on Claude Desktop, no terminal, no code.",
+  "scores": {
+   "graph": 0.13,
+   "personal": 0.61,
+   "llm_wiki": 0.98,
+   "rag_platform": 0.05,
+   "mcp": 0.77,
+   "docs_qa": 0.33
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Benboerba620/karpathy-claude-wiki",
+  "stars": 69,
+  "description": "Karpathy-style personal wiki for LLMs - markdown + frontmatter, no vector DB, no RAG. Built for Claude Code, works with any file-editing AI agent.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.02,
+   "mcp": 0.11,
+   "docs_qa": 0.43,
+   "graph": 0.1,
+   "personal": 0.84
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "mitre-atlas/atlas-knowledge-base-agent",
+  "stars": 69,
+  "description": "The ATLAS Agent helps answer questions about the MITRE ATLAS Framework by leveraging the ATLAS Knowledge Graph.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.27,
+   "mcp": 0.78,
+   "docs_qa": 0.57,
+   "graph": 0.93,
+   "personal": 0.05
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Loukie7/Datacapsule",
+  "stars": 69,
+  "description": "High precision industrial grade RAG solution based on knowledge graph multi-channel recall",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.77,
+   "mcp": 0.29,
+   "docs_qa": 0.37,
+   "graph": 0.98,
+   "personal": 0.09
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "smixs/autograph",
+  "stars": 68,
+  "description": "Schema-as-code memory for AI agents in Obsidian: typed cards, entity dedup, link repair, update-in-place, and Ebbinghaus decay. Plain Markdown you own — a Claude Code skill.",
+  "scores": {
+   "llm_wiki": 0.83,
+   "rag_platform": 0.04,
+   "mcp": 0.58,
+   "docs_qa": 0.49,
+   "graph": 0.83,
+   "personal": 0.57
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "hassancs91/brainoutside",
+  "stars": 68,
+  "description": "Self-hosted memory server for AI agents. Your brain is a git repo, served over MCP and REST.",
+  "scores": {
+   "llm_wiki": 0.39,
+   "rag_platform": 0.08,
+   "mcp": 0.84,
+   "docs_qa": 0.55,
+   "graph": 0.04,
+   "personal": 0.74
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "frankchu91/mindbase",
+  "stars": 68,
+  "description": "Karpathy's LLM Wiki idea as a product — an AI that builds and maintains a markdown wiki from your notes and sources. MCP server + web UI, runs on free local models (Ollama), no API key needed. MIT.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.06,
+   "mcp": 0.42,
+   "docs_qa": 0.61,
+   "graph": 0.1,
+   "personal": 0.93
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "microsoft/llmwiki",
+  "stars": 67,
+  "description": "VS Code extension for a self-maintaining personal wiki — the LLM summarizes, cross-references, and files every source for you",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.05,
+   "mcp": 0.26,
+   "docs_qa": 0.59,
+   "graph": 0.36,
+   "personal": 0.78
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "liangdabiao/deepseek-v4-flash-vision-rag",
+  "stars": 67,
+  "description": "DeepSeek V4-Flash Vision RAG 让 AI 真正\"看懂\" 一份 PDF，然后你对它提问：它告诉你答案、答案在第几页， 并把那一页的原图展示出来给你核对。  基于 DeepSeek 视觉大模型 deepseek-v4-flash-vision-exp 的 PDF 深度问答与检索 （vision RAG）agent skill。支持文字版 PDF，也支持扫描版；能看懂 图表、表格、代码块、公式，而不只是认字。",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.14,
+   "mcp": 0.69,
+   "docs_qa": 0.96,
+   "graph": 0.03,
+   "personal": 0.09
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "aws-samples/bedrock-kb-rag-workshop",
+  "stars": 66,
+  "description": "Bedrock Knowledge Base and Agents for Retrieval Augmented Generation (RAG)",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.07,
+   "mcp": 0.11,
+   "docs_qa": 0.73,
+   "graph": 0.03,
+   "personal": 0.03
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "dkedar7/embedchain-fastdash",
+  "stars": 66,
+  "description": "Chat with your knowledge base — a conversational RAG agent (LangGraph + OpenRouter) built on Fast Dash's native chat mode. A modern rebuild of the original Embedchain demo.",
+  "scores": {
+   "llm_wiki": 0.02,
+   "rag_platform": 0.41,
+   "mcp": 0.19,
+   "docs_qa": 0.76,
+   "graph": 0.04,
+   "personal": 0.17
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "cybaea/obsidian-vault-intelligence",
+  "stars": 66,
+  "description": "Obsidian vault intelligence",
+  "scores": {
+   "llm_wiki": 0.63,
+   "rag_platform": 0.11,
+   "mcp": 0.19,
+   "docs_qa": 0.48,
+   "graph": 0.95,
+   "personal": 0.37
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "liangdabiao/deepseek-v4-flash-vision-video-rag",
+  "stars": 66,
+  "description": "DeepSeek V4-Flash Vision Video RAG 让 AI 真正\"看懂\" 一段视频，然后你对它提问：它告诉你答案、答案发生在 第几分几秒，并切出那一段的可播放片段和关键帧给你核对。  基于 DeepSeek 视觉大模型 deepseek-v4-flash-vision-exp 的视频理解与问答 （video RAG）agent skill。先按时间轴抽帧阅读、建立索引（一次性），再对问题做 本地粗筛 → 视觉精排 → 深读回答；回答带 [MM:SS] 时间戳引用，自动生成 自包含 HTML 预览页（内嵌可播放片段 + 关键帧 + 答案），双击浏览器即看。",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.12,
+   "mcp": 0.71,
+   "docs_qa": 0.26,
+   "graph": 0.04,
+   "personal": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "LeoBR84p/wiki_llm",
+  "stars": 65,
+  "description": "",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.32,
+   "mcp": 0.18,
+   "docs_qa": 0.72,
+   "graph": 0.07,
+   "personal": 0.13
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "hoadoan1997/llm-knowledge-base",
+  "stars": 65,
+  "description": "LLM-powered personal knowledge base — raw articles → compiled wiki → Q&A + outputs. Claude writes, you curate.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.15,
+   "mcp": 0.23,
+   "docs_qa": 0.59,
+   "graph": 0.2,
+   "personal": 0.93
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "MihaiBuilds/memory-vault",
+  "stars": 65,
+  "description": "A local-first AI memory system with hybrid search, MCP integration, and a knowledge graph.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.73,
+   "mcp": 0.58,
+   "docs_qa": 0.58,
+   "graph": 0.95,
+   "personal": 0.54
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "tashisleepy/knowledge-engine",
+  "stars": 64,
+  "description": "The bridge between human-readable wikis and machine-speed memory. Built on Karpathys LLM Wiki pattern + Memvid.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.63,
+   "mcp": 0.43,
+   "docs_qa": 0.66,
+   "graph": 0.19,
+   "personal": 0.74
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "oliver-kriska/scribe",
+  "stars": 64,
+  "description": "LLM-managed personal knowledge base. Auto-extracts from git repos, Claude Code sessions (via ccrider FTS5), and iMessage bookmarks. Cross-project, qmd-indexed, runs on cron",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.09,
+   "mcp": 0.27,
+   "docs_qa": 0.43,
+   "graph": 0.13,
+   "personal": 0.78
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "shredEngineer/Archive-Agent",
+  "stars": 64,
+  "description": "Find your files with natural language and ask questions.",
+  "scores": {
+   "docs_qa": 0.77,
+   "graph": 0.05,
+   "personal": 0.31,
+   "llm_wiki": 0.05,
+   "rag_platform": 0.34,
+   "mcp": 0.75
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "upupmake/general-rag-system",
+  "stars": 63,
+  "description": "A RAG (Retrieval-Augmented Generation) knowledge base system with Vue.js frontend, Spring Boot backend, and FastAPI LLM service.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.91,
+   "mcp": 0.54,
+   "docs_qa": 0.79,
+   "graph": 0.03,
+   "personal": 0.07
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "tomohiro-owada/devrag",
+  "stars": 63,
+  "description": "Markdown vector search MCP server for Claude Code. Natural language search for markdown files using multilingual-e5-small embeddings.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.16,
+   "mcp": 0.96,
+   "docs_qa": 0.69,
+   "graph": 0.03,
+   "personal": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ThreatRecall/zettelforge",
+  "stars": 63,
+  "description": "Agentic memory for CTI in Python — STIX knowledge graphs, threat-actor alias resolution, offline-first RAG, MCP server for Claude Code and LangChain agents",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.24,
+   "mcp": 0.9,
+   "docs_qa": 0.59,
+   "graph": 0.98,
+   "personal": 0.16
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "NatsuFox/Tapestry",
+  "stars": 62,
+  "description": "Tapestry - 基于 Agent Skill Bundle 的轻量级书签知识库",
+  "scores": {
+   "llm_wiki": 0.67,
+   "rag_platform": 0.11,
+   "mcp": 0.7,
+   "docs_qa": 0.51,
+   "graph": 0.09,
+   "personal": 0.62
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "hermes-labs-ai/zer0dex",
+  "stars": 62,
+  "description": "A local dual-layer memory pattern for AI agents: a compact, human-readable markdown index paired with semantic retrieval from a local vector store, queried before each message. For cross-project recall where flat memory files or vector-only RAG fall short. Local-first. Reference implementation.",
+  "scores": {
+   "llm_wiki": 0.13,
+   "rag_platform": 0.2,
+   "mcp": 0.54,
+   "docs_qa": 0.52,
+   "graph": 0.06,
+   "personal": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "iamsashank09/llm-wiki-kit",
+  "stars": 61,
+  "description": "Stop re-explaining your research to your AI agent. Persistent, LLM-maintained wikis that compound over time. Drop PDFs, URLs, YouTube - your agent remembers forever. Based on Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.14,
+   "mcp": 0.93,
+   "docs_qa": 0.66,
+   "graph": 0.42,
+   "personal": 0.8
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "hellohejinyu/llm-wiki",
+  "stars": 61,
+  "description": "An LLM-powered personal wiki CLI.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.24,
+   "mcp": 0.24,
+   "docs_qa": 0.58,
+   "graph": 0.19,
+   "personal": 0.8
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "nader0913/ocpp-rag",
+  "stars": 61,
+  "description": "MCP server with RAG knowledge base for OCPP 1.6, OCPP 2.0.1, and EV charging standards",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.13,
+   "mcp": 0.97,
+   "docs_qa": 0.91,
+   "graph": 0.06,
+   "personal": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Soren-ABT/dsh-knowledge",
+  "stars": 61,
+  "description": "Knowledge base & RAG plugin for DeepSeek Harness (DSH): chunking, local embeddings, hybrid search, management panel",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.45,
+   "mcp": 0.17,
+   "docs_qa": 0.85,
+   "graph": 0.04,
+   "personal": 0.13
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "tobocop2/lilbee",
+  "stars": 61,
+  "description": "The whole local AI stack in one executable: it runs and manages local AI models across every GPU, and it's a search engine you can talk to, with cited answers from your files, code, and the web. MCP server for coding agents, web crawler, TUI, CLI, REST API, Python library. No Ollama or LM Studio needed, works with both.",
+  "scores": {
+   "llm_wiki": 0.19,
+   "rag_platform": 0.81,
+   "mcp": 0.82,
+   "docs_qa": 0.74,
+   "graph": 0.07,
+   "personal": 0.42
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "JanYork/llm-wiki-cli",
+  "stars": 60,
+  "description": "Agent-driven proactive memory CLI for AI agents — autonomously recall, maintain, and evolve persistent, source-grounded knowledge across sessions.",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.06,
+   "mcp": 0.42,
+   "docs_qa": 0.44,
+   "graph": 0.15,
+   "personal": 0.46
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "2015xli/clangd-graph-rag",
+  "stars": 60,
+  "description": "Source code graph RAG (GraphRAG) for C/C++ development based on clang/clangd",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.23,
+   "mcp": 0.57,
+   "docs_qa": 0.79,
+   "graph": 0.99,
+   "personal": 0.04
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "RipeMangoBox/BITE",
+  "stars": 60,
+  "description": "Semi-automated research assistant and local knowledge base for paper analysis, ideation, coding, experiments, writing, and publication workflows.",
+  "scores": {
+   "llm_wiki": 0.3,
+   "rag_platform": 0.13,
+   "mcp": 0.54,
+   "docs_qa": 0.84,
+   "graph": 0.12,
+   "personal": 0.48
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "ccf/agentcairn",
+  "stars": 60,
+  "description": "Long-term, cross-project memory for AI coding agents. Your own Obsidian vault as the source of truth. Daemonless and without opaque databases, your memory belongs to you.",
+  "scores": {
+   "llm_wiki": 0.69,
+   "rag_platform": 0.13,
+   "mcp": 0.88,
+   "docs_qa": 0.5,
+   "graph": 0.17,
+   "personal": 0.42
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "olafgeibig/knowledge-mcp",
+  "stars": 59,
+  "description": "A MCP server that is a locally running knowledge base with a hybrid vector and graph RAG engine using LightRAG",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.57,
+   "mcp": 0.95,
+   "docs_qa": 0.75,
+   "graph": 0.97,
+   "personal": 0.26
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "MetamusicX/zissa-wiki",
+  "stars": 58,
+  "description": "Zissa Wiki — an LLM-maintained research knowledge base in plain markdown, maintained by any AI agent (Claude, Codex, Gemini, DeepSeek, Kimi, Grok, Mistral or any chat app). Implements Karpathy's LLM Wiki pattern; checks every quote against its source.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.03,
+   "mcp": 0.23,
+   "docs_qa": 0.65,
+   "graph": 0.16,
+   "personal": 0.95
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ZengLiangYi/ChatCrystal",
+  "stars": 58,
+  "description": "Local-first AI PKM for coding conversations: import Claude Code/Cursor/Codex, distill notes, semantic search, tag graph, MCP memory.",
+  "scores": {
+   "llm_wiki": 0.23,
+   "rag_platform": 0.44,
+   "mcp": 0.63,
+   "docs_qa": 0.54,
+   "graph": 0.91,
+   "personal": 0.71
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "remember-md/remember",
+  "stars": 58,
+  "description": "AI-powered second brain for Claude Code that builds itself.  Extract knowledge from every session—past and present—into  auto-organized Markdown. Local-first, queryable, learns your patterns.",
+  "scores": {
+   "llm_wiki": 0.93,
+   "rag_platform": 0.1,
+   "mcp": 0.57,
+   "docs_qa": 0.6,
+   "graph": 0.51,
+   "personal": 0.8
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "The-Flash-7/open-note",
+  "stars": 58,
+  "description": "一款跨平台智能笔记 Agent 应用，支持多格式笔记、本地知识库、AI 智能助手、向量语义检索 。",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.57,
+   "mcp": 0.3,
+   "docs_qa": 0.7,
+   "graph": 0.05,
+   "personal": 0.79
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "AndrewNgo-ini/memoose",
+  "stars": 58,
+  "description": "A dual-path memory system for proactive agents. Facts and procedures in a local knowledge graph, exposed as a CLI, MCP tools and skills. No API key.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.15,
+   "mcp": 0.77,
+   "docs_qa": 0.34,
+   "graph": 0.98,
+   "personal": 0.22
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "ddsyasas/llm-wiki",
+  "stars": 56,
+  "description": "Open source local-first knowledge base maintained by an LLM agent. Implements Andrej Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.23,
+   "mcp": 0.16,
+   "docs_qa": 0.72,
+   "graph": 0.87,
+   "personal": 0.97
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "NiharShrotri/llm-wiki",
+  "stars": 55,
+  "description": "Local LLM-maintained personal wiki, built on Karpathy's LLM-Wiki pattern. Runs on Ollama + Qwen3 + QMD.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.24,
+   "mcp": 0.19,
+   "docs_qa": 0.74,
+   "graph": 0.43,
+   "personal": 0.96
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "fivif/OmniKB",
+  "stars": 55,
+  "description": "Universal AI Knowledge Base Agent",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.79,
+   "mcp": 0.82,
+   "docs_qa": 0.81,
+   "graph": 0.88,
+   "personal": 0.13
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "nsrinidhibhat/gradio_RAG",
+  "stars": 55,
+  "description": "Code and resources showcasing the Retrieval-Augmented Generation (RAG) technique, a solution for enhancing data freshness in Large Language Models (LLMs). Incorporate up-to-date external knowledge into LLM-generated responses. Additionally, this repository includes a Gradio-based user interface for seamless model deployment. ",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.49,
+   "mcp": 0.11,
+   "docs_qa": 0.66,
+   "graph": 0.04,
+   "personal": 0.07
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "AkiRusProd/llm-agent",
+  "stars": 55,
+  "description": "LLM using long-term memory through vector database",
+  "scores": {
+   "mcp": 0.27,
+   "docs_qa": 0.44,
+   "graph": 0.03,
+   "personal": 0.43,
+   "llm_wiki": 0.03,
+   "rag_platform": 0.33
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "cbtw-apac/qdrant-loader",
+  "stars": 55,
+  "description": "Enterprise-ready vector database toolkit for building searchable knowledge bases from multiple data sources. Supports multi-project management, automatic ingestion from Confluence/JIRA/Git, intelligent file conversion (PDF/Office/images), and semantic search. Includes MCP server for seamless AI assistant integration.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.27,
+   "mcp": 0.72,
+   "docs_qa": 0.59,
+   "graph": 0.6,
+   "personal": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "laramohan/wikillm",
+  "stars": 54,
+  "description": "LLMs as Collaboratively Edited Knowledge Bases",
+  "scores": {
+   "llm_wiki": 0.15,
+   "rag_platform": 0.04,
+   "mcp": 0.12,
+   "docs_qa": 0.15,
+   "graph": 0.29,
+   "personal": 0.08
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Azure-Samples/adaptive-rag-workbench",
+  "stars": 54,
+  "description": "Sample for context-aware Agentic RaG, Q&A with multi-source verification, and self-curating knowledge base. Powered by Azure AI Foundry Agent Service, Azure AI Search with agentic retrieval and query rewrite, Semantic Kernel and LangGraph agents running in Azure Container Apps, and ready for Copilot Studio",
+  "scores": {
+   "llm_wiki": 0.14,
+   "rag_platform": 0.67,
+   "mcp": 0.2,
+   "docs_qa": 0.71,
+   "graph": 0.11,
+   "personal": 0.05
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "msdanyg/smart-connections-mcp",
+  "stars": 54,
+  "description": "Give Claude semantic memory of your Obsidian vault — local semantic search over Smart Connections embeddings via MCP. Multi-vault, block-level, 100% private.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.07,
+   "mcp": 0.96,
+   "docs_qa": 0.71,
+   "graph": 0.43,
+   "personal": 0.22
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "MontyGovernance/montycat-mcp",
+  "stars": 54,
+  "description": "Shared, persistent memory for AI agents. Self-hosted MCP server with semantic search, vector RAG, and live updates. Works with Claude, Cursor, Codex, and any MCP client.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.2,
+   "mcp": 0.96,
+   "docs_qa": 0.32,
+   "graph": 0.05,
+   "personal": 0.37
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "PageDen/pageden",
+  "stars": 53,
+  "description": "One source of truth for people and AI a shared Markdown knowledge base your team can edit on the web, sync from Obsidian, and connect to AI agents",
+  "scores": {
+   "llm_wiki": 0.27,
+   "rag_platform": 0.58,
+   "mcp": 0.27,
+   "docs_qa": 0.7,
+   "graph": 0.09,
+   "personal": 0.11
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "jeanibarz/knowledge-base-mcp-server",
+  "stars": 53,
+  "description": "This MCP server provides tools for listing and retrieving content from different knowledge bases.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.44,
+   "mcp": 0.94,
+   "docs_qa": 0.56,
+   "graph": 0.04,
+   "personal": 0.23
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lna-lab/distill-kura",
+  "stars": 53,
+  "description": "蒸留蔵 — distilled long-term memory for agents: recall by meaning, writing gated by evidence, one kura per agent mode. Ships as a DeepSeek Harness plugin and an MCP server.",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.16,
+   "mcp": 0.85,
+   "docs_qa": 0.3,
+   "graph": 0.16,
+   "personal": 0.35
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "bashiraziz/llm-wiki-template",
+  "stars": 52,
+  "description": "A reusable template for building personal LLM-maintained knowledge bases. Implements Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.09,
+   "mcp": 0.24,
+   "docs_qa": 0.53,
+   "graph": 0.16,
+   "personal": 0.92
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "useenzyme/enzyme",
+  "stars": 52,
+  "description": "A compile step for knowledge bases. Gives your agent a concept graph of your content — under 20s to index, 8ms queries on device.",
+  "scores": {
+   "rag_platform": 0.15,
+   "mcp": 0.63,
+   "docs_qa": 0.29,
+   "graph": 0.78,
+   "personal": 0.35,
+   "llm_wiki": 0.38
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "jshph/enzyme",
+  "stars": 51,
+  "description": "A compile step for knowledge bases. Gives your agent a concept graph of your content — under 20s to index, 8ms queries on device.",
+  "scores": {
+   "llm_wiki": 0.29,
+   "rag_platform": 0.16,
+   "mcp": 0.59,
+   "docs_qa": 0.31,
+   "graph": 0.69,
+   "personal": 0.37
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "iikarus/Dragon-Brain",
+  "stars": 51,
+  "description": "Dragon Brain — persistent long-term memory for AI agents via MCP (Model Context Protocol). Knowledge graph (FalkorDB) + vector search (Qdrant) + CUDA GPU embeddings. Works with Claude, Gemini CLI, Cursor, Windsurf, VS Code Copilot. 30 tools, 1121 tests.",
+  "scores": {
+   "personal": 0.43,
+   "llm_wiki": 0.07,
+   "rag_platform": 0.16,
+   "mcp": 0.96,
+   "docs_qa": 0.31,
+   "graph": 0.98
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "Oshayr/LLM-Wiki",
+  "stars": 50,
+  "description": "Autonomous knowledge base plugin for Claude Code - captures reserch, ideas, and decisions into an interlinked wiki with reserch-on-miss, semantic search, and a Wikipedia-style web UI. Knowledge compounds as you work.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.65,
+   "mcp": 0.82,
+   "docs_qa": 0.39,
+   "graph": 0.67,
+   "personal": 0.92
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "lesteroliver911/contextual-chunking-graphpowered-rag",
+  "stars": 50,
+  "description": "An advanced retrieval system that combines semantic vector search with token-based search, using contextual chunking and knowledge graphs to improve accuracy. It ensures precise query responses with LLM-based answer checking and graph visualization.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.2,
+   "mcp": 0.28,
+   "docs_qa": 0.5,
+   "graph": 0.96,
+   "personal": 0.09
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "rolandpg/zettelforge",
+  "stars": 50,
+  "description": "Agentic memory for CTI in Python — STIX knowledge graphs, threat-actor alias resolution, offline-first RAG, MCP server for Claude Code and LangChain agents",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.26,
+   "mcp": 0.9,
+   "docs_qa": 0.61,
+   "graph": 0.98,
+   "personal": 0.17
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "sodam-ai/SoDam-WikiMate",
+  "stars": 50,
+  "description": "AI에게 '정리해줘'라고 하면 흩어진 자료를 옵시디언(원본)에 노트로 정리하고, 관련 노트끼리 연결·분류·요약하고, 선택적으로 노션에 색인하는 Claude Code 플러그인 + 이식형 MCP 코어. 보관함 자동탐지·정리·자동 링크/MOC·자동 분류·요약(원자 노트)·검색(가짜 인용 방지)·볼트 건강검진(중복·깨진 링크·고아 탐지, 삭제 없는 안전 수정)·작업 로그. 사람 승인 게이트·원문 보존 알림·경로/프롬프트 인젝션 방어·무의존.",
+  "scores": {
+   "llm_wiki": 0.87,
+   "rag_platform": 0.05,
+   "mcp": 0.74,
+   "docs_qa": 0.56,
+   "graph": 0.51,
+   "personal": 0.32
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "lpaiu-cs/osk-system",
+  "stars": 50,
+  "description": "Source-grounded MCP memory runtime and Obsidian-compatible vault template for LLM agents.",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.12,
+   "mcp": 0.73,
+   "docs_qa": 0.57,
+   "graph": 0.78,
+   "personal": 0.6
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "6eanut/llm-wiki",
+  "stars": 47,
+  "description": "Claude Code skill for building persistent, interlinked knowledge bases from source documents. Knowledge is compiled once and kept current — never re-derived per query. Based on Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.07,
+   "mcp": 0.88,
+   "docs_qa": 0.66,
+   "graph": 0.51,
+   "personal": 0.52
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "boykush/scraps",
+  "stars": 46,
+  "description": "The Wiki-link doc compiler for the LLM era.",
+  "scores": {
+   "llm_wiki": 0.6,
+   "rag_platform": 0.11,
+   "mcp": 0.34,
+   "docs_qa": 0.71,
+   "graph": 0.82,
+   "personal": 0.15
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "cobusgreyling/llm-wiki",
+  "stars": 45,
+  "description": "A compounding knowledge base maintained by LLM agents — inspired by Karpathy's LLM Wiki pattern",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.05,
+   "mcp": 0.49,
+   "docs_qa": 0.38,
+   "graph": 0.62,
+   "personal": 0.7
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "wgpsec/context1337",
+  "stars": 38,
+  "description": "aboutSecurity project skill finder / dict finder / exp finder, auto suggest and team knowledge base.",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.17,
+   "mcp": 0.95,
+   "docs_qa": 0.72,
+   "graph": 0.08,
+   "personal": 0.18
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "2233admin/obsidian-llm-wiki",
+  "stars": 36,
+  "description": "Your markdown vault, compiled into a 6-persona MCP team for Claude Code, Codex, OpenCode, and Gemini CLI. Headless-first. Cites, doesn't guess.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.09,
+   "mcp": 0.94,
+   "docs_qa": 0.57,
+   "graph": 0.78,
+   "personal": 0.29
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "decodingai-magazine/llm-wiki-workshop",
+  "stars": 33,
+  "description": "Learn to design an LLM wiki from first principles. Used as agent memory. Workshop with 3 exercises, open-source code, video, and slides. No coding skills required.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.1,
+   "mcp": 0.22,
+   "docs_qa": 0.53,
+   "graph": 0.43,
+   "personal": 0.38
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "Open330/kiwimu",
+  "stars": 30,
+  "description": "Turn textbooks, PDFs, and web content into your own interlinked learning wiki powered by LLM",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.75,
+   "mcp": 0.2,
+   "docs_qa": 0.71,
+   "graph": 0.87,
+   "personal": 0.43
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "DeltaXY-AI/llm-kb",
+  "stars": 27,
+  "description": "LLM-powered knowledge base. Drop documents, build a wiki, ask questions. Inspired by Karpathy.",
+  "scores": {
+   "llm_wiki": 0.91,
+   "rag_platform": 0.83,
+   "mcp": 0.21,
+   "docs_qa": 0.92,
+   "graph": 0.11,
+   "personal": 0.48
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "3vilM33pl3/memory",
+  "stars": 20,
+  "description": "Local knowledge base for coding agents with a Rust CLI/TUI, PostgreSQL storage, and optional background capture.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.72,
+   "mcp": 0.83,
+   "docs_qa": 0.58,
+   "graph": 0.47,
+   "personal": 0.41
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "atukunare/wiki-knowledge-agent",
+  "stars": 19,
+  "description": "Your AI forgets. A wiki doesn't. Turn chat-pasted text/links into a verified, translated, searchable wiki knowledge base — verify links, filter ads, summarize in your language, save to a wiki, and alert on time-sensitive items. Zero dependencies (curl + Python stdlib), platform-independent agent skill for Claude Code / Codex / Cursor / Hermes.",
+  "scores": {
+   "llm_wiki": 0.87,
+   "rag_platform": 0.07,
+   "mcp": 0.75,
+   "docs_qa": 0.4,
+   "graph": 0.05,
+   "personal": 0.84
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "professorpalmer/portable-llm-wiki",
+  "stars": 18,
+  "description": "Vendor-neutral, LLM-maintained personal-context wiki. Markdown in your git, queryable by any LLM (HTTP API + MCP server). v0.7 prototype.",
+  "scores": {
+   "llm_wiki": 0.93,
+   "rag_platform": 0.43,
+   "mcp": 0.56,
+   "docs_qa": 0.63,
+   "graph": 0.35,
+   "personal": 0.6
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ignromanov/llm-obsidian-wiki",
+  "stars": 17,
+  "description": "Claude Code plugin for building persistent, compounding knowledge bases in Obsidian. Inspired by Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.05,
+   "mcp": 0.33,
+   "docs_qa": 0.41,
+   "graph": 0.24,
+   "personal": 0.4
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "onurkafk/corvid",
+  "stars": 14,
+  "description": "Permanent memory for AI coding agents. One command to save, semantic search to retrieve, works across every project. Inspired by Karpathy's LLM Wiki. ",
+  "scores": {
+   "llm_wiki": 0.88,
+   "rag_platform": 0.18,
+   "mcp": 0.81,
+   "docs_qa": 0.22,
+   "graph": 0.2,
+   "personal": 0.6
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "mshtawythug/second-brain",
+  "stars": 14,
+  "description": "Local-first personal knowledge base CLI — hybrid FTS + pgvector search, a GraphRAG entity graph, and LLM enrichment over your notes, transcripts, Slack & Gmail. Runs fully local on Ollama (no cloud, no API keys); queryable by any AI agent through the built-in MCP server. Postgres-backed, publishes an Obsidian-style Quartz wiki.",
+  "scores": {
+   "llm_wiki": 0.42,
+   "rag_platform": 0.69,
+   "mcp": 0.83,
+   "docs_qa": 0.56,
+   "graph": 0.97,
+   "personal": 0.77
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "PALAN-K/llm-wiki-loop",
+  "stars": 13,
+  "description": "The reference architecture for LLM-maintained knowledge vaults — schema, lifecycle loop, machine verification, self-installation",
+  "scores": {
+   "llm_wiki": 0.95,
+   "rag_platform": 0.14,
+   "mcp": 0.25,
+   "docs_qa": 0.68,
+   "graph": 0.07,
+   "personal": 0.52
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "arpitnath/blink-query",
+  "stars": 10,
+  "description": "A typed wiki for LLMs — markdown on disk, resolution in the library.",
+  "scores": {
+   "llm_wiki": 0.65,
+   "rag_platform": 0.16,
+   "mcp": 0.84,
+   "docs_qa": 0.65,
+   "graph": 0.15,
+   "personal": 0.21
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "andreasjansson/veta",
+  "stars": 8,
+  "description": "Memory and knowledge base for agents, on the command line or as a Cloudflare worker",
+  "scores": {
+   "llm_wiki": 0.08,
+   "rag_platform": 0.36,
+   "mcp": 0.53,
+   "docs_qa": 0.5,
+   "graph": 0.07,
+   "personal": 0.57
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "docouno/notarium",
+  "stars": 5,
+  "description": "File-first knowledge base for humans and AI agents — self-hosted Markdown notes with a web editor and a built-in MCP server.",
+  "scores": {
+   "llm_wiki": 0.62,
+   "rag_platform": 0.47,
+   "mcp": 0.8,
+   "docs_qa": 0.62,
+   "graph": 0.66,
+   "personal": 0.6
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "pillumina/ascend-sleuth",
+  "stars": 5,
+  "description": "知识驱动的昇腾训练/推理诊断 skill 套件 — Ascend training/inference diagnosis skill suite (5 skills + 3-tier knowledge base, Agent Skills standard)",
+  "scores": {
+   "llm_wiki": 0.19,
+   "rag_platform": 0.08,
+   "mcp": 0.91,
+   "docs_qa": 0.68,
+   "graph": 0.07,
+   "personal": 0.14
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "RD945/document-rag",
+  "stars": 5,
+  "description": "DocumentRAG is a self-hosted Retrieval-Augmented Generation (RAG) chatbot system that enables intelligent document querying using local language models. Built with FastAPI, LangChain, and Hugging Face transformers, it processes various document formats and provides accurate answers based on indexed knowledge",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.88,
+   "mcp": 0.29,
+   "docs_qa": 0.77,
+   "graph": 0.03,
+   "personal": 0.09
+  },
+  "kind": "rag_platform"
+ }
+]

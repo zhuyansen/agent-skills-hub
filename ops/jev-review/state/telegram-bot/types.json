@@ -1,0 +1,3502 @@
+[
+ {
+  "repo": "aiogram/aiogram",
+  "stars": 5882,
+  "description": "aiogram is a modern and fully asynchronous framework for Telegram Bot API written in Python using asyncio",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.21,
+   "framework": 0.98,
+   "utility": 0.07,
+   "fun": 0.05,
+   "business": 0.06
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "father-bot/chatgpt_telegram_bot",
+  "stars": 5536,
+  "description": "💬 Telegram bot with ChatGPT & Claude Python-based, using OpenAI's API.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.12,
+   "framework": 0.33,
+   "utility": 0.09,
+   "fun": 0.28,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "groupultra/telegram-search",
+  "stars": 4114,
+  "description": "🔍 导出并模糊搜索 Telegram 聊天记录 | Export and fuzzy search your Telegram chat history",
+  "scores": {
+   "assistant": 0.13,
+   "remote": 0.13,
+   "framework": 0.1,
+   "utility": 0.44,
+   "fun": 0.05,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "tbxark/ChatGPT-Telegram-Workers",
+  "stars": 3806,
+  "description": "Easily deploy your Telegram ChatGPT bot on Cloudflare Workers (or Vercel, Docker...).",
+  "scores": {
+   "framework": 0.65,
+   "utility": 0.08,
+   "fun": 0.21,
+   "business": 0.07,
+   "assistant": 0.91,
+   "remote": 0.15
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "overwirehq/claude-code-telegram",
+  "stars": 2797,
+  "description": "A powerful Telegram bot that provides remote access to Claude Code, enabling developers to interact with their projects from anywhere with full AI assistance and session persistence.",
+  "scores": {
+   "utility": 0.17,
+   "fun": 0.04,
+   "business": 0.05,
+   "assistant": 0.76,
+   "remote": 0.97,
+   "framework": 0.22
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "KEV0143/Telegram-MedicalBot",
+  "stars": 2109,
+  "description": "Система поддержки пользователей в Telegram: обработка пользовательских вопросов через тикет-систему и генерация ответов оператору как на основе базы знаний, так и с помощью AI.",
+  "scores": {
+   "remote": 0.09,
+   "framework": 0.2,
+   "utility": 0.09,
+   "fun": 0.06,
+   "business": 0.88,
+   "assistant": 0.5
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "chigwell/telegram-mcp",
+  "stars": 1745,
+  "description": "Telegram MCP server powered by Telethon to let MCP clients read chats, manage groups, and send/modify messages, media, contacts, and settings.",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.22,
+   "framework": 0.72,
+   "utility": 0.59,
+   "fun": 0.04,
+   "business": 0.09
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "altryne/chatGPT-telegram-bot",
+  "stars": 1637,
+  "description": "This is a very early attempt at having chatGPT work within a telegram bot",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.39,
+   "framework": 0.24,
+   "utility": 0.09,
+   "fun": 0.41,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "yym68686/ChatGPT-Telegram-Bot",
+  "stars": 1290,
+  "description": "TeleChat: 🤖️ an AI chat Telegram bot can Web Search Powered by GPT-5, DALL·E , Groq, Gemini 2.5 Pro/Flash and the official Claude4.1 API using Python on Zeabur, fly.io and Replit.",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.29,
+   "framework": 0.38,
+   "utility": 0.21,
+   "fun": 0.16,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "grinev/opencode-telegram-bot",
+  "stars": 1221,
+  "description": "OpenCode mobile client via Telegram: run and monitor AI coding tasks from your phone while everything runs locally on your machine. OpenCode V2 support.",
+  "scores": {
+   "assistant": 0.52,
+   "remote": 0.94,
+   "framework": 0.07,
+   "utility": 0.38,
+   "fun": 0.04,
+   "business": 0.09
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "banteg/takopi",
+  "stars": 1038,
+  "description": "he just wants to help-pi!",
+  "scores": {
+   "assistant": 0.62,
+   "remote": 0.97,
+   "framework": 0.21,
+   "utility": 0.29,
+   "fun": 0.07,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "V-know/ChatGPT-Telegram-Bot",
+  "stars": 649,
+  "description": "A Telegram bot with a silky smooth AI experience. UI enabled.",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.06,
+   "framework": 0.22,
+   "utility": 0.06,
+   "fun": 0.38,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "hanxiao/claudecode-telegram",
+  "stars": 609,
+  "description": "Telegram bridge for Claude Code",
+  "scores": {
+   "assistant": 0.69,
+   "remote": 0.97,
+   "framework": 0.19,
+   "utility": 0.19,
+   "fun": 0.12,
+   "business": 0.06
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "duckbugio/flock",
+  "stars": 504,
+  "description": "Autonomous AI dev-team bot",
+  "scores": {
+   "assistant": 0.87,
+   "remote": 0.98,
+   "framework": 0.14,
+   "utility": 0.08,
+   "fun": 0.05,
+   "business": 0.13
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "PleasePrompto/ductor",
+  "stars": 457,
+  "description": "Control Claude Code, Codex CLI and Gemini CLI from Telegram. Live streaming, persistent memory, cron jobs, webhooks, Docker sandboxing.",
+  "scores": {
+   "assistant": 0.62,
+   "remote": 0.97,
+   "framework": 0.29,
+   "utility": 0.11,
+   "fun": 0.04,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "linuz90/claude-telegram-bot",
+  "stars": 448,
+  "description": "",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.95,
+   "framework": 0.28,
+   "utility": 0.38,
+   "fun": 0.16,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "polakowo/gpt2bot",
+  "stars": 442,
+  "description": "Your new Telegram buddy powered by transformers",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.05,
+   "framework": 0.53,
+   "utility": 0.04,
+   "fun": 0.84,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "SpEcHiDe/AnyDLBot",
+  "stars": 395,
+  "description": "An Open Source GPLv3 All-In-One Telegram Bot",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.15,
+   "framework": 0.13,
+   "utility": 0.9,
+   "fun": 0.08,
+   "business": 0.05
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "smixs/agent-second-brain",
+  "stars": 390,
+  "description": "An always-on second brain you talk to. Voice notes in Telegram → typed, linked knowledge in your Obsidian vault. Runs 24/7 on the Claude subscription you already have.",
+  "scores": {
+   "assistant": 0.92,
+   "remote": 0.9,
+   "framework": 0.11,
+   "utility": 0.61,
+   "fun": 0.06,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Johnsheng1/cf-ai-TGbot",
+  "stars": 384,
+  "description": "CF-ai-TGbot is a customizable Telegram bot powered by Node.js, integrating Cloudflare AI Gateway for smart, context-aware conversations. 🌐🤖",
+  "scores": {
+   "assistant": 0.92,
+   "remote": 0.07,
+   "framework": 0.24,
+   "utility": 0.18,
+   "fun": 0.35,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "szastupov/aiotg",
+  "stars": 377,
+  "description": "Asynchronous Python library for building Telegram bots",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.25,
+   "framework": 0.97,
+   "utility": 0.09,
+   "fun": 0.1,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "MiHaKun/Telegram-interactive-bot",
+  "stars": 366,
+  "description": "Telegram(电报/纸飞机)的开源双向机器人（客服机器人？）。避免垃圾信息；让被限制的客户可以顺利联系到你；支持后台分组，算是一个简易的CRM系统。Open-source interactive bot on Telegram. Avoid spam messages; allow restricted customers to contact you smoothly.Simple CRM system.",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.09,
+   "framework": 0.24,
+   "utility": 0.3,
+   "fun": 0.09,
+   "business": 0.84
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "F33RNI/GPT-Telegramus",
+  "stars": 353,
+  "description": "💜 The best free Telegram bot for ChatGPT, Microsoft Copilot (aka Bing AI / Sidney / EdgeGPT), Microsoft Copilot Designer (aka BingImageCreator), Gemini and Groq with stream writing, requests with images, multiple languages, admin control, data logging and more!",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.11,
+   "framework": 0.21,
+   "utility": 0.11,
+   "fun": 0.13,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "nalgeon/pokitoki",
+  "stars": 342,
+  "description": "Humble AI Telegram Bot",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.07,
+   "framework": 0.18,
+   "utility": 0.14,
+   "fun": 0.19,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "patheticGeek/torrent-aio-bot",
+  "stars": 327,
+  "description": "A bot for searching and downloading torrents easily with website and telegram bot",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.11,
+   "framework": 0.13,
+   "utility": 0.92,
+   "fun": 0.05,
+   "business": 0.03
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "godagoo/claude-telegram-relay",
+  "stars": 326,
+  "description": "Minimal pattern for running Claude Code as an always-on Telegram bot. Cross-platform daemon setup included.",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.96,
+   "framework": 0.59,
+   "utility": 0.23,
+   "fun": 0.3,
+   "business": 0.07
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Priler/samurai",
+  "stars": 305,
+  "description": "Simple, yet effective auto-moderator bot for Telegram. With reports, logs, profanity filter, anti-spam AI, NSFW detection AI and more :3",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.06,
+   "framework": 0.14,
+   "utility": 0.83,
+   "fun": 0.05,
+   "business": 0.05
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel",
+  "stars": 304,
+  "description": "一個Flask ChatGPT TelegramBot快速建置於平台Vercel。",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.21,
+   "framework": 0.78,
+   "utility": 0.13,
+   "fun": 0.4,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "alexei-led/ccgram",
+  "stars": 277,
+  "description": "Telegram ↔ tmux/herdr/agterm bridge for Claude Code, Codex CLI, and Pi Agent. Monitor output, respond to prompts, manage parallel sessions.  Control AI coding agents from your phone.",
+  "scores": {
+   "assistant": 0.09,
+   "remote": 0.98,
+   "framework": 0.16,
+   "utility": 0.1,
+   "fun": 0.03,
+   "business": 0.09
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "six-ddc/ccbot",
+  "stars": 276,
+  "description": "Telegram ↔ tmux bridge for Claude Code: 1 topic = 1 window = 1 session",
+  "scores": {
+   "assistant": 0.17,
+   "remote": 0.98,
+   "framework": 0.18,
+   "utility": 0.18,
+   "fun": 0.05,
+   "business": 0.14
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "yesbhautik/Master-AI-BOT",
+  "stars": 267,
+  "description": "Master AI BOT 🤖: Unleash the power of GPT-4 Turbo with our fast and limitless Telegram bot. Say goodbye to daily usage limits and laggy interfaces. Explore special chat modes, group chat support, and DALLE 2 integration. Chat seamlessly, recognize voice messages, and more. Deploy your own or use our streamlined version. Get started today! Demo 🔽",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.15,
+   "framework": 0.27,
+   "utility": 0.09,
+   "fun": 0.2,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "14790897/tg-voice-ai",
+  "stars": 254,
+  "description": "telegram voice chat ai bot with image generate",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.05,
+   "framework": 0.17,
+   "utility": 0.09,
+   "fun": 0.52,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "dryeab/mcp-telegram",
+  "stars": 251,
+  "description": "MCP Server for Telegram",
+  "scores": {
+   "assistant": 0.11,
+   "remote": 0.21,
+   "framework": 0.84,
+   "utility": 0.33,
+   "fun": 0.05,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "ilyarolf/AiogramShopBot",
+  "stars": 240,
+  "description": "Open-source Telegram e-commerce bot built with Aiogram 3 for selling digital and physical goods with crypto payments and referral system.",
+  "scores": {
+   "business": 0.95,
+   "assistant": 0.03,
+   "remote": 0.09,
+   "framework": 0.43,
+   "utility": 0.04,
+   "fun": 0.03
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Helixform/TeleGPT",
+  "stars": 237,
+  "description": "An out-of-box ChatGPT bot for Telegram.",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.08,
+   "framework": 0.21,
+   "utility": 0.14,
+   "fun": 0.18,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "tpai/summary-gpt-bot",
+  "stars": 234,
+  "description": "An AI-powered text summarization Telegram bot that generates concise summaries of text, URLs, PDFs, and YouTube videos.",
+  "scores": {
+   "assistant": 0.78,
+   "remote": 0.04,
+   "framework": 0.07,
+   "utility": 0.58,
+   "fun": 0.06,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "smixs/iva-agent",
+  "stars": 228,
+  "description": "AI assistant in Telegram that remembers everything and helps you run your life. Self-hosted in one command.",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.41,
+   "framework": 0.1,
+   "utility": 0.15,
+   "fun": 0.07,
+   "business": 0.25
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "fabston/Telegram-Airdrop-Bot",
+  "stars": 215,
+  "description": "🎈 Manage your Telegram Airdrops on ERC-20, BEP-20 etc. tokens.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.08,
+   "framework": 0.1,
+   "utility": 0.29,
+   "fun": 0.05,
+   "business": 0.22
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "ciuzaak/Claude-Telegram-Bot",
+  "stars": 205,
+  "description": "Anthropic Claude & Google Bard Bot for Telegram.",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.06,
+   "framework": 0.21,
+   "utility": 0.08,
+   "fun": 0.2,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "akynazh/tg-search-bot",
+  "stars": 203,
+  "description": "A smart AI telegram bot for searching and auto-saving.",
+  "scores": {
+   "assistant": 0.35,
+   "remote": 0.09,
+   "framework": 0.1,
+   "utility": 0.5,
+   "fun": 0.05,
+   "business": 0.03
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "asukaminato0721/telegram-summary-bot",
+  "stars": 201,
+  "description": "Summarize group chat with AI, LLM && query group chat, FREE to deploy your own, support img, link meta info, reply to, auto fold result, 支持中文检索.",
+  "scores": {
+   "assistant": 0.76,
+   "remote": 0.05,
+   "framework": 0.12,
+   "utility": 0.58,
+   "fun": 0.08,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "noXplode/aiogram_calendar",
+  "stars": 191,
+  "description": "Date Selection tool & Inline calendar for Aiogram telegram bots",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.03,
+   "framework": 0.79,
+   "utility": 0.06,
+   "fun": 0.08,
+   "business": 0.05
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "sudo-eugene/Connect-Telegram-Bot-to-Google-Sheets-ChatGPT-OpenAI",
+  "stars": 190,
+  "description": "Connect Telegram Bot to Google Sheets via Google Apps Scripts",
+  "scores": {
+   "assistant": 0.56,
+   "remote": 0.09,
+   "framework": 0.38,
+   "utility": 0.19,
+   "fun": 0.35,
+   "business": 0.13
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "uerax/all-in-one-bot",
+  "stars": 185,
+  "description": "A Telegram-based DeFi tool for real-time on-chain data analysis, smart money tracking, and automated trade monitoring. Empowering users with open-source, actionable blockchain intelligence. // Telegram机器人一些自用功能,去中心化交易数据分析,聪明地址追踪, 分析和寻找",
+  "scores": {
+   "assistant": 0.09,
+   "remote": 0.06,
+   "framework": 0.09,
+   "utility": 0.28,
+   "fun": 0.06,
+   "business": 0.92
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "smixs/iva",
+  "stars": 173,
+  "description": "AI assistant in Telegram that remembers everything and helps you run your life. Self-hosted in one command.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.41,
+   "framework": 0.1,
+   "utility": 0.14,
+   "fun": 0.06,
+   "business": 0.24
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "earlyaidopters/claudeclaw",
+  "stars": 172,
+  "description": "Claude Code CLI as a personal Telegram bot — voice, memory, scheduled tasks, all your skills from your pocket.",
+  "scores": {
+   "assistant": 0.83,
+   "remote": 0.97,
+   "framework": 0.16,
+   "utility": 0.15,
+   "fun": 0.08,
+   "business": 0.06
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "emreturkmencom/antigravity-telegram-suite",
+  "stars": 171,
+  "description": "Antigravity Telegram bot — remote-control your AI agent via Telegram. Chat, switch models, orchestrate multi-agent workflows, and manage workspaces from your phone.",
+  "scores": {
+   "assistant": 0.45,
+   "remote": 0.89,
+   "framework": 0.17,
+   "utility": 0.47,
+   "fun": 0.06,
+   "business": 0.08
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "flynnoct/chatgpt-telegram-bot",
+  "stars": 170,
+  "description": "Telegram bot implemented by OFFICIAL OpenAI ChatGPT API (gpt-3.5-turbo, released on 2023-03-01)",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.07,
+   "framework": 0.31,
+   "utility": 0.09,
+   "fun": 0.4,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "HexyeDEV/Telegram-Chatbot-Gpt4Free",
+  "stars": 168,
+  "description": "This is a Python-based Telegram bot using the telethon library. The bot responds to messages using the evagpt4 reverse engeneered api from GPT4FREE repo",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.14,
+   "framework": 0.24,
+   "utility": 0.19,
+   "fun": 0.6,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Timmy-web/Poe-Telegram-Chatbot",
+  "stars": 168,
+  "description": "调用Poe官方API实现Telegram对话机器人，主要调用GPT-4和Claude-3-Opus模型。",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.06,
+   "framework": 0.19,
+   "utility": 0.06,
+   "fun": 0.32,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "kargarisaac/telegram_link_summarizer_agent",
+  "stars": 156,
+  "description": "Agentic Telegram bot that summarizes links (articles, papers, tweets, LinkedIn posts, PDFs) shared in a channel. Instantly provides concise summaries so users can quickly decide what to read. Open source, deployed on Google Cloud Run. ",
+  "scores": {
+   "utility": 0.51,
+   "fun": 0.06,
+   "business": 0.04,
+   "assistant": 0.7,
+   "remote": 0.05,
+   "framework": 0.16
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "NachoSEO/claudegram",
+  "stars": 153,
+  "description": "Telegram bot that bridges messages to Claude Code",
+  "scores": {
+   "assistant": 0.93,
+   "remote": 0.98,
+   "framework": 0.25,
+   "utility": 0.47,
+   "fun": 0.09,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "lmcsu/qq-neural-anime-tg",
+  "stars": 145,
+  "description": "A Telegram bot that converts your photos to 2D anime art via the new AI made by QQ",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.04,
+   "framework": 0.12,
+   "utility": 0.1,
+   "fun": 0.22,
+   "business": 0.02
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "innightwolfsleep/llm_telegram_bot",
+  "stars": 135,
+  "description": "LLM telegram bot",
+  "scores": {
+   "utility": 0.06,
+   "fun": 0.27,
+   "business": 0.05,
+   "assistant": 0.96,
+   "remote": 0.1,
+   "framework": 0.52
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "terranc/claude-telegram-bot-bridge",
+  "stars": 134,
+  "description": "A lightweight Telegram bot that bridges Claude Code to any local folder, with autostart support for remote mobile development.",
+  "scores": {
+   "assistant": 0.93,
+   "remote": 0.98,
+   "framework": 0.12,
+   "utility": 0.34,
+   "fun": 0.05,
+   "business": 0.03
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "trizin/Telegram-Airdrop-Bot",
+  "stars": 133,
+  "description": "Very simple telegram airdrop bot",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.06,
+   "framework": 0.09,
+   "utility": 0.11,
+   "fun": 0.07,
+   "business": 0.13
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "TheCaduceus/FileStreamBot",
+  "stars": 133,
+  "description": "An open-source Python Telegram bot to transmit Telegram files over HTTP.",
+  "scores": {
+   "assistant": 0.01,
+   "remote": 0.05,
+   "framework": 0.15,
+   "utility": 0.79,
+   "fun": 0.04,
+   "business": 0.04
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "jossalgon/StableDiffusionTelegram",
+  "stars": 130,
+  "description": "StableDiffusionTelegram is a telegram bot that allows to generate images using the stable diffusion AI from a telegram bot, in a much more comfortable and simple way.",
+  "scores": {
+   "assistant": 0.12,
+   "remote": 0.05,
+   "framework": 0.21,
+   "utility": 0.06,
+   "fun": 0.09,
+   "business": 0.02
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "ButaiKirin/MaiMaiBot",
+  "stars": 129,
+  "description": "A Telegram bot that calls the McDonald's MCP tools via Streamable HTTP.",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.1,
+   "framework": 0.12,
+   "utility": 0.09,
+   "fun": 0.06,
+   "business": 0.57
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "PythonHubStudio/aiogram-3-course-telegram-bot",
+  "stars": 128,
+  "description": "",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.13,
+   "framework": 0.23,
+   "utility": 0.1,
+   "fun": 0.39,
+   "business": 0.06
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "arturboyun/AiogramBotTemplate",
+  "stars": 128,
+  "description": "This is a template for easy start of bot development for Telegram",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.11,
+   "framework": 0.97,
+   "utility": 0.06,
+   "fun": 0.15,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "k1p1l0/claude-telegram-supercharged",
+  "stars": 128,
+  "description": "Run Claude Code 24/7 from Telegram. Drop-in upgrade for the official plugin: voice notes both ways, a self-healing daemon, memory across restarts, and Agentic Mode (watch every tool call live). One-line install.",
+  "scores": {
+   "assistant": 0.86,
+   "remote": 0.96,
+   "framework": 0.44,
+   "utility": 0.76,
+   "fun": 0.09,
+   "business": 0.09
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Kourva/AwesomeChatGPTBot",
+  "stars": 121,
+  "description": "ChatGPT Telegram bot: Free & Rich-Feature bot for enhanced conversations.",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.1,
+   "framework": 0.23,
+   "utility": 0.08,
+   "fun": 0.41,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "callsmusic/vcpb",
+  "stars": 121,
+  "description": "[UNMAINTAINED] The first voice chat-related Telegram bot to be open-sourced. Uses MPV and has queue, stream & YouTube support.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.12,
+   "framework": 0.12,
+   "utility": 0.3,
+   "fun": 0.13,
+   "business": 0.02
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "noob-mukesh/MukeshRobot",
+  "stars": 113,
+  "description": "An open source telegram group management and ai  bot written in python with the help of python-telegram-bot, telethon and pyrogram using sqlalchemy and mongodb as database.",
+  "scores": {
+   "assistant": 0.31,
+   "remote": 0.09,
+   "framework": 0.44,
+   "utility": 0.94,
+   "fun": 0.13,
+   "business": 0.04
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "BaggerFast/AiogramTemplate",
+  "stars": 113,
+  "description": "This is template for telegram bots by aiogram",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.12,
+   "framework": 0.96,
+   "utility": 0.07,
+   "fun": 0.18,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "ma2za/telegram-llm-bot",
+  "stars": 112,
+  "description": "Local-first Telegram AI bot with Ollama tool calling, voice transcription, MinIO storage, SearchApi web search, and readiness checks",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.09,
+   "framework": 0.22,
+   "utility": 0.13,
+   "fun": 0.16,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "bxdoan/airdrop-tools",
+  "stars": 110,
+  "description": "Airdrop tools for all telegram bot",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.09,
+   "framework": 0.09,
+   "utility": 0.08,
+   "fun": 0.12,
+   "business": 0.18
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "assimon/ai-anti-bot",
+  "stars": 108,
+  "description": "AI-based anti-advertising robot for Telegram(基于AI的telegram反垃圾广告机器人)",
+  "scores": {
+   "assistant": 0.23,
+   "remote": 0.07,
+   "framework": 0.2,
+   "utility": 0.82,
+   "fun": 0.06,
+   "business": 0.1
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "Leask/halbot",
+  "stars": 103,
+  "description": "Just another AI powered Telegram bot, which is simple design, easy to use, extendable and fun.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.16,
+   "framework": 0.36,
+   "utility": 0.22,
+   "fun": 0.48,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "kaida-palooza/ccpoke",
+  "stars": 102,
+  "description": "Bridge between AI coding agents and your phone — notifications, 2-way chat, permissions",
+  "scores": {
+   "business": 0.07,
+   "assistant": 0.09,
+   "remote": 0.93,
+   "framework": 0.14,
+   "utility": 0.84,
+   "fun": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "joeseesun/AIGC_Telegram_Bot",
+  "stars": 101,
+  "description": "编程新手用GPT4辅助开发的一个Telegram机器人，指定twitter ID，自动抓取推特消息并翻译成中文发给自己的Telegram账号。",
+  "scores": {
+   "assistant": 0.08,
+   "remote": 0.06,
+   "framework": 0.07,
+   "utility": 0.92,
+   "fun": 0.22,
+   "business": 0.12
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "Ansh-Vortex/Vortex-Advance-RAT",
+  "stars": 98,
+  "description": "Advance Open-Source RAT Builder Access via Telegram Bot with over 60+ commands",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.9,
+   "framework": 0.13,
+   "utility": 0.06,
+   "fun": 0.02,
+   "business": 0.07
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Hamster-Prime/Smart_Group_Bot",
+  "stars": 97,
+  "description": "基于 LLM 的 Telegram 群聊智能管理机器人 — 智能决策、知识库 RAG、内容审查、贴纸学习、联网搜索、多层记忆架构",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.4,
+   "framework": 0.16,
+   "utility": 0.91,
+   "fun": 0.19,
+   "business": 0.11
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "netbriler/aiogram-peewee-template",
+  "stars": 95,
+  "description": "Telegram Bot API template, with aiogram, peewee and docker",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.16,
+   "framework": 0.97,
+   "utility": 0.1,
+   "fun": 0.13,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "alhinawi/telegram-notifier",
+  "stars": 95,
+  "description": "Universal Telegram Notifier Plugin & Skill for AI Agents (Antigravity, Claude Code, Codex, Cursor, Windsurf) + Remote Control Setup",
+  "scores": {
+   "assistant": 0.08,
+   "remote": 0.96,
+   "framework": 0.14,
+   "utility": 0.85,
+   "fun": 0.04,
+   "business": 0.14
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "gergomiklos/heyagent",
+  "stars": 94,
+  "description": "Telegram bridge for Claude Code and Codex CLI",
+  "scores": {
+   "utility": 0.4,
+   "fun": 0.05,
+   "business": 0.04,
+   "assistant": 0.58,
+   "remote": 0.96,
+   "framework": 0.13
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "htlin222/mini-claw",
+  "stars": 93,
+  "description": "Telegram bot for persistent Claude/ChatGPT conversations using Pi agent — zero-cost multi-turn AI sessions with file attachments, shell access, and local storage",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.97,
+   "framework": 0.16,
+   "utility": 0.26,
+   "fun": 0.09,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "seedprod/openclaw-prompts-and-skills",
+  "stars": 93,
+  "description": "Telegram bot that talks to headless Claude Code - proof of concept",
+  "scores": {
+   "assistant": 0.69,
+   "remote": 0.92,
+   "framework": 0.19,
+   "utility": 0.13,
+   "fun": 0.46,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "andrew000/aiogram-template",
+  "stars": 91,
+  "description": "Telegram Bot Template. aiogram, i18n, SQLAlchemy+Alembic, PostgreSQL, Redis, Caddy Server, Docker, uv, FTL-Extract",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.14,
+   "framework": 0.97,
+   "utility": 0.08,
+   "fun": 0.13,
+   "business": 0.06
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "MaxMiksa/Tele-Bot",
+  "stars": 91,
+  "description": "A clean Bot running on your PC, interacting with you on Telegram via Claude or Codex.",
+  "scores": {
+   "fun": 0.08,
+   "business": 0.05,
+   "assistant": 0.95,
+   "remote": 0.96,
+   "framework": 0.32,
+   "utility": 0.2
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "b1rdmania/ghostclaw",
+  "stars": 90,
+  "description": "an AI that lives on your computer and does stuff for you. Public beta.",
+  "scores": {
+   "assistant": 0.93,
+   "remote": 0.95,
+   "framework": 0.16,
+   "utility": 0.33,
+   "fun": 0.13,
+   "business": 0.09
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "areweai/tsgram-mcp",
+  "stars": 89,
+  "description": "TSGram - Telegram MCP Server for local Claude Code integration - debug and vibe code on the go!",
+  "scores": {
+   "assistant": 0.19,
+   "remote": 0.89,
+   "framework": 0.75,
+   "utility": 0.17,
+   "fun": 0.05,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "LexiestLeszek/scrapeGPT",
+  "stars": 87,
+  "description": "ScrapeGPT is a RAG-based Telegram bot designed to scrape and analyze websites, then answer questions based on the scraped content. The bot utilizes Retrieval Augmented Generation and webscraping to return natural language answers to the user's queries.",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.1,
+   "framework": 0.19,
+   "utility": 0.29,
+   "fun": 0.11,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "LlmKira/Alice",
+  "stars": 87,
+  "description": "✨ An autonomous digital companion — pressure field engine + Telegram userbot /  Infinite Axis Utility Systems",
+  "scores": {
+   "business": 0.05,
+   "assistant": 0.84,
+   "remote": 0.25,
+   "framework": 0.15,
+   "utility": 0.11,
+   "fun": 0.88
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "Lifailon/openrouter-bot",
+  "stars": 86,
+  "description": "This project allows to launch your Telegram bot in a few minutes to communicate with free or paid AI models via OpenRouter.",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.06,
+   "framework": 0.25,
+   "utility": 0.1,
+   "fun": 0.2,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "wxc971231/TelegramChatBot",
+  "stars": 85,
+  "description": "A telegram chatbot powered by OpenAI GPT API",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.12,
+   "framework": 0.35,
+   "utility": 0.07,
+   "fun": 0.79,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "pavel-molyanov/telegram-ai-agent",
+  "stars": 84,
+  "description": "Generic Claude/Codex Telegram bot runtime",
+  "scores": {
+   "assistant": 0.78,
+   "remote": 0.98,
+   "framework": 0.65,
+   "utility": 0.14,
+   "fun": 0.05,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "y9san9/prizebot",
+  "stars": 84,
+  "description": "Open source telegram bot to purely raffle prizes (giveaways) with random.org written in Kotlin",
+  "scores": {
+   "assistant": 0.01,
+   "remote": 0.04,
+   "framework": 0.09,
+   "utility": 0.1,
+   "fun": 0.3,
+   "business": 0.03
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "ChiSonKon/telegram-business-ai-bot",
+  "stars": 81,
+  "description": "【聊天自动化】一个24小时在线的 Telegram 智能双向私聊机器人 🤖 /[Chat Automation] A 24/7 online smart Telegram bot for two-way private messaging 🤖",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.1,
+   "framework": 0.27,
+   "utility": 0.17,
+   "fun": 0.05,
+   "business": 0.84
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Rai220/TelegramChatGPT",
+  "stars": 81,
+  "description": "Personal telegram chat-bot based on OpenAI GPT-3 finetuning.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.77,
+   "framework": 0.32,
+   "utility": 0.09,
+   "fun": 0.56,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "noes14155/Telegrambot-with-GPT",
+  "stars": 80,
+  "description": "telegram bot with gpt",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.15,
+   "framework": 0.42,
+   "utility": 0.21,
+   "fun": 0.34,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "0xtbug/telbot",
+  "stars": 79,
+  "description": "Go-based tool for managing Telkomsel accounts via Telegram Bot, Terminal CLI, or MCP Server (for AI agents).",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.49,
+   "framework": 0.2,
+   "utility": 0.08,
+   "fun": 0.04,
+   "business": 0.48
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "guccidgi/AI-Stock-Technical-Analysis-n8n-x-FlowiseAI",
+  "stars": 75,
+  "description": "AI-powered stock analysis system: Telegram bot triggers n8n workflows with FlowiseAI to generate technical analysis reports. Stores trading opportunities in Airtable with earnings data and research. Automatically delivers updates to Telegram.",
+  "scores": {
+   "assistant": 0.37,
+   "remote": 0.15,
+   "framework": 0.27,
+   "utility": 0.12,
+   "fun": 0.06,
+   "business": 0.84
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "dudynets/Telegram-Summarize-Bot",
+  "stars": 74,
+  "description": "A Telegram bot that summarizes messages from a chat using AI.",
+  "scores": {
+   "assistant": 0.8,
+   "remote": 0.05,
+   "framework": 0.08,
+   "utility": 0.28,
+   "fun": 0.11,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "tusharhero/aitelegrambot",
+  "stars": 74,
+  "description": "aitelegrambot is a telegram bot which uses Ollama as its backend.",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.13,
+   "framework": 0.15,
+   "utility": 0.08,
+   "fun": 0.23,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Magerko/TelegramHelper",
+  "stars": 74,
+  "description": "Персональный AI-ассистент для Telegram: userbot + control bot с агентом, понимающим голос и свободный текст. SQLite FTS5, Qdrant, Whisper, OpenAI/Gemini.",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.07,
+   "framework": 0.1,
+   "utility": 0.24,
+   "fun": 0.07,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "sazonovanton/SirChatalot",
+  "stars": 72,
+  "description": "A Telegram bot that proves you don't need a body to have a personality. Works with any OpenAI-compatible LLM; agentic tools, MCP, RAG over your files, memory, vision, voice and image generation.",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.23,
+   "framework": 0.26,
+   "utility": 0.2,
+   "fun": 0.44,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "permgps/herdr-telegram-agents",
+  "stars": 72,
+  "description": "Drive your coding agents from Telegram like from the terminal. A topic per agent, live status in the topic icon, two-way chat with inline buttons for choices.",
+  "scores": {
+   "assistant": 0.08,
+   "remote": 0.97,
+   "framework": 0.08,
+   "utility": 0.39,
+   "fun": 0.03,
+   "business": 0.16
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "harshitethic/ChatGPT-Telegram-Bot",
+  "stars": 71,
+  "description": "",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.25,
+   "framework": 0.26,
+   "utility": 0.06,
+   "fun": 0.53,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "littlebearapps/untether",
+  "stars": 71,
+  "description": "Code from anywhere — Telegram bridge for AI coding agents (Claude Code, Codex, OpenCode, Pi, Gemini CLI, Amp). Stream progress, approve actions, and send tasks by voice from your phone.",
+  "scores": {
+   "assistant": 0.1,
+   "remote": 0.97,
+   "framework": 0.11,
+   "utility": 0.06,
+   "fun": 0.03,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "flows-network/telegram-llm",
+  "stars": 70,
+  "description": "A Telegram LLM bot written in Rust",
+  "scores": {
+   "assistant": 0.92,
+   "remote": 0.12,
+   "framework": 0.83,
+   "utility": 0.08,
+   "fun": 0.2,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "xluxeq/GPT2-Telegram-Chatbot",
+  "stars": 69,
+  "description": "GPT-2 Telegram Chat bot",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.07,
+   "framework": 0.22,
+   "utility": 0.06,
+   "fun": 0.8,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "suzuke/AgEnD",
+  "stars": 66,
+  "description": "Multi-agent fleet daemon — run Claude Code, Gemini CLI, Codex, and OpenCode from Telegram with cross-instance collaboration",
+  "scores": {
+   "assistant": 0.63,
+   "remote": 0.97,
+   "framework": 0.24,
+   "utility": 0.14,
+   "fun": 0.04,
+   "business": 0.1
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "ruitunion-org/feedback-bot",
+  "stars": 65,
+  "description": "A free and open-source Telegram Bot that allows you to anonymously chat with multiple users in one Telegram Chat.",
+  "scores": {
+   "utility": 0.52,
+   "fun": 0.06,
+   "business": 0.12,
+   "assistant": 0.03,
+   "remote": 0.04,
+   "framework": 0.08
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "Jeffrey0117/ClaudeBot",
+  "stars": 64,
+  "description": "Not a pipe to Claude. A command center on your phone. — Telegram bot for Claude Code CLI with plugin system, multi-bot, queue, streaming, and hot-reload.",
+  "scores": {
+   "assistant": 0.88,
+   "remote": 0.98,
+   "framework": 0.28,
+   "utility": 0.15,
+   "fun": 0.06,
+   "business": 0.06
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "kaiserern/Kaiser.charon",
+  "stars": 64,
+  "description": "Solana pump.fun trading bot — Telegram-driven screening, strategy gates, LLM entry selection, Jupiter execution. Fork of yunus-0x/charon.",
+  "scores": {
+   "assistant": 0.1,
+   "remote": 0.22,
+   "framework": 0.16,
+   "utility": 0.03,
+   "fun": 0.04,
+   "business": 0.96
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "FlipZ3ro/robinhood-lp-bot",
+  "stars": 63,
+  "description": "🐷 Telegram-controlled LP bot for Robinhood Chain — auto liquidity on Uniswap v2/v3/v4 (incl. USDG pairs) via KyberSwap best-route, with real-time Nitro sequencer feed, self-run honeypot tests, GMGN/LLM screening, and shareable profit cards.",
+  "scores": {
+   "business": 0.96,
+   "assistant": 0.05,
+   "remote": 0.17,
+   "framework": 0.06,
+   "utility": 0.04,
+   "fun": 0.03
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "jf3tt/chatgpt-telegram-bot",
+  "stars": 62,
+  "description": "Python telegram bot, which utilizes the OpenAI API for implementing GPT-4 and speech-to-text functionality. The bot handles text and voice input from users, transcribes voice input to text, and generates responses using GPT-4",
+  "scores": {
+   "assistant": 0.98,
+   "remote": 0.06,
+   "framework": 0.24,
+   "utility": 0.06,
+   "fun": 0.41,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "thaolst/tara-bot",
+  "stars": 59,
+  "description": "Tara Bot — AI Telegram agent: search flights, compare prices, inject affiliate links",
+  "scores": {
+   "assistant": 0.98,
+   "remote": 0.07,
+   "framework": 0.11,
+   "utility": 0.16,
+   "fun": 0.1,
+   "business": 0.6
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "TamilBots/TamiliniMusic",
+  "stars": 59,
+  "description": "A Free Open Source Group Music Voice Chat Bot Telegram.Give 🌟 And Fork This Repo Before Use ☺️",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.05,
+   "framework": 0.29,
+   "utility": 0.08,
+   "fun": 0.12,
+   "business": 0.02
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "realkarych/aioplate",
+  "stars": 56,
+  "description": "Template for creating Telegram bots on Python Aiogram",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.1,
+   "framework": 0.96,
+   "utility": 0.08,
+   "fun": 0.11,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "s-nagaev/chibi",
+  "stars": 56,
+  "description": "Your Digital Companion. Self-hosted Telegram bot orchestrating multiple AI providers (OpenAI, Anthropic, Google, xAI, DeepSeek, Mistral, Alibaba, MiniMax) with autonomous agent capabilities, MCP integrations, and async task execution. Not a tool. A partner.",
+  "scores": {
+   "remote": 0.92,
+   "framework": 0.23,
+   "utility": 0.12,
+   "fun": 0.22,
+   "business": 0.11,
+   "assistant": 0.96
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "vladislav-bordiug/ChatGPT_DALL_E_StableDiffusion_Telegram_Bot",
+  "stars": 56,
+  "description": "This is ChatGPT, DALL·E, Stable Diffusion python-telegram-bot with cryptocurrency payments. It allows you to generate images and chat with ChatGPT. ",
+  "scores": {
+   "assistant": 0.9,
+   "remote": 0.06,
+   "framework": 0.24,
+   "utility": 0.05,
+   "fun": 0.15,
+   "business": 0.43
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "sliday/telegram-ai-digest",
+  "stars": 56,
+  "description": "Automates Telegram message digests using Claude AI for summaries and Replicate API for image generation, sending results to saved messages.",
+  "scores": {
+   "framework": 0.1,
+   "utility": 0.58,
+   "fun": 0.06,
+   "business": 0.07,
+   "assistant": 0.1,
+   "remote": 0.04
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "vibe-with-me-tools/agent-reachout",
+  "stars": 56,
+  "description": "Let Claude Code reach you on Telegram when it finishes work or needs decisions",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.8,
+   "framework": 0.07,
+   "utility": 0.85,
+   "fun": 0.04,
+   "business": 0.07
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "KonstantinVanov/Article-Assistant--RAG-Telegram-Bot",
+  "stars": 55,
+  "description": "A sophisticated RAG (Retrieval-Augmented Generation) Telegram bot that transforms articles and documents into interactive knowledge bases. Upload PDFs/URLs and get AI-powered answers with source citations.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.07,
+   "framework": 0.23,
+   "utility": 0.52,
+   "fun": 0.06,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "matterai/DataKitsune",
+  "stars": 55,
+  "description": "Introducing DataKitsune, an open-source Telegram bot designed to enhance the way you manage and retrieve links shared within your personal or group chats. By automatically indexing the content of these links, Data Kitsune allows you to efficiently search and access shared resources based on their content.​",
+  "scores": {
+   "assistant": 0.24,
+   "remote": 0.07,
+   "framework": 0.1,
+   "utility": 0.68,
+   "fun": 0.05,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "emingenc/telegramGPT",
+  "stars": 53,
+  "description": "step-by-step guide on creating your very own AI bot using Python, Telegram, and OpenAI GPT models.",
+  "scores": {
+   "assistant": 0.87,
+   "remote": 0.15,
+   "framework": 0.52,
+   "utility": 0.1,
+   "fun": 0.36,
+   "business": 0.1
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "gth-ai/reclip-telegram-bot",
+  "stars": 53,
+  "description": "Self-hosted Telegram bot for downloading media from YouTube, TikTok, Instagram, and 1000+ sites. Powered by reclip + yt-dlp.",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.05,
+   "framework": 0.12,
+   "utility": 0.96,
+   "fun": 0.03,
+   "business": 0.04
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "Mostafa-Abbasi/HyperTAG",
+  "stars": 53,
+  "description": "HyperTAG Bot - AI-Generated Tags and Summaries for Telegram Messages",
+  "scores": {
+   "assistant": 0.49,
+   "remote": 0.06,
+   "framework": 0.14,
+   "utility": 0.14,
+   "fun": 0.06,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "LearningBotsOfficial/NomadeHelpBot",
+  "stars": 53,
+  "description": "🤖 Nomad — Advanced Telegram Group Manager Bot built with Pyrogram. Smart Anti-Spam, Adaptive Lock System, Inline UI, and full moderation suite. Open Source, but Credits Must Stay. No Resale or Rebranding Allowed.",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.13,
+   "framework": 0.21,
+   "utility": 0.97,
+   "fun": 0.05,
+   "business": 0.08
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "SergiySW/NanoWalletBot",
+  "stars": 52,
+  "description": "[DISCONTINUED] Open source Telegram bot for Nano currency",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.12,
+   "framework": 0.12,
+   "utility": 0.11,
+   "fun": 0.04,
+   "business": 0.47
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "AlexTs10/ai-girlfriend-with-voice-telegram-bot",
+  "stars": 51,
+  "description": "GPT Telegram Bot",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.04,
+   "framework": 0.11,
+   "utility": 0.04,
+   "fun": 0.9,
+   "business": 0.2
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "mamashin/tg-bot-fastapi-aiogram",
+  "stars": 51,
+  "description": "FastAPI & Aiogram Telegram Bot Template",
+  "scores": {
+   "assistant": 0.11,
+   "remote": 0.14,
+   "framework": 0.96,
+   "utility": 0.07,
+   "fun": 0.17,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "nessshon/aiogram-tonconnect",
+  "stars": 49,
+  "description": "aiogram-tonconnect is a user-friendly library for integrating TON Connect UI into aiogram-based Telegram bots.",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.06,
+   "framework": 0.87,
+   "utility": 0.05,
+   "fun": 0.06,
+   "business": 0.17
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "leshchenko1979/fast-mcp-telegram",
+  "stars": 48,
+  "description": "Telegram MCP gateway for AI agents: 8 tools, multi-tenant HTTP/stdio, MTProto",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.29,
+   "framework": 0.68,
+   "utility": 0.14,
+   "fun": 0.04,
+   "business": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "Opselon/ForexTradingBot",
+  "stars": 47,
+  "description": "ForexSignalBot is an advanced, AI-driven Telegram bot meticulously engineered for the Forex market. It delivers real-time, high-precision trading signals, aggregates intelligent market news, and features an integrated auto-forwarder for seamless execution with trading clients. Built on .NET 9 with Clean Architecture and Domain-Driven Design",
+  "scores": {
+   "assistant": 0.2,
+   "remote": 0.13,
+   "framework": 0.11,
+   "utility": 0.05,
+   "fun": 0.04,
+   "business": 0.96
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "qpd-v/mcp-communicator-telegram",
+  "stars": 47,
+  "description": "An MCP server that enables communication with users through Telegram. This server provides a tool to ask questions to users and receive their responses via a Telegram bot.",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.19,
+   "framework": 0.78,
+   "utility": 0.7,
+   "fun": 0.07,
+   "business": 0.08
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "ifokeev/telegram-ai-agent",
+  "stars": 44,
+  "description": "Telegram AI Agent: A powerful Python library for creating AI-powered Telegram bots",
+  "scores": {
+   "assistant": 0.81,
+   "remote": 0.26,
+   "framework": 0.95,
+   "utility": 0.12,
+   "fun": 0.19,
+   "business": 0.22
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "ahkarimi/chapar",
+  "stars": 43,
+  "description": "Self-hosted Telegram bot for AI-driven chart analysis and market intelligence. FastAPI + Celery + Redis + PostgreSQL.",
+  "scores": {
+   "assistant": 0.86,
+   "remote": 0.1,
+   "framework": 0.36,
+   "utility": 0.06,
+   "fun": 0.05,
+   "business": 0.81
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "andrebuilds/hermes",
+  "stars": 43,
+  "description": "Send messages from AI agents, CLI, and MCP tools - powered by one shared TypeScript core.",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.17,
+   "framework": 0.45,
+   "utility": 0.3,
+   "fun": 0.06,
+   "business": 0.08
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "bluzir/claude-telegram",
+  "stars": 42,
+  "description": "A simple and modular Telegram orchestrator on top of Claude Code CLI",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.96,
+   "framework": 0.72,
+   "utility": 0.12,
+   "fun": 0.18,
+   "business": 0.11
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Kingler16/Velora",
+  "stars": 40,
+  "description": "Your AI-powered personal wealth advisor. Automated portfolio monitoring, market analysis, and investment briefings delivered via Telegram. Runs on Claude Code with your existing Max/Pro subscription — no API costs.",
+  "scores": {
+   "assistant": 0.79,
+   "remote": 0.44,
+   "framework": 0.1,
+   "utility": 0.07,
+   "fun": 0.04,
+   "business": 0.85
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Tommertom/coderBOT",
+  "stars": 37,
+  "description": "CoderBOT - using Telegram to control your favorite AI coder CLI",
+  "scores": {
+   "assistant": 0.56,
+   "remote": 0.96,
+   "framework": 0.18,
+   "utility": 0.11,
+   "fun": 0.05,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "AbuZar-Ansarii/Openclaw-phone-control",
+  "stars": 37,
+  "description": "OpenClaw allows you to manage your phone via a Telegram bot using the power of local AI (Ollama). No root access is required, making it accessible for almost any modern Android device",
+  "scores": {
+   "assistant": 0.57,
+   "remote": 0.54,
+   "framework": 0.14,
+   "utility": 0.14,
+   "fun": 0.06,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Imolatte/claude-cli-telegram",
+  "stars": 36,
+  "description": "Turn your Mac/Linux into a remote Claude Code terminal via Telegram. Spawns real CLI — sessions, streaming, approvals, voice, git panel, 30+ commands.",
+  "scores": {
+   "assistant": 0.69,
+   "remote": 0.98,
+   "framework": 0.13,
+   "utility": 0.24,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "coderroleggg/telegram-bot-mcp",
+  "stars": 36,
+  "description": "Telegram Bot MCP",
+  "scores": {
+   "assistant": 0.09,
+   "remote": 0.44,
+   "framework": 0.92,
+   "utility": 0.27,
+   "fun": 0.11,
+   "business": 0.09
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "zhuchangyi/Gemini2tg",
+  "stars": 31,
+  "description": "Gemini2tg is a project which deploys Google Gemini's API to a Telegram bot, giving you your own AI bot powerd by Gemini",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.13,
+   "framework": 0.3,
+   "utility": 0.08,
+   "fun": 0.22,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "xingty/CatGPT",
+  "stars": 30,
+  "description": "A telegram bot for OpenAI API",
+  "scores": {
+   "remote": 0.1,
+   "framework": 0.15,
+   "utility": 0.23,
+   "fun": 0.2,
+   "business": 0.05,
+   "assistant": 0.92
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "archetyx/telegram-mcp-server",
+  "stars": 30,
+  "description": "Remote control AI coding assistants (Claude Code/Codex) via Telegram",
+  "scores": {
+   "assistant": 0.14,
+   "remote": 0.97,
+   "framework": 0.45,
+   "utility": 0.25,
+   "fun": 0.03,
+   "business": 0.06
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "timoncool/telegram-api-mcp",
+  "stars": 30,
+  "description": "Ultimate Telegram Bot API MCP server — full v9.6 coverage, meta-mode, rate limiting, circuit breaker. TypeScript.",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.63,
+   "framework": 0.92,
+   "utility": 0.22,
+   "fun": 0.06,
+   "business": 0.18
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "shanzi/Telegram-ChatGPT",
+  "stars": 28,
+  "description": "A customizable Telegram bot with a ChatGPT (or GPT4, bring your own API key) backend. You can configure the bot’s context and prompt in template settings.",
+  "scores": {
+   "assistant": 0.93,
+   "remote": 0.08,
+   "framework": 0.81,
+   "utility": 0.11,
+   "fun": 0.37,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "aneeshjoy/llama-telegram-bot",
+  "stars": 28,
+  "description": "A simple telegram chat bot for LLMs supported by llama.cpp",
+  "scores": {
+   "utility": 0.09,
+   "fun": 0.56,
+   "business": 0.05,
+   "assistant": 0.97,
+   "remote": 0.08,
+   "framework": 0.28
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "maddness/vkusvill-mcp-bot",
+  "stars": 28,
+  "description": "Telegram-бот для сбора продуктовой корзины ВкусВилл через mcp ",
+  "scores": {
+   "assistant": 0.9,
+   "remote": 0.09,
+   "framework": 0.17,
+   "utility": 0.11,
+   "fun": 0.06,
+   "business": 0.5
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "AvivK5498/Golem",
+  "stars": 27,
+  "description": "A self-hosted platform for creating and managing personal AI agents. Each agent gets its own Telegram bot, custom persona, tools, memory, and skills. Built on Mastra, powered by OpenRouter.",
+  "scores": {
+   "assistant": 0.65,
+   "remote": 0.92,
+   "framework": 0.44,
+   "utility": 0.28,
+   "fun": 0.1,
+   "business": 0.13
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "jsayubi/ccgram",
+  "stars": 27,
+  "description": "Control Claude Code from Telegram — remote notifications, permission approvals, and keystroke injection via Telegram bot",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.98,
+   "framework": 0.12,
+   "utility": 0.6,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "AbhiTheModder/gemini-ai-telegram",
+  "stars": 26,
+  "description": "Pyrogram(Pyrofork) Based Python script for Telegram Userbots and Bots",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.13,
+   "framework": 0.63,
+   "utility": 0.14,
+   "fun": 0.48,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "LuKresXD/claw-skeleton",
+  "stars": 26,
+  "description": "🪼 A personal AI assistant that lives in Telegram — every topic is its own isolated Claude Code agent with layered persistent memory and proactive cron heartbeats. Open skeleton of a real, running system.",
+  "scores": {
+   "fun": 0.17,
+   "business": 0.09,
+   "assistant": 0.96,
+   "remote": 0.82,
+   "framework": 0.45,
+   "utility": 0.16
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "AI-XMLY/nodeseek-rss-telegram-bot",
+  "stars": 24,
+  "description": "RSS to Telegram bot with keyword filtering, multi-user subscriptions, SQLite and Docker support",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.04,
+   "framework": 0.08,
+   "utility": 0.93,
+   "fun": 0.04,
+   "business": 0.84
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "anxkhn/OpynGPT-Chat",
+  "stars": 23,
+  "description": "A Telegram chat bot powered by OpynGPT for natural language responses without the need for API keys. Easy to set up and use.",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.08,
+   "framework": 0.25,
+   "utility": 0.07,
+   "fun": 0.49,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "mmr710/nightmux",
+  "stars": 22,
+  "description": "Your night crew, on Telegram. Run Claude Code, Codex or any terminal agent from a Telegram topic — one topic per tmux session. Watches the context window and the 5-hour limit, compacts before the wall, and holds prompts through a lockout instead of losing them. Python stdlib only, no relay server.",
+  "scores": {
+   "assistant": 0.16,
+   "remote": 0.98,
+   "framework": 0.09,
+   "utility": 0.09,
+   "fun": 0.03,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "kstonekuan/telegram-notification-mcp",
+  "stars": 22,
+  "description": "Simple MCP server to send you notifications on telegram",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.13,
+   "framework": 0.33,
+   "utility": 0.96,
+   "fun": 0.03,
+   "business": 0.09
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "muthupriyan-dev/telegram-ai-bot",
+  "stars": 21,
+  "description": "",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.07,
+   "framework": 0.08,
+   "utility": 0.11,
+   "fun": 0.47,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "yschaub/codex-telegram",
+  "stars": 21,
+  "description": "A powerful Telegram bot that provides remote access to Codex CLI, enabling developers to interact with their projects from anywhere with full AI assistance and session persistence.",
+  "scores": {
+   "business": 0.05,
+   "assistant": 0.58,
+   "remote": 0.97,
+   "framework": 0.14,
+   "utility": 0.15,
+   "fun": 0.03
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "JackBekket/Hellper",
+  "stars": 21,
+  "description": "Telegram bot which can work with both openAI and LocalAI modes, it also uses UncensoredGPT models like Wizard-Uncensored. It can be launch at ordinary gamer PC without specific ai-gpu hardware",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.16,
+   "framework": 0.36,
+   "utility": 0.4,
+   "fun": 0.24,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "petrludwig-collab/Agent2Telegram",
+  "stars": 21,
+  "description": "Connect a coding agent (Claude Code, Codex, Antigravity) to Telegram. Dependency-free, robust, secure.",
+  "scores": {
+   "assistant": 0.32,
+   "remote": 0.96,
+   "framework": 0.22,
+   "utility": 0.36,
+   "fun": 0.05,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "belaytzev/Telebrief",
+  "stars": 21,
+  "description": "Personal digests from Telegram channels and chats: summarizes threads, extracts key points, and delivers a clean daily/weekly brief with links and context.",
+  "scores": {
+   "assistant": 0.2,
+   "remote": 0.17,
+   "framework": 0.23,
+   "utility": 0.49,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "serejaris/telegram-skills",
+  "stars": 20,
+  "description": "Agent Skills for Telegram Bot API 10.2 Rich Messages — structured articles, media uploads, digests, and streaming AI replies from any bot",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.18,
+   "framework": 0.24,
+   "utility": 0.16,
+   "fun": 0.05,
+   "business": 0.06
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "JumpCodeFrog/telegram-shop-bot",
+  "stars": 19,
+  "description": "Open-source Telegram shop bot in Go — catalog, Stars & USDT payments, subscriptions, Mini App, admin panel · Telegram-магазин на Go — каталог, оплата Stars и USDT, подписки, Mini App и админ-панель",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.06,
+   "framework": 0.09,
+   "utility": 0.04,
+   "fun": 0.03,
+   "business": 0.95
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "ProKaiiddo/BotAlto",
+  "stars": 18,
+  "description": "BotAlto is an open-source platform for hosting and managing Telegram bots with a user-friendly dashboard. It allows you to create, manage, and deploy multiple Telegram bots from a single interface, complete with custom command creation and real-time control.",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.1,
+   "framework": 0.37,
+   "utility": 0.23,
+   "fun": 0.13,
+   "business": 0.08
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "bbharathbala/actual-budget-telegram-bot",
+  "stars": 17,
+  "description": "Telegram bot for household expense tracking with Actual Budget. No LLMs, no AI costs. Receipt scanning, auto-learning categories, tags, transfers, daily nudge.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.04,
+   "framework": 0.07,
+   "utility": 0.24,
+   "fun": 0.03,
+   "business": 0.03
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "kcisoul/remotecode",
+  "stars": 17,
+  "description": "Control Claude Code remotely through Telegram.",
+  "scores": {
+   "fun": 0.04,
+   "business": 0.04,
+   "assistant": 0.46,
+   "remote": 0.98,
+   "framework": 0.1,
+   "utility": 0.19
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "mgaitan/telegram-acp-bot",
+  "stars": 16,
+  "description": "A Telegram bot that implements Agent Client Protocol to interact with AI agents",
+  "scores": {
+   "fun": 0.1,
+   "business": 0.08,
+   "assistant": 0.34,
+   "remote": 0.92,
+   "framework": 0.2,
+   "utility": 0.16
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "robertelee78/claude-telegram-mirror",
+  "stars": 16,
+  "description": "Bidirectional communication between Claude Code CLI and Telegram. Control your Claude Code sessions from your phone.",
+  "scores": {
+   "assistant": 0.16,
+   "remote": 0.96,
+   "framework": 0.07,
+   "utility": 0.13,
+   "fun": 0.04,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "TheStack-ai/mrstack",
+  "stars": 16,
+  "description": "Run Claude Code from Telegram — AI dev partner that works 24/7, even when terminal is closed. pip install mrstack",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.97,
+   "framework": 0.24,
+   "utility": 0.36,
+   "fun": 0.07,
+   "business": 0.1
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "soulknight666/telegram-account-orchestrator",
+  "stars": 16,
+  "description": "Self-hosted Telegram multi-account management with Web UI, CLI, Bot, MCP, Telethon, and Telegram Desktop tdata import.",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.64,
+   "framework": 0.23,
+   "utility": 0.11,
+   "fun": 0.04,
+   "business": 0.14
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "mcieric/telegram-ai-bot-template",
+  "stars": 15,
+  "description": "A minimal AI-powered Telegram bot template using OpenAI 🤖",
+  "scores": {
+   "fun": 0.37,
+   "business": 0.09,
+   "assistant": 0.87,
+   "remote": 0.08,
+   "framework": 0.94,
+   "utility": 0.07
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "EzeSandes/ChatGPT-OpenAI-TelegramBot",
+  "stars": 15,
+  "description": "Unofficial OpenAI Telegram bot to interact with chatGPT",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.08,
+   "framework": 0.22,
+   "utility": 0.08,
+   "fun": 0.74,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "pyfbsdk59/Flask-ChatGPT-TelegramBot-Render",
+  "stars": 15,
+  "description": "一個Flask ChatGPT TelegramBot快速建置於平台Render。",
+  "scores": {
+   "fun": 0.36,
+   "business": 0.09,
+   "assistant": 0.95,
+   "remote": 0.19,
+   "framework": 0.75,
+   "utility": 0.1
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Tobiaspk/gpt3_telebot",
+  "stars": 15,
+  "description": "Telegram Bot using GPT3 and enhanced functions",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.29,
+   "framework": 0.39,
+   "utility": 0.1,
+   "fun": 0.27,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Zulut30/premium-telegram-emoji",
+  "stars": 15,
+  "description": "Каталог 275+ premium Telegram emoji с ID и превью. Claude Code Skill + бот для пополнения каталога + автодеплой на GitHub Pages.",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.27,
+   "framework": 0.12,
+   "utility": 0.14,
+   "fun": 0.06,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "andykras/gptbot",
+  "stars": 14,
+  "description": "Telegram bot with Assistant AsyncOpenAI API client and aiogram lib",
+  "scores": {
+   "assistant": 0.98,
+   "remote": 0.11,
+   "framework": 0.38,
+   "utility": 0.08,
+   "fun": 0.34,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "hada0127/cc-telegram",
+  "stars": 14,
+  "description": "telegram bot for claude-code",
+  "scores": {
+   "assistant": 0.52,
+   "remote": 0.98,
+   "framework": 0.11,
+   "utility": 0.22,
+   "fun": 0.04,
+   "business": 0.08
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "UzStack/paycue",
+  "stars": 14,
+  "description": "💳 Telegram va Humo bot orqali to‘lovlarni avtomatlashtirishga mo‘ljallangan open-source servis — yuridik shaxssiz ham tez va oson integratsiyasiz to‘lovlarni qabul qiling.",
+  "scores": {
+   "business": 0.88,
+   "assistant": 0.02,
+   "remote": 0.06,
+   "framework": 0.14,
+   "utility": 0.07,
+   "fun": 0.03
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "sean-nicholas/parrot",
+  "stars": 13,
+  "description": "Telegram Bot for transcribing voice messages via wit.ai",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.06,
+   "framework": 0.12,
+   "utility": 0.64,
+   "fun": 0.35,
+   "business": 0.03
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "Awaisali36/stock-analysis-telegram-bot",
+  "stars": 13,
+  "description": "📈 Telegram bot that delivers comprehensive US stock analysis combining real-time technical data, AI-powered news sentiment, and fundamental metrics. Get dual-timeframe recommendations for day trading and long-term investing.",
+  "scores": {
+   "framework": 0.08,
+   "utility": 0.04,
+   "fun": 0.04,
+   "business": 0.95,
+   "assistant": 0.51,
+   "remote": 0.05
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "guzus/tg-claude",
+  "stars": 13,
+  "description": "Telegram/Discord client for Claude Code",
+  "scores": {
+   "assistant": 0.78,
+   "remote": 0.97,
+   "framework": 0.1,
+   "utility": 0.11,
+   "fun": 0.05,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "AIOPrivacy/AIOPrivacyBot",
+  "stars": 12,
+  "description": "一个尝试在保护用户隐私的前提下，提供各类功能的类命令行Telegram机器人。",
+  "scores": {
+   "assistant": 0.57,
+   "remote": 0.1,
+   "framework": 0.07,
+   "utility": 0.81,
+   "fun": 0.36,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "abirxdhack/Chat-ID-Bot-Aio",
+  "stars": 12,
+  "description": "The Chat ID Bot Aiogram is a Telegram bot built with Python and the @aiogram library. It allows users to quickly retrieve the unique IDs of Telegram entities (users, groups, channels, and bots) by sharing them through a user-friendly keyboard interface.",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.04,
+   "framework": 0.11,
+   "utility": 0.23,
+   "fun": 0.08,
+   "business": 0.05
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "siriusforex-ai/telegram_signal_copier",
+  "stars": 11,
+  "description": "Free AI-powered Telegram Signal Copier Bot — Monitors any Telegram signal channel, uses Claude AI to parse signals in any format, and automatically places trades on MetaTrader 5 with SL/TP in under 3 seconds. Supports market, limit, stop orders, multiple take profits, and close signals. Full source code, no subscriptions.",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.22,
+   "framework": 0.12,
+   "utility": 0.11,
+   "fun": 0.04,
+   "business": 0.95
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "maratx86/aiogram-timepicker",
+  "stars": 11,
+  "description": "A simple inline time selection tool for aiogram telegram bots written in Python.",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.04,
+   "framework": 0.75,
+   "utility": 0.06,
+   "fun": 0.09,
+   "business": 0.05
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "sleeyax/claude-code-session-bot",
+  "stars": 11,
+  "description": "Telegram bot to warm up your Claude code session while you're AFK",
+  "scores": {
+   "assistant": 0.13,
+   "remote": 0.68,
+   "framework": 0.06,
+   "utility": 0.16,
+   "fun": 0.06,
+   "business": 0.07
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "TheOpenPrimary/giskard",
+  "stars": 11,
+  "description": "Open Source bot engine for Telegram bots and Facebook messenger bots",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.1,
+   "framework": 0.94,
+   "utility": 0.07,
+   "fun": 0.1,
+   "business": 0.1
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "Exdenta/OinkAIJobSearch",
+  "stars": 10,
+  "description": "AI job-search agent in Telegram — scrapes 25+ job boards, scores every posting against your CV with Claude, pushes real matches to your chat. Self-host free or use the hosted bot.",
+  "scores": {
+   "assistant": 0.84,
+   "remote": 0.41,
+   "framework": 0.11,
+   "utility": 0.26,
+   "fun": 0.03,
+   "business": 0.03
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "kawaiipantsu/telegramdigger",
+  "stars": 10,
+  "description": "This tool is an implementation of the Telegram Bot API for Linux terminal use. It's ment for quick OSINT and grading useful information or to do things like takedown, destroy or grab messages. Note, this tool is converted from a web-tool I once made to C++ and done so via Claude.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.28,
+   "framework": 0.04,
+   "utility": 0.15,
+   "fun": 0.04,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "kyujin-cho/claude-code-remote",
+  "stars": 10,
+  "description": "Claude Code hook & Telegram Bot to notify user about active CC permission request and receive the decision via Telegram bot.",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.69,
+   "framework": 0.07,
+   "utility": 0.9,
+   "fun": 0.03,
+   "business": 0.08
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "SWel1a/QuizBot",
+  "stars": 10,
+  "description": "Blossom the languagemaid is your personal language learning assistant on Telegram. ",
+  "scores": {
+   "assistant": 0.1,
+   "remote": 0.04,
+   "framework": 0.09,
+   "utility": 0.07,
+   "fun": 0.98,
+   "business": 0.02
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "alifgardika/CatatAja",
+  "stars": 9,
+  "description": "Bot Telegram pencatat pengeluaran tanpa server. Ketik transaksi pakai bahasa sehari-hari, bot memahaminya dengan Gemini AI lalu menyimpannya ke Google Sheets.",
+  "scores": {
+   "fun": 0.04,
+   "business": 0.09,
+   "assistant": 0.64,
+   "remote": 0.03,
+   "framework": 0.11,
+   "utility": 0.19
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "TegroTON/ai-telegram-pay-miniapp",
+  "stars": 9,
+  "description": "Tegro.Money fiat-onramp helper for Telegram bots — createOrder + webhook verifier, MIT-licensed, grammY example included.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.03,
+   "framework": 0.5,
+   "utility": 0.03,
+   "fun": 0.03,
+   "business": 0.78
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "omniores3/phpSearch",
+  "stars": 9,
+  "description": "Telegram搜索引擎,TG机器人,群组索引,电报搜索,Bot开发,Elasticsearch PHP,广告投放,AI审核,Swoole高性能,Redis缓存,社群工具,运营系统,搭建教程,二次开发,中文搜索",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.1,
+   "framework": 0.34,
+   "utility": 0.12,
+   "fun": 0.04,
+   "business": 0.52
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "dhir4j/chatgpt-bot-telegram",
+  "stars": 9,
+  "description": "A Python script that implements a basic chatbot using the OpenAI GPT-3 API.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.16,
+   "framework": 0.26,
+   "utility": 0.32,
+   "fun": 0.55,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "lucashcaraujo/claude-telegram",
+  "stars": 9,
+  "description": "",
+  "scores": {
+   "assistant": 0.79,
+   "remote": 0.98,
+   "framework": 0.29,
+   "utility": 0.22,
+   "fun": 0.05,
+   "business": 0.03
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "deseven/telegram-actual-llm-helper",
+  "stars": 9,
+  "description": "A bot to assist with logging transactions in Actual Budget, leveraging the capabilities of ChatGPT or other LLMs",
+  "scores": {
+   "utility": 0.16,
+   "fun": 0.05,
+   "business": 0.15,
+   "assistant": 0.89,
+   "remote": 0.08,
+   "framework": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Mr-SxR/Xmnit-range-forwarder-bot",
+  "stars": 9,
+  "description": "Telegram bot that polls a dashboard API and forwards OTP logs — Open Source | Mr-SxR",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.05,
+   "framework": 0.07,
+   "utility": 0.75,
+   "fun": 0.04,
+   "business": 0.57
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "evgenyigumnov/ai-agent-telegram-bot",
+  "stars": 8,
+  "description": "A smart and friendly AI-powered Telegram bot that can answer questions, store and forget information, and even execute terminal commands on request. Built with Rust, powered by LLMs and vector search via Qdrant.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.9,
+   "framework": 0.11,
+   "utility": 0.12,
+   "fun": 0.25,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "BlackFoxGroup/smart-support-bot",
+  "stars": 8,
+  "description": "Smart Support Bot — open-source multilingual Telegram AI support bot",
+  "scores": {
+   "assistant": 0.86,
+   "remote": 0.2,
+   "framework": 0.19,
+   "utility": 0.21,
+   "fun": 0.05,
+   "business": 0.91
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Theraf1u/vps-multitest-bot",
+  "stars": 8,
+  "description": "Telegram-бот для диагностики VPS по SSH: 25 тестов (скорость, устойчивая нагрузка, UDP/QUIC-throttling, bufferbloat, IPv6, DNS-перехват, IP-репутация, гео/DPI-блокировки), PDF-отчёт с AI-анализом через OpenRouter. Данные сервера нигде не сохраняются и никуда не пересылаются — только память на время теста.",
+  "scores": {
+   "assistant": 0.14,
+   "remote": 0.44,
+   "framework": 0.08,
+   "utility": 0.44,
+   "fun": 0.04,
+   "business": 0.73
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "moeacgx/cc-switch-bot",
+  "stars": 8,
+  "description": "Telegram Bot for managing Claude Code / Codex / Gemini provider switching, deployed on Cloudflare Workers",
+  "scores": {
+   "utility": 0.22,
+   "fun": 0.04,
+   "business": 0.18,
+   "assistant": 0.18,
+   "remote": 0.9,
+   "framework": 0.08
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "choiyounggi/cliclaw",
+  "stars": 8,
+  "description": "Control coding agents on your Mac — Claude Code, Codex, Pi, Gemini — from your phone via Telegram. Kick off tasks, stream progress, and approve dangerous commands while away from your desk. Per-chat per-agent sessions, confirm gate, launchd auto-start, corporate-TLS (Zscaler) auto-detection.",
+  "scores": {
+   "assistant": 0.29,
+   "remote": 0.95,
+   "framework": 0.08,
+   "utility": 0.07,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "BrainDAO/mcp-telegram",
+  "stars": 8,
+  "description": "Model Context Protocol Server for interacting with Telegram Channels",
+  "scores": {
+   "assistant": 0.46,
+   "remote": 0.21,
+   "framework": 0.91,
+   "utility": 0.56,
+   "fun": 0.09,
+   "business": 0.12
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "pabletos/Hubot-Warframe",
+  "stars": 8,
+  "description": "A open source warframe bot for telegram",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.1,
+   "framework": 0.49,
+   "utility": 0.7,
+   "fun": 0.44,
+   "business": 0.08
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "pengming273/TelegramAirdropBountyBot",
+  "stars": 7,
+  "description": "TelegramAirdropBountyBot",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.05,
+   "framework": 0.48,
+   "utility": 0.1,
+   "fun": 0.13,
+   "business": 0.11
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "habitual69/cutimagebg_bot",
+  "stars": 7,
+  "description": "Background Remover Bot. A Telegram bot that uses AI image processing to remove the background from images.",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.03,
+   "framework": 0.13,
+   "utility": 0.13,
+   "fun": 0.07,
+   "business": 0.03
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "backmeupplz/telegram-ai-searcher",
+  "stars": 7,
+  "description": "Telegram bot that searches the web and streams AI answers live. Live demo: https://t.me/frdy_bot — built with grammY, Fireworks AI, and self-hosted SearXNG.",
+  "scores": {
+   "assistant": 0.9,
+   "remote": 0.05,
+   "framework": 0.15,
+   "utility": 0.07,
+   "fun": 0.09,
+   "business": 0.04
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "hschickdevs/Telegram-AI-Software-Architect",
+  "stars": 7,
+  "description": "Telegram bot that uses AI to generate full codebases from user prompts, providing structured, ready-to-deploy software projects, differentiating from simple code generation by offering entire architectural solutions.",
+  "scores": {
+   "framework": 0.1,
+   "utility": 0.08,
+   "fun": 0.07,
+   "business": 0.04,
+   "assistant": 0.96,
+   "remote": 0.38
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "kky42/anyagent",
+  "stars": 7,
+  "description": "Run Codex, Claude, or Pi from Telegram.",
+  "scores": {
+   "assistant": 0.76,
+   "remote": 0.96,
+   "framework": 0.18,
+   "utility": 0.18,
+   "fun": 0.06,
+   "business": 0.06
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "0xkaz/codex-gemini-telegram-bridge",
+  "stars": 7,
+  "description": "Telegram bridges for running Codex CLI and Gemini CLI from a single authorized chat",
+  "scores": {
+   "remote": 0.97,
+   "framework": 0.11,
+   "utility": 0.07,
+   "fun": 0.04,
+   "business": 0.03,
+   "assistant": 0.38
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "sideshift/saier",
+  "stars": 6,
+  "description": "Cryptocurrency tipping bot for Telegram powered by SideShift.ai",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.05,
+   "framework": 0.1,
+   "utility": 0.07,
+   "fun": 0.09,
+   "business": 0.66
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "irfan-yulianto/Telegram-Finance-Bot",
+  "stars": 6,
+  "description": "AI-powered personal finance tracker bot for Telegram. Track income &  expenses with receipt scanning, natural language input, and automatic  Google Sheets sync. Built with Python & Google Gemini API.",
+  "scores": {
+   "assistant": 0.55,
+   "remote": 0.04,
+   "framework": 0.07,
+   "utility": 0.09,
+   "fun": 0.04,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "ibidathoillah/gemini-cli-telegram",
+  "stars": 6,
+  "description": "Run Google Gemini CLI as a Telegram bot. AI coding assistant with project management, scheduled tasks, and autopilot mode.",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.94,
+   "framework": 0.22,
+   "utility": 0.15,
+   "fun": 0.06,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "rokoss21/OpenBot-2.0",
+  "stars": 6,
+  "description": "This Telegram bot interfaces with AI models via OpenRouter, enabling users to authenticate with an API key, select AI models for interaction, process and send messages, and log activities.",
+  "scores": {
+   "assistant": 0.92,
+   "remote": 0.12,
+   "framework": 0.26,
+   "utility": 0.24,
+   "fun": 0.37,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Arash-Mansourpour/ultimate-crypto-trading-bot",
+  "stars": 6,
+  "description": "An advanced Telegram bot for cryptocurrency trading analysis, featuring multi-source data fetching, technical indicators (Heiken Ashi, Ichimoku, Fibonacci, etc.), on-chain metrics, social sentiment, and AI-powered signals with risk management.",
+  "scores": {
+   "assistant": 0.28,
+   "remote": 0.1,
+   "framework": 0.11,
+   "utility": 0.03,
+   "fun": 0.03,
+   "business": 0.95
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "mmchougule/stealth-trader",
+  "stars": 6,
+  "description": "Give your AI agent its own Solana wallet — it trades for you, and nothing traces back to it. MCP server + Telegram bot, open source.",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.47,
+   "framework": 0.3,
+   "utility": 0.03,
+   "fun": 0.06,
+   "business": 0.87
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "c17hawke/chatGPT-Telegram-bot",
+  "stars": 6,
+  "description": "chatGPT-Telegram-bot",
+  "scores": {
+   "assistant": 0.9,
+   "remote": 0.18,
+   "framework": 0.3,
+   "utility": 0.06,
+   "fun": 0.42,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "DoctorSB/GPT_Telegram_Bot",
+  "stars": 6,
+  "description": "Код для работы с api openai ",
+  "scores": {
+   "assistant": 0.97,
+   "remote": 0.09,
+   "framework": 0.23,
+   "utility": 0.07,
+   "fun": 0.31,
+   "business": 0.1
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "azalio/claude-telegram-skill",
+  "stars": 6,
+  "description": "Telegram bridge skill for Claude Code: notify-on-done + non-blocking two-way chat, multi-session, no daemon",
+  "scores": {
+   "assistant": 0.18,
+   "remote": 0.93,
+   "framework": 0.09,
+   "utility": 0.76,
+   "fun": 0.05,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "stebou/claude-code-telegram-gcp",
+  "stars": 6,
+  "description": "",
+  "scores": {
+   "assistant": 0.87,
+   "remote": 0.98,
+   "framework": 0.25,
+   "utility": 0.13,
+   "fun": 0.06,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Kiryoko/claude-code-changelog-telegram-bot",
+  "stars": 6,
+  "description": "",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.06,
+   "framework": 0.07,
+   "utility": 0.94,
+   "fun": 0.06,
+   "business": 0.75
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "probelabs/afk",
+  "stars": 6,
+  "description": "Remote control and approval system for Claude Code via Telegram. Zero dependencies, Node.js 18+ built-ins only.",
+  "scores": {
+   "assistant": 0.05,
+   "remote": 0.96,
+   "framework": 0.11,
+   "utility": 0.55,
+   "fun": 0.03,
+   "business": 0.17
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "simontt88/thronglets",
+  "stars": 6,
+  "description": "Spawn AI coding agents from Telegram. Each gets a name, pixel art avatar, and workspace. Fleet management for Cursor, Claude Code, and Codex.",
+  "scores": {
+   "assistant": 0.32,
+   "remote": 0.96,
+   "framework": 0.16,
+   "utility": 0.06,
+   "fun": 0.11,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Emadhabibnia1385/KasbBook",
+  "stars": 6,
+  "description": "KasbBook is an open-source project and Telegram bot for managing income, expenses and financial reports for small businesses.",
+  "scores": {
+   "assistant": 0.02,
+   "remote": 0.06,
+   "framework": 0.07,
+   "utility": 0.07,
+   "fun": 0.03,
+   "business": 0.5
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Aman262626/DarkGPT-Telegram-Bot",
+  "stars": 5,
+  "description": "🌑 DarkGPT - A powerful Telegram bot powered by Claude Opus AI with conversation memory and multi-language support",
+  "scores": {
+   "assistant": 0.9,
+   "remote": 0.38,
+   "framework": 0.24,
+   "utility": 0.14,
+   "fun": 0.3,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "binnwkwk/SylvieAi-Telegram-Bot",
+  "stars": 5,
+  "description": "This is the source code of the Sylvie AI telegram bot",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.14,
+   "framework": 0.15,
+   "utility": 0.08,
+   "fun": 0.54,
+   "business": 0.09
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "skrashevich/telegram-mock-ai",
+  "stars": 5,
+  "description": "Mock Telegram Bot API server with LLM-generated responses",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.09,
+   "framework": 0.14,
+   "utility": 0.06,
+   "fun": 0.09,
+   "business": 0.04
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "YevgeniyKapustin/VanessaAI",
+  "stars": 5,
+  "description": "Telegram AI Bot",
+  "scores": {
+   "business": 0.03,
+   "assistant": 0.96,
+   "remote": 0.11,
+   "framework": 0.12,
+   "utility": 0.1,
+   "fun": 0.66
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "radyakaze/teleduckai",
+  "stars": 5,
+  "description": "A fun and experimental Telegram bot built using Deno, powered by Duck.ai",
+  "scores": {
+   "assistant": 0.55,
+   "remote": 0.09,
+   "framework": 0.13,
+   "utility": 0.05,
+   "fun": 0.58,
+   "business": 0.04
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "Kpavan63/telegram-bot-dash",
+  "stars": 5,
+  "description": "🤖 Welcome to AI Products Bot! 🤖  🌟 Your AI-powered shopping assistant! Find the latest Products From Amazon,Flipkart,Meesho  🔍 Search AI Products: Type the product name, and I’ll find the best matches. 🚀 Quick Ordering: Order AI products in seconds.",
+  "scores": {
+   "assistant": 0.09,
+   "remote": 0.04,
+   "framework": 0.09,
+   "utility": 0.09,
+   "fun": 0.04,
+   "business": 0.68
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "bisbeebucky/ai-bot",
+  "stars": 5,
+  "description": "AI Telegram personal finance bot with cashflow forecasting and overdraft prediction",
+  "scores": {
+   "assistant": 0.73,
+   "remote": 0.07,
+   "framework": 0.11,
+   "utility": 0.04,
+   "fun": 0.04,
+   "business": 0.06
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "Hormold/cursor-telegram-bot",
+  "stars": 5,
+  "description": "A powerful Telegram bot for managing Cursor AI Background Composers with intelligent task management and real-time monitoring.",
+  "scores": {
+   "assistant": 0.51,
+   "remote": 0.81,
+   "framework": 0.08,
+   "utility": 0.21,
+   "fun": 0.05,
+   "business": 0.2
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "Cloudveerge/Gemini-1.5-flash-AI-Telegram-Bot",
+  "stars": 5,
+  "description": "An intelligent, conversational Telegram bot built on Node.js, leveraging the gemini-1.5-flash generative AI model.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.05,
+   "framework": 0.24,
+   "utility": 0.05,
+   "fun": 0.47,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "tanishra/Telegram-Smart-Agent-Bot",
+  "stars": 5,
+  "description": "SmartAgent Bot is an AI-powered Telegram bot built using n8n workflows and Google Gemini models. It processes both text and voice messages, intelligently routing requests to specialized AI agents for email, calendar, stock data, growth analytics, prompt generation, or image creation. The bot logs interactions in Google Sheets,saves images to Google",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.07,
+   "framework": 0.17,
+   "utility": 0.39,
+   "fun": 0.1,
+   "business": 0.29
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "asianviking/pochi",
+  "stars": 5,
+  "description": "Multi-model AI agent Telegram bot for multi-folder workspaces.",
+  "scores": {
+   "assistant": 0.8,
+   "remote": 0.97,
+   "framework": 0.17,
+   "utility": 0.17,
+   "fun": 0.05,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "divanshusingh-ds/TELREGRAM-BOT",
+  "stars": 5,
+  "description": "AI-powered Telegram assistant built with Python, Google Gemini, LangChain & LangGraph, featuring agentic tool calling, conversation memory, and modular AI architecture.",
+  "scores": {
+   "assistant": 0.96,
+   "remote": 0.06,
+   "framework": 0.29,
+   "utility": 0.07,
+   "fun": 0.28,
+   "business": 0.07
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "djblack1209-coder/OpenClaw-Bot",
+  "stars": 5,
+  "description": "OpenEverything — Personal AI automation with Telegram, a Tauri console, and traceable model budgets. Python/FastAPI + React/Rust.",
+  "scores": {
+   "assistant": 0.74,
+   "remote": 0.63,
+   "framework": 0.3,
+   "utility": 0.17,
+   "fun": 0.11,
+   "business": 0.24
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "xx0x0/video-transcript-bot",
+  "stars": 5,
+  "description": "Telegram bot that extracts transcripts from short-form video (Douyin, X/Twitter, YouTube, Bilibili) and summarises them with local AI — runs fully on your Mac, no cloud. | 抖音/X/YouTube/B站视频文案提取 Telegram Bot，本地运行",
+  "scores": {
+   "assistant": 0.39,
+   "remote": 0.15,
+   "framework": 0.1,
+   "utility": 0.72,
+   "fun": 0.05,
+   "business": 0.02
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "smurftyy/Whispr",
+  "stars": 5,
+  "description": "AI-powered Telegram reminder bot — NLP scheduling via chrono-node, Bull/Redis queue system, and smart notification management. Live.",
+  "scores": {
+   "assistant": 0.09,
+   "remote": 0.03,
+   "framework": 0.1,
+   "utility": 0.91,
+   "fun": 0.07,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "aleksbuss/termux-voice-bot",
+  "stars": 5,
+  "description": "A pocket-sized AI server running on your Android smartphone. This project turns your phone into a fully autonomous Telegram bot for voice and text processing. No cloud APIs, no paid subscriptions, no data leaks — everything runs 100% locally on your device's CPU.",
+  "scores": {
+   "fun": 0.17,
+   "business": 0.04,
+   "assistant": 0.55,
+   "remote": 0.13,
+   "framework": 0.15,
+   "utility": 0.16
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "flows-network/telegram-claude",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "assistant": 0.89,
+   "remote": 0.18,
+   "framework": 0.76,
+   "utility": 0.1,
+   "fun": 0.21,
+   "business": 0.08
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "switchroom/switchroom",
+  "stars": 5,
+  "description": "Run Claude Code 24/7 on your Claude Pro/Max subscription over Telegram.",
+  "scores": {
+   "assistant": 0.85,
+   "remote": 0.96,
+   "framework": 0.12,
+   "utility": 0.14,
+   "fun": 0.07,
+   "business": 0.11
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "zertac/TeleClaude",
+  "stars": 5,
+  "description": "A Windows Telegram bot for Claude CLI. Control Claude remotely via Telegram with conversation persistence, working directory management, file transfers, and auto-restart daemon service.",
+  "scores": {
+   "assistant": 0.83,
+   "remote": 0.97,
+   "framework": 0.1,
+   "utility": 0.4,
+   "fun": 0.07,
+   "business": 0.04
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "danimoya/Claude-B",
+  "stars": 5,
+  "description": "Background-capable Claude Code wrapper with async workflows, session management, and multi-host orchestration. Telegram Integration, TTS-STT with multi-LLM transcript-to-structured-prompt pipeline",
+  "scores": {
+   "assistant": 0.87,
+   "remote": 0.97,
+   "framework": 0.26,
+   "utility": 0.43,
+   "fun": 0.08,
+   "business": 0.08
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "nickathens/MyOldMachine",
+  "stars": 5,
+  "description": "Self-hosted LLM-powered Telegram bot with modular skill system. Provider-agnostic: Claude, OpenAI, Gemini, Ollama, OpenRouter.",
+  "scores": {
+   "fun": 0.14,
+   "business": 0.09,
+   "assistant": 0.96,
+   "remote": 0.96,
+   "framework": 0.19,
+   "utility": 0.29
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "zkrige/zoidberg",
+  "stars": 5,
+  "description": "Your own Claude on your own hardware, running on your Claude subscription instead of metered API credit. Talk to it on Telegram; it runs your scheduled work.",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.92,
+   "framework": 0.12,
+   "utility": 0.31,
+   "fun": 0.16,
+   "business": 0.22
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "junecv/vibeIDE",
+  "stars": 5,
+  "description": "Code from your phone. Telegram bot that gives you Claude Code. Start on your laptop, pick up on your phone.",
+  "scores": {
+   "assistant": 0.83,
+   "remote": 0.98,
+   "framework": 0.16,
+   "utility": 0.12,
+   "fun": 0.05,
+   "business": 0.03
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "zalogarcia/leash",
+  "stars": 5,
+  "description": "Talk to Claude Code on your own machine, from your phone, over Telegram. No tunnel, no webhook, no cloud relay.",
+  "scores": {
+   "assistant": 0.91,
+   "remote": 0.98,
+   "framework": 0.1,
+   "utility": 0.23,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "palaklohade/pdf_Sumarizer_telegram_bot",
+  "stars": 5,
+  "description": "A Telegram bot built with Python that summarizes PDF files using an LLM model. Users can send PDFs to the bot and receive concise summaries or answers to their queries directly in chat. The project streamlines document analysis and information retrieval via Telegram. ",
+  "scores": {
+   "assistant": 0.86,
+   "remote": 0.05,
+   "framework": 0.11,
+   "utility": 0.85,
+   "fun": 0.07,
+   "business": 0.05
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "jielosc/EigenDigest_bot",
+  "stars": 5,
+  "description": "Telegram 信息聚合机器人：定时从 RSS、新闻网站、微信公众号拉取内容，通过 LLM 生成摘要，每日推送。",
+  "scores": {
+   "assistant": 0.47,
+   "remote": 0.04,
+   "framework": 0.09,
+   "utility": 0.76,
+   "fun": 0.05,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "TgCaller/TgCaller",
+  "stars": 5,
+  "description": "An open-source library to handle high-quality group calls in Telegram bots.",
+  "scores": {
+   "assistant": 0.03,
+   "remote": 0.06,
+   "framework": 0.83,
+   "utility": 0.06,
+   "fun": 0.05,
+   "business": 0.04
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "zooddd/tg-proxy-shop",
+  "stars": 5,
+  "description": "云海代理管理后台 YunHai Proxy Admin：开源 Telegram 代理自动售卖与多节点管理平台。机器人自助购买，SSH/Agent 自动部署 MTProto/SOCKS5 实例，Web 后台统一管理节点、套餐、用户、订单、代理与支付，含多渠道收款、全量审计与登录风控。An open-source Telegram proxy resale & multi-node admin panel: auto-sell bot, SSH/Agent auto node deployment, web console, multi payments and full audit. FastAPI + Vue3.",
+  "scores": {
+   "assistant": 0.01,
+   "remote": 0.17,
+   "framework": 0.12,
+   "utility": 0.06,
+   "fun": 0.03,
+   "business": 0.83
+  },
+  "kind": "business"
+ }
+]

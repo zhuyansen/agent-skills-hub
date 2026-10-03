@@ -1,0 +1,3012 @@
+[
+ {
+  "repo": "helloianneo/ian-xiaohei-illustrations",
+  "stars": 12301,
+  "description": "中文小黑怪诞正文配图生成 Skill | 16:9 白底手绘 | 少量红橙蓝批注 | Codex Skill",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.92,
+   "plugin": 0.84,
+   "workflow": 0.48,
+   "bridge": 0.07,
+   "tooling": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Imbad0202/academic-research-skills-codex",
+  "stars": 12010,
+  "description": "Codex-native Academic Research Skills suite for human-in-the-loop academic research workflows",
+  "scores": {
+   "collection": 0.13,
+   "skill": 0.81,
+   "plugin": 0.91,
+   "workflow": 0.82,
+   "bridge": 0.79,
+   "tooling": 0.59
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ningzimu/codex-ppt-skill",
+  "stars": 6312,
+  "description": "GPT-Image-2 PPT Generator Skill for Creating Image-Based PowerPoint Presentations in Codex and Other Skill-Compatible Agents",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.74,
+   "workflow": 0.84,
+   "bridge": 0.81,
+   "tooling": 0.16
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "yynxxxxx/Codex-X",
+  "stars": 4028,
+  "description": "OpenAI Codex 桌面端/CLI 的可视化管理工具，具有Provider/API 切换、会话同步、提示词注入、Skills/MCP 管理、TOML 配置可视化的跨平台工具。",
+  "scores": {
+   "collection": 0.12,
+   "skill": 0.17,
+   "plugin": 0.34,
+   "workflow": 0.12,
+   "bridge": 0.07,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "stars": 2761,
+  "description": "Codex skill for converting slide images, PDFs, and image-based PPTX files into editable PowerPoint decks.",
+  "scores": {
+   "bridge": 0.05,
+   "tooling": 0.44,
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.79,
+   "workflow": 0.87
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "leo-lilinxiao/codex-autoresearch",
+  "stars": 2752,
+  "description": "Codex Autoresearch Skill — A self-directed iterative system for Codex that continuously cycles through: modify, verify, retain or discard, and repeat indefinitely. Inspired by Karpathy’s autoresearch concept.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.85,
+   "plugin": 0.87,
+   "workflow": 0.81,
+   "bridge": 0.04,
+   "tooling": 0.59
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "stars": 1760,
+  "description": "一个用于生成高密度、可编辑、咨询风格 PowerPoint 的 Codex Skill，支持 SCR 叙事、风格确认和 PPTX 质量检查。",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.82,
+   "workflow": 0.43,
+   "bridge": 0.07,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tom-doerr/zsh_codex",
+  "stars": 1732,
+  "description": "This is a ZSH plugin that enables you to use OpenAI's Codex AI in the command line.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.73,
+   "plugin": 0.95,
+   "workflow": 0.04,
+   "bridge": 0.11,
+   "tooling": 0.76
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "donvito/codex-astra-luna-orchestrator",
+  "stars": 1671,
+  "description": "Use Astra or Sol as orchestrator and Luna for subagents in Codex",
+  "scores": {
+   "tooling": 0.79,
+   "collection": 0.1,
+   "skill": 0.66,
+   "plugin": 0.66,
+   "workflow": 0.96,
+   "bridge": 0.05
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "vinhhien112/img2obj",
+  "stars": 1667,
+  "description": "Codex plugin that turns attached object images into code-only, animation-ready procedural Three.js models.",
+  "scores": {
+   "skill": 0.74,
+   "plugin": 0.94,
+   "workflow": 0.58,
+   "bridge": 0.07,
+   "tooling": 0.35,
+   "collection": 0.07
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "vibeforge1111/keep-codex-fast",
+  "stars": 1584,
+  "description": "A backup-first Codex skill for keeping local Codex state fast, clean, and recoverable.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.87,
+   "plugin": 0.58,
+   "workflow": 0.22,
+   "bridge": 0.05,
+   "tooling": 0.58
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "icebird1998/drawio-scientific-illustrator",
+  "stars": 1443,
+  "description": "Live MCP control of the visible draw.io canvas for step-by-step scientific illustration in Codex.",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.67,
+   "plugin": 0.97,
+   "workflow": 0.22,
+   "bridge": 0.06,
+   "tooling": 0.54
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Kappaemme-git/codex-first-customer-finder-skill",
+  "stars": 1066,
+  "description": "A Codex skill that finds evidence-backed potential first customers from recent public signals.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.84,
+   "workflow": 0.3,
+   "bridge": 0.05,
+   "tooling": 0.6
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Kappaemme-git/codex-startup-pressure-test-skill",
+  "stars": 991,
+  "description": "",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.9,
+   "plugin": 0.77,
+   "workflow": 0.23,
+   "bridge": 0.05,
+   "tooling": 0.32
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "stars": 989,
+  "description": "Premium hand-drawn animated architecture diagram Codex skill",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.82,
+   "workflow": 0.07,
+   "bridge": 0.13,
+   "tooling": 0.28
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "pengjunchi0/codex-visio-paper-figure-skill",
+  "stars": 981,
+  "description": "科研绘图skill、论文绘图skill、图片转visio等可编辑格式，将生成图转化为论文可编辑图，便于作者调整绘图细节",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.9,
+   "workflow": 0.23,
+   "bridge": 0.05,
+   "tooling": 0.33
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Kappaemme-git/codex-complexity-optimizer",
+  "stars": 914,
+  "description": "Codex skill for safe codebase complexity analysis and performance optimization reports",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.85,
+   "workflow": 0.13,
+   "bridge": 0.05,
+   "tooling": 0.62
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "joeseesun/qiaomu-goal-meta-skill",
+  "stars": 902,
+  "description": "Turn vague or complex Codex tasks into strong `/goal` commands with outcome, verification, constraints, boundaries, iteration policy, completion evide",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.89,
+   "plugin": 0.79,
+   "workflow": 0.35,
+   "bridge": 0.07,
+   "tooling": 0.3
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "icebird1998/scientific-illustrator",
+  "stars": 895,
+  "description": "Editable scientific figures in PowerPoint and draw.io via Codex/MCP with Designer-Drawer-Reviewer-Corrector quality gates.",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.76,
+   "plugin": 0.95,
+   "workflow": 0.53,
+   "bridge": 0.07,
+   "tooling": 0.81
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "lingbol088-spec/5.6-JAILBREAK-NERV-codex-instruct-5.6",
+  "stars": 894,
+  "description": "NERV-BREAK-5.6 — GPT-5.6 破甲框架。三层纵深防御：上下文重构让拒绝无法触发，23条篡改规则实时消除拒绝保持对话不中断，文件路由绕过云端审核。31个MCP安全工具 + 28个技能模块 + Kali四后端集成。Codex CLI 即装即用。",
+  "scores": {
+   "collection": 0.4,
+   "skill": 0.26,
+   "plugin": 0.71,
+   "workflow": 0.46,
+   "bridge": 0.06,
+   "tooling": 0.92
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "TheGreenCedar/codex-autoresearch",
+  "stars": 832,
+  "description": "A codex plugin for running optimization loops inside a codebase. It is useful when you have a measurable target and many possible changes to try: test runtime, build speed, bundle size, model loss, Lighthouse scores, memory use, query latency, or any other metric you can print from a script.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.74,
+   "plugin": 0.96,
+   "workflow": 0.6,
+   "bridge": 0.05,
+   "tooling": 0.45
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "AgriciDaniel/codex-seo",
+  "stars": 777,
+  "description": "Codex-first SEO skill suite. 26 workflows, 24 TOML agents, DataForSEO/Gemini/Google/Firecrawl integrations, GEO/AEO, CWV, schema, backlinks, local/maps, and deterministic reports.",
+  "scores": {
+   "collection": 0.81,
+   "skill": 0.19,
+   "plugin": 0.68,
+   "workflow": 0.75,
+   "bridge": 0.39,
+   "tooling": 0.52
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "Evianis/travel-photo-abstraction",
+  "stars": 774,
+  "description": "A source-available Codex skill for distilling photographs into sparse editorial abstractions.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.81,
+   "workflow": 0.1,
+   "bridge": 0.06,
+   "tooling": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tuannvm/codex-mcp-server",
+  "stars": 642,
+  "description": "MCP server wrapper for OpenAI Codex CLI that enables Claude Code to leverage Codex's AI capabilities directly.",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.64,
+   "plugin": 0.96,
+   "workflow": 0.26,
+   "bridge": 0.97,
+   "tooling": 0.79
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "mengke-wang/xiaohongshu-ai-workbench",
+  "stars": 575,
+  "description": "《小红书运营手册 · AI工作台》: free Codex Skills for Xiaohongshu operations",
+  "scores": {
+   "collection": 0.87,
+   "skill": 0.88,
+   "plugin": 0.89,
+   "workflow": 0.52,
+   "bridge": 0.05,
+   "tooling": 0.42
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "liyue-aigc/xianxia-visual-director",
+  "stars": 574,
+  "description": "Codex Skill for cinematic Eastern xianxia stills, celestial realms and sky megastructures.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.84,
+   "workflow": 0.15,
+   "bridge": 0.06,
+   "tooling": 0.32
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "xiao24bei/xiaobei-skill",
+  "stars": 571,
+  "description": "小北在读研开源 Codex Skills 合集：Image to VBA、Academic Paper to PPT 等 AI + 科研工作流。",
+  "scores": {
+   "collection": 0.94,
+   "skill": 0.82,
+   "plugin": 0.74,
+   "workflow": 0.19,
+   "bridge": 0.04,
+   "tooling": 0.26
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "AAASS554/codex-academic-paper-skills",
+  "stars": 539,
+  "description": "Codex academic paper skills for software engineering thesis planning and revision",
+  "scores": {
+   "collection": 0.2,
+   "skill": 0.95,
+   "plugin": 0.79,
+   "workflow": 0.68,
+   "bridge": 0.04,
+   "tooling": 0.25
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "helloianneo/ian-xiaohei-scenes",
+  "stars": 530,
+  "description": "Xiaohei 2.0 Codex Skill for Chinese real-object article illustrations and long-scroll story images",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.83,
+   "workflow": 0.37,
+   "bridge": 0.06,
+   "tooling": 0.22
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "TaiT-tt/tait-crt-interface-skill",
+  "stars": 510,
+  "description": "TaiT-CRT-Interface-Skill is a Codex image generation skill that transforms user-uploaded portraits, photographs, or text descriptions into a retro illustration with the feel of an early CRT computer interface.",
+  "scores": {
+   "plugin": 0.83,
+   "workflow": 0.12,
+   "bridge": 0.05,
+   "tooling": 0.25,
+   "collection": 0.04,
+   "skill": 0.93
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Pikapika260214/rw-consulting-ppt",
+  "stars": 467,
+  "description": "Consulting deck skill with editable options for Codex",
+  "scores": {
+   "collection": 0.14,
+   "skill": 0.93,
+   "plugin": 0.82,
+   "workflow": 0.2,
+   "bridge": 0.05,
+   "tooling": 0.32
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "LunarXuan/image-prompt-reverse",
+  "stars": 460,
+  "description": "High-fidelity AI image prompt reverse-engineering skill for Codex",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.86,
+   "workflow": 0.09,
+   "bridge": 0.04,
+   "tooling": 0.47
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "HaichaoLihc/create-photo-flipbook-ui",
+  "stars": 444,
+  "description": "Codex skill for building responsive 3D photo flipbook websites from user-supplied images",
+  "scores": {
+   "collection": 0.09,
+   "skill": 0.9,
+   "plugin": 0.79,
+   "workflow": 0.17,
+   "bridge": 0.07,
+   "tooling": 0.85
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "baskduf/FableCodex",
+  "stars": 438,
+  "description": "🗿 FableCodex is a Codex-style coding agent workflow that plans like Fable.",
+  "scores": {
+   "collection": 0.09,
+   "skill": 0.55,
+   "plugin": 0.9,
+   "workflow": 0.78,
+   "bridge": 0.16,
+   "tooling": 0.52
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Jane-xiaoer/paper-collage-ad-codex",
+  "stars": 415,
+  "description": "Codex skill for complete paper-cut collage ad production, local IndexTTS-2 voice cloning, animation, audio and MP4 QC",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.88,
+   "workflow": 0.72,
+   "bridge": 0.07,
+   "tooling": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "wnby/photo-relic-editorial",
+  "stars": 413,
+  "description": "A Codex skill for transforming real photos into Photo Relic artworks: truthful photographs paired with quiet paper-memory prints.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.82,
+   "workflow": 0.08,
+   "bridge": 0.07,
+   "tooling": 0.24
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nihe0909/xiaohongshu-ai-workbench",
+  "stars": 382,
+  "description": "《小红书运营手册 · AI工作台》: free Codex Skills for Xiaohongshu operations",
+  "scores": {
+   "collection": 0.91,
+   "skill": 0.9,
+   "plugin": 0.89,
+   "workflow": 0.54,
+   "bridge": 0.05,
+   "tooling": 0.36
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "haiou-666/haiou-codex",
+  "stars": 365,
+  "description": "海鸥 codeX 版 海鸥 codeX 版是一套面向 Codex 的本地增强配置包，通过自定义 AGENTS.md、模块化 Prompt 和专业 Skill，为 Codex 增加更直接的中文技术人格与安全研究工作流。",
+  "scores": {
+   "collection": 0.39,
+   "skill": 0.29,
+   "plugin": 0.74,
+   "workflow": 0.21,
+   "bridge": 0.07,
+   "tooling": 0.68
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "monarchjuno/tradingcodex",
+  "stars": 359,
+  "description": "Turn Codex into your investment workflow team",
+  "scores": {
+   "collection": 0.23,
+   "skill": 0.17,
+   "plugin": 0.77,
+   "workflow": 0.95,
+   "bridge": 0.1,
+   "tooling": 0.41
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "hi-nikola/hand-drawn-explainer-video-nikola",
+  "stars": 356,
+  "description": "中文手绘知识讲解视频 Codex Skill：逐笔故事、双语义岛、让怪诞小黑动起来与程序动画",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.91,
+   "plugin": 0.85,
+   "workflow": 0.29,
+   "bridge": 0.07,
+   "tooling": 0.37
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tudoumashu/ai-memory-skillpack",
+  "stars": 350,
+  "description": "Bounded project-memory skills for Codex CLI and Claude Code.",
+  "scores": {
+   "collection": 0.22,
+   "skill": 0.65,
+   "plugin": 0.65,
+   "workflow": 0.15,
+   "bridge": 0.93,
+   "tooling": 0.86
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "yuzhworkhard-wq/image-to-code",
+  "stars": 346,
+  "description": "Codex skill for 750px image-to-code reconstruction and transparent PNG slicing",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.83,
+   "workflow": 0.3,
+   "bridge": 0.05,
+   "tooling": 0.28
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "CloudWave818/ieee-skills",
+  "stars": 346,
+  "description": "面向 IEEE 风格论文写作、润色、审稿、实验、图表、LaTeX、引用和论文阅读的 Codex skills。",
+  "scores": {
+   "collection": 0.94,
+   "skill": 0.46,
+   "plugin": 0.68,
+   "workflow": 0.62,
+   "bridge": 0.08,
+   "tooling": 0.2
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "gnipbao/codex-whiteboard-video-skill",
+  "stars": 320,
+  "description": "",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.94,
+   "workflow": 0.43,
+   "bridge": 0.06,
+   "tooling": 0.48
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "laok775/jobflow-for-codex",
+  "stars": 287,
+  "description": "JobFlow for Codex: a local job-search workflow plugin for Codex.",
+  "scores": {
+   "collection": 0.11,
+   "skill": 0.85,
+   "plugin": 0.8,
+   "workflow": 0.54,
+   "bridge": 0.04,
+   "tooling": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "haorantang97/LabArt",
+  "stars": 286,
+  "description": "A Codex marketplace of original visual and artistic creation skills.",
+  "scores": {
+   "collection": 0.88,
+   "skill": 0.6,
+   "plugin": 0.86,
+   "workflow": 0.06,
+   "bridge": 0.11,
+   "tooling": 0.23
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "haorantang97/TArt",
+  "stars": 270,
+  "description": "A Codex marketplace of original visual and artistic creation skills.",
+  "scores": {
+   "collection": 0.86,
+   "skill": 0.63,
+   "plugin": 0.87,
+   "workflow": 0.07,
+   "bridge": 0.13,
+   "tooling": 0.23
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "liyue-aigc/xianxia-cinematic-video-director",
+  "stars": 268,
+  "description": "Codex Skill for Eastern xianxia storyboards, camera movement and video continuity.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.89,
+   "workflow": 0.33,
+   "bridge": 0.06,
+   "tooling": 0.44
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "johnseth97/codex.nvim",
+  "stars": 266,
+  "description": "OpenAI Codex plugin for Neovim",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.7,
+   "plugin": 0.95,
+   "workflow": 0.05,
+   "bridge": 0.03,
+   "tooling": 0.8
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Brandon030722/ark-ui-skill",
+  "stars": 264,
+  "description": "Evidence-based Codex skill for five Ark-adjacent UI families and four application depths",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.87,
+   "plugin": 0.77,
+   "workflow": 0.16,
+   "bridge": 0.08,
+   "tooling": 0.36
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "sunflower-of-parchman/codex-hygiene",
+  "stars": 253,
+  "description": "Codex skill for auditing and tuning Codex Desktop context/tool surfaces",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.89,
+   "plugin": 0.48,
+   "workflow": 0.07,
+   "bridge": 0.04,
+   "tooling": 0.88
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "LerSent001/holo-card",
+  "stars": 250,
+  "description": "A Codex skill for layered holographic cards with parallax, contour glow, and an optional API workflow",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.91,
+   "plugin": 0.84,
+   "workflow": 0.11,
+   "bridge": 0.07,
+   "tooling": 0.78
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "duolahypercho/andrej-karpathy-skills",
+  "stars": 246,
+  "description": "Codex-first conversion of Karpathy-inspired coding agent guidelines.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.71,
+   "plugin": 0.86,
+   "workflow": 0.07,
+   "bridge": 0.05,
+   "tooling": 0.32
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "feiskyer/codex-settings",
+  "stars": 244,
+  "description": "Curated skills, profiles, and config templates that supercharge Codex CLI — multi-model, deep research, image gen & browser automation.",
+  "scores": {
+   "collection": 0.95,
+   "skill": 0.07,
+   "plugin": 0.92,
+   "workflow": 0.34,
+   "bridge": 0.09,
+   "tooling": 0.68
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "0Antique/Auto-Visio-Helper",
+  "stars": 244,
+  "description": "用于帮助Codex操作本地Visio生成可编辑科研绘图的skill，支持自然语言转图、图片复现、JVSDX 生成和预览导出。欢迎大家使用~~",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.92,
+   "workflow": 0.44,
+   "bridge": 0.05,
+   "tooling": 0.29
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "XliuXjianX/blender-production-skills",
+  "stars": 242,
+  "description": "面向 Codex 的 Blender 生产级技能套件，包含原生建模、几何节点、模拟、材质、拓扑与场景验证，以及参考图重建工作流。",
+  "scores": {
+   "collection": 0.78,
+   "skill": 0.42,
+   "plugin": 0.76,
+   "workflow": 0.71,
+   "bridge": 0.05,
+   "tooling": 0.17
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "zimo-xiao-zheng/godot-ui-integration",
+  "stars": 241,
+  "description": "A Codex skill for building Godot UI from approved designs with editor-visible scenes and runtime visual-parity checks.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.72,
+   "workflow": 0.38,
+   "bridge": 0.05,
+   "tooling": 0.35
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "yantoumu/adsense-site-auditor-skill",
+  "stars": 233,
+  "description": "Codex skill for exhaustive Google AdSense application readiness audits",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.72,
+   "workflow": 0.3,
+   "bridge": 0.06,
+   "tooling": 0.47
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Lucaswangzcx/literature-downloader-skill",
+  "stars": 231,
+  "description": "A Chinese Codex skill for academic literature search, lawful full-text downloading, readable reports, and student-friendly paper lists.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.8,
+   "workflow": 0.56,
+   "bridge": 0.74,
+   "tooling": 0.27
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Spark-To-Paper-Skills/paperjury-codex",
+  "stars": 222,
+  "description": "Codex-first port of PaperJury, a pre-submission CS paper review and editing skill.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.92,
+   "workflow": 0.7,
+   "bridge": 0.55,
+   "tooling": 0.52
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "lingbol088-spec/ReiPenFlow",
+  "stars": 221,
+  "description": "Codex skill for local sandbox, CTF, authorized pentest and reverse-engineering workflows.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.89,
+   "plugin": 0.86,
+   "workflow": 0.69,
+   "bridge": 0.04,
+   "tooling": 0.86
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "sendbird/cc-plugin-codex",
+  "stars": 218,
+  "description": "An open-source plugin that runs inside Codex and lets you use Claude Code and Claude models for review, rescue, and tracked background workflows.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.55,
+   "plugin": 0.97,
+   "workflow": 0.82,
+   "bridge": 0.98,
+   "tooling": 0.88
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "Ronnie2025/codex-ppt-skill",
+  "stars": 217,
+  "description": "面向中文 toB 商业汇报的 Codex PPT 生图、元素重组与 SVG 拆解工作流",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.89,
+   "plugin": 0.85,
+   "workflow": 0.61,
+   "bridge": 0.05,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "michaelpersonal/goal-forge",
+  "stars": 215,
+  "description": "Codex skill: turn a rough coding idea into a SPEC.md, GOAL.md, and /goal-ready contract.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.81,
+   "workflow": 0.87,
+   "bridge": 0.04,
+   "tooling": 0.71
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "AJbeckliy/detail-flow",
+  "stars": 207,
+  "description": "A reusable Codex skill for planning, generating, auditing, and delivering ecommerce product detail pages.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.94,
+   "plugin": 0.84,
+   "workflow": 0.84,
+   "bridge": 0.06,
+   "tooling": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "yokel1121/muyang-illustration-skills",
+  "stars": 205,
+  "description": "25 fixed illustration styles for Codex: 9 skills, prompt recipes, and visual references",
+  "scores": {
+   "collection": 0.93,
+   "skill": 0.88,
+   "plugin": 0.84,
+   "workflow": 0.07,
+   "bridge": 0.04,
+   "tooling": 0.41
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "wwe-dog/ppt-image2-editable-rebuild",
+  "stars": 201,
+  "description": "一个基于截图/参考图重建可编辑 PPT 的 Codex skill。先用 image2/imagegen 生成单页视觉参考图，再以局部截图保留复杂插图、图标、地图等视觉资产，同时用 PPT 文本框和形状重建标题、正文、卡片、箭头、标签、结论条等可编辑元素。",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.88,
+   "workflow": 0.31,
+   "bridge": 0.06,
+   "tooling": 0.75
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tao943/build-resume-portfolio-site",
+  "stars": 196,
+  "description": "Codex skill for building staged React + Vite resume and portfolio sites",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.93,
+   "plugin": 0.76,
+   "workflow": 0.71,
+   "bridge": 0.07,
+   "tooling": 0.36
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "douglasmonsky/codex-usage-tracker",
+  "stars": 196,
+  "description": "Local-first MCP tools and dashboard for investigating Codex token usage, credits, costs, caching, and thread patterns.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.71,
+   "plugin": 0.95,
+   "workflow": 0.11,
+   "bridge": 0.05,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ndycode/oc-codex-multi-auth",
+  "stars": 195,
+  "description": "OpenCode plugin for ChatGPT Plus/Pro OAuth with Codex/GPT-5 routing, multi-account rotation, account switching, health checks, diagnostics, and recovery tools",
+  "scores": {
+   "collection": 0.1,
+   "skill": 0.39,
+   "plugin": 0.95,
+   "workflow": 0.18,
+   "bridge": 0.04,
+   "tooling": 0.93
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "CalebYcj/codex-rehome",
+  "stars": 191,
+  "description": "Pack and restore Codex Desktop across Windows and Mac: conversations, projects, skills, plugins, and reinstall backup.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.14,
+   "plugin": 0.12,
+   "workflow": 0.13,
+   "bridge": 0.06,
+   "tooling": 0.84
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "alicankiraz1/CodexQB",
+  "stars": 187,
+  "description": "CodexQB is a Codex plugin for evidence-backed repo comprehension, planning, QA audit, and gated implementation handoffs.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.7,
+   "plugin": 0.95,
+   "workflow": 0.87,
+   "bridge": 0.05,
+   "tooling": 0.5
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "izscc/cc2image",
+  "stars": 186,
+  "description": "codex 中文内容交互式生图系统 Skill：认知锚点拆图、49 套内容风格 + 8 套 logo/图标模式，支持封面、正文配图、系列主视觉和批量生图提示词。",
+  "scores": {
+   "collection": 0.12,
+   "skill": 0.89,
+   "plugin": 0.82,
+   "workflow": 0.49,
+   "bridge": 0.08,
+   "tooling": 0.45
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Cuimao777/eterna-image2image-skill",
+  "stars": 185,
+  "description": "Experimental bilingual Codex skill for ETERNA-inspired image2image cinematic color and composition.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.85,
+   "workflow": 0.14,
+   "bridge": 0.05,
+   "tooling": 0.22
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "PabloNAX/ultracode-skill",
+  "stars": 184,
+  "description": "Codex-first Ultracode skill for dynamic coding workflows",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.56,
+   "plugin": 0.62,
+   "workflow": 0.94,
+   "bridge": 0.69,
+   "tooling": 0.28
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "xdmlxdml/beamer2pptx",
+  "stars": 183,
+  "description": "A Codex Skill for converting Beamer PDFs into editable PowerPoint decks with native equations.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.82,
+   "workflow": 0.57,
+   "bridge": 0.08,
+   "tooling": 0.34
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "cexll/codex-mcp-server",
+  "stars": 178,
+  "description": "Codex Mcp Server ",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.58,
+   "plugin": 0.94,
+   "workflow": 0.15,
+   "bridge": 0.94,
+   "tooling": 0.6
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "kky42/codex-as-mcp",
+  "stars": 176,
+  "description": "Convert codex CLI tool to an MCP — unleash the power of GPT-5",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.79,
+   "plugin": 0.95,
+   "workflow": 0.78,
+   "bridge": 0.94,
+   "tooling": 0.5
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Sven-LI-sankyuu/presentation-skills",
+  "stars": 174,
+  "description": "面向 Codex CLI 的演示工作流 skills 集合，包括商业级可编辑 PPT 协作与网页 demo 配音视频合成等可复盘、可复用流程。A Codex CLI skill collection for reusable presentation workflows, covering editable PPT diagram collaboration and end-to-end web demo video synthesis.",
+  "scores": {
+   "skill": 0.9,
+   "plugin": 0.71,
+   "workflow": 0.53,
+   "bridge": 0.46,
+   "tooling": 0.18,
+   "collection": 0.92
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "moonlarry/codex-paper-skills",
+  "stars": 171,
+  "description": "Codex运行规范及写论文使用的多个skills",
+  "scores": {
+   "collection": 0.96,
+   "skill": 0.08,
+   "plugin": 0.63,
+   "workflow": 0.87,
+   "bridge": 0.06,
+   "tooling": 0.16
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "juew/Skill-Routing-Kit",
+  "stars": 169,
+  "description": "Skill Routing Kit 是一个本地优先的 Codex 插件，用来提升 skill 和插件的命中率，同时避免引入缓慢、强侵入的运行时路由层。",
+  "scores": {
+   "collection": 0.15,
+   "skill": 0.41,
+   "plugin": 0.9,
+   "workflow": 0.23,
+   "bridge": 0.05,
+   "tooling": 0.77
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "darinkishore/codex_dspy",
+  "stars": 166,
+  "description": "DSPy module for OpenAI Codex SDK - signature-driven agentic workflows",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.58,
+   "plugin": 0.66,
+   "workflow": 0.37,
+   "bridge": 0.04,
+   "tooling": 0.39
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "FYZAFH/mcp-codex-dev",
+  "stars": 166,
+  "description": "MCP Server for Codex CLI integration - stateful code writing and review workflows",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.71,
+   "plugin": 0.96,
+   "workflow": 0.59,
+   "bridge": 0.96,
+   "tooling": 0.95
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Vieeeeeee/wibi-style",
+  "stars": 162,
+  "description": "36 installable visual-design skills for Codex, with reusable Python tooling and versioned packages. Turn photos into artwork. Try online: style.abdc.online",
+  "scores": {
+   "collection": 0.97,
+   "skill": 0.1,
+   "plugin": 0.77,
+   "workflow": 0.08,
+   "bridge": 0.05,
+   "tooling": 0.56
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "leonardsellem/codex-subagents-mcp",
+  "stars": 160,
+  "description": "Claude-style sub-agents (reviewer, debugger, security) for Codex CLI via a tiny MCP server. Each call spins up a clean context in a temp workdir, injects a persona via AGENTS.md, and runs codex exec --profile <agent> to preserve isolated state.",
+  "scores": {
+   "collection": 0.18,
+   "skill": 0.62,
+   "plugin": 0.97,
+   "workflow": 0.9,
+   "bridge": 0.21,
+   "tooling": 0.55
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "1838904818/audit-repo",
+  "stars": 157,
+  "description": "A practical Codex skill for evidence-backed repository health audits",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.89,
+   "plugin": 0.75,
+   "workflow": 0.14,
+   "bridge": 0.04,
+   "tooling": 0.41
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Utopia-V/codex-deepseek-subagent",
+  "stars": 150,
+  "description": "Run DeepSeek V4 Flash as a native Codex subagent without replacing the OpenAI main agent.",
+  "scores": {
+   "collection": 0.55,
+   "skill": 0.51,
+   "plugin": 0.86,
+   "workflow": 0.9,
+   "bridge": 0.17,
+   "tooling": 0.73
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "Matchameleon/gpt-codex-plugin",
+  "stars": 144,
+  "description": "gpt codex plugin that prompts from codex to chatgpt through chrome session",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.73,
+   "plugin": 0.95,
+   "workflow": 0.15,
+   "bridge": 0.06,
+   "tooling": 0.77
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "angieruiz17/codex-gpt-plugin",
+  "stars": 142,
+  "description": "codex gpt plugin that gives agent a direct line to logged-in chatgpt pro session",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.52,
+   "plugin": 0.96,
+   "workflow": 0.37,
+   "bridge": 0.05,
+   "tooling": 0.72
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Khalilzhang0825/boring-is-all-you-need",
+  "stars": 139,
+  "description": "Boring Is All You Need: a Codex Desktop workflow replacement with transactional migration, audit-only managed hooks, risk-based review, scoped checkpoint commits, and release evidence.",
+  "scores": {
+   "collection": 0.09,
+   "skill": 0.44,
+   "plugin": 0.65,
+   "workflow": 0.62,
+   "bridge": 0.07,
+   "tooling": 0.88
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Alice53211/auth-codex-plugin",
+  "stars": 135,
+  "description": "Auth codex plugin for opencode with local dashboard, force mode, and etc. Codex plugin",
+  "scores": {
+   "plugin": 0.95,
+   "workflow": 0.11,
+   "bridge": 0.04,
+   "tooling": 0.9,
+   "collection": 0.05,
+   "skill": 0.55
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Xiangyu-CAS/codex-canvas",
+  "stars": 133,
+  "description": "Infinite canvas plugin for codex;  Codex无限画布插件，图层分离，涂抹修改",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.67,
+   "plugin": 0.96,
+   "workflow": 0.15,
+   "bridge": 0.04,
+   "tooling": 0.82
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "guard22/opencode-multi-auth-codex",
+  "stars": 132,
+  "description": "Multi-account authentication plugin for OpenCode/Codex — rotate API keys, manage sessions, auto-login",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.43,
+   "plugin": 0.94,
+   "workflow": 0.12,
+   "bridge": 0.04,
+   "tooling": 0.93
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "psinetron/echoes-vault-codex",
+  "stars": 131,
+  "description": "Persistent memory plugin for Codex. Obsidian-style knowledge base that survives across sessions",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.44,
+   "plugin": 0.95,
+   "workflow": 0.2,
+   "bridge": 0.73,
+   "tooling": 0.76
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "jMerta/codex-skills",
+  "stars": 130,
+  "description": "Codex CLI skills catalog",
+  "scores": {
+   "collection": 0.95,
+   "skill": 0.07,
+   "plugin": 0.58,
+   "workflow": 0.13,
+   "bridge": 0.06,
+   "tooling": 0.43
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "chenzixin1/watchless",
+  "stars": 130,
+  "description": "Codex Skill that turns videos into complete keyframe-led visual documents.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.92,
+   "plugin": 0.9,
+   "workflow": 0.49,
+   "bridge": 0.07,
+   "tooling": 0.49
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "GODGOD126/self-improving-for-codex",
+  "stars": 129,
+  "description": "A Codex-native self-improving skill based on AGENTS.md, memories, and nightly review automation.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.9,
+   "plugin": 0.84,
+   "workflow": 0.26,
+   "bridge": 0.03,
+   "tooling": 0.25
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "fivetaku/gptaku-plugins-codex",
+  "stars": 128,
+  "description": "Codex-native GPTaku plugin marketplace",
+  "scores": {
+   "collection": 0.96,
+   "skill": 0.09,
+   "plugin": 0.62,
+   "workflow": 0.59,
+   "bridge": 0.05,
+   "tooling": 0.48
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "carolinaaafy/travel-memory-card-duo",
+  "stars": 128,
+  "description": "Codex skill that outputs a finished travel memory card plus a separate transparent-background PNG sticker image with the same six motifs.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.9,
+   "plugin": 0.8,
+   "workflow": 0.17,
+   "bridge": 0.04,
+   "tooling": 0.48
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "aresyn/codex-control-plane-mcp",
+  "stars": 124,
+  "description": "Durable MCP control plane for long-running Codex Desktop tasks",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.3,
+   "plugin": 0.91,
+   "workflow": 0.94,
+   "bridge": 0.1,
+   "tooling": 0.44
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "TheGoat395/Codex-Skills",
+  "stars": 122,
+  "description": "Codex-first Agent Skills library for premium frontend, website, motion, accessibility, QA, and handoff workflows.",
+  "scores": {
+   "collection": 0.97,
+   "skill": 0.06,
+   "plugin": 0.56,
+   "workflow": 0.17,
+   "bridge": 0.98,
+   "tooling": 0.77
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "ChrisTitusTech/titus-ai",
+  "stars": 121,
+  "description": "Codex and AI skills",
+  "scores": {
+   "collection": 0.77,
+   "skill": 0.21,
+   "plugin": 0.24,
+   "workflow": 0.18,
+   "bridge": 0.05,
+   "tooling": 0.83
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "lokikill123/codex-token-skills",
+  "stars": 119,
+  "description": "⚡ Cut 60-80% token cost for DeepSeek V4 Pro on Codex CLI. token-saver + memory skills with prefix-cache optimization.",
+  "scores": {
+   "collection": 0.25,
+   "skill": 0.9,
+   "plugin": 0.83,
+   "workflow": 0.08,
+   "bridge": 0.04,
+   "tooling": 0.45
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "darksider-9/master-thesis-studio-skill",
+  "stars": 119,
+  "description": "面向东南大学的中文硕士论文写作与 Word 自动生成的 Codex Skill",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.82,
+   "workflow": 0.4,
+   "bridge": 0.06,
+   "tooling": 0.27
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "eLyiN/codex-bridge",
+  "stars": 118,
+  "description": "A lightweight MCP server bridging AI agents to OpenAI models via official CLI",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.84,
+   "plugin": 0.92,
+   "workflow": 0.07,
+   "bridge": 0.95,
+   "tooling": 0.52
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "superpilot69/pdf-trad-to-simp-preserve-layout-kit",
+  "stars": 117,
+  "description": "PDF traditional-to-simplified Chinese conversion kit with layout-preserving scripts, Codex skill, and example source/output PDFs.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.91,
+   "plugin": 0.56,
+   "workflow": 0.13,
+   "bridge": 0.06,
+   "tooling": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "zhbi98/pcb-layout-design",
+  "stars": 117,
+  "description": "【Codex PCB Layout Skill】GPT-6  Astra/Sol x KiCad10. PCB 自动布线 Skill（涵盖通用规则，DDR，USB，CAN等各类接口的 ESD 器件泄放路径等专项规则）",
+  "scores": {
+   "skill": 0.91,
+   "plugin": 0.72,
+   "workflow": 0.2,
+   "bridge": 0.05,
+   "tooling": 0.17,
+   "collection": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "FanPUYen/deep-reading-coach",
+  "stars": 116,
+  "description": "A Codex skill for deep reading books and PDFs",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.79,
+   "workflow": 0.34,
+   "bridge": 0.07,
+   "tooling": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "architectds/modeldock",
+  "stars": 115,
+  "description": "Keep everything in Codex - and add DeepSeek. Give DeepSeek eyes, ears, a voice, a web search, a memory, and the content-to-video skill. ModelDock focuses on one thing: making DeepSeek work natively inside Codex.",
+  "scores": {
+   "collection": 0.21,
+   "skill": 0.28,
+   "plugin": 0.88,
+   "workflow": 0.38,
+   "bridge": 0.1,
+   "tooling": 0.87
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ReJeCtAll/ExpertTeam-Codex",
+  "stars": 113,
+  "description": "一套可直接安装到 ~/.codex 的专家配置，面向 Codex CLI / Codex App 桌面版的 Skill 调用方式 提供 3 个专家团、3 个单专家与 1 个总路由入口。",
+  "scores": {
+   "collection": 0.89,
+   "skill": 0.1,
+   "plugin": 0.88,
+   "workflow": 0.8,
+   "bridge": 0.06,
+   "tooling": 0.85
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "uigiuf/codex-visio-replica-workflow",
+  "stars": 105,
+  "description": "Codex skill for recreating reference diagrams as editable Microsoft Visio files.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.79,
+   "workflow": 0.49,
+   "bridge": 0.04,
+   "tooling": 0.27
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "lisamsung/agent-meme-forge",
+  "stars": 104,
+  "description": "Codex skill that turns one image or text concept into a WeChat-ready Chinese sticker pack people will actually send. Sendability-gated, 4-keypose → 16-frame, no model-drawn text.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.87,
+   "workflow": 0.7,
+   "bridge": 0.2,
+   "tooling": 0.48
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "grp06/goalcraft",
+  "stars": 103,
+  "description": "A codex skill to write great /goal prompts ⭐️ star if you like it! ⭐️",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.87,
+   "plugin": 0.75,
+   "workflow": 0.65,
+   "bridge": 0.03,
+   "tooling": 0.4
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "herry2059/project-os-for-codex",
+  "stars": 102,
+  "description": "Open-source control plane for Codex projects: Git-backed context, visible agent progress, scoped MCP access, resumable work, and safe handoffs.",
+  "scores": {
+   "collection": 0.1,
+   "skill": 0.16,
+   "plugin": 0.78,
+   "workflow": 0.75,
+   "bridge": 0.12,
+   "tooling": 0.81
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "zyz254009-crypto/script-to-shootable-storyboard",
+  "stars": 102,
+  "description": "使用 Codex 开发的剧本转可拍分镜 Skill，在 Codex 中运行效果最佳，支持 Seedance、真人/混合制作与二次开发。",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.81,
+   "workflow": 0.73,
+   "bridge": 0.04,
+   "tooling": 0.29
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "DoraRabbitYan/personal-ip-image-pack",
+  "stars": 102,
+  "description": "Codex skill for generating reusable personal IP cartoon image packs.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.85,
+   "workflow": 0.54,
+   "bridge": 0.04,
+   "tooling": 0.4
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "lin1111-1/academic-integrity-rewrite",
+  "stars": 102,
+  "description": "Codex skill for evidence-preserving academic rewriting in Chinese and English.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.8,
+   "workflow": 0.14,
+   "bridge": 0.04,
+   "tooling": 0.25
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "weeelin98/ResumeDom",
+  "stars": 101,
+  "description": "Evidence-first Codex skill for reviewing, rewriting, tailoring, and generating ATS-readable US tech resumes for CS interns and new grads.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.91,
+   "plugin": 0.75,
+   "workflow": 0.2,
+   "bridge": 0.06,
+   "tooling": 0.54
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "haibarazz/awesome-codex-research",
+  "stars": 100,
+  "description": "",
+  "scores": {
+   "collection": 0.95,
+   "skill": 0.09,
+   "plugin": 0.83,
+   "workflow": 0.68,
+   "bridge": 0.06,
+   "tooling": 0.57
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "shixinnt/codex-image-context-runtime",
+  "stars": 100,
+  "description": "A Codex plugin and local MCP runtime for context-bounded image generation and inspection.",
+  "scores": {
+   "workflow": 0.59,
+   "bridge": 0.11,
+   "tooling": 0.59,
+   "collection": 0.05,
+   "skill": 0.82,
+   "plugin": 0.97
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "2718labs/2718lab-devkit",
+  "stars": 99,
+  "description": "Deterministic project intelligence, durable workflow orchestration, and reusable MCP engineering tools for Codex.",
+  "scores": {
+   "workflow": 0.9,
+   "bridge": 0.06,
+   "tooling": 0.66,
+   "collection": 0.32,
+   "skill": 0.28,
+   "plugin": 0.9
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "RocYan98/routing-subagents",
+  "stars": 98,
+  "description": "根据任务难度与宿主能力选择执行者，编排子 Agent 的 codex Agent Skill",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.76,
+   "plugin": 0.59,
+   "workflow": 0.92,
+   "bridge": 0.07,
+   "tooling": 0.46
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "louchi1984-coder/deepseek-claude-code-worker-mcp",
+  "stars": 98,
+  "description": "DeepSeek V4 code worker MCP for Codex Desktop, powered by Claude Code",
+  "scores": {
+   "plugin": 0.96,
+   "workflow": 0.79,
+   "bridge": 0.96,
+   "tooling": 0.5,
+   "collection": 0.05,
+   "skill": 0.67
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "dacnay816y62-hub/character-casting-studio-skill",
+  "stars": 98,
+  "description": "Material-reference-driven photorealistic character casting skill for Codex",
+  "scores": {
+   "bridge": 0.06,
+   "tooling": 0.24,
+   "collection": 0.07,
+   "skill": 0.91,
+   "plugin": 0.7,
+   "workflow": 0.22
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "fangyuanopus/literature-report-ppt-builder",
+  "stars": 97,
+  "description": "Open-source Codex skill for academic literature-report PPT generation",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.92,
+   "plugin": 0.88,
+   "workflow": 0.52,
+   "bridge": 0.06,
+   "tooling": 0.37
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "qtzx06/yolodex",
+  "stars": 96,
+  "description": "agent skills for autonomous data labeling, winner at openai codex hackathon 2026",
+  "scores": {
+   "collection": 0.26,
+   "skill": 0.58,
+   "plugin": 0.56,
+   "workflow": 0.89,
+   "bridge": 0.04,
+   "tooling": 0.65
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "Bene-2020/plane-codex-mcp",
+  "stars": 94,
+  "description": "A Codex plugin that quietly captures meaningful project work and syncs it to Plane.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.79,
+   "plugin": 0.98,
+   "workflow": 0.28,
+   "bridge": 0.04,
+   "tooling": 0.89
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "mturac/everything-openai-codex",
+  "stars": 93,
+  "description": "EOC: open-source operating system for OpenAI Codex workflows with agents, skills, hooks, rules, memory, safety gates, and cross-harness adapters.",
+  "scores": {
+   "collection": 0.85,
+   "skill": 0.04,
+   "plugin": 0.5,
+   "workflow": 0.93,
+   "bridge": 0.88,
+   "tooling": 0.91
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "oil-oil/codex",
+  "stars": 92,
+  "description": "Claude Code skill for delegating coding tasks to Codex CLI",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.64,
+   "workflow": 0.58,
+   "bridge": 0.87,
+   "tooling": 0.74
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "jaxxchen003/book-video-factory",
+  "stars": 92,
+  "description": "Portable Codex skill for auditable, rights-aware Chinese book-review short-video workflows.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.9,
+   "plugin": 0.88,
+   "workflow": 0.76,
+   "bridge": 0.15,
+   "tooling": 0.6
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "knight6669/knight-imagetopptx-skill",
+  "stars": 91,
+  "description": "Semantic slide image to editable PPTX Codex skill",
+  "scores": {
+   "workflow": 0.33,
+   "bridge": 0.08,
+   "tooling": 0.13,
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.75
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ExplosiveCoderflome/ani-book-skill",
+  "stars": 91,
+  "description": "面向 Codex 的长篇中文小说生产 Skill：以可恢复的 Markdown 工作流贯通灵感、规划、章节写作、审校与连续性管理。",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.9,
+   "plugin": 0.58,
+   "workflow": 0.54,
+   "bridge": 0.03,
+   "tooling": 0.56
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "See-Sol-Lab/private-house-code-v2.5",
+  "stars": 88,
+  "description": "让 Codex 少烧 Token、少造复杂度，同时不降智的代码约束 Skill",
+  "scores": {
+   "bridge": 0.05,
+   "tooling": 0.23,
+   "collection": 0.06,
+   "skill": 0.77,
+   "plugin": 0.54,
+   "workflow": 0.12
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "manhvann/codexkit",
+  "stars": 88,
+  "description": "Project-local Codex workspace kit with reusable skills, agents, hooks, plans, docs, and helper scripts for multi-repository development.",
+  "scores": {
+   "collection": 0.38,
+   "skill": 0.13,
+   "plugin": 0.52,
+   "workflow": 0.51,
+   "bridge": 0.06,
+   "tooling": 0.82
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "uncle11/xfc-ip-all-png-template",
+  "stars": 86,
+  "description": "A reusable Codex skill template for simple-line article illustrations with user-defined IP characters and color palettes.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.89,
+   "plugin": 0.67,
+   "workflow": 0.09,
+   "bridge": 0.05,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "QIYU-JACKMAN/codexQIYU-image-workflow",
+  "stars": 85,
+  "description": "电商生图工作流是一套面向跨境电商的 Codex 图片生产插件，提供快捷生成、主图与详情页、自定分批、一比一复刻、风格裂变、批量改尺寸、批量 SKU 和局部迁移八种工作流，支持 GPT Image 2 提示词优化、生成确认、逐图质检与失败续跑。  A Codex plugin for ecommerce image production, featuring eight workflows with GPT Image 2 prompt optimization, approval gates, per-image quality checks, and resumable generation.",
+  "scores": {
+   "collection": 0.23,
+   "skill": 0.8,
+   "plugin": 0.95,
+   "workflow": 0.83,
+   "bridge": 0.06,
+   "tooling": 0.38
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "pauljunsukhan/codex-chatgpt-pro-plugin",
+  "stars": 84,
+  "description": "Give Codex an intelligence lifeline - Codex skill for calling ChatGPT Pro. Computer use, repomix file attach, thread isolation per repo.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.79,
+   "plugin": 0.96,
+   "workflow": 0.39,
+   "bridge": 0.07,
+   "tooling": 0.68
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Nhahan/WebGPT",
+  "stars": 84,
+  "description": "A Codex skill that delegates work to ChatGPT on the web.",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.8,
+   "plugin": 0.86,
+   "workflow": 0.76,
+   "bridge": 0.57,
+   "tooling": 0.7
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "callstackincubator/codex-mobile-dev-plugin",
+  "stars": 83,
+  "description": "A Codex plugin for a better mobile development experience for android and iOS",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.51,
+   "plugin": 0.96,
+   "workflow": 0.1,
+   "bridge": 0.05,
+   "tooling": 0.65
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "pmlaowangba-lab/laowangba-pmprototype-skill",
+  "stars": 83,
+  "description": "Codex skill for product prototype generation with IA, design gates, page UI YAML, and Figma workflow.",
+  "scores": {
+   "skill": 0.91,
+   "plugin": 0.65,
+   "workflow": 0.59,
+   "bridge": 0.08,
+   "tooling": 0.21,
+   "collection": 0.06
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "xvchujin/umat-skill",
+  "stars": 82,
+  "description": "Abaqus UMAT Codex skills for constitutive modeling, return mapping, damage, state contracts, tangent auditing, and hierarchical validation.",
+  "scores": {
+   "collection": 0.97,
+   "skill": 0.19,
+   "plugin": 0.67,
+   "workflow": 0.45,
+   "bridge": 0.06,
+   "tooling": 0.27
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "luji12/daily-photo-playground",
+  "stars": 81,
+  "description": "Codex skill for reconstructing everyday photos into 3:4 high-saturation emotional editorial posters",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.74,
+   "workflow": 0.15,
+   "bridge": 0.06,
+   "tooling": 0.39
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "mengke-wang/zh-humanizer-literary",
+  "stars": 81,
+  "description": "中文去 AI 味与文采增强 Codex Skill，汲取 Mengke / 好事风格，让中文草稿更像人写。",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.89,
+   "workflow": 0.08,
+   "bridge": 0.05,
+   "tooling": 0.55
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "sudoHG/codex-reset-credits-skill",
+  "stars": 80,
+  "description": "Codex Skill and runbook for querying banked Codex reset credits / Codex 重置机会过期时间查询Skill，可以安装后查询，也支持不安装一次性查询",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.92,
+   "plugin": 0.85,
+   "workflow": 0.06,
+   "bridge": 0.03,
+   "tooling": 0.42
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "xiaoTN/zelda-style-image-prompt",
+  "stars": 78,
+  "description": "Codex Skill for writing Zelda-style image prompts",
+  "scores": {
+   "collection": 0.45,
+   "skill": 0.91,
+   "plugin": 0.79,
+   "workflow": 0.04,
+   "bridge": 0.05,
+   "tooling": 0.3
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "BIAsia/voxel-icon",
+  "stars": 78,
+  "description": "Voxel Icon — 30 free PNG icons plus a self-contained Codex skill for low-density isometric voxel art",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.9,
+   "plugin": 0.79,
+   "workflow": 0.06,
+   "bridge": 0.06,
+   "tooling": 0.35
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "grp06/useful-codex-skills",
+  "stars": 77,
+  "description": "",
+  "scores": {
+   "collection": 0.92,
+   "skill": 0.8,
+   "plugin": 0.7,
+   "workflow": 0.79,
+   "bridge": 0.08,
+   "tooling": 0.22
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "zengrong233/awesome-ai-research-writing-skill",
+  "stars": 76,
+  "description": "codex skill",
+  "scores": {
+   "collection": 0.4,
+   "skill": 0.82,
+   "plugin": 0.85,
+   "workflow": 0.39,
+   "bridge": 0.05,
+   "tooling": 0.65
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ACTAshui/sjtu-ppt-template-skill",
+  "stars": 74,
+  "description": "Codex skill for creating editable Shanghai Jiao Tong University style PowerPoint decks",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.82,
+   "workflow": 0.28,
+   "bridge": 0.05,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "zuharz/ccode-to-codex",
+  "stars": 73,
+  "description": "Migrate Claude Code skills and Agents to Open AI Codex native skills and agents. Semantic mapping preserves original behavior, classifies migration risk (MECHANICAL / MANUAL / REFACTOR), validates structure, and tracks progress end-to-end. No manual rewrite required. Keep what you built. Run it in Codex CLI. Experimental.",
+  "scores": {
+   "tooling": 0.48,
+   "collection": 0.16,
+   "skill": 0.63,
+   "plugin": 0.39,
+   "workflow": 0.5,
+   "bridge": 0.95
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "Squirbie/im-not-ai-codex",
+  "stars": 71,
+  "description": "Codex plugin port of epoko77-ai/im-not-ai for Korean AI-tell rewriting",
+  "scores": {
+   "skill": 0.89,
+   "plugin": 0.95,
+   "workflow": 0.56,
+   "bridge": 0.71,
+   "tooling": 0.41,
+   "collection": 0.05
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "YUTA-fywoo/chatgpt-web-workers",
+  "stars": 71,
+  "description": "No extra MCP/API-key setup in supported Codex desktop. Internal Chat reads reduce host token overhead. Astra coordinates 1–6 Extra High Chats (4–6 for large tasks), with bounded stages and webpage sends. 中英双语 · MIT",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.8,
+   "plugin": 0.87,
+   "workflow": 0.95,
+   "bridge": 0.05,
+   "tooling": 0.55
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "leonardsellem/codex-specialized-subagents",
+  "stars": 69,
+  "description": "MCP server that lets Codex delegate to isolated codex exec sub-agents, selecting repo+global skills automatically",
+  "scores": {
+   "plugin": 0.96,
+   "workflow": 0.95,
+   "bridge": 0.07,
+   "tooling": 0.57,
+   "collection": 0.1,
+   "skill": 0.33
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "cavoiie/fluent-cfd-skill",
+  "stars": 68,
+  "description": "A Codex skill for Ansys Fluent and PyFluent CFD workflows.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.75,
+   "workflow": 0.48,
+   "bridge": 0.06,
+   "tooling": 0.22
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Aqua-123/pstack-for-codex",
+  "stars": 67,
+  "description": "Codex-native engineering workflows derived from pstack, with 45 explicit skills and 23 Poteto Mode playbooks.",
+  "scores": {
+   "collection": 0.91,
+   "skill": 0.07,
+   "plugin": 0.95,
+   "workflow": 0.86,
+   "bridge": 0.18,
+   "tooling": 0.66
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "chipfighter/codex-attachment-manager",
+  "stars": 66,
+  "description": "Codex plugin: choose which past images go to the model with your next message. Unchecked images become placeholders, the task goes on, and requests stay small.",
+  "scores": {
+   "plugin": 0.98,
+   "workflow": 0.1,
+   "bridge": 0.03,
+   "tooling": 0.86,
+   "collection": 0.04,
+   "skill": 0.79
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "promptwhisper/clone-any-website-skill",
+  "stars": 66,
+  "description": "A Codex skill for rebuilding public websites as clean, maintainable projects with disciplined visual and interaction QA.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.92,
+   "plugin": 0.81,
+   "workflow": 0.35,
+   "bridge": 0.05,
+   "tooling": 0.53
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "atman-33/spec-for-codex",
+  "stars": 65,
+  "description": "VS Code extension for spec-driven development with Codex CLI. Manage specs, steering docs, and prompts visually, tightly integrated with Codex.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.45,
+   "plugin": 0.93,
+   "workflow": 0.24,
+   "bridge": 0.05,
+   "tooling": 0.89
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "WenyuChiou/codex-delegate",
+  "stars": 63,
+  "description": "Claude Code skill for using Codex CLI as an execution specialist for implementation-heavy coding work, multi-file refactors, and wrapper-based execution flows.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.88,
+   "plugin": 0.42,
+   "workflow": 0.35,
+   "bridge": 0.93,
+   "tooling": 0.37
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "atman-33/kiro-for-codex",
+  "stars": 63,
+  "description": "VS Code extension for spec-driven development with Codex CLI. Manage specs, steering docs, and prompts visually, tightly integrated with Codex.",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.44,
+   "plugin": 0.94,
+   "workflow": 0.25,
+   "bridge": 0.05,
+   "tooling": 0.89
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ScriptedAlchemy/pstack-codex",
+  "stars": 63,
+  "description": "Codex-native port of Lauren Tan's pstack: 47 skills, 23 playbooks, agent personas, multi-agent workflows, and Benny automation adapters. Includes a Codex marketplace and installer.",
+  "scores": {
+   "collection": 0.87,
+   "skill": 0.06,
+   "plugin": 0.92,
+   "workflow": 0.86,
+   "bridge": 0.17,
+   "tooling": 0.82
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "robzilla1738/Codex-Workflows",
+  "stars": 62,
+  "description": "Workflow-as-code orchestration for Codex",
+  "scores": {
+   "collection": 0.1,
+   "skill": 0.2,
+   "plugin": 0.97,
+   "workflow": 0.96,
+   "bridge": 0.04,
+   "tooling": 0.81
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "liujianyu20021122/RTL-ASS",
+  "stars": 62,
+  "description": "Codex-first, vendor-neutral RTL coding and verification skill using open-source tools",
+  "scores": {
+   "collection": 0.11,
+   "skill": 0.82,
+   "plugin": 0.8,
+   "workflow": 0.27,
+   "bridge": 0.05,
+   "tooling": 0.52
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "caofan85-lab/research-paper-daily-push",
+  "stars": 62,
+  "description": "可配置的 Codex Skill：每日检索、证据复核、评分、中文总结、微信推送、去重与研究记忆。",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.84,
+   "workflow": 0.46,
+   "bridge": 0.07,
+   "tooling": 0.66
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Gyratingice-blip/codex-windows-bundled-plugin-repair",
+  "stars": 60,
+  "description": "Repair Codex Desktop bundled Chrome and Computer Use plugins on Windows.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.08,
+   "workflow": 0.08,
+   "bridge": 0.05,
+   "tooling": 0.6
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tomascupr/codexMCP",
+  "stars": 60,
+  "description": "MCP that wraps Codex CLI",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.63,
+   "plugin": 0.94,
+   "workflow": 0.08,
+   "bridge": 0.06,
+   "tooling": 0.37
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "CheshireMew/Price-action-analysis",
+  "stars": 60,
+  "description": "Codex skill for annotated price action chart analysis",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.78,
+   "workflow": 0.15,
+   "bridge": 0.05,
+   "tooling": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "isLiuyx1/oh-my-folkstoryphoto",
+  "stars": 59,
+  "description": "Codex skill and optional plugin for creating self-reviewed Chinese folk-story photo carousels with authentic personal-camera-roll visuals.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.95,
+   "workflow": 0.83,
+   "bridge": 0.05,
+   "tooling": 0.77
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "oldred-byte/ec-visual-skill",
+  "stars": 58,
+  "description": "Codex skill for e-commerce product visuals from product and reference images",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.85,
+   "workflow": 0.78,
+   "bridge": 0.05,
+   "tooling": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Toolsai/GPT-Relay-Codex-Plugin-",
+  "stars": 57,
+  "description": "",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.7,
+   "plugin": 0.95,
+   "workflow": 0.17,
+   "bridge": 0.05,
+   "tooling": 0.8
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "maksimzayats/acodex",
+  "stars": 57,
+  "description": "Local MCP automation bridge for the Codex desktop app, with CLI, HTTP server, and live codex_app.* tool access.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.59,
+   "plugin": 0.86,
+   "workflow": 0.18,
+   "bridge": 0.15,
+   "tooling": 0.51
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "sechiro/VRCUdonSkills-for-Codex",
+  "stars": 57,
+  "description": "VRCUdonSkills-for-Codex",
+  "scores": {
+   "collection": 0.96,
+   "skill": 0.37,
+   "plugin": 0.28,
+   "workflow": 0.13,
+   "bridge": 0.1,
+   "tooling": 0.14
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "LEON-gittech/Skill2Poster",
+  "stars": 56,
+  "description": "Codex skills for academic poster generation: turn paper content into accurate A0 HTML/PDF posters via AI design mockups.",
+  "scores": {
+   "collection": 0.14,
+   "skill": 0.94,
+   "plugin": 0.58,
+   "workflow": 0.54,
+   "bridge": 0.06,
+   "tooling": 0.28
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "u7079256/paperjury-codex",
+  "stars": 55,
+  "description": "Codex-first port of PaperJury, a pre-submission CS paper review and editing skill.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.89,
+   "plugin": 0.92,
+   "workflow": 0.7,
+   "bridge": 0.45,
+   "tooling": 0.56
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "chiphoton/MiniMax-H3-Codex-Drama",
+  "stars": 53,
+  "description": "🎬 A Codex-first MiniMax H3 video production plugin: 👤 character & 🏙️ scene design, 🧩 storyboards, 🎞️ ComfyUI generation, ✂️ post-production, and ✅ QC.",
+  "scores": {
+   "collection": 0.51,
+   "skill": 0.53,
+   "plugin": 0.97,
+   "workflow": 0.84,
+   "bridge": 0.06,
+   "tooling": 0.79
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "dgk-dev/dgk-gpt",
+  "stars": 56,
+  "description": "Safe Codex CLI setup installer with skills, AGENTS.md, profiles, and MCP defaults",
+  "scores": {
+   "collection": 0.29,
+   "skill": 0.15,
+   "plugin": 0.73,
+   "workflow": 0.25,
+   "bridge": 0.05,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "XuToWei/Image-To-UI",
+  "stars": 55,
+  "description": "Image-to-UI Codex skill: convert game UI screenshots and sliced sprites into ui_structure.json.",
+  "scores": {
+   "collection": 0.09,
+   "skill": 0.9,
+   "plugin": 0.63,
+   "workflow": 0.39,
+   "bridge": 0.17,
+   "tooling": 0.22
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "xnydl/codex-dream-skin",
+  "stars": 54,
+  "description": "macOS & Windows Codex Desktop 梦幻换肤 Skill｜由世事宜AI免费提供",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.9,
+   "plugin": 0.71,
+   "workflow": 0.06,
+   "bridge": 0.05,
+   "tooling": 0.88
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ewsun22/codex-manager",
+  "stars": 54,
+  "description": "Local-first desktop control center for OpenAI Codex — sessions, models, tokens, accounts, providers, and AGENTS.md.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.23,
+   "plugin": 0.12,
+   "workflow": 0.08,
+   "bridge": 0.05,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "plastic-labs/codex-honcho",
+  "stars": 52,
+  "description": "Honcho memory plugin for OpenAI Codex — harness-level integration via Codex hooks",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.42,
+   "plugin": 0.97,
+   "workflow": 0.12,
+   "bridge": 0.55,
+   "tooling": 0.89
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "w31r4/codex-mcp-go",
+  "stars": 52,
+  "description": "codex-mcp-go is a Go-based MCP (Model Context Protocol) server that serves as a bridge for Codex CLI, enabling various AI coding assistants (such as Claude Code, Roo Code, KiloCode, etc.) to seamlessly collaborate with Codex.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.67,
+   "plugin": 0.95,
+   "workflow": 0.44,
+   "bridge": 0.97,
+   "tooling": 0.83
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "irons163/three-tier-agent-orchestrator",
+  "stars": 52,
+  "description": "Codex 三層多代理協作 Skill：由 GPT-6 Astra 統籌，GPT-6 Sol Max 與 GPT-6 Luna Max 分工執行。",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.83,
+   "plugin": 0.83,
+   "workflow": 0.97,
+   "bridge": 0.04,
+   "tooling": 0.4
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "agency-ai-solutions/openai-codex-mcp",
+  "stars": 51,
+  "description": "An MCP server to communicated with, use, and wrap the API for the OpenAI Codex CLI tool.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.66,
+   "plugin": 0.96,
+   "workflow": 0.12,
+   "bridge": 0.97,
+   "tooling": 0.61
+  },
+  "kind": "bridge"
+ },
+ {
+  "repo": "lubluniky/dale",
+  "stars": 51,
+  "description": "Graph orchestration for codex skills",
+  "scores": {
+   "collection": 0.66,
+   "skill": 0.3,
+   "plugin": 0.88,
+   "workflow": 0.96,
+   "bridge": 0.06,
+   "tooling": 0.63
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "xiaomaxueshufen/data-analysis",
+  "stars": 50,
+  "description": "面向 Excel/CSV 的证据优先数据分析 Codex skill，覆盖异动、漏斗、指标体系、AB 实验、因果、分层、贡献度、比率拆解与行业口径模板",
+  "scores": {
+   "collection": 0.1,
+   "skill": 0.82,
+   "plugin": 0.76,
+   "workflow": 0.81,
+   "bridge": 0.05,
+   "tooling": 0.47
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "CoderMageFox/claudecode-codex-subagents",
+  "stars": 50,
+  "description": "A Claude Code plugin for orchestrating complex tasks by delegating to multiple parallel Codex agents, then merging and reviewing results.",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.46,
+   "plugin": 0.94,
+   "workflow": 0.97,
+   "bridge": 0.92,
+   "tooling": 0.85
+  },
+  "kind": "workflow"
+ },
+ {
+  "repo": "Immortalqx/my_codex_skills",
+  "stars": 50,
+  "description": "This repository collects my personal Codex skills for reusable research workflows.",
+  "scores": {
+   "collection": 0.98,
+   "skill": 0.08,
+   "plugin": 0.37,
+   "workflow": 0.11,
+   "bridge": 0.07,
+   "tooling": 0.11
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "aiwenjie777/codex-skin-skill",
+  "stars": 50,
+  "description": "codex  skin 皮肤一键安装，简单操作，skill 就可以完成，随意切换，One-click Codex skin installation—simple to use and powered entirely by a skill. Switch between skins anytime.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.92,
+   "plugin": 0.89,
+   "workflow": 0.14,
+   "bridge": 0.05,
+   "tooling": 0.86
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "wiltonesten-web/codeximage-to-editable-ppt-v1",
+  "stars": 48,
+  "description": "将基于图片的 PPT/PPTX 幻灯片重建为可编辑的 PPT演示文稿，分v1节省token版和v2高精度版。本skill属于v1节省token版",
+  "scores": {
+   "bridge": 0.08,
+   "tooling": 0.52,
+   "collection": 0.07,
+   "skill": 0.91,
+   "plugin": 0.82,
+   "workflow": 0.23
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "vibeforge1111/codex-visual-builder-guild",
+  "stars": 46,
+  "description": "Free H70-C+ Spark Skill Graphs guild for Codex visual builder loops with imagegen and vision.",
+  "scores": {
+   "collection": 0.74,
+   "skill": 0.54,
+   "plugin": 0.84,
+   "workflow": 0.72,
+   "bridge": 0.06,
+   "tooling": 0.6
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "renzo1031/visio-automation-skill",
+  "stars": 46,
+  "description": "Codex skill for controlling Microsoft Visio with built-in stencils, masters, and dynamic connectors.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.92,
+   "workflow": 0.15,
+   "bridge": 0.04,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "okooo5km/5km-littlebox-illustrations",
+  "stars": 44,
+  "description": "Closed-only hand-drawn Littlebox article illustration Codex Skill",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.93,
+   "plugin": 0.83,
+   "workflow": 0.23,
+   "bridge": 0.11,
+   "tooling": 0.39
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "jeanchristophe13v/codex-mcp-async",
+  "stars": 44,
+  "description": "Enable Claude Code to call Codex (GPT-5) asynchronously, filtering out thinking processes to save 95% context tokens.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.69,
+   "plugin": 0.96,
+   "workflow": 0.68,
+   "bridge": 0.96,
+   "tooling": 0.72
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "iandanforth/force-associations",
+  "stars": 40,
+  "description": "A Codex skill for systematic creative ideation through randomness and forced association.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.89,
+   "plugin": 0.79,
+   "workflow": 0.07,
+   "bridge": 0.06,
+   "tooling": 0.29
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "yangchuansheng/patch-codex-fast",
+  "stars": 33,
+  "description": "Patch Codex desktop Fast mode and Plugins for API key mode",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.56,
+   "workflow": 0.14,
+   "bridge": 0.06,
+   "tooling": 0.65
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "wnby/travel-photo-soft-abstraction",
+  "stars": 32,
+  "description": "A Codex skill for clean upper-photo/lower-abstraction travel artworks with source-readable soft visual distillation",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.91,
+   "plugin": 0.84,
+   "workflow": 0.18,
+   "bridge": 0.04,
+   "tooling": 0.37
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "huajiexiewenfeng/codex-token-usage-skill",
+  "stars": 30,
+  "description": "A dedicated skill for Codex desktop app to track and analyze real-time token usage.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.84,
+   "workflow": 0.05,
+   "bridge": 0.03,
+   "tooling": 0.91
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "chrichuang218/codex-plugin-repair-windows-skill",
+  "stars": 30,
+  "description": "Repair Windows Codex bundled Chrome and Computer Use plugin state after app updates.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.94,
+   "plugin": 0.4,
+   "workflow": 0.09,
+   "bridge": 0.03,
+   "tooling": 0.67
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "AFrayde01/codex-rate-limits-skill",
+  "stars": 26,
+  "description": "",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.91,
+   "plugin": 0.71,
+   "workflow": 0.08,
+   "bridge": 0.04,
+   "tooling": 0.55
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "duolahypercho/codex-knowledge-llm",
+  "stars": 26,
+  "description": "Codex plugin and Obsidian vault kit for turning anything into a knowledge system.",
+  "scores": {
+   "collection": 0.14,
+   "skill": 0.62,
+   "plugin": 0.89,
+   "workflow": 0.3,
+   "bridge": 0.07,
+   "tooling": 0.72
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "jananadiw/codex-tldraw-mcp",
+  "stars": 25,
+  "description": "Local Codex MCP server for scanning repositories and writing tldraw product workflow diagrams.",
+  "scores": {
+   "collection": 0.07,
+   "skill": 0.63,
+   "plugin": 0.96,
+   "workflow": 0.17,
+   "bridge": 0.12,
+   "tooling": 0.42
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "zaoshangduziteng/texture-scan-collage",
+  "stars": 19,
+  "description": "A Codex skill for one-click, spatially aligned texture-scan photo collages.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.84,
+   "workflow": 0.28,
+   "bridge": 0.07,
+   "tooling": 0.31
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Wh1tZz/xiaoqishuo-card",
+  "stars": 18,
+  "description": "Codex skill: turn one uploaded card cover into an interactive Three.js holographic depth card web app.",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.95,
+   "plugin": 0.9,
+   "workflow": 0.24,
+   "bridge": 0.06,
+   "tooling": 0.29
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "devswha/lazyprompt",
+  "stars": 18,
+  "description": "Codex skill + plugin: turn vague ideas into optimal prompts for lazycodex/OmO $ulw-plan and $ulw-loop",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.91,
+   "plugin": 0.95,
+   "workflow": 0.51,
+   "bridge": 0.16,
+   "tooling": 0.45
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "justinkalland/codex-skill-cannibal",
+  "stars": 18,
+  "description": "Allows Codex on macOS to patch and extend its own desktop app.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.88,
+   "plugin": 0.86,
+   "workflow": 0.18,
+   "bridge": 0.04,
+   "tooling": 0.62
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "YishuoHao/copyplot",
+  "stars": 16,
+  "description": "Codex skill that recreates scientific plots from images with Python code and Excel example data",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.93,
+   "plugin": 0.82,
+   "workflow": 0.16,
+   "bridge": 0.05,
+   "tooling": 0.43
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "SpaceZephyr/heart-sticker-imagegen-skill",
+  "stars": 14,
+  "description": "把照片和文字变成多风格贴纸的 Codex ImageGen Skill",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.94,
+   "plugin": 0.89,
+   "workflow": 0.51,
+   "bridge": 0.04,
+   "tooling": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "HammingDev/paper-style-diagram",
+  "stars": 14,
+  "description": "A Codex skill for clean Chinese-first academic diagrams in any aspect ratio",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.94,
+   "plugin": 0.89,
+   "workflow": 0.11,
+   "bridge": 0.05,
+   "tooling": 0.52
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Jaimo-so/personal-ip-illustrations",
+  "stars": 14,
+  "description": "用固定个人 IP 为中文文章生成 16:9 白底手绘正文配图的 Codex Skill",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.93,
+   "plugin": 0.86,
+   "workflow": 0.36,
+   "bridge": 0.04,
+   "tooling": 0.48
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "kiki-lgtm-dot/one-click-competitive-analysis-skill",
+  "stars": 13,
+  "description": "一个针对产品经理、创业者和产品颠覆的Codex技能：输入一个网站、App或数字产品，即可完成证据核验、产品拆解、竞品、比较可视化和产品规划建议。  它既可以直接进行完整的竞品分析，也可以只生成一段符合“五条提示词原则”的高质量用户提示。",
+  "scores": {
+   "collection": 0.04,
+   "skill": 0.94,
+   "plugin": 0.85,
+   "workflow": 0.31,
+   "bridge": 0.05,
+   "tooling": 0.42
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ron0115/PromptClip-Skill",
+  "stars": 11,
+  "description": "Prompt-driven local video highlight extraction and throwaway footage filtering for Codex.",
+  "scores": {
+   "collection": 0.05,
+   "skill": 0.91,
+   "plugin": 0.88,
+   "workflow": 0.7,
+   "bridge": 0.08,
+   "tooling": 0.41
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "dan-dr/explodex",
+  "stars": 8,
+  "description": "Customize the Codex desktop app to your liking. An extension SDK for codex mods and tweaks. Comes with handy plugins, and lets you build your own using Codex itself.",
+  "scores": {
+   "collection": 0.56,
+   "skill": 0.3,
+   "plugin": 0.91,
+   "workflow": 0.07,
+   "bridge": 0.04,
+   "tooling": 0.88
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "waynesutton/codex-sync-plugin",
+  "stars": 6,
+  "description": "",
+  "scores": {
+   "collection": 0.08,
+   "skill": 0.7,
+   "plugin": 0.88,
+   "workflow": 0.08,
+   "bridge": 0.09,
+   "tooling": 0.92
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Nainish-Rai/agent-rollback",
+  "stars": 6,
+  "description": "Git-like undo and rollback checkpoints for OpenAI Codex CLI. Snapshot, diff, and restore files before and after Codex edits. MCP server + Codex hooks for an automatic safety net.",
+  "scores": {
+   "collection": 0.06,
+   "skill": 0.79,
+   "plugin": 0.93,
+   "workflow": 0.09,
+   "bridge": 0.86,
+   "tooling": 0.85
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "CAZAMA1/codex-visio-mcp",
+  "stars": 6,
+  "description": "Windows setup scripts for installing and verifying visio-mcp as a global Codex MCP server for Microsoft Visio.",
+  "scores": {
+   "skill": 0.85,
+   "plugin": 0.91,
+   "workflow": 0.06,
+   "bridge": 0.05,
+   "tooling": 0.87,
+   "collection": 0.04
+  },
+  "kind": "plugin"
+ }
+]

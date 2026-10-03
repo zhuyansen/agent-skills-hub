@@ -1,0 +1,2172 @@
+[
+ {
+  "repo": "phuryn/pm-skills",
+  "stars": 26736,
+  "description": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.18,
+   "app": 0.06,
+   "registry": 0.88,
+   "team": 0.1,
+   "general": 0.14
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "HKUDS/OpenSpace",
+  "stars": 7740,
+  "description": "\"OpenSpace: The Skill Management Layer for AI Agents\" -- https://open-space.cloud/",
+  "scores": {
+   "cli": 0.13,
+   "sync": 0.73,
+   "app": 0.84,
+   "registry": 0.67,
+   "team": 0.72,
+   "general": 0.2
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "tech-leads-club/agent-skills",
+  "stars": 7024,
+  "description": "The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence.",
+  "scores": {
+   "cli": 0.23,
+   "sync": 0.62,
+   "app": 0.09,
+   "registry": 0.85,
+   "team": 0.44,
+   "general": 0.14
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "xingkongliang/skills-manager",
+  "stars": 5400,
+  "description": "A lightweight desktop app to manage, sync, and organize AI agent skills across 50+ coding tools — Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.87,
+   "app": 0.94,
+   "registry": 0.25,
+   "team": 0.14,
+   "general": 0.17
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "iflytek/skillhub",
+  "stars": 5144,
+  "description": "Self-hosted, open-source agent skill registry for enterprises. Publish & version skill packages, govern with RBAC and audit logs, deploy   on-premise with Docker or Kubernetes.",
+  "scores": {
+   "cli": 0.15,
+   "sync": 0.24,
+   "app": 0.57,
+   "registry": 0.96,
+   "team": 0.98,
+   "general": 0.14
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "davepoon/buildwithclaude",
+  "stars": 3582,
+  "description": "A single hub to find Claude Skills, Agents, Commands, Hooks, Plugins, and Marketplace collections to extend Claude Code, Claude Desktop, Agent SDK and OpenClaw",
+  "scores": {
+   "cli": 0.19,
+   "sync": 0.09,
+   "app": 0.24,
+   "registry": 0.96,
+   "team": 0.1,
+   "general": 0.42
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "jeremylongshore/tons-of-skills-marketplace",
+  "stars": 2802,
+  "description": "Model-agnostic agent-skills platform with a harness-free canonical layer, verified adapters, and the ccpi package manager. Explore at tonsofskills.com.",
+  "scores": {
+   "cli": 0.4,
+   "sync": 0.14,
+   "app": 0.14,
+   "registry": 0.91,
+   "team": 0.16,
+   "general": 0.19
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "runkids/skillshare",
+  "stars": 2711,
+  "description": "📚 Your AI coding setup, everywhere. Manage skills, agents, rules, MCP connections and hooks in one place, with the desktop app or CLI.",
+  "scores": {
+   "cli": 0.44,
+   "sync": 0.92,
+   "app": 0.58,
+   "registry": 0.08,
+   "team": 0.77,
+   "general": 0.93
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "FrancyJGLisboa/agent-skills-platform",
+  "stars": 2400,
+  "description": "Build tested agent skills and govern their lifecycle through a user-defined marketplace: evidence, discovery, updates, rollback, quarantine, and 17-platform distribution.",
+  "scores": {
+   "cli": 0.14,
+   "sync": 0.46,
+   "app": 0.18,
+   "registry": 0.35,
+   "team": 0.93,
+   "general": 0.14
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "FrancyJGLisboa/agent-skill-creator",
+  "stars": 2365,
+  "description": "Build tested agent skills and govern their lifecycle through a user-defined marketplace: evidence, discovery, updates, rollback, quarantine, and 17-platform distribution.",
+  "scores": {
+   "cli": 0.14,
+   "sync": 0.44,
+   "app": 0.19,
+   "registry": 0.28,
+   "team": 0.92,
+   "general": 0.14
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "qufei1993/skills-hub",
+  "stars": 1717,
+  "description": "A cross-platform desktop app to manage Agent Skills in one place and sync them to multiple AI coding tools’ global skills directories — “Install once, sync everywhere”.",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.84,
+   "app": 0.97,
+   "registry": 0.31,
+   "team": 0.19,
+   "general": 0.11
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "Shpigford/chops",
+  "stars": 1553,
+  "description": "Your AI agent skills, finally organized. A macOS app to browse, edit, and manage skills across Claude Code, Cursor, Codex, Windsurf, and Amp.",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.14,
+   "app": 0.96,
+   "registry": 0.53,
+   "team": 0.08,
+   "general": 0.25
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "daymade/claude-code-skills",
+  "stars": 1441,
+  "description": "Professional Claude Code skills marketplace featuring production-ready skills for enhanced development workflows.",
+  "scores": {
+   "cli": 0.12,
+   "sync": 0.15,
+   "app": 0.1,
+   "registry": 0.89,
+   "team": 0.31,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "skillsgate/skillsgate",
+  "stars": 1307,
+  "description": "",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.6,
+   "app": 0.94,
+   "registry": 0.38,
+   "team": 0.24,
+   "general": 0.16
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "MoizIbnYousaf/ai-agent-skills",
+  "stars": 1146,
+  "description": "Universal skill installer and package manager for AI coding agents. One command, 12+ runtimes. npx ai-agent-skills",
+  "scores": {
+   "cli": 0.95,
+   "sync": 0.41,
+   "app": 0.35,
+   "registry": 0.37,
+   "team": 0.4,
+   "general": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "binance/binance-skills-hub",
+  "stars": 1043,
+  "description": "Binance Skills Hub is an open skills marketplace that gives AI agents native access to crypto",
+  "scores": {
+   "cli": 0.25,
+   "sync": 0.39,
+   "app": 0.06,
+   "registry": 0.88,
+   "team": 0.14,
+   "general": 0.11
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "jiweiyeah/Skills-Manager",
+  "stars": 1010,
+  "description": "Free, open-source desktop manager for AI Agent Skills. Write a skill once, sync it to 32 AI coding tools (Claude Code, Codex, Cursor, Gemini CLI, and more) via symlinks. Local-first, MIT licensed. macOS, Windows, Linux.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.91,
+   "app": 0.95,
+   "registry": 0.24,
+   "team": 0.13,
+   "general": 0.16
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "luongnv89/asm",
+  "stars": 949,
+  "description": "The universal skill manager for AI coding agents.",
+  "scores": {
+   "cli": 0.91,
+   "sync": 0.24,
+   "app": 0.35,
+   "registry": 0.56,
+   "team": 0.19,
+   "general": 0.15
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "mhattingpete/claude-skills-marketplace",
+  "stars": 659,
+  "description": "Claude Code Skills for software engineering workflows - Git automation, testing, and code review",
+  "scores": {
+   "cli": 0.07,
+   "sync": 0.07,
+   "app": 0.08,
+   "registry": 0.88,
+   "team": 0.15,
+   "general": 0.25
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "wanghuan9/skilldock",
+  "stars": 606,
+  "description": "SkillDock is an AI skill manager and skill management desktop app for Claude Code, Cursor, Codex, Windsurf, Gemini CLI, and other AI coding tools. Install, organize, edit, sync, and update Skills, MCP servers, and plugins with real-directory scanning and Git-aware Diff previews. AI Skill Manager / Skill 管理软件 / MCP 管理工具.",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.86,
+   "app": 0.96,
+   "registry": 0.14,
+   "team": 0.54,
+   "general": 0.58
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "skillhub-club/skillhub-desktop",
+  "stars": 601,
+  "description": "One desktop to manage your agent skills",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.61,
+   "app": 0.96,
+   "registry": 0.17,
+   "team": 0.11,
+   "general": 0.16
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "buzhangsan/skills-manager-client",
+  "stars": 503,
+  "description": "",
+  "scores": {
+   "cli": 0.07,
+   "sync": 0.07,
+   "app": 0.96,
+   "registry": 0.19,
+   "team": 0.07,
+   "general": 0.08
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "yibie/skills-manager",
+  "stars": 450,
+  "description": "A native macOS app to manage skills across coding agents — Claude Code, Cursor, Copilot CLI, Codex, Gemini CLI",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.44,
+   "app": 0.91,
+   "registry": 0.54,
+   "team": 0.07,
+   "general": 0.12
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "RealZST/HarnessKit",
+  "stars": 448,
+  "description": "More than a skill manager — manage skills, MCP servers, plugins, hooks, CLIs, configs, memory & rules across every AI coding agent. 🌟 Star if you like it!",
+  "scores": {
+   "sync": 0.66,
+   "app": 0.85,
+   "registry": 0.29,
+   "team": 0.23,
+   "general": 0.97,
+   "cli": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "zhuyansen/agent-skills-hub",
+  "stars": 399,
+  "description": "Discover and compare open-source Agent Skills, tools & MCP servers — with quality scoring, trending analysis, and automated GitHub sync",
+  "scores": {
+   "registry": 0.97,
+   "team": 0.13,
+   "general": 0.1,
+   "cli": 0.03,
+   "sync": 0.14,
+   "app": 0.77
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "bruc3van/agent-skills-guard",
+  "stars": 389,
+  "description": "一款提供Agent Skills安全扫描和可视化管理的桌面应用 | A desktop application that provides security scanning and visual management for Agent Skills.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.39,
+   "app": 0.97,
+   "registry": 0.51,
+   "team": 0.08,
+   "general": 0.12
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "Leon-Drq/openagentskill",
+  "stars": 354,
+  "description": "The skill layer for AI agents: npm for AI Agent Skills.",
+  "scores": {
+   "cli": 0.56,
+   "sync": 0.23,
+   "app": 0.21,
+   "registry": 0.84,
+   "team": 0.31,
+   "general": 0.12
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "buzhangsan/skill-manager",
+  "stars": 321,
+  "description": "",
+  "scores": {
+   "cli": 0.12,
+   "sync": 0.13,
+   "app": 0.14,
+   "registry": 0.67,
+   "team": 0.07,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "knoxgraeme/skillfish",
+  "stars": 320,
+  "description": "The skill manager for AI coding agents. Install, update, and sync skills across Claude Code, Cursor, Copilot + more.",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.59,
+   "app": 0.07,
+   "registry": 0.08,
+   "team": 0.51,
+   "general": 0.12
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "brucevanfdm/agent-skills-guard",
+  "stars": 318,
+  "description": "一款提供Agent Skills安全扫描和可视化管理的桌面应用 | A desktop application that provides security scanning and visual management for Agent Skills.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.4,
+   "app": 0.97,
+   "registry": 0.53,
+   "team": 0.09,
+   "general": 0.13
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "what1f/kitter",
+  "stars": 307,
+  "description": "A simple, lightweight Skill manager built in Rust. One library, just the Skills each project needs.",
+  "scores": {
+   "app": 0.87,
+   "registry": 0.13,
+   "team": 0.12,
+   "general": 0.09,
+   "cli": 0.39,
+   "sync": 0.62
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "chrlsio/agent-skills",
+  "stars": 299,
+  "description": "Lightweight, high-performance cross-platform desktop app to browse, sync, and manage AI agent skills across Claude Code, Cursor, Gemini CLI, Copilot, and more.（轻量高性能的跨平台 AI Agent Skills 管理工具）",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.85,
+   "app": 0.97,
+   "registry": 0.27,
+   "team": 0.11,
+   "general": 0.14
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "modu-ai/cowork-plugins",
+  "stars": 267,
+  "description": "모두의 AI (MoAI) — Claude Cowork & Claude Code 한국 실무 도메인 AI 하네스·플러그인 마켓플레이스. 사업계획서·세무·법률·HR·마케팅·커머스·BI·콘텐츠 도메인 스킬·에이전트·워크플로우. Korean B2B + office docs (HWPX/DOCX/XLSX/PPTX/PDF) + AI media (image/video/voice). AI-slop 검수 + humanize-korean 내장.",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.36,
+   "app": 0.12,
+   "registry": 0.84,
+   "team": 0.15,
+   "general": 0.32
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "wanghuan9/skill-manager",
+  "stars": 265,
+  "description": "SkillDock is a skill manager and MCP manager for installing, viewing, updating, and syncing AI skills and MCP servers, with Git-aware updates to track upstream changes and local modifications. SkillDock 是一个用于安装、查看、更新和同步 AI skills 与 MCP servers 的 skill 管理工具和 MCP 管理工具，并支持 Git-aware 更新，用于跟踪上游变更和本地修改。",
+  "scores": {
+   "cli": 0.07,
+   "sync": 0.85,
+   "app": 0.94,
+   "registry": 0.15,
+   "team": 0.52,
+   "general": 0.6
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "VintLin/skill-flow",
+  "stars": 260,
+  "description": "Install, manage, and share skills across every major coding agent — Claude Code, Cursor, Copilot, and more.",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.84,
+   "app": 0.8,
+   "registry": 0.22,
+   "team": 0.23,
+   "general": 0.18
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "alvinunreal/lazyskills",
+  "stars": 252,
+  "description": "mission control for agent skills",
+  "scores": {
+   "cli": 0.52,
+   "sync": 0.39,
+   "app": 0.96,
+   "registry": 0.17,
+   "team": 0.12,
+   "general": 0.1
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "PramodDutta/qaskills",
+  "stars": 229,
+  "description": "QA Skills Directory QA Skills is a curated directory of testing-specific skills for AI coding agents (Claude Code, Cursor, Copilot, etc.).",
+  "scores": {
+   "general": 0.09,
+   "cli": 0.8,
+   "sync": 0.16,
+   "app": 0.19,
+   "registry": 0.95,
+   "team": 0.12
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "activeing123/mcptoon",
+  "stars": 207,
+  "description": "One zero-dependency CLI for every MCP server and agent skill. Token optimization, tool discovery and context compression: 71,929 -> 581 tokens (-99.2%, measured), schemas stay out of context. One config for Claude Code, Codex, Cursor, every agent. 341KB, pure Python. | 零依赖 CLI：管所有 MCP 工具与技能，工具发现省 99.2% token。",
+  "scores": {
+   "cli": 0.63,
+   "sync": 0.59,
+   "app": 0.07,
+   "registry": 0.3,
+   "team": 0.08,
+   "general": 0.31
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "pivoshenko/kasetto",
+  "stars": 207,
+  "description": "📼 Declarative AI agent environment manager, written in Rust",
+  "scores": {
+   "cli": 0.76,
+   "sync": 0.92,
+   "app": 0.06,
+   "registry": 0.07,
+   "team": 0.82,
+   "general": 0.93
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ahmedasmar/devops-claude-skills",
+  "stars": 203,
+  "description": "A Claude Code Skills Marketplace for DevOps workflows",
+  "scores": {
+   "cli": 0.12,
+   "sync": 0.11,
+   "app": 0.05,
+   "registry": 0.91,
+   "team": 0.16,
+   "general": 0.07
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "sandbaseai/sandbase-skills",
+  "stars": 201,
+  "description": "88 installable open-source Agent Skills for research, social intelligence, marketing, and business workflows—compatible with Codex, Claude Code, Cursor, Gemini CLI, and DeepSeek Harness.",
+  "scores": {
+   "cli": 0.15,
+   "sync": 0.49,
+   "app": 0.05,
+   "registry": 0.46,
+   "team": 0.17,
+   "general": 0.12
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "scottcwy/skill-kits",
+  "stars": 201,
+  "description": "Skill-kits is a zero-dependency, single-binary AI Agent Skills management tool for any LLM and multi-agent workflows.",
+  "scores": {
+   "cli": 0.39,
+   "sync": 0.14,
+   "app": 0.87,
+   "registry": 0.1,
+   "team": 0.12,
+   "general": 0.16
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "Rito-w/skills-manager",
+  "stars": 196,
+  "description": "A cross-platform skills manager for AI IDEs. Search marketplace, download locally, and install to Claude, Cursor, Windsurf, and more with one click.",
+  "scores": {
+   "cli": 0.1,
+   "sync": 0.43,
+   "app": 0.94,
+   "registry": 0.26,
+   "team": 0.07,
+   "general": 0.11
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "shenysun/skills-manager",
+  "stars": 196,
+  "description": "",
+  "scores": {
+   "cli": 0.92,
+   "sync": 0.77,
+   "app": 0.06,
+   "registry": 0.19,
+   "team": 0.11,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "shanliuling/skills-link",
+  "stars": 187,
+  "description": "Sync your local skills across 41+ AI coding agents with a single command.",
+  "scores": {
+   "cli": 0.68,
+   "sync": 0.97,
+   "app": 0.06,
+   "registry": 0.07,
+   "team": 0.18,
+   "general": 0.16
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "nextlevelbuilder/skillx",
+  "stars": 185,
+  "description": "SkillX.sh — The Only Skill That Your AI Agent Needs. AI agent skills marketplace with semantic search, leaderboard, ratings, and CLI.",
+  "scores": {
+   "cli": 0.36,
+   "sync": 0.14,
+   "app": 0.74,
+   "registry": 0.96,
+   "team": 0.18,
+   "general": 0.11
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "AElfProject/aelf-skills",
+  "stars": 184,
+  "description": "Unified aelf skills hub for discovery, routing, bootstrap, and health checks across OpenClaw, Codex, Cursor, and Claude Code.",
+  "scores": {
+   "cli": 0.43,
+   "sync": 0.52,
+   "app": 0.06,
+   "registry": 0.86,
+   "team": 0.19,
+   "general": 0.13
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "Karanjot786/agent-skills-cli",
+  "stars": 181,
+  "description": "Universal CLI for Agent Skills. Access 200,000+ skills from SkillsMP and sync them to Cursor, Claude Code, GitHub Copilot, OpenAI Codex, and Antigravity.",
+  "scores": {
+   "cli": 0.92,
+   "sync": 0.75,
+   "app": 0.11,
+   "registry": 0.26,
+   "team": 0.44,
+   "general": 0.19
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "eljulians/skillfile",
+  "stars": 172,
+  "description": "One-stop shop for AI skills and agents. Search 110K+ community skills, install and track them declaratively, and deploy across all major AI coding tools (Claude Code, Codex, Cursor, Antigravity and more)",
+  "scores": {
+   "cli": 0.91,
+   "sync": 0.9,
+   "app": 0.17,
+   "registry": 0.18,
+   "team": 0.55,
+   "general": 0.26
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "tddworks/SkillsManager",
+  "stars": 168,
+  "description": "A macOS application for discovering, browsing, and installing skills for AI coding assistants. Manage skills for Claude Code and Codex from GitHub repositories or your local filesystem.",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.08,
+   "app": 0.97,
+   "registry": 0.58,
+   "team": 0.07,
+   "general": 0.08
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "ARPAHLS/skillware",
+  "stars": 131,
+  "description": "A Python framework for modular, self-contained skill management for machines.",
+  "scores": {
+   "cli": 0.45,
+   "sync": 0.52,
+   "app": 0.06,
+   "registry": 0.63,
+   "team": 0.27,
+   "general": 0.19
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "nnnggel/skills-management",
+  "stars": 128,
+  "description": "A CLI tool to manage and synchronize AI coding agent skills",
+  "scores": {
+   "cli": 0.42,
+   "sync": 0.61,
+   "app": 0.46,
+   "registry": 0.27,
+   "team": 0.11,
+   "general": 0.09
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "cchao123/skills-manager",
+  "stars": 124,
+  "description": "A package manager for AI agent skills with cross-agent sharing, sync, and deployment.",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.76,
+   "app": 0.96,
+   "registry": 0.53,
+   "team": 0.31,
+   "general": 0.14
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "khendzel/skills-janitor",
+  "stars": 122,
+  "description": "Tinder for your Claude Code skills, subagents and MCP servers. Swipe away what wastes context, scan for prompt injection, get honest token costs. Fixes what it finds and actually deletes. Zero dependencies, Claude Code + Codex.",
+  "scores": {
+   "cli": 0.15,
+   "sync": 0.06,
+   "app": 0.73,
+   "registry": 0.17,
+   "team": 0.07,
+   "general": 0.34
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "Soul-Brews-Studio/arra-oracle-skills-cli",
+  "stars": 121,
+  "description": "Install Oracle skills to Claude Code, OpenCode, Cursor, and 12+ AI coding agents",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.27,
+   "app": 0.04,
+   "registry": 0.1,
+   "team": 0.1,
+   "general": 0.17
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ginuim/skill-base",
+  "stars": 121,
+  "description": "Private Skill distribution platform for AI coding agents: publish, install, update, and rollback team skills across Cursor, Claude Code, Codex, and OpenClaw with a minimal server + skb CLI.",
+  "scores": {
+   "cli": 0.41,
+   "sync": 0.6,
+   "app": 0.67,
+   "registry": 0.79,
+   "team": 0.97,
+   "general": 0.09
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "luochang212/skill-zoo",
+  "stars": 114,
+  "description": "All-in-One Desktop Agent Skills Utility. Welcome to the Skill Zoo, where all your skills live!",
+  "scores": {
+   "cli": 0.39,
+   "sync": 0.18,
+   "app": 0.92,
+   "registry": 0.66,
+   "team": 0.1,
+   "general": 0.16
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "luongnv89/agent-skill-manager",
+  "stars": 113,
+  "description": "The universal skill manager for AI coding agents.",
+  "scores": {
+   "cli": 0.89,
+   "sync": 0.22,
+   "app": 0.33,
+   "registry": 0.52,
+   "team": 0.2,
+   "general": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "jacob-bd/universal-skills-manager",
+  "stars": 110,
+  "description": "",
+  "scores": {
+   "cli": 0.75,
+   "sync": 0.68,
+   "app": 0.22,
+   "registry": 0.32,
+   "team": 0.12,
+   "general": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "agent-skills-hub/agent-skills-hub",
+  "stars": 109,
+  "description": "Agent Skills Hub is a global library of AI agent skills that work across OpenClaw, Claude Code, Gemini, Cursor, Antigravity, and more.",
+  "scores": {
+   "cli": 0.88,
+   "sync": 0.59,
+   "app": 0.08,
+   "registry": 0.92,
+   "team": 0.21,
+   "general": 0.12
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "kina-cmd/agent-skill-sync",
+  "stars": 100,
+  "description": "Scan, classify (A/B/C/D) and sync AI-agent SKILL.md files across toolchains (Codex, Claude Code, WorkBuddy). Zero-dependency Python CLI.",
+  "scores": {
+   "cli": 0.43,
+   "sync": 0.73,
+   "app": 0.04,
+   "registry": 0.08,
+   "team": 0.19,
+   "general": 0.09
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "obie/skills",
+  "stars": 95,
+  "description": "Claude Code skills marketplace - Production-ready skills for enhanced development workflows",
+  "scores": {
+   "cli": 0.16,
+   "sync": 0.13,
+   "app": 0.08,
+   "registry": 0.82,
+   "team": 0.14,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "rolecraft-sh/rolecraft",
+  "stars": 88,
+  "description": "The security-first skill manager for AI agents — every install runs a security scan. Manage skills & MCP servers across 87 agents. Zero-dependency CLI.",
+  "scores": {
+   "cli": 0.96,
+   "sync": 0.63,
+   "app": 0.14,
+   "registry": 0.08,
+   "team": 0.2,
+   "general": 0.56
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "MichengAI/dsh-skills-manager",
+  "stars": 88,
+  "description": "DSH Skills Manager — 在 DeepSeek Harness 中统一加载并安全管理本机 Agent Skills · Load and safely manage local Agent Skills in DSH",
+  "scores": {
+   "cli": 0.08,
+   "sync": 0.15,
+   "app": 0.76,
+   "registry": 0.17,
+   "team": 0.09,
+   "general": 0.09
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "existential-birds/beagle",
+  "stars": 83,
+  "description": "Agent Skills marketplace: framework-aware skills for code review, documentation, test-plan generation, AI-writing detection, architectural analysis, and git workflows — for Python, Go, Rust, Elixir, React, Remix, and iOS/Swift. Works with Claude Code, Codex, and any agent that supports Agent Skills.",
+  "scores": {
+   "cli": 0.21,
+   "sync": 0.45,
+   "app": 0.05,
+   "registry": 0.86,
+   "team": 0.12,
+   "general": 0.13
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "vanillagreencom/kendex",
+  "stars": 82,
+  "description": "Package manager for agents, skills, hooks, and extensions. Author once, install on every harness. QOL features included.",
+  "scores": {
+   "cli": 0.81,
+   "sync": 0.73,
+   "app": 0.54,
+   "registry": 0.19,
+   "team": 0.12,
+   "general": 0.93
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "arkylab/aspm",
+  "stars": 82,
+  "description": "A Git-based package manager designed for AI-assisted development, similar to npm but supporting skills, agents, commands, hooks, and any AI resource types.",
+  "scores": {
+   "registry": 0.05,
+   "team": 0.21,
+   "general": 0.49,
+   "cli": 0.91,
+   "sync": 0.21,
+   "app": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "liuxingqitd/skills-hub",
+  "stars": 81,
+  "description": "A local dashboard to manage AI coding agent skills — sync, install, and organize skills across OpenClaw, Cursor, Claude Code, and more.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.8,
+   "app": 0.95,
+   "registry": 0.19,
+   "team": 0.06,
+   "general": 0.19
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "reorx/skm",
+  "stars": 78,
+  "description": "A better skills manager",
+  "scores": {
+   "cli": 0.56,
+   "sync": 0.33,
+   "app": 0.06,
+   "registry": 0.09,
+   "team": 0.05,
+   "general": 0.05
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "terrylica/cc-skills",
+  "stars": 75,
+  "description": "Claude Code Skills Marketplace: plugins, skills for ADR-driven development, DevOps automation, ClickHouse management, semantic versioning, and productivity workflows",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.13,
+   "app": 0.07,
+   "registry": 0.93,
+   "team": 0.2,
+   "general": 0.25
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "sametcelikbicak/rolecraft",
+  "stars": 75,
+  "description": "Zero-dependency CLI that installs AI agent skills + MCP servers from any source. 86+ agents. No signup, no telemetry, 4 KB.",
+  "scores": {
+   "cli": 0.97,
+   "sync": 0.53,
+   "app": 0.11,
+   "registry": 0.12,
+   "team": 0.16,
+   "general": 0.58
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "youzaiAGI/agent-skills-hub",
+  "stars": 71,
+  "description": "Management of skill packages",
+  "scores": {
+   "cli": 0.79,
+   "sync": 0.62,
+   "app": 0.81,
+   "registry": 0.42,
+   "team": 0.11,
+   "general": 0.11
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "zunalabs/skills-manager",
+  "stars": 70,
+  "description": "A universal desktop app for managing AI agent skills across all major coding agents.",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.2,
+   "app": 0.92,
+   "registry": 0.3,
+   "team": 0.09,
+   "general": 0.13
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "Autoloops/upskill",
+  "stars": 69,
+  "description": "CLI + skill for the Autoloops upskill registry. Search, inspect, report on, and publish agent skills from your shell.",
+  "scores": {
+   "cli": 0.75,
+   "sync": 0.25,
+   "app": 0.08,
+   "registry": 0.49,
+   "team": 0.17,
+   "general": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "lingbol088-spec/auto-skill-installer",
+  "stars": 69,
+  "description": "AI agent skill discovery and installer / AI 智能体技能自动发现与安装器",
+  "scores": {
+   "cli": 0.77,
+   "sync": 0.13,
+   "app": 0.06,
+   "registry": 0.5,
+   "team": 0.17,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "mensfeld/craftdesk",
+  "stars": 67,
+  "description": "Package manager for Claude Code skills and agents and other AI related resources",
+  "scores": {
+   "cli": 0.95,
+   "sync": 0.65,
+   "app": 0.05,
+   "registry": 0.09,
+   "team": 0.43,
+   "general": 0.72
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "robotbird/skillkit",
+  "stars": 66,
+  "description": "AI agent's skills manager",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.33,
+   "app": 0.92,
+   "registry": 0.22,
+   "team": 0.11,
+   "general": 0.1
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "ComeOnOliver/skillshub",
+  "stars": 66,
+  "description": "🧠 The right skill, one API call. AI agent skills registry with token-efficient skill resolution. 5,000+ skills from 500+ top repos.",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.2,
+   "app": 0.08,
+   "registry": 0.96,
+   "team": 0.1,
+   "general": 0.07
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "zeroclaw-labs/zeroclaw-skills",
+  "stars": 65,
+  "description": "Official skill registry for ZeroClaw — community-contributed AI agent skills, tools, and workflows",
+  "scores": {
+   "cli": 0.09,
+   "sync": 0.17,
+   "app": 0.05,
+   "registry": 0.93,
+   "team": 0.33,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "luna-prompts/skillnote",
+  "stars": 65,
+  "description": "The open-source skill registry for AI coding agents. Create, manage, and distribute SKILL.md files across Openclaw, Claude Code, Cursor, Codex, OpenHands, Antigravity, and more.",
+  "scores": {
+   "cli": 0.23,
+   "sync": 0.84,
+   "app": 0.8,
+   "registry": 0.82,
+   "team": 0.78,
+   "general": 0.12
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "Milktang0128/myskills",
+  "stars": 58,
+  "description": "AI Skill Hub — a cross-platform desktop app to discover, dedupe, organize, and sync AI agent skills across Claude Code, Codex, and a shared pool. Ships an MCP server so your agent can run the whole library — install, align, organize, clean up — every write gated and reversible.",
+  "scores": {
+   "cli": 0.03,
+   "sync": 0.71,
+   "app": 0.96,
+   "registry": 0.54,
+   "team": 0.1,
+   "general": 0.19
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "kcchien/skills-cli",
+  "stars": 58,
+  "description": "Cross-platform CLI for managing Claude Code and Claude Desktop skills",
+  "scores": {
+   "registry": 0.2,
+   "team": 0.28,
+   "general": 0.07,
+   "cli": 0.85,
+   "sync": 0.11,
+   "app": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "modelstudioai/skills",
+  "stars": 57,
+  "description": "Curated, verified Agent Skills powered by ModelStudio.",
+  "scores": {
+   "cli": 0.16,
+   "sync": 0.21,
+   "app": 0.05,
+   "registry": 0.58,
+   "team": 0.12,
+   "general": 0.1
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "ryderme/skill-manager",
+  "stars": 56,
+  "description": "",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.59,
+   "app": 0.96,
+   "registry": 0.09,
+   "team": 0.07,
+   "general": 0.1
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "skilluse/skilluse",
+  "stars": 55,
+  "description": "Agent Skills Registry & CLI",
+  "scores": {
+   "cli": 0.41,
+   "sync": 0.34,
+   "app": 0.07,
+   "registry": 0.74,
+   "team": 0.59,
+   "general": 0.11
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "huangrichao2020/pretty-skills",
+  "stars": 54,
+  "description": "跨 agent 的 skill 管理器 + skill 推广工具，欢迎fork和pr。管理你所有 skill ，创建技能自带讲解pdf或ppt。支持各种Agent。",
+  "scores": {
+   "cli": 0.18,
+   "sync": 0.84,
+   "app": 0.18,
+   "registry": 0.51,
+   "team": 0.21,
+   "general": 0.23
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "c-kick/hnl-agent-skills",
+  "stars": 51,
+  "description": "A reusable agent skills registry for Claude Code and Codex",
+  "scores": {
+   "cli": 0.53,
+   "sync": 0.41,
+   "app": 0.06,
+   "registry": 0.67,
+   "team": 0.2,
+   "general": 0.1
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "ssssssanjiu/skill_manager",
+  "stars": 50,
+  "description": "A local web panel for managing Claude Code skills — paste a GitHub URL to install, symlink-hosted with zero copies, plus a daily feed of newly published skills. Zero dependencies.",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.14,
+   "app": 0.95,
+   "registry": 0.39,
+   "team": 0.08,
+   "general": 0.07
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "mcp360/mTarsier",
+  "stars": 50,
+  "description": "mTarsier - The Open Source MCP & Skill Manager for Claude, Cursor, VS Code & any AI client.",
+  "scores": {
+   "cli": 0.34,
+   "sync": 0.4,
+   "app": 0.74,
+   "registry": 0.33,
+   "team": 0.12,
+   "general": 0.58
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "asteroid-belt/skulto",
+  "stars": 50,
+  "description": "Offline and security-first tool for syncing and managing agent skills",
+  "scores": {
+   "cli": 0.82,
+   "sync": 0.69,
+   "app": 0.89,
+   "registry": 0.38,
+   "team": 0.12,
+   "general": 0.2
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "AmadeusITGroup/ai-primitives-hub",
+  "stars": 50,
+  "description": "VS Code extension for managing, sharing, and installing AI primitives (Agents, Skills, Prompts, Instructions, MCP) collections for GitHub Copilot and other AI assistants",
+  "scores": {
+   "cli": 0.15,
+   "sync": 0.25,
+   "app": 0.6,
+   "registry": 0.79,
+   "team": 0.43,
+   "general": 0.56
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "jtianling/skills-manager",
+  "stars": 13,
+  "description": "Unified skills manager for AI coding tools. Deploy them to multiple AI tools.",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.82,
+   "app": 0.14,
+   "registry": 0.15,
+   "team": 0.14,
+   "general": 0.11
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "avibe-bot/askill",
+  "stars": 13,
+  "description": "Package manager for AI agent skills",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.53,
+   "app": 0.21,
+   "registry": 0.59,
+   "team": 0.19,
+   "general": 0.1
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "barleviatias/toolkit-ai",
+  "stars": 12,
+  "description": "Package manager for AI coding assistants — manage skills, agents & MCPs across Claude Code, Codex, Copilot, and Cursor",
+  "scores": {
+   "cli": 0.96,
+   "sync": 0.5,
+   "app": 0.85,
+   "registry": 0.41,
+   "team": 0.67,
+   "general": 0.84
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "sulfide2085/dsh-skill-manager",
+  "stars": 11,
+  "description": "在 DeepSeek Harness 设置页统一管理 DSH / Codex / Claude 的 AI 技能：热开关启停、GitHub 技能市场一键发现安装、本地 ZIP 导入（dsh-plugin skill hub）",
+  "scores": {
+   "cli": 0.08,
+   "sync": 0.12,
+   "app": 0.79,
+   "registry": 0.39,
+   "team": 0.08,
+   "general": 0.09
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "chrisvoncsefalvay/skillman",
+  "stars": 11,
+  "description": "A skills manager for Claude",
+  "scores": {
+   "cli": 0.9,
+   "sync": 0.25,
+   "app": 0.06,
+   "registry": 0.06,
+   "team": 0.23,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "wzf1997/skills-manager",
+  "stars": 10,
+  "description": "Skills Manager - 跨平台 AI Skills 管理工具",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.73,
+   "app": 0.96,
+   "registry": 0.37,
+   "team": 0.07,
+   "general": 0.12
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "alexastrum/skl",
+  "stars": 10,
+  "description": "A lightweight, single-binary Agent Skills CLI manager written in Go",
+  "scores": {
+   "cli": 0.89,
+   "sync": 0.24,
+   "app": 0.04,
+   "registry": 0.04,
+   "team": 0.1,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ariasbruno/skillbase",
+  "stars": 10,
+  "description": "🧠 Local AI skill manager. Prevent context saturation by linking only the essentials per workspace. 🚀",
+  "scores": {
+   "cli": 0.92,
+   "sync": 0.16,
+   "app": 0.09,
+   "registry": 0.27,
+   "team": 0.07,
+   "general": 0.11
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "itaywol/adeptability",
+  "stars": 9,
+  "description": "Cross-harness AI skill portability CLI. Author an agent skill once, sync it into Claude Code, Cursor, Copilot, Codex, OpenCode & 45+ AI coding agents. Safety scanner, content-hash drift detection. A package manager / dotfiles for AI coding agent skills.",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.85,
+   "app": 0.05,
+   "registry": 0.06,
+   "team": 0.18,
+   "general": 0.51
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "AdamBartkiewicz/praxl-oss",
+  "stars": 8,
+  "description": "Open-source AI skill manager — sync SKILL.md across Claude Code, Cursor, Codex, Copilot, Windsurf, Gemini & more. Self-host or use the cloud.",
+  "scores": {
+   "cli": 0.26,
+   "sync": 0.91,
+   "app": 0.9,
+   "registry": 0.44,
+   "team": 0.57,
+   "general": 0.16
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "osolmaz/skillflag",
+  "stars": 8,
+  "description": "A simple CLI flag convention for listing and installing agent skills. Bundle and publish your tool's skill directly with your package, without the need for a skill registry!",
+  "scores": {
+   "cli": 0.55,
+   "sync": 0.21,
+   "app": 0.03,
+   "registry": 0.04,
+   "team": 0.08,
+   "general": 0.06
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "kunaltulsidasani/claude-reimagined",
+  "stars": 8,
+  "description": "One-command bootstrap for a fully wired Claude Code workstation — installs Claude Code, RTK, context-mode, code-review-graph, caveman, hooks, MCP servers, statusline, and 39+ curated skills. macOS + Linux.",
+  "scores": {
+   "cli": 0.33,
+   "sync": 0.11,
+   "app": 0.03,
+   "registry": 0.09,
+   "team": 0.09,
+   "general": 0.9
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "devrimcavusoglu/skern",
+  "stars": 7,
+  "description": "Mass Skills Manager for Agents on AI Driven Development",
+  "scores": {
+   "cli": 0.87,
+   "sync": 0.41,
+   "app": 0.06,
+   "registry": 0.53,
+   "team": 0.15,
+   "general": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "hgflima/harness-lab",
+  "stars": 7,
+  "description": "Curated public registry of AI agent harnesses for Claude Code. Browse, install, and manage skills, commands, agents, and hooks.",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.08,
+   "app": 0.14,
+   "registry": 0.91,
+   "team": 0.1,
+   "general": 0.45
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "xu-xiang/oneskill",
+  "stars": 7,
+  "description": "The Universal App Store for AI Agents. Discover & Install Skills for Claude Code, Cursor, Windsurf, Aider, Codex & Gemini.",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.19,
+   "app": 0.21,
+   "registry": 0.63,
+   "team": 0.09,
+   "general": 0.2
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "dcodesdev/clawd",
+  "stars": 7,
+  "description": "Open-source collection of Claude skills. Rust CLI tool to discover, search, and install skills that extend Claude's capabilities.",
+  "scores": {
+   "cli": 0.85,
+   "sync": 0.11,
+   "app": 0.07,
+   "registry": 0.73,
+   "team": 0.17,
+   "general": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "akshayaggarwal99/agentskills",
+  "stars": 7,
+  "description": "CLI for browsing and installing skills from anthropics/skills",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.11,
+   "app": 0.17,
+   "registry": 0.68,
+   "team": 0.08,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "alswl/skm",
+  "stars": 6,
+  "description": "a tiny local-first AI Skill Manager",
+  "scores": {
+   "cli": 0.67,
+   "sync": 0.68,
+   "app": 0.84,
+   "registry": 0.17,
+   "team": 0.08,
+   "general": 0.1
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "hairyf/skills-manifest",
+  "stars": 6,
+  "description": "A lightweight manifest manager for skills, enabling project-level skill synchronization and collaborative configuration.",
+  "scores": {
+   "cli": 0.81,
+   "sync": 0.76,
+   "app": 0.04,
+   "registry": 0.04,
+   "team": 0.43,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "fagom/agentkit",
+  "stars": 6,
+  "description": "CLI package manager for Claude AI agent skills",
+  "scores": {
+   "cli": 0.95,
+   "sync": 0.3,
+   "app": 0.04,
+   "registry": 0.08,
+   "team": 0.72,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "gofastskill/fastskill",
+  "stars": 6,
+  "description": "Package manager and operational toolkit for Agent AI Skills. FastSkill enables discovery, installation, versioning, and deployment of skills at scale.",
+  "scores": {
+   "cli": 0.91,
+   "sync": 0.29,
+   "app": 0.16,
+   "registry": 0.21,
+   "team": 0.88,
+   "general": 0.2
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "caioross/skilldepot-go",
+  "stars": 6,
+  "description": "Official Go SDK for SkillDepot - The AI Agent Skill Marketplace",
+  "scores": {
+   "cli": 0.03,
+   "sync": 0.06,
+   "app": 0.02,
+   "registry": 0.17,
+   "team": 0.11,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Qsnh/skillsgist",
+  "stars": 6,
+  "description": "A private Agent Skills registry you self-host on Cloudflare.",
+  "scores": {
+   "cli": 0.07,
+   "sync": 0.3,
+   "app": 0.85,
+   "registry": 0.93,
+   "team": 0.91,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "lathe-cli/kitup",
+  "stars": 6,
+  "description": "Shared installer SDK for bundled Agent Skills.",
+  "scores": {
+   "cli": 0.2,
+   "sync": 0.11,
+   "app": 0.02,
+   "registry": 0.03,
+   "team": 0.1,
+   "general": 0.09
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Bind/skillz.sh",
+  "stars": 5,
+  "description": "agent skills manager",
+  "scores": {
+   "cli": 0.8,
+   "sync": 0.08,
+   "app": 0.05,
+   "registry": 0.47,
+   "team": 0.11,
+   "general": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Xaviw/skills-manager",
+  "stars": 5,
+  "description": "Agent skills manager: Centralized maintenance, on-demand installation, and automatic synchronization.",
+  "scores": {
+   "cli": 0.94,
+   "sync": 0.34,
+   "app": 0.14,
+   "registry": 0.1,
+   "team": 0.09,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "victor-software-house/pi-skills-manager",
+  "stars": 5,
+  "description": "Interactive skill manager for Pi — enable/disable skills with a pi-config-style UI",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.07,
+   "app": 0.65,
+   "registry": 0.05,
+   "team": 0.06,
+   "general": 0.07
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "GuiKang0424/skills-manager-ui",
+  "stars": 5,
+  "description": "# ✨ Skills Manager｜AI 技能管家，终于不用一个文件夹一个文件夹抄了  > 写给那些：Cursor、Claude Code、Codex……装了一堆 skill，目录乱成一锅粥的人 🥣  ---  ## 先说人话  你会不会这样：  - ClawHub 下了一个 skill → 复制到 Cursor   - 又要装到 Claude → 再复制一遍   - 标签？描述？全靠文件名硬猜   - 某个编辑器里装了啥，完全不敢卸载    **Skills Manager** 就是干这个的：    **一个中央库收着，一键装到各个 AI 编辑器。**   还能扫、搜、装、卸，带个小蓝白界面（Python + Flet）。",
+  "scores": {
+   "cli": 0.1,
+   "sync": 0.58,
+   "app": 0.97,
+   "registry": 0.39,
+   "team": 0.07,
+   "general": 0.09
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "AruneshSingh/konstruct",
+  "stars": 5,
+  "description": "Package manager for AI agent skills.",
+  "scores": {
+   "general": 0.1,
+   "cli": 0.92,
+   "sync": 0.73,
+   "app": 0.05,
+   "registry": 0.12,
+   "team": 0.27
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "lonewolfyx/skills-config",
+  "stars": 5,
+  "description": "Declarative Git skills manager for AI coding agents. Define skills in skills.config.ts and automatically provision them during npm install / prepare.",
+  "scores": {
+   "cli": 0.09,
+   "sync": 0.4,
+   "app": 0.03,
+   "registry": 0.07,
+   "team": 0.14,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Naoray/scribe",
+  "stars": 5,
+  "description": "Local skill manager for AI coding agents. One SKILL.md, projected across Claude Code, Cursor, Codex, Gemini. Lockfile-pinned, project-scoped, MIT.",
+  "scores": {
+   "cli": 0.77,
+   "sync": 0.95,
+   "app": 0.06,
+   "registry": 0.08,
+   "team": 0.24,
+   "general": 0.24
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "The-Utopia-Studio/skills",
+  "stars": 5,
+  "description": "AI skill marketplace for The Utopia Studio — four modules (GTM, Product, Investments, Founder Productivity). 301 skills for Claude Code, Cursor, and Agent Skills–compatible tools.",
+  "scores": {
+   "cli": 0.33,
+   "sync": 0.44,
+   "app": 0.08,
+   "registry": 0.89,
+   "team": 0.23,
+   "general": 0.1
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "latestaiagents/agent-skills",
+  "stars": 5,
+  "description": "Marketplace for AI agent skills and plugins - development, productivity, operations, marketing and beyond",
+  "scores": {
+   "cli": 0.22,
+   "sync": 0.48,
+   "app": 0.06,
+   "registry": 0.83,
+   "team": 0.14,
+   "general": 0.18
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "Bilal140202/the-lord-of-the-skills",
+  "stars": 5,
+  "description": "⚔ AI agent skills installer — 17,000+ skills for Claude Code, Cursor, Cline, Aider, Codex & Antigravity. pip install lotr-skills. cursor rules, claude code skills, SKILL.md, AGENTS.md.",
+  "scores": {
+   "cli": 0.83,
+   "sync": 0.2,
+   "app": 0.08,
+   "registry": 0.89,
+   "team": 0.11,
+   "general": 0.18
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "umutbozdag/agent-skills-manager",
+  "stars": 40,
+  "description": "Manage all your AI agent skills from a single dashboard — Cursor, Claude, and Agents",
+  "scores": {
+   "cli": 0.09,
+   "sync": 0.15,
+   "app": 0.91,
+   "registry": 0.3,
+   "team": 0.07,
+   "general": 0.18
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "egebese/skill-manager",
+  "stars": 38,
+  "description": "Save ~4,000 tokens per conversation by auto-disabling irrelevant Claude Code skills per project. Detects tech stack, scores skill relevance, injects CLAUDE.md.",
+  "scores": {
+   "cli": 0.27,
+   "sync": 0.07,
+   "app": 0.07,
+   "registry": 0.04,
+   "team": 0.06,
+   "general": 0.09
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "razbakov/skill-mix",
+  "stars": 36,
+  "description": "A management layer for AI agent skills — discover, install, scope, rate, and update skills across Cursor, Codex, and Claude Code.",
+  "scores": {
+   "cli": 0.45,
+   "sync": 0.5,
+   "app": 0.9,
+   "registry": 0.67,
+   "team": 0.62,
+   "general": 0.12
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "EfanWang/skills-manager",
+  "stars": 30,
+  "description": "Manage, install, update, and trace agent skills (Claude Code, Cursor, Codex CLI)",
+  "scores": {
+   "cli": 0.56,
+   "sync": 0.05,
+   "app": 0.05,
+   "registry": 0.13,
+   "team": 0.1,
+   "general": 0.06
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "GrubbyLee/skill-manager",
+  "stars": 29,
+  "description": "Zero-dependency CLI to scan, recommend, deduplicate, audit, and visualize Claude Code / Codex skills and MCP servers.",
+  "scores": {
+   "cli": 0.46,
+   "sync": 0.16,
+   "app": 0.22,
+   "registry": 0.09,
+   "team": 0.17,
+   "general": 0.24
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "codebygarv/Ai-skills",
+  "stars": 26,
+  "description": "A community-driven catalogue of 150+ reusable AI agent skills for Claude Code , Antigravity,  Cursor Ai , kimi , deepseek ,Mimo — code review, security auditing, architecture review, and more. Install any skill with one npx command.",
+  "scores": {
+   "cli": 0.76,
+   "sync": 0.17,
+   "app": 0.06,
+   "registry": 0.92,
+   "team": 0.12,
+   "general": 0.1
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "try-agora/qvr",
+  "stars": 24,
+  "description": "quiver (qvr): open-source git-native package manager for agent skills — lockfile-first, registry-agnostic, and built for reproducible AI agent workflows.",
+  "scores": {
+   "registry": 0.09,
+   "team": 0.86,
+   "general": 0.1,
+   "cli": 0.94,
+   "sync": 0.85,
+   "app": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "nikships/skills-registry",
+  "stars": 21,
+  "description": "Your personal GitHub registry for AI Agent Skills. One repo. EVERY agent. EVERY device. Loaded on demand — Zero startup bloat.",
+  "scores": {
+   "cli": 0.58,
+   "sync": 0.83,
+   "app": 0.69,
+   "registry": 0.84,
+   "team": 0.45,
+   "general": 0.09
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "tiandee/awesome-skills-hub",
+  "stars": 18,
+  "description": "A professional package manager for AI IDE skills & rules. Centralize your prompts and sync across Antigravity, Cursor, Windsurf, and Claude with \"Write Once, Link Everywhere\" simplicity.",
+  "scores": {
+   "registry": 0.24,
+   "team": 0.11,
+   "general": 0.13,
+   "cli": 0.83,
+   "sync": 0.2,
+   "app": 0.8
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ivanpham86/Claude-code-skill-manager",
+  "stars": 17,
+  "description": "",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.07,
+   "app": 0.96,
+   "registry": 0.65,
+   "team": 0.05,
+   "general": 0.07
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "kevinnft/ai-agent-skills",
+  "stars": 14,
+  "description": "191 attribution-first agent skills for Hermes Agent, Claude Code, Cursor — one installer, 28 categories, searchable catalog. See NOTICE for upstream attribution.",
+  "scores": {
+   "cli": 0.49,
+   "sync": 0.35,
+   "app": 0.05,
+   "registry": 0.62,
+   "team": 0.14,
+   "general": 0.11
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "dhruvwill/skills-cli",
+  "stars": 14,
+  "description": "Sync AI Agent skills across all your agent tools with one command.",
+  "scores": {
+   "cli": 0.69,
+   "sync": 0.84,
+   "app": 0.06,
+   "registry": 0.06,
+   "team": 0.13,
+   "general": 0.09
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "mars2003/cherry-studio-skill-manager",
+  "stars": 12,
+  "description": "A cross-platform tool for installing and managing Cherry Studio Skills / Cherry Studio Skill 管理工具",
+  "scores": {
+   "team": 0.07,
+   "general": 0.08,
+   "cli": 0.31,
+   "sync": 0.11,
+   "app": 0.7,
+   "registry": 0.05
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "yiwen65/SkillDock",
+  "stars": 12,
+  "description": "Local-first Git workspace and symlink installer for AI agent skills across   Claude Code, Codex, and custom agents.",
+  "scores": {
+   "cli": 0.05,
+   "sync": 0.82,
+   "app": 0.93,
+   "registry": 0.08,
+   "team": 0.26,
+   "general": 0.1
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "tc9011/skills-manager",
+  "stars": 11,
+  "description": "A CLI companion to vercel-labs/skills — push your ~/.agents/ directory to a remote repo, pull it on any machine, and automatically symlink skills to all your agents.",
+  "scores": {
+   "cli": 0.1,
+   "sync": 0.87,
+   "app": 0.04,
+   "registry": 0.04,
+   "team": 0.14,
+   "general": 0.08
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "a14a-org/claudeskill-manager",
+  "stars": 10,
+  "description": "Sync your Claude Code skills across devices with zero-knowledge encryption",
+  "scores": {
+   "cli": 0.42,
+   "sync": 0.37,
+   "app": 0.12,
+   "registry": 0.05,
+   "team": 0.64,
+   "general": 0.09
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "gavinyao/skill-registry-manager",
+  "stars": 10,
+  "description": "Claude Code 技能注册表管理工具。通过 YAML 格式的注册表统一管理 skills，支持远程/本地订阅、递归加载和多种安装方式（npx、git、本地复制）。订阅机制让团队或个人可以轻松共享和分发 skills 集合，实现跨设备同步。",
+  "scores": {
+   "general": 0.07,
+   "cli": 0.44,
+   "sync": 0.37,
+   "app": 0.09,
+   "registry": 0.67,
+   "team": 0.32
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "xhyqaq/skill-manager",
+  "stars": 9,
+  "description": "用来解决 skills 管理问题",
+  "scores": {
+   "cli": 0.45,
+   "sync": 0.39,
+   "app": 0.05,
+   "registry": 0.08,
+   "team": 0.06,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "dafage10086/agent-skill-manager",
+  "stars": 7,
+  "description": "渗透，逆向，外挂脚本技能寻找不可缺 【逆向，渗透，注入，破解，游戏辅助",
+  "scores": {
+   "cli": 0.82,
+   "sync": 0.15,
+   "app": 0.06,
+   "registry": 0.62,
+   "team": 0.19,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "cobibean/shared-skills-registry-mcp",
+  "stars": 7,
+  "description": "Self-hosted registry, dashboard, and MCP interface for reusable AI-agent skills.",
+  "scores": {
+   "cli": 0.15,
+   "sync": 0.7,
+   "app": 0.19,
+   "registry": 0.94,
+   "team": 0.59,
+   "general": 0.1
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "VersoXBT/skill-manager",
+  "stars": 6,
+  "description": "Claude Code plugin — inventory all your installed skills, check structure, and find updates. Free, zero dependencies.",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.05,
+   "app": 0.08,
+   "registry": 0.09,
+   "team": 0.11,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "CoderAndyLee/skills-manager",
+  "stars": 6,
+  "description": "Safety-first inventory, audit, migration, deployment, and recovery for Agent Skills.",
+  "scores": {
+   "cli": 0.08,
+   "sync": 0.3,
+   "app": 0.05,
+   "registry": 0.07,
+   "team": 0.41,
+   "general": 0.09
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "oliwier-xiao/agent-skills-manager",
+  "stars": 6,
+  "description": "Every skill, plugin and MCP server Claude Code, OpenCode and Codex load, in one searchable list on your Omarchy bar — with what each one costs you in tokens on every turn, and the command that invokes it. An Omarchy Quattro bar widget.",
+  "scores": {
+   "cli": 0.1,
+   "sync": 0.07,
+   "app": 0.68,
+   "registry": 0.57,
+   "team": 0.06,
+   "general": 0.27
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "robertoatila/jarvis-skill-registry",
+  "stars": 6,
+  "description": "Local-first cognitive runtime for AI agents: bounded context, persistent memory, tool/model routing and verified execution.",
+  "scores": {
+   "cli": 0.08,
+   "sync": 0.21,
+   "app": 0.66,
+   "registry": 0.63,
+   "team": 0.25,
+   "general": 0.6
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Asher-pro/skill-installer",
+  "stars": 6,
+  "description": "Install any skill to Claude Code. ",
+  "scores": {
+   "cli": 0.13,
+   "sync": 0.04,
+   "app": 0.04,
+   "registry": 0.06,
+   "team": 0.05,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "osulivan/skill4agent-cli",
+  "stars": 6,
+  "description": "By skill4agent.com, a command-line tool for installing Agent Skills.",
+  "scores": {
+   "cli": 0.96,
+   "sync": 0.25,
+   "app": 0.05,
+   "registry": 0.16,
+   "team": 0.09,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "nameczz/skill-sync",
+  "stars": 5,
+  "description": "Local Web and CLI manager for syncing Codex skills through Git",
+  "scores": {
+   "cli": 0.2,
+   "sync": 0.29,
+   "app": 0.82,
+   "registry": 0.03,
+   "team": 0.1,
+   "general": 0.08
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "nirholas/x402-skill-registry",
+  "stars": 5,
+  "description": "Searchable registry of x402-paid agent skills — register with a signed listing, agents search per query. Every listing accepts USDC on both Base and Solana.",
+  "scores": {
+   "cli": 0.03,
+   "sync": 0.08,
+   "app": 0.19,
+   "registry": 0.98,
+   "team": 0.05,
+   "general": 0.04
+  },
+  "kind": "registry"
+ },
+ {
+  "repo": "tsvelovskiysv/claude-skill-router",
+  "stars": 5,
+  "description": "Semantic router for Claude Code Agent Skills — finds and installs the right skills for your project from a 65k catalog.",
+  "scores": {
+   "cli": 0.84,
+   "sync": 0.12,
+   "app": 0.06,
+   "registry": 0.71,
+   "team": 0.09,
+   "general": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "zhuyansen/skills-manager",
+  "stars": 0,
+  "description": "Cross-platform AI Agent Skills manager, derived from iamzhihuix/skills-manage.",
+  "scores": {
+   "sync": 0.59,
+   "app": 0.95,
+   "registry": 0.54,
+   "team": 0.11,
+   "general": 0.14,
+   "cli": 0.08
+  },
+  "kind": "app"
+ }
+]

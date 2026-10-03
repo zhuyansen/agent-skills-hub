@@ -1,10 +1,11 @@
-name: Video, PPT and Jev pages daily review
+name: Reviewed scenario pages daily review
 
 # Once a day: find repos that appeared since the last run, have Jev review them, add the
 # ones that pass the page's rules to /best/claude-video-skills/ and to the GitHub list
 # zhuyansen/awesome-claude-video-skills, and post a report to the tracking issue.
 # Since 10-03 the same for /best/ppt-presentation/ and zhuyansen/awesome-codex-ppt-skills,
-# and for /best/typesafe-jev/ and zhuyansen/awesome-typesafe-jev.
+# and for /best/typesafe-jev/ and zhuyansen/awesome-typesafe-jev; since the evening of 10-03
+# also skill-management-tools, telegram-bot, ai-design and knowledge-base with their lists.
 # Script: ops/awesome/daily_video_pass.py.
 #
 # 06:30 UTC: after the 03:xx sync usually ends. The script still waits (up to 45 min)
@@ -27,7 +28,7 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 180   # seven pages since 10-03
     steps:
       - uses: actions/checkout@v4
 
@@ -61,6 +62,30 @@ jobs:
           path: list-jev
           token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
 
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-agent-skills-managers
+          path: list-skillmgr
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-ai-telegram-bots
+          path: list-telegram
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-claude-design-skills
+          path: list-design
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-llm-wiki
+          path: list-wiki
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
       # The list generator reads grades with the read-only anon key from frontend/.env.
       - name: Write frontend/.env
         run: |
@@ -76,7 +101,7 @@ jobs:
           FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ACTIONS_TOKEN: ${{ github.token }}
-        run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt typesafe-jev=list-jev
+        run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt typesafe-jev=list-jev skill-management-tools=list-skillmgr telegram-bot=list-telegram ai-design=list-design knowledge-base=list-wiki
 
       - name: Commit the site
         id: site
@@ -100,7 +125,7 @@ jobs:
 
       - name: Push the GitHub lists
         run: |
-          for dir in list-repo list-ppt list-jev; do
+          for dir in list-repo list-ppt list-jev list-skillmgr list-telegram list-design list-wiki; do
             (
               cd "$dir"
               git config user.name "github-actions[bot]"

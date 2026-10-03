@@ -53,6 +53,7 @@ RELEVANT = 0.5
 JUDGE_WORKERS = 6        # repos reviewed at once
 JUDGE_CHUNK = 60         # results saved after each chunk
 HIGH, MID = 0.75, 0.50
+STRICT_TOPIC = 0.8      # page_profiles: pages with "strict"
 
 # Scripts, shot analysis and learning material: they make no video, the owner lists them.
 CRAFT = [
@@ -303,9 +304,11 @@ def profile(slug: str) -> dict:
     upgraded on 10-03 are in page_profiles.py."""
     if slug in PAGES:
         page = PAGES[slug]
-        return {"relevance": {"on_subject": page["subject"], "is_software": IS_SOFTWARE},
+        extra = page.get("extra", {})
+        return {"relevance": {"on_subject": page["subject"], "is_software": IS_SOFTWARE, **extra},
                 "quality": PAGE_QUALITY, "types": page["types"], "labels": page["labels"],
-                "topic": ("on_subject", "is_software"), "merged": {}, "strict": {}}
+                "topic": ("on_subject", "is_software", *extra), "merged": {}, "strict": {},
+                **({"topic_min": STRICT_TOPIC, "below_min": HIGH} if page.get("strict") else {})}
     if slug == "typesafe-jev":
         # Under 50 stars only the high tier: the 09-16 wave left 431 mid-or-better repos under
         # the floor, 220 of them under 10 stars (10-03); a page of 600 cards buries the good ones.
@@ -449,7 +452,7 @@ def verdict(row: dict, slug: str = "claude-video-skills") -> str:
         return "below_gate_floor"
     # Both must hold. A video made with the model but not operated by an agent (a
     # finished music video, a demo) stays off the page: owner's rule, 2026-09-27.
-    if on_topic(row, slug) < RELEVANT:
+    if on_topic(row, slug) < profile(slug).get("topic_min", RELEVANT):
         return "off_topic"
     return "admit" if row["quality"] >= profile(slug).get("below_min", MID) else "low_quality"
 

@@ -1,0 +1,2564 @@
+[
+ {
+  "repo": "alibaba/open-code-review",
+  "stars": 43429,
+  "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
+  "scores": {
+   "pr_bot": 0.2,
+   "skill": 0.08,
+   "cli": 0.91,
+   "security": 0.53,
+   "multi": 0.11,
+   "platform": 0.15
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "openai/codex-plugin-cc",
+  "stars": 33794,
+  "description": "Use Codex from Claude Code to review code or delegate tasks.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.92,
+   "cli": 0.68,
+   "security": 0.16,
+   "multi": 0.14,
+   "platform": 0.05
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "tirth8205/code-review-graph",
+  "stars": 31898,
+  "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.72,
+   "cli": 0.95,
+   "security": 0.08,
+   "multi": 0.09,
+   "platform": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "The-PR-Agent/pr-agent",
+  "stars": 13246,
+  "description": "🚀 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
+  "scores": {
+   "pr_bot": 0.93,
+   "skill": 0.08,
+   "cli": 0.57,
+   "security": 0.11,
+   "multi": 0.11,
+   "platform": 0.14
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "lintsinghua/DeepAudit",
+  "stars": 7107,
+  "description": "DeepAudit：人人拥有的 AI 黑客战队，让漏洞挖掘触手可及。国内首个开源的代码漏洞挖掘多智能体系统。小白一键部署运行，自主协作审计 + 自动化沙箱 PoC 验证。支持 Ollama 私有部署 ，一键生成报告。支持中转站。​让安全不再昂贵，让审计不再复杂。",
+  "scores": {
+   "pr_bot": 0.14,
+   "skill": 0.06,
+   "cli": 0.28,
+   "security": 0.98,
+   "multi": 0.87,
+   "platform": 0.7
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "anthropics/claude-code-security-review",
+  "stars": 6292,
+  "description": "An AI-powered security review GitHub Action using Claude to analyze code changes for security vulnerabilities.",
+  "scores": {
+   "pr_bot": 0.95,
+   "skill": 0.34,
+   "cli": 0.03,
+   "security": 0.98,
+   "multi": 0.06,
+   "platform": 0.04
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "mattzcarey/shippie",
+  "stars": 2502,
+  "description": "extendable code review and QA agent 🚢",
+  "scores": {
+   "pr_bot": 0.92,
+   "skill": 0.14,
+   "cli": 0.76,
+   "security": 0.44,
+   "multi": 0.16,
+   "platform": 0.1
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "google/mantis",
+  "stars": 2246,
+  "description": "A modular, stack-agnostic toolkit for AI coding agents to autonomously find, reproduce, and patch vulnerabilities.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.09,
+   "cli": 0.87,
+   "security": 0.97,
+   "multi": 0.87,
+   "platform": 0.05
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "awesome-skills/code-review-skill",
+  "stars": 2042,
+  "description": "A comprehensive code review skill for Claude Code, covering React 19, Vue 3, Rust, TypeScript, TanStack Query v5, and more.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.91,
+   "cli": 0.14,
+   "security": 0.22,
+   "multi": 0.07,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "sourcery-ai/sourcery",
+  "stars": 1871,
+  "description": "Instant AI code reviews",
+  "scores": {
+   "pr_bot": 0.76,
+   "skill": 0.1,
+   "cli": 0.1,
+   "security": 0.12,
+   "multi": 0.25,
+   "platform": 0.08
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "px0-ai/px0",
+  "stars": 1755,
+  "description": "px0 is an IDE built for reviewing AI-generated code, optimized for speed. It turns your browser into a zero-latency console with native Git and GitHub integrations, instant search across massive codebases, and seamless handoff to local AI coding harnesses.",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.23,
+   "cli": 0.82,
+   "security": 0.1,
+   "multi": 0.11,
+   "platform": 0.83
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "kenn-io/roborev",
+  "stars": 1741,
+  "description": "Continuous background code review database for agents, work faster and smarter with accountability for every line of generated code.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.75,
+   "cli": 0.97,
+   "security": 0.25,
+   "multi": 0.34,
+   "platform": 0.82
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "vercel-labs/openreview",
+  "stars": 1697,
+  "description": "An open-source, self-hosted AI code review bot powered by Vercel.",
+  "scores": {
+   "pr_bot": 0.96,
+   "skill": 0.06,
+   "cli": 0.03,
+   "security": 0.13,
+   "multi": 0.07,
+   "platform": 0.6
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "hyhmrright/brooks-lint",
+  "stars": 1502,
+  "description": "AI code reviews grounded in 12 classic engineering books — decay risk diagnostics with book citations, severity labels, and 6 analysis modes including full-sweep auto-fix",
+  "scores": {
+   "pr_bot": 0.13,
+   "skill": 0.94,
+   "cli": 0.36,
+   "security": 0.08,
+   "multi": 0.1,
+   "platform": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "HexmosTech/git-lrc",
+  "stars": 1468,
+  "description": "Free, Micro AI Code Reviews That Run on Git Commit",
+  "scores": {
+   "pr_bot": 0.09,
+   "skill": 0.17,
+   "cli": 0.93,
+   "security": 0.67,
+   "multi": 0.13,
+   "platform": 0.17
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "kodustech/kodus-ai",
+  "stars": 1443,
+  "description": "Open source, self-hosted AI code review. Bring your own LLM.",
+  "scores": {
+   "pr_bot": 0.86,
+   "skill": 0.05,
+   "cli": 0.3,
+   "security": 0.44,
+   "multi": 0.1,
+   "platform": 0.91
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "sashiko-dev/sashiko",
+  "stars": 1267,
+  "description": "Agentic review of Linux Kernel code changes",
+  "scores": {
+   "pr_bot": 0.3,
+   "skill": 0.08,
+   "cli": 0.94,
+   "security": 0.2,
+   "multi": 0.81,
+   "platform": 0.19
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "amElnagdy/guard-skills",
+  "stars": 1255,
+  "description": "Guard skills for coding agents, quality gates that catch AI-generated failure modes in code, tests, and docs",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.86,
+   "cli": 0.67,
+   "security": 0.34,
+   "multi": 0.14,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Gentleman-Programming/gentleman-guardian-angel",
+  "stars": 1175,
+  "description": "😇 Gentleman Guardian Angel (gga) - Provider-agnostic code review using AI. Use Claude, Gemini, Codex, Ollama to enforce your coding standards.",
+  "scores": {
+   "pr_bot": 0.12,
+   "skill": 0.43,
+   "cli": 0.96,
+   "security": 0.11,
+   "multi": 0.08,
+   "platform": 0.05
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "villesau/ai-codereviewer",
+  "stars": 1044,
+  "description": "AI Code Reviewer: Enhance your GitHub workflow with AI-powered code review! Get intelligent feedback and suggestions on pull requests using OpenAI's GPT-4 API, improving code quality and saving developers time.",
+  "scores": {
+   "pr_bot": 0.96,
+   "skill": 0.05,
+   "cli": 0.03,
+   "security": 0.12,
+   "multi": 0.04,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "arm/metis",
+  "stars": 872,
+  "description": "Metis is an open-source, AI-driven tool for deep security code review",
+  "scores": {
+   "pr_bot": 0.1,
+   "skill": 0.09,
+   "cli": 0.8,
+   "security": 0.98,
+   "multi": 0.26,
+   "platform": 0.21
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "nilbuild/diffity",
+  "stars": 829,
+  "description": "Mac app to review the code written by you or your agent with Claude in the loop.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.21,
+   "cli": 0.95,
+   "security": 0.1,
+   "multi": 0.06,
+   "platform": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "persiyanov/herdr-reviewr",
+  "stars": 823,
+  "description": "Review your coding agent's diff in a terminal pane and send line comments back to Claude Code, Codex, OpenCode or Pi. A herdr plugin.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.46,
+   "cli": 0.97,
+   "security": 0.08,
+   "multi": 0.08,
+   "platform": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "hamelsmu/claude-review-loop",
+  "stars": 724,
+  "description": "Claude Code plugin: automated code review loop with Codex",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.94,
+   "cli": 0.94,
+   "security": 0.29,
+   "multi": 0.92,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "devagrawal09/jev-review",
+  "stars": 661,
+  "description": "A staged code-review workflow and local dashboard built with TypeSafe Jev.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.07,
+   "cli": 0.98,
+   "security": 0.3,
+   "multi": 0.13,
+   "platform": 0.77
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Agent-Field/pr-af",
+  "stars": 645,
+  "description": "#1 open-source code reviewer on Code-Review-Bench",
+  "scores": {
+   "pr_bot": 0.75,
+   "skill": 0.09,
+   "cli": 0.7,
+   "security": 0.52,
+   "multi": 0.91,
+   "platform": 0.77
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Nikita-Filonov/ai-review",
+  "stars": 585,
+  "description": "🚀 AI-powered code review tool for GitHub, GitLab, Bitbucket Cloud, Bitbucket Server, Azure DevOps and Gitea — built with LLMs like OpenAI, Claude, Gemini, Ollama, Bedrock, OpenRouter and Azure OpenAI",
+  "scores": {
+   "pr_bot": 0.86,
+   "skill": 0.08,
+   "cli": 0.33,
+   "security": 0.12,
+   "multi": 0.1,
+   "platform": 0.14
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "chorus-codes/chorus",
+  "stars": 527,
+  "description": "Multi-LLM peer review for code decisions. Bring your own CLI; Chorus convenes 2-4 other LLMs to review the work before you ship.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.49,
+   "cli": 0.96,
+   "security": 0.19,
+   "multi": 0.97,
+   "platform": 0.69
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "imbue-ai/vet",
+  "stars": 518,
+  "description": "Find issues worth your attention.",
+  "scores": {
+   "pr_bot": 0.48,
+   "skill": 0.64,
+   "cli": 0.93,
+   "security": 0.18,
+   "multi": 0.16,
+   "platform": 0.1
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "taovc/pr-cockpit",
+  "stars": 494,
+  "description": "Local AI PR workbench — Claude/Codex review in isolated git worktrees, human-gated GitHub comments",
+  "scores": {
+   "pr_bot": 0.1,
+   "skill": 0.17,
+   "cli": 0.96,
+   "security": 0.15,
+   "multi": 0.15,
+   "platform": 0.57
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "codexstar69/bug-hunter",
+  "stars": 487,
+  "description": "Adversarial AI bug hunter with auto-fix skill for Claude Code, Cursor, Codex CLI, GitHub Copilot CLI, Kiro CLI, Opencode, Pi Coding Agent, and more. Multi-agent pipeline finds security vulnerabilities, logic errors, and runtime bugs — then fixes them autonomously on a safe branch.",
+  "scores": {
+   "pr_bot": 0.2,
+   "skill": 0.91,
+   "cli": 0.86,
+   "security": 0.84,
+   "multi": 0.96,
+   "platform": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "AsyncFuncAI/AsyncReview",
+  "stars": 459,
+  "description": "Open-source Agentic code review tool inspired by DevinReview, using Recursive Language Models (RLM)",
+  "scores": {
+   "pr_bot": 0.4,
+   "skill": 0.83,
+   "cli": 0.51,
+   "security": 0.23,
+   "multi": 0.17,
+   "platform": 0.2
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Nayjest/Gito",
+  "stars": 442,
+  "description": "An AI-powered GitHub code review tool that uses LLMs to detect high-confidence, high-impact issues—such as security vulnerabilities, bugs, and maintainability concerns.",
+  "scores": {
+   "multi": 0.24,
+   "platform": 0.11,
+   "pr_bot": 0.86,
+   "skill": 0.1,
+   "cli": 0.84,
+   "security": 0.56
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "getsentry/warden",
+  "stars": 412,
+  "description": "Your code is under new management. Agents that review your code.",
+  "scores": {
+   "pr_bot": 0.68,
+   "skill": 0.22,
+   "cli": 0.9,
+   "security": 0.46,
+   "multi": 0.26,
+   "platform": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "agentgg-dev/agentgg",
+  "stars": 403,
+  "description": "Open source agentic SAST. The engine behind hundreds of disclosed zero-days. 100+ AI security agents, any repo or PR diff, bring your own model.",
+  "scores": {
+   "pr_bot": 0.14,
+   "skill": 0.07,
+   "cli": 0.95,
+   "security": 0.98,
+   "multi": 0.78,
+   "platform": 0.12
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "greptileai/skills",
+  "stars": 399,
+  "description": "Agent skill for checking PR review comments, status checks, and description completeness",
+  "scores": {
+   "pr_bot": 0.47,
+   "skill": 0.88,
+   "cli": 0.5,
+   "security": 0.08,
+   "multi": 0.08,
+   "platform": 0.07
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "cirolini/genai-code-review",
+  "stars": 371,
+  "description": "GitHub Action that reviews pull request diffs with an LLM and posts the comments on the PR",
+  "scores": {
+   "pr_bot": 0.96,
+   "skill": 0.05,
+   "cli": 0.03,
+   "security": 0.14,
+   "multi": 0.04,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "spencermarx/open-code-review",
+  "stars": 370,
+  "description": "AI-powered multi-agent code review. Simulates a customizable team of Engineers performing code review with built-in discourse.",
+  "scores": {
+   "pr_bot": 0.13,
+   "skill": 0.61,
+   "cli": 0.92,
+   "security": 0.12,
+   "multi": 0.97,
+   "platform": 0.72
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "miracodeai/mira",
+  "stars": 355,
+  "description": "Self-hosted AI code reviewer with indexed PR reviews, walkthroughs, vulnerability scanning, dependency graphs, custom rules, and a learning loop.",
+  "scores": {
+   "skill": 0.05,
+   "cli": 0.15,
+   "security": 0.4,
+   "multi": 0.32,
+   "platform": 0.98,
+   "pr_bot": 0.92
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "lakeday-org/perch",
+  "stars": 345,
+  "description": "Semantic code linting with Decision Models",
+  "scores": {
+   "pr_bot": 0.15,
+   "skill": 0.62,
+   "cli": 0.85,
+   "security": 0.26,
+   "multi": 0.15,
+   "platform": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "sturdy-dev/codeball-action",
+  "stars": 326,
+  "description": "🔮 Codeball – AI Code Review that finds bugs and fast-tracks your code",
+  "scores": {
+   "pr_bot": 0.96,
+   "skill": 0.06,
+   "cli": 0.03,
+   "security": 0.32,
+   "multi": 0.09,
+   "platform": 0.07
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "gitbito/bitoai",
+  "stars": 300,
+  "description": "Get codebase-aware feedback in your GitHub, GitLab, Bitbucket pull requests or directly in your IDE.",
+  "scores": {
+   "pr_bot": 0.75,
+   "skill": 0.13,
+   "cli": 0.17,
+   "security": 0.23,
+   "multi": 0.15,
+   "platform": 0.22
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "TheMorpheus407/RepoLens",
+  "stars": 297,
+  "description": "Multi-lens code audit tool — 280 expert AI agents for code review, security testing, and infrastructure auditing",
+  "scores": {
+   "pr_bot": 0.14,
+   "skill": 0.09,
+   "cli": 0.82,
+   "security": 0.73,
+   "multi": 0.67,
+   "platform": 0.1
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "domvwt/chatgpt-code-review",
+  "stars": 291,
+  "description": "",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.06,
+   "cli": 0.48,
+   "security": 0.16,
+   "multi": 0.06,
+   "platform": 0.58
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "tanviet12/vbsec",
+  "stars": 282,
+  "description": "Security scanning skill for Claude Code, Codex and Antigravity. Finds the 21 most common vulnerabilities in AI-written code and shows how to fix each one.",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.86,
+   "cli": 0.7,
+   "security": 0.99,
+   "multi": 0.55,
+   "platform": 0.07
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "ReviewStage/stage-cli",
+  "stars": 274,
+  "description": "A viewer for reviewing local code changes in small individual chapters. Works with any AI agent.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.71,
+   "cli": 0.97,
+   "security": 0.08,
+   "multi": 0.06,
+   "platform": 0.27
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Cloudflare-Studio/ask-bonk",
+  "stars": 263,
+  "description": "Bonk is a code & docs agent that can build, review and triage for you, built on Cloudflare Workers & OpenCode.",
+  "scores": {
+   "pr_bot": 0.88,
+   "skill": 0.09,
+   "cli": 0.07,
+   "security": 0.12,
+   "multi": 0.08,
+   "platform": 0.28
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "truongnh1992/gemini-ai-code-reviewer",
+  "stars": 251,
+  "description": "A GitHub Action that automatically reviews pull requests using Google's Gemini AI.",
+  "scores": {
+   "pr_bot": 0.97,
+   "skill": 0.04,
+   "cli": 0.03,
+   "security": 0.12,
+   "multi": 0.04,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "adamjgmiller/adamsreview",
+  "stars": 243,
+  "description": "Multi-lens code review pipeline for Claude Code: deep review (Claude or Codex), auto-fix loop, interactive walkthrough, external-finding injection.",
+  "scores": {
+   "pr_bot": 0.12,
+   "skill": 0.94,
+   "cli": 0.82,
+   "security": 0.24,
+   "multi": 0.96,
+   "platform": 0.07
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "spherical-up/Easy-AI-CodeReview",
+  "stars": 241,
+  "description": "这是一个专为开发者打造的高效 Code Review 工具，旨在提升代码审查质量、降低沟通成本，并加速团队协作流程。通过智能比对、注释建议、变更摘要、代码质量提示等功能，帮助开发者更快地理解提交内容、发现潜在问题，让每一次 Review 更加清晰、高效、有价值。",
+  "scores": {
+   "pr_bot": 0.92,
+   "skill": 0.07,
+   "cli": 0.04,
+   "security": 0.26,
+   "multi": 0.09,
+   "platform": 0.75
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "99xAgency/GodModeSkill",
+  "stars": 241,
+  "description": "Multi-LLM cross-review workflow for Claude Code. /work orchestrates plan/implement/bug-fix with 3 different model families voting on every gate.",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.94,
+   "cli": 0.94,
+   "security": 0.11,
+   "multi": 0.98,
+   "platform": 0.15
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "NiazMorshed2007/jev-review",
+  "stars": 231,
+  "description": "Local-first MCP plugin for continuous software-quality review by AI coding agents, powered by Jev.",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.96,
+   "cli": 0.97,
+   "security": 0.18,
+   "multi": 0.06,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "flows-network/github-pr-summary",
+  "stars": 229,
+  "description": "Use LLM to summarize & review GitHub Pull Requests",
+  "scores": {
+   "pr_bot": 0.88,
+   "skill": 0.06,
+   "cli": 0.04,
+   "security": 0.15,
+   "multi": 0.07,
+   "platform": 0.07
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "AgriciDaniel/claude-cybersecurity",
+  "stars": 225,
+  "description": "AI-powered cybersecurity code review skill for Claude Code. 8 specialist agents, OWASP 2025, CWE Top 25, MITRE ATT&CK, 11 languages, zero configuration.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.92,
+   "cli": 0.84,
+   "security": 0.99,
+   "multi": 0.85,
+   "platform": 0.04
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "vikingmute/review-forge",
+  "stars": 224,
+  "description": "review-forge is an Agent Skill for structured, auditable code review workflows",
+  "scores": {
+   "multi": 0.66,
+   "platform": 0.04,
+   "pr_bot": 0.08,
+   "skill": 0.86,
+   "cli": 0.84,
+   "security": 0.13
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "wong2/diffx",
+  "stars": 208,
+  "description": "A local code review tool designed for the coding agent workflow",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.54,
+   "cli": 0.98,
+   "security": 0.06,
+   "multi": 0.08,
+   "platform": 0.74
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Ataraxy-Labs/inspect",
+  "stars": 201,
+  "description": "Entity-level code review. Triages pull requests by structural risk using cross-file dependency graphs and LLMs that read for meaning.",
+  "scores": {
+   "pr_bot": 0.26,
+   "skill": 0.18,
+   "cli": 0.89,
+   "security": 0.12,
+   "multi": 0.13,
+   "platform": 0.19
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "presubmit/ai-reviewer",
+  "stars": 187,
+  "description": "Context-aware AI reviewer for Pull Requests. Instant summary, line-by-line comments, title generation and more",
+  "scores": {
+   "pr_bot": 0.93,
+   "skill": 0.09,
+   "cli": 0.03,
+   "security": 0.35,
+   "multi": 0.08,
+   "platform": 0.04
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "puemos/lareview",
+  "stars": 181,
+  "description": "The code review workbench.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.22,
+   "cli": 0.96,
+   "security": 0.18,
+   "multi": 0.09,
+   "platform": 0.55
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Continuum-AI-Corp/Orca-Code-Review",
+  "stars": 173,
+  "description": "OrcaCode Review — the open code review harness. Multi-model reviews, merge gates, and no markup. Pay only for inference.",
+  "scores": {
+   "pr_bot": 0.76,
+   "skill": 0.78,
+   "cli": 0.65,
+   "security": 0.38,
+   "multi": 0.29,
+   "platform": 0.15
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "syabro/rejudge",
+  "stars": 163,
+  "description": "Independent multi-model review for AI coding agents",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.17,
+   "cli": 0.83,
+   "security": 0.19,
+   "multi": 0.94,
+   "platform": 0.15
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Addepar/RedFlag",
+  "stars": 163,
+  "description": "RedFlag uses AI to identify high-risk code changes. Run it in batch mode for release candidate testing or in CI pipelines to flag PRs and add reviewers. RedFlag's flexible configuration makes it valuable for any team.",
+  "scores": {
+   "pr_bot": 0.57,
+   "skill": 0.08,
+   "cli": 0.8,
+   "security": 0.86,
+   "multi": 0.14,
+   "platform": 0.09
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "tshemsedinov/reslop",
+  "stars": 154,
+  "description": "👁️ Review AI generated code and plan changes",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.22,
+   "cli": 0.96,
+   "security": 0.17,
+   "multi": 0.1,
+   "platform": 0.49
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "FelixNg1022/cf_ai_code_review",
+  "stars": 154,
+  "description": "AI-powered code review application built on Cloudflare Workers",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.06,
+   "cli": 0.05,
+   "security": 0.34,
+   "multi": 0.06,
+   "platform": 0.61
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "EastSword/skill-dfyx_code_security_review",
+  "stars": 139,
+  "description": "东方隐侠团队出品，代码审计skill",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.86,
+   "cli": 0.4,
+   "security": 0.99,
+   "multi": 0.66,
+   "platform": 0.05
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "amElnagdy/review-skills",
+  "stars": 131,
+  "description": "Two-model debate review of PRs and MRs, plus a babysitter that works the review rounds. Skills for any coding agent.",
+  "scores": {
+   "pr_bot": 0.47,
+   "skill": 0.86,
+   "cli": 0.5,
+   "security": 0.15,
+   "multi": 0.95,
+   "platform": 0.05
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "DeepCodeAI/vscode-extension",
+  "stars": 128,
+  "description": "DeepCode extension for Visual Studio Code",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.06,
+   "cli": 0.47,
+   "security": 0.86,
+   "multi": 0.1,
+   "platform": 0.05
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "Gil2015/code-gate",
+  "stars": 127,
+  "description": "Intelligent Git commit code reviewer. Supports local (Ollama) and cloud models (DeepSeek, OpenAI, Anthropic) with a rich CLI UI.                        本地AI智能 Git 提交代码审查工具。支持使用本地 (Ollama) 及云端模型 (DeepSeek, OpenAI, Anthropic)，提供丰富的 CLI 交互界面。",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.07,
+   "cli": 0.97,
+   "security": 0.38,
+   "multi": 0.1,
+   "platform": 0.12
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "win4r/agent-skills-code-review-router",
+  "stars": 125,
+  "description": "",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.84,
+   "cli": 0.79,
+   "security": 0.23,
+   "multi": 0.26,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "fivetaku/insane-review",
+  "stars": 121,
+  "description": "Use GPT-5.5 Pro (web-only, no API) from inside Claude Code — repomix-pack the relevant code, send to subscription ChatGPT Pro, harvest the review (API cost $0)",
+  "scores": {
+   "cli": 0.74,
+   "security": 0.29,
+   "multi": 0.4,
+   "platform": 0.08,
+   "pr_bot": 0.04,
+   "skill": 0.85
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "minetechnic2012-lang/claude-ops-inspector",
+  "stars": 120,
+  "description": "Subagent Verification for Claude AI Code Networks 2026",
+  "scores": {
+   "pr_bot": 0.38,
+   "skill": 0.41,
+   "cli": 0.49,
+   "security": 0.45,
+   "multi": 0.91,
+   "platform": 0.09
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "devarshishimpi/codra",
+  "stars": 119,
+  "description": "Self-hosted AI code review for GitHub pull requests, built on Cloudflare Workers.",
+  "scores": {
+   "pr_bot": 0.92,
+   "skill": 0.05,
+   "cli": 0.03,
+   "security": 0.36,
+   "multi": 0.39,
+   "platform": 0.97
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "Juror-AI/juror",
+  "stars": 118,
+  "description": "Cheaper and better Greptile alternative runs on your own github actions.",
+  "scores": {
+   "pr_bot": 0.97,
+   "skill": 0.14,
+   "cli": 0.3,
+   "security": 0.23,
+   "multi": 0.79,
+   "platform": 0.35
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "openqa-cn/codexqa",
+  "stars": 116,
+  "description": "codexqa: 11 local-first Agent Skills for Cursor, Claude Code, Codex & OpenClaw — change impact analysis, AI code review, defect scan, testcase generation, browser replay & RCA.",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.88,
+   "cli": 0.92,
+   "security": 0.33,
+   "multi": 0.15,
+   "platform": 0.1
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "vuphongle/oss-pr-reviewer",
+  "stars": 115,
+  "description": "AI-powered CLI for reviewing GitHub pull requests, detecting potential bugs, security risks, regressions, and missing tests, with structured Markdown reports for open-source maintainers.",
+  "scores": {
+   "pr_bot": 0.33,
+   "skill": 0.07,
+   "cli": 0.94,
+   "security": 0.42,
+   "multi": 0.07,
+   "platform": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "GGGODLIN/claude-pr-review",
+  "stars": 114,
+  "description": "Multi-axis PR review orchestration for Claude Code — 5 independent review perspectives, symmetric cross-verification, deterministic coverage assertion",
+  "scores": {
+   "pr_bot": 0.22,
+   "skill": 0.85,
+   "cli": 0.92,
+   "security": 0.28,
+   "multi": 0.98,
+   "platform": 0.09
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "egma-ai/jev-code-reviewer",
+  "stars": 111,
+  "description": "Review behavior, not just diffs. Jev prioritizes human attention; OpenAI explains the changes. Local CLI + agent skill + GitHub extension.",
+  "scores": {
+   "pr_bot": 0.13,
+   "skill": 0.14,
+   "cli": 0.95,
+   "security": 0.12,
+   "multi": 0.13,
+   "platform": 0.25
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "mr-karan/hodor",
+  "stars": 111,
+  "description": "Agentic code reviewer for GitHub PRs and GitLab MRs. Multi-step reasoning with autonomous tool orchestration — catches bugs requiring analysis across files.",
+  "scores": {
+   "pr_bot": 0.91,
+   "skill": 0.1,
+   "cli": 0.91,
+   "security": 0.35,
+   "multi": 0.08,
+   "platform": 0.07
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "nicobailon/pi-review-loop",
+  "stars": 110,
+  "description": "Automated code review loop extension for Pi coding agent",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.09,
+   "cli": 0.54,
+   "security": 0.1,
+   "multi": 0.04,
+   "platform": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Ali-Marandi/AI-Code-Reviewer",
+  "stars": 109,
+  "description": "AI-Powered Code Review and Quality Analysis Tool",
+  "scores": {
+   "pr_bot": 0.26,
+   "skill": 0.08,
+   "cli": 0.96,
+   "security": 0.92,
+   "multi": 0.09,
+   "platform": 0.35
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "octopusreview/octopus",
+  "stars": 108,
+  "description": "AI-powered PR review tool — multi-armed code analysis, no bug escapes 🐙",
+  "scores": {
+   "pr_bot": 0.69,
+   "skill": 0.16,
+   "cli": 0.18,
+   "security": 0.26,
+   "multi": 0.67,
+   "platform": 0.62
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "qiniu/reviewbot",
+  "stars": 107,
+  "description": "Empower Your Code Quality with Self-Hosted Automated Analysis and Review",
+  "scores": {
+   "security": 0.13,
+   "multi": 0.09,
+   "platform": 0.74,
+   "pr_bot": 0.91,
+   "skill": 0.07,
+   "cli": 0.07
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "MoaKK/AI-Code-Reviewer",
+  "stars": 104,
+  "description": "GitHub Actions bot that automatically reviews pull requests using the Claude API, posting inline comments and a summary on every PR.",
+  "scores": {
+   "pr_bot": 0.98,
+   "skill": 0.1,
+   "cli": 0.03,
+   "security": 0.15,
+   "multi": 0.04,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "VirtusLab/tulip",
+  "stars": 104,
+  "description": "Explains GitHub PRs in a human-friendly way, using LLMs.",
+  "scores": {
+   "pr_bot": 0.27,
+   "skill": 0.39,
+   "cli": 0.81,
+   "security": 0.07,
+   "multi": 0.95,
+   "platform": 0.4
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "seoes/proval",
+  "stars": 103,
+  "description": "Self-Hosted LLM Code Review Agent for GitLab, Forgejo and GitHub. Local LLM support",
+  "scores": {
+   "pr_bot": 0.93,
+   "skill": 0.04,
+   "cli": 0.15,
+   "security": 0.16,
+   "multi": 0.69,
+   "platform": 0.95
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "huoji120/code_review_agent",
+  "stars": 100,
+  "description": "简洁高效的代码审计agent",
+  "scores": {
+   "multi": 0.96,
+   "platform": 0.55,
+   "pr_bot": 0.07,
+   "skill": 0.07,
+   "cli": 0.95,
+   "security": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "snakyvine/codex-maintainer",
+  "stars": 100,
+  "description": "Evidence-grounded issue triage, pull request review, and release notes for GitHub maintainers. CLI + GitHub Action.",
+  "scores": {
+   "pr_bot": 0.55,
+   "skill": 0.16,
+   "cli": 0.85,
+   "security": 0.26,
+   "multi": 0.07,
+   "platform": 0.06
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ZJunCher/mr-agent",
+  "stars": 99,
+  "description": "An open-source multi-agent platform for GitLab MR code review, governance, and CI self-healing.",
+  "scores": {
+   "pr_bot": 0.76,
+   "skill": 0.06,
+   "cli": 0.04,
+   "security": 0.2,
+   "multi": 0.88,
+   "platform": 0.46
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "w1ckedxt/cynical-sally",
+  "stars": 97,
+  "description": "Brutally honest senior-engineer code reviews for Claude Code, Cursor & Windsurf -  and your terminal. Scores, evidence-backed issues, usable fixes.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.9,
+   "cli": 0.64,
+   "security": 0.28,
+   "multi": 0.11,
+   "platform": 0.12
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nathankim0/clean-architecture-skills",
+  "stars": 96,
+  "description": "Claude Code skill for reviewing and designing code based on Clean Architecture principles (Dependency Rule, Layer Structure, SOLID)",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.85,
+   "cli": 0.48,
+   "security": 0.03,
+   "multi": 0.05,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nfacha/OpenAI-Gitlab-PR-Review",
+  "stars": 94,
+  "description": "Prototype Gitlab Webook that submits code to OpenAI for review",
+  "scores": {
+   "pr_bot": 0.85,
+   "skill": 0.05,
+   "cli": 0.12,
+   "security": 0.36,
+   "multi": 0.04,
+   "platform": 0.15
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "dalemoncayo/fullcase-web",
+  "stars": 93,
+  "description": "A practical example of integrating AI code review into a real-world codebase. Built with Next.js and Firebase, this repo highlights structured prompts, reusable review skills, and parallel subagent execution via Claude Code and OpenAI Codex.",
+  "scores": {
+   "pr_bot": 0.27,
+   "skill": 0.09,
+   "cli": 0.1,
+   "security": 0.21,
+   "multi": 0.77,
+   "platform": 0.08
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "umputun/revmux",
+  "stars": 93,
+  "description": "Multi-agent code review, supervised and auditable",
+  "scores": {
+   "pr_bot": 0.1,
+   "skill": 0.49,
+   "cli": 0.81,
+   "security": 0.16,
+   "multi": 0.97,
+   "platform": 0.39
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "buxuku/ai-code-reviewer",
+  "stars": 90,
+  "description": "一个利用 openai api 对 gitlab 提交的 merge request 进行 code review 的小工具",
+  "scores": {
+   "pr_bot": 0.87,
+   "skill": 0.07,
+   "cli": 0.59,
+   "security": 0.12,
+   "multi": 0.04,
+   "platform": 0.07
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "Usagi-org/ai-code-review-helper",
+  "stars": 90,
+  "description": "AI Code Review Helper 是一个旨在自动化代码审查流程的工具。它通过集成版本控制系统（如 GitHub 和 GitLab）的 Webhook，利用大型语言模型（LLM）对代码变更进行分析，并将审查意见反馈到相应的 Pull Request 或 Merge Request 中。此外，它还支持将审查结果通知到企业微信等通讯工具。",
+  "scores": {
+   "pr_bot": 0.94,
+   "skill": 0.07,
+   "cli": 0.05,
+   "security": 0.19,
+   "multi": 0.05,
+   "platform": 0.88
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "hyperb1iss/lucidity-mcp",
+  "stars": 90,
+  "description": "AI-powered code quality analysis using MCP to help AI assistants review code more effectively. Analyze git changes for complexity, security issues, and more through structured prompts.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.67,
+   "cli": 0.91,
+   "security": 0.32,
+   "multi": 0.07,
+   "platform": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "zixingtangmouren/mr-agent",
+  "stars": 89,
+  "description": "mr-agent: A Node.js service that auto-triggers AI-powered code reviews when receiving Git merge request webhook events. Integrates with GitHub/GitLab/Bitbucket to analyze changes, flag issues, and suggest improvements—streamlining reviews for teams of all sizes.",
+  "scores": {
+   "pr_bot": 0.92,
+   "skill": 0.08,
+   "cli": 0.04,
+   "security": 0.22,
+   "multi": 0.14,
+   "platform": 0.2
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "csy-csy123/pr-review-agent-council",
+  "stars": 85,
+  "description": "学习 learn-claude-code 后的 PR Review Agent 实践项目：构建 Debate Council 多 Agent 审查、Tool Calling、结构化报告与 AI Judge 评估。",
+  "scores": {
+   "pr_bot": 0.29,
+   "skill": 0.13,
+   "cli": 0.78,
+   "security": 0.28,
+   "multi": 0.97,
+   "platform": 0.08
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "momenbasel/vulnhawk",
+  "stars": 85,
+  "description": "AI-powered SAST scanner that finds auth bypass, IDOR, and logic bugs Semgrep/CodeQL miss. Free GitHub Action. Supports Python, JS/TS, Go, PHP, Ruby.",
+  "scores": {
+   "pr_bot": 0.35,
+   "skill": 0.2,
+   "cli": 0.91,
+   "security": 0.98,
+   "multi": 0.11,
+   "platform": 0.1
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "imDarshanGK/AI-dev-assistant",
+  "stars": 83,
+  "description": "AI-powered code analysis tool with bug detection, code explanations, and AI-powered suggestions.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.06,
+   "cli": 0.14,
+   "security": 0.5,
+   "multi": 0.11,
+   "platform": 0.76
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "rediga/Salesforce-Code-Review-Agent",
+  "stars": 82,
+  "description": "Salesforce DX code review: Apex, LWC, Flows, security (CRUD/FLS), governors, and Bugbot.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.86,
+   "cli": 0.8,
+   "security": 0.62,
+   "multi": 0.18,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "feiskyer/ChatGPT-Reviewer",
+  "stars": 81,
+  "description": "Automated pull requests reviewing and issues triaging with ChatGPT.",
+  "scores": {
+   "pr_bot": 0.95,
+   "skill": 0.06,
+   "cli": 0.03,
+   "security": 0.11,
+   "multi": 0.05,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "mikker/semantic-review",
+  "stars": 80,
+  "description": "Semantic diff review for coding agents",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.83,
+   "cli": 0.94,
+   "security": 0.07,
+   "multi": 0.24,
+   "platform": 0.26
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "akkie76/code-review-skills",
+  "stars": 80,
+  "description": "Evidence-based code review skills for Codex and Claude Code",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.92,
+   "cli": 0.68,
+   "security": 0.19,
+   "multi": 0.47,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "katarmal-ram/codemoot",
+  "stars": 78,
+  "description": "Multi-model collaborative development platform — Claude + GPT debate, review, and build together",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.82,
+   "cli": 0.94,
+   "security": 0.24,
+   "multi": 0.93,
+   "platform": 0.17
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "adshao/chatgpt-code-review-action",
+  "stars": 78,
+  "description": "A GitHub Action that uses OpenAI ChatGPT to do code review",
+  "scores": {
+   "pr_bot": 0.95,
+   "skill": 0.04,
+   "cli": 0.02,
+   "security": 0.12,
+   "multi": 0.03,
+   "platform": 0.03
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "truskovskiyk/pr-reviewer",
+  "stars": 73,
+  "description": "Use LLM to help you with PR review ",
+  "scores": {
+   "pr_bot": 0.93,
+   "skill": 0.09,
+   "cli": 0.39,
+   "security": 0.12,
+   "multi": 0.05,
+   "platform": 0.09
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "ccsert/opencode-review-gitea",
+  "stars": 72,
+  "description": "AI-powered PR review for Gitea/Forgejo built on OpenCode. Runs in Gitea Actions, fetches PR diffs, and posts structured reviews. Supports Docker or source install with isolated .opencode-review config.",
+  "scores": {
+   "pr_bot": 0.81,
+   "skill": 0.07,
+   "cli": 0.05,
+   "security": 0.2,
+   "multi": 0.11,
+   "platform": 0.11
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "aryanbrite/openrabbit",
+  "stars": 70,
+  "description": "Free, AI PR reviewer that runs entirely in GitHub Actions. No hosting required.",
+  "scores": {
+   "platform": 0.17,
+   "pr_bot": 0.94,
+   "skill": 0.09,
+   "cli": 0.03,
+   "security": 0.21,
+   "multi": 0.1
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "n24q02m/crg",
+  "stars": 68,
+  "description": "Knowledge graph for token-efficient code reviews -- semantic search and call-graph resolution across your codebase.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.7,
+   "cli": 0.83,
+   "security": 0.1,
+   "multi": 0.14,
+   "platform": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "gitbito/CodeReviewAgent",
+  "stars": 67,
+  "description": "On-demand, context-aware AI code reviews in your Git workflow or IDE as you code.",
+  "scores": {
+   "pr_bot": 0.68,
+   "skill": 0.14,
+   "cli": 0.23,
+   "security": 0.51,
+   "multi": 0.1,
+   "platform": 0.31
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "simion/reviewd",
+  "stars": 67,
+  "description": "Local AI pull request reviewer — review GitHub and BitBucket PRs right from your terminal, powered by the Claude Code, Gemini, and Codex CLIs.",
+  "scores": {
+   "pr_bot": 0.29,
+   "skill": 0.21,
+   "cli": 0.98,
+   "security": 0.15,
+   "multi": 0.15,
+   "platform": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "gitpack-ai/gitpack-ai",
+  "stars": 67,
+  "description": "Automate Pull Request Reviews with AI 🪄",
+  "scores": {
+   "pr_bot": 0.72,
+   "skill": 0.1,
+   "cli": 0.04,
+   "security": 0.16,
+   "multi": 0.07,
+   "platform": 0.31
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "n24q02m/better-code-review-graph",
+  "stars": 67,
+  "description": "Knowledge graph for token-efficient code reviews -- semantic search and call-graph resolution across your codebase.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.62,
+   "cli": 0.77,
+   "security": 0.1,
+   "multi": 0.14,
+   "platform": 0.12
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Integral-Healthcare/robin-ai-reviewer",
+  "stars": 65,
+  "description": "Robin is your AI pull request reviewer in the form of a super fast lightweight github action.",
+  "scores": {
+   "pr_bot": 0.98,
+   "skill": 0.07,
+   "cli": 0.04,
+   "security": 0.14,
+   "multi": 0.06,
+   "platform": 0.04
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "MaxwellCCC/autonomous-qa-loop",
+  "stars": 65,
+  "description": "Portable fresh-agent QA loop prompt for finding bugs without biased self-checks / 通用自动 QA 循环 SKILL",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.46,
+   "cli": 0.32,
+   "security": 0.1,
+   "multi": 0.64,
+   "platform": 0.03
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "reviu-dev/reviu",
+  "stars": 64,
+  "description": "The review app for code your agent writes. Native Rust/GPUI desktop app with real Git workflows.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.14,
+   "cli": 0.95,
+   "security": 0.09,
+   "multi": 0.18,
+   "platform": 0.36
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "HexmosTech/LiveReview",
+  "stars": 63,
+  "description": "Blast-Radius Aware AI Code Review for Business-Critical Systems",
+  "scores": {
+   "pr_bot": 0.54,
+   "skill": 0.34,
+   "cli": 0.21,
+   "security": 0.2,
+   "multi": 0.15,
+   "platform": 0.78
+  },
+  "kind": "platform"
+ },
+ {
+  "repo": "in-the-loop-labs/pair-review",
+  "stars": 62,
+  "description": "AI assisted code review with a human in the loop",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.27,
+   "cli": 0.96,
+   "security": 0.14,
+   "multi": 0.19,
+   "platform": 0.84
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "snarktank/ai-pr-review",
+  "stars": 62,
+  "description": "A robust GitHub Actions workflow that provides AI-powered code reviews using Amp or Claude Code",
+  "scores": {
+   "pr_bot": 0.88,
+   "skill": 0.16,
+   "cli": 0.03,
+   "security": 0.15,
+   "multi": 0.08,
+   "platform": 0.04
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "kunkka19xx/lgtm",
+  "stars": 61,
+  "description": "Read what your agent wrote before you say LGTM. A fast TUI in Zig for reviewing code with vim motions.",
+  "scores": {
+   "security": 0.16,
+   "multi": 0.05,
+   "platform": 0.13,
+   "pr_bot": 0.04,
+   "skill": 0.65,
+   "cli": 0.97
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "addyosmani/adverse",
+  "stars": 60,
+  "description": "Multi-agent adversarial code review for any coding agent",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.9,
+   "cli": 0.95,
+   "security": 0.54,
+   "multi": 0.98,
+   "platform": 0.09
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Aestheticsuraj234/chai-ai-code-reviewer",
+  "stars": 59,
+  "description": "",
+  "scores": {
+   "pr_bot": 0.74,
+   "skill": 0.05,
+   "cli": 0.02,
+   "security": 0.29,
+   "multi": 0.06,
+   "platform": 0.46
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "shivamsaraswat/SeCoRA",
+  "stars": 58,
+  "description": "Secure Code Review AI Agent (SeCoRA) - AI SAST",
+  "scores": {
+   "pr_bot": 0.09,
+   "skill": 0.09,
+   "cli": 0.81,
+   "security": 0.98,
+   "multi": 0.25,
+   "platform": 0.43
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "AaronZ345/codebase-argus",
+  "stars": 58,
+  "description": "Multi-agent codebase review for PRs, CI, and downstream fork syncs.",
+  "scores": {
+   "pr_bot": 0.52,
+   "skill": 0.42,
+   "cli": 0.86,
+   "security": 0.17,
+   "multi": 0.94,
+   "platform": 0.24
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "mturac/simulacra",
+  "stars": 57,
+  "description": "Ghost personas review your code before it ships. Find edge cases, race conditions, and business logic bugs before production.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.93,
+   "cli": 0.63,
+   "security": 0.22,
+   "multi": 0.61,
+   "platform": 0.06
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "bobmatnyc/ai-code-review",
+  "stars": 55,
+  "description": "AI-powered code review CLI with multiple providers (Gemini, Claude, OpenAI). Features 95%+ token reduction via semantic chunking, 7 review types (security/performance/evaluation), multi-language support, interactive fixes, and developer skill assessment.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.09,
+   "cli": 0.97,
+   "security": 0.55,
+   "multi": 0.16,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Factory-AI/droid-code-review",
+  "stars": 54,
+  "description": "Droid code review",
+  "scores": {
+   "pr_bot": 0.92,
+   "skill": 0.09,
+   "cli": 0.04,
+   "security": 0.4,
+   "multi": 0.11,
+   "platform": 0.05
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "kodehash/katichai",
+  "stars": 52,
+  "description": "Context-aware, AI-assisted code review CLI tool that prevents unnecessary AI-generated code, detects duplicated logic, enforces architectural patterns, and ensures high-quality engineering standards",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.17,
+   "cli": 0.97,
+   "security": 0.61,
+   "multi": 0.09,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ellenhp/auditlm",
+  "stars": 51,
+  "description": "Self-hostable AI code review for your Forgejo",
+  "scores": {
+   "pr_bot": 0.81,
+   "skill": 0.06,
+   "cli": 0.28,
+   "security": 0.24,
+   "multi": 0.06,
+   "platform": 0.34
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "mberneti/clab",
+  "stars": 51,
+  "description": "Open source Claude skill for automated GitLab MR reviews. Configurable lint rules, semantic analysis, and inline comment posting for self-hosted GitLab instances.",
+  "scores": {
+   "pr_bot": 0.64,
+   "skill": 0.95,
+   "cli": 0.65,
+   "security": 0.3,
+   "multi": 0.08,
+   "platform": 0.12
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ScanLineDev/scanline",
+  "stars": 50,
+  "description": "Expert AI code reviews  Catch bugs before they hurt  Run Scanline in your CLI to find: - race conditions - logical errors - security risks - optimizations",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.1,
+   "cli": 0.97,
+   "security": 0.49,
+   "multi": 0.08,
+   "platform": 0.05
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "electricsheephq/evaos-code-review-bot-neondiff",
+  "stars": 50,
+  "description": "Stop giving away your code. NeonDIFF is your local-first AI PR reviewer for teams that want professional quality code reviews and issue enrichment without handing every diff to a hosted review SaaS.",
+  "scores": {
+   "pr_bot": 0.91,
+   "skill": 0.1,
+   "cli": 0.9,
+   "security": 0.35,
+   "multi": 0.1,
+   "platform": 0.36
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "dbachelder/slop-review",
+  "stars": 50,
+  "description": "A native /slop-review window for Claude Code, Codex CLI, and pi — review the slop before you ship it. Monaco-powered inline comments, agent reads them back. Forked from badlogic/pi-diff-review.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.73,
+   "cli": 0.9,
+   "security": 0.06,
+   "multi": 0.07,
+   "platform": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "xieziyu/duetlens",
+  "stars": 50,
+  "description": "Conversational code review on macOS: review a PR or local branch together with a codex agent, and ask about any line instead of just reading its findings.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.11,
+   "cli": 0.96,
+   "security": 0.16,
+   "multi": 0.21,
+   "platform": 0.3
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "aidankinzett/claude-git-pr-skill",
+  "stars": 50,
+  "description": "Professional GitHub PR review skill for Claude Code with pending reviews, code suggestions, and user approval workflow",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.88,
+   "cli": 0.38,
+   "security": 0.07,
+   "multi": 0.05,
+   "platform": 0.05
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "turingmindai/turingmind-code-review",
+  "stars": 50,
+  "description": "Claude Code Review Skill",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.88,
+   "cli": 0.84,
+   "security": 0.72,
+   "multi": 0.69,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "killop/code-review-skill",
+  "stars": 50,
+  "description": "",
+  "scores": {
+   "pr_bot": 0.09,
+   "skill": 0.85,
+   "cli": 0.9,
+   "security": 0.13,
+   "multi": 0.66,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "get-tmonier/argot",
+  "stars": 50,
+  "description": "A statistical code analyzer built from your repository's history.",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.16,
+   "cli": 0.96,
+   "security": 0.12,
+   "multi": 0.07,
+   "platform": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Aurite-ai/agent-verifier",
+  "stars": 45,
+  "description": "🔍 Agent Verifier is a coding agent skill that verifies code against organizational policies, code quality patterns, security requirements, and framework best practices — before code ships. Works with Claude Code, Cursor, Windsurf, and 30+ agents.",
+  "scores": {
+   "pr_bot": 0.06,
+   "skill": 0.95,
+   "cli": 0.84,
+   "security": 0.79,
+   "multi": 0.12,
+   "platform": 0.05
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ncoevoet/claude-review-all",
+  "stars": 42,
+  "description": "Comprehensive multi-agent code review for Claude Code",
+  "scores": {
+   "pr_bot": 0.2,
+   "skill": 0.95,
+   "cli": 0.93,
+   "security": 0.26,
+   "multi": 0.96,
+   "platform": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "wdnmd1265/Audison",
+  "stars": 41,
+  "description": "Stop trusting single AI outputs. An anti-hallucination framework with dual-brain arbitration, multi-model audit, and evidence chains for LLM quality control.",
+  "scores": {
+   "pr_bot": 0.12,
+   "skill": 0.12,
+   "cli": 0.95,
+   "security": 0.92,
+   "multi": 0.97,
+   "platform": 0.27
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "raye-deng/open-code-review",
+  "stars": 40,
+  "description": "🤖 AI code quality gate for AI-generated code. Detects hallucinated packages, phantom dependencies, stale APIs, and more. MCP Server + CLI + CI/CD Action.",
+  "scores": {
+   "pr_bot": 0.64,
+   "skill": 0.23,
+   "cli": 0.93,
+   "security": 0.38,
+   "multi": 0.17,
+   "platform": 0.64
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "drafthq/draft",
+  "stars": 40,
+  "description": "Context-Driven Development plugin for Claude Code, Cursor, GitHub Copilot, Gemini",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.96,
+   "cli": 0.93,
+   "security": 0.11,
+   "multi": 0.13,
+   "platform": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "WillNigri/Agentic-Tool-Optimization",
+  "stars": 34,
+  "description": "Local-first multi-runtime AI cockpit (CLI + desktop + MCP). War-rooms, review receipts, open multi-model coding benchmarks. MIT.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.23,
+   "cli": 0.96,
+   "security": 0.42,
+   "multi": 0.93,
+   "platform": 0.52
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "DiffoHQ/diffo",
+  "stars": 34,
+  "description": "Local, live code review for the AI age - read what the agent wrote and send feedback straight back",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.93,
+   "cli": 0.97,
+   "security": 0.08,
+   "multi": 0.06,
+   "platform": 0.19
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "amix/dunk",
+  "stars": 31,
+  "description": "Review diffs in a terminal UI, leave inline comments, and let coding agents fix them",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.49,
+   "cli": 0.97,
+   "security": 0.07,
+   "multi": 0.07,
+   "platform": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "SomeStay07/code-review-agent",
+  "stars": 29,
+  "description": "Code review agent for Claude Code. One .md file — 14 review categories, 4 severity levels, auto-fix, OWASP security checks. Zero dependencies.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.85,
+   "cli": 0.59,
+   "security": 0.51,
+   "multi": 0.05,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "logi-cmd/agent-guardrails",
+  "stars": 28,
+  "description": "Checks AI-generated code changes before merge: scope, validation, risk, review evidence, and optional Verity receipts.",
+  "scores": {
+   "pr_bot": 0.13,
+   "skill": 0.71,
+   "cli": 0.96,
+   "security": 0.39,
+   "multi": 0.11,
+   "platform": 0.06
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "fabriziosalmi/brutal-coding-tool",
+  "stars": 28,
+  "description": "Audit your vibecode and make it brutally solid :)",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.05,
+   "cli": 0.16,
+   "security": 0.31,
+   "multi": 0.06,
+   "platform": 0.28
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "ispuppy/ai-pre-commit-reviewer",
+  "stars": 24,
+  "description": "AI-powered git pre-commit hook for automated code review with customizable rules.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.08,
+   "cli": 0.96,
+   "security": 0.6,
+   "multi": 0.07,
+   "platform": 0.04
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ahoybuoy/buoy",
+  "stars": 20,
+  "description": "Design system guardian for code. Anchors to design system, catches drift in React/Vue/Tailwind, reviews PRs automatically. Free for open source.",
+  "scores": {
+   "pr_bot": 0.41,
+   "skill": 0.26,
+   "cli": 0.92,
+   "security": 0.03,
+   "multi": 0.2,
+   "platform": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Teycir/Assumptions",
+  "stars": 20,
+  "description": "A SKILL that turns a code diff into an evidence-backed ledger of hidden assumptions, failure modes, and falsification tests.",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.93,
+   "cli": 0.58,
+   "security": 0.45,
+   "multi": 0.11,
+   "platform": 0.05
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "selimozten/elek",
+  "stars": 19,
+  "description": "Review-only AI code review for GitHub pull requests. Cross-check PRs with model-agnostic reviewers that can comment inline but cannot approve, merge, or close.",
+  "scores": {
+   "pr_bot": 0.9,
+   "skill": 0.07,
+   "cli": 0.21,
+   "security": 0.27,
+   "multi": 0.29,
+   "platform": 0.35
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "leocder07/spectra",
+  "stars": 19,
+  "description": "8 AI agents grade your entire repository across 6 dimensions — signed, verifiable A+ to F audit reports in minutes",
+  "scores": {
+   "pr_bot": 0.4,
+   "skill": 0.09,
+   "cli": 0.88,
+   "security": 0.42,
+   "multi": 0.97,
+   "platform": 0.21
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Lykhoyda/ask-llm",
+  "stars": 18,
+  "description": "MCP server for AI-to-AI collaboration — bridge Claude with Gemini, Codex, and other LLMs for code review, second opinions, and plan debate",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.9,
+   "cli": 0.76,
+   "security": 0.35,
+   "multi": 0.88,
+   "platform": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "oscaar90/OpsGuard-AI",
+  "stars": 16,
+  "description": "Context Aware Security Gate for GitHub Actions. Validates deployments using Hybrid Analysis (Deterministic Rules + LLM Reasoning).",
+  "scores": {
+   "pr_bot": 0.88,
+   "skill": 0.07,
+   "cli": 0.21,
+   "security": 0.99,
+   "multi": 0.18,
+   "platform": 0.05
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "ZephyrDeng/pi-review",
+  "stars": 15,
+  "description": "Isolated AI-powered code and plan reviews from the command line",
+  "scores": {
+   "cli": 0.91,
+   "security": 0.37,
+   "multi": 0.95,
+   "platform": 0.18,
+   "pr_bot": 0.17,
+   "skill": 0.86
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "whitequeen306/code-cortex-loop",
+  "stars": 15,
+  "description": "One-command AI code quality pipeline: review, security, tests, performance, simplify & cleanup. Health scores, CI gate. For Cursor, Claude Code, Qoder, Trae.",
+  "scores": {
+   "multi": 0.83,
+   "platform": 0.1,
+   "pr_bot": 0.3,
+   "skill": 0.88,
+   "cli": 0.87,
+   "security": 0.29
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "itsmesherry/claude-audit",
+  "stars": 13,
+  "description": "AI-powered codebase auditor. One command. Powered by Claude.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.14,
+   "cli": 0.96,
+   "security": 0.73,
+   "multi": 0.1,
+   "platform": 0.05
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "umitkavala/revet",
+  "stars": 12,
+  "description": "Code review agent",
+  "scores": {
+   "pr_bot": 0.45,
+   "skill": 0.11,
+   "cli": 0.95,
+   "security": 0.2,
+   "multi": 0.16,
+   "platform": 0.13
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "win4r/jev-security-scan",
+  "stars": 12,
+  "description": "使用 TypeSafe Jev 审查 Skill 与 MCP 可疑行为 | Review Agent Skills and MCP code with Jev, static evidence, and explicit coverage gaps",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.9,
+   "cli": 0.96,
+   "security": 0.98,
+   "multi": 0.15,
+   "platform": 0.06
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "narghev/askdiff",
+  "stars": 12,
+  "description": "Ask your AI questions about its own code changes — from a Git diff viewer.",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.89,
+   "cli": 0.91,
+   "security": 0.07,
+   "multi": 0.05,
+   "platform": 0.27
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "DanielT777/sieve",
+  "stars": 11,
+  "description": "Filter AI slop before it hits your codebase. A structured human review workflow for AI-generated code.",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.72,
+   "cli": 0.94,
+   "security": 0.22,
+   "multi": 0.07,
+   "platform": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "zanetworker/highstakes",
+  "stars": 11,
+  "description": "AI writes code faster than you can review it. HighStakes reads your codebase, scores every file by blast radius, and tells you where human review matters and where AI can handle the rest.",
+  "scores": {
+   "skill": 0.11,
+   "cli": 0.95,
+   "security": 0.37,
+   "multi": 0.09,
+   "platform": 0.3,
+   "pr_bot": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "FreHu/claude-maintainability-review",
+  "stars": 11,
+  "description": "Claude Code workflow to grade your project's maintainability by Human and LLM",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.83,
+   "cli": 0.81,
+   "security": 0.12,
+   "multi": 0.89,
+   "platform": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "lohani-mohit/shipcheck",
+  "stars": 11,
+  "description": "🚦 Senior-QA review skill for Claude Code: runs a regression hunter + a change reviewer in parallel, then gives one read-only SIGN OFF / DO NOT SHIP verdict with file:line evidence.",
+  "scores": {
+   "platform": 0.04,
+   "pr_bot": 0.06,
+   "skill": 0.93,
+   "cli": 0.26,
+   "security": 0.1,
+   "multi": 0.82
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "wxmb01/review-skill",
+  "stars": 11,
+  "description": "Evidence-based review skill for diff, project, and artifact review across code, readiness, architecture, requirements, and risk.",
+  "scores": {
+   "pr_bot": 0.25,
+   "skill": 0.77,
+   "cli": 0.11,
+   "security": 0.2,
+   "multi": 0.13,
+   "platform": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "VoDaiLocz/Design-Patterns",
+  "stars": 11,
+  "description": "Full-spectrum design patterns skill: Detect anti-patterns, diagnose architectural debt, generate production-ready refactored code. GoF, SOLID, DDD, CQRS, Microservices.",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.87,
+   "cli": 0.26,
+   "security": 0.03,
+   "multi": 0.08,
+   "platform": 0.04
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "matheusfillipe/diffler",
+  "stars": 10,
+  "description": "Terminal code review for AI coding agents. Live diffs, comments the agent answers, PR review, MCP built in.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.59,
+   "cli": 0.97,
+   "security": 0.08,
+   "multi": 0.12,
+   "platform": 0.42
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "mantacron/manta",
+  "stars": 10,
+  "description": "20 AI agents in your git workflow. Secrets, injection flaws and unsafe migrations are blocked at commit; performance, coverage and the rest are reviewed at push. Research → Plan → Implement workflow with GO/NO-GO gates before you write a line. Generates production-ready code, product wikis and codebase maps on demand. Any language. Free.",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.56,
+   "cli": 0.95,
+   "security": 0.92,
+   "multi": 0.89,
+   "platform": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "alxnddr/reviewer",
+  "stars": 10,
+  "description": "UI for agent-generated code reviews",
+  "scores": {
+   "pr_bot": 0.03,
+   "skill": 0.16,
+   "cli": 0.94,
+   "security": 0.09,
+   "multi": 0.05,
+   "platform": 0.4
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "CommitBrief/commitbrief",
+  "stars": 10,
+  "description": "Local LLM code review CLI for git diffs — review staged/unstaged changes, any git diff range, or a GitHub PR, right in your terminal.",
+  "scores": {
+   "pr_bot": 0.07,
+   "skill": 0.15,
+   "cli": 0.97,
+   "security": 0.22,
+   "multi": 0.08,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "verabravo/diffback",
+  "stars": 9,
+  "description": "Local web UI to review AI-generated code changes and generate structured feedback prompts",
+  "scores": {
+   "pr_bot": 0.02,
+   "skill": 0.38,
+   "cli": 0.98,
+   "security": 0.06,
+   "multi": 0.04,
+   "platform": 0.84
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "diffpal/diffpal",
+  "stars": 9,
+  "description": "Open-source, provider-agnostic AI review for pull requests.",
+  "scores": {
+   "pr_bot": 0.67,
+   "skill": 0.48,
+   "cli": 0.66,
+   "security": 0.14,
+   "multi": 0.11,
+   "platform": 0.06
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "jsliapark/preflight",
+  "stars": 8,
+  "description": "⚡ Preflight — AI code review before you open the PR  Multi-agent system that gives instant, senior-level feedback on git diffs. ",
+  "scores": {
+   "cli": 0.95,
+   "security": 0.43,
+   "multi": 0.64,
+   "platform": 0.06,
+   "pr_bot": 0.2,
+   "skill": 0.11
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "witold-andelie/revio",
+  "stars": 8,
+  "description": "Agentic code review CLI — LangGraph orchestrates 13 deterministic static analyzers   (oxlint/bandit/clippy/spotbugs/golangci/cppcheck) + LLM reasoning across 23 languages including industrial PLC.   Grounding validator kills hallucinated paths. RAG over your guidelines. dedup --fix actually edits files with   multi-step undo (no git required).",
+  "scores": {
+   "skill": 0.11,
+   "cli": 0.97,
+   "security": 0.52,
+   "multi": 0.61,
+   "platform": 0.58,
+   "pr_bot": 0.08
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "agent-0x/claude-codex-review",
+  "stars": 7,
+  "description": "Dual-AI automated code review: Codex finds issues, Claude fixes them — loop until clean.",
+  "scores": {
+   "pr_bot": 0.08,
+   "skill": 0.94,
+   "cli": 0.95,
+   "security": 0.44,
+   "multi": 0.94,
+   "platform": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "vikram-codes-hub/codesense-ai",
+  "stars": 7,
+  "description": "AI-powered code review platform that automatically analyzes GitHub PRs for security vulnerabilities, bugs, and complexity issues — posts inline comments like a real senior developer.",
+  "scores": {
+   "pr_bot": 0.75,
+   "skill": 0.07,
+   "cli": 0.1,
+   "security": 0.93,
+   "multi": 0.14,
+   "platform": 0.87
+  },
+  "kind": "security"
+ },
+ {
+  "repo": "barlevysh/code-smells-skill",
+  "stars": 7,
+  "description": "🦨 Stop shipping smelly code. 120+ named code smells with before/after examples across C, C++, C#, Java, Python, Go, Rust, JavaScript, TypeScript & SQL — an AI agent skill that improves code quality during both development and code review.",
+  "scores": {
+   "pr_bot": 0.05,
+   "skill": 0.91,
+   "cli": 0.32,
+   "security": 0.18,
+   "multi": 0.05,
+   "platform": 0.03
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "victorserpa/objection",
+  "stars": 7,
+  "description": "OBJECTION! A skill and plugin for AI coding agents (Claude Code, Codex, Cursor, Gemini): accusers, a defender and a judge review the PR, and a gate blocks it until APPROVED.",
+  "scores": {
+   "pr_bot": 0.4,
+   "skill": 0.97,
+   "cli": 0.9,
+   "security": 0.18,
+   "multi": 0.95,
+   "platform": 0.05
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "voodootikigod/adversarial-review",
+  "stars": 7,
+  "description": "Skeptical ship/no-ship adversarial code review of a git diff or branch — runs against any LLM (API or local CLI agent)",
+  "scores": {
+   "pr_bot": 0.13,
+   "skill": 0.87,
+   "cli": 0.94,
+   "security": 0.93,
+   "multi": 0.89,
+   "platform": 0.07
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Open-Document-Alliance/Agent-Review-CLI",
+  "stars": 6,
+  "description": "A CLI that orchestrates parallel AI coding agents to reciew, fix and ship code changes",
+  "scores": {
+   "pr_bot": 0.1,
+   "skill": 0.51,
+   "cli": 0.96,
+   "security": 0.11,
+   "multi": 0.66,
+   "platform": 0.08
+  },
+  "kind": "cli"
+ }
+]
