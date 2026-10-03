@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-03
+1. jarrodwatts/intermission — 🆕 等 Claude 干活时自动弹出 Doom 联机死斗，任务一完成就把你切回来（41★ 36.7/day）
+2. IuCC123/CLIProxyAPI-Rust — 🆕 把 Claude、ChatGPT、Gemini 订阅合成一个 API，单个 Rust 程序带面板（25★ 25.0/day）
+3. vedantdhande04/tweetytweets — 🆕 让智能体全自动运营 X 账号，调研、仿你文风写帖、真浏览器发布并自检（39★ 24.3/day）
+4. ANDRETRIPOL/OpenGhost — 🆕 从零自研的桌面 AI 智能体，自带浏览器工具和边讲边画的绘图引擎（168★ 22.0/day）
+5. codegirl-007/jevlint — 🆕 用 Jev 把团队的代码品味写成规则，做成能跑的 linter（104★ 13.5/day）
+6. extend-hq/jevbox — 🆕 搭一个带权限的文档库，用 JEV 检索层级、带引用溯源地问答（44★ 13.4/day）
+7. anteloc/ldraw-nova — 🆕 让智能体生成乐高模型，Opus 5.5 搭建、Jev 驱动决策（91★ 9.7/day）
+8. AliSharjeell/OpenBUA — 🆕 在本地已登录浏览器里跑的开源浏览器智能体，查资料、填表、跑流程（28★ 6.4/day）
+9. korallis/agent-stack — 🆕 一键复现本地多智能体开发团队，串起 Claude Code、Codex 与 Jev（24★ 5.2/day）
+10. karanb192/awesome-claude-code-mods — 汇总全网 Claude Code 插件，逐个标明能读写、执行和联网的权限（85★ 4.7/day）
+🎯 今日趋势：十席有 **9 席**建仓不满两周，**4 席**直接围绕 Claude Code / Codex 的等待与编排（Doom 摸鱼、订阅合并 API、多智能体团队、插件权限清单）；TypeSafe Jev 发布第十七天仍占 **3 席**（代码品味 linter、文档库检索、乐高建模），浏览器智能体另占 **2 席**。
+> 注：去重范围＝repo 内 archive 全部 100 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,338 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）；单次查询 72h、stars ≥20（176 条，LIMIT 300 未触顶），十席 first_seen 全部 ≤48h（最晚 agent-stack、awesome-claude-code-mods 24h），未放宽窗口。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①HarnessMD/munder-difflin（8,323★）、atomicstrata/llm-wiki-compiler、ukanwat/overtime、loulanyue/dream-xi-ai 等：建仓两个月以上本期才收录，不算新鲜；②VectifyAI/jev-doc-search：security_grade 为 caution；③DFarm6/Prism-Browser-Community（661★）：建仓 47 天，且为指纹浏览器（反检测用途），保守不推；④mogons/noraz-agent（201★）：Robinhood 自动交易智能体，作者名下多为 pumpfun/Solana 代币合约仓，加密交易类保守不推；⑤Seokwoooo/promptfilm、animspark/animspark、Endless1936/cut-motion 等：first_seen 超 48h；⑥mmdju/torob-mcp：first_seen 恰 48h 卡边，且排第 11 位。入选项复核（`gh api`）：第 1 席 jarrodwatts（claude-hud 作者）2018 建号、1,341 粉，MIT；第 2 席 IuCC123 2021 建号、17 粉、名下另有 135★ 仓，Unlicense；第 3 席 vedantdhande04 2020 建号、5 粉、其余仓为 0★ fork（**轻红旗**），但已 7 fork，MIT；第 4 席 ANDRETRIPOL 2022 建号、1 粉、名下仅此 1 个原创仓（**轻红旗**），但 13 fork，增长形态像真实传播，LICENSE 为 NOASSERTION；第 5 席 codegirl-007 2014 建号、34 粉、64 仓，MIT；第 6 席 extend-hq 为 2023 年建的组织、名下另有 1,573★ 仓，无 LICENSE、无仓库描述（描述据 README）；第 7 席 anteloc 2014 建号、2 粉、名下另有 17★ 仓，AGPL-3.0，security_grade 为 unknown（新入库未评）；第 8 席 AliSharjeell 2023 建号、82 粉，无 LICENSE；第 9 席 korallis 2014 建号、21 粉、名下另有 88★ 仓，Apache-2.0；第 10 席 karanb192 2013 建号、166 粉、名下另有 873★、840★ 仓，CC0-1.0，建仓 18 天不标 🆕。🆕 判定＝created_at 距今 14 天内，命中 9 席（09-23~10-02 建仓）。security_grade：除 ldraw-nova 为 unknown、jevbox 为 unknown 外均为 safe。表中 stars 为数据库快照，部分仓实时更高（intermission 68★、tweetytweets 42★、CLIProxyAPI-Rust 30★、jevbox 51★），按红线保留快照值。
+
+---
+
 ## 2026-10-02
 1. Edwardxlai/easyread — 🆕 把英文论文读成通顺中文，本地 PDF 翻译、原文对照、边读边问 AI（514★ 277.2/day）
 2. justxor/claude-code-pro-course — 🆕 用俄语系统讲透 Claude Code，从 CLAUDE.md、技能、子智能体到钩子与 MCP（101★ 53.7/day）
