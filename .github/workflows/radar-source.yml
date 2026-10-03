@@ -1,0 +1,81 @@
+name: New-term radar · sources
+
+# The radar's source signals (①), three times a day, 08:00 / 16:00 / 24:00 Beijing:
+# names the labs and AI bloggers in ops/radar/sources.json posted on X (AIsa), and models
+# new to Hugging Face's trending top 50. Sources move by the hour; a daily run would hold
+# a 9:30 post for a day. The 08:00 run lands an hour before radar-daily.yml, whose report
+# lists the ① leads of the last day.
+#
+# A run comments on the issue "新词雷达日报" only when it found a name or hit an error.
+# Leads go to radar_leads like the daily ones, and are reviewed the same way.
+#
+# AIsa: 24 accounts at $0.003, about $0.07 a run, $0.22 a day. The X vocabulary and HF's
+# list live in their own cache prefix (radar-src-snap-), apart from the daily snapshots.
+
+on:
+  schedule:
+    - cron: "0 0,8,16 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: radar-source
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            ops/requirements.txt
+            backend/requirements.txt
+
+      - name: Install deps
+        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary
+
+      - name: Restore the last run's vocabulary
+        uses: actions/cache/restore@v4
+        with:
+          path: radar-src-snap
+          key: radar-src-snap-${{ github.run_id }}
+          restore-keys: radar-src-snap-
+
+      - name: Run the source signals
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
+        run: python ops/radar/radar.py "$RUNNER_TEMP/sources.md" radar-src-snap --sources
+
+      - name: Save the vocabulary
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: radar-src-snap
+          key: radar-src-snap-${{ github.run_id }}
+
+      - name: Report
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f "$RUNNER_TEMP/sources.md" ]; then
+            [ "${{ job.status }}" = "success" ] && { echo "没有新名字,不发评论" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+            echo "## 新词雷达 · ① 源头运行失败" > "$RUNNER_TEMP/sources.md"
+          fi
+          printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/sources.md"
+          cat "$RUNNER_TEMP/sources.md" >> "$GITHUB_STEP_SUMMARY"
+          issue=$(gh issue list --state open --search "新词雷达日报 in:title" --json number --jq '.[0].number')
+          [ -n "$issue" ] || issue=$(gh issue create --title "新词雷达日报" --body "每天 09:00(北京时间)自动更新,见 .github/workflows/radar-daily.yml" | grep -o '[0-9]*$')
+          gh issue comment "$issue" --body-file "$RUNNER_TEMP/sources.md"

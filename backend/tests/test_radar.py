@@ -169,3 +169,24 @@ def test_review_verdict_takes_the_earliest_variant_that_rose():
 def test_review_verdict_miss_and_no_data():
     assert review.verdict({"a": {"rose": False, "no_data": False}}, SEEN) == ("miss", None)
     assert review.verdict({"a": {"rose": False, "no_data": True}}, SEEN) == ("no_data", None)
+
+
+# --- the 8-hourly source run --------------------------------------------------------------
+
+def test_sources_run_writes_no_report_when_nothing_is_new(monkeypatch, tmp_path):
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "terms": []})
+    monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
+    report = tmp_path / "sources.md"
+    assert radar.sources_main(report, tmp_path, {"--sources", "--skip-db"}) == 0
+    assert not report.exists()
+
+
+def test_sources_run_reports_a_new_name(monkeypatch, tmp_path):
+    monkeypatch.setattr(radar, "judge", lambda rows: None)
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "cost_micros": 72000, "terms": [
+        {"term": "qwen3.9", "recent": 2, "note": "X 2 个账号 ♥900", "examples": ["@Alibaba_Qwen: Qwen3.9 is out"]}]})
+    monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
+    report = tmp_path / "sources.md"
+    radar.sources_main(report, tmp_path, {"--sources", "--skip-db"})
+    text = report.read_text()
+    assert "**qwen3.9**" in text and "$0.072" in text

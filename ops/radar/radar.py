@@ -2,6 +2,13 @@
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
                             [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review]
+  python ops/radar/radar.py <report.md> <snapshot-dir> --sources
+
+The source signals (①) change by the hour, the rest by the day, so they run apart:
+radar-source.yml every 8 hours with --sources (X and HF only; <report.md> is written
+only when there is a name or an error, so quiet runs post nothing), and radar-daily.yml
+once a day with --skip-x --skip-hf, its report listing the ① leads of the last day
+from radar_leads.
 
 Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ① X        names the labs and AI bloggers in sources.json said first (source_signals.x_new, AIsa)
@@ -120,6 +127,12 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     if rest:
         lines += ["", "其他上升词(Jev 判为普通词):" + "、".join(rest)]
 
+    recent = b.get("recent_sources", {})
+    if not recent.get("skipped"):
+        lines += ["", "### ① 近 24 小时的源头新词(每 8 小时任务记下的)", ""]
+        rows = recent.get("rows") or []
+        lines += ([f"- **{r['term']}**:{r['note']}" for r in rows] if rows
+                  else [f"无({recent.get('error') or '没有新名字'})"])
     lines += ["", "### ② 单仓库爆发(近 14 天新建,按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
     repos = b["breakout"].get("repos") or []
     if repos:
@@ -157,11 +170,23 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
 
     x, hf, gh, sm = b["x"], b["hf"], b["github"], b["sitemap"]
     lines += ["", "### 数据状态", ""]
-    lines.append("- ① X:" + (x.get("error") or ("跳过" if x.get("skipped") else
-                 f"{x['answered']}/{x['accounts']} 个账号,{x['posts']} 条帖子" + (",首次运行,只建词表" if x.get("first_run") else ""))))
-    lines.append("- ① HF:" + (hf.get("error") or ("跳过" if hf.get("skipped") else
-                 f"trending {hf['models']} 个模型" + (",首次运行,只建快照" if hf.get("first_run") else ""))))
+    if not (x.get("skipped") and hf.get("skipped")):
+        lines += _source_status(x, hf)
     bo = b["breakout"]
+    lines += _rest_status(bo, gh, sm, b)
+    lines.append(f"- AIsa 花费:{_cost(x, rev)}")
+    return "\n".join(lines) + "\n"
+
+
+def _source_status(x: dict, hf: dict) -> list[str]:
+    return ["- ① X:" + (x.get("error") or ("跳过" if x.get("skipped") else
+                 f"{x['answered']}/{x['accounts']} 个账号,{x['posts']} 条帖子" + (",首次运行,只建词表" if x.get("first_run") else ""))),
+            "- ① HF:" + (hf.get("error") or ("跳过" if hf.get("skipped") else
+                 f"trending {hf['models']} 个模型" + (",首次运行,只建快照" if hf.get("first_run") else "")))]
+
+
+def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
+    lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
                  f"搜到 {bo['searched']} 个新仓库" + (",首次运行,没有昨天的星数" if bo.get("first_run") else ""))))
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
@@ -173,13 +198,44 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines.append(f"- ③ 竞品:{sm.get('error') or '跳过'}")
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
-    lines.append(f"- AIsa 花费:{_cost(x, rev)}")
+    return lines
+
+
+def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
+    lines = ["## 新词雷达 · ① 源头(每 8 小时)", "", "| 词 | 信号 | Jev | 已有页面 | 例子 |", "|---|---|---|---|---|"]
+    for r in named(lead)[:SHOWN]:
+        ex = " / ".join(e[:60] for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
+        score = f"{r['named']:.2f}" if "named" in r else "—"
+        lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
+    for key, label in (("x", "① X"), ("hf", "① HF")):
+        if b[key].get("error"):
+            lines.append(f"\n- {label}:{b[key]['error']}")
+    if b.get("record", {}).get("error"):
+        lines.append(f"- 记录候选词:{b['record']['error']}")
+    lines.append(f"\nAIsa 花费:{_cost(b['x'])}")
     return "\n".join(lines) + "\n"
+
+
+def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
+    blocks = {"x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
+              "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags)}
+    lead = leads(blocks)
+    keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
+    blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, "--skip-db" in flags)
+    errors = any(b.get("error") for b in blocks.values())
+    if named(lead) or errors:
+        report.write_text(sources_markdown(lead, blocks))
+        print(report.read_text())
+    else:
+        print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
+    return 0
 
 
 def main() -> int:
     report, snaps = Path(sys.argv[1]), Path(sys.argv[2])
     flags = set(sys.argv[3:])
+    if "--sources" in flags:
+        return sources_main(report, snaps, flags)
     blocks = {
         "x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
         "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
@@ -194,6 +250,8 @@ def main() -> int:
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, no_db)
     rev = run("review", review.review, no_db or "--skip-review" in flags)
     summ = run("summary", review.summary, no_db)
+    blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources()},
+                                   no_db or "--skip-x" not in flags)
     report.write_text(markdown(lead, blocks, gsc, rev, summ))
     report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "gsc": gsc, "review": rev,
                                                       "summary": summ}, ensure_ascii=False, indent=1, default=str))

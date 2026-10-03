@@ -20,7 +20,8 @@ import aisa
 from terms import STOP, _drop_nested, names
 
 HERE = Path(__file__).resolve().parent
-LOOKBACK_HOURS = 30          # the run is daily; 6 hours of overlap covers a late run
+LOOKBACK_HOURS = 30          # runs every 8 hours; a name enters the vocabulary the run it is
+                             # reported, so the overlap repeats nothing and covers missed runs
 VOCAB_DAYS = 60
 X_MIN_LIKES = 100            # a name only one account used needs this much attention,
 PER_POST = 3                 # and must look like a name; one post yields at most this many

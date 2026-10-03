@@ -134,6 +134,20 @@ def review(today: date | None = None) -> dict:
     return {"checked": checked, "cost_micros": cost}
 
 
+def recent_sources(today: date | None = None) -> list[dict]:
+    """① leads (X, HF) the 8-hourly source job kept since yesterday, for the daily report."""
+    from sqlalchemy import text
+    today = today or date.today()
+    engine = _engine()
+    with engine.connect() as conn:
+        rows = conn.execute(text("""
+            SELECT term, signals, notes, named FROM radar_leads
+            WHERE signals && ARRAY['x', 'hf'] AND last_seen >= :since ORDER BY last_seen DESC, term LIMIT 20
+        """), {"since": today - timedelta(days=1)}).fetchall()
+    engine.dispose()
+    return [{"term": t, "kinds": list(k), "note": (n or [""])[-1], "named": named} for t, k, n, named in rows]
+
+
 def summary(today: date | None = None) -> dict:
     from sqlalchemy import text
     today = today or date.today()
