@@ -367,9 +367,17 @@
     "d": "Open WebUI 的开源工具、连接器与函数——本地 LLM 的 ChatGPT 式自托管界面。"
   },
   "anti-slop": {
-    "t": "反 AI 味",
-    "k": ["去 AI 味", "anti-slop", "像人写的", "去除AI痕迹"],
-    "d": "开源 AI 文本去味器与 slop 检测器,去掉 AI 腔与多余破折号,支持代码/文稿/学术模式。"
+    "t": "去 AI 味 / Humanizer Skill",
+    "k": [
+      "去 AI 味",
+      "去ai味",
+      "humanizer",
+      "anti-slop",
+      "像人写的",
+      "去除AI痕迹",
+      "AI 味检测"
+    ],
+    "d": "开源的去 AI 味与 humanizer skill,带安全评级:让 AI 写的文字、代码和界面读起来像人做的(blader/humanizer、Humanizer-zh、taste-skill),并检测 AI 腔。安装前先核查。"
   },
   "agent-memory": {
     "t": "Agent 记忆",
@@ -522,17 +530,17 @@
     "d": "面向营销分析的 AI agent 技能——归因、活动报表、Web 分析与增长看板。"
   },
   "obsidian-second-brain": {
-    "t": "Obsidian、第二大脑与 LLM Wiki Skills:kepano/obsidian-skills 等",
+    "t": "Obsidian × Claude:AI Skill、MCP 与插件",
     "k": [
       "obsidian",
+      "obsidian claude",
       "第二大脑",
       "笔记",
-      "知识管理",
-      "llm wiki",
       "obsidian mcp",
-      "知识库"
+      "obsidian 插件",
+      "知识管理"
     ],
-    "d": "kepano/obsidian-skills、mcp-obsidian、claude-obsidian、obsidian-wiki、karpathy-llm-wiki 等 30+ 开源 Obsidian/第二大脑/LLM Wiki 工具对比,带安全评级,适配 Claude Code 与 Codex。"
+    "d": "让 Claude Code、Codex 等 agent 读写和整理 Obsidian 库的开源 skill、MCP 服务和 AI 插件,带安全评级:kepano/obsidian-skills、mcp-obsidian、claude-obsidian、第二大脑工作流。安装前先核查。"
   },
   "typesafe-jev": {
     "t": "TypeSafe Jev",

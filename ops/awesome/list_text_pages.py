@@ -126,4 +126,44 @@ PAGE_LISTS = {
             "tooling": ("Create, install, test and manage hooks, subagents and statuslines.", "创建、安装、测试和管理 hooks、subagents、statusline 的工具。"),
         },
     },
+    "obsidian-second-brain": {
+        "repo": "zhuyansen/awesome-obsidian-ai-skills",
+        "text": _text("Awesome Obsidian AI Skills",
+                      ("Open-source **Obsidian skills, MCP servers and AI plugins** that let Claude Code, Codex and other "
+                       "agents read, write and organize your vault, plus second-brain workflows an agent maintains.",
+                       "让 Claude Code、Codex 等 agent **读写和整理 Obsidian 库**的开源 skill、MCP 服务和 AI 插件,"
+                       "以及由 agent 维护的第二大脑工作流。"),
+                      ("It connects AI agents or LLMs with Obsidian; Obsidian is central. A general note app, an LLM wiki "
+                       "not built on Obsidian, or a second-brain app of its own does not count.",
+                       "它把 AI agent 或大模型和 Obsidian 连起来,Obsidian 是核心。通用笔记应用、不基于 Obsidian 的 LLM Wiki、"
+                       "自成一体的第二大脑应用不算。"),
+                      ("What these projects look like", "这些项目长什么样")),
+        "blurb": {
+            "skill": ("Skills that teach an agent to work in your vault.", "教 agent 在你的 Obsidian 库里干活的 skill。"),
+            "mcp": ("MCP servers and bridges that give an assistant your vault.", "让 AI 助手访问 Obsidian 库的 MCP 服务和桥接。"),
+            "plugin": ("Obsidian plugins with an LLM or agent inside.", "把大模型或 agent 装进 Obsidian 的插件。"),
+            "second_brain": ("Second-brain and PKM systems on Obsidian that an agent keeps.", "基于 Obsidian、由 agent 维护的第二大脑与知识管理体系。"),
+            "sync": ("Import, capture, publish and sync with AI.", "借助 AI 导入、收集、发布和同步。"),
+        },
+    },
+    "anti-slop": {
+        "repo": "zhuyansen/awesome-humanizer-skills",
+        "text": _text("Awesome Humanizer Skills",
+                      ("Open-source **humanizer and anti-slop skills**: make AI-written text, code and UI read like a "
+                       "person made it, detect AI tells, and keep agents to a house style. English and Chinese.",
+                       "开源的 **去 AI 味 / humanizer skill**:让 AI 写的文字、代码和界面读起来像人做的,检测 AI 腔,"
+                       "让 agent 守住写作风格。中英文都有。"),
+                      ("It makes AI-made output read as if a person made it, or detects or removes AI patterns in text, "
+                       "code or design. A general writing assistant or grammar checker does not count.",
+                       "它让 AI 的产出读起来像人做的,或者检测、去除文字、代码、设计里的 AI 痕迹。通用写作助手、语法检查器不算。"),
+                      ("What these skills do", "这些 skill 能做什么")),
+        "blurb": {
+            "writing": ("Rewrite AI prose so it reads human.", "把 AI 写的文章、帖子、邮件改得像人写的。"),
+            "detector": ("Find and score AI writing patterns.", "找出并给 AI 写作痕迹打分。"),
+            "chinese": ("Take the AI flavour out of Chinese writing.", "专门给中文去 AI 味。"),
+            "code": ("Clean AI patterns out of code and comments.", "清理代码和注释里的 AI 痕迹。"),
+            "design": ("Steer AI-made UI away from the generic AI look.", "让 AI 做的界面摆脱千篇一律的 AI 感。"),
+            "rules": ("Style guides and word lists agents follow.", "agent 遵守的写作规范和禁用词表。"),
+        },
+    },
 }

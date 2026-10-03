@@ -1,0 +1,3096 @@
+[
+ {
+  "repo": "Leonxlnx/taste-skill",
+  "stars": 92254,
+  "description": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop ",
+  "scores": {
+   "design": 0.95,
+   "rules": 0.36,
+   "writing": 0.07,
+   "detector": 0.11,
+   "chinese": 0.04,
+   "code": 0.22
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "blader/humanizer",
+  "stars": 53726,
+  "description": "Agent skill that removes signs of AI-generated writing from text",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.24,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.64
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Nutlope/hallmark",
+  "stars": 29452,
+  "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.66,
+   "chinese": 0.02,
+   "code": 0.52,
+   "design": 0.96,
+   "rules": 0.88
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "op7418/Humanizer-zh",
+  "stars": 18874,
+  "description": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.07,
+   "chinese": 0.97,
+   "code": 0.11,
+   "design": 0.04,
+   "rules": 0.93
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "hardikpandya/stop-slop",
+  "stars": 17724,
+  "description": "A skill file for removing AI tells from prose",
+  "scores": {
+   "writing": 0.83,
+   "detector": 0.55,
+   "chinese": 0.03,
+   "code": 0.08,
+   "design": 0.05,
+   "rules": 0.96
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "epoko77-ai/im-not-ai",
+  "stars": 5835,
+  "description": "AI가 쓴 한글을 사람 글처럼 윤문하는 Claude 스킬 — Korean AI-text humanizer: detects and rewrites translationese, mechanical parallelism, and 71 other AI tells",
+  "scores": {
+   "rules": 0.45,
+   "writing": 0.94,
+   "detector": 0.96,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.05
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "dmmulroy/anti-slop",
+  "stars": 5126,
+  "description": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.62,
+   "chinese": 0.02,
+   "code": 0.25,
+   "design": 0.06,
+   "rules": 0.36
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "conorbronsdon/avoid-ai-writing",
+  "stars": 4820,
+  "description": "Skill that audits and rewrites content to remove AI writing patterns. Use it with your favorite agents including Claude Code, OpenClaw, Codex, and Hermes.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.96,
+   "chinese": 0.03,
+   "code": 0.09,
+   "design": 0.06,
+   "rules": 0.72
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "miqdadbadjuber/anti-slop",
+  "stars": 4355,
+  "description": "Rules for an AI coding agent to filter out generic AI-generated UI designs, text, and code.",
+  "scores": {
+   "writing": 0.41,
+   "detector": 0.58,
+   "chinese": 0.05,
+   "code": 0.79,
+   "design": 0.79,
+   "rules": 0.93
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "lynote-ai/humanize-text",
+  "stars": 3190,
+  "description": "Open-source text humanization pipeline with every intermediate step published. Two LLM rewrites at temp 1.3, then two hops across different NMT engines. Four documented methodologies you can read, modify, and run locally.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.19,
+   "chinese": 0.09,
+   "code": 0.13,
+   "design": 0.05,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "peteromallet/desloppify",
+  "stars": 3160,
+  "description": "Agent harness to make your slop code well-engineered and beautiful.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.32,
+   "chinese": 0.01,
+   "code": 0.48,
+   "design": 0.09,
+   "rules": 0.05
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "Nanako0129/sepia",
+  "stars": 2807,
+  "description": "De-AI writing skill for any Agent Skills-compatible agent (77+ via the Skills CLI), with native plugins for Claude Code, Codex, Grok Build, and Antigravity. Narrative-architecture repair for fiction, venue-matched rules for professional prose. Based on StoryScope (arXiv:2604.03136).",
+  "scores": {
+   "detector": 0.61,
+   "chinese": 0.17,
+   "code": 0.15,
+   "design": 0.06,
+   "rules": 0.81,
+   "writing": 0.87
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+  "stars": 2269,
+  "description": "一个基于 283 万字语料统计的去 AI 味 skill · An AI-tone removal skill grounded in a 2.83-million-character corpus study",
+  "scores": {
+   "writing": 0.72,
+   "detector": 0.81,
+   "chinese": 0.98,
+   "code": 0.16,
+   "design": 0.08,
+   "rules": 0.6
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "iniwap/AIWriteX",
+  "stars": 2044,
+  "description": "AIWriteX - 微信公众号全自动AI工具：全网热搜舆情聚合+趋势分析+爆款选题+文章采集+一键生成排版发布 | AI自动配图 | 去AI味、过朱雀检测 | 支持小红书/百家号/头条等多平台 | 洗稿润色支持多账号 | 专家赛道 | 小绿书贴图 | 短视频文案 | 手机控制 | 小说连载 | 爆文10w+神器",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.85,
+   "chinese": 0.83,
+   "code": 0.19,
+   "design": 0.52,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "MrGeDiao/shuorenhua",
+  "stars": 1974,
+  "description": "说人话｜中文优先的去 AI 味改写 skill：保事实、分场景、改完可直接发。Chinese-first rewrite skill for Codex / Claude Code / Cursor / ChatGPT — removes AI tone, preserves facts.",
+  "scores": {
+   "design": 0.05,
+   "rules": 0.86,
+   "writing": 0.91,
+   "detector": 0.06,
+   "chinese": 0.97,
+   "code": 0.18
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "AIScientists-Dev/academic-humanizer",
+  "stars": 1767,
+  "description": "Strip AI-writing tells from papers and grant proposals (NSF/NIH), while keeping scholarly voice and tying claims to evidence. A skill for Claude Code, Codex, and MorphMind.",
+  "scores": {
+   "writing": 0.31,
+   "detector": 0.18,
+   "chinese": 0.02,
+   "code": 0.06,
+   "design": 0.04,
+   "rules": 0.77
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "yetone/kill-ai-slop",
+  "stars": 1192,
+  "description": "A field guide to the visual & copy tics of AI-generated products — and an Agent Skill that scans your project and strips them out. https://killaislop.com",
+  "scores": {
+   "writing": 0.11,
+   "detector": 0.76,
+   "chinese": 0.09,
+   "code": 0.55,
+   "design": 0.94,
+   "rules": 0.79
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "Jakeschincariol/linkedin-agent-skill",
+  "stars": 1111,
+  "description": "Eleven free Claude skills that run a LinkedIn account: posts off 21 hook formulas, comments, replies, profile score, weekly plan, and a humanizer that strips the AI fingerprint and scores the draft before it goes out.",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.97,
+   "chinese": 0.04,
+   "code": 0.1,
+   "design": 0.15,
+   "rules": 0.18
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "agiwhitelist/auteur",
+  "stars": 1033,
+  "description": "The Claude Code skill that directs a website like a film. Commit-sheet, generated assets, build, and an executable anti-slop linter that gates every ship.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.72,
+   "chinese": 0.03,
+   "code": 0.69,
+   "design": 0.9,
+   "rules": 0.38
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "Raymondhou0917/speak-human-tw",
+  "stars": 1022,
+  "description": "「說人話」：繁體中文的去 AI 味改寫 skill。抓 38 種 AI 寫作痕跡，順手校正中國用語與半形標點，給 Claude Code / Codex / Cursor 用。",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.95,
+   "chinese": 0.98,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.87
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "alexgreensh/attention-span",
+  "stars": 979,
+  "description": "Make your agents talk human. ADHD-friendly output styles for Claude Code, Codex, and others. So you can pay attention, not tokens.",
+  "scores": {
+   "writing": 0.21,
+   "detector": 0.06,
+   "chinese": 0.09,
+   "code": 0.11,
+   "design": 0.07,
+   "rules": 0.88
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "Yu-369/VibeCurb",
+  "stars": 978,
+  "description": "VibeCurb - Injects taste into AI workflows to stop agents from generating boring, AI slop.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.28,
+   "chinese": 0.03,
+   "code": 0.31,
+   "design": 0.97,
+   "rules": 0.86
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+  "stars": 845,
+  "description": "去AI味提示词-作家增强-SKILL",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.93,
+   "chinese": 0.98,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.92
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "peakoss/anti-slop",
+  "stars": 835,
+  "description": "A GitHub action that detects and automatically closes low-quality and AI slop PRs.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.89,
+   "chinese": 0.02,
+   "code": 0.17,
+   "design": 0.05,
+   "rules": 0.11
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+  "stars": 641,
+  "description": "Claude Code reference: write in Louis Rossmann's voice, never like AI slop. Portable CLAUDE.md plus skills.",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.57,
+   "chinese": 0.02,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.97
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "LifelongLazyLearner/qu-ai-wei",
+  "stars": 621,
+  "description": "去 AI 味：去除简体中文 AI 写作痕迹 / Chinese humanizer skill",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.37,
+   "chinese": 0.99,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.76
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "joeseesun/qiaomu-design",
+  "stars": 571,
+  "description": "偏执型设计顾问：反 AI 味设计 + 风格试衣间 + 58 站设计系统库的 Claude Code Skill | Opinionated design advisor for Claude Code: anti-generic UI, style fitting room, 58 real-site design systems.",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.28,
+   "chinese": 0.24,
+   "code": 0.53,
+   "design": 0.97,
+   "rules": 0.27
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "harshaneel/humanize",
+  "stars": 512,
+  "description": "Best static AI text humanizer. Two research-grounded LLM-agnostic skills that make AI writing sound human and relatable. Nine levers, 50+ peer-reviewed sources, 2024-2026 detection literature.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.91,
+   "chinese": 0.03,
+   "code": 0.12,
+   "design": 0.04,
+   "rules": 0.93
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "jalaalrd/anti-ai-slop-writing",
+  "stars": 494,
+  "description": "AI writing skill that eliminates detectable AI patterns. Works with Claude Code, Codex, Cursor, Gemini CLI, and 8+ other agents.",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.17,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.96
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "iKora128/stop-ai-slop-jp",
+  "stars": 469,
+  "description": "日本語の文章からAI臭を取り除く Claude Skill",
+  "scores": {
+   "writing": 0.87,
+   "detector": 0.85,
+   "chinese": 0.01,
+   "code": 0.08,
+   "design": 0.05,
+   "rules": 0.95
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "theclaymethod/unslop",
+  "stars": 442,
+  "description": "An agent skill to de-AI your writing",
+  "scores": {
+   "writing": 0.81,
+   "detector": 0.96,
+   "chinese": 0.05,
+   "code": 0.13,
+   "design": 0.05,
+   "rules": 0.37
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "DadaNanjesha/AI-Text-Humanizer-App",
+  "stars": 434,
+  "description": "Transform AI-generated text into formal, human-like, and academic writing with ease, avoids AI detector! ",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.09,
+   "chinese": 0.03,
+   "code": 0.22,
+   "design": 0.16,
+   "rules": 0.11
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "codeswithroh/tastemaker",
+  "stars": 427,
+  "description": "A Claude Code skill that grounds AI-generated UI in real reference images and a persistent per-developer taste profile, instead of generic AI-slop defaults.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.07,
+   "chinese": 0.02,
+   "code": 0.17,
+   "design": 0.96,
+   "rules": 0.47
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "stephenturner/skill-deslop",
+  "stars": 407,
+  "description": "De-AI-ify scientific writing",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.81,
+   "chinese": 0.02,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.94
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "ilyautov/humanizer-ru",
+  "stars": 406,
+  "description": "humanizer-ru: редактура русского текста для AI-агентов. Убирает канцелярит и шаблонные обороты, сверяет смысл и факты. 67 признаков, 21 жёсткий запрет, сканер, CLI, MCP и расширение Chrome. | Russian text editing for AI agents: removes bureaucratese and template phrasing, checks facts.",
+  "scores": {
+   "writing": 0.83,
+   "detector": 0.95,
+   "chinese": 0.01,
+   "code": 0.12,
+   "design": 0.12,
+   "rules": 0.82
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Liuxiangjian-ai/official-document-skill",
+  "stars": 380,
+  "description": "一个面向公文写作的skill，基于数百篇《人民日报》等报刊文章总结而来。根据文种、场景和材料，生成结构规范、表达稳妥、内容具体、去 AI 味的公文。",
+  "scores": {
+   "code": 0.16,
+   "design": 0.04,
+   "rules": 0.57,
+   "writing": 0.37,
+   "detector": 0.84,
+   "chinese": 0.95
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "devswha/patina",
+  "stars": 361,
+  "description": "AI-writing humanizer for KO/EN/ZH/JA",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.26,
+   "chinese": 0.35,
+   "code": 0.17,
+   "design": 0.06,
+   "rules": 0.49
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "NulightJens/humanizer-stack",
+  "stars": 315,
+  "description": "Two-pass pipeline for removing AI writing tells from outward-facing text: a surface pass plus a structural pass grounded in the StoryScope study. Packaged as Claude Code Skills.      Free community: skool.com/jens-ai-community-1306",
+  "scores": {
+   "writing": 0.87,
+   "detector": 0.57,
+   "chinese": 0.02,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.72
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "educlopez/ui-craft",
+  "stars": 309,
+  "description": "Design engineering system for AI coding agents — ship UI with craft-level quality. Install as an agent skill.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.45,
+   "chinese": 0.01,
+   "code": 0.33,
+   "design": 0.95,
+   "rules": 0.43
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "redbaronyyyyy-eng/humanizer-zh-academic",
+  "stars": 302,
+  "description": "🎓 降低中文学术写作 AIGC 检测率的 Claude Code Skill | Reduce AIGC detection rate for Chinese academic writing",
+  "scores": {
+   "writing": 0.43,
+   "detector": 0.5,
+   "chinese": 0.98,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.91
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "matsuikentaro1/humanizer_academic",
+  "stars": 271,
+  "description": "A Claude Code skill that removes signs of AI-generated writing from academic medical papers, making them sound more natural and professionally written.",
+  "scores": {
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.91,
+   "writing": 0.63,
+   "detector": 0.54,
+   "chinese": 0.02
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "Aboudjem/humanizer-skill",
+  "stars": 263,
+  "description": "Free, open-source AI writing humanizer and detector. 55 patterns, 5 voices, a 0-100 AI-tell score, and nothing leaves your machine.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.97,
+   "chinese": 0.15,
+   "code": 0.15,
+   "design": 0.1,
+   "rules": 0.29
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "talkstream/ru-text",
+  "stars": 243,
+  "description": "Russian text quality for AI agents — neuroslop cleanup, typography, information style, editorial standards, UX writing, business correspondence. Scores text 0–10. 2,000+ linguistic atoms.",
+  "scores": {
+   "writing": 0.78,
+   "detector": 0.96,
+   "chinese": 0.01,
+   "code": 0.09,
+   "design": 0.08,
+   "rules": 0.82
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "lynote-ai/humanize-text-skill",
+  "stars": 240,
+  "description": "Free AI Humanizer: Humanize AI Text Online",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.97,
+   "chinese": 0.55,
+   "code": 0.18,
+   "design": 0.04,
+   "rules": 0.72
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "tasteskill/tasteskill",
+  "stars": 232,
+  "description": "The Anti-Slop Frontend Framework for AI Agents",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.08,
+   "chinese": 0.02,
+   "code": 0.39,
+   "design": 0.95,
+   "rules": 0.69
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "seyedehsanhadi/sloptrim",
+  "stars": 211,
+  "description": "A local detector for AI-writing patterns. Scores every prose file your agent saves. Python standard library only, no network, no model.",
+  "scores": {
+   "writing": 0.14,
+   "detector": 0.98,
+   "chinese": 0.03,
+   "code": 0.04,
+   "design": 0.09,
+   "rules": 0.15
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "smixs/humanizer-ru",
+  "stars": 185,
+  "description": "Skill для AI-агентов (Claude Code, Codex, OpenClaw, Hermes): убирает 37 признаков AI-генерации из русского текста и проверяет, писала ли его нейросеть - канцелярит, штампы ChatGPT, артефакты копипаста | Russian AI-text humanizer & detector skill for coding agents",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.97,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.06,
+   "rules": 0.74
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "ai-zixun/humanizer-zh",
+  "stars": 171,
+  "description": "`humanizer-zh` 是一个兼容 Codex、Claude Code 和 OpenClaw 的中文去 AI 味技能。它用于重写、润色或审阅中文博客、评论、产品分析、newsletter、书稿章节等长文本，让文字更像中文母语者写出来的，而不是翻译腔、模型拼接稿或营销通稿。",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.58,
+   "chinese": 0.99,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.78
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "marmbiz/humanizer-de",
+  "stars": 169,
+  "description": "Deutscher Text-Humanizer für Claude Code & Codex. Redigiert KI-Floskeln, schützt deine Schreibstimme und prüft 72 deutsche Muster quellentreu.",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.95,
+   "chinese": 0.01,
+   "code": 0.12,
+   "design": 0.06,
+   "rules": 0.66
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "eric-tramel/slop-guard",
+  "stars": 164,
+  "description": "Slop Scoring to Stop Slop",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.98,
+   "chinese": 0.04,
+   "code": 0.1,
+   "design": 0.07,
+   "rules": 0.69
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Hyacehila/humanizer-zh-next",
+  "stars": 163,
+  "description": "去除中文文本中 AI 写作痕迹的 Agent Skill（基于 blader/humanizer 与 op7418/humanizer-zh）",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.91,
+   "chinese": 0.98,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.88
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "gonta223/humanizer-ja",
+  "stars": 150,
+  "description": "AIくさい日本語を人間が書いた文章に変換するClaude Codeスキル。20パターンのチェックリスト+書き換えガイド。",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.4,
+   "chinese": 0.01,
+   "code": 0.09,
+   "design": 0.04,
+   "rules": 0.93
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "rudra496/StealthHumanizer",
+  "stars": 150,
+  "description": "🔓 Free open-source AI text humanizer — bypass GPTZero, Turnitin & AI detectors with 16+ Languages support. 35 providers, 4 rewrite levels, 6 Writing Styles, 9 Text Purposes, 13 Tone Presets, multi-pass ninja mode. No login. Built for students & writers.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.93,
+   "chinese": 0.08,
+   "code": 0.14,
+   "design": 0.11,
+   "rules": 0.05
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "MohamedAbdallah-14/unslop",
+  "stars": 150,
+  "description": "Make AI output sound human. Strips AI-isms (sycophancy, stock vocab, hedging stacks, em-dash pileups), preserves code/URLs/headings. Plugin for Claude Code, Cursor, Windsurf, Codex, Cline, Copilot, Gemini.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.34,
+   "chinese": 0.04,
+   "code": 0.19,
+   "design": 0.1,
+   "rules": 0.74
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "adenaufal/anti-slop-writing",
+  "stars": 143,
+  "description": "Stop your AI from writing like AI. A universal system prompt eliminating every known LLM style tell — works with Claude Code, Gemini CLI, Codex CLI, Copilot, Cursor, and any web AI.",
+  "scores": {
+   "detector": 0.1,
+   "chinese": 0.03,
+   "code": 0.2,
+   "design": 0.09,
+   "rules": 0.95,
+   "writing": 0.87
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "Heyosseus/sloppy",
+  "stars": 142,
+  "description": "Static analysis for the debt AI agents leave in PHP: 26 rules, Claude Code hooks, git-diff review, a Rector and Pint fix pass, Pest expectations, CI annotations and an MCP server. Deterministic, local, no LLM.",
+  "scores": {
+   "writing": 0.02,
+   "detector": 0.85,
+   "chinese": 0.01,
+   "code": 0.79,
+   "design": 0.04,
+   "rules": 0.2
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "mblode/agent-skills",
+  "stars": 140,
+  "description": "Nobody ships AI slop on purpose. These skills make sure you don’t.",
+  "scores": {
+   "design": 0.87,
+   "rules": 0.25,
+   "writing": 0.81,
+   "detector": 0.39,
+   "chinese": 0.04,
+   "code": 0.31
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "MrZoyo/deslop-GPT",
+  "stars": 136,
+  "description": "Deletion-first Agent Skill for removing test bloat, verification theater, and speculative fallbacks while preserving behavior.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.13,
+   "chinese": 0.02,
+   "code": 0.46,
+   "design": 0.05,
+   "rules": 0.07
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "brandonwise/humanizer",
+  "stars": 127,
+  "description": "OpenClaw skill that detects and removes signs of AI-generated writing, making text sound natural and human. Based on Wikipedia's Signs of AI Writing.",
+  "scores": {
+   "writing": 0.81,
+   "detector": 0.98,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.39
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Vladimir-Human/humanizer-ru",
+  "stars": 126,
+  "description": "Проверяемая гигиена вставки из чата для русского текста",
+  "scores": {
+   "writing": 0.12,
+   "detector": 0.88,
+   "chinese": 0.01,
+   "code": 0.13,
+   "design": 0.09,
+   "rules": 0.22
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "manavmishra/ZeroSlop",
+  "stars": 125,
+  "description": "Open-source Agent Skill that finds and removes AI slop from your writing",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.97,
+   "chinese": 0.03,
+   "code": 0.11,
+   "design": 0.12,
+   "rules": 0.52
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "crabin/paper-humanizer-skill",
+  "stars": 123,
+  "description": "中英文学术文本润色与人性化skill，用于去除 AI 生成的痕迹，同时严格保持事实准确性。",
+  "scores": {
+   "writing": 0.64,
+   "detector": 0.82,
+   "chinese": 0.45,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.69
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Akimiya-z/codex-guard",
+  "stars": 111,
+  "description": "Quality gate for AI/Codex-generated pull requests: blocks TODO leftovers, leaked secrets, sloppy commits and red CI before they reach main.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.49,
+   "chinese": 0.01,
+   "code": 0.26,
+   "design": 0.05,
+   "rules": 0.05
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "ehmo/slopkit",
+  "stars": 106,
+  "description": "Anti-slop skills for AI agents: slopbeth cleans the shipped writing, slopgent cleans the conversation.",
+  "scores": {
+   "writing": 0.85,
+   "detector": 0.41,
+   "chinese": 0.03,
+   "code": 0.17,
+   "design": 0.07,
+   "rules": 0.41
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "sergebulaev/x-skills",
+  "stars": 106,
+  "description": "X (Twitter) marketing skills for Claude Code and Codex: write tweets, threads, and replies in your voice, strip AI tells, and publish via Publora. Open source, MIT. Content engineering by Creative Content Crafts.",
+  "scores": {
+   "writing": 0.73,
+   "detector": 0.53,
+   "chinese": 0.02,
+   "code": 0.16,
+   "design": 0.13,
+   "rules": 0.27
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Nopon-Knowledge/huawei-cup-modeling-skill",
+  "stars": 99,
+  "description": "论文去 AI 味 · AI 痕迹检测 · 学术润色｜面向华为杯中国研究生数学建模竞赛的 Codex Skill，支持逐句诊断、去模板化改写、图表优化、规则核验与提交审计，保留研究事实与引文。",
+  "scores": {
+   "writing": 0.48,
+   "detector": 0.95,
+   "chinese": 0.94,
+   "code": 0.12,
+   "design": 0.28,
+   "rules": 0.38
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "flamehaven01/AI-SLOP-Detector",
+  "stars": 98,
+  "description": " Stop shipping AI slop. Detects empty functions, fake documentation, and inflated comments in AI-generated code. Production-ready.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.91,
+   "chinese": 0.02,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.04
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "qin1473692580-ux/oh-story-claudecode",
+  "stars": 96,
+  "description": "网文/小说写作 skill 包，覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味、封面图全流程",
+  "scores": {
+   "writing": 0.45,
+   "detector": 0.95,
+   "chinese": 0.88,
+   "code": 0.22,
+   "design": 0.12,
+   "rules": 0.26
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "tbhb/vale-ai-tells",
+  "stars": 96,
+  "description": "In today's rapidly evolving landscape, vale-ai-tells is a comprehensive, cutting-edge Vale style package that empowers writers to seamlessly delve into the rich tapestry of AI tells. It's not just a rule set; it's a game-changer that supercharges your prose, unlocks new possibilities, and really lands. Ship cleaner prose. Full stop. 🚀",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.98,
+   "chinese": 0.03,
+   "code": 0.13,
+   "design": 0.04,
+   "rules": 0.76
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "carlosafjr-dev/humanizer-br",
+  "stars": 95,
+  "description": "Skill para Claude Code que remove marcas típicas de textos gerados por IA, deixando a escrita mais natural, clara e próxima da linguagem humana.  A skill analisa padrões comuns de escrita de modelos de linguagem e reescreve o texto para eliminar sinais artificiais, melhorar fluidez e aumentar naturalidade.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.54,
+   "chinese": 0.02,
+   "code": 0.11,
+   "design": 0.08,
+   "rules": 0.8
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "misbahsy/anti-ai-slop",
+  "stars": 95,
+  "description": "An agent skill with multiple gates to check and to remove any AI slop. Use it with codex/claude code or any of your favorite AI tools.",
+  "scores": {
+   "rules": 0.83,
+   "writing": 0.9,
+   "detector": 0.96,
+   "chinese": 0.03,
+   "code": 0.23,
+   "design": 0.1
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "distil-labs/distil-ai-slop-detector",
+  "stars": 95,
+  "description": "Detect AI-generated text locally in your browser",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.97,
+   "chinese": 0.02,
+   "code": 0.11,
+   "design": 0.11,
+   "rules": 0.03
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "DadaNanjesha/AI-content-detector-Humanizer",
+  "stars": 92,
+  "description": "A comprehensive web application that detects AI-generated content in PDF documents and transforms AI text into natural human-like writing. Built with Streamlit, spaCy, and Hugging Face transformers.",
+  "scores": {
+   "writing": 0.79,
+   "detector": 0.96,
+   "chinese": 0.05,
+   "code": 0.24,
+   "design": 0.26,
+   "rules": 0.04
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Gesso-Build/skills",
+  "stars": 91,
+  "description": "Deterministic design critique for HTML/CSS: 73 slop guards from the rules professional designers use in production-grade designs. Exact detectors, idempotent auto-fixes, the anti-slop skill, and the /gesso-critique command. By Gesso, the AI creative team for builders.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.51,
+   "chinese": 0.02,
+   "code": 0.27,
+   "design": 0.95,
+   "rules": 0.84
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "funboy322/avoid-ai-design",
+  "stars": 91,
+  "description": "Audits AI-generated frontend and rewrites it so it stops looking AI-made: purple-gradient slop and the \"tasteful\" defaults (cream + terracotta, mono chrome). Zero-dependency scanner included. The design counterpart to avoid-ai-writing.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.18,
+   "chinese": 0.02,
+   "code": 0.41,
+   "design": 0.96,
+   "rules": 0.54
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "rsionnach/sloppylint",
+  "stars": 90,
+  "description": "Python AI Slop Detector - Find over-engineering, hallucinations, and dead code in Python codebases",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.97,
+   "chinese": 0.01,
+   "code": 0.21,
+   "design": 0.08,
+   "rules": 0.14
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "VincentOld/stop-slop-zh",
+  "stars": 90,
+  "description": "消除中文 AI 写作痕迹的 Claude Skill：拆排比三件套、去名词化、换抽象主语为具体细节。灵感来自 hardikpandya/stop-slop。",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.92,
+   "chinese": 0.99,
+   "code": 0.06,
+   "design": 0.03,
+   "rules": 0.97
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "mengke-wang/zh-humanizer-literary",
+  "stars": 86,
+  "description": "中文去 AI 味与文采增强 Codex Skill，汲取 Mengke / 好事风格，让中文草稿更像人写。",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.47,
+   "chinese": 0.99,
+   "code": 0.07,
+   "design": 0.06,
+   "rules": 0.76
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "airlock-hq/airlock",
+  "stars": 86,
+  "description": "All slop must die. Airlock is where every git push turns into a slop-free PR.",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.38,
+   "chinese": 0.02,
+   "code": 0.38,
+   "design": 0.1,
+   "rules": 0.03
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "ksanyok/TextHumanize",
+  "stars": 82,
+  "description": "Transform AI-generated text into natural human-like content. 100% offline · 25 languages · Zero dependencies · PHANTOM™ · ASH™ · Python/PHP/TypeScript",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.89,
+   "chinese": 0.08,
+   "code": 0.19,
+   "design": 0.09,
+   "rules": 0.11
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "bushrabeg/turkce-humanizer",
+  "stars": 81,
+  "description": "Türkçe metinlerden yapay zekâ yazım imzalarını temizleyen Claude skill'i. YZ üretimi Türkçe'yi doğal, insan-sesli Türkçe'ye dönüştürür. | A Claude skill that removes AI writing signatures from Turkish text.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.84,
+   "chinese": 0.01,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.83
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Laith0003/ux-skill",
+  "stars": 79,
+  "description": "Design intelligence engine for AI coding tools (Claude Code, Cursor, Windsurf). Deterministic anti-AI-slop linter with 152 rules, 160 brand specs, a 7-axis synthesizer, an MCP server (18 tools), 25 commands, 17 IDEs. Offline, never calls an LLM. MIT.",
+  "scores": {
+   "writing": 0.08,
+   "detector": 0.91,
+   "chinese": 0.05,
+   "code": 0.44,
+   "design": 0.95,
+   "rules": 0.68
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "asavvin-pixel/unslop",
+  "stars": 73,
+  "description": "English text humanizer for Claude: typography, vocabulary, structure. Calibrates to your voice. Built on the UMD / Google DeepMind study and Wikipedia's Signs of AI writing",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.29,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.85
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Wenzhi-Ding/wenzhi-plugins",
+  "stars": 72,
+  "description": "coding agent 行为插件仓库：humanize 注入「说人话」写作规则，skill-stats 统计技能触发与来源。",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.18,
+   "chinese": 0.73,
+   "code": 0.14,
+   "design": 0.06,
+   "rules": 0.35
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "LeonardNJU/code-humanizer",
+  "stars": 68,
+  "description": "humanizer, but for code — an agent skill that removes AI-generated code slop: duplicated helpers, try-import fallbacks, broad excepts, speculative abstractions. Test-gated, behavior-preserving.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.43,
+   "chinese": 0.03,
+   "code": 0.86,
+   "design": 0.04,
+   "rules": 0.52
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "sanjaysah101/humanize-ai",
+  "stars": 64,
+  "description": "A sophisticated system for transforming AI-generated text into natural, human-like content using advanced NLP techniques and mathematical models.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.79,
+   "chinese": 0.04,
+   "code": 0.2,
+   "design": 0.16,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "baibanbao/qu-ai-wei",
+  "stars": 64,
+  "description": "去 AI 味：中文写作的 AI 痕迹清理 skill。合并三家规则（含语料实测），并裁决它们互相矛盾的七处。A Claude skill for stripping AI tells from Chinese drafts.",
+  "scores": {
+   "writing": 0.84,
+   "detector": 0.41,
+   "chinese": 0.99,
+   "code": 0.05,
+   "design": 0.03,
+   "rules": 0.94
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "h3nryprod01/design-taste",
+  "stars": 63,
+  "description": "Elite frontend design taste for Claude Code / Cowork — a merged synthesis of emilkowalski/skill, pbakaus/impeccable, and leonxlnx/taste-skill. Typography, color, motion, components, anti-slop.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.61,
+   "chinese": 0.02,
+   "code": 0.54,
+   "design": 0.96,
+   "rules": 0.52
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "allenloves/de-ai-tone",
+  "stars": 63,
+  "description": "去 AI 味：繁體中文寫作與翻譯的風格規範（Claude Code skill）",
+  "scores": {
+   "writing": 0.79,
+   "detector": 0.44,
+   "chinese": 0.98,
+   "code": 0.08,
+   "design": 0.03,
+   "rules": 0.97
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "cangtianhuang/humanizer-academic-zh",
+  "stars": 62,
+  "description": "Humanizer 中文学术版本，Claude Code Skills/ System Prompt，轻量级中文学术论文去 AI 痕迹提示词——运行迅速，节约 token，开箱即用！",
+  "scores": {
+   "writing": 0.61,
+   "detector": 0.17,
+   "chinese": 0.97,
+   "code": 0.08,
+   "design": 0.05,
+   "rules": 0.96
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "gouwsxander/slop-detector",
+  "stars": 61,
+  "description": "End-to-end implementation of an AI writing detector",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.14,
+   "design": 0.04,
+   "rules": 0.02
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "millionco/deslop-js",
+  "stars": 60,
+  "description": "Deslop JavaScript code",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.22,
+   "chinese": 0.03,
+   "code": 0.21,
+   "design": 0.04,
+   "rules": 0.02
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Text2Go/ai-humanizer-mcp-server",
+  "stars": 60,
+  "description": "A powerful Model Context Protocol (MCP) server that helps refine AI-generated content to sound more natural and human-like. Built with advanced AI detection and text enhancement capabilities.",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.92,
+   "chinese": 0.06,
+   "code": 0.12,
+   "design": 0.08,
+   "rules": 0.06
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "zhouying20/HMGC",
+  "stars": 60,
+  "description": "COLING'24 Humanizing Machine-Generated Content: Evading AI-Text Detection through Adversarial Attack",
+  "scores": {
+   "writing": 0.69,
+   "detector": 0.36,
+   "chinese": 0.19,
+   "code": 0.21,
+   "design": 0.04,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "AgriciDaniel/anti-slop",
+  "stars": 57,
+  "description": "Find and repair substance defects in AI-assisted prose, code, docs, and agent output. Reports defects, never authorship. Structural tests over model judgement, because LLM judges agree with human slop labels at chance.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.54,
+   "chinese": 0.03,
+   "code": 0.42,
+   "design": 0.12,
+   "rules": 0.06
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Nimblesite/Deslop",
+  "stars": 55,
+  "description": "",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.18,
+   "chinese": 0.02,
+   "code": 0.12,
+   "design": 0.12,
+   "rules": 0.02
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "lguz/humanize-writing-skill",
+  "stars": 54,
+  "description": "Rewrite AI-generated text to sound human. 3-pass editing system with 36+ banned words, 10 structural patterns, and a quality checklist. Works with any LLM — Claude, ChatGPT, Gemini, Cursor, Windsurf. Also available as a Claude Code plugin.",
+  "scores": {
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.92,
+   "writing": 0.95,
+   "detector": 0.36
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "ilien-dev/quiron",
+  "stars": 53,
+  "description": "AI humanizer skill for Claude Code, Codex and Cursor. Removes AI slop and the signs of AI writing, then measures the rewrite against human baselines.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.96,
+   "chinese": 0.02,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.37
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "apurvrdx1/tagore",
+  "stars": 53,
+  "description": "Make AI-generated prose sound human. 29-pattern catalog + 8-rule operating system + 8-dimension scoring rubric. Works with Claude Code, OpenCode, Copilot CLI, Codex, Gemini, Goose.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.94,
+   "chinese": 0.02,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.8
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "ZAYUVALYA/AI-Text-Humanizer",
+  "stars": 51,
+  "description": "ZAYUVALYA - AI Humanizer is a developing tool designed to rephrase AI-generated text to make it more natural and reduce detection by AI content detectors. Currently in its early stages, the project focuses on context-aware paraphrasing and aims to improve with further optimizations.",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.06,
+   "chinese": 0.02,
+   "code": 0.2,
+   "design": 0.28,
+   "rules": 0.21
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "chengez/Adversarial-Paraphrasing",
+  "stars": 51,
+  "description": "[NeurIPS 2025] Implementation for paper \"Adversarial Paraphrasing: A Universal Attack for Humanizing AI-Generated Text\"",
+  "scores": {
+   "writing": 0.87,
+   "detector": 0.69,
+   "chinese": 0.05,
+   "code": 0.22,
+   "design": 0.06,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "phazurlabs/sumi",
+  "stars": 50,
+  "description": "Sumi — UX/UI design intelligence for Claude Code: 43 skills, 168 references, 37 commands, an anti-slop engine, and an auditable citation trail. Start with /sumi:start.",
+  "scores": {
+   "detector": 0.32,
+   "chinese": 0.02,
+   "code": 0.3,
+   "design": 0.95,
+   "rules": 0.63,
+   "writing": 0.06
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "stephenlzc/humanize-mba-text-skill",
+  "stars": 50,
+  "description": "去除中文MBA论文AI写作痕迹的检测与改写工具 | AI writing pattern detection and removal tool for Chinese MBA thesis",
+  "scores": {
+   "writing": 0.52,
+   "detector": 0.97,
+   "chinese": 0.97,
+   "code": 0.1,
+   "design": 0.1,
+   "rules": 0.36
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "stevembarclay/pencilplaybook",
+  "stars": 50,
+  "description": "PencilPlaybook is the UI Skills / Taste-Skill for Pencil.dev + Claude Code — a design playbook that gives Claude real perceptual psychology and senior-level guardrails so it stops producing averaged-out AI slop.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.09,
+   "chinese": 0.01,
+   "code": 0.19,
+   "design": 0.96,
+   "rules": 0.87
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "humanizerai/agent-skills",
+  "stars": 49,
+  "description": "HumanizerAI Agent Skills for Claude Code and Codex - AI detection and text humanization",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.95,
+   "chinese": 0.04,
+   "code": 0.13,
+   "design": 0.07,
+   "rules": 0.19
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "pencil20388-eng/stop-slop-zh",
+  "stars": 49,
+  "description": "🚫 Stop AI slop in Chinese writing. 干掉中文 AI 味 — banned words, punctuation rules, structure constraints & 4-layer QA. Works with Claude Code, Cursor, Codex CLI.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.93,
+   "chinese": 0.99,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.96
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "pablocaeg/sloptotal",
+  "stars": 48,
+  "description": "Open-source AI text detector and ChatGPT detector: 23 engines, one calibrated score, every number measured. CLI, MCP server and GitHub Action. Self-hosted, runs on CPU.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.05,
+   "design": 0.2,
+   "rules": 0.02
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "thevseprod/humanizer-ru",
+  "stars": 42,
+  "description": "Make AI text sound human - rules + a Claude Code skill, built for Russian, works for English too.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.35,
+   "chinese": 0.01,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.93
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "simonlin1212/SDesign",
+  "stars": 38,
+  "description": "去 AI 味设计系统库 · 6 美学家族 × 64 套设计系统 · 复制一段提示词粘给任意 AI 就出片不飘 · 含在线预览站 | Anti-slop design systems for any AI — 64 curated design systems across 6 aesthetics, copy-paste prompts, live demo.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.63,
+   "chinese": 0.06,
+   "code": 0.36,
+   "design": 0.96,
+   "rules": 0.75
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "glaforge/deslopify",
+  "stars": 36,
+  "description": "A Gemini CLI skill to make text more genuine, natural, and free of AI tropes.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.67,
+   "chinese": 0.03,
+   "code": 0.12,
+   "design": 0.06,
+   "rules": 0.83
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "nghiahsgs/skills-slides",
+  "stars": 35,
+  "description": "50,000+ unique HTML presentation designs. Zero dependencies. Anti-AI-slop. A Claude Code skill.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.41,
+   "chinese": 0.02,
+   "code": 0.45,
+   "design": 0.94,
+   "rules": 0.46
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "mmartoccia/grain",
+  "stars": 34,
+  "description": "Anti-slop linter for AI-assisted codebases",
+  "scores": {
+   "writing": 0.1,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.82,
+   "design": 0.09,
+   "rules": 0.46
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "CBIhalsen/text-rewriter",
+  "stars": 31,
+  "description": "this is the text-rewriter-python repository, an open-source project that provides a python script to \"humanize\" ai-generated text. the script makes text more natural and readable by performing operations such as sentence and word-level processing, part-of-speech tagging, synonym replacement, symbol preservation, and formatting improvements.",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.06,
+   "chinese": 0.05,
+   "code": 0.13,
+   "design": 0.06,
+   "rules": 0.1
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "iCodeCraft/anti-slop",
+  "stars": 27,
+  "description": "Drop-in skills that stop AI coding agents from shipping garbage — kill-slop, security-review, PR hygiene",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.22,
+   "chinese": 0.02,
+   "code": 0.93,
+   "design": 0.07,
+   "rules": 0.64
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "Smith-2758/Humanizer-zh-academic",
+  "stars": 26,
+  "description": "专门针对大学生学术写作（论文、实验报告）的去 AI 味与反检测提示词指南，将浮夸的机器腔调转化为朴实严谨的学生真实笔触。An anti-AI detection and text humanizer guide tailored for students' academic writing, converting robotic tones into authentic, rigorous student styles.",
+  "scores": {
+   "writing": 0.43,
+   "detector": 0.19,
+   "chinese": 0.98,
+   "code": 0.08,
+   "design": 0.06,
+   "rules": 0.9
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "scale-venture-partners/windbag",
+  "stars": 25,
+  "description": "Anti-slop linter: catches comments that narrate change history instead of a current constraint (Python/JS/TS/Terraform)",
+  "scores": {
+   "writing": 0.02,
+   "detector": 0.51,
+   "chinese": 0.01,
+   "code": 0.26,
+   "design": 0.03,
+   "rules": 0.22
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "dripips/plain-prose",
+  "stars": 25,
+  "description": "Agent skill that removes AI writing patterns from English, Russian and German prose. Merges stop-slop and avoid-ai-writing, adds a zero-dependency checker.",
+  "scores": {
+   "writing": 0.87,
+   "detector": 0.9,
+   "chinese": 0.01,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.81
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "bejek/humanizer-czech",
+  "stars": 24,
+  "description": "Czech AI text humanizer (český humanizér AI textu). Detects and rewrites 27 AI writing patterns specific to Czech language. Dual-pass system: rewrite + self-check. 4 output styles. Works with Claude Code, ChatGPT, Gemini & any LLM.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.92,
+   "chinese": 0.01,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.79
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "swaylq/humanize-chinese",
+  "stars": 24,
+  "description": "中文 AI 文本去痕迹 + Claude 水印检查 — 六段式改写；零宽字符、同形字清干净，SynthID 采样水印只量残留、不声称能删。纯 Python 本地跑，零 LLM 零 API Key。Chinese AI-text humanizer & Claude / SynthID watermark inspector, fully offline, zero-dependency.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.92,
+   "chinese": 0.98,
+   "code": 0.12,
+   "design": 0.05,
+   "rules": 0.41
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "walidboulanouar/anti-ai-slop",
+  "stars": 24,
+  "description": "CLI to detect and remove AI-slop words and em dashes",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.97,
+   "chinese": 0.02,
+   "code": 0.15,
+   "design": 0.08,
+   "rules": 0.58
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "drunkrhin0/antislop",
+  "stars": 24,
+  "description": "By slop for slop, to remove slop in an AI slop world.",
+  "scores": {
+   "design": 0.05,
+   "rules": 0.75,
+   "writing": 0.84,
+   "detector": 0.96,
+   "chinese": 0.04,
+   "code": 0.1
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "vstorm-co/content-skills",
+  "stars": 24,
+  "description": "Content studio skill pack for coding agents — blog, social, slides, video, infographics — all brand-aware with built-in anti-slop. Works with Claude Code, Codex, and AGENTS.md.",
+  "scores": {
+   "writing": 0.52,
+   "detector": 0.88,
+   "chinese": 0.04,
+   "code": 0.2,
+   "design": 0.73,
+   "rules": 0.3
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "amanmaqsood/prose-humanizer",
+  "stars": 21,
+  "description": "A universal AI writing skill that turns generic drafts into specific, truthful, voice-consistent prose.",
+  "scores": {
+   "writing": 0.85,
+   "detector": 0.52,
+   "chinese": 0.04,
+   "code": 0.16,
+   "design": 0.06,
+   "rules": 0.37
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "2389-research/landing-page-design",
+  "stars": 21,
+  "description": "Create high-converting, visually distinctive landing pages with Vibe Discovery process and anti-AI-slop principles",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.16,
+   "chinese": 0.02,
+   "code": 0.2,
+   "design": 0.96,
+   "rules": 0.46
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "momo2young/humanize-academic-writing",
+  "stars": 20,
+  "description": "An AI skill (Cursor/ Claude) for transforming AI-generated academic text into natural, human-like scholarly writing/ 一个专为社科学者设计的 Cursor AI Skills (Claude可用)，帮助将 AI 生成的英文学术文本转化为自然、人性化的学术写作。",
+  "scores": {
+   "writing": 0.63,
+   "detector": 0.94,
+   "chinese": 0.04,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.63
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "mattwang1230/legal-paper-framework-humanizer-zh",
+  "stars": 19,
+  "description": "消除法学论文框架AI味：基于真实《法学》期刊目录语料的中文法学写作 Skill",
+  "scores": {
+   "writing": 0.11,
+   "detector": 0.84,
+   "chinese": 0.97,
+   "code": 0.09,
+   "design": 0.04,
+   "rules": 0.88
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "allanta8/slop-check",
+  "stars": 19,
+  "description": "Anti-slop content audit skill for X, ViewFT, LinkedIn, and long-form posts.",
+  "scores": {
+   "writing": 0.15,
+   "detector": 0.97,
+   "chinese": 0.03,
+   "code": 0.06,
+   "design": 0.05,
+   "rules": 0.79
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "adewale/anti-slop-writing",
+  "stars": 18,
+  "description": "Agent Skill for editing prose so it does not read like generic LLM output",
+  "scores": {
+   "writing": 0.83,
+   "detector": 0.38,
+   "chinese": 0.03,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.92
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "dabit3/deslop",
+  "stars": 18,
+  "description": "Detect and remove AI-generated code patterns (slop) from your branches",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.97,
+   "chinese": 0.02,
+   "code": 0.7,
+   "design": 0.04,
+   "rules": 0.15
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "noeigenstate/AI-Writing-without-AI-feel",
+  "stars": 18,
+  "description": "公众号、博客、技术等文章一键去AI味道，一键蒸馏自己的写作风格，已融合目前主流的写作skills",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.94,
+   "chinese": 0.64,
+   "code": 0.13,
+   "design": 0.24,
+   "rules": 0.06
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "adamdunkels/deslop-text",
+  "stars": 17,
+  "description": "Claude skill that removes 30 tell-tale signs of AI-written text",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.97,
+   "chinese": 0.03,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.86
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "yyx20202020/natural-writing-skill",
+  "stars": 17,
+  "description": "中英文自然写作与去 AI 味 Skill：支持事实保护、文风校准、场景路由和可审查提示词。",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.77,
+   "chinese": 0.66,
+   "code": 0.13,
+   "design": 0.05,
+   "rules": 0.56
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "0xtresser/cn-humanizer",
+  "stars": 16,
+  "description": "让 AI 生成的内容不再有 AI 味的 Agent Skill ，适用于直接生成和英文翻译等场景。",
+  "scores": {
+   "detector": 0.74,
+   "chinese": 0.98,
+   "code": 0.13,
+   "design": 0.04,
+   "rules": 0.89,
+   "writing": 0.91
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "comol/Humanizer_RU",
+  "stars": 16,
+  "description": "Русский Humanizer: Agent Skill и линтер читаемости для LLM-агентов",
+  "scores": {
+   "writing": 0.81,
+   "detector": 0.89,
+   "chinese": 0.01,
+   "code": 0.12,
+   "design": 0.06,
+   "rules": 0.27
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "haidrrrry/humanize-ai-writing",
+  "stars": 16,
+  "description": "Free anti-AI-slop system prompt & skill that makes ChatGPT, Claude, Gemini, Grok & Kimi write like a human. Bans AI tells (delve, tapestry, 'not just X but Y', em-dash overuse) and humanizes output.",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.11,
+   "chinese": 0.04,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.97
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "skew202/antislop",
+  "stars": 16,
+  "description": "A blazing-fast, multi-language linter for detecting AI-generated code slop",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.36,
+   "design": 0.04,
+   "rules": 0.12
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "yelban/humanizer.TW",
+  "stars": 15,
+  "description": "Claude Code skill that removes signs of AI-generated writing from text",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.36,
+   "chinese": 0.98,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.83
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "huangziyuan-general/dsh-novel-forge",
+  "stars": 15,
+  "description": "DSH 小说锻炉：把 AI 长篇写作通病变成代码强制的硬约束（事实账本/上下文包/阶段门禁/零费用去AI味扫描/确定性审计/提案制修订）。Novel-writing guardrails plugin for DeepSeek Harness (DSH).",
+  "scores": {
+   "writing": 0.12,
+   "detector": 0.97,
+   "chinese": 0.86,
+   "code": 0.14,
+   "design": 0.11,
+   "rules": 0.14
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "dotoricode/korean-humanizer",
+  "stars": 14,
+  "description": "Korean humanizer prompt and skill for removing the usual AI smell from generated writing.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.12,
+   "chinese": 0.02,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.76
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "hjongc/humanizer-kr",
+  "stars": 14,
+  "description": "AI 티 나는 한국어를 사람 말처럼, 맥락에 맞게 고치는 Codex·Claude Code 스킬",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.49,
+   "chinese": 0.01,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.75
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Ferousco-dev/anti-slop-design",
+  "stars": 14,
+  "description": "Claude Agent Skill that eliminates generic AI-generated design. Stop your AI shipping the same purple-gradient, Inter-font, three-feature-card website as everyone else.",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.27,
+   "chinese": 0.02,
+   "code": 0.32,
+   "design": 0.96,
+   "rules": 0.83
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "msdanyg/humanize-pro",
+  "stars": 13,
+  "description": "Claude skill that goes past word-list humanizers: strips the full catalog of AI tells, refits the text to its channel (LinkedIn, X, cold email, Slack, exec memo, blog), and learns your voice from your own edits. Two-gate self-audit, strict no-fabrication rule.",
+  "scores": {
+   "writing": 0.97,
+   "detector": 0.9,
+   "chinese": 0.02,
+   "code": 0.12,
+   "design": 0.04,
+   "rules": 0.53
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "shreyas-makes/deslopify",
+  "stars": 13,
+  "description": "Make the AI writing sound more humane",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.96,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.06,
+   "rules": 0.53
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "skyzer/deslop-the-copy",
+  "stars": 12,
+  "description": "Portable Agent Skill that removes AI writing patterns while preserving the writer voice. Works with Claude Code, Codex, OpenClaw, Cursor, and more.",
+  "scores": {
+   "writing": 0.77,
+   "detector": 0.91,
+   "chinese": 0.03,
+   "code": 0.14,
+   "design": 0.05,
+   "rules": 0.77
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "beavis07/slop-detector",
+  "stars": 12,
+  "description": "AI Slop to detect AI Slop",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.96,
+   "chinese": 0.02,
+   "code": 0.05,
+   "design": 0.07,
+   "rules": 0.06
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "odinfree/stop-slop-refined",
+  "stars": 12,
+  "description": "A public writing skill for removing common AI patterns from prose.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.89,
+   "chinese": 0.03,
+   "code": 0.09,
+   "design": 0.06,
+   "rules": 0.86
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "cglabs-ai/guardian",
+  "stars": 12,
+  "description": "Stop AI slop before it hits your codebase",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.27,
+   "chinese": 0.02,
+   "code": 0.18,
+   "design": 0.1,
+   "rules": 0.21
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "walterwritesai/walter-skills",
+  "stars": 11,
+  "description": "Free Claude skills for SEO content: AI humanizer, AI detection bypass, keyword preservation, agency QC, local SEO, programmatic SEO, content repurposing. Drop-in markdown for Claude projects. MIT licensed.",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.73,
+   "chinese": 0.03,
+   "code": 0.12,
+   "design": 0.1,
+   "rules": 0.49
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "cm2435/slopcop",
+  "stars": 11,
+  "description": "Fast Python linter for catching LLM-generated anti-patterns. Written in Rust, built on tree-sitter.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.96,
+   "chinese": 0.02,
+   "code": 0.68,
+   "design": 0.05,
+   "rules": 0.31
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Octember/stupify",
+  "stars": 11,
+  "description": "anti-slop code reviewer",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.81,
+   "chinese": 0.02,
+   "code": 0.66,
+   "design": 0.29,
+   "rules": 0.31
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "styrene-lab/lipstyk",
+  "stars": 11,
+  "description": "Anti-AI-slop code analysis — detects machine-generated code patterns across Rust, TS/JS, Python, HTML/CSS",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.97,
+   "chinese": 0.01,
+   "code": 0.18,
+   "design": 0.08,
+   "rules": 0.33
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "TinyFrontier/anti-slop-py",
+  "stars": 11,
+  "description": "A deterministic Python linter that catches AI coding agents silencing type checkers without adding evidence.",
+  "scores": {
+   "detector": 0.97,
+   "chinese": 0.01,
+   "code": 0.33,
+   "design": 0.05,
+   "rules": 0.32,
+   "writing": 0.03
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "machinemade-mm/humanmade-antislop",
+  "stars": 11,
+  "description": "Anti-AI slop scientific writing skill for Claude Code. Or: Scientific writing with a human voice.",
+  "scores": {
+   "writing": 0.71,
+   "detector": 0.2,
+   "chinese": 0.04,
+   "code": 0.17,
+   "design": 0.09,
+   "rules": 0.68
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "leeguooooo/stop-slop-zh",
+  "stars": 11,
+  "description": "消除中文 AI 写作痕迹的 Claude Skill：拆排比三件套、去名词化、换抽象主语为具体细节。灵感来自 hardikpandya/stop-slop。",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.94,
+   "chinese": 0.99,
+   "code": 0.06,
+   "design": 0.03,
+   "rules": 0.97
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "0xNyk/unmachined",
+  "stars": 10,
+  "description": "Anti-AI-slop agent skill: makes text read written and UI look made, not generated. Deterministic scanners + severity-tiered tell catalogs.",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.98,
+   "chinese": 0.05,
+   "code": 0.23,
+   "design": 0.84,
+   "rules": 0.77
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "kmaida/deslop-skills",
+  "stars": 10,
+  "description": "Skills for AI agents to remove or prevent slop in generated frontend UI design and written content.",
+  "scores": {
+   "writing": 0.6,
+   "detector": 0.29,
+   "chinese": 0.05,
+   "code": 0.2,
+   "design": 0.95,
+   "rules": 0.9
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "jiutianxvanyin/humanizer-formal",
+  "stars": 10,
+  "description": "Reduce the \"AI-generated\" feel in business and academic texts; applicable to both Chinese and English. 降低商务与学术文本的 AI 生成感，中英文均适用。",
+  "scores": {
+   "writing": 0.45,
+   "detector": 0.41,
+   "chinese": 0.46,
+   "code": 0.05,
+   "design": 0.03,
+   "rules": 0.92
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "tomerose/stop-slop",
+  "stars": 10,
+  "description": "去AI味写作技能 — 5维评分体系，检测41种AI反模式。让 Claude/Cursor/Copilot 写出人话。Claude Code Skill，支持中英文。",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.98,
+   "chinese": 0.3,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.91
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "MauroPello/stop-the-slop",
+  "stars": 10,
+  "description": "🚫 Spot AI-generated YouTube scripts and content farms in real-time. Open-source browser extension for Chrome & Firefox with thumbnail badges and sentence heatmaps.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.97,
+   "chinese": 0.01,
+   "code": 0.21,
+   "design": 0.26,
+   "rules": 0.02
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "impactcrew/dont-be-a-sloperator",
+  "stars": 10,
+  "description": "Don't be a sloperator. Ten rules that stop AI from writing and behaving like naked AI. Principle-based, not vocabulary bans. Includes a bonus /work skill that forces thinking before output. Works with Claude Code, ChatGPT, Gemini, or any LLM.",
+  "scores": {
+   "writing": 0.56,
+   "detector": 0.13,
+   "chinese": 0.03,
+   "code": 0.32,
+   "design": 0.22,
+   "rules": 0.95
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "LeahLiang/humanizer",
+  "stars": 9,
+  "description": "降AI率改写Skill，包括知网、维普、Turnitin等AI检测平台。支持中英文，不引入错误、口语或过于复杂的语言，保持可读性和学术规范。官网地址为https://ushallpass.ai/",
+  "scores": {
+   "writing": 0.87,
+   "detector": 0.09,
+   "chinese": 0.62,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.12
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "OthmanAdi/humanizer-semitic",
+  "stars": 9,
+  "description": "AI text humanizer skills for Arabic (MSA, Egyptian, Levantine) and Hebrew — zero AI tells",
+  "scores": {
+   "writing": 0.86,
+   "detector": 0.71,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.86
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "timolabs-ai/claude-humanize-skill",
+  "stars": 9,
+  "description": "Claude Code skill (/humanize). Strips AI writing patterns from content via five editorial layers: vocabulary, sentence shape, bullet rhythm, paragraph structure, and section narration.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.14,
+   "chinese": 0.04,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.74
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "aplaceforallmystuff/claude-slop-detector",
+  "stars": 9,
+  "description": "Claude Code skill for detecting AI-generated writing patterns (slop) in content",
+  "scores": {
+   "code": 0.09,
+   "design": 0.08,
+   "rules": 0.7,
+   "writing": 0.24,
+   "detector": 0.98,
+   "chinese": 0.03
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "dixon2004/ai-humanizer",
+  "stars": 9,
+  "description": "AI Humanizer is a free, open-source tool that rewrites AI-generated text to sound more natural, fluent, and human.",
+  "scores": {
+   "rules": 0.07,
+   "writing": 0.94,
+   "detector": 0.08,
+   "chinese": 0.04,
+   "code": 0.12,
+   "design": 0.11
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Albert-Lsk/alskai-deai-writer",
+  "stars": 9,
+  "description": "去除AI生成文本的AI味，支持4种风格(专业商务/技术科普/亲和对话/学术研究)",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.95,
+   "chinese": 0.94,
+   "code": 0.11,
+   "design": 0.07,
+   "rules": 0.42
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "evelynyaxueke/anti-ai-writing-kit-zh",
+  "stars": 9,
+  "description": "可定制、可维护的 agentic 中文去 AI 味写作系统，用于写作、编辑、改写、润色和审稿。",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.87,
+   "chinese": 0.99,
+   "code": 0.09,
+   "design": 0.04,
+   "rules": 0.94
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "puneethkotha/humanizer-workbench",
+  "stars": 8,
+  "description": "AI humanizer: CLI tool and Claude Code skill for rewriting AI-generated text into natural human writing.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.97,
+   "chinese": 0.03,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.14
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Aaron-Bushnell/humanizer",
+  "stars": 8,
+  "description": "Detect 47 AI writing patterns and rewrite text in 5 human voice profiles. A Claude Code skill backed by ICML 2025 research on token-probability distributions.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.95,
+   "chinese": 0.11,
+   "code": 0.26,
+   "design": 0.07,
+   "rules": 0.5
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "apoapostolov/humanizer",
+  "stars": 8,
+  "description": "Humanizer is an AI writing skill that detects and rewrites common signs of AI-generated prose. It helps agents preserve meaning, match audience and tone, reduce hype and filler, and produce writing that sounds natural, specific, and human across drafts, posts, docs, and messages.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.95,
+   "chinese": 0.03,
+   "code": 0.18,
+   "design": 0.06,
+   "rules": 0.69
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "pielas-activy/humanizer-pl",
+  "stars": 8,
+  "description": "Dwujęzyczny (PL+EN) humanizer / de-slop skill dla Claude Code. Fork blader/humanizer + warstwa polskiej naturalności + eksperyment: czy Bielik (polski LLM) jest dobrym recenzentem polszczyzny.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.71,
+   "chinese": 0.01,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.66
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "nordefors-max/claude-humanizer-svenska",
+  "stars": 8,
+  "description": "Claude skill that removes AI writing patterns from Swedish professional text. Covers 16 pattern types including significance inflation, nominalization overuse, passive voice as false formality, anglification, and bullet/emoji formatting. Tuned for Nordic professional voice.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.35,
+   "chinese": 0.01,
+   "code": 0.05,
+   "design": 0.03,
+   "rules": 0.84
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "KondrashovDenis/claude-humanizer-ru-skill",
+  "stars": 8,
+  "description": "Claude Code skill для чистки русских текстов от AI-штампов. Адаптация blader/humanizer: канцелярит, кальки, раздутая значимость + типографическая деградация и режим аудита.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.95,
+   "chinese": 0.01,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.77
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "tentenco/shuorenhua-zh-tw",
+  "stars": 8,
+  "description": "繁體中文（臺灣）AI 味清理 Skill：去 AI 腔、清中港用語、修簡轉繁錯字、教育部標點、七種出版語體。AI humanizer skill for Traditional Chinese (Taiwan) — Claude Code / Codex / Cursor / ChatGPT.",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.87,
+   "chinese": 0.98,
+   "code": 0.16,
+   "design": 0.04,
+   "rules": 0.84
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "evergreentree97/K-Humanizer",
+  "stars": 8,
+  "description": "An Agent Skill that makes LLM-written Korean sound natural to Korean readers while preserving facts, numbers, and domain-specific terminology.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.11,
+   "chinese": 0.01,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.66
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "nagameTW/formosa-humanizer",
+  "stars": 8,
+  "description": "blader/humanizer 的繁中版，讓 AI 生成的中文內容看起來更像人寫的。含中國用語偵測和中文標點規則等 49 種模式，支援 Claude Code、Codex 等 Agent",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.74,
+   "chinese": 0.98,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.82
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "zaterka/anti-slop-python",
+  "stars": 8,
+  "description": "",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.89,
+   "chinese": 0.02,
+   "code": 0.44,
+   "design": 0.05,
+   "rules": 0.79
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Hayatelin/taste-skill-zh-CN",
+  "stars": 8,
+  "description": "Taste Skill Simplified Chinese edition - anti-slop frontend design skills for AI agents",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.15,
+   "chinese": 0.06,
+   "code": 0.22,
+   "design": 0.97,
+   "rules": 0.94
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "bnivanov/omp-writing-skills",
+  "stars": 8,
+  "description": "Production-grade, anti-slop AI writing suite for agent harnesses with voice calibration, craft rules, de-slop editor, and deterministic AST linting",
+  "scores": {
+   "writing": 0.68,
+   "detector": 0.98,
+   "chinese": 0.04,
+   "code": 0.32,
+   "design": 0.09,
+   "rules": 0.64
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "theserverlessdev/wsc",
+  "stars": 8,
+  "description": "Prose linter + AI-slop detector: weasel words, passive voice, hedging, and 190+ research-cited AI tells. Web editor, API, MCP server, CLI, GitHub Action.",
+  "scores": {
+   "writing": 0.15,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.09,
+   "design": 0.16,
+   "rules": 0.26
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "fanjack510-ctrl/chinese-webnovel-editor",
+  "stars": 8,
+  "description": "面向中文网络小说的逐镜头去AI味审查与精修 Skill",
+  "scores": {
+   "writing": 0.16,
+   "detector": 0.1,
+   "chinese": 0.97,
+   "code": 0.12,
+   "design": 0.04,
+   "rules": 0.68
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "fqy9242/TextAIGCreducer",
+  "stars": 8,
+  "description": "文本、论文、段落去ai味、降AI率:基于AI, 使用AI来降低论文/文本AI率, 用魔法来打败魔法",
+  "scores": {
+   "writing": 0.84,
+   "detector": 0.92,
+   "chinese": 0.95,
+   "code": 0.14,
+   "design": 0.15,
+   "rules": 0.06
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "Zeng-xiangkai/humanizer-document-zh",
+  "stars": 7,
+  "description": "一个 Claude Code Skill，用于识别并移除 LLM 生成论文的典型痕迹。基于知乎高赞回答（最高 757 赞）、Wikipedia \"Signs of AI writing\" 等来源，总结了 **28 种常见 AI 写作模式**，配合四层自检体系，系统性地去除\"AI 味\"。",
+  "scores": {
+   "design": 0.04,
+   "rules": 0.91,
+   "writing": 0.71,
+   "detector": 0.83,
+   "chinese": 0.99,
+   "code": 0.07
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "ferr079/humanizer-fr",
+  "stars": 7,
+  "description": "Fork français du skill Claude Code « humanizer » (blader/humanizer, MIT) — 33 motifs d'écriture IA adaptés au français",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.44,
+   "chinese": 0.01,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.92
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "deedeekong07-alt/fiction-humanizer-zh",
+  "stars": 7,
+  "description": "Chinese fiction de-AI writing skill for AI-assisted novel creation",
+  "scores": {
+   "writing": 0.29,
+   "detector": 0.34,
+   "chinese": 0.98,
+   "code": 0.07,
+   "design": 0.03,
+   "rules": 0.71
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "musharrafff/humanizer_v2",
+  "stars": 7,
+  "description": "Write like some of the best writers of our time. This skill goes beyond removing AI patterns from writing and writes like an actual human",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.58,
+   "chinese": 0.03,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.57
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "behzadsp/humanized-writing-skill",
+  "stars": 7,
+  "description": "Agent-agnostic skill for writing natural, humanized, SEO-focused articles and blog content without robotic AI patterns.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.16,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.03,
+   "rules": 0.79
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "aeopress/writing-skills.TW",
+  "stars": 7,
+  "description": "繁體中文寫作 skill 工具鏈 for Claude Code：humanizer-tw（去 AI 味）+ good-writing-zh（節奏打磨：PG／余光中／王鼎鈞 + 技術文件保守模式）+ fable-econ／fable-explore（Amanda Askell 寓言式概念學習）",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.5,
+   "chinese": 0.9,
+   "code": 0.12,
+   "design": 0.07,
+   "rules": 0.64
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "forint573/human-copywrite",
+  "stars": 7,
+  "description": "A Claude Agent Skill that humanizes AI-written marketing and long-form copy: landing pages, sales pages, e-books, case studies, founder notes. Removes AI tells and process bleed, de-slops prose, strips em dashes, never invents facts, keeps your brand voice.",
+  "scores": {
+   "writing": 0.84,
+   "detector": 0.89,
+   "chinese": 0.03,
+   "code": 0.07,
+   "design": 0.06,
+   "rules": 0.45
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Floka-as/floka-marketplace",
+  "stars": 7,
+  "description": "Claude Code plugins from Floka AS — Norwegian-flavored AI tooling: humanizer (AI-writing scrub + Norwegian patterns), board (build a personal advisory board), translate-to-no (English → idiomatic Norwegian), forge (our personal coding harness for contracts and automated development)",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.75,
+   "chinese": 0.02,
+   "code": 0.15,
+   "design": 0.15,
+   "rules": 0.18
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "NorbertBodziony/biome-anti-slop",
+  "stars": 7,
+  "description": "Opinionated Biome GritQL rules for rejecting low-evidence TypeScript patterns",
+  "scores": {
+   "writing": 0.02,
+   "detector": 0.53,
+   "chinese": 0.01,
+   "code": 0.27,
+   "design": 0.03,
+   "rules": 0.21
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "kesslerio/ultimate-frontend-design-openclaw-skill",
+  "stars": 7,
+  "description": "🎨 Create distinctive static sites with React, Tailwind, shadcn/ui — no mockups needed. Anti-AI-slop design, mobile-first patterns, single-file bundling.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.07,
+   "chinese": 0.02,
+   "code": 0.35,
+   "design": 0.96,
+   "rules": 0.2
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "agent-sh/deslop",
+  "stars": 7,
+  "description": "AI slop cleanup with minimal diffs and behavior preservation",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.93,
+   "chinese": 0.02,
+   "code": 0.94,
+   "design": 0.06,
+   "rules": 0.07
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "RobinZorro86/humanizer-zh-plus",
+  "stars": 7,
+  "description": "中文文本去AI味增强工具。34种Pattern（29原版+5中文特有），适用于所有中文写作场景",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.69,
+   "chinese": 0.99,
+   "code": 0.13,
+   "design": 0.04,
+   "rules": 0.9
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "saidkaban/evalmedia",
+  "stars": 7,
+  "description": "Stop AI slop",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.11,
+   "chinese": 0.02,
+   "code": 0.29,
+   "design": 0.59,
+   "rules": 0.04
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "diaiq/claude-skill-humanizer",
+  "stars": 6,
+  "description": "Free Claude Code skill to humanize AI-generated text. Bypass GPTZero, Turnitin, and other AI detectors. Powered by DiaIQ.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.09,
+   "chinese": 0.05,
+   "code": 0.13,
+   "design": 0.07,
+   "rules": 0.11
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "lokicik/novel-idea-hunter",
+  "stars": 6,
+  "description": "Evidence-first, anti-slop opportunity discovery skill for coding agents (Claude Code + Codex)",
+  "scores": {
+   "design": 0.07,
+   "rules": 0.27,
+   "writing": 0.03,
+   "detector": 0.78,
+   "chinese": 0.01,
+   "code": 0.15
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Lowcountry-AI/guardrail-skills",
+  "stars": 6,
+  "description": "Three small, independent guardrails for AI coding agents: an anti-AI-slop writing checklist, a code-comment hygiene checklist, and a standing multi-agent orchestration recipe hook.",
+  "scores": {
+   "writing": 0.6,
+   "detector": 0.94,
+   "chinese": 0.03,
+   "code": 0.62,
+   "design": 0.08,
+   "rules": 0.71
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "godagoo/slopcheck-deslop",
+  "stars": 6,
+  "description": "Measure and stop structural erosion in AI-written TypeScript. Slop Check finds the mess, the Deslop tools clean it. Based on SlopCodeBench (arXiv:2603.24755).",
+  "scores": {
+   "rules": 0.06,
+   "writing": 0.03,
+   "detector": 0.95,
+   "chinese": 0.01,
+   "code": 0.34,
+   "design": 0.04
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "LanNguyenSi/agent-dx",
+  "stars": 6,
+  "description": "Monorepo workshop for agent-development tooling: orchestrator-workflow and okf-kit ship on npm; slop-detector is the AI-slop linter for PRs.",
+  "scores": {
+   "writing": 0.09,
+   "detector": 0.95,
+   "chinese": 0.04,
+   "code": 0.43,
+   "design": 0.11,
+   "rules": 0.11
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "barbodshafiee0012-hash/student-exam-skill",
+  "stars": 5,
+  "description": "A Claude skill that answers exam questions exactly like a university student — concise, humanized, and always referenced to Iranian university textbooks. No extra explanation, just the right answer.",
+  "scores": {
+   "design": 0.05,
+   "rules": 0.63,
+   "writing": 0.07,
+   "detector": 0.03,
+   "chinese": 0.01,
+   "code": 0.15
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "humanizer-tools/slop-humanizer",
+  "stars": 5,
+  "description": "A Claude skill that strips AI writing patterns and rewrites text to sound human. Synthesized from 8 humanizer repos.",
+  "scores": {
+   "rules": 0.58,
+   "writing": 0.94,
+   "detector": 0.93,
+   "chinese": 0.05,
+   "code": 0.1,
+   "design": 0.05
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "matsutouya/humanizer-ja",
+  "stars": 5,
+  "description": "Claude Code skill that removes signs of AI-generated writing from Japanese text",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.38,
+   "chinese": 0.01,
+   "code": 0.06,
+   "design": 0.03,
+   "rules": 0.9
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "Dexxter182/humanizer-hu",
+  "stars": 5,
+  "description": "Magyar írásstílus-skill agenteknek: a kimenet ne hangozzon AI-nak. Írás közben ad szabályokat, nem a kész szöveget javítja utólag. Csak azt állítja, amit a forrás tartalmaz. 26 minta, dokumentumszintű döntések és LLM nélkül futó lint. Claude Code, Codex, Cursor, Copilot, Gemini CLI és 74 további agent. Hungarian humanizer / anti-AI-slop skill.",
+  "scores": {
+   "detector": 0.7,
+   "chinese": 0.01,
+   "code": 0.12,
+   "design": 0.05,
+   "rules": 0.95,
+   "writing": 0.37
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "daniel-bogale/anti-ai-writing-humanizer",
+  "stars": 5,
+  "description": "Humanize AI-written text — a portable agent skill that writes or rewrites prose to remove AI tells. Works in Claude Code, Cursor, Codex, OpenClaw.",
+  "scores": {
+   "writing": 0.97,
+   "detector": 0.95,
+   "chinese": 0.03,
+   "code": 0.1,
+   "design": 0.04,
+   "rules": 0.67
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "durmazoguzhan/turkish-humanify",
+  "stars": 5,
+  "description": "Turkish humanizer skill for Claude and Claude Code. Rewrites AI-sounding Turkish into Turkish a person would have written: native sentence architecture, register-aware dosing, technical terms kept. Türkçe humanizer / yapay zeka metni insanlaştırma.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.13,
+   "chinese": 0.01,
+   "code": 0.12,
+   "design": 0.04,
+   "rules": 0.67
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "rephrasyai/rephrasy-skills",
+  "stars": 5,
+  "description": "Free content skills for AI agents. Humanize AI text, keep your keywords intact, ship agency-quality drafts. Free, MIT, works across Claude Code, Codex, Cursor and ChatGPT.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.85,
+   "chinese": 0.04,
+   "code": 0.12,
+   "design": 0.07,
+   "rules": 0.51
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "NocodeMrLi/mr-li-writer-skill",
+  "stars": 5,
+  "description": "Mr.Li Writer is an anti-AI-tone Chinese long-form writing skill. It first evaluates whether your idea is worth writing and helps you find a distinctive angle, then designs a unique opening and title for each piece, and delivers the final draft in a concrete, opinionated, humanized voice—ready to publish across platforms.",
+  "scores": {
+   "writing": 0.78,
+   "detector": 0.66,
+   "chinese": 0.96,
+   "code": 0.29,
+   "design": 0.14,
+   "rules": 0.25
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "local-over/Anti-Slop-UI",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.11,
+   "chinese": 0.02,
+   "code": 0.25,
+   "design": 0.91,
+   "rules": 0.87
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "rohunvora/anti-slop-library",
+  "stars": 5,
+  "description": "library of ui references that prevent ai's from creating vibecode slop",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.69,
+   "chinese": 0.02,
+   "code": 0.11,
+   "design": 0.94,
+   "rules": 0.44
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "jferracini/anti-slop-os",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.77,
+   "chinese": 0.02,
+   "code": 0.21,
+   "design": 0.96,
+   "rules": 0.77
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "AMishradev/outbound-writing",
+  "stars": 5,
+  "description": "A Claude Code skill that strips AI tells out of cold email. Anti-slop engine for startup outbound to technical people.",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.37,
+   "chinese": 0.02,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.92
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "nakashimatakaya/deslop-ja",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.85,
+   "chinese": 0.01,
+   "code": 0.11,
+   "design": 0.05,
+   "rules": 0.96
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "liuxiaobai8868/ai-slop-detector",
+  "stars": 5,
+  "description": "多语言 AI 味检测与去 AI 化工具集 · Multilingual AI-slop detector & de-slopping toolkit (zh/en/es/ar/hi)",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.98,
+   "chinese": 0.37,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.36
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Khushiyant/humano",
+  "stars": 5,
+  "description": "A Python package for humanizing AI-generated or robotic text using techniques like DIPPER, HMGC, and ADAT.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.72,
+   "chinese": 0.05,
+   "code": 0.11,
+   "design": 0.04,
+   "rules": 0.11
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "lxgicstudios/humanize-cli",
+  "stars": 5,
+  "description": "CLI tool to detect AI-generated text patterns and improve writing to avoid detection. Score, analyze, and humanize content.",
+  "scores": {
+   "detector": 0.97,
+   "chinese": 0.05,
+   "code": 0.1,
+   "design": 0.07,
+   "rules": 0.19,
+   "writing": 0.88
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "evoworkAI/xiaoci-skill",
+  "stars": 5,
+  "description": "消磁 · 中文去 AI 味 skill：用密度门限和反向清单，替代流行的 AI 味特征清单",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.76,
+   "chinese": 0.99,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.94
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "dbhosbu-dotcom/renwei",
+  "stars": 5,
+  "description": "人味 Renwei — 书稿级中文去 AI 味 / Book-length Chinese AI humanizer. 51 rules covering AI tells, Euro-Chinese syntax, whole-book consistency & positive prose craft. Ships a token-free lint CLI. AGENTS.md compatible.",
+  "scores": {
+   "detector": 0.97,
+   "chinese": 0.98,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.85,
+   "writing": 0.64
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "M1kasaYU/paper-expression-editor-skill",
+  "stars": 5,
+  "description": "论文去AI化表述（论文去AI味、学术论文润色）：面向中文论文与开题报告的表达评阅和去模板化改写 | Chinese academic writing editor for Codex",
+  "scores": {
+   "writing": 0.31,
+   "detector": 0.7,
+   "chinese": 0.98,
+   "code": 0.07,
+   "design": 0.06,
+   "rules": 0.6
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "win4r/jev-humanize-writing",
+  "stars": 5,
+  "description": "Jev 辅助去 AI 味写作：保留事实、归因与作者语气 | Natural prose editing with Jev-assisted fidelity review",
+  "scores": {
+   "writing": 0.45,
+   "detector": 0.19,
+   "chinese": 0.7,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.2
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "wdkang123/stop-slop-zh",
+  "stars": 5,
+  "description": "Chinese LLM writing Skill for reducing predictable AI prose patterns without changing facts or author voice.",
+  "scores": {
+   "writing": 0.74,
+   "detector": 0.09,
+   "chinese": 0.99,
+   "code": 0.07,
+   "design": 0.03,
+   "rules": 0.96
+  },
+  "kind": "chinese"
+ }
+]

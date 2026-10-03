@@ -1,0 +1,2056 @@
+[
+ {
+  "repo": "kepano/obsidian-skills",
+  "stars": 49109,
+  "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
+  "scores": {
+   "skill": 0.98,
+   "mcp": 0.08,
+   "plugin": 0.07,
+   "second_brain": 0.09,
+   "sync": 0.56
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "YishenTu/claudian",
+  "stars": 15572,
+  "description": "An Obsidian plugin that embeds Claude Code/Codex as an AI collaborator in your vault",
+  "scores": {
+   "skill": 0.15,
+   "mcp": 0.66,
+   "plugin": 0.97,
+   "second_brain": 0.09,
+   "sync": 0.11
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "AgriciDaniel/claude-obsidian",
+  "stars": 15335,
+  "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "skill": 0.92,
+   "mcp": 0.28,
+   "plugin": 0.17,
+   "second_brain": 0.86,
+   "sync": 0.85
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "codexu/note-gen",
+  "stars": 12860,
+  "description": "Capture first. Organize later. A local-first Markdown app that turns scattered records into clear notes with AI.",
+  "scores": {
+   "skill": 0.05,
+   "mcp": 0.05,
+   "plugin": 0.04,
+   "second_brain": 0.07,
+   "sync": 0.1
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "logancyang/obsidian-copilot",
+  "stars": 7782,
+  "description": "Run agents in Obsidian - OpenCode, Codex, Claude Code etc.",
+  "scores": {
+   "skill": 0.2,
+   "mcp": 0.32,
+   "plugin": 0.97,
+   "second_brain": 0.1,
+   "sync": 0.14
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "breferrari/obsidian-mind",
+  "stars": 4874,
+  "description": "A self-organizing Obsidian vault that gives AI coding agents persistent memory.",
+  "scores": {
+   "second_brain": 0.89,
+   "sync": 0.62,
+   "skill": 0.63,
+   "mcp": 0.13,
+   "plugin": 0.08
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "eugeniughelbur/obsidian-second-brain",
+  "stars": 4667,
+  "description": "Persistent memory for Claude Code and 6 other CLI agents, stored as plain markdown in your Obsidian vault. Stop re-explaining your projects, decisions and people every session. 45 commands: hybrid semantic search, self-rewriting notes, key-less web research, and scheduled agents that maintain the vault while you sleep.",
+  "scores": {
+   "skill": 0.91,
+   "mcp": 0.42,
+   "plugin": 0.25,
+   "second_brain": 0.86,
+   "sync": 0.75
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "MarkusPfundstein/mcp-obsidian",
+  "stars": 4455,
+  "description": "MCP server that interacts with Obsidian via the Obsidian rest API community plugin",
+  "scores": {
+   "skill": 0.42,
+   "mcp": 0.98,
+   "plugin": 0.06,
+   "second_brain": 0.12,
+   "sync": 0.83
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "inkeep/open-knowledge",
+  "stars": 4374,
+  "description": "Beautiful, AI-native markdown IDE and LLM wiki",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.16,
+   "plugin": 0.04,
+   "second_brain": 0.1,
+   "sync": 0.14
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "axtonliu/axton-obsidian-visual-skills",
+  "stars": 3632,
+  "description": "Visual Skills Pack for Obsidian: generate Canvas, Excalidraw, and Mermaid diagrams from text with Claude Code",
+  "scores": {
+   "skill": 0.85,
+   "mcp": 0.03,
+   "plugin": 0.07,
+   "second_brain": 0.06,
+   "sync": 0.25
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "SamurAIGPT/llm-wiki-agent",
+  "stars": 3585,
+  "description": "A personal knowledge base that builds and maintains itself. Drop in sources — Claude (or Codex/Gemini) reads them, extracts knowledge, and maintains a persistent interlinked wiki. Works with Claude Code, Codex, OpenCode, Gemini CLI. No API key needed.",
+  "scores": {
+   "skill": 0.38,
+   "mcp": 0.06,
+   "plugin": 0.04,
+   "second_brain": 0.16,
+   "sync": 0.13
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Ar9av/obsidian-wiki",
+  "stars": 3517,
+  "description": "Framework for AI agents to build and maintain a digital brain through Obsidian wiki | Memory System for Agents",
+  "scores": {
+   "plugin": 0.11,
+   "second_brain": 0.73,
+   "sync": 0.86,
+   "skill": 0.92,
+   "mcp": 0.21
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "agenticnotetaking/arscontexta",
+  "stars": 3487,
+  "description": "Claude Code plugin that generates individualized knowledge systems from conversation. You describe how you think and work, have a conversation and get a complete second brain as markdown files you own.",
+  "scores": {
+   "skill": 0.17,
+   "mcp": 0.04,
+   "plugin": 0.03,
+   "second_brain": 0.27,
+   "sync": 0.07
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "coddingtonbear/obsidian-local-rest-api",
+  "stars": 2984,
+  "description": "A secure REST API and Model Context Protocol (MCP) server for your vault.",
+  "scores": {
+   "skill": 0.14,
+   "mcp": 0.96,
+   "plugin": 0.16,
+   "second_brain": 0.06,
+   "sync": 0.33
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "RAIT-09/obsidian-agent-client",
+  "stars": 2441,
+  "description": "Bring AI agents into Obsidian via Agent Client Protocol (ACP), such as Claude Code, Codex and Gemini CLI.",
+  "scores": {
+   "skill": 0.11,
+   "mcp": 0.67,
+   "plugin": 0.97,
+   "second_brain": 0.06,
+   "sync": 0.31
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Astro-Han/karpathy-llm-wiki",
+  "stars": 2398,
+  "description": "Agent Skills-compatible LLM wiki for Claude Code, Cursor, and Codex. Build a Karpathy-style knowledge base from raw sources, citations, and linting.",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.03,
+   "plugin": 0.03,
+   "second_brain": 0.08,
+   "sync": 0.07
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "nhaouari/obsidian-textgenerator-plugin",
+  "stars": 1990,
+  "description": "Text Generator is a versatile plugin for Obsidian that allows you to generate text content using various AI providers, including OpenAI, Anthropic, Google and local models.",
+  "scores": {
+   "skill": 0.06,
+   "mcp": 0.05,
+   "plugin": 0.8,
+   "second_brain": 0.09,
+   "sync": 0.16
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ballred/obsidian-claude-pkm",
+  "stars": 1875,
+  "description": "A complete starter kit for an Obsidian + Claude Code personal knowledge management system.",
+  "scores": {
+   "skill": 0.7,
+   "mcp": 0.11,
+   "plugin": 0.07,
+   "second_brain": 0.91,
+   "sync": 0.12
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "juliye2025/evil-read-arxiv",
+  "stars": 1685,
+  "description": "Claude Code+Obsidian，邪修读论文就是快",
+  "scores": {
+   "skill": 0.85,
+   "mcp": 0.12,
+   "plugin": 0.07,
+   "second_brain": 0.45,
+   "sync": 0.54
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "bitbonsai/mcpvault",
+  "stars": 1675,
+  "description": "A lightweight Model Context Protocol (MCP) server for safe Obsidian vault access",
+  "scores": {
+   "sync": 0.41,
+   "skill": 0.21,
+   "mcp": 0.98,
+   "plugin": 0.04,
+   "second_brain": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lucasastorian/llmwiki",
+  "stars": 1598,
+  "description": "Open Source Implementation of Karpathy's LLM Wiki. Upload documents, connect your Claude account via MCP, and have it write your wiki !",
+  "scores": {
+   "skill": 0.06,
+   "mcp": 0.1,
+   "plugin": 0.03,
+   "second_brain": 0.06,
+   "sync": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "alchaincyf/obsidian-ai-orange-book",
+  "stars": 1462,
+  "description": "Obsidian + Claude Code: Rebuild Your Second Brain with AI · 橙皮书系列 · 用AI重建你的第二大脑",
+  "scores": {
+   "skill": 0.28,
+   "mcp": 0.03,
+   "plugin": 0.03,
+   "second_brain": 0.68,
+   "sync": 0.33
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "Lapis0x0/obsidian-yolo",
+  "stars": 1356,
+  "description": "Agent-native AI assistant — chat, write, whiteboard, learning, all in one.",
+  "scores": {
+   "skill": 0.18,
+   "mcp": 0.43,
+   "plugin": 0.94,
+   "second_brain": 0.3,
+   "sync": 0.23
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "bevibing/tutor-skills",
+  "stars": 1313,
+  "description": "A Claude Code skill that turns PDFs, docs, and codebases into Obsidian study vaults",
+  "scores": {
+   "skill": 0.85,
+   "mcp": 0.09,
+   "plugin": 0.04,
+   "second_brain": 0.39,
+   "sync": 0.7
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "s2b-dev/smart-second-brain",
+  "stars": 1305,
+  "description": "A free, open-source Obsidian plugin that makes your vault smarter: better search, an interactive knowledge graph, and an AI assistant that knows your notes.",
+  "scores": {
+   "skill": 0.09,
+   "mcp": 0.19,
+   "plugin": 0.95,
+   "second_brain": 0.21,
+   "sync": 0.08
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "917Dhj/DeepPaperNote",
+  "stars": 1148,
+  "description": "DeepPaperNote is an agent skill for deep-reading a single paper and generating high-quality Obsidian-style research notes. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+  "scores": {
+   "skill": 0.91,
+   "mcp": 0.07,
+   "plugin": 0.07,
+   "second_brain": 0.13,
+   "sync": 0.85
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "undefined-ui/second-brain-os",
+  "stars": 886,
+  "description": "An AI second brain that maintains itself. Full guide, starter vault, agent skills and scripts for a self-organizing knowledge base in Claude Code and Obsidian.",
+  "scores": {
+   "skill": 0.81,
+   "mcp": 0.13,
+   "plugin": 0.06,
+   "second_brain": 0.92,
+   "sync": 0.76
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "Railly/agentfiles",
+  "stars": 849,
+  "description": "Browse, create, and edit AI agent files across Claude Code, Cursor, Codex, and 12 coding tools — from Obsidian.",
+  "scores": {
+   "sync": 0.28,
+   "skill": 0.1,
+   "mcp": 0.1,
+   "plugin": 0.23,
+   "second_brain": 0.08
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "jacksteamdev/obsidian-mcp-tools",
+  "stars": 833,
+  "description": "Add Obsidian integrations like semantic search and custom Templater prompts to Claude or any MCP client.",
+  "scores": {
+   "skill": 0.32,
+   "mcp": 0.92,
+   "plugin": 0.12,
+   "second_brain": 0.08,
+   "sync": 0.38
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "StevenStavrakis/obsidian-mcp",
+  "stars": 738,
+  "description": "A simple MCP server for Obsidian",
+  "scores": {
+   "skill": 0.17,
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.08,
+   "sync": 0.56
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "NicholasSpisak/second-brain",
+  "stars": 734,
+  "description": "LLM-maintained personal knowledge base for Obsidian. Based on Andrej Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "skill": 0.96,
+   "mcp": 0.11,
+   "plugin": 0.07,
+   "second_brain": 0.81,
+   "sync": 0.83
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "cyanheads/obsidian-mcp-server",
+  "stars": 690,
+  "description": "Read, write, search, and surgically edit Obsidian vault notes, tags, and frontmatter via MCP. STDIO or Streamable HTTP.",
+  "scores": {
+   "skill": 0.29,
+   "mcp": 0.98,
+   "plugin": 0.1,
+   "second_brain": 0.15,
+   "sync": 0.4
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jaredrhod/ai-memory-vault",
+  "stars": 687,
+  "description": "Give your AI a real, persistent memory. The open-source system plus templates that turn an Obsidian vault into your AI's working memory. No vector database, just markdown.",
+  "scores": {
+   "skill": 0.76,
+   "mcp": 0.17,
+   "plugin": 0.06,
+   "second_brain": 0.86,
+   "sync": 0.3
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "bitbonsai/mcp-obsidian",
+  "stars": 680,
+  "description": "A lightweight Model Context Protocol (MCP) server for safe Obsidian vault access",
+  "scores": {
+   "skill": 0.24,
+   "mcp": 0.98,
+   "plugin": 0.04,
+   "second_brain": 0.09,
+   "sync": 0.48
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "infiolab/infio-copilot",
+  "stars": 660,
+  "description": "A Cursor-inspired AI assistant for Obsidian that offers smart autocomplete and interactive chat with your selected notes",
+  "scores": {
+   "skill": 0.13,
+   "mcp": 0.21,
+   "plugin": 0.96,
+   "second_brain": 0.15,
+   "sync": 0.1
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ArtemXTech/personal-os-skills",
+  "stars": 537,
+  "description": "Claude Code skills for Obsidian | Claude Code x Obsidian Lab starts May 5",
+  "scores": {
+   "plugin": 0.11,
+   "second_brain": 0.17,
+   "sync": 0.96,
+   "skill": 0.86,
+   "mcp": 0.1
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "nemocake/claude-obsidian-assistant",
+  "stars": 476,
+  "description": "",
+  "scores": {
+   "skill": 0.86,
+   "mcp": 0.15,
+   "plugin": 0.06,
+   "second_brain": 0.8,
+   "sync": 0.93
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "hkcanan/katmer-code",
+  "stars": 474,
+  "description": "Multi-provider AI sidebar for Obsidian — Claude, Gemini, Codex, Antigravity. Per-tab routing, same-tab consult, inline diff, CLAUDE.md auto-mirror, academic research skills.",
+  "scores": {
+   "skill": 0.16,
+   "mcp": 0.12,
+   "plugin": 0.97,
+   "second_brain": 0.06,
+   "sync": 0.14
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "aaronsb/obsidian-mcp-plugin",
+  "stars": 464,
+  "description": "High-performance Model Context Protocol (MCP) server for Obsidian that provides AI tools with direct vault access through semantic operations and HTTP transport.",
+  "scores": {
+   "skill": 0.22,
+   "mcp": 0.98,
+   "plugin": 0.67,
+   "second_brain": 0.1,
+   "sync": 0.4
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "green-dalii/obsidian-llm-wiki",
+  "stars": 458,
+  "description": "Karpathy's LLM Wiki implementation plugin for Obsidian - turns notes and PDFs into a linked, LLM-powered knowledge base with entity pages, concept pages, graph-powered Q&A, and local-first privacy.",
+  "scores": {
+   "plugin": 0.96,
+   "second_brain": 0.27,
+   "sync": 0.44,
+   "skill": 0.05,
+   "mcp": 0.07
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "pablo-mano/Obsidian-CLI-skill",
+  "stars": 451,
+  "description": "Obsidian Skill for Claude Code and other agents ",
+  "scores": {
+   "skill": 0.97,
+   "mcp": 0.23,
+   "plugin": 0.04,
+   "second_brain": 0.15,
+   "sync": 0.52
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "itechmeat/open-second-brain",
+  "stars": 427,
+  "description": "Local-first 🧠 memory for Hermes Agent that lives in your Obsidian vault and remembers project context. Nightly 😴 dream passes turn repeat corrections into confirmed preferences with measurable confidence. Adapters ship for Claude Code, Codex, and OpenClaw, with an MCP server for anything else.",
+  "scores": {
+   "skill": 0.39,
+   "mcp": 0.86,
+   "plugin": 0.09,
+   "second_brain": 0.49,
+   "sync": 0.51
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "chenxiachan/xhs-claude-skills",
+  "stars": 420,
+  "description": "Claude Code slash commands for extracting Xiaohongshu posts into Obsidian notes",
+  "scores": {
+   "skill": 0.88,
+   "mcp": 0.07,
+   "plugin": 0.06,
+   "second_brain": 0.12,
+   "sync": 0.96
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "shannhk/llm-wikid",
+  "stars": 419,
+  "description": "Karpathy-style LLM knowledge base for Obsidian. Clone, run Claude Code, start building your second brain.",
+  "scores": {
+   "skill": 0.76,
+   "mcp": 0.1,
+   "plugin": 0.08,
+   "second_brain": 0.8,
+   "sync": 0.78
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "freestylefly/wesight-obsidian",
+  "stars": 414,
+  "description": "WeSight Obsidian plugin for local agent runtimes.",
+  "scores": {
+   "mcp": 0.19,
+   "plugin": 0.96,
+   "second_brain": 0.07,
+   "sync": 0.85,
+   "skill": 0.22
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "RoundTable02/tutor-skills",
+  "stars": 400,
+  "description": "A Claude Code skill that turns PDFs, docs, and codebases into Obsidian study vaults",
+  "scores": {
+   "skill": 0.87,
+   "mcp": 0.09,
+   "plugin": 0.04,
+   "second_brain": 0.36,
+   "sync": 0.71
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "smixs/agent-second-brain",
+  "stars": 390,
+  "description": "An always-on second brain you talk to. Voice notes in Telegram → typed, linked knowledge in your Obsidian vault. Runs 24/7 on the Claude subscription you already have.",
+  "scores": {
+   "skill": 0.42,
+   "mcp": 0.33,
+   "plugin": 0.06,
+   "second_brain": 0.86,
+   "sync": 0.93
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "qgrail/obsidian-ai-assistant",
+  "stars": 373,
+  "description": "AI Assistant Plugin for Obsidian",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.11,
+   "plugin": 0.92,
+   "second_brain": 0.05,
+   "sync": 0.53
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "iansinnott/obsidian-claude-code-mcp",
+  "stars": 355,
+  "description": "Connect Claude Code and other AI tools to your Obsidian notes using Model Context Protocol (MCP)",
+  "scores": {
+   "skill": 0.18,
+   "mcp": 0.97,
+   "plugin": 0.48,
+   "second_brain": 0.07,
+   "sync": 0.51
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "TarsLab/obsidian-tars",
+  "stars": 330,
+  "description": "Obsidian tars plugin that supports text generation based on tag suggestions, using services like DeepSeek, Claude, OpenAI, OpenRouter, SiliconFlow, Gemini, Ollama, Kimi, Doubao, Qwen, Zhipu, QianFan & more. ",
+  "scores": {
+   "skill": 0.08,
+   "mcp": 0.1,
+   "plugin": 0.89,
+   "second_brain": 0.09,
+   "sync": 0.17
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Encod3d-Sec/TORCH",
+  "stars": 329,
+  "description": "Karpathy LLM based claude harness for PenetrationTesting / Bugbounty using obsidian",
+  "scores": {
+   "skill": 0.87,
+   "mcp": 0.43,
+   "plugin": 0.1,
+   "second_brain": 0.44,
+   "sync": 0.17
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "newtype-01/obsidian-mcp",
+  "stars": 310,
+  "description": "Obsidian MCP (Model Context Protocol) Server",
+  "scores": {
+   "skill": 0.26,
+   "mcp": 0.98,
+   "plugin": 0.07,
+   "second_brain": 0.17,
+   "sync": 0.6
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "AgriciDaniel/claude-canvas",
+  "stars": 297,
+  "description": "AI-orchestrated visual production for Obsidian Canvas. Create presentations, flowcharts, mood boards, knowledge graphs, and galleries with intelligent layout and AI-generated content.",
+  "scores": {
+   "skill": 0.77,
+   "mcp": 0.14,
+   "plugin": 0.15,
+   "second_brain": 0.22,
+   "sync": 0.48
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "GumbyEnder/hermes-kanban",
+  "stars": 276,
+  "description": "A dedicated Obsidian plugin + Hermes skill that turns Hermes into an autonomous project executor using Kanban boards inside your Obsidian vault.",
+  "scores": {
+   "skill": 0.47,
+   "mcp": 0.88,
+   "plugin": 0.69,
+   "second_brain": 0.23,
+   "sync": 0.25
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "pssah4/vault-operator",
+  "stars": 249,
+  "description": "Real AI agent for your vault. Coworker, Copilot & thinking partner, that maintains your memory & knowledge, adapts to your workflows, uses plugins, skills & tools with full safety controls. BYOK & MCP.",
+  "scores": {
+   "skill": 0.27,
+   "mcp": 0.42,
+   "plugin": 0.97,
+   "second_brain": 0.61,
+   "sync": 0.53
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "treylom/knowledge-manager",
+  "stars": 244,
+  "description": "Knowledge Manager Agent for Claude Code - Extract and organize content from web, PDF, social media to Obsidian/Notion",
+  "scores": {
+   "skill": 0.88,
+   "mcp": 0.38,
+   "plugin": 0.19,
+   "second_brain": 0.82,
+   "sync": 0.94
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "clairefro/obsidian-chat-cbt-plugin",
+  "stars": 240,
+  "description": "AI-powered journaling plugin for your Obsidian notes, inspired by cognitive behavioral therapy",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.07,
+   "plugin": 0.92,
+   "second_brain": 0.08,
+   "sync": 0.15
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "dannymcc/Granola-to-Obsidian",
+  "stars": 228,
+  "description": "An Obsidian plugin to automatically sync notes from Granola AI",
+  "scores": {
+   "skill": 0.05,
+   "mcp": 0.07,
+   "plugin": 0.06,
+   "second_brain": 0.2,
+   "sync": 0.98
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "ArtemXTech/claude-code-obsidian-starter",
+  "stars": 225,
+  "description": "Free starter kit: Claude Code + Obsidian. Pre-configured vault with skills for projects, tasks, clients, and daily routines. Just open and go.",
+  "scores": {
+   "skill": 0.75,
+   "mcp": 0.1,
+   "plugin": 0.08,
+   "second_brain": 0.73,
+   "sync": 0.24
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "EESJGong/scholar-skill",
+  "stars": 223,
+  "description": "An OpenClaw skill for academic reading, knowledge linking, reflection, and knowledge evolution in Obsidian.",
+  "scores": {
+   "skill": 0.86,
+   "mcp": 0.12,
+   "plugin": 0.14,
+   "second_brain": 0.66,
+   "sync": 0.38
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "vasilecampeanu/obsidian-weaver",
+  "stars": 222,
+  "description": "Weaver is an Obsidian plugin that integrates a ChatGPT-like interface into your note-taking workflow. This plugin makes it easy to access AI-generated suggestions and insights within Obsidian, helping you improve your writing and brainstorming process.",
+  "scores": {
+   "skill": 0.06,
+   "mcp": 0.05,
+   "plugin": 0.97,
+   "second_brain": 0.08,
+   "sync": 0.15
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Roasbeef/obsidian-claude-code",
+  "stars": 217,
+  "description": "A native Obsidian plugin that embeds Claude as an AI assistant directly within your vault.",
+  "scores": {
+   "skill": 0.12,
+   "mcp": 0.82,
+   "plugin": 0.98,
+   "second_brain": 0.12,
+   "sync": 0.16
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "SIXIANGGUO/cc-note-ops",
+  "stars": 209,
+  "description": "Obsidian note operations panel powered by Claude Code",
+  "scores": {
+   "skill": 0.32,
+   "mcp": 0.17,
+   "plugin": 0.77,
+   "second_brain": 0.32,
+   "sync": 0.88
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "Michael-OvO/obsidian-knowledge-agent",
+  "stars": 205,
+  "description": "Agent-driven pipeline that turns raw material (PDFs, slides, syllabi, papers, URLs) into structured, teaching-quality Obsidian notes: ingest, compile, distribute.",
+  "scores": {
+   "skill": 0.94,
+   "mcp": 0.2,
+   "plugin": 0.38,
+   "second_brain": 0.81,
+   "sync": 0.89
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "XMihura/Kanvas",
+  "stars": 200,
+  "description": "Manage projects visually with humans and AI agents using Obsidian Canvas.",
+  "scores": {
+   "plugin": 0.08,
+   "second_brain": 0.07,
+   "sync": 0.08,
+   "skill": 0.49,
+   "mcp": 0.08
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "avenoxai/avenoxbeyin",
+  "stars": 197,
+  "description": "Your AI second brain in one command — open-source Obsidian + Claude Code system with persistent cross-session memory. avenox.lol/beyin.md",
+  "scores": {
+   "skill": 0.79,
+   "mcp": 0.53,
+   "plugin": 0.26,
+   "second_brain": 0.62,
+   "sync": 0.73
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "gapmiss/obsidian-plugin-skill",
+  "stars": 189,
+  "description": "Agent SKILL for Obsidian.md plugin development",
+  "scores": {
+   "skill": 0.9,
+   "mcp": 0.03,
+   "plugin": 0.04,
+   "second_brain": 0.03,
+   "sync": 0.09
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "jimprosser/obsidian-web-mcp",
+  "stars": 182,
+  "description": "Secure remote MCP server for Obsidian vaults -- access your notes from Claude, your phone, or any MCP client, anywhere. OAuth 2.0 auth, Cloudflare Tunnel, atomic writes safe for Obsidian Sync.",
+  "scores": {
+   "skill": 0.11,
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.07,
+   "sync": 0.71
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "willynikes2/knowledge-base-server",
+  "stars": 179,
+  "description": "Make every AI agent you use smarter. Persistent memory with SQLite FTS5, MCP server, Obsidian sync, and self-learning intelligence pipeline.",
+  "scores": {
+   "skill": 0.14,
+   "mcp": 0.94,
+   "plugin": 0.06,
+   "second_brain": 0.35,
+   "sync": 0.83
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "IssacW228/student-llm-wiki",
+  "stars": 176,
+  "description": "📚 Student LLM Wiki — AI-compiled knowledge base for university students. Drop course slides, get a persistent interlinked wiki. Feynman review, exam prep, confidence decay, cross-course connections. Based on Karpathy's LLM Wiki pattern. Works with Claude Cowork / Claude Code / Claudian + Obsidian.学生大语言模型维基百科——专为大学生打造的AI编译知识库。",
+  "scores": {
+   "skill": 0.79,
+   "mcp": 0.09,
+   "plugin": 0.05,
+   "second_brain": 0.64,
+   "sync": 0.79
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "devwhodevs/engraph",
+  "stars": 171,
+  "description": "Local knowledge graph for AI agents. Hybrid search + MCP server for Obsidian vaults.",
+  "scores": {
+   "skill": 0.18,
+   "mcp": 0.97,
+   "plugin": 0.09,
+   "second_brain": 0.43,
+   "sync": 0.44
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "benoror/obsidianos_work",
+  "stars": 165,
+  "description": "ObsidianOS - Work Vault",
+  "scores": {
+   "skill": 0.91,
+   "mcp": 0.46,
+   "plugin": 0.16,
+   "second_brain": 0.75,
+   "sync": 0.9
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ravila4/claude-adhd-skills",
+  "stars": 155,
+  "description": "Claude Code skills and hooks for staying organized with AI agents.",
+  "scores": {
+   "skill": 0.91,
+   "mcp": 0.09,
+   "plugin": 0.03,
+   "second_brain": 0.51,
+   "sync": 0.69
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Epistates/turbovault",
+  "stars": 154,
+  "description": "Markdown and OFM SDK w/ MCP server that transforms your Obsidian vault into an intelligent knowledge system",
+  "scores": {
+   "skill": 0.19,
+   "mcp": 0.96,
+   "plugin": 0.08,
+   "second_brain": 0.19,
+   "sync": 0.26
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lucagrippa/obsidian-ai-tagger",
+  "stars": 154,
+  "description": "Simplify tagging in Obsidian. Instantly analyze and tag your document with one click for efficient note organization.",
+  "scores": {
+   "skill": 0.05,
+   "mcp": 0.05,
+   "plugin": 0.74,
+   "second_brain": 0.06,
+   "sync": 0.08
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "edonyzpc/personal-assistant",
+  "stars": 148,
+  "description": "A plugin that harnesses AI agents and streamlining techniques to help you automatically manage Obsidian.",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.11,
+   "plugin": 0.96,
+   "second_brain": 0.43,
+   "sync": 0.17
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "rpggio/obsidian-chat-stream",
+  "stars": 145,
+  "description": "Obsidian canvas plugin for using AI completion with threads of canvas nodes",
+  "scores": {
+   "skill": 0.08,
+   "mcp": 0.07,
+   "plugin": 0.9,
+   "second_brain": 0.09,
+   "sync": 0.33
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "h1papc11/healthcare-ai-agent-vault",
+  "stars": 139,
+  "description": "ai agent healthcare vault for family that combines Obsidian templates, AI prompt workflows, and a TypeScript preprocessing pipeline for Apple Health exports",
+  "scores": {
+   "skill": 0.52,
+   "mcp": 0.21,
+   "plugin": 0.1,
+   "second_brain": 0.37,
+   "sync": 0.86
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "kv0906/pm-kit",
+  "stars": 138,
+  "description": "AI-augmented PM workspace for Coding Agents — daily standups, decisions, blockers, docs, and sprint reviews as markdown   skills",
+  "scores": {
+   "skill": 0.84,
+   "mcp": 0.14,
+   "plugin": 0.06,
+   "second_brain": 0.71,
+   "sync": 0.46
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "Vasallo94/ObsidianRAG",
+  "stars": 123,
+  "description": "Ask questions about your Obsidian notes using local AI. Privacy-first RAG with Ollama, LM Studio, or any OpenAI-compatible server. Obsidian plugin + Docker + PyPI.",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.55,
+   "plugin": 0.53,
+   "second_brain": 0.08,
+   "sync": 0.13
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "songzhuozhu/obsidian-llm-wiki",
+  "stars": 122,
+  "description": "Turn your LLM into a wiki maintainer. Inspired by Karpathy's LLM Wiki. Built for Obsidian, Claude Code & Codex. | 让   LLM 成为你的 wiki 维护者。受 Karpathy 的 LLM Wiki 启发。面向 Obsidian、Claude Code 和 Codex 构建。",
+  "scores": {
+   "skill": 0.92,
+   "mcp": 0.1,
+   "plugin": 0.12,
+   "second_brain": 0.75,
+   "sync": 0.79
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "mcncarl/ailu",
+  "stars": 114,
+  "description": "Local Agent chat and content publishing studio for Obsidian.",
+  "scores": {
+   "skill": 0.16,
+   "mcp": 0.14,
+   "plugin": 0.94,
+   "second_brain": 0.15,
+   "sync": 0.93
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "brianpetro/obsidian-smart-templates",
+  "stars": 113,
+  "description": "Smart Templates is an AI powered templates for generating structured content in Obsidian. Works with Local Models, Anthropic Claude, Gemini, OpenAI and more.",
+  "scores": {
+   "skill": 0.11,
+   "mcp": 0.06,
+   "plugin": 0.13,
+   "second_brain": 0.18,
+   "sync": 0.18
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "takeshy/obsidian-gemini-helper",
+  "stars": 110,
+  "description": "AI assistant with chat, workflow automation, and semantic search (RAG). Powered by Gemini API or CLI tools.",
+  "scores": {
+   "skill": 0.09,
+   "mcp": 0.44,
+   "plugin": 0.97,
+   "second_brain": 0.11,
+   "sync": 0.41
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Abilityai/cornelius",
+  "stars": 109,
+  "description": "AI-powered second brain template for Claude Code + Obsidian",
+  "scores": {
+   "skill": 0.88,
+   "mcp": 0.19,
+   "plugin": 0.1,
+   "second_brain": 0.92,
+   "sync": 0.58
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "ekadetov/llm-wiki",
+  "stars": 108,
+  "description": "LLM Wiki — Claude Code plugin for persistent, compounding knowledge bases in Obsidian",
+  "scores": {
+   "skill": 0.73,
+   "mcp": 0.21,
+   "plugin": 0.13,
+   "second_brain": 0.7,
+   "sync": 0.83
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "flowing-abyss/obsidian-hybrid-search",
+  "stars": 107,
+  "description": "Hybrid search for Obsidian vaults via plugin, CLI, and MCP server",
+  "scores": {
+   "skill": 0.09,
+   "mcp": 0.7,
+   "plugin": 0.35,
+   "second_brain": 0.12,
+   "sync": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Agents365-ai/obsidian-ai-tagger-universe",
+  "stars": 107,
+  "description": "An intelligent Obsidian plugin that leverages AI to automatically analyze note content and suggest relevant tags, supporting both local and cloud-based LLM services.",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.05,
+   "plugin": 0.66,
+   "second_brain": 0.11,
+   "sync": 0.08
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "jdpolasky/ai-chief-of-staff",
+  "stars": 104,
+  "description": "The original AI Chief of Staff built on Claude Code and Obsidian. ADHD prosthetic, open to anyone. Superseded by chief-of-staff-2.",
+  "scores": {
+   "skill": 0.8,
+   "mcp": 0.12,
+   "plugin": 0.05,
+   "second_brain": 0.79,
+   "sync": 0.34
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "iurykrieger/claude-bedrock",
+  "stars": 103,
+  "description": "Second Brain automation for Obsidian vaults — entity management, ingestion, compression, and sync via Claude Code skills",
+  "scores": {
+   "skill": 0.86,
+   "mcp": 0.22,
+   "plugin": 0.33,
+   "second_brain": 0.92,
+   "sync": 0.94
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "jameesy/foundry-vault",
+  "stars": 100,
+  "description": "An agentic Obsidian vault: you curate, the agent compiles.",
+  "scores": {
+   "skill": 0.77,
+   "mcp": 0.1,
+   "plugin": 0.08,
+   "second_brain": 0.86,
+   "sync": 0.49
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "klemensgc/modular-context-obsidian-plugin",
+  "stars": 99,
+  "description": "Modular Context | Karpathy LLM Knowledge Base + Gmail & G-Cal — multi-account MCP server for Claude Code, encrypted local-first",
+  "scores": {
+   "skill": 0.25,
+   "mcp": 0.88,
+   "plugin": 0.49,
+   "second_brain": 0.75,
+   "sync": 0.79
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jovaneyck/obsidian-ai-agent-stuff",
+  "stars": 99,
+  "description": "Code and prompts for AI-augmented obsidian usecases",
+  "scores": {
+   "skill": 0.73,
+   "mcp": 0.12,
+   "plugin": 0.15,
+   "second_brain": 0.15,
+   "sync": 0.49
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "petersolopov/obsidian-claude-ide",
+  "stars": 97,
+  "description": "Obsidian plugin — real-time editor context for Claude Code",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.89,
+   "plugin": 0.18,
+   "second_brain": 0.04,
+   "sync": 0.49
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "trapoom555/claude-paperloom",
+  "stars": 96,
+  "description": "Claude Code Plugin for Self-maintaining research knowledge graph for Claude Code + Obsidian",
+  "scores": {
+   "skill": 0.63,
+   "mcp": 0.2,
+   "plugin": 0.09,
+   "second_brain": 0.55,
+   "sync": 0.89
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "Pardesco/hypernovum",
+  "stars": 96,
+  "description": "Agent Ops for your second brain - a 3D IDE for Obsidian built on Three.js. Visualize your vault as a code city, dispatch AI coding agents (Claude Code, Codex, Antigravity), post research quests, and watch your agent fleet work in real time.",
+  "scores": {
+   "skill": 0.09,
+   "mcp": 0.09,
+   "plugin": 0.66,
+   "second_brain": 0.15,
+   "sync": 0.07
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "istib/obsidian-paperclip",
+  "stars": 95,
+  "description": "Browse, comment on, and assign Paperclip issues to agents — without leaving Obsidian.",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.06,
+   "plugin": 0.74,
+   "second_brain": 0.05,
+   "sync": 0.23
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "capitalparser/notebooklm-wiki-pipeline",
+  "stars": 94,
+  "description": "Turn Google Drive PDFs into Obsidian wiki notes via NotebookLM MCP without loading full PDFs into Claude context",
+  "scores": {
+   "skill": 0.49,
+   "mcp": 0.15,
+   "plugin": 0.04,
+   "second_brain": 0.2,
+   "sync": 0.9
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "istefox/obsidian-mcp-connector",
+  "stars": 93,
+  "description": "Your Obsidian vault, exposed to Claude and any MCP client. Runs inside Obsidian, on-device semantic search, no cloud round-trip, no binary to download.",
+  "scores": {
+   "skill": 0.15,
+   "mcp": 0.98,
+   "plugin": 0.49,
+   "second_brain": 0.07,
+   "sync": 0.54
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "luffysolution-svg/obsidian-vault-mcp",
+  "stars": 91,
+  "description": "obsidian-vault-mcp ",
+  "scores": {
+   "skill": 0.41,
+   "mcp": 0.96,
+   "plugin": 0.13,
+   "second_brain": 0.51,
+   "sync": 0.95
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "deivid11/obsidian-claude-code-plugin",
+  "stars": 88,
+  "description": "Interactive Claude Code integration for Obsidian",
+  "scores": {
+   "skill": 0.14,
+   "mcp": 0.18,
+   "plugin": 0.95,
+   "second_brain": 0.06,
+   "sync": 0.11
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "bbuch82/agentic-second-brain-guide",
+  "stars": 87,
+  "description": "A guide to setup a Second Brain with MD files, Obsidian, and OpenClaw. Or: How to become a super human.",
+  "scores": {
+   "skill": 0.44,
+   "mcp": 0.13,
+   "plugin": 0.05,
+   "second_brain": 0.91,
+   "sync": 0.69
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "MarioPadilla/claude-vault",
+  "stars": 85,
+  "description": "Claude Vault is a command-line tool that syncs your Claude AI conversations & Claude Code into beautifully formatted Markdown files that integrate seamlessly with Obsidian and other note-taking tools.",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.1,
+   "plugin": 0.04,
+   "second_brain": 0.19,
+   "sync": 0.94
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "googlicius/obsidian-steward",
+  "stars": 85,
+  "description": "A vault-specific agent equipped with agentic capacity, fast search, flexible commands, vault management, and terminals to \"jump\" into other CLI agents, such as Claude, Gemini, etc.",
+  "scores": {
+   "skill": 0.32,
+   "mcp": 0.48,
+   "plugin": 0.97,
+   "second_brain": 0.43,
+   "sync": 0.19
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "LearnPrompt/afu-llm-todo",
+  "stars": 85,
+  "description": "Afu · LLM Todo: turn an Obsidian inbox into a living wiki, then into todo cards for this week.",
+  "scores": {
+   "skill": 0.92,
+   "mcp": 0.23,
+   "plugin": 0.16,
+   "second_brain": 0.49,
+   "sync": 0.67
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "manimohans/obsidian-local-llm-helper",
+  "stars": 84,
+  "description": "An Obsidian plugin to process text, chat with AI, and semantically search your notes — works with any OpenAI-compatible LLM server (Ollama, LM Studio, vLLM, and more).",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.1,
+   "plugin": 0.93,
+   "second_brain": 0.16,
+   "sync": 0.14
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "takeshy/obsidian-local-llm-hub",
+  "stars": 83,
+  "description": "All-in-one local AI hub for Obsidian — LLM chat with vault tools, MCP servers, RAG, workflow automation, encryption, and edit history. Fully private, no cloud required.",
+  "scores": {
+   "skill": 0.13,
+   "mcp": 0.42,
+   "plugin": 0.93,
+   "second_brain": 0.17,
+   "sync": 0.13
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "letta-ai/letta-obsidian",
+  "stars": 82,
+  "description": "A powerful Obsidian plugin that integrates with Letta to provide a stateful AI agent that knows your vault contents and remembers your conversations",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.2,
+   "plugin": 0.89,
+   "second_brain": 0.16,
+   "sync": 0.92
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "C-Bjorn/MegaMem",
+  "stars": 78,
+  "description": "Transform your Obsidian vault into a powerful knowledge graph with MCP support",
+  "scores": {
+   "skill": 0.15,
+   "mcp": 0.96,
+   "plugin": 0.26,
+   "second_brain": 0.29,
+   "sync": 0.92
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "beiyuii/personal-api-skill",
+  "stars": 77,
+  "description": "Turn your Obsidian vault into a personal identity layer — any AI agent knows who you are in 30 seconds.",
+  "scores": {
+   "sync": 0.23,
+   "skill": 0.84,
+   "mcp": 0.15,
+   "plugin": 0.07,
+   "second_brain": 0.85
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "raja-patnaik/obsidian-agent",
+  "stars": 76,
+  "description": "A complete system for managing Obsidian vaults with Claude Code and Cowork. Designed for two vaults (work and personal) with consistent structure, frontmatter schemas, agent skills, automation hooks, and migration tooling.",
+  "scores": {
+   "skill": 0.95,
+   "mcp": 0.11,
+   "plugin": 0.08,
+   "second_brain": 0.92,
+   "sync": 0.4
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "smixs/autograph",
+  "stars": 73,
+  "description": "Schema-as-code memory for AI agents in Obsidian: typed cards, entity dedup, link repair, update-in-place, and Ebbinghaus decay. Plain Markdown you own — a Claude Code skill.",
+  "scores": {
+   "skill": 0.95,
+   "mcp": 0.16,
+   "plugin": 0.07,
+   "second_brain": 0.92,
+   "sync": 0.42
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "ksanderer/claude-vault",
+  "stars": 71,
+  "description": "Claude Code + Obsidian = ♥️",
+  "scores": {
+   "skill": 0.5,
+   "mcp": 0.32,
+   "plugin": 0.05,
+   "second_brain": 0.84,
+   "sync": 0.87
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "0xneobyte/VaultAI",
+  "stars": 71,
+  "description": "An AI chatbot plugin for Obsidian using the Gemini API for note summarization, content generation, and more. Enhance your workflow with AI assistance like the Notion AI bot.",
+  "scores": {
+   "skill": 0.08,
+   "mcp": 0.12,
+   "plugin": 0.96,
+   "second_brain": 0.09,
+   "sync": 0.23
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "johnfkoo951/cmds-llm-wiki",
+  "stars": 70,
+  "description": "LLM Wiki template — Karpathy 3-layer pattern + Gold In Gold Out purpose gate + dual Claude Code·Codex harness (11 commands, 2 hooks, 18 web clipper templates)",
+  "scores": {
+   "skill": 0.86,
+   "mcp": 0.11,
+   "plugin": 0.08,
+   "second_brain": 0.89,
+   "sync": 0.78
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "PublikPrinciple/obsidian-mcp-rest",
+  "stars": 69,
+  "description": "An MCP server implementation for accessing Obsidian via local REST API",
+  "scores": {
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.07,
+   "sync": 0.65,
+   "skill": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "TheManuelML/obsidian-agent",
+  "stars": 69,
+  "description": "Empower your Obsidian vault with an AI agent from the provider of your choice.",
+  "scores": {
+   "skill": 0.23,
+   "mcp": 0.41,
+   "plugin": 0.94,
+   "second_brain": 0.15,
+   "sync": 0.31
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Sparky4567/obsidian_ai_plugin",
+  "stars": 68,
+  "description": "Lets to use local llms in your Obsidian Vaults, extend your stories or create entirely new texts based on your previous input",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.1,
+   "plugin": 0.97,
+   "second_brain": 0.05,
+   "sync": 0.14
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "crimeacs/claude-note",
+  "stars": 67,
+  "description": "Your AI pair programmer's memory, synced to Obsidian",
+  "scores": {
+   "skill": 0.2,
+   "mcp": 0.25,
+   "plugin": 0.07,
+   "second_brain": 0.44,
+   "sync": 0.96
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "GuppyTheCat/obsidian-clipper-template-creator",
+  "stars": 67,
+  "description": "Agent Skill that enables AI agents (Claude Code, Cursor, Gemini CLI, etc.) to help you create importable JSON templates for the Obsidian Web Clipper.",
+  "scores": {
+   "skill": 0.9,
+   "mcp": 0.03,
+   "plugin": 0.04,
+   "second_brain": 0.09,
+   "sync": 0.93
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "chaenmasahiro0425/exbrain",
+  "stars": 67,
+  "description": "Exbrain 2.0 — 自律成長する外付けAI脳。Claude Code × Obsidian × 4層アーキテクチャ(raw/wiki/digest/identity) + 夜間compile + 週次lint",
+  "scores": {
+   "skill": 0.58,
+   "mcp": 0.17,
+   "plugin": 0.06,
+   "second_brain": 0.93,
+   "sync": 0.67
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "cybaea/obsidian-vault-intelligence",
+  "stars": 66,
+  "description": "Obsidian vault intelligence",
+  "scores": {
+   "skill": 0.14,
+   "mcp": 0.21,
+   "plugin": 0.94,
+   "second_brain": 0.59,
+   "sync": 0.11
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "byenzyme/enzyme-skill",
+  "stars": 63,
+  "description": "Agent Skill for exploring Obsidian vaults with Enzyme — self-contained, cross-agent compatible",
+  "scores": {
+   "mcp": 0.24,
+   "plugin": 0.08,
+   "second_brain": 0.29,
+   "sync": 0.15,
+   "skill": 0.88
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "AgriciDaniel/gogh",
+  "stars": 62,
+  "description": "Gogh is a source-cited Obsidian operating brain that turns six frontend design skills into one advisable stack for AI coding agents.",
+  "scores": {
+   "skill": 0.87,
+   "mcp": 0.2,
+   "plugin": 0.16,
+   "second_brain": 0.37,
+   "sync": 0.18
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "bepitulaz/obsidian-multivault-mcp",
+  "stars": 62,
+  "description": "Multi-vault and multiuser Obsidian MCP",
+  "scores": {
+   "skill": 0.16,
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.15,
+   "sync": 0.56
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "bayradion/rabbitmap",
+  "stars": 62,
+  "description": "An infinite canvas plugin for Obsidian with AI chat nodes. Create visual workspaces where you can have multiple LLM conversations alongside your notes — with easy drag & drop context management from your vault.",
+  "scores": {
+   "skill": 0.06,
+   "mcp": 0.05,
+   "plugin": 0.92,
+   "second_brain": 0.12,
+   "sync": 0.36
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "jiang198012/workbuddian",
+  "stars": 62,
+  "description": "Obsidian 插件:把本地 CodeBuddy CLI 或 Hermes agent 变成 vault 内 AI 聊天——流式回复、@引用、双后端切换。Obsidian plugin turning local CodeBuddy CLI or Hermes agent into an in-vault AI chat with streaming, @-references, and dual backends.",
+  "scores": {
+   "skill": 0.1,
+   "mcp": 0.4,
+   "plugin": 0.98,
+   "second_brain": 0.06,
+   "sync": 0.19
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ccf/agentcairn",
+  "stars": 61,
+  "description": "Long-term, cross-project memory for AI coding agents. Your own Obsidian vault as the source of truth. Daemonless and without opaque databases, your memory belongs to you.",
+  "scores": {
+   "skill": 0.54,
+   "mcp": 0.61,
+   "plugin": 0.07,
+   "second_brain": 0.21,
+   "sync": 0.54
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "msdanyg/smart-connections-mcp",
+  "stars": 58,
+  "description": "Give Claude semantic memory of your Obsidian vault — local semantic search over Smart Connections embeddings via MCP. Multi-vault, block-level, 100% private.",
+  "scores": {
+   "skill": 0.26,
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.09,
+   "sync": 0.15
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "es617/obsidian-sync-mcp",
+  "stars": 57,
+  "description": "MCP server for Obsidian — access your vault from any AI agent, even when your machine is off. Powered by Self-hosted LiveSync.",
+  "scores": {
+   "skill": 0.22,
+   "mcp": 0.98,
+   "plugin": 0.04,
+   "second_brain": 0.11,
+   "sync": 0.93
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Xia-Ataraxia/obsidian-metadata-auto-classifier",
+  "stars": 57,
+  "description": "Obsidian plugin that uses AI providers to generate tags and frontmatter metadata for your notes.",
+  "scores": {
+   "skill": 0.07,
+   "mcp": 0.04,
+   "plugin": 0.62,
+   "second_brain": 0.08,
+   "sync": 0.11
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "KeloYuan/Niki-AI",
+  "stars": 56,
+  "description": "🧠 Obsidian plugin that embeds Claude Code as an AI writing companion — smart context, undo, diff preview, multi-thread chat.",
+  "scores": {
+   "plugin": 0.98,
+   "second_brain": 0.07,
+   "sync": 0.15,
+   "skill": 0.15,
+   "mcp": 0.24
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "Momoyu404/geminese",
+  "stars": 56,
+  "description": "geminese is an Obsidian plugin that embeds Gemini CLI as an AI collaborator in your vault. Your vault becomes Gemini's working directory, giving it full agentic capabilities: file read/write, search, bash commands, and multi-step workflows.",
+  "scores": {
+   "mcp": 0.43,
+   "plugin": 0.97,
+   "second_brain": 0.11,
+   "sync": 0.13,
+   "skill": 0.1
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "howdeploy/ObsidianDataWeave",
+  "stars": 54,
+  "description": "A toolkit of Claude skills and user guides that turns NotebookLM notes into an Obsidian MOC + Zettelkasten knowledge system.",
+  "scores": {
+   "skill": 0.93,
+   "mcp": 0.36,
+   "plugin": 0.11,
+   "second_brain": 0.89,
+   "sync": 0.96
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "AdamTylerLynch/obsidian-agent-memory-skills",
+  "stars": 54,
+  "description": "Agent skill package that gives your agent persistent memory via an [Obsidian](https://obsidian.md) knowledge vault. Your agent automatically orients itself at session start, navigates project architecture through graph traversal, writes discoveries back to the vault.",
+  "scores": {
+   "skill": 0.96,
+   "mcp": 0.19,
+   "plugin": 0.05,
+   "second_brain": 0.45,
+   "sync": 0.64
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "vieiraae/obsidian-sidekick",
+  "stars": 53,
+  "description": "Meet your AI sidekick — a second brain that brings agents, tools, skills, autocompletion, and smart workflows directly into your notes",
+  "scores": {
+   "skill": 0.12,
+   "mcp": 0.39,
+   "plugin": 0.98,
+   "second_brain": 0.38,
+   "sync": 0.14
+  },
+  "kind": "plugin"
+ },
+ {
+  "repo": "ashish141199/obsidian-claude-code",
+  "stars": 52,
+  "description": "Obsidian workflow template for Claude Code - slash commands and structure for knowledge management",
+  "scores": {
+   "skill": 0.87,
+   "mcp": 0.1,
+   "plugin": 0.06,
+   "second_brain": 0.94,
+   "sync": 0.81
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "fazer-ai/mcp-obsidian",
+  "stars": 52,
+  "description": "MCP server for Obsidian (TypeScript + Bun)",
+  "scores": {
+   "skill": 0.44,
+   "mcp": 0.98,
+   "plugin": 0.1,
+   "second_brain": 0.2,
+   "sync": 0.77
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "sean-esk/second-brain-gtd",
+  "stars": 51,
+  "description": "Second brain using obsidian, and claude code with skills for your assistant",
+  "scores": {
+   "skill": 0.94,
+   "mcp": 0.09,
+   "plugin": 0.05,
+   "second_brain": 0.96,
+   "sync": 0.84
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "lpaiu-cs/osk-system",
+  "stars": 51,
+  "description": "Source-grounded MCP memory runtime and Obsidian-compatible vault template for LLM agents.",
+  "scores": {
+   "skill": 0.61,
+   "mcp": 0.64,
+   "plugin": 0.11,
+   "second_brain": 0.79,
+   "sync": 0.65
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "sodam-ai/SoDam-WikiMate",
+  "stars": 51,
+  "description": "AI에게 '정리해줘'라고 하면 흩어진 자료를 옵시디언(원본)에 노트로 정리하고, 관련 노트끼리 연결·분류·요약하고, 선택적으로 노션에 색인하는 Claude Code 플러그인 + 이식형 MCP 코어. 보관함 자동탐지·정리·자동 링크/MOC·자동 분류·요약(원자 노트)·검색(가짜 인용 방지)·볼트 건강검진(중복·깨진 링크·고아 탐지, 삭제 없는 안전 수정)·작업 로그. 사람 승인 게이트·원문 보존 알림·경로/프롬프트 인젝션 방어·무의존.",
+  "scores": {
+   "skill": 0.88,
+   "mcp": 0.93,
+   "plugin": 0.09,
+   "second_brain": 0.72,
+   "sync": 0.75
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "fxa3bah/OneBrain",
+  "stars": 51,
+  "description": "Unify every AI agent on ONE local shared memory over MCP. Obsidian vault + gbrain (by Garry Tan) + Ollama. 100% offline, $0 API. Orchestrate with OpenClaw or Hermes.",
+  "scores": {
+   "skill": 0.13,
+   "mcp": 0.64,
+   "plugin": 0.06,
+   "second_brain": 0.24,
+   "sync": 0.54
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "louisfb01/obsidian-agent-vault-template",
+  "stars": 50,
+  "description": "A ready-to-use Obsidian vault for running an AI agent (Claude, Codex, etc.) as a personal OS: skills, grounding notes, and a self-improving feedback loop. Clone and open as a vault.",
+  "scores": {
+   "skill": 0.58,
+   "mcp": 0.04,
+   "plugin": 0.04,
+   "second_brain": 0.67,
+   "sync": 0.23
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "caibucaiAI/obsidian-speaking-practice",
+  "stars": 50,
+  "description": "把真实英语口语对话沉淀成 Obsidian 每日记录、单词本、反馈标签与周复盘的 Codex Skill",
+  "scores": {
+   "skill": 0.94,
+   "mcp": 0.11,
+   "plugin": 0.07,
+   "second_brain": 0.64,
+   "sync": 0.82
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "aplaceforallmystuff/daily-patterns-pack",
+  "stars": 41,
+  "description": "Claude Code + Obsidian: Log sessions to daily notes, analyze patterns, build automations. A feedback loop that learns how you work.",
+  "scores": {
+   "skill": 0.8,
+   "mcp": 0.11,
+   "plugin": 0.08,
+   "second_brain": 0.49,
+   "sync": 0.65
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "azuma520/obsidian-graph-query",
+  "stars": 37,
+  "description": "Let your AI agent query your Obsidian vault's knowledge graph directly.",
+  "scores": {
+   "skill": 0.94,
+   "mcp": 0.43,
+   "plugin": 0.06,
+   "second_brain": 0.05,
+   "sync": 0.06
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "2233admin/obsidian-llm-wiki",
+  "stars": 36,
+  "description": "Your markdown vault, compiled into a 6-persona MCP team for Claude Code, Codex, OpenCode, and Gemini CLI. Headless-first. Cites, doesn't guess.",
+  "scores": {
+   "skill": 0.92,
+   "mcp": 0.92,
+   "plugin": 0.55,
+   "second_brain": 0.5,
+   "sync": 0.61
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "oomkapwn/enquire-mcp",
+  "stars": 33,
+  "description": "The #1 Obsidian MCP for AI memory — freshness-aware, cited, local-first and read-only by default. Dataview, Bases, PDFs, every agent.",
+  "scores": {
+   "skill": 0.47,
+   "mcp": 0.97,
+   "plugin": 0.07,
+   "second_brain": 0.2,
+   "sync": 0.25
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "duolahypercho/codex-knowledge-llm",
+  "stars": 26,
+  "description": "Codex plugin and Obsidian vault kit for turning anything into a knowledge system.",
+  "scores": {
+   "skill": 0.81,
+   "mcp": 0.25,
+   "plugin": 0.14,
+   "second_brain": 0.81,
+   "sync": 0.91
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "Piotr1215/mcp-obsidian",
+  "stars": 22,
+  "description": "simple mcp server for interacting with local obsidian notes",
+  "scores": {
+   "skill": 0.26,
+   "mcp": 0.98,
+   "plugin": 0.05,
+   "second_brain": 0.18,
+   "sync": 0.32
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ignromanov/llm-obsidian-wiki",
+  "stars": 17,
+  "description": "Claude Code plugin for building persistent, compounding knowledge bases in Obsidian. Inspired by Karpathy's LLM Wiki pattern.",
+  "scores": {
+   "skill": 0.85,
+   "mcp": 0.24,
+   "plugin": 0.38,
+   "second_brain": 0.86,
+   "sync": 0.77
+  },
+  "kind": "second_brain"
+ },
+ {
+  "repo": "yejianye/ob-smart-connections-mcp",
+  "stars": 14,
+  "description": "MCP Server for Obsidian Smart Connections plugin",
+  "scores": {
+   "skill": 0.27,
+   "mcp": 0.95,
+   "plugin": 0.07,
+   "second_brain": 0.07,
+   "sync": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "dan6684/smart-connections-mcp",
+  "stars": 11,
+  "description": "MCP server that exposes Obsidian Smart Connections vector database to Claude Code via semantic search",
+  "scores": {
+   "skill": 0.29,
+   "mcp": 0.96,
+   "plugin": 0.05,
+   "second_brain": 0.08,
+   "sync": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Artexis10/exomem",
+  "stars": 10,
+  "description": "Self-hosted MCP server that makes your Obsidian/markdown vault searchable — text, PDFs, Office docs, images, audio — from any MCP client. Hybrid retrieval over a typed, governed corpus, sub-second at 50k notes; your files stay plain markdown.",
+  "scores": {
+   "skill": 0.44,
+   "mcp": 0.97,
+   "plugin": 0.06,
+   "second_brain": 0.2,
+   "sync": 0.52
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "eliColussi/obsidian-ai-vault-kit",
+  "stars": 9,
+  "description": "Turn any folder into a self-documenting Obsidian vault. Claude Code hooks auto-capture every prompt, every answer, and every file edit into your Daily note. One-command install.",
+  "scores": {
+   "skill": 0.35,
+   "mcp": 0.1,
+   "plugin": 0.06,
+   "second_brain": 0.87,
+   "sync": 0.93
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "MikeBirdTech/obsidian-plugin-generator",
+  "stars": 8,
+  "description": "Generate an Obsidian plugin with the help of AI",
+  "scores": {
+   "skill": 0.12,
+   "mcp": 0.05,
+   "plugin": 0.07,
+   "second_brain": 0.04,
+   "sync": 0.07
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "a-funk/image2obsidian",
+  "stars": 7,
+  "description": "AirDropped iPhone photos into your Obsidian vault — OCR, classify, route via Claude vision. CLI + Claude Code skill.",
+  "scores": {
+   "plugin": 0.07,
+   "second_brain": 0.18,
+   "sync": 0.97,
+   "skill": 0.68,
+   "mcp": 0.39
+  },
+  "kind": "sync"
+ },
+ {
+  "repo": "qisehong/wechat-to-obsidian-skill",
+  "stars": 5,
+  "description": "Save WeChat articles to Obsidian vault -- portable Agent Skills compatible skill",
+  "scores": {
+   "skill": 0.88,
+   "mcp": 0.11,
+   "plugin": 0.04,
+   "second_brain": 0.07,
+   "sync": 0.96
+  },
+  "kind": "sync"
+ }
+]

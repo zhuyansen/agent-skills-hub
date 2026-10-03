@@ -200,6 +200,55 @@ PAGES = {
                   "status bar", "custom agents", "agent definitions", "claude agents", ".claude agents", "agents collection"],
         "also": ["claude"],
     },
+    # Upgraded 10-04 (AIsa: obsidian claude 1,600/mo KD 1). Obsidian only: LLM wikis belong to knowledge-base.
+    "obsidian-second-brain": {
+        "strict": True,
+        "subject": _q("Is the main purpose of `repo` to connect AI agents or LLMs with Obsidian: skills, MCP servers, "
+                      "plugins or workflows that read, write or organize an Obsidian vault?",
+                      "Obsidian must be central. A general note app, an LLM wiki not built on Obsidian, or a "
+                      "second-brain app of its own does not count."),
+        "types": {
+            "skill": _q("Is `repo` an agent skill or prompt set that teaches Claude Code, Codex or another agent to work in an Obsidian vault?"),
+            "mcp": _q("Is `repo` an MCP server or API bridge that gives an AI assistant access to an Obsidian vault?"),
+            "plugin": _q("Is `repo` an Obsidian plugin that brings an LLM or agent inside Obsidian itself?"),
+            "second_brain": _q("Is `repo` a second-brain or PKM system built on Obsidian that an agent maintains: "
+                               "templates, folder structures, daily notes, zettelkasten workflows?"),
+            "sync": _q("Is `repo` about getting content into or out of Obsidian with AI: import, capture, publishing or sync?"),
+        },
+        "labels": _labels(("skill", "🧩", "Agent skills", "Agent Skill"), ("mcp", "🔌", "MCP servers", "MCP 服务"),
+                          ("plugin", "🧱", "AI plugins", "AI 插件"), ("second_brain", "🧠", "Second brain workflows", "第二大脑工作流"),
+                          ("sync", "🔄", "Import, publish & sync", "导入、发布与同步")),
+        "queries": ["obsidian claude in:name,description", "obsidian skill in:name,description,topics",
+                    "obsidian mcp in:name,description,topics", "obsidian codex in:name,description",
+                    "obsidian ai plugin in:name,description", "obsidian agent in:name,description",
+                    "obsidian second brain in:name,description", "claude obsidian vault in:name,description"],
+        "words": ["obsidian"],
+        "also": ["claude", "codex", "agent", "ai ", "llm", "mcp", "skill", "gpt", "rag", "copilot"],
+    },
+    # Upgraded 10-04 (AIsa: humanizer skill 1,300/mo KD 7).
+    "anti-slop": {
+        "subject": _q("Is the main purpose of `repo` to make AI-made output read as if a person made it, or to detect or "
+                      "remove AI patterns ('slop') in text, code or design?",
+                      "Humanizer skills and prompts, slop detectors and linters, style rules against AI tells. A "
+                      "general writing assistant or grammar checker does not count."),
+        "types": {
+            "writing": _q("Does `repo` rewrite AI-written prose so it reads human: articles, posts, emails?"),
+            "detector": _q("Does `repo` detect or score AI writing patterns, like a linter or classifier for slop?"),
+            "chinese": _q("Is `repo` focused on Chinese text: removing the AI flavour (去 AI 味) from Chinese writing?"),
+            "code": _q("Does `repo` clean AI patterns out of code: comments, over-engineering, generated boilerplate?"),
+            "design": _q("Does `repo` steer AI-made UI and visuals away from the generic AI look (design taste)?"),
+            "rules": _q("Is `repo` mainly a style guide, word list or set of rules that agents follow to avoid AI tells?"),
+        },
+        "labels": _labels(("writing", "✍️", "Writing humanizers", "文字去 AI 味"), ("detector", "🔍", "Slop detectors", "AI 味检测"),
+                          ("chinese", "🀄", "Chinese text", "中文去 AI 味"), ("code", "🧹", "Code cleanup", "代码去 AI 味"),
+                          ("design", "🎨", "UI & design taste", "设计去 AI 味"), ("rules", "📏", "Style rules", "写作规则")),
+        "queries": ["humanizer skill in:name,description", "humanizer claude in:name,description",
+                    "anti slop in:name,description,topics", "deslop in:name,description",
+                    "ai slop detector in:name,description", "humanize ai text in:name,description",
+                    "去ai味 in:name,description", "stop slop in:name,description"],
+        "words": ["humaniz", "slop", "ai tells", "ai writing patterns", "ai-sounding", "去ai味", "去 ai 味", "ai味", "ai 味",
+                  "taste skill"],
+    },
     "knowledge-base": {
         "strict": True,
         "subject": _q("Is the main purpose of `repo` to build, maintain or query a knowledge base with an LLM or AI agent: "
