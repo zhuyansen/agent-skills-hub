@@ -4562,5 +4562,145 @@
    "personal": 0.09
   },
   "kind": "rag_platform"
+ },
+ {
+  "repo": "decodingai-magazine/second-brain-ai-assistant-course",
+  "stars": 3103,
+  "description": "Learn to build your Second Brain AI assistant with LLMs, agents, RAG, fine-tuning, LLMOps and AI systems techniques.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.08,
+   "mcp": 0.08,
+   "docs_qa": 0.58,
+   "graph": 0.09,
+   "personal": 0.28
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "iBlinkQ/llm-wiki-obsidian-blink",
+  "stars": 639,
+  "description": "一个基于 Andrej Karpathy 的 LLM Wiki 模式 实现的 Obsidian 知识库，利用 LLM 维护可复利的个人知识层。",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.07,
+   "mcp": 0.23,
+   "docs_qa": 0.61,
+   "graph": 0.67,
+   "personal": 0.79
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "luotwo/llm-wiki",
+  "stars": 223,
+  "description": "LLM Wiki - 用 LLM 构建持续积累的个人知识库，含 Claude Code Skill 和实战经验",
+  "scores": {
+   "llm_wiki": 0.97,
+   "rag_platform": 0.05,
+   "mcp": 0.46,
+   "docs_qa": 0.6,
+   "graph": 0.48,
+   "personal": 0.75
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "asgard-ai-platform/skills",
+  "stars": 223,
+  "description": "301 open-source coding agent skills across 22 domains — methodology, judgment & gotchas packaged as Claude Agent Skills for the Asgard AI Platform.",
+  "scores": {
+   "llm_wiki": 0.39,
+   "rag_platform": 0.04,
+   "mcp": 0.45,
+   "docs_qa": 0.39,
+   "graph": 0.05,
+   "personal": 0.13
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "balukosuri/llm-wiki-karpathy",
+  "stars": 215,
+  "description": "",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.05,
+   "mcp": 0.16,
+   "docs_qa": 0.64,
+   "graph": 0.37,
+   "personal": 0.86
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "MLT-OSS/FirstData",
+  "stars": 183,
+  "description": "The World's Most Comprehensive, Authoritative, and Structured Open Source Data Source Knowledge Base",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.08,
+   "mcp": 0.71,
+   "docs_qa": 0.42,
+   "graph": 0.11,
+   "personal": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "appleweiping/WEIPING_WIKI",
+  "stars": 119,
+  "description": "knowledge base managed with an LLM workflow",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.11,
+   "mcp": 0.21,
+   "docs_qa": 0.57,
+   "graph": 0.77,
+   "personal": 0.8
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "FareedKhan-dev/temporal-ai-agent-pipeline",
+  "stars": 97,
+  "description": "Optimizing Dynamic Knowledge Base Using AI Agent",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.1,
+   "mcp": 0.13,
+   "docs_qa": 0.52,
+   "graph": 0.96,
+   "personal": 0.08
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "capitalparser/notebooklm-wiki-pipeline",
+  "stars": 90,
+  "description": "Turn Google Drive PDFs into Obsidian wiki notes via NotebookLM MCP without loading full PDFs into Claude context",
+  "scores": {
+   "llm_wiki": 0.83,
+   "rag_platform": 0.07,
+   "mcp": 0.31,
+   "docs_qa": 0.79,
+   "graph": 0.1,
+   "personal": 0.15
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "asakin/llm-context-base",
+  "stars": 74,
+  "description": "A git template for building your own LLM-powered personal wiki. Training period, metadata standard, lint system included. Clone and go.",
+  "scores": {
+   "llm_wiki": 0.96,
+   "rag_platform": 0.05,
+   "mcp": 0.15,
+   "docs_qa": 0.45,
+   "graph": 0.07,
+   "personal": 0.54
+  },
+  "kind": "llm_wiki"
  }
 ]

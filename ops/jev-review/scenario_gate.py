@@ -322,8 +322,14 @@ def profile(slug: str) -> dict:
 
 
 def on_topic(row: dict, slug: str) -> float:
-    """The weaker of the page's two topic answers: makes the page's output, operated by an agent."""
-    return min(row.get(k, 0.0) for k in profile(slug)["topic"])
+    """The weaker of the page's topic answers: makes the page's output, operated by an agent.
+    On strict pages the higher bar is for being on the subject; "is it software" keeps the
+    usual one (disler/claude-code-hooks-mastery: subject 0.93, software 0.62, 10-03)."""
+    p = profile(slug)
+    if "topic_min" not in p:
+        return min(row.get(k, 0.0) for k in p["topic"])
+    subject = min(row.get(k, 0.0) for k in p["topic"] if k != "is_software")
+    return subject if row.get("is_software", 0.0) >= RELEVANT else 0.0
 
 
 def state_dir(slug: str) -> Path:

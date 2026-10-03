@@ -2560,5 +2560,61 @@
    "platform": 0.08
   },
   "kind": "cli"
+ },
+ {
+  "repo": "Mte90/linus-torvalds-skill",
+  "stars": 113,
+  "description": "Distilled Code Reviewer skills/soul from 32k~ email from the kernel newsletter",
+  "scores": {
+   "pr_bot": 0.04,
+   "skill": 0.42,
+   "cli": 0.1,
+   "security": 0.1,
+   "multi": 0.45,
+   "platform": 0.03
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "furudo-erika/codingfox",
+  "stars": 64,
+  "description": "Open Source AI Code Review Tool that Works Like Magic!",
+  "scores": {
+   "pr_bot": 0.55,
+   "skill": 0.17,
+   "cli": 0.19,
+   "security": 0.3,
+   "multi": 0.25,
+   "platform": 0.27
+  },
+  "kind": "pr_bot"
+ },
+ {
+  "repo": "kevinten-ai/ai-agent-agentscope-codereview",
+  "stars": 64,
+  "description": "基于 AgentScope Java SDK 的智能代码审查 AI Agent，同时作为 AgentScope 框架学习教程。涵盖 ReAct 模式、工具系统、多 Agent 协作等核心概念。",
+  "scores": {
+   "pr_bot": 0.11,
+   "skill": 0.05,
+   "cli": 0.27,
+   "security": 0.14,
+   "multi": 0.68,
+   "platform": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "giorgiop/AICodePal",
+  "stars": 51,
+  "description": "An AI-managed open-source code review and assistance tool to help developers write better, more efficient, and secure code.",
+  "scores": {
+   "pr_bot": 0.24,
+   "skill": 0.07,
+   "cli": 0.47,
+   "security": 0.41,
+   "multi": 0.06,
+   "platform": 0.11
+  },
+  "kind": "cli"
  }
 ]

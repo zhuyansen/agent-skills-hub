@@ -4408,5 +4408,19 @@
    "testing": 0.14
   },
   "kind": "infra"
+ },
+ {
+  "repo": "raqueeb/e_return_nbr",
+  "stars": 50,
+  "description": "An agentic playbook for pre-filling the Bangladesh NBR e-Return (etaxnbr.gov.bd) using Opencode (but anything will work) + Playwright MCP: an AI agent walks the return wizard, patches your draft against your own data files, and stops at Save draft — you review, pay, and submit yourself.",
+  "scores": {
+   "agent": 0.44,
+   "mcp": 0.12,
+   "skill": 0.12,
+   "infra": 0.38,
+   "extract": 0.22,
+   "testing": 0.05
+  },
+  "kind": "agent"
  }
 ]

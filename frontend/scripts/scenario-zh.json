@@ -556,5 +556,18 @@
       "Remotion"
     ],
     "d": "在 Claude Code 里做视频的开源 skill 和工具包:HyperFrames、Remotion、动效、视频剪辑 agent,打头的是两个用 Claude Opus 5.5 做出来的项目。这些 skill 不绑定某个模型,其他 Claude / Codex 模型同样能跑。逐个做了安全评级。"
+  },
+  "claude-code-hooks": {
+    "t": "Claude Code Hooks、Subagents 与状态栏",
+    "k": [
+      "钩子",
+      "子代理",
+      "状态栏",
+      "hooks",
+      "subagent",
+      "statusline",
+      "自定义 agent"
+    ],
+    "d": "开源的 Claude Code hooks、subagents 与 statusline,带安全评级:Hook 守卫与格式化、专家 Agent 合集、用量与上下文状态栏。安装前先核查。"
   }
 }

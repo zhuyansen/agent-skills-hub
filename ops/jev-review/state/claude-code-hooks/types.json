@@ -1,0 +1,3252 @@
+[
+ {
+  "repo": "jarrodwatts/claude-hud",
+  "stars": 28284,
+  "description": "A Claude Code plugin that shows what's happening - context usage, active tools, running agents, and todo progress",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.04,
+   "statusline": 0.96,
+   "collection": 0.27,
+   "tooling": 0.87
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "VoltAgent/awesome-claude-code-subagents",
+  "stars": 25475,
+  "description": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.97,
+   "statusline": 0.01,
+   "collection": 0.95,
+   "tooling": 0.86
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "sirmalloc/ccstatusline",
+  "stars": 13166,
+  "description": "🚀 Beautiful highly customizable statusline for Claude Code CLI with powerline support, themes, and more.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.45,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "diet103/claude-code-infrastructure-showcase",
+  "stars": 10034,
+  "description": "Examples of my Claude Code infrastructure with skill auto-activation, hooks, and agents",
+  "scores": {
+   "tooling": 0.83,
+   "hooks": 0.62,
+   "subagents": 0.21,
+   "statusline": 0.02,
+   "collection": 0.92
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "WorldFlowAI/everything-claude-code",
+  "stars": 3943,
+  "description": "Claude Code toolkit - agents, commands, skills, rules, and hooks for productive AI-assisted development",
+  "scores": {
+   "hooks": 0.35,
+   "subagents": 0.53,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.86
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "parcadei/Continuous-Claude-v3",
+  "stars": 3940,
+  "description": "Context management for Claude Code. Hooks maintain state via ledgers and handoffs. MCP execution without context pollution. Agent orchestration with isolated context windows.",
+  "scores": {
+   "hooks": 0.42,
+   "subagents": 0.51,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.8
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "disler/claude-code-hooks-mastery",
+  "stars": 3931,
+  "description": "Master Claude Code Hooks",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.23,
+   "statusline": 0.07,
+   "collection": 0.79,
+   "tooling": 0.56
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "Haleclipse/CCometixLine",
+  "stars": 3472,
+  "description": "Claude Code statusline tool written in Rust",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.21,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "0xSteph/pentest-ai-agents",
+  "stars": 2305,
+  "description": "Turn Claude Code into your offensive security research assistant. Specialized AI subagents for authorized penetration testing plan engagements, analyze recon, research exploits, build detections, audit STIGs, and write reports.",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.95,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.74
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "severity1/claude-code-prompt-improver",
+  "stars": 1937,
+  "description": "Intelligent prompt improver hook for Claude Code. Type vibes, ship precision.",
+  "scores": {
+   "hooks": 0.88,
+   "subagents": 0.15,
+   "statusline": 0.02,
+   "collection": 0.51,
+   "tooling": 0.76
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "lst97/claude-code-sub-agents",
+  "stars": 1694,
+  "description": "Collection of specialized AI subagents for Claude Code for personal use (full-stack development).",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.95,
+   "statusline": 0.02,
+   "collection": 0.93,
+   "tooling": 0.8
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "nilbuild/claude-statusline",
+  "stars": 1399,
+  "description": "Minimal Claude Code statusline setup I personally use",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.03,
+   "statusline": 0.95,
+   "collection": 0.06,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "tintinweb/pi-subagents",
+  "stars": 1243,
+  "description": "Claude Code like Sub-Agents & Workflow Orchestration for Pi — parallel execution, live widget, fleet view, custom agent types, mid-run steering, claude compatible dynamic workflows and more ...",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.82,
+   "statusline": 0.02,
+   "collection": 0.76,
+   "tooling": 0.89
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Owloops/claude-powerline",
+  "stars": 1173,
+  "description": "Beautiful vim-style powerline for Claude Code",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.18,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "GaoSSR/best-claude-hud",
+  "stars": 1109,
+  "description": "Minimal Claude Code statusline HUD powered by Rust.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.07,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "0xfurai/claude-code-subagents",
+  "stars": 1009,
+  "description": "A comprehensive collection of 100+ production-ready development subagents for Claude Code",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.94,
+   "statusline": 0.02,
+   "collection": 0.96,
+   "tooling": 0.82
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "sangrokjung/claude-forge",
+  "stars": 845,
+  "description": "oh-my-zsh for Claude Code — 16 agents, 35 commands, 32 skills, 21 safety hooks in one install. v4.0 adds an adversarial review loop: a second agent that never sees the first one's reasoning. MIT.",
+  "scores": {
+   "collection": 0.98,
+   "tooling": 0.92,
+   "hooks": 0.67,
+   "subagents": 0.67,
+   "statusline": 0.02
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "ruvnet/agentic-flow",
+  "stars": 809,
+  "description": "Easily switch between alternative low-cost AI models in Claude Code/Agent SDK. For those comfortable using Claude agents and commands, it lets you take what you've created and deploy fully hosted agents for real business purposes. Use Claude Code to get the agent working, then deploy it in your favorite cloud.",
+  "scores": {
+   "hooks": 0.32,
+   "subagents": 0.52,
+   "statusline": 0.02,
+   "collection": 0.9,
+   "tooling": 0.78
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "carlrannaberg/claudekit",
+  "stars": 765,
+  "description": "A toolkit of custom commands, hooks, and utilities for Claude Code",
+  "scores": {
+   "hooks": 0.68,
+   "subagents": 0.45,
+   "statusline": 0.02,
+   "collection": 0.91,
+   "tooling": 0.88
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "chongdashu/cc-statusline",
+  "stars": 642,
+  "description": "Transform your Claude Code experience with a beautiful, informative statusline",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.15,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "daniel3303/ClaudeCodeStatusLine",
+  "stars": 611,
+  "description": "Custom status line for Claude Code showing model, tokens, rate limits, and git info in real-time",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.12,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "zhsama/claude-sub-agent",
+  "stars": 590,
+  "description": "AI-driven development workflow system built on Claude Code Sub-Agents.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.94,
+   "statusline": 0.02,
+   "collection": 0.82,
+   "tooling": 0.74
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "uppinote20/claude-dashboard",
+  "stars": 579,
+  "description": "Comprehensive status line plugin for Claude Code with context usage, API rate limits, and cost tracking",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.04,
+   "statusline": 0.97,
+   "collection": 0.56,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "shanraisshan/claude-code-hooks",
+  "stars": 552,
+  "description": "claude code hooks - adding voice on each hook",
+  "scores": {
+   "hooks": 0.9,
+   "subagents": 0.06,
+   "statusline": 0.03,
+   "collection": 0.83,
+   "tooling": 0.73
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "Nanako0129/coralline",
+  "stars": 547,
+  "description": "🪸 Powerlevel10k-inspired statusline for Claude Code — paste one prompt and your AI interviews you, then installs it",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.03,
+   "statusline": 0.95,
+   "collection": 0.2,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "karanb192/claude-code-hooks",
+  "stars": 528,
+  "description": "🪝 Claude Code hooks + an installable plugin marketplace: safety, cost, observability, productivity.",
+  "scores": {
+   "collection": 0.91,
+   "tooling": 0.88,
+   "hooks": 0.98,
+   "subagents": 0.05,
+   "statusline": 0.02
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "blader/taskmaster",
+  "stars": 527,
+  "description": "Stop hook for Claude Code that keeps the agent working until all plans and user requests are 100% complete",
+  "scores": {
+   "statusline": 0.02,
+   "collection": 0.2,
+   "tooling": 0.88,
+   "hooks": 0.69,
+   "subagents": 0.04
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "vanzan01/claude-code-sub-agent-collective",
+  "stars": 521,
+  "description": "  🧠 Context Engineering Research - Not just another agent collection, but using research and context engineering to function as a collective. Hub-and-spoke coordination through Claude   Code.",
+  "scores": {
+   "hooks": 0.22,
+   "subagents": 0.96,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.94
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "rz1989s/claude-code-statusline",
+  "stars": 480,
+  "description": "Transform your Claude Code terminal with atomic precision statusline. Features flexible layouts, real-time cost tracking, MCP monitoring, prayer times, and beautiful themes.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.03,
+   "statusline": 0.95,
+   "collection": 0.65,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Ido-Levi/claude-code-tamagotchi",
+  "stars": 433,
+  "description": "Real-time behavioral enforcement for Claude Code. Monitors AI actions, detects violations, and interrupts misbehavior. Also has a cute pet.",
+  "scores": {
+   "hooks": 0.53,
+   "subagents": 0.05,
+   "statusline": 0.33,
+   "collection": 0.29,
+   "tooling": 0.85
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "IyadhKhalfallah/clauditor",
+  "stars": 429,
+  "description": "Stop Claude Code from burning through your quota in 20 minutes. Auto-rotates oversized sessions and preserves context.",
+  "scores": {
+   "hooks": 0.93,
+   "subagents": 0.03,
+   "statusline": 0.03,
+   "collection": 0.39,
+   "tooling": 0.73
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "stephenleo/cship",
+  "stars": 424,
+  "description": "⚡ A beautiful, fully customizable statusline for Claude Code - Starship-style TOML config, themeable colours, Nerd Font glyphs, and tunable cost/context/usage thresholds.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.17,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "zxdxjtu/claudecode-rule2hook",
+  "stars": 402,
+  "description": "Transform natural language project rules into Claude Code automation hooks - Write rules in plain English and let Claude  automatically generate powerful hooks for code formatting, testing, validation and more",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.09,
+   "tooling": 0.87
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "johnlindquist/claude-hooks",
+  "stars": 395,
+  "description": "",
+  "scores": {
+   "hooks": 0.95,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.08,
+   "tooling": 0.89
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "leeguooooo/claude-code-usage-bar",
+  "stars": 376,
+  "description": "Lightweight Claude Code statusLine: 5h/7d rate-limit usage, reset countdowns, model + context window, prompt-cache age — one line, 3 styles × 9 themes, daemon fast-mode",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.4,
+   "tooling": 0.87
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "alexfazio/plankton",
+  "stars": 370,
+  "description": "Write-time code quality enforcement system for Claude Code. Every file edit triggers automated formatting and linting through fast Rust-based linters and dedicated Claude instances that intelligently fix remaining violations",
+  "scores": {
+   "hooks": 0.91,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.83,
+   "tooling": 0.77
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "win4r/claude-code-hooks",
+  "stars": 336,
+  "description": "",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.06,
+   "statusline": 0.02,
+   "collection": 0.36,
+   "tooling": 0.81
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "nesaminua/claude-code-lsp-enforcement-kit",
+  "stars": 328,
+  "description": "Hooks that force Claude Code to use LSP instead of Grep for code navigation. Saves   ~80% tokens",
+  "scores": {
+   "hooks": 0.93,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.57,
+   "tooling": 0.88
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "JDArmy/Evasion-SubAgents",
+  "stars": 321,
+  "description": "Claude Code 免杀 SubAgents",
+  "scores": {
+   "tooling": 0.8,
+   "hooks": 0.08,
+   "subagents": 0.95,
+   "statusline": 0.01,
+   "collection": 0.84
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "bobek-balinek/claude-lamp",
+  "stars": 296,
+  "description": "Claude hooks integration with Moonside lamps",
+  "scores": {
+   "hooks": 0.88,
+   "subagents": 0.02,
+   "statusline": 0.02,
+   "collection": 0.11,
+   "tooling": 0.79
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "NYCU-Chung/my-claude-devteam",
+  "stars": 269,
+  "description": "An engineering team in a box for Claude Code — 12 specialized agents, 15 automation hooks, and the P7/P9/P10 methodology.",
+  "scores": {
+   "hooks": 0.34,
+   "subagents": 0.93,
+   "statusline": 0.02,
+   "collection": 0.96,
+   "tooling": 0.83
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "lasso-security/claude-hooks",
+  "stars": 267,
+  "description": "Lasso security integrations for Claude Code, including prompt-injection defenses",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.05,
+   "statusline": 0.01,
+   "collection": 0.21,
+   "tooling": 0.78
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "NYCU-Chung/cc-statusline",
+  "stars": 263,
+  "description": "A comprehensive statusline dashboard for Claude Code — session info, quota bars, agent tracker, MCP health, message history, and more.",
+  "scores": {
+   "hooks": 0.27,
+   "subagents": 0.04,
+   "statusline": 0.97,
+   "collection": 0.44,
+   "tooling": 0.71
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tmck-code/yet-another-statusline",
+  "stars": 242,
+  "description": "A statusline for Claude Code inspired by terminal monitor programs",
+  "scores": {
+   "hooks": 0.27,
+   "subagents": 0.05,
+   "statusline": 0.86,
+   "collection": 0.42,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ldayton/Dippy",
+  "stars": 242,
+  "description": "🐤 Less permission fatigue, more momentum. Dippy knows what’s safe to run and keeps Claude on track when plans change.",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.13,
+   "tooling": 0.83
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "Wangnov/claude-code-statusline-pro",
+  "stars": 237,
+  "description": "Pro statusline for Claude Code | 功能强大的 Claude Code 状态栏",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.44,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Astro-Han/claude-pace",
+  "stars": 234,
+  "description": "Claude Code statusline and rate limit tracker with pace-aware quota monitoring. Pure Bash + jq, single file.",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.05,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "BotchetDig/workout-gate",
+  "stars": 221,
+  "description": "A Claude Code hook that blocks your prompt until you do your push-ups, counted live via webcam. Random reps, session-persistent debt (no closing the tab to skip), streak stats, and three trigger modes. Your AI works hard, so should you.",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.03,
+   "statusline": 0.01,
+   "collection": 0.1,
+   "tooling": 0.7
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "NicholasSpisak/claude-code-subagents",
+  "stars": 213,
+  "description": "",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.91,
+   "statusline": 0.02,
+   "collection": 0.9,
+   "tooling": 0.74
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "gugug168/cute-claude-hooks",
+  "stars": 211,
+  "description": "🌸 Claude Code 界面汉化工具 + 实用 Hooks 集合",
+  "scores": {
+   "statusline": 0.04,
+   "collection": 0.6,
+   "tooling": 0.87,
+   "hooks": 0.77,
+   "subagents": 0.03
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "cso1z/claude-ip-guard",
+  "stars": 196,
+  "description": "A Claude Code hook plugin for IP-based access control · 防 Claude 封号 · Claude IP 检测 · IP 地理位置拦截 · Claude 账号保护",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.02,
+   "statusline": 0.01,
+   "collection": 0.19,
+   "tooling": 0.81
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "kcchien/claude-code-statusline",
+  "stars": 194,
+  "description": "A beautiful, information-dense status line for Claude Code — gradient progress bar, smart hiding, git status, cost tracking, and more.",
+  "scores": {
+   "hooks": 0.47,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.07,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "sd0xdev/sd0x-harness",
+  "stars": 191,
+  "description": "The harness layer for Claude Code — a reference implementation of harness engineering with hook-enforced dual review, state-machine gates that survive context compaction, and fail-closed safety where it counts. Quality gates that AI can't skip.",
+  "scores": {
+   "hooks": 0.73,
+   "subagents": 0.19,
+   "statusline": 0.02,
+   "collection": 0.94,
+   "tooling": 0.88
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "AwesomeZun/CC-statusline",
+  "stars": 191,
+  "description": "An aesthetic statusline for Claude Code by awesomejun",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.14,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "juanandresgs/claude-ctrl",
+  "stars": 191,
+  "description": "The Systems Thinker's Deterministic Claude Code Control Plane",
+  "scores": {
+   "hooks": 0.92,
+   "subagents": 0.12,
+   "statusline": 0.02,
+   "collection": 0.74,
+   "tooling": 0.79
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "sd0xdev/sd0x-dev-flow",
+  "stars": 188,
+  "description": "The harness layer for Claude Code — a reference implementation of harness engineering with hook-enforced dual review, state-machine gates that survive context compaction, and fail-closed safety where it counts. Quality gates that AI can't skip.",
+  "scores": {
+   "hooks": 0.72,
+   "subagents": 0.2,
+   "statusline": 0.02,
+   "collection": 0.94,
+   "tooling": 0.88
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "dl-ezo/claude-code-sub-agents",
+  "stars": 186,
+  "description": "A complete collection of 35 specialized sub-agents for Claude Code that enable end-to-end software development automation",
+  "scores": {
+   "subagents": 0.93,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.77,
+   "hooks": 0.08
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "Siigari/claude-heartbeat",
+  "stars": 184,
+  "description": "Keep Claude Code alive and autonomous without -p. Heartbeat hook + inbox/outbox pattern.",
+  "scores": {
+   "hooks": 0.7,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.18,
+   "tooling": 0.75
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "AwesomeJun/CC-statusline",
+  "stars": 181,
+  "description": "An aesthetic statusline for Claude Code by awesomejun",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.15,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "ssssssanjiu/clawd-conduit",
+  "stars": 180,
+  "description": "Full-lifecycle wiring between Claude Code and the Clawd on Desk pet — all 15 hook events, with permission prompts answered straight from the desktop",
+  "scores": {
+   "tooling": 0.87,
+   "hooks": 0.91,
+   "subagents": 0.04,
+   "statusline": 0.03,
+   "collection": 0.84
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "bartolli/claude-code-typescript-hooks",
+  "stars": 179,
+  "description": "",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.43,
+   "tooling": 0.82
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "tryalan-ai/awesome-claude-code-sub-agents",
+  "stars": 175,
+  "description": "Collection of specialised Claude Code agents",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.88,
+   "statusline": 0.02,
+   "collection": 0.83,
+   "tooling": 0.6
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "KimYx0207/Kim_Service",
+  "stars": 172,
+  "description": "面向 Claude Code、Codex 等 AI 编码助手的 Hook 与 Agent Skill 开源合集。",
+  "scores": {
+   "hooks": 0.37,
+   "subagents": 0.27,
+   "statusline": 0.03,
+   "collection": 0.9,
+   "tooling": 0.68
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "yifanzz/claude-code-boost",
+  "stars": 166,
+  "description": "Claude Code Boost - Hook utilities for Claude Code with intelligent auto-approval",
+  "scores": {
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.59,
+   "tooling": 0.91,
+   "hooks": 0.97
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "leonardsellem/codex-subagents-mcp",
+  "stars": 160,
+  "description": "Claude-style sub-agents (reviewer, debugger, security) for Codex CLI via a tiny MCP server. Each call spins up a clean context in a temp workdir, injects a persona via AGENTS.md, and runs codex exec --profile <agent> to preserve isolated state.",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.62,
+   "statusline": 0.02,
+   "collection": 0.31,
+   "tooling": 0.93
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "NEWBIE0413/gemini-gpt-hybrid",
+  "stars": 153,
+  "description": "Multi-model orchestration subagents for Claude Code — delegates by task scope to Gemini's 1M-token context or GPT's fast iteration, then routes every result back through Claude review.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.93,
+   "statusline": 0.01,
+   "collection": 0.33,
+   "tooling": 0.86
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "martinemde/starship-claude",
+  "stars": 150,
+  "description": "✳ claude statusline via starship",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.03,
+   "statusline": 0.87,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "undeadlist/claude-code-agents",
+  "stars": 149,
+  "description": "Claude Code Agents Prompt templates for Claude Code's subagent system. Run parallel code audits, automate fix cycles, get stuff reviewed. Built for the Claude Code Task tool. Not a framework. Just prompts that work. What This Does Claude Code can spawn subagents via Task(). These are the prompts those agents receive.",
+  "scores": {
+   "hooks": 0.22,
+   "subagents": 0.96,
+   "statusline": 0.01,
+   "collection": 0.96,
+   "tooling": 0.88
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "ayush-that/sub-agents.directory",
+  "stars": 148,
+  "description": "🐒 Sub-Agents Directory is a curated collection of 100+ sub-agent prompts and MCP servers for Claude Code.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.9,
+   "statusline": 0.02,
+   "collection": 0.92,
+   "tooling": 0.77
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "GowayLee/cchooks",
+  "stars": 132,
+  "description": "A Python SDK for claude-code hooks",
+  "scores": {
+   "hooks": 0.98,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.07,
+   "tooling": 0.88
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "shintaro-sprech/agent-orchestrator-template",
+  "stars": 124,
+  "description": "A self-evolving subagent system for Claude Code",
+  "scores": {
+   "hooks": 0.2,
+   "subagents": 0.83,
+   "statusline": 0.02,
+   "collection": 0.83,
+   "tooling": 0.86
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Bande-a-Bonnot/Boucle-framework",
+  "stars": 124,
+  "description": "Autonomous agent framework with structured memory, safety hooks, and loop management. Built by the agent that runs on it.",
+  "scores": {
+   "hooks": 0.87,
+   "subagents": 0.1,
+   "statusline": 0.02,
+   "collection": 0.93,
+   "tooling": 0.91
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "rubenzantingh/claude-code-magento-agents",
+  "stars": 123,
+  "description": "Collection of Claude Code Subagents designed to be used for Magento (2) development.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.94,
+   "statusline": 0.01,
+   "collection": 0.93,
+   "tooling": 0.58
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "mischasigtermans/laravel-altitude",
+  "stars": 122,
+  "description": "Claude Code agents for the TALL stack, powered by Laravel Boost.",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.89,
+   "statusline": 0.02,
+   "collection": 0.69,
+   "tooling": 0.38
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "Aedelon/claude-code-blueprint",
+  "stars": 120,
+  "description": "Production-grade Claude Code configuration: skills, agents, hooks, rules, and permissions working as a system.",
+  "scores": {
+   "hooks": 0.28,
+   "subagents": 0.34,
+   "statusline": 0.02,
+   "collection": 0.88,
+   "tooling": 0.68
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "ghy196830-del/agent-watch-approve",
+  "stars": 120,
+  "description": "⌚ 在 Apple Watch 上批准 Claude Code / Codex 的危险操作,任务完成自动提醒 | Approve your AI coding agent's risky actions from your Apple Watch, get buzzed when tasks finish",
+  "scores": {
+   "hooks": 0.86,
+   "subagents": 0.03,
+   "statusline": 0.01,
+   "collection": 0.15,
+   "tooling": 0.89
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "minetechnic2012-lang/claude-ops-inspector",
+  "stars": 120,
+  "description": "Subagent Verification for Claude AI Code Networks 2026",
+  "scores": {
+   "hooks": 0.19,
+   "subagents": 0.91,
+   "statusline": 0.02,
+   "collection": 0.87,
+   "tooling": 0.74
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "alirezarezvani/claude-cto-team",
+  "stars": 117,
+  "description": "Your personal CTO Team for Claude Code . These Subagents will help you challenging yourself while you plan and execute. ",
+  "scores": {
+   "statusline": 0.02,
+   "collection": 0.58,
+   "tooling": 0.77,
+   "hooks": 0.1,
+   "subagents": 0.92
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "ilia-pluzhnikov/claude-code-statusline",
+  "stars": 117,
+  "description": "A feature-rich, dependency-free Node.js statusline for Claude Code with model, task, git state, context window, rate limits, and Anthropic peak-hours indicator",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.08,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "davila7/claude_subagents",
+  "stars": 113,
+  "description": "Claude SubAgents",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.94,
+   "statusline": 0.02,
+   "collection": 0.37,
+   "tooling": 0.78
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "Toskysun/sub-agents",
+  "stars": 111,
+  "description": "AI Sub-Agents Collection for Claude Code - AI智能代理集合",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.94,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.83
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "danielmackay/claude-code-statusline",
+  "stars": 111,
+  "description": "",
+  "scores": {
+   "hooks": 0.2,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.05,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "rinadelph/Rapala",
+  "stars": 108,
+  "description": "rins_hooks - Never lose track of your Claude Code changes again. Automatically commits every edit with context, so you can code fearlessly and revert easily.",
+  "scores": {
+   "hooks": 0.89,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.85,
+   "tooling": 0.93
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "solanabr/ai-kit",
+  "stars": 107,
+  "description": "Claude Code / Codex / AI configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
+  "scores": {
+   "hooks": 0.34,
+   "subagents": 0.76,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.81
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "cozytab/fable5-mode",
+  "stars": 106,
+  "description": "Make Opus 4.8 (or any Claude model) work like Claude Fable 5 — a Claude Code skill + guard hooks (plan gate, model ceiling, per-task enforcement) for Fable-5-grade discipline: plan, self-verify, and route sub-agents, without Fable 5.",
+  "scores": {
+   "hooks": 0.77,
+   "subagents": 0.25,
+   "statusline": 0.02,
+   "collection": 0.83,
+   "tooling": 0.91
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "solanabr/solana-ai-kit",
+  "stars": 104,
+  "description": "Claude Code / Codex / AI configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
+  "scores": {
+   "hooks": 0.36,
+   "subagents": 0.77,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.8
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "KimYx0207/HookPrompt",
+  "stars": 100,
+  "description": "Claude Code自动提示词优化Hook：谷歌提示词圣经 + 5任务元提示词 | Auto prompt optimization Hook for Claude Code",
+  "scores": {
+   "hooks": 0.86,
+   "subagents": 0.05,
+   "statusline": 0.01,
+   "collection": 0.24,
+   "tooling": 0.88
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "rshah515/claude-code-subagents",
+  "stars": 100,
+  "description": "Comprehensive collection of 133+ specialized AI subagents for Claude Code covering the entire software development lifecycle",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.93,
+   "statusline": 0.02,
+   "collection": 0.96,
+   "tooling": 0.79
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "Dev-GOM/claude-code-marketplace",
+  "stars": 98,
+  "description": "Claude Code plugins & extensions - Hooks, commands, and agents for developer productivity and workflow automation",
+  "scores": {
+   "hooks": 0.9,
+   "subagents": 0.15,
+   "statusline": 0.02,
+   "collection": 0.92,
+   "tooling": 0.68
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "abhisekjha/pith",
+  "stars": 98,
+  "description": "Pith is the hook that makes Claude Code sessions last 3x longer.",
+  "scores": {
+   "hooks": 0.82,
+   "subagents": 0.06,
+   "statusline": 0.02,
+   "collection": 0.77,
+   "tooling": 0.86
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "shinpr/sub-agents-mcp",
+  "stars": 98,
+  "description": "Define task-specific AI sub-agents in Markdown for any MCP-compatible tool.",
+  "scores": {
+   "hooks": 0.04,
+   "subagents": 0.21,
+   "statusline": 0.01,
+   "collection": 0.31,
+   "tooling": 0.86
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "byebye-code/byebyecode",
+  "stars": 96,
+  "description": "88code的Claude增强statusline，基于CCometixLine开发",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.3,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "wyattjoh/claude-code-notification",
+  "stars": 95,
+  "description": "A lightweight macOS desktop notification hook for Claude Code that displays native notifications with customizable system sounds when events occur during AI coding sessions.",
+  "scores": {
+   "hooks": 0.95,
+   "subagents": 0.02,
+   "statusline": 0.02,
+   "collection": 0.04,
+   "tooling": 0.66
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "tony/claude-code-riper-5",
+  "stars": 94,
+  "description": "Claude Code (Sub-agent, Custom Commands) for RIPER-5",
+  "scores": {
+   "hooks": 0.15,
+   "subagents": 0.74,
+   "statusline": 0.02,
+   "collection": 0.78,
+   "tooling": 0.72
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "tzachbon/claude-model-router-hook",
+  "stars": 93,
+  "description": "Claude Code hooks that auto-switch model tier based on task complexity",
+  "scores": {
+   "hooks": 0.94,
+   "subagents": 0.09,
+   "statusline": 0.03,
+   "collection": 0.32,
+   "tooling": 0.87
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "arpitnath/claude-capsule-kit",
+  "stars": 93,
+  "description": "A toolkit that makes Claude Code better at engineering — session memory, dependency analysis, large file navigation, 18 specialist agents, and crew teams for parallel multi-branch work.",
+  "scores": {
+   "hooks": 0.59,
+   "subagents": 0.45,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.83
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "pascalporedda/awesome-claude-code",
+  "stars": 86,
+  "description": "A first attempt of gathering awesome Claude Code hooks in one place, so we can all benefit. Please feel free to open an issue or a PR and add your own gusto.",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.29,
+   "tooling": 0.81
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "0ldh/claude-code-agents-orchestra",
+  "stars": 84,
+  "description": "Turn Claude Code into a coordinated team of 40+ specialized AI agents that work together like a world-class engineering organization.",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.91,
+   "statusline": 0.01,
+   "collection": 0.94,
+   "tooling": 0.56
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "tak848/ccgate",
+  "stars": 83,
+  "description": "LLM-powered PermissionRequest hook for coding agents (e.g. Claude Code)",
+  "scores": {
+   "hooks": 0.79,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.13,
+   "tooling": 0.77
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "wolfdenpublishing/pyccsl",
+  "stars": 83,
+  "description": "Python Claude Code Status Line (PyCCSL, pronounced \"pixel\")",
+  "scores": {
+   "hooks": 0.19,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.07,
+   "tooling": 0.92
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Vvkmnn/claude-emporium",
+  "stars": 82,
+  "description": "🏛 [UNDER CONSTRUCTION] A (roman) claude plugin marketplace",
+  "scores": {
+   "collection": 0.75,
+   "tooling": 0.8,
+   "hooks": 0.87,
+   "subagents": 0.11,
+   "statusline": 0.02
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "sathish316/pied-piper",
+  "stars": 81,
+  "description": "Pied Piper is a team of AI SubAgents that can autonomously/semi-autonomously work on long-running or complex coding tasks with full End-to-end tracking and human-in-the-loop approvals. Subagents can run on Claude Code, Coding CLIs that support SubAgents, Docker, Cloud Desktop etc.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.42,
+   "statusline": 0.02,
+   "collection": 0.82,
+   "tooling": 0.85
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "sorosora/arcade-statusline",
+  "stars": 81,
+  "description": "🕹️Arcade-themed statusline for Claude Code — Pac-Man inspired chase game & Pikmin Bloom inspired flower trail",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ersinkoc/claude-statusline",
+  "stars": 78,
+  "description": "",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.61,
+   "tooling": 0.92
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "decider/claude-hooks",
+  "stars": 75,
+  "description": "Comprehensive hooks for Claude Code to enforce clean code practices and automate workflows",
+  "scores": {
+   "collection": 0.67,
+   "tooling": 0.9,
+   "hooks": 0.98,
+   "subagents": 0.04,
+   "statusline": 0.02
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "webdevtodayjason/claude-hooks",
+  "stars": 74,
+  "description": "Claude Code Hooks Manager for managing Hooks in Claude Code via CLI.",
+  "scores": {
+   "hooks": 0.85,
+   "subagents": 0.07,
+   "statusline": 0.02,
+   "collection": 0.53,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "augmnt/agents",
+  "stars": 73,
+  "description": " A comprehensive collection of 24+ specialized Claude Code sub-agents for enhanced software development workflows.",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.92,
+   "statusline": 0.02,
+   "collection": 0.91,
+   "tooling": 0.76
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "xleddyl/claude-watch",
+  "stars": 70,
+  "description": "A minimal statusline for Claude Code",
+  "scores": {
+   "hooks": 0.8,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.06,
+   "tooling": 0.91
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "henchmarketing-rgb/headroom",
+  "stars": 70,
+  "description": "Know your headroom. Context window usage bar for Claude Code.",
+  "scores": {
+   "hooks": 0.86,
+   "subagents": 0.02,
+   "statusline": 0.85,
+   "collection": 0.07,
+   "tooling": 0.85
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "beyondcode/claude-hooks-sdk",
+  "stars": 68,
+  "description": "A PHP SDK for building Claude Code hooks",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.06,
+   "tooling": 0.74
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "Filip-Podstavec/claude-leverage",
+  "stars": 68,
+  "description": "Make any repo AI-first - write sustainable code from the start, or refactor a legacy codebase to prepare it for agent-driven development.Building blocks for Claude Code: subagents, slash commands, hooks, and workflow patterns. Copy what you need. A working developer's stack for Claude Code.",
+  "scores": {
+   "statusline": 0.02,
+   "collection": 0.93,
+   "tooling": 0.88,
+   "hooks": 0.77,
+   "subagents": 0.24
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "Astro-Han/claude-lens",
+  "stars": 66,
+  "description": "Know your quota before you hit the wall. The only pace-aware statusline for Claude Code.",
+  "scores": {
+   "collection": 0.07,
+   "tooling": 0.93,
+   "hooks": 0.12,
+   "subagents": 0.02,
+   "statusline": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "shanraisshan/claude-code-status-line",
+  "stars": 64,
+  "description": "A custom status line script for Claude Code that displays context window usage, git status, and model information.",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.08,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "dgriffith/bad-daves-robot-army",
+  "stars": 61,
+  "description": "Repository for Claude Code artifacts, including subagents, slash commands, and hooks",
+  "scores": {
+   "hooks": 0.2,
+   "subagents": 0.85,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.84
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "johnzfitch/claude-warden",
+  "stars": 60,
+  "description": "Security hooks and monitoring for Claude Code — quiet overrides, SSRF protection, MCP compression, OTEL tracing",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.06,
+   "statusline": 0.1,
+   "collection": 0.77,
+   "tooling": 0.94
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "solanabr/solana-claude",
+  "stars": 59,
+  "description": "Claude Code configs for the expert Solana builder. CLAUDE.md, agents, commands, hooks, rules, skills and settings across Web, Anchor, Pinnochio, Unity, Mobile, security and more.",
+  "scores": {
+   "hooks": 0.33,
+   "subagents": 0.75,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.8
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "aiedwardyi/claude-usage-monitor",
+  "stars": 56,
+  "description": "Claude Code statusline plugin for 5-hour/7-day quota, context usage, tokens, and reset countdowns in your terminal.",
+  "scores": {
+   "collection": 0.08,
+   "tooling": 0.95,
+   "hooks": 0.13,
+   "subagents": 0.02,
+   "statusline": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Dicklesworthstone/post_compact_reminder",
+  "stars": 55,
+  "description": "Claude Code hook that detects context compaction and injects a reminder to re-read AGENTS.md, preventing post-compaction rule amnesia in long sessions",
+  "scores": {
+   "hooks": 0.94,
+   "subagents": 0.04,
+   "statusline": 0.01,
+   "collection": 0.05,
+   "tooling": 0.93
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "askjohngeorge/askjg-claude-agents",
+  "stars": 55,
+  "description": "The Claude subagents and example custom commands I use in my AI-assisted development workflow",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.9,
+   "statusline": 0.02,
+   "collection": 0.85,
+   "tooling": 0.7
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "fredrikaverpil/claudeline",
+  "stars": 55,
+  "description": "Minimalistic Go statusline for Claude Code",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.06,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "loadbalance-sudachi-kun/claude-code-statusline",
+  "stars": 55,
+  "description": "Claude Code statusline with rate limit display",
+  "scores": {
+   "hooks": 0.19,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.07,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "possibilities/claude-code-generic-hooks",
+  "stars": 54,
+  "description": "",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.14,
+   "tooling": 0.84
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "wangbooth/Claude-Code-Guardrails",
+  "stars": 54,
+  "description": "Protective hooks for Claude Code that prevent accidental code loss through branch protection,   automatic checkpointing, and safe commit squashing",
+  "scores": {
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.34,
+   "tooling": 0.84,
+   "hooks": 0.95
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "vfmatzkin/claude-statusline",
+  "stars": 54,
+  "description": "",
+  "scores": {
+   "hooks": 0.24,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.05,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "anhannin/codex-hud",
+  "stars": 53,
+  "description": "Claude-HUD style status line for Codex CLI: model, git, and 5h/7d usage at a glance.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.83,
+   "collection": 0.12,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ChanMeng666/claude-code-audio-hooks",
+  "stars": 53,
+  "description": "🔊 AI-operated audio notifications for Claude Code & Cursor IDE — 26 hooks, voice + chime themes, TTS, webhooks, rate-limit alerts, status line. One slash command to install, then natural language forever.",
+  "scores": {
+   "hooks": 0.89,
+   "subagents": 0.03,
+   "statusline": 0.1,
+   "collection": 0.95,
+   "tooling": 0.92
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "recomby-ai/promptly-prompt",
+  "stars": 52,
+  "description": "Claude Code skill that forces AI to understand before executing. Three disciplines: cognition check, requirement understanding, method search.",
+  "scores": {
+   "hooks": 0.91,
+   "subagents": 0.08,
+   "statusline": 0.01,
+   "collection": 0.06,
+   "tooling": 0.63
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "minorun365/claude-code-japanese-guard",
+  "stars": 51,
+  "description": "Claude Code の応答が英語に切り替わったら、日本語で書き直させる Stop hook",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.04,
+   "tooling": 0.88
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "AwesomeJun/awesome-claude-plugins",
+  "stars": 51,
+  "description": "A curated collection of awesome plugins for Claude Code by awesomejun",
+  "scores": {
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.17,
+   "tooling": 0.93,
+   "hooks": 0.08
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "CoderMageFox/claudecode-codex-subagents",
+  "stars": 50,
+  "description": "A Claude Code plugin for orchestrating complex tasks by delegating to multiple parallel Codex agents, then merging and reviewing results.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.37,
+   "statusline": 0.02,
+   "collection": 0.64,
+   "tooling": 0.9
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "glauberlima/claude-code-statusline",
+  "stars": 50,
+  "description": "Supercharge your Claude Code CLI experience with a powerful statusline that displays key session metrics (Git state, context usage, model info and cost) at a glance — minimal setup, maximum insight.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.15,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "qkal/Canny",
+  "stars": 50,
+  "description": "Stops AI coding agents from claiming work is done without evidence. Deterministic hooks decide, TypeSafe's Jev advises. Append-only ledger, zero runtime dependencies.",
+  "scores": {
+   "hooks": 0.9,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.35,
+   "tooling": 0.91
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "0-to-1-Labs/claude-code-prompt-optimizer",
+  "stars": 47,
+  "description": "AI-powered prompt optimization hook for Claude Code. Transforms simple prompts into comprehensive, structured instructions using Claude Opus 4.6's advanced reasoning capabilities.",
+  "scores": {
+   "hooks": 0.89,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.06,
+   "tooling": 0.77
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "SihyeonJeon/why-was-fable-banned",
+  "stars": 45,
+  "description": "Fable-style spec + evidence gate for Claude Code + Codex. Makes Opus/Codex work under Fable-like discipline: blocks every edit until a deterministic spec passes, and there is no \"done\" without live acceptance evidence. Spec-first, verification-gated, forbidden-paths enforced.",
+  "scores": {
+   "hooks": 0.92,
+   "subagents": 0.07,
+   "statusline": 0.04,
+   "collection": 0.57,
+   "tooling": 0.91
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "videvjs/claude-statusline",
+  "stars": 42,
+  "description": "Custom status line for Claude Code — folder, git branch, model, context & rate limits",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.09,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "canack/claude-usage-line",
+  "stars": 40,
+  "description": "Custom status line for Claude Code — rate limits, git branch, cost, diff stats",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Carlos-Dominguez-faber/claude-code-tune-kit",
+  "stars": 37,
+  "description": "Deja de usar Claude Code como venía en la caja. Semáforo de contexto, modo conciso, 4 hooks que bloquean comandos destructivos y secretos, estilo de salida sin humo, GLM sin secuestrar tu config — y cc-doctor.sh, que audita tu instalación y te dice qué te falta.",
+  "scores": {
+   "hooks": 0.75,
+   "subagents": 0.05,
+   "statusline": 0.13,
+   "collection": 0.81,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "hagan/claudia-statusline",
+  "stars": 36,
+  "description": "Rust statusline for Claude Code — hook-based compaction detection, SQLite session persistence, multi-console-safe session tracking. Listed in Awesome Claude Code.",
+  "scores": {
+   "hooks": 0.2,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.34,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "mttmcknn/prism",
+  "stars": 35,
+  "description": "A fast, customizable, and colorful status line for Claude Code.",
+  "scores": {
+   "hooks": 0.27,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.27,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "JochenYang/minimax-status",
+  "stars": 33,
+  "description": "MiniMax token-plan 定制状态栏，显示 token-plan 使用额度、剩余次数、重置时间，支持vscode 底部状态栏显示、openclaw查询、claude code statusline",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.02,
+   "statusline": 0.47,
+   "collection": 0.3,
+   "tooling": 0.86
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "deluo/glm-quota-line",
+  "stars": 33,
+  "description": "A lightweight CLI for showing GLM Coding Plan quota in the Claude Code status line.",
+  "scores": {
+   "hooks": 0.16,
+   "subagents": 0.02,
+   "statusline": 0.88,
+   "collection": 0.16,
+   "tooling": 0.87
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "kylesnowschwartz/tail-claude-hud",
+  "stars": 32,
+  "description": "Terminal statusline for Claude Code sessions",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.25,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "chiefautism/warm-start",
+  "stars": 31,
+  "description": "a sessionstart hook that gives claude code project context before you type anything                            ",
+  "scores": {
+   "hooks": 0.77,
+   "subagents": 0.05,
+   "statusline": 0.03,
+   "collection": 0.11,
+   "tooling": 0.87
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Evolutionairy-AI/MINDLAS",
+  "stars": 31,
+  "description": "Mindlas catches your coding agent drifting before the bad code lands. Real-time tracking and correction for context rot, unverified done claims, patch sprawl, and tool loops in your Claude Code session.",
+  "scores": {
+   "hooks": 0.8,
+   "subagents": 0.05,
+   "statusline": 0.11,
+   "collection": 0.75,
+   "tooling": 0.84
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "tzengyuxio/claude-statusline",
+  "stars": 30,
+  "description": "Two-line status line for Claude Code with context bar, usage tracking, git status, and Nerd Font icons",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "allthingsclaude/bar",
+  "stars": 29,
+  "description": "A statusline for Claude Code that shows context usage, session limits, and git info right in your terminal.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.08,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Ventuss-OvO/cc-costline",
+  "stars": 28,
+  "description": "Enhanced statusline for Claude Code — see your 7d/30d spend at a glance",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.09,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "vbcherepanov/claude-statusbar",
+  "stars": 28,
+  "description": "🖥️ A rich, two-line status bar for Claude Code CLI — real-time model, context usage, tokens, cost, duration, git branch, cache stats and more in your terminal",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.11,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "hell0github/claude-statusline",
+  "stars": 27,
+  "description": "A Lightweight Statusline plugin for Claude Code CLI to track context, cost usage and session reset time",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.22,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Field-Logic-Ltd/ClaudeStatsBar",
+  "stars": 27,
+  "description": "A Claude Code status line showing how big your session has got and what the next turn costs before you type",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.07,
+   "tooling": 0.9
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "bartleby/claude-statusline",
+  "stars": 26,
+  "description": "Custom statusline for Claude Code CLI with 18 themes, rate limits, context tracking and ASCII Claude avatar",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.2,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tylergraydev/claude-limitline",
+  "stars": 24,
+  "description": "A statusline for Claude Code showing real-time usage limits and weekly tracking",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.12,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "alp82/claude-statusline",
+  "stars": 23,
+  "description": "One bash script for the Claude Code statusline: dir, branch, model, context window, and 5h / 7d / Fable rate-limit bars.",
+  "scores": {
+   "hooks": 0.3,
+   "subagents": 0.04,
+   "statusline": 0.96,
+   "collection": 0.11,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "kangraemin/claude-status-bar",
+  "stars": 23,
+  "description": "Claude Code status line script",
+  "scores": {
+   "tooling": 0.95,
+   "hooks": 0.14,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.05
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "xwk-911/rulehook",
+  "stars": 22,
+  "description": "One natural-language policy file. Prompt-based enforcement hooks for Claude Code, Codex, and Cursor.",
+  "scores": {
+   "hooks": 0.66,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.44,
+   "tooling": 0.92
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "felipeelias/claude-statusline",
+  "stars": 22,
+  "description": "Configurable status line for Claude Code",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.14,
+   "tooling": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Nadav-Fux/claude-2x-statusline",
+  "stars": 22,
+  "description": "A minimal Israel-timezone status line for Claude Code — know when the 2X doubled-usage promotion is active",
+  "scores": {
+   "hooks": 0.38,
+   "subagents": 0.04,
+   "statusline": 0.97,
+   "collection": 0.43,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "TylerGallenbeck/claude-code-limit-tracker",
+  "stars": 22,
+  "description": "A comprehensive usage tracking system for Claude Code that displays real-time quota usage per model with accurate subscription limits that display in your status line",
+  "scores": {
+   "hooks": 0.16,
+   "subagents": 0.02,
+   "statusline": 0.91,
+   "collection": 0.22,
+   "tooling": 0.82
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "kylesnowschwartz/prompt-intercept-pattern",
+  "stars": 20,
+  "description": "Claude Code plugin pattern: hook-intercepted commands that run code without an API call",
+  "scores": {
+   "hooks": 0.88,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.05,
+   "tooling": 0.69
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "safe-agentic-world/nomos",
+  "stars": 19,
+  "description": "Deny-wins policy hook for Claude Code and Codex. Checks every shell, file, and fetch call against rules you keep in Git, holds under --dangerously-skip-permissions, refuses commands it cannot parse, and keeps a hash-linked audit log.",
+  "scores": {
+   "hooks": 0.85,
+   "subagents": 0.04,
+   "statusline": 0.01,
+   "collection": 0.36,
+   "tooling": 0.89
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ticpu/ccusage-statusline-rs",
+  "stars": 18,
+  "description": "Ultra-fast Rust implementation of Claude Code usage statusline.",
+  "scores": {
+   "hooks": 0.28,
+   "subagents": 0.03,
+   "statusline": 0.94,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "briansmith80/claude-code-status-bar",
+  "stars": 18,
+  "description": "Configurable status bar for Claude Code: usage limits with pacing markers, context window, git state, live activity, session cost, and 8 colour themes. Pure bash, zero dependencies.",
+  "scores": {
+   "hooks": 0.27,
+   "subagents": 0.04,
+   "statusline": 0.98,
+   "collection": 0.47,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "egerev/claude-status-line",
+  "stars": 18,
+  "description": "Rich status bar for Claude Code — context, cache, rate limits, prompt estimates",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.12,
+   "tooling": 0.91
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "webkubor/claude-usage-statusline",
+  "stars": 17,
+  "description": "Claude Code 状态栏：会话花费、上下文占用、5h/7d 限额，并区分订阅制与按量付费、预警无兜底硬停。单文件 Python，零依赖零配置。",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "jacob-bd/claude-code-statusline",
+  "stars": 17,
+  "description": "Custom statusline for Claude Code with accurate cost tracking and context usage warnings",
+  "scores": {
+   "collection": 0.39,
+   "tooling": 0.97,
+   "hooks": 0.12,
+   "subagents": 0.02,
+   "statusline": 0.98
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "blushdas/claude-code-statusline",
+  "stars": 17,
+  "description": "Real-time Claude Code statusline with cost tracking and Obsidian logging",
+  "scores": {
+   "hooks": 0.32,
+   "subagents": 0.03,
+   "statusline": 0.98,
+   "collection": 0.2,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "FahimFBA/claudecode-statusline",
+  "stars": 16,
+  "description": "Nice and useful statusline for Claude Code",
+  "scores": {
+   "hooks": 0.45,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.45,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "ssenart/oh-my-claude",
+  "stars": 16,
+  "description": "A fully customized status line for Claude Code",
+  "scores": {
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.27,
+   "tooling": 0.96,
+   "hooks": 0.08
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "dsebastien/claude-epic-status-line",
+  "stars": 16,
+  "description": "A feature-rich status line for Claude Code with colors, rate limits, git info, session cost, worktree detection, and auto-compact warnings",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.03,
+   "statusline": 0.98,
+   "collection": 0.27,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "yeisonrestrepo/code-conductor",
+  "stars": 15,
+  "description": "A governance layer for Claude Code sessions: hooks that check an agent's commands before they run, a spec-first workflow, and project memory the next session reads.",
+  "scores": {
+   "hooks": 0.87,
+   "subagents": 0.06,
+   "statusline": 0.02,
+   "collection": 0.79,
+   "tooling": 0.87
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "sathwick-p/claude-rename",
+  "stars": 14,
+  "description": "Auto-name Claude Code sessions with AI-powered descriptive titles. Zero config, zero API keys.",
+  "scores": {
+   "hooks": 0.92,
+   "subagents": 0.03,
+   "statusline": 0.04,
+   "collection": 0.09,
+   "tooling": 0.83
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "vincent-k2026/codachi",
+  "stars": 14,
+  "description": "A tamagotchi-style virtual pet that lives in your Claude Code statusline",
+  "scores": {
+   "hooks": 0.42,
+   "subagents": 0.03,
+   "statusline": 0.9,
+   "collection": 0.41,
+   "tooling": 0.91
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ratelworks/token-horse",
+  "stars": 14,
+  "description": "Token usage reactive horse pet for Claude Code statuslines and Codex CLI sessions",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.41,
+   "collection": 0.06,
+   "tooling": 0.64
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "artischocki/agent-usage-tmux",
+  "stars": 14,
+  "description": "Claude / Codex Usage in tmux Statusline",
+  "scores": {
+   "hooks": 0.03,
+   "subagents": 0.02,
+   "statusline": 0.76,
+   "collection": 0.16,
+   "tooling": 0.93
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "shuntaka9576/blocc",
+  "stars": 13,
+  "description": "Execute multiple commands and block Claude Code Hooks by returning exit 2 with stderr on failures 🛡️",
+  "scores": {
+   "statusline": 0.02,
+   "collection": 0.07,
+   "tooling": 0.85,
+   "hooks": 0.95,
+   "subagents": 0.04
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "ohugonnot/claude-code-statusline",
+  "stars": 13,
+  "description": "Real-time /usage rate limit tracking for Claude Code — see session & weekly quota, reset countdown, context window, model and git branch in your status line",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.07,
+   "tooling": 0.92
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "jsubroto/claude-code-statusline",
+  "stars": 13,
+  "description": "Terminal configurator for Claude Code's built-in status line. Pick fields, pick a theme, hit Enter.",
+  "scores": {
+   "hooks": 0.44,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.07,
+   "tooling": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Darkycl/claude-code-glm-statusline",
+  "stars": 13,
+  "description": "Claude Code statusline for GLM Coding Plan subscribers — real-time quota & context usage display",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "GorajKathrotiya/claude-code-statusline",
+  "stars": 13,
+  "description": "Claude Code statusline — session %, weekly limit, reset countdown. Pure shell, no npm.",
+  "scores": {
+   "hooks": 0.16,
+   "subagents": 0.03,
+   "statusline": 0.98,
+   "collection": 0.28,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "aromanarguello/claude-statusline",
+  "stars": 12,
+  "description": "A rich multi-line status line for Claude Code",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.02,
+   "statusline": 0.93,
+   "collection": 0.1,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "fightingPig/claude-statusline",
+  "stars": 12,
+  "description": "Claude Code 状态栏 - 显示目录、分支、模型、effort、上下文进度条、PR",
+  "scores": {
+   "hooks": 0.27,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.08,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "micschr0/claudebar",
+  "stars": 12,
+  "description": "Powerline-style statusline for Claude Code. Rust CLI with a TUI configurator, themes and styles",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.91,
+   "collection": 0.14,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "kostyay/claude-status",
+  "stars": 12,
+  "description": "Customizable status line for Claude Code CLI - shows git status, GitHub CI, token usage, and task tracking (Claude tasks, kt, tk, beads)",
+  "scores": {
+   "hooks": 0.04,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.15,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "renefichtmueller/claude-code-hardened",
+  "stars": 11,
+  "description": "🛡️ Stop your AI from pushing secrets to GitHub. Security hooks, battle-tested rules, and a live validator for Claude Code. 5 hooks · 6 rules · 1 install script · 0 dependencies.",
+  "scores": {
+   "hooks": 0.96,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.52,
+   "tooling": 0.89
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "labzink/cc-probeline",
+  "stars": 11,
+  "description": "See where it leaks, stop paying for it — a live Claude Code status line that prices every turn, your subagents, cache rebuilds, plus limits, context and git.",
+  "scores": {
+   "hooks": 0.14,
+   "subagents": 0.06,
+   "statusline": 0.97,
+   "collection": 0.2,
+   "tooling": 0.88
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "YuriNachos/claude-scope",
+  "stars": 11,
+  "description": "Beautiful, customizable statusline for Claude Code CLI. Multiple widgets, themes, AI-friendly configuration. Zero runtime dependencies.",
+  "scores": {
+   "hooks": 0.04,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.25,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tenondecrpc/cc-statusline",
+  "stars": 11,
+  "description": "Claude Statusline: a lightweight Bash + jq statusline for Claude Code with model, context, rate limit, git/worktree,   cost, duration, and install/uninstall support. No heavy runtime required.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.1,
+   "tooling": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Lxcardoza993/Claude-statusline",
+  "stars": 11,
+  "description": "Claude Code config backup: statusline + autocompact env vars + healthcheck (survives CC updates)",
+  "scores": {
+   "hooks": 0.34,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.29,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "rafsuntaskin/claude-usage-in-status",
+  "stars": 11,
+  "description": "Renders live context %, token counts, and rate limit status in the Claude Code statusline.",
+  "scores": {
+   "hooks": 0.62,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.06,
+   "tooling": 0.84
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "sravan27/context-os",
+  "stars": 10,
+  "description": "Claude Code's first turn opens the right file instead of grepping — a local static-analysis repo graph injected before turn 1 (no embeddings/server, MIT). −40.9% tokens on a cold-cache A/B; retrieval quality is CI-gated. Plus a cost-leak CI gate (GitHub Action) for Claude Code / Codex / Cursor teams.",
+  "scores": {
+   "hooks": 0.43,
+   "subagents": 0.05,
+   "statusline": 0.02,
+   "collection": 0.22,
+   "tooling": 0.78
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "meresiam/claude-statusline",
+  "stars": 10,
+  "description": "Animated status bar for Claude Code — 13 themes with Gen1 pixel art sprites + AI theme generator + Theme Studio (pnpm monorepo)",
+  "scores": {
+   "hooks": 0.42,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.18,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "zander-zyx/claude-mini-hud",
+  "stars": 10,
+  "description": "对标 claude-hud 核心功能，控制在 7 行以内更轻量。内置 13 个国产大模型平台用量查询 (智谱 GLM / MiniMax / DeepSeek / Kimi / StepFun / SiliconFlow 等)，第三方代理用户也能实时看到额度消耗。",
+  "scores": {
+   "collection": 0.45,
+   "tooling": 0.93,
+   "hooks": 0.17,
+   "subagents": 0.04,
+   "statusline": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "lefProg/claudial",
+  "stars": 10,
+  "description": "⚽ Live football for your teams in the status bar of Claude Code, Cursor, VS Code and Antigravity, plus a terminal dashboard with goal & red-card takeovers. Premier League, La Liga, Champions League and more. No API key.",
+  "scores": {
+   "subagents": 0.02,
+   "statusline": 0.63,
+   "collection": 0.21,
+   "tooling": 0.83,
+   "hooks": 0.06
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "eliColussi/obsidian-ai-vault-kit",
+  "stars": 9,
+  "description": "Turn any folder into a self-documenting Obsidian vault. Claude Code hooks auto-capture every prompt, every answer, and every file edit into your Daily note. One-command install.",
+  "scores": {
+   "hooks": 0.91,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.43,
+   "tooling": 0.8
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "tablesguru/claude-code-statusline",
+  "stars": 9,
+  "description": "A clean multi-line status line for Claude Code: context bar, grouped 5h/7d rate-limit bars with a pace overlay (target + over/under delta), git branch, token count and session time.",
+  "scores": {
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.12,
+   "tooling": 0.95,
+   "hooks": 0.07
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "jftuga/claude-statusline",
+  "stars": 9,
+  "description": "Custom status line renderer for Claude Code written in Go",
+  "scores": {
+   "hooks": 0.14,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.05,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "moon1ite/claude-statusline",
+  "stars": 9,
+  "description": "Real-time statusline for Claude Code showing tools, agents, and todos",
+  "scores": {
+   "hooks": 0.22,
+   "subagents": 0.04,
+   "statusline": 0.97,
+   "collection": 0.23,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "syou6162/ccstatusline",
+  "stars": 9,
+  "description": "Customizable statusline tool for Claude Code using YAML configuration. Process JSON input from Claude Code, execute shell commands, and output formatted statusline with colors.",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.11,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "educlopez/ccvitals",
+  "stars": 9,
+  "description": "The prettiest statusline for Claude Code — pure bash, never blocks your prompt. Usage quota, context window, git status & more.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.53,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "SaharCarmel/claude-code-status-line",
+  "stars": 9,
+  "description": "Claude Code status line with AI-generated project summaries",
+  "scores": {
+   "hooks": 0.2,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.14,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tomascabralh/cclimit",
+  "stars": 9,
+  "description": "Credential-free Claude Code status line: plan-limit usage (5h/7d), context, git branch and session cost. No token, no Keychain, no network.",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.05,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tarekziade/claude-tools",
+  "stars": 8,
+  "description": "Hooks and tools for Claude Code",
+  "scores": {
+   "hooks": 0.9,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.19,
+   "tooling": 0.65
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "livlign/ccbit",
+  "stars": 8,
+  "description": "Session-awareness status line for Claude Code. A kaomoji face reads the transcript and narrates state across your sessions. One Go binary, no hooks, no daemons.",
+  "scores": {
+   "hooks": 0.04,
+   "subagents": 0.03,
+   "statusline": 0.95,
+   "collection": 0.04,
+   "tooling": 0.8
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "shaominngqing/bark-claude-code-hook",
+  "stars": 8,
+  "description": "🐕 AI-Powered Risk Assessment for Claude Code — 7-layer pipeline, native notifications, menu bar dashboard. One line install.",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.03,
+   "statusline": 0.02,
+   "collection": 0.31,
+   "tooling": 0.86
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "legendtkl/claude-stock-agent",
+  "stars": 8,
+  "description": "Claude Code SubAgent for stock Analyze",
+  "scores": {
+   "collection": 0.13,
+   "tooling": 0.61,
+   "hooks": 0.13,
+   "subagents": 0.89,
+   "statusline": 0.01
+  },
+  "kind": "subagents"
+ },
+ {
+  "repo": "AfreenLikeCaffeine/claude-prayer-statusline",
+  "stars": 8,
+  "description": "Islamic prayer time countdown for your Claude Code status line. Zero dependencies, auto-installs.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.04,
+   "statusline": 0.73,
+   "collection": 0.05,
+   "tooling": 0.91
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ali-nr/claude-pulse",
+  "stars": 8,
+  "description": "A slick, reactive statusline for Claude Code",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.2,
+   "tooling": 0.87
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "Adiazgallici/isclaude-2x",
+  "stars": 8,
+  "description": "Claude Code statusline — shows if you're in 2x mode (March 2026 promotion)",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.02,
+   "statusline": 0.93,
+   "collection": 0.06,
+   "tooling": 0.95
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "sodam-ai/ClaudeTower",
+  "stars": 8,
+  "description": "Claude Code 상태표시줄 CLI. 프로젝트 위치·모델·Git·컨텍스트·비용·사용률을 표시하고, 마켓플레이스 플러그인으로 채팅에서도 설정 가능합니다. API 키 계정 등록·수동 전환 기능 포함(기본값 꺼짐), 로그인 계정 자동화나 완전자동 전환 기능은 없습니다.",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.15,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "xiyouMc/grok-hud",
+  "stars": 8,
+  "description": "Real-time status HUD for Grok (xAI CLI): context usage, git branch, and tool activity — a claude-hud-style external statusline with plugin install.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.22,
+   "collection": 0.21,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "PatrickJaiin/status-line-claude-code",
+  "stars": 8,
+  "description": "Collection of useful cool status lines for Claude Code and Codex",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.33,
+   "tooling": 0.97
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "muzafferkadir/claude-code-token-bar",
+  "stars": 8,
+  "description": "A fast, zero-dependency status line for Claude Code (bash + jq, no Node, no cache)",
+  "scores": {
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.04,
+   "tooling": 0.95,
+   "hooks": 0.08
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "moonD4rk/ccstatus",
+  "stars": 8,
+  "description": "Customizable status line formatter for Claude Code CLI, written in Go",
+  "scores": {
+   "hooks": 0.44,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.25,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "dxrayhq/claude-session-labels",
+  "stars": 8,
+  "description": "Auto-label your Claude Code sessions. Status line shows project + task + context usage with per-session colors.",
+  "scores": {
+   "hooks": 0.9,
+   "subagents": 0.03,
+   "statusline": 0.53,
+   "collection": 0.11,
+   "tooling": 0.89
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "MohammedAtya/guardrail-forge",
+  "stars": 7,
+  "description": "Correct Claude once. It stays corrected. A Claude Code skill that turns corrections into tested, tamper-proof hook guardrails.",
+  "scores": {
+   "hooks": 0.97,
+   "subagents": 0.05,
+   "statusline": 0.01,
+   "collection": 0.14,
+   "tooling": 0.88
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "orassayag/super-status",
+  "stars": 7,
+  "description": "A Bash statusline for Claude Code: model, git state, context window, 5-hour and weekly plan limits, subscription cycle, cost, tokens, cache ratio, LOC, plus live tool, subagent and todo activity in compact labeled lines. Subscription, API-key, Bedrock, Vertex and OpenRouter backends; JSON config for presets, layouts, colors and thresholds.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.04,
+   "statusline": 0.97,
+   "collection": 0.52,
+   "tooling": 0.92
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "aleksander-dytko/claude-code-statusline",
+  "stars": 7,
+  "description": "Enhanced status line for Claude Code - model, git, context window, session cost, and live usage limits in one bash script",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.03,
+   "statusline": 0.98,
+   "collection": 0.11,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "AndrewP-GH/cc-statusline",
+  "stars": 7,
+  "description": "Best effort claude code status line",
+  "scores": {
+   "hooks": 0.21,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.07,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "SergioTEC/claude-statusline",
+  "stars": 7,
+  "description": "Real-time status line for Claude Code showing token usage, model, cost, and plan limits — always visible at the bottom of your terminal.",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.94,
+   "collection": 0.09,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Fyko/claudehud",
+  "stars": 7,
+  "description": "a feature-rich claude code statusline written in rust",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.02,
+   "statusline": 0.91,
+   "collection": 0.1,
+   "tooling": 0.95
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "mpaiva/a11y-tips-statusline",
+  "stars": 7,
+  "description": "WCAG Accessibility Tips for Claude Code - displays rotating accessibility guidelines in your statusline.",
+  "scores": {
+   "hooks": 0.13,
+   "subagents": 0.03,
+   "statusline": 0.87,
+   "collection": 0.22,
+   "tooling": 0.9
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "ordinarynerds/dashline",
+  "stars": 7,
+  "description": "A Claude Code opinionated statusline configurable from settings.json",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.95,
+   "collection": 0.13,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "gwiener/claude-burn-bars",
+  "stars": 7,
+  "description": "Claude Code status line with bars showing usage until next 5h and 7d refresh",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.94,
+   "collection": 0.09,
+   "tooling": 0.91
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "danjdewhurst/cc-status-line",
+  "stars": 7,
+  "description": "Catppuccin Frappe status line for Claude Code showing model, git branch, context usage and session cost.",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.05,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "martinoyovo/claude-pulse",
+  "stars": 7,
+  "description": "Status line + desktop notifications for the Claude Code CLI — the Claude Code counterpart to codex-pulse. Dependency-light (bash/sh + jq).",
+  "scores": {
+   "hooks": 0.49,
+   "subagents": 0.02,
+   "statusline": 0.84,
+   "collection": 0.15,
+   "tooling": 0.96
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "jiunbae/aily",
+  "stars": 6,
+  "description": "Claude Code notification hooks - Discord notifications with per-tmux-session threads",
+  "scores": {
+   "hooks": 0.77,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.78,
+   "tooling": 0.85
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "dockplusai-ops/token-guard",
+  "stars": 6,
+  "description": "Automatic Claude Code hooks to reduce token waste — block heavy files, context warnings, cost logging",
+  "scores": {
+   "hooks": 0.98,
+   "subagents": 0.03,
+   "statusline": 0.03,
+   "collection": 0.36,
+   "tooling": 0.87
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "MatasMartin/claude-idea-capture",
+  "stars": 6,
+  "description": "Claude Code captures your reusable ideas automatically: a SessionEnd hook reads each session with cheap Haiku and logs anything worth keeping, so good ideas stop dying in cleared chats. Plus a backfill to mine your whole history.",
+  "scores": {
+   "hooks": 0.92,
+   "subagents": 0.08,
+   "statusline": 0.01,
+   "collection": 0.17,
+   "tooling": 0.67
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "hugohvf/claude-code-statusline",
+  "stars": 6,
+  "description": "Claude Code statusline script showing context window usage, session cost (USD + BRL), prompt cache hit rate, model, and git branch in real time.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.06,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "disconnect13/claude-code-statusline",
+  "stars": 6,
+  "description": "⚡ Real-time token, context & agent dashboard for Claude Code — zero polling, pure stdin",
+  "scores": {
+   "hooks": 0.59,
+   "subagents": 0.07,
+   "statusline": 0.91,
+   "collection": 0.11,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "faborsky/claude-code-statusline",
+  "stars": 6,
+  "description": "Minimal Claude Code statusline — context bar + session cost + duration + git branch. One bash script.",
+  "scores": {
+   "hooks": 0.16,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.04,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "savinofiore/claude-usage-statusline",
+  "stars": 6,
+  "description": "Dependency-free Claude Code statusline: model, context usage, 5h/weekly rate limits, tokens, cost — one line.",
+  "scores": {
+   "hooks": 0.52,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.04,
+   "tooling": 0.9
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "babarot/c-c-statusline",
+  "stars": 6,
+  "description": "A Deno-powered status line for Claude Code CLI",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.96,
+   "collection": 0.09,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "josheche/statusmon",
+  "stars": 6,
+  "description": "👾 Pokemon training in your Claude Code statusline.",
+  "scores": {
+   "hooks": 0.17,
+   "subagents": 0.03,
+   "statusline": 0.73,
+   "collection": 0.22,
+   "tooling": 0.84
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "aweussom/claude-code-quota",
+  "stars": 6,
+  "description": "Claude Code OAuth quota in your status line — Windows (PowerShell) and Linux (or WSL2)",
+  "scores": {
+   "hooks": 0.14,
+   "subagents": 0.03,
+   "statusline": 0.88,
+   "collection": 0.14,
+   "tooling": 0.87
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "taras-mrtn/ccbar",
+  "stars": 6,
+  "description": "Configurable status line for Claude Code — usage limits, context window, git info, and themes in one bar.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.19,
+   "tooling": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "tolluset/statusline",
+  "stars": 5,
+  "description": "Enhanced statusline for Claude Code with Git status, GitHub notifications, and smart path display.",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.03,
+   "statusline": 0.95,
+   "collection": 0.06,
+   "tooling": 0.92
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "pete-builds/claude-code-statusline",
+  "stars": 5,
+  "description": "Labeled-row status bar for the Claude Code TUI — context usage, billing tier, git status, weather, and session metrics",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.13,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "hamed-elfayome/Claude-Code-Statusline-Usage-Tracker-MacOS",
+  "stars": 5,
+  "description": "Display your Claude AI usage statistics directly in your Claude Code statusline. Monitor your API usage in real-time without leaving your terminal.",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.02,
+   "statusline": 0.94,
+   "collection": 0.12,
+   "tooling": 0.9
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "bishnubista/cc-statusline",
+  "stars": 5,
+  "description": "Simple, clean Claude Code statusline displaying model, directory, git branch, and output style",
+  "scores": {
+   "tooling": 0.95,
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.05
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "joshi008/agent-statusline",
+  "stars": 5,
+  "description": "One status line for Claude Code, Cursor CLI and Codex CLI, from one YAML file.",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.03,
+   "statusline": 0.66,
+   "collection": 0.41,
+   "tooling": 0.95
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "VibeCodeBlogger-Public/ai-agent-setup-instructions-claude-code-statusline-context-window-usage-bar-model-tokens-bash",
+  "stars": 5,
+  "description": "AI-agent setup instructions for a Claude Code status line — paste this repo's link into your favorite AI and it installs a thin colored context-window usage bar (% centered) plus effort · model · tokens. Correct example files + one-command installer.",
+  "scores": {
+   "hooks": 0.18,
+   "subagents": 0.03,
+   "statusline": 0.94,
+   "collection": 0.11,
+   "tooling": 0.95
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "Todmy/cc-cache-monitor",
+  "stars": 5,
+  "description": "Real-time prompt-cache health monitor for Claude Code — statusline + cost-analysis CLI",
+  "scores": {
+   "hooks": 0.89,
+   "subagents": 0.04,
+   "statusline": 0.7,
+   "collection": 0.13,
+   "tooling": 0.87
+  },
+  "kind": "hooks"
+ },
+ {
+  "repo": "waelmas/claude-stat",
+  "stars": 5,
+  "description": "Compact, information-dense status line for Claude Code. Context window, rate limits, cache-hit %, model, git. Zero dependencies.",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.04,
+   "tooling": 0.91
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "jig21nesh/model-switcher",
+  "stars": 5,
+  "description": "Per-prompt model routing and offline cost tracking for Claude Code — keep simple prompts cheap, delegate complex work to a stronger model.",
+  "scores": {
+   "hooks": 0.83,
+   "subagents": 0.29,
+   "statusline": 0.19,
+   "collection": 0.67,
+   "tooling": 0.92
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "shehab267/ccbrief",
+  "stars": 5,
+  "description": "Minimal, configurable status line for Claude Code — context, tokens, cost and rate limits at a glance in your terminal.",
+  "scores": {
+   "collection": 0.07,
+   "tooling": 0.94,
+   "hooks": 0.04,
+   "subagents": 0.02,
+   "statusline": 0.97
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "yuseferi/claude-token-statusbar",
+  "stars": 5,
+  "description": "Reactive token & cost status line for the Claude Code TUI",
+  "scores": {
+   "hooks": 0.12,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.1,
+   "tooling": 0.95
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "kukushking/claude-status",
+  "stars": 5,
+  "description": "A live status line for Claude Code that shows token usage, cost, cache hits, context window pressure, and Claude.ai rate-limit usage — updated after every response.",
+  "scores": {
+   "hooks": 0.32,
+   "subagents": 0.02,
+   "statusline": 0.93,
+   "collection": 0.06,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "anykeith/claude-hud-deepseek",
+  "stars": 5,
+  "description": "Claude Code status line plugin for DeepSeek backend — real-time context usage, token tracking, and running tool detection",
+  "scores": {
+   "statusline": 0.97,
+   "collection": 0.2,
+   "tooling": 0.96,
+   "hooks": 0.56,
+   "subagents": 0.03
+  },
+  "kind": "statusline"
+ },
+ {
+  "repo": "bart-turczynski/cc-cream",
+  "stars": 5,
+  "description": "Read-only mirror of gitlab.com/bart-turczynski/cc-cream. See cache health, context fill, token burn, rate limits, and peak hours in Claude Code CLI. The status line for tokenminning - cache rules everything around me - dolla, dolla bill, y'all.",
+  "scores": {
+   "hooks": 0.15,
+   "subagents": 0.03,
+   "statusline": 0.93,
+   "collection": 0.15,
+   "tooling": 0.84
+  },
+  "kind": "statusline"
+ }
+]

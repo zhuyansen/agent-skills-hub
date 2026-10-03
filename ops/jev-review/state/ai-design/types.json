@@ -2378,5 +2378,145 @@
    "review": 0.36
   },
   "kind": "tool_mcp"
+ },
+ {
+  "repo": "MengTo/Skills",
+  "stars": 6542,
+  "description": "Agent skills for designers and builders using Codex, Claude, Cursor, and other AI coding agents",
+  "scores": {
+   "ui": 0.72,
+   "system": 0.19,
+   "tool_mcp": 0.13,
+   "to_code": 0.67,
+   "graphics": 0.1,
+   "review": 0.16
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "bergside/typeui",
+  "stars": 2009,
+  "description": "Build better UI with AI",
+  "scores": {
+   "ui": 0.9,
+   "system": 0.61,
+   "tool_mcp": 0.05,
+   "to_code": 0.15,
+   "graphics": 0.16,
+   "review": 0.08
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "Trystan-SA/claude-design-system-prompt",
+  "stars": 1971,
+  "description": "Reverse-engineered system prompt and skill library that turns an LLM into an opinionated, accessibility-aware, AI-slop-resistant design collaborator.",
+  "scores": {
+   "ui": 0.96,
+   "system": 0.93,
+   "tool_mcp": 0.05,
+   "to_code": 0.27,
+   "graphics": 0.1,
+   "review": 0.91
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "plugin87/ux-ui-agent-skills",
+  "stars": 1518,
+  "description": "Turn Claude into a senior design architect: DTCG tokens, 50 components, WCAG 2.2 AA-AAA, 138 design systems, any-framework code, and 43 objective gates that fail the build instead of faking success.",
+  "scores": {
+   "ui": 0.96,
+   "system": 0.98,
+   "tool_mcp": 0.26,
+   "to_code": 0.53,
+   "graphics": 0.2,
+   "review": 0.9
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "pulkitxm/claude-directory",
+  "stars": 570,
+  "description": "Open-source AI interfaces built with Claude (Fable 5) including hero sections, GLSL shaders, design systems, animations, 3D components  and and landing pages,  in React, Tailwind, and Three.js. Plug them into your AI agent and ship faster.",
+  "scores": {
+   "ui": 0.46,
+   "system": 0.28,
+   "tool_mcp": 0.05,
+   "to_code": 0.37,
+   "graphics": 0.45,
+   "review": 0.31
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "ganavisk/nextlevelbuilder-ui-ux-pro-max-skill-Public",
+  "stars": 160,
+  "description": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.81,
+   "tool_mcp": 0.12,
+   "to_code": 0.2,
+   "graphics": 0.19,
+   "review": 0.5
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "luongnv89/sleek-ui",
+  "stars": 133,
+  "description": "The Unsplash of design systems for AI agents — re-skin your app with one URL",
+  "scores": {
+   "ui": 0.95,
+   "system": 0.98,
+   "tool_mcp": 0.08,
+   "to_code": 0.4,
+   "graphics": 0.18,
+   "review": 0.08
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "TidyFactor/Styler",
+  "stars": 110,
+  "description": "Production-Stage Visual Design & In-Codebase UI Engineering Suite",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.87,
+   "tool_mcp": 0.05,
+   "to_code": 0.25,
+   "graphics": 0.19,
+   "review": 0.84
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "bergside/typeui.sh",
+  "stars": 83,
+  "description": "Design system skills for agentic tools",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.71,
+   "tool_mcp": 0.06,
+   "to_code": 0.13,
+   "graphics": 0.15,
+   "review": 0.07
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "CaesiumY/ko-design-md",
+  "stars": 57,
+  "description": "한국 브랜드의 디자인 언어를 출처가 달린 DESIGN.md 한 장으로 정리한 오픈 카탈로그 — Open catalog of Korean brands' design languages, one cited DESIGN.md per brand.",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.94,
+   "tool_mcp": 0.06,
+   "to_code": 0.14,
+   "graphics": 0.17,
+   "review": 0.22
+  },
+  "kind": "ui"
  }
 ]

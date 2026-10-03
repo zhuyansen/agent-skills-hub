@@ -107,4 +107,23 @@ PAGE_LISTS = {
             "personal": ("Notes, bookmarks and a second brain kept by AI.", "由 AI 维护的笔记、收藏和第二大脑。"),
         },
     },
+    "claude-code-hooks": {
+        "repo": "zhuyansen/awesome-claude-code-hooks",
+        "text": _text("Awesome Claude Code Hooks",
+                      ("Open-source **Claude Code hooks, subagents and statuslines**: hook guards and formatters, "
+                       "specialist agent collections, usage and context status bars, and the tools that manage them.",
+                       "开源的 **Claude Code hooks、subagents 和 statusline**:Hook 守卫与格式化、专家 Agent 合集、"
+                       "用量与上下文状态栏,以及管理它们的工具。"),
+                      ("It provides or manages Claude Code hooks, subagents or a statusline. A general Claude Code "
+                       "plugin or skill without them does not count.",
+                       "它提供或管理 Claude Code 的 hooks、subagents 或 statusline。不涉及这三样的一般插件、skill 不算。"),
+                      ("What these projects look like", "这些项目长什么样")),
+        "blurb": {
+            "hooks": ("Scripts that run on tool use, prompts or stop: guards, formatters, notifications.", "在工具调用、提问、结束等事件上运行的脚本:守卫、格式化、通知。"),
+            "subagents": ("Specialist agents with their own prompt and tools, and their orchestration.", "带独立提示词和工具的专家 Agent,以及编排方式。"),
+            "statusline": ("What the status bar shows: usage, cost, context, git, model.", "状态栏显示的内容:用量、花费、上下文、git、模型。"),
+            "collection": ("Large bundles of hooks, agents, commands and settings.", "打包了大量 hooks、agents、命令和配置的合集。"),
+            "tooling": ("Create, install, test and manage hooks, subagents and statuslines.", "创建、安装、测试和管理 hooks、subagents、statusline 的工具。"),
+        },
+    },
 }

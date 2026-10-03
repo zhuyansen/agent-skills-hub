@@ -171,6 +171,35 @@ PAGES = {
                   "canva", "poster", "brand", "taste", "design agent", "designer"],
         "also": ["claude", "codex", "agent", "skill", "mcp", "ai ", "llm", "cursor", "gpt"],
     },
+    # New page 10-03 (AIsa: claude code hooks 3,600/KD16, subagents 2,010/19, statusline 1,900/14).
+    "claude-code-hooks": {
+        "strict": True,
+        "subject": _q("Is the main purpose of `repo` to provide or manage Claude Code hooks, subagents (custom agents) "
+                      "or a statusline?",
+                      "Hook scripts and hook frameworks, subagent definitions and collections, statusline scripts, or "
+                      "tools that create and manage them. A general Claude Code plugin or skill without these does not count."),
+        "types": {
+            "hooks": _q("Is `repo` mainly about Claude Code hooks: scripts that run on tool use, prompts, stop or other events?",
+                        "Guards, formatters, notifications, logging, safety checks wired to hook events."),
+            "subagents": _q("Is `repo` mainly about Claude Code subagents: custom agent definitions with their own prompt and tools?",
+                            "Agent files in .claude/agents, collections of specialist agents, orchestration of subagents."),
+            "statusline": _q("Is `repo` mainly about the Claude Code statusline: what the status bar at the bottom shows?",
+                             "Usage, cost, context, git branch or model shown in the status line."),
+            "collection": _q("Is `repo` a large collection that bundles many hooks, subagents, commands or settings together?"),
+            "tooling": _q("Is `repo` a tool for creating, installing, testing or managing hooks, subagents or statuslines?"),
+        },
+        "labels": _labels(("hooks", "🪝", "Hooks", "Hooks 钩子"), ("subagents", "🤖", "Subagents", "Subagents 子代理"),
+                          ("statusline", "📊", "Statuslines", "Statusline 状态栏"), ("collection", "📚", "Collections", "合集"),
+                          ("tooling", "🛠", "Tooling", "管理与生成工具")),
+        "queries": ["claude code hooks in:name,description,topics", "claude hooks in:name,description",
+                    "claude code subagents in:name,description", "claude subagents in:name,description,topics",
+                    "claude code agents collection in:name,description", "claude code statusline in:name,description",
+                    "claude statusline in:name,description,topics", "status line claude code in:name,description"],
+        # "agents" alone matched 2,880 catalog repos: every Claude agent project. Name the formats instead.
+        "words": [" hooks ", " hook ", "hooks,", "subagent", "sub agent", "statusline", "status line", "statusbar",
+                  "status bar", "custom agents", "agent definitions", "claude agents", ".claude agents", "agents collection"],
+        "also": ["claude"],
+    },
     "knowledge-base": {
         "strict": True,
         "subject": _q("Is the main purpose of `repo` to build, maintain or query a knowledge base with an LLM or AI agent: "

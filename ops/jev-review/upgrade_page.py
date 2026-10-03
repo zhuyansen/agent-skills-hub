@@ -20,6 +20,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -53,8 +54,13 @@ def catalog_rows(path: str) -> list[dict]:
 def live_cards(slug: str) -> set[str]:
     """owner/repo of every card on the live page."""
     req = urllib.request.Request(f"https://agentskillshub.top/best/{slug}/", headers={"User-Agent": "agentskillshub-upgrade"})
-    with urllib.request.urlopen(req, timeout=60) as res:
-        html = res.read().decode("utf-8")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as res:
+            html = res.read().decode("utf-8")
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:   # a new page: nothing live to keep
+            return set()
+        raise
     return {m.lower() for m in re.findall(r'class="bp-card-title" href="/skill/([^/"]+/[^/"]+)/"', html)}
 
 

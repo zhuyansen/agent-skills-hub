@@ -46,7 +46,7 @@ PREVIEWS = ROOT / "ops/awesome/previews.json"
 LOOKBACK_DAYS = 4
 PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页", "typesafe-jev": "Jev 页",
               "skill-management-tools": "Skill 管理页", "telegram-bot": "Telegram 页", "ai-design": "设计页",
-              "knowledge-base": "知识库页"}
+              "knowledge-base": "知识库页", "claude-code-hooks": "Hooks 页"}
 QUEUE_TAG = "daily-video-pass"
 DESC_MODEL = "gpt-5.6"
 DESC_MAX = 80
