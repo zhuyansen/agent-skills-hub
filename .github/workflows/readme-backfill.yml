@@ -4,7 +4,7 @@ name: README backfill
 # for repos its incremental search returned). The next sync grades them.
 # See docs/superpowers/specs/2026-09-23-grading-coverage-design.md.
 #
-# 03/11/19 UTC: after sync (00/08/16, up to 2h) and before refresh-stale
+# 03:37/11:37/19:37 UTC: after sync (00:17/08:17/16:17, up to 2h) and before refresh-stale
 # (04/12/20); the 45-minute timeout guarantees it is gone before refresh-stale
 # starts. It deliberately does NOT join sync's concurrency group: a run queued
 # into a group cancels that group's pending run, which could be a sync. The
@@ -12,7 +12,7 @@ name: README backfill
 
 on:
   schedule:
-    - cron: "0 3,11,19 * * *"
+    - cron: "37 3,11,19 * * *"
   workflow_dispatch:
     inputs:
       cap:

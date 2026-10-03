@@ -1,0 +1,226 @@
+{
+ "views": {
+  "2026-09-19": {
+   "count": 13,
+   "uniques": 12
+  },
+  "2026-09-20": {
+   "count": 19,
+   "uniques": 16
+  },
+  "2026-09-21": {
+   "count": 41,
+   "uniques": 34
+  },
+  "2026-09-22": {
+   "count": 97,
+   "uniques": 54
+  },
+  "2026-09-23": {
+   "count": 73,
+   "uniques": 46
+  },
+  "2026-09-24": {
+   "count": 19,
+   "uniques": 15
+  },
+  "2026-09-25": {
+   "count": 7,
+   "uniques": 4
+  },
+  "2026-09-26": {
+   "count": 6,
+   "uniques": 6
+  },
+  "2026-09-27": {
+   "count": 17,
+   "uniques": 12
+  },
+  "2026-09-28": {
+   "count": 23,
+   "uniques": 17
+  },
+  "2026-09-29": {
+   "count": 19,
+   "uniques": 16
+  },
+  "2026-09-30": {
+   "count": 29,
+   "uniques": 13
+  },
+  "2026-10-01": {
+   "count": 14,
+   "uniques": 11
+  },
+  "2026-10-02": {
+   "count": 10,
+   "uniques": 9
+  }
+ },
+ "clones": {
+  "2026-09-19": {
+   "count": 67,
+   "uniques": 27
+  },
+  "2026-09-20": {
+   "count": 60,
+   "uniques": 21
+  },
+  "2026-09-21": {
+   "count": 32,
+   "uniques": 11
+  },
+  "2026-09-22": {
+   "count": 56,
+   "uniques": 27
+  },
+  "2026-09-23": {
+   "count": 54,
+   "uniques": 19
+  },
+  "2026-09-24": {
+   "count": 58,
+   "uniques": 23
+  },
+  "2026-09-25": {
+   "count": 118,
+   "uniques": 60
+  },
+  "2026-09-26": {
+   "count": 55,
+   "uniques": 20
+  },
+  "2026-09-27": {
+   "count": 183,
+   "uniques": 68
+  },
+  "2026-09-28": {
+   "count": 63,
+   "uniques": 25
+  },
+  "2026-09-29": {
+   "count": 49,
+   "uniques": 20
+  },
+  "2026-09-30": {
+   "count": 60,
+   "uniques": 26
+  },
+  "2026-10-01": {
+   "count": 59,
+   "uniques": 24
+  },
+  "2026-10-02": {
+   "count": 54,
+   "uniques": 23
+  }
+ },
+ "referrers": {
+  "2026-10-03": [
+   {
+    "referrer": "t.co",
+    "count": 61,
+    "uniques": 55
+   },
+   {
+    "referrer": "github.com",
+    "count": 39,
+    "uniques": 29
+   },
+   {
+    "referrer": "Google",
+    "count": 10,
+    "uniques": 9
+   },
+   {
+    "referrer": "Baidu",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "referrer": "teams.public.onecdn.static.microsoft",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "linkedin.com",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "Bing",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "link.zhihu.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "lnkd.in",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
+ },
+ "paths": {
+  "2026-10-03": [
+   {
+    "path": "/zhuyansen/agent-skills-hub",
+    "count": 178,
+    "uniques": 143
+   },
+   {
+    "path": "/ZhuYansen/agent-skills-hub",
+    "count": 115,
+    "uniques": 93
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/docs",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/.claude",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/CLAUDE.md",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/discussions",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/frontend",
+    "count": 4,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/ff67edd666014d24b93ee007bd24ee5d31b867ff/ops/research/gefei-live-2026-07",
+    "count": 4,
+    "uniques": 1
+   }
+  ]
+ }
+}

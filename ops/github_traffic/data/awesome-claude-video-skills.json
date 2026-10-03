@@ -1,0 +1,226 @@
+{
+ "views": {
+  "2026-09-19": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-20": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-21": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-22": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-23": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-24": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-25": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-27": {
+   "count": 314,
+   "uniques": 195
+  },
+  "2026-09-28": {
+   "count": 1719,
+   "uniques": 1051
+  },
+  "2026-09-29": {
+   "count": 1675,
+   "uniques": 1043
+  },
+  "2026-09-30": {
+   "count": 1422,
+   "uniques": 884
+  },
+  "2026-10-01": {
+   "count": 1091,
+   "uniques": 692
+  },
+  "2026-10-02": {
+   "count": 1220,
+   "uniques": 782
+  }
+ },
+ "clones": {
+  "2026-09-19": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-20": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-21": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-22": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-23": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-24": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-25": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-09-27": {
+   "count": 152,
+   "uniques": 85
+  },
+  "2026-09-28": {
+   "count": 175,
+   "uniques": 127
+  },
+  "2026-09-29": {
+   "count": 200,
+   "uniques": 154
+  },
+  "2026-09-30": {
+   "count": 209,
+   "uniques": 149
+  },
+  "2026-10-01": {
+   "count": 176,
+   "uniques": 135
+  },
+  "2026-10-02": {
+   "count": 300,
+   "uniques": 138
+  }
+ },
+ "referrers": {
+  "2026-10-03": [
+   {
+    "referrer": "Google",
+    "count": 2443,
+    "uniques": 1857
+   },
+   {
+    "referrer": "t.co",
+    "count": 1168,
+    "uniques": 929
+   },
+   {
+    "referrer": "l.facebook.com",
+    "count": 154,
+    "uniques": 133
+   },
+   {
+    "referrer": "github.com",
+    "count": 146,
+    "uniques": 101
+   },
+   {
+    "referrer": "lm.facebook.com",
+    "count": 101,
+    "uniques": 89
+   },
+   {
+    "referrer": "facebook.com",
+    "count": 75,
+    "uniques": 68
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 71,
+    "uniques": 52
+   },
+   {
+    "referrer": "com.twitter.android",
+    "count": 26,
+    "uniques": 22
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 25,
+    "uniques": 13
+   },
+   {
+    "referrer": "linkedin.com",
+    "count": 21,
+    "uniques": 19
+   }
+  ]
+ },
+ "paths": {
+  "2026-10-03": [
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills",
+    "count": 6078,
+    "uniques": 4224
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/README.zh-CN.md",
+    "count": 680,
+    "uniques": 433
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main",
+    "count": 81,
+    "uniques": 56
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/assets/previews",
+    "count": 80,
+    "uniques": 64
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/data",
+    "count": 58,
+    "uniques": 53
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/README.md",
+    "count": 56,
+    "uniques": 45
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 52,
+    "uniques": 47
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/data/skills.json",
+    "count": 44,
+    "uniques": 43
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/fork",
+    "count": 27,
+    "uniques": 23
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/issues",
+    "count": 24,
+    "uniques": 19
+   }
+  ]
+ }
+}

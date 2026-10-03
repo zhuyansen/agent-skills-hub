@@ -10,13 +10,13 @@ name: Catalog coverage scan
 # Report only. It never writes to `skills`; ingestion stays a reviewed step via
 # extra_repos, so a bad search query can never pollute the catalog on its own.
 #
-# Weekly, Saturday 06:00 UTC — clear of sync (00/08/16), refresh-stale
+# Weekly, Saturday 06:23 UTC — clear of sync (00:17/08:17/16:17), refresh-stale
 # (04/12/20) and the Monday newsletter, so nothing competes for the DB or the
 # GitHub search quota (30 req/min, and this run makes ~24).
 
 on:
   schedule:
-    - cron: "0 6 * * 6"
+    - cron: "23 6 * * 6"
   workflow_dispatch:
 
 jobs:

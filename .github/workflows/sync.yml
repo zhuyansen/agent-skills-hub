@@ -2,7 +2,7 @@ name: Sync Skills Data
 
 on:
   schedule:
-    - cron: "0 */8 * * *" # Every 8 hours
+    - cron: "17 */8 * * *" # Every 8 hours, off the hour: top-of-hour runs queue longest (docs: events-that-trigger-workflows)
   workflow_dispatch: # Manual trigger
 
 # One sync at a time. A manual run that lands on a scheduled one (cron starts

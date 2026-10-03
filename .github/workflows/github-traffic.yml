@@ -1,0 +1,40 @@
+name: GitHub traffic export
+
+# GitHub keeps repo traffic (views, clones, referrers, paths) for 14 days only. Once a
+# week, store it for the site repo and every awesome list in ops/github_traffic/data/,
+# so the lists' reach can be read over months. Script: ops/github_traffic/export.py.
+#
+# Reading traffic needs Administration read-only on each repo, which GITHUB_TOKEN does
+# not have: the run uses LIST_REPO_TOKEN (owner adds Administration: Read-only and this
+# repo to it), or TRAFFIC_TOKEN when that secret exists.
+
+on:
+  schedule:
+    - cron: "41 2 * * 1"   # Mondays 10:41 Beijing, off the hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export
+        env:
+          GH_TOKEN: ${{ secrets.TRAFFIC_TOKEN || secrets.LIST_REPO_TOKEN }}
+        run: python ops/github_traffic/export.py
+
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/github_traffic/data
+          git diff --cached --quiet && exit 0
+          git commit -q -m "data(traffic): weekly GitHub traffic $(date -u +%F) [skip ci]"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main

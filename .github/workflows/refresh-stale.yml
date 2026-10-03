@@ -13,12 +13,12 @@ name: Refresh stale catalog rows
 # same response answers "does this still exist?", so liveness and freshness cost
 # one request between them.
 #
-# Scheduled at 04/12/20 UTC — deliberately offset from sync (00/08/16 UTC) so
+# Scheduled at 04:47/12:47/20:47 UTC — deliberately offset from sync (00:17/08:17/16:17 UTC) so
 # the two never write concurrently.
 
 on:
   schedule:
-    - cron: "0 4,12,20 * * *"
+    - cron: "47 4,12,20 * * *"
   workflow_dispatch:
     inputs:
       min_stars:
