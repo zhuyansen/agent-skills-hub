@@ -42,7 +42,7 @@ jobs:
             backend/requirements.txt
 
       - name: Install deps
-        run: pip install -r ops/requirements.txt sqlalchemy psycopg2-binary
+        run: pip install -r ops/requirements.txt sqlalchemy "psycopg[binary]" psycopg2-binary
 
       - name: Restore yesterday's snapshots
         uses: actions/cache/restore@v4
