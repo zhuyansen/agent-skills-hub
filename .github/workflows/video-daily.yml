@@ -71,6 +71,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
           FLATROUTER_API_KEY: ${{ secrets.FLATROUTER_API_KEY }}
           FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}

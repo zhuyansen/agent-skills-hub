@@ -60,6 +60,7 @@ jobs:
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
         run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap
 
       - name: Save today's snapshots

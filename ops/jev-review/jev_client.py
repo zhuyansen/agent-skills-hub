@@ -1,7 +1,9 @@
-"""Jev decisions over OpenRouter, the one call the scenario review needs.
+"""Jev decisions, the one call the scenario review needs.
 
-A copy of the decisions part of jev-search-rerank-eval's client, so the review runs
-in CI without that repo. Standard library only. The key comes from the environment.
+TypeSafe's own API when TYPESAFE_API_KEY is set (since 10-03, when the OpenRouter credit
+ran out mid-review), else OpenRouter. Same questions, same answers. Started as a copy of
+the decisions part of jev-search-rerank-eval's client, so the review runs in CI without
+that repo. Standard library only. Keys come from the environment.
 """
 from __future__ import annotations
 
@@ -15,6 +17,8 @@ from dataclasses import dataclass
 
 BASE = "https://openrouter.ai/api"
 JEV_MODEL = "~typesafe/jev-latest"   # the resolved model id is recorded per response
+TYPESAFE_URL = "https://api.typesafe.ai/v1/systemone"   # docs.typesafe.ai/introduction/quickstart
+TYPESAFE_MODEL = "jev-latest"
 RETRIES = 5
 TIMEOUT = 120
 
@@ -28,14 +32,16 @@ class Decision:
 
 class OpenRouter:
     def __init__(self) -> None:
-        self.key = os.environ["OPENROUTER_API_KEY"]
+        self.official = bool(os.environ.get("TYPESAFE_API_KEY"))
+        self.key = os.environ["TYPESAFE_API_KEY" if self.official else "OPENROUTER_API_KEY"]
+        self.tokens = 0   # the official API reports tokens, not cost
         self.total_cost = 0.0
         self.models_seen: set[str] = set()
 
-    def _post(self, path: str, body: dict) -> dict:
+    def _post(self, url: str, body: dict) -> dict:
         last: Exception | None = None
         for attempt in range(RETRIES):
-            req = urllib.request.Request(f"{BASE}{path}", data=json.dumps(body).encode(), headers={
+            req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={
                 "Authorization": f"Bearer {self.key}", "Content-Type": "application/json"})
             try:
                 with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
@@ -49,13 +55,18 @@ class OpenRouter:
                 # the type step after 57 of 205 repos on 10-03.
                 last = exc
             else:
-                self.total_cost += float((out.get("usage") or {}).get("cost") or 0)
+                usage = out.get("usage") or {}
+                self.total_cost += float(usage.get("cost") or 0)
+                self.tokens += int(usage.get("input_tokens") or 0) + int(usage.get("output_tokens") or 0)
                 if out.get("model"):
                     self.models_seen.add(out["model"])
                 return out
             time.sleep(2 ** attempt)
-        raise last or RuntimeError("openrouter: exhausted retries")
+        raise last or RuntimeError("jev: exhausted retries")
 
     def decisions(self, state: str, questions: dict) -> Decision:
-        out = self._post("/alpha/decisions", {"model": JEV_MODEL, "state": state, "questions": questions})
+        if self.official:
+            out = self._post(TYPESAFE_URL, {"model": TYPESAFE_MODEL, "state": state, "questions": questions})
+        else:
+            out = self._post(f"{BASE}/alpha/decisions", {"model": JEV_MODEL, "state": state, "questions": questions})
         return Decision(out.get("answers", {}), out.get("model", ""), float((out.get("usage") or {}).get("cost") or 0))

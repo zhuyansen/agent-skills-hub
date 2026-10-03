@@ -50,6 +50,8 @@ def covered(term: str) -> str:
 
 def judge(rows: list[dict]) -> None:
     """Jev's named-thing score on each term; left out when the key is missing."""
+    for r in rows:
+        r["page"] = covered(r["term"])
     try:
         from jev_client import OpenRouter
         jev = OpenRouter()
@@ -57,8 +59,10 @@ def judge(rows: list[dict]) -> None:
         return
     for r in rows:
         state = json.dumps({"term": r["term"], "examples": r.get("examples", [])[:3]}, ensure_ascii=False)
-        r["named"] = float(jev.decisions(state, NAMED).answers["named_thing"].get("noul", 0.0))
-        r["page"] = covered(r["term"])
+        try:
+            r["named"] = float(jev.decisions(state, NAMED).answers["named_thing"].get("noul", 0.0))
+        except Exception:  # noqa: BLE001 — no credit or a timeout: the report goes out without Jev's column
+            return
 
 
 def leads(gh: dict, sm: dict) -> list[dict]:
