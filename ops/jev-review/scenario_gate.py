@@ -354,7 +354,9 @@ def on_page(slug: str) -> list[dict]:
     above = json.loads((state_dir(slug) / "page-judged.json").read_text())
     below = json.loads((state_dir(slug) / "judged.json").read_text())
     rows = [r for r in above if verdict(r, slug) not in ("off_topic", "no_readme") or r["repo"].lower() in keep]
-    return rows + [r for r in below if verdict(r, slug) == "admit"]
+    rows += [r for r in below if verdict(r, slug) == "admit"]
+    dropped = {k.lower() for k in match.get("exclude_repos", [])}   # off-topic, renamed or gone from GitHub
+    return [r for r in rows if r["repo"].lower() not in dropped]
 
 
 GENERAL_MIN = 0.6

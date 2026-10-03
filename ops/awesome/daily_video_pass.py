@@ -278,6 +278,37 @@ def rebuild_list(list_dir: Path) -> str:
     return out[-1]
 
 
+def exclude_gone() -> list[str]:
+    """Listed repos GitHub no longer serves (deleted or private). The catalog notices only
+    later, so the page kept showing them while the list dropped them
+    (Vincentwei1021/video-shotcraft and video-talkcraft, 10-03). Both now exclude them."""
+    listed = [n for n in json.loads(KINDS.read_text())[SLUG]["repos"] if n.count("/") == 1]
+    gone = []
+    for name in listed:
+        done = subprocess.run(["gh", "api", f"repos/{name}", "--jq", ".full_name"], capture_output=True, text=True)
+        if done.returncode and "Not Found" in (done.stdout + done.stderr):
+            gone.append(name)
+    if not gone:
+        return []
+    text = KEYWORDS.read_text()
+    a = text.index(f'"slug": "{SLUG}"'); b = text.index('"related"', a)
+    block = text[a:b]
+    m = re.search(r'\n(\s*)"exclude_repos": \[(.*?)\n\s*\],', block, re.S)
+    key_indent, item_indent = m.group(1), re.search(r'\n(\s*)"', m.group(2)).group(1)
+    items = re.findall(r'"([^"]+)"', m.group(2))
+    items += [n for n in gone if n not in items]
+    block = (block[:m.start()] + f'\n{key_indent}"exclude_repos": [' +
+             ",".join(f"\n{item_indent}{json.dumps(n)}" for n in items) + f"\n{key_indent}]," + block[m.end():])
+    text = text[:a] + block + text[b:]
+    json.loads(text)
+    KEYWORDS.write_text(text)
+    kinds = json.loads(KINDS.read_text())
+    for name in gone:
+        kinds[SLUG]["repos"].pop(name, None)
+    KINDS.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
+    return gone
+
+
 def consistency() -> str:
     done = subprocess.run([sys.executable, "ops/awesome/check_consistency.py"], cwd=ROOT, capture_output=True, text=True)
     return (done.stdout.strip() or done.stderr.strip()).replace("\n", " · ")
@@ -330,8 +361,12 @@ def main() -> int:
         keep_page_rows(ok)
         gate.types(SLUG)
         db = queue_and_grade(names)
+    gone = exclude_gone()
     list_line = rebuild_list(list_dir)
     report(report_path, ok, rows, zh, db, list_line, before)
+    if gone:
+        with report_path.open("a") as f:
+            f.write("\nGitHub 上已不存在(删除或转私有),已从页面和合集移除:" + "、".join(gone) + "\n")
     log(report_path.read_text())
     return 0
 

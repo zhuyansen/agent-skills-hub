@@ -263,22 +263,6 @@
   "type": "image/gif",
   "bytes": 1208226
  },
- "Vincentwei1021/video-shotcraft": {
-  "repo": "Vincentwei1021/video-shotcraft",
-  "url": "https://raw.githubusercontent.com/Vincentwei1021/video-shotcraft/HEAD/workbench/docs/overview.png",
-  "alt": "Motion Workbench",
-  "score": -2.85,
-  "type": "image/png",
-  "bytes": 460573
- },
- "Vincentwei1021/video-talkcraft": {
-  "repo": "Vincentwei1021/video-talkcraft",
-  "url": "https://raw.githubusercontent.com/Vincentwei1021/video-talkcraft/HEAD/assets/gallery-zh.png",
-  "alt": "video-talkcraft 在线画廊",
-  "score": 1.8,
-  "type": "image/png",
-  "bytes": 298514
- },
  "WhiteTowerAI/cut-as-code": {
   "repo": "WhiteTowerAI/cut-as-code",
   "url": "https://img.youtube.com/vi/3yFPOC8kFxU/maxresdefault.jpg",

@@ -78,7 +78,10 @@ function matchSkills(scenario, allSkills) {
     // and the star floor, and sorts by stars like the rest. Two cases need it:
     // repos under the floor, and repos the keywords turn away by accident
     // ("style prompt" in a description hits the exclude word "prompt").
-    const reviewed = admitted.has(fullName) && !featuredFullNames.includes(fullName);
+    // On a reviewed_only page every reviewed repo is listed, whatever its keywords say
+    // now: a repo whose description changed after review fell off the page while its
+    // GitHub list (built from the same review) kept it (ayushozha/AdobePremiereProMCP, 10-03).
+    const reviewed = (admitted.has(fullName) || Boolean(reviewedKinds)) && !featuredFullNames.includes(fullName);
     if (reviewed) scored.push({ skill, matchScore: 1 });
     if (reviewed || !shouldIndex(skill)) continue;
 
