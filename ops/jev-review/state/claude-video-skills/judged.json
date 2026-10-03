@@ -10968,5 +10968,42 @@
   "days": 102,
   "stars_per_day": 3.411764705882353,
   "verdict": "admit"
+ },
+ {
+  "repo": "kevinbadi/open-edits",
+  "name": "open-edits",
+  "stars": 5,
+  "description": "OPEN VIDEO EDIT: the world's best AI video editing harness. Claude Code skills that turn a raw talking-head clip into a fully animated short.",
+  "topics": [
+   "ai-video",
+   "claude-code",
+   "claude-skills",
+   "ffmpeg",
+   "motion-graphics",
+   "python",
+   "video-editing"
+  ],
+  "created": "2026-10-02",
+  "pushed": "2026-10-02",
+  "source": "topic",
+  "readme_chars": 8168,
+  "names_model": false,
+  "makes_video": 0.98,
+  "agent_driven": 0.97,
+  "code_rendered": 0.38,
+  "reusable_tool": 0.95,
+  "names_opus": 0.04,
+  "shows_result": 0.05,
+  "one_command_start": 0.1,
+  "specific_outcome": 0.9,
+  "complete_docs": 0.17,
+  "novel_angle": 0.89,
+  "shareable_output": 0.85,
+  "quality": 0.305,
+  "tier": "低",
+  "hit_prior": 0.5966666666666667,
+  "days": 1,
+  "stars_per_day": 5.0,
+  "verdict": "low_quality"
  }
 ]
