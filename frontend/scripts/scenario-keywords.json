@@ -3009,7 +3009,8 @@
     "zhenwusw/orca-ppt-skill",
     "ziqihe10-droid/shuike-pptskill",
     "zl190/md-slides",
-    "zsc58/ustc-ppt-template"
+    "zsc58/ustc-ppt-template",
+    "minorun365/minorun-marp-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -4191,7 +4192,9 @@
     "liaojianquan9-source/ljq-broll-video-generator",
     "farming-labs/product-film-skill",
     "haxzie/genmotion",
-    "puntorigen/avatar-skills"
+    "puntorigen/avatar-skills",
+    "AmirSbss/spotlight",
+    "syklayou-glitch/video-shotcraft"
    ],
    "sub_skills": [
     {"repo": "EverMind-AI/Raven", "path": "skills/git-story-film", "name": "git-story-film", "added": "2026-09-27", "grade": "safe", "description": "Direct a two-minute hand-drawn animated film from a repository's Git history: story, character, storyboard, HTML review studio, then a 4K/60fps MP4."}

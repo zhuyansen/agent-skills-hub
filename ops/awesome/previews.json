@@ -111,6 +111,14 @@
   "type": "image/gif",
   "bytes": 1395451
  },
+ "AmirSbss/spotlight": {
+  "repo": "AmirSbss/spotlight",
+  "url": "https://raw.githubusercontent.com/AmirSbss/spotlight/HEAD/examples/demo/preview.gif",
+  "alt": "spotlight's demo: a launch video spotlight made about its own repo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4406674
+ },
  "AmitSubhash/3brown1blue": {
   "repo": "AmitSubhash/3brown1blue",
   "url": "https://raw.githubusercontent.com/AmitSubhash/3brown1blue/main/assets/header.gif",
@@ -1518,6 +1526,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 75993
+ },
+ "minorun365/minorun-marp-skill": {
+  "repo": "minorun365/minorun-marp-skill",
+  "url": "https://raw.githubusercontent.com/minorun365/minorun-marp-skill/HEAD/examples/sample/preview.png",
+  "alt": "見本デッキ",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 279375
  },
  "minosdevs/cinematic-film": {
   "repo": "minosdevs/cinematic-film",

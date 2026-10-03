@@ -4264,5 +4264,41 @@
    "general": 0.09
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "AmirSbss/spotlight",
+  "stars": 7,
+  "description": "Point your AI agent at a website, some footage or a topic and get back a finished short video: a launch brag, a promo or an explainer. An Agent Skill for Claude Code, Codex, Hermes and others.",
+  "scores": {
+   "promo": 0.8,
+   "explainer": 0.46,
+   "music": 0.2,
+   "motion": 0.09,
+   "shorts": 0.8,
+   "editing": 0.71,
+   "demo": 0.72,
+   "story": 0.12,
+   "avatar": 0.06,
+   "general": 0.32
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "syklayou-glitch/video-shotcraft",
+  "stars": 6,
+  "description": "An AI agent skill for crafting cinematic product videos with Remotion: 152 shot recipe cards, 2.5D camera moves, beat-synced cuts, and film-grade SFX.",
+  "scores": {
+   "explainer": 0.18,
+   "music": 0.1,
+   "motion": 0.11,
+   "editing": 0.12,
+   "story": 0.23,
+   "avatar": 0.05,
+   "general": 0.26,
+   "promo": 0.89,
+   "shorts": 0.14,
+   "demo": 0.48
+  },
+  "kind": "promo"
  }
 ]

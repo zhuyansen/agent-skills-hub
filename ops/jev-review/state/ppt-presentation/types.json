@@ -2868,5 +2868,19 @@
    "general": 0.26
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "minorun365/minorun-marp-skill",
+  "stars": 395,
+  "description": "Marpで登壇スライドを作るための、ストーリー・図・デザインバランスのスキル集と黒地テーマ、検査ツール",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.38,
+   "business": 0.13,
+   "convert": 0.27,
+   "general": 0.07
+  },
+  "kind": "general"
  }
 ]

@@ -5204,5 +5204,38 @@
   "days": 171,
   "stars_per_day": 3.502923976608187,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "minorun365/minorun-marp-skill",
+  "name": "minorun-marp-skill",
+  "stars": 395,
+  "description": "Marpで登壇スライドを作るための、ストーリー・図・デザインバランスのスキル集と黒地テーマ、検査ツール",
+  "topics": [
+   "agent-skills",
+   "claude-code",
+   "marp",
+   "presentation"
+  ],
+  "created": "2026-09-20",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 2554,
+  "names_model": false,
+  "makes_slides": 0.83,
+  "agent_driven": 0.95,
+  "editable_output": 0.28,
+  "reusable_tool": 0.95,
+  "one_command_start": 0.12,
+  "complete_docs": 0.7,
+  "shows_result": 0.44,
+  "specific_outcome": 0.49,
+  "novel_angle": 0.9,
+  "shareable_output": 0.67,
+  "quality": 0.4375,
+  "tier": "低",
+  "hit_prior": 0.67,
+  "days": 13,
+  "stars_per_day": 30.384615384615383,
+  "verdict": "low_quality"
  }
 ]
