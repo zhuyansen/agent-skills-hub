@@ -1,0 +1,2872 @@
+[
+ {
+  "repo": "kaisersong/slide-creator",
+  "stars": 51,
+  "description": "A Claude Code skill for generating stunning HTML presentations with AI-powered planning, style discovery, and PPTX export",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.51,
+   "html": 0.96,
+   "business": 0.61,
+   "convert": 0.47,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Hasasasa/html-to-editable-pptx",
+  "stars": 54,
+  "description": "Convert HTML slide decks to truly editable PPT / .pptx - text stays native PowerPoint textboxes, not screenshots. Agent Skill (Claude Code / Cursor / Codex / opencode) + plain Python CLI.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.04,
+   "business": 0.48,
+   "convert": 0.13,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "kimsh-1/deck-factory",
+  "stars": 55,
+  "description": "One line of intent → a presentation-grade, dark-editorial HTML deck. A Claude Code skill.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.03,
+   "html": 0.87,
+   "business": 0.91,
+   "convert": 0.11,
+   "general": 0.14
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "appautomaton/presentation",
+  "stars": 57,
+  "description": "A business question goes in. A consulting-grade deck comes out. Four composable skills for Claude Code and Codex: strategy storyboarding, brand identity, pixel-perfect PDF, native editable PPTX.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.08,
+   "business": 0.96,
+   "convert": 0.41,
+   "general": 0.92
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "gnuhpc/ppt-master-plus",
+  "stars": 60,
+  "description": "PPT Master Plus skill: editable PPTX generation, beautification, speaker notes, live preview, and templates",
+  "scores": {
+   "html": 0.1,
+   "business": 0.6,
+   "convert": 0.84,
+   "general": 0.18,
+   "image": 0.04,
+   "pptx": 0.95
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "NeekChaw/mcp-server-okppt",
+  "stars": 69,
+  "description": "这个项目是一个基于MCP (Model Context Protocol) 的服务器工具，名为 \"MCP OKPPT Server\"。它的核心功能是允许大型语言模型（如Claude、GPT等）通过生成SVG图像来间接设计和创建PowerPoint演示文稿。工具负责将这些SVG图像高质量地插入到PPTX幻灯片中，并保留其矢量特性，确保图像在PowerPoint中可缩放且清晰。",
+  "scores": {
+   "image": 0.12,
+   "pptx": 0.92,
+   "html": 0.02,
+   "business": 0.53,
+   "convert": 0.05,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "siril9/presentation-skill",
+  "stars": 72,
+  "description": "MIT-licensed agent skill and Codex plugin for content-led, editable PowerPoint decks. Rebuild from JSON; native charts, tables, and rendered visual QA.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.82,
+   "convert": 0.23,
+   "general": 0.13
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ACTAshui/sjtu-ppt-template-skill",
+  "stars": 74,
+  "description": "Codex skill for creating editable Shanghai Jiao Tong University style PowerPoint decks",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.89,
+   "html": 0.03,
+   "business": 0.2,
+   "convert": 0.65,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "StarryKit/starry-slides",
+  "stars": 78,
+  "description": "AI slides and presentation editor. Agent slides and presentation skills. HTML as source files. HTML editor. AI PPT 幻灯片编辑器工具。AI Agent 幻灯片Skill。HTML 编辑器。",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.76,
+   "html": 0.68,
+   "business": 0.57,
+   "convert": 0.74,
+   "general": 0.74
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "gnipbao/knowledge-cat-ppt-skill",
+  "stars": 87,
+  "description": "Story-first Agent Skill for creating, routing, and QA-checking PPT, HTML, and image-first presentation decks",
+  "scores": {
+   "image": 0.55,
+   "pptx": 0.81,
+   "html": 0.9,
+   "business": 0.67,
+   "convert": 0.88,
+   "general": 0.88
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "knight6669/knight-imagetopptx-skill",
+  "stars": 91,
+  "description": "Semantic slide image to editable PPTX Codex skill",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.89,
+   "html": 0.02,
+   "business": 0.67,
+   "convert": 0.25,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "fangyuanopus/literature-report-ppt-builder",
+  "stars": 97,
+  "description": "Open-source Codex skill for academic literature-report PPT generation",
+  "scores": {
+   "image": 0.36,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.07,
+   "convert": 0.94,
+   "general": 0.07
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "sunbigfly/ppt-agent-skill",
+  "stars": 97,
+  "description": "专业 PPT 演示文稿全流程 AI 生成助手 - 模拟万元/页级 PPT 设计公司的完整工作流，输出高质量 HTML + 可编辑 PPTX",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.89,
+   "html": 0.64,
+   "business": 0.79,
+   "convert": 0.23,
+   "general": 0.53
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "xdmlxdml/beamer2pptx",
+  "stars": 108,
+  "description": "A Codex Skill for converting Beamer PDFs into editable PowerPoint decks with native equations.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.21,
+   "convert": 0.59,
+   "general": 0.04
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Ayushmaniar/powerpoint-mcp",
+  "stars": 109,
+  "description": "Open Source Model Context Protocol server for PowerPoint automation on Windows via pywin32",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.88,
+   "html": 0.02,
+   "business": 0.51,
+   "convert": 0.32,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Noi1r/powerpoint-skill",
+  "stars": 122,
+  "description": "AI coding assistant skill for creating visually rich PowerPoint (.pptx) presentations with native OMML math, LaTeX formulas, and Graphviz/Mermaid/TikZ diagrams",
+  "scores": {
+   "general": 0.07,
+   "image": 0.03,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.12,
+   "convert": 0.85
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "joeseesun/qiaomu-bento-ppt",
+  "stars": 127,
+  "description": "Use the standalone qiaomu-bento-ppt skill to create or edit qiaomu-style bento presentations as self-contained .bento.html files from briefs, notes, r",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.83,
+   "convert": 0.82,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Akxan/ppt-agent-skill",
+  "stars": 131,
+  "description": "🎨 World-class AI presentation generator · 26 styles · 18 charts · benchmarked against Linear/Anthropic/Stripe/Apple/NYT — a Claude Code Skill that turns one sentence into design-agency-quality decks (HTML + editable PPTX)",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.94,
+   "html": 0.63,
+   "business": 0.88,
+   "convert": 0.89,
+   "general": 0.4
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Kuneosu/make-slide",
+  "stars": 132,
+  "description": "Universal AI skill for generating standalone HTML slide decks",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.54,
+   "html": 0.96,
+   "business": 0.49,
+   "convert": 0.32,
+   "general": 0.28
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "SenseTime-Copilot/raccoon-ppt-skill",
+  "stars": 149,
+  "description": "",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.49,
+   "html": 0.09,
+   "business": 0.68,
+   "convert": 0.08,
+   "general": 0.08
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "code-on-sunday/slide-deck-generator",
+  "stars": 150,
+  "description": "AI skill for coding agents that creates production-ready, browser-based presentation slide decks using React + Vite + Framer Motion",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.81,
+   "business": 0.37,
+   "convert": 0.15,
+   "general": 0.13
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "jinwyp/open-ppt-skill",
+  "stars": 156,
+  "description": "Slides Skill：让 AI Agent 生成可编辑 PPTD + PPTX，并附带本地浏览器编辑器 Slides skill for AI agents — generate editable PPTD + PPTX with a local browser editor",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.68,
+   "html": 0.2,
+   "business": 0.33,
+   "convert": 0.2,
+   "general": 0.21
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Sven-LI-sankyuu/presentation-skills",
+  "stars": 164,
+  "description": "面向 Codex CLI 的演示工作流 skills 集合，包括商业级可编辑 PPT 协作与网页 demo 配音视频合成等可复盘、可复用流程。A Codex CLI skill collection for reusable presentation workflows, covering editable PPT diagram collaboration and end-to-end web demo video synthesis.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.85,
+   "html": 0.07,
+   "business": 0.93,
+   "convert": 0.32,
+   "general": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "daniel-style/magic-slide",
+  "stars": 172,
+  "description": "A skill that generates polished self-contained HTML presentations with smooth Magic Move-style slide transitions.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.55,
+   "convert": 0.24,
+   "general": 0.15
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "w1163222589-coder/slide-image-to-editable-pptx",
+  "stars": 179,
+  "description": "A Codex skill for converting slide screenshots into editable PowerPoint decks.",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.86,
+   "html": 0.02,
+   "business": 0.48,
+   "convert": 0.04,
+   "general": 0.04
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "rsrohan99/presenter",
+  "stars": 186,
+  "description": "A Multi-Agent AI Tool that creates beautiful presentations with voice-overs 🎦🔥",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.23,
+   "convert": 0.09,
+   "general": 0.75
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "wwe-dog/ppt-image2-editable-rebuild",
+  "stars": 192,
+  "description": "一个基于截图/参考图重建可编辑 PPT 的 Codex skill。先用 image2/imagegen 生成单页视觉参考图，再以局部截图保留复杂插图、图标、地图等视觉资产，同时用 PPT 文本框和形状重建标题、正文、卡片、箭头、标签、结论条等可编辑元素。",
+  "scores": {
+   "image": 0.26,
+   "pptx": 0.79,
+   "html": 0.02,
+   "business": 0.57,
+   "convert": 0.07,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "EveryInc/hands-on-deck",
+  "stars": 205,
+  "description": "Agent-native PowerPoint manipulation — one CLI lets AI agents inspect, edit, create, and verify .pptx files through atomic JSON patches. Packaged as an Agent Skill.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.6,
+   "convert": 0.05,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "M1n-n9/academic-ppt-master",
+  "stars": 222,
+  "description": "Turn papers into editable academic PPTX decks",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.98,
+   "general": 0.36
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "zouchenzhen/thesis-defense-pptx-skill",
+  "stars": 232,
+  "description": "Codex / Claude Skill for editable thesis-defense PPTX from PDF or LaTeX while preserving a PowerPoint template. 从论文 PDF / LaTeX 生成可编辑答辩 PPTX，并保留指定 PPT 模板风格。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.97,
+   "html": 0.02,
+   "business": 0.04,
+   "convert": 0.97,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "thePlannerIvan/planners-ppt-hell",
+  "stars": 233,
+  "description": "A PPT Skill for Planners.",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.88,
+   "html": 0.04,
+   "business": 0.73,
+   "convert": 0.75,
+   "general": 0.25
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "likaku/Mck-ppt-design-skill",
+  "stars": 246,
+  "description": "Consulting firm-style PowerPoint design system for AI agents. 70 layout patterns, flat design, python-pptx. 麦麸风格PPT设计系统。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.97,
+   "convert": 0.16,
+   "general": 0.11
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "gozen3ji/consulting-pptx-skill",
+  "stars": 248,
+  "description": "AIにまじなPPTXを作らせるClaude Codeスキル — スライド規約＋62型スライド型カタログ（SlideSpec 36型＋自由記述27パーツ）＋生成パイプライン＋機械チェック",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.14,
+   "html": 0.79,
+   "business": 0.96,
+   "convert": 0.15,
+   "general": 0.14
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "vigorX777/ppt-svg-generator",
+  "stars": 258,
+  "description": "ppt-svg-generator 是一个 Skill，帮助你将 Markdown 文稿快速转化PPT 或 PDF，并支持多种预设风格选择，效果美观且可控。 使用流程参考公众号：懂点儿 AI 👇",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.4,
+   "html": 0.02,
+   "business": 0.79,
+   "convert": 0.95,
+   "general": 0.18
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "Faust-Donf/beamer-academic",
+  "stars": 272,
+  "description": "一键从论文生成高质量学术答辩PPT | AI-powered thesis defense slides generator | Claude Code & Codex Skill",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.97,
+   "general": 0.09
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "robonuggets/marp-slides",
+  "stars": 313,
+  "description": "MARP presentation skill for Claude Code — 22 curated example decks, SVG charts, dark/light themes, dashboard components",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.53,
+   "html": 0.9,
+   "business": 0.4,
+   "convert": 0.34,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Noi1r/beamer-skill",
+  "stars": 324,
+  "description": "A Claude Code skill for creating, compiling, reviewing, and polishing academic Beamer LaTeX presentations. Full lifecycle workflow with quality scoring, pedagogical review, TikZ audit, and more.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.11,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.66,
+   "general": 0.06
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "barun-saha/slide-deck-ai",
+  "stars": 371,
+  "description": "Co-create PowerPoint slide decks with AI",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.03,
+   "business": 0.53,
+   "convert": 0.83,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "irenerachel/visual-style-ppt-skill",
+  "stars": 389,
+  "description": "【Skill】视觉风格 PPT 生成工作流",
+  "scores": {
+   "image": 0.88,
+   "pptx": 0.21,
+   "html": 0.02,
+   "business": 0.45,
+   "convert": 0.97,
+   "general": 0.12
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "ryanbbrown/revealjs-skill",
+  "stars": 410,
+  "description": "Claude Code skill for making reveal.js presentations",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.68,
+   "convert": 0.27,
+   "general": 0.06
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "AI272/speaker",
+  "stars": 412,
+  "description": "Speaker is a Codex skill project for academic presentations: read real.pptx, combine text extraction, PPTX structure parsing, page-by-page rendering, OCR, and visual review to generate page-by-page speaker notes, and write a clean version of the lecture into the PowerPoint comment area.",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.09,
+   "convert": 0.05,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "archlizheng/frontend-slides-editable",
+  "stars": 454,
+  "description": "Editable HTML presentation skill for Codex/Claude Code with drag-resize editing, slide reordering, local save/export, and PPTX-to-web conversion. Shout out to @zarazhangrui",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.04,
+   "html": 0.97,
+   "business": 0.48,
+   "convert": 0.33,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Pikapika260214/rw-consulting-ppt",
+  "stars": 463,
+  "description": "Consulting deck skill with editable options for Codex",
+  "scores": {
+   "image": 0.72,
+   "pptx": 0.77,
+   "html": 0.02,
+   "business": 0.96,
+   "convert": 0.83,
+   "general": 0.45
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "addsumtech/slides_maker",
+  "stars": 527,
+  "description": "Turn papers, code, and docs into presentation-ready, natively editable PPTX in Codex / Claude Code. Native charts and equations, speaker notes, click-build animations, and an independent critic review before delivery.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.77,
+   "convert": 0.94,
+   "general": 0.37
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "seulee26/mckinsey-pptx",
+  "stars": 550,
+  "description": "McKinsey-style PPTX generator — Claude Code plugin with 40 slide templates + subagent that picks the right template and defends its choice. Built by AX Labs (이승필).",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.97,
+   "convert": 0.75,
+   "general": 0.08
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "mucsbr/ppt-agent-workflow-san",
+  "stars": 644,
+  "description": "渐进交互式ppt生成skill",
+  "scores": {
+   "html": 0.78,
+   "business": 0.52,
+   "convert": 0.28,
+   "general": 0.72,
+   "image": 0.06,
+   "pptx": 0.9
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Gabberflast/academic-pptx-skill",
+  "stars": 758,
+  "description": "A Claude Skill for creating academic presentations (conference talks, seminar slides, thesis defenses, grant briefings). Enforces action titles, structured argument, exhibit discipline, citation standards, and communication-first design. Works alongside Anthropic's built-in PPTX skill.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.49,
+   "html": 0.02,
+   "business": 0.09,
+   "convert": 0.51,
+   "general": 0.07
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "tfriedel/claude-office-skills",
+  "stars": 832,
+  "description": "Office document creation and editing skills for Claude Code - PPTX, DOCX, XLSX, and PDF workflows with automation support",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.86,
+   "html": 0.05,
+   "business": 0.68,
+   "convert": 0.52,
+   "general": 0.75
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "sunbigfly/ppt-agent-skills",
+  "stars": 902,
+  "description": "A code-driven presentation generation framework. 像构建软件工程一样生成演示文稿。",
+  "scores": {
+   "image": 0.11,
+   "pptx": 0.83,
+   "html": 0.43,
+   "business": 0.76,
+   "convert": 0.21,
+   "general": 0.35
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "sunchaokun/PPT-Design-Skill",
+  "stars": 997,
+  "description": "Precision PPT design skill for OpenCode/Claude Code/Codex, with 40,000+ styles, pixel-perfect Build Mode control, AI image generation, and fully editable PPTX. 面向专业演示设计场景，帮助用户从需求分析、视觉方向选择到原生可编辑 PPTX 交付，打造高质量、可持续修改的演示文稿。",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.94,
+   "html": 0.09,
+   "business": 0.86,
+   "convert": 0.33,
+   "general": 0.11
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "NyxTides/ppt-image-first",
+  "stars": 1189,
+  "description": "PPT image-first skill for Codex/Claude Code/Opencode CLI",
+  "scores": {
+   "image": 0.93,
+   "pptx": 0.37,
+   "html": 0.03,
+   "business": 0.53,
+   "convert": 0.75,
+   "general": 0.09
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "JuneYaooo/gpt-image2-ppt-skills",
+  "stars": 1197,
+  "description": "Clone any .pptx into your own deck — OpenAI gpt-image-2 mimics the layout, you supply the content. 10 bundled styles. | 把任何 .pptx 模板\"抄\"成你的 PPT：gpt-image-2 仿版式、你换内容，另含 10 套精选风格。Claude Code / OpenClaw skill.",
+  "scores": {
+   "image": 0.86,
+   "pptx": 0.87,
+   "html": 0.02,
+   "business": 0.74,
+   "convert": 0.27,
+   "general": 0.2
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Binaryify/open-kimi-ppt-skill",
+  "stars": 1596,
+  "description": "非官方 Kimi Slides Skill：让 AI Agent 生成可编辑 PPTD + PPTX，并附带本地浏览器编辑器 Unofficial Kimi Slides skill for AI agents — generate editable PPTD + PPTX with a local browser editor",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.31,
+   "html": 0.16,
+   "business": 0.34,
+   "convert": 0.35,
+   "general": 0.18
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "johnson7788/MultiAgentPPT",
+  "stars": 1643,
+  "description": "MultiAgentPPT 是一个集成了 A2A（Agent2Agent）+ MCP（Model Context Protocol）+ ADK（Agent Development Kit） 架构的智能化演示文稿生成系统，支持通过多智能体协作和流式并发机制",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.74,
+   "html": 0.23,
+   "business": 0.39,
+   "convert": 0.12,
+   "general": 0.19
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "stars": 1723,
+  "description": "一个用于生成高密度、可编辑、咨询风格 PowerPoint 的 Codex Skill，支持 SCR 叙事、风格确认和 PPTX 质量检查。",
+  "scores": {
+   "image": 0.09,
+   "pptx": 0.88,
+   "html": 0.02,
+   "business": 0.92,
+   "convert": 0.95,
+   "general": 0.11
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "GongRzhe/Office-PowerPoint-MCP-Server",
+  "stars": 1853,
+  "description": "A MCP (Model Context Protocol) server for PowerPoint manipulation using python-pptx. This server provides tools for creating, editing, and manipulating PowerPoint presentations through the MCP protocol.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.65,
+   "convert": 0.15,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "GordenSun/GordenSuperPPTSkills",
+  "stars": 2039,
+  "description": "AI PPT赛道终结者，史上最最最强 PPT Skill！！！  使用GPT生成豪华的图片格式PPT，然后转换为完全可编辑的PPTX文件。",
+  "scores": {
+   "image": 0.81,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.54,
+   "convert": 0.24,
+   "general": 0.35
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "chuspeeism/dashiAI-ppt-skill",
+  "stars": 2554,
+  "description": "An AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.89,
+   "html": 0.91,
+   "business": 0.91,
+   "convert": 0.92,
+   "general": 0.53
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "stars": 2555,
+  "description": "Codex skill for converting slide images, PDFs, and image-based PPTX files into editable PowerPoint decks.",
+  "scores": {
+   "image": 0.09,
+   "pptx": 0.94,
+   "html": 0.01,
+   "business": 0.21,
+   "convert": 0.11,
+   "general": 0.11
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "GordenSun/GordenPPTSkill",
+  "stars": 3177,
+  "description": "AI-friendly PPT builder skill: 17 hand-polished Chinese PPTX templates + non-destructive text-only editing tools (python-pptx based). Pick a template, write edits.json, build a real .pptx with the layout intact. Personal/research use only.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.64,
+   "convert": 0.27,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "op7418/NanoBanana-PPT-Skills",
+  "stars": 3281,
+  "description": "NanoBanana PPT Skills 基于 AI 自动生成高质量 PPT 图片和视频的强大工具，支持智能转场和交互式播放",
+  "scores": {
+   "image": 0.8,
+   "pptx": 0.06,
+   "html": 0.05,
+   "business": 0.62,
+   "convert": 0.89,
+   "general": 0.25
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "icip-cas/PPTAgent",
+  "stars": 5071,
+  "description": "An Agentic Framework for Reflective PowerPoint Generation",
+  "scores": {
+   "image": 0.11,
+   "pptx": 0.9,
+   "html": 0.07,
+   "business": 0.43,
+   "convert": 0.46,
+   "general": 0.29
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ningzimu/codex-ppt-skill",
+  "stars": 6308,
+  "description": "GPT-Image-2 PPT Generator Skill for Creating Image-Based PowerPoint Presentations in Codex and Other Skill-Compatible Agents",
+  "scores": {
+   "image": 0.97,
+   "pptx": 0.28,
+   "html": 0.02,
+   "business": 0.58,
+   "convert": 0.97,
+   "general": 0.19
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "lewislulu/html-ppt-skill",
+  "stars": 8565,
+  "description": "HTML PPT Studio — AgentSkill with 24 themes, 31 layouts, 20+ animations for building professional HTML presentations",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.96,
+   "business": 0.5,
+   "convert": 0.49,
+   "general": 0.15
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "chuspeeism/dashi-ppt-skill",
+  "stars": 9058,
+  "description": "An AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.9,
+   "html": 0.92,
+   "business": 0.91,
+   "convert": 0.92,
+   "general": 0.56
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "op7418/guizang-ppt-skill",
+  "stars": 27184,
+  "description": "AI-agent Skill for generating polished HTML slide decks: editorial magazine and Swiss layouts, image prompts, social covers, and a WebGL/low-power presentation runtime.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.39,
+   "convert": 0.62,
+   "general": 0.12
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "zarazhangrui/frontend-slides",
+  "stars": 30078,
+  "description": "Create beautiful slides on the web using a coding agent's frontend skills",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.04,
+   "html": 0.95,
+   "business": 0.37,
+   "convert": 0.61,
+   "general": 0.18
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "hugohe3/ppt-master",
+  "stars": 57395,
+  "description": "AI turns documents or topics into real, native PowerPoint decks—with native shapes, transitions and animations, data-backed charts and tables on demand, audio narration from speaker notes, and support for your own .pptx templates. · by Hugo He",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.92,
+   "html": 0.03,
+   "business": 0.62,
+   "convert": 0.94,
+   "general": 0.09
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "wuyoscar/GPT-Image2-Skill",
+  "stars": 5623,
+  "description": "GPT Image 2/2.5 prompt gallery, image prompt library, agentic skill, and CLI for OpenAI image generation/editing",
+  "scores": {
+   "image": 0.16,
+   "pptx": 0.04,
+   "html": 0.05,
+   "business": 0.13,
+   "convert": 0.07,
+   "general": 0.23
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "minhnv0807/ai-business-skills",
+  "stars": 599,
+  "description": "138 bilingual AI marketing skills (69 VN + 69 Global) for Claude Code, OpenCode, Codex, VS Code. Four role SOP packs — content, design, performance, leader ops — plus strategy, personal brand, AI avatar, dropshipping, design master, knowledge library. 4 regions (US/EU/SEA/LATAM) + Vietnam 2025-2026. Companion: opa-kit.",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.06,
+   "html": 0.07,
+   "business": 0.2,
+   "convert": 0.23,
+   "general": 0.56
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "SpaceZephyr/space-multi-design-ppt",
+  "stars": 5,
+  "description": "Codex-ready brand design system slide deck skill",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.94,
+   "html": 0.9,
+   "business": 0.75,
+   "convert": 0.94,
+   "general": 0.69
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "helloo1568/image-ppt",
+  "stars": 5,
+  "description": "AI 竞赛 PPT 与电影质感 PPT 制作技能｜适用于挑战杯、大学生创新大赛（互联网+）、三创赛、正大杯及学术汇报｜书籍、PDF 转图片版 PPT，按需还原可编辑 PPTX｜推荐 Codex + GPT Image 2.5",
+  "scores": {
+   "image": 0.47,
+   "pptx": 0.85,
+   "html": 0.03,
+   "business": 0.43,
+   "convert": 0.96,
+   "general": 0.29
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "severli93/moonland-deck",
+  "stars": 5,
+  "description": "Dopamine-Swiss HTML presentation deck design system — a Claude skill",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.97,
+   "business": 0.4,
+   "convert": 0.75,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "MiraclePlus/pre-pp",
+  "stars": 5,
+  "description": "Claude Code Skill: 路演PPT迭代助手 (Pitch Deck Iteration Assistant)",
+  "scores": {
+   "general": 0.59,
+   "image": 0.04,
+   "pptx": 0.89,
+   "html": 0.86,
+   "business": 0.93,
+   "convert": 0.92
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "Enei7/ppt-rebuild-skills",
+  "stars": 5,
+  "description": "PDF slides to editable PPTX with native Office Math, calibrated formula/text alignment, and exact source-figure crops. A self-contained Codex skill.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.01,
+   "business": 0.09,
+   "convert": 0.76,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "joelbarmettlerUZH/slidev-mcp",
+  "stars": 5,
+  "description": "MCP server for generating, rendering, and hosting Slidev presentations",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.31,
+   "convert": 0.18,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Brusdeylins/ppt-skill",
+  "stars": 5,
+  "description": "Deterministic PowerPoint (PPTX) tooling for LLM agents — pptc CLI: template-aware creation and editing with atomic, schema-validated operations",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.61,
+   "convert": 0.12,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "thmsgo18/presentation-forge",
+  "stars": 5,
+  "description": "Portable Claude skill to build beautiful, self-contained HTML presentations: author slides and import brand themes (PowerPoint, image, or description).",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.04,
+   "html": 0.97,
+   "business": 0.56,
+   "convert": 0.69,
+   "general": 0.15
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "alohays/paper2pr",
+  "stars": 6,
+  "description": "AI/ML Paper → Presentation-ready Beamer + Quarto slides via Claude Code multi-agent workflow",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.06,
+   "convert": 0.57,
+   "general": 0.29
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "liustack/pptfast",
+  "stars": 6,
+  "description": "Stable, editable PPTX generation for AI agents — semantic IR in, native DrawingML out. DSH plugin + Claude Code plugin + CLI. | 给 AI agent 的稳定可编辑 PPTX 生成：语义 IR 进，原生 DrawingML 出。DSH 插件 / Claude Code 插件 / CLI。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.04,
+   "business": 0.8,
+   "convert": 0.16,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "liustack/pptpress",
+  "stars": 7,
+  "description": "Stable, editable PPTX generation for AI agents — semantic IR in, native DrawingML out. DSH plugin + Claude Code plugin + CLI. | 给 AI agent 的稳定可编辑 PPTX 生成：语义 IR 进，原生 DrawingML 出。DSH 插件 / Claude Code 插件 / CLI。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.04,
+   "business": 0.79,
+   "convert": 0.19,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "xukp20/build-beamer-slides",
+  "stars": 7,
+  "description": "A Codex skill for designing, rendering, and visually reviewing Beamer slides.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.01,
+   "html": 0.02,
+   "business": 0.19,
+   "convert": 0.44,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "NomiciAI/mbb-page-maker",
+  "stars": 7,
+  "description": "AgentSkill for creating consulting-style HTML presentation decks with static HTML/CSS/JS.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.88,
+   "business": 0.97,
+   "convert": 0.86,
+   "general": 0.23
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "ConnorRX56/presentation-delivery-skills",
+  "stars": 7,
+  "description": "One sentence in. A polished, editable PPTX out. We reverse-engineered frontend patterns behind Claude Design and Fable for visual design and human-intent QA.",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.9,
+   "html": 0.66,
+   "business": 0.72,
+   "convert": 0.25,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "tomacco/deckadence",
+  "stars": 7,
+  "description": "Indulgently animated HTML presentations - a Claude Code skill. One file, no framework, a camera over a world.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.35,
+   "convert": 0.15,
+   "general": 0.09
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "LY2260789/routegraph-skill",
+  "stars": 7,
+  "description": "A Codex skill for generating editable PowerPoint route and flow diagrams from reference images, with shape recognition, layout reconstruction, and visual self-checking.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.01,
+   "business": 0.08,
+   "convert": 0.18,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "GZPengyuyan/PengyuyanPPT",
+  "stars": 8,
+  "description": "一个用于生成高密度、可编辑、咨询风格 PowerPoint 的 Codex Skill，支持 SCR 叙事、风格确认和 PPTX 质量检查。",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.97,
+   "convert": 0.96,
+   "general": 0.12
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "uuoov/ppt-image-share-builder",
+  "stars": 8,
+  "description": "Image2-first Codex skill for generating PPT page images, QA contact sheets, PPTX wrappers, and timed scripts.",
+  "scores": {
+   "image": 0.92,
+   "pptx": 0.82,
+   "html": 0.02,
+   "business": 0.34,
+   "convert": 0.88,
+   "general": 0.12
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "Aham-AIAPP/aham-ppt",
+  "stars": 9,
+  "description": "克制的 AI PPT 制作技能——参数化版式库，让 AI 产出规范、可编辑的 .pptx",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.94,
+   "convert": 0.84,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "marcozhou26/one-slide",
+  "stars": 9,
+  "description": "One-page PowerPoint Skill that turns sparse or complete input into source-traceable, editable professional slides.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.78,
+   "convert": 0.8,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Hasasasa/claude-skill-html-to-pptx",
+  "stars": 9,
+  "description": "Claude Code skill: convert HTML slide decks to editable .pptx. Unlike most converters that flatten each page into one image, this keeps text as native PowerPoint textboxes; only gradients / shadows / filters fall back to local snapshots.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.04,
+   "business": 0.49,
+   "convert": 0.11,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "FW1201/visual-presentation-production",
+  "stars": 10,
+  "description": "Portable 16:9 image presentation production skill for Codex and ChatGPT Work",
+  "scores": {
+   "image": 0.16,
+   "pptx": 0.03,
+   "html": 0.03,
+   "business": 0.53,
+   "convert": 0.26,
+   "general": 0.1
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "masaki39/marp-mcp",
+  "stars": 10,
+  "description": "MCP server that lets AI agents build and edit Marp slide decks via structured tools.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.38,
+   "html": 0.81,
+   "business": 0.5,
+   "convert": 0.4,
+   "general": 0.08
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "RDDcat/maro-ppt",
+  "stars": 10,
+  "description": "몸값 올리는 PPT 제작 스킬 — 인터뷰로 받아 설득 구조로 펼치는 단일 HTML 발표 덱 (Claude Code skill)",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.96,
+   "business": 0.45,
+   "convert": 0.07,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "shawnzam/keynot",
+  "stars": 11,
+  "description": "A Claude Code skill that turns any prompt into a polished, self-contained HTML slide deck — no Keynote or PowerPoint required.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.36,
+   "html": 0.97,
+   "business": 0.67,
+   "convert": 0.27,
+   "general": 0.2
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "dososo/blcaptain-ppt-skill",
+  "stars": 14,
+  "description": "AI 原生·单文件 HTML 演示 Skill：7 套锚定公认设计体系的视觉人格，好看（WCAG/间距/32 维审计）与诚实（反伪造）都由机器强制，零依赖。 | AI-native single-file HTML presentation skill — 7 design-system-anchored visual personas with machine-enforced taste and an anti-fabrication discipline. Zero dependencies.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.95,
+   "business": 0.74,
+   "convert": 0.76,
+   "general": 0.1
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "wiltonesten-web/codeximage-to-editable-ppt-v2-1",
+  "stars": 14,
+  "description": "Advanced Codex skill for rebuilding image-based PPT/PPTX slides into source-faithful editable decks, with semantic element separation, editable text and native shapes, crop and background audits, rendered-slide QA, and fail-closed delivery validation.",
+  "scores": {
+   "image": 0.11,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.43,
+   "convert": 0.1,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "liustack/pptwise",
+  "stars": 16,
+  "description": "A real PowerPoint, not HTML. Tell your AI what to cover and pptwise builds an editable deck on your own machine. Agent skill + DSH plugin, no account and no API key to render. | 真正的 PPT，不是 HTML。跟 AI 说要讲什么，pptwise 在你自己电脑上做出一份能改的 PPT。Agent skill + DSH 插件，不用注册，渲染不用 API key。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.04,
+   "business": 0.79,
+   "convert": 0.14,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "rocsgh/ppt-zen",
+  "stars": 17,
+  "description": "A judgment layer for AI-made slides — not another PPT generator.",
+  "scores": {
+   "image": 0.91,
+   "pptx": 0.06,
+   "html": 0.07,
+   "business": 0.51,
+   "convert": 0.11,
+   "general": 0.24
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "mujingquan835/dashiai-ppt-skill",
+  "stars": 18,
+  "description": "大师 PPT：由 @大师的AI小灶 维护的可编辑 PPTX 生成、网页编辑与安全返工 Skill",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.91,
+   "business": 0.9,
+   "convert": 0.92,
+   "general": 0.3
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "zairuilab/consulting-deck",
+  "stars": 24,
+  "description": "Turn complex sources into evidence-traceable, layout-safe, natively editable McKinsey-style PowerPoint — 45 semantic page contracts and verified chart data.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.95,
+   "convert": 0.95,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "LearnAIHubC/LearnDeck",
+  "stars": 25,
+  "description": "LearnDeck: AI PPT generator for Codex that turns topics, notes, course material, and outlines into polished, editable PowerPoint decks.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.86,
+   "html": 0.03,
+   "business": 0.25,
+   "convert": 0.8,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "jiadizhunine/deepPPT",
+  "stars": 25,
+  "description": "Research-style PowerPoint generation and QA skill for academic decks",
+  "scores": {
+   "html": 0.03,
+   "business": 0.06,
+   "convert": 0.69,
+   "general": 0.08,
+   "image": 0.03,
+   "pptx": 0.94
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "gongnyang/awesome-html-scrolline-deck",
+  "stars": 27,
+  "description": "Scrolline Deck — scroll-driven cinematic HTML presentations (scrollytelling decks) as a Claude Code skill: 12 scene techniques, enter/hold/exit choreography, 10 wheel-measured gates. Vite + GSAP ScrollTrigger + Lenis.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.01,
+   "html": 0.94,
+   "business": 0.77,
+   "convert": 0.14,
+   "general": 0.17
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "opitaru-sys/deck-dna",
+  "stars": 30,
+  "description": "A Claude skill that builds PPTX decks matching your real designer decks: extracted design DNA, measured word budget, render-QA loop.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.87,
+   "convert": 0.57,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "2slides/mcp-2slides",
+  "stars": 32,
+  "description": "The MCP Server for 2slides. AI agent for PPT/Presentation/Slides generation.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.7,
+   "html": 0.04,
+   "business": 0.53,
+   "convert": 0.32,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "AIPMAndy/PPTskill",
+  "stars": 34,
+  "description": "🎨 AI 生成原生可编辑 PPTX — 无需设计技能 | AI-powered native editable PowerPoint generation",
+  "scores": {
+   "general": 0.16,
+   "image": 0.04,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.88,
+   "convert": 0.79
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "deathcats4/scholar-ppt-cn",
+  "stars": 35,
+  "description": "AI academic PPT workflow skill for Codex / ChatGPT: paper-to-editable PowerPoint, planning table, mockup family, and PPTX generation.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.92,
+   "html": 0.02,
+   "business": 0.06,
+   "convert": 0.94,
+   "general": 0.14
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "joeseesun/qiaomu-ppt",
+  "stars": 35,
+  "description": "中文优先的 PPT 生成工作流：URL/PDF/NotebookLM/HTML Deck 到可编辑、可验证演示文稿 | Chinese-first source-to-slide workflow.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.94,
+   "html": 0.44,
+   "business": 0.44,
+   "convert": 0.96,
+   "general": 0.57
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "helloo1568/slidemuse",
+  "stars": 36,
+  "description": "视觉优先的 AI PPT Skill｜适用于挑战杯（大挑/小挑）、中国国际大学生创新大赛、全国大学生交通运输科技大赛（交科赛）、三创赛、正大杯、大创等竞赛，也适合学术汇报、论文答辩、项目路演与课程展示｜4 套风格 → 高质量幻灯片 → 可编辑 PPTX",
+  "scores": {
+   "image": 0.44,
+   "pptx": 0.89,
+   "html": 0.03,
+   "business": 0.49,
+   "convert": 0.96,
+   "general": 0.34
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "wiltonesten-web/codeximage-to-editable-ppt-v1",
+  "stars": 37,
+  "description": "Codex skill for rebuilding image-based PPT/PPTX slides into editable PowerPoint decks.",
+  "scores": {
+   "image": 0.1,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.49,
+   "convert": 0.1,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "arifszn/slide-wright",
+  "stars": 45,
+  "description": "AI agent skill to generate beautiful, unique slide decks with reveal.js - new design for every prompt.",
+  "scores": {
+   "business": 0.64,
+   "convert": 0.29,
+   "general": 0.09,
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.98
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "DSY-Xueai/image2editable",
+  "stars": 46,
+  "description": "A skill tool for Codex and Claude Code that converts images, PDFs, and image-based PPTX files into editable PowerPoint presentations.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.43,
+   "convert": 0.32,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "TianLin0509/img2ppt-lite",
+  "stars": 48,
+  "description": "Turn a slide mockup image into an editable PPTX: native text + semantic draggable sprites + inpainted background. Agent-as-VLM skill for Claude Code / Codex / any CLI agent.",
+  "scores": {
+   "image": 0.09,
+   "pptx": 0.96,
+   "html": 0.01,
+   "business": 0.61,
+   "convert": 0.04,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "whiteg2030-alt/BWC-XIXI-PPT-HTML",
+  "stars": 47,
+  "description": "细瘦风格的ppt ，html形式，内置了白无常原创字体，是一个免费字体 可以免费商用。   调用这个skill 会做两份ppt，一份html形式，一份ppt形式，ppt里面可以修改文字 方便后期修改。 This slim-style PPT skill integrates the original Bai Wuchang font, a free typeface available for commercial use at no cost. When this skill is invoked, two versions of presentation materials will be generated: one in HTML。",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.96,
+   "business": 0.21,
+   "convert": 0.15,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "FeeiCN/slide-writer",
+  "stars": 43,
+  "description": "  A slide-writing skill for generating enterprise HTML presentations from ideas, outlines, documents, and speech drafts.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.75,
+   "convert": 0.91,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "huashu996/PPT-Framework-Skill",
+  "stars": 42,
+  "description": "",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.06,
+   "convert": 0.66,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "touying-typ/seaslides",
+  "stars": 41,
+  "description": "AI skills for presentation slides generation with Typst and Touying",
+  "scores": {
+   "general": 0.69,
+   "image": 0.05,
+   "pptx": 0.57,
+   "html": 0.4,
+   "business": 0.5,
+   "convert": 0.95
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "qybaihe/codex-ppt",
+  "stars": 40,
+  "description": "",
+  "scores": {
+   "image": 0.87,
+   "pptx": 0.88,
+   "html": 0.02,
+   "business": 0.8,
+   "convert": 0.6,
+   "general": 0.45
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "kongzhecn/image-svg-pptx-pro-skill",
+  "stars": 38,
+  "description": "",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.83,
+   "html": 0.02,
+   "business": 0.46,
+   "convert": 0.09,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "wangzan101/html-to-ppt-pdf",
+  "stars": 37,
+  "description": "Agents skill — convert guizang-ppt-skill HTML decks to PDF + PPTX for offline presentations ·  guizang-ppt-skill 的横向翻页 HTML deck 转成 PDF + PPTX(图片型),供线下演讲",
+  "scores": {
+   "image": 0.18,
+   "pptx": 0.05,
+   "html": 0.09,
+   "business": 0.42,
+   "convert": 0.19,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "nghiahsgs/skills-slides",
+  "stars": 35,
+  "description": "50,000+ unique HTML presentation designs. Zero dependencies. Anti-AI-slop. A Claude Code skill.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.97,
+   "business": 0.64,
+   "convert": 0.12,
+   "general": 0.09
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "shenxiaofeng-pro/jiarui-svg-skills",
+  "stars": 31,
+  "description": "伽睿风格的PPT图片制作技能包，可以生成带有公司logo，主体颜色及逻辑结构完善的svg图片，并可通过取消组合变成PPT图片",
+  "scores": {
+   "image": 0.15,
+   "pptx": 0.87,
+   "html": 0.02,
+   "business": 0.96,
+   "convert": 0.86,
+   "general": 0.12
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "dakjdakd/PPT-Design-DNA",
+  "stars": 31,
+  "description": "PPT-Design-DNA is a Design-DNA-driven HTML presentation skill that turns reference images into reusable visual systems, saves them as Design Profiles, and applies those styles to high-quality presentation decks. Not a template filler, but an AI visual system designer for PPTs.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.05,
+   "html": 0.96,
+   "business": 0.66,
+   "convert": 0.21,
+   "general": 0.11
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "abxxvrv/spacex-ppt-skill",
+  "stars": 30,
+  "description": "",
+  "scores": {
+   "image": 0.09,
+   "pptx": 0.03,
+   "html": 0.47,
+   "business": 0.75,
+   "convert": 0.45,
+   "general": 0.07
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "OrangeViolin/presentation-skill",
+  "stars": 29,
+  "description": "演讲脚本 + PPT 一键生成器。支持62种品牌级设计风格，基于 awesome-design-md。输入主题即可生成可播放的HTML幻灯片。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.55,
+   "convert": 0.12,
+   "general": 0.28
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "E1nzbern/open-kimi-ppt-skill",
+  "stars": 25,
+  "description": "非官方 Kimi Slides Skill：让 AI Agent 生成可编辑 PPTD + PPTX，并附带本地浏览器编辑器 Unofficial Kimi Slides skill for AI agents — generate editable PPTD + PPTX with a local browser editor",
+  "scores": {
+   "html": 0.19,
+   "business": 0.33,
+   "convert": 0.22,
+   "general": 0.18,
+   "image": 0.05,
+   "pptx": 0.69
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "riteouschris-max/journal-club-ppt",
+  "stars": 25,
+  "description": "Reusable skill for creating clear, evidence-based journal club presentations from research papers.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.93,
+   "general": 0.13
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "SlideSpeak/slide-design-skill",
+  "stars": 25,
+  "description": "AI presentation engine. Describe your deck and the look, it derives a bespoke style and renders polished 1920x1080 HTML slides with real charts, tables and imagery. Agent skill: npx skills add SlideSpeak/slide-design-skill",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.96,
+   "business": 0.86,
+   "convert": 0.14,
+   "general": 0.17
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Mr-Q526/PPTMaker-skill",
+  "stars": 24,
+  "description": "根据一句话主题、Markdown 或已有文稿生成结构化 PPT，并支持自然语言修改页面与组件后导出为可编辑 PPT。适用于需要生成大纲、创建逐页布局、维护 deck.json、渲染 HTML 预览和导出 .pptx 的场景。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.91,
+   "html": 0.46,
+   "business": 0.6,
+   "convert": 0.85,
+   "general": 0.39
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "SciToolsmith/sci-diagram-pptx",
+  "stars": 24,
+  "description": "Reconstruct scientific frameworks, mechanisms, and flow diagrams as native editable PowerPoint—with provenance-bound, fail-closed QA for Codex.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.06,
+   "convert": 0.1,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ziqihe10-droid/shuike-pptskill",
+  "stars": 23,
+  "description": "水课PPT——大学生的救命稻草。给个课题，直接出双稿。明天要上台？忘了准备？小组甩锅？打开Claude Code说一句\"帮我做个XX的PPT\"，分分钟后桌面躺着presentation.pptx和speech.docx。图表自动生成，每页排版不重样，五种风格自动匹配，水课可以水 PPT不能水。",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.31,
+   "convert": 0.07,
+   "general": 0.19
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "joker-sxj/ppt-agent",
+  "stars": 21,
+  "description": "Claude Code 技能:六阶段流水线把主题做成可逐元素编辑的 .pptx + 整页 SVG 网页预览",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.52,
+   "business": 0.42,
+   "convert": 0.15,
+   "general": 0.13
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "lqshow/neon-slides",
+  "stars": 20,
+  "description": "Turn any outline into a neon-dark HTML slide deck. A Claude Skill for technical livestreams and landing pages.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.08,
+   "convert": 0.63,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "sharptoolbox/consulting-html-ppt",
+  "stars": 19,
+  "description": "咨询公司风格 HTML + SVG 演示页生成技能（Agent Skill）· McKinsey/BCG 风格 PPT · 三形态判定 + 双模板库 + ECharts",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.97,
+   "business": 0.97,
+   "convert": 0.96,
+   "general": 0.08
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "floflo11/mbb-decks",
+  "stars": 19,
+  "description": "MBB-style consulting deck skill for Claude. Action-title storylines, MECE bullets, company logos as bullet markers, real .pptx output.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.97,
+   "convert": 0.15,
+   "general": 0.12
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "hanlulong/econ-slides-skill",
+  "stars": 19,
+  "description": "Turn an economics paper into a seminar-ready Beamer talk with a timed speaker script — conference, job-market and discussant slides. Agent Skill for Claude Code & Codex.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.93,
+   "general": 0.08
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "gonta223/japanese-corporate-pptx-skill",
+  "stars": 18,
+  "description": "",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.84,
+   "html": 0.02,
+   "business": 0.7,
+   "convert": 0.53,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "prodigeproject/pradaslides",
+  "stars": 16,
+  "description": "Capability-aware, audience-ready presentation agent skill for PPTX, HTML slides, PDF, and deck planning.",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.89,
+   "html": 0.87,
+   "business": 0.9,
+   "convert": 0.82,
+   "general": 0.81
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "yevvonlim/kai-presentation",
+  "stars": 16,
+  "description": "Claude Code skill for KAI presentation design in HTML",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.43,
+   "convert": 0.16,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "BigSweetPotatoStudio/ai-ppt-tutorial",
+  "stars": 15,
+  "description": "claude code   ai-ppt-tutorial",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.53,
+   "convert": 0.11,
+   "general": 0.11
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "caikankan/cyberbin-ppt-skill",
+  "stars": 14,
+  "description": "CyberBin PPT Skill for generating local HTML slide decks",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.13,
+   "html": 0.96,
+   "business": 0.44,
+   "convert": 0.92,
+   "general": 0.1
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "fengting124/paper-figure-pptx-skill",
+  "stars": 14,
+  "description": "Codex skill for reconstructing academic paper figures into editable, LibreOffice-validated PPTX slides",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.87,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.21,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "zsc58/ustc-ppt-template",
+  "stars": 14,
+  "description": "USTC 中国科学技术大学 蓝色学术 PPT 模版 | 15页骨架 · 全套跳转导航 · LaTeX公式管线 · Claude Code skills",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.06,
+   "convert": 0.54,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "young920/gz-ppt-skill",
+  "stars": 13,
+  "description": "归藏 PPT Skill - 研究学习用",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.31,
+   "convert": 0.83,
+   "general": 0.15
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "mpuig/agent-slides",
+  "stars": 13,
+  "description": "Agent skill for generating professional PowerPoint decks. 7 composable skills and a purpose-built CLI.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.71,
+   "convert": 0.27,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "DAIBird-0/pdf2ppt_skill",
+  "stars": 12,
+  "description": "",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.92,
+   "html": 0.02,
+   "business": 0.04,
+   "convert": 0.93,
+   "general": 0.06
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "artifact-kit/html-to-pptx-skill",
+  "stars": 12,
+  "description": "Teach an agent to turn HTML pages into downloadable, editable PowerPoint decks with @artifact-kit/pptxgenjs-jsx",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.92,
+   "html": 0.07,
+   "business": 0.47,
+   "convert": 0.33,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Changhooo/ppt-image-redraw-skill",
+  "stars": 12,
+  "description": "Codex skill for fidelity-checked editable PowerPoint redraws from research figures",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.92,
+   "html": 0.01,
+   "business": 0.08,
+   "convert": 0.06,
+   "general": 0.04
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ABYR1206/claude-skill-hand-drawn-slides",
+  "stars": 12,
+  "description": "Claude Skill: generate hand-drawn doodle-style PowerPoint chapter divider slides — muted backgrounds, serif titles, 40-illustration SVG library",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.01,
+   "business": 0.18,
+   "convert": 0.06,
+   "general": 0.03
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Watermelon4000/sketch-note-ppt",
+  "stars": 11,
+  "description": "AI skill that turns 'make a PPT about X' into a Sketch Notes–style deck: one self-contained HTML file, no build step.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.13,
+   "convert": 0.1,
+   "general": 0.08
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "att6113/ppt-design-system",
+  "stars": 11,
+  "description": "从 guizang-ppt-skill + Open Design 蒸馏而来的 PPT 设计系统，5套主题 × 10种布局，支持 HTML/PPTX 双格式输出",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.85,
+   "html": 0.91,
+   "business": 0.73,
+   "convert": 0.19,
+   "general": 0.74
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "alingowangxr/guizang-ppt-skill",
+  "stars": 11,
+  "description": "歸藏 PPT Skill：網頁 PPT / 配圖 / 常用社群平台封面生成（支援繁簡中文）",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.26,
+   "convert": 0.68,
+   "general": 0.2
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "moyoo0/paper-to-latex-ppt",
+  "stars": 11,
+  "description": "输入一个paper，输出一个能在组会上汇报的带讲稿的PPT",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.96,
+   "general": 0.07
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "lainshao/modern-ppt",
+  "stars": 11,
+  "description": "Agent Skill for polished single-file HTML presentations / 现代投屏网页 PPT：12 layouts, 3 themes, interactive charts and motion; works with Claude Code, Codex CLI, Gemini CLI, Cursor.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.63,
+   "convert": 0.79,
+   "general": 0.1
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "lanceli93/aws-html-slides",
+  "stars": 11,
+  "description": "An agent skill for creating animation-rich HTML presentations from scratch or by converting PowerPoint files",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.04,
+   "html": 0.97,
+   "business": 0.52,
+   "convert": 0.54,
+   "general": 0.23
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "andyqiu847-ai/high-quality-slides",
+  "stars": 11,
+  "description": "A Claude Code skill that produces presentations worth sending — research-first, narrative-driven 5-phase workflow inspired by Genspark AI Slides. ",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.39,
+   "html": 0.95,
+   "business": 0.83,
+   "convert": 0.84,
+   "general": 0.19
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "zhenwusw/orca-ppt-skill",
+  "stars": 10,
+  "description": "",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.25,
+   "convert": 0.24,
+   "general": 0.11
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "fredliu168/html_to_editable_ppt_skill",
+  "stars": 10,
+  "description": "把html页面转成可编辑ppt格式的skill",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.92,
+   "html": 0.03,
+   "business": 0.43,
+   "convert": 0.25,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "icytra/fudan-html-ppt-template",
+  "stars": 10,
+  "description": "复旦大学PPT模版skill",
+  "scores": {
+   "image": 0.01,
+   "pptx": 0.01,
+   "html": 0.97,
+   "business": 0.07,
+   "convert": 0.4,
+   "general": 0.06
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "tangonho/iml-pptx",
+  "stars": 10,
+  "description": "Claude Code 复刻 Codex 的『可编辑 PPTX』skill：把文案/整页PPT图重建成对象级可编辑的 PowerPoint（原生文本框+形状，非整页截图）。出图需自备 OpenAI gpt-image-2 (Image 2) API key。Ported from ningzimu's Codex skills (MIT).",
+  "scores": {
+   "business": 0.61,
+   "convert": 0.78,
+   "general": 0.09,
+   "image": 0.53,
+   "pptx": 0.89,
+   "html": 0.02
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ThunderOne18/ppt-expert-team",
+  "stars": 10,
+  "description": "PPT 专家团：AI 做 PPT 不是生成问题，是工作流问题。八步流程 Claude/Codex skill——从文章、口播稿到可编辑 HTML PPT / 图片版 / PPTX，六套原创风格+风格选择器+12套免费商用字体。",
+  "scores": {
+   "image": 0.1,
+   "pptx": 0.88,
+   "html": 0.94,
+   "business": 0.56,
+   "convert": 0.92,
+   "general": 0.62
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "doudou1337/deckset-claude-skill",
+  "stars": 10,
+  "description": "Claude Code skill for creating Deckset presentations with markdown. Includes 29 documentation files, 3 example presentations, and auto-scraper.",
+  "scores": {
+   "pptx": 0.02,
+   "html": 0.03,
+   "business": 0.26,
+   "convert": 0.57,
+   "general": 0.06,
+   "image": 0.03
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "algerchen2024/image-to-editable-pptx",
+  "stars": 9,
+  "description": "ChatGPT Skill + portable PageIR/PptxGenJS workflow for rebuilding flattened slide images into source-faithful editable PowerPoint files.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.37,
+   "convert": 0.1,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "YingYveltal/bento-ppt-skill",
+  "stars": 9,
+  "description": "Claude Code skill that turns a topic into a 16:9 SVG slide deck in Bento Grid style — HTML preview + editable PowerPoint export",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.96,
+   "html": 0.82,
+   "business": 0.68,
+   "convert": 0.93,
+   "general": 0.32
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "alfredo-hs/quarto-talks",
+  "stars": 9,
+  "description": "An agentic skill for making RevealJS slides with Quarto",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.17,
+   "convert": 0.86,
+   "general": 0.09
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "embabel/decker",
+  "stars": 9,
+  "description": "Agent to create slide decks",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.03,
+   "html": 0.93,
+   "business": 0.21,
+   "convert": 0.2,
+   "general": 0.23
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "karem505/karem-arabic-presentation",
+  "stars": 9,
+  "description": "Claude Code skill for generating stunning Arabic/English bilingual HTML presentations with RTL support, animations, and professional dark theme",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.61,
+   "convert": 0.89,
+   "general": 0.12
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "chenyangji666/html-ppt-skill",
+  "stars": 8,
+  "description": "纯 HTML/CSS/JS 演示文稿引擎 + AI 生成协议",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.76,
+   "convert": 0.82,
+   "general": 0.23
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "SkillMelody/PPT-Smith",
+  "stars": 8,
+  "description": "MeowClaw PPT Smith — model-agnostic presentation compiler skill",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.72,
+   "convert": 0.95,
+   "general": 0.48
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "vedraut/slidesage",
+  "stars": 8,
+  "description": "Agent-agnostic skill that generates beautiful, static .pptx decks driven by storytelling + instructional design. Works with any LLM.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.89,
+   "html": 0.02,
+   "business": 0.87,
+   "convert": 0.21,
+   "general": 0.13
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "moongiadventures-dev/handdrawn-ppt",
+  "stars": 8,
+  "description": "내 캐릭터 이미지 한 장으로 손그림 발표자료를 만들어주는 Claude 스킬 — 자료조사 + 검증된 출처 + 차트/표/흐름도까지. 한국어·영어 지원.",
+  "scores": {
+   "image": 0.75,
+   "pptx": 0.05,
+   "html": 0.06,
+   "business": 0.53,
+   "convert": 0.09,
+   "general": 0.15
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "icgma/slide-skill",
+  "stars": 8,
+  "description": "SVG-first slide generation toolkit with intelligent content planning and domain-specific layouts",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.93,
+   "html": 0.03,
+   "business": 0.22,
+   "convert": 0.97,
+   "general": 0.55
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "bjoern2000/deckpipe",
+  "stars": 8,
+  "description": "Agent-first slide deck rendering engine. Author slides as HTML/CSS/JS, get a shareable viewer URL.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.91,
+   "business": 0.43,
+   "convert": 0.1,
+   "general": 0.17
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "cogine-ai/ai-slide-templates",
+  "stars": 8,
+  "description": "Self-contained HTML slide templates with metadata and AGENTS.md instructions for AI agents to create finished presentation decks.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.7,
+   "convert": 0.74,
+   "general": 0.13
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Angel-Gril/Kimi-PPT-Skills",
+  "stars": 7,
+  "description": "Kimi PPT Skills",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.83,
+   "html": 0.15,
+   "business": 0.36,
+   "convert": 0.28,
+   "general": 0.13
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "GX-Alex/html2pptx",
+  "stars": 7,
+  "description": "a skill that can convert browser-rendered HTML/WebDeck slide decks to editable PowerPoint PPTX",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.93,
+   "html": 0.06,
+   "business": 0.36,
+   "convert": 0.15,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "tjxj/dsh-wanghong-handwritten-ppt",
+  "stars": 7,
+  "description": "王虹学术手写风 PPT Skill for DeepSeek Harness · Notability-style HTML slides and PNG export",
+  "scores": {
+   "image": 0.1,
+   "pptx": 0.03,
+   "html": 0.87,
+   "business": 0.11,
+   "convert": 0.22,
+   "general": 0.06
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "bruc3van/bruce-pptx-generator",
+  "stars": 7,
+  "description": "一个专为 AI 编程 Agent 设计的 PPT 生成 Skill，让 openclaw 能够根据你的需求，从零开始用代码生成专业级 PowerPoint 演示文稿。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.91,
+   "convert": 0.18,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "astro-koko/ppt-lai",
+  "stars": 7,
+  "description": "让传统 PPT 制作技艺在 AI 时代继续发光：一个生成与翻新千禧年风格演示稿的 AI Skill。",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.96,
+   "html": 0.02,
+   "business": 0.18,
+   "convert": 0.37,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "ficooooo/Paper2ScholarSlides",
+  "stars": 7,
+  "description": "面向学术综述的高质量 PPT 生成 Skill，可将综述初稿、论文资料与模板转化为结构严谨、引用清晰、图表公式可解释、并经过导出校验的学术汇报稿。",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.84,
+   "html": 0.03,
+   "business": 0.03,
+   "convert": 0.91,
+   "general": 0.15
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "FA-T-T/codex-skill-academic-slides",
+  "stars": 7,
+  "description": "Codex skill for academic slides, posters, proofsheets, and architecture diagrams via GPT Image 2",
+  "scores": {
+   "image": 0.92,
+   "pptx": 0.31,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.97,
+   "general": 0.2
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "Scott-Du/codex-ppt",
+  "stars": 7,
+  "description": "",
+  "scores": {
+   "image": 0.95,
+   "pptx": 0.4,
+   "html": 0.02,
+   "business": 0.8,
+   "convert": 0.36,
+   "general": 0.06
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "AgentiaPT/vela-slides",
+  "stars": 7,
+  "description": "Vela Slides - AI Powered presentation App and Agent Skill",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.05,
+   "html": 0.78,
+   "business": 0.46,
+   "convert": 0.31,
+   "general": 0.34
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "zl190/md-slides",
+  "stars": 7,
+  "description": "Claude Code skill for MD → Slides; AI makes Markdown great again!",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.63,
+   "html": 0.78,
+   "business": 0.45,
+   "convert": 0.85,
+   "general": 0.37
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "theolundqvist/justshowme",
+  "stars": 7,
+  "description": "Make your AI agent answer with interactive diagrams and slide decks instead of markdown — and attach them to your PRs",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.02,
+   "html": 0.63,
+   "business": 0.14,
+   "convert": 0.15,
+   "general": 0.44
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "eluckydog/ppt-scene-graph",
+  "stars": 7,
+  "description": "Visual Scene Graph for PowerPoint. Extracts structured layout data from PPTX files, enabling AI agents to parse element positions, understand spatial relationships, and detect layout patterns. Exposes bounding boxes, z-order, and spatial relations that humans see but machines couldn’t access. Built on python-pptx. MIT licensed.",
+  "scores": {
+   "business": 0.51,
+   "convert": 0.1,
+   "general": 0.06,
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.02
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Categorytyy/ppt-master",
+  "stars": 6,
+  "description": "ppt skill",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.86,
+   "html": 0.02,
+   "business": 0.75,
+   "convert": 0.14,
+   "general": 0.15
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "lirunjie0510/ppt-visual-reconstruction",
+  "stars": 6,
+  "description": "The strongest practical Codex skill workflow for high-fidelity image-to-editable-PPTX reconstruction.",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.87,
+   "html": 0.02,
+   "business": 0.7,
+   "convert": 0.06,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "dacnay816y62-hub/FANTASY-ppt-1",
+  "stars": 6,
+  "description": "0628-这是一个能做概念方案预演的ppt skill",
+  "scores": {
+   "image": 0.28,
+   "pptx": 0.51,
+   "html": 0.03,
+   "business": 0.1,
+   "convert": 0.23,
+   "general": 0.17
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "chenyu896235554-boop/lapian-storyboard",
+  "stars": 6,
+  "description": "Codex skill：视频拉片、分镜抽帧和横版故事板 PPT 生成",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.92,
+   "html": 0.02,
+   "business": 0.04,
+   "convert": 0.19,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "chunyifish/soil-teaching-slides",
+  "stars": 6,
+  "description": "SOIL-style teaching slide skill for PPTX, NotebookLM, and offline HTML decks",
+  "scores": {
+   "image": 0.14,
+   "pptx": 0.84,
+   "html": 0.86,
+   "business": 0.06,
+   "convert": 0.93,
+   "general": 0.6
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "huhuhu301/ppt-image-rebuilder",
+  "stars": 6,
+  "description": "Codex plugin for rebuilding reference images as editable native PowerPoint slides, developed by the BDSmart Artificial Intelligence Group.",
+  "scores": {
+   "general": 0.04,
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.01,
+   "business": 0.22,
+   "convert": 0.23
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "xiongwenhao112/ppt-template-fill",
+  "stars": 5,
+  "description": "Agent skill: 基于你自己的 PPTX 模板生成演示文稿 | Fill YOUR PowerPoint template with AI — layout-preserving, placeholder-free templates supported",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.97,
+   "html": 0.01,
+   "business": 0.62,
+   "convert": 0.43,
+   "general": 0.05
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "tanglele110-hash/zhongguose-ppt-skill",
+  "stars": 5,
+  "description": "中国色汇报演示 Agent Skill",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.22,
+   "html": 0.95,
+   "business": 0.66,
+   "convert": 0.78,
+   "general": 0.29
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Liuguanyi2125/editable-pptx-skill",
+  "stars": 5,
+  "description": "生成分层可编辑 PowerPoint 的 Codex/Claude skill 和 Node.js 工具集",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.46,
+   "convert": 0.14,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "demoolight/academic-image-ppt",
+  "stars": 5,
+  "description": "Codex Skill for generating academic image-based PPT decks.",
+  "scores": {
+   "image": 0.94,
+   "pptx": 0.22,
+   "html": 0.08,
+   "business": 0.07,
+   "convert": 0.97,
+   "general": 0.07
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "qianmo-qp/zjlab-academic-pptx-sklls",
+  "stars": 5,
+  "description": "用于生成实验室技术或学术汇报PPTX的SKILLS",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.93,
+   "html": 0.07,
+   "business": 0.35,
+   "convert": 0.15,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "cskwork/pptx-to-html-updated",
+  "stars": 5,
+  "description": "Convert PowerPoint .pptx into faithful HTML bundles - live Chart.js charts, SVG shapes, embedded fonts, animations. Python agent skill.",
+  "scores": {
+   "business": 0.61,
+   "convert": 0.03,
+   "general": 0.04,
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.94
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Kevinyyy1/image-to-editable-pptx-v2",
+  "stars": 5,
+  "description": "A Codex skill for reconstructing slide images as high-fidelity, native-editable PowerPoint files with scene decomposition and script-first QA.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.9,
+   "html": 0.02,
+   "business": 0.47,
+   "convert": 0.11,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Codagent-AI/and-scene",
+  "stars": 5,
+  "description": "An Agent Skill that builds animated, morphing slide presentations ",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.01,
+   "html": 0.89,
+   "business": 0.31,
+   "convert": 0.12,
+   "general": 0.14
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "concertoy/glissando",
+  "stars": 5,
+  "description": "Slide decks as code, built for AI agents.",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.91,
+   "html": 0.04,
+   "business": 0.63,
+   "convert": 0.81,
+   "general": 0.49
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "clearfunction/cf-devtools",
+  "stars": 5,
+  "description": "Claude Code skills plugin featuring Slidev presentations and developer productivity tools",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.03,
+   "html": 0.96,
+   "business": 0.2,
+   "convert": 0.37,
+   "general": 0.38
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "MiiKiyoshi/html-mcp-web",
+  "stars": 5,
+  "description": "Review agent-made slides in the browser and export them to PowerPoint.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.88,
+   "html": 0.87,
+   "business": 0.6,
+   "convert": 0.16,
+   "general": 0.11
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "gtoxlili/deckforge",
+  "stars": 5,
+  "description": "deckforge — agent 可自行安装调用的 PPT 生成 CLI",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.78,
+   "html": 0.16,
+   "business": 0.65,
+   "convert": 0.16,
+   "general": 0.26
+  },
+  "kind": "pptx"
+ }
+]

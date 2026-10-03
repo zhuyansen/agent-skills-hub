@@ -1,9 +1,9 @@
-"""The video page and its GitHub list must hold the same entries with the same types.
+"""A scenario page and its GitHub list must hold the same entries with the same types.
 
 Reads the live page and the list's published data/skills.json. Exit code 1 on any
 difference, with the entries named.
 
-Usage: python ops/awesome/check_consistency.py
+Usage: python ops/awesome/check_consistency.py [slug]   (default: claude-video-skills)
 """
 from __future__ import annotations
 
@@ -13,8 +13,13 @@ import sys
 import time
 import urllib.request
 
-PAGE = "https://agentskillshub.top/best/claude-video-skills/"
-LIST = "https://raw.githubusercontent.com/zhuyansen/awesome-claude-video-skills/main/data/skills.json"
+LISTS = {   # page slug -> its GitHub list repo
+    "claude-video-skills": "zhuyansen/awesome-claude-video-skills",
+    "ppt-presentation": "zhuyansen/awesome-codex-ppt-skills",
+}
+SLUG = sys.argv[1] if len(sys.argv) > 1 else "claude-video-skills"
+PAGE = f"https://agentskillshub.top/best/{SLUG}/"
+LIST = f"https://raw.githubusercontent.com/{LISTS[SLUG]}/main/data/skills.json"
 CARD = re.compile(r'<div class="bp-card" data-kind="([^"]*)"[^>]*>.*?class="bp-card-title" href="([^"]+)"', re.S)
 HTTP_TIMEOUT = 30
 

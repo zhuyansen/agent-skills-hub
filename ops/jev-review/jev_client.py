@@ -5,6 +5,7 @@ in CI without that repo. Standard library only. The key comes from the environme
 """
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import time
@@ -43,7 +44,9 @@ class OpenRouter:
                 if exc.code != 429 and exc.code < 500:
                     raise
                 last = exc
-            except (urllib.error.URLError, TimeoutError) as exc:  # transient network errors
+            except (urllib.error.URLError, http.client.HTTPException, OSError) as exc:  # transient network errors
+                # http.client.RemoteDisconnected is neither a URLError nor a timeout; it stopped
+                # the type step after 57 of 205 repos on 10-03.
                 last = exc
             else:
                 self.total_cost += float((out.get("usage") or {}).get("cost") or 0)

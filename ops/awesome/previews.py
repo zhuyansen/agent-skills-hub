@@ -103,9 +103,9 @@ def find(cache: Path, out: Path, names: set[str] | None) -> None:
     """Previews for repos whose README is in the cache and that have none yet. Earlier
     finds are kept: the daily job starts with an empty cache (only the READMEs it read
     that day), and a fresh write would drop every other repo's preview."""
+    # Shared by every list (video, ppt): never drop another list's entries. thumbs() keeps
+    # only the repos of the list it builds.
     known = json.loads(out.read_text()) if out.exists() else {}
-    if names is not None:
-        known = {repo: p for repo, p in known.items() if repo in names}
     jobs = [(p.stem.replace("__", "/", 1), p.read_text()) for p in sorted(cache.glob("*.md"))]
     jobs = [(repo, text) for repo, text in jobs
             if repo.count("/") == 1 and repo not in known and (names is None or repo in names)]

@@ -11,7 +11,10 @@ last week's star counts reads as unmaintained. The security grade comes from the
 catalog, with the read-only anon key, in one request per 60 names. A listed repo the
 catalog has not ingested yet is shown as "pending" until a sync grades it.
 
-Usage: python ops/awesome/build_video_list.py <output-dir>
+Since 10-03 it also builds zhuyansen/awesome-codex-ppt-skills for /best/ppt-presentation/
+(pass the slug); each list's text lives in LISTS below.
+
+Usage: python ops/awesome/build_video_list.py <output-dir> [slug]
 Env:   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY (read from frontend/.env); gh CLI
 """
 from __future__ import annotations
@@ -40,7 +43,7 @@ ALBUM_POOL = 6                  # the album picks the best picture among a type'
 ALBUM_COLUMNS = 3
 GALLERY_SIZE = 3
 TILE_WIDTH = 260
-KIND_BLURB = {
+VIDEO_BLURB = {
     "general": ("Rendering frameworks and all-round toolkits.", "渲染框架和通用工具包。"),
     "promo": ("Product launch films, ads and demo videos.", "产品发布片、广告和演示视频。"),
     "explainer": ("Knowledge videos, tutorials and narrated lessons.", "知识讲解、教程和旁白课程。"),
@@ -52,10 +55,10 @@ KIND_BLURB = {
     "craft": ("What comes before the video: scripts, shot analysis, learning.", "视频的前期:剧本、拉片和学习。"),
     "music": ("Music videos made in code.", "用代码做出来的音乐视频。"),
 }
-MADE_WITH = ("JohnHeibel/ClaudeAnimationBase", "JohnHeibel/PDoomVideo",
+VIDEO_MADE_WITH = ("JohnHeibel/ClaudeAnimationBase", "JohnHeibel/PDoomVideo",
              "lemomo-ai/lemo-opuscar", "ledbetterljoshua/functional-emotions-video")
 
-TEXT = {
+VIDEO_TEXT = {
     "en": {
         "file": "README.md", "other": "[中文](README.zh-CN.md)", "title": "Awesome Claude Video Skills",
         "pitch": ("Open-source skills and toolkits that let **Claude Code, Codex and other coding agents make "
@@ -122,6 +125,77 @@ TEXT = {
         "data": "机器可读版本:[`data/skills.json`](data/skills.json)。生成于 {today}。",
     },
 }
+
+PPT_TEXT = {
+    "en": {
+        "file": "README.md", "other": "[中文](README.zh-CN.md)", "title": "Awesome Codex PPT Skills",
+        "pitch": ("Open-source skills and tools that let **Codex, Claude Code and other coding agents make slides**: "
+                  "editable PPTX, image-first decks, web slides, consulting-style decks, documents to slides. "
+                  "{n} repos, each one read and security-graded by [Agent Skills Hub]({site}{utm})."),
+        "live": "Live page with filters: **[{page}]({page}{utm})** · refreshed every 8 hours",
+        "rules_h": "How a repo gets on the list",
+        "rules": ["It makes slide decks or presentations (PPT, PPTX, Keynote, HTML slides). A document or a poster "
+                  "generator does not count.",
+                  "An agent operates it: a skill, a plugin, an MCP server, or a toolkit written for the agent.",
+                  "It has a README. Without one it cannot be graded.",
+                  "At 50 stars or more it is listed on topic alone. Under 50 it must also clear a README "
+                  "quality bar (shows the result, one-command start, a concrete outcome, complete docs), and have 5 stars."],
+        "rules_note": ("The questions are answered by a decision model reading each README, not by hand. "
+                       "A repo near a cut-off can land on either side; open an issue if one is misfiled."),
+        "contents": "Contents", "cols": "| Repo | Stars | What it does | Security |",
+        "album": "What these tools make", "repos": "repos", "view": "View the list",
+        "media": VIDEO_TEXT["en"]["media"],
+        "filter": "Open this type on the live page, sorted by stars →", "in_repo": "in {repo}:",
+        "pending": "pending", "grade_note": VIDEO_TEXT["en"]["grade_note"],
+        "related_h": "Related collections",
+        "related": ["[zhuyansen/awesome-claude-video-skills](https://github.com/zhuyansen/awesome-claude-video-skills)"
+                    " — the same kind of list for skills that make video."],
+        "contrib_h": "Add a repo", "contrib": VIDEO_TEXT["en"]["contrib"], "data": VIDEO_TEXT["en"]["data"],
+    },
+    "zh": {
+        "file": "README.zh-CN.md", "other": "[English](README.md)", "title": "Awesome Codex PPT Skills",
+        "pitch": ("让 **Codex、Claude Code 等编程 agent 做 PPT** 的开源 skill 和工具:可编辑 PPTX、图片式 PPT、"
+                  "网页幻灯片、咨询风、文档转 PPT。共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。"),
+        "live": "带类型筛选的在线页面:**[{page}]({page}{utm})** · 每 8 小时刷新",
+        "rules_h": "什么样的仓库能上榜",
+        "rules": ["它做幻灯片或演示文稿(PPT、PPTX、Keynote、网页幻灯片)。文档、海报生成器不算。",
+                  "它是给 agent 用的:skill、插件、MCP 服务器,或为 agent 写的工具包。",
+                  "它有 README。没有 README 就没法评级。",
+                  "50 星及以上只看是否切题;50 星以下还要过 README 质量线(展示成品、一条命令上手、说清产出、文档完整),并且至少 5 星。"],
+        "rules_note": VIDEO_TEXT["zh"]["rules_note"],
+        "contents": "目录", "cols": "| 仓库 | 星数 | 做什么 | 安全评级 |",
+        "album": "这些工具能做出什么", "repos": "个仓库", "view": "查看列表",
+        "media": VIDEO_TEXT["zh"]["media"],
+        "filter": "在在线页面打开这一类,按星数排序 →", "in_repo": "所在仓库 {repo}:",
+        "pending": "待评级", "grade_note": VIDEO_TEXT["zh"]["grade_note"],
+        "related_h": "相关合集",
+        "related": ["[zhuyansen/awesome-claude-video-skills](https://github.com/zhuyansen/awesome-claude-video-skills)"
+                    " —— 同样做法的视频 skill 合集。"],
+        "contrib_h": "推荐仓库", "contrib": VIDEO_TEXT["zh"]["contrib"], "data": VIDEO_TEXT["zh"]["data"],
+    },
+}
+PPT_BLURB = {
+    "general": ("Large toolkits and multi-agent systems that make many kinds of decks.", "能出多种幻灯片的大工具和多 agent 系统。"),
+    "pptx": ("Real .pptx files you can open and edit in PowerPoint.", "输出真正的 .pptx,能在 PowerPoint 里修改。"),
+    "image": ("Each slide is a generated image: striking, but the text is fixed.", "每页是一张 AI 生成的图,好看但文字不能改。"),
+    "html": ("Slides as a web page: reveal.js, Slidev, magazine-style decks.", "网页形式的幻灯片:reveal.js、Slidev、杂志风翻页。"),
+    "business": ("Consulting, pitch and report decks.", "咨询风、融资路演和工作汇报。"),
+    "convert": ("Papers, PDFs, articles and Markdown turned into slides.", "把论文、PDF、文章、Markdown 转成幻灯片。"),
+}
+
+LISTS = {
+    "claude-video-skills": {"text": VIDEO_TEXT, "blurb": VIDEO_BLURB, "made_with": VIDEO_MADE_WITH},
+    "ppt-presentation": {"text": PPT_TEXT, "blurb": PPT_BLURB, "made_with": ()},
+}
+TEXT, KIND_BLURB, MADE_WITH = VIDEO_TEXT, VIDEO_BLURB, VIDEO_MADE_WITH
+
+
+def configure(slug: str) -> None:
+    """Point the module at one page's list."""
+    global SLUG, PAGE, TEXT, KIND_BLURB, MADE_WITH
+    SLUG, PAGE = slug, f"{SITE}/best/{slug}/"
+    cfg = LISTS[slug]
+    TEXT, KIND_BLURB, MADE_WITH = cfg["text"], cfg["blurb"], cfg["made_with"]
 
 
 def env() -> dict:
@@ -270,11 +344,13 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
     out = [f"# {t['title']}", "", t["other"], "",
            t["pitch"].format(n=len(rows), site=SITE, utm=UTM), "", t["live"].format(page=PAGE, utm=UTM), "",
            f"## {t['album']}", "", *album(used, rows, label, t), "",
-           f"## {t['contents']}", "", f"- [{t['made_h']}](#made-with-opus-55)"]
+           f"## {t['contents']}", ""] + ([f"- [{t['made_h']}](#made-with-opus-55)"] if MADE_WITH else [])
     out += [f"- [{k['icon']} {k[label]}](#{anchor(k)}) ({count(k)})" for k in used]
     out += ["", f"## {t['rules_h']}", ""] + [f"{i}. {rule}" for i, rule in enumerate(t["rules"], 1)]
-    out += ["", t["rules_note"], "", '<a id="made-with-opus-55"></a>', f"## {t['made_h']}", "", t["made"], ""]
-    out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t, lang)
+    out += ["", t["rules_note"]]
+    if MADE_WITH:
+        out += ["", '<a id="made-with-opus-55"></a>', f"## {t['made_h']}", "", t["made"], ""]
+        out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t, lang)
     for k in used:
         mine = [r for r in rows if r["kind"] == k["id"]]
         out += ["", f'<a id="{anchor(k)}"></a>', f"## {k['icon']} {k[label]}", "",
@@ -287,6 +363,7 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
 
 def main() -> None:
     out = Path(sys.argv[1]).expanduser()
+    configure(sys.argv[2] if len(sys.argv) > 2 else "claude-video-skills")
     (out / "data").mkdir(parents=True, exist_ok=True)
     index = out / "assets/previews/index.json"
     THUMBS.update(json.loads(index.read_text()) if index.exists() else {})

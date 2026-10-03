@@ -98,6 +98,22 @@ QUERIES = {
         # Skills that live in a folder of a larger repo; reviewed from the folder's README.
         "sub_skill_kinds": {"EverMind-AI/Raven/skills/git-story-film": "explainer"},
     },
+    "ppt-presentation": {
+        "wave": [],
+        "topic": [
+            "ppt skill in:name,description,topics",
+            "pptx skill in:name,description,topics",
+            "codex ppt in:name,description",
+            "claude ppt in:name,description",
+            "slides skill in:name,description,topics",
+            "slide deck agent in:name,description",
+            "presentation skill claude in:name,description",
+            "powerpoint mcp in:name,description,topics",
+            "ppt agent in:name,description",
+            "幻灯片 skill in:name,description",
+        ],
+        "names_model": r"(?!x)x",   # no model wave on this page
+    },
 }
 
 RELEVANCE = {
@@ -161,8 +177,69 @@ TYPES = {
 }
 TYPE_MIN = 0.5
 
+PPT_RELEVANCE = {
+    "makes_slides": {"type": "noul", "instructions": {
+        "question": "Is the main purpose of `repo` to produce slide decks or presentations (PPT, PPTX, Keynote, HTML slides)?",
+        "focus": "The output is a deck meant to be presented, not a document, a website, a poster or one image."}},
+    "agent_driven": RELEVANCE["agent_driven"],
+    "editable_output": {"type": "noul", "instructions": {
+        "question": "Does `repo` produce slides whose text can still be edited (PPTX, Keynote, HTML), rather than images of slides?"}},
+    "reusable_tool": {"type": "noul", "instructions": {
+        "question": "Is `repo` a reusable tool or skill someone installs, rather than the source of one finished deck?"}},
+}
+PPT_QUALITY = {
+    **{k: QUALITY[k] for k in ("one_command_start", "complete_docs")},
+    "shows_result": {"type": "noul", "instructions": {
+        "question": "Does `repo.readme` show the finished output — a slide screenshot, a sample deck or a link to one?"}},
+    "specific_outcome": {"type": "noul", "instructions": {
+        "question": "Does `repo.readme` state a concrete result the user gets, rather than general capability claims?",
+        "focus": "For example 'a 10-page McKinsey-style PPTX from a markdown outline', not 'powerful presentation automation'."}},
+    "novel_angle": {"type": "noul", "instructions": {
+        "question": "Does `repo` do something visibly different from a generic python-pptx or image-per-slide wrapper?",
+        "focus": "A distinct visual style, a new input-to-deck format, or a workflow other repos in this space do not offer."}},
+    "shareable_output": {"type": "noul", "instructions": {
+        "question": "Is the output of `repo` the kind of deck people would show off — a striking style, a recognizable format?"}},
+}
+PPT_TYPES = {
+    "image": _kind("Does `repo` make each slide as a generated image (gpt-image, Nano Banana, Midjourney)?",
+                   "Image-first decks: the slide is a picture, its text cannot be edited afterwards."),
+    "pptx": _kind("Does `repo` produce an editable PowerPoint (.pptx) file?",
+                  "python-pptx, Office, PowerPoint MCP servers, PPTX templates: the result opens and edits in PowerPoint."),
+    "html": _kind("Does `repo` produce slides as a web page (HTML, reveal.js, Slidev, Marp)?",
+                  "The deck is viewed in a browser; magazine-style or animated web slides."),
+    "business": _kind("Is `repo` built for business decks: consulting, pitch, investor or report presentations?",
+                      "McKinsey or consulting style, fundraising pitch decks, work reports, sales decks."),
+    "convert": _kind("Does `repo` turn an existing document into slides (paper, PDF, article, Markdown, Word)?",
+                     "The input is a document that already exists; the tool converts or summarises it into a deck."),
+    "general": _kind("Is `repo` a general presentation framework, multi-agent system or skill collection, not tied to one format?",
+                     "A large toolkit or agent that makes many kinds of decks in several formats."),
+}
+PPT_KIND_LABELS = [
+    {"id": "general", "icon": "🧱", "en": "Frameworks & toolkits", "zh": "综合工具与框架"},
+    {"id": "pptx", "icon": "📝", "en": "Editable PPTX", "zh": "可编辑 PPTX"},
+    {"id": "image", "icon": "🖼", "en": "Image-first decks", "zh": "图片式 PPT"},
+    {"id": "html", "icon": "🌐", "en": "Web slides", "zh": "网页幻灯片"},
+    {"id": "business", "icon": "💼", "en": "Business & consulting", "zh": "商务与咨询风"},
+    {"id": "convert", "icon": "📄", "en": "Docs to slides", "zh": "文档转 PPT"},
+]
+
 QUALITY_KEYS = ("shows_result", "one_command_start", "specific_outcome", "complete_docs")
 HIT_KEYS = ("novel_angle", "shareable_output", "shows_result")
+
+
+def profile(slug: str) -> dict:
+    """The question sets and types of a page. The video page's are the module constants
+    above (unchanged since 09-27); the ppt page has its own."""
+    if slug == "ppt-presentation":
+        return {"relevance": PPT_RELEVANCE, "quality": PPT_QUALITY, "types": PPT_TYPES, "labels": PPT_KIND_LABELS,
+                "topic": ("makes_slides", "agent_driven"), "merged": {}, "strict": {}}
+    return {"relevance": RELEVANCE, "quality": QUALITY, "types": TYPES, "labels": KIND_LABELS,
+            "topic": ("makes_video", "agent_driven"), "merged": MERGED, "strict": STRICT}
+
+
+def on_topic(row: dict, slug: str) -> float:
+    """The weaker of the page's two topic answers: makes the page's output, operated by an agent."""
+    return min(row.get(k, 0.0) for k in profile(slug)["topic"])
 
 
 def state_dir(slug: str) -> Path:
@@ -275,7 +352,7 @@ def verdict(row: dict, slug: str = "claude-video-skills") -> str:
         return "below_gate_floor"
     # Both must hold. A video made with the model but not operated by an agent (a
     # finished music video, a demo) stays off the page: owner's rule, 2026-09-27.
-    if row["makes_video"] < RELEVANT or row["agent_driven"] < RELEVANT:
+    if on_topic(row, slug) < RELEVANT:
         return "off_topic"
     return "admit" if row["quality"] >= MID else "low_quality"
 
@@ -285,14 +362,14 @@ def judge_one(client, slug: str, row: dict, today: date) -> dict:
     out = {**row, "readme_chars": len(readme),
            "names_model": bool(re.search(QUERIES[slug]["names_model"], readme.lower()))}
     if readme:
-        out.update(ask(client, row, readme, README_RELEVANCE, RELEVANCE, full=True))
-        out.update(ask(client, row, readme, README_QUALITY, QUALITY, full=False))
+        out.update(ask(client, row, readme, README_RELEVANCE, profile(slug)["relevance"], full=True))
+        out.update(ask(client, row, readme, README_QUALITY, profile(slug)["quality"], full=False))
     quality = sum(out.get(k, 0.0) for k in QUALITY_KEYS) / len(QUALITY_KEYS)
     days = max((today - date.fromisoformat(row["created"])).days, 1)
     out.update(quality=quality, tier="高" if quality >= HIGH else "中" if quality >= MID else "低",
                hit_prior=sum(out.get(k, 0.0) for k in HIT_KEYS) / len(HIT_KEYS),
                days=days, stars_per_day=row["stars"] / days)
-    for key in RELEVANCE:
+    for key in profile(slug)["relevance"]:
         out.setdefault(key, 0.0)
     out["verdict"] = verdict(out, slug)
     return out
@@ -341,7 +418,7 @@ def report(slug: str) -> None:
     print(f"\n{'repo':50s} {'★':>3} {'created':10s} 档 质量 爆款 | video agent code tool | model")
     for r in admitted:
         print(f"{r['repo'][:50]:50s} {r['stars']:>3} {r['created']} {r['tier']} {r['quality']:.2f} {r['hit_prior']:.2f} | "
-              f"{r['makes_video']:.2f}  {r['agent_driven']:.2f}  {r['code_rendered']:.2f} {r['reusable_tool']:.2f} | "
+              f"{on_topic(r, slug):.2f}  {r.get('reusable_tool', 0):.2f} | "
               f"{'names it' if r['names_model'] else ''}")
     names = [r["repo"] for r in admitted] + [r["repo"] for r in keyword_blocked(slug)]
     (out_dir(slug) / "admitted.json").write_text(json.dumps(names, indent=1))
@@ -383,16 +460,17 @@ KIND_LABELS = [
 ]
 
 
-def kind_of(scores: dict) -> str:
-    """One type per repo. A framework serves every kind of video, so it is filed as
+def kind_of(scores: dict, slug: str = "claude-video-skills") -> str:
+    """One type per repo. A framework serves every kind of output, so it is filed as
     general even when one kind also scores."""
+    p = profile(slug)
     if scores["general"] >= GENERAL_MIN:
         return "general"
-    passed = {k: v for k, v in scores.items() if k != "general" and v >= STRICT.get(k, TYPE_MIN)}
+    passed = {k: v for k, v in scores.items() if k != "general" and v >= p["strict"].get(k, TYPE_MIN)}
     if not passed:
         return "general"
     best = max(passed, key=passed.get)
-    return MERGED.get(best, best)
+    return p["merged"].get(best, best)
 
 
 def types(slug: str) -> None:
@@ -401,11 +479,11 @@ def types(slug: str) -> None:
     done = {r["repo"]: r for r in json.loads(path.read_text())} if path.exists() else {}
     for row in on_page(slug):
         if row["repo"] in done:
-            done[row["repo"]]["kind"] = kind_of(done[row["repo"]]["scores"])
+            done[row["repo"]]["kind"] = kind_of(done[row["repo"]]["scores"], slug)
             continue
-        scores = ask(client, row, readme_of(slug, row["repo"]), README_RELEVANCE, TYPES, full=True)
+        scores = ask(client, row, readme_of(slug, row["repo"]), README_RELEVANCE, profile(slug)["types"], full=True)
         done[row["repo"]] = {"repo": row["repo"], "stars": row["stars"], "description": row["description"],
-                             "scores": scores, "kind": kind_of(scores)}
+                             "scores": scores, "kind": kind_of(scores, slug)}
         path.write_text(json.dumps(list(done.values()), ensure_ascii=False, indent=1))
     print(f"{len(done)} typed · cost ${client.total_cost:.4f}")
     listed = {r["repo"] for r in on_page(slug)}
@@ -413,7 +491,7 @@ def types(slug: str) -> None:
     repos = {k: v["kind"] for k, v in sorted(done.items()) if k in listed}
     repos.update({k: v for k, v in QUERIES[slug].get("owner_kinds", {}).items() if k in listed})
     repos.update(QUERIES[slug].get("sub_skill_kinds", {}))  # keyed by repo + folder
-    kinds[slug] = {"kinds": KIND_LABELS, "repos": repos}
+    kinds[slug] = {"kinds": profile(slug)["labels"], "repos": repos}
     KINDS_FILE.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
 
 
@@ -425,7 +503,7 @@ def add(slug: str, name: str) -> None:
     path = state_dir(slug) / "page-judged.json"
     rows = [r for r in json.loads(path.read_text()) if r["repo"] != row["repo"]] + [row]
     path.write_text(json.dumps(rows, ensure_ascii=False, indent=1))
-    print(f"{row['repo']} {row['stars']} stars: video {row['makes_video']:.2f} agent {row['agent_driven']:.2f} "
+    print(f"{row['repo']} {row['stars']} stars: topic {on_topic(row, slug):.2f} "
           f"quality {row['quality']:.2f} -> {row['verdict']}")
 
 
@@ -441,7 +519,7 @@ def audit(slug: str, names_file: str) -> None:
     off = sorted((r for r in judged if r["verdict"] in ("off_topic", "no_readme")), key=lambda r: -r["stars"])
     print(f"\n{len(judged)} on the page · {len(off)} off-topic")
     for r in off:
-        print(f"  {r['repo'][:46]:46s} {r['stars']:>6}★ video {r['makes_video']:.2f} agent {r['agent_driven']:.2f} "
+        print(f"  {r['repo'][:46]:46s} {r['stars']:>6}★ topic {on_topic(r, slug):.2f} "
               f"| {r['description'][:70]}")
 
 

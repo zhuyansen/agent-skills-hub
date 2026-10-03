@@ -1,4 +1,7 @@
-"""Daily review pass for /best/claude-video-skills/ and its GitHub list.
+"""Daily review pass for the reviewed scenario pages and their GitHub lists:
+/best/claude-video-skills/ (zhuyansen/awesome-claude-video-skills) and, since 10-03,
+/best/ppt-presentation/ (zhuyansen/awesome-codex-ppt-skills). Each page has its own
+questions and types in ops/jev-review/scenario_gate.py (profile()).
 
 What the maintainer did by hand on 09-27, 09-30 and 10-03, as one job:
 
@@ -15,7 +18,7 @@ What the maintainer did by hand on 09-27, 09-30 and 10-03, as one job:
 
 The workflow (.github/workflows/video-daily.yml) commits, pushes and deploys.
 
-Usage: python ops/awesome/daily_video_pass.py <list-repo-dir> <report.md>
+Usage: python ops/awesome/daily_video_pass.py <report.md> <slug>=<list-repo-dir> [...]
 Env:   OPENROUTER_API_KEY (Jev), FLATROUTER_API_KEY + FLATROUTER_BASE_URL (descriptions),
        SUPABASE_DB_URL, GH_TOKEN (gh CLI); GITHUB_REPOSITORY + ACTIONS_TOKEN to see a sync
 """
@@ -35,12 +38,13 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "ops/jev-review"), str(ROOT / "backend"), str(ROOT / "ops/awesome")]
 import scenario_gate as gate  # noqa: E402
 
-SLUG = "claude-video-skills"
+SLUG = "claude-video-skills"   # the page being processed; main() sets it per page
 KEYWORDS = ROOT / "frontend/scripts/scenario-keywords.json"
 DESC_ZH = ROOT / "frontend/scripts/scenario-desc-zh.json"
 KINDS = ROOT / "frontend/scripts/scenario-kinds.json"
 PREVIEWS = ROOT / "ops/awesome/previews.json"
 LOOKBACK_DAYS = 4
+PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页"}
 QUEUE_TAG = "daily-video-pass"
 DESC_MODEL = "gpt-5.6"
 DESC_MAX = 80
@@ -268,9 +272,9 @@ def rebuild_list(list_dir: Path) -> str:
     tmp.write_text(json.dumps(names))
     py, out = sys.executable, []
     for args in (["ops/awesome/previews.py", "find", str(gate.out_dir(SLUG) / "readme"), str(PREVIEWS), str(tmp)],
-                 ["ops/awesome/build_video_list.py", str(list_dir)],
+                 ["ops/awesome/build_video_list.py", str(list_dir), SLUG],
                  ["ops/awesome/previews.py", "thumbs", str(PREVIEWS), str(list_dir)],
-                 ["ops/awesome/build_video_list.py", str(list_dir)]):
+                 ["ops/awesome/build_video_list.py", str(list_dir), SLUG]):
         done = subprocess.run([py, *args], cwd=ROOT, capture_output=True, text=True)
         if done.returncode:
             raise RuntimeError(f"{args[0]} failed: {done.stderr[-600:]}")
@@ -310,7 +314,7 @@ def exclude_gone() -> list[str]:
 
 
 def consistency() -> str:
-    done = subprocess.run([sys.executable, "ops/awesome/check_consistency.py"], cwd=ROOT, capture_output=True, text=True)
+    done = subprocess.run([sys.executable, "ops/awesome/check_consistency.py", SLUG], cwd=ROOT, capture_output=True, text=True)
     return (done.stdout.strip() or done.stderr.strip()).replace("\n", " · ")
 
 
@@ -319,10 +323,10 @@ def consistency() -> str:
 def report(path: Path, ok: list[dict], rows: list[dict], zh: dict, db: dict, list_line: str, before: str) -> None:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     near = sorted([r for r in rows if r not in ok and r["readme_chars"] and
-                   (r["verdict"] == "low_quality" or min(r["makes_video"], r["agent_driven"]) >= 0.4)],
+                   (r["verdict"] == "low_quality" or gate.on_topic(r, SLUG) >= 0.4)],
                   key=lambda r: -r["stars"])
     kinds = json.loads(KINDS.read_text())[SLUG]["repos"]
-    lines = [f"## 视频页每日补充 · {today}", "",
+    lines = [f"## {PAGE_NAMES.get(SLUG, SLUG)}每日补充 · {today}", "",
              f"- 页面与 GitHub 合集一致性(运行前):{before}",
              f"- 新评审 {len(rows)} 个,按规则放行 **{len(ok)}** 个"
              f"(跑题 {sum(r['verdict'] == 'off_topic' for r in rows)}、质量线下 {sum(r['verdict'] == 'low_quality' and r not in ok for r in rows)})",
@@ -339,17 +343,15 @@ def report(path: Path, ok: list[dict], rows: list[dict], zh: dict, db: dict, lis
     path.write_text("\n".join(lines) + "\n")
 
 
-def main() -> int:
-    list_dir, report_path = Path(sys.argv[1]).expanduser(), Path(sys.argv[2])
-    if not wait_for_sync():
-        report_path.write_text("## 视频页每日补充\n\n同步一直在运行,今天跳过。\n")
-        return 0
+def run_page(slug: str, list_dir: Path, report_path: Path) -> None:
+    global SLUG
+    SLUG = slug
     before = consistency()
     fresh = fresh_candidates()
-    log(f"{len(fresh)} candidates not reviewed before")
+    log(f"[{slug}] {len(fresh)} candidates not reviewed before")
     gate.judge(SLUG)
     ok, rows = admitted(fresh)
-    log(f"{len(ok)} pass the page's rules")
+    log(f"[{slug}] {len(ok)} pass the page's rules")
     from jev_client import OpenRouter
     jev = OpenRouter()
     described = {r["repo"]: describe_zh(r, jev) for r in ok}
@@ -367,6 +369,24 @@ def main() -> int:
     if gone:
         with report_path.open("a") as f:
             f.write("\nGitHub 上已不存在(删除或转私有),已从页面和合集移除:" + "、".join(gone) + "\n")
+
+
+def main() -> int:
+    report_path = Path(sys.argv[1])
+    pages = [arg.split("=", 1) for arg in sys.argv[2:]]
+    if not wait_for_sync():
+        report_path.write_text("## 每日补充\n\n同步一直在运行,今天跳过。\n")
+        return 0
+    parts = []
+    for slug, list_dir in pages:
+        part = report_path.with_suffix(f".{slug}.md")
+        try:
+            run_page(slug, Path(list_dir).expanduser(), part)
+        except Exception as exc:  # noqa: BLE001 — one page failing must not stop the other
+            part.write_text(f"## {PAGE_NAMES.get(slug, slug)}每日补充失败\n\n`{type(exc).__name__}: {str(exc)[:400]}`\n")
+            log(f"[{slug}] failed: {exc}")
+        parts.append(part.read_text())
+    report_path.write_text("\n\n".join(parts))
     log(report_path.read_text())
     return 0
 

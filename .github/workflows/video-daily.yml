@@ -1,8 +1,9 @@
-name: Video page daily review
+name: Video and PPT pages daily review
 
 # Once a day: find repos that appeared since the last run, have Jev review them, add the
 # ones that pass the page's rules to /best/claude-video-skills/ and to the GitHub list
 # zhuyansen/awesome-claude-video-skills, and post a report to the tracking issue.
+# Since 10-03 the same for /best/ppt-presentation/ and zhuyansen/awesome-codex-ppt-skills.
 # Script: ops/awesome/daily_video_pass.py.
 #
 # 06:30 UTC: after the 03:xx sync usually ends. The script still waits (up to 45 min)
@@ -40,11 +41,17 @@ jobs:
           pip install -r backend/requirements.txt pillow
           sudo apt-get install -y --no-install-recommends ffmpeg > /dev/null
 
-      - name: Check out the GitHub list
+      - name: Check out the GitHub lists
         uses: actions/checkout@v4
         with:
           repository: zhuyansen/awesome-claude-video-skills
           path: list-repo
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-codex-ppt-skills
+          path: list-ppt
           token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
 
       # The list generator reads grades with the read-only anon key from frontend/.env.
@@ -61,7 +68,7 @@ jobs:
           FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ACTIONS_TOKEN: ${{ github.token }}
-        run: python ops/awesome/daily_video_pass.py list-repo "$RUNNER_TEMP/report.md"
+        run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt
 
       - name: Commit the site
         id: site
@@ -83,16 +90,20 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run deploy.yml --ref main
 
-      - name: Push the GitHub list
-        working-directory: list-repo
+      - name: Push the GitHub lists
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -q -m "Daily update $(date -u +%F)"
-          git pull -q --rebase origin main
-          git push -q origin HEAD:main
+          for dir in list-repo list-ppt; do
+            (
+              cd "$dir"
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add -A
+              if git diff --cached --quiet; then exit 0; fi
+              git commit -q -m "Daily update $(date -u +%F)"
+              git pull -q --rebase origin main
+              git push -q origin HEAD:main
+            )
+          done
 
       - name: Report
         if: always()
