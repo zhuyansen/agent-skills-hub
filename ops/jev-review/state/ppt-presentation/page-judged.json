@@ -5237,5 +5237,33 @@
   "days": 13,
   "stars_per_day": 30.384615384615383,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "Ronnie2025/codex-ppt-skill",
+  "name": "codex-ppt-skill",
+  "stars": 217,
+  "description": "面向中文 toB 商业汇报的 Codex PPT 生图、元素重组与 SVG 拆解工作流",
+  "topics": [],
+  "created": "2026-05-08",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 6900,
+  "names_model": false,
+  "makes_slides": 0.93,
+  "agent_driven": 0.97,
+  "editable_output": 0.57,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.44,
+  "complete_docs": 0.86,
+  "shows_result": 0.48,
+  "specific_outcome": 0.75,
+  "novel_angle": 0.87,
+  "shareable_output": 0.74,
+  "quality": 0.6325,
+  "tier": "中",
+  "hit_prior": 0.6966666666666667,
+  "days": 149,
+  "stars_per_day": 1.4563758389261745,
+  "verdict": "admit"
  }
 ]

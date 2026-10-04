@@ -2268,7 +2268,30 @@
     "xhyqaq/skill-manager",
     "xu-xiang/oneskill",
     "yiwen65/SkillDock",
-    "zhuyansen/skills-manager"
+    "zhuyansen/skills-manager",
+    "microsoft/apm",
+    "spences10/mcpick",
+    "itlackey/akm",
+    "with-logic/crew",
+    "nattergabriel/reseed",
+    "Z-Bra0/Ski",
+    "stacklok/toolhive-registry-server",
+    "yeasy/ask",
+    "seed-forge/harness-ai-kit",
+    "luml-ai/AGENTS.lock",
+    "24KaratAu/openhub",
+    "sbroenne/skillpm",
+    "grimoire-rs/grimoire",
+    "taito-project/taito",
+    "singhharsh1708/kitbash",
+    "ashutoshsrivastava17/skill-library",
+    "joabgonzalez/ai-agents-skills",
+    "Brattlof/skillet",
+    "frmlabz/omnidev",
+    "EYH0602/skillshub",
+    "eatmoreduck/SkillManager",
+    "glapsfun/gskill",
+    "anyt-io/pspm-cli"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -3391,7 +3414,8 @@
    "sort": "stars",
    "exclude_repos": [
     "wuyoscar/gpt_image_2_skill",
-    "minhnv0807/fullstack-mkt-skills"
+    "minhnv0807/fullstack-mkt-skills",
+    "joker-sxj/ppt-agent"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -3529,7 +3553,11 @@
     "ziqihe10-droid/shuike-pptskill",
     "zl190/md-slides",
     "zsc58/ustc-ppt-template",
-    "minorun365/minorun-marp-skill"
+    "minorun365/minorun-marp-skill",
+    "Ronnie2025/codex-ppt-skill",
+    "ewkzcz/bili-2-ppt",
+    "2654400439/Paper2Seminar",
+    "wp-a/paper2ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",

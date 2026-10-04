@@ -7,6 +7,14 @@
   "type": "image/png",
   "bytes": 2424699
  },
+ "2654400439/Paper2Seminar": {
+  "repo": "2654400439/Paper2Seminar",
+  "url": "https://raw.githubusercontent.com/2654400439/Paper2Seminar/HEAD/examples/gallery/beyond-rtt-results.png",
+  "alt": "Beyond RTT 数据重绘页面",
+  "score": 1.6,
+  "type": "image/png",
+  "bytes": 187568
+ },
  "2slides/mcp-2slides": {
   "repo": "2slides/mcp-2slides",
   "url": "https://2slides.com/images/og_2slides.webp",
@@ -527,6 +535,14 @@
   "type": "image/webp",
   "bytes": 26312
  },
+ "Ronnie2025/codex-ppt-skill": {
+  "repo": "Ronnie2025/codex-ppt-skill",
+  "url": "https://raw.githubusercontent.com/Ronnie2025/codex-ppt-skill/HEAD/assets/examples/02-risk-framework.png",
+  "alt": "风险框架",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 1564385
+ },
  "Samin12/samin-reel-engine-plugin": {
   "repo": "Samin12/samin-reel-engine-plugin",
   "url": "https://raw.githubusercontent.com/Samin12/samin-reel-engine-plugin/HEAD/docs/assets/opening.gif",
@@ -959,6 +975,14 @@
   "type": "image/jpeg",
   "bytes": 265462
  },
+ "eatmoreduck/SkillManager": {
+  "repo": "eatmoreduck/SkillManager",
+  "url": "https://raw.githubusercontent.com/eatmoreduck/SkillManager/HEAD/docs/screenshots/My%20Skills.png",
+  "alt": "My Skills",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 1187714
+ },
  "edenfunf/reelmimic": {
   "repo": "edenfunf/reelmimic",
   "url": "https://raw.githubusercontent.com/edenfunf/reelmimic/HEAD/docs/assets/demo-sugar.gif",
@@ -1007,6 +1031,14 @@
   "type": "image/png",
   "bytes": 393735
  },
+ "ewkzcz/bili-2-ppt": {
+  "repo": "ewkzcz/bili-2-ppt",
+  "url": "https://raw.githubusercontent.com/ewkzcz/bili-2-ppt/HEAD/assets/template-cryo-academic.webp",
+  "alt": "Cryo_Academic 模版原件里的一页",
+  "score": -0.2,
+  "type": "image/webp",
+  "bytes": 59812
+ },
  "fangyuanopus/literature-report-ppt-builder": {
   "repo": "fangyuanopus/literature-report-ppt-builder",
   "url": "https://raw.githubusercontent.com/fangyuanopus/literature-report-ppt-builder/HEAD/docs/images/demo-slide-01-title.jpg",
@@ -1046,6 +1078,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 161320
+ },
+ "frmlabz/omnidev": {
+  "repo": "frmlabz/omnidev",
+  "url": "https://raw.githubusercontent.com/frmlabz/omnidev/HEAD/docs/img/config-sprawl.png",
+  "alt": "Config sprawl",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 218230
  },
  "geekjourneyx/hyperframes-motion-director": {
   "repo": "geekjourneyx/hyperframes-motion-director",
@@ -1511,6 +1551,14 @@
   "type": "image/png",
   "bytes": 34995
  },
+ "luml-ai/AGENTS.lock": {
+  "repo": "luml-ai/AGENTS.lock",
+  "url": "https://raw.githubusercontent.com/Dataforce-Solutions/static_assets/main/luml-hero-light.png",
+  "alt": "Image",
+  "score": -2.55,
+  "type": "image/png",
+  "bytes": 351994
+ },
  "magichourhq/skills": {
   "repo": "magichourhq/skills",
   "url": "https://raw.githubusercontent.com/magichourhq/skills/HEAD/examples/midnight-remix/preview.gif",
@@ -1831,6 +1879,14 @@
   "type": "image/png",
   "bytes": 37687
  },
+ "taito-project/taito": {
+  "repo": "taito-project/taito",
+  "url": "https://raw.githubusercontent.com/taito-project/.github/main/assets/taito-promo.gif",
+  "alt": "Preview",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1834151
+ },
  "tanglele110-hash/zhongguose-ppt-skill": {
   "repo": "tanglele110-hash/zhongguose-ppt-skill",
   "url": "https://raw.githubusercontent.com/tanglele110-hash/zhongguose-ppt-skill/HEAD/docs/preview/template-02-divider.png",
@@ -2015,6 +2071,14 @@
   "type": "image/png",
   "bytes": 1519449
  },
+ "wp-a/paper2ppt": {
+  "repo": "wp-a/paper2ppt",
+  "url": "https://raw.githubusercontent.com/wp-a/paper2ppt/HEAD/examples/showcase/slide-05-results.png",
+  "alt": "主要结果页",
+  "score": 1.7,
+  "type": "image/png",
+  "bytes": 130976
+ },
  "wuyoscar/GPT-Image2-Skill": {
   "repo": "wuyoscar/GPT-Image2-Skill",
   "url": "https://raw.githubusercontent.com/wuyoscar/GPT-Image2-Skill/HEAD/docs/illustration/get-prompt-from-image-result.png",
@@ -2054,6 +2118,14 @@
   "score": 1.5,
   "type": "image/png",
   "bytes": 71764
+ },
+ "yeasy/ask": {
+  "repo": "yeasy/ask",
+  "url": "https://raw.githubusercontent.com/yeasy/ask/HEAD/docs/images/skills.png",
+  "alt": "ASK Skills Manager",
+  "score": -0.3,
+  "type": "image/png",
+  "bytes": 496708
  },
  "young920/gz-ppt-skill": {
   "repo": "young920/gz-ppt-skill",

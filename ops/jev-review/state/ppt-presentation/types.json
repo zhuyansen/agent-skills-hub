@@ -2882,5 +2882,61 @@
    "general": 0.07
   },
   "kind": "general"
+ },
+ {
+  "repo": "Ronnie2025/codex-ppt-skill",
+  "stars": 217,
+  "description": "面向中文 toB 商业汇报的 Codex PPT 生图、元素重组与 SVG 拆解工作流",
+  "scores": {
+   "image": 0.88,
+   "pptx": 0.88,
+   "html": 0.05,
+   "business": 0.94,
+   "convert": 0.79,
+   "general": 0.39
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "ewkzcz/bili-2-ppt",
+  "stars": 22,
+  "description": "bili-2-ppt：这是一个可以把一条 B 站视频做成学习笔记PPT等格式文档的 Skills",
+  "scores": {
+   "image": 0.07,
+   "pptx": 0.87,
+   "html": 0.04,
+   "business": 0.06,
+   "convert": 0.08,
+   "general": 0.3
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "2654400439/Paper2Seminar",
+  "stars": 5,
+  "description": "An Agent Skill for turning research papers into complete, editable, seminar-ready PPTX decks.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.96,
+   "general": 0.07
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "wp-a/paper2ppt",
+  "stars": 5,
+  "description": "将学术论文转为可编辑、可溯源的中文 PPTX，兼容 Codex 与 Claude Code。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.04,
+   "convert": 0.98,
+   "general": 0.07
+  },
+  "kind": "convert"
  }
 ]

@@ -2168,5 +2168,327 @@
    "cli": 0.08
   },
   "kind": "app"
+ },
+ {
+  "repo": "microsoft/apm",
+  "stars": 3928,
+  "description": "Agent Package Manager",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.79,
+   "app": 0.05,
+   "registry": 0.1,
+   "team": 0.74,
+   "general": 0.93
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "spences10/mcpick",
+  "stars": 94,
+  "description": "Vendor-neutral MCP configuration manager — one CLI to add, toggle, and audit MCP servers and skills across every AI client, with safety built in",
+  "scores": {
+   "cli": 0.79,
+   "sync": 0.25,
+   "app": 0.2,
+   "registry": 0.1,
+   "team": 0.29,
+   "general": 0.46
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "itlackey/akm",
+  "stars": 60,
+  "description": "Agent Knowledge Manager (akm). A CLI tool to manage AI agent knowledge, memories, skills, and  more.",
+  "scores": {
+   "cli": 0.76,
+   "sync": 0.58,
+   "app": 0.07,
+   "registry": 0.46,
+   "team": 0.58,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "with-logic/crew",
+  "stars": 48,
+  "description": "A package manager for agent skills.",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.87,
+   "app": 0.07,
+   "registry": 0.45,
+   "team": 0.75,
+   "general": 0.1
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "nattergabriel/reseed",
+  "stars": 46,
+  "description": "A CLI tool for managing and distributing agent skills across projects",
+  "scores": {
+   "cli": 0.84,
+   "sync": 0.25,
+   "app": 0.61,
+   "registry": 0.18,
+   "team": 0.27,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Z-Bra0/Ski",
+  "stars": 29,
+  "description": "Install AI agent skills from Git into Claude, Codex, Cursor, and OpenClaw with a manifest, lockfile, and shared store",
+  "scores": {
+   "app": 0.04,
+   "registry": 0.03,
+   "team": 0.51,
+   "general": 0.11,
+   "cli": 0.94,
+   "sync": 0.7
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "stacklok/toolhive-registry-server",
+  "stars": 27,
+  "description": "Discover, govern and control access to MCP servers and agent skills across your organization",
+  "scores": {
+   "cli": 0.02,
+   "sync": 0.14,
+   "app": 0.08,
+   "registry": 0.87,
+   "team": 0.94,
+   "general": 0.19
+  },
+  "kind": "team"
+ },
+ {
+  "repo": "yeasy/ask",
+  "stars": 26,
+  "description": "The most powerful Package Manager for Agents Skills: search, query and install/uninstall in seconds!",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.89,
+   "app": 0.66,
+   "registry": 0.4,
+   "team": 0.79,
+   "general": 0.16
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "seed-forge/harness-ai-kit",
+  "stars": 25,
+  "description": "Package manager for AI agent assets — 42 skills, 5 CLIs, 1 plugin. Skills for AI/LLM agent engineering, eval-driven dev, spec-driven dev, database (MySQL/PG/Redis/Kafka/Mongo/Oracle/NL2SQL), K8s/Docker diagnostics, infra ops (Dify/Nexus/Harbor/SonarQube) & docs/patent. Runtimes: Codex, Claude Code, Cursor, Kiro, DSH.",
+  "scores": {
+   "cli": 0.94,
+   "sync": 0.75,
+   "app": 0.05,
+   "registry": 0.11,
+   "team": 0.78,
+   "general": 0.94
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "luml-ai/AGENTS.lock",
+  "stars": 21,
+  "description": "A package manager for Agents/Skills/MCPs",
+  "scores": {
+   "cli": 0.78,
+   "sync": 0.78,
+   "app": 0.04,
+   "registry": 0.06,
+   "team": 0.42,
+   "general": 0.84
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "24KaratAu/openhub",
+  "stars": 21,
+  "description": "Terminal discovery hub and package manager for AI coding tools, MCP servers, and agent skills. Built with Python & Textual",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.24,
+   "app": 0.94,
+   "registry": 0.9,
+   "team": 0.08,
+   "general": 0.29
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "sbroenne/skillpm",
+  "stars": 14,
+  "description": "Package manager for Agent Skills. Built on npm.",
+  "scores": {
+   "cli": 0.97,
+   "sync": 0.28,
+   "app": 0.04,
+   "registry": 0.06,
+   "team": 0.2,
+   "general": 0.06
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "grimoire-rs/grimoire",
+  "stars": 14,
+  "description": "Package manager for AI-agent config. grim installs, updates, and publishes skills, rules, agents, MCP servers, and bundles into Claude Code, Copilot, Cursor, Codex, Gemini, Zed, Amp, Kiro, Junie, and opencode — pinned by digest in a lockfile. Storage is any OCI registry; there is no service to run.",
+  "scores": {
+   "cli": 0.91,
+   "sync": 0.64,
+   "app": 0.15,
+   "registry": 0.16,
+   "team": 0.56,
+   "general": 0.83
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "taito-project/taito",
+  "stars": 13,
+  "description": "taito is a package manager for local AI SKILL/AGENT bundles",
+  "scores": {
+   "general": 0.19,
+   "cli": 0.92,
+   "sync": 0.35,
+   "app": 0.08,
+   "registry": 0.08,
+   "team": 0.8
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "singhharsh1708/kitbash",
+  "stars": 9,
+  "description": "The package manager and compiler for AI agent skills — write once, run in Claude Code, Cursor, Codex, Copilot, Gemini CLI, and more",
+  "scores": {
+   "cli": 0.84,
+   "sync": 0.59,
+   "app": 0.05,
+   "registry": 0.06,
+   "team": 0.2,
+   "general": 0.15
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "ashutoshsrivastava17/skill-library",
+  "stars": 9,
+  "description": "418 AI agent skills across 31 domains & 54 roles. Role-based installer with export for Claude, ChatGPT, Gemini, Cursor, Copilot, Windsurf & any LLM API. Open source skill library that gives AI agents professional-grade methodology.",
+  "scores": {
+   "cli": 0.6,
+   "sync": 0.26,
+   "app": 0.07,
+   "registry": 0.37,
+   "team": 0.16,
+   "general": 0.21
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "joabgonzalez/ai-agents-skills",
+  "stars": 9,
+  "description": "Modular CLI for distributing 50+ AI agent skills across multiple coding assistants",
+  "scores": {
+   "cli": 0.97,
+   "sync": 0.89,
+   "app": 0.12,
+   "registry": 0.38,
+   "team": 0.14,
+   "general": 0.17
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Brattlof/skillet",
+  "stars": 8,
+  "description": "Package manager for MCP servers, Agent Skills (SKILL.md), and Claude Code commands, hooks, subagents, and output styles. Installs into Claude Code, Cursor, Codex, Gemini CLI, Copilot, and Cline.",
+  "scores": {
+   "cli": 0.95,
+   "sync": 0.63,
+   "app": 0.04,
+   "registry": 0.38,
+   "team": 0.11,
+   "general": 0.74
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "frmlabz/omnidev",
+  "stars": 7,
+  "description": "A package manager for agentic coding capabilities. A universal way to discover, install, and manage commands, subagents, skills, and custom functionality for coding agents across all providers.",
+  "scores": {
+   "general": 0.94,
+   "cli": 0.88,
+   "sync": 0.66,
+   "app": 0.06,
+   "registry": 0.14,
+   "team": 0.19
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "EYH0602/skillshub",
+  "stars": 6,
+  "description": "Unified package manager for agent skills, with version control!!",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.82,
+   "app": 0.24,
+   "registry": 0.43,
+   "team": 0.18,
+   "general": 0.09
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "eatmoreduck/SkillManager",
+  "stars": 6,
+  "description": "SkillManager is a cross-platform desktop app for discovering, organizing, editing, and publishing AI agent skills across Claude, Codex, and other local agent ecosystems.",
+  "scores": {
+   "registry": 0.22,
+   "team": 0.11,
+   "general": 0.18,
+   "cli": 0.08,
+   "sync": 0.53,
+   "app": 0.96
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "glapsfun/gskill",
+  "stars": 6,
+  "description": "Gskill is a reproducible package manager for agentic AI skills",
+  "scores": {
+   "app": 0.05,
+   "registry": 0.1,
+   "team": 0.56,
+   "general": 0.1,
+   "cli": 0.95,
+   "sync": 0.88
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "anyt-io/pspm-cli",
+  "stars": 6,
+  "description": "NPM for agent skills , skill with version control , private skills , lock files , etc ",
+  "scores": {
+   "cli": 0.94,
+   "sync": 0.58,
+   "app": 0.06,
+   "registry": 0.19,
+   "team": 0.52,
+   "general": 0.13
+  },
+  "kind": "cli"
  }
 ]
