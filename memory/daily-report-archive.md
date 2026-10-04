@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-04
+1. CopilotKit/openmuse — 打造带浏览器、终端和文件的个人智能体，任务挂着也能持续跑完（3829★ 207.2/day）
+2. QingYunA/answer-me-with-html — 🆕 让智能体用一页 HTML 回答难题，图文排版比大段文字好读得多（282★ 162.1/day）
+3. Jakeschincariol/replica-skill — 🆕 用 11 个 Claude 技能克隆任意应用，逆向、重建、测 bug 再修掉用户痛点（58★ 58.0/day）
+4. ethanplusai/codex-on-crack — 在 Codex 里统筹多个模型，规划、分派、调用工具并回收审查结果（730★ 43.2/day）
+5. unclejobs-ai/motion-video-skill — 🆕 按六步流程用 Claude Code 做动效视频，每步自动检查产出是否合格（57★ 31.2/day）
+6. hamzafer/claude-code-mods — 🆕 实时画出 Claude Code 子智能体读写了哪些文件、调了哪些工具（42★ 26.2/day）
+7. callstackincubator/codex-mobile-dev-plugin — 🆕 给 Codex 装上移动开发插件，顺手调试 Android 与 iOS 应用（94★ 26.2/day）
+8. madisonrickert/jev-permission-gate — 🆕 用 Jev 判定 Claude Code 自动模式的工具调用，比内置分类器快一倍（20★ 17.6/day）
+9. joeseesun/qiaomu-clipper — 🆕 把网页剪藏进 Obsidian，阅读、编辑并直接向 AI 提问（30★ 17.3/day）
+10. haibarazz/awesome-codex-research — 🆕 把检索、写作、审稿、远程 GPU 实验做成可复用的 Codex 科研技能包（100★ 8.0/day）
+🎯 今日趋势：Codex 生态独占 **3 席**（多模型统筹、移动开发插件、科研技能包），Claude Code 插件/钩子另占 **2 席**（子智能体实时面板、Jev 权限闸门）；CopilotKit 官方的 openmuse 建仓 18 天已 **3,829★**，十席有 **8 席**建仓不满两周。
+> 注：去重范围＝repo 内 archive 全部 101 个日期段，并入记忆区 fresh-skills-archive 机械提取，小写去重后比对基数 4,374 个 owner/repo 字符串（含路径噪声，只会多剔不会漏剔）。**本期首查 72h、stars ≥20 触顶 LIMIT 300（星数下限 167★）**：约 7h 前一批 269 条老仓库集中入库（prev_stars=0，多为建仓一个月以上），挤掉了小星数新仓；故追加一次同条件加 `created_at ≥ 30 天` 的查询（68 条，命中历史推荐 25 条剔除），两次查询均单连接串行。十席 first_seen 均 ≤37h（最晚 answer-me-with-html、motion-video-skill、qiaomu-clipper），未超 48h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Sheltercosmo/jevsd-pg（85★ 8.0/day）：2022 建号、0 粉、名下仅此 1 仓，单仓爆星形态，保守排除；②Player-YN/BrowserKitten（2,881★）、milind-soni/OpenMausBot（3,991★）、larashero3-dotcom/lieflat-less-ai-tone（2,270★）等：建仓 36~53 天、本期才收录（prev_stars=0），不算新鲜；③teddylee777/fastcampus-jev（25★ 25.0/day）：无描述、DB 分类 uncategorized，疑为课程资料仓，不推；④Edwardxlai/easyread、extend-hq/jevbox、ANDRETRIPOL/OpenGhost 等：已推荐过；⑤kouhxp/gutsy、ismailperim/briefd：first_seen 超 48h；⑥ahilles107/gravity：security_grade 为 caution。入选项复核（`gh api`）：第 1 席 CopilotKit 为 2023 年建的官方组织（1,484 粉、主仓 37,728★），MIT，DB 分类 uncategorized 但非个人主页项目，保留，建仓 18 天不标 🆕；第 2 席 QingYunA 2018 建号、25 粉、名下另有 42★ 仓；第 3 席 Jakeschincariol 2025-01 建号、235 粉、名下另有 1,159★、431★ 仓，MIT；第 4 席 ethanplusai 2025-12 建号、206 粉、名下另有 823★ 仓，MIT，建仓 17 天不标 🆕；第 5 席 unclejobs-ai 2023 建号、31 粉、59 仓（原描述为韩文），MIT；第 6 席 hamzafer 2018 建号、52 粉、名下另有 671★ 仓，MIT；第 7 席 callstackincubator 为 Callstack 的孵化组织（名下另有 1,664★ 仓）；第 8 席 madisonrickert 2013 建号、24 粉、37 仓；第 9 席 joeseesun（向阳乔木）2013 建号、2,077 粉；第 10 席 haibarazz 2023 建号、6 粉、其余仓 ≤15★（**轻红旗**），无 LICENSE、无仓库描述（描述据 README），内容为真实科研工作流，保留。🆕 判定＝created_at 距今 14 天内，命中 8 席（09-21~10-03 建仓）。security_grade：answer-me-with-html、motion-video-skill、jev-permission-gate、qiaomu-clipper 为 safe，其余 6 席为 unknown（新入库未评）。表中 stars 为数据库快照，部分仓实时更高（openmuse 3,859★、answer-me-with-html 433★、replica-skill 144★），按红线保留快照值。
+
+---
+
 ## 2026-10-03
 1. jarrodwatts/intermission — 🆕 等 Claude 干活时自动弹出 Doom 联机死斗，任务一完成就把你切回来（41★ 36.7/day）
 2. IuCC123/CLIProxyAPI-Rust — 🆕 把 Claude、ChatGPT、Gemini 订阅合成一个 API，单个 Rust 程序带面板（25★ 25.0/day）
