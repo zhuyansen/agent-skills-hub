@@ -15,7 +15,10 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 120  # Allow up to 2 hours for rate limit waits
+    # 120 until 10-05: three runs in a row hit it after the upsert (extra_repos had ~1,000
+    # queued repos; a README rate-limit wait of 18 min), cutting off grading. 180 still
+    # ends before the next run, 8 hours later.
+    timeout-minutes: 180
     defaults:
       run:
         working-directory: backend
