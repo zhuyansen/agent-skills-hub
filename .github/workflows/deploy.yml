@@ -13,15 +13,18 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     # A failed sync can leave grades half-written; don't publish that. Pushes
     # and manual runs always build.
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    # Concurrency lives on the jobs, not the workflow (10-05): at workflow level a run
+    # whose build is skipped (a sync that did not succeed) still joined the group and
+    # cancelled the deploy in progress, so nothing shipped (three times on 10-03/05).
+    # A skipped job never joins.
+    concurrency:
+      group: pages-build
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -58,6 +61,9 @@ jobs:
           path: frontend/dist
 
   deploy:
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
