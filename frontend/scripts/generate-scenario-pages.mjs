@@ -466,10 +466,14 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // 10-05: "N Compared, X rated SAFE, Y flagged (YYYY)" ran titles to 80+ characters
   // (seo.web.cafe On Page audit: truncated in results). The SAFE/flagged counts stay in
   // the meta description; the title keeps the claim that every entry is graded.
-  const gradedHead = `${subject}: ${itemCount} Security-Graded (${year})`;
-  const head = canClaim
-    ? (gradedHead.length <= TITLE_MAX ? gradedHead : `${subject}: ${itemCount} Graded (${year})`)
-    : `${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`;
+  // The first that fits; the last is the shortest. A page whose new rows are not graded
+  // yet takes the "Compared" forms (claude-code-hooks after a sync added 153 rows, 10-05).
+  const heads = canClaim
+    ? [`${subject}: ${itemCount} Security-Graded (${year})`, `${subject}: ${itemCount} Graded (${year})`,
+       `${subject}: ${itemCount} Graded`]
+    : [`${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`,
+       `${subject}: ${itemCount} Compared (${year})`, `${subject}: ${itemCount} Compared`];
+  const head = heads.find((h) => h.length <= TITLE_MAX) || heads[heads.length - 1];
   const branded = `${head} | Agent Skills Hub`;
   const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");
 
