@@ -18,6 +18,9 @@ checklist to repeat it on another topic. Written 2026-10-05.
 
 | When | Move | Why it mattered |
 |---|---|---|
+| 05-04 | "Tweet → landing alignment" (24ed67e): featured anchors pin the repos a post will name to the top of the page | Visitors from the post land on exactly what it promised. |
+| 05-05 | Page created (172f023) | |
+| 05-09 | [Post on X](https://x.com/GoSailGlobal/status/2053103395863699594) from @GoSailGlobal (36.7K followers): five AI PPT styles, one open-source skill each, link to the page. 167K views, 971 likes, 248 reposts, 1,302 bookmarks | The page had **zero** search impressions before; the week of the post it had **30,687**. Google found and indexed it that week, and the first queries were the post's: `ppt skills`, `guizang ppt skill`, `github ppt skill`. |
 | 06-23 | Retitled `PPT & Presentation Skills` → `AI PPT & Slide Generators` (2a1e59c) | 96% of the site's impressions were "presentation skills", public-speaking intent, 0 clicks. The title now names the tool intent. |
 | 07-06 | Found ppt as the #1 topic by clustering GSC impressions by term; checked the catalog for depth before deciding | GSC only shows terms already ranking; the catalog showed a deep category behind them. |
 | 07-06 | Decided **not** to open `/best/ppt-skills/` | A second page would split the signals of the one already ranking. |
@@ -29,6 +32,10 @@ checklist to repeat it on another topic. Written 2026-10-05.
 
 ## The checklist
 
+0. **Launch with a post, not just a page.** Build the page first, pin the repos the post
+   names (`featured`), then post on X with the link: a concrete list ("5 styles, one
+   open-source skill each") people bookmark. The PPT post's week took the page from zero
+   to 30,687 impressions. Bookmarks (1,302) outnumbered likes: write it as a reference.
 1. **Pick the topic from data, not from guesses.**
    - GSC: cluster 3 months of queries by term; a topic with impressions at positions 5–15
      is ready to rank. Positions 40+ are an authority problem, not a page problem: skip.
@@ -69,4 +76,5 @@ checklist to repeat it on another topic. Written 2026-10-05.
 Same pipeline, 10-03 to 10-05: video, Jev, skill management, Telegram, design, knowledge
 base / LLM wiki, Claude Code hooks, Obsidian, humanizer (all with lists); code review,
 browser automation, Codex, database MCP (pages only); image generation in progress. Steps 5
-(`extra_faq` from related searches) and 7 (internal links) are done for PPT only.
+(`extra_faq` from related searches) and 7 (internal links) were added to all reviewed pages
+on 10-05 (c1a2436). Step 0, a launch post, has been done for the PPT page only.
