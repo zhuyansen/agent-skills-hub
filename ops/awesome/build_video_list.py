@@ -23,6 +23,7 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import time
 import sys
 import urllib.parse
 import urllib.request
@@ -37,6 +38,9 @@ UTM = "?utm_source=github&utm_medium=awesome-list"
 CHUNK = 60
 DESC_MAX = 150
 HTTP_TIMEOUT = 30
+QUOTA_WAIT_MAX = 3900   # one hour and a bit: a core quota window
+MIN_GUARDED = 20        # lists this size or larger are guarded against shrinking
+SHRINK_FLOOR = 0.5      # refuse to publish a list that lost half its entries
 FIELDS = "repo_full_name,security_grade"
 GRADES = {"safe": "SAFE", "caution": "CAUTION", "unsafe": "UNSAFE", "reject": "REJECT"}
 THUMBS: dict = {}               # repo -> thumbnail record, read from the list's own folder in main()
@@ -230,13 +234,33 @@ def catalog_rows(names: list[str]) -> dict:
 
 
 def github_row(name: str) -> dict | None:
-    out = subprocess.run(["gh", "api", f"repos/{name}"], capture_output=True, text=True).stdout
-    meta = json.loads(out or "{}")
+    """The repo's live metadata, or None when GitHub says it is gone. A rate-limited or
+    failed call waits for the quota once, then raises: on 10-05 the daily job ran the
+    quota out partway through ten lists, every call failed, every repo read as gone, and
+    four lists were published empty."""
+    for attempt in range(2):
+        done = subprocess.run(["gh", "api", f"repos/{name}"], capture_output=True, text=True)
+        if done.returncode == 0:
+            break
+        if "Not Found" in done.stdout + done.stderr:
+            return None
+        if attempt == 0 and "rate limit" in (done.stdout + done.stderr).lower():
+            wait_for_quota()
+            continue
+        raise RuntimeError(f"GitHub lookup failed for {name}: {(done.stderr or done.stdout)[-200:]}")
+    meta = json.loads(done.stdout or "{}")
     if not meta.get("full_name"):
         return None
     return {"repo_full_name": meta["full_name"], "stars": meta["stargazers_count"], "description": meta.get("description"),
             "security_grade": None, "created_at": meta.get("created_at"), "language": meta.get("language"),
             "license": (meta.get("license") or {}).get("spdx_id")}
+
+
+def wait_for_quota() -> None:
+    """Sleep until the core quota resets (at most QUOTA_WAIT_MAX seconds)."""
+    out = subprocess.run(["gh", "api", "rate_limit", "--jq", ".resources.core.reset"], capture_output=True, text=True)
+    reset = int(out.stdout.strip() or 0)
+    time.sleep(min(max(reset - time.time() + 30, 0), QUOTA_WAIT_MAX))
 
 
 def entries() -> tuple[list[dict], list[dict]]:
@@ -390,6 +414,11 @@ def main() -> None:
     index = out / "assets/previews/index.json"
     THUMBS.update(json.loads(index.read_text()) if index.exists() else {})
     kinds, rows = entries()
+    published = out / "data/skills.json"
+    before = len(json.loads(published.read_text()).get("skills", [])) if published.exists() else 0
+    if before >= MIN_GUARDED and len(rows) < before * SHRINK_FLOOR:
+        sys.exit(f"refusing to publish {len(rows)} repos over {before}: a list does not lose half its "
+                 f"entries in a day; check GitHub lookups and the catalog first")
     for lang in TEXT:
         (out / TEXT[lang]["file"]).write_text(readme(lang, kinds, rows))
     # In the README's order: by type as the sections run, then as each table runs. A commit
