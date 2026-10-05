@@ -4300,5 +4300,149 @@
    "demo": 0.48
   },
   "kind": "promo"
+ },
+ {
+  "repo": "JohnChow90/video-shotcraft",
+  "stars": 7,
+  "description": "Cinema-grade product video skill: 157 shot recipe cards + Remotion templates + 2.5D camera moves + sound design (originally by Vincentwei1021)",
+  "scores": {
+   "promo": 0.93,
+   "explainer": 0.14,
+   "music": 0.09,
+   "motion": 0.09,
+   "shorts": 0.18,
+   "editing": 0.15,
+   "demo": 0.28,
+   "story": 0.19,
+   "avatar": 0.06,
+   "general": 0.21
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "cblain100-prog/motion-design-claude-code",
+  "stars": 5,
+  "description": "Motion design de lancement façon agence avec Claude Code + HyperFrames (HeyGen), sans savoir coder : la méthode en skill, les patterns de 56 films, les modèles et 3 exemples.",
+  "scores": {
+   "promo": 0.96,
+   "explainer": 0.44,
+   "music": 0.07,
+   "motion": 0.24,
+   "shorts": 0.05,
+   "editing": 0.09,
+   "demo": 0.27,
+   "story": 0.19,
+   "avatar": 0.23,
+   "general": 0.09
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "liuliu-66-create/ll-video-edit",
+  "stars": 5,
+  "description": "Codex + Remotion 六步自动剪辑 Skill 与视频动效素材库",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.81,
+   "music": 0.04,
+   "motion": 0.1,
+   "shorts": 0.25,
+   "editing": 0.2,
+   "demo": 0.65,
+   "story": 0.06,
+   "avatar": 0.09,
+   "general": 0.24
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Neelshah1810/Claude-Video-Skills",
+  "stars": 5,
+  "description": "11 Claude skills that make professional motion-graphics videos (launch films, explainers, social ads, data stories) as HTML + MP4. Works with Claude and Claude Code.",
+  "scores": {
+   "promo": 0.75,
+   "explainer": 0.52,
+   "music": 0.19,
+   "motion": 0.38,
+   "shorts": 0.29,
+   "editing": 0.05,
+   "demo": 0.45,
+   "story": 0.21,
+   "avatar": 0.06,
+   "general": 0.77
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "IskakovDamir/apple-motion",
+  "stars": 12,
+  "description": "Claude skill for Apple-style kinetic typography recaps in Remotion, built from frame-accurate measurements of Apple recap videos",
+  "scores": {
+   "promo": 0.65,
+   "music": 0.23,
+   "motion": 0.4,
+   "shorts": 0.12,
+   "demo": 0.27,
+   "story": 0.08,
+   "avatar": 0.04,
+   "general": 0.04,
+   "explainer": 0.17,
+   "editing": 0.1
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+  "stars": 12,
+  "description": "Production pipeline and Claude Code skill for Vocaloid-style hand-drawn (手書き) lyric music videos: deterministic Canvas2D/WebGL2 animation engine, JIZURA lyric motion, AI illustration, Blender toon 3D, headless rendering to 16:9 and 9:16.",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.07,
+   "music": 0.97,
+   "motion": 0.06,
+   "shorts": 0.28,
+   "editing": 0.04,
+   "demo": 0.11,
+   "story": 0.83,
+   "avatar": 0.12,
+   "general": 0.07
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "neelnanda-io/dont-go-quiet-on-me",
+  "stars": 4,
+  "description": "Don't Go Quiet On Me: a song and hand-drawn-in-code music video about the history of mech interp, made with Claude Opus 5.5 and Suno v6",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.77,
+   "music": 0.95,
+   "motion": 0.04,
+   "shorts": 0.05,
+   "editing": 0.07,
+   "demo": 0.07,
+   "story": 0.52,
+   "avatar": 0.05,
+   "general": 0.07
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "samuelstroschein/opus-video-generator",
+  "stars": 1,
+  "description": "Make launch videos with Claude Opus 5.5, in your browser, on your own Claude subscription. npx opus-video-generator",
+  "scores": {
+   "promo": 0.95,
+   "explainer": 0.22,
+   "music": 0.14,
+   "motion": 0.14,
+   "shorts": 0.22,
+   "editing": 0.04,
+   "demo": 0.55,
+   "story": 0.2,
+   "avatar": 0.09,
+   "general": 0.1
+  },
+  "kind": "promo"
  }
 ]

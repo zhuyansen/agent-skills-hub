@@ -263,6 +263,14 @@
   "type": "image/png",
   "bytes": 2840759
  },
+ "EGSECDA/vocaloid-style-mv-pipeline": {
+  "repo": "EGSECDA/vocaloid-style-mv-pipeline",
+  "url": "https://raw.githubusercontent.com/EGSECDA/vocaloid-style-mv-pipeline/HEAD/docs/images/vertical_strip.jpg",
+  "alt": "Five frames of the 9:16 vertical version",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 219072
+ },
  "Enei7/ppt-rebuild-skills": {
   "repo": "Enei7/ppt-rebuild-skills",
   "url": "https://raw.githubusercontent.com/Enei7/ppt-rebuild-skills/HEAD/assets/readme/lecture5-p06-source.png",
@@ -383,6 +391,22 @@
   "type": "image/png",
   "bytes": 571646
  },
+ "HututuWorks/sci-diagram-pptx": {
+  "repo": "HututuWorks/sci-diagram-pptx",
+  "url": "https://raw.githubusercontent.com/HututuWorks/sci-diagram-pptx/HEAD/docs/cases/municipal-solid-waste-ghg-accounting-framework.png",
+  "alt": "04 · 城市固废管理与温室气体核算框架",
+  "score": 1.65,
+  "type": "image/png",
+  "bytes": 385804
+ },
+ "IskakovDamir/apple-motion": {
+  "repo": "IskakovDamir/apple-motion",
+  "url": "https://raw.githubusercontent.com/IskakovDamir/apple-motion/HEAD/docs/demo.gif",
+  "alt": "Demo recap rendered with the skill",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3290889
+ },
  "JimLiu/taohuayuan": {
   "repo": "JimLiu/taohuayuan",
   "url": "https://github.com/user-attachments/assets/70dc2698-79a9-4eca-970e-a14f48ead553",
@@ -390,6 +414,14 @@
   "score": -2.5,
   "type": "image/webp",
   "bytes": 196286
+ },
+ "JohnChow90/video-shotcraft": {
+  "repo": "JohnChow90/video-shotcraft",
+  "url": "https://raw.githubusercontent.com/JohnChow90/video-shotcraft/HEAD/workbench/docs/overview.png",
+  "alt": "Motion Workbench",
+  "score": -2.8,
+  "type": "image/png",
+  "bytes": 460573
  },
  "JohnHeibel/ClaudeAnimationBase": {
   "repo": "JohnHeibel/ClaudeAnimationBase",
@@ -495,6 +527,14 @@
   "type": "image/gif",
   "bytes": 5388751
  },
+ "MrDoe/OpenCodeRAG": {
+  "repo": "MrDoe/OpenCodeRAG",
+  "url": "https://raw.githubusercontent.com/MrDoe/OpenCodeRAG/HEAD/doc/assets/webui-3d.png",
+  "alt": "OpenCodeRAG Web UI",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 238667
+ },
  "NeekChaw/mcp-server-okppt": {
   "repo": "NeekChaw/mcp-server-okppt",
   "url": "https://raw.githubusercontent.com/NeekChaw/mcp-server-okppt/HEAD/example/Financial_Crisis_2008.png",
@@ -502,6 +542,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 34554
+ },
+ "Neelshah1810/Claude-Video-Skills": {
+  "repo": "Neelshah1810/Claude-Video-Skills",
+  "url": "https://raw.githubusercontent.com/Neelshah1810/Claude-Video-Skills/HEAD/previews/low-tide-titles-preview.gif",
+  "alt": "Low Tide: made with the motion-film skill",
+  "score": 4.55,
+  "type": "image/gif",
+  "bytes": 866452
  },
  "NomiciAI/mbb-page-maker": {
   "repo": "NomiciAI/mbb-page-maker",
@@ -558,6 +606,14 @@
   "score": 1.65,
   "type": "image/png",
   "bytes": 385804
+ },
+ "Sheltercosmo/jev4pg": {
+  "repo": "Sheltercosmo/jev4pg",
+  "url": "https://raw.githubusercontent.com/Sheltercosmo/jev4pg/HEAD/docs/assets/product-tour.gif?v=b87ec970",
+  "alt": "Animated product tour: natural-language SQL, semantic filtering, text extraction",
+  "score": 2.85,
+  "type": "image/gif",
+  "bytes": 9955068
  },
  "SkillMelody/PPT-Smith": {
   "repo": "SkillMelody/PPT-Smith",
@@ -951,6 +1007,14 @@
   "type": "image/png",
   "bytes": 1863929
  },
+ "diegomarino/tui-design": {
+  "repo": "diegomarino/tui-design",
+  "url": "https://raw.githubusercontent.com/diegomarino/tui-design/HEAD/docs/img/gallery.png",
+  "alt": "The gallery page the skill builds: selectors for design, variant, state, size, t",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 97716
+ },
  "diffusionstudio/lottie": {
   "repo": "diffusionstudio/lottie",
   "url": "https://raw.githubusercontent.com/diffusionstudio/lottie/HEAD/assets/demo-1.gif",
@@ -1030,6 +1094,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 393735
+ },
+ "evergreen-it-dev/folio": {
+  "repo": "evergreen-it-dev/folio",
+  "url": "https://raw.githubusercontent.com/evergreen-it-dev/folio/HEAD/docs/images/pdf.png",
+  "alt": "A PDF previewed inside Folio",
+  "score": 1.5,
+  "type": "image/png",
+  "bytes": 435832
  },
  "ewkzcz/bili-2-ppt": {
   "repo": "ewkzcz/bili-2-ppt",
@@ -1158,6 +1230,14 @@
   "score": -0.25,
   "type": "image/webp",
   "bytes": 267406
+ },
+ "henryhyw/slidepoise": {
+  "repo": "henryhyw/slidepoise",
+  "url": "https://raw.githubusercontent.com/henryhyw/slidepoise/HEAD/examples/consulting-ai-transformation/assets/s05-investment-decision-render.png",
+  "alt": "Consulting slide showing an investment model, sensitivity table and native chart",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 183218
  },
  "hetpatel-11/Adobe_Premiere_Pro_MCP": {
   "repo": "hetpatel-11/Adobe_Premiere_Pro_MCP",
@@ -1351,6 +1431,14 @@
   "type": "image/gif",
   "bytes": 9553530
  },
+ "ismailperim/briefd": {
+  "repo": "ismailperim/briefd",
+  "url": "https://raw.githubusercontent.com/ismailperim/briefd/HEAD/docs/assets/briefd-demo.gif",
+  "alt": "Today: CLAUDE.md is re-sent on every turn. With briefd: one compile_bundle call ",
+  "score": 4.55,
+  "type": "image/gif",
+  "bytes": 824750
+ },
  "jaredcassoutt/vox-editorial": {
   "repo": "jaredcassoutt/vox-editorial",
   "url": "https://raw.githubusercontent.com/jaredcassoutt/vox-editorial/HEAD/skills/vox-editorial/docs/jc-builds.gif",
@@ -1526,6 +1614,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 691140
+ },
+ "liuliu-66-create/ll-video-edit": {
+  "repo": "liuliu-66-create/ll-video-edit",
+  "url": "https://raw.githubusercontent.com/liuliu-66-create/ll-video-edit/HEAD/motion-library/previews/multi-point-generic-styleframe-v1.png",
+  "alt": "ll-video-edit 教程型视频动效示例",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 2336716
  },
  "liustack/pptfast": {
   "repo": "liustack/pptfast",
@@ -1798,6 +1894,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 117178
+ },
+ "samuelstroschein/opus-video-generator": {
+  "repo": "samuelstroschein/opus-video-generator",
+  "url": "https://raw.githubusercontent.com/samuelstroschein/opus-video-generator/HEAD/docs/assets/screenshot.png",
+  "alt": "Opus Video Generator: chat on the left, the video with its timeline on the right",
+  "score": -2.55,
+  "type": "image/png",
+  "bytes": 1238869
  },
  "severli93/moonland-deck": {
   "repo": "severli93/moonland-deck",

@@ -2938,5 +2938,33 @@
    "general": 0.07
   },
   "kind": "convert"
+ },
+ {
+  "repo": "henryhyw/slidepoise",
+  "stars": 102,
+  "description": "Open-source agentic slide generation with free-form visual design and editable PowerPoint output.",
+  "scores": {
+   "image": 0.12,
+   "pptx": 0.94,
+   "html": 0.03,
+   "business": 0.64,
+   "convert": 0.15,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "HututuWorks/sci-diagram-pptx",
+  "stars": 25,
+  "description": "Reconstruct scientific frameworks, mechanisms, and flow diagrams as native editable PowerPoint—with provenance-bound, fail-closed QA for Codex.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.06,
+   "convert": 0.12,
+   "general": 0.06
+  },
+  "kind": "pptx"
  }
 ]

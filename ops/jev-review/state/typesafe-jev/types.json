@@ -4753,5 +4753,35 @@
    "general": 0.75
   },
   "kind": "general"
+ },
+ {
+  "repo": "Sheltercosmo/jev4pg",
+  "stars": 97,
+  "description": "Established strong JEV based natural language to SQL performance and well-covered semantic operators for PostgreSQL(PG) with optimized cost and latency. Reusable evidence, with native execution, parallel plans and explainable embeddings in development preview.",
+  "scores": {
+   "replica": 0.28,
+   "agent": 0.03,
+   "devtool": 0.09,
+   "sdk": 0.68,
+   "business": 0.54,
+   "consumer": 0.04,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "okjpg/jev-hermes-router",
+  "stars": 5,
+  "description": "Escolhe o modelo certo pra cada mensagem no Hermes, usando o Jev da TypeSafe. Codex e Claude via assinatura.",
+  "scores": {
+   "general": 0.06,
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.96,
+   "sdk": 0.08,
+   "business": 0.04,
+   "consumer": 0.73
+  },
+  "kind": "devtool"
  }
 ]

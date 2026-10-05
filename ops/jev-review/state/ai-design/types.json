@@ -2518,5 +2518,33 @@
    "review": 0.22
   },
   "kind": "ui"
+ },
+ {
+  "repo": "nghiahsgs/skills-slides",
+  "stars": 35,
+  "description": "50,000+ unique HTML presentation designs. Zero dependencies. Anti-AI-slop. A Claude Code skill.",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.91,
+   "tool_mcp": 0.05,
+   "to_code": 0.17,
+   "graphics": 0.07,
+   "review": 0.86
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "diegomarino/tui-design",
+  "stars": 15,
+  "description": "Agent skill for designing, mocking, building and auditing terminal UIs",
+  "scores": {
+   "ui": 0.85,
+   "system": 0.71,
+   "tool_mcp": 0.05,
+   "to_code": 0.45,
+   "graphics": 0.06,
+   "review": 0.85
+  },
+  "kind": "ui"
  }
 ]

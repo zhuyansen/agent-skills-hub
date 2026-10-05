@@ -4702,5 +4702,47 @@
    "personal": 0.54
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "MrDoe/OpenCodeRAG",
+  "stars": 54,
+  "description": "OpenCodeRAG is a RAG (Retrieval-Augmented Generation) plugin for semantic code search powered by locally-hosted embedding models. It features a seamless integration with OpenCode and other AI tools via MCP and offers a CLI interface for external usage. It offers hybrid search, image description, persistent memory and local decision model usage.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.2,
+   "mcp": 0.87,
+   "docs_qa": 0.79,
+   "graph": 0.04,
+   "personal": 0.05
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "evergreen-it-dev/folio",
+  "stars": 20,
+  "description": "The AI-assisted, open-source alternative to Notion and Confluence: a team wiki that lives in Git, with real-time editing, data tables, whiteboards, offline mode, and first-class AI agents.",
+  "scores": {
+   "llm_wiki": 0.88,
+   "rag_platform": 0.2,
+   "mcp": 0.26,
+   "docs_qa": 0.67,
+   "graph": 0.08,
+   "personal": 0.1
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "ismailperim/briefd",
+  "stars": 31,
+  "description": "Your agents, briefed. Not flooded. Self-hosted context compiler: git-backed team knowledge served to coding agents as token-budgeted bundles over MCP.",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.29,
+   "mcp": 0.89,
+   "docs_qa": 0.74,
+   "graph": 0.05,
+   "personal": 0.07
+  },
+  "kind": "mcp"
  }
 ]

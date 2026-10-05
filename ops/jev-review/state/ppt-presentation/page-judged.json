@@ -5265,5 +5265,40 @@
   "days": 149,
   "stars_per_day": 1.4563758389261745,
   "verdict": "admit"
+ },
+ {
+  "repo": "henryhyw/slidepoise",
+  "name": "slidepoise",
+  "stars": 102,
+  "description": "Open-source agentic slide generation with free-form visual design and editable PowerPoint output.",
+  "topics": [
+   "codex",
+   "image-generation",
+   "opencv",
+   "powerpoint",
+   "pptxgenjs",
+   "presentations"
+  ],
+  "created": "2026-09-05",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9689,
+  "names_model": false,
+  "makes_slides": 0.98,
+  "agent_driven": 0.52,
+  "editable_output": 0.94,
+  "reusable_tool": 0.9,
+  "one_command_start": 0.37,
+  "complete_docs": 0.35,
+  "shows_result": 0.91,
+  "specific_outcome": 0.64,
+  "novel_angle": 0.9,
+  "shareable_output": 0.75,
+  "quality": 0.5675,
+  "tier": "中",
+  "hit_prior": 0.8533333333333334,
+  "days": 30,
+  "stars_per_day": 3.4,
+  "verdict": "admit"
  }
 ]

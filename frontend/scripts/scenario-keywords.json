@@ -1993,7 +1993,8 @@
     "onurkafk/corvid",
     "pillumina/ascend-sleuth",
     "professorpalmer/portable-llm-wiki",
-    "wgpsec/context1337"
+    "wgpsec/context1337",
+    "MrDoe/OpenCodeRAG"
    ]
   },
   "related": [
@@ -3038,7 +3039,8 @@
     "sshahzaiib/senior-designer-skill",
     "sso-ss/vibe-ship-it",
     "sva-admin/sv-academy-prom-design",
-    "undsky/doudou-color-skill"
+    "undsky/doudou-color-skill",
+    "diegomarino/tui-design"
    ]
   },
   "related": [
@@ -3557,7 +3559,9 @@
     "Ronnie2025/codex-ppt-skill",
     "ewkzcz/bili-2-ppt",
     "2654400439/Paper2Seminar",
-    "wp-a/paper2ppt"
+    "wp-a/paper2ppt",
+    "henryhyw/slidepoise",
+    "HututuWorks/sci-diagram-pptx"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -4636,7 +4640,9 @@
     "yzfly/edgejev",
     "zhangcy122/OpenJev",
     "zhulinchng/jevper",
-    "zjunlp/JevLoop"
+    "zjunlp/JevLoop",
+    "Sheltercosmo/jev4pg",
+    "okjpg/jev-hermes-router"
    ]
   },
   "related": [
@@ -4915,7 +4921,11 @@
     "haxzie/genmotion",
     "puntorigen/avatar-skills",
     "AmirSbss/spotlight",
-    "syklayou-glitch/video-shotcraft"
+    "syklayou-glitch/video-shotcraft",
+    "IskakovDamir/apple-motion",
+    "EGSECDA/vocaloid-style-mv-pipeline",
+    "neelnanda-io/dont-go-quiet-on-me",
+    "samuelstroschein/opus-video-generator"
    ],
    "sub_skills": [
     {

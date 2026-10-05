@@ -42410,5 +42410,31 @@
   "days": 163,
   "stars_per_day": 0.3067484662576687,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "MrDoe/OpenCodeRAG",
+  "name": "OpenCodeRAG",
+  "stars": 54,
+  "description": "OpenCodeRAG is a RAG (Retrieval-Augmented Generation) plugin for semantic code search powered by locally-hosted embedding models. It features a seamless integration with OpenCode and other AI tools via MCP and offers a CLI interface for external usage. It offers hybrid search, image description, persistent memory and local decision model usage.",
+  "topics": [],
+  "created": "2026-05-28",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 19821,
+  "names_model": false,
+  "on_subject": 0.86,
+  "is_software": 0.98,
+  "shows_result": 0.07,
+  "one_command_start": 0.43,
+  "specific_outcome": 0.59,
+  "complete_docs": 0.8,
+  "novel_angle": 0.72,
+  "shareable_output": 0.74,
+  "quality": 0.47250000000000003,
+  "tier": "低",
+  "hit_prior": 0.51,
+  "days": 130,
+  "stars_per_day": 0.4153846153846154,
+  "verdict": "low_quality"
  }
 ]
