@@ -55,6 +55,14 @@
   "2026-10-02": {
    "count": 10,
    "uniques": 9
+  },
+  "2026-10-03": {
+   "count": 25,
+   "uniques": 15
+  },
+  "2026-10-04": {
+   "count": 26,
+   "uniques": 17
   }
  },
  "clones": {
@@ -113,6 +121,14 @@
   "2026-10-02": {
    "count": 54,
    "uniques": 23
+  },
+  "2026-10-03": {
+   "count": 265,
+   "uniques": 100
+  },
+  "2026-10-04": {
+   "count": 76,
+   "uniques": 31
   }
  },
  "referrers": {
@@ -164,6 +180,58 @@
    },
    {
     "referrer": "lnkd.in",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-05": [
+   {
+    "referrer": "t.co",
+    "count": 56,
+    "uniques": 51
+   },
+   {
+    "referrer": "github.com",
+    "count": 41,
+    "uniques": 34
+   },
+   {
+    "referrer": "Google",
+    "count": 9,
+    "uniques": 8
+   },
+   {
+    "referrer": "teams.public.onecdn.static.microsoft",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "linkedin.com",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "link.zhihu.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "Bing",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "lnkd.in",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "yf2ljykclb.xfchat.iflytek.com",
     "count": 1,
     "uniques": 1
    }
@@ -220,6 +288,58 @@
     "path": "/zhuyansen/agent-skills-hub/tree/ff67edd666014d24b93ee007bd24ee5d31b867ff/ops/research/gefei-live-2026-07",
     "count": 4,
     "uniques": 1
+   }
+  ],
+  "2026-10-05": [
+   {
+    "path": "/zhuyansen/agent-skills-hub",
+    "count": 175,
+    "uniques": 139
+   },
+   {
+    "path": "/ZhuYansen/agent-skills-hub",
+    "count": 127,
+    "uniques": 101
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/docs",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/.claude",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues",
+    "count": 5,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/CLAUDE.md",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/frontend",
+    "count": 4,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/ff67edd666014d24b93ee007bd24ee5d31b867ff/ops/research/gefei-live-2026-07",
+    "count": 4,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/discussions",
+    "count": 3,
+    "uniques": 3
    }
   ]
  }

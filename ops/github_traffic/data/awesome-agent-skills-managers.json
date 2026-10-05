@@ -53,8 +53,12 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 0,
-   "uniques": 0
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-04": {
+   "count": 1,
+   "uniques": 1
   }
  },
  "clones": {
@@ -111,14 +115,26 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 0,
-   "uniques": 0
+   "count": 15,
+   "uniques": 11
+  },
+  "2026-10-04": {
+   "count": 19,
+   "uniques": 13
   }
  },
  "referrers": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": []
  },
  "paths": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 2,
+    "uniques": 2
+   }
+  ]
  }
 }

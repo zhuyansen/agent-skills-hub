@@ -53,8 +53,12 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 0,
-   "uniques": 0
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-10-04": {
+   "count": 3,
+   "uniques": 2
   }
  },
  "clones": {
@@ -111,14 +115,31 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 0,
-   "uniques": 0
+   "count": 17,
+   "uniques": 12
+  },
+  "2026-10-04": {
+   "count": 5,
+   "uniques": 5
   }
  },
  "referrers": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": []
  },
  "paths": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": [
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev/pulls",
+    "count": 2,
+    "uniques": 1
+   }
+  ]
  }
 }

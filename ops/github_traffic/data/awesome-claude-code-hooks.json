@@ -53,6 +53,10 @@
    "uniques": 0
   },
   "2026-10-03": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-04": {
    "count": 0,
    "uniques": 0
   }
@@ -111,14 +115,32 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 0,
-   "uniques": 0
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-10-04": {
+   "count": 8,
+   "uniques": 6
   }
  },
  "referrers": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": [
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
  },
  "paths": {
-  "2026-10-03": []
+  "2026-10-03": [],
+  "2026-10-05": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
  }
 }

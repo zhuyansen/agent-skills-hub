@@ -1,9 +1,5 @@
 {
  "views": {
-  "2026-09-20": {
-   "count": 0,
-   "uniques": 0
-  },
   "2026-09-21": {
    "count": 0,
    "uniques": 0
@@ -57,15 +53,11 @@
    "uniques": 0
   },
   "2026-10-04": {
-   "count": 0,
-   "uniques": 0
+   "count": 1,
+   "uniques": 1
   }
  },
  "clones": {
-  "2026-09-20": {
-   "count": 0,
-   "uniques": 0
-  },
   "2026-09-21": {
    "count": 0,
    "uniques": 0
@@ -115,20 +107,24 @@
    "uniques": 0
   },
   "2026-10-03": {
-   "count": 16,
-   "uniques": 11
+   "count": 8,
+   "uniques": 5
   },
   "2026-10-04": {
-   "count": 2,
-   "uniques": 2
+   "count": 9,
+   "uniques": 8
   }
  },
  "referrers": {
-  "2026-10-03": [],
   "2026-10-05": []
  },
  "paths": {
-  "2026-10-03": [],
-  "2026-10-05": []
+  "2026-10-05": [
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
  }
 }
