@@ -28,8 +28,8 @@
   },
   "related": [
    "browser-automation",
-   "data-pipeline",
-   "rss-monitoring"
+   "mcp-database",
+   "knowledge-base"
   ]
  },
  {
@@ -104,9 +104,23 @@
    ]
   },
   "related": [
-   "test-generation",
-   "code-completion",
-   "debugging"
+   "claude-code-hooks",
+   "codex-skills",
+   "browser-automation"
+  ],
+  "extra_faq": [
+   {
+    "q": "Is there a code review skill or plugin for Claude Code?",
+    "a": "Yes. openai/codex-plugin-cc lets Claude Code hand a review to Codex, and awesome-skills/code-review-skill is a review skill covering React, Vue, Rust, TypeScript and more. For reviews by several models that check each other: chorus-codes/chorus. They are listed on this page under Agent skills and Multi-agent.",
+    "qZh": "Claude Code 有代码审查的 skill 或插件吗?",
+    "aZh": "有。openai/codex-plugin-cc 让 Claude Code 把审查交给 Codex,awesome-skills/code-review-skill 是覆盖 React、Vue、Rust、TypeScript 等的审查 skill。想让多个模型互相复核:chorus-codes/chorus。本页把它们归在「Agent Skill」和「多 Agent 互审」两类。"
+   },
+   {
+    "q": "What open source AI code review tools review pull requests?",
+    "a": "The-PR-Agent/pr-agent reviews pull requests on GitHub, GitLab and others; alibaba/open-code-review is a code review engine used at Alibaba's scale; kodustech/kodus-ai is self-hosted and works with your own LLM. They are listed on this page under PR bots & CI, Local & CLI and Platforms.",
+    "qZh": "有哪些开源的 AI 代码审查工具能审 Pull Request?",
+    "aZh": "The-PR-Agent/pr-agent 在 GitHub、GitLab 等平台审查 PR;alibaba/open-code-review 是在阿里规模上用过的审查引擎;kodustech/kodus-ai 可自托管,接你自己的大模型。本页把它们归在「PR 机器人与 CI」「本地与命令行」「自托管平台」几类。"
+   }
   ]
  },
  {
@@ -196,9 +210,23 @@
    ]
   },
   "related": [
-   "mcp-api",
-   "data-pipeline",
-   "mcp-filesystem"
+   "knowledge-base",
+   "browser-automation",
+   "web-scraping"
+  ],
+  "extra_faq": [
+   {
+    "q": "How do I connect Supabase to Claude Code or Cursor with MCP?",
+    "a": "supabase/mcp is Supabase's official MCP server: add it to the client's MCP configuration (its README covers sign-in), and the assistant can query tables and manage the project. alexander-zuev/supabase-mcp-server is a community alternative with read and write queries and management through chat.",
+    "qZh": "怎么用 MCP 把 Supabase 接到 Claude Code 或 Cursor?",
+    "aZh": "supabase/mcp 是 Supabase 官方的 MCP 服务:在客户端的 MCP 配置里加上它(登录授权方式见它的 README),AI 助手就能查询数据表、管理项目。alexander-zuev/supabase-mcp-server 是社区替代方案,支持读写查询和通过对话管理。"
+   },
+   {
+    "q": "What MCP servers work with Postgres, MySQL or several databases?",
+    "a": "Postgres: crystaldba/postgres-mcp (read/write access and performance analysis) and neondatabase/mcp-server-neon. MySQL: benborla/mcp-server-mysql. Several databases from one server: googleapis/mcp-toolbox and bytebase/dbhub. MongoDB and ClickHouse have their own: mongodb-js/mongodb-mcp-server, ClickHouse/mcp-clickhouse.",
+    "qZh": "Postgres、MySQL 或多种数据库各用哪个 MCP 服务?",
+    "aZh": "Postgres:crystaldba/postgres-mcp(读写访问和性能分析)、neondatabase/mcp-server-neon。MySQL:benborla/mcp-server-mysql。一个服务连多种数据库:googleapis/mcp-toolbox、bytebase/dbhub。MongoDB 和 ClickHouse 有各自的官方服务:mongodb-js/mongodb-mcp-server、ClickHouse/mcp-clickhouse。"
+   }
   ]
  },
  {
@@ -537,10 +565,9 @@
    "max_results": 10
   },
   "related": [
-   "translation",
-   "summarization",
-   "document-parsing",
-   "ppt-presentation"
+   "anti-slop",
+   "ppt-presentation",
+   "image-generation"
   ]
  },
  {
@@ -896,8 +923,22 @@
   },
   "related": [
    "web-scraping",
-   "mcp-browser",
-   "test-generation"
+   "mcp-database",
+   "code-review"
+  ],
+  "extra_faq": [
+   {
+    "q": "What is the best browser automation MCP server?",
+    "a": "The most-starred are ChromeDevTools/chrome-devtools-mcp (Chrome DevTools for coding agents) and microsoft/playwright-mcp (Playwright as an MCP server). For an agent that completes web tasks on its own rather than a tool for your assistant: browser-use/browser-use. They are listed on this page under MCP servers and Browser agents.",
+    "qZh": "最好的浏览器自动化 MCP 服务是哪个?",
+    "aZh": "星数最高的是 ChromeDevTools/chrome-devtools-mcp(给编程 agent 用的 Chrome DevTools)和 microsoft/playwright-mcp(把 Playwright 做成 MCP 服务)。如果要的是能自己完成网页任务的 agent,而不是给助手用的工具:browser-use/browser-use。本页把它们归在「MCP 服务」和「浏览器 Agent」两类。"
+   },
+   {
+    "q": "Can an AI agent use my logged-in browser?",
+    "a": "Some tools are built for it: Tencent/BrowserSkill lets agents use your real, logged-in browser, and jackwener/OpenCLI turns websites into commands that run in your logged-in browser. Check each tool's security grade on this page before giving it your sessions.",
+    "qZh": "AI agent 能用我已登录的浏览器吗?",
+    "aZh": "有专门为此做的工具:Tencent/BrowserSkill 让 agent 使用你真实的、已登录的浏览器,jackwener/OpenCLI 把网站变成命令,在你已登录的浏览器里执行。把登录状态交给它们之前,先看本页的安全评级。"
+   }
   ]
  },
  {
@@ -984,9 +1025,9 @@
    "max_results": 10
   },
   "related": [
-   "model-evaluation",
-   "content-writing",
-   "code-completion"
+   "anti-slop",
+   "claude-code-skills",
+   "code-review"
   ]
  },
  {
@@ -1262,9 +1303,23 @@
    ]
   },
   "related": [
-   "discord-bot",
-   "slack-integration",
-   "notification"
+   "browser-automation",
+   "codex-skills",
+   "claude-code-hooks"
+  ],
+  "extra_faq": [
+   {
+    "q": "Where can I find open source Telegram bot code on GitHub?",
+    "a": "For AI chat: father-bot/chatgpt_telegram_bot (ChatGPT and Claude, Python) and tbxark/ChatGPT-Telegram-Workers (deploys on Cloudflare Workers). To build your own: aiogram/aiogram, an asynchronous Python framework for the Bot API. To control a coding agent from your phone: overwirehq/claude-code-telegram. All are in the open-source list zhuyansen/awesome-ai-telegram-bots on GitHub.",
+    "qZh": "GitHub 上哪里能找到开源 Telegram 机器人代码?",
+    "aZh": "AI 聊天:father-bot/chatgpt_telegram_bot(支持 ChatGPT 和 Claude,Python)、tbxark/ChatGPT-Telegram-Workers(部署在 Cloudflare Workers 上)。自己开发:aiogram/aiogram,基于 Python 的异步 Bot API 框架。用手机遥控编程 agent:overwirehq/claude-code-telegram。它们都收录在 GitHub 开源合集 zhuyansen/awesome-ai-telegram-bots 里。"
+   },
+   {
+    "q": "Can I use Claude Code from Telegram?",
+    "a": "Yes. overwirehq/claude-code-telegram gives remote access to Claude Code from a Telegram chat, and grinev/opencode-telegram-bot does the same for OpenCode. They are listed on this page under Agent remote control.",
+    "qZh": "能在 Telegram 里使用 Claude Code 吗?",
+    "aZh": "可以。overwirehq/claude-code-telegram 让你在 Telegram 聊天里远程操作 Claude Code,grinev/opencode-telegram-bot 对 OpenCode 提供同样的能力。本页把它们归在「远程操控 Agent」一类。"
+   }
   ]
  },
  {
@@ -1593,9 +1648,23 @@
    ]
   },
   "related": [
-   "content-writing",
-   "document-parsing",
-   "ppt-presentation"
+   "ai-design",
+   "ppt-presentation",
+   "claude-video-skills"
+  ],
+  "extra_faq": [
+   {
+    "q": "Can Claude generate images?",
+    "a": "Claude itself does not output images, but Claude Code can, through a skill or MCP server that calls an image model: ningzimu/codex-ppt-skill and helloianneo/ian-xiaohei-illustrations use GPT Image, AgriciDaniel/banana-claude uses Nano Banana, joenorton/comfyui-mcp-server drives a local ComfyUI.",
+    "qZh": "Claude 能生成图片吗?",
+    "aZh": "Claude 本身不直接输出图片,但 Claude Code 可以通过调用图像模型的 skill 或 MCP 服务生成:ningzimu/codex-ppt-skill 和 helloianneo/ian-xiaohei-illustrations 用 GPT Image,AgriciDaniel/banana-claude 用 Nano Banana,joenorton/comfyui-mcp-server 调用本地的 ComfyUI。"
+   },
+   {
+    "q": "Where are image generation skills and MCP servers on GitHub?",
+    "a": "Besides the ones above: SamurAIGPT/Generative-Media-Skills (multi-modal media skills for Claude Code, Cursor and Gemini CLI), op7418/NanoBanana-PPT-Skills and s1dashu/ip-as-logo-skill (mascot logos). All are in the open-source list zhuyansen/awesome-ai-image-skills on GitHub, grouped by model and use.",
+    "qZh": "GitHub 上哪里能找到生图 skill 和 MCP 服务?",
+    "aZh": "除了上面这些,还有 SamurAIGPT/Generative-Media-Skills(给 Claude Code、Cursor、Gemini CLI 用的多模态媒体 skill)、op7418/NanoBanana-PPT-Skills 和 s1dashu/ip-as-logo-skill(IP 吉祥物 Logo)。它们都收录在 GitHub 开源合集 zhuyansen/awesome-ai-image-skills 里,按模型和用途分组。"
+   }
   ]
  },
  {
@@ -1728,9 +1797,9 @@
    ]
   },
   "related": [
-   "mcp-database",
-   "mcp-browser",
-   "code-completion"
+   "claude-code-hooks",
+   "skill-management-tools",
+   "codex-skills"
   ],
   "broad": true
  },
@@ -1787,11 +1856,25 @@
    ]
   },
   "related": [
-   "claude-code-skills",
-   "code-completion",
-   "mcp-api"
+   "skill-management-tools",
+   "claude-code-hooks",
+   "ppt-presentation"
   ],
-  "broad": true
+  "broad": true,
+  "extra_faq": [
+   {
+    "q": "Where are Codex skills on GitHub?",
+    "a": "Skills made for Codex include helloianneo/ian-xiaohei-illustrations (hand-drawn article illustrations), ningzimu/codex-ppt-skill (decks with GPT Image 2) and Imbad0202/academic-research-skills-codex (an academic research suite). For collections: AgriciDaniel/codex-seo and xiao24bei/xiaobei-skill. This page lists only repos made mainly for Codex.",
+    "qZh": "GitHub 上哪里能找到 Codex skill?",
+    "aZh": "主打 Codex 的 skill 有:helloianneo/ian-xiaohei-illustrations(手绘风文章配图)、ningzimu/codex-ppt-skill(用 GPT Image 2 做 PPT)和 Imbad0202/academic-research-skills-codex(学术研究套件)。合集类:AgriciDaniel/codex-seo、xiao24bei/xiaobei-skill。本页只收主要为 Codex 做的仓库。"
+   },
+   {
+    "q": "How do I install skills in Codex?",
+    "a": "A skill is a folder with a SKILL.md: put it in Codex's skills folder or install it with the repo's own command, and Codex loads it when a task matches. Tools such as yynxxxxx/Codex-X manage skills, MCP servers and configuration for Codex in one interface.",
+    "qZh": "怎么给 Codex 安装 skill?",
+    "aZh": "skill 是一个带 SKILL.md 的文件夹:放进 Codex 的 skills 目录,或用仓库提供的命令安装,任务匹配时 Codex 会自动加载。yynxxxxx/Codex-X 这类工具可以在一个界面里管理 Codex 的 skill、MCP 服务和配置。"
+   }
+  ]
  },
  {
   "slug": "ai-agent-framework",
@@ -2141,9 +2224,23 @@
    ]
   },
   "related": [
-   "semantic-search",
-   "vector-database",
-   "mcp-memory"
+   "obsidian-second-brain",
+   "mcp-database",
+   "anti-slop"
+  ],
+  "extra_faq": [
+   {
+    "q": "What is an LLM wiki?",
+    "a": "A knowledge base an LLM writes and maintains as linked markdown pages, instead of a vector index you search. Tools that implement it include nashsu/llm_wiki, a desktop app that turns documents into an organized wiki, and volcengine/OpenViking, a context database for agents. They are listed on this page under LLM wikis.",
+    "qZh": "LLM Wiki 是什么?",
+    "aZh": "由大模型撰写并维护、用 Markdown 页面互相链接的知识库,而不是一个用来检索的向量索引。实现这种做法的工具有 nashsu/llm_wiki(把文档整理成 wiki 的桌面应用)和 volcengine/OpenViking(给 agent 用的上下文数据库)。本页把它们归在「LLM Wiki」一类。"
+   },
+   {
+    "q": "Where are LLM wiki tools on GitHub?",
+    "a": "Besides the LLM wikis above: RAG platforms such as infiniflow/ragflow, knowledge-graph tools such as HKUDS/LightRAG and colbymchenry/codegraph, and memory layers for agents such as zilliztech/memsearch. All are in the open-source list zhuyansen/awesome-llm-wiki on GitHub, grouped by type.",
+    "qZh": "GitHub 上哪里能找到 LLM Wiki 工具?",
+    "aZh": "除了上面的 LLM Wiki,还有 RAG 平台如 infiniflow/ragflow,知识图谱工具如 HKUDS/LightRAG、colbymchenry/codegraph,以及给 agent 用的记忆层如 zilliztech/memsearch。它们都收录在 GitHub 开源合集 zhuyansen/awesome-llm-wiki 里,按类型分组。"
+   }
   ]
  },
  {
@@ -2445,11 +2542,25 @@
    ]
   },
   "related": [
-   "claude-code-skills",
-   "cli-tools",
-   "workflow-automation"
+   "claude-code-hooks",
+   "codex-skills",
+   "claude-code-skills"
   ],
-  "broad": true
+  "broad": true,
+  "extra_faq": [
+   {
+    "q": "Is there a skill manager on GitHub?",
+    "a": "Several. For a desktop app: xingkongliang/skills-manager and HKUDS/OpenSpace. For the command line: MoizIbnYousaf/ai-agent-skills and luongnv89/asm. To keep one set of skills in sync across agents: shanliuling/skills-link. For teams: iflytek/skillhub, a self-hosted skill registry. All are in the open-source list zhuyansen/awesome-agent-skills-managers on GitHub.",
+    "qZh": "GitHub 上有 skill 管理工具吗?",
+    "aZh": "有好几类。桌面应用:xingkongliang/skills-manager、HKUDS/OpenSpace;命令行:MoizIbnYousaf/ai-agent-skills、luongnv89/asm;多个 agent 之间同步同一套 skill:shanliuling/skills-link;团队使用:iflytek/skillhub,可自托管的 skill 仓库。它们都收录在 GitHub 开源合集 zhuyansen/awesome-agent-skills-managers 里。"
+   },
+   {
+    "q": "How do I manage skills across Claude Code, Codex and other agents?",
+    "a": "Use a manager that installs to every agent from one place: runkids/skillshare manages skills, agents, rules, MCP connections and hooks across tools; microsoft/apm is a package manager for agents; shanliuling/skills-link syncs local skills to 41+ coding agents with one command.",
+    "qZh": "怎么在 Claude Code、Codex 等多个 agent 之间统一管理 skill?",
+    "aZh": "用能一处安装、分发到所有 agent 的管理工具:runkids/skillshare 跨工具管理 skill、agent、规则、MCP 和 hooks;microsoft/apm 是 agent 的包管理器;shanliuling/skills-link 一条命令把本地 skill 同步到 41 个以上的编程 agent。"
+   }
+  ]
  },
  {
   "slug": "free-mcp-servers",
@@ -2804,8 +2915,23 @@
    ]
   },
   "related": [
-   "code-quality",
-   "writing-tools"
+   "ai-design",
+   "claude-code-skills",
+   "code-review"
+  ],
+  "extra_faq": [
+   {
+    "q": "What is the humanizer skill for Claude?",
+    "a": "blader/humanizer is an agent skill that finds and removes signs of AI-generated writing from text; op7418/Humanizer-zh is its Chinese version. Related skills apply the same idea elsewhere: hardikpandya/stop-slop for prose rules, Leonxlnx/taste-skill and Nutlope/hallmark for UI design, peteromallet/desloppify for code.",
+    "qZh": "Claude 的 humanizer skill 是什么?",
+    "aZh": "blader/humanizer 是一个找出并去掉文字中 AI 写作痕迹的 agent skill,op7418/Humanizer-zh 是它的中文版。同样的思路也用在别处:hardikpandya/stop-slop 是写作规则,Leonxlnx/taste-skill 和 Nutlope/hallmark 针对界面设计,peteromallet/desloppify 针对代码。"
+   },
+   {
+    "q": "How do I use a humanizer skill in Claude Code or Codex?",
+    "a": "Install the skill folder (it contains a SKILL.md) into the agent's skills directory, then ask the agent to humanize or de-slop a piece of text; the skill supplies the patterns to look for and the rewrite rules. Every humanizer on this page is in the open-source list zhuyansen/awesome-humanizer-skills on GitHub, with its security grade.",
+    "qZh": "怎么在 Claude Code 或 Codex 里用 humanizer skill?",
+    "aZh": "把 skill 文件夹(含 SKILL.md)装进 agent 的 skills 目录,然后让 agent 给一段文字去 AI 味;skill 会提供要找的痕迹和改写规则。本页的所有 humanizer 也收录在 GitHub 开源合集 zhuyansen/awesome-humanizer-skills 里,附安全评级。"
+   }
   ]
  },
  {
@@ -3187,10 +3313,23 @@
    ]
   },
   "related": [
-   "web-development",
-   "code-completion",
-   "skill-management-tools",
+   "image-generation",
+   "anti-slop",
    "ppt-presentation"
+  ],
+  "extra_faq": [
+   {
+    "q": "Where is the Claude design skill on GitHub?",
+    "a": "The most-starred design skills are nextlevelbuilder/ui-ux-pro-max-skill (design intelligence for UI and UX), Leonxlnx/taste-skill (keeps generated UI from looking generic) and nexu-io/open-design (an open-source Claude Design alternative). To connect an agent to Figma: GLips/Figma-Context-MCP. All are in the open-source list zhuyansen/awesome-claude-design-skills on GitHub.",
+    "qZh": "GitHub 上哪里能找到 Claude 设计 skill?",
+    "aZh": "星数最高的有:nextlevelbuilder/ui-ux-pro-max-skill(UI/UX 设计能力)、Leonxlnx/taste-skill(让生成的界面不千篇一律)和 nexu-io/open-design(开源的 Claude Design 替代品)。要让 agent 连接 Figma:GLips/Figma-Context-MCP。它们都收录在 GitHub 开源合集 zhuyansen/awesome-claude-design-skills 里。"
+   },
+   {
+    "q": "How do I install a frontend design skill in Claude Code?",
+    "a": "Most design skills are a folder with a SKILL.md: copy it into ~/.claude/skills (or the project's .claude/skills) or install it with the repo's command, then ask Claude Code for UI work and it loads the skill. Each card on this page links to the repo's own install steps and shows its security grade.",
+    "qZh": "怎么在 Claude Code 里安装前端设计 skill?",
+    "aZh": "大多数设计 skill 是一个带 SKILL.md 的文件夹:复制到 ~/.claude/skills(或项目的 .claude/skills),或者用仓库提供的命令安装,之后让 Claude Code 做界面相关的工作,它就会加载这个 skill。本页每张卡片都链到仓库自己的安装说明,并显示安全评级。"
+   }
   ]
  },
  {
@@ -3739,9 +3878,9 @@
    ]
   },
   "related": [
-   "ai-design",
    "image-generation",
-   "content-syndication"
+   "ai-design",
+   "claude-video-skills"
   ],
   "extra_faq": [
    {
@@ -4592,9 +4731,22 @@
   },
   "related": [
    "knowledge-base",
-   "agent-memory",
-   "semantic-search",
-   "document-parsing"
+   "skill-management-tools",
+   "claude-code-hooks"
+  ],
+  "extra_faq": [
+   {
+    "q": "How do I use Claude Code with Obsidian?",
+    "a": "Three ways: give the agent skills for your vault (kepano/obsidian-skills, by Obsidian's CEO), run the agent inside Obsidian with a plugin (YishenTu/claudian embeds Claude Code or Codex; logancyang/obsidian-copilot runs several agents), or connect any assistant through an MCP server (MarkusPfundstein/mcp-obsidian).",
+    "qZh": "怎么把 Claude Code 和 Obsidian 一起用?",
+    "aZh": "三种方式:给 agent 装上操作库的 skill(kepano/obsidian-skills,出自 Obsidian CEO);用插件把 agent 装进 Obsidian(YishenTu/claudian 内嵌 Claude Code 或 Codex,logancyang/obsidian-copilot 可运行多个 agent);或通过 MCP 服务连接任意 AI 助手(MarkusPfundstein/mcp-obsidian)。"
+   },
+   {
+    "q": "Is there an Obsidian Claude plugin or MCP server on GitHub?",
+    "a": "Plugins: YishenTu/claudian and logancyang/obsidian-copilot. MCP servers: MarkusPfundstein/mcp-obsidian, which works through the Obsidian Local REST API plugin. For a second brain an agent maintains: AgriciDaniel/claude-obsidian and breferrari/obsidian-mind. All are in the open-source list zhuyansen/awesome-obsidian-ai-skills on GitHub.",
+    "qZh": "GitHub 上有 Obsidian 的 Claude 插件或 MCP 服务吗?",
+    "aZh": "插件:YishenTu/claudian、logancyang/obsidian-copilot。MCP 服务:MarkusPfundstein/mcp-obsidian,通过 Obsidian Local REST API 插件工作。由 agent 维护的第二大脑:AgriciDaniel/claude-obsidian、breferrari/obsidian-mind。它们都收录在 GitHub 开源合集 zhuyansen/awesome-obsidian-ai-skills 里。"
+   }
   ]
  },
  {
@@ -4789,9 +4941,23 @@
    ]
   },
   "related": [
-   "browser-automation",
-   "code-review",
-   "model-evaluation"
+   "codex-skills",
+   "claude-code-hooks",
+   "browser-automation"
+  ],
+  "extra_faq": [
+   {
+    "q": "Where are TypeSafe Jev projects on GitHub?",
+    "a": "The most-starred are browser-use/jev-ultrafast (a web agent), OpenByteInc/QuantDinger (a trading system with Jev integration), jaredpalmer/kev (a Jev-like family of decision models you can run yourself) and tamaratran/fast-jev-compaction (a Claude Code plugin that compacts context with Jev decisions). Every repo on this page is also in the open-source list zhuyansen/awesome-typesafe-jev on GitHub.",
+    "qZh": "GitHub 上哪里能找到 TypeSafe Jev 相关项目?",
+    "aZh": "星数最高的有:browser-use/jev-ultrafast(网页 agent)、OpenByteInc/QuantDinger(集成 Jev 的交易系统)、jaredpalmer/kev(可自己运行的类 Jev 决策模型)和 tamaratran/fast-jev-compaction(用 Jev 决策压缩上下文的 Claude Code 插件)。本页所有仓库也收录在 GitHub 开源合集 zhuyansen/awesome-typesafe-jev 里。"
+   },
+   {
+    "q": "How do developers call the Jev API?",
+    "a": "Through TypeSafe's own API (POST api.typesafe.ai/v1/systemone with model jev-latest) or through OpenRouter. Projects under SDKs, MCP & APIs on this page wrap it for other software, for example realZachi/pg-jev, a PostgreSQL extension that answers plain-language questions about tables.",
+    "qZh": "开发者怎么调用 Jev API?",
+    "aZh": "可以用 TypeSafe 官方接口(POST api.typesafe.ai/v1/systemone,模型 jev-latest),也可以经 OpenRouter 调用。本页「SDK、MCP 与接口」一类的项目把它封装给其他软件用,例如 realZachi/pg-jev,一个能用自然语言查询表的 PostgreSQL 扩展。"
+   }
   ]
  },
  {
@@ -5128,9 +5294,23 @@
    "sort": "stars"
   },
   "related": [
-   "video-editing",
-   "claude-code-skills",
-   "typesafe-jev"
+   "image-generation",
+   "ppt-presentation",
+   "ai-design"
+  ],
+  "extra_faq": [
+   {
+    "q": "Where are Claude video skills on GitHub?",
+    "a": "The most-starred are calesthio/OpenMontage (an agentic video production system), heygen-com/hyperframes (write HTML, render video, built for agents), diffusionstudio/lottie (Lottie animations from Claude Code or Codex) and adithya-s-k/manim_skill (3Blue1Brown-style animations with Manim). Every repo on this page is also in the open-source list zhuyansen/awesome-claude-video-skills on GitHub, grouped by type and security-graded.",
+    "qZh": "GitHub 上哪里能找到 Claude 视频 skill?",
+    "aZh": "星数最高的有:calesthio/OpenMontage(agent 驱动的视频制作系统)、heygen-com/hyperframes(写 HTML 渲染视频,为 agent 设计)、diffusionstudio/lottie(用 Claude Code 或 Codex 生成 Lottie 动画)和 adithya-s-k/manim_skill(用 Manim 做 3Blue1Brown 风格动画)。本页所有仓库也收录在 GitHub 开源合集 zhuyansen/awesome-claude-video-skills 里,按类型分组并做了安全评级。"
+   },
+   {
+    "q": "Can Claude Code edit existing video?",
+    "a": "Yes, with an editing skill or agent: FireRedTeam/FireRed-OpenStoryline turns manual editing into an agent workflow, Agentchengfeng/chengfeng-videocut-skills is a video-cutting agent built as Claude Code skills, and 0xsline/OpenChatCut is a local-first conversational editor with a multi-track timeline. They are listed on this page under Editing.",
+    "qZh": "Claude Code 能剪辑现成的视频吗?",
+    "aZh": "可以,用剪辑类的 skill 或 agent:FireRedTeam/FireRed-OpenStoryline 把手工剪辑变成 agent 工作流,Agentchengfeng/chengfeng-videocut-skills 是用 Claude Code skill 做的剪辑 agent,0xsline/OpenChatCut 是本地优先、带多轨时间线的对话式剪辑器。本页把它们归在「剪辑与后期」一类。"
+   }
   ]
  },
  {
@@ -5285,9 +5465,23 @@
    ]
   },
   "related": [
-   "claude-code-skills",
    "skill-management-tools",
-   "codex-skills"
+   "codex-skills",
+   "code-review"
+  ],
+  "extra_faq": [
+   {
+    "q": "What are Claude Code hooks used for?",
+    "a": "Scripts that run on events such as a tool call, a prompt or the end of a turn: blocking risky commands, formatting files after edits, sending notifications, logging. disler/claude-code-hooks-mastery walks through every hook event with working examples; severity1/claude-code-prompt-improver is a hook that improves prompts before Claude sees them.",
+    "qZh": "Claude Code hooks 有什么用?",
+    "aZh": "在工具调用、提交提示、一轮结束等事件上自动运行的脚本:拦截危险命令、编辑后自动格式化、发通知、记日志。disler/claude-code-hooks-mastery 用可运行的例子讲清每一种 hook 事件;severity1/claude-code-prompt-improver 是一个在 Claude 看到之前先改进提示词的 hook。"
+   },
+   {
+    "q": "Where can I find a list of Claude Code hooks, subagents and statuslines?",
+    "a": "Hooks: disler/claude-code-hooks-mastery. Subagents: VoltAgent/awesome-claude-code-subagents (100+ specialist subagents). Statuslines: jarrodwatts/claude-hud and sirmalloc/ccstatusline. All are in the open-source list zhuyansen/awesome-claude-code-hooks on GitHub, grouped by type and security-graded.",
+    "qZh": "哪里能找到 Claude Code hooks、subagents 和 statusline 的合集?",
+    "aZh": "Hooks:disler/claude-code-hooks-mastery;Subagents:VoltAgent/awesome-claude-code-subagents(100 多个专家子代理);状态栏:jarrodwatts/claude-hud、sirmalloc/ccstatusline。它们都收录在 GitHub 开源合集 zhuyansen/awesome-claude-code-hooks 里,按类型分组并做了安全评级。"
+   }
   ]
  }
 ]

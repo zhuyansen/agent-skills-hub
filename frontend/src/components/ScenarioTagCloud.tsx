@@ -1,37 +1,28 @@
 import { useI18n } from "../i18n/I18nContext";
 
 // Total curated scenarios — keep in sync with scripts/scenario-keywords.json.
-const SCENARIO_COUNT = 87;
+const SCENARIO_COUNT = 88;
 
 const HOT_SCENARIOS = [
-  // Model-wave pages lead: newest, and until 2026-09-27 linked from nowhere on the site.
+  // Reviewed pages first (10-05): the list used to send half its links to retired, noindex pages.
   { slug: "claude-video-skills", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
-  { slug: "typesafe-jev", zh: "TypeSafe Jev", en: "TypeSafe Jev" },
   { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
-  { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
-  { slug: "mcp-database", zh: "MCP 数据库", en: "MCP Database" },
-  { slug: "mcp-browser", zh: "MCP 浏览器", en: "MCP Browser" },
-  { slug: "code-review", zh: "代码审查", en: "Code Review" },
-  { slug: "code-completion", zh: "代码补全", en: "Code Completion" },
-  {
-    slug: "workflow-automation",
-    zh: "工作流自动化",
-    en: "Workflow Automation",
-  },
-  {
-    slug: "claude-code-skills",
-    zh: "Claude Code 技能",
-    en: "Claude Code Skills",
-  },
-  { slug: "security-audit", zh: "安全审计", en: "Security Audit" },
-  { slug: "prompt-engineering", zh: "提示工程", en: "Prompt Engineering" },
-  { slug: "semantic-search", zh: "语义搜索", en: "Semantic Search" },
-  { slug: "ci-cd", zh: "CI/CD 部署", en: "CI/CD & DevOps" },
+  { slug: "claude-code-hooks", zh: "Claude Code Hooks", en: "Claude Code Hooks" },
+  { slug: "image-generation", zh: "AI 生图", en: "Image Generation" },
+  { slug: "ai-design", zh: "设计与前端", en: "Design Skills" },
+  { slug: "codex-skills", zh: "Codex Skills", en: "Codex Skills" },
+  { slug: "skill-management-tools", zh: "Skill 管理", en: "Skill Managers" },
+  { slug: "obsidian-second-brain", zh: "Obsidian × Claude", en: "Obsidian + Claude" },
+  { slug: "anti-slop", zh: "去 AI 味", en: "Humanizer Skills" },
+  { slug: "knowledge-base", zh: "LLM Wiki 知识库", en: "LLM Wiki" },
+  { slug: "mcp-database", zh: "数据库 MCP", en: "Database MCP" },
   { slug: "browser-automation", zh: "浏览器自动化", en: "Browser Automation" },
-  { slug: "git-tools", zh: "Git 工具", en: "Git Tools" },
-  { slug: "slack-integration", zh: "Slack 集成", en: "Slack Integration" },
-  { slug: "content-writing", zh: "内容写作", en: "Content Writing" },
-  { slug: "debugging", zh: "调试工具", en: "Debugging" },
+  { slug: "code-review", zh: "代码审查", en: "Code Review" },
+  { slug: "telegram-bot", zh: "Telegram 机器人", en: "Telegram Bots" },
+  { slug: "typesafe-jev", zh: "TypeSafe Jev", en: "TypeSafe Jev" },
+  { slug: "claude-code-skills", zh: "Claude Code 技能", en: "Claude Code Skills" },
+  { slug: "web-scraping", zh: "网页抓取", en: "Web Scraping" },
+  { slug: "prompt-engineering", zh: "提示工程", en: "Prompt Engineering" },
 ];
 
 export function ScenarioTagCloud() {

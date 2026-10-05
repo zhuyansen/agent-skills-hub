@@ -156,16 +156,8 @@ export function SiteFooter() {
                   zh: "Claude 技能",
                   en: "Claude Skills",
                 },
-                {
-                  slug: "workflow-automation",
-                  zh: "工作流自动化",
-                  en: "Workflow Automation",
-                },
-                {
-                  slug: "security-audit",
-                  zh: "安全审计",
-                  en: "Security Audit",
-                },
+                { slug: "claude-code-hooks", zh: "Claude Code Hooks", en: "Claude Code Hooks" },
+                { slug: "image-generation", zh: "AI 生图", en: "Image Generation" },
                 {
                   slug: "prompt-engineering",
                   zh: "提示工程",
