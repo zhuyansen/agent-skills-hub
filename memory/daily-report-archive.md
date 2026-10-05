@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-05
+1. ythx-101/live-panel-skill — 🆕 用一份 JSON 生成会动的架构图，导出 mp4 或常驻运行的网页（300★ 219.1/day）
+2. shinshin86/mesh-avatar-studio — 🆕 把一张插画做成可动的 2D 网格头像，智能体加本地编辑器一起调（120★ 120.0/day）
+3. joeseesun/qiaomu-codex-imagegen — 🆕 让任意智能体调用 Codex 内置生图，自带小红书、视频封面和海报技巧（54★ 54.0/day）
+4. MrBongoC/ai-iso-skill — 🆕 让 Claude 在单个 HTML 文件里画出可交互的等距立体图（41★ 41.0/day）
+5. xianyu110/ecommerce-image-skills — 🆕 用 12 个技能批量出电商图，覆盖亚马逊白底主图、A+、模特图和淘宝详情页（37★ 37.0/day）
+6. bangbuilds/code-poem-film — 🆕 念一首诗就生成水墨手绘风动画，朗诵逐字对位并自动配乐（49★ 30.6/day）
+7. sebastianhaba/book-to-course-skill — 🆕 把一本书拆成互动入门课，含分步课程、测验、闪卡和带单测的编程练习（28★ 18.6/day）
+8. cablate/ctx-handoff-mod — 🆕 上下文快满时自动交接到新对话，离开期间保持提示缓存不失效（32★ 14.7/day）
+9. davidondrej/cloudroom-core — 在云端自托管运行 Claude Code、Codex 和 Pi，一个 Rust 运行时全包（250★ 14.5/day）
+10. statelyai/jevspresso — 🆕 用 Jev 加 XState 状态机驱动一台咖啡机，演示决策模型接管硬件流程（21★ 14.3/day）
+🎯 今日趋势：出图出片类技能独占 **6 席**（动态架构图、2D 网格头像、Codex 生图、等距立体图、电商图、水墨诗歌动画），十席有 **9 席**建仓不满 3 天（10-02~10-04）。
+> 注：去重范围＝repo 内 archive 全部 102 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,406 个（含路径噪声，只会多剔不会漏剔）。**本期首查 48h、stars ≥20 触顶 LIMIT 150（星数下限 367★）**：约 29h 前又一批老仓库集中入库（建仓多为数月至数年，如 nashsu/llm_wiki 建仓 180 天、Tencent/WeKnora 440 天），去重后 139 条无一新鲜；按 10-04 先例追加一次 `first_seen ≥72h`、`created_at ≥30 天`、stars ≥20 的查询（87 条，命中历史推荐 30 条剔除）。两次查询均单连接串行（第一次查询成功后 Python 端时区运算报错，修正后重跑同一查询一次）。十席 first_seen 均 ≤30h，未超 48h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①isoshimodo/ai-data-extractor（66★ 47.6/day）：2026-07 建号、0 粉、名下仅此 1 仓，单仓爆星形态；②heise3/academic-deai（172★ 91.1/day）：4 粉、其余 5 仓均 ≤1★，单仓爆星形态；③amontlabs/lcu（131★ 10.5/day）：组织 10-03 才建、0 粉，仓库疑为转移而来，保守排除；④Sheltercosmo/jev4pg（97★）：与 10-04 已排除的 jevsd-pg 同一单仓爆星账号；⑤KailBug/jeval（20★）：描述仅 "jev"、DB 分类 uncategorized；⑥48h 首查的 139 条老仓库：本期才收录，不算新鲜。入选项复核（`gh api`）：第 1 席 ythx-101 2025-08 建号、82 粉、名下另有 974★、537★ 仓，LICENSE 为 NOASSERTION，DB 分类 uncategorized 但为技能项目、非个人主页，保留；第 2 席 shinshin86 2014 建号、123 粉、名下另有 1,600★ 仓，MIT；第 3 席 joeseesun（向阳乔木）2013 建号、2,088 粉，MIT；第 4 席 MrBongoC 2021 建号、69 粉、其余仓 ≤7★（轻红旗，47★ 量级小），MIT；第 5 席 xianyu110 2019 建号、317 粉、名下另有 4,565★ 仓，MIT；第 6 席 bangbuilds 2024 建号、3 粉、名下另有 15★ 同类仓，MIT；第 7 席 sebastianhaba 2014 建号、2 粉、其余仓 ≤1★（**轻红旗**，但 28★ 量级小、描述具体），MIT，保留；第 8 席 cablate 2021 建号、145 粉、名下另有 467★ 仓，MIT；第 9 席 davidondrej 2023 建号、1,101 粉、名下另有 4,102★ 仓，Apache-2.0，建仓 17 天不标 🆕（本期才收录，prev_stars=0）；第 10 席 statelyai 为 XState 官方组织（主仓 30,237★），无 LICENSE。🆕 判定＝created_at 距今 14 天内，命中 9 席（10-02~10-04 建仓）。security_grade：十席均为 unknown（新入库未评）。表中 stars 为数据库快照，部分仓实时更高（live-panel-skill 452★、mesh-avatar-studio 138★、qiaomu-codex-imagegen 66★），按红线保留快照值。
+
+---
+
 ## 2026-10-04
 1. CopilotKit/openmuse — 打造带浏览器、终端和文件的个人智能体，任务挂着也能持续跑完（3829★ 207.2/day）
 2. QingYunA/answer-me-with-html — 🆕 让智能体用一页 HTML 回答难题，图文排版比大段文字好读得多（282★ 162.1/day）
