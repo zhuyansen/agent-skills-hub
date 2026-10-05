@@ -202,18 +202,14 @@ def translate(text: str) -> str:
 # ── 5. publish ────────────────────────────────────────────────────────────────
 
 def add_to_page(names: list[str], zh: dict[str, str]) -> None:
-    text = KEYWORDS.read_text()
-    a = text.index(f'"slug": "{SLUG}"'); b = text.index('"related"', a)
-    block = text[a:b]
-    m = re.search(r'\n(\s*)"admit_reviewed": \[(.*?)\n\s*\],', block, re.S)
-    key_indent, item_indent = m.group(1), re.search(r'\n(\s*)"', m.group(2)).group(1)
-    items = re.findall(r'"([^"]+)"', m.group(2))
-    items += [n for n in names if n not in items]
-    block = (block[:m.start()] + f'\n{key_indent}"admit_reviewed": [' +
-             ",".join(f"\n{item_indent}{json.dumps(n)}" for n in items) + f"\n{key_indent}]," + block[m.end():])
-    text = text[:a] + block + text[b:]
-    json.loads(text)
-    KEYWORDS.write_text(text)
+    """Add reviewed repos to the page's admit_reviewed. Edits the JSON, not its text: a
+    regex over the text assumed "related" follows "match" and a comma follows the list,
+    and failed on the video and Jev pages when either was not so (10-04)."""
+    pages = json.loads(KEYWORDS.read_text())
+    match = next(p for p in pages if p["slug"] == SLUG)["match"]
+    have = match.get("admit_reviewed", [])
+    match["admit_reviewed"] = have + [n for n in names if n not in have]
+    KEYWORDS.write_text(json.dumps(pages, ensure_ascii=False, indent=1) + "\n")
     desc = json.loads(DESC_ZH.read_text())
     desc.update({n: v for n, v in zh.items() if v})
     DESC_ZH.write_text(json.dumps(desc, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
