@@ -1,6 +1,6 @@
 # PPT 页打法
 
-`/best/ppt-presentation/` 是怎么一步步成为全站第一搜索页的,以及换一个主题照着复刻的清单。2026-10-05 整理。
+`/best/ppt-presentation/` 是怎么一步步成为全站第一搜索页的,以及换一个主题照着复刻的清单。2026-10-05 整理。完整复盘(含每周数据和每一步的原因)见 `ops/ppt-retro.md`。
 
 ## 现状
 
@@ -20,9 +20,12 @@
 | 06-23 | 标题从 `PPT & Presentation Skills` 改为 `AI PPT & Slide Generators`(2a1e59c) | 全站 96% 的曝光来自 "presentation skills",搜的人想学演讲,零点击。改成明确的工具意图。 |
 | 07-06 | 按词聚类 GSC 曝光,发现 ppt 断层第一;先去目录确认背后有足够多工具,再决定投入 | GSC 只显示已经在排的词,看不到品类深度,目录能看到。 |
 | 07-06 | 决定**不**另开 `/best/ppt-skills/` | 第二个页面会分走已在排名页面的信号。 |
-| 07-13 | 加内链(8245091):首页热门、页脚、三个相关页面都指向它 | 一周内 `codex ppt skill` 每周点击从 0 涨到 17,排名 9.0 → 5.2。 |
+| 07-06 | 当天发现新建的 /best/ppt-skills/ 和老页自相竞争,把内容并回老网址并删掉新页(7d8e120) | 一个主题只留一个页面。 |
+| 07-12 | 标题改为 "PPT Skills for Codex & Claude Code"(f659dcb):`ppt-master codex skill` 等词排在 2.5–5 名却 0 点击,因为标题里没有 codex 和 skill | **点击翻倍的拐点**:周点击 15 → 71 → 112,错意图曝光被甩干净。 |
+| 07-13 | 加内链(8245091):首页热门、页脚、三个相关页面都指向它;07-14 补进首页静态 HTML(5a08f40),前端渲染的链接爬虫看不到 | 一周内 `codex ppt skill` 每周点击从 0 涨到 17,排名 9.0 → 5.2。 |
 | 7 月 | 头部词卡住时选择等待,不改页面 | 排名靠内链和时间在涨;每周复盘的结论都是"继续等"。 |
-| 10-03 | 改成审核页:GitHub 全星级搜索 + 目录,Jev 逐个读 README,6 个类型可筛选,中文描述经 Jev 核对;标题改为 "PPT Skills for Codex & Claude Code" | 页面回答"该用哪个工具",比关键词自动选出来的更全、更干净。 |
+| 9 月 | Codex 浪潮退去:`codex ppt skill` 曝光从 1,225 降到 189,周点击 09-07 峰值 133 后回落 | 浪潮词会退,长期要靠 `ppt skill(s)` 泛词。 |
+| 10-03 | 改成审核页:GitHub 全星级搜索 + 目录,Jev 逐个读 README,6 个类型可筛选,中文描述经 Jev 核对 | 页面回答"该用哪个工具",比关键词自动选出来的更全、更干净。 |
 | 10-03 | 配 GitHub 榜单 awesome-codex-ppt-skills,双向互链,每日任务自动补充 | "PPT skills GitHub" 本身就是相关搜索;榜单是第二个入口,也是可被引用的来源。 |
 | 10-05 | 标题 ≤60 字符;每张卡片的 "View details / GitHub" 文字换成一个 GitHub 图标;补图片宽高;用两条 FAQ 回答相关搜索(`extra_faq`) | On Page 体检的扣分项全部处理;FAQ 直接回答 "PPT skills GitHub" 和 "Guizang PPT skill"。 |
 
