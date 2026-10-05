@@ -61,10 +61,37 @@ checklist to repeat it on another topic. Written 2026-10-05.
 6. **GitHub list** for topics people search "on GitHub" (`build_video_list.py`,
    `list_text_pages.py`): same repos, same types, links both ways, joins the daily job.
 7. **Internal links**: homepage hot list, footer, and `related` from neighbouring pages.
+   **External links**: aim weight-layer links (guest posts, mentions) at the topic page,
+   not the homepage; see "Links" below.
 8. **Daily upkeep**: the daily job reviews new repos, drops deleted or renamed ones, and
    rebuilds the list; the report lands in issue #26.
 9. **Measure, then hold.** Re-audit with seo.web.cafe `/audit/?url=&kw=`; read GSC weekly by
    page and query. Don't rewrite a page that is moving; links and time compound.
+
+## Links: what the PPT page actually stands on
+
+Checked 10-05 (DataForSEO through AIsa): **the PPT page has no referring domains of its
+own**. The X post's link goes through t.co and is nofollow. The site has 117 referring
+domains, nearly all pointing at the homepage. So the page ranks on its content, the
+site's authority and the launch post, not on links to it.
+
+The site's authority came from the two-layer link work in `ops/backlink-todo.md`
+(decided 07-23, `ops/research/niko-meeting-2026-07-23.md`):
+
+| Layer | What | Done |
+|---|---|---|
+| Weight (dofollow from real sites) | Paid guest posts, 1–2 a day at most, each checked for `rel` | 07-16: programminginsider, nerdbot, thedatascientist, techbullion, aijourn — 10 dofollow links. Paid directories with dofollow pages: creati.ai, Toolify, TAAFT, aibase (~$276 in all). |
+| Weight (reference sources) | Data that others cite | Zenodo DOI, Kaggle notebook, Dev.to article, Wikidata entity, Hugging Face dataset card. |
+| Discovery (crawl and AI grounding, not weight) | Free directories and lists: verify, don't add more | libhunt, AlternativeTo, mcpservers.org, deepwiki; awesome-list PRs (nofollow, for developers and LLM training data). |
+| Rejected | Buying PH votes, buying GitHub stars | Breaks the trust-layer brand; the site's own audit flags exactly this. |
+
+Ahrefs DR: 6 (07-10) → 7 (07-16) → 12 (10-05).
+
+**For the next pages, the gap is deep links.** Every weight-layer link so far points at
+the homepage. Point the next guest posts and media mentions at the topic pages
+(`/best/claude-video-skills/`, `/best/claude-code-hooks/`, …) with topic anchors, and
+submit our GitHub lists to the larger awesome lists in their topic (nofollow, but they
+bring readers and are what LLMs read).
 
 ## Not yet done on the PPT page
 
