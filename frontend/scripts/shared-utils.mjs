@@ -130,7 +130,7 @@ export function buildStaticHeader({ active = null, compare = false, x = false } 
   return `<header id="site-header" class="bp-header">
     <div class="bp-header-inner">
       <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
-        <img src="/favicon.svg" alt="" style="width:24px;height:24px" />
+        <img src="/favicon.svg" alt="" width="24" height="24" style="width:24px;height:24px" />
         <span class="bp-brand">Agent Skills Hub</span>
       </a>
       <nav class="bp-nav-links">

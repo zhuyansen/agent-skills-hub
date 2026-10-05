@@ -3595,6 +3595,20 @@
    "ai-design",
    "image-generation",
    "content-syndication"
+  ],
+  "extra_faq": [
+   {
+    "q": "Where can I find PPT skills on GitHub?",
+    "a": "The most-starred PPT skills on GitHub are hugohe3/ppt-master (native, editable PowerPoint decks from documents or a topic), zarazhangrui/frontend-slides (web slides built with a coding agent's frontend skills), op7418/guizang-ppt-skill (HTML decks in editorial-magazine and Swiss layouts) and ningzimu/codex-ppt-skill (image-based decks with GPT Image 2 in Codex). Every repo on this page is also in the open-source list zhuyansen/awesome-codex-ppt-skills on GitHub, grouped by type and security-graded.",
+    "qZh": "GitHub 上哪里能找到 PPT skill?",
+    "aZh": "GitHub 上星数最高的 PPT skill 有:hugohe3/ppt-master(从文档或主题生成原生、可编辑的 PowerPoint)、zarazhangrui/frontend-slides(用编程 agent 的前端能力做网页幻灯片)、op7418/guizang-ppt-skill(杂志风、瑞士风的 HTML 幻灯片)和 ningzimu/codex-ppt-skill(在 Codex 里用 GPT Image 2 生成图片式 PPT)。本页的所有仓库也收录在 GitHub 开源合集 zhuyansen/awesome-codex-ppt-skills 里,按类型分组并做了安全评级。"
+   },
+   {
+    "q": "What is the Guizang PPT skill?",
+    "a": "guizang-ppt-skill (op7418/guizang-ppt-skill) is an agent skill by Guizang (歸藏) that generates polished HTML slide decks in editorial-magazine and Swiss layouts, with image prompts and social-media covers. It outputs web slides rather than a .pptx file; projects such as wangzan101/html-to-ppt-pdf convert its decks to PDF and PPTX for presenting offline. It is listed on this page under Web slides.",
+    "qZh": "歸藏(guizang)PPT skill 是什么?",
+    "aZh": "guizang-ppt-skill(op7418/guizang-ppt-skill)是歸藏做的 agent skill,生成杂志风、瑞士风排版的精美 HTML 幻灯片,并附带配图提示词和社交平台封面。它输出的是网页幻灯片而不是 .pptx 文件;wangzan101/html-to-ppt-pdf 这类项目可以把它的幻灯片转成 PDF 和 PPTX,方便离线演示。本页把它归在「网页幻灯片」一类。"
+   }
   ]
  },
  {
@@ -4339,7 +4353,7 @@
  {
   "slug": "obsidian-second-brain",
   "title": "Obsidian for Claude Code & AI Agents",
-  "serp_subject": "Obsidian + Claude: AI Skills, MCP & Plugins",
+  "serp_subject": "Obsidian Skills, MCP & Plugins for Claude",
   "github_list": "https://github.com/zhuyansen/awesome-obsidian-ai-skills",
   "description": "Obsidian skills, MCP servers and AI plugins for Claude Code, Codex and other agents, security-graded: kepano/obsidian-skills, mcp-obsidian, claude-obsidian, second-brain workflows. Vet before you install.",
   "match": {

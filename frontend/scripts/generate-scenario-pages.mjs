@@ -21,6 +21,10 @@ import { kindsFor, kindAttrs, kindBarHtml, KIND_SCRIPT, descZh } from "./scenari
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
+const TITLE_MAX = 60;   // Google shows about 60 characters of a title
+// The card's title and body already open the skill page ("View Details" x 209 led the
+// page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
+const GITHUB_ICON = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -459,10 +463,15 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     }
     return t.trim() || subjectFull.split(/[,:]/)[0].trim();
   })();
+  // 10-05: "N Compared, X rated SAFE, Y flagged (YYYY)" ran titles to 80+ characters
+  // (seo.web.cafe On Page audit: truncated in results). The SAFE/flagged counts stay in
+  // the meta description; the title keeps the claim that every entry is graded.
+  const gradedHead = `${subject}: ${itemCount} Security-Graded (${year})`;
   const head = canClaim
-    ? `${subject}: ${itemCount} Compared, ${verdict} (${year})`
+    ? (gradedHead.length <= TITLE_MAX ? gradedHead : `${subject}: ${itemCount} Graded (${year})`)
     : `${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`;
-  const title = (head.length <= 52 ? `${head} | Agent Skills Hub` : head).replace(/  +/g, " ");
+  const branded = `${head} | Agent Skills Hub`;
+  const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");
 
   const metaTopNames = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
   const metaRaw = canClaim
@@ -523,6 +532,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const relZt = relatedScenario ? (relatedScenario.zhTitle || relatedScenario.title) : "";
 
   const faqItems = [
+    // `extra_faq` in scenario-keywords.json: questions a page's own searches ask
+    // (ppt-presentation: "PPT skills GitHub", "guizang ppt skill", 10-05).
+    ...(scenario.extra_faq || []),
     {
       q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
       a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${itemCount} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
@@ -618,8 +630,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         <p class="bp-card-desc" style="margin:8px 0 0" data-en="${esc(s.description || "")}" data-zh="${esc(descZh(s))}">${esc(s.description || "")}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
-          <a href="/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-size:13px;text-decoration:none" data-en="View Details →" data-zh="查看详情 →">View Details &rarr;</a>
-          <a href="${esc(githubUrl)}" style="color:var(--bp-text-secondary);font-size:13px;text-decoration:none">GitHub &rarr;</a>
+          <a href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub" style="color:var(--bp-text-secondary);display:inline-flex;text-decoration:none">${GITHUB_ICON}</a>
         </div>
       </div>`;
   }).join("\n      ");
