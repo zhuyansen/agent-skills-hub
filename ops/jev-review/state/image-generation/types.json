@@ -1,0 +1,3124 @@
+[
+ {
+  "repo": "helloianneo/ian-xiaohei-illustrations",
+  "stars": 12068,
+  "description": "中文小黑怪诞正文配图生成 Skill | 16:9 白底手绘 | 少量红橙蓝批注 | Codex Skill",
+  "scores": {
+   "nano_banana": 0.07,
+   "open_models": 0.15,
+   "editing": 0.04,
+   "design": 0.31,
+   "mcp": 0.08,
+   "gpt_image": 0.64
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "ningzimu/codex-ppt-skill",
+  "stars": 6335,
+  "description": "GPT-Image-2 PPT Generator Skill for Creating Image-Based PowerPoint Presentations in Codex and Other Skill-Compatible Agents",
+  "scores": {
+   "gpt_image": 0.81,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.22
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "wuyoscar/GPT-Image2-Skill",
+  "stars": 5632,
+  "description": "GPT Image 2/2.5 prompt gallery, image prompt library, agentic skill, and CLI for OpenAI image generation/editing",
+  "scores": {
+   "editing": 0.13,
+   "design": 0.15,
+   "mcp": 0.17,
+   "gpt_image": 0.95,
+   "nano_banana": 0.01,
+   "open_models": 0.03
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "SamurAIGPT/Generative-Media-Skills",
+  "stars": 4337,
+  "description": "Multi-modal Generative Media Skills for AI Agents (Claude Code, Cursor, Gemini CLI). High-quality image, video, and audio generation powered by muapi.ai.",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.04,
+   "open_models": 0.19,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.39
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "s1dashu/ip-as-logo-skill",
+  "stars": 3782,
+  "description": "A compact Agent Skill for highly simplified, rounded, subtly neo-skeuomorphic IP mascot logos.",
+  "scores": {
+   "open_models": 0.06,
+   "editing": 0.02,
+   "design": 0.84,
+   "mcp": 0.15,
+   "gpt_image": 0.31,
+   "nano_banana": 0.16
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "op7418/NanoBanana-PPT-Skills",
+  "stars": 3285,
+  "description": "NanoBanana PPT Skills 基于 AI 自动生成高质量 PPT 图片和视频的强大工具，支持智能转场和交互式播放",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.85,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.2
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "llmsresearch/paperbanana",
+  "stars": 2365,
+  "description": "Open source implementation and extension of Google Research’s PaperBanana for automated academic figures, diagrams, and research visuals, expanded to new domains like slide generation.",
+  "scores": {
+   "gpt_image": 0.33,
+   "nano_banana": 0.15,
+   "open_models": 0.05,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.73
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "yanliudesign/mono-color-skill",
+  "stars": 2004,
+  "description": "One-ink editorial print image skill — warm paper, halftone photography, active negative space, and restrained typography.",
+  "scores": {
+   "open_models": 0.14,
+   "editing": 0.03,
+   "design": 0.56,
+   "mcp": 0.14,
+   "gpt_image": 0.08,
+   "nano_banana": 0.05
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "jau123/MeiGen-AI-Design-MCP",
+  "stars": 1777,
+  "description": "Supports GPT Image 2, Seedance & ComfyUI, with a 1,400+ prompt library, carefully crafted hooks and a multi-task orchestration system",
+  "scores": {
+   "gpt_image": 0.13,
+   "nano_banana": 0.11,
+   "open_models": 0.3,
+   "editing": 0.16,
+   "design": 0.26,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "wuyoscar/gpt_image_2_skill",
+  "stars": 1666,
+  "description": "GPT Image 2 prompt gallery, image prompt library, agentic skill, and CLI for OpenAI image generation/editing",
+  "scores": {
+   "gpt_image": 0.95,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.12,
+   "design": 0.16,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "MiniMax-AI/MiniMax-MCP",
+  "stars": 1582,
+  "description": "Official MiniMax Model Context Protocol (MCP) server that enables interaction with powerful Text to Speech, image generation and video generation APIs.",
+  "scores": {
+   "open_models": 0.05,
+   "editing": 0.02,
+   "design": 0.01,
+   "mcp": 0.9,
+   "gpt_image": 0.03,
+   "nano_banana": 0.02
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "helloianneo/ian-handdrawn-ppt",
+  "stars": 1450,
+  "description": "中文手绘技术 PPT 整页图像生成 Skill | 21:9 封面 + 16:9 正文配图 | PNG 输出",
+  "scores": {
+   "gpt_image": 0.78,
+   "nano_banana": 0.04,
+   "open_models": 0.07,
+   "editing": 0.02,
+   "design": 0.23,
+   "mcp": 0.07
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "liyue-aigc/female-portrait-director",
+  "stars": 1333,
+  "description": "A modular Codex Skill for directing and expanding detailed AI female portrait prompts.",
+  "scores": {
+   "gpt_image": 0.24,
+   "nano_banana": 0.05,
+   "open_models": 0.15,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.1
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "JuneYaooo/gpt-image2-ppt-skills",
+  "stars": 1326,
+  "description": "Clone any .pptx into your own deck — OpenAI gpt-image-2 mimics the layout, you supply the content. 10 bundled styles. | 把任何 .pptx 模板\"抄\"成你的 PPT：gpt-image-2 仿版式、你换内容，另含 10 套精选风格。Claude Code / OpenClaw skill. ",
+  "scores": {
+   "gpt_image": 0.91,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.07,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "liangdabiao/ecom-details-image",
+  "stars": 1298,
+  "description": "一个面向workbuddy / Codex 等agent 的跨境电商和国内电商通用视觉创作 Skill。我精选25个高质量案例，涵盖纯色底产品主图、场景化生活图、平铺图、电商详情图、真实场景等等，全部配完整提示词，都可以利用 GPT-Image-2 API生成最终效果。一键生成电商相关图片！输入产品图片和需求描述，自动生成完整的电商主图、详情页图片、社媒推广图、直播间场景图等全套视觉素材。 与众不同之处是：**Campaign Style Lock** 机制 和 **强推广** 和 **重视转化效果**。",
+  "scores": {
+   "gpt_image": 0.37,
+   "nano_banana": 0.03,
+   "open_models": 0.04,
+   "editing": 0.06,
+   "design": 0.18,
+   "mcp": 0.34
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "YouMind-OpenLab/ai-image-prompts-skill",
+  "stars": 1221,
+  "description": "AI Image Prompts — 10,000+ curated prompts for any model. Works with Nano Banana Pro, Nano Banana 2, Seedream 5.0, GPT Image 1.5, Midjourney, DALL-E, Flux, Stable Diffusion, and more.",
+  "scores": {
+   "gpt_image": 0.11,
+   "nano_banana": 0.24,
+   "open_models": 0.15,
+   "editing": 0.02,
+   "design": 0.5,
+   "mcp": 0.36
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "op7418/guizang-material-illustration",
+  "stars": 1182,
+  "description": "归藏的材质插画 skill：生成带字解释图、图表美化和参考辅助配图。",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.07,
+   "open_models": 0.16,
+   "editing": 0.04,
+   "design": 0.53,
+   "mcp": 0.29
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "threerocks/hand-drawn-styles",
+  "stars": 1087,
+  "description": "Claude Code skill：把内容套进内置手绘画风配方,产出可直接复制的生图提示词。内置儿童涂色/极简线条/蜡笔童涂/吉卜力/小豆人涂鸦 5 种已验证画风。",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.05,
+   "open_models": 0.06,
+   "editing": 0.02,
+   "design": 0.25,
+   "mcp": 0.11
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "AgriciDaniel/banana-claude",
+  "stars": 1072,
+  "description": "AI image generation skill for Claude Code - Creative Director powered by Gemini",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.93,
+   "open_models": 0.04,
+   "editing": 0.12,
+   "design": 0.27,
+   "mcp": 0.7
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "lidge-ai/ima2-gen",
+  "stars": 855,
+  "description": "Local-first visual generation runtime and studio for people and coding agents, with reproducible image and video workflows across multiple providers.",
+  "scores": {
+   "gpt_image": 0.18,
+   "nano_banana": 0.08,
+   "open_models": 0.18,
+   "editing": 0.11,
+   "design": 0.03,
+   "mcp": 0.38
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "scenario-labs/skills",
+  "stars": 837,
+  "description": "Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus expert teams that drive Blender, Maya, ZBrush, Unreal, and Unity.",
+  "scores": {
+   "nano_banana": 0.08,
+   "open_models": 0.08,
+   "editing": 0.08,
+   "design": 0.09,
+   "mcp": 0.26,
+   "gpt_image": 0.08
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lidge-jun/ima2-gen",
+  "stars": 782,
+  "description": "Local-first visual generation runtime and studio for people and coding agents, with reproducible image and video workflows across multiple providers.",
+  "scores": {
+   "gpt_image": 0.18,
+   "nano_banana": 0.09,
+   "open_models": 0.19,
+   "editing": 0.11,
+   "design": 0.03,
+   "mcp": 0.34
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "artokun/comfyui-mcp",
+  "stars": 778,
+  "description": "Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.",
+  "scores": {
+   "gpt_image": 0.05,
+   "nano_banana": 0.03,
+   "open_models": 0.63,
+   "editing": 0.06,
+   "design": 0.01,
+   "mcp": 0.94
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Evianis/travel-photo-abstraction",
+  "stars": 749,
+  "description": "A source-available Codex skill for distilling photographs into sparse editorial abstractions.",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.09,
+   "open_models": 0.1,
+   "editing": 0.06,
+   "design": 0.1,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "kadevin/ilab-conjure",
+  "stars": 715,
+  "description": "面向 GPT-image-2 的 AI 图片生成 WebUI 工作台，支持 Codex Responses 与 OpenAI 兼容 API 接入，内置公用图库、多类型 Chip 快捷引用、提示词模板、多任务并发和本地队列管理。An AI image generation WebUI workbench for GPT-image-2 with Codex Responses and OpenAI-compatible API support, shared gallery references, multi-type quick chips, prompt templates, concurrent tasks, and local queue management.",
+  "scores": {
+   "nano_banana": 0.07,
+   "open_models": 0.04,
+   "editing": 0.12,
+   "design": 0.03,
+   "mcp": 0.21,
+   "gpt_image": 0.7
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "kadevin/ilab-gpt-conjure",
+  "stars": 625,
+  "description": "面向 GPT-image-2 的 AI 图片生成 WebUI 工作台，支持 Codex Responses 与 OpenAI 兼容 API 接入，内置公用图库、多类型 Chip 快捷引用、提示词模板、多任务并发和本地队列管理。An AI image generation WebUI workbench for GPT-image-2 with Codex Responses and OpenAI-compatible API support, shared gallery references, multi-type quick chips, prompt templates, concurrent tasks, and local queue management.",
+  "scores": {
+   "gpt_image": 0.7,
+   "nano_banana": 0.06,
+   "open_models": 0.03,
+   "editing": 0.12,
+   "design": 0.03,
+   "mcp": 0.22
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "dacnay816y62-hub/photo-revival",
+  "stars": 548,
+  "description": "Codex skill for turning everyday photos into poetic white-paper hand-drawn illustrations.",
+  "scores": {
+   "gpt_image": 0.26,
+   "nano_banana": 0.05,
+   "open_models": 0.15,
+   "editing": 0.07,
+   "design": 0.21,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "helloianneo/ian-xiaohei-scenes",
+  "stars": 530,
+  "description": "Xiaohei 2.0 Codex Skill for Chinese real-object article illustrations and long-scroll story images",
+  "scores": {
+   "gpt_image": 0.55,
+   "nano_banana": 0.06,
+   "open_models": 0.15,
+   "editing": 0.02,
+   "design": 0.28,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "TaiT-tt/tait-crt-interface-skill",
+  "stars": 510,
+  "description": "TaiT-CRT-Interface-Skill is a Codex image generation skill that transforms user-uploaded portraits, photographs, or text descriptions into a retro illustration with the feel of an early CRT computer interface.",
+  "scores": {
+   "gpt_image": 0.38,
+   "nano_banana": 0.12,
+   "open_models": 0.25,
+   "editing": 0.07,
+   "design": 0.31,
+   "mcp": 0.21
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "op7418/guizang-yingzao-skill",
+  "stars": 483,
+  "description": "🏯 Claude Code / Codex skill — transform Chinese architecture, cultural places & travel photos into art-directed editorial posters with GPT Image. 中国古建筑与在地文化照片 → 艺术指导海报",
+  "scores": {
+   "gpt_image": 0.61,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.19,
+   "design": 0.31,
+   "mcp": 0.15
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "smixs/visual-skills",
+  "stars": 474,
+  "description": "AI film director skills for agents: cinematic dramaturgy (Murch, blocking, montage) + exact prompt syntax for Seedance 2.5, Kling 3.0 Turbo/Omni, Veo 3.1, Nano Banana 2, GPT Image 2.5.",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.1,
+   "open_models": 0.06,
+   "editing": 0.02,
+   "design": 0.03,
+   "mcp": 0.21
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "UzenUPoZiTiV4ik/gpt-image-2-skill",
+  "stars": 438,
+  "description": "A universal skill for generating realistic images",
+  "scores": {
+   "gpt_image": 0.77,
+   "nano_banana": 0.03,
+   "open_models": 0.08,
+   "editing": 0.03,
+   "design": 0.12,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "kingbootoshi/nano-banana-2-skill",
+  "stars": 414,
+  "description": "AI image generation CLI powered by Gemini 3 Pro. Green screen transparency, reference images, style transfer. Also a Claude Code plugin.",
+  "scores": {
+   "nano_banana": 0.94,
+   "open_models": 0.03,
+   "editing": 0.2,
+   "design": 0.31,
+   "mcp": 0.35,
+   "gpt_image": 0.01
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "joenorton/comfyui-mcp-server",
+  "stars": 410,
+  "description": "lightweight Python-based MCP (Model Context Protocol) server for local ComfyUI",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.9,
+   "editing": 0.06,
+   "design": 0.02,
+   "mcp": 0.83
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "buluslan/gpt-image2-ecommerce",
+  "stars": 404,
+  "description": "E-commerce product image generator skill — 39 scenario templates, GPT-Image-2/2.5 (Flare/Sunburst) model routing, campaign consistency lock, platform compliance. 电商做图 Skill：39 场景模板×双模型路由×套图一致性×平台合规。",
+  "scores": {
+   "gpt_image": 0.92,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.18,
+   "design": 0.13,
+   "mcp": 0.34
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "zhongweili/nanobanana-mcp-server",
+  "stars": 400,
+  "description": "AI image generation MCP server powered by Google Gemini, with smart model selection and 4K output",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.94,
+   "open_models": 0.02,
+   "editing": 0.08,
+   "design": 0.04,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "AKCodez/higgsfield-claude-skills",
+  "stars": 396,
+  "description": "19 Claude Code skills for Higgsfield AI — automate image generation, Seedance 2.0 video creation, and full UGC ad pipelines with Playwright browser automation",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.21
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "HuangYuChuh/ComfyUI_Skills_OpenClaw",
+  "stars": 395,
+  "description": "Agent-friendly ComfyUI workflow skills for OpenClaw, Hermes Agent, Codex, and Claude Code; complementary to Comfy official local MCP.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.81,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.54
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "tmchow/illo-skill",
+  "stars": 380,
+  "description": "illo skill — an AI agent skill that turns ideas and articles into original print-style editorial illustrations, starring a recurring mascot. 30+ characters packs, with ability to create your own.",
+  "scores": {
+   "gpt_image": 0.17,
+   "nano_banana": 0.12,
+   "open_models": 0.22,
+   "editing": 0.03,
+   "design": 0.36,
+   "mcp": 0.39
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "leeguooooo/image-use",
+  "stars": 379,
+  "description": "Use your ChatGPT subscription to generate images from the command line — no OPENAI_API_KEY, no gateway, no daemon. Zero-dep Python CLI + AI-agent skill.",
+  "scores": {
+   "editing": 0.03,
+   "design": 0.08,
+   "mcp": 0.52,
+   "gpt_image": 0.7,
+   "nano_banana": 0.05,
+   "open_models": 0.03
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "kkoppenhaver/cc-nano-banana",
+  "stars": 378,
+  "description": "A Claude Code skill to generate images with Nano Banana",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.93,
+   "open_models": 0.04,
+   "editing": 0.21,
+   "design": 0.45,
+   "mcp": 0.27
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "leeguooooo/chatgpt-imagegen",
+  "stars": 353,
+  "description": "Use your ChatGPT subscription to generate images from the command line — no OPENAI_API_KEY, no gateway, no daemon. Zero-dep Python CLI + AI-agent skill.",
+  "scores": {
+   "gpt_image": 0.68,
+   "nano_banana": 0.06,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.11,
+   "mcp": 0.56
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "gongnyang/gongnyang-prompt-kit",
+  "stars": 327,
+  "description": "막연한 요청을 gpt-image-2 완성 프롬프트로 컴파일하는 Claude Code 스킬 — 네거티브 금지·결과 기반 서술·검증 스크립트·C1~C10",
+  "scores": {
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.24,
+   "mcp": 0.08,
+   "gpt_image": 0.83,
+   "nano_banana": 0.02
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "oil-oil/draw-ui",
+  "stars": 326,
+  "description": "Claude Code skill: generate UI design mockups with GPT Image 2 via ZenMux",
+  "scores": {
+   "design": 0.05,
+   "mcp": 0.33,
+   "gpt_image": 0.36,
+   "nano_banana": 0.13,
+   "open_models": 0.07,
+   "editing": 0.04
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "six-nut/PocketMen-with-you",
+  "stars": 310,
+  "description": "Create high-fidelity Codex companions from 2+ photos with local open-weight neural editing and no OpenAI API key.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.92,
+   "editing": 0.13,
+   "design": 0.04,
+   "mcp": 0.33
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "dreiachse-cyber/image-cockpit-for-codex-workflows",
+  "stars": 283,
+  "description": "Local cockpit for Codex imagegen, pixel art, image editing, animation, and sprite-sheet workflows.",
+  "scores": {
+   "gpt_image": 0.17,
+   "nano_banana": 0.02,
+   "open_models": 0.07,
+   "editing": 0.08,
+   "design": 0.08,
+   "mcp": 0.14
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "xiaohuailabs/xiaohu-ip-studio",
+  "stars": 262,
+  "description": "开源中文配图技能 + IP 角色库:用「挑认知锚点→现编隐喻→反PPT自检」为中文深度文生成固定角色出演的正文配图",
+  "scores": {
+   "gpt_image": 0.62,
+   "nano_banana": 0.03,
+   "open_models": 0.07,
+   "editing": 0.02,
+   "design": 0.29,
+   "mcp": 0.22
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Sateezg/codex-bridge",
+  "stars": 247,
+  "description": "Image generation (gpt-image-2) and GPT-5 subagents for Claude Code — through the Codex CLI login you already have. No OpenAI API key.",
+  "scores": {
+   "gpt_image": 0.72,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.06,
+   "design": 0.11,
+   "mcp": 0.7
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "hypersocialinc/shots",
+  "stars": 241,
+  "description": "Claude Code/Agent Skill for making App Store screenshots with GPT Image 2 that you can upload. Give it your App Store link & screenshots of your app and it will produce beautiful app store screenshots ready to upload to Apple (or Google)",
+  "scores": {
+   "gpt_image": 0.66,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.06,
+   "design": 0.24,
+   "mcp": 0.23
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Comfy-Org/comfy-mcp",
+  "stars": 232,
+  "description": "Local MCP server for ComfyUI — run your local ComfyUI from AI agents",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.64,
+   "editing": 0.04,
+   "design": 0.01,
+   "mcp": 0.93
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ConstantineB6/comfy-pilot",
+  "stars": 230,
+  "description": "MCP server + embedded terminal that lets Claude Code see and edit your ComfyUI workflows",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.67,
+   "editing": 0.05,
+   "design": 0.01,
+   "mcp": 0.79
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ConechoAI/Nano-Banana-MCP",
+  "stars": 230,
+  "description": "A Nano Banana MCP server, which you can integrate to cursor/claude code and any mcp client",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.84,
+   "open_models": 0.03,
+   "editing": 0.24,
+   "design": 0.08,
+   "mcp": 0.35
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "glibsonoran/Plush-for-ComfyUI",
+  "stars": 199,
+  "description": "Custom node for ComfyUI/Stable Diffustion",
+  "scores": {
+   "gpt_image": 0.16,
+   "nano_banana": 0.1,
+   "open_models": 0.27,
+   "editing": 0.07,
+   "design": 0.02,
+   "mcp": 0.39
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "izscc/cc2image",
+  "stars": 187,
+  "description": "codex 中文内容交互式生图系统 Skill：认知锚点拆图、49 套内容风格 + 8 套 logo/图标模式，支持封面、正文配图、系列主视觉和批量生图提示词。",
+  "scores": {
+   "gpt_image": 0.41,
+   "nano_banana": 0.09,
+   "open_models": 0.21,
+   "editing": 0.02,
+   "design": 0.8,
+   "mcp": 0.21
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "NomaDamas/god-tibo-imagen",
+  "stars": 186,
+  "description": "Python & Node package to use GPT image 2.0 model via codex subscription",
+  "scores": {
+   "gpt_image": 0.88,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.08,
+   "design": 0.11,
+   "mcp": 0.25
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Cuimao777/eterna-image2image-skill",
+  "stars": 185,
+  "description": "Experimental bilingual Codex skill for ETERNA-inspired image2image cinematic color and composition.",
+  "scores": {
+   "gpt_image": 0.47,
+   "nano_banana": 0.05,
+   "open_models": 0.13,
+   "editing": 0.22,
+   "design": 0.04,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Hao0321/ai-media-generator",
+  "stars": 180,
+  "description": "Zero-skill cinema. Senior-director prompts on autopilot. A Claude Code Skill for high-quality AI image / video / music prompt crafting and browser-based execution across 14+ generative platforms.",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.07,
+   "open_models": 0.15,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.44
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "chujianyun/awesome-gpt-image2-ppt-skills",
+  "stars": 179,
+  "description": "",
+  "scores": {
+   "gpt_image": 0.92,
+   "nano_banana": 0.02,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.54,
+   "mcp": 0.07
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "SpaceZephyr/design-buddy",
+  "stars": 175,
+  "description": "Design Buddy: visual production Agent Skills for brand design systems, GPT-image-2 images, diagrams, infographics, logos, slide decks, WeChat layouts and social images",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.14,
+   "open_models": 0.13,
+   "editing": 0.04,
+   "design": 0.82,
+   "mcp": 0.24
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "GENEXIS-AI/gpt-image-skill",
+  "stars": 174,
+  "description": "Generate GPT images from Codex or Claude Code using a ChatGPT subscription, without the Images API.",
+  "scores": {
+   "gpt_image": 0.63,
+   "nano_banana": 0.03,
+   "open_models": 0.04,
+   "editing": 0.12,
+   "design": 0.17,
+   "mcp": 0.66
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "shinpr/mcp-image",
+  "stars": 169,
+  "description": "MCP server for AI image generation and editing with automatic prompt optimization and quality presets. Supports Nano Banana (Gemini), OpenAI GPT Image, and BytePlus Seedream.",
+  "scores": {
+   "gpt_image": 0.1,
+   "nano_banana": 0.6,
+   "open_models": 0.03,
+   "editing": 0.13,
+   "design": 0.06,
+   "mcp": 0.98
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Vieeeeeee/wibi-style",
+  "stars": 162,
+  "description": "36 installable visual-design skills for Codex, with reusable Python tooling and versioned packages. Turn photos into artwork. Try online: style.abdc.online",
+  "scores": {
+   "gpt_image": 0.45,
+   "nano_banana": 0.05,
+   "open_models": 0.19,
+   "editing": 0.11,
+   "design": 0.23,
+   "mcp": 0.13
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "JuneYaooo/xhs-writer-skill",
+  "stars": 154,
+  "description": "小红书爆款笔记生成器，基于gpt-image-2，强力超快生成，自然语言修改，超好用！",
+  "scores": {
+   "gpt_image": 0.7,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.06,
+   "design": 0.09,
+   "mcp": 0.09
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "doudou770/flyreq-image-studio",
+  "stars": 147,
+  "description": "AI生图工作台 (AI Image Generator)、视频工作台。支持 Agent 与工作台模式、无限画布、素材管理、提示词反推/广场及 PWA，支持外链式配置；可接入 Grok、GPT Image 2 等自定义模型生图。自适应手机端。",
+  "scores": {
+   "gpt_image": 0.17,
+   "nano_banana": 0.21,
+   "open_models": 0.06,
+   "editing": 0.08,
+   "design": 0.04,
+   "mcp": 0.4
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Tencent/workrally",
+  "stars": 143,
+  "description": "面向 AI Agent 的 AIGC 漫剧视频创作全流程工具集。",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.03,
+   "open_models": 0.09,
+   "editing": 0.05,
+   "design": 0.05,
+   "mcp": 0.31
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Wangnov/gpt-image-2-skill",
+  "stars": 142,
+  "description": "GPT Image 2 Skill / CLI / Web / Desktop",
+  "scores": {
+   "gpt_image": 0.7,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.18,
+   "design": 0.04,
+   "mcp": 0.61
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "fengfengzhidao/codex-image2-skill",
+  "stars": 142,
+  "description": "用于在codex里面生图的skill",
+  "scores": {
+   "open_models": 0.07,
+   "editing": 0.25,
+   "design": 0.03,
+   "mcp": 0.37,
+   "gpt_image": 0.74,
+   "nano_banana": 0.02
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Moeblack/ComfyUI-AnimaTool",
+  "stars": 137,
+  "description": "AI Tool Use API for Anima anime/illustration image generation. Supports MCP Server, HTTP API, and CLI.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.78,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.91
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "darkamenosa/codex-imagen",
+  "stars": 135,
+  "description": "Codex/OpenClaw skill for generating images with ChatGPT/Codex OAuth",
+  "scores": {
+   "gpt_image": 0.74,
+   "nano_banana": 0.02,
+   "open_models": 0.03,
+   "editing": 0.09,
+   "design": 0.04,
+   "mcp": 0.49
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Xiangyu-CAS/codex-canvas",
+  "stars": 132,
+  "description": "Infinite canvas plugin for codex;  Codex无限画布插件，图层分离，涂抹修改",
+  "scores": {
+   "gpt_image": 0.84,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.75,
+   "design": 0.17,
+   "mcp": 0.16
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "iconben/z-image-studio",
+  "stars": 129,
+  "description": "A Cli, a webUI, and a MCP server for the Z-Image-Turbo text-to-image generation model (Tongyi-MAI/Z-Image-Turbo base model as well as quantized models)",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.21,
+   "editing": 0.02,
+   "design": 0.02,
+   "mcp": 0.72
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "black-forest-labs/skills",
+  "stars": 124,
+  "description": "Official agent skills from Black Forest Labs for FLUX image and video generation — prompting guides and API integration patterns for Claude Code, Codex, and any agentskills.io-compatible agent.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.68,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.19
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "twwch/comfyui-workflow-skill",
+  "stars": 124,
+  "description": "Natural language → ComfyUI workflow JSON. 34 built-in templates, 360+ node definitions, auto model download. Supports txt2img,       img2img, txt2vid, img2vid, audio, 3D generation across SD1.5/SDXL/SD3/FLUX/Wan2.2/HunyuanVideo/LTXV/Mochi/Cosmos + LLM integration.    Works as a skill for Claude Code, Cursor, and other AI coding agents.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.85,
+   "editing": 0.09,
+   "design": 0.02,
+   "mcp": 0.3
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "calesthio/generative-media-skills",
+  "stars": 124,
+  "description": "Research-backed agent skills and tools for premium image, video, audio, voice, and generative media production across AI coding assistants.",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.04,
+   "open_models": 0.21,
+   "editing": 0.07,
+   "design": 0.05,
+   "mcp": 0.18
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "NimaChu/xhs-imagen",
+  "stars": 120,
+  "description": "Skill for  popular science image content creation on Xiaohongshu",
+  "scores": {
+   "gpt_image": 0.08,
+   "nano_banana": 0.03,
+   "open_models": 0.14,
+   "editing": 0.03,
+   "design": 0.22,
+   "mcp": 0.14
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "dacnay816y62-hub/fantasy-dongfang-jianyuehaibao",
+  "stars": 118,
+  "description": "东方文化编辑海报 v2 Codex skill：Image 2 出图、中文标题精炼、真实文化物证、A/B/C 三联测试",
+  "scores": {
+   "gpt_image": 0.76,
+   "nano_banana": 0.02,
+   "open_models": 0.08,
+   "editing": 0.05,
+   "design": 0.75,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "NimaChu/xiaohongshu-content-creator",
+  "stars": 113,
+  "description": "Skill for Xiaohongshu image-and-text creation",
+  "scores": {
+   "gpt_image": 0.07,
+   "nano_banana": 0.03,
+   "open_models": 0.14,
+   "editing": 0.03,
+   "design": 0.19,
+   "mcp": 0.15
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "kodelyx/flow-agent",
+  "stars": 110,
+  "description": "⚡ CLI toolkit for Google Flow — Nano Banana Pro images, Omni Flash videos, MCP v2 & OpenAI API.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.71,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.81
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jiahuiqu17/paper-signal",
+  "stars": 109,
+  "description": "Subject-aware minimal-zine image production for Agent Skills: art direction, generation, series, evidence, and real-bitmap QA.",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.07,
+   "open_models": 0.16,
+   "editing": 0.12,
+   "design": 0.57,
+   "mcp": 0.25
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "awkoy/replicate-flux-mcp",
+  "stars": 106,
+  "description": "MCP for Replicate Flux Model - A powerful tool for generating customized images and SVG assets that match specific coding vibes and aesthetic styles. Streamline your visual asset creation process with AI-powered design generation tailored for developers.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.39,
+   "editing": 0.03,
+   "design": 0.47,
+   "mcp": 0.95
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lisamsung/agent-meme-forge",
+  "stars": 104,
+  "description": "Codex skill that turns one image or text concept into a WeChat-ready Chinese sticker pack people will actually send. Sendability-gated, 4-keypose → 16-frame, no model-drawn text.",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.06,
+   "open_models": 0.47,
+   "editing": 0.04,
+   "design": 0.11,
+   "mcp": 0.08
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "MieMieeeee/comfyui-agent-skill",
+  "stars": 103,
+  "description": "Enable agents to run registered ComfyUI workflows through a local ComfyUI server using this repo’s CLI, returning structured JSON outputs.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.86,
+   "editing": 0.15,
+   "design": 0.02,
+   "mcp": 0.52
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "dacnay816y62-hub/fantasy-qiqiguaiguai-skill",
+  "stars": 103,
+  "description": "FANTASY-qiqiguaiguai Codex skill for funny editorial social posts, 3:4 posters, collage, street snapshots, pets, travel and Chinese typography.",
+  "scores": {
+   "gpt_image": 0.38,
+   "nano_banana": 0.03,
+   "open_models": 0.1,
+   "editing": 0.11,
+   "design": 0.54,
+   "mcp": 0.08
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "yuji-hatakeyama/opencode-gpt-imagegen",
+  "stars": 103,
+  "description": "OpenCode plugin: image generation via your ChatGPT subscription or OpenAI API",
+  "scores": {
+   "gpt_image": 0.89,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.08,
+   "design": 0.07,
+   "mcp": 0.26
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "yc-duan/api-image",
+  "stars": 101,
+  "description": "Codex skill for API-based image generation through OpenAI-compatible providers",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.02,
+   "open_models": 0.1,
+   "editing": 0.15,
+   "design": 0.04,
+   "mcp": 0.43
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "shixinnt/codex-image-context-runtime",
+  "stars": 100,
+  "description": "A Codex plugin and local MCP runtime for context-bounded image generation and inspection.",
+  "scores": {
+   "gpt_image": 0.16,
+   "nano_banana": 0.02,
+   "open_models": 0.1,
+   "editing": 0.05,
+   "design": 0.08,
+   "mcp": 0.49
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Subaru486desuwa/micu-image-mcp",
+  "stars": 100,
+  "description": "MCP server wrapping 米醋 gpt-image-2 / gpt-image-2-pro proxy. One-click install for Claude Code / Codex / Cursor.",
+  "scores": {
+   "gpt_image": 0.16,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.18,
+   "design": 0.03,
+   "mcp": 0.98
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "hassancs91/claude-image-generation",
+  "stars": 99,
+  "description": "Connect Claude to image generation with Agent Skills. Three levels: a zero-cost code-based design engine, a Three.js 3D renderer, and a real diffusion model on Cloudflare. Plus an AI Storybook pipeline that turns a plain-English story into an illustrated, narrated HTML book.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.25,
+   "editing": 0.03,
+   "design": 0.35,
+   "mcp": 0.51
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "BIAsia/voxel-icon",
+  "stars": 99,
+  "description": "Voxel Icon — free 3D voxel icon pack plus an agent skill that generates matching icons with GPT Image 2",
+  "scores": {
+   "gpt_image": 0.81,
+   "nano_banana": 0.11,
+   "open_models": 0.05,
+   "editing": 0.04,
+   "design": 0.91,
+   "mcp": 0.13
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "oil-oil/oil-visual",
+  "stars": 99,
+  "description": "制作统一漫画墨线风格的解释图与透明角色插图，用于概念、流程、比较和文章配图。",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.07,
+   "open_models": 0.21,
+   "editing": 0.04,
+   "design": 0.58,
+   "mcp": 0.21
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "freestylefly/xiaohongshu-skills",
+  "stars": 96,
+  "description": "小红书 skills，能够将用户自定义主题生成精美的小红书封面图，生图模型使用 Nano Banana Pro.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.34,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.8,
+   "mcp": 0.11
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "ZeroLu/Ultimate-AI-Media-Generator-Skill",
+  "stars": 93,
+  "description": "Open-source ai image generator skill and ai video generator skill for Codex, Claude Code, OpenClaw, Cursor, and more. Powered by   CyberBara API with Nano Banana, Sora 2, Seedance, and Kling support. No need to master prompt, this skill optimize your prompt for all kinds of creations like slides, anime and much more.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.24,
+   "open_models": 0.05,
+   "editing": 0.03,
+   "design": 0.05,
+   "mcp": 0.63
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lownamlee/gpt-image-2-mcp",
+  "stars": 93,
+  "description": "Local MCP server for ChatGPT image generation.",
+  "scores": {
+   "gpt_image": 0.87,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.02,
+   "design": 0.02,
+   "mcp": 0.84
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "CaliCastle/skills",
+  "stars": 93,
+  "description": "A collection of Agent Skills by Cali Castle.",
+  "scores": {
+   "gpt_image": 0.24,
+   "nano_banana": 0.1,
+   "open_models": 0.29,
+   "editing": 0.03,
+   "design": 0.42,
+   "mcp": 0.11
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "SlavaSexton/ComfyUI-Agent-Kit",
+  "stars": 91,
+  "description": "One ComfyUI skill for every AI coding agent (Claude Code, Codex, Gemini CLI, Qwen Code): drives a local ComfyUI end to end. 75 model prompt recipes, 581 templates, plus standalone Seedance, Krea and MiniMax H3 skills. Hardware-aware selection, workflow building, multi-shot video, ControlNet, HDR. By AI VFX NEWS.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.03,
+   "open_models": 0.86,
+   "editing": 0.11,
+   "design": 0.02,
+   "mcp": 0.89
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jiangmuran/claude-image",
+  "stars": 86,
+  "description": "教 Claude Code/Codex 真正用好 gpt-image-2 的 skill 包 · Drop-in skill teaching agents to actually use GPT Image 2 — intent-first prompting, surgical edits, parallel batching, visual self-verification",
+  "scores": {
+   "gpt_image": 0.9,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.21,
+   "design": 0.2,
+   "mcp": 0.31
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "MCKRUZ/ComfyUI-Expert",
+  "stars": 86,
+  "description": "Session-scoped Claude Code agent for ComfyUI video production — 12 specialized skills for image gen, video, voice cloning, LoRA training, and publishing",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.86,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.33
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "FANzR-arch/Phil-design-skills",
+  "stars": 85,
+  "description": "19 套可直接生图的视觉风格 Skills，为 gpt-image-2 编写。把文章、主题、产品或已有视觉资产编译成完整提示词。/ 19 visual-style prompt skills for gpt-image-2.",
+  "scores": {
+   "gpt_image": 0.87,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.04,
+   "design": 0.54,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "QIYU-JACKMAN/codexQIYU-image-workflow",
+  "stars": 85,
+  "description": "电商生图工作流是一套面向跨境电商的 Codex 图片生产插件，提供快捷生成、主图与详情页、自定分批、一比一复刻、风格裂变、批量改尺寸、批量 SKU 和局部迁移八种工作流，支持 GPT Image 2 提示词优化、生成确认、逐图质检与失败续跑。  A Codex plugin for ecommerce image production, featuring eight workflows with GPT Image 2 prompt optimization, approval gates, per-image quality checks, and resumable generation.",
+  "scores": {
+   "gpt_image": 0.75,
+   "nano_banana": 0.07,
+   "open_models": 0.05,
+   "editing": 0.21,
+   "design": 0.08,
+   "mcp": 0.17
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "moonlin1213/muted-zine-poster-v01",
+  "stars": 83,
+  "description": "A muted, poetic paper-poster Agent Skill for low-saturation zine-style image generation.",
+  "scores": {
+   "gpt_image": 0.16,
+   "nano_banana": 0.14,
+   "open_models": 0.31,
+   "editing": 0.03,
+   "design": 0.59,
+   "mcp": 0.18
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "joeseesun/qiaomu-codex-imagegen",
+  "stars": 81,
+  "description": "让任何 Agent 调用 Codex 内置生图（MCP + CLI + Skill），内置小红书、视频封面、Mondo 海报技巧 · Codex image generation for any agent",
+  "scores": {
+   "gpt_image": 0.31,
+   "nano_banana": 0.05,
+   "open_models": 0.06,
+   "editing": 0.06,
+   "design": 0.52,
+   "mcp": 0.9
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "swping999/scene-card-studio",
+  "stars": 81,
+  "description": "AI visual director for turning personal photos into structured, editable visual narratives.",
+  "scores": {
+   "gpt_image": 0.17,
+   "nano_banana": 0.09,
+   "open_models": 0.38,
+   "editing": 0.07,
+   "design": 0.06,
+   "mcp": 0.15
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "RioShiina47/comfy-webui",
+  "stars": 76,
+  "description": "A recipe-driven WaaS platform for ComfyUI that turns complex workflows (Image, Audio, Video, 3D) into intuitive Gradio UIs, high-level semantic APIs, and MCP tools for LLMs & AI Agents.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.76,
+   "editing": 0.12,
+   "design": 0.02,
+   "mcp": 0.78
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "apinetwork/piapi-mcp-server",
+  "stars": 75,
+  "description": "A TypeScript implementation of a Model Context Protocol (MCP) server that integrates with PiAPI's API. PiAPI makes user able to generate media content with Midjourney/Flux/Kling/LumaLabs/Udio/Chrip/Trellis directly from Claude or any other MCP-compatible apps.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.18,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "robonuggets/gpt-image-2-skill",
+  "stars": 72,
+  "description": "GPT Image 2 (ChatGPT Images 2.0) skill for Claude Code — best-in-class typography, two endpoints (T2I + edit), Fal AI integration, structured-JSON prompting patterns",
+  "scores": {
+   "gpt_image": 0.89,
+   "nano_banana": 0.02,
+   "open_models": 0.03,
+   "editing": 0.15,
+   "design": 0.22,
+   "mcp": 0.15
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "mituan-ai/PaperBanana-CN",
+  "stars": 72,
+  "description": "Scientific figure workbench with independent VLM/image connections, Chinese UI, and unified size controls.",
+  "scores": {
+   "gpt_image": 0.11,
+   "nano_banana": 0.08,
+   "open_models": 0.13,
+   "editing": 0.04,
+   "design": 0.03,
+   "mcp": 0.47
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "guinacio/claude-image-gen",
+  "stars": 71,
+  "description": "AI-powered image generation using Google Gemini or OpenAI (gpt-image-2), integrated with Claude Code via Skills or Claude.ai via MCP (Model Context Protocol).",
+  "scores": {
+   "gpt_image": 0.21,
+   "nano_banana": 0.37,
+   "open_models": 0.03,
+   "editing": 0.06,
+   "design": 0.13,
+   "mcp": 0.94
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "nevertoday/xxd-panel-028",
+  "stars": 71,
+  "description": "Turn photographs into quiet source-colour isometric paper miniatures with four combinable output modes.",
+  "scores": {
+   "gpt_image": 0.75,
+   "nano_banana": 0.04,
+   "open_models": 0.08,
+   "editing": 0.09,
+   "design": 0.47,
+   "mcp": 0.12
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "stevenjinlong/awesome-ppt-skills",
+  "stars": 69,
+  "description": "Turn a prompt into polished, full-slide PPT decks with gpt-image-2. 把一句提示词转换成由 gpt-image-2 生成的、精美完整的整页式 PPT 演示文稿。",
+  "scores": {
+   "gpt_image": 0.92,
+   "nano_banana": 0.15,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.12
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "lansespirit/image-gen-mcp",
+  "stars": 69,
+  "description": "An MCP server that integrates with gpt-image-1 & Gemini imagen4 model for text-to-image generation services",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.28,
+   "open_models": 0.04,
+   "editing": 0.02,
+   "design": 0.1,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ShinChven/nano-banana-skills",
+  "stars": 68,
+  "description": "Nano Banana Pro Skills",
+  "scores": {
+   "gpt_image": 0.06,
+   "nano_banana": 0.73,
+   "open_models": 0.19,
+   "editing": 0.22,
+   "design": 0.09,
+   "mcp": 0.11
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "Bria-AI/bria-skill",
+  "stars": 68,
+  "description": "Claude Code skills for Bria AI - generate, edit, and transform images with Fibo, RMBG-2.0, and VGL structured prompts",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.42,
+   "design": 0.06,
+   "mcp": 0.47
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ningzimu/codex-gpt-image",
+  "stars": 65,
+  "description": "OpenClaw/Claude Code SKILL.md for gpt-image-2 via Codex OAuth, no OPENAI_API_KEY required",
+  "scores": {
+   "gpt_image": 0.82,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.17,
+   "design": 0.08,
+   "mcp": 0.47
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "chawlaaditya/NanoBananaASO",
+  "stars": 61,
+  "description": "Nano Banana App Store Screenshot Skill",
+  "scores": {
+   "gpt_image": 0.35,
+   "nano_banana": 0.53,
+   "open_models": 0.09,
+   "editing": 0.05,
+   "design": 0.15,
+   "mcp": 0.12
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "wjb127/codex-image",
+  "stars": 59,
+  "description": "Claude Code skill for AI image generation via Codex CLI OAuth (gpt-image-2) / Codex CLI OAuth를 통한 AI 이미지 생성 Claude Code 스킬",
+  "scores": {
+   "gpt_image": 0.89,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.09,
+   "mcp": 0.25
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "AndyShaman/gemini-webapi-mcp",
+  "stars": 59,
+  "description": "MCP server for Google Gemini — free image generation, editing & chat via browser cookies. No API keys needed.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.79,
+   "open_models": 0.05,
+   "editing": 0.21,
+   "design": 0.02,
+   "mcp": 0.9
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jomeswang/agnes-ai-skill",
+  "stars": 57,
+  "description": "Agnes AI skill for text, image, and video APIs with persistent auth and OpenAI-style workflows",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.13,
+   "design": 0.02,
+   "mcp": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "EvoLinkAI/gpt-image-2-gen-skill",
+  "stars": 56,
+  "description": "GPT Image 2 AI image generation skill for OpenClaw, Claude Code, OpenCode, and Cursor - one command install",
+  "scores": {
+   "gpt_image": 0.92,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.16,
+   "design": 0.06,
+   "mcp": 0.28
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "runapi-ai/mcp",
+  "stars": 56,
+  "description": "RunAPI MCP server for model discovery, pricing lookup, media task creation, and balance checks.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.04,
+   "design": 0.01,
+   "mcp": 0.96
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Syh1906/openai-compatible-imagegen",
+  "stars": 55,
+  "description": "Standalone Skill and Codex Plugin for OpenAI-compatible image generation, editing, batch workflows, QA, and focused canvas editing.",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.06,
+   "open_models": 0.12,
+   "editing": 0.23,
+   "design": 0.04,
+   "mcp": 0.73
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "DenRakEiw/scumble",
+  "stars": 54,
+  "description": "Free, open-source desktop editor for AI inpainting: select, prompt, get a colour-matched layer. FLUX 3 Image, FLUX.2, GPT Image, Nano Banana, Seedream and Qwen through your API key or your own ComfyUI. Layers, PSD export, MCP.",
+  "scores": {
+   "gpt_image": 0.11,
+   "nano_banana": 0.09,
+   "open_models": 0.63,
+   "editing": 0.88,
+   "design": 0.03,
+   "mcp": 0.63
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "dacnay816y62-hub/regional-culture-poster",
+  "stars": 54,
+  "description": "把中国地域文化转译成克制当代的大字海报与编辑海报（非旅游宣传）",
+  "scores": {
+   "gpt_image": 0.24,
+   "nano_banana": 0.05,
+   "open_models": 0.13,
+   "editing": 0.06,
+   "design": 0.79,
+   "mcp": 0.07
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "zhouwei713/gpt-image-2-prompting-skill",
+  "stars": 53,
+  "description": "A high-quality GPT-Image-2 prompting skill with bilingual README, structured prompting methods, templates, and examples.",
+  "scores": {
+   "gpt_image": 0.77,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.02,
+   "design": 0.07,
+   "mcp": 0.05
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "ericblue/visual-explainer-skill",
+  "stars": 52,
+  "description": "A Claude Code skill that transforms any content or Mermaid diagram into stunning visual explanations — whiteboard sketches, infographics, mind maps, and   more — powered by OpenAI or Gemini image generation.",
+  "scores": {
+   "gpt_image": 0.76,
+   "nano_banana": 0.12,
+   "open_models": 0.04,
+   "editing": 0.02,
+   "design": 0.07,
+   "mcp": 0.44
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "yizhiyanhua-ai/zimage-skill",
+  "stars": 52,
+  "description": "Z-Image Skill - AI Image Generation for Claude Code | 用自然语言生成 AI 图片的 Claude Code 技能",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.23,
+   "editing": 0.03,
+   "design": 0.27,
+   "mcp": 0.35
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Cripacx/mediagen",
+  "stars": 52,
+  "description": "AI image and video generation skill for Claude Code and other coding agents — Gemini, OpenAI and Kie AI behind one CLI and MCP server, with EU AI Act content marking.",
+  "scores": {
+   "gpt_image": 0.1,
+   "nano_banana": 0.23,
+   "open_models": 0.06,
+   "editing": 0.07,
+   "design": 0.08,
+   "mcp": 0.92
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "utensils/mold",
+  "stars": 51,
+  "description": "CLI-native local AI image and video generation for people, scripts, and agents — CUDA on Linux, Metal on macOS, plus desktop, web, iPhone, REST/SSE, and MCP.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.7,
+   "editing": 0.11,
+   "design": 0.02,
+   "mcp": 0.71
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "xianyu110/ecommerce-image-skills",
+  "stars": 44,
+  "description": "12 电商出图 Agent Skills for Claude Code / Codex / Cursor · GPT Image 2.5 (Flare/Sunburst) · Amazon 白底主图, A+, 场景图, 模特图, 小红书封面, 淘宝详情页",
+  "scores": {
+   "mcp": 0.22,
+   "gpt_image": 0.9,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.42,
+   "design": 0.2
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "awei84/antibanana-mcp",
+  "stars": 41,
+  "description": "MCP server for Google Antigravity image generation",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.93,
+   "open_models": 0.03,
+   "editing": 0.12,
+   "design": 0.03,
+   "mcp": 0.94
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "james20141606/sci-figure-workflow",
+  "stars": 39,
+  "description": "Claude Code Skill: AIGC 科研绘图 4 步工作流（GPT-image-2 × Gemini Vision × Nano Banana 2 × draw.io）— 把顶会论文配图从半天压缩到 10 分钟，产出可编辑 .drawio/.pptx/.svg",
+  "scores": {
+   "gpt_image": 0.45,
+   "nano_banana": 0.26,
+   "open_models": 0.05,
+   "editing": 0.06,
+   "design": 0.04,
+   "mcp": 0.14
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "shengjidaguai-china/multi-style-image-generator",
+  "stars": 39,
+  "description": "Codex skill with game-inspired and crochet style templates, plus 2D, 360° panorama, spatial-depth, colored point-cloud, and video workflows.",
+  "scores": {
+   "gpt_image": 0.11,
+   "nano_banana": 0.03,
+   "open_models": 0.29,
+   "editing": 0.06,
+   "design": 0.06,
+   "mcp": 0.29
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "boteSu/aiChatGptAgent",
+  "stars": 39,
+  "description": "ChatGPT 官网图片生成与图片编辑能力逆向封装，提供 OpenAI 兼容的图片 API、在线画图工作台、号池管理、注册机、日志/图片管理与 Docker 自托管部署，支持 gpt-image-2 与 codex-gpt-image-2 双模型。",
+  "scores": {
+   "gpt_image": 0.81,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.14,
+   "design": 0.02,
+   "mcp": 0.67
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "wukongnotnull/image-inspirer",
+  "stars": 38,
+  "description": "「灵感绘.skill」，实战验证的 GPT-Image2 图片提示词案例库，覆盖 13 大类型，AI 图片生成的灵感来源和创作参考。",
+  "scores": {
+   "gpt_image": 0.83,
+   "nano_banana": 0.02,
+   "open_models": 0.07,
+   "editing": 0.02,
+   "design": 0.58,
+   "mcp": 0.12
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "spartanz51/imagegen-mcp",
+  "stars": 37,
+  "description": "MCP server for OpenAI Image Generation & Editing — text-to-image, image-to-image (with mask), no extra plugins.",
+  "scores": {
+   "design": 0.05,
+   "mcp": 0.97,
+   "gpt_image": 0.97,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.18
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "awesome-genmedia/skills",
+  "stars": 36,
+  "description": "Awesome skills for AI image generation, video generation, song generation and more! ",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.03,
+   "open_models": 0.14,
+   "editing": 0.16,
+   "design": 0.16,
+   "mcp": 0.36
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "JKc66/custom-icons-skill",
+  "stars": 36,
+  "description": "skill to create custom icons using IDEs or extentions that have image generation support",
+  "scores": {
+   "gpt_image": 0.17,
+   "nano_banana": 0.07,
+   "open_models": 0.1,
+   "editing": 0.14,
+   "design": 0.56,
+   "mcp": 0.19
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "qhdrl12/mcp-server-gemini-image-generator",
+  "stars": 34,
+  "description": "MCP server for AI image generation and editing using Google's Gemini Flash models. Create images from text prompts with intelligent filename generation and strict text exclusion. Supports text-to-image generation with future expansion to image editing capabilities.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.84,
+   "open_models": 0.04,
+   "editing": 0.15,
+   "design": 0.07,
+   "mcp": 0.33
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "IanShaw027/codex-image",
+  "stars": 33,
+  "description": "Codex skill for OpenAI Images API generation and editing in API key mode",
+  "scores": {
+   "gpt_image": 0.95,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.19,
+   "design": 0.04,
+   "mcp": 0.2
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Gayaya999/ecommerce-detail-page-generator",
+  "stars": 33,
+  "description": "A policy-aware Codex skill that turns product photos into platform-adapted e-commerce detail pages with modular image generation, deterministic typography, slicing, manifests, and validation.",
+  "scores": {
+   "gpt_image": 0.27,
+   "nano_banana": 0.06,
+   "open_models": 0.08,
+   "editing": 0.06,
+   "design": 0.05,
+   "mcp": 0.11
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "yiyanli123/biorender-mechanism-figures-skill",
+  "stars": 33,
+  "description": "Agent Skill for creating BioRender-inspired, publication-quality biomedical mechanism figure prompts for GPT Image, Codex, Claude Code, and OpenCode.",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.05,
+   "open_models": 0.08,
+   "editing": 0.03,
+   "design": 0.07,
+   "mcp": 0.16
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "KingGyuSuh/codex-image-in-cc",
+  "stars": 33,
+  "description": "Claude Code plugin that exposes Codex CLI's built-in imagegen skill as /codex-image:* user-invoked slash commands.",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.16,
+   "design": 0.34,
+   "mcp": 0.46
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "nopnor/SCOPE",
+  "stars": 32,
+  "description": "Structured Decomposition and Conditional Skill Orchestration for Complex Image Generation",
+  "scores": {
+   "gpt_image": 0.26,
+   "nano_banana": 0.09,
+   "open_models": 0.17,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "YCSE/nanobanana-mcp",
+  "stars": 32,
+  "description": "Gemini Vision & Image Generation MCP for Claude Desktop and Claude Code",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.96,
+   "open_models": 0.03,
+   "editing": 0.17,
+   "design": 0.03,
+   "mcp": 0.96
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "dancolta/gen-images-skill",
+  "stars": 31,
+  "description": "Context-aware image generation skill for Claude Code — analyzes website brand identity and generates on-brand images via Gemini MCP",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.88,
+   "open_models": 0.04,
+   "editing": 0.05,
+   "design": 0.23,
+   "mcp": 0.12
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "LawrenceRiver/FigFox-Gen-skill",
+  "stars": 31,
+  "description": "Scientific paper figure generation Skill for agents: web research-figure conventions, controlled colour, topology planning, and image generation. 科研论文图生成 Skill：联网参考、配色与拓扑规划。",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.08,
+   "open_models": 0.2,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Litreily/codex-skill-eastern-beauty-director",
+  "stars": 30,
+  "description": "Codex skill for director-level Eastern beauty AI image prompts, covering gu feng, Eastern fantasy, modern Chinese aesthetics, SweetHomeGirl lifestyle portraits, prompt routing, style systems, and image-generation-ready prompts.",
+  "scores": {
+   "gpt_image": 0.13,
+   "nano_banana": 0.06,
+   "open_models": 0.22,
+   "editing": 0.02,
+   "design": 0.1,
+   "mcp": 0.15
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "norahe0304-art/30x-image",
+  "stars": 30,
+  "description": "Generates on-brand marketing imagery (ad creatives, logos, slides, carousels) from a brand DESIGN.md via gpt-image-2 — a Codex / Claude Code skill.",
+  "scores": {
+   "gpt_image": 0.93,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.07,
+   "design": 0.76,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "feedtailor/ccskill-nanobanana",
+  "stars": 29,
+  "description": "Claude Code skill for AI image generation using Nano Banana Pro",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.96,
+   "open_models": 0.02,
+   "editing": 0.13,
+   "design": 0.18,
+   "mcp": 0.52
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "liangdabiao/product-motion-gif",
+  "stars": 26,
+  "description": "谁说AI不能生成GIF? 本skill利用GPT-Image 2.5 一次性生成多格帧图 - 合成为动画gif - 一次调用就生成动态图。产品动图生成器  > 你给我产品照片，我还你一段会自动循环播放的产品动图。  这个技能是给\"不会用设计软件、但需要动图素材\"的人用的。 你不需要懂任何技术，只要会发图片、会说话就够了。",
+  "scores": {
+   "gpt_image": 0.44,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.05,
+   "design": 0.09,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "stevenjinlong/remote-imagegen",
+  "stars": 24,
+  "description": "适用于自定义 OpenAI 兼容 base_url 的 Codex 独立生图 skill，支持文生图与参考图编辑，并可自动从本地 Codex 配置中读取 URL 和 API Key。 An independent Codex image-generation skill for custom OpenAI-compatible base_url setups, supporting text-to-image and reference-image editing while automatically loading the endpoint URL and API key from the local Codex configuration.",
+  "scores": {
+   "gpt_image": 0.32,
+   "nano_banana": 0.03,
+   "open_models": 0.27,
+   "editing": 0.18,
+   "design": 0.09,
+   "mcp": 0.47
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "AlekseiUL/gpt-image-2-5-agent-kit",
+  "stars": 24,
+  "description": "GPT Image 2.5 Sunburst & Flare toolkit for agents: generation, reference and masked edits, PNG/JPEG/WebP, dry-runs and validated receipts. Experimental ChatGPT/Codex backend.",
+  "scores": {
+   "gpt_image": 0.83,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.27,
+   "design": 0.13,
+   "mcp": 0.23
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "alchaincyf/huashu-slide-codex",
+  "stars": 23,
+  "description": "Codex-only AI visual material production skill — slides + WeChat covers + Bilibili/YouTube thumbnails, powered by built-in image_gen (no API fees)",
+  "scores": {
+   "nano_banana": 0.03,
+   "open_models": 0.07,
+   "editing": 0.03,
+   "design": 0.31,
+   "mcp": 0.08,
+   "gpt_image": 0.54
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Beatatata/ip-character-designer",
+  "stars": 22,
+  "description": "🎨 自媒体 IP 配图生成器 — 10种画风 × 双版本输出 × 中文提示词 | Cola/Claude Skill for IP image generation with Dreamina",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.59,
+   "mcp": 0.24
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "ianlintner/ai-pixel-art-image-generation",
+  "stars": 21,
+  "description": "AI Claude Code Skill: GPT-Image-2, Foundry, Gemini Game Development Pixel Art, Sprite & Tilemap Image Generation ",
+  "scores": {
+   "nano_banana": 0.14,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.37,
+   "gpt_image": 0.69
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "dshark3y/gpt-image-2-skill",
+  "stars": 19,
+  "description": "Claude Code skill for generating and editing images with OpenAI's gpt-image-2",
+  "scores": {
+   "gpt_image": 0.94,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.24,
+   "design": 0.09,
+   "mcp": 0.11
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "alchaincyf/huashu-gpt-image",
+  "stars": 19,
+  "description": "GPT-image-2 的 prompt 工程方法论。核心：用真实参考名替代形容词，prompt 默认中文短句。含单图 playbook、批量网格生成、失败模式树。跨 agent 通用。",
+  "scores": {
+   "gpt_image": 0.78,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.04,
+   "design": 0.23,
+   "mcp": 0.42
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "CLOUDWERX-DEV/gpt-image-1-mcp",
+  "stars": 18,
+  "description": "A Model Context Protocol (MCP) server for generating and editing images using the OpenAI gpt-image-1 model.",
+  "scores": {
+   "gpt_image": 0.94,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.18,
+   "design": 0.07,
+   "mcp": 0.2
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "2023Anita/scientific-visual-skills",
+  "stars": 17,
+  "description": "Codex skills for scientific infographics, research cover visuals, and publication-grade paper figures using ChatGPT image generation.",
+  "scores": {
+   "gpt_image": 0.84,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.24,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "mrafaeldie12/nano-banana-pro-mcp",
+  "stars": 17,
+  "description": "MCP server for Gemini 3 Nano Banana Pro image generation",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.95,
+   "open_models": 0.03,
+   "editing": 0.17,
+   "design": 0.08,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "webkubor/museav-mcp",
+  "stars": 16,
+  "description": "CS system (CortexOS) MCP — one agent service that strings a personal open-source toolchain together: image generation, local vision, contrast gating, Markdown typesetting. Capability groups: a group's tools appear only when its CLI is installed.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.15,
+   "editing": 0.23,
+   "design": 0.08,
+   "mcp": 0.92
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "aehyok/generate-article-cover-image",
+  "stars": 16,
+  "description": "使用 Codex + GPT Image 2 直接复制文章内容生成Anthropic 的极简美学封面图",
+  "scores": {
+   "gpt_image": 0.74,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.77,
+   "mcp": 0.14
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "JongLeePc/gpt-image2-layered-psd",
+  "stars": 15,
+  "description": "Codex skill for image-to-layered-PSD workflows with confirmed single-element extraction",
+  "scores": {
+   "gpt_image": 0.66,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.09,
+   "design": 0.42,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "derekwalldevin-wen/Derekwen-aigc-visual-skills",
+  "stars": 14,
+  "description": "Open-source AIGC visual workflows, reusable Agent Skills and real image-generation cases by DerekWen.",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.08,
+   "open_models": 0.41,
+   "editing": 0.16,
+   "design": 0.36,
+   "mcp": 0.11
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "Ibrahim-3d/nano-banana-claude-plugin",
+  "stars": 14,
+  "description": "Nano Banana - AI image generation plugin for Claude Code. 13 modes: text-to-image, editing, style transfer, inpainting, 4K, search grounding. Powered by Google Gemini API.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.82,
+   "open_models": 0.02,
+   "editing": 0.21,
+   "design": 0.08,
+   "mcp": 0.55
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "AKRTR465/GPT-upscale-skills",
+  "stars": 14,
+  "description": "一个基于GPT-6-astra和gpt-image-2.5的图像放大工作流skill",
+  "scores": {
+   "gpt_image": 0.43,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.92,
+   "design": 0.13,
+   "mcp": 0.2
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "Andy20010101/style-prompt-forger-skill",
+  "stars": 14,
+  "description": "Codex/OMX skill for Gemini-to-GPT image style prompt forging",
+  "scores": {
+   "gpt_image": 0.4,
+   "nano_banana": 0.37,
+   "open_models": 0.06,
+   "editing": 0.04,
+   "design": 0.13,
+   "mcp": 0.17
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "nikships/ultimate-image-gen-mcp",
+  "stars": 14,
+  "description": "Ultimate Gemini 3.1 Flash Image MCP server with 4K generation, Google Search grounding, reference images (up to 14), and thinking mode. Professional image generation made simple.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.86,
+   "open_models": 0.03,
+   "editing": 0.04,
+   "design": 0.2,
+   "mcp": 0.34
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "LueXxxxxxx/architecture-image2-diagram-skill",
+  "stars": 13,
+  "description": "A Codex skill for planning, generating, evaluating, and refining enterprise architecture diagrams with GPT Image 2.",
+  "scores": {
+   "gpt_image": 0.84,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.05,
+   "design": 0.05,
+   "mcp": 0.07
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "wubin1836/ai-hive-agent-skills",
+  "stars": 13,
+  "description": "680个AI-HIVE Agent Skills：新增340个AI大模型专家中文技能，覆盖Seedance、Nano Banana、GPT Image 2、Seedream、MiniMax、电商图片视频、广告营销与AIGC工作流。",
+  "scores": {
+   "gpt_image": 0.13,
+   "nano_banana": 0.11,
+   "open_models": 0.07,
+   "editing": 0.16,
+   "design": 0.13,
+   "mcp": 0.3
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "xj-bear/NanoBanana-PPT-Skills",
+  "stars": 13,
+  "description": "NanoBanana PPT Skills - AI-powered PPT generator with Veo support",
+  "scores": {
+   "mcp": 0.36,
+   "gpt_image": 0.02,
+   "nano_banana": 0.82,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.05
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "v587d/nano-banana",
+  "stars": 13,
+  "description": "NanoBanana — Gemini Image Generator Skill for AI Agents",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.85,
+   "open_models": 0.04,
+   "editing": 0.02,
+   "design": 0.02,
+   "mcp": 0.25
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "JunSeo99/claude-skill-codex-imagegen",
+  "stars": 13,
+  "description": "Generate, compare, and edit images in Claude Code using your Codex subscription. Background jobs, parallel drafts, and lean context. No image API bill.",
+  "scores": {
+   "gpt_image": 0.75,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.21,
+   "design": 0.29,
+   "mcp": 0.34
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "black-forest-labs/flux-mcp",
+  "stars": 13,
+  "description": "Official FLUX MCP server. Generate, edit, vary, and browse FLUX images from any MCP client.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.01,
+   "open_models": 0.13,
+   "editing": 0.14,
+   "design": 0.03,
+   "mcp": 0.93
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "fengyunzaidushi/sub2api-4k-image-generator-ts",
+  "stars": 12,
+  "description": "Codex skill and TypeScript CLI for 4K AI image generation through self-hosted sub2api OpenAI-compatible endpoints, with streaming, SSE, partial image capture, and Cloudflare 524 timeout mitigation.",
+  "scores": {
+   "gpt_image": 0.63,
+   "nano_banana": 0.02,
+   "open_models": 0.08,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.24
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "gnipbao/openai-image-prompt-writer",
+  "stars": 11,
+  "description": "Codex skill for GPT Image 2.5 prompt writing, editing and reference-image workflows. Based on official OpenAI guidance.",
+  "scores": {
+   "gpt_image": 0.91,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.09,
+   "design": 0.17,
+   "mcp": 0.06
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "andylee20014/mcp-replicate-flux",
+  "stars": 11,
+  "description": "",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.51,
+   "editing": 0.02,
+   "design": 0.05,
+   "mcp": 0.22
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "TamerinTECH/claude-code-generate-images-mcp",
+  "stars": 11,
+  "description": "Auto generate and insert image assets during UI coding in Claude Code, using an MCP server for Azure OpenAI gpt-image-1 and Flux-1.1 Pro",
+  "scores": {
+   "gpt_image": 0.24,
+   "nano_banana": 0.54,
+   "open_models": 0.32,
+   "editing": 0.03,
+   "design": 0.69,
+   "mcp": 0.94
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "manascb1344/together-mcp-server",
+  "stars": 10,
+  "description": "MCP server enabling high-quality image generation via Together AI's Flux.1 Schnell model.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.54,
+   "editing": 0.02,
+   "design": 0.03,
+   "mcp": 0.26
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "luciferfran/nan-mcp-server",
+  "stars": 10,
+  "description": "MCP server exposing NaN API media tools: image generation/editing (flux-2-klein), TTS (kokoro), STT (whisper), embeddings and rerank",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.34,
+   "editing": 0.16,
+   "design": 0.03,
+   "mcp": 0.52
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "keugenek/krea-mcp",
+  "stars": 10,
+  "description": "MCP server for Krea.ai - Generate stunning AI images & videos with Flux, Hailuo, Runway, Kling, Ideogram, Imagen & more. Works with Claude Desktop, Claude Code, and any MCP client.",
+  "scores": {
+   "gpt_image": 0.06,
+   "nano_banana": 0.05,
+   "open_models": 0.15,
+   "editing": 0.04,
+   "design": 0.03,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "huysh3/sub2api-gpt-image-2",
+  "stars": 10,
+  "description": "解决 codex sub2api 后无法生图问题",
+  "scores": {
+   "gpt_image": 0.89,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.17,
+   "design": 0.03,
+   "mcp": 0.74
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Onward0131/universal-image-mcp",
+  "stars": 9,
+  "description": "Provider-neutral image generation and editing MCP with a Codex Skill. Supports OpenAI Images, Gemini, and chat image APIs.",
+  "scores": {
+   "nano_banana": 0.08,
+   "open_models": 0.08,
+   "editing": 0.12,
+   "design": 0.04,
+   "mcp": 0.96,
+   "gpt_image": 0.18
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "chiyolyn/bold-contour-ink-portrait",
+  "stars": 9,
+  "description": "An image-generation skill for turning illustrated characters into bold, airy black-ink portraits on clean white. 借助这个图像生成 Skill，可以将单个插画角色转换为纯白底、轮廓有力且留白充足的纯黑墨人物线描。",
+  "scores": {
+   "gpt_image": 0.4,
+   "nano_banana": 0.11,
+   "open_models": 0.16,
+   "editing": 0.12,
+   "design": 0.41,
+   "mcp": 0.34
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "gpt-img-2/gpt-image-2-ecommerce-skill",
+  "stars": 9,
+  "description": "GPT Image 2 ecommerce Skill for product-preserving main images, white-background product photos, PDP prompts, and QA｜电商商品图 Agent 工作流",
+  "scores": {
+   "gpt_image": 0.84,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.07,
+   "design": 0.07,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "qwwiwi/codex-gpt-image-2-subscription",
+  "stars": 9,
+  "description": "gpt-image-2 images on your ChatGPT/Codex subscription — no API key, reference images supported. Claude Code skill.",
+  "scores": {
+   "gpt_image": 0.9,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.03,
+   "design": 0.08,
+   "mcp": 0.19
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "avenoxai/higgsfield-studio",
+  "stars": 9,
+  "description": "Claude Code + Higgsfield ile görsel/video üretim skill'leri — GPT Image 2, Seedance loop'ları, sunum sitesi",
+  "scores": {
+   "design": 0.07,
+   "mcp": 0.23,
+   "gpt_image": 0.21,
+   "nano_banana": 0.1,
+   "open_models": 0.07,
+   "editing": 0.04
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "jkalasas/artifex-mcp",
+  "stars": 9,
+  "description": "A vendor agnostic MCP server for AI image generation.",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.62,
+   "open_models": 0.04,
+   "editing": 0.11,
+   "design": 0.03,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "xinyiqin/X2V-AI-Images-Videos-skill",
+  "stars": 8,
+  "description": "[LightX2V](https://x2v.light-ai.top) integration for [OpenClaw](https://openclaw.ai) — image generation (t2i/i2i), video (t2v/i2v/s2v), TTS, and voice clone via cloud API.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.07,
+   "editing": 0.08,
+   "design": 0.03,
+   "mcp": 0.7
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "skorfmann/nanobanana",
+  "stars": 8,
+  "description": "Lightweight CLI for AI image generation using Google Gemini API. Text-to-image, image editing, multi-image composition. Perfect for coding agents like Claude Code.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.96,
+   "open_models": 0.02,
+   "editing": 0.14,
+   "design": 0.07,
+   "mcp": 0.26
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "egoist/gpt-image",
+  "stars": 8,
+  "description": "A CLI and agent skill to work with gpt-image-2 using API key or subscription",
+  "scores": {
+   "gpt_image": 0.94,
+   "nano_banana": 0.01,
+   "open_models": 0.02,
+   "editing": 0.23,
+   "design": 0.05,
+   "mcp": 0.14
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "missuo/design-bridge",
+  "stars": 8,
+  "description": "Design skill for crafting GPT image prompts and generating compact mockups.",
+  "scores": {
+   "gpt_image": 0.94,
+   "nano_banana": 0.02,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.15,
+   "mcp": 0.54
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "bushibohai/creating-social-media-visuals",
+  "stars": 8,
+  "description": "面向公众号、小红书、抖音等自媒体封面及信息图生成的 Skill，推荐使用 GPT Image 2！",
+  "scores": {
+   "gpt_image": 0.77,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.04,
+   "design": 0.48,
+   "mcp": 0.21
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "thangphistudent/nano-banana-2-promptor-skill",
+  "stars": 8,
+  "description": "Claude Code skill that generates optimized Nano Banana 2 (Gemini 3.1) image prompts for ecommerce, marketing, and print-on-demand design",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.74,
+   "open_models": 0.04,
+   "editing": 0.02,
+   "design": 0.42,
+   "mcp": 0.08
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "zhouzhq2021/PaperBanana-AIMSLab",
+  "stars": 8,
+  "description": "PaperBanana-AIMSLab是一个面向科研写作场景的AI学术配图助手，基于开源项目PaperBanana优化而来。它可以根据论文方法章节、图注或图表意图自动生成高质量学术配图，并支持多 Agent 规划、风格优化、图像生成、评审迭代和图片精修。项目针对国内使用环境增强了多 API 通道自动切换能力，支持 AIPAIBOX、Google Gemini、OpenAI 与兼容网关，并新增gpt-image-2图像生成与image-to-image精修支持。",
+  "scores": {
+   "gpt_image": 0.21,
+   "nano_banana": 0.22,
+   "open_models": 0.04,
+   "editing": 0.13,
+   "design": 0.03,
+   "mcp": 0.27
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "eugeniughelbur/gpt-image-cookbook",
+  "stars": 7,
+  "description": "Multi-provider AI image generation cookbook: prompt gallery, agentic skill, and CLI for OpenAI gpt-image-2, Google Imagen, Flux, and more. Claude Code plugin + Codex/OpenClaw skill + Python CLI.",
+  "scores": {
+   "gpt_image": 0.28,
+   "nano_banana": 0.11,
+   "open_models": 0.21,
+   "editing": 0.18,
+   "design": 0.18,
+   "mcp": 0.31
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "ph1lb4/imagegen-mac",
+  "stars": 7,
+  "description": "Local AI image generation for Mac. Run Qwen-Image 2.1 on Apple Silicon, offline and private, with a built-in MCP server for Claude Code and AI agents.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.14,
+   "editing": 0.11,
+   "design": 0.12,
+   "mcp": 0.31
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "FA-T-T/codex-skill-academic-slides",
+  "stars": 7,
+  "description": "Codex skill for academic slides, posters, proofsheets, and architecture diagrams via GPT Image 2",
+  "scores": {
+   "gpt_image": 0.89,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.07,
+   "mcp": 0.11
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "zackproser/claude-custom-skills-demo",
+  "stars": 7,
+  "description": "A custom skill to generate and then animate an image via Google's Gemini / Nano Banana and Veo models",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.79,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.32
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "karem505/character-animation-skill",
+  "stars": 7,
+  "description": "Turn any character image into a looping animated sprite (moving SVG, WebP & GIF) with Google's Nano Banana 2 (gemini-3.1-flash-image) — a Claude Code skill.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.93,
+   "open_models": 0.03,
+   "editing": 0.08,
+   "design": 0.06,
+   "mcp": 0.1
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "metavolve-labs/studiomcphub",
+  "stars": 7,
+  "description": "Creative AI MCP server — 32 tools (18 free): image generation, upscaling, bg removal, mockups, CMYK, print-ready PDF, vectorization, watermarking, enrichment, provenance. Pay per call via x402/Stripe/GCX.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.06,
+   "open_models": 0.38,
+   "editing": 0.22,
+   "design": 0.08,
+   "mcp": 0.66
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "zvensmoluya/zven-imagegen",
+  "stars": 7,
+  "description": "一个面向 Codex 的图像生成 skill，支持 base_url + key 和 stream 流式传输，用来降低长连接超时断连的概率。",
+  "scores": {
+   "gpt_image": 0.85,
+   "nano_banana": 0.01,
+   "open_models": 0.07,
+   "editing": 0.04,
+   "design": 0.07,
+   "mcp": 0.33
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "BlockRunAI/Claude-Code-GPT-IMAGE2-SeeDance-BlockRun",
+  "stars": 7,
+  "description": "Run any awesome-gpt-image-2 or Seedance prompt as a one-line Claude Code command. Pay per image with x402 USDC on Base via BlockRun.ai. v1: /headshot, /dance, /poster + 1010-case library.",
+  "scores": {
+   "gpt_image": 0.6,
+   "nano_banana": 0.03,
+   "open_models": 0.1,
+   "editing": 0.07,
+   "design": 0.25,
+   "mcp": 0.88
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "techkwon/hermes-codex-image-skill",
+  "stars": 6,
+  "description": "Stable local Codex image generation for Hermes/OpenClaw with predictable file output and JSON metadata.",
+  "scores": {
+   "gpt_image": 0.16,
+   "nano_banana": 0.03,
+   "open_models": 0.08,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.2
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "papperrollinggery/jingzao-image-forge",
+  "stars": 6,
+  "description": "镜造 Image Forge — Codex Skill for reference-image distillation, character consistency and AI image generation: preserve hair, expression, pose, body, wardrobe and cinematography.",
+  "scores": {
+   "gpt_image": 0.37,
+   "nano_banana": 0.04,
+   "open_models": 0.3,
+   "editing": 0.08,
+   "design": 0.09,
+   "mcp": 0.17
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "jinshiqwq/image-first-frontend",
+  "stars": 6,
+  "description": "This is a frontend design skill specifically tailored for the Codex and GPT-5.6 series models, aiming to enhance the frontend design capabilities of the GPT series models. Through a customized GPT image-compatible API, user interface previews are generated and iterated, and then the approved designs are recreated as high-quality web pages.",
+  "scores": {
+   "gpt_image": 0.47,
+   "nano_banana": 0.02,
+   "open_models": 0.13,
+   "editing": 0.07,
+   "design": 0.05,
+   "mcp": 0.29
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "dqtx760/deepseek-imagegen",
+  "stars": 6,
+  "description": "让 DeepSeek 拥有生图能力 — 开源 Skill + Python 脚本，让你的 AI 智能体自动完成\"理解需求 → 提炼画面 → 生成图片\"，后端由 Apimart gpt-image-2 驱动。",
+  "scores": {
+   "gpt_image": 0.18,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.02,
+   "design": 0.16,
+   "mcp": 0.55
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "xinvxueyuan/NovelAI-Image-MCP",
+  "stars": 6,
+  "description": "MCP server for integrating NovelAI Image generation into AI agents.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.23,
+   "design": 0.02,
+   "mcp": 0.54
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "luckyabsoluter/codex-imagegen-free-reference",
+  "stars": 6,
+  "description": "An extension of Image Gen skill in Codex, it gives you full control to explicitly choose your reference image",
+  "scores": {
+   "gpt_image": 0.38,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.13,
+   "design": 0.07,
+   "mcp": 0.44
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "wesleysimplicio/PiAPI-Skills",
+  "stars": 6,
+  "description": "Skill bundle for Claude, Codex, Hermes, OpenClaw, Cursor, Windsurf, and generic agents covering PiAPI (Midjourney, Suno, Kling, Flux, Hailuo, Luma, Hunyuan, Faceswap, Trellis 3D, MMAudio, F5-TTS, Veo 3, Gemini 2.5 Flash Image, Seedance, and the OpenAI-compatible LLM gateway).",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.07,
+   "open_models": 0.18,
+   "editing": 0.06,
+   "design": 0.02,
+   "mcp": 0.31
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "koshimazaki/flux-api-control-surface",
+  "stars": 6,
+  "description": "Local control surface to explore FLUX API with additional tools and MCP",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.68,
+   "editing": 0.21,
+   "design": 0.03,
+   "mcp": 0.8
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mishagavura/claude-code-image-generation",
+  "stars": 5,
+  "description": "Claude Code image generation skill: generate & edit images with GPT Image 2 (gpt-image-2) from Claude Code via Codex CLI on your ChatGPT subscription. No OpenAI API key. One-line install.",
+  "scores": {
+   "editing": 0.18,
+   "design": 0.21,
+   "mcp": 0.27,
+   "gpt_image": 0.92,
+   "nano_banana": 0.01,
+   "open_models": 0.02
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "Nanoleava/directing-image-prompts",
+  "stars": 5,
+  "description": "Director-style Codex skill for AI image-generation prompts",
+  "scores": {
+   "gpt_image": 0.12,
+   "nano_banana": 0.03,
+   "open_models": 0.25,
+   "editing": 0.02,
+   "design": 0.07,
+   "mcp": 0.13
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "xujie8867/hermes-daily-image-training",
+  "stars": 5,
+  "description": "Hermes daily AI image generation skill — photojournalism approach, zero art references",
+  "scores": {
+   "gpt_image": 0.49,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.12,
+   "mcp": 0.26
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "minilozio/nano-banana-prompting-skill",
+  "stars": 5,
+  "description": "Transform natural language into optimized structured prompts for Gemini image generation. Auto-detects style. Works with OpenClaw and Claude Code.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.92,
+   "open_models": 0.03,
+   "editing": 0.02,
+   "design": 0.04,
+   "mcp": 0.15
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "AntonioCardenas/generate-nanobanana",
+  "stars": 5,
+  "description": "Claude Code skill for AI image & video generation with Google Gemini — Nano Banana 2 Lite, Nano Banana Pro, Gemini Omni Flash. Cost gates before paid runs, real reference images, a prompt log beside every file.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.85,
+   "open_models": 0.02,
+   "editing": 0.03,
+   "design": 0.2,
+   "mcp": 0.44
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "harshkedia177/image-gen-plugin",
+  "stars": 5,
+  "description": "AI image generation skill for coding agents — crafts optimal prompts, generates images via Gemini/Nano Banana, self-reviews, and post-processes. Works with Claude Code, Codex, Gemini CLI, Copilot, and more.",
+  "scores": {
+   "mcp": 0.36,
+   "gpt_image": 0.02,
+   "nano_banana": 0.94,
+   "open_models": 0.03,
+   "editing": 0.08,
+   "design": 0.16
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "kismmmnato0933/gpt-image-skills",
+  "stars": 5,
+  "description": "gpt-image-skills通过配置 base_url 和 api_key 的 OpenAI 兼容图片接口生成或编辑图片",
+  "scores": {
+   "gpt_image": 0.69,
+   "nano_banana": 0.02,
+   "open_models": 0.09,
+   "editing": 0.3,
+   "design": 0.17,
+   "mcp": 0.34
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "conradkaspar-afk/https-github.com-wuyoscar-gpt_image_2_skill",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "gpt_image": 0.91,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.1,
+   "design": 0.22,
+   "mcp": 0.34
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "ilovehugetits/codex-images",
+  "stars": 5,
+  "description": "Claude Code skill: real AI-generated images via Codex CLI (gpt-image-2, ChatGPT OAuth) instead of placeholder boxes",
+  "scores": {
+   "gpt_image": 0.94,
+   "nano_banana": 0.01,
+   "open_models": 0.03,
+   "editing": 0.04,
+   "design": 0.34,
+   "mcp": 0.16
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "junhao-ye/sns-realistic-portrait-prompt",
+  "stars": 5,
+  "description": "Natural, SNS-ready photorealistic portrait prompt skill for Midjourney, Stable Diffusion, Nano Banana, and GPT Image 2.",
+  "scores": {
+   "gpt_image": 0.08,
+   "nano_banana": 0.15,
+   "open_models": 0.15,
+   "editing": 0.02,
+   "design": 0.07,
+   "mcp": 0.15
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "andyluu98/ai-image-gpt-mcp",
+  "stars": 5,
+  "description": "Standalone MCP server + CLI for ChatGPT image generation (image only), with reliable single-file output",
+  "scores": {
+   "gpt_image": 0.53,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.02,
+   "design": 0.11,
+   "mcp": 0.71
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Xuan-BOMS/codex-gpt-image-mcp",
+  "stars": 5,
+  "description": "Use your own OpenAI-compatible GPT Image API directly from Codex through MCP, with generation, editing, local originals, and inline previews.",
+  "scores": {
+   "gpt_image": 0.84,
+   "nano_banana": 0.01,
+   "open_models": 0.06,
+   "editing": 0.19,
+   "design": 0.03,
+   "mcp": 0.84
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "martianzhang/aigc-cli",
+  "stars": 5,
+  "description": "Terminal-native AIGC toolkit: multi-provider image/video/audio generation, Midjourney, chat, AIGC forensics, knowledge base, MCP Server. 终端原生 AIGC 工具包：多厂商图片/视频/音频生成、Midjourney、AI 对话、AIGC 取证、知识库、MCP 集成。",
+  "scores": {
+   "gpt_image": 0.2,
+   "nano_banana": 0.04,
+   "open_models": 0.13,
+   "editing": 0.15,
+   "design": 0.02,
+   "mcp": 0.9
+  },
+  "kind": "mcp"
+ }
+]

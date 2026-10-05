@@ -249,6 +249,56 @@ PAGES = {
         "words": ["humaniz", "slop", "ai tells", "ai writing patterns", "ai-sounding", "去ai味", "去 ai 味", "ai味", "ai 味",
                   "taste skill"],
     },
+    # Upgraded 10-05 (AIsa: supabase mcp 3,600/mo KD 15, postgres mcp 916 KD 10). Page only, no list.
+    "mcp-database": {
+        "strict": True,
+        "subject": _q("Is the main purpose of `repo` to give an AI agent or assistant access to a database: an MCP "
+                      "server, skill or tool that lets it query, inspect or change a database?",
+                      "A database driver, ORM or database product with no agent interface does not count."),
+        "types": {
+            "postgres": _q("Is `repo` mainly for PostgreSQL (including Neon, Supabase Postgres or pgvector)?"),
+            "baas": _q("Is `repo` built around a backend platform such as Supabase, Firebase, Convex or PocketBase?"),
+            "mysql_sqlite": _q("Is `repo` mainly for MySQL, MariaDB or SQLite?"),
+            "nosql": _q("Is `repo` mainly for a NoSQL store such as MongoDB, Redis, DynamoDB or Elasticsearch?"),
+            "warehouse": _q("Is `repo` mainly for analytics databases or warehouses: BigQuery, Snowflake, ClickHouse, DuckDB?"),
+            "multi": _q("Does `repo` connect an agent to many kinds of databases through one server or tool?"),
+        },
+        "labels": _labels(("multi", "🔀", "Multi-database", "多数据库通用"), ("postgres", "🐘", "PostgreSQL", "PostgreSQL"),
+                          ("baas", "⚡", "Supabase & BaaS", "Supabase 与 BaaS"), ("mysql_sqlite", "🗄", "MySQL & SQLite", "MySQL 与 SQLite"),
+                          ("nosql", "🍃", "NoSQL", "NoSQL"), ("warehouse", "📊", "Analytics & warehouses", "分析型数据库")),
+        "queries": ["supabase mcp in:name,description,topics", "postgres mcp in:name,description,topics",
+                    "mysql mcp in:name,description", "sqlite mcp in:name,description", "database mcp in:name,description,topics",
+                    "mongodb mcp in:name,description", "clickhouse mcp in:name,description", "sql mcp server in:name,description"],
+        "words": ["database", "postgres", "mysql", "sqlite", "supabase", "mongo", "redis", "sql", "clickhouse", "snowflake",
+                  "bigquery", "duckdb", "neon", "dynamodb", "firebase"],
+        "also": ["mcp", "agent", "claude", "llm", "skill", "codex", "cursor", "ai "],
+    },
+    # Upgraded 10-05 (AIsa: claude image generation 2,900/mo KD 19).
+    "image-generation": {
+        "subject": _q("Is the main purpose of `repo` to let an AI coding agent or assistant generate or edit images: a skill, "
+                      "MCP server or tool around image models such as GPT Image, Nano Banana, Flux or Stable Diffusion?",
+                      "A prompt list with no tool, an image model's own training code, or a general chat app does not count."),
+        "types": {
+            "gpt_image": _q("Is `repo` built mainly on OpenAI's image models (GPT Image, DALL-E)?"),
+            "nano_banana": _q("Is `repo` built mainly on Google's image models (Nano Banana, Gemini image, Imagen)?"),
+            "open_models": _q("Is `repo` built mainly on open or self-hosted models: Flux, Stable Diffusion, ComfyUI?"),
+            "editing": _q("Is `repo` mainly about editing existing images: retouching, background removal, upscaling, inpainting?"),
+            "design": _q("Is `repo` mainly about design assets: icons, illustrations, covers, posters, social images, logos?"),
+            "mcp": _q("Is `repo` an MCP server or bridge that gives an assistant an image-generation tool, for several models?"),
+        },
+        "labels": _labels(("mcp", "🔌", "MCP servers", "MCP 服务"), ("gpt_image", "🟢", "GPT Image", "GPT Image"),
+                          ("nano_banana", "🍌", "Nano Banana & Gemini", "Nano Banana 与 Gemini"),
+                          ("open_models", "🧪", "Open models", "开源模型"), ("editing", "✂️", "Image editing", "图片编辑"),
+                          ("design", "🎨", "Design assets", "设计素材")),
+        "queries": ["image generation skill in:name,description", "claude image generation in:name,description",
+                    "gpt image skill in:name,description", "nano banana skill in:name,description",
+                    "image generation mcp in:name,description,topics", "codex image skill in:name,description",
+                    "flux mcp in:name,description", "gpt-image-2 in:name,description"],
+        "words": ["image gen", "image-gen", "generate image", "generates image", "image generation", "gpt image", "gpt-image",
+                  "nano banana", "nanobanana", "dall-e", "dalle", "flux", "stable diffusion", "comfyui", "midjourney",
+                  "imagen", "text-to-image", "text to image", "生图", "图片生成"],
+        "also": ["mcp", "agent", "claude", "skill", "codex", "cursor", "llm"],
+    },
     "knowledge-base": {
         "strict": True,
         "subject": _q("Is the main purpose of `repo` to build, maintain or query a knowledge base with an LLM or AI agent: "

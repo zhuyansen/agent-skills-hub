@@ -1,0 +1,2592 @@
+[
+ {
+  "repo": "volcengine/OpenViking",
+  "stars": 39137,
+  "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+  "scores": {
+   "postgres": 0.05,
+   "baas": 0.06,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.08,
+   "warehouse": 0.02,
+   "multi": 0.25
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "vanna-ai/vanna",
+  "stars": 23812,
+  "description": "🤖 Chat with your SQL database 📊. Accurate Text-to-SQL Generation via LLMs using Agentic Retrieval 🔄.",
+  "scores": {
+   "postgres": 0.11,
+   "baas": 0.05,
+   "mysql_sqlite": 0.1,
+   "nosql": 0.02,
+   "warehouse": 0.43,
+   "multi": 0.94
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Canner/WrenAI",
+  "stars": 17798,
+  "description": "GenBI (Generative BI) for AI agents, an open-source, governed text-to-SQL through an open context layer that turns natural-language questions into trusted dashboards, charts, and SQL across 20+ data sources, such as BigQuery, Snowflake, PostgreSQL, ClickHouse, Amazon Redshift, Databricks and more.",
+  "scores": {
+   "postgres": 0.12,
+   "baas": 0.04,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.02,
+   "warehouse": 0.77,
+   "multi": 0.93
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "googleapis/mcp-toolbox",
+  "stars": 16584,
+  "description": "MCP Toolbox for Databases is an open source MCP server for databases.",
+  "scores": {
+   "postgres": 0.09,
+   "baas": 0.04,
+   "mysql_sqlite": 0.08,
+   "nosql": 0.14,
+   "warehouse": 0.24,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Gentleman-Programming/engram",
+  "stars": 7038,
+  "description": "Persistent memory system for AI coding agents. Agent-agnostic Go binary with SQLite + FTS5, MCP server, HTTP API, CLI, and TUI.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "CodeGraphContext/CodeGraphContext",
+  "stars": 4243,
+  "description": "An MCP server plus a CLI tool that indexes local code into a graph database to provide context to AI assistants.",
+  "scores": {
+   "postgres": 0.13,
+   "baas": 0.05,
+   "mysql_sqlite": 0.21,
+   "nosql": 0.17,
+   "warehouse": 0.02,
+   "multi": 0.48
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "bytebase/dbhub",
+  "stars": 3601,
+  "description": "Token conscious database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite.",
+  "scores": {
+   "postgres": 0.12,
+   "baas": 0.03,
+   "mysql_sqlite": 0.16,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.98
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "crystaldba/postgres-mcp",
+  "stars": 3370,
+  "description": "Postgres MCP Pro provides configurable read/write access and performance analysis for you and your AI agents.",
+  "scores": {
+   "postgres": 0.92,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "supabase/mcp",
+  "stars": 2932,
+  "description": "Connect Supabase to your AI assistants",
+  "scores": {
+   "postgres": 0.44,
+   "baas": 0.97,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.03,
+   "warehouse": 0.03,
+   "multi": 0.11
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "benborla/mcp-server-mysql",
+  "stars": 2141,
+  "description": "A Model Context Protocol server that provides read-only access to MySQL databases. This server enables LLMs to inspect database schemas and execute read-only queries.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.08
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Kaelio/ktx",
+  "stars": 1609,
+  "description": "ktx is an executable context layer for data and analytics agents 🐙 Allow Claude Code, Codex, or other AI agents to query analytical databases accurately and with full context of your company",
+  "scores": {
+   "postgres": 0.13,
+   "baas": 0.03,
+   "mysql_sqlite": 0.09,
+   "nosql": 0.06,
+   "warehouse": 0.92,
+   "multi": 0.91
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "designcomputer/mysql_mcp_server",
+  "stars": 1398,
+  "description": "A Model Context Protocol (MCP) server that enables secure interaction with MySQL databases",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "mongodb-js/mongodb-mcp-server",
+  "stars": 1140,
+  "description": "A Model Context Protocol server to connect to MongoDB databases and MongoDB Atlas Clusters.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.73,
+   "warehouse": 0.02,
+   "multi": 0.15
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "neo4j-contrib/mcp-neo4j",
+  "stars": 987,
+  "description": "Neo4j Labs Model Context Protocol servers",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.11,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "Anarkh-Lee/universal-db-mcp",
+  "stars": 936,
+  "description": "通用数据库 MCP 连接器：支持 MySQL、PostgreSQL、Oracle、MongoDB 等 17 种数据库，支持 Claude Desktop、Cursor、Windsurf、VS Code、ChatGPT 等 50+ 平台，用自然语言查询和分析数据",
+  "scores": {
+   "nosql": 0.09,
+   "warehouse": 0.05,
+   "multi": 0.97,
+   "postgres": 0.08,
+   "baas": 0.03,
+   "mysql_sqlite": 0.14
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "ClickHouse/mcp-clickhouse",
+  "stars": 879,
+  "description": "Connect ClickHouse to your AI assistants.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.03,
+   "warehouse": 0.97,
+   "multi": 0.05
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "alexander-zuev/supabase-mcp-server",
+  "stars": 830,
+  "description": "Query MCP enables end-to-end management of Supabase via chat interface: read & write query executions, management API support, automatic migration versioning, access to logs and much more.",
+  "scores": {
+   "postgres": 0.56,
+   "baas": 0.98,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "AltimateAI/altimate-code",
+  "stars": 819,
+  "description": "Open-source agentic data engineering harness for dbt, SQL, and cloud warehouses. 100+ tools, 10 warehouses, AI-powered.",
+  "scores": {
+   "postgres": 0.09,
+   "baas": 0.03,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.02,
+   "warehouse": 0.72,
+   "multi": 0.87
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "christopherkarani/Wax",
+  "stars": 801,
+  "description": "Shared Single-file memory layer for all your agents, sub mili-second RAG over text, photo and video on Apple Silicon.. No Server. No API. One File. Pure Swift",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.11,
+   "nosql": 0.06,
+   "warehouse": 0.02,
+   "multi": 0.18
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "agentic-box/memora",
+  "stars": 729,
+  "description": "Give your AI agents persistent, collective memory — with deduplicating absorb, supersession lineage, semantic search, and a graph UI. Speaks MCP.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.93
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "elastic/mcp-server-elasticsearch",
+  "stars": 720,
+  "description": "",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.86,
+   "warehouse": 0.07,
+   "multi": 0.08
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "dekart-xyz/geosql",
+  "stars": 658,
+  "description": "A Claude/Codex skill for geospatial data",
+  "scores": {
+   "postgres": 0.16,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.56,
+   "multi": 0.81
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "neondatabase/mcp-server-neon",
+  "stars": 648,
+  "description": "MCP server for interacting with Neon Management API and databases",
+  "scores": {
+   "postgres": 0.92,
+   "baas": 0.16,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.11
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "redis/mcp-redis",
+  "stars": 630,
+  "description": "The official Redis MCP Server is a natural language interface designed for agentic applications to manage and search data in Redis efficiently",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.97,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "chroma-core/chroma-mcp",
+  "stars": 598,
+  "description": "A Model Context Protocol (MCP) server implementation that provides database capabilities for Chroma",
+  "scores": {
+   "multi": 0.09,
+   "postgres": 0.02,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.08,
+   "warehouse": 0.03
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "neiltron/apple-health-mcp",
+  "stars": 570,
+  "description": "Local-first Apple Health MCP server. Lets AI assistants answer questions about your sleep, workouts, activity and heart data from a local export.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.01,
+   "warehouse": 0.23,
+   "multi": 0.05
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "centralmind/gateway",
+  "stars": 549,
+  "description": "Universal MCP-Server for your Databases optimized for LLMs and AI-Agents.",
+  "scores": {
+   "postgres": 0.21,
+   "baas": 0.06,
+   "mysql_sqlite": 0.11,
+   "nosql": 0.09,
+   "warehouse": 0.27,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "subnetmarco/pgmcp",
+  "stars": 541,
+  "description": "An MCP server to query any Postgres database in natural language.",
+  "scores": {
+   "postgres": 0.94,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.04,
+   "multi": 0.1
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "motherduckdb/mcp-server-motherduck",
+  "stars": 508,
+  "description": "Local MCP server for DuckDB and MotherDuck",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.92,
+   "multi": 0.94
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "cyanheads/atlas-mcp-server",
+  "stars": 478,
+  "description": "A Model Context Protocol (MCP) server for ATLAS, a Neo4j-powered task management system for LLM Agents - implementing a three-tier architecture (Projects, Tasks, Knowledge) to manage complex workflows. Now with Deep Research.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.07,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "FreePeak/db-mcp-server",
+  "stars": 432,
+  "description": "A powerful multi-database server implementing the Model Context Protocol (MCP) to provide AI assistants with structured access to databases.",
+  "scores": {
+   "postgres": 0.09,
+   "baas": 0.03,
+   "mysql_sqlite": 0.24,
+   "nosql": 0.02,
+   "warehouse": 0.05,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "runekaagaard/mcp-alchemy",
+  "stars": 419,
+  "description": "A MCP (model context protocol) server that gives the LLM access to and knowledge about relational databases like SQLite, Postgresql, MySQL & MariaDB, Oracle, and MS-SQL.",
+  "scores": {
+   "postgres": 0.11,
+   "baas": 0.02,
+   "mysql_sqlite": 0.27,
+   "nosql": 0.01,
+   "warehouse": 0.06,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Lyellr88/marm-memory",
+  "stars": 417,
+  "description": "Local-first 3-in-1 AI memory layer & MCP server for Claude Code, Codex, Grok, Gemini, VS Code and Cursor. Fuses session history, codebase indexing & concept graphs in SQLite. Enables zero-cloud, privacy-first context & instant recall, supports multi-agent swarms.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.93,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.12
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Extelligence-ai/bagel",
+  "stars": 397,
+  "description": "Query robotics, drone, and IoT data in plain English through an MCP server, with an intelligent edge data reduction pipeline that keeps only the data that matters.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.11,
+   "multi": 0.39
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "RichardHan/mssql_mcp_server",
+  "stars": 394,
+  "description": "A Model Context Protocol (MCP) server for Microsoft SQL Server that enables secure database interactions through a controlled interface. Allows AI assistants to safely list tables, read data, and execute SQL queries while maintaining security and structure.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.07
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "executeautomation/mcp-database-server",
+  "stars": 386,
+  "description": "MCP Database Server is a new MCP Server which helps connect with Sqlite, SqlServer and Posgresql Databases",
+  "scores": {
+   "baas": 0.02,
+   "mysql_sqlite": 0.33,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.96,
+   "postgres": 0.12
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "stefanoamorelli/sec-edgar-mcp",
+  "stars": 362,
+  "description": "A SEC EDGAR MCP (Model Context Protocol) Server",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.11
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "GoogleCloudPlatform/cymbal-air-toolbox-demo",
+  "stars": 349,
+  "description": "Demo of a customer service agent (Cymbal Air) using LangGraph, Tools, and RAG to interact with Google Cloud Databases via MCP Toolbox.",
+  "scores": {
+   "postgres": 0.12,
+   "baas": 0.05,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.04,
+   "warehouse": 0.18,
+   "multi": 0.67
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "nameforjt-afk/session-knowledge",
+  "stars": 335,
+  "description": "Turn your Claude Code session history into a searchable local knowledge base — 13 MCP tools, pure stdlib, nothing leaves your machine",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.01,
+   "mysql_sqlite": 0.61,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "scrypster/muninndb",
+  "stars": 332,
+  "description": "The cognitive database. A new class of data storage. Not a vector store, not a graph DB, not a RAG wrapper. Ebbinghaus decay, Hebbian   learning, and Bayesian confidence are engine-native primitives. Memories evolve on their own. MCP-native. Single binary.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.1,
+   "warehouse": 0.03,
+   "multi": 0.09
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "carterlasalle/mac_messages_mcp",
+  "stars": 331,
+  "description": "An MCP server that securely interfaces with your iMessage database via the Model Context Protocol (MCP), allowing LLMs to query and analyze iMessage conversations. It includes robust phone number validation, attachment processing, contact management, group chat handling, and full support for sending and receiving messages.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.01,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.12
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "0xK3vin/MegaMemory",
+  "stars": 313,
+  "description": "Persistent project knowledge graph for coding agents. MCP server with semantic search, in-process embeddings, and web explorer.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.92,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Snowflake-Labs/mcp",
+  "stars": 298,
+  "description": "MCP Server for Snowflake including Cortex AI, object management, SQL orchestration, semantic view consumption, and more",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.94,
+   "multi": 0.32
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "kiliczsh/mcp-mongo-server",
+  "stars": 281,
+  "description": "A Model Context Protocol Server for MongoDB",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.98,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "410979729/scope-recall-hermes",
+  "stars": 278,
+  "description": "Long-term memory for Hermes and Codex, with local storage, source-backed recall, and tools to inspect, correct, or delete remembered information.",
+  "scores": {
+   "warehouse": 0.02,
+   "multi": 0.1,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.02
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "ilhamfp/pasal",
+  "stars": 276,
+  "description": "Pasal.id - The first open, AI-native Indonesian legal platform. MCP server + REST API + web app giving AI grounded access Indonesian laws.",
+  "scores": {
+   "postgres": 0.3,
+   "baas": 0.82,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.05,
+   "warehouse": 0.02,
+   "multi": 0.15
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "fidetolabs/qanat",
+  "stars": 270,
+  "description": "An MCP server for quant factor processing and backtesting. Connect it to your agent and ask.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.02,
+   "warehouse": 0.16,
+   "multi": 0.22
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "the-momentum/apple-health-mcp-server",
+  "stars": 249,
+  "description": "MCP server for querying Apple Health data with natural language using DuckDB under the hood.",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.04,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.09,
+   "warehouse": 0.29,
+   "multi": 0.63
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "wenb1n-dev/mysql_mcp_server_pro",
+  "stars": 248,
+  "description": "Model Context Protocol (MCP) server that supports secure interaction with MySQL databases and has anomaly analysis capabilities.更加牛逼！更加好用！不仅止于mysql的增删改查功能； 还包含了数据库异常分析能力；且便于开发者们进行个性化的工具扩展 ",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "gannonh/firebase-mcp",
+  "stars": 247,
+  "description": "🔥 Model Context Protocol (MCP) server for Firebase.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.98,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.19,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "tomasonjo/llm-movieagent",
+  "stars": 247,
+  "description": "Semantic layer on top of a graph database to provide an LLM with a set of robust tools to interact with the database",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.07,
+   "warehouse": 0.02,
+   "multi": 0.09
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "themotionmachine/OmniFocus-MCP",
+  "stars": 244,
+  "description": "Let LLMs interface with your tasks and projects through the Model Context Protocol. Add, organize, and query your OmniFocus database with natural language commands.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "XGenerationLab/xiyan_mcp_server",
+  "stars": 239,
+  "description": "A Model Context Protocol (MCP) server that enables natural language queries to databases",
+  "scores": {
+   "postgres": 0.11,
+   "baas": 0.03,
+   "mysql_sqlite": 0.21,
+   "nosql": 0.02,
+   "warehouse": 0.07,
+   "multi": 0.59
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "eosho/langchain_data_agent",
+  "stars": 236,
+  "description": "NL2SQL - Ask questions in plain English, get SQL queries and results. Powered by LangGraph.",
+  "scores": {
+   "postgres": 0.1,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.04,
+   "warehouse": 0.29,
+   "multi": 0.92
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "pgEdge/pgedge-postgres-mcp",
+  "stars": 232,
+  "description": "pgEdge MCP Server.  A PostgreSQL MCP server with a Natural Language Agent CLI and Web UI.",
+  "scores": {
+   "postgres": 0.8,
+   "baas": 0.1,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.6
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "fellowgeek/mcp-memory",
+  "stars": 218,
+  "description": "An OKF-backed Model Context Protocol (MCP) server delivering persistent long-term memory and SQLite FTS5 search for AI agents.",
+  "scores": {
+   "warehouse": 0.02,
+   "multi": 0.06,
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.04
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Avijit07x/claude-db",
+  "stars": 213,
+  "description": "Persistent memory for Claude Code. Bring your own database.",
+  "scores": {
+   "postgres": 0.06,
+   "baas": 0.03,
+   "mysql_sqlite": 0.67,
+   "nosql": 0.05,
+   "warehouse": 0.03,
+   "multi": 0.67
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "robbin/wechat-exporter",
+  "stars": 208,
+  "description": "A Claude Code / Codex skill to export and decrypt WeChat (macOS) chat history into plaintext SQLite databases",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.01,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "deadletterq/mcp-opennutrition",
+  "stars": 207,
+  "description": "MCP server providing access to the comprehensive OpenNutrition food database with 300,000+ food items, nutritional data, and barcode lookups",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.04,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "furey/mongodb-lens",
+  "stars": 207,
+  "description": "🍃🔎 MongoDB Lens: Full Featured MCP Server for MongoDB Databases",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.97,
+   "warehouse": 0.02,
+   "multi": 0.08
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "douglasmonsky/codex-usage-tracker",
+  "stars": 195,
+  "description": "Local-first MCP tools and dashboard for investigating Codex token usage, credits, costs, caching, and thread patterns.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.91,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "coleam00/supabase-mcp",
+  "stars": 192,
+  "description": "Supabase MCP server created in Python.",
+  "scores": {
+   "postgres": 0.68,
+   "baas": 0.99,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.05
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "StarRocks/mcp-server-starrocks",
+  "stars": 192,
+  "description": "StarRocks MCP (Model Context Protocol) Server",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.06,
+   "nosql": 0.02,
+   "warehouse": 0.5,
+   "multi": 0.1
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "mongodb/agent-skills",
+  "stars": 188,
+  "description": "Use the official MongoDB Skills with your favorite coding agent to build faster.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.38,
+   "warehouse": 0.02,
+   "multi": 0.11
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "Intina47/context-sync",
+  "stars": 183,
+  "description": "Local persistent memory store for LLM applications including continue.dev, cursor, claude desktop, github copilot, codex, antigravity, etc.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.85,
+   "nosql": 0.03,
+   "warehouse": 0.01,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "ericzakariasson/pg-mcp-server",
+  "stars": 180,
+  "description": "MCP Server for Postgres",
+  "scores": {
+   "postgres": 0.91,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.04,
+   "multi": 0.04
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "willynikes2/knowledge-base-server",
+  "stars": 180,
+  "description": "Make every AI agent you use smarter. Persistent memory with SQLite FTS5, MCP server, Obsidian sync, and self-learning intelligence pipeline.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.21
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "ktanaka101/mcp-server-duckdb",
+  "stars": 178,
+  "description": "A Model Context Protocol (MCP) server implementation for DuckDB, providing database interaction capabilities",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.88,
+   "multi": 0.04
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "yantrikos/yantrikdb-server",
+  "stars": 174,
+  "description": "Cognitive memory database for AI agents — consolidates duplicates, detects contradictions, fades stale memories via temporal decay. Rust, Apache-2.0, ships as library / MCP server / HTTP cluster.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.12,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "joseairosa/recall",
+  "stars": 174,
+  "description": "Persistent cross-session memory for Claude & AI agents. Self-host on Redis/Valkey, or use the managed SaaS at recallmcp.com.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.49,
+   "warehouse": 0.01,
+   "multi": 0.16
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "awkoy/notion-mcp-server",
+  "stars": 173,
+  "description": "Notion MCP server for Claude, Cursor, ChatGPT & Claude Desktop. Connect AI agents to Notion via Model Context Protocol — pages, databases, blocks, comments, files.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.17
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Sibyl-Labs/Sibyl-Memory",
+  "stars": 173,
+  "description": "Durable, file-based long-term memory for AI agents. Five-package plugin family: SDK, CLI, MCP server, Hermes adapter, and a LangGraph BaseStore. No vector database, no embeddings.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "andybrandt/mcp-simple-pubmed",
+  "stars": 172,
+  "description": "MCP server for searching and querying PubMed medical papers/research database",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.05
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "f4ww4z/mcp-mysql-server",
+  "stars": 168,
+  "description": "A Model Context Protocol server for MySQL database operations",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.05
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "dnotitia/akb",
+  "stars": 161,
+  "description": "AKB — Agent Knowledgebase. Organizational memory for AI agents: vault-scoped docs / tables / files unified by URI graph, served over MCP.",
+  "scores": {
+   "postgres": 0.84,
+   "baas": 0.07,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.16
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "call518/MCP-PostgreSQL-Ops",
+  "stars": 160,
+  "description": "🐘 Give AI assistants full PostgreSQL DBA superpowers — 30+ tools for performance analysis, bloat detection, lock/deadlock monitoring, autovacuum & schema inspection. No extensions required. PG 12-18.",
+  "scores": {
+   "postgres": 0.88,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "Guepard-Corp/gfs",
+  "stars": 158,
+  "description": "Git For database Systems",
+  "scores": {
+   "postgres": 0.24,
+   "baas": 0.03,
+   "mysql_sqlite": 0.19,
+   "nosql": 0.03,
+   "warehouse": 0.06,
+   "multi": 0.82
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "nrvim/garmin-givemydata",
+  "stars": 155,
+  "description": "It's YOUR data. Take it back. Get your Garmin Connect data into a local SQLite database and AI ready (MCP server)",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Text2SqlAgent/text2sql-framework",
+  "stars": 154,
+  "description": "Agentic text-to-SQL SDK: hand the LLM one execute_sql tool and let it explore the schema, test queries, and self-correct — no RAG, no semantic layer. 20/20 on an 80-table Spider run. Built-in tracing and scenario support.",
+  "scores": {
+   "postgres": 0.12,
+   "baas": 0.02,
+   "mysql_sqlite": 0.17,
+   "nosql": 0.01,
+   "warehouse": 0.1,
+   "multi": 0.67
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "ergut/mcp-bigquery-server",
+  "stars": 146,
+  "description": "A Model Context Protocol (MCP) server that provides secure, read-only access to BigQuery datasets. Enables Large Language Models (LLMs) to safely query and analyze data through a standardized interface.",
+  "scores": {
+   "warehouse": 0.97,
+   "multi": 0.06,
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "redis/agent-skills",
+  "stars": 142,
+  "description": "Redis' official collection of agent skills",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.06,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.88,
+   "warehouse": 0.01,
+   "multi": 0.06
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "cobanov/teslamate-mcp",
+  "stars": 140,
+  "description": "A Model Context Protocol (MCP) server that provides access to your TeslaMate database, allowing AI assistants to query Tesla vehicle data and analytics.",
+  "scores": {
+   "postgres": 0.68,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.06,
+   "multi": 0.05
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "HenkDz/selfhosted-supabase-mcp",
+  "stars": 138,
+  "description": "An MCP Server for your Self Hosted Supabase",
+  "scores": {
+   "postgres": 0.91,
+   "baas": 0.98,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "TonybotNi/ZotLink",
+  "stars": 137,
+  "description": "Production‑ready MCP server for Zotero to save open preprints (arXiv, CVF, bio/med/chemRxiv) with rich metadata and smart PDF attachments — with upcoming support for publisher databases (Nature, Science, IEEE Xplore, Springer).",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.16,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.45
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "danielmeppiel/oracle-mcp-server",
+  "stars": 133,
+  "description": "MCP Server for working with large Oracle databases",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "mkreyman/mcp-memory-keeper",
+  "stars": 133,
+  "description": "MCP server for persistent context management in AI coding assistants",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.81,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "saidsurucu/yoktez-mcp",
+  "stars": 130,
+  "description": "MCP Server for Turkish Thesis Database",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.07
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "radimsem/remindb",
+  "stars": 129,
+  "description": "An agentic memory database that cuts session tokens by 82–99%. One portable SQLite file — your agent's memory, anywhere.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.97,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "jparkerweb/mcp-sqlite",
+  "stars": 127,
+  "description": "🐇 Model Context Protocol (MCP) server that provides comprehensive SQLite database interaction capabilities",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.98,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.05
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "dat999zx/knowl",
+  "stars": 122,
+  "description": "Persistent memory for Claude Code, Cursor and Codex. Facts are typed, sourced, and retired when they change. Local SQLite, no API keys.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.7,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.1
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "eric-tramel/moraine",
+  "stars": 117,
+  "description": "Unified realtime agent trace database & search MCP",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.05,
+   "mysql_sqlite": 0.11,
+   "nosql": 0.07,
+   "warehouse": 0.25,
+   "multi": 0.82
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "malloydata/publisher",
+  "stars": 116,
+  "description": "Publisher is the open-source analytics engine for Malloy. It lets you define data models once — and use them everywhere.",
+  "scores": {
+   "postgres": 0.06,
+   "baas": 0.03,
+   "mysql_sqlite": 0.04,
+   "nosql": 0.02,
+   "warehouse": 0.16,
+   "multi": 0.93
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "ogham-mcp/ogham-mcp",
+  "stars": 115,
+  "description": "Shared memory MCP server — persistent, searchable, cross-client Claude, Opencode",
+  "scores": {
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.59,
+   "postgres": 0.61,
+   "baas": 0.7
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "patsnap/mcp",
+  "stars": 112,
+  "description": "MCP server for 200M+ patents, scientific literature, chemistry and pharma records. Search prior art and R&D intelligence powered by PatSnap's proprietary databases via Claude, Cursor and MCP-compatible clients.",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.04,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.03,
+   "multi": 0.55
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "dimknaf/braindb",
+  "stars": 109,
+  "description": "An \"LLM wiki\" upgraded to a real database — typed entities, graph relations, HTTP API, and a built-in natural-language agent.",
+  "scores": {
+   "postgres": 0.81,
+   "baas": 0.05,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.17
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "hannesrudolph/sqlite-explorer-fastmcp-mcp-server",
+  "stars": 108,
+  "description": "An MCP server that provides safe, read-only access to SQLite databases through Model Context Protocol (MCP). This server is built with the FastMCP framework, which enables LLMs to explore and query SQLite databases with built-in safety features and query validation.",
+  "scores": {
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.05,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.97
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "oceanbase/awesome-oceanbase-mcp",
+  "stars": 108,
+  "description": "MCP Server for OceanBase database and its tools",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.04,
+   "multi": 0.26
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "putervision/state-memory-mcp",
+  "stars": 108,
+  "description": "Persistent, branch-aware workflow state memory MCP server for AI coding assistants. Tracks tasks, accepted decisions, and active blockers to prevent session context bloat and speed up development.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "zhensherlock/sp500-mcp-server",
+  "stars": 106,
+  "description": "An MCP server and Next.js web app for querying S&P 500 company data from Supabase, with tools for company info, news, officers, and SEC filings, plus embedded MCP App UI resources, Elicitation, and Sampling support.",
+  "scores": {
+   "postgres": 0.44,
+   "baas": 0.98,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.05
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "mangooer/mysql-mcp-server-sse",
+  "stars": 106,
+  "description": "MySQL query server based on the MCP sse.Multi-level SQL risk control & injection protection Docker support for quick deployment",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "ApocData/ApocData-skill",
+  "stars": 102,
+  "description": "ApocData · AI-native financial database for China A-share market. Drop-in Skill / MCP for Claude,ChatGPT, Qwen, Kimi, DeepSeek agents.",
+  "scores": {
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.04,
+   "multi": 0.55,
+   "postgres": 0.02,
+   "baas": 0.08
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "AgriciDaniel/claude-prompts",
+  "stars": 101,
+  "description": "AI prompt database and builder skill for Claude Code. 2,500+ curated prompts across 19 categories and 17 AI models.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.14
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "surrealdb/surrealmcp",
+  "stars": 99,
+  "description": "The official MCP server for SurrealDB",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.07,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.24,
+   "warehouse": 0.04,
+   "multi": 0.13
+  },
+  "kind": "nosql"
+ },
+ {
+  "repo": "raeudigerRaeffi/turbular",
+  "stars": 98,
+  "description": "A MCP server allowing LLM agents to easily connect and retrieve data from any database",
+  "scores": {
+   "postgres": 0.11,
+   "baas": 0.03,
+   "mysql_sqlite": 0.16,
+   "nosql": 0.03,
+   "warehouse": 0.15,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "pinkpixel-dev/mem0-mcp",
+  "stars": 97,
+  "description": "A memory system using mem0 for AI applications. Enables long-term memory for AI agents as a drop-in MCP server.",
+  "scores": {
+   "postgres": 0.05,
+   "baas": 0.07,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.09,
+   "warehouse": 0.02,
+   "multi": 0.16
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "skanga/DBchat",
+  "stars": 96,
+  "description": "A powerful MCP server that lets you have natural language conversations with your database. Ask it to do complex analysis, generate beautiful visualizations, or build custom interactive dashboards based your data. Works with any JDBC-compatible database with support for most SQL DBs like PostgreSQL, MySQL, Oracle, SQL Server, SQLite, MongoDB, etc",
+  "scores": {
+   "postgres": 0.12,
+   "baas": 0.03,
+   "mysql_sqlite": 0.15,
+   "nosql": 0.1,
+   "warehouse": 0.14,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "killop/codedb-mcp",
+  "stars": 95,
+  "description": "fast code database mcp 20000x faster against rg ",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.03,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.05,
+   "warehouse": 0.02,
+   "multi": 0.12
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "syiibfs-hash/cc-agent-brain",
+  "stars": 94,
+  "description": "Local-first memory engine for coding agents (Claude Code/Cursor/Codex): SQLite+FTS5 retrieval, versioned bi-temporal memories, full-session capture, zero dependencies, MCP server",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.15
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "TheRaLabs/legion-mcp",
+  "stars": 94,
+  "description": "A server that helps people access and query data in databases using the Legion Query Runner with Model Context Protocol (MCP) in Python.",
+  "scores": {
+   "postgres": 0.13,
+   "baas": 0.03,
+   "mysql_sqlite": 0.14,
+   "nosql": 0.03,
+   "warehouse": 0.18,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "roboticforce/sugar",
+  "stars": 94,
+  "description": "Persistent memory for AI coding agents. Local-first, cross-session context, global knowledge, and optional autonomous task execution.",
+  "scores": {
+   "multi": 0.08,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.84,
+   "nosql": 0.02,
+   "warehouse": 0.01
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "kunwar-shah/claudex",
+  "stars": 92,
+  "description": "MCP server with persistent memory + FTS5 search for Claude Code conversation history. Index your ~/.claude/projects/, expose 10 MCP tools, browse via web UI. MIT-licensed.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.92,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "donghao1393/mcp-dbutils",
+  "stars": 89,
+  "description": "数读 是一件可以让你的大模型安全连接到数据库的MCP工具。| DButils is an all-in-one MCP service that enables your AI to do data analysis by harnessing versatile types of database (sqlite, mysql, postgres, and more) within a unified configuration of multiple connections in a secured way (like SSL and controlled write access).",
+  "scores": {
+   "postgres": 0.11,
+   "baas": 0.03,
+   "mysql_sqlite": 0.39,
+   "nosql": 0.03,
+   "warehouse": 0.07,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Augmented-Nature/ChEMBL-MCP-Server",
+  "stars": 89,
+  "description": "A comprehensive Model Context Protocol (MCP) server providing advanced access to the ChEMBL chemical database.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.11
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "rashidazarang/airtable-mcp",
+  "stars": 88,
+  "description": "Airtable integration for AI-powered applications via Anthropic's Model Context Protocol (MCP)",
+  "scores": {
+   "nosql": 0.04,
+   "warehouse": 0.02,
+   "multi": 0.05,
+   "postgres": 0.01,
+   "baas": 0.05,
+   "mysql_sqlite": 0.01
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "spences10/mcp-memory-libsql",
+  "stars": 87,
+  "description": "🧠 High-performance persistent memory system for Model Context Protocol (MCP) powered by libSQL. Features vector search, semantic knowledge storage, and efficient relationship management - perfect for AI agents and knowledge graph applications.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.06,
+   "mysql_sqlite": 0.56,
+   "nosql": 0.09,
+   "warehouse": 0.02,
+   "multi": 0.43
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "crazycloud/data-analysis-llm-agent",
+  "stars": 86,
+  "description": "A Data analysis agent powered by llm for querying database and visualizing results",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.03,
+   "mysql_sqlite": 0.92,
+   "nosql": 0.02,
+   "warehouse": 0.06,
+   "multi": 0.1
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "patsnap/mcp-for-patent-literature",
+  "stars": 86,
+  "description": "MCP server for 200M+ patents, scientific literature, chemistry and pharma records. Search prior art and R&D intelligence powered by PatSnap's proprietary databases via Claude, Cursor and MCP-compatible clients.",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.04,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.03,
+   "multi": 0.58
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "srthkdev/omnisql-mcp",
+  "stars": 82,
+  "description": "omnisql-mcp",
+  "scores": {
+   "postgres": 0.23,
+   "baas": 0.04,
+   "mysql_sqlite": 0.19,
+   "nosql": 0.02,
+   "warehouse": 0.04,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "guangxiangdebizi/MySQL_MCP",
+  "stars": 81,
+  "description": "这是一个功能强大且易用的MySQL数据库MCP（Model Context Protocol）服务器，让你的AI助手可以安全地进行完整的数据库操作，支持多数据库连接管理、增删改查、事务管理和智能回滚功能。",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.24
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "hannesrudolph/imessage-query-fastmcp-mcp-server",
+  "stars": 81,
+  "description": "An MCP server that provides safe access to your iMessage database through Model Context Protocol (MCP). This server is built with the FastMCP framework and the imessagedb library, enabling LLMs to query and analyze iMessage conversations with proper phone number validation and attachment handling.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.23,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.05
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "rafiattrach/m3",
+  "stars": 79,
+  "description": "🏥🤖 Query MIMIC-IV medical data using natural language through Model Context Protocol (MCP). Transform healthcare research with AI-powered database interactions - supports both local MIMIC-IV SQLite demo dataset and full BigQuery datasets.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.08,
+   "nosql": 0.02,
+   "warehouse": 0.69,
+   "multi": 0.49
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "wham/github-brain",
+  "stars": 78,
+  "description": "An experimental GitHub MCP server with local database.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.03,
+   "mysql_sqlite": 0.87,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "wenb1n-dev/SmartDB_MCP",
+  "stars": 77,
+  "description": "Universal database MCP server connecting to MySQL, PostgreSQL, SQL Server, MariaDB,DM8,Oracle,not only provides basic database connection such as OAuth 2.0 authentication , health checks, SQL optimization, and index health detection",
+  "scores": {
+   "postgres": 0.07,
+   "baas": 0.03,
+   "mysql_sqlite": 0.24,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "hluaguo/metabase-mcp",
+  "stars": 74,
+  "description": "Metabase MCP server provides integration with the Metabase API, enabling LLM with MCP capabilites to directly interact with your analytics data, this server acts as a bridge between your analytics platform and conversational AI.",
+  "scores": {
+   "postgres": 0.08,
+   "baas": 0.03,
+   "mysql_sqlite": 0.15,
+   "nosql": 0.05,
+   "warehouse": 0.11,
+   "multi": 0.81
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "mgorabbani/askdb",
+  "stars": 73,
+  "description": "Give AI agents safe access to your database.",
+  "scores": {
+   "postgres": 0.15,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.37,
+   "warehouse": 0.03,
+   "multi": 0.92
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "dpflucas/mysql-mcp-server",
+  "stars": 72,
+  "description": "An MCP server provides read-only access to MySQL databases.",
+  "scores": {
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.05,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "cdeust/Cortex",
+  "stars": 72,
+  "description": "Cross-platform persistent memory MCP for Codex, Gemini CLI, Claude Code, and other local MCP hosts. 36 cited neuroscience mechanisms, local-first SQLite/PostgreSQL, hybrid retrieval, decay-based consolidation, and reproducible benchmarks. Claude adds optional automatic lifecycle hooks.",
+  "scores": {
+   "postgres": 0.08,
+   "baas": 0.03,
+   "mysql_sqlite": 0.64,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.49
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "kruschdev/krusch-context-mcp",
+  "stars": 71,
+  "description": "Local MCP server: five tools to store, retrieve, and retire project decisions. SQLite by default.",
+  "scores": {
+   "warehouse": 0.02,
+   "multi": 0.08,
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.02
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "vbcherepanov/total-agent-memory",
+  "stars": 71,
+  "description": "Persistent local memory for AI coding agents — Claude Code, Codex CLI, Cursor, any MCP client. Temporal knowledge graph, procedural memory, AST codebase ingest, cross-project analogy. LongMemEval R@5 95.1%, LoCoMo 0.607, BEAM 1M 0.448. 74 MCP tools, 9 IDEs, 100% local.",
+  "scores": {
+   "postgres": 0.05,
+   "baas": 0.03,
+   "mysql_sqlite": 0.89,
+   "nosql": 0.03,
+   "warehouse": 0.01,
+   "multi": 0.28
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "PuroDelphi/mcpFirebird",
+  "stars": 69,
+  "description": "Implementation of Anthropic's MCP protocol for Firebird databases.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.06
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "akutishevsky/nutrition-mcp",
+  "stars": 68,
+  "description": "A remote MCP server for personal nutrition tracking — log meals, track macros, and review nutrition history through conversation.",
+  "scores": {
+   "warehouse": 0.02,
+   "multi": 0.06,
+   "postgres": 0.35,
+   "baas": 0.98,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02
+  },
+  "kind": "baas"
+ },
+ {
+  "repo": "pinecone-io/pinecone-claude-code-plugin",
+  "stars": 68,
+  "description": "The official Pinecone marketplace for Claude Code Plugins",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.06,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.06,
+   "warehouse": 0.01,
+   "multi": 0.08
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "mordechaipotash/brain-mcp",
+  "stars": 67,
+  "description": "Local-first AI memory MCP server — query your ChatGPT, Claude Code, Cursor & Codex history from any LLM. DuckDB+parquet.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.12,
+   "multi": 0.11
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "Invoke-RE/binja-lattice-mcp",
+  "stars": 66,
+  "description": "Plugin interface for remote communications with Binary Ninja database and MCP server for interfacing with LLMs.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.1
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "Zhwt/go-mcp-mysql",
+  "stars": 65,
+  "description": "Zero burden, ready-to-use Model Context Protocol (MCP) server for interacting with MySQL and automation. No Node.js or Python environment needed.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.04
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "1ch1n/mychatarchive",
+  "stars": 65,
+  "description": "Local-first AI memory archive. Import ChatGPT, Claude, and Grok exports, generate semantic embeddings, and search via MCP server. Zero cloud, zero cost.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.92,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "verygoodplugins/mcp-automem",
+  "stars": 64,
+  "description": "MCP client for AutoMem — give Claude, Cursor, Codex, and other MCP tools durable graph+vector memory across conversations.",
+  "scores": {
+   "mysql_sqlite": 0.02,
+   "nosql": 0.07,
+   "warehouse": 0.01,
+   "multi": 0.59,
+   "postgres": 0.03,
+   "baas": 0.05
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "robdodson/ollama-mcp-db",
+  "stars": 62,
+  "description": "An interactive chat interface that combines Ollama's LLM capabilities with PostgreSQL database access through the Model Context Protocol (MCP).",
+  "scores": {
+   "postgres": 0.75,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.07
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "dhanababum/supermcp",
+  "stars": 61,
+  "description": "🚀 SuperMCP - Create multiple isolated MCP servers using a single connector. Build powerful Model Context Protocol integrations for databases (PostgreSQL, MSSQL) with FastAPI backend, React dashboard, and token-based auth. Perfect for multi-tenant apps and AI assistants.",
+  "scores": {
+   "postgres": 0.27,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.03,
+   "multi": 0.81
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "ZenSystemAI/Zengram",
+  "stars": 60,
+  "description": "A Multi Agent Memory MCP That Connect Agents Across Systems and Machines",
+  "scores": {
+   "postgres": 0.84,
+   "baas": 0.05,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.18
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "Danialsamadi/synapse",
+  "stars": 60,
+  "description": "Synapse is a local-first personal memory operating system designed for AI agents. It provides durable, typed, and highly reliable long-term memory using only local SQLite — giving agents the ability to remember, update, and reason over facts across sessions with full user control.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.97,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "pab1it0/adx-mcp-server",
+  "stars": 59,
+  "description": "A Model Context Protocol (MCP) server that enables AI assistants to query and analyze Azure Data Explorer databases through standardized interfaces.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.03,
+   "warehouse": 0.38,
+   "multi": 0.11
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "yimindev/dati",
+  "stars": 59,
+  "description": "Turn your database into secure, semantically rich MCP tools for agents.",
+  "scores": {
+   "postgres": 0.08,
+   "baas": 0.03,
+   "mysql_sqlite": 0.16,
+   "nosql": 0.02,
+   "warehouse": 0.26,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "ondata/ckan-mcp-server",
+  "stars": 59,
+  "description": "MCP server for querying CKAN open data portals (package search, DataStore SQL, organizations, groups, tags)",
+  "scores": {
+   "postgres": 0.05,
+   "baas": 0.03,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.16
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "JexinSam/mssql_mcp_server",
+  "stars": 58,
+  "description": "A Model Context Protocol (MCP) server facilitating secure interactions with MSSQL databases.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.04
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "IzumiSy/mcp-duckdb-memory-server",
+  "stars": 58,
+  "description": "MCP Memory Server with DuckDB backend",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.11,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.04,
+   "warehouse": 0.3,
+   "multi": 0.06
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "AndrewNgo-ini/memoose",
+  "stars": 58,
+  "description": "A dual-path memory system for proactive agents. Facts and procedures in a local knowledge graph, exposed as a CLI, MCP tools and skills. No API key.",
+  "scores": {
+   "postgres": 0.04,
+   "baas": 0.02,
+   "mysql_sqlite": 0.91,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Teradata/teradata-mcp-server",
+  "stars": 57,
+  "description": "The community development of a MCP server for a Teradata database",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.31,
+   "multi": 0.07
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "JinyangWang27/people-context",
+  "stars": 56,
+  "description": "Local-first memory for AI agents about the people in your life. MCP server + CLI on SQLite. Never phones home.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.97,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "PerfectXM/mcp-db-server",
+  "stars": 55,
+  "description": "🔥 让 AI 直接操刀你的数据库！无状态 MCP 数据库服务，支持 MySQL / PostgreSQL / SQLite / SQL Server / Oracle / H2，连接参数即传即用，零持久化零配置。",
+  "scores": {
+   "multi": 0.98,
+   "postgres": 0.06,
+   "baas": 0.02,
+   "mysql_sqlite": 0.23,
+   "nosql": 0.01,
+   "warehouse": 0.02
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "unmateria/MCP-Access",
+  "stars": 55,
+  "description": "MCP Server for editing VBA code and controls on an MS Access .ACCDB database via LLM (tested just with Claude Code)",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.05
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "GeneGulanesJr/LaPis",
+  "stars": 54,
+  "description": "💎 LaPis — Local AI memory for coding agents. Persistent SQLite memory for Pi, Claude Code, Hermes & MCP.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.11
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "aliyun/alibabacloud-dms-mcp-server",
+  "stars": 54,
+  "description": "A universal multi-cloud data MCP Server supporting over 40 types of data source connections, providing secure, unified data access in a single platform. Supports full range of Alibaba Cloud services and Mainstream databases/data warehouses.",
+  "scores": {
+   "postgres": 0.06,
+   "baas": 0.03,
+   "mysql_sqlite": 0.14,
+   "nosql": 0.07,
+   "warehouse": 0.22,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "MontyGovernance/montycat-mcp",
+  "stars": 54,
+  "description": "Shared, persistent memory for AI agents. Self-hosted MCP server with semantic search, vector RAG, and live updates. Works with Claude, Cursor, Codex, and any MCP client.",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.03,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.11,
+   "warehouse": 0.02,
+   "multi": 0.15
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "alphaonedev/ai-memory-mcp",
+  "stars": 53,
+  "description": "Persistent memory for any AI — MCP server, HTTP API, CLI. Works with Claude, ChatGPT, Grok, Gemini, Codex, Cursor, OpenClaw, and any MCP client. One Rust binary; SQLite or PostgreSQL + Apache AGE + pgvector; rust-a2a wake plane. Apache-2.0.",
+  "scores": {
+   "postgres": 0.21,
+   "baas": 0.03,
+   "mysql_sqlite": 0.44,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.66
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "janbjorge/rekal",
+  "stars": 53,
+  "description": "Long-term memory for LLMs. MCP server backed by hybrid search in a single SQLite file.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.04
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "putervision/world-model-mcp",
+  "stars": 52,
+  "description": "🌐 Persistent 3D/2D spatial world model MCP server for AI agents. Entity tracking, object permanence, AABB collision simulation & view frustum projection via local SQLite.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.07
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Eversmile12/sharedcontext",
+  "stars": 50,
+  "description": "MCP server that gives AI coding assistants persistent cross-client memory. Facts and conversations stored in SQLite, encrypted with AES-256-GCM, synced to Arweave. No server, no account, recoverable with a 12-word phrase.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.86,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "bonnard-data/bonnard-cli",
+  "stars": 50,
+  "description": "Archived. Earlier Bonnard product. Current: bonnard.dev / @bonnard/mcp-charts",
+  "scores": {
+   "postgres": 0.08,
+   "baas": 0.06,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.02,
+   "warehouse": 0.44,
+   "multi": 0.92
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "spranab/saga-mcp",
+  "stars": 39,
+  "description": "Your agent loses the plan between sessions, so saga-mcp gives it a SQLite-backed tracker for projects, epics, tasks, subtasks, dependencies, and notes: 41 MCP tools, an activity log, and a one-call dashboard, with no accounts and no external services.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.05
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "mikeadolan/claude-brain",
+  "stars": 34,
+  "description": "Persistent memory for Claude Code. Local SQLite + MCP + hooks.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "haymon-ai/dbmcp",
+  "stars": 32,
+  "description": "Database MCP server for MySQL, MariaDB, PostgreSQL, and SQLite -  with builtin PII redaction and write-prevention",
+  "scores": {
+   "mysql_sqlite": 0.51,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.98,
+   "postgres": 0.09,
+   "baas": 0.02
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "VonderVuflya/Yggdrasil",
+  "stars": 21,
+  "description": "Durable, local-first memory for AI coding agents over MCP — zero-dependency, curated & semantically de-duped, you own the data (SQLite + Markdown). Works with Claude Code, Codex & any MCP host.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.8,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.1
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "mukul975/mysql-mcp-server",
+  "stars": 18,
+  "description": "A comprehensive Model Context Protocol (MCP) server for MySQL databases with 200+ tools for advanced database management, diagnostics, performance analysis, security auditing, and AI-powered database interactions.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.03,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "t-macabee/lurp",
+  "stars": 17,
+  "description": "Lurp: a Roslyn semantic map for .NET agents (C# / SQLite / MCP)",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.93,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "tfscharff/doi-mcp",
+  "stars": 16,
+  "description": "A Model Context Protocol (MCP) server that prevents citation hallucination by verifying academic citations against 9 authoritative databases. This server enables AI assistants to verify every citation against real publications before citing them.",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.04,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.01,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "miyamamoto/jvlink-mcp-server",
+  "stars": 15,
+  "description": "JRA racing analysis MCP server for JVLinkToSQLite databases",
+  "scores": {
+   "postgres": 0.02,
+   "baas": 0.02,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.02,
+   "warehouse": 0.04,
+   "multi": 0.11
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "NocturnLabs/opencode-personal-knowledge",
+  "stars": 15,
+  "description": "🧠 Personal knowledge MCP server with vector database for Opencode. Store and retrieve knowledge using semantic search, powered by local embeddings.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.4,
+   "nosql": 0.05,
+   "warehouse": 0.02,
+   "multi": 0.13
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "get-dst/dst",
+  "stars": 15,
+  "description": "dst (data serve tool) — open-source semantic layer and MCP server between the AI your team uses and your data warehouse. Governed answers with the SQL, a grade and a receipt.",
+  "scores": {
+   "postgres": 0.13,
+   "baas": 0.04,
+   "mysql_sqlite": 0.03,
+   "nosql": 0.02,
+   "warehouse": 0.9,
+   "multi": 0.96
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "yaminbkk/NexusMem",
+  "stars": 14,
+  "description": "Your agent can read git log. It can't read the shell commands you tried that failed. NexusMem indexes shell history with exit codes, git commits and diffs, and project docs into a local SQLite database, and serves back a token-budgeted slice on demand. No cloud, no account.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.94,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.08
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "dan6684/smart-connections-mcp",
+  "stars": 11,
+  "description": "MCP server that exposes Obsidian Smart Connections vector database to Claude Code via semantic search",
+  "scores": {
+   "warehouse": 0.02,
+   "multi": 0.08,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.02,
+   "nosql": 0.04
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "misaelzapata/memoirs",
+  "stars": 10,
+  "description": "Local-first long-term memory engine for AI agents · MCP + HTTP + CLI · SQLite + sqlite-vec + FTS5 · 100% local, no cloud",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.13
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "Arun-kc/schemabrain",
+  "stars": 10,
+  "description": "The trust and intelligence layer between AI agents and your database. Read-only by architecture, semantic knowledge graph + audit log, MCP-native.",
+  "scores": {
+   "postgres": 0.76,
+   "baas": 0.04,
+   "mysql_sqlite": 0.06,
+   "nosql": 0.02,
+   "warehouse": 0.11,
+   "multi": 0.2
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "plemio/ciqual-mcp",
+  "stars": 9,
+  "description": "MCP for Anses Ciqual French food composition and nutritional database",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.01,
+   "warehouse": 0.03,
+   "multi": 0.05
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "chrisribe/simple-memory-mcp",
+  "stars": 8,
+  "description": "🧠 Persistent local memory for AI assistants across conversations. SQLite, no cloud, no config, works with any MCP client.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.01,
+   "multi": 0.04
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "DorukYelken/Model-Database-Protocol",
+  "stars": 8,
+  "description": "Model Database Protocol — intent-based, secure database access for LLMs with schema validation, policy engine, data masking, and MCP server support",
+  "scores": {
+   "postgres": 0.15,
+   "baas": 0.03,
+   "mysql_sqlite": 0.12,
+   "nosql": 0.03,
+   "warehouse": 0.15,
+   "multi": 0.9
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "gnodux/adb-link",
+  "stars": 8,
+  "description": "An MCP server that connects to multiple databases. Supports access control and dynamic SQL query tool registration and invocation.",
+  "scores": {
+   "postgres": 0.09,
+   "baas": 0.03,
+   "mysql_sqlite": 0.13,
+   "nosql": 0.09,
+   "warehouse": 0.17,
+   "multi": 0.97
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "anshulyadav1976/synapse",
+  "stars": 7,
+  "description": "Private local memory for any AI agent: Markdown database, SQLite search, MCP, zero runtime dependencies.",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.9,
+   "nosql": 0.03,
+   "warehouse": 0.02,
+   "multi": 0.13
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "precis-finance/precis-finance-mcp",
+  "stars": 6,
+  "description": "Read-only MCP server for FP&A & management reporting — governed metrics, financial statements and drill-down over a SQL semantic layer. Your own financials on your own warehouse, not market data. Open core of Précis. (metric engine · ClickHouse · OIDC · Docker)",
+  "scores": {
+   "postgres": 0.03,
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.02,
+   "warehouse": 0.28,
+   "multi": 0.12
+  },
+  "kind": "warehouse"
+ },
+ {
+  "repo": "midplaneai/midplane",
+  "stars": 5,
+  "description": "A gateway between AI agents and your Postgres databases. Every statement is checked against your policy and recorded before it runs.",
+  "scores": {
+   "baas": 0.03,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.08,
+   "postgres": 0.86
+  },
+  "kind": "postgres"
+ },
+ {
+  "repo": "MrAliHasan/mcp-maker",
+  "stars": 5,
+  "description": "MCP Maker - MCP server generator. Connect Claude, Cursor, ChatGPT, Grok & DeepSeek to PostgreSQL, MySQL, MongoDB, Airtable, Notion + 13 data sources. Zero code.",
+  "scores": {
+   "postgres": 0.15,
+   "baas": 0.04,
+   "mysql_sqlite": 0.28,
+   "nosql": 0.11,
+   "warehouse": 0.04,
+   "multi": 0.95
+  },
+  "kind": "multi"
+ },
+ {
+  "repo": "JamesPrial/mcp-memory-enhanced",
+  "stars": 5,
+  "description": "Enhanced MCP memory server with SQLite backend for improved performance and scalability",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.04,
+   "mysql_sqlite": 0.88,
+   "nosql": 0.04,
+   "warehouse": 0.02,
+   "multi": 0.18
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "jiaweizhang1995/jq-docs-mcp",
+  "stars": 5,
+  "description": "基于 MCP 协议的聚宽（JoinQuant）API 文档查询服务器。内置预构建的 SQLite 数据库，包含从聚宽官方帮助页面抓取的 221 个   API 函数和 2,479 个数据表字段定义，让 AI 模型能够直接查询准确的 API 文档，而非依赖训练数据中可能过时或不完整的信息。",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.95,
+   "nosql": 0.01,
+   "warehouse": 0.02,
+   "multi": 0.06
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "TheStack-ai/waypath",
+  "stars": 5,
+  "description": "Open-source memory CLI for Claude Code, Codex & MCP — local-first SQLite, graph-aware recall, review gate. npm i -g waypath",
+  "scores": {
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.96,
+   "nosql": 0.02,
+   "warehouse": 0.02,
+   "multi": 0.09
+  },
+  "kind": "mysql_sqlite"
+ },
+ {
+  "repo": "yujeongJeon/caniuse-mcp",
+  "stars": 5,
+  "description": "MCP server providing browser compatibility data and web API support information using caniuse database",
+  "scores": {
+   "multi": 0.62,
+   "postgres": 0.01,
+   "baas": 0.02,
+   "mysql_sqlite": 0.01,
+   "nosql": 0.01,
+   "warehouse": 0.01
+  },
+  "kind": "multi"
+ }
+]

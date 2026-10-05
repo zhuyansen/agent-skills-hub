@@ -47,7 +47,8 @@ LOOKBACK_DAYS = 4
 PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页", "typesafe-jev": "Jev 页",
               "skill-management-tools": "Skill 管理页", "telegram-bot": "Telegram 页", "ai-design": "设计页",
               "knowledge-base": "知识库页", "claude-code-hooks": "Hooks 页",
-              "obsidian-second-brain": "Obsidian 页", "anti-slop": "去 AI 味页"}
+              "obsidian-second-brain": "Obsidian 页", "anti-slop": "去 AI 味页",
+              "image-generation": "生图页"}
 QUEUE_TAG = "daily-video-pass"
 DESC_MODEL = "gpt-5.6"
 DESC_MAX = 80
@@ -282,35 +283,33 @@ def rebuild_list(list_dir: Path) -> str:
 
 
 def exclude_gone() -> list[str]:
-    """Listed repos GitHub no longer serves (deleted or private). The catalog notices only
-    later, so the page kept showing them while the list dropped them
-    (Vincentwei1021/video-shotcraft and video-talkcraft, 10-03). Both now exclude them."""
-    listed = [n for n in json.loads(KINDS.read_text())[SLUG]["repos"] if n.count("/") == 1]
-    gone = []
+    """Listed repos to drop: ones GitHub no longer serves (deleted or private), and old names
+    of renamed repos whose new name is listed too. The catalog notices both only later: the
+    page kept showing deleted repos the list dropped (Vincentwei1021/video-shotcraft, 10-03),
+    and a sync that met a renamed repo under its new name added a second row, so both names
+    were reviewed and listed (opus-pro/opus-video-studio and opusclip-video-tools, 10-05).
+    Edits the page JSON, not its text (the regex version broke on key order, 10-04)."""
+    kinds = json.loads(KINDS.read_text())
+    listed = [n for n in kinds[SLUG]["repos"] if n.count("/") == 1]
+    lower = {n.lower() for n in listed}
+    drop = []
     for name in listed:
         done = subprocess.run(["gh", "api", f"repos/{name}", "--jq", ".full_name"], capture_output=True, text=True)
+        now = done.stdout.strip()
         if done.returncode and "Not Found" in (done.stdout + done.stderr):
-            gone.append(name)
-    if not gone:
+            drop.append(name)
+        elif now and now.lower() != name.lower() and now.lower() in lower:
+            drop.append(name)
+    if not drop:
         return []
-    text = KEYWORDS.read_text()
-    a = text.index(f'"slug": "{SLUG}"'); b = text.index('"related"', a)
-    block = text[a:b]
-    m = re.search(r'\n(\s*)"exclude_repos": \[(.*?)\n\s*\],', block, re.S)
-    key_indent, item_indent = m.group(1), re.search(r'\n(\s*)"', m.group(2)).group(1)
-    items = re.findall(r'"([^"]+)"', m.group(2))
-    items += [n for n in gone if n not in items]
-    block = (block[:m.start()] + f'\n{key_indent}"exclude_repos": [' +
-             ",".join(f"\n{item_indent}{json.dumps(n)}" for n in items) + f"\n{key_indent}]," + block[m.end():])
-    text = text[:a] + block + text[b:]
-    json.loads(text)
-    KEYWORDS.write_text(text)
-    kinds = json.loads(KINDS.read_text())
-    for name in gone:
+    pages = json.loads(KEYWORDS.read_text())
+    match = next(p for p in pages if p["slug"] == SLUG)["match"]
+    match["exclude_repos"] = match.get("exclude_repos", []) + [n for n in drop if n not in match.get("exclude_repos", [])]
+    KEYWORDS.write_text(json.dumps(pages, ensure_ascii=False, indent=1) + "\n")
+    for name in drop:
         kinds[SLUG]["repos"].pop(name, None)
     KINDS.write_text(json.dumps(kinds, ensure_ascii=False, indent=1) + "\n")
-    return gone
-
+    return drop
 
 def consistency() -> str:
     done = subprocess.run([sys.executable, "ops/awesome/check_consistency.py", SLUG], cwd=ROOT, capture_output=True, text=True)
@@ -367,7 +366,7 @@ def run_page(slug: str, list_dir: Path, report_path: Path) -> None:
     report(report_path, ok, rows, zh, db, list_line, before)
     if gone:
         with report_path.open("a") as f:
-            f.write("\nGitHub 上已不存在(删除或转私有),已从页面和合集移除:" + "、".join(gone) + "\n")
+            f.write("\n已从页面和合集移除(GitHub 上已删除或转私有,或改名后新名字已在页上):" + "、".join(gone) + "\n")
 
 
 def main() -> int:

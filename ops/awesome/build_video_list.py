@@ -253,7 +253,10 @@ def entries() -> tuple[list[dict], list[dict]]:
     for name in names:
         row, hit = meta[name], found.get(name.lower()) or found.get(((meta[name] or {}).get("repo_full_name") or "").lower())
         if row and hit:  # the page shows catalog rows only: the list follows it
-            rows.append({**row, "security_grade": hit.get("security_grade"), "kind": kinds["repos"][name], "in_catalog": True})
+            # Named as the catalog names it, as the page does: a renamed repo keeps its old name
+            # on both until a sync updates the row (Finderchangchang/promo-video-skill, 10-05).
+            rows.append({**row, "repo_full_name": hit["repo_full_name"], "security_grade": hit.get("security_grade"),
+                         "kind": kinds["repos"][name], "in_catalog": True})
     return kinds["kinds"], sorted(rows, key=lambda r: -r["stars"]) + sub_skills(kinds["repos"], found_all=catalog_rows)
 
 

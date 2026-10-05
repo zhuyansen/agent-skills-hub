@@ -23,9 +23,16 @@
     "d": "自动捕捉 bug、统一代码风格、提升质量的顶级 AI 代码审查工具。"
   },
   "mcp-database": {
-    "t": "MCP 数据库工具",
-    "k": ["数据库"],
-    "d": "用 AI agent 访问数据库、执行 SQL、管理数据的最佳 MCP 服务器工具。"
+    "t": "数据库 MCP:Supabase、Postgres 与 SQL",
+    "k": [
+      "数据库 mcp",
+      "supabase mcp",
+      "postgres mcp",
+      "mysql mcp",
+      "sqlite mcp",
+      "数据库"
+    ],
+    "d": "让 Claude、Codex 等 AI agent 查询和操作数据库的开源 MCP 服务与工具,带安全评级:Supabase、PostgreSQL、MySQL、SQLite、NoSQL 和分析型数据库。安装前先核查。"
   },
   "mcp-browser": {
     "t": "MCP 浏览器自动化",
@@ -218,21 +225,17 @@
     "d": "用于 Git 工作流自动化、提交信息生成与版本控制的 AI 工具。"
   },
   "image-generation": {
-    "t": "图像生成",
+    "t": "AI 生图 Skill:GPT Image、Nano Banana 与 Flux",
     "k": [
       "生图",
-      "AI 作画",
-      "文生图",
       "图片生成",
-      "出图",
-      "绘画",
-      "AI 绘画",
-      "生成图片",
-      "图片",
-      "绘图",
-      "AI 画图"
+      "gpt image",
+      "nano banana",
+      "claude 生图",
+      "codex 生图",
+      "flux"
     ],
-    "d": "以编程方式创建、编辑与处理图像的 AI 图像生成工具。"
+    "d": "给 Claude Code、Codex 等 agent 用的开源生图 skill 和 MCP 服务,带安全评级:GPT Image、Nano Banana、Flux、图片编辑和设计素材。安装前先核查。"
   },
   "notification": {
     "t": "通知与告警",

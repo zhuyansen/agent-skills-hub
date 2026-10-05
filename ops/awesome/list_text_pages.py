@@ -166,4 +166,24 @@ PAGE_LISTS = {
             "rules": ("Style guides and word lists agents follow.", "agent 遵守的写作规范和禁用词表。"),
         },
     },
+    "image-generation": {
+        "repo": "zhuyansen/awesome-ai-image-skills",
+        "text": _text("Awesome AI Image Skills",
+                      ("Open-source **image generation skills and MCP servers** for Claude Code, Codex and other agents: "
+                       "GPT Image, Nano Banana and Gemini, Flux and Stable Diffusion, image editing, and design assets.",
+                       "给 Claude Code、Codex 等 agent 用的开源 **生图 skill 和 MCP 服务**:GPT Image、Nano Banana 与 Gemini、"
+                       "Flux 与 Stable Diffusion、图片编辑和设计素材。"),
+                      ("It lets an AI agent or assistant generate or edit images through an image model. A prompt list "
+                       "with no tool, a model's own training code, or a general chat app does not count.",
+                       "它让 AI agent 或助手通过图像模型生成或编辑图片。没有工具的提示词合集、模型本身的训练代码、通用聊天应用不算。"),
+                      ("What these skills make", "这些 skill 能做出什么")),
+        "blurb": {
+            "mcp": ("MCP servers that give an assistant image tools across models.", "给 AI 助手提供生图能力、可接多个模型的 MCP 服务。"),
+            "gpt_image": ("Built on OpenAI's GPT Image and DALL-E.", "基于 OpenAI 的 GPT Image 和 DALL-E。"),
+            "nano_banana": ("Built on Google's Nano Banana, Gemini and Imagen.", "基于 Google 的 Nano Banana、Gemini 和 Imagen。"),
+            "open_models": ("Flux, Stable Diffusion and ComfyUI, often self-hosted.", "Flux、Stable Diffusion、ComfyUI,多可自托管。"),
+            "editing": ("Retouching, background removal, upscaling, inpainting.", "修图、抠图、放大、局部重绘。"),
+            "design": ("Icons, illustrations, covers, posters and logos.", "图标、插画、封面、海报和 Logo。"),
+        },
+    },
 }
