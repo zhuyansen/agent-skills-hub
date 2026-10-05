@@ -1300,6 +1300,9 @@
     "zhuchangyi/Gemini2tg",
     "zkrige/zoidberg",
     "zooddd/tg-proxy-shop"
+   ],
+   "exclude_repos": [
+    "smixs/iva"
    ]
   },
   "related": [
@@ -1637,7 +1640,14 @@
     "yiyanli123/biorender-mechanism-figures-skill",
     "zackproser/claude-custom-skills-demo",
     "zhouzhq2021/PaperBanana-AIMSLab",
-    "zvensmoluya/zven-imagegen"
+    "zvensmoluya/zven-imagegen",
+    "KDB-Wind/gpt-image-2-studio",
+    "PUSHINGSQUARES/pushing-creation",
+    "wallfacer005-vip/jimeng-cli-skill",
+    "Raines-01/ai-image-studio",
+    "JuneLearn/dsh-image2-draw",
+    "ahao0625/ai-workflow-generator",
+    "charlesrapp/pruna-mcp-server"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2221,6 +2231,21 @@
     "professorpalmer/portable-llm-wiki",
     "wgpsec/context1337",
     "MrDoe/OpenCodeRAG"
+   ],
+   "exclude_repos": [
+    "FlowElement-ai/m_flow",
+    "Laurent00TT/pharos",
+    "Lyra-stellAI/BYO-WIKI",
+    "Mark393295827/third-brain-v5-skills",
+    "NimaChu/my-wiki-skill",
+    "andylow92/file-system-like-github",
+    "frankchu91/mindbase",
+    "green-dalii/obsidian-llm-wiki",
+    "jshph/enzyme",
+    "rolandpg/zettelforge",
+    "serradura/okf-gem",
+    "study8677/antigravity-workspace-template",
+    "useenzyme/enzyme"
    ]
   },
   "related": [
@@ -2538,7 +2563,12 @@
     "zhuyansen/skills-manager"
    ],
    "exclude_repos": [
-    "iamzhihuix/skills-manage"
+    "iamzhihuix/skills-manage",
+    "FrancyJGLisboa/agent-skill-creator",
+    "brucevanfdm/agent-skills-guard",
+    "luongnv89/agent-skill-manager",
+    "sametcelikbicak/rolecraft",
+    "wanghuan9/skill-manager"
    ]
   },
   "related": [
@@ -2911,7 +2941,12 @@
     "win4r/jev-humanize-writing",
     "yelban/humanizer.TW",
     "yyx20202020/natural-writing-skill",
-    "zaterka/anti-slop-python"
+    "zaterka/anti-slop-python",
+    "proffitteoy/Mathematician-Humanizer",
+    "sgaofen/humanizer-local-model",
+    "infoslack/anti-slop-py",
+    "mah-claude/anti-slop-website-prompts",
+    "changemaner/design-taste-frontend"
    ]
   },
   "related": [
@@ -3310,6 +3345,12 @@
     "sva-admin/sv-academy-prom-design",
     "undsky/doudou-color-skill",
     "diegomarino/tui-design"
+   ],
+   "exclude_repos": [
+    "Adityaraj0421/design-studio",
+    "INSANE0777/Awwards-mcp",
+    "KAOPU-XiaoPu/web-design",
+    "bergside/typeui.sh"
    ]
   },
   "related": [
@@ -3699,7 +3740,14 @@
    "exclude_repos": [
     "wuyoscar/gpt_image_2_skill",
     "minhnv0807/fullstack-mkt-skills",
-    "joker-sxj/ppt-agent"
+    "joker-sxj/ppt-agent",
+    "Hasasasa/claude-skill-html-to-pptx",
+    "SciToolsmith/sci-diagram-pptx",
+    "chuspeeism/dashiAI-ppt-skill",
+    "helloo1568/image-ppt",
+    "liustack/pptfast",
+    "liustack/pptpress",
+    "sunbigfly/ppt-agent-skill"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -3843,7 +3891,8 @@
     "2654400439/Paper2Seminar",
     "wp-a/paper2ppt",
     "henryhyw/slidepoise",
-    "HututuWorks/sci-diagram-pptx"
+    "HututuWorks/sci-diagram-pptx",
+    "SHALINS428/Academic-PPT-Skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -4726,7 +4775,12 @@
     "ignromanov/llm-obsidian-wiki",
     "oomkapwn/enquire-mcp",
     "qisehong/wechat-to-obsidian-skill",
-    "yejianye/ob-smart-connections-mcp"
+    "yejianye/ob-smart-connections-mcp",
+    "mistrysiddh/hermes-brain-template"
+   ],
+   "exclude_repos": [
+    "RoundTable02/tutor-skills",
+    "bitbonsai/mcp-obsidian"
    ]
   },
   "related": [
@@ -4938,6 +4992,15 @@
     "zjunlp/JevLoop",
     "Sheltercosmo/jev4pg",
     "okjpg/jev-hermes-router"
+   ],
+   "exclude_repos": [
+    "Sheltercosmo/JevSDSQL",
+    "TheoLeeCJ/SemIf",
+    "TheoLeeCJ/openjev",
+    "harshwasan/pi-jev-sentinel",
+    "itsmostafa/typesafe-mcp",
+    "peterfriese/jev-foundation-models",
+    "uehaj/jev-semgrep"
    ]
   },
   "related": [
@@ -5244,7 +5307,10 @@
     "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill",
     "zlong6943-commits/football-prediction-avatar-video",
     "znyupup/knowledge-explainer-skill",
-    "zoglmk/codex-video-pipeline"
+    "zoglmk/codex-video-pipeline",
+    "buildwithhanif/claude-animation-skill",
+    "bishpls/animation-pipeline",
+    "dillydog580/animate-roblox-characters"
    ],
    "sub_skills": [
     {
@@ -5278,7 +5344,8 @@
     "Vincentwei1021/video-shotcraft",
     "Vincentwei1021/video-talkcraft",
     "Yuuhann1999/codex-storyboard",
-    "opus-pro/opus-video-studio"
+    "opus-pro/opus-video-studio",
+    "animspark/animspark"
    ],
    "tag_matches": [],
    "required_keywords": [
@@ -5461,7 +5528,16 @@
     "xwk-911/rulehook",
     "yeisonrestrepo/code-conductor",
     "yuseferi/claude-token-statusbar",
-    "zander-zyx/claude-mini-hud"
+    "zander-zyx/claude-mini-hud",
+    "Moviw/codex-statusline"
+   ],
+   "exclude_repos": [
+    "Astro-Han/claude-lens",
+    "AwesomeJun/CC-statusline",
+    "AwesomeJun/awesome-claude-plugins",
+    "sd0xdev/sd0x-dev-flow",
+    "solanabr/solana-ai-kit",
+    "solanabr/solana-claude"
    ]
   },
   "related": [

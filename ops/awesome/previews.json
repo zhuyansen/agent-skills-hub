@@ -447,6 +447,14 @@
   "type": "image/png",
   "bytes": 311769
  },
+ "JuneLearn/dsh-image2-draw": {
+  "repo": "JuneLearn/dsh-image2-draw",
+  "url": "https://raw.githubusercontent.com/JuneLearn/dsh-image2-draw/HEAD/assets/image2-result-card.png",
+  "alt": "Image2 in-conversation result",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 361878
+ },
  "JuneYaooo/gpt-image2-ppt-skills": {
   "repo": "JuneYaooo/gpt-image2-ppt-skills",
   "url": "https://raw.githubusercontent.com/JuneYaooo/gpt-image2-ppt-skills/HEAD/docs/assets/template-demo-output.jpg",
@@ -454,6 +462,14 @@
   "score": 1.7,
   "type": "image/jpeg",
   "bytes": 376410
+ },
+ "KDB-Wind/gpt-image-2-studio": {
+  "repo": "KDB-Wind/gpt-image-2-studio",
+  "url": "https://raw.githubusercontent.com/KDB-Wind/gpt-image-2-studio/HEAD/docs/assets/app-preview.png",
+  "alt": "GPT-Image-2 Studio 界面预览",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 367558
  },
  "Kevinyyy1/image-to-editable-pptx-v2": {
   "repo": "Kevinyyy1/image-to-editable-pptx-v2",
@@ -527,6 +543,14 @@
   "type": "image/gif",
   "bytes": 5388751
  },
+ "Moviw/codex-statusline": {
+  "repo": "Moviw/codex-statusline",
+  "url": "https://raw.githubusercontent.com/Moviw/codex-statusline/HEAD/docs/demo.gif",
+  "alt": "codex-statusline demo",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 1339460
+ },
  "MrDoe/OpenCodeRAG": {
   "repo": "MrDoe/OpenCodeRAG",
   "url": "https://raw.githubusercontent.com/MrDoe/OpenCodeRAG/HEAD/doc/assets/webui-3d.png",
@@ -567,6 +591,14 @@
   "type": "image/png",
   "bytes": 261381
  },
+ "PUSHINGSQUARES/pushing-creation": {
+  "repo": "PUSHINGSQUARES/pushing-creation",
+  "url": "https://raw.githubusercontent.com/PUSHINGSQUARES/pushing-creation/HEAD/docs/hero.png",
+  "alt": "Sage-green Lamborghini Huracán Performante on a wet British B-road, late afterno",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 2192295
+ },
  "Pikapika260214/rw-consulting-ppt": {
   "repo": "Pikapika260214/rw-consulting-ppt",
   "url": "https://raw.githubusercontent.com/Pikapika260214/rw-consulting-ppt/HEAD/skills/rw-consulting-ppt/assets/xiaohongshu-contact.jpg",
@@ -583,6 +615,14 @@
   "type": "image/webp",
   "bytes": 26312
  },
+ "Raines-01/ai-image-studio": {
+  "repo": "Raines-01/ai-image-studio",
+  "url": "https://raw.githubusercontent.com/Raines-01/ai-image-studio/HEAD/static/demo.png?v=2",
+  "alt": "AI Image Studio 界面截图",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 2063518
+ },
  "Ronnie2025/codex-ppt-skill": {
   "repo": "Ronnie2025/codex-ppt-skill",
   "url": "https://raw.githubusercontent.com/Ronnie2025/codex-ppt-skill/HEAD/assets/examples/02-risk-framework.png",
@@ -590,6 +630,14 @@
   "score": 1.9,
   "type": "image/png",
   "bytes": 1564385
+ },
+ "SHALINS428/Academic-PPT-Skill": {
+  "repo": "SHALINS428/Academic-PPT-Skill",
+  "url": "https://raw.githubusercontent.com/SHALINS428/Academic-PPT-Skill/HEAD/examples/twibot20/montage.png",
+  "alt": "Example montage",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 226711
  },
  "Samin12/samin-reel-engine-plugin": {
   "repo": "Samin12/samin-reel-engine-plugin",
@@ -831,6 +879,14 @@
   "type": "image/webp",
   "bytes": 208900
  },
+ "badmuriss/unslop": {
+  "repo": "badmuriss/unslop",
+  "url": "https://raw.githubusercontent.com/badmuriss/unslop/HEAD/docs/banner.png",
+  "alt": "unslop wordmark on a dark ink background, the letters slop struck through in amb",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 510841
+ },
  "bangtutorial/bang-motion": {
   "repo": "bangtutorial/bang-motion",
   "url": "https://raw.githubusercontent.com/bangtutorial/bang-motion/HEAD/docs/gallery/02-kinetic-colorblock.jpg",
@@ -846,6 +902,14 @@
   "score": 1.6,
   "type": "image/png",
   "bytes": 80414
+ },
+ "bishpls/animation-pipeline": {
+  "repo": "bishpls/animation-pipeline",
+  "url": "https://raw.githubusercontent.com/bishpls/animation-pipeline/HEAD/projects/tsuzuku/docs/making-of/img/one_frame_taken_apart.jpg",
+  "alt": "One frame, taken apart",
+  "score": 1.7,
+  "type": "image/jpeg",
+  "bytes": 367773
  },
  "bjoern2000/deckpipe": {
   "repo": "bjoern2000/deckpipe",
@@ -863,6 +927,14 @@
   "type": "image/png",
   "bytes": 103354
  },
+ "buildwithhanif/claude-animation-skill": {
+  "repo": "buildwithhanif/claude-animation-skill",
+  "url": "https://raw.githubusercontent.com/buildwithhanif/claude-animation-skill/HEAD/docs/game-contact.jpg",
+  "alt": "the game short, one frame per second",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 731928
+ },
  "caikankan/cyberbin-ppt-skill": {
   "repo": "caikankan/cyberbin-ppt-skill",
   "url": "https://raw.githubusercontent.com/caikankan/cyberbin-ppt-skill/HEAD/assets/preview/cyberbin-pinboard-preview.png",
@@ -878,6 +950,14 @@
   "score": -0.55,
   "type": "image/png",
   "bytes": 633093
+ },
+ "changemaner/design-taste-frontend": {
+  "repo": "changemaner/design-taste-frontend",
+  "url": "https://raw.githubusercontent.com/changemaner/design-taste-frontend/HEAD/showcase/gallery/air/slide-0.png",
+  "alt": "Air slide 0",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 335983
  },
  "charlie947/motion-graphics-skills": {
   "repo": "charlie947/motion-graphics-skills",
@@ -1030,6 +1110,14 @@
   "score": 1.8,
   "type": "image/jpeg",
   "bytes": 31821
+ },
+ "dillydog580/animate-roblox-characters": {
+  "repo": "dillydog580/animate-roblox-characters",
+  "url": "https://raw.githubusercontent.com/dillydog580/animate-roblox-characters/HEAD/docs/stylized-r6-walk-preview.gif",
+  "alt": "Stylized R6 walk generated with the skill",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 1137071
  },
  "dososo/blcaptain-ppt-skill": {
   "repo": "dososo/blcaptain-ppt-skill",
@@ -1695,6 +1783,14 @@
   "type": "image/png",
   "bytes": 808888
  },
+ "mistrysiddh/hermes-brain-template": {
+  "repo": "mistrysiddh/hermes-brain-template",
+  "url": "https://raw.githubusercontent.com/mistrysiddh/hermes-brain-template/HEAD/assets/graph-view-screenshot.png",
+  "alt": "Hermes Brain graph view",
+  "score": -2.75,
+  "type": "image/png",
+  "bytes": 820721
+ },
  "molkex/mcp-flow-google": {
   "repo": "molkex/mcp-flow-google",
   "url": "https://openflowmcp.com/v1/showcase/4c37da6f-bbcc-4ad9-9774-f1a1e68b6976.jpg",
@@ -1911,6 +2007,14 @@
   "type": "image/png",
   "bytes": 372692
  },
+ "sgaofen/humanizer-local-model": {
+  "repo": "sgaofen/humanizer-local-model",
+  "url": "https://raw.githubusercontent.com/sgaofen/humanizer-local-model/HEAD/assets/app-showcase-en.png",
+  "alt": "The humanizer app running the 12B model locally: draft on the left, rewrite on t",
+  "score": 1.7,
+  "type": "image/png",
+  "bytes": 621433
+ },
  "sharon-laicc/viral-video-decomposer": {
   "repo": "sharon-laicc/viral-video-decomposer",
   "url": "https://raw.githubusercontent.com/sharon-laicc/viral-video-decomposer/HEAD/docs/assets/smelly-cat-style-a.png",
@@ -1982,6 +2086,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 37687
+ },
+ "sva-admin/sv-academy-prom-design": {
+  "repo": "sva-admin/sv-academy-prom-design",
+  "url": "https://raw.githubusercontent.com/sva-admin/sv-academy-prom-design/HEAD/demo/without-skill.png",
+  "alt": "",
+  "score": -0.1,
+  "type": "image/png",
+  "bytes": 315912
  },
  "taito-project/taito": {
   "repo": "taito-project/taito",

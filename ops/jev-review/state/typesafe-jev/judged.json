@@ -25970,5 +25970,32 @@
   "days": 12,
   "stars_per_day": 8.083333333333334,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "sagapranav/jev-pages",
+  "name": "jev-pages",
+  "stars": 8,
+  "description": "",
+  "topics": [],
+  "created": "2026-10-03",
+  "pushed": "2026-10-03",
+  "source": "topic",
+  "readme_chars": 2176,
+  "names_model": false,
+  "uses_jev": 0.86,
+  "is_software": 0.95,
+  "reusable_tool": 0.8,
+  "one_command_start": 0.83,
+  "complete_docs": 0.28,
+  "shows_result": 0.52,
+  "specific_outcome": 0.52,
+  "novel_angle": 0.72,
+  "shareable_output": 0.72,
+  "quality": 0.5375,
+  "tier": "中",
+  "hit_prior": 0.6533333333333333,
+  "days": 2,
+  "stars_per_day": 4.0,
+  "verdict": "low_quality"
  }
 ]

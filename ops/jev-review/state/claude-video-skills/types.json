@@ -4462,5 +4462,59 @@
    "general": 0.18
   },
   "kind": "motion"
+ },
+ {
+  "repo": "buildwithhanif/claude-animation-skill",
+  "stars": 28,
+  "description": "Hand-drawn 2D animation written as code: detail bible, a detailed ant rig, brush/watercolour pen, frame-matched recreation loop, synthesised sound. Node canvas + ffmpeg.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.23,
+   "music": 0.11,
+   "motion": 0.16,
+   "shorts": 0.09,
+   "editing": 0.04,
+   "demo": 0.17,
+   "story": 0.86,
+   "avatar": 0.04,
+   "general": 0.55
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "bishpls/animation-pipeline",
+  "stars": 6,
+  "description": "Films made with Claude Code: songs, cut-paper riso animation, kinetic type, all in code. First work: OPEN ALL NIGHT (a love song for the ads).",
+  "scores": {
+   "promo": 0.13,
+   "explainer": 0.52,
+   "music": 0.87,
+   "motion": 0.19,
+   "shorts": 0.83,
+   "editing": 0.08,
+   "demo": 0.06,
+   "story": 0.81,
+   "avatar": 0.05,
+   "general": 0.46
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "dillydog580/animate-roblox-characters",
+  "stars": 5,
+  "description": "AI-driven Roblox R6/R15 animation skill for Codex and Claude, using authentic Blender rigs, audited keyframing, Roblox export, and verified GIF previews.",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.07,
+   "music": 0.03,
+   "motion": 0.58,
+   "shorts": 0.03,
+   "editing": 0.04,
+   "demo": 0.22,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.04
+  },
+  "kind": "motion"
  }
 ]

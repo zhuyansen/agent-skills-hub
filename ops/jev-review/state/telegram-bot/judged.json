@@ -35399,5 +35399,36 @@
   "days": 270,
   "stars_per_day": 5.014814814814815,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "AniaBot-Project/AniaBot",
+  "name": "AniaBot",
+  "stars": 15,
+  "description": "一个插件驱动型多平台机器人框架，内置AI Agent插件，支持主流Agent功能，适配QQ、微信、飞书、Telegram、Discord等主流平台",
+  "topics": [
+   "agent",
+   "bot",
+   "framework",
+   "llm"
+  ],
+  "created": "2025-12-31",
+  "pushed": "2026-10-05",
+  "source": "topic",
+  "readme_chars": 2658,
+  "names_model": false,
+  "on_subject": 0.27,
+  "is_software": 0.98,
+  "shows_result": 0.48,
+  "one_command_start": 0.58,
+  "specific_outcome": 0.79,
+  "complete_docs": 0.64,
+  "novel_angle": 0.61,
+  "shareable_output": 0.71,
+  "quality": 0.6225,
+  "tier": "中",
+  "hit_prior": 0.6,
+  "days": 278,
+  "stars_per_day": 0.0539568345323741,
+  "verdict": "off_topic"
  }
 ]

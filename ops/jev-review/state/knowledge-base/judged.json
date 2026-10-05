@@ -37002,5 +37002,42 @@
   "days": 253,
   "stars_per_day": 2.549407114624506,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Zhen-Bo/smell-check",
+  "name": "smell-check",
+  "stars": 238,
+  "description": "Agent Skill for code and test smell audits. Evidence-ranked findings from Refactoring, Clean Code, and the test-smell literature. Formerly pragmatic-code-review.",
+  "topics": [
+   "agent-skills",
+   "ai-agents",
+   "claude-code",
+   "code-quality",
+   "code-smells",
+   "maintainability",
+   "opencode",
+   "refactoring",
+   "static-analysis",
+   "test-smells"
+  ],
+  "created": "2026-01-17",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 8874,
+  "names_model": false,
+  "on_subject": 0.09,
+  "is_software": 0.95,
+  "shows_result": 0.46,
+  "one_command_start": 0.82,
+  "specific_outcome": 0.84,
+  "complete_docs": 0.44,
+  "novel_angle": 0.76,
+  "shareable_output": 0.64,
+  "quality": 0.64,
+  "tier": "中",
+  "hit_prior": 0.62,
+  "days": 261,
+  "stars_per_day": 0.9118773946360154,
+  "verdict": "off_topic"
  }
 ]

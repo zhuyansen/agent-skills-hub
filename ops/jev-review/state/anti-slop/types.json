@@ -3092,5 +3092,131 @@
    "rules": 0.96
   },
   "kind": "chinese"
+ },
+ {
+  "repo": "smartcmd/humanizer",
+  "stars": 11,
+  "description": "中英文 AI 写作润色技能，针对 GPT 常见句式优化，适用于 Codex 和 Claude Code。",
+  "scores": {
+   "writing": 0.82,
+   "detector": 0.34,
+   "chinese": 0.52,
+   "code": 0.58,
+   "design": 0.1,
+   "rules": 0.95
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "nickture/skills",
+  "stars": 14,
+  "description": "Two Agent Skills that help an AI agent make an interface clear, consistent, easy to use and scalable, and Russian text clear and correct (English version planned), without the signs of AI-generated work. They work in Claude, Codex, Cursor and other compatible agents.",
+  "scores": {
+   "writing": 0.74,
+   "detector": 0.53,
+   "chinese": 0.01,
+   "code": 0.17,
+   "design": 0.95,
+   "rules": 0.93
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "badmuriss/unslop",
+  "stars": 19,
+  "description": "Strip AI writing tells at two layers: surface (Wikipedia Signs of AI writing) + narrative (StoryScope, arXiv:2604.03136). A model-agnostic LLM skill.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.97,
+   "chinese": 0.02,
+   "code": 0.11,
+   "design": 0.08,
+   "rules": 0.72
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "sva-admin/sv-academy-prom-design",
+  "stars": 28,
+  "description": "Ready-to-use design taste for Claude Code, Cowork, and Cursor. Prom = Thai for ready. Learn free at loop.sv-academy.org",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.08,
+   "chinese": 0.02,
+   "code": 0.23,
+   "design": 0.95,
+   "rules": 0.8
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "proffitteoy/Mathematician-Humanizer",
+  "stars": 7,
+  "description": "An evidence-based AI writing skill for clearer, more human mathematical prose, built from stylometry and reference-style analysis",
+  "scores": {
+   "design": 0.05,
+   "rules": 0.86,
+   "writing": 0.65,
+   "detector": 0.29,
+   "chinese": 0.46,
+   "code": 0.2
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "sgaofen/humanizer-local-model",
+  "stars": 7,
+  "description": "A local model that humanize AI text and help you bypass every AI detector",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.07,
+   "chinese": 0.32,
+   "code": 0.17,
+   "design": 0.1,
+   "rules": 0.06
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "infoslack/anti-slop-py",
+  "stars": 5,
+  "description": "Opinionated lint rules for rejecting low-evidence Python patterns",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.91,
+   "chinese": 0.01,
+   "code": 0.52,
+   "design": 0.04,
+   "rules": 0.48
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "mah-claude/anti-slop-website-prompts",
+  "stars": 5,
+  "description": "15 free art-directed website build-prompts + an anti-slop design SKILL.md for Lovable, Bolt, v0, Cursor, and Claude Code — from Meez (meez.design)",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.06,
+   "chinese": 0.02,
+   "code": 0.14,
+   "design": 0.94,
+   "rules": 0.23
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "changemaner/design-taste-frontend",
+  "stars": 5,
+  "description": "Anti-slop frontend design skill (universal frontend design + deck mode) with 30 real brand material libraries, manifest-driven style selection, and QA gates",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.5,
+   "chinese": 0.07,
+   "code": 0.41,
+   "design": 0.95,
+   "rules": 0.64
+  },
+  "kind": "design"
  }
 ]

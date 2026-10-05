@@ -3120,5 +3120,103 @@
    "mcp": 0.9
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "KDB-Wind/gpt-image-2-studio",
+  "stars": 15,
+  "description": "轻量 GPT-Image-2 生图工作台，特别支持批量调用 GPT-Image-2：支持 AI 拆分提示词、队列、重试和图生图 / Lightweight GPT-Image-2 studio with batch calls, AI prompt splitting, queueing, retries, and image-to-image.",
+  "scores": {
+   "gpt_image": 0.85,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.04,
+   "design": 0.08,
+   "mcp": 0.1
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "PUSHINGSQUARES/pushing-creation",
+  "stars": 11,
+  "description": "Cinematic prompt methodology for AI image and video generation. Install into Claude Code, author director-grade style packs and storyboards from your reference images. Output is markdown, drop-in compatible with PUSHING FRAMES.",
+  "scores": {
+   "gpt_image": 0.07,
+   "nano_banana": 0.05,
+   "open_models": 0.12,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "wallfacer005-vip/jimeng-cli-skill",
+  "stars": 10,
+  "description": "Agent Skill for AI image/video generation via Dreamina (即梦) CLI",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.05,
+   "editing": 0.12,
+   "design": 0.03,
+   "mcp": 0.38
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Raines-01/ai-image-studio",
+  "stars": 8,
+  "description": "买了 gpt-image-2 中转 API 不知道怎么调用？启动即用，填入配置就能生图！A local web UI for image generation APIs — just plug in your API key and start creating.",
+  "scores": {
+   "gpt_image": 0.7,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.12,
+   "design": 0.02,
+   "mcp": 0.15
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "JuneLearn/dsh-image2-draw",
+  "stars": 8,
+  "description": "DeepSeek Harness Image2 生图插件，通过第三方 OpenAI Images 兼容接口调用 gpt-image-2，只需配置 baseURL 和 API Key。 | Image2 generation plugin for DeepSeek Harness via third-party OpenAI Images-compatible APIs.",
+  "scores": {
+   "gpt_image": 0.51,
+   "nano_banana": 0.01,
+   "open_models": 0.04,
+   "editing": 0.12,
+   "design": 0.02,
+   "mcp": 0.36
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "ahao0625/ai-workflow-generator",
+  "stars": 5,
+  "description": "AI image/video workflow generator — SKILL.md for Claude, GPTs, Gemini, LangChain, Dify, Coze, and more.",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.83,
+   "editing": 0.11,
+   "design": 0.02,
+   "mcp": 0.26
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "charlesrapp/pruna-mcp-server",
+  "stars": 5,
+  "description": "MCP server for Pruna AI — ultra-fast image generation, editing, upscaling, and video generation",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.24,
+   "design": 0.08,
+   "mcp": 0.97
+  },
+  "kind": "mcp"
  }
 ]

@@ -2966,5 +2966,19 @@
    "general": 0.06
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "SHALINS428/Academic-PPT-Skill",
+  "stars": 5,
+  "description": "Open-source skill for turning thesis materials into rigorous, editable academic defense PPTs with planning, validation, and source-aware slide generation.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.9,
+   "html": 0.03,
+   "business": 0.05,
+   "convert": 0.98,
+   "general": 0.12
+  },
+  "kind": "convert"
  }
 ]

@@ -2052,5 +2052,18 @@
    "sync": 0.96
   },
   "kind": "sync"
+ },
+ {
+  "repo": "mistrysiddh/hermes-brain-template",
+  "stars": 5,
+  "description": "Obsidian second-brain vault template for a Hermes AI agent — session archive + memory review pipeline, Kanban boards, templates, Canvas pipeline map, Dataview queries, and cross-platform (Windows/Linux/macOS) install scripts.",
+  "scores": {
+   "skill": 0.31,
+   "mcp": 0.36,
+   "plugin": 0.06,
+   "second_brain": 0.87,
+   "sync": 0.74
+  },
+  "kind": "second_brain"
  }
 ]

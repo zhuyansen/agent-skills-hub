@@ -3248,5 +3248,18 @@
    "tooling": 0.84
   },
   "kind": "statusline"
+ },
+ {
+  "repo": "Moviw/codex-statusline",
+  "stars": 6,
+  "description": "Status bar for Codex CLI and Claude Code: context, 5h/weekly quota with reset times, tokens.",
+  "scores": {
+   "hooks": 0.05,
+   "subagents": 0.02,
+   "statusline": 0.38,
+   "collection": 0.11,
+   "tooling": 0.93
+  },
+  "kind": "tooling"
  }
 ]

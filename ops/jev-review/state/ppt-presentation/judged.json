@@ -22772,5 +22772,37 @@
   "days": 30,
   "stars_per_day": 3.4,
   "verdict": "admit"
+ },
+ {
+  "repo": "SHALINS428/Academic-PPT-Skill",
+  "name": "Academic-PPT-Skill",
+  "stars": 5,
+  "description": "Open-source skill for turning thesis materials into rigorous, editable academic defense PPTs with planning, validation, and source-aware slide generation.",
+  "topics": [
+   "academic-ppt",
+   "codex-skill",
+   "presentation-generation"
+  ],
+  "created": "2026-05-13",
+  "pushed": "2026-05-13",
+  "source": "topic",
+  "readme_chars": 3889,
+  "names_model": false,
+  "makes_slides": 0.98,
+  "agent_driven": 0.97,
+  "editable_output": 0.94,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.13,
+  "complete_docs": 0.45,
+  "shows_result": 0.67,
+  "specific_outcome": 0.86,
+  "novel_angle": 0.85,
+  "shareable_output": 0.35,
+  "quality": 0.5275,
+  "tier": "中",
+  "hit_prior": 0.6233333333333334,
+  "days": 145,
+  "stars_per_day": 0.034482758620689655,
+  "verdict": "admit"
  }
 ]
