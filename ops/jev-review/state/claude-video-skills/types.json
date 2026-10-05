@@ -4444,5 +4444,23 @@
    "general": 0.1
   },
   "kind": "promo"
+ },
+ {
+  "repo": "ythx-101/live-panel-skill",
+  "stars": 516,
+  "description": "Config-driven animated architecture diagrams: turn one JSON file into a terminal-style, always-running diagram or a light-theme infographic that moves. Outputs H.264 mp4 or a live web page; also a Claude Code style skill (SKILL.md).",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.37,
+   "music": 0.02,
+   "motion": 0.89,
+   "shorts": 0.34,
+   "editing": 0.05,
+   "demo": 0.29,
+   "story": 0.05,
+   "avatar": 0.02,
+   "general": 0.18
+  },
+  "kind": "motion"
  }
 ]
