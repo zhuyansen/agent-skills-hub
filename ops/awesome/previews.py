@@ -33,7 +33,9 @@ ALT = re.compile(r"alt=[\"']([^\"']*)[\"']", re.I)
 NOT_A_PREVIEW = re.compile(
     r"shields\.io|badge|badgen|/logo|logo[-_.]|[-_.]logo|favicon|avatar|/icon|icon[-_.]|sponsor|contrib\.rocks|"
     r"star-history|visitor|komarev|github-readme-stats|trendshift|producthunt|buymeacoffee|wechat|qrcode|qr[-_.]|"
-    r"\.svg(\?|$)|license|discord|twitter|x\.com", re.I)
+    r"\.svg(\?|$)|license|discord|twitter|x\.com|"
+    # Contact and donation codes: weichat.png (sic) slipped past "wechat" onto the PPT list.
+    r"weichat|weixin|wx[-_.]?qr|xiaohongshu|xhs[-_.]|二维码|微信|公众号|小红书|赞赏|打赏|donat|交流群|社群", re.I)
 SHOWS_OUTPUT = re.compile(r"demo|preview|showcase|example|sample|result|output|thumb|poster|frame|scene|film|"
                           r"style|gallery|效果|演示|示例|成片|样片|预览", re.I)
 # Pictures of the tool rather than of what it makes.
