@@ -126,8 +126,8 @@
  {
   "slug": "mcp-database",
   "title": "MCP Database Tools",
-  "serp_subject": "Database MCP Servers: Supabase & Postgres",
-  "description": "Browse the best MCP server tools for database access, SQL queries, and data management with AI agents.",
+  "serp_subject": "Database MCP Servers for Supabase & Postgres",
+  "description": "Database MCP servers let an AI agent query, inspect and change your data in Supabase, Postgres, MySQL and other SQL databases. Every server here is security-graded before you connect it to production.",
   "match": {
    "categories": [
     "mcp-server"

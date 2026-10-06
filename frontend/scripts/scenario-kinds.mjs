@@ -41,6 +41,15 @@ export function descZh(skill) {
   return DESC_ZH[listKey(skill)] || skill.description || "";
 }
 
+const DESC_EN_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-desc-en.json");
+const DESC_EN = existsSync(DESC_EN_PATH) ? JSON.parse(readFileSync(DESC_EN_PATH, "utf-8")) : {};
+
+/** English description for the English page: a translation when the repo's own text is in
+ *  another language (ops/jev-review/describe_en.py), else its own description. */
+export function descEn(skill) {
+  return DESC_EN[listKey(skill)] || skill.description || "";
+}
+
 /** Attributes for one card: its kind and its stars (the filter sorts by them). */
 export function kindAttrs(scenarioKinds, skill) {
   if (!scenarioKinds) return "";

@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -44,6 +45,9 @@ KEYWORDS_FILE = f"{SCRIPTS}/scenario-keywords.json"
 PER_SLUG_FILES = [f"{SCRIPTS}/scenario-desc-zh.json", f"{SCRIPTS}/scenario-kinds.json", f"{SCRIPTS}/scenario-zh.json"]
 SHARED_FILES = [f"{SCRIPTS}/generate-scenario-pages.mjs", f"{SCRIPTS}/scenario-kinds.mjs", f"{SCRIPTS}/shared-utils.mjs"]
 SITE = "https://agentskillshub.top"
+# Where pages are read from; the checks still judge them as SITE pages (canonical etc.).
+# Set to a local server over frontend/dist to compare a build before pushing it.
+FETCH_BASE = os.environ.get("PAGE_CHECK_FETCH_BASE", SITE)
 UA = "Mozilla/5.0 (compatible; agentskillshub-pagecheck/1.0; +https://agentskillshub.top)"
 PASS_SCORE = 90
 TITLE_MAX, TITLE_HARD = 60, 75
@@ -248,7 +252,7 @@ def audit_link(url: str, kw: str) -> str:
 def check_page(page: dict, gsc: dict[str, list[tuple[str, int]]]) -> dict:
     url = f"{SITE}/best/{page['slug']}/"
     try:
-        parsed = parse(fetch(url))
+        parsed = parse(fetch(url.replace(SITE, FETCH_BASE, 1)))
     except OSError as exc:
         return {"slug": page["slug"], "url": url, "error": str(exc)[:120]}
     kw, source = target_keyword(page, parsed["title"], gsc)

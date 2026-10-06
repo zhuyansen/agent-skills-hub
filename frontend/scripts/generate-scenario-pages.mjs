@@ -17,7 +17,7 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
-import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh } from "./scenario-kinds.mjs";
+import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,6 +26,61 @@ const TITLE_MAX = 60;   // Google shows about 60 characters of a title
 const COMPARE_ROWS = 20; // rows in the comparison table
 // The card's title and body already open the skill page ("View Details" x 209 led the
 // page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
+// A subject that already names its kind of thing ("AI Design Tools", "Database MCP Servers").
+const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i;
+
+/** The words the page competes for: `serp_subject` when set, else the title. The <title>,
+ *  H1, guide headings, meta description and ItemList all use it, so they name one thing
+ *  (10-06 On Page audit: mcp-database said "Database MCP Servers" in the title and "MCP
+ *  Database Tools" in the H1 and description). */
+// The page's answer in one declarative sentence, above everything else in the body.
+// AI answers quote the first part of a page and prefer a plain claim ("the best X is Y")
+// over a description (Tanya Van Gastel, Shenzhen SEO side event 2026-09: 44% of cited
+// text sits in the first 30% of the page). The pick is the most-starred entry rated SAFE
+// among the top ones: the order is match score, so the first SAFE one can be a small repo
+// (an 856★ starter kit on the video page, above HyperFrames). The sentence never
+// recommends a flagged repo; with no SAFE one, the top entry and no safety claim.
+const QUICK_PICK_SCAN = 10;
+const QUICK_PICK_DESC = 140;
+function quickPick(skills) {
+  const safe = skills.slice(0, QUICK_PICK_SCAN).filter((s) => s.security_grade === "safe")
+    .sort((a, b) => b.stars - a.stars)[0];
+  return { pick: safe || skills[0], safe: Boolean(safe) };
+}
+function quickPickHtml(scenario, skills, itemCount, subject) {
+  if (!skills.length) return "";
+  const { pick, safe } = quickPick(skills);
+  const stars = `★ ${starsK(pick.stars)}`;
+  // The language toggle replaces each [data-zh] element's text, so the link stays
+  // outside the translated pieces.
+  const lead = bi(`Of the ${itemCount} ${subject} here, the best one to start with is `,
+    `这 ${itemCount} 个${scenario.zhTitle}里，首选 `);
+  const tail = bi(safe ? ` (rated SAFE by our security scan, ${stars}).` : ` (${stars}).`,
+    safe ? `（安全扫描评级 SAFE，${stars}）。` : `（${stars}）。`);
+  const desc = bi(" " + descEn(pick).slice(0, QUICK_PICK_DESC),
+    " " + (descZh(pick) || descEn(pick)).slice(0, QUICK_PICK_DESC), "color:var(--bp-text-secondary);font-size:13px");
+  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
+  return `<div class="bp-quick-pick">
+        <span style="font-size:20px">⚡</span>
+        <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${desc}</p>
+      </div>`;
+}
+function bi(en, zh, style = "") {
+  return `<span${style ? ` style="${style}"` : ""} data-en="${esc(en)}" data-zh="${esc(zh)}">${esc(en)}</span>`;
+}
+
+function seoSubject(scenario) {
+  return scenario.serp_subject || scenario.title;
+}
+
+/** The subject as a plural noun phrase: "Web Scraping" -> "Web Scraping Tools"; a subject
+ *  with its own noun stays as it is. Appending "Tools" unconditionally produced "MCP
+ *  Database Tools Tools" in the guide headings and the ItemList (7 times on that page). */
+function subjectPhrase(scenario) {
+  const subject = seoSubject(scenario);
+  return SUBJECT_NOUN.test(subject) ? subject : `${subject} Tools`;
+}
+
 const GITHUB_ICON = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
 
 /* ── Skill matching ──────────────────────────────── */
@@ -347,6 +402,7 @@ ${breadcrumbLd}
 
 function buildAeoSection(scenario, skills, year) {
   const scenarioTitle = scenario.title;
+  const phrase = subjectPhrase(scenario);      // "Database MCP Servers for Supabase & Postgres"
   const zt = scenario.zhTitle || scenarioTitle; // Chinese title for data-zh slots
   const top3 = skills.slice(0, 3).map(s => s.repo_name);
   const topLanguages = [...new Set(skills.map(s => s.language).filter(Boolean))].slice(0, 3);
@@ -355,23 +411,23 @@ function buildAeoSection(scenario, skills, year) {
 
   return `<!-- AEO: Answer Engine Optimization Section -->
       <section class="bp-aeo-section" style="margin:32px 0;padding:24px;background:var(--bp-bg-alt);border-radius:12px;border:1px solid var(--bp-border)">
-        <h2 class="bp-section-title" style="font-size:20px;margin-bottom:20px" data-zh="${esc(zt)} 完整指南 (${year})" data-en="The Complete Guide to ${esc(scenarioTitle)} Tools (${year})">The Complete Guide to ${esc(scenarioTitle)} Tools (${year})</h2>
+        <h2 class="bp-section-title" style="font-size:20px;margin-bottom:20px" data-zh="${esc(zt)} 完整指南 (${year})" data-en="The Complete Guide to ${esc(phrase)} (${year})">The Complete Guide to ${esc(phrase)} (${year})</h2>
 
         <!-- What -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="什么是 ${esc(zt)} 工具？" data-en="What Are ${esc(scenarioTitle)} Tools?">What Are ${esc(scenarioTitle)} Tools?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="${esc(zt)} 工具是一类专注于帮助开发者和团队解决 ${esc(zt)} 相关任务的 AI 驱动软件。这些工具通常以开源形式发布在 GitHub 上，支持通过 MCP（Model Context Protocol）、Claude Skills 或独立 Agent 框架集成到现有工作流中。在 Agent Skills Hub 上，我们收录了 ${skills.length} 个经过质量评分的 ${esc(zt)} 工具，覆盖${topLanguages.join('、')}等主流编程语言。" data-en="${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.">${esc(scenarioTitle)} tools are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(scenarioTitle.toLowerCase())} tools across languages including ${topLanguages.join(', ')}.</p>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="什么是 ${esc(zt)} 工具？" data-en="What Are ${esc(phrase)}?">What Are ${esc(phrase)}?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="${esc(zt)} 工具是一类专注于帮助开发者和团队解决 ${esc(zt)} 相关任务的 AI 驱动软件。这些工具通常以开源形式发布在 GitHub 上，支持通过 MCP（Model Context Protocol）、Claude Skills 或独立 Agent 框架集成到现有工作流中。在 Agent Skills Hub 上，我们收录了 ${skills.length} 个经过质量评分的 ${esc(zt)} 工具，覆盖${topLanguages.join('、')}等主流编程语言。" data-en="${esc(phrase)} are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(phrase)} across languages including ${topLanguages.join(', ')}.">${esc(phrase)} are AI-powered software designed to help developers and teams tackle ${esc(scenarioTitle.toLowerCase())}-related tasks more efficiently. These tools are typically published as open-source projects on GitHub and can be integrated into existing workflows via MCP (Model Context Protocol), Claude Skills, or standalone agent frameworks. On Agent Skills Hub, we index ${skills.length} quality-scored ${esc(phrase)} across languages including ${topLanguages.join(', ')}.</p>
         </div>
 
         <!-- Why -->
         <div style="margin-bottom:24px">
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(zt)} 工具？" data-en="Why Use ${esc(scenarioTitle)} Tools?">Why Use ${esc(scenarioTitle)} Tools?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(zt)} 工具能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(scenarioTitle)} tools can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(zt)} 工具？" data-en="Why Use ${esc(phrase)}?">Why Use ${esc(phrase)}?</h3>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(zt)} 工具能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
         </div>
 
         <!-- How -->
         <div>
-          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(zt)} 工具？" data-en="How to Choose the Best ${esc(scenarioTitle)} Tool?">How to Choose the Best ${esc(scenarioTitle)} Tool?</h3>
+          <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(zt)} 工具？" data-en="How to Choose the Best ${esc(phrase)}?">How to Choose the Best ${esc(phrase)}?</h3>
           <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(zt)} 工具时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（本列表中最常见的语言是 ${topLanguages[0] || 'Python'}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始——它在 Star 数和质量评分上都名列前茅。" data-en="When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.">When choosing a ${esc(scenarioTitle.toLowerCase())} tool, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.</p>
         </div>
       </section>`;
@@ -414,6 +470,13 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const itemCount = skills.length + subCards.length;
   const totalStars = skills.reduce((sum, s) => sum + (s.stars || 0), 0);
   const seoTitleSubject = seoTitleHasNoun ? scenario.title : `${scenario.title} Tools`;
+  // The description and hero chip name what the title names. A page with `serp_subject`
+  // keeps its casing (brands, "MCP"); the others keep the lowercase they always had.
+  const descSubject = scenario.serp_subject ? subjectPhrase(scenario) : seoTitleSubject.toLowerCase();
+  // H1: a page with `serp_subject` puts the subject itself in the H1 ("Best Database MCP
+  // Servers for Supabase & Postgres in 2026"); the others keep the form they had.
+  const h1En = scenario.serp_subject ? `Best ${subjectPhrase(scenario)} in ${year}`
+    : titleHasSkillWord ? `Best ${scenario.title} in ${year}` : `Best AI Agent Skills for ${scenario.title} in ${year}`;
   // Lead with the security verdict, not the count.
   //
   // The old title and description said "{N} open-source X compared: {three
@@ -481,9 +544,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
 
   const metaTopNames = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
   const metaRaw = canClaim
-    ? `${itemCount} ${seoTitleSubject.toLowerCase()}, independently security-graded: ${verdict}. ` +
+    ? `${itemCount} ${descSubject}, independently security-graded: ${verdict}. ` +
       `Scanned against 11 red-flag categories. ${metaTopNames}.`
-    : `${itemCount} open-source ${seoTitleSubject.toLowerCase()} compared: ${metaTopNames}. ` +
+    : `${itemCount} open-source ${descSubject} compared: ${metaTopNames}. ` +
       `Quality-scored and refreshed every 8h.`;
   const metaDesc =
     metaRaw.length <= 155
@@ -498,7 +561,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const itemListLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `Best ${scenario.title} Tools ${year}`,
+    name: `Best ${subjectPhrase(scenario)} ${year}`,
     numberOfItems: itemListSkills.length,
     itemListElement: itemListSkills.map((s, i) => ({
       "@type": "ListItem",
@@ -634,11 +697,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
           </div>
           <div class="bp-card-meta">
             ${starsNote}
-            ${s.language && !scenarioKinds ? `<span>${esc(s.language)}</span>` : ""}
             <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
         </div>
-        <p class="bp-card-desc" style="margin:8px 0 0" data-en="${esc(s.description || "")}" data-zh="${esc(descZh(s))}">${esc(s.description || "")}</p>
+        <p class="bp-card-desc" style="margin:8px 0 0" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
         ${qsHtml}
         <div style="margin-top:10px;display:flex;gap:12px">
           <a href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub" style="color:var(--bp-text-secondary);display:inline-flex;text-decoration:none">${GITHUB_ICON}</a>
@@ -647,13 +709,14 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   }).join("\n      ");
 
   // Comparison table: the leaders only. All 200+ rows repeated every card's
-  // language and license and diluted the page's keyword.
+  // language and license and diluted the page's keyword. 10-06: stars and score only;
+  // language and license are on each skill's page. Next to the kind badge the card's
+  // language read "Python MCP Server" (61 times on mcp-database, top of its 3-word list),
+  // so cards no longer show it either.
   const compRows = skills.slice(0, COMPARE_ROWS).map((s) => {
     return `<tr>
           <td><a href="/skill/${esc(s.repo_full_name)}/" style="font-weight:500">${esc(s.repo_name)}</a></td>
           <td style="text-align:right">&#9733; ${starsK(s.stars)}</td>
-          <td>${esc(s.language || "\u2014")}</td>
-          <td>${esc(s.license && s.license !== "NOASSERTION" ? s.license : "\u2014")}</td>
           <td style="text-align:right">${s.score ? Math.round(s.score) : "\u2014"}</td>
         </tr>`;
   }).join("\n        ");
@@ -741,10 +804,10 @@ ${videoLd(scenario)}
 
       <!-- Hero -->
       <div class="bp-hero">
-        <h1 data-zh="${titleHasSkillWord ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}">${titleHasSkillWord ? `Best ${esc(scenario.title)} in ${year}` : `Best AI Agent Skills for ${esc(scenario.title)} in ${year}`}</h1>
+        <h1 data-zh="${titleHasSkillWord ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${esc(h1En)}">${esc(h1En)}</h1>
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
-          <a class="bp-stat-chip" href="#kind-cards" style="text-decoration:none" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}">🔍 Browse ${itemCount} ${esc(seoTitleSubject.toLowerCase())}</a>
+          <a class="bp-stat-chip" href="#kind-cards" style="text-decoration:none" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(descSubject)}">🔍 Browse ${itemCount} ${esc(descSubject)}</a>
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
           ${scenario.github_list ? `<a class="bp-stat-chip" href="${esc(scenario.github_list)}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="⭐ GitHub 上的开源合集 ↗" data-en="⭐ Open-source list on GitHub ↗">⭐ Open-source list on GitHub ↗</a>` : ""}
@@ -752,17 +815,8 @@ ${videoLd(scenario)}
         </div>` : ""}
       </div>
 
-      <!-- Quick Pick -->
-      ${skills.length > 0 ? `<div class="bp-quick-pick">
-        <span style="font-size:20px">⚡</span>
-        <div style="flex:1;min-width:200px">
-          <span class="bp-quick-pick-label" data-zh="快速推荐" data-en="Quick Pick">Quick Pick</span>
-          <span class="bp-quick-pick-text" data-zh="— 只选一个的话，用" data-en="— If you only pick one, go with"> — If you only pick one, go with </span>
-          <a href="${SITE}/skill/${esc(skills[0].repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(skills[0].repo_name)}</a>
-          <span style="color:var(--bp-text-muted);font-size:13px;margin-left:4px">★ ${starsK(skills[0].stars)}</span>
-          ${skills[0].description ? `<span style="color:var(--bp-text-secondary);font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
-        </div>
-      </div>` : ""}
+      <!-- Quick Pick: the answer, first -->
+      ${quickPickHtml(scenario, skills, itemCount, descSubject)}
 
       ${videoHtml(scenario)}
 
@@ -770,7 +824,7 @@ ${videoLd(scenario)}
 
       <!-- Skill Cards -->
       <section>
-        <h2 class="bp-section-title" data-zh="Top ${cards.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${cards.length} ${esc(seoTitleSubject)}">Top ${cards.length} ${esc(seoTitleSubject)}</h2>
+        <h2 class="bp-section-title" data-zh="Top ${cards.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${cards.length} ${esc(subjectPhrase(scenario))}">Top ${cards.length} ${esc(subjectPhrase(scenario))}</h2>
       ${kindBarHtml(scenarioKinds, cards)}
       <div id="kind-cards">
       ${skillCardsHtml}
@@ -787,8 +841,6 @@ ${videoLd(scenario)}
               <tr>
                 <th data-en="Tool" data-zh="工具">Tool</th>
                 <th style="text-align:right" data-en="Stars" data-zh="星标">Stars</th>
-                <th data-en="Language" data-zh="语言">Language</th>
-                <th data-en="License" data-zh="许可证">License</th>
                 <th style="text-align:right" data-en="Score" data-zh="评分">Score</th>
               </tr>
             </thead>
