@@ -1,0 +1,380 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.36,
+  "item": null,
+  "zh": "我们把两百四十多个让 AI 做视频的开源 skill 收进了一个榜单",
+  "en": "We put 240+ open-source skills that make videos with AI into one list"
+ },
+ {
+  "start": 6.36,
+  "end": 9.0,
+  "item": null,
+  "zh": "两百三十九个安全评级是 SAFE",
+  "en": "239 of them are graded SAFE"
+ },
+ {
+  "start": 9.0,
+  "end": 10.62,
+  "item": null,
+  "zh": "每八小时自动更新",
+  "en": "It updates every 8 hours"
+ },
+ {
+  "start": 10.62,
+  "end": 11.84,
+  "item": null,
+  "zh": "链接在主页",
+  "en": "The link is on my channel page"
+ },
+ {
+  "start": 11.84,
+  "end": 13.08,
+  "item": null,
+  "zh": "拿走就能用",
+  "en": "Take it and use it"
+ },
+ {
+  "start": 13.08,
+  "end": 16.467,
+  "item": null,
+  "zh": "今天从里面挑出最值得装的前十",
+  "en": "Today: the top 10 worth installing"
+ },
+ {
+  "start": 16.467,
+  "end": 18.827,
+  "item": 0,
+  "zh": "Raven，五千二百星",
+  "en": "Raven, 5,200 stars"
+ },
+ {
+  "start": 18.827,
+  "end": 20.907,
+  "item": 0,
+  "zh": "但这是整个仓库的星",
+  "en": "but those stars belong to the whole repo"
+ },
+ {
+  "start": 20.907,
+  "end": 22.987,
+  "item": 0,
+  "zh": "它主业是多智能体",
+  "en": "its main job is multi-agent work"
+ },
+ {
+  "start": 22.987,
+  "end": 25.387,
+  "item": 0,
+  "zh": "做视频只是其中一个 skill",
+  "en": "video is just one of its skills"
+ },
+ {
+  "start": 25.387,
+  "end": 26.333,
+  "item": 0,
+  "zh": "不上榜",
+  "en": "Not on the list"
+ },
+ {
+  "start": 26.333,
+  "end": 27.993,
+  "item": 1,
+  "zh": "pixel2motion",
+  "en": "pixel2motion"
+ },
+ {
+  "start": 27.993,
+  "end": 31.413,
+  "item": 1,
+  "zh": "第九，把位图 logo 变成 SVG 动画",
+  "en": "#9: turns a bitmap logo into an SVG animation"
+ },
+ {
+  "start": 31.413,
+  "end": 33.133,
+  "item": 1,
+  "zh": "还附带动效检查",
+  "en": "and checks the motion for you"
+ },
+ {
+  "start": 33.133,
+  "end": 35.113,
+  "item": 2,
+  "zh": "Narrator AI",
+  "en": "Narrator AI"
+ },
+ {
+  "start": 35.113,
+  "end": 37.073,
+  "item": 2,
+  "zh": "第八，AI 解说大师",
+  "en": "#8: the AI narration tool"
+ },
+ {
+  "start": 37.073,
+  "end": 38.233,
+  "item": 2,
+  "zh": "封装成命令行",
+  "en": "wrapped as a command-line tool"
+ },
+ {
+  "start": 38.233,
+  "end": 40.067,
+  "item": 2,
+  "zh": "给 Claude 和 Codex 调用",
+  "en": "for Claude and Codex to call"
+ },
+ {
+  "start": 40.067,
+  "end": 42.267,
+  "item": 3,
+  "zh": "HyperFrames",
+  "en": "HyperFrames"
+ },
+ {
+  "start": 42.267,
+  "end": 44.067,
+  "item": 3,
+  "zh": "第二，HeyGen 出的",
+  "en": "#2, made by HeyGen"
+ },
+ {
+  "start": 44.067,
+  "end": 47.467,
+  "item": 3,
+  "zh": "写 HTML 就能渲染成视频",
+  "en": "write HTML and it renders to video"
+ },
+ {
+  "start": 47.467,
+  "end": 48.6,
+  "item": 3,
+  "zh": "五万七千星",
+  "en": "57,000 stars"
+ },
+ {
+  "start": 48.6,
+  "end": 52.0,
+  "item": 4,
+  "zh": "Claude Code Video Toolkit",
+  "en": "Claude Code Video Toolkit"
+ },
+ {
+  "start": 52.0,
+  "end": 52.74,
+  "item": 4,
+  "zh": "第十",
+  "en": "#10"
+ },
+ {
+  "start": 52.74,
+  "end": 56.4,
+  "item": 4,
+  "zh": "给 Claude Code 用的视频制作工具包",
+  "en": "a video production toolkit for Claude Code"
+ },
+ {
+  "start": 56.4,
+  "end": 58.18,
+  "item": 5,
+  "zh": "Remotion Video Skill",
+  "en": "Remotion Video Skill"
+ },
+ {
+  "start": 58.18,
+  "end": 59.68,
+  "item": 5,
+  "zh": "三百八十六星",
+  "en": "386 stars"
+ },
+ {
+  "start": 59.68,
+  "end": 61.96,
+  "item": 5,
+  "zh": "但安全扫描标了 CAUTION",
+  "en": "but the security scan flags it CAUTION"
+ },
+ {
+  "start": 61.96,
+  "end": 63.78,
+  "item": 5,
+  "zh": "里面用了 sudo 提权",
+  "en": "it uses sudo to escalate privileges"
+ },
+ {
+  "start": 63.78,
+  "end": 64.533,
+  "item": 5,
+  "zh": "不上榜",
+  "en": "Not on the list"
+ },
+ {
+  "start": 64.533,
+  "end": 66.353,
+  "item": 6,
+  "zh": "Diffusion Studio Lottie",
+  "en": "Diffusion Studio Lottie"
+ },
+ {
+  "start": 66.353,
+  "end": 70.333,
+  "item": 6,
+  "zh": "第四，直接生成能上生产的 Lottie 动画",
+  "en": "#4: generates production-ready Lottie animations"
+ },
+ {
+  "start": 70.333,
+  "end": 72.233,
+  "item": 7,
+  "zh": "Chengfeng Videocut",
+  "en": "Chengfeng Videocut"
+ },
+ {
+  "start": 72.233,
+  "end": 72.853,
+  "item": 7,
+  "zh": "第七",
+  "en": "#7"
+ },
+ {
+  "start": 72.853,
+  "end": 77.633,
+  "item": 7,
+  "zh": "用 Claude Code skill 搭的视频剪辑 agent",
+  "en": "a video-editing agent built from Claude Code skills"
+ },
+ {
+  "start": 77.633,
+  "end": 80.113,
+  "item": 8,
+  "zh": "FireRed OpenStoryline",
+  "en": "FireRed OpenStoryline"
+ },
+ {
+  "start": 80.113,
+  "end": 83.153,
+  "item": 8,
+  "zh": "第六，说人话就能导演式剪辑",
+  "en": "#6: edit like a director, in plain language"
+ },
+ {
+  "start": 83.153,
+  "end": 85.4,
+  "item": 8,
+  "zh": "风格还能存成 skill 复用",
+  "en": "and save your style as a skill to reuse"
+ },
+ {
+  "start": 85.4,
+  "end": 87.36,
+  "item": 9,
+  "zh": "Remotion 官方 Skills",
+  "en": "Remotion's official Skills"
+ },
+ {
+  "start": 87.36,
+  "end": 87.7,
+  "item": 9,
+  "zh": "第五",
+  "en": "#5"
+ },
+ {
+  "start": 87.7,
+  "end": 90.333,
+  "item": 9,
+  "zh": "Remotion 团队自己出的 agent skills",
+  "en": "agent skills from the Remotion team itself"
+ },
+ {
+  "start": 90.333,
+  "end": 91.713,
+  "item": 10,
+  "zh": "Hypit，第三",
+  "en": "Hypit, #3"
+ },
+ {
+  "start": 91.713,
+  "end": 94.853,
+  "item": 10,
+  "zh": "一条命令复刻爆款视频",
+  "en": "remake a viral video with one command"
+ },
+ {
+  "start": 94.853,
+  "end": 96.233,
+  "item": 10,
+  "zh": "换脸，换文案",
+  "en": "swap the face, swap the script"
+ },
+ {
+  "start": 96.233,
+  "end": 98.633,
+  "item": 10,
+  "zh": "换 B-roll，能出一百个变体",
+  "en": "swap the B-roll, get 100 variations"
+ },
+ {
+  "start": 98.633,
+  "end": 100.053,
+  "item": 11,
+  "zh": "OpenMontage，第一",
+  "en": "OpenMontage, #1"
+ },
+ {
+  "start": 100.053,
+  "end": 101.253,
+  "item": 11,
+  "zh": "六万四千星",
+  "en": "64,000 stars"
+ },
+ {
+  "start": 101.253,
+  "end": 103.393,
+  "item": 11,
+  "zh": "十二条制作流水线",
+  "en": "12 production pipelines"
+ },
+ {
+  "start": 103.393,
+  "end": 105.567,
+  "item": 11,
+  "zh": "一百多个工具，七百多个 skill",
+  "en": "100+ tools, 700+ skills"
+ },
+ {
+  "start": 105.567,
+  "end": 107.347,
+  "item": null,
+  "zh": "今天这期就到这",
+  "en": "That's it for today"
+ },
+ {
+  "start": 107.347,
+  "end": 107.927,
+  "item": null,
+  "zh": "下一期",
+  "en": "Next time"
+ },
+ {
+  "start": 107.927,
+  "end": 113.207,
+  "item": null,
+  "zh": "我们拆 Opus 5.5 做视频的一千三百多个案例和提示词",
+  "en": "we break down 1,300+ Opus 5.5 video examples and their prompts"
+ },
+ {
+  "start": 113.207,
+  "end": 116.507,
+  "item": null,
+  "zh": "我是 Jason，只讲最落地的 AI 工具",
+  "en": "I'm Jason. Only AI tools you can actually use"
+ },
+ {
+  "start": 116.507,
+  "end": 118.633,
+  "item": null,
+  "zh": "我们下期再见",
+  "en": "See you next time"
+ }
+]

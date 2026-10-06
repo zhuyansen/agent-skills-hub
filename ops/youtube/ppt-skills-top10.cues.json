@@ -1,0 +1,380 @@
+[
+ {
+  "start": 0.0,
+  "end": 5.4,
+  "item": null,
+  "zh": "我们把两百多个让 AI 做 PPT 的开源 skill 收进了一个榜单",
+  "en": "We put 200+ open-source skills that make PPT with AI into one list"
+ },
+ {
+  "start": 5.4,
+  "end": 8.4,
+  "item": null,
+  "zh": "其中一百三十个安全评级是 SAFE",
+  "en": "130 of them are graded SAFE"
+ },
+ {
+  "start": 8.4,
+  "end": 10.08,
+  "item": null,
+  "zh": "每八小时自动更新",
+  "en": "It updates every 8 hours"
+ },
+ {
+  "start": 10.08,
+  "end": 11.5,
+  "item": null,
+  "zh": "链接在主页",
+  "en": "The link is on my channel page"
+ },
+ {
+  "start": 11.5,
+  "end": 12.78,
+  "item": null,
+  "zh": "拿走就能用",
+  "en": "Take it and use it"
+ },
+ {
+  "start": 12.78,
+  "end": 16.267,
+  "item": null,
+  "zh": "今天从里面挑出最值得装的前十",
+  "en": "Today: the top 10 worth installing"
+ },
+ {
+  "start": 16.267,
+  "end": 18.227,
+  "item": 0,
+  "zh": "GPT Image 2 Skill",
+  "en": "GPT Image 2 Skill"
+ },
+ {
+  "start": 18.227,
+  "end": 19.787,
+  "item": 0,
+  "zh": "五千六百星",
+  "en": "5,600 stars"
+ },
+ {
+  "start": 19.787,
+  "end": 22.287,
+  "item": 0,
+  "zh": "但它是图片提示词库",
+  "en": "but it's an image-prompt library"
+ },
+ {
+  "start": 22.287,
+  "end": 24.4,
+  "item": 0,
+  "zh": "不是做 PPT 的，不上榜",
+  "en": "not a PPT tool. Not on the list"
+ },
+ {
+  "start": 24.4,
+  "end": 25.74,
+  "item": 1,
+  "zh": "PPTAgent，第七",
+  "en": "PPTAgent, #7"
+ },
+ {
+  "start": 25.74,
+  "end": 28.1,
+  "item": 1,
+  "zh": "中科院软件所出的",
+  "en": "from the Institute of Software, Chinese Academy of Sciences"
+ },
+ {
+  "start": 28.1,
+  "end": 30.9,
+  "item": 1,
+  "zh": "做完一页会自己回头检查再改",
+  "en": "it checks each slide after making it, and fixes it"
+ },
+ {
+  "start": 30.9,
+  "end": 32.6,
+  "item": 2,
+  "zh": "Gorden PPT Skill",
+  "en": "Gorden PPT Skill"
+ },
+ {
+  "start": 32.6,
+  "end": 35.06,
+  "item": 2,
+  "zh": "第八，十七套中文模板",
+  "en": "#8: 17 Chinese templates"
+ },
+ {
+  "start": 35.06,
+  "end": 36.7,
+  "item": 2,
+  "zh": "只改字，不动版式",
+  "en": "changes the text, leaves the layout alone"
+ },
+ {
+  "start": 36.7,
+  "end": 38.56,
+  "item": 3,
+  "zh": "Frontend Slides",
+  "en": "Frontend Slides"
+ },
+ {
+  "start": 38.56,
+  "end": 42.64,
+  "item": 3,
+  "zh": "第二，让写代码的 agent 直接做网页幻灯片",
+  "en": "#2: coding agents build web slides directly"
+ },
+ {
+  "start": 42.64,
+  "end": 43.6,
+  "item": 3,
+  "zh": "三万星",
+  "en": "30,000 stars"
+ },
+ {
+  "start": 43.6,
+  "end": 45.207,
+  "item": 4,
+  "zh": "Gorden Super PPT",
+  "en": "Gorden Super PPT"
+ },
+ {
+  "start": 45.207,
+  "end": 48.54,
+  "item": 4,
+  "zh": "第十，项目说明里自称史上最最最强",
+  "en": "#10: its README calls itself the strongest ever"
+ },
+ {
+  "start": 48.54,
+  "end": 50.8,
+  "item": 4,
+  "zh": "其实是先出图片版",
+  "en": "but it makes an image deck first"
+ },
+ {
+  "start": 50.8,
+  "end": 53.167,
+  "item": 4,
+  "zh": "再转成能改的 PPTX",
+  "en": "then converts it to editable PPTX"
+ },
+ {
+  "start": 53.167,
+  "end": 54.767,
+  "item": 5,
+  "zh": "NanoBanana PPT",
+  "en": "NanoBanana PPT"
+ },
+ {
+  "start": 54.767,
+  "end": 56.547,
+  "item": 5,
+  "zh": "三千三百星",
+  "en": "3,300 stars"
+ },
+ {
+  "start": 56.547,
+  "end": 58.867,
+  "item": 5,
+  "zh": "但安全扫描标了 CAUTION",
+  "en": "but the security scan flags it CAUTION"
+ },
+ {
+  "start": 58.867,
+  "end": 60.907,
+  "item": 5,
+  "zh": "里面用了 sudo 提权",
+  "en": "it uses sudo to escalate privileges"
+ },
+ {
+  "start": 60.907,
+  "end": 61.533,
+  "item": 5,
+  "zh": "不上榜",
+  "en": "Not on the list"
+ },
+ {
+  "start": 61.533,
+  "end": 63.073,
+  "item": 6,
+  "zh": "Dashi PPT，第四",
+  "en": "Dashi PPT, #4"
+ },
+ {
+  "start": 63.073,
+  "end": 65.073,
+  "item": 6,
+  "zh": "浏览器里直接改",
+  "en": "edit right in the browser"
+ },
+ {
+  "start": 65.073,
+  "end": 67.333,
+  "item": 6,
+  "zh": "导出 PPTX 和 PDF",
+  "en": "export to PPTX and PDF"
+ },
+ {
+  "start": 67.333,
+  "end": 69.433,
+  "item": 7,
+  "zh": "Codex PPT Skill",
+  "en": "Codex PPT Skill"
+ },
+ {
+  "start": 69.433,
+  "end": 73.013,
+  "item": 7,
+  "zh": "第六，每一页都是 GPT Image 2 画的",
+  "en": "#6: every slide is drawn by GPT Image 2"
+ },
+ {
+  "start": 73.013,
+  "end": 75.133,
+  "item": 7,
+  "zh": "好看，但字改不了",
+  "en": "good-looking, but you can't edit the text"
+ },
+ {
+  "start": 75.133,
+  "end": 77.173,
+  "item": 8,
+  "zh": "Image to Editable PPT",
+  "en": "Image to Editable PPT"
+ },
+ {
+  "start": 77.173,
+  "end": 79.753,
+  "item": 8,
+  "zh": "第九，专治上一个的毛病",
+  "en": "#9: fixes exactly that"
+ },
+ {
+  "start": 79.753,
+  "end": 82.233,
+  "item": 8,
+  "zh": "把图片 PPT 变回能改的",
+  "en": "turns image decks back into editable ones"
+ },
+ {
+  "start": 82.233,
+  "end": 84.413,
+  "item": 9,
+  "zh": "HTML PPT Studio",
+  "en": "HTML PPT Studio"
+ },
+ {
+  "start": 84.413,
+  "end": 85.853,
+  "item": 9,
+  "zh": "第五，二十四种主题",
+  "en": "#5: 24 themes"
+ },
+ {
+  "start": 85.853,
+  "end": 86.833,
+  "item": 9,
+  "zh": "二十多种动画",
+  "en": "20+ animations"
+ },
+ {
+  "start": 86.833,
+  "end": 88.993,
+  "item": 10,
+  "zh": "归藏的 PPT Skill",
+  "en": "Guizang's PPT Skill"
+ },
+ {
+  "start": 88.993,
+  "end": 90.533,
+  "item": 10,
+  "zh": "第三，杂志风",
+  "en": "#3: magazine style"
+ },
+ {
+  "start": 90.533,
+  "end": 91.733,
+  "item": 10,
+  "zh": "瑞士风排版",
+  "en": "and Swiss-style layouts"
+ },
+ {
+  "start": 91.733,
+  "end": 93.873,
+  "item": 10,
+  "zh": "跟刚才那个不上榜的",
+  "en": "same author as the one"
+ },
+ {
+  "start": 93.873,
+  "end": 95.2,
+  "item": 10,
+  "zh": "是同一个作者",
+  "en": "that didn't make the list"
+ },
+ {
+  "start": 95.2,
+  "end": 96.46,
+  "item": 11,
+  "zh": "PPT Master",
+  "en": "PPT Master"
+ },
+ {
+  "start": 96.46,
+  "end": 98.28,
+  "item": 11,
+  "zh": "第一，五万七千星",
+  "en": "#1, 57,000 stars"
+ },
+ {
+  "start": 98.28,
+  "end": 100.12,
+  "item": 11,
+  "zh": "丢一份文档进去",
+  "en": "drop in a document"
+ },
+ {
+  "start": 100.12,
+  "end": 102.64,
+  "item": 11,
+  "zh": "出来的是原生能改的 PPT",
+  "en": "and get a native, editable PPT"
+ },
+ {
+  "start": 102.64,
+  "end": 104.333,
+  "item": 11,
+  "zh": "动画和旁白都带上",
+  "en": "with animations and voice-over"
+ },
+ {
+  "start": 104.333,
+  "end": 106.153,
+  "item": null,
+  "zh": "今天这期就到这",
+  "en": "That's it for today"
+ },
+ {
+  "start": 106.153,
+  "end": 110.273,
+  "item": null,
+  "zh": "下一期，我们排 AI 做视频的 skill 前十",
+  "en": "Next time: the top 10 AI video skills"
+ },
+ {
+  "start": 110.273,
+  "end": 113.753,
+  "item": null,
+  "zh": "我是 Jason，只讲最落地的 AI 工具",
+  "en": "I'm Jason. Only AI tools you can actually use"
+ },
+ {
+  "start": 113.753,
+  "end": 116.0,
+  "item": null,
+  "zh": "我们下期再见",
+  "en": "See you next time"
+ }
+]

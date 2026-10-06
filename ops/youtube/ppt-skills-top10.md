@@ -83,7 +83,7 @@ Left out: GPT-Image2-Skill (an image-prompt library, not a PPT tool) and NanoBan
 
 ## 3. 其他设置
 
-- **字幕**:两份已备好,`ops/youtube/ppt-skills-top10.zh.srt`(中文)和 `ppt-skills-top10.en.srt`(英文),30 条,时间轴来自 Whisper 词级时间戳,文字按画面校对过。上传步骤:
+- **字幕**:两份已备好,`ops/youtube/ppt-skills-top10.zh.srt`(中文)和 `ppt-skills-top10.en.srt`(英文),54 条,直接取自视频烧录字幕的时间轴(`~/ship2market/sitedata/viral-clone/ppt-skills-A3/codevid/timeline.json`,用 `captions_to_srt.py` 转),文字和时间与画面一致;英文逐条翻译(`ppt-skills-top10.cues.json`)。10-06 第一版是 Whisper 转写的 30 条,已替换。上传步骤:
   1. YouTube Studio → 左侧"字幕" → 点这条视频。
   2. 第一次会让你选视频语言:选"中文(简体)"。
   3. 中文那一行 → 字幕 → "添加" → "上传文件" → 选"包含时间" → 选 `.zh.srt` → 发布。

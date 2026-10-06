@@ -1,119 +1,215 @@
 1
-00:00:00,000 --> 00:00:05,000
+00:00:00,000 --> 00:00:05,400
 We put 200+ open-source skills that make PPT with AI into one list
 
 2
-00:00:05,160 --> 00:00:09,860
-130 of them are graded SAFE, and it updates every 8 hours
+00:00:05,400 --> 00:00:08,400
+130 of them are graded SAFE
 
 3
-00:00:10,160 --> 00:00:12,420
-The link is on my channel page. Take it and use it.
+00:00:08,400 --> 00:00:10,080
+It updates every 8 hours
 
 4
-00:00:12,840 --> 00:00:15,840
-Today: the top 10 worth installing.
+00:00:10,080 --> 00:00:11,500
+The link is on my channel page
 
 5
-00:00:16,520 --> 00:00:18,820
-GPT-Image2-Skill, 5,600 stars,
+00:00:11,500 --> 00:00:12,780
+Take it and use it
 
 6
-00:00:19,640 --> 00:00:24,020
-but it's an image-prompt library, not a PPT tool. Not on the list.
+00:00:12,780 --> 00:00:16,267
+Today: the top 10 worth installing
 
 7
-00:00:24,320 --> 00:00:27,600
-PPTAgent, #7, from the Chinese Academy of Sciences:
+00:00:16,267 --> 00:00:18,227
+GPT Image 2 Skill
 
 8
-00:00:27,840 --> 00:00:30,520
-it checks each slide after making it and fixes it.
+00:00:18,227 --> 00:00:19,787
+5,600 stars
 
 9
-00:00:30,700 --> 00:00:34,440
-GordenPPTSkill, #8: 17 Chinese templates,
+00:00:19,787 --> 00:00:22,287
+but it's an image-prompt library
 
 10
-00:00:34,780 --> 00:00:36,360
-it changes the text and leaves the layout alone.
+00:00:22,287 --> 00:00:24,400
+not a PPT tool. Not on the list
 
 11
-00:00:36,880 --> 00:00:38,460
-frontend-slides, #2:
+00:00:24,400 --> 00:00:25,740
+PPTAgent, #7
 
 12
-00:00:38,880 --> 00:00:43,140
-coding agents build web slides directly. 30,000 stars.
+00:00:25,740 --> 00:00:28,100
+from the Institute of Software, Chinese Academy of Sciences
 
 13
-00:00:43,860 --> 00:00:48,240
-GordenSuperPPTSkills, #10. Its README calls itself the strongest ever,
+00:00:28,100 --> 00:00:30,900
+it checks each slide after making it, and fixes it
 
 14
-00:00:48,420 --> 00:00:52,800
-but it makes an image deck first, then converts it to editable PPTX.
+00:00:30,900 --> 00:00:32,600
+Gorden PPT Skill
 
 15
-00:00:53,060 --> 00:00:55,860
-NanoBanana-PPT-Skills, 3,300 stars,
+00:00:32,600 --> 00:00:35,060
+#8: 17 Chinese templates
 
 16
-00:00:56,500 --> 00:01:01,220
-but the security scan flags it Caution: it uses sudo. Not on the list.
+00:00:35,060 --> 00:00:36,700
+changes the text, leaves the layout alone
 
 17
-00:01:01,260 --> 00:01:02,700
-Dashi PPT, #4:
+00:00:36,700 --> 00:00:38,560
+Frontend Slides
 
 18
-00:01:03,260 --> 00:01:07,060
-edit right in the browser, export to PPTX and PDF.
+00:00:38,560 --> 00:00:42,640
+#2: coding agents build web slides directly
 
 19
-00:01:07,300 --> 00:01:09,560
-codex-ppt-skill, #6:
+00:00:42,640 --> 00:00:43,600
+30,000 stars
 
 20
-00:01:09,940 --> 00:01:14,680
-every slide is drawn by GPT Image 2. Good-looking, but you can't edit the text.
+00:00:43,600 --> 00:00:45,207
+Gorden Super PPT
 
 21
-00:01:15,280 --> 00:01:17,520
-image-to-editable-ppt-skill, #9,
+00:00:45,207 --> 00:00:48,540
+#10: its README calls itself the strongest ever
 
 22
-00:01:17,880 --> 00:01:21,940
-fixes exactly that: turns image decks back into editable ones.
+00:00:48,540 --> 00:00:50,800
+but it makes an image deck first
 
 23
-00:01:21,940 --> 00:01:26,620
-HTML PPT Studio, #5: 24 themes, 20+ animations.
+00:00:50,800 --> 00:00:53,167
+then converts it to editable PPTX
 
 24
-00:01:26,980 --> 00:01:31,380
-Guizang's guizang-ppt-skill, #3: magazine and Swiss-style layouts,
+00:00:53,167 --> 00:00:54,767
+NanoBanana PPT
 
 25
-00:01:31,720 --> 00:01:34,800
-same author as the one that didn't make the list.
+00:00:54,767 --> 00:00:56,547
+3,300 stars
 
 26
-00:01:35,460 --> 00:01:38,040
-ppt-master, #1, 57,000 stars:
+00:00:56,547 --> 00:00:58,867
+but the security scan flags it CAUTION
 
 27
-00:01:38,260 --> 00:01:44,120
-drop in a document, get a native editable PPT, with animations and voice-over.
+00:00:58,867 --> 00:01:00,907
+it uses sudo to escalate privileges
 
 28
-00:01:44,120 --> 00:01:49,840
-That's it for today. Next time: the top 10 AI video skills.
+00:01:00,907 --> 00:01:01,533
+Not on the list
 
 29
-00:01:50,140 --> 00:01:53,340
-I'm Jason. Only AI tools you can actually use.
+00:01:01,533 --> 00:01:03,073
+Dashi PPT, #4
 
 30
-00:01:53,640 --> 00:01:54,940
-See you next time.
+00:01:03,073 --> 00:01:05,073
+edit right in the browser
+
+31
+00:01:05,073 --> 00:01:07,333
+export to PPTX and PDF
+
+32
+00:01:07,333 --> 00:01:09,433
+Codex PPT Skill
+
+33
+00:01:09,433 --> 00:01:13,013
+#6: every slide is drawn by GPT Image 2
+
+34
+00:01:13,013 --> 00:01:15,133
+good-looking, but you can't edit the text
+
+35
+00:01:15,133 --> 00:01:17,173
+Image to Editable PPT
+
+36
+00:01:17,173 --> 00:01:19,753
+#9: fixes exactly that
+
+37
+00:01:19,753 --> 00:01:22,233
+turns image decks back into editable ones
+
+38
+00:01:22,233 --> 00:01:24,413
+HTML PPT Studio
+
+39
+00:01:24,413 --> 00:01:25,853
+#5: 24 themes
+
+40
+00:01:25,853 --> 00:01:26,833
+20+ animations
+
+41
+00:01:26,833 --> 00:01:28,993
+Guizang's PPT Skill
+
+42
+00:01:28,993 --> 00:01:30,533
+#3: magazine style
+
+43
+00:01:30,533 --> 00:01:31,733
+and Swiss-style layouts
+
+44
+00:01:31,733 --> 00:01:33,873
+same author as the one
+
+45
+00:01:33,873 --> 00:01:35,200
+that didn't make the list
+
+46
+00:01:35,200 --> 00:01:36,460
+PPT Master
+
+47
+00:01:36,460 --> 00:01:38,280
+#1, 57,000 stars
+
+48
+00:01:38,280 --> 00:01:40,120
+drop in a document
+
+49
+00:01:40,120 --> 00:01:42,640
+and get a native, editable PPT
+
+50
+00:01:42,640 --> 00:01:44,333
+with animations and voice-over
+
+51
+00:01:44,333 --> 00:01:46,153
+That's it for today
+
+52
+00:01:46,153 --> 00:01:50,273
+Next time: the top 10 AI video skills
+
+53
+00:01:50,273 --> 00:01:53,753
+I'm Jason. Only AI tools you can actually use
+
+54
+00:01:53,753 --> 00:01:56,000
+See you next time
