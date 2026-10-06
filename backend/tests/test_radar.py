@@ -227,3 +227,36 @@ def test_review_sends_one_trends_task_per_call():
     assert [c["arguments"]["body"][0]["keywords"] for c in calls[:3]] == [["strata"], ["niko1221 strata"], ["niko strata"]]
     assert calls[3]["arguments"]["body"][0]["keywords"] == ["veo 3 free"]
     assert calls[0]["arguments"]["body"][0]["date_to"] == "2026-10-09" and calls[3]["arguments"]["body"][0]["date_to"] == "2026-10-17"
+
+
+# --- ③ new sites (whois overview, weekly) --------------------------------------------------
+
+import json as _json  # noqa: E402
+
+import new_sites  # noqa: E402
+
+FIXTURE = Path(__file__).parent / "fixtures/whois_new_ai_sites.json"   # real answer, 2026-10-06
+
+
+def test_new_site_name_terms():
+    assert new_sites.name_terms("ai-hailuo.com") == ["hailuo"]
+    assert new_sites.name_terms("livephoto.video") == ["livephoto"]
+    assert new_sites.name_terms("ai-video-tool.com") == []   # only stop words left
+
+
+def test_new_sites_drop_domains_ranking_for_a_handful_of_terms(monkeypatch, tmp_path):
+    items = _json.loads(FIXTURE.read_text())
+    answer = {"tasks": [{"result": [{"items": items}]}]}
+    monkeypatch.setattr(new_sites.aisa, "call_all", lambda calls: ({c["call_id"]: answer for c in calls}, 127000))
+    out = new_sites.new_sites(tmp_path, date(2026, 10, 6))
+    domains = [r["domain"] for r in out["sites"]]
+    assert "ai-hailuo.com" in domains and "neonwin386.ai" not in domains and "oyo88.ai" not in domains
+    assert all(r["new"] for r in out["sites"]) and "hailuo" in [t["term"] for t in out["terms"]]
+    again = new_sites.new_sites(tmp_path, date(2026, 10, 13))
+    assert not any(r["new"] for r in again["sites"]) and again["terms"] == []
+
+
+def test_new_sites_query_needs_both_dates():
+    body = new_sites._calls(date(2026, 10, 6))[0]["arguments"]["body"][0]
+    fields = [f[0] for f in body["filters"] if isinstance(f, list)]
+    assert fields[:2] == ["created_datetime", "first_seen"] and body["filters"][0][2].startswith("2026-07-08")

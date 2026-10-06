@@ -5,13 +5,16 @@ name: New-term radar
 # Hugging Face's trending list, run apart every 8 hours (radar-source.yml) and listed
 # here from radar_leads; ② a new GitHub repo taking off on its own, and
 # terms new repos in the catalog suddenly share; ③ pages competitors and LobeHub added
-# to their sitemaps since yesterday; ④ GSC queries seen for the first time (fresh data).
+# to their sitemaps since yesterday, and on Mondays new sites (registered in the last 90
+# days, already ranking; AIsa whois overview, about $0.26); ④ GSC queries seen for the
+# first time (fresh data).
 # Jev checks which are names of new things. Leads are kept in the table radar_leads
 # (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
 # report ends with each signal's hit rate. The report goes to the run summary and the
 # mail to RADAR_EMAIL_TO (ops/radar/notify.py, Resend). It writes only radar_leads; it never pushes to main.
 #
-# AIsa here is only the review: up to 15 Trends tasks at $0.0012, under $0.02 a day.
+# AIsa here: the review (up to 15 Trends tasks at $0.0012, under $0.02 a day) and the
+# Monday new-site queries (about $0.26 a week).
 #
 # Yesterday's competitor URLs and repo star counts live in the Actions cache (one entry per run, restored by
 # prefix), so the repo does not grow. A missing cache only means the run builds a new

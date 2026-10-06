@@ -1,0 +1,68 @@
+[
+ {
+  "domain": "neonwin386.ai",
+  "created_datetime": "2026-07-30 05:43:40 +00:00",
+  "first_seen": "2026-09-05 13:59:15 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 7317.759796142578,
+    "count": 5
+   }
+  }
+ },
+ {
+  "domain": "ai-meigen.com",
+  "created_datetime": "2026-07-06 15:25:58 +00:00",
+  "first_seen": "2026-07-26 12:52:10 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 3849.679958090186,
+    "count": 90
+   }
+  }
+ },
+ {
+  "domain": "ai-typingtest.com",
+  "created_datetime": "2026-08-11 18:30:04 +00:00",
+  "first_seen": "2026-08-22 06:48:48 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 3700.0039995349944,
+    "count": 535
+   }
+  }
+ },
+ {
+  "domain": "ai-summary.net",
+  "created_datetime": "2026-07-13 16:31:43 +00:00",
+  "first_seen": "2026-07-26 10:09:56 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 2439.17600511387,
+    "count": 23
+   }
+  }
+ },
+ {
+  "domain": "ai-hailuo.com",
+  "created_datetime": "2026-08-09 06:03:11 +00:00",
+  "first_seen": "2026-08-16 12:13:28 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 1985.9724980536848,
+    "count": 258
+   }
+  }
+ },
+ {
+  "domain": "oyo88.ai",
+  "created_datetime": "2026-08-18 04:39:41 +00:00",
+  "first_seen": "2026-09-05 16:47:53 +00:00",
+  "metrics": {
+   "organic": {
+    "etv": 1580.7999877929688,
+    "count": 3
+   }
+  }
+ }
+]

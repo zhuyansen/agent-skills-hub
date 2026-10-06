@@ -16,6 +16,8 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ② breakout one new GitHub repo taking off on its own (breakout.breakouts)
   ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge)
   ③ sitemaps pages competitors and LobeHub added since yesterday (sitemap_diff.diff)
+  ③ new sites domains registered in the last 90 days that already rank (new_sites.py; Mondays,
+             or --new-sites; about $0.26 through AIsa)
   ④ GSC      queries that brought impressions for the first time (signals.gsc_new)
 Terms from ①–③ go to Jev with a few examples: is this the name of a specific new
 product, model or technique, or a common word? Those that pass, and that no scenario
@@ -28,12 +30,14 @@ from __future__ import annotations
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path[:0] = [str(HERE), str(ROOT / "ops/jev-review")]
 import breakout  # noqa: E402
+import new_sites  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
 import sitemap_diff  # noqa: E402
@@ -47,7 +51,9 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
     "focus": "`examples` are repo names, descriptions, posts or page paths where it appeared. 'opus 5.5', 'hyperframes', "
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
-KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "github": "②GitHub", "sitemap": "③竞品", "watch": "观察词"}
+KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
+         "watch": "观察词"}
+NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
 TOPICS = {k: re.compile(v, re.I) for k, v in json.loads((HERE / "topics.json").read_text()).items() if not k.startswith("_")}
 
 
@@ -165,6 +171,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     else:
         lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
 
+    lines += _new_site_lines(b.get("newsite", {"skipped": True}))
     lines += ["", "### ④ GSC 首次出现的搜索词(新鲜数据,约晚 1 天)", ""]
     if gsc.get("queries"):
         lines += [f"{gsc['window']},共 {gsc['total_new']} 个新词,曝光 ≥{signals.GSC_MIN_IMPRESSIONS} 的:", "",
@@ -196,8 +203,22 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines += _source_status(x, hf)
     bo = b["breakout"]
     lines += _rest_status(bo, gh, sm, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev)}")
+    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}))}")
     return "\n".join(lines) + "\n"
+
+
+def _new_site_lines(ns: dict) -> list[str]:
+    """Weekly: sites registered in the last 90 days that already draw search traffic."""
+    if ns.get("skipped"):
+        return []
+    lines = ["", f"### ③ 新站(近 {new_sites.WINDOW_DAYS} 天注册且首次被收录、月访问估值 >{new_sites.MIN_ETV}、"
+             f"排名词 ≥{new_sites.MIN_KEYWORDS};每周一;🆕 = 第一次出现)", ""]
+    sites = ns.get("sites") or []
+    if not sites:
+        return lines + [f"无({ns.get('error') or '这周没有符合条件的新站'})"]
+    lines += ["| 域名 | 注册 | 首次收录 | 访问/月(估) | 排名词 |", "|---|---|---|---|---|"]
+    return lines + [f"| {'🆕 ' if r['new'] else ''}[{r['domain']}](https://{r['domain']}) | {r['created']} | {r['first_seen']} | "
+                    f"{r['etv']} | {r['keywords']} |" for r in sites]
 
 
 def _source_status(x: dict, hf: dict) -> list[str]:
@@ -264,6 +285,8 @@ def main() -> int:
         "breakout": run("breakout", lambda: breakout.breakouts(snaps), "--skip-breakout" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),
         "sitemap": run("sitemaps", lambda: sitemap_diff.diff(snaps), "--skip-sitemaps" in flags),
+        "newsite": run("newsite", lambda: new_sites.new_sites(snaps),
+                       not ("--new-sites" in flags or date.today().weekday() == NEW_SITES_WEEKDAY)),
     }
     gsc = run("gsc", signals.gsc_new, "--skip-gsc" in flags)
     lead = leads(blocks)
