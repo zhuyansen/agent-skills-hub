@@ -935,37 +935,37 @@
    {
     "id": "general",
     "icon": "🧱",
-    "en": "All-in-one",
+    "en": "All-in-one skill managers",
     "zh": "综合管理"
    },
    {
     "id": "cli",
     "icon": "⌨️",
-    "en": "CLI installers",
+    "en": "Skills CLI installers",
     "zh": "命令行安装"
    },
    {
     "id": "sync",
     "icon": "🔄",
-    "en": "Sync across agents",
+    "en": "Skill sync across agents",
     "zh": "多 Agent 同步"
    },
    {
     "id": "app",
     "icon": "🖥",
-    "en": "Apps & GUIs",
+    "en": "Skill manager apps",
     "zh": "桌面与界面"
    },
    {
     "id": "registry",
     "icon": "🔎",
-    "en": "Registries & marketplaces",
+    "en": "Skill registries & marketplaces",
     "zh": "市场与目录"
    },
    {
     "id": "team",
     "icon": "👥",
-    "en": "Teams",
+    "en": "Team skill management",
     "zh": "团队管理"
    }
   ],

@@ -280,7 +280,7 @@ export const translations = {
     "auth.favorites": "我的收藏",
 
     // Hero
-    "hero.title": "{count} Claude Skills、MCP Server 与 Agent 工具",
+    "hero.title": "Claude Skills 市场：{count} 个 Skill、MCP Server 与 Agent 工具",
     "hero.subtitle":
       "开源目录 · 安全评级 · 10 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
     "hero.trending": "热门",
@@ -683,7 +683,7 @@ export const translations = {
     "chart.skills": "Skills",
 
     // Hero
-    "hero.title": "{count} Claude Skills, MCP Servers & Agent Tools",
+    "hero.title": "Claude Skills Marketplace: {count} Skills & MCP Servers",
     "hero.subtitle":
       "The open-source directory. Security-graded, quality-scored on 10 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
     "hero.trending": "Trending",

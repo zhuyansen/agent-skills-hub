@@ -2398,7 +2398,9 @@
   "slug": "skill-management-tools",
   "title": "Skill & Agent Management",
   "github_list": "https://github.com/zhuyansen/awesome-agent-skills-managers",
-  "description": "Desktop apps, CLI package managers, and session managers for organizing Claude Code skills, Codex skills, and multi-agent workflows across 15+ AI coding tools.",
+  "serp_subject": "Claude Skills Managers & CLIs",
+  "seo_keyword": "claude skills manager",
+  "description": "Claude skills managers and skills CLIs that install Claude skills, keep them updated and sync them across Claude Code, Codex and 15+ other AI coding tools: desktop apps, package managers, registries.",
   "match": {
    "categories": [],
    "primary_keywords": [
