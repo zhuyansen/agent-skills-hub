@@ -332,6 +332,53 @@
   background: var(--bp-rank-gray);
 }
 
+/* ===== Scenario page cards (/best/<slug>/) =====
+   These were inline styles repeated on every one of 200-300 cards (175 KB of a
+   900 KB page, 10-06). Two-class selectors so each beats the shared .bp-card /
+   .bp-rank / .bp-card-desc rule the way the inline style did. */
+.bp-card.bp-sc-card {
+  margin: 16px 0;
+  cursor: pointer;
+}
+.bp-sc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bp-rank.bp-sc-rank {
+  display: inline-flex;
+  margin-right: 8px;
+  font-size: 14px;
+}
+.bp-card-title.bp-sc-title {
+  font-size: 18px;
+  display: inline;
+}
+.bp-sc-by {
+  color: var(--bp-text-muted);
+  font-size: 13px;
+  margin-left: 8px;
+}
+.bp-badge-category.bp-sc-badge {
+  color: var(--bp-badge-purple-text);
+  background: var(--bp-badge-purple-bg);
+}
+.bp-card-desc.bp-sc-desc {
+  margin: 8px 0 0;
+}
+.bp-sc-foot {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+}
+.bp-sc-gh {
+  color: var(--bp-text-secondary);
+  display: inline-flex;
+  text-decoration: none;
+}
+
 /* ===== Table ===== */
 .bp-table-wrap {
   overflow-x: auto;

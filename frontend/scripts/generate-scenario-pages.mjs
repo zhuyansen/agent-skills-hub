@@ -46,7 +46,23 @@ function subjectPhrase(scenario) {
   return SUBJECT_NOUN.test(subject) ? subject : `${subject} Tools`;
 }
 
-const GITHUB_ICON = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
+// The GitHub mark is defined once per page (GITHUB_SYMBOL) and each card points to it:
+// a full copy per card was 215 KB of a 900 KB page (10-06).
+const GITHUB_SYMBOL = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bp-gh" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol></svg>';
+const GITHUB_ICON = '<svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#bp-gh"/></svg>';
+// Whole card navigates (Clarity: 36% of /best/ sessions dead-clicked the card body; only
+// the title and footer links were live). One listener for all cards instead of an
+// onclick on each; links inside a card keep their own target.
+const CARD_SCRIPT = `<script>
+document.addEventListener("click", function (e) {
+  if (e.target.closest("a")) return;
+  var card = e.target.closest(".bp-card[data-href]");
+  if (card) window.location.href = card.dataset.href;
+});
+</script>`;
+// Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
+// stylesheet never meets newer markup.
+const CSS_VERSION = "20261006";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -652,25 +668,23 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         </div>`
       : "";
 
-    // Whole card navigates (Clarity: 36% of /best/ sessions dead-clicked the
-    // card body — only the title + footer links were live). Inner <a>s win
-    // naturally via the closest('a') guard.
-    return `<div class="bp-card"${kindAttrs(scenarioKinds, s)} style="margin:16px 0;cursor:pointer" onclick="if(!event.target.closest('a'))window.location.href='/skill/${esc(s.repo_full_name)}/'">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+    // Classes, not inline styles: see the scenario card rules in best-pages.css.
+    return `<div class="bp-card bp-sc-card"${kindAttrs(scenarioKinds, s)} data-href="/skill/${esc(s.repo_full_name)}/">
+        <div class="bp-sc-head">
           <div>
-            <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"}" style="display:inline-flex;margin-right:8px;font-size:14px">${i + 1}</span>
-            <a class="bp-card-title" href="${esc(titleUrl)}" style="font-size:18px;display:inline">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
-            <span style="color:var(--bp-text-muted);font-size:13px;margin-left:8px" data-en="by ${esc(s.author_name)}" data-zh="作者 ${esc(s.author_name)}">by ${esc(s.author_name)}</span>
+            <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"} bp-sc-rank">${i + 1}</span>
+            <a class="bp-card-title bp-sc-title" href="${esc(titleUrl)}">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
+            <span class="bp-sc-by" data-en="by ${esc(s.author_name)}" data-zh="作者 ${esc(s.author_name)}">by ${esc(s.author_name)}</span>
           </div>
           <div class="bp-card-meta">
             ${starsNote}
-            <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
+            <span class="bp-badge-category bp-sc-badge" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
         </div>
-        <p class="bp-card-desc" style="margin:8px 0 0" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
+        <p class="bp-card-desc bp-sc-desc" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
         ${qsHtml}
-        <div style="margin-top:10px;display:flex;gap:12px">
-          <a href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub" style="color:var(--bp-text-secondary);display:inline-flex;text-decoration:none">${GITHUB_ICON}</a>
+        <div class="bp-sc-foot">
+          <a class="bp-sc-gh" href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub">${GITHUB_ICON}</a>
         </div>
       </div>`;
   }).join("\n      ");
@@ -753,7 +767,7 @@ ${faqLd}
 ${videoLd(scenario)}
 
   <!-- Static page: no SPA JavaScript, CSS only -->
-  <link rel="stylesheet" href="/best-pages.css" />
+  <link rel="stylesheet" href="/best-pages.css?v=${CSS_VERSION}" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
   ${analyticsTags()}
 </head>
@@ -795,9 +809,11 @@ ${videoLd(scenario)}
       <section>
         <h2 class="bp-section-title" data-zh="Top ${cards.length} ${esc(scenario.zhTitle)}${titleHasSkillWord ? "" : " 工具"}" data-en="Top ${cards.length} ${esc(subjectPhrase(scenario))}">Top ${cards.length} ${esc(subjectPhrase(scenario))}</h2>
       ${kindBarHtml(scenarioKinds, cards)}
+      ${GITHUB_SYMBOL}
       <div id="kind-cards">
       ${skillCardsHtml}
       </div>
+      ${CARD_SCRIPT}
       ${scenarioKinds ? KIND_SCRIPT : ""}
       </section>
 
