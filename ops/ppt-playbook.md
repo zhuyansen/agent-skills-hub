@@ -37,7 +37,7 @@
    - **AIsa(DataForSEO)**:查 "skill / MCP for X" 这种说法的搜索量和 KD。**KD 比搜索量重要**:ppt 词簇每月只有约 840 次搜索,KD ≤5,却带来 5 万曝光。
    - **目录**:背后有没有 30 个以上真实工具?只有一个知名仓库的主题是导航型搜索,会被 GitHub 拿走。
 2. **一个主题只做一个页面。** 已经有页面在排这个主题,就升级它;同一种意图不要另开网址。
-3. **标题写清工具意图和 agent 名字**(如 "… Skills for Codex & Claude Code"),不超过 60 字符(生成器会自动控制)。避开有歧义的词(比如 "presentation skills" 搜的是演讲技巧)。
+3. **标题写清工具意图和 agent 名字**(如 "… Skills for Codex & Claude Code"),不超过 60 字符(生成器会自动控制)。避开有歧义的词(比如 "presentation skills" 搜的是演讲技巧)。**但正文里核心词("ppt skill")要出现得最多**,agent 名不能反超;跟着模型热度起来的浪潮词(如 `codex ppt skill`)单开页链回来,别塞进主页面(见 `ops/seo-watersystem-model.md` 页面级规则)。
 4. **审核内容,不靠关键词自动选卡**(`ops/jev-review/page_profiles.py` → `upgrade_page.py collect/split/publish`,`scenario_gate.py judge/types`):
    - 每个上页的仓库都由 Jev 读 README:是否切题、是不是软件、README 质量;
    - 分 5–7 个类型,页面上可筛选;
@@ -69,7 +69,8 @@ Ahrefs DR:6(07-10)→ 7(07-16)→ 12(10-05)。
 ## PPT 页还没做的
 
 - **一条 "ppt skills" 的 YouTube 视频**:Google 第一页的 10 个结果里有 2 个是 YouTube。
-- **减少字数**:每页约 9,000 词,体检工具建议 1,200–1,800;要明显减少只能少放卡片。
+- ~~减少字数~~:**不用做**。哥飞的口径是聚合页"内容短不了",真正的问题是核心词被卡片元数据冲淡,10-06 已处理(卡片标签改成审核类型、去掉语言标签、对比表只留前 20,12e0dd1)。
+- **10-06 排名**:`ppt skills` 到了第 3(10-05 是第 4)。10-05 时前两位是 github.com 的平台固定位、第 3 是 kimi.ai(DR 77);如果前两位没变,第 3 就是非平台结果里的第一(待用 `/serp/` 复核);下一步按哥飞的说法,把这一页当权重中枢,铺更细的说法(三级词)。
 
 ## 已经复刻到哪些页面
 

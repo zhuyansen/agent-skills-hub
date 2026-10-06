@@ -123,7 +123,7 @@
   用法:`python ops/ga/fetch_ga.py` —— 热门页/来源(limit 60)/转化事件;GEO 水位(AI 引荐会话)从 sources 里按 AI_SRC 元组算。**比较对象**:建"会话来源 ∈ AI_SRC 元组"的 Comparison(或 analytics-mcp run_report 加 sessionSource 过滤),对比 AI 引荐 vs 整体的转化事件率 —— 用自己的数据验证"AI 用户更值钱"(外部经验:ChatGPT 引荐付费率高),成立则 GEO 优先级上调。
   坑:**先确认 gtag 流向哪个 property** —— 我们的数据在"新媒体运营"(485523739),专属 property 是空的(避坑 4);查询必须带 hostName 过滤。初始配置:数据保留期默认 2 个月,改 14 个月才能看历史。
 
-- **B2 Plausible**
+- **B2 Plausible(已停用,2026-08 起)**:试用到期、站点被锁(402),决定不续,GA4/GSC/Clarity 已覆盖。下面留作记录;"建页前查重"改用 GA 落地页 + GSC 按页 + grep slug。
   是什么:轻量隐私友好的真实 PV 统计,近实时。
   安装:plausible.io 建站点 → script 片段进 `index.html`;API key 存 `ops/plausible/.api_key`(gitignore)。
   用法:`python ops/plausible/fetch_plausible.py` —— 热门页 + 来源;**建页前查重的关键一环**(靠它抓到 ppt 重复页自相竞争);utm 归因看付费导航站回报。
@@ -249,7 +249,7 @@
 
 ## 四、避坑指南(27 条,每条一个伤疤)
 
-1. **GSC 曝光榜 ≠ 品类深度**。建页前三查:目录广度、grep 现有 slug、Plausible 热门页。(ppt-skills 撞 ppt-presentation,自相竞争 3 天才发现)
+1. **GSC 曝光榜 ≠ 品类深度**。建页前三查:目录广度、grep 现有 slug、GA 落地页 / GSC 按页(原来用 Plausible 热门页,已停用)。(ppt-skills 撞 ppt-presentation,自相竞争 3 天才发现)
 2. **pos 50+ 是权威病**,不是措辞病。建页、改标题都无效,归权重线。**例外判别**:先看 SERP 前十供给质量——全是论坛帖/过期站/凑数视频 = 供给不足不是权威病,值得单独重做(allintitle 供需比 <0.25 佐证);另一解法是从对手弱势维度错位进攻(内容多样性/社媒),不死磕同维度。**机制**:谷歌信任探针——小流量测试→接住→给更多,循环;低质页多→爬虫预算调低→未索引增长→持续则整站曝光受罚(这就是 3,666 个超长标题 audit 页要修的原因)。
 3. **小样本位次是幻觉**:pos 3.1 = 28 天仅 19 次曝光、跨 9 国的平均;"我怎么搜不到"是常态,别恐慌也别吹。
 4. **先查 gtag 流向再信 GA**:我们的数据流进错的 property,正确的那个是空的,差点全盘误读。
