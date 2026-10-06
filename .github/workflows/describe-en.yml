@@ -1,0 +1,53 @@
+name: English card descriptions
+
+# Writes English descriptions for scenario-page cards whose GitHub description is in
+# Japanese, Chinese or Korean (ops/jev-review/describe_en.py: FlatRouter GPT writes, Jev
+# checks), and commits frontend/scripts/scenario-desc-en.json to main. Sundays 03:00 UTC
+# for cards that appeared during the week, or on demand. The next deploy picks the file up.
+
+on:
+  schedule:
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "最多翻译几条(留空 = 全部)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: describe-en
+  cancel-in-progress: false
+
+jobs:
+  describe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Translate
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          FLATROUTER_API_KEY: ${{ secrets.FLATROUTER_API_KEY }}
+          FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
+          LIMIT: ${{ github.event.inputs.limit }}
+        run: python ops/jev-review/describe_en.py ${LIMIT:+--limit "$LIMIT"}
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/scripts/scenario-desc-en.json
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -q -m "content(best): English card descriptions $(date -u +%F) [skip ci]"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main

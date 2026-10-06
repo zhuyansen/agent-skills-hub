@@ -181,9 +181,9 @@ def describe_zh(row: dict, jev) -> tuple[str, float]:
     return "", best[1]
 
 
-def translate(text: str) -> str:
+def translate(text: str, prompt: str = DESC_PROMPT) -> str:
     body = {"model": DESC_MODEL, "temperature": 0, "messages": [
-        {"role": "system", "content": DESC_PROMPT}, {"role": "user", "content": text}]}
+        {"role": "system", "content": prompt}, {"role": "user", "content": text}]}
     req = urllib.request.Request(os.environ["FLATROUTER_BASE_URL"].rstrip("/") + "/chat/completions",
                                  data=json.dumps(body).encode(), headers={
                                      "Authorization": f"Bearer {os.environ['FLATROUTER_API_KEY']}",
