@@ -3305,9 +3305,9 @@
    "limit": 8
   },
   "title": "AI Design Tools",
-  "serp_subject": "Claude & Codex Design Skills",
+  "serp_subject": "Claude Design Skills for Frontend & UI",
   "github_list": "https://github.com/zhuyansen/awesome-claude-design-skills",
-  "description": "Design intelligence skills for AI coding agents — UI generation, design systems, prototyping, mockup-to-code via Google Stitch, Claude Design, and more.",
+  "description": "Claude design skills for Claude Code and Codex: frontend design, UI generation, design systems, Figma and mockup-to-code. Every skill is security-graded before you install it.",
   "match": {
    "categories": [],
    "primary_keywords": [
