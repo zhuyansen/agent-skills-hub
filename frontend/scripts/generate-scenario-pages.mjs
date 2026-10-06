@@ -60,6 +60,13 @@ document.addEventListener("click", function (e) {
   if (card) window.location.href = card.dataset.href;
 });
 </script>`;
+// The /best/ index's first group, in this order (keep in step with the homepage's
+// HOT_SCENARIOS in src/components/ScenarioTagCloud.tsx).
+const POPULAR_SCENARIOS = [
+  "ppt-presentation", "claude-video-skills", "typesafe-jev", "claude-code-hooks", "codex-skills",
+  "ai-design", "image-generation", "knowledge-base", "obsidian-second-brain", "anti-slop",
+  "skill-management-tools", "mcp-database", "browser-automation", "code-review",
+];
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
 const CSS_VERSION = "20261006";
@@ -263,20 +270,26 @@ function buildNewsletterCta() {
 
 /* ── Index page builder (/best/) ────────────────── */
 
-function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
+function buildIndexHtml(allScenarioDefs, allSkillCounts, assetTags) {
+  // Live pages only. Retired pages are noindex; listing them here put 57 of 88 cards on
+  // pages search engines are told to skip, and the "88 guides" count with them (10-06).
+  const scenarios = allScenarioDefs.filter((s) => !s.retired);
+  const scenarioSkillCounts = Object.fromEntries(scenarios.map((s) => [s.slug, allSkillCounts[s.slug]]).filter(([, n]) => n));
   const pageUrl = `${SITE}/best/`;
   const year = new Date().getFullYear();
   const title = `Best AI Agent Tools by Scenario (${year}) | Agent Skills Hub`;
-  const metaDesc = `Browse ${scenarios.length} curated scenario guides to find the best AI agent tools, MCP servers, and Claude skills for your specific use case.`;
+  const metaDesc = `Browse ${Object.keys(scenarioSkillCounts).length} curated scenario guides to find the best AI agent tools, MCP servers, and Claude skills for your specific use case.`;
   const ogImage = `${SITE}/og-image.png`;
 
   const { linkTags } = assetTags;
 
   // Group scenarios by rough category
   const groups = [
-    // Model-wave pages first: they are the newest and were reachable only from search —
-    // /best/typesafe-jev/ was the site's most-visited scenario page with no link to it here.
-    { label: "New Model Waves", zh: "模型浪潮", icon: "🌊", slugs: ["claude-video-skills", "typesafe-jev"] },
+    // The reviewed pages, most search traffic first. PPT leads: 38.5% of the site's search
+    // clicks over the last 28 days (10-06), and it used to sit in "Content & Writing" below
+    // eight other groups. This group replaces "New Model Waves" (video, Jev), which led
+    // because those pages were otherwise reachable only from search.
+    { label: "Popular", zh: "热门场景", icon: "🔥", slugs: POPULAR_SCENARIOS },
     { label: "MCP Tools", zh: "MCP 工具", icon: "🔌", slugs: ["mcp-database", "mcp-browser", "mcp-filesystem", "mcp-api", "mcp-memory", "mcp-for-notion", "mcp-for-github", "mcp-for-google"] },
     { label: "Code & Development", zh: "代码开发", icon: "💻", slugs: ["code-review", "code-completion", "test-generation", "debugging", "refactoring", "git-tools", "cli-tools", "ai-code-editor", "web-development", "api-testing"] },
     { label: "AI & ML", zh: "AI 与机器学习", icon: "🤖", slugs: ["ai-agent-framework", "multi-agent", "prompt-engineering", "model-evaluation", "local-llm", "claude-code-skills", "codex-skills"] },
@@ -286,6 +299,8 @@ function buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) {
     { label: "DevOps & Automation", zh: "DevOps 与自动化", icon: "⚙️", slugs: ["workflow-automation", "ci-cd", "monitoring", "container-management", "browser-automation"] },
     { label: "Communication", zh: "通讯集成", icon: "💬", slugs: ["slack-integration", "discord-bot", "telegram-bot", "email-automation", "social-media", "notification", "rss-monitoring"] },
   ];
+
+  for (const g of groups.slice(1)) g.slugs = g.slugs.filter((slug) => !POPULAR_SCENARIOS.includes(slug));
 
   // Anything not placed in a group still gets listed. The groups are hand-written, so
   // every scenario added without editing them used to vanish from this page: 31 of 87.

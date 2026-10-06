@@ -1,12 +1,15 @@
 import { useI18n } from "../i18n/I18nContext";
 
-// Total curated scenarios — keep in sync with scripts/scenario-keywords.json.
-const SCENARIO_COUNT = 88;
+// Live (not retired) scenario pages, as /best/ lists them. Retired pages are noindex and
+// left off /best/, so they are not counted (88 defined, 31 live on 2026-10-06).
+const SCENARIO_COUNT = 31;
 
 const HOT_SCENARIOS = [
   // Reviewed pages first (10-05): the list used to send half its links to retired, noindex pages.
-  { slug: "claude-video-skills", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
+  // PPT first: 38.5% of the site's search clicks (28 days to 10-06). Same order as
+  // POPULAR_SCENARIOS in scripts/generate-scenario-pages.mjs.
   { slug: "ppt-presentation", zh: "PPT 制作", en: "PPT Skills" },
+  { slug: "claude-video-skills", zh: "Claude Code 做视频", en: "Claude Code Video Skills" },
   { slug: "claude-code-hooks", zh: "Claude Code Hooks", en: "Claude Code Hooks" },
   { slug: "image-generation", zh: "AI 生图", en: "Image Generation" },
   { slug: "ai-design", zh: "设计与前端", en: "Design Skills" },
