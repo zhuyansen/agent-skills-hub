@@ -35,7 +35,9 @@
  {
   "slug": "code-review",
   "title": "Code Review",
-  "description": "Find the top AI-powered code review tools that help you catch bugs, enforce style, and improve code quality automatically.",
+  "serp_subject": "Claude Code Review Skills & Tools",
+  "seo_keyword": "claude code review skill",
+  "description": "Claude code review skills and AI code review tools for Claude Code and Codex: PR review bots, local CLI reviewers, security review and multi-agent review. Every one is security-graded before you install it.",
   "match": {
    "categories": [
     "code-review"
@@ -2042,7 +2044,8 @@
   "slug": "mcp-for-github",
   "seo_keyword": "github mcp",
   "title": "MCP Tools for GitHub",
-  "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
+  "serp_subject": "GitHub MCP Servers & Tools",
+  "description": "GitHub MCP servers and tools let AI agents manage repos, issues, pull requests, Actions and code review on GitHub through the Model Context Protocol. Every server is security-graded.",
   "match": {
    "categories": [
     "mcp-server"
@@ -4857,7 +4860,9 @@
   "slug": "typesafe-jev",
   "title": "TypeSafe Jev",
   "github_list": "https://github.com/zhuyansen/awesome-typesafe-jev",
-  "description": "Open-source projects built on TypeSafe's Jev decision model, security-graded: the jev-ultrafast browser agent, openjev, fast-jev-compaction, Jev code review tools and MCP servers. Vet before you install.",
+  "serp_subject": "TypeSafe Jev Skills, Agents & MCP Servers",
+  "seo_keyword": "jev skill",
+  "description": "TypeSafe Jev skills, agents and MCP servers: open-source projects built on TypeSafe's Jev decision model, security-graded: the jev-ultrafast browser agent, openjev, fast-jev-compaction, Jev code review tools and MCP servers. Vet before you install.",
   "match": {
    "categories": [],
    "primary_keywords": [

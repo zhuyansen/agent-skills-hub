@@ -572,31 +572,31 @@
    {
     "id": "general",
     "icon": "🧱",
-    "en": "Frameworks",
+    "en": "Jev frameworks",
     "zh": "综合框架"
    },
    {
     "id": "replica",
     "icon": "🔁",
-    "en": "Open replicas",
+    "en": "Open Jev replicas",
     "zh": "开源替代与复现"
    },
    {
     "id": "agent",
     "icon": "🤖",
-    "en": "Agents & computer use",
+    "en": "Jev agents & computer use",
     "zh": "Agent 与电脑操作"
    },
    {
     "id": "devtool",
     "icon": "🧩",
-    "en": "Developer tools",
+    "en": "Jev developer tools",
     "zh": "开发者工具"
    },
    {
     "id": "sdk",
     "icon": "🔌",
-    "en": "SDKs, MCP & APIs",
+    "en": "Jev SDKs, MCP & APIs",
     "zh": "SDK、MCP 与接口"
    },
    {
@@ -2646,19 +2646,19 @@
    {
     "id": "pr_bot",
     "icon": "🔁",
-    "en": "PR bots & CI",
+    "en": "PR review bots & CI",
     "zh": "PR 机器人与 CI"
    },
    {
     "id": "skill",
     "icon": "🧩",
-    "en": "Agent skills",
+    "en": "Code review skills",
     "zh": "Agent Skill"
    },
    {
     "id": "cli",
     "icon": "⌨️",
-    "en": "Local & CLI",
+    "en": "Local & CLI review",
     "zh": "本地与命令行"
    },
    {
@@ -2670,13 +2670,13 @@
    {
     "id": "multi",
     "icon": "👥",
-    "en": "Multi-agent",
+    "en": "Multi-agent review",
     "zh": "多 Agent 互审"
    },
    {
     "id": "platform",
     "icon": "🏗",
-    "en": "Platforms",
+    "en": "Code review platforms",
     "zh": "自托管平台"
    }
   ],
