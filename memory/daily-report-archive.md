@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-06
+1. BootLoops-ai/bootloops — 🆕 给智能体配上经过认证的物理与量化计算引擎，精确算出高精度科学结果（265★ 56.9/day）
+2. fatihaydost/brand-identity-skill — 🆕 让 Claude Code 一次设计整套品牌识别，logo、字体和配色成体系产出（59★ 39.0/day）
+3. rakesh0x/OpenCardboard — 🆕 用聊天剪辑真实素材，转录、去静音、加字幕、卡点全在本地完成（32★ 16.7/day）
+4. VoltAgent/official-mcp-servers — 🆕 收录 280 多个厂商官方出品的 MCP 服务器，不含非官方分叉（74★ 14.8/day）
+5. EGSECDA/vocaloid-style-mv-pipeline — 🆕 用 Claude Code 技能做 V 家风手书歌词 MV，从歌词到成片一条流水线（23★ 12.3/day）
+6. Leonxlnx/cinetic — 🆕 让编程智能体当导演，用代码做电影感的产品发布片和动效设计（71★ 9.7/day）
+7. sonlovinbot/Muse-animated-short-film — 🆕 在 Muse AI 上把一个点子做成动画短片，角色、剧本、关键帧到 MP4 全包（26★ 8.1/day）
+8. Gu-kai-lei/Open-Pet-Office — 在 Windows 上可视化调度多个 Codex 智能体，任务、项目和隔离任务一屏管（103★ 6.2/day）
+9. KZCFG/AILSA-SubSwitch — 在 macOS 菜单栏查看 Codex、Cursor 等账号余量，一键切换可用账号（102★ 5.4/day）
+10. zygiu-zygis/basecoat-ui-mcp — 🆕 离线提供 Basecoat UI 模板、布局和暗色主题规范，无需 React 也有 shadcn 风格（46★ 3.9/day）
+🎯 今日趋势：做片类技能占 **4 席**（聊天剪辑、手书 MV、电影感发布片、动画短片），十席有 **6 席**建仓于 10-01~10-04、**8 席**标 🆕。
+> 注：去重范围＝repo 内 archive 全部 103 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,439 个（含路径噪声，只会多剔不会漏剔）。首查 `first_seen ≥48h`、stars ≥20 共 106 条（未触顶 LIMIT 150），去重后 96 条，候选足够，未放宽到 72h；单连接串行一次查询。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①OrchestratorInc/agent-orchestrator（12,784★ 54.4/day）：建仓 235 天、本期才收录，不算新鲜；②JohnnyVizz/claude-kit（48★ 26.7/day）：0 粉、名下仅此 1 个有星仓，描述空泛；③osmondcardell/mcp-video-tools（21★）：账号与仓库同日（10-04）创建、0 粉、名下仅 1 仓，单仓爆星形态；④yakuikai/tokentab（140★）：2026-08 建号、0 粉、名下仅此 1 仓；⑤supermax92/qgraphflow（110★）：2026-09 建号、1 粉、名下仅此 1 仓；⑥dongnguyenvie/BashCut：security_grade 为 caution；⑦kageroumado/adrafinil、Floe-Labs/floe-guard、gongnyang/gongnyang-prompt-kit 等：建仓 100 天以上、本期才收录。入选项复核（`gh api`）：第 1 席 BootLoops-ai 为 09-27 新建组织、82 粉，MIT，DB 分类 agent-tool；第 2 席 fatihaydost 2021 建号、4 粉、其余仓 ≤10★（**轻红旗**，59★ 量级小、描述具体），MIT，保留；第 3 席 rakesh0x 2024 建号、23 粉、105 仓，MIT；第 4 席 VoltAgent 为 4,104 粉组织（名下 awesome-design-md 119,718★），MIT；第 5 席 EGSECDA 2023 建号、0 粉，名下另有 46★ 同类仓，MIT；第 6 席 Leonxlnx 2025 建号、2,195 粉、名下另有 taste-skill 92,925★，MIT；第 7 席 sonlovinbot 2023 建号、29 粉、54 仓（原描述为越南文），MIT；第 8 席 Gu-kai-lei 2025 建号、9 粉、名下另有 53★ 仓，MIT，建仓 16.7 天不标 🆕；第 9 席 KZCFG 2025 建号、20 粉、名下仅此 1 个有星仓（轻红旗），MIT，建仓 19 天不标 🆕；第 10 席 zygiu-zygis 2015 建号、3 粉、其余仓 ≤1★（**轻红旗**，46★ 量级小），MIT。🆕 判定＝created_at 距今 14 天内，命中 8 席。security_grade：bootloops、OpenCardboard 为 unknown（新入库未评），其余 8 席为 safe。表中 stars 为数据库快照，部分仓实时更高（bootloops 279★、brand-identity-skill 76★、OpenCardboard 52★、official-mcp-servers 129★），按红线保留快照值。
+
+---
+
 ## 2026-10-05
 1. ythx-101/live-panel-skill — 🆕 用一份 JSON 生成会动的架构图，导出 mp4 或常驻运行的网页（300★ 219.1/day）
 2. shinshin86/mesh-avatar-studio — 🆕 把一张插画做成可动的 2D 网格头像，智能体加本地编辑器一起调（120★ 120.0/day）
