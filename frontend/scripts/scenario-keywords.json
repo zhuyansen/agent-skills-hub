@@ -125,6 +125,7 @@
  },
  {
   "slug": "mcp-database",
+  "seo_keyword": "supabase mcp",
   "title": "MCP Database Tools",
   "serp_subject": "Database MCP Servers for Supabase & Postgres",
   "description": "Database MCP servers let an AI agent query, inspect and change your data in Supabase, Postgres, MySQL and other SQL databases. Every server here is security-graded before you connect it to production.",
@@ -808,6 +809,7 @@
  },
  {
   "slug": "browser-automation",
+  "seo_keyword": "playwright mcp",
   "title": "browser-use, Playwright MCP & AI Browser Agents",
   "description": "browser-use, playwright-mcp, MediaCrawler, Scrapling, mcp-chrome and 20+ open-source AI browser agents compared — stars, security grade, and which to install.",
   "match": {
@@ -1010,6 +1012,7 @@
  },
  {
   "slug": "prompt-engineering",
+  "seo_keyword": "prompt engineering tool",
   "title": "Prompt Engineering",
   "description": "Find tools for prompt design, testing, optimization, and management for LLM applications.",
   "match": {
@@ -1419,6 +1422,7 @@
  },
  {
   "slug": "refactoring",
+  "seo_keyword": "code refactoring tool",
   "title": "Code Refactoring",
   "description": "Discover AI tools for automated code refactoring, optimization, and architectural improvements.",
   "match": {
@@ -1815,6 +1819,7 @@
  },
  {
   "slug": "codex-skills",
+  "seo_keyword": "codex skill",
   "title": "OpenAI Codex Skills",
   "description": "Find the best skills and plugins for OpenAI Codex, the AI coding agent.",
   "match": {
@@ -1930,6 +1935,7 @@
  },
  {
   "slug": "multi-agent",
+  "seo_keyword": "multi agent orchestration",
   "title": "Multi-Agent Orchestration",
   "description": "Find tools for building and orchestrating multi-agent systems where AI agents collaborate, delegate, and coordinate tasks.",
   "match": {
@@ -2034,6 +2040,7 @@
  },
  {
   "slug": "mcp-for-github",
+  "seo_keyword": "github mcp",
   "title": "MCP Tools for GitHub",
   "description": "AI agent tools that integrate with GitHub — manage repos, issues, PRs, actions, and code reviews through MCP servers.",
   "match": {
@@ -4088,8 +4095,10 @@
  },
  {
   "slug": "vibe-coding",
-  "title": "Vibe Coding Stack",
-  "description": "Indie hacker / solo dev coding stack — PRD → multi-agent build → ship. Templates for vibe coding, Ralph-loops, prd-taskmaster, ai-agent-team. The full pipeline.",
+  "title": "Open-Source Vibe Coding Tools",
+  "serp_subject": "Open-Source Vibe Coding Tools",
+  "seo_keyword": "vibe coding tool",
+  "description": "Open-source vibe coding tools for solo developers: PRD templates, Ralph loops, task masters and agent teams that take an idea from spec to shipped code with Claude Code or Codex. Every repo is security-graded.",
   "match": {
    "categories": [],
    "primary_keywords": [
@@ -4719,6 +4728,7 @@
  },
  {
   "slug": "obsidian-second-brain",
+  "seo_keyword": "obsidian mcp",
   "title": "Obsidian for Claude Code & AI Agents",
   "serp_subject": "Obsidian Skills, MCP & Plugins for Claude",
   "github_list": "https://github.com/zhuyansen/awesome-obsidian-ai-skills",
@@ -5057,10 +5067,11 @@
  },
  {
   "slug": "claude-video-skills",
-  "title": "Video Skills for Claude Code & Opus 5.5",
-  "serp_subject": "Claude Code & Opus 5.5 Video Skills",
+  "title": "Remotion & Video Skills for Claude Code",
+  "serp_subject": "Remotion Skills & Claude Code Video Tools",
+  "seo_keyword": "remotion skill",
   "github_list": "https://github.com/zhuyansen/awesome-claude-video-skills",
-  "description": "Open-source skills and toolkits for making videos in Claude Code — HyperFrames, Remotion, motion graphics and video-editing agents — led by the two projects built with Claude Opus 5.5. The skills are not tied to one model: they run on any Claude or Codex model. Every repo is security-graded.",
+  "description": "Remotion skills and other open-source toolkits for making videos in Claude Code: HyperFrames, motion graphics and video-editing agents, including two projects built with Claude Opus 5.5. They run on any Claude or Codex model. Every repo is security-graded.",
   "video": {
    "id": "1mm5863DyRc",
    "title": "Top 10 AI Video Skills, SAFE-Graded Only (video, in Chinese)",
