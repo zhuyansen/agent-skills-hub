@@ -48,6 +48,13 @@ export function kindAttrs(scenarioKinds, skill) {
   return ` data-kind="${esc(scenarioKinds.of(skill))}" data-stars="${stars}"`;
 }
 
+/** The reviewed kind of one card as `{ en, zh }`, or null when it has none. */
+export function kindLabel(scenarioKinds, skill) {
+  if (!scenarioKinds) return null;
+  const id = scenarioKinds.of(skill);
+  return scenarioKinds.kinds.find((k) => k.id === id) || null;
+}
+
 function chip(id, en, zh, count, pressed) {
   const label = (text) => `${text} (${count})`;
   return `<button type="button" class="bp-kind-chip" data-kind-filter="${esc(id)}" aria-pressed="${pressed}" ${biAttrs(label(en), label(zh))}>${esc(label(en))}</button>`;

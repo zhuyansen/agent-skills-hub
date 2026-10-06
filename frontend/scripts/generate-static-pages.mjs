@@ -163,6 +163,11 @@ const REDIRECTS = [
   // Legacy route: the SPA client-side-redirects /arena → /, but with no static
   // file Google only ever saw a 404. A stub passes the authority instead.
   { path: "arena", to: "/" },
+  // Renamed scenario pages: same content at a new URL, so the old one points
+  // there instead of returning 404 (opus-5-5-video renamed 2026-09-27;
+  // ppt-skills merged into ppt-presentation 2026-07-06).
+  { path: "best/opus-5-5-video", to: "/best/claude-video-skills/" },
+  { path: "best/ppt-skills", to: "/best/ppt-presentation/" },
 ];
 
 for (const r of REDIRECTS) {

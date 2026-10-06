@@ -17,11 +17,12 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
-import { kindsFor, kindAttrs, kindBarHtml, KIND_SCRIPT, descZh } from "./scenario-kinds.mjs";
+import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh } from "./scenario-kinds.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
 const TITLE_MAX = 60;   // Google shows about 60 characters of a title
+const COMPARE_ROWS = 20; // rows in the comparison table
 // The card's title and body already open the skill page ("View Details" x 209 led the
 // page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
 const GITHUB_ICON = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
@@ -598,8 +599,13 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const scenarioKinds = kindsFor(scenario.slug);
   const cards = [...skills, ...subCards];
   const skillCardsHtml = cards.map((s, i) => {
-    const catLabel = CATEGORY_LABELS[s.category] || "AI Tool";
-    const catLabelZh = CATEGORY_LABELS_ZH[s.category] || "AI 工具";
+    // A reviewed page labels each card with its reviewed kind, which names the
+    // page's topic ("Editable PPTX"), and drops the language tag: repeated on
+    // 200+ cards, the catalog category and "Python" outnumbered the page's own
+    // keyword (ppt skill 85, codex skill 88, python 218 on 2026-10-05).
+    const kind = kindLabel(scenarioKinds, s);
+    const catLabel = kind ? kind.en : CATEGORY_LABELS[s.category] || "AI Tool";
+    const catLabelZh = kind ? kind.zh : CATEGORY_LABELS_ZH[s.category] || "AI 工具";
     const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
     const githubUrl = `https://github.com/${s.repo_full_name}${s.sub_path ? `/tree/HEAD/${s.sub_path}` : ""}`;
     const titleUrl = s.sub_path ? githubUrl : `/skill/${s.repo_full_name}/`;
@@ -627,7 +633,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
           </div>
           <div class="bp-card-meta">
             ${starsNote}
-            ${s.language ? `<span>${esc(s.language)}</span>` : ""}
+            ${s.language && !scenarioKinds ? `<span>${esc(s.language)}</span>` : ""}
             <span class="bp-badge-category" style="color:var(--bp-badge-purple-text);background:var(--bp-badge-purple-bg)" data-en="${esc(catLabel)}" data-zh="${esc(catLabelZh)}">${esc(catLabel)}</span>
           </div>
         </div>
@@ -639,8 +645,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
       </div>`;
   }).join("\n      ");
 
-  // Comparison table
-  const compRows = skills.map((s) => {
+  // Comparison table: the leaders only. All 200+ rows repeated every card's
+  // language and license and diluted the page's keyword.
+  const compRows = skills.slice(0, COMPARE_ROWS).map((s) => {
     return `<tr>
           <td><a href="/skill/${esc(s.repo_full_name)}/" style="font-weight:500">${esc(s.repo_name)}</a></td>
           <td style="text-align:right">&#9733; ${starsK(s.stars)}</td>
@@ -769,7 +776,7 @@ ${faqLd}
 
       <!-- Comparison Table -->
       <section style="margin-top:32px">
-        <h2 class="bp-section-title" data-zh="对比" data-en="Comparison">Comparison</h2>
+        <h2 class="bp-section-title" data-zh="前 ${Math.min(COMPARE_ROWS, skills.length)} 名对比" data-en="Top ${Math.min(COMPARE_ROWS, skills.length)} Compared">Top ${Math.min(COMPARE_ROWS, skills.length)} Compared</h2>
         <div class="bp-table-wrap">
           <table class="bp-table">
             <thead>
