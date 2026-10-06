@@ -33,8 +33,11 @@ def send(subject: str, md_text: str) -> str:
         return "skipped: RADAR_EMAIL_TO not set"
     body = json.dumps({"from": os.environ["EMAIL_FROM"], "to": to, "subject": subject,
                        "html": html(md_text)}).encode()
+    # Resend sits behind Cloudflare, which answers Python's default User-Agent with 403
+    # "error code: 1010": every radar mail failed that way until 2026-10-06.
     req = urllib.request.Request("https://api.resend.com/emails", data=body, method="POST", headers={
-        "Authorization": f"Bearer {os.environ['RESEND_API_KEY']}", "Content-Type": "application/json"})
+        "Authorization": f"Bearer {os.environ['RESEND_API_KEY']}", "Content-Type": "application/json",
+        "User-Agent": "agentskillshub-radar/1.0 (+https://agentskillshub.top)"})
     try:
         with urllib.request.urlopen(req, timeout=30) as res:
             return f"sent ({res.status})"
