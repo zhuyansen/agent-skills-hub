@@ -45,7 +45,7 @@
    - 超过 300 个就用严格规则:切题分 ≥0.8,50★ 以下只收高质量档。
 5. **在页面上回答 SERP 里的相关搜索**(`extra_faq`):用哥飞工具箱跑 `/serp/?keyword=<头部词>&gl=us`,拿到"相关搜索",把真实问题各写成一条 FAQ,答案点名具体仓库。同时写进 FAQPage 结构化数据。
 6. **配 GitHub 榜单**(适合大家会去"GitHub 上找"的主题;`build_video_list.py`、`list_text_pages.py`):同一批仓库、同样分类,双向互链,加入每日任务。
-7. **站内链接**:首页热门区、页脚、相邻页面的 related。**站外链接**:权重层外链(客座文章、媒体提及)直接链到专题页,而不是首页;见下面"外链"一节。
+7. **站内链接**:首页热门区、页脚、相邻页面的 related。**站外链接**:媒体提及和被引用的数据直接链到专题页,而不是首页;见下面"外链"一节。
 8. **每日维护**:每日任务自动审核新仓库,去掉已删除和改名的仓库,重建榜单;报告发在 issue #26。
 9. **测完就等。** 用哥飞工具箱 `/audit/?url=&kw=` 复测分数;每周按页面和词看 GSC。排名在涨的页面不要动,内链和时间会复利。
 
@@ -57,14 +57,14 @@
 
 | 层 | 做法 | 已做的 |
 |---|---|---|
-| 权重层:真实网站的 dofollow 链接 | 付费客座文章,每天最多 1–2 篇,每条核对 `rel` 属性 | 07-16:programminginsider、nerdbot、thedatascientist、techbullion、aijourn,共 10 条 dofollow。带 dofollow 收录页的付费导航站:creati.ai、Toolify、TAAFT、aibase(合计约 $276)。 |
+| 权重层:真实网站的 dofollow 链接 | **2026-10-06 起停止购买 dofollow 外链**。改靠被引用:安全事件新闻里给记者数据角度、挤进别人的 Best X 榜单 | 07 月(已停,不追溯)07-16:programminginsider、nerdbot、thedatascientist、techbullion、aijourn,共 10 条 dofollow。带 dofollow 收录页的付费导航站:creati.ai、Toolify、TAAFT、aibase(合计约 $276)。 |
 | 权重层:可被引用的数据 | 别人会引用的数据源 | Zenodo DOI、Kaggle notebook、Dev.to 文章、Wikidata 实体、Hugging Face 数据集卡片。 |
 | 发现层:帮助收录和 AI 引用,不传权重 | 免费目录和列表:只验收,不再扩量 | libhunt、AlternativeTo、mcpservers.org、deepwiki;awesome 列表 PR(nofollow,面向开发者,也是大模型训练会读的内容)。 |
 | 明确拒绝 | 买 PH 投票、买 GitHub 星 | 和"信任层"的定位冲突;我们自己的审计就专门识别这类刷量。 |
 
 Ahrefs DR:6(07-10)→ 7(07-16)→ 12(10-05)。
 
-**接下来的页面,缺的是深层链接。** 目前所有权重层外链都指向首页。下一批客座文章和媒体提及要直接链到专题页(`/best/claude-video-skills/`、`/best/claude-code-hooks/` 等),锚文本用主题词;再把我们的 GitHub 榜单投到所在主题的大型 awesome 列表(nofollow,不传权重,但能带来读者,也是大模型会读的内容)。
+**接下来的页面,缺的是深层链接。** 目前所有权重层外链都指向首页。下一批媒体提及和被引用的数据要直接链到专题页(`/best/claude-video-skills/`、`/best/claude-code-hooks/` 等),锚文本用主题词;再把我们的 GitHub 榜单投到所在主题的大型 awesome 列表(nofollow,不传权重,但能带来读者,也是大模型会读的内容)。
 
 ## PPT 页还没做的
 

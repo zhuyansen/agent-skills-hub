@@ -110,6 +110,10 @@
 - **07-23** 引用侧双水位表开通首读 🌊:**Bing AI Performance 359 citations/3mo · Clarity Citation 116/7d · SoA 15.76%**——"被引未点击"盲区实锤(引用量 ≈ GA 会话 9 倍);/audit/langgenius/dify 被引 10 次 = 信任层被 AI 当信源的直接证据;自然语言查询 "free authentication tools for autonomous agents" 落 /best/authentication/ = 场景页吃 AI 引用范式
 - **07-23** niko 会议(陈荣涛)拍板入档(`ops/research/niko-meeting-2026-07-23.md`):**外链两层论**(权重层=付费客座博客/高DR平台页,发现层=免费目录)写入模型 ①a;Adsy 采购+日 1-2 条纪律、Stripe 捐赠页并入 10b、GitHub 仓库广告位置换(10f);**拒绝**:PH 买票打榜、买 GitHub 星(信任层人设一票否决)
 
+## 2026-10-06(停止付费 dofollow 外链)
+
+- **10-06** 用户拍板:**停止购买 dofollow 外链**(付费客座、付费目录收录位;Adsy 渠道作废)。起因是 Google 10-05 更新有用内容文档(Effort/Originality/Talent/Accuracy 四支柱),而买传权重的链接本来就违反链接方案政策。07 月 5 篇客座不追溯。权重层改为被引用:反应式 PR、数据集/论文、别人的 Best X 榜单。已改:水系模型 ①a、哥飞打法、ppt 打法、计分板
+
 ## 远期候选(大师库产出,未排期)
 
 - /daily/ 加 LiveBlogPosting schema(CNN 验证的活水实现)
