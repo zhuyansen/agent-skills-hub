@@ -2774,6 +2774,7 @@
  },
  {
   "slug": "anti-slop",
+  "seo_keyword": "humanizer skill",
   "title": "Humanizer & Anti-Slop Skills",
   "serp_subject": "Humanizer Skills & AI Slop Detectors",
   "github_list": "https://github.com/zhuyansen/awesome-humanizer-skills",
@@ -3270,6 +3271,28 @@
  },
  {
   "slug": "ai-design",
+  "seo_keyword": "claude design skills",
+  "focus": {
+   "id": "frontend-design",
+   "h2": "Frontend Design Skills for Claude Code",
+   "h2_zh": "Claude Code 的 Frontend Design Skill",
+   "paragraphs": [
+    "When people search for a \"frontend design skill\", they usually mean Anthropic's official frontend-design skill. It is a single SKILL.md of instructions with no scripts, published in anthropics/skills and also as a plugin in the claude-plugins-official marketplace. It asks Claude to choose a deliberate visual direction for each brief, from typeface and palette to layout, and names the habits that make a page look AI-generated: a cream background with a terracotta accent, one highlighted word in a headline, 01/02/03 markers on content that is not a sequence.",
+    "In Claude Code, install it with the command below. The community skills listed after it push the same idea further: the taste skills set a design direction before any code is written, and others add reference images, design-system specs or an audit pass that rewrites AI-looking UI. Each shows its stars and, where graded, its security grade."
+   ],
+   "paragraphs_zh": [
+    "大家搜「frontend design skill」，通常指的是 Anthropic 官方的 frontend-design skill。它只是一份写满指令的 SKILL.md，没有脚本，放在 anthropics/skills 仓库里，同时也以插件形式收在 claude-plugins-official 插件市场。它要求 Claude 针对每个需求选定明确的视觉方向，从字体、配色到版式，并点名那些让页面一看就是 AI 生成的习惯：米色背景配赤陶色点缀、标题里单独高亮一个词、内容本不是步骤却标上 01/02/03。",
+    "在 Claude Code 里用下面这条命令安装。下面列出的社区 skill 把同样的思路做得更深：taste 类 skill 在写代码前先定设计方向，其他的加入参考图、设计系统规范，或者加一道审查，把看起来像 AI 做的界面改写掉。每一项都标了星数，已评级的标了安全评级。"
+   ],
+   "command": "/plugin install frontend-design@claude-plugins-official",
+   "source": {
+    "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+    "label": "Official frontend-design SKILL.md on GitHub ↗",
+    "label_zh": "GitHub 上的官方 frontend-design SKILL.md ↗"
+   },
+   "match": "front-?end|taste",
+   "limit": 8
+  },
   "title": "AI Design Tools",
   "serp_subject": "Claude & Codex Design Skills",
   "github_list": "https://github.com/zhuyansen/awesome-claude-design-skills",

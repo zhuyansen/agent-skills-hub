@@ -33,6 +33,11 @@ def test_configured_keyword_and_serp_subject_win():
     assert pc.target_keyword(page, "Whatever", {}) == ("database mcp servers", "标题")
 
 
+def test_ampersand_subject_keeps_its_head_noun():
+    assert pc.subject({}, "Claude & Codex Design Skills: 178 Graded") == "claude design skills"
+    assert pc.subject({}, "Humanizer Skills & AI Slop Detectors") == "humanizer skills"
+
+
 def test_plural_s_does_not_matter():
     gsc = _gsc("claude-video-skills", ("claude video skill", 50))
     kw, _ = pc.target_keyword({"slug": "claude-video-skills"}, "Claude Video Skills: 120 Graded", gsc)

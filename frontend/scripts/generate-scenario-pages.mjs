@@ -19,6 +19,7 @@ import {
 } from "./shared-utils.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
+import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -33,42 +34,6 @@ const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|sk
  *  H1, guide headings, meta description and ItemList all use it, so they name one thing
  *  (10-06 On Page audit: mcp-database said "Database MCP Servers" in the title and "MCP
  *  Database Tools" in the H1 and description). */
-// The page's answer in one declarative sentence, above everything else in the body.
-// AI answers quote the first part of a page and prefer a plain claim ("the best X is Y")
-// over a description (Tanya Van Gastel, Shenzhen SEO side event 2026-09: 44% of cited
-// text sits in the first 30% of the page). The pick is the most-starred entry rated SAFE
-// among the top ones: the order is match score, so the first SAFE one can be a small repo
-// (an 856★ starter kit on the video page, above HyperFrames). The sentence never
-// recommends a flagged repo; with no SAFE one, the top entry and no safety claim.
-const QUICK_PICK_SCAN = 10;
-const QUICK_PICK_DESC = 140;
-function quickPick(skills) {
-  const safe = skills.slice(0, QUICK_PICK_SCAN).filter((s) => s.security_grade === "safe")
-    .sort((a, b) => b.stars - a.stars)[0];
-  return { pick: safe || skills[0], safe: Boolean(safe) };
-}
-function quickPickHtml(scenario, skills, itemCount, subject) {
-  if (!skills.length) return "";
-  const { pick, safe } = quickPick(skills);
-  const stars = `★ ${starsK(pick.stars)}`;
-  // The language toggle replaces each [data-zh] element's text, so the link stays
-  // outside the translated pieces.
-  const lead = bi(`Of the ${itemCount} ${subject} here, the best one to start with is `,
-    `这 ${itemCount} 个${scenario.zhTitle}里，首选 `);
-  const tail = bi(safe ? ` (rated SAFE by our security scan, ${stars}).` : ` (${stars}).`,
-    safe ? `（安全扫描评级 SAFE，${stars}）。` : `（${stars}）。`);
-  const desc = bi(" " + descEn(pick).slice(0, QUICK_PICK_DESC),
-    " " + (descZh(pick) || descEn(pick)).slice(0, QUICK_PICK_DESC), "color:var(--bp-text-secondary);font-size:13px");
-  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
-  return `<div class="bp-quick-pick">
-        <span style="font-size:20px">⚡</span>
-        <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${desc}</p>
-      </div>`;
-}
-function bi(en, zh, style = "") {
-  return `<span${style ? ` style="${style}"` : ""} data-en="${esc(en)}" data-zh="${esc(zh)}">${esc(en)}</span>`;
-}
-
 function seoSubject(scenario) {
   return scenario.serp_subject || scenario.title;
 }
@@ -821,6 +786,8 @@ ${videoLd(scenario)}
       ${videoHtml(scenario)}
 
       ${buildAeoSection(scenario, skills, year)}
+
+      ${focusHtml(scenario, skills)}
 
       <!-- Skill Cards -->
       <section>

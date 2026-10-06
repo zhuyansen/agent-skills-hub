@@ -131,8 +131,14 @@ def stems(text: str) -> list[str]:
 
 
 def subject(page: dict, title: str) -> str:
+    """The title's subject. "A & B Nouns" keeps the head noun: "Claude & Codex Design
+    Skills" is "claude design skills", not "claude" (ai-design's target until 10-06)."""
     raw = page.get("serp_subject") or title
-    return " ".join(re.split(r"[:|]", raw)[0].split(",")[0].split("&")[0].lower().split())
+    head = re.split(r"[:|]", raw)[0].split(",")[0].lower()
+    if "&" in head:
+        left, right = (part.split() for part in head.split("&", 1))
+        head = " ".join(left + right[1:] if len(left) == 1 and len(right) > 1 else left)
+    return " ".join(head.split())
 
 
 def target_keyword(page: dict, title: str, gsc: dict[str, list[tuple[str, int]]]) -> tuple[str, str]:
