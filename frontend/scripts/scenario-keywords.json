@@ -1753,8 +1753,7 @@
    "security-audit",
    "secret-detection",
    "mcp-api"
-  ],
-  "retired": true
+  ]
  },
  {
   "slug": "data-visualization",
