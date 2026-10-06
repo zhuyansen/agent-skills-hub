@@ -151,6 +151,14 @@
   "type": "image/jpeg",
   "bytes": 333458
  },
+ "Arindam200/fr": {
+  "repo": "Arindam200/fr",
+  "url": "https://raw.githubusercontent.com/Arindam200/fr/HEAD/assets/fr.gif",
+  "alt": "fileroute demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 5277155
+ },
  "Arman-Luthra/aftr": {
   "repo": "Arman-Luthra/aftr",
   "url": "https://raw.githubusercontent.com/Arman-Luthra/aftr/HEAD/docs/pals-title-demo.gif",
@@ -174,6 +182,14 @@
   "score": 1.85,
   "type": "image/jpeg",
   "bytes": 145424
+ },
+ "Barty-Bart/motion-graphics": {
+  "repo": "Barty-Bart/motion-graphics",
+  "url": "https://raw.githubusercontent.com/Barty-Bart/motion-graphics/HEAD/docs/demo-panel.gif",
+  "alt": "A transparent panel animating beside a picture-in-picture shot of the speaker",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2989829
  },
  "BayramAnnakov/remotion-video-director": {
   "repo": "BayramAnnakov/remotion-video-director",
@@ -719,6 +735,14 @@
   "type": "image/png",
   "bytes": 76230
  },
+ "TryWorld2026/paper-algorithm": {
+  "repo": "TryWorld2026/paper-algorithm",
+  "url": "https://raw.githubusercontent.com/TryWorld2026/paper-algorithm/HEAD/examples/cordis-paper/cover_4x3.png",
+  "alt": "Cordis 论文精读 · 横版封面",
+  "score": -2.75,
+  "type": "image/png",
+  "bytes": 752936
+ },
  "WhiteTowerAI/cut-as-code": {
   "repo": "WhiteTowerAI/cut-as-code",
   "url": "https://img.youtube.com/vi/3yFPOC8kFxU/maxresdefault.jpg",
@@ -823,6 +847,22 @@
   "type": "image/png",
   "bytes": 1922538
  },
+ "alisadiq-ai/favstash-ai-video-editing-skills": {
+  "repo": "alisadiq-ai/favstash-ai-video-editing-skills",
+  "url": "https://raw.githubusercontent.com/alisadiq-ai/favstash-ai-video-editing-skills/HEAD/assets/favstash-social-preview-2026.png",
+  "alt": "FavStash connects Claude Code, Codex and ChatGPT with Instagram, TikTok and YouT",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 833780
+ },
+ "allebee/pytest-jev": {
+  "repo": "allebee/pytest-jev",
+  "url": "https://raw.githubusercontent.com/allebee/pytest-jev/main/docs/demo/demo.gif",
+  "alt": "A pytest run in which jev.expect fails: three of four claims about a support bot",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 55185
+ },
  "alohays/paper2pr": {
   "repo": "alohays/paper2pr",
   "url": "https://raw.githubusercontent.com/alohays/paper2pr/HEAD/assets/slide-types.png",
@@ -902,6 +942,14 @@
   "score": 1.6,
   "type": "image/png",
   "bytes": 80414
+ },
+ "billLiao/PPT-Design-Skill": {
+  "repo": "billLiao/PPT-Design-Skill",
+  "url": "https://raw.githubusercontent.com/billLiao/PPT-Design-Skill/HEAD/docs/previews/themes-grid.png",
+  "alt": "themes",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 210271
  },
  "bishpls/animation-pipeline": {
   "repo": "bishpls/animation-pipeline",
@@ -2063,6 +2111,14 @@
   "type": "image/webp",
   "bytes": 1404644
  },
+ "stevenjinlong/awesome-ppt-skills": {
+  "repo": "stevenjinlong/awesome-ppt-skills",
+  "url": "https://raw.githubusercontent.com/stevenjinlong/awesome-ppt-skills/HEAD/examples/transformer-architecture-image-first/preview.jpg",
+  "alt": "Transformer architecture image-first PPT example",
+  "score": -0.85,
+  "type": "image/jpeg",
+  "bytes": 300060
+ },
  "sunbigfly/ppt-agent-skill": {
   "repo": "sunbigfly/ppt-agent-skill",
   "url": "https://raw.githubusercontent.com/sunbigfly/ppt-agent-skill/HEAD/assets/screenshots/slide1.png",
@@ -2326,6 +2382,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 140889
+ },
+ "xinyiqin/X2V-AI-Images-Videos-skill": {
+  "repo": "xinyiqin/X2V-AI-Images-Videos-skill",
+  "url": "https://raw.githubusercontent.com/xinyiqin/X2V-AI-Images-Videos-skill/HEAD/assets/readme-example-lightx2v.png",
+  "alt": "LightX2V example: virtual boyfriend video, co-creation video, and feature overvi",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 208477
  },
  "xukp20/build-beamer-slides": {
   "repo": "xukp20/build-beamer-slides",

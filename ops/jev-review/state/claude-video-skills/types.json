@@ -4516,5 +4516,113 @@
    "general": 0.04
   },
   "kind": "motion"
+ },
+ {
+  "repo": "Barty-Bart/motion-graphics",
+  "stars": 455,
+  "description": "Motion-graphics skills for Claude Code and Codex.",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.3,
+   "music": 0.06,
+   "motion": 0.62,
+   "shorts": 0.12,
+   "editing": 0.86,
+   "demo": 0.35,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.47
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "TryWorld2026/paper-algorithm",
+  "stars": 33,
+  "description": "Paper Algorithm - An AI-agent skill set that turns one sentence into a finished voiceover video. | 纸上算法 · 一句话到成片的口播视频生产线：选题、写稿、出片、发布计划。",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.64,
+   "music": 0.04,
+   "motion": 0.09,
+   "shorts": 0.79,
+   "editing": 0.09,
+   "demo": 0.31,
+   "story": 0.06,
+   "avatar": 0.18,
+   "general": 0.11
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "alisadiq-ai/favstash-ai-video-editing-skills",
+  "stars": 6,
+  "description": "Create Instagram Reels, TikToks and YouTube Shorts with adaptive AI editing, captions and motion graphics. Connect FavStash for planning, publishing and analytics.",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.58,
+   "music": 0.07,
+   "motion": 0.12,
+   "shorts": 0.89,
+   "editing": 0.91,
+   "demo": 0.27,
+   "story": 0.07,
+   "avatar": 0.08,
+   "general": 0.29
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "generalizingai/shadowcast",
+  "stars": 6,
+  "description": "Paste a YouTube channel link, get your own original channel in that format, produced and scheduled on autopilot. A Claude Code plugin.",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.31,
+   "music": 0.05,
+   "motion": 0.09,
+   "shorts": 0.9,
+   "editing": 0.07,
+   "demo": 0.55,
+   "story": 0.09,
+   "avatar": 0.08,
+   "general": 0.06
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "hamen/app-promo-reel",
+  "stars": 5,
+  "description": "Claude Code skill: beat-synced 9:16 app promo reels with HyperFrames",
+  "scores": {
+   "promo": 0.97,
+   "explainer": 0.07,
+   "music": 0.65,
+   "motion": 0.44,
+   "shorts": 0.74,
+   "editing": 0.08,
+   "demo": 0.65,
+   "story": 0.1,
+   "avatar": 0.07,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "xinyiqin/X2V-AI-Images-Videos-skill",
+  "stars": 8,
+  "description": "[LightX2V](https://x2v.light-ai.top) integration for [OpenClaw](https://openclaw.ai) — image generation (t2i/i2i), video (t2v/i2v/s2v), TTS, and voice clone via cloud API.",
+  "scores": {
+   "promo": 0.28,
+   "explainer": 0.3,
+   "music": 0.39,
+   "motion": 0.12,
+   "shorts": 0.43,
+   "editing": 0.05,
+   "demo": 0.57,
+   "story": 0.49,
+   "avatar": 0.89,
+   "general": 0.41
+  },
+  "kind": "avatar"
  }
 ]

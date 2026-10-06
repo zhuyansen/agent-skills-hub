@@ -2490,5 +2490,33 @@
    "general": 0.13
   },
   "kind": "cli"
+ },
+ {
+  "repo": "pathintegral-institute/mcpm.sh",
+  "stars": 1011,
+  "description": "CLI MCP package manager & registry for all platforms and all clients. Search & configure MCP servers. Advanced Router & Profile features.",
+  "scores": {
+   "cli": 0.81,
+   "sync": 0.52,
+   "app": 0.08,
+   "registry": 0.15,
+   "team": 0.17,
+   "general": 0.19
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "infragate/capa",
+  "stars": 724,
+  "description": "One capabilities.yaml wires skills, tools, rules, sub-agents, MCP servers, and plugins into Cursor, Claude Code, Codex, Windsurf, GitHub Copilot, and 30+ other AI coding agents",
+  "scores": {
+   "cli": 0.88,
+   "sync": 0.87,
+   "app": 0.36,
+   "registry": 0.21,
+   "team": 0.59,
+   "general": 0.97
+  },
+  "kind": "general"
  }
 ]

@@ -4783,5 +4783,50 @@
    "consumer": 0.73
   },
   "kind": "devtool"
+ },
+ {
+  "repo": "jiwidi/jiwo",
+  "stars": 20,
+  "description": "Small decision models (jev style) for latency critical scenarios",
+  "scores": {
+   "replica": 0.9,
+   "agent": 0.09,
+   "devtool": 0.09,
+   "sdk": 0.67,
+   "business": 0.29,
+   "consumer": 0.08,
+   "general": 0.26
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "allebee/pytest-jev",
+  "stars": 7,
+  "description": "Pytest plugin for semantic assertions on LLM output using Jev's calibrated probabilities.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.02,
+   "devtool": 0.45,
+   "sdk": 0.78,
+   "business": 0.16,
+   "consumer": 0.03,
+   "general": 0.21
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "Arindam200/fr",
+  "stars": 5,
+  "description": "Ask a question about a codebase, get the files that matter. Live, parallel file relevance with TypeSafe's Jev.",
+  "scores": {
+   "replica": 0.02,
+   "agent": 0.03,
+   "devtool": 0.95,
+   "sdk": 0.1,
+   "business": 0.04,
+   "consumer": 0.15,
+   "general": 0.07
+  },
+  "kind": "devtool"
  }
 ]

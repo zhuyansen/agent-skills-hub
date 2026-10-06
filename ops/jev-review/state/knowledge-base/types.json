@@ -4744,5 +4744,19 @@
    "personal": 0.07
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "bodepudimuneendra-netizen/laya-jev-GraphRAG",
+  "stars": 50,
+  "description": "A database-agnostic Agentic GraphRAG framework using swappable System One models (local Laya / cloud Jev). A plug-and-play intelligence layer featuring a complete 4-phase pipeline, continuous evaluation and custom A* traversal for any graph database.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.16,
+   "mcp": 0.26,
+   "docs_qa": 0.43,
+   "graph": 0.96,
+   "personal": 0.06
+  },
+  "kind": "graph"
  }
 ]

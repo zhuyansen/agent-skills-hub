@@ -2980,5 +2980,33 @@
    "general": 0.12
   },
   "kind": "convert"
+ },
+ {
+  "repo": "stevenjinlong/awesome-ppt-skills",
+  "stars": 70,
+  "description": "Turn a prompt into polished, full-slide PPT decks with gpt-image-2. 把一句提示词转换成由 gpt-image-2 生成的、精美完整的整页式 PPT 演示文稿。",
+  "scores": {
+   "image": 0.89,
+   "pptx": 0.78,
+   "html": 0.02,
+   "business": 0.25,
+   "convert": 0.07,
+   "general": 0.12
+  },
+  "kind": "image"
+ },
+ {
+  "repo": "billLiao/PPT-Design-Skill",
+  "stars": 5,
+  "description": "融合多种PPT设计风格，直接生成PPT文件而不是HTML",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.96,
+   "html": 0.02,
+   "business": 0.7,
+   "convert": 0.63,
+   "general": 0.08
+  },
+  "kind": "pptx"
  }
 ]

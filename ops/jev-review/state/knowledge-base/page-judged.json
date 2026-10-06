@@ -42436,5 +42436,42 @@
   "days": 130,
   "stars_per_day": 0.4153846153846154,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "bodepudimuneendra-netizen/laya-jev-GraphRAG",
+  "name": "laya-jev-GraphRAG",
+  "stars": 50,
+  "description": "A database-agnostic Agentic GraphRAG framework using swappable System One models (local Laya / cloud Jev). A plug-and-play intelligence layer featuring a complete 4-phase pipeline, continuous evaluation and custom A* traversal for any graph database.",
+  "topics": [
+   "astar-algorithm",
+   "eval-harness",
+   "fine-tuning",
+   "graphdatabase",
+   "graprag",
+   "jev",
+   "laya",
+   "neo4j",
+   "rag",
+   "typesafe-ai"
+  ],
+  "created": "2026-09-23",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 15593,
+  "names_model": false,
+  "on_subject": 0.88,
+  "is_software": 0.86,
+  "shareable_output": 0.7,
+  "shows_result": 0.04,
+  "one_command_start": 0.19,
+  "specific_outcome": 0.44,
+  "complete_docs": 0.09,
+  "novel_angle": 0.77,
+  "quality": 0.19,
+  "tier": "低",
+  "hit_prior": 0.5033333333333333,
+  "days": 13,
+  "stars_per_day": 3.8461538461538463,
+  "verdict": "low_quality"
  }
 ]

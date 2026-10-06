@@ -2237,7 +2237,8 @@
     "pillumina/ascend-sleuth",
     "professorpalmer/portable-llm-wiki",
     "wgpsec/context1337",
-    "MrDoe/OpenCodeRAG"
+    "MrDoe/OpenCodeRAG",
+    "bodepudimuneendra-netizen/laya-jev-GraphRAG"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -2564,7 +2565,9 @@
     "EYH0602/skillshub",
     "eatmoreduck/SkillManager",
     "glapsfun/gskill",
-    "anyt-io/pspm-cli"
+    "anyt-io/pspm-cli",
+    "pathintegral-institute/mcpm.sh",
+    "infragate/capa"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -2575,7 +2578,8 @@
     "brucevanfdm/agent-skills-guard",
     "luongnv89/agent-skill-manager",
     "sametcelikbicak/rolecraft",
-    "wanghuan9/skill-manager"
+    "wanghuan9/skill-manager",
+    "jiweiyeah/Skills-Manager"
    ]
   },
   "related": [
@@ -3931,7 +3935,9 @@
     "wp-a/paper2ppt",
     "henryhyw/slidepoise",
     "HututuWorks/sci-diagram-pptx",
-    "SHALINS428/Academic-PPT-Skill"
+    "SHALINS428/Academic-PPT-Skill",
+    "stevenjinlong/awesome-ppt-skills",
+    "billLiao/PPT-Design-Skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -5033,7 +5039,10 @@
     "zhulinchng/jevper",
     "zjunlp/JevLoop",
     "Sheltercosmo/jev4pg",
-    "okjpg/jev-hermes-router"
+    "okjpg/jev-hermes-router",
+    "jiwidi/jiwo",
+    "allebee/pytest-jev",
+    "Arindam200/fr"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -5362,7 +5371,13 @@
     "zoglmk/codex-video-pipeline",
     "buildwithhanif/claude-animation-skill",
     "bishpls/animation-pipeline",
-    "dillydog580/animate-roblox-characters"
+    "dillydog580/animate-roblox-characters",
+    "Barty-Bart/motion-graphics",
+    "TryWorld2026/paper-algorithm",
+    "xinyiqin/X2V-AI-Images-Videos-skill",
+    "alisadiq-ai/favstash-ai-video-editing-skills",
+    "generalizingai/shadowcast",
+    "hamen/app-promo-reel"
    ],
    "sub_skills": [
     {

@@ -5300,5 +5300,33 @@
   "days": 30,
   "stars_per_day": 3.4,
   "verdict": "admit"
+ },
+ {
+  "repo": "stevenjinlong/awesome-ppt-skills",
+  "name": "awesome-ppt-skills",
+  "stars": 70,
+  "description": "Turn a prompt into polished, full-slide PPT decks with gpt-image-2. 把一句提示词转换成由 gpt-image-2 生成的、精美完整的整页式 PPT 演示文稿。",
+  "topics": [],
+  "created": "2026-04-29",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9617,
+  "names_model": false,
+  "makes_slides": 0.98,
+  "agent_driven": 0.96,
+  "editable_output": 0.4,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.23,
+  "complete_docs": 0.87,
+  "shows_result": 0.21,
+  "specific_outcome": 0.87,
+  "novel_angle": 0.87,
+  "shareable_output": 0.75,
+  "quality": 0.545,
+  "tier": "中",
+  "hit_prior": 0.61,
+  "days": 160,
+  "stars_per_day": 0.4375,
+  "verdict": "admit"
  }
 ]
