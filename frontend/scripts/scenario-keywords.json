@@ -3679,6 +3679,15 @@
   "title": "PPT Skills for Codex & Claude Code",
   "github_list": "https://github.com/zhuyansen/awesome-codex-ppt-skills",
   "description": "Best Codex & Claude Code PPT skills, security-graded: ppt-master, codex-ppt-skill, image-to-editable-ppt, guizang HTML decks, McKinsey-style PPTX. Vet before you install.",
+  "video": {
+   "id": "T0keDFpa5i8",
+   "title": "Top 10 PPT Skills by GitHub Stars (video, in Chinese)",
+   "titleZh": "让 AI 做 PPT 的 200+ 个 Skill，星数前十",
+   "description": "The 10 most-starred of 200+ open-source PPT skills for Claude Code and Codex, and two that did not make the list.",
+   "uploadDate": "2026-10-06",
+   "duration": "PT2M4S",
+   "inLanguage": "zh"
+  },
   "match": {
    "categories": [],
    "primary_keywords": [

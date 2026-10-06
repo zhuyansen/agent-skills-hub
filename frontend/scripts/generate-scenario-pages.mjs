@@ -18,6 +18,7 @@ import {
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh } from "./scenario-kinds.mjs";
+import { videoHtml, videoLd } from "./scenario-video.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -719,6 +720,7 @@ ${breadcrumbLd}
   <script type="application/ld+json">
 ${faqLd}
   </script>
+${videoLd(scenario)}
 
   <!-- Static page: no SPA JavaScript, CSS only -->
   <link rel="stylesheet" href="/best-pages.css" />
@@ -761,6 +763,8 @@ ${faqLd}
           ${skills[0].description ? `<span style="color:var(--bp-text-secondary);font-size:13px"> — ${esc((skills[0].description || "").slice(0, 80))}</span>` : ""}
         </div>
       </div>` : ""}
+
+      ${videoHtml(scenario)}
 
       ${buildAeoSection(scenario, skills, year)}
 
