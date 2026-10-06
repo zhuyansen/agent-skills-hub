@@ -127,8 +127,8 @@
   "slug": "mcp-database",
   "seo_keyword": "supabase mcp",
   "title": "MCP Database Tools",
-  "serp_subject": "Database MCP Servers for Supabase & Postgres",
-  "description": "Database MCP servers let an AI agent query, inspect and change your data in Supabase, Postgres, MySQL and other SQL databases. Every server here is security-graded before you connect it to production.",
+  "serp_subject": "Supabase MCP, Postgres MCP & DB MCP Servers",
+  "description": "Supabase MCP, Postgres MCP and other database MCP servers let an AI agent query, inspect and change your data in Supabase, Postgres, MySQL and other SQL databases. Every server here is security-graded before you connect it to production.",
   "match": {
    "categories": [
     "mcp-server"
@@ -4736,9 +4736,9 @@
   "slug": "obsidian-second-brain",
   "seo_keyword": "obsidian mcp",
   "title": "Obsidian for Claude Code & AI Agents",
-  "serp_subject": "Obsidian Skills, MCP & Plugins for Claude",
+  "serp_subject": "Obsidian MCP, Skills & AI Plugins for Claude",
   "github_list": "https://github.com/zhuyansen/awesome-obsidian-ai-skills",
-  "description": "Obsidian skills, MCP servers and AI plugins for Claude Code, Codex and other agents, security-graded: kepano/obsidian-skills, mcp-obsidian, claude-obsidian, second-brain workflows. Vet before you install.",
+  "description": "Obsidian MCP servers, Obsidian skills and AI plugins for Claude Code, Codex and other agents, security-graded: kepano/obsidian-skills, mcp-obsidian, claude-obsidian, second-brain workflows. Vet before you install.",
   "match": {
    "categories": [],
    "primary_keywords": [

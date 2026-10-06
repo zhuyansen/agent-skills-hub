@@ -3156,19 +3156,19 @@
    {
     "id": "skill",
     "icon": "🧩",
-    "en": "Agent skills",
+    "en": "Obsidian skills",
     "zh": "Agent Skill"
    },
    {
     "id": "mcp",
     "icon": "🔌",
-    "en": "MCP servers",
+    "en": "Obsidian MCP servers",
     "zh": "MCP 服务"
    },
    {
     "id": "plugin",
     "icon": "🧱",
-    "en": "AI plugins",
+    "en": "Obsidian AI plugins",
     "zh": "AI 插件"
    },
    {
@@ -3621,37 +3621,37 @@
    {
     "id": "multi",
     "icon": "🔀",
-    "en": "Multi-database",
+    "en": "Multi-database MCP",
     "zh": "多数据库通用"
    },
    {
     "id": "postgres",
     "icon": "🐘",
-    "en": "PostgreSQL",
+    "en": "Postgres MCP",
     "zh": "PostgreSQL"
    },
    {
     "id": "baas",
     "icon": "⚡",
-    "en": "Supabase & BaaS",
+    "en": "Supabase MCP & BaaS",
     "zh": "Supabase 与 BaaS"
    },
    {
     "id": "mysql_sqlite",
     "icon": "🗄",
-    "en": "MySQL & SQLite",
+    "en": "MySQL & SQLite MCP",
     "zh": "MySQL 与 SQLite"
    },
    {
     "id": "nosql",
     "icon": "🍃",
-    "en": "NoSQL",
+    "en": "MongoDB & NoSQL MCP",
     "zh": "NoSQL"
    },
    {
     "id": "warehouse",
     "icon": "📊",
-    "en": "Analytics & warehouses",
+    "en": "Analytics & warehouse MCP",
     "zh": "分析型数据库"
    }
   ],
