@@ -6,10 +6,10 @@
 
 ## 1. 中文描述(默认语言)
 
-> 下面"前十"按 GitHub 星数从仓库数据里排出 12 个。视频里说有 2 个不上榜,发之前把那 2 个删掉,剩下 10 个的顺序和视频保持一致。
+排名按视频口播(转写见 `ppt-skills-top10.zh.srt`)。
 
 ```
-200+ 个让 Claude Code、Codex 做 PPT 的开源 Skill,按 GitHub 星数挑出前十。
+200 多个让 AI 做 PPT 的开源 Skill,挑出最值得装的前十。
 
 完整榜单(203 个,逐个读过 README、做了安全评级,可按类型筛选):
 https://agentskillshub.top/best/ppt-presentation/?utm_source=youtube&utm_medium=video&utm_campaign=ppt-top10
@@ -17,22 +17,33 @@ https://agentskillshub.top/best/ppt-presentation/?utm_source=youtube&utm_medium=
 GitHub 开源合集(每天自动更新):
 https://github.com/zhuyansen/awesome-codex-ppt-skills
 
-星数前十:
-1. hugohe3/ppt-master ⭐57.8k https://github.com/hugohe3/ppt-master
-2. zarazhangrui/frontend-slides ⭐30.2k https://github.com/zarazhangrui/frontend-slides
-3. op7418/guizang-ppt-skill ⭐27.3k https://github.com/op7418/guizang-ppt-skill
-4. chuspeeism/dashi-ppt-skill ⭐9.2k https://github.com/chuspeeism/dashi-ppt-skill
-5. lewislulu/html-ppt-skill ⭐8.6k https://github.com/lewislulu/html-ppt-skill
-6. ningzimu/codex-ppt-skill ⭐6.4k https://github.com/ningzimu/codex-ppt-skill
-7. wuyoscar/GPT-Image2-Skill ⭐5.6k https://github.com/wuyoscar/GPT-Image2-Skill
-8. icip-cas/PPTAgent ⭐5.1k https://github.com/icip-cas/PPTAgent
-9. op7418/NanoBanana-PPT-Skills ⭐3.3k https://github.com/op7418/NanoBanana-PPT-Skills
-10. GordenSun/GordenPPTSkill ⭐3.2k https://github.com/GordenSun/GordenPPTSkill
-11. ningzimu/image-to-editable-ppt-skill ⭐2.8k https://github.com/ningzimu/image-to-editable-ppt-skill
-12. GordenSun/GordenSuperPPTSkills ⭐2.0k https://github.com/GordenSun/GordenSuperPPTSkills
+前十:
+1. ppt-master https://github.com/hugohe3/ppt-master
+2. frontend-slides https://github.com/zarazhangrui/frontend-slides
+3. guizang-ppt-skill https://github.com/op7418/guizang-ppt-skill
+4. dashi-ppt-skill https://github.com/chuspeeism/dashi-ppt-skill
+5. html-ppt-skill https://github.com/lewislulu/html-ppt-skill
+6. codex-ppt-skill https://github.com/ningzimu/codex-ppt-skill
+7. PPTAgent https://github.com/icip-cas/PPTAgent
+8. GordenPPTSkill https://github.com/GordenSun/GordenPPTSkill
+9. image-to-editable-ppt-skill https://github.com/ningzimu/image-to-editable-ppt-skill
+10. GordenSuperPPTSkills https://github.com/GordenSun/GordenSuperPPTSkills
+
+不上榜:GPT-Image2-Skill(图片提示词库,不是做 PPT 的)、NanoBanana-PPT-Skills(安全扫描 Caution:用了 sudo)。
+
+章节:
+0:00 开场
+0:16 第 7、8 名(GPT-Image2-Skill 不上榜)
+0:36 第 2、10 名
+0:53 第 4 名(NanoBanana 不上榜)
+1:07 第 6、9 名
+1:22 第 5、3 名
+1:35 第 1 名 ppt-master
 
 #PPTSkills #ClaudeCode #Codex #AIPPT
 ```
+
+章节规则:第一条必须是 0:00,至少 3 条,每段不短于 10 秒(上面都满足)。
 
 ## 2. 英文标题和描述(YouTube Studio → 字幕 → 语言 → 添加"英语"→ 标题和说明)
 
@@ -53,17 +64,35 @@ https://agentskillshub.top/best/ppt-presentation/?utm_source=youtube&utm_medium=
 Open-source list on GitHub (updated daily):
 https://github.com/zhuyansen/awesome-codex-ppt-skills
 
-(the same 10 repos as the Chinese description)
+Top 10:
+1. ppt-master https://github.com/hugohe3/ppt-master
+2. frontend-slides https://github.com/zarazhangrui/frontend-slides
+3. guizang-ppt-skill https://github.com/op7418/guizang-ppt-skill
+4. dashi-ppt-skill https://github.com/chuspeeism/dashi-ppt-skill
+5. html-ppt-skill https://github.com/lewislulu/html-ppt-skill
+6. codex-ppt-skill https://github.com/ningzimu/codex-ppt-skill
+7. PPTAgent https://github.com/icip-cas/PPTAgent
+8. GordenPPTSkill https://github.com/GordenSun/GordenPPTSkill
+9. image-to-editable-ppt-skill https://github.com/ningzimu/image-to-editable-ppt-skill
+10. GordenSuperPPTSkills https://github.com/GordenSun/GordenSuperPPTSkills
+
+Left out: GPT-Image2-Skill (an image-prompt library, not a PPT tool) and NanoBanana-PPT-Skills (security scan: Caution, uses sudo).
 
 #PPTSkills #ClaudeCode #Codex #AIPPT
 ```
 
 ## 3. 其他设置
 
-- **字幕**:上传中文字幕,再加英文字幕(可由中文自动翻译后校对)。没有字幕时,YouTube 和 Google 只能读标题和描述。
+- **字幕**:两份已备好,`ops/youtube/ppt-skills-top10.zh.srt`(中文)和 `ppt-skills-top10.en.srt`(英文),30 条,时间轴来自 Whisper 词级时间戳,文字按画面校对过。上传步骤:
+  1. YouTube Studio → 左侧"字幕" → 点这条视频。
+  2. 第一次会让你选视频语言:选"中文(简体)"。
+  3. 中文那一行 → 字幕 → "添加" → "上传文件" → 选"包含时间" → 选 `.zh.srt` → 发布。
+  4. 页面上方"添加语言" → 英语;英语那一行 → 字幕 → "添加" → "上传文件" → "包含时间" → 选 `.en.srt` → 发布。
+  5. 英语那一行的"标题和说明"列 → "添加" → 粘贴第 2 节的英文标题和描述 → 发布。
+  6. 视频画面里已经烧录了中文字幕;上传的字幕默认关闭,观众开 CC 才显示,不会和画面重叠。它的作用是让 YouTube 和 Google 读到视频内容。
 - **标签**:`ppt skills, ppt skill, ai ppt, claude code ppt, codex ppt skill, ppt master, guizang ppt skill, frontend slides, ai presentation, 做PPT, AI做PPT`
 - **分类**:Science & Technology。
-- **章节**:描述里加时间戳(`0:00 开场` 这样一行一条,至少 3 条、第一条从 0:00 开始),Google 会在搜索结果里显示章节。
+- **章节**:已写在第 1 节中文描述末尾(时间来自字幕);英文描述想加的话照抄时间,标题译成英文。Google 会在搜索结果里显示章节。
 
 ## 4. 验收
 
