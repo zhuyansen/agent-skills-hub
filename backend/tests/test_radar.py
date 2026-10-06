@@ -260,3 +260,10 @@ def test_new_sites_query_needs_both_dates():
     body = new_sites._calls(date(2026, 10, 6))[0]["arguments"]["body"][0]
     fields = [f[0] for f in body["filters"] if isinstance(f, list)]
     assert fields[:2] == ["created_datetime", "first_seen"] and body["filters"][0][2].startswith("2026-07-08")
+
+
+def test_mail_recipients_tolerate_how_people_type_them():
+    import notify
+    assert notify.recipients('"a@b.com"') == ["a@b.com"]
+    assert notify.recipients("a@b.com，c@d.cn") == ["a@b.com", "c@d.cn"]
+    assert notify.recipients("<a@b.com>; c@d.cn\n") == ["a@b.com", "c@d.cn"]

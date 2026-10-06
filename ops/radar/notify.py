@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -27,10 +28,23 @@ def html(md_text: str) -> str:
     return STYLE + markdown.markdown(md_text, extensions=["tables"])
 
 
+_ADDRESS = re.compile(r"^[^@\s<>\"']+@[^@\s<>\"']+\.[a-z]{2,}$", re.I)
+
+
+def recipients(raw: str) -> list[str]:
+    """RADAR_EMAIL_TO as typed: commas (also full-width), semicolons or spaces between
+    addresses; quotes and angle brackets around them are dropped."""
+    parts = re.split(r"[,，;；\s]+", raw.strip().strip("\"'"))
+    return [p.strip("\"'<>") for p in parts if p.strip("\"'<>")]
+
+
 def send(subject: str, md_text: str) -> str:
-    to = [a.strip() for a in os.environ.get("RADAR_EMAIL_TO", "").split(",") if a.strip()]
+    to = recipients(os.environ.get("RADAR_EMAIL_TO", ""))
     if not to:
         return "skipped: RADAR_EMAIL_TO not set"
+    bad = [i + 1 for i, a in enumerate(to) if not _ADDRESS.match(a)]
+    if bad:   # the address itself stays out of the log
+        raise SystemExit(f"RADAR_EMAIL_TO: {len(to)} address(es), number {bad} not an email address; reset the secret")
     body = json.dumps({"from": os.environ["EMAIL_FROM"], "to": to, "subject": subject,
                        "html": html(md_text)}).encode()
     # Resend sits behind Cloudflare, which answers Python's default User-Agent with 403
