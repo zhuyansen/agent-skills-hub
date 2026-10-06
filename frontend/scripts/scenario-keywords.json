@@ -206,7 +206,8 @@
     "yujeongJeon/caniuse-mcp"
    ],
    "exclude_repos": [
-    "patsnap/mcp-for-patent-literature"
+    "patsnap/mcp-for-patent-literature",
+    "volcengine/OpenViking"
    ]
   },
   "related": [
