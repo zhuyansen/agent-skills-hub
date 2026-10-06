@@ -32,12 +32,15 @@ import daily_video_pass as dvp  # noqa: E402
 DESC_EN = ROOT / "frontend/scripts/scenario-desc-en.json"
 SITE = "https://agentskillshub.top"
 WORKERS, SAVE_EVERY = 10, 10
+# English runs longer than Chinese for the same meaning: the 80-character cap of the
+# Chinese descriptions cut 152 of the first 177 English ones mid-sentence (10-06).
+EN_MAX = 160
 NON_LATIN = re.compile(r"[぀-ヿ㐀-鿿가-힯]")
 NON_LATIN_SHARE = 0.3
 CARD = re.compile(r'<a class="bp-card-title" href="/skill/([^"/]+/[^"/]+)/".*?<p class="bp-card-desc"[^>]*data-en="([^"]*)"', re.S)
 PROMPT = ("Translate this GitHub repository description into plain English. Say only what it says; drop "
           "marketing words (world's first, ultimate, 100M views). Keep product, model and technique names "
-          "as written (Claude Code, Codex, Remotion, HyperFrames, MCP, skill, agent). At most 120 characters, "
+          "as written (Claude Code, Codex, Remotion, HyperFrames, MCP, skill, agent). At most 150 characters, "
           "no pipes or line breaks. Output only the translation.")
 FAITHFUL_EN = {
     "same_meaning": {"type": "noul", "instructions": {
@@ -81,7 +84,7 @@ def faithful(jev, original: str, en: str) -> float:
 def describe_en(jev, original: str) -> str:
     """An English description Jev accepts, or "" (the card keeps its original)."""
     for _ in range(2):
-        en = dvp.translate(original, PROMPT)
+        en = dvp.translate(original, PROMPT, EN_MAX)
         if en and not not_english(en) and faithful(jev, original, en) >= dvp.FAITHFUL_MIN:
             return en
     return ""
@@ -97,6 +100,7 @@ def main() -> int:
     from jev_client import OpenRouter
     limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else None
     have = json.loads(DESC_EN.read_text()) if DESC_EN.exists() else {}
+    have = {k: v for k, v in have.items() if not v.endswith("…")}   # cut short: write again
     todo = list(candidates(have).items())[:limit]
     print(f"{len(todo)} descriptions to translate ({len(have)} already done)", flush=True)
     jev, done = OpenRouter(), {}

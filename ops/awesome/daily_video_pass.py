@@ -181,7 +181,7 @@ def describe_zh(row: dict, jev) -> tuple[str, float]:
     return "", best[1]
 
 
-def translate(text: str, prompt: str = DESC_PROMPT) -> str:
+def translate(text: str, prompt: str = DESC_PROMPT, max_len: int = DESC_MAX) -> str:
     body = {"model": DESC_MODEL, "temperature": 0, "messages": [
         {"role": "system", "content": prompt}, {"role": "user", "content": text}]}
     req = urllib.request.Request(os.environ["FLATROUTER_BASE_URL"].rstrip("/") + "/chat/completions",
@@ -193,7 +193,7 @@ def translate(text: str, prompt: str = DESC_PROMPT) -> str:
             with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as res:
                 out = json.load(res)["choices"][0]["message"]["content"]
             out = re.sub(r"\s+", " ", out).replace("|", "/").strip().strip('"')
-            return out if len(out) <= DESC_MAX else out[:DESC_MAX - 1].rstrip() + "…"
+            return out if len(out) <= max_len else out[:max_len - 1].rstrip() + "…"
         except Exception as exc:  # noqa: BLE001 — a missing description falls back to the original
             log(f"  translation retry {attempt + 1}: {str(exc)[:80]}")
             time.sleep(5 * (attempt + 1))
