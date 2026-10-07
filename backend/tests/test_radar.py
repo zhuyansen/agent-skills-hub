@@ -210,7 +210,9 @@ def test_topic_section_lists_matching_leads_repos_and_queries(monkeypatch):
 def test_mail_html_renders_tables():
     import notify
     out = notify.html("| a | b |\n|---|---|\n| 1 | 2 |")
-    assert "<table>" in out and "<td>1</td>" in out
+    assert "<table style=" in out and ">1</td>" in out
+    # Gmail drops a <style> block outside <head>: every tag carries its own style.
+    assert "<style>" not in out and '<td style="border:1px solid' in out
 
 
 def test_mail_without_recipient_is_skipped(monkeypatch):

@@ -18,14 +18,33 @@ from pathlib import Path
 
 import markdown
 
-STYLE = ("<style>body{font:14px/1.6 -apple-system,'PingFang SC',sans-serif;color:#1f2328;max-width:900px}"
-         "table{border-collapse:collapse;margin:8px 0}th,td{border:1px solid #d0d7de;padding:4px 8px;"
-         "font-size:13px;vertical-align:top}th{background:#f6f8fa}h2{font-size:18px}h3{font-size:15px;"
-         "margin-top:22px}</style>")
+# Inline styles: Gmail drops a <style> block that sits outside <head>, which left the
+# radar tables unbordered with centred headers (2026-10-07). Every tag carries its own.
+FONT = "-apple-system,'PingFang SC','Microsoft YaHei',sans-serif"
+INLINE = {
+    "h2": "font-size:18px;margin:0 0 12px;color:#1f2328",
+    "h3": "font-size:15px;margin:24px 0 8px;color:#1f2328",
+    "p": "margin:8px 0",
+    "table": "border-collapse:collapse;margin:8px 0;width:100%",
+    "th": "border:1px solid #d0d7de;padding:6px 10px;font-size:13px;background:#f6f8fa;text-align:left;white-space:nowrap",
+    "td": "border:1px solid #d0d7de;padding:6px 10px;font-size:13px;vertical-align:top",
+    "ul": "padding-left:0;margin:8px 0;list-style:none",
+    "li": "margin:0 0 10px;padding:8px 12px;border-left:3px solid #d0d7de;background:#f6f8fa;font-size:13px",
+    "a": "color:#0969da",
+}
+TAG = re.compile(r"<(" + "|".join(INLINE) + r")(\s[^>]*)?>")
+
+
+def _inline(m: re.Match) -> str:
+    attrs = m.group(2) or ""
+    if m.group(1) == "td" and 'style="text-align' in attrs:   # markdown's own column alignment
+        return f"<td{attrs}>"
+    return f'<{m.group(1)} style="{INLINE[m.group(1)]}"{attrs}>'
 
 
 def html(md_text: str) -> str:
-    return STYLE + markdown.markdown(md_text, extensions=["tables"])
+    body = TAG.sub(_inline, markdown.markdown(md_text, extensions=["tables"]))
+    return f'<div style="font:14px/1.6 {FONT};color:#1f2328;max-width:900px">{body}</div>'
 
 
 _ADDRESS = re.compile(r"^[^@\s<>\"']+@[^@\s<>\"']+\.[a-z]{2,}$", re.I)

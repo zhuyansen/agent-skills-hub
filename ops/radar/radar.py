@@ -246,6 +246,14 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     return lines
 
 
+def _clip(text: str, n: int) -> str:
+    """Cut at a word boundary with an ellipsis, not mid-word."""
+    if len(text) <= n:
+        return text
+    cut = text[:n].rsplit(" ", 1)[0]
+    return (cut if len(cut) > n // 2 else text[:n]) + "…"
+
+
 def posts_markdown(rows: list[dict]) -> list[str]:
     """Each term's posts in full, with a link: what was said and where, without opening X."""
     lines = []
@@ -261,7 +269,7 @@ def posts_markdown(rows: list[dict]) -> list[str]:
 def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     lines = ["## 新词雷达 · ① 源头(每 8 小时)", "", "| 词 | 信号 | Jev | 已有页面 | 例子 |", "|---|---|---|---|---|"]
     for r in named(lead)[:SHOWN]:
-        ex = " / ".join(e[:60] for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
+        ex = "<br>".join(_clip(e, 60) for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
         lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
     lines += posts_markdown(named(lead)[:SHOWN])
