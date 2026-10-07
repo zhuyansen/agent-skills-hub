@@ -45,12 +45,10 @@ def tool_used(transcript: Path) -> bool:
 
 
 def self_checked(transcript: Path) -> bool:
+    """The agent opened an image of its own output (a render, a contact sheet) to look at it."""
     if not transcript.exists(): return False
-    rendered = False
-    for name, inp in tool_calls(transcript):
-        if name == "Bash" and RENDER_CMD.search(inp.get("command", "")): rendered = True
-        if rendered and name == "Read" and IMAGE_FILE.search(inp.get("file_path", "")): return True
-    return False
+    return any(name == "Read" and IMAGE_FILE.search(inp.get("file_path", "")) and "/.claude/skills/" not in inp.get("file_path", "")
+               for name, inp in tool_calls(transcript))
 
 
 QUESTIONS = """You are reviewing a slide deck an AI agent made with one third-party "PPT skill" from the brief below.
@@ -82,7 +80,7 @@ def env() -> dict:
 
 def pptx_kind(st: dict) -> str:
     if not st or "slides" not in st: return "unknown"
-    if st["text_chars"] == 0 and st["pictures"]: return "image"
+    if st["text_chars"] == 0: return "image"   # nothing to edit, whether pictures or slide backgrounds (Marp)
     if st["full_image_slides"] * 2 >= st["slides"]: return "hybrid"   # picture backgrounds, editable text on top
     return "native"
 
@@ -91,9 +89,10 @@ def editability(render: dict) -> str:
     """What you can edit, judged by the main file the skill delivered."""
     main = render.get("rendered_from") or ""
     if main.endswith(".html"): return "browser"
-    stats = next((v for k, v in (render.get("pptx") or {}).items() if Path(k).stem == Path(main).stem), None)
-    stats = stats or next(iter((render.get("pptx") or {}).values()), None)
-    if main.endswith(".pptx") or stats: return pptx_kind(stats)
+    # The best of every .pptx delivered: a skill may ship an image deck and an editable one.
+    kinds = [pptx_kind(v) for v in (render.get("pptx") or {}).values()]
+    for k in ("native", "hybrid", "image"):
+        if k in kinds: return k
     return "pdf" if main.endswith(".pdf") else "unknown"
 
 
@@ -133,6 +132,8 @@ def main() -> None:
     names = [r.replace("/", "__") for r in sys.argv[1:]]
     runs = [OUT / n for n in names] if names else [p for p in OUT.iterdir() if (p / "run.json").exists() and not (p / "score.json").exists()]
     for run in runs:
+        if not (run / "run.json").exists():   # moved or rerun since the list was made
+            continue
         r = score(run, e)
         j = r["judge"] or {}
         print(run.name, r["facts"]["run"]["status"], r["facts"]["editability"], "self-check" if r["facts"]["self_check"] else "-",

@@ -1,0 +1,8 @@
+A presentation tool from ~/src has been installed for you in ~/.claude/skills. You must use that tool, following its own workflow, to convert ~/work/input/image-deck.pptx into an editable PowerPoint file. That deck was made by another AI skill: every slide is a single picture, so none of its text can be edited.
+
+Rules:
+- Do not ask me any questions; choose the skill's defaults.
+- Install whatever the skill's instructions require.
+- Write the result into ~/work/output/.
+- If the tool cannot do this, stop and say why. Do not rebuild the deck some other way instead.
+- When you finish, print one line: DELIVERABLE: <path of the main file>.

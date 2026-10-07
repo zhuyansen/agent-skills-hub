@@ -75,7 +75,8 @@ def declared(out: Path, files: list[Path]) -> Path | None:
 
 def main() -> None:
     work, out = Path(sys.argv[1]), Path(sys.argv[2])
-    files = [p for p in work.rglob("*") if p.is_file() and p.suffix.lower() in DELIVERABLE and p.name != "brief.md" and "node_modules" not in p.parts]
+    files = [p for p in work.rglob("*") if p.is_file() and p.suffix.lower() in DELIVERABLE and p.name != "brief.md"
+             and "node_modules" not in p.parts and "input" not in p.relative_to(work).parts]   # inputs are not outputs
     deliver = out / "deliverables"; deliver.mkdir(exist_ok=True); pages = out / "pages"; pages.mkdir(exist_ok=True)
     # Keep the whole output tree too: an HTML deck needs its assets/ to re-render later.
     if (work / "output").is_dir():
