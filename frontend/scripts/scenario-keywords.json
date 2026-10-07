@@ -2795,6 +2795,171 @@
   "serp_subject": "Humanizer Skills & AI Slop Detectors",
   "github_list": "https://github.com/zhuyansen/awesome-humanizer-skills",
   "description": "Open-source humanizer and anti-slop skills, security-graded: make AI-written text, code and UI read like a person made it (blader/humanizer, Humanizer-zh, taste-skill), and detect AI tells. Vet before you install.",
+  "method": {
+   "h2": "How we judge humanizer skills: the two-layer method",
+   "h2_zh": "我们怎么评去 AI 味 skill：两层法",
+   "thesis": "AI-written text gives itself away on two layers. The surface is word choice and punctuation: \"delve\", \"tapestry\", em-dashes, stock phrases. Underneath are the choices: spelling out the lesson, tying every thread up neatly, gesturing at \"great works\" instead of naming one. Most humanizer skills scrub the surface. A 2026 study of 61,608 stories (StoryScope, University of Maryland and Google DeepMind, COLM 2026) found that this barely matters: after a rewriting tool removed surface artifacts from AI stories, a classifier that looks only at narrative structure still caught 93.9% of them, against 95.5% before. So we judge a humanizer by which layer it reaches.",
+   "thesis_zh": "AI 写的文字会在两层露馅。表层是用词和标点：\"delve\"\"tapestry\"、破折号、套话。下面一层是写作上的选择：把道理讲穿、把每条线都收得整整齐齐、泛泛提一句\"经典作品\"而不点名。大多数去 AI 味 skill 只擦表层。2026 年一项覆盖 61,608 篇小说的研究（StoryScope，马里兰大学与 Google DeepMind，COLM 2026）发现，这几乎没用：用改写工具去掉 AI 小说的表层痕迹之后，一个只看叙事结构的分类器仍然识别出 93.9%，改写前是 95.5%。所以我们按一个 skill 改到哪一层来评它。",
+   "h3_routes": [
+    "Three layers of AI tells",
+    "AI 痕迹的三层"
+   ],
+   "columns": [
+    [
+     "Layer",
+     "层"
+    ],
+    [
+     "Typical tells",
+     "典型痕迹"
+    ],
+    [
+     "What the evidence says",
+     "证据怎么说"
+    ],
+    [
+     "What scrubbing it leaves",
+     "只改这一层会留下什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Words and punctuation",
+     "name_zh": "用词和标点",
+     "how": "\"delve\", \"tapestry\", em-dashes, stock openers and closers.",
+     "how_zh": "\"delve\"\"tapestry\"、破折号、固定的开头和结尾套话。",
+     "gain": "Fading on its own: newer models use far fewer em-dashes, and fine-tuning on human style cut AI detection on creative writing from 97% to 3%.",
+     "gain_zh": "本身就在消失：新模型的破折号已大幅减少；用人类文风微调后，创意写作的 AI 检出率从 97% 降到 3%。",
+     "cost": "Easy to fix and easy to fake; fixing it changes nothing else.",
+     "cost_zh": "好改也好装；改了它，别的都没变。"
+    },
+    {
+     "name": "Phrasing",
+     "name_zh": "措辞",
+     "how": "Clichés, purple prose, redundant exposition.",
+     "how_zh": "陈词滥调、辞藻堆砌、重复解释。",
+     "gain": "In the study, a tool rewrote seven kinds of such artifacts; structure-based detection fell only from 95.5% to 93.9%.",
+     "gain_zh": "研究里用工具改写了七类这样的痕迹，基于结构的识别率只从 95.5% 降到 93.9%。",
+     "cost": "The text reads smoother but makes the same choices.",
+     "cost_zh": "读起来更顺，但做的还是同样的选择。"
+    },
+    {
+     "name": "Structure",
+     "name_zh": "结构",
+     "how": "States its own theme (77% of AI stories vs 52% of human ones), resolves into acceptance (47% vs 27%), no subplots (79% vs 57%), emotion through bodily sensation (81% vs 38%), vague allusions instead of named works (72% vs 50%), rarely addresses the reader (7% vs 28%).",
+     "how_zh": "直接点明主题（AI 77%，人类 52%）、以接受与和解收尾（47% 对 27%）、没有支线（79% 对 57%）、用身体感受写情绪（81% 对 38%）、泛泛提及而不点名具体作品（72% 对 50%）、几乎不对读者说话（7% 对 28%）。",
+     "gain": "Narrative choices alone separate human from AI fiction at 93.2% macro-F1, with every style signal removed.",
+     "gain_zh": "去掉所有文风信号，只靠叙事选择就能以 93.2% 的 macro-F1 区分人写和 AI 写的小说。",
+     "cost": "This is the layer that persists. Changing it takes a real rewrite: drop the stated moral, leave an ending open, name the specific thing.",
+     "cost_zh": "这一层才会留下来。要改它得真改写：删掉讲出来的道理、让结尾留白、把泛指换成具体的名字。"
+    }
+   ],
+   "gap": "The study measured fiction. For posts, emails, reports and docs we apply the same split as a working rule: we have not measured it on non-fiction. The page also lists code and UI tools; there the surface is comment bloat or a default gradient and the structure is what the code or the screen actually does, which is our analogy, not the study's.",
+   "gap_zh": "这项研究测的是小说。对帖子、邮件、报告和文档，我们把同样的分层当作工作规则来用，但没有在非虚构文本上测过。这一页还收了代码和界面类工具：那里的表层是冗余注释或默认渐变，结构是代码或界面实际做了什么。这是我们的类比，不是研究的结论。",
+   "h3_next": [
+    "Pick by what you are cleaning up",
+    "按你要清理的东西来选"
+   ],
+   "next_stop": [
+    {
+     "who": "Your own draft, so it stops sounding generic",
+     "who_zh": "你自己的草稿，不想读起来千篇一律",
+     "pick": "A phrasing-level humanizer plus a style-rule file you keep",
+     "pick_zh": "措辞层的 humanizer，加一份你长期用的写作规则文件"
+    },
+    {
+     "who": "Long-form writing you will publish",
+     "who_zh": "要发表的长文",
+     "pick": "A tool that reaches structure (drops stated morals, keeps endings open, asks for specifics), then a human edit",
+     "pick_zh": "能改到结构层的工具（删道理、留结尾、要具体），再加人工编辑"
+    },
+    {
+     "who": "Chinese text",
+     "who_zh": "中文文本",
+     "pick": "A Chinese-first tool; English word lists do not carry over",
+     "pick_zh": "中文优先的工具；英文的词表搬不过来"
+    },
+    {
+     "who": "Checking text, not rewriting it",
+     "who_zh": "只检查不改写",
+     "pick": "A slop detector, read as a list of things to look at, not a verdict",
+     "pick_zh": "AI 味检测器，把结果当成待查清单，不当判决"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every humanizer",
+    "每个去 AI 味 skill 我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Layer: does it only swap words and punctuation, or does it change phrasing and structure?",
+     "q_zh": "层次：只换词换标点，还是会改措辞和结构？"
+    },
+    {
+     "q": "Meaning: does it keep facts, numbers and names exactly as they were?",
+     "q_zh": "意思：事实、数字、名字是否原样保留？"
+    },
+    {
+     "q": "Specificity: does it push toward concrete, named details instead of vague gestures?",
+     "q_zh": "具体：是否把泛泛的说法换成具体的、点得出名字的细节？"
+    },
+    {
+     "q": "Evidence: does it show what it changed and why (a diff, a report), so you can check it?",
+     "q_zh": "证据：是否说明改了什么、为什么改（对照、报告），让你能核对？"
+    }
+   ],
+   "floor_activity": [
+    "while they rewrite or check text, code or UI",
+    "改写或检查文字、代码、界面时的行为"
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what does it change.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、它改的是什么。"
+    },
+    {
+     "item": "Sorted every entry into one of six types (writing, detectors, Chinese text, code, UI, style rules), so you can filter.",
+     "item_zh": "把每个条目归入六种类型之一（写作、检测、中文、代码、界面、写作规则），可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these humanizers on a shared test text; the layers come from the study, and which layer each tool reaches comes from what it says it does.",
+     "item_zh": "我们还没有用同一份测试文本实跑这些 skill；分层来自研究，每个工具改到哪一层来自它自己的说明。"
+    },
+    {
+     "item": "This page is not a guide to passing AI detectors. A humanizer that only scrubs the surface will not hide AI authorship from a structure-based check, per the study above.",
+     "item_zh": "这一页不是教你绕过 AI 检测。按上面的研究，只擦表层的 humanizer 骗不过基于结构的检测。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Russell, Rajendhran, Pham, Iyyer and Wieting. StoryScope: Investigating idiosyncrasies in AI fiction. COLM 2026 (arXiv 2604.03136).",
+     "url": "https://arxiv.org/abs/2604.03136"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-humanizer-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-humanizer-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-07"
+   }
+  },
   "match": {
    "categories": [],
    "primary_keywords": [
