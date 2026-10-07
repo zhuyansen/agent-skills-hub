@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-07
+1. alchaincyf/huashu-art-motion — 🆕 用代码让名画动起来，内置 35 种艺术风格和 9 种解说语法（593★ 593.0/day）
+2. uzairansaruzi/p3-stack — 🆕 把 pstack 改造到 T3 Code，子代理委派、worktree 线程和盯 PR 一套全有（105★ 59.4/day）
+3. fumingyang2004/Tulpa — 🆕 让智能体接管本地 QQ 和微信，实时检索、跟进消息并沉淀记忆（183★ 17.2/day）
+4. jiwidi/jiwo — 🆕 训练 Jev 风格的小型决策模型，专供对延迟敏感的场景调用（28★ 16.1/day）
+5. lcandy2/sim-agentation — 🆕 在浏览器里给运行中的 iOS 模拟器做标注，直接交给编程智能体修改（36★ 15.3/day）
+6. BudEcosystem/Bud-Decision-Studio — 🆕 用跨平台桌面应用部署和调用类 Jev 决策模型，自带推理服务（99★ 15.2/day）
+7. realchendahuang/dsh-skill — 🆕 照着 DeepSeek Harness 运行时契约开发插件和技能，附整套开发套件（20★ 12.4/day）
+8. robonuggets/skill-creator-plus — 🆕 按 Anthropic 的技能写作规范审计、新建和改进其他 Claude 技能（26★ 12.3/day）
+9. scottnarmstrong/LeanAutoformalizationSkills — 🆕 让 Codex 和 Claude Code 把数学证明自动形式化成 Lean 4（29★ 11.9/day）
+10. isas1/daily-team — 🆕 每天用 Claude Code 组一支四人创意团队，并做出一个小网页工具（42★ 10.2/day）
+🎯 今日趋势：十席**全部**标 🆕、**9 席**建仓不满 5 天；Jev 风格决策模型（jiwo、Bud Decision Studio）和技能开发工具（DSH 套件、skill-creator-plus）各占 **2 席**。
+> 注：去重范围＝repo 内 archive 全部 104 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,472 个（含路径噪声，只会多剔不会漏剔）。首查 `first_seen ≥48h`、stars ≥20 共 124 条（未触顶 LIMIT 150），命中历史推荐 13 条剔除，余 111 条中建仓 ≤21 天的约 21 条，候选足够，未放宽到 72h；单连接串行一次查询。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①aieln/awesome-persona-distill-skills（4,681★ 25.5/day）：建仓 183 天、本期才收录，不算新鲜；②GTKottman/mortiflix-oss（56★ 38.6/day）：2026-02 建号、1 粉、其余 33 仓全为 0★，单仓爆星形态，保守排除；③NeatoPurrito/Pawboard（24★）：1 粉、名下仅此 1 仓，且为桌面白板而非智能体工具；④Gaoyuan-0423/biomedical-paper-reader（59★）：0 粉、其余 5 仓 ≤1★；⑤steventsvik/GhosttyEXTREME（35★）：2026-03 建号、4 粉、其余仓 ≤1★；⑥Perpeer/lazychat（23★）：1 粉组织、名下仅 2 仓；⑦其余 90 余条建仓 25 天至数年、本期才收录。入选项复核（`gh api`）：第 1 席 alchaincyf（花叔）2023 建号、10,320 粉、名下 nuwa-skill 33,691★，DB 分类 uncategorized 但为技能项目、非个人主页，保留；第 2 席 uzairansaruzi 2024 建号、121 粉、名下另有 hermex 1,474★；第 3 席 fumingyang2004 2022 建号、4 粉、其余仓 13★/11★（**轻红旗**，描述具体，保留）；第 4 席 jiwidi 2015 建号、160 粉、名下另有 697★ 仓，DB 分类 uncategorized；第 5 席 lcandy2 2018 建号、245 粉、名下另有 1,984★ 仓；第 6 席 BudEcosystem 为 2023 年组织、58 粉、84 仓；第 7 席 realchendahuang 2024 建号、55 粉、名下另有 303★ 仓；第 8 席 robonuggets 2024 建号、479 粉、名下另有 1,037★ 仓；第 9 席 scottnarmstrong 2022 建号、25 粉、名下另有 41★ 研究仓；第 10 席 isas1 2015 建号、12 粉、名下另有 213★ 仓。h9-tec/arabic-ai-atlas（9.8/day）列第 11 未入选。🆕 判定＝created_at 距今 14 天内，十席全部命中（Tulpa 建仓 10.7 天，其余 ≤6.5 天）。security_grade：Tulpa、sim-agentation、daily-team 为 unknown（新入库未评），其余 7 席为 safe。表中 stars 为数据库快照，部分仓实时略高（p3-stack 129★、Tulpa 184★），按红线保留快照值。
+
+---
+
 ## 2026-10-06
 1. BootLoops-ai/bootloops — 🆕 给智能体配上经过认证的物理与量化计算引擎，精确算出高精度科学结果（265★ 56.9/day）
 2. fatihaydost/brand-identity-skill — 🆕 让 Claude Code 一次设计整套品牌识别，logo、字体和配色成体系产出（59★ 39.0/day）
