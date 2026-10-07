@@ -1,0 +1,188 @@
+[
+ {
+  "repo": "gozen3ji/consulting-pptx-skill",
+  "kind": "business",
+  "stars": 1113,
+  "grade": "safe"
+ },
+ {
+  "repo": "seulee26/mckinsey-pptx",
+  "kind": "business",
+  "stars": 594,
+  "grade": "safe"
+ },
+ {
+  "repo": "Pikapika260214/rw-consulting-ppt",
+  "kind": "business",
+  "stars": 467,
+  "grade": "safe"
+ },
+ {
+  "repo": "likaku/Mck-ppt-design-skill",
+  "kind": "business",
+  "stars": 295,
+  "grade": "safe"
+ },
+ {
+  "repo": "hugohe3/ppt-master",
+  "kind": "convert",
+  "stars": 57780,
+  "grade": "safe"
+ },
+ {
+  "repo": "op7418/NanoBanana-PPT-Skills",
+  "kind": "convert",
+  "stars": 3285,
+  "grade": "caution"
+ },
+ {
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "kind": "convert",
+  "stars": 1760,
+  "grade": "safe"
+ },
+ {
+  "repo": "Gabberflast/academic-pptx-skill",
+  "kind": "convert",
+  "stars": 1114,
+  "grade": "safe"
+ },
+ {
+  "repo": "irenerachel/visual-style-ppt-skill",
+  "kind": "convert",
+  "stars": 390,
+  "grade": "safe"
+ },
+ {
+  "repo": "Binaryify/open-kimi-ppt-skill",
+  "kind": "general",
+  "stars": 1596,
+  "grade": "safe"
+ },
+ {
+  "repo": "tfriedel/claude-office-skills",
+  "kind": "general",
+  "stars": 834,
+  "grade": "safe"
+ },
+ {
+  "repo": "zarazhangrui/frontend-slides",
+  "kind": "html",
+  "stars": 30187,
+  "grade": "safe"
+ },
+ {
+  "repo": "op7418/guizang-ppt-skill",
+  "kind": "html",
+  "stars": 27277,
+  "grade": "safe"
+ },
+ {
+  "repo": "chuspeeism/dashi-ppt-skill",
+  "kind": "html",
+  "stars": 9174,
+  "grade": "safe"
+ },
+ {
+  "repo": "lewislulu/html-ppt-skill",
+  "kind": "html",
+  "stars": 8588,
+  "grade": "safe"
+ },
+ {
+  "repo": "archlizheng/frontend-slides-editable",
+  "kind": "html",
+  "stars": 527,
+  "grade": "safe"
+ },
+ {
+  "repo": "ryanbbrown/revealjs-skill",
+  "kind": "html",
+  "stars": 413,
+  "grade": "safe"
+ },
+ {
+  "repo": "robonuggets/marp-slides",
+  "kind": "html",
+  "stars": 320,
+  "grade": "safe"
+ },
+ {
+  "repo": "daniel-style/magic-slide",
+  "kind": "html",
+  "stars": 172,
+  "grade": "safe"
+ },
+ {
+  "repo": "ningzimu/codex-ppt-skill",
+  "kind": "image",
+  "stars": 6354,
+  "grade": "safe"
+ },
+ {
+  "repo": "NyxTides/ppt-image-first",
+  "kind": "image",
+  "stars": 1223,
+  "grade": "safe"
+ },
+ {
+  "repo": "moongiadventures-dev/handdrawn-ppt",
+  "kind": "image",
+  "stars": 8,
+  "grade": "safe"
+ },
+ {
+  "repo": "Scott-Du/codex-ppt",
+  "kind": "image",
+  "stars": 7,
+  "grade": "safe"
+ },
+ {
+  "repo": "icip-cas/PPTAgent",
+  "kind": "pptx",
+  "stars": 5089,
+  "grade": "safe"
+ },
+ {
+  "repo": "GordenSun/GordenPPTSkill",
+  "kind": "pptx",
+  "stars": 3183,
+  "grade": "safe"
+ },
+ {
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "kind": "pptx",
+  "stars": 2781,
+  "grade": "safe"
+ },
+ {
+  "repo": "GordenSun/GordenSuperPPTSkills",
+  "kind": "pptx",
+  "stars": 2044,
+  "grade": "safe"
+ },
+ {
+  "repo": "GongRzhe/Office-PowerPoint-MCP-Server",
+  "kind": "pptx",
+  "stars": 1855,
+  "grade": "safe"
+ },
+ {
+  "repo": "johnson7788/MultiAgentPPT",
+  "kind": "pptx",
+  "stars": 1641,
+  "grade": "safe"
+ },
+ {
+  "repo": "JuneYaooo/gpt-image2-ppt-skills",
+  "kind": "pptx",
+  "stars": 1328,
+  "grade": "safe"
+ },
+ {
+  "repo": "sunbigfly/ppt-agent-skills",
+  "kind": "pptx",
+  "stars": 904,
+  "grade": "safe"
+ }
+]
