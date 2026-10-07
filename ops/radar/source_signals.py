@@ -62,10 +62,13 @@ def novel_names(posts: list[dict], vocab: dict[str, str], now: datetime) -> list
         for term in names(p["text"]):
             if term in vocab:
                 continue
-            row = found.setdefault(term, {"term": term, "sources": set(), "likes": 0, "examples": [], "strong": False})
+            row = found.setdefault(term, {"term": term, "sources": set(), "likes": 0, "examples": [], "posts": [], "strong": False})
             if p["account"] not in row["sources"]:
                 row["likes"] += p["likes"]
                 row["examples"].append(f"@{p['account']}: {' '.join(p['text'].split())[:80]}")
+                # The whole post and its link, for the mail: the reader checks the source in one click.
+                row["posts"].append({"account": p["account"], "text": " ".join(p["text"].split()),
+                                     "url": p.get("url", ""), "likes": p["likes"]})
             row["sources"].add(p["account"])
             row["strong"] |= term in strong
     rows = [r for r in found.values()

@@ -46,6 +46,7 @@ import source_signals  # noqa: E402
 NAMED_MIN = 0.5
 OTHER_TERMS = 15
 SHOWN = 20
+POSTS_SHOWN = 3   # posts quoted in full per term in the mail
 NAMED = {"named_thing": {"type": "noul", "instructions": {
     "question": "Is `term` the name of a specific product, model, tool, company or technique, rather than a common word or a generic category?",
     "focus": "`examples` are repo names, descriptions, posts or page paths where it appeared. 'opus 5.5', 'hyperframes', "
@@ -98,10 +99,11 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
     out: dict[str, dict] = {}
     for kind, block in blocks.items():
         for r in block.get("terms", []):
-            row = out.setdefault(r["term"], {"term": r["term"], "kinds": [], "signals": [], "examples": [], "variants": []})
+            row = out.setdefault(r["term"], {"term": r["term"], "kinds": [], "signals": [], "examples": [], "variants": [], "posts": []})
             row["kinds"].append(kind)
             row["signals"].append(r.get("note") or f"{KINDS[kind]} {r['recent']} 处 (×{r['lift']})")
             row["examples"] += r.get("examples", [])
+            row["posts"] += r.get("posts", [])
             row["variants"] += [v for v in r.get("variants", []) if v not in row["variants"]]
     rows = list(out.values())
     judge(rows)
@@ -244,12 +246,25 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     return lines
 
 
+def posts_markdown(rows: list[dict]) -> list[str]:
+    """Each term's posts in full, with a link: what was said and where, without opening X."""
+    lines = []
+    for r in rows:
+        for p in r.get("posts", [])[:POSTS_SHOWN]:
+            if not lines:
+                lines += ["", "### 推文原文", ""]
+            link = f" · [原推]({p['url']})" if p.get("url") else ""
+            lines.append(f"- **{r['term']}** · @{p['account']} ♥{p['likes']}{link}  \n  {p['text']}")
+    return lines
+
+
 def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     lines = ["## 新词雷达 · ① 源头(每 8 小时)", "", "| 词 | 信号 | Jev | 已有页面 | 例子 |", "|---|---|---|---|---|"]
     for r in named(lead)[:SHOWN]:
         ex = " / ".join(e[:60] for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
         lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
+    lines += posts_markdown(named(lead)[:SHOWN])
     for key, label in (("x", "① X"), ("hf", "① HF")):
         if b[key].get("error"):
             lines.append(f"\n- {label}:{b[key]['error']}")
