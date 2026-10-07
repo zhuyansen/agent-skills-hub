@@ -1,0 +1,5 @@
+The repository at ~/src is a presentation tool for AI agents (an MCP server, a Claude Code plugin, a package, or similar). Install it so that Claude Code can use it in a new session, following its own README:
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`;
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents);
+- a package or CLI: install it.
+Do not make any presentation. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.

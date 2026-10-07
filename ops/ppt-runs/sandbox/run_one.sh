@@ -10,6 +10,19 @@ find ~/src -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
   d=$(dirname "$f"); n=$(basename "$d"); [ "$d" = ~/src ] && n=$(basename "$REPO")
   cp -r "$d" ~/.claude/skills/"$n"; echo "$n" >> "$OUT/skills.txt"
 done
+# No SKILL.md: a Claude Code plugin is copied in; anything else (an MCP server, a
+# README-only repo) is installed by the agent in a separate session first, so that
+# what it registers (e.g. `claude mcp add`) is live in the deck session.
+if [ ! -s "$OUT/skills.txt" ]; then
+  if [ -f ~/src/.claude-plugin/plugin.json ]; then
+    for k in commands agents skills; do [ -d ~/src/$k ] && mkdir -p ~/.claude/$k && cp -r ~/src/$k/* ~/.claude/$k/; done
+    echo "plugin" > "$OUT/install.txt"
+  else
+    timeout 15m claude -p "$(cat /in/setup_prompt.txt)" --model "${CLAUDE_MODEL:-opus}" --dangerously-skip-permissions \
+      --output-format stream-json --verbose > "$OUT/setup.jsonl" 2>> "$OUT/claude.err"
+    echo "agent-setup" > "$OUT/install.txt"
+  fi
+fi
 cp /in/brief.md ~/work/brief.md
 # Image models: an OpenAI-compatible adapter in front of the async provider (image_proxy.py).
 if [ -n "${IMAGE_API_KEY:-}" ]; then

@@ -35,6 +35,15 @@ def tool_calls(transcript: Path) -> list[tuple[str, dict]]:
     return calls
 
 
+def tool_used(transcript: Path) -> bool:
+    """The run used the tool under test: its skill, its files, its MCP tools or its plugin command."""
+    if not transcript.exists(): return False
+    for name, inp in tool_calls(transcript):
+        if name == "Skill" or name.startswith("mcp__"): return True
+        if "/.claude/skills/" in json.dumps(inp) or "/.claude/commands/" in json.dumps(inp): return True
+    return False
+
+
 def self_checked(transcript: Path) -> bool:
     if not transcript.exists(): return False
     rendered = False
@@ -71,16 +80,30 @@ def env() -> dict:
     return vals
 
 
+def pptx_kind(st: dict) -> str:
+    if not st or "slides" not in st: return "unknown"
+    if st["text_chars"] == 0 and st["pictures"]: return "image"
+    if st["full_image_slides"] * 2 >= st["slides"]: return "hybrid"   # picture backgrounds, editable text on top
+    return "native"
+
+
+def editability(render: dict) -> str:
+    """What you can edit, judged by the main file the skill delivered."""
+    main = render.get("rendered_from") or ""
+    if main.endswith(".html"): return "browser"
+    stats = next((v for k, v in (render.get("pptx") or {}).items() if Path(k).stem == Path(main).stem), None)
+    stats = stats or next(iter((render.get("pptx") or {}).values()), None)
+    if main.endswith(".pptx") or stats: return pptx_kind(stats)
+    return "pdf" if main.endswith(".pdf") else "unknown"
+
+
 def facts(run: Path) -> dict:
     render = json.loads((run / "render.json").read_text()) if (run / "render.json").exists() else {}
-    stats = next(iter(render.get("pptx", {}).values()), None)
-    if stats and "slides" in stats:
-        editable = "image" if stats["full_image_slides"] >= max(1, stats["slides"] // 2) else "native"
-    else:
-        editable = "browser" if (render.get("rendered_from") or "").endswith(".html") else "unknown"
+    editable = editability(render)
     return {"run": json.loads((run / "run.json").read_text()), "rendered_from": render.get("rendered_from"),
-            "files": render.get("files", []), "pptx": stats, "editability": editable,
-            "self_check": self_checked(run / "transcript.jsonl"), "pages": render.get("pages", [])}
+            "files": render.get("files", []), "pptx": render.get("pptx"), "editability": editable,
+            "self_check": self_checked(run / "transcript.jsonl"), "tool_used": tool_used(run / "transcript.jsonl"),
+            "pages": render.get("pages", [])}
 
 
 def ask(e: dict, f: dict, pages: list[Path]) -> dict:

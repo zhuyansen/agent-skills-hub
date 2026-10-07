@@ -1,7 +1,8 @@
-A presentation skill has been installed in ~/.claude/skills (see ~/.claude/skills for its name and SKILL.md). Use that skill, following its own workflow, tools and output format, to turn ~/work/brief.md into a presentation of 8 to 10 slides.
+A presentation tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, or MCP server tools; check `claude mcp list` too). You must use that tool, following its own workflow, tools and output format, to turn ~/work/brief.md into a presentation of 8 to 10 slides.
 
 Rules:
 - Do not ask me any questions. Where the skill would ask (style, theme, language, audience), choose its default or the most sensible option for the brief and continue.
 - Install whatever the skill's instructions require.
 - Write the final deliverables (for example .pptx, .html, .pdf or slide images) into ~/work/output/.
+- If the tool cannot be installed or used, stop and say why. Do not build the slides some other way instead.
 - When you finish, print one line: DELIVERABLE: <path of the main file>.

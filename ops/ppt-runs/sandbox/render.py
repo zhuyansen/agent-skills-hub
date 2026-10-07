@@ -1,6 +1,6 @@
 """Collect a run's deliverables and render them to PNG pages, with objective
 editability counts for .pptx files. Usage: render.py <workdir> <outdir>."""
-import json, shutil, subprocess, sys
+import json, re, shutil, subprocess, sys
 from pathlib import Path
 
 DELIVERABLE = {".pptx", ".html", ".pdf", ".png", ".jpg", ".jpeg", ".key", ".md"}
@@ -65,6 +65,14 @@ def to_pdf(src: Path, outdir: Path) -> Path | None:
     return src if src.suffix == ".pdf" else None
 
 
+def declared(out: Path, files: list[Path]) -> Path | None:
+    """The file the agent named in its final "DELIVERABLE: <path>" line, if it exists."""
+    t = out / "transcript.jsonl"
+    names = re.findall(r"DELIVERABLE:\s*([^\s\\\"`]+)", t.read_text(errors="ignore")) if t.exists() else []
+    want = Path(names[-1]).name if names else None
+    return next((f for f in files if f.name == want), None)
+
+
 def main() -> None:
     work, out = Path(sys.argv[1]), Path(sys.argv[2])
     files = [p for p in work.rglob("*") if p.is_file() and p.suffix.lower() in DELIVERABLE and p.name != "brief.md" and "node_modules" not in p.parts]
@@ -78,7 +86,7 @@ def main() -> None:
         if f.suffix == ".pptx":
             try: report["pptx"][f.name] = pptx_stats(f)
             except Exception as e: report["pptx"][f.name] = {"error": str(e)[:200]}
-    main_file = next((f for ext in (".pptx", ".html", ".pdf") for f in files if f.suffix == ext), None)
+    main_file = declared(out, files) or next((f for ext in (".pptx", ".html", ".pdf") for f in files if f.suffix == ext), None)
     if main_file and main_file.suffix == ".html":
         try: html_pages(main_file, pages)
         except Exception as e: report["render_error"] = str(e)[:300]   # a failed render must not fail the run
