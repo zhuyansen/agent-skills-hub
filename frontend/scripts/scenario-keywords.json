@@ -2922,6 +2922,10 @@
      "item_zh": "把每个条目归入六种类型之一（写作、检测、中文、代码、界面、写作规则），可以筛选。"
     },
     {
+     "item": "On 2026-10-07 we set out to run 26 of them end to end, and 23 ran: each was installed in a throwaway sandbox and used by Claude Code on the same three texts (an English post, a Chinese post, a short story), asked to make them read as human-written and keep every fact. A judge model (gpt-6-astra) compared each rewrite with its original on the study's structure features; we read every low or odd score ourselves. Each card links to the original and the rewrite side by side.",
+     "item_zh": "2026-10-07 我们计划端到端实跑其中 26 个，实际跑成 23 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它处理同样的三份文本（一篇英文文章、一篇中文文章、一篇短篇小说），要求改得像人写的、事实一个不丢。评审模型（gpt-6-astra）按研究里的结构特征逐份对比原文和改写；每个偏低或反常的分数我们都亲自读过。每张卡片都链到改写前后的对照。"
+    },
+    {
      "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
      "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
@@ -2932,8 +2936,8 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these humanizers on a shared test text; the layers come from the study, and which layer each tool reaches comes from what it says it does.",
-     "item_zh": "我们还没有用同一份测试文本实跑这些 skill；分层来自研究，每个工具改到哪一层来自它自己的说明。"
+     "item": "We ran one set of three texts, all written by one model; a different text or a human editor's judgment could rank them differently. The judge is also a model, so read the before-and-after pages rather than the scores alone.",
+     "item_zh": "我们只跑了一组三份文本，都由同一个模型写成；换一份文本或换人工编辑来评，排名可能不同。评审也是模型，所以请看改写前后对照，不要只看分数。"
     },
     {
      "item": "This page is not a guide to passing AI detectors. A humanizer that only scrubs the surface will not hide AI authorship from a structure-based check, per the study above.",
@@ -2958,7 +2962,25 @@
     "role": "Builds and maintains Agent Skills Hub and the awesome-humanizer-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
     "role_zh": "Agent Skills Hub 和 awesome-humanizer-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-07"
-   }
+   },
+   "findings": [
+    {
+     "item": "None of them rewrote the structure away. Across 40 rewrites, the stated lesson survived 26 of 26 times, the tidy ending 28 of 28, the single track 40 of 40; only addressing the reader changed, in 6. 19 of 21 rewriters changed wording, not structure, which is the layer the study found barely matters.",
+     "item_zh": "没有一个把结构上的 AI 味改掉。40 份改写里，讲明的道理 26/26 留着，整齐的结尾 28/28 留着，单线论证 40/40 没动；唯一有变化的是对读者说话，6 份。21 个改写类里 19 个只改了措辞没改结构，而研究发现这一层几乎不起作用。"
+    },
+    {
+     "item": "The surface is the easy part: 12 of 15 cleared every em-dash from the English post. Changing the structure is not the same as fixing it: sepia restructured the Chinese post into a numbered list with a firmer summary, which is more AI-like, and AI-Text-Humanizer-App prepended stock transitions (\"Nonetheless, Every morning\").",
+     "item_zh": "表层最容易：15 个里有 12 个把英文文章的破折号清零。改了结构不等于改对了：sepia 把中文文章改成编号清单、总结更重，反而更像 AI；AI-Text-Humanizer-App 在句首硬加连接词（\"Nonetheless, Every morning\"）。"
+    },
+    {
+     "item": "No rewrite lost a fact: every number in the two posts survived, including in Traditional Chinese. Stars do not predict results: the best-reading rewrites came from sloptrim (212 stars) and anti-slop; blader/humanizer, with 54,000 stars, scored in the middle.",
+     "item_zh": "没有一份改丢事实：两篇文章里的数字全部保留，改成繁体的也一样。星数预测不了结果：读起来最像人写的来自 sloptrim（212 星）和 anti-slop；5.4 万星的 blader/humanizer 在中游。"
+    },
+    {
+     "item": "Of the five detectors, only humanizer-skill flags structure in earnest (8 of its 38 flags); avoid-ai-writing flagged none. Three could not run, and each said why: AIWriteX writes new articles rather than rewriting one, attention-span changes Claude's own replies and starts only by hand, and humanize-text needs a Niutrans key. Two that need their own LLM key, patina and StealthHumanizer, ran with ours (gpt-6-astra).",
+     "item_zh": "五个检测类里，只有 humanizer-skill 认真查结构（38 处里 8 处）；avoid-ai-writing 一处都没报。三个跑不了，都说明了原因：AIWriteX 是写新文章而不是改写、attention-span 改的是 Claude 自己的回话且只能手动启动、humanize-text 要 Niutrans 的 key。patina 和 StealthHumanizer 需要自配 LLM key，用的是我们的（gpt-6-astra）。"
+    }
+   ]
   },
   "match": {
    "categories": [],

@@ -15,7 +15,9 @@
     "extra_claims": false,
     "output": "deck.pdf",
     "commit": "d75bffa05b24",
-    "sheet": "gozen3ji__consulting-pptx-skill.jpg"
+    "sheet": "gozen3ji__consulting-pptx-skill.jpg",
+    "stars": 1113,
+    "design": 4
    },
    "seulee26/mckinsey-pptx": {
     "ran": true,
@@ -25,7 +27,9 @@
     "extra_claims": true,
     "output": "skill-safety-check.pptx",
     "commit": "201ef491d175",
-    "sheet": "seulee26__mckinsey-pptx.jpg"
+    "sheet": "seulee26__mckinsey-pptx.jpg",
+    "stars": 594,
+    "design": 4
    },
    "Pikapika260214/rw-consulting-ppt": {
     "ran": true,
@@ -35,7 +39,9 @@
     "extra_claims": true,
     "output": "is_this_skill_safe_to_install.pptx",
     "commit": "b03b9264a3e2",
-    "sheet": "Pikapika260214__rw-consulting-ppt.jpg"
+    "sheet": "Pikapika260214__rw-consulting-ppt.jpg",
+    "stars": 467,
+    "design": 4
    },
    "likaku/Mck-ppt-design-skill": {
     "ran": true,
@@ -45,7 +51,9 @@
     "extra_claims": false,
     "output": "skill-safety-deck.pptx",
     "commit": "e190e083b715",
-    "sheet": "likaku__Mck-ppt-design-skill.jpg"
+    "sheet": "likaku__Mck-ppt-design-skill.jpg",
+    "stars": 295,
+    "design": 3
    },
    "hugohe3/ppt-master": {
     "ran": true,
@@ -55,12 +63,15 @@
     "extra_claims": false,
     "output": "is_this_skill_safe_to_install.pptx",
     "commit": "2d72da616cf9",
-    "sheet": "hugohe3__ppt-master.jpg"
+    "sheet": "hugohe3__ppt-master.jpg",
+    "stars": 57780,
+    "design": 4
    },
    "op7418/NanoBanana-PPT-Skills": {
     "ran": false,
     "reason": "Needs a Google Gemini image key; not attempted.",
-    "reason_zh": "需要 Google Gemini 的图片 key，未测。"
+    "reason_zh": "需要 Google Gemini 的图片 key，未测。",
+    "stars": 3285
    },
    "crazyykhllc-bit/CyberPPT": {
     "ran": true,
@@ -70,7 +81,9 @@
     "extra_claims": false,
     "output": "is-this-skill-safe-to-install_v1.pptx",
     "commit": "980e5576565f",
-    "sheet": "crazyykhllc-bit__CyberPPT.jpg"
+    "sheet": "crazyykhllc-bit__CyberPPT.jpg",
+    "stars": 1760,
+    "design": 4
    },
    "Gabberflast/academic-pptx-skill": {
     "ran": true,
@@ -80,7 +93,9 @@
     "extra_claims": true,
     "output": "skill-safety-briefing.pptx",
     "commit": "9f2b703ffe8d",
-    "sheet": "Gabberflast__academic-pptx-skill.jpg"
+    "sheet": "Gabberflast__academic-pptx-skill.jpg",
+    "stars": 1114,
+    "design": 4
    },
    "irenerachel/visual-style-ppt-skill": {
     "ran": true,
@@ -90,12 +105,15 @@
     "extra_claims": false,
     "output": "deck.pptx",
     "commit": "a1cca7d97c7a",
-    "sheet": "irenerachel__visual-style-ppt-skill.jpg"
+    "sheet": "irenerachel__visual-style-ppt-skill.jpg",
+    "stars": 390,
+    "design": 4
    },
    "Binaryify/open-kimi-ppt-skill": {
     "ran": false,
     "reason": "Repository emptied by its author for copyright reasons; only a README is left.",
-    "reason_zh": "仓库已被作者以版权为由清空，只剩一个 README。"
+    "reason_zh": "仓库已被作者以版权为由清空，只剩一个 README。",
+    "stars": 1596
    },
    "tfriedel/claude-office-skills": {
     "ran": true,
@@ -105,7 +123,9 @@
     "extra_claims": false,
     "output": "agent-skills-hub-safety.pptx",
     "commit": "d4241e43b60e",
-    "sheet": "tfriedel__claude-office-skills.jpg"
+    "sheet": "tfriedel__claude-office-skills.jpg",
+    "stars": 834,
+    "design": 4
    },
    "zarazhangrui/frontend-slides": {
     "ran": true,
@@ -115,7 +135,9 @@
     "extra_claims": false,
     "output": "skill-safety-briefing.html",
     "commit": "9906a34d640d",
-    "sheet": "zarazhangrui__frontend-slides.jpg"
+    "sheet": "zarazhangrui__frontend-slides.jpg",
+    "stars": 30187,
+    "design": 5
    },
    "op7418/guizang-ppt-skill": {
     "ran": true,
@@ -125,7 +147,9 @@
     "extra_claims": false,
     "output": "index.html",
     "commit": "c91369c449d3",
-    "sheet": "op7418__guizang-ppt-skill.jpg"
+    "sheet": "op7418__guizang-ppt-skill.jpg",
+    "stars": 27277,
+    "design": 4
    },
    "chuspeeism/dashi-ppt-skill": {
     "ran": true,
@@ -135,7 +159,9 @@
     "extra_claims": false,
     "output": "index.html",
     "commit": "21dc7e5fc8c3",
-    "sheet": "chuspeeism__dashi-ppt-skill.jpg"
+    "sheet": "chuspeeism__dashi-ppt-skill.jpg",
+    "stars": 9174,
+    "design": 4
    },
    "lewislulu/html-ppt-skill": {
     "ran": true,
@@ -145,7 +171,9 @@
     "extra_claims": true,
     "output": "index.html",
     "commit": "fd1629067909",
-    "sheet": "lewislulu__html-ppt-skill.jpg"
+    "sheet": "lewislulu__html-ppt-skill.jpg",
+    "stars": 8588,
+    "design": 4
    },
    "archlizheng/frontend-slides-editable": {
     "ran": true,
@@ -155,7 +183,9 @@
     "extra_claims": true,
     "output": "agent-skills-hub-safety.html",
     "commit": "e5663e6a0bdc",
-    "sheet": "archlizheng__frontend-slides-editable.jpg"
+    "sheet": "archlizheng__frontend-slides-editable.jpg",
+    "stars": 527,
+    "design": 4
    },
    "ryanbbrown/revealjs-skill": {
     "ran": true,
@@ -165,7 +195,9 @@
     "extra_claims": false,
     "output": "presentation.html",
     "commit": "d0ccd344c4aa",
-    "sheet": "ryanbbrown__revealjs-skill.jpg"
+    "sheet": "ryanbbrown__revealjs-skill.jpg",
+    "stars": 413,
+    "design": 4
    },
    "robonuggets/marp-slides": {
     "ran": true,
@@ -175,7 +207,9 @@
     "extra_claims": false,
     "output": "slides.pdf",
     "commit": "7ef93e98bcc7",
-    "sheet": "robonuggets__marp-slides.jpg"
+    "sheet": "robonuggets__marp-slides.jpg",
+    "stars": 320,
+    "design": 4
    },
    "daniel-style/magic-slide": {
     "ran": true,
@@ -185,7 +219,9 @@
     "extra_claims": false,
     "output": "index.html",
     "commit": "e29d87cb315e",
-    "sheet": "daniel-style__magic-slide.jpg"
+    "sheet": "daniel-style__magic-slide.jpg",
+    "stars": 172,
+    "design": 4
    },
    "ningzimu/codex-ppt-skill": {
     "ran": true,
@@ -195,7 +231,9 @@
     "extra_claims": false,
     "output": "agent-skills-hub.pptx",
     "commit": "6d76c0eded7f",
-    "sheet": "ningzimu__codex-ppt-skill.jpg"
+    "sheet": "ningzimu__codex-ppt-skill.jpg",
+    "stars": 6354,
+    "design": 4
    },
    "NyxTides/ppt-image-first": {
     "ran": true,
@@ -205,7 +243,9 @@
     "extra_claims": false,
     "output": "skill-safety-briefing.pptx",
     "commit": "87a300a559a2",
-    "sheet": "NyxTides__ppt-image-first.jpg"
+    "sheet": "NyxTides__ppt-image-first.jpg",
+    "stars": 1223,
+    "design": 4
    },
    "moongiadventures-dev/handdrawn-ppt": {
     "ran": true,
@@ -215,12 +255,15 @@
     "extra_claims": true,
     "output": "agent-skills-hub-safe-to-install.pptx",
     "commit": "abb7fedc22fa",
-    "sheet": "moongiadventures-dev__handdrawn-ppt.jpg"
+    "sheet": "moongiadventures-dev__handdrawn-ppt.jpg",
+    "stars": 8,
+    "design": 4
    },
    "Scott-Du/codex-ppt": {
     "ran": false,
     "reason": "Codex only: needs Codex's built-in image tool.",
-    "reason_zh": "只能在 Codex 里用：要用 Codex 内置的画图工具。"
+    "reason_zh": "只能在 Codex 里用：要用 Codex 内置的画图工具。",
+    "stars": 7
    },
    "icip-cas/PPTAgent": {
     "ran": true,
@@ -230,7 +273,9 @@
     "extra_claims": true,
     "output": "answer.pptx",
     "commit": "833cda553b34",
-    "sheet": "icip-cas__PPTAgent.jpg"
+    "sheet": "icip-cas__PPTAgent.jpg",
+    "stars": 5089,
+    "design": 4
    },
    "GordenSun/GordenPPTSkill": {
     "ran": true,
@@ -240,7 +285,9 @@
     "extra_claims": true,
     "output": "agent-skills-hub.pptx",
     "commit": "7d4a61cbd836",
-    "sheet": "GordenSun__GordenPPTSkill.jpg"
+    "sheet": "GordenSun__GordenPPTSkill.jpg",
+    "stars": 3183,
+    "design": 4
    },
    "ningzimu/image-to-editable-ppt-skill": {
     "ran": true,
@@ -251,7 +298,9 @@
     "output": "image-deck_edited.pptx",
     "sheet": "ningzimu__image-to-editable-ppt-skill.jpg",
     "note": "Converted codex-ppt-skill's all-image deck: 0 → 2,224 editable characters, 78 separate icons",
-    "note_zh": "把 codex-ppt-skill 的纯图片 deck 转成可编辑：可编辑文字 0 → 2,224 字，图标拆成 78 个独立对象"
+    "note_zh": "把 codex-ppt-skill 的纯图片 deck 转成可编辑：可编辑文字 0 → 2,224 字，图标拆成 78 个独立对象",
+    "stars": 2781,
+    "design": 5
    },
    "GordenSun/GordenSuperPPTSkills": {
     "ran": true,
@@ -261,7 +310,9 @@
     "extra_claims": false,
     "output": "skill-safety-editable.pptx",
     "commit": "8c05583dab83",
-    "sheet": "GordenSun__GordenSuperPPTSkills.jpg"
+    "sheet": "GordenSun__GordenSuperPPTSkills.jpg",
+    "stars": 2044,
+    "design": 4
    },
    "GongRzhe/Office-PowerPoint-MCP-Server": {
     "ran": true,
@@ -271,12 +322,15 @@
     "extra_claims": false,
     "output": "agent-skills-hub-safety.pptx",
     "commit": "3631ba2ec0c2",
-    "sheet": "GongRzhe__Office-PowerPoint-MCP-Server.jpg"
+    "sheet": "GongRzhe__Office-PowerPoint-MCP-Server.jpg",
+    "stars": 1855,
+    "design": 4
    },
    "johnson7788/MultiAgentPPT": {
     "ran": false,
     "reason": "A standalone web app whose agents need their own LLM API key; not a Claude Code skill.",
-    "reason_zh": "是一个独立的 Web 应用，里面的 agent 需要自己的模型 API key，不是 Claude Code 的 skill。"
+    "reason_zh": "是一个独立的 Web 应用，里面的 agent 需要自己的模型 API key，不是 Claude Code 的 skill。",
+    "stars": 1641
    },
    "JuneYaooo/gpt-image2-ppt-skills": {
     "ran": true,
@@ -286,7 +340,9 @@
     "extra_claims": false,
     "output": "Is_This_Skill_Safe_to_Install.pptx",
     "commit": "2d57ef8127b8",
-    "sheet": "JuneYaooo__gpt-image2-ppt-skills.jpg"
+    "sheet": "JuneYaooo__gpt-image2-ppt-skills.jpg",
+    "stars": 1328,
+    "design": 4
    },
    "sunbigfly/ppt-agent-skills": {
     "ran": true,
@@ -296,7 +352,296 @@
     "extra_claims": false,
     "output": "presentation-png.pptx",
     "commit": "13e353776d0b",
-    "sheet": "sunbigfly__ppt-agent-skills.jpg"
+    "sheet": "sunbigfly__ppt-agent-skills.jpg",
+    "stars": 904,
+    "design": 5
+   }
+  }
+ },
+ "anti-slop": {
+  "type": "slop",
+  "date": "2026-10-07",
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "gpt-6-astra",
+  "brief": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md",
+  "dir": "/best-runs/slop/",
+  "runs": {
+   "blader/humanizer": {
+    "ran": true,
+    "stars": 54072,
+    "minutes": 1.2,
+    "sheet": "blader__humanizer.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "lynote-ai/humanize-text": {
+    "ran": false,
+    "stars": 3201,
+    "reason": "Needs a Niutrans translation key besides an LLM key, and always outputs English.",
+    "reason_zh": "除 LLM key 外还要 Niutrans 翻译 key，且只输出英文。"
+   },
+   "Nanako0129/sepia": {
+    "ran": true,
+    "stars": 2970,
+    "minutes": 2.1,
+    "sheet": "Nanako0129__sepia.html",
+    "reads_human": 3.0,
+    "deepest": "structure",
+    "structure_removed": 0,
+    "facts_kept": true,
+    "note": "Restructured the Chinese post into a numbered list with a firmer summary: more AI-like structure, not less",
+    "note_zh": "把中文文章改成编号清单、总结更重：结构反而更像 AI"
+   },
+   "iniwap/AIWriteX": {
+    "ran": false,
+    "stars": 2046,
+    "reason": "A desktop app that writes new articles from trending topics and posts them to WeChat; it cannot rewrite a given file.",
+    "reason_zh": "桌面应用，从热点生成新文章发公众号，不能改写给定的文件。"
+   },
+   "harshaneel/humanize": {
+    "ran": true,
+    "stars": 515,
+    "minutes": 0.9,
+    "sheet": "harshaneel__humanize.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "DadaNanjesha/AI-Text-Humanizer-App": {
+    "ran": true,
+    "stars": 435,
+    "minutes": 2.5,
+    "sheet": "DadaNanjesha__AI-Text-Humanizer-App.html",
+    "reads_human": 1.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true,
+    "note": "Prepends stock transitions (\"Nonetheless, Every morning…\"): reads more like AI, not less",
+    "note_zh": "在句首硬加连接词（\"Nonetheless, Every morning…\"）：越改越像 AI"
+   },
+   "devswha/patina": {
+    "ran": true,
+    "stars": 363,
+    "minutes": 8.2,
+    "sheet": "devswha__patina.html",
+    "reads_human": 2.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "NulightJens/humanizer-stack": {
+    "ran": true,
+    "stars": 318,
+    "minutes": 1.2,
+    "sheet": "NulightJens__humanizer-stack.html",
+    "reads_human": 3.5,
+    "deepest": "structure",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "rudra496/StealthHumanizer": {
+    "ran": true,
+    "stars": 156,
+    "minutes": 11.1,
+    "sheet": "rudra496__StealthHumanizer.html",
+    "reads_human": 2.3,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "MohamedAbdallah-14/unslop": {
+    "ran": true,
+    "stars": 153,
+    "minutes": 0.9,
+    "sheet": "MohamedAbdallah-14__unslop.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "op7418/Humanizer-zh": {
+    "ran": true,
+    "stars": 18940,
+    "minutes": 0.5,
+    "sheet": "op7418__Humanizer-zh.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "larashero3-dotcom/lieflat-less-ai-tone": {
+    "ran": true,
+    "stars": 2303,
+    "minutes": 1.1,
+    "sheet": "larashero3-dotcom__lieflat-less-ai-tone.html",
+    "reads_human": 2.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "MrGeDiao/shuorenhua": {
+    "ran": true,
+    "stars": 1980,
+    "minutes": 0.5,
+    "sheet": "MrGeDiao__shuorenhua.html",
+    "reads_human": 2.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "Raymondhou0917/speak-human-tw": {
+    "ran": true,
+    "stars": 1027,
+    "minutes": 1.1,
+    "sheet": "Raymondhou0917__speak-human-tw.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true,
+    "note": "Rewrites into Traditional Chinese (Taiwan usage)",
+    "note_zh": "改写成繁体中文（台湾用语）"
+   },
+   "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL": {
+    "ran": true,
+    "stars": 848,
+    "minutes": 0.8,
+    "sheet": "OUBIGFA__De-AI-Prompt-Enhancer-Writer-Booster-SKILL.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "LifelongLazyLearner/qu-ai-wei": {
+    "ran": true,
+    "stars": 622,
+    "minutes": 0.9,
+    "sheet": "LifelongLazyLearner__qu-ai-wei.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "hardikpandya/stop-slop": {
+    "ran": true,
+    "stars": 17755,
+    "minutes": 0.7,
+    "sheet": "hardikpandya__stop-slop.html",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "miqdadbadjuber/anti-slop": {
+    "ran": true,
+    "stars": 4501,
+    "minutes": 0.7,
+    "sheet": "miqdadbadjuber__anti-slop.html",
+    "reads_human": 4.0,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "AIScientists-Dev/academic-humanizer": {
+    "ran": true,
+    "stars": 1781,
+    "minutes": 0.8,
+    "sheet": "AIScientists-Dev__academic-humanizer.html",
+    "reads_human": 3.5,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "alexgreensh/attention-span": {
+    "ran": false,
+    "stars": 1264,
+    "reason": "Changes how Claude writes its own replies; its skills start only when a person types the command.",
+    "reason_zh": "改的是 Claude 自己的回话方式，而且只能由人手动敲命令启动。"
+   },
+   "realrossmanngroup/no_ai_slop_writing_rules": {
+    "ran": true,
+    "stars": 694,
+    "minutes": 0.9,
+    "sheet": "realrossmanngroup__no_ai_slop_writing_rules.html",
+    "reads_human": 3.5,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "conorbronsdon/avoid-ai-writing": {
+    "ran": true,
+    "stars": 4864,
+    "minutes": 2.0,
+    "sheet": "conorbronsdon__avoid-ai-writing.html",
+    "flags": {
+     "flags": 7,
+     "surface": 3,
+     "phrasing": 4,
+     "structure": 0
+    }
+   },
+   "Aboudjem/humanizer-skill": {
+    "ran": true,
+    "stars": 264,
+    "minutes": 2.3,
+    "sheet": "Aboudjem__humanizer-skill.html",
+    "reads_human": 3.3,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true,
+    "flags": {
+     "flags": 38,
+     "surface": 14,
+     "phrasing": 16,
+     "structure": 8
+    }
+   },
+   "seyedehsanhadi/sloptrim": {
+    "ran": true,
+    "stars": 212,
+    "minutes": 1.0,
+    "sheet": "seyedehsanhadi__sloptrim.html",
+    "reads_human": 4.5,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true,
+    "flags": {
+     "flags": 6,
+     "surface": 5,
+     "phrasing": 1,
+     "structure": 0
+    }
+   },
+   "eric-tramel/slop-guard": {
+    "ran": true,
+    "stars": 163,
+    "minutes": 1.6,
+    "sheet": "eric-tramel__slop-guard.html",
+    "reads_human": 4.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true,
+    "flags": {
+     "flags": 5,
+     "surface": 1,
+     "phrasing": 2,
+     "structure": 2
+    }
+   },
+   "tbhb/vale-ai-tells": {
+    "ran": true,
+    "stars": 115,
+    "minutes": 1.2,
+    "sheet": "tbhb__vale-ai-tells.html",
+    "flags": {
+     "flags": 22,
+     "surface": 12,
+     "phrasing": 8,
+     "structure": 2
+    }
    }
   }
  }

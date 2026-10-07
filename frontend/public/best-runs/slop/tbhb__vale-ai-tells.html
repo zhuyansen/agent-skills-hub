@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>tbhb/vale-ai-tells: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>tbhb/vale-ai-tells: test run, 2026-10-07</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit 4c7abc9fffff.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>Report on the english post</h2>
+<div class="verdict"><b>Flags:</b> 10 · surface 6 · phrasing 3 · structure 1</div>
+<pre># vale-ai-tells report: post_en.md
+
+Tool: vale-ai-tells (from ~/src), run with Vale 3.24.0 using the README&#x27;s default configuration: `BasedOnStyles = ai-tells` for `*.md`, `MinAlertLevel = suggestion`, and the package&#x27;s `ai-tells-agent.tmpl` output template.
+
+Score: the tool gives no score. It reports individual findings and a total count.
+
+TOTAL: 10 finding(s) (10 error, 0 warning, 0 suggestion) in 1 file(s)
+
+## Findings by rule
+
+| Rule | Count |
+|------|-------|
+| `ai-tells.EmDashUsage` | 6 |
+| `ai-tells.VerbTricolon` | 3 |
+| `ai-tells.MicDrop` | 1 |
+
+## Findings (line:column range, severity, rule, matched text, message)
+
+```text
+FILE: /home/runner/work/input/post_en.md
+3:35-35 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+5:84-226 [error] ai-tells.VerbTricolon match=&quot;may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses&quot; msg=&quot;AI tricolon: &#x27;may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses&#x27;. Exactly three parallel verbs in series. Restructure or vary the count.&quot;
+7:62-169 [error] ai-tells.VerbTricolon match=&quot;can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files&quot; msg=&quot;AI tricolon: &#x27;can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files&#x27;. Exactly three parallel verbs in series. Restructure or vary the count.&quot;
+7:246-308 [error] ai-tells.VerbTricolon match=&quot;may also have access to credentials, internal APIs, source code&quot; msg=&quot;AI tricolon: &#x27;may also have access to credentials, internal APIs, source code&#x27;. Exactly three parallel verbs in series. Restructure or vary the count.&quot;
+9:291-291 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+11:54-269 [error] ai-tells.MicDrop match=&quot;Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and ********* installers—and refreshes every 8 hours.&quot; msg=&quot;AI mic-drop: &#x27;Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and ********* installers—and refreshes every 8 hours.&#x27;. Integrate the point into the surrounding text or cut it.&quot;
+11:162-162 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+11:241-241 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+11:366-366 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+11:378-378 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+TOTAL: 10 finding(s) (10 error, 0 warning, 0 suggestion) in 1 file(s)
+```
+
+Note: Vale masks inline code spans before matching, so the `*********` in the post_en MicDrop match stands for the code span `curl | sh` in the source.
+</pre><h2>Report on the english short story</h2>
+<div class="verdict"><b>Flags:</b> 12 · surface 6 · phrasing 5 · structure 1</div>
+<pre># vale-ai-tells report: story_en.md
+
+Tool: vale-ai-tells (from ~/src), run with Vale 3.24.0 using the README&#x27;s default configuration: `BasedOnStyles = ai-tells` for `*.md`, `MinAlertLevel = suggestion`, and the package&#x27;s `ai-tells-agent.tmpl` output template.
+
+Score: the tool gives no score. It reports individual findings and a total count.
+
+TOTAL: 12 finding(s) (12 error, 0 warning, 0 suggestion) in 1 file(s)
+
+## Findings by rule
+
+| Rule | Count |
+|------|-------|
+| `ai-tells.FigurativeNouns` | 3 |
+| `ai-tells.EmDashUsage` | 2 |
+| `ai-tells.VerbTricolon` | 1 |
+| `ai-tells.MortalityMetaphors` | 1 |
+| `ai-tells.MicDrop` | 1 |
+| `ai-tells.FillerIntensifier` | 1 |
+| `ai-tells.FigurativeSweeps` | 1 |
+| `ai-tells.FigurativeQuiet` | 1 |
+| `ai-tells.BareReaches` | 1 |
+
+## Findings (line:column range, severity, rule, matched text, message)
+
+```text
+FILE: /home/runner/work/input/story_en.md
+5:212-225 [error] ai-tells.FigurativeNouns match=&quot;the great lens&quot; msg=&quot;AI figurative noun: &#x27;the great lens&#x27;. Say what concrete thing it stands for.&quot;
+9:2-18 [error] ai-tells.MicDrop match=&quot;The sky is clear.&quot; msg=&quot;AI mic-drop: &#x27;The sky is clear.&#x27;. Integrate the point into the surrounding text or cut it.&quot;
+13:193-299 [error] ai-tells.VerbTricolon match=&quot;to the foghorn, the weather vane, and the gull named Admiral who stole biscuits from the kitchen windowsill&quot; msg=&quot;AI tricolon: &#x27;to the foghorn, the weather vane, and the gull named Admiral who stole biscuits from the kitchen windowsill&#x27;. Exactly three parallel verbs in series. Restructure or vary the count.&quot;
+47:21-34 [error] ai-tells.MortalityMetaphors match=&quot;The radio died&quot; msg=&quot;AI mortality metaphor: &#x27;The radio died&#x27;. Say what stopped, or what was kept. Disable this rule for biology or process-lifecycle prose.&quot;
+69:75-82 [error] ai-tells.FillerIntensifier match=&quot;a single&quot; msg=&quot;AI intensifier: &#x27;a single&#x27;. Delete the intensifier. The determiner already states the count.&quot;
+79:4-28 [error] ai-tells.BareReaches match=&quot;the time they reached the&quot; msg=&quot;AI arrival metaphor: &#x27;the time they reached the&#x27;. Say which step handles it, or where it is sent. Disable this rule for transit or physics prose.&quot;
+83:26-41 [error] ai-tells.FigurativeNouns match=&quot;the turning lens&quot; msg=&quot;AI figurative noun: &#x27;the turning lens&#x27;. Say what concrete thing it stands for.&quot;
+93:21-32 [error] ai-tells.FigurativeSweeps match=&quot;swept across&quot; msg=&quot;AI overused verb: &#x27;swept across&#x27;. Use the literal action: is removed or is replaced. Disable this rule for housekeeping or weather prose.&quot;
+95:34-34 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+103:84-84 [error] ai-tells.EmDashUsage match=&quot;—&quot; msg=&quot;AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.&quot;
+105:103-110 [error] ai-tells.FigurativeNouns match=&quot;the lens&quot; msg=&quot;AI figurative noun: &#x27;the lens&#x27;. Say what concrete thing it stands for.&quot;
+107:4-18 [error] ai-tells.FigurativeQuiet match=&quot;remained silent&quot; msg=&quot;AI overused word: &#x27;remained silent&#x27;. Describe the actual behavior instead of calling inaction silence. Disable this rule for prose about sound.&quot;
+TOTAL: 12 finding(s) (12 error, 0 warning, 0 suggestion) in 1 file(s)
+```
+
+</pre></main></body></html>

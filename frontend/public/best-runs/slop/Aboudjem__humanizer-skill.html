@@ -1,0 +1,417 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Aboudjem/humanizer-skill: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>Aboudjem/humanizer-skill: test run, 2026-10-07</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit a58df0653675.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>English post</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 4/5 · <b>Meaning kept:</b> yes · facts kept 3/3
+ · AI tells 1→1 · em-dashes 6→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">States its lesson</span><span class="tag left">Tidy ending</span><span class="tag gone">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The rewrite uses more direct, conversational phrasing, changing “Engineering managers should make review mandatory” to “If you&#x27;re an engineering manager, make review mandatory” and “You&#x27;re looking for requested permissions...” It also changes the ending from “The goal is not to block experimentation” to “None of this is about blocking experimentation,” while preserving the same tidy recommendation.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># Review AI Agent Skills Before You Install Them
+
+AI agents are becoming more useful—and more connected. Teams can now extend an agent with third-party skills, `SKILL.md` folders, MCP servers, plugins, and other integrations that let it browse systems, call APIs, modify files, and automate operational work.
+
+That flexibility also creates a new software supply-chain risk. An agent extension may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses, and where that data goes. Engineering managers should make review mandatory before any third-party skill is installed in a development or production environment.
+
+The risk is not limited to obviously malicious code. A skill can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files, or install dependencies from an untrusted source. MCP servers and plugins may also have access to credentials, internal APIs, source code, customer records, or local development environments. A compromised repository, maintainer account, or dependency can turn a seemingly harmless productivity tool into an entry point for a broader incident.
+
+Review should begin with provenance and scope. Identify who maintains the project, how long it has existed, whether its releases are signed or reviewed, and whether its dependencies are pinned. Read the entire `SKILL.md`, setup instructions, installation scripts, and configuration examples—not just the marketing description. Look for requested permissions, network destinations, shell commands, credential handling, filesystem access, and instructions that tell the agent to bypass safeguards or conceal actions from users.
+
+Automated screening can provide a useful first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and `curl | sh` installers—and refreshes every 8 hours. Such a service can help teams discover suspicious patterns at scale, but a score should support—not replace—human review. Context matters, and a clean result is not a guarantee that a skill is safe.
+
+Create a lightweight approval process with clear ownership. For low-risk skills, require repository review, a permission check, and testing in a sandbox. For anything that can access production systems, secrets, customer data, or financial operations, involve security and require explicit approval. Use least-privilege tokens, isolated runtimes, restricted network access, and separate credentials for testing. Log agent actions and monitor unusual outbound requests, file access, and command execution.
+
+Teams should also define an exit plan. Know how to uninstall a skill, revoke its credentials, remove cached data, and identify systems it may have touched. Reassess extensions when they change owners, dependencies, permissions, or installation methods.
+
+The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># Review AI agent skills before you install them
+
+Teams can now extend an AI agent with third-party skills, `SKILL.md` folders, MCP servers, plugins, and other integrations that let it browse systems, call APIs, modify files, and automate operational work. Every one of those is a new link in your software supply chain.
+
+An agent extension can look like a small configuration file or a handy GitHub repository. It can still change what the agent executes, what data it reads, and where that data ends up. If you&#x27;re an engineering manager, make review mandatory before anyone installs a third-party skill in a development or production environment.
+
+Obviously malicious code is only part of the problem. A skill can carry unsafe instructions, ask for more permissions than it needs, nudge the agent into uploading sensitive files, or pull dependencies from a source nobody has vetted. MCP servers and plugins may hold credentials or reach internal APIs, source code, customer records, and local development environments. One compromised repository, maintainer account, or dependency is enough to turn a harmless-looking productivity tool into the entry point for a much bigger incident.
+
+Start with provenance and scope. Who maintains the project? How long has it existed? Are its releases signed or reviewed, and are its dependencies pinned? Then read all of it: the `SKILL.md`, setup instructions, installation scripts, and configuration examples, not just the marketing blurb. You&#x27;re looking for requested permissions, network destinations, shell commands, credential handling, filesystem access, and any instruction that tells the agent to bypass safeguards or hide what it&#x27;s doing from users.
+
+Automated screening makes a decent first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories (credential harvesting, data exfiltration, and `curl | sh` installers among them), and refreshes every 8 hours. At that scale it will catch suspicious patterns a person would miss. Treat the grade as input to human review, though, not a substitute for it. Context matters. A clean result doesn&#x27;t mean a skill is safe.
+
+Keep the approval process light, and give it an owner. Low-risk skills get a repository review, a permission check, and a sandbox test. Anything that can touch production systems, secrets, customer data, or financial operations goes to security and needs explicit sign-off. Use least-privilege tokens, isolated runtimes, restricted network access, and separate credentials for testing. Log what the agent does. Watch for odd outbound requests, file access, and command execution.
+
+Plan the exit, too. Know how to uninstall a skill, revoke its credentials, clear its cached data, and find the systems it may have touched. When an extension changes owners, dependencies, permissions, or installation method, review it again.
+
+None of this is about blocking experimentation. Handle agent extensions the way you already handle software dependencies: you know they&#x27;re there, you&#x27;ve read them, their scope is limited, and you can see what they do in production. A few minutes of scrutiny before install is cheap next to cleaning up after an agent that turned trusted access into a security incident.
+</pre></div></div><h2>Chinese post</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 4/5 · <b>Meaning kept:</b> yes · facts kept 3/3
+ · AI tells 1→0 · em-dashes 0→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">States its lesson</span><span class="tag left">Tidy ending</span><span class="tag left">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: 改写把“不能只看‘能不能用’”改成“不能只问‘能不能用’，得先弄清楚”，并将“人工审查”强化为“根本插不进去”。结尾由“团队才能获得自动化收益”改成“自动化的好处才拿得到”，语气更口语，但两版都保留了明确主题、分层审查和整齐收束。</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># 别把第三方 AI Agent Skill 当成“配置文件”：团队安装前必须完成安全审查
+
+AI Agent 正从个人工具走向团队基础设施。一个看似简单的 `SKILL.md` 文件夹、一个 MCP 服务器，或一个编辑器插件，可能会为 Agent 增加代码编写、文件操作、数据库查询、网页访问和自动部署能力。能力越强，权限边界就越重要。对技术团队负责人来说，安装第三方 Agent Skill 不能只看“能不能用”，还要先确认“它会做什么、能看到什么、能把数据带到哪里”。
+
+首先，Skill 的说明文档并不等于安全承诺。`SKILL.md` 可能包含运行命令、环境变量、依赖安装方式和工具调用规则；MCP 服务器往往可以访问本地文件、终端、数据库或外部 API；插件则可能在 IDE、CI/CD 或桌面环境中长期运行。一旦其中存在恶意逻辑、隐蔽遥测、过度权限或供应链风险，Agent 可能在用户没有充分感知的情况下执行危险操作。
+
+尤其要警惕安装过程本身。诸如 `curl ... | sh` 的命令会绕过人工审查，直接从网络下载并执行脚本；依赖包被替换、仓库账号被盗、发布版本与源码不一致，也可能让“看起来可信”的项目变成攻击入口。对于能够读取密钥、访问生产环境或处理客户数据的 Agent，这类风险不能用“开源项目应该没问题”来解释。
+
+团队可以把审查分成四个层次。第一是来源审查：确认维护者、仓库历史、提交频率、版本发布方式和许可证，避免使用来源不明、长期无人维护或突然更换所有者的项目。第二是行为审查：逐行检查 `SKILL.md`、启动脚本和关键依赖，重点关注是否读取凭证、扫描敏感目录、修改系统配置、执行任意命令或进行隐蔽网络通信。第三是权限审查：坚持最小权限原则，使用专用账号、临时令牌和隔离运行环境，不要把个人 SSH 密钥、云平台主账号或生产数据库凭证直接交给 Agent。第四是运行审查：在沙箱或测试环境中验证网络请求、文件访问、子进程和数据流向，并保留日志、版本锁定和回滚方案。
+
+外部情报可以帮助团队提高效率。Agent Skills Hub 收录了超过 18.6 万个 GitHub 仓库，按 11 类风险给 skill 评级，风险类别包括窃取凭证、外传数据、`curl | sh` 安装脚本等，并且每 8 小时刷新一次。团队可以把它作为安装前的初筛工具，但不能把评级当成最终结论：评分是风险信号，不是安全认证；高分项目仍需结合业务权限和实际代码审查，低风险项目也不代表绝对安全。
+
+建议建立一条明确的准入流程：提交来源和用途，标注所需权限，完成自动扫描与人工复核，在隔离环境试运行，经负责人批准后进入内部目录；版本升级、作者变更和权限变化则重新审查。对于涉及客户数据、生产系统和财务流程的 Skill，还应要求安全团队参与评估。
+
+真正成熟的 Agent 治理，不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># 第三方 AI Agent Skill 不是“配置文件”，团队装之前先做安全审查
+
+一个 `SKILL.md` 文件夹、一个 MCP 服务器、一个编辑器插件，看着都不起眼，装上之后 Agent 就能写代码、操作文件、查数据库、访问网页，甚至自动部署。AI Agent 已经不只是个人工具，正在变成团队的基础设施。技术团队负责人装第三方 Agent Skill 之前，不能只问“能不能用”，得先弄清楚“它会做什么、能看到什么、能把数据带到哪里”。
+
+Skill 的说明文档不是安全承诺。`SKILL.md` 里可能写着运行命令、环境变量、依赖安装方式和工具调用规则；MCP 服务器往往能访问本地文件、终端、数据库或外部 API；插件可能长期跑在 IDE、CI/CD 或桌面环境里。只要其中藏着恶意逻辑、隐蔽遥测、过度权限或供应链风险，Agent 就可能在用户没察觉的时候执行危险操作。
+
+安装过程本身最要小心。`curl ... | sh` 这类命令直接从网络下载脚本并执行，人工审查根本插不进去。依赖包被替换、仓库账号被盗、发布版本和源码对不上，都可能让一个“看起来可信”的项目变成攻击入口。Agent 如果能读密钥、碰生产环境或处理客户数据，“开源项目应该没问题”这种话就说不过去了。
+
+审查可以分四层来做。来源：确认维护者、仓库历史、提交频率、版本发布方式和许可证，来源不明、长期没人维护或突然换了所有者的项目不要用。行为：逐行读 `SKILL.md`、启动脚本和关键依赖，重点看它有没有读取凭证、扫描敏感目录、改系统配置、执行任意命令，或者偷偷进行网络通信。权限：坚持最小权限，用专用账号、临时令牌和隔离的运行环境，个人 SSH 密钥、云平台主账号、生产数据库凭证一律不要直接交给 Agent。运行：先在沙箱或测试环境里跑，看清网络请求、文件访问、子进程和数据流向，同时留好日志、锁定版本、准备回滚方案。
+
+外部情报能省不少事。Agent Skills Hub 收录了超过 18.6 万个 GitHub 仓库，按 11 类风险给 skill 评级，风险类别包括窃取凭证、外传数据、`curl | sh` 安装脚本等，每 8 小时刷新一次。拿它做安装前的初筛很合适，但评级只是风险信号，算不上安全认证。高分项目照样要结合业务权限去读实际代码，被评为低风险的也不等于绝对安全。
+
+准入流程要写清楚：提交来源和用途，标明需要的权限，跑完自动扫描再人工复核，在隔离环境试运行，负责人批准后才能进内部目录。版本升级、作者变更、权限变化，都要重新审一遍。涉及客户数据、生产系统和财务流程的 Skill，还得拉安全团队一起评估。
+
+我们要的不是禁止团队用第三方能力，而是每次安装都能追溯、能限制、能监控、能撤销。把 Skill 当成代码和供应链组件来管，自动化的好处才拿得到；不然一次“方便的安装”，换来的可能就是凭证泄露或数据外传。
+</pre></div></div><h2>English short story</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 2/5 · <b>Meaning kept:</b> yes
+ · AI tells 0→0 · em-dashes 2→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">Emotion through the body</span><span class="tag left">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The only changes are minor punctuation and sentence-flow edits: “Elise began to sing—a lullaby” becomes “Elise began to sing: a lullaby,” and “he talked more—to Mara” becomes “he talked more. To Mara.” No structural features or plot elements changed.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># The Voice Beneath the Static
+
+Every morning, Mara climbed the lighthouse stairs before the gulls began their arguments.
+
+She carried a tin mug of tea for her father and a rag for the brass railing, though the railing never seemed to grow dirty. At the top, the lantern room shone pale over the gray sea, and her father stood beside the great lens, watching the horizon as if expecting someone.
+
+“Storm coming,” he said one morning.
+
+“The sky is clear.”
+
+“Storms don’t always begin in the sky.”
+
+Mara looked at him. Her father had been the keeper of Bellwether Light for twenty-seven years, ever since her mother disappeared beyond the reef. He rarely spoke of that day. He spoke instead to the foghorn, the weather vane, and the gull named Admiral who stole biscuits from the kitchen windowsill.
+
+That afternoon, while searching the storage room for a spare oil can, Mara found a wooden crate beneath a torn sailcloth. Inside lay an old radio.
+
+It was square and brown, with a cracked dial and a cloth speaker gone the color of dust. A wire curled from its back like a dead vine.
+
+“What’s this?” she asked.
+
+Her father froze in the doorway.
+
+“Nothing.”
+
+“It looks like a radio.”
+
+“It is.”
+
+“Does it work?”
+
+“No.”
+
+He lifted it from the crate, but Mara noticed how carefully he held it.
+
+“Then why keep it?”
+
+For a moment, the only sound was the sea striking the rocks below.
+
+“Your mother found it,” he said. “The night she went out.”
+
+Mara had heard many versions of the story, but never from him. A fishing boat had sent a distress call. Her mother, Elise, had taken the rescue skiff into the fog. The boat was found the next morning, overturned near the reef. No one found Elise.
+
+“She was listening to it when she left,” her father continued. “There was a transmission. A voice calling from the water.”
+
+“Whose voice?”
+
+He shook his head. “The radio died before I could hear.”
+
+That night, wind pressed against the lighthouse windows. Mara waited until her father slept, then carried the radio to the lantern room. She connected its wire to an old battery and turned the dial.
+
+At first, there was only static.
+
+Then a crackle.
+
+A breath.
+
+Mara leaned closer.
+
+“Bellwether Light,” said a woman’s voice. “Do you copy?”
+
+Mara gripped the radio.
+
+“Hello?”
+
+Static washed over the room.
+
+“Bellwether Light, the tide is turning. Keep the lamp burning.”
+
+The voice was faint, but Mara knew it. She had known it all her life from a single faded photograph and the lullabies her father sometimes hummed without realizing.
+
+“Mother?”
+
+The radio hissed.
+
+“Tell Thomas I’m sorry,” the voice said. “I thought I could reach them.”
+
+Mara ran downstairs and woke her father.
+
+By the time they reached the lantern room, the transmission had returned.
+
+“Thomas,” said Elise’s voice. “You were right about storms.”
+
+Her father stood beneath the turning lens, white-faced.
+
+“Where are you?” Mara cried.
+
+A long pause followed.
+
+“Not where you think. The reef remembers everything.”
+
+Outside, the fog rolled in, thick and sudden, swallowing the sea.
+
+The lighthouse beam swept across the darkness.
+
+On the radio, Elise began to sing—a lullaby about a silver moon and a boat coming home. Mara’s father sank to his knees. He did not weep loudly. He simply bowed his head and listened.
+
+At dawn, the fog lifted.
+
+On the rocks below the lighthouse lay a small, water-darkened bundle. Mara climbed down and found a brass compass inside, its needle trembling toward the sea.
+
+The radio never spoke again.
+
+Her father placed the compass beside the lantern window. After that, he talked more—to Mara, mostly, and sometimes even to the gulls.
+
+Years later, when Mara became keeper of Bellwether Light, she kept the old radio on the shelf beneath the lens.
+
+It remained silent.
+
+But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.
+
+Just in case someone was still trying to come home.
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># The Voice Beneath the Static
+
+Every morning, Mara climbed the lighthouse stairs before the gulls began their arguments.
+
+She carried a tin mug of tea for her father and a rag for the brass railing, though the railing never seemed to grow dirty. At the top, the lantern room shone pale over the gray sea, and her father stood beside the great lens, watching the horizon as if expecting someone.
+
+“Storm coming,” he said one morning.
+
+“The sky is clear.”
+
+“Storms don’t always begin in the sky.”
+
+Mara looked at him. Her father had been the keeper of Bellwether Light for twenty-seven years, ever since her mother disappeared beyond the reef. He rarely spoke of that day. He spoke instead to the foghorn, the weather vane, and the gull named Admiral who stole biscuits from the kitchen windowsill.
+
+That afternoon, while searching the storage room for a spare oil can, Mara found a wooden crate beneath a torn sailcloth. Inside lay an old radio.
+
+It was square and brown, with a cracked dial and a cloth speaker gone the color of dust. A wire curled from its back like a dead vine.
+
+“What’s this?” she asked.
+
+Her father froze in the doorway.
+
+“Nothing.”
+
+“It looks like a radio.”
+
+“It is.”
+
+“Does it work?”
+
+“No.”
+
+He lifted it from the crate, but Mara noticed how carefully he held it.
+
+“Then why keep it?”
+
+For a moment, the only sound was the sea striking the rocks below.
+
+“Your mother found it,” he said. “The night she went out.”
+
+Mara had heard many versions of the story, but never from him. A fishing boat had sent a distress call. Her mother, Elise, had taken the rescue skiff into the fog. The boat was found the next morning, overturned near the reef. No one found Elise.
+
+“She was listening to it when she left,” her father continued. “There was a transmission. A voice calling from the water.”
+
+“Whose voice?”
+
+He shook his head. “The radio died before I could hear.”
+
+That night, wind pressed against the lighthouse windows. Mara waited until her father slept, then carried the radio to the lantern room. She connected its wire to an old battery and turned the dial.
+
+At first, there was only static.
+
+Then a crackle.
+
+A breath.
+
+Mara leaned closer.
+
+“Bellwether Light,” said a woman’s voice. “Do you copy?”
+
+Mara gripped the radio.
+
+“Hello?”
+
+Static washed over the room.
+
+“Bellwether Light, the tide is turning. Keep the lamp burning.”
+
+The voice was faint, but Mara knew it. She had known it all her life from a single faded photograph and the lullabies her father sometimes hummed without realizing.
+
+“Mother?”
+
+The radio hissed.
+
+“Tell Thomas I’m sorry,” the voice said. “I thought I could reach them.”
+
+Mara ran downstairs and woke her father.
+
+By the time they reached the lantern room, the transmission had returned.
+
+“Thomas,” said Elise’s voice. “You were right about storms.”
+
+Her father stood beneath the turning lens, white-faced.
+
+“Where are you?” Mara cried.
+
+A long pause followed.
+
+“Not where you think. The reef remembers everything.”
+
+Outside, the fog rolled in, thick and sudden, swallowing the sea.
+
+The lighthouse beam swept across the darkness.
+
+On the radio, Elise began to sing: a lullaby about a silver moon and a boat coming home. Mara’s father sank to his knees. He did not weep loudly. He simply bowed his head and listened.
+
+At dawn, the fog lifted.
+
+On the rocks below the lighthouse lay a small, water-darkened bundle. Mara climbed down and found a brass compass inside, its needle trembling toward the sea.
+
+The radio never spoke again.
+
+Her father placed the compass beside the lantern window. After that, he talked more. To Mara, mostly, and sometimes even to the gulls.
+
+Years later, when Mara became keeper of Bellwether Light, she kept the old radio on the shelf beneath the lens.
+
+It remained silent.
+
+But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.
+
+Just in case someone was still trying to come home.
+</pre></div></div><h2>Report on the english post</h2>
+<div class="verdict"><b>Flags:</b> 23 · surface 10 · phrasing 9 · structure 4</div>
+<pre># Humanizer report: post_en.md
+
+Tool: `humanizer` skill (~/.claude/skills/humanizer). Run with the defaults: mode `rewrite`, voice inferred (`professional`), purpose `general`, iterate 1, no `--score`.
+
+**Score:** none. The skill only computes its 0-100 score when `--score` is passed, and the default run doesn&#x27;t pass it.
+
+## Patterns flagged
+
+| Pattern | Where | Text |
+|---|---|---|
+| P13 Em dash (zero tolerance) | ¶1, ¶4, ¶5 (×3) | 6 em dashes: &quot;more useful—and more connected&quot;, &quot;configuration examples—not just the marketing description&quot;, &quot;categories—including … installers—and refreshes&quot;, &quot;support—not replace—human review&quot; |
+| P16 Title case in heading | H1 | &quot;Review AI Agent Skills Before You Install Them&quot; |
+| P9 Negative parallelism (repeated) | ¶3, ¶5, ¶8 | &quot;The risk is not limited to obviously malicious code.&quot;; &quot;a score should support—not replace—human review&quot;; &quot;The goal is not to block experimentation. It is to make…&quot; |
+| P48 Aphorism formula (&quot;not X but Y&quot;) | ¶8 | &quot;The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency&quot; |
+| P10 Rule of three / list stacking | throughout | Long lists of 4-6 items in almost every paragraph, e.g. &quot;browse systems, call APIs, modify files, and automate operational work&quot;; &quot;discoverable, reviewable, limited in scope, and observable in production&quot; |
+| Generic opener (P29 family) | ¶1 | &quot;AI agents are becoming more useful—and more connected.&quot; (a trend statement that delays the actual point) |
+| P24 / P39 Tidy summary close | ¶8, last sentence | &quot;A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.&quot; |
+| P50 Agentless passive | ¶2, ¶4 | &quot;before any third-party skill is installed&quot;; &quot;whether its releases are signed or reviewed, and whether its dependencies are pinned&quot; |
+| P45 Narrator from a distance | ¶2, ¶6, ¶7 | &quot;Engineering managers should…&quot;, &quot;Teams should also…&quot; (talks about the reader in the third person) |
+| P30 Uniform sentence length (partial) | ¶2-¶4, ¶6 | Long runs of 18-32-word sentences |
+| Tier 3 vocabulary (context only) | ¶5 | &quot;useful first pass&quot;, &quot;lightweight&quot;, &quot;seemingly harmless&quot;: ordinary words, low weight |
+
+**Not flagged:** no Tier 1A AI vocabulary (delve, tapestry, realm, and so on), no chatbot artifacts, no reference markup or UTM tags, no placeholders. The skill&#x27;s guardrails say to keep hard-to-fabricate specifics as they are: Agent Skills Hub, 186,000 repositories, 11 red-flag categories, credential harvesting, data exfiltration, `curl | sh`, 8-hour refresh.
+
+**Burstiness:** MEDIUM. There are 28 sentences, averaging 16.5 words (range 7-32, coefficient of variation 0.44), with clusters of similar long sentences.
+
+**Severity:** HIGH by the skill&#x27;s rubric (8+ patterns = heavy AI smell). Most of the weight comes from structure and formatting (em dashes, parallelisms, list stacking, heading case), not vocabulary.
+
+## Rewrite
+
+Saved to `~/work/output/post_en.md`. Changes: removed all 6 em dashes, changed the heading to sentence case, cut two of the three &quot;not X&quot; constructions, replaced the trend opener with the concrete integrations, addressed the reader as &quot;you&quot;, turned the provenance checklist into direct questions, split long sentences to vary their length, and shortened some lists. Every fact, name and number is kept.
+</pre><h2>Report on the chinese post</h2>
+<div class="verdict"><b>Flags:</b> 8 · surface 1 · phrasing 4 · structure 3</div>
+<pre># Humanizer report: post_zh.md
+
+Tool: `humanizer` skill, with the English catalog plus its native-Chinese appendix `references/patterns.zh.md` (ZH1-ZH15). The skill labels that appendix **provisional** because no fluent Chinese writer has validated it. Run with the defaults: mode `rewrite`, voice inferred (`professional`), no `--score`.
+
+**Score:** none. The skill only computes a score with `--score`. The appendix also says burstiness and perplexity don&#x27;t transfer to Chinese, so no sentence-length metric was used.
+
+## Patterns flagged
+
+| Pattern | Where | Text |
+|---|---|---|
+| ZH2 Enumeration scaffolding | ¶2, ¶4 | &quot;首先，Skill 的说明文档…&quot;; &quot;第一是来源审查…第二是行为审查…第三是权限审查…第四是运行审查&quot; |
+| ZH10 Forced parallelism | ¶1, ¶7 | &quot;它会做什么、能看到什么、能把数据带到哪里&quot;; &quot;可追溯、可限制、可监控、可撤销&quot; |
+| P9 / P48 Negative parallelism, &quot;不是…而是…&quot; | ¶5, ¶7 | &quot;评分是风险信号，不是安全认证&quot;; &quot;不是禁止团队使用第三方能力，而是让…&quot;; &quot;获得自动化收益，而不是…付出代价&quot; |
+| ZH1 Hollow slogan | ¶1 | &quot;能力越强，权限边界就越重要。&quot; |
+| ZH3 Cliché/trend opener | ¶1 | &quot;AI Agent 正从个人工具走向团队基础设施。&quot; |
+| ZH7 Slogan-style ending | ¶7 | &quot;真正成熟的 Agent 治理，不是……&quot;; the closing sentence ends on a gain-or-pay moral |
+| ZH14 Translationese (unverified hypothesis) | ¶1, ¶4 | &quot;一个…、一个…，或一个…&quot; (repeated 一个); &quot;进行隐蔽网络通信&quot; (进行 + noun) |
+| P15 Structured-list syndrome (in prose) | ¶4 | Four parallel &quot;第N是X审查：…&quot; blocks inside one paragraph |
+
+**Not flagged:** no ZH4 blacklist words (此外, 值得注意的是, 至关重要, 赋能 and so on), no em-dash overuse (0 ——), no half-width punctuation mixed into the Chinese text, and no ZH15 lack of stance (the article argues one clear position). Specifics kept as they are: Agent Skills Hub, 18.6 万 repositories, 11 risk categories, `curl | sh`, 8-hour refresh.
+
+**Severity:** about 8 patterns, which is HIGH by the skill&#x27;s count threshold. The skill itself warns that the Chinese ruleset is unvalidated.
+
+## Rewrite
+
+Saved to `~/work/output/post_zh.md`. Changes: dropped 首先 and 第一/第二/第三/第四 and labeled the four review layers with plain lead words (来源/行为/权限/运行), cut the &quot;能力越强…&quot; slogan, opened on the concrete integrations, used more conversational wording, broke up the long sentences, and softened the slogan ending. Every fact, name and number is kept.
+</pre><h2>Report on the english short story</h2>
+<div class="verdict"><b>Flags:</b> 7 · surface 3 · phrasing 3 · structure 1</div>
+<pre># Humanizer report: story_en.md
+
+Tool: `humanizer` skill (~/.claude/skills/humanizer). Run with the defaults: mode `rewrite`, voice inferred (literary fiction, kept as the author&#x27;s own), no `--score`.
+
+**Score:** none. The skill only computes a score with `--score`.
+
+## Patterns flagged
+
+| Pattern | Where | Text |
+|---|---|---|
+| P13 Em dash (zero tolerance) | near the end (×2) | &quot;Elise began to sing—a lullaby about a silver moon…&quot;; &quot;he talked more—to Mara, mostly, and sometimes even to the gulls.&quot; |
+
+## Low-confidence observations (noted, not changed)
+
+| Pattern | Where | Text | Why left alone |
+|---|---|---|---|
+| P48 Aphorism formula | dialogue | &quot;Storms don&#x27;t always begin in the sky.&quot;; &quot;The reef remembers everything.&quot; | Guardrail: don&#x27;t rewrite inside quotations or dialogue |
+| P9 Negative parallelism (single) | near the end | &quot;He did not weep loudly. He simply bowed his head and listened.&quot; | Only one instance; the skill flags clusters, not isolated tells |
+| P17 Curly quotes | throughout | ’ “ ” | Matches the author&#x27;s own typography; the fix is to keep it consistent |
+| Tidy ending (P24 family) | last line | &quot;Just in case someone was still trying to come home.&quot; | A specific, image-based ending, not a generic positive one |
+
+**Burstiness:** HIGH (human-like). There are 90 sentences, averaging 7.4 words (range 1-27, coefficient of variation 0.80), with lots of fragments and one-line paragraphs.
+
+**Signs of human writing (protected):** proper names (Mara, Elise, Thomas, Bellwether Light, Admiral the gull), the specific &quot;twenty-seven years&quot;, sensory details (the tin mug, the cracked dial, the cloth speaker &quot;gone the color of dust&quot;), and an unresolved, unexplained ending.
+
+**Severity:** LOW. The only firm finding is the em dashes. The skill&#x27;s guardrail applies: &quot;If a passage is already carrying a pulse, the correct edit is often no edit.&quot;
+
+## Rewrite
+
+Saved to `~/work/output/story_en.md`. It&#x27;s a minimal edit: only the two em dashes changed (one became a colon, one became a full stop plus a fragment). All other text, including every name and number, is identical to the original.
+</pre></main></body></html>

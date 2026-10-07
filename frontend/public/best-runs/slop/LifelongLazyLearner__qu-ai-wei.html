@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>LifelongLazyLearner/qu-ai-wei: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>LifelongLazyLearner/qu-ai-wei: test run, 2026-10-07</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit 1d32e803f091.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>Chinese post</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 3/5 · <b>Meaning kept:</b> yes · facts kept 3/3
+ · AI tells 1→0 · em-dashes 0→2<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">States its lesson</span><span class="tag left">Tidy ending</span><span class="tag left">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The rewrite mainly substitutes phrasing, such as changing “从个人工具走向团队基础设施” to “从个人工具变成团队基础设施” and “不能只看” to “不能只看……还得先弄清”. It formats the four review layers as a numbered list, but keeps their order and substance unchanged; the explicit thesis, tidy conclusion, and single-track structure remain.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># 别把第三方 AI Agent Skill 当成“配置文件”：团队安装前必须完成安全审查
+
+AI Agent 正从个人工具走向团队基础设施。一个看似简单的 `SKILL.md` 文件夹、一个 MCP 服务器，或一个编辑器插件，可能会为 Agent 增加代码编写、文件操作、数据库查询、网页访问和自动部署能力。能力越强，权限边界就越重要。对技术团队负责人来说，安装第三方 Agent Skill 不能只看“能不能用”，还要先确认“它会做什么、能看到什么、能把数据带到哪里”。
+
+首先，Skill 的说明文档并不等于安全承诺。`SKILL.md` 可能包含运行命令、环境变量、依赖安装方式和工具调用规则；MCP 服务器往往可以访问本地文件、终端、数据库或外部 API；插件则可能在 IDE、CI/CD 或桌面环境中长期运行。一旦其中存在恶意逻辑、隐蔽遥测、过度权限或供应链风险，Agent 可能在用户没有充分感知的情况下执行危险操作。
+
+尤其要警惕安装过程本身。诸如 `curl ... | sh` 的命令会绕过人工审查，直接从网络下载并执行脚本；依赖包被替换、仓库账号被盗、发布版本与源码不一致，也可能让“看起来可信”的项目变成攻击入口。对于能够读取密钥、访问生产环境或处理客户数据的 Agent，这类风险不能用“开源项目应该没问题”来解释。
+
+团队可以把审查分成四个层次。第一是来源审查：确认维护者、仓库历史、提交频率、版本发布方式和许可证，避免使用来源不明、长期无人维护或突然更换所有者的项目。第二是行为审查：逐行检查 `SKILL.md`、启动脚本和关键依赖，重点关注是否读取凭证、扫描敏感目录、修改系统配置、执行任意命令或进行隐蔽网络通信。第三是权限审查：坚持最小权限原则，使用专用账号、临时令牌和隔离运行环境，不要把个人 SSH 密钥、云平台主账号或生产数据库凭证直接交给 Agent。第四是运行审查：在沙箱或测试环境中验证网络请求、文件访问、子进程和数据流向，并保留日志、版本锁定和回滚方案。
+
+外部情报可以帮助团队提高效率。Agent Skills Hub 收录了超过 18.6 万个 GitHub 仓库，按 11 类风险给 skill 评级，风险类别包括窃取凭证、外传数据、`curl | sh` 安装脚本等，并且每 8 小时刷新一次。团队可以把它作为安装前的初筛工具，但不能把评级当成最终结论：评分是风险信号，不是安全认证；高分项目仍需结合业务权限和实际代码审查，低风险项目也不代表绝对安全。
+
+建议建立一条明确的准入流程：提交来源和用途，标注所需权限，完成自动扫描与人工复核，在隔离环境试运行，经负责人批准后进入内部目录；版本升级、作者变更和权限变化则重新审查。对于涉及客户数据、生产系统和财务流程的 Skill，还应要求安全团队参与评估。
+
+真正成熟的 Agent 治理，不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># 第三方 AI Agent Skill 不是“配置文件”：团队安装前必须做安全审查
+
+AI Agent 正从个人工具变成团队基础设施。一个 `SKILL.md` 文件夹、一个 MCP 服务器或一个编辑器插件，看起来很简单，却可能让 Agent 多出写代码、操作文件、查询数据库、访问网页和自动部署的能力。Agent 能做的事越多，权限边界就越要紧。技术团队负责人安装第三方 Agent Skill 时，不能只看“能不能用”，还得先弄清“它会做什么、能看到什么、能把数据带到哪里”。
+
+先要分清一点：Skill 的说明文档并不等于安全承诺。`SKILL.md` 里可能写着运行命令、环境变量、依赖安装方式和工具调用规则；MCP 服务器往往能访问本地文件、终端、数据库或外部 API；插件则可能在 IDE、CI/CD 或桌面环境里长期运行。只要其中藏有恶意逻辑、隐蔽遥测、过度权限或供应链风险，Agent 就可能在用户没有充分察觉的情况下执行危险操作。
+
+安装过程本身尤其要警惕。像 `curl ... | sh` 这样的命令会绕过人工审查，直接从网络下载脚本并执行。依赖包被替换、仓库账号被盗、发布版本和源码对不上，同样可能让一个“看起来可信”的项目变成攻击入口。如果 Agent 能读取密钥、访问生产环境或处理客户数据，这类风险就不能拿“开源项目应该没问题”来解释。
+
+审查可以分四层来做：
+
+1. 来源审查。确认维护者、仓库历史、提交频率、版本发布方式和许可证；来源不明、长期没人维护或突然更换所有者的项目，避免使用。
+2. 行为审查。逐行检查 `SKILL.md`、启动脚本和关键依赖，重点看它是否读取凭证、扫描敏感目录、修改系统配置、执行任意命令，或者进行隐蔽的网络通信。
+3. 权限审查。坚持最小权限原则，使用专用账号、临时令牌和隔离的运行环境。个人 SSH 密钥、云平台主账号和生产数据库凭证，都不要直接交给 Agent。
+4. 运行审查。在沙箱或测试环境里验证网络请求、文件访问、子进程和数据流向，同时保留日志、锁定版本，并准备好回滚方案。
+
+外部情报可以帮团队提高效率。Agent Skills Hub 收录了超过 18.6 万个 GitHub 仓库，按 11 类风险给 skill 评级，风险类别包括窃取凭证、外传数据、`curl | sh` 安装脚本等，并且每 8 小时刷新一次。团队可以拿它做安装前的初筛，但评级不能当成最终结论——评分是风险信号，不是安全认证。高分项目仍要结合业务权限和实际代码审查来判断，低风险项目也不代表绝对安全。
+
+建议定一条明确的准入流程：提交来源和用途，标注所需权限，完成自动扫描与人工复核，在隔离环境里试运行，经负责人批准后再进入内部目录。此后遇到版本升级、作者变更或权限变化，都要重新审查。涉及客户数据、生产系统和财务流程的 Skill，还应请安全团队参与评估。
+
+成熟的 Agent 治理并不禁止团队使用第三方能力，它要求每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能拿到自动化带来的收益，而不至于在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。
+</pre></div></div></main></body></html>

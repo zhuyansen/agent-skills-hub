@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>conorbronsdon/avoid-ai-writing: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>conorbronsdon/avoid-ai-writing: test run, 2026-10-07</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit 2e1ec15c9633.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>Report on the english post</h2>
+<div class="verdict"><b>Flags:</b> 2 · surface 1 · phrasing 1 · structure 0</div>
+<pre># AI-writing check: post_en.md
+
+**Tool:** avoid-ai-writing v3.37.0 (skills `avoid-ai-writing-router` → `ai-writing-detector`, rulebook `avoid-ai-writing/references/patterns.md`)
+**Mode:** detect (flag only). The router sends check/scan requests to `ai-writing-detector`, which stops once it has reported and never rewrites. No rewrite was produced. Editing passes: 0.
+**Execution:** the deterministic detector actually ran: `node scripts/detect.js --file post_en.md --context technical`, and also `--context general`. Both runs gave the same results. Source mode: `plain` (the file has no frontmatter or HTML comments).
+**Context profile:** `technical-blog` (detector mode `technical`), chosen because the post discusses technical architecture and uses code spans (`SKILL.md`, `curl | sh`).
+
+## Detector result (deterministic)
+
+| Field | Value |
+|---|---|
+| Score | **0** |
+| Label | **Clean** |
+| Document classification | HUMAN_ONLY (confidence: high) |
+| Class probabilities | human 1.0 / mixed 0.0 / ai 0.0 |
+| Word count | 472 |
+| Tier 1 / Tier 2 / Tier 3 hits | 0 / 0 / 0 |
+| Pattern count | 1 |
+| Dense AI vocabulary | false |
+| Sentences highlighted as AI | none |
+
+Issues returned by the detector:
+
+| Type | Severity | Text | Suggestion |
+|---|---|---|---|
+| `em-dash` | medium | &quot;6 em dashes in 472 words&quot; | Replace with commas, periods, or rewrite |
+
+## Issues found (grouped by severity)
+
+**P0:** none.
+
+**P1:** no deterministic hits. One observation under the rulebook only (model-only, judgment call):
+- *&quot;It&#x27;s not X, it&#x27;s Y&quot; (split-sentence form)*, final paragraph: &quot;The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency…&quot; The rulebook allows at most one per piece, and only when it serves the argument. This is the only one in the post. The detector did not flag it because it flags the plain form only when another such frame appears within three sentences.
+
+**P2:**
+- *Em dash frequency* (deterministic): 6 em dashes in 472 words, about 12.7 per 1,000. The hard maximum is 1 per 1,000, and `technical-blog` is &quot;strict&quot; for this rule. Locations:
+  1. ¶1: &quot;more useful—and more connected&quot;
+  2. ¶5: &quot;configuration examples—not just the marketing description&quot;
+  3. ¶6: &quot;11 red-flag categories—including credential harvesting&quot;
+  4. ¶6: &quot;`curl | sh` installers—and refreshes every 8 hours&quot;
+  5. ¶6: &quot;a score should support—not replace—human review&quot; (two dashes)
+- Judgment-only observation: paragraphs are fairly regular in length (most run 3–5 sentences). Each paragraph covers a distinct step (risk → review → screening → approval → exit plan → goal), so the boundaries follow the argument. This is noted, not flagged.
+
+**Tier 1A (AI frequency markers):** none. **Tier 1B (clarity edits):** none. Tier 1B items are writing suggestions, not evidence of authorship.
+
+## Assessment
+
+- **Em dashes:** a clear style problem under the rulebook&#x27;s rate ceiling. The tool says this is writing-quality guidance, *not* an authorship signal, and should not be scored that way.
+- **&quot;not to block … It is to …&quot; closer:** a judgment call. There is only one, and it states the post&#x27;s thesis, so it may be fine in context.
+- No vocabulary-tier hits, template phrases, chatbot artifacts, vague attributions, or significance inflation were found. The Agent Skills Hub claim is specific: it names the hub, 186,000 repositories, 11 categories, and an 8-hour refresh.
+- Per the tool: the results are signals, not proof of authorship.
+
+## Verification
+- **Editing passes:** 0 of 2 (detect mode).
+- **Checks:** detector executed (deterministic). Rulebook audit was model-only. The marks normalizer and preservation validator were not run because detect mode does no rewriting.
+- **Residuals:** em-dash rate (P2) and one split negation frame (judgment call), both left unchanged because detect mode does not edit.
+- **Stop reason:** detect-only request complete.
+</pre><h2>Report on the chinese post</h2>
+<div class="verdict"><b>Flags:</b> 0 · surface 0 · phrasing 0 · structure 0</div>
+<pre># AI-writing check: post_zh.md
+
+**Tool:** avoid-ai-writing v3.37.0 (`ai-writing-detector`)
+**Result: not checked. The language is unsupported.**
+
+The skill says its rules and detector &quot;are calibrated for English; applying them to another language requires language-specific rules and evidence.&quot; This file is in Chinese, so the tool does not support it. As a check, the detector was run on it (`node scripts/detect.js --file post_zh.md --context general`). It declined to score the file:
+
+| Field | Value |
+|---|---|
+| Score | 0 (unscored) |
+| Label | **Unsupported script** |
+| Document classification | UNSCORED (confidence: low) |
+| Class probabilities | human 0.333 / mixed 0.334 / ai 0.333 (uninformative) |
+| Issues | none reported |
+| Reason | &quot;unsegmented-script document: no inter-word spaces to count&quot; (957 CJK characters) |
+
+No findings and no score are available for this file, and no rewrite was made. The text was not checked any other way.
+</pre><h2>Report on the english short story</h2>
+<div class="verdict"><b>Flags:</b> 5 · surface 2 · phrasing 3 · structure 0</div>
+<pre># AI-writing check: story_en.md
+
+**Tool:** avoid-ai-writing v3.37.0 (skills `avoid-ai-writing-router` → `ai-writing-detector`, rulebook `avoid-ai-writing/references/patterns.md`)
+**Mode:** detect (flag only). The router sends check/scan requests to `ai-writing-detector`, which stops once it has reported and never rewrites. No rewrite was produced. Editing passes: 0.
+**Execution:** the deterministic detector actually ran: `node scripts/detect.js --file story_en.md --context general`. Source mode: `plain`.
+**Context profile:** inferred `blog` (detector mode `general`). The piece is short fiction with no strong cues for any other profile.
+
+## Detector result (deterministic)
+
+| Field | Value |
+|---|---|
+| Score | **2** |
+| Label | **Minimal AI signals** |
+| Document classification | HUMAN_ONLY (confidence: high) |
+| Class probabilities | human 0.913 / mixed 0.063 / ai 0.024 |
+| Word count | 621 |
+| Tier 1 / Tier 2 / Tier 3 hits | 0 / 0 / 0 |
+| Pattern count | 2 |
+| Quoted (dialogue) spans masked from scoring | 27 |
+| Dense AI vocabulary | false |
+| Sentences highlighted as AI | none |
+
+Issues returned by the detector:
+
+| Type | Severity | Text | Suggestion |
+|---|---|---|---|
+| `smart-punct-signature` | high | &quot;curly-quotes + em-dash + Oxford comma + zero typos&quot; | &quot;Smart-punctuation signature consistent with LLM output. Humans typing into textareas rarely produce all four.&quot; |
+| `em-dash` | medium | &quot;2 em dashes in 621 words&quot; | Replace with commas, periods, or rewrite |
+
+## Issues found (grouped by severity)
+
+**P0:** none. **P1:** none.
+
+**P2 / weak signals:**
+- *Smart-punctuation signature* (deterministic, severity high): curly quotes (“ ” ’) throughout the dialogue, em dashes, an Oxford comma (&quot;the foghorn, the weather vane, and the gull named Admiral&quot;), and no typos.
+- *Em dash frequency* (deterministic): 2 in 621 words, about 3.2 per 1,000, above the 1 per 1,000 hard max (the `blog` profile is strict). Locations:
+  1. &quot;Elise began to sing—a lullaby about a silver moon and a boat coming home.&quot;
+  2. &quot;After that, he talked more—to Mara, mostly, and sometimes even to the gulls.&quot;
+- Judgment-only observations from the rulebook (model-only, no deterministic hit):
+  - *Staccato fragment run:* &quot;At first, there was only static. / Then a crackle. / A breath.&quot; These are short fragments as separate paragraphs, used for suspense.
+  - *Split negation/correction:* &quot;He did not weep loudly. He simply bowed his head and listened.&quot;
+  - *Aphorism-shaped lines in dialogue:* &quot;Storms don&#x27;t always begin in the sky.&quot; and &quot;The reef remembers everything.&quot;
+
+**Tier 1A (AI frequency markers):** none. **Tier 1B (clarity edits):** none.
+
+## Assessment
+
+- **Smart-punctuation signature:** the rulebook rates curly quotes and immaculate typography as *weak, corroborating* signals, &quot;never conclusive.&quot; They mainly matter in plain-text or casual registers. Word processors and publishing tools curl quotes by default, and the rulebook says to leave them in finished publications. This is likely a false positive for a finished short story.
+- **Em dashes:** above the rate ceiling, so it is a style flag. The tool says it is not an authorship signal. Both dashes introduce an appositive in narration. Whether to change them is a judgment call.
+- **Fragments, negation pair, and aphorism lines:** judgment calls. The rulebook keeps fiction, intentional rhetoric, and quoted speech out of several of these rules, so they are probably fine in context.
+- Overall the tool rates the text &quot;Minimal AI signals&quot; (score 2) and classifies it HUMAN_ONLY. Per the tool: signals, not proof.
+
+## Verification
+- **Editing passes:** 0 of 2 (detect mode).
+- **Checks:** detector executed (deterministic). Rulebook audit was model-only. The marks normalizer and preservation validator were not run because detect mode does no rewriting.
+- **Residuals:** smart-punctuation signature, em-dash rate, and the judgment-only items above, all left unchanged because detect mode does not edit.
+- **Stop reason:** detect-only request complete.
+</pre></main></body></html>

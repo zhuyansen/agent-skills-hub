@@ -613,3 +613,20 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Test results: every tested skill side by side (scenario-runs.mjs) */
+.bp-tr { margin: 32px 0; }
+.bp-tr-intro { color: var(--bp-text-secondary); font-size: 14px; margin: 0 0 12px; }
+.bp-tr-table td, .bp-tr-table th { vertical-align: middle; font-size: 13px; }
+.bp-tr-table th { white-space: nowrap; }
+.bp-tr-table img { display: block; border-radius: 4px; border: 1px solid var(--bp-border); }
+.bp-tr-skill { min-width: 11em; }
+.bp-tr-num { white-space: nowrap; }
+.bp-tr-mute { color: var(--bp-text-secondary); font-size: 12px; }
+.bp-tr-note { color: var(--bp-text-secondary); font-size: 12px; font-style: italic; }
+.bp-tr-touch-ups { color: #1a7f37; font-weight: 600; }
+.bp-tr-substantial { color: #cf222e; font-weight: 600; }
+.dark .bp-tr-touch-ups { color: #3fb950; }
+.dark .bp-tr-substantial { color: #f85149; }
+.bp-tr-notrun { margin: 10px 0; font-size: 13px; color: var(--bp-text-secondary); }
+.bp-tr-notrun summary { cursor: pointer; }

@@ -20,7 +20,7 @@ import {
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd } from "./scenario-method.mjs";
-import { runsFor, runLineHtml } from "./scenario-runs.mjs";
+import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -71,7 +71,7 @@ const POPULAR_SCENARIOS = [
 ];
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
-const CSS_VERSION = "20261007";
+const CSS_VERSION = "20261008";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -820,6 +820,8 @@ ${methodLd(scenario, pageUrl)}
       ${quickPickHtml(scenario, skills, itemCount, descSubject)}
 
       ${videoHtml(scenario)}
+
+      ${runsSectionHtml(run)}
 
       ${scenario.method && scenarioKinds ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
 

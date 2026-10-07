@@ -1,0 +1,286 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>harshaneel/humanize: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>harshaneel/humanize: test run, 2026-10-07</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit 9c3dec34dc8e.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>English post</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 3/5 · <b>Meaning kept:</b> yes · facts kept 3/3
+ · AI tells 1→0 · em-dashes 6→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">States its lesson</span><span class="tag left">Tidy ending</span><span class="tag gone">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The rewrite makes the advice more conversational and directly addresses the reader, changing “Engineering managers should make review mandatory” to “If you manage engineers, make review mandatory” and adding “You’re looking for...” and “You should know...”. It also uses punchier phrasing such as “Plan the exit, too” instead of the original “Teams should also define an exit plan,” while keeping the same paragraph structure and argument.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># Review AI Agent Skills Before You Install Them
+
+AI agents are becoming more useful—and more connected. Teams can now extend an agent with third-party skills, `SKILL.md` folders, MCP servers, plugins, and other integrations that let it browse systems, call APIs, modify files, and automate operational work.
+
+That flexibility also creates a new software supply-chain risk. An agent extension may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses, and where that data goes. Engineering managers should make review mandatory before any third-party skill is installed in a development or production environment.
+
+The risk is not limited to obviously malicious code. A skill can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files, or install dependencies from an untrusted source. MCP servers and plugins may also have access to credentials, internal APIs, source code, customer records, or local development environments. A compromised repository, maintainer account, or dependency can turn a seemingly harmless productivity tool into an entry point for a broader incident.
+
+Review should begin with provenance and scope. Identify who maintains the project, how long it has existed, whether its releases are signed or reviewed, and whether its dependencies are pinned. Read the entire `SKILL.md`, setup instructions, installation scripts, and configuration examples—not just the marketing description. Look for requested permissions, network destinations, shell commands, credential handling, filesystem access, and instructions that tell the agent to bypass safeguards or conceal actions from users.
+
+Automated screening can provide a useful first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and `curl | sh` installers—and refreshes every 8 hours. Such a service can help teams discover suspicious patterns at scale, but a score should support—not replace—human review. Context matters, and a clean result is not a guarantee that a skill is safe.
+
+Create a lightweight approval process with clear ownership. For low-risk skills, require repository review, a permission check, and testing in a sandbox. For anything that can access production systems, secrets, customer data, or financial operations, involve security and require explicit approval. Use least-privilege tokens, isolated runtimes, restricted network access, and separate credentials for testing. Log agent actions and monitor unusual outbound requests, file access, and command execution.
+
+Teams should also define an exit plan. Know how to uninstall a skill, revoke its credentials, remove cached data, and identify systems it may have touched. Reassess extensions when they change owners, dependencies, permissions, or installation methods.
+
+The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># Review AI Agent Skills Before You Install Them
+
+Agents keep getting more useful, and more connected. A team can bolt on third-party skills, `SKILL.md` folders, MCP servers, plugins and other integrations, and suddenly the agent is browsing internal systems, calling APIs, editing files and running operational chores by itself.
+
+That flexibility brings a new kind of software supply-chain risk. An extension can look like a small config file or a handy GitHub repo and still shape what the agent executes, what data it reads and where that data goes. If you manage engineers, make review mandatory before anyone installs a third-party skill in a development or production environment.
+
+Obviously malicious code is only part of it. A skill might carry unsafe instructions. It might ask for far more permissions than it needs, nudge the agent into uploading sensitive files, or pull dependencies from a source nobody has vetted. MCP servers and plugins can also sit right next to credentials, internal APIs, source code, customer records and local dev environments, so one compromised repository, maintainer account or dependency is enough to turn a harmless-looking productivity tool into the entry point for a much bigger incident.
+
+Start with provenance and scope. Who maintains the project? How long has it existed, are its releases signed or reviewed, and are its dependencies pinned? Then read the whole `SKILL.md` along with the setup instructions, install scripts and configuration examples, because the marketing description won&#x27;t tell you much. You&#x27;re looking for requested permissions, network destinations, shell commands, credential handling and filesystem access. Watch hardest for anything telling the agent to bypass safeguards or hide what it&#x27;s doing from users.
+
+Automated screening gives you a decent first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories and grades skills against 11 red-flag categories, among them credential harvesting, data exfiltration and `curl | sh` installers. It refreshes every 8 hours. A service like that can surface suspicious patterns at a scale no team matches by hand, but its score is something a human reviewer works from, and it doesn&#x27;t stand in for that reviewer. Context matters. A clean result is no guarantee the skill is safe.
+
+Keep the approval process light and give it a clear owner. Low-risk skills get a repository review, a permission check and a test run in a sandbox. Anything that can reach production systems, secrets, customer data or financial operations needs security involved and an explicit sign-off. Use least-privilege tokens, isolated runtimes, restricted network access and separate credentials for testing. Log what the agent does, and keep an eye out for unusual outbound requests, file access and command execution.
+
+Plan the exit, too. You should know how to uninstall a skill, revoke its credentials, clear its cached data and work out which systems it may have touched. When an extension changes owners, dependencies, permissions or installation method, assess it again.
+
+Teams should still experiment. Treat agent extensions the way you&#x27;d treat any other software dependency, as something you can discover, review, limit in scope and observe in production. A few minutes of scrutiny before install can keep an agent from turning trusted access into a security incident you could have avoided.
+</pre></div></div><h2>English short story</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 3/5 · <b>Meaning kept:</b> yes
+ · AI tells 0→0 · em-dashes 2→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">Emotion through the body</span><span class="tag left">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The opening changes from “Every morning, Mara climbed the lighthouse stairs” to “Mara climbed the lighthouse stairs every morning,” and “Mara gripped the radio” becomes “Mara&#x27;s hands tightened on the radio.” The final “Just in case someone was still trying to come home” becomes “in case someone out there was still trying to come home,” preserving the same open-ended implication.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># The Voice Beneath the Static
+
+Every morning, Mara climbed the lighthouse stairs before the gulls began their arguments.
+
+She carried a tin mug of tea for her father and a rag for the brass railing, though the railing never seemed to grow dirty. At the top, the lantern room shone pale over the gray sea, and her father stood beside the great lens, watching the horizon as if expecting someone.
+
+“Storm coming,” he said one morning.
+
+“The sky is clear.”
+
+“Storms don’t always begin in the sky.”
+
+Mara looked at him. Her father had been the keeper of Bellwether Light for twenty-seven years, ever since her mother disappeared beyond the reef. He rarely spoke of that day. He spoke instead to the foghorn, the weather vane, and the gull named Admiral who stole biscuits from the kitchen windowsill.
+
+That afternoon, while searching the storage room for a spare oil can, Mara found a wooden crate beneath a torn sailcloth. Inside lay an old radio.
+
+It was square and brown, with a cracked dial and a cloth speaker gone the color of dust. A wire curled from its back like a dead vine.
+
+“What’s this?” she asked.
+
+Her father froze in the doorway.
+
+“Nothing.”
+
+“It looks like a radio.”
+
+“It is.”
+
+“Does it work?”
+
+“No.”
+
+He lifted it from the crate, but Mara noticed how carefully he held it.
+
+“Then why keep it?”
+
+For a moment, the only sound was the sea striking the rocks below.
+
+“Your mother found it,” he said. “The night she went out.”
+
+Mara had heard many versions of the story, but never from him. A fishing boat had sent a distress call. Her mother, Elise, had taken the rescue skiff into the fog. The boat was found the next morning, overturned near the reef. No one found Elise.
+
+“She was listening to it when she left,” her father continued. “There was a transmission. A voice calling from the water.”
+
+“Whose voice?”
+
+He shook his head. “The radio died before I could hear.”
+
+That night, wind pressed against the lighthouse windows. Mara waited until her father slept, then carried the radio to the lantern room. She connected its wire to an old battery and turned the dial.
+
+At first, there was only static.
+
+Then a crackle.
+
+A breath.
+
+Mara leaned closer.
+
+“Bellwether Light,” said a woman’s voice. “Do you copy?”
+
+Mara gripped the radio.
+
+“Hello?”
+
+Static washed over the room.
+
+“Bellwether Light, the tide is turning. Keep the lamp burning.”
+
+The voice was faint, but Mara knew it. She had known it all her life from a single faded photograph and the lullabies her father sometimes hummed without realizing.
+
+“Mother?”
+
+The radio hissed.
+
+“Tell Thomas I’m sorry,” the voice said. “I thought I could reach them.”
+
+Mara ran downstairs and woke her father.
+
+By the time they reached the lantern room, the transmission had returned.
+
+“Thomas,” said Elise’s voice. “You were right about storms.”
+
+Her father stood beneath the turning lens, white-faced.
+
+“Where are you?” Mara cried.
+
+A long pause followed.
+
+“Not where you think. The reef remembers everything.”
+
+Outside, the fog rolled in, thick and sudden, swallowing the sea.
+
+The lighthouse beam swept across the darkness.
+
+On the radio, Elise began to sing—a lullaby about a silver moon and a boat coming home. Mara’s father sank to his knees. He did not weep loudly. He simply bowed his head and listened.
+
+At dawn, the fog lifted.
+
+On the rocks below the lighthouse lay a small, water-darkened bundle. Mara climbed down and found a brass compass inside, its needle trembling toward the sea.
+
+The radio never spoke again.
+
+Her father placed the compass beside the lantern window. After that, he talked more—to Mara, mostly, and sometimes even to the gulls.
+
+Years later, when Mara became keeper of Bellwether Light, she kept the old radio on the shelf beneath the lens.
+
+It remained silent.
+
+But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.
+
+Just in case someone was still trying to come home.
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># The Voice Beneath the Static
+
+Mara climbed the lighthouse stairs every morning, early, before the gulls started arguing.
+
+She brought a tin mug of tea up for her father and a rag for the brass railing, which somehow never got dirty. Up in the lantern room the light sat pale over the gray sea. Her father stood by the great lens and watched the horizon like he was waiting on somebody.
+
+&quot;Storm coming,&quot; he said one morning.
+
+&quot;The sky is clear.&quot;
+
+&quot;Storms don&#x27;t always begin in the sky.&quot;
+
+Mara looked at him. He had kept Bellwether Light for twenty-seven years, ever since her mother disappeared beyond the reef, and he almost never talked about that day. He talked to the foghorn instead. He talked to the weather vane, and to Admiral, the gull who stole biscuits off the kitchen windowsill.
+
+That afternoon she went into the storage room looking for a spare oil can and found a wooden crate under a torn sailcloth. There was an old radio inside.
+
+Square. Brown. The dial was cracked and the cloth over the speaker had faded to the color of dust, and a wire curled out of the back of it like a dead vine.
+
+&quot;What&#x27;s this?&quot; she asked.
+
+Her father had stopped dead in the doorway.
+
+&quot;Nothing.&quot;
+
+&quot;It looks like a radio.&quot;
+
+&quot;It is.&quot;
+
+&quot;Does it work?&quot;
+
+&quot;No.&quot;
+
+He lifted it out of the crate. Mara saw how carefully he held it.
+
+&quot;Then why keep it?&quot;
+
+For a moment there was only the sea hitting the rocks below.
+
+&quot;Your mother found it,&quot; he said. &quot;The night she went out.&quot;
+
+Mara had heard the story plenty of times, in plenty of versions, and none of them from him. A fishing boat had sent a distress call. Her mother, Elise, took the rescue skiff out into the fog. The next morning they found the boat overturned near the reef. Nobody ever found Elise.
+
+&quot;She was listening to it when she left,&quot; her father went on. &quot;There was a transmission. A voice calling from the water.&quot;
+
+&quot;Whose voice?&quot;
+
+He shook his head. &quot;The radio died before I could hear.&quot;
+
+Wind leaned on the lighthouse windows that night. Mara waited for her father to fall asleep, then took the radio up to the lantern room, hooked its wire to an old battery and turned the dial.
+
+Static, at first.
+
+Then a crackle.
+
+A breath.
+
+Mara leaned in.
+
+&quot;Bellwether Light,&quot; said a woman&#x27;s voice. &quot;Do you copy?&quot;
+
+Mara&#x27;s hands tightened on the radio.
+
+&quot;Hello?&quot;
+
+Static poured into the room.
+
+&quot;Bellwether Light, the tide is turning. Keep the lamp burning.&quot;
+
+It was faint. Mara knew the voice anyway, the way she&#x27;d known it her whole life, from one faded photograph and the lullabies her father hummed sometimes without noticing he was doing it.
+
+&quot;Mother?&quot;
+
+The radio hissed.
+
+&quot;Tell Thomas I&#x27;m sorry,&quot; the voice said. &quot;I thought I could reach them.&quot;
+
+Mara ran downstairs and shook her father awake.
+
+When they got back up to the lantern room, the transmission was there again.
+
+&quot;Thomas,&quot; said Elise&#x27;s voice. &quot;You were right about storms.&quot;
+
+Her father stood under the turning lens with his face gone white.
+
+&quot;Where are you?&quot; Mara cried.
+
+The pause went on a long time.
+
+&quot;Not where you think. The reef remembers everything.&quot;
+
+Outside, the fog came in all at once, thick, and swallowed the sea.
+
+The beam swept over the dark.
+
+Then Elise started to sing on the radio, a lullaby about a silver moon and a boat coming home, and Mara&#x27;s father went down on his knees. There was no loud weeping. He bowed his head and listened.
+
+The fog lifted at dawn.
+
+Down on the rocks under the lighthouse lay a small bundle, dark with seawater. Mara climbed down to it. Inside was a brass compass, and its needle trembled toward the sea.
+
+The radio never spoke again.
+
+Her father set the compass by the lantern window. He talked more after that, mostly to Mara, and now and then even to the gulls.
+
+Years later Mara became keeper of Bellwether Light herself, and she kept the old radio on the shelf under the lens.
+
+It stayed silent.
+
+Still, whenever storms gathered past the horizon, she switched it on and let the static fill the room, in case someone out there was still trying to come home.
+</pre></div></div></main></body></html>
