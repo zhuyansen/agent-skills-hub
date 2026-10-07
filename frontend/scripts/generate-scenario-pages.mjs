@@ -20,6 +20,7 @@ import {
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd } from "./scenario-method.mjs";
+import { runsFor, runLineHtml } from "./scenario-runs.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -70,7 +71,7 @@ const POPULAR_SCENARIOS = [
 ];
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
-const CSS_VERSION = "20261006";
+const CSS_VERSION = "20261007";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -661,6 +662,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const scenarioKinds = kindsFor(scenario.slug);
   const cards = [...skills, ...subCards];
+  const run = runsFor(scenario.slug);   // end-to-end test results, when the page has them
   const skillCardsHtml = cards.map((s, i) => {
     // A reviewed page labels each card with its reviewed kind, which names the
     // page's topic ("Editable PPTX"), and drops the language tag: repeated on
@@ -698,6 +700,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
           </div>
         </div>
         <p class="bp-card-desc bp-sc-desc" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
+        ${runLineHtml(run, s)}
         ${qsHtml}
         <div class="bp-sc-foot">
           <a class="bp-sc-gh" href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub">${GITHUB_ICON}</a>

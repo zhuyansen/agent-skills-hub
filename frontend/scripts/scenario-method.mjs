@@ -22,6 +22,7 @@ const DEFAULTS = {
   h3_next: ["The next-stop rule: pick by who touches the deck next", "下一站原则：按这个 deck 下一步交给谁来选"],
   h3_questions: ["Four questions we ask of every skill", "每个 skill 我们问四个问题"],
   h3_did: ["What we did, and what we did not", "我们做了什么，没做什么"],
+  h3_findings: ["What our test run found", "实测发现了什么"],
   columns: [["Route", "路线"], ["How it works", "怎么做"], ["What you gain", "强项"], ["What it costs", "代价"]],
   floor_activity: ["while making slides", "生成幻灯片时的行为"],
 };
@@ -134,6 +135,7 @@ export function methodHtml(scenario, cards, scenarioKinds) {
         ${h3(...opt(m, "h3_questions"))}
         ${list(m.questions, "q", "ol")}
         ${floorLine(m, cards)}
+        ${m.findings ? h3(...opt(m, "h3_findings")) + list(m.findings, "item") : ""}
         ${h3(...opt(m, "h3_did"))}
         ${list(m.did, "item")}
         ${list(m.not_done, "item")}
@@ -148,6 +150,6 @@ export function methodLd(scenario, pageUrl) {
   if (!a) return "";
   const person = { "@type": "Person", name: a.name, url: `https://agentskillshub.top${a.about}`, sameAs: [a.x, a.github] };
   const data = { "@context": "https://schema.org", "@type": "WebPage", url: pageUrl, author: person, reviewedBy: person, lastReviewed: a.reviewed,
-    ...(scenario.method.sources?.length ? { citation: scenario.method.sources.map((x) => ({ "@type": "ScholarlyArticle", name: x.label, url: x.url })) } : {}) };
+    ...(scenario.method.sources?.length ? { citation: scenario.method.sources.map((x) => ({ "@type": /arxiv\.org|doi\.org/.test(x.url) ? "ScholarlyArticle" : "CreativeWork", name: x.label, url: x.url })) } : {}) };
   return `  <script type="application/ld+json">\n${JSON.stringify(data)}\n  </script>`;
 }

@@ -373,6 +373,24 @@
   display: flex;
   gap: 12px;
 }
+.bp-sc-run {
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--bp-text-secondary);
+  background: var(--bp-bg-alt);
+  border-left: 3px solid var(--bp-link);
+  border-radius: 4px;
+}
+.bp-sc-run a {
+  color: var(--bp-link);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.bp-sc-run--no {
+  border-left-color: var(--bp-text-muted);
+}
 .bp-sc-gh {
   color: var(--bp-text-secondary);
   display: inline-flex;

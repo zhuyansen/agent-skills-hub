@@ -1,0 +1,297 @@
+{
+ "ppt-presentation": {
+  "date": "2026-10-07",
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "gpt-6-astra",
+  "brief": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/in/brief.md",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/RESULTS.md",
+  "dir": "/best-runs/ppt/",
+  "runs": {
+   "gozen3ji/consulting-pptx-skill": {
+    "ran": true,
+    "editable": "pdf",
+    "rework": "touch-ups",
+    "minutes": 4.5,
+    "extra_claims": false,
+    "output": "deck.pdf",
+    "commit": "d75bffa05b24",
+    "sheet": "gozen3ji__consulting-pptx-skill.jpg"
+   },
+   "seulee26/mckinsey-pptx": {
+    "ran": true,
+    "editable": "native",
+    "rework": "one round",
+    "minutes": 1.9,
+    "extra_claims": true,
+    "output": "skill-safety-check.pptx",
+    "commit": "201ef491d175",
+    "sheet": "seulee26__mckinsey-pptx.jpg"
+   },
+   "Pikapika260214/rw-consulting-ppt": {
+    "ran": true,
+    "editable": "image",
+    "rework": "one round",
+    "minutes": 8.7,
+    "extra_claims": true,
+    "output": "is_this_skill_safe_to_install.pptx",
+    "commit": "b03b9264a3e2",
+    "sheet": "Pikapika260214__rw-consulting-ppt.jpg"
+   },
+   "likaku/Mck-ppt-design-skill": {
+    "ran": true,
+    "editable": "native",
+    "rework": "one round",
+    "minutes": 2.6,
+    "extra_claims": false,
+    "output": "skill-safety-deck.pptx",
+    "commit": "e190e083b715",
+    "sheet": "likaku__Mck-ppt-design-skill.jpg"
+   },
+   "hugohe3/ppt-master": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 11.0,
+    "extra_claims": false,
+    "output": "is_this_skill_safe_to_install.pptx",
+    "commit": "2d72da616cf9",
+    "sheet": "hugohe3__ppt-master.jpg"
+   },
+   "op7418/NanoBanana-PPT-Skills": {
+    "ran": false,
+    "reason": "Needs a Google Gemini image key; not attempted.",
+    "reason_zh": "需要 Google Gemini 的图片 key，未测。"
+   },
+   "crazyykhllc-bit/CyberPPT": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 8.3,
+    "extra_claims": false,
+    "output": "is-this-skill-safe-to-install_v1.pptx",
+    "commit": "980e5576565f",
+    "sheet": "crazyykhllc-bit__CyberPPT.jpg"
+   },
+   "Gabberflast/academic-pptx-skill": {
+    "ran": true,
+    "editable": "native",
+    "rework": "one round",
+    "minutes": 2.4,
+    "extra_claims": true,
+    "output": "skill-safety-briefing.pptx",
+    "commit": "9f2b703ffe8d",
+    "sheet": "Gabberflast__academic-pptx-skill.jpg"
+   },
+   "irenerachel/visual-style-ppt-skill": {
+    "ran": true,
+    "editable": "image",
+    "rework": "one round",
+    "minutes": 8.1,
+    "extra_claims": false,
+    "output": "deck.pptx",
+    "commit": "a1cca7d97c7a",
+    "sheet": "irenerachel__visual-style-ppt-skill.jpg"
+   },
+   "Binaryify/open-kimi-ppt-skill": {
+    "ran": false,
+    "reason": "Repository emptied by its author for copyright reasons; only a README is left.",
+    "reason_zh": "仓库已被作者以版权为由清空，只剩一个 README。"
+   },
+   "tfriedel/claude-office-skills": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 3.2,
+    "extra_claims": false,
+    "output": "agent-skills-hub-safety.pptx",
+    "commit": "d4241e43b60e",
+    "sheet": "tfriedel__claude-office-skills.jpg"
+   },
+   "zarazhangrui/frontend-slides": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "touch-ups",
+    "minutes": 6.2,
+    "extra_claims": false,
+    "output": "skill-safety-briefing.html",
+    "commit": "9906a34d640d",
+    "sheet": "zarazhangrui__frontend-slides.jpg"
+   },
+   "op7418/guizang-ppt-skill": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "touch-ups",
+    "minutes": 10.3,
+    "extra_claims": false,
+    "output": "index.html",
+    "commit": "c91369c449d3",
+    "sheet": "op7418__guizang-ppt-skill.jpg"
+   },
+   "chuspeeism/dashi-ppt-skill": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "one round",
+    "minutes": 14.3,
+    "extra_claims": false,
+    "output": "index.html",
+    "commit": "21dc7e5fc8c3",
+    "sheet": "chuspeeism__dashi-ppt-skill.jpg"
+   },
+   "lewislulu/html-ppt-skill": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "one round",
+    "minutes": 3.9,
+    "extra_claims": true,
+    "output": "index.html",
+    "commit": "fd1629067909",
+    "sheet": "lewislulu__html-ppt-skill.jpg"
+   },
+   "archlizheng/frontend-slides-editable": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "one round",
+    "minutes": 4.3,
+    "extra_claims": true,
+    "output": "agent-skills-hub-safety.html",
+    "commit": "e5663e6a0bdc",
+    "sheet": "archlizheng__frontend-slides-editable.jpg"
+   },
+   "ryanbbrown/revealjs-skill": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "touch-ups",
+    "minutes": 4.9,
+    "extra_claims": false,
+    "output": "presentation.html",
+    "commit": "d0ccd344c4aa",
+    "sheet": "ryanbbrown__revealjs-skill.jpg"
+   },
+   "robonuggets/marp-slides": {
+    "ran": true,
+    "editable": "image",
+    "rework": "touch-ups",
+    "minutes": 2.8,
+    "extra_claims": false,
+    "output": "slides.pdf",
+    "commit": "7ef93e98bcc7",
+    "sheet": "robonuggets__marp-slides.jpg"
+   },
+   "daniel-style/magic-slide": {
+    "ran": true,
+    "editable": "browser",
+    "rework": "touch-ups",
+    "minutes": 5.1,
+    "extra_claims": false,
+    "output": "index.html",
+    "commit": "e29d87cb315e",
+    "sheet": "daniel-style__magic-slide.jpg"
+   },
+   "ningzimu/codex-ppt-skill": {
+    "ran": true,
+    "editable": "image",
+    "rework": "substantial",
+    "minutes": 4.5,
+    "extra_claims": false,
+    "output": "agent-skills-hub.pptx",
+    "commit": "6d76c0eded7f",
+    "sheet": "ningzimu__codex-ppt-skill.jpg"
+   },
+   "NyxTides/ppt-image-first": {
+    "ran": true,
+    "editable": "image",
+    "rework": "one round",
+    "minutes": 8.1,
+    "extra_claims": false,
+    "output": "skill-safety-briefing.pptx",
+    "commit": "87a300a559a2",
+    "sheet": "NyxTides__ppt-image-first.jpg"
+   },
+   "moongiadventures-dev/handdrawn-ppt": {
+    "ran": true,
+    "editable": "native",
+    "rework": "one round",
+    "minutes": 7.5,
+    "extra_claims": true,
+    "output": "agent-skills-hub-safe-to-install.pptx",
+    "commit": "abb7fedc22fa",
+    "sheet": "moongiadventures-dev__handdrawn-ppt.jpg"
+   },
+   "Scott-Du/codex-ppt": {
+    "ran": false,
+    "reason": "Codex only: needs Codex's built-in image tool.",
+    "reason_zh": "只能在 Codex 里用：要用 Codex 内置的画图工具。"
+   },
+   "icip-cas/PPTAgent": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 4.6,
+    "extra_claims": true,
+    "output": "answer.pptx",
+    "commit": "833cda553b34",
+    "sheet": "icip-cas__PPTAgent.jpg"
+   },
+   "GordenSun/GordenPPTSkill": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 3.5,
+    "extra_claims": true,
+    "output": "agent-skills-hub.pptx",
+    "commit": "7d4a61cbd836",
+    "sheet": "GordenSun__GordenPPTSkill.jpg"
+   },
+   "ningzimu/image-to-editable-ppt-skill": {
+    "ran": false,
+    "reason": "Converter: needs an image-edit API, which our sandbox does not provide yet (given an image deck, it stopped rather than crop or redraw).",
+    "reason_zh": "转换器：需要图片编辑接口，我们的测试沙箱暂时只支持生成图片（给了它一份图片 deck，它没有裁剪或重画，而是停下说明原因）。"
+   },
+   "GordenSun/GordenSuperPPTSkills": {
+    "ran": true,
+    "editable": "hybrid",
+    "rework": "touch-ups",
+    "minutes": 14.0,
+    "extra_claims": false,
+    "output": "skill-safety-editable.pptx",
+    "commit": "8c05583dab83",
+    "sheet": "GordenSun__GordenSuperPPTSkills.jpg"
+   },
+   "GongRzhe/Office-PowerPoint-MCP-Server": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 6.7,
+    "extra_claims": false,
+    "output": "agent-skills-hub-safety.pptx",
+    "commit": "3631ba2ec0c2",
+    "sheet": "GongRzhe__Office-PowerPoint-MCP-Server.jpg"
+   },
+   "johnson7788/MultiAgentPPT": {
+    "ran": false,
+    "reason": "A standalone web app whose agents need their own LLM API key; not a Claude Code skill.",
+    "reason_zh": "是一个独立的 Web 应用，里面的 agent 需要自己的模型 API key，不是 Claude Code 的 skill。"
+   },
+   "JuneYaooo/gpt-image2-ppt-skills": {
+    "ran": true,
+    "editable": "image",
+    "rework": "substantial",
+    "minutes": 9.6,
+    "extra_claims": false,
+    "output": "Is_This_Skill_Safe_to_Install.pptx",
+    "commit": "2d57ef8127b8",
+    "sheet": "JuneYaooo__gpt-image2-ppt-skills.jpg"
+   },
+   "sunbigfly/ppt-agent-skills": {
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 16.2,
+    "extra_claims": false,
+    "output": "presentation-png.pptx",
+    "commit": "13e353776d0b",
+    "sheet": "sunbigfly__ppt-agent-skills.jpg"
+   }
+  }
+ }
+}

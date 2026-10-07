@@ -3996,6 +3996,10 @@
      "item_zh": "把每个条目归入六种类型之一，你可以按路线筛选。"
     },
     {
+     "item": "On 2026-10-07 we set out to run 31 of them end to end, and 26 ran: each was installed in a throwaway sandbox and used by Claude Code to build the same 8-10 slide brief. A vision model (gpt-6-astra) reviewed every slide; we checked every low score by eye and fixed our own renderer where it, not the skill, was at fault.",
+     "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 26 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。视觉模型（gpt-6-astra）逐页审查；每个低分我们都亲眼核对过，问题出在我们渲染环节而不是 skill 本身的，已经修正。"
+    },
+    {
      "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
      "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
@@ -4006,8 +4010,8 @@
    ],
    "not_done": [
     {
-     "item": "We have not installed and run every skill end to end; the routes and questions above come from reading what each one says it produces.",
-     "item_zh": "我们没有逐个安装、端到端实跑每个 skill；上面的路线和问题来自读每个 skill 自己写明的产出。"
+     "item": "The other entries on this page have not been run yet; for them, the routes and questions above come from reading what each one says it produces. The test brief and the full results are public.",
+     "item_zh": "本页其余条目还没有实跑；对它们来说，上面的路线和问题来自读每个 skill 自己写明的产出。测试题和完整结果都公开。"
     },
     {
      "item": "No one pays to be listed or ranked here.",
@@ -4022,7 +4026,35 @@
     "role": "Builds and maintains Agent Skills Hub and the awesome-codex-ppt-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
     "role_zh": "Agent Skills Hub 和 awesome-codex-ppt-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-07"
-   }
+   },
+   "findings": [
+    {
+     "item": "No deck got a number from the brief wrong. Eight added claims the brief does not support, mostly overgeneralizing (\"every skill has a grade\"); one went online and added a live figure from our own site.",
+     "item_zh": "没有一份 deck 写错测试题里的数字。有 8 份加了测试题里没有的说法，多是过度概括（\"每个 skill 都有评级\"）；有一份还自己上网，加了我们网站上的实时数字。"
+    },
+    {
+     "item": "Rework follows editability, not looks. Both decks that need substantial rework are all images; one of the best-looking decks (rw-consulting-ppt) still needs a round of edits because none of its text can be changed.",
+     "item_zh": "返工多少跟着\"能不能改\"走，不跟着\"好不好看\"走。要大改的两份都是整页图片；视觉上最好的之一（rw-consulting-ppt）也要改一轮，因为一个字都改不了。"
+    },
+    {
+     "item": "Stars do not predict results. One of the two best decks came from a skill with 900 stars (ppt-agent-skills); ppt-master, with 57,800, needed only touch-ups.",
+     "item_zh": "星数预测不了结果。两份最好的 deck 里有一份来自只有 900 星的 ppt-agent-skills；5.78 万星的 ppt-master 也只要小修。"
+    },
+    {
+     "item": "Five could not run, and each stopped and said why rather than faking a deck: the repo was emptied by its author (now removed from this page), Codex only, a standalone app with its own model key, a converter that needs an image-edit API, a Gemini key.",
+     "item_zh": "有 5 个跑不了，每个都停下来说明原因，没有拿别的办法凑一份：仓库被作者清空（已从本页移除）、只能在 Codex 里用、要自配模型 key 的独立应用、需要图片编辑接口的转换器、需要 Gemini 的 key。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Test brief used for every run (GitHub)",
+     "url": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/in/brief.md"
+    },
+    {
+     "label": "Full results of the 2026-10-07 run (GitHub)",
+     "url": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/RESULTS.md"
+    }
+   ]
   },
   "match": {
    "categories": [],
@@ -4091,7 +4123,9 @@
     "helloo1568/image-ppt",
     "liustack/pptfast",
     "liustack/pptpress",
-    "sunbigfly/ppt-agent-skill"
+    "sunbigfly/ppt-agent-skill",
+    "Binaryify/open-kimi-ppt-skill",
+    "E1nzbern/open-kimi-ppt-skill"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
