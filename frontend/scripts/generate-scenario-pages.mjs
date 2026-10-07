@@ -19,6 +19,7 @@ import {
 } from "./shared-utils.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
+import { methodHtml, methodLd } from "./scenario-method.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -780,6 +781,7 @@ ${breadcrumbLd}
 ${faqLd}
   </script>
 ${videoLd(scenario)}
+${methodLd(scenario, pageUrl)}
 
   <!-- Static page: no SPA JavaScript, CSS only -->
   <link rel="stylesheet" href="/best-pages.css?v=${CSS_VERSION}" />
@@ -816,7 +818,7 @@ ${videoLd(scenario)}
 
       ${videoHtml(scenario)}
 
-      ${buildAeoSection(scenario, skills, year)}
+      ${scenario.method && scenarioKinds ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
 
       ${focusHtml(scenario, skills)}
 

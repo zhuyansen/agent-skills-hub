@@ -3728,6 +3728,137 @@
    "duration": "PT2M4S",
    "inLanguage": "zh"
   },
+  "method": {
+   "h2": "How we judge PPT skills: the delivery-chain method",
+   "h2_zh": "我们怎么评 PPT skill：交付链方法",
+   "thesis": "A deck is finished when you hand it over, not when the agent writes the last slide. The best PPT skill is the one that leaves you the least rework before that point. GitHub stars measure how good a skill looks and how far it spreads; they do not measure how much work it saves you, so we read what each skill actually produces before we rank it.",
+   "thesis_zh": "一份 deck 不是 agent 写完最后一页就算完成，而是交出去才算完成。最好的 PPT skill，是在交出去之前留给你返工最少的那一个。GitHub 星数衡量的是一个 skill 看起来多好、传得多广，衡量不了它帮你省了多少事，所以我们先读懂每个 skill 实际产出什么，再排序。",
+   "routes": [
+    {
+     "name": "Native PPTX",
+     "name_zh": "原生 PPTX",
+     "kinds": [
+      "pptx",
+      "business"
+     ],
+     "how": "The agent writes the PowerPoint file itself, object by object.",
+     "how_zh": "agent 直接写 PowerPoint 文件，一个对象一个对象地放。",
+     "gain": "Every word stays editable in PowerPoint, Keynote or WPS, so a colleague can pick it up.",
+     "gain_zh": "每个字都能在 PowerPoint、Keynote、WPS 里改，同事能接着改。",
+     "cost": "Layouts are limited to what code can place; decks tend to look plainer.",
+     "cost_zh": "版式受限于代码能摆出来的样子，往往偏朴素。"
+    },
+    {
+     "name": "Web slides",
+     "name_zh": "网页幻灯片",
+     "kinds": [
+      "html"
+     ],
+     "how": "The agent writes HTML and CSS, and you present from the browser.",
+     "how_zh": "agent 写 HTML 和 CSS，你在浏览器里放映。",
+     "gain": "The most design freedom and animation; the most-starred PPT skills are on this route.",
+     "gain_zh": "设计自由度和动画最强；星数最高的 PPT skill 都在这条路线上。",
+     "cost": "Turning it into a .pptx loses fidelity.",
+     "cost_zh": "转成 .pptx 会走样。"
+    },
+    {
+     "name": "Image-first",
+     "name_zh": "图片优先",
+     "kinds": [
+      "image"
+     ],
+     "how": "An image model paints each slide.",
+     "how_zh": "由图像模型逐页画出来。",
+     "gain": "The most striking visuals.",
+     "gain_zh": "视觉最惊艳。",
+     "cost": "The text is pixels: you cannot fix a typo without redrawing the slide.",
+     "cost_zh": "字是像素：错一个字就得重画整页。"
+    }
+   ],
+   "gap": "The two routes that look best cannot hand over an editable .pptx, and most people still have to. That gap is where this field is moving: converters that turn slide images back into editable PowerPoint (image-to-editable-ppt-skill), generators that draw a deck first and rebuild it as PPTX (GordenSuperPPTSkills), and pipelines that take a document straight to native slides (ppt-master). Documents-to-slides tools and all-in-one frameworks sit outside the three routes, so the counts above do not add up to the whole page.",
+   "gap_zh": "最好看的两条路线交不出可编辑的 .pptx，而大多数人最后还是得交 .pptx。这道鸿沟正是这个领域在往前走的方向：把幻灯片图片转回可编辑 PowerPoint 的转换器（image-to-editable-ppt-skill）、先画图再重建成 PPTX 的生成器（GordenSuperPPTSkills），以及从文档直接生成原生幻灯片的流水线（ppt-master）。文档转幻灯片的工具和综合框架不属于这三条路线，所以上表的数字加起来不等于整页。",
+   "next_stop": [
+    {
+     "who": "A colleague will edit it after you",
+     "who_zh": "之后要交给同事接着改",
+     "pick": "Native PPTX",
+     "pick_zh": "原生 PPTX"
+    },
+    {
+     "who": "You will present it yourself, from a browser or a link",
+     "who_zh": "你自己拿浏览器或链接来讲",
+     "pick": "Web slides",
+     "pick_zh": "网页幻灯片"
+    },
+    {
+     "who": "It becomes a social post or a cover image",
+     "who_zh": "要发社媒或做封面图",
+     "pick": "Image-first",
+     "pick_zh": "图片优先"
+    },
+    {
+     "who": "You must hand in a .pptx but want it to look designed",
+     "who_zh": "必须交 .pptx，又要好看",
+     "pick": "Web or image-first, then a converter, and one more review pass",
+     "pick_zh": "网页或图片优先，再加转换器，多做一轮检查"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Story: does it plan the storyline (an outline, SCQA, a pyramid) before it draws anything?",
+     "q_zh": "叙事：动手画之前，会不会先排故事线（大纲、SCQA、金字塔）？"
+    },
+    {
+     "q": "Layout system: does it ship fixed templates or a theme system, so slide 12 matches slide 2?",
+     "q_zh": "版式：有没有固定模板或主题体系，保证第 12 页和第 2 页风格一致？"
+    },
+    {
+     "q": "Editability: is the output native and editable, editable in the browser, or a picture?",
+     "q_zh": "可改：交付物是原生可编辑、浏览器里可改，还是一张图？"
+    },
+    {
+     "q": "Self-check: does it render its own output and fix what it sees? PPTAgent, for one, renders the slides, has a vision model review the images, and revises.",
+     "q_zh": "自检：会不会把自己的产出渲染出来、看到问题自己改？比如 PPTAgent 会把幻灯片渲染出来，交给视觉模型看图审查，再修改。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count, not only popular repos) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what does it produce.",
+     "item_zh": "在 GitHub（不限星数，不只看热门仓库）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、产出什么。"
+    },
+    {
+     "item": "Sorted every entry into one of six types, so you can filter by route.",
+     "item_zh": "把每个条目归入六种类型之一，你可以按路线筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not installed and run every skill end to end; the routes and questions above come from reading what each one says it produces.",
+     "item_zh": "我们没有逐个安装、端到端实跑每个 skill；上面的路线和问题来自读每个 skill 自己写明的产出。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-codex-ppt-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-codex-ppt-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-07"
+   }
+  },
   "match": {
    "categories": [],
    "primary_keywords": [
