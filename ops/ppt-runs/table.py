@@ -18,7 +18,6 @@ NOT_RUN = {
     "Binaryify/open-kimi-ppt-skill": "Repository emptied by its author for copyright reasons; only a README is left.",
     "Scott-Du/codex-ppt": "Codex only: needs Codex's built-in image tool.",
     "johnson7788/MultiAgentPPT": "A standalone web app whose agents need their own LLM API key; not a Claude Code skill.",
-    "ningzimu/image-to-editable-ppt-skill": "Converter: needs an image-edit API, which our sandbox does not provide yet (given an image deck, it stopped rather than crop or redraw).",
     "op7418/NanoBanana-PPT-Skills": "Needs a Google Gemini image key; not attempted.",
 }
 
@@ -36,7 +35,7 @@ def row(c: dict) -> dict:
         return {**base, "ran": False, "reason": NOT_RUN.get(c["repo"], "not run")}
     f = score.facts(run)
     j = (json.loads((run / "score.json").read_text()).get("judge") or {}) if (run / "score.json").exists() else {}
-    stats = next(iter((f.get("pptx") or {}).values()), {}) or {}
+    stats = max((f.get("pptx") or {}).values(), key=lambda v: v.get("text_chars") or 0, default={}) or {}
     return {**base, "ran": True, "minutes": round(f["run"]["seconds"] / 60, 1), "output": f["rendered_from"],
             "editable": f["editability"], "editable_chars": stats.get("text_chars"), "self_check": f["self_check"],
             "tool_used": f["tool_used"], "image_cost": cost(run),

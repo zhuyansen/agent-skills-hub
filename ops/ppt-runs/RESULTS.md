@@ -1,6 +1,7 @@
 | Skill | ★ | Route | Output | Editable | Self-check | Story / Layout / Fidelity / Read | Design | Rework | Min |
 |---|---:|---|---|---|---|---|---:|---|---:|
 | zarazhangrui/frontend-slides | 30187 | html | skill-safety-briefing.html | browser | yes | yes / yes / yes / yes | 5 | touch-ups | 6.2 |
+| ningzimu/image-to-editable-ppt-skill | 2781 | pptx | image-deck_edited.pptx | native | yes | yes / yes / yes / yes | 5 | touch-ups | 10.1 |
 | sunbigfly/ppt-agent-skills | 904 | pptx | presentation-png.pptx | native | yes | yes / yes / yes / yes | 5 | touch-ups | 16.2 |
 | hugohe3/ppt-master | 57780 | convert | is_this_skill_safe_to_install.pptx | native | yes | yes / yes / yes / yes | 4 | touch-ups | 11.0 |
 | op7418/guizang-ppt-skill | 27277 | html | index.html | browser | yes | yes / yes / yes / yes | 4 | touch-ups | 10.3 |
@@ -32,5 +33,4 @@ Not run:
 - op7418/NanoBanana-PPT-Skills: Needs a Google Gemini image key; not attempted.
 - Binaryify/open-kimi-ppt-skill: Repository emptied by its author for copyright reasons; only a README is left.
 - Scott-Du/codex-ppt: Codex only: needs Codex's built-in image tool.
-- ningzimu/image-to-editable-ppt-skill: Converter: needs an image-edit API, which our sandbox does not provide yet (given an image deck, it stopped rather than crop or redraw).
 - johnson7788/MultiAgentPPT: A standalone web app whose agents need their own LLM API key; not a Claude Code skill.

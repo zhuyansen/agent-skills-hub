@@ -43,6 +43,7 @@ export function runLineHtml(run, skill) {
   if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(["Not run in our test:", "未能实测："])} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
   const bits = [EDITABLE[r.editable], REWORK[r.rework], [`${r.minutes} min`, `${r.minutes} 分钟`]].filter(Boolean).map(part);
   if (r.extra_claims) bits.push(part(["added claims not in the brief", "加了测试题里没有的说法"]));
+  if (r.note) bits.unshift(part([r.note, r.note_zh || r.note]));   // e.g. a converter tested on another skill's deck
   const see = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs("See the slides →", "看实测幻灯片 →")}>See the slides →</a>`;
   return `<div class="bp-sc-run">🧪 ${label} ${bits.join(" · ")} · ${see}</div>`;
 }

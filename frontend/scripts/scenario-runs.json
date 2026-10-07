@@ -243,9 +243,15 @@
     "sheet": "GordenSun__GordenPPTSkill.jpg"
    },
    "ningzimu/image-to-editable-ppt-skill": {
-    "ran": false,
-    "reason": "Converter: needs an image-edit API, which our sandbox does not provide yet (given an image deck, it stopped rather than crop or redraw).",
-    "reason_zh": "转换器：需要图片编辑接口，我们的测试沙箱暂时只支持生成图片（给了它一份图片 deck，它没有裁剪或重画，而是停下说明原因）。"
+    "ran": true,
+    "editable": "native",
+    "rework": "touch-ups",
+    "minutes": 10.1,
+    "extra_claims": false,
+    "output": "image-deck_edited.pptx",
+    "sheet": "ningzimu__image-to-editable-ppt-skill.jpg",
+    "note": "Converted codex-ppt-skill's all-image deck: 0 → 2,224 editable characters, 78 separate icons",
+    "note_zh": "把 codex-ppt-skill 的纯图片 deck 转成可编辑：可编辑文字 0 → 2,224 字，图标拆成 78 个独立对象"
    },
    "GordenSun/GordenSuperPPTSkills": {
     "ran": true,

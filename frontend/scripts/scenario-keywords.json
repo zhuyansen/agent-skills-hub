@@ -3996,8 +3996,8 @@
      "item_zh": "把每个条目归入六种类型之一，你可以按路线筛选。"
     },
     {
-     "item": "On 2026-10-07 we set out to run 31 of them end to end, and 26 ran: each was installed in a throwaway sandbox and used by Claude Code to build the same 8-10 slide brief. A vision model (gpt-6-astra) reviewed every slide; we checked every low score by eye and fixed our own renderer where it, not the skill, was at fault.",
-     "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 26 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。视觉模型（gpt-6-astra）逐页审查；每个低分我们都亲眼核对过，问题出在我们渲染环节而不是 skill 本身的，已经修正。"
+     "item": "On 2026-10-07 we set out to run 31 of them end to end, and 27 ran: each was installed in a throwaway sandbox and used by Claude Code to build the same 8-10 slide brief. A vision model (gpt-6-astra) reviewed every slide; we checked every low score by eye and fixed our own renderer where it, not the skill, was at fault.",
+     "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 27 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。视觉模型（gpt-6-astra）逐页审查；每个低分我们都亲眼核对过，问题出在我们渲染环节而不是 skill 本身的，已经修正。"
     },
     {
      "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
@@ -4041,8 +4041,8 @@
      "item_zh": "星数预测不了结果。两份最好的 deck 里有一份来自只有 900 星的 ppt-agent-skills；5.78 万星的 ppt-master 也只要小修。"
     },
     {
-     "item": "Five could not run, and each stopped and said why rather than faking a deck: the repo was emptied by its author (now removed from this page), Codex only, a standalone app with its own model key, a converter that needs an image-edit API, a Gemini key.",
-     "item_zh": "有 5 个跑不了，每个都停下来说明原因，没有拿别的办法凑一份：仓库被作者清空（已从本页移除）、只能在 Codex 里用、要自配模型 key 的独立应用、需要图片编辑接口的转换器、需要 Gemini 的 key。"
+     "item": "Four could not run, and each stopped and said why rather than faking a deck: the repo was emptied by its author (now removed from this page), Codex only, a standalone app with its own model key, a Gemini key. The converter image-to-editable-ppt-skill, given another skill's all-image deck, rebuilt it with 2,224 editable characters and 78 separate icons, nearly identical to the original.",
+     "item_zh": "有 4 个跑不了，每个都停下来说明原因，没有拿别的办法凑一份：仓库被作者清空（已从本页移除）、只能在 Codex 里用、要自配模型 key 的独立应用、需要 Gemini 的 key。转换器 image-to-editable-ppt-skill 拿到另一个 skill 做的纯图片 deck，还原出 2,224 字可编辑文字和 78 个独立图标，和原图几乎一样。"
     }
    ],
    "sources": [
