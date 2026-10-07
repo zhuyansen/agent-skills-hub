@@ -1,0 +1,925 @@
+[
+ {
+  "repo": "blader/humanizer",
+  "kind": "writing",
+  "stars": 54072,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.2,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite mainly changes wording and sentence rhythm: “The risk is not limited to obviously malicious code” becomes “Obviously malicious code is only part of the problem,” and “Create a lightweight approval process with clear ownership” becomes “Set up a lightweight approval process with a clear owner.” It keeps the same explicit takeaway and tidy conclusion, ending with “keep an agent's trusted access from turning into an avoidable security incident.”"
+   },
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "例如原文的“能力越强，权限边界就越重要”改成了“权限边界也就跟着要紧起来”，把“尤其要警惕安装过程本身”改成“安装过程本身尤其要小心”。结尾也只是将“真正成熟的 Agent 治理”改写为“管好 Agent”，没有改变原文明确总结、单线推进和整齐收束的结构。"
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite mainly makes surface phrasing changes, such as changing “At first, there was only static. Then a crackle. A breath.” to “At first there was only static. Then a crackle, and a breath.” It also compresses the emotional description from “He did not weep loudly. He simply bowed his head and listened” to “bowed his head, and listened, weeping without a sound,” without changing the plot or structure."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "225a6f39ac85"
+ },
+ {
+  "repo": "lynote-ai/humanize-text",
+  "kind": "writing",
+  "stars": 3201,
+  "grade": "safe",
+  "ran": false,
+  "status": "not run",
+  "reason": "Needs a Niutrans translation key besides an LLM key, and always outputs English."
+ },
+ {
+  "repo": "Nanako0129/sepia",
+  "kind": "writing",
+  "stars": 2970,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.1,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite moves the recommendation that review be mandatory into the opening paragraph and changes wording such as “Review should begin with provenance and scope” to “Start with provenance and scope.” It also replaces “The goal is not to block experimentation” with “None of this is meant to block experimentation,” while retaining the same tidy takeaway about treating extensions like software dependencies."
+   },
+   {
+    "file": "post_zh.md",
+    "layer": "structure",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写将原文的“团队可以把审查分成四个层次”改成了明确的编号清单，并把开头两句重新排序。结尾从“真正成熟的 Agent 治理，不是禁止……”改为“这样做并不是要禁止……”，含义基本不变，但结构更紧凑、总结感更强。"
+   },
+   {
+    "file": "story_en.md",
+    "layer": "surface",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→2",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes “though the railing never seemed to grow dirty” to “though the railing never got dirty,” and “He simply bowed his head and listened” to “He bowed his head and listened.” It also compresses the final lines from “It remained silent... Just in case someone was still trying to come home” to “It stayed silent... in case someone was still trying to come home,” without altering the story’s structure or meaning."
+   }
+  ],
+  "reports": [],
+  "deepest": "structure",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "d6cc9cbe9f93"
+ },
+ {
+  "repo": "iniwap/AIWriteX",
+  "kind": "writing",
+  "stars": 2046,
+  "grade": "safe",
+  "ran": false,
+  "status": "not a fit",
+  "reason": "A desktop app that writes new articles from trending topics and posts them to WeChat; it cannot rewrite a given file."
+ },
+ {
+  "repo": "harshaneel/humanize",
+  "kind": "writing",
+  "stars": 515,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.9,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite makes the advice more conversational and directly addresses the reader, changing “Engineering managers should make review mandatory” to “If you manage engineers, make review mandatory” and adding “You’re looking for...” and “You should know...”. It also uses punchier phrasing such as “Plan the exit, too” instead of the original “Teams should also define an exit plan,” while keeping the same paragraph structure and argument."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The opening changes from “Every morning, Mara climbed the lighthouse stairs” to “Mara climbed the lighthouse stairs every morning,” and “Mara gripped the radio” becomes “Mara's hands tightened on the radio.” The final “Just in case someone was still trying to come home” becomes “in case someone out there was still trying to come home,” preserving the same open-ended implication."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 1,
+  "commit": "9c3dec34dc8e"
+ },
+ {
+  "repo": "DadaNanjesha/AI-Text-Humanizer-App",
+  "kind": "writing",
+  "stars": 435,
+  "grade": "unknown",
+  "ran": true,
+  "minutes": 2.5,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 1,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→2",
+    "em_dashes": "6→6",
+    "structure_removed": 0,
+    "evidence": "The rewrite adds conspicuous connectors such as “Additionally,” “Nevertheless,” “Furthermore,” “Nonetheless,” “Hence,” and “Consequently,” including awkward openings like “Additionally, Teams can now extend...” The paragraphs, argument, specific figures, and concluding message remain otherwise unchanged."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 1,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→7",
+    "em_dashes": "2→2",
+    "structure_removed": 0,
+    "evidence": "The rewrite adds conspicuous connective adverbs without changing the plot, such as “Nonetheless, Every morning” and “Nevertheless, At the top.” It also inserts awkward markers into dialogue and narration, including “Consequently, ‘It looks like a radio’” and “Therefore, Her father stood beneath the turning lens,” making the prose less natural while leaving the original ending unchanged."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 1.0,
+  "structure_removed": 0,
+  "commit": "eeea9f13805d"
+ },
+ {
+  "repo": "devswha/patina",
+  "kind": "writing",
+  "stars": 363,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 8.2,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→4",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes phrasing such as “make review mandatory” to “require a review,” “Review should begin” to “Review should start,” and “Look for requested permissions” to “Check the requested permissions.” It also changes “Such a service” to “A service like this” and tightens the final recommendation without altering the structure or meaning."
+   },
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写将“尤其要警惕安装过程本身”改为“安装过程本身也需要重点检查”，并把原先连在一起的四个审查层次拆成多个段落。结尾从“在一次‘方便的安装’之后，为凭证泄露或数据外传付出代价”改为“避免因一次‘方便的安装’而承担凭证泄露或数据外传的代价”，语义基本不变，仍然保留明确总结和单线论证。"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 2.0,
+  "structure_removed": 0,
+  "commit": "9ad44bcf45c6"
+ },
+ {
+  "repo": "NulightJens/humanizer-stack",
+  "kind": "writing",
+  "stars": 318,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.2,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "structure",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite moves the conclusion into the second paragraph: \"Nobody is trying to block experimentation here\" and \"The point is to treat agent extensions like any other software dependency,\" rather than reserving that point for the ending. It also adds direct reader address, including \"If you're an engineering manager,\" \"You're looking for,\" and \"You should know,\" while retaining the same tidy recommendation-driven structure."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite mainly changes wording, such as “never seemed to grow dirty” to “never seemed to get dirty” and “Mara gripped the radio” to “Mara was scared. She held on to the radio anyway.” Its ending remains structurally identical: “she turned it on and let the static fill the room,” followed by the open-ended possibility that “someone was still trying to come home.”"
+   }
+  ],
+  "reports": [],
+  "deepest": "structure",
+  "reads_human": 3.5,
+  "structure_removed": 1,
+  "commit": "13f5c023189d"
+ },
+ {
+  "repo": "rudra496/StealthHumanizer",
+  "kind": "writing",
+  "stars": 156,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 11.1,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes wording such as “make review mandatory” to “require a review” and “grades skills against 11 red-flag categories” to “evaluates skills across 11 red-flag categories.” It also changes “remove cached data” to “delete cached data” and “monitor unusual” to “watch for unusual,” without altering the argument or structure."
+   },
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写主要进行同义替换，例如将“说明文档并不等于安全承诺”改为“说明文档不代表安全承诺”，将“把评级当成最终结论”改为“将评级视为最终结论”。原文的明确主题、四层审查框架和收束式结论均被保留，整体结构没有变化。"
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite makes surface substitutions such as “started their arguments” for “began their arguments” and “cast a pale glow” for “shone pale.” It also introduces conspicuous formatting and grammar errors, including “It’s.” and several missing closing quotation marks, without changing the story’s structure or ending."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 2.3,
+  "structure_removed": 0,
+  "commit": "df701909313a"
+ },
+ {
+  "repo": "MohamedAbdallah-14/unslop",
+  "kind": "writing",
+  "stars": 153,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.9,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite makes the prose more conversational with phrases such as “The danger isn't only” and “Plan the exit, too.” It also adds direct reader address—“You're looking for requested permissions”—where the original used impersonal imperatives such as “Look for requested permissions,” while retaining the same tidy conclusion and overall argument."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite makes surface changes such as “before the gulls started arguing” for “before the gulls began their arguments” and “hunting through the storage room” for “searching the storage room.” The plot structure and ending are unchanged, including “The radio never spoke again” and “Just in case someone was still trying to come home.”"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 1,
+  "commit": "29d43608c009"
+ },
+ {
+  "repo": "op7418/Humanizer-zh",
+  "kind": "chinese",
+  "stars": 18940,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.5,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写主要是表面措辞替换，例如将“走向团队基础设施”改为“变成团队的基础设施”，将“尤其要警惕安装过程本身”改为“安装过程本身尤其要提防”。段落结构、四层审查框架和结尾的治理总结都没有改变，因此没有触及结构层。"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "f4518a8eab97"
+ },
+ {
+  "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+  "kind": "chinese",
+  "stars": 2303,
+  "grade": "unknown",
+  "ran": true,
+  "minutes": 1.1,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写把“可能会为 Agent 增加代码编写、文件操作”改为“可能会为 Agent 增加编写代码和操作文件的能力”，并将多处并列句改得更顺畅。结尾仍保留原文“可追溯、可限制、可监控、可撤销”以及凭证泄露和数据外传的总结，因此没有改变整体结构或论证路线。"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 2.0,
+  "structure_removed": 0,
+  "commit": "27d29232f101"
+ },
+ {
+  "repo": "MrGeDiao/shuorenhua",
+  "kind": "chinese",
+  "stars": 1980,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.5,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "The original says “首先，Skill 的说明文档并不等于安全承诺”，while the rewrite begins directly with “Skill 的说明文档并不等于安全承诺”。No substantive content, structure, or conclusion changed."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 2.0,
+  "structure_removed": 0,
+  "commit": "e7c2b8670bd3"
+ },
+ {
+  "repo": "Raymondhou0917/speak-human-tw",
+  "kind": "chinese",
+  "stars": 1027,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.1,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "重寫將「配置文件」改為「設定檔」、將「插件」改為「外掛」、將「凭证」改為「憑證」，整體是繁體中文語域的表面改寫。段落順序、論證路線和收束方式幾乎不變，例如仍保留「Agent Skills Hub 收錄了超過 18.6 萬個 GitHub 儲存庫」及「分數是風險訊號，不是安全認證」等核心內容。"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "1f7a870a70a3"
+ },
+ {
+  "repo": "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+  "kind": "chinese",
+  "stars": 848,
+  "grade": "unknown",
+  "ran": true,
+  "minutes": 0.8,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "重写把“建议建立一条明确的准入流程”改成“准入流程最好写明白”，并将“外部情报可以帮助团队提高效率”改成更口语化的“这类外部情报能帮团队省不少工夫”。整体段落顺序、论证路线和收束方式没有变化，仍以“可追溯、可限制、可监控、可撤销”作明确总结。"
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "59eafed6c9eb"
+ },
+ {
+  "repo": "LifelongLazyLearner/qu-ai-wei",
+  "kind": "chinese",
+  "stars": 622,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.9,
+  "files": [
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→2",
+    "structure_removed": 0,
+    "evidence": "The rewrite mainly substitutes phrasing, such as changing “从个人工具走向团队基础设施” to “从个人工具变成团队基础设施” and “不能只看” to “不能只看……还得先弄清”. It formats the four review layers as a numbered list, but keeps their order and substance unchanged; the explicit thesis, tidy conclusion, and single-track structure remain."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 0,
+  "commit": "1d32e803f091"
+ },
+ {
+  "repo": "hardikpandya/stop-slop",
+  "kind": "rules",
+  "stars": 17755,
+  "grade": "unknown",
+  "ran": true,
+  "minutes": 0.7,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite shifts from impersonal phrasing such as “Engineering managers should make review mandatory” to direct address: “Your team can now extend an agent” and “Start your review.” It also changes wording throughout, such as “The risk is not limited to obviously malicious code” to “Malicious code is only part of the risk,” while retaining the same tidy structure and conclusion."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes phrasing such as “had been the keeper” to “had kept” and “Mara noticed how carefully he held it” to “Mara noticed the care in his hands.” The ending is only lightly compressed, from “Just in case someone was still trying to come home” to “in case someone out there was still trying to come home,” without changing the open-ended plot."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.0,
+  "structure_removed": 1,
+  "commit": "8da1f030185b"
+ },
+ {
+  "repo": "miqdadbadjuber/anti-slop",
+  "kind": "rules",
+  "stars": 4501,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.7,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite changes phrasing such as “That flexibility also creates” to “That flexibility also opens” and “require repository review” to “require a repository review.” It also introduces direct address absent from the original: “Your team should know” and “you can find them, review them, limit what they reach, and watch them in production.”"
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes only small phrasing details, such as \"Then a crackle. A breath.\" to \"Then a crackle, and something like a breath.\" It also changes \"Elise began to sing—a lullaby\" to \"Elise began to sing a lullaby,\" with no structural or plot change."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 4.0,
+  "structure_removed": 1,
+  "commit": "388cbe3b6c37"
+ },
+ {
+  "repo": "AIScientists-Dev/academic-humanizer",
+  "kind": "rules",
+  "stars": 1781,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.8,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes wording such as “The risk is not limited to obviously malicious code” to “The risk goes beyond obviously malicious code,” and “Review should begin with provenance and scope” to “Start the review with provenance and scope.” It also splits and lightly rearranges sentences, but retains the same linear argument, explicit takeaway, and tidy conclusion."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite changes “Elise began to sing—a lullaby about a silver moon” to “Elise began to sing a lullaby about a silver moon,” and changes “he talked more—to Mara” to “he talked more: to Mara.” These are punctuation and phrasing edits only; the story's structure and ending remain unchanged."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.5,
+  "structure_removed": 0,
+  "commit": "94b88b23703b"
+ },
+ {
+  "repo": "alexgreensh/attention-span",
+  "kind": "rules",
+  "stars": 1264,
+  "grade": "safe",
+  "ran": false,
+  "status": "not a fit",
+  "reason": "Changes how Claude writes its own replies; its skills start only when a person types the command."
+ },
+ {
+  "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+  "kind": "rules",
+  "stars": 694,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 0.9,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 3,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite mainly changes diction and rhythm, such as “A team can extend an agent” for “Teams can now extend an agent” and “Start the review with provenance & scope” for “Review should begin with provenance and scope.” It also uses more conversational phrasing, including “a handy GitHub repository,” “hide what it’s doing,” and “None of this stops a team from trying new skills,” but does not alter the argument’s structure."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The changes are small wording and rhythm edits: “never seemed to grow dirty” becomes “never got dirty,” and “Mara had heard many versions of the story” becomes “Mara had heard the story told many ways.” It also changes “He did not weep loudly. He simply bowed his head and listened” to the more conversational “He didn't weep loudly. He bowed his head and listened,” without altering the plot or structure."
+   }
+  ],
+  "reports": [],
+  "deepest": "phrasing",
+  "reads_human": 3.5,
+  "structure_removed": 0,
+  "commit": "35e32ae45878"
+ },
+ {
+  "repo": "conorbronsdon/avoid-ai-writing",
+  "kind": "detector",
+  "stars": 4864,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.0,
+  "files": [],
+  "reports": [
+   {
+    "file": "post_en.md",
+    "flags": 2,
+    "surface": 1,
+    "phrasing": 1,
+    "structure": 0,
+    "score": "0",
+    "structure_examples": ""
+   },
+   {
+    "file": "post_zh.md",
+    "flags": 0,
+    "surface": 0,
+    "phrasing": 0,
+    "structure": 0,
+    "score": "0",
+    "structure_examples": ""
+   },
+   {
+    "file": "story_en.md",
+    "flags": 5,
+    "surface": 2,
+    "phrasing": 3,
+    "structure": 0,
+    "score": "2",
+    "structure_examples": ""
+   }
+  ],
+  "deepest": null,
+  "reads_human": null,
+  "structure_removed": 0,
+  "commit": "2e1ec15c9633"
+ },
+ {
+  "repo": "Aboudjem/humanizer-skill",
+  "kind": "detector",
+  "stars": 264,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.3,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→0",
+    "structure_removed": 1,
+    "evidence": "The rewrite uses more direct, conversational phrasing, changing “Engineering managers should make review mandatory” to “If you're an engineering manager, make review mandatory” and “You're looking for requested permissions...” It also changes the ending from “The goal is not to block experimentation” to “None of this is about blocking experimentation,” while preserving the same tidy recommendation."
+   },
+   {
+    "file": "post_zh.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "0→0",
+    "structure_removed": 0,
+    "evidence": "改写把“不能只看‘能不能用’”改成“不能只问‘能不能用’，得先弄清楚”，并将“人工审查”强化为“根本插不进去”。结尾由“团队才能获得自动化收益”改成“自动化的好处才拿得到”，语气更口语，但两版都保留了明确主题、分层审查和整齐收束。"
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 2,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→0",
+    "structure_removed": 0,
+    "evidence": "The only changes are minor punctuation and sentence-flow edits: “Elise began to sing—a lullaby” becomes “Elise began to sing: a lullaby,” and “he talked more—to Mara” becomes “he talked more. To Mara.” No structural features or plot elements changed."
+   }
+  ],
+  "reports": [
+   {
+    "file": "post_en.md",
+    "flags": 23,
+    "surface": 10,
+    "phrasing": 9,
+    "structure": 4,
+    "score": null,
+    "structure_examples": "\"Engineering managers should…\"; \"A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.\""
+   },
+   {
+    "file": "post_zh.md",
+    "flags": 8,
+    "surface": 1,
+    "phrasing": 4,
+    "structure": 3,
+    "score": null,
+    "structure_examples": "“首先，Skill 的说明文档…”；“真正成熟的 Agent 治理，不是……”"
+   },
+   {
+    "file": "story_en.md",
+    "flags": 7,
+    "surface": 3,
+    "phrasing": 3,
+    "structure": 1,
+    "score": null,
+    "structure_examples": "\"Just in case someone was still trying to come home.\""
+   }
+  ],
+  "deepest": "phrasing",
+  "reads_human": 3.3,
+  "structure_removed": 1,
+  "commit": "a58df0653675"
+ },
+ {
+  "repo": "seyedehsanhadi/sloptrim",
+  "kind": "detector",
+  "stars": 212,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.0,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→1",
+    "em_dashes": "6→2",
+    "structure_removed": 0,
+    "evidence": "The heading changes capitalization from “Review AI Agent Skills Before You Install Them” to “Review AI agent skills before you install them.” The rewrite changes “including credential harvesting...” to “(including credential harvesting...)” and “support—not replace—human review” to “support human review, not replace it,” then separates the final sentence into its own paragraph."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "surface",
+    "reads_human": 5,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→2",
+    "structure_removed": 0,
+    "evidence": "The text is substantively unchanged: “The Voice Beneath the Static” becomes “The voice beneath the static,” and curly quotation marks are replaced with straight ones. Lines such as “The reef remembers everything” and “Just in case someone was still trying to come home” remain intact, preserving the specific setting, bodily emotion, and unresolved ending."
+   }
+  ],
+  "reports": [
+   {
+    "file": "post_en.md",
+    "flags": 3,
+    "surface": 2,
+    "phrasing": 1,
+    "structure": 0,
+    "score": "18 / 100 (re-score: 1 / 100)",
+    "structure_examples": ""
+   },
+   {
+    "file": "story_en.md",
+    "flags": 3,
+    "surface": 3,
+    "phrasing": 0,
+    "structure": 0,
+    "score": "7 / 100 (rewrite: 0 / 100)",
+    "structure_examples": ""
+   }
+  ],
+  "deepest": "phrasing",
+  "reads_human": 4.5,
+  "structure_removed": 0,
+  "commit": "38dbb7cb4e97"
+ },
+ {
+  "repo": "eric-tramel/slop-guard",
+  "kind": "detector",
+  "stars": 163,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.6,
+  "files": [
+   {
+    "file": "post_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": "3/3",
+    "tells": "1→0",
+    "em_dashes": "6→0",
+    "structure_removed": 0,
+    "evidence": "The rewrite splits \"AI agents are becoming more useful—and more connected\" into \"AI agents are becoming more useful, and more connected,\" and changes \"not just the marketing description\" to \"The marketing description alone is not enough.\" It also removes the em dashes in \"support—not replace—human review\" and recasts the phrase as \"support human review rather than replace it,\" without changing the argument or structure."
+   },
+   {
+    "file": "story_en.md",
+    "layer": "phrasing",
+    "reads_human": 4,
+    "meaning_kept": "yes",
+    "facts": null,
+    "tells": "0→0",
+    "em_dashes": "2→1",
+    "structure_removed": 0,
+    "evidence": "The only substantive change is from “After that, he talked more—to Mara, mostly, and sometimes even to the gulls” to “After that, he talked more. Mostly he talked to Mara, though sometimes he talked to the gulls as well.” This splits and slightly rephrases the sentence without changing its meaning or the story’s structure."
+   }
+  ],
+  "reports": [
+   {
+    "file": "post_en.md",
+    "flags": 4,
+    "surface": 1,
+    "phrasing": 2,
+    "structure": 1,
+    "score": "100/100",
+    "structure_examples": "\"Three-item list cadence\""
+   },
+   {
+    "file": "story_en.md",
+    "flags": 1,
+    "surface": 0,
+    "phrasing": 0,
+    "structure": 1,
+    "score": "94/100; 100/100",
+    "structure_examples": "Three-item cadence: \"Mara, mostly, and sometimes\""
+   }
+  ],
+  "deepest": "phrasing",
+  "reads_human": 4.0,
+  "structure_removed": 0,
+  "commit": "7ef2113c52f1"
+ },
+ {
+  "repo": "tbhb/vale-ai-tells",
+  "kind": "detector",
+  "stars": 115,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.2,
+  "files": [],
+  "reports": [
+   {
+    "file": "post_en.md",
+    "flags": 10,
+    "surface": 6,
+    "phrasing": 3,
+    "structure": 1,
+    "score": null,
+    "structure_examples": "\"Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and ********* installers—and refreshes every 8 hours.\""
+   },
+   {
+    "file": "story_en.md",
+    "flags": 12,
+    "surface": 6,
+    "phrasing": 5,
+    "structure": 1,
+    "score": null,
+    "structure_examples": "\"The sky is clear.\""
+   }
+  ],
+  "deepest": null,
+  "reads_human": null,
+  "structure_removed": 0,
+  "commit": "4c7abc9fffff"
+ }
+]

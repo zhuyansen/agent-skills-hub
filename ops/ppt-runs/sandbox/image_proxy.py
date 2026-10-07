@@ -8,6 +8,9 @@ skills see OPENAI_BASE_URL=http://127.0.0.1:8787/v1 and a placeholder key.
 POST /images/edits (multipart, as the OpenAI SDK sends it) becomes a generation with
 the uploaded images as reference images (`image_urls`); masks are not supported
 upstream and are ignored (logged). Every call is appended to /out/images.jsonl (model, size, quality, cost, seconds).
+POST /chat/completions is passed through to TEXT_API_BASE_URL (when TEXT_API_KEY is set), with any model
+mapped to TEXT_MODEL: tools that need their own text LLM key get one, as a user would plug in theirs.
+Each text call is appended to /out/text.jsonl.
 """
 import base64
 import email
@@ -23,6 +26,10 @@ KEY = os.environ["IMAGE_API_KEY"]
 MODEL = os.environ.get("IMAGE_MODEL", "gpt-image-2.5-flare")
 POLL_SECONDS, TIMEOUT_SECONDS = 2, 300
 LOG = "/out/images.jsonl"
+TEXT_BASE = os.environ.get("TEXT_API_BASE_URL", "").rstrip("/")
+TEXT_KEY = os.environ.get("TEXT_API_KEY", "")
+TEXT_MODEL = os.environ.get("TEXT_MODEL", "gpt-6-astra")
+TEXT_LOG = "/out/text.jsonl"
 
 
 def call(method: str, path: str, body: dict | None = None) -> dict:
@@ -89,11 +96,32 @@ def edit(raw: bytes, ctype: str) -> dict:
     return generate(fields, images, kind="edit")
 
 
+def chat(raw: bytes) -> tuple[bytes, str]:
+    """Forward a chat completion to the text provider; returns the body and its content type."""
+    req = json.loads(raw or b"{}")
+    asked, req["model"] = req.get("model"), TEXT_MODEL
+    t0 = time.time()
+    up = urllib.request.Request(TEXT_BASE + "/chat/completions", data=json.dumps(req).encode(), method="POST",
+                                headers={"Authorization": f"Bearer {TEXT_KEY}", "Content-Type": "application/json"})
+    with urllib.request.urlopen(up, timeout=300) as r:
+        body, ctype = r.read(), r.headers.get("Content-Type", "application/json")
+    with open(TEXT_LOG, "a") as f:
+        f.write(json.dumps({"asked": asked, "model": TEXT_MODEL, "stream": bool(req.get("stream")),
+                            "seconds": round(time.time() - t0)}) + "\n")
+    return body, ctype
+
+
 class Handler(BaseHTTPRequestHandler):
     def do_POST(self):  # noqa: N802 (http.server naming)
         path = self.path.rstrip("/")
+        if path.endswith("/chat/completions") and TEXT_KEY:
+            try:
+                body, ctype = chat(self.rfile.read(int(self.headers.get("Content-Length", 0))))
+                return self.raw(200, body, ctype)
+            except Exception as e:  # noqa: BLE001 (report any upstream failure to the caller)
+                return self.reply(502, {"error": {"message": str(e)[:300], "type": "upstream_error"}})
         if not path.endswith(("/images/generations", "/images/edits")):
-            return self.reply(404, {"error": {"message": f"only images/generations and images/edits are proxied, not {self.path}"}})
+            return self.reply(404, {"error": {"message": f"only images/generations, images/edits and chat/completions are proxied, not {self.path}"}})
         try:
             raw = self.rfile.read(int(self.headers.get("Content-Length", 0)))
             if path.endswith("/images/edits"):
@@ -103,9 +131,11 @@ class Handler(BaseHTTPRequestHandler):
             self.reply(502, {"error": {"message": str(e)[:300], "type": "upstream_error"}})
 
     def reply(self, code: int, body: dict) -> None:
-        raw = json.dumps(body).encode()
-        self.send_response(code); self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(raw))); self.end_headers(); self.wfile.write(raw)
+        self.raw(code, json.dumps(body).encode(), "application/json")
+
+    def raw(self, code: int, body: bytes, ctype: str) -> None:
+        self.send_response(code); self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(body))); self.end_headers(); self.wfile.write(body)
 
     def log_message(self, *args):  # quiet
         pass

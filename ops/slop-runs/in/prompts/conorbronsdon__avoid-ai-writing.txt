@@ -1,0 +1,8 @@
+A writing checker from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP server tools, or a command-line tool; check `claude mcp list` too). You must use that tool, following its own workflow, to check each file in ~/work/input/ written in a language it supports for signs of AI writing.
+
+Rules:
+- Do not ask me any questions; choose the tool's defaults.
+- For each file, write the tool's findings to ~/work/output/<file name>.report.md: what it flagged, where, and any score it gives. Report what the tool found, not your own opinion.
+- If the tool's own workflow also rewrites the text after checking it, save that rewrite to ~/work/output/<file name>, keeping every fact, name and number.
+- If the tool cannot be installed or used, stop and say why. Do not check the text some other way instead.
+- When you finish, print one line: DELIVERABLE: <comma-separated paths of the files you wrote>.

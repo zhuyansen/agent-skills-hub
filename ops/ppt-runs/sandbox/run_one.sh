@@ -23,13 +23,18 @@ if [ ! -s "$OUT/skills.txt" ]; then
     echo "agent-setup" > "$OUT/install.txt"
   fi
 fi
-cp /in/brief.md ~/work/brief.md
+[ -f /in/brief.md ] && cp /in/brief.md ~/work/brief.md
 # Image models: an OpenAI-compatible adapter in front of the async provider (image_proxy.py).
 if [ -n "${IMAGE_API_KEY:-}" ]; then
   python3 ~/bin/image_proxy.py & sleep 1
   export OPENAI_BASE_URL=http://127.0.0.1:8787/v1 OPENAI_API_KEY=sk-sandbox-proxy
+  unset IMAGE_API_KEY IMAGE_API_BASE_URL TEXT_API_KEY TEXT_API_BASE_URL   # the proxy holds them; skills go through it (and get logged)
 fi
-PROMPT=$(cat /in/prompt.txt)
+# Per-skill overrides: a converter is tested on an existing deck, not on the brief.
+KEY=$(echo "$REPO" | sed 's#/#__#')
+[ -d "/in/extra/$KEY" ] && mkdir -p ~/work/input && cp -r "/in/extra/$KEY"/. ~/work/input/
+[ -d /in/input ] && mkdir -p ~/work/input && cp -r /in/input/. ~/work/input/   # inputs shared by every run
+PROMPT=$(cat "/in/prompts/$KEY.txt" 2>/dev/null || cat /in/prompt.txt)
 timeout "${RUN_MINUTES:-30}m" claude -p "$PROMPT" --model "${CLAUDE_MODEL:-opus}" \
   --dangerously-skip-permissions --output-format stream-json --verbose > "$OUT/transcript.jsonl" 2> "$OUT/claude.err"
 echo $? > "$OUT/exit.txt"

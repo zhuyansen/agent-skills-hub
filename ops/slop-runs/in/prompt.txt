@@ -1,0 +1,8 @@
+A writing tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, or MCP server tools; check `claude mcp list` too). You must use that tool, following its own workflow, to rewrite each file in ~/work/input/ that is written in a language the tool supports, so that it reads as if a person wrote it. If the tool is a set of instructions or rules, follow them.
+
+Rules:
+- Do not ask me any questions; choose the tool's defaults.
+- Keep every fact, name and number exactly as it is in the original.
+- Write each rewritten file to ~/work/output/ with the same file name. Skip files in languages the tool does not support, and say which you skipped.
+- If the tool cannot be installed or used, stop and say why. Do not rewrite the text some other way instead.
+- When you finish, print one line: DELIVERABLE: <comma-separated paths of the files you wrote>.

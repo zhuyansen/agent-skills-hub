@@ -17,7 +17,9 @@ import sys
 import time
 from pathlib import Path
 
-HERE = Path(__file__).parent
+# A run project (in/, candidates.json, out/): this folder by default, or RUNS_DIR
+# (e.g. ops/slop-runs, which shares this sandbox).
+HERE = Path(os.environ.get("RUNS_DIR") or Path(__file__).parent).resolve()
 OUT = HERE / "out"
 IMAGE = "pptrun:1"
 RUN_MINUTES = 30
@@ -36,7 +38,10 @@ def docker_env(e: dict) -> list[str]:
     # Image generation goes through the sandbox's adapter (image_proxy.py) to IMAGE_API_*;
     # the skill itself only ever sees a placeholder OpenAI key.
     pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
-             **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)}}
+             **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)},
+             # Text LLM for tools that need their own key (TEXT_PROXY=1), through the same adapter.
+             **({"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
+                 "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")} if os.environ.get("TEXT_PROXY") else {})}
     return [x for k, v in pairs.items() for x in ("-e", f"{k}={v}")]
 
 

@@ -1,0 +1,158 @@
+[
+ {
+  "repo": "blader/humanizer",
+  "kind": "writing",
+  "stars": 54072,
+  "grade": "safe"
+ },
+ {
+  "repo": "lynote-ai/humanize-text",
+  "kind": "writing",
+  "stars": 3201,
+  "grade": "safe"
+ },
+ {
+  "repo": "Nanako0129/sepia",
+  "kind": "writing",
+  "stars": 2970,
+  "grade": "safe"
+ },
+ {
+  "repo": "iniwap/AIWriteX",
+  "kind": "writing",
+  "stars": 2046,
+  "grade": "safe"
+ },
+ {
+  "repo": "harshaneel/humanize",
+  "kind": "writing",
+  "stars": 515,
+  "grade": "safe"
+ },
+ {
+  "repo": "DadaNanjesha/AI-Text-Humanizer-App",
+  "kind": "writing",
+  "stars": 435,
+  "grade": "unknown"
+ },
+ {
+  "repo": "devswha/patina",
+  "kind": "writing",
+  "stars": 363,
+  "grade": "safe"
+ },
+ {
+  "repo": "NulightJens/humanizer-stack",
+  "kind": "writing",
+  "stars": 318,
+  "grade": "safe"
+ },
+ {
+  "repo": "rudra496/StealthHumanizer",
+  "kind": "writing",
+  "stars": 156,
+  "grade": "safe"
+ },
+ {
+  "repo": "MohamedAbdallah-14/unslop",
+  "kind": "writing",
+  "stars": 153,
+  "grade": "safe"
+ },
+ {
+  "repo": "op7418/Humanizer-zh",
+  "kind": "chinese",
+  "stars": 18940,
+  "grade": "safe"
+ },
+ {
+  "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+  "kind": "chinese",
+  "stars": 2303,
+  "grade": "unknown"
+ },
+ {
+  "repo": "MrGeDiao/shuorenhua",
+  "kind": "chinese",
+  "stars": 1980,
+  "grade": "safe"
+ },
+ {
+  "repo": "Raymondhou0917/speak-human-tw",
+  "kind": "chinese",
+  "stars": 1027,
+  "grade": "safe"
+ },
+ {
+  "repo": "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+  "kind": "chinese",
+  "stars": 848,
+  "grade": "unknown"
+ },
+ {
+  "repo": "LifelongLazyLearner/qu-ai-wei",
+  "kind": "chinese",
+  "stars": 622,
+  "grade": "safe"
+ },
+ {
+  "repo": "hardikpandya/stop-slop",
+  "kind": "rules",
+  "stars": 17755,
+  "grade": "unknown"
+ },
+ {
+  "repo": "miqdadbadjuber/anti-slop",
+  "kind": "rules",
+  "stars": 4501,
+  "grade": "safe"
+ },
+ {
+  "repo": "AIScientists-Dev/academic-humanizer",
+  "kind": "rules",
+  "stars": 1781,
+  "grade": "safe"
+ },
+ {
+  "repo": "alexgreensh/attention-span",
+  "kind": "rules",
+  "stars": 1264,
+  "grade": "safe"
+ },
+ {
+  "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+  "kind": "rules",
+  "stars": 694,
+  "grade": "safe"
+ },
+ {
+  "repo": "conorbronsdon/avoid-ai-writing",
+  "kind": "detector",
+  "stars": 4864,
+  "grade": "safe"
+ },
+ {
+  "repo": "Aboudjem/humanizer-skill",
+  "kind": "detector",
+  "stars": 264,
+  "grade": "safe"
+ },
+ {
+  "repo": "seyedehsanhadi/sloptrim",
+  "kind": "detector",
+  "stars": 212,
+  "grade": "safe"
+ },
+ {
+  "repo": "eric-tramel/slop-guard",
+  "kind": "detector",
+  "stars": 163,
+  "grade": "safe"
+ },
+ {
+  "repo": "tbhb/vale-ai-tells",
+  "kind": "detector",
+  "stars": 115,
+  "grade": "safe"
+ }
+]
