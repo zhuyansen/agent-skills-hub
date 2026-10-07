@@ -11,6 +11,11 @@ find ~/src -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
   cp -r "$d" ~/.claude/skills/"$n"; echo "$n" >> "$OUT/skills.txt"
 done
 cp /in/brief.md ~/work/brief.md
+# Image models: an OpenAI-compatible adapter in front of the async provider (image_proxy.py).
+if [ -n "${IMAGE_API_KEY:-}" ]; then
+  python3 ~/bin/image_proxy.py & sleep 1
+  export OPENAI_BASE_URL=http://127.0.0.1:8787/v1 OPENAI_API_KEY=sk-sandbox-proxy
+fi
 PROMPT=$(cat /in/prompt.txt)
 timeout "${RUN_MINUTES:-30}m" claude -p "$PROMPT" --model "${CLAUDE_MODEL:-opus}" \
   --dangerously-skip-permissions --output-format stream-json --verbose > "$OUT/transcript.jsonl" 2> "$OUT/claude.err"

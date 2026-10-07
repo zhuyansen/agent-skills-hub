@@ -19,5 +19,5 @@ RUN npm install -g @anthropic-ai/claude-code
 RUN useradd -m -s /bin/bash runner && echo 'runner ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/runner
 USER runner
 WORKDIR /home/runner/work
-COPY --chown=runner run_one.sh render.py /home/runner/bin/
+COPY --chown=runner run_one.sh render.py image_proxy.py /home/runner/bin/
 ENTRYPOINT ["bash", "/home/runner/bin/run_one.sh"]

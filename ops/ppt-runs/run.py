@@ -33,8 +33,10 @@ def env_file() -> dict:
 
 
 def docker_env(e: dict) -> list[str]:
-    pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "OPENAI_API_KEY": e["FLATROUTER_API_KEY"],
-             "OPENAI_BASE_URL": e["FLATROUTER_BASE_URL"], "RUN_MINUTES": str(RUN_MINUTES)}
+    # Image generation goes through the sandbox's adapter (image_proxy.py) to IMAGE_API_*;
+    # the skill itself only ever sees a placeholder OpenAI key.
+    pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
+             **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)}}
     return [x for k, v in pairs.items() for x in ("-e", f"{k}={v}")]
 
 
