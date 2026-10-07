@@ -1,13 +1,17 @@
-"""OpenAI-compatible image endpoint for the sandbox, backed by an async provider.
+"""OpenAI-compatible image endpoints for the sandbox, backed by an async provider.
 
 Skills call the OpenAI SDK (POST /v1/images/generations and returns the image).
 The provider (IMAGE_API_BASE_URL, e.g. apimart) instead returns a task id; this
 proxy submits, polls /tasks/{id}, downloads the result and answers in OpenAI's
 shape. Any requested image model maps to IMAGE_MODEL. The real key stays here;
 skills see OPENAI_BASE_URL=http://127.0.0.1:8787/v1 and a placeholder key.
-Every call is appended to /out/images.jsonl (model, size, quality, cost, seconds).
+POST /images/edits (multipart, as the OpenAI SDK sends it) becomes a generation with
+the uploaded images as reference images (`image_urls`); masks are not supported
+upstream and are ignored (logged). Every call is appended to /out/images.jsonl (model, size, quality, cost, seconds).
 """
 import base64
+import email
+import email.policy
 import json
 import os
 import time
@@ -39,14 +43,16 @@ def wait(task_id: str) -> dict:
     raise TimeoutError(task_id)
 
 
-def generate(req: dict) -> dict:
+def generate(req: dict, images: list[str] | None = None, kind: str = "generate") -> dict:
     body = {k: v for k, v in req.items() if k in ("prompt", "size", "quality", "n", "background")}
     body["model"] = MODEL
+    if images:   # edits: the provider takes reference images on the generation endpoint
+        body["image_urls"] = images
     t0 = time.time()
     task = wait(call("POST", "/images/generations", body)["data"][0]["task_id"])
     urls = [u for img in (task.get("result") or {}).get("images", []) for u in img.get("url", [])]
     with open(LOG, "a") as f:
-        f.write(json.dumps({"model": MODEL, "size": body.get("size"), "quality": body.get("quality"),
+        f.write(json.dumps({"kind": kind, "model": MODEL, "size": body.get("size"), "quality": body.get("quality"),
                             "status": task.get("status"), "cost": task.get("cost"), "seconds": round(time.time() - t0)}) + "\n")
     if task.get("status") != "completed" or not urls:
         raise RuntimeError(f"image task {task.get('status')}")
@@ -54,13 +60,45 @@ def generate(req: dict) -> dict:
     return {"created": int(time.time()), "data": [{"b64_json": b} for b in images]}
 
 
+def multipart(raw: bytes, ctype: str) -> tuple[dict, list[str], bool]:
+    """Fields, images as data URIs, and whether a mask was sent (not supported upstream)."""
+    msg = email.message_from_bytes(b"Content-Type: " + ctype.encode() + b"\r\n\r\n" + raw, policy=email.policy.default)
+    fields, images, mask = {}, [], False
+    for part in msg.iter_parts():
+        name = part.get_param("name", header="content-disposition") or ""
+        data = part.get_payload(decode=True) or b""
+        if name.startswith("image"):
+            mime = part.get_content_type() if part.get_content_type() != "application/octet-stream" else "image/png"
+            images.append(f"data:{mime};base64,{base64.b64encode(data).decode()}")
+        elif name == "mask":
+            mask = True
+        else:
+            fields[name] = data.decode(errors="ignore")
+    return fields, images, mask
+
+
+def edit(raw: bytes, ctype: str) -> dict:
+    if ctype.startswith("multipart/"):
+        fields, images, mask = multipart(raw, ctype)
+    else:   # JSON with base64 or URLs
+        req = json.loads(raw or b"{}"); fields = req
+        images = [x if str(x).startswith(("http", "data:")) else f"data:image/png;base64,{x}" for x in (req.get("image") if isinstance(req.get("image"), list) else [req.get("image")]) if x]
+        mask = bool(req.get("mask"))
+    if mask:
+        with open(LOG, "a") as f: f.write(json.dumps({"kind": "edit", "note": "mask ignored: not supported upstream"}) + "\n")
+    return generate(fields, images, kind="edit")
+
+
 class Handler(BaseHTTPRequestHandler):
     def do_POST(self):  # noqa: N802 (http.server naming)
-        if not self.path.rstrip("/").endswith("/images/generations"):
-            return self.reply(404, {"error": {"message": f"only images/generations is proxied, not {self.path}"}})
+        path = self.path.rstrip("/")
+        if not path.endswith(("/images/generations", "/images/edits")):
+            return self.reply(404, {"error": {"message": f"only images/generations and images/edits are proxied, not {self.path}"}})
         try:
-            req = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
-            self.reply(200, generate(req))
+            raw = self.rfile.read(int(self.headers.get("Content-Length", 0)))
+            if path.endswith("/images/edits"):
+                return self.reply(200, edit(raw, self.headers.get("Content-Type", "")))
+            self.reply(200, generate(json.loads(raw or b"{}")))
         except Exception as e:  # noqa: BLE001 (report any upstream failure to the caller)
             self.reply(502, {"error": {"message": str(e)[:300], "type": "upstream_error"}})
 
