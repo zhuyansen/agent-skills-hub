@@ -200,6 +200,7 @@ LISTS = {
     "typesafe-jev": {"text": JEV_TEXT, "blurb": JEV_BLURB, "made_with": ()},
 }
 from list_text_pages import PAGE_LISTS  # noqa: E402
+import list_tested  # noqa: E402
 
 for _slug, _cfg in PAGE_LISTS.items():
     for _lang in ("en", "zh"):
@@ -391,9 +392,12 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
            t["pitch"].format(n=len(rows), site=SITE, utm=UTM), "", t["live"].format(page=PAGE, utm=UTM), "",
            f"## {t['album']}", "", *album(used, rows, label, t), "",
            f"## {t['contents']}", ""] + ([f"- [{t['made_h']}](#made-with-opus-55)"] if MADE_WITH else [])
+    tested = list_tested.section(SLUG, label, SITE, UTM)
+    if tested:
+        out += [f"- [🧪 {list_tested.WORDS[label]['h']}](#{list_tested.ANCHOR})"]
     out += [f"- [{k['icon']} {k[label]}](#{anchor(k)}) ({count(k)})" for k in used]
     out += ["", f"## {t['rules_h']}", ""] + [f"{i}. {rule}" for i, rule in enumerate(t["rules"], 1)]
-    out += ["", t["rules_note"]]
+    out += ["", t["rules_note"], *tested]
     if MADE_WITH:
         out += ["", '<a id="made-with-opus-55"></a>', f"## {t['made_h']}", "", t["made"], ""]
         out += table([r for r in rows if r["repo_full_name"] in MADE_WITH], t, lang)
