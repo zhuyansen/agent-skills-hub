@@ -69,6 +69,9 @@ def main() -> None:
     work, out = Path(sys.argv[1]), Path(sys.argv[2])
     files = [p for p in work.rglob("*") if p.is_file() and p.suffix.lower() in DELIVERABLE and p.name != "brief.md" and "node_modules" not in p.parts]
     deliver = out / "deliverables"; deliver.mkdir(exist_ok=True); pages = out / "pages"; pages.mkdir(exist_ok=True)
+    # Keep the whole output tree too: an HTML deck needs its assets/ to re-render later.
+    if (work / "output").is_dir():
+        shutil.copytree(work / "output", out / "output_tree", dirs_exist_ok=True, ignore=shutil.ignore_patterns("node_modules"))
     report = {"files": [], "pptx": {}}
     for f in files:
         shutil.copy2(f, deliver / f.name); report["files"].append(str(f.relative_to(work)))
@@ -77,7 +80,9 @@ def main() -> None:
             except Exception as e: report["pptx"][f.name] = {"error": str(e)[:200]}
     main_file = next((f for ext in (".pptx", ".html", ".pdf") for f in files if f.suffix == ext), None)
     if main_file and main_file.suffix == ".html":
-        html_pages(main_file, pages); pdf = None
+        try: html_pages(main_file, pages)
+        except Exception as e: report["render_error"] = str(e)[:300]   # a failed render must not fail the run
+        pdf = None
     else:
         pdf = to_pdf(main_file, out) if main_file else None
     if pdf and pdf.exists():
