@@ -4758,5 +4758,33 @@
    "personal": 0.06
   },
   "kind": "graph"
+ },
+ {
+  "repo": "kiycoh/silica-core",
+  "stars": 66,
+  "description": "Retrieval tools for coding agents, no model in the loop: SOTA-competitive files, search, read, code_pack and write_note over the folder your session is opened in, served over MCP.",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.09,
+   "mcp": 0.93,
+   "docs_qa": 0.87,
+   "graph": 0.05,
+   "personal": 0.14
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "mhmtsrfglu/superwiki",
+  "stars": 11,
+  "description": "Agent skills that turn docs/ into an LLM-maintained wiki and task tracker. Obsidian-friendly. Works with Claude Code, Codex and Copilot CLI.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.1,
+   "mcp": 0.54,
+   "docs_qa": 0.46,
+   "graph": 0.11,
+   "personal": 0.28
+  },
+  "kind": "llm_wiki"
  }
 ]

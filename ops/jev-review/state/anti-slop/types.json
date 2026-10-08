@@ -3218,5 +3218,33 @@
    "rules": 0.64
   },
   "kind": "design"
+ },
+ {
+  "repo": "Mutakisa/game-slop-purge",
+  "stars": 69,
+  "description": "Best Game UI Cleanup Agent Skill 2026: Remove Slop, Keep Fun",
+  "scores": {
+   "writing": 0.08,
+   "detector": 0.18,
+   "chinese": 0.02,
+   "code": 0.23,
+   "design": 0.69,
+   "rules": 0.26
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "ilyautov/humanizer-it",
+  "stars": 5,
+  "description": "Remove AI traces from Italian text — opensource (MIT) skill for Claude. The «IA-taliano»: English calques, nominal burocratese, missing intercalari/clitics. 52 patterns, 15 hard bans, dependency-free scanner. | Скилл для итальянского текста: убирает следы нейросети, 52 паттерна и 15 жёстких банов, сканер без зависимостей.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.83,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.06,
+   "rules": 0.8
+  },
+  "kind": "writing"
  }
 ]

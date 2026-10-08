@@ -3008,5 +3008,47 @@
    "general": 0.08
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "borjaperfra/beatdeck",
+  "stars": 60,
+  "description": "Talks as beats, not slides: a fixed 1920×1080 React stage where one click is one beat. Offline, deterministic, presenter view, and a Claude Code skill.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.84,
+   "business": 0.23,
+   "convert": 0.09,
+   "general": 0.09
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "andyluu98/slidefly",
+  "stars": 7,
+  "description": "SlideFly: slide biết bay. Claude Code skill for single-file HTML decks with PowerPoint-Morph-like transitions, 47 styles, Vietnamese-ready",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.5,
+   "convert": 0.22,
+   "general": 0.1
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "sujunmin/agy-ppt",
+  "stars": 5,
+  "description": "Turn reports into PowerPoint decks without the AI-slop look. An agent skill purpose-built for the Antigravity + Kiro + Codex pipeline — GPT-image renders dense Traditional Chinese slide text far better than Gemini.",
+  "scores": {
+   "image": 0.32,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.87,
+   "convert": 0.96,
+   "general": 0.09
+  },
+  "kind": "convert"
  }
 ]

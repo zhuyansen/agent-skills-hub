@@ -2518,5 +2518,33 @@
    "general": 0.97
   },
   "kind": "general"
+ },
+ {
+  "repo": "Dimillian/CodexSkillManager",
+  "stars": 1369,
+  "description": "macOS app to manage your Codex skills",
+  "scores": {
+   "cli": 0.04,
+   "sync": 0.09,
+   "app": 0.96,
+   "registry": 0.21,
+   "team": 0.06,
+   "general": 0.09
+  },
+  "kind": "app"
+ },
+ {
+  "repo": "pr-pm/prpm",
+  "stars": 122,
+  "description": "The universal registry for AI coding tools",
+  "scores": {
+   "cli": 0.88,
+   "sync": 0.3,
+   "app": 0.11,
+   "registry": 0.89,
+   "team": 0.11,
+   "general": 0.6
+  },
+  "kind": "general"
  }
 ]

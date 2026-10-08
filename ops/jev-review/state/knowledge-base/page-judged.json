@@ -42473,5 +42473,43 @@
   "days": 13,
   "stars_per_day": 3.8461538461538463,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "kiycoh/silica-core",
+  "name": "silica-core",
+  "stars": 66,
+  "description": "Retrieval tools for coding agents, no model in the loop: SOTA-competitive files, search, read, code_pack and write_note over the folder your session is opened in, served over MCP.",
+  "topics": [
+   "ai",
+   "ai-agents",
+   "bm25",
+   "claude",
+   "codex",
+   "llm",
+   "mcp",
+   "obsidian",
+   "python",
+   "retrieval",
+   "search"
+  ],
+  "created": "2026-05-24",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 11797,
+  "names_model": false,
+  "on_subject": 0.82,
+  "is_software": 0.97,
+  "shows_result": 0.68,
+  "one_command_start": 0.51,
+  "specific_outcome": 0.89,
+  "complete_docs": 0.89,
+  "novel_angle": 0.6,
+  "shareable_output": 0.75,
+  "quality": 0.7425,
+  "tier": "中",
+  "hit_prior": 0.6766666666666667,
+  "days": 137,
+  "stars_per_day": 0.48175182481751827,
+  "verdict": "low_quality"
  }
 ]

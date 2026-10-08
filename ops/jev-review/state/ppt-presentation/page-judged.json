@@ -5328,5 +5328,41 @@
   "days": 160,
   "stars_per_day": 0.4375,
   "verdict": "admit"
+ },
+ {
+  "repo": "borjaperfra/beatdeck",
+  "name": "beatdeck",
+  "stars": 60,
+  "description": "Talks as beats, not slides: a fixed 1920×1080 React stage where one click is one beat. Offline, deterministic, presenter view, and a Claude Code skill.",
+  "topics": [
+   "claude-code",
+   "claude-skill",
+   "gsap",
+   "presentation",
+   "react",
+   "slides",
+   "talk"
+  ],
+  "created": "2026-10-01",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 8106,
+  "names_model": false,
+  "makes_slides": 0.92,
+  "agent_driven": 0.57,
+  "editable_output": 0.83,
+  "reusable_tool": 0.89,
+  "one_command_start": 0.47,
+  "complete_docs": 0.89,
+  "shows_result": 0.9,
+  "specific_outcome": 0.83,
+  "novel_angle": 0.94,
+  "shareable_output": 0.77,
+  "quality": 0.7725,
+  "tier": "高",
+  "hit_prior": 0.87,
+  "days": 7,
+  "stars_per_day": 8.571428571428571,
+  "verdict": "admit"
  }
 ]

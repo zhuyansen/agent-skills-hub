@@ -4624,5 +4624,149 @@
    "general": 0.41
   },
   "kind": "avatar"
+ },
+ {
+  "repo": "GTKottman/mortiflix-oss",
+  "stars": 403,
+  "description": "A motion design studio on your own machine: Claude makes the video step by step, you approve every stage. Bring your own Claude Code or API key.",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.67,
+   "music": 0.15,
+   "motion": 0.18,
+   "shorts": 0.17,
+   "editing": 0.08,
+   "demo": 0.84,
+   "story": 0.25,
+   "avatar": 0.11,
+   "general": 0.41
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Tejashmakwana/motionmaxxing",
+  "stars": 86,
+  "description": "Looksmaxxing for motion graphics. An agent skill that turns AI slop videos into films that look made by a motion designer.",
+  "scores": {
+   "promo": 0.88,
+   "explainer": 0.26,
+   "music": 0.08,
+   "motion": 0.46,
+   "shorts": 0.15,
+   "editing": 0.14,
+   "demo": 0.49,
+   "story": 0.14,
+   "avatar": 0.06,
+   "general": 0.11
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "chacha95/demo-video-creator",
+  "stars": 11,
+  "description": "Agent skill: product URL → 16:9 launch film (EN/KO). Real UI captures, one-take VO, beat-locked motion, −14 LUFS mp4.",
+  "scores": {
+   "promo": 0.97,
+   "explainer": 0.23,
+   "music": 0.08,
+   "motion": 0.09,
+   "shorts": 0.03,
+   "editing": 0.21,
+   "demo": 0.96,
+   "story": 0.05,
+   "avatar": 0.05,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "ZLHad/OpenVideoHarness",
+  "stars": 10,
+  "description": "A video workbench for Claude Code and Codex: the agent writes the code that renders the film, checks its own frames, and stops for you to approve the idea, storyboard and cut. 9 video types, 31 styles, narration and music in code. 给 Claude Code 和 Codex 用的视频工作台：agent 写代码渲染成片、自己检查画面，立意、分镜和成片由你拍板；9 类视频、31 种风格，配音配乐也用代码做。",
+  "scores": {
+   "promo": 0.48,
+   "explainer": 0.77,
+   "music": 0.48,
+   "motion": 0.14,
+   "shorts": 0.56,
+   "editing": 0.3,
+   "demo": 0.32,
+   "story": 0.53,
+   "avatar": 0.08,
+   "general": 0.76
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "IdkwhatImD0ing/claude-music-videos",
+  "stars": 7,
+  "description": "Music videos made with Claude in Claude Code, every frame rendered from code: a Blender tabletop miniature (P(doom)) and a League of Legends montage (PARANOIA)",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.07,
+   "music": 0.95,
+   "motion": 0.05,
+   "shorts": 0.04,
+   "editing": 0.19,
+   "demo": 0.08,
+   "story": 0.47,
+   "avatar": 0.06,
+   "general": 0.18
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "124zhe/xigua-msvideo-skill",
+  "stars": 6,
+  "description": "Codex skills for YouTube curiosity stories, MS Paint storyboards, narration, and video assembly.",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.9,
+   "music": 0.03,
+   "motion": 0.06,
+   "shorts": 0.07,
+   "editing": 0.16,
+   "demo": 0.13,
+   "story": 0.14,
+   "avatar": 0.06,
+   "general": 0.19
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "kmilo93sd/agent-video-editor",
+  "stars": 5,
+  "description": "Editing judgment for AI agents: pacing, cuts, captions, audio, color and thumbnails for any video type, plus 128 CC0 sounds, 26 CC0 graphics and a meme rights reference. Agent Skills format.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.59,
+   "music": 0.08,
+   "motion": 0.1,
+   "shorts": 0.64,
+   "editing": 0.95,
+   "demo": 0.16,
+   "story": 0.05,
+   "avatar": 0.07,
+   "general": 0.82
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "undsky/doudou-remotion-whiteboard-skill",
+  "stars": 5,
+  "description": "专为 Remotion 打造的通用手绘白板、纸质媒介与草图动效（Whiteboard & Hand-Drawn Animation）引擎。",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.65,
+   "music": 0.05,
+   "motion": 0.4,
+   "shorts": 0.1,
+   "editing": 0.04,
+   "demo": 0.25,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.14
+  },
+  "kind": "explainer"
  }
 ]

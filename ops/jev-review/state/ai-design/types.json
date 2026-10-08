@@ -2546,5 +2546,19 @@
    "review": 0.85
   },
   "kind": "ui"
+ },
+ {
+  "repo": "oil-oil/oil-ui",
+  "stars": 1033,
+  "description": "Push AI UI design to its limits: explore distinct directions, compare them side by side, and refine against real screenshots. 把 AI 的 UI 设计能力推到极限。",
+  "scores": {
+   "ui": 0.97,
+   "system": 0.18,
+   "tool_mcp": 0.07,
+   "to_code": 0.86,
+   "graphics": 0.16,
+   "review": 0.67
+  },
+  "kind": "ui"
  }
 ]

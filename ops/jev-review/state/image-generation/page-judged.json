@@ -9697,5 +9697,31 @@
   "days": 123,
   "stars_per_day": 0.4065040650406504,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "if-ai/ComfyUI-IF_Gemini",
+  "name": "ComfyUI-IF_Gemini",
+  "stars": 73,
+  "description": "New nANO-Banana Google Gemini API for ComfyUI generate images, transcribe audio, sumarize videos. Making a separate implemetation of my old IF_AI tools for easy installation",
+  "topics": [],
+  "created": "2025-03-20",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 4686,
+  "names_model": false,
+  "on_subject": 0.55,
+  "is_software": 0.96,
+  "shows_result": 0.14,
+  "one_command_start": 0.19,
+  "specific_outcome": 0.27,
+  "complete_docs": 0.41,
+  "novel_angle": 0.49,
+  "shareable_output": 0.64,
+  "quality": 0.2525,
+  "tier": "低",
+  "hit_prior": 0.42333333333333334,
+  "days": 567,
+  "stars_per_day": 0.12874779541446207,
+  "verdict": "low_quality"
  }
 ]

@@ -4783,5 +4783,40 @@
   "days": 194,
   "stars_per_day": 0.25773195876288657,
   "verdict": "admit"
+ },
+ {
+  "repo": "Mutakisa/game-slop-purge",
+  "name": "game-slop-purge",
+  "stars": 69,
+  "description": "Best Game UI Cleanup Agent Skill 2026: Remove Slop, Keep Fun",
+  "topics": [
+   "agent-skills",
+   "ai-slop",
+   "game-ui",
+   "gamedev",
+   "godot",
+   "roblox",
+   "unity",
+   "unreal-engine"
+  ],
+  "created": "2026-09-22",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 15727,
+  "names_model": false,
+  "on_subject": 0.58,
+  "is_software": 0.6,
+  "shows_result": 0.74,
+  "one_command_start": 0.1,
+  "specific_outcome": 0.67,
+  "complete_docs": 0.08,
+  "novel_angle": 0.58,
+  "shareable_output": 0.59,
+  "quality": 0.3975,
+  "tier": "低",
+  "hit_prior": 0.6366666666666666,
+  "days": 16,
+  "stars_per_day": 4.3125,
+  "verdict": "low_quality"
  }
 ]

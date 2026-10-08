@@ -1548,7 +1548,9 @@
     "zertac/TeleClaude",
     "zhuchangyi/Gemini2tg",
     "zkrige/zoidberg",
-    "zooddd/tg-proxy-shop"
+    "zooddd/tg-proxy-shop",
+    "EvilFreelancer/tgfake",
+    "HNF-FRN/Reel-watcher-telegram-Agent"
    ],
    "exclude_repos": [
     "smixs/iva"
@@ -1905,7 +1907,10 @@
     "Raines-01/ai-image-studio",
     "JuneLearn/dsh-image2-draw",
     "ahao0625/ai-workflow-generator",
-    "charlesrapp/pruna-mcp-server"
+    "charlesrapp/pruna-mcp-server",
+    "if-ai/ComfyUI-IF_Gemini",
+    "AtlasCloudAI/cli",
+    "frannkurt/nano-banana-mcp"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2492,7 +2497,9 @@
     "professorpalmer/portable-llm-wiki",
     "wgpsec/context1337",
     "MrDoe/OpenCodeRAG",
-    "bodepudimuneendra-netizen/laya-jev-GraphRAG"
+    "bodepudimuneendra-netizen/laya-jev-GraphRAG",
+    "kiycoh/silica-core",
+    "mhmtsrfglu/superwiki"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -2823,7 +2830,9 @@
     "glapsfun/gskill",
     "anyt-io/pspm-cli",
     "pathintegral-institute/mcpm.sh",
-    "infragate/capa"
+    "infragate/capa",
+    "Dimillian/CodexSkillManager",
+    "pr-pm/prpm"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -3652,7 +3661,12 @@
     "sgaofen/humanizer-local-model",
     "infoslack/anti-slop-py",
     "mah-claude/anti-slop-website-prompts",
-    "changemaner/design-taste-frontend"
+    "changemaner/design-taste-frontend",
+    "Mutakisa/game-slop-purge",
+    "ilyautov/humanizer-it"
+   ],
+   "exclude_repos": [
+    "simonlin1212/SDesign"
    ]
   },
   "related": [
@@ -4072,7 +4086,8 @@
     "sso-ss/vibe-ship-it",
     "sva-admin/sv-academy-prom-design",
     "undsky/doudou-color-skill",
-    "diegomarino/tui-design"
+    "diegomarino/tui-design",
+    "oil-oil/oil-ui"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -4796,7 +4811,10 @@
     "HututuWorks/sci-diagram-pptx",
     "SHALINS428/Academic-PPT-Skill",
     "stevenjinlong/awesome-ppt-skills",
-    "billLiao/PPT-Design-Skill"
+    "billLiao/PPT-Design-Skill",
+    "borjaperfra/beatdeck",
+    "andyluu98/slidefly",
+    "sujunmin/agy-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -5903,7 +5921,11 @@
     "okjpg/jev-hermes-router",
     "jiwidi/jiwo",
     "allebee/pytest-jev",
-    "Arindam200/fr"
+    "Arindam200/fr",
+    "0814wdwd/solo_jev",
+    "alanhuangyoo/OpenJev",
+    "sedum-dev/sedum",
+    "Algorythm-Canada/OpenJevSwift"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -6238,7 +6260,15 @@
     "xinyiqin/X2V-AI-Images-Videos-skill",
     "alisadiq-ai/favstash-ai-video-editing-skills",
     "generalizingai/shadowcast",
-    "hamen/app-promo-reel"
+    "hamen/app-promo-reel",
+    "GTKottman/mortiflix-oss",
+    "Tejashmakwana/motionmaxxing",
+    "chacha95/demo-video-creator",
+    "ZLHad/OpenVideoHarness",
+    "IdkwhatImD0ing/claude-music-videos",
+    "124zhe/xigua-msvideo-skill",
+    "kmilo93sd/agent-video-editor",
+    "undsky/doudou-remotion-whiteboard-skill"
    ],
    "sub_skills": [
     {

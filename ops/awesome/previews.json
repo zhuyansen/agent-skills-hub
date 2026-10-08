@@ -7,6 +7,14 @@
   "type": "image/png",
   "bytes": 2424699
  },
+ "124zhe/xigua-msvideo-skill": {
+  "repo": "124zhe/xigua-msvideo-skill",
+  "url": "https://raw.githubusercontent.com/124zhe/xigua-msvideo-skill/HEAD/skills/youtube-ms-paint-images/assets/frame-007_00m11s839ms.png",
+  "alt": "人物推介空气",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 1098952
+ },
  "2654400439/Paper2Seminar": {
   "repo": "2654400439/Paper2Seminar",
   "url": "https://raw.githubusercontent.com/2654400439/Paper2Seminar/HEAD/examples/gallery/beyond-rtt-results.png",
@@ -95,6 +103,14 @@
   "type": "image/png",
   "bytes": 429913
  },
+ "Algorythm-Canada/OpenJevSwift": {
+  "repo": "Algorythm-Canada/OpenJevSwift",
+  "url": "https://raw.githubusercontent.com/Algorythm-Canada/OpenJevSwift/HEAD/docs/assets/triage-demo.gif",
+  "alt": "The triage demo answering a billing complaint as it is typed, on an iPhone simul",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 1325151
+ },
  "Alisa0808/vox-director": {
   "repo": "Alisa0808/vox-director",
   "url": "https://raw.githubusercontent.com/Alisa0808/vox-director/HEAD/assets/thumbs/football.jpg",
@@ -174,6 +190,14 @@
   "score": 2.25,
   "type": "image/gif",
   "bytes": 5666328
+ },
+ "AtlasCloudAI/cli": {
+  "repo": "AtlasCloudAI/cli",
+  "url": "https://raw.githubusercontent.com/AtlasCloudAI/cli/main/demo.gif",
+  "alt": "A real Atlas CLI run: estimate cost, resume a product image task, and save the f",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 132285
  },
  "Ayushmaniar/powerpoint-mcp": {
   "repo": "Ayushmaniar/powerpoint-mcp",
@@ -271,6 +295,14 @@
   "type": "image/gif",
   "bytes": 2728180
  },
+ "Dimillian/CodexSkillManager": {
+  "repo": "Dimillian/CodexSkillManager",
+  "url": "https://raw.githubusercontent.com/Dimillian/CodexSkillManager/HEAD/image.png",
+  "alt": "image",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 962156
+ },
  "E1nzbern/open-kimi-ppt-skill": {
   "repo": "E1nzbern/open-kimi-ppt-skill",
   "url": "https://raw.githubusercontent.com/E1nzbern/open-kimi-ppt-skill/HEAD/docs/images/example-yu7-pptx.png",
@@ -294,6 +326,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 397621
+ },
+ "EvilFreelancer/tgfake": {
+  "repo": "EvilFreelancer/tgfake",
+  "url": "https://raw.githubusercontent.com/EvilFreelancer/tgfake/HEAD/docs/assets/chat-page.png",
+  "alt": "The chat page: the person's side of the conversation on the left, the bot's keyb",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 85710
  },
  "Fagan1024/smart-video-editor": {
   "repo": "Fagan1024/smart-video-editor",
@@ -343,6 +383,14 @@
   "type": "image/png",
   "bytes": 116146
  },
+ "GTKottman/mortiflix-oss": {
+  "repo": "GTKottman/mortiflix-oss",
+  "url": "https://raw.githubusercontent.com/GTKottman/mortiflix-oss/HEAD/docs/media/how-to-use-mortiflix.gif",
+  "alt": "How to use Mortiflix: tap to watch the video",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 4680895
+ },
  "GZPengyuyan/PengyuyanPPT": {
   "repo": "GZPengyuyan/PengyuyanPPT",
   "url": "https://raw.githubusercontent.com/GZPengyuyan/PengyuyanPPT/HEAD/assets/readme/tech-style-light.png",
@@ -382,6 +430,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 869515
+ },
+ "HNF-FRN/Reel-watcher-telegram-Agent": {
+  "repo": "HNF-FRN/Reel-watcher-telegram-Agent",
+  "url": "https://raw.githubusercontent.com/HNF-FRN/Reel-watcher-telegram-Agent/HEAD/docs/assets/chat-demo.gif",
+  "alt": "A Telegram conversation playing out: a reel link, the bot",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 46291
  },
  "HRuiCcc/RuiC-motion-reel": {
   "repo": "HRuiCcc/RuiC-motion-reel",
@@ -719,6 +775,14 @@
   "type": "image/png",
   "bytes": 255103
  },
+ "Tejashmakwana/motionmaxxing": {
+  "repo": "Tejashmakwana/motionmaxxing",
+  "url": "https://raw.githubusercontent.com/Tejashmakwana/motionmaxxing/HEAD/docs/media/cluely-comparison.gif",
+  "alt": "Cluely, without the skill on the left and with it on the right, both generated w",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 1335161
+ },
  "ThunderOne18/ppt-expert-team": {
   "repo": "ThunderOne18/ppt-expert-team",
   "url": "https://raw.githubusercontent.com/ThunderOne18/ppt-expert-team/HEAD/docs/images/style-picker.png",
@@ -766,6 +830,14 @@
   "score": 4.65,
   "type": "image/gif",
   "bytes": 841720
+ },
+ "ZLHad/OpenVideoHarness": {
+  "repo": "ZLHad/OpenVideoHarness",
+  "url": "https://raw.githubusercontent.com/ZLHad/OpenVideoHarness/HEAD/styles/gallery.jpg",
+  "alt": "The 31 style samples, all with the same content",
+  "score": 1.8,
+  "type": "image/jpeg",
+  "bytes": 1134190
  },
  "Zane-0x5a/remotion-director": {
   "repo": "Zane-0x5a/remotion-director",
@@ -823,6 +895,14 @@
   "type": "image/gif",
   "bytes": 642659
  },
+ "alanhuangyoo/OpenJev": {
+  "repo": "alanhuangyoo/OpenJev",
+  "url": "https://raw.githubusercontent.com/alanhuangyoo/OpenJev/main/assets/teaser.png",
+  "alt": "Browser step success against out-of-domain general accuracy for wev, Kev and Lay",
+  "score": -0.4,
+  "type": "image/png",
+  "bytes": 53846
+ },
  "alexgreensh/anidoodle": {
   "repo": "alexgreensh/anidoodle",
   "url": "https://raw.githubusercontent.com/alexgreensh/anidoodle/HEAD/assets/readme/lesson.gif",
@@ -870,6 +950,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 158264
+ },
+ "andyluu98/slidefly": {
+  "repo": "andyluu98/slidefly",
+  "url": "https://raw.githubusercontent.com/andyluu98/slidefly/HEAD/docs/gallery.jpg",
+  "alt": "Thư viện style",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 161552
  },
  "animspark/animspark": {
   "repo": "animspark/animspark",
@@ -974,6 +1062,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 103354
+ },
+ "borjaperfra/beatdeck": {
+  "repo": "borjaperfra/beatdeck",
+  "url": "https://raw.githubusercontent.com/borjaperfra/beatdeck/HEAD/docs/media/demo-title.jpg",
+  "alt": "The demo deck: title",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 42333
  },
  "buildwithhanif/claude-animation-skill": {
   "repo": "buildwithhanif/claude-animation-skill",
@@ -1287,6 +1383,14 @@
   "type": "image/png",
   "bytes": 161320
  },
+ "frannkurt/nano-banana-mcp": {
+  "repo": "frannkurt/nano-banana-mcp",
+  "url": "https://raw.githubusercontent.com/frannkurt/nano-banana-mcp/HEAD/docs/size-1200x630.jpg",
+  "alt": "",
+  "score": -0.3,
+  "type": "image/jpeg",
+  "bytes": 138083
+ },
  "frmlabz/omnidev": {
   "repo": "frmlabz/omnidev",
   "url": "https://raw.githubusercontent.com/frmlabz/omnidev/HEAD/docs/img/config-sprawl.png",
@@ -1551,6 +1655,22 @@
   "type": "image/jpeg",
   "bytes": 138930
  },
+ "if-ai/ComfyUI-IF_Gemini": {
+  "repo": "if-ai/ComfyUI-IF_Gemini",
+  "url": "https://github.com/user-attachments/assets/010a3937-bd79-4577-a3b4-fdf0d6f2762d",
+  "alt": "image",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1449125
+ },
+ "ilyautov/humanizer-it": {
+  "repo": "ilyautov/humanizer-it",
+  "url": "https://raw.githubusercontent.com/ilyautov/humanizer-it/HEAD/assets/social-preview.png",
+  "alt": "humanizer-it — toglie i segni dell",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 43975
+ },
  "imMamdouhaboammar/motion-graphics-skills": {
   "repo": "imMamdouhaboammar/motion-graphics-skills",
   "url": "https://raw.githubusercontent.com/imMamdouhaboammar/motion-graphics-skills/HEAD/assets/readme/teola-preview.gif",
@@ -1654,6 +1774,14 @@
   "score": 0.3,
   "type": "image/gif",
   "bytes": 6800910
+ },
+ "kiycoh/silica-core": {
+  "repo": "kiycoh/silica-core",
+  "url": "https://raw.githubusercontent.com/kiycoh/silica-core/main/assets/quickstart.gif",
+  "alt": "the quickstart recorded end to end: uv tool install, silica-core init reporting ",
+  "score": 0.35,
+  "type": "image/gif",
+  "bytes": 1511071
  },
  "klsoen/opus-js-animations": {
   "repo": "klsoen/opus-js-animations",
@@ -1807,6 +1935,14 @@
   "type": "image/jpeg",
   "bytes": 75993
  },
+ "mhmtsrfglu/superwiki": {
+  "repo": "mhmtsrfglu/superwiki",
+  "url": "https://raw.githubusercontent.com/mhmtsrfglu/superwiki/HEAD/assets/viewer-waves-light.png",
+  "alt": "The Superwiki viewer: task counts per area, filters, and the dependency board wi",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 277600
+ },
  "minorun365/minorun-marp-skill": {
   "repo": "minorun365/minorun-marp-skill",
   "url": "https://raw.githubusercontent.com/minorun365/minorun-marp-skill/HEAD/examples/sample/preview.png",
@@ -1919,6 +2055,14 @@
   "type": "image/gif",
   "bytes": 152210
  },
+ "oil-oil/oil-ui": {
+  "repo": "oil-oil/oil-ui",
+  "url": "https://raw.githubusercontent.com/oil-oil/oil-ui/HEAD/assets/readme/proof-mona-lisa.webp",
+  "alt": "风格对比页：同一个《蒙娜丽莎》特展页面的三种设计方向，分别是三十厘米、号外 1911 和晕涂",
+  "score": -0.1,
+  "type": "image/webp",
+  "bytes": 109066
+ },
  "op7418/guizang-ppt-skill": {
   "repo": "op7418/guizang-ppt-skill",
   "url": "https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470",
@@ -1983,6 +2127,14 @@
   "type": "image/jpeg",
   "bytes": 21034
  },
+ "pr-pm/prpm": {
+  "repo": "pr-pm/prpm",
+  "url": "https://raw.githubusercontent.com/pr-pm/prpm/main/packages/webapp/public/demo.gif",
+  "alt": "demo",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 932997
+ },
  "prodigeproject/pradaslides": {
   "repo": "prodigeproject/pradaslides",
   "url": "https://raw.githubusercontent.com/prodigeproject/pradaslides/HEAD/assets/benchmark/pradaslides-tuned-v2-media.png",
@@ -2046,6 +2198,14 @@
   "score": -2.55,
   "type": "image/png",
   "bytes": 1238869
+ },
+ "sedum-dev/sedum": {
+  "repo": "sedum-dev/sedum",
+  "url": "https://raw.githubusercontent.com/sedum-dev/sedum/HEAD/docs/assets/demo.gif",
+  "alt": "Sedum running a plain-English login test in a real browser: it passes with 0.98 ",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 1198630
  },
  "severli93/moonland-deck": {
   "repo": "severli93/moonland-deck",
@@ -2118,6 +2278,14 @@
   "score": -0.85,
   "type": "image/jpeg",
   "bytes": 300060
+ },
+ "sujunmin/agy-ppt": {
+  "repo": "sujunmin/agy-ppt",
+  "url": "https://raw.githubusercontent.com/sujunmin/agy-ppt/HEAD/assets/agy-ppt-teaser.gif",
+  "alt": "agy-ppt 實際輸出預覽",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 7294806
  },
  "sunbigfly/ppt-agent-skill": {
   "repo": "sunbigfly/ppt-agent-skill",
@@ -2246,6 +2414,14 @@
   "score": 4.95,
   "type": "image/gif",
   "bytes": 923032
+ },
+ "undsky/doudou-remotion-whiteboard-skill": {
+  "repo": "undsky/doudou-remotion-whiteboard-skill",
+  "url": "https://raw.githubusercontent.com/undsky/doudou-remotion-whiteboard-skill/HEAD/whiteboard_demo.gif",
+  "alt": "豆豆 Remotion 白板动画演示",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 2605252
  },
  "uuoov/ppt-image-share-builder": {
   "repo": "uuoov/ppt-image-share-builder",

@@ -4828,5 +4828,65 @@
    "general": 0.07
   },
   "kind": "devtool"
+ },
+ {
+  "repo": "0814wdwd/solo_jev",
+  "stars": 83,
+  "description": "Per-row semantic judgements over large relational tables on a decision model (Jev)",
+  "scores": {
+   "replica": 0.39,
+   "agent": 0.04,
+   "devtool": 0.15,
+   "sdk": 0.81,
+   "business": 0.75,
+   "consumer": 0.05,
+   "general": 0.2
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "alanhuangyoo/OpenJev",
+  "stars": 57,
+  "description": "OpenJev: open-source, local alternative to Jev. System-One decision models: typed questions in, calibrated probabilities out; general decisions and browser-agent steps.",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.77,
+   "devtool": 0.15,
+   "sdk": 0.43,
+   "business": 0.32,
+   "consumer": 0.12,
+   "general": 0.31
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "sedum-dev/sedum",
+  "stars": 10,
+  "description": "Plain-English browser e2e tests cheap enough to run on every PR. Built on Jev and Playwright, open source, bring your own key.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.69,
+   "devtool": 0.39,
+   "sdk": 0.12,
+   "business": 0.02,
+   "consumer": 0.03,
+   "general": 0.1
+  },
+  "kind": "agent"
+ },
+ {
+  "repo": "Algorythm-Canada/OpenJevSwift",
+  "stars": 8,
+  "description": "Native Swift implementation of OpenJev: Jev-compatible typed decisions (yes/no, choice, score) read from model probabilities, on Apple silicon Macs and in iPhone apps. Apache-2.0.",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.1,
+   "devtool": 0.11,
+   "sdk": 0.89,
+   "business": 0.31,
+   "consumer": 0.12,
+   "general": 0.44
+  },
+  "kind": "replica"
  }
 ]

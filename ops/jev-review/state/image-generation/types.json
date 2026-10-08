@@ -3218,5 +3218,47 @@
    "mcp": 0.97
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "if-ai/ComfyUI-IF_Gemini",
+  "stars": 73,
+  "description": "New nANO-Banana Google Gemini API for ComfyUI generate images, transcribe audio, sumarize videos. Making a separate implemetation of my old IF_AI tools for easy installation",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.6,
+   "open_models": 0.09,
+   "editing": 0.03,
+   "design": 0.02,
+   "mcp": 0.41
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "frannkurt/nano-banana-mcp",
+  "stars": 5,
+  "description": "Free AI image generation MCP server — no API key, no billing. Nano Banana via Google Flow with your own Google account. Exact pixel sizes, reference images, $0 per image.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.93,
+   "open_models": 0.05,
+   "editing": 0.07,
+   "design": 0.45,
+   "mcp": 0.8
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "AtlasCloudAI/cli",
+  "stars": 6,
+  "description": "Generate AI images, videos, speech, and 3D assets from your terminal, Claude Code, or Codex with Atlas Cloud CLI.",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.21,
+   "open_models": 0.07,
+   "editing": 0.04,
+   "design": 0.07,
+   "mcp": 0.39
+  },
+  "kind": "mcp"
  }
 ]

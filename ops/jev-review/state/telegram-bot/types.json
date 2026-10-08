@@ -3498,5 +3498,47 @@
    "business": 0.83
   },
   "kind": "business"
+ },
+ {
+  "repo": "dewil/claude-control",
+  "stars": 10,
+  "description": "Autonomous infrastructure over Claude Code: phone-dispatched remote sessions + a fleet of background agents (event spool, budgets, cross-machine handoff, deterministic canon rollout via PRs). Zero-dep, user-level.",
+  "scores": {
+   "assistant": 0.21,
+   "remote": 0.97,
+   "framework": 0.09,
+   "utility": 0.07,
+   "fun": 0.03,
+   "business": 0.09
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "EvilFreelancer/tgfake",
+  "stars": 15,
+  "description": "Offline Telegram Bot API for testing bots, Mini Apps and LLM integrations.",
+  "scores": {
+   "assistant": 0.04,
+   "remote": 0.1,
+   "framework": 0.14,
+   "utility": 0.03,
+   "fun": 0.07,
+   "business": 0.04
+  },
+  "kind": "framework"
+ },
+ {
+  "repo": "HNF-FRN/Reel-watcher-telegram-Agent",
+  "stars": 5,
+  "description": "Send a reel to a Telegram bot: it tells you exactly what the video shows, then plans and builds it on your Windows PC with Claude Code, asking your phone before every command. Keeps answering from a free Cloudflare Worker when your PC is off.",
+  "scores": {
+   "assistant": 0.88,
+   "remote": 0.96,
+   "framework": 0.22,
+   "utility": 0.35,
+   "fun": 0.06,
+   "business": 0.04
+  },
+  "kind": "remote"
  }
 ]
