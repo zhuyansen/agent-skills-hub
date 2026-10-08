@@ -30,7 +30,9 @@ const COMPARE_ROWS = 20; // rows in the comparison table
 // The card's title and body already open the skill page ("View Details" x 209 led the
 // page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
 // A subject that already names its kind of thing ("AI Design Tools", "Database MCP Servers").
-const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i;
+// "bots" plural only: "Open-Source Telegram Bots for Fun & AI" is complete, a singular
+// title like "Discord Bot" still reads "Discord Bot Tools".
+const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?|bots)\b/i;
 
 /** The words the page competes for: `serp_subject` when set, else the title. The <title>,
  *  H1, guide headings, meta description and ItemList all use it, so they name one thing

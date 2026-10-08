@@ -1137,7 +1137,7 @@
   "slug": "telegram-bot",
   "title": "Telegram Bot",
   "github_list": "https://github.com/zhuyansen/awesome-ai-telegram-bots",
-  "description": "Open-source Telegram bot frameworks, MCP servers, and AI agent integrations. Build automation bots, ChatGPT/Claude-powered assistants, and Telegram connectors — ranked by stars and quality.",
+  "description": "Open-source Telegram bots you can run yourself: fun bots (photo-to-anime, giveaways, an AI companion, a language-learning quiz bot), ChatGPT and Claude assistants, bots that remote-control Claude Code, utility bots, and the frameworks and MCP servers to build your own. Every repo security-graded.",
   "match": {
    "categories": [],
    "primary_keywords": [
@@ -1318,6 +1318,12 @@
   ],
   "extra_faq": [
    {
+    "q": "What open-source Telegram bots are there for fun?",
+    "a": "lmcsu/qq-neural-anime-tg turns your photos into anime art; LlmKira/Alice is an autonomous AI companion that runs as a userbot; y9san9/prizebot runs giveaways drawn with random.org; radyakaze/teleduckai is an experimental chat bot on Deno. For language learning there is one so far, SWel1a/QuizBot, a quiz-style tutor. Filter this page by Fun & learning to see them all.",
+    "qZh": "有哪些好玩的开源 Telegram 机器人?",
+    "aZh": "lmcsu/qq-neural-anime-tg 把照片变成二次元动漫画;LlmKira/Alice 是以用户号运行的自主 AI 陪伴角色;y9san9/prizebot 用 random.org 抽奖;radyakaze/teleduckai 是基于 Deno 的实验性聊天机器人。学语言的目前只收了一个:SWel1a/QuizBot,问答式陪练。在本页按「娱乐与学习」筛选可以看到全部。"
+   },
+   {
     "q": "Where can I find open source Telegram bot code on GitHub?",
     "a": "For AI chat: father-bot/chatgpt_telegram_bot (ChatGPT and Claude, Python) and tbxark/ChatGPT-Telegram-Workers (deploys on Cloudflare Workers). To build your own: aiogram/aiogram, an asynchronous Python framework for the Bot API. To control a coding agent from your phone: overwirehq/claude-code-telegram. All are in the open-source list zhuyansen/awesome-ai-telegram-bots on GitHub.",
     "qZh": "GitHub 上哪里能找到开源 Telegram 机器人代码?",
@@ -1329,7 +1335,9 @@
     "qZh": "能在 Telegram 里使用 Claude Code 吗?",
     "aZh": "可以。overwirehq/claude-code-telegram 让你在 Telegram 聊天里远程操作 Claude Code,grinev/opencode-telegram-bot 对 OpenCode 提供同样的能力。本页把它们归在「远程操控 Agent」一类。"
    }
-  ]
+  ],
+  "serp_subject": "Open-Source Telegram Bots for Fun & AI",
+  "seo_keyword": "open source telegram bot"
  },
  {
   "slug": "email-automation",
