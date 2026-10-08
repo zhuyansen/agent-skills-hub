@@ -61,7 +61,8 @@ def live_cards(slug: str) -> set[str]:
         if exc.code == 404:   # a new page: nothing live to keep
             return set()
         raise
-    return {m.lower() for m in re.findall(r'class="bp-card-title" href="/skill/([^/"]+/[^/"]+)/"', html)}
+    # Extra classes allowed: since 10-07 the title is "bp-card-title bp-sc-title".
+    return {m.lower() for m in re.findall(r'class="bp-card-title(?: [^"]*)?" href="/skill/([^/"]+/[^/"]+)/"', html)}
 
 
 def collect(slug: str, catalog: str) -> None:

@@ -26,7 +26,10 @@ LISTS.update({slug: cfg["repo"] for slug, cfg in PAGE_LISTS.items()})
 SLUG = sys.argv[1] if len(sys.argv) > 1 else "claude-video-skills"
 PAGE = f"https://agentskillshub.top/best/{SLUG}/"
 LIST = f"https://raw.githubusercontent.com/{LISTS[SLUG]}/main/data/skills.json"
-CARD = re.compile(r'<div class="bp-card" data-kind="([^"]*)"[^>]*>.*?class="bp-card-title" href="([^"]+)"', re.S)
+# Cards may carry more classes than bp-card / bp-card-title: since 10-07 they are
+# "bp-card bp-sc-card" and "bp-card-title bp-sc-title", and an exact match read every
+# page as empty ("page 0 · list 327" on knowledge-base, 10-07).
+CARD = re.compile(r'<div class="bp-card(?: [^"]*)?" data-kind="([^"]*)"[^>]*>.*?class="bp-card-title(?: [^"]*)?" href="([^"]+)"', re.S)
 HTTP_TIMEOUT = 30
 
 

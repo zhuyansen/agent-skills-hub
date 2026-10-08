@@ -37,7 +37,8 @@ WORKERS, SAVE_EVERY = 10, 10
 EN_MAX = 160
 NON_LATIN = re.compile(r"[぀-ヿ㐀-鿿가-힯]")
 NON_LATIN_SHARE = 0.3
-CARD = re.compile(r'<a class="bp-card-title" href="/skill/([^"/]+/[^"/]+)/".*?<p class="bp-card-desc"[^>]*data-en="([^"]*)"', re.S)
+# Extra classes allowed (bp-sc-title, bp-sc-desc since 10-07).
+CARD = re.compile(r'<a class="bp-card-title(?: [^"]*)?" href="/skill/([^"/]+/[^"/]+)/".*?<p class="bp-card-desc(?: [^"]*)?"[^>]*data-en="([^"]*)"', re.S)
 PROMPT = ("Translate this GitHub repository description into plain English. Say only what it says; drop "
           "marketing words (world's first, ultimate, 100M views). Keep product, model and technique names "
           "as written (Claude Code, Codex, Remotion, HyperFrames, MCP, skill, agent). At most 150 characters, "

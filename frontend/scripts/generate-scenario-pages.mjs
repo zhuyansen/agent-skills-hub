@@ -134,15 +134,17 @@ function matchSkills(scenario, allSkills) {
     // On a reviewed_only page every reviewed repo is listed, whatever its keywords say
     // now: a repo whose description changed after review fell off the page while its
     // GitHub list (built from the same review) kept it (ayushozha/AdobePremiereProMCP, 10-03).
-    const reviewed = (admitted.has(fullName) || Boolean(reviewedKinds)) && !featuredFullNames.includes(fullName);
-    if (reviewed) scored.push({ skill, matchScore: 1 });
-    if (reviewed || !shouldIndex(skill)) continue;
-
-    // Featured anchor — force include regardless of keyword match
-    if (featuredFullNames.length > 0 && featuredFullNames.includes((skill.repo_full_name || "").toLowerCase())) {
+    // Featured anchor: the owner's decision, so it skips the keyword rules and the
+    // index floor. It used to come after the floor, so a featured 0-star repo was
+    // dropped (zhuyansen/skills-manager, the owner's fork of a deleted 2.2K-star
+    // project: in the GitHub list, missing from the page, 10-08).
+    if (featuredFullNames.includes(fullName)) {
       featured.push(skill);
       continue;
     }
+    const reviewed = admitted.has(fullName) || Boolean(reviewedKinds);
+    if (reviewed) scored.push({ skill, matchScore: 1 });
+    if (reviewed || !shouldIndex(skill)) continue;
 
     // Hard language filter
     if (languageFilter.length > 0) {
