@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-08
+1. Tejashmakwana/motionmaxxing — 🆕 把 AI 味十足的视频改成像动效设计师亲手做的影片，专治廉价动效（84★ 63.7/day）
+2. dualface/ste-zh — 🆕 按 ASD-STE100 简明技术英语原则，让智能体用中文清楚汇报结果（119★ 49.9/day）
+3. Dicklesworthstone/frankensonos — 🆕 用 Rust 稳定控制局域网里的 Sonos 音箱，CLI、HTTP 和 MCP 都能让智能体接管（55★ 49.9/day）
+4. xamjiang/handout-remake — 🆕 把上课教材改成 iPad 上好读、可手写的深色讲义，Claude 和 Codex 通用（55★ 36.4/day）
+5. nikuscs/orbs — 🆕 自建多机器人群聊，Jev 判断谁来回答，本机守护进程跑每一轮对话（33★ 25.2/day）
+6. tsale/jevline — 🆕 从一个确认的恶意进程出发，用 Jev 串起整起安全事件的时间线（34★ 16.7/day）
+7. THUROI0787/absent-author — 🆕 用 83 条证据清单和两个技能，识别无人把关、由 AI 一手生成的论文（44★ 16.2/day）
+8. cv-cat/catbus — 🆕 一条命令操作小红书、抖音、B 站、闲鱼、X 等十个平台，统一输出 JSON 给智能体用（157★ 15.0/day）
+9. vojtaholik/good-css — 🆕 打包 40 个有主见的现代 CSS 技巧成技能，每个都附在线示例（52★ 7.9/day）
+10. borjaperfra/beatdeck — 🆕 用"节拍"代替幻灯片讲演，固定 1920×1080 的 React 舞台一击一拍、离线可复现（49★ 7.5/day）
+🎯 今日趋势：十席**全部**标 🆕、**8 席**建仓不满 3 天；Jev 判定模型直接进了 **2 席**（orbs 路由、jevline 事件串联），做片与讲演类（motionmaxxing、beatdeck）各占 **1 席**。
+> 注：去重范围＝repo 内 archive 全部 105 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,502 个（含路径噪声，只会多剔不会漏剔）。首查 `first_seen ≥48h`、stars ≥20 共 112 条（未触顶 LIMIT 150），命中历史推荐 14 条剔除，余 98 条中建仓 ≤21 天的约 25 条，候选足够，未放宽到 72h；单连接串行一次查询。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①shader-effects-inc/shaders（2,396★ 285.6/day）：2026-03 新建组织、14 粉、名下仅此 1 仓，单仓爆星形态，且为 WebGPU 前端组件库而非智能体工具，保守排除；②uu889/laya-opencv（41★ 15.5/day）：security_grade 为 caution；③Mutakisa/game-slop-purge、azharshkh/customus-credit-api、yashsindya2014-hash/frame-trace-mcp、demoos415/lua-script-bridge：同日（09-23）建仓、星数 68–69 雷同、标题堆砌"Best…2026"SEO 词，集群刷星嫌疑；④feder-cr/invisible_dots、spacering-net/codeg、yyh-001/DSH-X 等：建仓 34 天至两年以上、本期才收录，不算新鲜。入选项复核（`gh api`）：第 1 席 Tejashmakwana 2021 建号、7 粉，名下另有 141★ 同类 HyperFrames 仓，Apache-2.0；第 2 席 dualface 2009 建号、732 粉、名下另有 363★ 仓；第 3 席 Dicklesworthstone 2018 建号、3,440 粉、名下 destructive_command_guard 6,109★，README 明确提供 MCP 服务器；第 4 席 xamjiang 2018 建号、10 粉、其余仓 ≤3★（**轻红旗**，描述具体、量级小，保留）；第 5 席 nikuscs 2015 建号、70 粉、名下另有 25★ 仓；第 6 席 tsale 2017 建号、473 粉、名下 EDR-Telemetry 1,990★，DB 分类 uncategorized 但为安全智能体工具；第 7 席 THUROI0787 2021 建号、9 粉、其余仓 ≤2★（**轻红旗**，有 Zenodo DOI 与多名作者署名，保留）；第 8 席 cv-cat 2021 建号、1,452 粉、名下 Spider_XHS 8,004★；第 9 席 vojtaholik 2017 建号、209 粉、名下另有 194★ 仓；第 10 席 borjaperfra 2023 建号、17 粉、名下另有 24★ 仓。0814wdwd/solo_jev（6.3/day）列第 11 未入选（6 粉、其余仓 0★）。🆕 判定＝created_at 距今 14 天内，十席全部命中（catbus 建仓 10.4 天，其余 ≤6.6 天）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（ste-zh 127★、handout-remake 110★、catbus 174★、good-css 102★），按红线保留快照值。
+
+---
+
 ## 2026-10-07
 1. alchaincyf/huashu-art-motion — 🆕 用代码让名画动起来，内置 35 种艺术风格和 9 种解说语法（593★ 593.0/day）
 2. uzairansaruzi/p3-stack — 🆕 把 pstack 改造到 T3 Code，子代理委派、worktree 线程和盯 PR 一套全有（105★ 59.4/day）
