@@ -2614,7 +2614,258 @@
     "qZh": "怎么在 Claude Code、Codex 等多个 agent 之间统一管理 skill?",
     "aZh": "用能一处安装、分发到所有 agent 的管理工具:runkids/skillshare 跨工具管理 skill、agent、规则、MCP 和 hooks;microsoft/apm 是 agent 的包管理器;shanliuling/skills-link 一条命令把本地 skill 同步到 41 个以上的编程 agent。"
    }
-  ]
+  ],
+  "method": {
+   "h2": "How we judge Claude skills managers: what enters the context, what reaches your machine",
+   "h2_zh": "我们怎么评 Claude skills 管理工具：什么进了上下文，什么到了你的机器上",
+   "thesis": "A Claude skills manager decides two things for you. The first is what sits in your agent's context. More skills is not better: in SkillsBench (87 tasks, 18 model and agent setups) curated skills raised the pass rate from 33.9% to 50.5%, and focused skills of at most three modules beat large bundles. When every tool is put in front of a model at once, it picks the right one 13.62% of the time; retrieving only the relevant ones raised that to 43.13% and cut prompt tokens by more than half (RAG-MCP). On our own Claude Code setup, 512 skills were installed and 51 had ever been used; removing the other 461 saved 38,147 tokens in every session. The second is what code reaches your machine. A study of 98,380 skills from two registries confirmed 157 malicious ones (USENIX Security 2026), and in another sample 26.1% of skills had at least one vulnerability, with skills that ship scripts 2.12 times as likely to. So we judge a Claude skills manager by how it handles both: does it load skills on demand, and does it check what it installs.",
+   "thesis_zh": "Claude skills 管理工具替你决定两件事。第一件是什么留在 agent 的上下文里。skill 不是越多越好：SkillsBench（87 个任务、18 种模型与 agent 组合）里，精选的 skill 把通过率从 33.9% 提到 50.5%，而且不超过三个模块的小 skill 胜过大而全的合集。把所有工具一次性摆给模型，它选对的概率只有 13.62%；只检索相关的几个，选对率升到 43.13%，提示词 token 减少一半以上（RAG-MCP）。在我们自己的 Claude Code 上，装了 512 个 skill，用过的只有 51 个；删掉另外 461 个，每个会话省下 38,147 个 token。第二件是什么代码到了你的机器上。一项覆盖两个市场 98,380 个 skill 的研究确认了 157 个恶意 skill（USENIX Security 2026）；另一份样本里 26.1% 的 skill 至少有一个漏洞，带脚本的 skill 出问题的概率是不带脚本的 2.12 倍。所以我们看一个管理工具怎么处理这两件事：是否按需加载，是否检查它装进来的东西。",
+   "h3_routes": [
+    "Six kinds of Claude skills manager, two jobs",
+    "六类 Claude skills 管理工具，两件事"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What it saves you",
+     "省了什么"
+    ],
+    [
+     "What to watch",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Skills CLI installers",
+     "name_zh": "命令行安装",
+     "kinds": [
+      "cli"
+     ],
+     "how": "Add, remove and update skills from the terminal, usually straight from a GitHub repo.",
+     "how_zh": "在终端里添加、删除、更新 skill，通常直接从 GitHub 仓库装。",
+     "gain": "Fast, scriptable, and easy to remove what you no longer use.",
+     "gain_zh": "快、能写进脚本，不用的也容易删。",
+     "cost": "Installs whatever the repo contains, scripts included, unless it shows you first.",
+     "cost_zh": "除非先给你看，否则仓库里有什么就装什么，脚本也一起装。"
+    },
+    {
+     "name": "All-in-one managers",
+     "name_zh": "综合管理",
+     "kinds": [
+      "general"
+     ],
+     "how": "One place for skills, MCP servers, rules, hooks and settings across several agents.",
+     "how_zh": "一个地方管多个 agent 的 skill、MCP、规则、hooks 和设置。",
+     "gain": "One source of truth instead of a folder per agent.",
+     "gain_zh": "一份配置管所有 agent，不用每个 agent 各存一份。",
+     "cost": "The more it manages, the more it can load into every session; check how it decides what to load.",
+     "cost_zh": "管得越多，可能塞进每个会话的就越多；要看它怎么决定加载什么。"
+    },
+    {
+     "name": "Sync across agents",
+     "name_zh": "多 Agent 同步",
+     "kinds": [
+      "sync"
+     ],
+     "how": "Keeps one skill folder linked into Claude Code, Codex, Cursor and others.",
+     "how_zh": "把同一个 skill 文件夹链接到 Claude Code、Codex、Cursor 等。",
+     "gain": "Write a skill once, use it everywhere.",
+     "gain_zh": "一个 skill 写一次，到处都能用。",
+     "cost": "Every agent now carries every skill; prune the folder or the cost multiplies.",
+     "cost_zh": "每个 agent 都背上全部 skill；不定期清理，代价成倍增加。"
+    },
+    {
+     "name": "Desktop and web apps",
+     "name_zh": "桌面与界面",
+     "kinds": [
+      "app"
+     ],
+     "how": "Browse, edit, enable and disable installed skills in a window.",
+     "how_zh": "在界面里浏览、编辑、启用和停用已装的 skill。",
+     "gain": "You see what is installed, which is the first step to removing it.",
+     "gain_zh": "能看见装了什么，这是清理的第一步。",
+     "cost": "Some read your agent's config folders and keys; check the grade.",
+     "cost_zh": "有些会读 agent 的配置目录和密钥，先看评级。"
+    },
+    {
+     "name": "Registries and marketplaces",
+     "name_zh": "市场与目录",
+     "kinds": [
+      "registry"
+     ],
+     "how": "Search and install skills others published.",
+     "how_zh": "搜索并安装别人发布的 skill。",
+     "gain": "Discovery: the skill you need may already exist.",
+     "gain_zh": "发现：你要的 skill 可能已经有人做了。",
+     "cost": "This is where malicious skills were found; a pattern scanner alone flags far too many, so look for one that reads the repository.",
+     "cost_zh": "恶意 skill 正是在这里被发现的；只靠模式匹配的扫描会误报一大片，要找读仓库上下文的那种。"
+    },
+    {
+     "name": "Team management",
+     "name_zh": "团队管理",
+     "kinds": [
+      "team"
+     ],
+     "how": "A shared, often self-hosted registry with versions, reviews and permissions.",
+     "how_zh": "共享的、常可自托管的 skill 仓库，带版本、审核和权限。",
+     "gain": "A review step before a skill reaches everyone's machine.",
+     "gain_zh": "skill 到每个人机器之前有一道审核。",
+     "cost": "Only as good as the review; someone has to read what is published.",
+     "cost_zh": "效果取决于审核，总得有人读发布上来的东西。"
+    }
+   ],
+   "gap": "The studies measure skills and registries, not the managers themselves. No paper yet tests whether a manager's on-demand loading actually keeps the context small, so the questions below are our reading of the research, not its findings.",
+   "gap_zh": "这些研究测的是 skill 和市场，不是管理工具本身。还没有论文测过管理工具的按需加载是否真能让上下文变小，所以下面的问题是我们对研究的解读，不是研究的结论。",
+   "h3_next": [
+    "Pick by how you work",
+    "按你的用法来选"
+   ],
+   "next_stop": [
+    {
+     "who": "One person, one or two agents",
+     "who_zh": "一个人，一两个 agent",
+     "pick": "A CLI installer, and remove what you have not used in a month",
+     "pick_zh": "命令行安装工具，一个月没用过的就删"
+    },
+    {
+     "who": "Several agents (Claude Code, Codex, Cursor)",
+     "who_zh": "同时用好几个 agent（Claude Code、Codex、Cursor）",
+     "pick": "A sync tool over one small, pruned folder",
+     "pick_zh": "同步工具，配一个精简过的 skill 文件夹"
+    },
+    {
+     "who": "A team",
+     "who_zh": "团队",
+     "pick": "A self-hosted registry with a review step before publishing",
+     "pick_zh": "可自托管、发布前有审核的团队仓库"
+    },
+    {
+     "who": "Looking for new skills",
+     "who_zh": "找新 skill",
+     "pick": "A registry that shows the source and a security grade for each skill",
+     "pick_zh": "每个 skill 都标出来源和安全评级的市场"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every Claude skills manager",
+    "每个 Claude skills 管理工具我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Context: does it load skills on demand, or put every installed skill in front of the agent?",
+     "q_zh": "上下文：按需加载 skill，还是把装过的全部摆给 agent？"
+    },
+    {
+     "q": "Pruning: does it show what you have installed and help you remove what you do not use?",
+     "q_zh": "清理：能否看清装了什么，并帮你删掉不用的？"
+    },
+    {
+     "q": "Source: before installing, does it show where a skill comes from and which scripts it will run?",
+     "q_zh": "来源：安装前是否说明 skill 从哪来、会执行哪些脚本？"
+    },
+    {
+     "q": "Checks with context: if it scans for risk, does it read the repository, or only match patterns in the skill file?",
+     "q_zh": "带上下文的检查：如果它做安全扫描，是读整个仓库，还是只在 skill 文件里匹配关键词？"
+    }
+   ],
+   "floor_activity": [
+    "while they install, sync or manage skills",
+    "安装、同步、管理 skill 时的行为"
+   ],
+   "h3_findings": [
+    "What the research found",
+    "研究发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "Fewer, focused skills work better. Curated skills raised the average pass rate by 16.6 points across 18 setups, and focused skills of at most three modules beat large bundles (SkillsBench).",
+     "item_zh": "少而精更好用。在 18 种组合上，精选 skill 让平均通过率提高 16.6 个百分点，不超过三个模块的小 skill 胜过大而全的合集（SkillsBench）。"
+    },
+    {
+     "item": "Loading everything costs accuracy, not only tokens: retrieving the relevant tools instead of listing all of them took selection accuracy from 13.62% to 43.13% (RAG-MCP, a preprint).",
+     "item_zh": "全部加载的代价不只是 token，还有准确率：只检索相关工具而不是全部列出，选对率从 13.62% 升到 43.13%（RAG-MCP，预印本）。"
+    },
+    {
+     "item": "Malicious skills exist in the registries: 157 confirmed among 98,380, carrying 632 vulnerabilities across 13 attack techniques, over half from a single actor; all were removed after disclosure (USENIX Security 2026).",
+     "item_zh": "市场里确有恶意 skill：98,380 个里确认 157 个，涉及 13 种攻击手法、632 个漏洞，一半以上出自同一个攻击者；披露后全部下架（USENIX Security 2026）。"
+    },
+    {
+     "item": "Scanners overreach without context. Marketplace scanners flagged up to 46.8% of skills as malicious; reading the surrounding repository left 0.52% suspicious (best paper, AgentSkills '26). We found the same with our own grading: rules that matched words, not behaviour, were wrong on every hit and were removed.",
+     "item_zh": "不看上下文的扫描会误报：市场自带的扫描器把最多 46.8% 的 skill 标成恶意，结合所在仓库复核后只剩 0.52% 可疑（AgentSkills '26 最佳论文）。我们自己的评级也踩过同样的坑：只匹配字眼、不看行为的规则命中全是误报，已经删掉。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, does it manage skills rather than ship them.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、是管理 skill 还是本身就是 skill。"
+    },
+    {
+     "item": "Sorted every entry into one of six kinds, so you can filter.",
+     "item_zh": "把每个条目归入六类之一，可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, reading the README and repository rather than matching keywords, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，读 README 和仓库而不是只匹配关键词，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these managers end to end, for example measuring how many tokens each one loads per session; the four questions come from the research and from each tool's documentation.",
+     "item_zh": "我们还没有端到端实跑这些管理工具，比如测每个工具每个会话加载多少 token；四个问题来自研究和各工具自己的文档。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Liu, Chen, Zhang, Deng, Li, Ning and Zhang. \"Do Not Mention This to the User\": Detecting and Understanding Malicious Agent Skills in the Wild. USENIX Security 2026 (arXiv 2602.06547).",
+     "url": "https://arxiv.org/abs/2602.06547"
+    },
+    {
+     "label": "Li et al. SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks. arXiv 2602.12670 (v4, 2026).",
+     "url": "https://arxiv.org/abs/2602.12670"
+    },
+    {
+     "label": "Holzbauer, Schmidt, Gegenhuber, Schrittwieser and Ullrich. Context Matters: Repository-Aware Security Analysis of the Agent Skill Ecosystem. AgentSkills '26 (ACM CAIS), Best Paper (arXiv 2603.16572).",
+     "url": "https://arxiv.org/abs/2603.16572"
+    },
+    {
+     "label": "Liu, Wang, Feng, Zhang, Xu, Deng, Li and Zhang. Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale. arXiv 2601.10338 (2026).",
+     "url": "https://arxiv.org/abs/2601.10338"
+    },
+    {
+     "label": "Gan and Sun. RAG-MCP: Mitigating Prompt Bloat in LLM Tool Selection via Retrieval-Augmented Generation. arXiv 2505.03275 (2025).",
+     "url": "https://arxiv.org/abs/2505.03275"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-agent-skills-managers list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-agent-skills-managers 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-08"
+   }
+  }
  },
  {
   "slug": "free-mcp-servers",

@@ -933,37 +933,37 @@
    {
     "id": "general",
     "icon": "🧱",
-    "en": "All-in-one skill managers",
+    "en": "All-in-one Claude skills managers",
     "zh": "综合管理"
    },
    {
     "id": "cli",
     "icon": "⌨️",
-    "en": "Skills CLI installers",
+    "en": "Claude skills CLI installers",
     "zh": "命令行安装"
    },
    {
     "id": "sync",
     "icon": "🔄",
-    "en": "Skill sync across agents",
+    "en": "Claude skills sync across agents",
     "zh": "多 Agent 同步"
    },
    {
     "id": "app",
     "icon": "🖥",
-    "en": "Skill manager apps",
+    "en": "Claude skills manager apps",
     "zh": "桌面与界面"
    },
    {
     "id": "registry",
     "icon": "🔎",
-    "en": "Skill registries & marketplaces",
+    "en": "Claude skills registries & marketplaces",
     "zh": "市场与目录"
    },
    {
     "id": "team",
     "icon": "👥",
-    "en": "Team skill management",
+    "en": "Team Claude skills management",
     "zh": "团队管理"
    }
   ],
