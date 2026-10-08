@@ -6486,6 +6486,241 @@
     "qZh": "哪里能找到 Claude Code hooks、subagents 和 statusline 的合集?",
     "aZh": "Hooks:disler/claude-code-hooks-mastery;Subagents:VoltAgent/awesome-claude-code-subagents(100 多个专家子代理);状态栏:jarrodwatts/claude-hud、sirmalloc/ccstatusline。它们都收录在 GitHub 开源合集 zhuyansen/awesome-claude-code-hooks 里,按类型分组并做了安全评级。"
    }
-  ]
+  ],
+  "method": {
+   "h2": "How we judge Claude Code hooks, subagents and statuslines: enforce, don't advise",
+   "h2_zh": "我们怎么评 Claude Code hooks、子代理和状态栏：要强制，不要提醒",
+   "thesis": "Claude Code follows instructions most of the time; Claude Code hooks make some things happen every time. The research shows why that difference matters. In over 5,000 Claude Code runs on SWE-bench Verified, rule files helped (+13.8 points), but random rules helped as much as curated ones; every rule that helped on its own was a prohibition (\"do not refactor unrelated code\") and every rule that hurt was a directive (\"follow code style\"). A prohibition is what a hook can enforce. AgentSpec, a runtime rule of trigger, check and action, which is the shape of a Claude Code hook, prevented unsafe execution in over 90% of code-agent cases with overhead in milliseconds (ICSE 2026). Guardrails learned from failed runs cut abnormal executions of Claude Code from 69.0% to 26.7% and raised task completion from 21.7% to 35.0%. Statuslines answer a different failure: models use information in the middle of a long context worst, so it pays to see how full the context is. So we judge these tools by whether they enforce rather than advise, whether they keep the context lean and visible, and what they run on your machine.",
+   "thesis_zh": "Claude Code 大多数时候会照指令做；Claude Code hooks 让有些事每次都发生。研究说明了这个差别为什么重要。在 SWE-bench Verified 上跑了 5,000 多次 Claude Code，规则文件有帮助（+13.8 个百分点），但随机规则和精选规则一样有用；单独看，有帮助的规则全是禁止型（\"不要重构无关代码\"），有害的规则全是指令型（\"遵循代码风格\"）。禁止型规则正是 hook 能强制执行的。AgentSpec 用\"触发、检查、动作\"写运行时规则，这正是 Claude Code hook 的形状，它拦下了 90% 以上代码 agent 的不安全执行，开销是毫秒级（ICSE 2026）。从失败轨迹里学出来的护栏，把 Claude Code 的异常执行率从 69.0% 降到 26.7%，任务完成率从 21.7% 升到 35.0%。状态栏解决的是另一种失败：长上下文中间的信息，模型用得最差，所以要看得见上下文有多满。所以我们看这些工具：是强制还是只提醒，能否让上下文精简、可见，以及它在你机器上执行了什么。",
+   "h3_routes": [
+    "Five kinds of Claude Code hooks and add-ons",
+    "五类 Claude Code hooks 与扩展"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What it gives you",
+     "带来什么"
+    ],
+    [
+     "What to watch",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Hooks",
+     "name_zh": "Hooks 钩子",
+     "kinds": [
+      "hooks"
+     ],
+     "how": "Shell commands Claude Code runs at fixed points: before a tool call, after an edit, at the end of a session.",
+     "how_zh": "Claude Code 在固定时机执行的 shell 命令：调用工具前、编辑后、会话结束时。",
+     "gain": "Deterministic: a blocked command stays blocked, a formatter or test run happens every time.",
+     "gain_zh": "确定性：被拦的命令一定被拦，格式化和测试每次都跑。",
+     "cost": "They run with your permissions on every event; read the script before you add it.",
+     "cost_zh": "每个事件都以你的权限执行；加之前先读脚本。"
+    },
+    {
+     "name": "Subagents",
+     "name_zh": "Subagents 子代理",
+     "kinds": [
+      "subagents"
+     ],
+     "how": "Specialist agents with their own prompt and their own context window.",
+     "how_zh": "有自己提示词和独立上下文窗口的专职 agent。",
+     "gain": "Side work stays out of the main context.",
+     "gain_zh": "支线工作不占主上下文。",
+     "cost": "No study has measured subagent packs yet; a pack of 100 is the too-many-skills problem again.",
+     "cost_zh": "还没有研究专门测过子代理合集；一次装 100 个，又回到了 skill 装太多的问题。"
+    },
+    {
+     "name": "Statuslines",
+     "name_zh": "Statusline 状态栏",
+     "kinds": [
+      "statusline"
+     ],
+     "how": "A line under the prompt with the model, context used, cost and git state.",
+     "how_zh": "输入框下面的一行，显示模型、上下文用量、费用和 git 状态。",
+     "gain": "You see the context filling up before answers get worse.",
+     "gain_zh": "在回答变差之前，就能看到上下文快满了。",
+     "cost": "Reads your session data; check whether it sends anything anywhere.",
+     "cost_zh": "会读会话数据；看看它有没有往外发送东西。"
+    },
+    {
+     "name": "Collections",
+     "name_zh": "合集",
+     "kinds": [
+      "collection"
+     ],
+     "how": "Bundles of hooks, agents, commands and rules.",
+     "how_zh": "hooks、agent、命令和规则的打包合集。",
+     "gain": "A starting point to copy from.",
+     "gain_zh": "可以照抄的起点。",
+     "cost": "Install the parts you use; bundled directives (\"always follow X\") are the kind of rule the research found can hurt.",
+     "cost_zh": "只装用得上的；合集里的指令型规则（\"总是遵循 X\"）正是研究发现可能有害的那类。"
+    },
+    {
+     "name": "Tooling",
+     "name_zh": "管理与生成工具",
+     "kinds": [
+      "tooling"
+     ],
+     "how": "Generators and managers that write hooks, agents and settings for you.",
+     "how_zh": "帮你生成和管理 hooks、agent、设置的工具。",
+     "gain": "No hand-editing of settings JSON.",
+     "gain_zh": "不用手改设置 JSON。",
+     "cost": "Check what it writes into your settings before you accept it.",
+     "cost_zh": "它往设置里写了什么，确认前先看一眼。"
+    }
+   ],
+   "gap": "The studies measure rules and runtime guardrails for coding agents, not the repositories listed here, and none has tested statuslines or subagent packs directly. The rows for those two are our reading, not the research's finding.",
+   "gap_zh": "这些研究测的是编程 agent 的规则和运行时护栏，不是这页列出的仓库；也还没有研究直接测过状态栏和子代理合集。这两行是我们的解读，不是研究结论。",
+   "h3_next": [
+    "Pick by what you want to stop or see",
+    "按你想拦住什么、看见什么来选"
+   ],
+   "next_stop": [
+    {
+     "who": "Stop specific damage (rm -rf, force-push, editing tests)",
+     "who_zh": "拦住具体的破坏（rm -rf、强推、改测试）",
+     "pick": "A hook that runs before the tool call and blocks it",
+     "pick_zh": "在调用工具前运行并拦截的 hook"
+    },
+    {
+     "who": "Keep code formatted and tests passing",
+     "who_zh": "保持代码格式和测试通过",
+     "pick": "Hooks that run the formatter and tests after each edit",
+     "pick_zh": "每次编辑后跑格式化和测试的 hook"
+    },
+    {
+     "who": "Long sessions",
+     "who_zh": "长会话",
+     "pick": "A statusline that shows context use, and a fresh session before it fills",
+     "pick_zh": "显示上下文用量的状态栏，快满之前开新会话"
+    },
+    {
+     "who": "Large tasks with research or review steps",
+     "who_zh": "带调研或审查步骤的大任务",
+     "pick": "A few focused subagents, not a pack of a hundred",
+     "pick_zh": "少数几个专职子代理，不要一次装一百个"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every Claude Code hook or add-on",
+    "每个 Claude Code hook 或扩展我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Enforce or advise: does it block the action, or only remind the agent?",
+     "q_zh": "强制还是提醒：它会拦下动作，还是只提醒 agent？"
+    },
+    {
+     "q": "Prohibitions: are its rules \"do not\" with a check behind them, rather than \"always do\"?",
+     "q_zh": "禁止型：它的规则是带检查的\"不要做\"，而不是\"总是要做\"？"
+    },
+    {
+     "q": "Context: does it keep the main context lean, or show you how full it is?",
+     "q_zh": "上下文：它让主上下文更精简，或者让你看见上下文有多满？"
+    },
+    {
+     "q": "What runs: which commands does it execute, on which events, with what network access?",
+     "q_zh": "执行了什么：在哪些事件上执行哪些命令，能不能联网？"
+    }
+   ],
+   "floor_activity": [
+    "while they run as hooks, subagents or statuslines",
+    "作为 hook、子代理或状态栏运行时的行为"
+   ],
+   "h3_findings": [
+    "What the research found",
+    "研究发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "Prohibitions help, directives can hurt: across 679 rule files and over 5,000 Claude Code runs, every rule that helped on its own was a \"do not\", every one that hurt was a \"do\"; random rules helped as much as curated ones (+13.8 points, a preprint).",
+     "item_zh": "禁止型有用，指令型可能有害：679 个规则文件、5,000 多次 Claude Code 运行里，单独看有帮助的规则全是\"不要\"，有害的全是\"要\"；随机规则和精选规则一样有用（+13.8 个百分点，预印本）。"
+    },
+    {
+     "item": "Runtime rules work: rules of trigger, check and action prevented unsafe execution in over 90% of code-agent cases, at millisecond overhead; rules a model wrote caught 87.26% of risky code (AgentSpec, ICSE 2026).",
+     "item_zh": "运行时规则有效：\"触发、检查、动作\"式规则拦下 90% 以上代码 agent 的不安全执行，开销毫秒级；由模型自动写的规则识别出 87.26% 的风险代码（AgentSpec，ICSE 2026）。"
+    },
+    {
+     "item": "Guardrails learned from failures pay off twice: on 100 held-out tasks, Claude Code with Haiku 4.5 went from 69.0% to 26.7% abnormal executions and from 21.7% to 35.0% completed tasks (AgentGuard, a preprint).",
+     "item_zh": "从失败里学出的护栏两头都赚：在 100 个留出任务上，Claude Code（Haiku 4.5）的异常执行率从 69.0% 降到 26.7%，任务完成率从 21.7% 升到 35.0%（AgentGuard，预印本）。"
+    },
+    {
+     "item": "Where information sits in a long context matters: models use it best at the beginning or end and worst in the middle, including models built for long inputs (Lost in the Middle, TACL).",
+     "item_zh": "信息在长上下文里的位置很重要：放在开头或结尾用得最好，放在中间最差，专为长输入设计的模型也一样（Lost in the Middle，TACL）。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what does it hook into.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、挂在 Claude Code 的哪个环节。"
+    },
+    {
+     "item": "Sorted every entry into one of five kinds, so you can filter.",
+     "item_zh": "把每个条目归入五类之一，可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these hooks end to end. The plan follows AgentGuard: tasks that tempt the agent into risky actions, run with and without each hook, scored on two numbers, abnormal executions and completed tasks.",
+     "item_zh": "我们还没有端到端实跑这些 hook。计划照 AgentGuard 的做法：用会诱导 agent 做危险操作的任务，装与不装某个 hook 各跑一遍，看两个数：异常执行和完成的任务。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the hook run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察 hook 运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Wang, Poskitt and Sun. AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents. ICSE 2026 (arXiv 2503.18666).",
+     "url": "https://arxiv.org/abs/2503.18666"
+    },
+    {
+     "label": "Zhang, Wang, Cui, Qiu, Li, Zhu and He. Guardrails Beat Guidance: A Large-Scale Study of Rules, Skills, and Persistent Configuration for Coding Agents. arXiv 2604.11088 (2026).",
+     "url": "https://arxiv.org/abs/2604.11088"
+    },
+    {
+     "label": "Dai and Wang. AgentGuard: Learning Execution Guardrails from Anomalous Coding-Agent Trajectories. arXiv 2609.16287 (2026).",
+     "url": "https://arxiv.org/abs/2609.16287"
+    },
+    {
+     "label": "Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni and Liang. Lost in the Middle: How Language Models Use Long Contexts. Transactions of the ACL (arXiv 2307.03172).",
+     "url": "https://arxiv.org/abs/2307.03172"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-claude-code-hooks list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-claude-code-hooks 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-08"
+   }
+  },
+  "seo_keyword": "claude code hooks"
  }
 ]
