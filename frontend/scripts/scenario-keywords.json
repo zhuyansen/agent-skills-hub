@@ -123,7 +123,250 @@
     "qZh": "有哪些开源的 AI 代码审查工具能审 Pull Request?",
     "aZh": "The-PR-Agent/pr-agent 在 GitHub、GitLab 等平台审查 PR;alibaba/open-code-review 是在阿里规模上用过的审查引擎;kodustech/kodus-ai 可自托管,接你自己的大模型。本页把它们归在「PR 机器人与 CI」「本地与命令行」「自托管平台」几类。"
    }
-  ]
+  ],
+  "method": {
+   "h2": "How we judge Claude Code review skills and tools: problems found, noise added",
+   "h2_zh": "我们怎么评 Claude Code 代码审查 skill 和工具：找到多少问题，添了多少噪音",
+   "thesis": "An AI code reviewer is judged by two numbers that pull against each other: how many real problems it finds, and how much noise it adds. On SWR-Bench, 1,000 manually verified pull requests from GitHub, current review tools find too little and do best on functional bugs; running several reviews and combining them raised F1 by up to 43.67%. Noise has a price too. In a company deployment reported at ICSE 2025, 73.8% of the AI's comments were resolved, yet the average time to close a pull request rose from 5 hours 52 minutes to 8 hours 20 minutes, and engineers named faulty, unnecessary and irrelevant comments as the drawback. ByteDance's reviewer filters its own comments in a second stage to reach 75.0% precision, and measures adoption by whether the code a comment pointed at was then changed. So we judge a Claude Code review skill or tool by what it does about both: does it filter before it posts, and can you see whether its comments were acted on.",
+   "thesis_zh": "AI 代码审查工具要看两个互相拉扯的数：找到多少真问题，添了多少噪音。在 SWR-Bench（1,000 个人工核验过的 GitHub PR）上，现有审查工具找到的问题偏少，最擅长的是功能性 bug；把多次审查的结果合并，F1 最多能提高 43.67%。噪音也有代价：ICSE 2025 报告的一次企业部署里，AI 评论有 73.8% 被处理，但 PR 平均关闭时间从 5 小时 52 分升到 8 小时 20 分，工程师说最大的问题是评论有错、没必要、不相关。字节跳动的审查工具先生成评论，再用第二道工序过滤，精度做到 75.0%；它看评论有没有被采纳的办法，是看评论指着的那段代码之后有没有被改。所以我们看一个 Claude Code 审查 skill 或工具怎么处理这两件事：发评论前会不会先过滤，能不能看出评论有没有被采纳。",
+   "h3_routes": [
+    "Six kinds of Claude Code review tools",
+    "六类 Claude Code 代码审查工具"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "Where it helps",
+     "强项"
+    ],
+    [
+     "What to watch",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Code review skills",
+     "name_zh": "审查 skill",
+     "kinds": [
+      "skill"
+     ],
+     "how": "A skill or plugin that has Claude Code or Codex review a diff on request.",
+     "how_zh": "一个 skill 或插件，让 Claude Code 或 Codex 按需审查一段 diff。",
+     "gain": "Runs before you commit, inside the agent you already use.",
+     "gain_zh": "在你已经在用的 agent 里跑，提交前就能审。",
+     "cost": "The same model that wrote the code reviews it; ask a second model for important changes.",
+     "cost_zh": "写代码和审代码的是同一个模型；重要改动请另一个模型再看一遍。"
+    },
+    {
+     "name": "Local and CLI review",
+     "name_zh": "本地与命令行",
+     "kinds": [
+      "cli"
+     ],
+     "how": "A command-line reviewer you run on a branch or a diff, often with fixed rules plus an LLM.",
+     "how_zh": "在分支或 diff 上运行的命令行审查工具，常是固定规则加 LLM。",
+     "gain": "Deterministic checks catch the known patterns; the model handles the rest.",
+     "gain_zh": "确定性检查抓已知问题，剩下的交给模型。",
+     "cost": "Local runs leave no shared record of what was flagged and fixed.",
+     "cost_zh": "本地运行不留共享记录，看不出标了什么、改了什么。"
+    },
+    {
+     "name": "PR review bots and CI",
+     "name_zh": "PR 机器人与 CI",
+     "kinds": [
+      "pr_bot"
+     ],
+     "how": "Comments on every pull request, in GitHub or GitLab, as a bot or a CI step.",
+     "how_zh": "在 GitHub、GitLab 的每个 PR 上发评论，以机器人或 CI 步骤的形式。",
+     "gain": "Every change gets a first pass, and resolved comments give you an adoption rate.",
+     "gain_zh": "每个改动都先过一遍，评论被处理的比例就是采纳率。",
+     "cost": "Unfiltered comments slow merges; in one deployment, closing a PR took 2.5 hours longer on average.",
+     "cost_zh": "不过滤的评论会拖慢合并；一次部署里，关闭一个 PR 平均多花 2.5 小时。"
+    },
+    {
+     "name": "Multi-agent review",
+     "name_zh": "多 Agent 互审",
+     "kinds": [
+      "multi"
+     ],
+     "how": "Several reviewers or models look at the same change and their findings are merged.",
+     "how_zh": "多个审查者或模型看同一个改动，再合并结论。",
+     "gain": "Combining reviews raised F1 by up to 43.67% on SWR-Bench.",
+     "gain_zh": "在 SWR-Bench 上，合并多次审查让 F1 最多提高 43.67%。",
+     "cost": "Several times the tokens and the wait.",
+     "cost_zh": "token 和等待时间都翻几倍。"
+    },
+    {
+     "name": "Security review",
+     "name_zh": "安全审查",
+     "kinds": [
+      "security"
+     ],
+     "how": "Agents that look for vulnerabilities, some of which reproduce and fix them in a sandbox.",
+     "how_zh": "专找漏洞的 agent，有些还会在沙箱里复现并修复。",
+     "gain": "Goes deeper on one class of problem than a general reviewer.",
+     "gain_zh": "在一类问题上比通用审查挖得深。",
+     "cost": "A complement to a general review, not a replacement; check the grade, since these tools run code.",
+     "cost_zh": "是通用审查的补充，不是替代；它们会执行代码，先看评级。"
+    },
+    {
+     "name": "Code review platforms",
+     "name_zh": "自托管平台",
+     "kinds": [
+      "platform"
+     ],
+     "how": "A self-hosted service that runs reviews across a team's repositories.",
+     "how_zh": "自托管服务，在团队所有仓库上跑审查。",
+     "gain": "One place for rules, history and adoption numbers.",
+     "gain_zh": "规则、历史和采纳数据都在一处。",
+     "cost": "Someone has to own the rules and tune what gets posted.",
+     "cost_zh": "得有人负责规则、调整哪些评论该发。"
+    }
+   ],
+   "gap": "The research measures review comments on real pull requests and in company deployments, not the specific tools listed here. Until we run them ourselves, the questions below are how we read that research.",
+   "gap_zh": "这些研究测的是真实 PR 和企业部署里的审查评论，不是这页列出的具体工具。在我们自己实跑之前，下面的问题是我们对研究的解读。",
+   "h3_next": [
+    "Pick by where the review happens",
+    "按审查发生在哪一步来选"
+   ],
+   "next_stop": [
+    {
+     "who": "Before you commit, on your own",
+     "who_zh": "自己提交之前",
+     "pick": "A review skill in Claude Code or Codex, or a local CLI",
+     "pick_zh": "Claude Code、Codex 里的审查 skill，或本地命令行工具"
+    },
+    {
+     "who": "Every pull request on a team",
+     "who_zh": "团队的每个 PR",
+     "pick": "A PR bot that filters its comments and lets you set severity and scope",
+     "pick_zh": "会过滤评论、能设严重级别和范围的 PR 机器人"
+    },
+    {
+     "who": "An important or risky change",
+     "who_zh": "重要或高风险的改动",
+     "pick": "Multi-agent review, or a second model on top of the first",
+     "pick_zh": "多 Agent 互审，或在第一个模型之后再请第二个模型"
+    },
+    {
+     "who": "Code that handles secrets, auth or user data",
+     "who_zh": "涉及密钥、认证、用户数据的代码",
+     "pick": "A security reviewer in addition to the general one",
+     "pick_zh": "通用审查之外再加一个安全审查"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every Claude Code review tool",
+    "每个 Claude Code 审查工具我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Precision: does it filter or rank its own comments before posting them?",
+     "q_zh": "精度：发评论前，会不会先过滤或排序？"
+    },
+    {
+     "q": "Context: does it read beyond the diff, into the files and history the change touches?",
+     "q_zh": "上下文：会不会读 diff 之外、改动涉及的文件和历史？"
+    },
+    {
+     "q": "Adoption: can you see which comments were resolved or led to a code change?",
+     "q_zh": "采纳：能不能看到哪些评论被处理、哪些真的带来了代码修改？"
+    },
+    {
+     "q": "Cost: can you limit where and how much it comments, so merges do not slow down?",
+     "q_zh": "成本：能不能限制它在哪里评、评多少，免得拖慢合并？"
+    }
+   ],
+   "floor_activity": [
+    "while they review code",
+    "审查代码时的行为"
+   ],
+   "h3_findings": [
+    "What the research found",
+    "研究发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "Current tools find too little on real pull requests and do best on functional bugs; combining several reviews raised F1 by up to 43.67%. The benchmark's LLM judge agreed with people about 90% of the time (SWR-Bench, 1,000 verified PRs).",
+     "item_zh": "在真实 PR 上，现有工具找到的问题偏少，最擅长功能性 bug；合并多次审查让 F1 最多提高 43.67%。基准用的 LLM 评审和人工判断约 90% 一致（SWR-Bench，1,000 个核验过的 PR）。"
+    },
+    {
+     "item": "Comments get acted on, but they cost time: 73.8% of AI comments were resolved across 1,568 reviewed pull requests, while the average time to close one rose from 5 h 52 min to 8 h 20 min; most engineers saw a minor gain in quality (ICSE 2025, Software Engineering in Practice).",
+     "item_zh": "评论会被处理，但要花时间：在 1,568 个经 AI 审查的 PR 里，73.8% 的 AI 评论被处理，PR 平均关闭时间却从 5 小时 52 分升到 8 小时 20 分；多数工程师认为代码质量只有小幅提升（ICSE 2025，工业实践专场）。"
+    },
+    {
+     "item": "Filtering is what makes comments worth reading: generating comments and then filtering them in a second stage reached 75.0% precision for over 12,000 weekly users at ByteDance (BitsAI-CR, a preprint).",
+     "item_zh": "过滤才让评论值得读：先生成、再用第二道工序过滤，字节跳动的审查工具精度做到 75.0%，每周 1.2 万多人在用（BitsAI-CR，预印本）。"
+    },
+    {
+     "item": "Adoption can be measured, not guessed: ByteDance counts a comment as adopted when the code it pointed at is later changed, and tracks that rate (26.7% outdated for Go) instead of asking people.",
+     "item_zh": "采纳可以测，不用猜：字节跳动把\"评论指着的代码之后被改了\"算作采纳，持续跟踪这个比例（Go 语言为 26.7%），而不是去问人。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, does it review code rather than write it.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、是审代码还是写代码。"
+    },
+    {
+     "item": "Sorted every entry into one of six kinds, so you can filter.",
+     "item_zh": "把每个条目归入六类之一，可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these reviewers end to end. The plan is SWR-Bench's design: the same pull requests, some with known problems and some clean, so each tool gets two numbers, problems found and false alarms.",
+     "item_zh": "我们还没有端到端实跑这些审查工具。计划照 SWR-Bench 的做法：同一批 PR，有的带已知问题、有的是干净的，每个工具得到两个数：找到的问题和误报。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Zeng, Shi, Han, Li, Sun, Wang, Yu, Xie, Ye and Zhang. SWR-Bench: Assessing LLM Performance in Real-World Code Review Comment Generation. arXiv 2509.01494 (2025).",
+     "url": "https://arxiv.org/abs/2509.01494"
+    },
+    {
+     "label": "Cihan, Haratian, İçöz, Gül, Devran, Bayendur, Uçar and Tüzün. Automated Code Review In Practice. ICSE 2025, Software Engineering in Practice (arXiv 2412.18531).",
+     "url": "https://arxiv.org/abs/2412.18531"
+    },
+    {
+     "label": "Sun et al. BitsAI-CR: Automated Code Review via LLM in Practice. arXiv 2501.15134 (2025).",
+     "url": "https://arxiv.org/abs/2501.15134"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub; tracking open-source agent skills and code review agents since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 的作者与维护者；2024 年起追踪开源 agent skill 和代码审查 agent；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-08"
+   }
+  }
  },
  {
   "slug": "mcp-database",
