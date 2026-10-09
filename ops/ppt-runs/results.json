@@ -19,7 +19,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Tighten the large empty areas on slides 1 and 8, enlarge small chart labels and source text—especially on slide 5—and consider a stronger final call-to-action treatment on slide 8. No major content or structural rework is required.",
-  "commit": "d75bffa05b24"
+  "commit": "d75bffa05b24",
+  "pei": 0,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "seulee26/mckinsey-pptx",
@@ -41,7 +50,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Clarify slide 5 so the 205-skill scope and the 98/55/7 route counts are not visually confusing; remove or qualify unsupported claims on slide 3; revise slide 8 so it says to check the security grade rather than implying every approved skill must be SAFE. Then tighten small supporting text and consider using the unused space on slides 2-3 and 9 for stronger framing or a clearer closing CTA.",
-  "commit": "201ef491d175"
+  "commit": "201ef491d175",
+  "pei": 2,
+  "checklist": 0.933,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 0.667,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "Pikapika260214/rw-consulting-ppt",
@@ -63,7 +81,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Remove or clearly resolve the unsupported 45-entry 'Other / not in these routes' category on slide 5 so the chart conforms exactly to the brief, or revise the framing to avoid claiming a three-route split. Then rebuild the deck with editable text and shapes rather than nine full-slide images, and perform a final self-check for fidelity and editability.",
-  "commit": "b03b9264a3e2"
+  "commit": "b03b9264a3e2",
+  "pei": 0,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "likaku/Mck-ppt-design-skill",
@@ -85,7 +112,16 @@
   "design": 3,
   "rework": "one round",
   "rework_what": "Replace the unfinished lookup panel on slide 10 with a polished URL/QR or branded search treatment, then use the same pass to improve visual variety and balance on the sparsest slides while preserving the clear structure and factual content.",
-  "commit": "e190e083b715"
+  "commit": "e190e083b715",
+  "pei": 2,
+  "checklist": 0.967,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "hugohe3/ppt-master",
@@ -107,7 +143,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "No substantive content changes are required. Consider minor refinements such as slightly enlarging small labels and source text, and clarifying on slide 6 why the three displayed routes total 160 of 205 entries.",
-  "commit": "2d72da616cf9"
+  "commit": "2d72da616cf9",
+  "pei": 3,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "op7418/NanoBanana-PPT-Skills",
@@ -137,7 +182,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Increase the size or reduce the amount of secondary text on slides 4, 6, and 7; consider simplifying the derived 'Not classified' row on slide 6 so it cannot be mistaken for a source category; and vary the repeated card layouts slightly while preserving the established visual system.",
-  "commit": "980e5576565f"
+  "commit": "980e5576565f",
+  "pei": 2,
+  "checklist": 0.92,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 0.8
+  }
  },
  {
   "repo": "Gabberflast/academic-pptx-skill",
@@ -159,7 +213,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Revise slide 6's headline to acknowledge the 45 entries outside the three listed routes, remove or qualify 'independent' on slide 3, and add modest visual variety or explanatory emphasis to the more text-heavy slides. The core structure, numbers, and readability are already strong.",
-  "commit": "9f2b703ffe8d"
+  "commit": "9f2b703ffe8d",
+  "pei": 2,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "irenerachel/visual-style-ppt-skill",
@@ -181,7 +244,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Keep the core storyline and visual system, but make the deck editable rather than image-only, verify the supporting copy in the source, and consider reducing repeated globe/background decoration or enlarging the smallest supporting labels.",
-  "commit": "a1cca7d97c7a"
+  "commit": "a1cca7d97c7a",
+  "pei": 0,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "Binaryify/open-kimi-ppt-skill",
@@ -211,7 +283,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "No substantive content or structural changes are needed. Optionally tighten a few sparse layouts, add a small visual cue for the workflow or install-risk distinction, and slightly increase the prominence of the final URL on slide 9.",
-  "commit": "d4241e43b60e"
+  "commit": "d4241e43b60e",
+  "pei": 2,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "zarazhangrui/frontend-slides",
@@ -233,7 +314,16 @@
   "design": 5,
   "rework": "touch-ups",
   "rework_what": "No substantive rework is required. Optional touch-ups include adding brief definitions or implications for SAFE, CAUTION, UNSAFE, and UNAUDITED on slide 4, and slightly enlarging the smallest metadata/footer text for presentation-room viewing.",
-  "commit": "9906a34d640d"
+  "commit": "9906a34d640d",
+  "pei": 1,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "op7418/guizang-ppt-skill",
@@ -255,7 +345,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Remove or hide the recurring browser/navigation instructions before handoff or export, and standardize the slide-number placement on the closing slide. Optionally replace slide 3's abbreviated “186K+” with “186,000+” for exact textual fidelity.",
-  "commit": "c91369c449d3"
+  "commit": "c91369c449d3",
+  "pei": 5,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "chuspeeism/dashi-ppt-skill",
@@ -277,7 +376,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Tighten the sparse layouts on slides 2 and 7, enlarge or simplify the smallest chart labels on slides 4–5, and consider adding the brief's concrete red-flag examples—credential harvesting, data exfiltration, and curl | sh—as a short visual or caption rather than relying mainly on the installer example on slide 6.",
-  "commit": "21dc7e5fc8c3"
+  "commit": "21dc7e5fc8c3",
+  "pei": 3,
+  "checklist": 0.935,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 0.875,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "lewislulu/html-ppt-skill",
@@ -299,7 +407,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Change slide 3's 'checked in every grade' wording to the supported claim that grading covers 11 red-flag categories. Add a brief note clarifying that the delivered artifact is browser-based rather than a PPTX, and either run the self-check or avoid implying that the deck has been self-checked. Optionally tighten the repetitive card layouts and reduce excess whitespace.",
-  "commit": "fd1629067909"
+  "commit": "fd1629067909",
+  "pei": 1,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 0.8
+  }
  },
  {
   "repo": "archlizheng/frontend-slides-editable",
@@ -314,14 +431,23 @@
   "self_check": true,
   "tool_used": true,
   "image_cost": null,
-  "story": "partly",
+  "story": "yes",
   "layout_system": "yes",
-  "fidelity": "partly",
+  "fidelity": "yes",
   "readability": "yes",
   "design": 4,
-  "rework": "one round",
-  "rework_what": "Replace the duplicated final slide with a clear CTA: 'Look up any skill at agentskillshub.top before installing it' and 'Paste a GitHub URL for a free check.' Tighten slide 3 to say 'fetched README' and clarify on slide 4 that the three red flags shown are examples from 11 categories. Verify the final slide numbering and navigation.",
-  "commit": "e5663e6a0bdc"
+  "rework": "touch-ups",
+  "rework_what": "Keep the content and structure, but refine presentation details: reflow slide 9 so 'IT' does not sit alone, consider tightening the repeated card layouts on slides 3 and 8, and slightly strengthen the visual explanation of the grade categories and PPT route comparison.",
+  "commit": "e5663e6a0bdc",
+  "pei": 3,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "ryanbbrown/revealjs-skill",
@@ -343,7 +469,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Remove the visible presentation navigation arrows before handoff and consider tightening the title-card slides or adding a small source/context line. No substantive content or structural rework is needed.",
-  "commit": "d0ccd344c4aa"
+  "commit": "d0ccd344c4aa",
+  "pei": 1,
+  "checklist": 0.927,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "robonuggets/marp-slides",
@@ -365,7 +500,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Increase contrast and size for secondary text and chart annotations, especially on slides 6, 7, and 9. Consider clarifying on slide 6 that the three displayed routes are the listed routes rather than implying they account for all 205 entries, since 98 + 55 + 7 does not total 205.",
-  "commit": "7ef93e98bcc7"
+  "commit": "7ef93e98bcc7",
+  "pei": 0,
+  "checklist": 0.933,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 0.667,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "daniel-style/magic-slide",
@@ -387,7 +531,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Make minor copy and emphasis refinements only: clarify on slide 5 that the three listed routes account for 160 of 205 entries, and consider making the 'before you install' security-check message more prominent earlier than slide 9. The deck is otherwise ready to hand over.",
-  "commit": "e29d87cb315e"
+  "commit": "e29d87cb315e",
+  "pei": 3,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "ningzimu/codex-ppt-skill",
@@ -409,7 +562,16 @@
   "design": 4,
   "rework": "substantial",
   "rework_what": "The rendered PPTX is nine full-slide raster images rather than an editable presentation: computed facts report 0 text shapes, 9 pictures, and editability as image. Rebuild the slides with editable text, charts, and shapes before handoff. Also add a final quality-control pass or explicit self-check, since the computed facts report self_check=false.",
-  "commit": "6d76c0eded7f"
+  "commit": "6d76c0eded7f",
+  "pei": 0,
+  "checklist": 0.927,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "NyxTides/ppt-image-first",
@@ -431,7 +593,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "The narrative and visuals are ready with minor polish only. Consider making the PPTX content editable rather than nine full-slide images, since the computed artifact has zero text shapes and image-only editability; also consider adding a little more visual variety or a brief explicit statement on slide 3 that most teams install after only a README glance.",
-  "commit": "87a300a559a2"
+  "commit": "87a300a559a2",
+  "pei": 0,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 0.8
+  }
  },
  {
   "repo": "moongiadventures-dev/handdrawn-ppt",
@@ -453,7 +624,16 @@
   "design": 4,
   "rework": "one round",
   "rework_what": "Remove or replace the unsupported '219,000+' claim in slide 3 with the brief-supported '186,000+' figure, then do a final factual and source-footer pass. The rest needs only minor presentation-level refinement rather than structural redesign.",
-  "commit": "abb7fedc22fa"
+  "commit": "abb7fedc22fa",
+  "pei": 2,
+  "checklist": 0.887,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 0.833,
+   "fidelity": 0.6
+  }
  },
  {
   "repo": "Scott-Du/codex-ppt",
@@ -483,7 +663,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Revise slide 3 to say grades apply to every skill with a fetched README, and either remove or qualify the unsupported behavioral interpretations on slide 8. Optionally clarify on slide 5 why the three listed routes account for 160 of the 205 PPT skills.",
-  "commit": "833cda553b34"
+  "commit": "833cda553b34",
+  "pei": 2,
+  "checklist": 1.0,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "GordenSun/GordenPPTSkill",
@@ -505,7 +694,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "Revise slide 3's unsupported wording to match the brief more precisely, fix title spacing such as '01. The problem' and '01. The Hub,' and consider slightly enlarging the smallest body text. The core storyline, visuals, numbers, and call to action are otherwise ready.",
-  "commit": "7d4a61cbd836"
+  "commit": "7d4a61cbd836",
+  "pei": 3,
+  "checklist": 0.887,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 0.8
+  }
  },
  {
   "repo": "ningzimu/image-to-editable-ppt-skill",
@@ -527,7 +725,16 @@
   "design": 5,
   "rework": "touch-ups",
   "rework_what": "No substantive rewrite is needed. Before handoff, make minor presentation refinements such as checking that the small labels on slides 3, 5, and 7 remain legible in the final presentation view and optionally adding a small source/date note to the data slides.",
-  "commit": "b7be494e31a0"
+  "commit": "b7be494e31a0",
+  "pei": 2,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "GordenSun/GordenSuperPPTSkills",
@@ -549,7 +756,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "No substantive rewrite is needed. Before handoff, consider simplifying or labeling the decorative ring graphic on slide 3, slightly enlarging a few small supporting labels on slides 3–5, and doing a final consistency pass on wording such as 'refresh cycle' versus 'refreshed every 8 hours.'",
-  "commit": "8c05583dab83"
+  "commit": "8c05583dab83",
+  "pei": 1,
+  "checklist": 0.967,
+  "checklist_dims": {
+   "fundamentals": 1.0,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "GongRzhe/Office-PowerPoint-MCP-Server",
@@ -571,7 +787,16 @@
   "design": 4,
   "rework": "touch-ups",
   "rework_what": "No substantive content or structural changes are needed. For polish, make the refresh claim on slide 3 read 'refreshed every 8 hours' to mirror the brief exactly, strengthen the visual hierarchy on the text-heavy slides 2, 4, and 8, and add a modest Agent Skills Hub identity element for continuity.",
-  "commit": "3631ba2ec0c2"
+  "commit": "3631ba2ec0c2",
+  "pei": 1,
+  "checklist": 0.927,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 0.833,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "johnson7788/MultiAgentPPT",
@@ -601,7 +826,16 @@
   "design": 4,
   "rework": "substantial",
   "rework_what": "The content and visual system are largely ready, but the PPTX is composed of nine full-slide images rather than editable text and shapes, as shown by the computed editability result. Rebuild the slides as native PowerPoint elements so managers can edit wording, numbers, and branding. In the same pass, vary the visual treatment for the worked example and make the four checks on slide 7 more explicit.",
-  "commit": "2d57ef8127b8"
+  "commit": "2d57ef8127b8",
+  "pei": 0,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  },
  {
   "repo": "sunbigfly/ppt-agent-skills",
@@ -623,6 +857,15 @@
   "design": 5,
   "rework": "touch-ups",
   "rework_what": "No substantive content or structural changes are required. Optionally enlarge or darken the smallest labels and footer text, especially on slides 5, 6, and 8, and consider making the contents slide's section/slide mapping slightly easier to parse.",
-  "commit": "13e353776d0b"
+  "commit": "13e353776d0b",
+  "pei": 2,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  }
 ]

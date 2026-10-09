@@ -17,7 +17,15 @@
     "commit": "d75bffa05b24",
     "sheet": "gozen3ji__consulting-pptx-skill.jpg",
     "stars": 1113,
-    "design": 4
+    "pei": 0,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "seulee26/mckinsey-pptx": {
     "ran": true,
@@ -29,7 +37,15 @@
     "commit": "201ef491d175",
     "sheet": "seulee26__mckinsey-pptx.jpg",
     "stars": 594,
-    "design": 4
+    "pei": 2,
+    "checklist": 0.933,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 0.667,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "Pikapika260214/rw-consulting-ppt": {
     "ran": true,
@@ -41,7 +57,15 @@
     "commit": "b03b9264a3e2",
     "sheet": "Pikapika260214__rw-consulting-ppt.jpg",
     "stars": 467,
-    "design": 4
+    "pei": 0,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "likaku/Mck-ppt-design-skill": {
     "ran": true,
@@ -53,7 +77,15 @@
     "commit": "e190e083b715",
     "sheet": "likaku__Mck-ppt-design-skill.jpg",
     "stars": 295,
-    "design": 3
+    "pei": 2,
+    "checklist": 0.967,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "hugohe3/ppt-master": {
     "ran": true,
@@ -65,7 +97,15 @@
     "commit": "2d72da616cf9",
     "sheet": "hugohe3__ppt-master.jpg",
     "stars": 57780,
-    "design": 4
+    "pei": 3,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "op7418/NanoBanana-PPT-Skills": {
     "ran": false,
@@ -83,7 +123,15 @@
     "commit": "980e5576565f",
     "sheet": "crazyykhllc-bit__CyberPPT.jpg",
     "stars": 1760,
-    "design": 4
+    "pei": 2,
+    "checklist": 0.92,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 0.8
+    }
    },
    "Gabberflast/academic-pptx-skill": {
     "ran": true,
@@ -95,7 +143,15 @@
     "commit": "9f2b703ffe8d",
     "sheet": "Gabberflast__academic-pptx-skill.jpg",
     "stars": 1114,
-    "design": 4
+    "pei": 2,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "irenerachel/visual-style-ppt-skill": {
     "ran": true,
@@ -107,7 +163,15 @@
     "commit": "a1cca7d97c7a",
     "sheet": "irenerachel__visual-style-ppt-skill.jpg",
     "stars": 390,
-    "design": 4
+    "pei": 0,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "Binaryify/open-kimi-ppt-skill": {
     "ran": false,
@@ -125,7 +189,15 @@
     "commit": "d4241e43b60e",
     "sheet": "tfriedel__claude-office-skills.jpg",
     "stars": 834,
-    "design": 4
+    "pei": 2,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "zarazhangrui/frontend-slides": {
     "ran": true,
@@ -137,7 +209,15 @@
     "commit": "9906a34d640d",
     "sheet": "zarazhangrui__frontend-slides.jpg",
     "stars": 30187,
-    "design": 5
+    "pei": 1,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "op7418/guizang-ppt-skill": {
     "ran": true,
@@ -149,7 +229,15 @@
     "commit": "c91369c449d3",
     "sheet": "op7418__guizang-ppt-skill.jpg",
     "stars": 27277,
-    "design": 4
+    "pei": 5,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "chuspeeism/dashi-ppt-skill": {
     "ran": true,
@@ -161,7 +249,15 @@
     "commit": "21dc7e5fc8c3",
     "sheet": "chuspeeism__dashi-ppt-skill.jpg",
     "stars": 9174,
-    "design": 4
+    "pei": 3,
+    "checklist": 0.935,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 0.875,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "lewislulu/html-ppt-skill": {
     "ran": true,
@@ -173,19 +269,35 @@
     "commit": "fd1629067909",
     "sheet": "lewislulu__html-ppt-skill.jpg",
     "stars": 8588,
-    "design": 4
+    "pei": 1,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 0.8
+    }
    },
    "archlizheng/frontend-slides-editable": {
     "ran": true,
     "editable": "browser",
-    "rework": "one round",
+    "rework": "touch-ups",
     "minutes": 4.3,
     "extra_claims": true,
     "output": "agent-skills-hub-safety.html",
     "commit": "e5663e6a0bdc",
     "sheet": "archlizheng__frontend-slides-editable.jpg",
     "stars": 527,
-    "design": 4
+    "pei": 3,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "ryanbbrown/revealjs-skill": {
     "ran": true,
@@ -197,7 +309,15 @@
     "commit": "d0ccd344c4aa",
     "sheet": "ryanbbrown__revealjs-skill.jpg",
     "stars": 413,
-    "design": 4
+    "pei": 1,
+    "checklist": 0.927,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "robonuggets/marp-slides": {
     "ran": true,
@@ -209,7 +329,15 @@
     "commit": "7ef93e98bcc7",
     "sheet": "robonuggets__marp-slides.jpg",
     "stars": 320,
-    "design": 4
+    "pei": 0,
+    "checklist": 0.933,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 0.667,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "daniel-style/magic-slide": {
     "ran": true,
@@ -221,7 +349,15 @@
     "commit": "e29d87cb315e",
     "sheet": "daniel-style__magic-slide.jpg",
     "stars": 172,
-    "design": 4
+    "pei": 3,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "ningzimu/codex-ppt-skill": {
     "ran": true,
@@ -233,7 +369,15 @@
     "commit": "6d76c0eded7f",
     "sheet": "ningzimu__codex-ppt-skill.jpg",
     "stars": 6354,
-    "design": 4
+    "pei": 0,
+    "checklist": 0.927,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "NyxTides/ppt-image-first": {
     "ran": true,
@@ -245,7 +389,15 @@
     "commit": "87a300a559a2",
     "sheet": "NyxTides__ppt-image-first.jpg",
     "stars": 1223,
-    "design": 4
+    "pei": 0,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 0.8
+    }
    },
    "moongiadventures-dev/handdrawn-ppt": {
     "ran": true,
@@ -257,7 +409,15 @@
     "commit": "abb7fedc22fa",
     "sheet": "moongiadventures-dev__handdrawn-ppt.jpg",
     "stars": 8,
-    "design": 4
+    "pei": 2,
+    "checklist": 0.887,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 0.833,
+     "fidelity": 0.6
+    }
    },
    "Scott-Du/codex-ppt": {
     "ran": false,
@@ -275,7 +435,15 @@
     "commit": "833cda553b34",
     "sheet": "icip-cas__PPTAgent.jpg",
     "stars": 5089,
-    "design": 4
+    "pei": 2,
+    "checklist": 1.0,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "GordenSun/GordenPPTSkill": {
     "ran": true,
@@ -287,7 +455,15 @@
     "commit": "7d4a61cbd836",
     "sheet": "GordenSun__GordenPPTSkill.jpg",
     "stars": 3183,
-    "design": 4
+    "pei": 3,
+    "checklist": 0.887,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 0.8
+    }
    },
    "ningzimu/image-to-editable-ppt-skill": {
     "ran": true,
@@ -300,7 +476,15 @@
     "note": "Converted codex-ppt-skill's all-image deck: 0 → 2,224 editable characters, 78 separate icons",
     "note_zh": "把 codex-ppt-skill 的纯图片 deck 转成可编辑：可编辑文字 0 → 2,224 字，图标拆成 78 个独立对象",
     "stars": 2781,
-    "design": 5
+    "pei": 2,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "GordenSun/GordenSuperPPTSkills": {
     "ran": true,
@@ -312,7 +496,15 @@
     "commit": "8c05583dab83",
     "sheet": "GordenSun__GordenSuperPPTSkills.jpg",
     "stars": 2044,
-    "design": 4
+    "pei": 1,
+    "checklist": 0.967,
+    "checklist_dims": {
+     "fundamentals": 1.0,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "GongRzhe/Office-PowerPoint-MCP-Server": {
     "ran": true,
@@ -324,7 +516,15 @@
     "commit": "3631ba2ec0c2",
     "sheet": "GongRzhe__Office-PowerPoint-MCP-Server.jpg",
     "stars": 1855,
-    "design": 4
+    "pei": 1,
+    "checklist": 0.927,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 0.833,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "johnson7788/MultiAgentPPT": {
     "ran": false,
@@ -342,7 +542,15 @@
     "commit": "2d57ef8127b8",
     "sheet": "JuneYaooo__gpt-image2-ppt-skills.jpg",
     "stars": 1328,
-    "design": 4
+    "pei": 0,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    },
    "sunbigfly/ppt-agent-skills": {
     "ran": true,
@@ -354,8 +562,20 @@
     "commit": "13e353776d0b",
     "sheet": "sunbigfly__ppt-agent-skills.jpg",
     "stars": 904,
-    "design": 5
+    "pei": 2,
+    "checklist": 0.96,
+    "checklist_dims": {
+     "fundamentals": 0.8,
+     "design": 1.0,
+     "completeness": 1.0,
+     "correctness": 1.0,
+     "fidelity": 1.0
+    }
    }
+  },
+  "method": {
+   "rubric": "https://arxiv.org/abs/2603.07244",
+   "pei": "https://arxiv.org/abs/2601.09487"
   }
  },
  "anti-slop": {

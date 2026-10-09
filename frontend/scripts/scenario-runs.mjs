@@ -23,6 +23,17 @@ const EDITABLE = {
   browser: ["Editable in the browser", "浏览器里可改"],
   pdf: ["PDF", "PDF"],
 };
+// Editability levels after SlidesGen-Bench's PEI (arXiv 2601.09487), found by ops/ppt-runs/pei.py.
+const PEI = [
+  ["L0 · nothing editable", "L0 · 不可编辑"],
+  ["L1 · text editable", "L1 · 文字可改"],
+  ["L2 · + drawn shapes", "L2 · + 矢量图形"],
+  ["L3 · + structure", "L3 · + 结构化"],
+  ["L4 · + native charts/tables", "L4 · + 原生图表/表格"],
+  ["L5 · + animation", "L5 · + 动画"],
+];
+const pct = (x) => `${Math.round(x * 100)}%`;
+
 const REWORK = {
   "touch-ups": ["Ready after touch-ups", "小修即可交付"],
   "one round": ["Needs one round of edits", "要改一轮"],
@@ -49,6 +60,13 @@ function slopBits(r) {
   return bits;
 }
 
+/** The test-result phrases for a deck: rework, editability level, rubric score, time. */
+function pptBits(r) {
+  const rubric = r.checklist != null ? [`content rubric ${pct(r.checklist)}`, `内容检查单 ${pct(r.checklist)}`] : null;
+  const pei = r.pei != null ? [`Editability ${PEI[r.pei][0]}`, `可编辑性 ${PEI[r.pei][1]}`] : EDITABLE[r.editable];
+  return [REWORK[r.rework], pei, rubric, [`${r.minutes} min`, `${r.minutes} 分钟`]];
+}
+
 /** The page's test run, or null. */
 export function runsFor(slug) {
   return RUNS[slug] || null;
@@ -65,7 +83,7 @@ export function runLineHtml(run, skill) {
   const label = part([`Tested ${run.date}:`, `${run.date} 实测：`]);
   if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(["Not run in our test:", "未能实测："])} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
   const slop = run.type === "slop";
-  const bits = (slop ? slopBits(r) : [EDITABLE[r.editable], REWORK[r.rework], [`${r.minutes} min`, `${r.minutes} 分钟`]]).filter(Boolean).map(part);
+  const bits = (slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
   if (r.extra_claims) bits.push(part(["added claims not in the brief", "加了测试题里没有的说法"]));
   if (r.note) bits.unshift(part([r.note, r.note_zh || r.note]));   // e.g. a converter tested on another skill's deck
   const [en, zh] = slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
@@ -76,7 +94,6 @@ export function runLineHtml(run, skill) {
 // ---- The page's test-results section: every tested skill in one comparable table ----
 
 const REWORK_RANK = { "touch-ups": 0, "one round": 1, substantial: 2 };
-const EDIT_RANK = { native: 0, browser: 1, hybrid: 2, pdf: 3, image: 4 };
 const name = (repo) => repo.split("/")[1];
 const cell = (en, zh = en, cls = "") => `<td${cls ? ` class="${cls}"` : ""} ${biAttrs(String(en), String(zh))}>${esc(String(en))}</td>`;
 const cellC = (cls, en, zh = en) => cell(en, zh, cls);
@@ -94,15 +111,17 @@ function evidenceLink(run, r, [en, zh]) {
 function pptRow(run, repo, r) {
   const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + r.sheet)}" alt="${esc(name(repo))} slides" width="120" height="68" loading="lazy"></a>`;
   return `<tr>${skillCell(repo, r)}
-    ${cell(...(EDITABLE[r.editable] || ["-"]))}${cellC(`bp-tr-${(r.rework || "").replace(" ", "-")}`, ...(REWORK[r.rework] || ["-"]))}
-    ${cellC("bp-tr-num", r.design != null ? `${r.design}/5` : "-")}${cellC("bp-tr-num", `${r.minutes} min`, `${r.minutes} 分钟`)}<td>${thumb}</td></tr>`;
+    ${cellC(`bp-tr-${(r.rework || "").replace(" ", "-")}`, ...(REWORK[r.rework] || ["-"]))}${cell(...(r.pei != null ? PEI[r.pei] : EDITABLE[r.editable] || ["-"]))}
+    ${cellC("bp-tr-num", r.checklist != null ? pct(r.checklist) : "-")}${cellC("bp-tr-num", `${r.minutes} min`, `${r.minutes} 分钟`)}<td>${thumb}</td></tr>`;
 }
 
 function pptTable(run, rows) {
   // A converter (r.note) did another task, so it sits after the ranked rows.
+  // Rework first (the cost of handing it over), then editability, then the content rubric:
+  // the rubric barely separates decks (10 of 26 at 100%), editability and rework do.
   rows.sort(([, a], [, b]) => Boolean(a.note) - Boolean(b.note) || (REWORK_RANK[a.rework] ?? 9) - (REWORK_RANK[b.rework] ?? 9)
-    || (b.design || 0) - (a.design || 0) || (EDIT_RANK[a.editable] ?? 9) - (EDIT_RANK[b.editable] ?? 9));
-  const cols = [["Skill", "Skill"], ["What you get", "交付物"], ["Before handing over", "交付前"], ["Design", "设计"], ["Time", "耗时"], ["Slides", "幻灯片"]];
+    || (b.pei ?? -1) - (a.pei ?? -1) || (b.checklist ?? -1) - (a.checklist ?? -1));
+  const cols = [["Skill", "Skill"], ["Before handing over", "交付前"], ["Editability (PEI)", "可编辑性（PEI）"], ["Content rubric", "内容检查单"], ["Time", "耗时"], ["Slides", "幻灯片"]];
   return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => pptRow(run, repo, r)).join("")}</tbody>`;
 }
 

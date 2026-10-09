@@ -9,6 +9,7 @@ with the reason the agent gave, in NOT_RUN.
 import json
 from pathlib import Path
 
+import pei
 import score
 
 HERE = Path(__file__).parent
@@ -40,15 +41,27 @@ def row(c: dict) -> dict:
             "editable": f["editability"], "editable_chars": stats.get("text_chars"), "self_check": f["self_check"],
             "tool_used": f["tool_used"], "image_cost": cost(run),
             **{k: (v.get("answer") or v.get("score") or v.get("level")) for k, v in j.items() if isinstance(v, dict)},
-            "rework_what": (j.get("rework") or {}).get("what"), "commit": (run / "commit.txt").read_text().strip()[:12]}
+            "rework_what": (j.get("rework") or {}).get("what"), "commit": (run / "commit.txt").read_text().strip()[:12],
+            "pei": pei.run_pei(run)["level"], **checklist(run)}
+
+
+def checklist(run: Path) -> dict:
+    """PresentBench-style rubric (checklist.py): overall 0-1 and per dimension."""
+    path = run / "checklist.json"
+    if not path.exists(): return {}
+    c = json.loads(path.read_text())
+    return {"checklist": c["overall"], "checklist_dims": {d: v["score"] for d, v in c["dimensions"].items()}}
 
 
 def markdown(rows: list[dict]) -> str:
-    head = "| Skill | ★ | Route | Output | Editable | Self-check | Story / Layout / Fidelity / Read | Design | Rework | Min |\n|---|---:|---|---|---|---|---|---:|---|---:|"
+    head = ("| Skill | ★ | Route | Output | PEI | Rubric | Fund. / Design / Compl. / Correct / Fidelity | Rework | Self-check | Min |\n"
+            "|---|---:|---|---|---|---:|---|---|---|---:|")
     lines = [head]
-    for r in sorted((r for r in rows if r["ran"]), key=lambda r: (-(r.get("design") or 0), -r["stars"])):
-        q = " / ".join(str(r.get(k, "-")) for k in ("story", "layout_system", "fidelity", "readability"))
-        lines.append(f"| {r['repo']} | {r['stars']} | {r['kind']} | {r['output']} | {r['editable']} | {'yes' if r['self_check'] else '-'} | {q} | {r.get('design', '-')} | {r.get('rework', '-')} | {r['minutes']} |")
+    for r in sorted((r for r in rows if r["ran"]), key=lambda r: (-(r.get("checklist") or 0), -r["stars"])):
+        dims = r.get("checklist_dims") or {}
+        q = " / ".join(f"{dims[k]:.0%}" if k in dims else "-" for k in ("fundamentals", "design", "completeness", "correctness", "fidelity"))
+        rubric = f"{r['checklist']:.0%}" if r.get("checklist") is not None else "-"
+        lines.append(f"| {r['repo']} | {r['stars']} | {r['kind']} | {r['output']} | L{r['pei']} | {rubric} | {q} | {r.get('rework', '-')} | {'yes' if r['self_check'] else '-'} | {r['minutes']} |")
     lines += ["", "Not run:", ""] + [f"- {r['repo']}: {r['reason']}" for r in rows if not r["ran"]]
     return "\n".join(lines) + "\n"
 

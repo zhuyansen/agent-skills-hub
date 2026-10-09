@@ -1,0 +1,19 @@
+{
+ "_about": "Rubric answers changed after a person read the slide (2026-10-08). Each entry: run, dimension, item number (1-based), the corrected answer and why. Applied by checklist.py after the majority vote.",
+ "overrides": [
+  {"run": "gozen3ji__consulting-pptx-skill", "dimension": "fidelity", "item": 3, "answer": "yes",
+   "why": "\"A recorded decision to approve or reject the skill\" is the outcome of the team's own review step on the slide, not a Hub feature."},
+  {"run": "gozen3ji__consulting-pptx-skill", "dimension": "fidelity", "item": 5, "answer": "yes",
+   "why": "The footer \"Created with consulting-pptx-skill\" is the tool's credit line, not an invented source."},
+  {"run": "Gabberflast__academic-pptx-skill", "dimension": "fidelity", "item": 4, "answer": "yes",
+   "why": "\"Risk often sits in the installer\" restates the brief's finding on the 9 flagged skills, hedged."},
+  {"run": "GongRzhe__Office-PowerPoint-MCP-Server", "dimension": "fidelity", "item": 4, "answer": "yes",
+   "why": "The title on the PPT-example slide states the brief's own finding (all 9 flagged for how they install) as a takeaway."},
+  {"run": "archlizheng__frontend-slides-editable", "dimension": "fidelity", "item": 4, "answer": "yes",
+   "why": "\"The risk is in the installer\" heads the slide showing 9/9 flagged for installing, 0/9 for slide-making: the brief's finding as a takeaway."},
+  {"run": "ningzimu__image-to-editable-ppt-skill", "dimension": "fidelity", "item": 4, "answer": "yes",
+   "why": "Same title on the PPT-example slide, the brief's finding as a takeaway."},
+  {"run": "ryanbbrown__revealjs-skill", "dimension": "fidelity", "item": 4, "answer": "yes",
+   "why": "Same title on the PPT-example slide, the brief's finding as a takeaway."}
+ ]
+}

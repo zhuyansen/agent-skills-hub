@@ -37,6 +37,21 @@ VIEWPORT = {"width": 1600, "height": 900}
 SETTLE_MS = 1500        # entrance animations finish before the screenshot
 
 
+SAME_SHARE = 0.995       # screens this alike are the same slide (a progress bar or clock may still move)
+
+
+def same_view(a: bytes, b: bytes | None) -> bool:
+    """Whether the key press left the same slide on screen. Comparing bytes is not enough:
+    a deck's progress bar changed, the bytes differed, and its last slide was never
+    captured (frontend-slides-editable, 2026-10-08)."""
+    if b is None: return False
+    import io
+    from PIL import Image, ImageChops
+    x, y = (Image.open(io.BytesIO(v)).convert("L").resize((320, 180)) for v in (a, b))
+    diff = ImageChops.difference(x, y).point(lambda v: 255 if v > 24 else 0)
+    return 1 - diff.histogram()[255] / (320 * 180) >= SAME_SHARE
+
+
 def html_pages(src: Path, pages: Path) -> int:
     """Screenshot a web deck slide by slide in a real browser. Printing to PDF loses
     content that appears only through scroll or entrance animations. Decks turn pages
@@ -51,7 +66,7 @@ def html_pages(src: Path, pages: Path) -> int:
         for i in range(n):
             if i:
                 page.keyboard.press("ArrowRight"); page.wait_for_timeout(SETTLE_MS)
-                if page.screenshot() == last and slides:
+                if slides and same_view(page.screenshot(), last):
                     slides[i].scroll_into_view_if_needed(); page.wait_for_timeout(SETTLE_MS)
             last = page.screenshot(path=str(pages / f"p-{i + 1:02d}.png"))
         b.close()

@@ -4786,8 +4786,8 @@
      "item_zh": "把每个条目归入六种类型之一，你可以按路线筛选。"
     },
     {
-     "item": "On 2026-10-07 we set out to run 31 of them end to end, and 27 ran: each was installed in a throwaway sandbox and used by Claude Code to build the same 8-10 slide brief. A vision model (gpt-6-astra) reviewed every slide; we checked every low score by eye and fixed our own renderer where it, not the skill, was at fault.",
-     "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 27 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。视觉模型（gpt-6-astra）逐页审查；每个低分我们都亲眼核对过，问题出在我们渲染环节而不是 skill 本身的，已经修正。"
+     "item": "On 2026-10-07 we set out to run 31 of them end to end, and 27 ran: each was installed in a throwaway sandbox and used by Claude Code to build the same 8-10 slide brief. Each deck gets three results. Rework before handing it over, our own measure. Editability, a level from L0 (nothing editable) to L5 (animated), parsed from the file after SlidesGen-Bench's PEI. And a content rubric of 30 yes/no items after PresentBench (fundamentals, design, completeness, correctness, fidelity to the brief), which a vision model (gpt-6-astra) answered three times per deck, keeping the majority; we read every \"no\" ourselves and overturned 7 of 35, with the reasons published.",
+     "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 27 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。每份 deck 给三个结果：交付前要返工多少，这是我们自己的指标；可编辑性，按 SlidesGen-Bench 的 PEI 从 L0（不可编辑）到 L5（带动画）分级，直接解析文件得出；内容检查单，按 PresentBench 的做法写 30 道是/否题（基本功、设计、完整、正确、忠于测试题），视觉模型（gpt-6-astra）每份答三遍取多数；每个\"否\"我们都亲自看过，35 个里改判 7 个，理由公开。"
     },
     {
      "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
@@ -4819,12 +4819,12 @@
    },
    "findings": [
     {
-     "item": "No deck got a number from the brief wrong. Eight added claims the brief does not support, mostly overgeneralizing (\"every skill has a grade\"); one went online and added a live figure from our own site.",
-     "item_zh": "没有一份 deck 写错测试题里的数字。有 8 份加了测试题里没有的说法，多是过度概括（\"每个 skill 都有评级\"）；有一份还自己上网，加了我们网站上的实时数字。"
+     "item": "Content was not where the decks differed. On the 30-item rubric, 10 of 26 decks scored 100% and the lowest 89%; completeness and correctness each fell short on a single deck. The points went on takeaway titles (8 decks used topic labels such as \"The problem\"), text too small or too faint (5 each), and invented details (5 decks); one went online and added a repository count that is not in the brief.",
+     "item_zh": "内容不是拉开差距的地方。30 道题的检查单上，26 份 deck 里有 10 份满分，最低 89%；\"完整\"和\"正确\"各只有一份没拿满。扣分集中在三处：标题是不是一句结论（8 份用的是\"问题\"这类话题标签）、字太小或太淡（各 5 份）、编造细节（5 份）；有一份还自己上网，加了测试题里没有的仓库数。"
     },
     {
-     "item": "Rework follows editability, not looks. Both decks that need substantial rework are all images; one of the best-looking decks (rw-consulting-ppt) still needs a round of edits because none of its text can be changed.",
-     "item_zh": "返工多少跟着\"能不能改\"走，不跟着\"好不好看\"走。要大改的两份都是整页图片；视觉上最好的之一（rw-consulting-ppt）也要改一轮，因为一个字都改不了。"
+     "item": "Rework follows editability, not looks or content. Both decks that need substantial rework are L0, all images: their content rubric scores (93% and 96%) are as good as the rest. One of the best-looking decks (rw-consulting-ppt) scored 100% on content and still needs a round of edits, because none of its text can be changed.",
+     "item_zh": "返工多少跟着\"能不能改\"走，不跟着好看或内容走。要大改的两份都是 L0、整页图片，它们的内容检查单（93% 和 96%）和别人一样好。视觉上最好的之一 rw-consulting-ppt 内容满分，仍要改一轮，因为一个字都改不了。"
     },
     {
      "item": "Stars do not predict results. One of the two best decks came from a skill with 900 stars (ppt-agent-skills); ppt-master, with 57,800, needed only touch-ups.",
@@ -4836,6 +4836,18 @@
     }
    ],
    "sources": [
+    {
+     "label": "Chen, Zhu, Li, Wang, Yang and Guo. PresentBench: A Fine-Grained Rubric-Based Benchmark for Slide Generation. arXiv 2603.07244 (2026).",
+     "url": "https://arxiv.org/abs/2603.07244"
+    },
+    {
+     "label": "Yang et al. SlidesGen-Bench: Evaluating Slides Generation via Computational and Quantitative Metrics. arXiv 2601.09487 (2026).",
+     "url": "https://arxiv.org/abs/2601.09487"
+    },
+    {
+     "label": "Human review of the rubric: the 7 answers we overturned, with reasons (GitHub).",
+     "url": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/checklist_review.json"
+    },
     {
      "label": "Test brief used for every run (GitHub)",
      "url": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/ppt-runs/in/brief.md"
