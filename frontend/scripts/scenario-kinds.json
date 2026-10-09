@@ -581,31 +581,31 @@
    {
     "id": "general",
     "icon": "🧱",
-    "en": "Frameworks",
+    "en": "Jev frameworks",
     "zh": "综合框架"
    },
    {
     "id": "replica",
     "icon": "🔁",
-    "en": "Open replicas",
+    "en": "Open Jev replicas",
     "zh": "开源替代与复现"
    },
    {
     "id": "agent",
     "icon": "🤖",
-    "en": "Agents & computer use",
+    "en": "Jev agents & computer use",
     "zh": "Agent 与电脑操作"
    },
    {
     "id": "devtool",
     "icon": "🧩",
-    "en": "Developer tools",
+    "en": "Jev developer tools",
     "zh": "开发者工具"
    },
    {
     "id": "sdk",
     "icon": "🔌",
-    "en": "SDKs, MCP & APIs",
+    "en": "Jev SDKs, MCP & APIs",
     "zh": "SDK、MCP 与接口"
    },
    {
@@ -948,37 +948,37 @@
    {
     "id": "general",
     "icon": "🧱",
-    "en": "All-in-one",
+    "en": "All-in-one Claude skills managers",
     "zh": "综合管理"
    },
    {
     "id": "cli",
     "icon": "⌨️",
-    "en": "CLI installers",
+    "en": "Claude skills CLI installers",
     "zh": "命令行安装"
    },
    {
     "id": "sync",
     "icon": "🔄",
-    "en": "Sync across agents",
+    "en": "Claude skills sync across agents",
     "zh": "多 Agent 同步"
    },
    {
     "id": "app",
     "icon": "🖥",
-    "en": "Apps & GUIs",
+    "en": "Claude skills manager apps",
     "zh": "桌面与界面"
    },
    {
     "id": "registry",
     "icon": "🔎",
-    "en": "Registries & marketplaces",
+    "en": "Claude skills registries & marketplaces",
     "zh": "市场与目录"
    },
    {
     "id": "team",
     "icon": "👥",
-    "en": "Teams",
+    "en": "Team Claude skills management",
     "zh": "团队管理"
    }
   ],
@@ -1460,7 +1460,7 @@
    {
     "id": "ui",
     "icon": "🎨",
-    "en": "UI & frontend style",
+    "en": "Frontend design",
     "zh": "UI 与前端美化"
    },
    {

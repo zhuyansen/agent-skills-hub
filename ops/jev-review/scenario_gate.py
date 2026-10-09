@@ -284,12 +284,14 @@ JEV_TYPES = {
     "general": _kind("Is `repo` a general framework or toolkit that covers many uses of Jev, not one in particular?",
                      "A large platform, a harness, or a collection of many unrelated Jev tools."),
 }
+# Labels carry the page's word ("Jev ..."): the badges repeat on every card and set the page's
+# word frequency. The daily pass writes these into scenario-kinds.json, so this is where they live.
 JEV_KIND_LABELS = [
-    {"id": "general", "icon": "🧱", "en": "Frameworks", "zh": "综合框架"},
-    {"id": "replica", "icon": "🔁", "en": "Open replicas", "zh": "开源替代与复现"},
-    {"id": "agent", "icon": "🤖", "en": "Agents & computer use", "zh": "Agent 与电脑操作"},
-    {"id": "devtool", "icon": "🧩", "en": "Developer tools", "zh": "开发者工具"},
-    {"id": "sdk", "icon": "🔌", "en": "SDKs, MCP & APIs", "zh": "SDK、MCP 与接口"},
+    {"id": "general", "icon": "🧱", "en": "Jev frameworks", "zh": "综合框架"},
+    {"id": "replica", "icon": "🔁", "en": "Open Jev replicas", "zh": "开源替代与复现"},
+    {"id": "agent", "icon": "🤖", "en": "Jev agents & computer use", "zh": "Agent 与电脑操作"},
+    {"id": "devtool", "icon": "🧩", "en": "Jev developer tools", "zh": "开发者工具"},
+    {"id": "sdk", "icon": "🔌", "en": "Jev SDKs, MCP & APIs", "zh": "SDK、MCP 与接口"},
     {"id": "business", "icon": "🏷", "en": "Classification & business", "zh": "分类与业务应用"},
     {"id": "consumer", "icon": "💬", "en": "Chat & personal apps", "zh": "聊天与个人应用"},
 ]
