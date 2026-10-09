@@ -109,7 +109,8 @@ function evidenceLink(run, r, [en, zh]) {
 }
 
 function pptRow(run, repo, r) {
-  const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + r.sheet)}" alt="${esc(name(repo))} slides" width="120" height="68" loading="lazy"></a>`;
+  // The thumbnail is the deck's routes slide (r.thumb, from ops/ppt-runs/compare.py), so the column compares like with like.
+  const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + (r.thumb || r.sheet))}" alt="${esc(name(repo))} slides" width="120" height="68" loading="lazy"></a>`;
   return `<tr>${skillCell(repo, r)}
     ${cellC(`bp-tr-${(r.rework || "").replace(" ", "-")}`, ...(REWORK[r.rework] || ["-"]))}${cell(...(r.pei != null ? PEI[r.pei] : EDITABLE[r.editable] || ["-"]))}
     ${cellC("bp-tr-num", r.checklist != null ? pct(r.checklist) : "-")}${cellC("bp-tr-num", `${r.minutes} min`, `${r.minutes} 分钟`)}<td>${thumb}</td></tr>`;
@@ -142,6 +143,14 @@ function slopTable(run, rows) {
   return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => slopRow(run, repo, r)).join("")}</tbody>`;
 }
 
+/** Side-by-side images above the table (run.compare): the same slide from every deck. */
+function compareHtml(run) {
+  return (run.compare || []).map((c) => `<figure class="bp-tr-compare">
+      <a href="${esc(run.dir + c.src)}" target="_blank" rel="noopener"><img src="${esc(run.dir + c.src)}" alt="${esc(c.en)}" loading="lazy"></a>
+      <figcaption ${biAttrs(c.en, c.zh || c.en)}>${esc(c.en)}</figcaption>
+    </figure>`).join("");
+}
+
 function notRunHtml(entries) {
   if (!entries.length) return "";
   const items = entries.map(([repo, r]) => `<li><b>${esc(name(repo))}</b>: <span ${biAttrs(r.reason, r.reason_zh || r.reason)}>${esc(r.reason)}</span></li>`);
@@ -162,6 +171,7 @@ export function runsSectionHtml(run) {
   return `<section id="test-results" class="bp-tr">
     <h2 class="bp-section-title" ${biAttrs("Test results: the skills side by side", "实测对比：同一任务下的效果")}>Test results: the skills side by side</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
+    ${compareHtml(run)}
     <div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>
     ${notRunHtml(all.filter(([, r]) => !r.ran))}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>

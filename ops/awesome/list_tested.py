@@ -89,6 +89,9 @@ def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
     out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {w['h']}", "", intro, ""]
     if slop:
         out += [w["slop_finding"], ""]
+    for c in run.get("compare", []):   # side-by-side images: the same slide from every deck
+        url = f"{site}{run['dir']}{c['src']}"
+        out += [f"[![{c['en']}]({url})]({url})", "", f"*{c['zh'] if i else c['en']}*", ""]
     cols = w["slop_cols" if slop else "ppt_cols"]
     out += [cols, "|" + "|".join("---" for _ in range(cols.count("|") - 1)) + "|"]
     for repo, r in ran:

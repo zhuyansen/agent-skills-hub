@@ -630,3 +630,6 @@
 .dark .bp-tr-substantial { color: #f85149; }
 .bp-tr-notrun { margin: 10px 0; font-size: 13px; color: var(--bp-text-secondary); }
 .bp-tr-notrun summary { cursor: pointer; }
+.bp-tr-compare { margin: 0 0 18px; }
+.bp-tr-compare img { display: block; width: 100%; height: auto; border: 1px solid var(--bp-border); border-radius: 8px; }
+.bp-tr-compare figcaption { color: var(--bp-text-secondary); font-size: 13px; margin-top: 6px; }

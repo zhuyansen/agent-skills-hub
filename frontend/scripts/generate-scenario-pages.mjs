@@ -73,7 +73,7 @@ const POPULAR_SCENARIOS = [
 ];
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
-const CSS_VERSION = "20261008";
+const CSS_VERSION = "20261009";
 
 /* ── Skill matching ──────────────────────────────── */
 
