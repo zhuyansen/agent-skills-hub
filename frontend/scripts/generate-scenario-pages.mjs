@@ -809,7 +809,7 @@ ${methodLd(scenario, pageUrl)}
 
       <!-- Hero -->
       <div class="bp-hero">
-        <h1 data-zh="${titleHasSkillWord ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${esc(h1En)}">${esc(h1En)}</h1>
+        <h1 data-zh="${titleHasSkillWord || /工具$/.test(scenario.zhTitle || "") ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${esc(h1En)}">${esc(h1En)}</h1>
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
           <a class="bp-stat-chip" href="#kind-cards" style="text-decoration:none" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}工具" data-en="🔍 Browse ${itemCount} ${esc(descSubject)}">🔍 Browse ${itemCount} ${esc(descSubject)}</a>

@@ -4114,7 +4114,258 @@
     "qZh": "怎么在 Claude Code 里安装前端设计 skill?",
     "aZh": "大多数设计 skill 是一个带 SKILL.md 的文件夹:复制到 ~/.claude/skills(或项目的 .claude/skills),或者用仓库提供的命令安装,之后让 Claude Code 做界面相关的工作,它就会加载这个 skill。本页每张卡片都链到仓库自己的安装说明,并显示安全评级。"
    }
-  ]
+  ],
+  "method": {
+   "h2": "How we judge Claude design skills: right, and not the same as everyone else's",
+   "h2_zh": "我们怎么评 Claude 设计 skill：做得对，而且不和别人长得一样",
+   "thesis": "A Claude design skill has two jobs. The first is getting the interface right. On Design2Code, 484 real web pages rebuilt from screenshots, models mostly fail at recalling the visual elements and at getting the layout right (NAACL 2025), so what a skill adds is structure: a design system, spacing and type rules, a step that looks at the rendered page. The second job is not looking like everyone else's. In a controlled experiment, writers given ideas by a language model wrote stories rated more creative and better written, yet the stories were more similar to each other than those written without it (Science Advances 2024); a second study found the same for ideas across users (C&C 2024). Those studies measured stories and ideas, not interfaces, but the default purple-gradient look of AI-made UI is the same effect, and it is what the most-starred skills on this page set out to stop. Both jobs can be tested: render the page, take screenshots and score them against a checklist, which matched human rankings 94.4% of the time on ArtifactsBench. So we judge a design skill by whether it gives the agent rules and a way to see its own output, and by whether it pushes away from the default.",
+   "thesis_zh": "Claude 设计 skill 有两件事要做。第一件是把界面做对。在 Design2Code（从截图重建 484 个真实网页）上，模型主要错在两处：漏掉视觉元素、布局不对（NAACL 2025）。所以 skill 能补的是结构：一套设计系统、间距和字体规则、一个看渲染结果的步骤。第二件是别和所有人长得一样。一项对照实验里，拿到语言模型点子的作者写出的故事被评为更有创意、文笔更好，但彼此之间比不用 AI 的故事更相似（Science Advances 2024）；另一项研究发现不同用户的点子也会趋同（C&C 2024）。这两项测的是故事和点子，不是界面，但 AI 做的界面千篇一律的紫色渐变就是同一种效应，也正是这页星数最高的几个 skill 要解决的问题。两件事都能测：渲染页面、截图、按清单打分，在 ArtifactsBench 上这种方法和人工排名的一致率达到 94.4%。所以我们看一个设计 skill：是否给 agent 规则和看见自己产出的办法，是否把它推离默认样式。",
+   "h3_routes": [
+    "Six kinds of Claude design skills",
+    "六类 Claude 设计 skill"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What it fixes",
+     "解决什么"
+    ],
+    [
+     "What to watch",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Frontend design",
+     "name_zh": "UI 与前端美化",
+     "kinds": [
+      "ui"
+     ],
+     "how": "Rules and taste for the agent: type, spacing, colour, what to avoid.",
+     "how_zh": "给 agent 的规则和品味：字体、间距、配色、要避免什么。",
+     "gain": "Pushes away from the default look most AI-made pages share.",
+     "gain_zh": "把界面推离 AI 页面普遍共有的默认样子。",
+     "cost": "A skill used by everyone becomes the new default; check it lets you set your own direction.",
+     "cost_zh": "人人都用同一个 skill，它就成了新的默认；看看能不能定自己的方向。"
+    },
+    {
+     "name": "Design systems",
+     "name_zh": "设计系统",
+     "kinds": [
+      "system"
+     ],
+     "how": "Tokens, components and layout rules the agent builds from.",
+     "how_zh": "agent 照着搭的设计变量、组件和布局规则。",
+     "gain": "Consistency across pages, the part models get wrong most often.",
+     "gain_zh": "跨页面一致，也就是模型最常出错的布局部分。",
+     "cost": "Only as good as the system you give it.",
+     "cost_zh": "效果取决于你给它的那套系统。"
+    },
+    {
+     "name": "Figma and design tools",
+     "name_zh": "Figma 与设计工具",
+     "kinds": [
+      "tool_mcp"
+     ],
+     "how": "MCP servers and plugins that read from or write to Figma and similar tools.",
+     "how_zh": "读写 Figma 等设计工具的 MCP 服务和插件。",
+     "gain": "The agent works from the real design file instead of a description.",
+     "gain_zh": "agent 照真实的设计稿做，而不是照文字描述。",
+     "cost": "Needs an access token to your design files; check the grade.",
+     "cost_zh": "需要设计文件的访问令牌，先看评级。"
+    },
+    {
+     "name": "Design to code",
+     "name_zh": "设计稿转代码",
+     "kinds": [
+      "to_code"
+     ],
+     "how": "Turns a design or a screenshot into working front-end code.",
+     "how_zh": "把设计稿或截图变成可运行的前端代码。",
+     "gain": "Saves the hand translation from mock-up to markup.",
+     "gain_zh": "省掉从设计稿到代码的手工翻译。",
+     "cost": "Missing elements and wrong layout are the two errors Design2Code found most; compare the screenshots.",
+     "cost_zh": "漏元素和布局错是 Design2Code 发现最多的两类错误；对比一下截图。"
+    },
+    {
+     "name": "Graphics and brand",
+     "name_zh": "海报与品牌",
+     "kinds": [
+      "graphics"
+     ],
+     "how": "Posters, logos, social images and brand assets.",
+     "how_zh": "海报、logo、社媒配图和品牌素材。",
+     "gain": "Visual assets without leaving the agent.",
+     "gain_zh": "不离开 agent 就能出视觉素材。",
+     "cost": "The sameness effect is strongest where everyone asks for the same thing.",
+     "cost_zh": "大家要的东西越相同，趋同效应越明显。"
+    },
+    {
+     "name": "Design review",
+     "name_zh": "设计审查",
+     "kinds": [
+      "review"
+     ],
+     "how": "Checks a rendered page against design rules and reports what is off.",
+     "how_zh": "对照设计规则检查渲染后的页面，指出哪里不对。",
+     "gain": "The \"look at your own output\" step, as its own tool.",
+     "gain_zh": "把\"看自己的产出\"这一步做成独立工具。",
+     "cost": "A model's critique improves a lot with examples from real designers; generic critique is shallow.",
+     "cost_zh": "有真实设计师的示例，模型的评审会好很多；泛泛的评审很浅。"
+    }
+   ],
+   "gap": "No study yet measures sameness in AI-made interfaces directly; the evidence for it comes from stories and ideas, which is why we call it an analogy. The benchmarks measure models, not the skills listed here.",
+   "gap_zh": "还没有研究直接测过 AI 界面的趋同；证据来自故事和点子，所以我们把它称为类比。这些基准测的是模型，不是这页列出的 skill。",
+   "h3_next": [
+    "Pick by what goes wrong in your UI",
+    "按你的界面哪里出问题来选"
+   ],
+   "next_stop": [
+    {
+     "who": "It looks like every other AI-made page",
+     "who_zh": "看起来和别的 AI 页面一个样",
+     "pick": "A frontend design skill with rules on type, colour and what to avoid",
+     "pick_zh": "带字体、配色和禁用规则的前端设计 skill"
+    },
+    {
+     "who": "Pages drift apart as the app grows",
+     "who_zh": "页面越做越不统一",
+     "pick": "A design system the agent builds from",
+     "pick_zh": "让 agent 照着搭的设计系统"
+    },
+    {
+     "who": "There is already a design in Figma",
+     "who_zh": "已经有 Figma 设计稿",
+     "pick": "A Figma MCP or a design-to-code tool, then compare screenshots",
+     "pick_zh": "Figma MCP 或设计稿转代码工具，再对比截图"
+    },
+    {
+     "who": "You want a second opinion before shipping",
+     "who_zh": "上线前想要第二意见",
+     "pick": "A design review step that looks at the rendered page",
+     "pick_zh": "看渲染页面的设计审查步骤"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every Claude design skill",
+    "每个 Claude 设计 skill 我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Rules: does it give the agent concrete rules (type scale, spacing, colour), not just adjectives like \"modern\" or \"clean\"?",
+     "q_zh": "规则：给 agent 的是具体规则（字号层级、间距、配色），还是\"现代\"\"简洁\"这类形容词？"
+    },
+    {
+     "q": "Seeing: does it make the agent render and look at its own output before it finishes?",
+     "q_zh": "看见：结束前会不会让 agent 渲染并看一眼自己的产出？"
+    },
+    {
+     "q": "Away from the default: does it push against the look everyone gets, and let you set your own direction?",
+     "q_zh": "远离默认：会不会把界面推离人人都有的样子，并允许你定自己的方向？"
+    },
+    {
+     "q": "Fidelity: when it works from a design or a screenshot, does it keep every element and the layout?",
+     "q_zh": "还原度：照设计稿或截图做的时候，元素和布局都保留了吗？"
+    }
+   ],
+   "floor_activity": [
+    "while they design or generate UI",
+    "设计或生成界面时的行为"
+   ],
+   "h3_findings": [
+    "What the research found",
+    "研究发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "Models rebuilding 484 real web pages from screenshots mostly failed at two things: recalling the visual elements and producing the right layout (Design2Code, NAACL 2025).",
+     "item_zh": "模型从截图重建 484 个真实网页，主要错在两处：漏掉视觉元素、布局不对（Design2Code，NAACL 2025）。"
+    },
+    {
+     "item": "Generative AI made each writer's work better and everyone's work more alike: stories written with AI ideas were rated more creative, yet were more similar to each other (Science Advances 2024); ideas across users converged the same way (C&C 2024).",
+     "item_zh": "生成式 AI 让每个人的作品更好，也让所有人的作品更像：用 AI 点子写的故事被评为更有创意，但彼此更相似（Science Advances 2024）；不同用户的点子也同样趋同（C&C 2024）。"
+    },
+    {
+     "item": "UI quality can be scored automatically: rendering the output, taking screenshots and judging them against a per-task checklist agreed with WebDev Arena's rankings 94.4% of the time, across 1,825 tasks (ArtifactsBench, a preprint).",
+     "item_zh": "界面质量可以自动打分：渲染、截图、按逐题清单评，在 1,825 个任务上和 WebDev Arena 的排名一致率 94.4%（ArtifactsBench，预印本）。"
+    },
+    {
+     "item": "Design critique needs real designers' examples: 3,059 critiques of 983 mobile UIs by seven experienced designers improved a model's UI feedback by 55% (UICrit, UIST 2024).",
+     "item_zh": "设计评审需要真实设计师的示例：七位资深设计师对 983 个移动界面写的 3,059 条评审，让模型的界面反馈提升 55%（UICrit，UIST 2024）。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what part of design does it handle.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、管设计的哪一环。"
+    },
+    {
+     "item": "Sorted every entry into one of six kinds, so you can filter.",
+     "item_zh": "把每个条目归入六类之一，可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these skills end to end. The plan: one brief, each skill builds the page five times; render and screenshot, score against a checklist as ArtifactsBench does, and measure how alike the five are.",
+     "item_zh": "我们还没有端到端实跑这些 skill。计划：同一份需求，每个 skill 做五次；渲染、截图，照 ArtifactsBench 的做法按清单打分，再测这五次有多像。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the skill run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察 skill 运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Si, Zhang, Li, Yang, Liu and Yang. Design2Code: Benchmarking Multimodal Code Generation for Automated Front-End Engineering. NAACL 2025 (arXiv 2403.03163).",
+     "url": "https://arxiv.org/abs/2403.03163"
+    },
+    {
+     "label": "Doshi and Hauser. Generative AI enhances individual creativity but reduces the collective diversity of novel content. Science Advances, 2024.",
+     "url": "https://doi.org/10.1126/sciadv.adn5290"
+    },
+    {
+     "label": "Anderson, Shah and Kreminski. Homogenization Effects of Large Language Models on Human Creative Ideation. C&C 2024 (arXiv 2402.01536).",
+     "url": "https://arxiv.org/abs/2402.01536"
+    },
+    {
+     "label": "Zhang et al. ArtifactsBench: Bridging the Visual-Interactive Gap in LLM Code Generation Evaluation. arXiv 2507.04952 (2025).",
+     "url": "https://arxiv.org/abs/2507.04952"
+    },
+    {
+     "label": "Duan, Chen, Li, Hartmann and Li. UICrit: Enhancing Automated Design Evaluation with a UICritique Dataset. UIST 2024 (arXiv 2407.08850).",
+     "url": "https://arxiv.org/abs/2407.08850"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-claude-design-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-claude-design-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-09"
+   }
+  }
  },
  {
   "slug": "agent-deployment",
