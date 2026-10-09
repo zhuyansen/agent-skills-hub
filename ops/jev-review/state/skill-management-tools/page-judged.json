@@ -6789,5 +6789,36 @@
   "days": 363,
   "stars_per_day": 0.33608815426997246,
   "verdict": "admit"
+ },
+ {
+  "repo": "LobsterTrap/lola",
+  "name": "lola",
+  "stars": 131,
+  "description": "Lola is able to package AI Context Modules or skills into a distributed package to be supported across multiple AI assistants. Think of your skill as the RPM package and Lola as the YUM/DNF. Write your skills once, run everywhere.",
+  "topics": [
+   "ai",
+   "ai-tools",
+   "package-manager",
+   "skills"
+  ],
+  "created": "2025-10-17",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 14703,
+  "names_model": false,
+  "on_subject": 0.97,
+  "is_software": 0.97,
+  "shows_result": 0.94,
+  "one_command_start": 0.87,
+  "specific_outcome": 0.6,
+  "complete_docs": 0.89,
+  "novel_angle": 0.65,
+  "shareable_output": 0.75,
+  "quality": 0.825,
+  "tier": "高",
+  "hit_prior": 0.7799999999999999,
+  "days": 357,
+  "stars_per_day": 0.36694677871148457,
+  "verdict": "admit"
  }
 ]

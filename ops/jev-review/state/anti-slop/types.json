@@ -3246,5 +3246,19 @@
    "rules": 0.8
   },
   "kind": "writing"
+ },
+ {
+  "repo": "phuryn/work-humanizer",
+  "stars": 23,
+  "description": "A humanizer for work writing: takes the AI tone out without changing what your text says or commits to. Agent Skill + evidence: blind judges, hand-checked meaning changes, Pangram.",
+  "scores": {
+   "writing": 0.83,
+   "detector": 0.15,
+   "chinese": 0.03,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.36
+  },
+  "kind": "writing"
  }
 ]

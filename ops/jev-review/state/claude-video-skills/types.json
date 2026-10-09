@@ -4768,5 +4768,185 @@
    "general": 0.14
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "Miftahul-Islam-Efaz/Motion-graphics-skill",
+  "stars": 66,
+  "description": "Best Motion graphics and video editing skill for Claude Code, Codex and Cursor. Plan, animate, edit, caption and sound-design complete videos, rendered locally without After Effects.",
+  "scores": {
+   "promo": 0.76,
+   "explainer": 0.46,
+   "music": 0.09,
+   "motion": 0.24,
+   "shorts": 0.82,
+   "editing": 0.71,
+   "demo": 0.37,
+   "story": 0.17,
+   "avatar": 0.11,
+   "general": 0.44
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "Sunwood-ai-labs/hyperframes-motion-reel-skill",
+  "stars": 25,
+  "description": "🎬 Claude Code skill for showreel-grade, beat-synced motion graphics with HyperFrames (HTML + GSAP + SVG + Canvas, Apache-2.0) — 120 BPM / 60 FPS to MP4",
+  "scores": {
+   "promo": 0.56,
+   "explainer": 0.1,
+   "music": 0.39,
+   "motion": 0.46,
+   "shorts": 0.24,
+   "editing": 0.03,
+   "demo": 0.17,
+   "story": 0.19,
+   "avatar": 0.06,
+   "general": 0.11
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "iart-ai/youtube-video-skills",
+  "stars": 5,
+  "description": "Audiogram and YouTube intro/outro skills for Claude Code — brand your channel and repurpose every episode into motion graphics.",
+  "scores": {
+   "promo": 0.35,
+   "explainer": 0.15,
+   "music": 0.11,
+   "motion": 0.84,
+   "shorts": 0.8,
+   "editing": 0.49,
+   "demo": 0.42,
+   "story": 0.06,
+   "avatar": 0.05,
+   "general": 0.14
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "surajshetty3416/demo-video-skill",
+  "stars": 5,
+  "description": "Claude Code skill: polished 60fps ScreenStudio-style demo videos of any web app via Playwright + Pillow + ffmpeg (no screen recorder)",
+  "scores": {
+   "promo": 0.59,
+   "explainer": 0.13,
+   "music": 0.02,
+   "motion": 0.11,
+   "shorts": 0.08,
+   "editing": 0.36,
+   "demo": 0.97,
+   "story": 0.11,
+   "avatar": 0.02,
+   "general": 0.14
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "isaachang/motion-video-workflow",
+  "stars": 5,
+  "description": "一段配音，变成一支逐帧代码渲染的口播动效片 —— Claude Code / Codex Skill（9:16 · 16:9 · 60fps · 封面）",
+  "scores": {
+   "promo": 0.33,
+   "explainer": 0.49,
+   "music": 0.08,
+   "motion": 0.22,
+   "shorts": 0.88,
+   "editing": 0.05,
+   "demo": 0.44,
+   "story": 0.09,
+   "avatar": 0.07,
+   "general": 0.29
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "Kimeur/motion-launch-videos",
+  "stars": 5,
+  "description": "Claude Code plugin + skill: turn a short brief into a looping kinetic-typography launch video. One self-contained HTML file with a pure seek(t), closed-form springs, per-glyph motion, real motion blur and a pixel-exact loop, rendered to MP4 with Playwright + ffmpeg.",
+  "scores": {
+   "promo": 0.95,
+   "explainer": 0.08,
+   "music": 0.09,
+   "motion": 0.91,
+   "shorts": 0.51,
+   "editing": 0.16,
+   "demo": 0.19,
+   "story": 0.12,
+   "avatar": 0.04,
+   "general": 0.81
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "haiderfarooq3/khan-explainer",
+  "stars": 5,
+  "description": "Claude Code skill: Khan Academy style explainer videos. A pen draws while a voice explains. Free, local, no API keys.",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.96,
+   "music": 0.04,
+   "motion": 0.2,
+   "shorts": 0.59,
+   "editing": 0.45,
+   "demo": 0.6,
+   "story": 0.06,
+   "avatar": 0.07,
+   "general": 0.16
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "kvrancic/oneshot-video",
+  "stars": 5,
+  "description": "One-shot AI video studio for Claude Code, Codex and Cursor. Raw footage in: a finished edit, captioned clips, or a promo from a brief. Local on a Mac; hands the timeline back to Premiere, Final Cut and Resolve.",
+  "scores": {
+   "promo": 0.45,
+   "explainer": 0.29,
+   "music": 0.16,
+   "motion": 0.13,
+   "shorts": 0.9,
+   "editing": 0.78,
+   "demo": 0.52,
+   "story": 0.11,
+   "avatar": 0.04,
+   "general": 0.28
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "iart-ai/text-message-video-skills",
+  "stars": 5,
+  "description": "Text-message animation skills for AI coding agents — turn a chat script into a scroll-stopping iMessage/WhatsApp/SMS conversation video, rendered from a messages array.",
+  "scores": {
+   "promo": 0.2,
+   "explainer": 0.08,
+   "music": 0.04,
+   "motion": 0.22,
+   "shorts": 0.17,
+   "editing": 0.04,
+   "demo": 0.29,
+   "story": 0.43,
+   "avatar": 0.03,
+   "general": 0.09
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "SpaceZephyr/map-motion",
+  "stars": 21,
+  "description": "地图动效视频 Claude Code skill：基于高德地图真实路线/边界/卫星底图，做地球俯冲、vlog 我在这里、徒步海拔、骑行旅程、航线、行政区高亮等地图动画，12 种风格",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.16,
+   "music": 0.1,
+   "motion": 0.27,
+   "shorts": 0.67,
+   "editing": 0.06,
+   "demo": 0.22,
+   "story": 0.15,
+   "avatar": 0.06,
+   "general": 0.13
+  },
+  "kind": "shorts"
  }
 ]

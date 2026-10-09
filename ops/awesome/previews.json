@@ -223,6 +223,14 @@
   "type": "image/gif",
   "bytes": 735757
  },
+ "BingoWon/apple-rag-mcp": {
+  "repo": "BingoWon/apple-rag-mcp",
+  "url": "https://apple-rag.com/og-image-jev.png",
+  "alt": "Apple RAG MCP — Powered by Jev",
+  "score": -0.2,
+  "type": "image/png",
+  "bytes": 167752
+ },
  "Cassette-Editor/oh-my-cassette": {
   "repo": "Cassette-Editor/oh-my-cassette",
   "url": "https://raw.githubusercontent.com/Cassette-Editor/oh-my-cassette/HEAD/assets/banner.jpg",
@@ -559,6 +567,14 @@
   "type": "image/png",
   "bytes": 230687
  },
+ "Kimeur/motion-launch-videos": {
+  "repo": "Kimeur/motion-launch-videos",
+  "url": "https://raw.githubusercontent.com/Kimeur/motion-launch-videos/HEAD/examples/crux-launch/preview.gif",
+  "alt": "Kinetic type: a 12 second launch bumper for Crux",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1463389
+ },
  "LearnAIHubC/LearnDeck": {
   "repo": "LearnAIHubC/LearnDeck",
   "url": "https://raw.githubusercontent.com/LearnAIHubC/LearnDeck/HEAD/assets/learn-deck-cover-en.png",
@@ -590,6 +606,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 1432068
+ },
+ "Miftahul-Islam-Efaz/Motion-graphics-skill": {
+  "repo": "Miftahul-Islam-Efaz/Motion-graphics-skill",
+  "url": "https://raw.githubusercontent.com/Miftahul-Islam-Efaz/Motion-graphics-skill/HEAD/assets/clawd-ending.gif",
+  "alt": "Closing sequence of the launch ad",
+  "score": 2.8,
+  "type": "image/gif",
+  "bytes": 5194524
  },
  "MiiKiyoshi/html-mcp-web": {
   "repo": "MiiKiyoshi/html-mcp-web",
@@ -750,6 +774,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 7939838
+ },
+ "SpaceZephyr/map-motion": {
+  "repo": "SpaceZephyr/map-motion",
+  "url": "https://raw.githubusercontent.com/SpaceZephyr/map-motion/HEAD/docs/media/showcase_flight_region.webp",
+  "alt": "飞线 + 京津冀高亮 + 辐射",
+  "score": 1.45,
+  "type": "image/webp",
+  "bytes": 2775816
  },
  "SpaceZephyr/space-multi-design-ppt": {
   "repo": "SpaceZephyr/space-multi-design-ppt",
@@ -1447,6 +1479,14 @@
   "type": "image/gif",
   "bytes": 3034730
  },
+ "haiderfarooq3/khan-explainer": {
+  "repo": "haiderfarooq3/khan-explainer",
+  "url": "https://raw.githubusercontent.com/haiderfarooq3/khan-explainer/HEAD/docs/board.jpg",
+  "alt": "The same scene on the blackboard and on the whiteboard",
+  "score": -0.5,
+  "type": "image/jpeg",
+  "bytes": 86575
+ },
  "hanlulong/econ-slides-skill": {
   "repo": "hanlulong/econ-slides-skill",
   "url": "https://raw.githubusercontent.com/hanlulong/econ-slides-skill/HEAD/docs/images/sample-punchline.png",
@@ -1623,6 +1663,14 @@
   "type": "image/gif",
   "bytes": 3651648
  },
+ "iart-ai/text-message-video-skills": {
+  "repo": "iart-ai/text-message-video-skills",
+  "url": "https://raw.githubusercontent.com/iart-ai/text-message-video-skills/HEAD/showcase.gif",
+  "alt": "Text Message Video Skills — animated showcase",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3588954
+ },
  "iart-ai/tiktok-video-skills": {
   "repo": "iart-ai/tiktok-video-skills",
   "url": "https://raw.githubusercontent.com/iart-ai/tiktok-video-skills/HEAD/showcase.gif",
@@ -1630,6 +1678,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 3794665
+ },
+ "iart-ai/youtube-video-skills": {
+  "repo": "iart-ai/youtube-video-skills",
+  "url": "https://raw.githubusercontent.com/iart-ai/youtube-video-skills/HEAD/showcase.gif",
+  "alt": "YouTube Video Skills — animated showcase",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2966294
  },
  "icgma/slide-skill": {
   "repo": "icgma/slide-skill",
@@ -1686,6 +1742,14 @@
   "score": 4.75,
   "type": "image/gif",
   "bytes": 9553530
+ },
+ "isaachang/motion-video-workflow": {
+  "repo": "isaachang/motion-video-workflow",
+  "url": "https://raw.githubusercontent.com/isaachang/motion-video-workflow/HEAD/docs/showcase/say.gif",
+  "alt": "",
+  "score": 2.75,
+  "type": "image/gif",
+  "bytes": 551351
  },
  "ismailperim/briefd": {
   "repo": "ismailperim/briefd",
@@ -1798,6 +1862,14 @@
   "score": -0.25,
   "type": "image/png",
   "bytes": 1640992
+ },
+ "kvrancic/oneshot-video": {
+  "repo": "kvrancic/oneshot-video",
+  "url": "https://raw.githubusercontent.com/kvrancic/oneshot-video/HEAD/docs/media/clips.gif",
+  "alt": "Vertical clips: a full-screen takeover line, PLUGIN behind a speaker opening a b",
+  "score": 2.75,
+  "type": "image/gif",
+  "bytes": 5743552
  },
  "lainshao/modern-ppt": {
   "repo": "lainshao/modern-ppt",
@@ -2119,6 +2191,14 @@
   "type": "image/gif",
   "bytes": 5056914
  },
+ "phuryn/work-humanizer": {
+  "repo": "phuryn/work-humanizer",
+  "url": "https://raw.githubusercontent.com/phuryn/work-humanizer/HEAD/evidence/charts/example@2x.png",
+  "alt": "A reply to a customer disputing a deposit deduction, rewritten by each tool. wor",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 730901
+ },
  "pjecuacion/script-to-video-skill": {
   "repo": "pjecuacion/script-to-video-skill",
   "url": "https://img.youtube.com/vi/-oEgathHyA0/0.jpg",
@@ -2310,6 +2390,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 37687
+ },
+ "surajshetty3416/demo-video-skill": {
+  "repo": "surajshetty3416/demo-video-skill",
+  "url": "https://raw.githubusercontent.com/surajshetty3416/demo-video-skill/HEAD/media/editor-dark.png",
+  "alt": "The editor: segment rail, live composited preview, camera/holds/events timeline,",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 526866
  },
  "sva-admin/sv-academy-prom-design": {
   "repo": "sva-admin/sv-academy-prom-design",
@@ -2670,5 +2758,13 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 99466
+ },
+ "zzsong1023/jev-market-reflex": {
+  "repo": "zzsong1023/jev-market-reflex",
+  "url": "https://raw.githubusercontent.com/zzsong1023/jev-market-reflex/HEAD/assets/demo.gif",
+  "alt": "16-second Jev Market Reflex demo",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 2164598
  }
 }

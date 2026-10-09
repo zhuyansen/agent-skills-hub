@@ -2832,7 +2832,8 @@
     "pathintegral-institute/mcpm.sh",
     "infragate/capa",
     "Dimillian/CodexSkillManager",
-    "pr-pm/prpm"
+    "pr-pm/prpm",
+    "LobsterTrap/lola"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -3663,7 +3664,8 @@
     "mah-claude/anti-slop-website-prompts",
     "changemaner/design-taste-frontend",
     "Mutakisa/game-slop-purge",
-    "ilyautov/humanizer-it"
+    "ilyautov/humanizer-it",
+    "phuryn/work-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign"
@@ -4927,7 +4929,8 @@
     "liustack/pptpress",
     "sunbigfly/ppt-agent-skill",
     "Binaryify/open-kimi-ppt-skill",
-    "E1nzbern/open-kimi-ppt-skill"
+    "E1nzbern/open-kimi-ppt-skill",
+    "seulee26/mckinsey-pptx"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -5968,7 +5971,8 @@
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
-    "bitbonsai/mcp-obsidian"
+    "bitbonsai/mcp-obsidian",
+    "fxa3bah/OneBrain"
    ]
   },
   "related": [
@@ -6418,7 +6422,11 @@
     "0814wdwd/solo_jev",
     "alanhuangyoo/OpenJev",
     "sedum-dev/sedum",
-    "Algorythm-Canada/OpenJevSwift"
+    "Algorythm-Canada/OpenJevSwift",
+    "BingoWon/apple-rag-mcp",
+    "chuloontop4-code/jev-instance-review",
+    "shitianfang/wakegate",
+    "zzsong1023/jev-market-reflex"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -6761,7 +6769,17 @@
     "IdkwhatImD0ing/claude-music-videos",
     "124zhe/xigua-msvideo-skill",
     "kmilo93sd/agent-video-editor",
-    "undsky/doudou-remotion-whiteboard-skill"
+    "undsky/doudou-remotion-whiteboard-skill",
+    "Miftahul-Islam-Efaz/Motion-graphics-skill",
+    "Sunwood-ai-labs/hyperframes-motion-reel-skill",
+    "SpaceZephyr/map-motion",
+    "iart-ai/youtube-video-skills",
+    "surajshetty3416/demo-video-skill",
+    "isaachang/motion-video-workflow",
+    "Kimeur/motion-launch-videos",
+    "haiderfarooq3/khan-explainer",
+    "kvrancic/oneshot-video",
+    "iart-ai/text-message-video-skills"
    ],
    "sub_skills": [
     {

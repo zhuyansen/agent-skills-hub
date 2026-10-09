@@ -4888,5 +4888,65 @@
    "general": 0.44
   },
   "kind": "replica"
+ },
+ {
+  "repo": "BingoWon/apple-rag-mcp",
+  "stars": 120,
+  "description": "Apple developer docs and WWDC transcripts with RAG retrieval and Jev relevance ranking.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.03,
+   "devtool": 0.93,
+   "sdk": 0.46,
+   "business": 0.03,
+   "consumer": 0.23,
+   "general": 0.05
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "chuloontop4-code/jev-instance-review",
+  "stars": 70,
+  "description": "Best Roblox Studio Instance Reviewer 2026: Typed Jev Criteria and Exact Citations",
+  "scores": {
+   "replica": 0.08,
+   "agent": 0.07,
+   "devtool": 0.4,
+   "sdk": 0.2,
+   "business": 0.03,
+   "consumer": 0.05,
+   "general": 0.33
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "shitianfang/wakegate",
+  "stars": 6,
+  "description": "Ask Jev whether a sleeping agent's wakeup is worth a full LLM turn before you resume it. A fail-open wake gate for long-running agents on Workers, Durable Objects and Node.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.1,
+   "devtool": 0.67,
+   "sdk": 0.89,
+   "business": 0.06,
+   "consumer": 0.06,
+   "general": 0.12
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "zzsong1023/jev-market-reflex",
+  "stars": 5,
+  "description": "Fast typed AI decisions on live crypto markets using TypeSafe AI Jev.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.07,
+   "devtool": 0.07,
+   "sdk": 0.09,
+   "business": 0.77,
+   "consumer": 0.05,
+   "general": 0.07
+  },
+  "kind": "business"
  }
 ]
