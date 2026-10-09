@@ -5977,7 +5977,237 @@
     "qZh": "GitHub 上有 Obsidian 的 Claude 插件或 MCP 服务吗?",
     "aZh": "插件:YishenTu/claudian、logancyang/obsidian-copilot。MCP 服务:MarkusPfundstein/mcp-obsidian,通过 Obsidian Local REST API 插件工作。由 agent 维护的第二大脑:AgriciDaniel/claude-obsidian、breferrari/obsidian-mind。它们都收录在 GitHub 开源合集 zhuyansen/awesome-obsidian-ai-skills 里。"
    }
-  ]
+  ],
+  "method": {
+   "h2": "How we judge Obsidian MCP servers, skills and plugins: as the agent's memory",
+   "h2_zh": "我们怎么评 Obsidian MCP、skill 和插件：把它当作 agent 的记忆来评",
+   "thesis": "Once Claude can read and write your Obsidian vault, the vault is the agent's long-term memory, so we judge an Obsidian MCP server, skill or plugin the way memory is judged. LongMemEval (ICLR 2025) tests five abilities with 500 questions: finding a fact, reasoning across sessions, reasoning about time, keeping up with updates, and abstaining when the answer is not there. Commercial assistants and long-context models lost 30% of their accuracy over sustained interactions, and the paper splits a memory system into three stages: indexing, retrieval and reading. On LoCoMo (ACL 2024), conversations of about 600 turns over up to 32 sessions, models with long contexts or retrieval still lag far behind people. Plain files are not the weak point: an agent that kept the conversations in a file and searched them with grep-style tools scored 74.0% on LoCoMo, above the 68.5% Mem0 reported (Letta, a benchmark write-up, not a paper). Markdown notes, which is what Obsidian stores, can hold a memory well; what decides the result is how the agent finds what it needs and keeps it current.",
+   "thesis_zh": "一旦 Claude 能读写你的 Obsidian 笔记库，这个库就成了 agent 的长期记忆，所以我们按评记忆的方式来评 Obsidian MCP、skill 和插件。LongMemEval（ICLR 2025）用 500 道题测五种能力：找出一个事实、跨会话推理、时间推理、跟上信息更新、答案不在时拒答。商用助手和长上下文模型在持续对话中准确率下降 30%；论文把记忆系统拆成三步：建索引、检索、阅读。在 LoCoMo（ACL 2024，每段对话约 600 轮、最多 32 个会话）上，用了长上下文或检索的模型仍远不如人。纯文件并不是短板：把对话存进文件、用 grep 一类工具搜索的 agent，在 LoCoMo 上拿到 74.0%，高于 Mem0 自报的 68.5%（Letta 的评测文章，不是论文）。Obsidian 存的正是 Markdown 笔记，完全可以当记忆用；决定效果的是 agent 怎么找到需要的东西、怎么让它保持最新。",
+   "h3_routes": [
+    "Five kinds of Obsidian MCP, skills and AI plugins",
+    "五类 Obsidian MCP、skill 与 AI 插件"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "Memory stage it covers",
+     "管记忆的哪一步"
+    ],
+    [
+     "What to watch",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Obsidian MCP servers",
+     "name_zh": "Obsidian MCP 服务",
+     "kinds": [
+      "mcp"
+     ],
+     "how": "Expose the vault to Claude as tools: search, read, create and edit notes.",
+     "how_zh": "把笔记库以工具的形式交给 Claude：搜索、读取、新建、编辑笔记。",
+     "gain": "Retrieval and writing: the agent asks for what it needs.",
+     "gain_zh": "检索和写入：agent 需要什么就去取什么。",
+     "cost": "Write access to every note; check the grade and whether it can delete.",
+     "cost_zh": "对每条笔记都有写权限；看评级，看它能不能删笔记。"
+    },
+    {
+     "name": "Obsidian skills",
+     "name_zh": "Obsidian skill",
+     "kinds": [
+      "skill"
+     ],
+     "how": "Teach the agent your vault's formats and conventions: links, properties, the CLI.",
+     "how_zh": "教 agent 你笔记库的格式和约定：双链、属性、命令行。",
+     "gain": "Reading: the agent understands what it finds.",
+     "gain_zh": "阅读：agent 看得懂它找到的东西。",
+     "cost": "A skill describes; it does not index. Pair it with search.",
+     "cost_zh": "skill 只负责说明，不建索引，要和搜索配合。"
+    },
+    {
+     "name": "Obsidian AI plugins",
+     "name_zh": "Obsidian AI 插件",
+     "kinds": [
+      "plugin"
+     ],
+     "how": "Run Claude, Codex or other agents inside Obsidian.",
+     "how_zh": "在 Obsidian 里直接运行 Claude、Codex 等 agent。",
+     "gain": "The agent works where you write, on the open note.",
+     "gain_zh": "agent 就在你写字的地方，针对当前笔记工作。",
+     "cost": "A plugin runs with Obsidian's access to your files; install from sources you trust.",
+     "cost_zh": "插件拥有 Obsidian 对你文件的访问权限，只装可信来源的。"
+    },
+    {
+     "name": "Second brain workflows",
+     "name_zh": "第二大脑工作流",
+     "kinds": [
+      "second_brain"
+     ],
+     "how": "Ready-made vault structures where the agent files, links and summarises what you drop in.",
+     "how_zh": "现成的笔记库结构：你丢进去，agent 负责归档、加链接、写摘要。",
+     "gain": "Indexing and updates: notes stay organised as they grow.",
+     "gain_zh": "建索引和更新：笔记越多越有条理。",
+     "cost": "The agent rewrites your notes; keep the vault in git so you can see and undo changes.",
+     "cost_zh": "agent 会改写你的笔记；把笔记库放进 git，改了什么看得见、能撤回。"
+    },
+    {
+     "name": "Import, publish and sync",
+     "name_zh": "导入、发布与同步",
+     "kinds": [
+      "sync"
+     ],
+     "how": "Bring web pages, chats and documents into the vault, or publish it out.",
+     "how_zh": "把网页、对话、文档导入笔记库，或把笔记库发布出去。",
+     "gain": "More of what you know ends up where the agent can find it.",
+     "gain_zh": "你知道的东西更多地进到 agent 找得到的地方。",
+     "cost": "Imports add volume, not order; the more you import, the more retrieval matters.",
+     "cost_zh": "导入只增加数量，不增加条理；导得越多，检索越要紧。"
+    }
+   ],
+   "gap": "The benchmarks measure memory in long chat histories, not in a personal vault of notes, and none tests the tools listed here. Using their five abilities and three stages on a vault is our adaptation.",
+   "gap_zh": "这些基准测的是长对话里的记忆，不是个人笔记库，也没有测过这页列出的工具。把它们的五种能力和三个步骤用到笔记库上，是我们的改编。",
+   "h3_next": [
+    "Pick by what you want the agent to do with your notes",
+    "按你想让 agent 拿笔记做什么来选"
+   ],
+   "next_stop": [
+    {
+     "who": "Ask questions of what you already wrote",
+     "who_zh": "就已有笔记提问",
+     "pick": "An Obsidian MCP server with search",
+     "pick_zh": "带搜索的 Obsidian MCP 服务"
+    },
+    {
+     "who": "Write and edit in Obsidian with an agent beside you",
+     "who_zh": "在 Obsidian 里边写边让 agent 帮忙",
+     "pick": "An AI plugin that runs Claude or Codex inside Obsidian",
+     "pick_zh": "在 Obsidian 里运行 Claude 或 Codex 的插件"
+    },
+    {
+     "who": "Have the agent organise what you collect",
+     "who_zh": "让 agent 整理你收集的东西",
+     "pick": "A second-brain workflow, with the vault in git",
+     "pick_zh": "第二大脑工作流，笔记库放进 git"
+    },
+    {
+     "who": "Teach the agent your vault's conventions",
+     "who_zh": "让 agent 懂你笔记库的规矩",
+     "pick": "An Obsidian skill, alongside one of the above",
+     "pick_zh": "Obsidian skill，配合上面任一种使用"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every Obsidian MCP, skill or plugin",
+    "每个 Obsidian MCP、skill 或插件我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Retrieval: does it search the vault, or load whole notes into the context?",
+     "q_zh": "检索：是搜索笔记库，还是把整篇笔记塞进上下文？"
+    },
+    {
+     "q": "Updates: when a fact changes, does the agent find and use the newer note?",
+     "q_zh": "更新：事实变了，agent 会不会找到并采用更新后的那条笔记？"
+    },
+    {
+     "q": "Abstaining: when the answer is not in your notes, does the agent say so instead of guessing?",
+     "q_zh": "拒答：笔记里没有答案时，agent 会直说，还是去猜？"
+    },
+    {
+     "q": "Writes: what can it change or delete, and can you see and undo it?",
+     "q_zh": "写入：它能改什么、删什么，你看得见、撤得回吗？"
+    }
+   ],
+   "floor_activity": [
+    "while they read and write your notes",
+    "读写你的笔记时的行为"
+   ],
+   "h3_findings": [
+    "What the research found",
+    "研究发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "Memory over long use is hard: commercial chat assistants and long-context models lost 30% of their accuracy across sustained interactions, on 500 questions covering extraction, multi-session reasoning, time, updates and abstention (LongMemEval, ICLR 2025).",
+     "item_zh": "长期使用下的记忆很难：在覆盖提取、跨会话推理、时间、更新、拒答的 500 道题上，商用助手和长上下文模型在持续对话中准确率下降 30%（LongMemEval，ICLR 2025）。"
+    },
+    {
+     "item": "A memory system has three stages, indexing, retrieval and reading, and each can be improved on its own; the paper's designs for them greatly improved recall and the answers that depend on it (LongMemEval).",
+     "item_zh": "记忆系统分三步：建索引、检索、阅读，每一步都能单独改进；论文针对这三步的设计大幅提升了召回，以及依赖召回的回答（LongMemEval）。"
+    },
+    {
+     "item": "Very long histories still beat models: across conversations of about 600 turns and 16K tokens over up to 32 sessions, long-context and retrieval-augmented models lagged far behind people (LoCoMo, ACL 2024).",
+     "item_zh": "超长历史仍然难倒模型：每段对话约 600 轮、1.6 万 token、最多 32 个会话，用了长上下文或检索增强的模型仍远不如人（LoCoMo，ACL 2024）。"
+    },
+    {
+     "item": "Plain files hold up: an agent that searched a conversation file with grep-style tools scored 74.0% on LoCoMo, above the 68.5% Mem0 reported; the authors caution that comparisons across frameworks are rough (Letta, a write-up, not peer-reviewed).",
+     "item_zh": "纯文件撑得住：用 grep 一类工具搜索对话文件的 agent 在 LoCoMo 上拿到 74.0%，高于 Mem0 自报的 68.5%；作者也提醒，跨框架比较只能粗看（Letta 评测文章，未经同行评审）。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, how does it connect an agent to Obsidian.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、怎样把 agent 接进 Obsidian。"
+    },
+    {
+     "item": "Sorted every entry into one of five kinds, so you can filter.",
+     "item_zh": "把每个条目归入五类之一，可以筛选。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+    },
+    {
+     "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We have not yet run these tools end to end. The plan: a test vault and a question set built on LongMemEval's five abilities, with updated facts and questions whose answer is not in the notes, run through each tool against a plain grep baseline.",
+     "item_zh": "我们还没有端到端实跑这些工具。计划：建一个测试笔记库，按 LongMemEval 的五种能力出题，包括改过的事实和笔记里没有答案的问题，每个工具都跑一遍，并和纯 grep 基线对比。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [
+    {
+     "label": "Wu, Wang, Yu, Zhang, Chang and Yu. LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory. ICLR 2025 (arXiv 2410.10813).",
+     "url": "https://arxiv.org/abs/2410.10813"
+    },
+    {
+     "label": "Maharana, Lee, Tulyakov, Bansal, Barbieri and Fang. Evaluating Very Long-Term Conversational Memory of LLM Agents. ACL 2024.",
+     "url": "https://aclanthology.org/2024.acl-long.747/"
+    },
+    {
+     "label": "Letta. Benchmarking AI Agent Memory: Is a Filesystem All You Need? August 2025.",
+     "url": "https://www.letta.com/blog/benchmarking-ai-agent-memory"
+    }
+   ],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-obsidian-ai-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-obsidian-ai-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-09"
+   }
+  }
  },
  {
   "slug": "typesafe-jev",
