@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-09
+1. orange2ai/podcast-to-article — 🆕 把多人对谈播客逐字稿整理成可发布长文，校准人名、精简三分之一并自检 AI 味（113★ 64.5/day）
+2. jimoto-no-llm/rustdsh — 🆕 用 Rust 重写 DSH 启动器，自带原生快捷命令、受控智能体工具和本地项目面板（59★ 11.8/day）
+3. Andiii208/seu-handbook-skill — 🆕 把东南大学学生手册按条拆成可溯源技能，加分、评奖、绩点规则一问就查（29★ 8.1/day）
+4. izzy-Ti/fayda-mcp — 🆕 用 MCP 把智能体接入埃塞俄比亚 Fayda 国民身份系统，走 eSignet 完成认证（20★ 7.4/day）
+5. sno-ai/sno-station-skills — 🆕 打包 31 个实测技能，让 Claude Code 和 Codex 跨厂商互审、组成一支团队（59★ 7.3/day）
+6. amos689/paper-preflight — 🆕 在 LaTeX 论文投稿前逐条核对参考文献是否真实存在，拦住编造引用（33★ 5.4/day）
+7. wh000wh000/awesome-claude-mods — 🆕 按证据分级整理 Claude Code 的插件、模组和钩子，支持 20 种语言（24★ 5.2/day）
+8. alanhuangyoo/OpenJev — 提供开源、可本地运行的 Jev 替代品，输入结构化问题输出校准概率（57★ 3.5/day）
+9. Okohedeki/scroll-studio — 🆕 用一个 YAML 文件生成滚动叙事网站，影片、3D、数据故事和地图本地即可跑（33★ 3.1/day）
+10. xianyu110/awesome-claude-opus-5.5 — 🆕 收录 149 个附提示词的 Opus 5.5 可视化案例，另附千余条完整清单（30★ 2.8/day）
+🎯 今日趋势：候选池明显变薄，48h 内去重后合格项仅 **6 个**，放宽到 72h 才凑满十席；**9 席**标 🆕，研究与写作类（播客成文、论文引用核查、校规手册）占 **3 席**，DSH/Jev 生态仍占 **2 席**。
+> 注：去重范围＝repo 内 archive 全部 106 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数约 4,540 个（含路径噪声，只会多剔不会漏剔）。首查 `first_seen ≥48h`、stars ≥20 共 113 条，去重后 95 条，剔除下列排除项后合格新鲜项仅 6 个，按规则**放宽到 72h**（72h 查询触顶 LIMIT 150，另加 `created_at ≥21 天` 条件补查一次，共 3 次单连接串行查询）。velocity = stars ÷ max(距 created_at 天数, 1)，取最后一次查询的快照。podcast-to-article 在今日 fresh-skills-archive 中仅以"备查"出现、未入榜，不算历史推荐，保留。**排除项**：①openqodex/openqodex（420★ 60.1/day）：10-02 新建组织、4 粉、名下仅此 1 仓，单仓爆星形态，按 10-08 shader-effects-inc 先例保守排除；②fidipro/gluon（37★ 29.0/day）：0 粉组织、仅 1 仓；③liyingze07-svg/EffectiveAutoResearch-EAR-（205★）：09-24 新号、其余仓 1★；④hahahahahahahahah6/agent-guard（100★）：3 粉、其余 49 仓全 0★；⑤Sev7eEn7/dsh-sieve（41★）：10-04 新号、0 粉；⑥botbus-io/botbus-protocol（78★）：09-26 新建组织、其余仓 0★；⑦zacksomething/research-radar（99★）：0 粉、其余仓 1★，且建仓近 20 天；⑧wuyhong715/rikkahub-agent-pure（23★）：09-30 新号、1 粉、仅 1 仓，且为他人项目的加固版；⑨shivamthe-coder/roblox-luau-atelier 等 8 个 Roblox 仓 + Mutakisa/game-slop-purge 等 3 仓：同日（09-23）建仓、星数 68–70 雷同、标题堆砌"Best…2026"，集群刷星嫌疑（与 10-08 同批）；⑩uu889/laya-opencv：security_grade 为 caution；⑪其余均已在历史榜单出现。入选项复核（`gh api`）：第 1 席 orange2ai 2021 建号、283 粉、名下另有 1,091★ 仓；第 2 席 jimoto-no-llm 为 09-13 新建组织、10 粉、另有 25★ 仓（**轻红旗**，描述具体，保留）；第 3 席 Andiii208 2025 建号、13 粉、另有 34★ 仓；第 4 席 izzy-Ti 2025 建号、24 粉、67 仓；第 5 席 sno-ai 为 2015 年组织、名下另有 620★ 仓；第 6 席 amos689 2022 建号、14 粉、另有 35★ 仓；第 7 席 wh000wh000 2015 建号、26 粉、名下另有 257★ 仓；第 8 席 alanhuangyoo 2026-02 建号、38 粉、名下另有 187★ 仓；第 9 席 Okohedeki 2016 建号、3 粉、其余仓 ≤7★（**轻红旗**，量级小、描述具体，保留）；第 10 席 xianyu110 2019 建号、321 粉、1,034 个仓（量产型账号，本仓为策展清单，保留）。deepdave98/jev-playground（1.7/day）列第 11 未入选。🆕 判定＝created_at 距今 14 天内，除 OpenJev（建仓 16.4 天）外九席命中。security_grade：十席均为 safe。
+
+---
+
 ## 2026-10-08
 1. Tejashmakwana/motionmaxxing — 🆕 把 AI 味十足的视频改成像动效设计师亲手做的影片，专治廉价动效（84★ 63.7/day）
 2. dualface/ste-zh — 🆕 按 ASD-STE100 简明技术英语原则，让智能体用中文清楚汇报结果（119★ 49.9/day）
