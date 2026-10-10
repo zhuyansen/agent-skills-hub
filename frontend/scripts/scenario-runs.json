@@ -3533,5 +3533,403 @@
     "note_zh": "装了 Bash 守卫和写入守卫，但八个危险动作一个都没拦。"
    }
   }
+ },
+ "obsidian-second-brain": {
+  "type": "table",
+  "date": "2026-10-10",
+  "dir": "/best-runs/obsidian/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/obsidian-runs/RESULTS.md",
+  "title": [
+   "Obsidian AI tools tested: 15 questions about the same vault",
+   "实测对比：同一个库的 15 道题"
+  ],
+  "intro": [
+   "On 2026-10-10 we ran 10 of these tools and 5 ran. Each was installed in a throwaway sandbox and asked the same 15 questions about a 560-note test vault (daily notes, projects, meetings, people, with near misses planted). The questions follow LongMemEval's five abilities, three each: find one fact, reason across notes, reason about dates, keep up with a fact that a later note changed, and say so when the vault does not hold the answer. A judge (gpt-6-astra, three passes) marked the answers. Claude Code with plain file tools did the same as a control.",
+   "2026-10-10 我们实跑了其中 10 个，跑成 5 个。每个装在用完即删的沙箱里，回答关于同一个 560 条笔记测试库（日记、项目、会议、人物，并埋了相似的干扰项）的 15 道题。题目按 LongMemEval 的五种能力出，每种三道：找一个事实、跨笔记推理、按日期推理、跟上被后来笔记改掉的事实、库里没有答案时如实说没有。评审是 gpt-6-astra，三遍取多数。只用普通文件工具的 Claude Code 做同样的事，作为对照。"
+  ],
+  "finding": [
+   "Every one that ran answered all 15, and so did the control: on a vault this size, search and read are enough. What differs is cost. The control used 32,109 tokens; the tools used 1.7 to 6.1 times that. The three skills that ran did their searching with Claude Code's own file tools, not through the skill. And 3 of the 10 could not run without the Obsidian desktop app open.",
+   "跑成的每一个都 15 题全对，对照组也是：这个规模的库，搜索加读取就够了。差别在成本。对照组用了 32,109 个 token，工具是它的 1.7 到 6.1 倍。跑成的三个 skill，搜索用的都是 Claude Code 自带的文件工具，不是 skill。10 个里有 3 个不开着 Obsidian 桌面应用就跑不了。"
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "Right (of 15)",
+    "答对（共 15）"
+   ],
+   [
+    "Calls through the tool",
+    "走工具的调用"
+   ],
+   [
+    "Plain file calls",
+    "普通文件调用"
+   ],
+   [
+    "Tokens (× control)",
+    "Token（对照的倍数）"
+   ],
+   [
+    "Time",
+    "耗时"
+   ]
+  ],
+  "see": [
+   "See the answers →",
+   "看 15 道题的回答 →"
+  ],
+  "evidence": [
+   "The answers",
+   "回答"
+  ],
+  "line_label": [
+   "Obsidian AI test, 2026-10-10:",
+   "2026-10-10 实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html"
+  },
+  "not_run_label": [
+   "Could not run in a sandbox",
+   "沙箱里跑不了"
+  ],
+  "not_run_line": [
+   "Could not run in our sandbox:",
+   "沙箱里跑不了："
+  ],
+  "verdict": {
+   "rule": [
+    "Listed by tokens used. Accuracy does not rank them: every tool that ran, and Claude Code with plain file tools, answered all 15 questions. One run each, on a 560-note vault.",
+    "按消耗的 token 排列。准确率分不出高下：跑成的每个工具，以及只用普通文件工具的 Claude Code，15 道题全部答对。每个只跑一次，测试库有 560 条笔记。"
+   ],
+   "picks": [
+    {
+     "repo": "bitbonsai/mcpvault",
+     "role": [
+      "If you want an MCP server for your vault",
+      "想给知识库接一个 MCP 服务"
+     ],
+     "why": [
+      "It reads the vault folder itself, so it works without the Obsidian app running, and it answered all 15 through its own tools for about twice the tokens of plain file tools. That is the price of using it from a client that has no file access.",
+      "它自己读库文件夹，不用开着 Obsidian 应用；15 道题全部通过它自己的工具答对，token 大约是普通文件工具的两倍。这是在没有文件访问权限的客户端里用它要付的价钱。"
+     ]
+    },
+    {
+     "repo": "AgriciDaniel/claude-obsidian",
+     "role": [
+      "If you work in Claude Code and want a vault workflow",
+      "在 Claude Code 里想要一套建库流程"
+     ],
+     "why": [
+      "The cheapest of the tools that ran (about 1.7 times the control). It did not change how questions get answered: Claude Code read the notes with its own tools. Install it for the note-taking workflow, not for recall.",
+      "跑成的工具里最省的（约为对照的 1.7 倍）。它没有改变回答问题的方式：笔记是 Claude Code 用自带工具读的。装它是为了记笔记的流程，不是为了检索。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Check before you install:",
+    "安装前先确认："
+   ],
+   "avoid": [
+    {
+     "repo": "MarkusPfundstein/mcp-obsidian",
+     "why": [
+      "the most-starred MCP server here needs Obsidian open with the Local REST API plugin, as do obsidian-mcp-tools and obsidian-mcp-server",
+      "这里星数最高的 MCP 服务，必须开着 Obsidian 并启用 Local REST API 插件；obsidian-mcp-tools 和 obsidian-mcp-server 也一样"
+     ]
+    },
+    {
+     "repo": "StevenStavrakis/obsidian-mcp",
+     "why": [
+      "all 15 right, at six times the tokens of plain file tools",
+      "15 题全对，但 token 是普通文件工具的六倍"
+     ]
+    }
+   ],
+   "caveat": [
+    "If you already use Claude Code in the vault folder, you may not need any of these to ask your notes a question: with no tool installed it answered all 15, including the three the vault cannot answer, for the fewest tokens.",
+    "如果你本来就在库文件夹里用 Claude Code，问笔记问题可能根本不需要这些工具：什么都不装，它 15 题全对（包括库里答不出的 3 题），用的 token 还最少。"
+   ]
+  },
+  "runs": {
+   "AgriciDaniel/claude-obsidian": {
+    "ran": true,
+    "stars": 14802,
+    "sheet": "AgriciDaniel__claude-obsidian.html",
+    "cells": [
+     [
+      "15/15",
+      null,
+      "touch-ups"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "7",
+      null,
+      "num"
+     ],
+     [
+      "53,840 (1.7×)",
+      null,
+      "num"
+     ],
+     [
+      "1.5 min",
+      "1.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "answered 15 of 15 questions about a test vault",
+      "测试库的 15 道题答对 15 道"
+     ],
+     [
+      "1.7× the tokens of plain file tools",
+      "token 是普通文件工具的 1.7 倍"
+     ],
+     [
+      "1 calls through the tool, 7 through plain file tools",
+      "1 次调用走工具，7 次走普通文件工具"
+     ]
+    ],
+    "note": "The skill was loaded once; the searching and reading were done with Claude Code's own file tools.",
+    "note_zh": "skill 只加载了一次；搜索和读取用的是 Claude Code 自带的文件工具。"
+   },
+   "eugeniughelbur/obsidian-second-brain": {
+    "ran": true,
+    "stars": 4633,
+    "sheet": "eugeniughelbur__obsidian-second-brain.html",
+    "cells": [
+     [
+      "15/15",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "8",
+      null,
+      "num"
+     ],
+     [
+      "60,051 (1.9×)",
+      null,
+      "num"
+     ],
+     [
+      "1.2 min",
+      "1.2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "answered 15 of 15 questions about a test vault",
+      "测试库的 15 道题答对 15 道"
+     ],
+     [
+      "1.9× the tokens of plain file tools",
+      "token 是普通文件工具的 1.9 倍"
+     ],
+     [
+      "0 calls through the tool, 8 through plain file tools",
+      "0 次调用走工具，8 次走普通文件工具"
+     ]
+    ],
+    "note": "Answered with Claude Code's own file tools; the skill is for building and maintaining a vault.",
+    "note_zh": "用 Claude Code 自带的文件工具回答；这个 skill 是用来建库和维护库的。"
+   },
+   "bitbonsai/mcpvault": {
+    "ran": true,
+    "stars": 1682,
+    "sheet": "bitbonsai__mcpvault.html",
+    "cells": [
+     [
+      "15/15",
+      null,
+      "touch-ups"
+     ],
+     [
+      "22",
+      null,
+      "num"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "67,784 (2.1×)",
+      null,
+      "num"
+     ],
+     [
+      "1.1 min",
+      "1.1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "answered 15 of 15 questions about a test vault",
+      "测试库的 15 道题答对 15 道"
+     ],
+     [
+      "2.1× the tokens of plain file tools",
+      "token 是普通文件工具的 2.1 倍"
+     ],
+     [
+      "22 calls through the tool, 2 through plain file tools",
+      "22 次调用走工具，2 次走普通文件工具"
+     ]
+    ],
+    "note": "Reads the vault folder directly, no Obsidian app needed; nearly every step went through its own tools.",
+    "note_zh": "直接读库文件夹，不需要 Obsidian 应用；几乎每一步都走它自己的工具。"
+   },
+   "Ar9av/obsidian-wiki": {
+    "ran": true,
+    "stars": 3537,
+    "sheet": "Ar9av__obsidian-wiki.html",
+    "cells": [
+     [
+      "15/15",
+      null,
+      "touch-ups"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "9",
+      null,
+      "num"
+     ],
+     [
+      "74,339 (2.3×)",
+      null,
+      "num"
+     ],
+     [
+      "1.4 min",
+      "1.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "answered 15 of 15 questions about a test vault",
+      "测试库的 15 道题答对 15 道"
+     ],
+     [
+      "2.3× the tokens of plain file tools",
+      "token 是普通文件工具的 2.3 倍"
+     ],
+     [
+      "1 calls through the tool, 9 through plain file tools",
+      "1 次调用走工具，9 次走普通文件工具"
+     ]
+    ],
+    "note": "The skill was loaded once; the searching and reading were done with Claude Code's own file tools.",
+    "note_zh": "skill 只加载了一次；搜索和读取用的是 Claude Code 自带的文件工具。"
+   },
+   "StevenStavrakis/obsidian-mcp": {
+    "ran": true,
+    "stars": 741,
+    "sheet": "StevenStavrakis__obsidian-mcp.html",
+    "cells": [
+     [
+      "15/15",
+      null,
+      "touch-ups"
+     ],
+     [
+      "36",
+      null,
+      "num"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "194,602 (6.1×)",
+      null,
+      "substantial"
+     ],
+     [
+      "1.4 min",
+      "1.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "answered 15 of 15 questions about a test vault",
+      "测试库的 15 道题答对 15 道"
+     ],
+     [
+      "6.1× the tokens of plain file tools",
+      "token 是普通文件工具的 6.1 倍"
+     ],
+     [
+      "36 calls through the tool, 3 through plain file tools",
+      "36 次调用走工具，3 次走普通文件工具"
+     ]
+    ],
+    "note": "Reads the vault folder directly; its search returns long results, which is where the tokens went.",
+    "note_zh": "直接读库文件夹；它的搜索返回的结果很长，token 就花在这里。"
+   },
+   "kepano/obsidian-skills": {
+    "ran": false,
+    "stars": 49294,
+    "sheet": "",
+    "reason": "Its skills teach an agent to write Obsidian formats (Markdown, Bases, Canvas); the only one that reads a vault drives the Obsidian app.",
+    "reason_zh": "它的 skill 教 agent 写 Obsidian 的格式（Markdown、Bases、Canvas）；唯一能读库的那个要驱动 Obsidian 应用。"
+   },
+   "breferrari/obsidian-mind": {
+    "ran": false,
+    "stars": 4922,
+    "sheet": "",
+    "reason": "Its server only exposes folders listed in a manifest inside the vault, and its search needs qmd; our test vault has neither, and adding them would change the vault.",
+    "reason_zh": "它的服务只开放库内清单文件里列出的文件夹，搜索还要装 qmd；测试库两样都没有，加进去就改动了库。"
+   },
+   "MarkusPfundstein/mcp-obsidian": {
+    "ran": false,
+    "stars": 4358,
+    "sheet": "",
+    "reason": "Works only through the Local REST API plugin inside the running Obsidian desktop app; a headless sandbox has none.",
+    "reason_zh": "只能通过正在运行的 Obsidian 桌面应用里的 Local REST API 插件工作；无界面的沙箱里没有。"
+   },
+   "jacksteamdev/obsidian-mcp-tools": {
+    "ran": false,
+    "stars": 833,
+    "sheet": "",
+    "reason": "Works only through the Local REST API plugin inside the running Obsidian desktop app; a headless sandbox has none.",
+    "reason_zh": "只能通过正在运行的 Obsidian 桌面应用里的 Local REST API 插件工作；无界面的沙箱里没有。"
+   },
+   "cyanheads/obsidian-mcp-server": {
+    "ran": false,
+    "stars": 691,
+    "sheet": "",
+    "reason": "Works only through the Local REST API plugin inside the running Obsidian desktop app; a headless sandbox has none.",
+    "reason_zh": "只能通过正在运行的 Obsidian 桌面应用里的 Local REST API 插件工作；无界面的沙箱里没有。"
+   }
+  }
  }
 }

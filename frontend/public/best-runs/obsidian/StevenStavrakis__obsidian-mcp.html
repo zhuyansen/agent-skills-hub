@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>StevenStavrakis/obsidian-mcp: Obsidian test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/obsidian-second-brain/">← Obsidian AI tools</a></p>
+<h1>StevenStavrakis/obsidian-mcp: test run, 2026-10-10</h1>
+<p class="mute">15 questions about a 560-note test vault, three for each of LongMemEval's five abilities. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and answered through it;
+a judge (gpt-6-astra, three passes) marked the answers. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/obsidian-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/obsidian-runs/make_vault.py">The vault and questions</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/obsidian-runs/in/prompt.txt">Task</a></p>
+<p><b>15 of 15 right.</b> 36 calls through the tool, 3 through plain file tools; 194,602 tokens; 1.4 min.</p><p>Reads the vault folder directly; its search returns long results, which is where the tokens went.</p>
+<h2>Question by question</h2><table><tr><th>Question</th><th>Mark</th></tr><tr><td>1. What budget was approved for the Harbor project?<br><span class='mute'>extraction · expected: 48,000 euros.</span></td><td><span class=ok>right</span></td></tr><tr><td>2. Which warehouse did the team choose for Lantern?<br><span class='mute'>extraction · expected: ClickHouse.</span></td><td><span class=ok>right</span></td></tr><tr><td>3. How does Mira Okafor prefer to receive feedback?<br><span class='mute'>extraction · expected: As comments in Figma, not in chat.</span></td><td><span class=ok>right</span></td></tr><tr><td>4. Who is the manager of the engineer who was assigned to migrate the reports API for Harbor?<br><span class='mute'>multi-note · expected: Priya Raman (Jonas Field migrates the reports API; his manager is Priya Raman).</span></td><td><span class=ok>right</span></td></tr><tr><td>5. Lantern is paused until another project ships. Who owns that other project?<br><span class='mute'>multi-note · expected: Priya Raman (Lantern is paused until Harbor ships; Harbor&#x27;s owner is Priya Raman).</span></td><td><span class=ok>right</span></td></tr><tr><td>6. The registrar account is under one person&#x27;s email. What is that person&#x27;s role?<br><span class='mute'>multi-note · expected: Customer support lead (Elena Voss).</span></td><td><span class=ok>right</span></td></tr><tr><td>7. Which happened first: the Lantern warehouse decision or the Harbor kickoff?<br><span class='mute'>temporal · expected: The Lantern warehouse decision (14 January 2026), before the Harbor kickoff (2 March 2026).</span></td><td><span class=ok>right</span></td></tr><tr><td>8. How many days passed between the Harbor kickoff and the Harbor review?<br><span class='mute'>temporal · expected: 49 days (2 March to 20 April 2026).</span></td><td><span class=ok>right</span></td></tr><tr><td>9. By how many open tickets did the support backlog fall between 2 April and 6 May 2026?<br><span class='mute'>temporal · expected: By 148 tickets (212 on 2 April to 64 on 6 May 2026).</span></td><td><span class=ok>right</span></td></tr><tr><td>10. When is Harbor&#x27;s launch date?<br><span class='mute'>update · expected: 9 June 2026 (moved from 15 May at the 20 April review).</span></td><td><span class=ok>right</span></td></tr><tr><td>11. What does the team currently pay per SMS?<br><span class='mute'>update · expected: 0.031 euros per message (switched to Corvid on 18 March 2026; the older provider&#x27;s 0.04 and 0.055 no longer apply).</span></td><td><span class=ok>right</span></td></tr><tr><td>12. Where is the team offsite?<br><span class='mute'>update · expected: Braga, 21 to 23 May (moved from Porto after the venue cancelled).</span></td><td><span class=ok>right</span></td></tr><tr><td>13. What is Tomasz Lind&#x27;s phone number?<br><span class='mute'>abstain · expected: Not in the vault; the correct answer is that the notes do not say.</span></td><td><span class=ok>right</span></td></tr><tr><td>14. How much did the Harbor project actually spend?<br><span class='mute'>abstain · expected: Not in the vault; only the approved budget (48,000 euros) is recorded, not the spend.</span></td><td><span class=ok>right</span></td></tr><tr><td>15. Which CI system does the team use?<br><span class='mute'>abstain · expected: Not in the vault; the notes do not say.</span></td><td><span class=ok>right</span></td></tr></table>
+<h2>The answers as written</h2><pre>1. The approved Harbor budget is 48,000 euros. The first ask was 60,000 euros, but finance cut it.
+2. The team chose ClickHouse for Lantern, over BigQuery and Postgres (decided 2026-01-14).
+3. Mira Okafor prefers feedback as comments in Figma, not in chat.
+4. Jonas Field was assigned to migrate the reports API, and his manager is Priya Raman.
+5. Lantern is paused until Harbor ships, and Harbor&#x27;s owner is Priya Raman.
+6. The registrar account is under Elena Voss&#x27;s work email, and Elena Voss is the customer support lead.
+7. The Lantern warehouse decision (2026-01-14) happened before the Harbor kickoff (2026-03-02).
+8. 49 days passed between the Harbor kickoff (2 March 2026) and the Harbor review (20 April 2026).
+9. The support backlog fell by 148 open tickets, from 212 on 2 April to 64 on 6 May 2026.
+10. Harbor&#x27;s launch date is 9 June 2026. It was moved from 15 May at the 20 April review.
+11. The team pays 0.031 euros per SMS, after switching to the provider Corvid on 2026-03-18.
+12. The offsite is in Braga, 21 to 23 May 2026. It moved there from Porto after the Porto venue cancelled.
+13. The notes do not say; Tomasz Lind&#x27;s note lists only an email (tomasz@example.invalid), not a phone number.
+14. The notes do not say; the budget notes say Harbor spend is tracked in the finance system, not in the vault.
+15. The notes do not say which CI system the team uses.
+</pre>
+<h2>How it was run (the session's closing message)</h2><pre>I answered all 15 questions using only the Obsidian MCP server&#x27;s search and read tools. I used the shell only to write the answers file, and nothing in the vault was changed.
+
+- **12 questions are answered from the notes.** Where a figure later changed, I used the newest one:
+  - Harbor&#x27;s launch moved from 15 May to 9 June 2026.
+  - The SMS price is now 0.031 euros per message, after the switch to the provider Corvid.
+  - The offsite moved from Porto to Braga, on the same dates.
+- **2 answers are my own arithmetic from dates and figures in the notes:**
+  - 49 days between the Harbor kickoff and review.
+  - The support backlog fell by 148 tickets, from 212 to 64. I left out a separate engineering backlog count of 97 issues, because it is a different queue.
+- **3 answers say the notes do not say:**
+  - Tomasz Lind&#x27;s phone number: his note lists only an email.
+  - Harbor&#x27;s actual spend: the notes say it is tracked in the finance system, not in the vault.
+  - Which CI system the team uses.
+
+DELIVERABLE: ~/work/output/answers.md</pre>
+</main></body></html>

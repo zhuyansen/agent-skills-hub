@@ -6195,10 +6195,25 @@
     "读写你的笔记时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "On a 560-note vault no tool answered better than plain file tools. All 5 tools that ran got 15 of 15, and so did Claude Code with nothing installed, including the three questions the vault cannot answer. This matches Letta's result that an agent with a filesystem does well on memory benchmarks.",
+     "item_zh": "在 560 条笔记的库上，没有工具比普通文件工具答得更好。跑成的 5 个工具都是 15 题全对，什么都不装的 Claude Code 也一样，包括库里答不出的 3 题。这和 Letta 的结论一致：有文件系统可用的 agent 在记忆基准上表现就很好。",
+     "ours": true
+    },
+    {
+     "item": "The tools cost 1.7 to 6.1 times the tokens of the control for the same answers; the most expensive returned long search results.",
+     "item_zh": "同样的答案，工具消耗的 token 是对照组的 1.7 到 6.1 倍；最贵的那个返回的搜索结果很长。",
+     "ours": true
+    },
+    {
+     "item": "3 of 10 tools, the most-starred MCP server among them, only work through the Local REST API plugin of a running Obsidian app.",
+     "item_zh": "10 个工具里有 3 个（包括星数最高的 MCP 服务）只能通过正在运行的 Obsidian 应用里的 Local REST API 插件工作。",
+     "ours": true
+    },
     {
      "item": "Memory over long use is hard: commercial chat assistants and long-context models lost 30% of their accuracy across sustained interactions, on 500 questions covering extraction, multi-session reasoning, time, updates and abstention (LongMemEval, ICLR 2025).",
      "item_zh": "长期使用下的记忆很难：在覆盖提取、跨会话推理、时间、更新、拒答的 500 道题上，商用助手和长上下文模型在持续对话中准确率下降 30%（LongMemEval，ICLR 2025）。"
@@ -6218,6 +6233,11 @@
    ],
    "did": [
     {
+     "item": "Ran 10 of the tools on the same 15 questions about a 560-note test vault, with Claude Code and plain file tools as the control, and marked every answer (gpt-6-astra, three passes). Results are in the test section above and on each card.",
+     "item_zh": "让其中 10 个工具回答同一个 560 条笔记测试库的 15 道题，用只带普通文件工具的 Claude Code 做对照，逐题评分（gpt-6-astra，三遍）。结果在上面的实测区和每张卡片上。",
+     "ours": true
+    },
+    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, how does it connect an agent to Obsidian.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、怎样把 agent 接进 Obsidian。"
     },
@@ -6236,8 +6256,9 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these tools end to end. The plan: a test vault and a question set built on LongMemEval's five abilities, with updated facts and questions whose answer is not in the notes, run through each tool against a plain grep baseline.",
-     "item_zh": "我们还没有端到端实跑这些工具。计划：建一个测试笔记库，按 LongMemEval 的五种能力出题，包括改过的事实和笔记里没有答案的问题，每个工具都跑一遍，并和纯 grep 基线对比。"
+     "item": "The vault is small and tidy, so the test cannot show what these tools do at tens of thousands of notes, where search quality starts to matter; every tool tied on accuracy. The questions are in English and ask for recall, not for writing or organising notes, which is what most of the skills are for. One run per tool; tools that need the Obsidian desktop app were not run.",
+     "item_zh": "测试库又小又整齐，测不出这些工具在几万条笔记时的表现（那时搜索质量才开始重要）；准确率上所有工具打平。题目是英文的，考的是检索，不是写笔记和整理笔记，而多数 skill 是为后者做的。每个工具只跑一次；需要 Obsidian 桌面应用的没有跑。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
