@@ -133,6 +133,9 @@ def _own_section(run: dict, slug: str, i: int, site: str, utm: str, w: dict) -> 
     out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
     if run.get("finding"):
         out += [("**发现:** " if i else "**What we found:** ") + run["finding"][i], ""]
+    for c in run.get("compare", []):   # the side-by-side picture, as on the page
+        url = f"{site}{run['dir']}{c['src']}"
+        out += [f"[![{c['en']}]({url})]({url})", "", f"*{c['zh'] if i else c['en']}*", ""]
     for g in run.get("groups") or [None]:
         rows = [p for p in ran if g is None or p[1].get("group") == g["id"]]
         out += ([f"### {g['title'][i]}", ""] if g else []) + _own_table(run, rows, i, site, w, (run.get("group_columns") or {}).get(g["id"] if g else None, run["columns"])) + [""]
