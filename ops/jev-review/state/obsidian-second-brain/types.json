@@ -2065,5 +2065,18 @@
    "sync": 0.74
   },
   "kind": "second_brain"
+ },
+ {
+  "repo": "caibucaiAI/caicai-english-buddy",
+  "stars": 51,
+  "description": "把真实英语口语对话沉淀成 Obsidian 每日记录、单词本、反馈标签与周复盘的 Codex Skill",
+  "scores": {
+   "skill": 0.92,
+   "mcp": 0.09,
+   "plugin": 0.05,
+   "second_brain": 0.42,
+   "sync": 0.84
+  },
+  "kind": "skill"
  }
 ]

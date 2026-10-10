@@ -9043,5 +9043,40 @@
   "days": 489,
   "stars_per_day": 2.5787321063394684,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "hamzabellouch/agent-skills",
+  "name": "agent-skills",
+  "stars": 8,
+  "description": "Comprehensive collection of 770+ production-ready Agent Skills across 9 core pillars (58 domains) conforming to the Agent Skills Standard, featuring native auto-discovery for Antigravity, Claude Code, Gemini CLI, Cursor, and Codex.",
+  "topics": [
+   "agent-skills",
+   "ai-agent",
+   "antigravity",
+   "claude-code",
+   "codex-cli",
+   "cursor",
+   "gemini-cli",
+   "skills"
+  ],
+  "created": "2026-07-18",
+  "pushed": "2026-10-09",
+  "source": "topic",
+  "readme_chars": 15192,
+  "names_model": false,
+  "on_subject": 0.45,
+  "is_software": 0.89,
+  "shows_result": 0.17,
+  "one_command_start": 0.13,
+  "specific_outcome": 0.34,
+  "complete_docs": 0.08,
+  "novel_angle": 0.58,
+  "shareable_output": 0.64,
+  "quality": 0.18000000000000002,
+  "tier": "低",
+  "hit_prior": 0.4633333333333333,
+  "days": 84,
+  "stars_per_day": 0.09523809523809523,
+  "verdict": "off_topic"
  }
 ]

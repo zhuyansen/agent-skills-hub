@@ -10052,5 +10052,31 @@
   "days": 183,
   "stars_per_day": 0.273224043715847,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "caibucaiAI/caicai-english-buddy",
+  "name": "caicai-english-buddy",
+  "stars": 51,
+  "description": "把真实英语口语对话沉淀成 Obsidian 每日记录、单词本、反馈标签与周复盘的 Codex Skill",
+  "topics": [],
+  "created": "2026-08-30",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 1534,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.97,
+  "shows_result": 0.03,
+  "one_command_start": 0.57,
+  "specific_outcome": 0.68,
+  "complete_docs": 0.22,
+  "novel_angle": 0.64,
+  "shareable_output": 0.57,
+  "quality": 0.375,
+  "tier": "低",
+  "hit_prior": 0.41333333333333333,
+  "days": 41,
+  "stars_per_day": 1.2439024390243902,
+  "verdict": "low_quality"
  }
 ]

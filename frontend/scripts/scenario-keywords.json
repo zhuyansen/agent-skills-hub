@@ -103,6 +103,10 @@
     "witold-andelie/revio",
     "wxmb01/review-skill",
     "zanetworker/highstakes"
+   ],
+   "exclude_repos": [
+    "MoaKK/AI-Code-Reviewer",
+    "n24q02m/better-code-review-graph"
    ]
   },
   "related": [
@@ -1551,7 +1555,8 @@
     "zkrige/zoidberg",
     "zooddd/tg-proxy-shop",
     "EvilFreelancer/tgfake",
-    "HNF-FRN/Reel-watcher-telegram-Agent"
+    "HNF-FRN/Reel-watcher-telegram-Agent",
+    "tuuject/surowan"
    ],
    "exclude_repos": [
     "smixs/iva"
@@ -1911,7 +1916,8 @@
     "charlesrapp/pruna-mcp-server",
     "if-ai/ComfyUI-IF_Gemini",
     "AtlasCloudAI/cli",
-    "frannkurt/nano-banana-mcp"
+    "frannkurt/nano-banana-mcp",
+    "Mats2208/qwen-image-local"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2846,7 +2852,8 @@
     "luongnv89/agent-skill-manager",
     "sametcelikbicak/rolecraft",
     "wanghuan9/skill-manager",
-    "jiweiyeah/Skills-Manager"
+    "jiweiyeah/Skills-Manager",
+    "wanghuan9/skilldock"
    ]
   },
   "related": [
@@ -3686,7 +3693,8 @@
     "changemaner/design-taste-frontend",
     "Mutakisa/game-slop-purge",
     "ilyautov/humanizer-it",
-    "phuryn/work-humanizer"
+    "phuryn/work-humanizer",
+    "XuanjinZhu/zh-scientific-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign"
@@ -4116,7 +4124,8 @@
     "Adityaraj0421/design-studio",
     "INSANE0777/Awwards-mcp",
     "KAOPU-XiaoPu/web-design",
-    "bergside/typeui.sh"
+    "bergside/typeui.sh",
+    "mahmoudilyan/marmoui"
    ]
   },
   "related": [
@@ -5988,12 +5997,14 @@
     "oomkapwn/enquire-mcp",
     "qisehong/wechat-to-obsidian-skill",
     "yejianye/ob-smart-connections-mcp",
-    "mistrysiddh/hermes-brain-template"
+    "mistrysiddh/hermes-brain-template",
+    "caibucaiAI/caicai-english-buddy"
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
     "bitbonsai/mcp-obsidian",
-    "fxa3bah/OneBrain"
+    "fxa3bah/OneBrain",
+    "caibucaiAI/obsidian-speaking-practice"
    ]
   },
   "related": [
@@ -6447,7 +6458,8 @@
     "BingoWon/apple-rag-mcp",
     "chuloontop4-code/jev-instance-review",
     "shitianfang/wakegate",
-    "zzsong1023/jev-market-reflex"
+    "zzsong1023/jev-market-reflex",
+    "dtunai/cu-Jev"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -6456,7 +6468,10 @@
     "harshwasan/pi-jev-sentinel",
     "itsmostafa/typesafe-mcp",
     "peterfriese/jev-foundation-models",
-    "uehaj/jev-semgrep"
+    "uehaj/jev-semgrep",
+    "AkashPriyadarshii/jev-curate",
+    "AkashPriyadarshii/jev-seo",
+    "Jwuthri/SelfJev"
    ]
   },
   "related": [
@@ -6800,7 +6815,11 @@
     "Kimeur/motion-launch-videos",
     "haiderfarooq3/khan-explainer",
     "kvrancic/oneshot-video",
-    "iart-ai/text-message-video-skills"
+    "iart-ai/text-message-video-skills",
+    "ymybxx/SoloMCN",
+    "timscheuerai/launch-video-kit",
+    "beriki770-ship-it/code-animations",
+    "hacimertgokhan/geomotion"
    ],
    "sub_skills": [
     {

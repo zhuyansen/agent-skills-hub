@@ -4948,5 +4948,77 @@
    "general": 0.13
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "ymybxx/SoloMCN",
+  "stars": 43,
+  "description": "把 Claude Code 变成你的短视频团队：不搭工作流，直接让 Claude 干活，从国内热榜、推特热帖到抖音、小红书、B站、YouTube、推特发布。Turn Claude Code into your short-video team — no workflows, from trends and X posts to publishing.",
+  "scores": {
+   "promo": 0.69,
+   "explainer": 0.53,
+   "music": 0.09,
+   "motion": 0.12,
+   "shorts": 0.89,
+   "editing": 0.25,
+   "demo": 0.89,
+   "story": 0.24,
+   "avatar": 0.13,
+   "general": 0.21
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "timscheuerai/launch-video-kit",
+  "stars": 6,
+  "description": "Turn your website into an Apple-style launch video in your own brand. Brand kit from your URL, a hook-plus-body film template, 10 agent skills for Claude Code and Codex, and a free audio path. MIT.",
+  "scores": {
+   "promo": 0.98,
+   "explainer": 0.13,
+   "music": 0.16,
+   "motion": 0.11,
+   "shorts": 0.17,
+   "editing": 0.21,
+   "demo": 0.33,
+   "story": 0.22,
+   "avatar": 0.07,
+   "general": 0.12
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "beriki770-ship-it/code-animations",
+  "stars": 5,
+  "description": "Claude Code skill: videos where a program draws every frame (Canvas 2D + Web Audio), rendered headless to MP4 in 16:9 / 9:16 / 4:5",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.71,
+   "music": 0.11,
+   "motion": 0.45,
+   "shorts": 0.51,
+   "editing": 0.03,
+   "demo": 0.3,
+   "story": 0.44,
+   "avatar": 0.03,
+   "general": 0.31
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "hacimertgokhan/geomotion",
+  "stars": 5,
+  "description": "Hand-drawn morphing line animations from simple shapes. Zero-dependency JS engine + live studio, CLI, MCP server & Claude skill. Export animated SVG, Lottie, HTML or a shareable link.",
+  "scores": {
+   "promo": 0.15,
+   "explainer": 0.1,
+   "music": 0.04,
+   "motion": 0.93,
+   "shorts": 0.06,
+   "editing": 0.02,
+   "demo": 0.29,
+   "story": 0.06,
+   "avatar": 0.02,
+   "general": 0.1
+  },
+  "kind": "motion"
  }
 ]

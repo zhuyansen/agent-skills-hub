@@ -711,6 +711,14 @@
   "type": "image/png",
   "bytes": 9063422
  },
+ "Mats2208/qwen-image-local": {
+  "repo": "Mats2208/qwen-image-local",
+  "url": "https://raw.githubusercontent.com/Mats2208/qwen-image-local/HEAD/assets/screen-edit.png",
+  "alt": "Qwen Image Local editing a generated bookstore image into a snowy night; the ref",
+  "score": -0.35,
+  "type": "image/png",
+  "bytes": 704574
+ },
  "MegaTroll222/VOX-COLLAGE-BROLL": {
   "repo": "MegaTroll222/VOX-COLLAGE-BROLL",
   "url": "https://raw.githubusercontent.com/MegaTroll222/VOX-COLLAGE-BROLL/HEAD/examples/snowball-preview.gif",
@@ -1279,6 +1287,14 @@
   "type": "image/png",
   "bytes": 80414
  },
+ "beriki770-ship-it/code-animations": {
+  "repo": "beriki770-ship-it/code-animations",
+  "url": "https://raw.githubusercontent.com/beriki770-ship-it/code-animations/HEAD/media/map.jpg",
+  "alt": "map",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 39690
+ },
  "billLiao/PPT-Design-Skill": {
   "repo": "billLiao/PPT-Design-Skill",
   "url": "https://raw.githubusercontent.com/billLiao/PPT-Design-Skill/HEAD/docs/previews/themes-grid.png",
@@ -1574,6 +1590,14 @@
   "score": -2.7,
   "type": "image/jpeg",
   "bytes": 265462
+ },
+ "dtunai/cu-Jev": {
+  "repo": "dtunai/cu-Jev",
+  "url": "https://raw.githubusercontent.com/dtunai/cu-Jev/HEAD/assets/starfighter.gif",
+  "alt": "cu-Jev Starfighter: Qwen3.5-4B flying a lane shooter through typed decisions",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 7715409
  },
  "eatmoreduck/SkillManager": {
   "repo": "eatmoreduck/SkillManager",
@@ -3063,6 +3087,14 @@
   "type": "image/png",
   "bytes": 153861
  },
+ "timscheuerai/launch-video-kit": {
+  "repo": "timscheuerai/launch-video-kit",
+  "url": "https://raw.githubusercontent.com/timscheuerai/launch-video-kit/HEAD/assets/preview.gif",
+  "alt": "The Acme example: hook, the cut, hero words, the product at close range, the loc",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 6280296
+ },
  "tirth8205/code-review-graph": {
   "repo": "tirth8205/code-review-graph",
   "url": "https://raw.githubusercontent.com/tirth8205/code-review-graph/HEAD/diagrams/diagram1_before_vs_after.png",
@@ -3126,6 +3158,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 3780730
+ },
+ "tuuject/surowan": {
+  "repo": "tuuject/surowan",
+  "url": "https://raw.githubusercontent.com/tuuject/surowan/HEAD/assets/readme/author-notes.png",
+  "alt": "作者关于 BYOK 模型成本、Coding Plan 使用边界和群聊自动化用量的心得截图",
+  "score": -0.3,
+  "type": "image/png",
+  "bytes": 404819
  },
  "tuzhechen2005/opus-video-skills": {
   "repo": "tuzhechen2005/opus-video-skills",
@@ -3350,6 +3390,14 @@
   "score": -0.3,
   "type": "image/png",
   "bytes": 496708
+ },
+ "ymybxx/SoloMCN": {
+  "repo": "ymybxx/SoloMCN",
+  "url": "https://raw.githubusercontent.com/ymybxx/SoloMCN/HEAD/docs/images/x-feed.png",
+  "alt": "素材里的推特",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 443217
  },
  "young920/gz-ppt-skill": {
   "repo": "young920/gz-ppt-skill",

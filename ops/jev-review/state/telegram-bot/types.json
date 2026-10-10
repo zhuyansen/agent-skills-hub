@@ -3540,5 +3540,19 @@
    "business": 0.04
   },
   "kind": "remote"
+ },
+ {
+  "repo": "tuuject/surowan",
+  "stars": 10,
+  "description": "基于 Agent 的 AI 驱动 Telegram Bot「塑料碗」",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.07,
+   "framework": 0.41,
+   "utility": 0.32,
+   "fun": 0.63,
+   "business": 0.06
+  },
+  "kind": "assistant"
  }
 ]

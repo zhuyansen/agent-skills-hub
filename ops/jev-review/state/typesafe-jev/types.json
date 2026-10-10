@@ -4948,5 +4948,20 @@
    "general": 0.07
   },
   "kind": "business"
+ },
+ {
+  "repo": "dtunai/cu-Jev",
+  "stars": 5,
+  "description": "cuda-Jev — a CUDA-native Jev System One decision inference engine. Jev compatible API, examples, and reproducible benchmarks.",
+  "scores": {
+   "replica": 0.95,
+   "agent": 0.44,
+   "devtool": 0.1,
+   "sdk": 0.68,
+   "business": 0.07,
+   "consumer": 0.07,
+   "general": 0.25
+  },
+  "kind": "replica"
  }
 ]

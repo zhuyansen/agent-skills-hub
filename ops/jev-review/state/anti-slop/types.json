@@ -3260,5 +3260,19 @@
    "rules": 0.36
   },
   "kind": "writing"
+ },
+ {
+  "repo": "XuanjinZhu/zh-scientific-humanizer",
+  "stars": 5,
+  "description": "Codex skill for Chinese scientific manuscript humanizing, terminology protection, and evidence-strength review.",
+  "scores": {
+   "writing": 0.29,
+   "detector": 0.21,
+   "chinese": 0.98,
+   "code": 0.09,
+   "design": 0.04,
+   "rules": 0.77
+  },
+  "kind": "chinese"
  }
 ]
