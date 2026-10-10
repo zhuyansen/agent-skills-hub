@@ -1,0 +1,6 @@
+The repository at ~/src is a tool for using an Obsidian vault with an AI agent (an MCP server, a Claude Code skill or plugin, or a vault template with commands). Install it so that a new Claude Code session can use it on the vault at ~/work/input/vault, following its own README:
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`, pointed at ~/work/input/vault;
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents);
+- a vault template: install its commands and skills at user scope; do not copy its sample notes into ~/work/input/vault.
+There is no Obsidian desktop app on this machine and none can be started. If the tool only works through the running Obsidian app (for example through the Local REST API plugin), say so: print SETUP: failed needs the Obsidian app. Do not replace it with something else.
+Do not answer any questions about the vault yet. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.

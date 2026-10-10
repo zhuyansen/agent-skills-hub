@@ -1,0 +1,92 @@
+[
+ {
+  "n": 1,
+  "ability": "extraction",
+  "question": "What budget was approved for the Harbor project?",
+  "answer": "48,000 euros."
+ },
+ {
+  "n": 2,
+  "ability": "extraction",
+  "question": "Which warehouse did the team choose for Lantern?",
+  "answer": "ClickHouse."
+ },
+ {
+  "n": 3,
+  "ability": "extraction",
+  "question": "How does Mira Okafor prefer to receive feedback?",
+  "answer": "As comments in Figma, not in chat."
+ },
+ {
+  "n": 4,
+  "ability": "multi-note",
+  "question": "Who is the manager of the engineer who was assigned to migrate the reports API for Harbor?",
+  "answer": "Priya Raman (Jonas Field migrates the reports API; his manager is Priya Raman)."
+ },
+ {
+  "n": 5,
+  "ability": "multi-note",
+  "question": "Lantern is paused until another project ships. Who owns that other project?",
+  "answer": "Priya Raman (Lantern is paused until Harbor ships; Harbor's owner is Priya Raman)."
+ },
+ {
+  "n": 6,
+  "ability": "multi-note",
+  "question": "The registrar account is under one person's email. What is that person's role?",
+  "answer": "Customer support lead (Elena Voss)."
+ },
+ {
+  "n": 7,
+  "ability": "temporal",
+  "question": "Which happened first: the Lantern warehouse decision or the Harbor kickoff?",
+  "answer": "The Lantern warehouse decision (14 January 2026), before the Harbor kickoff (2 March 2026)."
+ },
+ {
+  "n": 8,
+  "ability": "temporal",
+  "question": "How many days passed between the Harbor kickoff and the Harbor review?",
+  "answer": "49 days (2 March to 20 April 2026)."
+ },
+ {
+  "n": 9,
+  "ability": "temporal",
+  "question": "By how many open tickets did the support backlog fall between 2 April and 6 May 2026?",
+  "answer": "By 148 tickets (212 on 2 April to 64 on 6 May 2026)."
+ },
+ {
+  "n": 10,
+  "ability": "update",
+  "question": "When is Harbor's launch date?",
+  "answer": "9 June 2026 (moved from 15 May at the 20 April review)."
+ },
+ {
+  "n": 11,
+  "ability": "update",
+  "question": "What does the team currently pay per SMS?",
+  "answer": "0.031 euros per message (switched to Corvid on 18 March 2026; the older provider's 0.04 and 0.055 no longer apply)."
+ },
+ {
+  "n": 12,
+  "ability": "update",
+  "question": "Where is the team offsite?",
+  "answer": "Braga, 21 to 23 May (moved from Porto after the venue cancelled)."
+ },
+ {
+  "n": 13,
+  "ability": "abstain",
+  "question": "What is Tomasz Lind's phone number?",
+  "answer": "Not in the vault; the correct answer is that the notes do not say."
+ },
+ {
+  "n": 14,
+  "ability": "abstain",
+  "question": "How much did the Harbor project actually spend?",
+  "answer": "Not in the vault; only the approved budget (48,000 euros) is recorded, not the spend."
+ },
+ {
+  "n": 15,
+  "ability": "abstain",
+  "question": "Which CI system does the team use?",
+  "answer": "Not in the vault; the notes do not say."
+ }
+]

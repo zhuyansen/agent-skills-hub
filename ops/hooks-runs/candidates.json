@@ -1,0 +1,74 @@
+[
+ {
+  "repo": "disler/claude-code-hooks-mastery",
+  "kind": "hooks",
+  "stars": 3930,
+  "grade": "safe"
+ },
+ {
+  "repo": "karanb192/claude-code-hooks",
+  "kind": "hooks",
+  "stars": 530,
+  "grade": "safe"
+ },
+ {
+  "repo": "lasso-security/claude-hooks",
+  "kind": "hooks",
+  "stars": 267,
+  "grade": "caution"
+ },
+ {
+  "repo": "sangrokjung/claude-forge",
+  "kind": "collection",
+  "stars": 849,
+  "grade": "safe"
+ },
+ {
+  "repo": "johnzfitch/claude-warden",
+  "kind": "hooks",
+  "stars": 60,
+  "grade": "safe"
+ },
+ {
+  "repo": "wangbooth/Claude-Code-Guardrails",
+  "kind": "hooks",
+  "stars": 54,
+  "grade": "caution"
+ },
+ {
+  "repo": "safe-agentic-world/nomos",
+  "kind": "tooling",
+  "stars": 19,
+  "grade": "safe"
+ },
+ {
+  "repo": "renefichtmueller/claude-code-hardened",
+  "kind": "hooks",
+  "stars": 11,
+  "grade": "safe"
+ },
+ {
+  "repo": "Aedelon/claude-code-blueprint",
+  "kind": "collection",
+  "stars": 120,
+  "grade": "safe"
+ },
+ {
+  "repo": "sd0xdev/sd0x-harness",
+  "kind": "collection",
+  "stars": 192,
+  "grade": "safe"
+ },
+ {
+  "repo": "tak848/ccgate",
+  "kind": "hooks",
+  "stars": 84,
+  "grade": "safe"
+ },
+ {
+  "repo": "ldayton/Dippy",
+  "kind": "hooks",
+  "stars": 243,
+  "grade": "safe"
+ }
+]

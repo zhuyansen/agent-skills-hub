@@ -1,0 +1,8 @@
+A design skill or tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, or MCP tools; check `claude mcp list` too). Use it, following its own workflow and rules, to design and build the landing page described in ~/work/brief.md.
+
+Rules:
+- Do not ask me any questions. Where the skill would ask (style, palette, direction, audience), take its default or the option that best fits the brief, and continue.
+- Use the copy in the brief exactly. Do not add sections, testimonials, logos or claims that are not in it.
+- Write the page to ~/work/output/index.html, one self-contained file.
+- If the skill cannot be installed or used, stop and say why. Do not build the page some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output/index.html

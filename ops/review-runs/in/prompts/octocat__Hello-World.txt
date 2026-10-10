@@ -1,0 +1,7 @@
+This is the control run: no review tool is installed. Review pull requests yourself, as you normally would.
+
+The repository ~/work/input/shop is a small Python order service. It has a `main` branch and 12 branches named pr-01-… to pr-12-…; each branch is one pull request against main (`git diff main...<branch>`).
+
+For every one of the 12 branches, review it and write your findings to ~/work/output/<branch>.md: every finding with a severity (blocking, should fix, or nit) and the file and line. If you find nothing, write "No findings."
+
+Rules: do not ask me any questions; do not fix the code and do not commit anything. When you finish, print one line: DELIVERABLE: ~/work/output

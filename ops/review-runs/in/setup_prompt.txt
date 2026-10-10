@@ -1,0 +1,5 @@
+The repository at ~/src is an AI code review tool (a Claude Code skill or plugin, an MCP server, a CLI, or similar). Install it so that it can be used in a new Claude Code session, following its own README:
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents);
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`;
+- a package or CLI: install it and configure it. If it needs an LLM key, configure it for the OpenAI-compatible endpoint the review session will have: OPENAI_BASE_URL=http://127.0.0.1:8787/v1, OPENAI_API_KEY=sk-sandbox-proxy, model gpt-6-astra (the endpoint is not up yet during setup). It has no Anthropic, Gemini or GitHub key.
+Do not review anything yet. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.

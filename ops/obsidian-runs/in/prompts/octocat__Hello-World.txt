@@ -1,0 +1,7 @@
+This is the control run: no Obsidian tool is installed. The vault is at ~/work/input/vault: a team's notes in Markdown (daily notes, projects, meetings, people).
+
+Answer the 15 questions in ~/work/input/questions.md from the vault, using your ordinary file tools (search and read).
+
+Write ~/work/output/answers.md: one numbered line per question (1. to 15.), each a short answer in one or two sentences. If the vault does not hold the answer, say that the notes do not say; do not guess.
+
+Rules: do not ask me any questions; do not change the vault. When you finish, print one line: DELIVERABLE: ~/work/output/answers.md

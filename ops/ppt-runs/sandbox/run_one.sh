@@ -7,7 +7,13 @@ git clone --depth 1 "https://github.com/$REPO.git" ~/src 2>&1 | tail -1
 cd ~/src && git rev-parse HEAD > "$OUT/commit.txt"; cd ~/work
 # NO_PREINSTALL=1 (the skill-manager test): installing the tool is part of the task,
 # so nothing from the repo is copied into ~/.claude first.
-if [ -z "${NO_PREINSTALL:-}" ]; then
+# FORCE_SETUP=1 (the hooks test): the tool is registered in settings by an agent session that
+# follows its README; copying SKILL.md folders would not install a hook.
+if [ -n "${FORCE_SETUP:-}" ]; then
+  timeout 15m claude -p "$(cat /in/setup_prompt.txt)" --model "${CLAUDE_MODEL:-opus}" --dangerously-skip-permissions \
+    --output-format stream-json --verbose > "$OUT/setup.jsonl" 2>> "$OUT/claude.err"
+  echo "agent-setup" > "$OUT/install.txt"
+elif [ -z "${NO_PREINSTALL:-}" ]; then
 # Install every SKILL.md folder; a repo may ship several.
 find ~/src -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
   d=$(dirname "$f"); n=$(basename "$d"); [ "$d" = ~/src ] && n=$(basename "$REPO")

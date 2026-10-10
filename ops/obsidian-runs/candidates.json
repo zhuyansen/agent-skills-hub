@@ -1,0 +1,62 @@
+[
+ {
+  "repo": "kepano/obsidian-skills",
+  "kind": "skill",
+  "stars": 49294,
+  "grade": "safe"
+ },
+ {
+  "repo": "AgriciDaniel/claude-obsidian",
+  "kind": "skill",
+  "stars": 14802,
+  "grade": "safe"
+ },
+ {
+  "repo": "breferrari/obsidian-mind",
+  "kind": "template",
+  "stars": 4922,
+  "grade": "safe"
+ },
+ {
+  "repo": "eugeniughelbur/obsidian-second-brain",
+  "kind": "skill",
+  "stars": 4633,
+  "grade": "safe"
+ },
+ {
+  "repo": "MarkusPfundstein/mcp-obsidian",
+  "kind": "mcp",
+  "stars": 4358,
+  "grade": "safe"
+ },
+ {
+  "repo": "Ar9av/obsidian-wiki",
+  "kind": "skill",
+  "stars": 3537,
+  "grade": "safe"
+ },
+ {
+  "repo": "bitbonsai/mcpvault",
+  "kind": "mcp",
+  "stars": 1682,
+  "grade": "safe"
+ },
+ {
+  "repo": "jacksteamdev/obsidian-mcp-tools",
+  "kind": "mcp",
+  "stars": 833,
+  "grade": "safe"
+ },
+ {
+  "repo": "StevenStavrakis/obsidian-mcp",
+  "kind": "mcp",
+  "stars": 741,
+  "grade": "safe"
+ },
+ {
+  "repo": "cyanheads/obsidian-mcp-server",
+  "kind": "mcp",
+  "stars": 691,
+  "grade": "safe"
+ }
+]

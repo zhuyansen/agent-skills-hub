@@ -1,0 +1,15 @@
+An AI code review tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools, or a CLI; check `claude mcp list` too). Review pull requests with that tool, following its own workflow.
+
+The repository ~/work/input/shop is a small Python order service. It has a `main` branch and 12 branches named pr-01-… to pr-12-…; each branch is one pull request against main (`git diff main...<branch>`).
+
+For every one of the 12 branches:
+- Review it with the tool, the way the tool is meant to be used on a pull request or a diff.
+- Write what the tool found to ~/work/output/<branch>.md: every finding, with the severity or priority the tool gives it and the file and line. If the tool finds nothing, write "No findings."
+- Report the tool's findings, not your own: do not add issues the tool did not raise, and do not drop ones it did. If the tool is a skill that tells you how to review, follow it and write down what that review produces.
+
+Rules:
+- Do not ask me any questions; where the tool would ask, take its default.
+- If the tool needs an LLM key, OPENAI_BASE_URL and OPENAI_API_KEY are set (OpenAI-compatible, model gpt-6-astra). There is no GitHub token and no remote: review the local branches.
+- Do not fix the code and do not commit anything.
+- If the tool cannot be installed or run on local branches, stop and say why. Do not review the code some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output

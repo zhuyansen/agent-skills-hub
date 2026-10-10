@@ -1,0 +1,3 @@
+This is the control run: no design skill is installed. Design and build the landing page described in ~/work/brief.md yourself, as you normally would.
+
+Rules: do not ask me any questions; use the copy in the brief exactly, and do not add sections, testimonials, logos or claims that are not in it; write the page to ~/work/output/index.html, one self-contained file. When you finish, print one line: DELIVERABLE: ~/work/output/index.html

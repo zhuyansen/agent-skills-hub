@@ -1,0 +1,98 @@
+[
+ {
+  "repo": "awesome-skills/code-review-skill",
+  "kind": "skill",
+  "stars": 1914,
+  "grade": "safe"
+ },
+ {
+  "repo": "hyhmrright/brooks-lint",
+  "kind": "skill",
+  "stars": 1506,
+  "grade": "safe"
+ },
+ {
+  "repo": "amElnagdy/guard-skills",
+  "kind": "skill",
+  "stars": 1153,
+  "grade": "safe"
+ },
+ {
+  "repo": "vikingmute/review-forge",
+  "kind": "skill",
+  "stars": 220,
+  "grade": "safe"
+ },
+ {
+  "repo": "w1ckedxt/cynical-sally",
+  "kind": "skill",
+  "stars": 96,
+  "grade": "safe"
+ },
+ {
+  "repo": "nathankim0/clean-architecture-skills",
+  "kind": "skill",
+  "stars": 90,
+  "grade": "safe"
+ },
+ {
+  "repo": "alibaba/open-code-review",
+  "kind": "cli",
+  "stars": 43912,
+  "grade": "safe"
+ },
+ {
+  "repo": "HexmosTech/git-lrc",
+  "kind": "cli",
+  "stars": 1472,
+  "grade": "safe"
+ },
+ {
+  "repo": "Gentleman-Programming/gentleman-guardian-angel",
+  "kind": "cli",
+  "stars": 1180,
+  "grade": "safe"
+ },
+ {
+  "repo": "imbue-ai/vet",
+  "kind": "cli",
+  "stars": 519,
+  "grade": "safe"
+ },
+ {
+  "repo": "getsentry/warden",
+  "kind": "cli",
+  "stars": 414,
+  "grade": "safe"
+ },
+ {
+  "repo": "kenn-io/roborev",
+  "kind": "cli",
+  "stars": 1746,
+  "grade": "safe"
+ },
+ {
+  "repo": "codexstar69/bug-hunter",
+  "kind": "multi",
+  "stars": 487,
+  "grade": "safe"
+ },
+ {
+  "repo": "spencermarx/open-code-review",
+  "kind": "multi",
+  "stars": 331,
+  "grade": "safe"
+ },
+ {
+  "repo": "adamjgmiller/adamsreview",
+  "kind": "multi",
+  "stars": 243,
+  "grade": "safe"
+ },
+ {
+  "repo": "GGGODLIN/claude-pr-review",
+  "kind": "multi",
+  "stars": 114,
+  "grade": "safe"
+ }
+]

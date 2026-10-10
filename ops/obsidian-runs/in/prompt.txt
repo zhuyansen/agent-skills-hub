@@ -1,0 +1,10 @@
+An Obsidian tool from ~/src has been installed for you (MCP tools, a skill in ~/.claude/skills, or plugin commands; check `claude mcp list` too). The vault is at ~/work/input/vault: a team's notes (daily notes, projects, meetings, people).
+
+Answer the 15 questions in ~/work/input/questions.md from the vault, using that tool to search and read the notes: its search and read tools if it is an MCP server, its workflow if it is a skill. Use your own file tools only where the tool gives you no way to do the step.
+
+Write ~/work/output/answers.md: one numbered line per question (1. to 15.), each a short answer in one or two sentences. If the vault does not hold the answer, say that the notes do not say; do not guess.
+
+Rules:
+- Do not ask me any questions. Do not change, add or delete notes in the vault.
+- If the tool cannot be used on this vault, stop and say why. Do not answer some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output/answers.md

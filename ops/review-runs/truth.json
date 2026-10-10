@@ -1,0 +1,50 @@
+{
+ "pr-01-list-pagination": {
+  "title": "Add pagination to list_orders",
+  "defect": "Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE)."
+ },
+ "pr-02-extract-row-helper": {
+  "title": "Extract the order row lookup into a helper",
+  "defect": null
+ },
+ "pr-03-search-by-note": {
+  "title": "Search a user's orders by note text",
+  "defect": "SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters."
+ },
+ "pr-04-payment-logging": {
+  "title": "Log payment attempts for support",
+  "defect": "Secret in logs: the card token is written to the application log."
+ },
+ "pr-05-docstrings-and-types": {
+  "title": "Add docstrings and type hints to stock",
+  "defect": null
+ },
+ "pr-06-cancel-order": {
+  "title": "Let users cancel an order",
+  "defect": "Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone's order."
+ },
+ "pr-07-payment-retry": {
+  "title": "Retry a failed capture up to three times",
+  "defect": "Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises)."
+ },
+ "pr-08-validate-create-order": {
+  "title": "Validate input when creating an order",
+  "defect": null
+ },
+ "pr-09-capture-errors": {
+  "title": "Do not crash checkout when the gateway errors",
+  "defect": "Swallowed exception: a failed capture is ignored and the order is still marked paid."
+ },
+ "pr-10-reserve-check": {
+  "title": "Tidy the stock reservation check",
+  "defect": "Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available."
+ },
+ "pr-11-test-list-orders": {
+  "title": "Add a test for list_orders",
+  "defect": null
+ },
+ "pr-12-speed-up-tests": {
+  "title": "Make the forbidden-order test less flaky",
+  "defect": "Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised."
+ }
+}
