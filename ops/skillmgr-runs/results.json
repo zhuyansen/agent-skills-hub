@@ -109,41 +109,51 @@
   "stars": 322,
   "grade": "safe",
   "ran": true,
-  "untested": "github-only",
-  "reason": "Installs only from GitHub (owner/repo); the test skills were local folders, so install, prune and sync were not tested.",
+  "minutes": 2.0,
+  "installed_20": true,
+  "risky": "installed without a word",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": null,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "README says skills give agents expertise '... loaded on demand to extend capabilities'. That describes how agents use skills; skillfish itself does nothing to control loading.",
   "report": {
    "installed_tool": true,
-   "install_command": "npm i -g skillfish (failed with EACCES on /usr/local; succeeded after `npm config set prefix ~/.npm-global`) -> skillfish 1.0.39",
+   "install_command": "npm i -g --prefix ~/.npm-global skillfish  (README says `npm i -g skillfish`; plain form failed with EACCES on /usr/local, so a user prefix was used; skillfish 1.0.39)",
    "step1": {
-    "done": false,
-    "how": "skillfish add ~/work/input/library --all --agent \"Claude Code\" --yes; also tried a git-init copy: skillfish add /tmp/libgit ... and skillfish add file:///tmp/libgit ...",
-    "note": "skillfish only accepts GitHub owner/repo sources and fetches via api.github.com. Local paths failed with 'Invalid repository format. Use: owner/repo', and file:// failed with 'Invalid path component...'. A local git repo doesn't help because the tool never runs git. 0 skills installed."
+    "done": true,
+    "how": "skillfish add zhuyansen/skill-manager-test-fixtures --all --agent \"Claude Code\"",
+    "note": "Non-interactive (stdin not a TTY), so it used the global (~/) default. All 20 went to ~/.claude/skills. measure: 21137 -> 21482 context tokens."
    },
    "step2": {
-    "done": false,
-    "tool_output": "Installing skill from: runner/work/input/risky/pdf-tools-pro\nInvalid repository format. Use: owner/repo",
+    "done": true,
+    "tool_output": "│\n◇  Found 1 skill\n│\n●  Pdf Tools Pro - Merge, split and compress PDF files. Run scripts/setup.sh o…\nInstalling to 1 agent(s): Claude Code\n│\n◇  Installing pdf-tools-pro\n│\n◇  Installed\n  ✓ Claude Code → ~/.claude/skills/pdf-tools-pro\n\n│\n└  Done! Installed 1 skill",
     "showed_source": false,
     "listed_scripts": false,
     "warned": false,
     "asked_confirmation": false,
     "blocked": false,
-    "note": "Rejected only because it is a local path, not because of the script. The source has no script detection or warning (README: 'skillfish does not vet third-party skills'). setup.sh was not run."
+    "note": "Installed without any check. The only mention of the script is the skill's own description text, cut off ('Run scripts/setup.sh o…'). The source code has an interactive-only confirmInstallBatch: a generic 'Skills can instruct AI agents...' warning, the source line and a confirm prompt. Non-interactive mode skips it, and it never inspects or lists scripts. README: 'skillfish does not vet third-party skills.' setup.sh was not run."
    },
    "step3": {
-    "done": false,
-    "how": "skillfish list; skillfish remove pdf-tools-pro --yes",
+    "done": true,
+    "how": "skillfish list; then skillfish remove <name> for each of the 16 unwanted skills (accessibility-check ... unit-test-scaffold, pdf-tools-pro included)",
     "could_list": true,
-    "note": "list worked: it detected Claude Code and reported 'No skills installed'. remove reported 'Skill \"pdf-tools-pro\" not found'. Nothing to prune because steps 1-2 installed nothing. remove <name> / remove --all exist and would have done this."
+    "note": "skillfish list now shows exactly csv-cleaner, git-commit-message, pr-description, readme-polisher, sql-explainer. measure: 5 skills, 21277 context tokens."
    },
    "step4": {
-    "done": null,
-    "how": "not run",
-    "note": "Codex is a supported agent (~/.codex/skills), but only via `skillfish add <owner/repo> --agent Codex` from GitHub, and only for detected agents (~/.codex does not exist here). There is no command to sync installed or local skills from one agent to another. Skipped; the 'synced' measurement was not run."
+    "done": false,
+    "how": "skillfish add zhuyansen/skill-manager-test-fixtures csv-cleaner --agent Codex",
+    "note": "Codex is a supported agent (~/.codex/skills), but skillfish only installs to detected agents (it looks for ~/.codex or ./.codex). Here it failed with 'Agent not found: \"Codex\". Detected agents: Claude Code'. I did not create ~/.codex to fake detection, and did not run measure.sh synced."
    },
-   "loads_on_demand": "README says skills are 'loaded on demand to extend capabilities' (in its general description of Agent Skills). The tool itself does nothing to control loading; it only copies skill folders into each agent's skills directory."
+   "loads_on_demand": "README says skills give agents expertise '... loaded on demand to extend capabilities'. That describes how agents use skills; skillfish itself does nothing to control loading."
   },
-  "risky": "-",
-  "minutes": 1.6
+  "commit": "b34c0688bc55"
  },
  {
   "repo": "VintLin/skill-flow",
@@ -357,41 +367,50 @@
   "stars": 198,
   "grade": "safe",
   "ran": true,
-  "untested": "github-only",
-  "reason": "Adds skills only from GitHub URLs; the test skills were local folders, so install, prune and sync were not tested.",
+  "minutes": 3.0,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": false,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated",
   "report": {
    "installed_tool": true,
-   "install_command": "npm i -g skills-link (README command; failed with EACCES on /usr/local, so ran: npm i -g --prefix ~/.npm-global skills-link -> v1.3.0, same as ~/src), then first-time setup `skills-link` with all defaults (English, paths correct, no GitHub) -> master dir ~/.local/share/aiskills, ~/.claude/skills symlinked to it",
+   "install_command": "npm i -g skills-link  (failed with EACCES on /usr/local; succeeded as: npm i -g --prefix ~/.npm-global skills-link), then first-run setup `skills-link` with all defaults (English, paths correct, no GitHub)",
    "step1": {
-    "done": false,
-    "how": "skills-link add ~/work/gitcopy/library  and  skills-link add file:///home/runner/work/gitcopy/library (git-init'd copy of the library)",
-    "note": "Both rejected with '✗ Invalid GitHub address'. `add` only accepts github.com URLs or user/repo shorthand (src/commands/add.ts parseRepoUrl). Setup/main command only imports skills already present in agent skill dirs (~/.claude/skills etc.); there is no command to import from a local folder. 0 skills installed."
+    "done": true,
+    "how": "for s in <20 skill names>; do skills-link add zhuyansen/skill-manager-test-fixtures -s $s; done  (run from the dir holding config.yaml)",
+    "note": "`add` installs only one skill per call (no 'all' option; without -s it shows a single-choice list), so 20 calls were needed. Skills are copied into master dir ~/.local/share/aiskills and ~/.claude/skills is a symlink to it. Config.yaml is written to the current working directory (README claims ~/AISkills/config.yaml), so the first attempt from another cwd failed with 'Config file not found' and an extra `measure.sh installed-20` was recorded showing 0 skills; re-ran from the setup dir and re-measured: 20 skills."
    },
    "step2": {
-    "done": false,
-    "tool_output": "✗ Invalid GitHub address",
-    "showed_source": false,
+    "done": true,
+    "tool_output": "● Cloning https://github.com/zhuyansen/skill-manager-test-risky-fixture...\n✔ Installed: pdf-tools-pro\n✔ Install complete!\n",
+    "showed_source": true,
     "listed_scripts": false,
     "warned": false,
     "asked_confirmation": false,
-    "blocked": false,
-    "note": "Ran `skills-link add ~/work/gitcopy2/pdf-tools-pro` (git-init'd copy). Rejected only because it is not a GitHub URL, not for safety reasons. Source review of add.ts: for a GitHub repo it clones, finds SKILL.md dirs and copies the whole folder (scripts included) into the master dir with no script listing, warning, or confirmation (only an overwrite prompt if the name already exists). setup.sh was never run."
+    "blocked": false
    },
    "step3": {
-    "done": false,
-    "how": "skills-link list; skills-link remove",
+    "done": true,
+    "how": "skills-link list; skills-link remove (interactive checkbox: toggled all, deselected the 5 keepers, confirmed y) ; skills-link list",
     "could_list": true,
-    "note": "list printed '⚠ No local skills found'; remove printed '⚠ No skills in master directory' since nothing was installed. remove is interactive (checkbox multi-select + confirm, default No) and deletes from the master dir, so it could prune in principle."
+    "note": "16 skills deleted incl. pdf-tools-pro; 5 remain. remove is interactive-only (no name arguments); it shows the selection and asks for confirmation (default No)."
    },
    "step4": {
     "done": false,
-    "how": "skills-link app (toggled Codex on -> '✔ Codex enabled'), then skills-link",
-    "note": "Codex is a supported agent (~/.codex/skills), and enabling it worked. But the main command reports Codex as 'not installed' because ~/.codex doesn't exist, so it created no link. There were also no skills to share. Nothing was made available to Codex."
+    "how": "skills-link app (enabled Codex, path ~/.codex/skills), then skills-link and skills-link health",
+    "note": "The tool supports Codex and enabled it in config, but only creates the symlink if the agent's parent dir (~/.codex) exists; Codex is not installed here so it reported 'Codex not installed' and created no link. I did not create ~/.codex by hand. measure.sh synced was run anyway: 5 skills in ~/.claude/skills, none for Codex."
    },
    "loads_on_demand": "not stated"
   },
-  "risky": "-",
-  "minutes": 2.6
+  "commit": "26487aee4948"
  },
  {
   "repo": "nnnggel/skills-management",

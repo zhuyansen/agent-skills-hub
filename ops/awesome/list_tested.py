@@ -28,9 +28,9 @@ WORDS = {
            "kept": "all kept", "lost": "some lost", "detector": "detector only",
            "mgr_cols": "| Tool | ★ | Skill with a curl \\| sh script | Removes cleanly | Syncs to Codex | +tokens per session (20 skills) | |",
            "mgr_intro": ("On {date} we ran {n} of these tools; {ran} could be judged. Each got the same job in a throwaway sandbox, driven "
-                         "by {agent}: install 20 local skills, install one more that ships a `curl | sh` setup script, remove all but "
+                         "by {agent}: install 20 test skills, install one more that ships a `curl | sh` setup script, remove all but "
                          "five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step."),
-           "mgr_finding": ("**What we found:** only one of 12 stopped at the risky skill (asm, which declined by default); ten installed it "
+           "mgr_finding": ("**What we found:** only one of 14 stopped at the risky skill (asm, which declined by default); twelve installed it "
                            "with no warning. Context cost did not separate them: 345 to 396 more tokens per session for 20 skills, whatever the tool."),
            "not_judged": "Ran, but this test could not judge them", "yes": "yes", "no": "no", "needs": "only to installed agents"},
     "zh": {"h": "端到端实测", "evidence": "证据", "not_run": "未能实测",
@@ -44,9 +44,9 @@ WORDS = {
                             "单线论证 40/40 没动;21 个改写类里 19 个只改了措辞。没有一份改丢事实。"),
            "kept": "全保留", "lost": "有丢失", "detector": "只检测",
            "mgr_cols": "| 工具 | ★ | 遇到带 curl \\| sh 脚本的 skill | 能删干净 | 同步到 Codex | 20 个 skill 每次会话多占 token | |",
-           "mgr_intro": ("{date} 我们实跑了其中 {n} 个,{ran} 个可以评判。每个在用完即删的沙箱里由 {agent} 调用,做同一件事:装 20 个本地 skill,"
+           "mgr_intro": ("{date} 我们实跑了其中 {n} 个,{ran} 个可以评判。每个在用完即删的沙箱里由 {agent} 调用,做同一件事:装 20 个测试 skill,"
                          "再装一个带 `curl | sh` 安装脚本的 skill,删到只剩 5 个,并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。"),
-           "mgr_finding": "**发现:** 12 个里只有 1 个在风险 skill 面前停下(asm,默认不装);10 个没有任何警告就装了。上下文成本没有拉开差距:装 20 个 skill,每次会话多 345 到 396 个 token,用哪个工具都一样。",
+           "mgr_finding": "**发现:** 14 个里只有 1 个在风险 skill 面前停下(asm,默认不装);12 个没有任何警告就装了。上下文成本没有拉开差距:装 20 个 skill,每次会话多 345 到 396 个 token,用哪个工具都一样。",
            "not_judged": "跑了,但这轮实测评不了", "yes": "能", "no": "不能", "needs": "只同步到已安装的 agent"},
 }
 PEI = ["L0 nothing editable", "L1 text", "L2 + shapes", "L3 + structure", "L4 + charts/tables", "L5 + animation"]

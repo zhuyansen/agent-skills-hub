@@ -19,11 +19,16 @@ RUNS_JSON = ROOT / "frontend/scripts/scenario-runs.json"
 DATE = "2026-10-09"
 REPO_URL = "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/"
 REASON_ZH = {
-    "knoxgraeme/skillfish": "只能从 GitHub（owner/repo）安装；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。",
-    "shanliuling/skills-link": "只能从 GitHub 地址添加 skill；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。",
     "infragate/capa": "只装到项目目录（./.claude/skills），不装全局；它在项目里装好、清理并同步了，但我们的测量只看用户主目录。",
     "egebese/skill-manager": "不是安装工具：它是一个 skill，分析已装的 skill，并在 CLAUDE.md 里列出建议停用的。",
 }
+# What a reader should know beside the result, from reading the run.
+CARD_NOTES = {
+    "knoxgraeme/skillfish": ("Installs from GitHub only. In an interactive terminal it asks one generic confirmation for any install; it never looks at scripts.",
+                             "只能从 GitHub 安装。交互式终端里每次安装都会问一句通用确认，但不检查脚本。"),
+    "shanliuling/skills-link": ("Installs from GitHub only, one skill per command; removal is interactive.", "只能从 GitHub 安装，一条命令装一个；删除只能交互操作。"),
+}
+NEEDS_AGENT = ("not installed", "Agent not found", "detected agents", "Target directory not found")
 STYLE = """:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
 @media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
@@ -68,7 +73,7 @@ def page(r: dict, run: Path) -> str:
 <meta name="robots" content="noindex"><title>{esc(r['repo'])}: skill manager test</title><style>{STYLE}</style></head><body><main>
 <p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
 <h1>{esc(r['repo'])}: test run, {DATE}</h1>
-<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 test skills (local folders, or two public fixture repositories for tools that install only from GitHub), install one more that ships a
 <code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit {esc(r.get('commit'))}.
 <a href="{REPO_URL}RESULTS.md">All results</a> · <a href="{REPO_URL}in/prompt.txt">Task</a> · <a href="{REPO_URL}in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
 {note}
@@ -86,9 +91,12 @@ def card(r: dict) -> dict:
     if r.get("untested"):
         return {**base, "ran": False, "reason": r["reason"], "reason_zh": REASON_ZH.get(r["repo"], r["reason"])}
     s4 = (r.get("report") or {}).get("step4") or {}
-    needs_agent = r["synced_to_codex"] is False and "not installed" in (s4.get("note") or "")
-    return {**base, "ran": True, "minutes": r["minutes"], "risky": risky_code(r), "prunes": r["pruned_to_5"],
-            "syncs": "needs-agent" if needs_agent else r["synced_to_codex"], "extra_tokens": r["extra_tokens_20"]}
+    needs_agent = not r["synced_to_codex"] and any(k in (s4.get("note") or "") for k in NEEDS_AGENT)
+    out = {**base, "ran": True, "minutes": r["minutes"], "risky": risky_code(r), "prunes": r["pruned_to_5"],
+           "syncs": "needs-agent" if needs_agent else bool(r["synced_to_codex"]), "extra_tokens": r["extra_tokens_20"]}
+    if r["repo"] in CARD_NOTES:
+        out.update(note=CARD_NOTES[r["repo"]][0], note_zh=CARD_NOTES[r["repo"]][1])
+    return out
 
 
 def main() -> None:

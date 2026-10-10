@@ -207,8 +207,8 @@ export function runsSectionHtml(run) {
     ? ["each rewrote the same three texts (an English post, a Chinese post, a short story)", "每个改写同样的三份文本（英文文章、中文文章、短篇小说）"]
     : ["each built a deck from the same brief", "每个按同一份测试题做一份 deck"];
   const intro = mgr
-    ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 local skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
-       `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个本地 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
+    ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 test skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
+       `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个测试 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
     : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.`,
        `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。`];
   return `<section id="test-results" class="bp-tr">

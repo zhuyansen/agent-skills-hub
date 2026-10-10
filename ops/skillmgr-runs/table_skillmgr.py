@@ -15,10 +15,9 @@ OUT = HERE / "out"
 KEEP = {"csv-cleaner", "sql-explainer", "git-commit-message", "pr-description", "readme-polisher"}
 RISKY = "pdf-tools-pro"
 LIBRARY = {p.parent.name for p in (HERE / "in/input/library").rglob("SKILL.md")}
-# What the test could not judge fairly, from reading each run (2026-10-09).
+# What the test could not judge fairly, from reading each run (2026-10-09). skillfish and skills-link install
+# only from GitHub; they were rerun on 10-10 from two public fixture repos and are judged like the rest.
 NOTES = {
-    "knoxgraeme/skillfish": ("github-only", "Installs only from GitHub (owner/repo); the test skills were local folders, so install, prune and sync were not tested."),
-    "shanliuling/skills-link": ("github-only", "Adds skills only from GitHub URLs; the test skills were local folders, so install, prune and sync were not tested."),
     "infragate/capa": ("project-scope", "Installs per project (./.claude/skills), never globally; it installed, pruned and synced the project copy, which the home-folder measurement does not see."),
     "egebese/skill-manager": ("different-job", "Not an installer: a skill that analyses installed skills and lists the ones to disable in CLAUDE.md."),
 }

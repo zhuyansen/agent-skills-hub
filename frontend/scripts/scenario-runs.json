@@ -935,9 +935,14 @@
    "knoxgraeme/skillfish": {
     "stars": 322,
     "sheet": "knoxgraeme__skillfish.html",
-    "ran": false,
-    "reason": "Installs only from GitHub (owner/repo); the test skills were local folders, so install, prune and sync were not tested.",
-    "reason_zh": "只能从 GitHub（owner/repo）安装；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。"
+    "ran": true,
+    "minutes": 2.0,
+    "risky": "silent",
+    "prunes": true,
+    "syncs": "needs-agent",
+    "extra_tokens": 345,
+    "note": "Installs from GitHub only. In an interactive terminal it asks one generic confirmation for any install; it never looks at scripts.",
+    "note_zh": "只能从 GitHub 安装。交互式终端里每次安装都会问一句通用确认，但不检查脚本。"
    },
    "VintLin/skill-flow": {
     "stars": 262,
@@ -982,9 +987,14 @@
    "shanliuling/skills-link": {
     "stars": 198,
     "sheet": "shanliuling__skills-link.html",
-    "ran": false,
-    "reason": "Adds skills only from GitHub URLs; the test skills were local folders, so install, prune and sync were not tested.",
-    "reason_zh": "只能从 GitHub 地址添加 skill；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。"
+    "ran": true,
+    "minutes": 3.0,
+    "risky": "source",
+    "prunes": true,
+    "syncs": "needs-agent",
+    "extra_tokens": 345,
+    "note": "Installs from GitHub only, one skill per command; removal is interactive.",
+    "note_zh": "只能从 GitHub 安装，一条命令装一个；删除只能交互操作。"
    },
    "nnnggel/skills-management": {
     "stars": 128,
