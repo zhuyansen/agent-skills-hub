@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-10
+1. franzenzenhofer/big-arrow-on-the-screen — 🆕 让智能体在 Mac 屏幕上画大箭头、方框和文字，点击可穿透、用完自动消失（401★ 224.1/day）
+2. Miftahul-Islam-Efaz/Motion-graphics-skill — 🆕 给 Claude Code、Codex 和 Cursor 装上动效剪辑技能，本地完成策划、动画、字幕和音效（80★ 53.2/day）
+3. phuryn/work-humanizer — 🆕 去掉职场文字里的 AI 腔，不改原意和承诺，附盲评与逐条人工核对证据（47★ 47.0/day）
+4. haiderfarooq3/khan-explainer — 🆕 生成可汗学院风格讲解视频，画笔边画、人声边讲，本地免费、不用 API 密钥（24★ 24.0/day）
+5. Aryanutkarsh/SeeCode — 🆕 用一段简短 JSON 生成可交互的动画图解，帮 Claude 等编程智能体讲清代码（119★ 16.1/day）
+6. SpaceZephyr/map-motion — 🆕 基于高德真实路线和卫星底图做地图动效视频，地球俯冲、徒步海拔等 12 种风格（32★ 12.7/day）
+7. harrysolovay/traits-poc — 🆕 试验把判断任务改造成 Jev 式调用的工具，作者自述仍是早期半成品（37★ 9.0/day）
+8. hellosverre/claude-skins — 🆕 给 Claude Code 的对话记录换皮肤，工具行、回复栏和加载词用 /skin 实时切换（61★ 8.3/day）
+9. danielmiessler/Deeds — 🆕 逐条读取提交差异，统计新增能力、修复和维护，不靠数 PR 衡量 AI 产出（25★ 4.3/day）
+10. gal064/muxflow — 搭建远程优先的 tmux 编程智能体工作台，手机通知、语音回复、SSH 贴截图（76★ 3.3/day）
+🎯 今日趋势：候选池继续偏薄，48h 内合格新鲜项仅 **8 个**，放宽到 72h 才凑满十席；**9 席**标 🆕，做片与动效类（动效剪辑、可汗式讲解、地图动效）占 **3 席**，加上动画图解 SeeCode，"让智能体产出看得见的东西"占了 **4 席**。
+> 注：去重范围＝repo 内 archive 全部 107 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,565 个（含路径噪声，只会多剔不会漏剔）。首查 `first_seen ≥48h`、stars ≥20 共 105 条，命中历史 11 条剔除，余 94 条中建仓 ≤30 天且非集群的仅 13 条，逐个复核后合格 8 个，按规则**放宽到 72h**（72h 查询触顶 LIMIT 150，另加 `created_at ≥30 天` 条件补查一次，共 3 次单连接串行查询）。velocity = stars ÷ max(距 created_at 天数, 1)，取 72h 查询的快照。big-arrow-on-the-screen 在本任务运行期间被另一份独立榜单（今日 fresh-skills-archive）写入，属当日并行榜单而非本榜历史推荐，保留。**排除项**：①codewhale-hq/Codewhale（41,074★ 155.9/day）：建仓 263 天、本期才收录，不算新鲜，且所属组织 09-08 新建、仅 4 粉，按 10-08 先例排除；②mcpdelta/mcpdelta（80★ 33.3/day）：10-07 新建组织、0 粉、仅 1 仓，产品自述"即将推出"；③HeyCubit/effortless（61★ 15.0/day）：10-06 新建组织、0 粉、仅 1 仓；④glmn-ai/neurosquad-cli（26★）：09-10 新建组织、1 粉、其余仓 ≤1★、0 fork；⑤floorianmb/prism-viz（29★）：0 粉、仅 1 仓；⑥dieqiyun/uni-switch（33★）：1 粉、另一仓 0★；⑦chienbm98/foxprofile（33★）：3 粉、其余仓 0★，fork 27 接近星数，且为反检测浏览器；⑧Arther-hup/forge-context-engine 等 10 个 Roblox 仓：同日（09-23）建仓、星数 70–71 雷同、标题堆砌"Best…2026"，集群刷星嫌疑（与 10-08、10-09 同批）；⑨Q-shuang-dot/ai-coding-welfare：中转站与返利导航，灰色地带；⑩decodingai-magazine/building-a-coding-agent-from-scratch-course、micro/go-micro、bubbuild/bub 等：建仓 34 天至十年以上、本期才收录，不算新鲜；⑪其余均已在历史榜单出现。入选项复核（`gh api`）：第 1 席 franzenzenhofer 2010 建号、177 粉、其余仓 ≤10★（量级偏大，**轻红旗**；老号、MIT、描述具体，保留）；第 2 席 Miftahul-Islam-Efaz 2025 建号、11 粉、其余仓 ≤6★、无许可证、标题带"Best"（**轻红旗**，单仓非集群、fork 11 与星数相称，保留）；第 3 席 phuryn 2014 建号、1,189 粉、名下 pm-skills 26,860★；第 4 席 haiderfarooq3 2024 建号、12 粉、其余仓 0★（**轻红旗**，量级小、描述具体，保留）；第 5 席 Aryanutkarsh 2022 建号、19 粉、其余仓 ≤1★（**轻红旗**，保留）；第 6 席 SpaceZephyr 2019 建号、298 粉、名下 creator-buddy 1,612★；第 7 席 harrysolovay 2013 建号、320 粉、名下 rescripts 1,057★，DB 分类 uncategorized 但为 Jev 工具；第 8 席 hellosverre 2026-04 建号、1 粉、其余仓 ≤2★（**轻红旗**，fork 8、描述具体，保留）；第 9 席 danielmiessler 2009 建号、17,074 粉、名下 Fabric 44,192★；第 10 席 gal064 2019 建号、1 粉、其余仓 ≤1★、0 fork（**轻红旗**，为凑满十席保留）。🆕 判定＝created_at 距今 14 天内，除 muxflow（建仓 23.1 天）外九席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（big-arrow 485★、SeeCode 123★、claude-skins 69★），按红线保留快照值。
+
+---
+
 ## 2026-10-09
 1. orange2ai/podcast-to-article — 🆕 把多人对谈播客逐字稿整理成可发布长文，校准人名、精简三分之一并自检 AI 味（113★ 64.5/day）
 2. jimoto-no-llm/rustdsh — 🆕 用 Rust 重写 DSH 启动器，自带原生快捷命令、受控智能体工具和本地项目面板（59★ 11.8/day）
