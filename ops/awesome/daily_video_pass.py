@@ -48,7 +48,7 @@ PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页",
               "skill-management-tools": "Skill 管理页", "telegram-bot": "Telegram 页", "ai-design": "设计页",
               "knowledge-base": "知识库页", "claude-code-hooks": "Hooks 页",
               "obsidian-second-brain": "Obsidian 页", "anti-slop": "去 AI 味页",
-              "image-generation": "生图页"}
+              "image-generation": "生图页", "code-review": "Code Review 页"}
 QUEUE_TAG = "daily-video-pass"
 DESC_MODEL = "gpt-5.6"
 DESC_MAX = 80

@@ -362,11 +362,12 @@
     "about": "/about/",
     "x": "https://x.com/GoSailGlobal",
     "github": "https://github.com/zhuyansen",
-    "role": "Builds and maintains Agent Skills Hub; tracking open-source agent skills and code review agents since 2024; author of the Blue Book of Agent Skills 2026.",
-    "role_zh": "Agent Skills Hub 的作者与维护者；2024 年起追踪开源 agent skill 和代码审查 agent；《Agent Skills 蓝皮书 2026》作者。",
+    "role": "Builds and maintains Agent Skills Hub and the awesome-claude-code-review list; tracking open-source agent skills and code review agents since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 和 awesome-claude-code-review 合集的作者与维护者；2024 年起追踪开源 agent skill 和代码审查 agent；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-08"
    }
-  }
+  },
+  "github_list": "https://github.com/zhuyansen/awesome-claude-code-review"
  },
  {
   "slug": "mcp-database",

@@ -63,6 +63,14 @@
   "type": "image/png",
   "bytes": 48443
  },
+ "AaronZ345/codebase-argus": {
+  "repo": "AaronZ345/codebase-argus",
+  "url": "https://raw.githubusercontent.com/AaronZ345/codebase-argus/HEAD/docs/assets/codebase-argus-home.png",
+  "alt": "Codebase Argus dashboard showing PR, CI, and downstream fork-sync review workflo",
+  "score": -2.7,
+  "type": "image/png",
+  "bytes": 297111
+ },
  "Aaryan-Kapoor/video-production-skill": {
   "repo": "Aaryan-Kapoor/video-production-skill",
   "url": "https://raw.githubusercontent.com/Aaryan-Kapoor/video-production-skill/HEAD/examples/generated/papers/clawmark-living-world-benchmark/exports/clawmark_showcase_preview.gif",
@@ -70,6 +78,30 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 84148
+ },
+ "Addepar/RedFlag": {
+  "repo": "Addepar/RedFlag",
+  "url": "https://raw.githubusercontent.com/Addepar/RedFlag/main/docs/images/Report-Animated.gif",
+  "alt": "",
+  "score": 0.45,
+  "type": "image/gif",
+  "bytes": 6278613
+ },
+ "Aestheticsuraj234/chai-ai-code-reviewer": {
+  "repo": "Aestheticsuraj234/chai-ai-code-reviewer",
+  "url": "https://raw.githubusercontent.com/Aestheticsuraj234/chai-ai-code-reviewer/HEAD/public/93506170-1cba-4fd5-b466-a1348ad9bd3a.png",
+  "alt": "Chai AI Code Reviewer — AI Reviews Your PRs",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1375173
+ },
+ "Agent-Field/pr-af": {
+  "repo": "Agent-Field/pr-af",
+  "url": "https://raw.githubusercontent.com/Agent-Field/pr-af/HEAD/assets/blog-ai-native-code-review.webp",
+  "alt": "An engineer reading a pull request through a telescope of risk dimensions.",
+  "score": -0.35,
+  "type": "image/webp",
+  "bytes": 166028
  },
  "AgentiaPT/vela-slides": {
   "repo": "AgentiaPT/vela-slides",
@@ -199,6 +231,14 @@
   "type": "image/gif",
   "bytes": 132285
  },
+ "Aurite-ai/agent-verifier": {
+  "repo": "Aurite-ai/agent-verifier",
+  "url": "https://raw.githubusercontent.com/Aurite-ai/agent-verifier/HEAD/assets/agent_verifier.gif",
+  "alt": "demo",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 3256920
+ },
  "Ayushmaniar/powerpoint-mcp": {
   "repo": "Ayushmaniar/powerpoint-mcp",
   "url": "https://raw.githubusercontent.com/Ayushmaniar/powerpoint-mcp/HEAD/video_thumbnail.jpg",
@@ -279,6 +319,14 @@
   "type": "image/png",
   "bytes": 48861
  },
+ "Continuum-AI-Corp/Orca-Code-Review": {
+  "repo": "Continuum-AI-Corp/Orca-Code-Review",
+  "url": "https://raw.githubusercontent.com/Continuum-AI-Corp/Orca-Code-Review/HEAD/docs/demo-review.gif",
+  "alt": "Claude Code with the orca-review skill reviewing a pull request by number: plan,",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 3468323
+ },
  "DAIBird-0/pdf2ppt_skill": {
   "repo": "DAIBird-0/pdf2ppt_skill",
   "url": "https://raw.githubusercontent.com/DAIBird-0/pdf2ppt_skill/HEAD/examples/ellmob-demo/preview.png",
@@ -302,6 +350,22 @@
   "score": 2.5,
   "type": "image/gif",
   "bytes": 2728180
+ },
+ "DanielT777/sieve": {
+  "repo": "DanielT777/sieve",
+  "url": "https://raw.githubusercontent.com/DanielT777/sieve/HEAD/assets/sieve.png",
+  "alt": "Sieve Logo",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 79322
+ },
+ "DeepCodeAI/vscode-extension": {
+  "repo": "DeepCodeAI/vscode-extension",
+  "url": "https://raw.githubusercontent.com/DeepCodeAI/vscode-extension/HEAD/images/on-premise-url.gif",
+  "alt": "DeepCode On-premise url",
+  "score": 2.9,
+  "type": "image/gif",
+  "bytes": 616280
  },
  "Dimillian/CodexSkillManager": {
   "repo": "Dimillian/CodexSkillManager",
@@ -391,6 +455,14 @@
   "type": "image/png",
   "bytes": 116146
  },
+ "GGGODLIN/claude-pr-review": {
+  "repo": "GGGODLIN/claude-pr-review",
+  "url": "https://raw.githubusercontent.com/GGGODLIN/claude-pr-review/HEAD/assets/claude-pr-review-hero.png",
+  "alt": "claude-pr-review — Five review axes. One verified report.",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1032565
+ },
  "GTKottman/mortiflix-oss": {
   "repo": "GTKottman/mortiflix-oss",
   "url": "https://raw.githubusercontent.com/GTKottman/mortiflix-oss/HEAD/docs/media/how-to-use-mortiflix.gif",
@@ -406,6 +478,22 @@
   "score": 1.7,
   "type": "image/png",
   "bytes": 1383035
+ },
+ "Gentleman-Programming/gentleman-guardian-angel": {
+  "repo": "Gentleman-Programming/gentleman-guardian-angel",
+  "url": "https://github.com/user-attachments/assets/e534ba1e-0044-45c7-a788-b455733c0052",
+  "alt": "image",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 482688
+ },
+ "Gil2015/code-gate": {
+  "repo": "Gil2015/code-gate",
+  "url": "https://raw.githubusercontent.com/Gil2015/code-gate/HEAD/assets/review.png",
+  "alt": "Code Gate example",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 490251
  },
  "GongRzhe/Office-PowerPoint-MCP-Server": {
   "repo": "GongRzhe/Office-PowerPoint-MCP-Server",
@@ -471,6 +559,22 @@
   "type": "image/png",
   "bytes": 571646
  },
+ "HexmosTech/LiveReview": {
+  "repo": "HexmosTech/LiveReview",
+  "url": "https://raw.githubusercontent.com/HexmosTech/LiveReview/HEAD/assets/screenshots/git-lrc/issue-navigator.gif",
+  "alt": "Issue Navigator: browse review comments by risk category, severity, and area",
+  "score": 0.6,
+  "type": "image/gif",
+  "bytes": 1621163
+ },
+ "HexmosTech/git-lrc": {
+  "repo": "HexmosTech/git-lrc",
+  "url": "https://raw.githubusercontent.com/HexmosTech/git-lrc/HEAD/gfx/issue-navigator.gif",
+  "alt": "Issue Navigator: browse review comments by risk category, severity, and area",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 1621163
+ },
  "HututuWorks/sci-diagram-pptx": {
   "repo": "HututuWorks/sci-diagram-pptx",
   "url": "https://raw.githubusercontent.com/HututuWorks/sci-diagram-pptx/HEAD/docs/cases/municipal-solid-waste-ghg-accounting-framework.png",
@@ -478,6 +582,14 @@
   "score": 1.65,
   "type": "image/png",
   "bytes": 385804
+ },
+ "Integral-Healthcare/robin-ai-reviewer": {
+  "repo": "Integral-Healthcare/robin-ai-reviewer",
+  "url": "https://raw.githubusercontent.com/Integral-Healthcare/robin-ai-reviewer/HEAD/assets/robin.png",
+  "alt": "Robin watercolor image",
+  "score": -0.1,
+  "type": "image/png",
+  "bytes": 1475582
  },
  "IskakovDamir/apple-motion": {
   "repo": "IskakovDamir/apple-motion",
@@ -655,6 +767,14 @@
   "type": "image/png",
   "bytes": 238667
  },
+ "Nayjest/Gito": {
+  "repo": "Nayjest/Gito",
+  "url": "https://github.com/user-attachments/assets/4bdfe954-9c0e-4df1-8e9c-4ea8b43b4f79",
+  "alt": "image",
+  "score": -0.4,
+  "type": "image/png",
+  "bytes": 133328
+ },
  "NeekChaw/mcp-server-okppt": {
   "repo": "NeekChaw/mcp-server-okppt",
   "url": "https://raw.githubusercontent.com/NeekChaw/mcp-server-okppt/HEAD/example/Financial_Crisis_2008.png",
@@ -719,6 +839,14 @@
   "type": "image/png",
   "bytes": 2063518
  },
+ "ReviewStage/stage-cli": {
+  "repo": "ReviewStage/stage-cli",
+  "url": "https://raw.githubusercontent.com/ReviewStage/stage-cli/main/assets/screenshot.png",
+  "alt": "Stage CLI",
+  "score": -2.7,
+  "type": "image/png",
+  "bytes": 1853175
+ },
  "Ronnie2025/codex-ppt-skill": {
   "repo": "Ronnie2025/codex-ppt-skill",
   "url": "https://raw.githubusercontent.com/Ronnie2025/codex-ppt-skill/HEAD/assets/examples/02-risk-framework.png",
@@ -742,6 +870,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 1208226
+ },
+ "ScanLineDev/scanline": {
+  "repo": "ScanLineDev/scanline",
+  "url": "https://github.com/ScanLineDev/scanline/assets/2404105/d8984fe3-42f2-4efa-b2ea-a93e05961c36",
+  "alt": "ScanLine_UI_Web_example",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 1273414
  },
  "SciToolsmith/sci-diagram-pptx": {
   "repo": "SciToolsmith/sci-diagram-pptx",
@@ -774,6 +910,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 7939838
+ },
+ "SomeStay07/code-review-agent": {
+  "repo": "SomeStay07/code-review-agent",
+  "url": "https://raw.githubusercontent.com/SomeStay07/code-review-agent/HEAD/assets/demo.gif",
+  "alt": "Code Reviewer Agent demo — review output in terminal",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 185329
  },
  "SpaceZephyr/map-motion": {
   "repo": "SpaceZephyr/map-motion",
@@ -815,6 +959,22 @@
   "type": "image/gif",
   "bytes": 1335161
  },
+ "Teycir/Assumptions": {
+  "repo": "Teycir/Assumptions",
+  "url": "https://raw.githubusercontent.com/Teycir/Assumptions/HEAD/assets/demo.gif",
+  "alt": "Assumptions Promo",
+  "score": 4.5,
+  "type": "image/gif",
+  "bytes": 7487195
+ },
+ "The-PR-Agent/pr-agent": {
+  "repo": "The-PR-Agent/pr-agent",
+  "url": "https://www.codium.ai/images/pr_agent/describe_new_short_main.png",
+  "alt": "",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 124930
+ },
  "ThunderOne18/ppt-expert-team": {
   "repo": "ThunderOne18/ppt-expert-team",
   "url": "https://raw.githubusercontent.com/ThunderOne18/ppt-expert-team/HEAD/docs/images/style-picker.png",
@@ -838,6 +998,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 752936
+ },
+ "VirtusLab/tulip": {
+  "repo": "VirtusLab/tulip",
+  "url": "https://raw.githubusercontent.com/VirtusLab/tulip/HEAD/screens/code.png",
+  "alt": "A prose explanation interleaved with a syntax-highlighted side-by-side diff",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 928874
  },
  "WhiteTowerAI/cut-as-code": {
   "repo": "WhiteTowerAI/cut-as-code",
@@ -879,6 +1047,14 @@
   "type": "image/webp",
   "bytes": 670382
  },
+ "ZephyrDeng/pi-review": {
+  "repo": "ZephyrDeng/pi-review",
+  "url": "https://raw.githubusercontent.com/ZephyrDeng/pi-review/HEAD/docs/assets/panel-live-pi.jpg",
+  "alt": "Pi Review Panel: correctness, security and testing reviewers running live with m",
+  "score": -0.25,
+  "type": "image/jpeg",
+  "bytes": 54926
+ },
  "abhinavshrivastava950/Montara": {
   "repo": "abhinavshrivastava950/Montara",
   "url": "https://raw.githubusercontent.com/abhinavshrivastava950/Montara/HEAD/demos/previews/01-engine-matrix-preview.gif",
@@ -911,6 +1087,14 @@
   "type": "image/png",
   "bytes": 64211
  },
+ "adshao/chatgpt-code-review-action": {
+  "repo": "adshao/chatgpt-code-review-action",
+  "url": "https://pbs.twimg.com/media/FqOsplnaMAERrgP?format=jpg&name=large",
+  "alt": "demo",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 320763
+ },
  "adunext/adu-motion-video": {
   "repo": "adunext/adu-motion-video",
   "url": "https://raw.githubusercontent.com/adunext/adu-motion-video/HEAD/assets/demos/02-B.gif",
@@ -918,6 +1102,14 @@
   "score": 4.6,
   "type": "image/gif",
   "bytes": 931712
+ },
+ "agentgg-dev/agentgg": {
+  "repo": "agentgg-dev/agentgg",
+  "url": "https://raw.githubusercontent.com/agentgg-dev/agentgg/main/static/agentgg-view.png",
+  "alt": "agentgg viewer UI showing scan findings",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 130905
  },
  "ahmdd4vd/MotionCraft": {
   "repo": "ahmdd4vd/MotionCraft",
@@ -951,6 +1143,14 @@
   "type": "image/gif",
   "bytes": 2270366
  },
+ "alibaba/open-code-review": {
+  "repo": "alibaba/open-code-review",
+  "url": "https://raw.githubusercontent.com/alibaba/open-code-review/HEAD/imgs/highlights-en.png",
+  "alt": "Highlights",
+  "score": -0.8,
+  "type": "image/png",
+  "bytes": 53992
+ },
  "alingowangxr/guizang-ppt-skill": {
   "repo": "alingowangxr/guizang-ppt-skill",
   "url": "https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470",
@@ -982,6 +1182,22 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 158264
+ },
+ "alxnddr/reviewer": {
+  "repo": "alxnddr/reviewer",
+  "url": "https://raw.githubusercontent.com/alxnddr/reviewer/HEAD/assets/screenshot.png",
+  "alt": "Reviewer showing a diff grouped into ordered layers with anchored review comment",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1148075
+ },
+ "amix/dunk": {
+  "repo": "amix/dunk",
+  "url": "https://github.com/user-attachments/assets/f28fe57a-e833-49ea-846a-91310e403e77",
+  "alt": "dunk alongside Claude Code",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 2921369
  },
  "andyluu98/slidefly": {
   "repo": "andyluu98/slidefly",
@@ -1111,6 +1327,14 @@
   "type": "image/jpeg",
   "bytes": 731928
  },
+ "buxuku/ai-code-reviewer": {
+  "repo": "buxuku/ai-code-reviewer",
+  "url": "https://raw.githubusercontent.com/buxuku/ai-code-reviewer/HEAD/preview.png",
+  "alt": "",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 114134
+ },
  "caikankan/cyberbin-ppt-skill": {
   "repo": "caikankan/cyberbin-ppt-skill",
   "url": "https://raw.githubusercontent.com/caikankan/cyberbin-ppt-skill/HEAD/assets/preview/cyberbin-pinboard-preview.png",
@@ -1159,6 +1383,14 @@
   "type": "image/jpeg",
   "bytes": 17435
  },
+ "chorus-codes/chorus": {
+  "repo": "chorus-codes/chorus",
+  "url": "https://raw.githubusercontent.com/chorus-codes/chorus/HEAD/docs/images/hero-demo.gif",
+  "alt": "Six AI reviewers streaming verdicts in parallel — Chorus running live",
+  "score": 2.2,
+  "type": "image/gif",
+  "bytes": 4599464
+ },
  "code-on-sunday/slide-deck-generator": {
   "repo": "code-on-sunday/slide-deck-generator",
   "url": "https://raw.githubusercontent.com/code-on-sunday/slide-deck-generator/HEAD/examples/en-context-engineering.png",
@@ -1166,6 +1398,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 98925
+ },
+ "codexstar69/bug-hunter": {
+  "repo": "codexstar69/bug-hunter",
+  "url": "https://raw.githubusercontent.com/codexstar69/bug-hunter/183e0a957bd22ea5df83741cd31e396f68b14ae5/docs/images/doc-verify-fix-plan.png",
+  "alt": "Bug Hunter checks version-sensitive framework behavior against documentation bef",
+  "score": 1.6,
+  "type": "image/png",
+  "bytes": 3243452
  },
  "cogine-ai/ai-slide-templates": {
   "repo": "cogine-ai/ai-slide-templates",
@@ -1255,6 +1495,14 @@
   "type": "image/gif",
   "bytes": 8421017
  },
+ "dbachelder/slop-review": {
+  "repo": "dbachelder/slop-review",
+  "url": "https://raw.githubusercontent.com/dbachelder/slop-review/HEAD/docs/screenshot.png",
+  "alt": "slop-review reviewing its own README change",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 729478
+ },
  "demoolight/academic-image-ppt": {
   "repo": "demoolight/academic-image-ppt",
   "url": "https://raw.githubusercontent.com/demoolight/academic-image-ppt/HEAD/skills/academic-image-ppt/assets/reference-thumbnails/readme-reference-01.png",
@@ -1262,6 +1510,22 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 1863929
+ },
+ "devagrawal09/jev-review": {
+  "repo": "devagrawal09/jev-review",
+  "url": "https://raw.githubusercontent.com/devagrawal09/jev-review/HEAD/docs/dashboard.png",
+  "alt": "Jev Review dashboard",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 129019
+ },
+ "devarshishimpi/codra": {
+  "repo": "devarshishimpi/codra",
+  "url": "https://raw.githubusercontent.com/devarshishimpi/codra/HEAD/public/assets/codra-dashboard.png",
+  "alt": "Codra dashboard",
+  "score": -2.7,
+  "type": "image/png",
+  "bytes": 317356
  },
  "diegomarino/tui-design": {
   "repo": "diegomarino/tui-design",
@@ -1295,6 +1559,14 @@
   "type": "image/gif",
   "bytes": 1137071
  },
+ "domvwt/chatgpt-code-review": {
+  "repo": "domvwt/chatgpt-code-review",
+  "url": "https://raw.githubusercontent.com/domvwt/chatgpt-code-review/main/media/example.png",
+  "alt": "example page",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 640471
+ },
  "dososo/blcaptain-ppt-skill": {
   "repo": "dososo/blcaptain-ppt-skill",
   "url": "https://raw.githubusercontent.com/dososo/blcaptain-ppt-skill/HEAD/docs/gallery/hero-wall.jpg",
@@ -1318,6 +1590,22 @@
   "score": 4.7,
   "type": "image/gif",
   "bytes": 1907215
+ },
+ "egma-ai/jev-code-reviewer": {
+  "repo": "egma-ai/jev-code-reviewer",
+  "url": "https://raw.githubusercontent.com/egma-ai/jev-code-reviewer/HEAD/docs/preview.png",
+  "alt": "Jev-Code-Reviewer on the demonstration PR",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 146675
+ },
+ "electricsheephq/evaos-code-review-bot-neondiff": {
+  "repo": "electricsheephq/evaos-code-review-bot-neondiff",
+  "url": "https://raw.githubusercontent.com/electricsheephq/evaos-code-review-bot-neondiff/HEAD/assets/readme/neondiff-cyberpunk-hero.png",
+  "alt": "NeonDiff cyberpunk wordmark in toxic green inside a black HUD frame",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 1295653
  },
  "embabel/decker": {
   "repo": "embabel/decker",
@@ -1375,6 +1663,14 @@
   "type": "image/webp",
   "bytes": 59812
  },
+ "fabriziosalmi/brutal-coding-tool": {
+  "repo": "fabriziosalmi/brutal-coding-tool",
+  "url": "https://raw.githubusercontent.com/fabriziosalmi/brutal-coding-tool/HEAD/screenshot.png",
+  "alt": "App Screenshot",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 712104
+ },
  "fangyuanopus/literature-report-ppt-builder": {
   "repo": "fangyuanopus/literature-report-ppt-builder",
   "url": "https://raw.githubusercontent.com/fangyuanopus/literature-report-ppt-builder/HEAD/docs/images/demo-slide-01-title.jpg",
@@ -1407,6 +1703,14 @@
   "type": "image/png",
   "bytes": 3797232
  },
+ "fivetaku/insane-review": {
+  "repo": "fivetaku/insane-review",
+  "url": "https://raw.githubusercontent.com/fivetaku/insane-review/HEAD/assets/hero.png",
+  "alt": "insane-review cinematic hero",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 2174610
+ },
  "floflo11/mbb-decks": {
   "repo": "floflo11/mbb-decks",
   "url": "https://raw.githubusercontent.com/floflo11/mbb-decks/HEAD/examples/data-center-landscape/compare-agenda.png",
@@ -1414,6 +1718,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 161320
+ },
+ "flows-network/github-pr-summary": {
+  "repo": "flows-network/github-pr-summary",
+  "url": "https://raw.githubusercontent.com/flows-network/github-pr-summary/HEAD/create.png",
+  "alt": "",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 196547
  },
  "frannkurt/nano-banana-mcp": {
   "repo": "frannkurt/nano-banana-mcp",
@@ -1438,6 +1750,30 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 1278047
+ },
+ "get-tmonier/argot": {
+  "repo": "get-tmonier/argot",
+  "url": "https://raw.githubusercontent.com/get-tmonier/argot/HEAD/docs/demo/proof/audit.gif",
+  "alt": "Authored two-commit fixture: `argot audit --commits 1` reports one foreign token",
+  "score": 2.0,
+  "type": "image/gif",
+  "bytes": 321977
+ },
+ "gitbito/CodeReviewAgent": {
+  "repo": "gitbito/CodeReviewAgent",
+  "url": "https://i.imgur.com/iUFnfuK.png",
+  "alt": "See Bito's AI Code Review work",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 610782
+ },
+ "gitbito/bitoai": {
+  "repo": "gitbito/bitoai",
+  "url": "https://i.imgur.com/iUFnfuK.png",
+  "alt": "See Bito's AI Code Review work",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 610782
  },
  "gnipbao/knowledge-cat-ppt-skill": {
   "repo": "gnipbao/knowledge-cat-ppt-skill",
@@ -1486,6 +1822,14 @@
   "score": -0.5,
   "type": "image/jpeg",
   "bytes": 86575
+ },
+ "hamelsmu/claude-review-loop": {
+  "repo": "hamelsmu/claude-review-loop",
+  "url": "https://github.com/user-attachments/assets/75af1351-47e6-4b70-a50a-9b3311773be7",
+  "alt": "memelord_meme_2026-02-22 (3)",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 3452631
  },
  "hanlulong/econ-slides-skill": {
   "repo": "hanlulong/econ-slides-skill",
@@ -1598,6 +1942,22 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 496987
+ },
+ "huoji120/code_review_agent": {
+  "repo": "huoji120/code_review_agent",
+  "url": "https://raw.githubusercontent.com/huoji120/code_review_agent/HEAD/img/3.png",
+  "alt": "img",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 359388
+ },
+ "hyhmrright/brooks-lint": {
+  "repo": "hyhmrright/brooks-lint",
+  "url": "https://raw.githubusercontent.com/hyhmrright/brooks-lint/HEAD/assets/demo.gif",
+  "alt": "brooks-lint reviewing code: a /brooks-review command produces a 28/100 health sc",
+  "score": 4.6,
+  "type": "image/gif",
+  "bytes": 135124
  },
  "hypit-ai/hypit": {
   "repo": "hypit-ai/hypit",
@@ -1727,6 +2087,14 @@
   "type": "image/png",
   "bytes": 43975
  },
+ "imDarshanGK/AI-dev-assistant": {
+  "repo": "imDarshanGK/AI-dev-assistant",
+  "url": "https://raw.githubusercontent.com/imDarshanGK/AI-dev-assistant/HEAD/assets/preview.png",
+  "alt": "QyverixAI Preview",
+  "score": 1.1,
+  "type": "image/png",
+  "bytes": 191122
+ },
  "imMamdouhaboammar/motion-graphics-skills": {
   "repo": "imMamdouhaboammar/motion-graphics-skills",
   "url": "https://raw.githubusercontent.com/imMamdouhaboammar/motion-graphics-skills/HEAD/assets/readme/teola-preview.gif",
@@ -1734,6 +2102,22 @@
   "score": 4.55,
   "type": "image/gif",
   "bytes": 731994
+ },
+ "imbue-ai/vet": {
+  "repo": "imbue-ai/vet",
+  "url": "https://raw.githubusercontent.com/imbue-ai/vet/main/images/demo.gif",
+  "alt": "demo",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 3825296
+ },
+ "in-the-loop-labs/pair-review": {
+  "repo": "in-the-loop-labs/pair-review",
+  "url": "https://raw.githubusercontent.com/in-the-loop-labs/pair-review/main/docs/screenshot.png",
+  "alt": "pair-review screenshot",
+  "score": -2.65,
+  "type": "image/png",
+  "bytes": 1210234
  },
  "intelligent-iterations/ii-content-engine": {
   "repo": "intelligent-iterations/ii-content-engine",
@@ -1758,6 +2142,14 @@
   "score": 4.55,
   "type": "image/gif",
   "bytes": 824750
+ },
+ "itsmesherry/claude-audit": {
+  "repo": "itsmesherry/claude-audit",
+  "url": "https://raw.githubusercontent.com/itsmesherry/claude-audit/HEAD/media/demo.gif",
+  "alt": "claude-audit demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 5594680
  },
  "jaredcassoutt/vox-editorial": {
   "repo": "jaredcassoutt/vox-editorial",
@@ -1823,6 +2215,14 @@
   "type": "image/png",
   "bytes": 611303
  },
+ "jsliapark/preflight": {
+  "repo": "jsliapark/preflight",
+  "url": "https://github.com/user-attachments/assets/2f7c402b-7886-42a3-8243-48c22388b339",
+  "alt": "preflight review demo",
+  "score": 1.8,
+  "type": "image/gif",
+  "bytes": 149509
+ },
  "kaisersong/slide-creator": {
   "repo": "kaisersong/slide-creator",
   "url": "https://raw.githubusercontent.com/kaisersong/slide-creator/HEAD/demos/screenshots/fantasy-rainbow.png",
@@ -1830,6 +2230,22 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 530668
+ },
+ "kenn-io/roborev": {
+  "repo": "kenn-io/roborev",
+  "url": "https://roborev.io/docs/assets/generated/web-ui.png",
+  "alt": "Roborev browser application",
+  "score": -0.2,
+  "type": "image/png",
+  "bytes": 210035
+ },
+ "kevinten-ai/ai-agent-agentscope-codereview": {
+  "repo": "kevinten-ai/ai-agent-agentscope-codereview",
+  "url": "https://raw.githubusercontent.com/kevinten-ai/ai-agent-agentscope-codereview/HEAD/docs/images/react-pattern.png",
+  "alt": "ReAct 模式",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 754290
  },
  "kimsh-1/deck-factory": {
   "repo": "kimsh-1/deck-factory",
@@ -1862,6 +2278,22 @@
   "score": -0.25,
   "type": "image/png",
   "bytes": 1640992
+ },
+ "kodustech/kodus-ai": {
+  "repo": "kodustech/kodus-ai",
+  "url": "https://kodus.io/wp-content/uploads/2026/06/kodus-thumb-git-scaled.png",
+  "alt": "koduslogo",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 219851
+ },
+ "kunkka19xx/lgtm": {
+  "repo": "kunkka19xx/lgtm",
+  "url": "https://github.com/user-attachments/assets/2c585a09-129f-4377-bfca-ce25ceb2f704",
+  "alt": "side-by-side",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 569500
  },
  "kvrancic/oneshot-video": {
   "repo": "kvrancic/oneshot-video",
@@ -1983,6 +2415,14 @@
   "type": "image/png",
   "bytes": 34995
  },
+ "lohani-mohit/shipcheck": {
+  "repo": "lohani-mohit/shipcheck",
+  "url": "https://raw.githubusercontent.com/lohani-mohit/shipcheck/HEAD/assets/demo.gif",
+  "alt": "shipcheck catching a dropped-429 regression and returning DO NOT SHIP",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 242942
+ },
  "luml-ai/AGENTS.lock": {
   "repo": "luml-ai/AGENTS.lock",
   "url": "https://raw.githubusercontent.com/Dataforce-Solutions/static_assets/main/luml-hero-light.png",
@@ -1999,6 +2439,22 @@
   "type": "image/gif",
   "bytes": 2015038
  },
+ "matheusfillipe/diffler": {
+  "repo": "matheusfillipe/diffler",
+  "url": "https://raw.githubusercontent.com/matheusfillipe/diffler/HEAD/assets/demo.gif",
+  "alt": "diffler reviewing an agent's change: word-level diff highlights, an inline comme",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 3988294
+ },
+ "mberneti/clab": {
+  "repo": "mberneti/clab",
+  "url": "https://raw.githubusercontent.com/mberneti/clab/HEAD/demo/detected-issue.png",
+  "alt": "Detected issue posted as inline GitLab discussion",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 239286
+ },
  "memex-lab/product-launch-video-skill": {
   "repo": "memex-lab/product-launch-video-skill",
   "url": "https://img.youtube.com/vi/oX-KnoRbAM0/maxresdefault.jpg",
@@ -2014,6 +2470,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 277600
+ },
+ "mikker/semantic-review": {
+  "repo": "mikker/semantic-review",
+  "url": "https://raw.githubusercontent.com/mikker/semantic-review/HEAD/semantic-review.webp",
+  "alt": "",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 130770
  },
  "minorun365/minorun-marp-skill": {
   "repo": "minorun365/minorun-marp-skill",
@@ -2055,6 +2519,14 @@
   "type": "image/jpeg",
   "bytes": 769539
  },
+ "momenbasel/vulnhawk": {
+  "repo": "momenbasel/vulnhawk",
+  "url": "https://raw.githubusercontent.com/momenbasel/vulnhawk/HEAD/docs/vulnhawk-banner.png",
+  "alt": "VulnHawk",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 52690
+ },
  "moongiadventures-dev/handdrawn-ppt": {
   "repo": "moongiadventures-dev/handdrawn-ppt",
   "url": "https://raw.githubusercontent.com/moongiadventures-dev/handdrawn-ppt/HEAD/docs/demo_slide_chart.png",
@@ -2087,6 +2559,22 @@
   "type": "image/png",
   "bytes": 708725
  },
+ "nathankim0/clean-architecture-skills": {
+  "repo": "nathankim0/clean-architecture-skills",
+  "url": "https://github.com/user-attachments/assets/e0b26116-97c8-4062-b323-ad7239f66006",
+  "alt": "Clean Architecture Skills",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1448244
+ },
+ "ncoevoet/claude-review-all": {
+  "repo": "ncoevoet/claude-review-all",
+  "url": "https://raw.githubusercontent.com/ncoevoet/claude-review-all/HEAD/docs/demo.png",
+  "alt": "/review-all report",
+  "score": -0.7,
+  "type": "image/png",
+  "bytes": 331186
+ },
  "new-xp/ultrademo": {
   "repo": "new-xp/ultrademo",
   "url": "https://raw.githubusercontent.com/new-xp/ultrademo/HEAD/docs/notion-tracker-2026-07-10.gif",
@@ -2102,6 +2590,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 1260011
+ },
+ "nicobailon/pi-review-loop": {
+  "repo": "nicobailon/pi-review-loop",
+  "url": "https://raw.githubusercontent.com/nicobailon/pi-review-loop/HEAD/review-loop.png",
+  "alt": "pi-review-loop",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1396691
  },
  "ningzimu/codex-ppt-skill": {
   "repo": "ningzimu/codex-ppt-skill",
@@ -2127,6 +2623,14 @@
   "type": "image/gif",
   "bytes": 152210
  },
+ "octopusreview/octopus": {
+  "repo": "octopusreview/octopus",
+  "url": "https://raw.githubusercontent.com/octopusreview/octopus/HEAD/apps/web/public/brand/octopus-mark.png",
+  "alt": "Octopus",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 752614
+ },
  "oil-oil/oil-ui": {
   "repo": "oil-oil/oil-ui",
   "url": "https://raw.githubusercontent.com/oil-oil/oil-ui/HEAD/assets/readme/proof-mona-lisa.webp",
@@ -2150,6 +2654,14 @@
   "score": -0.3,
   "type": "image/jpeg",
   "bytes": 98175
+ },
+ "openqa-cn/codexqa": {
+  "repo": "openqa-cn/codexqa",
+  "url": "https://raw.githubusercontent.com/openqa-cn/codexqa/HEAD/docs/assets/previews/code-analyzer.png",
+  "alt": "codexqa-code-analyzer change-impact graph",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 235456
  },
  "opitaru-sys/deck-dna": {
   "repo": "opitaru-sys/deck-dna",
@@ -2183,6 +2695,14 @@
   "type": "image/gif",
   "bytes": 2601235
  },
+ "oscaar90/OpsGuard-AI": {
+  "repo": "oscaar90/OpsGuard-AI",
+  "url": "https://raw.githubusercontent.com/oscaar90/OpsGuard-AI/HEAD/docs/assets/demo.gif",
+  "alt": "OpsGuard blocking a malicious PR",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 1772557
+ },
  "patraxo/ltx2-vidgen-skill": {
   "repo": "patraxo/ltx2-vidgen-skill",
   "url": "https://raw.githubusercontent.com/patraxo/ltx2-vidgen-skill/HEAD/assets/demo.gif",
@@ -2190,6 +2710,14 @@
   "score": 4.7,
   "type": "image/gif",
   "bytes": 5056914
+ },
+ "persiyanov/herdr-reviewr": {
+  "repo": "persiyanov/herdr-reviewr",
+  "url": "https://raw.githubusercontent.com/persiyanov/herdr-reviewr/HEAD/assets/demo.gif",
+  "alt": "demo",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 228233
  },
  "phuryn/work-humanizer": {
   "repo": "phuryn/work-humanizer",
@@ -2215,6 +2743,14 @@
   "type": "image/gif",
   "bytes": 932997
  },
+ "presubmit/ai-reviewer": {
+  "repo": "presubmit/ai-reviewer",
+  "url": "https://raw.githubusercontent.com/presubmit/ai-reviewer/main/assets/review_example_3.png",
+  "alt": "AI Code Review example",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 102295
+ },
  "prodigeproject/pradaslides": {
   "repo": "prodigeproject/pradaslides",
   "url": "https://raw.githubusercontent.com/prodigeproject/pradaslides/HEAD/assets/benchmark/pradaslides-tuned-v2-media.png",
@@ -2222,6 +2758,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 854777
+ },
+ "puemos/lareview": {
+  "repo": "puemos/lareview",
+  "url": "https://raw.githubusercontent.com/puemos/lareview/HEAD/assets/screenshots/generate.webp",
+  "alt": "Plan Generation View",
+  "score": -0.3,
+  "type": "image/webp",
+  "bytes": 251234
  },
  "pyang5166/gbro-collage-broll": {
   "repo": "pyang5166/gbro-collage-broll",
@@ -2239,6 +2783,14 @@
   "type": "image/gif",
   "bytes": 473256
  },
+ "qiniu/reviewbot": {
+  "repo": "qiniu/reviewbot",
+  "url": "https://raw.githubusercontent.com/qiniu/reviewbot/HEAD/docs/static/issue-comment.png",
+  "alt": "Issue Comment",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 119182
+ },
  "qybaihe/codex-ppt": {
   "repo": "qybaihe/codex-ppt",
   "url": "https://raw.githubusercontent.com/qybaihe/codex-ppt/HEAD/examples/shit-app-memphis-pitch/slides/slide-03-product-idea.png",
@@ -2246,6 +2798,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 1870062
+ },
+ "raye-deng/open-code-review": {
+  "repo": "raye-deng/open-code-review",
+  "url": "https://raw.githubusercontent.com/raye-deng/open-code-review/HEAD/docs/images/l2-html-report-screenshot.png",
+  "alt": "L2 HTML Report Screenshot",
+  "score": -3.3,
+  "type": "image/png",
+  "bytes": 72314
  },
  "riteouschris-max/journal-club-ppt": {
   "repo": "riteouschris-max/journal-club-ppt",
@@ -2286,6 +2846,14 @@
   "score": 4.65,
   "type": "image/gif",
   "bytes": 1198630
+ },
+ "seoes/proval": {
+  "repo": "seoes/proval",
+  "url": "https://raw.githubusercontent.com/seoes/proval/HEAD/docs/assets/hero.png",
+  "alt": "Proval",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 31835
  },
  "severli93/moonland-deck": {
   "repo": "severli93/moonland-deck",
@@ -2351,6 +2919,22 @@
   "type": "image/webp",
   "bytes": 1404644
  },
+ "spencermarx/open-code-review": {
+  "repo": "spencermarx/open-code-review",
+  "url": "https://raw.githubusercontent.com/spencermarx/open-code-review/HEAD/assets/ocr-tool-focused-review.png",
+  "alt": "OCR review output with findings",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 573189
+ },
+ "spherical-up/Easy-AI-CodeReview": {
+  "repo": "spherical-up/Easy-AI-CodeReview",
+  "url": "https://raw.githubusercontent.com/spherical-up/Easy-AI-CodeReview/HEAD/docs/img/push_example.png",
+  "alt": "Push图片",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 1701724
+ },
  "stevenjinlong/awesome-ppt-skills": {
   "repo": "stevenjinlong/awesome-ppt-skills",
   "url": "https://raw.githubusercontent.com/stevenjinlong/awesome-ppt-skills/HEAD/examples/transformer-architecture-image-first/preview.jpg",
@@ -2358,6 +2942,14 @@
   "score": -0.85,
   "type": "image/jpeg",
   "bytes": 300060
+ },
+ "sturdy-dev/codeball-action": {
+  "repo": "sturdy-dev/codeball-action",
+  "url": "https://user-images.githubusercontent.com/47952/173048697-d3d39fc3-6238-4fc3-9baf-ccbbb3b4258c.png",
+  "alt": "Codeball",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 687266
  },
  "sujunmin/agy-ppt": {
   "repo": "sujunmin/agy-ppt",
@@ -2407,6 +2999,14 @@
   "type": "image/png",
   "bytes": 315912
  },
+ "syabro/rejudge": {
+  "repo": "syabro/rejudge",
+  "url": "https://raw.githubusercontent.com/syabro/rejudge/HEAD/docs/demo.gif",
+  "alt": "Three models check a file while the judge waits, then queries the panel",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 917547
+ },
  "taito-project/taito": {
   "repo": "taito-project/taito",
   "url": "https://raw.githubusercontent.com/taito-project/.github/main/assets/taito-promo.gif",
@@ -2431,6 +3031,22 @@
   "type": "image/jpeg",
   "bytes": 132443
  },
+ "tanviet12/vbsec": {
+  "repo": "tanviet12/vbsec",
+  "url": "https://raw.githubusercontent.com/tanviet12/vbsec/HEAD/docs/images/sample-report.png",
+  "alt": "vbsec report: verdict FAIL, table of 6 critical issues",
+  "score": -0.75,
+  "type": "image/png",
+  "bytes": 200720
+ },
+ "taovc/pr-cockpit": {
+  "repo": "taovc/pr-cockpit",
+  "url": "https://raw.githubusercontent.com/taovc/pr-cockpit/HEAD/docs/media/demo.gif",
+  "alt": "Pull a repo",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 2396279
+ },
  "theolundqvist/justshowme": {
   "repo": "theolundqvist/justshowme",
   "url": "https://raw.githubusercontent.com/theolundqvist/justshowme/HEAD/docs/screenshots/interactive-demo.png",
@@ -2446,6 +3062,14 @@
   "score": 1.75,
   "type": "image/png",
   "bytes": 153861
+ },
+ "tirth8205/code-review-graph": {
+  "repo": "tirth8205/code-review-graph",
+  "url": "https://raw.githubusercontent.com/tirth8205/code-review-graph/HEAD/diagrams/diagram1_before_vs_after.png",
+  "alt": "The Token Problem: reading flask",
+  "score": -3.0,
+  "type": "image/png",
+  "bytes": 265243
  },
  "tjxj/dsh-wanghong-handwritten-ppt": {
   "repo": "tjxj/dsh-wanghong-handwritten-ppt",
@@ -2479,6 +3103,22 @@
   "type": "image/gif",
   "bytes": 1453401
  },
+ "truongnh1992/gemini-ai-code-reviewer": {
+  "repo": "truongnh1992/gemini-ai-code-reviewer",
+  "url": "https://raw.githubusercontent.com/truongnh1992/gemini-ai-code-reviewer/HEAD/assets/img/Demo.png",
+  "alt": "Demo",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 510499
+ },
+ "truskovskiyk/pr-reviewer": {
+  "repo": "truskovskiyk/pr-reviewer",
+  "url": "https://raw.githubusercontent.com/truskovskiyk/pr-reviewer/HEAD/docs/example.png",
+  "alt": "alt text",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 112565
+ },
  "tugrawork-creator/saas-motion-kit": {
   "repo": "tugrawork-creator/saas-motion-kit",
   "url": "https://raw.githubusercontent.com/tugrawork-creator/saas-motion-kit/HEAD/docs/six-films.gif",
@@ -2494,6 +3134,14 @@
   "score": -0.1,
   "type": "image/jpeg",
   "bytes": 297994
+ },
+ "umputun/revmux": {
+  "repo": "umputun/revmux",
+  "url": "https://raw.githubusercontent.com/umputun/revmux/HEAD/site/assets/screenshot-run.webp",
+  "alt": "revmux running four agents, shown as a terminal overlay above the session that l",
+  "score": -2.6,
+  "type": "image/webp",
+  "bytes": 185948
  },
  "unclejobs-ai/motion-video-skill": {
   "repo": "unclejobs-ai/motion-video-skill",
@@ -2518,6 +3166,14 @@
   "score": 4.75,
   "type": "image/gif",
   "bytes": 4221878
+ },
+ "verabravo/diffback": {
+  "repo": "verabravo/diffback",
+  "url": "https://raw.githubusercontent.com/verabravo/diffback/main/docs/screenshot-diff-view.png",
+  "alt": "diffback diff view with syntax highlighting",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 145486
  },
  "vibe-motion/remotion-code-motion-explainer": {
   "repo": "vibe-motion/remotion-code-motion-explainer",
@@ -2567,6 +3223,14 @@
   "type": "image/jpeg",
   "bytes": 1180176
  },
+ "w1ckedxt/cynical-sally": {
+  "repo": "w1ckedxt/cynical-sally",
+  "url": "https://raw.githubusercontent.com/w1ckedxt/cynical-sally/HEAD/assets/demo.gif",
+  "alt": "sally roast — a real review, live in the terminal",
+  "score": 4.5,
+  "type": "image/gif",
+  "bytes": 330979
+ },
  "welingtondesosa/video-motion": {
   "repo": "welingtondesosa/video-motion",
   "url": "https://raw.githubusercontent.com/welingtondesosa/video-motion/HEAD/docs/demo-onesendz-showcase.gif",
@@ -2606,6 +3270,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 1519449
+ },
+ "wong2/diffx": {
+  "repo": "wong2/diffx",
+  "url": "https://raw.githubusercontent.com/wong2/diffx/main/screenshot.png",
+  "alt": "screenshot",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 200896
  },
  "wp-a/paper2ppt": {
   "repo": "wp-a/paper2ppt",
@@ -2647,6 +3319,14 @@
   "type": "image/png",
   "bytes": 140889
  },
+ "xieziyu/duetlens": {
+  "repo": "xieziyu/duetlens",
+  "url": "https://raw.githubusercontent.com/xieziyu/duetlens/HEAD/docs/assets/screen-review.jpg",
+  "alt": "在 diff 上和 agent 对话",
+  "score": -0.25,
+  "type": "image/jpeg",
+  "bytes": 289212
+ },
  "xinyiqin/X2V-AI-Images-Videos-skill": {
   "repo": "xinyiqin/X2V-AI-Images-Videos-skill",
   "url": "https://raw.githubusercontent.com/xinyiqin/X2V-AI-Images-Videos-skill/HEAD/assets/readme-example-lightx2v.png",
@@ -2686,6 +3366,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 131546
+ },
+ "zanetworker/highstakes": {
+  "repo": "zanetworker/highstakes",
+  "url": "https://raw.githubusercontent.com/zanetworker/highstakes/HEAD/docs/images/treemap-view.png",
+  "alt": "HighStakes treemap view",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 311031
  },
  "zarazhangrui/frontend-slides": {
   "repo": "zarazhangrui/frontend-slides",

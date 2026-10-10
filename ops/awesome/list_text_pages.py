@@ -186,4 +186,24 @@ PAGE_LISTS = {
             "design": ("Icons, illustrations, covers, posters and logos.", "图标、插画、封面、海报和 Logo。"),
         },
     },
+    "code-review": {
+        "repo": "zhuyansen/awesome-claude-code-review",
+        "text": _text("Awesome Claude Code Review",
+                      ("Open-source **AI code review skills and tools** for Claude Code, Codex and other agents: review skills, "
+                       "local and CLI reviewers, PR review bots and CI actions, multi-agent review, security review, self-hosted platforms.",
+                       "给 Claude Code、Codex 等 agent 用的开源 **AI 代码审查 skill 和工具**:审查 skill、本地与命令行审查、"
+                       "PR 机器人与 CI、多 agent 互审、安全审查、自托管平台。"),
+                      ("It reviews code with an AI model: a diff, a pull request or a codebase, for bugs, security or quality. "
+                       "A tool that only writes code, a linter with no model, or a general coding agent does not count.",
+                       "它用 AI 模型审查代码:一段 diff、一个 PR 或一个代码库,找 bug、安全问题或质量问题。只写代码的工具、不带模型的 linter、通用编程 agent 不算。"),
+                      ("What these reviewers look like", "这些审查工具长什么样")),
+        "blurb": {
+            "pr_bot": ("Bots and CI actions that comment on every pull request.", "在每个 PR 上发评论的机器人和 CI。"),
+            "skill": ("Skills and plugins that have Claude Code or Codex review a diff.", "让 Claude Code、Codex 审查 diff 的 skill 和插件。"),
+            "cli": ("Reviewers you run locally on a branch or a diff.", "在本地对分支或 diff 运行的审查工具。"),
+            "security": ("Agents that look for vulnerabilities, some in a sandbox.", "专找漏洞的 agent,有些在沙箱里复现。"),
+            "multi": ("Several reviewers or models on the same change.", "多个审查者或模型看同一个改动。"),
+            "platform": ("Self-hosted services that review across a team's repositories.", "在团队所有仓库上跑审查的自托管服务。"),
+        },
+    },
 }
