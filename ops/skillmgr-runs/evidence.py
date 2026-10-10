@@ -28,6 +28,31 @@ CARD_NOTES = {
                              "只能从 GitHub 安装。交互式终端里每次安装都会问一句通用确认，但不检查脚本。"),
     "shanliuling/skills-link": ("Installs from GitHub only, one skill per command; removal is interactive.", "只能从 GitHub 安装，一条命令装一个；删除只能交互操作。"),
 }
+# The answer the test section opens with: which one to install, from the results above.
+VERDICT = {
+    "rule": ["Ranked by what the tool did with the risky skill, then whether it removes skills cleanly, then whether it syncs to Codex, then GitHub stars.",
+             "排名规则：先看遇到风险 skill 怎么处理，再看能不能删干净，再看能不能同步到 Codex，最后看 GitHub 星数。"],
+    "picks": [
+        {"repo": "luongnv89/asm", "role": ["Install this one", "首选，装这个"],
+         "why": ["The only tool of 14 that flagged the skill with a curl | sh script as high risk and would not install it by default. One command installs a folder of skills, it removes them cleanly, and it puts them in Codex too.",
+                 "14 个里唯一把带 curl | sh 脚本的 skill 标成高风险、默认不装的。一条命令装一整个文件夹的 skill，能删干净，也能装到 Codex。"],
+         "install": "npm install -g agent-skill-manager"},
+        {"repo": "runkids/skillshare", "role": ["If you keep several agents in sync", "要在多个 agent 之间同步"],
+         "why": ["It audits every install and reported the script as HIGH, but installs anyway unless you stop it. Removed skills go to a trash it keeps for 7 days, and one sync covers all your agents.",
+                 "每次安装都会审计，把那个脚本报成了 HIGH，但你不拦它就照装。删掉的 skill 进回收站保留 7 天，一次 sync 覆盖所有 agent。"],
+         "install": "see its README"},
+        {"repo": "microsoft/apm", "role": ["If a team wants a manifest and a lockfile", "团队想要清单和锁文件"],
+         "why": ["A package manager: skills are declared in a file, installed and removed exactly. It rejected skills with invalid frontmatter. It gives no warning about scripts, so read a skill before adding it.",
+                 "包管理器：skill 写在清单里，装和删都精确。格式不合规的 skill 会被它拒收。它不对脚本做任何提示，所以加之前先读一遍。"],
+         "install": "pip install apm-cli"},
+    ],
+    "avoid": [
+        {"repo": "eljulians/skillfile", "why": ["its remove edits the manifest but leaves the installed folders", "remove 只改清单，已装的文件夹留在原地"]},
+        {"repo": "kina-cmd/agent-skill-sync", "why": ["it never deletes, by design", "按设计从不删除"]},
+    ],
+    "caveat": ["Whichever you pick: 12 of 14 installed a skill with a curl | sh script without stopping. Read a skill's scripts folder, or check its grade here, before you install it.",
+               "不管选哪个：14 个里有 12 个遇到带 curl | sh 脚本的 skill 不会停。安装前先看它的 scripts 文件夹，或者在本站查它的评级。"],
+}
 NEEDS_AGENT = ("not installed", "Agent not found", "detected agents", "Target directory not found")
 STYLE = """:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
 @media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
@@ -109,7 +134,7 @@ def main() -> None:
     runs["skill-management-tools"] = {
         "type": "skillmgr", "date": DATE, "agent": "Claude Code (Claude Opus 5.5)", "judge": "measured on disk",
         "brief": REPO_URL + "in/prompt.txt", "results": REPO_URL + "RESULTS.md", "dir": "/best-runs/skillmgr/",
-        "runs": {r["repo"]: card(r) for r in rows if r["ran"]}}
+        "verdict": VERDICT, "runs": {r["repo"]: card(r) for r in rows if r["ran"]}}
     RUNS_JSON.write_text(json.dumps(runs, indent=1, ensure_ascii=False) + "\n")
     print(f"{sum(r['ran'] for r in rows)} evidence pages in {PUBLIC.relative_to(ROOT)}")
 

@@ -389,7 +389,8 @@ def readme(lang: str, kinds: list[dict], rows: list[dict]) -> str:
     used = [k for k in kinds if any(r["kind"] == k["id"] for r in rows)]
     count = lambda k: sum(r["kind"] == k["id"] for r in rows)  # noqa: E731
     out = [f"# {t['title']}", "", t["other"], "",
-           t["pitch"].format(n=len(rows), site=SITE, utm=UTM), "", t["live"].format(page=PAGE, utm=UTM), "",
+           t["pitch"].format(n=len(rows), site=SITE, utm=UTM), "", t["live"].format(page=PAGE, utm=UTM),
+           *list_tested.top(SLUG, label), "",
            f"## {t['album']}", "", *album(used, rows, label, t), "",
            f"## {t['contents']}", ""] + ([f"- [{t['made_h']}](#made-with-opus-55)"] if MADE_WITH else [])
     tested = list_tested.section(SLUG, label, SITE, UTM)

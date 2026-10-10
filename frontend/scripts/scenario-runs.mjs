@@ -174,9 +174,9 @@ function compareHtml(run) {
     </figure>`).join("");
 }
 
-function mgrRow(run, repo, r) {
+function mgrRow(run, repo, r, rank) {
   const cls = r.risky === "refused" ? "bp-tr-touch-ups" : r.risky === "silent" ? "bp-tr-substantial" : "";
-  return `<tr>${skillCell(repo, r)}
+  return `<tr><td class="bp-tr-rank">${rank}</td>${skillCell(repo, r)}
     ${cellC(cls, ...(RISKY_SHORT[r.risky] || ["-"]))}${cellC(r.prunes ? "" : "bp-tr-substantial", ...(r.prunes ? ["Yes", "能"] : ["No", "不能"]))}
     ${cell(...(SYNCS[String(r.syncs)] || ["-"]))}${cellC("bp-tr-num", r.extra_tokens != null ? `+${r.extra_tokens}` : "-")}
     <td class="bp-tr-num">${evidenceLink(run, r, ["The run", "实测过程"])}</td></tr>`;
@@ -185,9 +185,28 @@ function mgrRow(run, repo, r) {
 function mgrTable(run, rows) {
   rows.sort(([, a], [, b]) => (RISKY_RANK[a.risky] ?? 9) - (RISKY_RANK[b.risky] ?? 9) || Number(b.prunes) - Number(a.prunes)
     || Number(b.syncs === true) - Number(a.syncs === true) || (b.stars || 0) - (a.stars || 0));
-  const cols = [["Tool", "工具"], ["Skill with a curl | sh script", "遇到带 curl | sh 脚本的 skill"], ["Removes cleanly", "能删干净"],
+  const cols = [["#", "#"], ["Tool", "工具"], ["Skill with a curl | sh script", "遇到带 curl | sh 脚本的 skill"], ["Removes cleanly", "能删干净"],
     ["Syncs to Codex", "同步到 Codex"], ["Tokens per session, 20 skills", "20 个 skill 每次会话多占"], ["Evidence", "证据"]];
-  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => mgrRow(run, repo, r)).join("")}</tbody>`;
+  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r], i) => mgrRow(run, repo, r, i + 1)).join("")}</tbody>`;
+}
+
+/** "Which one to install": the test's answer, above the table (run.verdict). */
+function verdictHtml(run) {
+  const v = run.verdict;
+  if (!v) return "";
+  const medals = ["🥇", "🥈", "🥉"];
+  const picks = v.picks.map((p, i) => `<li><span class="bp-tr-medal">${medals[i] || "•"}</span>
+      <div><strong ${biAttrs(...p.role)}>${esc(p.role[0])}</strong>: <a href="/skill/${esc(p.repo)}/"><b>${esc(name(p.repo))}</b></a>
+      <span class="bp-tr-mute">★ ${((run.runs[p.repo] || {}).stars || 0).toLocaleString("en-US")}</span>${p.install && !p.install.startsWith("see") ? ` <code>${esc(p.install)}</code>` : ""}
+      <br><span ${biAttrs(...p.why)}>${esc(p.why[0])}</span></div></li>`).join("");
+  const avoid = (v.avoid || []).map((a) => `<b>${esc(name(a.repo))}</b> (<span ${biAttrs(...a.why)}>${esc(a.why[0])}</span>)`).join("; ");
+  return `<div class="bp-tr-verdict">
+      <h3 ${biAttrs("Which one to install", "到底装哪个")}>Which one to install</h3>
+      <ol>${picks}</ol>
+      ${avoid ? `<p><strong ${biAttrs("Not if you need to remove skills:", "需要删 skill 的话别选：")}>Not if you need to remove skills:</strong> ${avoid}.</p>` : ""}
+      <p ${biAttrs(...v.caveat)}>${esc(v.caveat[0])}</p>
+      <p class="bp-tr-mute" ${biAttrs(...v.rule)}>${esc(v.rule[0])}</p>
+    </div>`;
 }
 
 function notRunHtml(entries, label = ["Not run", "未能实测"]) {
@@ -214,6 +233,7 @@ export function runsSectionHtml(run) {
   return `<section id="test-results" class="bp-tr">
     <h2 class="bp-section-title" ${biAttrs("Test results: the skills side by side", "实测对比：同一任务下的效果")}>Test results: the skills side by side</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
+    ${verdictHtml(run)}
     ${compareHtml(run)}
     <div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>
     ${notRunHtml(all.filter(([, r]) => !r.ran), mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined)}

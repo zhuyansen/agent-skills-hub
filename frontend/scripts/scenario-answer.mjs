@@ -29,8 +29,27 @@ function quickPick(skills) {
     .sort((a, b) => b.stars - a.stars)[0];
   return { pick: safe || skills[0], safe: Boolean(safe) };
 }
-export function quickPickHtml(scenario, skills, itemCount, subject) {
+/** A page with an end-to-end test names the test's first pick (run.verdict), with the
+ *  reason, not the most-starred entry: the two disagreed on the skill managers page. */
+function testedPickHtml(verdict, skills, itemCount, subject, scenario) {
+  const first = verdict.picks[0];
+  const pick = skills.find((s) => s.repo_full_name.toLowerCase() === first.repo.toLowerCase());
+  if (!pick) return "";
+  const lead = bi(`Of the ${itemCount} ${subject} here, the one to install is `, `这 ${itemCount} 个${scenario.zhTitle}里，建议装 `);
+  const tail = bi(` (★ ${starsK(pick.stars)}), from our own test: `, `（★ ${starsK(pick.stars)}），依据是我们的实测：`);
+  const why = bi(first.why[0], first.why[1], "color:var(--bp-text-secondary);font-size:13px");
+  const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="See the test →" data-zh="看实测 →">See the test →</a>`;
+  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
+  return `<div class="bp-quick-pick">
+        <span style="font-size:20px">⚡</span>
+        <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${why} ${more}</p>
+      </div>`;
+}
+
+export function quickPickHtml(scenario, skills, itemCount, subject, verdict = null) {
   if (!skills.length) return "";
+  const tested = verdict?.picks?.length ? testedPickHtml(verdict, skills, itemCount, subject, scenario) : "";
+  if (tested) return tested;
   const { pick, safe } = quickPick(skills);
   const stars = `★ ${starsK(pick.stars)}`;
   // The language toggle replaces each [data-zh] element's text, so the link stays

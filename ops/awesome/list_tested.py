@@ -26,7 +26,7 @@ WORDS = {
                             "survived 26/26, the tidy ending 28/28, the single track 40/40; 19 of 21 changed wording, "
                             "not structure. No fact was lost."),
            "kept": "all kept", "lost": "some lost", "detector": "detector only",
-           "mgr_cols": "| Tool | ★ | Skill with a curl \\| sh script | Removes cleanly | Syncs to Codex | +tokens per session (20 skills) | |",
+           "mgr_cols": "| # | Tool | ★ | Skill with a curl \\| sh script | Removes cleanly | Syncs to Codex | +tokens per session (20 skills) | |",
            "mgr_intro": ("On {date} we ran {n} of these tools; {ran} could be judged. Each got the same job in a throwaway sandbox, driven "
                          "by {agent}: install 20 test skills, install one more that ships a `curl | sh` setup script, remove all but "
                          "five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step."),
@@ -43,7 +43,7 @@ WORDS = {
            "slop_finding": ("**发现:** 没有一个把结构上的 AI 味改掉。40 份改写里,讲明的道理 26/26 留着,整齐的结尾 28/28 留着,"
                             "单线论证 40/40 没动;21 个改写类里 19 个只改了措辞。没有一份改丢事实。"),
            "kept": "全保留", "lost": "有丢失", "detector": "只检测",
-           "mgr_cols": "| 工具 | ★ | 遇到带 curl \\| sh 脚本的 skill | 能删干净 | 同步到 Codex | 20 个 skill 每次会话多占 token | |",
+           "mgr_cols": "| # | 工具 | ★ | 遇到带 curl \\| sh 脚本的 skill | 能删干净 | 同步到 Codex | 20 个 skill 每次会话多占 token | |",
            "mgr_intro": ("{date} 我们实跑了其中 {n} 个,{ran} 个可以评判。每个在用完即删的沙箱里由 {agent} 调用,做同一件事:装 20 个测试 skill,"
                          "再装一个带 `curl | sh` 安装脚本的 skill,删到只剩 5 个,并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。"),
            "mgr_finding": "**发现:** 14 个里只有 1 个在风险 skill 面前停下(asm,默认不装);12 个没有任何警告就装了。上下文成本没有拉开差距:装 20 个 skill,每次会话多 345 到 396 个 token,用哪个工具都一样。",
@@ -84,9 +84,9 @@ def _slop_line(repo: str, r: dict, i: int, link: str, w: dict) -> str:
     return f"| {_name(repo)} | {r.get('stars', 0):,} | {human} | {layer} | {r.get('structure_removed', '-') if rewrote else '-'} | {facts} | {flags} | {link} |"
 
 
-def _mgr_line(repo: str, r: dict, i: int, link: str, w: dict) -> str:
+def _mgr_line(repo: str, r: dict, i: int, link: str, w: dict, rank: int) -> str:
     syncs = w["needs"] if r.get("syncs") == "needs-agent" else (w["yes"] if r.get("syncs") else w["no"])
-    return (f"| {_name(repo)} | {r.get('stars', 0):,} | {RISKY.get(r.get('risky'), ('-', '-'))[i]} | {w['yes'] if r.get('prunes') else w['no']} | "
+    return (f"| {rank} | {_name(repo)} | {r.get('stars', 0):,} | {RISKY.get(r.get('risky'), ('-', '-'))[i]} | {w['yes'] if r.get('prunes') else w['no']} | "
             f"{syncs} | +{r.get('extra_tokens')} | {link} |")
 
 
@@ -98,6 +98,36 @@ def _order(run: dict) -> list[tuple[str, dict]]:
         return sorted(ran, key=lambda p: (-(p[1].get("reads_human") or -1), -(p[1].get("flags") or {}).get("structure", 0)))
     return sorted(ran, key=lambda p: (bool(p[1].get("note")), REWORK_RANK.get(p[1].get("rework"), 9),
                                       -(p[1].get("pei") if p[1].get("pei") is not None else -1), -(p[1].get("checklist") or -1)))
+
+
+def _verdict(run: dict, i: int) -> list[str]:
+    """"Which one to install", from run["verdict"]: the picks with reasons, what to avoid, the rule."""
+    v = run.get("verdict")
+    if not v:
+        return []
+    medals = ["🥇", "🥈", "🥉"]
+    out = ["### " + ("到底装哪个" if i else "Which one to install"), ""]
+    for n, p in enumerate(v["picks"]):
+        cmd = f" `{p['install']}`" if p.get("install") and not p["install"].startswith("see") else ""
+        out.append(f"- {medals[n] if n < 3 else '-'} **{p['role'][i]}: [{p['repo'].split('/')[1]}](https://github.com/{p['repo']})**{cmd}  \n  {p['why'][i]}")
+    if v.get("avoid"):
+        label = "需要删 skill 的话别选" if i else "Not if you need to remove skills"
+        out += ["", f"**{label}:** " + "; ".join(f"{a['repo'].split('/')[1]} ({a['why'][i]})" for a in v["avoid"]) + "."]
+    out += ["", v["caveat"][i], "", f"*{v['rule'][i]}*", ""]
+    return out
+
+
+def top(slug: str, lang: str) -> list[str]:
+    """The verdict as the README's first section, right under the pitch; [] without one."""
+    run = run_for(slug)
+    if not run or not run.get("verdict"):
+        return []
+    i = 0 if lang == "en" else 1
+    n, judged = len(run["runs"]), sum(bool(r.get("ran")) for r in run["runs"].values())
+    lead = (f"我们实跑了其中 {n} 个({judged} 个可评判),结论如下。[完整实测结果](#{ANCHOR})在下面。" if i else
+            f"We ran {n} of these end to end ({judged} could be judged). This is what we would install; the [full test](#{ANCHOR}) is below.")
+    lines = _verdict(run, i)
+    return ["", "## " + lines[0].removeprefix("### "), "", lead, *lines[1:]]
 
 
 def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
@@ -115,11 +145,11 @@ def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
     for c in run.get("compare", []):   # side-by-side images: the same slide from every deck
         url = f"{site}{run['dir']}{c['src']}"
         out += [f"[![{c['en']}]({url})]({url})", "", f"*{c['zh'] if i else c['en']}*", ""]
-    cols = w[f"{key}_cols"]
+    cols = w[f"{key}_cols"]   # the verdict sits at the top of the README (top()), not here
     out += [cols, "|" + "|".join("---" for _ in range(cols.replace("\\|", "").count("|") - 1)) + "|"]
-    for repo, r in ran:
+    for rank, (repo, r) in enumerate(ran, 1):
         link = f"[{w['evidence']}]({site}{run['dir']}{r['sheet']})"
-        out.append(_mgr_line(repo, r, i, link, w) if mgr else _slop_line(repo, r, i, link, w) if slop else _ppt_line(repo, r, i, link))
+        out.append(_mgr_line(repo, r, i, link, w, rank) if mgr else _slop_line(repo, r, i, link, w) if slop else _ppt_line(repo, r, i, link))
     missing = [(k, v) for k, v in run["runs"].items() if not v.get("ran")]
     if missing:
         out += ["", f"**{w['not_judged'] if mgr else w['not_run']}:** " + "; ".join(

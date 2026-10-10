@@ -633,3 +633,12 @@
 .bp-tr-compare { margin: 0 0 18px; }
 .bp-tr-compare img { display: block; width: 100%; height: auto; border: 1px solid var(--bp-border); border-radius: 8px; }
 .bp-tr-compare figcaption { color: var(--bp-text-secondary); font-size: 13px; margin-top: 6px; }
+.bp-tr-verdict { border: 1px solid var(--bp-border-accent, var(--bp-border)); border-radius: 12px; padding: 16px 20px; margin: 0 0 18px; background: var(--bp-bg-alt); }
+.bp-tr-verdict h3 { margin: 0 0 10px; font-size: 17px; color: var(--bp-text); }
+.bp-tr-verdict ol { list-style: none; padding: 0; margin: 0 0 10px; }
+.bp-tr-verdict li { display: flex; gap: 10px; margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: var(--bp-text-secondary); }
+.bp-tr-verdict li strong, .bp-tr-verdict li b { color: var(--bp-text); }
+.bp-tr-verdict p { margin: 6px 0 0; font-size: 14px; color: var(--bp-text-secondary); }
+.bp-tr-verdict code { font-size: 12px; padding: 1px 6px; border-radius: 4px; background: var(--bp-bg); border: 1px solid var(--bp-border); }
+.bp-tr-medal { font-size: 20px; line-height: 1.3; }
+.bp-tr-rank { font-weight: 700; color: var(--bp-text-secondary); white-space: nowrap; }
