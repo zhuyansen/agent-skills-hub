@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>grinev/opencode-telegram-bot: Telegram bot source audit</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card);white-space:nowrap}code{font:13px/1.5 ui-monospace,Menlo,monospace;word-break:break-word}</style></head><body><main>
+<p class="mute"><a href="/best/telegram-bot/">← Open-source Telegram bots</a></p>
+<h1>grinev/opencode-telegram-bot: source audit, 2026-10-10</h1>
+<p class="mute">Read from the source at commit <a href="https://github.com/grinev/opencode-telegram-bot/tree/0a73b919546d">0a73b919546d</a>; the bot was not run (it needs a BotFather token).
+Each answer cites the file and line that shows it. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/telegram-audit/RESULTS.md">All 20 bots</a></p>
+<h2>In short</h2><p>Locked to exactly one Telegram user ID and will not start without it. It shows Allow/Reject buttons when the OpenCode server asks, so whether shell and edit actions need approval depends on your own OpenCode permission config.</p>
+<h2>What the source shows</h2><table><tr><th></th><th>Answer</th><th>Where</th></tr><tr><th>Who can use it</th><td>Serves nobody until you list your Telegram ID</td><td><code>src/bot/middleware/auth.ts:12 — if (userId &amp;&amp; userId === config.telegram.allowedUserId) next(); else silently ignore</code></td></tr><tr><th>With no allowlist set</th><td>TELEGRAM_ALLOWED_USER_ID (one user ID, required); the process throws at config load if it is missing</td><td><code>src/config.ts:14-16 — throw new Error(`Missing required environment variable: ...`)</code></td></tr><tr><th>Before the agent acts</th><td>the agent&#x27;s own permission prompts come to you in Telegram</td><td><code>src/app/services/event-router.ts:50 — case &quot;permission.asked&quot;: relayed to Telegram with Allow/Reject buttons; the bot passes no permission flags to opencode serve</code></td></tr><tr><th>Bot token</th><td>Read from the environment or a config file; no real token is committed</td><td><code></code></td></tr></table>
+</main></body></html>

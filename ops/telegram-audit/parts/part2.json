@@ -1,0 +1,77 @@
+[
+ {
+  "repo": "PleasePrompto/ductor",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "allowed_user_ids in ~/.ductor/config/config.json, default []; startup exits when empty",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "ductor_bot/messenger/telegram/middleware.py:153 — elif user.id not in self._allowed_users: return None",
+   "default": "ductor_bot/__main__.py:265-269 — needs_users = not config.allowed_user_ids ... sys.exit(1)",
+   "confirms": "ductor_bot/config.py:439 — permission_mode: str = \"bypassPermissions\"; config.py:43 — Docker sandbox enabled: bool = False"
+  },
+  "notes": "Will not start without an allowlist. Once you are on it, the agent runs with all permission prompts bypassed on the host; the Docker sandbox exists but is off by default in code (the example config shows it on)."
+ },
+ {
+  "repo": "godagoo/claude-telegram-relay",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "env TELEGRAM_USER_ID, default empty; when empty every sender is served",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "unclear",
+  "evidence": {
+   "access": "src/relay.ts:173 — if (ALLOWED_USER_ID && userId !== ALLOWED_USER_ID) reply \"This bot is private.\"",
+   "default": "src/relay.ts:29 — ALLOWED_USER_ID = process.env.TELEGRAM_USER_ID || \"\"; src/relay.ts:486 — Authorized user: ANY (not recommended)",
+   "confirms": "src/relay.ts:190-205 — claude -p with no permission flag; what Claude may do depends on the host's own Claude Code settings"
+  },
+  "notes": "If you forget TELEGRAM_USER_ID, the bot starts anyway and passes anyone's messages to Claude on your machine. Its .env.example lists the variable as required, but the code treats it as optional."
+ },
+ {
+  "repo": "alexei-led/ccgram",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env ALLOWED_USERS, no default; startup fails if unset",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "asks",
+  "evidence": {
+   "access": "src/ccgram/handlers/text/text_handler.py:646 — if not user or not config.is_user_allowed(user.id)",
+   "default": "src/ccgram/config.py:112-113 — raise ValueError(\"ALLOWED_USERS environment variable is required\")",
+   "confirms": "src/ccgram/window_state_store.py:32 — DEFAULT_APPROVAL_MODE = \"normal\"; Claude's permission prompts are relayed to Telegram"
+  },
+  "notes": "Refuses to start without ALLOWED_USERS, and sessions start in normal mode, so Claude's permission prompts reach you in Telegram. An allowed user can switch a session to YOLO, which skips them."
+ },
+ {
+  "repo": "six-ddc/ccbot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env ALLOWED_USERS, no default; startup fails if unset",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "asks",
+  "evidence": {
+   "access": "src/ccbot/bot.py:813 — if not user or not is_user_allowed(user.id)",
+   "default": "src/ccbot/config.py:48-49 — raise ValueError(\"ALLOWED_USERS environment variable is required\")",
+   "confirms": "src/ccbot/config.py:65 — claude_command = os.getenv(\"CLAUDE_COMMAND\", \"claude\"); permission prompts are forwarded to Telegram as buttons"
+  },
+  "notes": "Refuses to start without ALLOWED_USERS and by default runs plain claude, forwarding permission prompts as buttons. Its README suggests a CLAUDE_COMMAND with permissions skipped; following that removes the prompts."
+ },
+ {
+  "repo": "earlyaidopters/claudeclaw",
+  "access": "optional",
+  "default": "partly open",
+  "default_setting": "env ALLOWED_CHAT_ID, default empty; the Claude agent is not reachable until it is set, but several side commands are served to anyone",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/bot.ts:304-309 — if (!ALLOWED_CHAT_ID) { // Not yet configured — let every request through ... return true; }",
+   "default": "src/bot.ts:350-354 — agent path replies with your chat ID and returns; /slack and /wa gate only on isAuthorised, which is true when unset",
+   "confirms": "src/agent.ts:224-225 — permissionMode: 'bypassPermissions', allowDangerouslySkipPermissions: true (hardcoded)"
+  },
+  "notes": "Set ALLOWED_CHAT_ID before connecting anything: until you do, strangers cannot reach Claude, but anyone who finds the bot can use /slack, /wa, /dashboard, /memory and /forget. Once configured, Claude runs with all permissions bypassed and no way to turn that off."
+ }
+]

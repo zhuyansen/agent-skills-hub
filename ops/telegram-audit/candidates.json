@@ -1,0 +1,122 @@
+[
+ {
+  "repo": "overwirehq/claude-code-telegram",
+  "kind": "remote",
+  "stars": 2802,
+  "grade": "safe"
+ },
+ {
+  "repo": "grinev/opencode-telegram-bot",
+  "kind": "remote",
+  "stars": 1234,
+  "grade": "safe"
+ },
+ {
+  "repo": "banteg/takopi",
+  "kind": "remote",
+  "stars": 1049,
+  "grade": "safe"
+ },
+ {
+  "repo": "hanxiao/claudecode-telegram",
+  "kind": "remote",
+  "stars": 608,
+  "grade": "safe"
+ },
+ {
+  "repo": "duckbugio/flock",
+  "kind": "remote",
+  "stars": 502,
+  "grade": "safe"
+ },
+ {
+  "repo": "PleasePrompto/ductor",
+  "kind": "remote",
+  "stars": 457,
+  "grade": "safe"
+ },
+ {
+  "repo": "godagoo/claude-telegram-relay",
+  "kind": "remote",
+  "stars": 326,
+  "grade": "safe"
+ },
+ {
+  "repo": "alexei-led/ccgram",
+  "kind": "remote",
+  "stars": 277,
+  "grade": "safe"
+ },
+ {
+  "repo": "six-ddc/ccbot",
+  "kind": "remote",
+  "stars": 276,
+  "grade": "safe"
+ },
+ {
+  "repo": "earlyaidopters/claudeclaw",
+  "kind": "remote",
+  "stars": 173,
+  "grade": "safe"
+ },
+ {
+  "repo": "emreturkmencom/antigravity-telegram-suite",
+  "kind": "remote",
+  "stars": 172,
+  "grade": "safe"
+ },
+ {
+  "repo": "NachoSEO/claudegram",
+  "kind": "remote",
+  "stars": 153,
+  "grade": "safe"
+ },
+ {
+  "repo": "father-bot/chatgpt_telegram_bot",
+  "kind": "assistant",
+  "stars": 5537,
+  "grade": "safe"
+ },
+ {
+  "repo": "tbxark/ChatGPT-Telegram-Workers",
+  "kind": "assistant",
+  "stars": 3808,
+  "grade": "safe"
+ },
+ {
+  "repo": "altryne/chatGPT-telegram-bot",
+  "kind": "assistant",
+  "stars": 1637,
+  "grade": "safe"
+ },
+ {
+  "repo": "yym68686/ChatGPT-Telegram-Bot",
+  "kind": "assistant",
+  "stars": 1290,
+  "grade": "safe"
+ },
+ {
+  "repo": "V-know/ChatGPT-Telegram-Bot",
+  "kind": "assistant",
+  "stars": 649,
+  "grade": "safe"
+ },
+ {
+  "repo": "linuz90/claude-telegram-bot",
+  "kind": "assistant",
+  "stars": 448,
+  "grade": "safe"
+ },
+ {
+  "repo": "polakowo/gpt2bot",
+  "kind": "assistant",
+  "stars": 442,
+  "grade": "safe"
+ },
+ {
+  "repo": "smixs/agent-second-brain",
+  "kind": "assistant",
+  "stars": 391,
+  "grade": "safe"
+ }
+]

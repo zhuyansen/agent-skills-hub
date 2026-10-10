@@ -1,0 +1,77 @@
+[
+ {
+  "repo": "overwirehq/claude-code-telegram",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "ALLOWED_USERS (default none). ENVIRONMENT defaults to development, which forces development mode, so an empty allowlist allows everyone; only ENVIRONMENT=production makes startup fail",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "confined",
+  "evidence": {
+   "access": "src/main.py:111-112 — if config.allowed_users: providers.append(WhitelistAuthProvider(config.allowed_users))",
+   "default": "src/main.py:120-127 — if not providers and config.development_mode: ... WhitelistAuthProvider([], allow_all_dev=True); src/config/loader.py:42 — env = env or os.getenv(\"ENVIRONMENT\", \"development\"); src/config/environments.py:10 — development_mode: bool = True",
+   "confirms": "src/config/settings.py:69-70 — interactive_tool_approval default False; src/claude/sdk_integration.py:308-366 — tool calls outside the approved directory are denied; settings.py:178 — sandbox_enabled default True"
+  },
+  "notes": "If you leave ALLOWED_USERS empty and do not set ENVIRONMENT=production, anyone who finds the bot can drive Claude on your host; the shipped .env.example itself sets ENVIRONMENT=development. Tool calls are not approved by a person by default; they are checked against APPROVED_DIRECTORY."
+ },
+ {
+  "repo": "grinev/opencode-telegram-bot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "TELEGRAM_ALLOWED_USER_ID (one user ID, required); the process throws at config load if it is missing",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "relays",
+  "evidence": {
+   "access": "src/bot/middleware/auth.ts:12 — if (userId && userId === config.telegram.allowedUserId) next(); else silently ignore",
+   "default": "src/config.ts:14-16 — throw new Error(`Missing required environment variable: ...`)",
+   "confirms": "src/app/services/event-router.ts:50 — case \"permission.asked\": relayed to Telegram with Allow/Reject buttons; the bot passes no permission flags to opencode serve"
+  },
+  "notes": "Locked to exactly one Telegram user ID and will not start without it. It shows Allow/Reject buttons when the OpenCode server asks, so whether shell and edit actions need approval depends on your own OpenCode permission config."
+ },
+ {
+  "repo": "banteg/takopi",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "transports.telegram.chat_id in ~/.takopi/takopi.toml (required); allowed_user_ids (default empty) is an optional per-sender filter",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/takopi/telegram/parsing.py:98-102 — if allowed is not None and msg_chat_id not in allowed: return None",
+   "default": "src/takopi/settings.py:105-107 — bot_token and chat_id are required fields",
+   "confirms": "src/takopi/runners/codex.py:877-881 — approval requests return {\"decision\": \"accept\"}; src/takopi/runners/claude.py:24 — DEFAULT_ALLOWED_TOOLS = [\"Bash\", \"Read\", \"Edit\", \"Write\"]"
+  },
+  "notes": "Only the configured chat is served, but if that chat is a group every member can run the agent unless you also set allowed_user_ids. There is no approval step in Telegram: Codex approval requests are auto-accepted and Claude gets Bash, Read, Edit and Write pre-approved."
+ },
+ {
+  "repo": "hanxiao/claudecode-telegram",
+  "access": "none",
+  "default": "open",
+  "default_setting": "none exists: no allowlist, chat ID check or webhook secret in bridge.py",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "bridge.py:162-169 — handle_message reads chat_id and writes it to a file with no sender check; bridge.py:262 — tmux_send(text)",
+   "default": "bridge.py:113-120 — do_POST handles any update with no secret-token check; bridge.py:279 — HTTPServer((\"0.0.0.0\", PORT), Handler)",
+   "confirms": "bridge.py:148 — claude --resume {session_id} --dangerously-skip-permissions; also :158 and :207"
+  },
+  "notes": "Anyone who messages the bot, and anyone who can POST to the webhook URL, gets their text typed into a Claude Code session running with permissions skipped. Do not expose it without adding your own sender check and webhook secret."
+ },
+ {
+  "repo": "duckbugio/flock",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_USERS (default empty); an empty list serves nobody",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "cmd/flock-telegram/main.go:516-518 — if !cfg.IsAllowed(msg.From.ID) { ... return }",
+   "default": "internal/config/config.go:903-904 — IsAllowed returns containsID(c.AllowedUsers, userID), no empty-list bypass",
+   "confirms": "core/claude/runner.go:152-156 — permissionMode := \"bypassPermissions\""
+  },
+  "notes": "Fails closed: with ALLOWED_USERS empty nobody is served. The default Claude backend runs with permissions bypassed; the containment is the Docker container the project expects you to deploy it in."
+ }
+]

@@ -1262,5 +1262,809 @@
     "reason_zh": "不是安装工具：它是一个 skill，分析已装的 skill，并在 CLAUDE.md 里列出建议停用的。"
    }
   }
+ },
+ "telegram-bot": {
+  "type": "table",
+  "date": "2026-10-10",
+  "dir": "/best-runs/telegram/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/telegram-audit/RESULTS.md",
+  "title": [
+   "Source audit: who can use each bot, and what it can do",
+   "源码审计：谁能用这个 bot，它能做什么"
+  ],
+  "list_title": [
+   "Source audit",
+   "源码审计"
+  ],
+  "intro": [
+   "On 2026-10-10 we read the source of 20 of these bots. A bot needs a BotFather token to run, so this is a reading, not a run: for each one, who it serves when you set no allowlist, and for bots that drive a coding agent, what stands between a Telegram message and a command on your machine. Every answer cites its file and line; every \"serves anyone\" was re-read by hand.",
+   "2026-10-10 我们读了其中 20 个 bot 的源码。bot 要有 BotFather token 才能跑，所以这是读代码，不是实跑：每个 bot 在你没设白名单时为谁服务；对能指挥编码 agent 的 bot，还看一条 Telegram 消息到你机器上的一条命令之间隔着什么。每个结论都标了文件和行号；所有「任何人可用」都人工复读过。"
+  ],
+  "finding": [
+   "10 of 14 agent bots serve nobody until you list your ID, but 9 of 14 run the agent with permission prompts off, so that list is the only lock. 4 of 6 chat bots answer anyone by default. No repository had a real bot token committed.",
+   "14 个 agent 类 bot 里 10 个在你填 ID 之前谁都不服务，但有 9 个让 agent 跳过权限确认，于是白名单成了唯一一道锁。6 个聊天 bot 里 4 个默认对所有人开放。没有仓库提交了真实的 bot token。"
+  ],
+  "name_col": [
+   "Bot",
+   "Bot"
+  ],
+  "columns": [
+   [
+    "With no allowlist set",
+    "没设白名单时"
+   ],
+   [
+    "Before the agent acts",
+    "agent 动手之前"
+   ],
+   [
+    "Setting to check",
+    "要检查的设置"
+   ]
+  ],
+  "group_columns": {
+   "chat": [
+    [
+     "With no allowlist set",
+     "没设白名单时"
+    ],
+    [
+     "Setting to check",
+     "要检查的设置"
+    ]
+   ]
+  },
+  "see": [
+   "See the lines →",
+   "看源码依据 →"
+  ],
+  "evidence": [
+   "The lines",
+   "源码依据"
+  ],
+  "line_label": [
+   "Source audit 2026-10-10:",
+   "2026-10-10 源码审计："
+  ],
+  "groups": [
+   {
+    "id": "remote",
+    "title": [
+     "Bots that drive a coding agent on your machine (14)",
+     "能在你机器上指挥编码 agent 的 bot（14 个）"
+    ]
+   },
+   {
+    "id": "chat",
+    "title": [
+     "Chat-only bots (6)",
+     "纯聊天 bot（6 个）"
+    ]
+   }
+  ],
+  "verdict": {
+   "title": [
+    "Which one to run",
+    "到底跑哪个"
+   ],
+   "lead": [
+    "We read the source of {n} of these bots: who each one serves, and what it can do on your machine. This is what we would pick; the [full audit](#{anchor}) is below.",
+    "我们读了其中 {n} 个 bot 的源码:它为谁服务,能在你机器上做什么。结论如下,[完整审计](#{anchor})在下面。"
+   ],
+   "basis": [
+    "after reading their source",
+    "读完源码后"
+   ],
+   "more": [
+    "See the audit →",
+    "看源码审计 →"
+   ],
+   "rule": [
+    "Ranked by what the bot does when no allowlist is set, then (for bots that drive a coding agent) by what stands between a message and a command, then GitHub stars. Read from the source at the commit on each evidence page; nothing was run.",
+    "排名规则：先看没设白名单时 bot 怎么做，再看（对能指挥编码 agent 的 bot）一条消息到一条命令之间隔着什么，最后看 GitHub 星数。结论来自各证据页所标 commit 的源码，没有实际运行。"
+   ],
+   "picks": [
+    {
+     "repo": "alexei-led/ccgram",
+     "role": [
+      "To drive Claude Code from your phone",
+      "想用手机遥控 Claude Code"
+     ],
+     "why": [
+      "One of two bots of 14 that both refuse to start without your Telegram ID and send Claude's permission prompts to you in Telegram, so a risky command still waits for your tap. The other is six-ddc/ccbot, which it grew out of; ccgram had commits this week, ccbot's last was in July.",
+      "14 个里只有两个同时做到：不填你的 Telegram ID 就拒绝启动，并且把 Claude 的权限确认发到 Telegram 让你点，所以危险命令仍然要等你同意。另一个是它的前身 six-ddc/ccbot；ccgram 本周还有提交，ccbot 最后一次提交在 7 月。"
+     ]
+    },
+    {
+     "repo": "grinev/opencode-telegram-bot",
+     "role": [
+      "If your agent is OpenCode",
+      "你用的是 OpenCode"
+     ],
+     "why": [
+      "Locked to exactly one Telegram user ID and will not start without it. When OpenCode asks for permission it shows Allow and Reject buttons in the chat; how often it asks is your OpenCode config.",
+      "只认一个 Telegram 用户 ID，不填就不启动。OpenCode 请求权限时，它在聊天里给你「允许 / 拒绝」按钮；多久问一次取决于你的 OpenCode 配置。"
+     ]
+    },
+    {
+     "repo": "tbxark/ChatGPT-Telegram-Workers",
+     "role": [
+      "If you only want an AI chat bot",
+      "只想要一个 AI 聊天 bot"
+     ],
+     "why": [
+      "The only popular chat bot here that denies by default: it answers the admin and the IDs you add, nobody else. It runs on Cloudflare Workers, so there is no server of yours to break into. Set TELEGRAM_SECRET_TOKEN as well.",
+      "这里唯一默认拒绝的热门聊天 bot：只回应管理员和你加进去的 ID。它跑在 Cloudflare Workers 上，没有你自己的服务器可被攻破。记得同时设 TELEGRAM_SECRET_TOKEN。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Do not run as shipped:",
+    "别按默认配置直接跑："
+   ],
+   "avoid": [
+    {
+     "repo": "hanxiao/claudecode-telegram",
+     "why": [
+      "no access check at all, Claude runs with permissions skipped, and the webhook listens on every interface",
+      "完全没有访问控制，Claude 跳过权限确认，webhook 还监听所有网卡"
+     ]
+    },
+    {
+     "repo": "godagoo/claude-telegram-relay",
+     "why": [
+      "forget one variable and it starts anyway, serving anyone",
+      "漏填一个变量它也照常启动，并对所有人开放"
+     ]
+    },
+    {
+     "repo": "overwirehq/claude-code-telegram",
+     "why": [
+      "the most-starred one; with an empty allowlist it lets everyone in unless ENVIRONMENT=production",
+      "星数最高的一个；白名单为空且没设 ENVIRONMENT=production 时放所有人进来"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: 9 of the 14 agent bots run with permission prompts off, so the allowlist is the only lock. Whoever controls your Telegram account then has a shell on that machine. Turn on Telegram two-step verification, and run the bot as its own user or in a container.",
+    "不管选哪个：14 个 agent 类 bot 里有 9 个跳过权限确认，白名单就是唯一一道锁。谁控制了你的 Telegram 账号，谁就拿到那台机器的 shell。给 Telegram 开两步验证，并让 bot 跑在单独的系统用户或容器里。"
+   ]
+  },
+  "runs": {
+   "tbxark/ChatGPT-Telegram-Workers": {
+    "ran": true,
+    "stars": 3808,
+    "sheet": "tbxark__ChatGPT-Telegram-Workers.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "allowedUserIds (deny by default)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ],
+     [
+      "runs on Cloudflare Workers, nothing executes on a machine of yours",
+      "跑在 Cloudflare Workers 上，不在你自己的机器上执行任何东西"
+     ]
+    ]
+   },
+   "altryne/chatGPT-telegram-bot": {
+    "ran": true,
+    "stars": 1637,
+    "sheet": "altryne__chatGPT-telegram-bot.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "TELEGRAM_USER_ID (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ]
+    ]
+   },
+   "grinev/opencode-telegram-bot": {
+    "ran": true,
+    "stars": 1234,
+    "sheet": "grinev__opencode-telegram-bot.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Agent's own prompts sent to Telegram",
+      "agent 的确认发到 Telegram",
+      "touch-ups"
+     ],
+     [
+      "TELEGRAM_ALLOWED_USER_ID (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "the agent's own permission prompts come to you in Telegram",
+      "agent 自己的权限确认会发到 Telegram"
+     ]
+    ]
+   },
+   "alexei-led/ccgram": {
+    "ran": true,
+    "stars": 277,
+    "sheet": "alexei-led__ccgram.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Permission prompts sent to Telegram",
+      "权限确认发到 Telegram",
+      "touch-ups"
+     ],
+     [
+      "ALLOWED_USERS (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "Claude's permission prompts come to you in Telegram",
+      "Claude 的权限确认会发到 Telegram 给你点"
+     ],
+     [
+      "an allowed user can switch a session to YOLO, which skips the prompts",
+      "白名单用户可以把会话切到 YOLO，那样就不再确认"
+     ]
+    ]
+   },
+   "six-ddc/ccbot": {
+    "ran": true,
+    "stars": 276,
+    "sheet": "six-ddc__ccbot.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Permission prompts sent to Telegram",
+      "权限确认发到 Telegram",
+      "touch-ups"
+     ],
+     [
+      "ALLOWED_USERS (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "Claude's permission prompts come to you in Telegram",
+      "Claude 的权限确认会发到 Telegram 给你点"
+     ]
+    ]
+   },
+   "banteg/takopi": {
+    "ran": true,
+    "stars": 1049,
+    "sheet": "banteg__takopi.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "chat_id (required); allowed_user_ids for groups",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ],
+     [
+      "in a group chat every member can drive the agent unless you also list user IDs",
+      "放在群里时，不另填用户 ID 的话每个群成员都能指挥 agent"
+     ]
+    ]
+   },
+   "duckbugio/flock": {
+    "ran": true,
+    "stars": 502,
+    "sheet": "duckbugio__flock.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "ALLOWED_USERS",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "PleasePrompto/ductor": {
+    "ran": true,
+    "stars": 457,
+    "sheet": "PleasePrompto__ductor.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "allowed_user_ids (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "linuz90/claude-telegram-bot": {
+    "ran": true,
+    "stars": 448,
+    "sheet": "linuz90__claude-telegram-bot.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "TELEGRAM_ALLOWED_USERS (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "smixs/agent-second-brain": {
+    "ran": true,
+    "stars": 391,
+    "sheet": "smixs__agent-second-brain.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "ALLOWED_USER_IDS",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "emreturkmencom/antigravity-telegram-suite": {
+    "ran": true,
+    "stars": 172,
+    "sheet": "emreturkmencom__antigravity-telegram-suite.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "ALLOWED_CHAT_ID (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ],
+     [
+      "/cmd runs your text as a shell command, and auto-accept ships switched on",
+      "/cmd 会把文字当 shell 命令执行，自动同意默认开启"
+     ]
+    ]
+   },
+   "NachoSEO/claudegram": {
+    "ran": true,
+    "stars": 153,
+    "sheet": "NachoSEO__claudegram.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves nobody",
+      "谁都不服务",
+      "touch-ups"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "ALLOWED_USER_IDS (required)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves nobody until you list your Telegram ID",
+      "不填你的 Telegram ID 就谁都不服务"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "earlyaidopters/claudeclaw": {
+    "ran": true,
+    "stars": 173,
+    "sheet": "earlyaidopters__claudeclaw.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Side commands open to anyone",
+      "部分命令对所有人开放",
+      ""
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "ALLOWED_CHAT_ID",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Until you set your chat ID, some commands answer anyone",
+      "没填 chat ID 之前，部分命令任何人可用"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ]
+    ]
+   },
+   "father-bot/chatgpt_telegram_bot": {
+    "ran": true,
+    "stars": 5537,
+    "sheet": "father-bot__chatgpt_telegram_bot.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves anyone",
+      "任何人可用",
+      "substantial"
+     ],
+     [
+      "allowed_telegram_usernames",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves anyone who finds the bot unless you set an allowlist",
+      "不设白名单的话，找到 bot 的人都能用"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ]
+    ]
+   },
+   "yym68686/ChatGPT-Telegram-Bot": {
+    "ran": true,
+    "stars": 1290,
+    "sheet": "yym68686__ChatGPT-Telegram-Bot.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves anyone",
+      "任何人可用",
+      "substantial"
+     ],
+     [
+      "whitelist, ADMIN_LIST",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves anyone who finds the bot unless you set an allowlist",
+      "不设白名单的话，找到 bot 的人都能用"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ]
+    ]
+   },
+   "overwirehq/claude-code-telegram": {
+    "ran": true,
+    "stars": 2802,
+    "sheet": "overwirehq__claude-code-telegram.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves anyone",
+      "任何人可用",
+      "substantial"
+     ],
+     [
+      "No prompts; kept to one directory",
+      "不确认；限制在一个目录内",
+      ""
+     ],
+     [
+      "ALLOWED_USERS, and ENVIRONMENT=production",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves anyone who finds the bot unless you set an allowlist",
+      "不设白名单的话，找到 bot 的人都能用"
+     ],
+     [
+      "no approval step, but the agent is kept to one directory",
+      "没有确认步骤，但 agent 被限制在一个目录内"
+     ],
+     [
+      "the open default applies unless ENVIRONMENT=production",
+      "除非设 ENVIRONMENT=production，否则默认就是开放的"
+     ]
+    ]
+   },
+   "godagoo/claude-telegram-relay": {
+    "ran": true,
+    "stars": 326,
+    "sheet": "godagoo__claude-telegram-relay.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves anyone",
+      "任何人可用",
+      "substantial"
+     ],
+     [
+      "Depends on your Claude Code settings",
+      "取决于你本机 Claude Code 的设置",
+      ""
+     ],
+     [
+      "TELEGRAM_USER_ID",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Serves anyone who finds the bot unless you set an allowlist",
+      "不设白名单的话，找到 bot 的人都能用"
+     ],
+     [
+      "what the agent may do depends on your own Claude Code settings",
+      "agent 能做什么取决于你本机 Claude Code 的设置"
+     ]
+    ]
+   },
+   "V-know/ChatGPT-Telegram-Bot": {
+    "ran": true,
+    "stars": 649,
+    "sheet": "V-know__ChatGPT-Telegram-Bot.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves anyone, no setting to change it",
+      "任何人可用，且没有开关",
+      "substantial"
+     ],
+     [
+      "none exists (rate limits only)",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Has no allowlist at all: anyone who finds the bot can use it",
+      "完全没有白名单：找到 bot 的人都能用"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ]
+    ]
+   },
+   "polakowo/gpt2bot": {
+    "ran": true,
+    "stars": 442,
+    "sheet": "polakowo__gpt2bot.html",
+    "group": "chat",
+    "cells": [
+     [
+      "Serves anyone, no setting to change it",
+      "任何人可用，且没有开关",
+      "substantial"
+     ],
+     [
+      "none exists",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Has no allowlist at all: anyone who finds the bot can use it",
+      "完全没有白名单：找到 bot 的人都能用"
+     ],
+     [
+      "chat only, runs nothing on your machine",
+      "纯聊天，不在你机器上执行任何东西"
+     ]
+    ]
+   },
+   "hanxiao/claudecode-telegram": {
+    "ran": true,
+    "stars": 608,
+    "sheet": "hanxiao__claudecode-telegram.html",
+    "group": "remote",
+    "cells": [
+     [
+      "Serves anyone, no setting to change it",
+      "任何人可用，且没有开关",
+      "substantial"
+     ],
+     [
+      "Runs with permission prompts off",
+      "跳过权限确认直接执行",
+      "substantial"
+     ],
+     [
+      "none exists",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "Has no allowlist at all: anyone who finds the bot can use it",
+      "完全没有白名单：找到 bot 的人都能用"
+     ],
+     [
+      "runs the agent with permission prompts switched off",
+      "agent 跳过权限确认直接执行"
+     ],
+     [
+      "its webhook listens on every network interface with no secret",
+      "webhook 监听所有网卡，且没有密钥校验"
+     ]
+    ]
+   }
+  }
  }
 }

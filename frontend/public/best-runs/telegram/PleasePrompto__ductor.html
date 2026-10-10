@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>PleasePrompto/ductor: Telegram bot source audit</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card);white-space:nowrap}code{font:13px/1.5 ui-monospace,Menlo,monospace;word-break:break-word}</style></head><body><main>
+<p class="mute"><a href="/best/telegram-bot/">← Open-source Telegram bots</a></p>
+<h1>PleasePrompto/ductor: source audit, 2026-10-10</h1>
+<p class="mute">Read from the source at commit <a href="https://github.com/PleasePrompto/ductor/tree/3e3c88af57bc">3e3c88af57bc</a>; the bot was not run (it needs a BotFather token).
+Each answer cites the file and line that shows it. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/telegram-audit/RESULTS.md">All 20 bots</a></p>
+<h2>In short</h2><p>Will not start without an allowlist. Once you are on it, the agent runs with all permission prompts bypassed on the host; the Docker sandbox exists but is off by default in code (the example config shows it on).</p>
+<h2>What the source shows</h2><table><tr><th></th><th>Answer</th><th>Where</th></tr><tr><th>Who can use it</th><td>Serves nobody until you list your Telegram ID</td><td><code>ductor_bot/messenger/telegram/middleware.py:153 — elif user.id not in self._allowed_users: return None</code></td></tr><tr><th>With no allowlist set</th><td>allowed_user_ids in ~/.ductor/config/config.json, default []; startup exits when empty</td><td><code>ductor_bot/__main__.py:265-269 — needs_users = not config.allowed_user_ids ... sys.exit(1)</code></td></tr><tr><th>Before the agent acts</th><td>runs the agent with permission prompts switched off</td><td><code>ductor_bot/config.py:439 — permission_mode: str = &quot;bypassPermissions&quot;; config.py:43 — Docker sandbox enabled: bool = False</code></td></tr><tr><th>Bot token</th><td>Read from the environment or a config file; no real token is committed</td><td><code></code></td></tr></table>
+</main></body></html>

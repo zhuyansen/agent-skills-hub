@@ -1,0 +1,77 @@
+[
+ {
+  "repo": "emreturkmencom/antigravity-telegram-suite",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_CHAT_ID (empty = process exits)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/index.js:173 — if (!ALLOWED_CHAT_IDS.includes(ctx.chat.id.toString())) return",
+   "default": "src/index.js:141-150 — SECURITY ERROR: ALLOWED_CHAT_ID is required; process.exit(1)",
+   "confirms": ".env.example:51 — AUTOACCEPT_DEFAULT=true; src/index.js:1253-1261 — /cmd passes text to child_process.exec"
+  },
+  "notes": "Will not start without your chat ID, but an allowed chat has unconfirmed shell on the host: /cmd runs text as a command, and the shipped .env turns on auto-accept, which clicks the agent's Run and Allow prompts for you. It also commits an encoded Google OAuth client secret in .env.example."
+ },
+ {
+  "repo": "NachoSEO/claudegram",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_USER_IDS (required; validation fails and the process exits without it)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/bot/middleware/auth.middleware.ts:45-48 — if (!config.ALLOWED_USER_IDS.includes(userId)) reply not authorized",
+   "default": "src/config.ts:15-17 — ALLOWED_USER_IDS: z.string().min(1, 'At least one allowed user ID is required')",
+   "confirms": "src/claude/agent.ts:271-282 — acceptEdits by default; :362-364 — allowedTools includes Bash; no approval prompt is sent to Telegram"
+  },
+  "notes": "Only your listed user IDs can use it and it refuses to start without them. Nothing is sent to Telegram for approval: edits are auto-accepted and Bash is pre-approved, and the working directory defaults to your home folder."
+ },
+ {
+  "repo": "father-bot/chatgpt_telegram_bot",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "allowed_telegram_usernames in config/config.yml; the example default is [] = anyone",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "bot/bot.py:849-855 — user_filter = filters.ALL; if len(config.allowed_telegram_usernames) > 0: restrict",
+   "default": "config/config.example.yml:6 — allowed_telegram_usernames: []  # if empty, the bot is available to anyone.",
+   "confirms": "chat only: no subprocess or tool calling"
+  },
+  "notes": "Out of the box anyone who finds the bot can chat on your API bill; fill allowed_telegram_usernames before going live, preferring numeric IDs. It cannot run code on the host."
+ },
+ {
+  "repo": "tbxark/ChatGPT-Telegram-Workers",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "allowAllUsers default false; allowedUserIds default []; ADMIN_ID always allowed",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "packages/lib/core/src/bot/handler/handlers.ts:112-119 — only allowedUserIds and ADMIN_ID pass; others get the not-in-the-white-list reply",
+   "default": "packages/lib/config/src/defaults.ts:18-20 — allowAllUsers: false, allowedUserIds: [], allowedGroupIds: []",
+   "confirms": "chat only, runs on Cloudflare Workers; nothing executes on a host"
+  },
+  "notes": "Deny by default: only ADMIN_ID and IDs you add get answers, unless you switch on Allow All Users. Set TELEGRAM_SECRET_TOKEN too, or webhook updates are not verified."
+ },
+ {
+  "repo": "altryne/chatGPT-telegram-bot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "TELEGRAM_USER_ID (one user ID); unset, the script crashes at import before polling starts",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "server.py:124-127 — if update.effective_user.id == user_id ... else reply \"You are not authorized to use this bot\"",
+   "default": "server.py:41-42 — USER_ID is only defined when TELEGRAM_USER_ID is set; first use at server.py:131",
+   "confirms": "no shell; it drives a logged-in ChatGPT browser session with Playwright"
+  },
+  "notes": "Single-owner bot that will not start without your user ID. It automates a logged-in ChatGPT browser session, so it is fragile and stale."
+ }
+]

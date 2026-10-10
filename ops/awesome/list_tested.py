@@ -1,6 +1,7 @@
 """The "Tested" section of a GitHub list: the page's end-to-end test results, from the
 same data as the page's test-results section (frontend/scripts/scenario-runs.json).
-Lists without a test run get nothing."""
+Lists without a test run get nothing. A run of type "table" carries its own
+columns, cells, intro and finding, so a new kind of test needs no code here."""
 from __future__ import annotations
 
 import json
@@ -106,7 +107,7 @@ def _verdict(run: dict, i: int) -> list[str]:
     if not v:
         return []
     medals = ["🥇", "🥈", "🥉"]
-    out = ["### " + ("到底装哪个" if i else "Which one to install"), ""]
+    out = ["### " + (v.get("title") or ["Which one to install", "到底装哪个"])[i], ""]
     for n, p in enumerate(v["picks"]):
         cmd = f" `{p['install']}`" if p.get("install") and not p["install"].startswith("see") else ""
         out.append(f"- {medals[n] if n < 3 else '-'} **{p['role'][i]}: [{p['repo'].split('/')[1]}](https://github.com/{p['repo']})**{cmd}  \n  {p['why'][i]}")
@@ -115,6 +116,31 @@ def _verdict(run: dict, i: int) -> list[str]:
         out += ["", f"**{label}:** " + "; ".join(f"{a['repo'].split('/')[1]} ({a['why'][i]})" for a in v["avoid"]) + "."]
     out += ["", v["caveat"][i], "", f"*{v['rule'][i]}*", ""]
     return out
+
+
+def _own_table(run: dict, rows: list[tuple[str, dict]], i: int, site: str, w: dict, columns: list) -> list[str]:
+    cols = ["#", (run.get("name_col") or ["Skill", "Skill"])[i], "★", *[c[i].replace("|", "\\|") for c in columns], ""]
+    out = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    for rank, (repo, r) in enumerate(rows, 1):
+        cells = [str(c[i] if c[i] is not None else c[0]).replace("|", "\\|") for c in r["cells"]]
+        out.append(f"| {rank} | {_name(repo)} | {r.get('stars', 0):,} | " + " | ".join(cells) + f" | [{w['evidence']}]({site}{run['dir']}{r['sheet']}) |")
+    return out
+
+
+def _own_section(run: dict, slug: str, i: int, site: str, utm: str, w: dict) -> list[str]:
+    """The Tested section of a "table" run: its intro, finding and one table (or one per group)."""
+    ran = [(k, v) for k, v in run["runs"].items() if v.get("ran")]
+    out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
+    if run.get("finding"):
+        out += [("**发现:** " if i else "**What we found:** ") + run["finding"][i], ""]
+    for g in run.get("groups") or [None]:
+        rows = [p for p in ran if g is None or p[1].get("group") == g["id"]]
+        out += ([f"### {g['title'][i]}", ""] if g else []) + _own_table(run, rows, i, site, w, (run.get("group_columns") or {}).get(g["id"] if g else None, run["columns"])) + [""]
+    missing = [(k, v) for k, v in run["runs"].items() if not v.get("ran")]
+    if missing:
+        label = (run.get("not_run_label") or [w["not_run"], w["not_run"]])[i]
+        out += [f"**{label}:** " + "; ".join(f"{k.split('/')[1]} ({v.get('reason_zh' if i else 'reason') or v.get('reason')})" for k, v in missing), ""]
+    return out + [f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/{utm}#test-results)"]
 
 
 def top(slug: str, lang: str) -> list[str]:
@@ -126,6 +152,8 @@ def top(slug: str, lang: str) -> list[str]:
     n, judged = len(run["runs"]), sum(bool(r.get("ran")) for r in run["runs"].values())
     lead = (f"我们实跑了其中 {n} 个({judged} 个出了结果),结论如下。[完整实测结果](#{ANCHOR})在下面。" if i else
             f"We ran {n} of these end to end ({judged} gave a result). This is what we would pick; the [full test](#{ANCHOR}) is below.")
+    if run["verdict"].get("lead"):   # not a run: the Telegram list read the source
+        lead = run["verdict"]["lead"][i].format(n=n, anchor=ANCHOR)
     lines = _verdict(run, i)
     return ["", "## " + lines[0].removeprefix("### "), "", lead, *lines[1:]]
 
@@ -136,6 +164,8 @@ def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
     if not run:
         return []
     w, i, slop, mgr = WORDS[lang], 0 if lang == "en" else 1, run.get("type") == "slop", run.get("type") == "skillmgr"
+    if run.get("type") == "table":
+        return _own_section(run, slug, i, site, utm, w)
     ran = _order(run)
     key = "mgr" if mgr else "slop" if slop else "ppt"
     intro = w[f"{key}_intro"].format(date=run["date"], n=len(run["runs"]), ran=len(ran), agent=run["agent"], judge=run["judge"])

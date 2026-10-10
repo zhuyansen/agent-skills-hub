@@ -7,6 +7,8 @@
  * Runs of type "slop" (the anti-slop page, ops/slop-runs) show instead how human the
  * rewrite reads, the layer it reached, AI-leaning structure features removed, whether
  * the facts survived and, for detectors, what the report flagged.
+ * Runs of type "table" carry their own columns, cells and card phrases (written by the
+ * test's evidence.py), so a new kind of test needs no code here.
  */
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
@@ -102,14 +104,15 @@ function part([en, zh]) {
 export function runLineHtml(run, skill) {
   const r = run?.runs?.[skill.repo_full_name];
   if (!r) return "";
-  const label = part([`Tested ${run.date}:`, `${run.date} 实测：`]);
-  if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(run.type === "skillmgr" ? ["Our test could not judge it:", "这轮实测评不了："] : ["Not run in our test:", "未能实测："])} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
+  const label = part(run.line_label || [`Tested ${run.date}:`, `${run.date} 实测：`]);
+  if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(run.not_run_line || (run.type === "skillmgr" ? ["Our test could not judge it:", "这轮实测评不了："] : ["Not run in our test:", "未能实测："]))} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
   const slop = run.type === "slop";
   const mgr = run.type === "skillmgr";
-  const bits = (mgr ? mgrBits(r) : slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
+  const own = run.type === "table";
+  const bits = (own ? r.bits : mgr ? mgrBits(r) : slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
   if (r.extra_claims) bits.push(part(["added claims not in the brief", "加了测试题里没有的说法"]));
   if (r.note) bits.unshift(part([r.note, r.note_zh || r.note]));   // e.g. a converter tested on another skill's deck
-  const [en, zh] = mgr ? ["See the run →", "看实测过程 →"] : slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
+  const [en, zh] = own ? run.see : mgr ? ["See the run →", "看实测过程 →"] : slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
   const see = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs(en, zh)}>${esc(en)}</a>`;
   return `<div class="bp-sc-run">🧪 ${label} ${bits.join(" · ")} · ${see}</div>`;
 }
@@ -190,6 +193,22 @@ function mgrTable(run, rows) {
   return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r], i) => mgrRow(run, repo, r, i + 1)).join("")}</tbody>`;
 }
 
+/** One table of a "table" run: rows in the order the data gives them, cells as written. */
+function ownTable(run, rows, columns = run.columns) {
+  const cols = [["#", "#"], run.name_col || ["Skill", "Skill"], ...columns, ["Evidence", "证据"]];
+  const body = rows.map(([repo, r], i) => `<tr><td class="bp-tr-rank">${i + 1}</td>${skillCell(repo, r)}
+    ${r.cells.map(([en, zh, cls]) => cell(en, zh ?? en, cls ? `bp-tr-${cls}` : "")).join("")}
+    <td class="bp-tr-num">${evidenceLink(run, r, run.evidence || ["The run", "实测过程"])}</td></tr>`).join("");
+  return `<div class="bp-table-wrap"><table class="bp-table bp-tr-table"><thead>${head(cols)}</thead><tbody>${body}</tbody></table></div>`;
+}
+
+/** A "table" run's tables: one, or one per group (run.groups) with its own heading and ranks. */
+function ownTables(run, ran) {
+  if (!run.groups) return ownTable(run, ran);
+  return run.groups.map((g) => `<h3 class="bp-tr-group" ${biAttrs(...g.title)}>${esc(g.title[0])}</h3>
+    ${ownTable(run, ran.filter(([, r]) => r.group === g.id), run.group_columns?.[g.id])}`).join("");
+}
+
 /** "Which one to install": the test's answer, above the table (run.verdict). */
 function verdictHtml(run) {
   const v = run.verdict;
@@ -201,7 +220,7 @@ function verdictHtml(run) {
       <br><span ${biAttrs(...p.why)}>${esc(p.why[0])}</span></div></li>`).join("");
   const avoid = (v.avoid || []).map((a) => `<b>${esc(name(a.repo))}</b> (<span ${biAttrs(...a.why)}>${esc(a.why[0])}</span>)`).join("; ");
   return `<div class="bp-tr-verdict">
-      <h3 ${biAttrs("Which one to install", "到底装哪个")}>Which one to install</h3>
+      <h3 ${biAttrs(...(v.title || ["Which one to install", "到底装哪个"]))}>${esc((v.title || ["Which one to install"])[0])}</h3>
       <ol>${picks}</ol>
       ${avoid ? `<p><strong ${biAttrs(...(v.avoid_label || ["Not recommended:", "不建议："]))}>${esc((v.avoid_label || ["Not recommended:"])[0])}</strong> ${avoid}.</p>` : ""}
       <p ${biAttrs(...v.caveat)}>${esc(v.caveat[0])}</p>
@@ -221,22 +240,24 @@ export function runsSectionHtml(run) {
   const all = Object.entries(run.runs);
   const ran = all.filter(([, r]) => r.ran);
   const mgr = run.type === "skillmgr";
-  const table = mgr ? mgrTable(run, ran) : run.type === "slop" ? slopTable(run, ran) : pptTable(run, ran);
+  const own = run.type === "table";
+  const table = own ? "" : mgr ? mgrTable(run, ran) : run.type === "slop" ? slopTable(run, ran) : pptTable(run, ran);
   const [what, whatZh] = run.type === "slop"
     ? ["each rewrote the same three texts (an English post, a Chinese post, a short story)", "每个改写同样的三份文本（英文文章、中文文章、短篇小说）"]
     : ["each built a deck from the same brief", "每个按同一份测试题做一份 deck"];
-  const intro = mgr
+  const intro = own ? run.intro : mgr
     ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 test skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
        `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个测试 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
     : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.`,
        `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。`];
   return `<section id="test-results" class="bp-tr">
-    <h2 class="bp-section-title" ${biAttrs("Test results: the skills side by side", "实测对比：同一任务下的效果")}>Test results: the skills side by side</h2>
+    <h2 class="bp-section-title" ${biAttrs(...(run.title || ["Test results: the skills side by side", "实测对比：同一任务下的效果"]))}>${esc((run.title || ["Test results: the skills side by side"])[0])}</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
     ${verdictHtml(run)}
     ${compareHtml(run)}
-    <div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>
-    ${notRunHtml(all.filter(([, r]) => !r.ran), mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined)}
+    ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span></p>` : ""}
+    ${own ? ownTables(run, ran) : `<div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>`}
+    ${notRunHtml(all.filter(([, r]) => !r.ran), run.not_run_label || (mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined))}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>
   </section>`;
 }

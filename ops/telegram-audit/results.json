@@ -1,0 +1,362 @@
+[
+ {
+  "repo": "overwirehq/claude-code-telegram",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "ALLOWED_USERS (default none). ENVIRONMENT defaults to development, which forces development mode, so an empty allowlist allows everyone; only ENVIRONMENT=production makes startup fail",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "confined",
+  "evidence": {
+   "access": "src/main.py:111-112 — if config.allowed_users: providers.append(WhitelistAuthProvider(config.allowed_users))",
+   "default": "src/main.py:120-127 — if not providers and config.development_mode: ... WhitelistAuthProvider([], allow_all_dev=True); src/config/loader.py:42 — env = env or os.getenv(\"ENVIRONMENT\", \"development\"); src/config/environments.py:10 — development_mode: bool = True",
+   "confirms": "src/config/settings.py:69-70 — interactive_tool_approval default False; src/claude/sdk_integration.py:308-366 — tool calls outside the approved directory are denied; settings.py:178 — sandbox_enabled default True"
+  },
+  "notes": "If you leave ALLOWED_USERS empty and do not set ENVIRONMENT=production, anyone who finds the bot can drive Claude on your host; the shipped .env.example itself sets ENVIRONMENT=development. Tool calls are not approved by a person by default; they are checked against APPROVED_DIRECTORY.",
+  "stars": 2802,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "grinev/opencode-telegram-bot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "TELEGRAM_ALLOWED_USER_ID (one user ID, required); the process throws at config load if it is missing",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "relays",
+  "evidence": {
+   "access": "src/bot/middleware/auth.ts:12 — if (userId && userId === config.telegram.allowedUserId) next(); else silently ignore",
+   "default": "src/config.ts:14-16 — throw new Error(`Missing required environment variable: ...`)",
+   "confirms": "src/app/services/event-router.ts:50 — case \"permission.asked\": relayed to Telegram with Allow/Reject buttons; the bot passes no permission flags to opencode serve"
+  },
+  "notes": "Locked to exactly one Telegram user ID and will not start without it. It shows Allow/Reject buttons when the OpenCode server asks, so whether shell and edit actions need approval depends on your own OpenCode permission config.",
+  "stars": 1234,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "banteg/takopi",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "transports.telegram.chat_id in ~/.takopi/takopi.toml (required); allowed_user_ids (default empty) is an optional per-sender filter",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/takopi/telegram/parsing.py:98-102 — if allowed is not None and msg_chat_id not in allowed: return None",
+   "default": "src/takopi/settings.py:105-107 — bot_token and chat_id are required fields",
+   "confirms": "src/takopi/runners/codex.py:877-881 — approval requests return {\"decision\": \"accept\"}; src/takopi/runners/claude.py:24 — DEFAULT_ALLOWED_TOOLS = [\"Bash\", \"Read\", \"Edit\", \"Write\"]"
+  },
+  "notes": "Only the configured chat is served, but if that chat is a group every member can run the agent unless you also set allowed_user_ids. There is no approval step in Telegram: Codex approval requests are auto-accepted and Claude gets Bash, Read, Edit and Write pre-approved.",
+  "stars": 1049,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "hanxiao/claudecode-telegram",
+  "access": "none",
+  "default": "open",
+  "default_setting": "none exists: no allowlist, chat ID check or webhook secret in bridge.py",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "bridge.py:162-169 — handle_message reads chat_id and writes it to a file with no sender check; bridge.py:262 — tmux_send(text)",
+   "default": "bridge.py:113-120 — do_POST handles any update with no secret-token check; bridge.py:279 — HTTPServer((\"0.0.0.0\", PORT), Handler)",
+   "confirms": "bridge.py:148 — claude --resume {session_id} --dangerously-skip-permissions; also :158 and :207"
+  },
+  "notes": "Anyone who messages the bot, and anyone who can POST to the webhook URL, gets their text typed into a Claude Code session running with permissions skipped. Do not expose it without adding your own sender check and webhook secret.",
+  "stars": 608,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "duckbugio/flock",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_USERS (default empty); an empty list serves nobody",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "cmd/flock-telegram/main.go:516-518 — if !cfg.IsAllowed(msg.From.ID) { ... return }",
+   "default": "internal/config/config.go:903-904 — IsAllowed returns containsID(c.AllowedUsers, userID), no empty-list bypass",
+   "confirms": "core/claude/runner.go:152-156 — permissionMode := \"bypassPermissions\""
+  },
+  "notes": "Fails closed: with ALLOWED_USERS empty nobody is served. The default Claude backend runs with permissions bypassed; the containment is the Docker container the project expects you to deploy it in.",
+  "stars": 502,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "PleasePrompto/ductor",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "allowed_user_ids in ~/.ductor/config/config.json, default []; startup exits when empty",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "ductor_bot/messenger/telegram/middleware.py:153 — elif user.id not in self._allowed_users: return None",
+   "default": "ductor_bot/__main__.py:265-269 — needs_users = not config.allowed_user_ids ... sys.exit(1)",
+   "confirms": "ductor_bot/config.py:439 — permission_mode: str = \"bypassPermissions\"; config.py:43 — Docker sandbox enabled: bool = False"
+  },
+  "notes": "Will not start without an allowlist. Once you are on it, the agent runs with all permission prompts bypassed on the host; the Docker sandbox exists but is off by default in code (the example config shows it on).",
+  "stars": 457,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "godagoo/claude-telegram-relay",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "env TELEGRAM_USER_ID, default empty; when empty every sender is served",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "unclear",
+  "evidence": {
+   "access": "src/relay.ts:173 — if (ALLOWED_USER_ID && userId !== ALLOWED_USER_ID) reply \"This bot is private.\"",
+   "default": "src/relay.ts:29 — ALLOWED_USER_ID = process.env.TELEGRAM_USER_ID || \"\"; src/relay.ts:486 — Authorized user: ANY (not recommended)",
+   "confirms": "src/relay.ts:190-205 — claude -p with no permission flag; what Claude may do depends on the host's own Claude Code settings"
+  },
+  "notes": "If you forget TELEGRAM_USER_ID, the bot starts anyway and passes anyone's messages to Claude on your machine. Its .env.example lists the variable as required, but the code treats it as optional.",
+  "stars": 326,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "alexei-led/ccgram",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env ALLOWED_USERS, no default; startup fails if unset",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "asks",
+  "evidence": {
+   "access": "src/ccgram/handlers/text/text_handler.py:646 — if not user or not config.is_user_allowed(user.id)",
+   "default": "src/ccgram/config.py:112-113 — raise ValueError(\"ALLOWED_USERS environment variable is required\")",
+   "confirms": "src/ccgram/window_state_store.py:32 — DEFAULT_APPROVAL_MODE = \"normal\"; Claude's permission prompts are relayed to Telegram"
+  },
+  "notes": "Refuses to start without ALLOWED_USERS, and sessions start in normal mode, so Claude's permission prompts reach you in Telegram. An allowed user can switch a session to YOLO, which skips them.",
+  "stars": 277,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "six-ddc/ccbot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env ALLOWED_USERS, no default; startup fails if unset",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "asks",
+  "evidence": {
+   "access": "src/ccbot/bot.py:813 — if not user or not is_user_allowed(user.id)",
+   "default": "src/ccbot/config.py:48-49 — raise ValueError(\"ALLOWED_USERS environment variable is required\")",
+   "confirms": "src/ccbot/config.py:65 — claude_command = os.getenv(\"CLAUDE_COMMAND\", \"claude\"); permission prompts are forwarded to Telegram as buttons"
+  },
+  "notes": "Refuses to start without ALLOWED_USERS and by default runs plain claude, forwarding permission prompts as buttons. Its README suggests a CLAUDE_COMMAND with permissions skipped; following that removes the prompts.",
+  "stars": 276,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "earlyaidopters/claudeclaw",
+  "access": "optional",
+  "default": "partly open",
+  "default_setting": "env ALLOWED_CHAT_ID, default empty; the Claude agent is not reachable until it is set, but several side commands are served to anyone",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/bot.ts:304-309 — if (!ALLOWED_CHAT_ID) { // Not yet configured — let every request through ... return true; }",
+   "default": "src/bot.ts:350-354 — agent path replies with your chat ID and returns; /slack and /wa gate only on isAuthorised, which is true when unset",
+   "confirms": "src/agent.ts:224-225 — permissionMode: 'bypassPermissions', allowDangerouslySkipPermissions: true (hardcoded)"
+  },
+  "notes": "Set ALLOWED_CHAT_ID before connecting anything: until you do, strangers cannot reach Claude, but anyone who finds the bot can use /slack, /wa, /dashboard, /memory and /forget. Once configured, Claude runs with all permissions bypassed and no way to turn that off.",
+  "stars": 173,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "emreturkmencom/antigravity-telegram-suite",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_CHAT_ID (empty = process exits)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/index.js:173 — if (!ALLOWED_CHAT_IDS.includes(ctx.chat.id.toString())) return",
+   "default": "src/index.js:141-150 — SECURITY ERROR: ALLOWED_CHAT_ID is required; process.exit(1)",
+   "confirms": ".env.example:51 — AUTOACCEPT_DEFAULT=true; src/index.js:1253-1261 — /cmd passes text to child_process.exec"
+  },
+  "notes": "Will not start without your chat ID, but an allowed chat has unconfirmed shell on the host: /cmd runs text as a command, and the shipped .env turns on auto-accept, which clicks the agent's Run and Allow prompts for you. It also commits an encoded Google OAuth client secret in .env.example.",
+  "stars": 172,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "NachoSEO/claudegram",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "ALLOWED_USER_IDS (required; validation fails and the process exits without it)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/bot/middleware/auth.middleware.ts:45-48 — if (!config.ALLOWED_USER_IDS.includes(userId)) reply not authorized",
+   "default": "src/config.ts:15-17 — ALLOWED_USER_IDS: z.string().min(1, 'At least one allowed user ID is required')",
+   "confirms": "src/claude/agent.ts:271-282 — acceptEdits by default; :362-364 — allowedTools includes Bash; no approval prompt is sent to Telegram"
+  },
+  "notes": "Only your listed user IDs can use it and it refuses to start without them. Nothing is sent to Telegram for approval: edits are auto-accepted and Bash is pre-approved, and the working directory defaults to your home folder.",
+  "stars": 153,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "father-bot/chatgpt_telegram_bot",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "allowed_telegram_usernames in config/config.yml; the example default is [] = anyone",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "bot/bot.py:849-855 — user_filter = filters.ALL; if len(config.allowed_telegram_usernames) > 0: restrict",
+   "default": "config/config.example.yml:6 — allowed_telegram_usernames: []  # if empty, the bot is available to anyone.",
+   "confirms": "chat only: no subprocess or tool calling"
+  },
+  "notes": "Out of the box anyone who finds the bot can chat on your API bill; fill allowed_telegram_usernames before going live, preferring numeric IDs. It cannot run code on the host.",
+  "stars": 5537,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "tbxark/ChatGPT-Telegram-Workers",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "allowAllUsers default false; allowedUserIds default []; ADMIN_ID always allowed",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "packages/lib/core/src/bot/handler/handlers.ts:112-119 — only allowedUserIds and ADMIN_ID pass; others get the not-in-the-white-list reply",
+   "default": "packages/lib/config/src/defaults.ts:18-20 — allowAllUsers: false, allowedUserIds: [], allowedGroupIds: []",
+   "confirms": "chat only, runs on Cloudflare Workers; nothing executes on a host"
+  },
+  "notes": "Deny by default: only ADMIN_ID and IDs you add get answers, unless you switch on Allow All Users. Set TELEGRAM_SECRET_TOKEN too, or webhook updates are not verified.",
+  "stars": 3808,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "altryne/chatGPT-telegram-bot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "TELEGRAM_USER_ID (one user ID); unset, the script crashes at import before polling starts",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "server.py:124-127 — if update.effective_user.id == user_id ... else reply \"You are not authorized to use this bot\"",
+   "default": "server.py:41-42 — USER_ID is only defined when TELEGRAM_USER_ID is set; first use at server.py:131",
+   "confirms": "no shell; it drives a logged-in ChatGPT browser session with Playwright"
+  },
+  "notes": "Single-owner bot that will not start without your user ID. It automates a logged-in ChatGPT browser session, so it is fragile and stale.",
+  "stars": 1637,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "yym68686/ChatGPT-Telegram-Bot",
+  "access": "optional",
+  "default": "open",
+  "default_setting": "env whitelist (unset = everyone); ADMIN_LIST unset = everyone is admin",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "utils/decorators.py:30 — if config.whitelist and ... not in config.whitelist",
+   "default": "config.py:392 — whitelist = os.environ.get('whitelist', None); utils/decorators.py:28 — if config.whitelist == None ... return await func(...)",
+   "confirms": "README.md:87 — code interpreter plugin, default False (plugin code is in a submodule not in the clone)"
+  },
+  "notes": "With no whitelist set, anyone who finds the bot can chat on your API key, and with no ADMIN_LIST anyone can open /info and change the bot's settings. Set both before deploying.",
+  "stars": 1290,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "V-know/ChatGPT-Telegram-Bot",
+  "access": "none",
+  "default": "open",
+  "default_setting": "no allowlist setting exists; only rate limits (level 0 = 10 messages per 3 minutes)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "main.py:78 — MessageHandler(filters.TEXT, answer_handler) with no user filter",
+   "default": "chat/handler.py:60-65 — any new sender is auto-registered at level 0 and served",
+   "confirms": "no subprocess/exec in any .py file: chat and image generation only"
+  },
+  "notes": "A public bot by design: every Telegram user who messages it is registered and served on your key, limited only by rate limits.",
+  "stars": 649,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "linuz90/claude-telegram-bot",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env TELEGRAM_ALLOWED_USERS (empty = process exits at startup)",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/handlers/text.ts:32 — if (!isAuthorized(userId, ALLOWED_USERS)) reply Unauthorized",
+   "default": "src/config.ts:235-239 — TELEGRAM_ALLOWED_USERS environment variable is required; process.exit(1)",
+   "confirms": "src/session.ts:223-224 — permissionMode: \"bypassPermissions\", allowDangerouslySkipPermissions: true; cwd defaults to HOME (src/config.ts:45)"
+  },
+  "notes": "Will not start without an allowlist, but Claude Code runs on the host with all permission prompts bypassed, hardcoded, and the working directory defaults to your home folder.",
+  "stars": 448,
+  "grade": "safe",
+  "kind": "remote"
+ },
+ {
+  "repo": "polakowo/gpt2bot",
+  "access": "none",
+  "default": "open",
+  "default_setting": "no access setting exists",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "n/a",
+  "evidence": {
+   "access": "gpt2bot/telegram_bot.py:231 — MessageHandler(Filters.text, ...) with no user filter",
+   "default": "gpt2bot/telegram_bot.py:191-192 — the only startup check is that telegram_token is set",
+   "confirms": "local text generation plus a GIPHY call; no shell or tool execution"
+  },
+  "notes": "Anyone who messages the bot gets replies generated on your CPU or GPU; there is no way to restrict users without editing the code. The token goes into a tracked config file, so do not commit your edited copy.",
+  "stars": 442,
+  "grade": "safe",
+  "kind": "chat"
+ },
+ {
+  "repo": "smixs/agent-second-brain",
+  "access": "allowlist",
+  "default": "refuses",
+  "default_setting": "env ALLOWED_USER_IDS (empty = every update dropped); ALLOW_ALL_USERS default false",
+  "token": "env",
+  "leaked_token": false,
+  "confirms": "skips",
+  "evidence": {
+   "access": "src/d_brain/bot/main.py:80-82 — if user.id not in settings.allowed_user_ids: return None",
+   "default": "src/d_brain/bot/main.py:72-77 — Access denied: no allowed_user_ids configured and allow_all_users is False",
+   "confirms": "src/d_brain/services/claude_session.py:203 — [claude_bin, \"--dangerously-skip-permissions\"]; starts in the vault directory, not a sandbox"
+  },
+  "notes": "Denies everyone when the allowlist is empty (its .env.example wrongly says empty = allow all). Claude Code runs on the host with permissions skipped; never set ALLOW_ALL_USERS=true.",
+  "stars": 391,
+  "grade": "safe",
+  "kind": "remote"
+ }
+]
