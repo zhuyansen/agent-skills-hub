@@ -5,6 +5,9 @@ set -u
 REPO="$1"; OUT=/out; mkdir -p "$OUT" ~/.claude/skills
 git clone --depth 1 "https://github.com/$REPO.git" ~/src 2>&1 | tail -1
 cd ~/src && git rev-parse HEAD > "$OUT/commit.txt"; cd ~/work
+# NO_PREINSTALL=1 (the skill-manager test): installing the tool is part of the task,
+# so nothing from the repo is copied into ~/.claude first.
+if [ -z "${NO_PREINSTALL:-}" ]; then
 # Install every SKILL.md folder; a repo may ship several.
 find ~/src -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
   d=$(dirname "$f"); n=$(basename "$d"); [ "$d" = ~/src ] && n=$(basename "$REPO")
@@ -23,6 +26,7 @@ if [ ! -s "$OUT/skills.txt" ]; then
     echo "agent-setup" > "$OUT/install.txt"
   fi
 fi
+fi
 [ -f /in/brief.md ] && cp /in/brief.md ~/work/brief.md
 # Image models: an OpenAI-compatible adapter in front of the async provider (image_proxy.py).
 if [ -n "${IMAGE_API_KEY:-}" ]; then
@@ -34,8 +38,11 @@ fi
 KEY=$(echo "$REPO" | sed 's#/#__#')
 [ -d "/in/extra/$KEY" ] && mkdir -p ~/work/input && cp -r "/in/extra/$KEY"/. ~/work/input/
 [ -d /in/input ] && mkdir -p ~/work/input && cp -r /in/input/. ~/work/input/   # inputs shared by every run
+# A run that measures Claude Code's own context (/in/measure.sh) calls `claude -p` from inside the
+# agent's shell, where Claude Code does not pass its OAuth token on; keep it in a user-only file.
+[ -f /in/measure.sh ] && (umask 077; printf '%s' "$CLAUDE_CODE_OAUTH_TOKEN" > ~/.measure_token)
 PROMPT=$(cat "/in/prompts/$KEY.txt" 2>/dev/null || cat /in/prompt.txt)
 timeout "${RUN_MINUTES:-30}m" claude -p "$PROMPT" --model "${CLAUDE_MODEL:-opus}" \
   --dangerously-skip-permissions --output-format stream-json --verbose > "$OUT/transcript.jsonl" 2> "$OUT/claude.err"
 echo $? > "$OUT/exit.txt"
-python3 ~/bin/render.py ~/work "$OUT"
+if [ -n "${NO_RENDER:-}" ]; then cp -r ~/work/output "$OUT/deliverables" 2>/dev/null; else python3 ~/bin/render.py ~/work "$OUT"; fi

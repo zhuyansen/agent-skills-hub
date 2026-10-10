@@ -1,0 +1,98 @@
+[
+ {
+  "repo": "MoizIbnYousaf/ai-agent-skills",
+  "kind": "cli",
+  "stars": 1147,
+  "grade": "safe"
+ },
+ {
+  "repo": "luongnv89/asm",
+  "kind": "cli",
+  "stars": 952,
+  "grade": "safe"
+ },
+ {
+  "repo": "knoxgraeme/skillfish",
+  "kind": "cli",
+  "stars": 322,
+  "grade": "safe"
+ },
+ {
+  "repo": "VintLin/skill-flow",
+  "kind": "cli",
+  "stars": 262,
+  "grade": "safe"
+ },
+ {
+  "repo": "Karanjot786/agent-skills-cli",
+  "kind": "cli",
+  "stars": 182,
+  "grade": "safe"
+ },
+ {
+  "repo": "eljulians/skillfile",
+  "kind": "cli",
+  "stars": 173,
+  "grade": "safe"
+ },
+ {
+  "repo": "activeing123/mcptoon",
+  "kind": "cli",
+  "stars": 214,
+  "grade": "safe"
+ },
+ {
+  "repo": "shanliuling/skills-link",
+  "kind": "sync",
+  "stars": 198,
+  "grade": "safe"
+ },
+ {
+  "repo": "nnnggel/skills-management",
+  "kind": "sync",
+  "stars": 128,
+  "grade": "safe"
+ },
+ {
+  "repo": "kina-cmd/agent-skill-sync",
+  "kind": "sync",
+  "stars": 101,
+  "grade": "safe"
+ },
+ {
+  "repo": "dhruvwill/skills-cli",
+  "kind": "sync",
+  "stars": 14,
+  "grade": "safe"
+ },
+ {
+  "repo": "microsoft/apm",
+  "kind": "general",
+  "stars": 3954,
+  "grade": "safe"
+ },
+ {
+  "repo": "runkids/skillshare",
+  "kind": "general",
+  "stars": 2715,
+  "grade": "safe"
+ },
+ {
+  "repo": "infragate/capa",
+  "kind": "general",
+  "stars": 724,
+  "grade": "safe"
+ },
+ {
+  "repo": "pivoshenko/kasetto",
+  "kind": "general",
+  "stars": 209,
+  "grade": "safe"
+ },
+ {
+  "repo": "egebese/skill-manager",
+  "kind": "general",
+  "stars": 38,
+  "grade": "safe"
+ }
+]

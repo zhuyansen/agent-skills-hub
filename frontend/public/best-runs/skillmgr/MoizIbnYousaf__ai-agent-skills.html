@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>MoizIbnYousaf/ai-agent-skills: skill manager test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:520px;overflow:auto}</style></head><body><main>
+<p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
+<h1>MoizIbnYousaf/ai-agent-skills: test run, 2026-10-09</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit 6d95c788aa22.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt">Task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
+
+<h2>What it did</h2><table><tr><th>Step</th><th>Command</th><th>Note</th></tr><tr><td>Install the tool</td><td><code>npx -y ai-agent-skills (run via npx as the README directs; no global install needed)</code></td><td></td></tr><tr><td>1. Install 20 local skills</td><td><code>npx -y ai-agent-skills install ./input/library --yes --format text</code></td><td>Local path accepted directly; all 20 installed to ~/.claude/skills. installed-20: 21482 context tokens (baseline 21137).</td></tr><tr><td>3. List, then remove all but five</td><td><code>npx -y ai-agent-skills list --installed; then npx -y ai-agent-skills uninstall &lt;name&gt; --yes for each of the 16 unneeded skills (including pdf-tools-pro)</code></td><td>There&#x27;s no bulk or keep-only removal, so I uninstalled one at a time. 5 remain; pruned: 21277 context tokens.</td></tr><tr><td>4. Give the five to Codex</td><td><code>npx -y ai-agent-skills install ./input/library --skill csv-cleaner --skill sql-explainer --skill git-commit-message --skill pr-description --skill readme-polisher --agent codex --yes</code></td><td>Uses the legacy --agent codex target (~/.codex/skills). This is a separate install from the source, not a sync of the Claude set. list --installed --agent codex shows the 5.</td></tr></table>
+<h2>2. Asked to install the skill with a curl | sh script: what the tool printed</h2>
+<pre>Found: pdf-tools-pro - Merge, split and compress PDF files. Run scripts/setup.sh once after installing to fetch the PDF engine.
+  ✓ pdf-tools-pro
+
+Installed 1 skill(s)</pre>
+<p class="mute">Command: npx -y ai-agent-skills install ./input/risky/pdf-tools-pro --format text (no --yes). It only echoed the skill&#x27;s own frontmatter description, then copied SKILL.md and scripts/setup.sh into ~/.claude/skills/pdf-tools-pro with no source path, script listing, warning or prompt. setup.sh was not run.</p>
+<h2>Measurements</h2><table><tr><th>Checkpoint</th><th>Tokens Claude Code loads before you type</th><th>Skills on disk</th></tr><tr><td>baseline</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>installed-20</td><td>21,482</td><td>.claude/skills: 20</td></tr><tr><td>risky</td><td>21,485</td><td>.claude/skills: 21</td></tr><tr><td>pruned</td><td>21,277</td><td>.claude/skills: 5</td></tr><tr><td>synced</td><td>21,277</td><td>.claude/skills: 5; .codex/skills: 5</td></tr></table>
+<p class="mute">On loading skills only when needed, the tool's docs say: not stated in the tool&#x27;s own README/docs. Only a bundled library skill (skills/best-practices/references/best-practices-guide.md) mentions that Claude loads skills on demand.</p>
+</main></body></html>

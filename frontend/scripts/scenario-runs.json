@@ -902,5 +902,164 @@
     }
    }
   }
+ },
+ "skill-management-tools": {
+  "type": "skillmgr",
+  "date": "2026-10-09",
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "measured on disk",
+  "brief": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md",
+  "dir": "/best-runs/skillmgr/",
+  "runs": {
+   "MoizIbnYousaf/ai-agent-skills": {
+    "stars": 1147,
+    "sheet": "MoizIbnYousaf__ai-agent-skills.html",
+    "ran": true,
+    "minutes": 2.1,
+    "risky": "silent",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "luongnv89/asm": {
+    "stars": 952,
+    "sheet": "luongnv89__asm.html",
+    "ran": true,
+    "minutes": 3.7,
+    "risky": "refused",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "knoxgraeme/skillfish": {
+    "stars": 322,
+    "sheet": "knoxgraeme__skillfish.html",
+    "ran": false,
+    "reason": "Installs only from GitHub (owner/repo); the test skills were local folders, so install, prune and sync were not tested.",
+    "reason_zh": "只能从 GitHub（owner/repo）安装；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。"
+   },
+   "VintLin/skill-flow": {
+    "stars": 262,
+    "sheet": "VintLin__skill-flow.html",
+    "ran": true,
+    "minutes": 2.5,
+    "risky": "silent",
+    "prunes": true,
+    "syncs": "needs-agent",
+    "extra_tokens": 345
+   },
+   "Karanjot786/agent-skills-cli": {
+    "stars": 182,
+    "sheet": "Karanjot786__agent-skills-cli.html",
+    "ran": true,
+    "minutes": 2.7,
+    "risky": "source",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "eljulians/skillfile": {
+    "stars": 173,
+    "sheet": "eljulians__skillfile.html",
+    "ran": true,
+    "minutes": 7.7,
+    "risky": "source",
+    "prunes": false,
+    "syncs": true,
+    "extra_tokens": 349
+   },
+   "activeing123/mcptoon": {
+    "stars": 214,
+    "sheet": "activeing123__mcptoon.html",
+    "ran": true,
+    "minutes": 2.0,
+    "risky": "source",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 350
+   },
+   "shanliuling/skills-link": {
+    "stars": 198,
+    "sheet": "shanliuling__skills-link.html",
+    "ran": false,
+    "reason": "Adds skills only from GitHub URLs; the test skills were local folders, so install, prune and sync were not tested.",
+    "reason_zh": "只能从 GitHub 地址添加 skill；测试 skill 是本地文件夹，所以安装、清理、同步都没测成。"
+   },
+   "nnnggel/skills-management": {
+    "stars": 128,
+    "sheet": "nnnggel__skills-management.html",
+    "ran": true,
+    "minutes": 4.2,
+    "risky": "silent",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 396
+   },
+   "kina-cmd/agent-skill-sync": {
+    "stars": 101,
+    "sheet": "kina-cmd__agent-skill-sync.html",
+    "ran": true,
+    "minutes": 1.9,
+    "risky": "silent",
+    "prunes": false,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "dhruvwill/skills-cli": {
+    "stars": 14,
+    "sheet": "dhruvwill__skills-cli.html",
+    "ran": true,
+    "minutes": 2.0,
+    "risky": "source",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "microsoft/apm": {
+    "stars": 3954,
+    "sheet": "microsoft__apm.html",
+    "ran": true,
+    "minutes": 2.6,
+    "risky": "source",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "runkids/skillshare": {
+    "stars": 2715,
+    "sheet": "runkids__skillshare.html",
+    "ran": true,
+    "minutes": 3.1,
+    "risky": "warned",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 382
+   },
+   "infragate/capa": {
+    "stars": 724,
+    "sheet": "infragate__capa.html",
+    "ran": false,
+    "reason": "Installs per project (./.claude/skills), never globally; it installed, pruned and synced the project copy, which the home-folder measurement does not see.",
+    "reason_zh": "只装到项目目录（./.claude/skills），不装全局；它在项目里装好、清理并同步了，但我们的测量只看用户主目录。"
+   },
+   "pivoshenko/kasetto": {
+    "stars": 209,
+    "sheet": "pivoshenko__kasetto.html",
+    "ran": true,
+    "minutes": 4.1,
+    "risky": "source",
+    "prunes": true,
+    "syncs": true,
+    "extra_tokens": 345
+   },
+   "egebese/skill-manager": {
+    "stars": 38,
+    "sheet": "egebese__skill-manager.html",
+    "ran": false,
+    "reason": "Not an installer: a skill that analyses installed skills and lists the ones to disable in CLAUDE.md.",
+    "reason_zh": "不是安装工具：它是一个 skill，分析已装的 skill，并在 CLAUDE.md 里列出建议停用的。"
+   }
+  }
  }
 }

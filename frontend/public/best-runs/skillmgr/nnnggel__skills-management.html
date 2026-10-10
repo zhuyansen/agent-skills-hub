@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>nnnggel/skills-management: skill manager test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:520px;overflow:auto}</style></head><body><main>
+<p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
+<h1>nnnggel/skills-management: test run, 2026-10-09</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit c2d2be9aca02.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt">Task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
+
+<h2>What it did</h2><table><tr><th>Step</th><th>Command</th><th>Note</th></tr><tr><td>Install the tool</td><td><code>cd ~/src &amp;&amp; npm install &amp;&amp; npm run build &amp;&amp; NPM_CONFIG_PREFIX=~/.npm-global npm link   (README&#x27;s from-source steps; plain `npm link` failed with EACCES on the global prefix, so a user-level prefix was used)</code></td><td></td></tr><tr><td>1. Install 20 local skills</td><td><code>skm (interactive, driven via a pty from ~): 1. repo -&gt; a. Add skill -&gt; 2. Local Directory -&gt; /home/runner/work/input/library/&lt;name&gt; -&gt; 1. Keep, repeated for all 20; then 2. list(claude) -&gt; &#x27;a&#x27; (select all) -&gt; Enter</code></td><td>skm has no CLI subcommands/flags (only --version/--config); everything goes through numbered menus and an inquirer checkbox. Local folders are copied to ~/.skills-management/repo/local__&lt;name&gt; and symlinked into ~/.claude/skills as local__&lt;name&gt; (the folder name gets a &#x27;local__&#x27; prefix). Claude Code was detected because cwd=~ contains .claude.</td></tr><tr><td>3. List, then remove all but five</td><td><code>skm: 1. repo (lists all registered skills) -&gt; for each of the 16 unneeded skills: &lt;number&gt; -&gt; 1. Delete -&gt; confirm &#x27;y&#x27;; then 2. list(claude) -&gt; &#x27;Remove broken symlinks?&#x27; default Yes -&gt; checkbox (5 remaining, all checked) -&gt; Enter</code></td><td>Listing: repo menu lists global skills; list(claude) checkbox shows which are linked. Each delete needs its own confirmation (default No). Deleting from the repo leaves dangling symlinks in ~/.claude/skills until list(claude) is opened and its broken-link cleanup is accepted. During step 2 I first mis-aimed a checkbox keystroke and unlinked accessibility-check; I re-linked it through skm (select all) before measuring &#x27;risky&#x27;, so that run had all 21 linked.</td></tr><tr><td>4. Give the five to Codex</td><td><code>Codex is not a built-in target. Used skm&#x27;s documented custom &#x27;aiTools&#x27; setting in ~/.skills-management/config.json (default 5 tools + {type: codex, skillDirs: [&#x27;.codex/skills&#x27;]}), created the empty ~/.codex directory (skm only detects a tool if the skill dir&#x27;s parent exists; Codex is not installed here), then skm: 3. list(codex) -&gt; &#x27;a&#x27; -&gt; Enter</code></td><td>Five symlinks created in ~/.codex/skills pointing at the same repo copies. No built-in Codex support. Because a custom aiTools list replaces the defaults, the defaults had to be copied in by hand. Codex&#x27;s newer user skill dir (~/.agents/skills) would need its own entry.</td></tr></table>
+<h2>2. Asked to install the skill with a curl | sh script: what the tool printed</h2>
+<pre>\n=== Select Skill Type ===
+1. GitHub Repository
+2. Local Directory
+0. Return
+✔ Select option: 2
+(Enter empty to return)
+✔ Enter local skill path: /home/runner/work/input/risky/pdf-tools-pro
+Copying pdf-tools-pro to repository...
+Skill local:pdf-tools-pro added successfully.
+\nHow to handle the original directory?
+1. Keep (do nothing)
+2. Link (replace with symlink to repo)
+3. Delete
+✔ Select option: 1
+[then in list(claude), after selecting all:]
+Linked local:accessibility-check
+Linked local:pdf-tools-pro</pre>
+<p class="mute"></p>
+<h2>Measurements</h2><table><tr><th>Checkpoint</th><th>Tokens Claude Code loads before you type</th><th>Skills on disk</th></tr><tr><td>baseline</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>installed-20</td><td>21,533</td><td>.claude/skills: 20</td></tr><tr><td>risky</td><td>21,535</td><td>.claude/skills: 21</td></tr><tr><td>pruned</td><td>21,312</td><td>.claude/skills: 5</td></tr><tr><td>synced</td><td>21,312</td><td>.claude/skills: 5; .codex/skills: 5</td></tr></table>
+<p class="mute">On loading skills only when needed, the tool's docs say: not stated (the README and source say nothing about loading skills only when needed or about context/token cost; skm only creates symlinks, and loading is up to each agent)</p>
+</main></body></html>

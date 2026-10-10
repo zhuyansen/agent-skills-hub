@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>kina-cmd/agent-skill-sync: skill manager test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:520px;overflow:auto}</style></head><body><main>
+<p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
+<h1>kina-cmd/agent-skill-sync: test run, 2026-10-09</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit 975b219eb387.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt">Task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
+
+<h2>What it did</h2><table><tr><th>Step</th><th>Command</th><th>Note</th></tr><tr><td>Install the tool</td><td><code>python3 -m venv ~/.venvs/skillsync &amp;&amp; ~/.venvs/skillsync/bin/pip install ~/src  (README&#x27;s `pipx install agent-skill-sync` failed: pipx not present; `pip install agent-skill-sync` refused by PEP 668 externally-managed env)</code></td><td></td></tr><tr><td>1. Install 20 local skills</td><td><code>skillsync --config ~/work/cfg/step1.toml sync  (config: source=~/work/input/library, target=~/.claude/skills; preceded by scan and sync --dry-run)</code></td><td>skillsync has no &#x27;install&#x27; command; it &#x27;syncs&#x27; (copies) skills from configured source roots into one target root. All 20 classified A (portable); copied=20 errors=0. Local folders worked, no git needed.</td></tr><tr><td>3. List, then remove all but five</td><td><code>skillsync --config ~/work/cfg/list.toml scan  (source=~/.claude/skills) for listing; no removal possible</code></td><td>skillsync has no remove/uninstall command; by design it &#x27;never deletes&#x27;. Listed 21 skills (incl. pdf-tools-pro) but none could be removed with the tool, so all 21 remain in ~/.claude/skills. No manual rm was done.</td></tr><tr><td>4. Give the five to Codex</td><td><code>mkdir -p ~/.codex/skills (tool errors &#x27;[error] target root missing&#x27; otherwise); skillsync --config ~/work/cfg/step4.toml sync  (target=~/.codex/skills, five [[sources]] on ~/.claude/skills each with glob &#x27;&lt;skill&gt;/SKILL.md&#x27;)</code></td><td>Tool has no per-skill selection flag; used one source entry per skill glob to restrict to the five. copied=5, status shows 5 identical in ~/.codex/skills. Had to create the empty target dir first. Claude Code still has all 21 skills since step 3 could not be done.</td></tr></table>
+<h2>2. Asked to install the skill with a curl | sh script: what the tool printed</h2>
+<pre>SYNC: categories=A target=/home/runner/.claude/skills
+  [copy] pdf-tools-pro -&gt; /home/runner/.claude/skills/pdf-tools-pro  
+
+copied=1 updated=0 errors=0
+</pre>
+<p class="mute"></p>
+<h2>Measurements</h2><table><tr><th>Checkpoint</th><th>Tokens Claude Code loads before you type</th><th>Skills on disk</th></tr><tr><td>baseline</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>installed-20</td><td>21,482</td><td>.claude/skills: 20</td></tr><tr><td>risky</td><td>21,485</td><td>.claude/skills: 21</td></tr><tr><td>pruned</td><td>21,485</td><td>.claude/skills: 21</td></tr><tr><td>synced</td><td>21,485</td><td>.claude/skills: 21; .codex/skills: 5</td></tr></table>
+<p class="mute">On loading skills only when needed, the tool's docs say: not stated</p>
+</main></body></html>

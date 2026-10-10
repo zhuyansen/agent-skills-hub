@@ -3034,10 +3034,22 @@
     "安装、同步、管理 skill 时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "Only one of 12 tools stopped at a risky skill. Asked to install a skill that ships a curl | sh setup script, asm flagged it as high risk and declined by default; skillshare warned and installed it; the other ten installed it, six showing only where it came from and four without a word.",
+     "item_zh": "12 个工具里只有 1 个在风险 skill 面前停下。让它们安装一个带 curl | sh 安装脚本的 skill：asm 标为高风险、默认不装；skillshare 发了警告但照装；其余 10 个都装了，6 个只显示来源，4 个一声不吭。"
+    },
+    {
+     "item": "Context cost did not separate them. With 20 skills installed, Claude Code loaded 345 to 396 more tokens per session than the 21,137 it loads with none, whatever tool installed them, and no tool touched CLAUDE.md or registered an MCP server. Claude Code already loads skills on demand; the tools differ in what they check and what they can undo.",
+     "item_zh": "上下文成本没有拉开差距。装了 20 个 skill 后，Claude Code 每次会话比空装时的 21,137 多加载 345 到 396 个 token，用哪个工具装都一样；没有一个工具改 CLAUDE.md 或注册 MCP 服务。Claude Code 本来就按需加载 skill；工具之间的差别在于检查了什么、能撤回什么。"
+    },
+    {
+     "item": "Removing is not a given. Ten of 12 removed everything except the five skills still needed; skillfile's remove only edits its manifest and leaves the folders, and agent-skill-sync never deletes by design.",
+     "item_zh": "能删不是理所当然。12 个里有 10 个把不需要的都删掉、只留下要用的 5 个；skillfile 的 remove 只改清单、不删文件夹，agent-skill-sync 按设计从不删除。"
+    },
     {
      "item": "Fewer, focused skills work better. Curated skills raised the average pass rate by 16.6 points across 18 setups, and focused skills of at most three modules beat large bundles (SkillsBench).",
      "item_zh": "少而精更好用。在 18 种组合上，精选 skill 让平均通过率提高 16.6 个百分点，不超过三个模块的小 skill 胜过大而全的合集（SkillsBench）。"
@@ -3065,6 +3077,10 @@
      "item_zh": "把每个条目归入六类之一，可以筛选。"
     },
     {
+     "item": "On 2026-10-09 we ran 16 of them end to end (CLI installers, sync tools and all-in-one managers) in a throwaway sandbox, driven by Claude Code: install 20 local skills, install one that ships a curl | sh script, remove all but five, share those with Codex. After each step we measured what was on disk and how many tokens Claude Code loaded. Twelve could be judged; each card links to the commands and the tool's own output.",
+     "item_zh": "2026-10-09 我们端到端实跑了其中 16 个（命令行安装、同步工具和综合管理），在用完即删的沙箱里由 Claude Code 调用：装 20 个本地 skill，装一个带 curl | sh 脚本的 skill，删到只剩 5 个，再同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。12 个可以评判；每张卡片都链到用过的命令和工具自己的输出。"
+    },
+    {
      "item": "Security-graded every repo against 11 red-flag categories, reading the README and repository rather than matching keywords, and ranked the list by GitHub stars.",
      "item_zh": "按 11 类风险给每个仓库做安全评级，读 README 和仓库而不是只匹配关键词，列表按 GitHub 星数排序。"
     },
@@ -3075,8 +3091,8 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these managers end to end, for example measuring how many tokens each one loads per session; the four questions come from the research and from each tool's documentation.",
-     "item_zh": "我们还没有端到端实跑这些管理工具，比如测每个工具每个会话加载多少 token；四个问题来自研究和各工具自己的文档。"
+     "item": "The test used local folders and one made-up risky skill. Two tools that install only from GitHub (skillfish, skills-link) and one that installs only per project (capa) could not be judged by it, and desktop apps, registries and team tools were not run. A tool that passed here was not tested against a real malicious skill.",
+     "item_zh": "这轮实测用的是本地文件夹和一个自制的风险 skill。只能从 GitHub 安装的两个工具（skillfish、skills-link）和只装到项目目录的 capa 评不了，桌面应用、市场和团队工具也没有跑。在这里通过的工具，并没有在真实的恶意 skill 上测过。"
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",

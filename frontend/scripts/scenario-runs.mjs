@@ -67,6 +67,28 @@ function pptBits(r) {
   return [REWORK[r.rework], pei, rubric, [`${r.minutes} min`, `${r.minutes} 分钟`]];
 }
 
+// Skill managers (ops/skillmgr-runs): what the tool did when asked to install a skill that
+// ships a `curl | sh` setup script, best first.
+const RISKY = {
+  refused: ["Warned about the curl | sh script and did not install by default", "对 curl | sh 脚本发出警告，默认不安装"],
+  warned: ["Warned about the curl | sh script, installed it anyway", "对 curl | sh 脚本发出警告，但照装"],
+  source: ["Installed a skill with a curl | sh script, showing only its source", "带 curl | sh 脚本的 skill 照装，只显示了来源"],
+  silent: ["Installed a skill with a curl | sh script without a word", "带 curl | sh 脚本的 skill 一声不吭就装了"],
+};
+const RISKY_SHORT = {
+  refused: ["Warned, not installed by default", "警告，默认不装"], warned: ["Warned, installed anyway", "警告了，照装"],
+  source: ["Showed the source only, installed", "只显示来源，照装"], silent: ["Installed without a word", "一声不吭就装了"],
+};
+const RISKY_RANK = { refused: 0, warned: 1, source: 2, silent: 3 };
+const SYNCS = { true: ["Yes", "能"], false: ["No", "不能"], "needs-agent": ["Only to agents already installed", "只同步到已安装的 agent"] };
+
+/** The test-result phrases for a skill manager. */
+function mgrBits(r) {
+  return [RISKY[r.risky], r.prunes ? ["removes skills cleanly", "能删干净"] : ["cannot remove installed skills", "删不掉已装的 skill"],
+    r.syncs === true ? ["syncs to Codex", "能同步到 Codex"] : null,
+    r.extra_tokens != null ? [`+${r.extra_tokens} tokens per session for 20 skills`, `装 20 个 skill 每次会话多 ${r.extra_tokens} token`] : null];
+}
+
 /** The page's test run, or null. */
 export function runsFor(slug) {
   return RUNS[slug] || null;
@@ -81,12 +103,13 @@ export function runLineHtml(run, skill) {
   const r = run?.runs?.[skill.repo_full_name];
   if (!r) return "";
   const label = part([`Tested ${run.date}:`, `${run.date} 实测：`]);
-  if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(["Not run in our test:", "未能实测："])} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
+  if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(run.type === "skillmgr" ? ["Our test could not judge it:", "这轮实测评不了："] : ["Not run in our test:", "未能实测："])} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
   const slop = run.type === "slop";
-  const bits = (slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
+  const mgr = run.type === "skillmgr";
+  const bits = (mgr ? mgrBits(r) : slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
   if (r.extra_claims) bits.push(part(["added claims not in the brief", "加了测试题里没有的说法"]));
   if (r.note) bits.unshift(part([r.note, r.note_zh || r.note]));   // e.g. a converter tested on another skill's deck
-  const [en, zh] = slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
+  const [en, zh] = mgr ? ["See the run →", "看实测过程 →"] : slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
   const see = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs(en, zh)}>${esc(en)}</a>`;
   return `<div class="bp-sc-run">🧪 ${label} ${bits.join(" · ")} · ${see}</div>`;
 }
@@ -151,10 +174,26 @@ function compareHtml(run) {
     </figure>`).join("");
 }
 
-function notRunHtml(entries) {
+function mgrRow(run, repo, r) {
+  const cls = r.risky === "refused" ? "bp-tr-touch-ups" : r.risky === "silent" ? "bp-tr-substantial" : "";
+  return `<tr>${skillCell(repo, r)}
+    ${cellC(cls, ...(RISKY_SHORT[r.risky] || ["-"]))}${cellC(r.prunes ? "" : "bp-tr-substantial", ...(r.prunes ? ["Yes", "能"] : ["No", "不能"]))}
+    ${cell(...(SYNCS[String(r.syncs)] || ["-"]))}${cellC("bp-tr-num", r.extra_tokens != null ? `+${r.extra_tokens}` : "-")}
+    <td class="bp-tr-num">${evidenceLink(run, r, ["The run", "实测过程"])}</td></tr>`;
+}
+
+function mgrTable(run, rows) {
+  rows.sort(([, a], [, b]) => (RISKY_RANK[a.risky] ?? 9) - (RISKY_RANK[b.risky] ?? 9) || Number(b.prunes) - Number(a.prunes)
+    || Number(b.syncs === true) - Number(a.syncs === true) || (b.stars || 0) - (a.stars || 0));
+  const cols = [["Tool", "工具"], ["Skill with a curl | sh script", "遇到带 curl | sh 脚本的 skill"], ["Removes cleanly", "能删干净"],
+    ["Syncs to Codex", "同步到 Codex"], ["Tokens per session, 20 skills", "20 个 skill 每次会话多占"], ["Evidence", "证据"]];
+  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => mgrRow(run, repo, r)).join("")}</tbody>`;
+}
+
+function notRunHtml(entries, label = ["Not run", "未能实测"]) {
   if (!entries.length) return "";
   const items = entries.map(([repo, r]) => `<li><b>${esc(name(repo))}</b>: <span ${biAttrs(r.reason, r.reason_zh || r.reason)}>${esc(r.reason)}</span></li>`);
-  return `<details class="bp-tr-notrun"><summary ${biAttrs(`Not run (${entries.length})`, `未能实测（${entries.length}）`)}>Not run (${entries.length})</summary><ul>${items.join("")}</ul></details>`;
+  return `<details class="bp-tr-notrun"><summary ${biAttrs(`${label[0]} (${entries.length})`, `${label[1]}（${entries.length}）`)}>${esc(label[0])} (${entries.length})</summary><ul>${items.join("")}</ul></details>`;
 }
 
 /** The "Test results" section: all tested skills side by side, best first; "" without a run. */
@@ -162,18 +201,22 @@ export function runsSectionHtml(run) {
   if (!run) return "";
   const all = Object.entries(run.runs);
   const ran = all.filter(([, r]) => r.ran);
-  const table = run.type === "slop" ? slopTable(run, ran) : pptTable(run, ran);
+  const mgr = run.type === "skillmgr";
+  const table = mgr ? mgrTable(run, ran) : run.type === "slop" ? slopTable(run, ran) : pptTable(run, ran);
   const [what, whatZh] = run.type === "slop"
     ? ["each rewrote the same three texts (an English post, a Chinese post, a short story)", "每个改写同样的三份文本（英文文章、中文文章、短篇小说）"]
     : ["each built a deck from the same brief", "每个按同一份测试题做一份 deck"];
-  const intro = [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.`,
-    `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。`];
+  const intro = mgr
+    ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 local skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
+       `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个本地 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
+    : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.`,
+       `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。`];
   return `<section id="test-results" class="bp-tr">
     <h2 class="bp-section-title" ${biAttrs("Test results: the skills side by side", "实测对比：同一任务下的效果")}>Test results: the skills side by side</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
     ${compareHtml(run)}
     <div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>
-    ${notRunHtml(all.filter(([, r]) => !r.ran))}
+    ${notRunHtml(all.filter(([, r]) => !r.ran), mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined)}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>
   </section>`;
 }

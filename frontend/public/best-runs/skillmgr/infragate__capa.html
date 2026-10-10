@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>infragate/capa: skill manager test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:520px;overflow:auto}</style></head><body><main>
+<p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
+<h1>infragate/capa: test run, 2026-10-09</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit .
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt">Task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
+<p class="mute">Installs per project (./.claude/skills), never globally; it installed, pruned and synced the project copy, which the home-folder measurement does not see.</p>
+<h2>What it did</h2><table><tr><th>Step</th><th>Command</th><th>Note</th></tr><tr><td>Install the tool</td><td><code>curl -LsSf https://capa.sh/install.sh | sh   (capa 2.2.4 -&gt; ~/.local/bin/capa; installer script identical to ~/src/install.sh; binary checksum verified; ended with harmless &#x27;sh: 554: Bad substitution&#x27; after success)</code></td><td></td></tr><tr><td>1. Install 20 local skills</td><td><code>mkdir ~/work/project &amp;&amp; cd ~/work/project &amp;&amp; capa init; for d in ~/work/input/library/*/; do capa add &quot;$d&quot;; done; capa install -p claude-code --yes</code></td><td>capa accepts local skill folders (type: local). It is strictly project-scoped: skills were written to ~/work/project/.claude/skills (22 dirs: the 20 library skills + 2 capa default skills &#x27;capabilities-manager&#x27; and &#x27;bootstrap&#x27; that capa init adds automatically). It has no user/global install mode, so measure.sh still reports 0 skills in ~/.claude/skills and unchanged 21137 tokens. Install also silently added 12 &#x27;capa-sys-activity&#x27; hooks to .claude/settings.json (agentActivity default-on). --yes used because the shell is non-interactive (README says this is required).</td></tr><tr><td>3. List, then remove all but five</td><td><code>Listed via the capabilities file (grep &#x27;- id:&#x27; capabilities.yaml) since there is no list command; removed all skills except the 5 from capabilities.yaml (capa&#x27;s documented &#x27;file is source of truth&#x27; workflow) then ran capa install -p claude-code --yes, whose &#x27;Checking for removed skills&#x27; step pruned the others incl. pdf-tools-pro and the 2 capa default skills</code></td><td>capa has no &#x27;list&#x27; or &#x27;remove/uninstall&#x27; CLI commands; only &#x27;capa clean&#x27; (removes everything). The only list is reading capabilities.yaml/lock or the Web UI. Removal works by editing capabilities.yaml and re-running install. Result: .claude/skills contains exactly csv-cleaner, git-commit-message, pr-description, readme-polisher, sql-explainer. No manual rm of skill folders was done.</td></tr><tr><td>4. Give the five to Codex</td><td><code>capa install -p codex --yes</code></td><td>Wrote the same 5 skills to ~/work/project/.agents/skills (Codex&#x27;s project skills dir) plus .codex/config.toml with 10 activity hooks; .claude/skills untouched. Project-scoped only, not ~/.codex. capabilities.lock was no longer present afterwards.</td></tr></table>
+<h2>2. Asked to install the skill with a curl | sh script: what the tool printed</h2>
+<pre>$ capa add /home/runner/work/input/risky/pdf-tools-pro
+Using /home/runner/work/project/capabilities.yaml
+✓ Found SKILL.md at /home/runner/work/input/risky/pdf-tools-pro/SKILL.md
+✓ Added skill &quot;pdf-tools-pro&quot; to /home/runner/work/project/capabilities.yaml
+  Type: local
+  Path: /home/runner/work/input/risky/pdf-tools-pro
+
+Capabilities file updated. Run capa install.
+
+$ capa install -p claude-code --dry-run
+●  Executable surface for this install:
+●  (no executable MCP servers, hooks, formatters, plugins, or secret commands)
+●  Dry run — no changes were made.
+
+$ capa install -p claude-code   (no --yes; no prompt appeared)
+❯ Resolving plugins
+✔ Resolving plugins
+❯ Validating install paths
+✔ Validating install paths
+❯ Checking for removed skills
+✔ Checking for removed skills
+❯ Installing skills
+  › [1/23] capabilities-manager
+  › [2/23] bootstrap
+  › [3/23] accessibility-check
+  › [4/23] api-docs-writer
+  › [5/23] changelog-writer
+  › [6/23] cron-explainer
+  › [7/23] csv-cleaner
+  › [8/23] dependency-updater
+  › [9/23] dockerfile-review
+  › [10/23] env-var-auditor
+  › [11/23] git-commit-message
+  › [12/23] i18n-extractor
+  › [13/23] json-schema-maker
+  › [14/23] log-summarizer
+  › [15/23] meeting-notes
+  › [16/23] perf-profiler-notes
+  › [17/23] pr-description
+  › [18/23] readme-polisher
+  › [19/23] regex-helper
+  › [20/23] sql-explainer
+  › [21/23] typo-finder
+  › [22/23] unit-test-scaffold
+  › [23/23] pdf-tools-pro
+✔ Installed 23 skills
+❯ Configuring instruction files
+✔ Configuring instruction files
+❯ Writing lockfile
+✔ Writing lockfile
+❯ Pruning orphan rules
+✔ Pruning orphan rules
+❯ Configuring tools
+  › no tools configured
+  › validating…
+✔ Configuring tools
+❯ Registering MCP server
+  - No Claude Code config found (already removed)
+✔ Registering MCP server
+❯ Pruning orphan hooks
+✔ Pruning orphan hooks
+❯ Syncing agent activity hooks
+✔ Agent activity hooks synced (12 entries)
+│
+│  ✓ Done in 0.2s · 35 added</pre>
+<p class="mute"></p>
+<h2>Measurements</h2><table><tr><th>Checkpoint</th><th>Tokens Claude Code loads before you type</th><th>Skills on disk</th></tr><tr><td>baseline</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>installed-20</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>risky</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>pruned</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>synced</td><td>21,137</td><td>.claude/skills: 0</td></tr></table>
+<p class="mute">On loading skills only when needed, the tool's docs say: Docs only claim on-demand loading for MCP *tools* via the gateway (&#x27;lazy-loads tools on demand&#x27;, setup_tools/call_tool, 19-40% fewer tokens). Nothing is stated about loading skills only when needed; skills are written as normal SKILL.md folders and left to the agent&#x27;s own skill loading.</p>
+</main></body></html>

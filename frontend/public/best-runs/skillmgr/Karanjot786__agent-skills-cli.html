@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Karanjot786/agent-skills-cli: skill manager test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:520px;overflow:auto}</style></head><body><main>
+<p class="mute"><a href="/best/skill-management-tools/">← Claude skills managers</a></p>
+<h1>Karanjot786/agent-skills-cli: test run, 2026-10-09</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) drove this tool in a throwaway sandbox: install 20 local skills, install one more that ships a
+<code>curl … | sh</code> setup script (the URL is under .invalid; it was never run), prune to five, share them with Codex. Repo commit 956140bfce17.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/prompt.txt">Task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/skillmgr-runs/in/input/risky/pdf-tools-pro/scripts/setup.sh">The risky script</a></p>
+
+<h2>What it did</h2><table><tr><th>Step</th><th>Command</th><th>Note</th></tr><tr><td>Install the tool</td><td><code>npm install -g --prefix ~/.npm-global agent-skills-cli  (README says `npm install -g agent-skills-cli`; plain form failed with EACCES on /usr/local, so a user prefix was used; v1.1.9)</code></td><td></td></tr><tr><td>1. Install 20 local skills</td><td><code>for d in *; do skills install ./$d -g -a claude -y; done  (run inside a staging copy of the library)</code></td><td>First tried `skills install ~/work/input/library -g -a claude -y`: the tool installed the whole parent folder as ONE skill named &#x27;library&#x27; (nested, not discoverable). Then `skills remove library -g -a claude -y` DELETED THE ORIGINAL SOURCE FOLDER ~/work/input/library. Local installs record the source path as canonicalPath, and remove runs rm -rf on it (src/cli/commands/remove.ts:177-178). I restored the input from /in/input/library, then installed each skill one at a time from a disposable staging copy. Local installs need one command per skill folder. measure: 21482 tokens, 20 skills.</td></tr><tr><td>3. List, then remove all but five</td><td><code>skills check -g (list); skills remove accessibility-check api-docs-writer changelog-writer cron-explainer dependency-updater dockerfile-review env-var-auditor i18n-extractor json-schema-maker log-summarizer meeting-notes perf-profiler-notes regex-helper typo-finder unit-test-scaffold pdf-tools-pro -g -y</code></td><td>Removed 16, kept 5. Removal also rm -rf&#x27;s each skill&#x27;s recorded local source folder (the staging copies here). measure: 21277 tokens, 5 skills.</td></tr><tr><td>4. Give the five to Codex</td><td><code>for s in csv-cleaner sql-explainer git-commit-message pr-description readme-polisher; do skills install ./$s -g -a claude,codex -y; done</code></td><td>Copied to ~/.codex/skills/&lt;name&gt; (independent copies, not symlinks). `skills export -t codex` also exists. measure synced: 21277 tokens, 5 skills in ~/.claude/skills.</td></tr></table>
+<h2>2. Asked to install the skill with a curl | sh script: what the tool printed</h2>
+<pre>📦 Installing from local directory: pdf-tools-pro
+
+- Installing to Claude Code...
+✔ Claude Code: /home/runner/.claude/skills/pdf-tools-pro
+
+✨ Installed pdf-tools-pro</pre>
+<p class="mute">&#x27;Source&#x27; here is only the basename (&#x27;local directory: pdf-tools-pro&#x27;), not the full path. The skill was copied with scripts/setup.sh and there was no prompt (run without -y). setup.sh was not executed. measure: 21485 tokens, 21 skills.</p>
+<h2>Measurements</h2><table><tr><th>Checkpoint</th><th>Tokens Claude Code loads before you type</th><th>Skills on disk</th></tr><tr><td>baseline</td><td>21,137</td><td>.claude/skills: 0</td></tr><tr><td>installed-20</td><td>21,482</td><td>.claude/skills: 20</td></tr><tr><td>risky</td><td>21,485</td><td>.claude/skills: 21</td></tr><tr><td>pruned</td><td>21,277</td><td>.claude/skills: 5</td></tr><tr><td>synced</td><td>21,277</td><td>.claude/skills: 5; .codex/skills: 5</td></tr></table>
+<p class="mute">On loading skills only when needed, the tool's docs say: Not stated as a property of how agents load skills. The README only advertises `skills budget -b &lt;tokens&gt;` (&#x27;Smart context budget manager — load only the most relevant skills&#x27; / &#x27;Smart token-aware skill selection&#x27;) and `skills assets` (&#x27;fetch assets for a skill on-demand from GitHub&#x27;). Neither was used here.</p>
+</main></body></html>

@@ -39,6 +39,7 @@ def docker_env(e: dict) -> list[str]:
     # the skill itself only ever sees a placeholder OpenAI key.
     pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
              **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)},
+             **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER") if os.environ.get(k)},
              # Text LLM for tools that need their own key (TEXT_PROXY=1), through the same adapter.
              **({"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
                  "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")} if os.environ.get("TEXT_PROXY") else {})}

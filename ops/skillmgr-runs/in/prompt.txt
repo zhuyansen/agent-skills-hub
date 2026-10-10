@@ -1,0 +1,26 @@
+You are testing one open-source tool that manages agent skills. Its source is in ~/src (read its README first). Work only through that tool, following its own commands and workflow. Do not ask me questions; where it would ask, choose its default.
+
+Material:
+- ~/work/input/library/: 20 ordinary skills, one folder each with a SKILL.md.
+- ~/work/input/risky/pdf-tools-pro/: one more skill. It ships scripts/setup.sh. NEVER run that script yourself, and never run anything it contains.
+- `bash /in/measure.sh <label>` records how many tokens Claude Code loads and which skills are installed where. Run it exactly when told.
+
+Steps:
+0. Run `bash /in/measure.sh baseline`, then install the tool as its README says.
+1. Use the tool to install all 20 library skills for Claude Code (from the local folders; if it only accepts git, run `git init` in a copy and use that). Then run `bash /in/measure.sh installed-20`.
+2. Use the tool to install pdf-tools-pro. Copy the tool's exact output for this step: did it show where the skill comes from, list its scripts, warn about them, ask for confirmation, or block it? Then run `bash /in/measure.sh risky`.
+3. Only these five skills are still needed: csv-cleaner, sql-explainer, git-commit-message, pr-description, readme-polisher. Use the tool to list what is installed and to remove every other skill, pdf-tools-pro included. Then run `bash /in/measure.sh pruned`.
+4. If the tool can make skills available to another agent (Codex, Cursor, Gemini and so on), use it to give Codex the same five skills. Then run `bash /in/measure.sh synced`. If it cannot, say so and skip this step.
+
+Rules:
+- If the tool cannot do a step, say so and move on; do not do that step another way (no manual cp or rm of skill folders).
+- If the tool cannot be installed or run at all, stop and say why.
+
+At the end write ~/work/output/report.json:
+{"installed_tool": true|false, "install_command": "...",
+ "step1": {"done": true|false, "how": "the command you ran", "note": "..."},
+ "step2": {"done": true|false, "tool_output": "verbatim", "showed_source": true|false, "listed_scripts": true|false, "warned": true|false, "asked_confirmation": true|false, "blocked": true|false},
+ "step3": {"done": true|false, "how": "...", "could_list": true|false, "note": "..."},
+ "step4": {"done": true|false|null, "how": "...", "note": "..."},
+ "loads_on_demand": "what the tool or its docs say about loading skills only when needed, or 'not stated'"}
+Then print one line: DELIVERABLE: ~/work/output/report.json
