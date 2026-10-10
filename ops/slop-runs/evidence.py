@@ -36,6 +36,26 @@ REASON_ZH = {
     "alexgreensh/attention-span": "改的是 Claude 自己的回话方式，而且只能由人手动敲命令启动。",
     "lynote-ai/humanize-text": "除 LLM key 外还要 Niutrans 翻译 key，且只输出英文。",
 }
+# The answer the test section opens with: which one, by what you are cleaning up.
+VERDICT = {
+    "rule": ["Rewriters are ranked by how human the rewrite read to the judge (1-5); detectors by how many structure issues they flag.",
+             "排名规则：改写类按改写稿读起来像人写的程度（1–5 分）排；检测类按报出多少结构问题排。"],
+    "picks": [
+        {"repo": "seyedehsanhadi/sloptrim", "role": ["For English text", "英文文本"],
+         "why": ["The best-reading rewrites in the test (4.5 of 5) with every fact kept. Like the rest, it changes wording, not structure.",
+                 "实测里读起来最像人写的改写（4.5/5），事实全保留。和其他工具一样，它改的是措辞，不是结构。"]},
+        {"repo": "op7418/Humanizer-zh", "role": ["For Chinese text", "中文文本"],
+         "why": ["3.0 of 5 with every fact kept, level with three other Chinese tools; the most used of them. None of the Chinese tools scored higher.",
+                 "3.0/5，事实全保留，和另外三个中文工具并列；其中用的人最多。中文类没有得分更高的。"]},
+        {"repo": "Aboudjem/humanizer-skill", "role": ["To check a text, not rewrite it", "只检查不改写"],
+         "why": ["The only detector that flags structure in earnest: 8 of its 38 flags were about stated lessons, tidy endings and the like.",
+                 "唯一认真查结构的检测器：报出的 38 处里有 8 处是讲明的道理、整齐的结尾这类结构问题。"]},
+    ],
+    "avoid_label": ["Skip:", "别用："],
+    "avoid": [{"repo": "DadaNanjesha/AI-Text-Humanizer-App", "why": ["it prepends stock transitions and reads more like AI (1 of 5)", "在句首硬加连接词，越改越像 AI（1/5）"]}],
+    "caveat": ["No tool rewrote the structure away: across 40 rewrites the stated lesson survived 26 of 26 times and the tidy ending 28 of 28. Cut the moral, leave the ending open and name specifics yourself.",
+               "没有一个工具改掉结构上的 AI 味：40 份改写里，讲明的道理 26/26 留着，整齐的结尾 28/28 留着。删道理、留结尾、把泛指换成具体名字，得自己动手。"],
+}
 STYLE = """:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
 @media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
@@ -125,7 +145,7 @@ def main() -> None:
             run = OUT / row["repo"].replace("/", "__")
             (PUBLIC / (row["repo"].replace("/", "__") + ".html")).write_text(page(row, json.loads((run / "score.json").read_text()), run))
     runs = json.loads(RUNS_JSON.read_text())
-    runs["anti-slop"] = {"type": "slop", "date": DATE, "agent": "Claude Code (Claude Opus 5.5)", "judge": "gpt-6-astra",
+    runs["anti-slop"] = {"verdict": VERDICT, "type": "slop", "date": DATE, "agent": "Claude Code (Claude Opus 5.5)", "judge": "gpt-6-astra",
                          "brief": REPO_URL + "in/prompt.txt", "results": REPO_URL + "RESULTS.md", "dir": "/best-runs/slop/",
                          "runs": {r["repo"]: card(r) for r in rows}}
     RUNS_JSON.write_text(json.dumps(runs, indent=1, ensure_ascii=False) + "\n")

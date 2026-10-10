@@ -11,8 +11,8 @@ ANCHOR = "tested"
 REWORK_RANK = {"touch-ups": 0, "one round": 1, "substantial": 2}
 WORDS = {
     "en": {"h": "Tested end to end", "evidence": "evidence", "not_run": "Could not run",
-           "all": "All results, prompts and scripts", "ppt_cols": "| Skill | ★ | Before handing over | Editability (PEI) | Content rubric | Min | |",
-           "slop_cols": "| Skill | ★ | Reads human | Layer reached | AI structure removed | Facts | Detector flags | |",
+           "all": "All results, prompts and scripts", "ppt_cols": "| # | Skill | ★ | Before handing over | Editability (PEI) | Content rubric | Min | |",
+           "slop_cols": "| # | Skill | ★ | Reads human | Layer reached | AI structure removed | Facts | Detector flags | |",
            "ppt_intro": ("On {date} we ran {n} of these skills and {ran} ran: each built a deck from the same brief in a "
                          "throwaway sandbox, driven by {agent}. Editability is a level after SlidesGen-Bench's PEI "
                          "([arXiv 2601.09487](https://arxiv.org/abs/2601.09487)), parsed from the file; the content rubric is "
@@ -34,8 +34,8 @@ WORDS = {
                            "with no warning. Context cost did not separate them: 345 to 396 more tokens per session for 20 skills, whatever the tool."),
            "not_judged": "Ran, but this test could not judge them", "yes": "yes", "no": "no", "needs": "only to installed agents"},
     "zh": {"h": "端到端实测", "evidence": "证据", "not_run": "未能实测",
-           "all": "全部结果、提示词和脚本", "ppt_cols": "| Skill | ★ | 交付前 | 可编辑性(PEI) | 内容检查单 | 分钟 | |",
-           "slop_cols": "| Skill | ★ | 像人写 | 改到哪层 | 去掉的 AI 结构 | 事实 | 检测报出 | |",
+           "all": "全部结果、提示词和脚本", "ppt_cols": "| # | Skill | ★ | 交付前 | 可编辑性(PEI) | 内容检查单 | 分钟 | |",
+           "slop_cols": "| # | Skill | ★ | 像人写 | 改到哪层 | 去掉的 AI 结构 | 事实 | 检测报出 | |",
            "ppt_intro": "{date} 我们实跑了其中 {n} 个,跑成 {ran} 个:每个在用完即删的沙箱里按同一份测试题做 deck,由 {agent} 调用。按 PresentBench 的是/否检查单打分([arXiv 2603.07244](https://arxiv.org/abs/2603.07244),{judge} 核对),可编辑性按 SlidesGen-Bench 的 PEI 分级([arXiv 2601.09487](https://arxiv.org/abs/2601.09487),解析文件得出)。先按交付前返工程度,再按可编辑性,最后按内容检查单排序。",
            "slop_intro": ("{date} 我们实跑了其中 {n} 个,跑成 {ran} 个:每个在用完即删的沙箱里改写同样的三份文本(英文文章、中文文章、"
                           "短篇小说),由 {agent} 调用,{judge} 按 StoryScope 的结构特征评审([COLM 2026](https://arxiv.org/abs/2604.03136))。"
@@ -111,7 +111,7 @@ def _verdict(run: dict, i: int) -> list[str]:
         cmd = f" `{p['install']}`" if p.get("install") and not p["install"].startswith("see") else ""
         out.append(f"- {medals[n] if n < 3 else '-'} **{p['role'][i]}: [{p['repo'].split('/')[1]}](https://github.com/{p['repo']})**{cmd}  \n  {p['why'][i]}")
     if v.get("avoid"):
-        label = "需要删 skill 的话别选" if i else "Not if you need to remove skills"
+        label = (v.get("avoid_label") or ["Not recommended:", "不建议:"])[i].rstrip(":：")
         out += ["", f"**{label}:** " + "; ".join(f"{a['repo'].split('/')[1]} ({a['why'][i]})" for a in v["avoid"]) + "."]
     out += ["", v["caveat"][i], "", f"*{v['rule'][i]}*", ""]
     return out
@@ -124,8 +124,8 @@ def top(slug: str, lang: str) -> list[str]:
         return []
     i = 0 if lang == "en" else 1
     n, judged = len(run["runs"]), sum(bool(r.get("ran")) for r in run["runs"].values())
-    lead = (f"我们实跑了其中 {n} 个({judged} 个可评判),结论如下。[完整实测结果](#{ANCHOR})在下面。" if i else
-            f"We ran {n} of these end to end ({judged} could be judged). This is what we would install; the [full test](#{ANCHOR}) is below.")
+    lead = (f"我们实跑了其中 {n} 个({judged} 个出了结果),结论如下。[完整实测结果](#{ANCHOR})在下面。" if i else
+            f"We ran {n} of these end to end ({judged} gave a result). This is what we would pick; the [full test](#{ANCHOR}) is below.")
     lines = _verdict(run, i)
     return ["", "## " + lines[0].removeprefix("### "), "", lead, *lines[1:]]
 
@@ -149,7 +149,8 @@ def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
     out += [cols, "|" + "|".join("---" for _ in range(cols.replace("\\|", "").count("|") - 1)) + "|"]
     for rank, (repo, r) in enumerate(ran, 1):
         link = f"[{w['evidence']}]({site}{run['dir']}{r['sheet']})"
-        out.append(_mgr_line(repo, r, i, link, w, rank) if mgr else _slop_line(repo, r, i, link, w) if slop else _ppt_line(repo, r, i, link))
+        line = _mgr_line(repo, r, i, link, w, rank) if mgr else f"| {rank} " + (_slop_line(repo, r, i, link, w) if slop else _ppt_line(repo, r, i, link))
+        out.append(line)
     missing = [(k, v) for k, v in run["runs"].items() if not v.get("ran")]
     if missing:
         out += ["", f"**{w['not_judged'] if mgr else w['not_run']}:** " + "; ".join(

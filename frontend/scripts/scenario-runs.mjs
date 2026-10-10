@@ -131,10 +131,10 @@ function evidenceLink(run, r, [en, zh]) {
   return `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs(en, zh)}>${esc(en)}</a>`;
 }
 
-function pptRow(run, repo, r) {
+function pptRow(run, repo, r, rank) {
   // The thumbnail is the deck's routes slide (r.thumb, from ops/ppt-runs/compare.py), so the column compares like with like.
   const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + (r.thumb || r.sheet))}" alt="${esc(name(repo))} slides" width="120" height="68" loading="lazy"></a>`;
-  return `<tr>${skillCell(repo, r)}
+  return `<tr><td class="bp-tr-rank">${r.note ? "" : rank}</td>${skillCell(repo, r)}
     ${cellC(`bp-tr-${(r.rework || "").replace(" ", "-")}`, ...(REWORK[r.rework] || ["-"]))}${cell(...(r.pei != null ? PEI[r.pei] : EDITABLE[r.editable] || ["-"]))}
     ${cellC("bp-tr-num", r.checklist != null ? pct(r.checklist) : "-")}${cellC("bp-tr-num", `${r.minutes} min`, `${r.minutes} 分钟`)}<td>${thumb}</td></tr>`;
 }
@@ -145,15 +145,15 @@ function pptTable(run, rows) {
   // the rubric barely separates decks (10 of 26 at 100%), editability and rework do.
   rows.sort(([, a], [, b]) => Boolean(a.note) - Boolean(b.note) || (REWORK_RANK[a.rework] ?? 9) - (REWORK_RANK[b.rework] ?? 9)
     || (b.pei ?? -1) - (a.pei ?? -1) || (b.checklist ?? -1) - (a.checklist ?? -1));
-  const cols = [["Skill", "Skill"], ["Before handing over", "交付前"], ["Editability (PEI)", "可编辑性（PEI）"], ["Content rubric", "内容检查单"], ["Time", "耗时"], ["Slides", "幻灯片"]];
-  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => pptRow(run, repo, r)).join("")}</tbody>`;
+  const cols = [["#", "#"], ["Skill", "Skill"], ["Before handing over", "交付前"], ["Editability (PEI)", "可编辑性（PEI）"], ["Content rubric", "内容检查单"], ["Time", "耗时"], ["Slides", "幻灯片"]];
+  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r], i) => pptRow(run, repo, r, i + 1)).join("")}</tbody>`;
 }
 
-function slopRow(run, repo, r) {
+function slopRow(run, repo, r, rank) {
   const rewrote = r.reads_human != null;
   const layer = rewrote ? (LAYER[r.deepest] || LAYER.none) : ["Detector only", "只检测"];
   const flags = r.flags ? [`${r.flags.flags} (${r.flags.structure} structure)`, `${r.flags.flags}（结构 ${r.flags.structure}）`] : ["-"];
-  return `<tr>${skillCell(repo, r)}
+  return `<tr><td class="bp-tr-rank">${rank}</td>${skillCell(repo, r)}
     ${cellC("bp-tr-num", rewrote ? `${r.reads_human}/5` : "-")}${cell(...layer)}${cellC("bp-tr-num", rewrote ? r.structure_removed : "-")}
     ${cellC("bp-tr-num", ...(rewrote ? (r.facts_kept ? ["All kept", "全保留"] : ["Lost some", "有丢失"]) : ["-"]))}${cell(...flags)}
     <td class="bp-tr-num">${evidenceLink(run, r, ["Before / after", "改写前后"])}</td></tr>`;
@@ -161,9 +161,9 @@ function slopRow(run, repo, r) {
 
 function slopTable(run, rows) {
   rows.sort(([, a], [, b]) => (b.reads_human ?? -1) - (a.reads_human ?? -1) || (b.flags?.structure || 0) - (a.flags?.structure || 0));
-  const cols = [["Skill", "Skill"], ["Reads human", "像人写"], ["Layer reached", "改到哪层"], ["AI structure removed", "去掉的 AI 结构"],
+  const cols = [["#", "#"], ["Skill", "Skill"], ["Reads human", "像人写"], ["Layer reached", "改到哪层"], ["AI structure removed", "去掉的 AI 结构"],
     ["Facts", "事实"], ["Detector flags", "检测报出"], ["Evidence", "证据"]];
-  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r]) => slopRow(run, repo, r)).join("")}</tbody>`;
+  return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r], i) => slopRow(run, repo, r, i + 1)).join("")}</tbody>`;
 }
 
 /** Side-by-side images above the table (run.compare): the same slide from every deck. */
@@ -203,7 +203,7 @@ function verdictHtml(run) {
   return `<div class="bp-tr-verdict">
       <h3 ${biAttrs("Which one to install", "到底装哪个")}>Which one to install</h3>
       <ol>${picks}</ol>
-      ${avoid ? `<p><strong ${biAttrs("Not if you need to remove skills:", "需要删 skill 的话别选：")}>Not if you need to remove skills:</strong> ${avoid}.</p>` : ""}
+      ${avoid ? `<p><strong ${biAttrs(...(v.avoid_label || ["Not recommended:", "不建议："]))}>${esc((v.avoid_label || ["Not recommended:"])[0])}</strong> ${avoid}.</p>` : ""}
       <p ${biAttrs(...v.caveat)}>${esc(v.caveat[0])}</p>
       <p class="bp-tr-mute" ${biAttrs(...v.rule)}>${esc(v.rule[0])}</p>
     </div>`;

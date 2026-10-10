@@ -35,9 +35,10 @@ function testedPickHtml(verdict, skills, itemCount, subject, scenario) {
   const first = verdict.picks[0];
   const pick = skills.find((s) => s.repo_full_name.toLowerCase() === first.repo.toLowerCase());
   if (!pick) return "";
-  const lead = bi(`Of the ${itemCount} ${subject} here, the one to install is `, `这 ${itemCount} 个${scenario.zhTitle}里，建议装 `);
-  const tail = bi(` (★ ${starsK(pick.stars)}), from our own test: `, `（★ ${starsK(pick.stars)}），依据是我们的实测：`);
-  const why = bi(first.why[0], first.why[1], "color:var(--bp-text-secondary);font-size:13px");
+  // The pick is for a situation ("For a PowerPoint file a colleague will edit"), so the sentence says which.
+  const lead = bi(`Of the ${itemCount} ${subject} here, our pick after testing them is `, `这 ${itemCount} 个${scenario.zhTitle}里，实测后的首选是 `);
+  const tail = bi(` (★ ${starsK(pick.stars)}). `, `（★ ${starsK(pick.stars)}）。`);
+  const why = bi(`${first.role[0]}: ${first.why[0]}`, `${first.role[1]}：${first.why[1]}`, "color:var(--bp-text-secondary);font-size:13px");
   const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="See the test →" data-zh="看实测 →">See the test →</a>`;
   const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
   return `<div class="bp-quick-pick">

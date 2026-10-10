@@ -46,6 +46,7 @@ VERDICT = {
                  "包管理器：skill 写在清单里，装和删都精确。格式不合规的 skill 会被它拒收。它不对脚本做任何提示，所以加之前先读一遍。"],
          "install": "pip install apm-cli"},
     ],
+    "avoid_label": ["Not if you need to remove skills:", "需要删 skill 的话别选："],
     "avoid": [
         {"repo": "eljulians/skillfile", "why": ["its remove edits the manifest but leaves the installed folders", "remove 只改清单，已装的文件夹留在原地"]},
         {"repo": "kina-cmd/agent-skill-sync", "why": ["it never deletes, by design", "按设计从不删除"]},
