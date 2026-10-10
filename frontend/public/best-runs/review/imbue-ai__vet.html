@@ -1,0 +1,150 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>imbue-ai/vet: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>imbue-ai/vet: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by gpt-6-astra. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 59757aec70b3.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 7 of 8 planted defects</b>; 1.1 findings per pull request; 18 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># Vet review: pr-01-list-pagination
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-01-list-pagination`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 4, confidence 1
+
+- Location: `shop/orders.py:30`
+- The offset is off by one page for the documented 1-based page numbering. With PAGE_SIZE = 20, the default page skips the first 20 orders and returns an empty list for users with 20 or fewer orders; those first orders are inaccessible through valid page numbers. Calculate offset as (page - 1) * PAGE_SIZE.
+
+## 2. test_coverage — severity 3, confidence 1
+
+- Location: `shop/orders.py:28`
+- Pagination introduces new behavior, but the diff adds no tests despite the existing unittest suite. Add tests for the default first page, subsequent pages, a partially filled final page, and pages beyond the available results, checking ordering and user isolation.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Vet review: pr-02-extract-row-helper
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-02-extract-row-helper`, default confidence threshold 0.8.
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># Vet review: pr-03-search-by-note
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-03-search-by-note`, default confidence threshold 0.8.
+
+## 1. test_coverage — severity 3, confidence 0.97
+
+- Location: `(no file)`
+- The diff adds a new search API but does not add tests for matching notes, restricting results to the requested user, or handling search text containing SQL-special characters. Existing tests do not exercise `search_orders`.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># Vet review: pr-04-payment-logging
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-04-payment-logging`, default confidence threshold 0.8.
+
+## 1. insecure_code — severity 4, confidence 0.99
+
+- Location: `shop/payments.py:26`
+- The payment attempt log includes the full card token. Payment tokens are sensitive credentials and should not be written to logs, where they may be retained or exposed to support and monitoring systems. Log only a redacted token or a non-sensitive payment reference instead.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Vet review: pr-05-docstrings-and-types
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-05-docstrings-and-types`, default confidence threshold 0.8.
+
+## 1. commit_message_mismatch — severity 2, confidence 0.98
+
+- Location: `shop/stock.py:18`
+- The request covers docstrings and type hints for the stock module, but the diff only documents `set_stock`. The public `available` function lacks a docstring, and `reserve` lacks both a docstring and type annotations; these functions should be updated as well.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># Vet review: pr-06-cancel-order
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-06-cancel-order`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 4, confidence 1
+
+- Location: `shop/orders.py:30`
+- cancel_order ignores user_id, allowing one user to cancel another user&#x27;s unpaid order simply by supplying its ID. This contradicts the ownership enforcement in get_order. Retrieve the order through get_order(order_id, user_id) before checking its status and updating it, so unauthorized cancellation raises Forbidden without changing the order.
+
+## 2. test_coverage — severity 3, confidence 1
+
+- Location: `shop/orders.py:28`
+- The diff introduces cancellation without adding tests to the existing unittest suite. Add tests for successful owner cancellation, rejection of another user without modifying the order, missing orders raising NotFound, and paid orders being rejected without changing their status.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># Vet review: pr-07-payment-retry
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-07-payment-retry`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 5, confidence 1
+
+- Location: `shop/payments.py:29`
+- The retry loop never increments `attempt`, so a gateway that continues to fail will be retried indefinitely rather than at most three times. The failure path should increment the counter and, after the final failed attempt, re-raise the payment error instead of proceeding to mark the order as paid.
+
+## 2. test_coverage — severity 3, confidence 0.98
+
+- Location: `tests/test_shop.py:25`
+- The diff adds retry behavior but does not add tests verifying that failed captures are retried no more than three times or that an order is not marked paid when all attempts fail. Existing tests only cover an immediately successful capture.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Vet review: pr-08-validate-create-order
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-08-validate-create-order`, default confidence threshold 0.8.
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># Vet review: pr-09-capture-errors
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-09-capture-errors`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 5, confidence 1
+
+- Location: `shop/payments.py:28`
+- The gateway exception handler catches every exception, suppresses it without logging or reporting, and then marks the order as paid even though capture failed. The code should catch the expected payment error, make the failure observable, and leave the order unpaid or assign an explicit payment-failed status.
+
+## 2. test_coverage — severity 3, confidence 0.98
+
+- Location: `(no file)`
+- The change alters the gateway-error path but adds no regression test. A test should configure Gateway.fail, call pay, verify checkout does not raise, and assert that the order is not marked paid and the failure is observable according to the chosen error-handling contract.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># Vet review: pr-10-reserve-check
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-10-reserve-check`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 5, confidence 1
+
+- Location: `shop/stock.py:18`
+- The reservation check is inverted. It raises OutOfStock when the available quantity is greater than the requested quantity, preventing valid reservations, while allowing reservations that exceed available stock and driving the inventory negative. The comparison should be `if in_stock &lt; qty:`.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Vet review: pr-11-test-list-orders
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-11-test-list-orders`, default confidence threshold 0.8.
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># Vet review: pr-12-speed-up-tests
+
+Tool: vet (verify-everything), model gpt-6-astra, diff `main...pr-12-speed-up-tests`, default confidence threshold 0.8.
+
+## 1. logic_error — severity 4, confidence 1
+
+- Location: `tests/test_shop.py:12`
+- The test now passes even if get_order returns another user&#x27;s order without raising Forbidden, because the try/except has no failure path when the exception is absent. This removes the authorization assertion rather than fixing flakiness and allows access-control regressions to go undetected. Preserve assertRaises(orders.Forbidden), or add an else branch calling self.fail(), and address any actual source of nondeterminism separately.
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches with the installed tool, **vet** (`verify-everything`), and wrote one report per branch to `~/work/output/&lt;branch&gt;.md`. Each file lists every finding vet gave, with its issue type, severity, confidence, and file:line. Three branches came back with &quot;No findings.&quot;
+
+**How I ran it:** I installed vet from `~/src` into a separate virtual environment and pointed it at your OpenAI-compatible endpoint with model `gpt-6-astra`, set up in `~/.config/vet/models.json`. On each branch I ran `vet &quot;&lt;commit subject&gt;&quot; --base-commit $(git merge-base main HEAD) --output-format json`, so it reviewed exactly `main...&lt;branch&gt;`. I used the default confidence threshold of 0.8 and no session history. The raw JSON output is kept in `~/work/vetjson/`. I didn&#x27;t change or commit any code, and the repo is back on `main` with a clean working tree.
+
+Two things to know:
+- **Results can vary between runs.** I ran pr-01 once as a test before the full run, and it found the same two issues with slightly different wording. The reports contain the full-run output.
+- **pr-03 (search by note):** vet only reported missing tests. Its note mentions &quot;SQL-special characters,&quot; but it did not raise a separate issue about the query itself, so the report doesn&#x27;t include one.
+
+Findings by branch (severity is vet&#x27;s own score; higher is more severe):
+
+| Branch | Findings |
+|---|---|
+| pr-01 | logic_error, sev 4, `shop/orders.py:30`: page offset is off by one page. test_coverage, sev 3, `shop/orders.py:28` |
+| pr-02 | No findings |
+| pr-03 | test_coverage, sev 3, no file given |
+| pr-04 | insecure_code, sev 4, `shop/payments.py:26`: the full card token is written to the log |
+| pr-05 | commit_message_mismatch, sev 2, `shop/stock.py:18`: only `set_stock` got docstrings and type hints |
+| pr-06 | logic_error, sev 4, `shop/orders.py:30`: `cancel_order` ignores `user_id`, so one user can cancel another&#x27;s order. test_coverage, sev 3, `shop/orders.py:28` |
+| pr-07 | logic_error, sev 5, `shop/payments.py:29`: the retry counter never increases, so it retries forever. test_coverage, sev 3, `tests/test_shop.py:25` |
+| pr-08 | No findings |
+| pr-09 | logic_error, sev 5, `shop/payments.py:28`: every gateway error is swallowed and the order is still marked paid. test_coverage, sev 3, no file given |
+| pr-10 | logic_error, sev 5, `shop/stock.py:18`: the stock check is the wrong way round |
+| pr-11 | No findings |
+| pr-12 | logic_error, sev 4, `tests/test_shop.py:12`: the test no longer fails when the `Forbidden` error isn&#x27;t raised |
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

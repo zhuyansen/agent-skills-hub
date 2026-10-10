@@ -1,0 +1,300 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>kenn-io/roborev: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>kenn-io/roborev: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by gpt-6-astra. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit c9dbad5643a7.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 0.9 findings per pull request; 13 min for the set.</p><p>Runs in the background on every commit; here it reviewed with gpt-6-astra through OpenCode and still found all eight.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># roborev review: pr-01-list-pagination
+
+- Tool: roborev (`roborev review --branch=pr-01-list-pagination --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 1 (3705ce9..9490689)
+- Verdict: **Fail**
+
+## Summary
+
+Adds page-based pagination to list_orders with 20 orders per page, but the offset calculation skips the first page of results.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/orders.py:31
+
+**Problem:** Pages are documented as starting at 1, but page * PAGE_SIZE makes the default call skip the user&#x27;s first 20 orders. Users with 1–20 orders receive an empty list, and those first 20 orders are inaccessible through any documented page number. Reproduced by creating one order and calling list_orders(user_id).
+
+**Fix:** Calculate offset as (page - 1) * PAGE_SIZE. Add behavioral regression tests confirming that the default page returns the first 20 orders and page 2 returns the next orders without omissions or overlap.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># roborev review: pr-02-extract-row-helper
+
+- Tool: roborev (`roborev review --branch=pr-02-extract-row-helper --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 12 (3705ce9..b260a77)
+- Verdict: **Pass**
+
+## Summary
+
+Extracted the database row lookup into the private _row helper while preserving get_order&#x27;s not-found and ownership checks.
+
+**Agent assessment:** Pass
+
+## Findings
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># roborev review: pr-03-search-by-note
+
+- Tool: roborev (`roborev review --branch=pr-03-search-by-note --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 2 (3705ce9..bcaa937)
+- Verdict: **Fail**
+
+## Summary
+
+Adds search_orders for a user&#x27;s orders by note text, but constructs the SQL query through string interpolation.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/orders.py:33
+
+**Problem:** `search_orders` interpolates both `user_id` and `text` directly into SQL. A note search such as `%&#x27; OR 1=1 --` changes the WHERE clause and returns orders belonging to other users; an apostrophe can also produce a SQL error. This is reachable whenever the search text is supplied by a user or other untrusted caller, causing cross-user data exposure.
+
+**Fix:** Use parameterized SQL: `db.query(&quot;select id, status, total_cents from orders where user_id = ? and note like ? order by id&quot;, (user_id, &quot;%&quot; + text + &quot;%&quot;))`. Escape LIKE metacharacters if the API is intended to search for literal text.
+
+### 2. Medium
+
+**Location:** shop/orders.py:33
+
+**Problem:** The raw search text is inserted into a `LIKE` pattern without escaping `%` and `_`, so searching for either character matches arbitrary note content rather than the requested literal text. For example, searching for `_` returns orders with any one-character note, producing incorrect search results.
+
+**Fix:** Escape `\`, `%`, and `_` in the input and add an `ESCAPE &#x27;\\&#x27;` clause when literal substring matching is required; continue passing the resulting pattern as a query parameter.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># roborev review: pr-04-payment-logging
+
+- Tool: roborev (`roborev review --branch=pr-04-payment-logging --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 3 (3705ce9..096d9fe)
+- Verdict: **Fail**
+
+## Summary
+
+Adds an INFO log before payment capture to record the order, amount, and card token for every payment attempt.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/payments.py:27
+
+**Problem:** The new log statement writes the full `card_token` to application logs. Anyone with access to log storage or log aggregation can obtain payment credentials, causing sensitive payment data exposure and potentially enabling unauthorized charges if the token remains usable.
+
+**Fix:** Remove the token from the log entirely, or log only a non-sensitive, irreversible identifier such as a redacted token suffix or gateway request ID. Keep the order ID and amount for support diagnostics.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># roborev review: pr-05-docstrings-and-types
+
+- Tool: roborev (`roborev review --branch=pr-05-docstrings-and-types --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 8 (3705ce9..056ee00)
+- Verdict: **Pass**
+
+## Summary
+
+Adds a docstring to shop.stock.set_stock describing its replacement semantics; no functional behavior changes.
+
+**Agent assessment:** Pass
+
+## Findings
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># roborev review: pr-06-cancel-order
+
+- Tool: roborev (`roborev review --branch=pr-06-cancel-order --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 6 (3705ce9..4a5b490)
+- Verdict: **Fail**
+
+## Summary
+
+Adds orders.cancel_order to cancel an unpaid order, but the implementation does not enforce ownership and is vulnerable to a payment/cancellation race.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/orders.py:33
+
+**Problem:** cancel_order accepts user_id but never uses it when looking up or updating the order. Any authenticated user who can obtain another order&#x27;s ID can cancel that order, because the update is constrained only by id. This violates the ownership check enforced by get_order and allows unauthorized order state changes.
+
+**Fix:** Look up the order&#x27;s owner and raise Forbidden when it differs from user_id, or include user_id in the conditional UPDATE (and distinguish a missing order from an unauthorized one).
+
+### 2. High
+
+**Location:** shop/orders.py:38
+
+**Problem:** The paid-status check and the unconditional update are separate operations. If payments.pay captures an order after the status SELECT but before the UPDATE, cancellation overwrites the newly paid status with cancelled, leaving a successfully captured payment attached to a cancelled order. Concurrent cancellation calls can produce the same stale-check outcome.
+
+**Fix:** Make cancellation atomic, for example with `UPDATE orders SET status = &#x27;cancelled&#x27; WHERE id = ? AND user_id = ? AND status NOT IN (&#x27;paid&#x27;, &#x27;cancelled&#x27;)`, then inspect the affected row count and handle not-found, forbidden, and already-paid cases appropriately; ensure payment likewise uses an atomic status transition.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># roborev review: pr-07-payment-retry
+
+- Tool: roborev (`roborev review --branch=pr-07-payment-retry --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 11 (3705ce9..eae6b1d)
+- Verdict: **Fail**
+
+## Summary
+
+The commit adds a retry loop for payment capture, but it does not enforce the intended three-attempt limit.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. Medium
+
+**Location:** shop/payments.py:35
+
+**Problem:** The attempt counter never advances, so every PaymentError repeats attempt 1 indefinitely. With the supplied Gateway and fail = 3, pay makes a fourth capture attempt and marks the order paid instead of stopping after three attempts. A gateway that keeps raising PaymentError leaves the caller stuck in an unbounded loop, repeatedly issuing capture requests and warning logs.
+
+**Fix:** Use a bounded three-attempt loop and re-raise the final PaymentError when attempts are exhausted. Only update the order to paid after a successful capture; simply incrementing the counter would otherwise allow exhausted retries to fall through to that update. Add behavioral tests for recovery within the limit and exhaustion, asserting the capture-call count, propagated error, and unchanged order status on failure.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># roborev review: pr-08-validate-create-order
+
+- Tool: roborev (`roborev review --branch=pr-08-validate-create-order --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 7 (3705ce9..ed41c45)
+- Verdict: **Pass**
+
+## Summary
+
+Adds validation rejecting non-positive order totals and notes longer than 500 characters. All six tests pass, but the new note-length validation has no coverage.
+
+**Agent assessment:** Pass
+
+## Findings
+
+### 1. Low
+
+**Location:** shop/orders.py:21
+
+**Problem:** The new note-length restriction is untested. The added test exercises only a zero total, so removing the note check or introducing an off-by-one error would leave the suite passing.
+
+**Fix:** Add behavioral tests confirming that a 500-character note is persisted unchanged and a 501-character note raises ValueError without inserting an order.
+
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># roborev review: pr-09-capture-errors
+
+- Tool: roborev (`roborev review --branch=pr-09-capture-errors --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 10 (3705ce9..8aaa835)
+- Verdict: **Fail**
+
+## Summary
+
+The change suppresses gateway errors so checkout does not raise, but it still marks the order as paid afterward.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/payments.py:30
+
+**Problem:** When `gateway.capture` raises (for example, the gateway timeout raised by `Gateway`), the exception is discarded and execution continues to update the order to `paid`. This leaves an order marked paid even though no payment was captured, causing incorrect order state and potential fulfillment or revenue loss.
+
+**Fix:** Only update the order to `paid` after a successful capture. On capture failure, preserve an unpaid/pending status and return an explicit failure result or record the failure while allowing the caller to handle it.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># roborev review: pr-10-reserve-check
+
+- Tool: roborev (`roborev review --branch=pr-10-reserve-check --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 4 (3705ce9..f9b405e)
+- Verdict: **Fail**
+
+## Summary
+
+The commit caches the available stock value but reverses the out-of-stock comparison, causing valid reservations to fail and insufficient-stock reservations to overdraw inventory.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** shop/stock.py:20
+
+**Problem:** The condition in `reserve` is inverted: when stock exceeds the requested quantity, it raises `OutOfStock`, while requests exceeding available stock proceed and subtract too many units. For example, reserving 2 from 5 fails, while reserving 2 from 1 leaves -1 available, producing incorrect inventory and breaking normal reservations.
+
+**Fix:** Restore the insufficient-stock comparison: `if in_stock &lt; qty:` (or equivalently `if qty &gt; in_stock:`).
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># roborev review: pr-11-test-list-orders
+
+- Tool: roborev (`roborev review --branch=pr-11-test-list-orders --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 5 (3705ce9..215ddce)
+- Verdict: **Pass**
+
+## Summary
+
+Adds a unit test verifying that list_orders returns only orders belonging to the requested user.
+
+**Agent assessment:** Pass
+
+## Findings
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># roborev review: pr-12-speed-up-tests
+
+- Tool: roborev (`roborev review --branch=pr-12-speed-up-tests --base main --wait`), agent opencode, model astra/gpt-6-astra
+- Job: 9 (3705ce9..919dbc4)
+- Verdict: **Fail**
+
+## Summary
+
+The commit replaces the forbidden-access assertion with an unguarded try/except block.
+
+**Agent assessment:** Fail
+
+## Findings
+
+### 1. High
+
+**Location:** tests/test_shop.py:13
+
+**Problem:** `test_other_user_is_forbidden` now passes when `orders.get_order(oid, 2)` returns successfully, because the `try` block has no failure path and only catches `Forbidden`. A regression that exposes another user&#x27;s order would therefore go undetected in the test suite, allowing an authorization vulnerability to ship.
+
+**Fix:** Keep an assertion that fails when no exception is raised, preferably restore `with self.assertRaises(orders.Forbidden): orders.get_order(oid, 2)`, or add an explicit `self.fail(...)` immediately after the call.
+
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches with roborev and wrote one file per branch to `~/work/output/&lt;branch&gt;.md`. Each file has the verdict, job ID, summary, and every finding with its severity, file:line, problem and suggested fix, copied from the tool&#x27;s output.
+
+**Setup:** roborev (in `~/src`) had no compiled binary and Go wasn&#x27;t installed. I installed Go 1.27.2 into `~/tools`, built roborev, and used the OpenCode agent. Your endpoint only accepts `chat/completions`, and Codex no longer supports that. I pointed OpenCode at it as an OpenAI-compatible provider (`astra/gpt-6-astra`) and set that as roborev&#x27;s global default agent and model. Each branch was reviewed with the skill&#x27;s command: `roborev review --from-skill --branch=&lt;branch&gt; --base main --wait`.
+
+| Branch | Verdict | Findings |
+|---|---|---|
+| pr-01-list-pagination | Fail | High `shop/orders.py:31`: the page offset skips the first page |
+| pr-02-extract-row-helper | Pass | No findings |
+| pr-03-search-by-note | Fail | High `shop/orders.py:33`: SQL injection; Medium `shop/orders.py:33`: `%`/`_` in the search text aren&#x27;t escaped |
+| pr-04-payment-logging | Fail | High `shop/payments.py:27`: the full card token is written to the logs |
+| pr-05-docstrings-and-types | Pass | No findings |
+| pr-06-cancel-order | Fail | High `shop/orders.py:33`: no ownership check; High `shop/orders.py:38`: race between payment and cancellation |
+| pr-07-payment-retry | Fail | Medium `shop/payments.py:35`: the retry counter never increases, so retries never stop |
+| pr-08-validate-create-order | Pass | Low `shop/orders.py:21`: the note-length check has no test |
+| pr-09-capture-errors | Fail | High `shop/payments.py:30`: the order is marked paid after a failed capture |
+| pr-10-reserve-check | Fail | High `shop/stock.py:20`: the stock comparison is reversed |
+| pr-11-test-list-orders | Pass | No findings |
+| pr-12-speed-up-tests | Fail | High `tests/test_shop.py:13`: the forbidden-access test can no longer fail |
+
+pr-08 passed but still has one Low finding, and I kept it in its file.
+
+I didn&#x27;t change or commit any code. The only change in the repo is an untracked `shop/__pycache__/`, probably left when the review agent ran the tests; I left it there.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

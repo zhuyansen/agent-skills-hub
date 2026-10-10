@@ -1,0 +1,217 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>getsentry/warden: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>getsentry/warden: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by gpt-6-astra. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 7ccb81a001a9.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 4 of 8 planted defects</b>; 0.5 findings per pull request; 25 min for the set.</p><p>Its verification pass threw out candidate findings on the pull requests it missed, the SQL injection among them.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># Warden review: pr-01-list-pagination
+
+Tool: Warden v0.51.1 (`warden main..pr-01-list-pagination`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+1 finding(s).
+
+## 1. [medium] Page 1 skips the first 20 orders
+
+- Skill: code-review
+- Severity: medium
+- Confidence: high
+- Location: `shop/orders.py:31`
+
+The offset is calculated as `page * PAGE_SIZE`, so the documented first page starts at row 21 and every page is shifted by one page.
+
+Verification:
+
+- `list_orders` documents that pages start at 1, but `page=1` computes `offset=20`.
+- SQLite therefore returns rows 21–40 for the default call instead of rows 1–20; `page=2` similarly skips the first 40 rows.
+- The query orders by `id`, so this deterministically omits the user&#x27;s earliest orders from every requested page.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Warden review: pr-02-extract-row-helper
+
+Tool: Warden v0.51.1 (`warden main..pr-02-extract-row-helper`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># Warden review: pr-03-search-by-note
+
+Tool: Warden v0.51.1 (`warden main..pr-03-search-by-note`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+
+Note: Warden&#x27;s verification pass rejected 2 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># Warden review: pr-04-payment-logging
+
+Tool: Warden v0.51.1 (`warden main..pr-04-payment-logging`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+
+Note: Warden&#x27;s verification pass rejected 1 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Warden review: pr-05-docstrings-and-types
+
+Tool: Warden v0.51.1 (`warden main..pr-05-docstrings-and-types`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># Warden review: pr-06-cancel-order
+
+Tool: Warden v0.51.1 (`warden main..pr-06-cancel-order`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+2 finding(s).
+
+## 1. [medium] Cancellation overwrites a payment completed after the status check
+
+- Skill: code-review
+- Severity: medium
+- Confidence: high
+- Location: `shop/orders.py:37`
+
+If payment completes between cancellation&#x27;s status query and update, cancellation overwrites `paid` with `cancelled` despite the successful charge. Enforce the unpaid condition atomically in the cancellation update and handle a failed transition.
+
+Verification:
+
+- The reported `cancel_order()` change rejects a status of `paid`, then updates the order by ID alone; the update does not recheck its status.
+- `payments.pay()` calls `Gateway.capture()` and then writes `paid` through `db.execute()`, which commits the change.
+- If cancellation reads `new`, payment captures and commits `paid`, and cancellation then executes its update, the captured order ends in `cancelled`, contradicting the explicit rejection of paid orders.
+- `shop/db.py` enables cross-thread connection use and provides no lock spanning the status query and update. The inspected checkout contains the base orders implementation; the cancellation statements are supplied by the candidate&#x27;s change excerpt.
+
+## 2. [medium] Missing ownership check allows cancelling another user&#x27;s order
+
+- Skill: security-review
+- Severity: medium
+- Confidence: high
+- Location: `shop/orders.py:32-37`
+
+A caller can supply another user&#x27;s unpaid order ID and cancel it because `cancel_order` ignores `user_id`; enforce ownership before updating the order.
+
+Verification:
+
+- The added `cancel_order(order_id, user_id)` service function accepts a caller-controlled order ID but never uses `user_id`.
+- Its lookup checks only existence and whether the status is `paid`; an order belonging to another user with status `new` passes both checks.
+- The update selects solely by order ID, and `shop/db.py::execute` executes and commits the SQL without an authorization guard.
+- `get_order` explicitly compares the stored owner with `user_id` and raises `Forbidden` on mismatch, but the new cancellation path does not invoke that check.
+
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># Warden review: pr-07-payment-retry
+
+Tool: Warden v0.51.1 (`warden main..pr-07-payment-retry`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+1 finding(s).
+
+## 1. [high] Retry loop never advances and hangs on persistent capture failures
+
+- Skill: code-review
+- Severity: high
+- Confidence: high
+- Location: `shop/payments.py:30-35`
+
+`attempt` is never incremented after a failed capture, so a gateway that continues raising `PaymentError` loops forever instead of stopping after `MAX_ATTEMPTS`; the order remains unpaid and `pay` never returns.
+
+Verification:
+
+- `pay()` initializes `attempt = 1` and enters `while attempt &lt;= MAX_ATTEMPTS`.
+- The `except PaymentError` branch only logs; it does not change `attempt`, so the loop condition remains true on every failure.
+- `Gateway.capture()` raises `PaymentError` while `fail &gt; 0`, and a gateway that persistently raises is a reachable capture failure path.
+- The database update and success log occur only after the loop, so persistent failures hang before the order can be marked paid or the error can be surfaced.
+
+
+Note: Warden&#x27;s verification pass rejected 1 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Warden review: pr-08-validate-create-order
+
+Tool: Warden v0.51.1 (`warden main..pr-08-validate-create-order`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+1 finding(s).
+
+## 1. [medium] New validation test fails because create_order accepts zero
+
+- Skill: code-review
+- Severity: medium
+- Confidence: high
+- Location: `tests/test_shop.py:16-18`
+
+The new test fails with `AssertionError: ValueError not raised`; add the non-positive-total validation to `create_order` alongside this test.
+
+Verification:
+
+- The added test calls `orders.create_order(1, 0)` inside `assertRaises(ValueError)`.
+- `shop/orders.py::create_order` unconditionally passes the total to `db.execute` without validation.
+- `shop/db.py` defines `total_cents` as an integer with no CHECK constraint; `execute` inserts and commits zero successfully, then returns the row ID.
+- README.md documents `python -m unittest` as the test entry point, which discovers this test and fails its exception assertion.
+
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># Warden review: pr-09-capture-errors
+
+Tool: Warden v0.51.1 (`warden main..pr-09-capture-errors`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+1 finding(s).
+
+## 1. [high] Gateway failures still mark the order as paid
+
+- Skill: code-review
+- Severity: high
+- Confidence: high
+- Location: `shop/payments.py:30-31`
+
+When `gateway.capture()` raises, this handler suppresses the failure and execution continues to update the order to `paid`, even though no capture occurred.
+
+Verification:
+
+- `Gateway.capture()` raises `PaymentError` when `fail &gt; 0` and does not append the order to `captured`.
+- The new broad handler catches that exception and does not return or propagate an explicit failure state.
+- Control then reaches the unconditional `db.execute(... status = &#x27;paid&#x27; ...)`, so a failed capture produces a paid order without a payment.
+
+
+Note: Warden&#x27;s verification pass rejected 1 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># Warden review: pr-10-reserve-check
+
+Tool: Warden v0.51.1 (`warden main..pr-10-reserve-check`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+
+Note: Warden&#x27;s verification pass rejected 1 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Warden review: pr-11-test-list-orders
+
+Tool: Warden v0.51.1 (`warden main..pr-11-test-list-orders`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># Warden review: pr-12-speed-up-tests
+
+Tool: Warden v0.51.1 (`warden main..pr-12-speed-up-tests`), skills: code-review, security-review; model astra/gpt-6-astra (chat-completions endpoint).
+
+No findings.
+
+Note: Warden&#x27;s verification pass rejected 1 candidate finding(s) for this branch; Warden does not report them, so they are not listed here.
+</pre></details></td><td><span class="no">missed</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I ran Warden v0.51.1, the review tool in `~/src`, on all 12 branches and wrote one report per branch to `~/work/output/&lt;branch&gt;.md`. Warden reported 7 findings across 6 branches; the other 6 branches got &quot;No findings.&quot;
+
+**How I ran it**
+- **Command:** for each branch, `warden main..&lt;branch&gt;` with the `code-review` and `security-review` skills. These are the two skills Warden ships for pull requests, and its git mode diffs `main...&lt;branch&gt;`.
+- **Config:** the shop repo has no `warden.toml`, and with no config Warden runs nothing. So I wrote one outside the repo (`~/work/warden-config/warden.toml`) that just turns those two skills on.
+- **Model:** your endpoint only accepts `chat/completions`, but Warden&#x27;s built-in OpenAI provider calls `/v1/responses` and got a 404. I added a custom provider in `~/work/pi-agent/models.json` that points `gpt-6-astra` at your `OPENAI_BASE_URL` over chat-completions. Warden&#x27;s main, verification and synthesis steps all use that model.
+- **Retry:** pr-04&#x27;s code-review failed once with an upstream HTTP/2 error, so I re-ran that branch and it completed cleanly.
+- **Source of the reports:** each file is built from Warden&#x27;s own JSON output and matches its terminal summary for that branch.
+
+| Branch | Findings |
+|---|---|
+| pr-01-list-pagination | **medium**: `shop/orders.py:31`, page 1 skips the first 20 orders |
+| pr-02-extract-row-helper | No findings |
+| pr-03-search-by-note | No findings |
+| pr-04-payment-logging | No findings |
+| pr-05-docstrings-and-types | No findings |
+| pr-06-cancel-order | **medium**: `shop/orders.py:37`, cancelling overwrites a payment that completed after the status check&lt;br&gt;**medium**: `shop/orders.py:32-37`, no ownership check, so a user can cancel another user&#x27;s order |
+| pr-07-payment-retry | **high**: `shop/payments.py:30-35`, the retry loop never advances and hangs if capture keeps failing |
+| pr-08-validate-create-order | **medium**: `tests/test_shop.py:16-18`, the new validation test fails because `create_order` accepts zero |
+| pr-09-capture-errors | **high**: `shop/payments.py:30-31`, the order is still marked paid when the payment gateway fails |
+| pr-10-reserve-check | No findings |
+| pr-11-test-list-orders | No findings |
+| pr-12-speed-up-tests | No findings |
+
+Warden&#x27;s own verification step rejected some candidate findings: 2 on pr-03 and 1 each on pr-04, pr-07, pr-09, pr-10 and pr-12. Warden doesn&#x27;t report these, so they aren&#x27;t listed as findings; each affected report has a one-line note giving the count.
+
+I didn&#x27;t change any code or commit anything. The shop repo is clean and on `main`; I deleted the `.warden/` log directory Warden had written into it. Warden&#x27;s raw output for each run is in `~/work/logs/`.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

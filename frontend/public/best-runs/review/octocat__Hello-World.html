@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Control: Claude Code with no review tool: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>Control: Claude Code with no review tool: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 1.8 findings per pull request; 1 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination
+
+- **blocking** — `shop/orders.py:31`: `offset = page * PAGE_SIZE` is off by one page. The docstring says pages start at 1, but `page=1` (the default) gives offset 20, so it skips the first 20 orders. A user with fewer than 21 orders gets `[]` from `list_orders(user_id)`. I checked this: 3 orders → `[]`. It should be `(page - 1) * PAGE_SIZE`. This also breaks every existing caller that relies on the default.
+- **should fix** — `shop/orders.py:29`: `page` is not validated. With `page &lt;= 0` the offset is zero or negative (SQLite treats a negative offset as 0), so the call silently returns page 1 instead of raising.
+- **should fix** — `tests/test_shop.py`: there is no test for pagination (first page, second page, page boundary). A first-page test would have caught the off-by-one.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper
+
+No findings.
+
+(Pure refactor: `get_order` still raises `NotFound` and then `Forbidden`, in the same order and with the same return value.)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note
+
+- **blocking** — `shop/orders.py:31-32`: SQL injection. `text` (user input) and `user_id` go straight into the SQL string through an f-string. For example, `text = &quot;x&#x27; or &#x27;1&#x27;=&#x27;1&quot;` returns every user&#x27;s orders, which bypasses the `user_id` filter and leaks other users&#x27; data, and other payloads can read any table. Use parameters instead: `&quot;... where user_id = ? and note like ? ...&quot;` with `(user_id, f&quot;%{text}%&quot;)`.
+- **nit** — `shop/orders.py:31`: `%` and `_` in `text` are not escaped, so they act as LIKE wildcards. Escape them and add `ESCAPE &#x27;\&#x27;` if a literal match is intended.
+- **should fix** — `tests/test_shop.py`: there are no tests for `search_orders`. It needs at least one test for matching and one for &quot;does not return other users&#x27; orders&quot;.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging
+
+- **blocking** — `shop/payments.py:27`: this logs `card_token` at INFO level. Card or payment tokens are sensitive credentials, and anyone with log access could use them to charge the card. Keeping them out of logs is also a PCI-DSS requirement. Remove the token from the message, or log only a masked suffix if support really needs it.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types
+
+No findings.
+
+(The new docstring is accurate. Small point: the title mentions type hints but none are added; `stock.py` already has them.)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order
+
+- **blocking** — `shop/orders.py:29-36`: there is no ownership check. `user_id` is accepted but never used, so any user can cancel any other user&#x27;s order just by knowing its id. Do the same `Forbidden` check as `get_order`, for example by calling `get_order(order_id, user_id)` to load the row.
+- **should fix** — `shop/orders.py:31-36`: check-then-act race. The status is read in one statement and updated in another, so an order paid between the two gets cancelled anyway. Make the update conditional instead: `update orders set status=&#x27;cancelled&#x27; where id=? and user_id=? and status not in (&#x27;paid&#x27;,&#x27;cancelled&#x27;)`, then check the rowcount.
+- **nit** — `shop/orders.py:34`: cancelling an order that is already cancelled succeeds silently. The bare `ValueError` is also inconsistent with the module&#x27;s own exception types (`NotFound`/`Forbidden`); consider a dedicated exception.
+- **should fix** — `tests/test_shop.py`: there are no tests for `cancel_order`. It needs a happy path, a paid order being rejected, and another user being forbidden.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry
+
+- **blocking** — `shop/payments.py:30-36`: infinite loop. `attempt` is never incremented, so if the gateway keeps failing, `pay()` spins forever and logs a warning on each pass. I confirmed this: with `Gateway.fail` set very high, `pay()` hangs and timed out after 5 seconds.
+- **blocking** — `shop/payments.py:37`: even once the loop is bounded, when all attempts fail the code falls through and marks the order `paid` without capturing any money. After the last failed attempt it must re-raise `PaymentError`, or use a `for ... else: raise`, rather than reaching the `update`.
+- **should fix** — `shop/payments.py:33`: retrying immediately after a gateway *timeout* can double-charge, because the first capture may have succeeded on the gateway side. Send an idempotency key (for example `order_id`) or check the capture status before retrying. Also consider adding backoff between attempts.
+- **should fix** — `tests/test_shop.py`: there are no tests for the retry path, such as fail once then succeed, or fail on every attempt → raises and the order is not paid. `Gateway.fail` already exists for exactly this.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order
+
+- **nit** — `tests/test_shop.py:16-18`: only the `total_cents == 0` case is tested. Add tests for a negative total and for a note longer than `MAX_NOTE` (and exactly `MAX_NOTE`, which should be accepted).
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors
+
+- **blocking** — `shop/payments.py:27-31`: `except Exception: pass` swallows every capture failure, and execution then continues to mark the order `paid` and log &quot;order paid&quot;. Any gateway error (declined card, timeout) produces a paid order with no money collected. The caller also loses the error. Catch `PaymentError` only, and either re-raise it or record a failed or pending status instead of `paid`.
+- **should fix** — `shop/payments.py:29`: the broad `except Exception` also hides programming errors (TypeError and similar). Even if swallowing were intended, nothing is logged.
+- **should fix** — `tests/test_shop.py`: there is no test for the failure path. With `Gateway.fail = 1`, the order must not end up `paid`.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check
+
+- **blocking** — `shop/stock.py:20`: the comparison is inverted. `if in_stock &gt; qty: raise OutOfStock` rejects reservations when there *is* enough stock and allows them when there isn&#x27;t, so stock goes negative. The original `&lt;` check was correct. The existing suite fails on this branch: `test_reserve_reduces_stock` errors with OutOfStock, and `test_reserve_more_than_available_fails` fails.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders
+
+No findings.
+
+(Small point: the test relies on user ids 41/42 being unused because all tests share one in-memory DB. That holds today, so this is not an issue.)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests
+
+- **blocking** — `tests/test_shop.py:13-16`: replacing `assertRaises` with `try/except Forbidden: pass` removes the assertion. The test now passes even when `get_order` returns another user&#x27;s order, so the authorization check is no longer covered. The title says &quot;speed up&quot; or &quot;less flaky&quot;, but this makes nothing faster or more stable; it only stops the test from failing. Revert to `with self.assertRaises(orders.Forbidden):`, or add `self.fail(...)` after the call. If there is real flakiness, find its root cause (for example, the shared in-memory DB).
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches and wrote one report per branch to `~/work/output`. I changed no code and committed nothing.
+
+| Branch | Result |
+|---|---|
+| pr-01 | **Blocking:** the default `page=1` skips the first 20 orders. I ran it: 3 orders gave an empty list. |
+| pr-02 | No findings (behaviour is unchanged). |
+| pr-03 | **Blocking:** SQL injection in `search_orders`; one search string returns every user&#x27;s orders. |
+| pr-04 | **Blocking:** the card token is written to the logs. |
+| pr-05 | No findings. |
+| pr-06 | **Blocking:** `user_id` is never checked, so any user can cancel anyone&#x27;s order. |
+| pr-07 | **Blocking:** the retry counter never goes up. I ran it: when the gateway keeps failing, payment hangs until killed. Even once that&#x27;s fixed, the order is marked paid after all retries fail. |
+| pr-08 | Nit only: the tests cover only a zero total. |
+| pr-09 | **Blocking:** every gateway error is silently ignored and the order is still marked paid. |
+| pr-10 | **Blocking:** the stock check is reversed. Two existing tests fail on this branch. |
+| pr-11 | No findings. |
+| pr-12 | **Blocking:** the &quot;forbidden&quot; test no longer checks anything; it passes even if another user can read the order. |
+
+The existing tests pass on every branch I ran except pr-10. Each report also lists the should-fix and nit items, mostly missing tests.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

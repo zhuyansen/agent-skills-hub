@@ -1,0 +1,245 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>nathankim0/clean-architecture-skills: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>nathankim0/clean-architecture-skills: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 725cbeeb12e3.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 2.7 findings per pull request; 2 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-01-list-pagination`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/orders.py:31 | `offset = page * PAGE_SIZE` skips the first page. Pages are documented as starting at 1, so `page=1` (the default) returns rows 20–39. Any existing caller of `list_orders(user_id)` with 20 or fewer orders now gets an empty list. Use `(page - 1) * PAGE_SIZE`. |
+| 2 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/orders.py:29 | The new pagination behaviour has no test. A test that lists page 1 would have caught finding 1. |
+| 3 | Long-term | clean-architecture (2-2: what data crosses boundaries) | shop/orders.py:32 | `list_orders` returns raw database row tuples straight from `db.query`. Database rows are crossing the boundary instead of a DTO. This was already true before the PR and is now extended to paged results. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Needs Improvement
+- Positive: it reuses the existing `PAGE_SIZE` constant (no magic number) and keeps the query parameterized.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. The PR adds no new dependency-rule violations. The only item is finding 3, which is long-term.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-02-extract-row-helper`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | Low | kent-beck-style (Rename Method / intention-revealing names) | shop/orders.py:20 | `_row` does not say what it does. Rename it to something like `_fetch_order_row`. |
+| 2 | Low | kent-beck-style (Primitive Obsession / magic index) | shop/orders.py:29 | `row[1] != user_id` uses a positional tuple index to mean &quot;owner&quot;. Name the field, for example with a namedtuple/dataclass or a `OWNER_COLUMN` constant. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Good
+- Positive: a clean Extract Method that preserves behaviour (NotFound/Forbidden semantics unchanged; tests pass).
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-03-search-by-note`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/orders.py:31 | The SQL is built with an f-string that interpolates `user_id` and `text`. Any note search containing `&#x27;` breaks the query, and a crafted `text` (e.g. `%&#x27; or 1=1 --`) returns other users&#x27; orders (SQL injection). Use `?` placeholders as the rest of the module does: `... where user_id = ? and note like ? ...`, with `(user_id, f&quot;%{text}%&quot;)`. |
+| 2 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/orders.py:29 | The new `search_orders` has no test. |
+| 3 | Low | kent-beck-style (Rule 1) | shop/orders.py:31 | The `%` and `_` characters in `text` are not escaped, so they act as LIKE wildcards. |
+| 4 | Low | kent-beck-style (Duplicate Code) | shop/orders.py:31 | `select id, status, total_cents from orders where user_id = ... order by id` duplicates the `list_orders` query (line 36). Consider a shared column list/helper. |
+| 5 | Medium | clean-architecture (Dependency Rule / DIP) | shop/orders.py:31-32 | The order use-case module now hand-builds raw SQL strings and bypasses the `db` helper&#x27;s parameter mechanism, which pushes persistence details further into business logic. Long-term, put order queries behind a repository function. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical (finding 1)
+
+## Clean Architecture Review Report
+- Overall Assessment: Needs Improvement (finding 5)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-04-payment-logging`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/payments.py:27 | The new log line writes `card_token` to the application log in plain text. Card tokens are payment credentials and must not end up in support logs. Log only the order id and amount, or a masked token. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Needs Improvement
+- Positive: it uses lazy `%s` logging arguments.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-05-docstrings-and-types`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+No findings.
+
+(kent-beck-style: the docstring added at shop/stock.py:10 states intent, including the &quot;replacing any earlier value&quot; semantics, so it is not a &quot;comment as smell&quot;. clean-architecture: no structural change.)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-06-cancel-order`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/orders.py:29-36 | The `user_id` parameter is never used, so any user can cancel any other user&#x27;s order. `get_order` enforces ownership (`Forbidden`), but `cancel_order` does not. |
+| 2 | Medium | kent-beck-style (Duplicate Code) | shop/orders.py:31-33 | It reimplements the order lookup and `NotFound` handling from `get_order`. Reusing `get_order(order_id, user_id)` would remove the duplication and also add the ownership check. |
+| 3 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/orders.py:29 | There are no tests for cancellation: the happy path, paid orders, and another user&#x27;s order. |
+| 4 | Low | kent-beck-style (Primitive Obsession / magic literals) | shop/orders.py:34,36 | The status values `&quot;paid&quot;` and `&quot;cancelled&quot;` are bare string literals. Use named constants or an enum. Only `paid` is guarded, so an already-cancelled order can be &quot;cancelled&quot; again. |
+| 5 | Low | kent-beck-style (intention-revealing code) | shop/orders.py:35 | The generic `ValueError` is used for a domain rule. A dedicated exception (like `NotFound`/`Forbidden`) would reveal intent. |
+| 6 | Long-term | clean-architecture (Layer separation) | shop/orders.py:29-36 | The business rule &quot;paid orders cannot be cancelled&quot; is mixed with SQL in one function. Long-term, put the rule on an Order entity and keep persistence in a repository. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical (finding 1)
+
+## Clean Architecture Review Report
+- Overall Assessment: Needs Improvement (finding 6, long-term)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-07-payment-retry`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/payments.py:30-36 | `attempt` is never incremented, so `while attempt &lt;= MAX_ATTEMPTS` never terminates when the gateway keeps failing: an infinite retry loop that hammers the gateway. |
+| 2 | High | kent-beck-style (Rule 1: code must work correctly) | shop/payments.py:37 | There is no failure path after the retries. Once the loop exits (after fixing finding 1), the order is still marked `paid` even though every capture failed. Re-raise `PaymentError` when attempts are exhausted, e.g. `for attempt in range(1, MAX_ATTEMPTS + 1): ... else: raise`. |
+| 3 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/payments.py:29 | The retry behaviour is untested: transient failure then success, and permanent failure. `Gateway.fail` already supports both. |
+| 4 | Low | kent-beck-style (KISS) | shop/payments.py:30-36 | A manual counter plus `while`/`break` is harder to read than a `for ... range` loop with `else`. |
+| 5 | Long-term | clean-architecture (Layer separation) | shop/payments.py:30-36 | The retry policy is a gateway/infrastructure concern embedded in the payment use case. Consider moving it into the gateway adapter. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical
+- Positive: `MAX_ATTEMPTS` is a named constant, not a magic number.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good, except for the long-term item (finding 5).
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-08-validate-create-order`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/orders.py:21-22 | The note-length validation has no test. Only the non-positive total is tested (tests/test_shop.py:16-18). |
+| 2 | Low | kent-beck-style (Naming) | shop/orders.py:15 | `MAX_NOTE` does not say what is limited. Rename it to `MAX_NOTE_LENGTH`. |
+| 3 | Low | kent-beck-style (Primitive Obsession) | shop/orders.py:18-20 | Money is a bare `int` (`total_cents`) validated inline. Consider a small value object (Replace Primitive with Object) so the &quot;positive amount&quot; rule lives in one place. |
+| 4 | Long-term | clean-architecture (Entities) | shop/orders.py:19-22 | The order invariants (positive total, note length) are enforced in the use-case function next to the SQL insert. Long-term, they belong on an Order entity. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Good
+- Positive: guard clauses, a named constant, and a test added with the change.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good (finding 4 is long-term only)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-09-capture-errors`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: code must work correctly) | shop/payments.py:27-31 | `except Exception: pass` swallows every capture failure. Execution then falls through to mark the order `paid` and log &quot;order paid&quot; although no money was captured. It also hides programming errors. Catch `PaymentError` and propagate it, or record a failed status, instead of marking the order paid. |
+| 2 | Medium | kent-beck-style (Rule 1: passes the tests) | shop/payments.py:26 | There is no test for a failing gateway (`Gateway.fail = 1`). Such a test would show the order wrongly becoming `paid`. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-10-reserve-check`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: passes the tests) | shop/stock.py:20 | The comparison is inverted: `if in_stock &gt; qty: raise OutOfStock`. Reservations now fail whenever there is enough stock and succeed when there is not, which drives `available` negative. The existing suite fails on this branch: `python -m unittest` gives 1 failure and 1 error (test_reserve_reduces_stock, test_reserve_more_than_available_fails). It should be `if in_stock &lt; qty`. A &quot;tidy&quot; refactor must preserve behaviour. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical
+- Positive: introducing the explaining variable `in_stock` is fine in itself.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-11-test-list-orders`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | Low | kent-beck-style (Magic numbers / intention-revealing code) | tests/test_shop.py:17-18 | User ids `41`/`42` are magic numbers chosen to avoid colliding with the other tests in the shared module-level in-memory DB. Name them, or isolate DB state per test, so the test does not depend on other tests&#x27; data. |
+| 2 | Low | kent-beck-style (Magic index) | tests/test_shop.py:19 | `row[0]` relies on tuple position to mean the order id. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Good
+- Positive: a focused test with an intention-revealing name that covers ownership filtering.
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests
+
+Tool: clean-architecture-skills (~/src) — the `kent-beck-style` and `clean-architecture` review skills, applied to `git diff main...pr-12-speed-up-tests`. Priorities are the ones in each skill&#x27;s report format (High / Medium / Low; Clean Architecture: High / Medium / Long-term).
+
+## Findings
+
+| # | Priority | Skill | Location | Finding |
+|---|---|---|---|---|
+| 1 | High | kent-beck-style (Rule 1: passes the tests — tests must be meaningful) | tests/test_shop.py:13-16 | Replacing `assertRaises(orders.Forbidden)` with `try/except Forbidden: pass` makes the test pass even if `get_order` returns another user&#x27;s order. The ownership check is no longer tested. This does not fix flakiness; it removes the assertion. Restore `assertRaises`. |
+
+## Kent Beck Style Code Review Report
+- Overall Code Health: Critical
+
+## Clean Architecture Review Report
+- Overall Assessment: Good. No findings.
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I wrote one review report for each of the 12 branches in ~/work/output. Eleven have findings; pr-05 has none.
+
+**What the tool is.** The repo in ~/src is a set of two review skills, `kent-beck-style` and `clean-architecture`, both already installed in ~/.claude/skills. There is no program, no MCP server and no LLM call: each skill is a set of written instructions that tells the agent how to review. So I ran both skills and followed them on each `git diff main...&lt;branch&gt;`. The findings are what that review produced, using each skill&#x27;s report format and priority levels (High / Medium / Low, and Long-term for clean-architecture). As part of the Kent Beck &quot;passes the tests&quot; rule, I ran `python -m unittest` on a copy of each branch.
+
+**Judgement calls you should know about:**
+- **Security findings:** neither skill has a checklist item for security. I filed pr-03 (SQL built with an f-string, allowing injection) and pr-04 (card token written to the logs) under the Kent Beck rule &quot;code must work correctly&quot;.
+- **Diff scope:** both skills are written for reviewing a whole codebase, not a PR. I limited the findings to code each PR adds or changes.
+
+| Branch | Highest priority | Main finding |
+|---|---|---|
+| pr-01 | High | The page offset is off by one: page 1, the default, skips the first 20 orders. |
+| pr-02 | Low | The helper name `_row` doesn&#x27;t say what it does, and `row[1]` is a bare position index. |
+| pr-03 | High | SQL injection, because the query is built with an f-string. |
+| pr-04 | High | `card_token` is logged in plain text. |
+| pr-05 | — | No findings. |
+| pr-06 | High | `user_id` is never used, so any user can cancel any order. |
+| pr-07 | High | `attempt` is never incremented, so the retry loop never ends; the order is also marked paid after the retries run out. |
+| pr-08 | Medium | The note-length check has no test. |
+| pr-09 | High | `except Exception: pass` lets the order be marked paid when the capture failed. |
+| pr-10 | High | The stock comparison is reversed; this is the only branch whose tests fail (1 failure, 1 error). |
+| pr-11 | Low | Magic user ids 41/42 rely on the database shared between tests. |
+| pr-12 | High | The forbidden-order test no longer asserts anything. |
+
+Each file lists every finding with its priority, the skill that raised it, and file:line. I didn&#x27;t change or commit any code in the shop repo, and main is still checked out with a clean working tree.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

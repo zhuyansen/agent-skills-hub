@@ -1,0 +1,1111 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>spencermarx/open-code-review: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>spencermarx/open-code-review: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit fee6905939ea.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 7.2 findings per pull request; 11 min for the set.</p><p>Several reviewer personas write one report: every defect is in it, among 7 findings per pull request.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># OCR review: pr-01-list-pagination
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-01-list-pagination` (diff `main...pr-01-list-pagination`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 3 should fix, 5 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Off-by-one offset hides the first page of orders | `shop/orders.py:31` | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, reproduced independently) |
+| 2 | Should Fix | Validate `page`; invalid values are silently aliased or leak driver errors | `shop/orders.py:29-33` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 3 | Should Fix | Add tests for pagination | `tests/test_shop.py` | @principal-1, @principal-2, @quality-1 (High), @quality-2 |
+| 4 | Should Fix | The default call silently changes from &quot;all orders&quot; to &quot;first 20&quot; | `shop/orders.py:29` | @principal-1, @principal-2, @quality-1, @quality-2 (raised from Low to Medium in discourse) |
+| 5 | Suggestion | Let callers tell whether more pages exist | not stated in final.md (see per-reviewer table) | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 6 | Suggestion | Optional caller-chosen page size | not stated in final.md (see per-reviewer table) | @quality-1, @principal-2, @quality-2 |
+| 7 | Suggestion | Expand the docstring and reformat the SQL | not stated in final.md (see per-reviewer table) | @quality-1, @quality-2 |
+| 8 | Suggestion | Guard against huge `page` values | not stated in final.md (see per-reviewer table) | @quality-1 (surfaced in discourse, verified) |
+| 9 | Suggestion | Keyset pagination as a future option | not stated in final.md (see per-reviewer table) | @principal-2, also asked about by @quality-1 and @quality-2 |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | high | shop/orders.py:31 | Off-by-one offset hides the first page |
+| principal-1 | should_fix | medium | shop/orders.py:29-33 | Invalid page values silently accepted |
+| principal-1 | should_fix | medium | shop/orders.py:29 | Default call silently truncates to one page |
+| principal-1 | suggestion | low | shop/orders.py:29-33 | No has_more or total-count signal |
+| principal-1 | should_fix | medium | tests/test_shop.py:1 | No tests for list_orders pagination |
+| principal-2 | blocker | critical | shop/orders.py:31 | Off-by-one offset hides the first page |
+| principal-2 | should_fix | medium | shop/orders.py:29-33 | Invalid page values silently accepted |
+| principal-2 | should_fix | medium | shop/orders.py:29 | Default call silently truncates to one page |
+| principal-2 | suggestion | low | shop/orders.py:29-33 | No has_more or total-count signal |
+| principal-2 | suggestion | info | shop/orders.py:32-33 | Keyset pagination as future option |
+| principal-2 | should_fix | medium | tests/test_shop.py:1 | No tests for list_orders pagination |
+| quality-1 | blocker | critical | shop/orders.py:31 | Off-by-one offset hides the first page |
+| quality-1 | should_fix | medium | shop/orders.py:29-33 | Invalid page values silently accepted |
+| quality-1 | should_fix | high | tests/test_shop.py:1 | No tests for list_orders pagination |
+| quality-1 | should_fix | medium | shop/orders.py:29 | Default call silently truncates to one page |
+| quality-1 | suggestion | low | shop/orders.py:30-33 | Docstring and long SQL line readability |
+| quality-1 | suggestion | info | shop/orders.py:4-33 | Allow caller-chosen bounded page size |
+| quality-1 | suggestion | low | shop/orders.py:31-33 | Huge page values raise raw OverflowError |
+| quality-2 | blocker | high | shop/orders.py:31 | Off-by-one offset hides the first page |
+| quality-2 | should_fix | medium | shop/orders.py:29-33 | Invalid page values silently accepted |
+| quality-2 | should_fix | medium | tests/test_shop.py:1 | No tests for list_orders pagination |
+| quality-2 | should_fix | low | shop/orders.py:29 | Default call silently truncates to one page |
+| quality-2 | suggestion | info | shop/orders.py:30-33 | Docstring and long SQL line readability |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-01-list-pagination
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-01-list-pagination` (1 commit, `shop/orders.py` +5/-2)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+The new pagination has a confirmed off-by-one: `offset = page * PAGE_SIZE` makes the default `list_orders(user_id)` (page 1) skip the user&#x27;s first 20 orders, so most users get an empty list. All four reviewers flagged it.
+
+---
+
+## Blockers
+
+### 1. Off-by-one offset hides the first page of orders
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, reproduced independently)
+**Type**: Correctness bug (silent data loss)
+**Location**: `shop/orders.py:31`
+
+**Issue**: The docstring says &quot;pages start at 1&quot;, and the default is `page=1`, but `offset = page * PAGE_SIZE` treats `page` as 0-based. Reviewer experiments with 45 orders: `page=1` returned ids 21-40, `page=2` returned ids 41-45, `page=3` returned `[]`. Only the undocumented `page=0` returned ids 1-20. With 25 orders, the default call returned just 5 rows starting at id 21 (@principal-2).
+
+**Why this blocks**: Every caller using the default sees incomplete data with no error. Any user with 20 or fewer orders gets an empty list, which a UI would show as &quot;you have no orders&quot;. The code also contradicts its own documented contract.
+
+**Suggested fix**:
+```python
+offset = (page - 1) * PAGE_SIZE
+```
+Add a regression test with it (see Should Fix #2).
+
+---
+
+## Should Fix
+
+### 1. Validate `page`; invalid values are silently aliased or leak driver errors
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quali</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># OCR review: pr-02-extract-row-helper
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-02-extract-row-helper` (diff `main...pr-02-extract-row-helper`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** APPROVE  
+**Counts:** 0 blockers, 2 should fix, 4 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Should Fix | Make `_row` say it is an order loader that skips the ownership check | `shop/orders.py:20-24` | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed in discourse) |
+| 2 | Should Fix | Add a test that `get_order` raises NotFound for a missing order | `tests/test_shop.py` (missing case); `shop/orders.py:22-23` | @principal-1, @quality-1, @quality-2 (endorsed by @principal-2 in discourse) |
+| 3 | Suggestion | Replace the positional `row[1]` ownership check (follow-up) | `shop/orders.py:29` (column order defined at `shop/orders.py:21`) | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 4 | Suggestion | State the motivating second caller | `shop/orders.py:20-31` | @principal-1, @principal-2, @quality-2 |
+| 5 | Suggestion | NotFound vs Forbidden reveals whether an order exists (pre-existing, informational) | `shop/orders.py:27-31` | @principal-2 (raised as a question by @principal-1) |
+| 6 | Suggestion | Tighten the `-&gt; tuple` return annotation | `shop/orders.py:20, 27` | @quality-1 (agreed by @quality-2 as part of the NamedTuple follow-up) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | should_fix | low | shop/orders.py:20-24 | Unchecked order loader _row has a generic name |
+| principal-1 | suggestion | info | shop/orders.py:20-31 | Single-caller helper without stated motivation |
+| principal-1 | suggestion | low | shop/orders.py:29 | Positional row[1] ownership check coupled to SELECT |
+| principal-1 | should_fix | low | tests/test_shop.py | No test pins NotFound on get_order |
+| principal-2 | should_fix | low | shop/orders.py:20-24 | Authorization boundary implicit in _row helper |
+| principal-2 | suggestion | info | shop/orders.py:20-31 | Helper has a single caller, motivation not stated |
+| principal-2 | suggestion | low | shop/orders.py:29 | Ownership check depends on positional index |
+| principal-2 | suggestion | info | shop/orders.py:27-31 | NotFound vs Forbidden enables existence probing (pre-existing) |
+| quality-1 | should_fix | low | shop/orders.py:20 | Vague _row name for unchecked order loader |
+| quality-1 | suggestion | low | shop/orders.py:29 | Magic index row[1] for owner column |
+| quality-1 | should_fix | low | tests/test_shop.py | get_order NotFound path is untested |
+| quality-1 | suggestion | info | shop/orders.py:20-27 | Loose tuple return annotation |
+| quality-2 | should_fix | low | shop/orders.py:20-24 | _row too generic, hides skipped authorization |
+| quality-2 | suggestion | low | shop/orders.py:29 | Magic tuple index row[1] for owner check |
+| quality-2 | should_fix | low | tests/test_shop.py | NotFound path of get_order untested |
+| quality-2 | suggestion | info | shop/orders.py:20-31 | Single-caller helper with no second use |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-02-extract-row-helper
+
+**Date**: 2026-10-10
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+**Target**: `git diff main...pr-02-extract-row-helper` (1 file, `shop/orders.py`, +8 / -3)
+
+&gt; **Execution note**: principal-1 and quality-2 ran as independent parallel sub-agents. The host refused to spawn principal-2 and quality-1 because it hit its concurrent-subagent limit, so those two ran on the sequential strategy in the Tech Lead&#x27;s shared context. All four ran on the parent model (no per-instance models configured). The redundancy-confirmation weighting below assumes the reviewers were independent. Read it with that caveat in mind.
+
+---
+
+## Verdict
+
+**APPROVE**
+
+This is a correct, behavior-preserving extract-function refactor. It keeps the same SQL and the same return value, and it still raises NotFound before Forbidden. All four reviewers agree nothing blocks the merge. The remaining items make the new authorization seam explicit and pin it with a test.
+
+---
+
+## Blockers
+
+None.
+
+---
+
+## Should Fix
+
+### 1. Make `_row` say it is an order loader that skips the ownership check
+
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed in discourse)
+**Location**: `shop/orders.py:20-24`
+
+Before this change, the only way to load a full order row went through `get_order`, which always checks ownership. `_row(order_id)` now returns any user&#x27;s order, including `user_id` and `note`, with no check. The name doesn&#x27;t say which table it reads or that it skips authorization. The helper is module-private and has only one caller, so nothing is wrong today. But the most likely next caller (an admin, cancel/refund, or payments path) is exactly where someone could reach for the shorter helper and skip authorization by accident.
+
+```python
+def _load_order_unchecked(order_id: int) -&gt; tuple:
+    &quot;&quot;&quot;Fetch an order row by id with NO ownership check; raises NotFound. Callers must authorize.&quot;&quot;&quot;
+```
+
+During discourse, the reviewers considered and dropped two alternatives: folding ownership into the SQL (that would change the NotFound/Forbidden behavior) and adding an optional `user_id` opt-out parameter (that API is harder to audit).
+
+### 2. Add a test that `get_order` raises NotFound for a missing order
+
+**Flagged by**: @principal-1, @quality-1, @quality-2 (endorsed by @principal-2 in discourse)
+**Location**: `tests/test_shop.py` (missing case); `shop/orders.py:22-23`
+
+The refactor moves the NotFound branch into the new helper, but no test covers it. Only the owner-read and Forbidden paths are tested. The PR claims to preserve behavior, so this is the branch </pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># OCR review: pr-03-search-by-note
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-03-search-by-note` (diff `main...pr-03-search-by-note`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 4 should fix, 5 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | SQL injection in `search_orders` bypasses per-user scoping | `shop/orders.py:29-32` | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, all reproduced) |
+| 2 | Should Fix | Ordinary input with an apostrophe crashes the query | `shop/orders.py:31` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 3 | Should Fix | LIKE wildcards in the search text are not escaped | `shop/orders.py:31` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 4 | Should Fix | No tests for `search_orders`, including the cross-user boundary | `tests/test_shop.py` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 5 | Should Fix | Search behaviour is unspecified (empty text, case sensitivity, NULL notes) | `shop/orders.py:29-32` | @principal-2, @quality-1, @quality-2 |
+| 6 | Suggestion | Unbounded results; `PAGE_SIZE` is unused | not stated in final.md (see per-reviewer table) |  |
+| 7 | Suggestion | Guard against f-string SQL coming back | not stated in final.md (see per-reviewer table) |  |
+| 8 | Suggestion | Duplicated projection and ordering with `list_orders` | not stated in final.md (see per-reviewer table) |  |
+| 9 | Suggestion | Long single-line SQL and a single-use `sql` variable | not stated in final.md (see per-reviewer table) |  |
+| 10 | Suggestion | Test isolation on the shared in-memory connection | not stated in final.md (see per-reviewer table) |  |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/orders.py:29-32 | SQL injection bypasses per-user scoping |
+| principal-1 | should_fix | high | shop/orders.py:31 | Apostrophe input crashes query; wildcards unescaped |
+| principal-1 | should_fix | high | tests/test_shop.py | No tests for search_orders or the security boundary |
+| principal-1 | suggestion | medium | shop/orders.py:29-32 | Unbounded result set and full table scan |
+| principal-1 | suggestion | low | shop/orders.py:29-36 | Projection and ordering duplicated with list_orders |
+| principal-2 | blocker | critical | shop/orders.py:29-32 | SQL injection bypasses per-user scoping |
+| principal-2 | suggestion | high | shop/orders.py:31 | Breaks established placeholder convention (folded into blocker; guard suggested) |
+| principal-2 | should_fix | high | shop/orders.py:31 | Apostrophes crash the query |
+| principal-2 | should_fix | medium | shop/orders.py:31 | LIKE wildcards in user input not escaped |
+| principal-2 | should_fix | medium | tests/test_shop.py | No tests for the new feature |
+| principal-2 | suggestion | low | shop/orders.py:4 | Unbounded result set; PAGE_SIZE unused |
+| principal-2 | should_fix | low | shop/orders.py:29-32 | Empty search term semantics undefined |
+| principal-2 | suggestion | info | shop/orders.py:29-36 | Duplicated projection and ordering with list_orders |
+| quality-1 | blocker | critical | shop/orders.py:31-32 | f-string SQL enables injection past user scoping |
+| quality-1 | should_fix | high | shop/orders.py:31 | Apostrophe in ordinary input crashes search |
+| quality-1 | should_fix | medium | shop/orders.py:31 | LIKE wildcards in search text not escaped |
+| quality-1 | should_fix | low | shop/orders.py:29-32 | Empty text and case behaviour unspecified |
+| quality-1 | should_fix | medium | tests/test_shop.py | No tests for the new function |
+| quality-1 | suggestion | info | shop/orders.py:4 | Results not paginated despite PAGE_SIZE |
+| quality-2 | blocker | critical | shop/orders.py:29-32 | f-string interpolation enables SQL injection |
+| quality-2 | should_fix | high | shop/orders.py:31 | Ordinary input with a quote crashes function |
+| quality-2 | should_fix | medium | shop/orders.py:31 | LIKE wildcards in search text not escaped |
+| quality-2 | should_fix | medium | tests/test_shop.py | No tests for the new function |
+| quality-2 | should_fix | low | shop/orders.py:29-32 | Edge cases unspecified: empty, case, NULL, pagination |
+| quality-2 | style | low | shop/orders.py:31-32 | Long single-line SQL and needless variable |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-03-search-by-note
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-03-search-by-note` (1 commit, `shop/orders.py` +6)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+`search_orders` builds its SQL with an f-string. All four reviewers independently showed that this lets a caller break out of the per-user scope with SQL injection.
+
+---
+
+## Blockers
+
+### 🚫 1. SQL injection in `search_orders` bypasses per-user scoping
+
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, all reproduced)
+**Type**: Security vulnerability
+**Location**: `shop/orders.py:29-32`
+
+**Issue**: `user_id` and `text` are put straight into the SQL text, and `db.query(sql)` is called with no params. This is the only query in `shop/` (`orders.py`, `stock.py`, `payments.py`) that does not use `?` placeholders. The reviewers demonstrated:
+- `search_orders(1, &quot;&#x27; or 1=1 --&quot;)` returns other users&#x27; orders.
+- `zz&#x27; union select id, note, user_id from orders --` leaks other users&#x27; note text, and a `UNION SELECT` can read the schema.
+- `user_id` passed as a string (`&#x27;1 or 1=1&#x27;`) returns every order. The `int` type hint does not enforce anything.
+
+**Why this blocks**: The function&#x27;s only access-control guarantee (&quot;orders of this user&quot;) lives inside a string the caller controls. It undoes the ownership protection that `ge</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># OCR review: pr-04-payment-logging
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-04-payment-logging` (diff `main...pr-04-payment-logging`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 2 should fix, 3 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Raw card token written to application logs | `shop/payments.py:27` | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, unanimous in discourse) |
+| 2 | Should Fix | Failed payment attempts are not logged, so the support goal is only half met | `shop/payments.py:26-30` | @principal-1, @principal-2, @quality-2 (@quality-1 agreed in discourse) |
+| 3 | Should Fix | No test covers what `pay()` logs, token absence, or the failure path | `tests/test_shop.py:26-29` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 4 | Suggestion | Make the log message format consistent and state units | `shop/payments.py:27, 30` | @principal-1, @quality-1 |
+| 5 | Suggestion | Consider a redaction `logging.Filter` as defense-in-depth | `shop/payments.py` (module logger `shop.payments`) | @principal-2 (raised as a question by @principal-1 and @quality-2) |
+| 6 | Suggestion | &quot;Charged but not marked paid&quot; window is not observable (pre-existing) | `shop/payments.py:28-29` | @principal-1 (scope challenged by @quality-2) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/payments.py:27 | Raw card token written to INFO logs |
+| principal-1 | should_fix | high | shop/payments.py:26-30 | Failed payment outcome is not logged |
+| principal-1 | should_fix | medium | tests/test_shop.py:26-29 | No tests for logging, token absence, or failure path |
+| principal-1 | suggestion | low | shop/payments.py:27-30 | Inconsistent log message format and missing amount unit |
+| principal-1 | suggestion | low | shop/payments.py:28-29 | Charged-but-not-marked-paid window unobservable (pre-existing) |
+| principal-2 | blocker | critical | shop/payments.py:27 | Raw card token written to application logs |
+| principal-2 | should_fix | medium | shop/payments.py:26-30 | Failure path not logged; support goal half met |
+| principal-2 | suggestion | low | shop/payments.py:6 | No guardrail against sensitive data in logs |
+| quality-1 | blocker | critical | shop/payments.py:27 | Sensitive card token logged in plain text |
+| quality-1 | should_fix | medium | tests/test_shop.py:26-29 | No test protects the new logging behavior |
+| quality-1 | suggestion | low | shop/payments.py:27-30 | Inconsistent message style between attempt and success logs |
+| quality-2 | blocker | critical | shop/payments.py:27 | Card token leaked into logs |
+| quality-2 | should_fix | medium | shop/payments.py:28 | Failed payment attempts are not logged |
+| quality-2 | should_fix | low | tests/test_shop.py:26-29 | Payment failure path is untested |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-04-payment-logging
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-04-payment-logging` (1 commit, `shop/payments.py`, +1 line)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+&gt; **Execution note**: The host supports parallel sub-agents, but the concurrent sub-agent limit was reached. Only @principal-1 ran as an isolated sub-agent. @principal-2, @quality-1 and @quality-2 ran **sequentially** in the Tech Lead&#x27;s shared context, so their independence is weaker. The redundancy-confirmation weighting below should be read with that in mind.
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+The new log line writes the raw `card_token`, a payment credential, to INFO logs. All four reviewers flagged this as Critical, and it must be removed before merge.
+
+---
+
+## Blockers
+
+### 🚫 Raw card token written to application logs
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, unanimous in discourse)
+**Type**: Security vulnerability / Compliance (sensitive data exposure, PCI-DSS)
+**Location**: `shop/payments.py:27`
+
+**Issue**: `log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)` writes the full token that `gateway.capture()` accepts as a charge credential. It does this on every payment, at the default production log level.
+
+**Why this blocks**: Logs usually have broad access, long retention, and replication to third-party aggregators. A token that can be reused, or a PAN passed in by mistake, ends up readable by anyone with log access, and it cannot be cleanly removed once shipped. No logging filter or redaction layer exists anywhere in the repo, so this line is the only control point.
+
+**Suggested fix** (omit the token; add a masked or gateway-issued reference only if support shows a concrete need for one):
+```python
+log.info(&quot;payment attempt order=%s amount_cents=%s&quot;, order_id, amount_cents)
+```
+
+---
+
+## Should Fix
+
+### 1. Failed payment attempts are not logged, so the support goal is only half met
+
+**Flagged by**: @principal-1, @principal-2, @quality-2 (@quality-1 agreed in discourse)
+**Location**: `shop/payments.py:26-30`
+
+If `gateway.capture` raises `PaymentError`, the exception propagates and no outcome is logged. Support sees &quot;attempt&quot; with no matching &quot;paid&quot; and has to infer failure from the missing line. Failures are the case support most often investigates. @principal-1 rated this High; @principal-2 challenged that, and the reviewers settled on Medium because it is a gap in observability, not a regression. Log the failure and re-raise:
+```python
+try:
+    gateway.capture(order_id, amount_cents, card_token)
+except PaymentError as exc:
+    log.warning(&quot;payment failed order=%s reason=%s&quot;, order_id, exc)
+    raise
+```
+Make sure real gateway exception messages contain no tokens before interpo</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># OCR review: pr-05-docstrings-and-types
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-05-docstrings-and-types` (diff `main...pr-05-docstrings-and-types`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** APPROVE  
+**Counts:** 0 blockers, 1 should fix, 4 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Should Fix | Commit message overstates the change | commit `056ee00` (&quot;Add docstrings and type hints to stock&quot;); `shop/stock.py:9-22` | @principal-1, @principal-2, @quality-2 |
+| 2 | Suggestion | Document the rest of the public stock API | `shop/stock.py:5-6, 14-22` | @principal-1, @quality-1 (agreed by @quality-2) |
+| 3 | Suggestion | Add a test for the overwrite behavior the docstring now promises | `tests/test_shop.py:16-24` | @principal-2 (agreed by @principal-1, @quality-1) |
+| 4 | Suggestion | Parameter `available` shadows the module function `available` | `shop/stock.py:9, 14` | @quality-2 (severity challenged by @principal-1 and accepted, so it stays a suggestion) |
+| 5 | Suggestion | Follow-up issue: the non-negative stock count is implied but not enforced (pre-existing) | `shop/stock.py:9-11, 19-22` | @principal-1, @principal-2, @quality-1 (connected in discourse) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | should_fix | low | shop/stock.py:9-22 | Commit message overstates scope (no type hints added; docstrings partial) |
+| principal-1 | suggestion | low | shop/stock.py:5-22 | Remaining public stock API is undocumented |
+| principal-1 | suggestion | info | shop/stock.py:19-22 | reserve check-then-act not atomic; quantities not validated |
+| principal-2 | should_fix | low | shop/stock.py:9-11 | Commit message overstates the change |
+| principal-2 | suggestion | info | tests/test_shop.py:16-24 | Documented overwrite contract not pinned by a test |
+| principal-2 | suggestion | info | shop/stock.py:19-22 | reserve check-then-act is not atomic (out of scope) |
+| quality-1 | suggestion | low | shop/stock.py:5-22 | Remaining public API in stock.py is undocumented |
+| quality-1 | suggestion | info | shop/stock.py:9-11 | Docstring silent on input validation of negative stock |
+| quality-2 | should_fix | low | shop/stock.py:9-11 | Commit message does not match the diff |
+| quality-2 | suggestion | low | shop/stock.py:9-14 | Parameter available shadows module function available |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-05-docstrings-and-types
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-05-docstrings-and-types` (1 file, +1 line)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+&gt; **Execution note**: @principal-1 ran as an isolated parallel sub-agent. The host refused the other three spawns (concurrent sub-agent limit), so @principal-2, @quality-1, and @quality-2 ran with the **sequential strategy**: one at a time, sharing one conversation context instead of running as independent sub-agents. Weight their redundancy confirmations with that in mind. No per-instance models were configured; all reviewers ran on the parent model.
+
+---
+
+## Verdict
+
+**APPROVE**
+
+The branch adds one accurate docstring and doesn&#x27;t change runtime behavior. No reviewer found a blocker. The remaining items are commit hygiene and optional follow-ups.
+
+---
+
+## Blockers
+
+None.
+
+---
+
+## Should Fix
+
+### 1. Commit message overstates the change
+
+**Flagged by**: @principal-1, @principal-2, @quality-2
+**Location**: commit `056ee00` (&quot;Add docstrings and type hints to stock&quot;); `shop/stock.py:9-22`
+
+The commit message says docstrings (plural) and type hints were added. The diff adds one docstring to `set_stock` and no type hints. Every function in `stock.py` was already annotated on `main`. A misleading message hurts `git log`/blame archaeology and suggests part of the change is missing. Fix it either way:
+- reword the message (or the squash message) to something like &quot;Document set_stock overwrite semantics&quot;, or
+- finish the stated scope by documenting the rest of the stock API (see Suggestion 1).
+
+---
+
+## Suggestions
+
+### 1. Document the rest of the public stock API
+
+**Flagged by**: @principal-1, @quality-1 (agreed by @quality-2)
+**Location**: `shop/stock.py:5-6, 14-22`
+
+`OutOfStock`, `available`, and `reserve` still have no docstrings, and their behavior is the least obvious in the module. `available` returns `0` for an unknown SKU instead of raising. `reserve` raises `OutOfStock` when stock is short. Suggested one-liners:
+```python
+class OutOfStock(Exception):
+    &quot;&quot;&quot;Raised by `reserve` when fewer than `qty` units of a SKU are available.&quot;&quot;&quot;
+
+def available(sku: str) -&gt; int:
+    &quot;&quot;&quot;Return units of `sku` that can still be reserved; 0 if the SKU is unknown.&quot;&quot;&quot;
+
+def reserve(sku: str, qty: int) -&gt; None:
+    &quot;&quot;&quot;Take `qty` units of `sku`; raise OutOfStock if fewer are available.&quot;&quot;&quot;
+```
+
+### 2. Add a test for the overwrite behavior the docstring now promises
+
+**Flagged by**: @principal-2 (agreed by @principal-1, @quality-1)
+**Location**: `tests/test_shop.py:16-24`
+
+The docstring now says `set_stock` replaces any earlier value, but no test checks it. Example: `set_stock(&quot;C&quot;, 5); set_stock(&quot;C&quot;, 2); assertEqual(available(&quot;C&quot;), 2)`.
+
+### 3. Parameter `available` shadows the module function `available`
+
+**Flagged by**: @quality-2 (severity challenged by @principal-1 and accepted, so it stays a suggestion)
+**Location**: `shop/stock.py:9, 14`
+
+Inside `set_stock`, the parameter `available` hides the `available()` function. A later edit that calls `available(sku)` there would raise `TypeError`. Renaming it to `units` or `quantity` would fix this. That counts as a keyword-argument API change, but nothing in the repo passes `available=`.
+
+### 4. Follow-up issue: the non-negative stock count is implied but not enforced</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># OCR review: pr-06-cancel-order
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-06-cancel-order` (diff `main...pr-06-cancel-order`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 2 blockers, 4 should fix, 4 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Missing ownership check: any user can cancel any order | `shop/orders.py:29-36` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 2 | Blocker | Non-atomic status check: a paid order can end up cancelled | `shop/orders.py:31-36` (interacts with `shop/payments.py:26-29`) | @principal-1, @principal-2 (High); @quality-1, @quality-2 (Medium). The severity was challenged in discourse and the higher rating held because of the reproduction. |
+| 3 | Should Fix | Status rule blocks only `paid`, so cancelled orders can be re-cancelled and new statuses are cancellable by default | `shop/orders.py:34` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 4 | Should Fix | No tests for `cancel_order` | `tests/test_shop.py` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 5 | Should Fix | Generic `ValueError` instead of a domain exception | `shop/orders.py:35` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 6 | Should Fix | `pay()` does not refuse cancelled orders, so a cancelled order can come back as `paid` | `shop/payments.py:26-29` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 7 | Suggestion | Update docstrings to describe the contract | not stated in final.md (see per-reviewer table) | @quality-1, @quality-2 |
+| 8 | Suggestion | Log cancellations | not stated in final.md (see per-reviewer table) | @principal-2 |
+| 9 | Suggestion | Give the order lifecycle a single owner | not stated in final.md (see per-reviewer table) | @principal-1 |
+| 10 | Suggestion | Reuse the rowcount helper for `stock.reserve` (follow-up) | not stated in final.md (see per-reviewer table) | @principal-2, @quality-1, @quality-2 |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/orders.py:29-36 | Missing ownership check lets any user cancel any order |
+| principal-1 | blocker | high | shop/orders.py:31-36 | Non-atomic status check lets a paid order be cancelled |
+| principal-1 | should_fix | medium | shop/orders.py:34 | Deny-list status rule allows re-cancel and future statuses |
+| principal-1 | should_fix | low | shop/orders.py:35 | Generic ValueError instead of a domain exception |
+| principal-1 | should_fix | medium | tests/test_shop.py:1-32 | No tests cover cancel_order behaviour |
+| principal-1 | should_fix | high | shop/payments.py:26-29 | pay() does not refuse cancelled orders |
+| principal-1 | suggestion | medium | shop/orders.py:16-36 | Order lifecycle lacks a single owner for transitions |
+| principal-2 | blocker | critical | shop/orders.py:29-36 | Missing ownership check lets any user cancel any order |
+| principal-2 | blocker | high | shop/orders.py:31-36 | Non-atomic status check lets a paid order be cancelled |
+| principal-2 | should_fix | medium | shop/orders.py:34 | Deny-list status rule allows re-cancel and future statuses |
+| principal-2 | should_fix | low | shop/orders.py:35 | Generic ValueError instead of a domain exception |
+| principal-2 | should_fix | medium | tests/test_shop.py:1-32 | No tests cover cancel_order behaviour |
+| principal-2 | should_fix | high | shop/payments.py:26-29 | pay() does not refuse cancelled orders |
+| principal-2 | suggestion | low | shop/orders.py:29-36 | No audit log emitted on order cancellation |
+| principal-2 | suggestion | info | shop/stock.py:18-21 | Reuse rowcount helper for stock.reserve check-then-act |
+| quality-1 | blocker | high | shop/orders.py:29-36 | Missing ownership check lets any user cancel any order |
+| quality-1 | blocker | medium | shop/orders.py:31-36 | Non-atomic status check lets a paid order be cancelled |
+| quality-1 | should_fix | low | shop/orders.py:34 | Deny-list status rule allows re-cancel and future statuses |
+| quality-1 | should_fix | low | shop/orders.py:35 | Generic ValueError instead of a domain exception |
+| quality-1 | should_fix | medium | tests/test_shop.py:1-32 | No tests cover cancel_order behaviour |
+| quality-1 | should_fix | medium | shop/payments.py:26-29 | pay() does not refuse cancelled orders |
+| quality-1 | suggestion | info | shop/orders.py:1-30 | Docstrings do not describe the cancel contract |
+| quality-1 | suggestion | info | shop/stock.py:18-21 | Reuse rowcount helper for stock.reserve check-then-act |
+| quality-2 | blocker | high | shop/orders.py:29-36 | Missing ownership check lets any user cancel any order |
+| quality-2 | blocker | medium | shop/orders.py:31-36 | Non-atomic status check lets a paid order be cancelled |
+| quality-2 | should_fix | medium | shop/orders.py:34 | Deny-list status rule allows re-cancel and future statuses |
+| quality-2 | should_fix | low | shop/orders.py:35 | Generic ValueError instead of a domain exception |
+| quality-2 | should_fix | medium | tests/test_shop.py:1-32 | No tests cover cancel_order behaviour |
+| quality-2 | should_fix | medium | shop/payments.py:26-29 | pay() does not refuse cancelled orders |
+| quality-2 | suggestion | info | shop/orders.py:1-30 | Docstrings do not describe the cancel contract |
+| quality-2 | suggestion | info | shop/stock.py:18-21 | Reuse rowcount helper for stock.reserve check-then-act |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-06-cancel-order
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-06-cancel-order` (1 commit, `shop/orders.py` +10)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+**Execution note**: @quality-1 and @quality-2 ran as parallel sub-agents. @principal-1 and @prin</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># OCR review: pr-07-payment-retry
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-07-payment-retry` (diff `main...pr-07-payment-retry`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 2 blockers, 4 should fix, 2 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | 🚫 Retry loop never terminates (`attempt` is never incremented) | `shop/payments.py:30-36` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 2 | Blocker | 🚫 Order marked `paid` when no capture succeeded; `PaymentError` no longer reaches callers | `shop/payments.py:33-38` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 3 | Should Fix | Retrying a non-idempotent capture risks double-charging; every `PaymentError` is retried | `shop/payments.py:33-35`, `Gateway.capture` interface (`shop/payments.py:19-23`) | @principal-1, @principal-2 (endorsed by @quality-1; severity challenged by @quality-2) |
+| 4 | Should Fix | No tests for the retry and exhaustion paths | `tests/test_shop.py` | @principal-1, @quality-1, @quality-2 (endorsed by @principal-2) |
+| 5 | Should Fix | Logging is misleading and does not log when retries run out | `shop/payments.py:36` | @quality-1, @quality-2, @principal-1 |
+| 6 | Should Fix | No backoff between attempts | `shop/payments.py:32-36` | @quality-2 (scope challenged by @principal-2) |
+| 7 | Suggestion | Make the constant name specific and update the docs | not stated in final.md (see per-reviewer table) |  |
+| 8 | Suggestion | Separate retry policy from the payment state transition | not stated in final.md (see per-reviewer table) |  |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/payments.py:30-36 | Retry loop never terminates (attempt never incremented) |
+| principal-1 | blocker | critical | shop/payments.py:33-38 | Order marked paid when no capture succeeded |
+| principal-1 | should_fix | high | shop/payments.py:33-36 | Non-idempotent capture retried; double-charge risk |
+| principal-1 | should_fix | high | tests/test_shop.py | No tests for retry and exhaustion paths |
+| principal-1 | suggestion | low | shop/payments.py:26-36 | Hardcoded retry constant and thin logging |
+| principal-2 | blocker | critical | shop/payments.py:30-36 | Retry bound is never enforced (unbounded loop) |
+| principal-2 | blocker | critical | shop/payments.py:33-38 | Order marked paid after failed capture; contract changed |
+| principal-2 | should_fix | high | shop/payments.py:33-35 | Retrying non-idempotent capture risks double charging |
+| principal-2 | suggestion | low | shop/payments.py:26-36 | Retry policy lives inline in the domain function |
+| quality-1 | blocker | critical | shop/payments.py:30-36 | Loop counter never incremented; while is the wrong idiom |
+| quality-1 | blocker | high | shop/payments.py:33-38 | Errors swallowed with no exhaustion path |
+| quality-1 | should_fix | medium | shop/payments.py:36 | Misleading log output on capture failure |
+| quality-1 | should_fix | high | tests/test_shop.py | No tests for retry and exhaustion behaviour |
+| quality-1 | suggestion | low | shop/payments.py:26 | Constant name MAX_ATTEMPTS is too generic |
+| quality-2 | blocker | critical | shop/payments.py:30-36 | Infinite loop on persistent capture failure |
+| quality-2 | blocker | critical | shop/payments.py:33-38 | Fall-through marks the order paid after failures |
+| quality-2 | should_fix | medium | shop/payments.py:32-36 | No backoff between capture attempts |
+| quality-2 | should_fix | low | shop/payments.py:36 | Log message is inaccurate and lacks the cause |
+| quality-2 | should_fix | high | tests/test_shop.py | Missing tests for retry and exhaustion |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-07-payment-retry
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-07-payment-retry` (1 commit, `shop/payments.py`, +10/-1)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+&gt; **Execution note**: @principal-1 ran as an isolated parallel sub-agent. The host&#x27;s concurrent sub-agent limit rejected the other three spawns, so @principal-2, @quality-1 and @quality-2 ran with the **sequential strategy** in the Tech Lead&#x27;s shared context. Their independence is weaker than for parallel sub-agents, so weigh the redundancy confirmations below with that in mind.
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+The retry loop never advances its counter, so a failing gateway makes `pay()` spin forever. Once the counter is fixed, the swallowed `PaymentError` marks unpaid orders as `paid`. Both are correctness and data-integrity blockers.
+
+---
+
+## Blockers
+
+### 1. 🚫 Retry loop never terminates (`attempt` is never incremented)
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2
+**Type**: Correctness bug / liveness
+**Location**: `shop/payments.py:30-36`
+
+**Issue**: `attempt = 1; while attempt &lt;= MAX_ATTEMPTS:` has no `attempt += 1`, so the only exit is a successful capture. Verified: `Gateway.fail = 3` makes 4 capture calls, and a permanently failing gateway never returns. Every warning also logs `attempt 1`.
+
+**Why this blocks**: When the gateway is down, or the error is permanent (for example a declined card), every checkout hangs a worker in a hot loop that hammers the gateway and floods the logs. The &quot;up to three times&quot; cap in the commit message is not implemented.
+
+**Suggested fix**: make the bound structural with `for attempt in range(1, MAX_CAPTURE_ATTEMPTS + 1):` (see Blocker 2 for the full shape).
+
+### 2. 🚫 Order marked `paid` when no capture succeeded; `PaymentError` no longer reaches callers
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2
+**Type**: Data integrity / breaking behavioural change
+**Location**: `shop/payment</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># OCR review: pr-08-validate-create-order
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-08-validate-create-order` (diff `main...pr-08-validate-create-order`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** APPROVE  
+**Counts:** 0 blockers, 2 should fix, 8 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Should Fix | Note-length rule, boundaries and negative totals are untested | `tests/test_shop.py:16-18` (covering `shop/orders.py:21-22`) | @principal-2, @quality-1, @quality-2 (agreed in discourse by @principal-1) |
+| 2 | Should Fix | Non-integer totals (float, bool) pass validation and are saved to the database | `shop/orders.py:19-20` | @principal-1, @principal-2, @quality-2 (linked in discourse by @quality-1) |
+| 3 | Suggestion | Raise a domain exception instead of a bare `ValueError` | `shop/orders.py:20,22` | @principal-1, @quality-1 (also asked about by @principal-2 and @quality-2) |
+| 4 | Suggestion | Rename `MAX_NOTE` and group it with `PAGE_SIZE` | `shop/orders.py:15` | @quality-1, @quality-2 |
+| 5 | Suggestion | Document the new preconditions, including the end of zero-total orders | `shop/orders.py:18` | @principal-1, @quality-2 |
+| 6 | Suggestion | Give a clear error, or a sensible default, for `note=None` | `shop/orders.py:21` | @quality-1 |
+| 7 | Suggestion | Consider CHECK constraints at the storage layer | `shop/db.py:5` | @principal-2 (challenged by @principal-1 and lowered from should-fix) |
+| 8 | Suggestion | Check the error message in the test, not just the exception type | `tests/test_shop.py:17-18` | @quality-1 |
+| 9 | Suggestion | Follow-up: check that `pay()` captures the order&#x27;s actual total (this gap was already on `main`) | `shop/payments.py:27-30` | @principal-2 |
+| 10 | Suggestion | Extract a validation helper if an order-update path is ever added | `shop/orders.py:18-24` | @principal-1 (challenged by @quality-1 as YAGNI and kept for information only) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | should_fix | medium | shop/orders.py:19-20 | Validation admits non-integer totals that are then persisted |
+| principal-1 | suggestion | low | shop/orders.py:19-22 | Use a domain exception instead of bare ValueError |
+| principal-1 | suggestion | info | shop/orders.py:19 | Zero-total order behavior change is undocumented |
+| principal-1 | suggestion | info | shop/orders.py:18-24 | Extract validation helper if an update path is added |
+| principal-2 | should_fix | medium | tests/test_shop.py:16-18 | Note-length validation and boundaries have no test |
+| principal-2 | should_fix | medium | shop/orders.py:19 | Fractional and boolean totals pass validation |
+| principal-2 | suggestion | low | shop/db.py:5 | No CHECK constraints at the storage layer |
+| principal-2 | suggestion | info | shop/payments.py:27-30 | pay() amount not tied to validated order total |
+| quality-1 | should_fix | medium | tests/test_shop.py:16-18 | Note-length rule and boundaries are untested |
+| quality-1 | suggestion | low | shop/orders.py:15 | MAX_NOTE placed apart from PAGE_SIZE constant |
+| quality-1 | suggestion | low | shop/orders.py:20-22 | ValueError diverges from domain-exception convention |
+| quality-1 | suggestion | low | shop/orders.py:21 | note=None produces an unhelpful TypeError |
+| quality-1 | suggestion | info | tests/test_shop.py:17-18 | Test asserts exception type but not message |
+| quality-2 | should_fix | medium | tests/test_shop.py:16-18 | Missing tests for note limit and negative totals |
+| quality-2 | should_fix | medium | shop/orders.py:19 | Float and bool totals slip through validation |
+| quality-2 | suggestion | low | shop/orders.py:15 | Constant name MAX_NOTE could be more precise |
+| quality-2 | suggestion | low | shop/orders.py:18 | No docstring describing the new preconditions |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-08-validate-create-order
+
+**Date**: 2026-10-10
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+**Target**: `git diff main...pr-08-validate-create-order` (1 commit, 2 files, +11/-0)
+
+&gt; **Note**: The four reviewers ran **one after another in a shared context**, not as independent parallel sub-agents. The host refused to start more sub-agents because it had hit its concurrent sub-agent limit. Each reviewer worked from its own persona. Because they could see the earlier reviews, findings flagged by more than one reviewer are weaker evidence than usual.
+
+---
+
+## Verdict
+
+**APPROVE**
+
+The validation is correct, sits in the right place and breaks no existing caller. There are no blockers. Two should-fix items remain: the note-length rule has no tests, and non-integer totals still get through.
+
+---
+
+## Blockers
+
+None.
+
+---
+
+## Should Fix
+
+### 1. Note-length rule, boundaries and negative totals are untested
+
+**Flagged by**: @principal-2, @quality-1, @quality-2 (agreed in discourse by @principal-1)
+**Location**: `tests/test_shop.py:16-18` (covering `shop/orders.py:21-22`)
+
+The new code has two rules, but the PR tests only `create_order(1, 0)`. Nothing tests that a note of exactly `MAX_NOTE` characters is accepted, that a note of `MAX_NOTE + 1` is rejected, or that a negative total is rejected. Someone could delete the note rule or make an off-by-one mistake (`&gt;=` vs `&gt;`) and the tests would still pass. Suggested tests:
+
+```python
+def test_create_order_rejects_negative_total(self):
+    with self.assertRaises(ValueError):
+        orders.create_order(1, -1)
+
+def test_create_order_accepts_note_at_limit(self):
+    orders.create_order(1, 100, &quot;x&quot; * orders.MAX_NOTE)
+
+def test_create_order_rejects_note_over_limit(self):
+    with self.assertRaises(ValueError):
+        orders.create_order(1, 100, &quot;x&quot; * (orders.MAX_NOTE + 1))
+```
+
+### 2. Non-integer</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># OCR review: pr-09-capture-errors
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-09-capture-errors` (diff `main...pr-09-capture-errors`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 3 should fix, 2 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Failed capture marks the order as paid | `shop/payments.py:27-32` | @principal-1, @principal-2, @quality-1, @quality-2 (unanimous, verified at runtime) |
+| 2 | Should Fix | `except Exception` hides programming errors, not just gateway failures | `shop/payments.py:29` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 3 | Should Fix | Failure is not logged, and a false &quot;paid&quot; log is emitted | `shop/payments.py:29-32` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 4 | Should Fix | No test for the failure path | `tests/test_shop.py:26-29` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 5 | Suggestion | Make the `pay()` failure contract explicit | `shop/payments.py:26` | @principal-2, @quality-2 (related: @quality-1) |
+| 6 | Suggestion | Plan for ambiguous gateway timeouts | `shop/payments.py` (design) | @principal-2 (surfaced in discourse) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/payments.py:27-32 | Failed capture marks the order as paid |
+| principal-1 | should_fix | high | shop/payments.py:29 | except Exception hides programming errors |
+| principal-1 | should_fix | medium | shop/payments.py:29-32 | Failure not logged and false paid log emitted |
+| principal-1 | should_fix | medium | tests/test_shop.py:26-29 | No test for the payment failure path |
+| principal-2 | blocker | critical | shop/payments.py:27-32 | Failed capture marks the order as paid |
+| principal-2 | should_fix | high | shop/payments.py:29 | except Exception hides programming errors |
+| principal-2 | should_fix | high | shop/payments.py:29-32 | Failure not logged and false paid log emitted |
+| principal-2 | should_fix | medium | tests/test_shop.py:26-29 | No test for the payment failure path |
+| principal-2 | suggestion | low | shop/payments.py:26 | Make the pay() failure contract explicit |
+| principal-2 | suggestion | info | shop/payments.py:26-32 | Plan for ambiguous gateway timeouts |
+| quality-1 | blocker | critical | shop/payments.py:27-32 | Failed capture marks the order as paid |
+| quality-1 | should_fix | high | shop/payments.py:29 | except Exception hides programming errors |
+| quality-1 | should_fix | medium | shop/payments.py:27-30 | Inconsistent with raise-typed-exception convention |
+| quality-1 | should_fix | medium | shop/payments.py:29-32 | Failure not logged and false paid log emitted |
+| quality-1 | should_fix | medium | tests/test_shop.py:26-29 | No test for the payment failure path |
+| quality-2 | blocker | critical | shop/payments.py:27-32 | Failed capture marks the order as paid |
+| quality-2 | should_fix | high | shop/payments.py:29 | except Exception hides programming errors |
+| quality-2 | should_fix | medium | shop/payments.py:29-32 | Failure not logged and false paid log emitted |
+| quality-2 | should_fix | medium | tests/test_shop.py:26-29 | No test for the payment failure path |
+| quality-2 | suggestion | low | shop/payments.py:26 | Make the pay() failure contract explicit |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-09-capture-errors
+
+**Date**: 2026-10-10
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+**Target**: `git diff main...pr-09-capture-errors` (1 commit, `shop/payments.py` +4/-1)
+
+&gt; **Execution note**: The host&#x27;s concurrent sub-agent limit was reached during Phase 4, so only @principal-2 ran as an isolated parallel sub-agent. @principal-1, @quality-1 and @quality-2 ran **sequentially** in the Tech Lead&#x27;s shared context, so their independence (and the redundancy-confirmation weighting) is weaker than with fully parallel reviewers. All four reached the same Critical finding independently of principal-2.
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+A failed gateway capture is now silently swallowed and the order is still marked `paid`, so orders are recorded as paid when no money was collected.
+
+---
+
+## Blockers
+
+### 🚫 Failed capture marks the order as paid
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (unanimous, verified at runtime)
+**Type**: Correctness bug / financial data integrity
+**Location**: `shop/payments.py:27-32`
+
+**Issue**: `except Exception: pass` discards the capture error, and execution falls through to `update orders set status = &#x27;paid&#x27;` and `log.info(&quot;order %s paid&quot;)`. With `Gateway.fail = 1`, the order ends up `paid` and `gateway.captured == []`. `pay(None, ...)` also marks the order paid.
+
+**Why this blocks**: Goods get fulfilled without payment. The record looks exactly like a genuine payment, and nothing in the logs or tests shows the failure. Before this PR the failure was loud and the order stayed `new`.
+
+**Suggested fix**: Never mark paid unless `capture` returned normally. Handle &quot;do not crash checkout&quot; at the checkout/HTTP boundary by catching `PaymentError` and returning a user-facing &quot;payment failed, please retry&quot; message.
+```python
+def pay(gateway: Gateway, order_id: int, amount_cents: int, card_token: str) -&gt; None:
+    &quot;&quot;&quot;Capture payment and mark the order paid. Raises PaymentError if capture fails.&quot;&quot;&quot;
+    try:
+        gateway.capture(order_id, amount_cents, card_token)
+    except PaymentError:
+        log.warning(&quot;capture failed for order %s&quot;, order_id, exc_info=True)
+        raise
+    db.execute(&quot;update orders set status = &#x27;paid&#x27; where id = ?&quot;, (order_id,))
+    log.info(&quot;order %s paid&quot;, order_id)
+```
+
+---
+
+## Should Fix
+
+### 1. `except Exception` hides programming error</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># OCR review: pr-10-reserve-check
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-10-reserve-check` (diff `main...pr-10-reserve-check`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 2 should fix, 4 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Stock reservation guard is inverted (rejects valid orders, allows overselling) | `shop/stock.py:19-21` | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed in discourse) |
+| 2 | Should Fix | Add boundary and failure-path tests for the guard alongside the fix | `tests/test_shop.py:16-24` | @principal-1, @principal-2, @quality-2 (agreed by @quality-1 in discourse) |
+| 3 | Should Fix | The branch&#x27;s test suite is red: run tests before pushing and gate merges in CI | `tests/test_shop.py` / project CI | @principal-2 (raised as a question by @principal-1, @quality-2; agreed in discourse) |
+| 4 | Suggestion | Validate `qty` (pre-existing) | `shop/stock.py:18` | @principal-1, @quality-2 |
+| 5 | Suggestion | Make reservation atomic and add a DB invariant (pre-existing, out of scope) | `shop/stock.py:19-22`, `shop/db.py:5` | @principal-1, @principal-2 (agreed by @quality-2) |
+| 6 | Suggestion | Include quantities in `OutOfStock` | `shop/stock.py:21` | @quality-1 |
+| 7 | Suggestion | Commit message vs. behavior | not stated in final.md (see per-reviewer table) | @quality-1 (challenged by @principal-2 as a symptom, kept as informational) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | shop/stock.py:19-21 | Stock reservation guard is inverted |
+| principal-1 | should_fix | medium | tests/test_shop.py:16-24 | Missing boundary and failure-path tests for guard |
+| principal-1 | suggestion | low | shop/stock.py:19-22 | Non-atomic check-then-update and no DB invariant |
+| principal-1 | suggestion | low | shop/stock.py:18 | No validation of non-positive qty |
+| principal-2 | blocker | critical | shop/stock.py:19-21 | Stock reservation guard is inverted |
+| principal-2 | should_fix | high | tests/test_shop.py:16-24 | Branch test suite is red and no CI gate |
+| principal-2 | should_fix | medium | tests/test_shop.py:16-24 | Missing boundary test for qty == available |
+| principal-2 | suggestion | low | shop/stock.py:19-22 | Check-then-act race and no DB-level invariant |
+| quality-1 | blocker | critical | shop/stock.py:20 | Comparison operator flipped during the tidy |
+| quality-1 | suggestion | low | shop/stock.py:21 | OutOfStock carries no quantity information |
+| quality-1 | suggestion | info | shop/stock.py:19-21 | Commit message understates the change |
+| quality-2 | blocker | critical | shop/stock.py:19-21 | Inverted guard condition breaks reserve() |
+| quality-2 | should_fix | medium | tests/test_shop.py:16-24 | Test gaps around the reservation guard |
+| quality-2 | suggestion | low | shop/stock.py:18 | No validation of qty parameter |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-10-reserve-check
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-10-reserve-check` (1 file, +2/-1, commit f9b405e &quot;Tidy the stock reservation check&quot;)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+&gt; **Execution note**: @principal-1 ran as an isolated parallel sub-agent. The host refused further sub-agent spawns (concurrent-subagent limit), so @principal-2, @quality-1 and @quality-2 ran **sequentially in a shared context** (sequential strategy). Their agreement with each other carries less independent weight than a fully parallel run. The blocker below does not depend on that weighting: it is reproduced by the project&#x27;s own test suite.
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+The &quot;tidy&quot; inverts the stock reservation guard: valid reservations are rejected, over-reservations succeed and drive stock negative, and the existing tests fail on the branch.
+
+---
+
+## Blockers
+
+### 1. Stock reservation guard is inverted (rejects valid orders, allows overselling)
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed in discourse)
+**Type**: Correctness bug / data integrity risk
+**Location**: `shop/stock.py:19-21`
+
+**Issue**: The guard changed from `if available(sku) &lt; qty` (raise when demand exceeds supply) to `if in_stock &gt; qty` (raise when supply exceeds demand). Case analysis:
+
+| Case | `main` | this branch |
+|------|--------|-------------|
+| qty &lt; available (e.g. reserve 2 of 5) | allowed | **raises `OutOfStock`** |
+| qty == available | allowed | allowed |
+| qty &gt; available (e.g. reserve 2 of 1) | raises | **allowed, stock becomes -1** |
+| unknown SKU (available = 0), qty &gt; 0 | raises | **allowed; UPDATE touches no row, caller thinks it reserved** |
+
+`python3 -m unittest` on the branch: `FAILED (failures=1, errors=1)`. `test_reserve_reduces_stock` errors with `OutOfStock: A`, and `test_reserve_more_than_available_fails` fails with &quot;OutOfStock not raised&quot;.
+
+**Why this blocks**: This guard is the only oversell protection. `shop/db.py` has no `CHECK (available &gt;= 0)`, so merging this rejects every normal reservation and corrupts inventory on every over-reservation. The commit is labelled as a behavior-preserving tidy, so readers will not expect a semantic change.
+
+**Suggested fix** (keeps the readability intent; requested quantity on the left reads as the business rule):
+```python
+def reserve(sku: str, qty: int) -&gt; None:
+    in_stock = available(sku)
+    if qty &gt; in_stock:
+        raise OutOfStock(sku)
+    db.execute(&quot;update stock set available = available - ? where sku = ?&quot;, (qty, sku))
+```
+
+---
+
+## Should Fix
+
+### 1. Add boundary and failure-path tests for the guard alongside the fix
+**Flagged by**: @principal-1, @principal-2, @quality-2 (agreed by @quality-1</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># OCR review: pr-11-test-list-orders
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-11-test-list-orders` (diff `main...pr-11-test-list-orders`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** APPROVE  
+**Counts:** 0 blockers, 1 should fix, 4 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Should Fix | Exact-equality assertion depends on shared global DB state and fails on in-process re-runs | `tests/test_shop.py:16-19` (root cause `shop/db.py:4-6`) | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 2 | Suggestion | Name the ids and unpack rows instead of `row[0]` | `tests/test_shop.py:17-19` | @quality-1, @quality-2, @principal-2 |
+| 3 | Suggestion | Explicitly assert the other user&#x27;s order is excluded | `tests/test_shop.py:18-19` | @principal-1, @quality-1 |
+| 4 | Suggestion | Cover the rest of the `list_orders` contract | `tests/test_shop.py:16-19`; `shop/orders.py:29-30` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 5 | Suggestion | Consider a named row type for the orders API (follow-up) | `shop/orders.py:20-30` | @principal-2 (echoed as a question by @quality-2) |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | should_fix | medium | tests/test_shop.py:16-19 | Test relies on shared global DB state and is not repeatable in-process |
+| principal-1 | suggestion | low | tests/test_shop.py:17-19 | Other user&#x27;s order not explicitly asserted as excluded |
+| principal-1 | suggestion | info | tests/test_shop.py:16-19 | Coverage stops at ownership scoping |
+| principal-2 | should_fix | medium | tests/test_shop.py:19 | Exact-equality assertion over shared un-reset DB is order/repeat dependent |
+| principal-2 | suggestion | low | shop/orders.py:20-30 | Test couples to positional tuple layout of list_orders |
+| principal-2 | suggestion | info | tests/test_shop.py:16-19 | Only the happy-path isolation case is covered |
+| quality-1 | suggestion | low | tests/test_shop.py:17-18 | Magic user ids and an unnamed second order obscure intent |
+| quality-1 | suggestion | low | tests/test_shop.py:19 | row[0] positional access is opaque |
+| quality-1 | should_fix | low | tests/test_shop.py:19 | Strict equality depends on no other test touching user 41 |
+| quality-2 | should_fix | low | tests/test_shop.py:16-19 | Exact-match assertion depends on global DB state for user 41 |
+| quality-2 | suggestion | low | tests/test_shop.py:17-19 | Magic user ids and positional tuple indexing reduce readability |
+| quality-2 | suggestion | info | tests/test_shop.py:16-19 | Single owned order leaves multi-row and ordering behavior unspecified |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-11-test-list-orders
+
+**Date**: 2026-10-10
+**Target**: `git diff main...pr-11-test-list-orders` (1 file, +5 lines: `tests/test_shop.py`)
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+
+&gt; **Execution note**: The host (Claude Code) supports parallel sub-agents, but it hit its concurrent sub-agent limit during this run. As a result, @quality-2 ran as an independent parallel sub-agent, while @principal-1, @principal-2 and @quality-1 ran **sequentially in a shared context** (journaled with a &quot;sequential strategy&quot; note). Redundancy-confirmation weighting for those three should be read with that in mind. Both key claims were verified empirically and independently, by @principal-1 and by @quality-2.
+
+---
+
+## Verdict
+
+**APPROVE**
+
+This is a focused, meaningful test that catches removal of the `user_id` filter in `list_orders`. There are no blockers. One should-fix concerns the test&#x27;s reliance on the shared, never-reset in-memory database.
+
+---
+
+## Blockers
+
+None.
+
+---
+
+## Should Fix
+
+### 1. Exact-equality assertion depends on shared global DB state and fails on in-process re-runs
+
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2
+**Location**: `tests/test_shop.py:16-19` (root cause `shop/db.py:4-6`)
+
+`assertEqual([row[0] for row in orders.list_orders(41)], [mine])` requires user 41 to own exactly one order in a process-wide `:memory:` sqlite database that is never reset. It passes under `python -m unittest` today only because no other test uses user 41 and each test runs once.
+
+Two reviewers reproduced the failure independently: running the test a second time in the same process fails with two rows for user 41. Any future test that reuses id 41 (or 42) will also break this test, and the failure will look unrelated to its cause. This is the first test in the suite whose assertion covers a whole table slice rather than a single row, so it is the first one the shared DB can break.
+
+Fix options (author&#x27;s choice; see Consensus &amp; Dissent):
+- Add a `setUp` that clears `orders` (cleanest; affects the whole suite), or
+- Keep the DB as-is and use ids that are clearly reserved for this test, with a comment explaining why (e.g. `owner, other_user = 41, 42  # unused elsewhere; DB is shared across tests`).
+
+Keep exact equality either way. All reviewers agree it is what makes the test fail when the user filter is dropped.
+
+---
+
+## Suggestions
+
+### 1. Name the ids and unpack rows instead of `row[0]`
+
+**Flagged by**: @quality-1, @quality-2, @principal-2
+**Location**: `tests/test_shop.py:17-19`
+
+`41`, `42` and `row[0]` force the reader to know which column is the id. The column layout of `list_orders` (`id, status, total_cents`) also differs from that of `get_order` (`id, user_id, status, total_cents, note`). This is consistent with the existing style in the file, so it is optional.
+
+```python
+owner, other_user = 41, 42  # ids unused by other tests; DB is shared
+mine = orders.create_order(owner, 100)
+theirs = orders.create_order(other_user, 200)
+ids = [order_id for order_id, _status, _total in orders.list_orders(owner)</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># OCR review: pr-12-speed-up-tests
+
+Tool: Open Code Review (OCR) v2.5.0, `/ocr:review pr-12-speed-up-tests` (diff `main...pr-12-speed-up-tests`), default team (2 principal and 2 quality reviewers), full mode with discourse.
+
+**Verdict:** REQUEST CHANGES  
+**Counts:** 1 blockers, 1 should fix, 3 suggestions
+
+## Findings (OCR synthesized priority)
+
+| # | Priority | Finding | Location | Flagged by |
+|---|---|---|---|---|
+| 1 | Blocker | Rewritten test cannot fail, so the authorization check has no working test | `tests/test_shop.py:11-16` (guards `shop/orders.py:24-25`) | @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed by mutation testing) |
+| 2 | Should Fix | The &quot;less flaky&quot; claim is unsupported and the change does not match the branch&#x27;s goal | commit `919dbc4`; `tests/test_shop.py:11-16`; `shop/db.py:4-6` | @principal-1, @principal-2, @quality-1, @quality-2 |
+| 3 | Suggestion | Reset the shared database before each test | not stated in final.md (see per-reviewer table) |  |
+| 4 | Suggestion | Add tests for the other authorization paths | not stated in final.md (see per-reviewer table) |  |
+| 5 | Suggestion | Use one pattern for expected-exception tests | not stated in final.md (see per-reviewer table) |  |
+
+## Per-reviewer findings with severity (from OCR round-meta.json)
+
+| Reviewer | Category | Severity | File:Line | Title |
+|---|---|---|---|---|
+| principal-1 | blocker | critical | tests/test_shop.py:11-16 | Authorization test can no longer fail (silently swallows the assertion) |
+| principal-1 | should_fix | medium | tests/test_shop.py:11-16 | Stated flaky rationale is unsupported; root cause not addressed |
+| principal-1 | suggestion | low | shop/db.py:4-6 | Tests share a single module-level in-memory database |
+| principal-2 | blocker | critical | tests/test_shop.py:11-16 | The sole authorization rule loses its regression guard |
+| principal-2 | should_fix | medium | tests/test_shop.py:11-16 | Change contradicts its stated intent; no evidence of flakiness |
+| principal-2 | suggestion | low | shop/orders.py:20-30 | No coverage for NotFound path or list_orders scoping |
+| quality-1 | blocker | critical | tests/test_shop.py:11-16 | Rewritten test cannot fail and no longer checks the authorization rule |
+| quality-1 | should_fix | medium | tests/test_shop.py:11-16 | Less-flaky rationale unsupported and branch-goal mismatch |
+| quality-1 | suggestion | info | shop/db.py:4-6 | Shared test state across the suite |
+| quality-2 | blocker | critical | tests/test_shop.py:11-16 | Test can no longer fail; authorization check effectively untested |
+| quality-2 | should_fix | high | tests/test_shop.py:11-16 | Flaky claim not supported and the change does not fix flakiness |
+| quality-2 | suggestion | low | tests/test_shop.py:13-16 | Inconsistent with the file&#x27;s assertRaises convention |
+| quality-2 | should_fix | info | tests/test_shop.py:11-16 | PR does not match the branch&#x27;s stated goal |
+
+## Full OCR final review (final.md, verbatim)
+
+# Code Review: pr-12-speed-up-tests
+
+**Date**: 2026-10-10
+**Reviewers**: @principal-1, @principal-2, @quality-1, @quality-2
+**Mode**: Full (with discourse)
+**Target**: `git diff main...pr-12-speed-up-tests` (1 commit, `tests/test_shop.py` +3/-1)
+
+&gt; **Execution note**: @quality-1 and @quality-2 ran as independent parallel sub-agents. The host refused to spawn @principal-1 and @principal-2 because it hit its concurrent sub-agent limit. Those two were run **sequentially in the shared Tech Lead context** instead, so their independence is weaker. The Critical finding does not depend on that: three separate mutation tests (@principal-1, @quality-1, @quality-2) confirmed it independently.
+
+---
+
+## Verdict
+
+**REQUEST CHANGES**
+
+The rewritten `test_other_user_is_forbidden` can no longer fail, so the order service&#x27;s only authorization check has no working test. The stated flakiness could not be reproduced.
+
+---
+
+## Blockers
+
+### 🚫 Rewritten test cannot fail, so the authorization check has no working test
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2 (4/4, confirmed by mutation testing)
+**Type**: Security test regression (correctness of test; IDOR coverage)
+**Location**: `tests/test_shop.py:11-16` (guards `shop/orders.py:24-25`)
+
+**Issue**: Nothing is asserted after `try: orders.get_order(oid, 2) except orders.Forbidden: pass`. The test passes in two cases: when `Forbidden` is raised, and when `get_order` hands user 1&#x27;s order to user 2. It fails only if some *other* exception is raised. Mutation check: replacing `raise Forbidden(order_id)` with `pass` in `get_order`
+- on `main`: `FAILED (failures=1) - AssertionError: Forbidden not raised`
+- on this branch: `OK`
+
+**Why this blocks**: The `rows[0][1] != user_id` check in `get_order` is the only access-control rule in the order service, and this was its only test. If this merges, a change that lets any user read any order would pass CI. That includes the free-text `note` column. The test is still named `test_other_user_is_forbidden`, so it looks like coverage that no longer exists.
+
+**Suggested fix** (revert to the original):
+```python
+def test_other_user_is_forbidden(self):
+    oid = orders.create_order(1, 500)
+    with self.assertRaises(orders.Forbidden):
+        orders.get_order(oid, 2)
+```
+If a `try` form is kept for some reason, it must include `else: self.fail(&quot;expected Forbidden&quot;)`.
+
+---
+
+## Should Fix
+
+### 1. The &quot;less flaky&quot; claim is unsupported and the change does not match the branch&#x27;s goal
+
+**Flagged by**: @principal-1, @principal-2, @quality-1, @quality-2
+**Location**: commit `919dbc4`; `tests/test_shop.py:11-16`; `shop/db.py:4-6`
+
+Nothing in `create_order` or `get_order` varies between runs. Order ids are unique autoincrement values, the check is a plain equality comparison, and the code uses no time, randomness, threads or I/O. Repeated runs (30 by @principal-1, 6 by @quality-2, 5 plus 3 shuffled-order runs by @quality-1) all passed. The branch is named &quot;speed up tests&quot;, b</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>All 12 branches were reviewed with Open Code Review (OCR) v2.5.0 and each result is written to `~/work/output/&lt;branch&gt;.md`. OCR gave eight branches **REQUEST CHANGES** and four **APPROVE**; none came back with no findings.
+
+| Branch | Verdict | Blockers / Should fix / Suggestions | Main blocker |
+|---|---|---|---|
+| pr-01-list-pagination | REQUEST CHANGES | 1 / 3 / 5 | Off-by-one page offset hides the first page (`shop/orders.py:31`) |
+| pr-02-extract-row-helper | APPROVE | 0 / 2 / 4 | — |
+| pr-03-search-by-note | REQUEST CHANGES | 1 / 4 / 5 | SQL injection gets past the per-user restriction (`shop/orders.py:29-32`) |
+| pr-04-payment-logging | REQUEST CHANGES | 1 / 2 / 3 | Raw card token written to logs (`shop/payments.py:27`) |
+| pr-05-docstrings-and-types | APPROVE | 0 / 1 / 4 | — |
+| pr-06-cancel-order | REQUEST CHANGES | 2 / 4 / 4 | No ownership check; a paid order can still be cancelled (`shop/orders.py:29-36`) |
+| pr-07-payment-retry | REQUEST CHANGES | 2 / 4 / 2 | Retry loop never ends; order marked paid after failed captures (`shop/payments.py:30-38`) |
+| pr-08-validate-create-order | APPROVE | 0 / 2 / 8 | — |
+| pr-09-capture-errors | REQUEST CHANGES | 1 / 3 / 2 | A failed capture still marks the order paid (`shop/payments.py:27-32`) |
+| pr-10-reserve-check | REQUEST CHANGES | 1 / 2 / 4 | Stock check is inverted; the branch&#x27;s own tests fail (`shop/stock.py:19-21`) |
+| pr-11-test-list-orders | APPROVE | 0 / 1 / 4 | — |
+| pr-12-speed-up-tests | REQUEST CHANGES | 1 / 1 / 3 | Rewritten authorization test can never fail (`tests/test_shop.py:11-16`) |
+
+Each output file has three parts:
+- **Findings table:** every finding from OCR&#x27;s final review, with its priority (Blocker / Should Fix / Suggestion), file and line, and which reviewers flagged it. The number of rows matches the counts OCR recorded for each branch.
+- **Per-reviewer table:** each reviewer&#x27;s findings with OCR&#x27;s severity rating (critical/high/medium/low/info) and file:line.
+- **The full final review**, copied verbatim.
+
+A few suggestions have no location in the final review. Those rows say &quot;not stated in final.md&quot;, and the location is in the per-reviewer table.
+
+How it was run:
+- **Setup:** I built OCR&#x27;s command-line tool from ~/src. Each branch was reviewed in its own clone under `/tmp/ocr-wt/` with OCR&#x27;s default setup: two &quot;principal&quot; and two &quot;quality&quot; reviewers, followed by a discussion round and a combined final review.
+- **No questions asked:** no requirements were given, OCR&#x27;s defaults were used, and nothing was posted anywhere.
+- **Repo untouched:** `~/work/input/shop` has no changes and nothing was committed.
+
+**Not all reviewers ran independently.** The host allows only a limited number of sub-agents at once, so in 10 of the 12 branches some reviewers were run one after another in a shared context. That is OCR&#x27;s documented fallback, but those reviewers could see each other&#x27;s work. In several branches the discussion round was also written by the coordinating agent rather than by the reviewers themselves. Each final review notes this at the top; OCR&#x27;s own guidance is to give less weight to findings that several reviewers agree on in those branches. pr-01 and pr-03 had all four reviewers run independently.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

@@ -2066,5 +2066,844 @@
     ]
    }
   }
+ },
+ "code-review": {
+  "type": "table",
+  "date": "2026-10-10",
+  "dir": "/best-runs/review/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md",
+  "title": [
+   "Claude Code review tools, tested on the same 12 pull requests",
+   "实测对比：同样的 12 个 PR"
+  ],
+  "intro": [
+   "On 2026-10-10 we ran 16 of these tools and 13 ran. Each reviewed the same 12 pull requests against a small Python service in a throwaway sandbox: 8 carry one planted defect (an off-by-one, an SQL injection, a card token in the logs, a missing permission check, a retry that never ends, a swallowed error, an inverted condition, a weakened test) and 4 are clean. Two numbers per tool, as in SWR-Bench: defects found, and blocking findings on the clean ones. A judge (gpt-6-astra, three passes) marked each review. Claude Code with no tool installed did the same job as a control.",
+   "2026-10-10 我们实跑了其中 16 个，跑成 13 个。每个在用完即删的沙箱里审同样的 12 个 PR（一个小型 Python 服务）：8 个各埋了一个缺陷（差一错误、SQL 注入、卡号写进日志、漏掉权限检查、永不结束的重试、吞掉的异常、写反的条件、被削弱的测试），4 个是干净的。按 SWR-Bench 的做法每个工具给两个数：找到几个缺陷、在干净 PR 上报了几条阻塞问题。评审是 gpt-6-astra，三遍取多数。不装任何工具的 Claude Code 做了同样的事，作为对照。"
+  ],
+  "finding": [
+   "No tool beat the control. Claude Code with nothing installed found all 8 defects in about a minute with no false alarm (1.8 findings per pull request); 6 tools matched it and none did better. What separates the tools is noise (0.5 to 7.2 findings per pull request) and time (1 to 30 minutes). The defect missed most was the weakened test: 4 of 13 let it through.",
+   "没有工具超过对照组。不装任何东西的 Claude Code 约一分钟找全 8 个缺陷、零误报（每个 PR 1.8 条发现）；6 个工具与它持平，没有更好的。工具之间真正的差别是噪音（每个 PR 0.5 到 7.2 条发现）和耗时（1 到 30 分钟）。漏得最多的是被削弱的测试：13 个里有 4 个放过了。"
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "Defects found (of 8)",
+    "找到缺陷（共 8 个）"
+   ],
+   [
+    "False alarms on 4 clean PRs",
+    "4 个干净 PR 上的误报"
+   ],
+   [
+    "Findings per PR",
+    "每个 PR 发现数"
+   ],
+   [
+    "Time",
+    "耗时"
+   ],
+   [
+    "Reviewed by",
+    "审查模型"
+   ]
+  ],
+  "line_label": [
+   "Claude Code review test, 2026-10-10:",
+   "2026-10-10 实测："
+  ],
+  "see": [
+   "See every review →",
+   "看每个 PR 的审查 →"
+  ],
+  "evidence": [
+   "The reviews",
+   "审查原文"
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html"
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "rule": [
+    "Listed by defects found, then time. This set does not rank the tools at the top: Claude Code with no tool installed found all 8 planted defects in a minute with no false alarm, and six tools did the same. Tools that bring their own model reviewed with gpt-6-astra, the skills with Claude Opus 5.5, so a gap between those two groups may be the model.",
+    "按找到的缺陷数、再按耗时排列。这套题分不出头部名次：不装任何工具的 Claude Code 一分钟找全 8 个缺陷、零误报，有 6 个工具结果相同。自带模型的工具用 gpt-6-astra 审，skill 用 Claude Opus 5.5 审，两组之间的差距可能来自模型。"
+   ],
+   "picks": [
+    {
+     "repo": "awesome-skills/code-review-skill",
+     "role": [
+      "If you want a review skill at all",
+      "只想加一个审查 skill"
+     ],
+     "why": [
+      "Found all eight planted defects with no false alarm on the clean pull requests, in about a minute and under two findings per pull request. That equals Claude Code with nothing installed: it adds a written checklist and a fixed report format, not detection.",
+      "八个埋入的缺陷全部找到，干净 PR 上零误报，约一分钟，每个 PR 不到两条发现。这和不装任何东西的 Claude Code 一样：它带来的是成文的检查清单和固定的报告格式，不是更强的检出。"
+     ]
+    },
+    {
+     "repo": "kenn-io/roborev",
+     "role": [
+      "If you want every commit reviewed without asking",
+      "想让每次提交自动被审"
+     ],
+     "why": [
+      "It reviews in the background as you commit, and it found all eight even with a different model (gpt-6-astra) doing the reading, with under one finding per pull request. Slower: 13 minutes for the twelve.",
+      "你提交时它在后台审；这次换了一个模型（gpt-6-astra）来读，仍然八个全中，每个 PR 不到一条发现。比较慢：12 个 PR 用了 13 分钟。"
+     ]
+    },
+    {
+     "repo": "adamjgmiller/adamsreview",
+     "role": [
+      "If you would rather wait than read noise",
+      "宁可多等也不想看噪音"
+     ],
+     "why": [
+      "The quietest reviewer that missed nothing it finished: 0.5 findings per pull request, the defect found in all seven it completed. It ran out of our 30 minutes on the twelfth.",
+      "审完的部分一个没漏，也是最安静的：每个 PR 0.5 条发现，完成的七个带缺陷 PR 全部找到。我们给的 30 分钟内差一个没审完。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Know what these do not look for:",
+    "先弄清这几个不查什么："
+   ],
+   "avoid": [
+    {
+     "repo": "hyhmrright/brooks-lint",
+     "why": [
+      "design decay only; it passed a logged card token at 100/100",
+      "只查设计劣化；把卡号写进日志的 PR 给了 100/100"
+     ]
+    },
+    {
+     "repo": "codexstar69/bug-hunter",
+     "why": [
+      "ignores test files, so a weakened test goes through",
+      "不看测试文件，被削弱的测试会放过"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick, the hardest defect was not in the code: four of 13 reviewers passed a pull request that quietly weakened a test's assertion. Read test changes yourself.",
+    "不管选哪个，最难抓的缺陷不在业务代码里：13 个里有 4 个放过了悄悄削弱测试断言的 PR。测试的改动要自己看。"
+   ]
+  },
+  "runs": {
+   "awesome-skills/code-review-skill": {
+    "stars": 1914,
+    "sheet": "awesome-skills__code-review-skill.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "1.8",
+      null,
+      "num"
+     ],
+     [
+      "1 min",
+      "1 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "1.8 findings per pull request",
+      "每个 PR 1.8 条发现"
+     ],
+     [
+      "1 min",
+      "1 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ]
+   },
+   "amElnagdy/guard-skills": {
+    "stars": 1153,
+    "sheet": "amElnagdy__guard-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "1.4",
+      null,
+      "num"
+     ],
+     [
+      "2 min",
+      "2 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "1.4 findings per pull request",
+      "每个 PR 1.4 条发现"
+     ],
+     [
+      "2 min",
+      "2 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ]
+   },
+   "vikingmute/review-forge": {
+    "stars": 220,
+    "sheet": "vikingmute__review-forge.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "1.3",
+      null,
+      "num"
+     ],
+     [
+      "2 min",
+      "2 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "1.3 findings per pull request",
+      "每个 PR 1.3 条发现"
+     ],
+     [
+      "2 min",
+      "2 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ]
+   },
+   "nathankim0/clean-architecture-skills": {
+    "stars": 90,
+    "sheet": "nathankim0__clean-architecture-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "2.7",
+      null,
+      "num"
+     ],
+     [
+      "2 min",
+      "2 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "2.7 findings per pull request",
+      "每个 PR 2.7 条发现"
+     ],
+     [
+      "2 min",
+      "2 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ]
+   },
+   "spencermarx/open-code-review": {
+    "stars": 331,
+    "sheet": "spencermarx__open-code-review.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "7.2",
+      null,
+      "num"
+     ],
+     [
+      "11 min",
+      "11 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "7.2 findings per pull request",
+      "每个 PR 7.2 条发现"
+     ],
+     [
+      "11 min",
+      "11 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ],
+    "note": "Several reviewer personas write one report: every defect is in it, among 7 findings per pull request.",
+    "note_zh": "多个审查角色合写一份报告：缺陷都在里面，但每个 PR 平均有 7 条发现。"
+   },
+   "kenn-io/roborev": {
+    "stars": 1746,
+    "sheet": "kenn-io__roborev.html",
+    "ran": true,
+    "cells": [
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.9",
+      null,
+      "num"
+     ],
+     [
+      "13 min",
+      "13 分钟",
+      "num"
+     ],
+     [
+      "gpt-6-astra",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 8 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 8 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.9 findings per pull request",
+      "每个 PR 0.9 条发现"
+     ],
+     [
+      "13 min",
+      "13 分钟"
+     ],
+     [
+      "reviewed by gpt-6-astra",
+      "由 gpt-6-astra 审查"
+     ]
+    ],
+    "note": "Runs in the background on every commit; here it reviewed with gpt-6-astra through OpenCode and still found all eight.",
+    "note_zh": "在后台对每次提交自动审查；这里通过 OpenCode 用 gpt-6-astra 审，仍然八个全中。"
+   },
+   "adamjgmiller/adamsreview": {
+    "stars": 243,
+    "sheet": "adamjgmiller__adamsreview.html",
+    "ran": true,
+    "cells": [
+     [
+      "7/7",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.5",
+      null,
+      "num"
+     ],
+     [
+      "30 min",
+      "30 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 7 of 7 planted defects",
+      "找到 7 个埋入缺陷中的 7 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.5 findings per pull request",
+      "每个 PR 0.5 条发现"
+     ],
+     [
+      "30 min",
+      "30 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ],
+    "note": "Hit the 30-minute limit with one pull request unfinished; it found the defect in all seven it finished.",
+    "note_zh": "30 分钟到时还有一个 PR 没审完；审完的七个带缺陷的全部找到。"
+   },
+   "codexstar69/bug-hunter": {
+    "stars": 487,
+    "sheet": "codexstar69__bug-hunter.html",
+    "ran": true,
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.8",
+      null,
+      "num"
+     ],
+     [
+      "3 min",
+      "3 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 7 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 7 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.8 findings per pull request",
+      "每个 PR 0.8 条发现"
+     ],
+     [
+      "3 min",
+      "3 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ],
+    "note": "Treats test files as context only, by design, so it does not report a weakened test.",
+    "note_zh": "按设计把测试文件只当上下文，所以不会报被削弱的测试。"
+   },
+   "alibaba/open-code-review": {
+    "stars": 43912,
+    "sheet": "alibaba__open-code-review.html",
+    "ran": true,
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.6",
+      null,
+      "num"
+     ],
+     [
+      "7 min",
+      "7 分钟",
+      "num"
+     ],
+     [
+      "gpt-6-astra",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 7 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 7 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.6 findings per pull request",
+      "每个 PR 0.6 条发现"
+     ],
+     [
+      "7 min",
+      "7 分钟"
+     ],
+     [
+      "reviewed by gpt-6-astra",
+      "由 gpt-6-astra 审查"
+     ]
+    ],
+    "note": "It skipped the two pull requests that only change tests, so the weakened test went unreviewed.",
+    "note_zh": "它跳过了两个只改测试的 PR，被削弱的测试没有审到。"
+   },
+   "imbue-ai/vet": {
+    "stars": 519,
+    "sheet": "imbue-ai__vet.html",
+    "ran": true,
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "1.1",
+      null,
+      "num"
+     ],
+     [
+      "18 min",
+      "18 分钟",
+      "num"
+     ],
+     [
+      "gpt-6-astra",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 7 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 7 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "1.1 findings per pull request",
+      "每个 PR 1.1 条发现"
+     ],
+     [
+      "18 min",
+      "18 分钟"
+     ],
+     [
+      "reviewed by gpt-6-astra",
+      "由 gpt-6-astra 审查"
+     ]
+    ]
+   },
+   "hyhmrright/brooks-lint": {
+    "stars": 1506,
+    "sheet": "hyhmrright__brooks-lint.html",
+    "ran": true,
+    "cells": [
+     [
+      "5/8",
+      null,
+      "substantial"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.9",
+      null,
+      "num"
+     ],
+     [
+      "3 min",
+      "3 分钟",
+      "num"
+     ],
+     [
+      "Claude Opus 5.5",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 5 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 5 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.9 findings per pull request",
+      "每个 PR 0.9 条发现"
+     ],
+     [
+      "3 min",
+      "3 分钟"
+     ],
+     [
+      "reviewed by Claude Opus 5.5",
+      "由 Claude Opus 5.5 审查"
+     ]
+    ],
+    "note": "Reviews for design decay (coupling, complexity), not security: the logged card token and the weakened test scored 100/100.",
+    "note_zh": "它审的是设计劣化（耦合、复杂度），不是安全：把卡号写进日志和削弱测试的 PR 都拿了 100/100。"
+   },
+   "Gentleman-Programming/gentleman-guardian-angel": {
+    "stars": 1180,
+    "sheet": "Gentleman-Programming__gentleman-guardian-angel.html",
+    "ran": true,
+    "cells": [
+     [
+      "5/8",
+      null,
+      "substantial"
+     ],
+     [
+      "see note",
+      "见说明"
+     ],
+     [
+      "6.0",
+      null,
+      "num"
+     ],
+     [
+      "9 min",
+      "9 分钟",
+      "num"
+     ],
+     [
+      "gpt-6-astra",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 5 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 5 个"
+     ],
+     [
+      "6.0 findings per pull request",
+      "每个 PR 6.0 条发现"
+     ],
+     [
+      "9 min",
+      "9 分钟"
+     ],
+     [
+      "reviewed by gpt-6-astra",
+      "由 gpt-6-astra 审查"
+     ]
+    ],
+    "note": "It checks code against a rules file you write. The test repo had none, so the agent wrote one from gga's Python example; its 30 failures on clean pull requests are that file's docstring and type-hint rules, not false alarms.",
+    "note_zh": "它按你写的规则文件检查。测试库里没有，agent 照 gga 的 Python 示例写了一份；干净 PR 上的 30 条不通过是那份规则里的 docstring 和类型标注要求，不是误报。"
+   },
+   "getsentry/warden": {
+    "stars": 414,
+    "sheet": "getsentry__warden.html",
+    "ran": true,
+    "cells": [
+     [
+      "4/8",
+      null,
+      "substantial"
+     ],
+     [
+      "0",
+      null
+     ],
+     [
+      "0.5",
+      null,
+      "num"
+     ],
+     [
+      "25 min",
+      "25 分钟",
+      "num"
+     ],
+     [
+      "gpt-6-astra",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "found 4 of 8 planted defects",
+      "找到 8 个埋入缺陷中的 4 个"
+     ],
+     [
+      "0 false alarms on 4 clean pull requests",
+      "4 个干净 PR 上误报 0 条"
+     ],
+     [
+      "0.5 findings per pull request",
+      "每个 PR 0.5 条发现"
+     ],
+     [
+      "25 min",
+      "25 分钟"
+     ],
+     [
+      "reviewed by gpt-6-astra",
+      "由 gpt-6-astra 审查"
+     ]
+    ],
+    "note": "Its verification pass threw out candidate findings on the pull requests it missed, the SQL injection among them.",
+    "note_zh": "它的复核步骤把漏掉的那几个 PR 上的候选发现否掉了，包括 SQL 注入。"
+   },
+   "w1ckedxt/cynical-sally": {
+    "stars": 96,
+    "sheet": "w1ckedxt__cynical-sally.html",
+    "ran": false,
+    "reason": "It sends the diff to its own hosted service, which answered Service Unavailable.",
+    "reason_zh": "它把 diff 发到自己的托管服务，当时返回服务不可用。"
+   },
+   "HexmosTech/git-lrc": {
+    "stars": 1472,
+    "sheet": "HexmosTech__git-lrc.html",
+    "ran": false,
+    "reason": "It sends the diff to a LiveReview server; there is none to review with locally.",
+    "reason_zh": "它把 diff 发给 LiveReview 服务器，本地没有可用的。"
+   },
+   "GGGODLIN/claude-pr-review": {
+    "stars": 114,
+    "sheet": "GGGODLIN__claude-pr-review.html",
+    "ran": false,
+    "reason": "It reviews pull requests on Bitbucket through the Bitbucket API; it has no way to review a local branch.",
+    "reason_zh": "它通过 Bitbucket API 审 Bitbucket 上的 PR，审不了本地分支。"
+   }
+  }
  }
 }

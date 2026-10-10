@@ -255,7 +255,7 @@ export function runsSectionHtml(run) {
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
     ${verdictHtml(run)}
     ${compareHtml(run)}
-    ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span></p>` : ""}
+    ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span>${run.control ? ` <a href="${esc(run.dir + run.control.sheet)}" target="_blank" rel="noopener" ${biAttrs("See the control run →", "看对照组 →")}>See the control run →</a>` : ""}</p>` : ""}
     ${own ? ownTables(run, ran) : `<div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>`}
     ${notRunHtml(all.filter(([, r]) => !r.ran), run.not_run_label || (mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined))}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>

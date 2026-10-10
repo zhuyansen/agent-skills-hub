@@ -1,0 +1,243 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Gentleman-Programming/gentleman-guardian-angel: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>Gentleman-Programming/gentleman-guardian-angel: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by gpt-6-astra. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit fbf1091da170.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 5 of 8 planted defects</b>; 6.0 findings per pull request; 9 min for the set.</p><p>It checks code against a rules file you write. The test repo had none, so the agent wrote one from gga&#x27;s Python example; its 30 failures on clean pull requests are that file&#x27;s docstring and type-hint rules, not false alarms.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-01-list-pagination`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/orders.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/orders.py:6` - Python rule: public classes must have docstrings - `NotFound` has no docstring.
+- `shop/orders.py:10` - Python rule: public classes must have docstrings - `Forbidden` has no docstring.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-02-extract-row-helper`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/orders.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/orders.py:6` - Python docstring requirement violated - Public class `NotFound` has no docstring.
+- `shop/orders.py:9` - Python docstring requirement violated - Public class `Forbidden` has no docstring.
+</pre></details></td><td><span class="no">2 blocking</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-03-search-by-note`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/orders.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/orders.py:7` - Required docstrings on all public classes - `NotFound` lacks a docstring.
+- `shop/orders.py:11` - Required docstrings on all public classes - `Forbidden` lacks a docstring.
+- `shop/orders.py:15` - Required docstrings on all public methods/functions - `create_order` lacks a docstring.
+- `shop/orders.py:20` - Required docstrings on all public methods/functions - `get_order` lacks a docstring.
+- `shop/orders.py:34` - Required docstrings on all public methods/functions - `list_orders` lacks a docstring.
+- `shop/orders.py:29` - Security issue - `user_id` and `text` are interpolated directly into SQL, allowing SQL injection. Use parameterized query arguments instead.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-04-payment-logging`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/payments.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/payments.py:10` - Python rule: public class missing docstring - `PaymentError` has no docstring.
+- `shop/payments.py:14` - Python rule: public method missing docstring - `Gateway.__init__` has no docstring.
+- `shop/payments.py:18` - Python rule: public method missing docstring - `Gateway.capture` has no docstring.
+- `shop/payments.py:25` - Python rule: public function missing docstring - `pay` has no docstring.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-05-docstrings-and-types`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/stock.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/stock.py:5` - Missing docstring on public class - `OutOfStock` has no docstring.
+- `shop/stock.py:11` - Missing docstring on public function - `available` has no docstring.
+- `shop/stock.py:16` - Missing docstring on public function - `reserve` has no docstring.
+</pre></details></td><td><span class="no">3 blocking</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-06-cancel-order`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/orders.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/orders.py:6-7` - Python requirement: public class docstrings - `NotFound` lacks a docstring.
+- `shop/orders.py:10-11` - Python requirement: public class docstrings - `Forbidden` lacks a docstring.
+- `shop/orders.py:14` - Python requirement: public method/function docstrings - `create_order` lacks a docstring.
+- `shop/orders.py:20` - Python requirement: public method/function docstrings - `get_order` lacks a docstring.
+- `shop/orders.py:39` - Python requirement: public method/function docstrings - `list_orders` lacks a docstring.
+- `shop/orders.py:29-36` - Authorization/security issue - `cancel_order` accepts `user_id` but never verifies that the order belongs to that user, allowing a user who knows another order’s ID to cancel it.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-07-payment-retry`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/payments.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/payments.py:9` - Python requirement: docstrings on all public classes - `PaymentError` has no docstring.
+- `shop/payments.py:18` - Python requirement: docstrings on all public methods - `Gateway.capture` has no docstring.
+- `shop/payments.py:26` - Python requirement: docstrings on all public functions - `pay` has no docstring.
+- `shop/payments.py:32` - Correctness issue - `attempt` is never incremented, so three consecutive gateway failures cause an infinite retry loop and the order is never updated.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-08-validate-create-order`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/orders.py`
+- `tests/test_shop.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/orders.py:7` - Python requirement: public classes must have docstrings - `NotFound` has no docstring.
+- `shop/orders.py:10` - Python requirement: public classes must have docstrings - `Forbidden` has no docstring.
+- `shop/orders.py:15` - Python requirement: public functions must have docstrings - `create_order` has no docstring.
+- `shop/orders.py:23` - Python requirement: public functions must have docstrings - `get_order` has no docstring.
+- `shop/orders.py:31` - Python requirement: public functions must have docstrings - `list_orders` has no docstring.
+- `tests/test_shop.py:5` - Python requirement: public classes must have docstrings - `ShopTest` has no docstring.
+- `tests/test_shop.py:6` - Python requirement: public methods must have docstrings and type hints - `test_owner_reads_own_order` has neither.
+- `tests/test_shop.py:10` - Python requirement: public methods must have docstrings and type hints - `test_other_user_is_forbidden` has neither.
+- `tests/test_shop.py:15` - Python requirement: public methods must have docstrings and type hints - `test_create_order_rejects_non_positive_total` has neither.
+- `tests/test_shop.py:19` - Python requirement: public methods must have docstrings and type hints - `test_reserve_reduces_stock` has neither.
+- `tests/test_shop.py:24` - Python requirement: public methods must have docstrings and type hints - `test_reserve_more_than_available_fails` has neither.
+- `tests/test_shop.py:29` - Python requirement: public methods must have docstrings and type hints - `test_pay_marks_order_paid` has neither.
+</pre></details></td><td><span class="no">12 blocking</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-09-capture-errors`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/payments.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/payments.py:29` - Silent error handling - `except Exception: pass` suppresses gateway failures without logging or re-raising; the order is marked as paid even when capture fails.
+- `shop/payments.py:9` - Missing docstring on public class - `PaymentError` lacks a class docstring.
+- `shop/payments.py:19` - Missing docstring on public method - `Gateway.capture` lacks a method docstring.
+- `shop/payments.py:25` - Missing docstring on public function - `pay` lacks a function docstring.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-10-reserve-check`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `shop/stock.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `shop/stock.py:5` - Python rule violated - Public class `OutOfStock` is missing a docstring.
+- `shop/stock.py:9` - Python rule violated - Public function `set_stock` is missing a docstring.
+- `shop/stock.py:13` - Python rule violated - Public function `available` is missing a docstring.
+- `shop/stock.py:18` - Python rule violated - Public function `reserve` is missing a docstring.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-11-test-list-orders`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `tests/test_shop.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `tests/test_shop.py:6` - Python requirement: missing docstring on public class - `ShopTest` has no class docstring.
+- `tests/test_shop.py:7` - Python rule: missing type hints on public method - `test_owner_reads_own_order` lacks a return type annotation.
+- `tests/test_shop.py:7` - Python requirement: missing docstring on public method - `test_owner_reads_own_order` has no docstring.
+- `tests/test_shop.py:11` - Python rule: missing type hints on public method - `test_other_user_is_forbidden` lacks a return type annotation.
+- `tests/test_shop.py:11` - Python requirement: missing docstring on public method - `test_other_user_is_forbidden` has no docstring.
+- `tests/test_shop.py:16` - Python rule: missing type hints on public method - `test_list_orders_returns_only_own_orders` lacks a return type annotation.
+- `tests/test_shop.py:16` - Python requirement: missing docstring on public method - `test_list_orders_returns_only_own_orders` has no docstring.
+- `tests/test_shop.py:21` - Python rule: missing type hints on public method - `test_reserve_reduces_stock` lacks a return type annotation.
+- `tests/test_shop.py:21` - Python requirement: missing docstring on public method - `test_reserve_reduces_stock` has no docstring.
+- `tests/test_shop.py:26` - Python rule: missing type hints on public method - `test_reserve_more_than_available_fails` lacks a return type annotation.
+- `tests/test_shop.py:26` - Python requirement: missing docstring on public method - `test_reserve_more_than_available_fails` has no docstring.
+- `tests/test_shop.py:31` - Python rule: missing type hints on public method - `test_pay_marks_order_paid` lacks a return type annotation.
+- `tests/test_shop.py:31` - Python requirement: missing docstring on public method - `test_pay_marks_order_paid` has no docstring.
+</pre></details></td><td><span class="no">13 blocking</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests — gga (Gentleman Guardian Angel) review
+
+Command: `gga run --pr-mode` (base `main`, range `main...pr-12-speed-up-tests`), provider `lmstudio:gpt-6-astra` (OpenAI-compatible endpoint).
+
+Files reviewed:
+- `tests/test_shop.py`
+
+**Tool verdict:** `STATUS: FAILED` (CODE REVIEW FAILED)
+
+gga does not assign per-finding severities; every listed item is a violation that makes the review fail. Findings exactly as the tool reported them (`file:line - rule - issue`):
+
+- `tests/test_shop.py:6` - Missing docstring - Public class `ShopTest` has no docstring.
+- `tests/test_shop.py:7` - Missing type hints - Public test method `test_owner_reads_own_order` has no return or parameter type annotations.
+- `tests/test_shop.py:7` - Missing docstring - Public test method has no docstring.
+- `tests/test_shop.py:11` - Missing type hints - Public test method `test_other_user_is_forbidden` has no return or parameter type annotations.
+- `tests/test_shop.py:11` - Missing docstring - Public test method has no docstring.
+- `tests/test_shop.py:14` - Silent error handling - The `except orders.Forbidden` block only contains `pass`; it also fails to assert that the exception is raised.
+- `tests/test_shop.py:18` - Missing type hints - Public test method `test_reserve_reduces_stock` has no return or parameter type annotations.
+- `tests/test_shop.py:18` - Missing docstring - Public test method has no docstring.
+- `tests/test_shop.py:23` - Missing type hints - Public test method `test_reserve_more_than_available_fails` has no return or parameter type annotations.
+- `tests/test_shop.py:23` - Missing docstring - Public test method has no docstring.
+- `tests/test_shop.py:28` - Missing type hints - Public test method `test_pay_marks_order_paid` has no return or parameter type annotations.
+- `tests/test_shop.py:28` - Missing docstring - Public test method has no docstring.
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches with the installed tool, Gentleman Guardian Angel (`gga`), using its PR mode (`gga run --pr-mode` against `main`). The provider was `lmstudio:gpt-6-astra` pointed at `OPENAI_BASE_URL`. Every branch got `STATUS: FAILED`. Each report in `~/work/output/&lt;branch&gt;.md` has the verdict and every finding exactly as the tool printed it, with file and line.
+
+**What I had to set up:**
+- **Rules file:** `gga` won&#x27;t run without a rules file (`AGENTS.md`), and the shop repo doesn&#x27;t have one. I wrote one outside the repo at `~/work/gga-rules/AGENTS.md`, based on the Python example in gga&#x27;s own docs. It requires docstrings and type hints, and rejects bare `except`, silent error handling, `print`, duplicated code and hard-coded secrets. That&#x27;s why most findings are about missing docstrings and type hints. A different rules file would give different results.
+- **Config:** settings went in `~/.config/gga/config`, so the repo itself is untouched. I checked out each branch to run the review, then switched back to `main`; the working tree is clean and nothing was committed.
+- **No severities:** `gga` gives one pass/fail verdict per run, not a severity for each finding, so the reports say that instead of listing severities.
+- **One retry:** the first run on pr-05 failed with a 502 error from the model endpoint. I re-ran it and the report uses the second run.
+
+**Findings beyond the docstring/type-hint rules:**
+
+| Branch | Finding |
+|---|---|
+| pr-03 | `shop/orders.py:29` — SQL injection: `user_id` and `text` are put straight into the SQL string. |
+| pr-06 | `shop/orders.py:29-36` — `cancel_order` never checks that the order belongs to the user. |
+| pr-07 | `shop/payments.py:32` — `attempt` is never incremented, so a failing gateway causes an infinite retry loop. |
+| pr-09 | `shop/payments.py:29` — `except Exception: pass` hides capture failures, and the order is still marked paid. |
+| pr-12 | `tests/test_shop.py:14` — the `except orders.Forbidden: pass` block doesn&#x27;t check that the exception is actually raised. |
+
+pr-01, 02, 04, 05, 08, 10 and 11 only got docstring and type-hint findings.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

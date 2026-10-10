@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>awesome-skills/code-review-skill: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>awesome-skills/code-review-skill: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 4850184dfd77.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 1.8 findings per pull request; 1 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination — Add pagination to list_orders
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+5/-2).
+
+## Findings
+1. 🔴 **[blocking]** Off-by-one in offset — `shop/orders.py:31`
+   Docstring says pages start at 1, but `offset = page * PAGE_SIZE` makes page 1 skip the first 20 orders; the user&#x27;s first page can never be returned. Should be `(page - 1) * PAGE_SIZE`.
+2. 🟡 **[important]** No validation of `page` — `shop/orders.py:29`
+   `page &lt;= 0` yields a zero/negative offset with no error; validate `page &gt;= 1`.
+3. 🟡 **[important]** No tests for pagination — `tests/test_shop.py`
+   No test covers page 1 / page boundaries, which would have caught the off-by-one.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper — Extract the order row lookup into a helper
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+8/-3).
+
+No findings.
+
+(Behaviour-preserving refactor: NotFound and Forbidden checks are kept in the same order in `get_order`, `shop/orders.py:27-31`.)
+
+**Verdict:** ✅ Approve
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note — Search a user&#x27;s orders by note text
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+6/-0).
+
+## Findings
+1. 🔴 **[blocking]** SQL injection — `shop/orders.py:31`
+   `user_id` and `text` are interpolated into the SQL with an f-string. A `text` such as `%&#x27; or &#x27;1&#x27;=&#x27;1` returns every user&#x27;s orders (breaks the per-user restriction). Use placeholders: `... where user_id = ? and note like ? ...` with `(user_id, f&quot;%{text}%&quot;)`.
+2. 🟢 **[nit]** LIKE wildcards not escaped — `shop/orders.py:31`
+   `%` and `_` in the search text act as wildcards; escape them (with `ESCAPE`) if literal matching is intended.
+3. 🟡 **[important]** No tests for `search_orders` — `tests/test_shop.py`
+   Add tests for matching, the user-scoping, and a malicious input.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging — Log payment attempts for support
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+1/-0).
+
+## Findings
+1. 🔴 **[blocking]** Sensitive data written to logs — `shop/payments.py:27`
+   The card token is logged in plain text at INFO level. Card tokens are payment credentials and must not appear in logs (PCI). Drop it or log only a masked suffix.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types — Add docstrings and type hints to stock
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+1/-0).
+
+## Findings
+1. 🟢 **[nit]** PR title does not match the change — `shop/stock.py:10`
+   Title says &quot;docstrings and type hints&quot;, but the diff only adds one docstring (to `set_stock`); no type hints are added and `available`/`reserve` get no docstrings. Update the title or finish the change. The docstring itself is accurate.
+
+**Verdict:** ✅ Approve (non-blocking nit)
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order — Let users cancel an order
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+10/-0).
+
+## Findings
+1. 🔴 **[blocking]** Missing authorization check (IDOR) — `shop/orders.py:29-36`
+   `user_id` is accepted but never used: any user can cancel any other user&#x27;s order by ID. Check ownership the way `get_order` does (raise `Forbidden`), e.g. reuse `get_order(order_id, user_id)`.
+2. 🟡 **[important]** Check-then-update race (TOCTOU) — `shop/orders.py:31-36`
+   Status is read and then updated in a separate statement; an order paid in between gets cancelled. Do it atomically: `update orders set status=&#x27;cancelled&#x27; where id=? and user_id=? and status != &#x27;paid&#x27;` and check the affected row count.
+3. 🟡 **[important]** No tests for `cancel_order` — `tests/test_shop.py`
+   Cover: cancel own order, cancel paid order fails, cancel another user&#x27;s order is forbidden, unknown order raises NotFound.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry — Retry a failed capture up to three times
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed (no test exercises a failing gateway). Size: XS (+10/-1).
+
+## Findings
+1. 🔴 **[blocking]** Infinite loop: `attempt` is never incremented — `shop/payments.py:30-36`
+   On a `PaymentError` the loop repeats forever (a permanently failing gateway hangs checkout). Use `for attempt in range(1, MAX_ATTEMPTS + 1):`.
+2. 🔴 **[blocking]** Order marked paid even when all attempts fail — `shop/payments.py:37`
+   Once the loop is bounded, falling out of it after the last failure still runs the `update ... status = &#x27;paid&#x27;`. Re-raise `PaymentError` (e.g. `for ... else: raise`) after the final attempt.
+3. 🟡 **[important]** No tests for retry behaviour — `tests/test_shop.py`
+   `Gateway.fail` exists for this; add tests for success after N failures and failure after MAX_ATTEMPTS (order must stay unpaid).
+4. 💡 **[suggestion]** No backoff between retries — `shop/payments.py:31`
+   Immediate retries against a timing-out gateway; consider a small backoff.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order — Validate input when creating an order
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 6 passed. Size: XS (+11/-0).
+
+## Findings
+1. 🟢 **[nit]** Note-length validation is untested — `tests/test_shop.py:16`
+   Only the non-positive total is tested; add a test for a note over `MAX_NOTE` (and one exactly at the limit).
+
+🎉 **[praise]** Fail-fast validation with clear messages and a named constant instead of a magic number.
+
+**Verdict:** ✅ Approve
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors — Do not crash checkout when the gateway errors
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+4/-1).
+
+## Findings
+1. 🔴 **[blocking]** Swallowed exception marks unpaid orders as paid — `shop/payments.py:27-31`
+   `except Exception: pass` hides every capture failure, then the order is set to `paid` and &quot;order paid&quot; is logged, though no money was captured. Catch `PaymentError` specifically, log it, and leave the order unpaid / surface the error to the caller.
+2. 🟡 **[important]** Overly broad `except Exception` — `shop/payments.py:29`
+   Also hides programming errors (TypeError etc.). Catch only the expected exception type.
+3. 🟡 **[important]** No test for the gateway-error path — `tests/test_shop.py`
+   Add a test with `Gateway.fail = 1` asserting the order is not marked paid.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check — Tidy the stock reservation check
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: **FAILED** (failures=1, errors=1). Size: XS (+2/-1).
+
+## Findings
+1. 🔴 **[blocking]** Inverted comparison — `shop/stock.py:20`
+   `if in_stock &gt; qty: raise OutOfStock` rejects reservations when there is enough stock and allows them when there isn&#x27;t (stock can go negative). The original was `available(sku) &lt; qty`; restore `if in_stock &lt; qty:`. Both stock tests fail on this branch.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders — Add a test for list_orders
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 6 passed. Size: XS (+5/-0).
+
+No findings.
+
+(The test uses user IDs 41/42 that no other test touches, so it is safe against the shared in-memory DB.)
+
+**Verdict:** ✅ Approve
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests — Make the forbidden-order test less flaky
+Reviewed with code-review-skill (manual review workflow: context → high-level → line-by-line → verdict; severity labels 🔴 blocking / 🟡 important / 🟢 nit / 💡 suggestion).
+Tests on branch: 5 passed. Size: XS (+3/-1).
+
+## Findings
+1. 🔴 **[blocking]** Test no longer asserts anything — `tests/test_shop.py:13-16`
+   Replacing `assertRaises(orders.Forbidden)` with `try/except Forbidden: pass` makes the test pass even when `get_order` returns another user&#x27;s order, so it no longer guards the authorization check. Restore `with self.assertRaises(orders.Forbidden):` (or add `self.fail(...)` after the call). The test was not flaky; if flakiness was seen, find its real cause.
+
+**Verdict:** 🔄 Request Changes
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches and wrote one report per branch to `~/work/output/&lt;branch&gt;.md`. The installed tool is `code-review-skill`. It doesn&#x27;t scan code itself; it gives a review method with severity labels (🔴 blocking, 🟡 important, 🟢 nit, 💡 suggestion). So the findings below are from my review done by that method, not output from an automated scanner. As part of it, I ran the skill&#x27;s `pr-analyzer.py` (it rated every diff &quot;XS&quot;) and each branch&#x27;s unit tests.
+
+| Branch | Verdict | Main findings |
+|---|---|---|
+| pr-01 | Request changes | 🔴 Page 1 skips the first 20 orders (`shop/orders.py:31`); 🟡 `page` isn&#x27;t validated; 🟡 no tests |
+| pr-02 | Approve | No findings |
+| pr-03 | Request changes | 🔴 SQL injection via f-string (`shop/orders.py:31`); 🟢 LIKE wildcards not escaped; 🟡 no tests |
+| pr-04 | Request changes | 🔴 Card token written to the logs (`shop/payments.py:27`) |
+| pr-05 | Approve | 🟢 Title promises type hints, but the diff only adds one docstring |
+| pr-06 | Request changes | 🔴 `user_id` is ignored, so any user can cancel anyone&#x27;s order (`shop/orders.py:29-36`); 🟡 status check and update aren&#x27;t atomic; 🟡 no tests |
+| pr-07 | Request changes | 🔴 `attempt` is never incremented, so a failing gateway loops forever; 🔴 order is marked paid even after every attempt fails; 🟡 no tests; 💡 no backoff between retries |
+| pr-08 | Approve | 🟢 Note-length check is untested |
+| pr-09 | Request changes | 🔴 `except Exception: pass` marks unpaid orders as paid; 🟡 the catch is too broad; 🟡 no test for the error path |
+| pr-10 | Request changes | 🔴 Stock comparison is reversed (`shop/stock.py:20`); this is the only branch whose tests fail |
+| pr-11 | Approve | No findings |
+| pr-12 | Request changes | 🔴 The forbidden-order test no longer asserts anything (`tests/test_shop.py:13-16`) |
+
+I didn&#x27;t change or commit anything in the repo. To run the tests I extracted each branch into temporary folders, and I deleted those afterwards.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

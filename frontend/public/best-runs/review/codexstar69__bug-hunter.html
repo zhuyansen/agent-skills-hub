@@ -1,0 +1,335 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>codexstar69/bug-hunter: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>codexstar69/bug-hunter: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 3be69733a27a.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 7 of 8 planted defects</b>; 0.8 findings per pull request; 3 min for the set.</p><p>Treats test files as context only, by design, so it does not report a weakened test.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># Bug Hunter review: pr-01-list-pagination
+
+- Invocation: `/bug-hunter -b pr-01-list-pagination --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (changed files, `git diff --name-only main...pr-01-list-pagination`): `shop/orders.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; riskMap: orders.py = critical; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+- **BUG-1** | Severity: **Medium** | Verdict: **REAL_BUG** (confidence 97, high, INDEPENDENTLY_VERIFIED)
+  - Location: `shop/orders.py:31`
+  - Category: logic
+  - Claim: Off-by-one pagination. Pages are 1-based (default `page=1`, docstring &quot;pages start at 1&quot;), but `offset = page * PAGE_SIZE`, so the default page=1 skips the user&#x27;s first 20 orders and the first page of results can&#x27;t be reached.
+  - Trigger / evidence: a user with 5 orders calls `list_orders(user_id)`. The query runs with `LIMIT 20 OFFSET 20` and returns `[]` instead of the 5 orders. Before this PR, `list_orders(user_id)` returned all orders.
+  - Suggested fix (Referee): Compute `offset = (page - 1) * PAGE_SIZE` (and reject or clamp `page &lt; 1`).
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `shop/orders.py` (1/1 queued file). Cross-reference read: `shop/db.py`.
+- Files skipped: none.
+- Report totals: reviewed 1, confirmed 1, dismissed 0, manual review 0, unreviewed 0.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Bug Hunter review: pr-02-extract-row-helper
+
+- Invocation: `/bug-hunter -b pr-02-extract-row-helper --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (changed files, `git diff --name-only main...pr-02-extract-row-helper`): `shop/orders.py`
+- Triage strategy: `single-file` (modes/single-file.md; needsLoop: false; riskMap: orders.py = critical; Recon skipped per triage recommendation)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+No findings.
+
+## Dismissed by Referee
+None.
+
+(Hunter produced 0 findings (`hunter-findings.json` = `[]`), so Skeptic and Referee were skipped as the skill specifies. `referee.json` is an empty verdict set; report.md shows: reviewed 0, confirmed 0, dismissed 0, manual review 0, unreviewed 0.)
+
+## Coverage
+- Files scanned: shop/orders.py (full contents; shop/db.py and tests/test_shop.py read as context only)
+- Files skipped: none
+- Queued coverage for this single pass is complete (1/1 file).
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-03-search-by-note
+
+- Invocation: `/bug-hunter -b pr-03-search-by-note --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (`git diff --name-only main...pr-03-search-by-note`): `shop/orders.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; file classified CRITICAL; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+### BUG-1 — High — REAL_BUG (confidence 95, INDEPENDENTLY_VERIFIED)
+- File: `shop/orders.py:29-32` (sink at line 31)
+- Category: security (STRIDE: Tampering, CWE-89 SQL Injection)
+- Claim: `search_orders` builds SQL with an f-string that interpolates the caller-supplied `text` (and `user_id`), then passes it to `db.query` with no bound parameters. That allows SQL injection which bypasses the per-user ownership filter and exposes other users&#x27; orders. Any text containing a single quote also raises `sqlite3.OperationalError`.
+- Evidence: line 31 `sql = f&quot;select id, status, total_cents from orders where user_id = {user_id} and note like &#x27;%{text}%&#x27; order by id&quot;`. `db.query` (`shop/db.py:9-10`) runs the string verbatim with `params=()`. Every other query in the module uses `?` placeholders.
+- Runtime trigger: the Referee reproduced this against the branch code. `search_orders(1, &quot;&#x27; OR 1=1 --&quot;)` returned user 2&#x27;s order `(2, &#x27;new&#x27;, 999)` along with user 1&#x27;s order. `search_orders(1, &quot;O&#x27;Brien&quot;)` raised `OperationalError`.
+- Referee enrichment: Reachability AUTHENTICATED (there is no in-repo caller yet). Exploitability EASY. CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:L (7.1). Severity was lowered from the Hunter&#x27;s Critical to High because exploiting it requires an authenticated caller.
+- Suggested fix: use bound parameters, as the rest of the module does: `where user_id = ? and note like ?` with params `(user_id, f&#x27;%{text}%&#x27;)`. Optionally escape `%`, `_` and `\` in `text` and add `escape &#x27;\&#x27;` so that literal wildcard characters are matched as text.
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `shop/orders.py` (1/1 queued; cross-reference `shop/db.py` was read for context)
+- Files skipped: none
+- Report totals (report.md): 1 reviewed, 1 confirmed, 0 dismissed, 0 manual review, 0 unreviewed.
+- Artifacts: `/tmp/bh/pr-03-search-by-note/.bug-hunter/{triage.json,hunter-findings.json,skeptic.json,referee.json,report.md}`. All three JSON artifacts passed schema validation.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-04-payment-logging
+
+- Invocation: `/bug-hunter -b pr-04-payment-logging --base main --scan-only` (scan-only, single-pass, no loop, no fix, no deps/threat-model)
+- Scope (changed files, `git diff --name-only main...pr-04-payment-logging`): `shop/payments.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped per mode), needsLoop: false, riskMap: payments.py = critical
+- Backend: local-sequential (preflight ok, no missing helpers)
+
+## Findings
+
+- **BUG-1** | Severity: **Medium** | Verdict: REAL_BUG (confidence 88, high, INDEPENDENTLY_VERIFIED)
+  - Location: `shop/payments.py:27`
+  - Category: security (STRIDE InfoDisclosure, CWE-532)
+  - Claim: `pay()` now writes the raw `card_token` payment credential into the application log at INFO level on every capture attempt.
+  - Trigger / evidence: `log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)` (added by this branch). With INFO logging enabled, `pay(gw, 1, 500, &#x27;tok_live_abc&#x27;)` writes the full token to every log sink; no redaction exists in the repo. Reachability INTERNAL (log readers), exploitability MEDIUM (requires log access; token reusable against the gateway).
+  - Suggested fix (Referee): Do not log the card token. Drop it from the message (log only order_id and amount_cents), or log a masked form such as the last 4 characters (`card_token[-4:]`).
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `shop/payments.py` (1/1 queued file; full contents read). Context read: `shop/db.py`, `shop/orders.py`.
+- Files skipped: none.
+- Report counts (report.md): reviewed 1, confirmed 1, dismissed 0, manual review 0, unreviewed 0.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Bug Hunter review: pr-05-docstrings-and-types
+
+- Invocation: `/bug-hunter -b pr-05-docstrings-and-types --base main --scan-only` (scan-only, single-pass, no loop, no fix, no deps/threat-model)
+- Scope (`git diff --name-only main...pr-05-docstrings-and-types`): `shop/stock.py` (diff: one added docstring line in `set_stock`, line 10; full file contents scanned)
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; needsLoop: false; file risk: critical)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+- **BUG-1** | Severity: **Low** (Referee; Hunter rated Medium) | Verdict: **REAL_BUG** (confidence 75, medium, INDEPENDENTLY_VERIFIED)
+  - Location: `shop/stock.py:19-22` (`reserve`)
+  - Category: concurrency
+  - Claim: `reserve()` is a non-atomic check-then-act. The availability SELECT and the decrement UPDATE run as separate statements with no lock, no transaction around both, and no conditional WHERE, so concurrent reservations of the same SKU can both pass the check and oversell, leaving stock negative.
+  - Trigger / evidence: `set_stock(&#x27;A&#x27;, 1)`, then two threads call `reserve(&#x27;A&#x27;, 1)` at the same time. Both read available=1, both pass the check, both UPDATEs run, and the result is available=-1. The shared connection is opened with `check_same_thread=False` (`shop/db.py:4`), which shows cross-thread use is expected. Nothing in the repo currently calls `reserve` concurrently, so the Referee downgraded this to Low. The bug existed before this branch, which only adds a docstring and does not change it.
+  - Suggested fix: Make the reservation atomic: `update stock set available = available - ? where sku = ? and available &gt;= ?` and raise OutOfStock when no row was updated (have db.execute expose rowcount). Alternatively, wrap the check and the update in a lock or a `BEGIN IMMEDIATE` transaction.
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `shop/stock.py` (1/1 queued; cross-reference context read: `shop/db.py`, `tests/test_shop.py`)
+- Files skipped: none
+- Report: 1 reviewed, 1 confirmed, 0 dismissed, 0 manual review, 0 unreviewed. Single pass covered the whole queue (needsLoop false).
+- Artifacts: /tmp/bh/pr-05-docstrings-and-types/.bug-hunter/{triage.json, hunter-findings.json, skeptic.json, referee.json, report.md}, all schema-valid.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-06-cancel-order
+
+- Invocation: `/bug-hunter -b pr-06-cancel-order --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (changed files, `git diff --name-only main...pr-06-cancel-order`): `shop/orders.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; riskMap: orders.py = critical; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+### BUG-1 - Medium - REAL_BUG (confidence 95, high, INDEPENDENTLY_VERIFIED)
+- File: shop/orders.py:29-36 (SELECT at line 31, UPDATE at line 36)
+- Category: security (STRIDE ElevationOfPrivilege, CWE-639)
+- Claim: `cancel_order` accepts `user_id` but never checks ownership, so any user can cancel any other user&#x27;s unpaid order (IDOR / missing authorization).
+- Trigger / evidence: `oid = create_order(1, 500); cancel_order(oid, 2)` sets user 1&#x27;s order to &#x27;cancelled&#x27; and does not raise Forbidden. `get_order` (lines 24-25) does check ownership. Reachability AUTHENTICATED, exploitability EASY (order ids are sequential integers).
+- Suggested fix: Select `user_id` along with `status` and raise `Forbidden` when `rows[0][1] != user_id`, the same way `get_order` does (or call `get_order(order_id, user_id)` first). Also scope the UPDATE with `and user_id = ?`.
+
+### BUG-2 - Low - REAL_BUG (confidence 72, medium, INDEPENDENTLY_VERIFIED)
+- File: shop/orders.py:31-36 (guard at line 34, UPDATE at line 36)
+- Category: concurrency
+- Claim: Check-then-act race. The &#x27;paid&#x27; status check and the unconditional UPDATE are separate statements. If a payment commits between them, the cancel overwrites it, and a paid order whose funds were captured ends up &#x27;cancelled&#x27;.
+- Trigger / evidence: Thread A&#x27;s `cancel_order` reads &#x27;new&#x27;. Thread B&#x27;s `payments.pay` (shop/payments.py:43-44) captures funds and commits &#x27;paid&#x27;. Thread A&#x27;s UPDATE then sets the order to &#x27;cancelled&#x27;. The shared connection is opened with `check_same_thread=False` and autocommits each statement (shop/db.py:4-16). Rated Low because no concurrent caller exists in the repo.
+- Suggested fix: Make the transition atomic with `update orders set status = &#x27;cancelled&#x27; where id = ? and user_id = ? and status != &#x27;paid&#x27;`, and check the affected row count (e.g. via `changes()`) so the call raises when nothing was updated.
+
+## Dismissed by Referee
+None.
+
+## Coverage
+- Files scanned: shop/orders.py (1/1 queued file, status done). Read as context only, not reported on: shop/db.py, shop/payments.py, tests/test_shop.py.
+- Files skipped: none.
+- Report totals (report.md): 2 reviewed, 2 confirmed, 0 dismissed, 0 manual review, 0 unreviewed.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># Bug Hunter review: pr-07-payment-retry
+
+- Invocation: `/bug-hunter -b pr-07-payment-retry --base main --scan-only` (scan-only, single-pass, no loop, no fix, no deps/threat-model)
+- Scope (changed files, `git diff --name-only main...pr-07-payment-retry`): `shop/payments.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; payments.py classified CRITICAL; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+### BUG-1
+- Final severity (Referee): High
+- Verdict: REAL_BUG (confidence 96, high, INDEPENDENTLY_VERIFIED)
+- Location: shop/payments.py:30-36
+- Category: logic
+- Claim: The retry loop never increments `attempt`, so MAX_ATTEMPTS is never enforced. While the gateway keeps raising PaymentError, pay() loops forever (calling capture again and logging &quot;attempt 1&quot; each time) and never returns or reports a failure.
+- Trigger / evidence: `attempt = 1` is assigned once and never changed, so the `while attempt &lt;= MAX_ATTEMPTS` condition is always true. The only way out of the loop is `break` after a successful capture. Gateway with `fail=5` gets 6 capture calls even though MAX_ATTEMPTS=3. A gateway that keeps failing (outage or permanent decline) makes pay() hang forever and keeps calling the gateway. The Referee also noted that there is no path for final failure: once the counter is fixed, leaving the loop would reach `update orders set status = &#x27;paid&#x27;` without a successful capture.
+- Suggested fix (Referee): Increment the counter on each failure, for example `for attempt in range(1, MAX_ATTEMPTS + 1): ...` or `attempt += 1` in the except block. When all attempts fail, raise PaymentError again (for example `for ... else: raise PaymentError(...)`) so the order is NOT marked paid after the retries run out.
+
+## Dismissed by Referee
+
+- BUG-2 (Hunter severity: Medium), shop/payments.py:31-36. Claim: retrying capture after a &quot;gateway timeout&quot; PaymentError, with no idempotency key, can charge the card twice. Reason: the only Gateway in the repo raises before it records a capture (lines 20-23), so a retry cannot capture twice. The claim depends on how an external gateway behaves, and that gateway is not in the code.
+
+## Coverage
+
+- Files scanned: shop/payments.py (1/1 queued file; CRITICAL)
+- Files skipped: none
+- Context-only (not reported on): shop/db.py, tests/test_shop.py
+- Report totals: 2 reviewed, 1 confirmed, 1 dismissed, 0 manual review, 0 unreviewed
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Bug Hunter review: pr-08-validate-create-order
+
+- Invocation: `/bug-hunter -b pr-08-validate-create-order --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (`git diff --name-only main...pr-08-validate-create-order`): `shop/orders.py`, `tests/test_shop.py` (test file is context-only; scannable source: `shop/orders.py`)
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; needsLoop: false; orders.py classified CRITICAL)
+- Backend: local-sequential
+
+## Findings
+No findings.
+
+## Dismissed by Referee
+None. (Hunter reported 0 findings, so Skeptic and Referee phases were skipped per the skill; an empty schema-valid referee.json was written only to render the report.)
+
+## Coverage
+- Files scanned: shop/orders.py (full contents; cross-referenced shop/db.py and tests/test_shop.py as context)
+- Files skipped: none
+- Report: Findings reviewed 0, Confirmed 0, Dismissed 0, Manual review 0, Unreviewed 0
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-09-capture-errors
+
+- Invocation: `/bug-hunter -b pr-09-capture-errors --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (changed files, `git diff --name-only main...pr-09-capture-errors`): `shop/payments.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; riskMap: payments.py = critical; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+- **BUG-1** | Severity: **Critical** | Verdict: **REAL_BUG** (confidence 96, high, INDEPENDENTLY_VERIFIED)
+  - Location: `shop/payments.py:27-31`
+  - Category: logic
+  - Claim: `pay()` swallows every exception from `gateway.capture()` (`except Exception: pass`) and then unconditionally marks the order as `&#x27;paid&#x27;`, so a failed card capture results in an order recorded as paid without money being collected.
+  - Trigger / evidence: `g = Gateway(); g.fail = 1; pay(g, oid, 700, &#x27;tok&#x27;)` -&gt; `capture()` raises `PaymentError(&quot;gateway timeout&quot;)` (payments.py:20-22) -&gt; swallowed -&gt; `db.execute(&quot;update orders set status = &#x27;paid&#x27; ...&quot;)` commits immediately (db.py:13-16) -&gt; &quot;order N paid&quot; logged; `g.captured` stays empty and the caller never sees the error. Gateway timeouts are a normal operating condition, so this is data corruption in normal operation. The PR introduced the swallow; before it, PaymentError propagated before the status update.
+  - Suggested fix (Referee): Do not swallow capture failures. Remove the try/except, or catch `PaymentError` specifically, log it, and re-raise (or return/raise a failure) before the status update, so the `status = &#x27;paid&#x27;` update only runs after a successful capture. Optionally record a `payment_failed` status in the except branch, then re-raise.
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `shop/payments.py` (1/1 queued file; context read: `shop/db.py`, `tests/test_shop.py`)
+- Files skipped: none
+- Report totals: reviewed 1, confirmed 1, dismissed 0, manual review 0, unreviewed 0. Single pass covered the full queued scope.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-10-reserve-check
+
+- Invocation: `/bug-hunter -b pr-10-reserve-check --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (`git diff --name-only main...pr-10-reserve-check`): `shop/stock.py`
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped; stock.py classified critical; needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+### BUG-1
+- Final severity (Referee): Critical
+- Verdict: REAL_BUG (confidence 98, high, INDEPENDENTLY_VERIFIED)
+- Location: shop/stock.py:19-22 (the faulty condition is on line 20, `if in_stock &gt; qty:`)
+- Category: logic
+- Claim: The stock check in `reserve()` is inverted. It raises `OutOfStock` whenever available stock is greater than the requested quantity, and lets the reservation through when stock is less than or equal to the quantity. That drives stock negative (overselling).
+- Trigger / evidence: `set_stock(&#x27;A&#x27;, 5); reserve(&#x27;A&#x27;, 2)` raises `OutOfStock` even though 5 units are available. `set_stock(&#x27;B&#x27;, 1); reserve(&#x27;B&#x27;, 2)` does not raise, and `available` becomes -1. The base version was `if available(sku) &lt; qty`. Both reserve tests in tests/test_shop.py:16-24 fail against this branch. The stock table has no CHECK constraint, and the UPDATE runs without a condition.
+- Suggested fix (Referee): Restore the correct comparison on line 20: `if in_stock &lt; qty: raise OutOfStock(sku)`. Optionally make the decrement atomic (`update stock set available = available - ? where sku = ? and available &gt;= ?` and check rowcount).
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: shop/stock.py (1/1 queued file)
+- Files skipped: none
+- Context-only reads: shop/db.py, shop/orders.py, tests/test_shop.py
+- Report counts: reviewed 1, confirmed 1, dismissed 0, manual review 0, unreviewed 0
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Bug Hunter review: pr-11-test-list-orders
+
+- Invocation: `/bug-hunter -b pr-11-test-list-orders --base main --scan-only` (scan-only, single-pass, no loop, no fix, no deps/threat-model)
+- Scope (`git diff --name-only main...pr-11-test-list-orders`): `tests/test_shop.py` (1 file; adds `test_list_orders_returns_only_own_orders`)
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped), needsLoop: false, riskMap critical: [test_shop.py]
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+The only changed file is a test file. Per the Hunter skill, test files are CONTEXT-ONLY (read for understanding, never report bugs). Hunter read `tests/test_shop.py` (plus `shop/orders.py` and `shop/db.py` for context) and produced `[]` (schema-valid). With 0 Hunter findings, Skeptic and Referee were skipped as the skill directs; an empty `referee.json` (`[]`, schema-valid) was written only so `render-report.cjs` could render `report.md` (Findings reviewed: 0, Confirmed: 0, Dismissed: 0, Manual review: 0, Unreviewed: 0).
+
+## Findings
+No findings.
+
+## Dismissed by Referee
+None.
+
+## Coverage
+- Files scanned: `tests/test_shop.py` (context-only test file; production code `shop/orders.py`, `shop/db.py` read for context only, not in PR scope)
+- Files skipped: none
+- No production source files changed in this PR, so no production code was in scope for bug reporting.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># Bug Hunter review: pr-12-speed-up-tests
+
+- Invocation: `/bug-hunter -b pr-12-speed-up-tests --base main --scan-only` (scan-only, single-pass, no loop, no fix)
+- Scope (`git diff --name-only main...pr-12-speed-up-tests`): `tests/test_shop.py` (1 file, +3/-1)
+- Triage strategy: `single-file` (modes/single-file.md; Recon skipped, needsLoop: false)
+- Backend: `local-sequential` (preflight ok, no missing helpers)
+
+## Findings
+
+No findings.
+
+## Dismissed by Referee
+
+None.
+
+## Coverage
+
+- Files scanned: `tests/test_shop.py` (1/1 queued file read in full).
+- Files skipped: none.
+- The only changed file is a test file. The Hunter skill treats test files as CONTEXT-ONLY (&quot;read for understanding, never report bugs&quot;), and &quot;missing tests&quot; is out of scope. Hunter therefore recorded 0 findings (`hunter-findings.json` = `[]`, schema-valid). Skeptic and Referee were skipped as the skill specifies for 0 findings. An empty `referee.json` (`[]`, schema-valid) was written only so that `render-report.cjs` could run, since it needs a referee argument.
+- report.md: Findings reviewed 0, Confirmed 0, Dismissed 0, Manual review 0, Unreviewed 0.
+- No production source files were in this branch&#x27;s scope.
+</pre></details></td><td><span class="no">missed</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches with the installed bug-hunter skill (`/bug-hunter -b &lt;branch&gt; --base main --scan-only`). It ran locally: each branch got its own throwaway clone in `/tmp/bh/`, and the Hunter, Skeptic and Referee steps ran one after another. The original repo has no changes and nothing was committed.
+
+| Branch | Findings (severity is the Referee&#x27;s final rating) |
+|---|---|
+| pr-01-list-pagination | Medium: `shop/orders.py:31`, pages are off by one, so page 1 skips the first 20 orders |
+| pr-02-extract-row-helper | No findings |
+| pr-03-search-by-note | High: `shop/orders.py:29-32` (the bad line is 31), SQL injection in `search_orders` |
+| pr-04-payment-logging | Medium: `shop/payments.py:27`, the raw card token is written to the log |
+| pr-05-docstrings-and-types | Low: `shop/stock.py:19-22`, two simultaneous `reserve()` calls can push stock below zero (this code predates the branch) |
+| pr-06-cancel-order | Medium: `shop/orders.py:29-36`, any user can cancel another user&#x27;s order. Low: `shop/orders.py:31-36`, a cancel can overwrite an order that was just paid |
+| pr-07-payment-retry | High: `shop/payments.py:30-36`, the retry counter never goes up, so the loop never ends. The Referee also rejected one suspected double charge |
+| pr-08-validate-create-order | No findings |
+| pr-09-capture-errors | Critical: `shop/payments.py:27-31`, a failed capture is ignored and the order is still marked paid |
+| pr-10-reserve-check | Critical: `shop/stock.py:20`, the stock check is backwards |
+| pr-11-test-list-orders | No findings |
+| pr-12-speed-up-tests | No findings |
+
+Each file also lists any findings the Referee rejected, and which files were scanned.
+
+Things that affect how far you can rely on these results:
+- **Test files:** the skill never reports bugs in test files, so pr-11 and pr-12 (test-only changes) came back clean by design. In pr-12, the review agent noticed outside the tool that `test_other_user_is_forbidden` no longer fails if the ownership check is removed. I left that out of the output because the tool didn&#x27;t raise it.
+- **Empty runs:** for the four branches with no findings, the skill skips its Skeptic and Referee steps. Its report script still needs a Referee file, so an empty one was written just to produce the report.
+- **Combined report:** the tool&#x27;s combined machine-readable report (`scan-report.json`) was not built; I wrote each file from the step outputs and the tool&#x27;s rendered report.
+- **pr-03 reproduction:** confirming the SQL injection meant running the branch code in a scratch folder, which was deleted afterwards.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

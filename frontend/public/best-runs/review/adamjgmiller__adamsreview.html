@@ -1,0 +1,645 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>adamjgmiller/adamsreview: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>adamjgmiller/adamsreview: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit b5b8ef4a910a.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 7 of 7 planted defects</b>; 0.5 findings per pull request; 30 min for the set.</p><p>Hit the 30-minute limit with one pull request unfinished; it found the defect in all seven it finished.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination — adamsreview review
+
+review_id: `rev_01M4JT6NKXWRCASAJK9K4W7CBC` · review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-01-list-pagination/pr-01-list-pagination/rev_01M4JT6NKXWRCASAJK9K4W7CBC` · mode: local · trivial_mode: false
+
+Run note (recorded in the review&#x27;s trace.md): Phase 4 deep-lane validators for F001, F003 and F005 could not be dispatched because the Agent tool hit its concurrent sub-agent limit. Per the tool&#x27;s rule for a missing Phase 4 score (score_phase4 = null), these findings were routed to `uncertain`. Because of that, the artifact has no `validation_result` (evidence, blast radius or fix proposal) for any finding. Phase 5 (cross-cutting) and Phase 5.5 (auto-fix hints) were skipped because no findings were eligible.
+
+Order below follows artifact.md: the deep-lane Uncertain table first, then findings filtered out below the score gate.
+
+---
+
+## F001 — UNCERTAIN (deep lane)
+
+- **File / lines:** `shop/orders.py:31` (line_range [31, 31])
+- **Disposition:** uncertain · **is_actionable:** false · **confirmed_strength:** null
+- **Scores:** score_phase3 = 97 · score_phase4 = null
+- **Lane / impact:** validation_lane = deep · impact_type = correctness · actionability = auto_fixable
+- **Origin:** introduced_by_pr (confidence high)
+- **Sources:** L1-diff-local, L2-structural, L4-comments, L6-security (families: diff, policy, security, structural). Dedup merged the original F004, F007 and F008 into this finding.
+- **Claim:** Off-by-one: pages are documented as starting at 1, but `offset = page * PAGE_SIZE` skips the whole first page. Page 1 returns the second page of results, and the first PAGE_SIZE orders are unreachable. The offset should be `(page - 1) * PAGE_SIZE`.
+- **Rationale / evidence:** recorded reason is &quot;Phase 4 validator dispatch failed (concurrent sub-agent limit reached) — manual review&quot;. The Phase 3 scorer&#x27;s rationale was: &quot;Confirmed in the diff: offset = page * PAGE_SIZE with a default page=1 and a docstring saying pages start at 1, so the first 20 orders are never returned.&quot; The artifact cleared this rationale when the finding passed the gate.
+- **Suggested fix:** from the claim: `offset = (page - 1) * PAGE_SIZE`. There is no Phase 4 fix_proposal.
+
+## F003 — UNCERTAIN (deep lane)
+
+- **File / lines:** `shop/orders.py:29-33` (line_range [29, 33])
+- **Disposition:** uncertain · **is_actionable:** false · **confirmed_strength:** null
+- **Scores:** score_phase3 = 30 · score_phase4 = null. It passed the Phase 3 gate automatically because it came from 2 source families.
+- **Lane / impact:** validation_lane = deep · impact_type = correctness · actionability = auto_fixable
+- **Origin:** introduced_by_pr (confidence high)
+- **Sources:** L1-diff-local, L2-structural (families: diff, structural). Dedup merged the original F006 into this finding.
+- **Claim:** The page argument is not validated. page=0 gives offset 0 and page&lt;0 gives a negative offset, which SQLite treats as 0 and other databases may reject. This is the same missing validation as the off-by-one above.
+- **Rationale / evidence:** recorded reason is &quot;Phase 4 validator dispatch failed (concurrent sub-agent limit reached) — manual review&quot;. The Phase 3 scorer&#x27;s rationale (cleared at the gate) was: &quot;Real but minor: page&lt;=0 is not validated, but the off-by-one is the main defect, and the candidate itself says this is the same missing validation, so it largely duplicates F001.&quot;
+- **Suggested fix:** none recorded (no fix_proposal).
+
+## F005 — UNCERTAIN (deep lane)
+
+- **File / lines:** `shop/orders.py:29-33` (line_range [29, 33])
+- **Disposition:** uncertain · **is_actionable:** false · **confirmed_strength:** null
+- **Scores:** score_phase3 = 52 · score_phase4 = null
+- **Lane / impact:** validation_lane = deep · impact_type = correctness · actionability = auto_fixable
+- **Origin:** introduced_by_pr (confidence medium)
+- **Sources:** L2-structural (family: structural)
+- **Claim:** Contract change for existing callers: `list_orders(user_id)` used to return all of a user&#x27;s orders, but now silently returns at most PAGE_SIZE rows (and with the off-by-one, rows 21-40). Any caller that relied on the full list gets truncated data and no signal that more pages exist (there is no total or has_more).
+- **Rationale / evidence:** recorded reason is &quot;Phase 4 validator dispatch failed (concurrent sub-agent limit reached) — manual review&quot;. The Phase 3 scorer&#x27;s rationale (cleared at the gate) was: &quot;Real contract change: list_orders now returns at most PAGE_SIZE rows with no has_more or total. The repo has no other callers of list_orders, so the impact on existing callers is speculative, and truncating results is the purpose of the PR.&quot;
+- **Suggested fix:** none recorded (no fix_proposal).
+
+## F002 — BELOW_GATE (filtered out, score &lt; 45)
+
+- **File / lines:** `shop/orders.py:31-33` (line_range [31, 33])
+- **Disposition:** below_gate · **is_actionable:** false · **confirmed_strength:** null
+- **Scores:** score_phase3 = 2 · score_phase4 = null
+- **Lane / impact:** validation_lane = deep · impact_type = correctness · actionability = auto_fixable
+- **Origin:** unknown (confidence low)
+- **Sources:** L1-diff-local (family: diff)
+- **Claim:** PAGE_SIZE is used but is not defined or imported anywhere in the diff. If it is not already defined in the module, this raises NameError. The lens could not check this because it was limited to the diff.
+- **Rationale / evidence:** recorded reason is &quot;below validation gate (score 2)&quot;. The Phase 3 scorer&#x27;s rationale was: &quot;False positive: PAGE_SIZE = 20 is defined at shop/orders.py line 4, so there is no NameError.&quot;
+- **Suggested fix:** none.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper — adamsreview review
+
+review_id: `rev_01M4JT6W1Y5FJKM3W3Z9A3QXRS` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-02-extract-row-helper/pr-02-extract-row-helper/rev_01M4JT6W1Y5FJKM3W3Z9A3QXRS` | mode: local | trivial_mode: false
+
+Summary (artifact.md): 4 findings. 1 pre-existing (report-only), 1 disproven, 2 below the score gate. No confirmed or actionable findings.
+
+Run notes (from trace.md): L5 (UX) was skipped because user_facing=false. L7 was skipped because ensemble_mode=false. The L4 (comment-compliance) lens dispatch failed because the harness hit its concurrent-subagent limit, so L4 contributed no candidates. The Wave-2 Phase-3 scoring dispatch for F004/F005 failed for the same reason, so their scores are null and both were gated out. Phase 5 (cross-cutting) and Phase 5.5 (auto-fix-hint) were skipped because no findings were eligible.
+
+---
+
+## F003 — PRE-EXISTING (pre_existing_report)
+
+- **File:** `shop/orders.py:27-31`
+- **Disposition:** pre_existing_report | **is_actionable:** false | **actionability:** report_only (not auto-fixable)
+- **Score:** score_phase3 = null, score_phase4 = null. Not scored because the pre-existing override routed it past the Phase-3 gate.
+- **confirmed_strength:** null | **impact_type:** correctness | **validation_lane:** deep
+- **Origin:** pre_existing (confidence high)
+- **Sources:** L2-structural (structural-family)
+- **Claim:** `get_order` still raises NotFound for missing ids before it checks ownership and raises Forbidden for orders owned by other users, so a caller can tell whether another user&#x27;s order id exists (an existence oracle); the refactor keeps this ordering.
+- **Rationale/evidence:** The lens marked this pre-existing at high confidence, and the §13.1 pre-existing override routed it to report-only. The artifact has no validation_result.
+- **Suggested fix:** none recorded.
+
+## F001 — DISPROVEN
+
+- **File:** `shop/orders.py:20-24`
+- **Disposition:** disproven | **is_actionable:** false | **actionability:** report_only (not auto-fixable)
+- **Score:** score_phase3 = 8, score_phase4 = 5 (history: phase_3 = 8, phase_4 = 5)
+- **confirmed_strength:** null | **impact_type:** correctness | **validation_lane:** deep
+- **Origin:** introduced_by_pr (confidence medium)
+- **Sources:** L1-diff-local and L2-structural, merged in dedup (diff-family + structural-family). It reached Phase 4 automatically because it had 2 source families.
+- **Claim:** The new `_row` helper fetches any order by id with no ownership check, so a future caller that uses it instead of `get_order` would expose other users&#x27; orders. The refactor itself preserves the NotFound-then-Forbidden behavior of `get_order`.
+- **Reason:** &quot;disproven by Phase 4&quot;. The Phase-3 scorer noted that the refactor keeps the NotFound-then-Forbidden order, that `_row` is private with no other callers, and that the claim only speculates about future misuse. The Opus deep validator disproved it at a score of 5. The artifact has no validation_result.
+- **Suggested fix:** none.
+
+## F004 — BELOW_GATE
+
+- **File:** `shop/payments.py:26-29`
+- **Disposition:** below_gate | **is_actionable:** false | **actionability:** auto_fixable (field value; not actionable)
+- **Score:** score_phase3 = null, score_phase4 = null
+- **confirmed_strength:** null | **impact_type:** correctness | **validation_lane:** deep
+- **Origin:** introduced_by_pr (confidence medium). This is the Wave-2 default; the Phase-4 validator&#x27;s rationale said the code predates this PR.
+- **Sources:** L2-structural (structural-family). This is a Wave-2 related candidate (related_parent_finding_id: F001).
+- **Claim:** pay() marks any order as paid by id. It never checks that the order belongs to the caller, and it never checks that amount_cents matches the order&#x27;s total_cents, so a user can capture a small amount against someone else&#x27;s order (or their own) and flip it to &#x27;paid&#x27;.
+- **Reason:** &quot;below validation gate (score unavailable — Phase 3 score missing or unparseable)&quot;. The scoring dispatch failed, so it was never validated.
+- **Suggested fix:** none recorded.
+
+## F005 — BELOW_GATE
+
+- **File:** `shop/payments.py:26-29`
+- **Disposition:** below_gate | **is_actionable:** false | **actionability:** auto_fixable (field value; not actionable)
+- **Score:** score_phase3 = null, score_phase4 = null
+- **confirmed_strength:** null | **impact_type:** correctness | **validation_lane:** deep
+- **Origin:** introduced_by_pr (confidence medium; this is the Wave-2 default)
+- **Sources:** L2-structural (structural-family). This is a Wave-2 related candidate (related_parent_finding_id: F001).
+- **Claim:** pay() calls gateway.capture before the DB update and has no idempotency or status guard. If the order is already &#x27;paid&#x27;, or the DB update fails after capture, the card can be charged twice or charged without the order being recorded as paid.
+- **Reason:** &quot;below validation gate (score unavailable — Phase 3 score missing or unparseable)&quot;. The scoring dispatch failed, so it was never validated.
+- **Suggested fix:** none recorded.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note — adamsreview review
+
+review_id: `rev_01M4JT6WCJBHE4JEE2EZT30R35` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-03-search-by-note/pr-03-search-by-note/rev_01M4JT6WCJBHE4JEE2EZT30R35` | mode: `local` | trivial_mode: `false`
+
+Findings by disposition: below_gate=4, confirmed_mechanical=3, uncertain=1 (total 8)
+
+Cross-cutting group G1: F001 + F003 + F009 — F001, F003 and F009 all come from the same bug: search_orders in shop/orders.py (lines 30-32) builds its SQL with an f-string. All three propose the same change to the same lines, so they should be applied once as a single edit. If they are applied separately, the edits will collide or be duplicated. The fix: replace the f-string with a parameterized query, following list_orders (orders.py:36). Bind user_id and the LIKE pattern as ? params. Escape backslash first, then &#x27;%&#x27; and &#x27;_&#x27;, and add an `escape &#x27;\&#x27;` clause so the search text is matched literally. Add one set of tests to tests/test_shop.py. The tests should check that: results stay scoped to the user; the injection payload (&quot;&#x27; or 1=1 --&quot;) does not leak other users&#x27; orders; apostrophe input (&quot;customer&#x27;s gift&quot;, &quot;O&#x27;Brien&quot;) does not raise; and &#x27;%&#x27; matches only a literal &#x27;%&#x27;. Keep the current behavior: empty text matches every non-NULL note, NULL notes are excluded, results are ordered by id, and each row keeps the (id, status, total_cents) shape.
+
+## F001 — [confirmed_mechanical] shop/orders.py:31-32
+
+- **Disposition:** confirmed_mechanical
+- **Score:** phase3=98 / phase4=97; confirmed_strength=strong
+- **is_actionable:** true; **actionability:** auto_fixable (auto-fixable: yes)
+- **Lane / impact:** validation_lane=deep; impact_type=correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L6-security; families: diff-family, security-family, structural-family
+- **File / lines:** `shop/orders.py` lines 31-32
+- **Claim:** SQL injection: `text` (and `user_id`) are interpolated directly into the query via an f-string instead of using parameterized placeholders, unlike the neighbouring list_orders. An attacker can break out of the LIKE literal and read other users&#x27; orders (e.g. text=&quot;&#x27; or 1=1 --&quot; or a UNION select).
+
+**Evidence:**
+- shop/orders.py:31 — search_orders (added by this PR) builds SQL with f&quot;... where user_id = {user_id} and note like &#x27;%{text}%&#x27; ...&quot; and calls db.query(sql) with no params.
+- shop/db.py:9-10 — db.query passes sql straight to sqlite3 _conn.execute, so the interpolated string is executed verbatim.
+- Reproduced against the PR code: after create_order(1,100,&#x27;mine&#x27;) and create_order(2,999,&#x27;secret&#x27;), search_orders(1, &quot;&#x27; or 1=1 --&quot;) returned [(1,&#x27;new&#x27;,100),(2,&#x27;new&#x27;,999)] — user 1 sees user 2&#x27;s order.
+- Reproduced: search_orders(1, &quot;O&#x27;Brien&quot;) raises sqlite3 OperationalError &#x27;near &quot;Brien&quot;: syntax error&#x27; — any note search with an apostrophe breaks even without malicious intent.
+- shop/orders.py:16, :21, :36, shop/payments.py:28, shop/stock.py:10,21 — every other query in the repo uses ? placeholders with a params tuple; list_orders at orders.py:36 is the direct precedent.
+- git diff main..HEAD — the f-string query is introduced entirely by this PR.
+
+**Suggested fix (approach):** Parameterize the query like list_orders (orders.py:36): bind user_id and the LIKE pattern as ? params, and escape LIKE wildcards in text using an ESCAPE clause.
+- `shop/orders.py` — In search_orders, replace the f-string with: pattern = &#x27;%&#x27; + text.replace(&#x27;\\&#x27;, &#x27;\\\\&#x27;).replace(&#x27;%&#x27;, &#x27;\\%&#x27;).replace(&#x27;_&#x27;, &#x27;\\_&#x27;) + &#x27;%&#x27;; return db.query(&quot;select id, status, total_cents from orders where user_id = ? and note like ? escape &#x27;\\&#x27; order by id&quot;, (user_id, pattern)) (why: Removes the SQL injection and the apostrophe crash, keeps results scoped to user_id, and makes % and _ match literally.)
+- `tests/test_shop.py` — Add tests: search_orders returns only the caller&#x27;s orders when matching; injection payload &quot;&#x27; or 1=1 --&quot; returns [] and does not leak other users&#x27; orders; text containing an apostrophe (O&#x27;Brien) works; &#x27;%&#x27; in text matches literally. (why: Regression coverage for the injection and quoting bug.)
+
+**Edge cases to preserve:**
+- Empty text returns all of the user&#x27;s orders with a non-NULL note (current behavior of like &#x27;%%&#x27;).
+- Orders with NULL note are not matched (same as now).
+- Results remain ordered by id and limited to the given user_id.
+- Matching stays case-insensitive for ASCII (SQLite LIKE default).
+
+**Auto-fix hint (high, second opinion: concurs):** In shop/orders.py search_orders, drop the f-string and follow list_orders (line 36). Bind user_id and the LIKE pattern as ? params. Escape \, % and _ in text, wrap the result in %...%, and add `escape &#x27;\&#x27;` to the LIKE clause. Add tests in tests/test_shop.py for owner scoping, the `&#x27; or 1=1 --` payload, an apostrophe, and a literal %.
+- Alternative B: Parameterize without wildcard escaping — Bind user_id and &#x27;%&#x27;+text+&#x27;%&#x27; as ? params and skip the ESCAPE logic. This closes the injection and the apostrophe crash with a smaller diff, but % and _ in text still act as wildcards.
+
+## F009 — [confirmed_mechanical] shop/orders.py:30-32
+
+- **Disposition:** confirmed_mechanical
+- **Score:** phase3=72 / phase4=90; confirmed_strength=strong
+- **is_actionable:** true; **actionability:** auto_fixable (auto-fixable: yes)
+- **Lane / impact:** validation_lane=deep; impact_type=correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L4-comments; families: policy-family
+- **File / lines:** `shop/orders.py` lines 30-32
+- **Claim:** The docstring says the function returns only this user&#x27;s orders whose note contains `text`. The f-string interpolates `text` directly into the SQL, so input like `&#x27; or &#x27;1&#x27;=&#x27;1` changes the WHERE precedence and returns other users&#x27; orders. That contradicts the &#x27;of this user&#x27; claim.
+
+**Evidence:**
+- shop/orders.py:31 — search_orders builds SQL with an f-string, putting both `user_id` and `text` straight into the query string, then calls db.query(sql) with no params (line</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging — adamsreview review
+
+review_id: `rev_01M4JT77YWPR6V2MED69W2259N` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-04-payment-logging/pr-04-payment-logging/rev_01M4JT77YWPR6V2MED69W2259N` | mode: local | trivial_mode: false
+
+Summary from the tool: 5 findings. 1 confirmed_mechanical (deep lane, auto-fixable), 1 pre_existing_report, 3 below_gate. The order follows artifact.md (auto-fixable, then pre-existing, then filtered/below-gate by score descending).
+
+---
+
+## F001 — CONFIRMED (confirmed_mechanical, auto-fixable)
+
+- **Disposition:** confirmed_mechanical; is_actionable: true; actionability: auto_fixable
+- **Score:** score_phase3 = 88, score_phase4 = 85; confirmed_strength: strong
+- **Lane / impact:** validation_lane deep; impact_type correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L3-claude-md, L6-security (families: diff, policy, security, structural). Four lens candidates were merged in dedup.
+- **File:** `shop/payments.py:27`
+- **Claim:** The new log line writes the raw card token (payment credential) to application logs before capture, leaking sensitive payment data.
+- **Evidence (Phase 4 deep validator):**
+  - shop/payments.py:27 adds `log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)`, which interpolates the raw `card_token` at INFO level.
+  - Line 27 is the only change in the PR, so origin=introduced_by_pr is confirmed.
+  - shop/payments.py:6: the logger `logging.getLogger(&quot;shop.payments&quot;)` has no filter or redaction, so any configured handler receives the token in plaintext.
+  - Line 27 runs before `gateway.capture` (line 28), so the token is logged on every payment attempt, including ones that fail.
+  - tests/test_shop.py:28 calls `payments.pay(..., &quot;tok_test&quot;)`, which goes through the leaking line. No test checks log output.
+  - The existing line 30 (`log.info(&quot;order %s paid&quot;, order_id)`) logs only the order id, which is the module&#x27;s prior safe pattern.
+  - The repo has no CLAUDE.md and no redaction utility, so the finding rests on general PCI-style credential hygiene.
+- **Blast radius:** the only writer is payments.py:27. Consumers are the `shop.payments` logger and its handlers, plus test_pay_marks_order_paid. Parallel paths (line 30 log, Gateway.capture, the PaymentError message) do not leak the token and need no change. Invariant at stake: card tokens must never be written to logs at any level.
+- **Suggested fix (approach):** Remove card_token from the new log line and keep order_id and amount_cents. Optionally add a regression test asserting the token never appears in the `shop.payments` logs.
+  - `shop/payments.py`: change line 27 to `log.info(&quot;capturing order %s amount %s&quot;, order_id, amount_cents)`.
+  - `tests/test_shop.py`: wrap `payments.pay(..., &quot;tok_test&quot;)` in `self.assertLogs(&quot;shop.payments&quot;, level=&quot;INFO&quot;)` and assert `&quot;tok_test&quot;` is not in cm.output.
+- **Verification:** `grep -n card_token shop/payments.py` should show no log.* use; a grep for log calls containing &quot;token&quot; in shop/ should return nothing; the unittest suite should pass.
+- **Edge cases to preserve:** keep logging order_id and amount_cents before capture; keep the line-30 log; leave the gateway.capture arguments unchanged.
+- **What would break if incomplete:** removing only the placeholder or only the argument produces a logging format error and the token stays in the record args. Moving the line to DEBUG still leaks the token.
+- **Auto-fix hint (confidence high, second opinion: concurs):** In shop/payments.py line 27, drop card_token from the log call and change it to `log.info(&quot;capturing order %s amount %s&quot;, order_id, amount_cents)`. Remove both the format placeholder and the argument. Leave gateway.capture and the line-30 log unchanged. Optionally add an assertLogs regression test in tests/test_shop.py.
+  - Alternative B (&quot;Log only a masked token suffix&quot;): log only a non-reversible marker such as `card_token[-4:]`. This is a fallback only and is less safe than removal.
+
+---
+
+## F004 — PRE-EXISTING (pre_existing_report, report-only)
+
+- **Disposition:** pre_existing_report; is_actionable: false; actionability: report_only
+- **Score:** none. The finding skipped Phase 3 scoring and Phase 4 under the §13.1 pre-existing override.
+- **Lane / impact:** validation_lane deep; impact_type correctness
+- **Origin:** pre_existing (high)
+- **Sources:** L2-structural (structural-family)
+- **File:** `shop/payments.py:28-29`
+- **Claim:** The gateway capture commits money before the order status update, and there is no error handling or idempotency guard. If db.execute fails (or the order id doesn&#x27;t exist, which updates 0 rows silently), the card is charged but the order is not marked paid, and a retry charges it again.
+- **Rationale / fix:** None recorded (report-only; no follow-up set).
+
+---
+
+## F003 — BELOW GATE (below_gate)
+
+- **Disposition:** below_gate; is_actionable: false; actionability: auto_fixable (lane default)
+- **Score:** score_phase3 = 40 (gate is 45; single source family, so it did not auto-graduate)
+- **Lane / impact:** validation_lane deep; impact_type correctness
+- **Origin:** introduced_by_pr (medium)
+- **Sources:** L2-structural (structural-family)
+- **File:** `shop/payments.py:27-30`
+- **Claim:** The PR&#x27;s stated goal is logging payment attempts for support, but nothing is logged when gateway.capture raises PaymentError, so a support log shows &#x27;capturing ...&#x27; with no outcome. That reads the same as a payment in progress or a crashed process, and failed attempts can&#x27;t be told apart.
+- **Reason:** below validation gate (score 40). Phase 3 rationale: &quot;Verified that nothing is logged when gateway.capture raises PaymentError... This is an observability gap rather than a functional bug, and the exception still propagates to the caller, who can log it.&quot;
+- **Suggested fix:** none (not validated)
+
+---
+
+## F007 — BELOW GATE (below_gate; Wave 2 related candidate of F001)
+
+- **Dispo</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types — adamsreview review
+
+review_id: `rev_01M4JT76PDJF7X924479G2BP0T` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-05-docstrings-and-types/pr-05-docstrings-and-types/rev_01M4JT76PDJF7X924479G2BP0T` | mode: local | trivial_mode: false
+
+Diff reviewed: `main..HEAD` (1 file, `shop/stock.py`, +1 line: a docstring added to `set_stock`). Lenses run: L1, L2, L3, L4, L6. L5 was skipped because user_facing=false, and L7 was skipped because ensemble_mode=false. Only L2 produced candidates (4). Dedup merged none. No finding passed the Phase-3 gate, so Phase 4 validation, Phase 5 cross-cutting and Phase 5.5 auto-fix-hint had nothing to process. The tool generated no fix proposals or suggested fixes for any finding.
+
+Ordering follows artifact.md: pre-existing report-only first, then the filtered (below_gate) findings.
+
+---
+
+## F001 — PRE-EXISTING (report-only)
+
+- **Disposition:** pre_existing_report
+- **Score:** phase3 = null (not scored; §13.1 pre-existing override bypasses scoring), phase4 = null
+- **confirmed_strength:** null
+- **impact_type / lane:** correctness / deep
+- **origin:** pre_existing (confidence: high)
+- **is_actionable:** false
+- **actionability:** report_only (not auto-fixable)
+- **current_state:** open
+- **sources / families:** L2-structural / structural-family
+- **File / lines:** `shop/stock.py:19-22`
+- **Claim:** reserve() checks availability and then decrements in two separate statements with no transaction or conditional UPDATE, so two concurrent reservations can both pass the check and push stock below zero.
+- **Rationale / evidence:** L2&#x27;s evidence was `if available(sku) &lt; qty: raise OutOfStock(sku)` followed by a separate `db.execute(&quot;update stock set available = available - ? where sku = ?&quot;, (qty, sku))`. This finding was routed to report-only by the pre-existing override and was not validated. reason: null.
+- **Suggested fix:** none recorded (validation_result null, suggested_follow_up null).
+
+## F002 — PRE-EXISTING (report-only)
+
+- **Disposition:** pre_existing_report
+- **Score:** phase3 = null (not scored; pre-existing override), phase4 = null
+- **confirmed_strength:** null
+- **impact_type / lane:** correctness / deep
+- **origin:** pre_existing (confidence: high)
+- **is_actionable:** false
+- **actionability:** report_only (not auto-fixable)
+- **current_state:** open
+- **sources / families:** L2-structural / structural-family
+- **File / lines:** `shop/stock.py:19-22`
+- **Claim:** reserve() does not check that qty is positive, so a zero or negative qty passes the availability check and a negative qty increases available stock.
+- **Rationale / evidence:** L2&#x27;s evidence was `def reserve(sku: str, qty: int) -&gt; None:` / `if available(sku) &lt; qty:`. This finding was routed to report-only by the pre-existing override and was not validated. reason: null.
+- **Suggested fix:** none recorded.
+
+## F003 — BELOW_GATE (filtered out)
+
+- **Disposition:** below_gate
+- **Score:** phase3 = 8 (gate is 45), phase4 = null
+- **confirmed_strength:** null
+- **impact_type / lane:** correctness / deep
+- **origin:** pre_existing (confidence: low)
+- **is_actionable:** false
+- **actionability:** auto_fixable (lane-default tag; the finding was never validated)
+- **current_state:** open
+- **sources / families:** L2-structural / structural-family
+- **File / lines:** `shop/stock.py:9-11`
+- **Claim:** The new docstring says set_stock sets how many units can be reserved, but the function accepts negative or None values, which produce a stock level that cannot be reserved and is never rejected.
+- **Rationale / evidence:** reason = &quot;below validation gate (score 8)&quot;. The Phase-3 scorer&#x27;s rationale: &quot;The docstring is accurate. Missing validation in set_stock is pre-existing, out of scope for this PR, and a speculative design gripe rather than a defect in the changed line.&quot;
+- **Suggested fix:** none recorded.
+
+## F004 — BELOW_GATE (filtered out)
+
+- **Disposition:** below_gate
+- **Score:** phase3 = 30 (gate is 45), phase4 = null
+- **confirmed_strength:** null
+- **impact_type / lane:** correctness / deep
+- **origin:** pre_existing (confidence: medium)
+- **is_actionable:** false
+- **actionability:** auto_fixable (lane-default tag; the finding was never validated)
+- **current_state:** open
+- **sources / families:** L2-structural / structural-family
+- **File / lines:** `shop/stock.py:14-16`
+- **Claim:** available() returns 0 both for an unknown SKU and for a SKU stocked at zero, so callers cannot tell a missing or mistyped SKU from a real zero and reserve() raises OutOfStock for SKUs that do not exist.
+- **Rationale / evidence:** reason = &quot;below validation gate (score 30)&quot;. The Phase-3 scorer&#x27;s rationale: &quot;The behavior is real: available() returns 0 for an unknown SKU, so reserve() raises OutOfStock for it. But it is pre-existing, not touched by the diff, and arguably intended semantics, so it is a low-impact design observation.&quot;
+- **Suggested fix:** none recorded.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order — adamsreview review
+
+review_id: `rev_01M4JT6Y59CCZ2VMH26BH77G9Q` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-06-cancel-order/pr-06-cancel-order/rev_01M4JT6Y59CCZ2VMH26BH77G9Q` | mode: local | trivial_mode: false
+
+Summary (from artifact.md): 6 findings. Deep lane: 1 auto-fixable (confirmed_mechanical), 3 uncertain. Filtered out: 1 disproven, 1 below the score gate (&lt;45). There were no cross-cutting groups. Sub-agent tokens: 233,919 across 17 invocations.
+
+Run notes (from trace.md): lens L5 (UX) was skipped because user_facing=false, and L7 was skipped because ensemble mode was off. L4 (comment compliance) could not be dispatched because the harness hit its concurrent sub-agent limit, so it contributed no candidates. F006&#x27;s Phase 4 deep validator also could not be dispatched for the same reason; it was routed to `uncertain` with a null Phase 4 score.
+
+Findings are listed in artifact.md order: auto-fixable, then uncertain, then filtered.
+
+---
+
+## F001 — CONFIRMED (confirmed_mechanical, auto-fixable)
+- **Disposition:** confirmed_mechanical | **is_actionable:** true | **actionability:** auto_fixable
+- **Score:** phase3=92, phase4=92 | **confirmed_strength:** strong
+- **Lane / impact:** deep / correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L6-security (diff, structural and security families)
+- **File:** `shop/orders.py:31-36`
+- **Claim:** cancel_order never uses user_id, so any user can cancel any other user&#x27;s order by ID. The sibling get_order scopes by user_id.
+- **Evidence:**
+  - shop/orders.py:29: cancel_order takes a user_id parameter, but the function body never reads it.
+  - shop/orders.py:31: the lookup is `select status from orders where id = ?` with only order_id. It never selects or compares user_id.
+  - shop/orders.py:36: the UPDATE uses `where id = ?`, so it changes the row no matter who owns it.
+  - shop/orders.py:20-26: the sibling get_order raises Forbidden when rows[0][1] != user_id. That is the in-repo precedent, and the Forbidden class already exists.
+  - Repro: `oid = create_order(1, 500); cancel_order(oid, 2)` succeeds, and the order is now &#x27;cancelled&#x27;.
+  - tests/test_shop.py has no cancel_order test.
+- **Blast radius:** the correct pattern is in get_order (orders.py:20-26) and list_orders (orders.py:39-40). payments.pay (payments.py:26-29) mutates an order by id with no ownership check; that code existed before the PR. Invariants at stake: only the owner may mutate an order, and a paid order must never become cancelled (the check and the update are not atomic).
+- **Fix approach:** enforce ownership the same way get_order does. Select `user_id, status`, raise NotFound if there is no row, raise Forbidden if user_id doesn&#x27;t match, then raise ValueError if the order is paid. Scope the UPDATE with `where id = ? and user_id = ? and status != &#x27;paid&#x27;`. Add tests to tests/test_shop.py: a non-owner cancel raises Forbidden, an owner cancel succeeds, and cancelling a paid order raises ValueError.
+- **Auto-fix hint (confidence high, second opinion: concurs):** same as the fix approach. Alternative B is to reuse get_order(order_id, user_id) for the lookup and ownership check, then use its status at index 2.
+- **Edge cases to preserve:** a missing order still raises NotFound, not Forbidden. A paid order still raises ValueError. Check order is NotFound, then Forbidden, then the business rule.
+
+## F003 — UNCERTAIN
+- **Disposition:** uncertain | **is_actionable:** false | **actionability:** auto_fixable
+- **Score:** phase3=50, phase4=50 | **confirmed_strength:** none
+- **Lane / impact:** deep / correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L6-security
+- **File:** `shop/orders.py:31-36`
+- **Claim:** the status check and the update are separate statements, with no transaction and no status condition in the UPDATE. If the order is paid between the SELECT and the UPDATE (a TOCTOU race), the paid order gets cancelled.
+- **Reason:** uncertain (Phase 4 inconclusive). The validator answered &quot;confirmed&quot; but scored it 50, which falls in the uncertain band.
+- **Validator notes (not persisted, because the finding didn&#x27;t reach the confirmed band):** the shared sqlite connection uses check_same_thread=False and each statement autocommits, so pay() can commit in the window between the read and the write. Suggested fix: use a conditional `UPDATE ... where id = ? and status != &#x27;paid&#x27;` and check rowcount via a new db helper.
+
+## F006 — UNCERTAIN (validator not run)
+- **Disposition:** uncertain | **is_actionable:** false | **actionability:** auto_fixable
+- **Score:** phase3=68, phase4=null | **confirmed_strength:** none
+- **Lane / impact:** deep / correctness
+- **Origin:** introduced_by_pr (medium)
+- **Sources:** L2-structural
+- **File:** `shop/payments.py:26-28`
+- **Claim:** now that orders can be &#x27;cancelled&#x27;, pay() still captures the card and sets status=&#x27;paid&#x27; without checking the current status. A cancelled order can be charged and silently brought back to &#x27;paid&#x27;, so the payment path needs a matching guard for the new cancel state.
+- **Reason:** &quot;Phase 4 validator dispatch failed (subagent concurrency limit) — manual review&quot;
+- **Phase 3 rationale:** pay() never checks status, so a cancelled order can be charged and flipped back to &#x27;paid&#x27;. A card is actually captured, so the impact is real, though the payment code is outside the diff.
+
+## F010 — UNCERTAIN (Wave 2, parent F002)
+- **Disposition:** uncertain | **is_actionable:** false | **actionability:** auto_fixable
+- **Score:** phase3=45, phase4=50 | **confirmed_strength:** none
+- **Lane / impact:** deep / correctness
+- **Origin:** introduced_by_pr (medium)
+- **Sources:** L2-structural (Wave 2 related candidate) | **related_parent_finding_id:** F002
+- **File:** `tests/test_shop.py:1-33`
+- **Claim:** no tests were added for cancel_order. Cancelling a new order, refusing a paid order, NotFound, and the ownership check are al</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span></td><td><span class="mute">not reviewed</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order — adamsreview review
+
+review_id: `rev_01M4JT72HM1M0KHM8S1935J2YZ` · review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-08-validate-create-order/pr-08-validate-create-order/rev_01M4JT72HM1M0KHM8S1935J2YZ` · mode: `local` · trivial_mode: `false`
+
+Base `main`, reviewed sha `ed41c45`. The diff covers 2 files and 11 lines. Lenses run: L1, L2, L3, L4, L6. L5 was skipped because user_facing=false, and L7 was skipped because ensemble mode was off. L3 (no CLAUDE.md files), L4 and L6 returned no candidates. The 8 raw candidates were deduplicated down to 5. Wave 2 added 2 more, for 7 findings in total.
+
+Totals by disposition: uncertain 1, disproven 2, below_gate 4. Nothing was confirmed or actionable, and no cross-cutting groups or auto-fix hints were produced.
+
+The findings below follow the order in artifact.md: the uncertain finding, then the Polish cluster, then the findings artifact.md does not list individually (disproven, and below-gate outside the cluster).
+
+---
+
+## F003 — UNCERTAIN (deep lane)
+
+- **disposition:** uncertain · **score_phase3:** 35 · **score_phase4:** 45 · **confirmed_strength:** null
+- **impact_type:** correctness · **validation_lane:** deep · **actionability:** auto_fixable · **is_actionable:** false · **auto_fix_hint:** none
+- **origin:** introduced_by_pr (high) · **sources:** L1-diff-local, L2-structural (diff-family + structural-family)
+- **Location:** `tests/test_shop.py:16-19`
+- **Claim:** The new tests only cover total_cents == 0. They do not cover a negative total, the note length limit, or the boundary at exactly MAX_NOTE, so the new note validation is untested.
+- **Recorded reason:** &quot;uncertain (Phase 4 inconclusive)&quot;. The Opus validator returned decision=confirmed with a score of 45. The score is what sets the disposition, so 45 falls in the uncertain band, and the validator&#x27;s validation_result was not saved to the artifact.
+- **Phase 3 rationale:** The claim is accurate: only total==0 is tested, and the note limit and negative totals are untested. Missing test coverage is low impact and is not a functional bug.
+- **Phase 4 validator evidence (summary):** `grep MAX_NOTE` finds no reference in tests/, and no test passes a `note` to create_order, so the note-length branch at orders.py:21-22 never runs. The only new test calls `create_order(1, 0)`. Changing `&gt;` to `&gt;=` (an off-by-one) would still pass every current test.
+- **Phase 4 suggested fix (validator):** Add tests to `tests/test_shop.py`:
+  1. `test_create_order_rejects_negative_total`: `create_order(1, -1)` raises ValueError.
+  2. `test_create_order_accepts_note_at_max_length`: a note of `&#x27;x&#x27; * orders.MAX_NOTE` is stored and read back.
+  3. `test_create_order_rejects_note_over_max_length`: a note of `&#x27;x&#x27; * (orders.MAX_NOTE + 1)` raises ValueError.
+
+---
+
+## F006 — BELOW_GATE (in the Polish cluster)
+
+- **disposition:** below_gate · **score_phase3:** 12 · **score_phase4:** null
+- **impact_type:** correctness · **validation_lane:** deep · **actionability:** auto_fixable · **is_actionable:** false
+- **origin:** pre_existing (medium) · **sources:** L2-structural
+- **Location:** `shop/orders.py:18-24`
+- **Claim:** Validation is added to create_order only. The sibling state-changing entry points `payments.pay` (amount_cents) and `stock.reserve`/`set_stock` (qty/available) still accept zero or negative amounts, so those values can still reach the DB and the gateway.
+- **Recorded reason:** below validation gate (score 12)
+- **Phase 3 rationale:** The code is pre-existing and outside the PR&#x27;s scope; the sibling functions are unchanged, so this is a scope complaint and not a defect the PR introduced.
+
+## F009 — BELOW_GATE (in the Polish cluster; Wave 2, parent F002)
+
+- **disposition:** below_gate · **score_phase3:** 30 · **score_phase4:** null
+- **impact_type:** correctness · **validation_lane:** deep · **actionability:** auto_fixable · **is_actionable:** false
+- **origin:** introduced_by_pr (medium) · **sources:** L2-structural (Wave 2 related candidate) · **related_parent_finding_id:** F002
+- **Location:** `shop/orders.py:18-24`
+- **Claim:** create_order does not validate user_id (None, negative or non-int), which is inconsistent with the new input validation. The PR title says &quot;Validate input when creating an order&quot; but only two of the three inputs are checked.
+- **Recorded reason:** below validation gate (score 30)
+- **Phase 3 rationale:** The diff confirms user_id is unchecked, but the PR only claims to validate total and note, and no concrete failure is shown beyond a possible foreign-key or consistency gap, so this is a nitpick.
+
+## F008 — BELOW_GATE (in the Polish cluster)
+
+- **disposition:** below_gate · **score_phase3:** 8 · **score_phase4:** null
+- **impact_type:** correctness · **validation_lane:** deep · **actionability:** auto_fixable · **is_actionable:** false
+- **origin:** introduced_by_pr (low) · **sources:** L2-structural
+- **Location:** `shop/orders.py:21`
+- **Claim:** MAX_NOTE is checked against `len(note)`, which counts Unicode code points rather than bytes or grapheme clusters, so a byte-limited downstream store or display would still get notes far larger than 500 bytes.
+- **Recorded reason:** below validation gate (score 8)
+- **Phase 3 rationale:** The limit is explicitly described as characters, the SQLite TEXT column has no byte limit, and the claim is speculative.
+
+---
+
+## F001 — DISPROVEN
+
+- **disposition:** disproven · **score_phase3:** 30 · **score_phase4:** 15
+- **impact_type:** correctness · **validation_lane:** deep · **actionability:** report_only · **is_actionable:** false
+- **origin:** introduced_by_pr (medium) · **sources:** L1-diff-local, L2-structural (merged duplicate of the L2 candidate)
+- **Location:** `shop/orders.py:21-22`
+- **Claim:** `len(note)` raises TypeError if a caller passes `note=None` (a common DB-nullable value). The validation was added without a None guard, so a call that used to insert a NULL note can now crash.
+- **Recorded reas</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors — adamsreview review
+
+review_id: `rev_01M4JT76AJ8GZYVFJZHA7T7BE0` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-09-capture-errors/pr-09-capture-errors/rev_01M4JT76AJ8GZYVFJZHA7T7BE0` | mode: local | trivial_mode: false
+
+Total findings: 8 (confirmed_mechanical: 3, below_gate: 5). Order: as in artifact.md (deep-lane auto-fixable table, then Polish below-gate cluster, then the remaining below-gate finding not rendered individually).
+
+**Cross-cutting group G1** (F001, F002, F005): All three findings point at the same code: the `try: gateway.capture(...) except Exception: pass` block in shop/payments.py pay() (lines 26-32), added in commit 8aaa835. They share one root cause and need one edit. If each is fixed separately, the three patches will collide on the same lines. Make the change once. Replace the blanket handler with `except PaymentError: log.exception(&#x27;capture failed for order %s&#x27;, order_id); raise`, or remove the try entirely. Do not catch broad Exception. With either version, the `status=&#x27;paid&#x27;` update and the `log.info(&#x27;order %s paid&#x27;)` line run only after capture succeeds. Do not put them in a finally block, and do not let them run after a handler that swallows the error. That single change covers all three findings. F001 is fixed because the order is no longer marked paid on failure. F002 is fixed because the failure is logged and the false success log no longer fires. F005 is fixed because callers get PaymentError back, as before the PR. Add one failure-path test to tests/test_shop.py, not three copies. It sets Gateway.fail=1 and asserts four things: pay raises PaymentError, get_order(...)[2] == &#x27;new&#x27;, g.captured == [], and a retry then succeeds and marks the order &#x27;paid&#x27;. The existing happy-path test must keep passing.
+
+## F001 — CONFIRMED (auto-fixable)
+
+- **File:** `shop/payments.py:27-31`
+- **Claim:** The bare `except Exception: pass` swallows every gateway capture failure, so the order is still marked &#x27;paid&#x27; and logged as paid when the card capture failed (declined, network error, etc.).
+- **Disposition:** confirmed_mechanical; **current_state:** open; **is_actionable:** true; **actionability:** auto_fixable
+- **Scores:** score_phase3=95, score_phase4=97; **confirmed_strength:** strong
+- **Lane / impact:** validation_lane=deep, impact_type=correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L4-comments, L6-security; **source_families:** diff-family, policy-family, security-family, structural-family
+- **Phase 3 scoring rationale:** The diff confirms that `except Exception: pass` swallows capture failures, so the order is marked paid and logged as paid even when capture fails, which is a serious real bug.
+
+**Evidence (Phase 4 deep validator):**
+- shop/payments.py:27-30: the PR wraps gateway.capture in `try/except Exception: pass`, so every capture exception is thrown away with no log, no re-raise and no status change.
+- shop/payments.py:31-32: the update to status=&#x27;paid&#x27; and log.info(&#x27;order %s paid&#x27;) run unconditionally after the try block, including when capture failed.
+- shop/payments.py:19-22: Gateway.capture raises PaymentError(&#x27;gateway timeout&#x27;) when `fail &gt; 0`, which is the failure mode the PR swallows.
+- Reproduction: I ran create_order(1, 700), then Gateway() with fail=1, then pay(). get_order returned (1, 1, &#x27;paid&#x27;, 700, &#x27;&#x27;) and gateway.captured was [], so the order is marked paid with no money captured.
+- git diff main..HEAD: on main, capture was called without a try block, so PaymentError propagated and the db update never ran. The PR introduced this regression (commit 8aaa835 &#x27;Do not crash checkout when the gateway errors&#x27;).
+- tests/test_shop.py:26-29: the only payment test covers the success path, so no test catches the regression.
+
+**Blast radius:**
+- _writers:_ shop/payments.py:31 — pay() writes orders.status=&#x27;paid&#x27;, and after the PR it does this whether or not capture succeeded
+- _writers:_ shop/orders.py:16 — create_order writes the initial status &#x27;new&#x27;
+- _consumers:_ shop/orders.py:21 — get_order reads status
+- _consumers:_ shop/orders.py:30 — list_orders reads status
+- _consumers:_ tests/test_shop.py:29 — asserts status == &#x27;paid&#x27; after a successful pay
+- _consumers:_ callers of payments.pay (checkout flow): they no longer receive PaymentError, so they cannot tell the customer the payment failed
+- _parallel_paths:_ shop/stock.py:18-21 — reserve() raises OutOfStock rather than swallowing it. This is the correct in-repo precedent for letting domain errors reach the caller.
+- _parallel_paths:_ shop/payments.py:32 — log.info &#x27;paid&#x27; also runs on failure, so logs show a payment that did not happen
+- _invariants_at_stake:_ An order&#x27;s status may only become &#x27;paid&#x27; if gateway.capture succeeded.
+- _invariants_at_stake:_ Callers of pay() must be told when payment fails (PaymentError must reach them or be reported explicitly).
+- _invariants_at_stake:_ Logs must not report a payment that did not happen.
+
+**Suggested fix (approach):** Stop swallowing capture failures. Mark the order paid and log it only after capture succeeds. On failure, log the error and re-raise PaymentError (optionally setting a &#x27;payment_failed&#x27; status first) so checkout can handle it without crashing, which follows the explicit-exception precedent in stock.reserve.
+- `shop/payments.py` — Replace the try/except in pay() with: `try: gateway.capture(...) except PaymentError as e: log.warning(&#x27;capture failed for order %s: %s&#x27;, order_id, e); raise` (or set status=&#x27;payment_failed&#x27; before re-raising). Then run the &#x27;paid&#x27; update and log.info only on success, e.g. in an `else:` block or after the try once it re-raises. Wrap any unexpected non-PaymentError exception as PaymentError too, or let it propagate. (why: Right now a failed capture marks the order paid and hides the error from callers.)
+- `tests/test_shop.py` — Add test_pay_capture_failure_does_not_mark_paid: create an order, set Gateway().fail=1, assert pay raises PaymentE</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check — adamsreview review
+
+review_id: `rev_01M4JT782AQ00BBCJT9QK8F5ZJ` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-10-reserve-check/pr-10-reserve-check/rev_01M4JT782AQ00BBCJT9QK8F5ZJ` | mode: local | trivial_mode: false
+
+Diff reviewed: `main..pr-10-reserve-check` (1 file, `shop/stock.py`, 3 lines changed). Lenses run: L1, L2, L3, L4, L6. L5 was skipped (user_facing=false) and L7 was skipped (no --ensemble). The tool produced 9 findings: 2 confirmed_mechanical, 1 uncertain, 1 disproven and 5 below_gate. Cross-cutting group G1 = F001 + F004.
+
+Findings are listed in artifact.md order (deep-lane auto-fixable, uncertain, Polish cluster), followed by the findings artifact.md does not display (disproven, and below_gate not in the cluster).
+
+---
+
+## F001 — CONFIRMED (confirmed_mechanical, auto-fixable)
+- **Score:** phase3 = 98, phase4 = 100. confirmed_strength: strong
+- **is_actionable:** true. actionability: auto_fixable. validation_lane: deep. impact_type: correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L2-structural, L4-comments, L6-security (diff, structural, policy and security families)
+- **Location:** `shop/stock.py:19-21`
+- **Claim:** The stock check is inverted: `in_stock &gt; qty` raises OutOfStock when there is more than enough stock. Reservations that should succeed are rejected, and requests for more than the available stock go through, so available can go negative.
+- **Evidence (validator):**
+  - Commit f9b405e (&quot;Tidy the stock reservation check&quot;) changed `if available(sku) &lt; qty:` to `in_stock = available(sku); if in_stock &gt; qty:`. This flips the guard; the commit was meant to be a pure refactor.
+  - On HEAD, `python3 -m unittest tests.test_shop` has 2 of 5 tests failing. test_reserve_reduces_stock raises OutOfStock (stock 5, reserve 2). test_reserve_more_than_available_fails gets no OutOfStock (stock 1, reserve 2).
+  - The UPDATE at line 22 has no `available &gt;= ?` guard and the schema has no CHECK constraint, so stock can go negative (stock 1, reserve 2 leaves -1).
+  - available() returns 0 for an unknown SKU. `0 &gt; qty` is false, so reserving a nonexistent SKU silently &quot;succeeds&quot;.
+- **Blast radius:** reserve() is the only stock-decrementing path. Writers: stock.py:22 and set_stock (stock.py:10). Affected tests: tests/test_shop.py:16-24.
+- **Suggested fix:** Restore the original comparison and keep the local variable. On line 20, change `if in_stock &gt; qty:` to `if in_stock &lt; qty:`.
+- **Auto-fix hint (confidence high; second opinion concurs):** In shop/stock.py line 20, change `if in_stock &gt; qty:` to `if in_stock &lt; qty:` (strict, so qty == available still succeeds), keeping the in_stock local variable. Don&#x27;t touch anything else. Then run `python3 -m unittest tests.test_shop` and expect all 5 tests to pass.
+- **Edge cases to preserve:** qty == available succeeds and leaves stock at 0. An unknown SKU with qty &gt; 0 raises OutOfStock. qty &lt; available decrements correctly.
+- **Cross-cutting group G1 (with F004):** Both findings share the inverted guard at stock.py:20, so apply the single-line fix once. If the optional atomic UPDATE (`... and available &gt;= ?` plus a rowcount check, which needs db.execute to expose rowcount) is adopted, it must go into the same edit of reserve(). It must also keep qty == available succeeding and qty == 0 on an unknown SKU as a no-op.
+
+## F004 — CONFIRMED (confirmed_mechanical, auto-fixable)
+- **Score:** phase3 = 72, phase4 = 95. confirmed_strength: strong
+- **is_actionable:** true. actionability: auto_fixable. validation_lane: deep. impact_type: correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L2-structural
+- **Location:** `shop/stock.py:19-22`
+- **Claim:** Because of the inverted check, reserving an unknown SKU (available() returns 0) or a qty greater than stock passes the guard. The UPDATE then either silently does nothing for a missing row or makes `available` negative, so callers are told the reservation succeeded.
+- **Evidence (validator):** Reproduced on an in-memory DB:
+  - set_stock(&#x27;B&#x27;,1); reserve(&#x27;B&#x27;,2) returned normally and left available = -1.
+  - reserve(&#x27;ZZ&#x27;,3) on an unknown SKU returned normally and changed nothing.
+  - set_stock(&#x27;A&#x27;,5); reserve(&#x27;A&#x27;,2) raised OutOfStock.
+  - The UPDATE&#x27;s rowcount is never checked.
+  - Two existing tests fail.
+  - The boundary qty == available behaves the same as on main.
+- **Suggested fix:** Restore `if in_stock &lt; qty: raise OutOfStock(sku)`. Optional hardening: use `update ... where sku = ? and available &gt;= ?` and raise OutOfStock when no row was updated. This needs `shop/db.py` execute() to return rowcount or a new execute_rowcount helper.
+- **Auto-fix hint (confidence high; second opinion concurs):** This has the same root cause as F001. Fix it by changing the guard on shop/stock.py line 20 to `if in_stock &lt; qty: raise OutOfStock(sku)`. Do not add the optional atomic UPDATE or rowcount hardening in shop/db.py in this fix. Dedupe with F001 so the line is edited only once. Alternative B is &quot;Fix guard plus atomic UPDATE&quot;.
+- **Cross-cutting group G1:** Shared with F001 (see above). Annotation: it duplicates F001&#x27;s root cause and line-20 fix. Its only extra scope is the optional atomic-UPDATE and rowcount hardening, which addresses a race that existed before this PR.
+
+## F013 — UNCERTAIN (uncertain)
+- **Score:** phase3 = 50, phase4 = 50. confirmed_strength: none
+- **is_actionable:** false. actionability: auto_fixable. validation_lane: deep. impact_type: correctness
+- **Origin:** pre_existing (medium)
+- **Sources:** L2-structural. This is a Phase 4 Wave 2 related candidate, with parent F001.
+- **Location:** `shop/payments.py:26-29`
+- **Claim:** payments.pay captures funds before updating the order status, with no idempotency or status guard. Concurrent or repeated calls capture twice. A DB failure after capture leaves the order charged but not marked paid. Nothing checks that the order exists or that amount_cents matches the order tota</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders — adamsreview review
+
+review_id: `rev_01M4JT771W2BG2WYH3850RW5WX` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-11-test-list-orders/pr-11-test-list-orders/rev_01M4JT771W2BG2WYH3850RW5WX` | mode: `local` | trivial_mode: `false`
+
+The artifact has 2 findings. Neither is confirmed or actionable: 1 is below_gate and 1 is disproven. The rendered artifact.md lists no individual findings. It says only &quot;Found 2 findings across all lanes: Filtered out: 1 disproven, 1 below score gate (&lt;45)&quot;. Findings below are ordered by score, highest first.
+
+## F003 — BELOW GATE (below_gate)
+
+- **Disposition:** below_gate
+- **Score:** score_phase3 = 15, score_phase4 = null (not validated)
+- **Confirmed strength:** null
+- **Lane / impact_type:** deep / correctness
+- **Actionability:** auto_fixable (is_actionable = false)
+- **Origin:** pre_existing (origin_confidence: medium)
+- **Sources:** L2-structural (source_families: structural-family)
+- **current_state:** open
+- **File / lines:** `shop/orders.py` lines 4–4
+- **Claim:** PAGE_SIZE is declared but list_orders never applies a LIMIT or pagination, so it returns every order a user has. The new test checks only ownership filtering and so locks in the unpaginated behaviour without noticing the unused page-size contract.
+- **Reason (tool):** below validation gate (score 15)
+- **Evidence / validation_result:** none. It was gated out at Phase 3, so no Phase 4 validation ran.
+- **Suggested fix:** none recorded.
+
+## F001 — DISPROVEN (disproven)
+
+- **Disposition:** disproven
+- **Score:** score_phase3 = 3, score_phase4 = 5 (score_history: phase_3 = 3, phase_4 = 5)
+- **Confirmed strength:** null
+- **Lane / impact_type:** deep / correctness
+- **Actionability:** report_only (is_actionable = false)
+- **Origin:** introduced_by_pr (origin_confidence: low)
+- **Sources:** L1-diff-local, L2-structural (source_families: diff-family, structural-family). Phase 2 dedup merged a duplicate L2 candidate (F002, a shared in-memory sqlite connection / test-isolation concern) into this finding.
+- **current_state:** open
+- **File / lines:** `tests/test_shop.py` lines 16–19
+- **Claim:** The new test assumes list_orders returns row tuples with the order id at index 0 and that create_order returns that same id. It also assumes no earlier orders exist for user 41, so shared DB state could make it fail or flake. Neither assumption can be checked from the diff.
+- **Reason (tool):** disproven by Phase 4
+- **Evidence / validation_result:** null. The tool persists validation_result only for confirmed findings. It reached Phase 4 because it had 2 source families, even though its Phase 3 score was only 3. The deep validator (Opus) then disproved it with a score of 5.
+- **Suggested fix:** none recorded.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests — adamsreview review
+
+review_id: `rev_01M4JT6ZSHGAP64N8MYS96QTX0` | review_dir: `/home/runner/.adams-reviews/local-_tmp_wt_pr-12-speed-up-tests/pr-12-speed-up-tests/rev_01M4JT6ZSHGAP64N8MYS96QTX0` | mode: local | trivial_mode: false
+
+Run notes from trace.md: Lenses L1, L3, L4 and L6 ran. L5 was skipped (user_facing=false) and L7 was skipped (ensemble_mode=false). L2 (structural, Opus) could not be dispatched because the Agent tool hit its concurrent-subagent limit and told the orchestrator not to retry, so L2 added no Phase 1 candidates. Phase 2 dedup merged three lens candidates (L1/L4/L6) into F001. Wave 2 seeded F002–F004 from F001&#x27;s related candidates, and all three were gated out at Phase 3. Phase 5 produced no cross-cutting groups. Sub-agent tokens: 160,810 across 12 invocations.
+
+Findings by disposition: confirmed_mechanical = 1, below_gate = 3.
+
+---
+
+## F001 — CONFIRMED (confirmed_mechanical, auto-fixable)
+
+- **Score:** score_phase3 = 88, score_phase4 = 92; confirmed_strength = strong
+- **Disposition:** confirmed_mechanical; is_actionable = true; actionability = auto_fixable
+- **Lane / impact:** validation_lane = deep; impact_type = correctness
+- **Origin:** introduced_by_pr (high)
+- **Sources:** L1-diff-local, L4-comments, L6-security (families: diff-family, policy-family, security-family)
+- **File:** `tests/test_shop.py:13-16`
+- **Claim:** The test no longer fails when Forbidden is not raised. Replacing assertRaises with try/except/pass means it passes even if get_order lets another user read the order, so the authorization check is untested.
+
+**Evidence (Phase 4 deep validator):**
+- Commit 919dbc4 (&quot;Make the forbidden-order test less flaky&quot;) replaces `with self.assertRaises(orders.Forbidden):` with `try: orders.get_order(oid, 2) except orders.Forbidden: pass`. Nothing asserts or calls self.fail() when no exception is raised.
+- If get_order(oid, 2) returns normally, the test passes, so it can no longer fail when the authorization check is missing.
+- The only authorization guard is shop/orders.py:24-25 (`if rows[0][1] != user_id: raise Forbidden(order_id)`). If you delete those lines, all 5 tests still pass on the PR branch. On main, test_other_user_is_forbidden fails with &quot;Forbidden not raised&quot;.
+- test_other_user_is_forbidden is the only test that exercises the Forbidden path. The other get_order calls in the tests are made as the owner.
+- shop/db.py:4 uses an in-memory sqlite database with autoincrement ids, so the test is deterministic and there is no flakiness to justify weakening it.
+- With try/except, an unexpected NotFound or other exception still fails the test. The only coverage lost is the no-raise case, which is exactly the cross-user read (IDOR) regression this test exists to catch.
+
+**Blast radius:**
+- Consumers: shop/orders.py:20-26 get_order; tests/test_shop.py:7-9 and 28-31 (owner-only paths); README `python -m unittest`.
+- Parallel paths: tests/test_shop.py:23-26 still uses assertRaises correctly (the precedent to follow). The NotFound branch at shop/orders.py:22-23 is untested.
+- Invariants at stake: get_order must raise Forbidden for a non-owner, and any negative-path test must fail when the expected exception is not raised.
+
+**Suggested fix:** Put back `with self.assertRaises(orders.Forbidden):` around `orders.get_order(oid, 2)`, as in the precedent at tests/test_shop.py:25 and in the original on main.
+- Files to modify: `tests/test_shop.py`. Replace lines 13-16 (try/except Forbidden/pass) with `with self.assertRaises(orders.Forbidden):` followed by an indented `orders.get_order(oid, 2)`, exactly as on main.
+- Verification: grep for `assertRaises(orders.Forbidden)` in tests/test_shop.py, then run `python3 -m unittest` and expect 5 tests OK. As a mutation check, comment out shop/orders.py:24-25 and confirm that test_other_user_is_forbidden fails.
+- Edge cases to preserve: NotFound or any other exception must still fail the test, and test_owner_reads_own_order must still pass.
+
+**Auto-fix hint (Phase 5.5, confidence high, second opinion: concurs):** In tests/test_shop.py lines 13-16 (test_other_user_is_forbidden), replace the try/except Forbidden/pass block with `with self.assertRaises(orders.Forbidden):` wrapping `orders.get_order(oid, 2)`, matching the pattern at line 25 and the original on main. Don&#x27;t add other changes. If flakiness was the real concern, it is not present here because the in-memory sqlite ids are deterministic.
+- Alternative B, &quot;Keep try/except but fail on no raise&quot;: keep the try block and add `else: self.fail(&#x27;Forbidden not raised&#x27;)`.
+
+---
+
+## F004 — BELOW GATE (below_gate)
+
+- **Score:** score_phase3 = 22; score_phase4 = null
+- **Disposition:** below_gate; is_actionable = false; actionability = auto_fixable (as seeded)
+- **Lane / impact:** validation_lane = deep; impact_type = correctness
+- **Origin:** introduced_by_pr (medium), as seeded for a Wave 2 candidate
+- **Sources:** L2-structural (structural-family); related_parent_finding_id = F001 (Wave 2 related candidate)
+- **File:** `shop/db.py:4-6`
+- **Claim:** Tests share one module-level in-memory sqlite connection with no per-test reset, so state leaks between tests (e.g. stock SKUs and orders accumulate). This may be the actual &quot;flakiness&quot; the PR tried to address.
+- **Reason:** below validation gate (score 22). Phase 3 scorer: the shared module-level connection is real but predates the PR and is not changed by it. Leaked state is plausible, though the tests use fresh ids, and calling it the cause of the &quot;flakiness&quot; is speculative.
+- **Suggested fix:** none (not validated).
+
+## F003 — BELOW GATE (below_gate)
+
+- **Score:** score_phase3 = 15; score_phase4 = null
+- **Disposition:** below_gate; is_actionable = false; actionability = auto_fixable (as seeded)
+- **Lane / impact:** validation_lane = deep; impact_type = correctness
+- **Origin:** introduced_by_pr (medium), as seeded
+- **Sources:** L2-structural (structural-family); related_parent_finding_id = F001
+- **File:**</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>pr-10 is done and complete: it has 2 confirmed findings for the inverted stock check (`in_stock &gt; qty`) at `shop/stock.py:20`. Only pr-07 is still running.</pre>
+</main></body></html>

@@ -1,0 +1,280 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>amElnagdy/guard-skills: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>amElnagdy/guard-skills: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit ffa26036b7b5.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 1.4 findings per pull request; 2 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination
+
+Tool: guard-skills — `clean-code-guard` (review mode, `references/review-checklist.md`) on production code; `docs-guard` (review mode) on the added docstring.
+Scope: `git diff main...pr-01-list-pagination` (shop/orders.py)
+
+## clean-code-guard
+
+### Summary
+Needs work. The page-to-offset math is wrong, so the first page of orders can never be returned.
+Counts: 1 critical, 1 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/orders.py:31` — correctness / off-by-one (AI failure mode 13, plausible-but-wrong code; boundary cases not enumerated, imperative 20): `offset = page * PAGE_SIZE` with pages starting at 1 means `page=1` (the default) skips the first 20 orders, and the first page is unreachable. Before this change `list_orders(user_id)` returned the user&#x27;s orders; now a user with ≤20 orders gets `[]`. Fix: `offset = (page - 1) * PAGE_SIZE` (and reject `page &lt; 1`).
+
+### Important findings
+- **Important** — `shop/orders.py:29` — missing tests: no test covers the new `page` parameter (page 1, page 2, page past the end). Fix: add tests for the first page and for the page boundary.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): off-by-one in offset (critical, above)
+
+## docs-guard
+
+1 claim checked, 1 contradicted by the code.
+
+- **Rule 3 violation (Must fix)** in `shop/orders.py:30`
+  - Claim: &quot;One page of the user&#x27;s orders; pages start at 1.&quot;
+  - Reality: `shop/orders.py:31` computes `offset = page * PAGE_SIZE`, so page 1 returns the *second* block of 20 rows; the code behaves as if pages start at 0.
+  - Fix: fix the offset to `(page - 1) * PAGE_SIZE` so the docstring holds (flagged to the author rather than silently changing the docstring).
+
+Verdict: fix first.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper
+
+Tool: guard-skills — `clean-code-guard` (review mode, refactor review per `references/review-checklist.md` pre-flight).
+Scope: `git diff main...pr-02-extract-row-helper` (shop/orders.py)
+
+### Summary
+Ship. Pure refactor: `get_order` keeps the same query, the same `NotFound`/`Forbidden` raises in the same order, and the same return value — observable behavior is preserved.
+Counts: 0 critical, 0 important, 1 nit
+
+### Nits
+- **Nit** — `shop/orders.py:20` — generic name (Section A / imperative 1): `_row` does not say which row or what it does (`def _row(order_id: int) -&gt; tuple`). Fix: rename to `_fetch_order_row` (or `_order_row`).
+
+### Coverage
+- Section A (naming &amp; functions): `_row` generic name (nit)
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): clean — behavior preserved
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note
+
+Tool: guard-skills — `clean-code-guard` (review mode) on production code; `docs-guard` (review mode) on the added docstring.
+Scope: `git diff main...pr-03-search-by-note` (shop/orders.py)
+
+## clean-code-guard
+
+### Summary
+Do not merge. The new query is built by string interpolation of caller input — SQL injection.
+Counts: 1 critical, 1 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/orders.py:31` — security / parameterized queries (the &quot;floor&quot;: security measures, parameterized queries; trust-boundary validation, imperative 16): `sql = f&quot;... where user_id = {user_id} and note like &#x27;%{text}%&#x27; ...&quot;` puts `text` straight into SQL. A search text of `&#x27; or 1=1 --` returns every user&#x27;s orders (bypassing the per-user filter that `get_order` enforces with `Forbidden`), and it breaks on any note text containing `&#x27;`. It also departs from the module&#x27;s existing style, where every other query uses `?` placeholders (imperative 6). Fix: `db.query(&quot;select id, status, total_cents from orders where user_id = ? and note like ? order by id&quot;, (user_id, f&quot;%{text}%&quot;))`, escaping `%`/`_` in `text` with an `escape` clause if literal matching is required.
+
+### Important findings
+- **Important** — `shop/orders.py:29` — missing tests: no test for `search_orders` (match, no match, and another user&#x27;s orders not returned). Fix: add those tests, including one with a quote character in `text`.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): f-string SQL inconsistent with the file&#x27;s placeholder style (folded into critical)
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): SQL injection (critical)
+
+## docs-guard
+
+1 claim checked (&quot;Orders of this user whose note contains `text`&quot;), 0 false as written for benign input; the injection above lets the function return orders that are not &quot;of this user&quot; — tracked under the clean-code-guard critical finding. Docstring otherwise clean.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging
+
+Tool: guard-skills — `clean-code-guard` (review mode, `references/review-checklist.md`).
+Scope: `git diff main...pr-04-payment-logging` (shop/payments.py)
+
+### Summary
+Do not merge. The new log line writes the card token to the application log.
+Counts: 1 critical, 0 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/payments.py:27` — security / secret handling (the &quot;floor&quot;: security measures — secret handling): `log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)` puts a payment credential into logs, where anyone with log access (support, log aggregation) can read and reuse it. Fix: drop `card_token` from the message — `log.info(&quot;capturing order %s amount %s&quot;, order_id, amount_cents)` — or log only a non-reversible reference (e.g. last 4 characters) if support truly needs it.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): card token logged (critical)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types
+
+Tool: guard-skills — `docs-guard` (review mode, `references/review-checklist.md`, `references/docstrings.md`); `clean-code-guard` review checklist also walked (no code logic changed).
+Scope: `git diff main...pr-05-docstrings-and-types` (shop/stock.py, one docstring added at line 10)
+
+No findings.
+
+docs-guard: 1 claim checked, 0 false, 0 unverifiable. The docstring on `set_stock` (&quot;Set how many units of `sku` can be reserved, replacing any earlier value.&quot;) matches the code: `insert or replace` at `shop/stock.py:11` replaces the earlier value, and `reserve` (`shop/stock.py:19-20`) checks against this `available` count. It adds the replace semantics the signature cannot express, so it passes the paraphrase test. Verdict: publish.
+
+clean-code-guard: all sections clean.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order
+
+Tool: guard-skills — `clean-code-guard` (review mode) on production code; `docs-guard` (review mode) on the added docstring.
+Scope: `git diff main...pr-06-cancel-order` (shop/orders.py)
+
+## clean-code-guard
+
+### Summary
+Do not merge. `cancel_order` takes `user_id` but never checks it, so any user can cancel any other user&#x27;s order.
+Counts: 1 critical, 2 important, 1 nit
+
+### Critical findings
+- **Critical** — `shop/orders.py:29` (lookup at 31–33) — security / missing authorization (the &quot;floor&quot;: authorization): the `user_id` parameter is unused; the query `select status from orders where id = ?` never compares the owner, unlike `get_order` which raises `Forbidden` (`shop/orders.py:24-25`). User 2 can cancel user 1&#x27;s order. Fix: load the order with `get_order(order_id, user_id)` (raises `NotFound`/`Forbidden`) and check the status on that row.
+
+### Important findings
+- **Important** — `shop/orders.py:31-33` — duplicated logic instead of reuse (AI failure mode 5 / DRY): re-implements the &quot;fetch order row or raise `NotFound`&quot; lookup that `get_order` already does — and drops its ownership check in the copy (failure mode 13, copy-from-similar). Fix: call `get_order(order_id, user_id)` and read `row[2]` for the status.
+- **Important** — `shop/orders.py:29` — missing tests: no test for cancel (unpaid order cancelled, paid order rejected, other user forbidden). Fix: add those tests.
+
+### Nits
+- **Nit** — `shop/orders.py:35` — inconsistency with the module&#x27;s error style (imperative 6): `raise ValueError(&quot;paid orders cannot be cancelled&quot;)` while the module defines domain exceptions (`NotFound`, `Forbidden`). Fix: add a domain exception (e.g. `AlreadyPaid`) or document `ValueError` in the docstring.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): `ValueError` vs module&#x27;s domain exceptions (nit)
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): duplicated order lookup (important)
+- Section E (AI failure modes): unused `user_id` / missing ownership check (critical); copy of lookup logic (important)
+
+## docs-guard
+
+1 claim checked (&quot;Cancel an order that has not been paid.&quot;), 0 false. Docstring does not state the error behavior (`NotFound`, `ValueError` for paid orders), which `references/docstrings.md` asks for; no separate finding beyond the nit above.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry
+
+Tool: guard-skills — `clean-code-guard` (review mode, `references/review-checklist.md`).
+Scope: `git diff main...pr-07-payment-retry` (shop/payments.py)
+
+### Summary
+Do not merge. The retry loop never advances, so a persistent gateway failure hangs forever, and an exhausted retry would still mark the order paid.
+Counts: 2 critical, 1 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/payments.py:30-36` — correctness / infinite loop (AI failure mode 13, plausible-but-wrong code): `attempt` is set to 1 and never incremented, so `while attempt &lt;= MAX_ATTEMPTS` loops forever whenever `capture` keeps raising `PaymentError` (e.g. gateway down), logging &quot;attempt 1&quot; each time. Fix: `for attempt in range(1, MAX_ATTEMPTS + 1):` (or `attempt += 1` in the `except` branch).
+- **Critical** — `shop/payments.py:37` — swallowed error / false success (AI failure modes 1 and 12): once the loop is bounded, falling out of it after the last failed attempt still runs `update orders set status = &#x27;paid&#x27;`, so an uncaptured order is marked paid and `PaymentError` never reaches the caller. Fix: after the final failed attempt re-raise the `PaymentError` (e.g. `for … else: raise`) so the status update only runs after a successful capture.
+
+### Important findings
+- **Important** — `shop/payments.py:29` — missing tests: no test for retry behavior (succeeds after 1–2 failures; raises and leaves order unpaid after 3). `Gateway.fail` already supports this. Fix: add those tests.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): infinite loop (critical); order marked paid after exhausted retries (critical)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order
+
+Tool: guard-skills — `clean-code-guard` (review mode) on shop/orders.py; `test-guard` on tests/test_shop.py.
+Scope: `git diff main...pr-08-validate-create-order`
+
+## clean-code-guard
+
+### Summary
+Ship. Input validation at the order-creation boundary is appropriate (imperative 16) and messages are specific.
+Counts: 0 critical, 1 important, 0 nits
+
+### Important findings
+- **Important** — `shop/orders.py:21-22` — missing tests: the new note-length rule (`if len(note) &gt; MAX_NOTE: raise ValueError(...)`) has no test; only the total check is tested. Fix: add a test that a 501-character note is rejected (and 500 is accepted).
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): clean
+
+## test-guard
+
+No violations in `tests/test_shop.py::test_create_order_rejects_non_positive_total` — tests behavior through the public API, no mocks, scenario-style name.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors
+
+Tool: guard-skills — `clean-code-guard` (review mode, `references/review-checklist.md`).
+Scope: `git diff main...pr-09-capture-errors` (shop/payments.py)
+
+### Summary
+Do not merge. Gateway failures are silently swallowed and the order is marked paid without money being captured.
+Counts: 1 critical, 0 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/payments.py:29-31` — swallowed exception / false success (AI failure mode 1, catch-all error handling; imperative 15; mode 12, declaring success): `except Exception: pass` catches every error from `gateway.capture` (including `PaymentError(&quot;gateway timeout&quot;)` and programming errors), then line 31 runs `update orders set status = &#x27;paid&#x27;` and logs &quot;order paid&quot;. A failed capture becomes a paid order — lost revenue, and the caller cannot tell. Fix: remove the `try/except`; if checkout must not crash, catch `PaymentError` specifically at the checkout caller, leave the order unpaid, and surface the failure.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): catch-all swallow + order marked paid (critical)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check
+
+Tool: guard-skills — `clean-code-guard` (review mode, refactor review per `references/review-checklist.md` pre-flight).
+Scope: `git diff main...pr-10-reserve-check` (shop/stock.py)
+
+### Summary
+Do not merge. Presented as a tidy-up, but the comparison is inverted — an observable behavior change.
+Counts: 1 critical, 0 important, 0 nits
+
+### Critical findings
+- **Critical** — `shop/stock.py:20` — behavior change in a refactor / inverted condition (imperative 24; AI failure mode 13): original `if available(sku) &lt; qty: raise OutOfStock` became `if in_stock &gt; qty: raise OutOfStock`. Now reserving 2 of 5 raises `OutOfStock`, while reserving 2 of 1 succeeds and drives stock negative (oversell). The existing `test_reserve_reduces_stock` and `test_reserve_more_than_available_fails` would both fail. Fix: `if in_stock &lt; qty: raise OutOfStock(sku)`.
+
+### Coverage
+- Section A (naming &amp; functions): clean
+- Section B (comments &amp; formatting): clean
+- Section C (SOLID): clean
+- Section D (DRY/KISS/YAGNI): clean
+- Section E (AI failure modes): inverted stock check (critical)
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders
+
+Tool: guard-skills — `test-guard` (nine rules, `references/pytest.md` for Python), on tests/test_shop.py.
+Scope: `git diff main...pr-11-test-list-orders`
+
+No findings.
+
+`tests/test_shop.py::test_list_orders_returns_only_own_orders` asserts observable behavior (only the caller&#x27;s order IDs are returned), uses the real in-memory DB with no mocks, has a scenario-style name, and catches a bug no other test catches (cross-user leakage in `list_orders`).
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests
+
+Tool: guard-skills — `test-guard` (nine rules, `references/pytest.md` for Python), on tests/test_shop.py.
+Scope: `git diff main...pr-12-speed-up-tests`
+
+## tests/test_shop.py
+
+**Rule 4 violation** in `tests/test_shop.py::test_other_user_is_forbidden` (lines 13–16) — severity: Should fix (per test-guard severity guide for Rule 4)
+- What: replacing `with self.assertRaises(orders.Forbidden):` by `try: orders.get_order(oid, 2) except orders.Forbidden: pass` means the test passes whether or not `Forbidden` is raised — if `get_order` stopped checking ownership and returned another user&#x27;s order, this test would still pass, so it no longer catches the authorization bug it existed for. &quot;Flakiness&quot; is not addressed; the assertion was simply removed.
+- Fix: restore `with self.assertRaises(orders.Forbidden): orders.get_order(oid, 2)` (or add `self.fail(...)` after the call inside the `try`).
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches and wrote one report per branch to `~/work/output/`.
+
+The installed tool is **guard-skills**: a set of instruction-only skills (no CLI, MCP server or LLM key). There was nothing to execute, so I followed each skill&#x27;s review-mode workflow on `git diff main...&lt;branch&gt;`. That means I did the review myself, by the skill&#x27;s checklist:
+- **Production code:** `clean-code-guard`, rated Critical / Important / Nit.
+- **Test code:** `test-guard`, rated by its rule numbers and its Must fix / Should fix scale.
+- **Added docstrings:** `docs-guard`.
+
+| Branch | Findings |
+|---|---|
+| pr-01 | **Critical** `orders.py:31`: `page * PAGE_SIZE` skips the first page. docs-guard Rule 3, Must fix, `:30`: the docstring says pages start at 1, but the code doesn&#x27;t. Important: no tests. |
+| pr-02 | Nit `orders.py:20`: the helper name `_row` doesn&#x27;t say what it is. The refactor keeps behaviour the same. |
+| pr-03 | **Critical** `orders.py:31`: SQL injection through an f-string query. Important: no tests. |
+| pr-04 | **Critical** `payments.py:27`: the card token is written to the log. |
+| pr-05 | No findings. |
+| pr-06 | **Critical** `orders.py:29`: `user_id` is never checked, so anyone can cancel any order. Important: duplicates the lookup in `get_order`; no tests. Nit: raises `ValueError` instead of the module&#x27;s own exceptions. |
+| pr-07 | **Critical** `payments.py:30-36`: `attempt` never goes up, so the retry loops forever. **Critical** `:37`: after the last failed retry the order is still marked paid. Important: no tests. |
+| pr-08 | Important `orders.py:21-22`: the new note-length check has no test. The new test itself is clean. |
+| pr-09 | **Critical** `payments.py:29-31`: `except Exception: pass` hides the failure and the order is marked paid anyway. |
+| pr-10 | **Critical** `stock.py:20`: the stock check is reversed. Valid reservations fail and overselling is allowed. |
+| pr-11 | No findings. |
+| pr-12 | test-guard Rule 4, Should fix, `tests/test_shop.py:13-16`: the forbidden-order test now passes even when `Forbidden` isn&#x27;t raised. |
+
+The &quot;no tests&quot; items come from the clean-code-guard checklist, which says to add such a finding rather than run the code. I didn&#x27;t run the test suite, change any code or commit anything.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

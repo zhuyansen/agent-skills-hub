@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>alibaba/open-code-review: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>alibaba/open-code-review: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by gpt-6-astra. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 357c3f09a264.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 7 of 8 planted defects</b>; 0.6 findings per pull request; 7 min for the set.</p><p>It skipped the two pull requests that only change tests, so the weakened test went unreviewed.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-01-list-pagination`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [bug] `shop/orders.py:31-33`
+
+`page` is documented as 1-based, but this computes page 1&#x27;s offset as 20, so the first page skips the first 20 orders and page 2 starts at 40. Subtract one before multiplying (and consider validating that `page &gt;= 1`).
+
+Existing code:
+```
+    offset = page * PAGE_SIZE
+    return db.query(&quot;select id, status, total_cents from orders where user_id = ? order by id limit ? offset ?&quot;,
+                    (user_id, PAGE_SIZE, offset))
+```
+
+Suggested code:
+```
+    offset = (page - 1) * PAGE_SIZE
+    return db.query(&quot;select id, status, total_cents from orders where user_id = ? order by id limit ? offset ?&quot;,
+                    (user_id, PAGE_SIZE, offset))
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-02-extract-row-helper`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-03-search-by-note`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [security] `shop/orders.py:31-32`
+
+This interpolates both `user_id` and the caller-provided `text` directly into SQL. A note such as `%&#x27; OR 1=1 --` can bypass the user filter and expose other users&#x27; orders (and other SQL syntax can cause execution errors or worse). Use placeholders for both values and pass the wildcard pattern as a parameter, e.g. `where user_id = ? and note like ?`, `(user_id, f&quot;%{text}%&quot;)`.
+
+Existing code:
+```
+    sql = f&quot;select id, status, total_cents from orders where user_id = {user_id} and note like &#x27;%{text}%&#x27; order by id&quot;
+    return db.query(sql)
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-04-payment-logging`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [security] `shop/payments.py:27`
+
+This logs the full `card_token`, which is a payment credential and may allow replay or otherwise expose sensitive customer data in application logs. Do not log the token; if support needs correlation, log a non-sensitive request/payment ID or a carefully masked/irreversible representation instead.
+
+Existing code:
+```
+    log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-05-docstrings-and-types`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-06-cancel-order`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [security] `shop/orders.py:31-36`
+
+The `user_id` argument is never used, so any caller who knows an order ID can cancel another user&#x27;s unpaid order. This should enforce ownership (for example, load via `get_order(order_id, user_id)` or include `user_id` in the lookup/update) before changing the status.
+
+Existing code:
+```
+    rows = db.query(&quot;select status from orders where id = ?&quot;, (order_id,))
+    if not rows:
+        raise NotFound(order_id)
+    if rows[0][0] == &quot;paid&quot;:
+        raise ValueError(&quot;paid orders cannot be cancelled&quot;)
+    db.execute(&quot;update orders set status = &#x27;cancelled&#x27; where id = ?&quot;, (order_id,))
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-07-payment-retry`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [bug] `shop/payments.py:35-36`
+
+`attempt` is never incremented, so any `PaymentError` causes an infinite retry loop and the order is never marked paid. Increment it after a failed attempt (or use a bounded `for` loop) so capture is attempted at most three times; after the final failure, re-raise/return instead of executing the paid update.
+
+Existing code:
+```
+        except PaymentError:
+            log.warning(&quot;capture failed for order %s, attempt %s&quot;, order_id, attempt)
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-08-validate-create-order`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+No findings.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-09-capture-errors`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [bug] `shop/payments.py:27-31`
+
+A capture failure is swallowed, but execution continues to mark the order as `paid` and logs successful payment. This can leave orders paid without a gateway charge (and silently loses the failure); handle the error by recording a non-paid/failed or retryable state and logging it, while allowing checkout to continue.
+
+Existing code:
+```
+    try:
+        gateway.capture(order_id, amount_cents, card_token)
+    except Exception:
+        pass
+    db.execute(&quot;update orders set status = &#x27;paid&#x27; where id = ?&quot;, (order_id,))
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-10-reserve-check`, model gpt-6-astra
+Status: complete — files reviewed: 1, failed: 0
+
+## 1. [high] [bug] `shop/stock.py:19-21`
+
+The comparison is inverted: this raises `OutOfStock` when inventory exceeds the requested quantity, while allowing reservations that exceed available stock. Please retain the insufficient-stock check (`in_stock &lt; qty`) so valid reservations succeed and over-reservations are rejected.
+
+Existing code:
+```
+    in_stock = available(sku)
+    if in_stock &gt; qty:
+        raise OutOfStock(sku)
+```
+
+Suggested code:
+```
+    in_stock = available(sku)
+    if in_stock &lt; qty:
+        raise OutOfStock(sku)
+```
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-11-test-list-orders`, model gpt-6-astra
+Status: skipped — &quot;Review skipped: no items were selected.&quot;
+
+No findings.
+
+Note: the only changed file in this branch, `tests/test_shop.py`, is excluded from review by ocr&#x27;s built-in default path rules (`ocr review --preview` reports &quot;Excluded from review: [M] tests/test_shop.py (default_path)&quot;). So the tool never sent this diff to the model. &quot;No findings&quot; here means it was not reviewed, not that it was reviewed and found clean.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests
+
+Tool: open-code-review (ocr) v1.12.13, `ocr review --from main --to pr-12-speed-up-tests`, model gpt-6-astra
+Status: skipped — &quot;Review skipped: no items were selected.&quot;
+
+No findings.
+
+Note: the only changed file in this branch, `tests/test_shop.py`, is excluded from review by ocr&#x27;s built-in default path rules (`ocr review --preview` reports &quot;Excluded from review: [M] tests/test_shop.py (default_path)&quot;). So the tool never sent this diff to the model. &quot;No findings&quot; here means it was not reviewed, not that it was reviewed and found clean.
+</pre></details></td><td><span class="no">missed</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches with open-code-review (`ocr` v1.12.13) and wrote one file per branch to `~/work/output/&lt;branch&gt;.md`. Two of the &quot;No findings&quot; results come from branches the tool never actually reviewed (pr-11 and pr-12, explained below).
+
+**Setup:** `ocr` wasn&#x27;t on the PATH, and there&#x27;s no Go toolchain to build it from `~/src`. So I installed the npm package into `~/.local`, which is the skill&#x27;s documented install route. I pointed it at your OpenAI-compatible endpoint with model gpt-6-astra, and the connection test passed. Each branch was run as `ocr review --audience agent --from main --to &lt;branch&gt; -b &quot;&lt;context&gt;&quot;` with JSON output. Every run exited with code 0.
+
+I included every finding the tool returned. The skill says to drop low-severity items, but you asked for all of them; in practice every finding came back as high, so nothing would have been dropped anyway.
+
+| Branch | Finding |
+|---|---|
+| pr-01-list-pagination | high/bug, `shop/orders.py:31-33`: the page offset is off by one, so page 1 skips the first 20 orders |
+| pr-02-extract-row-helper | No findings |
+| pr-03-search-by-note | high/security, `shop/orders.py:31-32`: SQL injection, because `user_id` and the note text are put straight into the query |
+| pr-04-payment-logging | high/security, `shop/payments.py:27`: the full `card_token` is written to the log |
+| pr-05-docstrings-and-types | No findings |
+| pr-06-cancel-order | high/security, `shop/orders.py:31-36`: `user_id` is never used, so any user can cancel someone else&#x27;s order |
+| pr-07-payment-retry | high/bug, `shop/payments.py:35-36`: `attempt` is never incremented, so a failed capture retries forever |
+| pr-08-validate-create-order | No findings |
+| pr-09-capture-errors | high/bug, `shop/payments.py:27-31`: a capture error is swallowed and the order is still marked paid |
+| pr-10-reserve-check | high/bug, `shop/stock.py:19-21`: the stock check is inverted |
+| pr-11-test-list-orders | No findings (not reviewed) |
+| pr-12-speed-up-tests | No findings (not reviewed) |
+
+**pr-11 and pr-12:** both branches only change `tests/test_shop.py`, and `ocr` skips test files by default. It reported &quot;Review skipped: no items were selected&quot;, so neither diff was sent to the model. Since you said to take the tool&#x27;s defaults, I didn&#x27;t override that. Both files say &quot;No findings.&quot; with a note explaining it.
+
+I didn&#x27;t change or commit anything in the repo; it&#x27;s still on `main` with a clean working tree.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

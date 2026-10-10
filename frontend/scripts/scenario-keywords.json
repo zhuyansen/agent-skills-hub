@@ -294,10 +294,22 @@
     "审查代码时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "No tool beat Claude Code with nothing installed. On 12 pull requests (8 with one planted defect, 4 clean) the control found all 8 in about a minute with no false alarm; 6 of 13 tools matched it and none did better. Simple defects are not where a review tool earns its place.",
+     "item_zh": "没有工具超过什么都不装的 Claude Code。12 个 PR（8 个各埋一个缺陷，4 个干净）上，对照组约一分钟找全 8 个、零误报；13 个工具里 6 个与它持平，没有更好的。简单缺陷不是审查工具体现价值的地方。"
+    },
+    {
+     "item": "The tools differ in noise and time, not detection: from 0.5 to 7.2 findings per pull request, and from 1 to 30 minutes for the same twelve.",
+     "item_zh": "工具之间差的是噪音和耗时，不是检出：每个 PR 的发现数从 0.5 到 7.2 条，同样 12 个 PR 耗时从 1 分钟到 30 分钟。"
+    },
+    {
+     "item": "The defect missed most was not in the code under review: 4 of 13 passed a pull request that weakened a test's assertion. One tool ignores test files by design, one skipped test-only changes, one looks only at design decay.",
+     "item_zh": "漏得最多的缺陷不在业务代码里：13 个里有 4 个放过了削弱测试断言的 PR。一个按设计不看测试文件，一个跳过了只改测试的改动，一个只查设计劣化。"
+    },
     {
      "item": "Current tools find too little on real pull requests and do best on functional bugs; combining several reviews raised F1 by up to 43.67%. The benchmark's LLM judge agreed with people about 90% of the time (SWR-Bench, 1,000 verified PRs).",
      "item_zh": "在真实 PR 上，现有工具找到的问题偏少，最擅长功能性 bug；合并多次审查让 F1 最多提高 43.67%。基准用的 LLM 评审和人工判断约 90% 一致（SWR-Bench，1,000 个核验过的 PR）。"
@@ -317,6 +329,10 @@
    ],
    "did": [
     {
+     "item": "Ran 16 of the tools on the same 12 pull requests in a throwaway sandbox, with Claude Code and no tool as the control, and marked every review against the planted defect (gpt-6-astra, three passes). Results are in the test section above and on each card.",
+     "item_zh": "在用完即删的沙箱里让 16 个工具审同样的 12 个 PR，并用不装工具的 Claude Code 做对照，逐份对照埋入的缺陷打分（gpt-6-astra，三遍）。结果在上面的实测区和每张卡片上。"
+    },
+    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, does it review code rather than write it.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、是审代码还是写代码。"
     },
@@ -335,8 +351,8 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these reviewers end to end. The plan is SWR-Bench's design: the same pull requests, some with known problems and some clean, so each tool gets two numbers, problems found and false alarms.",
-     "item_zh": "我们还没有端到端实跑这些审查工具。计划照 SWR-Bench 的做法：同一批 PR，有的带已知问题、有的是干净的，每个工具得到两个数：找到的问题和误报。"
+     "item": "The test set is too easy to rank the best tools: the control scored full marks, so a tie at the top says nothing about harder reviews (defects that span files, or that need the business rule to see). Tools that bring their own model reviewed with gpt-6-astra and the skills with Claude Opus 5.5, so the two groups are not a like-for-like comparison. One run per tool, on one small Python service.",
+     "item_zh": "这套题太容易，排不出头部名次：对照组拿了满分，所以并列第一不能说明更难的审查（跨文件的缺陷、要懂业务规则才看得出的问题）谁更强。自带模型的工具用 gpt-6-astra 审，skill 用 Claude Opus 5.5 审，两组不是同等条件的比较。每个工具只跑了一次，对象是一个小型 Python 服务。"
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",

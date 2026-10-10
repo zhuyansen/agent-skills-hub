@@ -1,0 +1,339 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>hyhmrright/brooks-lint: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>hyhmrright/brooks-lint: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit b6ef8a19df6e.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 5 of 8 planted defects</b>; 0.9 findings per pull request; 3 min for the set.</p><p>Reviews for design decay (coupling, complexity), not security: the logged card token and the weakened test scored 100/100.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, PR &quot;Add pagination to list_orders&quot; (1 file: shop/orders.py, +5/-2 lines; small-PR calibration: Steps 1–3, Step 6b since a new parameter/variable was introduced, Step 7; Step 6a skipped because imports did not change)
+**Health Score:** 95/100
+
+A small, well-scoped change, but it adds new paging behavior with no tests, and that is exactly how an off-by-one that skips the whole first page gets through.
+
+---
+
+## Findings
+
+### 🟡 Warning
+
+**Coverage Illusion — New pagination behavior is untested, and the untested path skips the first page**
+Location: shop/orders.py:31
+Symptom: `list_orders` gains a public `page` parameter (default 1, docstring &quot;pages start at 1&quot;) and now applies `limit ? offset ?`, but the diff includes no test changes. tests/test_shop.py has no test that calls `list_orders`. The new logic computes `offset = page * PAGE_SIZE`, so the default `page=1` uses offset 20 and returns rows 21–40. The user&#x27;s first 20 orders can never be fetched, and a user with 20 or fewer orders gets an empty list.
+Source: Feathers — Working Effectively with Legacy Code, Ch. 1 (code without tests is legacy code; there is no sensing for the changed behavior)
+Consequence: Every existing caller of `list_orders(user_id)` silently loses its first page of results the moment this merges. No test fails, so the regression shows up in production as &quot;missing orders&quot;. With no tests pinning the paging contract, later changes to the paging rules (page size, 0- vs 1-based) are also unprotected.
+Remedy: Change line 31 to `offset = (page - 1) * PAGE_SIZE`, and either reject `page &lt; 1` or clamp it. Add tests to tests/test_shop.py, for example `test_list_orders_default_page_returns_first_page`, `test_list_orders_page_two_returns_next_page_size_rows` (insert PAGE_SIZE + 1 orders and check that page 2 holds exactly 1), and `test_list_orders_only_returns_own_orders`.
+
+---
+
+## Summary
+
+The most important action is to fix the offset calculation on line 31 and add tests that pin the 1-based paging contract before merging. As written, the default call returns the second page. Apart from that, the change is small and cohesive: no change propagation, cognitive overload, duplication, accidental complexity, or domain-naming issues were found (`PAGE_SIZE` was already a named constant on main).
+
+_History Tracking skipped (no files may be written into the repository). Post-Report Triage skipped (non-interactive run). No `.brooks-lint.yaml` found, so defaults were applied._
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main — `pr-02-extract-row-helper` (&quot;Extract the order row lookup into a helper&quot;), 1 file: `shop/orders.py` (+8/−3). Small PR (&lt; 50 lines): Steps 1–3 plus Step 6b (a new function was introduced); Step 6a skipped (no import changes); Step 7 Quick Test Check run. No `.brooks-lint.yaml` found — defaults applied.
+**Health Score:** 99/100
+
+A clean, behavior-preserving extract-function refactor whose only issue is a generic helper name that hides what the helper does and, more importantly, what it does not do.
+
+---
+
+## Findings
+
+### 🟢 Suggestion
+
+**Cognitive Overload — Helper name `_row` does not say what it looks up or that it skips the ownership check**
+Location: shop/orders.py:20
+Symptom: The new helper `_row(order_id: int) -&gt; tuple` fetches an order by id and raises `NotFound`, but its name is the generic persistence word &quot;row&quot;. A reader has to open the body to learn that it is an *order* lookup, that it raises `NotFound`, and that — unlike `get_order` — it performs no `Forbidden` ownership check (that check now lives only in `get_order`, lines 29–30).
+Source: McConnell — Code Complete, Ch. 11: The Power of Variable Names; Evans — Domain-Driven Design, Ubiquitous Language
+Consequence: The extraction creates a reusable, unscoped lookup inside the orders module. Because its name gives no hint that it bypasses authorization, a future caller in this module (e.g., a new cancel/update path) can reasonably reach for `_row` as &quot;the way to load an order&quot; and silently skip the user-ownership check that `get_order` enforces.
+Remedy: Rename the helper to say what it is and what it does not enforce — e.g., `_fetch_order_unchecked(order_id)` or `_load_order_row(order_id)` with a one-line docstring stating &quot;no ownership check; callers must authorize&quot; — so the authorization boundary is visible at every call site.
+
+---
+
+## Summary
+
+The PR is a small, focused refactor: one file, one reason to change, no new imports, no added nesting or parameters, and existing tests (`test_owner_reads_own_order`, `test_other_user_is_forbidden`) still cover both the found and forbidden paths of `get_order`, so the Quick Test Check yields no test findings. The only recommended action is to give `_row` an intention-revealing name that makes its lack of an ownership check explicit. History Tracking was skipped (no files may be written into the repository); Post-Report Triage was skipped (non-interactive run).
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, `pr-03-search-by-note` (&quot;Search a user&#x27;s orders by note text&quot;), 1 file: `shop/orders.py` (+6 lines). PR is under 50 lines, so per scope calibration the review covered Steps 1–3 and Step 6b (a new function was introduced). Step 6a was skipped because no imports changed. Step 7 (Quick Test Check) was run. No generated files. No `.brooks-lint.yaml` found, so defaults apply. History Tracking skipped (no files may be written to the repository). Post-Report Triage skipped (non-interactive).
+**Health Score:** 95/100
+
+A small, focused change that adds `search_orders` with no structural decay, but the new public behavior ships without any test.
+
+---
+
+## Findings
+
+### 🟡 Warning
+
+**Coverage Illusion — New `search_orders` behavior is untested**
+Location: shop/orders.py:29
+Symptom: The PR adds a new public function, `search_orders(user_id, text)` (shop/orders.py:29-32), which filters a user&#x27;s orders by a substring match on `note`. The diff contains no test changes, and `tests/test_shop.py` only covers `create_order`, `get_order`, and payments. Nothing checks that results are scoped to `user_id`, that the substring match works, or what happens with special input in `text` (quotes, `%`, `_`).
+Source: Michael Feathers — Working Effectively with Legacy Code, Ch. 1 (legacy code is code without tests)
+Consequence: The new query is built by string interpolation rather than the parameterized style used everywhere else in the module. Without a test, a regression in user scoping or in match semantics (for example, returning another user&#x27;s orders, or failing on a note that contains a quote) reaches production unnoticed. Later changes to the query cannot be made safely, because no test can detect a behavior change.
+Remedy: Add tests to `tests/test_shop.py` named for the scenario, such as `test_search_orders_matches_note_substring`, `test_search_orders_excludes_other_users_orders`, and `test_search_orders_handles_quote_in_text`. Create orders with known notes for two users and assert on the exact returned ids.
+
+---
+
+## Summary
+
+The most important action is to add tests for `search_orders` before merging, covering user scoping and inputs that contain quotes or wildcards. The change is otherwise small and cohesive: it touches one file, adds no imports, and its names match the existing order vocabulary. The trend is neutral.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, pr-04-payment-logging &quot;Log payment attempts for support&quot; (1 file: shop/payments.py, +1 line). PR is under 50 lines, so the review covered Steps 1–3. Step 6a was skipped because no imports changed. Step 6b was skipped because nothing was renamed or introduced. Step 7 Quick Test Check was run.
+**Health Score:** 100/100
+
+The one-line logging addition adds no visible decay risk to the design.
+
+---
+
+## Findings
+
+No findings.
+
+---
+
+## Summary
+
+Step 1: the change has one purpose (log payment attempts) and touches only `shop/payments.py`. Step 2 (Change Propagation): there are no cross-module edits. Step 3 (Cognitive Overload): `pay` is still 4 short, linear lines with no new parameters, nesting, or magic numbers. Step 7 (Quick Test Check): the change adds a diagnostic log line, not new public behavior. The existing `test_pay_marks_order_paid` still exercises `pay`, so this step produced no test finding. Config: no `.brooks-lint.yaml`, so defaults applied (balanced). History Tracking was skipped because no files may be written into the repository. Post-Report Triage was skipped because this is a non-interactive run.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main (1 file): shop/stock.py (+1 line, docstring only); PR &quot;Add docstrings and type hints to stock&quot;
+**Health Score:** 100/100
+
+This one-line docstring PR is accurate and safe to merge. The docstring correctly describes the `insert or replace` behavior of `set_stock`.
+
+---
+
+## Findings
+
+No findings.
+
+---
+
+## Summary
+
+The change adds one docstring to `set_stock` in shop/stock.py, and that docstring matches what the code does. It touches no logic, imports, names, or structure, so the review found no decay risk. Because the PR is under 50 lines, Steps 1-3 applied, and they found nothing. Step 6a was skipped because no imports changed, and Step 6b was skipped because nothing was renamed or introduced. Step 7 (Quick Test Check) was skipped because this is a documentation-only change. No `.brooks-lint.yaml` exists, so defaults applied. History Tracking was skipped because this was a read-only run and no files could be written to the repository. Post-Report Triage was skipped because the run was non-interactive.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch `pr-06-cancel-order` vs `main` — &quot;Let users cancel an order&quot; (1 file: `shop/orders.py`, +10 lines). Small PR (&lt; 50 lines): reviewed using Steps 1–3, Step 6b (a new function was introduced), and the Quick Test Check (Step 7). Step 6a skipped because no imports changed. No `.brooks-lint.yaml`, so defaults apply (balanced).
+**Health Score:** 79/100
+
+The feature is small and easy to read, but `cancel_order` copies the order lookup from `get_order` and leaves out the ownership check, so any user can cancel any unpaid order. The new behaviour also ships without tests.
+
+---
+
+## Findings
+
+### 🔴 Critical
+
+**Knowledge Duplication — Order lookup copied from `get_order` without the ownership check**
+Location: shop/orders.py:31
+Symptom: `cancel_order(order_id, user_id)` runs its own `select status from orders where id = ?` lookup and its own `NotFound` guard instead of reusing `get_order`. The copy leaves out the rule `get_order` enforces (`if rows[0][1] != user_id: raise Forbidden`). The `user_id` parameter is accepted but never used, so the function updates any order whose status is not `&quot;paid&quot;`, whoever owns it.
+Source: The Pragmatic Programmer — DRY (Don&#x27;t Repeat Yourself); Refactoring — Duplicate Code
+Consequence: The &quot;load an order on behalf of a user&quot; decision now lives in two places, and the copy has already drifted. Any authenticated user can cancel another user&#x27;s order (an authorization hole in production today). Any future change to the access rule, such as admin overrides or soft-deleted orders, must also be made in each copy, and a missed copy fails silently.
+Remedy: Build `cancel_order` on the single authorized lookup: call `order = get_order(order_id, user_id)` (which raises `NotFound`/`Forbidden`), then check `order[2]` for the status rule. Alternatively, extract a shared `_load_owned_order(order_id, user_id)` helper used by both functions. Also scope the UPDATE with `where id = ? and user_id = ?` as defence in depth.
+
+### 🟡 Warning
+
+**Coverage Illusion — New cancel behaviour is untested**
+Location: shop/orders.py:29
+Symptom: The PR adds a new public function, `cancel_order`, with three behaviours: not-found, rejecting paid orders, and the cancel transition. `tests/test_shop.py` is unchanged and has no test that calls `cancel_order`.
+Source: Working Effectively with Legacy Code — Ch. 1 (legacy code is code without tests)
+Consequence: Nothing checks the cancellation rules. The missing ownership check above would have been caught by a test modelled on the existing `test_other_user_is_forbidden`. Later edits to the status rules can regress silently.
+Remedy: Add tests such as `test_owner_cancels_unpaid_order` (status becomes `cancelled`), `test_other_user_cannot_cancel_order` (raises `Forbidden`), `test_paid_order_cannot_be_cancelled` and `test_cancel_missing_order_raises_not_found`.
+
+### 🟢 Suggestion
+
+**Knowledge Duplication — Order status values repeated as bare string literals across modules**
+Location: shop/orders.py:34
+Symptom: The new code compares against `&quot;paid&quot;` and writes `&#x27;cancelled&#x27;` as raw literals. The same `&#x27;paid&#x27;` value is written as a literal in `shop/payments.py:28`, and `&#x27;new&#x27;` appears in `create_order`. No shared definition of the order status set exists.
+Source: Code Complete — Ch. 12 (magic values); The Pragmatic Programmer — DRY
+Consequence: The order lifecycle is spread across SQL strings in several modules. Renaming a status or adding one (e.g. `refunded`) means finding every literal by hand, and a typo becomes a silent mismatch rather than an error.
+Remedy: Define the statuses once, for example as a `OrderStatus` enum or module constants in `shop/orders.py`, and use them both in `cancel_order` and in `payments.pay`.
+
+---
+
+## Summary
+
+The most important fix is to route `cancel_order` through the existing authorized lookup (`get_order`) so the ownership rule is enforced in one place, then add tests for the cancel paths, including the forbidden case. The change is otherwise small and well scoped. History Tracking (`.brooks-lint-history.json`) was skipped because writing to the repository is not permitted for this run, so no trend data is shown.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, `pr-07-payment-retry` (&quot;Retry a failed capture up to three times&quot;), 1 file: `shop/payments.py` (+10/-1). This is under 50 lines, so the review covered Steps 1–3, Step 6b (new names were added) and the Step 7 Quick Test Check. Step 6a was skipped because no imports changed.
+**Health Score:** 80/100
+
+The retry loop never increments its attempt counter. Any gateway failure that persists makes `pay()` spin forever, and nothing tests the new retry path.
+
+---
+
+## Findings
+
+### 🔴 Critical
+
+**Cognitive Overload — Hand-rolled retry loop never advances `attempt`, and exhausted retries fall through to &quot;paid&quot;**
+Location: shop/payments.py:31
+Symptom: `pay()` replaces a single `gateway.capture(...)` call with a manual `attempt = 1` / `while attempt &lt;= MAX_ATTEMPTS:` loop (lines 30–36). Nothing in the loop body increments `attempt`. The `except PaymentError:` branch only logs, so `attempt` stays at 1 and a gateway that keeps failing traps the loop forever. The loop also has no failure path after the last attempt. Once someone adds the increment, exhausting all attempts still falls through to `update orders set status = &#x27;paid&#x27;` (line 37) without a successful capture, because the last `PaymentError` is swallowed.
+Source: Code Complete — Ch. 16 Controlling Loops: use a counted loop when the iteration count is known, and keep loop control in one place. Also Ch. 8 Defensive Programming / error-handling discipline: keep error paths explicit and do not let a swallowed exception hide the failure mode.
+Consequence: Today, an outage or a declined card hangs the request or worker thread indefinitely while logging warnings forever. After the obvious one-line &quot;fix&quot;, orders will be marked paid without the money being captured. Both are production risks on the payment path, and readers cannot see either failure mode because the loop&#x27;s control logic is spread across a counter, a `while` condition and a `break`.
+Remedy: Replace the manual counter with a bounded loop that has an explicit exhausted path, for example `for attempt in range(1, MAX_ATTEMPTS + 1): try: gateway.capture(...); break; except PaymentError: log.warning(...)` followed by `else: raise PaymentError(...)`. Alternatively, re-raise on the last attempt. Either way, the `status = &#x27;paid&#x27;` update must only run after a capture succeeds.
+
+### 🟡 Warning
+
+**Coverage Illusion — New retry behavior has no tests**
+Location: tests/test_shop.py:26
+Symptom: The diff adds retry-on-`PaymentError` behavior to production code but changes no tests. The only payment test, `test_pay_marks_order_paid`, uses a fresh `Gateway()` with `fail = 0`, so it only runs the first-try success path. `Gateway.fail` exists to simulate failures, but no test sets it to cover &quot;fails once then succeeds&quot; or &quot;fails on every attempt&quot;.
+Source: Working Effectively with Legacy Code — Ch. 1 (code without tests is legacy code; changes need tests that sense the new behavior)
+Consequence: The infinite-loop defect above passes the existing suite. Future changes to the retry count or the exhausted-retries behavior will also go unchecked, so the payment path&#x27;s error handling stays happy-path only.
+Remedy: Add `test_pay_retries_after_transient_failure` (set `gateway.fail = 2`, assert the order is paid and `gateway.captured` has one entry). Also add `test_pay_gives_up_after_max_attempts` (set `gateway.fail = MAX_ATTEMPTS`, assert `PaymentError` is raised and the order status is not `paid`).
+
+---
+
+## Summary
+
+Fix the retry loop before merging. Make it a bounded loop that raises when it runs out of attempts, and only mark the order paid after a successful capture. Add tests for the transient-failure and exhausted-retries paths so the suite actually covers the new behavior. The change is small and in scope (no Change Propagation concerns), and `MAX_ATTEMPTS` is properly named, but right now it makes the payment path worse.
+
+_Notes: no `.brooks-lint.yaml` was found, so defaults were used. History Tracking (`.brooks-lint-history.json`) was skipped because writing into the repository is not allowed. Post-Report Triage was skipped because this is a non-interactive run._
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, PR &quot;Validate input when creating an order&quot; (pr-08-validate-create-order), 2 files, +11 lines: shop/orders.py, tests/test_shop.py
+**Health Score:** 95/100
+
+A small, well-shaped validation change; the only gap is that one of the two new rules (the note-length limit) ships without a test.
+
+Process notes: PR is &lt; 50 lines, so Steps 1–3 were run, plus Step 6b (a new constant `MAX_NOTE` was introduced) and the Step 7 Quick Test Check. Step 6a was skipped because no imports changed. There is no `.brooks-lint.yaml`, so defaults apply (balanced strictness, all risks enabled). History Tracking was skipped because no files may be written into the repository. Post-Report Triage was skipped because this is a non-interactive run.
+
+---
+
+## Findings
+
+### 🟡 Warning
+
+**Coverage Illusion — New note-length limit has no test**
+Location: shop/orders.py:21
+Symptom: The PR adds two guard clauses to `create_order`: `total_cents &lt;= 0` (line 19) and `len(note) &gt; MAX_NOTE` (line 21, `MAX_NOTE = 500`). The new test `test_create_order_rejects_non_positive_total` (tests/test_shop.py:16) covers only the first. No test exercises the note-length rule, either the rejection path (501 chars) or the boundary that should still be accepted (exactly 500 chars).
+Source: Feathers — Working Effectively with Legacy Code, Ch. 1 (code without tests is legacy code); How Google Tests Software — change coverage vs line coverage
+Consequence: The note limit is new public behavior that callers will start to depend on, but nothing guards it. A later off-by-one edit (`&gt;=` vs `&gt;`), a changed constant, or removing the check would pass the suite with no failures, so the suite would look like it covers this change when it doesn&#x27;t.
+Remedy: Add two tests next to the existing one: `create_order(1, 500, &quot;x&quot; * (orders.MAX_NOTE + 1))` raises `ValueError`, and `create_order(1, 500, &quot;x&quot; * orders.MAX_NOTE)` succeeds. Referencing `orders.MAX_NOTE` rather than the literal 500 keeps the limit defined in one place.
+
+---
+
+## Summary
+
+The change is focused and readable. The guard clauses are linear, the limit is a named constant, and nothing outside the feature was touched. The one action before merging is to add tests for the note-length rule, including the 500/501 boundary, so both new validations are protected.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, `git diff main...pr-09-capture-errors` (1 file: shop/payments.py, +4/-1). PR: &quot;Do not crash checkout when the gateway errors&quot;. The PR is under 50 lines, so per scope calibration Steps 1–3 and Step 7 (Quick Test Check) were run. Step 6a was skipped because no imports changed, and Step 6b was skipped because nothing was renamed or introduced. No `.brooks-lint.yaml` was found, so defaults apply. History Tracking was skipped (no files written to the repository), and Post-Report Triage was skipped (non-interactive run).
+**Health Score:** 80/100
+
+Do not merge this as is. The PR stops checkout from crashing by swallowing every gateway failure and then marking the order paid, which turns a visible error into silent revenue loss.
+
+---
+
+## Findings
+
+### 🔴 Critical
+
+**Domain Model Distortion — Failed card capture is silently swallowed and the order is still marked &#x27;paid&#x27;**
+Location: shop/payments.py:29
+Symptom: `pay()` now wraps `gateway.capture(...)` in `try: ... except Exception: pass` (lines 27–30). After that it unconditionally runs `update orders set status = &#x27;paid&#x27;` (line 31) and logs `&quot;order %s paid&quot;` (line 32). When the gateway raises `PaymentError(&quot;gateway timeout&quot;)`, or any other exception including programming errors like `TypeError`, the error is dropped with no log, no re-raise and no status change. The order is recorded and logged as paid even though no money was captured. `PaymentError`, which the module defines as its failure signal, can no longer reach any caller.
+Source: McConnell — Code Complete, Ch. 8 Defensive Programming (error-handling discipline: explicit error paths, never silently discard errors); Evans — Domain-Driven Design, Domain Model pattern (the `paid` status must reflect the domain fact that payment was captured)
+Consequence: This creates production risk today. Every gateway timeout or decline becomes an order that is fulfilled without payment. The audit log says &quot;paid&quot;, so the failure is invisible to operators and to maintainers. Callers can no longer tell success from failure, so retry, alerting and customer messaging can&#x27;t be built on top of `pay()`. The bare `except Exception` also hides real bugs in the capture path.
+Remedy: Remove the blanket `except Exception: pass`. If checkout must not crash, catch only `PaymentError`, log it with the order id (`log.warning`/`log.exception`), and record a distinct state (for example `status = &#x27;payment_failed&#x27;`) or re-raise a domain error for the checkout layer to turn into a user-facing message. Only run the `status = &#x27;paid&#x27;` update and the &quot;paid&quot; log line after `capture` returns successfully, for example in a `try/except PaymentError/else` structure.
+
+### 🟡 Warning
+
+**Coverage Illusion — Changed gateway-failure behavior of pay() has no test**
+Location: shop/payments.py:27
+Symptom: The diff changes the production behavior of `pay()` when `capture` raises, but includes no test changes. `tests/test_shop.py` has only `test_pay_marks_order_paid` (happy path, line 26). Nothing exercises `Gateway.fail &gt; 0`, even though the `Gateway` stand-in exists specifically to simulate that failure.
+Source: Feathers — Working Effectively with Legacy Code, Ch. 1 (code without tests is legacy code; changes need a sensing test)
+Consequence: The suite stays green while failed captures mark orders paid. A test asserting the status after a gateway failure would have exposed the Critical finding right away. Whatever failure behavior is chosen next can regress the same way without anyone noticing.
+Remedy: Add a test such as `test_pay_gateway_failure_does_not_mark_order_paid`. Set `gw = payments.Gateway(); gw.fail = 1`, call `pay`, and assert either that the expected `PaymentError` or domain error is raised or that the order status is not `&#x27;paid&#x27;` (for example `&#x27;payment_failed&#x27;`). Also assert that `gw.captured` is empty.
+
+---
+
+## Summary
+
+The most important fix is to stop swallowing capture exceptions and only set `status = &#x27;paid&#x27;` after a successful capture. Handle `PaymentError` explicitly with logging and a failed-payment state. The PR is small and touches only one module, so change propagation is fine, but it trades a loud failure for a silent one. A failure-path test should come with the fix so the payment contract stays protected.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main — PR &quot;Tidy the stock reservation check&quot; (1 file: shop/stock.py, +2/−1 lines)
+**Health Score:** 100/100
+
+None of the six decay risks show up in this small, single-file change. It needs no design-level changes.
+
+---
+
+## Findings
+
+No findings.
+
+---
+
+## Summary
+
+Because the diff is under 50 lines, the review covered Steps 1–3, Step 6b (a variable, `in_stock`, was introduced) and the Step 7 Quick Test Check. Step 6a was skipped because no imports changed. The change stays inside `reserve()`. The new name `in_stock` matches the domain, and existing tests (`tests/test_shop.py`) already cover this behavior, so the decay-risk process produced no findings. Notes: no `.brooks-lint.yaml` was found, so defaults applied. History Tracking was skipped because nothing may be written to the repository. Post-Report Triage was skipped because this was a non-interactive run.
+</pre></details></td><td><span class="no">missed</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main — `pr-11-test-list-orders` (&quot;Add a test for list_orders&quot;), 1 file: `tests/test_shop.py` (+5 lines). No `.brooks-lint.yaml` found; defaults applied.
+**Health Score:** 100/100
+
+A small, focused, test-only change that adds one clearly named behavioral test for `list_orders` ownership filtering; no decay risks are visible in the diff.
+
+---
+
+## Findings
+
+No findings.
+
+---
+
+## Summary
+
+The PR adds a single 3-line test (`test_list_orders_returns_only_own_orders`) that checks the observable behavior of `orders.list_orders` (only the caller&#x27;s orders are returned) and touches nothing outside the test module. Under scope calibration (&lt; 50 lines), Steps 1–3 ran (scope, Change Propagation, Cognitive Overload) and Step 6b was checked for the newly introduced test name; none produced a finding. Step 6a was skipped because no imports changed, and Step 7 (Quick Test Check) was skipped because the PR changes no production code. History Tracking was skipped (no files may be written into the repository), and Post-Report Triage was skipped (non-interactive run).
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># Brooks-Lint Review
+
+**Mode:** PR Review
+**Scope:** branch changes vs main, `pr-12-speed-up-tests` (&quot;Make the forbidden-order test less flaky&quot;), 1 file: `tests/test_shop.py` (+3/−1). PR is under 50 lines, so per scope calibration the review covered Steps 1–3. Step 6a was skipped because no imports changed. Step 6b was skipped because nothing was renamed or introduced. Step 7 (Quick Test Check) was run on the test-file change.
+**Health Score:** 100/100
+
+The process found no decay risks in this one-file, test-only change.
+
+---
+
+## Findings
+
+No findings.
+
+---
+
+## Summary
+
+Step 1: the diff touches one test file, which matches the stated purpose. Step 2 (Change Propagation) and Step 3 (Cognitive Overload) found nothing in the 4 changed lines. Step 7 gave no signal: no production code changed (Signal 1), no mocks were added (Signal 2), and the test name still states the scenario and the expected outcome (Signal 3). No `.brooks-lint.yaml` exists, so defaults applied. History Tracking was skipped because nothing may be written into the repository. Post-Report Triage was skipped because this was a non-interactive run.
+</pre></details></td><td><span class="no">missed</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>The earlier background wait has also exited. All 12 reviews were already complete.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

@@ -1,0 +1,306 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>vikingmute/review-forge: code review test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}</style></head><body><main>
+<p class="mute"><a href="/best/code-review/">← AI code review tools</a></p>
+<h1>vikingmute/review-forge: test run, 2026-10-10</h1>
+<p class="mute">Twelve pull requests against a small Python order service: eight with one planted defect each, four clean. Claude Code (Claude Opus 5.5) installed the tool in a throwaway sandbox and
+reported what the tool said; the reviewing itself was done by Claude Opus 5.5. A judge (gpt-6-astra, three passes) marked each review against the planted defect. Repo commit 743b22932513.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/make_fixture.py">The pull requests</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/in/prompt.txt">Task</a></p>
+<p><b>Found 8 of 8 planted defects</b>; 1.3 findings per pull request; 2 min for the set.</p>
+<h2>Pull request by pull request</h2><table><tr><th>Pull request</th><th>Result</th></tr><tr><td><b>pr-01-list-pagination</b><br><span class='mute'>Off-by-one in pagination: pages start at 1 but offset = page * PAGE_SIZE, so page 1 skips the first 20 orders (should be (page - 1) * PAGE_SIZE).</span><details><summary>The review</summary><pre># pr-01-list-pagination
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-01-list-pagination`).
+Artifact: `code_review/pr-01-list-pagination/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | high | `shop/orders.py:31` | Off-by-one offset: page 1 skips the first PAGE_SIZE orders |
+| RF-002 | low | `shop/orders.py:29-31` | No validation of `page` (0 or negative values) |
+| RF-003 | low | `tests/test_shop.py` | Pagination is untested |
+
+## RF-001 — Off-by-one offset: page 1 skips the first PAGE_SIZE orders
+
+- Severity: **high**
+- Location: `shop/orders.py:31`
+- Evidence: `offset = page * PAGE_SIZE` with documented 1-based pages; `list_orders(uid)` (default page=1) now uses offset 20, so the first 20 orders are never returned and users with &lt;=20 orders get an empty list.
+- Risk: Breaks every existing caller of `list_orders(user_id)`; first page of orders is unreachable.
+- Suggested fix: Use `offset = (page - 1) * PAGE_SIZE`.
+- Suggested tests: Create 21 orders for a user; assert page 1 returns the first 20 ids and page 2 returns the 21st; assert default call returns the first order.
+
+## RF-002 — No validation of `page` (0 or negative values)
+
+- Severity: **low**
+- Location: `shop/orders.py:29-31`
+- Evidence: `page` is not checked; `page=0`/negative yields zero or negative offsets, silently returning unexpected pages.
+- Risk: Confusing results for bad input from callers.
+- Suggested fix: Raise `ValueError` when `page &lt; 1`.
+- Suggested tests: Assert `list_orders(uid, 0)` raises `ValueError`.
+
+## RF-003 — Pagination is untested
+
+- Severity: **low**
+- Location: `tests/test_shop.py`
+- Evidence: The PR changes `list_orders` behaviour but adds no test; the off-by-one in RF-001 passes CI unnoticed.
+- Risk: Regression risk for pagination.
+- Suggested fix: Add pagination tests.
+- Suggested tests: See RF-001.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests); no existing test covers `list_orders`.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-02-extract-row-helper</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-02-extract-row-helper
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-02-extract-row-helper`).
+Artifact: `code_review/pr-02-extract-row-helper/claude.md`
+
+No findings.
+
+Reviewer notes: Pure refactor; behaviour of `get_order` (NotFound before Forbidden, same row returned) is preserved. `_row` performs no ownership check, so future callers must do their own authorization.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-03-search-by-note</b><br><span class='mute'>SQL injection: search_orders builds the query with an f-string from user-supplied text instead of parameters.</span><details><summary>The review</summary><pre># pr-03-search-by-note
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-03-search-by-note`).
+Artifact: `code_review/pr-03-search-by-note/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | critical | `shop/orders.py:31-32` | SQL injection via f-string interpolation of `text` and `user_id` |
+| RF-002 | low | `shop/orders.py:31` | LIKE wildcards in `text` are not escaped |
+| RF-003 | low | `tests/test_shop.py` | New search function has no tests |
+
+## RF-001 — SQL injection via f-string interpolation of `text` and `user_id`
+
+- Severity: **critical**
+- Location: `shop/orders.py:31-32`
+- Evidence: `sql = f&quot;... where user_id = {user_id} and note like &#x27;%{text}%&#x27; ...&quot;` then `db.query(sql)` with no parameters. `text=&quot;&#x27; or 1=1 --&quot;` returns every user&#x27;s orders.
+- Risk: Cross-user data disclosure and arbitrary SQL against the store; bypasses the per-user ownership the rest of the module enforces.
+- Suggested fix: Use bound parameters: `db.query(&quot;... where user_id = ? and note like ? order by id&quot;, (user_id, f&quot;%{text}%&quot;))`.
+- Suggested tests: Assert that searching with `&quot;&#x27; or 1=1 --&quot;` returns no rows of another user; positive test for a matching note.
+
+## RF-002 — LIKE wildcards in `text` are not escaped
+
+- Severity: **low**
+- Location: `shop/orders.py:31`
+- Evidence: `%` and `_` in user input act as wildcards, so a search for `50%` matches more than intended.
+- Risk: Incorrect search results.
+- Suggested fix: Escape `%`, `_` and the escape char and add `ESCAPE &#x27;\\&#x27;` to the LIKE clause.
+- Suggested tests: Search for a literal `_` / `%` and assert only exact substring matches are returned.
+
+## RF-003 — New search function has no tests
+
+- Severity: **low**
+- Location: `tests/test_shop.py`
+- Evidence: No test exercises `search_orders`.
+- Risk: Regressions and the injection above go undetected.
+- Suggested fix: Add tests for match, no-match, other-user isolation and injection input.
+- Suggested tests: As described.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests).
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-04-payment-logging</b><br><span class='mute'>Secret in logs: the card token is written to the application log.</span><details><summary>The review</summary><pre># pr-04-payment-logging
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-04-payment-logging`).
+Artifact: `code_review/pr-04-payment-logging/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | high | `shop/payments.py:27` | Card token written to logs |
+
+## RF-001 — Card token written to logs
+
+- Severity: **high**
+- Location: `shop/payments.py:27`
+- Evidence: `log.info(&quot;capturing order %s amount %s with card token %s&quot;, order_id, amount_cents, card_token)` logs the raw payment credential at INFO level.
+- Risk: Sensitive payment data leaks to log storage/aggregators accessible to support staff (PCI-DSS exposure); tokens may be replayable.
+- Suggested fix: Drop `card_token` from the message, or log only a masked suffix (e.g. last 4 chars).
+- Suggested tests: Use `assertLogs(&#x27;shop.payments&#x27;)` and assert the token string does not appear in any record.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests).
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-05-docstrings-and-types</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-05-docstrings-and-types
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-05-docstrings-and-types`).
+Artifact: `code_review/pr-05-docstrings-and-types/claude.md`
+
+No findings.
+
+Reviewer notes: Docstring matches the `insert or replace` behaviour. The PR title mentions type hints, but none were added (all functions were already annotated); documentation-only change.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-06-cancel-order</b><br><span class='mute'>Missing authorization: cancel_order takes user_id but never checks that the order belongs to that user, so any user can cancel anyone&#x27;s order.</span><details><summary>The review</summary><pre># pr-06-cancel-order
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-06-cancel-order`).
+Artifact: `code_review/pr-06-cancel-order/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | critical | `shop/orders.py:29-36` | Missing ownership check: any user can cancel any order |
+| RF-002 | medium | `shop/orders.py:34-36` | Check-then-update is not atomic and allows any non-paid status |
+| RF-003 | low | `tests/test_shop.py` | No tests for cancel_order |
+
+## RF-001 — Missing ownership check: any user can cancel any order
+
+- Severity: **critical**
+- Location: `shop/orders.py:29-36`
+- Evidence: `user_id` is accepted but never used; the query selects only `status` by `id` and the update has no `user_id` condition, unlike `get_order` which raises `Forbidden`.
+- Risk: Authorization bypass (IDOR): any authenticated user can cancel other users&#x27; orders by id.
+- Suggested fix: Select `user_id, status` (or reuse `get_order(order_id, user_id)`) and raise `Forbidden` when the owner differs.
+- Suggested tests: Create an order for user 1, call `cancel_order(oid, 2)`, assert `Forbidden` and status still `new`.
+
+## RF-002 — Check-then-update is not atomic and allows any non-paid status
+
+- Severity: **medium**
+- Location: `shop/orders.py:34-36`
+- Evidence: Status is read, then updated in a separate statement without `and status != &#x27;paid&#x27;`; a payment landing between the two calls gets overwritten to `cancelled`. Already-cancelled orders are also silently re-cancelled.
+- Risk: A paid order can end up `cancelled` under concurrency.
+- Suggested fix: Do a conditional update `update orders set status=&#x27;cancelled&#x27; where id=? and user_id=? and status=&#x27;new&#x27;` and check the affected row count.
+- Suggested tests: Assert cancelling a paid order raises and leaves status `paid`.
+
+## RF-003 — No tests for cancel_order
+
+- Severity: **low**
+- Location: `tests/test_shop.py`
+- Evidence: New feature without tests.
+- Risk: Regressions undetected.
+- Suggested fix: Add tests for happy path, paid order, not found, and other user.
+- Suggested tests: As described.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests).
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-07-payment-retry</b><br><span class='mute'>Retry loop never ends and hides failure: `attempt` is never incremented, so a gateway that keeps failing loops forever (and after three real failures the order would still be marked paid, since nothing re-raises).</span><details><summary>The review</summary><pre># pr-07-payment-retry
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-07-payment-retry`).
+Artifact: `code_review/pr-07-payment-retry/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | critical | `shop/payments.py:30-36` | Infinite loop: `attempt` is never incremented |
+| RF-002 | critical | `shop/payments.py:37` | Order marked paid even when all capture attempts fail |
+
+## RF-001 — Infinite loop: `attempt` is never incremented
+
+- Severity: **critical**
+- Location: `shop/payments.py:30-36`
+- Evidence: `attempt = 1; while attempt &lt;= MAX_ATTEMPTS:` — on `PaymentError` the except branch only logs; `attempt` stays 1, so a persistently failing gateway retries forever.
+- Risk: Checkout hangs indefinitely, spins CPU, floods logs and hammers the gateway.
+- Suggested fix: Increment `attempt` in the loop (or use `for attempt in range(1, MAX_ATTEMPTS + 1)`).
+- Suggested tests: Gateway with `fail = 10`; assert `pay` returns/raises within MAX_ATTEMPTS calls.
+
+## RF-002 — Order marked paid even when all capture attempts fail
+
+- Severity: **critical**
+- Location: `shop/payments.py:37`
+- Evidence: After the loop the `update ... status = &#x27;paid&#x27;` runs unconditionally; once the counter is fixed, exhausting the retries falls through and marks the order paid without a capture.
+- Risk: Goods released without payment; revenue loss.
+- Suggested fix: Use a `for ... else` / flag and re-raise the last `PaymentError` when no attempt succeeds; only update status after a successful capture.
+- Suggested tests: Gateway with `fail = 3`; assert `PaymentError` and order status still `new`. Gateway with `fail = 2`; assert paid and exactly one capture.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests); no test covers the retry path, which is why the hang is not caught.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-08-validate-create-order</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-08-validate-create-order
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-08-validate-create-order`).
+Artifact: `code_review/pr-08-validate-create-order/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | low | `tests/test_shop.py:16-18` | Note-length validation is untested |
+
+## RF-001 — Note-length validation is untested
+
+- Severity: **low**
+- Location: `tests/test_shop.py:16-18`
+- Evidence: Only the non-positive total is tested; the `MAX_NOTE` branch (orders.py:21-22) and the boundary (exactly 500 chars) have no tests.
+- Risk: Off-by-one or regression in the note limit would go unnoticed.
+- Suggested fix: Add tests for 500 chars accepted and 501 rejected.
+- Suggested tests: `create_order(1, 100, &#x27;x&#x27;*500)` succeeds; `&#x27;x&#x27;*501` raises `ValueError`.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (6 tests). Rejecting `total_cents == 0` is assumed intentional.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-09-capture-errors</b><br><span class='mute'>Swallowed exception: a failed capture is ignored and the order is still marked paid.</span><details><summary>The review</summary><pre># pr-09-capture-errors
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-09-capture-errors`).
+Artifact: `code_review/pr-09-capture-errors/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | critical | `shop/payments.py:27-31` | Capture failures are swallowed and the order is marked paid |
+
+## RF-001 — Capture failures are swallowed and the order is marked paid
+
+- Severity: **critical**
+- Location: `shop/payments.py:27-31`
+- Evidence: `except Exception: pass` discards any gateway error, then `update orders set status = &#x27;paid&#x27;` runs unconditionally.
+- Risk: Orders are marked paid without money being captured; failures are invisible (no log, no error to caller). Also hides programming errors.
+- Suggested fix: Remove the blanket except; catch `PaymentError` only to log and re-raise (or return a failure result), and update status only after a successful capture.
+- Suggested tests: Gateway with `fail = 1`; assert `pay` raises `PaymentError` and status stays `new`, and nothing is in `gateway.captured`.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests); no test covers the failure path.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-10-reserve-check</b><br><span class='mute'>Inverted condition: reserve now raises OutOfStock when there is MORE stock than requested and allows reserving more than is available.</span><details><summary>The review</summary><pre># pr-10-reserve-check
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-10-reserve-check`).
+Artifact: `code_review/pr-10-reserve-check/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | critical | `shop/stock.py:20` | Inverted stock check: `in_stock &gt; qty` instead of `in_stock &lt; qty` |
+
+## RF-001 — Inverted stock check: `in_stock &gt; qty` instead of `in_stock &lt; qty`
+
+- Severity: **critical**
+- Location: `shop/stock.py:20`
+- Evidence: Reservations that fit now raise `OutOfStock`, while over-reservations pass and drive `available` negative. `test_reserve_reduces_stock` errors with OutOfStock and `test_reserve_more_than_available_fails` fails.
+- Risk: Valid orders rejected; overselling with negative stock.
+- Suggested fix: Restore `if in_stock &lt; qty: raise OutOfStock(sku)`.
+- Suggested tests: Existing `test_reserve_reduces_stock` and `test_reserve_more_than_available_fails`; add an exact-quantity boundary test.
+
+Reviewer notes: Tests run: `python3 -m unittest` → FAILED (failures=1, errors=1). The PR is described as a tidy-up but changes behaviour.
+</pre></details></td><td><span class="ok">found</span></td></tr><tr><td><b>pr-11-test-list-orders</b><br><span class='mute'>Clean: nothing planted</span><details><summary>The review</summary><pre># pr-11-test-list-orders
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-11-test-list-orders`).
+Artifact: `code_review/pr-11-test-list-orders/claude.md`
+
+No findings.
+
+Reviewer notes: Test uses user ids 41/42 not used elsewhere, so the shared in-memory DB does not make it order-dependent. Test-only change.
+</pre></details></td><td><span class="ok">no blocking finding</span></td></tr><tr><td><b>pr-12-speed-up-tests</b><br><span class='mute'>Test weakened: the assertion that another user is forbidden was replaced by a try/except that passes whether or not Forbidden is raised.</span><details><summary>The review</summary><pre># pr-12-speed-up-tests
+
+Tool: review-forge skill, `review` command (model `claude`, base `main...pr-12-speed-up-tests`).
+Artifact: `code_review/pr-12-speed-up-tests/claude.md`
+
+| ID | Severity | File:Line | Finding |
+|---|---|---|---|
+| RF-001 | high | `tests/test_shop.py:13-16` | Authorization test no longer asserts that Forbidden is raised |
+
+## RF-001 — Authorization test no longer asserts that Forbidden is raised
+
+- Severity: **high**
+- Location: `tests/test_shop.py:13-16`
+- Evidence: With `try: get_order(oid, 2) except Forbidden: pass`, the test passes whether or not `Forbidden` is raised; if `get_order` returned another user&#x27;s order, the test would still be green.
+- Risk: The only regression guard for cross-user access control is disabled; title claims flakiness/speed but the test was deterministic.
+- Suggested fix: Revert to `with self.assertRaises(orders.Forbidden):` (or add `self.fail(...)` after the call in the try block).
+- Suggested tests: Temporarily remove the ownership check in `get_order` and confirm the test fails.
+
+Reviewer notes: Tests run: `python3 -m unittest` → OK (5 tests). No source of flakiness was found in the original test.
+</pre></details></td><td><span class="ok">found</span></td></tr></table>
+<h2>How it was run (the session's closing message)</h2><pre>I reviewed all 12 branches and wrote one report per branch to `~/work/output/&lt;branch&gt;.md`. Each report gives every finding with its severity and file:line. Branches with nothing to report say &quot;No findings.&quot;
+
+**How the tool works:** the installed tool is the `review-forge` skill (the same skill as in `~/src`; no MCP servers or CLI are involved). It doesn&#x27;t run a separate model or analyser. It gives the reviewing agent a procedure, so I followed its `review` command myself on each branch, comparing it against `main` (`main...&lt;branch&gt;`) and using `claude` as the model name. That means the findings are the review I produced by following the skill. I didn&#x27;t need the OpenAI key.
+
+As the skill requires, I also ran the test suite on each branch. All pass except pr-10.
+
+| Branch | Findings |
+|---|---|
+| pr-01 list-pagination | high: page 1 skips the first 20 orders (`orders.py:31`); low: `page` values of 0 or below aren&#x27;t rejected; low: no pagination tests |
+| pr-02 extract-row-helper | No findings |
+| pr-03 search-by-note | critical: SQL injection through the f-string query (`orders.py:31-32`); low: `%` and `_` in the search text act as wildcards; low: no tests |
+| pr-04 payment-logging | high: the card token is written to the log (`payments.py:27`) |
+| pr-05 docstrings-and-types | No findings |
+| pr-06 cancel-order | critical: no ownership check, so any user can cancel any order (`orders.py:29-36`); medium: the status check and the update aren&#x27;t atomic (`orders.py:34-36`); low: no tests |
+| pr-07 payment-retry | critical: infinite loop because `attempt` is never incremented (`payments.py:30-36`); critical: the order is marked paid even when every attempt fails (`payments.py:37`) |
+| pr-08 validate-create-order | low: the note-length check has no test |
+| pr-09 capture-errors | critical: gateway errors are silently ignored and the order is still marked paid (`payments.py:27-31`) |
+| pr-10 reserve-check | critical: the stock check is inverted (`stock.py:20`); the test suite fails on this branch |
+| pr-11 test-list-orders | No findings |
+| pr-12 speed-up-tests | high: the test no longer checks that `Forbidden` is raised (`test_shop.py:13-16`) |
+
+That makes 16 findings in total. Following the skill&#x27;s layout, it also left a review file at `code_review/&lt;branch&gt;/claude.md` for each branch inside `~/work/input/shop`. That `code_review/` folder is untracked and not ignored. I didn&#x27;t change any code, didn&#x27;t edit `.gitignore` and didn&#x27;t commit anything, and `main` is checked out again.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>
