@@ -4329,10 +4329,25 @@
     "设计或生成界面时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "The old AI look is gone, with or without a skill: of 22 pages built from one brief, none had a purple accent, gradient text, emoji icons or a centred hero.",
+     "item_zh": "老式的 AI 味已经没有了，装不装 skill 都一样：按同一份需求做出的 22 个页面里，没有一个用了紫色强调色、渐变文字、emoji 图标或居中大标题。",
+     "ours": true
+    },
+    {
+     "item": "There is a new default, and some skills do not move it. Claude Code alone chose a serif headline, teal and cream both times; 2 of 10 skills matched it on headline font, body font, accent and background, and 4 shared one or none. This is the homogenisation Doshi and Hauser measured in writing, seen in pages.",
+     "item_zh": "新的默认风格已经出现，有些 skill 改变不了它。Claude Code 自己两次都选了衬线标题、青绿和米白；10 个 skill 里有 2 个在标题字体、正文字体、强调色和背景上与它完全一致，4 个只有一项或零项相同。这就是 Doshi 和 Hauser 在写作上测到的同质化，出现在了页面上。",
+     "ours": true
+    },
+    {
+     "item": "The basics are not what separates design skills: every one passed at least 6.5 of 7 checks (copy complete, nothing invented, one h1, button on the first screen, no sideways scroll on a phone, no errors, self-contained).",
+     "item_zh": "基本功不是拉开差距的地方：每个 skill 在 7 项检查里至少通过 6.5 项（文案完整、没有编造内容、只有一个 h1、首屏有按钮、手机上不横向滚动、没有错误、自包含）。",
+     "ours": true
+    },
     {
      "item": "Models rebuilding 484 real web pages from screenshots mostly failed at two things: recalling the visual elements and producing the right layout (Design2Code, NAACL 2025).",
      "item_zh": "模型从截图重建 484 个真实网页，主要错在两处：漏掉视觉元素、布局不对（Design2Code，NAACL 2025）。"
@@ -4352,6 +4367,11 @@
    ],
    "did": [
     {
+     "item": "Had 10 of the skills build the same landing page twice in a throwaway sandbox, with Claude Code and no skill as the control, and measured every page in a browser. Results and pictures are in the test section above and on each card.",
+     "item_zh": "让其中 10 个 skill 在用完即删的沙箱里把同一个落地页各做两遍，用不装 skill 的 Claude Code 做对照，并在浏览器里测量每个页面。结果和截图在上面的实测区和每张卡片上。",
+     "ours": true
+    },
+    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what part of design does it handle.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、管设计的哪一环。"
     },
@@ -4370,8 +4390,9 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these skills end to end. The plan: one brief, each skill builds the page five times; render and screenshot, score against a checklist as ArtifactsBench does, and measure how alike the five are.",
-     "item_zh": "我们还没有端到端实跑这些 skill。计划：同一份需求，每个 skill 做五次；渲染、截图，照 ArtifactsBench 的做法按清单打分，再测这五次有多像。"
+     "item": "We count sameness and basics, not taste: no one rated these pages for beauty, and a page can differ from the default and still be worse. One brief (a consumer landing page), two builds per skill, still pages only, so motion and interaction are not measured. The subject may pull every design toward water colours.",
+     "item_zh": "我们数的是「像不像」和基本功，不是审美：没有人给这些页面的美观程度打分，和默认风格不同的页面也可能更差。只有一份需求（面向消费者的落地页），每个 skill 两次产出，只看静态页面，所以动效和交互没有测。题材本身也可能把所有设计都拉向水的颜色。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the skill run.",

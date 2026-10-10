@@ -18,6 +18,10 @@ PROBE = r"""
 () => {
   const vis = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el);
     return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && Number(s.opacity) > 0; };
+  // Any CSS colour (oklch, color-mix, named) as "rgb(r, g, b)", by painting one pixel.
+  const cv = document.createElement('canvas'); cv.width = cv.height = 1; const cx = cv.getContext('2d', { willReadFrequently: true });
+  const rgb = (c) => { cx.clearRect(0, 0, 1, 1); cx.fillStyle = '#000'; cx.fillStyle = c; cx.fillRect(0, 0, 1, 1);
+    const [r, g, b, al] = cx.getImageData(0, 0, 1, 1).data; return al < 8 ? 'rgba(0, 0, 0, 0)' : `rgb(${r}, ${g}, ${b})`; };
   const all = [...document.querySelectorAll('body *')].filter(vis);
   const fonts = {}, textColors = {}, bgColors = {};
   let gradientEls = 0, gradientText = 0, blurEls = 0, shadowEls = 0, roundCards = 0, purpleGradient = 0;
@@ -32,7 +36,7 @@ PROBE = r"""
     if (s.backgroundColor !== 'rgba(0, 0, 0, 0)') bgColors[s.backgroundColor] = (bgColors[s.backgroundColor] || 0) + area;
     const bg = s.backgroundImage;
     if (bg.includes('gradient')) { gradientEls++;
-      const hs = (bg.match(/rgba?\([^)]+\)/g) || []).map(hue).filter(h => h !== null);
+      const hs = (bg.match(/(?:rgba?|oklch|oklab|hsla?|lab|lch|color)\([^()]*(?:\([^()]*\)[^()]*)*\)|#[0-9a-f]{3,8}\b/gi) || []).map(rgb).map(hue).filter(h => h !== null);
       if (hs.some(h => h >= 235 && h <= 320)) purpleGradient++;
       if ((s.webkitBackgroundClip || s.backgroundClip) === 'text') gradientText++; }
     if ((s.backdropFilter || s.webkitBackdropFilter || 'none') !== 'none') blurEls++;
@@ -46,10 +50,15 @@ PROBE = r"""
   const heroBox = hero ? hero.getBoundingClientRect() : null;
   const heroCentered = hero ? (heroAlign === 'center' || Math.abs((heroBox.left + heroBox.right) / 2 - innerWidth / 2) < 40 && heroBox.width < innerWidth * 0.8) : false;
   const buttons = [...document.querySelectorAll('a,button')].filter(vis).map(b => ({ text: b.innerText.trim(), top: b.getBoundingClientRect().top + scrollY }));
-  const accent = (() => { const b = [...document.querySelectorAll('a,button')].filter(vis).find(x => /check my beach/i.test(x.innerText));
-    return b ? getComputedStyle(b).backgroundColor + ' | ' + getComputedStyle(b).backgroundImage.slice(0, 120) : null; })();
+  // The accent is the fill of the primary button: the first "Check my beach" that has one (a nav copy is often an outline).
+  const accent = (() => { const bs = [...document.querySelectorAll('a,button')].filter(vis).filter(x => /check my beach/i.test(x.innerText));
+    const filled = bs.map(b => rgb(getComputedStyle(b).backgroundColor)).find(c => c !== 'rgba(0, 0, 0, 0)');
+    return filled || (bs[0] ? rgb(getComputedStyle(bs[0]).color) : null); })();
+  const pageBg = (() => { for (const el of [document.body, document.documentElement, document.querySelector('main'), document.querySelector('header'), document.querySelector('section')]) {
+    if (!el) continue; const c = rgb(getComputedStyle(el).backgroundColor); if (c !== 'rgba(0, 0, 0, 0)') return c; } return 'rgb(255, 255, 255)'; })();
+  const h1Font = hero ? getComputedStyle(hero).fontFamily.split(',')[0].replace(/["']/g, '').trim() : null;
   return { text, fonts, textColors, bgColors, gradientEls, gradientText, purpleGradient, blurEls, shadowEls, roundCards, emoji,
-    h1: document.querySelectorAll('h1').length, heroCentered, buttons, accent, bodyBg: getComputedStyle(document.body).backgroundColor,
+    h1: document.querySelectorAll('h1').length, heroCentered, buttons, accent, bodyBg: pageBg, h1Font,
     svg: document.querySelectorAll('svg').length, img: document.querySelectorAll('img').length,
     scrollWidth: document.documentElement.scrollWidth, innerWidth, height: document.documentElement.scrollHeight,
     sections: [...document.querySelectorAll('body > *, main > *')].filter(vis).map(e => e.tagName.toLowerCase()) };

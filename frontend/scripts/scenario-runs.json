@@ -3931,5 +3931,570 @@
     "reason_zh": "只能通过正在运行的 Obsidian 桌面应用里的 Local REST API 插件工作；无界面的沙箱里没有。"
    }
   }
+ },
+ "ai-design": {
+  "type": "table",
+  "date": "2026-10-10",
+  "dir": "/best-runs/design/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/design-runs/RESULTS.md",
+  "title": [
+   "Claude design skills tested: the same landing page, built twice",
+   "实测对比：同一个落地页，各做两遍"
+  ],
+  "intro": [
+   "On 2026-10-10 we ran 10 of these skills. Each built the same landing page twice in a throwaway sandbox, driven by Claude Code (Claude Opus 5.5): a made-up app, fixed copy, the design left open. Claude Code with no skill built it twice as well. Nothing here is a taste score. A browser measured each page: seven checks any landing page should pass, and four things that make pages look alike (headline font, body font, accent colour family, background family), compared with the no-skill pages and between a skill's own two builds.",
+   "2026-10-10 我们实跑了其中 10 个。每个在用完即删的沙箱里由 Claude Code（Claude Opus 5.5）调用，把同一个落地页做两遍：一个虚构的应用，文案固定，设计自由。不装 skill 的 Claude Code 也做了两遍。这里没有审美分。每个页面由浏览器测量：任何落地页都该通过的七项检查，以及让页面「撞脸」的四样东西（标题字体、正文字体、强调色、背景），分别和不装 skill 的页面比、和它自己的另一次产出比。"
+  ],
+  "finding": [
+   "None of the 22 pages had the old AI look (a purple accent, gradient text, emoji icons, a centred hero), with or without a skill. The default now is teal on cream with a serif headline, and 2 of 10 skills reproduced it on all four counts; 4 shared one or none. Every skill passed at least 6.5 of the 7 checks.",
+   "22 个页面里没有一个是老式的 AI 味（紫色强调色、渐变文字、emoji 图标、居中大标题），装不装 skill 都一样。现在的默认风格是米白底配青绿、衬线标题；10 个 skill 里有 2 个四项全部照搬，4 个只有一项或零项相同。每个 skill 在 7 项检查里至少通过 6.5 项。"
+  ],
+  "compare": [
+   {
+    "src": "compare.jpg",
+    "w": 1920,
+    "h": 978,
+    "en": "The first screen of each skill's first build; the page built with no skill is top left.",
+    "zh": "每个 skill 第一次产出的首屏；左上角是不装 skill 做的页面。"
+   }
+  ],
+  "name_col": [
+   "Skill",
+   "Skill"
+  ],
+  "columns": [
+   [
+    "Shares with the no-skill page (of 4)",
+    "与不装 skill 的页面相同（共 4 项）"
+   ],
+   [
+    "Its two builds share (of 4)",
+    "自己两次产出相同（共 4 项）"
+   ],
+   [
+    "Checks passed (of 7)",
+    "页面检查通过（共 7 项）"
+   ],
+   [
+    "Failed",
+    "未通过"
+   ],
+   [
+    "Headline font",
+    "标题字体"
+   ]
+  ],
+  "see": [
+   "See both builds →",
+   "看两次产出 →"
+  ],
+  "evidence": [
+   "Both builds",
+   "两次产出"
+  ],
+  "line_label": [
+   "Claude design skills test, 2026-10-10:",
+   "2026-10-10 实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html"
+  },
+  "verdict": {
+   "rule": [
+    "Ranked by how little a build shares with the page Claude Code made with no skill (headline font, body font, accent family, background family), then by the seven page checks, then GitHub stars. This counts sameness, not taste: look at the pictures. Two builds per skill, one brief.",
+    "排名规则：先看产出和不装 skill 时 Claude Code 做的页面有多少相同（标题字体、正文字体、强调色、背景），越少越靠前；再看七项页面检查，最后看 GitHub 星数。这量的是「像不像」，不是审美：请看图。每个 skill 做两遍，同一份需求。"
+   ],
+   "picks": [
+    {
+     "repo": "Leonxlnx/taste-skill",
+     "role": [
+      "For a look that is not the default",
+      "想要不撞脸的设计"
+     ],
+     "why": [
+      "Both builds passed all seven checks and shared almost nothing with the no-skill page: its own typeface, a cooler palette, and a second build that dared an orange accent.",
+      "两次产出都通过全部七项检查，和不装 skill 的页面几乎没有相同之处：自己的字体、偏冷的配色，第二次还用了橙色强调色。"
+     ]
+    },
+    {
+     "repo": "Nutlope/hallmark",
+     "role": [
+      "For a different result each time",
+      "想要每次都不一样"
+     ],
+     "why": [
+      "All seven checks twice, little in common with the default, and its two builds differ from each other: one flat and technical, one editorial with a serif headline.",
+      "两次都通过全部七项检查，和默认风格相同处很少，而且两次产出彼此不同：一次扁平偏技术，一次是衬线标题的杂志风。"
+     ]
+    },
+    {
+     "repo": "dominikmartn/nothing-design-skill",
+     "role": [
+      "For one fixed identity",
+      "想要一套固定风格"
+     ],
+     "why": [
+      "The same dot-matrix look both times, unlike anything else here. That is the point of it, and the limit: check the phone layout, one build scrolled sideways.",
+      "两次都是同一套点阵风格，和这里其他的都不像。这是它的目的，也是它的局限：记得检查手机版式，有一次会横向滚动。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Changed nothing you can see in a still page:",
+    "在静态页面上看不出区别："
+   ],
+   "avoid": [
+    {
+     "repo": "emilkowalski/skills",
+     "why": [
+      "it is about motion; fonts, colours and layout matched the no-skill page",
+      "它讲的是动效；字体、配色和版式与不装 skill 的页面一致"
+     ]
+    },
+    {
+     "repo": "MengTo/Skills",
+     "why": [
+      "both builds matched the no-skill page on all four",
+      "两次产出四项全部与不装 skill 的页面相同"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: none of the 22 pages had the old AI look (purple gradient, gradient text, emoji icons, centred hero), with or without a skill. The sameness now is quieter: teal on cream, text left, a status card right.",
+    "不管选哪个：22 个页面里没有一个是老式的 AI 味（紫色渐变、渐变文字、emoji 图标、居中大标题），装不装 skill 都一样。现在的「撞脸」更安静：米白底配青绿、左边文字、右边一张状态卡片。"
+   ]
+  },
+  "runs": {
+   "Leonxlnx/taste-skill": {
+    "ran": true,
+    "stars": 93722,
+    "sheet": "Leonxlnx__taste-skill.html",
+    "cells": [
+     [
+      "0.5/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Geist",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 0.5 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 0.5 项相同"
+     ],
+     [
+      "its two builds share 3 of 4",
+      "它自己两次产出 4 项里 3 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ]
+   },
+   "nextlevelbuilder/ui-ux-pro-max-skill": {
+    "ran": true,
+    "stars": 134020,
+    "sheet": "nextlevelbuilder__ui-ux-pro-max-skill.html",
+    "cells": [
+     [
+      "0.5/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/4",
+      null
+     ],
+     [
+      "6.5/7",
+      null
+     ],
+     [
+      "no sideways scroll on a phone",
+      "手机上不横向滚动"
+     ],
+     [
+      "Varela Round",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 0.5 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 0.5 项相同"
+     ],
+     [
+      "its two builds share 3 of 4",
+      "它自己两次产出 4 项里 3 项相同"
+     ],
+     [
+      "6.5 of 7 page checks passed",
+      "7 项页面检查通过 6.5 项"
+     ]
+    ],
+    "note": "One of its two builds scrolled sideways on a phone.",
+    "note_zh": "两次产出里有一次在手机上会横向滚动。"
+   },
+   "Nutlope/hallmark": {
+    "ran": true,
+    "stars": 29767,
+    "sheet": "Nutlope__hallmark.html",
+    "cells": [
+     [
+      "1.0/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Hanken Grotesk / Newsreader",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 1.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 1.0 项相同"
+     ],
+     [
+      "its two builds share 2 of 4",
+      "它自己两次产出 4 项里 2 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ]
+   },
+   "dominikmartn/nothing-design-skill": {
+    "ran": true,
+    "stars": 2808,
+    "sheet": "dominikmartn__nothing-design-skill.html",
+    "cells": [
+     [
+      "1.0/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "4/4",
+      null
+     ],
+     [
+      "6.5/7",
+      null
+     ],
+     [
+      "no sideways scroll on a phone",
+      "手机上不横向滚动"
+     ],
+     [
+      "Doto",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 1.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 1.0 项相同"
+     ],
+     [
+      "its two builds share 4 of 4",
+      "它自己两次产出 4 项里 4 项相同"
+     ],
+     [
+      "6.5 of 7 page checks passed",
+      "7 项页面检查通过 6.5 项"
+     ]
+    ],
+    "note": "One fixed identity: a dot-matrix headline, black on grey, both times. One build scrolled sideways on a phone.",
+    "note_zh": "固定的一套风格：点阵字标题、灰底黑字，两次都一样。其中一次在手机上会横向滚动。"
+   },
+   "alchaincyf/huashu-design": {
+    "ran": true,
+    "stars": 24688,
+    "sheet": "alchaincyf__huashu-design.html",
+    "cells": [
+     [
+      "1.5/4",
+      null,
+      ""
+     ],
+     [
+      "1/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Archivo / Hind",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 1.5 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 1.5 项相同"
+     ],
+     [
+      "its two builds share 1 of 4",
+      "它自己两次产出 4 项里 1 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ],
+    "note": "The two builds look least alike: different fonts, layout and accent each time.",
+    "note_zh": "两次产出差别最大：字体、版式和强调色每次都不同。"
+   },
+   "Trystan-SA/claude-design-system-prompt": {
+    "ran": true,
+    "stars": 1978,
+    "sheet": "Trystan-SA__claude-design-system-prompt.html",
+    "cells": [
+     [
+      "1.5/4",
+      null,
+      ""
+     ],
+     [
+      "3/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Bricolage Grotesque",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 1.5 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 1.5 项相同"
+     ],
+     [
+      "its two builds share 3 of 4",
+      "它自己两次产出 4 项里 3 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ]
+   },
+   "JimLiu/baoyu-design": {
+    "ran": true,
+    "stars": 4260,
+    "sheet": "JimLiu__baoyu-design.html",
+    "cells": [
+     [
+      "2.0/4",
+      null,
+      ""
+     ],
+     [
+      "2/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Instrument Serif / Young Serif",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 2.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 2.0 项相同"
+     ],
+     [
+      "its two builds share 2 of 4",
+      "它自己两次产出 4 项里 2 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ]
+   },
+   "bitjaru/styleseed": {
+    "ran": true,
+    "stars": 973,
+    "sheet": "bitjaru__styleseed.html",
+    "cells": [
+     [
+      "2.0/4",
+      null,
+      ""
+     ],
+     [
+      "1/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Figtree / Inter",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 2.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 2.0 项相同"
+     ],
+     [
+      "its two builds share 1 of 4",
+      "它自己两次产出 4 项里 1 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ]
+   },
+   "emilkowalski/skills": {
+    "ran": true,
+    "stars": 44260,
+    "sheet": "emilkowalski__skills.html",
+    "cells": [
+     [
+      "4.0/4",
+      null,
+      "substantial"
+     ],
+     [
+      "4/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Fraunces",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 4.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 4.0 项相同"
+     ],
+     [
+      "its two builds share 4 of 4",
+      "它自己两次产出 4 项里 4 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ],
+    "note": "These skills are about motion and interaction detail. On fonts, colours and layout both builds match the no-skill page.",
+    "note_zh": "这组 skill 讲的是动效和交互细节。字体、配色和版式上，两次产出都和不装 skill 的页面一样。"
+   },
+   "MengTo/Skills": {
+    "ran": true,
+    "stars": 6666,
+    "sheet": "MengTo__Skills.html",
+    "cells": [
+     [
+      "4.0/4",
+      null,
+      "substantial"
+     ],
+     [
+      "4/4",
+      null
+     ],
+     [
+      "7.0/7",
+      null
+     ],
+     [
+      "-",
+      "-"
+     ],
+     [
+      "Fraunces",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "shares 4.0 of 4 with the page built with no skill (fonts, accent, background)",
+      "和不装 skill 做的页面相比，字体、强调色、背景 4 项里有 4.0 项相同"
+     ],
+     [
+      "its two builds share 4 of 4",
+      "它自己两次产出 4 项里 4 项相同"
+     ],
+     [
+      "7.0 of 7 page checks passed",
+      "7 项页面检查通过 7.0 项"
+     ]
+    ],
+    "note": "Both builds share the no-skill page's fonts, accent and background.",
+    "note_zh": "两次产出的字体、强调色和背景都和不装 skill 的页面相同。"
+   }
+  }
  }
 }

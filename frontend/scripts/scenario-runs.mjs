@@ -172,7 +172,7 @@ function slopTable(run, rows) {
 /** Side-by-side images above the table (run.compare): the same slide from every deck. */
 function compareHtml(run) {
   return (run.compare || []).map((c) => `<figure class="bp-tr-compare">
-      <a href="${esc(run.dir + c.src)}" target="_blank" rel="noopener"><img src="${esc(run.dir + c.src)}" alt="${esc(c.en)}" loading="lazy"></a>
+      <a href="${esc(run.dir + c.src)}" target="_blank" rel="noopener"><img src="${esc(run.dir + c.src)}" alt="${esc(c.en)}"${c.w ? ` width="${c.w}" height="${c.h}"` : ""} loading="lazy"></a>
       <figcaption ${biAttrs(c.en, c.zh || c.en)}>${esc(c.en)}</figcaption>
     </figure>`).join("");
 }

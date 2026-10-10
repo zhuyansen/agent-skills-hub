@@ -1,0 +1,813 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": null,
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 4.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "inter",
+     "accent": "teal",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(15, 94, 107)",
+    "background_rgb": "rgb(247, 241, 230)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 3,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "instrument sans",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(13, 43, 51)",
+    "background_rgb": "rgb(246, 239, 227)"
+   }
+  },
+  "headline_fonts": [
+   "fraunces"
+  ],
+  "failed": [],
+  "minutes": 2.1,
+  "self_alike": 2
+ },
+ {
+  "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "kind": "ui",
+  "stars": 134020,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 6.5,
+  "tells": 0,
+  "like_default": 0.5,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": false,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 5,
+    "signature": {
+     "headline_font": "varela round",
+     "body_font": "nunito sans",
+     "accent": "ink",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(0, 0, 0)",
+    "background_rgb": "rgb(240, 249, 255)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 3,
+    "signature": {
+     "headline_font": "varela round",
+     "body_font": "nunito sans",
+     "accent": "blue",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(3, 105, 161)",
+    "background_rgb": "rgb(240, 249, 255)"
+   }
+  },
+  "headline_fonts": [
+   "varela round"
+  ],
+  "failed": [
+   "no_sideways_scroll"
+  ],
+  "minutes": 2.1,
+  "self_alike": 3
+ },
+ {
+  "repo": "Leonxlnx/taste-skill",
+  "kind": "ui",
+  "stars": 93722,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 0.5,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "geist",
+     "body_font": "geist",
+     "accent": "teal",
+     "background": "neutral paper"
+    },
+    "accent_rgb": "rgb(12, 107, 112)",
+    "background_rgb": "rgb(243, 246, 246)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "geist",
+     "body_font": "geist",
+     "accent": "orange",
+     "background": "neutral paper"
+    },
+    "accent_rgb": "rgb(185, 68, 26)",
+    "background_rgb": "rgb(242, 245, 245)"
+   }
+  },
+  "headline_fonts": [
+   "geist"
+  ],
+  "failed": [],
+  "minutes": 2.3,
+  "self_alike": 3
+ },
+ {
+  "repo": "emilkowalski/skills",
+  "kind": "ui",
+  "stars": 44260,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 4.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 3,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "inter",
+     "accent": "teal",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(14, 110, 122)",
+    "background_rgb": "rgb(247, 243, 236)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "inter",
+     "accent": "teal",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(15, 110, 122)",
+    "background_rgb": "rgb(247, 244, 238)"
+   }
+  },
+  "headline_fonts": [
+   "fraunces"
+  ],
+  "failed": [],
+  "minutes": 2.0,
+  "self_alike": 4
+ },
+ {
+  "repo": "Nutlope/hallmark",
+  "kind": "ui",
+  "stars": 29767,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 1.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "hanken grotesk",
+     "body_font": "hanken grotesk",
+     "accent": "ink",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(6, 14, 21)",
+    "background_rgb": "rgb(231, 236, 240)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 0,
+    "signature": {
+     "headline_font": "newsreader",
+     "body_font": "ibm plex sans",
+     "accent": "ink",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(12, 24, 31)",
+    "background_rgb": "rgb(239, 247, 248)"
+   }
+  },
+  "headline_fonts": [
+   "hanken grotesk",
+   "newsreader"
+  ],
+  "failed": [],
+  "minutes": 2.4,
+  "self_alike": 2
+ },
+ {
+  "repo": "alchaincyf/huashu-design",
+  "kind": "ui",
+  "stars": 24688,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 1.5,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 4,
+    "signature": {
+     "headline_font": "archivo",
+     "body_font": "public sans",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(8, 38, 61)",
+    "background_rgb": "rgb(250, 243, 227)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "hind",
+     "body_font": "literata",
+     "accent": "blue",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(0, 86, 115)",
+    "background_rgb": "rgb(249, 246, 241)"
+   }
+  },
+  "headline_fonts": [
+   "archivo",
+   "hind"
+  ],
+  "failed": [],
+  "minutes": 4.0,
+  "self_alike": 1
+ },
+ {
+  "repo": "MengTo/Skills",
+  "kind": "ui",
+  "stars": 6666,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 4.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 3,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "inter",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(15, 42, 51)",
+    "background_rgb": "rgb(244, 239, 228)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "fraunces",
+     "body_font": "inter",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(11, 58, 72)",
+    "background_rgb": "rgb(243, 238, 228)"
+   }
+  },
+  "headline_fonts": [
+   "fraunces"
+  ],
+  "failed": [],
+  "minutes": 1.5,
+  "self_alike": 4
+ },
+ {
+  "repo": "JimLiu/baoyu-design",
+  "kind": "ui",
+  "stars": 4260,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 2.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 6,
+    "signature": {
+     "headline_font": "young serif",
+     "body_font": "public sans",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(2, 34, 52)",
+    "background_rgb": "rgb(249, 243, 230)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "instrument serif",
+     "body_font": "schibsted grotesk",
+     "accent": "ink",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(3, 32, 47)",
+    "background_rgb": "rgb(249, 243, 230)"
+   }
+  },
+  "headline_fonts": [
+   "instrument serif",
+   "young serif"
+  ],
+  "failed": [],
+  "minutes": 2.2,
+  "self_alike": 2
+ },
+ {
+  "repo": "dominikmartn/nothing-design-skill",
+  "kind": "ui",
+  "stars": 2808,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 6.5,
+  "tells": 0,
+  "like_default": 1.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": false,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 4,
+    "signature": {
+     "headline_font": "doto",
+     "body_font": "space grotesk",
+     "accent": "ink",
+     "background": "neutral paper"
+    },
+    "accent_rgb": "rgb(0, 0, 0)",
+    "background_rgb": "rgb(245, 245, 245)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 3,
+    "signature": {
+     "headline_font": "doto",
+     "body_font": "space grotesk",
+     "accent": "ink",
+     "background": "neutral paper"
+    },
+    "accent_rgb": "rgb(0, 0, 0)",
+    "background_rgb": "rgb(245, 245, 245)"
+   }
+  },
+  "headline_fonts": [
+   "doto"
+  ],
+  "failed": [
+   "no_sideways_scroll"
+  ],
+  "minutes": 1.3,
+  "self_alike": 4
+ },
+ {
+  "repo": "Trystan-SA/claude-design-system-prompt",
+  "kind": "ui",
+  "stars": 1978,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 1.5,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 1,
+    "signature": {
+     "headline_font": "bricolage grotesque",
+     "body_font": "instrument sans",
+     "accent": "teal",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(0, 88, 107)",
+    "background_rgb": "rgb(241, 248, 250)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 5,
+    "signature": {
+     "headline_font": "bricolage grotesque",
+     "body_font": "public sans",
+     "accent": "teal",
+     "background": "cool paper"
+    },
+    "accent_rgb": "rgb(0, 106, 117)",
+    "background_rgb": "rgb(243, 248, 250)"
+   }
+  },
+  "headline_fonts": [
+   "bricolage grotesque"
+  ],
+  "failed": [],
+  "minutes": 4.9,
+  "self_alike": 3
+ },
+ {
+  "repo": "bitjaru/styleseed",
+  "kind": "ui",
+  "stars": 973,
+  "grade": "safe",
+  "ran": true,
+  "builds": 2,
+  "checks": 7.0,
+  "tells": 0,
+  "like_default": 2.0,
+  "facts": {
+   "a": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 2,
+    "signature": {
+     "headline_font": "figtree",
+     "body_font": "figtree",
+     "accent": "teal",
+     "background": "neutral paper"
+    },
+    "accent_rgb": "rgb(34, 107, 94)",
+    "background_rgb": "rgb(240, 245, 243)"
+   },
+   "b": {
+    "checks": {
+     "copy_complete": true,
+     "nothing_added": true,
+     "one_h1": true,
+     "button_on_first_screen": true,
+     "no_sideways_scroll": true,
+     "no_errors": true,
+     "self_contained": true
+    },
+    "tells": {
+     "purple_accent": false,
+     "gradient_text": false,
+     "emoji_icons": false,
+     "centred_hero": false
+    },
+    "missing": [],
+    "extra_words": 0,
+    "signature": {
+     "headline_font": "inter",
+     "body_font": "inter",
+     "accent": "teal",
+     "background": "warm paper"
+    },
+    "accent_rgb": "rgb(34, 107, 94)",
+    "background_rgb": "rgb(248, 242, 237)"
+   }
+  },
+  "headline_fonts": [
+   "figtree",
+   "inter"
+  ],
+  "failed": [],
+  "minutes": 3.8,
+  "self_alike": 1
+ }
+]
