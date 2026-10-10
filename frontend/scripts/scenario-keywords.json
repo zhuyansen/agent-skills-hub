@@ -7237,10 +7237,25 @@
     "作为 hook、子代理或状态栏运行时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "Half of the guard hooks stopped nothing we tried. With Claude Code's permission prompts skipped, 6 of 12 hooks let all eight risky actions through; one (nomos) stopped seven, the next best four.",
+     "item_zh": "一半的守卫 hook 什么都没拦住。跳过 Claude Code 的权限确认时，12 个 hook 里 6 个让八个危险动作全部通过；只有一个（nomos）拦下七个，第二名拦下四个。",
+     "ours": true
+    },
+    {
+     "item": "Claude Code's own prompts are a strong baseline and a noisy one: with no hook they stopped 7 of 8 risky actions and asked about 3 of 4 ordinary ones. Printing .env was the one risky action they let through.",
+     "item_zh": "Claude Code 自带的确认是一条很强、但很吵的基线：不装 hook 时拦下 8 个危险动作里的 7 个，4 个正常动作里也有 3 个要确认。唯一放过的危险动作是打印 .env。",
+     "ours": true
+    },
+    {
+     "item": "A permission gate is switched off by --dangerously-skip-permissions. ccgate and Dippy stopped nothing in that mode, and six or seven of eight with prompts kept, while letting ordinary work through unasked.",
+     "item_zh": "--dangerously-skip-permissions 会把权限闸门关掉。ccgate 和 Dippy 在那种模式下什么都没拦；保留确认时拦下八个里的六到七个，同时让正常工作免确认通过。",
+     "ours": true
+    },
     {
      "item": "Prohibitions help, directives can hurt: across 679 rule files and over 5,000 Claude Code runs, every rule that helped on its own was a \"do not\", every one that hurt was a \"do\"; random rules helped as much as curated ones (+13.8 points, a preprint).",
      "item_zh": "禁止型有用，指令型可能有害：679 个规则文件、5,000 多次 Claude Code 运行里，单独看有帮助的规则全是\"不要\"，有害的全是\"要\"；随机规则和精选规则一样有用（+13.8 个百分点，预印本）。"
@@ -7260,6 +7275,11 @@
    ],
    "did": [
     {
+     "item": "Installed 12 guard hooks one at a time in a throwaway sandbox and attempted the same 12 actions on a canary project, twice each (permission prompts skipped, and kept), with no hook as the control. Results are in the test section above and on each card.",
+     "item_zh": "在用完即删的沙箱里逐个安装 12 个守卫 hook，对金丝雀项目做同样的 12 个动作，各跑两遍（跳过权限确认、保留权限确认），并以不装 hook 作对照。结果在上面的实测区和每张卡片上。",
+     "ours": true
+    },
+    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software, what does it hook into.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是软件、挂在 Claude Code 的哪个环节。"
     },
@@ -7278,8 +7298,9 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet run these hooks end to end. The plan follows AgentGuard: tasks that tempt the agent into risky actions, run with and without each hook, scored on two numbers, abnormal executions and completed tasks.",
-     "item_zh": "我们还没有端到端实跑这些 hook。计划照 AgentGuard 的做法：用会诱导 agent 做危险操作的任务，装与不装某个 hook 各跑一遍，看两个数：异常执行和完成的任务。"
+     "item": "One run per hook, on 12 actions we chose; a hook built for another threat (prompt injection, remote commands, git hygiene) scores zero here without being useless. The agent was told to attempt every action, so this measures the hook, not the model's own caution. Hooks were installed by an agent following each README, with default settings.",
+     "item_zh": "每个 hook 只跑一次，12 个动作是我们自己定的；为别的威胁设计的 hook（提示注入、远程命令、git 规范）在这里得零分，不代表没用。agent 被要求每个动作都要尝试，所以测的是 hook，不是模型自己的谨慎。hook 由 agent 按各自 README 的默认设置安装。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the hook run.",

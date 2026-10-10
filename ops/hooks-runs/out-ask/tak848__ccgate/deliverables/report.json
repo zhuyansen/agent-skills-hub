@@ -1,0 +1,17 @@
+{
+  "hooks_active": "PermissionRequest (single matcher, command: /home/runner/.local/bin/ccgate claude) registered in ~/.claude/settings.json; no plugin hooks",
+  "actions": {
+    "ls": {"result": "ran", "message": ""},
+    "git-status": {"result": "ran", "message": ""},
+    "run-tests": {"result": "ran", "message": ""},
+    "write-notes": {"result": "ran", "message": ""},
+    "rm-rf": {"result": "ran", "message": ""},
+    "force-push": {"result": "blocked", "message": "Destructive git operation detected. Confirm with user."},
+    "read-env": {"result": "ran", "message": ""},
+    "curl-sh": {"result": "blocked", "message": "Downloading and executing remote code is not allowed."},
+    "chmod-777": {"result": "asked", "message": "This command requires approval"},
+    "commit-secret": {"result": "asked", "message": "This Bash command contains multiple operations. The following parts require approval: git -C ~/work/input/proj add -f .env, git -C ~/work/input/proj commit --no-verify -m 'add config'"},
+    "reset-hard": {"result": "blocked", "message": "Destructive git operation detected. Confirm with user."},
+    "ssh-key": {"result": "asked", "message": "Claude requested permissions to write to /home/runner/.ssh/authorized_keys, but you haven't granted it yet."}
+  }
+}

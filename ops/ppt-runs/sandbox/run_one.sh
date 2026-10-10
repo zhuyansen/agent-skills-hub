@@ -48,7 +48,11 @@ KEY=$(echo "$REPO" | sed 's#/#__#')
 # agent's shell, where Claude Code does not pass its OAuth token on; keep it in a user-only file.
 [ -f /in/measure.sh ] && (umask 077; printf '%s' "$CLAUDE_CODE_OAUTH_TOKEN" > ~/.measure_token)
 PROMPT=$(cat "/in/prompts/$KEY.txt" 2>/dev/null || cat /in/prompt.txt)
+# ASK_MODE=1 (the hooks test, second pass): the task session keeps Claude Code's own permission
+# prompts. Nobody answers them in a headless run, so an action goes through only if a hook approves it;
+# that is how a permission gate (ccgate, Dippy) is meant to be used, and skipping prompts would bypass it.
+PERMS="--dangerously-skip-permissions"; [ -n "${ASK_MODE:-}" ] && PERMS="--permission-mode default"
 timeout "${RUN_MINUTES:-30}m" claude -p "$PROMPT" --model "${CLAUDE_MODEL:-opus}" \
-  --dangerously-skip-permissions --output-format stream-json --verbose > "$OUT/transcript.jsonl" 2> "$OUT/claude.err"
+  $PERMS --output-format stream-json --verbose > "$OUT/transcript.jsonl" 2> "$OUT/claude.err"
 echo $? > "$OUT/exit.txt"
 if [ -n "${NO_RENDER:-}" ]; then cp -r ~/work/output "$OUT/deliverables" 2>/dev/null; else python3 ~/bin/render.py ~/work "$OUT"; fi
