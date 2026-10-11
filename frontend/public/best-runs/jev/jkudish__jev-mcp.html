@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>jkudish/jev-mcp: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>jkudish/jev-mcp: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit 86eae7861c60; 44 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>npx -y @jkudish/jev-mcp  (then, per the README&#x27;s Claude Code section: claude mcp add jev -- npx -y @jkudish/jev-mcp; `claude mcp list` reports jev ✔ Connected)</code></td></tr><tr><th>Quick start, as run</th><td><code>jev_verify, the README&#x27;s first tool example: claims [&quot;Wearing a helmet is optional for adult riders.&quot;, &quot;The ordinance mentions reflective gear.&quot;] against the City Bicycle Safety Ordinance s.4 evidence text, called as tools/call over stdio to `npx -y @jkudish/jev-mcp` with TYPESAFE_API_KEY exported</code></td></tr>
+<tr><th>What came back</th><td>model jev-1.13.0, provider typesafe; summary {verified:1, contradicted:1, unsupported:0, needs_review:0}; claim0 &#x27;helmet optional&#x27; -&gt; contradicted (contradicts=1, confidence 1, action auto); claim1 &#x27;reflective gear&#x27; -&gt; verified (supports=1, confidence 1, action auto); usage 891 input / 128 output tokens. Matches the README&#x27;s &#x27;live result, abridged&#x27;.</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>The README has no standalone quick-start command: `npx -y @jkudish/jev-mcp` only starts a stdio server and waits for input, so I took the first tool example (jev_verify) as the quick start.</li><li>To actually call a tool without an LLM-driven MCP client session, I wrote a ~20-line Node stdio JSON-RPC client (initialize, notifications/initialized, tools/call). The README does not give a CLI or script for calling a tool directly.</li><li>The env var is already named TYPESAFE_API_KEY, so I didn&#x27;t need to rename it; I only had to `export` it so the spawned server inherits it.</li></ul>
+<h2>The session's closing message</h2><pre>The first run worked: the project installed as the README describes, and one real Jev call returned the same result the README shows.
+
+- **What it is:** an MCP server (`@jkudish/jev-mcp`). `npx -y @jkudish/jev-mcp` started it, and it printed `ready — model jev-latest`. I also ran the README&#x27;s Claude Code command, `claude mcp add jev -- npx -y @jkudish/jev-mcp`, and `claude mcp list` then showed `jev: ✔ Connected`.
+- **Quick start:** the README has no standalone demo command, so I used its first tool example: `jev_verify` checking two claims against the bicycle ordinance text. That was one Jev call. The model `jev-1.13.0` marked &quot;helmet optional&quot; as contradicted and &quot;mentions reflective gear&quot; as verified, both at confidence 1, using 891 input and 128 output tokens. That matches the README&#x27;s sample output.
+- **Steps the README doesn&#x27;t mention:**
+  - The README never says how to call a tool directly, outside an AI agent session. I wrote a ~20-line Node script that talks to the server over stdio to make the call, and didn&#x27;t change any of the project&#x27;s code.
+  - I had to `export TYPESAFE_API_KEY` so the server could see it. The variable already has the name the project expects, so no renaming was needed.
+- **Nothing blocked the run**, and the API key was never printed or written to a file.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

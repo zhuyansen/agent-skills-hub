@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>superagents-lab/jev-search: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>superagents-lab/jev-search: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit a98f724ad742; 103 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="no">did not run</span>.</b> Jev calls made: 0.</p>
+<table><tr><th>Install</th><td><code>corepack enable (failed: EACCES on /usr/local/bin) -&gt; corepack enable --install-directory ~/.local/bin; pnpm install --frozen-lockfile; cp .dev.vars.example .dev.vars</code></td></tr><tr><th>Quick start, as run</th><td><code>pnpm dev (with TYPESAFE_API_KEY set in .dev.vars, JEV_PROVIDERS=typesafe), then open http://localhost:3030 and search</code></td></tr>
+<tr><th>What came back</th><td>Dev server failed to start: &#x27;Error: Failed to start the remote proxy session ... Could not start remote dev session. No credentials found, and the environment is non-interactive so browser login cannot be started. Either: Set a CLOUDFLARE_API_TOKEN environment variable, Run `wrangler login`&#x27; -&gt; ELIFECYCLE Command failed with exit code 1.</td></tr><tr><th>What stopped it</th><td>Two missing credentials, both required by the README: (1) a Cloudflare account (wrangler login or CLOUDFLARE_API_TOKEN), because pnpm dev always opens a remote Workers AI session even when JEV_PROVIDERS=typesafe; (2) a SEARCH1API_API_KEY (a separate paid Search1API key, required for every search). Neither is on this machine.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>corepack enable fails without root (EACCES symlinking into /usr/local/bin); had to use corepack enable --install-directory ~/.local/bin and add it to PATH</li><li>Set COREPACK_ENABLE_DOWNLOAD_PROMPT=0 so corepack could download pnpm 10.8.0 without a prompt</li><li>pnpm install printed &#x27;Ignored build scripts: esbuild, sharp, workerd&#x27; (pnpm approve-builds); README does not mention it (the dev server failed before this mattered)</li></ul>
+<h2>The session's closing message</h2><pre>The install worked, but I couldn&#x27;t get the quick start to run: it needs two credentials this machine doesn&#x27;t have. No Jev calls were made.
+
+- **Install:** worked, with one step the README doesn&#x27;t mention. Its `corepack enable` failed because it needs write access to `/usr/local/bin`. I ran `corepack enable --install-directory ~/.local/bin` instead and added that folder to PATH. After that, `pnpm install --frozen-lockfile` finished (pnpm 10.8.0). It warned that it had skipped the setup scripts for esbuild, sharp and workerd, which the README also doesn&#x27;t mention.
+- **Quick start (`pnpm dev`):** failed straight away. It stopped with &quot;Could not start remote dev session. No credentials found… Set a CLOUDFLARE_API_TOKEN or run `wrangler login`.&quot; The README warns about this: `pnpm dev` always opens a remote Cloudflare session, even when TypeSafe is the only model configured.
+- **What blocked it:**
+  - **Cloudflare account:** the server won&#x27;t start without a Cloudflare login or API token.
+  - **Search1API key:** every search also needs a `SEARCH1API_API_KEY`, a separate paid key, which isn&#x27;t in the environment either. Starting the server would still not have produced a search result without it.
+
+I put the key in `.dev.vars` as the README says, then deleted that file when I stopped so the key isn&#x27;t left on disk. The key was never printed. Results and the extra steps are recorded in the report.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

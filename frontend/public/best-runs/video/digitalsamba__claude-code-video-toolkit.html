@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>digitalsamba/claude-code-video-toolkit: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>digitalsamba/claude-code-video-toolkit: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 5.5 minutes; sound: yes.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p>
+<video controls preload="metadata" poster="digitalsamba__claude-code-video-toolkit.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="digitalsamba__claude-code-video-toolkit.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.06 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>24% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="digitalsamba__claude-code-video-toolkit-frames.jpg"><img src="digitalsamba__claude-code-video-toolkit-frames.jpg" alt="digitalsamba/claude-code-video-toolkit: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the 15-second Tidepool promo with the installed video toolkit (claude-code-video-toolkit, from ~/src). It&#x27;s rendered to ~/work/output/video.mp4: H.264, 1920×1080, 30 fps, 15.0 seconds of video. I checked those values with ffprobe, and checked the scenes visually from stills and frames pulled from the render.
+
+**How I used the toolkit:** Only part of its workflow applied here. Its AI asset steps (voiceover, images, AI music, video clips) all need cloud GPU endpoints or API keys, and the brief rules them out anyway: no voice-over, no images needed. The rest runs locally: I copied its `product-demo` template to ~/work/project, built the scenes in Remotion, reviewed stills, and rendered with local Chromium. Where its workflow asks for choices, I took the product-demo template. Instead of the default orange brand I made an ocean colour palette, because it fits the brief better.
+
+**The video:** dark-water background with moving waves along the bottom the whole time. The five lines of copy appear exactly as written, in order, each on screen for about 3 to 4 seconds:
+1. &quot;Know before you swim.&quot; over expanding ripples.
+2. &quot;Water quality at 2,400 beaches, checked every morning.&quot; over a coastline drawing itself, with dots lighting up along it and a sun rising.
+3. &quot;Good. Fair. Stay out.&quot; as three pills in green, amber and coral, appearing one after another.
+4. &quot;Rain warnings tell you how long to wait.&quot; with falling rain and a countdown ring around a raindrop that runs down. There are no numbers on it.
+5. &quot;Tidepool.&quot; in large type above a &quot;Check my beach.&quot; button.
+
+There&#x27;s no other text and no logos.
+
+**Sound:** a soft ambient chord with a surf-like swell, made with ffmpeg.
+
+**One step outside Remotion:** its render came out in a full-range colour format that some players show wrongly. I converted it to the standard format with ffmpeg; the audio is copied across unchanged. That command is written down in `~/work/project/CLAUDE.md`, so re-running `npm run render` alone gives the full-range file in `out/`.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>browser-use/jev-ultrafast: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>browser-use/jev-ultrafast: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit 1231850a0bf1; 86 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="no">did not run</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>curl -LsSf https://astral.sh/uv/install.sh | sh &amp;&amp; cd ~/src &amp;&amp; uv sync &amp;&amp; cp .env.example .env (TYPESAFE_API_KEY filled in from env)</code></td></tr><tr><th>Quick start, as run</th><td><code>BU_CDP_URL=http://127.0.0.1:9222 uv run --env-file .env python examples/run.py --url https://en.wikipedia.org/wiki/Main_Page --goal &#x27;Find and open the Wikipedia article about Gödel’s incompleteness theorems.&#x27;  (README&#x27;s primary &#x27;Try it&#x27; is `uv run jev` + web inspector Google Flights demo; chose the smaller CLI example that calls Jev)</code></td></tr>
+<tr><th>What came back</th><td>Jev call succeeded and chose TYPE_TEXT (search box) as its first action; the agent then crashed: ValueError: TYPE_TEXT needs TEXT_MODEL_API_KEY; no text is hardcoded or guessed by the executor. (jev_ultrafast/model.py:163)</td></tr><tr><th>What stopped it</th><td>A second paid key: TEXT_MODEL_API_KEY (an OpenRouter key in the example config, for model inception/mercury-2.5). Every README example needs it as soon as Jev picks TYPE_TEXT, including the Wikipedia one, which types into the search box on its first step. The README does list it as required in &#x27;Try it&#x27;. Also needs Chrome with remote debugging; the README&#x27;s flow assumes a desktop browser, though headless Chromium + BU_CDP_URL got past that.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Installed uv (not present on machine; README assumes it)</li><li>Started Chromium manually: headless, with --remote-debugging-port=9222 and a temp profile (README assumes a desktop Chrome where you can click &#x27;allow remote debugging&#x27;)</li><li>Set BU_CDP_URL=http://127.0.0.1:9222 so browser-harness could find the browser; without it the daemon failed with &#x27;chrome-not-running&#x27; even though Chrome was listening on 9222</li></ul>
+<h2>The session's closing message</h2><pre>It installs, and it reached Jev, but the first run failed. Jev picked an action, then the agent crashed because it needs a second paid key this machine doesn&#x27;t have.
+
+- **Install:** `uv sync` worked once I had installed `uv`. The README assumes `uv` is already on the machine.
+- **Quick start:** The README&#x27;s main demo is `uv run jev` plus a web page you click through, running a Google Flights search. I ran its smaller command-line example instead: `examples/run.py`, which tries to open the Wikipedia article on Gödel&#x27;s incompleteness theorems.
+- **What happened:** Jev answered once and chose to type into the Wikipedia search box. Typing hands off to a separate text model, and that needs `TEXT_MODEL_API_KEY`. In the example setup that is an OpenRouter key. With it missing, the run stopped with `ValueError: TYPE_TEXT needs TEXT_MODEL_API_KEY` (`jev_ultrafast/model.py:163`). The README does list this key as required. The Flights demo would hit the same wall, since it has to type city names. That was 1 Jev call in total.
+- **Steps the README doesn&#x27;t mention:**
+  - Installing `uv`.
+  - Starting Chromium myself, without a window, with remote debugging on port 9222. The README assumes a desktop Chrome where you click &quot;allow remote debugging&quot;.
+  - Setting `BU_CDP_URL=http://127.0.0.1:9222`. Without it, the browser connection layer (browser-harness) reported &quot;chrome-not-running&quot; even though Chromium was running and listening.
+
+The README&#x27;s setup has you put the API key in `.env`, and the run reads it from there. Since you said not to write the key anywhere, I deleted `.env` afterwards. I didn&#x27;t change any project code. I also shut down the Chromium I started.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

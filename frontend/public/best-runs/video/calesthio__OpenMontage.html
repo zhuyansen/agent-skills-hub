@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>calesthio/OpenMontage: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>calesthio/OpenMontage: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 8.6 minutes; sound: no.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>Runs a whole production pipeline and still needed no paid model for this brief; bold colour blocks.</p>
+<video controls preload="metadata" poster="calesthio__OpenMontage.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="calesthio__OpenMontage.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>14% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="calesthio__OpenMontage-frames.jpg"><img src="calesthio__OpenMontage-frames.jpg" alt="calesthio/OpenMontage: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I&#x27;ve rendered the Tidepool promo with OpenMontage, the tool installed from ~/src. It runs the stages from research to compose and renders with HyperFrames on this machine, with no API keys or paid models. The file is 15.0 s, 1920×1080, 30 fps, H.264, 450 frames. The pipeline&#x27;s checks passed (all text meets WCAG AA contrast), and I looked at frames from the final file.
+
+**What&#x27;s on screen.** The five lines appear verbatim and in order:
+1. **0–3 s:** &quot;Know before you swim.&quot; over a sand dawn, with a rising sun and a teal waterline.
+2. **3–7 s:** &quot;Water quality at 2,400 beaches, checked every morning.&quot; on a dark sea-blue background, with a dotted coastline that lights up left to right.
+3. **6–9.8 s:** &quot;Good. Fair. Stay out.&quot; as green, amber and coral columns, each with a simple shape icon.
+4. **9.2–12.7 s:** &quot;Rain warnings tell you how long to wait.&quot; over falling rain. A ring empties like a timer, with no numbers, and turns teal as the rain stops.
+5. **12.2–15 s:** &quot;Tidepool.&quot; with &quot;Check my beach.&quot; in a teal pill, above the waterline again.
+
+There are no other words, logos or claims. Everything is drawn with code; the font is Selawik, which was already on this machine.
+
+**Choices I made without asking, as you asked:**
+- **Renderer:** HyperFrames was the only option available. The tool&#x27;s other renderer, Remotion, isn&#x27;t installed here.
+- **Concept:** I picked the waterline idea out of three.
+- **Sound:** the video is silent and has no audio track. Music was optional and no music generator is configured.
+- **Web research:** I did a short search because the tool won&#x27;t continue past research without a research brief. It is used only as background in the project files; none of it appears in the video.
+
+**One thing I changed in the project:** the HyperFrames setup names the project `hyperframes`. That made `npx hyperframes` find the project instead of the actual tool, so the first render attempt failed. I renamed the project in `package.json`; nothing in OpenMontage itself was changed.
+
+The project is in `~/work/project`: the composition is `hyperframes/index.html` with its design notes in `DESIGN.md`, plus the planning files, checkpoints and the original render. I didn&#x27;t run the tool&#x27;s optional publish step.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

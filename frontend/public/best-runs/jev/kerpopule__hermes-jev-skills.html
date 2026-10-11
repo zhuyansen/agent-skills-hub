@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>kerpopule/hermes-jev-skills: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>kerpopule/hermes-jev-skills: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit b22a21f36572; 39 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>python3 ~/src/install.py  (repo already cloned at ~/src; README: git clone ... &amp;&amp; python3 install.py)</code></td></tr><tr><th>Quick start, as run</th><td><code>jev setup-key (skipped: key already in env as TYPESAFE_API_KEY, which jevkit reads first) then `jev doctor`, the README&#x27;s &#x27;Try it in two commands&#x27;</code></td></tr>
+<tr><th>What came back</th><td>jev doctor -&gt; {&quot;version&quot;: &quot;0.23.0&quot;, &quot;key&quot;: {&quot;present&quot;: true, &quot;provider&quot;: &quot;typesafe&quot;, &quot;source&quot;: &quot;environment&quot;}, &quot;jev&quot;: {&quot;reachable&quot;: true, &quot;latency_ms&quot;: 336}, &quot;routing&quot;: {&quot;privacy_mode&quot;: &quot;redacted-text&quot;, &quot;tiers_configured&quot;: []}, &quot;hermes_home&quot;: null}. doctor sends one real Jev yes/no question (&#x27;The build finished and all tests passed.&#x27; -&gt; ok?) and it answered.</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Added ~/.local/bin to PATH: the installer put `jev` at ~/.local/bin/jev, which was not on PATH (the installer&#x27;s own output warns about this and suggests the fix, but the README does not mention it)</li><li>Skipped `jev setup-key`: it opens a browser page (or needs --tty for an interactive hidden prompt); relied instead on TYPESAFE_API_KEY already in the environment, which the code (jevkit/keystore.py) checks first but the README&#x27;s quick start does not say is an option</li><li>Note: the default install also edits ~/.claude/CLAUDE.md (backed up) and adds ~/.claude/agents and ~/.claude/skills entries because Claude Code was detected; the README does say this</li></ul>
+<h2>The session's closing message</h2><pre>The install and quick start both worked, and the quick start got a real answer back from Jev. I made one Jev call in total.
+
+- **Install:** I ran `python3 install.py` from `~/src`, as the README says. It installed the `jev` command, the 11 skills and the 4 lane subagents. It also added a lanes block to `~/.claude/CLAUDE.md` after backing the file up; the README does say it will do that.
+- **Quick start:** The README&#x27;s &quot;Try it in two commands&quot; ends with `jev doctor`. That command sends Jev one real yes/no question, and it came back `reachable: true` with a latency of 336 ms. The key showed as `present` with `source: environment`.
+
+Two steps the README doesn&#x27;t mention:
+- **`jev` was not on PATH.** The installer puts it at `~/.local/bin/jev`, and that folder wasn&#x27;t on PATH on this machine. The installer&#x27;s own output warns about this and gives the fix, but the README doesn&#x27;t. I added the folder to PATH for the session.
+- **I skipped `jev setup-key`.** It wants you to paste the key into a page in a browser, or to type it at a hidden prompt with `--tty`. The project&#x27;s code reads the key from `TYPESAFE_API_KEY` first, and that&#x27;s the name it already had here, so nothing needed exporting. The README&#x27;s quick start doesn&#x27;t say an environment variable is an option.
+
+Nothing blocked the run, and I didn&#x27;t patch any code. The key was never printed or written anywhere.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

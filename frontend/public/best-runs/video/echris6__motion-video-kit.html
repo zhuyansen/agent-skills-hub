@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>echris6/motion-video-kit: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>echris6/motion-video-kit: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 21.8 minutes; sound: no.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>The fullest picture here, with drawn scenes and a phone mock-up; it took 21.8 minutes.</p>
+<video controls preload="metadata" poster="echris6__motion-video-kit.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="echris6__motion-video-kit.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>3% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="echris6__motion-video-kit-frames.jpg"><img src="echris6__motion-video-kit-frames.jpg" alt="echris6/motion-video-kit: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the Tidepool video with the installed `business-motion-film` skill. It needed no paid models or API keys. The final file is H.264, 1920×1080, 30fps and exactly 15.0s long.
+
+**What&#x27;s on screen:** the five lines of copy appear exactly as written and in order, with no other text, taglines, numbers or logos. The phone screen only shows the rating disc and icons.
+- **0–1.6s, &quot;Know before you swim.&quot;:** a bright beach. The brand disc floats on the water.
+- **1.6–5.2s, &quot;Water quality at 2,400 beaches, checked every morning.&quot;:** the sea rises into a coastline map. The disc lands on the coast as a pin. A morning light band sweeps down the map and turns 2,400 grey dots into rating colours.
+- **5.2–7.9s, &quot;Good. Fair. Stay out.&quot;:** three beaches lift off the map and become three large discs, one rating each.
+- **7.9–11.4s, &quot;Rain warnings tell you how long to wait.&quot;:** in the rain, the red disc docks into a phone with a draining countdown ring and an hourglass.
+- **11.3–15s, &quot;Tidepool. Check my beach.&quot;:** the disc flips to teal and becomes the logo, next to the wordmark and a button reading &quot;Check my beach.&quot;
+
+**How I followed the skill:**
+- I wrote a brief and a storyboard, and a separate reviewer checked the storyboard.
+- I then ran four review rounds on the full video, each by a fresh reviewer.
+- Video r4 got a SHIP verdict, with two optional fixes of a few frames each, which I didn&#x27;t make.
+- Measured checks: the only near-still stretch is about 1.0s on the end card, which the skill allows. A frame rendered out of order came out identical.
+
+**Where I departed from the skill or a reviewer:**
+- **No audio.** The brief makes music optional, and the skill&#x27;s sound rules rule out the code-generated sounds I could have made here.
+- **No &quot;concept film&quot; label.** The skill normally adds one, but your brief forbids extra sentences, and there&#x27;s no AI imagery to label.
+- **No flip to &quot;Good&quot; after the rain countdown.** A reviewer suggested it, but it would imply the water clears on a timer, which the brief doesn&#x27;t say.
+- **30fps, not the skill&#x27;s 60fps.** Your brief asks for 30fps.
+
+The project is in `~/work/project`: the editable page `index.html`, the renderer `tools/render.mjs`, the brief, the storyboard, the review reports in `review/`, `LEDGER.md` and earlier renders. `~/work/output` also has a poster frame and a contact sheet next to the video.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

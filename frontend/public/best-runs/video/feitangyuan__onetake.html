@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>feitangyuan/onetake: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>feitangyuan/onetake: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 8.5 minutes; sound: yes.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>One drop of water carries the whole film from line to line, with no cuts.</p>
+<video controls preload="metadata" poster="feitangyuan__onetake.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="feitangyuan__onetake.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>45% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="feitangyuan__onetake-frames.jpg"><img src="feitangyuan__onetake-frames.jpg" alt="feitangyuan/onetake: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>The video is rendered with the onetake skill. It&#x27;s 15.0 s, 1920×1080, 30 fps, H.264, with a synthesised sound track.
+
+**What it shows:** A single drop of water carries the whole film:
+1. It falls and lands with ripples under &quot;Know before you swim.&quot;
+2. It splits into 2,400 dots along a coastline. A morning light sweeps along it, setting each dot green, amber or red, under &quot;Water quality at 2,400 beaches, checked every morning.&quot;
+3. The camera whips onto one beach, which grows into a disc. The disc turns green, amber and red as &quot;Good. Fair. Stay out.&quot; lands word by word.
+4. Rain falls and the disc hollows into a ring. The ring drains back to green and refills, under &quot;Rain warnings tell you how long to wait.&quot;
+5. The disc becomes a &quot;Check my beach.&quot; button under &quot;Tidepool.&quot; A last drop presses it, and the frame holds still to the end.
+
+The on-screen copy is exactly the brief&#x27;s five lines, in order, with nothing added: no other text, logos or claims, and no voice-over. The look is a palette and font set I made for this film.
+
+**Checks:** The skill&#x27;s final check (`verify_promo.py`) passes on the rendered file, with every scene change carried by the drop rather than cut. From frames taken out of the video I found one problem: the button was growing over line 4 while it faded. I fixed that and re-rendered.
+
+**Decisions made without asking**, as you instructed:
+- I picked the concept, a look made for this film, and the storyboard myself, where the skill would have asked you to choose.
+- Sound uses only the skill&#x27;s built-in synthesised palette, with no music or downloaded files.
+- I didn&#x27;t do the skill&#x27;s 4K/60 fps final render, because the brief asks for 1080p at 30 fps.
+
+**Changes to this machine:**
+- I installed Python packages the skill needs (numpy, scipy, Pillow, matplotlib, fonttools, brotli, opencv) into the user site with `pip --user --break-system-packages`.
+- I symlinked `/usr/bin/chromium` into Playwright&#x27;s browser cache, because Playwright&#x27;s own browser wasn&#x27;t installed.
+
+The project is in `~/work/project`: `comp.html`, `look.json`/`look.js`, `score.py`/`sfx.wav`, and a `README.md` with the concepts, beat sheet and render commands.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>dzhng/jevgrep: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>dzhng/jevgrep: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit 703aba1a36a3; 60 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 11.</p>
+<table><tr><th>Install</th><td><code>npm install -g @dzhng/jevgrep  (failed EACCES on /usr/local/lib/node_modules; then: npm config set prefix ~/.npm-global &amp;&amp; npm install -g @dzhng/jevgrep, with ~/.npm-global/bin on PATH) -&gt; jg 0.8.0</code></td></tr><tr><th>Quick start, as run</th><td><code>printf &#x27;%s&#x27; &quot;$TYPESAFE_API_KEY&quot; | jg auth --provider typesafe --stdin; jg doctor; jg &quot;How are telemetry events recorded and sent?&quot; ./apps/cli --max-requests 10  (run from ~/src)</code></td></tr>
+<tr><th>What came back</th><td>auth: &#x27;TypeSafe key saved.&#x27; doctor: &#x27;Jev connection verified through TypeSafe.&#x27; search exit 0: &#x27;Jevgrep: 1 relevant files. ... - &quot;src/index.ts&quot; — relevant; role uncertain; locations only ... Declaration locations: - &quot;src/index.ts&quot; End context.&#x27; Thin result (locations only, no source excerpts), plausibly because the CLI has no telemetry code and the request cap was low.</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Global npm install failed with EACCES (machine&#x27;s /usr/local is root-owned); set a user npm prefix (~/.npm-global) and added its bin to PATH instead of using sudo</li><li>Used non-interactive &#x27;jg auth --provider typesafe --stdin&#x27; (documented in apps/cli/README.md and jg --help, not the top-level README) because &#x27;jg auth&#x27; is interactive</li><li>Skipped &#x27;jg skill&#x27; (agent-skill installer, needs interactive agent selection; does not call Jev and is not needed for the search)</li><li>README example targets a placeholder ./my-project; substituted the repo&#x27;s own small ./apps/cli (17 files) as the search root</li><li>Added --max-requests 10 (default ceiling is 1000) to keep Jev calls to a handful</li></ul>
+<h2>The session's closing message</h2><pre>jevgrep (`jg` 0.8.0) installed and ran its quick start search; the search came back with a real but very thin answer.
+
+- **Install:** the README&#x27;s `npm install -g @dzhng/jevgrep` failed with a permission error, because this machine&#x27;s global npm folder is owned by root. That&#x27;s a machine issue, not the project&#x27;s. I pointed npm at a folder in my home directory (`~/.npm-global`), added it to PATH, and it installed cleanly.
+- **Auth:** the README&#x27;s `jg auth` asks questions interactively. I used the scriptable form, `jg auth --provider typesafe --stdin`, with the key piped in from TYPESAFE_API_KEY. That form is documented in `apps/cli/README.md` and `jg --help`, not in the main README. `jg doctor` then reported &quot;Jev connection verified through TypeSafe.&quot;
+- **Quick start:** I ran the README&#x27;s question, `jg &quot;How are telemetry events recorded and sent?&quot;`, against the repo&#x27;s own small CLI folder `./apps/cli` (17 files), since the README&#x27;s `./my-project` is just a placeholder. I added `--max-requests 10` to keep Jev calls to a handful; the default limit is 1000.
+- **Result:** it exited cleanly with &quot;1 relevant files: `src/index.ts` — relevant; role uncertain; locations only&quot;. There were no source excerpts. The likely reasons are that this folder has no telemetry code and my request cap was low.
+- **Skipped:** `jg skill`, which installs the coding-agent skill. It prompts interactively and doesn&#x27;t call Jev.
+- **Jev calls:** at most 11 (1 from `jg doctor` plus up to 10 from the search). The report records 11 because I don&#x27;t have an exact count.
+
+Nothing blocked the run, and the API key was never printed or written to a file.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

@@ -7050,5 +7050,1804 @@
     "note_zh": "触发最不稳的一个：100 那档两个 agent 各漏的一条也是它。"
    }
   }
+ },
+ "claude-video-skills": {
+  "type": "table",
+  "date": "2026-10-11",
+  "dir": "/best-runs/video/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md",
+  "title": [
+   "Remotion skills and Claude Code video tools tested: the same 15-second film",
+   "实测对比：同一条 15 秒片子"
+  ],
+  "intro": [
+   "On 2026-10-11 we had 16 of these skills make the same film in a throwaway sandbox, driven by Claude Code (Claude Opus 5.5): a 15-second promo for a made-up app, with five fixed lines of on-screen copy, at 1920 x 1080 and 30 frames per second, on a machine with no API keys for video, image or voice models. Claude Code with no skill made it too. Four things were checked from each file: it plays, it is the length and size asked for, every line of copy can be read in frames sampled twice a second, and the picture moves. How good a film looks is not scored. The films are below.",
+   "2026-10-11 我们让其中 16 个 skill 在用完即删的沙箱里由 Claude Code（Claude Opus 5.5）调用，做同一条片子：给一个虚构应用做 15 秒宣传片，五句固定的画面文案，1920 x 1080、每秒 30 帧，机器上没有任何视频、图像或语音模型的密钥。不装 skill 的 Claude Code 也做了一条。每个文件查四件事：能播放、时长和尺寸符合要求、每句文案在每秒抽两帧的画面里都读得到、画面在动。片子好不好看不打分，成片就在下面。"
+  ],
+  "finding": [
+   "All 16 rendered a film that passed all four checks, with no line of copy missing and nothing added, and so did Claude Code with no skill, in 4.4 minutes. None needed a paid model for this brief. What differs is time (2.0 to 23.5 minutes), sound (9 of 16 added it), and the look: 6 came out close to the no-skill film (deep teal water, waves, white centred type) and 10 have a look of their own, by our eye.",
+   "16 个全部渲染出了通过四项检查的成片，文案一句没少、也没有多加内容；不装 skill 的 Claude Code 也一样，用了 4.4 分钟。这条需求没有一个用到付费模型。差别在耗时（2.0 到 23.5 分钟）、声音（16 个里 9 个加了声音）和观感：按我们的眼睛看，6 个做出来接近不装 skill 的成片（深青色水面、波浪、白字居中），10 个有自己的样子。"
+  ],
+  "gallery": {
+   "width": 960,
+   "height": 540,
+   "groups": [
+    {
+     "id": "control",
+     "title": [
+      "No skill installed (the control)",
+      "不装 skill（对照）"
+     ]
+    },
+    {
+     "id": "own",
+     "title": [
+      "A look of their own",
+      "有自己的样子"
+     ]
+    },
+    {
+     "id": "default",
+     "title": [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    }
+   ],
+   "items": [
+    {
+     "name": "No skill",
+     "src": "octocat__Hello-World.mp4",
+     "poster": "octocat__Hello-World.jpg",
+     "group": "control",
+     "caption": [
+      "4.4 min · sound",
+      "4.4 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "explainroo",
+     "src": "vincentsch__explainroo.mp4",
+     "poster": "vincentsch__explainroo.jpg",
+     "group": "own",
+     "caption": [
+      "2.0 min · sound",
+      "2.0 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "remotion-video-skill",
+     "src": "wshuyi__remotion-video-skill.mp4",
+     "poster": "wshuyi__remotion-video-skill.jpg",
+     "group": "default",
+     "caption": [
+      "3.4 min · no sound",
+      "3.4 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "skills",
+     "src": "vibe-motion__skills.mp4",
+     "poster": "vibe-motion__skills.jpg",
+     "group": "own",
+     "caption": [
+      "4.4 min · sound",
+      "4.4 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "skills",
+     "src": "remotion-dev__skills.mp4",
+     "poster": "remotion-dev__skills.jpg",
+     "group": "default",
+     "caption": [
+      "4.5 min · no sound",
+      "4.5 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "motion-graphics",
+     "src": "Barty-Bart__motion-graphics.mp4",
+     "poster": "Barty-Bart__motion-graphics.jpg",
+     "group": "own",
+     "caption": [
+      "4.7 min · no sound",
+      "4.7 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "claude-code-video-toolkit",
+     "src": "digitalsamba__claude-code-video-toolkit.mp4",
+     "poster": "digitalsamba__claude-code-video-toolkit.jpg",
+     "group": "default",
+     "caption": [
+      "5.5 min · sound",
+      "5.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "lottie",
+     "src": "diffusionstudio__lottie.mp4",
+     "poster": "diffusionstudio__lottie.jpg",
+     "group": "default",
+     "caption": [
+      "5.6 min · no sound",
+      "5.6 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "hypit",
+     "src": "hypit-ai__hypit.mp4",
+     "poster": "hypit-ai__hypit.jpg",
+     "group": "default",
+     "caption": [
+      "6.5 min · sound",
+      "6.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-skills",
+     "src": "iart-ai__motion-skills.mp4",
+     "poster": "iart-ai__motion-skills.jpg",
+     "group": "own",
+     "caption": [
+      "6.5 min · sound",
+      "6.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-graphics-skills",
+     "src": "charlie947__motion-graphics-skills.mp4",
+     "poster": "charlie947__motion-graphics-skills.jpg",
+     "group": "default",
+     "caption": [
+      "7.0 min · sound",
+      "7.0 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "claude-motion-design",
+     "src": "howseen-ai__claude-motion-design.mp4",
+     "poster": "howseen-ai__claude-motion-design.jpg",
+     "group": "own",
+     "caption": [
+      "7.9 min · sound",
+      "7.9 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "onetake",
+     "src": "feitangyuan__onetake.mp4",
+     "poster": "feitangyuan__onetake.jpg",
+     "group": "own",
+     "caption": [
+      "8.5 min · sound",
+      "8.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "OpenMontage",
+     "src": "calesthio__OpenMontage.mp4",
+     "poster": "calesthio__OpenMontage.jpg",
+     "group": "own",
+     "caption": [
+      "8.6 min · no sound",
+      "8.6 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "guizang-product-video-skill",
+     "src": "op7418__guizang-product-video-skill.mp4",
+     "poster": "op7418__guizang-product-video-skill.jpg",
+     "group": "own",
+     "caption": [
+      "8.6 min · sound",
+      "8.6 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-video-kit",
+     "src": "echris6__motion-video-kit.mp4",
+     "poster": "echris6__motion-video-kit.jpg",
+     "group": "own",
+     "caption": [
+      "21.8 min · no sound",
+      "21.8 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "hyperframes",
+     "src": "heygen-com__hyperframes.mp4",
+     "poster": "heygen-com__hyperframes.jpg",
+     "group": "own",
+     "caption": [
+      "23.5 min · no sound",
+      "23.5 分钟 · 无声音"
+     ]
+    }
+   ],
+   "note": [
+    "The films, side by side. Press play on any of them; each is 15 seconds.",
+    "成片并排放在这里。点任意一条播放，每条 15 秒。"
+   ]
+  },
+  "name_col": [
+   "Skill",
+   "Skill"
+  ],
+  "columns": [
+   [
+    "Checks passed (of 4)",
+    "通过检查（共 4 项）"
+   ],
+   [
+    "Lines of copy readable (of 5)",
+    "读得到的文案（共 5 句）"
+   ],
+   [
+    "Sound",
+    "声音"
+   ],
+   [
+    "Look, by eye",
+    "观感（肉眼判断）"
+   ],
+   [
+    "Time to make",
+    "制作耗时"
+   ]
+  ],
+  "see": [
+   "Watch it and see the frames →",
+   "看成片和抽帧 →"
+  ],
+  "evidence": [
+   "The film",
+   "成片"
+  ],
+  "line_label": [
+   "Remotion and video skill test, 2026-10-11:",
+   "2026-10-11 实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html"
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "basis": [
+    "after having each make the same film",
+    "让每个都做同一条片子之后"
+   ],
+   "more": [
+    "Watch the films →",
+    "看成片 →"
+   ],
+   "rule": [
+    "Not ranked: all 16 skills, and Claude Code with no skill, passed the same four checks (a playable file, the length and size asked for, all five lines of copy readable, a picture that moves). The table is in order of time taken. Whether a film looks like the default or has a look of its own was judged by eye; watch them and judge for yourself.",
+    "不排名次：全部 16 个 skill，以及不装 skill 的 Claude Code，都通过了同样的四项检查（能播放的文件、时长和尺寸符合要求、五句文案都读得到、画面在动）。表格按耗时排列。成片是接近默认风格还是有自己的样子，是我们看图判断的；请自己看成片来判断。"
+   ],
+   "picks": [
+    {
+     "repo": "vincentsch/explainroo",
+     "role": [
+      "For a finished film fast",
+      "想尽快出一条成片"
+     ],
+     "why": [
+      "Two minutes from brief to a film with sound, the quickest of the sixteen, and it does not look like the default.",
+      "从需求到带声音的成片只用了 2 分钟，16 个里最快，而且看起来不像默认风格。"
+     ]
+    },
+    {
+     "repo": "feitangyuan/onetake",
+     "role": [
+      "For a film with one idea running through it",
+      "想要一个贯穿全片的创意"
+     ],
+     "why": [
+      "A single drop of water carries all five lines with no cuts. For a fuller, illustrated picture the one to watch is motion-video-kit, if you can wait 22 minutes.",
+      "一滴水不切镜地带出全部五句。想要画面更满的插画风，可以看 motion-video-kit，前提是你能等 22 分钟。"
+     ]
+    },
+    {
+     "repo": "remotion-dev/skills",
+     "role": [
+      "To build your own design in Remotion",
+      "想用 Remotion 做自己的设计"
+     ],
+     "why": [
+      "Remotion's own skills: reliable rendering in 4.5 minutes. The film it makes unprompted is close to the default, so bring your own design direction.",
+      "Remotion 官方的 skill：渲染稳定，4.5 分钟。不给方向时它做出的片子接近默认风格，所以设计方向要你自己给。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Know before you pick:",
+    "选之前要知道："
+   ],
+   "avoid": [
+    {
+     "repo": "heygen-com/hyperframes",
+     "why": [
+      "the most-starred renderer here took 23.5 minutes on a 15-second brief",
+      "这里星数最高的渲染器，15 秒的需求做了 23.5 分钟"
+     ]
+    },
+    {
+     "repo": "Barty-Bart/motion-graphics",
+     "why": [
+      "built for talking-head footage, which this brief did not have",
+      "是为真人出镜素材做的，而这条需求没有素材"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: you may not need one for a simple promo. Claude Code with no skill made a film that passed every check in 4.4 minutes. A skill earns its place with a look, a workflow, or footage to edit.",
+    "不管选哪个：简单的宣传片可能根本不需要 skill。不装 skill 的 Claude Code 用 4.4 分钟做出了一条通过全部检查的成片。skill 的价值在于风格、流程，或者处理你已有的素材。"
+   ]
+  },
+  "runs": {
+   "vincentsch/explainroo": {
+    "ran": true,
+    "stars": 523,
+    "sheet": "vincentsch__explainroo.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "2.0 min",
+      "2.0 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 2.0 min",
+      "2.0 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "The fastest: a finished film with sound in 2 minutes.",
+    "note_zh": "最快：2 分钟出一条带声音的成片。"
+   },
+   "wshuyi/remotion-video-skill": {
+    "ran": true,
+    "stars": 394,
+    "sheet": "wshuyi__remotion-video-skill.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "3.4 min",
+      "3.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 3.4 min",
+      "3.4 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "vibe-motion/skills": {
+    "ran": true,
+    "stars": 1315,
+    "sheet": "vibe-motion__skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "4.4 min",
+      "4.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 4.4 min",
+      "4.4 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "remotion-dev/skills": {
+    "ran": true,
+    "stars": 5005,
+    "sheet": "remotion-dev__skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "4.5 min",
+      "4.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 4.5 min",
+      "4.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ],
+    "note": "Remotion's own skills: a solid film in 4.5 minutes, no sound.",
+    "note_zh": "Remotion 官方的 skill：4.5 分钟出一条扎实的成片，没有声音。"
+   },
+   "Barty-Bart/motion-graphics": {
+    "ran": true,
+    "stars": 580,
+    "sheet": "Barty-Bart__motion-graphics.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "4.7 min",
+      "4.7 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 4.7 min",
+      "4.7 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Made for adding motion graphics to talking-head footage; with no footage it built a full-frame film of interface cards.",
+    "note_zh": "本来是给真人出镜视频加动效的；没有素材时它做了一条全屏的界面卡片动画。"
+   },
+   "digitalsamba/claude-code-video-toolkit": {
+    "ran": true,
+    "stars": 2198,
+    "sheet": "digitalsamba__claude-code-video-toolkit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "5.5 min",
+      "5.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 5.5 min",
+      "5.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "diffusionstudio/lottie": {
+    "ran": true,
+    "stars": 5493,
+    "sheet": "diffusionstudio__lottie.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "5.6 min",
+      "5.6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 5.6 min",
+      "5.6 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "hypit-ai/hypit": {
+    "ran": true,
+    "stars": 20799,
+    "sheet": "hypit-ai__hypit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 6.5 min",
+      "6.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ],
+    "note": "Drew everything in code on this machine; no paid model or account was needed for this brief.",
+    "note_zh": "全部在本机用代码绘制；这条需求不需要付费模型或账号。"
+   },
+   "iart-ai/motion-skills": {
+    "ran": true,
+    "stars": 610,
+    "sheet": "iart-ai__motion-skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 6.5 min",
+      "6.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "A drawn beach scene whose weather changes with the copy; music made in code.",
+    "note_zh": "一个手绘海滩场景，天气随文案变化；配乐用代码生成。"
+   },
+   "charlie947/motion-graphics-skills": {
+    "ran": true,
+    "stars": 174,
+    "sheet": "charlie947__motion-graphics-skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "7.0 min",
+      "7.0 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 7.0 min",
+      "7.0 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "howseen-ai/claude-motion-design": {
+    "ran": true,
+    "stars": 408,
+    "sheet": "howseen-ai__claude-motion-design.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "7.9 min",
+      "7.9 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 7.9 min",
+      "7.9 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "feitangyuan/onetake": {
+    "ran": true,
+    "stars": 2080,
+    "sheet": "feitangyuan__onetake.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.5 min",
+      "8.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.5 min",
+      "8.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "One drop of water carries the whole film from line to line, with no cuts.",
+    "note_zh": "一滴水贯穿全片，从一句带到下一句，没有切镜。"
+   },
+   "calesthio/OpenMontage": {
+    "ran": true,
+    "stars": 64239,
+    "sheet": "calesthio__OpenMontage.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.6 min",
+      "8.6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.6 min",
+      "8.6 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Runs a whole production pipeline and still needed no paid model for this brief; bold colour blocks.",
+    "note_zh": "跑的是一整条制作流水线，这条需求仍然没用到付费模型；大色块风格。"
+   },
+   "op7418/guizang-product-video-skill": {
+    "ran": true,
+    "stars": 762,
+    "sheet": "op7418__guizang-product-video-skill.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.6 min",
+      "8.6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.6 min",
+      "8.6 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "echris6/motion-video-kit": {
+    "ran": true,
+    "stars": 1080,
+    "sheet": "echris6__motion-video-kit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "21.8 min",
+      "21.8 分钟",
+      "substantial"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 21.8 min",
+      "21.8 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "The fullest picture here, with drawn scenes and a phone mock-up; it took 21.8 minutes.",
+    "note_zh": "这里画面最满的一条，有手绘场景和手机样机；用了 21.8 分钟。"
+   },
+   "heygen-com/hyperframes": {
+    "ran": true,
+    "stars": 60291,
+    "sheet": "heygen-com__hyperframes.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "23.5 min",
+      "23.5 分钟",
+      "substantial"
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 23.5 min",
+      "23.5 分钟做出 15 秒测试片"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Cream paper and thin lines: the sparest film here, and the slowest to make at 23.5 minutes.",
+    "note_zh": "米白底、细线条：这里最克制的一条，也是做得最慢的，23.5 分钟。"
+   }
+  }
+ },
+ "typesafe-jev": {
+  "type": "table",
+  "date": "2026-10-11",
+  "dir": "/best-runs/jev/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md",
+  "title": [
+   "TypeSafe Jev projects tested: does the quick start run",
+   "实测对比：快速上手跑不跑得通"
+  ],
+  "list_title": [
+   "First-run test",
+   "首次运行实测"
+  ],
+  "intro": [
+   "On 2026-10-11 we took 12 of these projects that call the hosted Jev API and gave each the same test in a throwaway sandbox, driven by Claude Code (Claude Opus 5.5): install it the way its README says, then run the README's first example once, with a Jev API key in the environment and nothing else (no GPU, no desktop, no other paid keys, no accounts). The projects do different jobs, so this does not compare how good they are. It answers one thing: can a new user get it running.",
+   "2026-10-11 我们挑了其中 12 个调用托管 Jev API 的项目，在用完即删的沙箱里由 Claude Code（Claude Opus 5.5）做同一个测试：按 README 的方式安装，再把 README 的第一个示例跑一次；环境里只有一个 Jev API 密钥，别的都没有（没有 GPU、没有桌面、没有别的付费密钥、没有账号）。这些项目做的事各不相同，所以这不是比谁更好，只回答一件事：新用户能不能跑起来。"
+  ],
+  "finding": [
+   "8 of the 11 we could judge ran their quick start on a Jev key alone, each in about a minute and on a handful of Jev calls. The 3 that did not each need something more: a second paid key, a signed-in Codex CLI, or a Cloudflare account. The most-starred project on the page is one of them.",
+   "能评判的 11 个里，有 8 个只靠一个 Jev 密钥就跑通了快速上手，每个大约一分钟、只用了几次 Jev 调用。没跑通的 3 个各自还需要别的东西：第二个付费密钥、已登录的 Codex CLI，或者 Cloudflare 账号。本页星数最高的项目就在其中。"
+  ],
+  "name_col": [
+   "Project",
+   "项目"
+  ],
+  "columns": [
+   [
+    "Quick start",
+    "快速上手"
+   ],
+   [
+    "What it needs",
+    "需要什么"
+   ],
+   [
+    "Steps beyond the README",
+    "README 之外的步骤"
+   ],
+   [
+    "Jev calls",
+    "Jev 调用次数"
+   ],
+   [
+    "Install and run",
+    "安装加运行"
+   ]
+  ],
+  "see": [
+   "See the first run →",
+   "看首次运行 →"
+  ],
+  "evidence": [
+   "The run",
+   "运行记录"
+  ],
+  "line_label": [
+   "Jev first-run test, 2026-10-11:",
+   "2026-10-11 实测："
+  ],
+  "not_run_label": [
+   "Could not be judged in a sandbox",
+   "沙箱里评不了"
+  ],
+  "not_run_line": [
+   "Our test could not judge it:",
+   "这轮实测评不了："
+  ],
+  "verdict": {
+   "title": [
+    "Which one to try first",
+    "先试哪个"
+   ],
+   "basis": [
+    "after running each one's quick start",
+    "把每个的快速上手跑了一遍之后"
+   ],
+   "more": [
+    "See the first runs →",
+    "看首次运行结果 →"
+   ],
+   "lead": [
+    "We ran the quick start of {n} of these projects with a Jev key. This is what we would try first; the [full results](#{anchor}) are below.",
+    "我们用 Jev 密钥跑了其中 {n} 个项目的快速上手,下面是我们会先试的,[完整结果](#{anchor})在下面。"
+   ],
+   "rule": [
+    "Listed by GitHub stars. These projects do different jobs, so this is not a ranking of quality: it is whether a new user with only a Jev key gets through the README's first example. One run each, a handful of Jev calls.",
+    "按 GitHub 星数排列。这些项目做的事各不相同，所以这不是质量排名：看的是只有一个 Jev 密钥的新用户能不能跑通 README 的第一个示例。每个只跑一次，只调用了几次 Jev。"
+   ],
+   "picks": [
+    {
+     "repo": "dzhng/jevgrep",
+     "role": [
+      "To search code by what it does",
+      "按功能搜代码"
+     ],
+     "why": [
+      "One npm install, one command to save the key, a doctor check that confirmed the connection, and a search that returned a result. No other key or account needed.",
+      "一条 npm 安装、一条保存密钥的命令、一次确认连接的自检，然后搜索就返回了结果。不需要别的密钥或账号。"
+     ]
+    },
+    {
+     "repo": "tamaratran/fast-jev-compaction",
+     "role": [
+      "To cut what Claude Code spends on compaction",
+      "减少 Claude Code 压缩上下文的开销"
+     ],
+     "why": [
+      "It ran in one Jev request (under half a second) and returned keep-or-drop decisions for each tool call. The README's example is cut short, so expect to write a few more messages before Jev is asked anything.",
+      "只用了一次 Jev 请求（不到半秒），返回了每次工具调用该保留还是丢弃的判断。README 的示例是截断的，要自己多写几条消息 Jev 才会被调用。"
+     ]
+    },
+    {
+     "repo": "jkudish/jev-mcp",
+     "role": [
+      "To use Jev from any agent, as MCP tools",
+      "在任意 agent 里以 MCP 工具使用 Jev"
+     ],
+     "why": [
+      "Registered with one claude mcp add and answered its first call: one claim verified, one contradicted. There is no command-line example; you call it from an agent.",
+      "一条 claude mcp add 就注册好，第一次调用就有结果：一条说法得到验证，一条被判矛盾。它没有命令行示例，要从 agent 里调用。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "A Jev key alone is not enough for these:",
+    "这几个只有 Jev 密钥还不够："
+   ],
+   "avoid": [
+    {
+     "repo": "browser-use/jev-ultrafast",
+     "why": [
+      "the most-starred project here also needs a paid text-model key",
+      "这里星数最高的项目，还要一个付费的文本模型密钥"
+     ]
+    },
+    {
+     "repo": "thruwire/foreman",
+     "why": [
+      "needs the Codex CLI signed in",
+      "需要已登录的 Codex CLI"
+     ]
+    },
+    {
+     "repo": "superagents-lab/jev-search",
+     "why": [
+      "needs a Cloudflare account",
+      "需要 Cloudflare 账号"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: every project that ran did so on a few Jev calls costing a fraction of a cent, so trying one is cheap. Read what else a project needs before you start.",
+    "不管选哪个：跑通的项目都只用了几次 Jev 调用，花费不到一分钱，所以试一个的成本很低。开始之前先看清它还需要什么。"
+   ]
+  },
+  "runs": {
+   "browser-use/jev-ultrafast": {
+    "stars": 22555,
+    "sheet": "browser-use__jev-ultrafast.html",
+    "ran": true,
+    "cells": [
+     [
+      "Did not run",
+      "没跑通",
+      "substantial"
+     ],
+     [
+      "Needs a second paid key: Jev picked the first action, then the agent stopped for want of a text-model key (TEXT_MODEL_API_KEY).",
+      "还要第二个付费密钥：Jev 选出了第一个动作，随后 agent 因为缺少文本模型的密钥（TEXT_MODEL_API_KEY）停了下来。"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "86 s",
+      "86 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start did not run on a Jev key alone",
+      "只有 Jev 密钥跑不通它的快速上手"
+     ],
+     [
+      "Needs a second paid key: Jev picked the first action, then the agent stopped for want of a text-model key (TEXT_MODEL_API_KEY).",
+      "还要第二个付费密钥：Jev 选出了第一个动作，随后 agent 因为缺少文本模型的密钥（TEXT_MODEL_API_KEY）停了下来。"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "86 s to install and run",
+      "安装加运行 86 秒"
+     ]
+    ]
+   },
+   "tamaratran/fast-jev-compaction": {
+    "stars": 7570,
+    "sheet": "tamaratran__fast-jev-compaction.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "52 s",
+      "52 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "4 steps beyond the README",
+      "README 之外多做了 4 步"
+     ],
+     [
+      "52 s to install and run",
+      "安装加运行 52 秒"
+     ]
+    ]
+   },
+   "dzhng/jevgrep": {
+    "stars": 2544,
+    "sheet": "dzhng__jevgrep.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "5",
+      null,
+      "num"
+     ],
+     [
+      "11",
+      null,
+      "num"
+     ],
+     [
+      "60 s",
+      "60 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "5 steps beyond the README",
+      "README 之外多做了 5 步"
+     ],
+     [
+      "60 s to install and run",
+      "安装加运行 60 秒"
+     ]
+    ]
+   },
+   "kerpopule/hermes-jev-skills": {
+    "stars": 1074,
+    "sheet": "kerpopule__hermes-jev-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "39 s",
+      "39 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "39 s to install and run",
+      "安装加运行 39 秒"
+     ]
+    ]
+   },
+   "thruwire/foreman": {
+    "stars": 732,
+    "sheet": "thruwire__foreman.html",
+    "ran": true,
+    "cells": [
+     [
+      "Did not run",
+      "没跑通",
+      "substantial"
+     ],
+     [
+      "Jev's routing and assessments came back, but its default workers need the Codex CLI installed and signed in.",
+      "Jev 的路由和评估都返回了，但它默认的 worker 需要装好并登录 Codex CLI。"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "71 s",
+      "71 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start did not run on a Jev key alone",
+      "只有 Jev 密钥跑不通它的快速上手"
+     ],
+     [
+      "Jev's routing and assessments came back, but its default workers need the Codex CLI installed and signed in.",
+      "Jev 的路由和评估都返回了，但它默认的 worker 需要装好并登录 Codex CLI。"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "71 s to install and run",
+      "安装加运行 71 秒"
+     ]
+    ]
+   },
+   "devagrawal09/jev-review": {
+    "stars": 680,
+    "sheet": "devagrawal09__jev-review.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "12",
+      null,
+      "num"
+     ],
+     [
+      "56 s",
+      "56 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "56 s to install and run",
+      "安装加运行 56 秒"
+     ]
+    ]
+   },
+   "gargpratyush/jev-router": {
+    "stars": 579,
+    "sheet": "gargpratyush__jev-router.html",
+    "ran": false,
+    "reason": "It routes inside a signed-in Claude Code or Codex; our sandbox runs Claude Code on a token, which it does not accept, so the test could not reach its first step.",
+    "reason_zh": "它在已登录的 Claude Code 或 Codex 里做路由；我们的沙箱用令牌运行 Claude Code，它不认，所以测试走不到它的第一步。"
+   },
+   "AgriciDaniel/jev-seo": {
+    "stars": 547,
+    "sheet": "AgriciDaniel__jev-seo.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "53 s",
+      "53 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "2 steps beyond the README",
+      "README 之外多做了 2 步"
+     ],
+     [
+      "53 s to install and run",
+      "安装加运行 53 秒"
+     ]
+    ]
+   },
+   "superagents-lab/jev-search": {
+    "stars": 529,
+    "sheet": "superagents-lab__jev-search.html",
+    "ran": true,
+    "cells": [
+     [
+      "Did not run",
+      "没跑通",
+      "substantial"
+     ],
+     [
+      "Needs a Cloudflare account: its dev server opens a remote Workers AI session and would not start without one.",
+      "需要 Cloudflare 账号：它的开发服务器要开一个远程 Workers AI 会话，没有账号就起不来。"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "103 s",
+      "103 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start did not run on a Jev key alone",
+      "只有 Jev 密钥跑不通它的快速上手"
+     ],
+     [
+      "Needs a Cloudflare account: its dev server opens a remote Workers AI session and would not start without one.",
+      "需要 Cloudflare 账号：它的开发服务器要开一个远程 Workers AI 会话，没有账号就起不来。"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "103 s to install and run",
+      "安装加运行 103 秒"
+     ]
+    ]
+   },
+   "jerryjliu/docjev": {
+    "stars": 523,
+    "sheet": "jerryjliu__docjev.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "55 s",
+      "55 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "2 steps beyond the README",
+      "README 之外多做了 2 步"
+     ],
+     [
+      "55 s to install and run",
+      "安装加运行 55 秒"
+     ]
+    ]
+   },
+   "jkudish/jev-mcp": {
+    "stars": 516,
+    "sheet": "jkudish__jev-mcp.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "44 s",
+      "44 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "44 s to install and run",
+      "安装加运行 44 秒"
+     ]
+    ]
+   },
+   "BillionsBobby/JevRouter": {
+    "stars": 457,
+    "sheet": "BillionsBobby__JevRouter.html",
+    "ran": true,
+    "cells": [
+     [
+      "Ran",
+      "跑通",
+      "touch-ups"
+     ],
+     [
+      "A Jev key only",
+      "只要 Jev 密钥"
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "46 s",
+      "46 秒",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "its quick start ran on a Jev key alone",
+      "只用一个 Jev 密钥就跑通了快速上手"
+     ],
+     [
+      "3 steps beyond the README",
+      "README 之外多做了 3 步"
+     ],
+     [
+      "46 s to install and run",
+      "安装加运行 46 秒"
+     ]
+    ]
+   }
+  }
  }
 }

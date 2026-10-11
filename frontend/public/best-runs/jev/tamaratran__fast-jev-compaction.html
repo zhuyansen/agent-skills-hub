@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>tamaratran/fast-jev-compaction: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>tamaratran/fast-jev-compaction: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit e3f262a7f4d4; 52 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>mkdir /tmp/qs &amp;&amp; cd /tmp/qs &amp;&amp; npm init -y &amp;&amp; npm install fast-jev-compaction</code></td></tr><tr><th>Quick start, as run</th><td><code>README &#x27;Install and usage&#x27; snippet: compactMessages(transcript, { preserveRecentMessages: 4 }) then console.log(result.messages, result.decisions, result.stats) and reductionRatio(result). Run as plain ESM (node quickstart.mjs), with the &#x27;// …&#x27; part of the transcript filled in so it had 12 messages and 5 tool calls; key read from TYPESAFE_API_KEY (the project&#x27;s default name).</code></td></tr>
+<tr><th>What came back</th><td>One Jev request (471 ms, stateTokens 663, stage &#x27;full&#x27;). Decisions: t1 Read keepCall 0.22/keepResult 0.12 drop_call; t2 Bash 0.20/0.12 drop_call; t3 Read 0.15/0.09 drop_call; t4 Edit and t5 Bash pinned. stats: messagesBefore 12 -&gt; messagesAfter 6, charsBefore 10106 -&gt; charsAfter 195, callsDropped 3, pinned 2, requests 1; reductionRatio 0.98.</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Had to create a project to install into (npm init -y). The package is ESM-only, so the script has to be .mjs or the project needs &quot;type&quot;: &quot;module&quot;.</li><li>The README example is TypeScript with an &#x27;import type&#x27;. Running it needs tsx or tsc, which the README doesn&#x27;t mention for library users. I used plain JS (.mjs) and dropped the type import.</li><li>The README transcript is incomplete (&#x27;// …&#x27;). As written it has 3 messages with preserveRecentMessages: 4, so every call is pinned and Jev would never be asked. I had to write extra messages (5 tool calls in total) to get a real Jev call.</li><li>Version mismatch: npm installs fast-jev-compaction 0.4.1, but the repo at ~/src is 0.2.0. The published package also ships files the repo doesn&#x27;t have: cli/*.mjs, cli/jev-gate.py with a committed __pycache__ .pyc, SKILL.md, plugins/ and test dumps. So what users install is not the source in this checkout.</li></ul>
+<h2>The session's closing message</h2><pre>The quick start worked on a clean machine: it installed from npm and its first example made one real Jev call.
+
+- **Install:** `npm install fast-jev-compaction` into a fresh folder I made with `npm init -y`. The README gives this command. I used the npm library rather than the Claude Code plugin.
+- **Run:** the README&#x27;s `compactMessages(..., { preserveRecentMessages: 4 })` example, with the key taken from `TYPESAFE_API_KEY`, which is the name the project already expects.
+- **Result:** one Jev request, 471 ms. Jev dropped 3 of the 5 tool calls (keep scores 0.09–0.22) and the other 2 stayed because they were recent. The transcript went from 12 to 6 messages and from 10,106 to 195 characters, a reduction of 0.98.
+
+Steps the README doesn&#x27;t mention:
+1. **ES modules:** the package uses `import` syntax only, so I needed a project folder and had to run the script as an `.mjs` file.
+2. **TypeScript:** the example is TypeScript. It needs `tsx` or `tsc` to run, which the README doesn&#x27;t say, so I ran it as plain JavaScript without the type import.
+3. **Incomplete example:** the transcript ends in `// …`. As written it has 3 messages and protects the newest 4, so Jev would never be called. I wrote extra messages to get a real call.
+4. **Different version on npm:** npm installs version 0.4.1, but the repo at `~/src` is 0.2.0. The published package also contains files the repo doesn&#x27;t have: CLI scripts, a Python script with a compiled `.pyc` file, `SKILL.md`, `plugins/` and test dumps. So what users install isn&#x27;t the source in this checkout.
+
+I didn&#x27;t need to change any project code.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

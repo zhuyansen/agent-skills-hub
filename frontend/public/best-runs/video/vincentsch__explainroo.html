@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>vincentsch/explainroo: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>vincentsch/explainroo: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 2.0 minutes; sound: yes.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>The fastest: a finished film with sound in 2 minutes.</p>
+<video controls preload="metadata" poster="vincentsch__explainroo.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="vincentsch__explainroo.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>0% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="vincentsch__explainroo-frames.jpg"><img src="vincentsch__explainroo-frames.jpg" alt="vincentsch/explainroo: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the video with explainroo, the skill installed from ~/src. It is 15.0 seconds long, H.264 at 1920 × 1080 and 30 fps, which I confirmed with ffprobe.
+
+- **Copy:** each of the five lines from the brief gets its own scene, in order and word for word, with nothing else written on screen. Each line is fully visible for about 2 to 3 seconds.
+- **Look:** the scenes share a light sea-green background with animated waves along the bottom. The pictures are simple icons: map pins and a sunrise for the beaches line, green, amber and red cards for &quot;Good. Fair. Stay out.&quot;, and a rain cloud with a countdown ring for the rain line. The last scene shows &quot;Tidepool.&quot; with &quot;Check my beach.&quot; on a button.
+- **Sound:** there is no voice-over. The music is made in code by explainroo, with a few soft sound effects.
+- **Changes from explainroo&#x27;s defaults:** I turned off its &quot;explainroo.com&quot; watermark and its captions, because the brief rules out any extra text.
+
+explainroo&#x27;s `check` found no problems. `verify` measured the loudness at −13.8 LUFS and did not report black frames or silence. It also printed &quot;narration understood: 100%&quot;, which means nothing here because the video has no narration. I looked at still frames from every scene, including one taken from the finished file, but I can&#x27;t watch the motion itself or hear the music, so those are unchecked.
+
+The project I rendered from is in ~/work/project.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

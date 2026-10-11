@@ -81,7 +81,7 @@ function leadLabel(skills) {
   return (s) => (repeats ? s.repo_full_name : s.repo_name);
 }
 
-const CSS_VERSION = "20261010b";
+const CSS_VERSION = "20261011";
 
 /* ── Skill matching ──────────────────────────────── */
 

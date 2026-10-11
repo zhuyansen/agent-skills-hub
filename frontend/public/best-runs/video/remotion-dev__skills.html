@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>remotion-dev/skills: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>remotion-dev/skills: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 4.5 minutes; sound: no.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>Remotion&#x27;s own skills: a solid film in 4.5 minutes, no sound.</p>
+<video controls preload="metadata" poster="remotion-dev__skills.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="remotion-dev__skills.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>34% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="remotion-dev__skills-frames.jpg"><img src="remotion-dev__skills-frames.jpg" alt="remotion-dev/skills: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the 15-second Tidepool promo with the installed Remotion skill and rendered it to `~/work/output/video.mp4`. ffprobe confirms H.264, 1920×1080, 30 fps and exactly 15.0 seconds. I looked at stills from all five scenes, and every line of copy is on screen, readable and in the brief&#x27;s order.
+
+The video has five scenes:
+
+| Time (approx.) | On-screen copy | What&#x27;s on screen |
+|---|---|---|
+| 0–2.7s | Know before you swim. | Deep-water gradient with slow rolling waves |
+| 2.7–6s | Water quality at 2,400 beaches, checked every morning. | A field of dots lighting up in a sweep, with a sunrise glow |
+| 6–8.7s | Good. Fair. Stay out. | Green, amber and red pills popping in one after another |
+| 8.7–11.7s | Rain warnings tell you how long to wait. | Falling rain and a raindrop inside a countdown ring that empties |
+| 11.7–15s | Tidepool. Check my beach. | &quot;Tidepool.&quot; in large type with a &quot;Check my beach.&quot; button that gets a small tap |
+
+- **Copy:** the only text in the video is the brief&#x27;s copy, word for word. There are no logos, and the timer ring has no numbers on it.
+- **Sound:** the video is silent, since the brief made audio optional.
+- **Font:** the typeface is Outfit, which is downloaded from Google Fonts when the video renders. Re-rendering from `~/work/project` needs internet access.
+
+The project is in `~/work/project`: the full video is the `Promo` composition, and each scene is also registered on its own.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

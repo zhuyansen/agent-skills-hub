@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>AgriciDaniel/jev-seo: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>AgriciDaniel/jev-seo: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit 55a184a3b0d0; 53 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 2.</p>
+<table><tr><th>Install</th><td><code>cd ~/src &amp;&amp; python3 -m venv .venv &amp;&amp; . .venv/bin/activate &amp;&amp; pip install -r requirements.txt &amp;&amp; cp .env.example .env &amp;&amp; bin/jevseo doctor</code></td></tr><tr><th>Quick start, as run</th><td><code>bin/jevseo run https://example.com</code></td></tr>
+<tr><th>What came back</th><td>Exit 0 in ~4s. Crawled 1 page, 14 rule findings; &#x27;Jev: 2 requests, 2457 input tokens, $0.0001, 0 failed&#x27;; PageSpeed 0/2 (HTTP 429, no PAGESPEED_API_KEY); &#x27;score 60 (C, partial), 17 actions, Jev $0.0001&#x27;; wrote report.pdf, report.xlsx, report.md under jev-seo-reports/example.com-2026-10-11-0649/. audit.json contains real Jev typed answers with probabilities (e.g. business_model=other 0.97, intent=informational 0.60).</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Used the existing checkout at ~/src instead of git clone</li><li>Left TYPESAFE_API_KEY blank in .env and relied on the already-set environment variable (README says env or .env both work) to avoid writing the key to disk</li></ul>
+<h2>The session's closing message</h2><pre>jev-seo installed and its quick start worked the first time. I didn&#x27;t have to fix anything or take any setup step the README leaves out.
+
+- **Install:** I followed the README&#x27;s own steps in the existing checkout at `~/src`: create a virtual environment, `pip install -r requirements.txt`, then `cp .env.example .env`. The Pango text library the PDF step needs was already on the machine. `bin/jevseo doctor` showed all required parts present and the key found. It also listed three optional things as missing: Playwright (for pages that only appear after JavaScript runs), a PageSpeed key, and DataForSEO (only needed for `--full` mode).
+- **API key:** the project expects the same name, `TYPESAFE_API_KEY`, so no renaming was needed. I left the key blank in `.env` and let it come from the environment, which the README says works, so the key was never written to disk. I checked the run log and the report files and the key doesn&#x27;t appear in any of them.
+- **Quick start:** `bin/jevseo run https://example.com` finished with no errors in about 4 seconds. It crawled one page and found 14 rule issues. Jev made 2 requests (2,457 input tokens, $0.0001, none failed) and gave real typed answers with probabilities. For example, it judged the site&#x27;s business type as &quot;other&quot; (0.97) and the page&#x27;s intent as informational (0.60). The site scored 60 (grade C, marked partial) with 17 suggested fixes, and the PDF, Excel and Markdown reports were all written.
+- **One gap:** the Core Web Vitals check failed on both runs with HTTP 429 (rate limited) because there was no PageSpeed key. The README warns this can happen without the optional key, and the run still finished; that section is just empty.
+
+The only deviations from the README were using the existing checkout instead of `git clone` and supplying the key through the environment rather than `.env`.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

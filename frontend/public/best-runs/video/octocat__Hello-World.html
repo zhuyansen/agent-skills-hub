@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Control: Claude Code with no video skill: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>Control: Claude Code with no video skill: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 4.4 minutes; sound: yes.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p>
+<video controls preload="metadata" poster="octocat__Hello-World.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="octocat__Hello-World.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>3% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="octocat__Hello-World-frames.jpg"><img src="octocat__Hello-World-frames.jpg" alt="Control: Claude Code with no video skill: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the video and checked the final file with ffprobe: it&#x27;s H.264 at 1920×1080, 30 fps, exactly 15.0 seconds (450 frames), with a synthesised AAC audio track.
+
+**What&#x27;s on screen.** It&#x27;s all drawn in code on a canvas, with deep-ocean colours and moving layered waves. The five lines of copy appear in order, word by word, and none is shown for less than about 2.6 seconds. Nothing else in the video is text.
+
+1. **0–3 s, &quot;Know before you swim.&quot;** The water rises into frame and ripple rings spread out from a swimmer&#x27;s spot.
+2. **3–6.2 s, &quot;Water quality at 2,400 beaches, checked every morning.&quot;** This line is split over two lines. A soft morning light sweeps along a coastline of 2,400 dots, and each dot turns green, amber or red as the light reaches it.
+3. **6.2–9 s, &quot;Good. Fair. Stay out.&quot;** Three coloured badges pop in one after another: a green tick, an amber wave and a red cross.
+4. **9–12 s, &quot;Rain warnings tell you how long to wait.&quot;** Rain falls and a countdown ring empties, shifting from red to amber to green while the rain eases off. The ring has no numbers on it.
+5. **12–15 s, &quot;Tidepool. Check my beach.&quot;** A small sun-and-wave app icon, the &quot;Tidepool.&quot; wordmark, and &quot;Check my beach.&quot; on a button that briefly presses in. Then the picture fades to dark.
+
+**Sound.** The music was made in code with Python&#x27;s standard library: a soft pad of chords, a surf sound, and chimes timed to the scene changes. There&#x27;s no voice-over.
+
+**How it was built.** No extra packages were installed. A small Node script controls the installed Chromium directly to capture each frame, and ffmpeg puts the frames and audio together. Everything is in `~/work/project`:
+- `scene.js` and `index.html` draw the animation.
+- `render.mjs` captures the frames into `frames/`, which I kept.
+- `audio.py` makes the soundtrack.
+- `build.sh` encodes the final file.
+
+To rebuild from scratch, run `python3 audio.py &amp;&amp; node render.mjs &amp;&amp; ./build.sh` in that folder.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

@@ -193,6 +193,19 @@ function mgrTable(run, rows) {
   return `<thead>${head(cols)}</thead><tbody>${rows.map(([repo, r], i) => mgrRow(run, repo, r, i + 1)).join("")}</tbody>`;
 }
 
+/** The outputs themselves, side by side (run.gallery): one small video per entry, loaded only when played. */
+function galleryHtml(run) {
+  const g = run.gallery;
+  if (!g) return "";
+  const item = (v) => `<figure class="bp-tr-clip">
+      <video controls preload="none" playsinline poster="${esc(run.dir + v.poster)}" width="${g.width}" height="${g.height}"><source src="${esc(run.dir + v.src)}" type="video/mp4"></video>
+      <figcaption><b>${esc(v.name)}</b> <span class="bp-tr-mute" ${biAttrs(...v.caption)}>${esc(v.caption[0])}</span></figcaption>
+    </figure>`;
+  const group = (grp) => `<h3 class="bp-tr-group" ${biAttrs(...grp.title)}>${esc(grp.title[0])}</h3>
+    <div class="bp-tr-gallery">${g.items.filter((v) => v.group === grp.id).map(item).join("")}</div>`;
+  return `<p class="bp-tr-intro" ${biAttrs(...g.note)}>${esc(g.note[0])}</p>${g.groups.map(group).join("")}`;
+}
+
 /** One table of a "table" run: rows in the order the data gives them, cells as written. */
 function ownTable(run, rows, columns = run.columns) {
   const cols = [["#", "#"], run.name_col || ["Skill", "Skill"], ...columns, ["Evidence", "证据"]];
@@ -262,6 +275,7 @@ export function runsSectionHtml(run) {
     ${verdictHtml(run)}
     ${compareHtml(run)}
     ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span>${run.control ? ` <a href="${esc(run.dir + run.control.sheet)}" target="_blank" rel="noopener" ${biAttrs(...(run.control.label || ["See the control run →", "看对照组 →"]))}>${esc((run.control.label || ["See the control run →"])[0])}</a>` : ""}</p>` : ""}
+    ${own ? galleryHtml(run) : ""}
     ${own ? ownTables(run, ran) : `<div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>`}
     ${notRunHtml(all.filter(([, r]) => !r.ran), run.not_run_label || (mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined))}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>

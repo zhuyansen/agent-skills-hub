@@ -1,0 +1,242 @@
+[
+ {
+  "repo": "browser-use/jev-ultrafast",
+  "kind": "agent",
+  "stars": 22555,
+  "grade": "safe",
+  "installed": true,
+  "worked": false,
+  "calls": 1,
+  "install_command": "curl -LsSf https://astral.sh/uv/install.sh | sh && cd ~/src && uv sync && cp .env.example .env (TYPESAFE_API_KEY filled in from env)",
+  "quick_start": "BU_CDP_URL=http://127.0.0.1:9222 uv run --env-file .env python examples/run.py --url https://en.wikipedia.org/wiki/Main_Page --goal 'Find and open the Wikipedia article about Gödel’s incompleteness theorems.'  (README's primary 'Try it' is `uv run jev` + web inspector Google Flights demo; chose the smaller CLI example that calls Jev)",
+  "result": "Jev call succeeded and chose TYPE_TEXT (search box) as its first action; the agent then crashed: ValueError: TYPE_TEXT needs TEXT_MODEL_API_KEY; no text is hardcoded or guessed by the executor. (jev_ultrafast/model.py:163)",
+  "beyond_readme": [
+   "Installed uv (not present on machine; README assumes it)",
+   "Started Chromium manually: headless, with --remote-debugging-port=9222 and a temp profile (README assumes a desktop Chrome where you can click 'allow remote debugging')",
+   "Set BU_CDP_URL=http://127.0.0.1:9222 so browser-harness could find the browser; without it the daemon failed with 'chrome-not-running' even though Chrome was listening on 9222"
+  ],
+  "blocked_by": "A second paid key: TEXT_MODEL_API_KEY (an OpenRouter key in the example config, for model inception/mercury-2.5). Every README example needs it as soon as Jev picks TYPE_TEXT, including the Wikipedia one, which types into the search box on its first step. The README does list it as required in 'Try it'. Also needs Chrome with remote debugging; the README's flow assumes a desktop browser, though headless Chromium + BU_CDP_URL got past that.",
+  "seconds": 86,
+  "commit": "1231850a0bf1"
+ },
+ {
+  "repo": "tamaratran/fast-jev-compaction",
+  "kind": "devtool",
+  "stars": 7570,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 1,
+  "install_command": "mkdir /tmp/qs && cd /tmp/qs && npm init -y && npm install fast-jev-compaction",
+  "quick_start": "README 'Install and usage' snippet: compactMessages(transcript, { preserveRecentMessages: 4 }) then console.log(result.messages, result.decisions, result.stats) and reductionRatio(result). Run as plain ESM (node quickstart.mjs), with the '// …' part of the transcript filled in so it had 12 messages and 5 tool calls; key read from TYPESAFE_API_KEY (the project's default name).",
+  "result": "One Jev request (471 ms, stateTokens 663, stage 'full'). Decisions: t1 Read keepCall 0.22/keepResult 0.12 drop_call; t2 Bash 0.20/0.12 drop_call; t3 Read 0.15/0.09 drop_call; t4 Edit and t5 Bash pinned. stats: messagesBefore 12 -> messagesAfter 6, charsBefore 10106 -> charsAfter 195, callsDropped 3, pinned 2, requests 1; reductionRatio 0.98.",
+  "beyond_readme": [
+   "Had to create a project to install into (npm init -y). The package is ESM-only, so the script has to be .mjs or the project needs \"type\": \"module\".",
+   "The README example is TypeScript with an 'import type'. Running it needs tsx or tsc, which the README doesn't mention for library users. I used plain JS (.mjs) and dropped the type import.",
+   "The README transcript is incomplete ('// …'). As written it has 3 messages with preserveRecentMessages: 4, so every call is pinned and Jev would never be asked. I had to write extra messages (5 tool calls in total) to get a real Jev call.",
+   "Version mismatch: npm installs fast-jev-compaction 0.4.1, but the repo at ~/src is 0.2.0. The published package also ships files the repo doesn't have: cli/*.mjs, cli/jev-gate.py with a committed __pycache__ .pyc, SKILL.md, plugins/ and test dumps. So what users install is not the source in this checkout."
+  ],
+  "blocked_by": "",
+  "seconds": 52,
+  "commit": "e3f262a7f4d4"
+ },
+ {
+  "repo": "dzhng/jevgrep",
+  "kind": "devtool",
+  "stars": 2544,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 11,
+  "install_command": "npm install -g @dzhng/jevgrep  (failed EACCES on /usr/local/lib/node_modules; then: npm config set prefix ~/.npm-global && npm install -g @dzhng/jevgrep, with ~/.npm-global/bin on PATH) -> jg 0.8.0",
+  "quick_start": "printf '%s' \"$TYPESAFE_API_KEY\" | jg auth --provider typesafe --stdin; jg doctor; jg \"How are telemetry events recorded and sent?\" ./apps/cli --max-requests 10  (run from ~/src)",
+  "result": "auth: 'TypeSafe key saved.' doctor: 'Jev connection verified through TypeSafe.' search exit 0: 'Jevgrep: 1 relevant files. ... - \"src/index.ts\" — relevant; role uncertain; locations only ... Declaration locations: - \"src/index.ts\" End context.' Thin result (locations only, no source excerpts), plausibly because the CLI has no telemetry code and the request cap was low.",
+  "beyond_readme": [
+   "Global npm install failed with EACCES (machine's /usr/local is root-owned); set a user npm prefix (~/.npm-global) and added its bin to PATH instead of using sudo",
+   "Used non-interactive 'jg auth --provider typesafe --stdin' (documented in apps/cli/README.md and jg --help, not the top-level README) because 'jg auth' is interactive",
+   "Skipped 'jg skill' (agent-skill installer, needs interactive agent selection; does not call Jev and is not needed for the search)",
+   "README example targets a placeholder ./my-project; substituted the repo's own small ./apps/cli (17 files) as the search root",
+   "Added --max-requests 10 (default ceiling is 1000) to keep Jev calls to a handful"
+  ],
+  "blocked_by": "",
+  "seconds": 60,
+  "commit": "703aba1a36a3"
+ },
+ {
+  "repo": "kerpopule/hermes-jev-skills",
+  "kind": "general",
+  "stars": 1074,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 1,
+  "install_command": "python3 ~/src/install.py  (repo already cloned at ~/src; README: git clone ... && python3 install.py)",
+  "quick_start": "jev setup-key (skipped: key already in env as TYPESAFE_API_KEY, which jevkit reads first) then `jev doctor`, the README's 'Try it in two commands'",
+  "result": "jev doctor -> {\"version\": \"0.23.0\", \"key\": {\"present\": true, \"provider\": \"typesafe\", \"source\": \"environment\"}, \"jev\": {\"reachable\": true, \"latency_ms\": 336}, \"routing\": {\"privacy_mode\": \"redacted-text\", \"tiers_configured\": []}, \"hermes_home\": null}. doctor sends one real Jev yes/no question ('The build finished and all tests passed.' -> ok?) and it answered.",
+  "beyond_readme": [
+   "Added ~/.local/bin to PATH: the installer put `jev` at ~/.local/bin/jev, which was not on PATH (the installer's own output warns about this and suggests the fix, but the README does not mention it)",
+   "Skipped `jev setup-key`: it opens a browser page (or needs --tty for an interactive hidden prompt); relied instead on TYPESAFE_API_KEY already in the environment, which the code (jevkit/keystore.py) checks first but the README's quick start does not say is an option",
+   "Note: the default install also edits ~/.claude/CLAUDE.md (backed up) and adds ~/.claude/agents and ~/.claude/skills entries because Claude Code was detected; the README does say this"
+  ],
+  "blocked_by": "",
+  "seconds": 39,
+  "commit": "b22a21f36572"
+ },
+ {
+  "repo": "thruwire/foreman",
+  "kind": "devtool",
+  "stars": 732,
+  "grade": "safe",
+  "installed": true,
+  "worked": false,
+  "calls": 4,
+  "install_command": "python3 -m venv .venv && .venv/bin/python -m pip install foreman-core   (README: python -m pip install foreman-core; got foreman-core 0.5.0, typesafe-sdk 0.7.4)",
+  "quick_start": "TYPESAFE_API_KEY exported; foreman run --repo ~/work/my-project --job \"Add rate limiting to the API and make sure it is properly tested.\"  (README 'Running Foreman'; `foreman demo` and the README `foreman hook` SessionStart example were skipped because they make no Jev calls)",
+  "result": "Jev routing + 3 assessments came back fine (e.g. Worker stuck 88%, Needs human 87%, Implementation 1%), but every coding worker died with \"FileNotFoundError: [Errno 2] No such file or directory: 'codex'\" (termination_reason app_server_error). Last lines: 'Decision ESCALATE - semantic assessment requires human input' / 'Factory escalated: semantic assessment requires human input' / 'Run ID: f852e835f24c'. Foreman has no preflight check for the codex binary: it started and failed 3 workers and spent Jev calls judging them, never saying codex is missing.",
+  "beyond_readme": [
+   "Created a virtualenv for the published-package install (the README's bare `python -m pip install` gives no venv step; Debian system Python is externally managed)",
+   "Created a scratch git repo at ~/work/my-project because the README example points at ./my-project but never says to create it",
+   "Exported TYPESAFE_API_KEY in the shell; the README only shows putting it in .env for the development checkout"
+  ],
+  "blocked_by": "The default worker backend needs the Codex CLI on PATH plus Codex authentication (an OpenAI/ChatGPT account). This machine has neither. The other backends (opencode, hermes, dcode) also need their own CLIs and model-provider credentials. Jev itself worked.",
+  "seconds": 71,
+  "commit": "381ca2de90af"
+ },
+ {
+  "repo": "devagrawal09/jev-review",
+  "kind": "devtool",
+  "stars": 680,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 12,
+  "install_command": "cd ~/src && npm install && cp .env.example .env  (then set TYPESAFE_API_KEY in .env from the environment, without printing it)",
+  "quick_start": "npm run review:changes:save -- ~/work/target   (target = a throwaway 1-file git repo with an uncommitted one-line change to util.js)",
+  "result": "Screening 1 changed source files with 0 changed test files as context... / profile util.js / Following 3 of 3 signals at or above 0.7... / inspect util.js [compatibility=0.93] [testGap=0.93] [correctness=0.87] / saved reviews/latest.json. The report has a risk matrix (correctness 0.87, security 0.11, reliability 0.66, compatibility 0.93, testGap 0.93) and 2 findings: compatibility/api with severity 1.95 and correctness/dataFlow with severity 1.91, both action=comment. Took about 2s.",
+  "beyond_readme": [
+   "This machine has Node v22.23.3, but the README requires Node 24+. npm install gave an EBADENGINE warning and still succeeded. The review ran fine on Node 22 because Node 22.18+ strips TypeScript types by default. I did not install Node 24.",
+   "The README says 'Add TYPESAFE_API_KEY to .env' but does not say how. I wrote the key from the environment variable into .env.",
+   "The quick start needs a target git repo with uncommitted changes, which the README does not provide. I created a throwaway repo at ~/work/target with one committed file and one uncommitted edit."
+  ],
+  "blocked_by": "",
+  "seconds": 56,
+  "commit": "31f89602797f"
+ },
+ {
+  "repo": "gargpratyush/jev-router",
+  "kind": "devtool",
+  "stars": 579,
+  "grade": "safe",
+  "installed": true,
+  "worked": false,
+  "calls": 0,
+  "install_command": "cd ~/src && npm install && npm link  (npm link failed with EACCES on /usr/local/lib/node_modules; re-ran as: npm_config_prefix=$HOME/.npm-global npm link, PATH=$HOME/.npm-global/bin:$PATH); then wrote JEV_API_KEY=<from TYPESAFE_API_KEY> to ~/.jev-router.env (mode 600)",
+  "quick_start": "jev-claude -p \"what is 2+2?\"  (README Quick start: launch `jev-claude`; README shows `jev-claude -p ...` as the non-interactive form), run from a scratch dir in a clean env",
+  "result": "[claude-code:unrecognized_model] {\"model\":\"jev-router\",\"query_source\":\"sdk\"}\nNot logged in · Please run /login",
+  "beyond_readme": [
+   "npm link fails with EACCES when the global npm prefix is root-owned (/usr/local); had to set a user prefix (npm_config_prefix=~/.npm-global) and add its bin dir to PATH",
+   "Copied TYPESAFE_API_KEY into ~/.jev-router.env as JEV_API_KEY (README does say TYPESAFE_API_KEY also works)"
+  ],
+  "blocked_by": "Requires a logged-in Claude Code (claude login: Anthropic subscription/account) or an installed and logged-in OpenAI Codex CLI. Claude Code 2.1.292 is present but not logged in; Codex is not installed. Jev is only consulted when the wrapped CLI sends a model request, so no Jev call happens without one of these accounts.",
+  "seconds": 49,
+  "commit": "38da6b84ea01"
+ },
+ {
+  "repo": "AgriciDaniel/jev-seo",
+  "kind": "devtool",
+  "stars": 547,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 2,
+  "install_command": "cd ~/src && python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && cp .env.example .env && bin/jevseo doctor",
+  "quick_start": "bin/jevseo run https://example.com",
+  "result": "Exit 0 in ~4s. Crawled 1 page, 14 rule findings; 'Jev: 2 requests, 2457 input tokens, $0.0001, 0 failed'; PageSpeed 0/2 (HTTP 429, no PAGESPEED_API_KEY); 'score 60 (C, partial), 17 actions, Jev $0.0001'; wrote report.pdf, report.xlsx, report.md under jev-seo-reports/example.com-2026-10-11-0649/. audit.json contains real Jev typed answers with probabilities (e.g. business_model=other 0.97, intent=informational 0.60).",
+  "beyond_readme": [
+   "Used the existing checkout at ~/src instead of git clone",
+   "Left TYPESAFE_API_KEY blank in .env and relied on the already-set environment variable (README says env or .env both work) to avoid writing the key to disk"
+  ],
+  "blocked_by": "",
+  "seconds": 53,
+  "commit": "55a184a3b0d0"
+ },
+ {
+  "repo": "superagents-lab/jev-search",
+  "kind": "general",
+  "stars": 529,
+  "grade": "safe",
+  "installed": true,
+  "worked": false,
+  "calls": 0,
+  "install_command": "corepack enable (failed: EACCES on /usr/local/bin) -> corepack enable --install-directory ~/.local/bin; pnpm install --frozen-lockfile; cp .dev.vars.example .dev.vars",
+  "quick_start": "pnpm dev (with TYPESAFE_API_KEY set in .dev.vars, JEV_PROVIDERS=typesafe), then open http://localhost:3030 and search",
+  "result": "Dev server failed to start: 'Error: Failed to start the remote proxy session ... Could not start remote dev session. No credentials found, and the environment is non-interactive so browser login cannot be started. Either: Set a CLOUDFLARE_API_TOKEN environment variable, Run `wrangler login`' -> ELIFECYCLE Command failed with exit code 1.",
+  "beyond_readme": [
+   "corepack enable fails without root (EACCES symlinking into /usr/local/bin); had to use corepack enable --install-directory ~/.local/bin and add it to PATH",
+   "Set COREPACK_ENABLE_DOWNLOAD_PROMPT=0 so corepack could download pnpm 10.8.0 without a prompt",
+   "pnpm install printed 'Ignored build scripts: esbuild, sharp, workerd' (pnpm approve-builds); README does not mention it (the dev server failed before this mattered)"
+  ],
+  "blocked_by": "Two missing credentials, both required by the README: (1) a Cloudflare account (wrangler login or CLOUDFLARE_API_TOKEN), because pnpm dev always opens a remote Workers AI session even when JEV_PROVIDERS=typesafe; (2) a SEARCH1API_API_KEY (a separate paid Search1API key, required for every search). Neither is on this machine.",
+  "seconds": 103,
+  "commit": "a98f724ad742"
+ },
+ {
+  "repo": "jerryjliu/docjev",
+  "kind": "business",
+  "stars": 523,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 1,
+  "install_command": "curl -LsSf https://astral.sh/uv/install.sh | sh; export PATH=$HOME/.local/bin:$PATH; cd ~/src && uv sync && uv run docjev doctor --smoke",
+  "quick_start": "uv run docjev classify examples/real/originals/r04.pdf --rules examples/real/classify/rules.yaml",
+  "result": "exit 0; JSON: \"category\": \"press_release\", \"category_probability\": 1.0, \"needs_review\": false, \"engine\": \"jev\", \"model\": \"jev-1.13.0\", page_count 10, ocr_ms ~5837, decision_ms 507.6, one jev request status ok, est. cost $0.00064",
+  "beyond_readme": [
+   "Installed uv (not present on the machine; README uses `uv sync` but gives no instructions for installing uv) via the official astral.sh installer and added ~/.local/bin to PATH",
+   "Skipped `git clone`: the repo was already checked out at ~/src"
+  ],
+  "blocked_by": "",
+  "seconds": 55,
+  "commit": "c7abe276a970"
+ },
+ {
+  "repo": "jkudish/jev-mcp",
+  "kind": "general",
+  "stars": 516,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 1,
+  "install_command": "npx -y @jkudish/jev-mcp  (then, per the README's Claude Code section: claude mcp add jev -- npx -y @jkudish/jev-mcp; `claude mcp list` reports jev ✔ Connected)",
+  "quick_start": "jev_verify, the README's first tool example: claims [\"Wearing a helmet is optional for adult riders.\", \"The ordinance mentions reflective gear.\"] against the City Bicycle Safety Ordinance s.4 evidence text, called as tools/call over stdio to `npx -y @jkudish/jev-mcp` with TYPESAFE_API_KEY exported",
+  "result": "model jev-1.13.0, provider typesafe; summary {verified:1, contradicted:1, unsupported:0, needs_review:0}; claim0 'helmet optional' -> contradicted (contradicts=1, confidence 1, action auto); claim1 'reflective gear' -> verified (supports=1, confidence 1, action auto); usage 891 input / 128 output tokens. Matches the README's 'live result, abridged'.",
+  "beyond_readme": [
+   "The README has no standalone quick-start command: `npx -y @jkudish/jev-mcp` only starts a stdio server and waits for input, so I took the first tool example (jev_verify) as the quick start.",
+   "To actually call a tool without an LLM-driven MCP client session, I wrote a ~20-line Node stdio JSON-RPC client (initialize, notifications/initialized, tools/call). The README does not give a CLI or script for calling a tool directly.",
+   "The env var is already named TYPESAFE_API_KEY, so I didn't need to rename it; I only had to `export` it so the spawned server inherits it."
+  ],
+  "blocked_by": "",
+  "seconds": 44,
+  "commit": "86eae7861c60"
+ },
+ {
+  "repo": "BillionsBobby/JevRouter",
+  "kind": "devtool",
+  "stars": 457,
+  "grade": "safe",
+  "installed": true,
+  "worked": true,
+  "calls": 1,
+  "install_command": "npx --yes github:BillionsBobby/JevRouter (README's npx-from-GitHub form; installs and runs in one step, no separate install)",
+  "quick_start": "npx --yes github:BillionsBobby/JevRouter route --provider typesafe --request \"Find original sources before summarizing\" --candidates '[{\"name\":\"search_web\",\"description\":\"Find web sources\"},{\"name\":\"summarize\",\"description\":\"Summarize existing sources\"}]'",
+  "result": "Exit 0. status=selected, decision.selected=search_web (jev_probability 1, summarize 0), raw_jev.model=jev-1.13.0, usage 350 in / 35 out tokens, runtime.source=live, elapsed_ms=335, receipt saved to .jevrouter/decisions/dec_eab6ff8c-....json. stderr: 'JevRouter END status=selected ... selected=search_web'.",
+  "beyond_readme": [
+   "Skipped the README's first command ('agent start --agent codex'): it launches a separate host agent (Codex/Claude Code/Cursor) and asks for the key interactively. Ran the next example, 'Route one decision', which is the smallest one that calls Jev.",
+   "The 'Route one decision' example is only written for OpenRouter (OPENROUTER_API_KEY, --provider openrouter). To use the official TypeSafe key I swapped in '--provider typesafe'. That name comes from the README's 'Choose typesafe' prompt text and from src/cli.ts; no README example shows it as a CLI flag.",
+   "Cookbook 01 lists only OPENROUTER_API_KEY or JEV_API_KEY as prerequisites, but the README also accepts TYPESAFE_API_KEY. The key was already exported under that name, so nothing had to be renamed."
+  ],
+  "blocked_by": "",
+  "seconds": 46,
+  "commit": "b1cdf80593ee"
+ }
+]

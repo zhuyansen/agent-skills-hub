@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>jerryjliu/docjev: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>jerryjliu/docjev: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit c7abe276a970; 55 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>curl -LsSf https://astral.sh/uv/install.sh | sh; export PATH=$HOME/.local/bin:$PATH; cd ~/src &amp;&amp; uv sync &amp;&amp; uv run docjev doctor --smoke</code></td></tr><tr><th>Quick start, as run</th><td><code>uv run docjev classify examples/real/originals/r04.pdf --rules examples/real/classify/rules.yaml</code></td></tr>
+<tr><th>What came back</th><td>exit 0; JSON: &quot;category&quot;: &quot;press_release&quot;, &quot;category_probability&quot;: 1.0, &quot;needs_review&quot;: false, &quot;engine&quot;: &quot;jev&quot;, &quot;model&quot;: &quot;jev-1.13.0&quot;, page_count 10, ocr_ms ~5837, decision_ms 507.6, one jev request status ok, est. cost $0.00064</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Installed uv (not present on the machine; README uses `uv sync` but gives no instructions for installing uv) via the official astral.sh installer and added ~/.local/bin to PATH</li><li>Skipped `git clone`: the repo was already checked out at ~/src</li></ul>
+<h2>The session's closing message</h2><pre>DocJev installed and its first quick-start example worked on the first try, using one Jev call.
+
+- **Install:** The README starts with `uv sync`, but `uv` wasn&#x27;t on this machine and the README doesn&#x27;t say how to install it. I installed it with the official astral.sh installer and added `~/.local/bin` to PATH. That was the only step the README doesn&#x27;t cover. After that, `uv sync` and `uv run docjev doctor --smoke` both passed: it found the key, local OCR worked, and LibreOffice was present. I skipped `git clone` because the repo was already at `~/src`.
+- **Quick start:** I ran `uv run docjev classify examples/real/originals/r04.pdf --rules examples/real/classify/rules.yaml`. It exited 0 and labelled the 10-page BEA release `press_release` with probability 1.0 and no review flag, using model `jev-1.13.0`. The Jev decision took about 508 ms and cost an estimated $0.00064; local OCR took about 5.8 s before that.
+- **Key:** The project reads `TYPESAFE_API_KEY` directly, so no renaming was needed, and the key wasn&#x27;t printed or written anywhere.
+
+Nothing blocked the run and I made no code changes.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

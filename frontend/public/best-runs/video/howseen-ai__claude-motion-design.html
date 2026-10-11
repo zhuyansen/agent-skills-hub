@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>howseen-ai/claude-motion-design: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>howseen-ai/claude-motion-design: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 7.9 minutes; sound: yes.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p>
+<video controls preload="metadata" poster="howseen-ai__claude-motion-design.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="howseen-ai__claude-motion-design.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>14% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="howseen-ai__claude-motion-design-frames.jpg"><img src="howseen-ai__claude-motion-design-frames.jpg" alt="howseen-ai/claude-motion-design: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the 15-second Tidepool promo with the installed `motion-design` skill. Everything was drawn in code and rendered from an HTML page in headless Chromium, and there are no API keys or paid models involved.
+
+**What&#x27;s on screen**, in the brief&#x27;s order and with the copy exactly as written:
+- **0–2.6 s:** water rises into the frame under &quot;Know before you swim.&quot;
+- **2.6–5.6 s:** &quot;Water quality at 2,400 beaches, checked every morning.&quot; Dots along a coastline light up from left to right, like a morning sweep.
+- **5.6–8.6 s:** one dot grows into a status badge that turns teal, then amber, then coral as &quot;Good.&quot; &quot;Fair.&quot; &quot;Stay out.&quot; come in one at a time.
+- **8.6–11.6 s:** under &quot;Rain warnings tell you how long to wait.&quot;, rain falls and the badge becomes a ring that counts down and turns back to teal.
+- **11.6–15 s:** water floods the frame for &quot;Tidepool.&quot; with &quot;Check my beach.&quot; on a button.
+
+Nothing else appears: no other text, logos or claims. The music and sound effects are synthesized in code (a soft pad, a light beat, small sound effects on the scene changes), and there&#x27;s no voice-over.
+
+**Checks on the final file:**
+- It&#x27;s H.264 at 1920×1080, 30 fps, exactly 15.0 seconds (450 frames), with AAC audio at about −14 LUFS.
+- The skill&#x27;s check found no sudden jumps or single-frame flashes.
+- I looked at stills from across the film: every line is up long enough to read and none of the text overlaps.
+
+**Choices I made where the skill would have asked:**
+- **Look:** off-white background, dark ink type and one sea-teal accent. Amber and coral appear only for the &quot;Fair&quot; and &quot;Stay out&quot; states.
+- **Font:** Selawik Semibold, a font already on this machine (the skill&#x27;s usual fonts aren&#x27;t here).
+- **Small deviations from the skill:** I rendered at the brief&#x27;s 30 fps rather than the skill&#x27;s 60, and the skill&#x27;s music comes from a free online library, but the brief asked for sound made with tools on this machine, so I synthesized it.
+- **Fixes to its scripts:** the render script needed the system Chromium path. Its colour conversion also washed out the picture, so I used a corrected version. Colours in the final file are now within a few levels of the intended values.
+
+The project is in `~/work/project`: `tidepool.html` (the film; Space plays it in a browser), `render.py`, `audio.py` and `BEATMAP.md`. The Python packages the skill needed are in a virtual environment at `~/work/.venv`.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

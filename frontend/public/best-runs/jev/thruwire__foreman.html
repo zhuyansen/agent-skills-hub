@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>thruwire/foreman: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>thruwire/foreman: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit 381ca2de90af; 71 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="no">did not run</span>.</b> Jev calls made: 4.</p>
+<table><tr><th>Install</th><td><code>python3 -m venv .venv &amp;&amp; .venv/bin/python -m pip install foreman-core   (README: python -m pip install foreman-core; got foreman-core 0.5.0, typesafe-sdk 0.7.4)</code></td></tr><tr><th>Quick start, as run</th><td><code>TYPESAFE_API_KEY exported; foreman run --repo ~/work/my-project --job &quot;Add rate limiting to the API and make sure it is properly tested.&quot;  (README &#x27;Running Foreman&#x27;; `foreman demo` and the README `foreman hook` SessionStart example were skipped because they make no Jev calls)</code></td></tr>
+<tr><th>What came back</th><td>Jev routing + 3 assessments came back fine (e.g. Worker stuck 88%, Needs human 87%, Implementation 1%), but every coding worker died with &quot;FileNotFoundError: [Errno 2] No such file or directory: &#x27;codex&#x27;&quot; (termination_reason app_server_error). Last lines: &#x27;Decision ESCALATE - semantic assessment requires human input&#x27; / &#x27;Factory escalated: semantic assessment requires human input&#x27; / &#x27;Run ID: f852e835f24c&#x27;. Foreman has no preflight check for the codex binary: it started and failed 3 workers and spent Jev calls judging them, never saying codex is missing.</td></tr><tr><th>What stopped it</th><td>The default worker backend needs the Codex CLI on PATH plus Codex authentication (an OpenAI/ChatGPT account). This machine has neither. The other backends (opencode, hermes, dcode) also need their own CLIs and model-provider credentials. Jev itself worked.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Created a virtualenv for the published-package install (the README&#x27;s bare `python -m pip install` gives no venv step; Debian system Python is externally managed)</li><li>Created a scratch git repo at ~/work/my-project because the README example points at ./my-project but never says to create it</li><li>Exported TYPESAFE_API_KEY in the shell; the README only shows putting it in .env for the development checkout</li></ul>
+<h2>The session's closing message</h2><pre>The install worked and Jev answered, but the quick start didn&#x27;t produce a real result. No coding agent could start, because this machine doesn&#x27;t have one.
+
+- **Install:** `pip install foreman-core` (version 0.5.0) went cleanly into a fresh virtualenv, and the `foreman` command runs.
+- **Picking the quick start:** `foreman demo` makes no Jev calls (the README says so), and the README&#x27;s `foreman hook` SessionStart example doesn&#x27;t call Jev either. So I ran the README&#x27;s `foreman run` example against a scratch git repo, with `TYPESAFE_API_KEY` exported.
+- **Jev:** about 4 calls (one routing call and three assessments), and all came back with scores.
+- **Blocked:** by default Foreman hands the coding to the Codex CLI. That needs the `codex` command installed plus an OpenAI/ChatGPT login, and this machine has neither. All three coding-agent attempts died with `FileNotFoundError: ... &#x27;codex&#x27;`. Foreman then stopped and asked for a human: &quot;Factory escalated: semantic assessment requires human input&quot;. The other options (OpenCode, Hermes, Deep Agents) each need their own CLI and model-provider credentials too.
+- **Finding:** Foreman doesn&#x27;t check for `codex` before it starts. It launched the coding agent three times and spent Jev calls judging failures, and it never said plainly that `codex` was missing.
+- **Steps the README didn&#x27;t mention:** creating a virtualenv for the package install, creating the `./my-project` repo the example points at, and exporting the key in the shell (the README only shows putting it in `.env` for a development checkout).
+
+I didn&#x27;t patch any code, and the API key wasn&#x27;t printed or written anywhere; I checked the run files and it isn&#x27;t in them.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

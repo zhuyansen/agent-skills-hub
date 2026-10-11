@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>BillionsBobby/JevRouter: first-run test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/typesafe-jev/">← TypeSafe Jev projects</a></p>
+<h1>BillionsBobby/JevRouter: first run, 2026-10-11</h1>
+<p class="mute">Installed from its README in a throwaway sandbox by Claude Code (Claude Opus 5.5), with a Jev API key in the environment and nothing else: no GPU, no desktop, no other paid keys, no accounts.
+The README's first example was run once. Repo commit b1cdf80593ee; 46 seconds. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/jev-runs/in/prompt.txt">Task</a></p>
+<p><b>Quick start: <span class="ok">ran</span>.</b> Jev calls made: 1.</p>
+<table><tr><th>Install</th><td><code>npx --yes github:BillionsBobby/JevRouter (README&#x27;s npx-from-GitHub form; installs and runs in one step, no separate install)</code></td></tr><tr><th>Quick start, as run</th><td><code>npx --yes github:BillionsBobby/JevRouter route --provider typesafe --request &quot;Find original sources before summarizing&quot; --candidates &#x27;[{&quot;name&quot;:&quot;search_web&quot;,&quot;description&quot;:&quot;Find web sources&quot;},{&quot;name&quot;:&quot;summarize&quot;,&quot;description&quot;:&quot;Summarize existing sources&quot;}]&#x27;</code></td></tr>
+<tr><th>What came back</th><td>Exit 0. status=selected, decision.selected=search_web (jev_probability 1, summarize 0), raw_jev.model=jev-1.13.0, usage 350 in / 35 out tokens, runtime.source=live, elapsed_ms=335, receipt saved to .jevrouter/decisions/dec_eab6ff8c-....json. stderr: &#x27;JevRouter END status=selected ... selected=search_web&#x27;.</td></tr><tr><th>What stopped it</th><td>Nothing.</td></tr></table>
+<h2>Steps the README does not mention</h2><ul><li>Skipped the README&#x27;s first command (&#x27;agent start --agent codex&#x27;): it launches a separate host agent (Codex/Claude Code/Cursor) and asks for the key interactively. Ran the next example, &#x27;Route one decision&#x27;, which is the smallest one that calls Jev.</li><li>The &#x27;Route one decision&#x27; example is only written for OpenRouter (OPENROUTER_API_KEY, --provider openrouter). To use the official TypeSafe key I swapped in &#x27;--provider typesafe&#x27;. That name comes from the README&#x27;s &#x27;Choose typesafe&#x27; prompt text and from src/cli.ts; no README example shows it as a CLI flag.</li><li>Cookbook 01 lists only OPENROUTER_API_KEY or JEV_API_KEY as prerequisites, but the README also accepts TYPESAFE_API_KEY. The key was already exported under that name, so nothing had to be renamed.</li></ul>
+<h2>The session's closing message</h2><pre>The quick start worked on the first try. JevRouter installed and returned a real Jev decision after one Jev call.
+
+- **Install:** the README has no separate install step. Its `npx --yes github:BillionsBobby/JevRouter …` command downloads and runs the tool in one go, and it worked on Node 22.
+- **Which example I ran:** the README&#x27;s first command, `agent start --agent codex`, opens a separate coding agent and asks for the key interactively, so I skipped it. I ran the next one, &quot;Route one decision&quot;, which is the smallest example that calls Jev.
+- **Result:** exit code 0, `status: selected`. Jev picked `search_web` with probability 1 (over `summarize` at 0). The response came from the live service (model `jev-1.13.0`, 350 tokens in and 35 out, 335 ms). The tool also saved a local record of the decision under `.jevrouter/decisions/`.
+- **Steps the README doesn&#x27;t spell out:**
+  - That example is written only for OpenRouter (`--provider openrouter` with `OPENROUTER_API_KEY`). To use the TypeSafe key I changed the flag to `--provider typesafe`. I got that name from the setup prompt text the README mentions and from `src/cli.ts`; no README example shows it as a flag.
+  - The README accepts `TYPESAFE_API_KEY`, so the key worked under its existing name. The &quot;Route your first request&quot; docs page lists only `OPENROUTER_API_KEY` and `JEV_API_KEY`.
+- **Key safety:** the key was never printed, and I checked that it does not appear in any file the run wrote.
+
+DELIVERABLE: ~/work/output/report.json</pre>
+</main></body></html>

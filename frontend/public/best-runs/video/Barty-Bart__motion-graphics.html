@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Barty-Bart/motion-graphics: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>Barty-Bart/motion-graphics: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 4.7 minutes; sound: no.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>Made for adding motion graphics to talking-head footage; with no footage it built a full-frame film of interface cards.</p>
+<video controls preload="metadata" poster="Barty-Bart__motion-graphics.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="Barty-Bart__motion-graphics.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>48% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="Barty-Bart__motion-graphics-frames.jpg"><img src="Barty-Bart__motion-graphics-frames.jpg" alt="Barty-Bart/motion-graphics: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the video with the installed `motion-broll` skill. It&#x27;s H.264, 1920×1080, 30 fps, exactly 15.00 s (450 frames), with no audio. I checked it with ffprobe and looked at stills from every section.
+
+The skill is meant for adding motion graphics to a talking-head video, and the brief has no video. So I used its &quot;full-frame cutaway&quot; mode, which makes one standalone clip. It&#x27;s one shape that keeps changing shape, never cuts, and a cursor drives each change. I used the skill&#x27;s default look: warm gray background, black and white shapes, one orange accent. Because there was no video, I skipped the two steps that need one: the preview with the clips cut in and the before/after comparison page. I also skipped the skill&#x27;s questions and its plan-approval step, as you asked.
+
+What&#x27;s on screen, using your copy exactly:
+
+| Time (s) | Copy | What you see |
+|---|---|---|
+| 0–2.6 | Know before you swim. | A black pill with a small waves icon; the cursor clicks it |
+| 2.6–5.7 | Water quality at 2,400 beaches, checked every morning. | A white card with a grid of dots that fill in as an orange line sweeps across |
+| 5.7–8.7 | Good. Fair. Stay out. | A three-part switch; the cursor clicks through it and the highlight turns orange on &quot;Stay out.&quot; |
+| 8.7–11.6 | Rain warnings tell you how long to wait. | An orange rain tile and a bar that shrinks |
+| 11.6–15 | Tidepool. Check my beach. | A black card; the cursor clicks the button and it turns orange with a check mark |
+
+- **Additions:** apart from the copy, the video shows only icons, dots and bars. There are no other words, numbers, claims or logos. The dot grid and the shrinking bar are just pictures; they don&#x27;t show a count or a wait time.
+- **Setup fix:** the skill&#x27;s setup script failed when given a relative path, so I ran it with the full path instead. That changed nothing in the skill itself.
+- **Project:** everything I rendered from is in `~/work/project/motion`. The clip source is `clips/01-tidepool.html`, and the render, `plan.json` and `out/TIMING.md` are there too.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>

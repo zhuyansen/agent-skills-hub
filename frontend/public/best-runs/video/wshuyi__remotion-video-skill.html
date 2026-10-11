@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>wshuyi/remotion-video-skill: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-video-skills/">← Claude Code video skills</a></p>
+<h1>wshuyi/remotion-video-skill: test run, 2026-10-11</h1>
+<p class="mute">The same brief for every skill: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the skill
+in a throwaway sandbox with no API keys for video, image or voice models. 3.4 minutes; sound: no.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p>
+<video controls preload="metadata" poster="wshuyi__remotion-video-skill.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="wshuyi__remotion-video-skill.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.0 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>10% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="wshuyi__remotion-video-skill-frames.jpg"><img src="wshuyi__remotion-video-skill-frames.jpg" alt="wshuyi/remotion-video-skill: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the 15-second Tidepool promo with the installed Remotion skill. It doesn&#x27;t need a paid model or API key. I skipped the skill&#x27;s voice-over steps because the brief says no voice-over, and there is no music or sound.
+
+**Checked:** `ffprobe` shows the file is H.264, 1920×1080, 30 fps and exactly 15.0 seconds long. I looked at a still frame from each of the five scenes. In the first full render, the ripple in the opening scene sat on top of &quot;Know before you swim.&quot; I moved it up and rendered again. I re-checked that scene&#x27;s frame after the fix, but not the other four; that change only touches the opening scene.
+
+**What&#x27;s in it:** all five lines of copy, word for word and in order, on a dark ocean background with moving waves. Each line has about 2.6 to 3.2 seconds on screen:
+1. &quot;Know before you swim.&quot; with a ripple above it.
+2. &quot;Water quality at 2,400 beaches, checked every morning.&quot; over a grid of coloured dots. The line is split across two rows, but the wording is unchanged.
+3. &quot;Good. Fair. Stay out.&quot; each under a green, amber or red circle.
+4. &quot;Rain warnings tell you how long to wait.&quot; with falling rain and a countdown ring that fills up.
+5. &quot;Tidepool.&quot; with &quot;Check my beach.&quot; on a gently pulsing button.
+
+There are no logos or extra wording. The project is in `~/work/project`; the video code is in `src/Tidepool.tsx`, and `npm run render` there rebuilds the file.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>
