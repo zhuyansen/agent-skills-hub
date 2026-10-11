@@ -81,8 +81,9 @@ const GRADE_LABEL = { safe: "SAFE", caution: "CAUTION", unsafe: "UNSAFE", reject
 const P_STYLE = "color:var(--bp-text-secondary);line-height:1.8;font-size:15px;margin:0 0 12px";
 
 function focusRow(s) {
+  // owner/repo: the official Remotion repo is just "skills", and two "taste-skill" rows sat side by side.
   const grade = GRADE_LABEL[s.security_grade];
-  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-weight:600;text-decoration:none">${esc(s.repo_name)}</a>`;
+  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);font-weight:600;text-decoration:none">${esc(s.repo_full_name)}</a>`;
   const meta = `<span style="color:var(--bp-text-muted);font-size:13px"> ★ ${starsK(s.stars)}${grade ? ` · ${grade}` : ""}</span>`;
   const desc = bi(" — " + descEn(s).slice(0, FOCUS_DESC), " — " + (descZh(s) || descEn(s)).slice(0, FOCUS_DESC),
     "color:var(--bp-text-secondary);font-size:14px");
