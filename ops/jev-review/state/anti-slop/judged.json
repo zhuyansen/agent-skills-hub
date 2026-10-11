@@ -9399,5 +9399,39 @@
   "days": 12,
   "stars_per_day": 0.4166666666666667,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Guksu/suta",
+  "name": "suta",
+  "stars": 5,
+  "description": "AI 슬롭을 없애는 UI Skill",
+  "topics": [
+   "accessibility",
+   "agent-skills",
+   "ai-slop",
+   "claude-code",
+   "codex",
+   "frontend",
+   "ui-design"
+  ],
+  "created": "2026-08-19",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 2954,
+  "names_model": false,
+  "on_subject": 0.92,
+  "is_software": 0.97,
+  "shows_result": 0.95,
+  "one_command_start": 0.84,
+  "specific_outcome": 0.72,
+  "complete_docs": 0.89,
+  "novel_angle": 0.68,
+  "shareable_output": 0.79,
+  "quality": 0.85,
+  "tier": "高",
+  "hit_prior": 0.8066666666666666,
+  "days": 53,
+  "stars_per_day": 0.09433962264150944,
+  "verdict": "admit"
  }
 ]

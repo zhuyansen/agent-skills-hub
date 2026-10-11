@@ -527,6 +527,14 @@
   "type": "image/jpeg",
   "bytes": 869515
  },
+ "Guksu/suta": {
+  "repo": "Guksu/suta",
+  "url": "https://raw.githubusercontent.com/Guksu/suta/HEAD/docs/assets/as-is-to-be.jpg",
+  "alt": "The same shopping app request: without suta on top, with suta below",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 368882
+ },
  "HNF-FRN/Reel-watcher-telegram-Agent": {
   "repo": "HNF-FRN/Reel-watcher-telegram-Agent",
   "url": "https://raw.githubusercontent.com/HNF-FRN/Reel-watcher-telegram-Agent/HEAD/docs/assets/chat-demo.gif",
@@ -894,6 +902,14 @@
   "score": 1.65,
   "type": "image/png",
   "bytes": 385804
+ },
+ "ShalomObongo/codex-imagegen-mcp": {
+  "repo": "ShalomObongo/codex-imagegen-mcp",
+  "url": "https://raw.githubusercontent.com/ShalomObongo/codex-imagegen-mcp/HEAD/docs/assets/examples/aspect-ratios.jpg",
+  "alt": "The same travel-poster prompt of a train crossing a trestle bridge, generated at",
+  "score": 1.3,
+  "type": "image/jpeg",
+  "bytes": 196893
  },
  "Sheltercosmo/jev4pg": {
   "repo": "Sheltercosmo/jev4pg",
@@ -2247,6 +2263,14 @@
   "type": "image/gif",
   "bytes": 149509
  },
+ "junruxiong/IncarnaMind": {
+  "repo": "junruxiong/IncarnaMind",
+  "url": "https://raw.githubusercontent.com/junruxiong/IncarnaMind/HEAD/docs/images/demo.gif",
+  "alt": "Nine screens in turn: pointing at a Citation shows its quote; opening it shows t",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 1606858
+ },
  "kaisersong/slide-creator": {
   "repo": "kaisersong/slide-creator",
   "url": "https://raw.githubusercontent.com/kaisersong/slide-creator/HEAD/demos/screenshots/fantasy-rainbow.png",
@@ -2494,6 +2518,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 277600
+ },
+ "mikelix/gstack-tutorial-5-agi-race-v2": {
+  "repo": "mikelix/gstack-tutorial-5-agi-race-v2",
+  "url": "https://raw.githubusercontent.com/mikelix/gstack-tutorial-5-agi-race-v2/HEAD/assets/fig_pipeline_en.png",
+  "alt": "Three layers, one loop: decide → build → render → measure",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 122159
  },
  "mikker/semantic-review": {
   "repo": "mikker/semantic-review",
@@ -3462,6 +3494,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 199131
+ },
+ "zhuyansen/awesome-codex-ppt-skills": {
+  "repo": "zhuyansen/awesome-codex-ppt-skills",
+  "url": "https://raw.githubusercontent.com/zhuyansen/awesome-codex-ppt-skills/HEAD/assets/previews/StarryKit__starry-slides.gif",
+  "alt": "StarryKit/starry-slides",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 292845
  },
  "zl190/md-slides": {
   "repo": "zl190/md-slides",

@@ -3050,5 +3050,47 @@
    "general": 0.09
   },
   "kind": "convert"
+ },
+ {
+  "repo": "carnot-tech/jinba-consulting-pptx-skill",
+  "stars": 1158,
+  "description": "AIにまじなPPTXを作らせる Claude Code / Codex スキル",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.5,
+   "html": 0.78,
+   "business": 0.96,
+   "convert": 0.15,
+   "general": 0.17
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "zhuyansen/awesome-codex-ppt-skills",
+  "stars": 10,
+  "description": "Open-source skills and tools that let Codex, Claude Code and other coding agents make slides. Sorted by type, each security-graded. English / 中文.",
+  "scores": {
+   "image": 0.13,
+   "pptx": 0.36,
+   "html": 0.42,
+   "business": 0.33,
+   "convert": 0.57,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "MURMURE11118586/codex-xkppt-skill",
+  "stars": 5,
+  "description": "codex-ppt-skill 是一个面向 Codex 的 PPT 制作 Skill，支持从主题、文档、PDF、Markdown 或已有 PPT 生成可编辑演示文稿，并提供参考风格、单页修改、模板套用、PDF/PNG 导出和 QA 检查流程。",
+  "scores": {
+   "image": 0.08,
+   "pptx": 0.91,
+   "html": 0.31,
+   "business": 0.46,
+   "convert": 0.96,
+   "general": 0.49
+  },
+  "kind": "convert"
  }
 ]

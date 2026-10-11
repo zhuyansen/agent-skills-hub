@@ -4963,5 +4963,20 @@
    "general": 0.25
   },
   "kind": "replica"
+ },
+ {
+  "repo": "dorkitude/skimmer",
+  "stars": 9,
+  "description": "Skim pages, files, and lists with Jev: keep only what helps with your goal. Saves agent tokens.  Built with go/cobra.",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.07,
+   "devtool": 0.9,
+   "sdk": 0.11,
+   "business": 0.11,
+   "consumer": 0.26,
+   "general": 0.18
+  },
+  "kind": "devtool"
  }
 ]

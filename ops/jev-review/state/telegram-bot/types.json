@@ -3554,5 +3554,19 @@
    "business": 0.06
   },
   "kind": "assistant"
+ },
+ {
+  "repo": "WireCatLabs/tg-cli",
+  "stars": 12,
+  "description": "Telegram CLI for AI agents — your whole account in the terminal, local-first search, MCP server and full Bot API.",
+  "scores": {
+   "assistant": 0.08,
+   "remote": 0.61,
+   "framework": 0.31,
+   "utility": 0.33,
+   "fun": 0.04,
+   "business": 0.21
+  },
+  "kind": "remote"
  }
 ]

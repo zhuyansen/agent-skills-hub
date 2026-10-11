@@ -5020,5 +5020,59 @@
    "general": 0.1
   },
   "kind": "motion"
+ },
+ {
+  "repo": "onuryildriim/claude-kurgu-atolyesi",
+  "stars": 7,
+  "description": "Claude Code ile konuşan-kafa YouTube videolarını kodla kurgulama atölyesi — Remotion + FFmpeg, kendi marka kimliğinle.",
+  "scores": {
+   "promo": 0.14,
+   "explainer": 0.65,
+   "music": 0.06,
+   "motion": 0.07,
+   "shorts": 0.1,
+   "editing": 0.91,
+   "demo": 0.37,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.08
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "mikelix/gstack-tutorial-5-agi-race-v2",
+  "stars": 5,
+  "description": "gstack Tutorial #5: from YouTube analytics to a re-engineered Short with CSR-RAP, Claude Opus 5.5 and HyperFrames (EN/ZH)",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.82,
+   "music": 0.07,
+   "motion": 0.2,
+   "shorts": 0.92,
+   "editing": 0.55,
+   "demo": 0.68,
+   "story": 0.39,
+   "avatar": 0.51,
+   "general": 0.11
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "OnurGumus/codebase-video",
+  "stars": 5,
+  "description": "Turn a codebase into a fact-checked narrated video. A Claude Code plugin: one agent reads the code, fresh agents verify every claim, then the video is made locally.",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.96,
+   "music": 0.02,
+   "motion": 0.04,
+   "shorts": 0.05,
+   "editing": 0.11,
+   "demo": 0.95,
+   "story": 0.03,
+   "avatar": 0.08,
+   "general": 0.05
+  },
+  "kind": "explainer"
  }
 ]

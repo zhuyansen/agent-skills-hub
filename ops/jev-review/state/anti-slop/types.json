@@ -3274,5 +3274,19 @@
    "rules": 0.77
   },
   "kind": "chinese"
+ },
+ {
+  "repo": "Guksu/suta",
+  "stars": 5,
+  "description": "AI 슬롭을 없애는 UI Skill",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.12,
+   "chinese": 0.01,
+   "code": 0.42,
+   "design": 0.92,
+   "rules": 0.81
+  },
+  "kind": "design"
  }
 ]

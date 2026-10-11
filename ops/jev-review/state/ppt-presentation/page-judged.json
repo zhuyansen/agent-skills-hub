@@ -5364,5 +5364,33 @@
   "days": 7,
   "stars_per_day": 8.571428571428571,
   "verdict": "admit"
+ },
+ {
+  "repo": "carnot-tech/jinba-consulting-pptx-skill",
+  "name": "jinba-consulting-pptx-skill",
+  "stars": 1158,
+  "description": "AIにまじなPPTXを作らせる Claude Code / Codex スキル",
+  "topics": [],
+  "created": "2026-09-02",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9446,
+  "names_model": false,
+  "makes_slides": 0.97,
+  "agent_driven": 0.96,
+  "editable_output": 0.93,
+  "reusable_tool": 0.95,
+  "one_command_start": 0.58,
+  "complete_docs": 0.8,
+  "shows_result": 0.16,
+  "specific_outcome": 0.57,
+  "novel_angle": 0.92,
+  "shareable_output": 0.48,
+  "quality": 0.5275,
+  "tier": "中",
+  "hit_prior": 0.52,
+  "days": 39,
+  "stars_per_day": 29.692307692307693,
+  "verdict": "admit"
  }
 ]

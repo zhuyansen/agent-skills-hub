@@ -1571,7 +1571,8 @@
     "zooddd/tg-proxy-shop",
     "EvilFreelancer/tgfake",
     "HNF-FRN/Reel-watcher-telegram-Agent",
-    "tuuject/surowan"
+    "tuuject/surowan",
+    "WireCatLabs/tg-cli"
    ],
    "exclude_repos": [
     "smixs/iva"
@@ -1932,7 +1933,9 @@
     "if-ai/ComfyUI-IF_Gemini",
     "AtlasCloudAI/cli",
     "frannkurt/nano-banana-mcp",
-    "Mats2208/qwen-image-local"
+    "Mats2208/qwen-image-local",
+    "ShalomObongo/codex-imagegen-mcp",
+    "q253595422/prompt-constraints"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3026,7 +3029,8 @@
     "MrDoe/OpenCodeRAG",
     "bodepudimuneendra-netizen/laya-jev-GraphRAG",
     "kiycoh/silica-core",
-    "mhmtsrfglu/superwiki"
+    "mhmtsrfglu/superwiki",
+    "junruxiong/IncarnaMind"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3373,7 +3377,8 @@
     "sametcelikbicak/rolecraft",
     "wanghuan9/skill-manager",
     "jiweiyeah/Skills-Manager",
-    "wanghuan9/skilldock"
+    "wanghuan9/skilldock",
+    "lingbol088-spec/auto-skill-installer"
    ]
   },
   "related": [
@@ -4214,7 +4219,8 @@
     "Mutakisa/game-slop-purge",
     "ilyautov/humanizer-it",
     "phuryn/work-humanizer",
-    "XuanjinZhu/zh-scientific-humanizer"
+    "XuanjinZhu/zh-scientific-humanizer",
+    "Guksu/suta"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign"
@@ -5501,7 +5507,8 @@
     "sunbigfly/ppt-agent-skill",
     "Binaryify/open-kimi-ppt-skill",
     "E1nzbern/open-kimi-ppt-skill",
-    "seulee26/mckinsey-pptx"
+    "seulee26/mckinsey-pptx",
+    "gozen3ji/consulting-pptx-skill"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -5651,7 +5658,10 @@
     "billLiao/PPT-Design-Skill",
     "borjaperfra/beatdeck",
     "andyluu98/slidefly",
-    "sujunmin/agy-ppt"
+    "sujunmin/agy-ppt",
+    "carnot-tech/jinba-consulting-pptx-skill",
+    "zhuyansen/awesome-codex-ppt-skills",
+    "MURMURE11118586/codex-xkppt-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7021,7 +7031,8 @@
     "chuloontop4-code/jev-instance-review",
     "shitianfang/wakegate",
     "zzsong1023/jev-market-reflex",
-    "dtunai/cu-Jev"
+    "dtunai/cu-Jev",
+    "dorkitude/skimmer"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7402,7 +7413,10 @@
     "ymybxx/SoloMCN",
     "timscheuerai/launch-video-kit",
     "beriki770-ship-it/code-animations",
-    "hacimertgokhan/geomotion"
+    "hacimertgokhan/geomotion",
+    "onuryildriim/claude-kurgu-atolyesi",
+    "mikelix/gstack-tutorial-5-agi-race-v2",
+    "OnurGumus/codebase-video"
    ],
    "sub_skills": [
     {

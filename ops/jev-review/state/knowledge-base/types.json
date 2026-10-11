@@ -4786,5 +4786,19 @@
    "personal": 0.28
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "junruxiong/IncarnaMind",
+  "stars": 801,
+  "description": "The AI notebook that checks its own citations. Ask your PDFs, Word files, slides and spreadsheets; answers cite the exact page. Open-source desktop app.",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.53,
+   "mcp": 0.09,
+   "docs_qa": 0.78,
+   "graph": 0.08,
+   "personal": 0.7
+  },
+  "kind": "docs_qa"
  }
 ]

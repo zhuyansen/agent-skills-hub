@@ -3274,5 +3274,33 @@
    "mcp": 0.09
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "ShalomObongo/codex-imagegen-mcp",
+  "stars": 5,
+  "description": "Codex's image generation in every coding agent: an MCP server + Agent Skill with a one-command installer for opencode, Claude Code, Codex, Cursor, VS Code, Gemini CLI and 20 more tools. Runs on your ChatGPT plan with no API key.",
+  "scores": {
+   "gpt_image": 0.79,
+   "nano_banana": 0.03,
+   "open_models": 0.04,
+   "editing": 0.16,
+   "design": 0.09,
+   "mcp": 0.96
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "q253595422/prompt-constraints",
+  "stars": 5,
+  "description": "生图 / 视频提示词约束引擎 — 把模糊需求变成可执行的提示词。An Agent Skill for constrained image & video prompt engineering (Nano Banana / Seedance / Veo / Sora / Kling / Midjourney / FLUX).",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.09,
+   "open_models": 0.12,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.1
+  },
+  "kind": "open_models"
  }
 ]
