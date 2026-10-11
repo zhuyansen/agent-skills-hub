@@ -7271,6 +7271,13 @@
     "成片并排放在这里。点任意一条播放，每条 15 秒。"
    ]
   },
+  "list_images": [
+   {
+    "src": "films.jpg",
+    "en": "The opening line of every film; the one made with no skill is top left. The films play on the page.",
+    "zh": "每条成片的第一句画面;左上角是不装 skill 做的。成片可以在页面上播放。"
+   }
+  ],
   "name_col": [
    "Skill",
    "Skill"

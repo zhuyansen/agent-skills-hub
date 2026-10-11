@@ -86,6 +86,20 @@ def publish_media(r: dict) -> None:
     first.resize((POSTER_WIDTH, round(first.height * POSTER_WIDTH / first.width))).save(DEST / f"{k}.jpg", quality=80)
 
 
+def films_grid(rows: list[dict]) -> None:
+    """One picture of every film's opening line, for places that cannot play video (the GitHub list)."""
+    from PIL import ImageDraw, ImageFont
+    cols, w, h, label = 4, 480, 270, 26
+    grid = Image.new("RGB", (w * cols, (h + label) * -(-len(rows) // cols)), "white")
+    draw, font = ImageDraw.Draw(grid), ImageFont.load_default(size=15)
+    for i, r in enumerate(rows):
+        x, y = (i % cols) * w, (i // cols) * (h + label)
+        grid.paste(Image.open(DEST / f"{key(r['repo'])}.jpg").convert("RGB").resize((w, h)), (x, y + label))
+        name = "no skill (control)" if r["repo"] == CONTROL else r["repo"].split("/")[1]
+        draw.text((x + 8, y + 5), f"{name} · {r['minutes']} min", fill="black", font=font)
+    grid.save(DEST / "films.jpg", quality=82)
+
+
 def page(r: dict, name: str) -> str:
     k, run = key(r["repo"]), OUT / key(r["repo"])
     checks = "".join(f"<tr><th>{esc(label)}</th><td>{'<span class=ok>pass</span>' if r['checks'][c] else '<span class=no>fail</span>'}</td><td>{esc(detail)}</td></tr>" for c, label, detail in (
@@ -130,6 +144,7 @@ def main() -> None:
     for r in rows:
         publish_media(r)
         (DEST / (key(r["repo"]) + ".html")).write_text(page(r, "Control: Claude Code with no video skill" if r is control else r["repo"]))
+    films_grid([control, *skills])
     n, sound = len(skills), sum(r["audio"] for r in skills)
     fast, slow = skills[0]["minutes"], skills[-1]["minutes"]
     verdict = {**VERDICT, "rule": [x.format(n=n) for x in VERDICT["rule"]]}
@@ -142,6 +157,8 @@ def main() -> None:
                     f"{n} 个全部渲染出了通过四项检查的成片，文案一句没少、也没有多加内容；不装 skill 的 Claude Code 也一样，用了 {control['minutes']} 分钟。这条需求没有一个用到付费模型。差别在耗时（{fast} 到 {slow} 分钟）、声音（{n} 个里 {sound} 个加了声音）和观感：按我们的眼睛看，{len(LOOK['default'])} 个做出来接近不装 skill 的成片（深青色水面、波浪、白字居中），{len(LOOK['own'])} 个有自己的样子。"],
         "gallery": {"width": CLIP[0], "height": CLIP[1], "groups": GROUPS, "items": [clip(control), *[clip(r) for r in skills]],
                     "note": ["The films, side by side. Press play on any of them; each is 15 seconds.", "成片并排放在这里。点任意一条播放，每条 15 秒。"]},
+        "list_images": [{"src": "films.jpg", "en": "The opening line of every film; the one made with no skill is top left. The films play on the page.",
+                         "zh": "每条成片的第一句画面;左上角是不装 skill 做的。成片可以在页面上播放。"}],
         "name_col": ["Skill", "Skill"],
         "columns": [["Checks passed (of 4)", "通过检查（共 4 项）"], ["Lines of copy readable (of 5)", "读得到的文案（共 5 句）"], ["Sound", "声音"],
                     ["Look, by eye", "观感（肉眼判断）"], ["Time to make", "制作耗时"]],

@@ -135,7 +135,7 @@ def _own_section(run: dict, slug: str, i: int, site: str, utm: str, w: dict) -> 
     out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
     if run.get("finding"):
         out += [("**发现:** " if i else "**What we found:** ") + run["finding"][i], ""]
-    for c in run.get("compare", []):   # the side-by-side picture, as on the page
+    for c in [*run.get("compare", []), *run.get("list_images", [])]:   # the side-by-side picture, as on the page
         url = f"{site}{run['dir']}{c['src']}"
         out += [f"[![{c['en']}]({url})]({url})", "", f"*{c['zh'] if i else c['en']}*", ""]
     for g in run.get("groups") or [None]:
