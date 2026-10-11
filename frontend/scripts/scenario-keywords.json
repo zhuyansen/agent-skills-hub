@@ -2225,10 +2225,20 @@
     "安装和加载 skill 时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "Install everything and Claude Code copes, Codex does not. With 512 skills installed, Claude Code opened the right one of 12 test skills 35 times of 36; Codex, which shares the SKILL.md format, managed 17 of 36 after removing every description and leaving 134 skills out of its list.",
+     "item_zh": "全部装上，Claude Code 撑得住，Codex 不行。装 512 个 skill 时，Claude Code 对 12 个测试 skill 在 36 次里有 35 次打开了正确的那个；用同样 SKILL.md 格式的 Codex 去掉了所有描述、把 134 个 skill 留在列表之外，只有 17/36。",
+     "ours": true
+    },
+    {
+     "item": "The cost in Claude Code is descriptions, not tokens: a session started at 17,781 tokens with 12 skills, 24,499 with 112 and 25,289 with 512. Past about a hundred, skills are listed by name only.",
+     "item_zh": "在 Claude Code 里代价是描述，不是 token：装 12 个 skill 时会话起始 17,781 个 token，112 个时 24,499，512 个时 25,289。超过一百个左右，skill 就只按名字列出。",
+     "ours": true
+    },
     {
      "item": "Curated beats complete. Curated skills raised the average pass rate by 16.6 points, and skills of at most three modules beat larger bundles (SkillsBench).",
      "item_zh": "精选胜过求全。精选 skill 让平均通过率提高 16.6 个百分点，不超过三个模块的 skill 胜过更大的合集（SkillsBench）。"
@@ -2244,8 +2254,9 @@
    ],
    "did": [
     {
-     "item": "Counted every SKILL.md in each repository on this page and checked it against the Agent Skills format: a name of at most 64 lowercase letters, digits and hyphens, and a description of 1 to 1,024 characters. Nothing was executed.",
-     "item_zh": "数了本页每个仓库里的每一个 SKILL.md，并按 Agent Skills 格式检查：名字不超过 64 个小写字母、数字和连字符，描述 1 到 1,024 个字符。没有执行任何东西。"
+     "item": "Counted every SKILL.md in each repository on this page against the Agent Skills format, and measured what Claude Code and Codex do with 12, 112 and 512 skills installed. Results are in the audit section above and on each card.",
+     "item_zh": "按 Agent Skills 格式数了本页每个仓库里的每一个 SKILL.md，并实测了装 12、112、512 个 skill 时 Claude Code 和 Codex 的表现。结果在上面的体检区和每张卡片上。",
+     "ours": true
     },
     {
      "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -2254,8 +2265,9 @@
    ],
    "not_done": [
     {
-     "item": "We counted files and measured session size; we did not run the skills, so this says nothing about whether a given skill is any good. With 500 other skills installed, Claude Code still opened the right one of our 12 test skills for 35 of 36 requests, but those 12 have descriptive names; a skill with a vague name and no visible description may fare worse, and we did not test that.",
-     "item_zh": "我们数了文件、量了会话大小，但没有运行这些 skill，所以这说明不了某个 skill 好不好用。旁边再装 500 个 skill 时，Claude Code 对 36 条请求里的 35 条仍然打开了我们 12 个测试 skill 中正确的那个，但这 12 个的名字本身就说明了用途；名字含糊又看不到描述的 skill 可能会更差，这一点我们没有测。"
+     "item": "We counted files and tested finding, not doing: none of these collections' skills was run for its output, so this says nothing about whether a given skill is any good. The 12 test skills have descriptive names; a skill with a vague name and no visible description may fare worse in Claude Code, and we did not test that. One run per request.",
+     "item_zh": "我们数了文件、测了「找不找得到」，没有测「做得好不好」：这些合集里的 skill 没有一个被运行来看产出，所以这说明不了某个 skill 好不好用。12 个测试 skill 的名字本身就说明用途；名字含糊又看不到描述的 skill 在 Claude Code 里可能更差，这一点没有测。每条请求只跑一次。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
@@ -2530,10 +2542,25 @@
     "运行 Codex skill 时的行为"
    ],
    "h3_findings": [
-    "What the research found",
-    "研究发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "How many skills are installed matters more than which. With 12 or 112 skills installed, Codex opened the right one 36 and 35 times of 36. With 512 it managed 17: it removed every description and left 134 skills out of its list, by its own message.",
+     "item_zh": "装多少比装哪个更重要。装 12 个或 112 个 skill 时，Codex 在 36 次里有 36 次和 35 次打开了正确的 skill。装到 512 个时只有 17 次：按它自己的提示，它去掉了所有描述，并把 134 个 skill 留在列表之外。",
+     "ours": true
+    },
+    {
+     "item": "Without descriptions, a skill is found by its name alone. The skills still opened every time at 512 have names that say what they do (codex-ppt, image-to-editable-ppt, keep-codex-fast); requests for cyber-ppt all went to codex-ppt, and the four test skills last in the alphabet were never opened.",
+     "item_zh": "没有描述时，skill 只能靠名字被找到。装到 512 个仍然每次都被打开的 skill，名字本身就说明用途（codex-ppt、image-to-editable-ppt、keep-codex-fast）；给 cyber-ppt 的请求全去了 codex-ppt，字母表最后的 4 个测试 skill 再也没被打开。",
+     "ours": true
+    },
+    {
+     "item": "Claude Code degrades differently. With the same 512 skills it kept every name and dropped most descriptions, and still opened the right skill 35 times of 36; its session started at 25,289 tokens, against 17,781 with 12 installed.",
+     "item_zh": "Claude Code 的退化方式不同。同样装 512 个，它保留了每个名字、去掉大部分描述，36 次里仍有 35 次打开了正确的 skill；会话起始是 25,289 个 token，装 12 个时是 17,781。",
+     "ours": true
+    },
     {
      "item": "More installed is not more capable. With every tool listed, a model chose the right one 13.62% of the time; with retrieval, 43.13%, using less than half the prompt tokens (RAG-MCP, a preprint).",
      "item_zh": "装得多不等于能力强。全部列出时模型选对工具的概率是 13.62%；改用检索后是 43.13%，提示词 token 不到原来的一半（RAG-MCP，预印本）。"
@@ -2549,6 +2576,11 @@
    ],
    "did": [
     {
+     "item": "Installed 12 of the skills together and sent Codex and Claude Code the same 42 requests at three crowding levels (12, 112 and 512 skills installed), stopping each run when a skill was opened. Results are in the test section above and on each card.",
+     "item_zh": "把其中 12 个 skill 一起装上，在三档拥挤度（装 12、112、512 个 skill）下给 Codex 和 Claude Code 发同样的 42 条请求，有 skill 被打开就停止。结果在上面的实测区和每张卡片上。",
+     "ours": true
+    },
+    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software an agent can use.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是 agent 能用的软件。"
     },
@@ -2563,8 +2595,9 @@
    ],
    "not_done": [
     {
-     "item": "We have not yet published an end-to-end run of these skills. The test is running: 12 skills installed together, three requests each that should reach the skill and six that should reach none, on Codex and on Claude Code, then again with 100 and 500 other skills installed beside them.",
-     "item_zh": "这些 skill 的端到端实跑还没有发布。实测正在进行：12 个 skill 一起装上，每个 3 条应该触发它的请求、另加 6 条不该触发任何 skill 的请求，在 Codex 和 Claude Code 上各跑一遍；然后在旁边再装 100 个和 500 个别的 skill 重跑。"
+     "item": "This tests whether a skill is found, not whether its output is any good. Each request ran once, and the requests were written from each skill's own description, which favours triggering. The two agents ran different models (gpt-6-astra and Claude Opus 5.5), so a gap between them may be the model or the agent. That the four skills never opened at 512 were among the 134 Codex left out is inferred from their names coming last in the alphabet.",
+     "item_zh": "这测的是 skill 找不找得到，不是它的产出好不好。每条请求只跑一次，而且是照各 skill 自己的描述写的，对触发有利。两个 agent 用的模型不同（gpt-6-astra 和 Claude Opus 5.5），两者的差距可能来自模型，也可能来自 agent。「装到 512 个时再没被打开的 4 个 skill 属于 Codex 丢掉的 134 个」是根据它们的名字排在字母表最后推断的。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",

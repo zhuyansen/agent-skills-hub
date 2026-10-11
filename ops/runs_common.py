@@ -62,17 +62,18 @@ def pair(en: str, zh: str) -> dict:
     return {"item": en, "item_zh": zh}
 
 
-def update_method(slug: str, findings: list[dict], did: dict, limits: dict, marker: str) -> None:
+def update_method(slug: str, findings: list[dict], did: dict, limits: dict, marker: str, replaces: tuple[str, ...] = ()) -> None:
     """Put the test into the page's method block: its findings first, what we did, and its limits in
-    place of the "not yet run" line. `marker` is a phrase of this test's first finding, so a rerun replaces."""
+    place of the "not yet run" line. `marker` is a phrase of this test's first finding, so a rerun replaces;
+    `replaces` are the opening words of earlier lines this test supersedes."""
     pages = json.loads(KEYWORDS_JSON.read_text())
     m = next(p for p in pages if p["slug"] == slug)["method"]
     ours = {f["item"] for f in findings} | {did["item"], limits["item"]}
-    stale = lambda x: x["item"] in ours or marker in x["item"] or "not yet run" in x["item"]   # noqa: E731
+    stale = lambda x: x["item"] in ours or marker in x["item"] or x["item"].startswith(replaces or ("\0",)) or "not yet run" in x["item"] or "not yet published" in x["item"]   # noqa: E731
     m["h3_findings"] = ["What our test and the research found", "实测和研究发现了什么"]
     m["findings"] = findings + [x for x in m["findings"] if not stale(x) and not x.get("ours")]
     for f in findings:
         f["ours"] = True
-    m["did"] = [{**did, "ours": True}] + [x for x in m["did"] if not x.get("ours")]
+    m["did"] = [{**did, "ours": True}] + [x for x in m["did"] if not x.get("ours") and not stale(x)]
     m["not_done"] = [{**limits, "ours": True}] + [x for x in m["not_done"] if not stale(x) and not x.get("ours")]
     KEYWORDS_JSON.write_text(json.dumps(pages, indent=1, ensure_ascii=False) + "\n")

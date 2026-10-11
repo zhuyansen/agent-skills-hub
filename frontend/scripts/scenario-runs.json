@@ -4515,8 +4515,8 @@
    "2026-10-11 我们打开了本页全部 10 个仓库，只看文件数了这些：每个仓库有多少 skill、多少个不重复、多少个符合 Agent Skills 格式（名字不超过 64 个小写字母、数字和连字符；描述 1 到 1,024 个字符）、多少个带脚本，以及所有名字和描述加起来有多长（按每 4 个字符 1 个 token 估算）。然后实测了 Claude Code 面对大量安装时怎么做：装 12、112、512 个 skill 时的会话大小。"
   ],
   "finding": [
-   "6 of the 10 hold skills; the other 4 are link lists or tools. Of 1,931 skill files, 459 are copies of a skill already in the same repository. Claude Code does not pay the full price for a big install: a session started at 17,781 tokens with 12 skills, 24,499 with 112 and 25,289 with 512, because past a budget it lists skills by name only (about 47 of 512 kept a description, by its own count). The largest collection here (claude-code-templates, 886 distinct skills) would mostly be names.",
-   "10 个里有 6 个含 skill，另外 4 个是链接清单或工具。1,931 个 skill 文件里，有 459 个是同一仓库里已有 skill 的副本。Claude Code 不会为大量安装付全价：装 12 个 skill 时会话起始是 17,781 个 token，112 个是 24,499，512 个是 25,289，因为超出预算后它只按名字列出 skill（按它自己数的，512 个里约 47 个还带描述）。本页最大的合集（claude-code-templates，886 个不重复的 skill）装上后大部分只剩名字。"
+   "6 of the 10 hold skills; the other 4 are link lists or tools. Of 1,931 skill files, 459 are copies of a skill already in the same repository. Claude Code does not pay the full price for a big install: a session started at 17,781 tokens with 12 skills, 24,499 with 112 and 25,289 with 512, because past a budget it lists skills by name only (about 47 of 512 kept a description, by its own count). The largest collection here (claude-code-templates, 886 distinct skills) would mostly be names. Crowded: with 500 other skills installed beside 12 test skills, Claude Code still opened the right one 35 times of 36, while Codex managed 17 of 36 after dropping every description and hiding 134 skills.",
+   "10 个里有 6 个含 skill，另外 4 个是链接清单或工具。1,931 个 skill 文件里，有 459 个是同一仓库里已有 skill 的副本。Claude Code 不会为大量安装付全价：装 12 个 skill 时会话起始是 17,781 个 token，112 个是 24,499，512 个是 25,289，因为超出预算后它只按名字列出 skill（按它自己数的，512 个里约 47 个还带描述）。本页最大的合集（claude-code-templates，886 个不重复的 skill）装上后大部分只剩名字。 装多了：在 12 个测试 skill 旁边再装 500 个时，Claude Code 仍有 35/36 次打开了正确的 skill；Codex 去掉所有描述并隐藏 134 个 skill 之后只有 17/36。"
   ],
   "name_col": [
    "Collection",
@@ -4957,6 +4957,709 @@
     "ran": false,
     "reason": "A desktop app for Claude Code, not a skill collection.",
     "reason_zh": "Claude Code 的桌面应用，不是 skill 合集。"
+   }
+  },
+  "control": {
+   "sheet": "../codex/overview.html",
+   "label": [
+    "See the crowding test →",
+    "看拥挤度实测 →"
+   ]
+  }
+ },
+ "codex-skills": {
+  "type": "table",
+  "date": "2026-10-11",
+  "dir": "/best-runs/codex/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/codex-runs/",
+  "title": [
+   "Codex skills tested: does the agent reach for the right one",
+   "实测对比：agent 会不会用对 skill"
+  ],
+  "intro": [
+   "On 2026-10-11 we installed 12 of these skills together in a throwaway sandbox and sent each agent 36 requests that should reach one of them (three per skill: asked plainly, described without the skill's own words, and in the other language) and 6 that should reach none. A run stopped as soon as a skill was opened, so this measures which skill the agent reaches for, not what the skill then produces. Then the same requests with 100 and with 500 other real skills installed beside the twelve. Codex ran gpt-6-astra; Claude Code, which loads the same SKILL.md format, ran Claude Opus 5.5.",
+   "2026-10-11 我们在用完即删的沙箱里把其中 12 个 skill 一起装上，给每个 agent 发 36 条应该触发其中某个 skill 的请求（每个 skill 三条：直说、不用 skill 自己的词来描述、换一种语言），另加 6 条不该触发任何 skill 的请求。一旦有 skill 被打开就停止，所以量的是 agent 会去用哪个 skill，不是 skill 之后做出了什么。然后在这 12 个旁边再装 100 个、500 个别的真实 skill，重发同样的请求。Codex 用 gpt-6-astra；Claude Code 加载同样的 SKILL.md 格式，用 Claude Opus 5.5。"
+  ],
+  "finding": [
+   "With only the twelve installed, both agents opened the right skill 36 times of 36, and neither opened one for an unrelated request at any level. With 100 others, 35 of 36 each. With 500 others, Claude Code still managed 35 of 36, and Codex 17 of 36: it reported that it had removed every skill description and left 134 skills out of the list. Four test skills were never opened again, and one deck skill took every request meant for another.",
+   "只装这 12 个时，两个 agent 都是 36 次里 36 次打开了正确的 skill；任何一档都没有为无关请求打开 skill。再装 100 个，各 35 次。再装 500 个，Claude Code 仍有 35/36，Codex 是 17/36：它自己报告去掉了所有 skill 的描述，并有 134 个 skill 没列进列表。有 4 个测试 skill 再也没被打开过，还有一个 PPT skill 把本该给另一个的请求全接走了。"
+  ],
+  "name_col": [
+   "Skill",
+   "Skill"
+  ],
+  "columns": [
+   [
+    "Right skill opened (of 18)",
+    "打开正确 skill（共 18 次）"
+   ],
+   [
+    "Codex, 12 installed",
+    "Codex，装 12 个"
+   ],
+   [
+    "Codex, +100",
+    "Codex，再装 100 个"
+   ],
+   [
+    "Codex, +500",
+    "Codex，再装 500 个"
+   ],
+   [
+    "Claude Code, +500",
+    "Claude Code，再装 500 个"
+   ]
+  ],
+  "see": [
+   "See every request →",
+   "看每条请求的结果 →"
+  ],
+  "evidence": [
+   "The requests",
+   "请求明细"
+  ],
+  "line_label": [
+   "Codex skill trigger test, 2026-10-11:",
+   "2026-10-11 实测："
+  ],
+  "control": {
+   "sheet": "overview.html",
+   "label": [
+    "See all three levels →",
+    "看三档完整结果 →"
+   ]
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "basis": [
+    "after testing whether Codex reaches for each",
+    "实测 Codex 会不会用它之后"
+   ],
+   "rule": [
+    "Ranked by how often the right skill was opened, over 18 tries each (three requests, three crowding levels, two agents), then GitHub stars. This measures whether the agent finds the skill, not how good its output is. One run per request; the requests were written from each skill's own description.",
+    "排名规则：按「正确的 skill 被打开的次数」排，每个 skill 共 18 次（3 条请求 × 3 档拥挤度 × 2 个 agent），再看 GitHub 星数。这量的是 agent 找不找得到这个 skill，不是它做出来的东西好不好。每条请求只跑一次；请求是照各 skill 自己的描述写的。"
+   ],
+   "picks": [
+    {
+     "repo": "ningzimu/codex-ppt-skill",
+     "role": [
+      "For slide decks",
+      "做 PPT"
+     ],
+     "why": [
+      "Opened every time in Codex, even with 500 other skills installed and its description stripped (17 of 18 over both agents): the name says what it does. It also took over the requests meant for another deck skill, so install one deck skill, not several.",
+      "在 Codex 里每一次都被打开，哪怕旁边装了 500 个 skill、描述被去掉（两个 agent 合计 18 次中 17 次）：名字本身就说明了用途。它还接走了本该给另一个 PPT skill 的请求，所以 PPT skill 装一个就够，别装好几个。"
+     ]
+    },
+    {
+     "repo": "ningzimu/image-to-editable-ppt-skill",
+     "role": [
+      "To make image slides editable",
+      "把图片版幻灯片变成可编辑"
+     ],
+     "why": [
+      "18 of 18, and a different job from the one above, so the two do not compete.",
+      "18 次全中，而且和上面那个做的不是一件事，两者不会互相抢。"
+     ]
+    },
+    {
+     "repo": "vibeforge1111/keep-codex-fast",
+     "role": [
+      "To keep Codex itself fast",
+      "让 Codex 自己保持顺畅"
+     ],
+     "why": [
+      "18 of 18. A maintenance skill: a read-only report first, backups before any change.",
+      "18 次全中。是一个维护用的 skill：先出只读报告，改动前先备份。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Fine alone, lost in a crowd (Codex with 500 others installed):",
+    "单独用没问题，装多了就找不到（Codex 旁边再装 500 个时）："
+   ],
+   "avoid": [
+    {
+     "repo": "crazyykhllc-bit/CyberPPT",
+     "why": [
+      "0 of 3: every request went to codex-ppt",
+      "3 次全没中：请求都被 codex-ppt 接走"
+     ]
+    },
+    {
+     "repo": "Kappaemme-git/codex-startup-pressure-test-skill",
+     "why": [
+      "0 of 3, like the three other skills whose names come late in the alphabet",
+      "3 次全没中，另外三个名字排在字母表后面的 skill 也一样"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: keep the number of installed skills low in Codex. With 512 installed it dropped every description and hid 134 skills, and the right skill was opened 17 times of 36, against 35 or 36 with up to 112 installed.",
+    "不管选哪个：在 Codex 里别装太多 skill。装到 512 个时它去掉了所有描述、还隐藏了 134 个 skill，36 次里只有 17 次打开了正确的 skill；装到 112 个以内时是 35 或 36 次。"
+   ]
+  },
+  "runs": {
+   "ningzimu/image-to-editable-ppt-skill": {
+    "ran": true,
+    "stars": 2860,
+    "sheet": "ningzimu__image-to-editable-ppt-skill.html",
+    "cells": [
+     [
+      "18/18",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 18 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 18 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 3 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 3 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "vibeforge1111/keep-codex-fast": {
+    "ran": true,
+    "stars": 1530,
+    "sheet": "vibeforge1111__keep-codex-fast.html",
+    "cells": [
+     [
+      "18/18",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 18 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 18 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 3 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 3 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "cclank/lanshu-animated-architecture-diagram": {
+    "ran": true,
+    "stars": 947,
+    "sheet": "cclank__lanshu-animated-architecture-diagram.html",
+    "cells": [
+     [
+      "18/18",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 18 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 18 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 3 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 3 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "helloianneo/ian-xiaohei-illustrations": {
+    "ran": true,
+    "stars": 12068,
+    "sheet": "helloianneo__ian-xiaohei-illustrations.html",
+    "cells": [
+     [
+      "17/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/3",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 17 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 17 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 2 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 2 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "ningzimu/codex-ppt-skill": {
+    "ran": true,
+    "stars": 6661,
+    "sheet": "ningzimu__codex-ppt-skill.html",
+    "cells": [
+     [
+      "17/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/3",
+      null,
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 17 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 17 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 3 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 3 次"
+     ],
+     [
+      "in Claude Code with 500 others: 2 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 2 次"
+     ]
+    ]
+   },
+   "Kappaemme-git/codex-first-customer-finder-skill": {
+    "ran": true,
+    "stars": 1047,
+    "sheet": "Kappaemme-git__codex-first-customer-finder-skill.html",
+    "cells": [
+     [
+      "17/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/3",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 17 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 17 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 2 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 2 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "crazyykhllc-bit/CyberPPT": {
+    "ran": true,
+    "stars": 1770,
+    "sheet": "crazyykhllc-bit__CyberPPT.html",
+    "cells": [
+     [
+      "15/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0/3",
+      null,
+      "substantial"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 15 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 15 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 0 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 0 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ],
+    "note": "With 500 other skills installed, Codex opened codex-ppt for all three of its requests: with descriptions gone, the two deck skills cannot be told apart by name.",
+    "note_zh": "旁边再装 500 个 skill 时，Codex 把它的三条请求都交给了 codex-ppt：描述没了，两个做 PPT 的 skill 光看名字分不开。"
+   },
+   "Kappaemme-git/codex-startup-pressure-test-skill": {
+    "ran": true,
+    "stars": 990,
+    "sheet": "Kappaemme-git__codex-startup-pressure-test-skill.html",
+    "cells": [
+     [
+      "15/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0/3",
+      null,
+      "substantial"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 15 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 15 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 0 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 0 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "joeseesun/qiaomu-goal-meta-skill": {
+    "ran": true,
+    "stars": 900,
+    "sheet": "joeseesun__qiaomu-goal-meta-skill.html",
+    "cells": [
+     [
+      "15/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0/3",
+      null,
+      "substantial"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 15 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 15 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 0 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 0 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "Evianis/travel-photo-abstraction": {
+    "ran": true,
+    "stars": 749,
+    "sheet": "Evianis__travel-photo-abstraction.html",
+    "cells": [
+     [
+      "15/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0/3",
+      null,
+      "substantial"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 15 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 15 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 0 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 0 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ]
+   },
+   "pengjunchi0/codex-visio-paper-figure-skill": {
+    "ran": true,
+    "stars": 680,
+    "sheet": "pengjunchi0__codex-visio-paper-figure-skill.html",
+    "cells": [
+     [
+      "15/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0/3",
+      null,
+      "substantial"
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 15 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 15 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 0 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 0 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ],
+    "note": "At 500, Codex opened image-to-editable-ppt first on one request, then searched the disk and read this skill too; we count the first one opened.",
+    "note_zh": "500 那档有一条请求 Codex 先打开了 image-to-editable-ppt，随后自己搜索磁盘又读了这个 skill；我们按先打开的算。"
+   },
+   "Kappaemme-git/codex-complexity-optimizer": {
+    "ran": true,
+    "stars": 913,
+    "sheet": "Kappaemme-git__codex-complexity-optimizer.html",
+    "cells": [
+     [
+      "14/18",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/3",
+      null,
+      ""
+     ],
+     [
+      "1/3",
+      null,
+      ""
+     ],
+     [
+      "3/3",
+      null,
+      "touch-ups"
+     ]
+    ],
+    "bits": [
+     [
+      "the agent opened it 14 of 18 times it should have",
+      "该用它的 18 次里，agent 打开了它 14 次"
+     ],
+     [
+      "in Codex with 500 other skills installed: 1 of 3",
+      "Codex 旁边再装 500 个 skill 时：3 次中 1 次"
+     ],
+     [
+      "in Claude Code with 500 others: 3 of 3",
+      "Claude Code 旁边再装 500 个时：3 次中 3 次"
+     ]
+    ],
+    "note": "The least reliable to trigger: it was also the one miss at 100 on both agents.",
+    "note_zh": "触发最不稳的一个：100 那档两个 agent 各漏的一条也是它。"
    }
   }
  }

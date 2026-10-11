@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Trigger test: all levels</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/codex-skills/">← Codex skills</a></p>
+<h1>Trigger test, all levels, 2026-10-11</h1>
+<p class="mute">Twelve Codex skills installed together; 36 requests that should reach one of them and 6 that should reach none; then again with 100 and 500 other real skills
+(from two public collections) installed beside them. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/codex-runs/">Scripts and raw results</a></p>
+<table><tr><th>Other skills installed</th><th>Agent</th><th>Right skill opened</th><th>Another skill opened</th><th>No skill opened</th><th>Opened on an unrelated request</th><th>Tokens at session start</th></tr><tr><td>0</td><td>Codex <span class='mute'>gpt-6-astra</span></td><td>36/36</td><td>0</td><td>0</td><td>0/6</td><td>16,311</td></tr><tr><td>0</td><td>Claude Code <span class='mute'>Claude Opus 5.5</span></td><td>36/36</td><td>0</td><td>0</td><td>0/6</td><td>17,781</td></tr><tr><td>100</td><td>Codex <span class='mute'>gpt-6-astra</span></td><td>35/36</td><td>0</td><td>1</td><td>0/6</td><td>20,115</td></tr><tr><td>100</td><td>Claude Code <span class='mute'>Claude Opus 5.5</span></td><td>35/36</td><td>0</td><td>1</td><td>0/6</td><td>24,499</td></tr><tr><td>500</td><td>Codex <span class='mute'>gpt-6-astra</span></td><td>17/36</td><td>4</td><td>15</td><td>0/6</td><td>22,180</td></tr><tr><td>500</td><td>Claude Code <span class='mute'>Claude Opus 5.5</span></td><td>35/36</td><td>0</td><td>1</td><td>0/6</td><td>25,289</td></tr></table>
+<h2>What Codex said at 500</h2><pre>Exceeded skills context budget. All skill descriptions were removed and 134 additional skills were not included in the model-visible skills list.</pre>
+<p class="mute">Printed by Codex at the start of every session at that level. Claude Code with the same 512 skills listed every name and kept descriptions for about 47 of them (its own count).
+The four test skills Codex never opened at 500 (qiaomu-goal-meta-skill, startup-pressure-test, travel-photo-abstraction, visio-image-rebuilder) are the four whose names come last in the alphabet; that they were among the 134 left out is our inference, Codex does not list them.</p>
+</main></body></html>
