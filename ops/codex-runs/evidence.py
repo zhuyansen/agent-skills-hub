@@ -195,8 +195,8 @@ def main() -> None:
              f"全部装上，Claude Code 撑得住，Codex 不行。装 512 个 skill 时，Claude Code 对 12 个测试 skill 在 {cc['of']} 次里有 {cc['right']} 次打开了正确的那个；用同样 SKILL.md 格式的 Codex 去掉了所有描述、把 134 个 skill 留在列表之外，只有 {cx['right']}/{cx['of']}。"),
         pair(f"The cost in Claude Code is descriptions, not tokens: a session started at {tok[('claude', 0)]:,} tokens with 12 skills, {tok[('claude', 100)]:,} with 112 and {tok[('claude', 500)]:,} with 512. Past about a hundred, skills are listed by name only.",
              f"在 Claude Code 里代价是描述，不是 token：装 12 个 skill 时会话起始 {tok[('claude', 0)]:,} 个 token，112 个时 {tok[('claude', 100)]:,}，512 个时 {tok[('claude', 500)]:,}。超过一百个左右，skill 就只按名字列出。")],
-        pair("Counted every SKILL.md in each repository on this page against the Agent Skills format, and measured what Claude Code and Codex do with 12, 112 and 512 skills installed. Results are in the audit section above and on each card.",
-             "按 Agent Skills 格式数了本页每个仓库里的每一个 SKILL.md，并实测了装 12、112、512 个 skill 时 Claude Code 和 Codex 的表现。结果在上面的体检区和每张卡片上。"),
+        pair("Counted every SKILL.md in the most-starred collections on this page against the Agent Skills format, and measured what Claude Code and Codex do with 12, 112 and 512 skills installed. Results are in the audit section above and on each card.",
+             "按 Agent Skills 格式数了本页星数最高的合集里的每一个 SKILL.md，并实测了装 12、112、512 个 skill 时 Claude Code 和 Codex 的表现。结果在上面的体检区和每张卡片上。"),
         pair("We counted files and tested finding, not doing: none of these collections' skills was run for its output, so this says nothing about whether a given skill is any good. The 12 test skills have descriptive names; a skill with a vague name and no visible description may fare worse in Claude Code, and we did not test that. One run per request.",
              "我们数了文件、测了「找不找得到」，没有测「做得好不好」：这些合集里的 skill 没有一个被运行来看产出，所以这说明不了某个 skill 好不好用。12 个测试 skill 的名字本身就说明用途；名字含糊又看不到描述的 skill 在 Claude Code 里可能更差，这一点没有测。每条请求只跑一次。"),
         "Install everything and Claude Code copes", replaces=("Counted every SKILL.md", "We counted files"))

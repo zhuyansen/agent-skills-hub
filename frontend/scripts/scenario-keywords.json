@@ -2073,7 +2073,7 @@
  {
   "slug": "claude-code-skills",
   "title": "Claude Code Skills",
-  "description": "Browse the best skills and extensions for Claude Code, Anthropic's AI coding assistant.",
+  "description": "Claude Code skills collections: repositories that hold many skills, plugins or subagents you install together. General collections, single-domain packs, vendor directories and the best-known awesome lists, each one security-graded before you install it.",
   "match": {
    "categories": [
     "claude-skill"
@@ -2085,10 +2085,51 @@
     "anthropic"
    ],
    "min_results": 5,
-   "max_results": 10,
+   "max_results": null,
    "tag_matches": [
     "claude",
     "skill"
+   ],
+   "reviewed_only": true,
+   "sort": "stars",
+   "admit_reviewed": [
+    "EdgeCaser/shipwright",
+    "Mikefluff/skills",
+    "Montimage/skills",
+    "NovaCode37/claude-security-skills",
+    "PrunaAI/pruna-skills",
+    "TheProsperityAgent/prosperity-real-estate-skills",
+    "TheStack-ai/swing-skills",
+    "UseOSINT/Skills",
+    "akovalion/paranoid-qa",
+    "bookforge-ai/bookforge-skills",
+    "cruisediary/apple-app-review-skills",
+    "fanchengchen1-collab/super-director",
+    "fortunto2/solo-factory",
+    "freewaychameleonnode/r17-behisecc-awesome-claude-skills-security",
+    "hwl668/Scientific-learning-skills-",
+    "jongio/skills",
+    "kensaurus/skills",
+    "lintsinghua/paint-mv-skills",
+    "livlign/claude-skills",
+    "masteranime/n8n-claude-skills",
+    "mldogs/skill-factory",
+    "panaversity/agentfactory-business-plugins",
+    "product-on-purpose/thinking-framework-skills",
+    "quysto/QUYQUY-AntigravityAwesomeSkills-GodVersion-bumbum",
+    "repowise-dev/modpack",
+    "rodbv/socratic-skills",
+    "samyakjain0606/awesome-stock-skills",
+    "thiagoxikota/figma-maxxing",
+    "timscheuerai/gtm-architecture-template",
+    "tjboudreaux/cc-skills-vc-fundraising",
+    "victorperez22/marketing-claude-code",
+    "whystrohm/shotkit",
+    "yayashuxue/solo-founder-playbook"
+   ],
+   "exclude_repos": [
+    "K-Dense-AI/claude-scientific-skills",
+    "sickn33/antigravity-awesome-skills"
    ]
   },
   "related": [
@@ -2254,8 +2295,8 @@
    ],
    "did": [
     {
-     "item": "Counted every SKILL.md in each repository on this page against the Agent Skills format, and measured what Claude Code and Codex do with 12, 112 and 512 skills installed. Results are in the audit section above and on each card.",
-     "item_zh": "按 Agent Skills 格式数了本页每个仓库里的每一个 SKILL.md，并实测了装 12、112、512 个 skill 时 Claude Code 和 Codex 的表现。结果在上面的体检区和每张卡片上。",
+     "item": "Counted every SKILL.md in the most-starred collections on this page against the Agent Skills format, and measured what Claude Code and Codex do with 12, 112 and 512 skills installed. Results are in the audit section above and on each card.",
+     "item_zh": "按 Agent Skills 格式数了本页星数最高的合集里的每一个 SKILL.md，并实测了装 12、112、512 个 skill 时 Claude Code 和 Codex 的表现。结果在上面的体检区和每张卡片上。",
      "ours": true
     },
     {
@@ -2301,7 +2342,9 @@
     "role_zh": "Agent Skills Hub的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-11"
    }
-  }
+  },
+  "seo_keyword": "claude code skills",
+  "github_list": "https://github.com/zhuyansen/awesome-claude-code-skills-collections"
  },
  {
   "slug": "codex-skills",

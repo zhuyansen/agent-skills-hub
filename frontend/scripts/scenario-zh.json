@@ -269,7 +269,7 @@
   "claude-code-skills": {
     "t": "Claude Code 技能",
     "k": ["claude code"],
-    "d": "Anthropic AI 编程助手 Claude Code 的最佳技能与扩展。"
+    "d": "Claude Code skill 合集：一个仓库里装着很多 skill、插件或子 agent，可以一起安装。综合合集、单领域合集、官方与厂商目录，以及最知名的几个 awesome 清单，每个都做了安全评级。"
   },
   "codex-skills": {
     "t": "OpenAI Codex 技能",

@@ -110,7 +110,9 @@ def _verdict(run: dict, i: int) -> list[str]:
     out = ["### " + (v.get("title") or ["Which one to install", "到底装哪个"])[i], ""]
     for n, p in enumerate(v["picks"]):
         cmd = f" `{p['install']}`" if p.get("install") and not p["install"].startswith("see") else ""
-        out.append(f"- {medals[n] if n < 3 else '-'} **{p['role'][i]}: [{p['repo'].split('/')[1]}](https://github.com/{p['repo']})**{cmd}  \n  {p['why'][i]}")
+        short = p["repo"].split("/")[1]
+        label = p["repo"] if sum(q["repo"].split("/")[1] == short for q in v["picks"]) > 1 else short   # two picks called "skills"
+        out.append(f"- {medals[n] if n < 3 else '-'} **{p['role'][i]}: [{label}](https://github.com/{p['repo']})**{cmd}  \n  {p['why'][i]}")
     if v.get("avoid"):
         label = (v.get("avoid_label") or ["Not recommended:", "不建议:"])[i].rstrip(":：")
         out += ["", f"**{label}:** " + "; ".join(f"{a['repo'].split('/')[1]} ({a['why'][i]})" for a in v["avoid"]) + "."]

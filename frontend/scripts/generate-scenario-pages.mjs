@@ -73,6 +73,14 @@ const POPULAR_SCENARIOS = [
 ];
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
+/** How to name a page's leading entries in prose: by repo, or by owner/repo when the first
+ *  three share a name (three of the top collections are all called "skills"). */
+function leadLabel(skills) {
+  const lead = skills.slice(0, 3);
+  const repeats = new Set(lead.map((s) => s.repo_name)).size < lead.length;
+  return (s) => (repeats ? s.repo_full_name : s.repo_name);
+}
+
 const CSS_VERSION = "20261010b";
 
 /* ── Skill matching ──────────────────────────────── */
@@ -408,7 +416,7 @@ function buildAeoSection(scenario, skills, year) {
   const zt = scenario.zhTitle || scenarioTitle; // Chinese title for data-zh slots
   // "Open-Source Vibe Coding Tools" + "-related tasks" / " tool" read as "tools tool" (10-06).
   const topic = scenarioTitle.toLowerCase().replace(/\s+(tools?|skills?|servers?)$/, "");
-  const top3 = skills.slice(0, 3).map(s => s.repo_name);
+  const top3 = skills.slice(0, 3).map(leadLabel(skills));
   const topLanguages = [...new Set(skills.map(s => s.language).filter(Boolean))].slice(0, 3);
   const avgStars = Math.round(skills.reduce((sum, s) => sum + (s.stars || 0), 0) / skills.length);
   const openSourceCount = skills.filter(s => s.license && s.license !== 'NOASSERTION').length;
@@ -546,7 +554,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const branded = `${head} | Agent Skills Hub`;
   const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");
 
-  const metaTopNames = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
+  const metaTopNames = skills.slice(0, 3).map(leadLabel(skills)).join(", ");
   const metaRaw = canClaim
     ? `${itemCount} ${descSubject}, independently security-graded: ${verdict}. ` +
       `Scanned against 11 red-flag categories. ${metaTopNames}.`
@@ -588,7 +596,8 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
 
   // FAQ — 6 substantive questions optimized for Google featured snippets + AI Overview
   const scenarioLower = scenario.title.toLowerCase();
-  const top3Names = skills.slice(0, 3).map((s) => s.repo_name).join(", ");
+  const top3Names = skills.slice(0, 3).map(leadLabel(skills)).join(", ");
+  const nm = leadLabel(skills);
   const top1 = skills[0];
   const top2 = skills[1];
   // Find first valid related scenario (with a title) for the "difference" FAQ
@@ -616,10 +625,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     },
     top1 && top2
       ? {
-          q: `How do I choose between ${top1.repo_name} and ${top2.repo_name}?`,
-          a: `${top1.repo_name} (${starsK(top1.stars)} stars) is the most adopted choice for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${top2.repo_name} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${top1.repo_name} — it has the deepest community and the most examples online.`,
-          qZh: `${top1.repo_name} 和 ${top2.repo_name} 该怎么选？`,
-          aZh: `${top1.repo_name}（${starsK(top1.stars)} stars）是通用${zt}工作流中采用最广的选择${top1.language ? `，用 ${top1.language} 编写` : ""}。${top2.repo_name}（${starsK(top2.stars)} stars）是有力的替代${top2.language && top2.language !== top1.language ? `，改用 ${top2.language}` : ""}。按你现有技术栈来选：匹配团队已用的语言和运行时，把集成成本降到最低。拿不准就从 ${top1.repo_name} 开始——它社区最深、线上示例最多。`,
+          q: `How do I choose between ${nm(top1)} and ${nm(top2)}?`,
+          a: `${nm(top1)} (${starsK(top1.stars)} stars) is the most adopted choice for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${nm(top2)} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${nm(top1)} — it has the deepest community and the most examples online.`,
+          qZh: `${nm(top1)} 和 ${nm(top2)} 该怎么选？`,
+          aZh: `${nm(top1)}（${starsK(top1.stars)} stars）是通用${zt}工作流中采用最广的选择${top1.language ? `，用 ${top1.language} 编写` : ""}。${nm(top2)}（${starsK(top2.stars)} stars）是有力的替代${top2.language && top2.language !== top1.language ? `，改用 ${top2.language}` : ""}。按你现有技术栈来选：匹配团队已用的语言和运行时，把集成成本降到最低。拿不准就从 ${nm(top1)} 开始——它社区最深、线上示例最多。`,
         }
       : null,
     {
@@ -638,10 +647,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
       : null,
     top1
       ? {
-          q: `Is ${top1.repo_name} better than building it yourself?`,
-          a: `For most teams, yes. ${top1.repo_name} has ${starsK(top1.stars)} stars worth of community testing, handles edge cases you haven't thought of, and ships with documentation. Build your own only when (1) your requirements are deeply non-standard, (2) you have a security/compliance reason to avoid OSS dependencies, or (3) the maintenance burden is small enough (<200 lines of code) that you'll save time long-term. The break-even point is usually around 2-3 weeks of dev time saved.`,
-          qZh: `${top1.repo_name} 比自己造轮子更好吗？`,
-          aZh: `对多数团队是的。${top1.repo_name} 有 ${starsK(top1.stars)} 个 star 的社区验证，能处理你没想到的边界情况，还自带文档。只有当（1）需求高度非标准、（2）有安全/合规理由要避开开源依赖、或（3）维护负担小到（代码 <200 行）长期更省时，才值得自己造。盈亏平衡点通常在省下约 2-3 周开发时间。`,
+          q: `Is ${nm(top1)} better than building it yourself?`,
+          a: `For most teams, yes. ${nm(top1)} has ${starsK(top1.stars)} stars worth of community testing, handles edge cases you haven't thought of, and ships with documentation. Build your own only when (1) your requirements are deeply non-standard, (2) you have a security/compliance reason to avoid OSS dependencies, or (3) the maintenance burden is small enough (<200 lines of code) that you'll save time long-term. The break-even point is usually around 2-3 weeks of dev time saved.`,
+          qZh: `${nm(top1)} 比自己造轮子更好吗？`,
+          aZh: `对多数团队是的。${nm(top1)} 有 ${starsK(top1.stars)} 个 star 的社区验证，能处理你没想到的边界情况，还自带文档。只有当（1）需求高度非标准、（2）有安全/合规理由要避开开源依赖、或（3）维护负担小到（代码 <200 行）长期更省时，才值得自己造。盈亏平衡点通常在省下约 2-3 周开发时间。`,
         }
       : null,
     {

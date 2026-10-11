@@ -186,6 +186,26 @@ PAGE_LISTS = {
             "design": ("Icons, illustrations, covers, posters and logos.", "图标、插画、封面、海报和 Logo。"),
         },
     },
+    "claude-code-skills": {
+        "repo": "zhuyansen/awesome-claude-code-skills-collections",
+        "text": _text("Awesome Claude Code Skills Collections",
+                      ("Open-source **collections of Claude Code skills**: repositories that hold many skills, plugins or subagents "
+                       "you install together. General collections, single-domain packs, vendor directories and the best-known awesome lists.",
+                       "**Claude Code skill 合集**:一个仓库里装着很多 skill、插件或子 agent,可以一起安装。"
+                       "综合合集、单领域合集、官方与厂商目录,以及最知名的几个 awesome 清单。"),
+                      ("It is a collection of skills for Claude Code: many skills in one repository, or a vendor's directory of skills "
+                       "or plugins. One skill, one MCP server, or a tool that only installs skills is not a collection. Three well-known "
+                       "awesome lists are included by the maintainer's choice.",
+                       "它是 Claude Code 的 skill 合集:一个仓库里有很多 skill,或是厂商的 skill、插件目录。单个 skill、单个 MCP、"
+                       "只负责安装 skill 的工具不算合集。三个知名的 awesome 清单由维护者指定收录。"),
+                      ("What is in these collections", "这些合集里有什么")),
+        "blurb": {
+            "general": ("Skills for many kinds of work in one repository.", "一个仓库覆盖多种工作的 skill。"),
+            "domain": ("Skills for one field: marketing, security, research, game development, one stack.", "只做一个领域的 skill:营销、安全、科研、游戏开发、某个技术栈。"),
+            "official": ("Published by a company or project for its own product.", "公司或项目为自家产品发布的 skill。"),
+            "list": ("Curated lists of links to skills kept elsewhere.", "指向别处 skill 的精选链接清单。"),
+        },
+    },
     "codex-skills": {
         "repo": "zhuyansen/awesome-codex-skills",
         "text": _text("Awesome Codex Skills",

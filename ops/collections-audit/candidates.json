@@ -1,42 +1,197 @@
 [
  {
-  "repo": "travisvn/awesome-claude-skills",
-  "stars": 15102
+  "repo": "mattpocock/skills",
+  "stars": 265786,
+  "kind": "general"
  },
  {
-  "repo": "sergebulaev/linkedin-skills",
-  "stars": 4258
+  "repo": "anthropics/skills",
+  "stars": 180369,
+  "kind": "general"
  },
  {
-  "repo": "gamedev-skills/awesome-gamedev-agent-skills",
-  "stars": 1379
+  "repo": "addyosmani/agent-skills",
+  "stars": 104575,
+  "kind": "general"
  },
  {
-  "repo": "karanb192/awesome-claude-skills",
-  "stars": 531
+  "repo": "ComposioHQ/awesome-claude-skills",
+  "stars": 76829,
+  "kind": "list"
  },
  {
-  "repo": "thedotmack/claude-mem",
-  "stars": 98892
+  "repo": "hesreallyhim/awesome-claude-code",
+  "stars": 55404,
+  "kind": "list"
+ },
+ {
+  "repo": "coreyhaines31/marketingskills",
+  "stars": 54098,
+  "kind": "domain"
+ },
+ {
+  "repo": "Imbad0202/academic-research-skills",
+  "stars": 51227,
+  "kind": "domain"
+ },
+ {
+  "repo": "kepano/obsidian-skills",
+  "stars": 49365,
+  "kind": "general"
+ },
+ {
+  "repo": "K-Dense-AI/scientific-agent-skills",
+  "stars": 48309,
+  "kind": "general"
+ },
+ {
+  "repo": "sickn33/agentic-awesome-skills",
+  "stars": 47439,
+  "kind": "general"
  },
  {
   "repo": "anthropics/claude-plugins-official",
-  "stars": 37586
+  "stars": 37641,
+  "kind": "general"
+ },
+ {
+  "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+  "stars": 34195,
+  "kind": "domain"
  },
  {
   "repo": "davila7/claude-code-templates",
-  "stars": 32541
- },
- {
-  "repo": "jarrodwatts/claude-hud",
-  "stars": 28322
+  "stars": 32541,
+  "kind": "general"
  },
  {
   "repo": "alirezarezvani/claude-skills",
-  "stars": 25238
+  "stars": 27982,
+  "kind": "general"
  },
  {
-  "repo": "winfunc/opcode",
-  "stars": 22407
+  "repo": "Donchitos/Claude-Code-Game-Studios",
+  "stars": 26097,
+  "kind": "domain"
+ },
+ {
+  "repo": "VoltAgent/awesome-claude-code-subagents",
+  "stars": 25634,
+  "kind": "general"
+ },
+ {
+  "repo": "KKKKhazix/khazix-skills",
+  "stars": 21289,
+  "kind": "general"
+ },
+ {
+  "repo": "wanshuiyin/Auto-claude-code-research-in-sleep",
+  "stars": 17250,
+  "kind": "domain"
+ },
+ {
+  "repo": "travisvn/awesome-claude-skills",
+  "stars": 15355,
+  "kind": "list"
+ },
+ {
+  "repo": "Jeffallan/claude-skills",
+  "stars": 11815,
+  "kind": "general"
+ },
+ {
+  "repo": "slavingia/skills",
+  "stars": 10461,
+  "kind": "general"
+ },
+ {
+  "repo": "jnMetaCode/superpowers-zh",
+  "stars": 8291,
+  "kind": "domain"
+ },
+ {
+  "repo": "jakubkrehel/skills",
+  "stars": 7725,
+  "kind": "domain"
+ },
+ {
+  "repo": "trailofbits/skills",
+  "stars": 7469,
+  "kind": "general"
+ },
+ {
+  "repo": "zenstory-ai/oh-story-claudecode",
+  "stars": 7421,
+  "kind": "domain"
+ },
+ {
+  "repo": "SnailSploit/Claude-Red",
+  "stars": 7399,
+  "kind": "general"
+ },
+ {
+  "repo": "deanpeters/Product-Manager-Skills",
+  "stars": 7228,
+  "kind": "domain"
+ },
+ {
+  "repo": "tech-leads-club/agent-skills",
+  "stars": 7046,
+  "kind": "general"
+ },
+ {
+  "repo": "MengTo/Skills",
+  "stars": 6706,
+  "kind": "general"
+ },
+ {
+  "repo": "czlonkowski/n8n-skills",
+  "stars": 6402,
+  "kind": "domain"
+ },
+ {
+  "repo": "AlphaGBM/skills",
+  "stars": 6249,
+  "kind": "domain"
+ },
+ {
+  "repo": "remotion-dev/skills",
+  "stars": 5005,
+  "kind": "official"
+ },
+ {
+  "repo": "elementalsouls/Claude-BugHunter",
+  "stars": 4865,
+  "kind": "domain"
+ },
+ {
+  "repo": "zLanqing/codex-claude-academic-skills",
+  "stars": 4725,
+  "kind": "domain"
+ },
+ {
+  "repo": "Ryze-AI-Adgent/open-seo-mcp-skills",
+  "stars": 4724,
+  "kind": "domain"
+ },
+ {
+  "repo": "brycewang-stanford/Auto-Empirical-Research-Skills",
+  "stars": 4569,
+  "kind": "domain"
+ },
+ {
+  "repo": "sergebulaev/linkedin-skills",
+  "stars": 4461,
+  "kind": "domain"
+ },
+ {
+  "repo": "WorldFlowAI/everything-claude-code",
+  "stars": 4441,
+  "kind": "general"
+ },
+ {
+  "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+  "stars": 1404,
+  "kind": "domain"
  }
 ]

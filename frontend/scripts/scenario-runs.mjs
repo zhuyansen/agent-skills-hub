@@ -125,9 +125,9 @@ const cell = (en, zh = en, cls = "") => `<td${cls ? ` class="${cls}"` : ""} ${bi
 const cellC = (cls, en, zh = en) => cell(en, zh, cls);
 const head = (cols) => `<tr>${cols.map(([en, zh]) => `<th ${biAttrs(en, zh)}>${esc(en)}</th>`).join("")}</tr>`;
 
-function skillCell(repo, r) {
+function skillCell(repo, r, shown = name(repo)) {
   const note = r.note ? `<br><span class="bp-tr-note" ${biAttrs(r.note, r.note_zh || r.note)}>${esc(r.note)}</span>` : "";
-  return `<td class="bp-tr-skill"><b>${esc(name(repo))}</b> <span class="bp-tr-mute">★ ${(r.stars || 0).toLocaleString("en-US")}</span>${note}</td>`;
+  return `<td class="bp-tr-skill"><b>${esc(shown)}</b> <span class="bp-tr-mute">★ ${(r.stars || 0).toLocaleString("en-US")}</span>${note}</td>`;
 }
 
 function evidenceLink(run, r, [en, zh]) {
@@ -196,7 +196,10 @@ function mgrTable(run, rows) {
 /** One table of a "table" run: rows in the order the data gives them, cells as written. */
 function ownTable(run, rows, columns = run.columns) {
   const cols = [["#", "#"], run.name_col || ["Skill", "Skill"], ...columns, ["Evidence", "证据"]];
-  const body = rows.map(([repo, r], i) => `<tr><td class="bp-tr-rank">${i + 1}</td>${skillCell(repo, r)}
+  // Rows that share a repo name (three collections called "skills") show owner/repo.
+  const count = {};
+  for (const [repo] of rows) count[name(repo)] = (count[name(repo)] || 0) + 1;
+  const body = rows.map(([repo, r], i) => `<tr><td class="bp-tr-rank">${i + 1}</td>${skillCell(repo, r, count[name(repo)] > 1 ? repo : name(repo))}
     ${r.cells.map(([en, zh, cls]) => cell(en, zh ?? en, cls ? `bp-tr-${cls}` : "")).join("")}
     <td class="bp-tr-num">${evidenceLink(run, r, run.evidence || ["The run", "实测过程"])}</td></tr>`).join("");
   return `<div class="bp-table-wrap"><table class="bp-table bp-tr-table"><thead>${head(cols)}</thead><tbody>${body}</tbody></table></div>`;
@@ -214,8 +217,11 @@ function verdictHtml(run) {
   const v = run.verdict;
   if (!v) return "";
   const medals = ["🥇", "🥈", "🥉"];
+  // Two picks can share a repo name (mattpocock/skills, anthropics/skills): then both show their owner.
+  const names = v.picks.map((p) => name(p.repo));
+  const shown = (repo) => (names.filter((n) => n === name(repo)).length > 1 ? repo : name(repo));
   const picks = v.picks.map((p, i) => `<li><span class="bp-tr-medal">${medals[i] || "•"}</span>
-      <div><strong ${biAttrs(...p.role)}>${esc(p.role[0])}</strong>: <a href="/skill/${esc(p.repo)}/"><b>${esc(name(p.repo))}</b></a>
+      <div><strong ${biAttrs(...p.role)}>${esc(p.role[0])}</strong>: <a href="/skill/${esc(p.repo)}/"><b>${esc(shown(p.repo))}</b></a>
       <span class="bp-tr-mute">★ ${((run.runs[p.repo] || {}).stars || 0).toLocaleString("en-US")}</span>${p.install && !p.install.startsWith("see") ? ` <code>${esc(p.install)}</code>` : ""}
       <br><span ${biAttrs(...p.why)}>${esc(p.why[0])}</span></div></li>`).join("");
   const avoid = (v.avoid || []).map((a) => `<b>${esc(name(a.repo))}</b> (<span ${biAttrs(...a.why)}>${esc(a.why[0])}</span>)`).join("; ");

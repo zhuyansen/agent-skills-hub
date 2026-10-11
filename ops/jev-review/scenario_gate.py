@@ -135,7 +135,8 @@ QUERIES = {
 
 # The pages upgraded on 2026-10-03: no model wave, a broader keyword filter.
 QUERIES.update({slug: {"wave": [], "topic": page["queries"], "names_model": r"(?!x)x",
-                       "owner_admitted": page.get("owner_admitted", [])}
+                       "owner_admitted": page.get("owner_admitted", []),
+                       "owner_kinds": page.get("owner_kinds", {})}
                 for slug, page in PAGES.items()})
 
 RELEVANCE = {

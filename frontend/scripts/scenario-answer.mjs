@@ -42,7 +42,9 @@ function testedPickHtml(verdict, skills, itemCount, subject, scenario) {
   const tail = bi(` (★ ${starsK(pick.stars)}). `, `（★ ${starsK(pick.stars)}）。`);
   const why = bi(`${first.role[0]}: ${first.why[0]}`, `${first.role[1]}：${first.why[1]}`, "color:var(--bp-text-secondary);font-size:13px");
   const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${verdict.more?.[0] || "See the test →"}" data-zh="${verdict.more?.[1] || "看实测 →"}">${verdict.more?.[0] || "See the test →"}</a>`;
-  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
+  // A name other entries share (several collections are called "skills") is shown with its owner.
+  const shared = skills.filter((s) => s.repo_name === pick.repo_name).length > 1;
+  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(shared ? pick.repo_full_name : pick.repo_name)}</a>`;
   return `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
         <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${why} ${more}</p>

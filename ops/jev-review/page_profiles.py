@@ -351,6 +351,13 @@ PAGES = {
         "words": ["skills", "plugins", "subagents"],
         "name_desc_only": True,
         "also": ["claude", "anthropic", "agent skills", "awesome"],
+        # The review turns link lists away (not software) and scored claude-code-templates under the
+        # strict line (0.58: it mixes agents, commands and MCP setups with skills). They are what
+        # people searching "claude code skills" look for, so the owner lists them (10-11).
+        "owner_admitted": ["ComposioHQ/awesome-claude-skills", "hesreallyhim/awesome-claude-code",
+                           "travisvn/awesome-claude-skills", "davila7/claude-code-templates"],
+        "owner_kinds": {"ComposioHQ/awesome-claude-skills": "list", "hesreallyhim/awesome-claude-code": "list",
+                        "travisvn/awesome-claude-skills": "list", "davila7/claude-code-templates": "general"},
     },
     "codex-skills": {
         "strict": True,
