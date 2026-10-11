@@ -7644,20 +7644,10 @@
     "制作和渲染视频时的行为"
    ],
    "h3_findings": [
-    "What our test and the research found",
-    "实测和研究发现了什么"
+    "What the research found",
+    "研究发现了什么"
    ],
    "findings": [
-    {
-     "item": "Rendering was not the hurdle here. All 16 skills, and Claude Code with no skill, produced a playable 15-second film of the right size with every line of copy readable and nothing added; none needed a paid model.",
-     "item_zh": "这次渲染不是门槛。16 个 skill 和不装 skill 的 Claude Code 全都做出了可播放、尺寸正确的 15 秒成片，每句文案都读得到，也没有多加内容；没有一个用到付费模型。",
-     "ours": true
-    },
-    {
-     "item": "A skill changes the look and the time, not whether a film comes out. Time ran from 2.0 to 23.5 minutes; by eye, 10 of 16 films have a look of their own and 6 sit close to what Claude Code makes unprompted.",
-     "item_zh": "skill 改变的是观感和耗时，不是能不能出片。耗时从 2.0 到 23.5 分钟；按肉眼判断，16 条里 10 条有自己的样子，6 条接近 Claude Code 不给方向时做出来的东西。",
-     "ours": true
-    },
     {
      "item": "Rendering is the first hurdle, and it is mostly cleared: the best agent rendered 93.8% of its videos; the failures were mostly calls to functions that do not exist (TheoremExplainAgent, ACL 2025).",
      "item_zh": "渲染是第一道坎，而且多数能过：最好的 agent 有 93.8% 的视频渲染成功；失败大多是调用了并不存在的函数（TheoremExplainAgent，ACL 2025）。"
@@ -7677,11 +7667,6 @@
    ],
    "did": [
     {
-     "item": "Had 16 of the skills make the same 15-second film in a throwaway sandbox, with Claude Code and no skill as the control, and checked every file four ways. The films are in the test section above and on each card.",
-     "item_zh": "让其中 16 个 skill 在用完即删的沙箱里做同一条 15 秒片子，用不装 skill 的 Claude Code 做对照，每个文件查四项。成片在上面的实测区和每张卡片上。",
-     "ours": true
-    },
-    {
      "item": "Found the candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README: is it on topic, is it software an agent can use.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找候选，再让 TypeSafe 的决策模型 Jev 逐个读 README：是否切题、是不是 agent 能用的软件。"
     },
@@ -7696,9 +7681,8 @@
    ],
    "not_done": [
     {
-     "item": "The brief is short and simple, so it cannot separate these skills on reliability: every one passed. One run per skill; a second run would look different. The look is our judgement by eye, not a measurement, and nobody rated the films for quality. The copy was read off the frames by a model, whose frame numbers we found to be off by one in places, so we report whether a line was readable, not for how long. Editing, avatar and story skills that need footage, an account or a paid model were not in this test.",
-     "item_zh": "这条需求又短又简单，分不出这些 skill 谁更可靠：全部通过。每个 skill 只跑一次，再跑一次画面会不同。观感是我们肉眼的判断，不是测量，也没有人给片子的质量打分。文案是模型从画面帧上读的，我们发现它报的帧号有的地方差一帧，所以只报告某句是否读得到，不报告显示了多久。需要素材、账号或付费模型的剪辑、数字人和故事类 skill 不在这次测试里。",
-     "ours": true
+     "item": "We have not yet published an end-to-end run of these skills. The test is running: one 15-second promo brief with fixed on-screen copy, the same for every skill and for Claude Code with no skill, scored on the four checks above.",
+     "item_zh": "这些 skill 的端到端实跑还没有发布。实测正在进行：同一条 15 秒宣传片的需求、固定的字幕文案，每个 skill 和不装 skill 的 Claude Code 各做一遍，按上面四项检查评分。"
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
