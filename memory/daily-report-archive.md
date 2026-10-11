@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-11
+1. joeseesun/qiaomu-cover-fonts — 🆕 给乔木封面设计技能配一套开源中英文字库，已做子集化并逐一附上授权（91★ 87.0/day）
+2. wheresryan22/anatomy — 🆕 把一个技术想法画成可交互的等距机器剖面图，细到每个零件，Claude Code 直接调用（171★ 62.5/day）
+3. Atoll92/agent-standup — 🆕 把 Claude Code 会话变成一场动画团队站会，在 VS Code 里实时看各个智能体干活（47★ 47.0/day）
+4. Zafer-Liu/mcd-event-radar — 🆕 接麦当劳 MCP 查附近门店活动，生成卡通活动地图，只展示已核实可预约的场次（54★ 32.1/day）
+5. ymybxx/SoloMCN — 🆕 把 Claude Code 变成一人短视频团队，从抓热榜到发抖音、小红书、B 站、YouTube 全包（46★ 29.1/day）
+6. carreypro/ict-trading-model — 🆕 用确定性 K 线扫描校验 ICT 与 SMC 市场结构，不靠模型凭感觉看图（21★ 21.0/day）
+7. chipfighter/context-attachment-manager — 挑选哪些历史图片随下一条消息发给模型，Codex 和 Claude Code 通用（222★ 13.1/day）
+8. JosssphZhou/openzine — 🆕 把 PDF 或一组图片做成可翻页的 3D 翻页书，Claude Code 和 Codex 都能用（21★ 8.3/day）
+9. rehan-remade/open-annie — 🆕 在浏览器里跑语音驱动的 3D 角色，说话和做动作分别交给两个模型（22★ 5.9/day）
+10. Grit-77/done-is-a-claim — 🆕 要求编程智能体说"完成"时拿出凭证，附证据优先的工作流、技能和插件（30★ 5.2/day）
+🎯 今日趋势：48h 内去重后合格新鲜项 **13 个**，未放宽到 72h；**9 席**标 🆕、**5 席**建仓不满 2 天；"让智能体画出看得见的东西"占 **5 席**（等距剖面图、动画站会、卡通地图、3D 翻页书、3D 角色），麦当劳 MCP 参赛作品一期收录 **4 个**、只留 1 席。
+> 注：去重范围＝repo 内 archive 全部 108 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,600 个（含路径噪声，只会多剔不会漏剔）。查询 `first_seen ≥48h`、stars ≥20 共 98 条（未触顶 LIMIT 150），命中历史 10 条剔除，余 88 条中建仓 ≤30 天且非集群的 20 条，逐个复核后合格 13 个，候选足够，未放宽到 72h；单连接串行（首次查询成功但本地脚本时区运算报错，修脚本后重跑一次，共 2 次）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①麦当劳 MCP 参赛集群（1024 程序员创意开发大赛）：Ayzzz123/mcd-coupon-strategist（62★，1 粉、另一仓 0★、0 fork）、hujjun/mcd-saver-strategist（32★，1 粉、仅 1 仓）、Neo5093/mcd-party-buddy（23★，1 粉、其余仓 ≤1★）三个保守排除，比赛拉票形态、fork 0–1；同批只保留账号可信的 Zafer-Liu 一席；②Canvixel-Eloweny/ai-bot-groupmate（22★）：2026-06 新号、1 粉、仅 1 仓、0 fork；③lucky-Luor/bilibili-douyin-notes（27★）：0 粉，fork 117 远超星数，形态异常；④yarik-contr/mcp-forge-studio-bridge、adamkhalile/luau-docs-oracle、AallamR/RobloxForge-Intelligence：同日（09-23）建仓、星数均为 70、标题堆砌"Best…2026"，Roblox 集群刷星嫌疑（与 10-08 至 10-10 同批）；⑤HBAI-Ltd/Toonflow-app（17,113★，建仓 255 天）、carnot-tech/jinba-consulting-pptx-skill（1,158★，建仓 38.7 天）、ray-r-ren/agent-apprenticeship、ccfos/nightingale 等：建仓 34 天至数年、本期才收录，不算新鲜；⑥giltotherescue/slashbooks、kongweiguang/Kerminal 等 4 个：security_grade 为 caution，且建仓超百天；⑦其余均已在历史榜单出现。入选项复核（`gh api`）：第 1 席 joeseesun 2013 建号、2,149 粉、名下 qiaomu-anything-to-notebooklm 6,208★，DB 分类 uncategorized、仓库无 LICENSE 文件（字体各自 OFL），为封面设计技能的配套字库，保留；第 2 席 wheresryan22 2021 建号、26 粉、名下另有 100★、49★ 仓，MIT，fork 46；第 3 席 Atoll92 2021 建号、3 粉、其余仓 0★（**轻红旗**，fork 9、MIT、描述具体，保留）；第 4 席 Zafer-Liu 2026-04 建号、54 粉、名下 Data-Analysis-Agent 2,605★，本仓 0 fork、为参赛作品（**轻红旗**，保留一席）；第 5 席 ymybxx 2016 建号、1 粉、其余仓 ≤2★（**轻红旗**，fork 11 与星数相称，保留）；第 6 席 carreypro 2024 建号、2 粉、名下另有 19★、19★、11★ 仓；第 7 席 chipfighter 2021 建号、18 粉、名下另有 24★ 仓；第 8 席 JosssphZhou 2026-02 建号、2 粉、其余仓 ≤8★（**轻红旗**，量级小、描述具体，保留）；第 9 席 rehan-remade 2024 建号、125 粉、名下 universal-modder 6,411★，DB 分类 uncategorized 但为语音智能体项目；第 10 席 Grit-77 2026-07 建号、2 粉、其余仓 ≤2★（**轻红旗**，Apache-2.0、描述具体，保留）。lemomo-ai/lemo-wake（39★ 5.1/day）列第 11 未入选，koronto11/ludo-npc-ai、lploc94/raw-cli、harrymunro/superbrainstorming、KeWang0622/MRFoundry 依次其后。🆕 判定＝created_at 距今 14 天内，除 context-attachment-manager（建仓 17.0 天）外九席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（anatomy 354★、agent-standup 73★、mcd-event-radar 68★、qiaomu-cover-fonts 101★），按红线保留快照值。
+
+---
+
 ## 2026-10-10
 1. franzenzenhofer/big-arrow-on-the-screen — 🆕 让智能体在 Mac 屏幕上画大箭头、方框和文字，点击可穿透、用完自动消失（401★ 224.1/day）
 2. Miftahul-Islam-Efaz/Motion-graphics-skill — 🆕 给 Claude Code、Codex 和 Cursor 装上动效剪辑技能，本地完成策划、动画、字幕和音效（80★ 53.2/day）
