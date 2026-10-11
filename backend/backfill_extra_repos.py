@@ -30,9 +30,12 @@ from sqlalchemy import text  # noqa: E402
 from app.database import SessionLocal  # noqa: E402
 from app.services.extra_repo_backfill import (  # noqa: E402
     BACKFILL_TAG,
+    QUEUE_TAGS,
     ExistingRow,
+    QueueRow,
     load_candidates,
     plan_backfill,
+    plan_queue_retirement,
 )
 
 # Only a handful of small statements. On this instance, failing fast is better
@@ -82,6 +85,33 @@ def apply_plan(db, plan):
     db.commit()
 
 
+def fetch_queue(db):
+    """Active rows other jobs queued for ingestion, and which of them are in skills with a README."""
+    rows = db.execute(text(
+        "SELECT e.full_name, extract(epoch FROM (timezone('utc', now()) - e.created_at)) / 86400, "
+        "(s.readme_content IS NOT NULL AND s.readme_content <> '') "
+        "FROM extra_repos e LEFT JOIN skills s ON s.repo_full_name = e.full_name "
+        "WHERE e.is_active AND e.submitted_by = ANY(:tags)"
+    ), {"tags": list(QUEUE_TAGS)}).fetchall()
+    return [QueueRow(r[0], float(r[1] or 0)) for r in rows], {r[0].lower() for r in rows if r[2]}
+
+
+def retire_queue(db, dry_run):
+    """Stop fetching queued rows that are in the catalog now, or never will be."""
+    rows, with_readme = fetch_queue(db)
+    ingested, stuck = plan_queue_retirement(rows, with_readme)
+    logger.info("queue %s: %d active | retiring: %d ingested, %d given up | staying: %d",
+                "+".join(QUEUE_TAGS), len(rows), len(ingested), len(stuck), len(rows) - len(ingested) - len(stuck))
+    for name in stuck:
+        logger.warning("queue row given up (not in skills with a README after a week): %s", name)
+    if dry_run or not (ingested or stuck):
+        return
+    db.execute(text("UPDATE extra_repos SET is_active = false WHERE submitted_by = ANY(:tags) AND full_name = ANY(:names)"),
+               {"tags": list(QUEUE_TAGS), "names": ingested + stuck})
+    db.commit()
+    logger.info("queue rows retired")
+
+
 def report(plan, total):
     logger.info(
         "backfill %s: %d/%d in skills | retired now: %d with README, %d given up | in flight: %d | activating: %d | queued: %d",
@@ -107,6 +137,7 @@ def main():
         elif plan.activate or plan.retire_ingested or plan.retire_stuck:
             apply_plan(db, plan)
             logger.info("applied")
+        retire_queue(db, dry_run)
     finally:
         db.close()
 

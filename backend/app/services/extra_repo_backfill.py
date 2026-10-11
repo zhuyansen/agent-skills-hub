@@ -17,6 +17,9 @@ tell them apart from curated extras:
   - the newsletter and the daily report don't list them as new. That follows
     the call newsletter_runner already made for the 2026-03-23 bulk import.
 
+Rows queued by other jobs (QUEUE_TAGS) are retired the same way once ingested;
+see plan_queue_retirement.
+
 Candidates (data/backfill_agent_skills_2026-09.json): the 1,000 results GitHub
 returned for '"agent skills" in:description stars:>50' on 2026-09-17, minus
 forks and repos already indexed.
@@ -35,6 +38,32 @@ IN_FLIGHT_LIMIT = 100
 # completed syncs was dropped (renamed, deleted, filtered) or has no README to
 # fetch, so stop fetching it.
 GIVE_UP_AFTER_SYNCS = 2
+
+
+# Rows other jobs queue so that the next sync ingests a repo it would not find (a page review
+# admits a repo the catalog lacks: ops/awesome/daily_video_pass.py). They are a way in, not a
+# standing subscription: on 2026-10-03 the page upgrades queued 1,595 of them, every sync fetched
+# each by name from then on, and a sync went from about 80 minutes to 2.5 hours. Once such a
+# row is in skills with a README it is retired here; refresh-stale.yml keeps its numbers current.
+QUEUE_TAGS = ("daily-video-pass",)
+# Still not in skills with a README this many days after it was queued: renamed, deleted or
+# without a README. Stop asking GitHub for it on every sync.
+QUEUE_GIVE_UP_DAYS = 7
+
+
+@dataclass(frozen=True)
+class QueueRow:
+    """An active extra_repos row carrying one of QUEUE_TAGS."""
+
+    full_name: str
+    age_days: float
+
+
+def plan_queue_retirement(rows: list[QueueRow], with_readme: set[str], give_up_days: int = QUEUE_GIVE_UP_DAYS) -> tuple[list[str], list[str]]:
+    """(ingested, given up): the queue rows to stop fetching. with_readme holds lowercased names."""
+    ingested = [r.full_name for r in rows if r.full_name.lower() in with_readme]
+    stuck = [r.full_name for r in rows if r.full_name.lower() not in with_readme and r.age_days >= give_up_days]
+    return ingested, stuck
 
 
 @dataclass(frozen=True)

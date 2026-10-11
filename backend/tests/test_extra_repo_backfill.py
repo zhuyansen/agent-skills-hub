@@ -4,8 +4,10 @@ import json
 from app.services.extra_repo_backfill import (
     CANDIDATES_FILE,
     ExistingRow,
+    QueueRow,
     load_candidates,
     plan_backfill,
+    plan_queue_retirement,
 )
 
 CANDIDATES = [f"owner/repo-{i}" for i in range(10)]  # already highest-stars first
@@ -106,3 +108,17 @@ def test_in_skills_but_still_no_readme_is_given_up_after_enough_syncs():
                          limit=1, give_up_after=2)
     assert plan.retire_stuck == ["owner/repo-0"]
     assert plan.activate == ["owner/repo-1"]
+
+
+def test_queue_row_retires_once_it_is_in_the_catalog_with_a_readme():
+    rows = [QueueRow("Owner/Ingested", 0.4), QueueRow("owner/waiting", 0.4)]
+    ingested, stuck = plan_queue_retirement(rows, with_readme={"owner/ingested"})
+    assert ingested == ["Owner/Ingested"]
+    assert stuck == []
+
+
+def test_queue_row_that_never_arrives_is_given_up_after_a_week():
+    rows = [QueueRow("owner/renamed", 7.2), QueueRow("owner/new", 6.9)]
+    ingested, stuck = plan_queue_retirement(rows, with_readme=set())
+    assert ingested == []
+    assert stuck == ["owner/renamed"]
