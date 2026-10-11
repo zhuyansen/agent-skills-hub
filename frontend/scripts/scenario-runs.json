@@ -4496,5 +4496,468 @@
     "note_zh": "两次产出的字体、强调色和背景都和不装 skill 的页面相同。"
    }
   }
+ },
+ "claude-code-skills": {
+  "type": "table",
+  "date": "2026-10-11",
+  "dir": "/best-runs/collections/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/collections-audit/RESULTS.md",
+  "title": [
+   "Claude Code skills collections audited: what is inside each",
+   "合集体检：每个合集里到底有什么"
+  ],
+  "list_title": [
+   "Collection audit",
+   "合集体检"
+  ],
+  "intro": [
+   "On 2026-10-11 we opened all 10 repositories on this page and counted, from the files alone: how many skills each holds, how many are distinct, how many meet the Agent Skills format (a name of at most 64 lowercase letters, digits and hyphens; a description of 1 to 1,024 characters), how many ship scripts, and how long all their names and descriptions are together (at four characters per token). Then we measured what Claude Code does with a large install: session size with 12, 112 and 512 skills installed.",
+   "2026-10-11 我们打开了本页全部 10 个仓库，只看文件数了这些：每个仓库有多少 skill、多少个不重复、多少个符合 Agent Skills 格式（名字不超过 64 个小写字母、数字和连字符；描述 1 到 1,024 个字符）、多少个带脚本，以及所有名字和描述加起来有多长（按每 4 个字符 1 个 token 估算）。然后实测了 Claude Code 面对大量安装时怎么做：装 12、112、512 个 skill 时的会话大小。"
+  ],
+  "finding": [
+   "6 of the 10 hold skills; the other 4 are link lists or tools. Of 1,931 skill files, 459 are copies of a skill already in the same repository. Claude Code does not pay the full price for a big install: a session started at 17,781 tokens with 12 skills, 24,499 with 112 and 25,289 with 512, because past a budget it lists skills by name only (about 47 of 512 kept a description, by its own count). The largest collection here (claude-code-templates, 886 distinct skills) would mostly be names.",
+   "10 个里有 6 个含 skill，另外 4 个是链接清单或工具。1,931 个 skill 文件里，有 459 个是同一仓库里已有 skill 的副本。Claude Code 不会为大量安装付全价：装 12 个 skill 时会话起始是 17,781 个 token，112 个是 24,499，512 个是 25,289，因为超出预算后它只按名字列出 skill（按它自己数的，512 个里约 47 个还带描述）。本页最大的合集（claude-code-templates，886 个不重复的 skill）装上后大部分只剩名字。"
+  ],
+  "name_col": [
+   "Collection",
+   "合集"
+  ],
+  "columns": [
+   [
+    "Distinct skills",
+    "不重复的 skill"
+   ],
+   [
+    "Meet the format",
+    "符合格式"
+   ],
+   [
+    "Copies in the repo",
+    "仓库内的副本"
+   ],
+   [
+    "Ship scripts",
+    "带脚本"
+   ],
+   [
+    "Names and descriptions, in tokens (estimate)",
+    "名字加描述的长度（token，估算）"
+   ]
+  ],
+  "see": [
+   "See the count →",
+   "看体检明细 →"
+  ],
+  "evidence": [
+   "The count",
+   "体检明细"
+  ],
+  "line_label": [
+   "Claude Code skills audit, 2026-10-11:",
+   "2026-10-11 体检："
+  ],
+  "not_run_label": [
+   "Not skill collections",
+   "不是 skill 合集"
+  ],
+  "not_run_line": [
+   "Not a skill collection:",
+   "不是 skill 合集："
+  ],
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "basis": [
+    "after counting what is inside each",
+    "数完每个合集里有什么之后"
+   ],
+   "more": [
+    "See the audit →",
+    "看合集体检 →"
+   ],
+   "lead": [
+    "We counted every skill file in {n} of these repositories. This is what we would pick; the [full audit](#{anchor}) is below.",
+    "我们数了其中 {n} 个仓库里的每一个 skill 文件,结论如下,[完整体检](#{anchor})在下面。"
+   ],
+   "rule": [
+    "Listed by size, smallest first: Claude Code shows descriptions for only about the first hundred skills' worth, so the smaller the collection, the more of it the agent can actually see. Counted from the files at the commit on each evidence page; no skill was run, so this does not say which skills are good.",
+    "按体量从小到大排列：Claude Code 只给大约前一百个 skill 的量显示描述，所以合集越小，agent 真正看得到的比例越高。数字来自各证据页所标 commit 的文件；没有运行任何 skill，所以这说明不了哪个 skill 好用。"
+   ],
+   "picks": [
+    {
+     "repo": "anthropics/claude-plugins-official",
+     "role": [
+      "To start",
+      "刚开始用"
+     ],
+     "why": [
+      "Anthropic's own directory: every skill in it meets the format, and it is small enough that each one keeps its description in the list. Current, and a safe first install.",
+      "Anthropic 自己的目录：里面每个 skill 都符合格式，体量也小，每个都能在列表里保留描述。跟得上版本，适合第一次安装。"
+     ]
+    },
+    {
+     "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+     "role": [
+      "For one domain, done cleanly",
+      "只做一个领域，做得干净"
+     ],
+     "why": [
+      "75 skills on one subject, all 75 valid, no duplicates, none over 500 lines. If game development is not your field, this is still the shape to look for: small and single-topic.",
+      "75 个 skill 只讲一个主题，75 个全部合规，没有重复，没有超过 500 行的。就算你不做游戏，这也是值得找的样子：小而专。"
+     ]
+    },
+    {
+     "repo": "davila7/claude-code-templates",
+     "role": [
+      "For breadth, picked by name",
+      "要广度，但按名字挑着装"
+     ],
+     "why": [
+      "The widest collection here: 886 distinct skills plus commands and agents. Install the few you need. Installed whole, most of them would be listed by name only.",
+      "这里最全的合集：886 个不重复的 skill，另有命令和子 agent。只装你需要的几个。整包装上的话，大多数只会按名字列出。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Do not install whole:",
+    "别整包安装："
+   ],
+   "avoid": [
+    {
+     "repo": "davila7/claude-code-templates",
+     "why": [
+      "886 skills, of which Claude Code would show a description for a few dozen",
+      "886 个 skill，Claude Code 只会给其中几十个显示描述"
+     ]
+    },
+    {
+     "repo": "alirezarezvani/claude-skills",
+     "why": [
+      "443 distinct skills, and 403 of its 846 skill files are copies",
+      "443 个不重复的 skill，846 个 skill 文件里有 403 个是副本"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: four of the ten entries on this page are not skill collections at all (two link lists, a status line, a desktop app). Check what a repository is before you run its install command.",
+    "不管选哪个：本页 10 个条目里有 4 个根本不是 skill 合集（两个链接清单、一个状态栏、一个桌面应用）。跑安装命令之前，先弄清这个仓库是什么。"
+   ]
+  },
+  "runs": {
+   "sergebulaev/linkedin-skills": {
+    "stars": 4258,
+    "sheet": "sergebulaev__linkedin-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "13",
+      null,
+      "num"
+     ],
+     [
+      "100%",
+      null,
+      "touch-ups"
+     ],
+     [
+      "13",
+      null,
+      "num"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "1,434",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "13 distinct skills",
+      "13 个不重复的 skill"
+     ],
+     [
+      "100% meet the format",
+      "100% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 1,434 tokens",
+      "名字和描述合计约 1,434 个 token"
+     ]
+    ],
+    "note": "Each skill is in the repository twice.",
+    "note_zh": "每个 skill 在仓库里都有两份。"
+   },
+   "thedotmack/claude-mem": {
+    "stars": 98892,
+    "sheet": "thedotmack__claude-mem.html",
+    "ran": true,
+    "cells": [
+     [
+      "26",
+      null,
+      "num"
+     ],
+     [
+      "83%",
+      null,
+      ""
+     ],
+     [
+      "10",
+      null,
+      "num"
+     ],
+     [
+      "7",
+      null,
+      "num"
+     ],
+     [
+      "1,760",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "26 distinct skills",
+      "26 个不重复的 skill"
+     ],
+     [
+      "83% meet the format",
+      "83% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 1,760 tokens",
+      "名字和描述合计约 1,760 个 token"
+     ]
+    ],
+    "note": "A memory tool that ships its own skills; you install the tool, not the skills one by one.",
+    "note_zh": "一个记忆工具，自带 skill；装的是工具，不是逐个装 skill。"
+   },
+   "anthropics/claude-plugins-official": {
+    "stars": 37586,
+    "sheet": "anthropics__claude-plugins-official.html",
+    "ran": true,
+    "cells": [
+     [
+      "29",
+      null,
+      "num"
+     ],
+     [
+      "100%",
+      null,
+      "touch-ups"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "7",
+      null,
+      "num"
+     ],
+     [
+      "2,863",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "29 distinct skills",
+      "29 个不重复的 skill"
+     ],
+     [
+      "100% meet the format",
+      "100% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 2,863 tokens",
+      "名字和描述合计约 2,863 个 token"
+     ]
+    ]
+   },
+   "gamedev-skills/awesome-gamedev-agent-skills": {
+    "stars": 1379,
+    "sheet": "gamedev-skills__awesome-gamedev-agent-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "75",
+      null,
+      "num"
+     ],
+     [
+      "100%",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "7,354",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "75 distinct skills",
+      "75 个不重复的 skill"
+     ],
+     [
+      "100% meet the format",
+      "100% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 7,354 tokens",
+      "名字和描述合计约 7,354 个 token"
+     ]
+    ]
+   },
+   "alirezarezvani/claude-skills": {
+    "stars": 25238,
+    "sheet": "alirezarezvani__claude-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "443",
+      null,
+      "num"
+     ],
+     [
+      "98%",
+      null,
+      ""
+     ],
+     [
+      "403",
+      null,
+      "num"
+     ],
+     [
+      "256",
+      null,
+      "num"
+     ],
+     [
+      "48,843",
+      null,
+      "substantial"
+     ]
+    ],
+    "bits": [
+     [
+      "443 distinct skills",
+      "443 个不重复的 skill"
+     ],
+     [
+      "98% meet the format",
+      "98% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 48,843 tokens",
+      "名字和描述合计约 48,843 个 token"
+     ]
+    ],
+    "note": "Nearly half the skill files are copies of the same skill packaged for other agents or plugins.",
+    "note_zh": "将近一半的 skill 文件是同一个 skill 为别的 agent 或插件打包的副本。"
+   },
+   "davila7/claude-code-templates": {
+    "stars": 32541,
+    "sheet": "davila7__claude-code-templates.html",
+    "ran": true,
+    "cells": [
+     [
+      "886",
+      null,
+      "num"
+     ],
+     [
+      "94%",
+      null,
+      ""
+     ],
+     [
+      "29",
+      null,
+      "num"
+     ],
+     [
+      "185",
+      null,
+      "num"
+     ],
+     [
+      "64,654",
+      null,
+      "substantial"
+     ]
+    ],
+    "bits": [
+     [
+      "886 distinct skills",
+      "886 个不重复的 skill"
+     ],
+     [
+      "94% meet the format",
+      "94% 符合格式"
+     ],
+     [
+      "names and descriptions run to about 64,654 tokens",
+      "名字和描述合计约 64,654 个 token"
+     ]
+    ],
+    "note": "140 of its skills are longer than the 500 lines the format's guidance recommends.",
+    "note_zh": "有 140 个 skill 超过格式指南建议的 500 行。"
+   },
+   "travisvn/awesome-claude-skills": {
+    "stars": 15102,
+    "sheet": "travisvn__awesome-claude-skills.html",
+    "ran": false,
+    "reason": "A list of links to skills kept elsewhere: there is no skill in it to install.",
+    "reason_zh": "一份指向别处 skill 的链接清单：里面没有可安装的 skill。"
+   },
+   "karanb192/awesome-claude-skills": {
+    "stars": 531,
+    "sheet": "karanb192__awesome-claude-skills.html",
+    "ran": false,
+    "reason": "A list of links to skills kept elsewhere: there is no skill in it to install.",
+    "reason_zh": "一份指向别处 skill 的链接清单：里面没有可安装的 skill。"
+   },
+   "jarrodwatts/claude-hud": {
+    "stars": 28322,
+    "sheet": "jarrodwatts__claude-hud.html",
+    "ran": false,
+    "reason": "A status line plugin for Claude Code, not a skill collection.",
+    "reason_zh": "Claude Code 的状态栏插件，不是 skill 合集。"
+   },
+   "winfunc/opcode": {
+    "stars": 22407,
+    "sheet": "winfunc__opcode.html",
+    "ran": false,
+    "reason": "A desktop app for Claude Code, not a skill collection.",
+    "reason_zh": "Claude Code 的桌面应用，不是 skill 合集。"
+   }
+  }
  }
 }

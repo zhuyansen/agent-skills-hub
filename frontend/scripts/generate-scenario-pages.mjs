@@ -19,7 +19,7 @@ import {
 } from "./shared-utils.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
-import { methodHtml, methodLd } from "./scenario-method.mjs";
+import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
 import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
@@ -827,7 +827,7 @@ ${methodLd(scenario, pageUrl)}
 
       ${runsSectionHtml(run)}
 
-      ${scenario.method && scenarioKinds ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
+      ${hasMethod(scenario, scenarioKinds) ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
 
       ${focusHtml(scenario, skills)}
 

@@ -119,10 +119,16 @@ function authorBox(a) {
 
 const h3 = (en, zh) => `<h3 style="font-size:17px;font-weight:600;margin:24px 0 8px" ${biAttrs(en, zh)}>${esc(en)}</h3>`;
 
-/** The section, or "" when the page has no method or no reviewed kinds to count. */
+/** True when the page's method can be drawn: reviewed kinds exist, or no row of its table counts by kind. */
+export function hasMethod(scenario, scenarioKinds) {
+  const m = scenario.method;
+  return Boolean(m && (scenarioKinds || m.routes.every((r) => !r.kinds)));
+}
+
+/** The section, or "" when the page has no method or its table needs reviewed kinds that are missing. */
 export function methodHtml(scenario, cards, scenarioKinds) {
   const m = scenario.method;
-  if (!m || !scenarioKinds) return "";
+  if (!hasMethod(scenario, scenarioKinds)) return "";
   return `<!-- Method -->
       <section class="bp-aeo-section" style="margin:32px 0;padding:24px;background:var(--bp-bg-alt);border-radius:12px;border:1px solid var(--bp-border)">
         ${t(m, "h2", "h2", 'class="bp-section-title" style="font-size:20px;margin-bottom:12px"')}

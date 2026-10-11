@@ -1,15 +1,15 @@
-| Collection | ★ | Skills | Meet the format | Repeated names | Over 500 lines | With scripts | Tokens per session if all installed | Commands | Agents |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| davila7/claude-code-templates | 0 | 915 | 859/915 | 29 | 140 | 185 | 67,023 | 391 | 451 |
-| alirezarezvani/claude-skills | 0 | 846 | 827/846 | 403 | 9 | 256 | 96,447 | 286 | 232 |
-| gamedev-skills/awesome-gamedev-agent-skills | 0 | 75 | 75/75 | 0 | 0 | 1 | 7,354 | 0 | 0 |
-| thedotmack/claude-mem | 98,900 | 36 | 30/36 | 10 | 0 | 7 | 2,378 | 1 | 0 |
-| anthropics/claude-plugins-official | 0 | 33 | 33/33 | 4 | 6 | 7 | 3,087 | 33 | 39 |
-| sergebulaev/linkedin-skills | 0 | 26 | 26/26 | 13 | 0 | 4 | 2,867 | 0 | 0 |
-| travisvn/awesome-claude-skills | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
-| karanb192/awesome-claude-skills | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
-| jarrodwatts/claude-hud | 0 | 0 | - | 0 | 0 | 0 | 0 | 2 | 0 |
-| winfunc/opcode | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
+| Collection | ★ | Skill files | Distinct skills | Meet the format | Repeated names | Over 500 lines | With scripts | Names and descriptions, tokens (estimate) | Commands | Agents |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| davila7/claude-code-templates | 32,541 | 915 | 886 | 859/915 | 29 | 140 | 185 | 64,654 | 391 | 451 |
+| alirezarezvani/claude-skills | 25,238 | 846 | 443 | 827/846 | 403 | 9 | 256 | 48,843 | 286 | 232 |
+| gamedev-skills/awesome-gamedev-agent-skills | 1,379 | 75 | 75 | 75/75 | 0 | 0 | 1 | 7,354 | 0 | 0 |
+| thedotmack/claude-mem | 98,892 | 36 | 26 | 30/36 | 10 | 0 | 7 | 1,760 | 1 | 0 |
+| anthropics/claude-plugins-official | 37,586 | 33 | 29 | 33/33 | 4 | 6 | 7 | 2,863 | 33 | 39 |
+| sergebulaev/linkedin-skills | 4,258 | 26 | 13 | 26/26 | 13 | 0 | 4 | 1,434 | 0 | 0 |
+| travisvn/awesome-claude-skills | 15,102 | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
+| karanb192/awesome-claude-skills | 531 | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
+| jarrodwatts/claude-hud | 28,322 | 0 | 0 | - | 0 | 0 | 0 | 0 | 2 | 0 |
+| winfunc/opcode | 22,407 | 0 | 0 | - | 0 | 0 | 0 | 0 | 0 | 0 |
 
 Format problems:
 
