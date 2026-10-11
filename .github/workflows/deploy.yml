@@ -81,47 +81,64 @@ jobs:
       - name: Fetch live sitemaps
         run: |
           mkdir -p sitemaps
+          # -f: a sitemap that is gone (404) leaves no file, not the site's HTML fallback.
           for f in sitemap-static sitemap-categories sitemap-top sitemap-mid sitemap-rest; do
-            curl -sL "https://agentskillshub.top/${f}.xml" -o "sitemaps/${f}.xml" 2>/dev/null || true
+            curl -fsL "https://agentskillshub.top/${f}.xml" -o "sitemaps/${f}.xml" || rm -f "sitemaps/${f}.xml"
           done
+          ls -la sitemaps
 
-      - name: Submit to IndexNow (Bing + Yandex)
+      - name: Submit to IndexNow
         run: |
           INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
+          HOST="agentskillshub.top"
 
-          # Extract all URLs from downloaded sitemaps
-          URLS=$(grep -oP '(?<=<loc>)[^<]+' sitemaps/sitemap*.xml 2>/dev/null || true)
-
-          if [ -z "$URLS" ]; then
+          # -h: with several files grep prefixes each match with its file name, and
+          # "sitemaps/sitemap-top.xml:https://..." is not a URL of this host. Every batch was
+          # answered 422 for that reason while this step stayed green (found 2026-10-11).
+          grep -ohP '(?<=<loc>)[^<]+' sitemaps/sitemap*.xml 2>/dev/null | sort -u > urls.txt || true
+          URL_COUNT=$(wc -l < urls.txt | tr -d ' ')
+          if [ "$URL_COUNT" -eq 0 ]; then
             echo "No sitemap URLs found, skipping IndexNow"
             exit 0
           fi
+          if grep -qv "^https://${HOST}/" urls.txt; then
+            echo "::error::URLs that are not on https://${HOST}/ (first: $(grep -v "^https://${HOST}/" urls.txt | head -1))"
+            exit 1
+          fi
+          echo "Found $URL_COUNT URLs, submitting in batches of 2000 (the protocol allows 10,000)"
+          split -l 2000 urls.txt batch-
 
-          URL_COUNT=$(echo "$URLS" | wc -l | tr -d ' ')
-          echo "Found $URL_COUNT URLs, submitting in batches of 2000..."
+          # One endpoint, one batch. An engine that cannot be reached is a warning: IndexNow shares
+          # a submission among its engines, so one of them being down loses little. A rejection
+          # (4xx) is ours to fix and fails the step, so it cannot pass unnoticed again.
+          REJECTED=0
+          submit() {
+            local name="$1" endpoint="$2" payload="$3" code
+            code=$(curl -s --max-time 60 -o /tmp/indexnow_response.txt -w "%{http_code}" -X POST "$endpoint" \
+              -H "Content-Type: application/json; charset=utf-8" -d @"$payload" || true)
+            code=${code:-000}
+            case "$code" in
+              2*) echo "  $name: HTTP $code" ;;
+              000) echo "::warning::IndexNow: $name could not be reached" ;;
+              4*) echo "::error::IndexNow: $name rejected the batch with HTTP $code: $(head -c 300 /tmp/indexnow_response.txt)"; REJECTED=1 ;;
+              *) echo "::warning::IndexNow: $name answered HTTP $code" ;;
+            esac
+          }
 
-          # Submit in batches of 2000 (IndexNow limit is 10000)
           BATCH=0
-          echo "$URLS" | while mapfile -t -n 2000 CHUNK && [ ${#CHUNK[@]} -gt 0 ]; do
+          for file in batch-*; do
             BATCH=$((BATCH+1))
-            BATCH_COUNT=${#CHUNK[@]}
-            echo "Batch $BATCH: $BATCH_COUNT URLs"
-
-            # Build JSON payload via file to avoid argument list too long
-            URL_JSON=$(printf '%s\n' "${CHUNK[@]}" | jq -R -s 'split("\n") | map(select(length > 0))')
-            cat > /tmp/indexnow_payload.json <<EOJSON
-          {"host":"agentskillshub.top","key":"${INDEXNOW_KEY}","keyLocation":"https://agentskillshub.top/${INDEXNOW_KEY}.txt","urlList":${URL_JSON}}
-          EOJSON
-
-            # Submit to Yandex
-            YANDEX_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://yandex.com/indexnow" \
-              -H "Content-Type: application/json; charset=utf-8" -d @/tmp/indexnow_payload.json)
-            echo "  Yandex: HTTP $YANDEX_CODE"
-
-            # Submit to Bing
-            BING_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://www.bing.com/indexnow" \
-              -H "Content-Type: application/json; charset=utf-8" -d @/tmp/indexnow_payload.json)
-            echo "  Bing: HTTP $BING_CODE"
+            echo "Batch $BATCH: $(wc -l < "$file" | tr -d ' ') URLs"
+            jq -R -s --arg host "$HOST" --arg key "$INDEXNOW_KEY" \
+              '{host: $host, key: $key, keyLocation: "https://\($host)/\($key).txt", urlList: (split("\n") | map(select(length > 0)))}' \
+              "$file" > /tmp/indexnow_payload.json
+            submit "IndexNow" "https://api.indexnow.org/indexnow" /tmp/indexnow_payload.json
+            submit "Bing" "https://www.bing.com/indexnow" /tmp/indexnow_payload.json
+            submit "Yandex" "https://yandex.com/indexnow" /tmp/indexnow_payload.json
           done
 
+          if [ "$REJECTED" -ne 0 ]; then
+            echo "A search engine rejected a batch: see the errors above."
+            exit 1
+          fi
           echo "IndexNow submission complete."
