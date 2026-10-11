@@ -2598,7 +2598,8 @@
     "role_zh": "Agent Skills Hub的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-11"
    }
-  }
+  },
+  "github_list": "https://github.com/zhuyansen/awesome-codex-skills"
  },
  {
   "slug": "ai-agent-framework",

@@ -324,6 +324,34 @@ PAGES = {
                   "second brain", "knowledge graph", "graphrag"],
         "also": ["claude", "codex", "agent", "llm", "ai ", "mcp", "skill", "gpt", "rag"],
     },
+    "claude-code-skills": {
+        "strict": True,
+        # The page is where people land for "claude code skills" wanting many of them at once:
+        # collections, curated lists and vendor directories. One skill belongs on its topic page,
+        # a tool that installs skills on skill-management-tools (owner, 10-11).
+        "subject": _q("Is `repo` a collection of skills for Claude Code: many skills in one repository, a curated list "
+                      "of Claude skills, or a vendor's directory of skills or plugins?",
+                      "The skills are in the Agent Skills format (SKILL.md) or are Claude Code plugins, commands or "
+                      "subagents. A single skill, one MCP server, or a tool that only installs or manages skills "
+                      "does not count."),
+        "types": {
+            "general": _q("Is `repo` a general collection: skills for many different kinds of work in one repository?"),
+            "domain": _q("Is `repo` a collection for one field or profession, such as marketing, security, game "
+                         "development, research, design or one programming stack?"),
+            "list": _q("Is `repo` a curated list of links to skills kept in other repositories, an awesome list?"),
+            "official": _q("Is `repo` published by a company or project for its own product or platform, for example "
+                           "Anthropic, a cloud provider or a framework's maintainers?"),
+        },
+        "labels": _labels(("general", "🧰", "General collections", "综合合集"), ("domain", "🎯", "Single-domain packs", "单领域合集"),
+                          ("official", "🏛", "Official & vendor", "官方与厂商"), ("list", "🔗", "Awesome lists", "链接清单")),
+        "queries": ["claude skills in:name,description", "claude code skills in:name,description,topics",
+                    "awesome claude skills in:name,description", "agent skills collection in:name,description",
+                    "claude code plugins in:name,description", "awesome agent skills in:name,description",
+                    "skills topic:claude-skills", "skills topic:agent-skills", "claude code subagents collection in:name,description"],
+        "words": ["skills", "plugins", "subagents"],
+        "name_desc_only": True,
+        "also": ["claude", "anthropic", "agent skills", "awesome"],
+    },
     "codex-skills": {
         "strict": True,
         # 1,929 repos passed "Codex is a named target": most were skills for every agent that

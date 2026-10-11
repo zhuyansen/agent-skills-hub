@@ -186,6 +186,25 @@ PAGE_LISTS = {
             "design": ("Icons, illustrations, covers, posters and logos.", "图标、插画、封面、海报和 Logo。"),
         },
     },
+    "codex-skills": {
+        "repo": "zhuyansen/awesome-codex-skills",
+        "text": _text("Awesome Codex Skills",
+                      ("Open-source **skills, plugins and workflows made for OpenAI Codex**: single skills, skill collections, "
+                       "plugins and MCP servers, subagent workflows, bridges to other agents, and tooling for Codex itself.",
+                       "**专为 OpenAI Codex 做的开源 skill、插件和工作流**:单个 skill、skill 合集、插件与 MCP、"
+                       "子 agent 工作流、跨 agent 桥接,以及 Codex 自身的周边工具。"),
+                      ("It is made for OpenAI Codex: Codex is its main or first-class target, not one agent among several it also supports.",
+                       "它是为 OpenAI Codex 做的:Codex 是它的主要目标或一等公民,而不是顺带支持的众多 agent 之一。"),
+                      ("What these Codex skills make", "这些 Codex skill 做出来的东西")),
+        "blurb": {
+            "collection": ("Many Codex skills or plugins in one repository.", "一个仓库里的多个 Codex skill 或插件。"),
+            "skill": ("One skill, or a small set, for a specific job.", "针对一件具体事情的单个 skill 或一小组 skill。"),
+            "plugin": ("Plugins, extensions and MCP servers that give Codex new abilities.", "给 Codex 增加新能力的插件、扩展和 MCP 服务。"),
+            "workflow": ("Subagents, planning and long-running task workflows.", "子 agent、规划和长任务工作流。"),
+            "bridge": ("Connect Codex with Claude Code, Gemini CLI, Cursor and others.", "把 Codex 和 Claude Code、Gemini CLI、Cursor 等连起来。"),
+            "tooling": ("Config, usage tracking, session management, installers and UIs for Codex.", "Codex 的配置、用量统计、会话管理、安装器和界面。"),
+        },
+    },
     "code-review": {
         "repo": "zhuyansen/awesome-claude-code-review",
         "text": _text("Awesome Claude Code Review",
