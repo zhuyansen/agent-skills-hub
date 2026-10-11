@@ -1,0 +1,19 @@
+The repository at ~/src is an open-source project built on TypeSafe's Jev model. This is a first-run test: can a new user get it installed and through its own quick start on a clean machine?
+
+Do this, following the project's README and docs, not your own ideas of how it should work:
+1. Install it the way the README says (its package, CLI, plugin, MCP server or whatever it is).
+2. Run its quick start: the first example, demo or command the README offers. If there are several, the smallest one that actually calls Jev. A Jev API key is in the environment as TYPESAFE_API_KEY; export it under whatever name the project expects.
+3. Stop after the first real result. Do not run benchmarks, batch jobs or long loops: keep it to a handful of Jev calls.
+
+Rules:
+- Do not ask me any questions. Do not patch the project's code to make it work; if it needs a fix, that is the finding. Changing configuration the README tells you to change is fine.
+- If it needs something this machine does not have (a GPU, a desktop screen, another paid key, an account), stop and say what.
+- Never print or write the API key itself anywhere.
+
+At the end write ~/work/output/report.json:
+{"installed": true|false, "install_command": "<what you ran>",
+ "quick_start": "<the README's first example, as you ran it>", "first_run_worked": true|false,
+ "result": "<what came back, briefly; the last lines of real output>",
+ "beyond_readme": ["<every step you had to take that the README does not mention>"],
+ "blocked_by": "<what stopped it, or empty>", "calls_jev": true|false|"unclear", "jev_calls_made": <rough count>}
+Then print one line: DELIVERABLE: ~/work/output/report.json

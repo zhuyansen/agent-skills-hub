@@ -1,0 +1,98 @@
+[
+ {
+  "repo": "heygen-com/hyperframes",
+  "kind": "general",
+  "stars": 60291,
+  "grade": "safe"
+ },
+ {
+  "repo": "remotion-dev/skills",
+  "kind": "general",
+  "stars": 5005,
+  "grade": "safe"
+ },
+ {
+  "repo": "calesthio/OpenMontage",
+  "kind": "general",
+  "stars": 64239,
+  "grade": "safe"
+ },
+ {
+  "repo": "hypit-ai/hypit",
+  "kind": "general",
+  "stars": 20799,
+  "grade": "safe"
+ },
+ {
+  "repo": "diffusionstudio/lottie",
+  "kind": "motion",
+  "stars": 5493,
+  "grade": "safe"
+ },
+ {
+  "repo": "digitalsamba/claude-code-video-toolkit",
+  "kind": "general",
+  "stars": 2198,
+  "grade": "safe"
+ },
+ {
+  "repo": "feitangyuan/onetake",
+  "kind": "promo",
+  "stars": 2080,
+  "grade": "safe"
+ },
+ {
+  "repo": "vibe-motion/skills",
+  "kind": "general",
+  "stars": 1315,
+  "grade": "safe"
+ },
+ {
+  "repo": "echris6/motion-video-kit",
+  "kind": "promo",
+  "stars": 1080,
+  "grade": "safe"
+ },
+ {
+  "repo": "op7418/guizang-product-video-skill",
+  "kind": "promo",
+  "stars": 762,
+  "grade": "safe"
+ },
+ {
+  "repo": "iart-ai/motion-skills",
+  "kind": "general",
+  "stars": 610,
+  "grade": "safe"
+ },
+ {
+  "repo": "Barty-Bart/motion-graphics",
+  "kind": "editing",
+  "stars": 580,
+  "grade": "safe"
+ },
+ {
+  "repo": "vincentsch/explainroo",
+  "kind": "explainer",
+  "stars": 523,
+  "grade": "safe"
+ },
+ {
+  "repo": "howseen-ai/claude-motion-design",
+  "kind": "promo",
+  "stars": 408,
+  "grade": "caution"
+ },
+ {
+  "repo": "wshuyi/remotion-video-skill",
+  "kind": "explainer",
+  "stars": 394,
+  "grade": "caution"
+ },
+ {
+  "repo": "charlie947/motion-graphics-skills",
+  "kind": "promo",
+  "stars": 174,
+  "grade": "safe"
+ }
+]

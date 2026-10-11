@@ -1,0 +1,8 @@
+A video skill or tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools, or a CLI; check `claude mcp list` too). Use it, following its own workflow and rules, to make the promo video described in ~/work/brief.md.
+
+Rules:
+- Do not ask me any questions. Where the skill would ask (style, direction, approval of a storyboard), take its default or the option that best fits the brief, and continue to a rendered file.
+- Use the copy in the brief exactly. Do not add sentences, claims or logos that are not in it.
+- Render the final file to ~/work/output/video.mp4. Keep the project you rendered it from in ~/work/project.
+- If the skill needs a paid model or an API key that is not on this machine, or cannot be installed or used here, stop and say why. Do not make the video some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output/video.mp4

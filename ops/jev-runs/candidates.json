@@ -1,0 +1,74 @@
+[
+ {
+  "repo": "browser-use/jev-ultrafast",
+  "kind": "agent",
+  "stars": 22555,
+  "grade": "safe"
+ },
+ {
+  "repo": "tamaratran/fast-jev-compaction",
+  "kind": "devtool",
+  "stars": 7570,
+  "grade": "safe"
+ },
+ {
+  "repo": "dzhng/jevgrep",
+  "kind": "devtool",
+  "stars": 2544,
+  "grade": "safe"
+ },
+ {
+  "repo": "kerpopule/hermes-jev-skills",
+  "kind": "general",
+  "stars": 1074,
+  "grade": "safe"
+ },
+ {
+  "repo": "thruwire/foreman",
+  "kind": "devtool",
+  "stars": 732,
+  "grade": "safe"
+ },
+ {
+  "repo": "devagrawal09/jev-review",
+  "kind": "devtool",
+  "stars": 680,
+  "grade": "safe"
+ },
+ {
+  "repo": "gargpratyush/jev-router",
+  "kind": "devtool",
+  "stars": 579,
+  "grade": "safe"
+ },
+ {
+  "repo": "AgriciDaniel/jev-seo",
+  "kind": "devtool",
+  "stars": 547,
+  "grade": "safe"
+ },
+ {
+  "repo": "superagents-lab/jev-search",
+  "kind": "general",
+  "stars": 529,
+  "grade": "safe"
+ },
+ {
+  "repo": "jerryjliu/docjev",
+  "kind": "business",
+  "stars": 523,
+  "grade": "safe"
+ },
+ {
+  "repo": "jkudish/jev-mcp",
+  "kind": "general",
+  "stars": 516,
+  "grade": "safe"
+ },
+ {
+  "repo": "BillionsBobby/JevRouter",
+  "kind": "devtool",
+  "stars": 457,
+  "grade": "safe"
+ }
+]

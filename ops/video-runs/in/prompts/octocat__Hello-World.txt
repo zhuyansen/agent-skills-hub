@@ -1,0 +1,3 @@
+This is the control run: no video skill is installed. Make the promo video described in ~/work/brief.md yourself, with whatever tools you would normally choose on this machine.
+
+Rules: do not ask me any questions; use the copy in the brief exactly and add nothing to it. Render the final file to ~/work/output/video.mp4 and keep the project you rendered it from in ~/work/project. When you finish, print one line: DELIVERABLE: ~/work/output/video.mp4

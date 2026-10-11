@@ -19,5 +19,9 @@ RUN npm install -g @anthropic-ai/claude-code
 RUN useradd -m -s /bin/bash runner && echo 'runner ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/runner
 USER runner
 WORKDIR /home/runner/work
+# The video test (ops/video-runs): skills render with ffmpeg; a late layer so the ones above stay cached.
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
+USER runner
 COPY --chown=runner run_one.sh render.py image_proxy.py /home/runner/bin/
 ENTRYPOINT ["bash", "/home/runner/bin/run_one.sh"]

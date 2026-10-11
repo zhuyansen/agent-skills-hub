@@ -23,7 +23,7 @@ HERE = Path(os.environ.get("RUNS_DIR") or Path(__file__).parent).resolve()
 # OUT_SUFFIX=-b: a second, independent run of the same candidates (the design test builds each page twice).
 OUT = HERE / ("out" + os.environ.get("OUT_SUFFIX", ""))
 IMAGE = "pptrun:1"
-RUN_MINUTES = 30
+RUN_MINUTES = int(os.environ.get("RUN_MINUTES", 30))   # the video test renders, so it asks for more
 GRACE_SECONDS = 600     # render + install time on top of the agent's limit
 
 
@@ -41,6 +41,8 @@ def docker_env(e: dict) -> list[str]:
     pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
              **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)},
              **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE") if os.environ.get(k)},
+             # PASS_KEYS=TYPESAFE_API_KEY (the Jev first-run test): named keys from ~/.claude/.env go into the container.
+             **{k: e[k] for k in os.environ.get("PASS_KEYS", "").split(",") if k and e.get(k)},
              # Text LLM for tools that need their own key (TEXT_PROXY=1), through the same adapter.
              **({"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
                  "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")} if os.environ.get("TEXT_PROXY") else {})}

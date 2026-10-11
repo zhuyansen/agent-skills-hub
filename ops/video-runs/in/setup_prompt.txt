@@ -1,0 +1,6 @@
+The repository at ~/src is a video skill or tool for AI coding agents (a Claude Code skill or plugin, an MCP server, a CLI, or a starter project). Install it so that Claude Code can use it in a new session, following its own README:
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents);
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`;
+- a package, CLI or starter project: install it and its dependencies.
+This machine has Node 22, Python 3, Chromium at /usr/bin/chromium and ffmpeg; it has no API keys for video, image or voice models.
+Do not make any video yet. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.
