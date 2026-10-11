@@ -2,3 +2,5 @@ out*/
 clones/
 *.log
 __pycache__
+in/skills/
+in/fillers/

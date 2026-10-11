@@ -1,0 +1,155 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": null,
+  "ran": true,
+  "checks": {
+   "playable": true,
+   "spec": true,
+   "copy": true,
+   "moves": true
+  },
+  "passed": 4,
+  "lines_readable": 5,
+  "missing_lines": [],
+  "other_text": [],
+  "seconds": 15.0,
+  "size": "1920x1080",
+  "fps": 30.0,
+  "audio": true,
+  "mean_change": 0.0247,
+  "still_share": 0.03,
+  "minutes": 4.4,
+  "commit": "7fd1a60b01f9"
+ },
+ {
+  "repo": "heygen-com/hyperframes",
+  "kind": "general",
+  "stars": 60291,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "remotion-dev/skills",
+  "kind": "general",
+  "stars": 5005,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "calesthio/OpenMontage",
+  "kind": "general",
+  "stars": 64239,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "hypit-ai/hypit",
+  "kind": "general",
+  "stars": 20799,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "diffusionstudio/lottie",
+  "kind": "motion",
+  "stars": 5493,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "digitalsamba/claude-code-video-toolkit",
+  "kind": "general",
+  "stars": 2198,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "feitangyuan/onetake",
+  "kind": "promo",
+  "stars": 2080,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "vibe-motion/skills",
+  "kind": "general",
+  "stars": 1315,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "echris6/motion-video-kit",
+  "kind": "promo",
+  "stars": 1080,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "op7418/guizang-product-video-skill",
+  "kind": "promo",
+  "stars": 762,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "iart-ai/motion-skills",
+  "kind": "general",
+  "stars": 610,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "Barty-Bart/motion-graphics",
+  "kind": "editing",
+  "stars": 580,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "vincentsch/explainroo",
+  "kind": "explainer",
+  "stars": 523,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "howseen-ai/claude-motion-design",
+  "kind": "promo",
+  "stars": 408,
+  "grade": "caution",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "wshuyi/remotion-video-skill",
+  "kind": "explainer",
+  "stars": 394,
+  "grade": "caution",
+  "ran": false,
+  "reason": "not run"
+ },
+ {
+  "repo": "charlie947/motion-graphics-skills",
+  "kind": "promo",
+  "stars": 174,
+  "grade": "safe",
+  "ran": false,
+  "reason": "not run"
+ }
+]

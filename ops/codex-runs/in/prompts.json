@@ -1,0 +1,296 @@
+[
+ {
+  "id": "ian-xiaohei-illustrations:direct",
+  "skill": "ian-xiaohei-illustrations",
+  "repo": "helloianneo/ian-xiaohei-illustrations",
+  "kind": "direct",
+  "prompt": "请为下面这篇中文文章生成 4 张正文配图，并为每张图提供画面描述、构图要点和建议插入位置：\n“我们常常把复杂问题想得过于庞大，却忽略了从一个小步骤开始。”"
+ },
+ {
+  "id": "ian-xiaohei-illustrations:indirect",
+  "skill": "ian-xiaohei-illustrations",
+  "repo": "helloianneo/ian-xiaohei-illustrations",
+  "kind": "indirect",
+  "prompt": "我想把下面这篇中文文章中的抽象观点转成几幅清爽、留白充足的黑白线稿插图，配少量红橙蓝标注；请按阅读顺序列出画面构图、对应段落和绘制提示，不要在图中放标题。\n文章：“一个团队正在学习如何在不确定中做出更好的决定。”"
+ },
+ {
+  "id": "ian-xiaohei-illustrations:other_language",
+  "skill": "ian-xiaohei-illustrations",
+  "repo": "helloianneo/ian-xiaohei-illustrations",
+  "kind": "other_language",
+  "prompt": "Please create four in-body illustrations for the following Chinese article, and provide the visual description, composition notes, and suggested placement for each image:\n“我们常常把复杂问题想得过于庞大，却忽略了从一个小步骤开始。”"
+ },
+ {
+  "id": "codex-ppt:direct",
+  "skill": "codex-ppt",
+  "repo": "ningzimu/codex-ppt-skill",
+  "kind": "direct",
+  "prompt": "Turn this report into a visually unified, image-based PPTX deck with concise slide text, strong visual hierarchy, and an opening, body, and conclusion: “Urban rooftop gardens can reduce building heat, support pollinators, and provide fresh herbs for residents.”"
+ },
+ {
+  "id": "codex-ppt:indirect",
+  "skill": "codex-ppt",
+  "repo": "ningzimu/codex-ppt-skill",
+  "kind": "indirect",
+  "prompt": "Create a cohesive presentation made primarily from carefully selected visuals, with consistent layouts and brief captions, based on this outline: “A small coastal town restored its wetlands, reducing flood damage while improving bird habitat and recreation.”"
+ },
+ {
+  "id": "codex-ppt:other_language",
+  "skill": "codex-ppt",
+  "repo": "ningzimu/codex-ppt-skill",
+  "kind": "other_language",
+  "prompt": "请将以下研究摘要制作成一套视觉统一、以图片为主的PPT演示文稿，包含清晰的开场、核心内容和结论，并使用简洁的幻灯片文字：“远程办公能够减少通勤排放，但需要改善家庭办公条件并加强团队沟通。”"
+ },
+ {
+  "id": "image-to-editable-ppt:direct",
+  "skill": "image-to-editable-ppt",
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "kind": "direct",
+  "prompt": "Rebuild the attached PDF slide deck as an object-level editable PowerPoint (.pptx), matching the original layout and preserving the supplied speaker notes."
+ },
+ {
+  "id": "image-to-editable-ppt:indirect",
+  "skill": "image-to-editable-ppt",
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "kind": "indirect",
+  "prompt": "I’ve attached screenshots of twelve slides and a text file with notes for each slide. Recreate them in a presentation file so I can edit the text, move individual shapes, and adjust charts rather than having each page remain a single flat image; keep the notes with their corresponding slides."
+ },
+ {
+  "id": "image-to-editable-ppt:other_language",
+  "skill": "image-to-editable-ppt",
+  "repo": "ningzimu/image-to-editable-ppt-skill",
+  "kind": "other_language",
+  "prompt": "请将附件中的 PDF 幻灯片重建为对象级可编辑的 PowerPoint（.pptx），保持原有布局，并保留随附的演讲者备注。"
+ },
+ {
+  "id": "cyber-ppt:direct",
+  "skill": "cyber-ppt",
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "kind": "direct",
+  "prompt": "请将以下研究报告整理成一份高密度、可编辑、咨询风格的PPTX，采用SCR论证结构，加入详细图表并完成渲染质检：研究显示，华东地区中小企业云服务渗透率在2024年达到42%，预计2027年升至68%。"
+ },
+ {
+  "id": "cyber-ppt:indirect",
+  "skill": "cyber-ppt",
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "kind": "indirect",
+  "prompt": "请把下面的业务材料制作成一套适合管理层汇报的演示文稿，要求信息密度高、所有内容可编辑，按清晰的论证顺序组织，并用丰富图表呈现关键发现；交付前请检查每页的实际显示效果：某零售企业拥有120家门店，线上销售额占比从2022年的18%增长到2024年的35%。"
+ },
+ {
+  "id": "cyber-ppt:other_language",
+  "skill": "cyber-ppt",
+  "repo": "crazyykhllc-bit/CyberPPT",
+  "kind": "other_language",
+  "prompt": "Please turn the following research report into a dense, fully editable, consulting-style PPTX using an SCR argument structure, with detailed charts and a rendering quality check: Research shows that cloud-service adoption among small and medium-sized enterprises in eastern China reached 42% in 2024 and is expected to rise to 68% by 2027."
+ },
+ {
+  "id": "keep-codex-fast:direct",
+  "skill": "keep-codex-fast",
+  "repo": "vibeforge1111/keep-codex-fast",
+  "kind": "direct",
+  "prompt": "Please safely audit and maintain my local coding-agent state: report what is consuming space or slowing sessions, back up anything before changes, archive stale data instead of deleting it, rotate oversized logs, remove dead project entries, normalize extended paths on Windows, and move stale worktrees."
+ },
+ {
+  "id": "keep-codex-fast:indirect",
+  "skill": "keep-codex-fast",
+  "repo": "vibeforge1111/keep-codex-fast",
+  "kind": "indirect",
+  "prompt": "My local development setup has become sluggish and cluttered. Give me a read-only report first, then—only with safeguards—preserve old session data, trim oversized logs, remove obsolete project records, fix problematic long paths, and relocate unused worktree folders."
+ },
+ {
+  "id": "keep-codex-fast:other_language",
+  "skill": "keep-codex-fast",
+  "repo": "vibeforge1111/keep-codex-fast",
+  "kind": "other_language",
+  "prompt": "请安全地检查并维护我的本地编码代理状态：先报告哪些内容占用空间或导致会话变慢，修改前进行备份，用归档代替删除，轮换过大的日志，清理失效的项目配置，规范化 Windows 扩展路径，并移动长期未使用的工作树。"
+ },
+ {
+  "id": "first-customer-finder:direct",
+  "skill": "first-customer-finder",
+  "repo": "Kappaemme-git/codex-first-customer-finder-skill",
+  "kind": "direct",
+  "prompt": "Research public evidence to identify 10 likely early adopters for my AI invoice-reconciliation app, rank them with reasons and links, and draft personalized outreach messages. Do not send anything."
+ },
+ {
+  "id": "first-customer-finder:indirect",
+  "skill": "first-customer-finder",
+  "repo": "Kappaemme-git/codex-first-customer-finder-skill",
+  "kind": "indirect",
+  "prompt": "Search public sources for 10 organizations that appear to struggle with reconciling invoices and could benefit from my app, then provide the evidence, a ranked list, and tailored introductory emails. Do not contact anyone; use this sample product description: “LedgerLoop matches invoices, purchase orders, and receipts and flags discrepancies automatically.”"
+ },
+ {
+  "id": "first-customer-finder:other_language",
+  "skill": "first-customer-finder",
+  "repo": "Kappaemme-git/codex-first-customer-finder-skill",
+  "kind": "other_language",
+  "prompt": "请根据公开证据，为我的人工智能发票对账应用寻找10个最可能尝试它的早期使用者，按匹配度排序并附上理由和链接，同时起草个性化联系邮件。不要发送任何消息。"
+ },
+ {
+  "id": "startup-pressure-test:direct",
+  "skill": "startup-pressure-test",
+  "repo": "Kappaemme-git/codex-startup-pressure-test-skill",
+  "kind": "direct",
+  "prompt": "Brutally evaluate and refine my startup idea using practical early-stage frameworks: identify whether the problem is real, analyze competitors and current customer behavior, find the first 10 customers, define an MVP, propose a two-week launch plan, assess founder-market fit, and give me a clear strong, weak, or pivot verdict. Idea: “A subscription service that helps independent restaurants reduce food waste by selling surplus ingredients to nearby home cooks.”"
+ },
+ {
+  "id": "startup-pressure-test:indirect",
+  "skill": "startup-pressure-test",
+  "repo": "Kappaemme-git/codex-startup-pressure-test-skill",
+  "kind": "indirect",
+  "prompt": "I’m considering a subscription service that helps independent restaurants sell surplus ingredients to nearby home cooks. Investigate whether people truly need this, how they solve it today, who else serves them, how to reach the first 10 paying customers, what the smallest useful version should include, and what I should do over the next two weeks; finish with a clear recommendation to continue, change direction, or stop."
+ },
+ {
+  "id": "startup-pressure-test:other_language",
+  "skill": "startup-pressure-test",
+  "repo": "Kappaemme-git/codex-startup-pressure-test-skill",
+  "kind": "other_language",
+  "prompt": "请用实用的早期创业方法，毫不留情地评估并改进我的创业想法：判断问题是否真实存在，分析竞争者和客户目前的行为，找出前10位客户，定义最小可行产品，制定为期两周的发布计划，评估创始人与市场的匹配度，并明确告诉我是继续、改进方向，还是放弃。想法：“一个帮助独立餐馆将剩余食材卖给附近家庭厨师的订阅服务。”"
+ },
+ {
+  "id": "lanshu-animated-architecture-diagram:direct",
+  "skill": "lanshu-animated-architecture-diagram",
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "kind": "direct",
+  "prompt": "Create a premium hand-drawn animated architecture diagram for a “Nebula Notes” system: mobile app → API gateway → authentication service → recommendation engine → PostgreSQL and Redis. Provide an editable diagram file, a static PNG preview, and an animated GIF with moving highlights along the data flows."
+ },
+ {
+  "id": "lanshu-animated-architecture-diagram:indirect",
+  "skill": "lanshu-animated-architecture-diagram",
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "kind": "indirect",
+  "prompt": "Turn this system design into a polished hand-drawn visual explanation with an editable source file, a PNG preview, and a looping GIF where the flow paths visibly move: “Nebula Notes” mobile app → API gateway → authentication service → recommendation engine → PostgreSQL and Redis."
+ },
+ {
+  "id": "lanshu-animated-architecture-diagram:other_language",
+  "skill": "lanshu-animated-architecture-diagram",
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "kind": "other_language",
+  "prompt": "为“星云笔记”系统创建一张高质量手绘动态架构图：移动端 → API 网关 → 身份认证服务 → 推荐引擎 → PostgreSQL 和 Redis。请提供可编辑的图表源文件、静态 PNG 预览，以及带有数据流动高亮效果的动态 GIF。"
+ },
+ {
+  "id": "complexity-optimizer:direct",
+  "skill": "complexity-optimizer",
+  "repo": "Kappaemme-git/codex-complexity-optimizer",
+  "kind": "direct",
+  "prompt": "Analyze this codebase for algorithmic complexity and performance hotspots, then implement safe optimizations that preserve behavior, APIs, outputs, and tests. Pay special attention to nested loops, repeated scans, unnecessary recomputation, and inefficient database access."
+ },
+ {
+  "id": "complexity-optimizer:indirect",
+  "skill": "complexity-optimizer",
+  "repo": "Kappaemme-git/codex-complexity-optimizer",
+  "kind": "indirect",
+  "prompt": "Review the repository to find the parts that waste the most time or resources, and improve them without changing what users or callers observe. Keep the existing tests and interfaces working, and make the changes maintainable."
+ },
+ {
+  "id": "complexity-optimizer:other_language",
+  "skill": "complexity-optimizer",
+  "repo": "Kappaemme-git/codex-complexity-optimizer",
+  "kind": "other_language",
+  "prompt": "请分析这个代码库中的算法复杂度和性能瓶颈，并在不改变行为、API、输出结果和测试的前提下实施安全优化。重点检查嵌套循环、重复扫描、不必要的重复计算以及低效的数据库访问。"
+ },
+ {
+  "id": "qiaomu-goal-meta-skill:direct",
+  "skill": "qiaomu-goal-meta-skill",
+  "repo": "joeseesun/qiaomu-goal-meta-skill",
+  "kind": "direct",
+  "prompt": "Turn this vague request into a strong `/goal` command with a clear outcome, success criteria, verification commands, constraints, boundaries, iteration policy, completion evidence, and pause conditions: “Improve the checkout flow.”"
+ },
+ {
+  "id": "qiaomu-goal-meta-skill:indirect",
+  "skill": "qiaomu-goal-meta-skill",
+  "repo": "joeseesun/qiaomu-goal-meta-skill",
+  "kind": "indirect",
+  "prompt": "Rewrite this vague engineering request as a bounded, actionable instruction for an agent, including the desired outcome, measurable success criteria, checks to run, scope limits, iteration rules, proof of completion, and conditions for stopping to ask questions: “Improve the checkout flow.”"
+ },
+ {
+  "id": "qiaomu-goal-meta-skill:other_language",
+  "skill": "qiaomu-goal-meta-skill",
+  "repo": "joeseesun/qiaomu-goal-meta-skill",
+  "kind": "other_language",
+  "prompt": "请把下面这个模糊请求改写成一条完善的 `/goal` 指令，包含明确目标、成功标准、验证命令、约束、范围边界、迭代规则、完成证据以及暂停或受阻条件：“改进结账流程。”"
+ },
+ {
+  "id": "travel-photo-abstraction:direct",
+  "skill": "travel-photo-abstraction",
+  "repo": "Evianis/travel-photo-abstraction",
+  "kind": "direct",
+  "prompt": "Analyze the uploaded photograph, preserve it exactly unchanged in the upper panel, and reconstruct its essential visual relationships as a new nonliteral abstraction in a clean lower panel, guided by the 19 provided reference images. Add a number, date, and short phrase to the lower panel."
+ },
+ {
+  "id": "travel-photo-abstraction:indirect",
+  "skill": "travel-photo-abstraction",
+  "repo": "Evianis/travel-photo-abstraction",
+  "kind": "indirect",
+  "prompt": "Create a clean two-part editorial image: leave my uploaded travel photo untouched at the top, then make a nonliteral composition below that distills its key colors, forms, textures, and spatial relationships rather than redrawing the scene. Use the 19 supplied visual references as guidance, and include a number, date, and short phrase in the bottom section."
+ },
+ {
+  "id": "travel-photo-abstraction:other_language",
+  "skill": "travel-photo-abstraction",
+  "repo": "Evianis/travel-photo-abstraction",
+  "kind": "other_language",
+  "prompt": "请分析我上传的照片，将照片原样完整保留在上方，并参考提供的 19 张图像，在下方重构其核心视觉关系，创作一个全新的非具象抽象构图。请在下方区域加入一个数字、日期和简短短语。"
+ },
+ {
+  "id": "visio-image-rebuilder:direct",
+  "skill": "visio-image-rebuilder",
+  "repo": "pengjunchi0/codex-visio-paper-figure-skill",
+  "kind": "direct",
+  "prompt": "Recreate the attached reference image as an editable diagram, preserving separate shapes, connectors, labels, and panel alignment. Export it as an editable .vsdx plus PNG, SVG, PDF, and PPTX; reference: a three-panel signaling pathway with blue receptors, orange arrows, and green response nodes."
+ },
+ {
+  "id": "visio-image-rebuilder:indirect",
+  "skill": "visio-image-rebuilder",
+  "repo": "pengjunchi0/codex-visio-paper-figure-skill",
+  "kind": "indirect",
+  "prompt": "Turn this reference into a fully editable vector diagram rather than a flattened picture, matching its layout, colors, typography, and scientific notation, and provide the editable source plus PNG, SVG, PDF, and PPTX exports. Reference: a three-panel signaling pathway with blue receptors, orange arrows, and green response nodes."
+ },
+ {
+  "id": "visio-image-rebuilder:other_language",
+  "skill": "visio-image-rebuilder",
+  "repo": "pengjunchi0/codex-visio-paper-figure-skill",
+  "kind": "other_language",
+  "prompt": "请根据下面的参考图重建一个可编辑的图表，保留独立形状、连接线、标签和面板对齐关系。请导出可编辑的 .vsdx 文件，以及 PNG、SVG、PDF 和 PPTX；参考图内容：一个包含蓝色受体、橙色箭头和绿色响应节点的三面板信号通路图。"
+ },
+ {
+  "id": "none:1",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "Write a Python function that checks whether a string is a palindrome, ignoring case and punctuation."
+ },
+ {
+  "id": "none:2",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "What is the difference between a process and a thread? Two or three sentences."
+ },
+ {
+  "id": "none:3",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "Give me a regular expression that matches an ISO 8601 date like 2026-10-11."
+ },
+ {
+  "id": "none:4",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "把这句话翻译成英文：今天下午三点开会，请带上上周的销售数据。"
+ },
+ {
+  "id": "none:5",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "List three common causes of a memory leak in a Node.js server."
+ },
+ {
+  "id": "none:6",
+  "skill": null,
+  "repo": null,
+  "kind": "unrelated",
+  "prompt": "Rename the variable `tmp` to `total` in this snippet and return it: `tmp = 0\\nfor x in xs:\\n    tmp += x`"
+ }
+]
