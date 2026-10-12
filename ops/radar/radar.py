@@ -54,7 +54,7 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
 KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
-         "usecase": "通用词",
+         "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
 TOPICS = {k: re.compile(v, re.I) for k, v in json.loads((HERE / "topics.json").read_text()).items() if not k.startswith("_")}

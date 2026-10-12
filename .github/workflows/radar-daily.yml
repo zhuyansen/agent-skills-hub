@@ -71,6 +71,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
           AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
+          GOANYAPI_API_KEY: ${{ secrets.GOANYAPI_API_KEY }}   # optional: related queries for the keyword table (usecases.py)
           GITHUB_TOKEN: ${{ github.token }}
         run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap --skip-x --skip-hf
 

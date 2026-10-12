@@ -315,6 +315,7 @@ def test_keyword_table_in_the_report(monkeypatch, tmp_path):
     monkeypatch.setattr(usecases, "fetch_series", lambda keywords, bench, today: (
         {k: {"solo": rise if k == "synthid detector" else flat, "pair": [(d, v, 40) for d, v in (rise if k == "synthid detector" else flat)]}
          for k in keywords}, 7200))
+    monkeypatch.delenv("GOANYAPI_API_KEY", raising=False)
     uc = usecases.run(tmp_path, ["synthid detector"], {}, TODAY)
     text = "\n".join(usecases.table(uc))
     assert "| **synthid detector** | 名字 |" in text and "**优先**" in text
@@ -325,10 +326,10 @@ def test_keyword_table_in_the_report(monkeypatch, tmp_path):
 
 
 def test_screen_drops_loosely_related_keywords_and_keeps_all_when_the_call_fails(monkeypatch):
-    cands = [{"phrase": "ai image detector"}, {"phrase": "chatgpt alternative"}, {"phrase": "ai audio detector"}]
+    cands = [{"phrase": p, "brand": False} for p in ("ai image detector", "chatgpt alternative", "ai audio detector")]
     ev = {"posts": [{"text": "check if any image is AI generated", "likes": 900, "by": "a"}], "readme": ""}
     monkeypatch.setattr(usecases.aisa, "chat", lambda *a, **k: '[{"i": 0, "score": 0.95}, {"i": 1, "score": 0.2}, {"i": 2, "score": 0.7}]')
-    kept = usecases.screen("m", "synthid detector", ev, cands)
+    kept = usecases.relevant(usecases.screen("m", "synthid detector", ev, cands))
     assert [(c["phrase"], c["relevance"]) for c in kept] == [("ai image detector", 0.95), ("ai audio detector", 0.7)]
 
     def down(*a, **k):
@@ -340,3 +341,23 @@ def test_screen_drops_loosely_related_keywords_and_keeps_all_when_the_call_fails
 def test_momentum_is_the_last_settled_week_against_the_week_before():
     assert usecases.shape(_daily([10] * 76 + [20] * 7 + [40] * 7 + [0, 100]), TODAY)["momentum"] == 2.0
     assert usecases.shape(_daily([0] * 83 + [40] * 7 + [0, 100]), TODAY)["momentum"] is None   # nothing the week before
+
+
+def test_related_queries_feed_the_table_and_other_rising_names_become_leads(monkeypatch, tmp_path):
+    rise, flat = _daily([1] * 85 + [9, 53, 40, 59, 100]), _daily([20] * 90)
+    monkeypatch.setenv("GOANYAPI_API_KEY", "k")
+    monkeypatch.setattr(usecases, "evidence", lambda names, repos, today: ({n: {"posts": [], "readme": "x", "repo": ""} for n in names}, 3000))
+    monkeypatch.setattr(usecases, "propose", lambda model, name, ev: [])
+    monkeypatch.setattr(usecases.goanyapi, "related_queries", lambda name, geo: (
+        {"rising": ["ai photo detector", "gpt image 2.5", "google nano banana", "nano banana 2.1 vs pro"], "top": ["google gemini"]}, 6000))
+    monkeypatch.setattr(usecases, "screen", lambda model, name, ev, cands: [
+        dict(c, relevance=0.9, is_name=c["phrase"] != "ai photo detector") for c in cands])
+    monkeypatch.setattr(usecases, "volumes", lambda phrases, loc: ({p: {"volume": 9000, "month": "2026-08"} for p in phrases}, 90000))
+    monkeypatch.setattr(usecases, "fetch_series", lambda keywords, bench, today: (
+        {k: {"solo": flat, "pair": [(d, v, 40) for d, v in flat]} for k in keywords}, 2400))
+    uc = usecases.run(tmp_path, ["nano banana 2.1"], {}, TODAY)
+    assert uc["cosearch"] == [{"term": "gpt image 2.5", "with": "nano banana 2.1"}]     # same family and non-rising are left out
+    assert uc["tails"] == {"nano banana 2.1": ["nano banana 2.1 vs pro"]}
+    text = "\n".join(usecases.table(uc))
+    assert "| **ai photo detector** 🔎 |" in text and "gpt image 2.5(和 nano banana 2.1 一起)" in text
+    assert usecases.leads(uc)[-1]["kinds"] == ["cosearch"]
