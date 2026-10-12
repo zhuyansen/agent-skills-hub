@@ -3030,7 +3030,9 @@
     "bodepudimuneendra-netizen/laya-jev-GraphRAG",
     "kiycoh/silica-core",
     "mhmtsrfglu/superwiki",
-    "junruxiong/IncarnaMind"
+    "junruxiong/IncarnaMind",
+    "wenlan-app/wenlan",
+    "HagaiHen/podcast-wiki"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3045,7 +3047,8 @@
     "rolandpg/zettelforge",
     "serradura/okf-gem",
     "study8677/antigravity-workspace-template",
-    "useenzyme/enzyme"
+    "useenzyme/enzyme",
+    "7xuanlu/wenlan"
    ]
   },
   "related": [
@@ -3364,7 +3367,8 @@
     "infragate/capa",
     "Dimillian/CodexSkillManager",
     "pr-pm/prpm",
-    "LobsterTrap/lola"
+    "LobsterTrap/lola",
+    "Pandemonium-Research/Skilldex"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4220,7 +4224,10 @@
     "ilyautov/humanizer-it",
     "phuryn/work-humanizer",
     "XuanjinZhu/zh-scientific-humanizer",
-    "Guksu/suta"
+    "Guksu/suta",
+    "FeedHive/ai-slop-detector",
+    "ismilewolf-eng/sloptrim-zh",
+    "kjmagnan1s/anti-slop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign"
@@ -4644,7 +4651,8 @@
     "sva-admin/sv-academy-prom-design",
     "undsky/doudou-color-skill",
     "diegomarino/tui-design",
-    "oil-oil/oil-ui"
+    "oil-oil/oil-ui",
+    "ABC-xiaoxuan/award-level-web-design"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -5661,7 +5669,8 @@
     "sujunmin/agy-ppt",
     "carnot-tech/jinba-consulting-pptx-skill",
     "zhuyansen/awesome-codex-ppt-skills",
-    "MURMURE11118586/codex-xkppt-skill"
+    "MURMURE11118586/codex-xkppt-skill",
+    "w1ndys/html-ppt-academic-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7032,7 +7041,9 @@
     "shitianfang/wakegate",
     "zzsong1023/jev-market-reflex",
     "dtunai/cu-Jev",
-    "dorkitude/skimmer"
+    "dorkitude/skimmer",
+    "jmagly/aiwg",
+    "lookski/openjev"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7416,7 +7427,14 @@
     "hacimertgokhan/geomotion",
     "onuryildriim/claude-kurgu-atolyesi",
     "mikelix/gstack-tutorial-5-agi-race-v2",
-    "OnurGumus/codebase-video"
+    "OnurGumus/codebase-video",
+    "GTAI-1/flow-mcp",
+    "dev-isaacmello/extreme-motion-design",
+    "revfactory/showreel",
+    "jammaru/launch-video-craft",
+    "CJ10110425/logo-intro",
+    "nomicsadmin/editor-video-ia",
+    "i-afaqrashid/claude-animation-studio"
    ],
    "sub_skills": [
     {

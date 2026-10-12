@@ -3092,5 +3092,19 @@
    "general": 0.49
   },
   "kind": "convert"
+ },
+ {
+  "repo": "w1ndys/html-ppt-academic-skill",
+  "stars": 6,
+  "description": "一个面向大学生、研究生和高校教师的 HTML PPT Skill，用于生成论文答辩、开题报告、中期答辩、预答辩、组会汇报和学术演讲风格的静态 HTML 幻灯片。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.95,
+   "business": 0.03,
+   "convert": 0.49,
+   "general": 0.08
+  },
+  "kind": "html"
  }
 ]

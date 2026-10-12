@@ -4800,5 +4800,33 @@
    "personal": 0.7
   },
   "kind": "docs_qa"
+ },
+ {
+  "repo": "wenlan-app/wenlan",
+  "stars": 79,
+  "description": "A living personal wiki. Wenlan turns your documents, notes, and AI chats into pages with links to their sources, and updates them as sources change without overwriting your edits. Claude Code, Codex and other AI tools can build on it.",
+  "scores": {
+   "llm_wiki": 0.92,
+   "rag_platform": 0.49,
+   "mcp": 0.63,
+   "docs_qa": 0.59,
+   "graph": 0.44,
+   "personal": 0.73
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "HagaiHen/podcast-wiki",
+  "stars": 5,
+  "description": "Claude Code plugin that turns the podcasts you listen to on Spotify into a cited LLM wiki: one page per topic, every claim linked to its episode.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.06,
+   "mcp": 0.27,
+   "docs_qa": 0.54,
+   "graph": 0.29,
+   "personal": 0.79
+  },
+  "kind": "llm_wiki"
  }
 ]

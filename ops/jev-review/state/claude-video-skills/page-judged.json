@@ -3744,5 +3744,41 @@
   "days": 1,
   "stars_per_day": 66.0,
   "verdict": "admit"
+ },
+ {
+  "repo": "GTAI-1/flow-mcp",
+  "name": "flow-mcp",
+  "stars": 72,
+  "description": "Drive Google Flow from Claude, Codex or a local control panel, on Mac or Windows — using your Google AI subscription credits instead of the pay-per-use video API. No browser extension.",
+  "topics": [
+   "ai-video",
+   "claude",
+   "codex",
+   "google-flow",
+   "mcp",
+   "model-context-protocol"
+  ],
+  "created": "2026-09-21",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 13962,
+  "names_model": false,
+  "makes_video": 0.91,
+  "agent_driven": 0.94,
+  "code_rendered": 0.05,
+  "reusable_tool": 0.97,
+  "names_opus": 0.03,
+  "shows_result": 0.03,
+  "one_command_start": 0.08,
+  "specific_outcome": 0.49,
+  "complete_docs": 0.52,
+  "novel_angle": 0.84,
+  "shareable_output": 0.15,
+  "quality": 0.28,
+  "tier": "低",
+  "hit_prior": 0.34,
+  "days": 21,
+  "stars_per_day": 3.4285714285714284,
+  "verdict": "low_quality"
  }
 ]

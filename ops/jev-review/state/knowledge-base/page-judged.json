@@ -42558,5 +42558,43 @@
   "days": 1143,
   "stars_per_day": 0.7007874015748031,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "wenlan-app/wenlan",
+  "name": "wenlan",
+  "stars": 79,
+  "description": "A living personal wiki. Wenlan turns your documents, notes, and AI chats into pages with links to their sources, and updates them as sources change without overwriting your edits. Claude Code, Codex and other AI tools can build on it.",
+  "topics": [
+   "ai-memory",
+   "claude",
+   "claude-code",
+   "claude-code-plugin",
+   "codex",
+   "knowledge-base",
+   "knowledge-graph",
+   "llm-wiki",
+   "local-first",
+   "mcp-server",
+   "second-brain"
+  ],
+  "created": "2026-04-19",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 23713,
+  "names_model": false,
+  "on_subject": 0.95,
+  "is_software": 0.97,
+  "shows_result": 0.8,
+  "one_command_start": 0.26,
+  "specific_outcome": 0.55,
+  "complete_docs": 0.83,
+  "novel_angle": 0.68,
+  "shareable_output": 0.68,
+  "quality": 0.61,
+  "tier": "中",
+  "hit_prior": 0.7200000000000001,
+  "days": 176,
+  "stars_per_day": 0.44886363636363635,
+  "verdict": "low_quality"
  }
 ]

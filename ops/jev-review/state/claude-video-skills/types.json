@@ -5074,5 +5074,131 @@
    "general": 0.05
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "GTAI-1/flow-mcp",
+  "stars": 72,
+  "description": "Drive Google Flow from Claude, Codex or a local control panel, on Mac or Windows — using your Google AI subscription credits instead of the pay-per-use video API. No browser extension.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.26,
+   "music": 0.23,
+   "motion": 0.16,
+   "shorts": 0.39,
+   "editing": 0.21,
+   "demo": 0.19,
+   "story": 0.12,
+   "avatar": 0.3,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "dev-isaacmello/extreme-motion-design",
+  "stars": 20,
+  "description": "Skill de motion design por código (Remotion) com trilha, narração e QA automático. Para Claude, Claude Code e Codex.",
+  "scores": {
+   "promo": 0.2,
+   "explainer": 0.43,
+   "music": 0.25,
+   "motion": 0.15,
+   "shorts": 0.28,
+   "editing": 0.07,
+   "demo": 0.2,
+   "story": 0.18,
+   "avatar": 0.11,
+   "general": 0.37
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "revfactory/showreel",
+  "stars": 20,
+  "description": "Claude Code skill that produces Korean motion-graphics videos end to end: brief, research, script, ElevenLabs narration, music, images, deterministic HTML render, mix and automated QA.",
+  "scores": {
+   "promo": 0.59,
+   "explainer": 0.24,
+   "music": 0.18,
+   "motion": 0.22,
+   "shorts": 0.14,
+   "editing": 0.05,
+   "demo": 0.31,
+   "story": 0.14,
+   "avatar": 0.11,
+   "general": 0.1
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "jammaru/launch-video-craft",
+  "stars": 5,
+  "description": "Agent Skill for creating polished product launch videos with real UI using Remotion. For Cursor, Claude Code, Codex, and Copilot.",
+  "scores": {
+   "promo": 0.96,
+   "explainer": 0.14,
+   "music": 0.04,
+   "motion": 0.16,
+   "shorts": 0.11,
+   "editing": 0.19,
+   "demo": 0.79,
+   "story": 0.12,
+   "avatar": 0.05,
+   "general": 0.06
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "CJ10110425/logo-intro",
+  "stars": 5,
+  "description": "WebGL logo intros from any SVG logo: lens-warped close-up, wordmark reveal, gradient bloom, lock-in ring and shimmer. JS module, single-file HTML, video export and a Claude skill.",
+  "scores": {
+   "promo": 0.71,
+   "explainer": 0.07,
+   "music": 0.03,
+   "motion": 0.94,
+   "shorts": 0.06,
+   "editing": 0.03,
+   "demo": 0.29,
+   "story": 0.05,
+   "avatar": 0.02,
+   "general": 0.07
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "nomicsadmin/editor-video-ia",
+  "stars": 5,
+  "description": "Editor de vídeo dentro do Claude Code: manda o vídeo, o briefing e a referência, recebe o reels editado. Corte pela fala, legenda palavra a palavra, telas na palavra certa. Roda no seu Mac.",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.39,
+   "music": 0.05,
+   "motion": 0.09,
+   "shorts": 0.94,
+   "editing": 0.97,
+   "demo": 0.61,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.13
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "i-afaqrashid/claude-animation-studio",
+  "stars": 5,
+  "description": "Claude Code plugin: animated short films where every frame is drawn in code and the music is synthesized in code, perfectly synced.",
+  "scores": {
+   "promo": 0.57,
+   "explainer": 0.18,
+   "music": 0.78,
+   "motion": 0.13,
+   "shorts": 0.56,
+   "editing": 0.03,
+   "demo": 0.53,
+   "story": 0.82,
+   "avatar": 0.08,
+   "general": 0.44
+  },
+  "kind": "story"
  }
 ]

@@ -3288,5 +3288,47 @@
    "rules": 0.81
   },
   "kind": "design"
+ },
+ {
+  "repo": "FeedHive/ai-slop-detector",
+  "stars": 29,
+  "description": "120 patterns that make writing read like AI slop, with an agent skill for Claude Code and Codex.",
+  "scores": {
+   "writing": 0.31,
+   "detector": 0.84,
+   "chinese": 0.02,
+   "code": 0.13,
+   "design": 0.06,
+   "rules": 0.95
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "ismilewolf-eng/sloptrim-zh",
+  "stars": 8,
+  "description": "中文去 AI 味 Skill + 本地检测脚本。基于 sloptrim 汉化，参照 Humanizer-zh 的汉化思路。",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.98,
+   "chinese": 0.98,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.67
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "kjmagnan1s/anti-slop",
+  "stars": 5,
+  "description": "Detect, rewrite, and ingest AI slop. One maintained floor that replaces avoid-ai-writing, humanizer, and stop-slop, with a protect-list seam so it never flattens your voice.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.96,
+   "chinese": 0.03,
+   "code": 0.14,
+   "design": 0.08,
+   "rules": 0.8
+  },
+  "kind": "detector"
  }
 ]

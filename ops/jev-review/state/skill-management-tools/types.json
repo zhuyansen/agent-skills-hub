@@ -2560,5 +2560,19 @@
    "general": 0.31
   },
   "kind": "cli"
+ },
+ {
+  "repo": "Pandemonium-Research/Skilldex",
+  "stars": 5,
+  "description": "Package manager and registry for skill packages - install, validate, score, and publish .skill packages with Code Harness integration via MCP",
+  "scores": {
+   "cli": 0.92,
+   "sync": 0.2,
+   "app": 0.07,
+   "registry": 0.8,
+   "team": 0.31,
+   "general": 0.1
+  },
+  "kind": "cli"
  }
 ]

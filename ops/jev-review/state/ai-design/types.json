@@ -2560,5 +2560,19 @@
    "review": 0.67
   },
   "kind": "ui"
+ },
+ {
+  "repo": "ABC-xiaoxuan/award-level-web-design",
+  "stars": 5,
+  "description": "Agent skill: design web pages to Awwwards/Webby/FWA standard with an 8-dimension screenshot self-review loop (Claude Code, Codex, Cursor...)",
+  "scores": {
+   "ui": 0.97,
+   "system": 0.3,
+   "tool_mcp": 0.04,
+   "to_code": 0.26,
+   "graphics": 0.09,
+   "review": 0.88
+  },
+  "kind": "ui"
  }
 ]

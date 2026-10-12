@@ -4978,5 +4978,35 @@
    "general": 0.18
   },
   "kind": "devtool"
+ },
+ {
+  "repo": "jmagly/aiwg",
+  "stars": 222,
+  "description": "Reusable project context and specialist workflows for the AI tools you already use. Agents, skills, rules and MCP tools for Claude Code, Codex, Copilot, Cursor and more, plus SDLC workflows, session memory, and Jev decision support that offloads bounded LLM decisions to save tokens.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.16,
+   "devtool": 0.96,
+   "sdk": 0.19,
+   "business": 0.06,
+   "consumer": 0.17,
+   "general": 0.79
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "lookski/openjev",
+  "stars": 5,
+  "description": "Open decision engine: type-safe answers with raw softmax probabilities from a local LLM or any OpenAI-compatible API. Crush radar for WeChat/QQ/Telegram chats - verdict + next-move advice. | 开放决策引擎: 本地 LLM 或任意 OpenAI 兼容 API, 原始 softmax 概率 + 类型安全回答. 微信/QQ/Telegram 追人雷达: 冲/稳/缓/停 + 下一步建议.",
+  "scores": {
+   "replica": 0.96,
+   "agent": 0.08,
+   "devtool": 0.32,
+   "sdk": 0.75,
+   "business": 0.59,
+   "consumer": 0.41,
+   "general": 0.69
+  },
+  "kind": "general"
  }
 ]

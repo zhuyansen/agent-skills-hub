@@ -31,6 +31,14 @@
   "type": "image/webp",
   "bytes": 101308
  },
+ "ABC-xiaoxuan/award-level-web-design": {
+  "repo": "ABC-xiaoxuan/award-level-web-design",
+  "url": "https://raw.githubusercontent.com/ABC-xiaoxuan/award-level-web-design/HEAD/examples/screenshots/09-echo-desktop-demo.png",
+  "alt": "演示",
+  "score": 1.6,
+  "type": "image/png",
+  "bytes": 111127
+ },
  "ABYR1206/claude-skill-hand-drawn-slides": {
   "repo": "ABYR1206/claude-skill-hand-drawn-slides",
   "url": "https://raw.githubusercontent.com/ABYR1206/claude-skill-hand-drawn-slides/HEAD/examples/preview.png",
@@ -550,6 +558,14 @@
   "score": 2.9,
   "type": "image/gif",
   "bytes": 2078842
+ },
+ "HagaiHen/podcast-wiki": {
+  "repo": "HagaiHen/podcast-wiki",
+  "url": "https://raw.githubusercontent.com/HagaiHen/podcast-wiki/HEAD/promo/preview.gif",
+  "alt": "Podcast Wiki promo, 30s",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3933836
  },
  "Hasasasa/claude-skill-html-to-pptx": {
   "repo": "Hasasasa/claude-skill-html-to-pptx",
@@ -2007,6 +2023,14 @@
   "type": "image/gif",
   "bytes": 9921535
  },
+ "i-afaqrashid/claude-animation-studio": {
+  "repo": "i-afaqrashid/claude-animation-studio",
+  "url": "https://raw.githubusercontent.com/i-afaqrashid/claude-animation-studio/HEAD/docs/gallery/qawwali-night.gif",
+  "alt": "Qawwali Night",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1407674
+ },
  "iart-ai/ad-video-skills": {
   "repo": "iart-ai/ad-video-skills",
   "url": "https://raw.githubusercontent.com/iart-ai/ad-video-skills/HEAD/showcase.gif",
@@ -2191,6 +2215,14 @@
   "type": "image/gif",
   "bytes": 5594680
  },
+ "jammaru/launch-video-craft": {
+  "repo": "jammaru/launch-video-craft",
+  "url": "https://raw.githubusercontent.com/jammaru/launch-video-craft/HEAD/assets/agent-demo.webp",
+  "alt": "An agent using Launch Video Craft to check tempo and correct a drift",
+  "score": 1.7,
+  "type": "image/webp",
+  "bytes": 1515312
+ },
  "jaredcassoutt/vox-editorial": {
   "repo": "jaredcassoutt/vox-editorial",
   "url": "https://raw.githubusercontent.com/jaredcassoutt/vox-editorial/HEAD/skills/vox-editorial/docs/jc-builds.gif",
@@ -2222,6 +2254,14 @@
   "score": 1.85,
   "type": "image/png",
   "bytes": 2840759
+ },
+ "jmagly/aiwg": {
+  "repo": "jmagly/aiwg",
+  "url": "https://raw.githubusercontent.com/jmagly/aiwg/HEAD/docs/.public/aiwg-readme-hero-v2.png",
+  "alt": "AIWG — multi-agent AI framework, one\nsource of truth; network connecting AI tool",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 1984500
  },
  "joelbarmettlerUZH/slidev-mcp": {
   "repo": "joelbarmettlerUZH/slidev-mcp",
@@ -2310,6 +2350,14 @@
   "score": 0.35,
   "type": "image/gif",
   "bytes": 1511071
+ },
+ "kjmagnan1s/anti-slop": {
+  "repo": "kjmagnan1s/anti-slop",
+  "url": "https://raw.githubusercontent.com/kjmagnan1s/anti-slop/HEAD/assets/anti-slop.gif",
+  "alt": "anti-slop annihilating generic AI text",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 5370775
  },
  "klsoen/opus-js-animations": {
   "repo": "klsoen/opus-js-animations",
@@ -2679,6 +2727,14 @@
   "type": "image/gif",
   "bytes": 152210
  },
+ "nomicsadmin/editor-video-ia": {
+  "repo": "nomicsadmin/editor-video-ia",
+  "url": "https://raw.githubusercontent.com/nomicsadmin/editor-video-ia/HEAD/docs/img/antes-depois.gif",
+  "alt": "O mesmo trecho: à esquerda o vídeo bruto do celular, à direita editado pela skil",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 6067825
+ },
  "octopusreview/octopus": {
   "repo": "octopusreview/octopus",
   "url": "https://raw.githubusercontent.com/octopusreview/octopus/HEAD/apps/web/public/brand/octopus-mark.png",
@@ -2862,6 +2918,14 @@
   "score": -3.3,
   "type": "image/png",
   "bytes": 72314
+ },
+ "revfactory/showreel": {
+  "repo": "revfactory/showreel",
+  "url": "https://raw.githubusercontent.com/revfactory/showreel/HEAD/docs/media/showreel-preview.gif",
+  "alt": "Highlights from a 2-minute showreel promo video made with the showreel skill",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 3320990
  },
  "riteouschris-max/journal-club-ppt": {
   "repo": "riteouschris-max/journal-club-ppt",
@@ -3310,6 +3374,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 4120552
+ },
+ "wenlan-app/wenlan": {
+  "repo": "wenlan-app/wenlan",
+  "url": "https://raw.githubusercontent.com/wenlan-app/wenlan/HEAD/docs/assets/wenlan-knowledge-network.png",
+  "alt": "Illustrative Agent Loop page citing an agent-design guide and UI-review note; na",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 201130
  },
  "whiteg2030-alt/BWC-XIXI-PPT-HTML": {
   "repo": "whiteg2030-alt/BWC-XIXI-PPT-HTML",
