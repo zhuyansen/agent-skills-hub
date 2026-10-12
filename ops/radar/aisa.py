@@ -74,3 +74,20 @@ def call(calls: list[dict]) -> tuple[dict[str, dict], int]:
         if r.get("successful"):
             out[r["call_id"]] = r.get("data") or {}
     return out, cost
+
+
+CHAT = os.environ.get("AISA_API_BASE_URL", "https://api.aisa.one") + "/v1/chat/completions"
+
+
+def chat(model: str, system: str, user: str, max_tokens: int = 1500) -> str:
+    """AIsa's OpenAI-compatible chat endpoint, same key as the tool router."""
+    req = urllib.request.Request(CHAT, data=json.dumps({"model": model, "temperature": 0, "max_tokens": max_tokens, "messages": [
+        {"role": "system", "content": system}, {"role": "user", "content": user}]}).encode(), method="POST", headers={
+        "Content-Type": "application/json", "Authorization": f"Bearer {key()}", "User-Agent": "agentskillshub-radar/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=90) as res:
+            return json.load(res)["choices"][0]["message"]["content"] or ""
+    except urllib.error.HTTPError as exc:
+        raise AisaError(f"HTTP {exc.code}: {' '.join(exc.read().decode('utf-8', 'replace').split())[:200]}") from exc
+    except (OSError, ValueError, KeyError, IndexError, TypeError) as exc:
+        raise AisaError(f"{type(exc).__name__}: {exc}") from exc

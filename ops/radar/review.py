@@ -28,6 +28,17 @@ RISE_FACTOR, RISE_MIN = 2.0, 10
 RISE_SHARE = 0.25     # the rise starts where a series first covers this share of base -> peak
 WINDOW = 60
 TOOL = "post_dataforseo_keywords_trends_explore_live"
+# Google has not settled the last two days of a daily series: they come back as 0 and
+# then 100 for unrelated terms ("ai image detector": ..., 5, 5, 0, 100 on 2026-10-12),
+# which reads as a rise. Every reader drops them (settled()). Found before the first
+# leads came due (10-17), so no stored verdict was made from those days.
+UNSETTLED_DAYS = 2
+
+
+def settled(points: list[tuple], today: date) -> list[tuple]:
+    """A daily Trends series without its last UNSETTLED_DAYS days. Rows are (day, value, ...)."""
+    cut = today - timedelta(days=UNSETTLED_DAYS)
+    return [p for p in points if p[0] < cut]
 
 
 def _engine():
@@ -131,7 +142,7 @@ def review(today: date | None = None) -> dict:
         for ids, term, first_seen, keys in plan:
             if not all(cid in data for cid in ids):
                 continue   # stays due; tomorrow's run takes it again
-            per = {k: rose(_series((data[cid].get("tasks") or [{}])[0]), first_seen) for cid, k in zip(ids, keys)}
+            per = {k: rose(settled(_series((data[cid].get("tasks") or [{}])[0]), today), first_seen) for cid, k in zip(ids, keys)}
             v, lead = verdict(per, first_seen)
             conn.execute(text("""
                 UPDATE radar_leads SET reviewed_at = now(), verdict = :v, lead_days = :lead,

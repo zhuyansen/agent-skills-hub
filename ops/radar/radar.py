@@ -1,7 +1,7 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review]
+                            [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
 The source signals (①) change by the hour, the rest by the day, so they run apart:
@@ -42,6 +42,7 @@ import review  # noqa: E402
 import signals  # noqa: E402
 import sitemap_diff  # noqa: E402
 import source_signals  # noqa: E402
+import usecases  # noqa: E402
 
 NAMED_MIN = 0.5
 OTHER_TERMS = 15
@@ -53,6 +54,7 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
 KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
+         "usecase": "通用词",
          "watch": "观察词"}
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
 TOPICS = {k: re.compile(v, re.I) for k, v in json.loads((HERE / "topics.json").read_text()).items() if not k.startswith("_")}
@@ -105,6 +107,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
             row["examples"] += r.get("examples", [])
             row["posts"] += r.get("posts", [])
             row["variants"] += [v for v in r.get("variants", []) if v not in row["variants"]]
+            if r.get("repo"):
+                row["repo"] = r["repo"]
     rows = list(out.values())
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
@@ -144,7 +148,8 @@ def _cost(*blocks: dict) -> str:
 
 
 def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: dict) -> str:
-    lines = ["## 新词雷达", "", "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
+    lines = ["## 新词雷达", *usecases.table(b.get("usecases", {"skipped": True})), "",
+             "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
              "| 词 | 信号 | Jev | 已有页面 | 搜索变体 | 例子 |", "|---|---|---|---|---|---|"]
     names_ = named(lead)
     for r in names_[:SHOWN]:
@@ -205,7 +210,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines += _source_status(x, hf)
     bo = b["breakout"]
     lines += _rest_status(bo, gh, sm, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}))}")
+    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
 
 
@@ -320,6 +325,12 @@ def main() -> int:
     summ = run("summary", review.summary, no_db)
     blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources()},
                                    no_db or "--skip-x" not in flags)
+    # The generic terms behind the day's names (usecases.py): today's new names, then the ① leads
+    # the 8-hourly job kept. Read twice each (today and three days on); about $0.15 a day.
+    names = [r["term"] for r in keep] + [r["term"] for r in blocks["recent_sources"].get("rows", [])]
+    repos = {r["term"]: r["repo"] for r in lead if r.get("repo")}
+    blocks["usecases"] = run("usecases", lambda: usecases.run(snaps, list(dict.fromkeys(names)), repos), "--skip-usecases" in flags)
+    run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
     report.write_text(markdown(lead, blocks, gsc, rev, summ))
     report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "gsc": gsc, "review": rev,
                                                       "summary": summ}, ensure_ascii=False, indent=1, default=str))

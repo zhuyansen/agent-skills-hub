@@ -120,7 +120,7 @@ def breakouts(snapshot_dir: Path) -> dict:
             display = ""
         row["variants"] = variants(row, display)
         gain = f",一天 +{row['delta']}" if row["delta"] is not None else ""
-        terms.append({"term": row["variants"][0], "recent": 1, "variants": row["variants"],
+        terms.append({"term": row["variants"][0], "recent": 1, "variants": row["variants"], "repo": row["repo"],
                       "note": f"GitHub 爆发 {row['repo']} ★{row['stars']}(均 {row['velocity']}/天{gain})",
                       "examples": [f"{row['repo']}: {row['description']}"]})
     return {"searched": len(repos), "first_run": before is None, "repos": rows, "terms": terms}

@@ -269,3 +269,55 @@ def test_mail_recipients_tolerate_how_people_type_them():
     assert notify.recipients('"a@b.com"') == ["a@b.com"]
     assert notify.recipients("a@b.com，c@d.cn") == ["a@b.com", "c@d.cn"]
     assert notify.recipients("<a@b.com>; c@d.cn\n") == ["a@b.com", "c@d.cn"]
+
+
+# --- the keyword table (usecases.py) and Trends' unsettled days ------------------------------
+
+import usecases  # noqa: E402
+
+TODAY = date(2026, 10, 12)
+
+
+def _daily(values, end=TODAY - timedelta(days=1)):
+    """A daily series ending yesterday, as Trends returns it; its last two days are unsettled."""
+    start = end - timedelta(days=len(values) - 1)
+    return [(start + timedelta(days=i), v) for i, v in enumerate(values)]
+
+
+def test_trends_last_two_days_are_not_a_rise():
+    # "ai image detector" on 2026-10-12: flat for 88 days, then 0 and 100 on the two unsettled days
+    assert not usecases.shape(_daily([5] * 88 + [0, 100]), TODAY)["rose"]
+    assert review.settled(_daily([5] * 88 + [0, 100]), TODAY)[-1][1] == 5
+
+
+def test_a_real_rise_counts_and_a_single_day_spike_does_not():
+    s = usecases.shape(_daily([1] * 85 + [9, 53, 40, 59, 100]), TODAY)     # "synthid detector"
+    assert s["rose"] and s["now"] == "rising" and s["peak_day"] == "2026-10-08"
+    assert not usecases.shape(_daily([0] * 80 + [100] + [0] * 9), TODAY)["rose"]   # "debloat macos"
+
+
+def test_usecase_decisions_and_sizes():
+    assert usecases.decide({"now": "rising"}, 5000, 300) == "prioritize" and usecases.decide({"now": "flat"}, 5000, 300) == "watch"
+    assert usecases.decide({"now": "flat"}, 40, 300) == "skip" and usecases.decide({"no_data": True}, None, 300) == "watch"
+    assert usecases.own_per_day(_daily([10] * 81 + [20] * 9), 30000, "2026-08", TODAY) == 2000
+
+
+def test_keyword_table_in_the_report(monkeypatch, tmp_path):
+    rise, flat = _daily([1] * 85 + [9, 53, 40, 59, 100]), _daily([20] * 90)
+    monkeypatch.setattr(usecases, "evidence", lambda names, repos, today: (
+        {n: {"posts": [{"text": "check if any image is AI generated", "likes": 900, "by": "a", "url": ""}], "readme": "", "repo": ""} for n in names}, 3000))
+    monkeypatch.setattr(usecases, "propose", lambda model, name, ev: [
+        {"phrase": "ai image detector", "evidence": "check if any image is AI generated", "brand": False},
+        {"phrase": "photoshop alternative", "evidence": "free clone", "brand": True}])
+    monkeypatch.setattr(usecases, "volumes", lambda phrases, loc: (
+        {"ai image detector": {"volume": 60000, "month": "2026-08"}, "photoshop alternative": {"volume": 6000, "month": "2026-08"}}, 90000))
+    monkeypatch.setattr(usecases, "fetch_series", lambda keywords, bench, today: (
+        {k: {"solo": rise if k == "synthid detector" else flat, "pair": [(d, v, 40) for d, v in (rise if k == "synthid detector" else flat)]}
+         for k in keywords}, 7200))
+    uc = usecases.run(tmp_path, ["synthid detector"], {}, TODAY)
+    text = "\n".join(usecases.table(uc))
+    assert "| **synthid detector** | 名字 |" in text and "**优先**" in text
+    assert "| **photoshop alternative** ⚠ | 通用词 | synthid detector |" in text and "别人的品牌" in text
+    assert [x["term"] for x in usecases.leads(uc)] == ["ai image detector", "photoshop alternative"]
+    assert usecases.run(tmp_path, ["synthid detector"], {}, TODAY + timedelta(days=1))["names"] == []
+    assert usecases.run(tmp_path, ["synthid detector"], {}, TODAY + timedelta(days=3))["names"] == ["synthid detector"]
