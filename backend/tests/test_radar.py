@@ -309,6 +309,7 @@ def test_keyword_table_in_the_report(monkeypatch, tmp_path):
     monkeypatch.setattr(usecases, "propose", lambda model, name, ev: [
         {"phrase": "ai image detector", "evidence": "check if any image is AI generated", "brand": False},
         {"phrase": "photoshop alternative", "evidence": "free clone", "brand": True}])
+    monkeypatch.setattr(usecases, "screen", lambda model, name, ev, cands: cands)
     monkeypatch.setattr(usecases, "volumes", lambda phrases, loc: (
         {"ai image detector": {"volume": 60000, "month": "2026-08"}, "photoshop alternative": {"volume": 6000, "month": "2026-08"}}, 90000))
     monkeypatch.setattr(usecases, "fetch_series", lambda keywords, bench, today: (
@@ -321,3 +322,21 @@ def test_keyword_table_in_the_report(monkeypatch, tmp_path):
     assert [x["term"] for x in usecases.leads(uc)] == ["ai image detector", "photoshop alternative"]
     assert usecases.run(tmp_path, ["synthid detector"], {}, TODAY + timedelta(days=1))["names"] == []
     assert usecases.run(tmp_path, ["synthid detector"], {}, TODAY + timedelta(days=3))["names"] == ["synthid detector"]
+
+
+def test_screen_drops_loosely_related_keywords_and_keeps_all_when_the_call_fails(monkeypatch):
+    cands = [{"phrase": "ai image detector"}, {"phrase": "chatgpt alternative"}, {"phrase": "ai audio detector"}]
+    ev = {"posts": [{"text": "check if any image is AI generated", "likes": 900, "by": "a"}], "readme": ""}
+    monkeypatch.setattr(usecases.aisa, "chat", lambda *a, **k: '[{"i": 0, "score": 0.95}, {"i": 1, "score": 0.2}, {"i": 2, "score": 0.7}]')
+    kept = usecases.screen("m", "synthid detector", ev, cands)
+    assert [(c["phrase"], c["relevance"]) for c in kept] == [("ai image detector", 0.95), ("ai audio detector", 0.7)]
+
+    def down(*a, **k):
+        raise usecases.aisa.AisaError("HTTP 500")
+    monkeypatch.setattr(usecases.aisa, "chat", down)
+    assert usecases.screen("m", "synthid detector", ev, cands) == cands
+
+
+def test_momentum_is_the_last_settled_week_against_the_week_before():
+    assert usecases.shape(_daily([10] * 76 + [20] * 7 + [40] * 7 + [0, 100]), TODAY)["momentum"] == 2.0
+    assert usecases.shape(_daily([0] * 83 + [40] * 7 + [0, 100]), TODAY)["momentum"] is None   # nothing the week before

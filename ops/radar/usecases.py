@@ -10,8 +10,10 @@ For the day's new names this step:
      ordinary person would type for each job. A phrase built on another product's name
      ("photoshop alternative") is kept and marked `brand`: demand often hangs on the
      incumbent, and that is yours to weigh;
-  3. looks the phrases up: Google Ads monthly searches (one batch call);
-  4. reads Google Trends for the names and for the phrases with enough volume, twice
+  3. screens them: a second call scores how well the name answers each phrase, and the
+     loosely related ones are dropped (a keyword taken from a passing comparison);
+  4. looks the rest up: Google Ads monthly searches (one batch call);
+  5. reads Google Trends for the names and for the phrases with enough volume, twice
      each: alone, for the shape of the curve (when it started rising, its peak, what it
      is doing now), and next to a benchmark keyword ("gpts" by default), for the size.
      A generic term's searches a day come from its own Google Ads volume, moved to today
@@ -58,6 +60,7 @@ SEARCH_DAYS = 14
 TRENDS_DAYS, RECENT_DAYS = 90, 7
 RISE_WINDOW = 30           # a rise counts when it happened in the last 30 days
 RISE_DAYS = 2              # and lasted at least two days
+MOMENTUM_MIN_BASE = 5      # of 100: the week before must reach this for a week-on-week ratio
 NOW_DAYS = 3               # a peak in the last three settled days is still rising
 HOLD_SHARE = 0.5           # at half its peak or more in those days, a term is holding
 CALIBRATE_MIN = 1000       # monthly searches a term needs to help size the benchmark
@@ -153,6 +156,40 @@ def propose(model: str, name: str, ev: dict) -> list[dict]:
     return parse(aisa.chat(model, SYSTEM, user, max_tokens=900), name)
 
 
+SCREEN = (
+    "You check keyword candidates for an SEO researcher. NAME is a new model, product or repository; EVIDENCE is what "
+    "people posted about it. For each candidate keyword, score from 0.0 to 1.0 how well NAME answers that search: would "
+    "someone who typed the keyword be served by a page about using NAME for it?\n"
+    "High: the keyword names the main job NAME does, as the evidence shows it ('ai image detector' for a tool that "
+    "tells whether an image is AI-made; 'photoshop alternative' for a free clone of that editor).\n"
+    "Low: a side mention, a comparison someone made in passing ('chatgpt alternative' because one post compared two "
+    "models), a broad category NAME is only one of thousands in ('ai coding assistant' for a general language model), "
+    "or a job the evidence does not show.\n"
+    "Answer with JSON only, one object per candidate, in the same order: [{\"i\": 0, \"score\": 0.9}, ...]"
+)
+RELEVANT_MIN = 0.6
+
+
+def screen(model: str, name: str, ev: dict, cands: list[dict]) -> list[dict]:
+    """The candidates that really are about this name, each with its `relevance`. A failed
+    call keeps them all, unscored: the screen narrows the table, it never empties it."""
+    if not cands:
+        return []
+    posts = "\n".join(f"- ({p['likes']} likes) @{p['by']}: {p['text'][:POST_CHARS]}" for p in ev["posts"][:6])
+    user = f"NAME: {name}\n\nEVIDENCE:\n{posts or ev['readme'][:1200]}\n\nCANDIDATES:\n" + json.dumps(
+        [{"i": i, "keyword": c["phrase"]} for i, c in enumerate(cands)], ensure_ascii=False)
+    try:
+        answer = aisa.chat(model, SCREEN, user, max_tokens=400)
+    except aisa.AisaError:
+        return cands
+    m = re.search(r"\[.*\]", answer, re.S)
+    try:
+        scores = {int(x["i"]): float(x["score"]) for x in json.loads(m.group(0))} if m else {}
+    except (ValueError, KeyError, TypeError):
+        return cands
+    return [dict(c, relevance=scores[i]) for i, c in enumerate(cands) if scores.get(i, 1.0) >= RELEVANT_MIN]
+
+
 def volumes(phrases: list[str], location_code: int) -> tuple[dict[str, dict], int]:
     """{phrase: {"volume", "month"}} from Google Ads, one batch call."""
     if not phrases:
@@ -190,8 +227,13 @@ def shape(points: list[tuple[date, int]], today: date) -> dict:
     line = max(base * review.RISE_FACTOR, base + review.RISE_MIN)
     above = [d for d, v in window if v >= line]
     rose = len(above) >= RISE_DAYS
+    week, before = [v for _, v in points[-RECENT_DAYS:]], [v for _, v in points[-2 * RECENT_DAYS:-RECENT_DAYS]]
     out = {"no_data": False, "base": round(base, 1), "peak": peak, "peak_day": peak_day.isoformat(),
-           "rose": rose, "new": rose and base < NEW_BASE_MAX}
+           "rose": rose, "new": rose and base < NEW_BASE_MAX,
+           # the last settled week against the week before it; None when that week held too
+           # little to divide by ("ai audio detector" read x43 on a week of near-zeros)
+           "momentum": round(statistics.mean(week) / statistics.mean(before), 1)
+           if before and statistics.mean(before) >= MOMENTUM_MIN_BASE else None}
     if not rose:
         return {**out, "now": "flat"}
     out["started"] = above[0].isoformat()
@@ -312,8 +354,11 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
         return {"names": [], "rows": [], "proposed": 0, "cost_micros": 0}
     ev, cost = evidence(todo, repos, today)
     proposed: dict[str, dict] = {}
+    asked = 0
     for name in todo:
-        for u in propose(c["model"], name, ev[name]):
+        cands = propose(c["model"], name, ev[name])
+        asked += len(cands)
+        for u in screen(c["model"], name, ev[name], cands):
             row = proposed.setdefault(u["phrase"], {**u, "term": u["phrase"], "kind": "generic", "names": []})
             row["names"].append(name)
             row["brand"] |= u["brand"]
@@ -331,7 +376,7 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
         s["runs"] += 1
     cutoff = (today - timedelta(days=STATE_DAYS)).isoformat()
     path.write_bytes(gzip.compress(json.dumps({n: s for n, s in seen.items() if s["first"] >= cutoff}).encode()))
-    return {"names": todo, "rows": rows, "proposed": len(proposed), "kept": len(generic), "benchmark": bench,
+    return {"names": todo, "rows": rows, "proposed": asked, "relevant": len(proposed), "kept": len(generic), "benchmark": bench,
             "bench_daily": round(daily) if daily else None, "volume_month": next((r["month"] for r in generic if r.get("month")), ""),
             "no_evidence": [n for n in todo if not ev[n]["posts"] and not ev[n]["readme"]],
             "cost_micros": cost + c2 + c3}
@@ -347,6 +392,7 @@ def _row(r: dict) -> str:
     return (f"| **{r['phrase']}**{' ⚠' if generic and r['brand'] else ''} | {'通用词' if generic else '名字'} | "
             f"{', '.join(r['names']) or '—'} | {'—' if none else '是' if r['new'] else '否'} | {r.get('per_day', '—')} | "
             f"{r.get('started') or '—'} | {peak} | {'—' if none else r['peak_day']} | "
+            f"{'×' + str(r['momentum']) if r.get('momentum') is not None else '—'} | "
             f"{'还读不出' if none else NOW_ZH[r['now']]} | {DECISION_ZH[r['decision']]} |")
 
 
@@ -360,9 +406,9 @@ def table(uc: dict) -> list[str]:
     c = SETTINGS
     bench = f"名字对比基准词 `{uc['benchmark']}`(按今天这批词反推,约每天 {uc['bench_daily']} 次)" if uc.get("bench_daily") \
         else f"今天没法校准基准词 `{uc['benchmark']}`,所以名字没有估算值"
-    lines += [f"今天读了:{', '.join(uc['names'])}。提出 {uc['proposed']} 个通用写法,其中 {uc['kept']} 个月搜不低于 {c['min_volume']}"
+    lines += [f"今天读了:{', '.join(uc['names'])}。提出 {uc['proposed']} 个通用写法,{uc['relevant']} 个通过相关性筛选,其中 {uc['kept']} 个月搜不低于 {c['min_volume']}"
               f"({uc['volume_month'] or '?'} 数据)。日搜是估算:通用词用它自己的月搜索量沿 Trends 曲线推到现在;{bench}。", "",
-              f"| 关键词 | 类型 | 来自 | 新词? | 估算日搜 | 开始上涨 | 峰值 vs {uc['benchmark']} | 峰值日 | 现在 | 决策 |", "|---|---|---|---|---|---|---|---|---|---|"]
+              f"| 关键词 | 类型 | 来自 | 新词? | 估算日搜 | 开始上涨 | 峰值 vs {uc['benchmark']} | 峰值日 | 近 7 天比前 7 天 | 现在 | 决策 |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     lines += [_row(r) for r in uc["rows"]]
     lines += ["", f"决策规则:优先 = 近 30 天涨过、现在还在高位、估算日搜不低于 {c['min_daily']}。观察 = 涨了但规模小;还太早读不出;"
               "或者没动但本身就有这个规模的稳定需求。跳过 = 已回落,或没动且规模小。Trends 最后两天的数据还没结算,不计入。"]
