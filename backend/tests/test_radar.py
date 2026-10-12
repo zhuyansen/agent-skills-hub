@@ -387,3 +387,12 @@ def test_the_country_series_reads_a_rise_the_worldwide_one_flattens(monkeypatch,
     uc = usecases.run(tmp_path, ["photocraft"], {}, TODAY)
     text = "\n".join(usecases.table(uc))
     assert "还在涨 (US)" in text and "已退回全球数据:photocraft: HTTP 502" in text
+
+
+def test_only_things_are_read_for_generic_terms_not_words_that_surged():
+    today = [{"term": "mcd", "kinds": ["github"], "named": 0.75}, {"term": "kr.co.klisten.api", "kinds": ["sitemap"], "named": 0.78},
+             {"term": "photocraft", "kinds": ["breakout"], "named": 0.95}, {"term": "dots", "kinds": ["breakout"], "named": 0.65},
+             {"term": "hailuo", "kinds": ["newsite", "sitemap"]}]
+    recent = [{"term": "qwen image 2.1", "kinds": ["hf"], "named": 0.96}, {"term": "use rea", "kinds": ["x"], "named": 0.72},
+              {"term": "photocraft", "kinds": ["x"], "named": 0.9}]
+    assert usecases.names_to_read(today, recent) == ["photocraft", "hailuo", "qwen image 2.1"]

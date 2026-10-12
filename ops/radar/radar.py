@@ -325,9 +325,9 @@ def main() -> int:
     summ = run("summary", review.summary, no_db)
     blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources()},
                                    no_db or "--skip-x" not in flags)
-    # The generic terms behind the day's names (usecases.py): today's new names, then the ① leads
-    # the 8-hourly job kept. Read twice each (today and three days on); about $0.15 a day.
-    names = [r["term"] for r in keep] + [r["term"] for r in blocks["recent_sources"].get("rows", [])]
+    # The generic terms behind the day's names (usecases.py): only names from the signals that
+    # report things (X, HF, breakouts, new sites) with a high name score; see names_to_read. Read twice each (today and three days on); about $0.15 a day.
+    names = usecases.names_to_read(keep, blocks["recent_sources"].get("rows", []))
     repos = {r["term"]: r["repo"] for r in lead if r.get("repo")}
     blocks["usecases"] = run("usecases", lambda: usecases.run(snaps, list(dict.fromkeys(names)), repos), "--skip-usecases" in flags)
     run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
