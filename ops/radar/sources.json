@@ -1,9 +1,10 @@
 {
-  "_note": "Signal ① accounts, read daily through AIsa (about 3000 micro-USD each). Labs post the names first; the bloggers are where 哥飞's playbook says new terms catch on (宝玉 dotey, 归藏 op7418). TeksEdge posted Strata on 9/25, the day after its first release. Read 5 accounts a batch (aisa.BATCH), about 10 s each: 24 accounts take about 4 minutes.",
+  "_note": "Signal ① accounts, read daily through AIsa (about 3000 micro-USD each). Labs post the names first; the bloggers are where 哥飞's playbook says new terms catch on (宝玉 dotey, 归藏 op7418). TeksEdge posted Strata on 9/25, the day after its first release. Read 5 accounts a batch (aisa.BATCH), about 10 s each: 35 accounts take about 6 minutes. The video-model accounts (Kling to Krea) were added 2026-10-12, each checked to exist and to have posted that month.",
   "labs": [
     "AnthropicAI", "claudeai", "OpenAI", "OpenAIDevs", "GoogleDeepMind", "GoogleAIStudio",
     "Alibaba_Qwen", "deepseek_ai", "Kimi_Moonshot", "MiniMax__AI", "Zai_org", "xai",
-    "AIatMeta", "MistralAI", "huggingface", "cursor_ai"
+    "AIatMeta", "MistralAI", "huggingface", "cursor_ai",
+    "Kling_ai", "runwayml", "pika_labs", "LumaLabsAI", "Hailuo_AI", "higgsfield_ai", "ViduAI_official", "Alibaba_Wan", "dreamina_ai", "midjourney", "krea_ai"
   ],
   "bloggers": [
     "dotey", "op7418", "_akhaliq", "TeksEdge", "simonw", "swyx", "karpathy", "rowancheung"
