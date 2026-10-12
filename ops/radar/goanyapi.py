@@ -1,7 +1,8 @@
 """Optional second data source: GoAnyAPI (goanyapi.com), for what AIsa's tools do not give.
 
-Used for one thing so far: Google Trends' *related queries* for a name, the terms real
-people searched together with it. Key: GOANYAPI_API_KEY. Without it every caller skips
+Used for two things: Google Trends' *related queries* for a name, the terms real people
+searched together with it, and a 30-day daily Trends series for one country, which
+arrives settled up to yesterday (DataForSEO's worldwide series does not). Key: GOANYAPI_API_KEY. Without it every caller skips
 this source and the radar runs as before.
 
 One credit is $0.001; a related-queries lookup costs 6 (October 2026). Calls take 20 to
@@ -12,6 +13,7 @@ and a failure is reported, never fatal. The service is young (first released Aug
 from __future__ import annotations
 
 import json
+from datetime import date, datetime, timezone
 import os
 import urllib.error
 import urllib.parse
@@ -62,3 +64,16 @@ def related_queries(term: str, geo: str = "US", window: str = "today 1-m") -> tu
     data, cost = call("google-trends", q=term, date=window, geo=geo, data_type="RELATED_QUERIES")
     rq = data.get("relatedQueries") or {}
     return {k: [" ".join(str(x.get("query", "")).lower().split()) for x in rq.get(k) or []] for k in ("rising", "top")}, cost
+
+
+def daily_series(term: str, geo: str = "US", window: str = "today 1-m") -> tuple[list[tuple[date, int]], int]:
+    """[(day, value)] for `term` in one country, the last month by day."""
+    data, cost = call("google-trends", q=term, date=window, geo=geo, data_type="TIMESERIES")
+    out = []
+    for p in (data.get("interestOverTime") or {}).get("timeline_data") or []:
+        try:
+            day = datetime.fromtimestamp(int(p["timestamp"]), timezone.utc).date()
+            out.append((day, int(p["values"][0]["extracted_value"])))
+        except (KeyError, IndexError, TypeError, ValueError):
+            continue
+    return out, cost

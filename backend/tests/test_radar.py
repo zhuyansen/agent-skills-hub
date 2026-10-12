@@ -347,6 +347,7 @@ def test_related_queries_feed_the_table_and_other_rising_names_become_leads(monk
     rise, flat = _daily([1] * 85 + [9, 53, 40, 59, 100]), _daily([20] * 90)
     monkeypatch.setenv("GOANYAPI_API_KEY", "k")
     monkeypatch.setattr(usecases, "evidence", lambda names, repos, today: ({n: {"posts": [], "readme": "x", "repo": ""} for n in names}, 3000))
+    monkeypatch.setitem(usecases.SETTINGS, "country_trends", False)
     monkeypatch.setattr(usecases, "propose", lambda model, name, ev: [])
     monkeypatch.setattr(usecases.goanyapi, "related_queries", lambda name, geo: (
         {"rising": ["ai photo detector", "gpt image 2.5", "google nano banana", "nano banana 2.1 vs pro"], "top": ["google gemini"]}, 6000))
@@ -361,3 +362,28 @@ def test_related_queries_feed_the_table_and_other_rising_names_become_leads(monk
     text = "\n".join(usecases.table(uc))
     assert "| **ai photo detector** 🔎 |" in text and "gpt image 2.5(和 nano banana 2.1 一起)" in text
     assert usecases.leads(uc)[-1]["kinds"] == ["cosearch"]
+
+
+def test_the_country_series_reads_a_rise_the_worldwide_one_flattens(monkeypatch, tmp_path):
+    # "photoshop alternative" in the US around PhotoCraft: about 50, then 77, 86, 83, 100, 94, and the partial day
+    month = [(TODAY - timedelta(days=29 - i), v) for i, v in enumerate([50] * 24 + [77, 86, 83, 100, 94, 79])]
+    s = usecases.shape(month, TODAY, usecases.COUNTRY)
+    assert s["rose"] and not s["new"] and s["now"] == "rising" and s["started"] == "2026-10-07"
+    flat = _daily([20] * 90)
+    monkeypatch.setenv("GOANYAPI_API_KEY", "k")
+    monkeypatch.setitem(usecases.SETTINGS, "related", False)
+    monkeypatch.setattr(usecases, "evidence", lambda names, repos, today: ({n: {"posts": [], "readme": "x", "repo": ""} for n in names}, 0))
+    monkeypatch.setattr(usecases, "propose", lambda model, name, ev: [{"phrase": "photoshop alternative", "evidence": "free clone", "brand": True}])
+    monkeypatch.setattr(usecases, "screen", lambda model, name, ev, cands: cands)
+    monkeypatch.setattr(usecases, "volumes", lambda phrases, loc: ({p: {"volume": 6600, "month": "2026-08"} for p in phrases}, 0))
+    monkeypatch.setattr(usecases, "fetch_series", lambda keywords, bench, today: (
+        {k: {"solo": flat, "pair": [(d, v, 40) for d, v in flat]} for k in keywords}, 0))
+
+    def daily_series(term, geo):
+        if term == "photocraft":
+            raise usecases.goanyapi.GoAnyError("HTTP 502")
+        return month, 6000
+    monkeypatch.setattr(usecases.goanyapi, "daily_series", daily_series)
+    uc = usecases.run(tmp_path, ["photocraft"], {}, TODAY)
+    text = "\n".join(usecases.table(uc))
+    assert "还在涨 (US)" in text and "已退回全球数据:photocraft: HTTP 502" in text

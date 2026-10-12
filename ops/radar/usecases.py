@@ -14,7 +14,9 @@ For the day's new names this step:
      name: what people really searched together with it. Queries that hold the name are
      its long-tails ("photocraft download"); the others join the phrases; those that are
      themselves names of other new things ("gpt image 2.5" beside "nano banana 2.1") are
-     handed back as leads of kind "cosearch";
+     handed back as leads of kind "cosearch". With that key the names and the bigger
+     generic terms also take their shape from a 30-day series for one country, which is
+     settled to yesterday and shows moves the worldwide series flattens;
   3. screens them: a second call scores how well the name answers each phrase, and the
      loosely related ones are dropped (a keyword taken from a passing comparison);
   4. looks the rest up: Google Ads monthly searches (one batch call);
@@ -64,8 +66,6 @@ README_CHARS = 3000
 MIN_FAVES = 50
 SEARCH_DAYS = 14
 TRENDS_DAYS, RECENT_DAYS = 90, 7
-RISE_WINDOW = 30           # a rise counts when it happened in the last 30 days
-RISE_DAYS = 2              # and lasted at least two days
 MOMENTUM_MIN_BASE = 5      # of 100: the week before must reach this for a week-on-week ratio
 NOW_DAYS = 3               # a peak in the last three settled days is still rising
 HOLD_SHARE = 0.5           # at half its peak or more in those days, a term is holding
@@ -77,7 +77,8 @@ SEARCH_TOOL = "get_twitter_tweet_advanced_search"
 VOLUME_TOOL = "post_dataforseo_keywords_gads_search_volume_live"
 UA = "agentskillshub-radar/1.0"
 SETTINGS = {"per_day": 5, "model": "claude-sonnet-4-6", "min_volume": 50, "trends_max": 10, "recheck_days": 3,
-            "location_code": 2840, "benchmark": "gpts", "min_daily": 300, "related": True, "related_geo": "US"}
+            "location_code": 2840, "benchmark": "gpts", "min_daily": 300, "related": True, "related_geo": "US",
+            "country_trends": True, "country_min_volume": 1000, "country_max": 8}
 SYSTEM = (
     "You help an SEO researcher who builds tool pages around new AI releases. You get the NAME of a new model, product "
     "or repository and EVIDENCE: popular posts about it and, for a repository, its README.\n"
@@ -259,14 +260,24 @@ def volumes(phrases: list[str], location_code: int) -> tuple[dict[str, dict], in
     return out, cost
 
 
-def shape(points: list[tuple[date, int]], today: date) -> dict:
+WORLD = {"unsettled": review.UNSETTLED_DAYS, "window": 30, "factor": review.RISE_FACTOR, "days": 2}
+# One country, 30 days, settled to yesterday (goanyapi.daily_series). The rise is judged in
+# the last 10 days against the 20 before. An established term has a high baseline, so the
+# bar is 1.5x for three days: "photoshop alternative" ran 77-100 against 50 for five days
+# after PhotoCraft appeared, a real move that 2x would miss.
+COUNTRY = {"unsettled": 0, "window": 10, "factor": 1.5, "days": 3}
+
+
+def shape(points: list[tuple[date, int]], today: date, rule: dict = WORLD) -> dict:
     """What a term's own Trends curve says: is it new, when did it start rising, where is
-    the peak, what is it doing now. `points` is the daily series on its own 0-100 scale;
-    its unsettled last days are dropped, and "now" means the last settled days. A rise is
-    judged inside the last RISE_WINDOW days against the level before them, so an old peak
-    does not count, and it needs RISE_DAYS days above the line: a term with few searches
-    shows single-day spikes out of nothing ("debloat macos": 0, 0, 100, 0, 0)."""
-    points = review.settled(points, today)
+    the peak, what is it doing now. `points` is the daily series on its own 0-100 scale.
+    Today's value covers part of a day and is dropped, with the days `rule` calls
+    unsettled; "now" means the last days that are left. A rise is judged inside the last
+    `window` days against the level before them, so an old peak does not count, and it
+    needs `days` days above the line: a term with few searches shows single-day spikes
+    out of nothing ("debloat macos": 0, 0, 100, 0, 0)."""
+    cut = today - timedelta(days=rule["unsettled"])
+    points = [(d, v) for d, v in points if d < cut]
     top = max((v for _, v in points), default=0)
     if not top:
         return {"no_data": True}
@@ -274,14 +285,14 @@ def shape(points: list[tuple[date, int]], today: date) -> dict:
     # under 10 and no threshold in points would mean anything.
     points = [(d, round(v * 100 / top)) for d, v in points]
     end = points[-1][0]
-    cut = end - timedelta(days=RISE_WINDOW)
-    old = [v for d, v in points if d < cut]
-    window = [(d, v) for d, v in points if d >= cut]
+    start = end - timedelta(days=rule["window"])
+    old = [v for d, v in points if d < start]
+    window = [(d, v) for d, v in points if d >= start]
     base = statistics.mean(old) if old else 0.0
     peak_day, peak = max(window, key=lambda p: (p[1], p[0]))
-    line = max(base * review.RISE_FACTOR, base + review.RISE_MIN)
+    line = max(base * rule["factor"], base + review.RISE_MIN)
     above = [d for d, v in window if v >= line]
-    rose = len(above) >= RISE_DAYS
+    rose = len(above) >= rule["days"]
     week, before = [v for _, v in points[-RECENT_DAYS:]], [v for _, v in points[-2 * RECENT_DAYS:-RECENT_DAYS]]
     out = {"no_data": False, "base": round(base, 1), "peak": peak, "peak_day": peak_day.isoformat(),
            "rose": rose, "new": rose and base < NEW_BASE_MAX,
@@ -291,10 +302,30 @@ def shape(points: list[tuple[date, int]], today: date) -> dict:
            if before and statistics.mean(before) >= MOMENTUM_MIN_BASE else None}
     if not rose:
         return {**out, "now": "flat"}
-    out["started"] = above[0].isoformat()
+    # The rise that holds the peak: walk back from the peak while each day is above the
+    # line. The first day above it anywhere in the window can be an earlier, unrelated blip.
+    started, up = peak_day, set(above)
+    while started - timedelta(days=1) in up:
+        started -= timedelta(days=1)
+    out["started"] = started.isoformat()
     latest = max(v for d, v in window if d > end - timedelta(days=NOW_DAYS))
     out["now"] = "rising" if (end - peak_day).days < NOW_DAYS else "holding" if latest >= HOLD_SHARE * peak else "fading"
     return out
+
+
+def country_series(rows: list[dict], c: dict) -> tuple[dict[str, list], int, list[str]]:
+    """The one-country series for the rows worth it: the names, then the generic terms
+    with at least `country_min_volume` searches a month, `country_max` rows at most."""
+    picked = [r for r in rows if r["kind"] == "name"] + \
+        sorted((r for r in rows if r["kind"] == "generic" and r.get("volume", 0) >= c["country_min_volume"]), key=lambda r: -r["volume"])
+    out, cost, errors = {}, 0, []
+    for r in picked[:c["country_max"]]:
+        try:
+            out[r["phrase"]], spent = goanyapi.daily_series(r["phrase"], c["related_geo"])
+            cost += spent
+        except goanyapi.GoAnyError as exc:
+            errors.append(f"{r['phrase']}: {exc}")
+    return out, cost, errors
 
 
 def _mean(values: list[int]) -> float:
@@ -338,7 +369,7 @@ def size(pair: list[tuple[date, int, int]], today: date, daily: float | None) ->
     level = _mean([b for _, _, b in pair])
     if not level:
         return {}
-    window = pair[-RISE_WINDOW:]
+    window = pair[-WORLD["window"]:]
     out = {"peak_vs": max(v for _, v, _ in window), "bench_level": round(level, 1)}
     if daily:
         out["per_day"] = round(_mean([v for _, v, _ in pair[-RECENT_DAYS:]]) / level * daily)
@@ -383,14 +414,22 @@ def fetch_series(keywords: list[str], benchmark: str, today: date) -> tuple[dict
     return {k: {"solo": review._series(task(f"s{i}")), "pair": _pairs(task(f"p{i}"))} for i, k in enumerate(keywords)}, cost
 
 
-def measure(rows: list[dict], series: dict[str, dict], min_daily: int, today: date) -> float | None:
-    """Fills each row with its shape, size and decision. Returns the benchmark's calibrated size."""
+def measure(rows: list[dict], series: dict[str, dict], min_daily: int, today: date,
+            country: dict[str, list] | None = None) -> float | None:
+    """Fills each row with its shape, size and decision. Returns the benchmark's calibrated
+    size. A row with a one-country series takes its shape from that (`trend_geo` says so)."""
     for r in rows:
         r["_pair"] = series.get(r["phrase"], {}).get("pair") or []
     daily = bench_daily(rows)
     for r in rows:
         solo = series.get(r["phrase"], {}).get("solo") or []
-        s, z = shape(solo, today), size(r.pop("_pair"), today, daily)
+        local = (country or {}).get(r["phrase"])
+        s = shape(local, today, COUNTRY) if local else shape(solo, today)
+        if local and not s.get("no_data"):
+            r["trend_geo"] = True
+        elif local:
+            s = shape(solo, today)
+        z = size(r.pop("_pair"), today, daily)
         own = own_per_day(solo, r.get("volume", 0), r.get("month", ""), today)
         if own is not None:
             z["per_day"] = own      # a term's own volume is a better anchor than the benchmark
@@ -441,7 +480,8 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
                      key=lambda r: -r["volume"])[:c["trends_max"]]
     rows = [{"term": n, "phrase": n, "kind": "name", "names": [], "brand": True, "evidence": "", **vol.get(n, {})} for n in todo] + generic
     series, c3 = fetch_series([r["phrase"] for r in rows], bench, today)
-    daily = measure(rows, series, c["min_daily"], today)
+    local, c4, local_errors = country_series(rows, c) if goanyapi.key() and c.get("country_trends", True) else ({}, 0, [])
+    daily = measure(rows, series, c["min_daily"], today, local)
     order = {"prioritize": 0, "watch": 1, "skip": 2}
     rows.sort(key=lambda r: (order[r["decision"]], -(r.get("per_day") or 0), -(r.get("volume") or 0)))
     for name in todo:
@@ -453,7 +493,8 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
             "bench_daily": round(daily) if daily else None, "volume_month": next((r["month"] for r in generic if r.get("month")), ""),
             "no_evidence": [n for n in todo if not ev[n]["posts"] and not ev[n]["readme"]],
             "related": use_related, "tails": {n: v for n, v in tails.items() if v}, "cosearch": cosearch,
-            "related_errors": related_errors, "cost_micros": cost + c0 + c2 + c3}
+            "related_errors": related_errors, "geo": c["related_geo"], "country_errors": local_errors,
+            "cost_micros": cost + c0 + c2 + c3 + c4}
 
 
 NOW_ZH = {"rising": "还在涨", "holding": "维持", "fading": "回落", "flat": "没动"}
@@ -468,7 +509,7 @@ def _row(r: dict) -> str:
             f"{', '.join(r['names']) or '—'} | {'—' if none else '是' if r['new'] else '否'} | {r.get('per_day', '—')} | "
             f"{r.get('started') or '—'} | {peak} | {'—' if none else r['peak_day']} | "
             f"{'×' + str(r['momentum']) if r.get('momentum') is not None else '—'} | "
-            f"{'还读不出' if none else NOW_ZH[r['now']]} | {DECISION_ZH[r['decision']]} |")
+            f"{'还读不出' if none else NOW_ZH[r['now']]}{' (US)' if r.get('trend_geo') else ''} | {DECISION_ZH[r['decision']]} |")
 
 
 def table(uc: dict) -> list[str]:
@@ -489,6 +530,10 @@ def table(uc: dict) -> list[str]:
               "或者没动但本身就有这个规模的稳定需求。跳过 = 已回落,或没动且规模小。Trends 最后两天的数据还没结算,不计入。"]
     if any(r["kind"] == "generic" and r["brand"] for r in uc["rows"]):
         lines.append("⚠ = 这个词带着别人的品牌或产品名,法务和定位风险需要自己判断。")
+    if any(r.get("trend_geo") for r in uc["rows"]):
+        lines.append("(US) = 走势读自美国的 30 天日数据(GoAnyAPI),结算到昨天;在这份数据里,比之前高 50% 且持续三天算上涨。其余行用的是全球数据。")
+    if uc.get("country_errors"):
+        lines.append(f"国家数据获取失败,已退回全球数据:{'; '.join(uc['country_errors'])}。")
     if any(r.get("source") == "searched" for r in uc["rows"]):
         lines.append("🔎 = 来自 Google Trends 的相关查询:有人把它和这个名字一起搜(GoAnyAPI)。")
     said = [f"- **{r['phrase']}**({', '.join(r['names'])}):“{r['evidence'].replace('|', '/')}”"
