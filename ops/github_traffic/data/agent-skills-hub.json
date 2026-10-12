@@ -63,6 +63,34 @@
   "2026-10-04": {
    "count": 26,
    "uniques": 17
+  },
+  "2026-10-05": {
+   "count": 19,
+   "uniques": 18
+  },
+  "2026-10-06": {
+   "count": 23,
+   "uniques": 15
+  },
+  "2026-10-07": {
+   "count": 23,
+   "uniques": 18
+  },
+  "2026-10-08": {
+   "count": 17,
+   "uniques": 16
+  },
+  "2026-10-09": {
+   "count": 35,
+   "uniques": 22
+  },
+  "2026-10-10": {
+   "count": 216,
+   "uniques": 167
+  },
+  "2026-10-11": {
+   "count": 170,
+   "uniques": 101
   }
  },
  "clones": {
@@ -129,6 +157,34 @@
   "2026-10-04": {
    "count": 76,
    "uniques": 31
+  },
+  "2026-10-05": {
+   "count": 240,
+   "uniques": 104
+  },
+  "2026-10-06": {
+   "count": 426,
+   "uniques": 170
+  },
+  "2026-10-07": {
+   "count": 263,
+   "uniques": 107
+  },
+  "2026-10-08": {
+   "count": 182,
+   "uniques": 81
+  },
+  "2026-10-09": {
+   "count": 119,
+   "uniques": 58
+  },
+  "2026-10-10": {
+   "count": 151,
+   "uniques": 63
+  },
+  "2026-10-11": {
+   "count": 236,
+   "uniques": 85
   }
  },
  "referrers": {
@@ -232,6 +288,48 @@
    },
    {
     "referrer": "yf2ljykclb.xfchat.iflytek.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-12": [
+   {
+    "referrer": "t.co",
+    "count": 251,
+    "uniques": 219
+   },
+   {
+    "referrer": "github.com",
+    "count": 62,
+    "uniques": 51
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 8,
+    "uniques": 8
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "Google",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "referrer": "Bing",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "mrpet88.github.io",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "search.brave.com",
     "count": 1,
     "uniques": 1
    }
@@ -340,6 +438,58 @@
     "path": "/zhuyansen/agent-skills-hub/discussions",
     "count": 3,
     "uniques": 3
+   }
+  ],
+  "2026-10-12": [
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md",
+    "count": 273,
+    "uniques": 233
+   },
+   {
+    "path": "/ZhuYansen/agent-skills-hub",
+    "count": 133,
+    "uniques": 97
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub",
+    "count": 102,
+    "uniques": 79
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main",
+    "count": 19,
+    "uniques": 15
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/ops/slop-runs",
+    "count": 10,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues/26",
+    "count": 7,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues/21",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/ops",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/docs/system-architecture.md",
+    "count": 4,
+    "uniques": 2
    }
   ]
  }

@@ -59,6 +59,34 @@
   "2026-10-04": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-08": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-09": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-10": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-11": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -121,6 +149,34 @@
   "2026-10-04": {
    "count": 8,
    "uniques": 6
+  },
+  "2026-10-05": {
+   "count": 36,
+   "uniques": 21
+  },
+  "2026-10-06": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-10-07": {
+   "count": 14,
+   "uniques": 9
+  },
+  "2026-10-08": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-10-09": {
+   "count": 20,
+   "uniques": 14
+  },
+  "2026-10-10": {
+   "count": 34,
+   "uniques": 21
+  },
+  "2026-10-11": {
+   "count": 19,
+   "uniques": 13
   }
  },
  "referrers": {
@@ -131,11 +187,25 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-10-12": [
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
   "2026-10-03": [],
   "2026-10-05": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-12": [
    {
     "path": "/zhuyansen/awesome-claude-code-hooks",
     "count": 1,

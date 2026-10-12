@@ -59,6 +59,34 @@
   "2026-10-04": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-10-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-07": {
+   "count": 4,
+   "uniques": 2
+  },
+  "2026-10-08": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-09": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-10": {
+   "count": 3,
+   "uniques": 1
+  },
+  "2026-10-11": {
+   "count": 1,
+   "uniques": 1
   }
  },
  "clones": {
@@ -121,11 +149,46 @@
   "2026-10-04": {
    "count": 19,
    "uniques": 13
+  },
+  "2026-10-05": {
+   "count": 24,
+   "uniques": 15
+  },
+  "2026-10-06": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-10-07": {
+   "count": 13,
+   "uniques": 10
+  },
+  "2026-10-08": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-09": {
+   "count": 27,
+   "uniques": 16
+  },
+  "2026-10-10": {
+   "count": 80,
+   "uniques": 46
+  },
+  "2026-10-11": {
+   "count": 10,
+   "uniques": 8
   }
  },
  "referrers": {
   "2026-10-03": [],
-  "2026-10-05": []
+  "2026-10-05": [],
+  "2026-10-12": [
+   {
+    "referrer": "claude.ai",
+    "count": 3,
+    "uniques": 1
+   }
+  ]
  },
  "paths": {
   "2026-10-03": [],
@@ -134,6 +197,18 @@
     "path": "/zhuyansen/awesome-agent-skills-managers",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-10-12": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 1
    }
   ]
  }

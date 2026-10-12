@@ -55,6 +55,34 @@
   "2026-10-04": {
    "count": 2,
    "uniques": 2
+  },
+  "2026-10-05": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-06": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-08": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-09": {
+   "count": 11,
+   "uniques": 7
+  },
+  "2026-10-10": {
+   "count": 23,
+   "uniques": 15
+  },
+  "2026-10-11": {
+   "count": 10,
+   "uniques": 6
   }
  },
  "clones": {
@@ -113,10 +141,60 @@
   "2026-10-04": {
    "count": 22,
    "uniques": 16
+  },
+  "2026-10-05": {
+   "count": 21,
+   "uniques": 11
+  },
+  "2026-10-06": {
+   "count": 24,
+   "uniques": 16
+  },
+  "2026-10-07": {
+   "count": 14,
+   "uniques": 12
+  },
+  "2026-10-08": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-10-09": {
+   "count": 29,
+   "uniques": 21
+  },
+  "2026-10-10": {
+   "count": 14,
+   "uniques": 8
+  },
+  "2026-10-11": {
+   "count": 29,
+   "uniques": 20
   }
  },
  "referrers": {
-  "2026-10-05": []
+  "2026-10-05": [],
+  "2026-10-12": [
+   {
+    "referrer": "agentskillshub.top",
+    "count": 15,
+    "uniques": 12
+   },
+   {
+    "referrer": "github.com",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "referrer": "Google",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "referrer": "t.co",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
  },
  "paths": {
   "2026-10-05": [
@@ -124,6 +202,28 @@
     "path": "/zhuyansen/awesome-humanizer-skills",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-10-12": [
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills",
+    "count": 39,
+    "uniques": 31
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.zh-CN.md",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/assets/previews",
+    "count": 1,
+    "uniques": 1
    }
   ]
  }
