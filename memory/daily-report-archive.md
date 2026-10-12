@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-12
+1. LingCore/WinShun — 🆕 给 Windows 装上双击 Ctrl 的搜索启动器，拼音搜文件、全文搜文档，并带 MCP 接 AI 助手（178★ 45.2/day）
+2. lawrencewzen/wx-bot — 🆕 通过腾讯官方 iLink 把微信接到本机个人智能体，只走出站连接，支持 Grok、Claude 等（95★ 37.4/day）
+3. artouc/stop-describing-ui — 🆕 删掉界面里多余的解释性文案，让智能体做出的 UI 不再自我说明（30★ 28.1/day）
+4. iamumeransari/claude-show-your-work — 🆕 让 Claude Code 在终端里直接显示截图、播放录屏，并排对比改动前后效果（84★ 23.5/day）
+5. SumantxD/shrike — 🆕 录下一次点击从按钮到数据库的完整链路，定位到出错行，你点头后智能体再修（27★ 23.2/day）
+6. frypan05/philosopher-OKF — 🆕 把任意主题整理成一页独立的 HTML 学习页，极简排版、论文风格（74★ 20.5/day）
+7. truongfelix/workflow — 🆕 用脚本读取 git 与 CI 的真实状态核对交接笔记，让 Claude Code 长项目跨会话接着干（46★ 10.3/day）
+8. jameshaworthcs/verifiedhandles-mcp — 🆕 把智能体接入 Verified Handles 服务，附各客户端配置和 Claude Desktop 一键扩展（31★ 8.4/day）
+9. click6067-ship-it/token-tv — 🆕 把约 5 美元的 Wi-Fi 小时钟变成 Claude 和 Codex 用量看板，不用刷固件（67★ 7.0/day）
+10. yuanyuanleah/transcript-exporter — 采集抖音逐字稿和互动数据，写入本地或飞书多维表格，支持断点续采（53★ 3.6/day）
+🎯 今日趋势：48h 内去重后合格新鲜项 **11 个**，未放宽到 72h；**9 席**标 🆕、**7 席**建仓不满 5 天；"让人看得见智能体干了什么"占 **3 席**（终端看图看录屏、点击链路回放、用真实状态核对交接），微信、Windows 启动器、桌面小时钟等"接到身边设备和应用"的也有 **3 席**。
+> 注：去重范围＝repo 内 archive 全部 109 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,648 个（含路径噪声，只会多剔不会漏剔）。查询 `first_seen ≥48h`、stars ≥20 触顶 LIMIT 150（命中历史 19 条），为免漏掉 20–22★ 的新仓，另加 `created_at ≥30 天内` 条件补查一次得 45 条（命中历史 17 条，余 28 条），共 2 次单连接串行查询；逐个复核后合格 11 个，候选足够，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①typesafe-docs 名下 10 个仓（commander-mangen、headerscrub 等）：同日（09-28）建仓、星数 68–73 雷同、账号 09-27 新建却有 102 个仓，集群刷星嫌疑，且均为 uncategorized 的通用库；②yzg1226/mcd-party-officer（73★ 29.4/day）：账号与仓库同日（10-09）新建、0 粉、仅 1 仓、0 fork，麦当劳 MCP 参赛拉票形态（与 10-11 同批）；③terryj131814/chatgpt-plus-pro-codex-cn-guide（39★）：代充购买指南、标题 SEO 堆砌，复核时仓库已 404；④juanitogit/infinite-claude-code（23★）："无限免费"多供应商中转，灰色地带，且作者其余仓星数均为 16 雷同、0 fork；⑤openfilm/openfilm（139★ 18.1/day）：所属组织 10-02 新建、2 粉、另一仓 1★，按 10-08、10-10 新建组织先例保守排除（fork 16、MIT，下期若持续可再议）；⑥lokicorvus/crosspet（107★ 12.7/day）：0 粉、仅 1 仓、许可证不明，按 10-10 先例保守排除；⑦Khalidabdi1/factory（119★ 16.4/day）：浏览器里的等距小镇模拟演示，并非智能体工具或技能；⑧dorkitude/skimmer（22★ 20.0/day）：security_grade 为 caution（作者可信，仅因评级保守排除）；⑨nishtahir/build-your-own-jev（53★）：uncategorized、无描述、无许可证；⑩Leanmcp/gateway-skills（2,110★，建仓 195 天）、fivetaku/gptaku_plugins（1,195★，建仓 233 天）、simonlin1212/vibe-astock（677★，建仓 74 天）、jkdansereau/goldeneye-pc-port 等：建仓 36 天至数年、本期才收录，不算新鲜；⑪r08/r09/r17-…-awesome-claude-skills-… 共 7 个：同日建仓、随机词账号、星数 38–56，衍生合集集群；⑫其余均已在历史榜单出现。入选项复核（`gh api`）：第 1 席 LingCore 2019 建号、1 粉、名下另有 LingFrame 39★，MIT、fork 20（**轻红旗**，fork 与星数相称，保留）；第 2 席 lawrencewzen 2017 建号、14 粉、名下另有 41★、29★ 仓，MIT、fork 19；第 3 席 artouc 2021 建号、4 粉、其余仓 0★、0 fork（**轻红旗**，量级小、MIT、描述具体，保留）；第 4 席 iamumeransari 2021 建号、0 粉、名下另有 15★ 仓（**轻红旗**，fork 7、MIT，保留）；第 5 席 SumantxD 2020 建号、6 粉、其余仓 0★（**轻红旗**，有 CI 与发布版本、fork 3，保留）；第 6 席 frypan05 2021 建号、35 粉、名下 Lumin 85★；第 7 席 truongfelix 2024 建号、3 粉、其余仓 0★（**轻红旗**，fork 5、MIT、文档扎实，保留）；第 8 席 jameshaworthcs 2017 建号、51 粉、名下 countinghouse 52★，服务端代码不在仓内，仓库为接入配置与扩展包；第 9 席 click6067-ship-it 2025 建号、7 粉、其余仓 ≤8★，自述被 Hackaday 报道、fork 7（**轻红旗**，保留）；第 10 席 yuanyuanleah 2025 建号、4 粉、其余仓 0★、许可证不明（**轻红旗**，为凑满十席保留）。choyiny/gitorange（25★ 2.5/day，作者 85 粉）列第 11 未入选。🆕 判定＝created_at 距今 14 天内，除 transcript-exporter（建仓 14.8 天）外九席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（WinShun 191★、wx-bot 111★、claude-show-your-work 100★、stop-describing-ui 53★），按红线保留快照值。
+
+---
+
 ## 2026-10-11
 1. joeseesun/qiaomu-cover-fonts — 🆕 给乔木封面设计技能配一套开源中英文字库，已做子集化并逐一附上授权（91★ 87.0/day）
 2. wheresryan22/anatomy — 🆕 把一个技术想法画成可交互的等距机器剖面图，细到每个零件，Claude Code 直接调用（171★ 62.5/day）
