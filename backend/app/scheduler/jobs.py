@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from app.config import settings
 from app.services.readme_coverage import readme_update
 from app.services.sync_selection import (
-    MAX_SEARCH_PAGES, PAGE_SIZE, keep_paging, select_readme_targets, wave_slices, with_push_filter,
+    MAX_SEARCH_PAGES, PAGE_SIZE, is_rate_limited, keep_paging, select_readme_targets, wave_slices, with_push_filter,
 )
 
 logger = logging.getLogger(__name__)
@@ -646,13 +646,17 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
                                     readme_absent.add(full_name)
                             elif resp.status_code == 404:
                                 readme_absent.add(full_name)
-                            elif resp.status_code in (403, 429):
+                            elif is_rate_limited(resp.status_code, resp.headers):
                                 reset_ts = int(resp.headers.get("X-RateLimit-Reset", "0"))
                                 if reset_ts:
                                     await _wait_for_rate_limit(reset_ts, "readme")
                                 else:
                                     await asyncio.sleep(60)
                                 continue
+                            elif resp.status_code == 403:
+                                # Blocked by GitHub (DMCA, trademark): there is no README to wait for.
+                                logger.warning("README not available, repository blocked by GitHub: %s", full_name)
+                                readme_absent.add(full_name)
                             fetched += 1
                             if fetched % 50 == 0:
                                 logger.info("README fetch: %d/%d", fetched, len(readme_targets))

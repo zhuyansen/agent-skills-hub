@@ -1,5 +1,5 @@
 """Pure fetch decisions extracted from scheduler/jobs.py."""
-from app.services.sync_selection import MAX_SEARCH_PAGES, keep_paging, select_readme_targets, wave_slices, with_push_filter
+from app.services.sync_selection import MAX_SEARCH_PAGES, is_rate_limited, keep_paging, select_readme_targets, wave_slices, with_push_filter
 
 PUSHED = " pushed:>2026-09-18T01:00:00Z"
 
@@ -62,3 +62,15 @@ def test_the_zero_star_tail_stops_paging():
 def test_a_short_page_and_the_github_ceiling_stop_paging():
     assert not keep_paging(2, page_of(5, n=40))
     assert not keep_paging(MAX_SEARCH_PAGES, page_of(5))
+
+
+def test_a_blocked_repository_is_not_a_rate_limit():
+    # joeseesun/chatgpt: 403 "Repository access blocked", 4,992 requests left.
+    assert not is_rate_limited(403, {"X-RateLimit-Remaining": "4992", "X-RateLimit-Reset": "1791700000"})
+
+
+def test_an_exhausted_quota_or_a_retry_after_is_a_rate_limit():
+    assert is_rate_limited(403, {"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "1791700000"})
+    assert is_rate_limited(403, {"X-RateLimit-Remaining": "4000", "Retry-After": "60"})   # secondary limit
+    assert is_rate_limited(429, {})
+    assert not is_rate_limited(404, {"X-RateLimit-Remaining": "0"})

@@ -68,3 +68,16 @@ def keep_paging(page: int, items: list[dict]) -> bool:
     if len(items) < PAGE_SIZE or page >= MAX_SEARCH_PAGES:
         return False
     return (items[-1].get("stargazers_count") or 0) > 0
+
+
+def is_rate_limited(status: int, headers) -> bool:
+    """Whether a 403 or 429 from GitHub means "wait for the quota", not "you may not have this".
+
+    GitHub answers 403 for a repository it has blocked (DMCA, trademark) with most of the
+    quota left. Read as a rate limit, one such README (joeseesun/chatgpt) made every sync
+    from early October sleep until the hour's quota reset, up to 40 minutes, with about
+    3,700 requests unused. A real limit has no requests left or says when to retry.
+    """
+    if status == 429:
+        return True
+    return status == 403 and (headers.get("X-RateLimit-Remaining") == "0" or "Retry-After" in headers)
