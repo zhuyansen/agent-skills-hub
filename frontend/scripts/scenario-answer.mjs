@@ -24,7 +24,13 @@ import { descZh, descEn } from "./scenario-kinds.mjs";
 // recommends a flagged repo; with no SAFE one, the top entry and no safety claim.
 const QUICK_PICK_SCAN = 10;
 const QUICK_PICK_DESC = 140;
-function quickPick(skills) {
+function quickPick(scenario, skills) {
+  // `quick_pick` (scenario-keywords.json): the owner names the entry when the most-starred
+  // one is not what the page's query is after. On the SEO page that was a 54K-star marketing
+  // pack, above claude-seo, the repo "claude seo skill" returns first (10-13).
+  const want = (scenario.quick_pick || "").toLowerCase();
+  const named = want && skills.find((s) => s.repo_full_name.toLowerCase() === want);
+  if (named) return { pick: named, safe: named.security_grade === "safe" };
   const safe = skills.slice(0, QUICK_PICK_SCAN).filter((s) => s.security_grade === "safe")
     .sort((a, b) => b.stars - a.stars)[0];
   return { pick: safe || skills[0], safe: Boolean(safe) };
@@ -55,7 +61,7 @@ export function quickPickHtml(scenario, skills, itemCount, subject, verdict = nu
   if (!skills.length) return "";
   const tested = verdict?.picks?.length ? testedPickHtml(verdict, skills, itemCount, subject, scenario) : "";
   if (tested) return tested;
-  const { pick, safe } = quickPick(skills);
+  const { pick, safe } = quickPick(scenario, skills);
   const stars = `★ ${starsK(pick.stars)}`;
   // The language toggle replaces each [data-zh] element's text, so the link stays
   // outside the translated pieces.

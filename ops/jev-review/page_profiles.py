@@ -249,6 +249,55 @@ PAGES = {
         "words": ["humaniz", "slop", "ai tells", "ai writing patterns", "ai-sounding", "去ai味", "去 ai 味", "ai味", "ai 味",
                   "taste skill"],
     },
+    # Brought back 10-13 (AIsa: claude seo skill 720/mo KD 3, seo skill 480 KD 0, google search console
+    # mcp 1,000 KD 17; ops/research/seo-tools-keywords-2026-10-13). Retired 08-23 with no impressions:
+    # the keyword sort had left the 18K-star claude-seo, the repo that query looks for, off the page.
+    "seo-tools": {
+        "subject": _q("Is the main purpose of `repo` to let an AI agent or assistant do search engine optimization: a "
+                      "skill, MCP server or agent for SEO, or for being found and cited in AI answers (GEO, AEO)?",
+                      "Keyword research, site and page audits, rank, backlink or Search Console data, content written "
+                      "to rank or to be cited. A collection of marketing skills counts when SEO is a named part of "
+                      "it. A site template that is merely SEO-friendly, an SEO product with no agent interface, or "
+                      "anything about maps and geography does not count."),
+        "types": {
+            "suite": _q("Is `repo` an all-round SEO skill or agent that covers several SEO jobs at once: audits, "
+                        "keywords, content and technical checks?"),
+            "audit": _q("Is `repo` mainly for auditing a site or a page: technical SEO, on-page checks, schema, "
+                        "Core Web Vitals, crawl problems?"),
+            "research": _q("Is `repo` mainly for keyword and search-demand research: keyword ideas, search volume, "
+                           "trends, rank tracking, SERP or competitor analysis?"),
+            "data_mcp": _q("Is `repo` an MCP server or connector that gives an assistant SEO data from a service: "
+                           "Google Search Console, Bing Webmaster, Ahrefs, Semrush, DataForSEO?"),
+            "geo": _q("Is `repo` mainly about visibility in AI answers: GEO, AEO, LLM citations, AI search tracking?"),
+            "content": _q("Is `repo` mainly for producing content that ranks or for building links: articles, briefs, "
+                          "programmatic pages, internal links, backlink or directory submission?"),
+            "marketing": _q("Is `repo` a broad collection of marketing skills in which SEO is one area among several?"),
+        },
+        "labels": _labels(("suite", "🧰", "All-in-one Claude SEO skills", "综合 SEO Skill"),
+                          ("audit", "🩺", "SEO audit skills", "站点与页面审计"),
+                          ("research", "🔎", "Keyword research & rank tracking", "关键词与排名研究"),
+                          ("data_mcp", "🔌", "Google Search Console & SEO data MCP", "Search Console 与数据 MCP"),
+                          ("geo", "🤖", "GEO & AI search visibility", "GEO 与 AI 搜索可见性"),
+                          ("content", "✍️", "SEO content & link building", "内容与外链"),
+                          ("marketing", "📣", "Marketing skill packs with SEO", "含 SEO 的营销合集")),
+        "queries": ["seo skill in:name,description", "claude seo in:name,description", "seo mcp in:name,description,topics",
+                    "seo agent skill in:name,description", "search console mcp in:name,description",
+                    "keyword research skill in:name,description", "keyword research mcp in:name,description",
+                    "generative engine optimization in:name,description", "geo aeo skill in:name,description",
+                    "seo audit claude in:name,description", "dataforseo in:name,description",
+                    "ahrefs mcp in:name,description", "semrush mcp in:name,description"],
+        # " geo " also catches maps and geo-distributed systems; `also` and then the subject question turn those away.
+        # " seo" alone would take Seoul; the forms below are how the word ends in real descriptions.
+        "words": [" seo ", " seo,", " seo.", " seo:", " seo;", " seo)", " seo·", " seo、", " seos ", " seo's", "(seo", " seo—",
+                  "seo geo", "geo seo",
+                  " geo ", " aeo ", "generative engine optimization", "answer engine optimization",
+                  "search console", "keyword research", "backlink", "serp ", "rank track", "ahrefs", "semrush",
+                  "dataforseo", "seo优化", "关键词研究"],
+        "also": ["mcp", "agent", "claude", "skill", "codex", "cursor", "llm", "ai ", "gpt", "openclaw"],
+        # Jev filed it under content (its README talks about what is worth building a page for).
+        # It writes no content: it finds new names and sizes the search terms behind them.
+        "owner_kinds": {"zhuyansen/new-term-radar": "research"},
+    },
     # Upgraded 10-05 (AIsa: supabase mcp 3,600/mo KD 15, postgres mcp 916 KD 10). Page only, no list.
     "mcp-database": {
         "strict": True,

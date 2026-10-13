@@ -403,9 +403,9 @@
     "d": "主流 SaaS 平台的官方 MCP 服务器——Box、Stripe、Notion、GitHub、Slack 等企业级集成。"
   },
   "seo-tools": {
-    "t": "SEO 工具",
-    "k": ["SEO", "搜索引擎优化"],
-    "d": "SEO 研究与分析 MCP 服务器——关键词、外链、SERP 追踪,接 Ahrefs、DataForSEO、GSC 数据。"
+    "t": "Claude SEO Skill 与 SEO MCP",
+    "k": ["SEO", "搜索引擎优化", "SEO skill", "GEO", "关键词研究", "Search Console"],
+    "d": "开源的 Claude SEO skill 与 SEO MCP 服务,带安全评级:claude-seo、geo-seo-claude、站点审计与关键词研究 skill、GEO 工具,以及接 Google Search Console、Ahrefs、DataForSEO 的 MCP 服务。安装前先核查。"
   },
   "finance-mcp": {
     "t": "金融 MCP 服务器",
