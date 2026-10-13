@@ -3568,5 +3568,33 @@
    "business": 0.21
   },
   "kind": "remote"
+ },
+ {
+  "repo": "smixs/pi-durable-telegram",
+  "stars": 7,
+  "description": "Always-on durable pi agent on your server that you talk to in Telegram. Survives crashes and restarts, keeps history in SQLite. pi-durable Telegram gateway.",
+  "scores": {
+   "assistant": 0.94,
+   "remote": 0.96,
+   "framework": 0.17,
+   "utility": 0.31,
+   "fun": 0.09,
+   "business": 0.17
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "SouravBeraAkaSpeed/xiryn",
+  "stars": 8,
+  "description": "Xiryn — the open-source personal agent. Does everything Muse, Grok Bot and Dots do, on your own computer: each agent gets its own Linux desktop in Docker, any model with your keys, an encrypted vault, and control from Telegram.",
+  "scores": {
+   "assistant": 0.64,
+   "remote": 0.93,
+   "framework": 0.1,
+   "utility": 0.09,
+   "fun": 0.07,
+   "business": 0.07
+  },
+  "kind": "remote"
  }
 ]

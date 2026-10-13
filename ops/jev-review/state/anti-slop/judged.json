@@ -9615,5 +9615,31 @@
   "days": 111,
   "stars_per_day": 0.04504504504504504,
   "verdict": "admit"
+ },
+ {
+  "repo": "LXSKING/article-humanizer-check",
+  "name": "article-humanizer-check",
+  "stars": 5,
+  "description": "article-humanizer-check 是一个用于检查学术文章、SCI 论文 proof 或正文中 AI 生成痕迹的 Codex Skill。它会识别过度模板化、宣传化、空泛化或 chatbot 式的表达，并给出局部、低干预的修改建议。",
+  "topics": [],
+  "created": "2026-05-19",
+  "pushed": "2026-05-19",
+  "source": "topic",
+  "readme_chars": 7718,
+  "names_model": false,
+  "on_subject": 0.86,
+  "is_software": 0.89,
+  "shows_result": 0.09,
+  "one_command_start": 0.1,
+  "specific_outcome": 0.81,
+  "complete_docs": 0.29,
+  "novel_angle": 0.45,
+  "shareable_output": 0.52,
+  "quality": 0.3225,
+  "tier": "低",
+  "hit_prior": 0.35333333333333333,
+  "days": 147,
+  "stars_per_day": 0.034013605442176874,
+  "verdict": "low_quality"
  }
 ]

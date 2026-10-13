@@ -20947,5 +20947,33 @@
   "days": 1,
   "stars_per_day": 5.0,
   "verdict": "admit"
+ },
+ {
+  "repo": "arpitbbhayani/array-ui",
+  "name": "array-ui",
+  "stars": 5,
+  "description": "The Design System for Lazy Engineers. One design system for personal sites, developer SaaS, and HTML explainer docs. Zero custom CSS, machined telemetry, and an agent-first component architecture.",
+  "topics": [
+   "design-system"
+  ],
+  "created": "2026-10-04",
+  "pushed": "2026-10-11",
+  "source": "topic",
+  "readme_chars": 853,
+  "names_model": false,
+  "on_subject": 0.63,
+  "is_software": 0.87,
+  "shows_result": 0.83,
+  "one_command_start": 0.11,
+  "specific_outcome": 0.22,
+  "complete_docs": 0.04,
+  "novel_angle": 0.66,
+  "shareable_output": 0.71,
+  "quality": 0.3,
+  "tier": "低",
+  "hit_prior": 0.7333333333333334,
+  "days": 9,
+  "stars_per_day": 0.5555555555555556,
+  "verdict": "off_topic"
  }
 ]

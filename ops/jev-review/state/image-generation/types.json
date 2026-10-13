@@ -3302,5 +3302,47 @@
    "mcp": 0.1
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "Arekejoker/qwen21-nsfw-pose-skill",
+  "stars": 119,
+  "description": "Qwen-Image 2.1 NSFW/姿势出图 skill：作者级提示词配方 + NSFW LoRA + 136 姿势 VNCCS 人偶控制；适用 Claude Code / Codex / Cursor / OpenClaw",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.64,
+   "editing": 0.06,
+   "design": 0.03,
+   "mcp": 0.16
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "beatra-ai/ai-logo-maker-skill",
+  "stars": 5,
+  "description": "AI logo maker agent skill for Claude Code, Codex & OpenClaw: turn a brand name, industry, or reference image into logo concepts, brand marks, and app icons with exact brand colors. AI Logo设计 · 品牌标识",
+  "scores": {
+   "gpt_image": 0.08,
+   "nano_banana": 0.04,
+   "open_models": 0.06,
+   "editing": 0.03,
+   "design": 0.71,
+   "mcp": 0.42
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "beatra-ai/ai-media-generator-skill",
+  "stars": 5,
+  "description": "AI media generator agent skill for Claude Code, Codex & OpenClaw: create AI images, video, music, and voice-over, and look up public social data through one connection. AI内容创作 · 图片视频音乐配音生成",
+  "scores": {
+   "gpt_image": 0.06,
+   "nano_banana": 0.03,
+   "open_models": 0.09,
+   "editing": 0.07,
+   "design": 0.11,
+   "mcp": 0.43
+  },
+  "kind": "mcp"
  }
 ]

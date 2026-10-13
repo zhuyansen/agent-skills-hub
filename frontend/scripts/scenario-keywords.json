@@ -1572,7 +1572,9 @@
     "EvilFreelancer/tgfake",
     "HNF-FRN/Reel-watcher-telegram-Agent",
     "tuuject/surowan",
-    "WireCatLabs/tg-cli"
+    "WireCatLabs/tg-cli",
+    "SouravBeraAkaSpeed/xiryn",
+    "smixs/pi-durable-telegram"
    ],
    "exclude_repos": [
     "smixs/iva"
@@ -1935,7 +1937,10 @@
     "frannkurt/nano-banana-mcp",
     "Mats2208/qwen-image-local",
     "ShalomObongo/codex-imagegen-mcp",
-    "q253595422/prompt-constraints"
+    "q253595422/prompt-constraints",
+    "Arekejoker/qwen21-nsfw-pose-skill",
+    "beatra-ai/ai-logo-maker-skill",
+    "beatra-ai/ai-media-generator-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3054,7 +3059,8 @@
     "serradura/okf-gem",
     "study8677/antigravity-workspace-template",
     "useenzyme/enzyme",
-    "7xuanlu/wenlan"
+    "7xuanlu/wenlan",
+    "shenmintao/marginalia"
    ]
   },
   "related": [
@@ -5684,7 +5690,8 @@
     "Binaryify/open-kimi-ppt-skill",
     "E1nzbern/open-kimi-ppt-skill",
     "seulee26/mckinsey-pptx",
-    "gozen3ji/consulting-pptx-skill"
+    "gozen3ji/consulting-pptx-skill",
+    "mujingquan835/dashiai-ppt-skill"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -5838,7 +5845,8 @@
     "carnot-tech/jinba-consulting-pptx-skill",
     "zhuyansen/awesome-codex-ppt-skills",
     "MURMURE11118586/codex-xkppt-skill",
-    "w1ndys/html-ppt-academic-skill"
+    "w1ndys/html-ppt-academic-skill",
+    "mujingquan835/Dawang-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7211,7 +7219,8 @@
     "dtunai/cu-Jev",
     "dorkitude/skimmer",
     "jmagly/aiwg",
-    "lookski/openjev"
+    "lookski/openjev",
+    "schainks/system_one_client"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7223,7 +7232,8 @@
     "uehaj/jev-semgrep",
     "AkashPriyadarshii/jev-curate",
     "AkashPriyadarshii/jev-seo",
-    "Jwuthri/SelfJev"
+    "Jwuthri/SelfJev",
+    "Alex314618-create/JevRev"
    ]
   },
   "related": [
@@ -7602,7 +7612,17 @@
     "jammaru/launch-video-craft",
     "CJ10110425/logo-intro",
     "nomicsadmin/editor-video-ia",
-    "i-afaqrashid/claude-animation-studio"
+    "i-afaqrashid/claude-animation-studio",
+    "AbubakrChan/product-launch-motion",
+    "Hype-yolo/claude-motion-skill",
+    "0xS4N4TG/papercut-explainer",
+    "talsiach/take-one",
+    "crawfordxx/xiaoma-studio",
+    "chuspeeism/dashi-animationstyle",
+    "Matteoikarieth96/whiteboard-video-skill",
+    "vincentventalon/claude-code-video-editing-skill",
+    "beatra-ai/talking-avatar-video-skill",
+    "rock3r/cav"
    ],
    "sub_skills": [
     {
@@ -7637,7 +7657,8 @@
     "Vincentwei1021/video-talkcraft",
     "Yuuhann1999/codex-storyboard",
     "opus-pro/opus-video-studio",
-    "animspark/animspark"
+    "animspark/animspark",
+    "manthanpatelll/leadgenman-video-skills"
    ],
    "tag_matches": [],
    "required_keywords": [

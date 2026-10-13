@@ -5008,5 +5008,20 @@
    "general": 0.69
   },
   "kind": "general"
+ },
+ {
+  "repo": "schainks/system_one_client",
+  "stars": 7,
+  "description": "Elixir client for System One decision models: TypeSafe Jev, Cloudflare Clef, OpenRouter, self-hosted (CLM). Full probability distributions, behaviour + stub, retries, telemetry.",
+  "scores": {
+   "replica": 0.06,
+   "agent": 0.09,
+   "devtool": 0.38,
+   "sdk": 0.97,
+   "business": 0.13,
+   "consumer": 0.06,
+   "general": 0.42
+  },
+  "kind": "sdk"
  }
 ]

@@ -1,4 +1,12 @@
 {
+ "0xS4N4TG/papercut-explainer": {
+  "repo": "0xS4N4TG/papercut-explainer",
+  "url": "https://raw.githubusercontent.com/0xS4N4TG/papercut-explainer/HEAD/docs/img/hello-reel.gif",
+  "alt": "A two-scene reel built with the library: hook title, parallax camera, word-by-wo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1667978
+ },
  "0xsline/OpenChatCut": {
   "repo": "0xsline/OpenChatCut",
   "url": "https://raw.githubusercontent.com/0xsline/OpenChatCut/HEAD/assets/readme-pic/07-lut.png",
@@ -86,6 +94,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 84148
+ },
+ "AbubakrChan/product-launch-motion": {
+  "repo": "AbubakrChan/product-launch-motion",
+  "url": "https://raw.githubusercontent.com/AbubakrChan/product-launch-motion/HEAD/examples/one-shape-loop.webp",
+  "alt": "One shape, never cut: a button becomes a loader, a check, a creator reel, a rate",
+  "score": -0.05,
+  "type": "image/webp",
+  "bytes": 3325266
  },
  "Addepar/RedFlag": {
   "repo": "Addepar/RedFlag",
@@ -206,6 +222,14 @@
   "score": -0.25,
   "type": "image/jpeg",
   "bytes": 333458
+ },
+ "Arekejoker/qwen21-nsfw-pose-skill": {
+  "repo": "Arekejoker/qwen21-nsfw-pose-skill",
+  "url": "https://raw.githubusercontent.com/Arekejoker/qwen21-nsfw-pose-skill/HEAD/references/pose_examples/01_seaside.png",
+  "alt": "",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 3424962
  },
  "Arindam200/fr": {
   "repo": "Arindam200/fr",
@@ -743,6 +767,14 @@
   "type": "image/png",
   "bytes": 704574
  },
+ "Matteoikarieth96/whiteboard-video-skill": {
+  "repo": "Matteoikarieth96/whiteboard-video-skill",
+  "url": "https://raw.githubusercontent.com/Matteoikarieth96/whiteboard-video-skill/HEAD/docs/demo.gif",
+  "alt": "demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2088950
+ },
  "MegaTroll222/VOX-COLLAGE-BROLL": {
   "repo": "MegaTroll222/VOX-COLLAGE-BROLL",
   "url": "https://raw.githubusercontent.com/MegaTroll222/VOX-COLLAGE-BROLL/HEAD/examples/snowball-preview.gif",
@@ -958,6 +990,14 @@
   "score": 4.75,
   "type": "image/gif",
   "bytes": 185329
+ },
+ "SouravBeraAkaSpeed/xiryn": {
+  "repo": "SouravBeraAkaSpeed/xiryn",
+  "url": "https://raw.githubusercontent.com/SouravBeraAkaSpeed/xiryn/HEAD/docs/assets/workstation.png",
+  "alt": "Atlas lists the nonstop Bengaluru to Lucknow flights it found on Google Flights,",
+  "score": -0.3,
+  "type": "image/png",
+  "bytes": 529449
  },
  "SpaceZephyr/map-motion": {
   "repo": "SpaceZephyr/map-motion",
@@ -1319,6 +1359,14 @@
   "type": "image/png",
   "bytes": 80414
  },
+ "beatra-ai/ai-media-generator-skill": {
+  "repo": "beatra-ai/ai-media-generator-skill",
+  "url": "https://raw.githubusercontent.com/beatra-ai/ai-media-generator-skill/HEAD/assets/hero.webp",
+  "alt": "Three different image jobs from one agent session: a product shot of a fictional",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 59396
+ },
  "beriki770-ship-it/code-animations": {
   "repo": "beriki770-ship-it/code-animations",
   "url": "https://raw.githubusercontent.com/beriki770-ship-it/code-animations/HEAD/media/map.jpg",
@@ -1478,6 +1526,14 @@
   "score": 1.95,
   "type": "image/jpeg",
   "bytes": 129361
+ },
+ "crawfordxx/xiaoma-studio": {
+  "repo": "crawfordxx/xiaoma-studio",
+  "url": "https://raw.githubusercontent.com/crawfordxx/xiaoma-studio/HEAD/docs/gallery/museum-compound.gif",
+  "alt": "",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 189798
  },
  "crazyykhllc-bit/CyberPPT": {
   "repo": "crazyykhllc-bit/CyberPPT",
@@ -2935,6 +2991,14 @@
   "type": "image/png",
   "bytes": 235679
  },
+ "rock3r/cav": {
+  "repo": "rock3r/cav",
+  "url": "https://raw.githubusercontent.com/rock3r/cav/HEAD/docs/images/spectrogram.png",
+  "alt": "cav spectrogram",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 310128
+ },
  "rocsgh/ppt-zen": {
   "repo": "rocsgh/ppt-zen",
   "url": "https://raw.githubusercontent.com/rocsgh/ppt-zen/HEAD/assets/hero-portolan.jpg",
@@ -3030,6 +3094,14 @@
   "score": 2.0,
   "type": "image/jpeg",
   "bytes": 33618
+ },
+ "smixs/pi-durable-telegram": {
+  "repo": "smixs/pi-durable-telegram",
+  "url": "https://raw.githubusercontent.com/smixs/pi-durable-telegram/HEAD/assets/header.webp",
+  "alt": "pi durable via telegram: an orange paper airplane flies across the sky toward a ",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 24594
  },
  "smwbev/framewright": {
   "repo": "smwbev/framewright",

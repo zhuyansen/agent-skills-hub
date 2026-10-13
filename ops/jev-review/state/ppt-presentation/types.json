@@ -3106,5 +3106,19 @@
    "general": 0.08
   },
   "kind": "html"
+ },
+ {
+  "repo": "mujingquan835/Dawang-ppt",
+  "stars": 192,
+  "description": "Dawang-PPT：内容驱动的中文演示技能，融合场景规划、风格构图、浏览器编辑与本地可编辑 PPTX 导出（实验版）",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.79,
+   "html": 0.82,
+   "business": 0.59,
+   "convert": 0.41,
+   "general": 0.32
+  },
+  "kind": "html"
  }
 ]

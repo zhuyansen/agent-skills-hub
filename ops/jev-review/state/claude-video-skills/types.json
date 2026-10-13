@@ -5200,5 +5200,185 @@
    "general": 0.44
   },
   "kind": "story"
+ },
+ {
+  "repo": "AbubakrChan/product-launch-motion",
+  "stars": 199,
+  "description": "Claude Code skill for Dribbble-level product launch videos from code. One shape that never cuts, springs, a cursor that drives every change, beat-synced SFX, 60 fps motion blur. v2: use with Claude Opus 5.5.",
+  "scores": {
+   "promo": 0.97,
+   "explainer": 0.1,
+   "music": 0.51,
+   "motion": 0.22,
+   "shorts": 0.13,
+   "editing": 0.04,
+   "demo": 0.33,
+   "story": 0.29,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Hype-yolo/claude-motion-skill",
+  "stars": 39,
+  "description": "Source-assisted animation Skill: 47 open-source cases, editable scenes and MP4 export. Public beta.",
+  "scores": {
+   "promo": 0.2,
+   "explainer": 0.26,
+   "music": 0.07,
+   "motion": 0.44,
+   "shorts": 0.15,
+   "editing": 0.09,
+   "demo": 0.56,
+   "story": 0.72,
+   "avatar": 0.06,
+   "general": 0.63
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "0xS4N4TG/papercut-explainer",
+  "stars": 33,
+  "description": "Claude Code skills + a Remotion library for short vertical cut-paper explainer reels: strategy, hook, script, storyboard, voice, build, QA.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.92,
+   "music": 0.05,
+   "motion": 0.24,
+   "shorts": 0.95,
+   "editing": 0.06,
+   "demo": 0.39,
+   "story": 0.14,
+   "avatar": 0.05,
+   "general": 0.09
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "talsiach/take-one",
+  "stars": 26,
+  "description": "A Claude Code skill that makes a short film from one line.",
+  "scores": {
+   "promo": 0.91,
+   "explainer": 0.17,
+   "music": 0.16,
+   "motion": 0.12,
+   "shorts": 0.28,
+   "editing": 0.07,
+   "demo": 0.53,
+   "story": 0.56,
+   "avatar": 0.13,
+   "general": 0.18
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "crawfordxx/xiaoma-studio",
+  "stars": 9,
+  "description": "用代码做 Opus 5.5 爆款级动效视频与 HTML 幻灯片的 skill：30 条高赞视频拆解出的工作流、审美规则与确定性渲染引擎，任何模型/agent 可用 | Code-driven motion video & HTML slides skill for any coding agent",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.67,
+   "music": 0.33,
+   "motion": 0.29,
+   "shorts": 0.53,
+   "editing": 0.03,
+   "demo": 0.33,
+   "story": 0.2,
+   "avatar": 0.04,
+   "general": 0.71
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "chuspeeism/dashi-animationstyle",
+  "stars": 8,
+  "description": "把一段中文知识口播做成 7 种画风的讲解动画（Claude Code skill）：画面由 Claude 写 HTML/Canvas 代码逐帧画出，不用生图模型",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.96,
+   "music": 0.03,
+   "motion": 0.44,
+   "shorts": 0.12,
+   "editing": 0.12,
+   "demo": 0.24,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.1
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Matteoikarieth96/whiteboard-video-skill",
+  "stars": 6,
+  "description": "Claude Code skill: turn any topic into a hand-drawn whiteboard explainer video with voice-over and captions",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.97,
+   "music": 0.02,
+   "motion": 0.1,
+   "shorts": 0.47,
+   "editing": 0.03,
+   "demo": 0.32,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "vincentventalon/claude-code-video-editing-skill",
+  "stars": 5,
+  "description": "Claude Code skill: automatic rough cut for talking-head videos — join raw clips, remove silences, cut filler words, keep the last take, transcribe (ffmpeg + whisper.cpp). macOS, Windows, Linux.",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.19,
+   "music": 0.02,
+   "motion": 0.02,
+   "shorts": 0.35,
+   "editing": 0.97,
+   "demo": 0.18,
+   "story": 0.03,
+   "avatar": 0.02,
+   "general": 0.05
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "beatra-ai/talking-avatar-video-skill",
+  "stars": 5,
+  "description": "Talking avatar video agent skill for Claude Code, Codex & OpenClaw: turn one portrait and a script or voice track into an AI presenter video for explainers, lessons, and product messages. 数字人口播视频 · 照片说话",
+  "scores": {
+   "promo": 0.43,
+   "explainer": 0.71,
+   "music": 0.03,
+   "motion": 0.03,
+   "shorts": 0.35,
+   "editing": 0.06,
+   "demo": 0.21,
+   "story": 0.08,
+   "avatar": 0.97,
+   "general": 0.05
+  },
+  "kind": "avatar"
+ },
+ {
+  "repo": "rock3r/cav",
+  "stars": 5,
+  "description": "Build, check and render Cavalry motion graphics from the terminal: the cav CLI and an agent skill",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.32,
+   "music": 0.61,
+   "motion": 0.51,
+   "shorts": 0.1,
+   "editing": 0.08,
+   "demo": 0.25,
+   "story": 0.12,
+   "avatar": 0.04,
+   "general": 0.13
+  },
+  "kind": "motion"
  }
 ]
