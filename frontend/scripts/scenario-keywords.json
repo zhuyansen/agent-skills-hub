@@ -2852,7 +2852,10 @@
     "github-actions"
    ],
    "min_results": 3,
-   "max_results": 10
+   "max_results": 10,
+   "exclude_repos": [
+    "zhuyansen/new-term-radar"
+   ]
   },
   "related": [
    "git-tools",
@@ -2888,7 +2891,10 @@
     "google-calendar"
    ],
    "min_results": 3,
-   "max_results": 10
+   "max_results": 10,
+   "exclude_repos": [
+    "zhuyansen/new-term-radar"
+   ]
   },
   "related": [
    "mcp-api",
