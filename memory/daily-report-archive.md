@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-13
+1. juliobsz/skills — 🆕 凭一句话需求让智能体搭出奖项级水准的网站，一个技能包办设计到成品（133★ 121.3/day）
+2. FeedHive/ai-slop-detector — 🆕 列出 120 种让文字读起来像 AI 的写法，附 Claude Code 和 Codex 检测技能（31★ 31.0/day）
+3. sepehr071/awesome-iran-mcp — 🆕 汇集 19 个开源 MCP 服务共 308 个工具，把智能体接入伊朗电商、外卖和票务网站（45★ 28.6/day）
+4. gustavomenani/editing-gameplay-montages — 🆕 把射击游戏片段配上音乐剪成卡点短视频，击杀踩拍、慢动作、歌词上屏（25★ 22.4/day）
+5. kanaworksai-hue/effekseer-vfx-skill — 🆕 用代码生成 Effekseer 实时游戏特效，并在 Godot 真实渲染里验证效果（44★ 17.6/day）
+6. yoanbernabeu/skillcrew — 🆕 给整个团队建一个技能注册表，同步到各家编程智能体并保持最新（21★ 13.4/day）
+7. wenziai/wenzi-xiaohongshu-workflow — 🆕 把小红书运营做成可安装技能，从账号定位、选题标题、真人化改稿到排期复盘（170★ 13.0/day）
+8. loulanyue/agent-control — 🆕 搭建高性能智能体控制平面，统一任务编排并接入 MCP（173★ 12.6/day）
+9. zqc3117/Spotter — 🆕 让具身模型主导行动、视觉语言模型负责反思纠错，附论文官方代码（152★ 10.9/day）
+10. herval/littleguys — 🆕 在 Mac 菜单栏给每个智能体放一个小人，像聊天软件一样对话、审批和排期（23★ 3.6/day）
+🎯 今日趋势：48h 内去重后合格新鲜项恰好 **10 个**，未放宽到 72h；**10 席**全标 🆕、**5 席**建仓不满 2 天；"替人做内容"占 **5 席**（一句话建站、AI 腔检测、游戏卡点剪辑、游戏特效、小红书运营），管一群智能体的工具占 **3 席**（团队技能注册表、控制平面、菜单栏小人）。
+> 注：去重范围＝repo 内 archive 全部 110 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,691 个（含路径噪声，只会多剔不会漏剔）。查询 `first_seen ≥48h`、stars ≥20 触顶 LIMIT 150（最低 24★，命中历史 21 条），为免漏掉 20–23★ 的新仓，另加 `created_at ≥30 天内` 条件、窗口取 72h 补查一次得 61 条（命中历史 36 条，余 25 条），共 2 次单连接串行查询；按 first_seen 切回 48h 后逐个复核，合格正好 10 个，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Folkbench/folkbench（558★ 52.2/day）：所属组织与仓库同日（10-02）新建、仅 1 仓、fork 7 远低于星数，且为 API 中转站评测与切换工具，按 10-08、10-10、10-12 新建组织先例及中转灰色地带先例保守排除；②a-samy-consultancy/claude-code-setup-kit（24★ 22.7/day）：账号 10-09 新建、0 粉、仅 1 仓、fork 1；③typesafe-docs 名下 9 个仓（commander-mangen、headerscrub 等）：同日建仓、星数 68–73 雷同，集群刷星嫌疑（与 10-12 同批），且均为 uncategorized 通用库；④akivet/Mica（36★ 2.0/day）：uncategorized、1 粉、0 fork、建仓 17.7 天；⑤shicheng5589-oss/Agent-desktop-pet（21★ 1.2/day）：0 粉、仅 1 仓、0 fork、建仓 17.9 天；⑥paperclipai/paperclip（100,837★，建仓 224 天）、withcoral/coral（4,937★，建仓 192 天）、vastsa/FileCodeBox（8,609★）、openflowkit/openflowkit、thedivergentai 两个游戏技能仓、freshtechbro/claudedesignskills、trailofbits/skills-curated 等：建仓 33 天至数年、本期才收录，不算新鲜；⑦r08/r09/r17-…-awesome-claude-skills-… 共 7 个：同日建仓、随机词账号、星数 38–56，衍生合集集群（与 10-12 同批）；⑧upvoteclub/upvote-club-mcp-* 3 个：互赞服务的配套仓，建仓 90 天；⑨AIAnytime/Awesome-MCP-Servers：security_grade 为 unsafe；⑩其余均已在历史榜单出现。72h 窗口里的 zhutoumeme/mcd-git（74★，麦当劳 MCP 参赛作品、0 fork）、daimonia-ai/STC-Simplified-Technical-Chinese（27★，组织 0 粉、仅 1 仓）因未放宽而不在范围内。入选项复核（`gh api`）：第 1 席 juliobsz 2020 建号、18 粉、其余仓 ≤8★，本仓 fork 5、MIT，建仓 1 天实时已 227★（**轻红旗**，单仓爆星但账号年久、描述具体，保留，下期若星数异常可回看）；第 2 席 FeedHive 为 2020 建的组织、21 粉、名下 twitter-api-client 936★，MIT；第 3 席 sepehr071 2019 建号、35 粉、名下 snapp-mcp 33★、digikala-mcp 29★，MIT、fork 6；第 4 席 gustavomenani 2022 建号、3 粉、其余仓 ≤3★（**轻红旗**，量级小、fork 3、附葡语教程，保留）；第 5 席 kanaworksai-hue 2025 建号、3 粉、其余仓 ≤5★（**轻红旗**，MIT、fork 4，保留）；第 6 席 yoanbernabeu 2019 建号、542 粉、名下 grepai 1,910★，MIT；第 7 席 wenziai 2026-07 建号、3 粉、另一仓 0★、无许可证（**轻红旗**，fork 34 与星数相称，保留）；第 8 席 loulanyue 2016 建号、160 粉、名下另有 432★、338★、312★ 仓，Apache-2.0；第 9 席 zqc3117 2024 建号、2 粉、仅 1 仓，为论文官方代码、偏具身智能研究而非即装即用的技能（**轻红旗**，MIT、fork 16，为凑满十席保留）；第 10 席 herval 2008 建号、167 粉、名下 yahoo-finance 191★、cliobot 117★，MIT。🆕 判定＝created_at 距今 14 天内，十席全部命中（Spotter 13.9 天、agent-control 13.8 天、wenzi-xiaohongshu-workflow 13.0 天贴线）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（juliobsz/skills 227★、awesome-iran-mcp 65★、ai-slop-detector 43★、editing-gameplay-montages 37★），按红线保留快照值。
+
+---
+
 ## 2026-10-12
 1. LingCore/WinShun — 🆕 给 Windows 装上双击 Ctrl 的搜索启动器，拼音搜文件、全文搜文档，并带 MCP 接 AI 助手（178★ 45.2/day）
 2. lawrencewzen/wx-bot — 🆕 通过腾讯官方 iLink 把微信接到本机个人智能体，只走出站连接，支持 Grok、Claude 等（95★ 37.4/day）
