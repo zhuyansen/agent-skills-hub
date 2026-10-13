@@ -387,6 +387,7 @@ def test_the_country_series_reads_a_rise_the_worldwide_one_flattens(monkeypatch,
     uc = usecases.run(tmp_path, ["photocraft"], {}, TODAY)
     text = "\n".join(usecases.table(uc))
     assert "还在涨 (US)" in text and "已退回全球数据:photocraft: HTTP 502" in text
+    assert "今天这张表不完整" in text
 
 
 def test_only_things_are_read_for_generic_terms_not_words_that_surged():

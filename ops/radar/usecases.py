@@ -525,6 +525,11 @@ def names_to_read(leads_today: list[dict], recent_sources: list[dict]) -> list[s
     return out
 
 
+def degraded(uc: dict) -> bool:
+    """A source failed during this run, so the table holds less than it would have."""
+    return bool(uc.get("posts_error") or uc.get("related_errors") or uc.get("country_errors"))
+
+
 NOW_ZH = {"rising": "还在涨", "holding": "维持", "fading": "回落", "flat": "没动"}
 DECISION_ZH = {"prioritize": "**优先**", "watch": "观察", "skip": "跳过"}
 
@@ -548,6 +553,8 @@ def table(uc: dict) -> list[str]:
     if not uc.get("names"):
         return lines + ["今天没有要读的名字:没有新名字,也没有到第二次阅读时间的。"]
     c = SETTINGS
+    if degraded(uc):
+        lines += ["**⚠ 今天这张表不完整:有数据源失败,内容比平时少(原因见表下)。表里没出现上涨,不代表真的没涨。**", ""]
     bench = f"名字对比基准词 `{uc['benchmark']}`(按今天这批词反推,约每天 {uc['bench_daily']} 次)" if uc.get("bench_daily") \
         else f"今天没法校准基准词 `{uc['benchmark']}`,所以名字没有估算值"
     lines += [f"今天读了:{', '.join(uc['names'])}。提出 {uc['proposed']} 个通用写法,{uc['relevant']} 个通过相关性筛选,其中 {uc['kept']} 个月搜不低于 {c['min_volume']}"
