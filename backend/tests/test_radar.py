@@ -396,3 +396,15 @@ def test_only_things_are_read_for_generic_terms_not_words_that_surged():
     recent = [{"term": "qwen image 2.1", "kinds": ["hf"], "named": 0.96}, {"term": "use rea", "kinds": ["x"], "named": 0.72},
               {"term": "photocraft", "kinds": ["x"], "named": 0.9}]
     assert usecases.names_to_read(today, recent) == ["photocraft", "hailuo", "qwen image 2.1"]
+
+
+def test_a_failed_post_search_costs_one_name_its_posts_not_the_step(monkeypatch):
+    def call(calls):
+        if "photocraft" in calls[0]["arguments"]["query"]:
+            raise usecases.aisa.AisaError("HTTP 504: <html><h1>504 Gateway Time-out</h1></html>")
+        return {"s": {"tweets": [{"text": "check any image", "likeCount": 900, "author": {"userName": "a"}}]}}, 3000
+    monkeypatch.setattr(usecases.aisa, "call", call)
+    monkeypatch.setattr(usecases, "_readme", lambda repo: "PhotoCraft opens real PSD files")
+    ev, cost = usecases.evidence(["photocraft", "synthid detector"], {"photocraft": "storytold/photocraft"}, TODAY)
+    assert cost == 3000 and ev["photocraft"]["readme"] and ev["photocraft"]["posts"] == []
+    assert ev["photocraft"]["error"] == "HTTP 504: 504 Gateway Time-out" and len(ev["synthid detector"]["posts"]) == 1

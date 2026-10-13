@@ -122,19 +122,28 @@ def _readme(repo: str) -> str:
 
 
 def evidence(names: list[str], repos: dict[str, str], today: date) -> tuple[dict[str, dict], int]:
-    """{name: {"posts": [...], "readme": str}} and the cost in micro-USD."""
+    """{name: {"posts": [...], "readme": str, "error": str}} and the cost in micro-USD.
+
+    One request per name: the router runs a batch's calls one after another, a post
+    search takes 15 to 25 seconds, and its gateway gives up at 60, so two names in one
+    request timed out twice on 2026-10-13 while each alone answered. A name whose search
+    fails goes on with its README and the related queries, and the table says so."""
     since = (today - timedelta(days=SEARCH_DAYS)).isoformat()
-    calls = [{"call_id": f"n{i}", "tool": SEARCH_TOOL, "arguments": {
-        "query": f'"{n}" min_faves:{MIN_FAVES} -filter:replies since:{since}', "queryType": "Top"}} for i, n in enumerate(names)]
-    data, cost = aisa.call_all(calls)
-    out = {}
-    for i, n in enumerate(names):
-        d = data.get(f"n{i}") or {}
-        tweets = d.get("tweets") or (d.get("data") or {}).get("tweets") or []
+    out, cost = {}, 0
+    for n in names:
+        error, tweets = "", []
+        try:
+            data, spent = aisa.call([{"call_id": "s", "tool": SEARCH_TOOL, "arguments": {
+                "query": f'"{n}" min_faves:{MIN_FAVES} -filter:replies since:{since}', "queryType": "Top"}}])
+            cost += spent
+            d = data.get("s") or {}
+            tweets = d.get("tweets") or (d.get("data") or {}).get("tweets") or []
+        except aisa.AisaError as exc:
+            error = " ".join(re.sub(r"<[^>]+>", " ", str(exc)).split())[:80]
         posts = sorted(({"text": " ".join((t.get("text") or "").split()), "likes": int(t.get("likeCount") or 0),
                          "by": (t.get("author") or {}).get("userName") or "?", "url": t.get("url", "")} for t in tweets),
                        key=lambda p: -p["likes"])[:POSTS_KEPT]
-        out[n] = {"posts": posts, "readme": _readme(repos[n]) if repos.get(n) else "", "repo": repos.get(n, "")}
+        out[n] = {"posts": posts, "readme": _readme(repos[n]) if repos.get(n) else "", "repo": repos.get(n, ""), "error": error}
     return out, cost
 
 
@@ -492,6 +501,7 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
     return {"names": todo, "rows": rows, "proposed": asked, "relevant": len(proposed), "kept": len(generic), "benchmark": bench,
             "bench_daily": round(daily) if daily else None, "volume_month": next((r["month"] for r in generic if r.get("month")), ""),
             "no_evidence": [n for n in todo if not ev[n]["posts"] and not ev[n]["readme"]],
+            "posts_error": "; ".join(f"{n}: {e['error']}" for n, e in ev.items() if e.get("error")),
             "related": use_related, "tails": {n: v for n, v in tails.items() if v}, "cosearch": cosearch,
             "related_errors": related_errors, "geo": c["related_geo"], "country_errors": local_errors,
             "cost_micros": cost + c0 + c2 + c3 + c4}
@@ -564,6 +574,8 @@ def table(uc: dict) -> list[str]:
         lines += ["", "一起被搜的其他名字(已记为线索):" + "、".join(f"{x['term']}(和 {x['with']} 一起)" for x in uc["cosearch"])]
     if uc.get("no_evidence"):
         lines += ["", f"没找到帖子或 README:{', '.join(uc['no_evidence'])}。"]
+    if uc.get("posts_error"):
+        lines += ["", f"推文搜索失败,这次只用了 README 和相关查询:{uc['posts_error']}"]
     if uc.get("related_errors"):
         lines += ["", f"相关查询失败:{'; '.join(uc['related_errors'])}。"]
     elif not uc.get("related"):
