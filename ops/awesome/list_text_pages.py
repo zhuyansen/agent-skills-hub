@@ -225,6 +225,25 @@ PAGE_LISTS = {
             "tooling": ("Config, usage tracking, session management, installers and UIs for Codex.", "Codex 的配置、用量统计、会话管理、安装器和界面。"),
         },
     },
+    "ai-reverse-engineering": {
+        "repo": "zhuyansen/awesome-ai-reverse-engineering",
+        "text": _text("Awesome AI Reverse Engineering",
+                      ("Open-source **AI reverse engineering tools** for Claude Code, Codex and other agents: Ghidra MCP and IDA Pro MCP "
+                       "servers, jadx and Frida for mobile apps, reverse engineering skills, REA, and programs rebuilt with it.",
+                       "给 Claude Code、Codex 等 agent 用的开源 **AI 逆向工程工具**:Ghidra MCP、IDA Pro MCP、移动端的 jadx 与 Frida、"
+                       "逆向 skill、REA,以及用它重建出来的项目。"),
+                      ("Reverse engineering with an AI agent is its main purpose. A general security scanner, a list of links, a copy of "
+                       "another repository, or a tool sold on game cheating or cracking does not count.",
+                       "用 AI agent 做逆向是它的主要用途。通用安全扫描器、链接清单、照搬别人的仓库、以游戏作弊或破解为卖点的工具不算。"),
+                      ("What these tools look like", "这些工具长什么样")),
+        "blurb": {
+            "mcp": ("Servers and plugins that let an agent drive Ghidra, IDA Pro, Binary Ninja, radare2 or x64dbg.", "让 agent 操作 Ghidra、IDA Pro、Binary Ninja、radare2 或 x64dbg 的服务和插件。"),
+            "mobile": ("jadx, apktool and Frida connected to an agent, for Android, iOS and HarmonyOS apps.", "接给 agent 的 jadx、apktool 和 Frida,面向 Android、iOS 和鸿蒙应用。"),
+            "web": ("Obfuscated JavaScript, request signing and traffic analysis.", "混淆 JavaScript、请求签名和流量分析。"),
+            "skill": ("Skills and workflows that teach an agent how to reverse engineer.", "教 agent 怎么做逆向的 skill 和流程。"),
+            "case": ("Programs rebuilt or analysed with REA; the README of each says so.", "用 REA 重建或分析出来的程序,README 里都写明了。"),
+        },
+    },
     "code-review": {
         "repo": "zhuyansen/awesome-claude-code-review",
         "text": _text("Awesome Claude Code Review",

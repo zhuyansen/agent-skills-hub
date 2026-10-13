@@ -8236,5 +8236,360 @@
    }
   },
   "seo_keyword": "claude code hooks"
+ },
+ {
+  "slug": "ai-reverse-engineering",
+  "title": "AI Reverse Engineering Tools",
+  "description": "Open-source AI reverse engineering tools, security-graded: Ghidra MCP and IDA Pro MCP servers, jadx and Frida for mobile apps, reverse engineering skills, REA, and programs rebuilt with it.",
+  "match": {
+   "categories": [],
+   "keywords": [
+    "reverse engineering"
+   ],
+   "min_results": 3,
+   "max_results": null,
+   "tag_matches": [],
+   "exclude_repos": [
+    "0xhackerfren/frida-game-hacking-mcp",
+    "bbylw/rea-cn",
+    "dawnslab/jebmcp",
+    "dslsdzc/rev-skills",
+    "jtang613/GhidrAssistMCP",
+    "miscusi-peek/cheatengine-mcp-bridge"
+   ],
+   "reviewed_only": true,
+   "sort": "stars",
+   "admit_reviewed": [
+    "N0zoM1z0/dx-ball",
+    "NullLabTests/OpenBSD_netcat_REA",
+    "OceanJy333/meteor-mac",
+    "cycloarcane/ghidra-mcp-setup",
+    "davehornik/WH3SaveEditor",
+    "fantay0312/ida-pro-mcp-plus"
+   ]
+  },
+  "related": [
+   "agent-security",
+   "security-audit",
+   "code-review"
+  ],
+  "serp_subject": "Ghidra MCP, IDA Pro MCP & AI Reverse Engineering Tools",
+  "seo_keyword": "ai reverse engineering",
+  "extra_faq": [
+   {
+    "q": "What is a Ghidra MCP server?",
+    "a": "A bridge that lets an AI agent drive Ghidra: list functions, read decompiled code, rename symbols and add comments. LaurieWired/GhidraMCP is the most starred; bethington/ghidra-mcp is a larger one that also runs headless. mrexodia/ida-pro-mcp does the same job for IDA Pro.",
+    "qZh": "Ghidra MCP 是什么?",
+    "aZh": "一座让 AI agent 操作 Ghidra 的桥:列出函数、读反编译代码、给符号改名、加注释。星数最高的是 LaurieWired/GhidraMCP;bethington/ghidra-mcp 功能更多,还能无界面运行。mrexodia/ida-pro-mcp 为 IDA Pro 做同样的事。"
+   },
+   {
+    "q": "Which repository is the official REA (Reverse Engineer Anything)?",
+    "a": "morluto/rea. We found 9 other repositories that copy or translate it, one with more than 200 stars; they are named in the table on this page and are not listed. We checked that their README is a copy, not what their code does, so install from morluto/rea.",
+    "qZh": "REA(Reverse Engineer Anything)的官方仓库是哪个?",
+    "aZh": "morluto/rea。我们另外找到 9 个照搬或翻译它的仓库,其中一个超过 200 星;它们列在本页的表格里,不在收录清单中。我们只核对了它们的 README 是复制的,没有检查代码做了什么,所以请从 morluto/rea 安装。"
+   },
+   {
+    "q": "What has been reverse engineered with REA?",
+    "a": "Four projects here say in their README that REA was used: a rebuild of DX-Ball 1.07 in C/C++ (N0zoM1z0/dx-ball), a port layer that runs a 2002 Windows game on macOS (OceanJy333/meteor-mac), a save editor for Total War: Warhammer 3 (davehornik/WH3SaveEditor) and an analysis of the netcat binary (NullLabTests/OpenBSD_netcat_REA). None of them ships the original program's files.",
+    "qZh": "有哪些项目是用 REA 逆向出来的?",
+    "aZh": "本页有四个项目在 README 里写明用了 REA:用 C/C++ 重建 DX-Ball 1.07(N0zoM1z0/dx-ball)、让 2002 年的 Windows 游戏在 macOS 上运行的兼容层(OceanJy333/meteor-mac)、《全面战争:战锤 3》存档编辑器(davehornik/WH3SaveEditor),以及对 netcat 二进制的分析(NullLabTests/OpenBSD_netcat_REA)。它们都不附带原程序的文件。"
+   }
+  ],
+  "caution": {
+   "h2": "Copies and mirrors of REA: install from morluto/rea",
+   "h2_zh": "REA 的复制品与镜像:请从 morluto/rea 安装",
+   "body": "REA's official repository is morluto/rea. These 9 repositories repeat it under another name and are not listed above. We compared their README with the official one; we did not check whether their code was changed, so we cannot say they are harmful, only that they are not the original.",
+   "body_zh": "REA 的官方仓库是 morluto/rea。下面这 9 个仓库换了名字重复它的内容,不在上面的收录清单里。我们比对了它们的 README 与官方版;没有检查代码是否被改动,所以不能说它们有害,只能说它们不是原版。",
+   "official": "morluto/rea",
+   "columns": [
+    [
+     "Repository",
+     "仓库"
+    ],
+    [
+     "Stars",
+     "星数"
+    ],
+    [
+     "What we found",
+     "我们看到的"
+    ]
+   ],
+   "rows": [
+    {
+     "repo": "NabilRFG12/Reverse-Engineer-anything",
+     "stars": 233,
+     "note": "README is 89% the same as the official one",
+     "note_zh": "README 与官方版 89% 相同"
+    },
+    {
+     "repo": "bbylw/rea-cn",
+     "stars": 59,
+     "note": "Chinese translation of the official repository, kept by someone else",
+     "note_zh": "官方仓库的中文翻译版，由他人维护"
+    },
+    {
+     "repo": "rea-tools/rea",
+     "stars": 44,
+     "note": "README is 64% the same as the official one",
+     "note_zh": "README 与官方版 64% 相同"
+    },
+    {
+     "repo": "wukongtime/rea-backup",
+     "stars": 6,
+     "note": "README is 99% the same as the official one",
+     "note_zh": "README 与官方版 99% 相同"
+    },
+    {
+     "repo": "terryfurqan/rea",
+     "stars": 3,
+     "note": "README is 95% the same as the official one",
+     "note_zh": "README 与官方版 95% 相同"
+    },
+    {
+     "repo": "TNHTH/rea",
+     "stars": 2,
+     "note": "README is 98% the same as the official one",
+     "note_zh": "README 与官方版 98% 相同"
+    },
+    {
+     "repo": "Yellow-Junk/rea",
+     "stars": 1,
+     "note": "README is 99% the same as the official one",
+     "note_zh": "README 与官方版 99% 相同"
+    },
+    {
+     "repo": "petebeke/rea",
+     "stars": 1,
+     "note": "README is 99% the same as the official one",
+     "note_zh": "README 与官方版 99% 相同"
+    },
+    {
+     "repo": "Kasyang233/rea",
+     "stars": 1,
+     "note": "README is 88% the same as the official one",
+     "note_zh": "README 与官方版 88% 相同"
+    }
+   ]
+  },
+  "method": {
+   "h2": "How we chose these AI reverse engineering tools: what the agent is connected to",
+   "h2_zh": "我们怎么选这些 AI 逆向工程工具：agent 接的是什么",
+   "thesis": "An AI agent does not reverse engineer by itself. It reads what a disassembler, a decompiler or a debugger gives it, so the first question is which of those it is connected to. The page is grouped by that, and a repository is listed only when reverse engineering with an agent is its main purpose.",
+   "thesis_zh": "AI agent 自己不会逆向。它读的是反汇编器、反编译器或调试器给它的结果，所以第一个问题是它接的是哪一个。本页按这一点分组；一个仓库只有以「用 agent 做逆向」为主要用途才会收录。",
+   "h3_routes": [
+    "Five kinds, by what the agent works on",
+    "五种类型，按 agent 处理的对象分"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What you gain",
+     "强项"
+    ],
+    [
+     "What to check",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Disassembler and decompiler MCP",
+     "name_zh": "反汇编与反编译 MCP",
+     "how": "A server or plugin that lets the agent drive Ghidra, IDA Pro, Binary Ninja, radare2 or x64dbg: list functions, read decompiled code, rename, comment.",
+     "how_zh": "一个服务或插件，让 agent 操作 Ghidra、IDA Pro、Binary Ninja、radare2 或 x64dbg：列函数、读反编译代码、改名、加注释。",
+     "gain": "The agent works inside the tool you already use, on the database you already have.",
+     "gain_zh": "agent 就在你已经在用的工具里干活，用的是你现成的分析库。",
+     "cost": "You need the tool itself, and for IDA Pro and Binary Ninja a licence. Check which version the plugin supports.",
+     "cost_zh": "得先有工具本身，IDA Pro 和 Binary Ninja 还要授权。看清插件支持哪个版本。",
+     "kinds": [
+      "mcp"
+     ]
+    },
+    {
+     "name": "Mobile app reversing",
+     "name_zh": "移动端逆向",
+     "how": "jadx, apktool or Frida connected to the agent, for Android, iOS or HarmonyOS apps.",
+     "how_zh": "把 jadx、apktool 或 Frida 接给 agent，面向 Android、iOS 或鸿蒙应用。",
+     "gain": "Reads an APK's code and resources, or hooks a running app.",
+     "gain_zh": "能读 APK 的代码和资源，或者挂钩运行中的应用。",
+     "cost": "Frida tools act on a live device. Use a test device, not your own phone.",
+     "cost_zh": "Frida 类工具作用于真机。用测试机，别用自己的手机。",
+     "kinds": [
+      "mobile"
+     ]
+    },
+    {
+     "name": "Web, JS and protocol reversing",
+     "name_zh": "Web、JS 与协议逆向",
+     "how": "Tools for obfuscated JavaScript, request signing and traffic analysis.",
+     "how_zh": "针对混淆 JavaScript、请求签名和流量分析的工具。",
+     "gain": "Works from a browser, no disassembler needed.",
+     "gain_zh": "从浏览器入手，不需要反汇编器。",
+     "cost": "The smallest group here, and a site's terms may forbid what these tools do.",
+     "cost_zh": "这一类条目最少；网站的服务条款可能禁止这些操作。",
+     "kinds": [
+      "web"
+     ]
+    },
+    {
+     "name": "Reverse engineering skills",
+     "name_zh": "逆向 Skill",
+     "how": "Instructions and workflows that teach the agent how to approach a target and which tool to call.",
+     "how_zh": "教 agent 怎么分析目标、该调用哪个工具的说明与流程。",
+     "gain": "Installs in one step and works with the tools above.",
+     "gain_zh": "一步装好，可以和上面的工具配合。",
+     "cost": "A skill is text. What it can do depends on the tools the agent can reach.",
+     "cost_zh": "skill 只是文字，能做到什么取决于 agent 够得着哪些工具。",
+     "kinds": [
+      "skill"
+     ]
+    },
+    {
+     "name": "Reverse-engineered with AI",
+     "name_zh": "AI 逆向出来的项目",
+     "how": "Programs rebuilt or analysed with REA, where the README says so.",
+     "how_zh": "用 REA 重建或分析出来的程序，README 里写明了这一点。",
+     "gain": "Shows what the approach produces, with the source to read.",
+     "gain_zh": "能看到这条路做出来的东西，源码可读。",
+     "cost": "Small and new: three of the four have fewer than ten stars.",
+     "cost_zh": "又小又新：四个里有三个不到十星。",
+     "kinds": [
+      "case"
+     ]
+    }
+   ],
+   "gap": "What none of these changes: you need the right to analyse the target. Unpacking and anti-debugging are ordinary reverse engineering and are listed. Repositories whose selling point is game cheating or cracking software are not.",
+   "gap_zh": "这些工具都不改变一件事：你得有权分析那个目标。脱壳和反调试属于正常的逆向，会收录。以游戏作弊或破解软件为卖点的仓库不收录。",
+   "h3_next": [
+    "Pick by what you already have",
+    "按你手头已有的东西选"
+   ],
+   "next_stop": [
+    {
+     "who": "Ghidra is installed",
+     "who_zh": "已经装了 Ghidra",
+     "pick": "A Ghidra MCP server, such as LaurieWired/GhidraMCP or bethington/ghidra-mcp",
+     "pick_zh": "Ghidra MCP，例如 LaurieWired/GhidraMCP、bethington/ghidra-mcp"
+    },
+    {
+     "who": "You have an IDA Pro licence",
+     "who_zh": "有 IDA Pro 授权",
+     "pick": "mrexodia/ida-pro-mcp",
+     "pick_zh": "mrexodia/ida-pro-mcp"
+    },
+    {
+     "who": "The target is an Android app",
+     "who_zh": "目标是 Android 应用",
+     "pick": "zinja-coder/jadx-ai-mcp, or the Android reverse engineering skill",
+     "pick_zh": "zinja-coder/jadx-ai-mcp，或 Android 逆向 skill"
+    },
+    {
+     "who": "You debug a running Windows program",
+     "who_zh": "要调试运行中的 Windows 程序",
+     "pick": "duty1g/x64dbg-mcp-server",
+     "pick_zh": "duty1g/x64dbg-mcp-server"
+    },
+    {
+     "who": "You want to start from the agent, not from a tool",
+     "who_zh": "想从 agent 出发，而不是从某个工具出发",
+     "pick": "morluto/rea, the official repository",
+     "pick_zh": "morluto/rea，官方仓库"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every repository",
+    "每个仓库我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Is reverse engineering with an AI agent its main purpose, or one feature among many?",
+     "q_zh": "用 AI agent 做逆向是它的主要用途，还是众多功能之一？"
+    },
+    {
+     "q": "Is it software an agent can use, not a list of links or a write-up?",
+     "q_zh": "它是 agent 能用的软件，而不是链接清单或文章？"
+    },
+    {
+     "q": "Is it the original, or a copy of someone else's repository?",
+     "q_zh": "它是原版，还是照搬别人的仓库？"
+    },
+    {
+     "q": "Is its selling point analysis, or cheating and cracking?",
+     "q_zh": "它的卖点是分析，还是作弊与破解？"
+    }
+   ],
+   "floor_activity": [
+    "while analysing a target",
+    "分析目标时的行为"
+   ],
+   "h3_findings": [
+    "What the review found",
+    "审核中发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "The wave around REA is mostly not software. Of 917 repositories that mention it, 157 have at least one star; about half of those are unrelated to it.",
+     "item_zh": "围绕 REA 的这一波，大部分不是软件。917 个提到它的仓库里，157 个至少有一颗星；其中约一半其实与它无关。"
+    },
+    {
+     "item": "A model's label is not enough for \"made with REA\". It marked 17 repositories as such; reading each README left 10, and 4 are listed.",
+     "item_zh": "「用 REA 做的」不能只信模型的判断。模型标了 17 个，逐个读 README 后剩 10 个，收录 4 个。"
+    },
+    {
+     "item": "Copies travel with the original. Nine repositories repeat or translate morluto/rea, one with more than 200 stars. They are named in the table below.",
+     "item_zh": "原版火了，复制品跟着来。有九个仓库照搬或翻译 morluto/rea，其中一个超过 200 星。它们列在下面的表里。"
+    }
+   ],
+   "did": [
+    {
+     "item": "Found 618 candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README against the questions above.",
+     "item_zh": "在 GitHub（不限星数）和我们的目录里找到 618 个候选，再让 TypeSafe 的决策模型 Jev 按上面的问题逐个读 README。"
+    },
+    {
+     "item": "Read by hand the README and file list of every repository listed as made with REA, and checked that none ships the original program's files.",
+     "item_zh": "凡是列为「用 REA 做的」的仓库，都人工读了 README 和文件列表，并确认没有附带原程序的文件。"
+    },
+    {
+     "item": "Compared the README of each suspected copy with the official one.",
+     "item_zh": "把每个疑似复制品的 README 和官方版逐一比对。"
+    },
+    {
+     "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "按 11 类风险给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "We did not run these tools: nothing here was tested against a binary, and we did not check what the code of the copies does.",
+     "item_zh": "我们没有实际运行这些工具：没有拿任何一个去分析二进制，也没有检查复制品的代码做了什么。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub and its AI reverse engineering list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub及其 AI 逆向工程合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-10-13"
+   }
+  }
  }
 ]

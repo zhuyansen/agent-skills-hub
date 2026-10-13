@@ -21,6 +21,7 @@ import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descE
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
 import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
+import { cautionHtml } from "./scenario-caution.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -837,6 +838,8 @@ ${methodLd(scenario, pageUrl)}
       ${runsSectionHtml(run)}
 
       ${hasMethod(scenario, scenarioKinds) ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
+
+      ${cautionHtml(scenario)}
 
       ${focusHtml(scenario, skills)}
 

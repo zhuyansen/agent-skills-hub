@@ -324,6 +324,48 @@ PAGES = {
                   "second brain", "knowledge graph", "graphrag"],
         "also": ["claude", "codex", "agent", "llm", "ai ", "mcp", "skill", "gpt", "rag"],
     },
+    "ai-reverse-engineering": {
+        "strict": True,
+        # REA (morluto/rea) set off a wave in October 2026; the page is the evergreen subject around it:
+        # tools that let an agent reverse engineer, and what people rebuilt with them (owner, 10-13).
+        "subject": _q("Is the main purpose of `repo` reverse engineering with AI agents: a tool, MCP server, skill or plugin "
+                      "that lets an AI agent analyse binaries, apps, firmware, protocols or obfuscated code, or a program "
+                      "that was reverse-engineered or reconstructed with such a tool?",
+                      "Ghidra, IDA, Binary Ninja, radare2, jadx, Frida or Hopper connected to an agent; REA and its adapters; "
+                      "decompilations and ports made with them. A general security scanner, a reverse-engineering project "
+                      "with no AI in it, a list of links, or a copy or mirror of another repository does not count."),
+        "types": {
+            "mcp": _q("Does `repo` connect a disassembler, decompiler or debugger for native binaries (Ghidra, IDA, Binary "
+                      "Ninja, radare2, x64dbg, Hopper) to an AI agent, as an MCP server or plugin?"),
+            "mobile": _q("Is `repo` for reverse engineering mobile apps with AI: Android, iOS or HarmonyOS, with tools such as "
+                         "jadx, apktool or Frida?"),
+            "web": _q("Is `repo` for reverse engineering websites, JavaScript, APIs or network protocols with AI: obfuscated "
+                      "code, request signing, traffic analysis?"),
+            "skill": _q("Is `repo` an agent skill, a skill pack or a workflow that teaches an agent how to reverse engineer?"),
+            "rea": _q("Is `repo` built for REA (Reverse Engineer Anything, morluto/rea): an adapter, plugin, guide or setup for it?"),
+            "case": _q("Is `repo` itself the result of reverse engineering: a decompilation, reconstruction or port of one "
+                       "specific program, game or protocol, made with AI assistance?"),
+        },
+        "labels": _labels(("mcp", "🔬", "Disassembler & decompiler MCP", "反汇编与反编译 MCP"), ("mobile", "📱", "Mobile app reversing", "移动端逆向"),
+                          ("web", "🌐", "Web, JS & protocol reversing", "Web、JS 与协议逆向"), ("skill", "🧩", "Reverse engineering skills", "逆向 Skill"),
+                          ("rea", "🧬", "REA adapters & guides", "REA 适配与教程"), ("case", "🕹", "Reverse-engineered with AI", "AI 逆向出来的项目")),
+        "queries": ["ghidra mcp in:name,description,topics", "ida pro mcp in:name,description,topics", "ida mcp in:name,description",
+                    "binary ninja mcp in:name,description", "radare2 mcp in:name,description", "jadx mcp in:name,description",
+                    "frida mcp in:name,description", "x64dbg mcp in:name,description", "reverse engineering mcp in:name,description,topics",
+                    "reverse engineering agent in:name,description", "reverse engineering skill in:name,description",
+                    "decompiler llm in:name,description", "ai reverse engineering in:name,description",
+                    "rea reverse engineer in:name,description", '"morluto/rea" in:readme', "逆向 mcp in:name,description",
+                    "逆向 skill in:name,description", "decompilation agent in:name,description"],
+        "words": ["reverse", "decompil", "disassembl", "ghidra", " ida ", "idapro", "radare", "jadx", "frida", "binary ninja",
+                  "binja", "x64dbg", "hopper", "逆向", " rea "],
+        "also": ["mcp", "agent", " ai ", "llm", "skill", "claude", "codex", "gpt", "copilot", " rea ", "model context"],
+        # Programs rebuilt with REA: the README of each says so, and none ships the original's files.
+        # The owner picked these four from the ten found on 10-13; clones of commercial apps stay off.
+        "owner_admitted": ["N0zoM1z0/dx-ball", "NullLabTests/OpenBSD_netcat_REA", "OceanJy333/meteor-mac",
+                           "davehornik/WH3SaveEditor"],
+        "owner_kinds": {"N0zoM1z0/dx-ball": "case", "NullLabTests/OpenBSD_netcat_REA": "case",
+                        "OceanJy333/meteor-mac": "case", "davehornik/WH3SaveEditor": "case"},
+    },
     "claude-code-skills": {
         "strict": True,
         # The page is where people land for "claude code skills" wanting many of them at once:

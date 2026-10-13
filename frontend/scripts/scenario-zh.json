@@ -580,5 +580,20 @@
       "自定义 agent"
     ],
     "d": "开源的 Claude Code hooks、subagents 与 statusline,带安全评级:Hook 守卫与格式化、专家 Agent 合集、用量与上下文状态栏。安装前先核查。"
+  },
+  "ai-reverse-engineering": {
+    "t": "AI 逆向工程",
+    "k": [
+      "逆向",
+      "逆向工程",
+      "反编译",
+      "反汇编",
+      "ghidra",
+      "ida",
+      "jadx",
+      "frida",
+      "rea"
+    ],
+    "d": "开源的 AI 逆向工程工具,带安全评级:Ghidra MCP、IDA Pro MCP、移动端的 jadx 与 Frida、逆向 Skill、REA,以及用它重建出来的项目。"
   }
 }
