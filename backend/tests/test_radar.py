@@ -409,3 +409,23 @@ def test_a_failed_post_search_costs_one_name_its_posts_not_the_step(monkeypatch)
     ev, cost = usecases.evidence(["photocraft", "synthid detector"], {"photocraft": "storytold/photocraft"}, TODAY)
     assert cost == 3000 and ev["photocraft"]["readme"] and ev["photocraft"]["posts"] == []
     assert ev["photocraft"]["error"] == "HTTP 504: 504 Gateway Time-out" and len(ev["synthid detector"]["posts"]) == 1
+
+
+def test_other_names_leave_out_old_products_siblings_and_spelling_variants():
+    # what the first real run of the skill kept beside filmcraft and pdfcraft (2026-10-13)
+    viewed = [{"phrase": p, "is_name": True, "rising": True, "established": old} for p, old in (
+        ("premiere pro", True), ("davinci resolve", True), ("photocraft github", False), ("gpt image 2.5", False),
+        ("adobe artcraft", False), ("artcraft adobe", False))]
+    assert [x["term"] for x in usecases.other_names("filmcraft", viewed, ["photocraft", "filmcraft"])] == ["gpt image 2.5", "adobe artcraft"]
+    tails, cands = usecases.split_related("pdfcraft", {"rising": ["pdf craft", "merge pdf files"], "top": []})
+    assert tails == ["pdf craft"] and [c["phrase"] for c in cands] == ["merge pdf files"]
+
+
+def test_every_name_gets_the_country_series_and_the_cap_is_on_generic_terms(monkeypatch):
+    rows = [{"phrase": f"name{i}", "kind": "name"} for i in range(5)] + \
+           [{"phrase": f"g{v}", "kind": "generic", "volume": v} for v in (27100, 22200, 8100, 6600, 900)]
+    monkeypatch.setitem(usecases.SETTINGS, "country_max", 3)
+    asked = []
+    monkeypatch.setattr(usecases.goanyapi, "daily_series", lambda term, geo: (asked.append(term) or [(TODAY, 1)], 6000))
+    out, cost, errors = usecases.country_series(rows, usecases.SETTINGS)
+    assert sorted(asked) == sorted([f"name{i}" for i in range(5)] + ["g27100", "g22200", "g8100"]) and cost == 48000 and not errors
