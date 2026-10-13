@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1540" viewBox="0 0 680 770" font-family="PingFang SC, Noto Sans CJK SC, Noto Sans SC, sans-serif">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect width="680" height="770" fill="#FFFFFF"/>
+<path id="p1" d="M107.5 96 L300 150" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p2" d="M262.5 96 L325 150" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p3" d="M417.5 96 L355 150" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p4" d="M572.5 96 L380 150" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p5" d="M340 206 L340 236" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p6" d="M290 284 L175 322" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p7" d="M400 284 L455 316" fill="none" stroke="#378ADD" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p8" d="M380 444 L410 402" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p9" d="M552.5 444 L530 402" fill="none" stroke="#378ADD" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<path id="p10" d="M310 380 L290 380 L290 568" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p11" d="M340 624 L340 662" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+<path id="p12" d="M490 690 L650 690 L650 596 L490 596" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<g font-size="14" text-anchor="middle">
+<rect x="40" y="40" width="135" height="56" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="107.5" y="63.5" fill="#712B13" font-weight="500">① X 与 HF</text>
+<text x="107.5" y="83.5" fill="#993C1D" font-size="12">每 8 小时</text>
+<rect x="195" y="40" width="135" height="56" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="262.5" y="63.5" fill="#712B13" font-weight="500">② GitHub</text>
+<text x="262.5" y="83.5" fill="#993C1D" font-size="12">爆发仓库 · 共用词</text>
+<rect x="350" y="40" width="135" height="56" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="417.5" y="63.5" fill="#712B13" font-weight="500">③ 竞品与新站</text>
+<text x="417.5" y="83.5" fill="#993C1D" font-size="12">sitemap 新页</text>
+<rect x="505" y="40" width="135" height="56" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="572.5" y="63.5" fill="#712B13" font-weight="500">④ 搜索控制台</text>
+<text x="572.5" y="83.5" fill="#993C1D" font-size="12">首次曝光的词</text>
+<rect x="190" y="150" width="300" height="56" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340.0" y="173.5" fill="#444441" font-weight="500">Jev 判断：是具体名字吗</text>
+<text x="340.0" y="193.5" fill="#5F5E5A" font-size="12">得分 ≥ 0.5 才留下</text>
+<rect x="190" y="236" width="300" height="48" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340.0" y="265.0" fill="#444441" font-weight="500">剔除已有场景页覆盖的词</text>
+<rect x="40" y="322" width="230" height="56" rx="4" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="155.0" y="345.5" fill="#085041" font-weight="500">源头邮件（每 8 小时）</text>
+<text x="155.0" y="365.5" fill="#0F6E56" font-size="12">有新名字才发 · 附推文原文</text>
+<rect x="310" y="316" width="330" height="86" rx="4" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="475.0" y="345.0" fill="#0C447C" font-weight="500">新词表：名字 + 它背后的通用词</text>
+<text x="475.0" y="365.0" fill="#185FA5" font-size="12">模型提词 → 相关性筛选 → 搜索量 → Trends</text>
+<text x="475.0" y="382.0" fill="#185FA5" font-size="12">每行给出：优先 / 观察 / 跳过</text>
+<rect x="310" y="444" width="140" height="56" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="380.0" y="467.5" fill="#712B13" font-weight="500">取证（AIsa）</text>
+<text x="380.0" y="487.5" fill="#993C1D" font-size="12">高赞推文 · README</text>
+<rect x="465" y="444" width="175" height="72" rx="4" fill="#E6F1FB" stroke="#185FA5" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="552.5" y="466.0" fill="#0C447C" font-weight="500">GoAnyAPI（可选）</text>
+<text x="552.5" y="486.0" fill="#185FA5" font-size="12">相关查询 · 美国日走势</text>
+<text x="552.5" y="503.0" fill="#185FA5" font-size="11">by 饭特稀 | Fentix @fantexi997</text>
+<rect x="190" y="568" width="300" height="56" rx="4" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340.0" y="591.5" fill="#085041" font-weight="500">日报邮件（每天 9:00）</text>
+<text x="340.0" y="611.5" fill="#0F6E56" font-size="12">新词表在最前 · 线索存入线索库</text>
+<rect x="190" y="662" width="300" height="56" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340.0" y="685.5" fill="#444441" font-weight="500">14 天后 Google Trends 复核</text>
+<text x="340.0" y="705.5" fill="#5F5E5A" font-size="12">名字和通用词都复核 · 不计未结算的最后两天</text>
+</g>
+<text x="640" y="309" text-anchor="end" font-size="11" fill="#185FA5">建议：子木 @CoderJeffLee</text><text x="552.5" y="536" text-anchor="middle" font-size="11" fill="#A32D2D">没配或挂了：表照出，</text><text x="552.5" y="551" text-anchor="middle" font-size="11" fill="#A32D2D">并在表头注明「不完整」</text>
+<rect x="40" y="740" width="14" height="14" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="62" y="752" font-size="12" fill="#444441">信号与取证</text><rect x="168" y="740" width="14" height="14" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="190" y="752" font-size="12" fill="#444441">邮件产出</text><rect x="285" y="740" width="14" height="14" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="307" y="752" font-size="12" fill="#444441">这次新增</text><rect x="402" y="740" width="14" height="14" rx="3" fill="none" stroke="#185FA5" stroke-width="1" stroke-dasharray="4 3"/><text x="424" y="752" font-size="12" fill="#444441">可选来源</text><path d="M518 747 H548" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" fill="none"/><text x="556" y="752" font-size="12" fill="#444441">命中率写回日报</text>
+<circle r="4" fill="#D85A30"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.0s"><mpath href="#p1"/></animateMotion></circle>
+<circle r="4" fill="#D85A30"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s"><mpath href="#p2"/></animateMotion></circle>
+<circle r="4" fill="#D85A30"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s"><mpath href="#p3"/></animateMotion></circle>
+<circle r="4" fill="#D85A30"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.8s"><mpath href="#p4"/></animateMotion></circle>
+<circle r="4" fill="#888780"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.3s"><mpath href="#p5"/></animateMotion></circle>
+<circle r="4" fill="#1D9E75"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.0s"><mpath href="#p6"/></animateMotion></circle>
+<circle r="4" fill="#378ADD"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s"><mpath href="#p7"/></animateMotion></circle>
+<circle r="4" fill="#D85A30"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.8s"><mpath href="#p8"/></animateMotion></circle>
+<circle r="4" fill="#378ADD"><animateMotion dur="1.6s" repeatCount="indefinite" begin="1.2s"><mpath href="#p9"/></animateMotion></circle>
+<circle r="4" fill="#1D9E75"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.2s"><mpath href="#p10"/></animateMotion></circle>
+<circle r="4" fill="#888780"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.6s"><mpath href="#p11"/></animateMotion></circle>
+<circle r="4" fill="#888780"><animateMotion dur="4.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#p12"/></animateMotion></circle>
+</svg>
