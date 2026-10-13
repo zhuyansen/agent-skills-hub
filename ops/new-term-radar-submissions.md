@@ -21,9 +21,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | 官方 MCP 注册表 | ⏳ 跟 PyPI 同一次 release 自动发 | `server.json` + GitHub OIDC | 名字 `io.github.zhuyansen/new-term-radar` |
 | Glama | ⏳ 注册表发布后看是否自动收录;认领要用户登录 Glama | Add Server + 管理页配 Dockerfile + Make Release | punkpeye 的前置条件 |
 | punkpeye/awesome-mcp-servers | ⏳ 等 Glama 评分 | PR,🎯 Marketing 区,标题末尾加 🤖🤖🤖 | 1–2 天合并 |
-| mcp.directory | ⏳ PyPI 之后 | 免登录表单;也会从官方注册表自动发现 | |
-| mcpservers.org | ⏳ 要填邮箱,等用户同意 | 免费队列约 2 周 | |
-| agentskill.sh | ⏳ 10-13 提交时返回"提交过多,一小时后再试" | 免登录,填仓库地址 | 重试 |
+| mcp.directory | ⏳ PyPI 之后,靠官方注册表自动发现即可 | 免登录表单;也会从官方注册表自动发现 | backlink-guard:9 月访问量比 8 月掉 57%(7.4 万/月),不值得专门填表 |
+| mcpservers.org | ⏳ 要填邮箱,等用户同意 | 免费队列约 2 周 | 只走免费队列:它的 $39 档明写卖 dofollow;免费收录页的链接实测全是 nofollow,价值在流量(71.5 万/月) |
+| agentskill.sh | ❌ 不投了 | 免登录,填仓库地址 | 10-13 提交被限流;随后用 backlink-guard 查:月访问 3 月 5.7 万 → 9 月接近 0,发了也没人看 |
 | SkillsMP / claude-plugins.dev / openskillindex / findskills | ⏳ 自动抓 SKILL.md | 不用提交 | 1–2 周后查 |
 | hesreallyhim/awesome-claude-code | 🧑 只收真人在网页表单提交 | issue 表单 `recommend-resource.yml` | 规则写明"需要注册或付费的工具难以审核",AIsa key 可能被卡 |
 | ClawHub | 🧑 要 GitHub 登录;发布后 skill 改为 MIT-0 许可 | `clawhub skill publish` | 许可变更要用户定 |
@@ -34,3 +34,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 mcp.so(issue 队列已死,表单只有 $39 付费)、PulseMCP(暂停收录,会从官方注册表自动拉)、Cline Marketplace(2025-12 后无人处理)、
 Smithery(只收 MCPB 包或托管的 HTTP 服务)、travisvn / ComposioHQ / BehiSecc 三个列表(PR 队列不动)、navi.tools(域名过期)、
 各站付费加速档($29–39,卖的是 dofollow 链接,10-06 起不买)。
+
+## 提交前检查(10-13 起)
+
+目标站先过一遍 `~/content/backlink-guard`(`python -m backlink_guard vet <站点>`),结论为 avoid 或触达为 low 的不投。
