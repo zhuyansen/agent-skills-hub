@@ -223,7 +223,8 @@ const aboutHtml = `<!doctype html>
       "url": "https://x.com/GoSailGlobal",
       "sameAs": [
         "https://x.com/GoSailGlobal",
-        "https://github.com/ZhuYansen"
+        "https://github.com/ZhuYansen",
+        "https://www.youtube.com/@JasonZhuGoSail"
       ],
       "jobTitle": "Independent Researcher · Founder of AgentSkillsHub",
       "knowsAbout": [
