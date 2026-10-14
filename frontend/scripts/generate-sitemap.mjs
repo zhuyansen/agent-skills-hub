@@ -166,6 +166,19 @@ function declaredDate(path, today) {
   }
 }
 
+/**
+ * True for a page left behind by a rename: a meta refresh to the new URL with its
+ * canonical pointing there. Listing one asks Google to crawl a URL it must not index
+ * (2026-10-14: /best/ppt-skills/ and /best/opus-5-5-video/ were in sitemap-scenarios).
+ */
+function isRedirectStub(path) {
+  try {
+    return /http-equiv="refresh"/i.test(readFileSync(`dist${path}index.html`, "utf-8"));
+  } catch {
+    return false;
+  }
+}
+
 /** `<lastmod>` line for a page, or "" when the page has no real date. */
 const lastmodLine = (date) => (date ? `\n    <lastmod>${date}</lastmod>` : "");
 
@@ -284,7 +297,7 @@ async function main() {
     const scenarioSlugs = readdirSync("dist/best");
     const scenarioEntries = scenarioSlugs
       .filter((slug) => !slug.startsWith(".") && slug !== "index.html"
-                        && !retiredSlugs.has(slug))
+                        && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
       .map((slug) => `  <url>
     <loc>${SITE}/best/${slug}/</loc>
     <changefreq>weekly</changefreq>
