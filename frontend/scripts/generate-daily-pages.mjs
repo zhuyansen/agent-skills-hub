@@ -11,10 +11,34 @@
  * outbound internal links that feed the skill catalog. The archive is the
  * source of truth: append a day to it and the next build renders it. No DB.
  */
-import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, mkdirSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { SITE, esc, starsK, analyticsTags } from "./shared-utils.mjs";
+
+/**
+ * Skill pages are only built from 50 stars, so a daily pick under that has none and
+ * its /skill/ link returned 404 (4 of 13 on 2026-10-13; crawlers saw thousands of such
+ * dead internal links). Link the page when the build made one, with the exact letter
+ * case of its folder (GitHub Pages paths are case-sensitive); otherwise the repo.
+ */
+const BUILT_SKILL_PAGES = (() => {
+  const map = new Map();
+  const root = "dist/skill";
+  if (!existsSync(root)) return map;
+  for (const owner of readdirSync(root, { withFileTypes: true }).filter((d) => d.isDirectory())) {
+    for (const name of readdirSync(`${root}/${owner.name}`, { withFileTypes: true }).filter((d) => d.isDirectory())) {
+      map.set(`${owner.name}/${name.name}`.toLowerCase(), `${owner.name}/${name.name}`);
+    }
+  }
+  return map;
+})();
+
+function skillHref(repo, absolute = false) {
+  const built = BUILT_SKILL_PAGES.get(repo.toLowerCase());
+  if (!built) return `https://github.com/${repo}`;
+  return `${absolute ? SITE : ""}/skill/${built}/`;
+}
 
 const ARCHIVE = join(
   dirname(fileURLToPath(import.meta.url)),
@@ -136,7 +160,7 @@ function dayHtml(day, prev, next) {
     itemListElement: day.items.map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${SITE}/skill/${it.repo}/`,
+      url: skillHref(it.repo, true),
       name: it.repo,
     })),
   });
@@ -152,7 +176,7 @@ function dayHtml(day, prev, next) {
       return `<li style="margin:0 0 14px;list-style:none">
         <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
           <span style="color:#94a3b8;font-size:13px;width:20px;display:inline-block">${i + 1}</span>
-          <a href="/skill/${esc(it.repo)}/" style="color:#4f46e5;text-decoration:none;font-weight:600;font-size:15px">${esc(it.repo)}</a>
+          <a href="${esc(skillHref(it.repo))}" style="color:#4f46e5;text-decoration:none;font-weight:600;font-size:15px">${esc(it.repo)}</a>
           ${badge}
           <span style="color:#94a3b8;font-size:12px">★ ${starsK(it.stars)}${vel}</span>
         </div>
