@@ -19,9 +19,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | Claude Code 插件市场 | ✅ 10-13 清单已入库(b2c8ab3) | `.claude-plugin/marketplace.json`;claudemarketplaces.com 自动发现 | `/plugin marketplace add zhuyansen/new-term-radar` |
 | PyPI | ⏳ 等用户在 PyPI 加 pending publisher | `publish.yml`,发 GitHub release 触发 | 包名 `new-term-radar`,装进环境的模块叫 `new_term_radar` |
 | 官方 MCP 注册表 | ⏳ 跟 PyPI 同一次 release 自动发 | `server.json` + GitHub OIDC | 名字 `io.github.zhuyansen/new-term-radar` |
-| Glama | ⏳ 注册表发布后看是否自动收录;认领要用户登录 Glama | Add Server + 管理页配 Dockerfile + Make Release | punkpeye 的前置条件 |
+| Glama | ⏳ 注册表发布后看是否自动收录;认领要用户登录 Glama | Add Server + 管理页配 Dockerfile + Make Release | punkpeye 的前置条件。认领只为这个:backlink-guard 0.3.0 查到 Glama 自己的美国 Google 流量 2026-04 掉了 94%(排名关键词 20,535 → 432,Semrush 同样),别指望它带搜索流量 |
 | punkpeye/awesome-mcp-servers | ⏳ 等 Glama 评分 | PR,🎯 Marketing 区,标题末尾加 🤖🤖🤖 | 1–2 天合并 |
-| mcp.directory | ⏳ PyPI 之后,靠官方注册表自动发现即可 | 免登录表单;也会从官方注册表自动发现 | backlink-guard:9 月访问量比 8 月掉 57%(7.4 万/月),不值得专门填表 |
+| mcp.directory | ⏳ PyPI 之后,靠官方注册表自动发现即可 | 免登录表单;也会从官方注册表自动发现 | backlink-guard:9 月访问量比 8 月掉 57%(7.4 万/月),不值得专门填表。0.3.0 再查:美国 Google 搜索流量同期掉 68%,排名关键词 945 → 173,正赶上 8 月、9 月两次垃圾更新 |
 | mcpservers.org | ⏳ 要填邮箱,等用户同意 | 免费队列约 2 周 | 只走免费队列:它的 $39 档明写卖 dofollow;免费收录页的链接实测全是 nofollow,价值在流量(71.5 万/月) |
 | agentskill.sh | ❌ 不投了 | 免登录,填仓库地址 | 10-13 提交被限流;随后用 backlink-guard 查:月访问 3 月 5.7 万 → 9 月接近 0,发了也没人看 |
 | SkillsMP / claude-plugins.dev / openskillindex / findskills | ⏳ 自动抓 SKILL.md | 不用提交 | 1–2 周后查 |
