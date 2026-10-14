@@ -68,7 +68,7 @@ VIDEO_TEXT = {
         "file": "README.md", "other": "[中文](README.zh-CN.md)", "title": "Awesome Claude Video Skills",
         "pitch": ("Open-source skills and toolkits that let **Claude Code, Codex and other coding agents make "
                   "video**: HyperFrames, Remotion, motion graphics, editing, explainers, avatars. "
-                  "{n} repos, each one read and security-graded by [Agent Skills Hub]({site}{utm})."),
+                  "{n} repos, each one read and security-graded by [Agent Skills Hub (agentskillshub.top)]({site}{utm})."),
         "live": "Live page with filters: **[{page}]({page}{utm})** · refreshed every 8 hours",
         "rules_h": "How a repo gets on the list",
         "rules": ["It makes or edits video or motion graphics. A 3D web page or a prompt collection does not count. "
@@ -103,7 +103,7 @@ VIDEO_TEXT = {
     "zh": {
         "file": "README.zh-CN.md", "other": "[English](README.md)", "title": "Awesome Claude Video Skills",
         "pitch": ("让 **Claude Code、Codex 等编程 agent 做视频**的开源 skill 和工具包:HyperFrames、Remotion、"
-                  "动效、剪辑、讲解、数字人。共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。"),
+                  "动效、剪辑、讲解、数字人。共 {n} 个仓库,每个都由 [Agent Skills Hub (agentskillshub.top)]({site}{utm}) 读过 README 并做了安全评级。"),
         "live": "带类型筛选的在线页面:**[{page}]({page}{utm})** · 每 8 小时刷新",
         "rules_h": "什么样的仓库能上榜",
         "rules": ["它做视频、剪视频或做动效。3D 网页、提示词合集不算。"
@@ -136,7 +136,7 @@ PPT_TEXT = {
         "file": "README.md", "other": "[中文](README.zh-CN.md)", "title": "Awesome Codex PPT Skills",
         "pitch": ("Open-source skills and tools that let **Codex, Claude Code and other coding agents make slides**: "
                   "editable PPTX, image-first decks, web slides, consulting-style decks, documents to slides. "
-                  "{n} repos, each one read and security-graded by [Agent Skills Hub]({site}{utm})."),
+                  "{n} repos, each one read and security-graded by [Agent Skills Hub (agentskillshub.top)]({site}{utm})."),
         "live": "Live page with filters: **[{page}]({page}{utm})** · refreshed every 8 hours",
         "rules_h": "How a repo gets on the list",
         "rules": ["It makes slide decks or presentations (PPT, PPTX, Keynote, HTML slides). A document or a poster "
@@ -160,7 +160,7 @@ PPT_TEXT = {
     "zh": {
         "file": "README.zh-CN.md", "other": "[English](README.md)", "title": "Awesome Codex PPT Skills",
         "pitch": ("让 **Codex、Claude Code 等编程 agent 做 PPT** 的开源 skill 和工具:可编辑 PPTX、图片式 PPT、"
-                  "网页幻灯片、咨询风、文档转 PPT。共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。"),
+                  "网页幻灯片、咨询风、文档转 PPT。共 {n} 个仓库,每个都由 [Agent Skills Hub (agentskillshub.top)]({site}{utm}) 读过 README 并做了安全评级。"),
         "live": "带类型筛选的在线页面:**[{page}]({page}{utm})** · 每 8 小时刷新",
         "rules_h": "什么样的仓库能上榜",
         "rules": ["它做幻灯片或演示文稿(PPT、PPTX、Keynote、网页幻灯片)。文档、海报生成器不算。",

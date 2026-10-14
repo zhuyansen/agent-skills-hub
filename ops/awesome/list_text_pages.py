@@ -17,10 +17,10 @@ SIBLINGS = ("[zhuyansen/awesome-claude-video-skills](https://github.com/zhuyanse
 def _text(title: str, pitch: tuple[str, str], rule: tuple[str, str], album: tuple[str, str]) -> dict:
     return {
         "en": {"title": title, "pitch": pitch[0] + " {n} repos, each one read and security-graded by "
-                                                   "[Agent Skills Hub]({site}{utm}).",
+                                                   "[Agent Skills Hub (agentskillshub.top)]({site}{utm}).",
                "rules": [rule[0], *RULES_EN], "album": album[0],
                "related": [f"{SIBLINGS} — lists built the same way."]},
-        "zh": {"title": title, "pitch": pitch[1] + "共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。",
+        "zh": {"title": title, "pitch": pitch[1] + "共 {n} 个仓库,每个都由 [Agent Skills Hub (agentskillshub.top)]({site}{utm}) 读过 README 并做了安全评级。",
                "rules": [rule[1], *RULES_ZH], "album": album[1],
                "related": [f"{SIBLINGS} —— 同样做法的合集。"]},
     }

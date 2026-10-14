@@ -6,7 +6,7 @@ JEV_TEXT = {
         "file": "README.md", "other": "[中文](README.zh-CN.md)", "title": "Awesome TypeSafe Jev",
         "pitch": ("Open-source projects built on **TypeSafe Jev**, the decision model: agents and computer use, "
                   "developer tools, SDKs and MCP servers, classification apps, and open replicas. "
-                  "{n} repos, each one read and security-graded by [Agent Skills Hub]({site}{utm})."),
+                  "{n} repos, each one read and security-graded by [Agent Skills Hub (agentskillshub.top)]({site}{utm})."),
         "live": "Live page with filters: **[{page}]({page}{utm})** · refreshed every 8 hours",
         "rules_h": "How a repo gets on the list",
         "rules": ["It uses Jev: it calls the model, wraps it, or reproduces or replaces it. A project that only "
@@ -26,7 +26,7 @@ JEV_TEXT = {
     "zh": {
         "file": "README.zh-CN.md", "other": "[English](README.md)", "title": "Awesome TypeSafe Jev",
         "pitch": ("基于 **TypeSafe Jev** 决策模型的开源项目:Agent 与电脑操作、开发者工具、SDK 与 MCP、分类与业务应用、"
-                  "开源复现。共 {n} 个仓库,每个都由 [Agent Skills Hub]({site}{utm}) 读过 README 并做了安全评级。"),
+                  "开源复现。共 {n} 个仓库,每个都由 [Agent Skills Hub (agentskillshub.top)]({site}{utm}) 读过 README 并做了安全评级。"),
         "live": "带类型筛选的在线页面:**[{page}]({page}{utm})** · 每 8 小时刷新",
         "rules_h": "什么样的仓库能上榜",
         "rules": ["它用到 Jev:调用、封装,或复现、替代这个模型。只是提到 Jev,或者恰好也叫 Jev 的别的项目,不算。",

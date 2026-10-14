@@ -335,9 +335,9 @@ export const translations = {
 
     // FAQ
     "faq.title": "常见问题",
-    "faq.q1": "什么是 AgentSkillsHub？",
+    "faq.q1": "什么是 Agent Skills Hub（AgentSkillsHub）？",
     "faq.a1":
-      "AgentSkillsHub 是开源 AI Agent 工具的安全评级目录，收录 186,000+ 个 Agent Skills、MCP 服务器和自动化工具，安全评级 + 质量评分 + 每 8 小时自动更新。",
+      "Agent Skills Hub（AgentSkillsHub，网址 agentskillshub.top）是开源的 AI Agent 工具目录：收录 229,000+ 个 Agent Skills、MCP 服务器和工具，每 8 小时从 GitHub 更新。热门条目都按 11 类风险做了安全评级；主要场景页附实测结果；其中 15 个在 GitHub 上有开源合集；全量数据以可引用的数据集公开（DOI 10.5281/zenodo.21292799）。",
     "faq.q2": "质量评分是如何计算的？",
     "faq.a2":
       "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
@@ -737,9 +737,9 @@ export const translations = {
 
     // FAQ
     "faq.title": "Frequently Asked Questions",
-    "faq.q1": "What is AgentSkillsHub?",
+    "faq.q1": "What is Agent Skills Hub (AgentSkillsHub)?",
     "faq.a1":
-      "AgentSkillsHub is the security-graded directory of open-source AI agent tools, MCP servers, and automation skills — quality-scored and auto-updated every 8 hours.",
+      "Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of 229,000+ AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against 11 red-flag categories, the main scenario pages add hands-on test runs, 15 of them have an open-source list on GitHub, and the full catalog is a citable dataset (DOI 10.5281/zenodo.21292799).",
     "faq.q2": "How are quality scores calculated?",
     "faq.a2":
       "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
