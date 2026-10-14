@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-14
+1. morluto/awesome-reverse-engineering — 🆕 汇总二进制、App、固件、文件格式与协议的逆向工具和学习资料（385★ 83.4/day）
+2. AirsupHQ/machine-skill — 🆕 一句话描述一台机器，Claude 生成单文件 HTML 的写实物理交互仿真，附发帖短片（104★ 81.4/day）
+3. pycodebr/heditor — 🆕 让智能体剪竖版短视频，内置多种命名风格，基于 HyperFrames 并以人声为主混音（58★ 58.0/day）
+4. talsiach/take-one — 🆕 一句话产出发布视频、广告或 MV，从脚本、画面、配音配乐到剪辑审片一条龙（49★ 49.0/day）
+5. leemysw/yovoice — 搭建全离线的本地 AI 音频工作室，支持配音、声音克隆、带词歌曲和多轨配乐，零 API 费用（1367★ 47.8/day）
+6. SaarthurR/atticus-mac — 🆕 用 Claude Pro/Max 订阅驱动 Mac 语音助手，免 API key，按住快捷键说话还会记住你（149★ 35.5/day）
+7. composo-ai/DishwasherBench — 🆕 用一台真实洗碗机的物理仿真做装碗游戏，评测大模型的空间规划能力（45★ 23.6/day）
+8. josefchen/muster — 🆕 在 Mac 菜单栏汇总 Claude Code、Codex、Cursor 会话，一键回复正在等你的那个（52★ 23.2/day）
+9. reyxdz/going-dark — 🆕 给编程智能体定一套严格项目流程，issue 即规格、交接提示词、审计即修复（21★ 21.0/day）
+10. trustfuture/simon-skills — 汇集不露脸视频号技能，一句选题出调查长片或手绘白板讲解，含配音字幕和封面文案（397★ 16.5/day）
+🎯 今日趋势：**8 席**标 🆕、**5 席**建仓不满 2 天；"一句话出片/出声"占 **5 席**（机器仿真短片、竖版剪辑、发布视频、本地音频工作室、不露脸视频号），Mac 本地小工具占 **2 席**（语音助手、菜单栏会话汇总）。
+> 注：去重范围＝repo 内 archive 全部 111 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,731 个（含路径噪声，只会多剔不会漏剔）。查询 `first_seen ≥48h`、stars ≥20 触顶 LIMIT 150（最低 55★，命中历史 14 条，本期主要是逆向工程、SEO 页回填的老仓），为免漏掉低星新仓，另加 `created_at ≥30 天内` 条件、窗口取 72h 补查一次得 85 条（命中历史 36 条），共 2 次单连接串行查询（首次因脚本时区比较报错，结果未落地，重跑 1 次）；按 first_seen 切回 48h 后合格项超过 10 个，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Arekejoker/qwen21-nsfw-pose-skill（963★ 867.1/day）：NSFW 出图技能，内容不适合公开榜单，且无许可证、作者其余仓 ≤6★；②YeonwooSung/my-claude-code-mods（318★ 67.7/day）：实时 594★ 仅 1 fork、无许可证、描述只有一句"我自己要用的"，作者另一仓 593★ 与之星数雷同，刷星嫌疑；③1105216375-alt/resimind（100★）：账号 2026-01 新建、0 粉、0 fork；④tpscloud/charmedimsure（39★ 22.1/day）：组织 0 粉、0 fork、其余仓 ≤2★，保守排除；⑤wheresryan22/anatomy-community：10-11 已推荐的 anatomy 的作品展示仓，不重复上榜；⑥SouravBeraAkaSpeed/xiryn、scs0209/laya-guard、ghorbelhamdi/buddy-android、nuyoah-ai-works/nuyoah-codex-workstation：first_seen 超出 48h；⑦trailhq/Trail-Code（9,977★，建仓 103 天）、krishhgg/Insomnia（30 天、caution）、HexRaysSA/ida-mcp（48 天）、TheCraigHewitt/seomachine、MaxMiksa/Autonomous-Company、backnotprop/pstack 及大批 IDA/Ghidra/Frida/SEO 老仓：建仓 30 天以上、本期才收录，不算新鲜；⑧typesafe-docs 名下 9 个仓：同日建仓、星数 68–73 雷同的集群（与 10-12、10-13 同批）；⑨其余均已在历史榜单出现。springvoiceswell/semrush-ai-tool（242★ 12.7/day）在第 10 席之后，未复核。入选项复核（`gh api`）：第 1 席 morluto 2020 建号、4,942 粉、名下另有 216K★ 仓，CC0、fork 90；第 2 席 AirsupHQ 2026-09-28 新建号、8 粉、其余仓 ≤40★（**轻红旗**，MIT、fork 15 与星数相称，保留）；第 3 席 pycodebr 2021 建号、3,293 粉、名下多个 50–100★ 仓，fork 5；第 4 席 talsiach 2015 建号但仅 1 粉、仅 1 仓（**轻红旗**，MIT、fork 11，保留）；第 5 席 leemysw 2018 建号、16 粉、名下另有 267★ 仓，Apache-2.0、fork 108；第 6 席 SaarthurR 2023 建号、4 粉、其余仓 ≤8★（**轻红旗**，MIT、fork 5，保留）；第 7 席 composo-ai 为 2023 建的组织，MIT、fork 2；第 8 席 josefchen 2023 建号、46 粉、其余仓 ≤6★、fork 1（**轻红旗**，MIT、描述具体，保留）；第 9 席 reyxdz 2022 建号、91 粉、名下多个 66–82★ 仓，MIT、0 fork；第 10 席 trustfuture 2017 建号、15 粉、名下另有 17★ 仓，MIT、fork 78。🆕 判定＝created_at 距今 14 天内，yovoice（28.6 天）、simon-skills（24.0 天）不标，其余八席命中。security_grade：going-dark 为 unknown（入库不满 1 小时尚未评级），其余九席均为 safe。表中 stars 为数据库快照，部分仓实时更高（awesome-reverse-engineering 439★、machine-skill 158★、atticus-mac 150★），按红线保留快照值。
+
+---
+
 ## 2026-10-13
 1. juliobsz/skills — 🆕 凭一句话需求让智能体搭出奖项级水准的网站，一个技能包办设计到成品（133★ 121.3/day）
 2. FeedHive/ai-slop-detector — 🆕 列出 120 种让文字读起来像 AI 的写法，附 Claude Code 和 Codex 检测技能（31★ 31.0/day）
