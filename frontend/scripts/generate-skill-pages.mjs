@@ -19,7 +19,7 @@ import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
-  extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
+  extractAssetTags, shouldIndex, isIndexedSkillPage, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
   admittedByReview,
 } from "./shared-utils.mjs";
 
@@ -155,7 +155,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     security_grade,
   } = skill;
 
-  const indexed = shouldIndex(skill);
+  const indexed = isIndexedSkillPage(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
   const pageUrl = `${SITE}/skill/${repo_full_name}/`;
   // repo_url, not a re-derivation from repo_full_name: the two diverge when a
@@ -920,7 +920,7 @@ async function main() {
     }
 
     // Phase 2.1: Only generate pages for skills worth crawling (stars >= MIN_STARS_FOR_PAGE)
-    const indexed = shouldIndex(skill);
+    const indexed = isIndexedSkillPage(skill);
     if (skill.stars < MIN_STARS_FOR_PAGE && !admitted.has(skill.repo_full_name.toLowerCase())) {
       skipped++;
       continue;

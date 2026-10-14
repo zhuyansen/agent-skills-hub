@@ -322,6 +322,19 @@ export function shouldIndex(skill) {
 /** Minimum stars to generate a static page at all */
 export const MIN_STARS_FOR_PAGE = 50;
 
+/**
+ * Minimum stars for a skill page to ask to be indexed. Pages from 50 to 499 stars
+ * stay live and keep their links (noindex, follow). Over 90 days to 2026-10-14 those
+ * 10,826 URLs (55% of what we offered Google) earned 58 clicks, 0.005 per URL,
+ * against 0.07 for the pages above 500 stars; Google knew about 6,000 of our
+ * ~19,600 indexable URLs. Owner's decision (option A): withdraw them from the index
+ * first, measure N / M / X again in a month (ops/research/nmx-2026-10-14.md).
+ */
+export const MIN_STARS_TO_INDEX = 500;
+
+/** Whether a skill page carries no robots noindex. Gone repos follow the same floor. */
+export const isIndexedSkillPage = (skill) => shouldIndex(skill) && skill.stars >= MIN_STARS_TO_INDEX;
+
 /** Repos that scenario pages admit under the 50-star floor. Stars say little
  *  about a repo from last week, so a page can admit one on what its README
  *  shows instead: `match.admit_reviewed`, written from the review in
