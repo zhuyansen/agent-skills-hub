@@ -4828,5 +4828,33 @@
    "personal": 0.79
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "alex09x/kyb",
+  "stars": 80,
+  "description": "Git-backed shared memory for AI agent fleets: searchable knowledge base, incident and task tracking, every write versioned and attributed. CLI, HTTP API and MCP server.",
+  "scores": {
+   "llm_wiki": 0.41,
+   "rag_platform": 0.43,
+   "mcp": 0.93,
+   "docs_qa": 0.62,
+   "graph": 0.04,
+   "personal": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "reetamdan/document-rag",
+  "stars": 5,
+  "description": "DocumentRAG is a self-hosted Retrieval-Augmented Generation (RAG) chatbot system that enables intelligent document querying using local language models. Built with FastAPI, LangChain, and Hugging Face transformers, it processes various document formats and provides accurate answers based on indexed knowledge",
+  "scores": {
+   "llm_wiki": 0.03,
+   "rag_platform": 0.89,
+   "mcp": 0.28,
+   "docs_qa": 0.77,
+   "graph": 0.03,
+   "personal": 0.11
+  },
+  "kind": "rag_platform"
  }
 ]

@@ -3330,5 +3330,33 @@
    "rules": 0.8
   },
   "kind": "detector"
+ },
+ {
+  "repo": "imrangadzhiev/anti-slop",
+  "stars": 27,
+  "description": "Drop-in skills that stop AI coding agents from shipping garbage — kill-slop, security-review, PR hygiene",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.2,
+   "chinese": 0.02,
+   "code": 0.93,
+   "design": 0.08,
+   "rules": 0.64
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "hellogit2021/avoid-ai-writing-cn",
+  "stars": 5,
+  "description": "知乎\"去AI味写作技巧\"社区免费提供：中文写作去 AI 味插件。说\"去掉AI味\"即重写，说\"写的不错\"自动学习新 AI 词。",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.62,
+   "chinese": 0.99,
+   "code": 0.13,
+   "design": 0.05,
+   "rules": 0.75
+  },
+  "kind": "chinese"
  }
 ]

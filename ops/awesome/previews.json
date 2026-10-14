@@ -375,6 +375,14 @@
   "type": "image/png",
   "bytes": 1053714
  },
+ "Dancan254/shenghua": {
+  "repo": "Dancan254/shenghua",
+  "url": "https://raw.githubusercontent.com/Dancan254/shenghua/HEAD/docs/demo.gif",
+  "alt": "A 42-second Kafka vs RabbitMQ explainer made with this skill: word-synced captio",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 2728180
+ },
  "Dancan254/voiceover-video-skill": {
   "repo": "Dancan254/voiceover-video-skill",
   "url": "https://raw.githubusercontent.com/Dancan254/voiceover-video-skill/HEAD/docs/demo.gif",
@@ -1079,6 +1087,14 @@
   "type": "image/png",
   "bytes": 752936
  },
+ "Vandit1604/vawe": {
+  "repo": "Vandit1604/vawe",
+  "url": "https://raw.githubusercontent.com/Vandit1604/vawe/HEAD/assets/vawe-demo.gif",
+  "alt": "vawe demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 58252
+ },
  "VirtusLab/tulip": {
   "repo": "VirtusLab/tulip",
   "url": "https://raw.githubusercontent.com/VirtusLab/tulip/HEAD/screens/code.png",
@@ -1206,6 +1222,14 @@
   "score": -0.4,
   "type": "image/png",
   "bytes": 53846
+ },
+ "alex09x/kyb": {
+  "repo": "alex09x/kyb",
+  "url": "https://raw.githubusercontent.com/alex09x/kyb/HEAD/docs/assets/kyb-architecture.png",
+  "alt": "KYB architecture: AI agents, Rust server, Git history and derived BM25 plus opti",
+  "score": -2.9,
+  "type": "image/png",
+  "bytes": 1633907
  },
  "alexgreensh/anidoodle": {
   "repo": "alexgreensh/anidoodle",
@@ -1670,6 +1694,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 640471
+ },
+ "dongxinsuperman/jev-phone": {
+  "repo": "dongxinsuperman/jev-phone",
+  "url": "https://raw.githubusercontent.com/dongxinsuperman/jev-phone/HEAD/docs/media/demo-default-difficulty-fast.gif",
+  "alt": "实机演示：预览难度并保存",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 1012807
  },
  "dososo/blcaptain-ppt-skill": {
   "repo": "dososo/blcaptain-ppt-skill",
@@ -2231,6 +2263,14 @@
   "type": "image/gif",
   "bytes": 3825296
  },
+ "imrangadzhiev/anti-slop": {
+  "repo": "imrangadzhiev/anti-slop",
+  "url": "https://raw.githubusercontent.com/imrangadzhiev/anti-slop/HEAD/docs/without.png",
+  "alt": "Without anti-slop: 13 files, 433 lines",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 301994
+ },
  "in-the-loop-labs/pair-review": {
   "repo": "in-the-loop-labs/pair-review",
   "url": "https://raw.githubusercontent.com/in-the-loop-labs/pair-review/main/docs/screenshot.png",
@@ -2503,6 +2543,14 @@
   "type": "image/gif",
   "bytes": 569121
  },
+ "liangdabiao/image-prompt-studio": {
+  "repo": "liangdabiao/image-prompt-studio",
+  "url": "https://raw.githubusercontent.com/liangdabiao/image-prompt-studio/HEAD/assets/examples/01-reference.jpg",
+  "alt": "参考图：骑驴武将（三国题材夸张讽刺漫画）",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 132671
+ },
  "liaojianquan9-source/ljq-broll-video-generator": {
   "repo": "liaojianquan9-source/ljq-broll-video-generator",
   "url": "https://raw.githubusercontent.com/liaojianquan9-source/ljq-broll-video-generator/HEAD/examples/kimi-k3-000-011/media/comparison-preview.gif",
@@ -2694,6 +2742,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 382727
+ },
+ "motalim-ai/motion-starter-kit": {
+  "repo": "motalim-ai/motion-starter-kit",
+  "url": "https://raw.githubusercontent.com/motalim-ai/motion-starter-kit/HEAD/styles/plotter/thumbnail.png",
+  "alt": "شاهد الفيديو على يوتيوب",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 644700
  },
  "moyoo0/paper-to-latex-ppt": {
   "repo": "moyoo0/paper-to-latex-ppt",

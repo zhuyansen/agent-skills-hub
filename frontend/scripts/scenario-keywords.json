@@ -1940,7 +1940,8 @@
     "q253595422/prompt-constraints",
     "Arekejoker/qwen21-nsfw-pose-skill",
     "beatra-ai/ai-logo-maker-skill",
-    "beatra-ai/ai-media-generator-skill"
+    "beatra-ai/ai-media-generator-skill",
+    "liangdabiao/image-prompt-studio"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3043,7 +3044,9 @@
     "mhmtsrfglu/superwiki",
     "junruxiong/IncarnaMind",
     "wenlan-app/wenlan",
-    "HagaiHen/podcast-wiki"
+    "HagaiHen/podcast-wiki",
+    "alex09x/kyb",
+    "reetamdan/document-rag"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3060,7 +3063,8 @@
     "study8677/antigravity-workspace-template",
     "useenzyme/enzyme",
     "7xuanlu/wenlan",
-    "shenmintao/marginalia"
+    "shenmintao/marginalia",
+    "RD945/document-rag"
    ]
   },
   "related": [
@@ -4239,10 +4243,13 @@
     "Guksu/suta",
     "FeedHive/ai-slop-detector",
     "ismilewolf-eng/sloptrim-zh",
-    "kjmagnan1s/anti-slop"
+    "kjmagnan1s/anti-slop",
+    "imrangadzhiev/anti-slop",
+    "hellogit2021/avoid-ai-writing-cn"
    ],
    "exclude_repos": [
-    "simonlin1212/SDesign"
+    "simonlin1212/SDesign",
+    "iCodeCraft/anti-slop"
    ]
   },
   "related": [
@@ -7220,7 +7227,9 @@
     "dorkitude/skimmer",
     "jmagly/aiwg",
     "lookski/openjev",
-    "schainks/system_one_client"
+    "schainks/system_one_client",
+    "RayenMlayeh/jevcrawl",
+    "dongxinsuperman/jev-phone"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7622,7 +7631,11 @@
     "Matteoikarieth96/whiteboard-video-skill",
     "vincentventalon/claude-code-video-editing-skill",
     "beatra-ai/talking-avatar-video-skill",
-    "rock3r/cav"
+    "rock3r/cav",
+    "pycodebr/heditor",
+    "Dancan254/shenghua",
+    "Vandit1604/vawe",
+    "motalim-ai/motion-starter-kit"
    ],
    "sub_skills": [
     {
@@ -7658,7 +7671,8 @@
     "Yuuhann1999/codex-storyboard",
     "opus-pro/opus-video-studio",
     "animspark/animspark",
-    "manthanpatelll/leadgenman-video-skills"
+    "manthanpatelll/leadgenman-video-skills",
+    "Dancan254/voiceover-video-skill"
    ],
    "tag_matches": [],
    "required_keywords": [

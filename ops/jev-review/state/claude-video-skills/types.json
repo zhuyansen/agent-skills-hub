@@ -5380,5 +5380,77 @@
    "general": 0.13
   },
   "kind": "motion"
+ },
+ {
+  "repo": "pycodebr/heditor",
+  "stars": 58,
+  "description": "Creative vertical video editing skill for AI agents (Claude Code, Codex, OpenCode, Cursor, Hermes): named styles, creative mode, HyperFrames + voice-first mix.",
+  "scores": {
+   "promo": 0.13,
+   "explainer": 0.3,
+   "music": 0.04,
+   "motion": 0.15,
+   "shorts": 0.96,
+   "editing": 0.96,
+   "demo": 0.17,
+   "story": 0.13,
+   "avatar": 0.06,
+   "general": 0.15
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "Dancan254/shenghua",
+  "stars": 24,
+  "description": "AI-agent skill: turn a voice note, a talking-head or green-screen video, or a written topic into an animated, sound-designed Short or YouTube video",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.83,
+   "music": 0.05,
+   "motion": 0.15,
+   "shorts": 0.89,
+   "editing": 0.27,
+   "demo": 0.44,
+   "story": 0.1,
+   "avatar": 0.06,
+   "general": 0.16
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "motalim-ai/motion-starter-kit",
+  "stars": 6,
+  "description": "اصنع فيديو موشن جرافيك بـ Remotion من أي فيديو مرجعي. نفس القواعد لـ Claude Code وCodex وAntigravity.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.64,
+   "music": 0.09,
+   "motion": 0.37,
+   "shorts": 0.44,
+   "editing": 0.09,
+   "demo": 0.27,
+   "story": 0.43,
+   "avatar": 0.06,
+   "general": 0.74
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Vandit1604/vawe",
+  "stars": 7,
+  "description": "Open-source HTML to video: write one HTML page, render a deterministic video. Motion graphics as code for developers and AI agents. Free Remotion alternative.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.36,
+   "music": 0.26,
+   "motion": 0.3,
+   "shorts": 0.3,
+   "editing": 0.04,
+   "demo": 0.43,
+   "story": 0.16,
+   "avatar": 0.05,
+   "general": 0.56
+  },
+  "kind": "general"
  }
 ]

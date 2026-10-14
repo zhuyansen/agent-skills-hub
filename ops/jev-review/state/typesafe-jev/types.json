@@ -5023,5 +5023,35 @@
    "general": 0.42
   },
   "kind": "sdk"
+ },
+ {
+  "repo": "RayenMlayeh/jevcrawl",
+  "stars": 33,
+  "description": "MCP server and CLI that crawls websites for AI agents: finds the answer page 2x more often than Crawl4AI, 10x cheaper per answer than letting Claude crawl.",
+  "scores": {
+   "replica": 0.14,
+   "agent": 0.62,
+   "devtool": 0.83,
+   "sdk": 0.89,
+   "business": 0.03,
+   "consumer": 0.17,
+   "general": 0.08
+  },
+  "kind": "sdk"
+ },
+ {
+  "repo": "dongxinsuperman/jev-phone",
+  "stars": 6,
+  "description": "Jev 多模态手机自动化：面向 Android、iOS、HarmonyOS 的独立 Python 点击 SDK，毫秒级本地处理。 Jev-powered multimodal mobile automation: a standalone Python tap SDK for Android, iOS and HarmonyOS, with millisecond-level local processing.",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.59,
+   "devtool": 0.12,
+   "sdk": 0.94,
+   "business": 0.02,
+   "consumer": 0.18,
+   "general": 0.13
+  },
+  "kind": "sdk"
  }
 ]

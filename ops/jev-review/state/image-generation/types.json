@@ -3344,5 +3344,19 @@
    "mcp": 0.43
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "liangdabiao/image-prompt-studio",
+  "stars": 20,
+  "description": "简单一句话： 复刻图片风格，模仿风格生图！ 结构化 JSON 提示词生成与修改 skill —— 用 **JSON 而非长段自然语言** 控制 AI 生图，实现精准定制、模块化复用与系列作品一致性。提示词同时兼容 **Nano Banana 与 GPT-Image 双模型家族**，生图统一走 **apiz-cli**，识图分析由**运行时 agent** 直接完成。",
+  "scores": {
+   "gpt_image": 0.29,
+   "nano_banana": 0.25,
+   "open_models": 0.05,
+   "editing": 0.04,
+   "design": 0.08,
+   "mcp": 0.62
+  },
+  "kind": "mcp"
  }
 ]
