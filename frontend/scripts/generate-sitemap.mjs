@@ -146,6 +146,27 @@ ${entries.join("\n")}
 </sitemapindex>`;
 }
 
+/**
+ * The date a built page says it last changed (dateModified or lastReviewed in its
+ * JSON-LD), or null. Every sub-sitemap used to stamp every URL with the build date,
+ * which tells Google our lastmod is noise and gets it ignored for all pages
+ * (2026-10-14). A date equal to the build date is the same noise and is dropped;
+ * a page with no date of its own gets no lastmod at all.
+ */
+function declaredDate(path, today) {
+  try {
+    const html = readFileSync(`dist${path}index.html`, "utf-8");
+    const dates = [...html.matchAll(/"(?:dateModified|lastReviewed)"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]);
+    const latest = dates.sort().at(-1);
+    return latest && latest !== today ? latest : null;
+  } catch {
+    return null;
+  }
+}
+
+/** `<lastmod>` line for a page, or "" when the page has no real date. */
+const lastmodLine = (date) => (date ? `\n    <lastmod>${date}</lastmod>` : "");
+
 async function main() {
   console.log("Fetching skills from Supabase...");
   const allSkills = await fetchAllSkills();
@@ -185,37 +206,26 @@ async function main() {
     <loc>${SITE}/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <lastmod>${today}</lastmod>
   </url>`,
     `  <url>
     <loc>${SITE}/privacy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <lastmod>${today}</lastmod>
   </url>`,
     `  <url>
     <loc>${SITE}/terms/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <lastmod>${today}</lastmod>
   </url>`,
     `  <url>
     <loc>${SITE}/enterprise/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <lastmod>${today}</lastmod>
   </url>`,
     `  <url>
     <loc>${SITE}/verified-creator/apply/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <lastmod>${today}</lastmod>
-  </url>`,
-    `  <url>
-    <loc>${SITE}/about/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>${today}</lastmod>
   </url>`,
   ];
   writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
@@ -226,8 +236,7 @@ async function main() {
   const catEntries = catsWithSkills.map((cat) => `  <url>
     <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.85</priority>${lastmodLine(declaredDate(`/category/${cat}/`, today))}
   </url>`);
   writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
   console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (derived from data)`);
@@ -277,8 +286,7 @@ async function main() {
       .map((slug) => `  <url>
     <loc>${SITE}/best/${slug}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.85</priority>${lastmodLine(declaredDate(`/best/${slug}/`, today))}
   </url>`);
     writeFileSync("dist/sitemap-scenarios.xml", wrapUrlset(scenarioEntries));
     scenarioCount = scenarioEntries.length;
@@ -297,8 +305,7 @@ async function main() {
       bookEntries.push(`  <url>
     <loc>${SITE}/book/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.85</priority>${lastmodLine(declaredDate(`/book/`, today))}
   </url>`);
       // Chapter pages
       const chapterSlugs = rds("dist/book").filter(
@@ -308,8 +315,7 @@ async function main() {
         bookEntries.push(`  <url>
     <loc>${SITE}/book/${slug}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.80</priority>${lastmodLine(declaredDate(`/book/${slug}/`, today))}
   </url>`);
       }
       writeFileSync("dist/sitemap-book.xml", wrapUrlset(bookEntries));
@@ -339,15 +345,13 @@ async function main() {
         blogEntries.push(`  <url>
     <loc>${SITE}${enPath}</loc>
     <changefreq>monthly</changefreq>
-    <priority>${priority}</priority>
-    <lastmod>${today}</lastmod>${alts || ""}
+    <priority>${priority}</priority>${lastmodLine(declaredDate(enPath, today))}${alts || ""}
   </url>`);
         if (zhPath) {
           blogEntries.push(`  <url>
     <loc>${SITE}${zhPath}</loc>
     <changefreq>monthly</changefreq>
-    <priority>${(Number(priority) - 0.2).toFixed(1)}</priority>
-    <lastmod>${today}</lastmod>${alts}
+    <priority>${(Number(priority) - 0.2).toFixed(1)}</priority>${lastmodLine(declaredDate(zhPath, today))}${alts}
   </url>`);
         }
       };
@@ -401,15 +405,13 @@ async function main() {
       .map((slug) => `  <url>
     <loc>${SITE}/compare/${slug}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.80</priority>${lastmodLine(declaredDate(`/compare/${slug}/`, today))}
   </url>`);
     // Also add the /compare/ index page
     comparisonEntries.unshift(`  <url>
     <loc>${SITE}/compare/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>${today}</lastmod>
+    <priority>0.85</priority>${lastmodLine(declaredDate(`/compare/`, today))}
   </url>`);
     writeFileSync("dist/sitemap-comparisons.xml", wrapUrlset(comparisonEntries));
     comparisonCount = comparisonEntries.length;

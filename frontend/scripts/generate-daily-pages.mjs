@@ -239,11 +239,14 @@ function main() {
     writeFileSync(join(dir, "index.html"), dayHtml(day, days[i + 1], days[i - 1]));
   });
 
-  const today = new Date().toISOString().slice(0, 10);
-  const urls = [`${SITE}/daily/`, ...days.map((d) => `${SITE}/daily/${d.date}/`)]
+  // A day's report does not change after it is published, so its lastmod is its own
+  // date; the index changes when the newest day is added (2026-10-14: every URL used
+  // to carry the build date, which makes Google ignore lastmod).
+  const pages = [{ url: `${SITE}/daily/`, date: days[0]?.date }, ...days.map((d) => ({ url: `${SITE}/daily/${d.date}/`, date: d.date }))];
+  const urls = pages
     .map(
-      (u) =>
-        `  <url><loc>${u}</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>`,
+      ({ url, date }) =>
+        `  <url><loc>${url}</loc>${date ? `<lastmod>${date}</lastmod>` : ""}<changefreq>daily</changefreq><priority>0.6</priority></url>`,
     )
     .join("\n");
   writeFileSync(
