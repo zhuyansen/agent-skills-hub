@@ -93,6 +93,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://agentskillshub.top/#organization",
       "name": "Agent Skills Hub",
       "alternateName": ["AgentSkillsHub", "agentskillshub.top"],
       "url": "https://agentskillshub.top/",
@@ -123,16 +124,35 @@
         "https://www.npmjs.com/package/@agentskillshub/mcp",
         "https://glama.ai/mcp/servers/zhuyansen/agentskillshub-mcp",
         "https://smithery.ai/server/m17551076169/agentskillshub",
-        "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
-        "https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades",
-        "https://alternativeto.net/software/agent-skills-hub/",
-        "https://doi.org/10.5281/zenodo.21292799"
+        "https://alternativeto.net/software/agent-skills-hub/"
       ],
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "m17551076169@gmail.com",
         "contactType": "customer support"
       }
+    }
+    </script>
+    <!-- The census as its own entity (2026-10-14). Its DOI, mirrors and Wikidata item
+         used to sit in the Organization's sameAs, which says they ARE the organization. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "AI Agent Skills Security Grades (130K)",
+      "description": "Security grades (SAFE / CAUTION / UNSAFE / REJECT), red flags and quality scores for 130,000+ open-source AI agent skills and MCP servers indexed from GitHub.",
+      "identifier": "https://doi.org/10.5281/zenodo.21292799",
+      "url": "https://doi.org/10.5281/zenodo.21292799",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "datePublished": "2026-07-10",
+      "creator": { "@type": "Person", "name": "Jason Zhu" },
+      "publisher": { "@id": "https://agentskillshub.top/#organization" },
+      "isAccessibleForFree": true,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q141735092",
+        "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
+        "https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades"
+      ]
     }
     </script>
     <script type="application/ld+json">
