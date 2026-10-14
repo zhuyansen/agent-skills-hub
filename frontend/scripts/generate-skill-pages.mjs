@@ -49,6 +49,34 @@ const FEATURED_IN_SCENARIOS = (() => {
   return map;
 })();
 
+/**
+ * Topic → the live scenario page that covers it (match.topic_matches). Topic chips used
+ * to link to /?search=<topic>: every topic became a crawlable search URL, and Bing listed
+ * thousands of them (2026-10-14). A chip now links to a real page when one covers the
+ * topic and is plain text otherwise.
+ */
+const TOPIC_SCENARIO = (() => {
+  const scenarios = JSON.parse(
+    readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
+  );
+  const map = new Map();
+  for (const sc of scenarios.filter((x) => !x.retired)) {
+    for (const t of sc.match?.topic_matches || []) {
+      if (!map.has(t.toLowerCase())) map.set(t.toLowerCase(), { slug: sc.slug, title: sc.title });
+    }
+  }
+  return map;
+})();
+
+const CHIP_STYLE = "display:inline-block;padding:2px 10px;border-radius:12px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none";
+
+function topicChip(topic) {
+  const sc = TOPIC_SCENARIO.get(topic.toLowerCase());
+  return sc
+    ? `<a href="/best/${esc(sc.slug)}/" title="${esc(sc.title)}" style="${CHIP_STYLE}">${esc(topic)}</a>`
+    : `<span style="${CHIP_STYLE}">${esc(topic)}</span>`;
+}
+
 async function fetchAllCompositions() {
   const comps = new Map();
   let offset = 0;
@@ -468,7 +496,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 
   // Topics HTML
   const topicsHtml = topicsList.length > 0
-    ? `<div style="margin:12px 0;display:flex;flex-wrap:wrap;gap:6px">${topicsList.slice(0, 10).map((t) => `<a href="/?search=${encodeURIComponent(t)}" style="display:inline-block;padding:2px 10px;border-radius:12px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none">${esc(t)}</a>`).join("")}</div>`
+    ? `<div style="margin:12px 0;display:flex;flex-wrap:wrap;gap:6px">${topicsList.slice(0, 10).map(topicChip).join("")}</div>`
     : "";
 
   // Compatible skills HTML
