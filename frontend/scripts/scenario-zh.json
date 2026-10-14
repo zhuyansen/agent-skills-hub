@@ -582,7 +582,7 @@
     "d": "开源的 Claude Code hooks、subagents 与 statusline,带安全评级:Hook 守卫与格式化、专家 Agent 合集、用量与上下文状态栏。安装前先核查。"
   },
   "ai-reverse-engineering": {
-    "t": "AI 逆向工程",
+    "t": "AI 逆向工程工具",
     "k": [
       "逆向",
       "逆向工程",

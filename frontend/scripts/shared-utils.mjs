@@ -94,10 +94,15 @@ const PREFS_SCRIPT = `<script>
         });
       }
       window.__bpToggleTheme=function(){var d=!root.classList.contains('dark');store('theme',d?'dark':'light');applyTheme(d)};
-      window.__bpToggleLang=function(){var l=currentLang()==='zh'?'en':'zh';store('lang',l);applyLang(l)};
+      // A page with a Chinese twin (/best/<slug>/zh/, hreflang links in the head) has a
+      // fixed language per URL: the twin always shows Chinese, and the toggle goes to the
+      // other URL instead of swapping text in place (2026-10-14).
+      function twin(l){var e=document.querySelector('link[rel="alternate"][hreflang="'+l+'"]');return e?e.href:null}
+      var pageZh=root.lang==='zh-CN';
+      window.__bpToggleLang=function(){var l=currentLang()==='zh'?'en':'zh';store('lang',l);var t=twin(l);if(t&&t!==location.href.split('#')[0]){location.href=t;return}applyLang(l)};
       applyTheme(saved('theme')!=='light');
       var s=saved('lang');
-      applyLang(s==='zh'||s==='en'?s:(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en'));
+      applyLang(pageZh&&twin('en')?'zh':(s==='zh'||s==='en'?s:(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en')));
       document.addEventListener('DOMContentLoaded',function(){applyLang(currentLang())});
     })();
   </script>`;

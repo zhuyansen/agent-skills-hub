@@ -179,6 +179,26 @@ function isRedirectStub(path) {
   }
 }
 
+/**
+ * Sitemap entries for one /best/ page: the English page and, when it has one, its
+ * Chinese twin at /best/<slug>/zh/, both carrying reciprocal hreflang (2026-10-14).
+ */
+function scenarioEntriesFor(slug, today) {
+  const en = `/best/${slug}/`;
+  const zh = `${en}zh/`;
+  const hasZh = existsSync(`dist${zh}index.html`);
+  const alts = hasZh ? `
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${SITE}${zh}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${en}"/>` : "";
+  const entry = (path, priority) => `  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>${lastmodLine(declaredDate(en, today))}${alts}
+  </url>`;
+  return hasZh ? [entry(en, "0.85"), entry(zh, "0.75")] : [entry(en, "0.85")];
+}
+
 /** `<lastmod>` line for a page, or "" when the page has no real date. */
 const lastmodLine = (date) => (date ? `\n    <lastmod>${date}</lastmod>` : "");
 
@@ -296,14 +316,10 @@ async function main() {
     );
     const scenarioSlugs = readdirSync("dist/best");
     const scenarioEntries = scenarioSlugs
-      .filter((slug) => !slug.startsWith(".") && slug !== "index.html"
+      .filter((slug) => !slug.startsWith(".") && slug !== "index.html" && slug !== "zh"
                         && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
-      .map((slug) => `  <url>
-    <loc>${SITE}/best/${slug}/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>${lastmodLine(declaredDate(`/best/${slug}/`, today))}
-  </url>`);
-    writeFileSync("dist/sitemap-scenarios.xml", wrapUrlset(scenarioEntries));
+      .flatMap((slug) => scenarioEntriesFor(slug, today));
+    writeFileSync("dist/sitemap-scenarios.xml", wrapUrlsetI18n(scenarioEntries));
     scenarioCount = scenarioEntries.length;
     console.log(`sitemap-scenarios.xml: ${scenarioCount} URLs`);
   } catch {
