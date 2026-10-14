@@ -116,6 +116,24 @@ jobs:
           path: list-codereview
           token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
 
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-codex-skills
+          path: list-codex
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-claude-code-skills-collections
+          path: list-ccskills
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: zhuyansen/awesome-ai-reverse-engineering
+          path: list-re
+          token: ${{ secrets.LIST_REPO_TOKEN || secrets.GH_TOKEN }}
+
       # The list generator reads grades with the read-only anon key from frontend/.env.
       - name: Write frontend/.env
         run: |
@@ -131,7 +149,7 @@ jobs:
           FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ACTIONS_TOKEN: ${{ github.token }}
-        run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt typesafe-jev=list-jev skill-management-tools=list-skillmgr telegram-bot=list-telegram ai-design=list-design knowledge-base=list-wiki claude-code-hooks=list-hooks obsidian-second-brain=list-obsidian anti-slop=list-humanizer image-generation=list-image code-review=list-codereview
+        run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt typesafe-jev=list-jev skill-management-tools=list-skillmgr telegram-bot=list-telegram ai-design=list-design knowledge-base=list-wiki claude-code-hooks=list-hooks obsidian-second-brain=list-obsidian anti-slop=list-humanizer image-generation=list-image code-review=list-codereview codex-skills=list-codex claude-code-skills=list-ccskills ai-reverse-engineering=list-re
 
       - name: Commit the site
         id: site
@@ -155,7 +173,10 @@ jobs:
 
       - name: Push the GitHub lists
         run: |
-          for dir in list-repo list-ppt list-jev list-skillmgr list-telegram list-design list-wiki list-hooks list-obsidian list-humanizer list-image list-codereview; do
+          # One list the token cannot write (10-11..13: a 403 on awesome-claude-code-review)
+          # must not stop the lists after it; the step still fails and names it.
+          failed=""
+          for dir in list-repo list-ppt list-jev list-skillmgr list-telegram list-design list-wiki list-hooks list-obsidian list-humanizer list-image list-codereview list-codex list-ccskills list-re; do
             (
               cd "$dir"
               git config user.name "github-actions[bot]"
@@ -165,8 +186,9 @@ jobs:
               git commit -q -m "Daily update $(date -u +%F)"
               git pull -q --rebase origin main
               git push -q origin HEAD:main
-            )
+            ) || failed="$failed $dir"
           done
+          if [ -n "$failed" ]; then echo "::error::list push failed:$failed"; exit 1; fi
 
       - name: Report
         if: always()
