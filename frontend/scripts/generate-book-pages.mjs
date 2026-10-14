@@ -235,6 +235,23 @@ function customizeHtml(baseHtml, { title, description, canonical, ogImage, noscr
   return html;
 }
 
+/** The chapter's `data_snapshot` (frontmatter): the date its data and text were last brought up to date. */
+function snapshotDate(md) {
+  return md.match(/^data_snapshot:\s*(\d{4}-\d{2}-\d{2})/m)?.[1] || null;
+}
+
+/**
+ * Article JSON-LD carrying the page's real date. Book pages are copies of the SPA shell,
+ * whose only dateModified belongs to the web app and is stamped with the build date;
+ * without this every chapter claimed to change daily (2026-10-14).
+ */
+function withArticleDate(html, { title, url, date }) {
+  if (!date) return html;
+  const ld = { "@context": "https://schema.org", "@type": "Article", headline: title, url, datePublished: "2026-03-08",
+    dateModified: date, inLanguage: "zh-CN", author: { "@type": "Person", name: "Jason Zhu", url: "https://agentskillshub.top/about/" } };
+  return html.replace("</head>", `  <script type="application/ld+json">${JSON.stringify(ld)}</script>\n</head>`);
+}
+
 async function main() {
   console.log("📖 Generating Blue Book pages...");
   if (!existsSync(join(DIST, "index.html"))) {
@@ -242,6 +259,10 @@ async function main() {
   }
   const baseHtml = readFileSync(join(DIST, "index.html"), "utf-8");
   const coverImg = `${SITE}/book/assets/cover.png`;
+
+  const chapterDates = CHAPTERS.map((c) => join(BOOK_DIR, `${c.slug}.md`))
+    .filter((f) => existsSync(f)).map((f) => snapshotDate(readFileSync(f, "utf-8"))).filter(Boolean);
+  const bookDate = chapterDates.sort().at(-1) || null;
 
   // 1. Index page /book/
   const indexTitle = "Skill 蓝皮书 2026 · 67K Skill 数据原生研究 · AgentSkillsHub";
@@ -260,7 +281,7 @@ async function main() {
     noscriptBody: indexNoScript,
   });
   mkdirSync(join(DIST, "book"), { recursive: true });
-  writeFileSync(join(DIST, "book", "index.html"), indexHtml);
+  writeFileSync(join(DIST, "book", "index.html"), withArticleDate(indexHtml, { title: indexTitle, url: `${SITE}/book/`, date: bookDate }));
   console.log(`  ✓ /book/index.html`);
 
   // 2. Each chapter
@@ -281,7 +302,8 @@ async function main() {
       noscriptBody,
     });
     mkdirSync(join(DIST, "book", c.slug), { recursive: true });
-    writeFileSync(join(DIST, "book", c.slug, "index.html"), html);
+    writeFileSync(join(DIST, "book", c.slug, "index.html"),
+      withArticleDate(html, { title, url: `${SITE}/book/${c.slug}/`, date: snapshotDate(md) }));
     console.log(`  ✓ /book/${c.slug}/index.html (${(noscriptBody.length / 1024).toFixed(1)} KB SEO body)`);
   }
 

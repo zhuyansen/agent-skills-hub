@@ -156,9 +156,11 @@ ${entries.join("\n")}
 function declaredDate(path, today) {
   try {
     const html = readFileSync(`dist${path}index.html`, "utf-8");
-    const dates = [...html.matchAll(/"(?:dateModified|lastReviewed)"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]);
-    const latest = dates.sort().at(-1);
-    return latest && latest !== today ? latest : null;
+    // Build-date stamps (the SPA shell's own dateModified) are dropped before picking
+    // the latest, so a page's real date is not hidden behind them.
+    const dates = [...html.matchAll(/"(?:dateModified|lastReviewed)"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)]
+      .map((m) => m[1]).filter((d) => d !== today);
+    return dates.sort().at(-1) || null;
   } catch {
     return null;
   }
