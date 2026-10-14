@@ -12,6 +12,7 @@
  * Run: node scripts/generate-skill-pages.mjs  (after vite build)
  */
 
+import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -260,7 +261,15 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // SEO-optimized title: exact repo_full_name matches brand-name queries
   // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
   // Full name goes first so Google SERP shows it at line 1.
-  const title = `${repo_full_name} — security grade & quality score | Agent Skills Hub`;
+  // 2026-10-14 (owner's decision): /skill/ answers what it is, how to install it and
+  // what to use instead; "is it safe" belongs to /audit/, which held the same intent
+  // under a second self-canonical URL. "install" is only promised when the README
+  // gave us a command to show.
+  const installs = isGone ? [] : skill.install_commands || [];
+  const intent = installs.length ? "what it is, how to install & alternatives" : "what it is & alternatives";
+  // No "| Agent Skills Hub": Google prints the site name above the title, and the
+  // suffix pushed the median title to 83 characters, past what the SERP shows.
+  const title = `${repo_full_name}: ${intent}`;
   // Lead the snippet with the VERDICT, not the repo's own blurb.
   //
   // Nearly every query these pages win is what Google's rater guidelines call a
@@ -325,12 +334,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const clause = isGone
     ? ` Archived record of ${repo_full_name} on Agent Skills Hub.`
     : ` Independent audit of ${repo_full_name} against 11 red-flag categories.`;
-  let metaDesc = verdict;
-  if (metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
-  const room = LIMIT - metaDesc.length - 1;
-  if (description && room > 25) {
-    metaDesc += ` ${description.slice(0, room).trim()}${description.length > room ? "…" : ""}`;
-  }
+  let metaDesc = isGone ? verdict : "";
+  if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
+  if (!isGone) metaDesc = describeFor(repo_name, description, installs, LIMIT);
 
   // README excerpt — expanded to 1200 chars for content depth (improves indexability)
   const readmeText = stripMarkdown(readme_content);
@@ -380,7 +386,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   }
   faqItems.push({
     q: `How do I install or use ${repo_name}?`,
-    a: `You can find installation instructions and usage details in the ${repo_name} GitHub repository at ${ghLabel}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
+    a: installs.length
+      ? `The README on GitHub (${ghLabel}) gives: ${installs.join(" , then ")}. Usage details are in the same README.`
+      : `You can find installation instructions and usage details in the ${repo_name} GitHub repository at ${ghLabel}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
   });
   if (license && license !== "NOASSERTION") {
     faqItems.push({
@@ -599,16 +607,9 @@ ${faqLd}
            by Y") was neither, and the audit result — the only thing here that
            GitHub does not already show — appeared nowhere above the fold. -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}${
-        isGone
-          ? " — repository deleted, archived audit"
-          : gradeLabel
-            ? ` — security grade ${esc(gradeLabel)}${typeof quality_score === "number" ? `, quality ${Math.round(quality_score)}/100` : ""}`
-            : gradeState(skill) === "no_readme"
-              ? " — no README to audit"
-              : " — not yet audited"
+        isGone ? " — repository deleted, archived audit" : `: ${intent}`
       }</h1>
       ${goneBanner}
-      ${verdictBlock}
       <p style="color:#64748b;margin:0 0 8px">
         by ${creatorLinkHtml(author_name)}
         &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
@@ -630,6 +631,11 @@ ${faqLd}
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">About ${esc(repo_name)}</h2>
         <p style="line-height:1.6;color:#475569">${esc(excerpt)}</p>
       </section>
+
+      ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null)}
+
+      <!-- Security verdict: kept on the page, below what it is and how to install it -->
+      ${verdictBlock}
 
       <!-- Topics -->
       ${topicsHtml}
@@ -676,6 +682,18 @@ ${faqLd}
   </noscript>
 </body>
 </html>`;
+}
+
+/**
+ * Meta description for a live repo: what it is, then its install command, then
+ * the alternatives the page compares, cut at what Google shows (~155 chars).
+ */
+function describeFor(repoName, description, installs, limit) {
+  const what = description ? `${repoName}: ${description.trim().replace(/\.$/, "")}.` : `${repoName}, an open-source agent tool.`;
+  const parts = [installs[0] ? ` Install: ${installs[0]}.` : "", " Alternatives compared."];
+  let out = what.length > limit ? `${what.slice(0, limit - 1).trim()}…` : what;
+  for (const part of parts) if (part && out.length + part.length <= limit) out += part;
+  return out;
 }
 
 /* ── build category page ──────────────────────── */
@@ -834,10 +852,13 @@ async function main() {
 
   // readme_content is no longer in the bulk catalog — pull it only for the
   // stars-gated subset that actually renders a page, then attach by id.
-  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE);
+  const installsById = new Map();
+  const nameById = new Map(skills.map((s) => [s.id, s.repo_name]));
+  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE, (id, full) => installsById.set(id, installCommands(full, nameById.get(id))));
   for (const s of skills) {
     const r = readmes.get(s.id);
     if (r) s.readme_content = r;
+    s.install_commands = installsById.get(s.id) || [];
   }
 
   console.log("Fetching compositions...");

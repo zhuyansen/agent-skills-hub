@@ -460,10 +460,11 @@ export async function fetchAllSkills() {
  * high-star subset they actually display. Server-side stars + not-null filters
  * and a small page size keep each statement well under statement_timeout.
  *
- * Returns Map<id, readmeExcerpt>. Skills below the threshold (or without a
+ * Returns Map<id, readmeExcerpt>; `onFull(id, readme)` sees each full README.
+ * Skills below the threshold (or without a
  * readme) are simply absent → callers degrade gracefully (no readme snippet).
  */
-export async function fetchReadmeMap(minStars) {
+export async function fetchReadmeMap(minStars, onFull = null) {
   const map = new Map();
   let lastId = 0;
   const limit = 200; // readmes are large; small pages stay well under the timeout
@@ -478,7 +479,11 @@ export async function fetchReadmeMap(minStars) {
     });
     if (!data.length) break;
     for (const row of data) {
-      if (row.readme_content) map.set(row.id, row.readme_content.slice(0, 1500));
+      if (!row.readme_content) continue;
+      map.set(row.id, row.readme_content.slice(0, 1500));
+      // The excerpt drops most of a README; a caller that needs something further
+      // down (skill pages: the install command) reads the full text here.
+      if (onFull) onFull(row.id, row.readme_content);
     }
     lastId = data[data.length - 1].id;
     if (data.length < limit) break;
