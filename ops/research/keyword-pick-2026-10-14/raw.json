@@ -1,0 +1,1091 @@
+{
+ "rows": [
+  {
+   "keyword": "humanizer skill",
+   "volume": 1300,
+   "kd": 7,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://github.com/blader/humanizer",
+     "title": "blader/humanizer: Agent skill that removes signs of AI- ...",
+     "rank": 1
+    },
+    {
+     "url": "https://www.reddit.com/r/claudeskills/comments/1v8wa5r/whats_the_best_humanizer_skill_out_there/",
+     "title": "What's the best humanizer skill out there? : r/claudeskills",
+     "rank": 2
+    },
+    {
+     "url": "https://oneaway.io/skills/humanizer",
+     "title": "Humanizer — Claude Code Skill",
+     "rank": 3
+    },
+    {
+     "url": "https://github.com/blader/humanizer/blob/main/SKILL.md",
+     "title": "humanizer/SKILL.md at main · blader/humanizer",
+     "rank": 4
+    },
+    {
+     "url": "https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/creative/creative-humanizer",
+     "title": "Humanize text: strip AI-isms and add real voice - Hermes Agent",
+     "rank": 5
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=3HF0vh8T-co",
+     "title": "How to Install the Humanizer Skill in Claude AI (Step-by- ...",
+     "rank": 6
+    },
+    {
+     "url": "https://sourceforge.net/projects/humanizer-skill.mirror/",
+     "title": "Humanizer Skill download",
+     "rank": 7
+    },
+    {
+     "url": "https://www.width.ai/post/the-claude-humanizer-skill-we-built-for-content-that-has-to-keep-ranking",
+     "title": "The Claude Humanizer Skill We Built for Content That Has ...",
+     "rank": 8
+    },
+    {
+     "url": "https://chatgpt.com/writing/ai-humanizer/",
+     "title": "AI Humanizer by ChatGPT | Make AI Writing Sound Natural",
+     "rank": 9
+    }
+   ],
+   "first": "https://github.com/blader/humanizer",
+   "form": "仓库 2 · 单个工具 5 · 视频 1 · 论坛 1",
+   "traffic_potential": 3500,
+   "tp_page": "https://github.com/blader/humanizer",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find or compare humanizer agent skills; graded list answers completely."
+  },
+  {
+   "keyword": "claude design skills",
+   "volume": 1600,
+   "kd": 15,
+   "intent": "commercial",
+   "first_page": [
+    {
+     "url": "https://academy.claude.com/use-cases/elevate-claudes-design-using-skills",
+     "title": "Elevate Claude's design using skills",
+     "rank": 1
+    },
+    {
+     "url": "https://divadsanders.medium.com/5-claude-skills-that-fix-claudes-ugly-ui-ai-web-design-ec9cd27bf5fe",
+     "title": "5 Claude Skills That Fix Claude's Ugly UI (AI Web Design)",
+     "rank": 2
+    },
+    {
+     "url": "https://github.com/jiji262/claude-design-skill",
+     "title": "jiji262/claude-design-skill: A portable ...",
+     "rank": 3
+    },
+    {
+     "url": "https://www.reddit.com/r/ClaudeAI/comments/1rx7v8i/i_built_a_list_of_48_design_skill_files_with/",
+     "title": "I built a list of 48 design skill files with custom styles for you ...",
+     "rank": 4
+    },
+    {
+     "url": "https://marieclairedean.substack.com/p/i-built-63-design-skills-for-claude",
+     "title": "I Built 63 Design Skills For Claude - and They're Free",
+     "rank": 5
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=jT5YdajTg6I&vl=en-US",
+     "title": "I Tested Claude Skills for Web Design",
+     "rank": 6
+    },
+    {
+     "url": "https://composio.dev/content/top-design-skills",
+     "title": "10 best design skills for Claude Code and Codex",
+     "rank": 7
+    },
+    {
+     "url": "https://uxplanet.org/you-can-now-design-in-claude-code-2946d6088e4a",
+     "title": "You Can Now Design in Claude Code | by Nick Babich",
+     "rank": 8
+    },
+    {
+     "url": "https://www.typeui.sh/design-skills",
+     "title": "Design Skills for AI",
+     "rank": 9
+    }
+   ],
+   "first": "https://academy.claude.com/use-cases/elevate-claudes-design-using-skills",
+   "form": "榜单 3 · 仓库 1 · 单个工具 3 · 视频 1 · 论坛 1",
+   "traffic_potential": 2418,
+   "tp_page": "https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare design skills for Claude Code; graded list answers completely."
+  },
+  {
+   "keyword": "github mcp",
+   "volume": 6600,
+   "kd": 32,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://github.com/github/github-mcp-server",
+     "title": "GitHub's official MCP Server",
+     "rank": 1
+    },
+    {
+     "url": "https://github.com/mcp",
+     "title": "MCP Registry · Connect Agents to tools",
+     "rank": 2
+    },
+    {
+     "url": "https://github.blog/ai-and-ml/generative-ai/a-practical-guide-on-how-to-use-the-github-mcp-server/",
+     "title": "A practical guide on how to use the GitHub MCP server",
+     "rank": 3
+    },
+    {
+     "url": "https://github.com/modelcontextprotocol",
+     "title": "Model Context Protocol",
+     "rank": 4
+    },
+    {
+     "url": "https://mcpservers.org/servers/asifdotpy/github-mcp-server-asifdotpy",
+     "title": "GitHub MCP Server",
+     "rank": 5
+    },
+    {
+     "url": "https://www.gosearch.ai/blog/introducing-the-github-mcp-server-in-gosearch/",
+     "title": "GitHub MCP Server: What It Is, How It Works, and How to ...",
+     "rank": 6
+    }
+   ],
+   "first": "https://github.com/github/github-mcp-server",
+   "form": "目录 1 · 仓库 3 · 教程 2",
+   "traffic_potential": 1999,
+   "tp_page": "https://github.com/github/github-mcp-server",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare GitHub MCP servers; graded list answers completely."
+  },
+  {
+   "keyword": "claude seo skill",
+   "volume": 480,
+   "kd": 3,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://github.com/AgricIDaniel/claude-seo",
+     "title": "AgriciDaniel/claude-seo: Universal SEO skill for ...",
+     "rank": 1
+    },
+    {
+     "url": "https://claudeseoskill.com/",
+     "title": "Claude SEO Skill — AI-Powered SEO, GEO & AEO Audits",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/ClaudeAI/comments/1rlkatj/my_new_claude_skill_seo_consultant_13_subagents/",
+     "title": "My New Claude Skill - SEO consultant - 13 sub-agents, 17 ...",
+     "rank": 3
+    },
+    {
+     "url": "https://claude-seo.md/",
+     "title": "Claude SEO - Free AI SEO Audit Tool for Claude Code",
+     "rank": 4
+    },
+    {
+     "url": "https://aimaker.substack.com/p/what-are-claude-skills-ai-workflow-automation",
+     "title": "Claude Got Skills! How I Used It to Automate My Entire SEO ...",
+     "rank": 5
+    },
+    {
+     "url": "https://seranking.com/claude-seo-skills.html",
+     "title": "SEO Skills for Claude, Built by SE Ranking",
+     "rank": 6
+    },
+    {
+     "url": "https://infranodus.com/skills/seo",
+     "title": "Claude SEO Skill: Search Intent and Content Gap Analysis",
+     "rank": 7
+    },
+    {
+     "url": "https://hawkacademy.co/claude-seo-skills",
+     "title": "Claude SEO Skills: 55 Free Downloads, Install in a Minute",
+     "rank": 8
+    }
+   ],
+   "first": "https://github.com/AgricIDaniel/claude-seo",
+   "form": "榜单 1 · 仓库 1 · 单个工具 5 · 论坛 1",
+   "traffic_potential": 1593,
+   "tp_page": "https://github.com/AgricIDaniel/claude-seo",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find or compare SEO skills for Claude Code; graded list fits perfectly."
+  },
+  {
+   "keyword": "remotion skill",
+   "volume": 1300,
+   "kd": 17,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://www.youtube.com/watch?v=2Cio4ufwgvU&vl=en",
+     "title": "I Tested Claude Code + Remotion Skills for Video Animation ...",
+     "rank": 1
+    },
+    {
+     "url": "https://mcpmarket.com/tools/skills/remotion-video-generation-1",
+     "title": "Remotion Video Generation | Claude Code Skill",
+     "rank": 2
+    },
+    {
+     "url": "https://x.com/JNYBGR/status/2015708193167479209",
+     "title": "\"This is a beginner guide for getting started with Remotion ...",
+     "rank": 3
+    },
+    {
+     "url": "https://medium.com/@joyzoursky/from-prompt-to-video-why-remotion-skills-suddenly-matter-1927307dcf1f",
+     "title": "From Prompt to Video: Why Remotion Skills Suddenly Matter",
+     "rank": 4
+    },
+    {
+     "url": "https://medium.com/@creativeaininja/making-videos-with-code-the-complete-guide-to-remotion-and-claude-code-82892e21d022",
+     "title": "The Complete Guide to Remotion and Claude Code",
+     "rank": 5
+    },
+    {
+     "url": "https://www.x-pilot.ai/blog/remotion-claude-skill-education-video-complete-guide-2026",
+     "title": "Remotion + Claude Skill for Education Videos (2026)",
+     "rank": 6
+    },
+    {
+     "url": "https://aiskill.market/skills/remotion-skill",
+     "title": "Remotion Skill: Media & Content for Claude Code",
+     "rank": 7
+    },
+    {
+     "url": "https://www.ui-skills.com/skills/remotion",
+     "title": "Remotion Skills for Design Engineers",
+     "rank": 8
+    }
+   ],
+   "first": "https://www.youtube.com/watch?v=2Cio4ufwgvU&vl=en",
+   "form": "目录 1 · 单个工具 4 · 教程 2 · 视频 1",
+   "traffic_potential": 1297,
+   "tp_page": "https://www.remotion.dev/docs/ai/skills",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare Remotion skills for Claude Code; graded list answers completely."
+  },
+  {
+   "keyword": "codex skill",
+   "volume": 4400,
+   "kd": 7,
+   "intent": "transactional",
+   "first_page": [
+    {
+     "url": "https://github.com/openai/codex/blob/main/docs/skills.md",
+     "title": "codex/docs/skills.md at main · openai/codex",
+     "rank": 1
+    },
+    {
+     "url": "https://community.openai.com/t/tips-and-tricks-for-using-codex-and-rate-limits/1373143",
+     "title": "Tips and Tricks for using Codex and Rate Limits",
+     "rank": 2
+    },
+    {
+     "url": "https://github.com/topics/codex-skill?l=markdown",
+     "title": "codex-skill · GitHub Topics",
+     "rank": 3
+    },
+    {
+     "url": "https://medium.com/@markchen69/skills-for-ai-agents-claude-codex-and-how-to-install-them-from-skill0-atypica-ai-1f0c9cf60547",
+     "title": "Skills for AI Agents (Claude, Codex) — and How to Install ...",
+     "rank": 4
+    },
+    {
+     "url": "https://www.datacamp.com/blog/top-agent-skills",
+     "title": "The Top 100+ Agent Skills For OpenClaw, Codex and ...",
+     "rank": 5
+    },
+    {
+     "url": "https://skillsllm.com/skill/codex-skills",
+     "title": "Codex-Skills - AI Agents on GitHub",
+     "rank": 6
+    },
+    {
+     "url": "https://www.reddit.com/r/ClaudeAI/comments/1ocoahc/i_just_built_a_skill_to_prompt_codex_from_claude/",
+     "title": "I just built a skill to prompt Codex from Claude Code. It's ...",
+     "rank": 7
+    },
+    {
+     "url": "https://github.com/topics/codex-skills?l=swift",
+     "title": "codex-skills",
+     "rank": 8
+    },
+    {
+     "url": "https://www.itpro.com/software/development/openais-skills-in-codex-service-aims-to-supercharge-agent-efficiency-for-developers",
+     "title": "OpenAI's 'Skills in Codex' service aims to supercharge ...",
+     "rank": 9
+    }
+   ],
+   "first": "https://github.com/openai/codex/blob/main/docs/skills.md",
+   "form": "榜单 1 · 目录 1 · 仓库 3 · 单个工具 2 · 教程 1 · 论坛 1",
+   "traffic_potential": 746,
+   "tp_page": "https://github.com/topics/codex-skills",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find or compare Codex agent skills; graded list answers completely."
+  },
+  {
+   "keyword": "claude code review skill",
+   "volume": 590,
+   "kd": 0,
+   "intent": "transactional",
+   "first_page": [
+    {
+     "url": "https://www.reddit.com/r/ClaudeAI/comments/1rp9dps/introducing_code_review_a_new_feature_for_claude/",
+     "title": "Introducing Code Review, a new feature for Claude Code.",
+     "rank": 1
+    },
+    {
+     "url": "https://news.ycombinator.com/item?id=47262895",
+     "title": "What to Put in a Claude Code Skill for Reviewing Your ...",
+     "rank": 2
+    },
+    {
+     "url": "https://mcpmarket.com/tools/skills/professional-code-review-4",
+     "title": "Code Review Skill for Claude Code | AI Code Analysis",
+     "rank": 3
+    },
+    {
+     "url": "https://github.com/aidankinzett/claude-git-pr-skill",
+     "title": "aidankinzett/claude-git-pr-skill: Professional ...",
+     "rank": 4
+    },
+    {
+     "url": "https://snyk.io/articles/top-claude-skills-developers/",
+     "title": "Top 8 Claude Skills for Developers",
+     "rank": 5
+    },
+    {
+     "url": "https://www.agensi.io/skills/code-quality-review",
+     "title": "Best Code Quality & Review Skills for Claude Code &…",
+     "rank": 6
+    },
+    {
+     "url": "https://mcpmarket.com/tools/skills/code-review-reception-1769290355486",
+     "title": "Receiving Code Review Skill for Claude Code | AI Coding",
+     "rank": 7
+    },
+    {
+     "url": "https://github.com/anthropics/claude-code/blob/main/plugins/code-review/commands/code-review.md",
+     "title": "code-review.md",
+     "rank": 8
+    },
+    {
+     "url": "https://www.skillsdirectory.com/skills/buildomator-code-review",
+     "title": "Code Review (Grade A) - Claude Skill",
+     "rank": 9
+    }
+   ],
+   "first": "https://www.reddit.com/r/ClaudeAI/comments/1rp9dps/introducing_code_review_a_new_feature_for_claude/",
+   "form": "榜单 2 · 目录 2 · 仓库 2 · 单个工具 1 · 论坛 2",
+   "traffic_potential": 619,
+   "tp_page": "https://github.com/anthropics/claude-code/blob/main/plugins/code-review/README.md",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare Claude Code skills for code review; graded list answers perfectly."
+  },
+  {
+   "keyword": "obsidian mcp",
+   "volume": 2400,
+   "kd": 3,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://www.qed42.com/insights/supercharge-your-knowledge-management---integrating-obsidian-mcp-with-claude",
+     "title": "integrating Obsidian MCP with Claude",
+     "rank": 1
+    },
+    {
+     "url": "https://www.pulsemcp.com/servers?q=obsidian",
+     "title": "Top 104 Obsidian Notes MCP Servers",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/ObsidianMD/comments/1r1vxq1/mcp_for_obsidian_cli/",
+     "title": "MCP for Obsidian CLI : r/ObsidianMD",
+     "rank": 3
+    },
+    {
+     "url": "https://mcpservers.org/servers/fazer-ai/mcp-obsidian",
+     "title": "Obsidian MCP Server",
+     "rank": 4
+    },
+    {
+     "url": "https://dev.to/vorsprung/using-the-model-context-protocol-mcp-to-query-obsidian-note-taking-3fhf",
+     "title": "Using the Model Context Protocol (MCP) to query Obsidian ...",
+     "rank": 5
+    },
+    {
+     "url": "https://apidog.com/blog/obsidian-mcp-server/",
+     "title": "How to Use the Obsidian MCP Server",
+     "rank": 6
+    },
+    {
+     "url": "https://mcpservers.org/servers/iansinnott/obsidian-claude-code-mcp",
+     "title": "Obsidian Claude Code",
+     "rank": 7
+    },
+    {
+     "url": "https://community.obsidian.md/plugins/agent-mcp",
+     "title": "Agent MCP - Obsidian Plugin",
+     "rank": 8
+    }
+   ],
+   "first": "https://www.qed42.com/insights/supercharge-your-knowledge-management---integrating-obsidian-mcp-with-claude",
+   "form": "目录 3 · 单个工具 3 · 教程 1 · 论坛 1",
+   "traffic_potential": 404,
+   "tp_page": "https://community.obsidian.md/plugins/mcp-tools-istefox",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare Obsidian MCP servers; graded list answers completely."
+  },
+  {
+   "keyword": "database mcp",
+   "volume": 480,
+   "kd": 3,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://www.youtube.com/watch?v=s2DGC7NMKxo&vl=en-US",
+     "title": "Add a database in minutes using the Microsoft Learn MCP ...",
+     "rank": 1
+    },
+    {
+     "url": "https://cloudwars.com/ai/mcp-server-gives-ai-agents-simplified-access-to-data-stored-in-sql-databases/",
+     "title": "MCP Server Gives AI Agents Simplified Access To Data ...",
+     "rank": 2
+    },
+    {
+     "url": "https://www.k2view.com/blog/mcp-sql-server/",
+     "title": "MCP SQL server: Connecting LLMs to trusted enterprise data",
+     "rank": 3
+    },
+    {
+     "url": "https://mariadb.com/products/mcp-server/",
+     "title": "MariaDB MCP Server",
+     "rank": 4
+    },
+    {
+     "url": "https://www.databricks.com/blog/what-is-model-context-protocol",
+     "title": "What is the Model Context Protocol (MCP)?",
+     "rank": 5
+    },
+    {
+     "url": "https://glama.ai/mcp/servers/dennismartis/sql_mcp_server",
+     "title": "MCP SQL Server by dennismartis",
+     "rank": 6
+    },
+    {
+     "url": "https://medium.com/@Fredtaylor1/mcp-database-a-new-approach-with-better-retrieval-effects-than-rag-9eefd0e41094",
+     "title": "MCP+Database: A New Approach with Better Retrieval ...",
+     "rank": 7
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=Ahxb8y3x8uQ",
+     "title": "Build an MCP Server with SQL & Claude | Full CRUD ...",
+     "rank": 8
+    },
+    {
+     "url": "https://felix-pappe.medium.com/breaking-isolation-a-practical-guide-to-building-an-mcp-server-with-sqlite-68c800a25d42",
+     "title": "A Practical Guide to Building an MCP Server with SQLite",
+     "rank": 9
+    }
+   ],
+   "first": "https://www.youtube.com/watch?v=s2DGC7NMKxo&vl=en-US",
+   "form": "目录 1 · 单个工具 5 · 教程 1 · 视频 2",
+   "traffic_potential": 210,
+   "tp_page": "https://github.com/executeautomation/mcp-database-server",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find/compare database MCP servers; graded list is a complete answer."
+  },
+  {
+   "keyword": "claude code skills",
+   "volume": 12100,
+   "kd": 30,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://medium.com/@mne/the-claude-skills-feature-ecb1f3a8eace",
+     "title": "The Claude “Skills” Feature",
+     "rank": 1
+    },
+    {
+     "url": "https://github.com/iamneilroberts/claude-skills",
+     "title": "iamneilroberts/claude-skills",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/AgentContext_dev/comments/1vn7udf/every_claude_code_skill_i_use_to_drive_my_entire/",
+     "title": "Every Claude Code Skill I Use to Drive My Entire Development ...",
+     "rank": 3
+    },
+    {
+     "url": "https://www.mindstudio.ai/blog/claude-skills-explained",
+     "title": "What Are Claude Skills? How They Work and How to Build ...",
+     "rank": 4
+    },
+    {
+     "url": "https://sourceforge.net/projects/claude-skills.mirror/",
+     "title": "Claude Skills download",
+     "rank": 5
+    },
+    {
+     "url": "https://www.mdskills.ai/skills/claude-code-game-studios",
+     "title": "Claude Code Game Studios — 36 Skills by donchitos",
+     "rank": 6
+    },
+    {
+     "url": "https://claudeskills.com/",
+     "title": "ClaudeSkills - The Curated Library of Claude Code Skills",
+     "rank": 7
+    },
+    {
+     "url": "https://github.com/dotnet/skills",
+     "title": "Repository for skills to assist AI coding agents with .NET ...",
+     "rank": 8
+    }
+   ],
+   "first": "https://medium.com/@mne/the-claude-skills-feature-ecb1f3a8eace",
+   "form": "榜单 1 · 仓库 2 · 单个工具 3 · 教程 1 · 论坛 1",
+   "traffic_potential": 26,
+   "tp_page": "https://www.reddit.com/r/claudeskills/comments/1vx6m67/four_claude_code_skills_i_built_for_my_own_app/",
+   "tp_rank": 1,
+   "value": 3,
+   "value_reason": "Searchers want to find or compare Claude Code skills; a graded list is a complete answer."
+  },
+  {
+   "keyword": "claude code hooks",
+   "volume": 3600,
+   "kd": 16,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://code.claude.com/docs/en/hooks",
+     "title": "Hooks reference - Claude Code Docs",
+     "rank": 1
+    },
+    {
+     "url": "https://code.claude.com/docs/en/hooks-guide",
+     "title": "Automate actions with hooks - Claude Code Docs",
+     "rank": 2
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=IkaPHiMDazM",
+     "title": "Hooks in Claude Code",
+     "rank": 3
+    },
+    {
+     "url": "https://www.reddit.com/r/ClaudeAI/comments/1rxu41b/claude_code_hooks_all_23_explained_and_implemented/",
+     "title": "Claude Code Hooks - all 23 explained and implemented",
+     "rank": 4
+    },
+    {
+     "url": "https://joseparreogarcia.substack.com/p/claude-code-hooks-explained-the-missing",
+     "title": "Claude Code Hooks Explained: From Prompts to Production",
+     "rank": 5
+    },
+    {
+     "url": "https://github.com/karanb192/claude-code-hooks",
+     "title": "Claude Code hooks + an installable plugin marketplace",
+     "rank": 6
+    },
+    {
+     "url": "https://academy.claude.com/courses/claude-code-101/hooks",
+     "title": "Hooks · Claude Code 101",
+     "rank": 7
+    },
+    {
+     "url": "https://cobusgreyling.medium.com/claude-code-hooks-f5a4a8b0e53c",
+     "title": "Claude Code Hooks. Deterministic Control Over…",
+     "rank": 8
+    },
+    {
+     "url": "https://hidekazu-konishi.com/entry/claude_code_hooks_complete_guide.html",
+     "title": "Claude Code Hooks Complete Guide - Deterministic ...",
+     "rank": 9
+    }
+   ],
+   "first": "https://code.claude.com/docs/en/hooks",
+   "form": "仓库 1 · 单个工具 5 · 教程 1 · 视频 1 · 论坛 1",
+   "traffic_potential": 3469,
+   "tp_page": "https://code.claude.com/docs/en/hooks",
+   "tp_rank": 1,
+   "value": 2,
+   "value_reason": "Searchers want docs/tutorials on hooks; list page is one good answer among official docs."
+  },
+  {
+   "keyword": "claude skills manager",
+   "first_page": [
+    {
+     "url": "https://github.com/xingkongliang/skills-manager",
+     "title": "xingkongliang/skills-manager: A lightweight desktop app to ...",
+     "rank": 1
+    },
+    {
+     "url": "https://www.reddit.com/r/claudeskills/comments/1sp1isl/how_are_you_managing_your_claude_skills_it_feels/",
+     "title": "How are you managing your Claude skills? It feels like it's ...",
+     "rank": 2
+    },
+    {
+     "url": "https://code.claude.com/docs/en/skills",
+     "title": "Extend Claude with skills - Claude Code Docs",
+     "rank": 3
+    },
+    {
+     "url": "https://snyk.io/articles/7-claude-skills-product-managers/",
+     "title": "Top 7 Claude Skills for Product Managers",
+     "rank": 4
+    },
+    {
+     "url": "https://marketplace.visualstudio.com/items?itemName=SerhiiVoinolovych.claude-skill-deployer",
+     "title": "Claude Skills Manager",
+     "rank": 5
+    },
+    {
+     "url": "https://github.com/anthropics/skills/issues/204",
+     "title": "skill-manager The Ultimate Hub for Claude Code. ...",
+     "rank": 6
+    },
+    {
+     "url": "https://smithery.ai/skills/shredbx/claude-skill-manager",
+     "title": "claude-skill-manager",
+     "rank": 7
+    },
+    {
+     "url": "https://awesomeclaude.ai/awesome-claude-skills",
+     "title": "Directory of Claude Agent Skills",
+     "rank": 8
+    },
+    {
+     "url": "https://news.ycombinator.com/item?id=47423910",
+     "title": "manage AI agent skills across Claude, Cursor, Copilot",
+     "rank": 9
+    }
+   ],
+   "first": "https://github.com/xingkongliang/skills-manager",
+   "form": "榜单 1 · 目录 1 · 仓库 2 · 单个工具 3 · 论坛 2",
+   "traffic_potential": null,
+   "tp_page": "",
+   "tp_rank": null,
+   "value": 2,
+   "value_reason": "Searchers want a specific tool or docs; list page is one good answer among others."
+  },
+  {
+   "keyword": "open source telegram bot",
+   "volume": 10,
+   "kd": null,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://github.com/danyspin97/TelegramBotsList",
+     "title": "danyspin97/TelegramBotsList: A list of all Telegram bots ...",
+     "rank": 1
+    },
+    {
+     "url": "https://sourceforge.net/directory/telegram-bots/",
+     "title": "Best Open Source Telegram Bots 2026",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/Python/comments/1j7774b/a_featurerich_telegram_support_bot_open_source/",
+     "title": "A feature-rich Telegram support bot (open source) : r/Python",
+     "rank": 3
+    },
+    {
+     "url": "https://core.telegram.org/bots/tutorial",
+     "title": "From BotFather to 'Hello World'",
+     "rank": 4
+    },
+    {
+     "url": "https://agentskillshub.top/best/telegram-bot/",
+     "title": "Best Open-Source Telegram Bots for Fun & AI in 2026",
+     "rank": 5
+    },
+    {
+     "url": "https://github.com/python-telegram-bot/python-telegram-bot",
+     "title": "Python Telegram Bot",
+     "rank": 6
+    },
+    {
+     "url": "https://news.ycombinator.com/item?id=9774402",
+     "title": "Telegram is not truly open source. They utilize a pre- ...",
+     "rank": 7
+    },
+    {
+     "url": "https://www.blackhatworld.com/seo/source-code-telegram-mass-dm-bot-telegram-bot-step-by-step.1700115/",
+     "title": "[Source Code ] Telegram Mass DM Bot",
+     "rank": 8
+    },
+    {
+     "url": "https://core.telegram.org/",
+     "title": "Telegram APIs",
+     "rank": 9
+    }
+   ],
+   "first": "https://github.com/danyspin97/TelegramBotsList",
+   "form": "榜单 1 · 目录 1 · 仓库 2 · 单个工具 3 · 论坛 2",
+   "traffic_potential": null,
+   "tp_page": "",
+   "tp_rank": null,
+   "value": 2,
+   "value_reason": "Searchers want open-source bots; list page is a good answer but first page mixes GitHub repos and tutorials."
+  },
+  {
+   "keyword": "vibe coding tool",
+   "volume": 590,
+   "kd": 41,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://www.zite.com/blog/best-vibe-coding-tools",
+     "title": "8 Best Vibe Coding Tools in 2026: Tested and Ranked",
+     "rank": 1
+    },
+    {
+     "url": "https://aistudio.google.com/vibe-code",
+     "title": "Vibe Coding",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/vibecoding/comments/1nnrvp1/whats_your_goto_vibe_coding_tool_and_suggest_the/",
+     "title": "What's your go-to vibe coding tool and suggest the best?",
+     "rank": 3
+    },
+    {
+     "url": "https://zapier.com/blog/best-vibe-coding-tools/",
+     "title": "The 6 Best Vibe Coding Tools in 2026",
+     "rank": 4
+    },
+    {
+     "url": "https://cloud.google.com/discover/what-is-vibe-coding",
+     "title": "Vibe Coding Explained: Tools and Guides",
+     "rank": 5
+    },
+    {
+     "url": "https://www.xda-developers.com/tried-every-vibe-coding-tool-so-you-dont-have-to-one-clear-winner/",
+     "title": "I tried every vibe-coding tool so you don't have to",
+     "rank": 6
+    },
+    {
+     "url": "https://uxplanet.org/i-tested-5-ai-coding-tools-so-you-dont-have-to-b229d4b1a324",
+     "title": "I Tested 5 Vibe Coding Tools So You Don't Have To",
+     "rank": 7
+    },
+    {
+     "url": "https://www.vibecodeapp.com/",
+     "title": "Vibecode - AI Mobile & Web App Builder",
+     "rank": 8
+    },
+    {
+     "url": "https://www.figma.com/resource-library/vibe-coding-tools/",
+     "title": "10 Vibe Coding Tools For Faster Prototyping",
+     "rank": 9
+    }
+   ],
+   "first": "https://www.zite.com/blog/best-vibe-coding-tools",
+   "form": "榜单 4 · 单个工具 4 · 论坛 1",
+   "traffic_potential": 3411,
+   "tp_page": "https://www.xda-developers.com/tried-every-vibe-coding-tool-so-you-dont-have-to-one-clear-winner/",
+   "tp_rank": 1,
+   "value": 1,
+   "value_reason": "Searchers want commercial vibe coding platforms; first page shows product listicles, not agent skills."
+  },
+  {
+   "keyword": "multi agent orchestration",
+   "volume": 720,
+   "kd": 22,
+   "intent": "commercial",
+   "first_page": [
+    {
+     "url": "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration",
+     "title": "Multiagent orchestration - Claude Platform Docs",
+     "rank": 1
+    },
+    {
+     "url": "https://www.truefoundry.com/blog/what-is-multi-agent-orchestration",
+     "title": "What Is Multi-Agent Orchestration? A Complete Guide",
+     "rank": 2
+    },
+    {
+     "url": "https://www.salesforce.com/agentforce/multi-agent-orchestration/",
+     "title": "Agentforce Multi-Agent Orchestration",
+     "rank": 3
+    },
+    {
+     "url": "https://arxiv.org/html/2601.13671v1",
+     "title": "The Orchestration of Multi-Agent Systems: Architectures, ...",
+     "rank": 4
+    },
+    {
+     "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/multi-agent-patterns",
+     "title": "Multi-agent orchestration patterns and best practices",
+     "rank": 5
+    },
+    {
+     "url": "https://mastra.ai/blog/multi-agent-orchestration",
+     "title": "Multi-agent orchestration and how it works",
+     "rank": 6
+    },
+    {
+     "url": "https://docs.aws.amazon.com/solutions/multi-agent-orchestration-on-aws/",
+     "title": "Guidance for Multi-Agent Orchestration on AWS",
+     "rank": 7
+    },
+    {
+     "url": "https://www.dataiku.com/blog/agent-orchestration-explained",
+     "title": "Agent orchestration explained: How enterprises manage ...",
+     "rank": 8
+    },
+    {
+     "url": "https://www.ibm.com/products/watsonx-orchestrate/multi-agent-orchestration",
+     "title": "Multi-agent orchestration for AI agents, tools and models",
+     "rank": 9
+    }
+   ],
+   "first": "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration",
+   "form": "榜单 1 · 单个工具 6 · 教程 1 · 文档 1",
+   "traffic_potential": 512,
+   "tp_page": "https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration",
+   "tp_rank": 1,
+   "value": 1,
+   "value_reason": "Searchers want guides, frameworks, or definitions; not primarily a skill/plugin comparison."
+  },
+  {
+   "keyword": "prompt engineering tool",
+   "volume": 210,
+   "kd": 24,
+   "intent": "navigational",
+   "first_page": [
+    {
+     "url": "https://www.braintrust.dev/articles/best-prompt-management-tools-2026",
+     "title": "7 best prompt management tools in 2026 (tested and compared)",
+     "rank": 1
+    },
+    {
+     "url": "https://www.promptingguide.ai/tools",
+     "title": "Tools & Libraries",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/PromptEngineering/comments/1lp4sqn/building_a_prompt_engineering_tool/",
+     "title": "Building a prompt engineering tool : r/PromptEngineering",
+     "rank": 3
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=I6zPe5CYUjw",
+     "title": "AI Tool Every Prompt Engineer Use But Only 1% Know",
+     "rank": 4
+    },
+    {
+     "url": "https://www.coursera.org/articles/what-is-prompt-engineering",
+     "title": "What Is Prompt Engineering? And How to Write Effective ...",
+     "rank": 5
+    },
+    {
+     "url": "https://www.promptingguide.ai/techniques",
+     "title": "Prompting Techniques",
+     "rank": 6
+    },
+    {
+     "url": "https://medium.com/@roysprintzeal/best-prompt-engineering-tools-to-master-ai-interaction-and-content-generation-ee52ac96fea7",
+     "title": "Best Prompt Engineering Tools to Master AI Interaction and ...",
+     "rank": 7
+    },
+    {
+     "url": "https://futureworknavigator.com/tools-to-improve-ai-prompts-2026-guide/",
+     "title": "10 Best Free Tools To Improve AI Prompts (2026 Guide)",
+     "rank": 8
+    },
+    {
+     "url": "https://medium.com/@kuldeep.paul08/top-9-prompt-engineering-platforms-to-improve-llm-responses-9b07997c06e0",
+     "title": "Top 9 Prompt Engineering Platforms to Improve LLM ...",
+     "rank": 9
+    }
+   ],
+   "first": "https://www.braintrust.dev/articles/best-prompt-management-tools-2026",
+   "form": "榜单 4 · 单个工具 2 · 教程 1 · 视频 1 · 论坛 1",
+   "traffic_potential": 98,
+   "tp_page": "https://www.reddit.com/r/PromptEngineering/comments/1g8taye/what_tools_do_you_use_for_prompt_engineering/",
+   "tp_rank": 1,
+   "value": 1,
+   "value_reason": "Searchers want tutorials, techniques, or commercial tools, not agent skill comparisons."
+  },
+  {
+   "keyword": "code refactoring tool",
+   "volume": 170,
+   "kd": 9,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "http://zencoder.ai/blog/code-refactoring-tools",
+     "title": "8 Code Refactoring Tools You Should Know About in 2026",
+     "rank": 1
+    },
+    {
+     "url": "https://stackoverflow.com/questions/3518972/automatic-refactoring-tools",
+     "title": "Automatic refactoring tools?",
+     "rank": 2
+    },
+    {
+     "url": "https://overcast.blog/11-refactoring-ai-tools-and-agents-you-should-know-b885a27b55a4",
+     "title": "11 Refactoring AI Tools and Agents You Should Know",
+     "rank": 3
+    },
+    {
+     "url": "https://www.in-com.com/blog/enterprise-code-refactoring-tools-and-service-providers-for-large-scale-modernization/",
+     "title": "Top 2026 Code Refactoring Tools and Companies for ...",
+     "rank": 4
+    },
+    {
+     "url": "https://www.reddit.com/r/ChatGPTCoding/comments/1ovw39q/best_ai_for_refactoring_code/",
+     "title": "Best AI for refactoring code : r/ChatGPTCoding",
+     "rank": 5
+    },
+    {
+     "url": "https://refraction.dev/blog/art-of-refactoring-code",
+     "title": "The Art of Refactoring Code",
+     "rank": 6
+    },
+    {
+     "url": "https://pybowler.io/",
+     "title": "Bowler · Safe code refactoring for modern Python",
+     "rank": 7
+    },
+    {
+     "url": "https://refact.ai/",
+     "title": "AI Coding Agent for Software Development - Refact.ai - Refact.ai",
+     "rank": 8
+    },
+    {
+     "url": "https://devopedia.org/code-refactoring",
+     "title": "Code Refactoring",
+     "rank": 9
+    }
+   ],
+   "first": "http://zencoder.ai/blog/code-refactoring-tools",
+   "form": "榜单 3 · 单个工具 4 · 论坛 2",
+   "traffic_potential": 38,
+   "tp_page": "https://www.reddit.com/r/AskProgramming/comments/1f1mmyq/coding_refactoring_tool/",
+   "tp_rank": 1,
+   "value": 1,
+   "value_reason": "Searchers want commercial/general tools; first page shows listicles of products, not agent skills."
+  },
+  {
+   "keyword": "ai reverse engineering",
+   "volume": 70,
+   "kd": 0,
+   "intent": "informational",
+   "first_page": [
+    {
+     "url": "https://www.apriorit.com/dev-blog/reverse-engineering-with-ai",
+     "title": "Automating Software Reverse Engineering with AI",
+     "rank": 1
+    },
+    {
+     "url": "https://medium.com/writer-journal/did-you-know-i-used-ai-to-reverse-engineer-my-code-cd0de5aef8c6",
+     "title": "Did you Know? I used AI to Reverse-Engineer my Code",
+     "rank": 2
+    },
+    {
+     "url": "https://www.reddit.com/r/ReverseEngineering/comments/1m7t8k6/development_journey_on_game_decompilation_using_ai/",
+     "title": "Development Journey on Game Decompilation Using AI",
+     "rank": 3
+    },
+    {
+     "url": "https://www.linkedin.com/posts/bobcarver_cybersecurity-microsoft-ai-activity-7359195383492751361-8IjV",
+     "title": "Microsoft's AI Prototype Can Reverse Engineer Malware",
+     "rank": 4
+    },
+    {
+     "url": "https://www.linkedin.com/pulse/ai-reverse-engineering-rea-from-any-application-evidence-imdad-areeph-tyxmf",
+     "title": "AI Reverse Engineering (REA): From Any Application to ...",
+     "rank": 5
+    },
+    {
+     "url": "https://www.facebook.com/groups/learningaitogether/posts/1588180826246748/",
+     "title": "Do you reverse engineer others' AI stuff?",
+     "rank": 6
+    },
+    {
+     "url": "https://liorgd.medium.com/ai-prompts-for-reverse-engineering-software-a5061763eb6d",
+     "title": "AI Prompts for Reverse Engineering Software | by Lior Gd",
+     "rank": 7
+    }
+   ],
+   "first": "https://www.apriorit.com/dev-blog/reverse-engineering-with-ai",
+   "form": "单个工具 4 · 论坛 3",
+   "traffic_potential": 66,
+   "tp_page": "https://www.reddit.com/r/ReverseEngineering/comments/1rq5tdm/reverse_engineering_binaries_with_ai/",
+   "tp_rank": 1,
+   "value": 0,
+   "value_reason": "Searchers want tutorials, news, or commercial tools for reverse engineering, not agent skills."
+  },
+  {
+   "keyword": "jev skill",
+   "first_page": [
+    {
+     "url": "https://linas.substack.com/p/how-to-use-jev-ai",
+     "title": "How to Use Jev AI: TypeSafe's System One Model Guide",
+     "rank": 1
+    },
+    {
+     "url": "https://www.eigent.ai/blog/typesafe-ai-jev-system-one-models",
+     "title": "What Is Jev? TypeSafe AI's System One Model, Explained",
+     "rank": 2
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=2d1pChL9jVY",
+     "title": "The 25-Minute Jev Crash Course for AI Builders",
+     "rank": 3
+    },
+    {
+     "url": "https://medium.com/illumination/jev-explained-fast-ai-decisions-agentic-apps-79d5cceb3ba0",
+     "title": "What Is Jev? What Designers Need to Know About ...",
+     "rank": 4
+    },
+    {
+     "url": "https://aiidelist.com/jev",
+     "title": "Jev: AI Decision Model, Agent Use Cases & Pricing",
+     "rank": 5
+    },
+    {
+     "url": "https://befailproof.ai/jev/",
+     "title": "Jev: typed AI decisions, evals and policies",
+     "rank": 6
+    },
+    {
+     "url": "https://cellcog.ai/blog/how-to-use-jev-in-your-agent/",
+     "title": "I'm Building an Agent. Where Does Jev Fit?",
+     "rank": 7
+    },
+    {
+     "url": "https://medium.com/data-science-in-your-pocket/what-is-jev-ai-b8294d980001",
+     "title": "What is Jev AI?. Jev AI is 200x Faster than ChatGPT",
+     "rank": 8
+    }
+   ],
+   "first": "https://linas.substack.com/p/how-to-use-jev-ai",
+   "form": "单个工具 6 · 教程 1 · 视频 1",
+   "traffic_potential": null,
+   "tp_page": "",
+   "tp_rank": null,
+   "value": 0,
+   "value_reason": "First page shows Jev is a TypeSafe AI decision model, unrelated to agent skills hub listings."
+  }
+ ],
+ "cost": 622040,
+ "model": "claude-sonnet-4-6",
+ "errors": []
+}
