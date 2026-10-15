@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-15
+1. i12bp8/decomp.wtf — 🆕 让智能体把你拥有的游戏逐函数反编译成 C，并用原版编译器逐字节校验（173★ 103.8/day）
+2. assafkip/claudemy — 🆕 给 Claude 一个主题，自动查资料做成约 12 节双人对谈音频课，附引用核查（78★ 78.0/day）
+3. LiQiiiii/Jeva — 🆕 开源新加坡国立大学的 System One 决策模型，给候选项直接打分输出概率（64★ 28.2/day）
+4. Chien1618/design-on-the-flank — 🆕 用 AI 生成可直接粘贴进 Framer 的 Three.js、WebGL 与 GSAP 动效组件（44★ 25.4/day）
+5. liangdabiao/image-prompt-studio — 🆕 用结构化 JSON 提示词复刻图片风格再生图，让系列作品保持一致（20★ 20.0/day）
+6. RayenMlayeh/jevcrawl — 🆕 用小型决策模型替智能体挑链接和段落，抓网页找答案更准、成本低约 8 倍（48★ 14.5/day）
+7. Myeongseok-Kang/claude-bulkhead — 🆕 用一组钩子防止并行的 Claude Code 会话互杀服务、抢端口、卡死机器（22★ 11.9/day）
+8. RuihongY/verdi_bridge — 🆕 通过 MCP 把智能体接入运行中的 Synopsys Verdi，读波形、查信号、追驱动源（20★ 11.1/day）
+9. MCG-NJU/VideoJev — 🆕 不生成文本、直接给候选打分，完成视频时间定位与选择题问答，开源 4B/35B 权重（59★ 8.5/day）
+10. oil-oil/oil-git — 🆕 用只读的 Git 图形界面和 diff 查看器看清 AI 改了什么，支持 macOS 与 Windows（60★ 5.7/day）
+🎯 今日趋势：**10 席**全标 🆕、**8 席**建仓不满 4 天；"直接打分、不生成文本"的 Jev 系决策模型一口气占 **3 席**（Jeva 本体、视频版 VideoJev、爬虫 jevcrawl），管住并行智能体的工具占 **2 席**（会话隔离钩子、只读 diff 查看器）。
+> 注：去重范围＝repo 内 archive 全部 112 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,774 个（含路径噪声，只会多剔不会漏剔）。查询直接取 `first_seen ≥72h`、stars ≥20，触顶 LIMIT 150（最低 78★，命中历史 29 条，本期大多是逆向工程、SEO 页回填的老仓），为免漏掉低星新仓，另加 `created_at ≥30 天内` 条件补查一次得 66 条（命中历史 32 条），共 2 次单连接串行查询；按 first_seen 切回 48h 后合格项超过 10 个，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Caho1/open-claude-ui（114★ 114.0/day）：逆向还原 Claude 官方闭源桌面端界面，版权灰色地带，且为 uncategorized；②Graphicle-AI/graphicle（94★ 94.0/day）：组织 09-29 新建、2 粉、仅此 1 个实仓，按新建组织先例保守排除；③ComputerUseAgent/AutoCua（105★ 17.1/day）：组织 10-08 新建、0 粉、仅 1 仓；④Microqian2th/dsh-codex-effort-slider（114★ 10.9/day）：0 粉、仅 1 仓单仓爆星；⑤dagoSte/squadra（186★ 11.1/day）：2 粉、其余仓 ≤2★、186★ 仅 1 fork，刷星嫌疑；⑥Arjun0014/project-sentinel（47★ 6.1/day）：2 粉、其余 18 仓均 0–1★ 单仓爆星；⑦Garinmckayl/anima、timliudev/line-cli-skills、argofowl/FowlBrowser、YongLD/Multi-UAV-JEV：first_seen 超出 48h；⑧nateherkai/herk-edit-kit、P4nda0s/IDA-NO-MCP、gakonst/nanocode、atria-asi/Atria-Dawn（32.6 天、无描述）及大批 IDA/Ghidra/Frida/SEO/GEO 老仓：建仓 30 天以上、本期才收录，不算新鲜；⑨steventsvik/Tellurion、tihanyin/REx-skill、arla6ka/skills 等 16–28 天的仓 velocity 不足 6，排在第 10 席之后；⑩其余均已在历史榜单出现。efim0v/brow（55★ 5.4/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 i12bp8 2019 建号、80 粉、名下 TagTinker 1,988★，MIT、fork 11；第 2 席 assafkip 2012 建号、26 粉、名下多个 90–151★ 仓，MIT、fork 12；第 3 席 LiQiiiii 2022 建号、59 粉、名下 DLLM-Survey 391★，Apache-2.0，为论文代码而非即装技能（uncategorized 但非个人主页，保留）；第 4 席 Chien1618 2022 建号、0 粉、其余仓 0★（**轻红旗**，fork 7 与星数相称、README 越南语写得具体，保留）；第 5 席 liangdabiao 2011 建号、626 粉、名下 Seedance2-Storyboard-Generator 2,593★；第 6 席 RayenMlayeh 2023 建号、2 粉、其余仓 ≤4★（**轻红旗**，Apache-2.0、fork 5、附对比数据，保留）；第 7 席 Myeongseok-Kang 2024 建号、17 粉、仅 1 仓（**轻红旗**，MIT、量级小、README 具体，保留）；第 8 席 RuihongY 2022 建号、14 粉、名下 axi-compliance-skill 27★，fork 3；第 9 席 MCG-NJU 为南京大学 2020 建的组织、639 粉、名下 VideoMAE 1,801★，Apache-2.0；第 10 席 oil-oil 2019 建号、1,453 粉、名下 beautify-github-readme 1,864★，MIT、fork 8。🆕 判定＝created_at 距今 14 天内，十席全部命中（oil-git 10.6 天最老）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（decomp.wtf 206★、claudemy 110★、Jeva 66★、VideoJev 67★、jevcrawl 52★），按红线保留快照值。
+
+---
+
 ## 2026-10-14
 1. morluto/awesome-reverse-engineering — 🆕 汇总二进制、App、固件、文件格式与协议的逆向工具和学习资料（385★ 83.4/day）
 2. AirsupHQ/machine-skill — 🆕 一句话描述一台机器，Claude 生成单文件 HTML 的写实物理交互仿真，附发帖短片（104★ 81.4/day）
