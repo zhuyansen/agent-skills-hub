@@ -5452,5 +5452,77 @@
    "general": 0.56
   },
   "kind": "general"
+ },
+ {
+  "repo": "BuzyOwl/song-video-director",
+  "stars": 6,
+  "description": "Claude Code skill: direct and build code-rendered music videos (Remotion, p5.js, three.js)",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.1,
+   "music": 0.96,
+   "motion": 0.06,
+   "shorts": 0.07,
+   "editing": 0.05,
+   "demo": 0.12,
+   "story": 0.68,
+   "avatar": 0.07,
+   "general": 0.23
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "holy-templar/static-to-video-ad",
+  "stars": 5,
+  "description": "Turn any static ad into a finished video ad — two treatments, one skill: a real hand builds your ad on camera, or live footage leads up to your photo and freezes on it. Free Claude skill for the MaxFusion AI MCP.",
+  "scores": {
+   "promo": 0.85,
+   "explainer": 0.08,
+   "music": 0.02,
+   "motion": 0.09,
+   "shorts": 0.2,
+   "editing": 0.08,
+   "demo": 0.2,
+   "story": 0.22,
+   "avatar": 0.04,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "lumian2015/opus-5-5-video-templates",
+  "stars": 1,
+  "description": "30 free motion-graphics templates remade from viral Claude Opus 5.5 videos, plus a Claude Code skill that rebrands one and renders it to MP4 with HyperFrames.",
+  "scores": {
+   "promo": 0.85,
+   "explainer": 0.29,
+   "music": 0.05,
+   "motion": 0.78,
+   "shorts": 0.28,
+   "editing": 0.04,
+   "demo": 0.29,
+   "story": 0.13,
+   "avatar": 0.05,
+   "general": 0.51
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Avijit07x/cursorcam",
+  "stars": 48,
+  "description": "Ask your AI agent for a demo video. CursorCam clicks through your web app and renders a polished MP4 that zooms in on each click, from any MCP agent, Claude Code or the CLI.",
+  "scores": {
+   "promo": 0.41,
+   "explainer": 0.18,
+   "music": 0.02,
+   "motion": 0.19,
+   "shorts": 0.06,
+   "editing": 0.14,
+   "demo": 0.93,
+   "story": 0.04,
+   "avatar": 0.02,
+   "general": 0.12
+  },
+  "kind": "promo"
  }
 ]

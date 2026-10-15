@@ -18009,5 +18009,43 @@
   "days": 22,
   "stars_per_day": 2.272727272727273,
   "verdict": "admit"
+ },
+ {
+  "repo": "awesomezun/claude-statusline",
+  "name": "claude-statusline",
+  "stars": 197,
+  "description": "An aesthetic statusline for Claude Code by awesomezun",
+  "topics": [
+   "anthropic",
+   "awesome",
+   "catppuccin",
+   "claude",
+   "claude-code",
+   "cli-tools",
+   "developer-tools",
+   "plugin",
+   "productivity",
+   "statusline",
+   "terminal"
+  ],
+  "created": "2026-01-18",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 10356,
+  "names_model": false,
+  "on_subject": 0.98,
+  "is_software": 0.97,
+  "shows_result": 0.91,
+  "one_command_start": 0.93,
+  "specific_outcome": 0.81,
+  "complete_docs": 0.67,
+  "novel_angle": 0.78,
+  "shareable_output": 0.82,
+  "quality": 0.8300000000000001,
+  "tier": "高",
+  "hit_prior": 0.8366666666666666,
+  "days": 270,
+  "stars_per_day": 0.7296296296296296,
+  "verdict": "admit"
  }
 ]

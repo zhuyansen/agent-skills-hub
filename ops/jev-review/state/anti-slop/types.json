@@ -3358,5 +3358,19 @@
    "rules": 0.75
   },
   "kind": "chinese"
+ },
+ {
+  "repo": "williamkho77/claude-humanizer-id",
+  "stars": 5,
+  "description": "This skill allows Claudecode to write \"more like a human\" in Bahasa Indonesia. This skill is heavily inspired by https://github.com/blader/humanizer",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.33,
+   "chinese": 0.01,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.61
+  },
+  "kind": "writing"
  }
 ]

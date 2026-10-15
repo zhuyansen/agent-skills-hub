@@ -1175,6 +1175,14 @@
   "type": "image/gif",
   "bytes": 4867727
  },
+ "activeloopai/hivemind": {
+  "repo": "activeloopai/hivemind",
+  "url": "https://raw.githubusercontent.com/activeloopai/hivemind/HEAD/docs/screenshots/codebase-graph.webp",
+  "alt": "Hivemind codebase graph visualizing the hivemind repo itself",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 1851528
+ },
  "addsumtech/slides_maker": {
   "repo": "addsumtech/slides_maker",
   "url": "https://slides.addsum.top/docs/assets/screenshots/preview_en_quarterly-review.png",
@@ -1350,6 +1358,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 161081
+ },
+ "awesomezun/claude-statusline": {
+  "repo": "awesomezun/claude-statusline",
+  "url": "https://raw.githubusercontent.com/awesomezun/claude-statusline/HEAD/assets/reel.gif",
+  "alt": "Awesome Statusline — 30-second motion reel",
+  "score": 2.9,
+  "type": "image/gif",
+  "bytes": 10003705
  },
  "axtonliu/video-illustrator": {
   "repo": "axtonliu/video-illustrator",
@@ -2030,6 +2046,14 @@
   "score": 1.95,
   "type": "image/jpeg",
   "bytes": 1065142
+ },
+ "holy-templar/static-to-video-ad": {
+  "repo": "holy-templar/static-to-video-ad",
+  "url": "https://raw.githubusercontent.com/holy-templar/static-to-video-ad/HEAD/examples/teens-poster.jpg",
+  "alt": "Teens output — click to play",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 54582
  },
  "holy-templar/vox-animated-ad-mcp": {
   "repo": "holy-templar/vox-animated-ad-mcp",
@@ -3614,6 +3638,14 @@
   "score": 1.5,
   "type": "image/png",
   "bytes": 71764
+ },
+ "yckonnnnn/zack-design-skills": {
+  "repo": "yckonnnnn/zack-design-skills",
+  "url": "https://raw.githubusercontent.com/yckonnnnn/zack-design-skills/HEAD/examples/before-after/preview-before.png",
+  "alt": "改前：紫蓝渐变、居中、6 行标题、emoji 图标、三张等宽卡片",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 728847
  },
  "yeasy/ask": {
   "repo": "yeasy/ask",

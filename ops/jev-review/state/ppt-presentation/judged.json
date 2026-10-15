@@ -24308,5 +24308,41 @@
   "days": 1146,
   "stars_per_day": 0.705933682373473,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Bingtang1019/dsh-ppt-fusion",
+  "name": "dsh-ppt-fusion",
+  "stars": 5,
+  "description": "dsh-ppt-fusion (FlashMade): fuse pptwise DSH-native front end with ppt-master native DrawingML engine",
+  "topics": [
+   "dsh",
+   "dsh-plugin",
+   "dsh-plugin-bundle",
+   "powerpoint",
+   "pptx",
+   "presentation",
+   "skill"
+  ],
+  "created": "2026-09-22",
+  "pushed": "2026-10-08",
+  "source": "topic",
+  "readme_chars": 8533,
+  "names_model": false,
+  "makes_slides": 0.97,
+  "agent_driven": 0.69,
+  "editable_output": 0.92,
+  "reusable_tool": 0.95,
+  "one_command_start": 0.74,
+  "complete_docs": 0.15,
+  "shows_result": 0.06,
+  "specific_outcome": 0.85,
+  "novel_angle": 0.91,
+  "shareable_output": 0.52,
+  "quality": 0.45,
+  "tier": "低",
+  "hit_prior": 0.49666666666666665,
+  "days": 23,
+  "stars_per_day": 0.21739130434782608,
+  "verdict": "low_quality"
  }
 ]

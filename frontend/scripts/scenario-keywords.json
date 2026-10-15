@@ -2137,7 +2137,36 @@
    ],
    "exclude_repos": [
     "K-Dense-AI/claude-scientific-skills",
-    "sickn33/antigravity-awesome-skills"
+    "sickn33/antigravity-awesome-skills",
+    "Agent-3-7/agent37-skills-collection",
+    "AlexZio00/claude-code-skills",
+    "Eronred/aso-skills",
+    "Eyadkelleh/awesome-claude-skills-security",
+    "GarethManning/claude-education-skills",
+    "Job-Yang/jobbyang-ai-skills",
+    "KyrieZhang329/MathModeling-skills",
+    "MakFly/superpowers-symfony",
+    "NovaCode37/claude-security-skills",
+    "OpenAEC-Foundation/Frappe_Claude_Skill_Package",
+    "Yila-AI/sci-ssci-skills",
+    "atelier-fashion/sdlc-toolkit",
+    "athina-ai/goose-skills",
+    "brycewang-stanford/Awesome-Agent-Skills-for-Empirical-Research",
+    "erp-mafia/swedish-accounting-skills",
+    "forcedotcom/afv-library",
+    "jeremylongshore/claude-code-plugins-plus-skills",
+    "majiayu000/claude-arsenal",
+    "minhnv0807/fullstack-mkt-skills",
+    "nagisanzenin/claude-code-production-grade-plugin",
+    "sachacoldiq/ColdIQ-s-GTM-Skills",
+    "serpro69/claude-starter-kit",
+    "solanabr/solana-ai-kit",
+    "solanabr/solana-claude",
+    "vabole/apple-skills",
+    "waynesutton/convexskills",
+    "worldwonderer/drama-skills",
+    "worldwonderer/novel-to-game",
+    "worldwonderer/video-recap-skills"
    ]
   },
   "related": [
@@ -2405,6 +2434,14 @@
     "wnby/travel-photo-soft-abstraction",
     "yangchuansheng/patch-codex-fast",
     "zaoshangduziteng/texture-scan-collage"
+   ],
+   "exclude_repos": [
+    "atman-33/kiro-for-codex",
+    "haorantang97/TArt",
+    "lingbol088-spec/5.6-JAILBREAK-NERV-codex-instruct-5.6",
+    "lingbol088-spec/ReiPenFlow",
+    "nihe0909/xiaohongshu-ai-workbench",
+    "u7079256/paperjury-codex"
    ]
   },
   "related": [
@@ -3384,7 +3421,8 @@
     "Dimillian/CodexSkillManager",
     "pr-pm/prpm",
     "LobsterTrap/lola",
-    "Pandemonium-Research/Skilldex"
+    "Pandemonium-Research/Skilldex",
+    "activeloopai/hivemind"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4245,7 +4283,8 @@
     "ismilewolf-eng/sloptrim-zh",
     "kjmagnan1s/anti-slop",
     "imrangadzhiev/anti-slop",
-    "hellogit2021/avoid-ai-writing-cn"
+    "hellogit2021/avoid-ai-writing-cn",
+    "williamkho77/claude-humanizer-id"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4833,7 +4872,8 @@
     "undsky/doudou-color-skill",
     "diegomarino/tui-design",
     "oil-oil/oil-ui",
-    "ABC-xiaoxuan/award-level-web-design"
+    "ABC-xiaoxuan/award-level-web-design",
+    "yckonnnnn/zack-design-skills"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -7635,7 +7675,11 @@
     "pycodebr/heditor",
     "Dancan254/shenghua",
     "Vandit1604/vawe",
-    "motalim-ai/motion-starter-kit"
+    "motalim-ai/motion-starter-kit",
+    "Avijit07x/cursorcam",
+    "BuzyOwl/song-video-director",
+    "holy-templar/static-to-video-ad",
+    "lumian2015/opus-5-5-video-templates"
    ],
    "sub_skills": [
     {
@@ -7672,7 +7716,8 @@
     "opus-pro/opus-video-studio",
     "animspark/animspark",
     "manthanpatelll/leadgenman-video-skills",
-    "Dancan254/voiceover-video-skill"
+    "Dancan254/voiceover-video-skill",
+    "minosdevs/cinematic-film"
    ],
    "tag_matches": [],
    "required_keywords": [
@@ -8147,7 +8192,8 @@
     "yeisonrestrepo/code-conductor",
     "yuseferi/claude-token-statusbar",
     "zander-zyx/claude-mini-hud",
-    "Moviw/codex-statusline"
+    "Moviw/codex-statusline",
+    "awesomezun/claude-statusline"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",
@@ -8155,7 +8201,8 @@
     "AwesomeJun/awesome-claude-plugins",
     "sd0xdev/sd0x-dev-flow",
     "solanabr/solana-ai-kit",
-    "solanabr/solana-claude"
+    "solanabr/solana-claude",
+    "AwesomeZun/CC-statusline"
    ]
   },
   "related": [
@@ -8452,7 +8499,10 @@
     "dawnslab/jebmcp",
     "dslsdzc/rev-skills",
     "jtang613/GhidrAssistMCP",
-    "miscusi-peek/cheatengine-mcp-bridge"
+    "miscusi-peek/cheatengine-mcp-bridge",
+    "Dryxio/auto-re-agent",
+    "OwenPawl/ghidra-re-skill",
+    "tearhacker/UE4Dump_imGui_AnalyseToolsForMCP"
    ],
    "reviewed_only": true,
    "sort": "stars",

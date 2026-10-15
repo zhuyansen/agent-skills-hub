@@ -3261,5 +3261,18 @@
    "tooling": 0.93
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "awesomezun/claude-statusline",
+  "stars": 197,
+  "description": "An aesthetic statusline for Claude Code by awesomezun",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.98,
+   "collection": 0.14,
+   "tooling": 0.96
+  },
+  "kind": "statusline"
  }
 ]

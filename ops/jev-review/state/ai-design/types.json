@@ -2574,5 +2574,19 @@
    "review": 0.88
   },
   "kind": "ui"
+ },
+ {
+  "repo": "yckonnnnn/zack-design-skills",
+  "stars": 6,
+  "description": "8 个设计技能 + 60 条可执行判断标准，专治网页「一眼就是 AI 做的」。装进 Claude Code / Cursor / Codex 即用。",
+  "scores": {
+   "ui": 0.98,
+   "system": 0.57,
+   "tool_mcp": 0.73,
+   "to_code": 0.72,
+   "graphics": 0.12,
+   "review": 0.95
+  },
+  "kind": "ui"
  }
 ]

@@ -2574,5 +2574,19 @@
    "general": 0.1
   },
   "kind": "cli"
+ },
+ {
+  "repo": "activeloopai/hivemind",
+  "stars": 1626,
+  "description": "Hivemind turns your traces into reusable skills across agents",
+  "scores": {
+   "cli": 0.52,
+   "sync": 0.87,
+   "app": 0.1,
+   "registry": 0.11,
+   "team": 0.72,
+   "general": 0.34
+  },
+  "kind": "sync"
  }
 ]
