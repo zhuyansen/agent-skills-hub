@@ -54,7 +54,10 @@ def print_ga_exclusion():
     if auto:
         dropped = sum(int(r["sessions"]) for r in auto)
         share = dropped / ((dropped + kept) or 1) * 100
-        detail = " / ".join(f"{r['rule']} {int(r['sessions']):,}" for r in auto)
+        # automation.json written before 2026-10-16 has no "rule"; a local run
+        # on that stale output must still print, not die with a KeyError.
+        detail = " / ".join(f"{r.get('rule') or r['screenResolution']} {int(r['sessions']):,}"
+                            for r in auto)
         print(f"> 已剔除 **GA 自动化流量 {dropped:,} 会话**(占 {share:.0f}%:{detail})——"
               f"是机房里的无头浏览器:真实设备没有的屏幕,或真实屏幕上特定的系统+浏览器组合。"
               f"明细见 `ops/ga/out/automation.json`。\n")
