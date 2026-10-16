@@ -54,17 +54,18 @@ def print_ga_exclusion():
     if auto:
         dropped = sum(int(r["sessions"]) for r in auto)
         share = dropped / ((dropped + kept) or 1) * 100
-        detail = " / ".join(f"{r['screenResolution']} {int(r['sessions']):,}" for r in auto)
+        detail = " / ".join(f"{r['rule']} {int(r['sessions']):,}" for r in auto)
         print(f"> 已剔除 **GA 自动化流量 {dropped:,} 会话**(占 {share:.0f}%:{detail})——"
-              f"真实设备没有这种屏幕,是机房里的无头浏览器。明细见 `ops/ga/out/automation.json`。\n")
+              f"是机房里的无头浏览器:真实设备没有的屏幕,或真实屏幕上特定的系统+浏览器组合。"
+              f"明细见 `ops/ga/out/automation.json`。\n")
     human = clarity_humans_per_day()
     if days and human:
         ratio = kept / len(days) / human
         if ratio > GA_TO_HUMAN_ALARM:
             print(f"> ⚠️ 剔除后 GA 仍有 {kept/len(days):.0f} 会话/天,是 Clarity 真人基线 "
                   f"{human:.0f}/天 的 **{ratio:.1f} 倍** —— 大概率出现了新的爬虫指纹。"
-                  f"下面的 GA 数先别用,查 screenResolution 分布,把新指纹加进 "
-                  f"`fetch_ga.py` 的 AUTOMATION_SCREENS。\n")
+                  f"下面的 GA 数先别用,查 screenResolution 分布(真实屏幕再按 operatingSystem、browser 拆),"
+                  f"把新指纹加进 `fetch_ga.py` 的 AUTOMATION_SCREENS 或 AUTOMATION_FINGERPRINTS。\n")
 
 
 def main():

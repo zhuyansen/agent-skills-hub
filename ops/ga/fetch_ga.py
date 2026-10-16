@@ -26,12 +26,13 @@ PROPERTY = os.environ.get("GA_PROPERTY_ID", "485523739")
 HOST = "agentskillshub.top"
 API = f"https://analyticsdata.googleapis.com/v1beta/properties/{PROPERTY}"
 
-HOST_FILTER = {
-    "filter": {
-        "fieldName": "hostName",
-        "stringFilter": {"matchType": "EXACT", "value": HOST},
-    }
-}
+
+def _exact(field, value):
+    return {"filter": {"fieldName": field,
+                       "stringFilter": {"matchType": "EXACT", "value": value}}}
+
+
+HOST_FILTER = _exact("hostName", HOST)
 
 # Headless browsers run our gtag, and GA4 has no bot filter that catches them.
 # No real display has these screens. Measured 2026-09-17 over 28 days they were
@@ -46,17 +47,38 @@ HOST_FILTER = {
 #              216 of the week's 304 sessions. 28d to 10-16: 330 sessions, 99%
 #              direct, Mac/iPhone UAs on a screen no Mac or iPhone has, and a
 #              25s average session (1920x1080: 153s) despite 53% "engaged".
-# Every report excludes them, so pages/sources/events all read the human set;
-# dump saves what was dropped to automation.json so the digest can say how much.
 AUTOMATION_SCREENS = ["1366x1366", "1280x1200", "1280x1280", "800x600"]
-_AUTOMATION = {"filter": {"fieldName": "screenResolution",
-                          "inListFilter": {"values": AUTOMATION_SCREENS}}}
+# A bot on a screen people also have is matched on screen + OS + browser, so
+# the people on that screen stay in:
+#   1440x900 Linux Chrome  Added 2026-10-16. A MacBook Air screen, but 28d to
+#              10-16 this was 1,172 of its 1,620 sessions, with 18s of
+#              engagement time between them all: 2.5% "engaged", 3.8s average,
+#              94% new users, 93% direct, ~990 landing pages, one Chrome build
+#              (150.0.0.0) and a Chinese locale from San Jose, Las Vegas,
+#              Shenzhen, Tehran, Reston and Moscow. Mac Chrome on it (297
+#              sessions, 48% engaged, 151s average) and Linux Edge (20) stay in.
+AUTOMATION_FINGERPRINTS = [("1440x900", "Linux", "Chrome")]
+FINGERPRINT_DIMS = ["screenResolution", "operatingSystem", "browser"]
+
+
+def _fingerprint(values):
+    return {"andGroup": {"expressions": [
+        _exact(dim, value) for dim, value in zip(FINGERPRINT_DIMS, values)]}}
+
+
+# Every report excludes both lists, so pages/sources/events all read the human
+# set; dump saves what was dropped to automation.json so the digest can say how
+# much, and under which rule.
+_AUTOMATION = {"orGroup": {"expressions": [
+    {"filter": {"fieldName": "screenResolution",
+                "inListFilter": {"values": AUTOMATION_SCREENS}}},
+    *map(_fingerprint, AUTOMATION_FINGERPRINTS)]}}
 
 
 def traffic_filter(automation=False):
     """Our host, minus known automation — or only the automation, to measure it."""
-    screens = _AUTOMATION if automation else {"notExpression": _AUTOMATION}
-    return {"andGroup": {"expressions": [HOST_FILTER, screens]}}
+    bots = _AUTOMATION if automation else {"notExpression": _AUTOMATION}
+    return {"andGroup": {"expressions": [HOST_FILTER, bots]}}
 
 
 def session():
@@ -108,6 +130,20 @@ def run_report(sess, dimensions, metrics, days, order_metric=None, limit=25, aut
     return rows
 
 
+def automation_rule(screen):
+    """What dropped a screen's sessions: the screen itself, or its fingerprints."""
+    if screen in AUTOMATION_SCREENS:
+        return screen
+    return " + ".join(" ".join(fp) for fp in AUTOMATION_FINGERPRINTS if fp[0] == screen)
+
+
+def automation_report(sess, days):
+    """The dropped sessions per screen, each named by the rule that dropped them."""
+    rows = run_report(sess, ["screenResolution"], ["sessions", "screenPageViews"],
+                      days, order_metric="sessions", automation=True)
+    return [{"rule": automation_rule(r["screenResolution"]), **r} for r in rows]
+
+
 def table(rows, key, cols, top=25):
     if not rows:
         print("  (无数据)")
@@ -143,8 +179,7 @@ def main():
         tot_v = sum(int(r["screenPageViews"]) for r in rows)
         print(f"  {days}天: sessions={tot_s} users={tot_u} pageviews={tot_v}")
         save("overview", rows)
-        bots = run_report(sess, ["screenResolution"], ["sessions", "screenPageViews"],
-                          days, order_metric="sessions", automation=True)
+        bots = automation_report(sess, days)
         print(f"  已剔除自动化: sessions={sum(int(r['sessions']) for r in bots)}")
         save("automation", bots)
     if cmd in ("pages", "dump"):
