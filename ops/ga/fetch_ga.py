@@ -42,9 +42,13 @@ HOST_FILTER = {
 #   1280x1200  Windows-Chrome UA, Singapore. Walks 16,590 distinct pages one
 #              session each: 47 engaged sessions out of 20,428.
 #   1280x1280  Same shape, 220 sessions, 8 engaged.
+#   800x600    Added 2026-10-16. Deep-linked /analyzer/ from Germany 09-14..16:
+#              216 of the week's 304 sessions. 28d to 10-16: 330 sessions, 99%
+#              direct, Mac/iPhone UAs on a screen no Mac or iPhone has, and a
+#              25s average session (1920x1080: 153s) despite 53% "engaged".
 # Every report excludes them, so pages/sources/events all read the human set;
 # dump saves what was dropped to automation.json so the digest can say how much.
-AUTOMATION_SCREENS = ["1366x1366", "1280x1200", "1280x1280"]
+AUTOMATION_SCREENS = ["1366x1366", "1280x1200", "1280x1280", "800x600"]
 _AUTOMATION = {"filter": {"fieldName": "screenResolution",
                           "inListFilter": {"values": AUTOMATION_SCREENS}}}
 
