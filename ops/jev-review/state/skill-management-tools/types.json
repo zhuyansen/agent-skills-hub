@@ -2588,5 +2588,33 @@
    "general": 0.34
   },
   "kind": "sync"
+ },
+ {
+  "repo": "tt-a1i/skillroster",
+  "stars": 53,
+  "description": "Turn scattered, duplicated AI-agent Skills into per-Agent Rosters—with evidence, receipts, and exact undo.",
+  "scores": {
+   "cli": 0.46,
+   "sync": 0.18,
+   "app": 0.08,
+   "registry": 0.13,
+   "team": 0.12,
+   "general": 0.11
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "olegpustovit/agentpack",
+  "stars": 16,
+  "description": "🤖 The package manager for AI coding agents — pin, resolve, and sync skills & plugins across Claude Code, Cursor, OpenCode, Codex, Grok, and Antigravity",
+  "scores": {
+   "cli": 0.86,
+   "sync": 0.8,
+   "app": 0.05,
+   "registry": 0.07,
+   "team": 0.59,
+   "general": 0.67
+  },
+  "kind": "general"
  }
 ]

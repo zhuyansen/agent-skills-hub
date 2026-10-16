@@ -2588,5 +2588,19 @@
    "review": 0.95
   },
   "kind": "ui"
+ },
+ {
+  "repo": "Bearisbug/Quilt",
+  "stars": 76,
+  "description": "AI-native infinite-canvas design tool: describe an app, get multi-screen HTML designs on an infinite canvas, click through them as a prototype, and let your local coding agent read and write the canvas over MCP.",
+  "scores": {
+   "ui": 0.46,
+   "system": 0.77,
+   "tool_mcp": 0.25,
+   "to_code": 0.5,
+   "graphics": 0.17,
+   "review": 0.22
+  },
+  "kind": "system"
  }
 ]

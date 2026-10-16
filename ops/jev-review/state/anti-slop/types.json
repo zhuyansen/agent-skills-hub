@@ -3372,5 +3372,61 @@
    "rules": 0.61
   },
   "kind": "writing"
+ },
+ {
+  "repo": "IT-Shelter-Labs/Shelter-Humanizer",
+  "stars": 24,
+  "description": "AI-assisted text editor for Windows with local LLM support, text rewriting, style improvement and Unicode cleanup.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.39,
+   "chinese": 0.05,
+   "code": 0.23,
+   "design": 0.18,
+   "rules": 0.07
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "acchuang/zh-tw-humanizer",
+  "stars": 6,
+  "description": "繁體中文（台灣）去 AI 味 skill：60 種 AI 寫作特徵、157 組兩岸用語在地化、事實保留檢查（--source）、30 案例 eval 對照實測。Traditional Chinese (Taiwan) humanizer for Claude Code / Codex / Cursor, with a measurable no-fabrication check.",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.85,
+   "chinese": 0.98,
+   "code": 0.16,
+   "design": 0.04,
+   "rules": 0.87
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "IsaacEryn/humanizer-ko",
+  "stars": 5,
+  "description": "한국어 텍스트에서 AI 생성 글의 티를 제거하는 Claude Code 에이전트 스킬. ChatGPT 문체, 이중 피동, 번역투, 문체 혼용 등 33개 패턴 탐지. Korean adaptation of the humanizer agent skill.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.81,
+   "chinese": 0.01,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.84
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "arslanr-com/writehuman",
+  "stars": 8,
+  "description": "Statistical linter that finds the words, phrases and constructions that make text read as LLM output, measured against billions of words people wrote before 2022. CLI plus an Agent Skill for coding agents.",
+  "scores": {
+   "writing": 0.12,
+   "detector": 0.99,
+   "chinese": 0.04,
+   "code": 0.15,
+   "design": 0.05,
+   "rules": 0.24
+  },
+  "kind": "detector"
  }
 ]

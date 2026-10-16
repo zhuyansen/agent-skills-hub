@@ -4856,5 +4856,19 @@
    "personal": 0.11
   },
   "kind": "rag_platform"
+ },
+ {
+  "repo": "FengZhenfei/carrel",
+  "stars": 64,
+  "description": "Ontology-Augmented Generation for AI agents.",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.87,
+   "mcp": 0.46,
+   "docs_qa": 0.79,
+   "graph": 0.96,
+   "personal": 0.17
+  },
+  "kind": "graph"
  }
 ]

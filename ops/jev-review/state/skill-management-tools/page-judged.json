@@ -6865,5 +6865,38 @@
   "days": 195,
   "stars_per_day": 8.338461538461539,
   "verdict": "admit"
+ },
+ {
+  "repo": "tt-a1i/skillroster",
+  "name": "skillroster",
+  "stars": 53,
+  "description": "Turn scattered, duplicated AI-agent Skills into per-Agent Rosters—with evidence, receipts, and exact undo.",
+  "topics": [
+   "ai-agents",
+   "cli",
+   "developer-tools",
+   "local-first",
+   "rust",
+   "skill-management"
+  ],
+  "created": "2026-08-21",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 6476,
+  "names_model": false,
+  "on_subject": 0.93,
+  "is_software": 0.97,
+  "shows_result": 0.25,
+  "one_command_start": 0.69,
+  "specific_outcome": 0.89,
+  "complete_docs": 0.87,
+  "novel_angle": 0.76,
+  "shareable_output": 0.7,
+  "quality": 0.675,
+  "tier": "中",
+  "hit_prior": 0.57,
+  "days": 56,
+  "stars_per_day": 0.9464285714285714,
+  "verdict": "admit"
  }
 ]

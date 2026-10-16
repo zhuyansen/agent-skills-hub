@@ -3120,5 +3120,19 @@
    "general": 0.32
   },
   "kind": "html"
+ },
+ {
+  "repo": "chengzi2333/html-report-skill",
+  "stars": 5,
+  "description": "Agent Skill for turning Markdown and PowerPoint into polished, interactive, browser-ready HTML reports.将 Markdown 与 PPT 转为精美、可交互、浏览器即开的 HTML 汇报的 Agent Skill。",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.03,
+   "html": 0.96,
+   "business": 0.66,
+   "convert": 0.85,
+   "general": 0.18
+  },
+  "kind": "html"
  }
 ]

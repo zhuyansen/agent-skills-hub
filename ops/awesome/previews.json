@@ -127,6 +127,14 @@
   "type": "image/webp",
   "bytes": 166028
  },
+ "Agentchengfeng/chengfeng-video-styles": {
+  "repo": "Agentchengfeng/chengfeng-video-styles",
+  "url": "https://raw.githubusercontent.com/Agentchengfeng/chengfeng-video-styles/HEAD/assets/preview-tea.jpg",
+  "alt": "同一个主题“茶”，15 种风格各做一条",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 459669
+ },
  "AgentiaPT/vela-slides": {
   "repo": "AgentiaPT/vela-slides",
   "url": "https://raw.githubusercontent.com/AgentiaPT/vela-slides/HEAD/docs/screenshot.png",
@@ -639,6 +647,14 @@
   "type": "image/png",
   "bytes": 385804
  },
+ "IT-Shelter-Labs/Shelter-Humanizer": {
+  "repo": "IT-Shelter-Labs/Shelter-Humanizer",
+  "url": "https://raw.githubusercontent.com/IT-Shelter-Labs/Shelter-Humanizer/HEAD/docs/images/ai-demo-light.png",
+  "alt": "Переработка текста об информационной безопасности с DeepSeek R1 8B: исходник сле",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 74308
+ },
  "Integral-Healthcare/robin-ai-reviewer": {
   "repo": "Integral-Healthcare/robin-ai-reviewer",
   "url": "https://raw.githubusercontent.com/Integral-Healthcare/robin-ai-reviewer/HEAD/assets/robin.png",
@@ -694,6 +710,14 @@
   "score": -2.55,
   "type": "image/png",
   "bytes": 311769
+ },
+ "Joker-chichi/claude-mv-skill": {
+  "repo": "Joker-chichi/claude-mv-skill",
+  "url": "https://raw.githubusercontent.com/Joker-chichi/claude-mv-skill/HEAD/skills/painted-animation/docs/xiaozhen-sheet.jpg",
+  "alt": "painted-animation",
+  "score": -0.1,
+  "type": "image/jpeg",
+  "bytes": 297994
  },
  "JuneLearn/dsh-image2-draw": {
   "repo": "JuneLearn/dsh-image2-draw",
@@ -1503,6 +1527,14 @@
   "type": "image/gif",
   "bytes": 4962226
  },
+ "chengzi2333/html-report-skill": {
+  "repo": "chengzi2333/html-report-skill",
+  "url": "https://raw.githubusercontent.com/chengzi2333/html-report-skill/HEAD/assets/hero.png",
+  "alt": "HTML Report Skill 示例",
+  "score": -0.65,
+  "type": "image/png",
+  "bytes": 391872
+ },
  "chenyangji666/html-ppt-skill": {
   "repo": "chenyangji666/html-ppt-skill",
   "url": "https://raw.githubusercontent.com/chenyangji666/html-ppt-skill/HEAD/screenshot_cover.png",
@@ -1966,6 +1998,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 629842
+ },
+ "gquthier/autonomous-sop-video": {
+  "repo": "gquthier/autonomous-sop-video",
+  "url": "https://raw.githubusercontent.com/gquthier/autonomous-sop-video/HEAD/assets/preview.png",
+  "alt": "Meta access-sharing SOP with a highlighted button and a step-by-step checklist",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 252492
  },
  "hahadu4520/newcut-video-clipping-skill": {
   "repo": "hahadu4520/newcut-video-clipping-skill",
@@ -3398,6 +3438,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 112565
+ },
+ "tt-a1i/skillroster": {
+  "repo": "tt-a1i/skillroster",
+  "url": "https://raw.githubusercontent.com/tt-a1i/skillroster/HEAD/docs/assets/skillroster-hero.png",
+  "alt": "SkillRoster：一个能力库，为每个 Agent 配好合适的 Skills。Library 分别呈现 Codex、Claude Code、Pi 的精选 R",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 2186080
  },
  "tugrawork-creator/saas-motion-kit": {
   "repo": "tugrawork-creator/saas-motion-kit",

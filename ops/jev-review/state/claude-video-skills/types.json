@@ -5524,5 +5524,113 @@
    "general": 0.12
   },
   "kind": "promo"
+ },
+ {
+  "repo": "Joker-chichi/claude-mv-skill",
+  "stars": 8,
+  "description": "Claude Code skill for hand-painted animation and lyric music videos",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.15,
+   "music": 0.85,
+   "motion": 0.1,
+   "shorts": 0.09,
+   "editing": 0.04,
+   "demo": 0.16,
+   "story": 0.79,
+   "avatar": 0.04,
+   "general": 0.2
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "Agentchengfeng/chengfeng-video-styles",
+  "stars": 6,
+  "description": "15 种代码视频风格 Skill：让 Claude Code / Codex 用纯代码做 10 秒知识讲解短片",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.96,
+   "music": 0.03,
+   "motion": 0.73,
+   "shorts": 0.07,
+   "editing": 0.03,
+   "demo": 0.26,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.55
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Karnaf0katom/taskfilm",
+  "stars": 5,
+  "description": "Make short videos that teach people how to use your software. Local CLI and agent skill for feature walkthroughs and tool demos.",
+  "scores": {
+   "promo": 0.41,
+   "explainer": 0.95,
+   "music": 0.04,
+   "motion": 0.34,
+   "shorts": 0.17,
+   "editing": 0.86,
+   "demo": 0.97,
+   "story": 0.11,
+   "avatar": 0.07,
+   "general": 0.37
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "xsourabhsharma/remotion-marketing-video-skill",
+  "stars": 5,
+  "description": "Agent skill for creating premium Remotion marketing videos product demos, SaaS promos, motion graphics, UI walkthroughs, social ads, and explainers using React and code-first animation.",
+  "scores": {
+   "promo": 0.88,
+   "explainer": 0.36,
+   "music": 0.06,
+   "motion": 0.21,
+   "shorts": 0.57,
+   "editing": 0.2,
+   "demo": 0.77,
+   "story": 0.1,
+   "avatar": 0.07,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "gquthier/autonomous-sop-video",
+  "stars": 5,
+  "description": "CREATIVE · SOP VIDEO — Turn any workflow into a narrated tutorial. Agent skill, screenshots, button zooms, checklists and chapters.",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.97,
+   "music": 0.02,
+   "motion": 0.08,
+   "shorts": 0.06,
+   "editing": 0.27,
+   "demo": 0.92,
+   "story": 0.03,
+   "avatar": 0.05,
+   "general": 0.09
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "every-app/video-skills",
+  "stars": 10,
+  "description": "Make great videos about your product 10x faster.",
+  "scores": {
+   "promo": 0.77,
+   "explainer": 0.64,
+   "music": 0.25,
+   "motion": 0.12,
+   "shorts": 0.2,
+   "editing": 0.66,
+   "demo": 0.81,
+   "story": 0.1,
+   "avatar": 0.04,
+   "general": 0.23
+  },
+  "kind": "promo"
  }
 ]

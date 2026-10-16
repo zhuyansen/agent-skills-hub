@@ -3083,7 +3083,8 @@
     "wenlan-app/wenlan",
     "HagaiHen/podcast-wiki",
     "alex09x/kyb",
-    "reetamdan/document-rag"
+    "reetamdan/document-rag",
+    "FengZhenfei/carrel"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3422,7 +3423,9 @@
     "pr-pm/prpm",
     "LobsterTrap/lola",
     "Pandemonium-Research/Skilldex",
-    "activeloopai/hivemind"
+    "activeloopai/hivemind",
+    "tt-a1i/skillroster",
+    "olegpustovit/agentpack"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4284,7 +4287,11 @@
     "kjmagnan1s/anti-slop",
     "imrangadzhiev/anti-slop",
     "hellogit2021/avoid-ai-writing-cn",
-    "williamkho77/claude-humanizer-id"
+    "williamkho77/claude-humanizer-id",
+    "IT-Shelter-Labs/Shelter-Humanizer",
+    "arslanr-com/writehuman",
+    "acchuang/zh-tw-humanizer",
+    "IsaacEryn/humanizer-ko"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4873,7 +4880,8 @@
     "diegomarino/tui-design",
     "oil-oil/oil-ui",
     "ABC-xiaoxuan/award-level-web-design",
-    "yckonnnnn/zack-design-skills"
+    "yckonnnnn/zack-design-skills",
+    "Bearisbug/Quilt"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -5893,7 +5901,8 @@
     "zhuyansen/awesome-codex-ppt-skills",
     "MURMURE11118586/codex-xkppt-skill",
     "w1ndys/html-ppt-academic-skill",
-    "mujingquan835/Dawang-ppt"
+    "mujingquan835/Dawang-ppt",
+    "chengzi2333/html-report-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7679,7 +7688,13 @@
     "Avijit07x/cursorcam",
     "BuzyOwl/song-video-director",
     "holy-templar/static-to-video-ad",
-    "lumian2015/opus-5-5-video-templates"
+    "lumian2015/opus-5-5-video-templates",
+    "every-app/video-skills",
+    "Joker-chichi/claude-mv-skill",
+    "Agentchengfeng/chengfeng-video-styles",
+    "Karnaf0katom/taskfilm",
+    "xsourabhsharma/remotion-marketing-video-skill",
+    "gquthier/autonomous-sop-video"
    ],
    "sub_skills": [
     {

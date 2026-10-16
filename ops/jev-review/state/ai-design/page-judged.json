@@ -15172,5 +15172,38 @@
   "days": 8,
   "stars_per_day": 129.125,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "Bearisbug/Quilt",
+  "name": "Quilt",
+  "stars": 76,
+  "description": "AI-native infinite-canvas design tool: describe an app, get multi-screen HTML designs on an infinite canvas, click through them as a prototype, and let your local coding agent read and write the canvas over MCP.",
+  "topics": [
+   "ai",
+   "claude",
+   "design-tool",
+   "infinite-canvas",
+   "mcp",
+   "prototyping"
+  ],
+  "created": "2026-09-20",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 11165,
+  "names_model": false,
+  "on_subject": 0.94,
+  "is_software": 0.96,
+  "shows_result": 0.07,
+  "one_command_start": 0.15,
+  "specific_outcome": 0.75,
+  "complete_docs": 0.22,
+  "novel_angle": 0.8,
+  "shareable_output": 0.81,
+  "quality": 0.2975,
+  "tier": "低",
+  "hit_prior": 0.56,
+  "days": 26,
+  "stars_per_day": 2.923076923076923,
+  "verdict": "low_quality"
  }
 ]
