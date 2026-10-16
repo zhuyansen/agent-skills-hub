@@ -7,7 +7,6 @@ import { timeAgo } from "../utils/time";
  *  last-updated) so the top bar stays clean. */
 export function HeaderMoreMenu() {
   const { t } = useI18n();
-  const { stats } = useStats();
   const [open, setOpen] = useState(false);
   const [showWechat, setShowWechat] = useState(false);
 
@@ -109,15 +108,26 @@ export function HeaderMoreMenu() {
               </div>
             )}
             <div className="border-t border-gray-100 dark:border-gray-700 mt-1.5 pt-2 px-3 pb-1">
-              <span className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                {t("header.lastUpdated")}{" "}
-                {stats ? timeAgo(stats.last_sync_at) : "..."}
-              </span>
+              <LastUpdated />
             </div>
           </div>
         </>
       )}
     </div>
+  );
+}
+
+/** The open menu's "last updated" line. Its own component so the stats it
+ *  reads are fetched when the menu opens, not on every page load — see
+ *  BrowsePanel in BrowseMenu.tsx for why that matters. */
+function LastUpdated() {
+  const { t } = useI18n();
+  const { stats } = useStats();
+  return (
+    <span className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500">
+      <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+      {t("header.lastUpdated")}{" "}
+      {stats ? timeAgo(stats.last_sync_at) : "..."}
+    </span>
   );
 }

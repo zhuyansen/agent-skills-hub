@@ -49,10 +49,11 @@ export interface Skill {
 
   // Security
   security_grade: string | null;
-  // Why a row is ungraded — see lib/gradeState.ts (with readme_size above). On the detail query (select *).
+  // Why a row is ungraded — see lib/gradeState.ts (with readme_size above). Only
+  // the detail query selects it (SKILL_DETAIL_COLUMNS in api/supabaseClient.ts).
   readme_fetched_at?: string | null;
   // Raw red-flag identifiers from the scanner; JSON string or array depending
-  // on the query path (detail uses select("*") so it comes through untyped).
+  // on the query path. Only the detail query selects it (SKILL_DETAIL_COLUMNS).
   security_flags?: string | string[] | null;
 
   // Official

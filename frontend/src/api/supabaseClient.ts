@@ -58,6 +58,14 @@ const SKILL_COLUMNS = [
   "is_official",
 ].join(",");
 
+// Columns for one skill's detail view: the list set plus the two fields only
+// the detail view reads (lib/gradeState.ts, AuditVerdictCard). Not select("*"):
+// that also returns readme_content and readme_search_vector, which nothing in
+// the frontend reads. With them a row was 36-40 KB on the wire (15-18 KB
+// gzipped), without them ~1.5 KB (2026-10-16), on every skill page load, and
+// crawlers make most of those loads.
+const SKILL_DETAIL_COLUMNS = `${SKILL_COLUMNS},readme_fetched_at,security_flags`;
+
 function ensureSupabase() {
   if (!supabase) throw new Error("Supabase not configured");
   return supabase;
@@ -84,7 +92,7 @@ const SHARED_REUSE_MS = 60_000;
 
 /**
  * Collapse concurrent identical requests into one. A page mounts the same data
- * hook several times — the header alone mounts useStats three times — and each
+ * hook several times — Home alone mounts useStats three times — and each
  * instance used to fire its own request. Crawlers make that expensive: they run
  * our JS in a fresh profile every session, so every visit is a cold cache
  * (43K automated sessions in 28 days, measured 2026-09-17). A failed request is
@@ -337,9 +345,9 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
   // Fetch skill
   const { data: skill, error } = await sb
     .from("skills")
-    .select("*")
+    .select(SKILL_DETAIL_COLUMNS)
     .eq("id", id)
-    .single();
+    .single<Skill>();
   if (error) throw new Error(error.message);
 
   // Fetch compositions
@@ -383,9 +391,9 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
   // slug = "owner/repo" = repo_full_name
   const { data: skill, error } = await sb
     .from("skills")
-    .select("*")
+    .select(SKILL_DETAIL_COLUMNS)
     .eq("repo_full_name", slug)
-    .single();
+    .single<Skill>();
   if (error) throw new Error(error.message);
 
   // Fetch compositions
