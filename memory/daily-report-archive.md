@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-16
+1. LSPosed/dexsql-release — 🆕 用 SQL 查询 APK 与 DEX 里的类、方法、字符串和调用关系，内置 MCP 直连智能体（113★ 70.9/day）
+2. zero-lab-ai/skills — 🆕 提供一套讲证据的安全技能，覆盖授权评估、红队、渗透测试与检测工程（46★ 10.3/day）
+3. SubmitGame/awesome-ai-game-dev-tools — 🆕 汇总做游戏和反编译、改编自有游戏的开源 AI 工具，每日更新（28★ 9.7/day）
+4. Avijit07x/cursorcam — 🆕 让智能体点遍你的 Web 应用，自动录成逐次点击放大的精致 MP4 演示视频（48★ 7.3/day）
+5. kuafuai/andee — 把智能体装进安卓手机，免集成操控任意 App，端侧运行、只需一个 APK（205★ 7.2/day）
+6. alexgaoth/awesome-reverse-engineered — 🆕 收录 12,000+ 个靠逆向闭源应用、协议和设备做出的开源工具，附搜索站与技能（28★ 6.4/day）
+7. robinebers/attentionmachine-skills — 🆕 用你现有的 Claude 或 Codex 把原始录像剪成成品 Reels，免手动剪辑日更（23★ 6.0/day）
+8. ampersandru/VectorDash — 🆕 用 Rust 打造 Windows 11 本地搜索启动器，支持文件、应用、设置和语义搜图（26★ 5.0/day）
+9. abacusai/simless — 🆕 免开 iOS 模拟器无头检查 SwiftUI，把界面渲染成无障碍树，约 2 秒热重载（20★ 3.1/day）
+10. dzhng/yap — 在 macOS 本地录屏，并让 Claude Code、Codex 等智能体协助剪辑视频（87★ 3.0/day）
+🎯 今日趋势：**8 席**标 🆕；逆向与反编译工具占 **3 席**（DexSQL、逆向工具大全、游戏反编译清单），"让智能体出视频"再占 **3 席**（点击演示录制、Reels 自动剪辑、本地录屏剪辑）。
+> 注：去重范围＝repo 内 archive 全部 113 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,820 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询：`first_seen ≥72h`、stars ≥20，并加 `created_at ≥30 天内` 条件（建仓 30 天以上的老仓历来按"不新鲜"排除，故直接在查询里滤掉），得 62 条、命中历史 36 条。48h 窗口去重并剔除可疑项后仅 8 个合格，按规则放宽到 72h 后统一按 velocity 重排。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①NB-Corp/gpt-with-taste（223★ 65.7/day）：账号 2026-08-25 新建、0 粉、其余 8 仓 ≤1★，单仓爆星；②d2r-mobile/d2r-mobile（64★ 17.7/day）：组织 10-11 新建、仅此 1 个实仓，且把暗黑破坏神 2 移植到 iPhone，版权灰色、评级 caution；③OSINT-Experts-Society/Consensus-OSINT（124★ 16.7/day）：组织 09-03 新建、其余仓 0★，且为按用户名/邮箱/手机号查人的工具，隐私风险；④heqiangdiao-wq/AI-Cross-Border-Ecommerce-Agent-Toolkit（库内 35★，实时 228★、fork 280 多于星数）：账号 2026-07 新建、其余仓 0★，星与 fork 异常，刷量嫌疑；⑤Cleveland-RD/hivehouse（33★ 8.7/day）、JoseValencia125/agents-pixel-dungeon（30★ 4.3/day）：评级 caution，且作者 2–3 粉、其余仓 ≤1★，保守排除；⑥haxsd/toolkit-map（111★）：账号 2025-11 新建、2 粉、其余仓 ≤3★ 单仓爆星；Paradigm-Study/claude-share（64★）：组织 3 粉、其余仓 0★、64★ 仅 1 fork；⑦jbang2004/long-wind（84★ 4.2/day）：Claude 写的武侠网页游戏，属作品展示而非工具（同 10-14 anatomy-community 先例）；⑧Mo271-del/BloxAgent-Studio-Bridge：Roblox 脚本逆向自动化，外挂嫌疑；⑨其余均已在历史榜单出现（含 qwen21-nsfw-pose-skill、open-claude-ui、my-claude-code-mods、graphicle 等此前排除项，不再复评）。goodnight000/cstack（72★ 3.0/day）、amitray007/headroom（23★ 1.6/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 LSPosed 为 2020 建的组织、5,064 粉、名下 LSPosed 25,044★，fork 12；第 2 席 zero-lab-ai 2026-02 建的组织、10 粉、其余仓 ≤2★（**轻红旗**，Apache-2.0、fork 12 与星数相称，内容限定授权测试，保留）；第 3 席 SubmitGame 09-28 新建组织、7 粉，但名下另有 878★ 仓，CC0；第 4 席 Avijit07x 2023 建号、69 粉、名下 1,260★ 仓，Apache-2.0；第 5 席 kuafuai 2023 建的组织、498 粉、名下 5,965★ 仓，fork 33；第 6 席 alexgaoth 2020 建号、29 粉，MIT；第 7 席 robinebers 2016 建号、228 粉、名下 4,365★ 仓，fork 7；第 8 席 ampersandru 2018 建号、2 粉、其余仓 ≤3★（**轻红旗**，MIT、量级小、描述具体，保留）；第 9 席 abacusai 为 Abacus.AI 2020 建的组织、449 粉，Apache-2.0；第 10 席 dzhng 2012 建号、971 粉、名下 19,790★ 仓。🆕 判定＝created_at 距今 14 天内，andee、yap（均 28.5 天）不标，其余八席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（dexsql-release 147★、andee 256★、zero-lab-ai/skills 53★），按红线保留快照值。
+
+---
+
 ## 2026-10-15
 1. i12bp8/decomp.wtf — 🆕 让智能体把你拥有的游戏逐函数反编译成 C，并用原版编译器逐字节校验（173★ 103.8/day）
 2. assafkip/claudemy — 🆕 给 Claude 一个主题，自动查资料做成约 12 节双人对谈音频课，附引用核查（78★ 78.0/day）
