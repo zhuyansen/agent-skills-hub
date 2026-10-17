@@ -80,9 +80,9 @@ function generateVerdict(skillA, skillB) {
   const qA = skillA.quality_score || 0;
   const qB = skillB.quality_score || 0;
   if (qA > qB + 10) {
-    factors.push({ winner: "a", reason: `${skillA.repo_name} has a higher quality score (${qA} vs ${qB})` });
+    factors.push({ winner: "a", reason: `${skillA.repo_name} has a higher quality score (${Math.round(qA)} vs ${Math.round(qB)})` });
   } else if (qB > qA + 10) {
-    factors.push({ winner: "b", reason: `${skillB.repo_name} has a higher quality score (${qB} vs ${qA})` });
+    factors.push({ winner: "b", reason: `${skillB.repo_name} has a higher quality score (${Math.round(qB)} vs ${Math.round(qA)})` });
   }
 
   // Recent activity
@@ -334,8 +334,8 @@ ${analyticsTags()}
             </tr>
             <tr>
               <td data-zh="质量分数" data-en="Quality Score">Quality Score</td>
-              <td style="${qualStyleA}">${skillA.quality_score ? skillA.quality_score + "/100" : "\u2014"}</td>
-              <td style="${qualStyleB}">${skillB.quality_score ? skillB.quality_score + "/100" : "\u2014"}</td>
+              <td style="${qualStyleA}">${skillA.quality_score ? Math.round(skillA.quality_score) + "/100" : "\u2014"}</td>
+              <td style="${qualStyleB}">${skillB.quality_score ? Math.round(skillB.quality_score) + "/100" : "\u2014"}</td>
             </tr>
             <tr>
               <td data-zh="开放 Issues" data-en="Open Issues">Open Issues</td>

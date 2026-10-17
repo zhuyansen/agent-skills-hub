@@ -486,7 +486,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     language ? `<tr><td>Language</td><td>${esc(language)}</td></tr>` : "",
     `<tr><td>Category</td><td><a href="/category/${esc(category)}/">${esc(catLabel)}</a></td></tr>`,
     license && license !== "NOASSERTION" ? `<tr><td>License</td><td>${esc(license)}</td></tr>` : "",
-    quality_score ? `<tr><td>Quality Score</td><td>${quality_score}/100</td></tr>` : "",
+    quality_score ? `<tr><td>Quality Score</td><td>${Math.round(quality_score)}/100</td></tr>` : "",
     total_commits ? `<tr><td>Total Commits</td><td>${total_commits.toLocaleString()}</td></tr>` : "",
     open_issues ? `<tr><td>Open Issues</td><td>${open_issues}</td></tr>` : "",
     last_commit_at ? `<tr><td>Last Updated</td><td>${formatDate(last_commit_at)}</td></tr>` : "",
