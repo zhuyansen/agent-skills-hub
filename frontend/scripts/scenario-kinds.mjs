@@ -33,6 +33,20 @@ export function kindsFor(slug) {
   };
 }
 
+/** Every repo a reviewed-only page lists, lowercased: its kinds map minus the page's
+ *  `exclude_repos`. Sub-skills (repo + folder) link to GitHub, so they are left out. */
+export function reviewedOnlyRepos(scenarios) {
+  const names = new Set();
+  for (const sc of scenarios.filter((s) => !s.retired && s.match?.reviewed_only)) {
+    const dropped = new Set((sc.match.exclude_repos || []).map((n) => n.toLowerCase()));
+    for (const key of Object.keys(KINDS[sc.slug]?.repos || {})) {
+      const name = key.toLowerCase();
+      if (name.split("/").length === 2 && !dropped.has(name)) names.add(name);
+    }
+  }
+  return names;
+}
+
 const DESC_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-desc-zh.json");
 const DESC_ZH = existsSync(DESC_PATH) ? JSON.parse(readFileSync(DESC_PATH, "utf-8")) : {};
 

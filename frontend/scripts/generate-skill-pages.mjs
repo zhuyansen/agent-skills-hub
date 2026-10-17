@@ -13,6 +13,7 @@
  */
 
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
+import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -932,6 +933,9 @@ async function main() {
     readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
   );
   const admitted = admittedByReview(scenarioDefs);
+  // A reviewed-only page lists every repo its review kept, under the floor too, not only the
+  // ones in `admit_reviewed`: /best/seo-tools/ linked 7 of them to 404s (2026-10-17).
+  for (const name of reviewedOnlyRepos(scenarioDefs)) admitted.add(name);
 
   // Generate skill pages
   let ok = 0;
