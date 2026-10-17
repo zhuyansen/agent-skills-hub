@@ -3358,5 +3358,47 @@
    "mcp": 0.62
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "MushroomFleet/DJZ-Nodes",
+  "stars": 80,
+  "description": "Custom nodes for ComfyUI — video effects, batch processing, prompt tools, image manipulation & automation utilities",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.02,
+   "open_models": 0.84,
+   "editing": 0.11,
+   "design": 0.02,
+   "mcp": 0.08
+  },
+  "kind": "open_models"
+ },
+ {
+  "repo": "veryCoolTimo/imagegen-skills",
+  "stars": 5,
+  "description": "Turn a one-line idea into a production-grade, copy-paste-ready AI image prompt for posters, landing and UI mockups, ads, game art, and logos. A Claude Code skill optimized for gpt-image-2. MIT.",
+  "scores": {
+   "gpt_image": 0.4,
+   "nano_banana": 0.07,
+   "open_models": 0.08,
+   "editing": 0.06,
+   "design": 0.18,
+   "mcp": 0.13
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "zhangx413/dsh-pbr-material",
+  "stars": 5,
+  "description": "DeepSeek Harness plugin: a photo of a surface becomes a complete tileable PBR material set, fully local via ComfyUI (FLUX.2 Klein 4B instruction edit + deterministic PBR derivation). GUI workbench, five agent tools, and a setup tool that finds your ComfyUI and downloads its own weights.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.01,
+   "open_models": 0.89,
+   "editing": 0.08,
+   "design": 0.03,
+   "mcp": 0.17
+  },
+  "kind": "open_models"
  }
 ]

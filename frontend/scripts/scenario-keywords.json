@@ -1941,7 +1941,10 @@
     "Arekejoker/qwen21-nsfw-pose-skill",
     "beatra-ai/ai-logo-maker-skill",
     "beatra-ai/ai-media-generator-skill",
-    "liangdabiao/image-prompt-studio"
+    "liangdabiao/image-prompt-studio",
+    "MushroomFleet/DJZ-Nodes",
+    "veryCoolTimo/imagegen-skills",
+    "zhangx413/dsh-pbr-material"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3104,7 +3107,8 @@
     "useenzyme/enzyme",
     "7xuanlu/wenlan",
     "shenmintao/marginalia",
-    "RD945/document-rag"
+    "RD945/document-rag",
+    "nanzhipro/Karpathy-llm-wiki-bootstrap-skill"
    ]
   },
   "related": [
@@ -3427,7 +3431,8 @@
     "Pandemonium-Research/Skilldex",
     "activeloopai/hivemind",
     "tt-a1i/skillroster",
-    "olegpustovit/agentpack"
+    "olegpustovit/agentpack",
+    "neiii/bridle"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4699,7 +4704,18 @@
     "zhuyansen/backlink-guard",
     "zhuyansen/backlink-spam-list",
     "ziniman/ai-instruct",
-    "zizzfizzix/mcp-server-bwt"
+    "zizzfizzix/mcp-server-bwt",
+    "AgriciDaniel/jev-seo",
+    "IamRamgarhia/All-In-One-Free-SEO-Tool",
+    "smithjohn78390/smith--skills",
+    "avalonreset/legends-geogrid",
+    "NicoSKOOL/ai-ranking-scroll-seo",
+    "LuCheremisina/marketing-skills",
+    "byteminus/laravel-ai-blog",
+    "Mehmoodqureshi/seo-tools-mcp",
+    "Mehmoodqureshi/mcp-seo-tools",
+    "owensky-dev/seo-gsc-ga4-analyst",
+    "catorch/dataforseo-api-cli"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -4725,7 +4741,18 @@
     "kennyzir/7deer_skills",
     "macrohelpclippers/r19-iannuttall-claude-agents-seo",
     "novabaronlast/b02-skills-main-seo",
-    "retrocenterspark24/r11-qdhenry-claude-command-suite-seo"
+    "retrocenterspark24/r11-qdhenry-claude-command-suite-seo",
+    "Mehmoodqureshi/mcp-seo-tools",
+    "Mehmoodqureshi/seo-mcp",
+    "Suganthan-Mohanadasan/tech-seo-audit-skill",
+    "egebese/seo-research-mcp",
+    "gbessoni/on-page-agent",
+    "gbessoni/seo-agi",
+    "nowork-studio/NotFair",
+    "nowork-studio/toprank",
+    "recomby-ai/recomby-geo",
+    "unifapi-agent/skills",
+    "usenotra/notra"
    ]
   },
   "related": [
@@ -5149,7 +5176,8 @@
     "oil-oil/oil-ui",
     "ABC-xiaoxuan/award-level-web-design",
     "yckonnnnn/zack-design-skills",
-    "Bearisbug/Quilt"
+    "Bearisbug/Quilt",
+    "lemonteaau/smartisan-ui-skill"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6170,7 +6198,8 @@
     "MURMURE11118586/codex-xkppt-skill",
     "w1ndys/html-ppt-academic-skill",
     "mujingquan835/Dawang-ppt",
-    "chengzi2333/html-report-skill"
+    "chengzi2333/html-report-skill",
+    "zhouwei713/luobo-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7546,7 +7575,11 @@
     "lookski/openjev",
     "schainks/system_one_client",
     "RayenMlayeh/jevcrawl",
-    "dongxinsuperman/jev-phone"
+    "dongxinsuperman/jev-phone",
+    "shibing624/train-jev",
+    "dante01yoon/ComfyUI-SystemOne",
+    "ariel-frischer/jevkit",
+    "adityajha2005/decisionkit"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7962,7 +7995,10 @@
     "Agentchengfeng/chengfeng-video-styles",
     "Karnaf0katom/taskfilm",
     "xsourabhsharma/remotion-marketing-video-skill",
-    "gquthier/autonomous-sop-video"
+    "gquthier/autonomous-sop-video",
+    "YIAN6557/eian-riso-broll",
+    "suntay44/motionable",
+    "10291124jcjc-dotcom/xp-desktop-mv"
    ],
    "sub_skills": [
     {
@@ -8485,7 +8521,8 @@
     "sd0xdev/sd0x-dev-flow",
     "solanabr/solana-ai-kit",
     "solanabr/solana-claude",
-    "AwesomeZun/CC-statusline"
+    "AwesomeZun/CC-statusline",
+    "chiefautism/warm-start"
    ]
   },
   "related": [

@@ -21333,5 +21333,40 @@
   "days": 26,
   "stars_per_day": 2.923076923076923,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "lemonteaau/smartisan-ui-skill",
+  "name": "smartisan-ui-skill",
+  "stars": 12,
+  "description": "用于构建Smartisan OS风格UI的Agent Skill",
+  "topics": [
+   "agent-skill",
+   "agent-skills",
+   "claude-code",
+   "css",
+   "design-system",
+   "flutter",
+   "smartisan",
+   "ui-kit"
+  ],
+  "created": "2026-10-15",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 3591,
+  "names_model": false,
+  "on_subject": 0.94,
+  "is_software": 0.98,
+  "shows_result": 0.97,
+  "one_command_start": 0.85,
+  "specific_outcome": 0.86,
+  "complete_docs": 0.97,
+  "novel_angle": 0.74,
+  "shareable_output": 0.87,
+  "quality": 0.9125,
+  "tier": "高",
+  "hit_prior": 0.86,
+  "days": 2,
+  "stars_per_day": 6.0,
+  "verdict": "admit"
  }
 ]

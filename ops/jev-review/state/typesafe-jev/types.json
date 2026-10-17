@@ -5053,5 +5053,65 @@
    "general": 0.13
   },
   "kind": "sdk"
+ },
+ {
+  "repo": "shibing624/train-jev",
+  "stars": 10,
+  "description": "Train JEV-style System 1 decision models on Qwen3.5 and Qwen3.8-27B: 24-slot decision head, KL distillation, calibration and serving. 在 Qwen 上训练 JEV 风格的 System 1 决策模型。",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.12,
+   "devtool": 0.08,
+   "sdk": 0.48,
+   "business": 0.67,
+   "consumer": 0.07,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "dante01yoon/ComfyUI-SystemOne",
+  "stars": 5,
+  "description": "ComfyUI nodes that branch workflows on natural-language judgments from System One models (local Laya or hosted Jev)",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.04,
+   "devtool": 0.22,
+   "sdk": 0.45,
+   "business": 0.08,
+   "consumer": 0.07,
+   "general": 0.23
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ariel-frischer/jevkit",
+  "stars": 5,
+  "description": "Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.08,
+   "devtool": 0.8,
+   "sdk": 0.38,
+   "business": 0.2,
+   "consumer": 0.08,
+   "general": 0.22
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "adityajha2005/decisionkit",
+  "stars": 5,
+  "description": "Fast, cheap, probability-scored decisions for coding agents, scripts and CI. CLI + MCP server + Claude Code plugin for the OpenAI Decisions API and Jev (TypeSafe AI).",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.07,
+   "devtool": 0.97,
+   "sdk": 0.92,
+   "business": 0.23,
+   "consumer": 0.1,
+   "general": 0.24
+  },
+  "kind": "devtool"
  }
 ]

@@ -3950,5 +3950,181 @@
    "marketing": 0.05
   },
   "kind": "geo"
+ },
+ {
+  "repo": "AgriciDaniel/jev-seo",
+  "stars": 653,
+  "description": "Live SEO audit for any website from one homepage URL, judged by Jev. PDF, XLSX and Markdown reports.",
+  "scores": {
+   "suite": 0.72,
+   "audit": 0.96,
+   "research": 0.08,
+   "data_mcp": 0.15,
+   "geo": 0.07,
+   "content": 0.08,
+   "links": 0.05,
+   "marketing": 0.05
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "IamRamgarhia/All-In-One-Free-SEO-Tool",
+  "stars": 61,
+  "description": "Free SEO tool — open-source, self-hosted alternative to Ahrefs, Semrush & Moz. 99 tools: site audits, rank tracking, keyword research, AI search visibility (ChatGPT, Perplexity, Gemini, AI Overviews), content briefs, backlinks, local SEO, white-label reports, and an agent that applies fixes. No paid APIs required. MIT.",
+  "scores": {
+   "suite": 0.85,
+   "audit": 0.34,
+   "research": 0.35,
+   "data_mcp": 0.85,
+   "geo": 0.27,
+   "content": 0.19,
+   "links": 0.11,
+   "marketing": 0.1
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "smithjohn78390/smith--skills",
+  "stars": 44,
+  "description": "自用/精选的 Claude Code / Codex 技能：内容创作、客服、市场调研、SEO、Agent 工作流循环、Grok X 实时抓取与评审工具",
+  "scores": {
+   "suite": 0.26,
+   "audit": 0.12,
+   "research": 0.18,
+   "data_mcp": 0.03,
+   "geo": 0.19,
+   "content": 0.18,
+   "links": 0.03,
+   "marketing": 0.86
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "avalonreset/legends-geogrid",
+  "stars": 19,
+  "description": "Open-source google maps rank checker: business-first SEO research, evidence-backed keyword studies, street maps and actionable reports at DataForSEO cost.",
+  "scores": {
+   "suite": 0.1,
+   "audit": 0.04,
+   "research": 0.74,
+   "data_mcp": 0.38,
+   "geo": 0.06,
+   "content": 0.06,
+   "links": 0.02,
+   "marketing": 0.06
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "NicoSKOOL/ai-ranking-scroll-seo",
+  "stars": 6,
+  "description": "Claude Code skill: premium scroll-driven websites that also rank. WebP budgets, schema, keyword-matched H1, Lighthouse 95+, agentic browsing.",
+  "scores": {
+   "suite": 0.59,
+   "audit": 0.15,
+   "research": 0.04,
+   "data_mcp": 0.02,
+   "geo": 0.19,
+   "content": 0.16,
+   "links": 0.02,
+   "marketing": 0.08
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "LuCheremisina/marketing-skills",
+  "stars": 6,
+  "description": "AI marketing skills for research, SEO/GEO, Yandex advertising analytics and expert content. 27 marketing workflows + 14 optional engineering skills.",
+  "scores": {
+   "suite": 0.72,
+   "audit": 0.16,
+   "research": 0.28,
+   "data_mcp": 0.08,
+   "geo": 0.29,
+   "content": 0.29,
+   "links": 0.05,
+   "marketing": 0.97
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "byteminus/laravel-ai-blog",
+  "stars": 6,
+  "description": "Laravel blog package with built-in SEO scoring, AI drafting (laravel/ai) and an MCP server so Claude and ChatGPT can write to it. Headless by default.",
+  "scores": {
+   "suite": 0.81,
+   "audit": 0.19,
+   "research": 0.03,
+   "data_mcp": 0.05,
+   "geo": 0.1,
+   "content": 0.82,
+   "links": 0.02,
+   "marketing": 0.09
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "Mehmoodqureshi/seo-tools-mcp",
+  "stars": 6,
+  "description": "SEO toolkit as an MCP server — free, keyless on-page audits, robots.txt, sitemaps, structured data, broken-link checks, and PageSpeed insights",
+  "scores": {
+   "suite": 0.86,
+   "audit": 0.96,
+   "research": 0.08,
+   "data_mcp": 0.46,
+   "geo": 0.06,
+   "content": 0.06,
+   "links": 0.04,
+   "marketing": 0.04
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "owensky-dev/seo-gsc-ga4-analyst",
+  "stars": 5,
+  "description": "Codex skill for local SEO analysis with Google Search Console and GA4 data.",
+  "scores": {
+   "suite": 0.34,
+   "audit": 0.05,
+   "research": 0.09,
+   "data_mcp": 0.11,
+   "geo": 0.04,
+   "content": 0.06,
+   "links": 0.02,
+   "marketing": 0.05
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "catorch/dataforseo-api-cli",
+  "stars": 5,
+  "description": "Zero-dependency CLI for the DataForSEO API.",
+  "scores": {
+   "suite": 0.78,
+   "audit": 0.13,
+   "research": 0.8,
+   "data_mcp": 0.25,
+   "geo": 0.17,
+   "content": 0.05,
+   "links": 0.14,
+   "marketing": 0.11
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "Mehmoodqureshi/mcp-seo-tools",
+  "stars": 6,
+  "description": "SEO toolkit as an MCP server — free, keyless on-page audits, robots.txt, sitemaps, structured data, broken-link checks, and PageSpeed insights",
+  "scores": {
+   "suite": 0.85,
+   "audit": 0.95,
+   "research": 0.08,
+   "data_mcp": 0.45,
+   "geo": 0.06,
+   "content": 0.06,
+   "links": 0.04,
+   "marketing": 0.05
+  },
+  "kind": "audit"
  }
 ]

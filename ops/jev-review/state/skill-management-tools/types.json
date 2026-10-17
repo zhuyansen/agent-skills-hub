@@ -2616,5 +2616,19 @@
    "general": 0.67
   },
   "kind": "general"
+ },
+ {
+  "repo": "neiii/bridle",
+  "stars": 440,
+  "description": "TUI / CLI config manager for agentic harnesses (Amp, Claude Code, Opencode, Goose, Copilot CLI, Crush, Droid)",
+  "scores": {
+   "cli": 0.81,
+   "sync": 0.26,
+   "app": 0.43,
+   "registry": 0.11,
+   "team": 0.09,
+   "general": 0.91
+  },
+  "kind": "general"
  }
 ]

@@ -5427,5 +5427,39 @@
   "days": 89,
   "stars_per_day": 2.157303370786517,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "zhouwei713/luobo-ppt",
+  "name": "luobo-ppt",
+  "stars": 363,
+  "description": "生成和美化可编辑原生 PPT 的 Agent Skill",
+  "topics": [
+   "agent-skills",
+   "codex-skill",
+   "powerpoint",
+   "pptx",
+   "presentation"
+  ],
+  "created": "2026-10-08",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7729,
+  "names_model": false,
+  "makes_slides": 0.98,
+  "agent_driven": 0.97,
+  "editable_output": 0.96,
+  "reusable_tool": 0.97,
+  "one_command_start": 0.75,
+  "complete_docs": 0.93,
+  "shows_result": 0.55,
+  "specific_outcome": 0.92,
+  "novel_angle": 0.93,
+  "shareable_output": 0.7,
+  "quality": 0.7875000000000001,
+  "tier": "高",
+  "hit_prior": 0.7266666666666667,
+  "days": 9,
+  "stars_per_day": 40.333333333333336,
+  "verdict": "admit"
  }
 ]

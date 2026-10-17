@@ -15,6 +15,14 @@
   "type": "image/png",
   "bytes": 2424699
  },
+ "10291124jcjc-dotcom/xp-desktop-mv": {
+  "repo": "10291124jcjc-dotcom/xp-desktop-mv",
+  "url": "https://raw.githubusercontent.com/10291124jcjc-dotcom/xp-desktop-mv/HEAD/examples/apt/comparison.webp",
+  "alt": "左：原 MV，右：Pinkdows XP 重制",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 8789556
+ },
  "124zhe/xigua-msvideo-skill": {
   "repo": "124zhe/xigua-msvideo-skill",
   "url": "https://raw.githubusercontent.com/124zhe/xigua-msvideo-skill/HEAD/skills/youtube-ms-paint-images/assets/frame-007_00m11s839ms.png",
@@ -150,6 +158,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 633671
+ },
+ "AgriciDaniel/jev-seo": {
+  "repo": "AgriciDaniel/jev-seo",
+  "url": "https://raw.githubusercontent.com/AgriciDaniel/jev-seo/HEAD/docs/assets/preview-jev.jpg",
+  "alt": "Jev judgment cards, quality heatmap and where to invest",
+  "score": 1.55,
+  "type": "image/jpeg",
+  "bytes": 107984
  },
  "Aham-AIAPP/aham-ppt": {
   "repo": "Aham-AIAPP/aham-ppt",
@@ -655,6 +671,14 @@
   "type": "image/png",
   "bytes": 74308
  },
+ "IamRamgarhia/All-In-One-Free-SEO-Tool": {
+  "repo": "IamRamgarhia/All-In-One-Free-SEO-Tool",
+  "url": "https://raw.githubusercontent.com/IamRamgarhia/All-In-One-Free-SEO-Tool/HEAD/docs/screenshots/05-ai-blog-writer.png",
+  "alt": "AI blog writer for Acme Coffee Co. showing topic suggestions like 'Buyer's guide",
+  "score": -0.45,
+  "type": "image/png",
+  "bytes": 148821
+ },
  "Integral-Healthcare/robin-ai-reviewer": {
   "repo": "Integral-Healthcare/robin-ai-reviewer",
   "url": "https://raw.githubusercontent.com/Integral-Healthcare/robin-ai-reviewer/HEAD/assets/robin.png",
@@ -783,6 +807,14 @@
   "type": "image/gif",
   "bytes": 3419441
  },
+ "LuCheremisina/marketing-skills": {
+  "repo": "LuCheremisina/marketing-skills",
+  "url": "https://raw.githubusercontent.com/LuCheremisina/marketing-skills/HEAD/assets/social-preview.png",
+  "alt": "Marketing Skills — research, analytics, SEO/GEO and content",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 743389
+ },
  "M1n-n9/academic-ppt-master": {
   "repo": "M1n-n9/academic-ppt-master",
   "url": "https://raw.githubusercontent.com/M1n-n9/academic-ppt-master/HEAD/assets/previews/attention_demo_01_06.png",
@@ -886,6 +918,14 @@
   "score": 4.55,
   "type": "image/gif",
   "bytes": 866452
+ },
+ "NicoSKOOL/ai-ranking-scroll-seo": {
+  "repo": "NicoSKOOL/ai-ranking-scroll-seo",
+  "url": "https://raw.githubusercontent.com/NicoSKOOL/ai-ranking-scroll-seo/HEAD/media/arkansas-flight.webp",
+  "alt": "Three flight routes from Buenos Aires, Santiago and São Paulo converge on Arkans",
+  "score": -0.05,
+  "type": "image/webp",
+  "bytes": 21594
  },
  "NomiciAI/mbb-page-maker": {
   "repo": "NomiciAI/mbb-page-maker",
@@ -1135,6 +1175,14 @@
   "type": "image/jpeg",
   "bytes": 28523
  },
+ "YIAN6557/eian-riso-broll": {
+  "repo": "YIAN6557/eian-riso-broll",
+  "url": "https://raw.githubusercontent.com/YIAN6557/eian-riso-broll/HEAD/demo/number.gif",
+  "alt": "",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 772658
+ },
  "YingYveltal/bento-ppt-skill": {
   "repo": "YingYveltal/bento-ppt-skill",
   "url": "https://raw.githubusercontent.com/YingYveltal/bento-ppt-skill/HEAD/examples/dify-intro/shots/01-cover.png",
@@ -1214,6 +1262,14 @@
   "score": 1.6,
   "type": "image/png",
   "bytes": 64211
+ },
+ "adityajha2005/decisionkit": {
+  "repo": "adityajha2005/decisionkit",
+  "url": "https://raw.githubusercontent.com/adityajha2005/decisionkit/HEAD/docs/media/demo-claude-code.gif",
+  "alt": "Claude Code using the decisionkit plugin to triage three issues with Jev",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 320230
  },
  "adshao/chatgpt-code-review-action": {
   "repo": "adshao/chatgpt-code-review-action",
@@ -1382,6 +1438,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 161081
+ },
+ "avalonreset/legends-geogrid": {
+  "repo": "avalonreset/legends-geogrid",
+  "url": "https://raw.githubusercontent.com/avalonreset/legends-geogrid/HEAD/assets/why-have-we-never-met-before.png",
+  "alt": "why have we never met before?: watch on YouTube",
+  "score": -0.2,
+  "type": "image/png",
+  "bytes": 8070872
  },
  "awesomezun/claude-statusline": {
   "repo": "awesomezun/claude-statusline",
@@ -1654,6 +1718,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 1315520
+ },
+ "dante01yoon/ComfyUI-SystemOne": {
+  "repo": "dante01yoon/ComfyUI-SystemOne",
+  "url": "https://raw.githubusercontent.com/dante01yoon/ComfyUI-SystemOne/HEAD/docs/media/style_router.gif",
+  "alt": "Style router demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 5056870
  },
  "darrenli6/JJKoubo": {
   "repo": "darrenli6/JJKoubo",
@@ -2599,6 +2671,14 @@
   "type": "image/jpeg",
   "bytes": 57845
  },
+ "lemonteaau/smartisan-ui-skill": {
+  "repo": "lemonteaau/smartisan-ui-skill",
+  "url": "https://raw.githubusercontent.com/lemonteaau/smartisan-ui-skill/HEAD/docs/showcase/opencode-glm-web.png",
+  "alt": "web",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 164811
+ },
  "lewislulu/html-ppt-skill": {
   "repo": "lewislulu/html-ppt-skill",
   "url": "https://raw.githubusercontent.com/lewislulu/html-ppt-skill/HEAD/docs/readme/layouts-live.gif",
@@ -2854,6 +2934,14 @@
   "score": -0.7,
   "type": "image/png",
   "bytes": 331186
+ },
+ "neiii/bridle": {
+  "repo": "neiii/bridle",
+  "url": "https://raw.githubusercontent.com/neiii/bridle/HEAD/assets/bridle_header.png",
+  "alt": "Bridle",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 846588
  },
  "new-xp/ultrademo": {
   "repo": "new-xp/ultrademo",
@@ -3295,6 +3383,14 @@
   "type": "image/png",
   "bytes": 37687
  },
+ "suntay44/motionable": {
+  "repo": "suntay44/motionable",
+  "url": "https://raw.githubusercontent.com/suntay44/motionable/HEAD/docs/demos/ponda-the-chef.gif",
+  "alt": "Ponda the Chef hype video:",
+  "score": 2.75,
+  "type": "image/gif",
+  "bytes": 1775301
+ },
  "surajshetty3416/demo-video-skill": {
   "repo": "surajshetty3416/demo-video-skill",
   "url": "https://raw.githubusercontent.com/surajshetty3416/demo-video-skill/HEAD/media/editor-dark.png",
@@ -3510,6 +3606,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 145486
+ },
+ "veryCoolTimo/imagegen-skills": {
+  "repo": "veryCoolTimo/imagegen-skills",
+  "url": "https://raw.githubusercontent.com/veryCoolTimo/imagegen-skills/HEAD/assets/banner.webp",
+  "alt": "image-prompt banner",
+  "score": -2.5,
+  "type": "image/webp",
+  "bytes": 155292
  },
  "vibe-motion/remotion-code-motion-explainer": {
   "repo": "vibe-motion/remotion-code-motion-explainer",
@@ -3766,6 +3870,14 @@
   "score": 1.9,
   "type": "image/jpeg",
   "bytes": 29518
+ },
+ "zhouwei713/luobo-ppt": {
+  "repo": "zhouwei713/luobo-ppt",
+  "url": "https://raw.githubusercontent.com/zhouwei713/luobo-ppt/HEAD/docs/images/one-deck-three-styles.jpg",
+  "alt": "同一份原稿换三种风格",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 184505
  },
  "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill": {
   "repo": "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill",

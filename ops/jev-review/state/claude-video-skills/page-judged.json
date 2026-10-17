@@ -3872,5 +3872,39 @@
   "days": 1,
   "stars_per_day": 58.0,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "YIAN6557/eian-riso-broll",
+  "name": "eian-riso-broll",
+  "stars": 279,
+  "description": "孔版双色风格的口播信息动画 Skill：逐字稿 → 1080×1920 竖屏 mp4 · Risograph-style info animations for talking-head videos",
+  "topics": [
+   "b-roll",
+   "claude-code-skill",
+   "codex-skill",
+   "motion-graphics"
+  ],
+  "created": "2026-10-11",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9952,
+  "names_model": false,
+  "makes_video": 0.97,
+  "agent_driven": 0.97,
+  "code_rendered": 0.71,
+  "reusable_tool": 0.96,
+  "names_opus": 0.04,
+  "shows_result": 0.59,
+  "one_command_start": 0.33,
+  "specific_outcome": 0.95,
+  "complete_docs": 0.75,
+  "novel_angle": 0.89,
+  "shareable_output": 0.73,
+  "quality": 0.655,
+  "tier": "中",
+  "hit_prior": 0.7366666666666667,
+  "days": 6,
+  "stars_per_day": 46.5,
+  "verdict": "admit"
  }
 ]

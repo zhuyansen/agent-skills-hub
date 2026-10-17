@@ -2602,5 +2602,19 @@
    "review": 0.22
   },
   "kind": "system"
+ },
+ {
+  "repo": "lemonteaau/smartisan-ui-skill",
+  "stars": 12,
+  "description": "用于构建Smartisan OS风格UI的Agent Skill",
+  "scores": {
+   "ui": 0.95,
+   "system": 0.97,
+   "tool_mcp": 0.27,
+   "to_code": 0.74,
+   "graphics": 0.77,
+   "review": 0.09
+  },
+  "kind": "system"
  }
 ]

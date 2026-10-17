@@ -3134,5 +3134,19 @@
    "general": 0.18
   },
   "kind": "html"
+ },
+ {
+  "repo": "zhouwei713/luobo-ppt",
+  "stars": 363,
+  "description": "生成和美化可编辑原生 PPT 的 Agent Skill",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.92,
+   "html": 0.02,
+   "business": 0.63,
+   "convert": 0.89,
+   "general": 0.09
+  },
+  "kind": "pptx"
  }
 ]

@@ -5632,5 +5632,59 @@
    "general": 0.23
   },
   "kind": "promo"
+ },
+ {
+  "repo": "YIAN6557/eian-riso-broll",
+  "stars": 279,
+  "description": "孔版双色风格的口播信息动画 Skill：逐字稿 → 1080×1920 竖屏 mp4 · Risograph-style info animations for talking-head videos",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.47,
+   "music": 0.02,
+   "motion": 0.91,
+   "shorts": 0.89,
+   "editing": 0.09,
+   "demo": 0.11,
+   "story": 0.05,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "suntay44/motionable",
+  "stars": 9,
+  "description": "The latest and updated Claude Code plugin that turns your app, website or project folder into a hype video. AI plans a beat-synced motion-graphics launch video, composes original music and renders a 9:16 MP4 for TikTok, Reels and Shorts. Free, open source, macOS-only Swift engine: nothing to install. Also works with Codex via Agent Skills.",
+  "scores": {
+   "promo": 0.95,
+   "explainer": 0.09,
+   "music": 0.53,
+   "motion": 0.59,
+   "shorts": 0.59,
+   "editing": 0.12,
+   "demo": 0.64,
+   "story": 0.15,
+   "avatar": 0.05,
+   "general": 0.1
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "10291124jcjc-dotcom/xp-desktop-mv",
+  "stars": 5,
+  "description": "Claude Code skill: turn a music-video clip into a beat-synced Windows XP desktop screen recording (example: APT. -> Pinkdows XP)",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.09,
+   "music": 0.91,
+   "motion": 0.28,
+   "shorts": 0.18,
+   "editing": 0.6,
+   "demo": 0.48,
+   "story": 0.47,
+   "avatar": 0.11,
+   "general": 0.06
+  },
+  "kind": "music"
  }
 ]
