@@ -50,7 +50,9 @@ PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页",
               "obsidian-second-brain": "Obsidian 页", "anti-slop": "去 AI 味页",
               "image-generation": "生图页", "code-review": "Code Review 页"}
 QUEUE_TAG = "daily-video-pass"
-DESC_MODEL = "gpt-5.6"
+# FlatRouter stopped serving gpt-5.6 by 10-17 (404 model_not_found), so every description failed
+# and pages kept English. The model is now read from the environment, with the one it serves.
+DESC_MODEL = os.environ.get("FLATROUTER_MODEL") or "gpt-6-astra"
 DESC_MAX = 80
 FAITHFUL_MIN = 0.5   # Jev: good translations scored 0.72-0.78, embellished or wrong 0.01-0.03 (10-03)
 FAITHFUL = {

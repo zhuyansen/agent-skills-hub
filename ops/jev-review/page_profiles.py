@@ -260,25 +260,31 @@ PAGES = {
                       "it. A site template that is merely SEO-friendly, an SEO product with no agent interface, or "
                       "anything about maps and geography does not count."),
         "types": {
-            "suite": _q("Is `repo` an all-round SEO skill or agent that covers several SEO jobs at once: audits, "
-                        "keywords, content and technical checks?"),
+            "suite": _q("Is `repo` an all-round SEO skill or agent (not a data server or a dashboard) that covers "
+                        "several SEO jobs at once: audits, keywords, content and technical checks?"),
             "audit": _q("Is `repo` mainly for auditing a site or a page: technical SEO, on-page checks, schema, "
                         "Core Web Vitals, crawl problems?"),
             "research": _q("Is `repo` mainly for keyword and search-demand research: keyword ideas, search volume, "
                            "trends, rank tracking, SERP or competitor analysis?"),
-            "data_mcp": _q("Is `repo` an MCP server or connector that gives an assistant SEO data from a service: "
-                           "Google Search Console, Bing Webmaster, Ahrefs, Semrush, DataForSEO?"),
+            "data_mcp": _q("Is `repo` an MCP server, connector or self-hosted dashboard that supplies SEO data: "
+                           "Google Search Console, Bing or Yandex Webmaster, Ahrefs, Semrush, DataForSEO, or site "
+                           "crawls and monitoring?"),
             "geo": _q("Is `repo` mainly about visibility in AI answers: GEO, AEO, LLM citations, AI search tracking?"),
-            "content": _q("Is `repo` mainly for producing content that ranks or for building links: articles, briefs, "
-                          "programmatic pages, internal links, backlink or directory submission?"),
+            "content": _q("Is `repo` mainly for producing content that ranks: articles, briefs, programmatic pages, "
+                          "on-page copy, internal links?"),
+            # Split from content on 10-17: people looking for link building want submission and link
+            # checks, not a writing tool (owner's decision).
+            "links": _q("Is `repo` mainly about backlinks: finding link or PR opportunities, submitting to "
+                        "directories, or checking link sources and auditing a site's backlinks?"),
             "marketing": _q("Is `repo` a broad collection of marketing skills in which SEO is one area among several?"),
         },
         "labels": _labels(("suite", "🧰", "All-in-one Claude SEO skills", "综合 SEO Skill"),
                           ("audit", "🩺", "SEO audit skills", "站点与页面审计"),
                           ("research", "🔎", "Keyword research & rank tracking", "关键词与排名研究"),
-                          ("data_mcp", "🔌", "Google Search Console & SEO data MCP", "Search Console 与数据 MCP"),
+                          ("data_mcp", "🔌", "SEO data MCP & monitoring dashboards", "SEO 数据 MCP 与监控面板"),
                           ("geo", "🤖", "GEO & AI search visibility", "GEO 与 AI 搜索可见性"),
-                          ("content", "✍️", "SEO content & link building", "内容与外链"),
+                          ("content", "✍️", "SEO content writing", "SEO 内容写作"),
+                          ("links", "🔗", "Link building & backlink audits", "外链建设与外链审计"),
                           ("marketing", "📣", "Marketing skill packs with SEO", "含 SEO 的营销合集")),
         "queries": ["seo skill in:name,description", "claude seo in:name,description", "seo mcp in:name,description,topics",
                     "seo agent skill in:name,description", "search console mcp in:name,description",
@@ -296,7 +302,14 @@ PAGES = {
         "also": ["mcp", "agent", "claude", "skill", "codex", "cursor", "llm", "ai ", "gpt", "openclaw"],
         # Jev filed it under content (its README talks about what is worth building a page for).
         # It writes no content: it finds new names and sizes the search terms behind them.
-        "owner_kinds": {"zhuyansen/new-term-radar": "research"},
+        # open-seo-mcp-skills: an MCP server plus a whole SEO and GEO skill set; Jev's 10-17 re-type
+        # filed it under research.
+        "owner_kinds": {"zhuyansen/new-term-radar": "research", "zhuyansen/backlink-guard": "links",
+                        "Ryze-AI-Adgent/open-seo-mcp-skills": "suite",
+                        "zhuyansen/backlink-spam-list": "links"},
+        # Our own link tools, under the star floor (owner's decision, 10-17): a pre-submission checker
+        # and the evidence list it reads.
+        "owner_admitted": ["zhuyansen/backlink-guard", "zhuyansen/backlink-spam-list"],
     },
     # Upgraded 10-05 (AIsa: supabase mcp 3,600/mo KD 15, postgres mcp 916 KD 10). Page only, no list.
     "mcp-database": {

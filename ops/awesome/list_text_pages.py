@@ -244,6 +244,30 @@ PAGE_LISTS = {
             "case": ("Programs rebuilt or analysed with REA; the README of each says so.", "用 REA 重建或分析出来的程序,README 里都写明了。"),
         },
     },
+    "seo-tools": {
+        "repo": "zhuyansen/awesome-claude-seo-skills",
+        "text": _text("Awesome Claude SEO Skills",
+                      ("Open-source **Claude SEO skills, SEO MCP servers and GEO tools** for Claude Code, Codex and other agents: "
+                       "all-in-one SEO skills, audits, keyword research, Search Console and SEO data MCP, AI search visibility, "
+                       "content writing and link building.",
+                       "给 Claude Code、Codex 等 agent 用的开源 **Claude SEO skill、SEO MCP 服务和 GEO 工具**:综合 SEO skill、审计、"
+                       "关键词研究、Search Console 与 SEO 数据 MCP、AI 搜索可见性、内容写作和外链建设。"),
+                      ("SEO, or being found and cited in AI answers, is its main purpose, done through an agent. A site template that is "
+                       "only SEO-friendly, an SEO product with no agent interface, or a renamed copy of another repository does not count.",
+                       "用 agent 做 SEO,或让站点在 AI 回答里被找到、被引用,是它的主要用途。只是对 SEO 友好的站点模板、没有 agent 接口的 SEO 产品、"
+                       "改了名的别人的仓库不算。"),
+                      ("What these tools look like", "这些工具长什么样")),
+        "blurb": {
+            "suite": ("One skill or agent that covers audits, keywords, content and technical checks.", "一个 skill 或 agent 包办审计、关键词、内容和技术检查。"),
+            "audit": ("Crawl a site or read a page and list what to fix.", "抓取站点或读取页面,列出要修的问题。"),
+            "research": ("Keyword ideas, search demand and rank tracking.", "找词、估算搜索需求、跟踪排名。"),
+            "data_mcp": ("Search Console, crawl and SEO-database data for your agent, and self-hosted dashboards.", "把 Search Console、抓取和 SEO 数据库的数据交给 agent,以及自托管面板。"),
+            "geo": ("Visibility in AI answers: GEO, AEO, citation tracking.", "在 AI 回答里的可见性:GEO、AEO、引用追踪。"),
+            "content": ("Articles, briefs and on-page copy written to rank.", "为排名而写的文章、大纲和页面文案。"),
+            "links": ("Link and PR openings, directory submission, and checks on link sources.", "外链与媒体机会、目录提交,以及外链来源检查。"),
+            "marketing": ("Broad marketing collections where SEO is one area.", "SEO 只是其中一部分的综合营销合集。"),
+        },
+    },
     "code-review": {
         "repo": "zhuyansen/awesome-claude-code-review",
         "text": _text("Awesome Claude Code Review",
