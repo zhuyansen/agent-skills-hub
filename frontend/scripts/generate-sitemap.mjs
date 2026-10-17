@@ -274,12 +274,16 @@ async function main() {
     <priority>0.85</priority>${lastmodLine(declaredDate(`/category/${cat}/`, today))}
   </url>`);
   writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
+  // Hub pages (categories, /best/ scenarios and their Chinese twins, /compare/) also go into
+  // sitemap-top.xml. Google never read sitemap-categories / -scenarios / -comparisons, not
+  // through the index since March and not when submitted on their own (10-16, 10-17: pending,
+  // while sitemap-top was read within a second both times). The three files stay so their
+  // submissions do not turn into 404s; listing a URL in two sitemaps is allowed.
+  const hubEntries = [...catEntries];
   console.log(`sitemap-categories.xml: ${catsWithSkills.length} URLs (derived from data)`);
 
-  // 3. sitemap-top.xml (stars >= 500)
+  // 3. sitemap-top.xml (stars >= 500), written after the hub pages are known (see 6b-bis)
   const topEntries = buildUrlEntries(topSkills);
-  writeFileSync("dist/sitemap-top.xml", wrapUrlset(topEntries));
-  console.log(`sitemap-top.xml: ${topSkills.length} URLs (stars >= 500)`);
 
   // Clean up any stale sitemap-mid.xml from previous builds so Google stops
   // seeing it. (GitHub Pages serves whatever is in dist/; orphan files persist.)
@@ -320,6 +324,7 @@ async function main() {
                         && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
       .flatMap((slug) => scenarioEntriesFor(slug, today));
     writeFileSync("dist/sitemap-scenarios.xml", wrapUrlsetI18n(scenarioEntries));
+    hubEntries.push(...scenarioEntries);
     scenarioCount = scenarioEntries.length;
     console.log(`sitemap-scenarios.xml: ${scenarioCount} URLs`);
   } catch {
@@ -445,11 +450,17 @@ async function main() {
     <priority>0.85</priority>${lastmodLine(declaredDate(`/compare/`, today))}
   </url>`);
     writeFileSync("dist/sitemap-comparisons.xml", wrapUrlset(comparisonEntries));
+    hubEntries.push(...comparisonEntries);
     comparisonCount = comparisonEntries.length;
     console.log(`sitemap-comparisons.xml: ${comparisonCount} URLs`);
   } catch {
     console.log("sitemap-comparisons.xml: skipped (no dist/compare/ directory)");
   }
+
+  // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
+  // declares the xhtml namespace the scenario entries' hreflang links need.
+  writeFileSync("dist/sitemap-top.xml", wrapUrlsetI18n([...hubEntries, ...topEntries]));
+  console.log(`sitemap-top.xml: ${hubEntries.length} hub + ${topSkills.length} skill URLs (stars >= 500)`);
 
   // 7. sitemap.xml (index) — only top-tier to conserve crawl budget
   const sitemapFiles = [
