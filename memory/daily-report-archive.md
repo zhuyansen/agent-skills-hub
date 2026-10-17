@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-17
+1. Leonxlnx/earshot — 🆕 给编程智能体装上耳朵，能听、能审、能生成声音，纯 CPU 运行且开源（283★ 163.9/day）
+2. christos-antono/NPCTalk — 🆕 用 Fish Audio 让任意游戏里的 NPC 开口对话，附技能与自托管语音服务（62★ 60.3/day）
+3. YIAN6557/eian-riso-broll — 🆕 把口播逐字稿一键做成孔版双色风格的 1080×1920 竖屏信息动画（279★ 51.9/day）
+4. 1weiho/cinematic-shot — 🆕 让智能体像导演一样拍出电影感的产品发布短片（97★ 28.4/day）
+5. juinwei7/Shiyin — 🆕 在 macOS 本地做会议纪要，实时转写、区分说话人并由 AI 整理（30★ 21.3/day）
+6. anisayari/sparky — 🆕 在 Windows 上搭一个 100% 本地的私人 AI 助手，支持对话、看图、文档问答与搜索（39★ 12.2/day）
+7. imhuhe/gongwen-kit — 🆕 按 GB/T 9704 生成和修复 Word 公文，出稿自动检查体例、数字与文风（31★ 8.7/day）
+8. paper-instruments/feather-train — 为知识型工作打造智能体框架，附训练集成与评测工具（126★ 7.3/day）
+9. ChenxingJi-Innovate/Cheatcode_ — 🆕 一键给 AI 应用装上技能和工具，含 Mac 安装器等 cheatcodehq 开源部分（38★ 6.5/day）
+10. adsorgcn/WorkBuddy — 🆕 提供 iLang 专家与技能的 GitHub 安装源，含去 AI 味的公众号爆文写作专家（52★ 6.2/day）
+🎯 今日趋势：**9 席**标 🆕、**4 席**建仓不满 2 天；"让智能体有声音"占 **3 席**（编程智能体听觉、游戏 NPC 语音、会议转写），本地私有化工具占 **3 席**（纯 CPU 音频、Mac 会议纪要、Windows 本地助手）。
+> 注：去重范围＝repo 内 archive 全部 114 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,859 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询：`first_seen ≥72h`、stars ≥20、`created_at ≥30 天内`，得 56 条、命中历史 31 条；按 first_seen 切回 48h 后合格项超过 10 个，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①anujasid/mcp-for-blender-pro（176★ 163.7/day）：账号 10-15 新建、0 粉、仅此 1 仓、实时 245★ 却 0 fork，单仓爆星；②orylite/lindyson-ai（21★ 16.8/day）：组织 10-15 新建、0 粉、仅 1 仓，按新建组织先例排除；③ShadowSwaps/REA-Reconstruction-Companion（63★ 35.9/day）：2 粉、另一仓 0★，且为 REA 逆向还原软件配套技能（同 10-15 open-claude-ui 版权灰色先例），保守排除；④pullboard-dev/pullboard（199★ 20.2/day）：组织 07-15 新建、1 粉、其余 4 仓均 0★，单仓爆星；⑤hanzohanzhe/Grandet（210★ 17.9/day）：3 粉、其余仓 ≤1★ 单仓爆星，且为 API 比价导流，保守排除；⑥s3onghyun/bulchimbeon（25★ 6.4/day）：评级 caution；⑦EL4CTEO/blender-skills、MBratkowski/deweloperuch-mcp、dvwinck/capybara-toolbox：first_seen 超出 48h；⑧其余均已在历史榜单出现（含 open-claude-ui、gpt-with-taste、graphicle、d2r-mobile 等此前排除项，不再复评）。sv3nbeast/agent-manager-lite（74★ 5.8/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 Leonxlnx 2025-07 建号、2,328 粉、名下 taste-skill 98,018★，MIT、fork 20；第 2 席 christos-antono 2025-09 建号、1 粉、其余仓 0★（**轻红旗**，MIT、fork 7 与星数相称，保留）；第 3 席 YIAN6557 2026-08 建号、2 粉，但名下另有 58★、29★ 同系列仓，fork 16；第 4 席 1weiho 2020 建号、674 粉、名下 next-lens 279★，MIT；第 5 席 juinwei7 2022 建号、0 粉，名下另有 36★ 仓（**轻红旗**，MIT、fork 3，保留）；第 6 席 anisayari 2015 建号、2,153 粉，MIT；第 7 席 imhuhe 2020 建号、0 粉、其余仓 0★（**轻红旗**，MIT、fork 7、描述具体，保留）；第 8 席 paper-instruments 2025-03 建的组织、58 粉、名下 paper-docx 121★，MIT、fork 17；第 9 席 ChenxingJi-Innovate 2026-03 建号、14 粉、名下另有 17★ 仓，MIT、fork 10；第 10 席 adsorgcn 2019 建号、72 粉、名下 bbr-script 214★，MIT、fork 19。🆕 判定＝created_at 距今 14 天内，feather-train（17.1 天）不标，其余九席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（earshot 325★、NPCTalk 79★），按红线保留快照值。
+
+---
+
 ## 2026-10-16
 1. LSPosed/dexsql-release — 🆕 用 SQL 查询 APK 与 DEX 里的类、方法、字符串和调用关系，内置 MCP 直连智能体（113★ 70.9/day）
 2. zero-lab-ai/skills — 🆕 提供一套讲证据的安全技能，覆盖授权评估、红队、渗透测试与检测工程（46★ 10.3/day）
