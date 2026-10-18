@@ -17,12 +17,12 @@ import {
 import { useI18n } from "../i18n/I18nContext";
 
 // In-book cross-links are authored as relative markdown filenames, e.g.
-// [第 2 章](ch02-three-layer-loading.md). react-markdown emits <a href="ch02-…md">,
+// [第 2 章](ch02-three-layer-loading.md) or ../part4-hub/ch10-….md. react-markdown emits <a href="ch02-…md">,
 // which resolves under the current /book/<slug>/ path to a 404 — the dead-click
 // source Clarity kept flagging on chapter pages (ch01 ~22 dead clicks/session).
 // Rewrite those to the real route; leave external, anchor and mailto links alone.
 function BookLink({ href = "", children }: ComponentPropsWithoutRef<"a">) {
-  const md = href.match(/^\.{0,2}\/?([A-Za-z0-9_-]+)\.md(#.*)?$/);
+  const md = href.match(/^(?:\.{1,2}\/)*(?:[A-Za-z0-9_-]+\/)*([A-Za-z0-9_-]+)\.md(#.*)?$/);
   if (md) return <Link to={`/book/${md[1]}/${md[2] || ""}`}>{children}</Link>;
   if (/^https?:\/\//.test(href))
     return (

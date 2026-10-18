@@ -215,15 +215,8 @@ export function SubmitPage() {
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
                   {isZh
-                    ? "做了一套多 skill 协作的 agent 工作流?写清步骤、用到的工具和场景。我们会在 "
-                    : "Built a multi-skill agent workflow? Document the steps, the tools, and the use case. We feature curated workflows on "}
-                  <Link
-                    to="/category/workflow/"
-                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                  >
-                    /workflows/
-                  </Link>
-                  {isZh ? " 精选展示。" : "."}
+                    ? "做了一套多 skill 协作的 agent 工作流?写清步骤、用到的工具和场景。我们会挑选优秀的工作流在站内精选展示。"
+                    : "Built a multi-skill agent workflow? Document the steps, the tools, and the use case. We feature the best ones on the site."}
                 </p>
                 <button
                   type="button"
