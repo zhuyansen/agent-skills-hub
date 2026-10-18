@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import "@fontsource-variable/inter/index.css"; // self-hosted Inter (bundled; works in CN)
 import "./index.css";
 import App from "./App.tsx";
+import { rememberPrerenderedPage } from "./lib/prerenderedMeta";
 
 // ── Resilience against browser translation extensions ────────────────────────
 // Chrome Translate / 沉浸式翻译 (Immersive Translate) wrap and relocate text
@@ -40,8 +41,14 @@ const isStaticOnlyPage = window.location.pathname.startsWith("/best/");
 if (!isStaticOnlyPage) {
   // index.html carries a static <meta name="description"> so non-JS crawlers
   // and og scrapers always see one. Once React mounts, Helmet owns the tag
-  // (language-aware zh/en) — drop the static copy or the page serves two.
-  document.querySelector('meta[name="description"]:not([data-rh])')?.remove();
+  // (language-aware zh/en) — drop the static copy or the page serves two. Remember it
+  // first: a pre-rendered /skill/ page reuses it (lib/prerenderedMeta.ts).
+  const staticDescription = document.querySelector('meta[name="description"]:not([data-rh])');
+  rememberPrerenderedPage(
+    staticDescription?.getAttribute("content") ?? null,
+    document.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
+  );
+  staticDescription?.remove();
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <HelmetProvider>

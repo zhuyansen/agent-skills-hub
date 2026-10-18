@@ -11,7 +11,8 @@ import { SecurityBadge } from "../components/SecurityBadge";
 import { AuditVerdictCard } from "../components/AuditVerdictCard";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
-import { skillTitle, TITLE_FALLBACK } from "../lib/skillTitle.mjs";
+import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
+import { prerenderedDescription } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -127,29 +128,26 @@ export function SkillDetailPage() {
     );
   }
 
-  // Same title as the static page (scripts/generate-skill-pages.mjs). Google renders this
-  // page, so this is the <title> it indexes; deleted repos keep the old one on both.
+  // Same title and description as the static page (scripts/generate-skill-pages.mjs).
+  // Google renders this page, so these are what it indexes; deleted repos keep the old
+  // title on both. On a direct load the description is the static page's own (it has the
+  // install command found in the README); after a client-side hop it is rebuilt without it.
   const pageTitle =
     detail.repo_status === "gone"
       ? `${detail.repo_full_name}: ${TITLE_FALLBACK}`
       : skillTitle(detail.repo_full_name, detail.repo_name, detail.description);
-
-  const ogDescription = detail.description
-    ? `${detail.description.slice(0, 120)} Open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} stars.`
-    : `${detail.repo_name} is an open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} GitHub stars.`;
+  const metaDescription =
+    prerenderedDescription() ?? skillDescription(detail.repo_name, detail.description);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* SEO Meta Tags */}
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={ogDescription} />
+        <meta name="description" content={metaDescription} />
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content={`${detail.repo_full_name} · AgentSkillsHub`}
-        />
-        <meta property="og:description" content={ogDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
@@ -158,11 +156,8 @@ export function SkillDetailPage() {
         <meta property="og:image" content={detail.author_avatar_url} />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta
-          name="twitter:title"
-          content={`${detail.repo_full_name} · AgentSkillsHub`}
-        />
-        <meta name="twitter:description" content={ogDescription} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={detail.author_avatar_url} />
         {/* Canonical URL */}
         <link

@@ -1,9 +1,9 @@
 /**
- * Title for a /skill/<owner>/<repo>/ page, shared by the static generator
- * (scripts/generate-skill-pages.mjs: what non-JS crawlers and AI bots read) and
- * the React page (src/pages/SkillDetailPage.tsx), which replaces the static
- * markup once JS runs. Google renders JS, so the title it indexes is the React
- * one; both must come from this function.
+ * Title and meta description for a /skill/<owner>/<repo>/ page, shared by the
+ * static generator (scripts/generate-skill-pages.mjs: what non-JS crawlers and AI
+ * bots read) and the React page (src/pages/SkillDetailPage.tsx), which replaces
+ * the static markup once JS runs. Google renders JS, so what it indexes is the
+ * React version; both must come from these functions.
  *
  * 2026-10-18: Google's title-link guide (checked 2026-10-17) warns against long
  * boilerplate titles where only a small part changes. Every skill page read
@@ -19,6 +19,8 @@ export const TITLE_MAX_WIDTH = 65;
 export const HEADING_MAX_WIDTH = 110;
 /** Used when the description gives nothing usable, and for deleted repos. */
 export const TITLE_FALLBACK = "what it is & alternatives";
+/** What a results page shows of a meta description (~155 characters). */
+export const DESCRIPTION_LIMIT = 155;
 
 /** A clause narrower than this reads as a fragment. */
 const MIN_CLAUSE_WIDTH = 12;
@@ -140,4 +142,25 @@ export function headingClause(repoName, description) {
   const first = end > 0 ? clean.slice(0, end) : clean;
   const clause = fitClause(displayWidth(clean) <= HEADING_MAX_WIDTH ? clean : first, HEADING_MAX_WIDTH);
   return displayWidth(clause) >= MIN_CLAUSE_WIDTH ? clause : "";
+}
+
+/** The first `n` UTF-16 units, one fewer if the cut would split an emoji (it left a "�" in snippets). */
+function cutUnits(text, n) {
+  const last = text.charCodeAt(n - 1);
+  return last >= 0xd800 && last <= 0xdbff ? text.slice(0, n - 1) : text.slice(0, n);
+}
+
+/**
+ * Meta description for a live repo: what it is, then the install command when the
+ * README gave one, then the alternatives the page compares, cut at what a results
+ * page shows. The React page never sees the README, so it reuses the description the
+ * pre-rendered page shipped with (src/lib/prerenderedMeta.ts) and only builds one
+ * here, without the install command, after a client-side navigation.
+ */
+export function skillDescription(repoName, description, installs = []) {
+  const what = description ? `${repoName}: ${description.trim().replace(/\.$/, "")}.` : `${repoName}, an open-source agent tool.`;
+  const parts = [installs[0] ? ` Install: ${installs[0]}.` : "", " Alternatives compared."];
+  let out = what.length > DESCRIPTION_LIMIT ? `${cutUnits(what, DESCRIPTION_LIMIT - 1).trim()}…` : what;
+  for (const part of parts) if (part && out.length + part.length <= DESCRIPTION_LIMIT) out += part;
+  return out;
 }

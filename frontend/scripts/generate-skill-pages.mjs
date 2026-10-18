@@ -14,14 +14,14 @@
  *   - No FAQ block and no FAQPage JSON-LD: Google stopped showing FAQ results on
  *     2026-05-07, and the questions repeated sections already on the page. The old
  *     "500-word quality gate" does not exist; Google has no preferred word count.
- *   - Titles come from src/lib/skillTitle.mjs, shared with the React page.
+ *   - Title and meta description come from src/lib/skillMeta.mjs, shared with the React page.
  *
  * Run: node scripts/generate-skill-pages.mjs  (after vite build)
  */
 
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
-import { skillTitle, headingClause, TITLE_FALLBACK } from "../src/lib/skillTitle.mjs";
+import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -312,7 +312,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const intent = installs.length ? "what it is, how to install & alternatives" : TITLE_FALLBACK;
   // No "| Agent Skills Hub": Google prints the site name above the title, and the
   // suffix pushed the median title to 83 characters, past what the SERP shows.
-  // 2026-10-18: the part that varies is the repo's own description (skillTitle.mjs),
+  // 2026-10-18: the part that varies is the repo's own description (skillMeta.mjs),
   // the same function the React page uses for its <title>. Deleted repos keep the old
   // title: /skill/Manavarya09/design-extract/ earns its CTR with it.
   const title = isGone ? `${repo_full_name}: ${TITLE_FALLBACK}` : skillTitle(repo_full_name, repo_name, description);
@@ -378,13 +378,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // Build in priority order and stop when the budget runs out, so a long repo
   // name can never push the description past what Google shows (~155). The
   // verdict is never sacrificed; the clause after it is, then the blurb.
-  const LIMIT = 155;
+  const LIMIT = DESCRIPTION_LIMIT;
   const clause = isGone
     ? ` Archived record of ${repo_full_name} on Agent Skills Hub.`
     : ` Independent audit of ${repo_full_name} against 11 red-flag categories.`;
   let metaDesc = isGone ? verdict : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
-  if (!isGone) metaDesc = describeFor(repo_name, description, installs, LIMIT);
+  if (!isGone) metaDesc = skillDescription(repo_name, description, installs);
 
   // README excerpt: a short summary below our own data (see the file header)
   const readmeText = stripMarkdown(readme_content);
@@ -664,18 +664,6 @@ ${breadcrumbLd}
   </noscript>
 </body>
 </html>`;
-}
-
-/**
- * Meta description for a live repo: what it is, then its install command, then
- * the alternatives the page compares, cut at what Google shows (~155 chars).
- */
-function describeFor(repoName, description, installs, limit) {
-  const what = description ? `${repoName}: ${description.trim().replace(/\.$/, "")}.` : `${repoName}, an open-source agent tool.`;
-  const parts = [installs[0] ? ` Install: ${installs[0]}.` : "", " Alternatives compared."];
-  let out = what.length > limit ? `${what.slice(0, limit - 1).trim()}…` : what;
-  for (const part of parts) if (part && out.length + part.length <= limit) out += part;
-  return out;
 }
 
 /* ── build category page ──────────────────────── */
