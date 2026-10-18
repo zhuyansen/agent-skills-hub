@@ -4870,5 +4870,47 @@
    "personal": 0.17
   },
   "kind": "graph"
+ },
+ {
+  "repo": "xerj-org/xerj",
+  "stars": 7931,
+  "description": "XERJ is the new way for AI to search data. Its autoindex capability activates agents to know your data without the token waste of grep (1974 tool). One command indexes code, docs, logs and PDFs for search, RAG, security audits and agent memory, using 40x fewer tokens than grep. It’s durable and can replace ElasticSearch saving you x10 infra costs.",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.37,
+   "mcp": 0.81,
+   "docs_qa": 0.76,
+   "graph": 0.22,
+   "personal": 0.11
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "3vilM33pl3/codifix",
+  "stars": 20,
+  "description": "Local knowledge base for coding agents with a Rust CLI/TUI, PostgreSQL storage, and optional background capture.",
+  "scores": {
+   "llm_wiki": 0.15,
+   "rag_platform": 0.74,
+   "mcp": 0.74,
+   "docs_qa": 0.58,
+   "graph": 0.1,
+   "personal": 0.33
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "agent-accessibility/KMCP",
+  "stars": 12,
+  "description": "Open-source MCP server for your docs. Zero LLM at query time. docker compose up and go.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.55,
+   "mcp": 0.96,
+   "docs_qa": 0.85,
+   "graph": 0.04,
+   "personal": 0.09
+  },
+  "kind": "mcp"
  }
 ]

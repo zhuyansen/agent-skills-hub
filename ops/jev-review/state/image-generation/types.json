@@ -3400,5 +3400,19 @@
    "mcp": 0.17
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "Hikhakk/higgsfield-mcp-unified",
+  "stars": 96,
+  "description": "Local-first MCP server for the Higgsfield AI API: 85 typed image & video models (Seedance 2.5, Kling 3.0, Wan 3, Genjutsu, Soul, Cinema Studio), webhooks, cost estimates, Soul ID training. Opt-in web backend for Sora 2, Veo 3, Nano Banana.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.04,
+   "design": 0.04,
+   "mcp": 0.98
+  },
+  "kind": "mcp"
  }
 ]

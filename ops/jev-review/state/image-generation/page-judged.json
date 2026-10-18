@@ -9796,5 +9796,43 @@
   "days": 947,
   "stars_per_day": 0.08447729672650475,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "Hikhakk/higgsfield-mcp-unified",
+  "name": "higgsfield-mcp-unified",
+  "stars": 96,
+  "description": "Local-first MCP server for the Higgsfield AI API: 85 typed image & video models (Seedance 2.5, Kling 3.0, Wan 3, Genjutsu, Soul, Cinema Studio), webhooks, cost estimates, Soul ID training. Opt-in web backend for Sora 2, Veo 3, Nano Banana.",
+  "topics": [
+   "ai",
+   "claude",
+   "generative-ai",
+   "higgsfield",
+   "image-generation",
+   "mcp",
+   "mcp-server",
+   "model-context-protocol",
+   "python",
+   "text-to-video",
+   "video-generation"
+  ],
+  "created": "2026-04-25",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 10154,
+  "names_model": false,
+  "on_subject": 0.91,
+  "is_software": 0.98,
+  "shows_result": 0.04,
+  "one_command_start": 0.76,
+  "specific_outcome": 0.77,
+  "complete_docs": 0.66,
+  "novel_angle": 0.78,
+  "shareable_output": 0.76,
+  "quality": 0.5575,
+  "tier": "中",
+  "hit_prior": 0.5266666666666667,
+  "days": 176,
+  "stars_per_day": 0.5454545454545454,
+  "verdict": "admit"
  }
 ]

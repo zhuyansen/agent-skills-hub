@@ -5686,5 +5686,113 @@
    "general": 0.06
   },
   "kind": "music"
+ },
+ {
+  "repo": "killkli/minimax-h3-colab-skill",
+  "stars": 117,
+  "description": "Standalone Codex skill for MiniMax H3 Colab reference-to-video generation",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.1,
+   "music": 0.06,
+   "motion": 0.21,
+   "shorts": 0.2,
+   "editing": 0.06,
+   "demo": 0.12,
+   "story": 0.27,
+   "avatar": 0.28,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "10291124jcjc-dotcom/ancient-rap-battle",
+  "stars": 96,
+  "description": "古人说唱 Battle：一句话做一期 AI 历史人物说唱对决视频的 Claude Code Skill（Suno + Midjourney + MiniMax H3 对口型）",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.15,
+   "music": 0.9,
+   "motion": 0.04,
+   "shorts": 0.88,
+   "editing": 0.33,
+   "demo": 0.25,
+   "story": 0.42,
+   "avatar": 0.6,
+   "general": 0.04
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "JuneYaooo/cheap-claude-video",
+  "stars": 68,
+  "description": "Claude Opus 视频效果的稳定平替：用 Claude 创作出片一次，蒸馏成视频配方，其他模型按配方复刻出类似效果。",
+  "scores": {
+   "promo": 0.42,
+   "explainer": 0.71,
+   "music": 0.07,
+   "motion": 0.11,
+   "shorts": 0.83,
+   "editing": 0.17,
+   "demo": 0.78,
+   "story": 0.34,
+   "avatar": 0.11,
+   "general": 0.62
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "RahmanBuildsAI/ravyn-reel-kit",
+  "stars": 5,
+  "description": "Script, edit, caption, cover and post short-form reels with Claude Code. ravyn (a browser video editor), 5 skills, 11 styles, a worked example. Free to use, not for resale.",
+  "scores": {
+   "promo": 0.37,
+   "explainer": 0.77,
+   "music": 0.06,
+   "motion": 0.1,
+   "shorts": 0.95,
+   "editing": 0.76,
+   "demo": 0.92,
+   "story": 0.1,
+   "avatar": 0.08,
+   "general": 0.12
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "beatra-ai/viral-video-remake-skill",
+  "stars": 5,
+  "description": "Viral video remake agent skill for Claude Code, Cursor, Codex, Windsurf, Cline & OpenClaw: break a short video that worked into its hook, beats, and call to action, then rebuild it around your own subject as a shot list, beat frames, narration, and a vertical clip or segmented sources. 爆款视频拆解 · 短视频复刻",
+  "scores": {
+   "promo": 0.23,
+   "explainer": 0.25,
+   "music": 0.06,
+   "motion": 0.18,
+   "shorts": 0.94,
+   "editing": 0.2,
+   "demo": 0.39,
+   "story": 0.4,
+   "avatar": 0.1,
+   "general": 0.08
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "xdis/opus-video-studio",
+  "stars": 1,
+  "description": "A short-video studio where Claude Opus 5.5 writes the script and the code, and your Mac renders the video: Canvas/Three.js/Blender code animation plus local FLUX + Wan2.2 pipelines.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.71,
+   "music": 0.08,
+   "motion": 0.21,
+   "shorts": 0.9,
+   "editing": 0.08,
+   "demo": 0.26,
+   "story": 0.33,
+   "avatar": 0.1,
+   "general": 0.21
+  },
+  "kind": "shorts"
  }
 ]

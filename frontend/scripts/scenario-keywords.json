@@ -1944,7 +1944,8 @@
     "liangdabiao/image-prompt-studio",
     "MushroomFleet/DJZ-Nodes",
     "veryCoolTimo/imagegen-skills",
-    "zhangx413/dsh-pbr-material"
+    "zhangx413/dsh-pbr-material",
+    "Hikhakk/higgsfield-mcp-unified"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3089,7 +3090,10 @@
     "HagaiHen/podcast-wiki",
     "alex09x/kyb",
     "reetamdan/document-rag",
-    "FengZhenfei/carrel"
+    "FengZhenfei/carrel",
+    "xerj-org/xerj",
+    "3vilM33pl3/codifix",
+    "agent-accessibility/KMCP"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3108,7 +3112,8 @@
     "7xuanlu/wenlan",
     "shenmintao/marginalia",
     "RD945/document-rag",
-    "nanzhipro/Karpathy-llm-wiki-bootstrap-skill"
+    "nanzhipro/Karpathy-llm-wiki-bootstrap-skill",
+    "3vilM33pl3/memory"
    ]
   },
   "related": [
@@ -5177,7 +5182,8 @@
     "ABC-xiaoxuan/award-level-web-design",
     "yckonnnnn/zack-design-skills",
     "Bearisbug/Quilt",
-    "lemonteaau/smartisan-ui-skill"
+    "lemonteaau/smartisan-ui-skill",
+    "arla6ka/design.how"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6199,7 +6205,8 @@
     "w1ndys/html-ppt-academic-skill",
     "mujingquan835/Dawang-ppt",
     "chengzi2333/html-report-skill",
-    "zhouwei713/luobo-ppt"
+    "zhouwei713/luobo-ppt",
+    "bvb6417/ppt-studio"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7579,7 +7586,8 @@
     "shibing624/train-jev",
     "dante01yoon/ComfyUI-SystemOne",
     "ariel-frischer/jevkit",
-    "adityajha2005/decisionkit"
+    "adityajha2005/decisionkit",
+    "momozi1996/momo-code"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7998,7 +8006,13 @@
     "gquthier/autonomous-sop-video",
     "YIAN6557/eian-riso-broll",
     "suntay44/motionable",
-    "10291124jcjc-dotcom/xp-desktop-mv"
+    "10291124jcjc-dotcom/xp-desktop-mv",
+    "killkli/minimax-h3-colab-skill",
+    "10291124jcjc-dotcom/ancient-rap-battle",
+    "JuneYaooo/cheap-claude-video",
+    "RahmanBuildsAI/ravyn-reel-kit",
+    "beatra-ai/viral-video-remake-skill",
+    "xdis/opus-video-studio"
    ],
    "sub_skills": [
     {
@@ -8512,7 +8526,8 @@
     "yuseferi/claude-token-statusbar",
     "zander-zyx/claude-mini-hud",
     "Moviw/codex-statusline",
-    "awesomezun/claude-statusline"
+    "awesomezun/claude-statusline",
+    "jordyvanvorselen/pi-claude-hooks"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

@@ -3274,5 +3274,18 @@
    "tooling": 0.96
   },
   "kind": "statusline"
+ },
+ {
+  "repo": "jordyvanvorselen/pi-claude-hooks",
+  "stars": 6,
+  "description": "Exact behavior clone of Claude Code hooks into Pi agent harness",
+  "scores": {
+   "hooks": 0.92,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.14,
+   "tooling": 0.84
+  },
+  "kind": "hooks"
  }
 ]

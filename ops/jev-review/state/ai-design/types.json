@@ -2616,5 +2616,19 @@
    "review": 0.09
   },
   "kind": "system"
+ },
+ {
+  "repo": "arla6ka/design.how",
+  "stars": 124,
+  "description": "Agent skills and design systems from design.how. Build a design system from your app, use agents to ship UI, enforce it in CI.",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.98,
+   "tool_mcp": 0.05,
+   "to_code": 0.25,
+   "graphics": 0.15,
+   "review": 0.7
+  },
+  "kind": "system"
  }
 ]

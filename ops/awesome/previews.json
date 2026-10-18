@@ -15,6 +15,14 @@
   "type": "image/png",
   "bytes": 2424699
  },
+ "10291124jcjc-dotcom/ancient-rap-battle": {
+  "repo": "10291124jcjc-dotcom/ancient-rap-battle",
+  "url": "https://raw.githubusercontent.com/10291124jcjc-dotcom/ancient-rap-battle/HEAD/assets/frame-1.jpg",
+  "alt": "",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 64218
+ },
  "10291124jcjc-dotcom/xp-desktop-mv": {
   "repo": "10291124jcjc-dotcom/xp-desktop-mv",
   "url": "https://raw.githubusercontent.com/10291124jcjc-dotcom/xp-desktop-mv/HEAD/examples/apt/comparison.webp",
@@ -46,6 +54,14 @@
   "score": 0.0,
   "type": "image/webp",
   "bytes": 101308
+ },
+ "3vilM33pl3/codifix": {
+  "repo": "3vilM33pl3/codifix",
+  "url": "https://raw.githubusercontent.com/3vilM33pl3/codifix/HEAD/docs/img/tui/memories-tab.png",
+  "alt": "Codifix memories tab",
+  "score": -0.85,
+  "type": "image/png",
+  "bytes": 175419
  },
  "ABC-xiaoxuan/award-level-web-design": {
   "repo": "ABC-xiaoxuan/award-level-web-design",
@@ -967,6 +983,14 @@
   "type": "image/webp",
   "bytes": 26312
  },
+ "RahmanBuildsAI/ravyn-reel-kit": {
+  "repo": "RahmanBuildsAI/ravyn-reel-kit",
+  "url": "https://raw.githubusercontent.com/RahmanBuildsAI/ravyn-reel-kit/HEAD/styles/ALL-STYLES.png",
+  "alt": "Every style in the kit",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 4094828
+ },
  "Raines-01/ai-image-studio": {
   "repo": "Raines-01/ai-image-studio",
   "url": "https://raw.githubusercontent.com/Raines-01/ai-image-studio/HEAD/static/demo.png?v=2",
@@ -1423,6 +1447,14 @@
   "type": "image/webp",
   "bytes": 61214
  },
+ "arla6ka/design.how": {
+  "repo": "arla6ka/design.how",
+  "url": "https://raw.githubusercontent.com/arla6ka/design.how/HEAD/assets/lime.webp",
+  "alt": "Lime: a banking app's home screen with a balance, one glowing Add button and a s",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 41772
+ },
  "artifact-kit/html-to-pptx-skill": {
   "repo": "artifact-kit/html-to-pptx-skill",
   "url": "https://raw.githubusercontent.com/artifact-kit/html-to-pptx-skill/HEAD/assets/proof/02-generated-pptx-preview.png",
@@ -1495,6 +1527,14 @@
   "type": "image/webp",
   "bytes": 59396
  },
+ "beatra-ai/viral-video-remake-skill": {
+  "repo": "beatra-ai/viral-video-remake-skill",
+  "url": "https://raw.githubusercontent.com/beatra-ai/viral-video-remake-skill/HEAD/assets/preview-1.webp",
+  "alt": "Silent looping preview of the 6-second Brightfold remake clip, animated from the",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 3124660
+ },
  "beriki770-ship-it/code-animations": {
   "repo": "beriki770-ship-it/code-animations",
   "url": "https://raw.githubusercontent.com/beriki770-ship-it/code-animations/HEAD/media/map.jpg",
@@ -1558,6 +1598,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 114134
+ },
+ "bvb6417/ppt-studio": {
+  "repo": "bvb6417/ppt-studio",
+  "url": "https://raw.githubusercontent.com/bvb6417/ppt-studio/HEAD/docs/showcase/ink_showcase_sheet.jpg",
+  "alt": "水墨风科研汇报",
+  "score": 1.85,
+  "type": "image/jpeg",
+  "bytes": 201021
  },
  "caikankan/cyberbin-ppt-skill": {
   "repo": "caikankan/cyberbin-ppt-skill",
@@ -2879,6 +2927,14 @@
   "type": "image/png",
   "bytes": 52690
  },
+ "momozi1996/momo-code": {
+  "repo": "momozi1996/momo-code",
+  "url": "https://raw.githubusercontent.com/momozi1996/momo-code/main/pic/MOMOCODE.png",
+  "alt": "V2.0.0 16 28 16",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 1899710
+ },
  "moongiadventures-dev/handdrawn-ppt": {
   "repo": "moongiadventures-dev/handdrawn-ppt",
   "url": "https://raw.githubusercontent.com/moongiadventures-dev/handdrawn-ppt/HEAD/docs/demo_slide_chart.png",
@@ -3759,6 +3815,14 @@
   "type": "image/png",
   "bytes": 1526501
  },
+ "xdis/opus-video-studio": {
+  "repo": "xdis/opus-video-studio",
+  "url": "https://raw.githubusercontent.com/xdis/opus-video-studio/HEAD/works/kp01_compound-interest/kp01_cover.jpg",
+  "alt": "kp01 cover",
+  "score": -2.5,
+  "type": "image/jpeg",
+  "bytes": 133549
+ },
  "xdmlxdml/beamer2pptx": {
   "repo": "xdmlxdml/beamer2pptx",
   "url": "https://raw.githubusercontent.com/xdmlxdml/beamer2pptx/HEAD/docs/pdf-vs-pptx.png",
@@ -3766,6 +3830,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 140889
+ },
+ "xerj-org/xerj": {
+  "repo": "xerj-org/xerj",
+  "url": "https://raw.githubusercontent.com/xerj-org/xerj/HEAD/docs/media/demo-poster.png",
+  "alt": "Watch the XERJ demo: boot, ingest, search, vectors, dashboards",
+  "score": -1.45,
+  "type": "image/png",
+  "bytes": 522783
  },
  "xieziyu/duetlens": {
   "repo": "xieziyu/duetlens",

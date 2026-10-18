@@ -24612,5 +24612,33 @@
   "days": 9,
   "stars_per_day": 40.333333333333336,
   "verdict": "admit"
+ },
+ {
+  "repo": "bvb6417/ppt-studio",
+  "name": "ppt-studio",
+  "stars": 6,
+  "description": "科研风AI-PPT，固化了claude的审美，参照了公开的美观科研风PPT排版",
+  "topics": [],
+  "created": "2026-10-16",
+  "pushed": "2026-10-16",
+  "source": "topic",
+  "readme_chars": 2638,
+  "names_model": false,
+  "makes_slides": 0.99,
+  "agent_driven": 0.96,
+  "editable_output": 0.97,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.34,
+  "complete_docs": 0.96,
+  "shows_result": 0.74,
+  "specific_outcome": 0.87,
+  "novel_angle": 0.91,
+  "shareable_output": 0.84,
+  "quality": 0.7275,
+  "tier": "中",
+  "hit_prior": 0.8300000000000001,
+  "days": 2,
+  "stars_per_day": 3.0,
+  "verdict": "admit"
  }
 ]

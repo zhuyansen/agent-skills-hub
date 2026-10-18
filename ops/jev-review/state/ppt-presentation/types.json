@@ -3148,5 +3148,19 @@
    "general": 0.09
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "bvb6417/ppt-studio",
+  "stars": 6,
+  "description": "科研风AI-PPT，固化了claude的审美，参照了公开的美观科研风PPT排版",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.97,
+   "html": 0.01,
+   "business": 0.05,
+   "convert": 0.85,
+   "general": 0.09
+  },
+  "kind": "pptx"
  }
 ]
