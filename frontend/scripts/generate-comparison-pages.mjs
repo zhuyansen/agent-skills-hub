@@ -172,15 +172,8 @@ function buildComparisonHtml(pair, skillA, skillB, assetTags, allPairs) {
     },
   ];
 
-  const faqLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  });
+  // No FAQPage JSON-LD: Google stopped showing FAQ results on 2026-05-07 (search/updates, checked
+  // 2026-10-17). The questions stay on the page for readers.
 
   // Comparison table helper
   function cellVal(val, fallback) {
@@ -257,9 +250,6 @@ function buildComparisonHtml(pair, skillA, skillB, assetTags, allPairs) {
 
   <script type="application/ld+json">
 ${breadcrumbLd}
-  </script>
-  <script type="application/ld+json">
-${faqLd}
   </script>
 
   <link rel="stylesheet" href="/best-pages.css" />

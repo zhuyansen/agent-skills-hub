@@ -3,9 +3,10 @@
  *
  * Only AgentSkillsHub can answer "is <skill> safe to install" at scale (117K
  * scanned, security-graded). Each page is a focused audit answer: grade,
- * plain-English verdict, red flags, quality score, check-before-install list,
- * FAQPage JSON-LD — distinct framing from the /skill/ detail page (which is
- * about WHAT the skill is; this is about WHETHER to trust it).
+ * plain-English verdict, red flags, quality score, check-before-install list —
+ * distinct framing from the /skill/ detail page (which is about WHAT the skill
+ * is; this is about WHETHER to trust it). No FAQPage JSON-LD since 2026-10-18:
+ * Google stopped showing FAQ results on 2026-05-07.
  *
  * PURE STATIC (no SPA bundle): the app has no /audit/ route, so hydrating
  * would client-redirect to / and Google would treat the page as a soft
@@ -137,25 +138,6 @@ function pageHtml(skill, related = []) {
     flags.length ? `${flags.length} flag${flags.length > 1 ? "s" : ""} found. ` : "No dangerous patterns found. "
   }Quality score ${Math.round(quality_score || 0)}/100.`;
 
-  const faqLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `Is ${repo_full_name} safe to install?`,
-        acceptedAnswer: { "@type": "Answer", text: g.answerEn(repo_name) },
-      },
-      {
-        "@type": "Question",
-        name: `What security grade does ${repo_name} have?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${repo_name} is graded ${g.label} by AgentSkillsHub's rule-based security scan (SlowMist 11 red-flag categories). ${g.verdictEn}`,
-        },
-      },
-    ],
-  }, null, 2);
 
   const breadcrumbLd = JSON.stringify({
     "@context": "https://schema.org",
@@ -192,9 +174,6 @@ function pageHtml(skill, related = []) {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@GoSailGlobal" />
   <link rel="canonical" href="${esc(pageUrl)}" />
-  <script type="application/ld+json">
-${faqLd}
-  </script>
   <script type="application/ld+json">
 ${breadcrumbLd}
   </script>

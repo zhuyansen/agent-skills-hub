@@ -3,17 +3,25 @@
  *
  * Key changes from V1:
  *   - noindex for low-quality pages (stars < 50 or no README + no description)
- *   - README excerpt expanded to 600+ chars for Google's 500-word quality gate
- *   - FAQ section auto-generated per page
  *   - "Same Category" links block (top 10 by stars in same category)
  *   - "Same Language" links block (top 5 by stars in same language)
- *   - Content word-count targets: 500+ for indexed pages
+ *
+ * 2026-10-18, after reading Google's own docs (checked 2026-10-17):
+ *   - The page opens with what only we have, the install command we found and the
+ *     scan verdict; the README excerpt is a short summary further down. Google's
+ *     "main content" guidance (creating-helpful-content, 2026-10-08) calls pages
+ *     built from a feed near-zero effort, and attribution does not change that.
+ *   - No FAQ block and no FAQPage JSON-LD: Google stopped showing FAQ results on
+ *     2026-05-07, and the questions repeated sections already on the page. The old
+ *     "500-word quality gate" does not exist; Google has no preferred word count.
+ *   - Titles come from src/lib/skillTitle.mjs, shared with the React page.
  *
  * Run: node scripts/generate-skill-pages.mjs  (after vite build)
  */
 
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
+import { skillTitle, headingClause, TITLE_FALLBACK } from "../src/lib/skillTitle.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -70,6 +78,13 @@ const TOPIC_SCENARIO = (() => {
 })();
 
 const CHIP_STYLE = "display:inline-block;padding:2px 10px;border-radius:12px;background:#f0f0ff;color:#4f46e5;font-size:13px;text-decoration:none";
+
+/** The README is background now, not the body of the page: one short paragraph. */
+const README_EXCERPT_CHARS = 400;
+
+/** What the quality number means, shown next to it (backend/app/services/quality_analyzer.py). */
+const QUALITY_NOTE =
+  "The quality score combines nine heuristic checks of the repo and its README: completeness, clarity, specificity, examples, structure, agent readiness, step-by-step content, instruction quality and security notes. It rates how well the project explains itself to an agent, not the code.";
 
 function topicChip(topic) {
   const sc = TOPIC_SCENARIO.get(topic.toLowerCase());
@@ -192,7 +207,6 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // indexed page slug. The SPA already reads repo_url — the static shell used
   // to disagree with it, so crawlers saw a stale link the hydrated page didn't.
   const ghUrl = repo_url || `https://github.com/${repo_full_name}`;
-  const ghLabel = ghUrl.replace(/^https?:\/\//, "");
   // Repos that 404 on GitHub (deleted, or the owning account was removed).
   // These pages stay indexed on purpose: "what happened to <repo>?" is a real
   // query with real volume — /skill/Manavarya09/design-extract/ still ranks
@@ -295,10 +309,14 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // under a second self-canonical URL. "install" is only promised when the README
   // gave us a command to show.
   const installs = isGone ? [] : skill.install_commands || [];
-  const intent = installs.length ? "what it is, how to install & alternatives" : "what it is & alternatives";
+  const intent = installs.length ? "what it is, how to install & alternatives" : TITLE_FALLBACK;
   // No "| Agent Skills Hub": Google prints the site name above the title, and the
   // suffix pushed the median title to 83 characters, past what the SERP shows.
-  const title = `${repo_full_name}: ${intent}`;
+  // 2026-10-18: the part that varies is the repo's own description (skillTitle.mjs),
+  // the same function the React page uses for its <title>. Deleted repos keep the old
+  // title: /skill/Manavarya09/design-extract/ earns its CTR with it.
+  const title = isGone ? `${repo_full_name}: ${TITLE_FALLBACK}` : skillTitle(repo_full_name, repo_name, description);
+  const h1Clause = isGone ? "" : headingClause(repo_name, description);
   // Lead the snippet with the VERDICT, not the repo's own blurb.
   //
   // Nearly every query these pages win is what Google's rater guidelines call a
@@ -334,7 +352,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     const q = typeof quality_score === "number" ? Math.round(quality_score) : null;
     return `<section style="margin:0 0 16px;padding:14px 16px;border:1px solid ${br};background:${bg};border-radius:10px">
         <h2 style="font-size:16px;color:${fg};margin:0 0 6px">Security audit verdict: ${esc(gradeLabel)}${q !== null ? ` \u00b7 quality ${q}/100` : ""}</h2>
-        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>
+        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>${q !== null ? `
+        <p style="margin:6px 0 0;line-height:1.6;color:${fg};font-size:13px">${esc(QUALITY_NOTE)}</p>` : ""}
       </section>`;
   })();
   const qualityPart = typeof quality_score === "number"
@@ -367,10 +386,10 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
   if (!isGone) metaDesc = describeFor(repo_name, description, installs, LIMIT);
 
-  // README excerpt — expanded to 1200 chars for content depth (improves indexability)
+  // README excerpt: a short summary below our own data (see the file header)
   const readmeText = stripMarkdown(readme_content);
   const excerpt = readmeText
-    ? truncate(readmeText, 1200)
+    ? truncate(readmeText, README_EXCERPT_CHARS)
     : (description || `${repo_name} is a ${catLabel.toLowerCase()} by ${author_name}.`);
 
   const topicsList = parseJsonArray(topics);
@@ -398,40 +417,6 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 
   // Alternatives — topic overlap + similar size, different author, same category preferred
   const alternatives = findAlternatives(skill, categoryIndex, topicIndex, 6);
-
-  // Auto-generated FAQ
-  const faqItems = [];
-  faqItems.push({
-    q: `What is ${repo_name}?`,
-    a: description
-      ? `${repo_name} is ${description.slice(0, 200)}. It is categorized as a ${catLabel} with ${starsK(stars)} GitHub stars.`
-      : `${repo_name} is an open-source ${catLabel.toLowerCase()} by ${author_name} with ${starsK(stars)} GitHub stars.`,
-  });
-  if (language) {
-    faqItems.push({
-      q: `What programming language is ${repo_name} written in?`,
-      a: `${repo_name} is primarily written in ${language}. ${topicsList.length > 0 ? `It covers topics such as ${topicsList.slice(0, 3).join(", ")}.` : ""}`,
-    });
-  }
-  faqItems.push({
-    q: `How do I install or use ${repo_name}?`,
-    a: installs.length
-      ? `The README on GitHub (${ghLabel}) gives: ${installs.join(" , then ")}. Usage details are in the same README.`
-      : `You can find installation instructions and usage details in the ${repo_name} GitHub repository at ${ghLabel}. The project has ${starsK(stars)} stars and ${forks} forks, indicating an active community.`,
-  });
-  if (license && license !== "NOASSERTION") {
-    faqItems.push({
-      q: `What license does ${repo_name} use?`,
-      a: `${repo_name} is released under the ${license} license, making it free to use and modify according to the license terms.`,
-    });
-  }
-  if (alternatives.length > 0) {
-    const altNames = alternatives.slice(0, 3).map((a) => a.repo_name).join(", ");
-    faqItems.push({
-      q: `What are the best alternatives to ${repo_name}?`,
-      a: `The top alternatives to ${repo_name} on Agent Skills Hub include ${altNames}. Each offers a different approach to the same problem space — compare them side-by-side by stars, quality score, and community activity.`,
-    });
-  }
 
   // JSON-LD: SoftwareSourceCode
   const jsonLd = JSON.stringify({
@@ -464,17 +449,6 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
       { "@type": "ListItem", position: 2, name: catLabel, item: `${SITE}/category/${category}/` },
       { "@type": "ListItem", position: 3, name: repo_name, item: pageUrl },
     ],
-  });
-
-  // JSON-LD: FAQPage
-  const faqLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
   });
 
   const { scriptTags, linkTags } = assetTags;
@@ -552,15 +526,6 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
       </section>`
     : "";
 
-  // FAQ HTML
-  const faqHtml = `<section style="margin-top:24px">
-      <h2 style="font-size:18px;color:#1e293b;margin-bottom:12px">Frequently Asked Questions</h2>
-      ${faqItems.map((f) => `<details style="margin:8px 0;border:1px solid #e2e8f0;border-radius:8px;padding:12px">
-        <summary style="cursor:pointer;font-weight:500;color:#1e293b">${esc(f.q)}</summary>
-        <p style="margin:8px 0 0;color:#475569;line-height:1.6">${esc(f.a)}</p>
-      </details>`).join("\n      ")}
-    </section>`;
-
   // noindex meta tag for low-quality pages
   const robotsMeta = indexed
     ? ""
@@ -605,10 +570,6 @@ ${jsonLd}
   <script type="application/ld+json">
 ${breadcrumbLd}
   </script>
-  <!-- JSON-LD: FAQPage -->
-  <script type="application/ld+json">
-${faqLd}
-  </script>
 
   <link rel="preconnect" href="https://vknzzecmzsfmohglpfgm.supabase.co" />
   <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
@@ -629,14 +590,10 @@ ${faqLd}
       </nav>
 
       <!-- Title & Author -->
-      <!-- h1 keeps repo_name first so it still matches the query verbatim, then
-           states the verdict. Google's §20.0 puts "reviews and reputation
-           information" in the helpful bucket for URL queries and "usage
-           statistics" in the unhelpful one; the old heading ("X — Codex Skill
-           by Y") was neither, and the audit result — the only thing here that
-           GitHub does not already show — appeared nowhere above the fold. -->
+      <!-- h1 keeps repo_name first so it still matches the query verbatim, then says
+           what the repo is in its own words (headingClause), else the page's intent. -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}${
-        isGone ? " — repository deleted, archived audit" : `: ${intent}`
+        isGone ? " — repository deleted, archived audit" : `: ${esc(h1Clause || intent)}`
       }</h1>
       ${goneBanner}
       <p style="color:#64748b;margin:0 0 8px">
@@ -648,22 +605,15 @@ ${faqLd}
       <p style="color:#94a3b8;font-size:13px;margin:0 0 16px">
         ${last_commit_at ? `Last updated: <time datetime="${last_commit_at}">${formatDate(last_commit_at)}</time> &middot; ` : ""}Indexed by AgentSkillsHub &middot; Auto-synced every 8h
       </p>
-      ${hasAudit ? `<p style="margin:0 0 16px">
+      ${hasAudit && !verdictBlock ? `<p style="margin:0 0 16px">
         <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">&#128274; Is ${esc(repo_name)} safe to install? View the security audit &rarr;</a>
       </p>` : ""}
       ${scenariosFeaturing.length ? `<p style="margin:0 0 16px;font-size:14px;color:#475569">
         Featured in: ${scenariosFeaturing.map((s) => `<a href="/best/${esc(s.slug)}/" style="color:#4f46e5;text-decoration:none">${esc(s.title)}</a>`).join(" &middot; ")}
       </p>` : ""}
 
-      <!-- README Excerpt -->
-      <section style="margin:20px 0">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">About ${esc(repo_name)}</h2>
-        <p style="line-height:1.6;color:#475569">${esc(excerpt)}</p>
-      </section>
-
+      <!-- What only this page has comes first: the install command we found, then the scan verdict -->
       ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null)}
-
-      <!-- Security verdict: kept on the page, below what it is and how to install it -->
       ${verdictBlock}
 
       <!-- Topics -->
@@ -677,6 +627,12 @@ ${faqLd}
         </table>
       </section>
 
+      <!-- README summary: background, after our own data -->
+      <section style="margin:20px 0">
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">About ${esc(repo_name)}</h2>
+        <p style="line-height:1.6;color:#475569">${esc(excerpt)}</p>
+      </section>
+
       <!-- Compatible Skills -->
       ${compsHtml}
 
@@ -688,9 +644,6 @@ ${faqLd}
 
       <!-- Same Language -->
       ${sameLangHtml}
-
-      <!-- FAQ -->
-      ${faqHtml}
 
       <!-- Trust / methodology (E-E-A-T: how the grade is made, who is responsible) -->
       ${trustBlock()}

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { useI18n } from "../i18n/I18nContext";
 import type { TransKey } from "../i18n/translations";
 
@@ -15,25 +14,10 @@ export function FAQSection() {
   const { t } = useI18n();
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_KEYS.map((item) => ({
-      "@type": "Question",
-      name: t(item.q as TransKey),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: t(item.a as TransKey),
-      },
-    })),
-  };
-
+  // No FAQPage JSON-LD: Google stopped showing FAQ results on 2026-05-07
+  // (developers.google.com/search/updates, checked 2026-10-17). The questions stay for readers.
   return (
     <section className="mb-10">
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
-
       <div className="flex items-center gap-2 mb-4">
         <svg
           className="w-5 h-5 text-blue-400"

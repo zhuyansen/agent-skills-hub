@@ -666,15 +666,8 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     },
   ].filter(Boolean);
 
-  const faqLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  });
+  // No FAQPage JSON-LD: Google stopped showing FAQ results on 2026-05-07 (search/updates, checked
+  // 2026-10-17). The questions stay on the page for readers.
 
   // Skill cards HTML
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
@@ -797,9 +790,6 @@ ${itemListLd}
   </script>
   <script type="application/ld+json">
 ${breadcrumbLd}
-  </script>
-  <script type="application/ld+json">
-${faqLd}
   </script>
 ${videoLd(scenario)}
 ${methodLd(scenario, pageUrl)}

@@ -11,6 +11,7 @@ import { SecurityBadge } from "../components/SecurityBadge";
 import { AuditVerdictCard } from "../components/AuditVerdictCard";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
+import { skillTitle, TITLE_FALLBACK } from "../lib/skillTitle.mjs";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -126,6 +127,13 @@ export function SkillDetailPage() {
     );
   }
 
+  // Same title as the static page (scripts/generate-skill-pages.mjs). Google renders this
+  // page, so this is the <title> it indexes; deleted repos keep the old one on both.
+  const pageTitle =
+    detail.repo_status === "gone"
+      ? `${detail.repo_full_name}: ${TITLE_FALLBACK}`
+      : skillTitle(detail.repo_full_name, detail.repo_name, detail.description);
+
   const ogDescription = detail.description
     ? `${detail.description.slice(0, 120)} Open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} stars.`
     : `${detail.repo_name} is an open-source ${detail.category} by ${detail.author_name} with ${detail.stars.toLocaleString()} GitHub stars.`;
@@ -134,7 +142,7 @@ export function SkillDetailPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* SEO Meta Tags */}
       <Helmet>
-        <title>{`${detail.repo_full_name} — security grade & quality score | Agent Skills Hub`}</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={ogDescription} />
         {/* Open Graph */}
         <meta
