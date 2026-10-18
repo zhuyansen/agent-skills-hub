@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-18
+1. Enhed/clawd-usage-winwidget — 🆕 在 Windows 托盘用小挂件实时显示 Claude 用量额度，像素 Clawd 随会话做出反应（53★ 40.7/day）
+2. LumaryLabsLLC/muxin — 🆕 把你所有机器装进一个应用，人和智能体都能跨设备管会话、桌面、文件与日志（251★ 27.1/day）
+3. TonF1917/claude-desktop-multiple-windows-different-api — 🆕 让 Claude Desktop 同时开多个窗口，各自接不同 API 且保留官方订阅（84★ 23.8/day）
+4. openbin-ai/binny — 🆕 开源逆向工程智能体框架，可接任意模型或本地模型分析二进制（141★ 18.1/day）
+5. yangsir2077/pixel-loom — 🆕 用 MCP 让 AI 直接创作像素画与帧动画的开源编辑器，附 Windows 便携版（26★ 12.0/day）
+6. zgcagi/Harness-RSI — 梳理智能体框架自我进化的目标、理论、评测与证据，附中英双语阅读清单（168★ 10.2/day）
+7. reacher-z/Awesome-REA — 🆕 汇总逆向网站、游戏与应用的工具、项目、案例和论文，一站式入门逆向（20★ 10.1/day）
+8. midudev/better-claude — 🆕 收集一组让 Claude Code 更顺手的小插件和改造，开箱即用（81★ 6.4/day）
+9. arla6ka/design.how — 从你的应用生成设计系统，再交给智能体按规范交付界面（124★ 6.3/day）
+10. savannahfeder/agentbox — 用桌面界面并行跑几十个 Claude Code 与 Codex 智能体，各占独立 git worktree（78★ 3.9/day）
+🎯 今日趋势：**7 席**标 🆕；Claude/Codex 桌面周边工具占 **4 席**（用量挂件、多窗口多 API、Claude Code 小插件、并行智能体 GUI），逆向工程连续第 3 天上榜、今天占 **2 席**（BINNY、Awesome-REA）。
+> 注：去重范围＝repo 内 archive 全部 115 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,895 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询：`first_seen ≥72h`、stars ≥20、`created_at ≥30 天内`，得 56 条、命中历史 27 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个以上合格，未放宽到 72h（riecodes/free247editor、jangtrinh/design-os-studio 因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①anujasid/blender-ai-mcp-addon（404★ 194.7/day）：即 10-17 排除的同一账号（10-15 新建、0 粉、仅 1 仓），换仓名再次单仓爆星；②yushua0808-cpu/dragon-codex-boot（189★ 16.5/day）：账号 09-21 新建、0 粉、仅此 1 仓，单仓爆星；③jatechan/ai-data-extractor（149★ 23.9/day）：账号 08-18 新建、0 粉、另一仓 0★，单仓爆星，且读取各家 AI 助手聊天记录，保守排除；④aph199686/zhangyi-studio（112★ 6.7/day）：账号 0 粉、仅 1 仓、实时 118★ 却 0 fork；⑤opendevicedb/opendevicedb（20★ 20.0/day）：组织 10-17 新建、0 粉、仅 1 仓，按新建组织先例排除；⑥Krexa-xyz/skills（31★ 20.1/day）：组织 1 粉、仅 1 仓，且为交易智能体，保守排除；⑦其余均已在历史榜单出现，不再复评。Willclaf/disco-livre（20★ 3.7/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 Enhed 2018 建号、5 粉、其余仓 ≤4★（**轻红旗**，fork 3、描述具体、量级小，保留）；第 2 席 LumaryLabsLLC 2026-01 建的组织、4 粉，名下另有 hyperkeysapp 40★，fork 43；第 3 席 TonF1917 2026-03 建号、1 粉，名下另有 Trace 78★，fork 4；第 4 席 openbin-ai 2026-06 建的组织、20 粉，名下另有 platform 66★，fork 17；第 5 席 yangsir2077 2026-03 建号、0 粉、其余仓 0★（**轻红旗**，fork 3、量级小、中文描述具体，保留）；第 6 席 zgcagi 2026-07 建的组织、10 粉，名下 ZGCM-1 634★；第 7 席 reacher-z 2020 建号、58 粉、名下 HarnessBench 62★，fork 14；第 8 席 midudev 2012 建号、39,803 粉、名下 autoskills 6,955★；第 9 席 arla6ka 2023 建号、79 粉，fork 10；第 10 席 savannahfeder 2020 建号、19 粉。🆕 判定＝created_at 距今 14 天内，Harness-RSI（16.5 天）、design.how（19.7 天）、agentbox（19.9 天）不标，其余七席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（muxin 278★、claude-desktop-multiple-windows 107★），按红线保留快照值。
+
+---
+
 ## 2026-10-17
 1. Leonxlnx/earshot — 🆕 给编程智能体装上耳朵，能听、能审、能生成声音，纯 CPU 运行且开源（283★ 163.9/day）
 2. christos-antono/NPCTalk — 🆕 用 Fish Audio 让任意游戏里的 NPC 开口对话，附技能与自托管语音服务（62★ 60.3/day）
