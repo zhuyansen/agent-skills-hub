@@ -647,3 +647,11 @@
 .bp-tr-clip { margin: 0; }
 .bp-tr-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; border: 1px solid var(--bp-border); background: #000; }
 .bp-tr-clip figcaption { font-size: 13px; margin-top: 6px; color: var(--bp-text); }
+
+/* Install line on scenario cards: copy without leaving the page (2026-10-18).
+   Same terminal colours as .bp-code, so it reads as a command in both themes. */
+.bp-sc-install { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 6px 6px 12px; background: var(--bp-code-bg); border-radius: 6px; min-width: 0; }
+.bp-sc-install code { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: thin; white-space: nowrap; font-size: 12.5px; font-family: monospace; color: var(--bp-code-text); }
+.bp-copy { flex: none; font-size: 12px; padding: 3px 10px; border-radius: 5px; border: 1px solid rgba(226, 232, 240, 0.3); background: transparent; color: var(--bp-code-text); cursor: pointer; }
+.bp-copy:hover { border-color: var(--bp-code-text); }
+.bp-copy:focus-visible { outline: 2px solid var(--bp-link); outline-offset: 2px; }

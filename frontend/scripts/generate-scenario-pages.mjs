@@ -17,6 +17,7 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
+import { installCommands } from "./skill-install.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
@@ -61,7 +62,31 @@ const GITHUB_ICON = '<svg width="16" height="16" fill="currentColor" aria-hidden
 // onclick on each; links inside a card keep their own target.
 const CARD_SCRIPT = `<script>
 document.addEventListener("click", function (e) {
-  if (e.target.closest("a")) return;
+  var copy = e.target.closest(".bp-copy");
+  if (copy) {
+    var text = copy.dataset.copy;
+    var done = function () {
+      var zh = document.documentElement.lang.indexOf("zh") === 0;
+      copy.textContent = zh ? "已复制" : "Copied";
+      setTimeout(function () { copy.textContent = zh ? "复制" : "Copy"; }, 1500);
+    };
+    // Some browsers and in-app views refuse the clipboard API: select the command and
+    // fall back to execCommand, and say "Copied" only when a copy really happened.
+    var fallback = function () {
+      var code = copy.parentElement.querySelector("code");
+      var range = document.createRange();
+      range.selectNodeContents(code);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      try { if (document.execCommand("copy")) done(); } catch (err) { /* text stays selected */ }
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+    if (window.gtag) window.gtag("event", "copy_install", { repo: copy.dataset.repo || "" });
+    return;
+  }
+  if (e.target.closest("a, button")) return;
   var card = e.target.closest(".bp-card[data-href]");
   if (card) window.location.href = card.dataset.href;
 });
@@ -73,6 +98,8 @@ const POPULAR_SCENARIOS = [
   "ai-design", "image-generation", "knowledge-base", "obsidian-second-brain", "anti-slop",
   "skill-management-tools", "mcp-database", "browser-automation", "code-review",
 ];
+// Copy buttons and the copy_install event keep the visitor on the ranking page
+// (v8 "behaviour stays on the page"): installing used to mean a trip to GitHub.
 // Bump when best-pages.css gains rules the scenario HTML depends on, so a cached
 // stylesheet never meets newer markup.
 /** How to name a page's leading entries in prose: by repo, or by owner/repo when the first
@@ -83,7 +110,7 @@ function leadLabel(skills) {
   return (s) => (repeats ? s.repo_full_name : s.repo_name);
 }
 
-const CSS_VERSION = "20261011";
+const CSS_VERSION = "20261018";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -688,7 +715,14 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     const starsNote = s.sub_path
       ? `<span data-en="&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}" data-zh="&#9733; ${starsK(s.stars)} · 所在仓库 ${esc(s.repo_full_name)}">&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}</span>`
       : `<span>&#9733; ${starsK(s.stars)}</span>`;
-    const qs = extractQuickStart(s.readme_content);
+    const install = (s.install_commands || [])[0];
+    const installHtml = install
+      ? `<div class="bp-sc-install">
+          <code>${esc(install)}</code>
+          <button type="button" class="bp-copy" data-copy="${esc(install)}" data-repo="${esc(s.repo_full_name)}" data-en="Copy" data-zh="复制">Copy</button>
+        </div>`
+      : "";
+    const qs = install ? null : extractQuickStart(s.readme_content);
     const qsHtml = qs
       ? `<div style="margin-top:8px;padding:8px 12px;background:var(--bp-bg-alt);border-radius:6px;font-size:13px">
           ${biSpan("Quick Start:", "快速上手：", { tag: "strong", attrs: 'style="color:var(--bp-text-slate)"' })}
@@ -712,6 +746,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         </div>
         <p class="bp-card-desc bp-sc-desc" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
         ${runLineHtml(run, s)}
+        ${installHtml}
         ${qsHtml}
         <div class="bp-sc-foot">
           <a class="bp-sc-gh" href="${esc(githubUrl)}" aria-label="${esc(s.repo_full_name)} on GitHub" title="GitHub">${GITHUB_ICON}</a>
@@ -945,10 +980,16 @@ async function main() {
 
   // readme_content is no longer in the bulk catalog — pull it only for the
   // stars-gated subset (matches below the floor degrade to no quick-start).
-  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE);
+  // The full README feeds the card's install line (same rules as the skill page:
+  // only commands that name the repo, copied from the README).
+  const nameById = new Map(allSkills.map((s) => [s.id, s.repo_name]));
+  const installsById = new Map();
+  const readmes = await fetchReadmeMap(MIN_STARS_FOR_PAGE,
+    (id, full) => installsById.set(id, installCommands(full, nameById.get(id))));
   for (const s of allSkills) {
     const r = readmes.get(s.id);
     if (r) s.readme_content = r;
+    s.install_commands = installsById.get(s.id) || [];
   }
 
   // Generate pages
