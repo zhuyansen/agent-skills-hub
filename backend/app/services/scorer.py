@@ -4,14 +4,21 @@ import math
 from datetime import datetime, timezone
 from typing import List
 
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
 from app.services.platform_inferrer import PlatformInferrer
 from app.services.quality_analyzer import QualityAnalyzer
+from app.services.skill_batches import commit_batch
 from app.services.token_estimator import TokenEstimator
 
 logger = logging.getLogger(__name__)
+
+UPDATE_SCORE = text("UPDATE skills SET score = :score, star_momentum = :momentum WHERE id = :id")
+# Progress line every this many scores written
+SCORE_LOG_EVERY = 2000
 
 
 class ScoringEngine:
@@ -116,7 +123,6 @@ class ScoringEngine:
 
         # Load lightweight tuples for global normalization stats
         # (avoids loading full ORM objects for 54K+ skills)
-        from sqlalchemy import text
         rows = db.execute(text(
             "SELECT id, stars, forks, author_followers, total_commits, "
             "prev_stars, open_issues, total_issues, last_commit_at, "
@@ -190,24 +196,28 @@ class ScoringEngine:
 
         # Bulk UPDATE via raw SQL in batches (much faster than ORM)
         logger.info("Updating scores for %d skills via bulk SQL", len(updates))
-        for batch_start in range(0, len(updates), batch_size):
-            batch = updates[batch_start:batch_start + batch_size]
-            for item in batch:
-                db.execute(text(
-                    "UPDATE skills SET score = :score, "
-                    "star_momentum = :momentum WHERE id = :id"
-                ), {"score": item["score"],
-                    "momentum": item["star_momentum"],
-                    "id": item["id"]})
-            db.commit()
-            if (batch_start + batch_size) % 2000 == 0 or \
-               batch_start + batch_size >= len(updates):
-                logger.info("Score update: %d/%d",
-                            min(batch_start + batch_size, len(updates)),
-                            len(updates))
+        written = self._write_scores(db, updates, batch_size)
+        logger.info("Scored %d skills", written)
+        return written
 
-        logger.info("Scored %d skills", len(updates))
-        return len(updates)
+    @staticmethod
+    def _write_scores(db: Session, updates: list[dict], batch_size: int) -> int:
+        """Write scores a batch at a time; a batch that fails is rolled back and skipped, not fatal."""
+        written = 0
+        for start in range(0, len(updates), batch_size):
+            batch = updates[start:start + batch_size]
+            try:
+                for item in batch:
+                    db.execute(UPDATE_SCORE, {"score": item["score"], "momentum": item["star_momentum"], "id": item["id"]})
+            except SQLAlchemyError as exc:
+                logger.error("Score update: batch at %d failed: %s", start, exc)
+                db.rollback()
+                continue
+            if commit_batch(db, "Score update", start + len(batch)):
+                written += len(batch)
+            if (start + batch_size) % SCORE_LOG_EVERY == 0 or start + batch_size >= len(updates):
+                logger.info("Score update: %d/%d", min(start + batch_size, len(updates)), len(updates))
+        return written
 
     @staticmethod
     def _log_normalize(log_value: float, all_log_values: List[float]) -> float:

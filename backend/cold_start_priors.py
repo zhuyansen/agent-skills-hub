@@ -65,7 +65,7 @@ def _connect():
 
 def _new_repos(engine) -> list[dict]:
     with engine.connect() as conn:
-        conn.execute(text(f"set statement_timeout = '{STATEMENT_TIMEOUT}'"))
+        conn.execute(text(f"set local statement_timeout = '{STATEMENT_TIMEOUT}'"))
         rows = conn.execute(NEW_REPOS, {"lookback": LOOKBACK_DAYS, "lim": MAX_SCORE}).mappings().all()
     return [dict(r) for r in rows]
 

@@ -7,7 +7,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
-from app.services.skill_batches import skill_batches
+from app.services.skill_batches import commit_batch, skill_batches
 
 logger = logging.getLogger(__name__)
 
@@ -70,12 +70,13 @@ class PlatformInferrer:
     def infer_all(self, db: Session, batch_size: int = 500,
                   repo_names: list[str] | None = None) -> int:
         """Infer platforms for skills. If repo_names given, only those."""
-        count = 0
+        seen = count = 0
         for batch in skill_batches(db, repo_names, batch_size):
             for skill in batch:
                 skill.platforms = json.dumps(self._infer(skill))
-            db.commit()
-            count += len(batch)
+            seen += len(batch)
+            if commit_batch(db, "Platform inference", seen):
+                count += len(batch)
         logger.info("Platform inference: %d skills", count)
         return count
 

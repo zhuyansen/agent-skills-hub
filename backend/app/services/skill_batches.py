@@ -8,14 +8,24 @@ most rows had no README and an hour once they did, and the sync hit its two-hour
 limit (2026-09-27 19:26 and 2026-09-28 03:03).
 
 Here a batch is loaded, handled, committed, and not touched again.
+
+A batch whose commit fails is rolled back and skipped (commit_batch), the way the
+upsert treats its batches. One failed commit used to end the whole sync: on
+2026-10-18 12:39 a statement timeout left on a pooled connection by another client
+cancelled the first quality batch, and the run, its deploy and the cold-start
+priors all stopped there.
 """
 from __future__ import annotations
 
+import logging
 from collections.abc import Iterator
 
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
+
+logger = logging.getLogger(__name__)
 
 
 def skill_batches(db: Session, repo_names: list[str] | None, batch_size: int) -> Iterator[list[Skill]]:
@@ -41,3 +51,14 @@ def _all(db: Session, batch_size: int) -> Iterator[list[Skill]]:
             return
         last_id = batch[-1].id  # read before the caller's commit expires the row
         yield batch
+
+
+def commit_batch(db: Session, what: str, done: int) -> bool:
+    """Commit one batch. On a database error, log it, roll back and return False so the next batch still runs."""
+    try:
+        db.commit()
+        return True
+    except SQLAlchemyError as exc:
+        logger.error("%s: batch commit failed at %d: %s", what, done, exc)
+        db.rollback()
+        return False

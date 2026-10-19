@@ -1,6 +1,6 @@
 from typing import Generator
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 from sqlalchemy.pool import NullPool
 
@@ -22,6 +22,22 @@ elif "pooler.supabase.com" in settings.database_url or settings.database_url.sta
 
 engine = create_engine(settings.database_url, connect_args=connect_args, **engine_kwargs)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Supabase's transaction pooler (port 6543) gives each transaction a pooled backend
+# connection, and a session-level SET another client left on it applies to us too:
+# on 2026-10-18 a review script's `SET statement_timeout = '30s'` cancelled the sync's
+# writes after ~50 s and the run failed. Re-assert the database default at the start of
+# every transaction, scoped to that transaction, so a leaked value never reaches us.
+STATEMENT_TIMEOUT = "120s"
+
+
+def _own_statement_timeout(conn) -> None:
+    conn.exec_driver_sql(f"SET LOCAL statement_timeout = '{STATEMENT_TIMEOUT}'")
+
+
+if engine.dialect.name == "postgresql":
+    event.listen(engine, "begin", _own_statement_timeout)
+
 Base = declarative_base()
 
 

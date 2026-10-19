@@ -1,6 +1,8 @@
 """One query per batch, and no row touched after its batch was committed."""
 from types import SimpleNamespace
 
+from sqlalchemy.exc import OperationalError
+
 from app.services import skill_batches as sb
 from app.services.quality_analyzer import QualityAnalyzer
 from app.services.token_estimator import TokenEstimator
@@ -75,3 +77,26 @@ def test_no_analyzer_loads_everything_at_once():
     for fn in (QualityAnalyzer.analyze_all, TokenEstimator.estimate_all):
         src = inspect.getsource(fn)
         assert "skill_batches(" in src and ".all()" not in src
+
+
+class _TimingOutDb(_Db):
+    """Its commit for the given batch numbers fails the way a cancelled statement does."""
+
+    def __init__(self, n, failing):
+        super().__init__(n)
+        self.failing, self.rollbacks = set(failing), 0
+
+    def commit(self):
+        self.commits += 1
+        if self.commits in self.failing:
+            raise OperationalError("UPDATE skills", {}, Exception("canceling statement due to statement timeout"))
+
+    def rollback(self):
+        self.rollbacks += 1
+
+
+def test_a_failed_batch_is_rolled_back_and_the_other_batches_still_commit():
+    db = _TimingOutDb(1200, failing={1})
+    written = TokenEstimator().estimate_all(db, batch_size=500, repo_names=[r.repo_full_name for r in db.rows])
+    assert (db.commits, db.rollbacks, written) == (3, 1, 700)
+

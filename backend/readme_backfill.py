@@ -162,7 +162,7 @@ class Writer:
 def candidates(url: str, floor: int, cap: int) -> list[str]:
     import psycopg2
     with psycopg2.connect(url) as conn, conn.cursor() as cur:
-        cur.execute("SET statement_timeout = '60s'")
+        cur.execute("SET LOCAL statement_timeout = '60s'")
         cur.execute(CANDIDATE_SQL, {"floor": floor, "cap": cap})
         return [r[0] for r in cur.fetchall()]
 
@@ -170,7 +170,7 @@ def candidates(url: str, floor: int, cap: int) -> list[str]:
 def count_first_tier(url: str) -> int:
     import psycopg2
     with psycopg2.connect(url) as conn, conn.cursor() as cur:
-        cur.execute("SET statement_timeout = '60s'")
+        cur.execute("SET LOCAL statement_timeout = '60s'")
         cur.execute(COUNT_SQL, {"floor": DEFAULT_FLOOR})
         return cur.fetchone()[0]
 

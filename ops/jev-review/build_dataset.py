@@ -90,7 +90,7 @@ def items_for(row: dict, pats: dict) -> list[dict]:
 def main() -> None:
     eng = create_engine(dotenv_values(REPO / "backend/.env")["SUPABASE_DB_URL"], pool_pre_ping=True)
     with eng.connect() as conn:
-        conn.execute(text("SET statement_timeout = '120s'"))
+        conn.execute(text("SET LOCAL statement_timeout = '120s'"))
         rows = fetch_rows(conn)
     print(f"flagged rows with a README: {len(rows)}", file=sys.stderr)
 

@@ -108,7 +108,7 @@ def catalog_candidates(match: dict, skip: set[str]) -> list[dict]:
     import psycopg2
     since = (date.today() - timedelta(days=LOOKBACK_DAYS)).isoformat()
     with psycopg2.connect(db_url(), connect_timeout=30) as conn, conn.cursor() as cur:
-        cur.execute("SET statement_timeout = '60s'")
+        cur.execute("SET LOCAL statement_timeout = '60s'")
         cur.execute("SELECT repo_full_name, repo_name, coalesce(description,''), coalesce(topics,'[]'), stars, "
                     "created_at::date FROM skills WHERE stars >= %s AND (first_seen >= %s OR "
                     "(stars >= %s AND last_synced >= %s))", (gate.GATE_FLOOR, since, gate.PAGE_FLOOR, since))
@@ -244,7 +244,7 @@ def queue_and_grade(names: list[str]) -> dict:
         conn.commit()
     engine = create_engine(db_url().replace("postgres://", "postgresql://", 1), pool_pre_ping=True)
     db = sessionmaker(bind=engine)()
-    db.execute(text("SET statement_timeout = '30s'"))
+    db.execute(text("SET LOCAL statement_timeout = '30s'"))
     rows = {r[0]: r for r in db.execute(text(
         "SELECT repo_full_name, security_grade, coalesce(readme_size,0) FROM skills WHERE repo_full_name = ANY(:n)"),
         {"n": names})}

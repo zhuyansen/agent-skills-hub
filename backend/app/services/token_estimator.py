@@ -4,7 +4,7 @@ import logging
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
-from app.services.skill_batches import skill_batches
+from app.services.skill_batches import commit_batch, skill_batches
 
 logger = logging.getLogger(__name__)
 
@@ -45,12 +45,13 @@ class TokenEstimator:
     def estimate_all(self, db: Session, batch_size: int = 500,
                      repo_names: list[str] | None = None) -> int:
         """Estimate tokens for skills. If repo_names given, only those."""
-        count = 0
+        seen = count = 0
         for batch in skill_batches(db, repo_names, batch_size):
             for skill in batch:
                 skill.estimated_tokens = self._estimate(skill)
-            db.commit()
-            count += len(batch)
+            seen += len(batch)
+            if commit_batch(db, "Token estimation", seen):
+                count += len(batch)
         logger.info("Token estimation: %d skills", count)
         return count
 

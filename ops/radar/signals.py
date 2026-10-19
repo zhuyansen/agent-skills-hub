@@ -42,7 +42,7 @@ def github_rows() -> list[tuple]:
     from sqlalchemy import create_engine, text
     engine = create_engine(db_url().replace("postgres://", "postgresql://", 1), pool_pre_ping=True)
     with engine.connect() as conn:
-        conn.execute(text("SET statement_timeout = '60s'"))
+        conn.execute(text("SET LOCAL statement_timeout = '60s'"))
         rows = conn.execute(text(_ROWS), {"recent": RECENT_DAYS, "total": RECENT_DAYS + BASELINE_DAYS}).fetchall()
     engine.dispose()
     return rows

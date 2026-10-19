@@ -155,3 +155,29 @@ class TestFinalizeScore:
     def test_range_bounds(self):
         for r in (0.0, 0.1, 0.5, 0.704, 0.71, 1.0):
             assert 0.0 <= ScoringEngine.finalize_score(r) <= 100.0
+
+
+def test_a_score_batch_that_fails_is_skipped_not_fatal():
+    from sqlalchemy.exc import OperationalError
+
+    from app.services.scorer import ScoringEngine
+
+    class _Db:
+        def __init__(self):
+            self.commits = self.rollbacks = 0
+
+        def execute(self, stmt, params):
+            if params["id"] == 3:
+                raise OperationalError("UPDATE skills", {}, Exception("canceling statement due to statement timeout"))
+
+        def commit(self):
+            self.commits += 1
+
+        def rollback(self):
+            self.rollbacks += 1
+
+    db = _Db()
+    updates = [{"id": i, "score": 1.0, "star_momentum": 0.0} for i in range(1, 7)]
+    assert ScoringEngine._write_scores(db, updates, 2) == 4  # the batch holding id 3 is dropped
+    assert (db.commits, db.rollbacks) == (2, 1)
+

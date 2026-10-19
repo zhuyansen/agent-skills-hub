@@ -64,7 +64,7 @@ def record(rows: list[dict], today: date | None = None) -> int:
     """)
     engine = _engine()
     with engine.begin() as conn:
-        conn.execute(text("SET statement_timeout = '60s'"))
+        conn.execute(text("SET LOCAL statement_timeout = '60s'"))
         for r in rows:
             conn.execute(sql, {"term": r["term"], "today": today, "kinds": sorted(set(r["kinds"])),
                                "notes": r["signals"], "named": r.get("named"), "variants": r.get("variants", [])})
@@ -127,7 +127,7 @@ def review(today: date | None = None) -> dict:
     today = today or date.today()
     engine = _engine()
     with engine.connect() as conn:
-        conn.execute(text("SET statement_timeout = '60s'"))
+        conn.execute(text("SET LOCAL statement_timeout = '60s'"))
         due = conn.execute(text("""
             SELECT term, first_seen, variants FROM radar_leads
             WHERE reviewed_at IS NULL AND first_seen <= :cutoff ORDER BY first_seen LIMIT :n
