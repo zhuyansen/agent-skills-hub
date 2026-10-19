@@ -32,6 +32,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import aisa
+import meme_checks
 
 WINDOW_DAYS = 7
 STATE = "memes.json.gz"
@@ -39,6 +40,7 @@ SEEDS_DAYS = 21
 SEEDS_MAX = 8
 OPPORTUNITY_MIN = 0.55   # hotel lobby read 0.70 on 09-22, Bulin 47 0.65 on 10-10; on 10-19 ten of twelve trends were 0.50-0.56
 MAX_MEMES = 12
+CHECKS_MAX = 5           # trends a run that get the comment and competition checks (meme_checks.py)
 POST_CHARS = 160
 POSTS_PER_SOURCE = 25
 TAGS = 100
@@ -74,7 +76,9 @@ SYSTEM = (
 OPPORTUNITY = {"build_now": {"type": "noul", "instructions": {
     "question": "Could a one-purpose website or app that lets anyone make their own version of this trend (upload a "
                 "photo, get the video or image) win paying users this week?",
-    "focus": "`posts` are what was posted about it in the last week, with likes or views. Yes needs a visual format "
+    "focus": "`posts` are what was posted about it in the last week, with likes or views; `comments_wanting_their_own`, "
+             "when given, counts comments under its top videos asking how it was made, which app or site, or for a link "
+             "(fans mostly joke and praise, so a few percent already shows demand). Yes needs a visual format "
              "people want to be in or put someone into, whose recreations are themselves being posted, that AI "
              "makes in one step, and that is still rising (hotel lobby in September and Bulin 47 in October 2026 "
              "sold $5k-7k in their first week, both while CapCut templates for them existed). No for a trend past its "
@@ -291,27 +295,55 @@ def memes(snaps: Path, today: date | None = None) -> dict:
              if (m.get("score") or 0) >= OPPORTUNITY_MIN][:SEEDS_MAX]
     found = extract(posts, tags, seeds) if posts or tags else []
 
-    client, terms = jev(), []
     for m in found:
-        m["score"] = opportunity(client, {"trend": m["name"], "what": m["what"], "today": today.isoformat(),
-                                          "posts": [f"{PLATFORM_ZH[p['platform']]} {p['day'] or 'date unknown'} ♥{p['likes']} ▶{p['views']}: {p['text']}"
-                                                    for p in m["posts"][:6]],
-                                          "tiktok_hashtags": [f"#{t['tag']} curve {t['curve']}" for t in m["tags"]]})
         m["platforms"] = sorted({p["platform"] for p in m["posts"]} | ({"tags"} if m["tags"] else set()))
         prev = known.get(m["name"])
         m["first"] = prev["first"] if prev else today.isoformat()
         m["new"] = prev is None
-        known[m["name"]] = {"first": m["first"], "last": today.isoformat(), "score": m["score"], "query": m["query"]}
         # YouTube posts carry no date: a trend seen only there may be weeks old (hotel lobby, from
         # September, came back on 10-19 with twelve undated Shorts), so a lead needs a dated post
         m["dated"] = any(p["day"] for p in m["posts"]) or bool(m["tags"])
+
+    # Do people want their own? Comments under the new trends' top TikTok videos, before Jev
+    # reads them (meme_checks.intent). Only new, dated trends: the others cannot become leads.
+    fresh = sorted((m for m in found if m["new"] and m["dated"]),
+                   key=lambda m: -max((p["likes"] for p in m["posts"]), default=0))[:CHECKS_MAX]
+    try:
+        wanting, c = meme_checks.intent(fresh)
+        cost += c
+        for m in fresh:
+            m["intent"] = wanting.get(m["name"])
+    except Exception as exc:  # noqa: BLE001 — the trends still go out without it
+        errors.append(f"评论:{' '.join(str(exc).split())[:80]}")
+
+    client, terms = jev(), []
+    for m in found:
+        it = m.get("intent")
+        m["score"] = opportunity(client, {"trend": m["name"], "what": m["what"], "today": today.isoformat(),
+                                          "posts": [f"{PLATFORM_ZH[p['platform']]} {p['day'] or 'date unknown'} ♥{p['likes']} ▶{p['views']}: {p['text']}"
+                                                    for p in m["posts"][:6]],
+                                          "tiktok_hashtags": [f"#{t['tag']} curve {t['curve']}" for t in m["tags"]],
+                                          **({"comments_wanting_their_own": f"{it['wanting']} of {it['total']}",
+                                              "comment_quotes": it["quotes"]} if it else {})})
+        known[m["name"]] = {"first": m["first"], "last": today.isoformat(), "score": m["score"], "query": m["query"]}
         if m["new"] and m["dated"] and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
+            # Is it still open? Domains and Google's top 10 (meme_checks.competition), leads only.
+            if sum(1 for x in found if x.get("competition")) < CHECKS_MAX:
+                try:
+                    m["competition"], c = meme_checks.competition(m)
+                    cost += c
+                except Exception as exc:  # noqa: BLE001
+                    errors.append(f"{m['name']} 竞争:{' '.join(str(exc).split())[:60]}")
+            m["checks"] = meme_checks.summary(m)
             top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
             # `named` carries Jev's opportunity score: radar.judge() skips meme rows, so it is
             # what radar_leads keeps and the daily report's picks read back (radar.picks)
             terms.append({"term": m["query"], "recent": len(m["posts"]), "named": m["score"], "what": m["what"],
+                          "checks": m["checks"],
+                          # the daily picks get only this note back from radar_leads, so it carries the checks
                           "note": f"①梗 {'/'.join(PLATFORM_ZH[p] for p in m['platforms'])} {len(m['posts'])} 帖"
-                                  + (f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else ""),
+                                  + (f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else "")
+                                  + (f"｜{m['checks']}" if m["checks"] else ""),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],
                           "posts": [{"account": PLATFORM_ZH[p["platform"]], "likes": p["likes"], "url": p["url"], "text": p["text"]}
                                     for p in ([top] if top else [])]})
@@ -338,7 +370,8 @@ def section(b: dict) -> list[str]:
     found = b.get("memes") or []
     if not found:
         return lines + [f"今天没认出梗({b['posts']} 条帖子,{b['tags']} 个话题)"]
-    lines += ["| 梗 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 首次 |", "|---|---|---|---|---|---|---|---|"]
+    lines += ["| 梗 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 评论和竞争 | 首次 |",
+              "|---|---|---|---|---|---|---|---|---|"]
     for m in found:
         top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
         hot = (f"[♥{_n(top['likes'])} ▶{_n(top['views'])}]({top['url']})" if top and top["url"] else
@@ -348,7 +381,7 @@ def section(b: dict) -> list[str]:
         score = f"**{m['score']:.2f}**" if m["score"] is not None and m["score"] >= OPPORTUNITY_MIN else \
             f"{m['score']:.2f}" if m["score"] is not None else "—"
         lines.append(f"| {'🆕 ' if m['new'] else ''}**{m['name']}** | {m['query']} | {m['what'].replace('|', '/')} | {where} | "
-                     f"{hot} | {curve} | {score} | {m['first'][5:]} |")
+                     f"{hot} | {curve} | {score} | {meme_checks.summary(m) or '—'} | {m['first'][5:]} |")
     lines += ["", "Jev 机会 = Jev 判断“现在做一个单功能站或应用让人做自己的版本，这周能不能卖出去”。"
               "梗大约 4 天见顶，85% 的钱在头 72 小时(Bulin 47 的复盘),看到就要当天动手。"]
     return lines

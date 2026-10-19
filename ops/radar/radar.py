@@ -125,6 +125,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
                 row["what"] = r["what"]
             if r.get("window"):
                 row["window"] = r["window"]
+            if r.get("checks"):
+                row["checks"] = r["checks"]
     rows = list(out.values())
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
@@ -185,8 +187,13 @@ def picks(b: dict[str, dict]) -> list[str]:
         if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or t.get("now") == "fading":
             continue
         demand = (f";Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else "")
-        out.append(f"**{r['term']}**:AI 视频梗,Jev 机会 {r['named']:.2f}。{r.get('what') or r.get('note', '')}{demand}  \n"
-                   f"窗口:梗约 4 天见顶,85% 的钱在头 72 小时,**今天上线**。做法:单功能站(上传照片 → 生成你的版本),按次卖。")
+        note = r.get("note", "")
+        checks = r.get("checks") or (note.split("｜", 1)[1] if "｜" in note else "")
+        if "已经挤了" in checks:   # four or more tool sites in Google's top 10 (meme_checks.CROWDED)
+            continue
+        out.append(f"**{r['term']}**:AI 视频梗,Jev 机会 {r['named']:.2f}。{r.get('what') or note.split('｜', 1)[0]}{demand}  \n"
+                   + (f"{checks}。  \n" if checks else "")
+                   + f"窗口:梗约 4 天见顶,85% 的钱在头 72 小时,**今天上线**。做法:单功能站(上传照片 → 生成你的版本),按次卖。")
     for r in (x for x in uc.values() if x.get("decision") == "prioritize"):
         src = f",来自 {', '.join(r['names'])}" if r.get("names") else ""
         out.append(f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
