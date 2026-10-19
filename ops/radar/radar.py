@@ -1,7 +1,7 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
+                            [--skip-appstore] [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
 The source signals (①) change by the hour, the rest by the day, so they run apart:
@@ -15,6 +15,9 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ① HF       models new to Hugging Face's trending top 50 (source_signals.hf_new)
   ② breakout one new GitHub repo taking off on its own (breakout.breakouts)
   ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge)
+  ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
+             countries, the words it is sold on, how many copies already share them, and
+             its Xiaohongshu and Douyin posts (appstore.apps; about $0.10 a day through AIsa)
   ③ sitemaps pages competitors and LobeHub added since yesterday (sitemap_diff.diff)
   ③ new sites domains registered in the last 90 days that already rank (new_sites.py; Mondays,
              or --new-sites; about $0.26 through AIsa)
@@ -36,6 +39,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path[:0] = [str(HERE), str(ROOT / "ops/jev-review")]
+import appstore  # noqa: E402
 import breakout  # noqa: E402
 import new_sites  # noqa: E402
 import review  # noqa: E402
@@ -53,7 +57,7 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
     "focus": "`examples` are repo names, descriptions, posts or page paths where it appeared. 'opus 5.5', 'hyperframes', "
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
-KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
+KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
          "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
@@ -177,6 +181,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
                   f"{r['description'][:60].replace('|', '/')} |" for r in repos]
     else:
         lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
+    lines += appstore.section(b.get("appstore", {"skipped": True}))
 
     lines += _new_site_lines(b.get("newsite", {"skipped": True}))
     lines += ["", "### ④ GSC 首次出现的搜索词(新鲜数据,约晚 1 天)", ""]
@@ -210,7 +215,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines += _source_status(x, hf)
     bo = b["breakout"]
     lines += _rest_status(bo, gh, sm, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}))}(新词表的模型调用另计)")
+    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
 
 
@@ -239,6 +244,7 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
                  f"搜到 {bo['searched']} 个新仓库" + (",首次运行,没有昨天的星数" if bo.get("first_run") else ""))))
+    lines.append(appstore.status(b.get("appstore", {"skipped": True})))
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
     for site, s in sm.get("sites", {}).items():
@@ -311,6 +317,7 @@ def main() -> int:
         "x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
         "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
         "breakout": run("breakout", lambda: breakout.breakouts(snaps), "--skip-breakout" in flags),
+        "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),
         "sitemap": run("sitemaps", lambda: sitemap_diff.diff(snaps), "--skip-sitemaps" in flags),
         "newsite": run("newsite", lambda: new_sites.new_sites(snaps),
