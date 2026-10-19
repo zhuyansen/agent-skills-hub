@@ -43,6 +43,7 @@ POST_CHARS = 160
 POSTS_PER_SOURCE = 25
 TAGS = 100
 MODEL = "claude-sonnet-4-6"
+NOT_QUERY = {"trend", "trends", "capcut", "template", "tutorial"}
 # what the trend posts say about themselves; checked on 10-19, each returned live trends
 QUERIES = {
     "tiktok": ["ai trend", "ai edit trend", "how to make the ai trend", "ai template trend", "ai filter trend"],
@@ -64,7 +65,8 @@ SYSTEM = (
     "bridges'). Not a generic topic ('ai art', 'ai video'), not an AI tool or model by itself, not news, sport or a "
     "dance needing no AI.\n"
     "For each trend give: `name` (2-4 words, lowercase, as people say it), `query` (what someone would type into "
-    "Google to make their own: usually '<name> ai' or '<name> ai generator'), `what` (one sentence: what people make), "
+    "Google to make their own, as short as people type it: '<name> ai' by default; add 'generator' or another word "
+    "only when '<name> ai' alone would mean something else), `what` (one short sentence in Simplified Chinese: what people make), "
     "`posts` (the numbers of the posts and hashtags that show it). The query never holds 'capcut', 'template', "
     "'tutorial' or 'trend': those are how the posts talk, not what a buyer types. Merge spellings of the same trend. At most 12, "
     "most posted first. Answer with JSON only: {\"trends\": [...]}. No trend: {\"trends\": []}."
@@ -213,7 +215,9 @@ def extract(posts: list[dict], tags: list[dict], seeds: list[str]) -> list[dict]
         refs = [str(r).strip("[]") for r in t.get("posts") or []]
         ev = [posts[int(r)] for r in refs if r.isdigit() and int(r) < len(posts)]
         tg = [tags[int(r[1:])] for r in refs if r.startswith("t") and r[1:].isdigit() and int(r[1:]) < len(tags)]
-        out.append({"name": name, "query": " ".join(str(t.get("query") or f"{name} ai").lower().split()),
+        # the model still slips 'trend' in now and then ('chatgpt millionaire ai trend'); a buyer does not type it
+        query = " ".join(w for w in str(t.get("query") or f"{name} ai").lower().split() if w not in NOT_QUERY)
+        out.append({"name": name, "query": query or f"{name} ai",
                     "what": str(t.get("what", ""))[:160], "posts": ev, "tags": tg})
     return out
 
@@ -281,7 +285,9 @@ def memes(snaps: Path, today: date | None = None) -> dict:
         known[m["name"]] = {"first": m["first"], "last": today.isoformat(), "score": m["score"], "query": m["query"]}
         if m["new"] and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
             top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
-            terms.append({"term": m["query"], "recent": len(m["posts"]),
+            # `named` carries Jev's opportunity score: radar.judge() skips meme rows, so it is
+            # what radar_leads keeps and the daily report's picks read back (radar.picks)
+            terms.append({"term": m["query"], "recent": len(m["posts"]), "named": m["score"], "what": m["what"],
                           "note": f"①梗 {'/'.join(PLATFORM_ZH[p] for p in m['platforms'])} {len(m['posts'])} 帖"
                                   + (f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else ""),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],

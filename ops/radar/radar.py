@@ -119,6 +119,10 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
             row["variants"] += [v for v in r.get("variants", []) if v not in row["variants"]]
             if r.get("repo"):
                 row["repo"] = r["repo"]
+            if r.get("named") is not None:   # a meme's opportunity score (memes.py); judge() leaves these rows alone
+                row["named"] = r["named"]
+            if r.get("what"):
+                row["what"] = r["what"]
     rows = list(out.values())
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
@@ -158,8 +162,51 @@ def _cost(*blocks: dict) -> str:
     return f"${micros / 1e6:.3f}"
 
 
+PICKS = 3
+
+
+def picks(b: dict[str, dict]) -> list[str]:
+    """The top of every mail: at most PICKS terms to build for today, each with why, how
+    long it has, and what to make. Everything below it is the evidence. The mail had
+    grown to a dozen sections and no answer (2026-10-19: "不知道做哪个词").
+
+    Order: AI video trends over Jev's bar first, because they are over in about four days;
+    then keywords the table marked prioritize (measured demand, still rising); then new
+    apps over Jev's bar whose search words are not crowded yet."""
+    uc = {r["phrase"]: r for r in b.get("usecases", {}).get("rows", [])}
+    out = []
+    meme_rows = b.get("meme", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
+                                                     if "meme" in r.get("kinds", [])]
+    for r in sorted(meme_rows, key=lambda r: -(r.get("named") or 0)):
+        t = uc.get(r["term"], {})
+        # Trends already says it is falling: past the window, whatever the posts say (hotel lobby, Sept.)
+        if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or t.get("now") == "fading":
+            continue
+        demand = (f";Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else "")
+        out.append(f"**{r['term']}**:AI 视频梗,Jev 机会 {r['named']:.2f}。{r.get('what') or r.get('note', '')}{demand}  \n"
+                   f"窗口:梗约 4 天见顶,85% 的钱在头 72 小时,**今天上线**。做法:单功能站(上传照片 → 生成你的版本),按次卖。")
+    for r in (x for x in uc.values() if x.get("decision") == "prioritize"):
+        src = f",来自 {', '.join(r['names'])}" if r.get("names") else ""
+        out.append(f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
+                   f"{usecases.NOW_ZH.get(r.get('now'), '')}{src}。  \n做法:工具页或场景页,标题对准这个词。")
+    for a in b.get("appstore", {}).get("apps") or []:
+        rd = a.get("reading") or {}
+        cr = rd.get("crowding") or {}
+        if (rd.get("score") or 0) < memes.OPPORTUNITY_MIN or cr.get("window") == "crowded":
+            continue
+        words = "、".join(t["term"] for t in cr.get("terms", [])) or a["brand"]
+        out.append(f"**{words}**(参照 {a['brand']}):App Store 新应用,{appstore._place(a['places'][0])},上架 {a['days']} 天,"
+                   f"Jev 机会 {rd['score']:.2f},同类新应用 {len(cr.get('copies', []))} 个({appstore.WINDOW_ZH[cr['window']]})。  \n"
+                   f"做法:同类应用或网站,名字和标题用这些卖点词。")
+    if not out:
+        return ["**今天没有值得动手的词。** 下面的明细扫一眼即可。"]
+    return [f"{i}. {line}" for i, line in enumerate(out[:PICKS], 1)] + \
+        ([f"", f"(另有 {len(out) - PICKS} 个够格的,见下面明细)"] if len(out) > PICKS else [])
+
+
 def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: dict) -> str:
-    lines = ["## 新词雷达", *usecases.table(b.get("usecases", {"skipped": True})), "",
+    lines = ["## 今天做哪个词", "", *picks(b), "", "---", "", "## 明细(上面每个词的依据,不用每天细看)",
+             *usecases.table(b.get("usecases", {"skipped": True})), "",
              "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
              "| 词 | 信号 | Jev | 已有页面 | 搜索变体 | 例子 |", "|---|---|---|---|---|---|"]
     names_ = named(lead)
@@ -287,7 +334,7 @@ def posts_markdown(rows: list[dict]) -> list[str]:
 
 
 def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
-    lines = ["## 新词雷达 · ① 源头(每 8 小时)", "", "| 词 | 信号 | Jev | 已有页面 | 例子 |", "|---|---|---|---|---|"]
+    lines = ["## 现在就能做", "", *picks(b), "", "---", "", "## 明细:新词雷达 · ① 源头(每 8 小时)", "", "| 词 | 信号 | Jev | 已有页面 | 例子 |", "|---|---|---|---|---|"]
     for r in named(lead)[:SHOWN]:
         ex = "<br>".join(_clip(e, 60) for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
