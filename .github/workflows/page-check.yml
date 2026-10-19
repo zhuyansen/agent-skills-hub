@@ -5,17 +5,14 @@ name: Scenario page check
 # the word-frequency list, word count, HTML size, structured data. Free; the report links
 # each page to 哥飞's audit for the full score.
 #
-# After a deploy that a push triggered: the pages whose scenario entries changed since the
-# previous push deploy (all live pages when the generator or a shared file changed). The
-# deploys after each sync rebuild the same code, so they are skipped. Sundays 10:00 Beijing:
-# every live page. A report goes by mail to RADAR_EMAIL_TO only when pages were checked.
+# Once a month (the 1st, 10:00 Beijing): every live page. By hand from the Actions tab: every
+# live page, or the slugs given. A report goes by mail to RADAR_EMAIL_TO only when pages were
+# checked. The run after each push deploy and the weekly run were dropped on 2026-10-19 (about
+# four reports a day); once a month is enough.
 
 on:
-  workflow_run:
-    workflows: ["Deploy Frontend to GitHub Pages"]
-    types: [completed]
   schedule:
-    - cron: "0 2 * * 0"
+    - cron: "0 2 1 * *"
   workflow_dispatch:
     inputs:
       slugs:
@@ -25,7 +22,6 @@ on:
 
 permissions:
   contents: read
-  actions: read
 
 concurrency:
   group: page-check
@@ -33,9 +29,6 @@ concurrency:
 
 jobs:
   check:
-    if: >-
-      github.event_name != 'workflow_run' ||
-      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -61,17 +54,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           EVENT: ${{ github.event_name }}
-          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           SLUGS: ${{ github.event.inputs.slugs }}
         run: |
           out="$RUNNER_TEMP/pages.md"
           case "$EVENT" in
-            workflow_run)
-              base=$(gh run list --workflow deploy.yml --event push --status success -L 20 \
-                     --json headSha -q "[.[] | select(.headSha != \"$HEAD_SHA\")][0].headSha")
-              [ -n "$base" ] || { echo "no earlier push deploy to compare with"; exit 0; }
-              sleep 60   # GitHub Pages serves the new build within about a minute
-              python ops/seo/page_check.py "$out" --changed "$base" "$HEAD_SHA" ;;
             workflow_dispatch)
               if [ -n "$SLUGS" ]; then python ops/seo/page_check.py "$out" --slugs "$SLUGS"
               else python ops/seo/page_check.py "$out" --all; fi ;;
