@@ -87,6 +87,34 @@
   "2026-10-11": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-10-12": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-10-13": {
+   "count": 7,
+   "uniques": 4
+  },
+  "2026-10-14": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-15": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-16": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-17": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-18": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -177,6 +205,34 @@
   "2026-10-11": {
    "count": 10,
    "uniques": 8
+  },
+  "2026-10-12": {
+   "count": 18,
+   "uniques": 11
+  },
+  "2026-10-13": {
+   "count": 21,
+   "uniques": 14
+  },
+  "2026-10-14": {
+   "count": 20,
+   "uniques": 12
+  },
+  "2026-10-15": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-10-16": {
+   "count": 4,
+   "uniques": 2
+  },
+  "2026-10-17": {
+   "count": 17,
+   "uniques": 10
+  },
+  "2026-10-18": {
+   "count": 20,
+   "uniques": 12
   }
  },
  "referrers": {
@@ -186,6 +242,33 @@
    {
     "referrer": "claude.ai",
     "count": 3,
+    "uniques": 1
+   }
+  ],
+  "2026-10-19": [
+   {
+    "referrer": "Google",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "t.co",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "claude.ai",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "youtube.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
     "uniques": 1
    }
   ]
@@ -208,6 +291,23 @@
    {
     "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
     "count": 2,
+    "uniques": 1
+   }
+  ],
+  "2026-10-19": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 14,
+    "uniques": 12
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 6,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/commit/514f08412c2f2ed81e3f6ddbbdc5b94b7f3dea41",
+    "count": 1,
     "uniques": 1
    }
   ]

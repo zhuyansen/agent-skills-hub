@@ -87,6 +87,30 @@
   "2026-10-11": {
    "count": 10,
    "uniques": 7
+  },
+  "2026-10-12": {
+   "count": 10,
+   "uniques": 10
+  },
+  "2026-10-13": {
+   "count": 8,
+   "uniques": 5
+  },
+  "2026-10-14": {
+   "count": 11,
+   "uniques": 11
+  },
+  "2026-10-15": {
+   "count": 4,
+   "uniques": 3
+  },
+  "2026-10-16": {
+   "count": 7,
+   "uniques": 4
+  },
+  "2026-10-17": {
+   "count": 1,
+   "uniques": 1
   }
  },
  "clones": {
@@ -177,6 +201,30 @@
   "2026-10-11": {
    "count": 35,
    "uniques": 23
+  },
+  "2026-10-12": {
+   "count": 16,
+   "uniques": 12
+  },
+  "2026-10-13": {
+   "count": 11,
+   "uniques": 9
+  },
+  "2026-10-14": {
+   "count": 11,
+   "uniques": 8
+  },
+  "2026-10-15": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-10-16": {
+   "count": 15,
+   "uniques": 13
+  },
+  "2026-10-17": {
+   "count": 13,
+   "uniques": 10
   }
  },
  "referrers": {
@@ -190,6 +238,23 @@
    },
    {
     "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-19": [
+   {
+    "referrer": "Google",
+    "count": 28,
+    "uniques": 27
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
     "count": 1,
     "uniques": 1
    }
@@ -209,6 +274,23 @@
     "path": "/zhuyansen/awesome-claude-design-skills",
     "count": 38,
     "uniques": 34
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/fork",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-19": [
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills",
+    "count": 78,
+    "uniques": 68
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.zh-CN.md",
+    "count": 1,
+    "uniques": 1
    },
    {
     "path": "/zhuyansen/awesome-claude-design-skills/fork",
