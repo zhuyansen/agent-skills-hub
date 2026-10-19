@@ -5,7 +5,7 @@
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
 The source signals (①) change by the hour, the rest by the day, so they run apart:
-radar-source.yml every 8 hours with --sources (X and HF only; <report.md> is written
+radar-source.yml every 8 hours with --sources (X, HF and the AI video trends; <report.md> is written
 only when there is a name or an error, so quiet runs post nothing), and radar-daily.yml
 once a day with --skip-x --skip-hf, its report listing the ① leads of the last day
 from radar_leads.
@@ -293,18 +293,23 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
         score = f"{r['named']:.2f}" if "named" in r else "—"
         lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
     lines += posts_markdown(named(lead)[:SHOWN])
+    lines += memes.section(b.get("meme", {"skipped": True}))
+    if not b.get("meme", {}).get("skipped"):
+        lines += ["", memes.status(b["meme"])]
     for key, label in (("x", "① X"), ("hf", "① HF")):
         if b[key].get("error"):
             lines.append(f"\n- {label}:{b[key]['error']}")
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
-    lines.append(f"\nAIsa 花费:{_cost(b['x'])}")
+    lines.append(f"\nAIsa 花费:{_cost(b['x'], b.get('meme', {}))}")
     return "\n".join(lines) + "\n"
 
 
 def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     blocks = {"x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
-              "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags)}
+              "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
+              # a trend peaks in about four days: read every 8 hours, not once a day (memes.py)
+              "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags)}
     lead = leads(blocks)
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, "--skip-db" in flags)
@@ -314,6 +319,8 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
         print(report.read_text())
     else:
         print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
+        if not blocks["meme"].get("skipped"):
+            print(memes.status(blocks["meme"]))
     return 0
 
 
