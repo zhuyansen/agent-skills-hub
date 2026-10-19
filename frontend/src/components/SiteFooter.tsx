@@ -266,6 +266,14 @@ export function SiteFooter() {
             {lang === "zh" ? "关于我们" : "About"}
           </a>
           <span className="text-gray-700">·</span>
+          {__STATS_LIVE__ && (
+            <>
+              <a href="/stats/" className="hover:text-white transition-colors">
+                {lang === "zh" ? "生态数据月报" : "State of Agent Skills"}
+              </a>
+              <span className="text-gray-700">·</span>
+            </>
+          )}
           <a
             href="/verified-creator/apply/"
             className="hover:text-emerald-400 transition-colors"

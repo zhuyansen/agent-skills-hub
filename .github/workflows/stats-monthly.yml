@@ -38,11 +38,27 @@ jobs:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: python ops/stats/monthly_snapshot.py
 
+      # Once, with the first issue: the README's link line gains the page. Later months find
+      # the link there and change nothing.
+      - name: Link the page from the README
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          readme = Path("README.md")
+          text = readme.read_text(encoding="utf-8")
+          anchor = "[Security Report](https://agentskillshub.top/blog/securing-117k-ai-skills/)"
+          if "agentskillshub.top/stats/" in text or anchor not in text:
+              raise SystemExit(0)
+          link = " · 📊 [State of Agent Skills](https://agentskillshub.top/stats/)"
+          readme.write_text(text.replace(anchor, anchor + link, 1), encoding="utf-8")
+          print("README links /stats/")
+          PY
+
       - name: Commit the snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add frontend/public/stats/data
+          git add frontend/public/stats/data README.md
           git commit -q -m "data(stats): State of Agent Skills snapshot $(date -u -d 'last month' +%Y-%m) [skip ci]"
           git pull -q --rebase origin main
           git push -q origin HEAD:main

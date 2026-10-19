@@ -15,13 +15,13 @@
  * own canonical, so a number cited from an issue keeps its URL. Downloads are the snapshot
  * files themselves (Vite copies them to dist/stats/data/), under CC BY 4.0.
  */
-import { readFileSync, readdirSync, existsSync, mkdirSync, writeFileSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import { SITE, esc, biSpan, biAttrs, buildStaticHeader, analyticsTags, extractAssetTags } from "./shared-utils.mjs";
 import { withHreflang, zhTwin } from "./scenario-zh-page.mjs";
 import { lineChart, barList, dataTable, fmt, pct } from "./stats-charts.mjs";
+import { STATS_DATA_DIR, statsPeriods } from "./stats-live.mjs";
 
-const DATA_DIR = join("public", "stats", "data");
 const OUT_DIR = join("dist", "stats");
 const CSS_VERSION = "20261019";
 const LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
@@ -76,11 +76,7 @@ const h2 = (en, zh) => biSpan(en, zh, { tag: "h2", attrs: 'class="bp-section-tit
 const count = (list, key) => (list.find((r) => r.key === key) || {}).count || 0;
 
 function loadIssues() {
-  if (!existsSync(DATA_DIR)) return [];
-  return readdirSync(DATA_DIR)
-    .filter((f) => /^\d{4}-\d{2}\.json$/.test(f))
-    .sort()
-    .map((f) => JSON.parse(readFileSync(join(DATA_DIR, f), "utf-8")));
+  return statsPeriods().map((period) => JSON.parse(readFileSync(join(STATS_DATA_DIR, `${period}.json`), "utf-8")));
 }
 
 function tile(label, zh, value, note, noteZh) {
@@ -304,6 +300,24 @@ function pageHtml(d, issues, { canonical, permalink, cssLinks }) {
 </html>`;
 }
 
+// The scan report people already link to points readers at the newer numbers.
+const SCAN_POST_COPIES = [
+  { file: join("dist", "blog", "securing-117k-ai-skills", "index.html"), href: "/stats/", text: (d) => `📊 New numbers every month: State of Agent Skills, ${monthEn(d.period)} →` },
+  { file: join("dist", "blog", "securing-117k-ai-skills", "zh", "index.html"), href: "/stats/zh/", text: (d) => `📊 每月最新数据：Agent Skills 生态数据月报（${monthZh(d.period)}）→` },
+];
+
+/** Adds a link to /stats/ above the scan report's first section heading. */
+function linkFromScanPost(d) {
+  for (const { file, href, text } of SCAN_POST_COPIES) {
+    if (!existsSync(file)) continue;
+    const html = readFileSync(file, "utf-8");
+    const at = html.indexOf("<h2", html.indexOf('<article class="article-body">'));
+    if (at < 0 || html.includes('class="st-latest"')) continue;
+    const link = `<p class="st-latest"><a href="${href}">${esc(text(d))}</a></p>\n`;
+    writeFileSync(file, html.slice(0, at) + link + html.slice(at));
+  }
+}
+
 function write(dir, html) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), html);
@@ -327,6 +341,7 @@ function main() {
   write(OUT_DIR, en);
   const zhDesc = `每月更新：${fmt(latest.totals.repos)} 个开源 agent skill 与 MCP 服务器仓库的增长、安全评级、许可证和平台分布，可免费引用和下载（CC BY 4.0）。`;
   write(join(OUT_DIR, "zh"), zhTwin(en, { enPath: "/stats/", title: `Agent Skills 生态数据月报 · ${monthZh(latest.period)}`, description: zhDesc, twinPaths: new Set(["/stats/"]) }));
+  linkFromScanPost(latest);
   console.log(`  ✓ /stats/ (${latest.period}) + /stats/zh/ + ${issues.length} issue page(s)`);
 }
 

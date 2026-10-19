@@ -17,6 +17,7 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
+import { statsPeriods } from "./stats-live.mjs";
 import { installCommands } from "./skill-install.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
@@ -392,6 +393,10 @@ function buildIndexHtml(allScenarioDefs, allSkillCounts, assetTags) {
   });
 
   const totalScenarios = Object.keys(scenarioSkillCounts).length;
+  // The monthly data page, once its first issue exists (stats-live.mjs).
+  const statsLink = statsPeriods().length
+    ? `<p style="margin-top:10px;font-size:14px"><a href="/stats/" style="color:var(--bp-link)" data-zh="📊 每月生态数据：Agent Skills 生态数据月报 →" data-en="📊 Monthly ecosystem numbers: State of Agent Skills →">📊 Monthly ecosystem numbers: State of Agent Skills →</a></p>`
+    : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -426,6 +431,7 @@ ${breadcrumbLd}
     <div class="bp-hero">
       <h1 data-zh="按场景发现最佳 AI Agent 工具" data-en="Best AI Agent Tools by Scenario">Best AI Agent Tools by Scenario</h1>
       <p data-zh="浏览 ${totalScenarios} 个精选场景指南，找到最适合你需求的 AI Agent 工具、MCP 服务器和 Claude 技能。" data-en="Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.">Browse ${totalScenarios} curated scenario guides to find the perfect AI agent tools, MCP servers, and Claude skills for your specific use case.</p>
+      ${statsLink}
     </div>
     ${groupsHtml}
     ${buildNewsletterCta()}
