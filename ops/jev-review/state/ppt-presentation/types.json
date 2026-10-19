@@ -3162,5 +3162,47 @@
    "general": 0.09
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "kgraph57/mckinsey-style-visualization-skill",
+  "stars": 144,
+  "description": "Agent Skill that turns messy notes into rendered strategy-consulting visuals, with SVG examples and validation.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.04,
+   "html": 0.93,
+   "business": 0.97,
+   "convert": 0.72,
+   "general": 0.51
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "mathruffian-dot/soil-motion-deck",
+  "stars": 14,
+  "description": "SOIL 教學簡報 × 解說動畫：一次製作，產出關鍵頁嵌入動畫的 .pptx 與同內容的配音字幕解說影片（Claude Code skill）",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.02,
+   "convert": 0.1,
+   "general": 0.11
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "keanu77/htmlpptskill",
+  "stars": 9,
+  "description": "一句話讓 AI 做出 reveal.js 簡報：可離線播放、自動驗 QR，附講義 PPTX／PDF。Claude Code、Codex CLI、Gemini CLI、Grok Build 皆可安裝的 Agent Skill",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.89,
+   "html": 0.98,
+   "business": 0.35,
+   "convert": 0.5,
+   "general": 0.36
+  },
+  "kind": "html"
  }
 ]

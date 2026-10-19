@@ -1945,7 +1945,8 @@
     "MushroomFleet/DJZ-Nodes",
     "veryCoolTimo/imagegen-skills",
     "zhangx413/dsh-pbr-material",
-    "Hikhakk/higgsfield-mcp-unified"
+    "Hikhakk/higgsfield-mcp-unified",
+    "cheshireyang/image-to-svg-skills"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2172,7 +2173,8 @@
     "worldwonderer/novel-to-game",
     "worldwonderer/video-recap-skills",
     "ColonyShopkeeper/r08-composiohq-awesome-claude-skills-seo",
-    "Gravityaespot/r16-voltagent-awesome-agent-skills-seo"
+    "Gravityaespot/r16-voltagent-awesome-agent-skills-seo",
+    "Holddrespell/r16-voltagent-awesome-agent-skills-datascience"
    ]
   },
   "related": [
@@ -3093,7 +3095,8 @@
     "FengZhenfei/carrel",
     "xerj-org/xerj",
     "3vilM33pl3/codifix",
-    "agent-accessibility/KMCP"
+    "agent-accessibility/KMCP",
+    "deequoique/stashseek"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4307,7 +4310,8 @@
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
-    "iCodeCraft/anti-slop"
+    "iCodeCraft/anti-slop",
+    "adenaufal/anti-slop-writing"
    ]
   },
   "related": [
@@ -6206,7 +6210,10 @@
     "mujingquan835/Dawang-ppt",
     "chengzi2333/html-report-skill",
     "zhouwei713/luobo-ppt",
-    "bvb6417/ppt-studio"
+    "bvb6417/ppt-studio",
+    "kgraph57/mckinsey-style-visualization-skill",
+    "mathruffian-dot/soil-motion-deck",
+    "keanu77/htmlpptskill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7587,7 +7594,8 @@
     "dante01yoon/ComfyUI-SystemOne",
     "ariel-frischer/jevkit",
     "adityajha2005/decisionkit",
-    "momozi1996/momo-code"
+    "momozi1996/momo-code",
+    "Valen-Team/Valen"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7600,7 +7608,8 @@
     "AkashPriyadarshii/jev-curate",
     "AkashPriyadarshii/jev-seo",
     "Jwuthri/SelfJev",
-    "Alex314618-create/JevRev"
+    "Alex314618-create/JevRev",
+    "Liuziyu77/Valen"
    ]
   },
   "related": [
@@ -8012,7 +8021,10 @@
     "JuneYaooo/cheap-claude-video",
     "RahmanBuildsAI/ravyn-reel-kit",
     "beatra-ai/viral-video-remake-skill",
-    "xdis/opus-video-studio"
+    "xdis/opus-video-studio",
+    "zz41354899/mografy",
+    "sudadom/arabic-motion-graphics-skill",
+    "Nealsun1993/talk-workbench"
    ],
    "sub_skills": [
     {

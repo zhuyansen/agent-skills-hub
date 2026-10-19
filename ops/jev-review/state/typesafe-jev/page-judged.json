@@ -7115,5 +7115,32 @@
   "days": 124,
   "stars_per_day": 9.387096774193548,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "Valen-Team/Valen",
+  "name": "Valen",
+  "stars": 873,
+  "description": "Train a Jev-like multimodal model by yourself. System One Model, now with vision.",
+  "topics": [],
+  "created": "2026-09-23",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 15751,
+  "names_model": false,
+  "uses_jev": 0.79,
+  "is_software": 0.95,
+  "reusable_tool": 0.8,
+  "one_command_start": 0.18,
+  "complete_docs": 0.64,
+  "shows_result": 0.8,
+  "specific_outcome": 0.24,
+  "novel_angle": 0.87,
+  "shareable_output": 0.91,
+  "quality": 0.465,
+  "tier": "低",
+  "hit_prior": 0.86,
+  "days": 26,
+  "stars_per_day": 33.57692307692308,
+  "verdict": "low_quality"
  }
 ]

@@ -5128,5 +5128,20 @@
    "general": 0.24
   },
   "kind": "devtool"
+ },
+ {
+  "repo": "Valen-Team/Valen",
+  "stars": 873,
+  "description": "Train a Jev-like multimodal model by yourself. System One Model, now with vision.",
+  "scores": {
+   "replica": 0.86,
+   "agent": 0.46,
+   "devtool": 0.08,
+   "sdk": 0.11,
+   "business": 0.08,
+   "consumer": 0.07,
+   "general": 0.23
+  },
+  "kind": "replica"
  }
 ]

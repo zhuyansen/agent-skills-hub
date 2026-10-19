@@ -5794,5 +5794,59 @@
    "general": 0.21
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "sudadom/arabic-motion-graphics-skill",
+  "stars": 5,
+  "description": "Agent skill for Arabic RTL motion graphics — reels, explainers, logo reveals with Remotion",
+  "scores": {
+   "promo": 0.69,
+   "explainer": 0.55,
+   "music": 0.05,
+   "motion": 0.82,
+   "shorts": 0.78,
+   "editing": 0.05,
+   "demo": 0.26,
+   "story": 0.1,
+   "avatar": 0.04,
+   "general": 0.09
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "Nealsun1993/talk-workbench",
+  "stars": 5,
+  "description": "口播工作台：配音驱动的竖屏讲解视频 Skill、Remotion 组件库与动效规范。",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.94,
+   "music": 0.02,
+   "motion": 0.13,
+   "shorts": 0.83,
+   "editing": 0.14,
+   "demo": 0.73,
+   "story": 0.05,
+   "avatar": 0.05,
+   "general": 0.15
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "zz41354899/mografy",
+  "stars": 11,
+  "description": "Create, preview, and export Canvas motion graphics with Claude Code or Codex. Local-first and open source, with MP4, Lottie, and SVGA export.",
+  "scores": {
+   "promo": 0.51,
+   "explainer": 0.33,
+   "music": 0.13,
+   "motion": 0.73,
+   "shorts": 0.14,
+   "editing": 0.06,
+   "demo": 0.84,
+   "story": 0.27,
+   "avatar": 0.06,
+   "general": 0.23
+  },
+  "kind": "motion"
  }
 ]

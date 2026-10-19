@@ -919,6 +919,14 @@
   "type": "image/png",
   "bytes": 133328
  },
+ "Nealsun1993/talk-workbench": {
+  "repo": "Nealsun1993/talk-workbench",
+  "url": "https://raw.githubusercontent.com/Nealsun1993/talk-workbench/HEAD/assets/demo-contact.jpg",
+  "alt": "示例联系表",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 358196
+ },
  "NeekChaw/mcp-server-okppt": {
   "repo": "NeekChaw/mcp-server-okppt",
   "url": "https://raw.githubusercontent.com/NeekChaw/mcp-server-okppt/HEAD/example/Financial_Crisis_2008.png",
@@ -1174,6 +1182,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 752936
+ },
+ "Valen-Team/Valen": {
+  "repo": "Valen-Team/Valen",
+  "url": "https://raw.githubusercontent.com/Valen-Team/Valen/HEAD/assets/demos/games/valen-sokoban-preview.gif",
+  "alt": "Valen solves a Sokoban puzzle.",
+  "score": 4.3,
+  "type": "image/gif",
+  "bytes": 483227
  },
  "Vandit1604/vawe": {
   "repo": "Vandit1604/vawe",
@@ -1663,6 +1679,14 @@
   "type": "image/jpeg",
   "bytes": 17435
  },
+ "cheshireyang/image-to-svg-skills": {
+  "repo": "cheshireyang/image-to-svg-skills",
+  "url": "https://raw.githubusercontent.com/cheshireyang/image-to-svg-skills/HEAD/examples/effects/image_to_svg_demo_layout_preview.png",
+  "alt": "Assembled SVG preview",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 537957
+ },
  "chorus-codes/chorus": {
   "repo": "chorus-codes/chorus",
   "url": "https://raw.githubusercontent.com/chorus-codes/chorus/HEAD/docs/images/hero-demo.gif",
@@ -1798,6 +1822,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 729478
+ },
+ "deequoique/stashseek": {
+  "repo": "deequoique/stashseek",
+  "url": "https://raw.githubusercontent.com/deequoique/stashseek/HEAD/docs/assets/readme/product-evidence-demo.jpg",
+  "alt": "StashSeek Chat public demo showing an answer with three verifiable video timesta",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 125262
  },
  "demoolight/academic-image-ppt": {
   "repo": "demoolight/academic-image-ppt",
@@ -2599,6 +2631,14 @@
   "type": "image/png",
   "bytes": 530668
  },
+ "keanu77/htmlpptskill": {
+  "repo": "keanu77/htmlpptskill",
+  "url": "https://raw.githubusercontent.com/keanu77/htmlpptskill/HEAD/docs/demo.gif",
+  "alt": "一句話 → Demo 操作 → 逐頁 QA → HTML、PDF、PPTX 三種交付",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 5498799
+ },
  "kenn-io/roborev": {
   "repo": "kenn-io/roborev",
   "url": "https://roborev.io/docs/assets/generated/web-ui.png",
@@ -2614,6 +2654,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 754290
+ },
+ "kgraph57/mckinsey-style-visualization-skill": {
+  "repo": "kgraph57/mckinsey-style-visualization-skill",
+  "url": "https://raw.githubusercontent.com/kgraph57/mckinsey-style-visualization-skill/HEAD/assets/readme/decision-story-demo-frameless.gif",
+  "alt": "Watch the English interactive decision story demo",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 8434795
  },
  "kimsh-1/deck-factory": {
   "repo": "kimsh-1/deck-factory",
@@ -2838,6 +2886,14 @@
   "score": 4.85,
   "type": "image/gif",
   "bytes": 3988294
+ },
+ "mathruffian-dot/soil-motion-deck": {
+  "repo": "mathruffian-dot/soil-motion-deck",
+  "url": "https://raw.githubusercontent.com/mathruffian-dot/soil-motion-deck/HEAD/docs/film-sheet.png",
+  "alt": "影片審查截圖",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 267185
  },
  "mberneti/clab": {
   "repo": "mberneti/clab",
@@ -3406,6 +3462,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 687266
+ },
+ "sudadom/arabic-motion-graphics-skill": {
+  "repo": "sudadom/arabic-motion-graphics-skill",
+  "url": "https://raw.githubusercontent.com/sudadom/arabic-motion-graphics-skill/HEAD/assets/explainer.gif",
+  "alt": "Explainer demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 949664
  },
  "sujunmin/agy-ppt": {
   "repo": "sujunmin/agy-ppt",
@@ -3998,6 +4062,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 99466
+ },
+ "zz41354899/mografy": {
+  "repo": "zz41354899/mografy",
+  "url": "https://raw.githubusercontent.com/zz41354899/mografy/main/docs/media/mografy-intro.gif",
+  "alt": "Watch the twelve-second Mografy intro",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 861289
  },
  "zzsong1023/jev-market-reflex": {
   "repo": "zzsong1023/jev-market-reflex",

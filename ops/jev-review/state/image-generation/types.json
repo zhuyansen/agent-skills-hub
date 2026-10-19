@@ -3414,5 +3414,19 @@
    "mcp": 0.98
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "cheshireyang/image-to-svg-skills",
+  "stars": 5,
+  "description": "Codex skill for converting complex generated images into clearer, second-editable SVG layouts through model-aware image generation, overview design, element decomposition, and SVG assembly.",
+  "scores": {
+   "gpt_image": 0.15,
+   "nano_banana": 0.06,
+   "open_models": 0.14,
+   "editing": 0.06,
+   "design": 0.1,
+   "mcp": 0.17
+  },
+  "kind": "mcp"
  }
 ]
