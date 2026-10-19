@@ -1,0 +1,92 @@
+/* State of Agent Skills (/stats/), on top of best-pages.css.
+ *
+ * Series colors follow the entity on every chart of the page: MCP servers = slot 1,
+ * Claude skills = slot 2, Codex skills = slot 3 of the reference categorical palette,
+ * validated (CVD, normal-vision, lightness, chroma) on #fff and on the dark #0a0e1a
+ * surface, 2026-10-19. Light aqua sits under 3:1, so every chart carries direct labels
+ * or a data table. Grade colors are the fixed status set and always come with a label. */
+.st-root {
+  --st-s1: #2a78d6;
+  --st-s2: #eb6834;
+  --st-s3: #1baf7a;
+  --st-neutral: #94a3b8;
+  --st-grid: #e2e8f0;
+  --st-good: #0ca30c;
+  --st-warning: #fab219;
+  --st-critical: #d03b3b;
+}
+.dark .st-root {
+  --st-s1: #3987e5;
+  --st-s2: #d95926;
+  --st-s3: #199e70;
+  --st-neutral: #64748b;
+  --st-grid: #1e293b;
+}
+
+.st-issue { color: var(--bp-text-secondary); font-size: 14px; margin: 6px 0 0; }
+.st-section { margin: 40px 0 0; }
+.st-lede { color: var(--bp-text-slate); font-size: 15px; line-height: 1.65; margin: 8px 0 0; }
+.st-note { color: var(--bp-text-muted); font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
+.st-section h3 { font-size: 15px; font-weight: 600; color: var(--bp-text); margin: 24px 0 0; }
+
+/* headline numbers */
+.st-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0 0; }
+@media (max-width: 860px) { .st-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.st-tile { border: 1px solid var(--bp-border); border-radius: 10px; padding: 14px 16px; background: var(--bp-card-bg); }
+.st-tile-label { font-size: 13px; color: var(--bp-text-secondary); }
+.st-tile-value { font-size: 30px; font-weight: 600; line-height: 1.2; color: var(--bp-text); margin: 4px 0 2px; }
+.st-tile-note { font-size: 12px; color: var(--bp-text-muted); }
+
+/* line chart: HTML axes and labels around an SVG plot */
+.st-chart { margin: 16px 0 4px; }
+.st-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--bp-text-secondary); margin: 0 0 10px; }
+.st-key { display: inline-block; width: 16px; height: 2px; border-radius: 1px; background: var(--c); vertical-align: middle; margin-right: 6px; }
+.st-plot-wrap { display: grid; grid-template-columns: 44px 1fr 132px; }
+.st-yaxis, .st-plot, .st-ends { position: relative; height: 240px; }
+.st-yaxis span { position: absolute; right: 8px; transform: translateY(-50%); font-size: 11px; color: var(--bp-text-muted); font-variant-numeric: tabular-nums; }
+.st-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.st-grid line { stroke: var(--st-grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.st-series { fill: none; stroke: var(--c); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.st-dot { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px var(--bp-bg); }
+.st-dot::after { content: ""; position: absolute; inset: -6px; }
+.st-end { position: absolute; left: 10px; transform: translateY(-50%); font-size: 12px; color: var(--bp-text-secondary); white-space: nowrap; }
+.st-xaxis { position: relative; height: 18px; margin: 6px 132px 0 44px; }
+.st-xaxis span { position: absolute; transform: translateX(-50%); font-size: 11px; color: var(--bp-text-muted); white-space: nowrap; }
+/* end labels dropped (they would touch): the legend carries identity, the column goes */
+.st-noends .st-plot-wrap { grid-template-columns: 44px 1fr 16px; }
+.st-noends .st-xaxis { margin-right: 16px; }
+
+/* bar lists */
+.st-bars { list-style: none; padding: 0; margin: 14px 0 0; }
+.st-bar { display: grid; grid-template-columns: minmax(130px, 32%) 1fr minmax(96px, auto); align-items: center; gap: 10px; margin: 7px 0; font-size: 13px; }
+.st-bar-label { color: var(--bp-text); }
+.st-bar-track { height: 12px; }
+.st-bar-fill { display: block; height: 12px; min-width: 2px; border-radius: 0 4px 4px 0; background: var(--c, var(--st-s1)); }
+.st-bar-value { color: var(--bp-text-secondary); font-variant-numeric: tabular-nums; text-align: right; }
+
+/* tables, citation, movers */
+.st-details summary { cursor: pointer; color: var(--bp-link); font-size: 13px; margin: 8px 0 0; }
+.st-table-wrap { overflow-x: auto; }
+.st-table { border-collapse: collapse; font-size: 13px; margin: 8px 0 0; }
+.st-table th, .st-table td { border-bottom: 1px solid var(--bp-border); padding: 5px 12px; text-align: right; font-variant-numeric: tabular-nums; color: var(--bp-text); }
+.st-table th:first-child, .st-table td:first-child { text-align: left; }
+.st-table th { color: var(--bp-text-secondary); font-weight: 500; }
+.st-cite { background: var(--bp-bg-alt); border: 1px solid var(--bp-border); border-radius: 8px; padding: 12px 14px; margin: 12px 0 0; font-size: 13px; color: var(--bp-text); line-height: 1.6; }
+.st-cite code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.st-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 12px 0 0; font-size: 14px; }
+.st-links a, .st-movers a, .st-section a { color: var(--bp-link); }
+.st-movers { list-style: decimal; padding-left: 22px; margin: 12px 0 0; }
+.st-movers li { margin: 7px 0; font-size: 14px; color: var(--bp-text); }
+.st-movers .st-note { display: inline; margin: 0 0 0 6px; }
+.st-method { list-style: disc; padding-left: 20px; margin: 10px 0 0; }
+.st-method li { margin: 8px 0; color: var(--bp-text-slate); font-size: 14px; line-height: 1.6; }
+
+@media (max-width: 560px) {
+  .st-plot-wrap, .st-noends .st-plot-wrap { grid-template-columns: 40px 1fr 16px; }
+  .st-ends { display: none; }
+  .st-xaxis, .st-noends .st-xaxis { margin: 6px 16px 0 40px; }
+  .st-xaxis .st-odd { visibility: hidden; }
+  .st-bar { grid-template-columns: 1fr minmax(84px, auto); }
+  .st-bar-track { grid-column: 1 / -1; grid-row: 2; }
+  .st-tile-value { font-size: 26px; }
+}

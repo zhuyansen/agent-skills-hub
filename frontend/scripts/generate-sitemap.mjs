@@ -202,6 +202,27 @@ function scenarioEntriesFor(slug, today) {
 /** `<lastmod>` line for a page, or "" when the page has no real date. */
 const lastmodLine = (date) => (date ? `\n    <lastmod>${date}</lastmod>` : "");
 
+/**
+ * /stats/ (State of Agent Skills) and its Chinese twin, plus every issue page except the
+ * latest, whose permalink is canonical to /stats/ until the next issue (2026-10-19).
+ * Nothing until the first monthly snapshot has been built.
+ */
+function statsEntries(today) {
+  if (!existsSync("dist/stats/index.html")) return [];
+  const issues = readdirSync("dist/stats").filter((d) => /^\d{4}-\d{2}$/.test(d)).sort();
+  const alts = `
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/stats/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${SITE}/stats/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/stats/"/>`;
+  const entry = (path, priority, links = "") => `  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>${priority}</priority>${lastmodLine(declaredDate(path, today))}${links}
+  </url>`;
+  const archive = issues.slice(0, -1).map((p) => entry(`/stats/${p}/`, "0.6"));
+  return [entry("/stats/", "0.85", alts), entry("/stats/zh/", "0.75", alts), ...archive];
+}
+
 async function main() {
   console.log("Fetching skills from Supabase...");
   const allSkills = await fetchAllSkills();
@@ -456,6 +477,10 @@ async function main() {
   } catch {
     console.log("sitemap-comparisons.xml: skipped (no dist/compare/ directory)");
   }
+
+  const stats = statsEntries(today);
+  hubEntries.push(...stats);
+  if (stats.length) console.log(`/stats/: ${stats.length} URLs into sitemap-top.xml`);
 
   // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
   // declares the xhtml namespace the scenario entries' hreflang links need.

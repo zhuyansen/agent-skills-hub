@@ -1,0 +1,59 @@
+name: Monthly stats snapshot
+
+# State of Agent Skills (/stats/). On the 1st of each month, read-only aggregate queries
+# write frontend/public/stats/data/<previous month>.json and .csv
+# (ops/stats/monthly_snapshot.py); the files are committed so the history stays public in
+# git, and the next build turns them into /stats/. A published snapshot is never
+# rewritten: a second run for the same month stops at the snapshot step.
+
+on:
+  schedule:
+    - cron: "0 1 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: stats-monthly
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install psycopg2-binary==2.9.9
+
+      - name: Take the snapshot
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python ops/stats/monthly_snapshot.py
+
+      - name: Commit the snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/stats/data
+          git commit -q -m "data(stats): State of Agent Skills snapshot $(date -u -d 'last month' +%Y-%m) [skip ci]"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
+
+      # A push made with GITHUB_TOKEN does not start other workflows, so the deploy is
+      # dispatched here. Not while a sync runs: the deploy that follows every sync builds
+      # the new snapshot anyway, and two heavy readers at once is what Supabase cannot take.
+      - name: Deploy the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          running=$(gh run list --workflow sync.yml --status in_progress --json databaseId -q length)
+          if [ "$running" != "0" ]; then echo "A sync is running; its deploy will publish /stats/."; exit 0; fi
+          gh workflow run deploy.yml --ref main
