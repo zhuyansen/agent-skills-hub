@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-19
+1. Gathin23/tv-vibehack — 🆕 通过 Wi-Fi 给安卓电视去广告，换上 Apple TV 风格桌面，免 root 可还原（2381★ 1258.0/day）
+2. alchaincyf/huashu-motion — 🆕 让智能体一键直出商业级产品宣传片，自带配乐，指着画面就能改（513★ 513.0/day）
+3. kanaworksai-hue/audio-studio-mcp — 🆕 在本地为 Claude Code 生成背景音乐和音效，无需云端与 API Key（126★ 126.0/day）
+4. xerj-org/xerj — 一条命令索引代码、文档、日志与 PDF，让智能体检索比 grep 省 40 倍 token（8603★ 77.5/day）
+5. Fazmin/cve-intel — 🆕 本地聚合 25 个来源做 CVE 分诊，给出风险评分并提供 MCP 接口（48★ 45.6/day）
+6. mihirgupta0900/tv-home — 🆕 一条提示词让 Claude Code 给卡顿的安卓电视去广告、换上流畅桌面（39★ 39.0/day）
+7. oil-oil/oil-motion — 帮 Claude Code 与 Codex 做出跟随滚动和鼠标的网页动画（2628★ 36.1/day）
+8. gatewai-dev/framefields — 用代码写视频，并在 WebGPU 上原生渲染输出（419★ 25.6/day）
+9. mikubaka88/CCFA-Skills — 用一组技能打磨 CCF-A 论文的研究叙事主线（3131★ 22.9/day）
+10. Ebony-Vinyl/EAC-design-world — 🆕 为 DeepSeek Harness 提供本地视频剪辑与设计插件，可导出真实文件（36★ 18.4/day）
+🎯 今日趋势：**6 席**标 🆕；视频与动效占 **4 席**（产品宣传片、WebGPU 代码视频、网页动画、本地剪辑），"智能体给安卓电视去广告"一天冒出 **2 个**仓库，头名 2 天涨到 2381★。
+> 注：去重范围＝repo 内 archive 全部 116 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,928 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 23 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个以上合格，未放宽到 72h（sixtysevenlf/dsh-blender-plugin 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①LiCinCan/blender-ai-mcp-addon（786★ 238.4/day）：账号 10-15 新建、0 粉、仅此 1 仓，与 10-17/10-18 两次排除的 anujasid 同名同类仓，第三次换号单仓爆星；②trhhubsd/ARTEX（1244★ 119.9/day）：1 粉、其余仓 0★，单仓爆星（同 pullboard 先例），且为自主渗透测试系统，保守排除；③joeseesun/lexfridman-cn：uncategorized 且评级 caution；④paulmil11/decks：评级 caution；⑤Valen-Team/Valen（873★ 33.4/day）：组织 10-13 新建、1 粉、仅 1 个实仓，按新建组织先例排除；⑥Nyankomintsu/world-execute-me-lyric-mv（299★ 23.8/day）：账号 4 粉、仅此 1 仓，且为非官方歌词 MV，版权灰色，保守排除；⑦rakshazi/krea2-prompting：含成人内容提示词；⑧daichongaixiamo/chatgpt-plus-pro-codex-cn-guide：代充购买导流；⑨其余均已在历史榜单出现，不再复评。wousp112/awesome-justin-sun-ideas-to-ai-howto（16.7/day）、stkoecn/im-mcp（15.2/day，09-10 新建号、0 粉、读取微信/钉钉聊天记录）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 Gathin23 2021 建号、78 粉、其余仓 ≤1★（**轻红旗**，fork 295 与星数相称、描述具体，保留）；第 2 席 alchaincyf 11,211 粉、名下 nuwa-skill 34,981★；第 3 席 kanaworksai-hue 2025-10 建号、5 粉、名下 effekseer-vfx-skill 51★，fork 8；第 4 席 xerj-org 2026-06 建号、293 粉、42 仓，fork 460；第 5 席 Fazmin 2012 建号、19 粉、名下 AILearningGuide 204★；第 6 席 mihirgupta0900 2018 建号、52 粉，与第 1 席功能相近但为独立账号，保留；第 7 席 oil-oil 1,480 粉、名下 beautify-github-readme 1,883★；第 8 席 gatewai-dev 2025-07 建的组织、2 粉、其余仓 ≤1★（**轻红旗**，fork 21，保留）；第 9 席 mikubaka88 2023 建号、19 粉、fork 135，分类 uncategorized 但为论文写作技能、非个人主页，保留；第 10 席 Ebony-Vinyl 157 粉、名下 dsh-our-free-model 25,549★。🆕 判定＝created_at 距今 14 天内，xerj（111.0 天）、oil-motion（72.7 天）、framefields（16.4 天）、CCFA-Skills（137.0 天）不标，其余六席命中。security_grade：tv-home 为 unknown（刚入库未扫），其余九席 safe。表中 stars 为数据库快照，部分仓实时更高（tv-vibehack 2,467★、audio-studio-mcp 135★），按红线保留快照值。
+
+---
+
 ## 2026-10-18
 1. Enhed/clawd-usage-winwidget — 🆕 在 Windows 托盘用小挂件实时显示 Claude 用量额度，像素 Clawd 随会话做出反应（53★ 40.7/day）
 2. LumaryLabsLLC/muxin — 🆕 把你所有机器装进一个应用，人和智能体都能跨设备管会话、桌面、文件与日志（251★ 27.1/day）
