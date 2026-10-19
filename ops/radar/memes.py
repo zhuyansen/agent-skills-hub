@@ -294,7 +294,7 @@ def memes(snaps: Path, today: date | None = None) -> dict:
     client, terms = jev(), []
     for m in found:
         m["score"] = opportunity(client, {"trend": m["name"], "what": m["what"], "today": today.isoformat(),
-                                          "posts": [f"{PLATFORM_ZH[p['platform']]} {p['day']} ♥{p['likes']} ▶{p['views']}: {p['text']}"
+                                          "posts": [f"{PLATFORM_ZH[p['platform']]} {p['day'] or 'date unknown'} ♥{p['likes']} ▶{p['views']}: {p['text']}"
                                                     for p in m["posts"][:6]],
                                           "tiktok_hashtags": [f"#{t['tag']} curve {t['curve']}" for t in m["tags"]]})
         m["platforms"] = sorted({p["platform"] for p in m["posts"]} | ({"tags"} if m["tags"] else set()))
@@ -302,7 +302,10 @@ def memes(snaps: Path, today: date | None = None) -> dict:
         m["first"] = prev["first"] if prev else today.isoformat()
         m["new"] = prev is None
         known[m["name"]] = {"first": m["first"], "last": today.isoformat(), "score": m["score"], "query": m["query"]}
-        if m["new"] and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
+        # YouTube posts carry no date: a trend seen only there may be weeks old (hotel lobby, from
+        # September, came back on 10-19 with twelve undated Shorts), so a lead needs a dated post
+        m["dated"] = any(p["day"] for p in m["posts"]) or bool(m["tags"])
+        if m["new"] and m["dated"] and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
             top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
             # `named` carries Jev's opportunity score: radar.judge() skips meme rows, so it is
             # what radar_leads keeps and the daily report's picks read back (radar.picks)
