@@ -3,7 +3,7 @@ name: New-term radar
 # Once a day, 09:00 Beijing: the terms that are starting to surge (ops/radar/radar.py),
 # earliest signal first: ① names the labs and AI bloggers posted on X and new models on
 # Hugging Face's trending list, run apart every 8 hours (radar-source.yml) and listed
-# here from radar_leads, with the AI video trends people recreate (TikTok, Instagram,
+# here from radar_leads (new apps on the charts too: appstore.py runs there), with the AI video trends people recreate (TikTok, Instagram,
 # YouTube Shorts, X, TikTok's trending hashtags; memes.py, also every 8 hours) and Jev's
 # score for building a site or app for one now; ② a new GitHub repo taking off on its own, new apps climbing
 # the App Store charts in eight countries with how crowded their search words already are
@@ -78,7 +78,7 @@ jobs:
           AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
           GOANYAPI_API_KEY: ${{ secrets.GOANYAPI_API_KEY }}   # optional: related queries for the keyword table (usecases.py)
           GITHUB_TOKEN: ${{ github.token }}
-        run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap --skip-x --skip-hf --skip-memes
+        run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap --skip-x --skip-hf --skip-memes --skip-appstore
 
       - name: Save today's snapshots
         if: always()

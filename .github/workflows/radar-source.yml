@@ -4,7 +4,8 @@ name: New-term radar · sources
 # names the labs and AI bloggers in ops/radar/sources.json posted on X (AIsa), and models
 # new to Hugging Face's trending top 50, and AI video trends people recreate (TikTok,
 # Instagram, YouTube Shorts, X, TikTok's trending hashtags; memes.py) with Jev's score for
-# building a site or app for one now. Sources move by the hour; a daily run would hold
+# building a site or app for one now, and new apps on the App Store, Mac and Google Play
+# charts of 30 storefronts (appstore.py: Apple's RSS and Apolu). Sources move by the hour; a daily run would hold
 # a 9:30 post for a day. The 08:00 run lands an hour before radar-daily.yml, whose report
 # lists the ① leads of the last day.
 #
@@ -12,7 +13,8 @@ name: New-term radar · sources
 # Leads go to radar_leads like the daily ones, and are reviewed the same way.
 #
 # AIsa: 24 accounts at $0.003, about $0.07 a run, $0.22 a day; the trend searches about
-# $0.011 a run, $0.03 a day, plus one model call and Jev. The X vocabulary and HF's
+# $0.011 a run, $0.03 a day, plus one model call and Jev; Xiaohongshu and Douyin for three new
+# apps a run, about $0.06 a run, $0.18 a day. The charts are free (about 3 minutes a run). The X vocabulary and HF's
 # list live in their own cache prefix (radar-src-snap-), apart from the daily snapshots.
 
 on:
@@ -30,7 +32,7 @@ permissions:
 jobs:
   sources:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 

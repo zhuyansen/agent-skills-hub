@@ -48,15 +48,33 @@ import memes
 # storefront ids for the search hints endpoint (X-Apple-Store-Front)
 COUNTRIES = {"us": "143441", "cn": "143465", "jp": "143462", "gb": "143444", "ca": "143455",
              "au": "143460", "de": "143443", "kr": "143466"}
-COUNTRY_ZH = {"us": "美", "cn": "国区", "jp": "日", "gb": "英", "ca": "加", "au": "澳", "de": "德", "kr": "韩"}
+COUNTRY_ZH = {"us": "美", "cn": "国区", "jp": "日", "gb": "英", "ca": "加", "au": "澳", "de": "德", "kr": "韩",
+              "ae": "阿联酋", "br": "巴西", "ch": "瑞士", "es": "西", "fr": "法", "hk": "港", "id": "印尼", "in": "印度",
+              "it": "意", "mx": "墨", "my": "马来", "nl": "荷", "ph": "菲", "pl": "波兰", "ru": "俄", "sa": "沙特",
+              "se": "瑞典", "sg": "新加坡", "th": "泰", "tr": "土", "tw": "台", "vn": "越"}
+# every storefront the charts below cover, for the search hints (X-Apple-Store-Front)
+STOREFRONTS = {**COUNTRIES, "ae": "143481", "br": "143503", "ch": "143459", "es": "143454", "fr": "143442",
+               "hk": "143463", "id": "143476", "in": "143467", "it": "143450", "mx": "143468", "my": "143473",
+               "nl": "143452", "ph": "143474", "pl": "143478", "ru": "143469", "sa": "143479", "se": "143456",
+               "sg": "143464", "th": "143475", "tr": "143480", "tw": "143470", "vn": "143471"}
+# Apolu (apolu.app/charts) reads 30 storefronts every hour, Google Play and Mac included,
+# and puts each chart in its page as JSON-LD (position, name, id). Apple's RSS above covers
+# 8 storefronts with genres; Apolu adds Google Play, Mac and the other 22 storefronts'
+# iPhone charts. Its robots.txt allows every agent but named AI crawlers; we read about 190
+# pages once a day under our own name, and keep only ids and positions.
+APOLU = "https://apolu.app/charts/{cc}/{chart}"
+APOLU_CC = list(STOREFRONTS)
+APOLU_CHARTS = {"iphone/free": "iPhone免费", "iphone/paid": "iPhone付费", "macos/free": "Mac免费", "macos/paid": "Mac付费",
+                "android/free": "GP免费", "android/paid": "GP付费", "android/grossing": "GP畅销"}
+APOLU_UA = "agentskillshub-radar/1.0 (+https://agentskillshub.top; daily, about 190 pages)"
 GENRES = {"all": "总榜", "6012": "生活", "6007": "效率", "6002": "工具", "6013": "健康健美", "6008": "摄影录像"}
 FEEDS = {"toppaidapplications": "付费", "topfreeapplications": "免费"}
 LIMIT_ALL, LIMIT_GENRE = 200, 100
 YOUNG_DAYS = 30
 TOP_ALL, TOP_GENRE = 100, 20
 JUMP = 15
-SHOWN = 12
-DEEP = 5
+SHOWN = 15
+DEEP = 3                 # a run; it runs every 8 hours with the source signals, so nine a day
 RECHECK_DAYS = 3
 COPY_DAYS = 30
 SEARCH_LIMIT = 50
@@ -108,8 +126,73 @@ def keys() -> list[str]:
     return [f"{cc}/{feed}/{g}" for cc in COUNTRIES for feed in FEEDS for g in GENRES]
 
 
+def apolu_keys() -> list[str]:
+    """'br/a:android-free/all'. iPhone charts only where Apple's RSS does not already read them."""
+    return [f"{cc}/a:{c.replace('/', '-')}/all" for cc in APOLU_CC for c in APOLU_CHARTS
+            if not (c.startswith("iphone") and cc in COUNTRIES)]
+
+
+def apolu_chart(key: str) -> list[dict]:
+    cc, feed, _ = key.split("/")
+    url = APOLU.format(cc=cc, chart=feed[2:].replace("-", "/"))
+    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": APOLU_UA}), timeout=30) as res:
+        page = res.read().decode("utf-8", "replace")
+    m = re.search(r'<script type="application/ld\+json">(\{"@context":"https://schema.org","@type":"ItemList".*?)</script>', page)
+    if not m:
+        raise ValueError("no chart list in the page")
+    platform = "android" if "android" in feed else "mac" if "macos" in feed else "ios"
+    return [{"id": e["url"].rstrip("/").rsplit("/", 1)[-1], "name": e.get("name", ""), "release": "", "price": "",
+             "artist": "", "genre": "", "genre_id": "", "platform": platform}
+            for e in sorted(json.loads(m.group(1)).get("itemListElement", []), key=lambda e: e.get("position", 999))]
+
+
+def lookup(ids: list[str], cc: str) -> dict[str, dict]:
+    """Release date, genre, maker and price for App Store ids (Apple's lookup, free, 150 a call)."""
+    out = {}
+    for i in range(0, len(ids), 150):
+        url = f"https://itunes.apple.com/lookup?id={','.join(ids[i:i + 150])}&country={cc}"
+        for r in _json(url).get("results", []):
+            out[str(r["trackId"])] = {"release": r.get("releaseDate", "")[:10], "genre_id": str(r.get("primaryGenreId", "")),
+                                      "genre": r.get("primaryGenreName", ""), "artist": r.get("artistName", ""),
+                                      "price": f"{r.get('currency', '')} {float(r.get('price') or 0):g}".strip()}
+    return out
+
+
+def fill(charts: dict[str, list[dict]], state: dict, today: date) -> tuple[dict, dict]:
+    """Apolu rows have no dates. Apple apps: looked up once and kept (`release`). Google
+    Play has no public release date, so an app's first day on any chart we read stands in
+    for it (`gp_first`); the apps on the first day's charts are the baseline, never young."""
+    known = dict(state.get("release", {}))
+    gp = dict(state.get("gp_first", {}))
+    baseline = not gp
+    todo: dict[str, set] = {}
+    for key, rows in charts.items():
+        cc = key.split("/")[0]
+        for r in rows:
+            if r.get("platform") == "android":
+                gp.setdefault(r["id"], "base" if baseline else today.isoformat())
+            elif r.get("platform") and r["id"] not in known:
+                todo.setdefault(cc, set()).add(r["id"])
+    for cc, ids in todo.items():
+        ids -= set(known)
+        if ids:
+            got = _try(lookup, sorted(ids), cc)
+            if isinstance(got, dict):
+                known.update(got)
+                known.update({i: {} for i in ids if i not in got})   # not in that store: do not ask again
+    for rows in charts.values():
+        for r in rows:
+            if r.get("platform") == "android":
+                r["release"] = "" if gp[r["id"]] == "base" else gp[r["id"]]
+            elif r.get("platform"):
+                r.update({k: v for k, v in known.get(r["id"], {}).items() if v})
+    return known, gp
+
+
 def label(key: str) -> str:
     cc, feed, genre = key.split("/")
+    if feed.startswith("a:"):
+        return f"{COUNTRY_ZH.get(cc, cc)}{APOLU_CHARTS[feed[2:].replace('-', '/')]}"
     return f"{COUNTRY_ZH[cc]}{GENRES[genre]}{FEEDS[feed]}"
 
 
@@ -173,7 +256,7 @@ def hints(term: str, cc: str) -> list[str]:
     """App Store search suggestions for a prefix, as the store shows them."""
     url = ("https://search.itunes.apple.com/WebObjects/MZSearchHints.woa/wa/hints?clientApplication=Software&term="
            + urllib.parse.quote(term))
-    req = urllib.request.Request(url, headers={"X-Apple-Store-Front": f"{COUNTRIES[cc]}-1,29", "User-Agent": "AppStore/3.0 iOS/17.0"})
+    req = urllib.request.Request(url, headers={"X-Apple-Store-Front": f"{STOREFRONTS[cc]}-1,29", "User-Agent": "AppStore/3.0 iOS/17.0"})
     try:
         with urllib.request.urlopen(req, timeout=20) as res:
             return [h["term"] for h in plistlib.loads(res.read()).get("hints", [])]
@@ -181,9 +264,9 @@ def hints(term: str, cc: str) -> list[str]:
         return []
 
 
-def search(term: str, cc: str) -> list[dict]:
+def search(term: str, cc: str, entity: str = "software") -> list[dict]:
     url = (f"https://itunes.apple.com/search?term={urllib.parse.quote(term)}&country={cc}"
-           f"&entity=software&limit={SEARCH_LIMIT}")
+           f"&entity={entity}&limit={SEARCH_LIMIT}")
     return [{"id": str(r["trackId"]), "name": r["trackName"], "release": r.get("releaseDate", "")[:10]}
             for r in _json(url).get("results", [])]
 
@@ -197,7 +280,7 @@ def crowding(app: dict, today: date) -> dict:
         for h in hints(w, cc):
             if h not in suggested and h != w:
                 suggested.append(h)
-        found = search(w, cc)
+        found = search(w, cc, "macSoftware" if app.get("platform") == "mac" else "software")
         rank = next((n for n, r in enumerate(found, 1) if r["id"] == app["id"]), None)
         terms.append({"term": w, "rank": rank})
         for r in found:
@@ -264,7 +347,8 @@ def read(app: dict, today: date) -> tuple[dict, int, list[str]]:
     """Steps 2 and 3 for one app. A failed source leaves the others standing."""
     out, cost, errors = {"date": today.isoformat()}, 0, []
     try:
-        out["crowding"] = crowding(app, today)
+        if app.get("platform") != "android":   # Google Play has no open search to count copies in
+            out["crowding"] = crowding(app, today)
     except Exception as exc:  # noqa: BLE001
         errors.append(f"{app['brand']} App Store 搜索:{type(exc).__name__}")
     for key, fn in (("xhs", xhs), ("douyin", douyin)):
@@ -286,12 +370,16 @@ def save(snaps: Path, state: dict) -> None:
     (snaps / STATE).write_bytes(gzip.compress(json.dumps(state, ensure_ascii=False).encode()))
 
 
-def apps(snaps: Path, today: date | None = None, social: bool = True) -> dict:
+def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: bool = True) -> dict:
     today = today or date.today()
     state = load(snaps)
     with ThreadPoolExecutor(8) as pool:
         got = dict(zip(keys(), pool.map(lambda k: _try(chart, k), keys())))
+    if apolu:
+        with ThreadPoolExecutor(4) as pool:   # about 190 pages; four at a time is polite enough
+            got.update(zip(apolu_keys(), pool.map(lambda k: _try(apolu_chart, k), apolu_keys())))
     charts = {k: v for k, v in got.items() if isinstance(v, list)}
+    release, gp_first = fill(charts, state, today)
     failed = [k for k, v in got.items() if not isinstance(v, list)]
     if not charts:
         raise RuntimeError(f"all {len(got)} charts failed: {got[failed[0]]}")
@@ -309,7 +397,8 @@ def apps(snaps: Path, today: date | None = None, social: bool = True) -> dict:
         if not social:
             res, c, err = {"date": today.isoformat()}, 0, []
             try:
-                res["crowding"] = crowding(a, today)
+                if a.get("platform") != "android":
+                    res["crowding"] = crowding(a, today)
             except Exception as exc:  # noqa: BLE001
                 err.append(f"{a['brand']} App Store 搜索:{type(exc).__name__}")
         else:
@@ -331,12 +420,22 @@ def apps(snaps: Path, today: date | None = None, social: bool = True) -> dict:
         if a["new"]:
             flagged[a["id"]] = today.isoformat()
             p = a["places"][0]
-            terms.append({"term": a["brand"].lower(), "recent": len(a["places"]),
-                          "note": f"②榜单 {label(p['chart'])} #{p['rank']}(上架 {a['days']} 天,{len(a['countries'])} 个区上榜)",
+            rd, cr = a["reading"] or {}, (a["reading"] or {}).get("crowding") or {}
+            # `named` carries Jev's opportunity score, as for memes: radar.judge() skips these rows,
+            # radar_leads keeps it, and the daily picks read it back with `what`
+            terms.append({"term": a["brand"].lower(), "recent": len(a["places"]), "named": rd.get("score"),
+                          "what": f"新应用,{_place(p)},上架 {a['days']} 天" + (
+                              f",卖点词 {'、'.join(t['term'] for t in cr.get('terms', []))},同类新应用 {len(cr.get('copies', []))} 个"
+                              f"({WINDOW_ZH[cr['window']]})" if cr else ""),
+                          "window": cr.get("window"),
+                          # the daily picks only get this note back from radar_leads, so it says the window too
+                          "note": f"②榜单 {label(p['chart'])} #{p['rank']}(上架 {a['days']} 天,{len(a['countries'])} 个区上榜)"
+                                  + (f",{WINDOW_ZH[cr['window']]}" if cr else ""),
                           "examples": [a["name"], a["artist"], a["genre"]], "variants": [a["brand"].lower()]})
     save(snaps, {"date": today.isoformat(), "charts": {k: [r["id"] for r in v] for k, v in charts.items()},
-                 "before": before, "flagged": flagged, "checked": checked})
-    return {"today": today.isoformat(), "charts": len(charts), "failed": failed, "first_run": not before, "apps": found, "terms": terms,
+                 "before": before, "flagged": flagged, "checked": checked, "release": release, "gp_first": gp_first})
+    return {"today": today.isoformat(), "charts": len(charts), "failed": failed, "gp_baseline": gp_first and
+            all(v == "base" for v in gp_first.values()), "first_run": not before, "apps": found, "terms": terms,
             "read": [a["brand"] for a in due], "errors": errors, "cost_micros": cost}
 
 
@@ -362,8 +461,8 @@ def _social_cell(s: dict | None) -> str:
 
 def section(b: dict) -> list[str]:
     """The report section, in Chinese like the rest of the mail."""
-    lines = ["", f"### ② 应用跟进窗口(App Store 上架 ≤{YOUNG_DAYS} 天、冲进分类前 {TOP_GENRE} 或总榜前 {TOP_ALL} 的新应用;"
-             f"🆕 = 第一次出现,进上面的候选词)", ""]
+    lines = ["", f"### ② 应用跟进窗口(App Store / Mac / Google Play 30 个区;上架 ≤{YOUNG_DAYS} 天、冲进分类前 {TOP_GENRE} "
+             f"或总榜前 {TOP_ALL} 的新应用,Google Play 按第一次上榜算;🆕 = 第一次出现,进上面的候选词)", ""]
     if b.get("skipped"):
         return []
     if b.get("error"):
@@ -382,7 +481,9 @@ def section(b: dict) -> list[str]:
         copy_cell = (f"{len(copies)}" + ("：" + "、".join(c["name"].split(" - ")[0][:16] for c in copies[:4]) if copies else "")) if cr else "—"
         window = f"**{WINDOW_ZH[cr['window']]}**" if cr else "—"
         stale = f"<br>({r['date'][5:]} 读)" if r.get("date") and r["date"] != (b.get("today") or r["date"]) else ""
-        lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}](https://apps.apple.com/{a['home']}/app/id{a['id']}) | "
+        link = (f"https://play.google.com/store/apps/details?id={a['id']}" if a.get("platform") == "android"
+                else f"https://apps.apple.com/{a['home']}/app/id{a['id']}")
+        lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}]({link}) | "
                      f"{places} | {a['release'][5:]}({a['days']} 天) | {a['price']} | {terms} | "
                      f"{'、'.join(cr.get('hints', [])[:5]) or '—'} | {copy_cell} | {window}{stale} | "
                      f"{'—' if r.get('score') is None else ('**%.2f**' if r['score'] >= memes.OPPORTUNITY_MIN else '%.2f') % r['score']} | "
@@ -412,6 +513,8 @@ def status(b: dict) -> str:
     s = f"- ② 榜单:{b['charts']} 个榜单,{len(b['apps'])} 个新应用,今天细读 {', '.join(b['read']) or '无'}"
     if b.get("first_run"):
         s += ",首次运行,没有昨天的名次"
+    if b.get("gp_baseline"):
+        s += ",Google Play 今天是底子(没有上架日期,从明天起按第一次上榜算新应用)"
     if b.get("failed"):
         s += f";{len(b['failed'])} 个榜单没取到"
     if b.get("errors"):

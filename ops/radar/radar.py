@@ -97,7 +97,7 @@ def judge(rows: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         return
     for r in rows:
-        if "meme" in r["kinds"]:   # a trend's search term ("bulin 47 ai") is not a name; memes.py scored it already
+        if {"meme", "appstore"} & set(r["kinds"]):   # scored for opportunity already (memes.py, appstore.py)
             continue
         state = json.dumps({"term": r["term"], "examples": r.get("examples", [])[:3]}, ensure_ascii=False)
         try:
@@ -123,6 +123,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
                 row["named"] = r["named"]
             if r.get("what"):
                 row["what"] = r["what"]
+            if r.get("window"):
+                row["window"] = r["window"]
     rows = list(out.values())
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
@@ -189,15 +191,13 @@ def picks(b: dict[str, dict]) -> list[str]:
         src = f",来自 {', '.join(r['names'])}" if r.get("names") else ""
         out.append(f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
                    f"{usecases.NOW_ZH.get(r.get('now'), '')}{src}。  \n做法:工具页或场景页,标题对准这个词。")
-    for a in b.get("appstore", {}).get("apps") or []:
-        rd = a.get("reading") or {}
-        cr = rd.get("crowding") or {}
-        if (rd.get("score") or 0) < memes.OPPORTUNITY_MIN or cr.get("window") == "crowded":
+    app_rows = b.get("appstore", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
+                                                      if "appstore" in r.get("kinds", [])]
+    for r in sorted(app_rows, key=lambda r: -(r.get("named") or 0)):
+        if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or r.get("window") == "crowded" or "已经挤了" in r.get("note", ""):
             continue
-        words = "、".join(t["term"] for t in cr.get("terms", [])) or a["brand"]
-        out.append(f"**{words}**(参照 {a['brand']}):App Store 新应用,{appstore._place(a['places'][0])},上架 {a['days']} 天,"
-                   f"Jev 机会 {rd['score']:.2f},同类新应用 {len(cr.get('copies', []))} 个({appstore.WINDOW_ZH[cr['window']]})。  \n"
-                   f"做法:同类应用或网站,名字和标题用这些卖点词。")
+        out.append(f"**{r['term']}**:{r.get('what') or r.get('note', '')},Jev 机会 {r['named']:.2f}。  \n"
+                   f"做法:同类应用或网站,名字和标题用它的卖点词。")
     if not out:
         return ["**今天没有值得动手的词。** 下面的明细扫一眼即可。"]
     return [f"{i}. {line}" for i, line in enumerate(out[:PICKS], 1)] + \
@@ -341,14 +341,14 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
         lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
     lines += posts_markdown(named(lead)[:SHOWN])
     lines += memes.section(b.get("meme", {"skipped": True}))
-    if not b.get("meme", {}).get("skipped"):
-        lines += ["", memes.status(b["meme"])]
+    lines += appstore.section(b.get("appstore", {"skipped": True}))
+    lines += [""] + [mod.status(b[k]) for k, mod in (("meme", memes), ("appstore", appstore)) if not b.get(k, {}).get("skipped")]
     for key, label in (("x", "① X"), ("hf", "① HF")):
         if b[key].get("error"):
             lines.append(f"\n- {label}:{b[key]['error']}")
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
-    lines.append(f"\nAIsa 花费:{_cost(b['x'], b.get('meme', {}))}")
+    lines.append(f"\nAIsa 花费:{_cost(b['x'], b.get('meme', {}), b.get('appstore', {}))}")
     return "\n".join(lines) + "\n"
 
 
@@ -356,7 +356,9 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     blocks = {"x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
               "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
               # a trend peaks in about four days: read every 8 hours, not once a day (memes.py)
-              "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags)}
+              "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags),
+              # new apps on the charts move by the hour too (Apolu refreshes hourly)
+              "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags)}
     lead = leads(blocks)
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, "--skip-db" in flags)
@@ -366,8 +368,9 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
         print(report.read_text())
     else:
         print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
-        if not blocks["meme"].get("skipped"):
-            print(memes.status(blocks["meme"]))
+        for k, mod in (("meme", memes), ("appstore", appstore)):
+            if not blocks[k].get("skipped"):
+                print(mod.status(blocks[k]))
     return 0
 
 

@@ -154,14 +154,14 @@ def review(today: date | None = None) -> dict:
 
 
 def recent_sources(today: date | None = None) -> list[dict]:
-    """① leads (X, HF, AI video trends) the 8-hourly source job kept since yesterday, for the daily report."""
+    """① leads (X, HF, AI video trends) and new apps the 8-hourly source job kept since yesterday, for the daily report."""
     from sqlalchemy import text
     today = today or date.today()
     engine = _engine()
     with engine.connect() as conn:
         rows = conn.execute(text("""
             SELECT term, signals, notes, named FROM radar_leads
-            WHERE signals && ARRAY['x', 'hf', 'meme'] AND last_seen >= :since ORDER BY last_seen DESC, term LIMIT 20
+            WHERE signals && ARRAY['x', 'hf', 'meme', 'appstore'] AND last_seen >= :since ORDER BY last_seen DESC, term LIMIT 20
         """), {"since": today - timedelta(days=1)}).fetchall()
     engine.dispose()
     return [{"term": t, "kinds": list(k), "note": (n or [""])[-1], "named": named} for t, k, n, named in rows]
