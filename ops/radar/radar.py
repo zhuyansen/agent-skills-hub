@@ -1,7 +1,7 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-appstore] [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
+                            [--skip-appstore] [--skip-memes] [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
 The source signals (①) change by the hour, the rest by the day, so they run apart:
@@ -13,6 +13,9 @@ from radar_leads.
 Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ① X        names the labs and AI bloggers in sources.json said first (source_signals.x_new, AIsa)
   ① HF       models new to Hugging Face's trending top 50 (source_signals.hf_new)
+  ① 梗       AI video trends people recreate (TikTok, Instagram, YouTube Shorts, X and TikTok's
+             trending hashtags), with Jev's score for building a site or app for one now
+             (memes.memes; about $0.02 a day through AIsa, plus the model and Jev)
   ② breakout one new GitHub repo taking off on its own (breakout.breakouts)
   ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge)
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
@@ -41,6 +44,7 @@ ROOT = HERE.parents[1]
 sys.path[:0] = [str(HERE), str(ROOT / "ops/jev-review")]
 import appstore  # noqa: E402
 import breakout  # noqa: E402
+import memes  # noqa: E402
 import new_sites  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
@@ -57,7 +61,7 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
     "focus": "`examples` are repo names, descriptions, posts or page paths where it appeared. 'opus 5.5', 'hyperframes', "
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
-KINDS = {"x": "①X", "hf": "①HF", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
+KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
          "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
@@ -93,6 +97,8 @@ def judge(rows: list[dict]) -> None:
     except Exception:  # noqa: BLE001
         return
     for r in rows:
+        if "meme" in r["kinds"]:   # a trend's search term ("bulin 47 ai") is not a name; memes.py scored it already
+            continue
         state = json.dumps({"term": r["term"], "examples": r.get("examples", [])[:3]}, ensure_ascii=False)
         try:
             r["named"] = float(jev.decisions(state, NAMED).answers["named_thing"].get("noul", 0.0))
@@ -117,7 +123,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
     first = {k: i for i, k in enumerate(KINDS)}
-    rows.sort(key=lambda r: (-(r.get("named", 0) >= NAMED_MIN), -len(r["kinds"]),
+    # Unscored rows (a meme's search term, or no Jev today) count as names, as in named().
+    rows.sort(key=lambda r: (-(r.get("named", 1.0) >= NAMED_MIN), -len(r["kinds"]),
                              min(first[k] for k in r["kinds"]), -r.get("named", 0)))
     return rows
 
@@ -172,6 +179,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         rows = recent.get("rows") or []
         lines += ([f"- **{r['term']}**:{r['note']}" for r in rows] if rows
                   else [f"无({recent.get('error') or '没有新名字'})"])
+    lines += memes.section(b.get("meme", {"skipped": True}))
     lines += ["", "### ② 单仓库爆发(近 14 天新建,按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
     repos = b["breakout"].get("repos") or []
     if repos:
@@ -215,7 +223,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines += _source_status(x, hf)
     bo = b["breakout"]
     lines += _rest_status(bo, gh, sm, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}))}(新词表的模型调用另计)")
+    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
 
 
@@ -244,6 +252,7 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
                  f"搜到 {bo['searched']} 个新仓库" + (",首次运行,没有昨天的星数" if bo.get("first_run") else ""))))
+    lines.append(memes.status(b.get("meme", {"skipped": True})))
     lines.append(appstore.status(b.get("appstore", {"skipped": True})))
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
@@ -316,6 +325,7 @@ def main() -> int:
     blocks = {
         "x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
         "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
+        "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags),
         "breakout": run("breakout", lambda: breakout.breakouts(snaps), "--skip-breakout" in flags),
         "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),

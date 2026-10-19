@@ -3,7 +3,9 @@ name: New-term radar
 # Once a day, 09:00 Beijing: the terms that are starting to surge (ops/radar/radar.py),
 # earliest signal first: ① names the labs and AI bloggers posted on X and new models on
 # Hugging Face's trending list, run apart every 8 hours (radar-source.yml) and listed
-# here from radar_leads; ② a new GitHub repo taking off on its own, new apps climbing
+# here from radar_leads, and AI video trends people recreate (TikTok, Instagram,
+# YouTube Shorts, X, TikTok's trending hashtags; memes.py) with Jev's score for building a
+# site or app for one now; ② a new GitHub repo taking off on its own, new apps climbing
 # the App Store charts in eight countries with how crowded their search words already are
 # and their Xiaohongshu and Douyin posts (appstore.py), and terms new repos in the
 # catalog suddenly share; ③ pages competitors and LobeHub added
@@ -16,7 +18,8 @@ name: New-term radar
 # mail to RADAR_EMAIL_TO (ops/radar/notify.py, Resend). It writes only radar_leads; it never pushes to main.
 #
 # AIsa here: the review (up to 15 Trends tasks at $0.0012, under $0.02 a day), the
-# Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day) and the
+# Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day), the
+# trend searches (about $0.02 a day, plus one model call and Jev) and the
 # Monday new-site queries (about $0.26 a week). The App Store charts and search are free.
 #
 # Yesterday's competitor URLs and repo star counts live in the Actions cache (one entry per run, restored by

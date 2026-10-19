@@ -542,7 +542,7 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
             "cost_micros": cost + c0 + c2 + c3 + c4}
 
 
-READ_KINDS = {"x", "hf", "breakout", "appstore", "newsite"}
+READ_KINDS = {"x", "hf", "meme", "breakout", "appstore", "newsite"}
 READ_MIN = 0.8
 
 

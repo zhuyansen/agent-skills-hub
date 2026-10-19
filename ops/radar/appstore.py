@@ -43,6 +43,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import aisa
+import memes
 
 # storefront ids for the search hints endpoint (X-Apple-Store-Front)
 COUNTRIES = {"us": "143441", "cn": "143465", "jp": "143462", "gb": "143444", "ca": "143455",
@@ -303,7 +304,7 @@ def apps(snaps: Path, today: date | None = None, social: bool = True) -> dict:
     recheck = (today - timedelta(days=RECHECK_DAYS)).isoformat()
     due = sorted((a for a in found if a["id"] not in checked or checked[a["id"]]["date"] <= recheck),
                  key=lambda a: a["id"] in checked)[:DEEP]
-    cost, errors = 0, []
+    cost, errors, client = 0, [], memes.jev()
     for a in due:
         if not social:
             res, c, err = {"date": today.isoformat()}, 0, []
@@ -313,6 +314,12 @@ def apps(snaps: Path, today: date | None = None, social: bool = True) -> dict:
                 err.append(f"{a['brand']} App Store 搜索:{type(exc).__name__}")
         else:
             res, c, err = read(a, today)
+        # Jev: could a small team build for the need this app proved? (memes.APP_OPPORTUNITY)
+        cr = res.get("crowding") or {}
+        res["score"] = memes.opportunity(client, {"app": f"{a['name']} ({a['genre']}, {a['price']})", "released_days_ago": a["days"],
+                                                  "charts": [_place(p) for p in a["places"][:4]],
+                                                  "search_words": [t["term"] for t in cr.get("terms", [])],
+                                                  "copies": [c["name"] for c in cr.get("copies", [])]}, memes.APP_OPPORTUNITY)
         checked[a["id"]] = res
         cost += c
         errors += err
@@ -364,8 +371,8 @@ def section(b: dict) -> list[str]:
     found = b.get("apps") or []
     if not found:
         return lines + [f"今天没有符合条件的新应用({b['charts']} 个榜单)"]
-    lines += ["| 应用 | 上榜位置 | 上架 | 价格 | 卖点词(自己排第几) | App Store 联想 | 近 30 天同类新应用 | 窗口 | 小红书 | 抖音 |",
-              "|---|---|---|---|---|---|---|---|---|---|"]
+    lines += ["| 应用 | 上榜位置 | 上架 | 价格 | 卖点词(自己排第几) | App Store 联想 | 近 30 天同类新应用 | 窗口 | Jev 机会 | 小红书 | 抖音 |",
+              "|---|---|---|---|---|---|---|---|---|---|---|"]
     for a in found:
         r = a.get("reading") or {}
         cr = r.get("crowding") or {}
@@ -378,6 +385,7 @@ def section(b: dict) -> list[str]:
         lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}](https://apps.apple.com/{a['home']}/app/id{a['id']}) | "
                      f"{places} | {a['release'][5:]}({a['days']} 天) | {a['price']} | {terms} | "
                      f"{'、'.join(cr.get('hints', [])[:5]) or '—'} | {copy_cell} | {window}{stale} | "
+                     f"{'—' if r.get('score') is None else ('**%.2f**' if r['score'] >= memes.OPPORTUNITY_MIN else '%.2f') % r['score']} | "
                      f"{_social_cell(r.get('xhs'))} | {_social_cell(r.get('douyin'))} |".replace("\n", " "))
     lines += ["", f"窗口:按卖点词在 App Store 搜前 {SEARCH_LIMIT} 名里、近 {COPY_DAYS} 天上架的其他应用数:0 = 先手,1–3 = 还能跟,"
               f"≥{CROWDED} = 已经挤了。卖点词取应用名破折号后面那半(腕记就是靠“手表录音”这类词冲上去的)。"
