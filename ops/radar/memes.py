@@ -198,15 +198,34 @@ def _all_tags(data: dict) -> dict[str, int]:
     return {t["hashtagName"]: t.get("rankIndex") for t in _find(data, lambda x: "hashtagName" in x)}
 
 
+def _trends(answer: str) -> list[dict] | None:
+    """The trends in the model's answer; None when it is not JSON at all. A list broken
+    in one place still gives the trends that parse on their own."""
+    m = re.search(r"\{.*\}", answer, re.S)
+    if not m:
+        return []
+    try:
+        return json.loads(m.group(0)).get("trends", [])
+    except ValueError:
+        pass
+    out = []
+    for obj in re.findall(r"\{[^{}]*\"name\"[^{}]*\}", m.group(0)):
+        try:
+            out.append(json.loads(obj))
+        except ValueError:
+            continue
+    return out or None
+
+
 def extract(posts: list[dict], tags: list[dict], seeds: list[str]) -> list[dict]:
     lines = [f"[{i}] {PLATFORM_ZH[p['platform']]} {p['day'] or 'this week'} ♥{p['likes']} ▶{p['views']}: {p['text']}"
              for i, p in enumerate(posts)]
     lines += [f"[t{i}] #{t['tag']} rank {t['rank']}, {t['videos']} videos, curve {t['curve']}" for i, t in enumerate(tags)]
     user = ("Trends found on earlier days, for the kind of thing to look for (report them again only if these posts "
             f"show them): {', '.join(seeds) or 'none yet'}\n\nPOSTS AND HASHTAGS:\n" + "\n".join(lines))
-    answer = aisa.chat(MODEL, SYSTEM, user, max_tokens=2000)
-    m = re.search(r"\{.*\}", answer, re.S)
-    trends = json.loads(m.group(0)).get("trends", []) if m else []
+    trends = _trends(aisa.chat(MODEL, SYSTEM, user, max_tokens=2000))
+    if trends is None:   # broken JSON (the first CI run, 10-19: a missing comma): ask once more
+        trends = _trends(aisa.chat(MODEL, SYSTEM, user + "\n\nAnswer with valid JSON only.", max_tokens=2000)) or []
     out = []
     for t in trends[:MAX_MEMES]:
         name = " ".join(str(t.get("name", "")).lower().split())
