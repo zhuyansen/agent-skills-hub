@@ -173,7 +173,18 @@ def test_review_verdict_miss_and_no_data():
 
 # --- the 8-hourly source run --------------------------------------------------------------
 
+def _quiet_memes_and_charts(monkeypatch):
+    """The run's other two sources, without the network (the real ones make about 400 calls
+    to AIsa, Apple and Apolu): both read fine and found nothing new."""
+    monkeypatch.setattr(radar.memes, "memes", lambda snaps: {
+        "posts": 120, "by_platform": {"tiktok": 40, "instagram": 30, "youtube": 30, "x": 20}, "tags": 6,
+        "memes": [], "terms": [], "errors": [], "jev": True, "cost_micros": 0})
+    monkeypatch.setattr(radar.appstore, "apps", lambda snaps: {
+        "charts": 290, "failed": [], "apps": [], "terms": [], "read": [], "errors": [], "cost_micros": 0})
+
+
 def test_sources_run_writes_no_report_when_nothing_is_new(monkeypatch, tmp_path):
+    _quiet_memes_and_charts(monkeypatch)
     monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "terms": []})
     monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
     report = tmp_path / "sources.md"
@@ -182,6 +193,7 @@ def test_sources_run_writes_no_report_when_nothing_is_new(monkeypatch, tmp_path)
 
 
 def test_sources_run_reports_a_new_name(monkeypatch, tmp_path):
+    _quiet_memes_and_charts(monkeypatch)
     monkeypatch.setattr(radar, "judge", lambda rows: None)
     monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "cost_micros": 72000, "terms": [
         {"term": "qwen3.9", "recent": 2, "note": "X 2 个账号 ♥900", "examples": ["@Alibaba_Qwen: Qwen3.9 is out"]}]})
