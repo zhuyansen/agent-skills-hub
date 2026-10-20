@@ -1,20 +1,31 @@
-"""Day-one Jev prior for a new repo: one OpenRouter decisions call, typed questions only.
+"""Day-one Jev prior for a new repo: one Jev decisions call, typed questions only.
 
 Mirrors the question set of the public retrospective study (github.com/zhuyansen/
 jev-cold-start-prior) so the prospective data is directly comparable. Star counts are kept
 OUT of the state, and README lines rendering live star badges are stripped, so the prior is
-a pure semantic signal and never leaks the popularity baseline it is compared against."""
+a pure semantic signal and never leaks the popularity baseline it is compared against.
+
+The call goes to TypeSafe's own API when TYPESAFE_API_KEY is set, else to OpenRouter (same
+questions, same answers; ops/jev-review/jev_client.py made the same switch on 10-03). The
+OpenRouter credit ran out around 2026-10-07 and every prior after that failed with HTTP 402."""
 
 import json
+import os
 import re
+import time
+from collections.abc import Mapping
+from dataclasses import dataclass, field
 
 import httpx
 
 DECISIONS_URL = "https://openrouter.ai/api/alpha/decisions"
 MODEL = "~typesafe/jev-latest"
+TYPESAFE_URL = "https://api.typesafe.ai/v1/systemone"   # docs.typesafe.ai/introduction/quickstart
+TYPESAFE_MODEL = "jev-latest"
 README_CHARS = 3000
 TIMEOUT_S = 120
 RETRIES = 4
+BACKOFF_S = 1   # doubled per retry, as in ops/jev-review/jev_client.py
 _BADGE = re.compile(r"^.*(shields\.io|star-history|stargazers|badge\.fury|img\.shields).*$", re.I | re.M)
 
 QUESTIONS = {
@@ -41,6 +52,24 @@ QUESTIONS = {
 }
 
 
+@dataclass(frozen=True)
+class JevEndpoint:
+    name: str
+    url: str
+    model: str
+    key: str = field(repr=False)
+
+
+def endpoint_from_env(env: Mapping[str, str] | None = None) -> JevEndpoint | None:
+    """TypeSafe's own API when TYPESAFE_API_KEY is set, else OpenRouter; None when neither key is."""
+    env = os.environ if env is None else env
+    if env.get("TYPESAFE_API_KEY"):
+        return JevEndpoint("typesafe", TYPESAFE_URL, TYPESAFE_MODEL, env["TYPESAFE_API_KEY"])
+    if env.get("OPENROUTER_API_KEY"):
+        return JevEndpoint("openrouter", DECISIONS_URL, MODEL, env["OPENROUTER_API_KEY"])
+    return None
+
+
 def build_state(row: dict) -> str:
     age_days = max((row["first_seen"] - row["created_at"]).days, 0)
     readme = _BADGE.sub("", row.get("readme") or "")[:README_CHARS]
@@ -63,15 +92,16 @@ def flatten(answers: dict) -> dict:
     return out
 
 
-def score_prior(row: dict, api_key: str, client: httpx.Client) -> tuple[dict, str]:
+def score_prior(row: dict, endpoint: JevEndpoint, client: httpx.Client) -> tuple[dict, str]:
     """Return (flattened prior, resolved model id). Raises after RETRIES transient failures."""
-    body = {"model": MODEL, "state": build_state(row), "questions": QUESTIONS}
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    body = {"model": endpoint.model, "state": build_state(row), "questions": QUESTIONS}
+    headers = {"Authorization": f"Bearer {endpoint.key}", "Content-Type": "application/json"}
     last_error = ""
-    for _ in range(RETRIES):
-        resp = client.post(DECISIONS_URL, headers=headers, content=json.dumps(body), timeout=TIMEOUT_S)
+    for attempt in range(RETRIES):
+        resp = client.post(endpoint.url, headers=headers, content=json.dumps(body), timeout=TIMEOUT_S)
         if resp.status_code == 429 or resp.status_code >= 500:
             last_error = f"HTTP {resp.status_code}"
+            time.sleep(BACKOFF_S * 2 ** attempt)
             continue
         resp.raise_for_status()
         data = resp.json()
