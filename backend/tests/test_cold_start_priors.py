@@ -75,3 +75,4 @@ def test_query_reads_readmes_only_for_picked_rows():
     assert sql.index("left(s.readme_content, 4000)") > sql.index("picked as materialized")
     assert sql.index("length(readme_content)") < sql.index("picked as materialized")
     assert "nullif(readme_size, 0)" in sql
+    assert "order by r.first_seen desc, r.id desc" in sql   # the same 150 every time

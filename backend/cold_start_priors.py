@@ -48,13 +48,13 @@ with recent as materialized (
   from recent r
   left join cold_start_priors p on p.repo_full_name = r.repo_full_name
   where p.repo_full_name is null and r.readme_chars > 300
-  order by r.first_seen desc
+  order by r.first_seen desc, r.id desc   -- a sync batch shares one first_seen (45 at the cut on 10-20)
   limit :lim
 )
 select s.repo_full_name, s.author_name, s.description, s.category, s.stars,
        s.created_at, s.first_seen, left(s.readme_content, 4000) as readme
 from picked join skills s on s.id = picked.id
-order by picked.first_seen desc
+order by picked.first_seen desc, picked.id desc
 """)
 
 INSERT_PRIOR = text("""
