@@ -428,9 +428,13 @@ def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: boo
                               f",卖点词 {'、'.join(t['term'] for t in cr.get('terms', []))},同类新应用 {len(cr.get('copies', []))} 个"
                               f"({WINDOW_ZH[cr['window']]})" if cr else ""),
                           "window": cr.get("window"),
+                          # no descriptive half in the name (오리집, 해병PTSD알람): its "selling words" are
+                          # its own name, so the crowding count says nothing; not a pick (radar.picks)
+                          "described": bool(a["desc"]),
                           # the daily picks only get this note back from radar_leads, so it says the window too
                           "note": f"②榜单 {label(p['chart'])} #{p['rank']}(上架 {a['days']} 天,{len(a['countries'])} 个区上榜)"
-                                  + (f",{WINDOW_ZH[cr['window']]}" if cr else ""),
+                                  + (f",{WINDOW_ZH[cr['window']]}" if cr else "")
+                                  + ("" if a["desc"] else ",无卖点词"),
                           "examples": [a["name"], a["artist"], a["genre"]], "variants": [a["brand"].lower()]})
     save(snaps, {"date": today.isoformat(), "charts": {k: [r["id"] for r in v] for k, v in charts.items()},
                  "before": before, "flagged": flagged, "checked": checked, "release": release, "gp_first": gp_first})

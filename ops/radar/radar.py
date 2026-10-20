@@ -127,6 +127,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
                 row["window"] = r["window"]
             if r.get("checks"):
                 row["checks"] = r["checks"]
+            if "described" in r:
+                row["described"] = r["described"]
     rows = list(out.values())
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
@@ -202,6 +204,9 @@ def picks(b: dict[str, dict]) -> list[str]:
                                                       if "appstore" in r.get("kinds", [])]
     for r in sorted(app_rows, key=lambda r: -(r.get("named") or 0)):
         if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or r.get("window") == "crowded" or "已经挤了" in r.get("note", ""):
+            continue
+        # an app whose name has no descriptive half sells on its own name: nothing to build on (10-20)
+        if r.get("described") is False or "无卖点词" in r.get("note", ""):
             continue
         out.append(f"**{r['term']}**:{r.get('what') or r.get('note', '')},Jev 机会 {r['named']:.2f}。  \n"
                    f"做法:同类应用或网站,名字和标题用它的卖点词。")
