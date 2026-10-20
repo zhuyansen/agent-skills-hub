@@ -94,7 +94,20 @@ APP_OPPORTUNITY = {"build_now": {"type": "noul", "instructions": {
                 "within a month?",
     "focus": "`app` is a new app climbing the App Store charts; `copies` are other apps released in the last 30 "
              "days on its search words. Yes when the need is plain, the app is simple to rebuild and the words are "
-             "not crowded yet; no for a game, a brand's own app, a service tied to one place, or a crowded need."}}}
+             "not crowded yet; no for a game, a brand's own app, a service tied to one place, or a crowded need."}},
+    # Asked apart, as atomic questions read better than one folded into build_now: on 10-19 Jev gave
+    # Derrimut 24:7 Gym's members app 0.79 from its name alone (appstore.TIED_MIN, radar._app_picks)
+    "own_app": {"type": "noul", "instructions": {
+        "question": "Is this the official app of one particular business, chain, club, school or institution, made "
+                    "for its own customers, members or staff?",
+        "focus": "`developer` and `description` say who made it and for whom. A gym chain's members app, a bank's, "
+                 "a shop's, a restaurant's or an airline's own app: yes. An app anyone can use for the need, from "
+                 "whoever made it: no."}},
+    "one_place": {"type": "noul", "instructions": {
+        "question": "Does it only work with the systems or places of one city or one country: a transit network, a "
+                    "government service, local venues?",
+        "focus": "A subway arrival app for one city or a national tax app: yes. A recorder, editor, camera or "
+                 "tracker that works anywhere: no."}}}
 
 
 def _find(o, key):
@@ -321,12 +334,18 @@ def jev():
 
 
 def opportunity(client, state: dict, questions: dict = OPPORTUNITY) -> float | None:
+    return answers(client, state, questions).get("build_now")
+
+
+def answers(client, state: dict, questions: dict) -> dict[str, float]:
+    """Jev's yes-probability for each question; empty without a client, credit or answer."""
     if client is None:
-        return None
+        return {}
     try:
-        return float(client.decisions(json.dumps(state, ensure_ascii=False), questions).answers["build_now"].get("noul", 0.0))
+        got = client.decisions(json.dumps(state, ensure_ascii=False), questions).answers
     except Exception:  # noqa: BLE001 — no credit or a timeout
-        return None
+        return {}
+    return {k: float(a.get("noul", 0.0)) for k, a in got.items() if k in questions}
 
 
 def load(snaps: Path) -> dict:

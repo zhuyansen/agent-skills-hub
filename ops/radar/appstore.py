@@ -81,6 +81,9 @@ SEARCH_LIMIT = 50
 TERMS_PER_APP = 3
 GAMES = "6014"           # games are mostly console ports and a different trade: left out
 CROWDED = 4
+TIED_MIN = 0.5           # Jev's own_app or one_place at or over this: a business's own app, or one place's
+ABOUT_CHARS = 600        # of the App Store description, for Jev to see who the app is for
+TIED_ZH = {"own_app": "自家应用", "one_place": "只限一地"}
 SOCIAL_DAYS = 14
 FLAGGED_DAYS = 45
 STATE = "appstore.json.gz"
@@ -403,12 +406,14 @@ def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: boo
                 err.append(f"{a['brand']} App Store 搜索:{type(exc).__name__}")
         else:
             res, c, err = read(a, today)
-        # Jev: could a small team build for the need this app proved? (memes.APP_OPPORTUNITY)
+        # Jev: could a small team build for the need this app proved, and is it some business's own
+        # app or tied to one place? (memes.APP_OPPORTUNITY)
         cr = res.get("crowding") or {}
-        res["score"] = memes.opportunity(client, {"app": f"{a['name']} ({a['genre']}, {a['price']})", "released_days_ago": a["days"],
-                                                  "charts": [_place(p) for p in a["places"][:4]],
-                                                  "search_words": [t["term"] for t in cr.get("terms", [])],
-                                                  "copies": [c["name"] for c in cr.get("copies", [])]}, memes.APP_OPPORTUNITY)
+        ans = memes.answers(client, {"app": f"{a['name']} ({a['genre']}, {a['price']})", **_try_about(a),
+                                     "released_days_ago": a["days"], "charts": [_place(p) for p in a["places"][:4]],
+                                     "search_words": [t["term"] for t in cr.get("terms", [])],
+                                     "copies": [c["name"] for c in cr.get("copies", [])]}, memes.APP_OPPORTUNITY)
+        res.update(score=ans.get("build_now"), own_app=ans.get("own_app"), one_place=ans.get("one_place"))
         checked[a["id"]] = res
         cost += c
         errors += err
@@ -423,7 +428,8 @@ def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: boo
             rd, cr = a["reading"] or {}, (a["reading"] or {}).get("crowding") or {}
             # `named` carries Jev's opportunity score, as for memes: radar.judge() skips these rows,
             # radar_leads keeps it, and the daily picks read it back with `what`
-            terms.append({"term": a["brand"].lower(), "recent": len(a["places"]), "named": rd.get("score"),
+            mark = tied(rd)
+            terms.append({"term": a["brand"].lower(), "recent": len(a["places"]), "named": rd.get("score"), "tied": mark,
                           "what": f"新应用,{_place(p)},上架 {a['days']} 天" + (
                               f",卖点词 {'、'.join(t['term'] for t in cr.get('terms', []))},同类新应用 {len(cr.get('copies', []))} 个"
                               f"({WINDOW_ZH[cr['window']]})" if cr else ""),
@@ -434,13 +440,34 @@ def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: boo
                           # the daily picks only get this note back from radar_leads, so it says the window too
                           "note": f"②榜单 {label(p['chart'])} #{p['rank']}(上架 {a['days']} 天,{len(a['countries'])} 个区上榜)"
                                   + (f",{WINDOW_ZH[cr['window']]}" if cr else "")
-                                  + ("" if a["desc"] else ",无卖点词"),
+                                  + ("" if a["desc"] else ",无卖点词") + (f",{mark}" if mark else ""),
                           "examples": [a["name"], a["artist"], a["genre"]], "variants": [a["brand"].lower()]})
     save(snaps, {"date": today.isoformat(), "charts": {k: [r["id"] for r in v] for k, v in charts.items()},
                  "before": before, "flagged": flagged, "checked": checked, "release": release, "gp_first": gp_first})
     return {"today": today.isoformat(), "charts": len(charts), "failed": failed, "gp_baseline": gp_first and
             all(v == "base" for v in gp_first.values()), "first_run": not before, "apps": found, "terms": terms,
             "read": [a["brand"] for a in due], "errors": errors, "cost_micros": cost}
+
+
+def about(app: dict) -> dict:
+    """Who made an App Store app and what its listing says (Apple's lookup, free). Google Play
+    has no such lookup: its apps go to Jev with their name only."""
+    if app.get("platform") == "android":
+        return {}
+    got = _json(f"https://itunes.apple.com/lookup?id={app['id']}&country={app['home']}").get("results") or [{}]
+    r = got[0]
+    return {k: v for k, v in (("developer", r.get("sellerName") or r.get("artistName") or app.get("artist", "")),
+                              ("description", " ".join((r.get("description") or "").split())[:ABOUT_CHARS])) if v}
+
+
+def _try_about(app: dict) -> dict:
+    got = _try(about, app)
+    return got if isinstance(got, dict) else {"developer": app.get("artist", "")} if app.get("artist") else {}
+
+
+def tied(reading: dict) -> str:
+    """'自家应用' / '只限一地' when Jev says so (TIED_MIN); '' otherwise or when not asked."""
+    return next((TIED_ZH[k] for k in TIED_ZH if (reading.get(k) or 0) >= TIED_MIN), "")
 
 
 def _try(fn, *args):
@@ -453,6 +480,16 @@ def _try(fn, *args):
 def _place(p: dict) -> str:
     move = "🆕" if p["entered"] else (f"↑{p['was'] - p['rank']}" if p["was"] and p["was"] > p["rank"] else "")
     return f"{label(p['chart'])} #{p['rank']}{move}"
+
+
+def _score_cell(r: dict) -> str:
+    """Jev's opportunity, bold over the bar, unless the app is some business's own or one place's."""
+    if r.get("score") is None:
+        return "—"
+    mark = tied(r)
+    if mark:
+        return f"{r['score']:.2f}<br>{mark}"
+    return ("**%.2f**" if r["score"] >= memes.OPPORTUNITY_MIN else "%.2f") % r["score"]
 
 
 def _social_cell(s: dict | None) -> str:
@@ -490,7 +527,7 @@ def section(b: dict) -> list[str]:
         lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}]({link}) | "
                      f"{places} | {a['release'][5:]}({a['days']} 天) | {a['price']} | {terms} | "
                      f"{'、'.join(cr.get('hints', [])[:5]) or '—'} | {copy_cell} | {window}{stale} | "
-                     f"{'—' if r.get('score') is None else ('**%.2f**' if r['score'] >= memes.OPPORTUNITY_MIN else '%.2f') % r['score']} | "
+                     f"{_score_cell(r)} | "
                      f"{_social_cell(r.get('xhs'))} | {_social_cell(r.get('douyin'))} |".replace("\n", " "))
     lines += ["", f"窗口:按卖点词在 App Store 搜前 {SEARCH_LIMIT} 名里、近 {COPY_DAYS} 天上架的其他应用数:0 = 先手,1–3 = 还能跟,"
               f"≥{CROWDED} = 已经挤了。卖点词取应用名破折号后面那半(腕记就是靠“手表录音”这类词冲上去的)。"

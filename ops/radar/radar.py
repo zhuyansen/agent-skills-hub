@@ -259,6 +259,9 @@ def _app_picks(b: dict[str, dict]) -> list[str]:
         # an app whose name has no descriptive half sells on its own name: nothing to build on (10-20)
         if r.get("described") is False or "无卖点词" in r.get("note", ""):
             continue
+        # a business's own app (a gym chain's members app) or one city's: no need to copy (10-20)
+        if r.get("tied") or any(m in r.get("note", "") for m in appstore.TIED_ZH.values()):
+            continue
         out.append(f"**{r['term']}**:{r.get('what') or r.get('note', '')},Jev 机会 {r['named']:.2f}。  \n"
                    f"做法:同类应用或网站,名字和标题用它的卖点词。")
     return out
