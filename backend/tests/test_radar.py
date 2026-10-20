@@ -1,9 +1,12 @@
 """The radar's pure logic (ops/radar): name extraction, signal scoring, the review's verdict.
 Network and database calls are not exercised here."""
 import re
+import socket
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 
@@ -15,6 +18,18 @@ from source_signals import base_name, novel_names  # noqa: E402
 from terms import names  # noqa: E402
 
 NOW = datetime(2026, 10, 3, 12, tzinfo=timezone.utc)
+
+
+@pytest.fixture(autouse=True)
+def no_network(monkeypatch):
+    """Every test here runs offline: a source left unstubbed fails at its first connection instead
+    of hanging on the proxy (sources_main, 2026-10-20). pytest.fail is a BaseException, so the
+    sources' `except Exception` and their retries do not swallow it."""
+    def refuse(target):
+        pytest.fail(f"test_radar.py reached the network ({target}): stub the source that called it")
+    monkeypatch.setattr(socket, "getaddrinfo", lambda host, *a, **k: refuse(host))
+    monkeypatch.setattr(socket.socket, "connect", lambda self, address: refuse(address))
+    monkeypatch.setattr(socket.socket, "connect_ex", lambda self, address: refuse(address))
 
 
 # --- names(): what a post can name -------------------------------------------------
