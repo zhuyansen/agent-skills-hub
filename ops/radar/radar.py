@@ -363,13 +363,24 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
     for site, s in sm.get("sites", {}).items():
-        state = s.get("error") or ("首次运行,只建快照" if s.get("first_run") else f"{s['urls']} 个网址,新增 {s['new']}")
-        lines.append(f"- ③ {site}:{state}")
+        lines.append(f"- ③ {site}:{_site_state(s)}")
     if sm.get("error") or sm.get("skipped"):
         lines.append(f"- ③ 竞品:{sm.get('error') or '跳过'}")
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
     return lines
+
+
+def _site_state(s: dict) -> str:
+    """One competitor sitemap's line, saying when a day's new URLs were not news (sitemap_diff)."""
+    if s.get("error") or s.get("first_run"):
+        return s.get("error") or "首次运行,只建快照"
+    state = f"{s['urls']} 个网址,新增 {s['new']}"
+    if s.get("flood"):
+        state += f"(占 {s['new'] / s['urls']:.0%},像改版或换网址,今天不从它取词)"
+    if s.get("partial"):
+        state += f"(只读到已知 {s['known']} 个的 {s['urls'] / s['known']:.0%},没读到的以后再出现也不算新增)"
+    return state
 
 
 def _meme_app_status(b: dict) -> list[str]:

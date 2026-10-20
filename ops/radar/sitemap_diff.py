@@ -10,6 +10,12 @@ read directly, each as its own source: one shard down does not cost the others. 
 shard is a list of about 200 entries in 17 languages, a featured list rather than the
 whole catalog, so a new URL there means "entered LobeHub's list". Locale prefixes are
 stripped, or one new entry would count as 17 new URLs.
+
+The snapshot only grows: a URL seen once is never new again. Sites answer with part of
+their sitemap now and then (glama 136k -> 67k on 10-19, toolify 948k <-> 540k), and the
+next full read then counted the rest as new (71,536 on glama 10-20): the mail's terms
+were MCP registry namespaces like "io.github.sadri". A day where new URLs are over
+FLOOD_SHARE of a site is a redesign, not news: its terms are left out that day.
 """
 from __future__ import annotations
 
@@ -28,6 +34,9 @@ RETRIES = 3
 RETRY_PAUSE = 10
 MIN_URLS = 3
 TOP = 25
+FLOOD_SHARE = 0.2        # normal days stay under 3% (glama, mcp.so, skillsmp, 10-12..10-20)
+FLOOD_MIN = 500          # and LobeHub's 200-entry lists may turn over a lot on their own
+PARTIAL_SHARE = 0.9      # read under 90% of what the snapshot holds: a partial answer
 _LOCALE = r"^(https?://[^/]+)/[a-z]{2}(?:-[A-Za-z]{2,4})?(?=/)"
 # site -> (index URL, shard filter or None when the URL is itself a shard,
 #          seconds between requests, locale prefix to strip or None)
@@ -76,6 +85,14 @@ def slug_text(url: str) -> str:
     return re.sub(r"[/_\-]+", " ", path)
 
 
+def _shape(urls: int, new: int, old: set[str] | None) -> dict:
+    """flood: too many new URLs to be news (a redesign); partial: less read than is known."""
+    if old is None:
+        return {"flood": False, "partial": False}
+    return {"flood": new >= FLOOD_MIN and new > FLOOD_SHARE * urls,
+            "partial": urls < PARTIAL_SHARE * len(old), "known": len(old)}
+
+
 def diff(snapshot_dir: Path) -> dict:
     """New URLs per site against the stored snapshot, then the terms that surge in them."""
     snapshot_dir.mkdir(parents=True, exist_ok=True)
@@ -91,10 +108,12 @@ def diff(snapshot_dir: Path) -> dict:
             report[site] = {"error": str(exc)[:120]}
             continue
         new = sorted(now - old) if old is not None else []
-        report[site] = {"urls": len(now), "new": len(new), "first_run": old is None, "sample": new[:8]}
-        recent += [(u, slug_text(u)) for u in new]
+        report[site] = {"urls": len(now), "new": len(new), "first_run": old is None, "sample": new[:8],
+                        **_shape(len(now), len(new), old)}
+        if not report[site]["flood"]:
+            recent += [(u, slug_text(u)) for u in new]
         baseline += [(u, slug_text(u)) for u in (old or set())]
         if now:   # an empty answer (blocked, broken) keeps yesterday's snapshot
-            path.write_bytes(gzip.compress(json.dumps(sorted(now)).encode()))
+            path.write_bytes(gzip.compress(json.dumps(sorted(now | (old or set()))).encode()))
     ratio = len(recent) / max(len(baseline), 1)
     return {"sites": report, "terms": surges(by_source(recent), by_source(baseline), ratio, MIN_URLS, TOP)}

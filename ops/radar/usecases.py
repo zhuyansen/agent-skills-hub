@@ -551,11 +551,14 @@ def names_to_read(leads_today: list[dict], recent_sources: list[dict]) -> list[s
     not a word that surged. Terms that only the word-count signals found (new sitemap URLs,
     repos sharing a word) are words like "mcd" and "context protocol", or URL fragments
     like "kr.co.klisten.api": the first live run read five of those (2026-10-12). A lead
-    needs a signal that reports things and a name score of READ_MIN; unscored leads pass."""
+    needs a signal that reports things and a name score of READ_MIN; unscored leads pass
+    (no Jev today), except apps: theirs is Jev's opportunity read, None when the app was
+    not read that day, and a new app's name has no searches yet (10-20 read four for nothing)."""
     out = []
     for r in [*leads_today, *recent_sources]:
-        named = r.get("named")
-        if READ_KINDS & set(r.get("kinds", [])) and (named is None or named >= READ_MIN) and r["term"] not in out:
+        kinds, named = set(r.get("kinds", [])), r.get("named")
+        passes = named >= READ_MIN if named is not None else not kinds <= {"appstore"}
+        if READ_KINDS & kinds and passes and r["term"] not in out:
             out.append(r["term"])
     return out
 

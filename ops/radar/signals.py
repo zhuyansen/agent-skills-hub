@@ -21,6 +21,11 @@ from terms import by_source, surges
 ROOT = Path(__file__).resolve().parents[2]
 RECENT_DAYS, BASELINE_DAYS = 3, 30
 GH_MIN_OWNERS = 5
+# A word already common in the 30-day baseline that only doubles is noise (pytorch 5 owners
+# x2.6, instagram 16 x2.0 on 10-20); a real wave is either steep or wide (falkor x4.5,
+# hyperframes 58-65 owners at x2-3, remotion 30+ at x2 in October).
+GH_MIN_LIFT = 3.0
+GH_WIDE_OWNERS = 20
 GSC_LAG_DAYS = 1
 GSC_RECENT, GSC_BEFORE = 3, 56
 GSC_MIN_IMPRESSIONS = 3
@@ -68,7 +73,8 @@ def github_surge() -> dict:
     for owner, text, new in rows:
         if new:
             examples.setdefault(owner, text)
-    top = surges(recent, baseline, RECENT_DAYS / BASELINE_DAYS, GH_MIN_OWNERS, TOP)
+    top = [r for r in surges(recent, baseline, RECENT_DAYS / BASELINE_DAYS, GH_MIN_OWNERS, TOP)
+           if r["lift"] >= GH_MIN_LIFT or r["recent"] >= GH_WIDE_OWNERS]
     for r in top:
         r["examples"] = [examples[o][:90] for o in sorted(recent[r["term"]])[:3]]
     return {"repos_recent": sum(1 for *_, new in rows if new), "repos_baseline": sum(1 for *_, new in rows if not new),

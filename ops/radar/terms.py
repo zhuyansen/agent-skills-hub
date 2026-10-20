@@ -22,7 +22,12 @@ github python typescript javascript node rust go web based local self hosted hos
 your all any more most one two three get set run runs build builder generate generator help helper helps
 assistant assistants chat bot bots automation automate automated workflow workflows system systems data
 md readme docs example examples demo test tests template templates collection awesome list curated
+com net org www http https
 """.split())
+# An MCP registry namespace or reversed domain ("io.github.sadri", "com.a2awire", "kr.co.klisten.api")
+# names a publisher, not a thing people search for: glama's connector URLs carry one each.
+_NAMESPACE = re.compile(r"^(?:io|com|ai|dev|net|org|app|co|me|so|sh|xyz|cloud|tech|run|page|site|info|biz|"
+                        r"cn|kr|jp|de|uk|fr|in|us|eu)\.[a-z0-9-]+(?:\.[a-z0-9-]+)*$")
 
 
 def terms(text: str) -> set[str]:
@@ -30,10 +35,13 @@ def terms(text: str) -> set[str]:
     ("hyperframes") and its parts are added; bigrams come from the text as written."""
     words = _words(text or "")
     parts = _words(_CAMEL.sub(" ", text or ""))
-    keep = {w for w in words + parts if w not in STOP and not w.isdigit()}
-    pairs = {f"{a} {b}" for a, b in zip(words, words[1:])
-             if a != b and a not in STOP and b not in STOP and not a.isdigit() and not b.isdigit()}
+    keep = {w for w in words + parts if not _skip(w)}
+    pairs = {f"{a} {b}" for a, b in zip(words, words[1:]) if a != b and not _skip(a) and not _skip(b)}
     return keep | pairs
+
+
+def _skip(word: str) -> bool:
+    return word in STOP or word.isdigit() or bool(_NAMESPACE.match(word))
 
 
 _URL = re.compile(r"https?://\S+|@\w+")
