@@ -1946,7 +1946,9 @@
     "veryCoolTimo/imagegen-skills",
     "zhangx413/dsh-pbr-material",
     "Hikhakk/higgsfield-mcp-unified",
-    "cheshireyang/image-to-svg-skills"
+    "cheshireyang/image-to-svg-skills",
+    "See-Sol-Lab/Picxel",
+    "sammyteng/illustration-studio"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2174,7 +2176,8 @@
     "worldwonderer/video-recap-skills",
     "ColonyShopkeeper/r08-composiohq-awesome-claude-skills-seo",
     "Gravityaespot/r16-voltagent-awesome-agent-skills-seo",
-    "Holddrespell/r16-voltagent-awesome-agent-skills-datascience"
+    "Holddrespell/r16-voltagent-awesome-agent-skills-datascience",
+    "loulanyue/awesome-claude-notes"
    ]
   },
   "related": [
@@ -3440,7 +3443,8 @@
     "activeloopai/hivemind",
     "tt-a1i/skillroster",
     "olegpustovit/agentpack",
-    "neiii/bridle"
+    "neiii/bridle",
+    "VictorTomaili/skill-cli"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4306,7 +4310,9 @@
     "IT-Shelter-Labs/Shelter-Humanizer",
     "arslanr-com/writehuman",
     "acchuang/zh-tw-humanizer",
-    "IsaacEryn/humanizer-ko"
+    "IsaacEryn/humanizer-ko",
+    "junbolian/Academic-Humanizer",
+    "FerasMahmoud/mega-frontend-design"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4724,7 +4730,10 @@
     "Mehmoodqureshi/seo-tools-mcp",
     "Mehmoodqureshi/mcp-seo-tools",
     "owensky-dev/seo-gsc-ga4-analyst",
-    "catorch/dataforseo-api-cli"
+    "catorch/dataforseo-api-cli",
+    "AgriciDaniel/chatgpt-seo",
+    "Fangx-AI/geo-doctor",
+    "duckduckdeploy/openseo"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -4761,7 +4770,8 @@
     "nowork-studio/toprank",
     "recomby-ai/recomby-geo",
     "unifapi-agent/skills",
-    "usenotra/notra"
+    "usenotra/notra",
+    "AgriciDaniel/codex-seo"
    ]
   },
   "related": [
@@ -5187,7 +5197,8 @@
     "yckonnnnn/zack-design-skills",
     "Bearisbug/Quilt",
     "lemonteaau/smartisan-ui-skill",
-    "arla6ka/design.how"
+    "arla6ka/design.how",
+    "SandroHub013/awwwards-skill"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -7595,7 +7606,9 @@
     "ariel-frischer/jevkit",
     "adityajha2005/decisionkit",
     "momozi1996/momo-code",
-    "Valen-Team/Valen"
+    "Valen-Team/Valen",
+    "disler/pi-durable-news-agent",
+    "italoalmeida0/laya-system-one"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8024,7 +8037,13 @@
     "xdis/opus-video-studio",
     "zz41354899/mografy",
     "sudadom/arabic-motion-graphics-skill",
-    "Nealsun1993/talk-workbench"
+    "Nealsun1993/talk-workbench",
+    "Xiangyu-CAS/rea-capcut",
+    "threeaus/creator-style-kit",
+    "fltman/infofilm",
+    "sub-level/marketing-videos",
+    "Lunamos/paper2video",
+    "patryk-penczek/ship-video"
    ],
    "sub_skills": [
     {
@@ -8062,7 +8081,8 @@
     "animspark/animspark",
     "manthanpatelll/leadgenman-video-skills",
     "Dancan254/voiceover-video-skill",
-    "minosdevs/cinematic-film"
+    "minosdevs/cinematic-film",
+    "Miftahul-Islam-Efaz/Motion-graphics-skill"
    ],
    "tag_matches": [],
    "required_keywords": [

@@ -5848,5 +5848,113 @@
    "general": 0.23
   },
   "kind": "motion"
+ },
+ {
+  "repo": "threeaus/creator-style-kit",
+  "stars": 15,
+  "description": "18 套 9:16 HyperFrames 视频风格（字体/配色/动效/音效/构图），Claude Code skill",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.6,
+   "music": 0.08,
+   "motion": 0.38,
+   "shorts": 0.89,
+   "editing": 0.19,
+   "demo": 0.34,
+   "story": 0.07,
+   "avatar": 0.09,
+   "general": 0.45
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "fltman/infofilm",
+  "stars": 7,
+  "description": "Claude Code skill: narrated infographic explainer films — 1950s newsreel cards, ElevenLabs narrator, Suno jingles, Gemini art, Remotion scenes cued to the spoken word",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.97,
+   "music": 0.08,
+   "motion": 0.12,
+   "shorts": 0.05,
+   "editing": 0.06,
+   "demo": 0.21,
+   "story": 0.11,
+   "avatar": 0.07,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "sub-level/marketing-videos",
+  "stars": 5,
+  "description": "Make marketing videos with a coding agent: Remotion + Claude Code skills + the AI footage pipeline behind our launch films",
+  "scores": {
+   "promo": 0.97,
+   "explainer": 0.26,
+   "music": 0.12,
+   "motion": 0.22,
+   "shorts": 0.19,
+   "editing": 0.06,
+   "demo": 0.45,
+   "story": 0.66,
+   "avatar": 0.11,
+   "general": 0.31
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Lunamos/paper2video",
+  "stars": 5,
+  "description": "Claude Code skill: turn a research paper or project into a 3Blue1Brown-style explainer video with Remotion (script, narration, real-data animation, captions, covers, YouTube/Bilibili copy)",
+  "scores": {
+   "promo": 0.17,
+   "explainer": 0.97,
+   "music": 0.05,
+   "motion": 0.06,
+   "shorts": 0.39,
+   "editing": 0.06,
+   "demo": 0.2,
+   "story": 0.06,
+   "avatar": 0.06,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "patryk-penczek/ship-video",
+  "stars": 5,
+  "description": "Turn your app into a music-synced launch film, as code. An agent skill for Claude Code and Codex: real UI capture, cuts on the beat, frame-exact MP4 with Playwright, GSAP and ffmpeg.",
+  "scores": {
+   "promo": 0.97,
+   "explainer": 0.12,
+   "music": 0.83,
+   "motion": 0.13,
+   "shorts": 0.07,
+   "editing": 0.18,
+   "demo": 0.82,
+   "story": 0.16,
+   "avatar": 0.03,
+   "general": 0.08
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Xiangyu-CAS/rea-capcut",
+  "stars": 40,
+  "description": "ReaCut — REA × CapCut: an independent, open-source video editor rebuilt from REA-assisted, authorized local behavior and format research. No copied CapCut proprietary code or assets. Offline desktop app + Codex plugin.",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.09,
+   "music": 0.1,
+   "motion": 0.09,
+   "shorts": 0.13,
+   "editing": 0.91,
+   "demo": 0.32,
+   "story": 0.05,
+   "avatar": 0.03,
+   "general": 0.14
+  },
+  "kind": "editing"
  }
 ]

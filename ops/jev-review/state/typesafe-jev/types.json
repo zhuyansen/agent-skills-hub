@@ -5143,5 +5143,35 @@
    "general": 0.23
   },
   "kind": "replica"
+ },
+ {
+  "repo": "disler/pi-durable-news-agent",
+  "stars": 58,
+  "description": "A proactive pi-durable news agent that sweeps on a cron tick and ranks every story as Hype, Facts and Signal with jev. Runs on your Mac, an always-on Mac mini or a VM.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.49,
+   "devtool": 0.2,
+   "sdk": 0.04,
+   "business": 0.05,
+   "consumer": 0.42,
+   "general": 0.07
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "italoalmeida0/laya-system-one",
+  "stars": 5,
+  "description": "Self-contained, ultra-fast System 1 decision engine with WebGPU/WASM acceleration, 100% wire-compatible with TypeSafe Jev (/v1/systemone).",
+  "scores": {
+   "replica": 0.9,
+   "agent": 0.1,
+   "devtool": 0.21,
+   "sdk": 0.66,
+   "business": 0.75,
+   "consumer": 0.11,
+   "general": 0.2
+  },
+  "kind": "replica"
  }
 ]

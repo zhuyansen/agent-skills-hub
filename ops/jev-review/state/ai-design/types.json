@@ -2630,5 +2630,19 @@
    "review": 0.7
   },
   "kind": "system"
+ },
+ {
+  "repo": "SandroHub013/awwwards-skill",
+  "stars": 5,
+  "description": "Awwwards is not a style, it's a scoring system. A Claude Code skill that encodes the Design 40 / Usability 30 / Creativity 20 / Content 10 rubric as an 8-phase build method, with 18 references, working templates and a runnable real-browser audit.",
+  "scores": {
+   "ui": 0.9,
+   "system": 0.29,
+   "tool_mcp": 0.05,
+   "to_code": 0.39,
+   "graphics": 0.12,
+   "review": 0.63
+  },
+  "kind": "ui"
  }
 ]

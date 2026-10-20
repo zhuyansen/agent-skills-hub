@@ -4126,5 +4126,53 @@
    "marketing": 0.05
   },
   "kind": "audit"
+ },
+ {
+  "repo": "AgriciDaniel/chatgpt-seo",
+  "stars": 829,
+  "description": "Turn a page, draft, or SEO export into a sourced fix plan inside ChatGPT.",
+  "scores": {
+   "suite": 0.84,
+   "audit": 0.49,
+   "research": 0.14,
+   "data_mcp": 0.05,
+   "geo": 0.28,
+   "content": 0.52,
+   "links": 0.04,
+   "marketing": 0.2
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "Fangx-AI/geo-doctor",
+  "stars": 90,
+  "description": "GEO 医生：一句话装进 AI 助手，查清豆包、DeepSeek、ChatGPT、Claude 为什么不推荐你，改资料、写内容、再复查。开源中英双语 GEO（生成式引擎优化）skill。",
+  "scores": {
+   "suite": 0.84,
+   "audit": 0.15,
+   "research": 0.13,
+   "data_mcp": 0.04,
+   "geo": 0.97,
+   "content": 0.62,
+   "links": 0.06,
+   "marketing": 0.13
+  },
+  "kind": "geo"
+ },
+ {
+  "repo": "duckduckdeploy/openseo",
+  "stars": 7,
+  "description": "Open Source Ahrefs & SEMrush",
+  "scores": {
+   "suite": 0.56,
+   "audit": 0.19,
+   "research": 0.89,
+   "data_mcp": 0.91,
+   "geo": 0.2,
+   "content": 0.08,
+   "links": 0.18,
+   "marketing": 0.07
+  },
+  "kind": "data_mcp"
  }
 ]

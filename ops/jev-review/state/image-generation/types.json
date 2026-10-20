@@ -3428,5 +3428,33 @@
    "mcp": 0.17
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "sammyteng/illustration-studio",
+  "stars": 5,
+  "description": "🎨 内容配图工作室 · 19 套插画风格 Agent Skill：先读懂文章→挑认知锚点→选风格→可粘贴生图提示词/双后端渲染(gpt-image-2 + Gemini Nano Banana)。Understands your article, picks 1 of 19 illustration styles, emits ready-to-paste prompts.",
+  "scores": {
+   "gpt_image": 0.26,
+   "nano_banana": 0.17,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.53,
+   "mcp": 0.37
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "See-Sol-Lab/Picxel",
+  "stars": 40,
+  "description": "Turn reference images into pixel-art game assets，for indie game developers.",
+  "scores": {
+   "gpt_image": 0.74,
+   "nano_banana": 0.02,
+   "open_models": 0.14,
+   "editing": 0.13,
+   "design": 0.13,
+   "mcp": 0.11
+  },
+  "kind": "gpt_image"
  }
 ]

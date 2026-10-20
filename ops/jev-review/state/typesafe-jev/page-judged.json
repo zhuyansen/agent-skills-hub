@@ -7142,5 +7142,32 @@
   "days": 26,
   "stars_per_day": 33.57692307692308,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "disler/pi-durable-news-agent",
+  "name": "pi-durable-news-agent",
+  "stars": 58,
+  "description": "A proactive pi-durable news agent that sweeps on a cron tick and ranks every story as Hype, Facts and Signal with jev. Runs on your Mac, an always-on Mac mini or a VM.",
+  "topics": [],
+  "created": "2026-10-18",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 24581,
+  "names_model": false,
+  "uses_jev": 0.81,
+  "is_software": 0.97,
+  "reusable_tool": 0.9,
+  "one_command_start": 0.44,
+  "complete_docs": 0.4,
+  "shows_result": 0.22,
+  "specific_outcome": 0.55,
+  "novel_angle": 0.89,
+  "shareable_output": 0.77,
+  "quality": 0.4025,
+  "tier": "低",
+  "hit_prior": 0.6266666666666667,
+  "days": 2,
+  "stars_per_day": 29.0,
+  "verdict": "low_quality"
  }
 ]

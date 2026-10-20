@@ -2630,5 +2630,19 @@
    "general": 0.91
   },
   "kind": "general"
+ },
+ {
+  "repo": "VictorTomaili/skill-cli",
+  "stars": 5,
+  "description": "Cross-agent skill manager — one global store, clean agent folders, activation via skill.config. Works with Claude Code, Codex, Cursor & Gemini.",
+  "scores": {
+   "cli": 0.83,
+   "sync": 0.7,
+   "app": 0.54,
+   "registry": 0.15,
+   "team": 0.09,
+   "general": 0.13
+  },
+  "kind": "cli"
  }
 ]

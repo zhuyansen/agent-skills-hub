@@ -495,6 +495,14 @@
   "type": "image/png",
   "bytes": 122222
  },
+ "Fangx-AI/geo-doctor": {
+  "repo": "Fangx-AI/geo-doctor",
+  "url": "https://raw.githubusercontent.com/Fangx-AI/geo-doctor/HEAD/assets/geo-doctor-demo.gif",
+  "alt": "演示：在 AI 助手里说「帮我做 GEO」，GEO 医生先体检官网（60 分，AI 爬虫读不到正文），再给出 10 道采样题；贴回 20 条豆包回答后，列出竞品",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 411136
+ },
  "Faust-Donf/beamer-academic": {
   "repo": "Faust-Donf/beamer-academic",
   "url": "https://raw.githubusercontent.com/Faust-Donf/beamer-academic/HEAD/docs/toc.png",
@@ -831,6 +839,14 @@
   "type": "image/png",
   "bytes": 743389
  },
+ "Lunamos/paper2video": {
+  "repo": "Lunamos/paper2video",
+  "url": "https://raw.githubusercontent.com/Lunamos/paper2video/HEAD/assets/showcase/flas-02-demo.jpg",
+  "alt": "",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 128295
+ },
  "M1n-n9/academic-ppt-master": {
   "repo": "M1n-n9/academic-ppt-master",
   "url": "https://raw.githubusercontent.com/M1n-n9/academic-ppt-master/HEAD/assets/previews/attention_demo_01_06.png",
@@ -1039,6 +1055,14 @@
   "type": "image/gif",
   "bytes": 1208226
  },
+ "SandroHub013/awwwards-skill": {
+  "repo": "SandroHub013/awwwards-skill",
+  "url": "https://raw.githubusercontent.com/SandroHub013/awwwards-skill/HEAD/docs/media/showcase.png",
+  "alt": "The awwwards skill showcase page: a dark editorial layout with the headline",
+  "score": -0.7,
+  "type": "image/png",
+  "bytes": 239124
+ },
  "ScanLineDev/scanline": {
   "repo": "ScanLineDev/scanline",
   "url": "https://github.com/ScanLineDev/scanline/assets/2404105/d8984fe3-42f2-4efa-b2ea-a93e05961c36",
@@ -1054,6 +1078,14 @@
   "score": 1.65,
   "type": "image/png",
   "bytes": 385804
+ },
+ "See-Sol-Lab/Picxel": {
+  "repo": "See-Sol-Lab/Picxel",
+  "url": "https://raw.githubusercontent.com/See-Sol-Lab/Picxel/HEAD/docs/media/demo-preview-en.png",
+  "alt": "Picxel batch results: steak and wine glass at 128 and 64 pixels",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 320324
  },
  "ShalomObongo/codex-imagegen-mcp": {
   "repo": "ShalomObongo/codex-imagegen-mcp",
@@ -1214,6 +1246,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 28523
+ },
+ "Xiangyu-CAS/rea-capcut": {
+  "repo": "Xiangyu-CAS/rea-capcut",
+  "url": "https://raw.githubusercontent.com/Xiangyu-CAS/rea-capcut/HEAD/docs/screenshots/ui-parity-editor.png",
+  "alt": "ReaCut 的素材库、播放器、属性面板与多轨时间线",
+  "score": -2.7,
+  "type": "image/png",
+  "bytes": 119082
  },
  "YIAN6557/eian-riso-broll": {
   "repo": "YIAN6557/eian-riso-broll",
@@ -1887,6 +1927,14 @@
   "type": "image/gif",
   "bytes": 1137071
  },
+ "disler/pi-durable-news-agent": {
+  "repo": "disler/pi-durable-news-agent",
+  "url": "https://raw.githubusercontent.com/disler/pi-durable-news-agent/HEAD/images/01_durable_news_agent.png",
+  "alt": "Pi Durable News Agent: news worth your attention",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1464540
+ },
  "domvwt/chatgpt-code-review": {
   "repo": "domvwt/chatgpt-code-review",
   "url": "https://raw.githubusercontent.com/domvwt/chatgpt-code-review/main/media/example.png",
@@ -1918,6 +1966,14 @@
   "score": 2.95,
   "type": "image/gif",
   "bytes": 7715409
+ },
+ "duckduckdeploy/openseo": {
+  "repo": "duckduckdeploy/openseo",
+  "url": "https://raw.githubusercontent.com/duckduckdeploy/openseo/HEAD/apps/web/public/screens/serp-checker-table.webp",
+  "alt": "SERP checker with each result",
+  "score": 1.4,
+  "type": "image/webp",
+  "bytes": 242400
  },
  "eatmoreduck/SkillManager": {
   "repo": "eatmoreduck/SkillManager",
@@ -2070,6 +2126,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 196547
+ },
+ "fltman/infofilm": {
+  "repo": "fltman/infofilm",
+  "url": "https://raw.githubusercontent.com/fltman/infofilm/HEAD/docs/the-year.jpg",
+  "alt": "The template's golden scene \"One year\": a day counter with decimals snapping on,",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 130265
  },
  "frannkurt/nano-banana-mcp": {
   "repo": "frannkurt/nano-banana-mcp",
@@ -3199,6 +3263,14 @@
   "type": "image/gif",
   "bytes": 5056914
  },
+ "patryk-penczek/ship-video": {
+  "repo": "patryk-penczek/ship-video",
+  "url": "https://raw.githubusercontent.com/patryk-penczek/ship-video/HEAD/docs/readme/real.webp",
+  "alt": "A film strip of app frames, 1920×1080 at 60 fps",
+  "score": 1.55,
+  "type": "image/webp",
+  "bytes": 1473454
+ },
  "persiyanov/herdr-reviewr": {
   "repo": "persiyanov/herdr-reviewr",
   "url": "https://raw.githubusercontent.com/persiyanov/herdr-reviewr/HEAD/assets/demo.gif",
@@ -3335,6 +3407,14 @@
   "type": "image/jpeg",
   "bytes": 117178
  },
+ "sammyteng/illustration-studio": {
+  "repo": "sammyteng/illustration-studio",
+  "url": "https://raw.githubusercontent.com/sammyteng/illustration-studio/HEAD/examples/airy-lifestyle-linedraw.png",
+  "alt": "",
+  "score": 1.7,
+  "type": "image/png",
+  "bytes": 2931966
+ },
  "samuelstroschein/opus-video-generator": {
   "repo": "samuelstroschein/opus-video-generator",
   "url": "https://raw.githubusercontent.com/samuelstroschein/opus-video-generator/HEAD/docs/assets/screenshot.png",
@@ -3463,6 +3543,14 @@
   "type": "image/png",
   "bytes": 687266
  },
+ "sub-level/marketing-videos": {
+  "repo": "sub-level/marketing-videos",
+  "url": "https://img.youtube.com/vi/5LKApvTGNPg/maxresdefault.jpg",
+  "alt": "Collectors launch film",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 127617
+ },
  "sudadom/arabic-motion-graphics-skill": {
   "repo": "sudadom/arabic-motion-graphics-skill",
   "url": "https://raw.githubusercontent.com/sudadom/arabic-motion-graphics-skill/HEAD/assets/explainer.gif",
@@ -3590,6 +3678,14 @@
   "score": 1.75,
   "type": "image/png",
   "bytes": 153861
+ },
+ "threeaus/creator-style-kit": {
+  "repo": "threeaus/creator-style-kit",
+  "url": "https://raw.githubusercontent.com/threeaus/creator-style-kit/HEAD/docs/preview.gif",
+  "alt": "18 套风格的数字揭晓",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2068089
  },
  "timscheuerai/launch-video-kit": {
   "repo": "timscheuerai/launch-video-kit",

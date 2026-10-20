@@ -3428,5 +3428,33 @@
    "rules": 0.24
   },
   "kind": "detector"
+ },
+ {
+  "repo": "junbolian/Academic-Humanizer",
+  "stars": 9,
+  "description": "Agent skill that removes AI tone from academic writing in English and Chinese, and verifies that every number, equation, citation, and theorem statement stays unchanged. ",
+  "scores": {
+   "writing": 0.51,
+   "detector": 0.47,
+   "chinese": 0.42,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.76
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "FerasMahmoud/mega-frontend-design",
+  "stars": 5,
+  "description": "Claude Code skill for Awwwards-worthy frontend design — 10 archetypes, GSAP/Framer/Three.js patterns, design tokens, Arabic/RTL support, anti-slop blacklist",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.21,
+   "chinese": 0.01,
+   "code": 0.43,
+   "design": 0.96,
+   "rules": 0.67
+  },
+  "kind": "design"
  }
 ]
