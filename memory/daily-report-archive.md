@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-20
+1. simbasjungles/free-my-tv — 🆕 给 Google TV 换上快速无广告的主屏，用 Claude Code 写成，一键还原（130★ 130.0/day）
+2. kitlangton/scrawl — 🆕 把问题直接标注、录屏后发给智能体，让它一眼看懂你要改哪（434★ 86.1/day）
+3. AntoGA/agents-contract — 🆕 用 AGENTS.md 契约约束编程智能体，附零依赖校验器与会话启动钩子（40★ 40.0/day）
+4. disler/pi-durable-news-agent — 🆕 定时扫描新闻并按炒作、事实、信号三档排序，可常驻 Mac 或虚拟机（41★ 32.3/day）
+5. higress-group/HiRoute — 在本地按难度分流模型请求，让 Codex 与 Claude Code 订阅额度更耐用（272★ 7.2/day）
+6. Sidiora-Labs/hyperfide — 提供可从小项目扩展到大型代码库的智能体工作流工具（433★ 6.4/day）
+7. Xiangyu-CAS/rea-capcut — 🆕 借助逆向研究独立重写类剪映的开源剪辑器，离线运行并附 Codex 插件（40★ 6.1/day）
+8. bimsonz/keel — 🆕 基于 Cloudflare Workers 为软件智能体搭建专属的 Git 托管平台（52★ 5.6/day）
+9. AgriciDaniel/chatgpt-seo — 在 ChatGPT 里把网页、草稿或 SEO 导出数据变成附出处的修复清单（829★ 4.7/day）
+10. speedyapply/JobSpy — 一次抓取 LinkedIn、Indeed、Glassdoor 等 8 个招聘站的职位数据（4510★ 3.8/day）
+🎯 今日趋势：**6 席**标 🆕；"智能体给安卓/Google TV 去广告"连续第 2 天登顶（昨日头名 tv-vibehack 已改名 cleanyourtv、2.7 天涨到 4780★），智能体工作流与协作基建占 **5 席**（标注录屏、AGENTS.md 契约、模型分流、工作流、智能体 Git 平台）。
+> 注：去重范围＝repo 内 archive 全部 117 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 4,958 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 33 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个以上合格，未放宽到 72h（momozi1996/momo-code、ChengminLi/AI-PCB-layout 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Gathin23/cleanyourtv（4780★ 1789.1/day）：`gh api repos/Gathin23/tv-vibehack` 重定向到此仓，即 10-19 头名改名，按已推荐处理；②pinganbbOvO/ai-companion-kit（169★ 14.4/day）：账号 10-08 新建、8 粉、仅此 1 仓，单仓爆星；③Softsync-Lab/softsync-skills-hub（87★ 4.3/day）：组织 0 粉、仅 1 仓、0 fork；④xiaodou-official/xiaodou-open-platform：面向无营业执照个人的聚合收款接口，合规灰色；⑤waw666waw666/awesome-ai-relay-and-cards：AI 发卡与 API 中转站导流；⑥zyycn/codex-proxy-rs：主打"低风控"多账号代理，规避平台风控；⑦JevAgentHarness/JevAgentHarness：uncategorized 且无描述；⑧zhuyansen/wx-favorites-report：本站作者自己的仓库，避嫌不入选；⑨其余均已在历史榜单出现，不再复评。GoDiao/dreamcoder（3.4/day）、agentty-org/agentty（3.4/day，组织 10-17 新建）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 simbasjungles 2024-12 建号、8 粉、仅此 1 仓（**轻红旗**，实时 314★、fork 37 与星数相称，与昨日头名同类但独立账号，保留）；第 2 席 kitlangton 2014 建号、1,650 粉、名下 Hex 2,901★；第 3 席 AntoGA 2016 建号、157 粉、其余仓 ≤20★、本仓 0 fork（**轻红旗**，量级小，保留）；第 4 席 disler 4,660 粉、名下 always-on-ai-assistant 1,002★，分类 uncategorized 但为新闻智能体、非个人主页，保留；第 5 席 higress-group 2022 建的组织（阿里 Higress 社区）、221 粉；第 6 席 Sidiora-Labs 2026-08 建的组织、191 粉、名下 Paxeer-X-Network 570★，fork 61；第 7 席 Xiangyu-CAS 2015 建号、153 粉、名下 HandFixer 217★，README 声明仅做授权范围研究、不含剪映专有代码，保留；第 8 席 bimsonz 2014 建号、10 粉、其余仓多为 0★（**轻红旗**，fork 8、量级小，保留）；第 9 席 AgriciDaniel 3,204 粉、名下 banana-claude 1,110★；第 10 席 speedyapply 1,560 粉、名下 2027-SWE-College-Jobs 9,520★。🆕 判定＝created_at 距今 14 天内，HiRoute（37.9 天）、hyperfide（67.7 天）、chatgpt-seo（175.1 天）、JobSpy（1201.2 天）不标，其余六席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（free-my-tv 314★、scrawl 465★），按红线保留快照值。
+
+---
+
 ## 2026-10-19
 1. Gathin23/tv-vibehack — 🆕 通过 Wi-Fi 给安卓电视去广告，换上 Apple TV 风格桌面，免 root 可还原（2381★ 1258.0/day）
 2. alchaincyf/huashu-motion — 🆕 让智能体一键直出商业级产品宣传片，自带配乐，指着画面就能改（513★ 513.0/day）
