@@ -290,7 +290,8 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines += ([f"- **{r['term']}**:{r['note']}" for r in rows] if rows
                   else [f"无({recent.get('error') or '没有新名字'})"])
     lines += memes.section(b.get("meme", {"skipped": True}))
-    lines += ["", "### ② 单仓库爆发(近 14 天新建,按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
+    lines += ["", f"### ② 单仓库爆发(近 {breakout.WINDOW_DAYS} 天新建;{breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的要 "
+                  f"≥{breakout.LATE_MIN_STARS} 星;按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
     repos = b["breakout"].get("repos") or []
     if repos:
         lines += ["| 仓库 | ★ | 均/天 | 比昨天 | 天数 | 简介 |", "|---|---|---|---|---|---|"]
@@ -361,7 +362,9 @@ def _source_status(x: dict, hf: dict) -> list[str]:
 def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
-                 f"搜到 {bo['searched']} 个新仓库" + (",首次运行,没有昨天的星数" if bo.get("first_run") else ""))))
+                 f"搜到 {bo['searched']} 个新仓库(其中 {breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的 {bo.get('searched_late', 0)} 个)"
+                 + (",首次运行,没有昨天的星数" if bo.get("first_run") else "")
+                 + (f",{bo['late_error']}" if bo.get("late_error") else ""))))
     lines += _meme_app_status(b)
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")

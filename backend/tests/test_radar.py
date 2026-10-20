@@ -1,5 +1,7 @@
 """The radar's pure logic (ops/radar): name extraction, signal scoring, the review's verdict.
 Network and database calls are not exercised here."""
+import gzip
+import json
 import re
 import socket
 import sys
@@ -123,6 +125,67 @@ def test_breakout_variants_include_handle_and_display_name():
     row = {"owner": "Niko1221", "name": "Strata"}
     assert breakout.variants(row, "Niko") == ["strata", "niko1221 strata", "niko strata"]
     assert breakout.variants(row, "") == ["strata", "niko1221 strata"]
+
+
+def test_breakout_flags_a_repo_that_takes_off_in_its_third_week():
+    # Filee-like: under the average bar for three weeks, then +900 since yesterday
+    rows = breakout.score([_repo("KnifeLemon/Filee", 3900, 20)], {"KnifeLemon/Filee": 3000}, NOW)
+    assert rows and rows[0]["delta"] == 900 and rows[0]["age_days"] == 20
+
+
+def test_breakout_searches_late_repos_apart_so_young_ones_keep_their_pages(monkeypatch):
+    queries = []
+
+    def search(query, tok):
+        queries.append(query)
+        young = [_repo("a/young", 900, 2)]
+        return young if query.startswith("created:>=") else [_repo("KnifeLemon/Filee", 7647, 21)] + young
+    monkeypatch.setattr(breakout, "_search", search)
+    repos, late, error = breakout.searched("", date(2026, 10, 20))
+    assert queries == ["created:>=2026-10-06 stars:>=300", "created:2026-09-20..2026-10-05 stars:>=1000"]
+    assert [r["full_name"] for r in repos] == ["a/young", "KnifeLemon/Filee"] and late == 1 and error is None
+
+
+def test_breakout_a_failed_late_search_keeps_the_young_repos(monkeypatch):
+    def search(query, tok):
+        if query.startswith("created:>="):
+            return [_repo("a/young", 900, 2)]
+        raise OSError("HTTP Error 403: rate limit exceeded")
+    monkeypatch.setattr(breakout, "_search", search)
+    repos, late, error = breakout.searched("", date(2026, 10, 20))
+    assert [r["full_name"] for r in repos] == ["a/young"] and late == 0 and "403" in error
+
+
+def _fast(repo, velocity):
+    return {"repo": repo, "velocity": velocity, "delta": None}
+
+
+def _flagged(path):
+    return json.loads(gzip.decompress(path.read_bytes())) if path.exists() else {}
+
+
+def test_breakout_scores_every_repo_above_the_bar_not_only_the_fastest():
+    assert len(breakout.score([_repo(f"a/r{i}", 3000, 2) for i in range(20)], None, NOW)) == 20
+
+
+def test_breakout_a_first_time_breakout_below_the_fifteenth_is_still_new(tmp_path):
+    path = tmp_path / "gh_flagged.json.gz"
+    path.write_bytes(gzip.compress(json.dumps({f"old/r{i}": "2026-10-15" for i in range(16)}).encode()))
+    rows = [_fast(f"old/r{i}", 1000 - i) for i in range(16)] + [_fast("new/late", 300)]
+    shown = breakout.mark_new(rows, path, date(2026, 10, 20))
+    assert len(shown) == breakout.TOP and [r["repo"] for r in shown if r["new"]] == ["new/late"]
+    assert _flagged(path)["new/late"] == "2026-10-20"
+
+
+def test_breakout_a_first_time_breakout_left_out_today_stays_new_tomorrow(tmp_path):
+    path = tmp_path / "gh_flagged.json.gz"
+    shown = breakout.mark_new([_fast(f"new/r{i}", 1000 - i) for i in range(18)], path, date(2026, 10, 20))
+    assert len(shown) == breakout.TOP and all(r["new"] for r in shown)
+    assert "new/r0" in _flagged(path) and "new/r17" not in _flagged(path)
+
+
+def test_breakout_remembers_a_flag_longer_than_a_repo_stays_in_the_searches():
+    assert breakout.FLAGGED_DAYS > breakout.LATE_DAYS
 
 
 # --- ③ LobeHub: 17 languages are one entry ---------------------------------------------
