@@ -39,6 +39,12 @@ STATE = "memes.json.gz"
 SEEDS_DAYS = 21
 SEEDS_MAX = 8
 OPPORTUNITY_MIN = 0.55   # hotel lobby read 0.70 on 09-22, Bulin 47 0.65 on 10-10; on 10-19 ten of twelve trends were 0.50-0.56
+# A trend peaks about four days after it starts, and the money is made before that (Bulin 47).
+# The age is counted from the oldest dated post or the day its hashtag started rising: posts
+# are read WINDOW_DAYS back, so an age near that is a floor, the trend may be older still.
+PEAK_DAYS = 4
+RISE_VALUE = 20          # a hashtag curve point at or above this has started rising (hashtags() calls < 20 low)
+WHAT = "做什么:"          # labels the trend's description in a lead's note (lead_note, read_note)
 MAX_MEMES = 12
 CHECKS_MAX = 5           # trends a run that get the comment and competition checks (meme_checks.py)
 POST_CHARS = 160
@@ -198,6 +204,67 @@ def hashtags(data: dict, before: dict[str, int]) -> list[dict]:
     return out
 
 
+def _rise_day(curve: list[int], today: date) -> date | None:
+    """The day a hashtag's daily curve first reached RISE_VALUE, taking its last point as
+    yesterday (the older reading of an undated curve, so the age is never understated)."""
+    i = next((i for i, v in enumerate(curve) if v >= RISE_VALUE), None)
+    return None if i is None else today - timedelta(days=len(curve) - i)
+
+
+def earliest(m: dict, today: date) -> tuple[date | None, bool]:
+    """The first day the trend shows: its oldest dated post, or the day its hashtag started
+    rising. True when that is the edge of what was read, so it may be older still. None when
+    nothing is dated (YouTube Shorts only: hotel lobby, from September, came back on 10-19)."""
+    days = [date.fromisoformat(p["day"]) for p in m["posts"] if p["day"]]
+    days += [d for d in (_rise_day(t["curve"], today) for t in m["tags"]) if d]
+    if not days:
+        return None, False
+    first = min(days)
+    return first, (today - first).days >= WINDOW_DAYS - 1
+
+
+def in_window(m: dict) -> bool:
+    """New to the radar and younger than its peak. Bulin 47 read 0.58 on 10-19 from one post
+    of 10-15 while the trend had started in early October: past its window, whatever Jev says."""
+    return m["new"] and m["age"] is not None and m["age"] < PEAK_DAYS
+
+
+def lead_note(m: dict) -> str:
+    """The lead's line in radar_leads, which keeps nothing else: the daily mail reads the
+    date, the checks and what the trend is back from it (read_note)."""
+    where = "/".join(PLATFORM_ZH[p] for p in m["platforms"])
+    first = ("≤" if m["edge"] else "") + m["earliest"][5:]
+    score = f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else ""
+    what = f"{WHAT}{m['what'].replace('｜', '/')}" if m["what"] else ""
+    return "｜".join(x for x in (f"①梗 {where} {len(m['posts'])} 帖,最早 {first}{score}", m["checks"], what) if x)
+
+
+_NOTE = re.compile(r"^①梗 (?P<where>.+?) (?P<n>\d+) 帖(?:,最早 (?P<edge>≤?)(?P<mm>\d{2})-(?P<dd>\d{2}))?")
+
+
+def read_note(note: str, today: date) -> dict:
+    """What lead_note() wrote. Notes from before 10-20 carry no date and no description."""
+    parts = note.split("｜")
+    m = _NOTE.match(parts[0])
+    first = None
+    if m and m["mm"]:
+        first = date(today.year, int(m["mm"]), int(m["dd"]))
+        first = first if first <= today else first.replace(year=today.year - 1)
+    return {"where": m["where"] if m else "", "posts": int(m["n"]) if m else 0, "earliest": first,
+            "edge": bool(m and m["edge"]), "what": next((x[len(WHAT):] for x in parts if x.startswith(WHAT)), ""),
+            "checks": "｜".join(x for x in parts[1:] if not x.startswith(WHAT))}
+
+
+AGE_NOTE = (f"最早出现 = 读到的最早一条帖子或话题起涨那天;帖子只往前读 {WINDOW_DAYS} 天,所以这是下限,"
+            f"梗可能更老。")
+
+
+def age_text(first: date, edge: bool, today: date) -> str:
+    """'最早出现 10-15,已 5 天' / '最早出现 10-13 或更早,已 7 天以上'."""
+    days = (today - first).days
+    return f"最早出现 {first:%m-%d}{' 或更早' if edge else ''},已 {days} 天{'以上' if edge else ''}"
+
+
 def _all_tags(data: dict) -> dict[str, int]:
     return {t["hashtagName"]: t.get("rankIndex") for t in _find(data, lambda x: "hashtagName" in x)}
 
@@ -300,13 +367,14 @@ def memes(snaps: Path, today: date | None = None) -> dict:
         prev = known.get(m["name"])
         m["first"] = prev["first"] if prev else today.isoformat()
         m["new"] = prev is None
-        # YouTube posts carry no date: a trend seen only there may be weeks old (hotel lobby, from
-        # September, came back on 10-19 with twelve undated Shorts), so a lead needs a dated post
-        m["dated"] = any(p["day"] for p in m["posts"]) or bool(m["tags"])
+        # YouTube posts carry no date, so a lead needs a dated post or hashtag (earliest())
+        first, m["edge"] = earliest(m, today)
+        m["earliest"] = first.isoformat() if first else ""
+        m["age"] = (today - first).days if first else None
 
     # Do people want their own? Comments under the new trends' top TikTok videos, before Jev
-    # reads them (meme_checks.intent). Only new, dated trends: the others cannot become leads.
-    fresh = sorted((m for m in found if m["new"] and m["dated"]),
+    # reads them (meme_checks.intent). Only trends still in their window can become leads.
+    fresh = sorted((m for m in found if in_window(m)),
                    key=lambda m: -max((p["likes"] for p in m["posts"]), default=0))[:CHECKS_MAX]
     try:
         wanting, c = meme_checks.intent(fresh)
@@ -326,7 +394,7 @@ def memes(snaps: Path, today: date | None = None) -> dict:
                                           **({"comments_wanting_their_own": f"{it['wanting']} of {it['total']}",
                                               "comment_quotes": it["quotes"]} if it else {})})
         known[m["name"]] = {"first": m["first"], "last": today.isoformat(), "score": m["score"], "query": m["query"]}
-        if m["new"] and m["dated"] and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
+        if in_window(m) and (m["score"] is None or m["score"] >= OPPORTUNITY_MIN):
             # Is it still open? Domains and Google's top 10 (meme_checks.competition), leads only.
             if sum(1 for x in found if x.get("competition")) < CHECKS_MAX:
                 try:
@@ -340,10 +408,8 @@ def memes(snaps: Path, today: date | None = None) -> dict:
             # what radar_leads keeps and the daily report's picks read back (radar.picks)
             terms.append({"term": m["query"], "recent": len(m["posts"]), "named": m["score"], "what": m["what"],
                           "checks": m["checks"],
-                          # the daily picks get only this note back from radar_leads, so it carries the checks
-                          "note": f"①梗 {'/'.join(PLATFORM_ZH[p] for p in m['platforms'])} {len(m['posts'])} 帖"
-                                  + (f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else "")
-                                  + (f"｜{m['checks']}" if m["checks"] else ""),
+                          # the daily picks get only this note back from radar_leads (read_note)
+                          "note": lead_note(m),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],
                           "posts": [{"account": PLATFORM_ZH[p["platform"]], "likes": p["likes"], "url": p["url"], "text": p["text"]}
                                     for p in ([top] if top else [])]})
@@ -360,18 +426,28 @@ def _n(v: int) -> str:
     return f"{v / 1e6:.1f}M" if v >= 1e6 else f"{v / 1e3:.0f}k" if v >= 1e3 else str(v)
 
 
+def _first_cell(m: dict, today: date) -> str:
+    """'**10-18(2 天)**' while in its window, '10-13 或更早(7 天+)', or why there is no date."""
+    if not m.get("earliest"):
+        return "看不出(只有 YouTube)"
+    first = date.fromisoformat(m["earliest"])
+    cell = f"{first:%m-%d}{' 或更早' if m['edge'] else ''}({(today - first).days} 天{'+' if m['edge'] else ''})"
+    return f"**{cell}**" if m["age"] < PEAK_DAYS else cell
+
+
 def section(b: dict) -> list[str]:
     if b.get("skipped"):
         return []
     lines = ["", f"### ① AI 视频梗(TikTok / Ins / YouTube / X 近 {WINDOW_DAYS} 天 + TikTok 话题榜;"
-             f"Jev 机会分 ≥{OPPORTUNITY_MIN} 的进候选词;🆕 = 第一次出现)", ""]
+             f"出现不满 {PEAK_DAYS} 天且 Jev 机会分 ≥{OPPORTUNITY_MIN} 的进候选词;🆕 = 雷达第一次见到)", ""]
     if b.get("error"):
         return lines + [f"失败:{b['error']}"]
     found = b.get("memes") or []
     if not found:
         return lines + [f"今天没认出梗({b['posts']} 条帖子,{b['tags']} 个话题)"]
-    lines += ["| 梗 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 评论和竞争 | 首次 |",
+    lines += ["| 梗 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 评论和竞争 | 最早出现 |",
               "|---|---|---|---|---|---|---|---|---|"]
+    today = date.fromisoformat(b["today"])
     for m in found:
         top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
         hot = (f"[♥{_n(top['likes'])} ▶{_n(top['views'])}]({top['url']})" if top and top["url"] else
@@ -381,9 +457,9 @@ def section(b: dict) -> list[str]:
         score = f"**{m['score']:.2f}**" if m["score"] is not None and m["score"] >= OPPORTUNITY_MIN else \
             f"{m['score']:.2f}" if m["score"] is not None else "—"
         lines.append(f"| {'🆕 ' if m['new'] else ''}**{m['name']}** | {m['query']} | {m['what'].replace('|', '/')} | {where} | "
-                     f"{hot} | {curve} | {score} | {meme_checks.summary(m) or '—'} | {m['first'][5:]} |")
+                     f"{hot} | {curve} | {score} | {meme_checks.summary(m) or '—'} | {_first_cell(m, today)} |")
     lines += ["", "Jev 机会 = Jev 判断“现在做一个单功能站或应用让人做自己的版本，这周能不能卖出去”。"
-              "梗大约 4 天见顶，85% 的钱在头 72 小时(Bulin 47 的复盘),看到就要当天动手。"]
+              f"梗大约 {PEAK_DAYS} 天见顶，85% 的钱在头 72 小时(Bulin 47 的复盘),看到就要当天动手。" + AGE_NOTE]
     return lines
 
 

@@ -169,40 +169,91 @@ def _cost(*blocks: dict) -> str:
 
 
 PICKS = 3
+MEME_HOW = "做法:单功能站(上传照片 → 生成你的版本),按次卖。"
 
 
-def picks(b: dict[str, dict]) -> list[str]:
+def picks(b: dict[str, dict], today: date | None = None) -> list[str]:
     """The top of every mail: at most PICKS terms to build for today, each with why, how
     long it has, and what to make. Everything below it is the evidence. The mail had
     grown to a dozen sections and no answer (2026-10-19: "不知道做哪个词").
 
-    Order: AI video trends over Jev's bar first, because they are over in about four days;
-    then keywords the table marked prioritize (measured demand, still rising); then new
-    apps over Jev's bar whose search words are not crowded yet."""
+    Order: AI video trends over Jev's bar first, because they are over in about four days,
+    and only those that first showed less than memes.PEAK_DAYS ago (10-20: two of three
+    picks were weeks old and the mail did not say when they appeared); then keywords the
+    table marked prioritize (measured demand, still rising); then new apps over Jev's bar
+    whose search words are not crowded yet. The trends left out are listed with why."""
+    today = today or date.today()
     uc = {r["phrase"]: r for r in b.get("usecases", {}).get("rows", [])}
-    out = []
-    meme_rows = b.get("meme", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
-                                                     if "meme" in r.get("kinds", [])]
-    for r in sorted(meme_rows, key=lambda r: -(r.get("named") or 0)):
+    meme_out, held = _meme_picks(b, uc, today)
+    out = meme_out + _usecase_picks(uc) + _app_picks(b)
+    lines = ([f"{i}. {line}" for i, line in enumerate(out[:PICKS], 1)] if out
+             else ["**今天没有值得动手的词。** 下面的明细扫一眼即可。"])
+    if len(out) > PICKS:
+        lines += ["", f"(另有 {len(out) - PICKS} 个够格的,见下面明细)"]
+    if held:
+        lines += ["", "没放进来的 AI 视频梗:" + "、".join(held)]
+    if meme_out or held:
+        lines += ["", memes.AGE_NOTE]
+    return lines
+
+
+def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[list[str], list[str]]:
+    """Trends over Jev's bar still before their peak, and the others with why they are not."""
+    rows = b.get("meme", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
+                                              if "meme" in r.get("kinds", [])]
+    out, held = [], []
+    for r in sorted(rows, key=lambda r: -(r.get("named") or 0)):
+        if (r.get("named") or 0) < memes.OPPORTUNITY_MIN:
+            continue
         t = uc.get(r["term"], {})
-        # Trends already says it is falling: past the window, whatever the posts say (hotel lobby, Sept.)
-        if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or t.get("now") == "fading":
-            continue
-        demand = (f";Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else "")
-        note = r.get("note", "")
-        checks = r.get("checks") or (note.split("｜", 1)[1] if "｜" in note else "")
-        if "已经挤了" in checks:   # four or more tool sites in Google's top 10 (meme_checks.CROWDED)
-            continue
-        out.append(f"**{r['term']}**:AI 视频梗,Jev 机会 {r['named']:.2f}。{r.get('what') or note.split('｜', 1)[0]}{demand}  \n"
-                   + (f"{checks}。  \n" if checks else "")
-                   + f"窗口:梗约 4 天见顶,85% 的钱在头 72 小时,**今天上线**。做法:单功能站(上传照片 → 生成你的版本),按次卖。")
+        info = memes.read_note(r.get("note", ""), today)
+        info["checks"] = r.get("checks") or info["checks"]
+        why = _meme_held(info, t, today)
+        if why:
+            held.append(f"{r['term']}({why})")
+        else:
+            out.append(_meme_line(r, info, t, today))
+    return out, held
+
+
+def _meme_held(info: dict, t: dict, today: date) -> str:
+    """Why a trend over Jev's bar is not a pick today; empty when it is one."""
+    if t.get("now") == "fading":   # Trends already says it is falling, whatever the posts say
+        return "Trends 在回落"
+    if "已经挤了" in info["checks"]:   # four or more tool sites in Google's top 10 (meme_checks.CROWDED)
+        return "Google 前 10 已经挤了"
+    if info["earliest"] is None:
+        return "只在 YouTube 出现,看不出日期" if info["where"] == "YouTube" else "没有记下出现日期"
+    if (today - info["earliest"]).days >= memes.PEAK_DAYS:
+        return memes.age_text(info["earliest"], info["edge"], today) + ",过了见顶期"
+    return ""
+
+
+def _meme_line(r: dict, info: dict, t: dict, today: date) -> str:
+    left = memes.PEAK_DAYS - (today - info["earliest"]).days
+    demand = f",Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else ""
+    what = r.get("what") or info["what"]
+    return (f"**{r['term']}**:AI 视频梗{',' + what if what else ''}。  \n"
+            f"{memes.age_text(info['earliest'], info['edge'], today)};{info['where']} {info['posts']} 帖,"
+            f"Jev 机会 {r['named']:.2f}{demand}。  \n"
+            + (f"{info['checks']}。  \n" if info["checks"] else "")
+            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW}")
+
+
+def _usecase_picks(uc: dict[str, dict]) -> list[str]:
+    out = []
     for r in (x for x in uc.values() if x.get("decision") == "prioritize"):
         src = f",来自 {', '.join(r['names'])}" if r.get("names") else ""
         out.append(f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
                    f"{usecases.NOW_ZH.get(r.get('now'), '')}{src}。  \n做法:工具页或场景页,标题对准这个词。")
-    app_rows = b.get("appstore", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
-                                                      if "appstore" in r.get("kinds", [])]
-    for r in sorted(app_rows, key=lambda r: -(r.get("named") or 0)):
+    return out
+
+
+def _app_picks(b: dict[str, dict]) -> list[str]:
+    rows = b.get("appstore", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
+                                                  if "appstore" in r.get("kinds", [])]
+    out = []
+    for r in sorted(rows, key=lambda r: -(r.get("named") or 0)):
         if (r.get("named") or 0) < memes.OPPORTUNITY_MIN or r.get("window") == "crowded" or "已经挤了" in r.get("note", ""):
             continue
         # an app whose name has no descriptive half sells on its own name: nothing to build on (10-20)
@@ -210,10 +261,7 @@ def picks(b: dict[str, dict]) -> list[str]:
             continue
         out.append(f"**{r['term']}**:{r.get('what') or r.get('note', '')},Jev 机会 {r['named']:.2f}。  \n"
                    f"做法:同类应用或网站,名字和标题用它的卖点词。")
-    if not out:
-        return ["**今天没有值得动手的词。** 下面的明细扫一眼即可。"]
-    return [f"{i}. {line}" for i, line in enumerate(out[:PICKS], 1)] + \
-        ([f"", f"(另有 {len(out) - PICKS} 个够格的,见下面明细)"] if len(out) > PICKS else [])
+    return out
 
 
 def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: dict) -> str:
@@ -225,7 +273,7 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     for r in names_[:SHOWN]:
         ex = " / ".join(e[:50] for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
-        lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | "
+        lines.append(f"| **{r['term']}** | {_signals_cell(r)} | {score} | {r.get('page') or '无'} | "
                      f"{', '.join(r['variants'][1:]) or '—'} | {ex} |")
     rest = [r["term"] for r in lead if r not in names_][:OTHER_TERMS]
     if rest:
@@ -311,8 +359,7 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
                  f"搜到 {bo['searched']} 个新仓库" + (",首次运行,没有昨天的星数" if bo.get("first_run") else ""))))
-    lines.append(memes.status(b.get("meme", {"skipped": True})))
-    lines.append(appstore.status(b.get("appstore", {"skipped": True})))
+    lines += _meme_app_status(b)
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
     for site, s in sm.get("sites", {}).items():
@@ -323,6 +370,22 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
     return lines
+
+
+def _meme_app_status(b: dict) -> list[str]:
+    """The daily run leaves trends and charts to the 8-hourly source job: say so, not '跳过'."""
+    elsewhere = not b.get("recent_sources", {"skipped": True}).get("skipped")
+    out = []
+    for key, label, mod in (("meme", "① 梗", memes), ("appstore", "② 榜单", appstore)):
+        block = b.get(key, {"skipped": True})
+        out.append(f"- {label}:在每 8 小时的源头任务里跑,结果见上面「① 近 24 小时」" if elsewhere and block.get("skipped")
+                   else mod.status(block))
+    return out
+
+
+def _signals_cell(r: dict) -> str:
+    """A lead's signals for a table whose 例子 column already says what a trend is."""
+    return "; ".join(s.split("｜" + memes.WHAT)[0] for s in r["signals"])
 
 
 def _clip(text: str, n: int) -> str:
@@ -350,7 +413,7 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     for r in named(lead)[:SHOWN]:
         ex = "<br>".join(_clip(e, 60) for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
-        lines.append(f"| **{r['term']}** | {'; '.join(r['signals'])} | {score} | {r.get('page') or '无'} | {ex} |")
+        lines.append(f"| **{r['term']}** | {_signals_cell(r)} | {score} | {r.get('page') or '无'} | {ex} |")
     lines += posts_markdown(named(lead)[:SHOWN])
     lines += memes.section(b.get("meme", {"skipped": True}))
     lines += appstore.section(b.get("appstore", {"skipped": True}))
