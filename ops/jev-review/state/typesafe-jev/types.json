@@ -5173,5 +5173,35 @@
    "general": 0.2
   },
   "kind": "replica"
+ },
+ {
+  "repo": "Saik0s/diffusiongemma-jev-macos",
+  "stars": 5,
+  "description": "Local JEV-style decisions with DiffusionGemma on Apple Silicon, with benchmarks and coding-agent examples.",
+  "scores": {
+   "replica": 0.82,
+   "agent": 0.13,
+   "devtool": 0.89,
+   "sdk": 0.61,
+   "business": 0.06,
+   "consumer": 0.3,
+   "general": 0.25
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "tomek7667/cbjev",
+  "stars": 5,
+  "description": "Typed decisions (choice/score/noul) from one encoder pass - faster, better-calibrated successor to Laya, Jev wire compatible",
+  "scores": {
+   "replica": 0.79,
+   "agent": 0.12,
+   "devtool": 0.15,
+   "sdk": 0.28,
+   "business": 0.47,
+   "consumer": 0.07,
+   "general": 0.11
+  },
+  "kind": "replica"
  }
 ]

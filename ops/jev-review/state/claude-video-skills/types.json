@@ -5956,5 +5956,59 @@
    "general": 0.14
   },
   "kind": "editing"
+ },
+ {
+  "repo": "Win-Hao/music-mv",
+  "stars": 7,
+  "description": "用 AI 写代码给一首歌做音乐 MV 的 agent skill：听懂歌 → 定画风 → 画角色 → 剧本分镜 → 先出草图再做整片 → 看片修改。每一帧都是代码画的，不是视频生成；不限模型。",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.13,
+   "music": 0.95,
+   "motion": 0.08,
+   "shorts": 0.04,
+   "editing": 0.06,
+   "demo": 0.21,
+   "story": 0.77,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "mileson/chaojifeng-video-design",
+  "stars": 6,
+  "description": "超级峰的视频设计方法论｜面向 AI Agent 的视频主线、分镜、声画节奏、制作与交付验收 Skill",
+  "scores": {
+   "promo": 0.41,
+   "explainer": 0.59,
+   "music": 0.28,
+   "motion": 0.24,
+   "shorts": 0.47,
+   "editing": 0.39,
+   "demo": 0.38,
+   "story": 0.24,
+   "avatar": 0.07,
+   "general": 0.76
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "skailabinfo/claude-video-harness",
+  "stars": 5,
+  "description": "Монтаж вертикальных роликов «говорящая голова» в Claude Code + Remotion: клонируй, ответь на вопросы — пайплайн настроится под тебя",
+  "scores": {
+   "promo": 0.2,
+   "explainer": 0.18,
+   "music": 0.04,
+   "motion": 0.14,
+   "shorts": 0.94,
+   "editing": 0.95,
+   "demo": 0.34,
+   "story": 0.04,
+   "avatar": 0.06,
+   "general": 0.08
+  },
+  "kind": "editing"
  }
 ]

@@ -2644,5 +2644,33 @@
    "review": 0.63
   },
   "kind": "ui"
+ },
+ {
+  "repo": "byadityaraj/designmd",
+  "stars": 73,
+  "description": "Production-grade design context for AI coding workflows. Extract a real design system from any URL — colors, typography, spacing, breakpoints — as a portable DESIGN.md.",
+  "scores": {
+   "ui": 0.9,
+   "system": 0.97,
+   "tool_mcp": 0.06,
+   "to_code": 0.07,
+   "graphics": 0.09,
+   "review": 0.18
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "evidence-codes/loom",
+  "stars": 6,
+  "description": "A design workflow for sites built with AI: honest screenshots, design adoption, learned house rules, safe previews. Layers on impeccable for Claude Code.",
+  "scores": {
+   "ui": 0.89,
+   "system": 0.29,
+   "tool_mcp": 0.06,
+   "to_code": 0.26,
+   "graphics": 0.11,
+   "review": 0.93
+  },
+  "kind": "review"
  }
 ]

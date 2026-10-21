@@ -447,6 +447,14 @@
   "type": "image/gif",
   "bytes": 616280
  },
+ "Delicious-Cao/Delicious-PPT": {
+  "repo": "Delicious-Cao/Delicious-PPT",
+  "url": "https://raw.githubusercontent.com/Delicious-Cao/Delicious-PPT/HEAD/examples/chatgpt-reading/preview/slide-01.png",
+  "alt": "校园阅读空间样张",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 2404220
+ },
  "Dimillian/CodexSkillManager": {
   "repo": "Dimillian/CodexSkillManager",
   "url": "https://raw.githubusercontent.com/Dimillian/CodexSkillManager/HEAD/image.png",
@@ -1247,6 +1255,14 @@
   "type": "image/jpeg",
   "bytes": 28523
  },
+ "Win-Hao/music-mv": {
+  "repo": "Win-Hao/music-mv",
+  "url": "https://raw.githubusercontent.com/Win-Hao/music-mv/HEAD/docs/style-pixel.gif",
+  "alt": "像素游戏风",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 301877
+ },
  "Xiangyu-CAS/rea-capcut": {
   "repo": "Xiangyu-CAS/rea-capcut",
   "url": "https://raw.githubusercontent.com/Xiangyu-CAS/rea-capcut/HEAD/docs/screenshots/ui-parity-editor.png",
@@ -1663,6 +1679,14 @@
   "type": "image/jpeg",
   "bytes": 201021
  },
+ "byadityaraj/designmd": {
+  "repo": "byadityaraj/designmd",
+  "url": "https://raw.githubusercontent.com/byadityaraj/designmd/HEAD/examples/stripe.jpg",
+  "alt": "Stripe",
+  "score": -0.25,
+  "type": "image/jpeg",
+  "bytes": 56840
+ },
  "caikankan/cyberbin-ppt-skill": {
   "repo": "caikankan/cyberbin-ppt-skill",
   "url": "https://raw.githubusercontent.com/caikankan/cyberbin-ppt-skill/HEAD/assets/preview/cyberbin-pinboard-preview.png",
@@ -2054,6 +2078,14 @@
   "score": 1.5,
   "type": "image/png",
   "bytes": 435832
+ },
+ "evidence-codes/loom": {
+  "repo": "evidence-codes/loom",
+  "url": "https://raw.githubusercontent.com/evidence-codes/loom/HEAD/docs/media/portfolio-now-scroll.gif",
+  "alt": "Scrolling through the redesigned portfolio",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 795555
  },
  "ewkzcz/bili-2-ppt": {
   "repo": "ewkzcz/bili-2-ppt",
@@ -3487,6 +3519,14 @@
   "type": "image/jpeg",
   "bytes": 1521407
  },
+ "skailabinfo/claude-video-harness": {
+  "repo": "skailabinfo/claude-video-harness",
+  "url": "https://raw.githubusercontent.com/skailabinfo/claude-video-harness/HEAD/demo-frames.png",
+  "alt": "Один и тот же демо-ролик с тремя разными настройками",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 527775
+ },
  "smit-vanani/claude-promo-video": {
   "repo": "smit-vanani/claude-promo-video",
   "url": "https://raw.githubusercontent.com/smit-vanani/claude-promo-video/HEAD/assets/poster.jpg",
@@ -3718,6 +3758,14 @@
   "score": -0.05,
   "type": "image/jpeg",
   "bytes": 148162
+ },
+ "tomek7667/cbjev": {
+  "repo": "tomek7667/cbjev",
+  "url": "https://raw.githubusercontent.com/tomek7667/cbjev/HEAD/assets/cbjev_vs_laya_vs_jev.png",
+  "alt": "cbjev vs Laya vs TypeSafe Jev: accuracy on 15 suites, latency, calibration",
+  "score": -0.45,
+  "type": "image/png",
+  "bytes": 280497
  },
  "touying-typ/seaslides": {
   "repo": "touying-typ/seaslides",

@@ -3204,5 +3204,33 @@
    "general": 0.36
   },
   "kind": "html"
+ },
+ {
+  "repo": "jxshow/Jingge-PPT-skill",
+  "stars": 25,
+  "description": "鲸格PPT：17种视觉风格，可编辑HTML演示文稿、汇报、讲堂与发布模板。",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.03,
+   "html": 0.96,
+   "business": 0.9,
+   "convert": 0.92,
+   "general": 0.47
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "Delicious-Cao/Delicious-PPT",
+  "stars": 5,
+  "description": "可配置的 PPT 制作与改稿 Skill：先询问用途、时长与风格，支持授课、汇报、答辩和阅读场景；提供 ChatGPT 与 DeepSeek 两版。",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.87,
+   "html": 0.02,
+   "business": 0.49,
+   "convert": 0.69,
+   "general": 0.47
+  },
+  "kind": "pptx"
  }
 ]

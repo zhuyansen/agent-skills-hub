@@ -1955,7 +1955,8 @@
     "kadevin/ilab-gpt-conjure",
     "leeguooooo/chatgpt-imagegen",
     "lidge-jun/ima2-gen",
-    "wuyoscar/gpt_image_2_skill"
+    "wuyoscar/gpt_image_2_skill",
+    "ilovehugetits/codex-images"
    ]
   },
   "related": [
@@ -2177,7 +2178,9 @@
     "ColonyShopkeeper/r08-composiohq-awesome-claude-skills-seo",
     "Gravityaespot/r16-voltagent-awesome-agent-skills-seo",
     "Holddrespell/r16-voltagent-awesome-agent-skills-datascience",
-    "loulanyue/awesome-claude-notes"
+    "loulanyue/awesome-claude-notes",
+    "Jamie-BitFlight/claude_skills",
+    "vasilyu1983/AI-Agents-public"
    ]
   },
   "related": [
@@ -4733,7 +4736,8 @@
     "catorch/dataforseo-api-cli",
     "AgriciDaniel/chatgpt-seo",
     "Fangx-AI/geo-doctor",
-    "duckduckdeploy/openseo"
+    "duckduckdeploy/openseo",
+    "oegeyilmaz9/seo-aeo-geo-ultimate"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5198,14 +5202,17 @@
     "Bearisbug/Quilt",
     "lemonteaau/smartisan-ui-skill",
     "arla6ka/design.how",
-    "SandroHub013/awwwards-skill"
+    "SandroHub013/awwwards-skill",
+    "byadityaraj/designmd",
+    "evidence-codes/loom"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
     "INSANE0777/Awwards-mcp",
     "KAOPU-XiaoPu/web-design",
     "bergside/typeui.sh",
-    "mahmoudilyan/marmoui"
+    "mahmoudilyan/marmoui",
+    "adityarajdigital/designmd"
    ]
   },
   "related": [
@@ -6224,7 +6231,9 @@
     "bvb6417/ppt-studio",
     "kgraph57/mckinsey-style-visualization-skill",
     "mathruffian-dot/soil-motion-deck",
-    "keanu77/htmlpptskill"
+    "keanu77/htmlpptskill",
+    "jxshow/Jingge-PPT-skill",
+    "Delicious-Cao/Delicious-PPT"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7608,7 +7617,9 @@
     "momozi1996/momo-code",
     "Valen-Team/Valen",
     "disler/pi-durable-news-agent",
-    "italoalmeida0/laya-system-one"
+    "italoalmeida0/laya-system-one",
+    "Saik0s/diffusiongemma-jev-macos",
+    "tomek7667/cbjev"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8043,7 +8054,10 @@
     "fltman/infofilm",
     "sub-level/marketing-videos",
     "Lunamos/paper2video",
-    "patryk-penczek/ship-video"
+    "patryk-penczek/ship-video",
+    "Win-Hao/music-mv",
+    "mileson/chaojifeng-video-design",
+    "skailabinfo/claude-video-harness"
    ],
    "sub_skills": [
     {
