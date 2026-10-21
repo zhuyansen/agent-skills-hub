@@ -8,9 +8,7 @@ name: New-term radar
 # score for building a site or app for one now; ② a new GitHub repo taking off on its own, new apps climbing
 # the App Store charts in eight countries with how crowded their search words already are
 # and their Xiaohongshu and Douyin posts (appstore.py), and terms new repos in the
-# catalog suddenly share; ③ on Mondays new sites (registered in the last 90
-# days, already ranking; AIsa whois overview, about $0.26); ④ GSC queries seen for the
-# first time (fresh data).
+# catalog suddenly share; ④ GSC queries seen for the first time (fresh data).
 # Jev checks which are names of new things. Leads are kept in the table radar_leads
 # (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
 # report ends with each signal's hit rate. The report goes to the run summary and the
@@ -18,8 +16,8 @@ name: New-term radar
 #
 # AIsa here: the review (up to 40 leads and 60 Trends tasks at $0.0012, at most $0.072 and about
 # 10 minutes a day; ops/radar/review.py PER_DAY and REVIEW_CALLS_MAX), the
-# Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day) and the
-# Monday new-site queries (about $0.26 a week). The App Store charts and search are free.
+# Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day). The
+# App Store charts and search are free.
 #
 # Yesterday's repo star counts live in the Actions cache (one entry per run, restored by
 # prefix), so the repo does not grow. A missing cache only means the run builds a new

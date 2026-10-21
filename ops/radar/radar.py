@@ -28,10 +28,8 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
              countries, the words it is sold on, how many copies already share them, and
              its Xiaohongshu and Douyin posts (appstore.apps; about $0.10 a day through AIsa)
-  ③ new sites domains registered in the last 90 days that already rank (new_sites.py; Mondays,
-             or --new-sites; about $0.26 through AIsa)
   ④ GSC      queries that brought impressions for the first time (signals.gsc_new)
-Terms from ①–③ go to Jev with a few examples: is this the name of a specific new
+Terms from ① and ② go to Jev with a few examples: is this the name of a specific new
 product, model or technique, or a common word? Those that pass, and that no scenario
 page covers yet, lead the report, and are kept in radar_leads; review.py checks them in
 Google Trends 14 days later (⑤ as verification, not discovery) and the report ends with
@@ -51,7 +49,6 @@ sys.path[:0] = [str(HERE), str(ROOT / "ops/jev-review")]
 import appstore  # noqa: E402
 import breakout  # noqa: E402
 import memes  # noqa: E402
-import new_sites  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
 import social_sites  # noqa: E402
@@ -68,16 +65,15 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
 KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "social": "①社交新站", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub",
-         "newsite": "③新站", "usecase": "通用词", "cosearch": "一起被搜",
-         "watch": "观察词"}
+         "usecase": "通用词", "cosearch": "一起被搜", "watch": "观察词"}
 # signals the radar no longer reads; the review still checks their old leads, and the hit-rate table names them so
-RETIRED = {"sitemap": "③竞品(已停)"}
+RETIRED = {"sitemap": "③竞品(已停)", "newsite": "③新站(已停)"}
 # what they kept in the daily snapshot dir, deleted so the Actions cache stops carrying it (toolify: about a million URLs)
-RETIRED_SNAPSHOTS = tuple(f"{site}.json.gz" for site in (
-    "glama", "mcp.so", "skillsmp", "toolify", "lobehub-mcp", "lobehub-skills", "lobehub-agents", "lobehub-blog"))
+RETIRED_SNAPSHOTS = (*(f"{site}.json.gz" for site in ("glama", "mcp.so", "skillsmp", "toolify", "lobehub-mcp",
+                                                      "lobehub-skills", "lobehub-agents", "lobehub-blog")),
+                     "new_sites.json.gz")
 # the ① leads the daily report lists from radar_leads; the new sites only once they are shown
 SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
-NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
 # optional keys a lead takes from its signal's row: the picks read the first three, and
 # radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
 CARRIED = ("what", "window", "checks", "meme", "site")
@@ -314,7 +310,6 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
     lines += appstore.section(b.get("appstore", {"skipped": True}))
 
-    lines += _new_site_lines(b.get("newsite", {"skipped": True}))
     lines += ["", "### ④ GSC 首次出现的搜索词(新鲜数据,约晚 1 天)", ""]
     if gsc.get("queries"):
         lines += [f"{gsc['window']},共 {gsc['total_new']} 个新词,曝光 ≥{signals.GSC_MIN_IMPRESSIONS} 的:", "",
@@ -349,22 +344,8 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
         lines.append(social_sites.status(b["social"]))
     bo = b["breakout"]
     lines += _rest_status(bo, gh, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
+    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
-
-
-def _new_site_lines(ns: dict) -> list[str]:
-    """Weekly: sites registered in the last 90 days that already draw search traffic."""
-    if ns.get("skipped"):
-        return []
-    lines = ["", f"### ③ 新站(近 {new_sites.WINDOW_DAYS} 天注册且首次被收录、月访问估值 >{new_sites.MIN_ETV}、"
-             f"排名词 ≥{new_sites.MIN_KEYWORDS};每周一;🆕 = 第一次出现)", ""]
-    sites = ns.get("sites") or []
-    if not sites:
-        return lines + [f"无({ns.get('error') or '这周没有符合条件的新站'})"]
-    lines += ["| 域名 | 注册 | 首次收录 | 访问/月(估) | 排名词 |", "|---|---|---|---|---|"]
-    return lines + [f"| {'🆕 ' if r['new'] else ''}[{r['domain']}](https://{r['domain']}) | {r['created']} | {r['first_seen']} | "
-                    f"{r['etv']} | {r['keywords']} |" for r in sites]
 
 
 def _source_status(x: dict, hf: dict) -> list[str]:
@@ -505,8 +486,6 @@ def main() -> int:
         "breakout": run("breakout", lambda: breakout.breakouts(snaps), "--skip-breakout" in flags),
         "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),
-        "newsite": run("newsite", lambda: new_sites.new_sites(snaps),
-                       not ("--new-sites" in flags or date.today().weekday() == NEW_SITES_WEEKDAY)),
     }
     # it reads the X posts, so the daily job (--skip-x) leaves it to the source job too
     blocks["social"] = run("social", lambda: social_sites.social_sites(snaps, blocks["x"]),
@@ -522,7 +501,7 @@ def main() -> int:
     blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources(kinds=SOURCE_KINDS)},
                                    no_db or "--skip-x" not in flags)
     # The generic terms behind the day's names (usecases.py): only names from the signals that
-    # report things (X, HF, breakouts, new sites) with a high name score; see names_to_read. Read twice each (today and three days on); about $0.15 a day.
+    # report things (X, HF, AI video trends, apps, breakouts) with a high name score; see names_to_read. Read twice each (today and three days on); about $0.15 a day.
     names = usecases.names_to_read(keep, blocks["recent_sources"].get("rows", []))
     repos = {r["term"]: r["repo"] for r in lead if r.get("repo")}
     blocks["usecases"] = run("usecases", lambda: usecases.run(snaps, list(dict.fromkeys(names)), repos), "--skip-usecases" in flags)

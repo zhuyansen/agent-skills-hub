@@ -9,8 +9,7 @@ is a candidate when MIN_AUTHORS or more different people linked it in the window
 
 Left out: platforms and link shorteners (PLATFORMS: X, YouTube, GitHub, Hugging Face,
 OpenAI, Anthropic, bit.ly...), a site on a host's subdomain (it reduces to the host, which
-is old), institutions, our own sites (OWN_SITES), a site this step reported before, and
-one the weekly new-site signal (new_sites.py) holds when its snapshot is in the same dir.
+is old), institutions, our own sites (OWN_SITES) and a site this step reported before.
 X gives links as t.co: each is expanded without following the redirect (a HEAD request,
 then its Location; free), at most TCO_MAX a run TCO_PAUSE apart, cached in the snapshot.
 
@@ -442,15 +441,6 @@ def save(snaps: Path, state: dict, today: date) -> None:
     (snaps / STATE).write_bytes(gzip.compress(json.dumps(state, ensure_ascii=False).encode()))
 
 
-def reported_elsewhere(snaps: Path) -> set[str]:
-    """Domains the weekly new-site signal (new_sites.py) reported, when its snapshot is in this dir."""
-    path = snaps / "new_sites.json.gz"
-    try:
-        return set(json.loads(gzip.decompress(path.read_bytes()))) if path.exists() else set()
-    except (OSError, ValueError):
-        return set()
-
-
 def gather(linked: list[dict], state: dict, since: datetime, today: date) -> dict:
     """This run's mentions: the links of the X posts in the window (t.co expanded; retweets left
     out, as in source_signals.novel_names) and Bluesky's."""
@@ -463,10 +453,10 @@ def gather(linked: list[dict], state: dict, since: datetime, today: date) -> dic
             "bluesky": {k: v for k, v in sky.items() if k != "posts"} | {"linked": len(sky["posts"])}}
 
 
-def find(state: dict, snaps: Path, today: date) -> dict:
+def find(state: dict, today: date) -> dict:
     """The new sites in the window: MIN_AUTHORS or more people linked, registered MAX_AGE_DAYS ago or less."""
     window = state["mentions"]
-    many = linked_by_many(window, set(state["reported"]) | reported_elsewhere(snaps))
+    many = linked_by_many(window, set(state["reported"]))
     looked = check_rdap(many, state["rdap"], today)
     sites = [candidate(d, window[d], state["rdap"][d], today) for d in many if is_new(state["rdap"].get(d), today)]
     unknown = sum(1 for d in many if d in state["rdap"] and age_days(state["rdap"][d], today) is None)
@@ -481,7 +471,7 @@ def social_sites(snaps: Path, x_block: dict | None = None, now: datetime | None 
     state = load(snaps)
     read = gather((x_block or {}).get("linked") or [], state, since, today)
     state["mentions"] = update_window(state["mentions"], read["mentions"], since)
-    found = find(state, snaps, today)
+    found = find(state, today)
     cost, asked, errors = tag_traffic(found["sites"], state["traffic"], today)
     state["reported"].update({c["domain"]: today.isoformat() for c in found["sites"]})
     save(snaps, state, today)
