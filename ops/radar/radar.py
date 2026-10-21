@@ -65,6 +65,9 @@ KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "breakout": "②爆发", 
          "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
+# optional keys a lead takes from its signal's row: the picks read the first three, and
+# radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
+CARRIED = ("what", "window", "checks", "meme", "site")
 TOPICS = {k: re.compile(v, re.I) for k, v in json.loads((HERE / "topics.json").read_text()).items() if not k.startswith("_")}
 
 
@@ -121,12 +124,8 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
                 row["repo"] = r["repo"]
             if r.get("named") is not None:   # a meme's opportunity score (memes.py); judge() leaves these rows alone
                 row["named"] = r["named"]
-            if r.get("what"):
-                row["what"] = r["what"]
-            if r.get("window"):
-                row["window"] = r["window"]
-            if r.get("checks"):
-                row["checks"] = r["checks"]
+            row.update({k: r[k] for k in CARRIED if r.get(k)})
+            row["evidence_posts"] = row.get("evidence_posts", []) + r.get("evidence_posts", [])
             if "described" in r:
                 row["described"] = r["described"]
     rows = list(out.values())
@@ -497,6 +496,8 @@ def main() -> int:
     repos = {r["term"]: r["repo"] for r in lead if r.get("repo")}
     blocks["usecases"] = run("usecases", lambda: usecases.run(snaps, list(dict.fromkeys(names)), repos), "--skip-usecases" in flags)
     run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
+    # what the table found for each name, into that name's evidence (radar_leads.evidence)
+    run("keyword evidence", lambda: {"added": review.add_evidence(usecases.name_evidence(blocks["usecases"]))}, no_db)
     report.write_text(markdown(lead, blocks, gsc, rev, summ))
     report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "gsc": gsc, "review": rev,
                                                       "summary": summ}, ensure_ascii=False, indent=1, default=str))

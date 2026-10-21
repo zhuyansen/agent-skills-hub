@@ -629,9 +629,25 @@ def table(uc: dict) -> list[str]:
 
 
 def leads(uc: dict) -> list[dict]:
-    """The generic terms as rows for radar_leads, reviewed after 14 days like the names."""
-    return [{"term": r["phrase"], "kinds": ["usecase"], "variants": [r["phrase"]],
+    """The generic terms as rows for radar_leads, reviewed after 14 days like the names. The quote
+    a generic term came from is kept as its evidence's example."""
+    return [{"term": r["phrase"], "kinds": ["usecase"], "variants": [r["phrase"]], "examples": [r.get("evidence", "")],
              "signals": [f"{', '.join(r['names'])} 背后的通用词,月搜 {r.get('volume', 0)}"]}
             for r in uc.get("rows", []) if r["kind"] == "generic"] + \
         [{"term": x["term"], "kinds": ["cosearch"], "variants": [x["term"]], "signals": [f"在 Google 上和 {x['with']} 一起被搜"]}
          for x in uc.get("cosearch", [])]
+
+
+def name_evidence(uc: dict) -> list[dict]:
+    """Per name read today, its part of the lead's evidence (review.add_evidence): its own row and
+    the generic terms behind it (phrase, kind, per_day, decision, now), its long-tails, and the
+    other names searched with it."""
+    out = []
+    for name in uc.get("names", []):
+        rows = [r for r in uc.get("rows", []) if r["phrase"] == name or name in r.get("names", [])]
+        out.append({"term": name, "keywords": {
+            "rows": [{"phrase": r["phrase"], "kind": r["kind"], "per_day": r.get("per_day"), "decision": r.get("decision"),
+                      "now": r.get("now") or ("no_data" if r.get("no_data") else None)} for r in rows],
+            "tails": uc.get("tails", {}).get(name, []),
+            "cosearch": [x["term"] for x in uc.get("cosearch", []) if x["with"] == name]}})
+    return out

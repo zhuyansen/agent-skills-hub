@@ -270,6 +270,30 @@ def read_note(note: str, today: date) -> dict:
 
 AGE_NOTE = (f"最早出现 = 读到的最早一条帖子或话题起涨那天;帖子只往前读 {WINDOW_DAYS} 天,所以这是下限,"
             f"梗可能更老。")
+EVIDENCE_POSTS = 10
+_AUTHOR = re.compile(r"(?:tiktok\.com/@|(?:x|twitter)\.com/)([\w.]+)")
+
+
+def evidence(m: dict) -> dict:
+    """The trend's part of its lead's evidence (review.py): what people make, the checks, the
+    first day it showed (a floor when `earliest_is_floor`) and how much of its window is left."""
+    age = m.get("age")
+    return {"what": m["what"], "checks": m.get("checks", ""), "earliest": m.get("earliest", ""),
+            "earliest_is_floor": bool(m.get("edge")),
+            "window": {"peak_days": PEAK_DAYS, "age_days": age, "days_left": None if age is None else PEAK_DAYS - age}}
+
+
+def evidence_posts(m: dict) -> list[dict]:
+    """The trend's posts for its evidence, most-liked (or most-viewed) first."""
+    posts = sorted(m["posts"], key=lambda p: -(p["likes"] or p["views"] / 50))[:EVIDENCE_POSTS]
+    return [{"url": p["url"], "account": _author(p["url"]), "text": p["text"], "likes": p["likes"], "views": p["views"],
+             "date": p["day"], "platform": p["platform"]} for p in posts]
+
+
+def _author(url: str) -> str:
+    """The poster's handle from a TikTok or X link; Instagram and YouTube links do not hold it."""
+    found = _AUTHOR.search(url or "")
+    return found.group(1) if found else ""
 
 
 def age_text(first: date, edge: bool, today: date) -> str:
@@ -430,8 +454,10 @@ def memes(snaps: Path, today: date | None = None) -> dict:
                           # the daily picks get only this note back from radar_leads (read_note)
                           "note": lead_note(m),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],
-                          "posts": [{"account": PLATFORM_ZH[p["platform"]], "likes": p["likes"], "url": p["url"], "text": p["text"]}
-                                    for p in ([top] if top else [])]})
+                          "posts": [{"account": PLATFORM_ZH[p["platform"]], "likes": p["likes"], "url": p["url"], "text": p["text"],
+                                     "platform": p["platform"]} for p in ([top] if top else [])],
+                          # radar_leads.evidence (review.evidence): the trend's posts and its dates
+                          "evidence_posts": evidence_posts(m), "meme": evidence(m)})
     found.sort(key=lambda m: -(m["score"] if m["score"] is not None else 0.5))
     snaps.mkdir(parents=True, exist_ok=True)
     (snaps / STATE).write_bytes(gzip.compress(json.dumps({

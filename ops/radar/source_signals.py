@@ -67,8 +67,10 @@ def novel_names(posts: list[dict], vocab: dict[str, str], now: datetime) -> list
                 row["likes"] += p["likes"]
                 row["examples"].append(f"@{p['account']}: {' '.join(p['text'].split())[:80]}")
                 # The whole post and its link, for the mail: the reader checks the source in one click.
+                # Its day and network go into the lead's evidence (review.evidence).
                 row["posts"].append({"account": p["account"], "text": " ".join(p["text"].split()),
-                                     "url": p.get("url", ""), "likes": p["likes"]})
+                                     "url": p.get("url", ""), "likes": p["likes"],
+                                     "date": p["created"].date().isoformat(), "platform": "x"})
             row["sources"].add(p["account"])
             row["strong"] |= term in strong
     rows = [r for r in found.values()

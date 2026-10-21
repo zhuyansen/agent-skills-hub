@@ -519,3 +519,64 @@ def test_every_name_gets_the_country_series_and_the_cap_is_on_generic_terms(monk
     monkeypatch.setattr(usecases.goanyapi, "daily_series", lambda term, geo: (asked.append(term) or [(TODAY, 1)], 6000))
     out, cost, errors = usecases.country_series(rows, usecases.SETTINGS)
     assert sorted(asked) == sorted([f"name{i}" for i in range(5)] + ["g27100", "g22200", "g8100"]) and cost == 48000 and not errors
+
+
+# --- radar_leads.evidence (review.py) ----------------------------------------------------------
+
+import contextlib  # noqa: E402
+import types  # noqa: E402
+
+
+def test_evidence_merge_keeps_posts_by_url_and_the_newest_of_the_rest():
+    old = review.evidence({"posts": [{"url": f"u{i}", "account": "a", "text": "t", "likes": i} for i in range(8)],
+                           "examples": ["old"], "variants": ["a"], "meme": {"what": "old"}}, date(2026, 10, 19))
+    new = review.evidence({"posts": [{"url": "u1", "account": "a", "text": "t", "likes": 50},
+                                     *({"url": f"n{i}", "account": "b", "text": "x" * 400, "likes": 10 + i} for i in range(4))],
+                           "examples": ["new"]}, date(2026, 10, 21))
+    merged = review.merge_evidence(old, new)
+    assert [p["url"] for p in merged["posts"]] == ["u1", "n3", "n2", "n1", "n0", "u7", "u6", "u5", "u4", "u3"]
+    assert set(merged["posts"][0]) == {"url", "account", "text", "likes", "date", "platform"} and len(merged["posts"][1]["text"]) == 280
+    assert (merged["examples"], merged["variants"], merged["meme"], merged["updated"]) == (["new"], ["a"], {"what": "old"}, "2026-10-21")
+    assert review.merge_evidence(None, new) == new
+
+
+class _FakeDB:
+    """Enough of an engine for review.record(): the column check, and one lead already held."""
+
+    def __init__(self, column):
+        self.column, self.calls = column, []
+
+    def begin(self):
+        return contextlib.nullcontext(self)
+
+    def dispose(self):
+        pass
+
+    def execute(self, sql, params=None):
+        self.calls.append((str(sql), params))
+        held = [("altstream", {"posts": [{"url": "u0", "likes": 99, "text": "old"}]})] if "FOR UPDATE" in str(sql) else []
+        return types.SimpleNamespace(first=lambda: (1,) if self.column else None, fetchall=lambda: held)
+
+
+def test_record_writes_evidence_only_once_the_column_exists(monkeypatch):
+    row = {"term": "altstream", "kinds": ["social"], "signals": ["①社交新站 altstream.online"], "variants": ["altstream"],
+           "posts": [{"url": "u1", "account": "ann", "text": "new", "likes": 5, "platform": "bluesky"}]}
+    for column in (False, True):
+        db = _FakeDB(column)
+        monkeypatch.setattr(review, "_engine", lambda: db)
+        monkeypatch.setattr(review, "_EVIDENCE_COLUMN", None)
+        assert review.record([row], date(2026, 10, 21)) == 1
+        upsert = next(p for s, p in db.calls if s.lstrip().startswith("INSERT"))
+        assert ("evidence" in upsert) is column and all("SET statement_timeout" not in s for s, _ in db.calls)
+    assert [p["url"] for p in json.loads(upsert["evidence"])["posts"]] == ["u0", "u1"]   # merged into what the lead held
+
+
+def test_the_keyword_tables_reading_of_a_name_goes_into_its_evidence():
+    uc = {"names": ["photocraft"], "tails": {"photocraft": ["photocraft download"]},
+          "cosearch": [{"term": "gpt image 2.5", "with": "photocraft"}], "rows": [
+              {"phrase": "photocraft", "kind": "name", "names": [], "per_day": 900, "decision": "watch", "now": "rising"},
+              {"phrase": "photoshop alternative", "kind": "generic", "names": ["photocraft"], "per_day": 4000, "decision": "prioritize"},
+              {"phrase": "other", "kind": "generic", "names": ["x"], "decision": "skip", "no_data": True}]}
+    kw = usecases.name_evidence(uc)[0]["keywords"]
+    assert [(r["phrase"], r["now"]) for r in kw["rows"]] == [("photocraft", "rising"), ("photoshop alternative", None)]
+    assert (kw["tails"], kw["cosearch"]) == (["photocraft download"], ["gpt image 2.5"])
