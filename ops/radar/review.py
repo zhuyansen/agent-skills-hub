@@ -7,7 +7,8 @@ record_new()  the same for leads that must not show (shadow mode): it never touc
 add_evidence()  merges more evidence into leads already kept: the keyword table's reading
            of a name (usecases.name_evidence).
 review()   takes up to PER_DAY leads first seen REVIEW_AFTER days ago or earlier and not
-           yet checked, asks DataForSEO Trends (via AIsa) about each search variant,
+           yet checked, those of retired signals (RETIRED_SIGNALS) after all the others,
+           asks DataForSEO Trends (via AIsa) about each search variant,
            and stores hit / miss / no_data plus how many days the radar was ahead.
 summary()  per signal over the last WINDOW days of verdicts (tally): early hits, late hits,
            no rise, no data, and the median lead of the early hits. A hit is early when
@@ -75,6 +76,14 @@ UNSETTLED_DAYS = 2
 # The ① leads the daily report lists from the last day (recent_sources); radar.py adds the
 # new sites people link once social_sites.SOCIAL_SHOW is on.
 SOURCE_KINDS = ("x", "hf", "meme", "appstore")
+# Signals the radar stopped reading on 2026-10-21 (radar.RETIRED labels them). Their leads, about 37% of those
+# due that day, are still reviewed, but only with the day's places left over: the signals still running come first.
+RETIRED_SIGNALS = ("sitemap", "newsite")
+DUE_SQL = """
+    SELECT term, first_seen, variants FROM radar_leads
+    WHERE reviewed_at IS NULL AND first_seen <= :cutoff
+    ORDER BY signals <@ CAST(:retired AS text[]), first_seen LIMIT :n
+"""
 EVIDENCE_V = 1
 EVIDENCE_POSTS = 10
 EVIDENCE_EXAMPLES = 10
@@ -286,7 +295,8 @@ def _series(task: dict) -> list[tuple[date, int]]:
 
 
 def within_budget(due: list[tuple]) -> list[tuple]:
-    """The oldest due leads whose Trends tasks fit REVIEW_CALLS_MAX, whole leads only; the rest stay due."""
+    """The first due leads, in DUE_SQL's order, whose Trends tasks fit REVIEW_CALLS_MAX, whole leads only; the
+    rest stay due."""
     out, calls = [], 0
     for row in due:
         term, _, variants = row
@@ -318,10 +328,8 @@ def review(today: date | None = None) -> dict:
     engine = _engine()
     with engine.connect() as conn:
         conn.execute(text("SET LOCAL statement_timeout = '60s'"))
-        due = conn.execute(text("""
-            SELECT term, first_seen, variants FROM radar_leads
-            WHERE reviewed_at IS NULL AND first_seen <= :cutoff ORDER BY first_seen LIMIT :n
-        """), {"cutoff": today - timedelta(days=REVIEW_AFTER), "n": PER_DAY}).fetchall()
+        due = conn.execute(text(DUE_SQL), {"cutoff": today - timedelta(days=REVIEW_AFTER), "n": PER_DAY,
+                                           "retired": list(RETIRED_SIGNALS)}).fetchall()
     due = within_budget(due)
     if not due:
         engine.dispose()

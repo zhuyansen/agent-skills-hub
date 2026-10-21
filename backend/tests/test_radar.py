@@ -305,6 +305,17 @@ def test_review_takes_whole_leads_up_to_the_call_budget_and_leaves_the_rest_due(
     assert review.within_budget([("solo", seen, [])]) == [("solo", seen, [])]
 
 
+def test_review_takes_the_leads_of_retired_signals_last(monkeypatch):
+    # 2026-10-21: about 37% of the due leads came only from the competitor sitemaps, stopped that day
+    db = _FakeDB(True)
+    monkeypatch.setattr(review, "_engine", lambda: db)
+    assert review.review(date(2026, 10, 22)) == {"checked": [], "cost_micros": 0}
+    sql, params = next((" ".join(s.split()), p) for s, p in db.calls if "reviewed_at IS NULL" in s)
+    assert "ORDER BY signals <@ CAST(:retired AS text[]), first_seen LIMIT :n" in sql   # false, a running signal, first
+    assert (params["retired"], params["n"], params["cutoff"]) == (["sitemap", "newsite"], review.PER_DAY, date(2026, 10, 8))
+    assert set(radar.RETIRED) == set(review.RETIRED_SIGNALS)              # the hit-rate table names every one of them
+
+
 def test_mail_recipients_tolerate_how_people_type_them():
     import notify
     assert notify.recipients('"a@b.com"') == ["a@b.com"]
@@ -627,13 +638,16 @@ def test_evidence_merge_keeps_posts_by_url_and_the_newest_of_the_rest():
 
 
 class _FakeDB:
-    """Enough of an engine for review.record(): the column check, and one lead already held."""
+    """Enough of an engine for review.record() and review.review(): the column check, one lead already held, and
+    no lead due."""
 
     def __init__(self, column):
         self.column, self.calls = column, []
 
     def begin(self):
         return contextlib.nullcontext(self)
+
+    connect = begin
 
     def dispose(self):
         pass
