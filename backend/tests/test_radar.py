@@ -851,6 +851,7 @@ def test_the_daily_lists_a_source_lead_once(monkeypatch, tmp_path):
     radar.daily_main(tmp_path / "d1.md", snaps, DAILY_FLAGS)
     first = _section(tmp_path / "d1.md", "### ① ")
     assert "**orchestra bio**" in first and "deepinfer" not in first                 # deepinfer is ② 单仓爆发's 🆕 today
+    assert "### 候选新词" not in (tmp_path / "d1.md").read_text()                     # nor a candidate row repeating it
     recent.append({"term": "sm100", "kinds": ["x"], "note": "X 2 个账号 ♥74", "named": 0.65})
     _daily_world(monkeypatch, recent=recent)                                          # the next day, one more lead
     radar.daily_main(tmp_path / "d2.md", snaps, DAILY_FLAGS)
@@ -878,6 +879,15 @@ def test_the_daily_leaves_out_the_picks_the_8_hourly_mails_sent(monkeypatch, tmp
     # a pick mailed three days ago is not "since yesterday"
     sent.write_text(json.dumps({"2am cam": (datetime.now(timezone.utc) - timedelta(days=3)).isoformat(timespec="minutes")}))
     assert radar.sent_lately({f"--sent-picks={sent}"}, date.today()) == set() and radar.sent_lately(set(), date.today()) == set()
+
+
+def test_the_candidate_table_lists_only_leads_without_a_section_of_their_own():
+    lead = [{"term": "deepinfer", "kinds": ["breakout"], "signals": ["GitHub 爆发 deepseek-ai/DeepInfer"], "examples": [],
+             "variants": ["deepinfer"], "named": 0.96},
+            {"term": "qwen3.9", "kinds": ["x", "breakout"], "signals": ["X 2 个账号"], "examples": [], "variants": ["qwen3.9"], "named": 0.9}]
+    text = "\n".join(radar.candidate_lines(lead))
+    assert "**qwen3.9**" in text and "deepinfer" not in text                          # X said it too: not only ②'s
+    assert radar.candidate_lines(lead[:1]) == []
 
 
 def test_the_mail_memories_keep_14_days():

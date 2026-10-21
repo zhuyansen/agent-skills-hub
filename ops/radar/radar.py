@@ -82,6 +82,9 @@ EARLY_NOTE = (f"提前命中 = Trends 在雷达第一次报出后至少 {review.
               "晚到 = 也起来了,但起涨在报出之前或当天")
 # the ① leads the daily report lists from radar_leads; the new sites only once they are shown
 SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
+# signals with a section of their own in the daily mail (② 单仓爆发 lists every 🆕 repo): their
+# leads stay out of its candidate table, which had become a copy of that section (10-21)
+OWN_SECTION = frozenset({"breakout"})
 # optional keys a lead takes from its signal's row: the picks read the first three, and
 # radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
 CARRIED = ("what", "window", "checks", "meme", "site")
@@ -401,15 +404,19 @@ def markdown(lead: list[dict], b: dict[str, dict], view: dict) -> str:
 
 
 def candidate_lines(lead: list[dict]) -> list[str]:
+    """The candidate table, for the leads no section of their own lists (OWN_SECTION); none, no table."""
+    rows = [r for r in lead if not set(r["kinds"]) <= OWN_SECTION]
+    names_ = named(rows)
+    rest = [r["term"] for r in rows if r not in names_][:OTHER_TERMS]
+    if not (names_ or rest):
+        return []
     lines = ["", "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
              "| 词 | 信号 | Jev | 已有页面 | 搜索变体 | 例子 |", "|---|---|---|---|---|---|"]
-    names_ = named(lead)
     for r in names_[:SHOWN]:
         ex = " / ".join(e[:50] for e in r["examples"][:2]).replace("|", "/").replace("\n", " ")
         score = f"{r['named']:.2f}" if "named" in r else "—"
         lines.append(f"| **{r['term']}** | {_signals_cell(r)} | {score} | {r.get('page') or '无'} | "
                      f"{', '.join(r['variants'][1:]) or '—'} | {ex} |")
-    rest = [r["term"] for r in lead if r not in names_][:OTHER_TERMS]
     return lines + (["", "其他上升词(Jev 判为普通词):" + "、".join(rest)] if rest else [])
 
 
@@ -427,7 +434,7 @@ def recent_lines(recent: dict, view: dict) -> list[str]:
 
 def breakout_lines(bo: dict) -> list[str]:
     lines = ["", f"### ② 单仓库爆发(近 {breakout.WINDOW_DAYS} 天新建;{breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的要 "
-                 f"≥{breakout.LATE_MIN_STARS} 星;按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
+                 f"≥{breakout.LATE_MIN_STARS} 星;按每天涨星排;🆕 = 今天第一次达标,记为候选词,14 天后复盘)", ""]
     repos = bo.get("repos") or []
     if not repos:
         return lines + [f"无({bo.get('error') or ('跳过' if bo.get('skipped') else '没有爆发仓库')})"]
