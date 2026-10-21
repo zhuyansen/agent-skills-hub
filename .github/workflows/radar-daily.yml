@@ -1,30 +1,33 @@
 name: New-term radar
 
-# Once a day, 09:00 Beijing: the terms that are starting to surge (ops/radar/radar.py),
-# earliest signal first: ① names the labs and AI bloggers posted on X and new models on
-# Hugging Face's trending list, run apart every 8 hours (radar-source.yml) and listed
-# here from radar_leads (new apps on the charts too: appstore.py runs there), with the AI video trends people recreate (TikTok, Instagram,
-# YouTube Shorts, X, TikTok's trending hashtags; memes.py, also every 8 hours) and Jev's
-# score for building a site or app for one now; ② a new GitHub repo taking off on its own, new apps climbing
-# the App Store charts in eight countries with how crowded their search words already are
-# and their Xiaohongshu and Douyin posts (appstore.py), and terms new repos in the
-# catalog suddenly share.
-# Jev checks which are names of new things. Leads are kept in the table radar_leads
-# (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
-# report ends with each signal's hit rate. The report goes to the run summary and the
-# mail to RADAR_EMAIL_TO (ops/radar/notify.py, Resend). It writes only radar_leads; it never pushes to main.
+# Once a day: the terms that are starting to surge (ops/radar/radar.py). The cron is 01:00 UTC
+# (09:00 Beijing), but Actions starts it about 4.5 hours late (05:13-05:39 UTC from 10-14 to
+# 10-21), so the mail usually arrives around 13:30-14:30 Beijing.
+#
+# Mail: exactly one a day, to RADAR_EMAIL_TO (ops/radar/notify.py, Resend), and the run summary.
+# It opens with what to build today, leaving out the picks the 8-hourly runs (radar-source.yml)
+# already mailed since yesterday: their memory of what they mailed is read from their cache,
+# restored read-only (--sent-picks). Then the evidence: the keyword table; ① the last day's
+# source leads from radar_leads (X, Hugging Face, AI video trends, new apps), each listed once,
+# never again after an earlier daily or a pick mail showed it; ② a new GitHub repo taking off
+# on its own; ⑤ the review; the data status. The words new repos in the catalog share
+# (② GitHub) are in shadow mode: kept in radar_leads for the review, one status line.
+#
+# Jev checks which leads are names of new things. Leads are kept in the table radar_leads
+# (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa), and the mail
+# names only the early hits (Trends rose a day or more after the radar saw the term) and gives
+# each signal's counts. It writes only radar_leads; it never pushes to main.
 #
 # AIsa here: the review (up to 40 leads and 60 Trends tasks at $0.0012, at most $0.072 and about
-# 10 minutes a day; ops/radar/review.py PER_DAY and REVIEW_CALLS_MAX), the
-# Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day). The
-# App Store charts and search are free.
+# 10 minutes a day; ops/radar/review.py PER_DAY and REVIEW_CALLS_MAX) and the keyword table
+# (about $0.15 a day, ops/radar/usecases.py). GitHub search is free.
 #
-# Yesterday's repo star counts live in the Actions cache (one entry per run, restored by
-# prefix), so the repo does not grow. A missing cache only means the run builds a new
-# snapshot and reports no star gains that day.
+# Yesterday's repo star counts and the leads the last dailies listed live in the Actions cache
+# (one entry per run, restored by prefix), so the repo does not grow. A missing cache only means
+# the run builds a new snapshot: no star gains that day, and ① may list a lead a second time.
 #
-# 01:00 UTC can overlap the 00:00 sync. The radar's database read is one indexed query
-# with a 60 s timeout; if it fails, the report says so and nothing is retried.
+# The cron's 01:00 UTC can overlap the 00:17 sync. The radar's database read is one indexed
+# query with a 60 s timeout; if it fails, the report says so and nothing is retried.
 
 on:
   schedule:

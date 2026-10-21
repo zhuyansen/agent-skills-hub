@@ -17,12 +17,13 @@ mail shows a term once:
     ① lists the last day's source leads from radar_leads that no earlier daily, no pick mail
     and no other part of the mail showed (daily_view, LISTED).
 
-Signals (see ops/gefei-seo-playbook.md §3), earliest first:
-  ① X        names the labs and AI bloggers in sources.json said first (source_signals.x_new, AIsa)
+Signals, earliest first:
+  ① X        names the labs and AI bloggers in sources.json said first (source_signals.x_new, AIsa;
+             about once a day, source_signals.X_EVERY_HOURS)
   ① HF       models new to Hugging Face's trending top 50 (source_signals.hf_new)
   ① 梗       AI video trends people recreate (TikTok, Instagram, YouTube Shorts, X and TikTok's
              trending hashtags), with Jev's score for building a site or app for one now
-             (memes.memes; about $0.02 a day through AIsa, plus the model and Jev)
+             (memes.memes; about $0.03 a day through AIsa, plus the model and Jev)
   ① 社交新站 sites registered in the last 90 days that two or more people linked in X or
              Bluesky posts of the last 72 hours (social_sites.social_sites, with the source
              signals; at most 30 GoAnyAPI traffic tags a day, $0.06). In shadow mode while
@@ -38,7 +39,8 @@ Terms from ① and ② go to Jev with a few examples: is this the name of a spec
 product, model or technique, or a common word? Those that pass, and that no scenario
 page covers yet, lead the report, and are kept in radar_leads; review.py checks them in
 Google Trends 14 days later (⑤ as verification, not discovery) and the report ends with
-the hit rate per signal. Writes <report.md> and a JSON copy beside it.
+each signal's early hits: Trends rose a day or more after the radar first saw the term.
+Writes <report.md> and a JSON copy beside it.
 """
 from __future__ import annotations
 

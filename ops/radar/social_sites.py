@@ -1,9 +1,10 @@
 """Radar signal ①d: new sites taking off on social media, found by the links people post.
 
-A site that catches on is linked before it ranks. This step reads the external links in
-the posts the radar already fetches every 8 hours (the X accounts in sources.json, through
-source_signals.x_new) and in popular Bluesky posts (bluesky.py), reduces each link to its
-registrable domain and keeps WINDOW_HOURS of who linked what in the snapshot dir. A domain
+A site that catches on is linked before it ranks. This step runs every 8 hours and reads the
+external links in the posts the radar already fetches (the X accounts in sources.json, read
+about once a day through source_signals.x_new) and in popular Bluesky posts (bluesky.py),
+reduces each link to its registrable domain and keeps WINDOW_HOURS of who linked what in the
+snapshot dir. A domain
 is a candidate when MIN_AUTHORS or more different people linked it in the window and RDAP
 (free, meme_checks.rdap) says it was registered MAX_AGE_DAYS ago or less.
 

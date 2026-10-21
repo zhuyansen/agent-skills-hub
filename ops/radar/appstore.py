@@ -23,7 +23,7 @@ things (luko/research/24-深度-Auday与腕记.md has the whole story):
      whatever they like for a word they do not know (腕记 on Douyin: esports and skin
      care), so only posts that hold the name count.
 
-Steps 2 and 3 run for DEEP apps a day (new ones first, then any not read for RECHECK_DAYS);
+Steps 2 and 3 run for DEEP apps a run, nine a day (new ones first, then any not read for RECHECK_DAYS);
 the others show their last reading. DataForSEO's App Store keyword data was tried and
 dropped (2026-10-19): it had no rows for Auday or 腕记, $0.012 each; a new app is not in
 its index yet, which is exactly the case this signal is for.
@@ -61,12 +61,13 @@ STOREFRONTS = {**COUNTRIES, "ae": "143481", "br": "143503", "ch": "143459", "es"
 # and puts each chart in its page as JSON-LD (position, name, id). Apple's RSS above covers
 # 8 storefronts with genres; Apolu adds Google Play, Mac and the other 22 storefronts'
 # iPhone charts. Its robots.txt allows every agent but named AI crawlers; we read about 190
-# pages once a day under our own name, and keep only ids and positions.
+# pages a run under our own name, three runs a day with the source signals (radar-source.yml),
+# about 570 pages a day, and keep only ids and positions.
 APOLU = "https://apolu.app/charts/{cc}/{chart}"
 APOLU_CC = list(STOREFRONTS)
 APOLU_CHARTS = {"iphone/free": "iPhone免费", "iphone/paid": "iPhone付费", "macos/free": "Mac免费", "macos/paid": "Mac付费",
                 "android/free": "GP免费", "android/paid": "GP付费", "android/grossing": "GP畅销"}
-APOLU_UA = "agentskillshub-radar/1.0 (+https://agentskillshub.top; daily, about 190 pages)"
+APOLU_UA = "agentskillshub-radar/1.0 (+https://agentskillshub.top; every 8 hours, about 190 pages a run)"
 GENRES = {"all": "总榜", "6012": "生活", "6007": "效率", "6002": "工具", "6013": "健康健美", "6008": "摄影录像"}
 FEEDS = {"toppaidapplications": "付费", "topfreeapplications": "免费"}
 LIMIT_ALL, LIMIT_GENRE = 200, 100
