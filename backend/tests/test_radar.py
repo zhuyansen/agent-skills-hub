@@ -2,7 +2,6 @@
 Network and database calls are not exercised here."""
 import gzip
 import json
-import re
 import socket
 import sys
 from datetime import date, datetime, timedelta, timezone
@@ -279,20 +278,7 @@ def test_sources_run_reports_a_new_name(monkeypatch, tmp_path):
     assert "**qwen3.9**" in text and "$0.072" in text
 
 
-# --- topics and mail ------------------------------------------------------------------------
-
-def test_topic_section_lists_matching_leads_repos_and_queries(monkeypatch):
-    monkeypatch.setattr(radar, "TOPICS", {"AI 视频": re.compile(r"\bvideo", re.I)})
-    lead = [{"term": "reelmimic", "examples": ["edenfunf/reelmimic: Show it a video you love"], "signals": ["②爆发"]},
-            {"term": "strata", "examples": ["Niko1221/Strata: Qwen3.8 on a gaming PC"], "signals": ["②爆发"]}]
-    blocks = {"breakout": {"repos": [{"repo": "a/motion-video-kit", "description": "video kit", "stars": 900, "velocity": 300},
-                                     {"repo": "Niko1221/Strata", "description": "Qwen3.8", "stars": 7700, "velocity": 870}]}}
-    gsc = {"queries": [{"query": "claude video skills", "impressions": 6, "page": "https://agentskillshub.top/best/x/"},
-                       {"query": "best ai scraping tools", "impressions": 3, "page": "/best/web-scraping/"}]}
-    text = "\n".join(radar.topic_lines(lead, blocks, gsc))
-    assert "reelmimic" in text and "motion-video-kit" in text and "claude video skills" in text
-    assert "strata" not in text.lower() and "scraping" not in text
-
+# --- mail ------------------------------------------------------------------------
 
 def test_mail_html_renders_tables():
     import notify

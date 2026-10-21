@@ -38,7 +38,6 @@ the hit rate per signal. Writes <report.md> and a JSON copy beside it.
 from __future__ import annotations
 
 import json
-import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -77,7 +76,6 @@ SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW el
 # optional keys a lead takes from its signal's row: the picks read the first three, and
 # radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
 CARRIED = ("what", "window", "checks", "meme", "site")
-TOPICS = {k: re.compile(v, re.I) for k, v in json.loads((HERE / "topics.json").read_text()).items() if not k.startswith("_")}
 
 
 def run(name: str, fn, skip: bool) -> dict:
@@ -150,25 +148,6 @@ def leads(blocks: dict[str, dict]) -> list[dict]:
 def named(lead: list[dict]) -> list[dict]:
     """Without Jev's column (no key, no credit) every term counts; with it, only names."""
     return [r for r in lead if r.get("named", 1.0) >= NAMED_MIN]
-
-
-def topic_lines(lead: list[dict], b: dict[str, dict], gsc: dict) -> list[str]:
-    """Per topic in topics.json: the leads, breakout repos and new GSC queries that match it."""
-    lines = []
-    for name, pat in TOPICS.items():
-        hit_leads = [r for r in named(lead) if pat.search(r["term"] + " " + " ".join(r["examples"][:2]))]
-        repos = [r for r in b["breakout"].get("repos") or [] if pat.search(r["repo"] + " " + r["description"])]
-        queries = [q for q in gsc.get("queries") or [] if pat.search(q["query"])]
-        lines += ["", f"### 主题:{name}", ""]
-        if not (hit_leads or repos or queries):
-            lines.append("今天没有相关的新词")
-            continue
-        lines += [f"- 候选词 **{r['term']}**:{'; '.join(r['signals'])}" for r in hit_leads[:10]]
-        lines += [f"- 爆发仓库 [{r['repo']}](https://github.com/{r['repo']}) ★{r['stars']}(均 {r['velocity']}/天):"
-                  f"{r['description'][:60]}" for r in repos[:8]]
-        lines += [f"- GSC 新词 `{q['query']}`:曝光 {q['impressions']},落地页 "
-                  f"{q['page'].replace('https://agentskillshub.top', '')}" for q in queries[:8]]
-    return lines
 
 
 def _cost(*blocks: dict) -> str:
@@ -290,7 +269,6 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     if rest:
         lines += ["", "其他上升词(Jev 判为普通词):" + "、".join(rest)]
 
-    lines += topic_lines(lead, b, gsc)
     recent = b.get("recent_sources", {})
     if not recent.get("skipped"):
         lines += ["", "### ① 近 24 小时的源头新词(每 8 小时任务记下的)", ""]
