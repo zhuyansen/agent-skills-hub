@@ -252,13 +252,14 @@ def test_review_verdict_miss_and_no_data():
 # --- the 8-hourly source run --------------------------------------------------------------
 
 def _quiet_memes_and_charts(monkeypatch):
-    """The run's other two sources, without the network (the real ones make about 400 calls
-    to AIsa, Apple and Apolu): both read fine and found nothing new."""
+    """The run's other sources, without the network (the real ones make about 400 calls to
+    AIsa, Apple and Apolu, plus Bluesky, t.co and RDAP): all read fine and found nothing new."""
     monkeypatch.setattr(radar.memes, "memes", lambda snaps: {
         "posts": 120, "by_platform": {"tiktok": 40, "instagram": 30, "youtube": 30, "x": 20}, "tags": 6,
         "memes": [], "terms": [], "errors": [], "jev": True, "cost_micros": 0})
     monkeypatch.setattr(radar.appstore, "apps", lambda snaps: {
         "charts": 290, "failed": [], "apps": [], "terms": [], "read": [], "errors": [], "cost_micros": 0})
+    _social_world(monkeypatch, [], {})   # the new sites people link: no links on Bluesky, none in the X posts
 
 
 def test_sources_run_writes_no_report_when_nothing_is_new(monkeypatch, tmp_path):
@@ -521,10 +522,145 @@ def test_every_name_gets_the_country_series_and_the_cap_is_on_generic_terms(monk
     assert sorted(asked) == sorted([f"name{i}" for i in range(5)] + ["g27100", "g22200", "g8100"]) and cost == 48000 and not errors
 
 
-# --- radar_leads.evidence (review.py) ----------------------------------------------------------
+# --- ① new sites people link (social_sites.py, bluesky.py), shadow mode -------------------------
 
 import contextlib  # noqa: E402
+import struct  # noqa: E402
 import types  # noqa: E402
+import urllib.error  # noqa: E402
+
+import bluesky  # noqa: E402
+import social_sites  # noqa: E402
+
+SOC_NOW = datetime(2026, 10, 21, 12, tzinfo=timezone.utc)
+REAL_SOCIAL = social_sites.social_sites
+TRAFFIC = {"costCredits": 2, "TrafficSources": {"Social": 0.41, "SocialPaid": 0.04, "Search": 0.1, "SearchPaid": 0.02,
+                                                "Direct": 0.4},
+           "EstimatedMonthlyVisits": {"2026-08-01": 0, "2026-09-01": 12000}, "DateData": {"registration": "2026-08-21T10:00:00Z"}}
+
+
+def _sky(author, link, likes=5, hours_ago=3):
+    at = (SOC_NOW - timedelta(hours=hours_ago)).isoformat()
+    return {"platform": "bluesky", "author": author, "url": f"https://bsky.app/profile/{author}/post/{link[-3:]}{hours_ago}",
+            "text": f"look {link}", "likes": likes, "at": at, "links": [link]}
+
+
+def _social_world(monkeypatch, sky_posts, registered):
+    """Bluesky, RDAP and t.co answered without the network; no GoAnyAPI key."""
+    monkeypatch.setattr(social_sites.bluesky, "posts", lambda since: {
+        "source": "search", "requests": 6, "refused": "", "read": 40, "posts": list(sky_posts), "errors": []})
+    monkeypatch.setattr(social_sites.meme_checks, "rdap", lambda d: {"domain": d, "free": d not in registered,
+                                                                      "registered": registered.get(d, "")})
+    monkeypatch.setattr(social_sites, "location", lambda u: pytest.fail(f"unexpected t.co lookup {u}"))
+    monkeypatch.setattr(social_sites, "RDAP_PAUSE", 0)
+    monkeypatch.delenv("GOANYAPI_API_KEY", raising=False)
+
+
+def test_links_reduce_to_the_site_and_platforms_shorteners_and_our_sites_are_dropped():
+    assert social_sites.domain_of("https://www.Altstream.online/watch?v=1") == "altstream.online"
+    assert social_sites.domain_of("https://news.bbc.co.uk/x") == "bbc.co.uk"
+    assert social_sites.domain_of("https://geckodaily.vercel.app/") == "vercel.app"     # a host's subdomain is the host
+    assert social_sites.domain_of("http://127.0.0.1:8000/") == "" and social_sites.domain_of("not a link") == ""
+    dropped = ["youtu.be", "x.com", "t.co", "bit.ly", "github.com", "huggingface.co", "chatgpt.com", "claude.ai",
+               "vercel.app", "deepmind.google", "fraud.gov", "agentskillshub.top", "jasonzhu.ai", "ab.io"]
+    assert [d for d in dropped if not social_sites.excluded(d)] == [] and not social_sites.excluded("altstream.online")
+
+
+def test_tweet_links_use_xs_expansion_and_expand_the_other_tco_once(monkeypatch):
+    tweet = {"text": "Try https://t.co/AAAA and https://t.co/BBBB",
+             "entities": {"urls": [{"url": "https://t.co/AAAA", "expanded_url": "https://altstream.online/"}]}}
+    links = social_sites.tweet_links(tweet)
+    assert links == ["https://altstream.online/", "https://t.co/BBBB"]
+    asked, cache = [], {}
+    monkeypatch.setattr(social_sites, "location", lambda u: asked.append(u) or "https://newtool.app/x")
+    assert social_sites.expand(links, cache, SOC_NOW.date()) == (1, 0) and cache["https://t.co/BBBB"]["to"] == "https://newtool.app/x"
+    assert social_sites.expand(links, cache, SOC_NOW.date()) == (0, 0) and asked == ["https://t.co/BBBB"]   # cached
+
+
+def test_bluesky_links_come_from_facets_and_external_embeds():
+    rec = {"text": "made this", "embed": {"$type": "app.bsky.embed.recordWithMedia", "media": {"external": {"uri": "https://b.site/x"}}},
+           "facets": [{"features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://altstream.online"}]}]}
+    p = bluesky.from_view({"uri": "at://did:plc:a/app.bsky.feed.post/3mabc", "author": {"handle": "ann.bsky.social"},
+                           "record": rec, "likeCount": 12, "indexedAt": "2026-10-21T08:00:00.000Z"})
+    assert p["links"] == ["https://altstream.online", "https://b.site/x"] and p["likes"] == 12
+    assert p["url"] == "https://bsky.app/profile/ann.bsky.social/post/3mabc"
+
+
+def test_bluesky_samples_the_firehose_when_search_wants_a_login(monkeypatch):
+    def refused(q, since):
+        raise urllib.error.HTTPError("u", 403, "Forbidden", {}, None)
+    post = bluesky.make_post("did:plc:b", "at://did:plc:b/app.bsky.feed.post/3m", {"embed": {"external": {"uri": "https://a.site"}}},
+                             0, "2026-10-21T09:00:00+00:00")
+    monkeypatch.setattr(bluesky, "_search_page", refused)
+    monkeypatch.setattr(bluesky, "sample", lambda seconds, most: [post])
+    got = bluesky.posts(SOC_NOW - timedelta(hours=72))
+    assert (got["source"], got["refused"], got["requests"], got["posts"]) == ("jetstream", "HTTP 403", 1, [post])
+
+
+def test_firehose_frames_answer_pings_and_join_a_fragmented_message():
+    msg = json.dumps({"kind": "commit", "did": "did:plc:c", "time_us": 1792000000000000, "commit": {
+        "operation": "create", "collection": "app.bsky.feed.post", "rkey": "3k", "record": {
+            "text": "hi", "facets": [{"features": [{"$type": "app.bsky.richtext.facet#link", "uri": "https://a.site"}]}]}}}).encode()
+    data = bytes([0x89, 1]) + b"p" + bytes([0x01, 5]) + msg[:5] + bytes([0x80, 126]) + struct.pack(">H", len(msg) - 5) + msg[5:]
+    sock = types.SimpleNamespace(data=data + bytes([0x88, 0]), sent=b"")
+    sock.recv = lambda n: [sock.data[:n], setattr(sock, "data", sock.data[n:])][0]
+    sock.sendall = lambda b: setattr(sock, "sent", sock.sent + b)
+    frames = bluesky.Frames(sock)
+    assert frames.next_text() == msg and sock.sent[:2] == bytes([0x8A, 0x81])   # a masked pong of one byte
+    with pytest.raises(OSError):
+        frames.next_text()                                                      # the close frame
+    assert bluesky.event_post(msg)["url"] == "https://bsky.app/profile/did:plc:c/post/3k"
+
+
+def test_a_new_site_needs_two_people_and_a_registration_in_the_last_90_days(monkeypatch, tmp_path):
+    posts = [_sky("ann", "https://altstream.online/a"), _sky("bob", "https://www.altstream.online/b"),
+             _sky("ann", "https://solo.app/1"), _sky("ann", "https://solo.app/2", likes=7),    # one person, twice
+             _sky("ann", "https://oldsite.com"), _sky("cat", "https://oldsite.com"),           # registered long ago
+             _sky("ann", "https://noage.de"), _sky("dan", "https://noage.de")]                # RDAP gives no date
+    _social_world(monkeypatch, posts, {"altstream.online": "2026-08-21", "solo.app": "2026-10-01", "oldsite.com": "2019-01-01"})
+    out = REAL_SOCIAL(tmp_path, {"linked": []}, SOC_NOW)
+    assert [(s["domain"], s["age"], s["authors"]) for s in out["sites"]] == [("altstream.online", 61, 2)]
+    assert (out["many"], out["rdap_looked"], out["rdap_unknown"]) == (3, 3, 1)
+    lead = out["shadow_leads"][0]
+    assert out["terms"] == [] and (lead["term"], lead["kinds"], lead["variants"]) == ("altstream", ["social"], ["altstream", "altstream.online"])
+    assert {p["link"] for p in lead["posts"]} == {"https://altstream.online/a", "https://www.altstream.online/b"}
+    assert "没查流量(没有 GOANYAPI_API_KEY)" in lead["signals"][0]
+    again = REAL_SOCIAL(tmp_path, {"linked": []}, SOC_NOW + timedelta(hours=8))
+    assert again["sites"] == [] and again["rdap_looked"] == 0      # reported once; RDAP answers kept
+
+
+def test_the_window_forgets_links_older_than_72_hours(monkeypatch, tmp_path):
+    _social_world(monkeypatch, [_sky("ann", "https://altstream.online/a")], {"altstream.online": "2026-08-21"})
+    REAL_SOCIAL(tmp_path, {"linked": []}, SOC_NOW)
+    _social_world(monkeypatch, [_sky("bob", "https://altstream.online/b", hours_ago=-80)], {"altstream.online": "2026-08-21"})
+    assert REAL_SOCIAL(tmp_path, {"linked": []}, SOC_NOW + timedelta(hours=83))["sites"] == []   # ann's link is 86 hours old
+
+
+def test_an_x_link_and_a_bluesky_link_are_two_people(monkeypatch, tmp_path):
+    _social_world(monkeypatch, [_sky("ann", "https://altstream.online/a")], {"altstream.online": "2026-08-21"})
+    monkeypatch.setattr(social_sites, "location", lambda u: "https://altstream.online/from-x")
+    linked = [{"account": "simonw", "text": "neat https://t.co/CCCC", "likes": 300, "url": "https://x.com/simonw/status/1",
+               "created": SOC_NOW - timedelta(hours=5), "links": ["https://t.co/CCCC"]},
+              {"account": "dotey", "text": "RT @a: https://t.co/DDDD", "likes": 9, "url": "", "created": SOC_NOW, "links": ["https://t.co/DDDD"]},
+              {"account": "swyx", "text": "old https://t.co/EEEE", "likes": 9, "url": "", "created": SOC_NOW - timedelta(hours=80),
+               "links": ["https://t.co/EEEE"]}]
+    out = REAL_SOCIAL(tmp_path, {"linked": linked}, SOC_NOW)
+    # a retweet is not a person, and a post older than the window is not even expanded
+    assert out["sites"][0]["by"] == {"x": 1, "bluesky": 1} and out["tco"] == {"asked": 1, "failed": 0} and out["x_posts"] == 1
+    assert out["shadow_leads"][0]["posts"][0]["url"] == "https://x.com/simonw/status/1"                    # most-liked first
+
+
+def test_traffic_tags_say_social_or_search_and_stop_at_the_cap(monkeypatch):
+    t = social_sites.traffic_tag(TRAFFIC)
+    assert (t["driven"], t["visits"], t["month"], t["registered"]) == ("social", 12000, "2026-09", "2026-08-21")
+    assert social_sites.traffic_tag({"TrafficSources": {"Search": 0.6, "Social": 0.1}})["driven"] == "search"
+    assert social_sites.traffic_tag({})["driven"] == "unknown"
+    monkeypatch.setenv("GOANYAPI_API_KEY", "k")
+    monkeypatch.setattr(social_sites.goanyapi, "call", lambda path, timeout, **p: (TRAFFIC, 2000))
+    cands = [{"domain": f"site{i}.com"} for i in range(social_sites.TRAFFIC_MAX + 2)]
+    assert social_sites.tag_traffic(cands, {}, SOC_NOW.date()) == (2000 * social_sites.TRAFFIC_MAX, social_sites.TRAFFIC_MAX, [])
+    assert social_sites.traffic_text(cands[0]) == "社交带量(社交 45%、搜索 12%),约 12k 访问/月(2026-09)"
+    assert "额度" in cands[-1]["traffic_note"]
 
 
 def test_evidence_merge_keeps_posts_by_url_and_the_newest_of_the_rest():
@@ -571,6 +707,19 @@ def test_record_writes_evidence_only_once_the_column_exists(monkeypatch):
     assert [p["url"] for p in json.loads(upsert["evidence"])["posts"]] == ["u0", "u1"]   # merged into what the lead held
 
 
+def test_a_shadow_lead_leaves_a_lead_another_signal_holds_as_it_is(monkeypatch):
+    rows = [{"term": t, "kinds": ["social"], "signals": [f"①社交新站 {t}.online"], "variants": [t],
+             "posts": [{"url": f"https://bsky.app/{t}", "likes": 3, "text": t, "platform": "bluesky"}]} for t in ("altstream", "fresh")]
+    for column in (True, False):
+        db = _FakeDB(column)
+        monkeypatch.setattr(review, "_engine", lambda: db)
+        monkeypatch.setattr(review, "_EVIDENCE_COLUMN", None)
+        assert review.record_new(rows, date(2026, 10, 21)) == {"recorded": 1, "merged": int(column)}
+        inserted = [p["term"] for s, p in db.calls if s.lstrip().startswith("INSERT")]
+        updated = [p["term"] for s, p in db.calls if s.startswith("UPDATE")]
+        assert inserted == ["fresh"] and updated == (["altstream"] if column else [])   # its notes and last_seen untouched
+
+
 def test_the_keyword_tables_reading_of_a_name_goes_into_its_evidence():
     uc = {"names": ["photocraft"], "tails": {"photocraft": ["photocraft download"]},
           "cosearch": [{"term": "gpt image 2.5", "with": "photocraft"}], "rows": [
@@ -580,3 +729,39 @@ def test_the_keyword_tables_reading_of_a_name_goes_into_its_evidence():
     kw = usecases.name_evidence(uc)[0]["keywords"]
     assert [(r["phrase"], r["now"]) for r in kw["rows"]] == [("photocraft", "rising"), ("photoshop alternative", None)]
     assert (kw["tails"], kw["cosearch"]) == (["photocraft download"], ["gpt image 2.5"])
+
+
+def _sources_with_social(monkeypatch, x_terms):
+    _quiet_memes_and_charts(monkeypatch)
+    monkeypatch.setattr(radar, "judge", lambda rows: None)
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "cost_micros": 0, "linked": [], "terms": x_terms})
+    monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
+    _social_world(monkeypatch, [_sky("ann", "https://altstream.online/a"), _sky("bob", "https://altstream.online/b")],
+                  {"altstream.online": "2026-08-21"})
+    monkeypatch.setattr(radar.social_sites, "social_sites", lambda snaps, x: REAL_SOCIAL(snaps, x, SOC_NOW))
+    recorded, shadow = [], []
+    monkeypatch.setattr(radar.review, "record", lambda rows: recorded.extend(rows) or len(rows))
+    monkeypatch.setattr(radar.review, "record_new", lambda rows: shadow.extend(rows) or {"recorded": len(rows), "merged": 0})
+    return recorded, shadow
+
+
+def test_shadow_new_sites_are_recorded_for_the_review_and_never_shown(monkeypatch, tmp_path):
+    recorded, shadow = _sources_with_social(monkeypatch, [{"term": "qwen3.9", "recent": 2, "note": "X 2 个账号 ♥900",
+                                                           "examples": ["@Alibaba_Qwen: Qwen3.9 is out"]}])
+    report = tmp_path / "sources.md"
+    radar.sources_main(report, tmp_path, {"--sources"})
+    text = report.read_text()
+    assert "qwen3.9" in text and "altstream" not in text and "①社交新站" not in text
+    assert "- ① 社交新站(影子模式,只记录不展示):1 个候选,已记录 1 个(" in text
+    assert [r["term"] for r in recorded] == ["qwen3.9"]
+    assert [(r["term"], r["kinds"]) for r in shadow] == [("altstream", ["social"])] and shadow[0]["posts"]
+
+
+def test_shadow_new_sites_alone_send_no_mail(monkeypatch, tmp_path):
+    recorded, shadow = _sources_with_social(monkeypatch, [])
+    radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources"})
+    assert not (tmp_path / "sources.md").exists() and not recorded and [r["term"] for r in shadow] == ["altstream"]
+    assert not radar._mail_errors({"social": {"error": "boom"}}) and radar._mail_errors({"x": {"error": "boom"}})
+    monkeypatch.setattr(social_sites, "SOCIAL_SHOW", True)    # the one switch: the leads go to the report instead
+    shown = REAL_SOCIAL(tmp_path / "again", {"linked": []}, SOC_NOW)
+    assert [r["term"] for r in shown["terms"]] == ["altstream"] and shown["shadow_leads"] == []

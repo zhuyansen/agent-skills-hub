@@ -5,7 +5,9 @@ name: New-term radar · sources
 # new to Hugging Face's trending top 50, and AI video trends people recreate (TikTok,
 # Instagram, YouTube Shorts, X, TikTok's trending hashtags; memes.py) with Jev's score for
 # building a site or app for one now, and new apps on the App Store, Mac and Google Play
-# charts of 30 storefronts (appstore.py: Apple's RSS and Apolu). Sources move by the hour; a daily run would hold
+# charts of 30 storefronts (appstore.py: Apple's RSS and Apolu), and new sites two or more
+# people link in those X posts and in popular Bluesky posts (social_sites.py; shadow mode:
+# recorded in radar_leads for the review, shown only as one status line). Sources move by the hour; a daily run would hold
 # a 9:30 post for a day. The 08:00 run lands an hour before radar-daily.yml, whose report
 # lists the ① leads of the last day.
 #
@@ -15,7 +17,9 @@ name: New-term radar · sources
 # AIsa: 24 accounts at $0.003, about $0.07 a run, $0.22 a day; the trend searches about
 # $0.011 a run, $0.03 a day, plus one model call and Jev; for up to five new trends a run,
 # the comments under their top TikTok videos and Google's top 10 (meme_checks.py, about $0.02 a run); Xiaohongshu and Douyin for three new
-# apps a run, about $0.06 a run, $0.18 a day. The charts are free (about 3 minutes a run). The X vocabulary and HF's
+# apps a run, about $0.06 a run, $0.18 a day. The charts are free (about 3 minutes a run). The new sites' Bluesky
+# search, t.co expansions and RDAP lookups are free; GoAnyAPI tags at most 10 of them a run with where their visits
+# come from ($0.002 each, at most $0.06 a day). The X vocabulary and HF's
 # list live in their own cache prefix (radar-src-snap-), apart from the daily snapshots.
 
 on:
@@ -61,6 +65,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
           AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
+          GOANYAPI_API_KEY: ${{ secrets.GOANYAPI_API_KEY }}   # optional: where the new sites' visits come from (social_sites.py)
         run: python ops/radar/radar.py "$RUNNER_TEMP/sources.md" radar-src-snap --sources
 
       - name: Save the vocabulary

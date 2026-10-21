@@ -2,6 +2,8 @@
 
 record()   upserts today's leads into radar_leads (migration 026), each with its evidence
            (migration 027; the shape is below) once the table has that column.
+record_new()  the same for leads that must not show (shadow mode): it never touches a lead
+           another signal holds, beyond merging the evidence into it.
 add_evidence()  merges more evidence into leads already kept: the keyword table's reading
            of a name (usecases.name_evidence).
 review()   takes up to PER_DAY leads first seen REVIEW_AFTER days ago or earlier and not
@@ -58,6 +60,9 @@ TOOL = "post_dataforseo_keywords_trends_explore_live"
 # which reads as a rise. Every reader drops them (settled()). Found before the first
 # leads came due (10-17), so no stored verdict was made from those days.
 UNSETTLED_DAYS = 2
+# The ① leads the daily report lists from the last day (recent_sources); radar.py adds the
+# new sites people link once social_sites.SOCIAL_SHOW is on.
+SOURCE_KINDS = ("x", "hf", "meme", "appstore")
 EVIDENCE_V = 1
 EVIDENCE_POSTS = 10
 EVIDENCE_EXAMPLES = 10
@@ -106,6 +111,28 @@ def record(rows: list[dict], today: date | None = None) -> int:
         _upsert(conn, rows, today, held)
     engine.dispose()
     return len(rows)
+
+
+def record_new(rows: list[dict], today: date | None = None) -> dict:
+    """Leads that must not show (social_sites.py's shadow mode): a term that is no lead yet is
+    written as record() writes it; a term another signal holds keeps its lead as it is, since its
+    last note and last_seen are what the reports show, and only takes the evidence (once the
+    column exists). Returns {"recorded": written, "merged": evidence added to leads held}."""
+    if not rows:
+        return {"recorded": 0, "merged": 0}
+    from sqlalchemy import text
+    today = today or date.today()
+    engine = _engine()
+    with engine.begin() as conn:
+        conn.execute(text("SET LOCAL statement_timeout = '60s'"))
+        with_evidence = _has_evidence(conn)
+        held = _held(conn, [r["term"] for r in rows], with_evidence)
+        fresh, kept = [r for r in rows if r["term"] not in held], [r for r in rows if r["term"] in held]
+        _upsert(conn, fresh, today, {} if with_evidence else None)
+        if with_evidence:
+            _merge_into(conn, kept, held, today)
+    engine.dispose()
+    return {"recorded": len(fresh), "merged": len(kept) if with_evidence else 0}
 
 
 def _upsert(conn, rows: list[dict], today: date, held: dict | None) -> None:
@@ -291,7 +318,7 @@ def review(today: date | None = None) -> dict:
     return {"checked": checked, "cost_micros": cost}
 
 
-def recent_sources(today: date | None = None) -> list[dict]:
+def recent_sources(today: date | None = None, kinds: tuple[str, ...] = SOURCE_KINDS) -> list[dict]:
     """① leads (X, HF, AI video trends) and new apps the 8-hourly source job kept since yesterday, for the daily report."""
     from sqlalchemy import text
     today = today or date.today()
@@ -299,8 +326,8 @@ def recent_sources(today: date | None = None) -> list[dict]:
     with engine.connect() as conn:
         rows = conn.execute(text("""
             SELECT term, signals, notes, named FROM radar_leads
-            WHERE signals && ARRAY['x', 'hf', 'meme', 'appstore'] AND last_seen >= :since ORDER BY last_seen DESC, term LIMIT 20
-        """), {"since": today - timedelta(days=1)}).fetchall()
+            WHERE signals && CAST(:kinds AS text[]) AND last_seen >= :since ORDER BY last_seen DESC, term LIMIT 20
+        """), {"since": today - timedelta(days=1), "kinds": list(kinds)}).fetchall()
     engine.dispose()
     return [{"term": t, "kinds": list(k), "note": (n or [""])[-1], "named": named} for t, k, n, named in rows]
 

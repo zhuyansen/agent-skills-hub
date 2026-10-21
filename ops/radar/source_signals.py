@@ -2,7 +2,8 @@
 
 x_new    names in the last day's posts of the labs and bloggers in sources.json (via
          AIsa) that none of those accounts has used in the last VOCAB_DAYS. The
-         vocabulary is kept in the snapshot dir; the first run only builds it.
+         vocabulary is kept in the snapshot dir; the first run only builds it. The posts
+         that hold links are handed on (`linked`) to the new-site signal, social_sites.py.
 hf_new   models that entered Hugging Face's trending top HF_TOP since yesterday (the
          public API, no key; AIsa has no Hugging Face tool). Quantised and fine-tuned
          copies of one model are grouped under its base name.
@@ -17,6 +18,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import aisa
+from social_sites import tweet_links
 from terms import STOP, _drop_nested, names
 
 HERE = Path(__file__).resolve().parent
@@ -104,7 +106,7 @@ def x_new(snapshot_dir: Path) -> dict:
     for h, _ in handles:
         for t in ((data.get(h) or {}).get("data") or {}).get("tweets") or []:
             posts.append({"account": h, "text": t.get("text") or "", "likes": int(t.get("likeCount") or 0),
-                          "url": t.get("url", ""), "created": _posted(t)})
+                          "url": t.get("url", ""), "created": _posted(t), "links": tweet_links(t)})
     path = snapshot_dir / "x_vocab.json.gz"
     vocab: dict[str, str] | None = _load(path)
     first_run = vocab is None
@@ -119,8 +121,9 @@ def x_new(snapshot_dir: Path) -> dict:
             vocab[term] = today
     if posts:   # a failed fetch keeps yesterday's vocabulary
         _save(path, {t: d for t, d in vocab.items() if d >= cutoff})
+    # `linked`: the posts with links, for the new sites people link (social_sites.py)
     return {"accounts": len(handles), "answered": len(data), "posts": len(posts), "cost_micros": cost,
-            "first_run": first_run, "terms": rows}
+            "first_run": first_run, "terms": rows, "linked": [p for p in posts if p["links"]]}
 
 
 _HF_NOISE = re.compile(r"[-_.](gguf|ggml|awq|gptq|fp8|fp16|bf16|int[48]|mlx|exl2|onnx|uncensored|abliterated|"

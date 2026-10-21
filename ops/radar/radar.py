@@ -1,11 +1,13 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-appstore] [--skip-memes] [--skip-db] [--skip-sitemaps] [--skip-gsc] [--skip-review] [--skip-usecases]
+                            [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db] [--skip-sitemaps] [--skip-gsc]
+                            [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
 The source signals (①) change by the hour, the rest by the day, so they run apart:
-radar-source.yml every 8 hours with --sources (X, HF and the AI video trends; <report.md> is written
+radar-source.yml every 8 hours with --sources (X, HF, the AI video trends and the new sites
+people link; <report.md> is written
 only when there is a name or an error, so quiet runs post nothing), and radar-daily.yml
 once a day with --skip-x --skip-hf, its report listing the ① leads of the last day
 from radar_leads.
@@ -16,6 +18,11 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ① 梗       AI video trends people recreate (TikTok, Instagram, YouTube Shorts, X and TikTok's
              trending hashtags), with Jev's score for building a site or app for one now
              (memes.memes; about $0.02 a day through AIsa, plus the model and Jev)
+  ① 社交新站 sites registered in the last 90 days that two or more people linked in X or
+             Bluesky posts of the last 72 hours (social_sites.social_sites, with the source
+             signals; at most 30 GoAnyAPI traffic tags a day, $0.06). In shadow mode while
+             social_sites.SOCIAL_SHOW is off: kept in radar_leads for the review, shown only
+             as one status line (record_shadow)
   ② breakout one new GitHub repo taking off on its own (breakout.breakouts)
   ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge)
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
@@ -49,6 +56,7 @@ import new_sites  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
 import sitemap_diff  # noqa: E402
+import social_sites  # noqa: E402
 import source_signals  # noqa: E402
 import usecases  # noqa: E402
 
@@ -61,9 +69,11 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
     "focus": "`examples` are repo names, descriptions, posts or page paths where it appeared. 'opus 5.5', 'hyperframes', "
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
-KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub", "sitemap": "③竞品", "newsite": "③新站",
-         "usecase": "通用词", "cosearch": "一起被搜",
+KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "social": "①社交新站", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub",
+         "sitemap": "③竞品", "newsite": "③新站", "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
+# the ① leads the daily report lists from radar_leads; the new sites only once they are shown
+SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
 # optional keys a lead takes from its signal's row: the picks read the first three, and
 # radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
@@ -331,6 +341,8 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     lines += ["", "### 数据状态", ""]
     if not (x.get("skipped") and hf.get("skipped")):
         lines += _source_status(x, hf)
+    if not b.get("social", {"skipped": True}).get("skipped"):
+        lines.append(social_sites.status(b["social"]))
     bo = b["breakout"]
     lines += _rest_status(bo, gh, sm, b)
     lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
@@ -433,7 +445,7 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     lines += posts_markdown(named(lead)[:SHOWN])
     lines += memes.section(b.get("meme", {"skipped": True}))
     lines += appstore.section(b.get("appstore", {"skipped": True}))
-    lines += [""] + [mod.status(b[k]) for k, mod in (("meme", memes), ("appstore", appstore)) if not b.get(k, {}).get("skipped")]
+    lines += [""] + [mod.status(b[k]) for k, mod in STATUS_LINES if not b.get(k, {"skipped": True}).get("skipped")]
     for key, label in (("x", "① X"), ("hf", "① HF")):
         if b[key].get("error"):
             lines.append(f"\n- {label}:{b[key]['error']}")
@@ -443,6 +455,25 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+# signals whose status line the source run prints; social's is all it shows in shadow mode
+STATUS_LINES = (("meme", memes), ("appstore", appstore), ("social", social_sites))
+
+
+def record_shadow(social: dict, no_db: bool) -> None:
+    """Shadow mode (social_sites.SOCIAL_SHOW off): the new sites people link go straight into
+    radar_leads, past Jev and the mail, so the review can measure them. record_new() leaves a
+    lead another signal holds as it is (the reports show its last note), adding only the
+    evidence. The outcome goes on the block, for its status line."""
+    rows = social.get("shadow_leads") or []
+    if rows:
+        social["recorded"] = run("record social", lambda: review.record_new(rows), no_db)
+
+
+def _mail_errors(blocks: dict[str, dict]) -> bool:
+    """A failed signal sends the source mail, except the new sites in shadow mode: not in the mail."""
+    return any(b.get("error") for k, b in blocks.items() if social_sites.SOCIAL_SHOW or k != "social")
+
+
 def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     blocks = {"x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
               "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
@@ -450,16 +481,18 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
               "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags),
               # new apps on the charts move by the hour too (Apolu refreshes hourly)
               "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags)}
+    # new sites two or more people link, in the X posts just read and on Bluesky (social_sites.py)
+    blocks["social"] = run("social", lambda: social_sites.social_sites(snaps, blocks["x"]), "--skip-social" in flags)
     lead = leads(blocks)
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, "--skip-db" in flags)
-    errors = any(b.get("error") for b in blocks.values())
-    if named(lead) or errors:
+    record_shadow(blocks["social"], "--skip-db" in flags)
+    if named(lead) or _mail_errors(blocks):
         report.write_text(sources_markdown(lead, blocks))
         print(report.read_text())
     else:
         print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
-        for k, mod in (("meme", memes), ("appstore", appstore)):
+        for k, mod in STATUS_LINES:
             if not blocks[k].get("skipped"):
                 print(mod.status(blocks[k]))
     return 0
@@ -481,14 +514,18 @@ def main() -> int:
         "newsite": run("newsite", lambda: new_sites.new_sites(snaps),
                        not ("--new-sites" in flags or date.today().weekday() == NEW_SITES_WEEKDAY)),
     }
+    # it reads the X posts, so the daily job (--skip-x) leaves it to the source job too
+    blocks["social"] = run("social", lambda: social_sites.social_sites(snaps, blocks["x"]),
+                           "--skip-x" in flags or "--skip-social" in flags)
     gsc = run("gsc", signals.gsc_new, "--skip-gsc" in flags)
     lead = leads(blocks)
     no_db = "--skip-db" in flags
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, no_db)
+    record_shadow(blocks["social"], no_db)
     rev = run("review", review.review, no_db or "--skip-review" in flags)
     summ = run("summary", review.summary, no_db)
-    blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources()},
+    blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources(kinds=SOURCE_KINDS)},
                                    no_db or "--skip-x" not in flags)
     # The generic terms behind the day's names (usecases.py): only names from the signals that
     # report things (X, HF, breakouts, new sites) with a high name score; see names_to_read. Read twice each (today and three days on); about $0.15 a day.

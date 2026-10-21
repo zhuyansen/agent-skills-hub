@@ -1,8 +1,9 @@
 """Optional second data source: GoAnyAPI (goanyapi.com), for what AIsa's tools do not give.
 
-Used for two things: Google Trends' *related queries* for a name, the terms real people
+Used for three things: Google Trends' *related queries* for a name, the terms real people
 searched together with it, and a 30-day daily Trends series for one country, which
-arrives settled up to yesterday (DataForSEO's worldwide series does not). Key: GOANYAPI_API_KEY. Without it every caller skips
+arrives settled up to yesterday (DataForSEO's worldwide series does not); and where a new
+site's visits come from (`traffic`, social_sites.py). Key: GOANYAPI_API_KEY. Without it every caller skips
 this source and the radar runs as before.
 
 One credit is $0.001; a related-queries lookup costs 6 (October 2026). Calls take 20 to
@@ -12,6 +13,7 @@ and a failure is reported, never fatal. The service is young (first released Aug
 """
 from __future__ import annotations
 
+import http.client
 import json
 from datetime import date, datetime, timezone
 import os
@@ -35,21 +37,22 @@ def key() -> str:
     return os.environ.get("GOANYAPI_API_KEY", "").strip()
 
 
-def call(path: str, **params) -> tuple[dict, int]:
-    """One GET. Returns (data, cost in micro-USD)."""
+def call(path: str, *, timeout: int = TIMEOUT, **params) -> tuple[dict, int]:
+    """One GET. Returns (data, cost in micro-USD). `timeout` is per try: a caller in a hurry
+    (the 8-hourly source run, social_sites.py) passes a shorter one."""
     req = urllib.request.Request(BASE + path + "?" + urllib.parse.urlencode(params), headers={
         "authorization": f"Bearer {key()}", "accept": "application/json", "user-agent": UA})
     error = ""
     for _ in range(TRIES):
         try:
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
+            with urllib.request.urlopen(req, timeout=timeout) as res:
                 body = json.load(res)
         except urllib.error.HTTPError as exc:
             error = f"HTTP {exc.code}"
             if exc.code < 500:
                 break
             continue
-        except (OSError, ValueError) as exc:
+        except (OSError, ValueError, http.client.HTTPException) as exc:   # IncompleteRead is none of the others
             error = f"{type(exc).__name__}: {exc}"
             continue
         data = body.get("data") or {}
