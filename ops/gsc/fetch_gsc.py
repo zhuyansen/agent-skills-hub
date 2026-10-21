@@ -9,6 +9,7 @@ Usage (from backend venv):
   python ops/gsc/fetch_gsc.py pages   [--days 28]         # top pages
   python ops/gsc/fetch_gsc.py page-queries <url-substr>   # queries hitting one page
   python ops/gsc/fetch_gsc.py compare [--days 28]         # this period vs previous
+  python ops/gsc/fetch_gsc.py new     [--days 7]          # queries first seen this period
   python ops/gsc/fetch_gsc.py dump    [--days 28]         # everything → ops/gsc/out/*.json
 
 Output goes to stdout as aligned tables AND ops/gsc/out/*.json for AI analysis.
@@ -178,6 +179,30 @@ def save(name, data):
     print(f"  → {p} ({len(data)} rows)")
 
 
+NEW_BEFORE_DAYS = 56        # a query is new when it did not show in this many days before the period
+NEW_MIN_IMPRESSIONS = 3     # fewer impressions than this is noise
+NEW_TOP = 25
+
+
+def new_queries(svc, site, start, end, before_days=NEW_BEFORE_DAYS, min_impressions=NEW_MIN_IMPRESSIONS):
+    """Queries that showed in [start, end] and not in the `before_days` before it, each with the page
+    that drew most of its impressions; most impressions first. The daily radar listed these until
+    2026-10-21; the weekly SEO retro reads them now, once a week."""
+    seen = {r["query"] for r in query(svc, site, start - timedelta(days=before_days),
+                                      start - timedelta(days=1), ["query"], limit=25000)}
+    fresh = {}
+    for r in query(svc, site, start, end, ["query", "page"], limit=25000):
+        if r["query"] in seen:
+            continue
+        f = fresh.setdefault(r["query"], {"query": r["query"], "impressions": 0, "clicks": 0,
+                                          "page": r["page"], "page_impressions": 0})
+        f["impressions"] += r["impressions"]
+        f["clicks"] += r["clicks"]
+        if r["impressions"] > f["page_impressions"]:
+            f["page"], f["page_impressions"] = r["page"], r["impressions"]
+    return sorted((f for f in fresh.values() if f["impressions"] >= min_impressions), key=lambda f: -f["impressions"])
+
+
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "queries"
     days = arg("--days", 28)
@@ -253,6 +278,14 @@ def main():
         for r in deltas[-15:][::-1]:
             print(f"  {r['d_clicks']:+4}  {r['query'][:60]}")
         save("compare", deltas)
+    elif cmd == "new":
+        before, least = arg("--before", NEW_BEFORE_DAYS), arg("--min-impressions", NEW_MIN_IMPRESSIONS)
+        rows = new_queries(svc, site, start, end, before, least)
+        print(f"首次出现的搜索词（前 {before} 天没出现过，曝光 ≥{least}）：{len(rows)} 个，前 {NEW_TOP} 个：")
+        for r in rows[:NEW_TOP]:
+            print(f"  {r['impressions']:>5} 曝光 {r['clicks']:>3} 点击  {r['query'][:60]}  → "
+                  f"{r['page'].replace('https://agentskillshub.top', '')}")
+        save("new", rows)
     elif cmd == "dump":
         save("queries", query(svc, site, start, end, ["query"]))
         save("pages", query(svc, site, start, end, ["page"]))
