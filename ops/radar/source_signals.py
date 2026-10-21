@@ -4,6 +4,8 @@ x_new    names in the last day's posts of the labs and bloggers in sources.json 
          AIsa) that none of those accounts has used in the last VOCAB_DAYS. The
          vocabulary is kept in the snapshot dir; the first run only builds it. The posts
          that hold links are handed on (`linked`) to the new-site signal, social_sites.py.
+         Read about once a day: the 8-hourly run skips X while x_wait() says the last read
+         was less than X_EVERY_HOURS ago.
 hf_new   models that entered Hugging Face's trending top HF_TOP since yesterday (the
          public API, no key; AIsa has no Hugging Face tool). Quantised and fine-tuned
          copies of one model are grouped under its base name.
@@ -22,8 +24,12 @@ from social_sites import tweet_links
 from terms import STOP, _drop_nested, names
 
 HERE = Path(__file__).resolve().parent
-LOOKBACK_HOURS = 30          # runs every 8 hours; a name enters the vocabulary the run it is
-                             # reported, so the overlap repeats nothing and covers missed runs
+LOOKBACK_HOURS = 36          # X is read about once a day: two reads land 20 to about 32 hours apart when
+                             # runs start late, and a name enters the vocabulary the read it is
+                             # reported, so the overlap repeats nothing and covers a late or missed run
+X_EVERY_HOURS = 20           # each read costs one AIsa call per account whatever was posted (about $0.003,
+                             # 35 accounts, $0.105): reading every 8 hours cost three times as much
+X_READ = "x_read.json"       # when X was last read, in the snapshot dir
 VOCAB_DAYS = 60
 X_MIN_LIKES = 100            # a name only one account used needs this much attention,
 PER_POST = 3                 # and must look like a name; one post yields at most this many
@@ -97,6 +103,19 @@ def novel_names(posts: list[dict], vocab: dict[str, str], now: datetime) -> list
     return _drop_nested(rows)[:TOP]
 
 
+def x_wait(snapshot_dir: Path, now: datetime | None = None) -> dict | None:
+    """The block of a run that leaves X out, since X was read less than X_EVERY_HOURS ago (X_READ);
+    None when a read is due or none is on record."""
+    try:
+        last = datetime.fromisoformat(json.loads((snapshot_dir / X_READ).read_text())["at"])
+        hours = ((now or datetime.now(timezone.utc)) - last).total_seconds() / 3600
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+    if not 0 <= hours < X_EVERY_HOURS:
+        return None
+    return {"skipped": True, "waiting": True, "last_read": last.isoformat(timespec="minutes"), "hours": round(hours, 1)}
+
+
 def x_new(snapshot_dir: Path) -> dict:
     snapshot_dir.mkdir(parents=True, exist_ok=True)
     handles = accounts()
@@ -119,8 +138,9 @@ def x_new(snapshot_dir: Path) -> dict:
     for p in posts:
         for term in names(p["text"]):
             vocab[term] = today
-    if posts:   # a failed fetch keeps yesterday's vocabulary
+    if posts:   # a failed fetch keeps yesterday's vocabulary, and the next run reads X again
         _save(path, {t: d for t, d in vocab.items() if d >= cutoff})
+        (snapshot_dir / X_READ).write_text(json.dumps({"at": now.isoformat(timespec="seconds")}))
     # `linked`: the posts with links, for the new sites people link (social_sites.py)
     return {"accounts": len(handles), "answered": len(data), "posts": len(posts), "cost_micros": cost,
             "first_run": first_run, "terms": rows, "linked": [p for p in posts if p["links"]]}

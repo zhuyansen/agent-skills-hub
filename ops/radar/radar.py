@@ -441,6 +441,7 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
     lines += memes.section(b.get("meme", {"skipped": True}))
     lines += appstore.section(b.get("appstore", {"skipped": True}))
     lines += [""] + [mod.status(b[k]) for k, mod in STATUS_LINES if not b.get(k, {"skipped": True}).get("skipped")]
+    lines += [x_waiting(b["x"])] if b["x"].get("waiting") else []
     for key, label in (("x", "① X"), ("hf", "① HF")):
         if b[key].get("error"):
             lines.append(f"\n- {label}:{b[key]['error']}")
@@ -469,8 +470,22 @@ def _mail_errors(blocks: dict[str, dict]) -> bool:
     return any(b.get("error") for k, b in blocks.items() if social_sites.SOCIAL_SHOW or k != "social")
 
 
+def x_block(snaps: Path, flags: set[str]) -> dict:
+    """X about once a day (source_signals.X_EVERY_HOURS): the runs in between leave it out, saying when it
+    was read. HF, the trends, the charts and the new sites keep their 8 hours."""
+    if "--skip-x" in flags:
+        return {"skipped": True}
+    return source_signals.x_wait(snaps) or run("x", lambda: source_signals.x_new(snaps), False)
+
+
+def x_waiting(x: dict) -> str:
+    """'- ① X:8.2 小时前读过(10-21 00:41 UTC),每 20 小时读一次,这轮不读' for a run that left X out."""
+    when = x["last_read"][5:16].replace("T", " ")
+    return f"- ① X:{x['hours']} 小时前读过({when} UTC),每 {source_signals.X_EVERY_HOURS} 小时读一次,这轮不读"
+
+
 def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
-    blocks = {"x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
+    blocks = {"x": x_block(snaps, flags),
               "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
               # a trend peaks in about four days: read every 8 hours, not once a day (memes.py)
               "meme": run("meme", lambda: memes.memes(snaps), "--skip-memes" in flags),
@@ -490,6 +505,8 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
         for k, mod in STATUS_LINES:
             if not blocks[k].get("skipped"):
                 print(mod.status(blocks[k]))
+        if blocks["x"].get("waiting"):
+            print(x_waiting(blocks["x"]))
     return 0
 
 

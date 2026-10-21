@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 import breakout  # noqa: E402
 import radar  # noqa: E402
 import review  # noqa: E402
+import source_signals  # noqa: E402
 from source_signals import base_name, novel_names  # noqa: E402
 from terms import names  # noqa: E402
 
@@ -92,6 +93,38 @@ def test_x_ignores_old_posts_and_retweets():
     old = [_post("a", "Strata is fast", hours_ago=48), _post("b", "Strata rocks", hours_ago=48)]
     rts = [_post("a", "RT @x: Strata is fast"), _post("b", "RT @x: Strata rocks")]
     assert novel_names(old, {}, NOW) == [] and novel_names(rts, {}, NOW) == []
+
+
+def test_x_is_read_about_once_a_day(monkeypatch, tmp_path):
+    tweet = {"text": "Strata is fast", "likeCount": 5, "url": "https://x.com/a/status/1", "createdAt": "Wed Oct 21 08:00:00 +0000 2026"}
+    monkeypatch.setattr(source_signals.aisa, "call_all", lambda calls: ({c["call_id"]: {"data": {"tweets": [tweet]}} for c in calls},
+                                                                       3000 * len(calls)))
+    assert source_signals.x_wait(tmp_path) is None                                  # no read on record: due
+    out = source_signals.x_new(tmp_path)
+    assert out["posts"] == len(source_signals.accounts()) and out["cost_micros"] == 3000 * len(source_signals.accounts())
+    read = datetime.fromisoformat(json.loads((tmp_path / source_signals.X_READ).read_text())["at"])
+    waiting = source_signals.x_wait(tmp_path, read + timedelta(hours=16))
+    assert waiting["skipped"] and waiting["waiting"] and waiting["hours"] == 16.0
+    assert source_signals.x_wait(tmp_path, read + timedelta(hours=source_signals.X_EVERY_HOURS)) is None
+    # a read that got nothing (no credit, the gateway down) leaves the last read on record: the next run tries again
+    monkeypatch.setattr(source_signals.aisa, "call_all", lambda calls: ({}, 0))
+    source_signals.x_new(tmp_path / "failed")
+    assert not (tmp_path / "failed" / source_signals.X_READ).exists()
+    assert source_signals.LOOKBACK_HOURS >= 30                                       # a day's posts, and a late run, are covered
+
+
+def test_the_source_runs_between_two_x_reads_leave_x_out(monkeypatch, tmp_path):
+    _quiet_memes_and_charts(monkeypatch)
+    monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
+    reads = []
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: reads.append(snaps) or {"posts": 400, "terms": []})
+    stamp = tmp_path / radar.source_signals.X_READ
+    for hours_ago in (8, 16, 21):
+        stamp.write_text(json.dumps({"at": (datetime.now(timezone.utc) - timedelta(hours=hours_ago)).isoformat()}))
+        radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources", "--skip-db"})
+    assert reads == [tmp_path]                                                       # only the run 21 hours on read X
+    assert radar.x_waiting({"hours": 8.2, "last_read": "2026-10-21T00:41+00:00"}) == \
+        "- ① X:8.2 小时前读过(10-21 00:41 UTC),每 20 小时读一次,这轮不读"
 
 
 # --- ① HF: copies of one model group under its base name -----------------------------
