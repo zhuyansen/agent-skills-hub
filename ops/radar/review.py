@@ -49,8 +49,13 @@ import aisa
 
 REVIEW_AFTER = 14
 BEFORE_DAYS = 30
-PER_DAY = 5           # leads; each costs one Trends task per variant (1200 micro-USD)
+# Leads a day; each costs one Trends task per variant (1200 micro-USD). It was 5 while about 33
+# leads came in a day, so a lead waited about 84 days for its review (2026-10-21); 40 keeps up.
+PER_DAY = 40
 MAX_VARIANTS = 3
+# Trends tasks a run, about 10 minutes (the gateway takes 3 a batch, about 30 s) and $0.072; a lead that does
+# not fit stays due for tomorrow. Leads averaged 1.26 tasks on 2026-10-21, so 40 fit in about 50.
+REVIEW_CALLS_MAX = 60
 RISE_FACTOR, RISE_MIN = 2.0, 10
 RISE_SHARE = 0.25     # the rise starts where a series first covers this share of base -> peak
 WINDOW = 60
@@ -273,6 +278,19 @@ def _series(task: dict) -> list[tuple[date, int]]:
     return [(date.fromisoformat(p["date_from"]), int((p.get("values") or [0])[0] or 0)) for p in item.get("data", [])]
 
 
+def within_budget(due: list[tuple]) -> list[tuple]:
+    """The oldest due leads whose Trends tasks fit REVIEW_CALLS_MAX, whole leads only; the rest stay due."""
+    out, calls = [], 0
+    for row in due:
+        term, _, variants = row
+        n = len((list(variants) or [term])[:MAX_VARIANTS])
+        if calls + n > REVIEW_CALLS_MAX:
+            break
+        out.append(row)
+        calls += n
+    return out
+
+
 def plan_calls(due: list[tuple], today: date) -> tuple[list[dict], list[tuple]]:
     """One Trends call per search variant of each due lead, over its review window."""
     calls, plan = [], []
@@ -297,6 +315,7 @@ def review(today: date | None = None) -> dict:
             SELECT term, first_seen, variants FROM radar_leads
             WHERE reviewed_at IS NULL AND first_seen <= :cutoff ORDER BY first_seen LIMIT :n
         """), {"cutoff": today - timedelta(days=REVIEW_AFTER), "n": PER_DAY}).fetchall()
+    due = within_budget(due)
     if not due:
         engine.dispose()
         return {"checked": [], "cost_micros": 0}

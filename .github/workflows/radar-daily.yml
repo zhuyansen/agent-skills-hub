@@ -17,7 +17,8 @@ name: New-term radar
 # report ends with each signal's hit rate. The report goes to the run summary and the
 # mail to RADAR_EMAIL_TO (ops/radar/notify.py, Resend). It writes only radar_leads; it never pushes to main.
 #
-# AIsa here: the review (up to 15 Trends tasks at $0.0012, under $0.02 a day), the
+# AIsa here: the review (up to 40 leads and 60 Trends tasks at $0.0012, at most $0.072 and about
+# 10 minutes a day; ops/radar/review.py PER_DAY and REVIEW_CALLS_MAX), the
 # Xiaohongshu and Douyin searches for five new apps ($0.01 each, about $0.10 a day) and the
 # Monday new-site queries (about $0.26 a week). The App Store charts and search are free.
 #
@@ -43,7 +44,7 @@ permissions:
 jobs:
   radar:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40   # 9-12 minutes until 2026-10-21, plus up to 10 for the larger review
     steps:
       - uses: actions/checkout@v4
 

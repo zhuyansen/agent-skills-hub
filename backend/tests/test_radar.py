@@ -322,6 +322,15 @@ def test_review_sends_one_trends_task_per_call():
     assert calls[0]["arguments"]["body"][0]["date_to"] == "2026-10-09" and calls[3]["arguments"]["body"][0]["date_to"] == "2026-10-17"
 
 
+def test_review_takes_whole_leads_up_to_the_call_budget_and_leaves_the_rest_due():
+    seen = date(2026, 10, 1)
+    due = [(f"name {i}", seen, ["a", "b", "c", "d"]) for i in range(review.REVIEW_CALLS_MAX)] + [("last", seen, [])]
+    kept = review.within_budget(due)
+    assert len(kept) == review.REVIEW_CALLS_MAX // review.MAX_VARIANTS   # 3 tasks a lead: variants past the third are not read
+    assert kept == due[:len(kept)]                                        # oldest first; the rest stay due for tomorrow
+    assert review.within_budget([("solo", seen, [])]) == [("solo", seen, [])]
+
+
 # --- ③ new sites (whois overview, weekly) --------------------------------------------------
 
 import json as _json  # noqa: E402
