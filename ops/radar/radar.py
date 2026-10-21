@@ -24,7 +24,8 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
              social_sites.SOCIAL_SHOW is off: kept in radar_leads for the review, shown only
              as one status line (record_shadow)
   ② breakout one new GitHub repo taking off on its own (breakout.breakouts)
-  ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge)
+  ② GitHub   terms that new repos in the catalog suddenly share (signals.github_surge). In shadow
+             mode while signals.GITHUB_SHOW is off, like the new sites people link (shadow)
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
              countries, the words it is sold on, how many copies already share them, and
              its Xiaohongshu and Douyin posts (appstore.apps; about $0.10 a day through AIsa)
@@ -118,26 +119,45 @@ def judge(rows: list[dict]) -> None:
             return
 
 
-def leads(blocks: dict[str, dict]) -> list[dict]:
-    """Terms from every discovery signal, merged; a term in several is the strongest lead."""
+def _merged(blocks: dict[str, dict]) -> list[dict]:
+    """One row per term over the blocks' `terms`, each signal's row merged in (_merge)."""
     out: dict[str, dict] = {}
     for kind, block in blocks.items():
         for r in block.get("terms", []):
             row = out.setdefault(r["term"], {"term": r["term"], "kinds": [], "signals": [], "examples": [], "variants": [], "posts": []})
-            row["kinds"].append(kind)
-            row["signals"].append(r.get("note") or f"{KINDS[kind]} {r['recent']} 处 (×{r['lift']})")
-            row["examples"] += r.get("examples", [])
-            row["posts"] += r.get("posts", [])
-            row["variants"] += [v for v in r.get("variants", []) if v not in row["variants"]]
-            if r.get("repo"):
-                row["repo"] = r["repo"]
-            if r.get("named") is not None:   # a meme's opportunity score (memes.py); judge() leaves these rows alone
-                row["named"] = r["named"]
-            row.update({k: r[k] for k in CARRIED if r.get(k)})
-            row["evidence_posts"] = row.get("evidence_posts", []) + r.get("evidence_posts", [])
-            if "described" in r:
-                row["described"] = r["described"]
-    rows = list(out.values())
+            _merge(row, kind, r)
+    return list(out.values())
+
+
+def _merge(row: dict, kind: str, r: dict) -> None:
+    row["kinds"].append(kind)
+    row["signals"].append(r.get("note") or f"{KINDS[kind]} {r['recent']} 处 (×{r['lift']})")
+    row["examples"] += r.get("examples", [])
+    row["posts"] += r.get("posts", [])
+    row["variants"] += [v for v in r.get("variants", []) if v not in row["variants"]]
+    if r.get("repo"):
+        row["repo"] = r["repo"]
+    if r.get("named") is not None:   # a meme's opportunity score (memes.py); judge() leaves these rows alone
+        row["named"] = r["named"]
+    row.update({k: r[k] for k in CARRIED if r.get(k)})
+    row["evidence_posts"] = row.get("evidence_posts", []) + r.get("evidence_posts", [])
+    if "described" in r:
+        row["described"] = r["described"]
+
+
+def shadow(block: dict, kind: str) -> dict:
+    """A signal in shadow mode (signals.GITHUB_SHOW off for "github"): its terms leave the block for
+    `shadow_leads`, the rows record_shadow() writes to radar_leads for the review, so they reach neither
+    leads() and Jev nor the candidates, the picks or the keyword table, as social_sites.py does for
+    the new sites people link."""
+    block["shadow_leads"] = _merged({kind: {"terms": block.pop("terms", [])}})
+    block["shadow"] = True
+    return block
+
+
+def leads(blocks: dict[str, dict]) -> list[dict]:
+    """Terms from every discovery signal, merged; a term in several is the strongest lead."""
+    rows = _merged(blocks)
     judge(rows)
     # Earliest signal first among equals: a name the labs said today beats a sitemap echo.
     first = {k: i for i, k in enumerate(KINDS)}
@@ -350,11 +370,29 @@ def _rest_status(bo: dict, gh: dict, b: dict) -> list[str]:
                  + (",首次运行,没有昨天的星数" if bo.get("first_run") else "")
                  + (f",{bo['late_error']}" if bo.get("late_error") else ""))))
     lines += _meme_app_status(b)
-    lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
-                 f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
+    lines.append(github_status(gh))
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
     return lines
+
+
+def github_status(gh: dict) -> str:
+    """② GitHub's line; in shadow mode the only trace of the words new repos share."""
+    label = "- ② GitHub 共用词" + ("(影子模式,只记录不展示)" if gh.get("shadow") else "")
+    if gh.get("skipped") or gh.get("error"):
+        return f"{label}:{gh.get('error') or '跳过'}"
+    line = f"{label}:近 {signals.RECENT_DAYS} 天新建 {gh['repos_recent']} 个仓库,基线 {gh['repos_baseline']} 个"
+    if not gh.get("shadow"):
+        return line
+    return line + f",{len(gh['shadow_leads'])} 个上升词" + _shadow_recorded(gh.get("recorded") or {})
+
+
+def _shadow_recorded(rec: dict) -> str:
+    """What record_shadow() did, for a shadow signal's line; '' when there was nothing to record."""
+    if rec.get("error") or rec.get("skipped"):
+        return f",没记录({rec.get('error') or '跳过数据库'})"
+    merged = f",{rec['merged']} 个已是别的信号的线索,只补了证据" if rec.get("merged") else ""
+    return f",已记录 {rec['recorded']} 个{merged}" if "recorded" in rec else ""
 
 
 def _meme_app_status(b: dict) -> list[str]:
@@ -416,14 +454,14 @@ def sources_markdown(lead: list[dict], b: dict[str, dict]) -> str:
 STATUS_LINES = (("meme", memes), ("appstore", appstore), ("social", social_sites))
 
 
-def record_shadow(social: dict, no_db: bool) -> None:
-    """Shadow mode (social_sites.SOCIAL_SHOW off): the new sites people link go straight into
-    radar_leads, past Jev and the mail, so the review can measure them. record_new() leaves a
+def record_shadow(block: dict, no_db: bool) -> None:
+    """Shadow mode (social_sites.SOCIAL_SHOW, signals.GITHUB_SHOW off): a signal's leads go straight
+    into radar_leads, past Jev and the mail, so the review can measure them. record_new() leaves a
     lead another signal holds as it is (the reports show its last note), adding only the
     evidence. The outcome goes on the block, for its status line."""
-    rows = social.get("shadow_leads") or []
+    rows = block.get("shadow_leads") or []
     if rows:
-        social["recorded"] = run("record social", lambda: review.record_new(rows), no_db)
+        block["recorded"] = run("record shadow", lambda: review.record_new(rows), no_db)
 
 
 def _mail_errors(blocks: dict[str, dict]) -> bool:
@@ -464,9 +502,32 @@ def drop_retired(snaps: Path) -> None:
 def main() -> int:
     report, snaps = Path(sys.argv[1]), Path(sys.argv[2])
     flags = set(sys.argv[3:])
-    if "--sources" in flags:
-        return sources_main(report, snaps, flags)
+    return (sources_main if "--sources" in flags else daily_main)(report, snaps, flags)
+
+
+def daily_main(report: Path, snaps: Path, flags: set[str]) -> int:
+    no_db = "--skip-db" in flags
     drop_retired(snaps)
+    blocks = daily_blocks(snaps, flags)
+    lead = leads(blocks)
+    keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
+    blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, no_db)
+    for key in ("social", "github"):
+        record_shadow(blocks[key], no_db)
+    rev = run("review", review.review, no_db or "--skip-review" in flags)
+    summ = run("summary", review.summary, no_db)
+    blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources(kinds=SOURCE_KINDS)},
+                                   no_db or "--skip-x" not in flags)
+    keywords(blocks, lead, keep, snaps, flags)
+    report.write_text(markdown(lead, blocks, rev, summ))
+    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "review": rev,
+                                                      "summary": summ}, ensure_ascii=False, indent=1, default=str))
+    print(report.read_text())
+    return 0
+
+
+def daily_blocks(snaps: Path, flags: set[str]) -> dict[str, dict]:
+    """The daily run's signals; radar-daily.yml leaves the source signals to the 8-hourly run (--skip-x ...)."""
     blocks = {
         "x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
         "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
@@ -475,31 +536,25 @@ def main() -> int:
         "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),
     }
+    if not signals.GITHUB_SHOW:
+        shadow(blocks["github"], "github")
     # it reads the X posts, so the daily job (--skip-x) leaves it to the source job too
     blocks["social"] = run("social", lambda: social_sites.social_sites(snaps, blocks["x"]),
                            "--skip-x" in flags or "--skip-social" in flags)
-    lead = leads(blocks)
+    return blocks
+
+
+def keywords(blocks: dict[str, dict], lead: list[dict], keep: list[dict], snaps: Path, flags: set[str]) -> None:
+    """The generic terms behind the day's names (usecases.py): only names from the signals that report
+    things (X, HF, AI video trends, apps, breakouts) with a high name score; see names_to_read. Read twice
+    each (today and three days on); about $0.15 a day. Its leads and each name's reading go to radar_leads."""
     no_db = "--skip-db" in flags
-    keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
-    blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, no_db)
-    record_shadow(blocks["social"], no_db)
-    rev = run("review", review.review, no_db or "--skip-review" in flags)
-    summ = run("summary", review.summary, no_db)
-    blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources(kinds=SOURCE_KINDS)},
-                                   no_db or "--skip-x" not in flags)
-    # The generic terms behind the day's names (usecases.py): only names from the signals that
-    # report things (X, HF, AI video trends, apps, breakouts) with a high name score; see names_to_read. Read twice each (today and three days on); about $0.15 a day.
     names = usecases.names_to_read(keep, blocks["recent_sources"].get("rows", []))
     repos = {r["term"]: r["repo"] for r in lead if r.get("repo")}
     blocks["usecases"] = run("usecases", lambda: usecases.run(snaps, list(dict.fromkeys(names)), repos), "--skip-usecases" in flags)
     run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
     # what the table found for each name, into that name's evidence (radar_leads.evidence)
     run("keyword evidence", lambda: {"added": review.add_evidence(usecases.name_evidence(blocks["usecases"]))}, no_db)
-    report.write_text(markdown(lead, blocks, rev, summ))
-    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "review": rev,
-                                                      "summary": summ}, ensure_ascii=False, indent=1, default=str))
-    print(report.read_text())
-    return 0
 
 
 if __name__ == "__main__":

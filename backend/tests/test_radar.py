@@ -749,3 +749,50 @@ def test_shadow_new_sites_alone_send_no_mail(monkeypatch, tmp_path):
     monkeypatch.setattr(social_sites, "SOCIAL_SHOW", True)    # the one switch: the leads go to the report instead
     shown = REAL_SOCIAL(tmp_path / "again", {"linked": []}, SOC_NOW)
     assert [r["term"] for r in shown["terms"]] == ["altstream"] and shown["shadow_leads"] == []
+
+
+# --- the daily run (radar.daily_main) --------------------------------------------------------
+
+DAILY_FLAGS = {"--skip-x", "--skip-hf", "--skip-memes", "--skip-appstore"}   # as radar-daily.yml runs it
+
+
+def _daily_world(monkeypatch, recent=(), github_terms=(), breakout_terms=()):
+    """Every source of the daily run, answered without the network or the database. Returns what
+    record(), record_new() and the keyword table were handed."""
+    monkeypatch.setattr(radar, "judge", lambda rows: None)
+    monkeypatch.setattr(radar.breakout, "breakouts", lambda snaps: {
+        "searched": 305, "searched_late": 105, "first_run": False, "repos": [], "terms": [dict(t) for t in breakout_terms]})
+    monkeypatch.setattr(radar.signals, "github_surge", lambda: {
+        "repos_recent": 1843, "repos_baseline": 24130, "terms": [dict(t) for t in github_terms]})
+    got = {"recorded": [], "shadow": [], "read": []}
+    monkeypatch.setattr(radar.review, "record", lambda rows: got["recorded"].extend(rows) or len(rows))
+    monkeypatch.setattr(radar.review, "record_new", lambda rows: got["shadow"].extend(rows) or {"recorded": len(rows), "merged": 0})
+    monkeypatch.setattr(radar.review, "review", lambda: {"checked": [], "cost_micros": 0})
+    monkeypatch.setattr(radar.review, "summary", lambda: {"by_signal": {}, "pending": 0, "window_days": 60})
+    monkeypatch.setattr(radar.review, "recent_sources", lambda kinds: [dict(r) for r in recent])
+    monkeypatch.setattr(radar.review, "add_evidence", lambda rows: 0)
+    monkeypatch.setattr(radar.usecases, "run", lambda snaps, names, repos: got["read"].extend(names) or {"names": [], "rows": []})
+    return got
+
+
+def test_github_words_are_recorded_for_the_review_and_never_shown(monkeypatch, tmp_path):
+    got = _daily_world(monkeypatch, github_terms=[{"term": "falkordb", "recent": 9, "lift": 4.5,
+                                                   "examples": ["falkor/falkordb-mcp: graph database"]}])
+    report = tmp_path / "radar.md"
+    radar.daily_main(report, tmp_path / "snap", DAILY_FLAGS)
+    text = report.read_text()
+    assert [(r["term"], r["kinds"], r["signals"]) for r in got["shadow"]] == [("falkordb", ["github"], ["②GitHub 9 处 (×4.5)"])]
+    assert got["shadow"][0]["examples"] == ["falkor/falkordb-mcp: graph database"] and "named" not in got["shadow"][0]
+    assert "falkordb" not in text and not got["recorded"] and not got["read"]       # no candidate, keyword table or pick
+    assert "- ② GitHub 共用词(影子模式,只记录不展示):近 3 天新建 1843 个仓库,基线 24130 个,1 个上升词,已记录 1 个" in text
+
+
+def test_shadow_blocks_keep_their_terms_out_of_the_leads_and_one_switch_turns_them_on(monkeypatch):
+    monkeypatch.setattr(radar, "judge", lambda rows: None)
+    block = radar.shadow({"repos_recent": 5, "repos_baseline": 9, "terms": [{"term": "falkordb", "recent": 9, "lift": 4.5}]}, "github")
+    assert radar.leads({"github": block}) == [] and [r["term"] for r in block["shadow_leads"]] == ["falkordb"]
+    assert radar.github_status({"skipped": True, "shadow": True}) == "- ② GitHub 共用词(影子模式,只记录不展示):跳过"
+    assert radar.github_status(dict(block, recorded={"error": "timeout"})).endswith(",1 个上升词,没记录(timeout)")
+    monkeypatch.setattr(radar.signals, "GITHUB_SHOW", True)
+    shown = radar.daily_blocks(Path("unused"), DAILY_FLAGS | {"--skip-breakout", "--skip-db"})
+    assert "shadow" not in shown["github"]                                          # skipped here, but not shadowed

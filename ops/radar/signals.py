@@ -3,7 +3,8 @@
 github_surge   terms in the names and descriptions of repos created in the last 3 days,
                against repos created in the 30 days before, counted per owner. Repos are
                picked by GitHub creation date, not by first_seen: the extra_repos backfill
-               adds old repos every sync and would read as a wave.
+               adds old repos every sync and would read as a wave. In shadow mode while
+               GITHUB_SHOW is off (radar.shadow): recorded for the review, never shown.
 
 New GSC queries (the former gsc_new) left the radar on 2026-10-21, for the weekly SEO review.
 """
@@ -16,6 +17,10 @@ from pathlib import Path
 from terms import by_source, surges
 
 ROOT = Path(__file__).resolve().parents[2]
+# Off: the words new repos share are kept in radar_leads for the 14-day review and never shown (radar.shadow).
+# Turn it on only after the review shows early hits for "②GitHub" in the daily report's hit-rate table (Trends
+# rose a day or more after the radar saw the word); its words then go through Jev and into the reports again.
+GITHUB_SHOW = False
 RECENT_DAYS, BASELINE_DAYS = 3, 30
 GH_MIN_OWNERS = 5
 # A word already common in the 30-day baseline that only doubles is noise (pytorch 5 owners
