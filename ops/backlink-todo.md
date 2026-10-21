@@ -71,7 +71,7 @@
 | 11 | **claudemcp.org / claudemcp.com** | 垂类 MCP 目录 | DR 中 | 多 dofollow | 表单/PR | 低 | ✅ 高 | 垂直精准,专收 MCP/Claude 资源 |
 | 12 | **Dev.to**(自有文章) | 开发者博客 | DA 90 | dofollow(正文链) | 免费发文 | 低 | ✅ 高 | 发"如何挑安全的 MCP server"类真干货,自然引 Hub。已有 `devto-securing-117k.md` 草稿基础 |
 | 13 | **SaaSHub** | SaaS 目录 | DA 60+ | dofollow | 账号提交 | 低 | ✅ 高 | 收 `.top`;附带 alternatives 页 |
-| 14 | **StackShare** | 技术栈目录 | DA 80+ | nofollow | 账号 | 低 | ✅ 高 | 建 tool 页,进技术选型语境 |
+| 14 | ~~**StackShare**~~ | 技术栈目录 | DA 80+ | nofollow | 账号 | 低 | ❌ 07-10 拒收 | 类目不符,不再试(见第 5 行和提交记录) |
 | 15 | **Lobsters** | 技术社区 | DR 高 | nofollow | 需邀请码 | 高 | ✅ 高(若有邀请) | 比 HN 更硬核;没邀请码跳过 |
 | 16 | **HARO / Featured.com / Qwoted** | 专家引用→媒体 PR | 目标媒体 DR 高 | 多 dofollow | 真人答记者问 | 中 | ✅ 高(链出现在第三方媒体) | 用 "13万 skill 安全普查" 数据当引用弹药,答 AI-agent 安全类记者问 |
 | 17 | **theresanaiforthat 替代目录群**(dofollow.tools / thesaasdir / toolify) | AI 工具目录 | DA 40-55 | 部分明示 dofollow | 表单 | 低 | ✅ 高 | 一次别刷太多(3-4 个/发布周);低 DA 目录堆多反稀释 |
@@ -324,7 +324,7 @@ Happy to share the open dataset or a longer quote.
 - [ ] dang.ai / aitoolhunt / sider.ai 等新兴 AI 目录
 - [ ] **claudemcp.org / claudemcp.com**(垂类 MCP 目录,#11)
 - [ ] **dofollow.tools · thesaasdir.com · toolify.ai**(明示 dofollow 的一批,#17;一发布周≤3-4 个)
-- [ ] **AlternativeTo · SaaSHub · StackShare**(列 LobeHub/mcp.so 替代品,#10/#13/#14)
+- [ ] **AlternativeTo(✅ 已上线)· SaaSHub · ~~StackShare~~(❌ 拒收)**(列 LobeHub/mcp.so 替代品,#10/#13/#14)
 
 ### C. 开发者平台自有主页(建档 + 链接)
 - [ ] Dev.to 个人/组织页(发文链回,见 Tier 2)
