@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from datetime import date
 from pathlib import Path
 
@@ -70,6 +71,8 @@ RETIRED = {"sitemap": "③竞品(已停)", "newsite": "③新站(已停)"}
 RETIRED_SNAPSHOTS = (*(f"{site}.json.gz" for site in ("glama", "mcp.so", "skillsmp", "toolify", "lobehub-mcp",
                                                       "lobehub-skills", "lobehub-agents", "lobehub-blog")),
                      "new_sites.json.gz")
+EARLY_NOTE = (f"提前命中 = Trends 在雷达第一次报出后至少 {review.EARLY_DAYS} 天才起涨;"
+              "晚到 = 也起来了,但起涨在报出之前或当天")
 # the ① leads the daily report lists from radar_leads; the new sites only once they are shown
 SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
 # optional keys a lead takes from its signal's row: the picks read the first three, and
@@ -287,22 +290,7 @@ def markdown(lead: list[dict], b: dict[str, dict], rev: dict, summ: dict) -> str
         lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
     lines += appstore.section(b.get("appstore", {"skipped": True}))
 
-    lines += ["", "### ⑤ 复盘(14 天前报出的词,在 Google Trends 里起没起来)", ""]
-    if rev.get("checked"):
-        lines += ["| 词 | 首次报出 | 结论 | 提前天数 |", "|---|---|---|---|"]
-        lines += [f"| {c['term']} | {c['first_seen']} | {c['verdict']} | {c['lead_days'] if c['lead_days'] is not None else '—'} |"
-                  for c in rev["checked"]]
-    else:
-        lines.append(f"今天没有到期的词({rev.get('error') or ('跳过' if rev.get('skipped') else '最早报出的词还不满 14 天')})")
-    if summ.get("by_signal"):
-        lines += ["", f"近 {summ['window_days']} 天的命中率(待复盘 {summ['pending']} 个):", "",
-                  "| 信号 | 复盘 | 命中 | 命中率 | 提前天数中位数 |", "|---|---|---|---|---|"]
-        order = [*KINDS, *RETIRED]
-        for k, s in sorted(summ["by_signal"].items(), key=lambda kv: order.index(kv[0]) if kv[0] in order else 99):
-            lines.append(f"| {KINDS.get(k) or RETIRED.get(k, k)} | {s['checked']} | {s['hit']} | {s['hit'] / s['checked']:.0%} | "
-                         f"{s['median_lead'] if s['median_lead'] is not None else '—'} |")
-    elif summ.get("error"):
-        lines.append(f"命中率:{summ['error']}")
+    lines += review_lines(rev, summ)
 
     x, hf, gh = b["x"], b["hf"], b["github"]
     lines += ["", "### 数据状态", ""]
@@ -314,6 +302,38 @@ def markdown(lead: list[dict], b: dict[str, dict], rev: dict, summ: dict) -> str
     lines += _rest_status(bo, gh, b)
     lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
+
+
+def review_lines(rev: dict, summ: dict) -> list[str]:
+    """⑤: today's verdicts as counts with only the early hits by name, then each signal's tally."""
+    lines = ["", "### ⑤ 复盘(14 天前报出的词,在 Google Trends 里起没起来)", "", *_checked_lines(rev)]
+    if summ.get("by_signal"):
+        return lines + _tally_lines(summ)
+    return lines + ([f"命中率:{summ['error']}"] if summ.get("error") else [])
+
+
+def _checked_lines(rev: dict) -> list[str]:
+    checked = rev.get("checked") or []
+    if not checked:
+        return [f"今天没有到期的词({rev.get('error') or ('跳过' if rev.get('skipped') else '最早报出的词还不满 14 天')})"]
+    said = [review.outcome(c["verdict"], c["lead_days"]) for c in checked]
+    n = Counter(said)
+    early = [f"- 提前命中 **{c['term']}**:{c['first_seen']} 报出,提前 {c['lead_days']} 天"
+             for c, o in zip(checked, said) if o == "early"]
+    # the blank line: Python-Markdown (notify.py) reads a list right under a paragraph as more of the paragraph
+    return ([f"今天复盘 {len(checked)} 个:提前命中 {n['early']},晚到 {n['late']},没起来 {n['miss']},没数据 {n['no_data']}。"]
+            + (["", *early] if early else []))
+
+
+def _tally_lines(summ: dict) -> list[str]:
+    order = [*KINDS, *RETIRED]
+    lines = ["", f"近 {summ['window_days']} 天各信号(待复盘 {summ['pending']} 个;{EARLY_NOTE}):", "",
+             "| 信号 | 复盘 | 提前命中 | 晚到 | 没起来 | 没数据 | 提前命中率 | 提前天数中位数 |", "|---|---|---|---|---|---|---|---|"]
+    for k, s in sorted(summ["by_signal"].items(), key=lambda kv: order.index(kv[0]) if kv[0] in order else len(order)):
+        median = s["median_lead"] if s["median_lead"] is not None else "—"
+        lines.append(f"| {KINDS.get(k) or RETIRED.get(k, k)} | {s['checked']} | {s['early']} | {s['late']} | {s['miss']} | "
+                     f"{s['no_data']} | {s['early'] / s['checked']:.0%} | {median} |")
+    return lines
 
 
 def _source_status(x: dict, hf: dict) -> list[str]:

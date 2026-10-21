@@ -9,7 +9,10 @@ add_evidence()  merges more evidence into leads already kept: the keyword table'
 review()   takes up to PER_DAY leads first seen REVIEW_AFTER days ago or earlier and not
            yet checked, asks DataForSEO Trends (via AIsa) about each search variant,
            and stores hit / miss / no_data plus how many days the radar was ahead.
-summary()  hit rate and median lead per signal over the last WINDOW days of verdicts.
+summary()  per signal over the last WINDOW days of verdicts (tally): early hits, late hits,
+           no rise, no data, and the median lead of the early hits. A hit is early when
+           Trends rose EARLY_DAYS or more after the radar first saw the term; the stored
+           verdict stays "hit" either way.
 
 Each variant is its own call: in one shared task the values share a 0-100 scale and a
 small term next to a big one reads 0, and the live endpoint runs only the first task of
@@ -57,6 +60,10 @@ MAX_VARIANTS = 3
 # not fit stays due for tomorrow. Leads averaged 1.26 tasks on 2026-10-21, so 40 fit in about 50.
 REVIEW_CALLS_MAX = 60
 RISE_FACTOR, RISE_MIN = 2.0, 10
+# A hit is early only when Trends rose at least this many days after the radar first saw the term. 16 of the
+# 17 hits by 2026-10-21 had risen before or on that day: the radar confirmed them, it did not find them first.
+EARLY_DAYS = 1
+OUTCOMES = ("early", "late", "miss", "no_data")
 RISE_SHARE = 0.25     # the rise starts where a series first covers this share of base -> peak
 WINDOW = 60
 TOOL = "post_dataforseo_keywords_trends_explore_live"
@@ -362,14 +369,29 @@ def summary(today: date | None = None) -> dict:
         """), {"since": today - timedelta(days=WINDOW)}).fetchall()
         pending = conn.execute(text("SELECT count(*) FROM radar_leads WHERE reviewed_at IS NULL")).scalar()
     engine.dispose()
+    return {"by_signal": tally(rows), "pending": pending, "window_days": WINDOW}
+
+
+def outcome(said: str, lead_days: int | None) -> str:
+    """A stored verdict as the reports count it: a hit is "early" when Trends rose EARLY_DAYS or more
+    after the radar first saw the term, else "late"; "miss" (no rise) and "no_data" stay as they are."""
+    if said == "hit":
+        return "early" if lead_days is not None and lead_days >= EARLY_DAYS else "late"
+    return "no_data" if said == "no_data" else "miss"
+
+
+def tally(rows: list[tuple]) -> dict[str, dict]:
+    """{signal: {"checked", "early", "late", "miss", "no_data", "median_lead"}} from (signals, verdict,
+    lead_days) rows; a lead with two signals counts for both. median_lead is the early hits' only."""
     by: dict[str, dict] = {}
-    for kinds, v, lead in rows:
+    for kinds, said, lead_days in rows:
+        got = outcome(said, lead_days)
         for k in kinds or ["?"]:
-            s = by.setdefault(k, {"checked": 0, "hit": 0, "leads": []})
+            s = by.setdefault(k, {"checked": 0, **dict.fromkeys(OUTCOMES, 0), "leads": []})
             s["checked"] += 1
-            if v == "hit":
-                s["hit"] += 1
-                s["leads"].append(lead)
+            s[got] += 1
+            s["leads"] += [lead_days] if got == "early" else []
     for s in by.values():
-        s["median_lead"] = statistics.median(s.pop("leads")) if s["hit"] else None
-    return {"by_signal": by, "pending": pending, "window_days": WINDOW}
+        leads = s.pop("leads")
+        s["median_lead"] = statistics.median(leads) if leads else None
+    return by

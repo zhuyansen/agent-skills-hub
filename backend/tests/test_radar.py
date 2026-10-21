@@ -244,6 +244,32 @@ def test_review_verdict_miss_and_no_data():
     assert review.verdict({"a": {"rose": False, "no_data": True}}, SEEN) == ("no_data", None)
 
 
+def test_a_hit_counts_as_early_only_when_trends_rose_after_the_radar_saw_it():
+    # 10-21: 16 of 17 hits had lead_days <= 0, so "75%" was mostly terms the radar saw late
+    rows = [(["x"], "hit", 2), (["x"], "hit", 0), (["x", "breakout"], "hit", -4), (["x"], "miss", None),
+            (["breakout"], "no_data", None), (["breakout"], "hit", 1), (["breakout"], "hit", 5), (["sitemap"], "miss", None)]
+    by = review.tally(rows)
+    assert by["x"] == {"checked": 4, "early": 1, "late": 2, "miss": 1, "no_data": 0, "median_lead": 2}
+    assert by["breakout"] == {"checked": 4, "early": 2, "late": 1, "miss": 0, "no_data": 1, "median_lead": 3}
+    assert (by["sitemap"]["early"], by["sitemap"]["median_lead"]) == (0, None)
+    assert review.outcome("hit", None) == "late"   # a hit without a date is not counted as early
+
+
+def test_the_review_section_names_only_the_early_hits():
+    rev = {"checked": [{"term": "strata", "first_seen": "2026-10-04", "verdict": "hit", "lead_days": 2},
+                       {"term": "v4.1 flash", "first_seen": "2026-10-04", "verdict": "hit", "lead_days": -24},
+                       {"term": "genpark", "first_seen": "2026-10-04", "verdict": "miss", "lead_days": None},
+                       {"term": "connectors in.zelta", "first_seen": "2026-10-04", "verdict": "no_data", "lead_days": None}]}
+    summ = {"by_signal": review.tally([(["x"], "hit", 2), (["x"], "hit", -24), (["sitemap"], "miss", None)]),
+            "pending": 412, "window_days": 60}
+    lines = radar.review_lines(rev, summ)
+    text = "\n".join(lines)
+    assert "今天复盘 4 个:提前命中 1,晚到 1,没起来 1,没数据 1。" in text
+    assert "- 提前命中 **strata**:2026-10-04 报出,提前 2 天" in lines
+    assert not any(t in text for t in ("v4.1 flash", "genpark", "in.zelta"))     # the rest are counts, not rows
+    assert "| ①X | 2 | 1 | 1 | 0 | 0 | 50% | 2 |" in lines and "| ③竞品(已停) | 1 | 0 | 0 | 1 | 0 | 0% | — |" in lines
+
+
 # --- the 8-hourly source run --------------------------------------------------------------
 
 def _quiet_memes_and_charts(monkeypatch):
