@@ -1,7 +1,7 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db] [--skip-sitemaps] [--skip-gsc]
+                            [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db] [--skip-gsc]
                             [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
@@ -28,7 +28,6 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
              countries, the words it is sold on, how many copies already share them, and
              its Xiaohongshu and Douyin posts (appstore.apps; about $0.10 a day through AIsa)
-  ③ sitemaps pages competitors and LobeHub added since yesterday (sitemap_diff.diff)
   ③ new sites domains registered in the last 90 days that already rank (new_sites.py; Mondays,
              or --new-sites; about $0.26 through AIsa)
   ④ GSC      queries that brought impressions for the first time (signals.gsc_new)
@@ -55,7 +54,6 @@ import memes  # noqa: E402
 import new_sites  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
-import sitemap_diff  # noqa: E402
 import social_sites  # noqa: E402
 import source_signals  # noqa: E402
 import usecases  # noqa: E402
@@ -70,8 +68,13 @@ NAMED = {"named_thing": {"type": "noul", "instructions": {
              "'jev' are names; 'dashboard', 'voice notes', 'pdf' are not."}}}
 # signal key -> label in the report, in the order of how early the signal comes
 KINDS = {"x": "①X", "hf": "①HF", "meme": "①梗", "social": "①社交新站", "breakout": "②爆发", "appstore": "②榜单", "github": "②GitHub",
-         "sitemap": "③竞品", "newsite": "③新站", "usecase": "通用词", "cosearch": "一起被搜",
+         "newsite": "③新站", "usecase": "通用词", "cosearch": "一起被搜",
          "watch": "观察词"}
+# signals the radar no longer reads; the review still checks their old leads, and the hit-rate table names them so
+RETIRED = {"sitemap": "③竞品(已停)"}
+# what they kept in the daily snapshot dir, deleted so the Actions cache stops carrying it (toolify: about a million URLs)
+RETIRED_SNAPSHOTS = tuple(f"{site}.json.gz" for site in (
+    "glama", "mcp.so", "skillsmp", "toolify", "lobehub-mcp", "lobehub-skills", "lobehub-agents", "lobehub-blog"))
 # the ① leads the daily report lists from radar_leads; the new sites only once they are shown
 SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
 NEW_SITES_WEEKDAY = 0   # Monday: about $0.26 a run (new_sites.py), weekly is enough for new domains
@@ -331,20 +334,21 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     if summ.get("by_signal"):
         lines += ["", f"近 {summ['window_days']} 天的命中率(待复盘 {summ['pending']} 个):", "",
                   "| 信号 | 复盘 | 命中 | 命中率 | 提前天数中位数 |", "|---|---|---|---|---|"]
-        for k, s in sorted(summ["by_signal"].items(), key=lambda kv: list(KINDS).index(kv[0]) if kv[0] in KINDS else 99):
-            lines.append(f"| {KINDS.get(k, k)} | {s['checked']} | {s['hit']} | {s['hit'] / s['checked']:.0%} | "
+        order = [*KINDS, *RETIRED]
+        for k, s in sorted(summ["by_signal"].items(), key=lambda kv: order.index(kv[0]) if kv[0] in order else 99):
+            lines.append(f"| {KINDS.get(k) or RETIRED.get(k, k)} | {s['checked']} | {s['hit']} | {s['hit'] / s['checked']:.0%} | "
                          f"{s['median_lead'] if s['median_lead'] is not None else '—'} |")
     elif summ.get("error"):
         lines.append(f"命中率:{summ['error']}")
 
-    x, hf, gh, sm = b["x"], b["hf"], b["github"], b["sitemap"]
+    x, hf, gh = b["x"], b["hf"], b["github"]
     lines += ["", "### 数据状态", ""]
     if not (x.get("skipped") and hf.get("skipped")):
         lines += _source_status(x, hf)
     if not b.get("social", {"skipped": True}).get("skipped"):
         lines.append(social_sites.status(b["social"]))
     bo = b["breakout"]
-    lines += _rest_status(bo, gh, sm, b)
+    lines += _rest_status(bo, gh, b)
     lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('newsite', {}), b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
     return "\n".join(lines) + "\n"
 
@@ -370,7 +374,7 @@ def _source_status(x: dict, hf: dict) -> list[str]:
                  f"trending {hf['models']} 个模型" + (",首次运行,只建快照" if hf.get("first_run") else "")))]
 
 
-def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
+def _rest_status(bo: dict, gh: dict, b: dict) -> list[str]:
     lines = []
     lines.append("- ② 爆发:" + (bo.get("error") or ("跳过" if bo.get("skipped") else
                  f"搜到 {bo['searched']} 个新仓库(其中 {breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的 {bo.get('searched_late', 0)} 个)"
@@ -379,25 +383,9 @@ def _rest_status(bo: dict, gh: dict, sm: dict, b: dict) -> list[str]:
     lines += _meme_app_status(b)
     lines.append(f"- ② GitHub:近 {signals.RECENT_DAYS} 天新建 {gh.get('repos_recent', '—')} 个仓库,"
                  f"基线 {gh.get('repos_baseline', '—')} 个 {gh.get('error', '')}")
-    for site, s in sm.get("sites", {}).items():
-        lines.append(f"- ③ {site}:{_site_state(s)}")
-    if sm.get("error") or sm.get("skipped"):
-        lines.append(f"- ③ 竞品:{sm.get('error') or '跳过'}")
     if b.get("record", {}).get("error"):
         lines.append(f"- 记录候选词:{b['record']['error']}")
     return lines
-
-
-def _site_state(s: dict) -> str:
-    """One competitor sitemap's line, saying when a day's new URLs were not news (sitemap_diff)."""
-    if s.get("error") or s.get("first_run"):
-        return s.get("error") or "首次运行,只建快照"
-    state = f"{s['urls']} 个网址,新增 {s['new']}"
-    if s.get("flood"):
-        state += f"(占 {s['new'] / s['urls']:.0%},像改版或换网址,今天不从它取词)"
-    if s.get("partial"):
-        state += f"(只读到已知 {s['known']} 个的 {s['urls'] / s['known']:.0%},没读到的以后再出现也不算新增)"
-    return state
 
 
 def _meme_app_status(b: dict) -> list[str]:
@@ -498,11 +486,18 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     return 0
 
 
+def drop_retired(snaps: Path) -> None:
+    """Deletes what the signals the radar no longer reads kept in the snapshot dir (RETIRED_SNAPSHOTS)."""
+    for name in RETIRED_SNAPSHOTS:
+        (snaps / name).unlink(missing_ok=True)
+
+
 def main() -> int:
     report, snaps = Path(sys.argv[1]), Path(sys.argv[2])
     flags = set(sys.argv[3:])
     if "--sources" in flags:
         return sources_main(report, snaps, flags)
+    drop_retired(snaps)
     blocks = {
         "x": run("x", lambda: source_signals.x_new(snaps), "--skip-x" in flags),
         "hf": run("hf", lambda: source_signals.hf_new(snaps), "--skip-hf" in flags),
@@ -510,7 +505,6 @@ def main() -> int:
         "breakout": run("breakout", lambda: breakout.breakouts(snaps), "--skip-breakout" in flags),
         "appstore": run("appstore", lambda: appstore.apps(snaps), "--skip-appstore" in flags),
         "github": run("github", signals.github_surge, "--skip-db" in flags),
-        "sitemap": run("sitemaps", lambda: sitemap_diff.diff(snaps), "--skip-sitemaps" in flags),
         "newsite": run("newsite", lambda: new_sites.new_sites(snaps),
                        not ("--new-sites" in flags or date.today().weekday() == NEW_SITES_WEEKDAY)),
     }

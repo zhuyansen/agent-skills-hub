@@ -15,7 +15,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 import breakout  # noqa: E402
 import radar  # noqa: E402
 import review  # noqa: E402
-import sitemap_diff  # noqa: E402
 from source_signals import base_name, novel_names  # noqa: E402
 from terms import names  # noqa: E402
 
@@ -188,17 +187,6 @@ def test_breakout_remembers_a_flag_longer_than_a_repo_stays_in_the_searches():
     assert breakout.FLAGGED_DAYS > breakout.LATE_DAYS
 
 
-# --- ③ LobeHub: 17 languages are one entry ---------------------------------------------
-
-def test_lobehub_locale_prefix_is_stripped():
-    urls = ["https://lobehub.com/skills/x", "https://lobehub.com/zh/skills/x", "https://lobehub.com/zh-TW/skills/x"]
-    assert {re.sub(sitemap_diff._LOCALE, r"\1", u) for u in urls} == {"https://lobehub.com/skills/x"}
-
-
-def test_lobehub_paths_are_not_mistaken_for_locales():
-    assert re.sub(sitemap_diff._LOCALE, r"\1", "https://lobehub.com/mcp/foo") == "https://lobehub.com/mcp/foo"
-
-
 # --- merging the signals ----------------------------------------------------------------
 
 def test_leads_merge_a_term_seen_by_two_signals(monkeypatch):
@@ -206,11 +194,19 @@ def test_leads_merge_a_term_seen_by_two_signals(monkeypatch):
     blocks = {"x": {"terms": [{"term": "strata", "recent": 2, "note": "X 2 个账号"}]},
               "breakout": {"terms": [{"term": "strata", "recent": 1, "note": "GitHub 爆发",
                                       "variants": ["strata", "niko1221 strata"]}]},
-              "sitemap": {"terms": [{"term": "other", "recent": 3, "lift": 4.0}]}}
+              "github": {"terms": [{"term": "other", "recent": 3, "lift": 4.0}]}}
     rows = radar.leads(blocks)
     assert rows[0]["term"] == "strata" and rows[0]["kinds"] == ["x", "breakout"]
     assert rows[0]["variants"] == ["strata", "niko1221 strata"]
-    assert rows[1]["signals"] == ["③竞品 3 处 (×4.0)"]
+    assert rows[1]["signals"] == ["②GitHub 3 处 (×4.0)"]
+
+
+def test_the_daily_snapshot_drops_what_retired_signals_kept(tmp_path):
+    for name in [*radar.RETIRED_SNAPSHOTS, "gh_stars.json.gz"]:
+        (tmp_path / name).write_bytes(b"x")
+    radar.drop_retired(tmp_path)
+    assert [p.name for p in tmp_path.iterdir()] == ["gh_stars.json.gz"]   # breakout's own snapshot stays
+    radar.drop_retired(tmp_path)                                         # nothing left to drop: no error
 
 
 # --- ⑤ review: did it rise, judged against its own baseline ----------------------------

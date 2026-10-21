@@ -1,13 +1,11 @@
-"""The radar's noise filters (10-20): partial sitemap reads, registry namespaces, words that
-only doubled on GitHub, and app names not worth a keyword read. No network or database."""
+"""The radar's noise filters (10-20): registry namespaces, words that only doubled on GitHub,
+and app names not worth a keyword read. No network or database."""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 
-import radar  # noqa: E402
 import signals  # noqa: E402
-import sitemap_diff  # noqa: E402
 import usecases  # noqa: E402
 from terms import terms  # noqa: E402
 
@@ -26,48 +24,6 @@ def test_a_domain_split_by_a_slug_does_not_pair():
 
 def test_dotted_names_still_count():
     assert {"next.js", "socket.io", "qwen3.9"} <= terms("built on next.js and socket.io with qwen3.9")
-
-
-# --- sitemap_diff.diff(): partial reads and redesigns are not news --------------------------
-
-def _day(monkeypatch, tmp_path, urls):
-    monkeypatch.setattr(sitemap_diff, "SOURCES", {"site": ("https://x.test/sitemap.xml", None, 0, None)})
-    monkeypatch.setattr(sitemap_diff, "site_urls", lambda *a: set(urls))
-    return sitemap_diff.diff(tmp_path)
-
-
-FULL = [f"https://x.test/servers/tool-{i}" for i in range(1000)]
-
-
-def test_urls_missing_from_a_partial_read_are_not_new_when_they_return(monkeypatch, tmp_path):
-    _day(monkeypatch, tmp_path, FULL)
-    half = _day(monkeypatch, tmp_path, FULL[:500])["sites"]["site"]
-    assert half["new"] == 0 and half["partial"] and half["known"] == 1000
-    fresh = [f"https://x.test/servers/brandnew-{j}" for j in range(3)]
-    back = _day(monkeypatch, tmp_path, FULL + fresh)
-    assert back["sites"]["site"]["new"] == 3
-    assert [t["term"] for t in back["terms"]] == ["brandnew"]
-
-
-def test_a_redesign_day_gives_no_terms_and_is_not_new_again(monkeypatch, tmp_path):
-    _day(monkeypatch, tmp_path, FULL)
-    moved = [f"https://x.test/connectors/io.github.pub{k % 40}/srv-{k}" for k in range(1000)]
-    day = _day(monkeypatch, tmp_path, FULL + moved)
-    assert day["sites"]["site"]["flood"] and day["terms"] == []
-    assert _day(monkeypatch, tmp_path, FULL + moved)["sites"]["site"]["new"] == 0
-
-
-def test_a_normal_day_is_neither(monkeypatch, tmp_path):
-    _day(monkeypatch, tmp_path, FULL)
-    s = _day(monkeypatch, tmp_path, FULL + ["https://x.test/servers/one-more"])["sites"]["site"]
-    assert not s["flood"] and not s["partial"] and s["new"] == 1
-
-
-def test_status_line_says_why_new_urls_were_not_counted():
-    flood = radar._site_state({"urls": 138567, "new": 71536, "flood": True, "partial": False, "known": 67058})
-    assert "占 52%" in flood and "今天不从它取词" in flood
-    part = radar._site_state({"urls": 67058, "new": 747, "flood": False, "partial": True, "known": 136318})
-    assert "只读到已知 136318 个的 49%" in part
 
 
 # --- signals.github_surge(): a word that only doubled is not a wave ---------------------------
