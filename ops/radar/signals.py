@@ -1,19 +1,16 @@
-"""The two radar signals read from our own data: GitHub repos in the catalog, GSC queries.
+"""The radar signal read from our own data: GitHub repos in the catalog.
 
 github_surge   terms in the names and descriptions of repos created in the last 3 days,
                against repos created in the 30 days before, counted per owner. Repos are
                picked by GitHub creation date, not by first_seen: the extra_repos backfill
                adds old repos every sync and would read as a wave.
-gsc_new        queries with impressions in the last 3 days and none in the 56 before. Reads
-               GSC's fresh data (dataState=all): one day behind instead of three, at the
-               cost of numbers GSC still revises; the radar only needs "seen or not".
+
+New GSC queries (the former gsc_new) left the radar on 2026-10-21, for the weekly SEO review.
 """
 from __future__ import annotations
 
 import os
 import re
-import sys
-from datetime import date, timedelta
 from pathlib import Path
 
 from terms import by_source, surges
@@ -26,9 +23,6 @@ GH_MIN_OWNERS = 5
 # hyperframes 58-65 owners at x2-3, remotion 30+ at x2 in October).
 GH_MIN_LIFT = 3.0
 GH_WIDE_OWNERS = 20
-GSC_LAG_DAYS = 1
-GSC_RECENT, GSC_BEFORE = 3, 56
-GSC_MIN_IMPRESSIONS = 3
 TOP = 25
 _ROWS = """
 SELECT author_name, repo_name || ' ' || coalesce(description, ''), created_at >= now() - make_interval(days => :recent)
@@ -79,24 +73,3 @@ def github_surge() -> dict:
         r["examples"] = [examples[o][:90] for o in sorted(recent[r["term"]])[:3]]
     return {"repos_recent": sum(1 for *_, new in rows if new), "repos_baseline": sum(1 for *_, new in rows if not new),
             "terms": top}
-
-
-def gsc_new() -> dict:
-    sys.path.insert(0, str(ROOT / "ops/gsc"))
-    import fetch_gsc as g
-    svc = g.get_service()
-    site = g.pick_site(svc)
-    end = date.today() - timedelta(days=GSC_LAG_DAYS)
-    start = end - timedelta(days=GSC_RECENT - 1)
-    recent = g.query(svc, site, start, end, ["query", "page"], limit=25000, data_state="all")
-    before = g.query(svc, site, start - timedelta(days=GSC_BEFORE), start - timedelta(days=1), ["query"], limit=25000)
-    seen = {r["query"] for r in before}
-    fresh: dict[str, dict] = {}
-    for r in recent:
-        if r["query"] in seen:
-            continue
-        f = fresh.setdefault(r["query"], {"query": r["query"], "impressions": 0, "clicks": 0, "page": r["page"]})
-        f["impressions"] += r["impressions"]
-        f["clicks"] += r["clicks"]
-    rows = sorted((f for f in fresh.values() if f["impressions"] >= GSC_MIN_IMPRESSIONS), key=lambda f: -f["impressions"])
-    return {"window": f"{start}..{end}", "queries": rows[:TOP], "total_new": len(fresh)}

@@ -1,7 +1,7 @@
 """New-term radar: one daily report of terms that are starting to surge.
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
-                            [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db] [--skip-gsc]
+                            [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db]
                             [--skip-review] [--skip-usecases]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
@@ -28,7 +28,6 @@ Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ② 榜单     an app released in the last 30 days climbing the App Store charts in eight
              countries, the words it is sold on, how many copies already share them, and
              its Xiaohongshu and Douyin posts (appstore.apps; about $0.10 a day through AIsa)
-  ④ GSC      queries that brought impressions for the first time (signals.gsc_new)
 Terms from ① and ② go to Jev with a few examples: is this the name of a specific new
 product, model or technique, or a common word? Those that pass, and that no scenario
 page covers yet, lead the report, and are kept in radar_leads; review.py checks them in
@@ -254,7 +253,7 @@ def _app_picks(b: dict[str, dict]) -> list[str]:
     return out
 
 
-def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: dict) -> str:
+def markdown(lead: list[dict], b: dict[str, dict], rev: dict, summ: dict) -> str:
     lines = ["## 今天做哪个词", "", *picks(b), "", "---", "", "## 明细(上面每个词的依据,不用每天细看)",
              *usecases.table(b.get("usecases", {"skipped": True})), "",
              "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
@@ -287,15 +286,6 @@ def markdown(lead: list[dict], b: dict[str, dict], gsc: dict, rev: dict, summ: d
     else:
         lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
     lines += appstore.section(b.get("appstore", {"skipped": True}))
-
-    lines += ["", "### ④ GSC 首次出现的搜索词(新鲜数据,约晚 1 天)", ""]
-    if gsc.get("queries"):
-        lines += [f"{gsc['window']},共 {gsc['total_new']} 个新词,曝光 ≥{signals.GSC_MIN_IMPRESSIONS} 的:", "",
-                  "| 搜索词 | 曝光 | 点击 | 落地页 |", "|---|---|---|---|"]
-        lines += [f"| {q['query']} | {q['impressions']} | {q['clicks']} | {q['page'].replace('https://agentskillshub.top', '')} |"
-                  for q in gsc["queries"]]
-    else:
-        lines.append(f"无({gsc.get('error') or ('跳过' if gsc.get('skipped') else '没有新词')})")
 
     lines += ["", "### ⑤ 复盘(14 天前报出的词,在 Google Trends 里起没起来)", ""]
     if rev.get("checked"):
@@ -468,7 +458,6 @@ def main() -> int:
     # it reads the X posts, so the daily job (--skip-x) leaves it to the source job too
     blocks["social"] = run("social", lambda: social_sites.social_sites(snaps, blocks["x"]),
                            "--skip-x" in flags or "--skip-social" in flags)
-    gsc = run("gsc", signals.gsc_new, "--skip-gsc" in flags)
     lead = leads(blocks)
     no_db = "--skip-db" in flags
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
@@ -486,8 +475,8 @@ def main() -> int:
     run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
     # what the table found for each name, into that name's evidence (radar_leads.evidence)
     run("keyword evidence", lambda: {"added": review.add_evidence(usecases.name_evidence(blocks["usecases"]))}, no_db)
-    report.write_text(markdown(lead, blocks, gsc, rev, summ))
-    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "gsc": gsc, "review": rev,
+    report.write_text(markdown(lead, blocks, rev, summ))
+    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "review": rev,
                                                       "summary": summ}, ensure_ascii=False, indent=1, default=str))
     print(report.read_text())
     return 0

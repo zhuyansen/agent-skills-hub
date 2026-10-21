@@ -8,7 +8,7 @@ name: New-term radar
 # score for building a site or app for one now; ② a new GitHub repo taking off on its own, new apps climbing
 # the App Store charts in eight countries with how crowded their search words already are
 # and their Xiaohongshu and Douyin posts (appstore.py), and terms new repos in the
-# catalog suddenly share; ④ GSC queries seen for the first time (fresh data).
+# catalog suddenly share.
 # Jev checks which are names of new things. Leads are kept in the table radar_leads
 # (migration 026); 14 days later the run checks them in Google Trends (⑤, AIsa) and the
 # report ends with each signal's hit rate. The report goes to the run summary and the
@@ -62,11 +62,6 @@ jobs:
           path: radar-snap
           key: radar-snap-${{ github.run_id }}
           restore-keys: radar-snap-
-
-      - name: Write credentials
-        env:
-          GSC_TOKEN_JSON: ${{ secrets.GSC_TOKEN_JSON }}
-        run: printf '%s' "$GSC_TOKEN_JSON" > ops/gsc/token.json
 
       - name: Run the radar
         env:
