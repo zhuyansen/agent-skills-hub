@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-21
+1. abdiraimov-otabek/dashboard-design-skill — 🆕 教 Claude Code 做干净可信的仪表盘界面，涵盖 KPI 卡片、图表与排行列表（81★ 81.0/day）
+2. op7418/guizang-tv — 🆕 给国内小米电视换上简洁安卓桌面，大字列表、壁纸轮播、HDMI 一键直达（63★ 63.0/day）
+3. mars-tw/jev-trading-command-center — 🆕 接入 TypeSafe Jev 的开源模拟交易研究应用，附 3D 宠物与离线演示（54★ 33.7/day）
+4. tomtomsatnav/agent-orchestration-standard — 🆕 用本地实时看板盯住 Claude Code 会话：智能体图谱、token、工具流与回放（67★ 25.8/day）
+5. better-isms/grcskills — 🆕 为智能体提供开源的治理、风险与合规（GRC）技能包（41★ 22.3/day）
+6. kad-xyz/spbstu-mcp — 🆕 让 Claude 接入圣彼得堡理工大学的 Moodle、校园邮箱与慕课平台（25★ 17.5/day）
+7. danepps/legal-research-skills — 🆕 为 Claude Code 与 Codex 提供法学研究技能：核验备忘录、引注检查与校对（41★ 15.8/day）
+8. uclanlp/OpenVLHarness — 🆕 开源视觉智能体框架，借助多模态记忆完成真实世界的工具调用（48★ 8.0/day）
+9. QVerisAI/QVerisFlow — 自动生成多智能体工作流，并直接接入 QVeris 统一数据与工具层（1883★ 7.2/day）
+10. spmtitsolution/OpenBA-Kit — 🆕 打包 55 个 AI 技能，把编程智能体变成业务分析与产品经理助手（39★ 6.4/day）
+🎯 今日趋势：**9 席**标 🆕；垂直专业技能占 **4 席**（仪表盘设计、GRC 合规、法学研究、业务分析），"智能体改造电视桌面"连续第 **3** 天上榜（今日为归藏的小米电视桌面）。
+> 注：去重范围＝repo 内 archive 全部 118 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,002 个（含路径噪声，只会多剔不会漏剔）。本期第 1 次查询被服务端断开（连接参数里的 statement_timeout 在事务模式 pooler 上未生效），按用户指示重试 1 次、改用事务内 `SET LOCAL statement_timeout`，19 秒返回：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 34 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个以上合格，未放宽到 72h（ctoldigital/axuse、mustafacagri/vibe-usage 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①malfite-labs/aix-skill（121★ 11.1/day）：账号 0 粉、仅此 1 个实仓，单仓爆星且描述空泛；②Hermes-Deck/hermes-deck（46★ 8.5/day）：组织 10-08 新建、0 粉、仅 1 仓；③AgenticsWorks/AgentPeerChat（152★ 8.0/day）：组织 09-19 新建、1 粉、仅 1 个实仓，按新建组织先例排除；④liuda30201/AI-Coding：汇总 API 中转站与公益站，导流性质；⑤Argolink 集群（isoldefairbanks、seraphinawolfe、sebastianwolfe4、amadeuskeeler、pipkinashcroft2 等）：同日创建、星数雷同、标题堆砌模型名；⑥j1s4nn/jev-adaptive-granularity-WM：uncategorized 论文代码；⑦其余均已在历史榜单出现，不再复评。homarr-labs/dashboard-icons（5.8/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 abdiraimov-otabek 2024-11 建号、9 粉、其余仓 ≤5★（**轻红旗**，量级小、fork 6，保留）；第 2 席 op7418 5,188 粉、名下 guizang-ppt-skill 28,355★，分类 uncategorized 但为电视桌面应用、非个人主页，保留；第 3 席 mars-tw 2022 建号、39 粉、名下 anti-gambling-trader-tw 1,110★，为模拟盘、不涉真实交易，保留；第 4 席 tomtomsatnav 2013 建号、3 粉、其余仓 0★（**轻红旗**，fork 9，保留）；第 5 席 better-isms 2025-09 建的组织（ISMS Copilot）、4 粉、fork 13，保留；第 6 席 kad-xyz 2022 建号、6 粉、本仓 0 fork（**轻红旗**，量级小，保留）；第 7 席 danepps 2024 建号、8 粉、名下 bluebook 9★，fork 7；第 8 席 uclanlp 为 UCLA NLP 组织、名下 visualbert 542★；第 9 席 QVerisAI 34 粉、名下 qveris-agent-toolkit 262★，fork 69；第 10 席 spmtitsolution 1 粉、仅 2 仓（**轻红旗**，fork 31 与星数相称，越南语 BA 社区项目，保留）。🆕 判定＝created_at 距今 14 天内，仅 QVerisFlow（259.8 天）不标，其余九席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（dashboard-design-skill 82★、QVerisFlow 1,886★、OpenVLHarness 121★），按红线保留快照值。
+
+---
+
 ## 2026-10-20
 1. simbasjungles/free-my-tv — 🆕 给 Google TV 换上快速无广告的主屏，用 Claude Code 写成，一键还原（130★ 130.0/day）
 2. kitlangton/scrawl — 🆕 把问题直接标注、录屏后发给智能体，让它一眼看懂你要改哪（434★ 86.1/day）
