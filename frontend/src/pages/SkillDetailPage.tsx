@@ -12,7 +12,7 @@ import { AuditVerdictCard } from "../components/AuditVerdictCard";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
-import { prerenderedDescription } from "../lib/prerenderedMeta";
+import { prerenderedDescription, prerenderedInstalls } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -266,7 +266,7 @@ export function SkillDetailPage() {
             >
               {t("detail.auditRepo")}
             </Link>
-            <InstallCommand skill={detail} />
+            <InstallCommand skill={detail} readmeCommands={prerenderedInstalls()} />
             <BadgeEmbed skill={detail} />
             <button
               onClick={() => setContactOpen(true)}

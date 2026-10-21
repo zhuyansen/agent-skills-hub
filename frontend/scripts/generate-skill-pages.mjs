@@ -539,7 +539,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />${robotsMeta}
   <title>${esc(title)}</title>
-  <meta name="description" content="${esc(metaDesc)}" />
+  <meta name="description" content="${esc(metaDesc)}" />${installs.length ? `
+  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}
   <meta name="keywords" content="${esc(keywords)}" />
 
   <!-- Open Graph -->

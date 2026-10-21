@@ -4,103 +4,71 @@ import type { Skill } from "../types/skill";
 
 interface Props {
   skill: Skill;
+  /** Install lines taken verbatim from the README, when the page has them. */
+  readmeCommands?: string[];
 }
 
+export interface InstallOption {
+  label: string;
+  command: string;
+  primary?: boolean;
+  fromReadme?: boolean;
+}
+
+// What the first word of a README install line says about it, as a tab label.
+const LABELS: Record<string, string> = {
+  npm: "npm", npx: "npx", pnpm: "pnpm", yarn: "yarn", bun: "bun", bunx: "bunx",
+  pip: "pip", pipx: "pipx", uv: "uv", uvx: "uvx", brew: "Homebrew", cargo: "Cargo",
+  go: "Go", gem: "gem", docker: "Docker", claude: "Claude Code", "/plugin": "Claude Code",
+  codex: "Codex", git: "Git Clone",
+};
+
+const labelOf = (command: string) => LABELS[command.split(/\s+/)[0].toLowerCase()] ?? "README";
+
+// The `skills` CLI copies a repository's SKILL.md folders into each agent's skill
+// directory, so it works for any repository that holds skills.
+const SKILL_AGENTS: [string, string][] = [
+  ["claude-code", "Claude Code"],
+  ["cursor", "Cursor"],
+  ["codex", "Codex"],
+  ["opencode", "OpenCode"],
+];
+
+/**
+ * Install options for a repository: the README's own install lines first (verbatim),
+ * then the `skills` CLI for skill repositories, then git clone. Nothing is guessed from
+ * the category or the language, the same rule as the static page
+ * (scripts/skill-install.mjs). A guessed `npx <repo>` or `pip install <repo>` names a
+ * package that may not exist, and the old Claude Code tab handed the GitHub page to
+ * mcp-remote as if it were a hosted MCP server, a command that can never run; it was the
+ * default on 10,422 of 15,063 skill pages (reported by a maintainer, 2026-10-21).
+ */
 export function getInstallCommands(
   skill: Skill,
-): { label: string; command: string; primary?: boolean }[] {
-  const commands: { label: string; command: string; primary?: boolean }[] = [];
-  const platforms = parsePlatforms(skill.platforms);
-  const category = skill.category?.toLowerCase() || "";
+  readmeCommands: string[] = [],
+): InstallOption[] {
   const name = skill.repo_full_name;
-
-  // Claude Code install (for claude-skill, mcp-server categories)
-  if (
-    category.includes("claude") ||
-    category.includes("mcp") ||
-    platforms.includes("claude-code") ||
-    platforms.includes("mcp")
-  ) {
-    commands.push({
-      label: "Claude Code",
-      command: `claude mcp add ${skill.repo_name} -- npx -y @anthropic-ai/mcp-remote@latest https://github.com/${name}`,
-      primary: true,
-    });
-  }
-
-  // Skill-category installs are agent-targetable (LobeHub `--agent` pattern):
-  // the same skill drops into different runtimes' skill dirs. `skills` CLI
-  // resolves the right path per agent.
-  if (category.includes("skill") || platforms.includes("claude-code")) {
-    for (const agent of ["cursor", "codex", "opencode"]) {
-      commands.push({
-        label:
-          agent === "cursor"
-            ? "Cursor"
-            : agent === "codex"
-              ? "Codex"
-              : "OpenCode",
-        command: `npx skills add ${name} --agent ${agent}`,
-      });
+  const options: InstallOption[] = readmeCommands.map((command) => ({
+    label: labelOf(command),
+    command,
+    fromReadme: true,
+  }));
+  const taken = (label: string) => options.some((o) => o.label === label);
+  if ((skill.category || "").toLowerCase().includes("skill")) {
+    for (const [agent, label] of SKILL_AGENTS) {
+      if (!taken(label)) options.push({ label, command: `npx skills add ${name} --agent ${agent}` });
     }
   }
-
-  // npx for Node/TypeScript
-  if (
-    skill.language === "TypeScript" ||
-    skill.language === "JavaScript" ||
-    platforms.includes("node")
-  ) {
-    commands.push({
-      label: "npx",
-      command: `npx ${skill.repo_name}`,
-    });
+  if (!taken("Git Clone")) {
+    options.push({ label: "Git Clone", command: `git clone https://github.com/${name}.git` });
   }
-
-  // pip for Python
-  if (skill.language === "Python" || platforms.includes("python")) {
-    commands.push({
-      label: "pip",
-      command: `pip install ${skill.repo_name}`,
-    });
-  }
-
-  // Docker
-  if (platforms.includes("docker")) {
-    commands.push({
-      label: "Docker",
-      command: `docker run ghcr.io/${name}`,
-    });
-  }
-
-  // Always add git clone as fallback
-  commands.push({
-    label: "Git Clone",
-    command: `git clone https://github.com/${name}.git`,
-  });
-
-  // Mark first as primary if none set
-  if (commands.length > 0 && !commands.some((c) => c.primary)) {
-    commands[0].primary = true;
-  }
-
-  return commands;
+  return options.map((o, i) => ({ ...o, primary: i === 0 }));
 }
 
-export function parsePlatforms(platforms: string): string[] {
-  try {
-    return JSON.parse(platforms || "[]");
-  } catch {
-    return [];
-  }
-}
-
-export function InstallCommand({ skill }: Props) {
+export function InstallCommand({ skill, readmeCommands = [] }: Props) {
   const { t } = useI18n();
-  const commands = getInstallCommands(skill);
-  const [activeIdx, setActiveIdx] = useState(
-    commands.findIndex((c) => c.primary) || 0,
-  );
+  const commands = getInstallCommands(skill, readmeCommands);
+  const [activeIdx, setActiveIdx] = useState(0);
   const [copied, setCopied] = useState(false);
 
   const active = commands[activeIdx];
@@ -186,6 +154,11 @@ export function InstallCommand({ skill }: Props) {
           )}
         </button>
       </div>
+      {active.fromReadme && (
+        <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+          {t("detail.installFromReadme")}
+        </p>
+      )}
     </div>
   );
 }

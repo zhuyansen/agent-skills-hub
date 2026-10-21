@@ -108,6 +108,7 @@ export const translations = {
     "detail.commits": "提交数",
     "detail.followers": "关注者",
     "detail.copyCommand": "复制安装命令",
+    "detail.installFromReadme": "取自这个项目在 GitHub 上的 README",
     "detail.copied": "已复制!",
     "detail.installCommand": "安装命令",
 
@@ -501,6 +502,7 @@ export const translations = {
     "detail.commits": "Commits",
     "detail.followers": "Followers",
     "detail.copyCommand": "Copy install command",
+    "detail.installFromReadme": "Taken from the project's README on GitHub",
     "detail.copied": "Copied!",
     "detail.installCommand": "Install",
 

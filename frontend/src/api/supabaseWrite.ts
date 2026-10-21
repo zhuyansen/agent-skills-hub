@@ -4,6 +4,9 @@
  */
 import { supabase } from "../lib/supabase";
 
+// Skill pages are generated from this many stars (MIN_STARS_FOR_PAGE in scripts/shared-utils.mjs).
+const PAGE_MIN_STARS = 50;
+
 function ensureSupabase() {
   if (!supabase) throw new Error("Supabase not configured");
   return supabase;
@@ -22,14 +25,19 @@ export async function sbSubmitSkill(
 
   const { data: existing } = await sb
     .from("skills")
-    .select("id")
+    .select("id, stars")
     .eq("repo_full_name", fullName)
     .maybeSingle();
 
   if (existing) {
+    // "Already tracked" alone sent a maintainer looking for a page that does not exist
+    // (2026-10-21): pages are built from PAGE_MIN_STARS, or for repos a /best/ page reviewed.
+    const hasPage = (existing.stars ?? 0) >= PAGE_MIN_STARS;
     return {
       status: "already_tracked",
-      message: "This skill is already tracked!",
+      message: hasPage
+        ? "This skill is already tracked!"
+        : `Already in our catalog. Its public page is built once it has ${PAGE_MIN_STARS} GitHub stars, or when it is picked for a reviewed /best/ page.`,
       skill_id: existing.id,
     };
   }
