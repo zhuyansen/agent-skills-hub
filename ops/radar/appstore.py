@@ -441,7 +441,8 @@ def apps(snaps: Path, today: date | None = None, social: bool = True, apolu: boo
                           "note": f"②榜单 {label(p['chart'])} #{p['rank']}(上架 {a['days']} 天,{len(a['countries'])} 个区上榜)"
                                   + (f",{WINDOW_ZH[cr['window']]}" if cr else "")
                                   + ("" if a["desc"] else ",无卖点词") + (f",{mark}" if mark else ""),
-                          "examples": [a["name"], a["artist"], a["genre"]], "variants": [a["brand"].lower()]})
+                          "examples": [a["name"], a["artist"], a["genre"]], "variants": [a["brand"].lower()],
+                          "link": store_link(a)})
     save(snaps, {"date": today.isoformat(), "charts": {k: [r["id"] for r in v] for k, v in charts.items()},
                  "before": before, "flagged": flagged, "checked": checked, "release": release, "gp_first": gp_first})
     return {"today": today.isoformat(), "charts": len(charts), "failed": failed, "gp_baseline": gp_first and
@@ -475,6 +476,13 @@ def _try(fn, *args):
         return fn(*args)
     except Exception as exc:  # noqa: BLE001
         return f"{type(exc).__name__}: {exc}"
+
+
+def store_link(app: dict) -> str:
+    """The app's page: Google Play, or the App Store of the storefront where it ranks best."""
+    if app.get("platform") == "android":
+        return f"https://play.google.com/store/apps/details?id={app['id']}"
+    return f"https://apps.apple.com/{app['home']}/app/id{app['id']}"
 
 
 def _place(p: dict) -> str:
@@ -522,9 +530,7 @@ def section(b: dict) -> list[str]:
         copy_cell = (f"{len(copies)}" + ("：" + "、".join(c["name"].split(" - ")[0][:16] for c in copies[:4]) if copies else "")) if cr else "—"
         window = f"**{WINDOW_ZH[cr['window']]}**" if cr else "—"
         stale = f"<br>({r['date'][5:]} 读)" if r.get("date") and r["date"] != (b.get("today") or r["date"]) else ""
-        link = (f"https://play.google.com/store/apps/details?id={a['id']}" if a.get("platform") == "android"
-                else f"https://apps.apple.com/{a['home']}/app/id{a['id']}")
-        lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}]({link}) | "
+        lines.append(f"| {'🆕 ' if a['new'] else ''}[{a['name'][:40]}]({store_link(a)}) | "
                      f"{places} | {a['release'][5:]}({a['days']} 天) | {a['price']} | {terms} | "
                      f"{'、'.join(cr.get('hints', [])[:5]) or '—'} | {copy_cell} | {window}{stale} | "
                      f"{_score_cell(r)} | "

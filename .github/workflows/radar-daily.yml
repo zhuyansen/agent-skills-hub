@@ -63,6 +63,13 @@ jobs:
           key: radar-snap-${{ github.run_id }}
           restore-keys: radar-snap-
 
+      - name: Restore the 8-hourly runs' memory of the picks they mailed
+        uses: actions/cache/restore@v4
+        with:
+          path: radar-src-snap
+          key: radar-src-snap-read-by-daily   # never saved: the latest source run's entry, by prefix; read only
+          restore-keys: radar-src-snap-
+
       - name: Run the radar
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
@@ -71,7 +78,9 @@ jobs:
           AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
           GOANYAPI_API_KEY: ${{ secrets.GOANYAPI_API_KEY }}   # optional: related queries for the keyword table (usecases.py)
           GITHUB_TOKEN: ${{ github.token }}
-        run: python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap --skip-x --skip-hf --skip-memes --skip-appstore
+        run: >-
+          python ops/radar/radar.py "$RUNNER_TEMP/radar.md" radar-snap --skip-x --skip-hf --skip-memes --skip-appstore
+          --sent-picks=radar-src-snap/sent_picks.json
 
       - name: Save today's snapshots
         if: always()

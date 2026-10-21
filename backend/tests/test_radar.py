@@ -778,7 +778,7 @@ def test_shadow_new_sites_alone_send_no_mail(monkeypatch, tmp_path):
     recorded, shadow = _sources_with_social(monkeypatch, [])
     radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources"})
     assert not (tmp_path / "sources.md").exists() and not recorded and [r["term"] for r in shadow] == ["altstream"]
-    assert not radar._mail_errors({"social": {"error": "boom"}}) and radar._mail_errors({"x": {"error": "boom"}})
+    assert not radar.report_errors({"social": {"error": "boom"}}) and radar.report_errors({"x": {"error": "boom"}})
     monkeypatch.setattr(social_sites, "SOCIAL_SHOW", True)    # the one switch: the leads go to the report instead
     shown = REAL_SOCIAL(tmp_path / "again", {"linked": []}, SOC_NOW)
     assert [r["term"] for r in shown["terms"]] == ["altstream"] and shown["shadow_leads"] == []
@@ -793,8 +793,10 @@ def _daily_world(monkeypatch, recent=(), github_terms=(), breakout_terms=()):
     """Every source of the daily run, answered without the network or the database. Returns what
     record(), record_new() and the keyword table were handed."""
     monkeypatch.setattr(radar, "judge", lambda rows: None)
+    repos = [{"repo": t["repo"], "stars": 14671, "velocity": 2989, "delta": None, "age_days": 4.9, "description": "", "new": True}
+             for t in breakout_terms]
     monkeypatch.setattr(radar.breakout, "breakouts", lambda snaps: {
-        "searched": 305, "searched_late": 105, "first_run": False, "repos": [], "terms": [dict(t) for t in breakout_terms]})
+        "searched": 305, "searched_late": 105, "first_run": False, "repos": repos, "terms": [dict(t) for t in breakout_terms]})
     monkeypatch.setattr(radar.signals, "github_surge", lambda: {
         "repos_recent": 1843, "repos_baseline": 24130, "terms": [dict(t) for t in github_terms]})
     got = {"recorded": [], "shadow": [], "read": []}
@@ -829,3 +831,120 @@ def test_shadow_blocks_keep_their_terms_out_of_the_leads_and_one_switch_turns_th
     monkeypatch.setattr(radar.signals, "GITHUB_SHOW", True)
     shown = radar.daily_blocks(Path("unused"), DAILY_FLAGS | {"--skip-breakout", "--skip-db"})
     assert "shadow" not in shown["github"]                                          # skipped here, but not shadowed
+
+
+def _section(path, head):
+    """One section of a written report, from its heading to the next one."""
+    text = path.read_text()
+    start = text.index(head)
+    end = text.find("\n### ", start + 1)
+    return text[start:end if end > 0 else None]
+
+
+def test_the_daily_lists_a_source_lead_once(monkeypatch, tmp_path):
+    deepinfer = {"term": "deepinfer", "recent": 1, "repo": "deepseek-ai/DeepInfer", "variants": ["deepinfer"],
+                 "note": "GitHub 爆发 deepseek-ai/DeepInfer ★14671(均 2989/天)"}
+    recent = [{"term": "orchestra bio", "kinds": ["x"], "note": "X 2 个账号 ♥3130", "named": 0.95},
+              {"term": "deepinfer", "kinds": ["x", "breakout"], "note": deepinfer["note"], "named": 0.96}]
+    _daily_world(monkeypatch, recent=recent, breakout_terms=[deepinfer])
+    snaps = tmp_path / "snap"
+    radar.daily_main(tmp_path / "d1.md", snaps, DAILY_FLAGS)
+    first = _section(tmp_path / "d1.md", "### ① ")
+    assert "**orchestra bio**" in first and "deepinfer" not in first                 # deepinfer is ② 单仓爆发's 🆕 today
+    recent.append({"term": "sm100", "kinds": ["x"], "note": "X 2 个账号 ♥74", "named": 0.65})
+    _daily_world(monkeypatch, recent=recent)                                          # the next day, one more lead
+    radar.daily_main(tmp_path / "d2.md", snaps, DAILY_FLAGS)
+    second = _section(tmp_path / "d2.md", "### ① ")
+    assert "**sm100**" in second and "orchestra bio" not in second and "deepinfer" not in second
+    radar.daily_main(tmp_path / "d3.md", snaps, DAILY_FLAGS)
+    assert "无(3 个都已列过)" in _section(tmp_path / "d3.md", "### ① ")
+    assert set(radar.memory(snaps / radar.LISTED)) == {"orchestra bio", "deepinfer", "sm100"}
+
+
+def test_the_daily_leaves_out_the_picks_the_8_hourly_mails_sent(monkeypatch, tmp_path):
+    app = {"term": "2am cam", "kinds": ["appstore"], "named": 0.66, "note": "②榜单 德摄影录像付费 #8(上架 20 天,1 个区上榜),先手"}
+    _daily_world(monkeypatch, recent=[app])
+    sent = tmp_path / "src" / radar.SENT
+    sent.parent.mkdir()
+    sent.write_text(json.dumps({"2am cam": datetime.now(timezone.utc).isoformat(timespec="minutes")}))
+    radar.daily_main(tmp_path / "d.md", tmp_path / "snap", DAILY_FLAGS | {f"--sent-picks={sent}"})
+    text = (tmp_path / "d.md").read_text()
+    assert "今天够格的词都已在每 8 小时的邮件里发过:2am cam。" in text                  # named once, in one line,
+    assert text.count("2am cam") == 1 and "无(1 个都已列过)" in _section(tmp_path / "d.md", "### ① ")   # not again in ①
+    # with no memory (a local run) it is the day's pick, and ① does not list it again
+    radar.daily_main(tmp_path / "e.md", tmp_path / "snap2", DAILY_FLAGS)
+    text = (tmp_path / "e.md").read_text()
+    assert "1. **2am cam**" in text and text.count("2am cam") == 1
+    # a pick mailed three days ago is not "since yesterday"
+    sent.write_text(json.dumps({"2am cam": (datetime.now(timezone.utc) - timedelta(days=3)).isoformat(timespec="minutes")}))
+    assert radar.sent_lately({f"--sent-picks={sent}"}, date.today()) == set() and radar.sent_lately(set(), date.today()) == set()
+
+
+def test_the_mail_memories_keep_14_days():
+    held = {"old": "2026-10-01T08:00+00:00", "kept": "2026-10-10T08:00+00:00"}
+    assert radar.remember(held, ["kept", "new"], "2026-10-21T08:00+00:00", date(2026, 10, 21)) == \
+        {"kept": "2026-10-10T08:00+00:00", "new": "2026-10-21T08:00+00:00"}
+    assert radar.memory(Path("/nonexistent/sent_picks.json")) == {}
+
+
+# --- the 8-hourly mail: new picks only -------------------------------------------------------
+
+def _meme_term(term, days_ago=1):
+    """A trend's lead row as memes.memes() hands it on: over Jev's bar, first seen `days_ago`, with its top post."""
+    first = date.today() - timedelta(days=days_ago)
+    return {"term": term, "recent": 2, "named": 0.6, "what": "用AI把自己放进视频", "variants": [term],
+            "note": f"①梗 TikTok 2 帖,最早 {first:%m-%d},Jev 机会 0.60｜做什么:用AI把自己放进视频", "examples": ["t"],
+            "posts": [{"account": "TikTok", "likes": 900, "url": "https://www.tiktok.com/@a/video/7", "text": "t", "platform": "tiktok"}]}
+
+
+def _app_term(term):
+    return {"term": term, "recent": 3, "named": 0.66, "window": "first", "described": True, "tied": "", "variants": [term],
+            "what": "新应用,德摄影录像付费 #8,上架 20 天,卖点词 night camera,同类新应用 0 个(先手)",
+            "note": "②榜单 德摄影录像付费 #8(上架 20 天,1 个区上榜),先手", "examples": [term], "link": "https://apps.apple.com/de/app/id1"}
+
+
+def _sources_with(monkeypatch, memes_=(), apps=(), hf_error=""):
+    _quiet_memes_and_charts(monkeypatch)
+    monkeypatch.setattr(radar, "judge", lambda rows: None)
+    monkeypatch.setattr(radar.memes, "memes", lambda snaps: {
+        "posts": 120, "by_platform": {"tiktok": 120}, "tags": 6, "memes": [], "terms": [dict(t) for t in memes_],
+        "errors": [], "jev": True, "cost_micros": 0})
+    monkeypatch.setattr(radar.appstore, "apps", lambda snaps: {
+        "charts": 290, "failed": [], "apps": [], "terms": [dict(t) for t in apps], "read": [], "errors": [], "cost_micros": 0})
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "terms": []})
+
+    def hf(snaps):
+        if hf_error:
+            raise OSError(hf_error)
+        return {"models": 100, "terms": []}
+    monkeypatch.setattr(radar.source_signals, "hf_new", hf)
+
+
+def test_the_8_hourly_run_mails_only_the_picks_no_earlier_mail_sent(monkeypatch, tmp_path):
+    report, snaps, mail = tmp_path / "sources.md", tmp_path / "snap", tmp_path / "sources.picks.md"
+    flags = {"--sources", "--skip-db"}
+    _sources_with(monkeypatch, memes_=[_meme_term("korean baseball ai")])
+    radar.sources_main(report, snaps, flags)
+    first = mail.read_text()
+    assert first.startswith("1. **korean baseball ai**:AI 视频梗,用AI把自己放进视频。") and "\n2. " not in first
+    assert "**今天上线**" in first and first.rstrip().endswith("[最热一条](https://www.tiktok.com/@a/video/7)")
+    assert "明细" not in first and "|" not in first and "### " not in first           # the picks, nothing else
+    assert "korean baseball ai" in report.read_text()                                    # the step summary keeps the full report
+    assert not (snaps / radar.SENT).exists() and set(radar.memory(snaps / radar.SENT_NEXT)) == {"korean baseball ai"}
+    radar.sources_main(report, snaps, flags)                                             # that mail failed: not moved in place
+    assert mail.read_text() == first                                                     # so the next run sends it again
+    (snaps / radar.SENT_NEXT).rename(snaps / radar.SENT)                                 # what radar-source.yml does once it is sent
+    _sources_with(monkeypatch, memes_=[_meme_term("korean baseball ai")], apps=[_app_term("2am cam")])
+    radar.sources_main(report, snaps, flags)
+    second = mail.read_text()
+    assert second.startswith("1. **2am cam**:新应用") and "korean" not in second and "[应用页](https://apps.apple.com/de/app/id1)" in second
+    (snaps / radar.SENT_NEXT).rename(snaps / radar.SENT)
+    radar.sources_main(report, snaps, flags)
+    assert not mail.exists() and not (snaps / radar.SENT_NEXT).exists()                  # nothing new: no mail
+    assert set(radar.memory(snaps / radar.SENT)) == {"korean baseball ai", "2am cam"}
+
+
+def test_a_source_error_goes_to_the_step_summary_not_the_mail(monkeypatch, tmp_path):
+    _sources_with(monkeypatch, hf_error="HTTP Error 503: Service Unavailable")
+    radar.sources_main(tmp_path / "sources.md", tmp_path / "snap", {"--sources", "--skip-db"})
+    assert "HTTP Error 503" in (tmp_path / "sources.md").read_text() and not (tmp_path / "sources.picks.md").exists()

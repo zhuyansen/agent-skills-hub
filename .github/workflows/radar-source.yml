@@ -69,13 +69,6 @@ jobs:
           GOANYAPI_API_KEY: ${{ secrets.GOANYAPI_API_KEY }}   # optional: where the new sites' visits come from (social_sites.py)
         run: python ops/radar/radar.py "$RUNNER_TEMP/sources.md" radar-src-snap --sources
 
-      - name: Save the vocabulary
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: radar-src-snap
-          key: radar-src-snap-${{ github.run_id }}
-
       - name: Report
         if: always()
         env:
@@ -83,10 +76,21 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           RADAR_EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
         run: |
-          if [ ! -f "$RUNNER_TEMP/sources.md" ]; then
-            [ "${{ job.status }}" = "success" ] && { echo "没有新名字,不发邮件" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
-            echo "## 新词雷达 · ① 源头运行失败" > "$RUNNER_TEMP/sources.md"
-          fi
-          printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/sources.md"
-          cat "$RUNNER_TEMP/sources.md" >> "$GITHUB_STEP_SUMMARY"
-          python ops/radar/notify.py "$RUNNER_TEMP/sources.md" "新词雷达 · ① 源头 $(TZ=Asia/Shanghai date +'%m-%d %H:00')"
+          # the full report and any error go to the run's summary only
+          if [ -f "$RUNNER_TEMP/sources.md" ]; then cat "$RUNNER_TEMP/sources.md" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "${{ job.status }}" = "success" ]; then echo "没有新名字" >> "$GITHUB_STEP_SUMMARY"
+          else echo "## 新词雷达 · ① 源头运行失败(不发邮件,见日志)" >> "$GITHUB_STEP_SUMMARY"; fi
+          # the mail: only the picks no earlier mail sent (radar.mail_new_picks); no new pick, no mail
+          mail="$RUNNER_TEMP/sources.picks.md"
+          [ -f "$mail" ] || { echo "没有新的可做词,不发邮件" >> "$GITHUB_STEP_SUMMARY"; exit 0; }
+          printf '\n[运行记录](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$mail"
+          python ops/radar/notify.py "$mail" "新词雷达 · 现在就能做 $(TZ=Asia/Shanghai date +'%m-%d %H:%M')"
+          # sent: these picks are not mailed again; when the mail fails this is skipped and the next run tries again
+          mv radar-src-snap/sent_picks.next.json radar-src-snap/sent_picks.json
+
+      - name: Save the vocabulary
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: radar-src-snap
+          key: radar-src-snap-${{ github.run_id }}

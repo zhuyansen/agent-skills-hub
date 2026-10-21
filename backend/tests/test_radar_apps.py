@@ -65,7 +65,7 @@ def test_own_and_one_place_apps_are_not_picks():
             {"term": "언제오나(지하철)", "kinds": ["appstore"], "named": 0.70, "tied": "只限一地", "note": "②榜单 韩生活付费 #8"},
             {"term": "2am cam", "kinds": ["appstore"], "named": 0.66, "note": "②榜单 德摄影录像付费 #8(上架 20 天,1 个区上榜)"}]
     picks = radar._app_picks({"recent_sources": {"rows": rows}})
-    assert len(picks) == 1 and picks[0].startswith("**2am cam**")
+    assert len(picks) == 1 and picks[0]["term"] == "2am cam" and picks[0]["text"].startswith("**2am cam**")
 
 
 def test_table_shows_why_a_high_score_is_not_bold():

@@ -2,15 +2,20 @@
 
   python ops/radar/radar.py <report.md> <snapshot-dir> [--skip-x] [--skip-hf] [--skip-breakout]
                             [--skip-appstore] [--skip-memes] [--skip-social] [--skip-db]
-                            [--skip-review] [--skip-usecases]
+                            [--skip-review] [--skip-usecases] [--sent-picks=<source snapshot>/sent_picks.json]
   python ops/radar/radar.py <report.md> <snapshot-dir> --sources
 
-The source signals (①) change by the hour, the rest by the day, so they run apart:
-radar-source.yml every 8 hours with --sources (X, HF, the AI video trends and the new sites
-people link; <report.md> is written
-only when there is a name or an error, so quiet runs post nothing), and radar-daily.yml
-once a day with --skip-x --skip-hf, its report listing the ① leads of the last day
-from radar_leads.
+The source signals (①) change by the hour, the rest by the day, so they run apart, and each
+mail shows a term once:
+  radar-source.yml, every 8 hours with --sources: HF, the AI video trends, the App Store charts
+    and the new sites people link, and X once a day (x_block). Its full report, <report.md>,
+    goes to the run's summary only, written when there is a name or an error. The mail,
+    <report>.picks.md, holds only the picks no earlier 8-hourly mail sent (mail_new_picks);
+    with none, or with only errors, there is no mail.
+  radar-daily.yml, once a day with --skip-x --skip-hf --skip-memes --skip-appstore: one mail.
+    Its picks leave out those the 8-hourly mails sent since yesterday (--sent-picks), and its
+    ① lists the last day's source leads from radar_leads that no earlier daily, no pick mail
+    and no other part of the mail showed (daily_view, LISTED).
 
 Signals (see ops/gefei-seo-playbook.md §3), earliest first:
   ① X        names the labs and AI bloggers in sources.json said first (source_signals.x_new, AIsa)
@@ -39,8 +44,9 @@ from __future__ import annotations
 
 import json
 import sys
+import urllib.parse
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -179,34 +185,53 @@ def _cost(*blocks: dict) -> str:
 
 PICKS = 3
 MEME_HOW = "做法:单功能站(上传照片 → 生成你的版本),按次卖。"
+TRENDS_LINK = "https://trends.google.com/trends/explore?date=today%203-m&q="
 
 
-def picks(b: dict[str, dict], today: date | None = None) -> list[str]:
+def picks(b: dict[str, dict], today: date | None = None, sent: frozenset[str] | set[str] = frozenset()) -> list[str]:
     """The top of every mail: at most PICKS terms to build for today, each with why, how
-    long it has, and what to make. Everything below it is the evidence. The mail had
-    grown to a dozen sections and no answer (2026-10-19: "不知道做哪个词").
+    long it has, what to make and one link. Everything below it is the evidence. The mail had
+    grown to a dozen sections and no answer (2026-10-19: "不知道做哪个词"). Picks in `sent`,
+    mailed already, are left out (pick_lines)."""
+    items, held = pick_items(b, today or date.today())
+    return pick_lines([p for p in items if p["term"] not in sent], [p["term"] for p in items if p["term"] in sent], held)
+
+
+def pick_items(b: dict[str, dict], today: date) -> tuple[list[dict], list[tuple[str, str]]]:
+    """Every pick as {"term", "kind", "text"}, and the AI video trends over Jev's bar left out, as (term, why).
 
     Order: AI video trends over Jev's bar first, because they are over in about four days,
     and only those that first showed less than memes.PEAK_DAYS ago (10-20: two of three
     picks were weeks old and the mail did not say when they appeared); then keywords the
     table marked prioritize (measured demand, still rising); then new apps over Jev's bar
-    whose search words are not crowded yet. The trends left out are listed with why."""
-    today = today or date.today()
+    whose search words are not crowded yet."""
     uc = {r["phrase"]: r for r in b.get("usecases", {}).get("rows", [])}
     meme_out, held = _meme_picks(b, uc, today)
-    out = meme_out + _usecase_picks(uc) + _app_picks(b)
-    lines = ([f"{i}. {line}" for i, line in enumerate(out[:PICKS], 1)] if out
-             else ["**今天没有值得动手的词。** 下面的明细扫一眼即可。"])
-    if len(out) > PICKS:
-        lines += ["", f"(另有 {len(out) - PICKS} 个够格的,见下面明细)"]
+    return meme_out + _usecase_picks(uc) + _app_picks(b), held
+
+
+def pick_lines(fresh: list[dict], sent: list[str], held: list[tuple[str, str]]) -> list[str]:
+    """The picks section: the picks not mailed yet, or, when every pick was (`sent`), one line naming them;
+    then the trends left out, with why."""
+    if fresh:
+        lines = [f"{i}. {p['text']}" for i, p in enumerate(fresh[:PICKS], 1)]
+        lines += ["", f"(另有 {len(fresh) - PICKS} 个够格的,见下面明细)"] if len(fresh) > PICKS else []
+    else:
+        lines = [f"今天够格的词都已在每 8 小时的邮件里发过:{'、'.join(sent)}。" if sent
+                 else "**今天没有值得动手的词。** 下面的明细扫一眼即可。"]
     if held:
-        lines += ["", "没放进来的 AI 视频梗:" + "、".join(held)]
-    if meme_out or held:
+        lines += ["", "没放进来的 AI 视频梗:" + "、".join(f"{t}({why})" for t, why in held)]
+    if held or any(p["kind"] == "meme" for p in fresh):
         lines += ["", memes.AGE_NOTE]
     return lines
 
 
-def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[list[str], list[str]]:
+def _link(label: str, url: str) -> str:
+    """A pick's one link, on a line of its own; '' without a URL."""
+    return f"  \n[{label}]({url})" if url else ""
+
+
+def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[list[dict], list[tuple[str, str]]]:
     """Trends over Jev's bar still before their peak, and the others with why they are not."""
     rows = b.get("meme", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
                                               if "meme" in r.get("kinds", [])]
@@ -219,9 +244,9 @@ def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[l
         info["checks"] = r.get("checks") or info["checks"]
         why = _meme_held(info, t, today)
         if why:
-            held.append(f"{r['term']}({why})")
+            held.append((r["term"], why))
         else:
-            out.append(_meme_line(r, info, t, today))
+            out.append({"term": r["term"], "kind": "meme", "text": _meme_line(r, info, t, today)})
     return out, held
 
 
@@ -242,23 +267,26 @@ def _meme_line(r: dict, info: dict, t: dict, today: date) -> str:
     left = memes.PEAK_DAYS - (today - info["earliest"]).days
     demand = f",Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else ""
     what = r.get("what") or info["what"]
+    top = next((p["url"] for p in r.get("posts", []) if p.get("url")), "")   # the most-liked post (memes.py)
     return (f"**{r['term']}**:AI 视频梗{',' + what if what else ''}。  \n"
             f"{memes.age_text(info['earliest'], info['edge'], today)};{info['where']} {info['posts']} 帖,"
             f"Jev 机会 {r['named']:.2f}{demand}。  \n"
             + (f"{info['checks']}。  \n" if info["checks"] else "")
-            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW}")
+            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW}" + _link("最热一条", top))
 
 
-def _usecase_picks(uc: dict[str, dict]) -> list[str]:
+def _usecase_picks(uc: dict[str, dict]) -> list[dict]:
     out = []
     for r in (x for x in uc.values() if x.get("decision") == "prioritize"):
         src = f",来自 {', '.join(r['names'])}" if r.get("names") else ""
-        out.append(f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
-                   f"{usecases.NOW_ZH.get(r.get('now'), '')}{src}。  \n做法:工具页或场景页,标题对准这个词。")
+        out.append({"term": r["phrase"], "kind": "usecase", "text": (
+            f"**{r['phrase']}**:{'通用词' if r['kind'] == 'generic' else '新名字'},估算日搜 {r.get('per_day', '?')},"
+            f"{usecases.NOW_ZH.get(r.get('now'), '')}{src}。  \n做法:工具页或场景页,标题对准这个词。"
+            + _link("Google Trends", TRENDS_LINK + urllib.parse.quote(r["phrase"])))})
     return out
 
 
-def _app_picks(b: dict[str, dict]) -> list[str]:
+def _app_picks(b: dict[str, dict]) -> list[dict]:
     rows = b.get("appstore", {}).get("terms") or [r for r in b.get("recent_sources", {}).get("rows", [])
                                                   if "appstore" in r.get("kinds", [])]
     out = []
@@ -271,15 +299,109 @@ def _app_picks(b: dict[str, dict]) -> list[str]:
         # a business's own app (a gym chain's members app) or one city's: no need to copy (10-20)
         if r.get("tied") or any(m in r.get("note", "") for m in appstore.TIED_ZH.values()):
             continue
-        out.append(f"**{r['term']}**:{r.get('what') or r.get('note', '')},Jev 机会 {r['named']:.2f}。  \n"
-                   f"做法:同类应用或网站,名字和标题用它的卖点词。")
+        out.append({"term": r["term"], "kind": "app", "text": f"**{r['term']}**:{r.get('what') or r.get('note', '')},"
+                    f"Jev 机会 {r['named']:.2f}。  \n做法:同类应用或网站,名字和标题用它的卖点词。" + _link("应用页", r.get("link", ""))})
     return out
 
 
-def markdown(lead: list[dict], b: dict[str, dict], rev: dict, summ: dict) -> str:
-    lines = ["## 今天做哪个词", "", *picks(b), "", "---", "", "## 明细(上面每个词的依据,不用每天细看)",
-             *usecases.table(b.get("usecases", {"skipped": True})), "",
-             "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
+# --- what each mail has already shown --------------------------------------------------------
+
+SENT = "sent_picks.json"             # source snapshot dir: {term: when, UTC} of the picks the 8-hourly mails sent
+SENT_NEXT = "sent_picks.next.json"   # that with this run's new picks; radar-source.yml moves it to SENT once mailed
+PICK_MAIL = ".picks.md"              # the 8-hourly mail, <report>.picks.md, written only when a pick is new
+LISTED = "listed.json"               # daily snapshot dir: {term: day} of the source leads a daily mail showed
+MEMORY_DAYS = 14                     # how long a term mailed or listed stays out of the next mails
+SENT_DAILY_DAYS = 1                  # the daily leaves out picks mailed since yesterday: the days recent_sources reads
+
+
+def memory(path: Path) -> dict[str, str]:
+    """{term: when} from one of the mail memories (SENT, LISTED); empty when it is missing or unreadable."""
+    try:
+        held = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return {}
+    return held if isinstance(held, dict) else {}
+
+
+def remember(held: dict[str, str], terms: list[str], when: str, today: date) -> dict[str, str]:
+    """`held` with `terms` added at `when` (a term held keeps its first date), the last MEMORY_DAYS kept."""
+    cut = (today - timedelta(days=MEMORY_DAYS)).isoformat()
+    out = {t: at for t, at in held.items() if str(at)[:10] >= cut}
+    return out | {t: out.get(t, when) for t in terms}
+
+
+def pick_mail(items: list[dict]) -> str:
+    """The 8-hourly mail: the new picks and nothing else; radar-source.yml adds the run's link."""
+    return "\n".join(f"{i}. {p['text']}" for i, p in enumerate(items, 1)) + "\n"
+
+
+def mail_new_picks(report: Path, snaps: Path, blocks: dict[str, dict], now: datetime | None = None) -> list[dict]:
+    """The picks no 8-hourly mail sent in the last MEMORY_DAYS (SENT), as <report>.picks.md for radar-source.yml
+    to mail, with the memory that adds them staged as SENT_NEXT: the workflow moves it to SENT only once the
+    mail is sent, so a mail that failed is tried again by the next run. No new pick: no file and no mail."""
+    now = now or datetime.now(timezone.utc)
+    mail = report.with_suffix(PICK_MAIL)
+    for stale in (mail, snaps / SENT_NEXT):
+        stale.unlink(missing_ok=True)
+    sent = memory(snaps / SENT)
+    new = [p for p in pick_items(blocks, now.date())[0] if p["term"] not in sent]
+    if new:
+        mail.write_text(pick_mail(new))
+        snaps.mkdir(parents=True, exist_ok=True)
+        staged = remember(sent, [p["term"] for p in new], now.isoformat(timespec="minutes"), now.date())
+        (snaps / SENT_NEXT).write_text(json.dumps(staged, ensure_ascii=False, indent=1))
+    return new
+
+
+def option(flags: set[str], name: str) -> str:
+    """The value of a --name=value flag; '' without one."""
+    return next((f.split("=", 1)[1] for f in flags if f.startswith(name + "=")), "")
+
+
+def sent_lately(flags: set[str], today: date) -> set[str]:
+    """The picks the 8-hourly mails sent since yesterday (SENT_DAILY_DAYS), read from the source snapshot that
+    radar-daily.yml restores (--sent-picks=<its SENT>); none without the flag."""
+    path = option(flags, "--sent-picks")
+    since = (today - timedelta(days=SENT_DAILY_DAYS)).isoformat()
+    return {t for t, at in memory(Path(path)).items() if str(at)[:10] >= since} if path else set()
+
+
+def daily_view(b: dict[str, dict], today: date, sent: set[str], listed: set[str]) -> dict:
+    """What the daily mail shows of the picks and the source leads, each term once: the picks no 8-hourly
+    mail sent, the trends held back, and in ① the last day's source leads that no earlier daily (`listed`),
+    no 8-hourly pick mail, nothing above and no 🆕 repo of ② 单仓爆发 shows. `shown` is what LISTED keeps."""
+    items, held = pick_items(b, today)
+    fresh = [p for p in items if p["term"] not in sent]
+    mailed = [p["term"] for p in items if p["term"] in sent]
+    above = {p["term"] for p in fresh[:PICKS]} | {t for t, _ in held} | set(mailed)
+    elsewhere = above | listed | {t["term"] for t in b["breakout"].get("terms", [])}
+    rows = b.get("recent_sources", {}).get("rows") or []
+    recent = [r for r in rows if r["term"] not in elsewhere]
+    return {"fresh": fresh, "sent": mailed, "held": held, "recent": recent,
+            "dropped": len(rows) - len(recent), "shown": above | {r["term"] for r in rows}}
+
+
+def save_listed(snaps: Path, shown: set[str], today: date) -> None:
+    """The source leads this daily mail showed, kept MEMORY_DAYS so that the next dailies do not list them again."""
+    snaps.mkdir(parents=True, exist_ok=True)
+    held = remember(memory(snaps / LISTED), sorted(shown), today.isoformat(), today)
+    (snaps / LISTED).write_text(json.dumps(held, ensure_ascii=False, indent=1))
+
+
+def markdown(lead: list[dict], b: dict[str, dict], view: dict) -> str:
+    """The daily mail (radar-daily.yml sends exactly one): what to build, then the evidence. `view` (daily_view)
+    says which picks and source leads it shows."""
+    lines = ["## 今天做哪个词", "", *pick_lines(view["fresh"], view["sent"], view["held"]), "", "---", "",
+             "## 明细(上面每个词的依据,不用每天细看)", *usecases.table(b.get("usecases", {"skipped": True})),
+             *candidate_lines(lead), *recent_lines(b.get("recent_sources", {}), view),
+             *memes.section(b.get("meme", {"skipped": True})), *breakout_lines(b["breakout"]),
+             *appstore.section(b.get("appstore", {"skipped": True})),
+             *review_lines(b.get("review", {}), b.get("summary", {})), *status_lines(b)]
+    return "\n".join(lines) + "\n"
+
+
+def candidate_lines(lead: list[dict]) -> list[str]:
+    lines = ["", "### 候选新词(Jev 判为专有名词、且还没有对应场景页的排前面)", "",
              "| 词 | 信号 | Jev | 已有页面 | 搜索变体 | 例子 |", "|---|---|---|---|---|---|"]
     names_ = named(lead)
     for r in names_[:SHOWN]:
@@ -288,40 +410,43 @@ def markdown(lead: list[dict], b: dict[str, dict], rev: dict, summ: dict) -> str
         lines.append(f"| **{r['term']}** | {_signals_cell(r)} | {score} | {r.get('page') or '无'} | "
                      f"{', '.join(r['variants'][1:]) or '—'} | {ex} |")
     rest = [r["term"] for r in lead if r not in names_][:OTHER_TERMS]
-    if rest:
-        lines += ["", "其他上升词(Jev 判为普通词):" + "、".join(rest)]
+    return lines + (["", "其他上升词(Jev 判为普通词):" + "、".join(rest)] if rest else [])
 
-    recent = b.get("recent_sources", {})
-    if not recent.get("skipped"):
-        lines += ["", "### ① 近 24 小时的源头新词(每 8 小时任务记下的)", ""]
-        rows = recent.get("rows") or []
-        lines += ([f"- **{r['term']}**:{r['note']}" for r in rows] if rows
-                  else [f"无({recent.get('error') or '没有新名字'})"])
-    lines += memes.section(b.get("meme", {"skipped": True}))
-    lines += ["", f"### ② 单仓库爆发(近 {breakout.WINDOW_DAYS} 天新建;{breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的要 "
-                  f"≥{breakout.LATE_MIN_STARS} 星;按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
-    repos = b["breakout"].get("repos") or []
-    if repos:
-        lines += ["| 仓库 | ★ | 均/天 | 比昨天 | 天数 | 简介 |", "|---|---|---|---|---|---|"]
-        lines += [f"| {'🆕 ' if r.get('new') else ''}[{r['repo']}](https://github.com/{r['repo']}) | {r['stars']} | {r['velocity']} | "
-                  f"{'+' + str(r['delta']) if r['delta'] is not None else '—'} | {r['age_days']} | "
-                  f"{r['description'][:60].replace('|', '/')} |" for r in repos]
-    else:
-        lines.append(f"无({b['breakout'].get('error') or ('跳过' if b['breakout'].get('skipped') else '没有爆发仓库')})")
-    lines += appstore.section(b.get("appstore", {"skipped": True}))
 
-    lines += review_lines(rev, summ)
+def recent_lines(recent: dict, view: dict) -> list[str]:
+    """① in the daily mail, the one place the source leads show: the last day's leads, less those an
+    earlier daily or another part of this mail already showed (daily_view)."""
+    if recent.get("skipped"):
+        return []
+    lines = ["", "### ① 近 24 小时的源头新词(每 8 小时任务记下的;之前的日报、可做词邮件和本封别处列过的不再列)", ""]
+    if view["recent"]:
+        return lines + [f"- **{r['term']}**:{r['note']}" for r in view["recent"]]
+    why = recent.get("error") or (f"{view['dropped']} 个都已列过" if view["dropped"] else "没有新名字")
+    return lines + [f"无({why})"]
 
-    x, hf, gh = b["x"], b["hf"], b["github"]
-    lines += ["", "### 数据状态", ""]
+
+def breakout_lines(bo: dict) -> list[str]:
+    lines = ["", f"### ② 单仓库爆发(近 {breakout.WINDOW_DAYS} 天新建;{breakout.WINDOW_DAYS + 1}–{breakout.LATE_DAYS} 天的要 "
+                 f"≥{breakout.LATE_MIN_STARS} 星;按每天涨星排;🆕 = 今天第一次达标,进上面的候选词)", ""]
+    repos = bo.get("repos") or []
+    if not repos:
+        return lines + [f"无({bo.get('error') or ('跳过' if bo.get('skipped') else '没有爆发仓库')})"]
+    return lines + ["| 仓库 | ★ | 均/天 | 比昨天 | 天数 | 简介 |", "|---|---|---|---|---|---|"] + [
+        f"| {'🆕 ' if r.get('new') else ''}[{r['repo']}](https://github.com/{r['repo']}) | {r['stars']} | {r['velocity']} | "
+        f"{'+' + str(r['delta']) if r['delta'] is not None else '—'} | {r['age_days']} | "
+        f"{r['description'][:60].replace('|', '/')} |" for r in repos]
+
+
+def status_lines(b: dict[str, dict]) -> list[str]:
+    x, hf = b["x"], b["hf"]
+    lines = ["", "### 数据状态", ""]
     if not (x.get("skipped") and hf.get("skipped")):
         lines += _source_status(x, hf)
     if not b.get("social", {"skipped": True}).get("skipped"):
         lines.append(social_sites.status(b["social"]))
-    bo = b["breakout"]
-    lines += _rest_status(bo, gh, b)
-    lines.append(f"- AIsa 花费:{_cost(x, rev, b.get('usecases', {}), b.get('appstore', {}), b.get('meme', {}))}(新词表的模型调用另计)")
-    return "\n".join(lines) + "\n"
+    lines += _rest_status(b["breakout"], b["github"], b)
+    cost = _cost(x, b.get("review", {}), b.get("usecases", {}), b.get("appstore", {}), b.get("meme", {}))
+    return lines + [f"- AIsa 花费:{cost}(新词表的模型调用另计)"]
 
 
 def review_lines(rev: dict, summ: dict) -> list[str]:
@@ -465,8 +590,9 @@ def record_shadow(block: dict, no_db: bool) -> None:
         block["recorded"] = run("record shadow", lambda: review.record_new(rows), no_db)
 
 
-def _mail_errors(blocks: dict[str, dict]) -> bool:
-    """A failed signal sends the source mail, except the new sites in shadow mode: not in the mail."""
+def report_errors(blocks: dict[str, dict]) -> bool:
+    """A failed signal writes the source report, the run's step summary, except the new sites in shadow
+    mode: not in it. No error sends mail; only a new pick does (mail_new_picks)."""
     return any(b.get("error") for k, b in blocks.items() if social_sites.SOCIAL_SHOW or k != "social")
 
 
@@ -497,17 +623,24 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     keep = [r for r in named(lead)[:SHOWN] if not r.get("page")]
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, "--skip-db" in flags)
     record_shadow(blocks["social"], "--skip-db" in flags)
-    if named(lead) or _mail_errors(blocks):
+    new = mail_new_picks(report, snaps, blocks)
+    print("新的可做词:" + ("、".join(p["term"] for p in new) or "无,不发邮件"))
+    if named(lead) or report_errors(blocks):
         report.write_text(sources_markdown(lead, blocks))
         print(report.read_text())
     else:
-        print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
-        for k, mod in STATUS_LINES:
-            if not blocks[k].get("skipped"):
-                print(mod.status(blocks[k]))
-        if blocks["x"].get("waiting"):
-            print(x_waiting(blocks["x"]))
+        _print_quiet(blocks)
     return 0
+
+
+def _print_quiet(blocks: dict[str, dict]) -> None:
+    """A run with no new name writes no report: its status goes to the log."""
+    print("① 没有新名字:" + "; ".join(f"{k} {v.get('posts', v.get('models', '—'))}" for k, v in blocks.items() if k != "record"))
+    for k, mod in STATUS_LINES:
+        if not blocks[k].get("skipped"):
+            print(mod.status(blocks[k]))
+    if blocks["x"].get("waiting"):
+        print(x_waiting(blocks["x"]))
 
 
 def drop_retired(snaps: Path) -> None:
@@ -531,16 +664,23 @@ def daily_main(report: Path, snaps: Path, flags: set[str]) -> int:
     blocks["record"] = run("record", lambda: {"recorded": review.record(keep)}, no_db)
     for key in ("social", "github"):
         record_shadow(blocks[key], no_db)
-    rev = run("review", review.review, no_db or "--skip-review" in flags)
-    summ = run("summary", review.summary, no_db)
+    blocks["review"] = run("review", review.review, no_db or "--skip-review" in flags)
+    blocks["summary"] = run("summary", review.summary, no_db)
     blocks["recent_sources"] = run("recent_sources", lambda: {"rows": review.recent_sources(kinds=SOURCE_KINDS)},
                                    no_db or "--skip-x" not in flags)
     keywords(blocks, lead, keep, snaps, flags)
-    report.write_text(markdown(lead, blocks, rev, summ))
-    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks, "review": rev,
-                                                      "summary": summ}, ensure_ascii=False, indent=1, default=str))
-    print(report.read_text())
+    write_daily(report, snaps, flags, lead, blocks)
     return 0
+
+
+def write_daily(report: Path, snaps: Path, flags: set[str], lead: list[dict], blocks: dict[str, dict]) -> None:
+    """The daily mail and its JSON copy, then the memory of the source leads it showed (LISTED)."""
+    today = date.today()
+    view = daily_view(blocks, today, sent_lately(flags, today), set(memory(snaps / LISTED)))
+    report.write_text(markdown(lead, blocks, view))
+    report.with_suffix(".json").write_text(json.dumps({"leads": lead, **blocks}, ensure_ascii=False, indent=1, default=str))
+    save_listed(snaps, view["shown"], today)
+    print(report.read_text())
 
 
 def daily_blocks(snaps: Path, flags: set[str]) -> dict[str, dict]:
