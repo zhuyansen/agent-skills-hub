@@ -15,7 +15,7 @@ import { trackEvent } from "../lib/analytics";
 import { DeepAuditOffer } from "../components/DeepAuditOffer";
 import { AuditLeadCapture } from "../components/AuditLeadCapture";
 import { HowWeGradeLink } from "../components/HowWeGradeLink";
-import { GRADES_ANCHOR } from "../lib/howWeGradeMeta.mjs";
+import { GRADES_ANCHOR, RULE_COUNT } from "../lib/howWeGradeMeta.mjs";
 
 const GRADE_CONFIG: Record<
   string,
@@ -336,8 +336,8 @@ export function AnalyzerPage() {
               />
             </svg>
             {isZh
-              ? "SlowMist 安全框架驱动 · 11 类红旗检测"
-              : "SlowMist Framework · 11 Red-Flag Categories"}
+              ? `SlowMist 安全框架驱动 · ${RULE_COUNT} 条公开规则`
+              : `SlowMist Framework · ${RULE_COUNT} Published Rules`}
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             {isZh ? "Skill 安全分析器" : "Skill Security Analyzer"}
@@ -668,8 +668,8 @@ function ResultsDisplay({
             <span className="text-green-600 dark:text-green-400 text-sm font-medium">
               ✓{" "}
               {isZh
-                ? "未检测到危险模式 (11 类红旗均通过)"
-                : "No dangerous patterns detected (all 11 red-flag categories passed)"}
+                ? `未检测到危险模式（${RULE_COUNT} 条规则均未命中）`
+                : `No dangerous patterns detected (none of the ${RULE_COUNT} rules matched)`}
             </span>
           </div>
         )}

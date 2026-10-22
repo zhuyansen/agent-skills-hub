@@ -341,8 +341,8 @@
      "item_zh": "把每个条目归入六类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -2351,8 +2351,8 @@
      "ours": true
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
+     "item": "Security-graded every repo against 42 published rules, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
     }
    ],
    "not_done": [
@@ -2691,8 +2691,8 @@
      "item_zh": "把每个条目归入六类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
+     "item": "Security-graded every repo against 42 published rules, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
     }
    ],
    "not_done": [
@@ -3697,8 +3697,8 @@
      "item_zh": "2026-10-09 我们端到端实跑了其中 16 个（命令行安装、同步工具和综合管理），在用完即删的沙箱里由 Claude Code 调用：装 20 个测试 skill（本地文件夹；只能从 GitHub 安装的两个工具用公开的测试仓库），装一个带 curl | sh 脚本的 skill，删到只剩 5 个，再同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。14 个可以评判；每张卡片都链到用过的命令和工具自己的输出。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, reading the README and repository rather than matching keywords, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，读 README 和仓库而不是只匹配关键词，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, reading the README and repository rather than matching keywords, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，读 README 和仓库而不是只匹配关键词，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -4074,8 +4074,8 @@
      "item_zh": "2026-10-07 我们计划端到端实跑其中 26 个，实际跑成 23 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它处理同样的三份文本（一篇英文文章、一篇中文文章、一篇短篇小说），要求改得像人写的、事实一个不丢。评审模型（gpt-6-astra）按研究里的结构特征逐份对比原文和改写；每个偏低或反常的分数我们都亲自读过。每张卡片都链到改写前后的对照。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则对每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -5022,8 +5022,8 @@
      "item_zh": "2026-10-17 重分类时，凡是类型有变动的仓库都人工看过。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories.",
-     "item_zh": "按 11 类风险给每个仓库做了安全评级。"
+     "item": "Security-graded every repo against 42 published rules.",
+     "item_zh": "按 42 条公开规则给每个仓库做了安全评级。"
     }
    ],
    "not_done": [
@@ -5451,8 +5451,8 @@
      "item_zh": "把每个条目归入六类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -5930,8 +5930,8 @@
      "item_zh": "2026-10-07 我们计划端到端实跑其中 31 个，实际跑成 27 个：每个装进一个用完即删的沙箱，由 Claude Code 调用它做同一份 8–10 页的测试题。每份 deck 给三个结果：交付前要返工多少，这是我们自己的指标；可编辑性，按 SlidesGen-Bench 的 PEI 从 L0（不可编辑）到 L5（带动画）分级，直接解析文件得出；内容检查单，按 PresentBench 的做法写 30 道是/否题（基本功、设计、完整、正确、忠于测试题），视觉模型（gpt-6-astra）每份答三遍取多数；每个\"否\"我们都亲自看过，35 个里改判 7 个，理由公开。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险对每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则对每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -7353,8 +7353,8 @@
      "item_zh": "把每个条目归入五类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -8370,8 +8370,8 @@
      "item_zh": "把每个条目归入十类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
+     "item": "Security-graded every repo against 42 published rules, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
     }
    ],
    "not_done": [
@@ -8809,8 +8809,8 @@
      "item_zh": "把每个条目归入五类之一，可以筛选。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and ranked the list by GitHub stars.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，列表按 GitHub 星数排序。"
+     "item": "Security-graded every repo against 42 published rules, and ranked the list by GitHub stars.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，列表按 GitHub 星数排序。"
     },
     {
      "item": "Re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
@@ -9191,8 +9191,8 @@
      "item_zh": "把每个疑似复制品的 README 和官方版逐一比对。"
     },
     {
-     "item": "Security-graded every repo against 11 red-flag categories, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
-     "item_zh": "按 11 类风险给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
+     "item": "Security-graded every repo against 42 published rules, and re-check the list every day: new repos are reviewed, deleted and renamed ones removed.",
+     "item_zh": "按 42 条公开规则给每个仓库做安全评级，并且每天复查：新仓库进审核，删除和改名的移出。"
     }
    ],
    "not_done": [

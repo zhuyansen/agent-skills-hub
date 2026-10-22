@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { analyticsTags, replaceShellContent } from "./shared-utils.mjs";
+import { RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 
 const DIST = "dist";
 
@@ -48,7 +49,7 @@ const SHELLS = [
     title:
       "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub",
     description:
-      "Paste any GitHub repo URL for an instant security analysis: 11 red-flag categories from the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.",
+      `Paste any GitHub repo URL for an instant security analysis: ${RULE_COUNT} published rules built on the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.`,
   },
   {
     // Batch-audit tool (Pro ladder), shipped 2026-09-09 WITHOUT a shell — so

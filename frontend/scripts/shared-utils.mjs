@@ -3,6 +3,8 @@
  * Used by: generate-skill-pages.mjs, generate-scenario-pages.mjs
  */
 
+import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
+
 export const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 export const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrbnp6ZWNtenNmbW9oZ2xwZmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MDQ3MzIsImV4cCI6MjA4ODM4MDczMn0.zFAGZH-lDcL-GwyMkR-9sSV8pJToVzomsJ_fuXZIoDo";
@@ -234,9 +236,9 @@ export function trustBlock() {
   return `<section style="margin:28px 0;padding:16px 18px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:12px;font-size:13px;line-height:1.65;color:#475569">
     <h2 style="font-size:14px;color:#334155;margin:0 0 8px" ${b("How this security grade is produced", "这个安全评级是怎么来的")}>How this security grade is produced</h2>
     <p style="margin:0 0 8px" ${b(
-      "Grades come from a rule-based scan built on the SlowMist agent-security taxonomy, covering 11 red-flag categories including credential harvesting, data exfiltration, and curl | sh installers. It is a first-layer scan, not a manual audit — we say so rather than overstate it.",
-      "评级来自基于 SlowMist agent 安全分类法的规则扫描，覆盖凭证窃取、数据外泄、curl | sh 安装等 11 类红旗信号。它是第一层扫描，不是人工审计 — 我们如实说明，不夸大。",
-    )}>Grades come from a rule-based scan built on the SlowMist agent-security taxonomy, covering 11 red-flag categories including credential harvesting, data exfiltration, and curl | sh installers. It is a first-layer scan, not a manual audit — we say so rather than overstate it.</p>
+      `Grades come from a rule-based scan built on the SlowMist agent-security taxonomy: ${RULE_COUNT} published rules, covering credential harvesting, data exfiltration, curl | sh installers and more. It is a first-layer scan, not a manual audit — we say so rather than overstate it.`,
+      `评级来自基于 SlowMist agent 安全分类法的规则扫描：${RULE_COUNT} 条公开规则，覆盖凭证窃取、数据外泄、curl | sh 安装等。它是第一层扫描，不是人工审计 — 我们如实说明，不夸大。`,
+    )}>Grades come from a rule-based scan built on the SlowMist agent-security taxonomy: ${RULE_COUNT} published rules, covering credential harvesting, data exfiltration, curl | sh installers and more. It is a first-layer scan, not a manual audit — we say so rather than overstate it.</p>
     <p style="margin:0 0 8px" ${b(
       "The scale of the problem is documented independently: Liu et al. (2026), in a study of 31,132 agent skills, report that 26.1% contain security vulnerabilities. Our own full-catalog census is published as a citable open dataset.",
       "问题规模有独立研究佐证：Liu et al. (2026) 对 31,132 个 agent skill 的研究发现，26.1% 含有安全漏洞。我们自己的全目录普查已作为可引用的开放数据集发布。",
@@ -246,6 +248,7 @@ export function trustBlock() {
       <li><a href="https://github.com/slowmist/Knowledge-Base" rel="noopener" style="color:#4f46e5">SlowMist agent-security taxonomy</a></li>
       <li><a href="https://arxiv.org/abs/2601.10338" rel="noopener" style="color:#4f46e5">Liu et al., An Empirical Study of Agent Skill Security (2026)</a></li>
       <li><a href="https://doi.org/10.5281/zenodo.21292799" rel="noopener" style="color:#4f46e5">Our census dataset (DOI 10.5281/zenodo.21292799)</a> · <a href="https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades" rel="noopener" style="color:#4f46e5">Hugging Face mirror</a></li>
+      <li><a href="${HOW_WE_GRADE_PATH}" style="color:#4f46e5" ${b(`How we grade: all ${RULE_COUNT} rules, the source tiers and known limits`, `评级方法：全部 ${RULE_COUNT} 条规则、来源分档和已知局限`)}>How we grade: all ${RULE_COUNT} rules, the source tiers and known limits</a></li>
       <li><a href="/about/" style="color:#4f46e5" ${b("Full methodology & the person behind Agent Skills Hub", "完整方法论与 Agent Skills Hub 背后的人")}>Full methodology &amp; who runs this</a></li>
     </ul>
   </section>`;

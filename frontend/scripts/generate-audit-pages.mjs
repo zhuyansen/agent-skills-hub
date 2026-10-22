@@ -26,6 +26,7 @@ import {
   fetchAllSkills,
   analyticsTags,
 } from "./shared-utils.mjs";
+import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 
 // ── Eligibility (tightened 2026-07-28 on 28-day GSC evidence) ──────────────
 // 8,638 audit pages earned 0 clicks and 1 impression in 28 days, while 85
@@ -199,7 +200,7 @@ ${analyticsTags()}
     <div style="border:1px solid ${g.color}33;background:${g.bg};border-radius:12px;padding:20px;margin-bottom:24px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
         <span style="background:${g.color};color:#fff;font-weight:700;font-size:14px;padding:4px 14px;border-radius:999px">${g.icon} ${g.label}</span>
-        <span style="font-size:13px;color:#64748b">Basic audit &middot; rule-based scan &middot; SlowMist 11 red-flag categories</span>
+        <span style="font-size:13px;color:#64748b">Basic audit &middot; rule-based scan &middot; ${RULE_COUNT} published rules</span>
       </div>
       <p style="margin:0;line-height:1.6;color:#334155;font-size:15px"><strong>${g.answerEn(esc(repo_name))}</strong></p>
     </div>
@@ -240,8 +241,8 @@ ${related.length ? `
     <p style="font-size:13px;margin:4px 0 0"><a href="${esc(categoryUrl)}" style="color:#4f46e5;text-decoration:none">Browse all ${esc(catLabel)} skills &rarr;</a></p>
 ` : ""}
     <p style="font-size:12px;color:#94a3b8;line-height:1.6;border-top:1px solid #e2e8f0;padding-top:16px;margin-top:28px">
-      This is AgentSkillsHub's free basic audit: an automated rule-based scan covering SlowMist's 11 red-flag
-      categories (credential exfiltration, obfuscated payloads, sandbox escape, prompt injection, and more) across
+      This is AgentSkillsHub's free basic audit: an automated rule-based scan with <a href="${HOW_WE_GRADE_PATH}" style="color:#94a3b8">${RULE_COUNT} published
+      rules</a> built on SlowMist's agent-security taxonomy (credential theft, obfuscated payloads, privilege escalation, covert instructions to the agent, and more) across
       186,000+ open-source AI agent skills and MCP servers, refreshed every 8 hours. A ${g.label} grade is a scan
       result, not a guarantee &mdash; deep 5-dimension audits (code &middot; credentials &middot; vendor &middot;
       supply-chain &middot; operational) are available for <a href="/enterprise/" style="color:#4f46e5">enterprise</a>.

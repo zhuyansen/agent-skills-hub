@@ -22,6 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
+import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -256,7 +257,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 
   // The verdict, above the fold. This is the review information §20.0 rewards:
   // what was scanned, what was found, what was not. A SAFE grade with an empty
-  // flag list is itself a finding — "we looked for these 11 categories and
+  // flag list is itself a finding — "we looked for these RULE_COUNT rules and
   // found none" — and stating it is the whole reason to prefer this page over
   // the repo's own README, which cannot make that claim about itself.
   const GRADE_STYLE = {
@@ -349,11 +350,11 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     const [fg, bg, br] = GRADE_STYLE[security_grade] || GRADE_STYLE.caution;
     const finding = flagNames.length
       ? `Flagged: ${flagNames.slice(0, 4).map(esc).join(", ")}${flagNames.length > 4 ? ` and ${flagNames.length - 4} more` : ""}.`
-      : "No red flags found in any of the 11 categories \u2014 no credential harvesting, no data exfiltration, no curl-pipe-shell installer.";
+      : `None of the ${RULE_COUNT} rules matched \u2014 no credential harvesting, no data exfiltration, no curl-pipe-shell installer.`;
     const q = typeof quality_score === "number" ? Math.round(quality_score) : null;
     return `<section style="margin:0 0 16px;padding:14px 16px;border:1px solid ${br};background:${bg};border-radius:10px">
         <h2 style="font-size:16px;color:${fg};margin:0 0 6px">Security audit verdict: ${esc(gradeLabel)}${q !== null ? ` \u00b7 quality ${q}/100` : ""}</h2>
-        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>${q !== null ? `
+        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against <a href="${HOW_WE_GRADE_PATH}" style="color:${fg}">${RULE_COUNT} published rules</a> built on the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>${q !== null ? `
         <p style="margin:6px 0 0;line-height:1.6;color:${fg};font-size:13px">${esc(QUALITY_NOTE)}</p>` : ""}
       </section>`;
   })();
@@ -382,7 +383,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const LIMIT = DESCRIPTION_LIMIT;
   const clause = isGone
     ? ` Archived record of ${repo_full_name} on Agent Skills Hub.`
-    : ` Independent audit of ${repo_full_name} against 11 red-flag categories.`;
+    : ` Independent audit of ${repo_full_name} against ${RULE_COUNT} published rules.`;
   let metaDesc = isGone ? verdict : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
   if (!isGone) metaDesc = skillDescription(repo_name, description, installs);

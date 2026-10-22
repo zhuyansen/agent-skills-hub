@@ -18,6 +18,7 @@ import {
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
 import { statsPeriods } from "./stats-live.mjs";
+import { RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { installCommands } from "./skill-install.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
@@ -594,7 +595,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const metaTopNames = skills.slice(0, 3).map(leadLabel(skills)).join(", ");
   const metaRaw = canClaim
     ? `${itemCount} ${descSubject}, independently security-graded: ${verdict}. ` +
-      `Scanned against 11 red-flag categories. ${metaTopNames}.`
+      `Scanned against ${RULE_COUNT} published rules. ${metaTopNames}.`
     : `${itemCount} open-source ${descSubject} compared: ${metaTopNames}. ` +
       `Quality-scored and refreshed every 8h.`;
   const metaDesc =

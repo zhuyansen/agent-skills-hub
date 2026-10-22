@@ -9,6 +9,7 @@ export interface HowWeGradePageMeta {
 export declare const HOW_WE_GRADE_PATH: string;
 export declare const HOW_WE_GRADE_URL: string;
 export declare const GRADES_ANCHOR: string;
+export declare const RULE_COUNT: number;
 export declare const HOW_WE_GRADE_PUBLISHED: string;
 export declare const HOW_WE_GRADE_UPDATED: string;
 export declare const HOW_WE_GRADE_META: Readonly<Record<HowWeGradeLang, HowWeGradePageMeta>>;

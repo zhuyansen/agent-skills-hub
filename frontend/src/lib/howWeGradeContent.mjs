@@ -14,7 +14,7 @@
  * names, tier numbers, percentages). Inline markup: **bold**, *italic*, `code`,
  * [label](href) and \n for a line break; see inlineTokens().
  */
-import { GRADES_ANCHOR, HOW_WE_GRADE_LINK } from "./howWeGradeMeta.mjs";
+import { GRADES_ANCHOR, HOW_WE_GRADE_LINK, RULE_COUNT } from "./howWeGradeMeta.mjs";
 
 /**
  * The two sentences about fenced code blocks. Since 2026-10-22 the scanner checks
@@ -176,7 +176,7 @@ const SECTIONS = [
     id: "what-we-look-for",
     title: ["What we look for", "我们查什么"],
     blocks: [
-      { type: "p", text: ["42 rules in three levels.", "42 条规则，分三级。"] },
+      { type: "p", text: [`${RULE_COUNT} rules in three levels.`, `${RULE_COUNT} 条规则，分三级。`] },
       { type: "h3", text: ["Reject (2)", "Reject 级（2 条）"] },
       { type: "ul", items: [
         ["Secrets piped to a network tool.", "把密钥通过管道交给网络工具。"],

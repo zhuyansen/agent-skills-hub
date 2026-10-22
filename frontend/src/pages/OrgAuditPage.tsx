@@ -6,6 +6,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 import { trackEvent } from "../lib/analytics";
 import { sbFetchOrgAudit, type OrgAuditRow } from "../api/supabaseClient";
+import { RULE_COUNT } from "../lib/howWeGradeMeta.mjs";
 
 // Local, self-contained grade styling — mirrors AnalyzerPage's GRADE_CONFIG but
 // adds the "unknown" (not-yet-graded) tier that a whole-org view surfaces.
@@ -347,8 +348,8 @@ export function OrgAuditPage() {
 
             <p className="mt-6 text-xs text-[var(--text-3)]">
               {zh
-                ? "评级来自装前静态扫描(SlowMist 分类法,11 类红旗),不是人工深审。数据每 8 小时刷新。"
-                : "Grades come from a pre-install static scan (SlowMist taxonomy, 11 red-flag categories), not a manual deep audit. Data refreshes every 8h."}
+                ? `评级来自装前静态扫描(SlowMist 分类法,${RULE_COUNT} 条公开规则),不是人工深审。数据每 8 小时刷新。`
+                : `Grades come from a pre-install static scan (SlowMist taxonomy, ${RULE_COUNT} published rules), not a manual deep audit. Data refreshes every 8h.`}
               {" "}
               <a href={CLUB_URL} className="text-indigo-600 dark:text-indigo-400 hover:underline" target="_blank" rel="noopener noreferrer">
                 {zh ? "关于 Pro" : "About Pro"}
