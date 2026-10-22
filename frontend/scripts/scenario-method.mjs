@@ -13,7 +13,7 @@
 import { esc, biAttrs } from "./shared-utils.mjs";
 
 // Rules a skill trips by how it is installed, not by what it does once running.
-const INSTALL_RULES = new Set(["sudo_usage", "curl_pipe_shell", "wget_pipe_shell"]);
+const INSTALL_RULES = new Set(["sudo_usage", "curl_pipe_shell", "wget_pipe_shell", "fenced_download_exec"]);
 const ROUTE_EXAMPLES = 2;
 // Headings, table columns and the floor wording default to the PPT page's; a page
 // overrides any of them in its `method` (e.g. "layers" instead of "routes").

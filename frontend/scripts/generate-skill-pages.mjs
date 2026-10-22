@@ -220,6 +220,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const FLAG_COPY = {
     sudo_usage: "sudo usage", service_persistence: "installs a background service",
     curl_pipe_shell: "curl | sh from an untrusted host", agent_config_theft: "sends agent config files off the machine",
+    fenced_download_exec: "install step in a code block runs a script from an untrusted host",
     tunnel_service: "opens a tunnel service", eval_usage: "dynamic eval()",
     sensitive_env_vars: "reads sensitive env vars", agent_memory_theft: "reads agent memory",
     env_access: "environment access", subprocess_spawn: "spawns subprocesses",

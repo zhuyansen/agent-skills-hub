@@ -59,6 +59,7 @@ const PATTERNS = {
   subprocess_spawn: ["Spawns subprocesses to run commands", "启动子进程执行命令"],
   sensitive_env_vars: ["References several API keys or tokens", "引用多个 API key 或 token"],
   curl_pipe_shell: ["Pipes a downloaded script into a shell (curl | sh)", "把下载的脚本直接交给 shell 执行（curl | sh）"],
+  fenced_download_exec: ["An install step in a code block runs a script from an untrusted host", "代码块里的安装步骤会从不受信任的主机下载并执行脚本"],
   ssl_disabled: ["Turns off TLS certificate checks", "关闭 TLS 证书校验"],
   eval_usage: ["Runs code with eval()", "用 eval() 动态执行代码"],
   docker_privileged: ["Runs Docker in privileged mode", "以特权模式运行 Docker"],

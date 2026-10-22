@@ -13,7 +13,6 @@ Grades:
 Zero cost: pure regex/string matching, no external API calls.
 """
 
-import json
 import logging
 import re
 from urllib.parse import urlparse
@@ -238,10 +237,27 @@ TRUSTED_INSTALLER_HOSTS = frozenset({
     "chatgpt.com", "cli.devin.ai", "junie.jetbrains.com",
     # Vendor installers that third-party guides quote verbatim.
     "openclaw.ai", "app.primeintellect.ai", "jimeng.jianying.com",
+    # Official installers the 2026-10-22 dry run found in fenced install steps (Google, xAI, Ollama's
+    # old domain, Microsoft's and GitHub's own link shorteners, Tailscale, NodeSource, Fly.io, Bun,
+    # fnm, Kimi Code, just, Nous Research).
+    "antigravity.google", "x.ai", "ollama.ai", "aka.ms", "gh.io", "tailscale.com", "deb.nodesource.com",
+    "rpm.nodesource.com", "fly.io", "bun.com", "fnm.vercel.app", "code.kimi.com", "just.systems",
+    "hermes-agent.nousresearch.com",
 })
 # Official installers served from someone else's GitHub repo.
-TRUSTED_GITHUB_INSTALLER_PREFIXES = ("homebrew/install/", "nvm-sh/nvm/")
+TRUSTED_GITHUB_INSTALLER_PREFIXES = ("homebrew/install/", "nvm-sh/nvm/", "helm/helm/")
 _GITHUB_CONTENT_HOSTS = frozenset({"raw.githubusercontent.com", "github.com", "gist.githubusercontent.com"})
+# jsDelivr serves any GitHub repo as cdn.jsdelivr.net/gh/<owner>/<repo>@<ref>/<path> (fastly. and gcore. are
+# its mirrors): judged like the GitHub path.
+_JSDELIVR_HOSTS = frozenset({"cdn.jsdelivr.net", "fastly.jsdelivr.net", "gcore.jsdelivr.net"})
+_JSDELIVR_GITHUB_PREFIX = "gh/"
+# Addresses that stand for "some server" in an example, not a place anything is fetched from:
+# reserved example names (RFC 2606/6761), the conventional attacker names security tools use in
+# their demos, loopback and private networks, and a bare name with no dot ("your-server").
+_PLACEHOLDER_DOMAINS = frozenset({"example.com", "example.org", "example.net", "evil.com", "attacker.com",
+                                  "malicious.com", "localhost"})
+_PLACEHOLDER_SUFFIXES = (".example", ".invalid", ".test", ".localhost", ".local")
+_PRIVATE_HOST = re.compile(r"^(?:127\.|10\.|192\.168\.|172\.(?:1[6-9]|2\d|3[01])\.|0\.0\.0\.0$)")
 # Hosting platforms where the registrable domain is shared by strangers, so a
 # homepage on one of them only vouches for its exact host.
 MULTI_TENANT_SUFFIXES = (
@@ -253,6 +269,9 @@ MULTI_TENANT_SUFFIXES = (
 _URL_IN_COMMAND = re.compile(r"https?://[^\s`'\"|)<>\]]+")
 _REGISTRABLE_LABELS = 2
 _MIN_OWNER_DOMAIN_MATCH = 5
+# Words a repository name adds to its project's name: bibigpt-skill ships from bibigpt.co.
+_REPO_NAME_AFFIXES = frozenset({"skill", "skills", "mcp", "cli", "server", "plugin", "agent", "app", "sdk",
+                                "claude", "code"})
 
 HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS}
 
@@ -437,8 +456,14 @@ def _is_quoted_example(text: str, start: int) -> bool:
 
 AGENT_MEDIUM_FLAG_NAMES = {p[1] for p in AGENT_MEDIUM_PATTERNS}
 SECRET_FLAG_NAMES = {p[1] for p in SECRET_PATTERNS}
+# A download-and-execute from an untrusted host written inside a code block. Out of a fence it is high
+# risk (PIPE_TO_SHELL_PATTERNS). In one it is usually the install step of someone else's tool rather than
+# an attack: the 2026-10-22 dry run over 32,868 READMEs found 729 fenced cases, most of them third-party
+# installers that, read as high risk, would have made 634 repos unsafe. It weighs as medium instead.
+FENCED_DOWNLOAD_FLAG = "fenced_download_exec"
+FENCED_DOWNLOAD_DESC = "An install step in a code block downloads and runs a script from an untrusted source"
 MEDIUM_RISK_FLAG_NAMES = (
-    {p[1] for p in MEDIUM_RISK_PATTERNS} | AGENT_MEDIUM_FLAG_NAMES | SECRET_FLAG_NAMES
+    {p[1] for p in MEDIUM_RISK_PATTERNS} | AGENT_MEDIUM_FLAG_NAMES | SECRET_FLAG_NAMES | {FENCED_DOWNLOAD_FLAG}
 )
 
 # ══════════════════════════════════════════════════════════════════════
@@ -612,16 +637,66 @@ def _owner_matches_domain(owner: str, host: str) -> bool:
     return o.startswith(label) or label.startswith(o)
 
 
+def _repo_matches_domain(repo_name: str, host: str) -> bool:
+    """A project's own domain, named after the repository: subtask ships from
+    subtask.dev, lucid-memory from lucidmemory.dev, bibigpt-skill from bibigpt.co.
+
+    The name less its affixes (_REPO_NAME_AFFIXES) must equal the domain label.
+    Exact, unlike the owner rule's prefix match: repository names are generic
+    words far more often than owners are, and "skills" must not vouch for
+    skillsmp.com. Shared-hosting domains are excluded, as there."""
+    registrable = _registrable_domain(host)
+    if registrable in MULTI_TENANT_SUFFIXES:
+        return False
+    stem = _repo_stem(repo_name)
+    return len(stem) >= _MIN_OWNER_DOMAIN_MATCH and stem == re.sub(r"[^a-z0-9]", "", registrable.split(".")[0])
+
+
+def _repo_stem(repo_name: str) -> str:
+    """The repository name less the words that only say what kind of repo it is
+    (_REPO_NAME_AFFIXES): bibigpt-skill -> bibigpt, mcp-server-semgrep -> semgrep, skills -> ""."""
+    tokens = [t for t in re.split(r"[-_.]", repo_name.lower()) if t]
+    while tokens and tokens[-1] in _REPO_NAME_AFFIXES:
+        tokens.pop()
+    while tokens and tokens[0] in _REPO_NAME_AFFIXES:
+        tokens.pop(0)
+    return "".join(tokens)
+
+
+def _is_placeholder(url: str) -> bool:
+    """An address that stands in for "some server" in an example (_PLACEHOLDER_DOMAINS)."""
+    host = _host(url)
+    return ("." not in host or bool(_PRIVATE_HOST.match(host)) or host.endswith(_PLACEHOLDER_SUFFIXES)
+            or _registrable_domain(host) in _PLACEHOLDER_DOMAINS)
+
+
+def _trusted_github_path(path: str, owner: str, repo_name: str) -> bool:
+    """A GitHub path (owner/repo/...) of the skill's own owner, of its own repository under another owner
+    (moved: Egonex-AI/Understand-Anything installs from lum1104/understand-anything; a fork installing from
+    its upstream), of an official org, or of a known installer repo. A name that is only affixes ("skills")
+    is too common to say it is the same project."""
+    path_owner, _, rest = path.partition("/")
+    same_repo = bool(_repo_stem(repo_name)) and rest.split("/")[0].split("@")[0] == repo_name
+    return (bool(owner) and path_owner == owner) or same_repo or path_owner in TRUST_TIER_1_ORGS | TRUST_TIER_2_ORGS \
+        or path.startswith(TRUSTED_GITHUB_INSTALLER_PREFIXES)
+
+
 def _is_trusted_install_source(url: str, skill: Skill) -> bool:
-    """Official installer host, the skill's own GitHub owner, or its own homepage site."""
+    """Official installer host, the skill's own GitHub owner (also through jsDelivr's GitHub mirror), an
+    official organisation's GitHub, or the skill's own site: its homepage, or a domain named after its
+    owner or its repository."""
     host = _host(url)
     if host in TRUSTED_INSTALLER_HOSTS:
         return True
-    owner = (getattr(skill, "repo_full_name", "") or "").lower().split("/")[0]
+    owner, _, repo_name = (getattr(skill, "repo_full_name", "") or "").lower().partition("/")
+    path = urlparse(url).path.lower().lstrip("/")
     if host in _GITHUB_CONTENT_HOSTS:
-        path = urlparse(url).path.lower().lstrip("/")
-        return bool(owner and path.startswith(owner + "/")) or path.startswith(TRUSTED_GITHUB_INSTALLER_PREFIXES)
+        return _trusted_github_path(path, owner, repo_name)
+    if host in _JSDELIVR_HOSTS and path.startswith(_JSDELIVR_GITHUB_PREFIX):
+        return _trusted_github_path(path[len(_JSDELIVR_GITHUB_PREFIX):], owner, repo_name)
     if owner and (host == f"{owner}.github.io" or _owner_matches_domain(owner, host)):
+        return True
+    if _repo_matches_domain(repo_name, host):
         return True
     homepage = (getattr(skill, "homepage_url", "") or "").strip().lower()
     homepage_host = _host(homepage if "://" in homepage else f"https://{homepage}") if homepage else ""
@@ -634,25 +709,47 @@ def _is_markdown_table_row(text: str, pos: int) -> bool:
 
 
 def _pipe_to_shell_flags(skill: Skill, text: str) -> list[str]:
-    """Flag a download-and-execute command that isn't fenced, names a URL, and
-    names only untrusted ones.
+    """Flag a download-and-execute command that names a URL, and names only
+    untrusted ones, wherever it is written: prose, inline code or a fenced block.
 
     No URL means a mention, not a command: "one command setup: `curl | bash`",
     "no `curl | sh`, no telemetry", a security scanner's table of the patterns it
     blocks. Those were every remaining no-URL hit in the catalog sample. The
     trade-off is that `curl "$URL" | sh` goes unflagged; a variable URL was never
-    something this rule could vouch for either way."""
+    something this rule could vouch for either way.
+
+    Fenced blocks were exempt until 2026-10-22. An install step is almost always
+    fenced, so the exemption let `curl https://unknown.host/x.sh | bash` through
+    exactly where a reader copies it from. Now a fenced one counts too, as the
+    medium-risk FENCED_DOWNLOAD_FLAG (see there), and inside a fence a line that
+    documents rather than instructs (a deny list, "blocked: …") is let off.
+    Example addresses (example.com, localhost, a private IP) are never a source."""
     found: list[str] = []
     for pattern, flag_name, _desc in PIPE_TO_SHELL_PATTERNS:
-        for match in pattern.finditer(text):
-            if _is_in_code_block(text, match.start()) or _is_markdown_table_row(text, match.start()):
-                continue
-            urls = _URL_IN_COMMAND.findall(match.group(0))
-            if not urls or all(_is_trusted_install_source(u, skill) for u in urls):
-                continue
+        where = _untrusted_download(skill, text, pattern)
+        if where == "prose":
             found.append(flag_name)
-            break
+        elif where == "fenced" and FENCED_DOWNLOAD_FLAG not in found:
+            found.append(FENCED_DOWNLOAD_FLAG)
     return found
+
+
+def _untrusted_download(skill: Skill, text: str, pattern: re.Pattern) -> str:
+    """"prose" when the pattern runs a script from an untrusted source outside a code block, "fenced"
+    when it does so only inside one, "" otherwise."""
+    fenced = False
+    for match in pattern.finditer(text):
+        pos = match.start()
+        in_fence = _is_in_code_block(text, pos)
+        if _is_markdown_table_row(text, pos) or (in_fence and _documents_rather_than_issues(text, pos)):
+            continue
+        urls = [u for u in _URL_IN_COMMAND.findall(match.group(0)) if not _is_placeholder(u)]
+        if not urls or all(_is_trusted_install_source(u, skill) for u in urls):
+            continue
+        if not in_fence:
+            return "prose"
+        fenced = True
+    return "fenced" if fenced else ""
 
 
 def _agent_medium_flags(text: str) -> list[str]:
@@ -790,6 +887,8 @@ class SecurityScanner:
     @staticmethod
     def get_flag_description(flag_name: str) -> str:
         """Get human-readable description for a flag name."""
+        if flag_name == FENCED_DOWNLOAD_FLAG:
+            return FENCED_DOWNLOAD_DESC
         for patterns in [HIGH_RISK_PATTERNS, PIPE_TO_SHELL_PATTERNS, MEDIUM_RISK_PATTERNS,
                          AGENT_MEDIUM_PATTERNS, SECRET_PATTERNS, REJECT_PATTERNS]:
             for _pat, name, desc in patterns:
