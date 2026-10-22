@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-22
+1. cheaper-inference/OmniRoute — 用一个免费开源网关接入 375 家模型供应商，其中 150 多家可免费调用（79376★ 316.8/day）
+2. helloianneo/ian-xhs-carousel — 🆕 把文章、案例或笔记排成 3:4 小红书图文，内置 20 个母版与深浅两色（80★ 80.0/day）
+3. ayingQAQ/McCosmos — 🆕 用麦当劳 MCP 营养数据搭出三维卡通美食宇宙，可逛餐品营养图鉴（46★ 46.0/day）
+4. Moeblack/moss-image-prompt-skill — 🆕 以智能体技能格式提供 MOSS-Image 提示词编译规则集（87★ 20.5/day）
+5. kukemc/bili-cli — 🆕 让智能体用命令行玩转哔哩哔哩：扫码登录、评论、私信、投稿，全程 JSON 输出（42★ 19.7/day）
+6. 10291124jcjc-dotcom/cleopatra-modern-life — 🆕 拆解"古人过现代生活"AI 短片全流程，从段子到 Seedance 提示词（29★ 17.6/day）
+7. Zaneris/passenger — 🆕 开源跨平台 C#/.NET IDE，基于 Avalonia 与 Roslyn 驱动的编辑器（131★ 13.0/day）
+8. dipakkr/awesome-ai-engineering — 汇总 LLM、RAG、智能体等 AI 工程资源、学习路线与实战项目（22437★ 7.6/day）
+9. maxritter/qualitylayer — 让编程智能体按规划、构建、评审三步干活，可在应用或浏览器里并排协作（2097★ 5.7/day）
+10. JiangNanGenius/floe-agent — 在 iOS 与安卓上运行的开源端侧智能体工作区，自带 Linux 环境与代码执行（300★ 4.3/day）
+🎯 今日趋势：**6 席**标 🆕；中文创作者工具占 **4 席**（小红书图文、B 站命令行、MOSS-Image 提示词、古人短片流程），7.9 万星的模型网关 OmniRoute 迁到新组织后首次进榜。
+> 注：去重范围＝repo 内 archive 全部 119 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,037 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 36 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个以上合格，未放宽到 72h（Umair/stalemap、qiniu/xhub 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①renjiegod/dyt-ashare-cli（301★ 180.5/day）：账号 9 粉、仅 2 仓，1.7 天 300 星却 0 fork，单仓爆星；②Monopoly0024/simple-checker-v1（53★ 53.0/day）：账号 2025-11 建、0 粉、仅此 1 仓；③Relomoney/relo（240★ 14.9/day）：付费让开发者在编程工具里看赞助广告，且 `gh api` 已 404（仓库删除或转私有）；④732124645/qiwu-vue-admin（102★ 5.6/day）：账号 1 粉、102 星 0 fork；⑤Argolink 集群（amadeuskeeler、isoldefairbanks、seraphinawolfe、pipkinashcroft2 等）：同日创建、星数雷同、标题堆砌模型名，且 first_seen 超出 48h；⑥其余均已在历史榜单出现，不再复评。getalden/alden（4.2/day）、respan-gateway（3.8/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 `repos/diegosouzapw/OmniRoute` 重定向到 cheaper-inference/OmniRoute，即老牌项目转组织（新组织 2026-08 建、1 仓），11,558 fork 与星数相称，存档中从未出现过 OmniRoute，保留；第 2 席 helloianneo 641 粉、名下 ian-xiaohei-illustrations 12,726★；第 3 席 ayingQAQ 2023 建号、2 粉、其余仓 ≤10★（**轻红旗**，量级小，保留）；第 4 席 Moeblack 2017 建号、37 粉、名下 ComfyUI-AnimaTool 138★，规则集为 CC BY-NC-ND 4.0；第 5 席 kukemc 2021 建号、24 粉；第 6 席 10291124jcjc-dotcom 2026-04 建号、7 粉、名下 ancient-rap-battle 129★，fork 7；第 7 席 Zaneris 2011 建号、14 粉、fork 10；第 8 席 dipakkr 1,138 粉，2018 年的资源清单，first_seen 为新；第 9 席 maxritter 307 粉、名下 diy-thermocam 1,226★；第 10 席 JiangNanGenius 42 粉、fork 42。🆕 判定＝created_at 距今 14 天内，OmniRoute（250.6 天）、awesome-ai-engineering（2956.6 天）、qualitylayer（368.7 天）、floe-agent（70.3 天）不标，其余六席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（ian-xhs-carousel 144★、McCosmos 54★、bili-cli 49★、passenger 140★），按红线保留快照值。
+
+---
+
 ## 2026-10-21
 1. abdiraimov-otabek/dashboard-design-skill — 🆕 教 Claude Code 做干净可信的仪表盘界面，涵盖 KPI 卡片、图表与排行列表（81★ 81.0/day）
 2. op7418/guizang-tv — 🆕 给国内小米电视换上简洁安卓桌面，大字列表、壁纸轮播、HDMI 一键直达（63★ 63.0/day）
