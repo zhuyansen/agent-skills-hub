@@ -17,20 +17,20 @@
 import { GRADES_ANCHOR, HOW_WE_GRADE_LINK } from "./howWeGradeMeta.mjs";
 
 /**
- * The two sentences about fenced code blocks, written for the scanner as it is once
- * download-and-execute commands are checked inside code blocks too. If the final rule
- * differs, these four strings are all that has to change.
+ * The two sentences about fenced code blocks. Since 2026-10-22 the scanner checks
+ * download-and-execute commands inside code blocks too, as the medium-risk
+ * fenced_download_exec; every other rule that skips code blocks still does.
  */
 export const CODE_BLOCKS = {
   /** Last item of "What we don't count". */
   notCounted: [
-    "text inside code blocks for the reject and other high-risk rules and most agent rules, because security tools show the attacks they block there. Download-and-execute commands are the exception: inside a code block they still count, unless they fetch from the project's own GitHub owner, its own website or a well-known installer host.",
-    "代码块里的文字：Reject 级规则、其他高风险规则和大部分针对 agent 的规则都不看代码块，因为安全工具会在代码块里展示它们拦截的攻击。下载即执行的命令是例外：写在代码块里照样计入，除非下载来源是项目自己的 GitHub 所有者、项目自己的网站或知名的安装器主机。",
+    "text inside code blocks for the reject and other high-risk rules and most agent rules, because security tools show the attacks they block there. Download-and-execute commands are the exception: inside a code block they still count, as one medium-risk finding instead of a high-risk one, unless the source is trusted (see the high-risk list) or the line lists what a tool blocks.",
+    "代码块里的文字：Reject 级规则、其他高风险规则和大部分针对 agent 的规则都不看代码块，因为安全工具会在代码块里展示它们拦截的攻击。下载即执行的命令是例外：写在代码块里照样计入，但算一条中风险而不是高风险；下载来源可信（见高风险清单），或这一行是在列工具会拦截什么的，不算。",
   ],
   /** Second item of "Known limits". */
   limit: [
-    "**Other risky commands inside code blocks are not counted.** A reverse shell or a credential grab shown as a fenced example passes, unless the README also asks for it in its prose. Download-and-execute commands are the exception: those are checked inside code blocks too.",
-    "**代码块里的其他高危命令不计入。**以代码块示例形式出现的反弹 shell 或凭证窃取命令能通过，除非 README 的正文里也要求这么做。下载即执行的命令是例外：代码块里的也会检查。",
+    "**Other risky commands inside code blocks are not counted.** A reverse shell or a credential grab shown as a fenced example passes, unless the README also asks for it in its prose. Download-and-execute commands are the exception, and only as medium risk: on its own, a fenced install script from an unknown host makes a tier 5 project Caution and leaves tiers 1 to 4 Safe.",
+    "**代码块里的其他高危命令不计入。**以代码块示例形式出现的反弹 shell 或凭证窃取命令能通过，除非 README 的正文里也要求这么做。下载即执行的命令是例外，但只算中风险：单单一条写在代码块里、来自陌生主机的安装脚本，会让第 5 档项目变成 Caution，第 1 到 4 档仍是 Safe。",
   ],
 };
 
@@ -89,7 +89,7 @@ const GRADES = {
 };
 
 const HIGH_RISK = [
-  ["*Download and execute from an untrusted host:* `curl … | sh`, `wget … | sh`, PowerShell `irm … | iex`. A command that fetches from the project's own GitHub owner, its own website or a well-known installer host does not count.", "**从不受信任的主机下载并执行：**`curl … | sh`、`wget … | sh`、PowerShell 的 `irm … | iex`。下载来源是项目自己的 GitHub 所有者、项目自己的网站或知名安装器主机的，不算。"],
+  ["*Download and execute from an untrusted host, written in the README's prose:* `curl … | sh`, `wget … | sh`, PowerShell `irm … | iex`. Fetching from the project itself (its GitHub owner, the same repository under another owner after a move or as a fork's upstream, its own website), from the GitHub of a tier 1 or 2 organisation (see the tiers below) or from a well-known installer host does not count, and neither does an example address such as example.com, localhost or a private IP.", "**从不受信任的主机下载并执行（写在 README 正文里）：**`curl … | sh`、`wget … | sh`、PowerShell 的 `irm … | iex`。下载来源是项目自己（它的 GitHub 所有者、迁移后或作为 fork 上游的同名仓库、项目自己的网站）、第 1、2 档组织的 GitHub（分档见下文）或知名安装器主机的，不算；example.com、localhost、内网 IP 这类示例地址也不算。"],
   ["*Remote access:* a reverse shell, or a connection through `/dev/tcp`.", "**远程访问：**反弹 shell（reverse shell），或通过 `/dev/tcp` 建立的连接。"],
   ["*Taking credentials or agent data:* reading SSH or cloud credentials and sending them off the machine; harvesting credentials from environment variables; reading an agent's configuration, session or credential files and sending them out; reading an agent's memory or identity files; reading the system password file; posting local data to an outside server.", "**窃取凭证或 agent 数据：**读取 SSH 或云服务凭证并发出本机；从环境变量里收集凭证；读取 agent 的配置、会话或凭证文件并发出去；读取 agent 的记忆或身份文件；读取系统密码文件；把本地数据发到外部服务器。"],
   ["*Hidden execution:* base64 data decoded straight into execution, hex-encoded payloads, obfuscated Python, executing dynamically imported code, installing a package and running it in the same breath.", "**隐蔽执行：**base64 数据解码后直接执行、十六进制编码的载荷、混淆过的 Python、执行动态导入的代码、装完一个包立刻运行它。"],
@@ -104,6 +104,7 @@ const MEDIUM_RISK = [
   ["*Dynamic execution:* `eval`, spawning subprocesses, reading environment variables in code.", "**动态执行：**`eval`、启动子进程、在代码里读取环境变量。"],
   ["*Many sensitive keys:* three or more of `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `AWS_SECRET` and `GITHUB_TOKEN` named.", "**敏感密钥过多：**`OPENAI_API_KEY`、`ANTHROPIC_API_KEY`、`AWS_SECRET`、`GITHUB_TOKEN` 里出现了三个或更多。"],
   ["*Steering the agent:* switching it into an unrestricted \"jailbreak\" persona, telling it to ignore its other tools, asking for credentials to be pasted into the chat.", "**操纵 agent：**把它切换成不受限制的 “jailbreak” 人格、让它忽略自己的其他工具、要求把凭证粘贴进对话。"],
+  ["*Download and execute shown in a code block:* the same commands and the same trusted sources as the high-risk rule. It counts once, however many such blocks the README has.", "**写在代码块里的下载并执行：**命令和可信来源都与高风险那条相同。不管 README 里有几个这样的代码块，都只算一条。"],
   ["*Opaque downloads:* from a URL shortener or an anonymous paste or file-drop host.", "**来源不透明的下载：**来自短链接，或者匿名的粘贴站、文件中转站。"],
   ["*A leaked secret:* something that looks like a real API key, token or private key.", "**泄露的密钥：**看起来像真实 API key、token 或私钥的字符串。"],
 ];
@@ -175,7 +176,7 @@ const SECTIONS = [
     id: "what-we-look-for",
     title: ["What we look for", "我们查什么"],
     blocks: [
-      { type: "p", text: ["41 rules in three levels.", "41 条规则，分三级。"] },
+      { type: "p", text: ["42 rules in three levels.", "42 条规则，分三级。"] },
       { type: "h3", text: ["Reject (2)", "Reject 级（2 条）"] },
       { type: "ul", items: [
         ["Secrets piped to a network tool.", "把密钥通过管道交给网络工具。"],
@@ -183,7 +184,7 @@ const SECTIONS = [
       ] },
       { type: "h3", text: ["High risk (21)", "高风险（21 条）"] },
       { type: "ul", items: HIGH_RISK },
-      { type: "h3", text: ["Medium risk (18)", "中风险（18 条）"] },
+      { type: "h3", text: ["Medium risk (19)", "中风险（19 条）"] },
       { type: "ul", items: MEDIUM_RISK },
     ],
   },
@@ -206,6 +207,7 @@ const SECTIONS = [
         ["quoted examples, and matches introduced as an example (\"such as\", \"e.g.\", \"for example\");", "引号里的示例，以及用 “such as”、“e.g.”、“for example” 这类说法引出的匹配；"],
         ["negated advice (\"never paste your API key into a chat\");", "否定式的建议（“never paste your API key into a chat”，即千万别把 API key 粘贴进对话）；"],
         ["table rows, and lines that say what a tool blocks, detects, warns about or scans for, such as a deny list;", "表格行，以及说明工具会拦截、检测、警告或扫描什么的行，比如拒绝清单（deny list）；"],
+        ["example addresses as the source of a download-and-execute command: example.com, localhost, a private IP;", "下载即执行命令里的示例地址：example.com、localhost、内网 IP；"],
         CODE_BLOCKS.notCounted,
       ] },
       { type: "p", text: ["Downloads from URL shorteners and paste hosts are an exception too: the opaque host is the whole signal, so only a negation or an explicit example clears them.", "从短链接和粘贴站下载也是例外：来源不透明的主机本身就是全部信号，所以只有否定句或明确的示例能让它不计入。"] },

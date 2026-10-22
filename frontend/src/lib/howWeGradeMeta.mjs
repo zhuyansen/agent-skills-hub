@@ -27,12 +27,12 @@ export const HOW_WE_GRADE_META = {
   en: {
     title: "How we grade skills: security grades and quality scores | Agent Skills Hub",
     description:
-      "The 41 rules behind every Agent Skills Hub security grade, what Safe, Caution, Unsafe, Reject and Unaudited mean, the five source tiers and known limits.",
+      "The 42 rules behind every Agent Skills Hub security grade, what Safe, Caution, Unsafe, Reject and Unaudited mean, the five source tiers and known limits.",
   },
   zh: {
     title: "我们怎么给 skill 评级：安全评级与质量分 | Agent Skills Hub",
     description:
-      "Agent Skills Hub 每个安全评级背后的 41 条规则，Safe、Caution、Unsafe、Reject、Unaudited 各是什么意思，五档来源分级，以及已知局限。",
+      "Agent Skills Hub 每个安全评级背后的 42 条规则，Safe、Caution、Unsafe、Reject、Unaudited 各是什么意思，五档来源分级，以及已知局限。",
   },
 };
 
