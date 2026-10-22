@@ -6010,5 +6010,167 @@
    "general": 0.08
   },
   "kind": "editing"
+ },
+ {
+  "repo": "noamdorr/saas-product-demo-video",
+  "stars": 61,
+  "description": "Skill for shipping a 20-45s SaaS product demo video in Remotion. Built and used in production with Claude Code; methodology is LLM-agnostic.",
+  "scores": {
+   "promo": 0.95,
+   "explainer": 0.16,
+   "music": 0.1,
+   "motion": 0.51,
+   "shorts": 0.06,
+   "editing": 0.14,
+   "demo": 0.89,
+   "story": 0.08,
+   "avatar": 0.05,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "dy-hashiqi/VibeDS-skill",
+  "stars": 10,
+  "description": "豆包工作本地电脑模式技能：一句分镜脚本 → 16:9 Vibe 视频大赏科普短视频（基于 HyperFrames + GSAP，HTML 工程，可 lint / preview / render 导出 MP4）",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.93,
+   "music": 0.05,
+   "motion": 0.25,
+   "shorts": 0.07,
+   "editing": 0.05,
+   "demo": 0.28,
+   "story": 0.11,
+   "avatar": 0.07,
+   "general": 0.22
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "rahlquist/hermes-video-toolchain",
+  "stars": 6,
+  "description": "Complete free/open-source video production pipeline for Hermes Agent: OpenScreen capture + HyperFrames authoring + headless post-processing, wired into one skill.",
+  "scores": {
+   "promo": 0.3,
+   "explainer": 0.27,
+   "music": 0.19,
+   "motion": 0.22,
+   "shorts": 0.55,
+   "editing": 0.72,
+   "demo": 0.52,
+   "story": 0.08,
+   "avatar": 0.13,
+   "general": 0.37
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "griffinwooldridge/talking-head-editor",
+  "stars": 6,
+  "description": "A Claude skill that edits raw talking-head footage: tight cuts, clean voice, captions and motion graphics as code",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.34,
+   "music": 0.02,
+   "motion": 0.21,
+   "shorts": 0.23,
+   "editing": 0.98,
+   "demo": 0.52,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.04
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "brookejlacey/boring-tools",
+  "stars": 6,
+  "description": "Agent-driven video editing where the edit is text. No timeline, no project file, nothing uploaded. ffmpeg + whisper + python, and a SKILL.md your agent reads.",
+  "scores": {
+   "promo": 0.64,
+   "explainer": 0.28,
+   "music": 0.05,
+   "motion": 0.06,
+   "shorts": 0.89,
+   "editing": 0.98,
+   "demo": 0.17,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.16
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "garycaogan/pixel-diary",
+  "stars": 5,
+  "description": "用代码复刻“像素角色 + 对话框”类爆款视频：分集 JSON → HyperFrames 出片，附 Claude Code 复刻方法 skill",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.44,
+   "music": 0.08,
+   "motion": 0.14,
+   "shorts": 0.1,
+   "editing": 0.05,
+   "demo": 0.41,
+   "story": 0.71,
+   "avatar": 0.2,
+   "general": 0.06
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "reedodev/explainer-studio",
+  "stars": 5,
+  "description": "One line in, an explainer video out, in eight hand-drawn styles (Claude Code skill)",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.97,
+   "music": 0.03,
+   "motion": 0.51,
+   "shorts": 0.11,
+   "editing": 0.04,
+   "demo": 0.21,
+   "story": 0.1,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "muayadjamal/flow-video-recorder",
+  "stars": 5,
+  "description": "Agent skill: record narrated, captioned demo videos of web (Playwright) and native iOS (Maestro) apps, with ElevenLabs voice-over and motion graphics",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.67,
+   "music": 0.02,
+   "motion": 0.07,
+   "shorts": 0.07,
+   "editing": 0.22,
+   "demo": 0.97,
+   "story": 0.04,
+   "avatar": 0.04,
+   "general": 0.12
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "PHANTOMTONYT/motion-design-skills",
+  "stars": 5,
+  "description": "Five animation styles as Claude skills: 3D toy, kinetic type, hand-drawn cartoon, system diagrams, data charts. Describe an idea, get an MP4.",
+  "scores": {
+   "promo": 0.15,
+   "explainer": 0.41,
+   "music": 0.07,
+   "motion": 0.87,
+   "shorts": 0.7,
+   "editing": 0.03,
+   "demo": 0.22,
+   "story": 0.7,
+   "avatar": 0.04,
+   "general": 0.84
+  },
+  "kind": "general"
  }
 ]

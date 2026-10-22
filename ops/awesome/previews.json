@@ -575,6 +575,14 @@
   "type": "image/png",
   "bytes": 1383035
  },
+ "GabrieleLozupone/kokon": {
+  "repo": "GabrieleLozupone/kokon",
+  "url": "https://raw.githubusercontent.com/GabrieleLozupone/kokon/HEAD/docs/media/examples/restyle.jpg",
+  "alt": "A portrait turned into a watercolor",
+  "score": 0.9,
+  "type": "image/jpeg",
+  "bytes": 176925
+ },
  "Gentleman-Programming/gentleman-guardian-angel": {
   "repo": "Gentleman-Programming/gentleman-guardian-angel",
   "url": "https://github.com/user-attachments/assets/e534ba1e-0044-45c7-a788-b455733c0052",
@@ -774,6 +782,14 @@
   "score": -0.1,
   "type": "image/jpeg",
   "bytes": 297994
+ },
+ "JulienSnsnCode/anti-slop-fr": {
+  "repo": "JulienSnsnCode/anti-slop-fr",
+  "url": "https://raw.githubusercontent.com/JulienSnsnCode/anti-slop-fr/HEAD/assets/banner.png",
+  "alt": "Anti Slop FR — Retire les tics d",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 4571509
  },
  "JuneLearn/dsh-image2-draw": {
   "repo": "JuneLearn/dsh-image2-draw",
@@ -990,6 +1006,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 261381
+ },
+ "PHANTOMTONYT/motion-design-skills": {
+  "repo": "PHANTOMTONYT/motion-design-skills",
+  "url": "https://raw.githubusercontent.com/PHANTOMTONYT/motion-design-skills/HEAD/examples/3d-toy-character.gif",
+  "alt": "3d-toy-character",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 2780713
  },
  "PUSHINGSQUARES/pushing-creation": {
   "repo": "PUSHINGSQUARES/pushing-creation",
@@ -1655,6 +1679,14 @@
   "type": "image/jpeg",
   "bytes": 42333
  },
+ "brookejlacey/boring-tools": {
+  "repo": "brookejlacey/boring-tools",
+  "url": "https://brookejlacey.com/boring-tools/img/review-page.jpg",
+  "alt": "A review grid with the finished video set",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 122016
+ },
  "buildwithhanif/claude-animation-skill": {
   "repo": "buildwithhanif/claude-animation-skill",
   "url": "https://raw.githubusercontent.com/buildwithhanif/claude-animation-skill/HEAD/docs/game-contact.jpg",
@@ -1758,6 +1790,14 @@
   "score": 2.2,
   "type": "image/gif",
   "bytes": 4599464
+ },
+ "ckryptickunal/OpenDesigner": {
+  "repo": "ckryptickunal/OpenDesigner",
+  "url": "https://raw.githubusercontent.com/ckryptickunal/OpenDesigner/HEAD/brand/kit/readme/works-in.png",
+  "alt": "Works in Claude Code and the Claude app, ChatGPT and Codex, Cursor, GitHub Copil",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 25617
  },
  "code-on-sunday/slide-deck-generator": {
   "repo": "code-on-sunday/slide-deck-generator",
@@ -1999,6 +2039,14 @@
   "type": "image/webp",
   "bytes": 242400
  },
+ "dy-hashiqi/VibeDS-skill": {
+  "repo": "dy-hashiqi/VibeDS-skill",
+  "url": "https://raw.githubusercontent.com/dy-hashiqi/VibeDS-skill/HEAD/examples/screenshots/entropy-1-opening.jpg",
+  "alt": "熵增开场",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 34862
+ },
  "eatmoreduck/SkillManager": {
   "repo": "eatmoreduck/SkillManager",
   "url": "https://raw.githubusercontent.com/eatmoreduck/SkillManager/HEAD/docs/screenshots/My%20Skills.png",
@@ -2183,6 +2231,14 @@
   "type": "image/png",
   "bytes": 218230
  },
+ "garycaogan/pixel-diary": {
+  "repo": "garycaogan/pixel-diary",
+  "url": "https://raw.githubusercontent.com/garycaogan/pixel-diary/HEAD/docs/demo.jpg",
+  "alt": "单人版",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 154468
+ },
  "geekjourneyx/hyperframes-motion-director": {
   "repo": "geekjourneyx/hyperframes-motion-director",
   "url": "https://raw.githubusercontent.com/geekjourneyx/hyperframes-motion-director/HEAD/skills/hyperframes-motion-director/assets/features.png",
@@ -2254,6 +2310,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 252492
+ },
+ "griffinwooldridge/talking-head-editor": {
+  "repo": "griffinwooldridge/talking-head-editor",
+  "url": "https://raw.githubusercontent.com/griffinwooldridge/talking-head-editor/HEAD/docs/demo.gif",
+  "alt": "talking-head-editor demo",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 6407265
  },
  "hahadu4520/newcut-video-clipping-skill": {
   "repo": "hahadu4520/newcut-video-clipping-skill",
@@ -3191,6 +3255,14 @@
   "type": "image/png",
   "bytes": 1558154
  },
+ "noamdorr/saas-product-demo-video": {
+  "repo": "noamdorr/saas-product-demo-video",
+  "url": "https://img.youtube.com/vi/84dbi9LvWwM/maxresdefault.jpg",
+  "alt": "Reechee product demo",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 71856
+ },
  "nolangz/pixel2motion": {
   "repo": "nolangz/pixel2motion",
   "url": "https://raw.githubusercontent.com/nolangz/pixel2motion/HEAD/docs/gifs/claude-horizon.gif",
@@ -3399,6 +3471,14 @@
   "type": "image/png",
   "bytes": 72314
  },
+ "reedodev/explainer-studio": {
+  "repo": "reedodev/explainer-studio",
+  "url": "https://raw.githubusercontent.com/reedodev/explainer-studio/HEAD/docs/eight-styles.gif",
+  "alt": "The same storyboard rendered in eight hand-drawn styles, playing side by side",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 2423909
+ },
  "revfactory/showreel": {
   "repo": "revfactory/showreel",
   "url": "https://raw.githubusercontent.com/revfactory/showreel/HEAD/docs/media/showreel-preview.gif",
@@ -3550,6 +3630,14 @@
   "score": 1.65,
   "type": "image/webp",
   "bytes": 1404644
+ },
+ "spcaeo/toadstone": {
+  "repo": "spcaeo/toadstone",
+  "url": "https://raw.githubusercontent.com/spcaeo/toadstone/HEAD/assets/demo.gif",
+  "alt": "Toadstone crawling freshlycited.com: a URL typed in, 141 pages streaming through",
+  "score": 4.6,
+  "type": "image/gif",
+  "bytes": 327608
  },
  "spencermarx/open-code-review": {
   "repo": "spencermarx/open-code-review",

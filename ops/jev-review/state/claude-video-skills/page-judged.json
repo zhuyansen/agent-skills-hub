@@ -4015,5 +4015,41 @@
   "days": 129,
   "stars_per_day": 0.5271317829457365,
   "verdict": "admit"
+ },
+ {
+  "repo": "noamdorr/saas-product-demo-video",
+  "name": "saas-product-demo-video",
+  "stars": 61,
+  "description": "Skill for shipping a 20-45s SaaS product demo video in Remotion. Built and used in production with Claude Code; methodology is LLM-agnostic.",
+  "topics": [
+   "claude-code",
+   "marketing",
+   "motion-graphics",
+   "remotion",
+   "saas",
+   "video"
+  ],
+  "created": "2026-05-05",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 10138,
+  "names_model": false,
+  "makes_video": 0.99,
+  "agent_driven": 0.94,
+  "code_rendered": 0.98,
+  "reusable_tool": 0.97,
+  "names_opus": 0.03,
+  "shows_result": 0.96,
+  "one_command_start": 0.45,
+  "specific_outcome": 0.88,
+  "complete_docs": 0.58,
+  "novel_angle": 0.88,
+  "shareable_output": 0.64,
+  "quality": 0.7175,
+  "tier": "中",
+  "hit_prior": 0.8266666666666667,
+  "days": 170,
+  "stars_per_day": 0.3588235294117647,
+  "verdict": "admit"
  }
 ]

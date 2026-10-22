@@ -4190,5 +4190,37 @@
    "marketing": 0.49
   },
   "kind": "suite"
+ },
+ {
+  "repo": "spcaeo/toadstone",
+  "stars": 6,
+  "description": "A self-hosted alternative to Screaming Frog: your crawl, your machine, no per-URL pricing and no seats. 222 SEO checks — 180 of them proven to fire against a site built to be wrong. JS rendering, crawl diffing with stable issue ids, axe-core accessibility, server logs, Search Console, an HTTP API and an MCP server.",
+  "scores": {
+   "suite": 0.16,
+   "audit": 0.97,
+   "research": 0.03,
+   "data_mcp": 0.96,
+   "geo": 0.05,
+   "content": 0.05,
+   "links": 0.04,
+   "marketing": 0.03
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "jgoullet/seo-geo-audit",
+  "stars": 5,
+  "description": "SEO-GEO Skill System for Claude Code & Claude.ai — 5 connected skills: Collector → Auditor (/90) → Implementer → Monitor. Technical SEO, Core Web Vitals, E-E-A-T, Entity SEO, AI visibility (ChatGPT, Perplexity, Claude), competitive analysis. English by default.",
+  "scores": {
+   "suite": 0.65,
+   "audit": 0.85,
+   "research": 0.16,
+   "data_mcp": 0.12,
+   "geo": 0.41,
+   "content": 0.13,
+   "links": 0.05,
+   "marketing": 0.08
+  },
+  "kind": "audit"
  }
 ]

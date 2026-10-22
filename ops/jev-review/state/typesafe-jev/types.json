@@ -5203,5 +5203,20 @@
    "general": 0.11
   },
   "kind": "replica"
+ },
+ {
+  "repo": "ronitgupta138/Local-Jev",
+  "stars": 5,
+  "description": "⚡ 100% offline, zero-cost drop-in alternative to TypeSafe Jev System One decision models in Rust (<18ms on CPU)",
+  "scores": {
+   "replica": 0.85,
+   "agent": 0.36,
+   "devtool": 0.83,
+   "sdk": 0.86,
+   "business": 0.07,
+   "consumer": 0.14,
+   "general": 0.32
+  },
+  "kind": "sdk"
  }
 ]

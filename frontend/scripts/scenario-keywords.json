@@ -1948,7 +1948,8 @@
     "Hikhakk/higgsfield-mcp-unified",
     "cheshireyang/image-to-svg-skills",
     "See-Sol-Lab/Picxel",
-    "sammyteng/illustration-studio"
+    "sammyteng/illustration-studio",
+    "GabrieleLozupone/kokon"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2180,7 +2181,8 @@
     "Holddrespell/r16-voltagent-awesome-agent-skills-datascience",
     "loulanyue/awesome-claude-notes",
     "Jamie-BitFlight/claude_skills",
-    "vasilyu1983/AI-Agents-public"
+    "vasilyu1983/AI-Agents-public",
+    "autodesk-platform-services/skills"
    ]
   },
   "related": [
@@ -2455,7 +2457,8 @@
     "lingbol088-spec/5.6-JAILBREAK-NERV-codex-instruct-5.6",
     "lingbol088-spec/ReiPenFlow",
     "nihe0909/xiaohongshu-ai-workbench",
-    "u7079256/paperjury-codex"
+    "u7079256/paperjury-codex",
+    "sunflower-of-parchman/codex-hygiene"
    ]
   },
   "related": [
@@ -3102,7 +3105,9 @@
     "xerj-org/xerj",
     "3vilM33pl3/codifix",
     "agent-accessibility/KMCP",
-    "deequoique/stashseek"
+    "deequoique/stashseek",
+    "richarvey/OmniMem",
+    "tikoci/rosetta"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4315,7 +4320,9 @@
     "acchuang/zh-tw-humanizer",
     "IsaacEryn/humanizer-ko",
     "junbolian/Academic-Humanizer",
-    "FerasMahmoud/mega-frontend-design"
+    "FerasMahmoud/mega-frontend-design",
+    "onesoira/humanizer-bahasa-indonesia",
+    "JulienSnsnCode/anti-slop-fr"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4737,7 +4744,9 @@
     "AgriciDaniel/chatgpt-seo",
     "Fangx-AI/geo-doctor",
     "duckduckdeploy/openseo",
-    "oegeyilmaz9/seo-aeo-geo-ultimate"
+    "oegeyilmaz9/seo-aeo-geo-ultimate",
+    "spcaeo/toadstone",
+    "jgoullet/seo-geo-audit"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5204,7 +5213,8 @@
     "arla6ka/design.how",
     "SandroHub013/awwwards-skill",
     "byadityaraj/designmd",
-    "evidence-codes/loom"
+    "evidence-codes/loom",
+    "ckryptickunal/OpenDesigner"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6233,7 +6243,9 @@
     "mathruffian-dot/soil-motion-deck",
     "keanu77/htmlpptskill",
     "jxshow/Jingge-PPT-skill",
-    "Delicious-Cao/Delicious-PPT"
+    "Delicious-Cao/Delicious-PPT",
+    "studio-yebisu/yaoyorozu-ai-toolbox-slides",
+    "calumhrmurray/lectern"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7619,7 +7631,8 @@
     "disler/pi-durable-news-agent",
     "italoalmeida0/laya-system-one",
     "Saik0s/diffusiongemma-jev-macos",
-    "tomek7667/cbjev"
+    "tomek7667/cbjev",
+    "ronitgupta138/Local-Jev"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8057,7 +8070,16 @@
     "patryk-penczek/ship-video",
     "Win-Hao/music-mv",
     "mileson/chaojifeng-video-design",
-    "skailabinfo/claude-video-harness"
+    "skailabinfo/claude-video-harness",
+    "noamdorr/saas-product-demo-video",
+    "dy-hashiqi/VibeDS-skill",
+    "rahlquist/hermes-video-toolchain",
+    "griffinwooldridge/talking-head-editor",
+    "brookejlacey/boring-tools",
+    "garycaogan/pixel-diary",
+    "reedodev/explainer-studio",
+    "muayadjamal/flow-video-recorder",
+    "PHANTOMTONYT/motion-design-skills"
    ],
    "sub_skills": [
     {
@@ -8883,7 +8905,8 @@
     "miscusi-peek/cheatengine-mcp-bridge",
     "Dryxio/auto-re-agent",
     "OwenPawl/ghidra-re-skill",
-    "tearhacker/UE4Dump_imGui_AnalyseToolsForMCP"
+    "tearhacker/UE4Dump_imGui_AnalyseToolsForMCP",
+    "1193776794/frida-mcp"
    ],
    "reviewed_only": true,
    "sort": "stars",

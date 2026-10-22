@@ -2672,5 +2672,19 @@
    "review": 0.93
   },
   "kind": "review"
+ },
+ {
+  "repo": "ckryptickunal/OpenDesigner",
+  "stars": 8,
+  "description": "A free, open-source add-on for Claude, ChatGPT, Codex and Cursor that turns a few plain answers into a design system, so everything you build looks like it belongs together.",
+  "scores": {
+   "ui": 0.95,
+   "system": 0.98,
+   "tool_mcp": 0.52,
+   "to_code": 0.13,
+   "graphics": 0.18,
+   "review": 0.54
+  },
+  "kind": "system"
  }
 ]

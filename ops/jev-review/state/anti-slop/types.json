@@ -3456,5 +3456,33 @@
    "rules": 0.67
   },
   "kind": "design"
+ },
+ {
+  "repo": "onesoira/humanizer-bahasa-indonesia",
+  "stars": 16,
+  "description": "Skill Claude Code dan Codex CLI untuk menyunting teks berbahasa Indonesia agar lebih alami, jelas, dan tetap mempertahankan makna serta suara penulis.",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.1,
+   "chinese": 0.01,
+   "code": 0.08,
+   "design": 0.06,
+   "rules": 0.86
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "JulienSnsnCode/anti-slop-fr",
+  "stars": 5,
+  "description": "Skill Claude qui retire les tics d'écriture IA des textes français — lexique, structures et notation. Adapté de stop-slop.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.96,
+   "chinese": 0.01,
+   "code": 0.05,
+   "design": 0.05,
+   "rules": 0.95
+  },
+  "kind": "detector"
  }
 ]

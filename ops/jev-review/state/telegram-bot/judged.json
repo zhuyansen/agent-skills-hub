@@ -39504,5 +39504,39 @@
   "days": 248,
   "stars_per_day": 0.22580645161290322,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "golaso024/headless-duckapi",
+  "name": "headless-duckapi",
+  "stars": 11,
+  "description": "Free duck.ai models in Telegram - serverless-first (zero VPS), powered by a pure-JS headless browser that walks through DuckDuckGo's anti-bot challenge.",
+  "topics": [
+   "ai",
+   "duckduckgo",
+   "llm",
+   "nodejs",
+   "reverse-engineering",
+   "serverless",
+   "telegram-bot"
+  ],
+  "created": "2026-10-20",
+  "pushed": "2026-10-20",
+  "source": "topic",
+  "readme_chars": 9501,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.98,
+  "shows_result": 0.06,
+  "one_command_start": 0.36,
+  "specific_outcome": 0.77,
+  "complete_docs": 0.48,
+  "novel_angle": 0.75,
+  "shareable_output": 0.84,
+  "quality": 0.4175,
+  "tier": "低",
+  "hit_prior": 0.5499999999999999,
+  "days": 2,
+  "stars_per_day": 5.5,
+  "verdict": "low_quality"
  }
 ]

@@ -3232,5 +3232,33 @@
    "general": 0.47
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "calumhrmurray/lectern",
+  "stars": 5,
+  "description": "Visual drag-and-drop editor for AI-generated slide decks. Ask Claude, ChatGPT or any coding agent for a presentation, then fix the layout yourself — the reveal.js HTML file is the document. Offline, no account, no telemetry.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.32,
+   "convert": 0.09,
+   "general": 0.08
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "studio-yebisu/yaoyorozu-ai-toolbox-slides",
+  "stars": 10,
+  "description": "八百万図AIツールボックス｜AIスライド。スキルの効果・入力・出力と日本語作例から資料制作の道具を選ぶ。",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.37,
+   "html": 0.9,
+   "business": 0.25,
+   "convert": 0.63,
+   "general": 0.85
+  },
+  "kind": "general"
  }
 ]

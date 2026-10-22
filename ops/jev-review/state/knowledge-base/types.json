@@ -4926,5 +4926,33 @@
    "personal": 0.7
   },
   "kind": "personal"
+ },
+ {
+  "repo": "richarvey/OmniMem",
+  "stars": 61,
+  "description": "Self-hosted semantic memory for AI agents, served over MCP. Persistent sessions, experience scoring, a graveyard for dead ends and skills compiled from what worked, plus knowledge from the RSS feeds you read. One Rust binary on SQLite: a tray app for macOS, Windows and Linux, or a server.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.26,
+   "mcp": 0.88,
+   "docs_qa": 0.28,
+   "graph": 0.09,
+   "personal": 0.61
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "tikoci/rosetta",
+  "stars": 50,
+  "description": "MCP Server with RouterOS docs + commands + products + changelogs, using SQLite-as-RAG, sourced from MikroTik",
+  "scores": {
+   "llm_wiki": 0.06,
+   "rag_platform": 0.24,
+   "mcp": 0.96,
+   "docs_qa": 0.92,
+   "graph": 0.07,
+   "personal": 0.07
+  },
+  "kind": "mcp"
  }
 ]

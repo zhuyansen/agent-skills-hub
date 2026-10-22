@@ -3456,5 +3456,19 @@
    "mcp": 0.11
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "GabrieleLozupone/kokon",
+  "stars": 188,
+  "description": "Like Nano Banana, but on your own computer: edit photos by describing the change. Free, private, no limits. One installer for Windows, Mac and Linux; Kokon picks and sets up the model (Qwen-Image 2.1). MCP server for AI agents.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.49,
+   "editing": 0.88,
+   "design": 0.02,
+   "mcp": 0.26
+  },
+  "kind": "editing"
  }
 ]
