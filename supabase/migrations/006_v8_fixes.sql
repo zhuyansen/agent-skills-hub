@@ -471,7 +471,18 @@ DECLARE
   email_html TEXT;
   site_url TEXT := 'https://agentskillshub.top';
   request_id BIGINT;
+  resend_key TEXT;
 BEGIN
+  -- The key lives in Vault, never in this file. Set it once per database with:
+  --   select vault.create_secret('<your resend key>', 'resend_api_key');
+  SELECT decrypted_secret INTO resend_key
+  FROM vault.decrypted_secrets
+  WHERE name = 'resend_api_key';
+
+  IF resend_key IS NULL OR resend_key = '' THEN
+    RAISE EXCEPTION 'resend_api_key not found in Vault — run: select vault.create_secret(''<key>'', ''resend_api_key'')';
+  END IF;
+
   verify_url := site_url || '/verify-email?token=' || p_token;
 
   email_html := '<!DOCTYPE html><html><head><meta charset="utf-8"></head>'
@@ -503,7 +514,10 @@ BEGIN
       'subject', 'Confirm your Agent Skills Hub subscription',
       'html', email_html
     ),
-    headers := '{"Authorization": "Bearer re_ZV7dTHfd_Ka52CSGn5Kg2uR4eY5MysANg", "Content-Type": "application/json"}'::jsonb
+    headers := jsonb_build_object(
+      'Authorization', 'Bearer ' || resend_key,
+      'Content-Type', 'application/json'
+    )
   ) INTO request_id;
 
   RAISE LOG 'Verification email queued for % (request_id: %)', p_email, request_id;

@@ -37,12 +37,17 @@ BLOCK_PATTERNS = [
     (r'xox[bpors]-[0-9a-zA-Z-]{10,}', 'Slack Token'),
     (r'sk_live_[0-9a-zA-Z]{24,}', 'Stripe Live Key'),
     (r'-----BEGIN[A-Z ]*PRIVATE KEY-----', 'Private Key'),
-    (r're_[0-9a-zA-Z]{20,}', 'Resend API Key'),
+    # Real keys carry separators inside them: re_ZV7dTHfd_Ka52… never matched an alphanumeric-only
+    # rule, so this hook passed the key that leaked to GitHub in 2026-03 (caught by Resend, not by us).
+    (r're_[0-9a-zA-Z][0-9a-zA-Z_-]{19,}', 'Resend API Key'),
     # Supabase service_role JWT: payload contains base64 of "role":"service_role"
     # Marker: cm9sZSI6InNlcnZpY2 (stable across all Supabase projects)
     # Anon key is public/read-only, intentionally not blocked
     (r'eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]*cm9sZSI6InNlcnZpY2[A-Za-z0-9_-]+', 'Supabase Service Role JWT'),
     (r'sk-[0-9a-zA-Z]{32,}', 'OpenAI API Key'),
+    # Vendor-prefixed keys contain dashes, so the rule above misses every current one. Prefixes are
+    # required here (not a bare sk-) to keep skill slugs like sk-creator out of the block list.
+    (r'sk-(?:proj|ant|or-v1|svcacct)-[0-9a-zA-Z_-]{20,}', 'OpenAI/Anthropic/OpenRouter Key'),
     (r'AIza[0-9A-Za-z_-]{35}', 'Google API Key'),
 ]
 
