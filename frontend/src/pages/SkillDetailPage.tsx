@@ -236,7 +236,7 @@ export function SkillDetailPage() {
                     {detail.license}
                   </span>
                 )}
-                <SecurityBadge grade={detail.security_grade} size="md" />
+                <SecurityBadge grade={detail.security_grade} size="md" explain />
               </div>
 
               {/* Platforms */}

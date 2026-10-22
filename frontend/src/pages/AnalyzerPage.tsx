@@ -14,6 +14,8 @@ import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
 import { DeepAuditOffer } from "../components/DeepAuditOffer";
 import { AuditLeadCapture } from "../components/AuditLeadCapture";
+import { HowWeGradeLink } from "../components/HowWeGradeLink";
+import { GRADES_ANCHOR } from "../lib/howWeGradeMeta.mjs";
 
 const GRADE_CONFIG: Record<
   string,
@@ -343,7 +345,11 @@ export function AnalyzerPage() {
           <p className="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">
             {isZh
               ? "粘贴 GitHub 仓库 URL，即时分析安全风险。纯浏览器端运行，无需后端。"
-              : "Paste a GitHub repo URL for instant security analysis. Runs entirely in your browser."}
+              : "Paste a GitHub repo URL for instant security analysis. Runs entirely in your browser."}{" "}
+            <HowWeGradeLink
+              arrow
+              className="text-indigo-600 dark:text-indigo-400 hover:underline"
+            />
           </p>
         </div>
 
@@ -531,6 +537,11 @@ function ResultsDisplay({
                   ? `检测到 ${scan.flags.length} 个安全标记，请查看下方详细报告。`
                   : `${scan.flags.length} security flag(s) detected. See detailed report below.`}
             </p>
+            <HowWeGradeLink
+              anchor={GRADES_ANCHOR}
+              arrow
+              className="mt-2 inline-block text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
+            />
           </div>
         </div>
       </div>

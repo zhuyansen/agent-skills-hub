@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
+import { HowWeGradeLink } from "./HowWeGradeLink";
 
 export function SiteFooter() {
   const { t, lang } = useI18n();
@@ -265,6 +266,8 @@ export function SiteFooter() {
           <a href="/about/" className="hover:text-white transition-colors">
             {lang === "zh" ? "关于我们" : "About"}
           </a>
+          <span className="text-gray-700">·</span>
+          <HowWeGradeLink className="hover:text-white transition-colors" />
           <span className="text-gray-700">·</span>
           {__STATS_LIVE__ && (
             <>

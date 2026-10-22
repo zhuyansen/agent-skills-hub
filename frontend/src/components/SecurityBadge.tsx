@@ -1,9 +1,15 @@
+import { HowWeGradeLink } from "./HowWeGradeLink";
+import { GRADES_ANCHOR } from "../lib/howWeGradeMeta.mjs";
+
 interface Props {
   grade: string | null;
   /** "sm" = dense card row (default). "md" = detail page / collection header. */
   size?: "sm" | "md";
   /** Hide the Unaudited state (e.g. compact rows where null is preferred). */
   hideUnaudited?: boolean;
+  /** Follow the badge with a small "How we grade" link to /how-we-grade/. Only where the
+   *  badge is not inside a link or a clickable card (the skill page), or the clicks clash. */
+  explain?: boolean;
 }
 
 interface Variant {
@@ -49,9 +55,24 @@ export function SecurityBadge({
   grade,
   size = "sm",
   hideUnaudited = false,
+  explain = false,
 }: Props) {
   const key = grade && CONFIG[grade] ? grade : "unknown";
   if (key === "unknown" && hideUnaudited) return null;
+  const badge = <Badge gradeKey={key} size={size} />;
+  if (!explain) return badge;
+  return (
+    <>
+      {badge}
+      <HowWeGradeLink
+        anchor={GRADES_ANCHOR}
+        className="self-center text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
+      />
+    </>
+  );
+}
+
+function Badge({ gradeKey: key, size }: { gradeKey: string; size: "sm" | "md" }) {
   const c = CONFIG[key];
   const dims =
     size === "md"
