@@ -24,6 +24,7 @@
  */
 
 import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs";
+import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -221,6 +222,20 @@ function statsEntries(today) {
   </url>`;
   const archive = issues.slice(0, -1).map((p) => entry(`/stats/${p}/`, "0.6"));
   return [entry("/stats/", "0.85", alts), entry("/stats/zh/", "0.75", alts), ...archive];
+}
+
+/**
+ * /how-we-grade/ (2026-10-22): how grades and scores are made, a top-level page like /stats/,
+ * so it goes into sitemap-top.xml, the one sub-sitemap Google reads. Its lastmod is the
+ * Article dateModified the page declares, bumped only when its text changes.
+ */
+function howWeGradeEntries(today) {
+  if (!existsSync(`dist${HOW_WE_GRADE_PATH}index.html`)) return [];
+  return [`  <url>
+    <loc>${SITE}${HOW_WE_GRADE_PATH}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>${lastmodLine(declaredDate(HOW_WE_GRADE_PATH, today))}
+  </url>`];
 }
 
 async function main() {
@@ -481,6 +496,9 @@ async function main() {
   const stats = statsEntries(today);
   hubEntries.push(...stats);
   if (stats.length) console.log(`/stats/: ${stats.length} URLs into sitemap-top.xml`);
+  const howWeGrade = howWeGradeEntries(today);
+  hubEntries.push(...howWeGrade);
+  if (howWeGrade.length) console.log(`${HOW_WE_GRADE_PATH}: into sitemap-top.xml`);
 
   // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
   // declares the xhtml namespace the scenario entries' hreflang links need.

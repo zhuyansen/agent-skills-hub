@@ -59,6 +59,9 @@ const EnterprisePage = lazy(() =>
 const FavoritesPage = lazy(() =>
   import("./pages/FavoritesPage").then((m) => ({ default: m.FavoritesPage })),
 );
+const HowWeGradePage = lazy(() =>
+  import("./pages/HowWeGradePage").then((m) => ({ default: m.HowWeGradePage })),
+);
 const ProPage = lazy(() => import("./pages/ProPage"));
 const ProBoardPage = lazy(() => import("./pages/ProBoardPage"));
 
@@ -87,6 +90,8 @@ function App() {
                   <Route path="/compare" element={<ComparePage />} />
                   <Route path="/analyzer" element={<AnalyzerPage />} />
                   <Route path="/analyzer/" element={<AnalyzerPage />} />
+                  <Route path="/how-we-grade" element={<HowWeGradePage />} />
+                  <Route path="/how-we-grade/" element={<HowWeGradePage />} />
                   <Route path="/org-audit" element={<OrgAuditPage />} />
                   <Route path="/org-audit/" element={<OrgAuditPage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />
