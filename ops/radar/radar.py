@@ -189,7 +189,15 @@ def _cost(*blocks: dict) -> str:
 
 
 PICKS = 3
-MEME_HOW = "做法:单功能站(上传照片 → 生成你的版本),按次卖。"
+# Which template a trend is built on (luko/research/29 三条线): a still picture on the image
+# template site (mkfast-app meme-kit), moving footage on the video one (ShrimpReel), which also
+# needs a source video to follow: its own footage or a generated clip, never the creator's video.
+MEME_HOW = {
+    "image": "做法:图片模版站(上传照片 → 出一张图),按张卖。",
+    "video": "做法:视频模版站(上传照片 → 照原视频的动作出一段视频),按秒卖。"
+             "先备好源视频:自己拍,或用 Seedance / Kling 生成同样动作的片段;不能直接用原作者的视频。",
+    "": "做法:单功能站(上传照片 → 生成你的版本),按次卖。类型没认出来:先看最热一条,再定用图片还是视频模版站。",
+}
 TRENDS_LINK = "https://trends.google.com/trends/explore?date=today%203-m&q="
 
 
@@ -225,7 +233,7 @@ def pick_lines(fresh: list[dict], sent: list[str], held: list[tuple[str, str]]) 
         lines = [f"今天够格的词都已在每 8 小时的邮件里发过:{'、'.join(sent)}。" if sent
                  else "**今天没有值得动手的词。** 下面的明细扫一眼即可。"]
     if held:
-        lines += ["", "没放进来的 AI 视频梗:" + "、".join(f"{t}({why})" for t, why in held)]
+        lines += ["", "没放进来的梗:" + "、".join(f"{t}({why})" for t, why in held)]
     if held or any(p["kind"] == "meme" for p in fresh):
         lines += ["", memes.AGE_NOTE]
     return lines
@@ -247,6 +255,9 @@ def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[l
         t = uc.get(r["term"], {})
         info = memes.read_note(r.get("note", ""), today)
         info["checks"] = r.get("checks") or info["checks"]
+        # this run's terms carry the format; a lead read back from radar_leads has it in its note,
+        # or, written before 10-23, only a description to guess it from
+        info["format"] = r.get("format") or info["format"] or memes.guess_format(r["term"], r.get("what") or info["what"])
         why = _meme_held(info, t, today)
         if why:
             held.append((r["term"], why))
@@ -273,11 +284,13 @@ def _meme_line(r: dict, info: dict, t: dict, today: date) -> str:
     demand = f",Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else ""
     what = r.get("what") or info["what"]
     top = next((p["url"] for p in r.get("posts", []) if p.get("url")), "")   # the most-liked post (memes.py)
-    return (f"**{r['term']}**:AI 视频梗{',' + what if what else ''}。  \n"
+    kind = memes.FORMATS.get(info["format"], "AI 梗(类型没认出来)")
+    return (f"**{r['term']}**:{kind}{',' + what if what else ''}。  \n"
             f"{memes.age_text(info['earliest'], info['edge'], today)};{info['where']} {info['posts']} 帖,"
             f"Jev 机会 {r['named']:.2f}{demand}。  \n"
             + (f"{info['checks']}。  \n" if info["checks"] else "")
-            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW}" + _link("最热一条", top))
+            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW[info['format'] if info['format'] in memes.FORMATS else '']}"
+            + _link("最热一条", top))
 
 
 def _usecase_picks(uc: dict[str, dict]) -> list[dict]:

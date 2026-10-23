@@ -64,7 +64,7 @@ def test_note_round_trip():
     assert note.startswith("①梗 TikTok/YouTube 2 帖,最早 10-18,Jev 机会 0.56｜")
     got = memes.read_note(note, TODAY)
     assert got == {"where": "TikTok/YouTube", "posts": 2, "earliest": date(2026, 10, 18), "edge": False,
-                   "what": m["what"], "checks": checks}
+                   "what": m["what"], "format": "", "checks": checks}
 
 
 def test_note_keeps_the_edge_mark():
@@ -83,6 +83,41 @@ def test_notes_from_before_dates_still_read():
 def test_note_date_never_lands_in_the_future():
     note = "①梗 TikTok 1 帖,最早 12-30,Jev 机会 0.60"
     assert memes.read_note(note, date(2027, 1, 2))["earliest"] == date(2026, 12, 30)
+
+
+# --- image or video: which template a trend is built on ------------------------------------
+
+def test_format_comes_from_the_model_or_a_guess():
+    assert memes.format_of("Image", "x", "") == "image" and memes.format_of("video", "x", "") == "video"
+    assert memes.format_of(None, "bulin 47", "用AI让自己跳Bulin 47的舞") == "video"
+    assert memes.format_of("", "ai yearbook", "把自拍变成90年代毕业照") == "image"
+    assert memes.format_of("gif", "x", "看不出是什么") == ""
+
+
+def test_note_keeps_the_format():
+    checks = "评论 5% 想自己做(3/60)｜aiyearbook.com 还空着"
+    m = dict(_trend([_post("2026-10-18")], checks=checks, what="把自拍变成90年代毕业照"), format="image")
+    note = memes.lead_note(m)
+    assert note.endswith("｜类型:图片梗")
+    got = memes.read_note(note, TODAY)
+    assert got["format"] == "image" and got["checks"] == checks and got["what"] == "把自拍变成90年代毕业照"
+
+
+def test_each_pick_says_which_template_to_build_on():
+    image = dict(_trend([_post("2026-10-18")], what="把自拍变成90年代毕业照"), format="image")
+    rows = [{"term": "ai yearbook", "kinds": ["meme"], "note": memes.lead_note(image), "named": 0.6},
+            _lead("korean baseball ai", [_post("2026-10-19")], score=0.58)]
+    lines = radar.picks({"recent_sources": {"rows": rows}}, TODAY)
+    first = next(line for line in lines if "**ai yearbook**" in line)
+    second = next(line for line in lines if "**korean baseball ai**" in line)
+    assert first.startswith("1. **ai yearbook**:图片梗,") and "图片模版站" in first and "源视频" not in first
+    assert "视频梗," in second and "视频模版站" in second and "源视频" in second and "不能直接用原作者的视频" in second
+
+
+def test_a_trend_whose_format_is_unclear_says_to_look_first():
+    rows = [_lead("mystery ai", [_post("2026-10-19")], what="看不出是什么")]
+    line = radar.picks({"recent_sources": {"rows": rows}}, TODAY)[0]
+    assert "AI 梗(类型没认出来)" in line and "先看最热一条" in line
 
 
 # --- radar.picks(): 10-20's mail, rebuilt ---------------------------------------------
@@ -105,7 +140,7 @@ def _mail_of_10_20():
 
 def test_only_the_trend_still_before_its_peak_is_picked():
     lines = _mail_of_10_20()
-    assert lines[0].startswith("1. **korean baseball ai**:AI 视频梗,用AI把自己放进韩国棒球比赛场景中的视频。")
+    assert lines[0].startswith("1. **korean baseball ai**:视频梗,用AI把自己放进韩国棒球比赛场景中的视频。")
     assert "最早出现 10-18,已 2 天;TikTok/YouTube 3 帖,Jev 机会 0.56" in lines[0]
     assert "还剩约 2 天,**今天上线**" in lines[0] and lines[0].count("Jev 机会") == 1
     assert not any(line.startswith("2.") for line in lines)
@@ -113,7 +148,7 @@ def test_only_the_trend_still_before_its_peak_is_picked():
 
 def test_the_trends_left_out_say_why():
     held = _mail_of_10_20()[-3]
-    assert held.startswith("没放进来的 AI 视频梗:")
+    assert held.startswith("没放进来的梗:")
     assert "bulin 47 ai dance(最早出现 10-15,已 5 天,过了见顶期)" in held
     assert "hotel lobby migos ai(只在 YouTube 出现,看不出日期)" in held
     assert "ceiling fan outfit ai(最早出现 10-13 或更早,已 7 天以上,过了见顶期)" in held
@@ -145,3 +180,4 @@ def test_trend_table_shows_when_each_trend_first_showed():
     table = "\n".join(rows)
     assert "| **10-18(2 天)** |" in table and "| 10-13 或更早(7 天+) |" in table
     assert "| 看不出(只有 YouTube) |" in table
+    assert "| 梗 | 类型 |" in table and "**korean baseball** | 视频 |" in table

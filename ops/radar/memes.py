@@ -75,6 +75,9 @@ SYSTEM = (
     "For each trend give: `name` (2-4 words, lowercase, as people say it), `query` (what someone would type into "
     "Google to make their own, as short as people type it: '<name> ai' by default; add 'generator' or another word "
     "only when '<name> ai' alone would mean something else), `what` (one short sentence in Simplified Chinese: what people make), "
+    "`format` ('image' when what people make and post is a still picture: a portrait, a yearbook or ID photo, a figure, "
+    "a poster, a sticker, a photo slideshow; 'video' when it is moving footage: a dance, a rap, lip sync, a camera "
+    "move, a transformation clip), "
     "`posts` (the numbers of the posts and hashtags that show it). The query never holds 'capcut', 'template', "
     "'tutorial' or 'trend': those are how the posts talk, not what a buyer types. Merge spellings of the same trend. At most 12, "
     "most posted first. Answer with JSON only: {\"trends\": [...]}. No trend: {\"trends\": []}."
@@ -249,23 +252,27 @@ def lead_note(m: dict) -> str:
     first = ("≤" if m["edge"] else "") + m["earliest"][5:]
     score = f",Jev 机会 {m['score']:.2f}" if m["score"] is not None else ""
     what = f"{WHAT}{m['what'].replace('｜', '/')}" if m["what"] else ""
-    return "｜".join(x for x in (f"①梗 {where} {len(m['posts'])} 帖,最早 {first}{score}", m["checks"], what) if x)
+    kind = f"{FORMAT}{FORMATS[m['format']]}" if m.get("format") in FORMATS else ""
+    return "｜".join(x for x in (f"①梗 {where} {len(m['posts'])} 帖,最早 {first}{score}", m["checks"], what, kind) if x)
 
 
 _NOTE = re.compile(r"^①梗 (?P<where>.+?) (?P<n>\d+) 帖(?:,最早 (?P<edge>≤?)(?P<mm>\d{2})-(?P<dd>\d{2}))?")
 
 
 def read_note(note: str, today: date) -> dict:
-    """What lead_note() wrote. Notes from before 10-20 carry no date and no description."""
+    """What lead_note() wrote. Notes from before 10-20 carry no date and no description,
+    notes from before 10-23 no format ('' then: radar._meme_picks guesses it from the description)."""
     parts = note.split("｜")
     m = _NOTE.match(parts[0])
     first = None
     if m and m["mm"]:
         first = date(today.year, int(m["mm"]), int(m["dd"]))
         first = first if first <= today else first.replace(year=today.year - 1)
+    kind = next((x[len(FORMAT):] for x in parts if x.startswith(FORMAT)), "")
     return {"where": m["where"] if m else "", "posts": int(m["n"]) if m else 0, "earliest": first,
             "edge": bool(m and m["edge"]), "what": next((x[len(WHAT):] for x in parts if x.startswith(WHAT)), ""),
-            "checks": "｜".join(x for x in parts[1:] if not x.startswith(WHAT))}
+            "format": next((k for k, v in FORMATS.items() if v == kind), ""),
+            "checks": "｜".join(x for x in parts[1:] if not x.startswith((WHAT, FORMAT)))}
 
 
 AGE_NOTE = (f"最早出现 = 读到的最早一条帖子或话题起涨那天;帖子只往前读 {WINDOW_DAYS} 天,所以这是下限,"
@@ -344,9 +351,38 @@ def extract(posts: list[dict], tags: list[dict], seeds: list[str]) -> list[dict]
         tg = [tags[int(r[1:])] for r in refs if r.startswith("t") and r[1:].isdigit() and int(r[1:]) < len(tags)]
         # the model still slips 'trend' in now and then ('chatgpt millionaire ai trend'); a buyer does not type it
         query = " ".join(w for w in str(t.get("query") or f"{name} ai").lower().split() if w not in NOT_QUERY)
-        out.append({"name": name, "query": query or f"{name} ai",
-                    "what": str(t.get("what", ""))[:160], "posts": ev, "tags": tg})
+        what = str(t.get("what", ""))[:160]
+        out.append({"name": name, "query": query or f"{name} ai", "what": what,
+                    "format": format_of(t.get("format"), name, what), "posts": ev, "tags": tg})
     return out
+
+
+# A picture meme and a video meme are built on different templates (luko/research/29 三条线):
+# the image template site (mkfast-app meme-kit) and the video one (ShrimpReel).
+FORMATS = {"image": "图片梗", "video": "视频梗"}
+FORMAT = "类型:"          # labels the format in a lead's note (lead_note, read_note)
+_VIDEO_CUES = ("视频", "跳舞", "舞蹈", "跳", "说唱", "唱", "对口型", "口型", "运镜", "动起来", "片段", "镜头",
+               "dance", "rap", "video", "clip", "freestyle", "lip sync", "lipsync")
+_IMAGE_CUES = ("照片", "图片", "头像", "肖像", "写真", "手办", "海报", "贴纸", "证件照", "毕业照", "插画", "漫画",
+               "卡片", "photo", "portrait", "figure", "poster", "sticker", "yearbook", "headshot", "avatar")
+
+
+def format_of(said, name: str, what: str) -> str:
+    """'image' or 'video': what the model said when it is one of them, else a guess from the
+    name and the description; '' when neither tells (the mail then says to look first)."""
+    s = str(said or "").strip().lower()
+    if s in ("image", "photo", "picture", "still"):
+        return "image"
+    if s in ("video", "clip", "motion"):
+        return "video"
+    return guess_format(name, what)
+
+
+def guess_format(name: str, what: str) -> str:
+    text = f"{name} {what}".lower()
+    video = sum(c in text for c in _VIDEO_CUES)
+    image = sum(c in text for c in _IMAGE_CUES)
+    return "video" if video > image else "image" if image > video else ""
 
 
 def jev():
@@ -450,7 +486,7 @@ def memes(snaps: Path, today: date | None = None) -> dict:
             # `named` carries Jev's opportunity score: radar.judge() skips meme rows, so it is
             # what radar_leads keeps and the daily report's picks read back (radar.picks)
             terms.append({"term": m["query"], "recent": len(m["posts"]), "named": m["score"], "what": m["what"],
-                          "checks": m["checks"],
+                          "checks": m["checks"], "format": m["format"],
                           # the daily picks get only this note back from radar_leads (read_note)
                           "note": lead_note(m),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],
@@ -483,15 +519,15 @@ def _first_cell(m: dict, today: date) -> str:
 def section(b: dict) -> list[str]:
     if b.get("skipped"):
         return []
-    lines = ["", f"### ① AI 视频梗(TikTok / Ins / YouTube / X 近 {WINDOW_DAYS} 天 + TikTok 话题榜;"
+    lines = ["", f"### ① AI 梗:图片梗走图片模版站,视频梗走视频模版站(TikTok / Ins / YouTube / X 近 {WINDOW_DAYS} 天 + TikTok 话题榜;"
              f"出现不满 {PEAK_DAYS} 天且 Jev 机会分 ≥{OPPORTUNITY_MIN} 的进候选词;🆕 = 雷达第一次见到)", ""]
     if b.get("error"):
         return lines + [f"失败:{b['error']}"]
     found = b.get("memes") or []
     if not found:
         return lines + [f"今天没认出梗({b['posts']} 条帖子,{b['tags']} 个话题)"]
-    lines += ["| 梗 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 评论和竞争 | 最早出现 |",
-              "|---|---|---|---|---|---|---|---|---|"]
+    lines += ["| 梗 | 类型 | 搜索词 | 做什么 | 出现在 | 最热一条 | TikTok 话题曲线 | Jev 机会 | 评论和竞争 | 最早出现 |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
     today = date.fromisoformat(b["today"])
     for m in found:
         top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
@@ -501,7 +537,8 @@ def section(b: dict) -> list[str]:
         where = "、".join(f"{PLATFORM_ZH[p]}{sum(q['platform'] == p for q in m['posts']) or ''}" for p in m["platforms"])
         score = f"**{m['score']:.2f}**" if m["score"] is not None and m["score"] >= OPPORTUNITY_MIN else \
             f"{m['score']:.2f}" if m["score"] is not None else "—"
-        lines.append(f"| {'🆕 ' if m['new'] else ''}**{m['name']}** | {m['query']} | {m['what'].replace('|', '/')} | {where} | "
+        kind = {"image": "图片", "video": "视频"}.get(m.get("format") or guess_format(m["name"], m["what"]), "看不出")
+        lines.append(f"| {'🆕 ' if m['new'] else ''}**{m['name']}** | {kind} | {m['query']} | {m['what'].replace('|', '/')} | {where} | "
                      f"{hot} | {curve} | {score} | {meme_checks.summary(m) or '—'} | {_first_cell(m, today)} |")
     lines += ["", "Jev 机会 = Jev 判断“现在做一个单功能站或应用让人做自己的版本，这周能不能卖出去”。"
               f"梗大约 {PEAK_DAYS} 天见顶，85% 的钱在头 72 小时(Bulin 47 的复盘),看到就要当天动手。" + AGE_NOTE]

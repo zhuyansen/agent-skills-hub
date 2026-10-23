@@ -241,7 +241,7 @@ def test_the_8_hourly_run_mails_only_the_picks_no_earlier_mail_sent(monkeypatch,
     _sources_with(monkeypatch, memes_=[_meme_term("korean baseball ai")])
     radar.sources_main(report, snaps, flags)
     first = mail.read_text()
-    assert first.startswith("1. **korean baseball ai**:AI 视频梗,用AI把自己放进视频。") and "\n2. " not in first
+    assert first.startswith("1. **korean baseball ai**:视频梗,用AI把自己放进视频。") and "\n2. " not in first
     assert "**今天上线**" in first and first.rstrip().endswith("[最热一条](https://www.tiktok.com/@a/video/7)")
     assert "明细" not in first and "|" not in first and "### " not in first           # the picks, nothing else
     assert "korean baseball ai" in report.read_text()                                    # the step summary keeps the full report
