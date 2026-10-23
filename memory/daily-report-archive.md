@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-23
+1. rossark0/rossark-motion-skill — 🆕 把任意 SVG 变成 60 帧专业动画，让 Claude Code 给静态图形加上动效（236★ 236.0/day）
+2. nothinx/naskah-id — 🆕 帮智能体写出符合 EYD V 与 KBBI 规范、自然地道的印尼语学术论文（74★ 52.8/day）
+3. Zafer-Liu/claude-super-sidebar — 🆕 给 Claude Code 与 Codex 加可视化侧边栏，显示智能体树、实时状态与任务流（136★ 49.1/day）
+4. lklbar666/mcd-saver-checkup — 🆕 基于麦当劳 MCP 逐个复算所有买法，找出你多花的钱和凑单临界点（84★ 44.6/day）
+5. devswha/ovis — 开源 herdr 浏览器与手机客户端，随时随地和编程智能体对话、看实时终端（1358★ 38.5/day）
+6. hassan-algo/open-sesame — 🆕 让 Claude Code 对已授权网站做 Web 渗透测试，自动梳理攻击面（56★ 29.7/day）
+7. dreammis/social-auto-upload — 自动把视频上传到抖音、小红书、视频号、TikTok、YouTube 与 B 站（15725★ 14.9/day）
+8. amurgola/LumaBrowser — 🆕 本地 AI 桌面浏览器，内置按显卡调度的 llama.cpp 运行时与兼容 OpenAI 的接口（124★ 9.3/day）
+9. SolaceProducts/solace-agent-mesh — 覆盖构建、测试、部署、监控全生命周期的企业级 AI 智能体平台（4913★ 7.6/day）
+10. jazzenchen/agent-hud-native-open — 用原生 Swift 写的 macOS 智能体 HUD，在桌面上盯住各个编程智能体（180★ 4.2/day）
+🎯 今日趋势：**6 席**标 🆕；"盯住编程智能体"的界面占 **3 席**（Claude 侧边栏、herdr 手机端 Ovis、macOS 原生 HUD），麦当劳 MCP 大赛作品连续第 **2** 天上榜。
+> 注：去重范围＝repo 内 archive 全部 120 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,070 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 31 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（paulip114/sre-practice-skills、respanai/respan-gateway 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①7API/glm-5.3-abliterated（154★ 154.0/day）与 7API/uncensored-ai-api（127★ 127.0/day）：组织 10-22 新建、仅 3 仓、两仓同日创建 fork 数同为 34，标题堆砌"越狱/无审查"关键词并导流付费 API；②dancik/limitbar（46★ 40.1/day）：账号 0 粉、仅 2 仓，单仓爆星；③jwuthri-cloud/SelfJev（42★ 36.0/day）：账号 10-11 新建，12 天内名下 Tracely-ai 1,153★，增速异常；④yuatemycat/SuperGhidra（88★ 32.8/day）：账号 10-19 新建、5 粉、仅 3 仓；⑤Sidiora-Labs/paxeer-monorepo（8.3/day）：组织 08 月新建，支付/链上项目；⑥imexlovery/video-report-agent（5.7/day）：账号 3 粉、其余仓全 0★，单仓 251★；⑦其余均已在历史榜单出现，不再复评。入选项复核（`gh api`）：第 1 席 rossark0 2018 建号、37 粉、fork 23；第 2 席 nothinx 2022 建号、6 粉、fork 15（**轻红旗**，量级小，保留）；第 3 席 Zafer-Liu 2026-04 建号、53 粉、名下 Data-Analysis-Agent 2,631★；第 4 席 lklbar666 2021 建号、3 粉、其余仓 ≤1★（**轻红旗**，fork 8、麦当劳 MCP 大赛参赛作品，保留）；第 5 席 devswha 100 粉、名下 patina 378★、fork 188；第 6 席 hassan-algo 2020 建号、26 粉，技能声明仅用于已授权目标；第 7 席 dreammis 232 粉、2023 年老项目、fork 2,664，first_seen 为新；第 8 席 amurgola 2014 建号、fork 12；第 9 席 SolaceProducts 为 Solace 官方组织；第 10 席 jazzenchen 33 粉、名下 VibeAround 527★。google/elephant-goldfish-model（3.8/day）在第 10 席之后，未入选。🆕 判定＝created_at 距今 14 天内，ovis（35.2 天）、social-auto-upload（1053.7 天）、solace-agent-mesh（650.3 天）、agent-hud-native-open（42.9 天）不标，其余六席命中。security_grade：naskah-id、open-sesame、LumaBrowser 为 safe，其余七席为 unknown（尚未扫描）。表中 stars 为数据库快照，部分仓实时更高（rossark-motion-skill 278★、claude-super-sidebar 150★），按红线保留快照值。
+
+---
+
 ## 2026-10-22
 1. cheaper-inference/OmniRoute — 用一个免费开源网关接入 375 家模型供应商，其中 150 多家可免费调用（79376★ 316.8/day）
 2. helloianneo/ian-xhs-carousel — 🆕 把文章、案例或笔记排成 3:4 小红书图文，内置 20 个母版与深浅两色（80★ 80.0/day）
