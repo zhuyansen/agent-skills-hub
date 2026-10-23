@@ -6172,5 +6172,77 @@
    "general": 0.84
   },
   "kind": "general"
+ },
+ {
+  "repo": "LordVayron/video-factory",
+  "stars": 24,
+  "description": "An AI video studio your coding agent installs and runs: UGC ads, micro-dramas, sitcoms, launch films, fantasy shorts, hour-long meditations. Claude Code / Codex + APIMart + Kie.ai + ElevenLabs.",
+  "scores": {
+   "promo": 0.83,
+   "explainer": 0.34,
+   "music": 0.16,
+   "motion": 0.06,
+   "shorts": 0.93,
+   "editing": 0.12,
+   "demo": 0.4,
+   "story": 0.88,
+   "avatar": 0.42,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "indieshade/video-director-workflow",
+  "stars": 6,
+  "description": "Design-led AI video workflow: director skill, aesthetic guidance, blind comparisons and a reproducible HyperFrames collage sample",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.72,
+   "music": 0.13,
+   "motion": 0.36,
+   "shorts": 0.33,
+   "editing": 0.1,
+   "demo": 0.22,
+   "story": 0.33,
+   "avatar": 0.05,
+   "general": 0.25
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Teseife/diffusion-studio-codex",
+  "stars": 5,
+  "description": "Independent Codex and Claude Code plugin for local video editing with Diffusion Studio.",
+  "scores": {
+   "promo": 0.56,
+   "explainer": 0.78,
+   "music": 0.19,
+   "motion": 0.42,
+   "shorts": 0.19,
+   "editing": 0.57,
+   "demo": 0.93,
+   "story": 0.07,
+   "avatar": 0.06,
+   "general": 0.28
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "davidbfrogman/davecto-cutroom",
+  "stars": 5,
+  "description": "Edit your talking-head videos with Claude: a local editor, a notes loop, captions and animations in your own brand. Claude Code plugin for macOS.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.21,
+   "music": 0.07,
+   "motion": 0.15,
+   "shorts": 0.3,
+   "editing": 0.98,
+   "demo": 0.14,
+   "story": 0.11,
+   "avatar": 0.05,
+   "general": 0.06
+  },
+  "kind": "editing"
  }
 ]

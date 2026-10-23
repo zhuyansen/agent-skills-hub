@@ -10329,5 +10329,39 @@
   "days": 88,
   "stars_per_day": 0.056818181818181816,
   "verdict": "admit"
+ },
+ {
+  "repo": "SummerRiversound/human-readable-reports",
+  "name": "human-readable-reports",
+  "stars": 13,
+  "description": "Agent skill: make AI-written analysis/report docs easy for humans to read and share (fights AI verbosity/slop).",
+  "topics": [
+   "agent-skill",
+   "ai-agents",
+   "ai-slop",
+   "claude-code",
+   "documentation",
+   "llm",
+   "technical-writing"
+  ],
+  "created": "2026-07-27",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 4086,
+  "names_model": false,
+  "on_subject": 0.83,
+  "is_software": 0.95,
+  "shows_result": 0.86,
+  "one_command_start": 0.8,
+  "specific_outcome": 0.79,
+  "complete_docs": 0.88,
+  "novel_angle": 0.54,
+  "shareable_output": 0.87,
+  "quality": 0.8325,
+  "tier": "高",
+  "hit_prior": 0.7566666666666667,
+  "days": 88,
+  "stars_per_day": 0.14772727272727273,
+  "verdict": "admit"
  }
 ]

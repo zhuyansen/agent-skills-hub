@@ -5218,5 +5218,20 @@
    "general": 0.32
   },
   "kind": "sdk"
+ },
+ {
+  "repo": "ai4curation/jevotron",
+  "stars": 13,
+  "description": "CLI-first field-level anomaly detection for structured files and text, powered by Jev",
+  "scores": {
+   "replica": 0.03,
+   "agent": 0.05,
+   "devtool": 0.17,
+   "sdk": 0.12,
+   "business": 0.21,
+   "consumer": 0.08,
+   "general": 0.25
+  },
+  "kind": "general"
  }
 ]

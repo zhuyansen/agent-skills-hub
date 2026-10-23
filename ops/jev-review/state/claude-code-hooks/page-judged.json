@@ -18047,5 +18047,42 @@
   "days": 270,
   "stars_per_day": 0.7296296296296296,
   "verdict": "admit"
+ },
+ {
+  "repo": "PsChina/deepseek-as-subagent",
+  "name": "deepseek-as-subagent",
+  "stars": 50,
+  "description": "Run DeepSeek as a real sub-agent inside Claude Code / Codex CLI — with its own 7-tool agent loop, workspace-scoped file access, and bounded Bash.",
+  "topics": [
+   "agent-loop",
+   "ai-agent",
+   "claude-code",
+   "codex-cli",
+   "deepseek",
+   "llm-orchestration",
+   "mcp",
+   "model-context-protocol",
+   "sub-agent",
+   "token-optimization"
+  ],
+  "created": "2026-05-11",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 20701,
+  "names_model": false,
+  "on_subject": 0.86,
+  "is_software": 0.98,
+  "shows_result": 0.04,
+  "one_command_start": 0.69,
+  "specific_outcome": 0.73,
+  "complete_docs": 0.7,
+  "novel_angle": 0.89,
+  "shareable_output": 0.82,
+  "quality": 0.5399999999999999,
+  "tier": "中",
+  "hit_prior": 0.5833333333333334,
+  "days": 165,
+  "stars_per_day": 0.30303030303030304,
+  "verdict": "low_quality"
  }
 ]

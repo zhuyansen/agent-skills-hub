@@ -3484,5 +3484,19 @@
    "rules": 0.95
   },
   "kind": "detector"
+ },
+ {
+  "repo": "SummerRiversound/human-readable-reports",
+  "stars": 13,
+  "description": "Agent skill: make AI-written analysis/report docs easy for humans to read and share (fights AI verbosity/slop).",
+  "scores": {
+   "writing": 0.65,
+   "detector": 0.11,
+   "chinese": 0.06,
+   "code": 0.11,
+   "design": 0.09,
+   "rules": 0.93
+  },
+  "kind": "rules"
  }
 ]

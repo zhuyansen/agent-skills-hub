@@ -1949,7 +1949,8 @@
     "cheshireyang/image-to-svg-skills",
     "See-Sol-Lab/Picxel",
     "sammyteng/illustration-studio",
-    "GabrieleLozupone/kokon"
+    "GabrieleLozupone/kokon",
+    "actionow-ai/c2c_img"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3107,7 +3108,8 @@
     "agent-accessibility/KMCP",
     "deequoique/stashseek",
     "richarvey/OmniMem",
-    "tikoci/rosetta"
+    "tikoci/rosetta",
+    "AIPMAndy/dna-memory"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4322,7 +4324,8 @@
     "junbolian/Academic-Humanizer",
     "FerasMahmoud/mega-frontend-design",
     "onesoira/humanizer-bahasa-indonesia",
-    "JulienSnsnCode/anti-slop-fr"
+    "JulienSnsnCode/anti-slop-fr",
+    "SummerRiversound/human-readable-reports"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4746,7 +4749,8 @@
     "duckduckdeploy/openseo",
     "oegeyilmaz9/seo-aeo-geo-ultimate",
     "spcaeo/toadstone",
-    "jgoullet/seo-geo-audit"
+    "jgoullet/seo-geo-audit",
+    "Pautthead/seo-aeo-agent-skills"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5214,7 +5218,8 @@
     "SandroHub013/awwwards-skill",
     "byadityaraj/designmd",
     "evidence-codes/loom",
-    "ckryptickunal/OpenDesigner"
+    "ckryptickunal/OpenDesigner",
+    "senlindesign/proof"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6245,7 +6250,12 @@
     "jxshow/Jingge-PPT-skill",
     "Delicious-Cao/Delicious-PPT",
     "studio-yebisu/yaoyorozu-ai-toolbox-slides",
-    "calumhrmurray/lectern"
+    "calumhrmurray/lectern",
+    "sharptoolbox/code-walkthrough-ppt-video",
+    "Chris-yoo80/ppt-to-html-agent",
+    "marcusnelson/presentation-writing-claude-skill",
+    "tokuhn/confidential-html-deck",
+    "ancarmona/keystone"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7632,7 +7642,8 @@
     "italoalmeida0/laya-system-one",
     "Saik0s/diffusiongemma-jev-macos",
     "tomek7667/cbjev",
-    "ronitgupta138/Local-Jev"
+    "ronitgupta138/Local-Jev",
+    "ai4curation/jevotron"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7646,7 +7657,8 @@
     "AkashPriyadarshii/jev-seo",
     "Jwuthri/SelfJev",
     "Alex314618-create/JevRev",
-    "Liuziyu77/Valen"
+    "Liuziyu77/Valen",
+    "cmungall/jevotron"
    ]
   },
   "related": [
@@ -8079,7 +8091,11 @@
     "garycaogan/pixel-diary",
     "reedodev/explainer-studio",
     "muayadjamal/flow-video-recorder",
-    "PHANTOMTONYT/motion-design-skills"
+    "PHANTOMTONYT/motion-design-skills",
+    "LordVayron/video-factory",
+    "indieshade/video-director-workflow",
+    "Teseife/diffusion-studio-codex",
+    "davidbfrogman/davecto-cutroom"
    ],
    "sub_skills": [
     {
@@ -8595,7 +8611,9 @@
     "zander-zyx/claude-mini-hud",
     "Moviw/codex-statusline",
     "awesomezun/claude-statusline",
-    "jordyvanvorselen/pi-claude-hooks"
+    "jordyvanvorselen/pi-claude-hooks",
+    "PsChina/deepseek-as-subagent",
+    "MaxHarfen/crab-band"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

@@ -375,6 +375,14 @@
   "type": "image/gif",
   "bytes": 135208
  },
+ "Chris-yoo80/ppt-to-html-agent": {
+  "repo": "Chris-yoo80/ppt-to-html-agent",
+  "url": "https://raw.githubusercontent.com/Chris-yoo80/ppt-to-html-agent/HEAD/docs/assets/marketing-dashboard.jpg",
+  "alt": "Marketing analysis in a real Edge browser, with left-side controls and right-sid",
+  "score": -2.5,
+  "type": "image/jpeg",
+  "bytes": 105343
+ },
  "Codagent-AI/and-scene": {
   "repo": "Codagent-AI/and-scene",
   "url": "https://raw.githubusercontent.com/Codagent-AI/and-scene/HEAD/docs/assets/and-scene-demo.gif",
@@ -855,6 +863,14 @@
   "type": "image/gif",
   "bytes": 3419441
  },
+ "LordVayron/video-factory": {
+  "repo": "LordVayron/video-factory",
+  "url": "https://raw.githubusercontent.com/LordVayron/video-factory/HEAD/docs/media/hero.jpg",
+  "alt": "Video Factory: the AI video studio your agent runs",
+  "score": -2.5,
+  "type": "image/jpeg",
+  "bytes": 346160
+ },
  "LuCheremisina/marketing-skills": {
   "repo": "LuCheremisina/marketing-skills",
   "url": "https://raw.githubusercontent.com/LuCheremisina/marketing-skills/HEAD/assets/social-preview.png",
@@ -894,6 +910,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 2088950
+ },
+ "MaxHarfen/crab-band": {
+  "repo": "MaxHarfen/crab-band",
+  "url": "https://raw.githubusercontent.com/MaxHarfen/crab-band/HEAD/docs/crabs-light.gif",
+  "alt": "Ten pixel crabs dancing in their outfits: wizard, scientist, painter, doll, cowb",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 465794
  },
  "MegaTroll222/VOX-COLLAGE-BROLL": {
   "repo": "MegaTroll222/VOX-COLLAGE-BROLL",
@@ -1367,6 +1391,14 @@
   "type": "image/gif",
   "bytes": 4867727
  },
+ "actionow-ai/c2c_img": {
+  "repo": "actionow-ai/c2c_img",
+  "url": "https://raw.githubusercontent.com/actionow-ai/c2c_img/HEAD/docs/images/poster-zh.jpg",
+  "alt": "poster",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 110671
+ },
  "activeloopai/hivemind": {
   "repo": "activeloopai/hivemind",
   "url": "https://raw.githubusercontent.com/activeloopai/hivemind/HEAD/docs/screenshots/codebase-graph.webp",
@@ -1510,6 +1542,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 2921369
+ },
+ "ancarmona/keystone": {
+  "repo": "ancarmona/keystone",
+  "url": "https://raw.githubusercontent.com/ancarmona/keystone/HEAD/library/layouts/list/thumb.png",
+  "alt": "List slide",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 56183
  },
  "andyluu98/slidefly": {
   "repo": "andyluu98/slidefly",
@@ -2655,6 +2695,14 @@
   "type": "image/png",
   "bytes": 1210234
  },
+ "indieshade/video-director-workflow": {
+  "repo": "indieshade/video-director-workflow",
+  "url": "https://raw.githubusercontent.com/indieshade/video-director-workflow/HEAD/gallery/collage/poster.jpg",
+  "alt": "自有五秒剪贴应用",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 94096
+ },
  "intelligent-iterations/ii-content-engine": {
   "repo": "intelligent-iterations/ii-content-engine",
   "url": "https://raw.githubusercontent.com/intelligent-iterations/ii-content-engine/HEAD/example/fruit-revenge-arc-api-portrait/preview.gif",
@@ -3543,6 +3591,14 @@
   "type": "image/gif",
   "bytes": 1198630
  },
+ "senlindesign/proof": {
+  "repo": "senlindesign/proof",
+  "url": "https://raw.githubusercontent.com/senlindesign/proof/HEAD/docs/images/style-minimal.png",
+  "alt": "Minimal",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 158666
+ },
  "seoes/proval": {
   "repo": "seoes/proval",
   "url": "https://raw.githubusercontent.com/seoes/proval/HEAD/docs/assets/hero.png",
@@ -3574,6 +3630,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 110364
+ },
+ "sharptoolbox/code-walkthrough-ppt-video": {
+  "repo": "sharptoolbox/code-walkthrough-ppt-video",
+  "url": "https://raw.githubusercontent.com/sharptoolbox/code-walkthrough-ppt-video/HEAD/media/ppt01.png",
+  "alt": "PPT 产品功能讲解效果",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 207479
  },
  "shawnzam/keynot": {
   "repo": "shawnzam/keynot",
@@ -3838,6 +3902,14 @@
   "score": -0.5,
   "type": "image/png",
   "bytes": 62846
+ },
+ "tokuhn/confidential-html-deck": {
+  "repo": "tokuhn/confidential-html-deck",
+  "url": "https://raw.githubusercontent.com/tokuhn/confidential-html-deck/HEAD/docs/viewer-dark.png",
+  "alt": "The deck viewer with the data panel open",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 317896
  },
  "tomacco/deckadence": {
   "repo": "tomacco/deckadence",

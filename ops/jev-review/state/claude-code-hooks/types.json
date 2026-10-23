@@ -3287,5 +3287,31 @@
    "tooling": 0.84
   },
   "kind": "hooks"
+ },
+ {
+  "repo": "PsChina/deepseek-as-subagent",
+  "stars": 50,
+  "description": "Run DeepSeek as a real sub-agent inside Claude Code / Codex CLI — with its own 7-tool agent loop, workspace-scoped file access, and bounded Bash.",
+  "scores": {
+   "hooks": 0.09,
+   "subagents": 0.54,
+   "statusline": 0.02,
+   "collection": 0.44,
+   "tooling": 0.85
+  },
+  "kind": "tooling"
+ },
+ {
+  "repo": "MaxHarfen/crab-band",
+  "stars": 5,
+  "description": "A Claude Code mod: usage limits in the status line and a band of pixel crabs for the main session and its subagents",
+  "scores": {
+   "hooks": 0.86,
+   "subagents": 0.03,
+   "statusline": 0.27,
+   "collection": 0.37,
+   "tooling": 0.73
+  },
+  "kind": "hooks"
  }
 ]

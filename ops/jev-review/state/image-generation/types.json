@@ -3470,5 +3470,19 @@
    "mcp": 0.26
   },
   "kind": "editing"
+ },
+ {
+  "repo": "actionow-ai/c2c_img",
+  "stars": 47,
+  "description": "Native-feeling image generation for Claude Code, powered by your local Codex (ChatGPT) image_gen. No API key needed.",
+  "scores": {
+   "gpt_image": 0.77,
+   "nano_banana": 0.02,
+   "open_models": 0.04,
+   "editing": 0.18,
+   "design": 0.15,
+   "mcp": 0.23
+  },
+  "kind": "gpt_image"
  }
 ]

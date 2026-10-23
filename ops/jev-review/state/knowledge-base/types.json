@@ -4954,5 +4954,19 @@
    "personal": 0.07
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "AIPMAndy/dna-memory",
+  "stars": 96,
+  "description": "Claude Code 记忆 / AI Agent 记忆 MCP：本地优先的统一记忆层，Codex、Claude Code、Hermes 共用一套 Markdown 记忆｜Local-first shared memory MCP server for Claude Code, Codex & AI agents",
+  "scores": {
+   "llm_wiki": 0.35,
+   "rag_platform": 0.1,
+   "mcp": 0.96,
+   "docs_qa": 0.36,
+   "graph": 0.1,
+   "personal": 0.43
+  },
+  "kind": "mcp"
  }
 ]

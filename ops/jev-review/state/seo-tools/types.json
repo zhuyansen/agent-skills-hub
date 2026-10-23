@@ -4222,5 +4222,21 @@
    "marketing": 0.08
   },
   "kind": "audit"
+ },
+ {
+  "repo": "Pautthead/seo-aeo-agent-skills",
+  "stars": 5,
+  "description": "Evidence-based SEO and AEO skills for AI coding agents. Keyless by default; every scoring rule traceable to a dated source.",
+  "scores": {
+   "suite": 0.27,
+   "audit": 0.43,
+   "research": 0.06,
+   "data_mcp": 0.03,
+   "geo": 0.94,
+   "content": 0.11,
+   "links": 0.03,
+   "marketing": 0.13
+  },
+  "kind": "geo"
  }
 ]

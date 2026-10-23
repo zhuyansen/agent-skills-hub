@@ -10140,5 +10140,31 @@
   "days": 141,
   "stars_per_day": 0.05673758865248227,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Shenchangxin/yoyo",
+  "name": "yoyo",
+  "stars": 13,
+  "description": "A local agent workstation: one Go loop, three doors: Wails desktop, browser, and CLI. It writes code, reviews hunks, opens an isolated browser, runs skill packs, and keeps Create, Shorts, Drama, and Canvas in their own folder. Files stay in a folder you pick. A new harness has to pass Harbor before you trust it.",
+  "topics": [],
+  "created": "2026-09-14",
+  "pushed": "2026-10-23",
+  "source": "topic",
+  "readme_chars": 11363,
+  "names_model": false,
+  "on_subject": 0.06,
+  "is_software": 0.99,
+  "shows_result": 0.15,
+  "one_command_start": 0.16,
+  "specific_outcome": 0.71,
+  "complete_docs": 0.67,
+  "novel_angle": 0.73,
+  "shareable_output": 0.73,
+  "quality": 0.4225,
+  "tier": "低",
+  "hit_prior": 0.5366666666666666,
+  "days": 39,
+  "stars_per_day": 0.3333333333333333,
+  "verdict": "off_topic"
  }
 ]

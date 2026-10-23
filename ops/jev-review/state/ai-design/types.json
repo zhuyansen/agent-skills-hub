@@ -2686,5 +2686,19 @@
    "review": 0.54
   },
   "kind": "system"
+ },
+ {
+  "repo": "senlindesign/proof",
+  "stars": 7,
+  "description": "Proof — a product design skill for Claude Code & Codex. Product pages that look shipped, not generated, learned from 400+ real product pages: 8 page types, 10 sections, and 4 visual styles (Minimal, Business, Colorful, Editorial) in light and dark.",
+  "scores": {
+   "ui": 0.96,
+   "system": 0.57,
+   "tool_mcp": 0.06,
+   "to_code": 0.24,
+   "graphics": 0.13,
+   "review": 0.47
+  },
+  "kind": "ui"
  }
 ]
