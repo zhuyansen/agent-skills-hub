@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-24
+1. shaongitbd/doory — 开源的 Canva 替代品，自己部署就能在线做海报、社媒图与演示稿（1803★ 123.5/day）
+2. typesafe-ai/skills — TypeSafe 官方智能体技能包，教编程智能体用 System One API 搭应用（2775★ 45.8/day）
+3. GortexAI/franco — 🆕 用你现有的 Claude Code 或 Codex 订阅跑外呼销售智能体，自动找客户写开发信（286★ 32.4/day）
+4. haplollc/Vesalius — 🆕 给 Claude Code 画一张本地代码图谱，配 MCP 服务、命令行、Mac 应用与 VS Code 插件（67★ 28.0/day）
+5. stockedge/manga-generator — 🆕 让 Codex 从原作一路做到脚本、配图、分格排版并导出 PDF 漫画（68★ 27.5/day）
+6. Wtrwx/vesper — 🆕 iOS 逆向工程平台，用 MCP 工具与智能体技能做运行时检查、自动化与解密（37★ 19.2/day）
+7. backtrue/thinkwithblack-skill — 免费提供 365 个繁中/英文 AI 营销技能，覆盖文案、广告与内容策划（238★ 15.9/day）
+8. Juwan-Hwang/omni2api — 🆕 万物皆可 2API：把智能体、脚本甚至你本人包装成兼容 OpenAI 的接口（37★ 15.1/day）
+9. 1llu50ry/mcp-gamehacking — 把游戏逆向与外挂分析知识库做成 MCP 服务，供智能体结构化查询（292★ 15.1/day）
+10. yzddmr6/android-mainline-port — 🆕 教智能体把主线 Linux 移植到安卓手机和平板，附流程、决策规则与踩坑经验（48★ 12.2/day）
+🎯 今日趋势：**6 席**标 🆕；逆向工程占 **2 席**（iOS 逆向 Vesper、游戏逆向 MCP），销售与营销智能体也占 **2 席**（Franco 外呼、365 个营销技能）。
+> 注：去重范围＝repo 内 archive 全部 121 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,112 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 32 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（guilyx/grip、jacklandrin/OnlySwitch 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①ai-job-search-dev/ai-job-search（64300★ 292.3/day）：`gh api repos/madslorentzen/ai-job-search` 重定向到此，即历史已推荐仓库转组织（新组织 10-21 建、1 仓），按去重剔除；②kiyoakii/xinliqiu-sdk（55★ 48.1/day）：数据库快照 55★，实时只剩 11★，星数被大幅回收；③Monopoly0024/simple-reviewer-v1（137★ 40.1/day）：账号 0 粉、仅 1 仓，与 10-22 已排除的 simple-checker-v1 同一账号；④adhiprib/humanizer-indonesia（40★ 40.0/day）：账号 0 粉、仅 1 仓，0.4 天单仓爆星；⑤Wunsch2048/codex-bailong-desktop-pet（117★ 34.2/day）：账号 10-13 新建、1 粉、仅 1 仓；⑥rextail-ai/lessloc（102★ 20.0/day）：组织 1 粉、仅 1 仓、1 个 fork；⑦tearerry/Jeva：uncategorized 的 Jellyfin 客户端，与智能体无关；⑧su-kaka/agy2api（5273★ 12.1/day）：账号 0 粉，且为把 Antigravity 转成 API 的反代项目；⑨seacen/meetcap（239★ 11.7/day）：239 星 0 fork；⑩其余均已在历史榜单出现，不再复评。sepehr071/iran-mcp（11.7/day）、antfu/skills-pack（10.8/day）在第 10 席之后，未入选。入选项复核（`gh api`）：第 1 席 shaongitbd 2021 建号、37 粉、其余仓 ≤46★（**轻红旗**，但 fork 140 与星数相称，保留）；第 2 席 typesafe-ai 为 TypeSafe 官方组织、1,696 粉；第 3 席 GortexAI 组织 2026-06 建、20 粉、另一仓 0★（**轻红旗**，fork 158，保留）；第 4 席 haplollc 22 粉、名下另有 277★ 仓；第 5 席 stockedge 2015 建号、名下另有 117★ 仓、fork 15；第 6 席 Wtrwx 297 粉、名下另有 665★ 仓；第 7 席 backtrue 2020 建号、24 粉、名下另有 214★ 仓；第 8 席 Juwan-Hwang 名下另有 726★ 仓；第 9 席 1llu50ry 2026-05 建号、12 粉、其余仓 ≤1★（**轻红旗**，fork 65，保留）；第 10 席 yzddmr6 1,585 粉、名下另有 2,067★ 仓。🆕 判定＝created_at 距今 14 天内，doory（14.6 天）、typesafe-ai/skills（60.6 天）、thinkwithblack-skill（15.0 天）、mcp-gamehacking（19.3 天）不标，其余六席命中。security_grade：十席均为 unknown（尚未扫描）。表中 stars 为数据库快照，部分仓实时更高（franco 540★、Vesalius 68★、manga-generator 73★、mcp-gamehacking 329★），按红线保留快照值。
+
+---
+
 ## 2026-10-23
 1. rossark0/rossark-motion-skill — 🆕 把任意 SVG 变成 60 帧专业动画，让 Claude Code 给静态图形加上动效（236★ 236.0/day）
 2. nothinx/naskah-id — 🆕 帮智能体写出符合 EYD V 与 KBBI 规范、自然地道的印尼语学术论文（74★ 52.8/day）
