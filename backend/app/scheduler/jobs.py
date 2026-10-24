@@ -140,6 +140,14 @@ EXTRA_REPOS = [
     "JeffLi1993/seo-audit-skill",
 ]
 
+# ── Security scan deadline ──
+# The re-grade backlog a rules change leaves (app/services/grade_refresh.py) stops this long
+# after the sync started, so the weekly snapshot, the homepage caches, the sync log and the
+# deploy the sync triggers still happen inside sync.yml's 180-minute job limit; the next sync
+# goes on from there. From 2026-10-22 the scan never finished: that limit cut it four times, a
+# statement timeout twice.
+SCAN_STOP_AFTER_SECONDS = 150 * 60
+
 # ── Rate Limit Management ──
 # GitHub API: 5000 requests/hour (core), 30 requests/min (search)
 # Strategy: WAIT for reset instead of failing — GitHub Actions has 6hr timeout.
@@ -340,6 +348,19 @@ def _get_last_successful_sync(db: "Session") -> Optional[datetime]:
     return last.finished_at if last else None
 
 
+def _grade_security(db: "Session", deadline: float) -> None:
+    """Security grades (non-fatal). A failure is rolled back so the steps after it start clean."""
+    try:
+        from app.services.grade_refresh import refresh_grades
+        sec_stats = refresh_grades(db, deadline=deadline)
+        logger.info("Security scan: %s", sec_stats)
+    except Exception as e:
+        logger.warning("Security scan failed (non-fatal): %s", e)
+        # The failed statement aborts the transaction. Without this the weekly snapshot after
+        # it failed with InFailedSqlTransaction (2026-10-22 23:03, 10-24 07:04).
+        db.rollback()
+
+
 async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool = True) -> None:
     """Main scheduled sync: fetch GitHub data, clean, upsert, and re-score.
 
@@ -355,6 +376,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
     from app.services.data_cleaner import DataCleaner
     from app.services.scorer import ScoringEngine
 
+    sync_started = time.monotonic()  # the security scan's deadline counts from here
     db = SessionLocal()
     sync_log_id_ref = sync_log_id
 
@@ -846,12 +868,7 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             ComposabilityEngine().compute_all(db)
 
         # Security scan (non-fatal if fails)
-        try:
-            from app.services.grade_refresh import refresh_grades
-            sec_stats = refresh_grades(db)
-            logger.info("Security scan: %s", sec_stats)
-        except Exception as e:
-            logger.warning("Security scan failed (non-fatal): %s", e)
+        _grade_security(db, deadline=sync_started + SCAN_STOP_AFTER_SECONDS)
 
         # LLM deep analysis for caution/unsafe skills (non-fatal, requires API key)
         try:

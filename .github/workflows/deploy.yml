@@ -7,11 +7,17 @@ on:
     workflows: ["Sync Skills Data"]
     types: [completed]
   workflow_dispatch:
+    inputs:
+      ignore_running_sync:
+        description: "Build now even if a sync is running (both slow down; the build can fail)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read # the build waits for a running sync
 
 jobs:
   build:
@@ -32,6 +38,37 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Wait for a running sync
+        # The build reads the catalog from Supabase seven times and the READMEs twice (~40 min).
+        # Next to a sync's writes that saturates the database: on 2026-10-24 from 14:32 to 14:46
+        # the sync's score writes and this build's README reads all hit statement_timeout
+        # (57014), and the build failed. A run the sync triggered (workflow_run) starts after
+        # it, so only pushes and manual runs wait. When the sync succeeds, the deploy it
+        # triggers cancels this one (same pages-build group) and ships this commit too.
+        if: github.event_name != 'workflow_run' && !inputs.ignore_running_sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # sync.yml's job limit is 180 minutes; past 200 something is stuck, so build anyway.
+          give_up_at=$(( $(date +%s) + 200 * 60 ))
+          while :; do
+            if ! active=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow sync.yml --limit 5 \
+                --json status --jq '[.[] | select(.status != "completed")] | length'); then
+              echo "::warning::Could not list sync runs; building without waiting."
+              exit 0
+            fi
+            if [ "$active" -eq 0 ]; then
+              echo "No sync queued or running; building."
+              exit 0
+            fi
+            if [ "$(date +%s)" -ge "$give_up_at" ]; then
+              echo "::warning::A sync has been queued or running for over 200 minutes; building anyway."
+              exit 0
+            fi
+            echo "A sync is queued or running; checking again in 60 s."
+            sleep 60
+          done
 
       - name: Setup Node
         uses: actions/setup-node@v4
