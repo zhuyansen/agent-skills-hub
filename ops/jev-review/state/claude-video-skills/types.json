@@ -6244,5 +6244,41 @@
    "general": 0.06
   },
   "kind": "editing"
+ },
+ {
+  "repo": "actionow-ai/vvv",
+  "stars": 280,
+  "description": "Build a video template once, reuse it across coding agents. Editable Remotion templates and an Agent Skill for Claude Code, Codex and 25+ agents.",
+  "scores": {
+   "promo": 0.49,
+   "explainer": 0.23,
+   "music": 0.23,
+   "motion": 0.13,
+   "shorts": 0.67,
+   "editing": 0.19,
+   "demo": 0.4,
+   "story": 0.28,
+   "avatar": 0.05,
+   "general": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "siegerts/skill-canvas-video",
+  "stars": 5,
+  "description": "Agent skill for creating animated videos using HTML5 Canvas and JavaScript, exportable to MP4.",
+  "scores": {
+   "promo": 0.48,
+   "explainer": 0.26,
+   "music": 0.08,
+   "motion": 0.4,
+   "shorts": 0.49,
+   "editing": 0.03,
+   "demo": 0.46,
+   "story": 0.13,
+   "avatar": 0.04,
+   "general": 0.24
+  },
+  "kind": "general"
  }
 ]

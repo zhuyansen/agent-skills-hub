@@ -2644,5 +2644,19 @@
    "general": 0.13
   },
   "kind": "cli"
+ },
+ {
+  "repo": "stakpak/paks",
+  "stars": 64,
+  "description": "A Package Manager for the AgentSkills standard. Discover, Use, and Create AgentSkills with Claude Code, Codex, Gemini CLI, OpenCode and more",
+  "scores": {
+   "cli": 0.9,
+   "sync": 0.55,
+   "app": 0.07,
+   "registry": 0.24,
+   "team": 0.47,
+   "general": 0.12
+  },
+  "kind": "cli"
  }
 ]

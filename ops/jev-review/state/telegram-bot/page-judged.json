@@ -10671,5 +10671,42 @@
   "days": 1280,
   "stars_per_day": 0.0390625,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "imkofty/Hermuse",
+  "name": "Hermuse",
+  "stars": 132,
+  "description": "Hermuse (Hermes + Muse) — personal AI agent stack built for Muse: Hermes + 9Router + Telegram gateway, automated install, Cloudflare tunnel, watchdog. Runs on a VPS or your own machine; works with other agents & tools too. | Stack agen AI pribadi yang dibangun untuk Muse — jalan di VPS/mesin sendiri, bisa dipakai agen & tool lain juga.",
+  "topics": [
+   "ai-agent",
+   "automation",
+   "chatbot",
+   "cloudflare",
+   "hermes-agent",
+   "llm",
+   "openai-compatible",
+   "personal-assistant",
+   "self-hosted",
+   "telegram-bot"
+  ],
+  "created": "2026-09-27",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 13950,
+  "names_model": false,
+  "on_subject": 0.87,
+  "is_software": 0.98,
+  "shows_result": 0.4,
+  "one_command_start": 0.28,
+  "specific_outcome": 0.93,
+  "complete_docs": 0.48,
+  "novel_angle": 0.53,
+  "shareable_output": 0.71,
+  "quality": 0.5225,
+  "tier": "中",
+  "hit_prior": 0.5466666666666667,
+  "days": 27,
+  "stars_per_day": 4.888888888888889,
+  "verdict": "admit"
  }
 ]

@@ -343,6 +343,14 @@
   "type": "image/png",
   "bytes": 167752
  },
+ "Cashara-io/eunomia": {
+  "repo": "Cashara-io/eunomia",
+  "url": "https://raw.githubusercontent.com/Cashara-io/eunomia/HEAD/docs/images/eunomia-launch-film-poster.jpg",
+  "alt": "The Eunomia launch film: memory cards bursting out of the recall bar",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 174243
+ },
  "Cassette-Editor/oh-my-cassette": {
   "repo": "Cassette-Editor/oh-my-cassette",
   "url": "https://raw.githubusercontent.com/Cassette-Editor/oh-my-cassette/HEAD/assets/banner.jpg",
@@ -1398,6 +1406,14 @@
   "score": 2.0,
   "type": "image/jpeg",
   "bytes": 110671
+ },
+ "actionow-ai/vvv": {
+  "repo": "actionow-ai/vvv",
+  "url": "https://raw.githubusercontent.com/actionow-ai/vvv/HEAD/docs/assets/art/recreate.jpg",
+  "alt": "A filmstrip passing through a beat grid and becoming a V: a reference measured a",
+  "score": 1.35,
+  "type": "image/jpeg",
+  "bytes": 114120
  },
  "activeloopai/hivemind": {
   "repo": "activeloopai/hivemind",
@@ -2678,6 +2694,14 @@
   "score": 4.7,
   "type": "image/gif",
   "bytes": 3825296
+ },
+ "imkofty/Hermuse": {
+  "repo": "imkofty/Hermuse",
+  "url": "https://raw.githubusercontent.com/imkofty/Hermuse/HEAD/assets/banner.png",
+  "alt": "Hermuse banner",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 539352
  },
  "imrangadzhiev/anti-slop": {
   "repo": "imrangadzhiev/anti-slop",
@@ -4230,6 +4254,14 @@
   "score": 1.5,
   "type": "image/png",
   "bytes": 71764
+ },
+ "ybuild-ai/ai-game-art-pipeline-skill": {
+  "repo": "ybuild-ai/ai-game-art-pipeline-skill",
+  "url": "https://raw.githubusercontent.com/ybuild-ai/ai-game-art-pipeline-skill/HEAD/media/seedance-awakening-frames.jpg",
+  "alt": "Seedance awakening frames",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 246001
  },
  "yckonnnnn/zack-design-skills": {
   "repo": "yckonnnnn/zack-design-skills",

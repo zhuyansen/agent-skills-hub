@@ -3484,5 +3484,33 @@
    "mcp": 0.23
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "ybuild-ai/ai-game-art-pipeline-skill",
+  "stars": 301,
+  "description": "Agent skill from Y Build for turning AI images and videos into playable game art assets",
+  "scores": {
+   "gpt_image": 0.06,
+   "nano_banana": 0.04,
+   "open_models": 0.14,
+   "editing": 0.15,
+   "design": 0.07,
+   "mcp": 0.14
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "Dogwind221/img2img-studio",
+  "stars": 8,
+  "description": "Image-to-image studio: vision-gated routing + multi-provider generation (DashScope / ChatGPT-web / OpenAI / Z.AI / Doubao / MiniMax) with auto failover. E-commerce sets & photo-art styles. 图生图工作台 · 多供应商自动降级 · 电商套图与照片艺术",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.13,
+   "design": 0.11,
+   "mcp": 0.45
+  },
+  "kind": "mcp"
  }
 ]

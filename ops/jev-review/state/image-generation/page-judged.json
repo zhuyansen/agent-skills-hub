@@ -9881,5 +9881,42 @@
   "days": 14,
   "stars_per_day": 13.428571428571429,
   "verdict": "admit"
+ },
+ {
+  "repo": "ybuild-ai/ai-game-art-pipeline-skill",
+  "name": "ai-game-art-pipeline-skill",
+  "stars": 301,
+  "description": "Agent skill from Y Build for turning AI images and videos into playable game art assets",
+  "topics": [
+   "agent-skills",
+   "ai-art",
+   "claude-code",
+   "codex",
+   "game-art",
+   "game-development",
+   "generative-ai",
+   "pixijs",
+   "sprite-animation",
+   "video-to-frames"
+  ],
+  "created": "2026-05-04",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7033,
+  "names_model": false,
+  "on_subject": 0.53,
+  "is_software": 0.97,
+  "shows_result": 0.61,
+  "one_command_start": 0.78,
+  "specific_outcome": 0.6,
+  "complete_docs": 0.7,
+  "novel_angle": 0.68,
+  "shareable_output": 0.72,
+  "quality": 0.6725,
+  "tier": "中",
+  "hit_prior": 0.6699999999999999,
+  "days": 173,
+  "stars_per_day": 1.739884393063584,
+  "verdict": "admit"
  }
 ]

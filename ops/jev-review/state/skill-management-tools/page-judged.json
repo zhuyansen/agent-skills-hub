@@ -6937,5 +6937,38 @@
   "days": 294,
   "stars_per_day": 1.4965986394557824,
   "verdict": "admit"
+ },
+ {
+  "repo": "stakpak/paks",
+  "name": "paks",
+  "stars": 64,
+  "description": "A Package Manager for the AgentSkills standard. Discover, Use, and Create AgentSkills with Claude Code, Codex, Gemini CLI, OpenCode and more",
+  "topics": [
+   "agent-skills",
+   "coding-agents",
+   "genai",
+   "llm-agents",
+   "package-manager",
+   "rust"
+  ],
+  "created": "2025-12-22",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 15334,
+  "names_model": false,
+  "on_subject": 0.97,
+  "is_software": 0.97,
+  "shows_result": 0.15,
+  "one_command_start": 0.78,
+  "specific_outcome": 0.69,
+  "complete_docs": 0.72,
+  "novel_angle": 0.37,
+  "shareable_output": 0.7,
+  "quality": 0.585,
+  "tier": "中",
+  "hit_prior": 0.4066666666666667,
+  "days": 306,
+  "stars_per_day": 0.20915032679738563,
+  "verdict": "admit"
  }
 ]

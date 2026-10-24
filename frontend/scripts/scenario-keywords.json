@@ -1574,7 +1574,8 @@
     "tuuject/surowan",
     "WireCatLabs/tg-cli",
     "SouravBeraAkaSpeed/xiryn",
-    "smixs/pi-durable-telegram"
+    "smixs/pi-durable-telegram",
+    "imkofty/Hermuse"
    ],
    "exclude_repos": [
     "smixs/iva"
@@ -1950,7 +1951,9 @@
     "See-Sol-Lab/Picxel",
     "sammyteng/illustration-studio",
     "GabrieleLozupone/kokon",
-    "actionow-ai/c2c_img"
+    "actionow-ai/c2c_img",
+    "ybuild-ai/ai-game-art-pipeline-skill",
+    "Dogwind221/img2img-studio"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3109,7 +3112,9 @@
     "deequoique/stashseek",
     "richarvey/OmniMem",
     "tikoci/rosetta",
-    "AIPMAndy/dna-memory"
+    "AIPMAndy/dna-memory",
+    "sfrangulov/minirag-mcp",
+    "Cashara-io/eunomia"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3454,7 +3459,8 @@
     "tt-a1i/skillroster",
     "olegpustovit/agentpack",
     "neiii/bridle",
-    "VictorTomaili/skill-cli"
+    "VictorTomaili/skill-cli",
+    "stakpak/paks"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -6085,7 +6091,8 @@
     "E1nzbern/open-kimi-ppt-skill",
     "seulee26/mckinsey-pptx",
     "gozen3ji/consulting-pptx-skill",
-    "mujingquan835/dashiai-ppt-skill"
+    "mujingquan835/dashiai-ppt-skill",
+    "clearfunction/cf-devtools"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -8095,7 +8102,9 @@
     "LordVayron/video-factory",
     "indieshade/video-director-workflow",
     "Teseife/diffusion-studio-codex",
-    "davidbfrogman/davecto-cutroom"
+    "davidbfrogman/davecto-cutroom",
+    "actionow-ai/vvv",
+    "siegerts/skill-canvas-video"
    ],
    "sub_skills": [
     {

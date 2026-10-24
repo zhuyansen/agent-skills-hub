@@ -4968,5 +4968,33 @@
    "personal": 0.43
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "sfrangulov/minirag-mcp",
+  "stars": 68,
+  "description": "Local-first RAG MCP server in Python: hybrid search (semantic + BM25 keyword boost) over your own documents. 11 MCP tools + CLI, markitdown ingestion for 12 formats, multilingual embeddings, LanceDB. Nothing leaves your machine.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.18,
+   "mcp": 0.98,
+   "docs_qa": 0.81,
+   "graph": 0.04,
+   "personal": 0.17
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Cashara-io/eunomia",
+  "stars": 12,
+  "description": "Self-hosted shared memory for AI agents: vaults of people, facts and decisions your agents recall over MCP or REST, with semantic, keyword and graph search.",
+  "scores": {
+   "llm_wiki": 0.1,
+   "rag_platform": 0.55,
+   "mcp": 0.74,
+   "docs_qa": 0.4,
+   "graph": 0.97,
+   "personal": 0.22
+  },
+  "kind": "graph"
  }
 ]
