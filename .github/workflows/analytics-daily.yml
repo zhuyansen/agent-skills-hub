@@ -71,13 +71,22 @@ jobs:
           python ops/analytics_digest.py > digest.md
           cat digest.md >> "$GITHUB_STEP_SUMMARY"
 
+      # Yesterday's enterprise leads, for the email only. This repo is public, so
+      # the Step Summary, the log and the artifact are readable by anyone: the
+      # list stays in RUNNER_TEMP (outside the upload path) and the log gets a
+      # count. A failed query writes a warning that the email's subject carries.
+      - name: New leads (email only)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python ops/new_leads.py "$RUNNER_TEMP/leads.md" || true
+
       # Deliver, don't just display: a digest that sits in the Actions tab is a
       # dashboard nobody opens. Email it to the operator every morning.
       - name: Email digest (Resend)
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-        run: python ops/send_digest_email.py digest.md
+        run: python ops/send_digest_email.py digest.md "$RUNNER_TEMP/leads.md"
 
       - name: Upload raw JSON
         uses: actions/upload-artifact@v4

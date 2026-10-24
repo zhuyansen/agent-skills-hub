@@ -1,5 +1,7 @@
-# Deps for the analytics fetchers (ops/{gsc,ga,plausible,clarity}/fetch_*.py)
-# and the daily digest. Used by .github/workflows/analytics-daily.yml.
+# Deps for the analytics fetchers (ops/{gsc,ga,plausible,clarity}/fetch_*.py),
+# the daily digest and its lead check (ops/new_leads.py).
+# Used by .github/workflows/analytics-daily.yml.
 requests==2.33.1
 google-auth==2.49.2
 google-auth-oauthlib==1.4.0
+psycopg2-binary==2.9.9
