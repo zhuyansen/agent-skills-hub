@@ -62,8 +62,12 @@ async function main() {
   console.log("📡 Generating RSS feeds...");
 
   // 1. feed.xml — latest 30 new skills
+  // Newest by id, not first_seen: ids grow with insertion just as first_seen does,
+  // but only id is indexed. Sorting by first_seen ran past the anon statement
+  // timeout (HTTP 500) on and off from 2026-10-14 and on every build after 10-21,
+  // and both feeds 404'd.
   const newSkills = await fetchJson(
-    `${SUPABASE_URL}/rest/v1/skills?select=repo_full_name,repo_name,author_name,description,stars,category,first_seen&order=first_seen.desc&limit=30&stars=gte.20`
+    `${SUPABASE_URL}/rest/v1/skills?select=repo_full_name,repo_name,author_name,description,stars,category,first_seen&order=id.desc&limit=30&stars=gte.20`
   );
 
   const newItems = newSkills.map((s) => ({
