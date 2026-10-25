@@ -8,13 +8,13 @@
 PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp-servers 的 PR。
 07 月那次 punkpeye 的 PR(#9142)就是因为没在 Glama 认领,挂了 6 周后被关闭。
 
-## 记分板(2026-10-21 逐站核实;10-22 刷新 GitHub PR 和 issue)
+## 记分板(2026-10-21 逐站核实;10-25 刷新 GitHub PR 和 issue、发 0.5.1)
 
 打开每个站的页面、看标题和是否出现项目名核过;要登录才看得到的标「审核中」。
 
 | 站 | 状态 | 备注 |
 |---|---|---|
-| PyPI / 官方 MCP 注册表 | ✅ 0.5.0 | `io.github.zhuyansen/new-term-radar` |
+| PyPI / 官方 MCP 注册表 | ✅ 0.5.1(10-25) | `io.github.zhuyansen/new-term-radar`;0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例 |
 | Claude Code 插件市场(仓库自带)/ skills.sh / ClawHub / Tessl | ✅ | |
 | Glama | ✅ 页面已生成 | 认领后再提 punkpeye |
 | LobeHub / mcpservers.org(Marketing)/ cursor.directory / Agensi / Skillstore / 魔搭(MCP + Skill) | ✅ | |
@@ -24,7 +24,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
-| GitHub 列表 | ⏳ 11 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127、buildwithclaude #500、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328 |
+| GitHub 列表 | ⏳ 11 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127、buildwithclaude #555、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328 |
+| buildwithclaude | ⏳ #555(0.5.1 重提) | #500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
+| github/awesome-copilot | ⏳ issue #5578 待人工审 | 自动检查全过(skill 格式、Copilot CLI 安装测试);非拦截提醒:根 plugin.json 的 `skills` 字段不在规范里 |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
 | HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五 |
 | bmpi-dev/awesome-seo | ❌ #104 被关 | 理由:项目太新、关键词量依赖付费 API |
