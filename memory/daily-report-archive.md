@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-25
+1. xiaozhangup/Oh-My-McDonald — 🆕 用麦当劳官方 MCP 对话推荐餐品、比价门店、查优惠，还能生成体素风分享图（60★ 60.0/day）
+2. xanthichi/mcd-meal-mate — 🆕 调用麦当劳 MCP 实时菜单与营养数据，按你的需求智能搭配一顿餐（40★ 40.0/day）
+3. morganlinton/BeautifulRust — 🆕 教 Claude Code 写出地道又健壮的 Rust 代码，以插件形式直接装上（74★ 39.2/day）
+4. XRayLau1/maitaiyi — 🆕 用 12 道问诊题测出你的"麦门体质"，开出诊断证明书与处方笺（27★ 20.1/day）
+5. ethanplusai/astro-conversion-kit — 🆕 把 WordPress 或任意线上网站转成静态 Astro 站，保住 URL 与 SEO（34★ 16.1/day）
+6. ContentWriterco/rozklad-mcp — 🆕 让 AI 查询波兰铁路、长途巴士与市内公交时刻表，支持换乘路线搜索（32★ 7.4/day）
+7. callstackincubator/mobile-dev — 给 Codex 补上安卓与 iOS 移动开发工作流，由 Callstack 孵化组织出品（169★ 6.9/day）
+8. imkofty/Hermuse — 一键在 VPS 或本机部署个人智能体栈：Hermes + 9Router + Telegram 网关（132★ 4.8/day）
+9. prowler-cloud/prowler — 扫描云环境做安全评估与合规检查，开源云安全审计的老牌工具（15096★ 4.1/day）
+10. gokayfem/shader-skills — 为 Claude Code、Codex、Cursor 等提供 GLSL 与 Shadertoy 着色器技能，含 186 个函数（387★ 3.1/day）
+🎯 今日趋势：**6 席**标 🆕；麦当劳 MCP 创意大赛作品一口气占 **3 席**、包揽前 **2** 名，编程智能体插件也占 **3 席**（Rust、移动开发、着色器）。
+> 注：去重范围＝repo 内 archive 全部 122 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,142 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 42 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（Mason-Levyy/garmin-personal-mcp 等因 first_seen 超出 48h 未入选）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①routerhubSI/uncensored-ai-api（74★ 74.0/day）：与 10-23 已排除的 7API/uncensored-ai-api 同名同类，标题堆砌"无审查"关键词导流付费 API；②Wildange85773l/windows-fine-tuner-resp、NoobUnderTreant/Tower-Events-resp-At-Sunrise、ValhallaHelheim/pc-game-performance-analyzer-resp-skill、Cinderubasp/InterviewCopilot-rpocket-team、Demonwave56032/call-of-duty-modern-warfare-resocket-4-fps-optimizer（均 29★ 16.9/day）：同日创建、星数完全相同、仓名带 resp 后缀且内容与智能体无关（游戏外挂/优化器 SEO 标题），典型刷星集群；③freyrswift/UaStation（29★ 16.2/day）：账号 07 月新建、0 粉、仅 1 仓；④adityareddy-dev/deskstudio（41★ 8.3/day）：41 星恰好 41 fork，其余仓 ≤4★，比例异常；⑤BijectiveLabs/bitra（41★ 3.6/day）：组织 08 月新建、仅 2 仓，自动交易智能体，按 10-23 处理链上/交易项目的口径不收；⑥其余均已在历史榜单出现，不再复评。入选项复核（`gh api`）：第 1 席 xiaozhangup 2020 建号、58 粉、168 仓（实时 78★ 但 0 fork，**轻红旗**，保留）；第 2 席 xanthichi 2023 建号、2 粉、名下另有 11★ 仓（**轻红旗**，量级小，保留）；第 3 席 morganlinton 2018 建号、76 粉、名下 Albatross 237★；第 4 席 XRayLau1 2025 建号、1 粉、另一仓 0★（**轻红旗**，麦当劳 MCP 大赛参赛作品，按 10-23 同类口径保留）；第 5 席 ethanplusai 290 粉、名下 harvey 2,452★；第 6 席 ContentWriterco 组织 0 粉，但名下另有 3 个波兰本地 MCP、fork 4（**轻红旗**，保留）；第 7 席 callstackincubator 为 Callstack 孵化组织、431 粉；第 8 席 imkofty 1 粉、仅 2 仓（**轻红旗**，fork 32 与星数相称，保留；security_grade=caution）；第 9 席 prowler-cloud 为 Prowler 官方组织、2016 年老项目，first_seen 为新；第 10 席 gokayfem 277 粉、名下 1,341★ 仓。🆕 判定＝created_at 距今 14 天内，mobile-dev（24.5 天）、Hermuse（27.5 天）、prowler（3713.4 天）、shader-skills（126.4 天）不标，其余六席命中。security_grade：Hermuse 为 caution，其余九席为 safe。表中 stars 为数据库快照，部分仓实时更高（Oh-My-McDonald 78★、mcd-meal-mate 84★、BeautifulRust 179★、maitaiyi 59★、astro-conversion-kit 60★），按红线保留快照值。
+
+---
+
 ## 2026-10-24
 1. shaongitbd/doory — 开源的 Canva 替代品，自己部署就能在线做海报、社媒图与演示稿（1803★ 123.5/day）
 2. typesafe-ai/skills — TypeSafe 官方智能体技能包，教编程智能体用 System One API 搭应用（2775★ 45.8/day）
