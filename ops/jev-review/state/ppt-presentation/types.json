@@ -3330,5 +3330,19 @@
    "general": 0.1
   },
   "kind": "html"
+ },
+ {
+  "repo": "josezuma/yc-pitch-deck-max",
+  "stars": 5,
+  "description": "The super-skill for startup pitch decks. Combines YC content frameworks, 30+ design styles, PPTX/HTML/Marp output, investor intelligence, and deck analysis — all in one CLI. From founder interview to investor-ready deck.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.43,
+   "html": 0.93,
+   "business": 0.9,
+   "convert": 0.23,
+   "general": 0.9
+  },
+  "kind": "general"
  }
 ]

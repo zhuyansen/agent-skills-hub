@@ -3498,5 +3498,61 @@
    "rules": 0.93
   },
   "kind": "rules"
+ },
+ {
+  "repo": "adhiprib/humanizer-indonesia",
+  "stars": 58,
+  "description": "Membuat tulisan AI lebih luwes dan enak dibaca, bukan untuk mengelabui deteksi AI",
+  "scores": {
+   "writing": 0.81,
+   "detector": 0.52,
+   "chinese": 0.01,
+   "code": 0.1,
+   "design": 0.05,
+   "rules": 0.8
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "leeandev/stop-slop-ko",
+  "stars": 26,
+  "description": "한국어 문서에서 AI 티 걷어내기 | Korean version of stop-slop for Claude Code (skills + docx/pptx/xlsx scanner)",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.97,
+   "chinese": 0.02,
+   "code": 0.08,
+   "design": 0.07,
+   "rules": 0.84
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "zkrun/academic-humanizer-zh",
+  "stars": 5,
+  "description": "检测中文学术写作的 AI 痕迹率（S1–S7 可解释打分），在不动事实/数据/引用的前提下降低它。Claude Code skill +    可独立运行的 Python 打分器。",
+  "scores": {
+   "writing": 0.67,
+   "detector": 0.98,
+   "chinese": 0.98,
+   "code": 0.08,
+   "design": 0.04,
+   "rules": 0.37
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "Bubblegunn/ai-slop-linter",
+  "stars": 9,
+  "description": "Linter for AI-writing tells in commit messages, PR descriptions and docs. It does not guess who wrote it. It shows the tells.",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.98,
+   "chinese": 0.03,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.34
+  },
+  "kind": "detector"
  }
 ]

@@ -1575,10 +1575,12 @@
     "WireCatLabs/tg-cli",
     "SouravBeraAkaSpeed/xiryn",
     "smixs/pi-durable-telegram",
-    "imkofty/Hermuse"
+    "imkofty/Hermuse",
+    "Derrors/reelay"
    ],
    "exclude_repos": [
-    "smixs/iva"
+    "smixs/iva",
+    "siriusforex-ai/telegram_signal_copier"
    ]
   },
   "related": [
@@ -2186,7 +2188,8 @@
     "loulanyue/awesome-claude-notes",
     "Jamie-BitFlight/claude_skills",
     "vasilyu1983/AI-Agents-public",
-    "autodesk-platform-services/skills"
+    "autodesk-platform-services/skills",
+    "mohitagw15856/pm-claude-skills"
    ]
   },
   "related": [
@@ -3460,7 +3463,8 @@
     "olegpustovit/agentpack",
     "neiii/bridle",
     "VictorTomaili/skill-cli",
-    "stakpak/paks"
+    "stakpak/paks",
+    "klubinskak/skilldex"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4331,7 +4335,11 @@
     "FerasMahmoud/mega-frontend-design",
     "onesoira/humanizer-bahasa-indonesia",
     "JulienSnsnCode/anti-slop-fr",
-    "SummerRiversound/human-readable-reports"
+    "SummerRiversound/human-readable-reports",
+    "adhiprib/humanizer-indonesia",
+    "leeandev/stop-slop-ko",
+    "Bubblegunn/ai-slop-linter",
+    "zkrun/academic-humanizer-zh"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -6262,7 +6270,8 @@
     "Chris-yoo80/ppt-to-html-agent",
     "marcusnelson/presentation-writing-claude-skill",
     "tokuhn/confidential-html-deck",
-    "ancarmona/keystone"
+    "ancarmona/keystone",
+    "josezuma/yc-pitch-deck-max"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7650,7 +7659,8 @@
     "Saik0s/diffusiongemma-jev-macos",
     "tomek7667/cbjev",
     "ronitgupta138/Local-Jev",
-    "ai4curation/jevotron"
+    "ai4curation/jevotron",
+    "claudfuen/jev-genui"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8104,7 +8114,14 @@
     "Teseife/diffusion-studio-codex",
     "davidbfrogman/davecto-cutroom",
     "actionow-ai/vvv",
-    "siegerts/skill-canvas-video"
+    "siegerts/skill-canvas-video",
+    "Moessif/code-video-showcase",
+    "8533502-dev/deepseek-opus-motion-skill",
+    "kelano86/what-if-animation",
+    "arthurkatcher/explainer-video",
+    "MakeMyClip/editor",
+    "isabellagreco1997/script-to-video",
+    "RohanRatwani/explainer-video-opus-5.5"
    ],
    "sub_skills": [
     {
@@ -8622,7 +8639,8 @@
     "awesomezun/claude-statusline",
     "jordyvanvorselen/pi-claude-hooks",
     "PsChina/deepseek-as-subagent",
-    "MaxHarfen/crab-band"
+    "MaxHarfen/crab-band",
+    "tmcfarlane/team-avatar"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

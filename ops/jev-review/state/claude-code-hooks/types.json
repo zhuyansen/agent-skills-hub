@@ -3313,5 +3313,18 @@
    "tooling": 0.73
   },
   "kind": "hooks"
+ },
+ {
+  "repo": "tmcfarlane/team-avatar",
+  "stars": 110,
+  "description": "Team Avatar: a universal agent orchestrator for Claude Code, Codex, and Cursor. Nine Avatar characters, 58 engineering skills. pstack with Avatar characters on top.",
+  "scores": {
+   "hooks": 0.07,
+   "subagents": 0.4,
+   "statusline": 0.02,
+   "collection": 0.95,
+   "tooling": 0.66
+  },
+  "kind": "collection"
  }
 ]

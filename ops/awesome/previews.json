@@ -63,6 +63,14 @@
   "type": "image/png",
   "bytes": 175419
  },
+ "8533502-dev/deepseek-opus-motion-skill": {
+  "repo": "8533502-dev/deepseek-opus-motion-skill",
+  "url": "https://raw.githubusercontent.com/8533502-dev/deepseek-opus-motion-skill/HEAD/docs/media/images/qingshan-side-by-side.gif",
+  "alt": "青山：DeepSeek + skill 与 Opus 5.5 同步播放",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 1888750
+ },
  "ABC-xiaoxuan/award-level-web-design": {
   "repo": "ABC-xiaoxuan/award-level-web-design",
   "url": "https://raw.githubusercontent.com/ABC-xiaoxuan/award-level-web-design/HEAD/examples/screenshots/09-echo-desktop-demo.png",
@@ -342,6 +350,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 167752
+ },
+ "Bubblegunn/ai-slop-linter": {
+  "repo": "Bubblegunn/ai-slop-linter",
+  "url": "https://raw.githubusercontent.com/Bubblegunn/ai-slop-linter/HEAD/docs/demo.gif",
+  "alt": "ai-slop-linter on a model-written pull request description, then --explain bold-",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 198571
  },
  "Cashara-io/eunomia": {
   "repo": "Cashara-io/eunomia",
@@ -903,6 +919,14 @@
   "type": "image/png",
   "bytes": 9063422
  },
+ "MakeMyClip/editor": {
+  "repo": "MakeMyClip/editor",
+  "url": "https://raw.githubusercontent.com/MakeMyClip/editor/HEAD/docs/hero.png",
+  "alt": "MakeMyClip Editor — chat-driven video editing demo (real screencast coming soon)",
+  "score": -0.8,
+  "type": "image/png",
+  "bytes": 23566
+ },
  "Mats2208/qwen-image-local": {
   "repo": "Mats2208/qwen-image-local",
   "url": "https://raw.githubusercontent.com/Mats2208/qwen-image-local/HEAD/assets/screen-edit.png",
@@ -950,6 +974,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 285659
+ },
+ "Moessif/code-video-showcase": {
+  "repo": "Moessif/code-video-showcase",
+  "url": "https://raw.githubusercontent.com/Moessif/code-video-showcase/HEAD/assets/contact-1fps.jpg",
+  "alt": "1 fps contact sheet of the 61 s reference showcase",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 132282
  },
  "Monet-AI-Editor/Monet": {
   "repo": "Monet-AI-Editor/Monet",
@@ -1094,6 +1126,14 @@
   "score": -2.7,
   "type": "image/png",
   "bytes": 1853175
+ },
+ "RohanRatwani/explainer-video-opus-5.5": {
+  "repo": "RohanRatwani/explainer-video-opus-5.5",
+  "url": "https://raw.githubusercontent.com/RohanRatwani/explainer-video-opus-5.5/HEAD/media/demo.gif",
+  "alt": "Scenes rendered by this skill: a knowledge graph sorting itself into clusters, a",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3031086
  },
  "Ronnie2025/codex-ppt-skill": {
   "repo": "Ronnie2025/codex-ppt-skill",
@@ -2743,6 +2783,14 @@
   "type": "image/gif",
   "bytes": 551351
  },
+ "isabellagreco1997/script-to-video": {
+  "repo": "isabellagreco1997/script-to-video",
+  "url": "https://raw.githubusercontent.com/isabellagreco1997/script-to-video/HEAD/examples/how-does-a-door-work/out/preview.gif",
+  "alt": "",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3595923
+ },
  "ismailperim/briefd": {
   "repo": "ismailperim/briefd",
   "url": "https://raw.githubusercontent.com/ismailperim/briefd/HEAD/docs/assets/briefd-demo.gif",
@@ -2926,6 +2974,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 3485817
+ },
+ "klubinskak/skilldex": {
+  "repo": "klubinskak/skilldex",
+  "url": "https://raw.githubusercontent.com/klubinskak/skilldex/HEAD/docs/screenshots/hero.png",
+  "alt": "Skilldex dashboard",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 574460
  },
  "knight6669/knight-imagetopptx-skill": {
   "repo": "knight6669/knight-imagetopptx-skill",

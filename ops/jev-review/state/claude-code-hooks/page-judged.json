@@ -18084,5 +18084,40 @@
   "days": 165,
   "stars_per_day": 0.30303030303030304,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "tmcfarlane/team-avatar",
+  "name": "team-avatar",
+  "stars": 110,
+  "description": "Team Avatar: a universal agent orchestrator for Claude Code, Codex, and Cursor. Nine Avatar characters, 58 engineering skills. pstack with Avatar characters on top.",
+  "topics": [
+   "agent-orchestration",
+   "agent-skills",
+   "ai-agents",
+   "claude-code",
+   "codex",
+   "cursor",
+   "multi-agent",
+   "subagents"
+  ],
+  "created": "2026-02-07",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 34374,
+  "names_model": false,
+  "on_subject": 0.82,
+  "is_software": 0.98,
+  "shows_result": 0.85,
+  "one_command_start": 0.6,
+  "specific_outcome": 0.78,
+  "complete_docs": 0.8,
+  "novel_angle": 0.51,
+  "shareable_output": 0.67,
+  "quality": 0.7575000000000001,
+  "tier": "高",
+  "hit_prior": 0.6766666666666667,
+  "days": 260,
+  "stars_per_day": 0.4230769230769231,
+  "verdict": "admit"
  }
 ]

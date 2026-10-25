@@ -2658,5 +2658,19 @@
    "general": 0.12
   },
   "kind": "cli"
+ },
+ {
+  "repo": "klubinskak/skilldex",
+  "stars": 80,
+  "description": "Skilldex is a local-first desktop dashboard for developers to discover, organize, and favourite their agent skills across global, project, and repo sources",
+  "scores": {
+   "cli": 0.03,
+   "sync": 0.11,
+   "app": 0.97,
+   "registry": 0.51,
+   "team": 0.07,
+   "general": 0.09
+  },
+  "kind": "app"
  }
 ]

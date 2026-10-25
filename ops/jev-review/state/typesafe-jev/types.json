@@ -5233,5 +5233,20 @@
    "general": 0.25
   },
   "kind": "general"
+ },
+ {
+  "repo": "claudfuen/jev-genui",
+  "stars": 5,
+  "description": "Generative UI sandbox: Jev composes the interface as you type, one typed decision at a time",
+  "scores": {
+   "replica": 0.05,
+   "agent": 0.06,
+   "devtool": 0.2,
+   "sdk": 0.12,
+   "business": 0.05,
+   "consumer": 0.11,
+   "general": 0.33
+  },
+  "kind": "general"
  }
 ]

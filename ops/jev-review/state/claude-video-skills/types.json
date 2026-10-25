@@ -6280,5 +6280,131 @@
    "general": 0.24
   },
   "kind": "general"
+ },
+ {
+  "repo": "Moessif/code-video-showcase",
+  "stars": 20,
+  "description": "A pure-code beat-synced showcase-video Agent Skill: HTML/Canvas/SVG/Three.js frame-by-frame + Python numpy/scipy score + FFmpeg. No generative models.",
+  "scores": {
+   "promo": 0.34,
+   "explainer": 0.18,
+   "music": 0.46,
+   "motion": 0.29,
+   "shorts": 0.24,
+   "editing": 0.05,
+   "demo": 0.21,
+   "story": 0.07,
+   "avatar": 0.04,
+   "general": 0.14
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "8533502-dev/deepseek-opus-motion-skill",
+  "stars": 16,
+  "description": "让 DeepSeek 用和 Claude Opus 5.5 同样的提示词做出接近的 Remotion 动效视频 · A skill for Opus-parity motion design",
+  "scores": {
+   "promo": 0.24,
+   "explainer": 0.42,
+   "music": 0.25,
+   "motion": 0.35,
+   "shorts": 0.11,
+   "editing": 0.04,
+   "demo": 0.34,
+   "story": 0.49,
+   "avatar": 0.06,
+   "general": 0.15
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kelano86/what-if-animation",
+  "stars": 13,
+  "description": "A free Claude Code skill: one topic line in, a finished 15-25 s What If animated episode out. Every frame drawn in code (SVG + Remotion); voice and sound from ElevenLabs.",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.36,
+   "music": 0.03,
+   "motion": 0.25,
+   "shorts": 0.38,
+   "editing": 0.02,
+   "demo": 0.24,
+   "story": 0.95,
+   "avatar": 0.05,
+   "general": 0.04
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "arthurkatcher/explainer-video",
+  "stars": 5,
+  "description": "Agent skill: motion-graphics explainer videos made entirely in code (Remotion + numpy music)",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.93,
+   "music": 0.24,
+   "motion": 0.87,
+   "shorts": 0.17,
+   "editing": 0.04,
+   "demo": 0.47,
+   "story": 0.14,
+   "avatar": 0.06,
+   "general": 0.08
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "MakeMyClip/editor",
+  "stars": 5,
+  "description": "AI-native video editor — talk to make video. Trim, zoom, caption, and assemble clips from any AI agent (Claude, Cursor, Copilot). Delivered as an MCP server + agent skill https://www.npmjs.com/package/@makemyclip/editor.",
+  "scores": {
+   "promo": 0.31,
+   "explainer": 0.19,
+   "music": 0.07,
+   "motion": 0.1,
+   "shorts": 0.18,
+   "editing": 0.94,
+   "demo": 0.28,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "isabellagreco1997/script-to-video",
+  "stars": 5,
+  "description": "Turn a script into a narrated, word-synced explainer video (16:9 YouTube or 9:16 Reels/Shorts). Free local Kokoro voice, licensed web images, clips, browser-rendered motion. Python CLI + Claude Code skill.",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.94,
+   "music": 0.05,
+   "motion": 0.13,
+   "shorts": 0.87,
+   "editing": 0.41,
+   "demo": 0.27,
+   "story": 0.16,
+   "avatar": 0.06,
+   "general": 0.17
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "RohanRatwani/explainer-video-opus-5.5",
+  "stars": 1,
+  "description": "Claude Code skill: turn a topic into a motion-design explainer video (YouTube 16:9 or Shorts) with an AI voice or your own, every animation timed to the narration. Built with Claude Opus 5.5.",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.26,
+   "shorts": 0.65,
+   "editing": 0.05,
+   "demo": 0.45,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.09
+  },
+  "kind": "explainer"
  }
 ]

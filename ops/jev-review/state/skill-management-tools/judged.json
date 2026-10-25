@@ -10199,5 +10199,31 @@
   "days": 306,
   "stars_per_day": 0.20915032679738563,
   "verdict": "admit"
+ },
+ {
+  "repo": "klubinskak/skilldex",
+  "name": "skilldex",
+  "stars": 80,
+  "description": "Skilldex is a local-first desktop dashboard for developers to discover, organize, and favourite their agent skills across global, project, and repo sources",
+  "topics": [],
+  "created": "2026-08-08",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 5833,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.98,
+  "shows_result": 0.44,
+  "one_command_start": 0.23,
+  "specific_outcome": 0.77,
+  "complete_docs": 0.19,
+  "novel_angle": 0.7,
+  "shareable_output": 0.78,
+  "quality": 0.40750000000000003,
+  "tier": "低",
+  "hit_prior": 0.64,
+  "days": 78,
+  "stars_per_day": 1.0256410256410255,
+  "verdict": "low_quality"
  }
 ]

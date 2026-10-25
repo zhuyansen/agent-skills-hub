@@ -3610,5 +3610,19 @@
    "business": 0.07
   },
   "kind": "assistant"
+ },
+ {
+  "repo": "Derrors/reelay",
+  "stars": 19,
+  "description": "自托管的 Telegram → 115 网盘自动转存：AI 识别分享链接，审批后转存并按 Jellyfin/Emby 规范整理入库",
+  "scores": {
+   "assistant": 0.12,
+   "remote": 0.3,
+   "framework": 0.13,
+   "utility": 0.7,
+   "fun": 0.03,
+   "business": 0.05
+  },
+  "kind": "utility"
  }
 ]

@@ -4818,5 +4818,39 @@
   "days": 16,
   "stars_per_day": 4.3125,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "adhiprib/humanizer-indonesia",
+  "name": "humanizer-indonesia",
+  "stars": 58,
+  "description": "Membuat tulisan AI lebih luwes dan enak dibaca, bukan untuk mengelabui deteksi AI",
+  "topics": [
+   "academic-writing",
+   "ai-writing",
+   "bahasa-indonesia",
+   "claude",
+   "claude-skill",
+   "humanizer",
+   "indonesian"
+  ],
+  "created": "2026-10-24",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7933,
+  "names_model": false,
+  "on_subject": 0.71,
+  "is_software": 0.98,
+  "shows_result": 0.05,
+  "one_command_start": 0.54,
+  "specific_outcome": 0.83,
+  "complete_docs": 0.13,
+  "novel_angle": 0.69,
+  "shareable_output": 0.59,
+  "quality": 0.3875,
+  "tier": "低",
+  "hit_prior": 0.4433333333333333,
+  "days": 1,
+  "stars_per_day": 58.0,
+  "verdict": "low_quality"
  }
 ]
