@@ -25,7 +25,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
-| GitHub 列表 | ⏳ 10 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、karanb192 #493、**MobinX #867(10-26 和 main 冲突,要 rebase)**、GetBindu #296、teles #241、ComposioHQ #2328;维护者都没新评论 |
+| GitHub 列表 | ⏳ 10 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、karanb192 #493、MobinX #867(10-26 和 main 冲突,已 rebase 成 039f14a,MERGEABLE/CLEAN)、GetBindu #296、teles #241、ComposioHQ #2328;维护者都没新评论 |
 | buildwithclaude | ✅ #555 10-26 00:07 UTC 合并(davepoon:Listed) | 对方 marketplace.json 里是 0.5.1 @4fd9a0d。#500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
 | github/awesome-copilot | ❌ issue #5578 10-25 被拒 | 理由:建在付费 API 上的 SEO/关键词工具,不是开发者工作流(自动检查当时全过) |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
@@ -37,7 +37,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 
 ## 10-26 逐站核查(后台代理,只读)
 
-- **ClawHub、Tessl、cursor.directory、Skillstore 上还是 0.5.0 的 SKILL.md**(让 agent clone 默认分支、不锁版本);Skillstore 安全审计 **Medium Risk**(10-20),理由正是 Unpinned External Code Execution。LobeHub 也停在 0.5.0。仓库 main 已是 `uvx new-term-radar==0.5.2`,这几站要重新发布才会更新。
+- **ClawHub、Tessl、cursor.directory、Skillstore 上还是 0.5.0 的 SKILL.md**(让 agent clone 默认分支、不锁版本);Skillstore 安全审计 **Medium Risk**(10-20),理由正是 Unpinned External Code Execution。仓库 main 已是 `uvx new-term-radar==0.5.2`。
+  - 10-26 晚已重新发布:**ClawHub** 3 个 skill(new-term-radar、ai-listening、seo-new-keywords-research)从 v0.5.2 标签提交 0.5.2,等安全扫描后公开;**LobeHub** `plugin update` 0.5.0 → 0.5.2,published。
+  - 要你在网页上做:Tessl(登录后 Analyze a repository 重新分析)、cursor.directory(登录后更新插件内容)、Skillstore(页面上「Claim it」认领后才能出新审计版本)。
 - 各站数字:skills.sh 59 次安装;ClawHub 120 次下载;Tessl 73/74/77 分;skillsdirectory Grade A;SkillsMP 数据停在 10-13(页面有 Cloudflare 人机验证,状态取自公开搜索 API)。
 - MCP Market / mcp.directory / AIbase / mdskills 仍搜不到;mcp.so #5714、mcpm #476 没动静。
 
