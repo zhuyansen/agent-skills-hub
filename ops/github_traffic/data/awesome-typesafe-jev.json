@@ -115,6 +115,34 @@
   "2026-10-18": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-19": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-20": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-21": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-22": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-23": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-24": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-25": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -233,6 +261,34 @@
   "2026-10-18": {
    "count": 12,
    "uniques": 10
+  },
+  "2026-10-19": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-10-20": {
+   "count": 19,
+   "uniques": 14
+  },
+  "2026-10-21": {
+   "count": 9,
+   "uniques": 7
+  },
+  "2026-10-22": {
+   "count": 35,
+   "uniques": 21
+  },
+  "2026-10-23": {
+   "count": 9,
+   "uniques": 7
+  },
+  "2026-10-24": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-25": {
+   "count": 7,
+   "uniques": 5
   }
  },
  "referrers": {
@@ -240,6 +296,18 @@
   "2026-10-05": [],
   "2026-10-12": [],
   "2026-10-19": [
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 2
+   },
    {
     "referrer": "github.com",
     "count": 1,
@@ -296,6 +364,18 @@
    },
    {
     "path": "/zhuyansen/awesome-typesafe-jev/tree/main",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev",
+    "count": 9,
+    "uniques": 9
+   },
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev/blob/main/README.zh-CN.md",
     "count": 1,
     "uniques": 1
    }

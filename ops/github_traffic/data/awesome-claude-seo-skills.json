@@ -55,6 +55,34 @@
   "2026-10-18": {
    "count": 21,
    "uniques": 14
+  },
+  "2026-10-19": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-10-20": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-21": {
+   "count": 4,
+   "uniques": 3
+  },
+  "2026-10-22": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-23": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-24": {
+   "count": 5,
+   "uniques": 4
+  },
+  "2026-10-25": {
+   "count": 12,
+   "uniques": 9
   }
  },
  "clones": {
@@ -113,6 +141,34 @@
   "2026-10-18": {
    "count": 17,
    "uniques": 13
+  },
+  "2026-10-19": {
+   "count": 26,
+   "uniques": 19
+  },
+  "2026-10-20": {
+   "count": 16,
+   "uniques": 10
+  },
+  "2026-10-21": {
+   "count": 18,
+   "uniques": 13
+  },
+  "2026-10-22": {
+   "count": 30,
+   "uniques": 22
+  },
+  "2026-10-23": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-10-24": {
+   "count": 23,
+   "uniques": 14
+  },
+  "2026-10-25": {
+   "count": 27,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -121,6 +177,23 @@
     "referrer": "t.co",
     "count": 17,
     "uniques": 12
+   }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "t.co",
+    "count": 17,
+    "uniques": 12
+   },
+   {
+    "referrer": "Google",
+    "count": 16,
+    "uniques": 15
+   },
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
    }
   ]
  },
@@ -138,6 +211,33 @@
    },
    {
     "path": "/zhuyansen/awesome-claude-seo-skills/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills",
+    "count": 43,
+    "uniques": 36
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/README.zh-CN.md",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/main/data",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/data/skills.json",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/fork",
     "count": 1,
     "uniques": 1
    }

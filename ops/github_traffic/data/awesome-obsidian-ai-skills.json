@@ -107,6 +107,38 @@
   "2026-10-17": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-18": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-19": {
+   "count": 5,
+   "uniques": 4
+  },
+  "2026-10-20": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-21": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-22": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-23": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-24": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-25": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -217,6 +249,38 @@
   "2026-10-17": {
    "count": 6,
    "uniques": 4
+  },
+  "2026-10-18": {
+   "count": 28,
+   "uniques": 19
+  },
+  "2026-10-19": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-10-20": {
+   "count": 15,
+   "uniques": 11
+  },
+  "2026-10-21": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-10-22": {
+   "count": 17,
+   "uniques": 11
+  },
+  "2026-10-23": {
+   "count": 17,
+   "uniques": 10
+  },
+  "2026-10-24": {
+   "count": 16,
+   "uniques": 9
+  },
+  "2026-10-25": {
+   "count": 7,
+   "uniques": 5
   }
  },
  "referrers": {
@@ -266,6 +330,28 @@
    },
    {
     "referrer": "Google",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "github.com",
+    "count": 5,
+    "uniques": 2
+   },
+   {
+    "referrer": "Google",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "t.co",
     "count": 1,
     "uniques": 1
    }
@@ -326,6 +412,28 @@
     "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/data/skills.json",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills",
+    "count": 9,
+    "uniques": 9
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.zh-CN.md",
+    "count": 5,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.md",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/commit/5e81bb40a445b036e0b54ac8ea2d1f0a3554550e",
+    "count": 2,
+    "uniques": 2
    }
   ]
  }

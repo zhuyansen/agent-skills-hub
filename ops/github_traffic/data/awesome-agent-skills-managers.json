@@ -115,6 +115,34 @@
   "2026-10-18": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-19": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-20": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-21": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-22": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-23": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-24": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-25": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -233,6 +261,34 @@
   "2026-10-18": {
    "count": 20,
    "uniques": 12
+  },
+  "2026-10-19": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-10-20": {
+   "count": 20,
+   "uniques": 12
+  },
+  "2026-10-21": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-22": {
+   "count": 14,
+   "uniques": 8
+  },
+  "2026-10-23": {
+   "count": 15,
+   "uniques": 9
+  },
+  "2026-10-24": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-10-25": {
+   "count": 22,
+   "uniques": 12
   }
  },
  "referrers": {
@@ -260,6 +316,28 @@
     "referrer": "claude.ai",
     "count": 3,
     "uniques": 1
+   },
+   {
+    "referrer": "youtube.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "Google",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "t.co",
+    "count": 3,
+    "uniques": 3
    },
    {
     "referrer": "youtube.com",
@@ -303,6 +381,23 @@
    {
     "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
     "count": 6,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/commit/514f08412c2f2ed81e3f6ddbbdc5b94b7f3dea41",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 9,
+    "uniques": 9
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 5,
     "uniques": 3
    },
    {

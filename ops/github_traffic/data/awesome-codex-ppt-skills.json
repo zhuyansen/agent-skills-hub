@@ -115,6 +115,34 @@
   "2026-10-18": {
    "count": 34,
    "uniques": 23
+  },
+  "2026-10-19": {
+   "count": 12,
+   "uniques": 9
+  },
+  "2026-10-20": {
+   "count": 32,
+   "uniques": 18
+  },
+  "2026-10-21": {
+   "count": 9,
+   "uniques": 7
+  },
+  "2026-10-22": {
+   "count": 8,
+   "uniques": 8
+  },
+  "2026-10-23": {
+   "count": 10,
+   "uniques": 9
+  },
+  "2026-10-24": {
+   "count": 23,
+   "uniques": 16
+  },
+  "2026-10-25": {
+   "count": 53,
+   "uniques": 30
   }
  },
  "clones": {
@@ -233,6 +261,34 @@
   "2026-10-18": {
    "count": 25,
    "uniques": 17
+  },
+  "2026-10-19": {
+   "count": 1585,
+   "uniques": 164
+  },
+  "2026-10-20": {
+   "count": 140,
+   "uniques": 90
+  },
+  "2026-10-21": {
+   "count": 11,
+   "uniques": 8
+  },
+  "2026-10-22": {
+   "count": 17,
+   "uniques": 11
+  },
+  "2026-10-23": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-24": {
+   "count": 22,
+   "uniques": 13
+  },
+  "2026-10-25": {
+   "count": 24,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -306,6 +362,48 @@
     "referrer": "l.facebook.com",
     "count": 2,
     "uniques": 2
+   },
+   {
+    "referrer": "facebook.com",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "lorilu-studio.github.io",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "Google",
+    "count": 65,
+    "uniques": 50
+   },
+   {
+    "referrer": "t.co",
+    "count": 50,
+    "uniques": 43
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 25,
+    "uniques": 25
+   },
+   {
+    "referrer": "note.com",
+    "count": 16,
+    "uniques": 10
+   },
+   {
+    "referrer": "github.com",
+    "count": 14,
+    "uniques": 13
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 3,
+    "uniques": 1
    },
    {
     "referrer": "facebook.com",
@@ -393,6 +491,58 @@
    },
    {
     "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main/assets",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills",
+    "count": 281,
+    "uniques": 218
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/README.zh-CN.md",
+    "count": 70,
+    "uniques": 48
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/README.md",
+    "count": 16,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main",
+    "count": 9,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/data/skills.json",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main/.github",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main/assets",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main/data",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/LICENSE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/edit/main/README.md",
     "count": 1,
     "uniques": 1
    }

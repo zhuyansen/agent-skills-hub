@@ -119,6 +119,30 @@
   "2026-10-18": {
    "count": 737,
    "uniques": 489
+  },
+  "2026-10-19": {
+   "count": 639,
+   "uniques": 456
+  },
+  "2026-10-20": {
+   "count": 581,
+   "uniques": 411
+  },
+  "2026-10-21": {
+   "count": 392,
+   "uniques": 299
+  },
+  "2026-10-22": {
+   "count": 312,
+   "uniques": 232
+  },
+  "2026-10-23": {
+   "count": 662,
+   "uniques": 400
+  },
+  "2026-10-24": {
+   "count": 2174,
+   "uniques": 1093
   }
  },
  "clones": {
@@ -241,6 +265,30 @@
   "2026-10-18": {
    "count": 323,
    "uniques": 213
+  },
+  "2026-10-19": {
+   "count": 468,
+   "uniques": 239
+  },
+  "2026-10-20": {
+   "count": 595,
+   "uniques": 277
+  },
+  "2026-10-21": {
+   "count": 412,
+   "uniques": 276
+  },
+  "2026-10-22": {
+   "count": 422,
+   "uniques": 235
+  },
+  "2026-10-23": {
+   "count": 422,
+   "uniques": 222
+  },
+  "2026-10-24": {
+   "count": 346,
+   "uniques": 216
   }
  },
  "referrers": {
@@ -451,6 +499,58 @@
     "count": 26,
     "uniques": 20
    }
+  ],
+  "2026-10-26": [
+   {
+    "referrer": "Google",
+    "count": 6014,
+    "uniques": 4627
+   },
+   {
+    "referrer": "github.com",
+    "count": 345,
+    "uniques": 190
+   },
+   {
+    "referrer": "Bing",
+    "count": 333,
+    "uniques": 258
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 263,
+    "uniques": 192
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 75,
+    "uniques": 55
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 65,
+    "uniques": 51
+   },
+   {
+    "referrer": "t.co",
+    "count": 60,
+    "uniques": 49
+   },
+   {
+    "referrer": "Yahoo",
+    "count": 45,
+    "uniques": 30
+   },
+   {
+    "referrer": "l.facebook.com",
+    "count": 41,
+    "uniques": 21
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 22,
+    "uniques": 19
+   }
   ]
  },
  "paths": {
@@ -660,6 +760,58 @@
     "path": "/zhuyansen/awesome-claude-video-skills/issues",
     "count": 65,
     "uniques": 53
+   }
+  ],
+  "2026-10-26": [
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills",
+    "count": 9800,
+    "uniques": 6708
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/README.zh-CN.md",
+    "count": 400,
+    "uniques": 237
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/README.md",
+    "count": 213,
+    "uniques": 117
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/assets/previews",
+    "count": 152,
+    "uniques": 125
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main",
+    "count": 130,
+    "uniques": 82
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/data",
+    "count": 123,
+    "uniques": 105
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 97,
+    "uniques": 83
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/blob/main/data/skills.json",
+    "count": 91,
+    "uniques": 76
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/commit/61c2e73d3dad76afc30dddb2eb7359e36d5fa24a",
+    "count": 51,
+    "uniques": 47
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-video-skills/issues",
+    "count": 50,
+    "uniques": 47
    }
   ]
  }
