@@ -10,7 +10,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 
 | 站 | 状态 | 备注 |
 |---|---|---|
-| PyPI / 官方 MCP 注册表 | ✅ 0.10.0 | `io.github.zhuyansen/backlink-guard` active;Release v0.10.0 触发 publish.yml(build、PyPI、registry 三步都成功) |
+| PyPI / 官方 MCP 注册表 | ✅ 0.10.1(10-26) | `io.github.zhuyansen/backlink-guard` active latest;0.10.1 = MCP 工具报错原因能到 agent;Release 触发 publish.yml(build、PyPI、registry 三步都成功) |
 | skills.sh / Agent Skills Hub / Claude Code 插件市场(仓库自带) | ✅ | |
 | Agensi | ✅ 已上线(Live · Free) | 自动填写先清掉再自己写;演示用 README 10-13 的真实 vet 表;工具权限勾了 5 项(不含 Browser) |
 | Tessl | ⏳ 评估中 | 网页 Analyze a repository;tessl.io/registry/skills/github/zhuyansen/backlink-guard,已公开 |
@@ -23,7 +23,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | serpapi/awesome-seo-tools #478 / BehiSecc/awesome-claude-skills #990 | ⏳ 10-19 已含 backlink-guard | 和雷达同一个 PR |
 | agenticskills.io | ⏳ 10-19 表单已交 | |
 | Anthropic 插件目录 | ⏳ 10-26 已提交,首次扫描中 | v0.10.1 @0c9a566。Validate 通过但有 8 个 policy hold(锁版本 uvx 必然人工审;「Uses a credential」7 处是各家 key 发给各家自己的主机),所以会转人工审。提交前补了 PRIVACY.md 和 plugin.json 的隐私/支持/文档链接(文档链接原先被取成 README 里的 logo)。选了 GitHub push webhook,但 webhook 还没在仓库设置里加(不加也每 6 小时查一次新提交) |
-| WorkBuddy 开放平台 | ⏸ 连接器包已备好 | `ops/workbuddy/backlink-guard.zip`(锁 0.10.1,MCP + Skill,key 表单);等你大陆身份证实名入驻后上传 |
+| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_b6d687a4c8cb5e92,v0.10.1;类目「商业服务 - 公关/推广/市场调查」「工具 - 信息查询」;包在 `ops/workbuddy/`。开发者主页资料 21:46 已过审(昵称 JasonZhu、官网 jasonzhu.ai) |
 | LobeHub | ⏳ 已发布,等 LobeHub 验证(not_validated) | 10-26 `lhm plugin publish` → zhuyansen-backlink-guard@0.10.0,10 个工具,中文名「外链检测」,🛡️;GitHub 授权用完已 `github disconnect`。验证通过前 lobehub.com/mcp/zhuyansen-backlink-guard 显示 Plugin not found;雷达当时同样 not_validated,后来自动变 published |
 
 ### GitHub(后台代理 10-26 开)
@@ -52,7 +52,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 - **要你在 Chrome 登录**:Glama(Add Server + 认领,之后才提 punkpeye)、AIbase。
 - **要你撤销授权**:GitHub Settings → Applications → Authorized OAuth Apps → LobeHub → Revoke(CLI 已断开,这一步彻底收回 token)。
 - **表单要填联系邮箱**:mcpservers.org(免费档)、MCP Market(免费队列,默认勾的 $29 要改)。用哪个邮箱你定。
-- **只能你本人**:hesreallyhim(10-27 起,网页表单);WorkBuddy 开放平台实名入驻(大陆身份证 + 刷脸)后上传连接器包。
+- **只能你本人**:hesreallyhim(10-27 起,网页表单)。
 - **邮件**(你从 Gmail 发):skillselion(info@skillselion.com)、claudemarketplaces(hi@claudemarketplaces.com)。
 
 ## 第 3 批:等条件

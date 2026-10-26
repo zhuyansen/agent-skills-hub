@@ -14,14 +14,14 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 
 | 站 | 状态 | 备注 |
 |---|---|---|
-| PyPI / 官方 MCP 注册表 | ✅ 0.5.1(10-25) | `io.github.zhuyansen/new-term-radar`;0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例 |
+| PyPI / 官方 MCP 注册表 | ✅ 0.5.2(10-26) | `io.github.zhuyansen/new-term-radar` active latest;0.5.2 = MCP 工具报错原因能到 agent(0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例) |
 | Claude Code 插件市场(仓库自带)/ skills.sh / ClawHub / Tessl | ✅ | |
 | Glama | ✅ 页面已生成 | 认领后再提 punkpeye |
 | LobeHub / mcpservers.org(Marketing)/ cursor.directory / Agensi / Skillstore / 魔搭(MCP + Skill) | ✅ | |
 | Jimmy Song AI 原生全景图 | ✅ #34 已合并 | jimmysong.io/ai/new-term-radar/ |
 | SkillsMP / skillsdirectory / skillget / skillsllm / agentskillshub.top | ✅ 自动收录 | |
 | Anthropic 插件目录 | ⏳ 等人工审 | v0.5.1 @4fd9a0d「Held by directory policy, with Anthropic」(锁版本 uvx 必然人工审)。10-26 发了 0.5.2(报错原因能到 agent)并补 PRIVACY.md 和隐私/支持/文档链接(0b6b164),目录约每 6 小时扫一次新提交 |
-| WorkBuddy 开放平台 | ⏸ 连接器包已备好 | `ops/workbuddy/new-term-radar.zip`(锁 0.5.2,表单要 AIsa key 和数据目录);等你实名入驻后上传 |
+| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录 |
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
