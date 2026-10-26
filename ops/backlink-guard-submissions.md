@@ -11,13 +11,14 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | 站 | 状态 | 备注 |
 |---|---|---|
 | PyPI / 官方 MCP 注册表 | ✅ 0.10.1(10-26) | `io.github.zhuyansen/backlink-guard` active latest;0.10.1 = MCP 工具报错原因能到 agent;Release 触发 publish.yml(build、PyPI、registry 三步都成功) |
-| skills.sh / Agent Skills Hub / Claude Code 插件市场(仓库自带) | ✅ | |
+| skills.sh / Agent Skills Hub / Claude Code 插件市场(仓库自带) | ✅ | skills.sh 2 次安装;**Hub 页面还显示 ★17、最后更新 10-18(GitHub 已 23★)** |
+| SkillsMP / skillsdirectory / skillget | ✅ 自动收录(10-26 核) | skillsdirectory Grade A;SkillsMP 数据停在 10-14;skillget 星数旧 |
 | Agensi | ✅ 已上线(Live · Free) | 自动填写先清掉再自己写;演示用 README 10-13 的真实 vet 表;工具权限勾了 5 项(不含 Browser) |
-| Tessl | ⏳ 评估中 | 网页 Analyze a repository;tessl.io/registry/skills/github/zhuyansen/backlink-guard,已公开 |
-| ClawHub | ⏳ 安全扫描中 | `npx clawhub@0.23.3 publish`,0.10.0,source commit 140a236;**clawhub.ai 走代理 7897 不通、直连通,命令要去掉代理变量**;MIT-0 同雷达 |
-| cursor.directory | ⏳ 安全扫描中 | cursor.directory/plugins/backlink-guard:Skill 1 + 手动加的 MCP Server 1,传了 logo |
+| Tessl | ✅ 75 分(10-26 核) | Quality 94%、Security Low;版本 140a236(0.10.0);tessl.io/registry/skills/github/zhuyansen/backlink-guard |
+| ClawHub | ⏳ 10-26 公开接口仍 Skill not found(扫描结果要登录看) | `npx clawhub@0.23.3 publish`,0.10.0,source commit 140a236;**clawhub.ai 走代理 7897 不通、直连通,命令要去掉代理变量**;MIT-0 同雷达 |
+| cursor.directory | ✅ 已公开(10-26 核) | cursor.directory/plugins/backlink-guard:Skill 1 + 手动加的 MCP Server 1,传了 logo;站内能搜到 |
 | 魔搭 MCP + Skill | ✅ | modelscope.cn/mcp/servers/JasonZhuyansen/backlink-guard(仅本地可用、中文描述、两个 key 改成选填);modelscope.cn/skills/JasonZhuyansen/backlink-guard(市场推广、MIT、图标换成 logo、自动同步) |
-| Skillstore | ⏳ 审计后开 PR | 匿名提交 |
+| Skillstore | ✅ 已上(10-26 核) | skillstore.io/skills/zhuyansen-backlink-guard,安全审计 Safe |
 | mdskills | ⏳ 3 周内上线 | Plugin / Free / Standard 免费档,名称和描述手填 |
 | mcp.directory | ⏳ 24 小时内 | 表单不填邮箱 |
 | serpapi/awesome-seo-tools #478 / BehiSecc/awesome-claude-skills #990 | ⏳ 10-19 已含 backlink-guard | 和雷达同一个 PR |
@@ -57,7 +58,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 
 ## 第 3 批:等条件
 
-heilcheng/awesome-agent-skills(要 ≥20★,10-26 是 18★)、VoltAgent(11 月)、punkpeye(Glama 认领后)。
+heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)、VoltAgent(11 月)、punkpeye(Glama 认领后)。
 
 ## 不投
 

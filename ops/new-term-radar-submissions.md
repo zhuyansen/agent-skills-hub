@@ -16,24 +16,30 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 |---|---|---|
 | PyPI / 官方 MCP 注册表 | ✅ 0.5.2(10-26) | `io.github.zhuyansen/new-term-radar` active latest;0.5.2 = MCP 工具报错原因能到 agent(0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例) |
 | Claude Code 插件市场(仓库自带)/ skills.sh / ClawHub / Tessl | ✅ | |
-| Glama | ✅ 页面已生成 | 认领后再提 punkpeye |
+| Glama | ✅ A 评级(10-26 核) | 页面数据带 `author:claimed`,渲染页上没看到认领标记(证据偏弱);punkpeye 的前提可能已满足 |
 | LobeHub / mcpservers.org(Marketing)/ cursor.directory / Agensi / Skillstore / 魔搭(MCP + Skill) | ✅ | |
-| Jimmy Song AI 原生全景图 | ✅ #34 已合并 | jimmysong.io/ai/new-term-radar/ |
+| Jimmy Song AI 原生全景图 | ✅ issue #34 10-21 以 completed 关闭 | landscape.jimmysong.io/projects/new-term-radar/(Tracked) |
 | SkillsMP / skillsdirectory / skillget / skillsllm / agentskillshub.top | ✅ 自动收录 | |
 | Anthropic 插件目录 | ⏳ 等人工审 | v0.5.1 @4fd9a0d「Held by directory policy, with Anthropic」(锁版本 uvx 必然人工审)。10-26 发了 0.5.2(报错原因能到 agent)并补 PRIVACY.md 和隐私/支持/文档链接(0b6b164),目录约每 6 小时扫一次新提交 |
 | WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录 |
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
-| GitHub 列表 | ⏳ 11 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、buildwithclaude #555、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328 |
-| buildwithclaude | ⏳ #555(0.5.1 重提) | #500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
+| GitHub 列表 | ⏳ 10 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、karanb192 #493、**MobinX #867(10-26 和 main 冲突,要 rebase)**、GetBindu #296、teles #241、ComposioHQ #2328;维护者都没新评论 |
+| buildwithclaude | ✅ #555 10-26 00:07 UTC 合并(davepoon:Listed) | 对方 marketplace.json 里是 0.5.1 @4fd9a0d。#500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
 | github/awesome-copilot | ❌ issue #5578 10-25 被拒 | 理由:建在付费 API 上的 SEO/关键词工具,不是开发者工作流(自动检查当时全过) |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
-| HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五 |
-| bmpi-dev/awesome-seo | ❌ #104 被关 | 理由:项目太新、关键词量依赖付费 API |
+| HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五;10-23 那期(416 期)没收 |
+| bmpi-dev/awesome-seo(已改名 i365dev/awesome-seo) | ❌ #104 10-21 被关 | 理由:项目太新、关键词量依赖付费 API |
 | punkpeye/awesome-mcp-servers | ⏸ 等 Glama 评分 | PR 进 🎯 Marketing 区 |
 | VoltAgent/awesome-agent-skills | ⏸ 不收刚建的仓库 | 11 月初再提 |
 | hesreallyhim/awesome-claude-code | ⏸ 只收本人在网页表单提交 | |
+
+## 10-26 逐站核查(后台代理,只读)
+
+- **ClawHub、Tessl、cursor.directory、Skillstore 上还是 0.5.0 的 SKILL.md**(让 agent clone 默认分支、不锁版本);Skillstore 安全审计 **Medium Risk**(10-20),理由正是 Unpinned External Code Execution。LobeHub 也停在 0.5.0。仓库 main 已是 `uvx new-term-radar==0.5.2`,这几站要重新发布才会更新。
+- 各站数字:skills.sh 59 次安装;ClawHub 120 次下载;Tessl 73/74/77 分;skillsdirectory Grade A;SkillsMP 数据停在 10-13(页面有 Cloudflare 人机验证,状态取自公开搜索 API)。
+- MCP Market / mcp.directory / AIbase / mdskills 仍搜不到;mcp.so #5714、mcpm #476 没动静。
 
 ## 不投
 
