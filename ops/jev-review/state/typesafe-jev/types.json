@@ -5248,5 +5248,20 @@
    "general": 0.33
   },
   "kind": "general"
+ },
+ {
+  "repo": "LabGuy94/jevtok",
+  "stars": 5,
+  "description": "Exact token counting and request-cost prediction for TypeSafe's Jev (tiktoken-style)",
+  "scores": {
+   "replica": 0.09,
+   "agent": 0.02,
+   "devtool": 0.46,
+   "sdk": 0.72,
+   "business": 0.03,
+   "consumer": 0.06,
+   "general": 0.1
+  },
+  "kind": "sdk"
  }
 ]

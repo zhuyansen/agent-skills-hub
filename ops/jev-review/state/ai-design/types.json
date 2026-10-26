@@ -2700,5 +2700,33 @@
    "review": 0.47
   },
   "kind": "ui"
+ },
+ {
+  "repo": "dgesteves/onsystem",
+  "stars": 73,
+  "description": "Keeps coding agents on your design system: catches palette colors, native elements and APIs your system lacks, at every edit and pull request, with the fix. Set it up once in your design-system package; every app in your monorepo gets it.",
+  "scores": {
+   "ui": 0.61,
+   "system": 0.98,
+   "tool_mcp": 0.04,
+   "to_code": 0.06,
+   "graphics": 0.1,
+   "review": 0.86
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "justskill-ai/justskill-design",
+  "stars": 6,
+  "description": "Design with your coding agent — A skill, not a product: no MCP server, no app to install, no account, no build step, no npm install.",
+  "scores": {
+   "ui": 0.54,
+   "system": 0.11,
+   "tool_mcp": 0.13,
+   "to_code": 0.26,
+   "graphics": 0.1,
+   "review": 0.45
+  },
+  "kind": "ui"
  }
 ]

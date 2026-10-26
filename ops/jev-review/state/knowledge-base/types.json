@@ -4996,5 +4996,19 @@
    "personal": 0.22
   },
   "kind": "graph"
+ },
+ {
+  "repo": "AlexanderAbramovPav/youtube-advisor",
+  "stars": 9,
+  "description": "Build an AI advisor SKILL from any YouTube channel — transcripts, BM25 + semantic RAG, verbatim quotes with timestamps.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.1,
+   "mcp": 0.86,
+   "docs_qa": 0.41,
+   "graph": 0.05,
+   "personal": 0.08
+  },
+  "kind": "mcp"
  }
 ]

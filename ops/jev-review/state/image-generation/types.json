@@ -3512,5 +3512,19 @@
    "mcp": 0.45
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "aidenli/gd-image-gen",
+  "stars": 5,
+  "description": "Streaming image generation and editing skill for Codex-compatible OpenAI APIs.",
+  "scores": {
+   "gpt_image": 0.81,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.18,
+   "design": 0.27,
+   "mcp": 0.46
+  },
+  "kind": "gpt_image"
  }
 ]

@@ -1576,7 +1576,8 @@
     "SouravBeraAkaSpeed/xiryn",
     "smixs/pi-durable-telegram",
     "imkofty/Hermuse",
-    "Derrors/reelay"
+    "Derrors/reelay",
+    "ortegarod/openclaw-vps-deploy"
    ],
    "exclude_repos": [
     "smixs/iva",
@@ -1955,7 +1956,8 @@
     "GabrieleLozupone/kokon",
     "actionow-ai/c2c_img",
     "ybuild-ai/ai-game-art-pipeline-skill",
-    "Dogwind221/img2img-studio"
+    "Dogwind221/img2img-studio",
+    "aidenli/gd-image-gen"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3117,7 +3119,8 @@
     "tikoci/rosetta",
     "AIPMAndy/dna-memory",
     "sfrangulov/minirag-mcp",
-    "Cashara-io/eunomia"
+    "Cashara-io/eunomia",
+    "AlexanderAbramovPav/youtube-advisor"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3464,7 +3467,8 @@
     "neiii/bridle",
     "VictorTomaili/skill-cli",
     "stakpak/paks",
-    "klubinskak/skilldex"
+    "klubinskak/skilldex",
+    "Hainrixz/skill-vault"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4764,7 +4768,8 @@
     "oegeyilmaz9/seo-aeo-geo-ultimate",
     "spcaeo/toadstone",
     "jgoullet/seo-geo-audit",
-    "Pautthead/seo-aeo-agent-skills"
+    "Pautthead/seo-aeo-agent-skills",
+    "tns-research/fog-agents"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5233,7 +5238,9 @@
     "byadityaraj/designmd",
     "evidence-codes/loom",
     "ckryptickunal/OpenDesigner",
-    "senlindesign/proof"
+    "senlindesign/proof",
+    "dgesteves/onsystem",
+    "justskill-ai/justskill-design"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -7701,7 +7708,8 @@
     "tomek7667/cbjev",
     "ronitgupta138/Local-Jev",
     "ai4curation/jevotron",
-    "claudfuen/jev-genui"
+    "claudfuen/jev-genui",
+    "LabGuy94/jevtok"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8162,7 +8170,15 @@
     "arthurkatcher/explainer-video",
     "MakeMyClip/editor",
     "isabellagreco1997/script-to-video",
-    "RohanRatwani/explainer-video-opus-5.5"
+    "RohanRatwani/explainer-video-opus-5.5",
+    "Hainrixz/editor-pro-max",
+    "0xS4N4TG/kinetograph",
+    "Lanqiao-Luca/ai-video-marker",
+    "mathruffian-dot/claude-motion-explainer-images",
+    "liuliu-66-create/ll-video-motion",
+    "Ali-Aria/aria-animator",
+    "mattypark/Motion-graphics-skill",
+    "Hainrixz/motion-architect"
    ],
    "sub_skills": [
     {
@@ -8681,7 +8697,8 @@
     "jordyvanvorselen/pi-claude-hooks",
     "PsChina/deepseek-as-subagent",
     "MaxHarfen/crab-band",
-    "tmcfarlane/team-avatar"
+    "tmcfarlane/team-avatar",
+    "rootstudioyaml/sprag"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

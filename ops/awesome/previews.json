@@ -1,4 +1,12 @@
 {
+ "0xS4N4TG/kinetograph": {
+  "repo": "0xS4N4TG/kinetograph",
+  "url": "https://raw.githubusercontent.com/0xS4N4TG/kinetograph/HEAD/docs/readme/showcase.gif",
+  "alt": "Showcase example",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 564910
+ },
  "0xS4N4TG/papercut-explainer": {
   "repo": "0xS4N4TG/papercut-explainer",
   "url": "https://raw.githubusercontent.com/0xS4N4TG/papercut-explainer/HEAD/docs/img/hello-reel.gif",
@@ -695,6 +703,22 @@
   "type": "image/gif",
   "bytes": 3933836
  },
+ "Hainrixz/editor-pro-max": {
+  "repo": "Hainrixz/editor-pro-max",
+  "url": "https://raw.githubusercontent.com/Hainrixz/editor-pro-max/HEAD/assets/landing-hero-es.png",
+  "alt": "Editor Pro Max — Landing Page",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 63468
+ },
+ "Hainrixz/motion-architect": {
+  "repo": "Hainrixz/motion-architect",
+  "url": "https://raw.githubusercontent.com/Hainrixz/motion-architect/HEAD/docs/demo.gif",
+  "alt": "Demo renderizada con Motion Architect",
+  "score": 2.25,
+  "type": "image/gif",
+  "bytes": 2647575
+ },
  "Hasasasa/claude-skill-html-to-pptx": {
   "repo": "Hasasasa/claude-skill-html-to-pptx",
   "url": "https://raw.githubusercontent.com/Hasasasa/claude-skill-html-to-pptx/HEAD/assets/compare/yanshi2_ours_grid.png",
@@ -870,6 +894,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 1463389
+ },
+ "Lanqiao-Luca/ai-video-marker": {
+  "repo": "Lanqiao-Luca/ai-video-marker",
+  "url": "https://raw.githubusercontent.com/Lanqiao-Luca/ai-video-marker/HEAD/docs/images/rooftop-preview.gif",
+  "alt": "像素示例：屋顶晒太阳",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2972496
  },
  "LearnAIHubC/LearnDeck": {
   "repo": "LearnAIHubC/LearnDeck",
@@ -2903,6 +2935,14 @@
   "type": "image/gif",
   "bytes": 1606858
  },
+ "justskill-ai/justskill-design": {
+  "repo": "justskill-ai/justskill-design",
+  "url": "https://raw.githubusercontent.com/justskill-ai/justskill-design/HEAD/docs/justskill-demo.gif",
+  "alt": "justSkill in motion: a prompt is copied into the agent, the agent designs the sc",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 3353155
+ },
  "kaisersong/slide-creator": {
   "repo": "kaisersong/slide-creator",
   "url": "https://raw.githubusercontent.com/kaisersong/slide-creator/HEAD/demos/screenshots/fantasy-rainbow.png",
@@ -3182,6 +3222,14 @@
   "score": 1.9,
   "type": "image/png",
   "bytes": 267185
+ },
+ "mattypark/Motion-graphics-skill": {
+  "repo": "mattypark/Motion-graphics-skill",
+  "url": "https://raw.githubusercontent.com/mattypark/Motion-graphics-skill/HEAD/assets/clawd-ending.gif",
+  "alt": "Closing sequence of the launch ad",
+  "score": 2.8,
+  "type": "image/gif",
+  "bytes": 5194524
  },
  "mberneti/clab": {
   "repo": "mberneti/clab",
@@ -3479,6 +3527,14 @@
   "type": "image/gif",
   "bytes": 2601235
  },
+ "ortegarod/openclaw-vps-deploy": {
+  "repo": "ortegarod/openclaw-vps-deploy",
+  "url": "https://raw.githubusercontent.com/ortegarod/openclaw-vps-deploy/HEAD/assets/first-reply.jpg",
+  "alt": "The agent",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 35088
+ },
  "oscaar90/OpsGuard-AI": {
   "repo": "oscaar90/OpsGuard-AI",
   "url": "https://raw.githubusercontent.com/oscaar90/OpsGuard-AI/HEAD/docs/assets/demo.gif",
@@ -3638,6 +3694,14 @@
   "score": -2.7,
   "type": "image/jpeg",
   "bytes": 348410
+ },
+ "rootstudioyaml/sprag": {
+  "repo": "rootstudioyaml/sprag",
+  "url": "https://raw.githubusercontent.com/rootstudioyaml/sprag/main/docs/sprag-compare-en.gif",
+  "alt": "Two terminals receive the same twelve requests. With Sprag, lookups and test run",
+  "score": 2.7,
+  "type": "image/gif",
+  "bytes": 1769642
  },
  "rsrohan99/presenter": {
   "repo": "rsrohan99/presenter",
@@ -3982,6 +4046,14 @@
   "score": -0.5,
   "type": "image/png",
   "bytes": 62846
+ },
+ "tns-research/fog-agents": {
+  "repo": "tns-research/fog-agents",
+  "url": "https://raw.githubusercontent.com/tns-research/fog-agents/HEAD/docs/hero.png",
+  "alt": "Founders Growth Agents, growth agents for founders who don't need a marketing ag",
+  "score": -2.75,
+  "type": "image/png",
+  "bytes": 1953014
  },
  "tokuhn/confidential-html-deck": {
   "repo": "tokuhn/confidential-html-deck",

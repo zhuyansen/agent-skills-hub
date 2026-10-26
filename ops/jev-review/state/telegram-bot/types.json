@@ -3624,5 +3624,19 @@
    "business": 0.05
   },
   "kind": "utility"
+ },
+ {
+  "repo": "ortegarod/openclaw-vps-deploy",
+  "stars": 6,
+  "description": "Deploy a personal OpenClaw agent to a fresh Ubuntu VPS with one command from your computer. Connects Claude and your Telegram bot, locks the server down, and runs 24/7.",
+  "scores": {
+   "assistant": 0.78,
+   "remote": 0.96,
+   "framework": 0.1,
+   "utility": 0.09,
+   "fun": 0.24,
+   "business": 0.05
+  },
+  "kind": "remote"
  }
 ]

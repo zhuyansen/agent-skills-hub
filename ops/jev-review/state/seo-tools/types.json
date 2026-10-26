@@ -4238,5 +4238,21 @@
    "marketing": 0.13
   },
   "kind": "geo"
+ },
+ {
+  "repo": "tns-research/fog-agents",
+  "stars": 5,
+  "description": "Portable AI agents for early-stage founders. Market signal, first users, SEO, landing page, cold outreach. Works with Claude Code, Cursor, Codex CLI, Gemini CLI.",
+  "scores": {
+   "suite": 0.17,
+   "audit": 0.12,
+   "research": 0.14,
+   "data_mcp": 0.07,
+   "geo": 0.08,
+   "content": 0.15,
+   "links": 0.05,
+   "marketing": 0.92
+  },
+  "kind": "marketing"
  }
 ]

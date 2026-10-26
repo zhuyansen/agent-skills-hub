@@ -2672,5 +2672,19 @@
    "general": 0.09
   },
   "kind": "app"
+ },
+ {
+  "repo": "Hainrixz/skill-vault",
+  "stars": 75,
+  "description": "Your personal skill library for Claude Code. Organize, analyze, and search skills with built-in security analysis. Zero dependencies — clone and go.",
+  "scores": {
+   "cli": 0.07,
+   "sync": 0.11,
+   "app": 0.12,
+   "registry": 0.28,
+   "team": 0.08,
+   "general": 0.11
+  },
+  "kind": "general"
  }
 ]

@@ -3326,5 +3326,18 @@
    "tooling": 0.66
   },
   "kind": "collection"
+ },
+ {
+  "repo": "rootstudioyaml/sprag",
+  "stars": 5,
+  "description": "Model-delegation router for Claude Code and Codex: lookups, checks and test runs go to cheaper models; savings show in the statusline.",
+  "scores": {
+   "hooks": 0.56,
+   "subagents": 0.12,
+   "statusline": 0.25,
+   "collection": 0.72,
+   "tooling": 0.94
+  },
+  "kind": "tooling"
  }
 ]

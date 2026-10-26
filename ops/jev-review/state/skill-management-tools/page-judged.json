@@ -6996,5 +6996,42 @@
   "days": 78,
   "stars_per_day": 1.0256410256410255,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "Hainrixz/skill-vault",
+  "name": "skill-vault",
+  "stars": 75,
+  "description": "Your personal skill library for Claude Code. Organize, analyze, and search skills with built-in security analysis. Zero dependencies — clone and go.",
+  "topics": [
+   "agent-skills",
+   "ai-agents",
+   "ai-tools",
+   "claude",
+   "claude-code",
+   "claude-code-skills",
+   "developer-tools",
+   "security-analysis",
+   "skill-management",
+   "skill-vault"
+  ],
+  "created": "2026-03-29",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 4857,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.96,
+  "shows_result": 0.75,
+  "one_command_start": 0.67,
+  "specific_outcome": 0.84,
+  "complete_docs": 0.93,
+  "novel_angle": 0.56,
+  "shareable_output": 0.67,
+  "quality": 0.7975,
+  "tier": "高",
+  "hit_prior": 0.66,
+  "days": 211,
+  "stars_per_day": 0.35545023696682465,
+  "verdict": "admit"
  }
 ]

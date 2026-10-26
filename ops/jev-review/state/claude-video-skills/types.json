@@ -6406,5 +6406,149 @@
    "general": 0.09
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "Hainrixz/editor-pro-max",
+  "stars": 279,
+  "description": "AI-powered video editor by @soyenriquerocha — built with Remotion + Claude Code. Describe videos in natural language, get professional MP4s. 25 components, 9 templates, 7 skills.",
+  "scores": {
+   "promo": 0.51,
+   "explainer": 0.3,
+   "music": 0.11,
+   "motion": 0.25,
+   "shorts": 0.9,
+   "editing": 0.61,
+   "demo": 0.37,
+   "story": 0.1,
+   "avatar": 0.1,
+   "general": 0.6
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "0xS4N4TG/kinetograph",
+  "stars": 71,
+  "description": "A blazingly fast programmatic video engine, made for agents.",
+  "scores": {
+   "promo": 0.68,
+   "explainer": 0.41,
+   "music": 0.12,
+   "motion": 0.28,
+   "shorts": 0.43,
+   "editing": 0.17,
+   "demo": 0.65,
+   "story": 0.23,
+   "avatar": 0.06,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Lanqiao-Luca/ai-video-marker",
+  "stars": 9,
+  "description": "AI 视频制作工作流：Workflow、Agent、Skill、Standards 四层方法，附可独立复现的像素动画与原创配乐。",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.2,
+   "music": 0.38,
+   "motion": 0.17,
+   "shorts": 0.25,
+   "editing": 0.06,
+   "demo": 0.18,
+   "story": 0.95,
+   "avatar": 0.03,
+   "general": 0.57
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "mathruffian-dot/claude-motion-explainer-images",
+  "stars": 6,
+  "description": "圖片加強版：用一句話讓 coding agent 做出有授權照片與 AI 示意圖的原理解說動畫（HyperFrames + 中文旁白）｜Explainer animations with a licensed-photo and generated-image layer",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.44,
+   "shorts": 0.2,
+   "editing": 0.05,
+   "demo": 0.16,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.13
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "liuliu-66-create/ll-video-motion",
+  "stars": 5,
+  "description": "Turn Chinese copy into local Remotion motion graphics with a Codex Skill",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.49,
+   "music": 0.07,
+   "motion": 0.93,
+   "shorts": 0.2,
+   "editing": 0.06,
+   "demo": 0.34,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.32
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "Ali-Aria/aria-animator",
+  "stars": 5,
+  "description": "阿梨动画机（Aria Animator）：使用 Remotion、豆包配音和霞鹜文楷制作可编辑动画讲解视频的 AI Agent Skill。",
+  "scores": {
+   "promo": 0.13,
+   "explainer": 0.94,
+   "music": 0.03,
+   "motion": 0.21,
+   "shorts": 0.12,
+   "editing": 0.08,
+   "demo": 0.43,
+   "story": 0.08,
+   "avatar": 0.04,
+   "general": 0.09
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "mattypark/Motion-graphics-skill",
+  "stars": 5,
+  "description": "Best Motion graphics and video editing skill for Claude Code, Codex and Cursor. Plan, animate, edit, caption and sound-design complete videos, rendered locally without After Effects.",
+  "scores": {
+   "promo": 0.78,
+   "explainer": 0.52,
+   "music": 0.08,
+   "motion": 0.33,
+   "shorts": 0.88,
+   "editing": 0.72,
+   "demo": 0.4,
+   "story": 0.19,
+   "avatar": 0.1,
+   "general": 0.5
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "Hainrixz/motion-architect",
+  "stars": 5,
+  "description": "Agente de motion graphics para Claude Code. Le das videos, imágenes y tu marca; él diseña, anima y renderiza en 9:16, 16:9, 1:1 y 4:5. Todo local.",
+  "scores": {
+   "promo": 0.73,
+   "explainer": 0.36,
+   "music": 0.15,
+   "motion": 0.73,
+   "shorts": 0.72,
+   "editing": 0.19,
+   "demo": 0.42,
+   "story": 0.24,
+   "avatar": 0.06,
+   "general": 0.18
+  },
+  "kind": "promo"
  }
 ]
