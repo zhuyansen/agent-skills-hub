@@ -77,7 +77,7 @@ export function CategoryPage() {
   const copy = slug ? CATEGORY_COPY[slug] : undefined;
   const isZh = lang === "zh";
   const title = copy
-    ? `${isZh ? copy.titleZh : copy.title} | Agent Skills Hub`
+    ? `${(isZh ? copy.titleZh : copy.title).replace("{year}", String(new Date().getFullYear()))} | Agent Skills Hub`
     : `Best ${catLabel} Tools — Open-Source Skills & MCP Servers | Agent Skills Hub`;
   const description = copy
     ? isZh

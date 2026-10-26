@@ -584,11 +584,14 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // the meta description; the title keeps the claim that every entry is graded.
   // The first that fits; the last is the shortest. A page whose new rows are not graded
   // yet takes the "Compared" forms (claude-code-hooks after a sync added 153 rows, 10-05).
+  // The year outlasts the count (10-26): AI answers search with the year appended
+  // ("best postgres mcp 2026"), so a long subject drops the count before the year.
   const heads = canClaim
     ? [`${subject}: ${itemCount} Security-Graded (${year})`, `${subject}: ${itemCount} Graded (${year})`,
-       `${subject}: ${itemCount} Graded`]
+       `${subject}: Graded (${year})`, `${subject}: ${itemCount} Graded`]
     : [`${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`,
-       `${subject}: ${itemCount} Compared (${year})`, `${subject}: ${itemCount} Compared`];
+       `${subject}: ${itemCount} Compared (${year})`, `${subject}: Compared (${year})`,
+       `${subject}: ${itemCount} Compared`];
   const head = heads.find((h) => h.length <= TITLE_MAX) || heads[heads.length - 1];
   const branded = `${head} | Agent Skills Hub`;
   const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");

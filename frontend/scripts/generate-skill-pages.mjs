@@ -676,7 +676,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   const pageUrl = `${SITE}/category/${catSlug}/`;
   const copy = CATEGORY_COPY[catSlug];
   const title = copy
-    ? `${copy.title} | Agent Skills Hub`
+    ? `${copy.title.replace("{year}", new Date().getFullYear())} | Agent Skills Hub`
     : `Best ${catLabel} — ${catSkills.length}+ Open-Source Skills & MCP Servers | Agent Skills Hub`;
   const metaDesc = copy
     ? copy.intro

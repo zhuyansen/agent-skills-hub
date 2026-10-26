@@ -8,7 +8,7 @@
  * first). Keep the JSON's EN title/heading/intro in sync when editing here.
  */
 export interface CategoryCopy {
-  /** SEO <title> (before the "| Agent Skills Hub" suffix) */
+  /** SEO <title> (before the "| Agent Skills Hub" suffix); "{year}" becomes the current year */
   title: string;
   titleZh: string;
   /** <h1> — search-intent led */
@@ -21,8 +21,8 @@ export interface CategoryCopy {
 
 export const CATEGORY_COPY: Record<string, CategoryCopy> = {
   "mcp-server": {
-    title: "Best Open-Source MCP Servers — Security-Graded & Compared",
-    titleZh: "最佳开源 MCP 服务器 — 安全评级与对比",
+    title: "Best Open-Source MCP Servers ({year}) — Security-Graded",
+    titleZh: "最佳开源 MCP 服务器（{year}）— 安全评级",
     heading: "MCP Servers, Security-Graded Before You Connect",
     headingZh: "MCP 服务器 —— 连接前先看安全评级",
     intro:
@@ -31,8 +31,8 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
       "一个 MCP 服务器给 AI agent 的是真实能力 —— 往往还有真实凭证。这里每个服务器都按 10 项质量信号评分并带安全评级(SAFE / CAUTION / UNSAFE),让你在接进 agent 之前就知道自己接的是什么。",
   },
   "claude-skill": {
-    title: "Best Claude Skills — Open-Source, Quality-Scored",
-    titleZh: "最佳 Claude Skills — 开源、质量评分",
+    title: "Best Claude Skills ({year}) — Open-Source, Quality-Scored",
+    titleZh: "最佳 Claude Skills（{year}）— 开源、质量评分",
     heading: "Claude Skills That Are Safe to Drop Into Claude Code",
     headingZh: "可以放心装进 Claude Code 的 Claude Skills",
     intro:
@@ -41,8 +41,8 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
       "一个 Claude Skill 以你 agent 的完整权限运行,所以可信度和好用同样重要。这里是顶级开源 Claude Skills,每个都按文档与结构做了质量评分,并在你装进 Claude Code / Cursor 之前完成安全评级。",
   },
   "codex-skill": {
-    title: "OpenClaw Ecosystem Skills — Open-Source & Graded",
-    titleZh: "OpenClaw 生态 Skills — 开源与评级",
+    title: "OpenClaw Ecosystem Skills ({year}) — Open-Source & Graded",
+    titleZh: "OpenClaw 生态 Skills（{year}）— 开源与评级",
     heading: "OpenClaw & Codex Ecosystem Skills, Trust-Checked",
     headingZh: "OpenClaw 与 Codex 生态 Skills,附信任检查",
     intro:
@@ -51,8 +51,8 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
       "面向 OpenClaw 与 Codex agent 运行时的工具,从 GitHub 收录、每 8 小时刷新。每个都有质量评分与安全评级,让你扩展编程 agent 时不必引入一个黑盒。",
   },
   "agent-tool": {
-    title: "Best AI Agent Tools — Open-Source, Security-Graded",
-    titleZh: "最佳 AI Agent 工具 — 开源、安全评级",
+    title: "Best AI Agent Tools ({year}) — Open-Source, Security-Graded",
+    titleZh: "最佳 AI Agent 工具（{year}）— 开源、安全评级",
     heading: "AI Agent Tools, Ranked by Signal Not Hype",
     headingZh: "AI Agent 工具 —— 按信号而非热度排序",
     intro:
