@@ -22,6 +22,8 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | mcp.directory | ⏳ 24 小时内 | 表单不填邮箱 |
 | serpapi/awesome-seo-tools #478 / BehiSecc/awesome-claude-skills #990 | ⏳ 10-19 已含 backlink-guard | 和雷达同一个 PR |
 | agenticskills.io | ⏳ 10-19 表单已交 | |
+| Anthropic 插件目录 | ⏳ 10-26 已提交,首次扫描中 | v0.10.1 @0c9a566。Validate 通过但有 8 个 policy hold(锁版本 uvx 必然人工审;「Uses a credential」7 处是各家 key 发给各家自己的主机),所以会转人工审。提交前补了 PRIVACY.md 和 plugin.json 的隐私/支持/文档链接(文档链接原先被取成 README 里的 logo)。选了 GitHub push webhook,但 webhook 还没在仓库设置里加(不加也每 6 小时查一次新提交) |
+| WorkBuddy 开放平台 | ⏸ 连接器包已备好 | `ops/workbuddy/backlink-guard.zip`(锁 0.10.1,MCP + Skill,key 表单);等你大陆身份证实名入驻后上传 |
 | LobeHub | ⏳ 已发布,等 LobeHub 验证(not_validated) | 10-26 `lhm plugin publish` → zhuyansen-backlink-guard@0.10.0,10 个工具,中文名「外链检测」,🛡️;GitHub 授权用完已 `github disconnect`。验证通过前 lobehub.com/mcp/zhuyansen-backlink-guard 显示 Plugin not found;雷达当时同样 not_validated,后来自动变 published |
 
 ### GitHub(后台代理 10-26 开)
@@ -50,7 +52,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 - **要你在 Chrome 登录**:Glama(Add Server + 认领,之后才提 punkpeye)、AIbase。
 - **要你撤销授权**:GitHub Settings → Applications → Authorized OAuth Apps → LobeHub → Revoke(CLI 已断开,这一步彻底收回 token)。
 - **表单要填联系邮箱**:mcpservers.org(免费档)、MCP Market(免费队列,默认勾的 $29 要改)。用哪个邮箱你定。
-- **只能你本人**:Anthropic 插件目录(claude.ai/directory/manage)、hesreallyhim(10-27 起,网页表单)。
+- **只能你本人**:hesreallyhim(10-27 起,网页表单);WorkBuddy 开放平台实名入驻(大陆身份证 + 刷脸)后上传连接器包。
 - **邮件**(你从 Gmail 发):skillselion(info@skillselion.com)、claudemarketplaces(hi@claudemarketplaces.com)。
 
 ## 第 3 批:等条件
