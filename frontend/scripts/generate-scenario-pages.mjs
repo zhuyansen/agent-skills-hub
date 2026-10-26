@@ -24,6 +24,7 @@ import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descE
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
 import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
+import { explainerHtml } from "./scenario-explainer.mjs";
 import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
@@ -868,6 +869,8 @@ ${methodLd(scenario, pageUrl)}
 
       <!-- Quick Pick: the answer, first -->
       ${quickPickHtml(scenario, skills, itemCount, descSubject, run?.verdict)}
+
+      ${explainerHtml(scenario, skills)}
 
       ${videoHtml(scenario)}
 

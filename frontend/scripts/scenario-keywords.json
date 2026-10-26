@@ -5843,6 +5843,47 @@
   "title": "PPT Skills for Codex & Claude Code",
   "github_list": "https://github.com/zhuyansen/awesome-codex-ppt-skills",
   "description": "Best Codex & Claude Code PPT skills, security-graded: ppt-master, codex-ppt-skill, image-to-editable-ppt, guizang HTML decks, McKinsey-style PPTX. Vet before you install.",
+  "explainer": {
+   "what": {
+    "h2": "What is a PPT skill?",
+    "h2_zh": "PPT skill 是什么？",
+    "text": "A PPT skill is an installable package of instructions, templates and scripts (usually a folder with a SKILL.md file) that teaches a coding agent such as Claude Code or Codex to turn a prompt or a document into a slide deck. PPT skills differ most in what they hand you at the end: a native .pptx you can keep editing in PowerPoint, HTML slides you present from a browser, or slides drawn as images whose text cannot be changed.",
+    "text_zh": "PPT skill 是一个可以安装的指令、模板和脚本包（通常是一个带 SKILL.md 的文件夹），让 Claude Code、Codex 这类编程 agent 学会把一句话或一份文档做成幻灯片。不同 PPT skill 最大的区别在于最后交给你什么：能在 PowerPoint 里继续改的原生 .pptx、在浏览器里放映的 HTML 幻灯片，还是整页画成图片、文字改不了的幻灯片。"
+   },
+   "top": {
+    "h2": "The 5 best PPT skills in 2026, by our test",
+    "h2_zh": "2026 年最好的 5 个 PPT skill（按我们的实测）",
+    "items": [
+     {
+      "repo": "hugohe3/ppt-master",
+      "line": "Best for a .pptx a colleague will edit. It turns a document or a topic into a native PowerPoint deck; in our test the deck was editable (level L3), scored 100% on our 30-item content rubric and needed only touch-ups.",
+      "line_zh": "最适合要交给同事接着改的 .pptx。它把文档或主题做成原生 PowerPoint；实测交付物可编辑（L3 级），30 道内容检查题全对，只需小修。"
+     },
+     {
+      "repo": "op7418/guizang-ppt-skill",
+      "line": "Best-looking web slides. Magazine and Swiss-grid HTML decks with animation (L5, the highest editability level in our test), 100% on the rubric, touch-ups only. It hands you HTML, not a .pptx.",
+      "line_zh": "最好看的网页幻灯片。杂志风、瑞士网格风的 HTML 幻灯片，带动画（L5，实测里可编辑性最高的一级），检查题全对，只需小修。交付的是 HTML，不是 .pptx。"
+     },
+     {
+      "repo": "zarazhangrui/frontend-slides",
+      "line": "The fastest good deck. Browser slides built with the agent's frontend skills: 100% on the rubric in about six minutes. The text can be edited only in the HTML (L1).",
+      "line_zh": "最快做出一份好 deck。用 agent 的前端能力做浏览器幻灯片：约 6 分钟，检查题全对。文字只能在 HTML 里改（L1）。"
+     },
+     {
+      "repo": "icip-cas/PPTAgent",
+      "line": "A native .pptx that checks itself. It renders its own slides, has a vision model review them and revises; 100% on the rubric, editable at L2, in under five minutes.",
+      "line_zh": "会自己检查的原生 .pptx。它把幻灯片渲染出来，交给视觉模型看图审查，再修改；检查题全对，L2 级可编辑，不到 5 分钟。"
+     },
+     {
+      "repo": "ningzimu/image-to-editable-ppt-skill",
+      "line": "The fix for all-image decks. Given another skill's picture-only deck, it rebuilt it as PowerPoint with 2,224 editable characters and 78 separate icons, nearly identical to the original (96% on the rubric).",
+      "line_zh": "整页图片 deck 的补救工具。拿到另一个 skill 做的纯图片 deck，它还原成 PowerPoint，带 2,224 字可编辑文字和 78 个独立图标，和原图几乎一样（检查题 96%）。"
+     }
+    ],
+    "note": "All five were run end to end on 2026-10-07: each built the same 8-10 slide brief in a throwaway sandbox, and we read every result. The full table is in the test results below.",
+    "note_zh": "这 5 个都在 2026-10-07 端到端实跑过：每个在用完即删的沙箱里做同一份 8–10 页的测试题，每份结果我们都看过。完整对比见下方的实测结果。"
+   }
+  },
   "video": {
    "id": "T0keDFpa5i8",
    "title": "Top 10 PPT Skills by GitHub Stars (video, in Chinese)",
