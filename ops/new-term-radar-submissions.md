@@ -24,9 +24,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
-| GitHub 列表 | ⏳ 11 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127、buildwithclaude #555、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328 |
+| GitHub 列表 | ⏳ 11 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 维护者要求改措辞并 rebase)、buildwithclaude #555、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328 |
 | buildwithclaude | ⏳ #555(0.5.1 重提) | #500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
-| github/awesome-copilot | ⏳ issue #5578 待人工审 | 自动检查全过(skill 格式、Copilot CLI 安装测试);非拦截提醒:根 plugin.json 的 `skills` 字段不在规范里 |
+| github/awesome-copilot | ❌ issue #5578 10-25 被拒 | 理由:建在付费 API 上的 SEO/关键词工具,不是开发者工作流(自动检查当时全过) |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
 | HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五 |
 | bmpi-dev/awesome-seo | ❌ #104 被关 | 理由:项目太新、关键词量依赖付费 API |
