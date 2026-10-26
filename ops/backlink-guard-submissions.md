@@ -15,8 +15,8 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | SkillsMP / skillsdirectory / skillget | ✅ 自动收录(10-26 核) | skillsdirectory Grade A;SkillsMP 数据停在 10-14;skillget 星数旧 |
 | Agensi | ✅ 已上线(Live · Free) | 自动填写先清掉再自己写;演示用 README 10-13 的真实 vet 表;工具权限勾了 5 项(不含 Browser) |
 | Tessl | ✅ 75 分(10-26 核) | Quality 94%、Security Low;版本 140a236(0.10.0);tessl.io/registry/skills/github/zhuyansen/backlink-guard |
-| ClawHub | ⏳ 10-26 公开接口仍 Skill not found(扫描结果要登录看) | `npx clawhub@0.23.3 publish`,0.10.0,source commit 140a236;**clawhub.ai 走代理 7897 不通、直连通,命令要去掉代理变量**;MIT-0 同雷达 |
-| cursor.directory | ✅ 已公开(10-26 核) | cursor.directory/plugins/backlink-guard:Skill 1 + 手动加的 MCP Server 1,传了 logo;站内能搜到 |
+| ClawHub | ⏳ 10-26 晚又提交 0.10.1(v0.10.1 标签),等安全扫描;此前公开接口仍 Skill not found | `npx clawhub@0.23.3 publish`,0.10.0,source commit 140a236;**clawhub.ai 走代理 7897 不通、直连通,命令要去掉代理变量**;MIT-0 同雷达 |
+| cursor.directory | ✅ 已公开,10-26 晚改成 0.10.1(skill 3 处 + MCP 配置 1 处锁版本) | cursor.directory/plugins/backlink-guard:Skill 1 + 手动加的 MCP Server 1,传了 logo;站内能搜到 |
 | 魔搭 MCP + Skill | ✅ | modelscope.cn/mcp/servers/JasonZhuyansen/backlink-guard(仅本地可用、中文描述、两个 key 改成选填);modelscope.cn/skills/JasonZhuyansen/backlink-guard(市场推广、MIT、图标换成 logo、自动同步) |
 | Skillstore | ✅ 已上(10-26 核) | skillstore.io/skills/zhuyansen-backlink-guard,安全审计 Safe |
 | mdskills | ⏳ 3 周内上线 | Plugin / Free / Standard 免费档,名称和描述手填 |
@@ -25,7 +25,7 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | agenticskills.io | ⏳ 10-19 表单已交 | |
 | Anthropic 插件目录 | ⏳ 10-26 已提交,首次扫描中 | v0.10.1 @0c9a566。Validate 通过但有 8 个 policy hold(锁版本 uvx 必然人工审;「Uses a credential」7 处是各家 key 发给各家自己的主机),所以会转人工审。提交前补了 PRIVACY.md 和 plugin.json 的隐私/支持/文档链接(文档链接原先被取成 README 里的 logo)。选了 GitHub push webhook,但 webhook 还没在仓库设置里加(不加也每 6 小时查一次新提交) |
 | WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_b6d687a4c8cb5e92,v0.10.1;类目「商业服务 - 公关/推广/市场调查」「工具 - 信息查询」;包在 `ops/workbuddy/`。开发者主页资料 21:46 已过审(昵称 JasonZhu、官网 jasonzhu.ai) |
-| LobeHub | ⏳ 已发布,等 LobeHub 验证(not_validated) | 10-26 `lhm plugin publish` → zhuyansen-backlink-guard@0.10.0,10 个工具,中文名「外链检测」,🛡️;GitHub 授权用完已 `github disconnect`。验证通过前 lobehub.com/mcp/zhuyansen-backlink-guard 显示 Plugin not found;雷达当时同样 not_validated,后来自动变 published |
+| LobeHub | ⏳ 已发布 0.10.1(10-26 晚 `plugin update`),等 LobeHub 验证(not_validated) | 10-26 `lhm plugin publish` → zhuyansen-backlink-guard@0.10.0,10 个工具,中文名「外链检测」,🛡️;GitHub 授权用完已 `github disconnect`。验证通过前 lobehub.com/mcp/zhuyansen-backlink-guard 显示 Plugin not found;雷达当时同样 not_validated,后来自动变 published |
 
 ### GitHub(后台代理 10-26 开)
 

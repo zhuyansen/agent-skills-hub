@@ -39,7 +39,9 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 
 - **ClawHub、Tessl、cursor.directory、Skillstore 上还是 0.5.0 的 SKILL.md**(让 agent clone 默认分支、不锁版本);Skillstore 安全审计 **Medium Risk**(10-20),理由正是 Unpinned External Code Execution。仓库 main 已是 `uvx new-term-radar==0.5.2`。
   - 10-26 晚已重新发布:**ClawHub** 3 个 skill(new-term-radar、ai-listening、seo-new-keywords-research)从 v0.5.2 标签提交 0.5.2,等安全扫描后公开;**LobeHub** `plugin update` 0.5.0 → 0.5.2,published。
-  - 要你在网页上做:Tessl(登录后 Analyze a repository 重新分析)、cursor.directory(登录后更新插件内容)、Skillstore(页面上「Claim it」认领后才能出新审计版本)。
+  - **cursor.directory 10-26 晚已改成 0.5.2**(编辑页逐项替换插件描述和 3 个 skill 的描述、正文,存后核对 7 项哈希全对;公开页 0 处 git clone)。
+  - **Tessl 没法手动刷新**:Analyze a repository 回「All 3 skills in this repository have already been evaluated」,只能等它自己重新同步。
+  - **Skillstore 要先登录再 Claim**(提交仓库管理权证明、等审核),之后才能出新审计版本。
 - 各站数字:skills.sh 59 次安装;ClawHub 120 次下载;Tessl 73/74/77 分;skillsdirectory Grade A;SkillsMP 数据停在 10-13(页面有 Cloudflare 人机验证,状态取自公开搜索 API)。
 - MCP Market / mcp.directory / AIbase / mdskills 仍搜不到;mcp.so #5714、mcpm #476 没动静。
 
