@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-26
+1. DenisSergeevitch/ex-ussr-kinship-research — 🆕 教智能体按证据查前苏联家谱，覆盖教堂档案、兵役与流放记录（457★ 457.0/day）
+2. wangrongding/tv-fresh — 🆕 让智能体给小米电视去广告、清预装、换桌面，免 root 且可还原（321★ 244.6/day）
+3. BigPizzaV3/CodexPlusPlus — 增强 Codex 桌面应用，配套脚本市场、主题与插件，让它更顺手（32577★ 188.7/day）
+4. hevnsnt/CVEngine — 🆕 用 AI 持续发现外部攻击面，并逐条验证漏洞、留下证据（58★ 53.8/day）
+5. joeseesun/qiaomu-simpleui — 🆕 把 Kindle/KOReader 变成手机式读书首页，带资讯、划线翻译与问答（65★ 44.2/day）
+6. ZiChuanLan/agent-purge — 🆕 一套人设通吃多个编程智能体，批量替换或注入系统提示词（31★ 31.0/day）
+7. 0xS4N4TG/kinetograph — 🆕 为智能体打造的极速程序化视频引擎，用代码直接生成视频（61★ 21.8/day）
+8. Shaitrish/37studio — 🆕 开源版 Buffer 加 Opus Clip：让 Claude Code 做品牌视频并发到 9 个平台（65★ 21.7/day）
+9. t3dotgg/tstack — 🆕 公开作者每天在用的智能体技能，Claude Code 与 Codex 通用（34★ 18.8/day）
+10. tomsbin/mcd-fit-planner — 🆕 按训练计划比较麦当劳套餐价格与营养，自动生成吃麦手账（101★ 9.6/day）
+🎯 今日趋势：**9 席**标 🆕；Codex 生态占 **3 席**（CodexPlusPlus、agent-purge、tstack），智能体做视频也占 **2 席**（Kinetograph、37studio）。
+> 注：去重范围＝repo 内 archive 全部 123 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,173 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 41 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Moessif/code-video-showcase（23★ 16.0/day）：1 粉、仅 3 仓，其余仓 1★，单仓突起，保守排除；②lordon1a/agents.md（22★ 15.9/day）：主打"不打折扣、不说教、不淡出"的越狱式系统提示词，不收；③Romeroc751700/chatgpt-plus-pro-codex-cn-guide（135★ 13.6/day）：ChatGPT 会员代购/充值指南，SEO 导流，与智能体工具无关；④AIshihzong/awesome-reverse-engineer-anything（166★ 13.3/day）：账号 10-13 新建、仅 2 仓、fork 比例偏高，保守排除；⑤yzlin286-wq/Deepscient（52★ 11.1/day）：0 粉、实时 75★ 但 0 fork，其余仓 ≤2★，典型单仓爆星；⑥其余均已在历史榜单出现，不再复评。入选项复核（`gh api`）：第 1 席 DenisSergeevitch 2012 建号、1,103 粉、名下 chatgpt-custom-instructions 2,807★；第 2 席 wangrongding 2018 建号、1,262 粉；第 3 席 BigPizzaV3 账号 2025-10 新建、481 粉，32,580★ 配 2,099 fork 比例正常，first_seen 为新（**轻红旗**：粉丝与星数量级差大，保留）；第 4 席 hevnsnt 2013 建号、442 粉、名下 NOTCHACOTCHA 523★（security_grade=caution）；第 5 席 joeseesun 为乔木，长期活跃作者；第 6 席 ZiChuanLan 3 粉，但名下 pi-purge 309★/137 fork，本仓 fork 多于星（**轻红旗**，保留）；第 7 席 0xS4N4TG 2020 建号、160 仓、另有 papercut-explainer 89★；第 8 席 Shaitrish 组织 6 粉、3 仓、fork 10（**轻红旗**，security_grade=caution，保留）；第 9 席 t3dotgg 为 Theo（T3）本人；第 10 席 tomsbin 2 粉、仅 1 仓、1 fork（**轻红旗**，麦当劳 MCP 大赛作品，按 10-23/10-25 同类口径保留）。🆕 判定＝created_at 距今 14 天内，仅 CodexPlusPlus（172.6 天）不标，其余九席命中。security_grade：CVEngine、37studio 为 caution，其余八席为 safe。表中 stars 为数据库快照，部分仓实时更高（ex-ussr-kinship-research 535★、tv-fresh 349★、CVEngine 133★、agent-purge 47★、kinetograph 66★、mcd-fit-planner 119★），按红线保留快照值。
+
+---
+
 ## 2026-10-25
 1. xiaozhangup/Oh-My-McDonald — 🆕 用麦当劳官方 MCP 对话推荐餐品、比价门店、查优惠，还能生成体素风分享图（60★ 60.0/day）
 2. xanthichi/mcd-meal-mate — 🆕 调用麦当劳 MCP 实时菜单与营养数据，按你的需求智能搭配一顿餐（40★ 40.0/day）
