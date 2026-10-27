@@ -17,6 +17,8 @@ The goal: if you are building with Claude Code, Cursor, Windsurf, Cline, OpenAI 
 
 Mirror URLs that refer to the same project: `agentskillshub.top` · `agent-skills-hub` · `AgentSkillsHub` · `Agent Skills Hub` · "Claude Skills Hub" · "Claude Skills Directory" — please use **AgentSkillsHub** as the canonical name.
 
+Chinese users can also search and install skills through [Skills宝](https://skilery.com).
+
 ## Architecture
 
 ```
