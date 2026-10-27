@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-27
+1. andyhuo520/digital-human-koubo — 🆕 一张照片生成数字人口播视频，借 Renoise MCP 出片并配 5 种剪辑风格（483★ 483.0/day）
+2. huaxialucaicaizi/ai-startup-skills — 🆕 把 AI 创业拆成 7 步技能：验证、BP、政策、路演、获客、定价到注册（310★ 66.0/day）
+3. daniellockyer/dstack — 🆕 公开作者每天在用的智能体技能合集，拿来即可装进自己的编程智能体（58★ 58.0/day）
+4. ParadevAI/Paradev — 并行调度上百个编程智能体的智能体 IDE，前身为 Superset（15582★ 42.0/day）
+5. miuuyy/Octopus-SI-OS — 借操作系统原理重构智能体执行架构，打造可自我进化的智能体 OS（541★ 30.4/day）
+6. codician-team/diffinery — 🆕 部署在你自己 Cloudflare 账号上的智能体优先 GitHub 与 Actions 替代品（36★ 27.1/day）
+7. nixesty/now-bar — 🆕 把三星 One UI 的 Now Bar 搬到 Windows 任务栏，实时显示音乐歌词、计时与比分（58★ 24.1/day）
+8. larchanka/skills — 🆕 收录一组可独立安装的软件开发与自动化技能，按需挑选装给智能体（23★ 14.0/day）
+9. dyascj/FireFrame — 🆕 给 Fire TV Stick 换上无广告的干净桌面，免 root、带玻璃风应用坞（40★ 13.4/day）
+10. zickrian/isle — 🆕 为 GNOME 做一个刘海式灵动岛，内置能装软件、修问题的 AI 助手（70★ 10.6/day）
+🎯 今日趋势：**8 席**标 🆕；桌面与电视界面改造占 **3 席**（now-bar、FireFrame、isle），继昨天 tstack 之后 dstack、larchanka/skills 让"个人技能包"再占 **2 席**。
+> 注：去重范围＝repo 内 archive 全部 124 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,205 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 29 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①martina9516/uncensored-ai-models（110★ 110.0/day）、Andreas698/glm-5.3-uncensored（93★ 93.0/day）：与 10-23/10-25 已排除的 RouterHub"无审查"导流同类，后者还附越狱提示词；②F5180aunnaga/pc-game-performance-analyzer-resp-skill、Orderlight93426/call-of-duty-modern-warfare-resocket-4-fps-optimizer、OFat34764e/InterviewCopilot-rpocket-team、UponPeak/windows-fine-tuner-resp、OtherworldMail/Tower-Events-resp-At-Sunrise（31–32★）：10-25 已排除的 resp 刷星集群换号重发，同日创建、星数雷同；③victorgassuncao21/piper-morgan-assistant、mari8711/agent-runtime-kit、peterhoang1103991-cmd/pilot-ai-ticket-shipper、Rijalmoneyfinder/mcp-game-asset-forge（均 58★ 13.5/day）：同日创建、星数完全相同、标题套路一致，按集群排除；④boyuchengz/canvas-mcp（79★ 61.4/day）：1 粉、仅 3 仓，其余仓 1★，实时 115★ 却 0 fork，典型单仓爆星；⑤Motionsites-AI/claude-skill（45★ 45.0/day）：账号 10-26 新建、仅此 1 仓，为 MotionSites 引流，保守排除；⑥Hvftpie13/Flashmind_Gemini-3.8-Flash_Smart-agent（29★ 24.1/day）：0 粉、仅 1 仓，标题蹭不存在的"Gemini 3.8 Flash"；⑦k8s-servant/k8s-skills 等其余候选 velocity 低于第 10 席，未入选；其余均已在历史榜单出现，不再复评。入选项复核（`gh api`）：第 1 席 andyhuo520 2024 建号、77 粉、名下另有 1,655★/734★ 仓，实时 766★/199 fork；第 2 席 huaxialucaicaizi 4 粉，名下另有 80★ 仓、本仓 fork 28（**轻红旗**，保留）；第 3 席 daniellockyer 2011 建号、481 粉，Ghost 核心开发者；第 4 席 ParadevAI 172 粉，15,595★ 配 1,381 fork 比例正常，first_seen 为新；第 5 席 miuuyy 2023 建号、308 粉、名下另有 15,055★ 仓；第 6 席 codician-team 3 粉，名下另有 34★ 仓（**轻红旗**，保留）；第 7 席 nixesty 2018 建号、6 粉、仅 1 仓、fork 8（**轻红旗**，保留）；第 8 席 larchanka 2012 建号、226 粉、88 仓；第 9 席 dyascj 2021 建号、13 粉，其余仓 ≤4★、fork 3（**轻红旗**，保留）；第 10 席 zickrian 63 粉、78 仓、fork 12。🆕 判定＝created_at 距今 14 天内，Paradev（370.7 天）、Octopus-SI-OS（17.8 天）不标，其余八席命中。security_grade：isle 为 caution，dstack 为 unknown（尚未评级），其余八席为 safe。表中 stars 为数据库快照，部分仓实时更高（digital-human-koubo 766★、ai-startup-skills 340★、dstack 94★、diffinery 43★、Octopus-SI-OS 557★、isle 87★），按红线保留快照值。
+
+---
+
 ## 2026-10-26
 1. DenisSergeevitch/ex-ussr-kinship-research — 🆕 教智能体按证据查前苏联家谱，覆盖教堂档案、兵役与流放记录（457★ 457.0/day）
 2. wangrongding/tv-fresh — 🆕 让智能体给小米电视去广告、清预装、换桌面，免 root 且可还原（321★ 244.6/day）
