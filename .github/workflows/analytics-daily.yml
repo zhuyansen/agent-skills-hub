@@ -12,13 +12,16 @@ name: Analytics Daily Sweep
 
 on:
   schedule:
-    # 00:20 UTC — GitHub queues scheduled runs 0-40 min late, so the mail
-    # actually lands ~08:30-09:00 Beijing, before the morning check.
-    - cron: "20 0 * * *"
+    # 20:20 UTC = 04:20 Beijing. GitHub has been starting every scheduled run in
+    # this repo 4.5-7 h late (10-21..27): the old 00:20 slot mailed at ~13:00
+    # Beijing. From 20:20 a typical day lands ~09:00. The lead check counts from
+    # the previous run, so moving this time loses no lead.
+    - cron: "20 20 * * *"
   workflow_dispatch: {} # manual "Run workflow" button for testing
 
 permissions:
   contents: read
+  actions: read # the lead check reads when the previous digest ran
 
 jobs:
   sweep:
@@ -78,7 +81,13 @@ jobs:
       - name: New leads (email only)
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
-        run: python ops/new_leads.py "$RUNNER_TEMP/leads.md" || true
+          GH_TOKEN: ${{ github.token }}
+        # From where the last mailed digest started (a failed run mailed nothing, so it
+        # does not count); if that lookup fails, new_leads.py looks back one day.
+        run: |
+          since=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow analytics-daily.yml --status success \
+                    --limit 1 --json createdAt -q '.[0].createdAt // ""' || true)
+          python ops/new_leads.py "$RUNNER_TEMP/leads.md" ${since:+--since "$since"} || true
 
       # Deliver, don't just display: a digest that sits in the Actions tab is a
       # dashboard nobody opens. Email it to the operator every morning.
