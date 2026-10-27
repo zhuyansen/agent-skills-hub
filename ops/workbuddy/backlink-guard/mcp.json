@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "backlink-guard": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--with", "mcp==2.3.0", "backlink-guard==0.11.0", "mcp"],
+      "env": {
+        "GLASSER_API_KEY": "${GLASSER_API_KEY}",
+        "AISA_API_KEY": "${AISA_API_KEY}",
+        "GOANYAPI_API_KEY": "${GOANYAPI_API_KEY}"
+      },
+      "timeout": 300000
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "新词雷达：key 和数据目录",
+  "title_en": "New Term Radar: keys and data folder",
+  "description": "都只保存在本机（~/.workbuddy 目录下），连接时交给本机的服务器，不经过云端。下面的注册链接是作者的推荐链接，从各家官网直接拿的 key 用起来完全一样。",
+  "description_en": "All stay on this machine (under ~/.workbuddy) and go to the local server when it starts, never through a cloud. The sign-up links below are the author's referral links; a key from each site directly works the same.",
+  "docUrl": "https://github.com/zhuyansen/new-term-radar/blob/main/README.zh-CN.md#一个必需的-key一个可选的",
+  "docLabel": "key 管什么、每次花多少钱",
+  "docLabel_en": "What the keys are for, and what a run costs",
+  "fields": [
+    {
+      "key": "AISA_API_KEY",
+      "label": "AIsa API key",
+      "label_en": "AIsa API key",
+      "type": "password",
+      "required": true,
+      "placeholder": "粘贴你的 AIsa key",
+      "placeholder_en": "Paste your AIsa key",
+      "description": "X 帖子、Google Ads 搜索量、DataForSEO Trends 和判断名字的模型都走它，按次付费。注册（作者的推荐链接）：https://go.aisa.one/yansen-zhu",
+      "description_en": "Pays for the X posts, Google Ads volumes, DataForSEO Trends and the model that judges names, per call. Sign up (the author's referral link): https://go.aisa.one/yansen-zhu"
+    },
+    {
+      "key": "GOANYAPI_API_KEY",
+      "label": "GoAnyAPI key（可选）",
+      "label_en": "GoAnyAPI key (optional)",
+      "type": "password",
+      "required": false,
+      "placeholder": "粘贴你的 GoAnyAPI key",
+      "placeholder_en": "Paste your GoAnyAPI key",
+      "description": "给每个名字加上 Google Trends 的相关查询，较大的词改用单个国家结算到昨天的日数据来读，每天约 0.07 USD。注册（作者的推荐链接）：https://goanyapi.com/r/ga-95708898fb",
+      "description_en": "Adds Google Trends' related queries for each name and reads the bigger rows from one country's daily series settled to yesterday, about 0.07 USD a day. Sign up (the author's referral link): https://goanyapi.com/r/ga-95708898fb"
+    },
+    {
+      "key": "RADAR_STATE",
+      "label": "数据目录",
+      "label_en": "Data folder",
+      "type": "text",
+      "required": true,
+      "placeholder": "/Users/你的用户名/new-term-radar/state",
+      "placeholder_en": "/Users/you/new-term-radar/state",
+      "description": "雷达的数据库和快照放在这里：填本机一个能写的绝对路径，不存在会自动建。已经用命令行或定时任务在跑雷达的，填同一个目录，recent_leads 才看得到它们记下的线索。",
+      "description_en": "Where the radar keeps its database and snapshots: an absolute path on this machine it can write, created if missing. If the command line or a schedule already runs the radar, give the same folder so recent_leads sees what they kept."
+    }
+  ]
+}

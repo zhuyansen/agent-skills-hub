@@ -1,0 +1,339 @@
+{
+  "author": "zhuyansen",
+  "description": "Check a link source before you submit to it, the link after it goes live, and your own backlink profile, against Google's link spam policies. verify and submissions are free, and vet with free=True reads only the sites' own pages; the other tools buy data through your own Glasser key (recommended) or AIsa key.",
+  "homepage": "https://github.com/zhuyansen/backlink-guard",
+  "identifier": "zhuyansen-backlink-guard",
+  "name": "Backlink Guard",
+  "tools": [
+    {
+      "name": "verify",
+      "description": "Whether page_url links to domain, whether the link passes ranking credit (followed; or nofollow, sponsored,\n    ugc; or only a redirect through the site's own page) and where on the page it sits: body text, header,\n    navigation, sidebar, footer, comments. Free: one request to the page.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "page_url": {
+            "title": "Page Url",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_url",
+          "domain"
+        ],
+        "title": "verifyArguments"
+      }
+    },
+    {
+      "name": "submissions",
+      "description": "The user's submission log on this machine (ledger.jsonl), with its warnings: more than five a week, one anchor\n    used over and over. Free and instant.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "title": "submissionsArguments"
+      }
+    },
+    {
+      "name": "vet",
+      "description": "Check link sources (directories, lists, guest-post sites) before submitting to them: each gets an action (skip,\n    look first, free only, low value, submit), a verdict (avoid, caution, ok) and the evidence for each finding.\n\n    sites: domains or URLs, 30 at most a call; put every site being considered in one call. free=True reads the\n    sites' own pages only: free. Otherwise paid: about 0.01 USD a site plus about 0.16 USD for the batch (spam\n    scores and search history), the same for one site or thirty. deep adds about 0.19 USD a site (0.27 with an\n    AIsa key). topics: keywords to see where each site ranks for them (about 0.005 USD a keyword). newcomers: also\n    read each site's newest sitemap pages and date the sites they link to, to answer whether it still takes new\n    sites; free, but 20 to 60 seconds a site.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sites": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sites",
+            "type": "array"
+          },
+          "deep": {
+            "default": false,
+            "title": "Deep",
+            "type": "boolean"
+          },
+          "free": {
+            "default": false,
+            "title": "Free",
+            "type": "boolean"
+          },
+          "topics": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Topics"
+          },
+          "newcomers": {
+            "default": false,
+            "title": "Newcomers",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "sites"
+        ],
+        "title": "vetArguments"
+      }
+    },
+    {
+      "name": "find",
+      "description": "The pages that rank on Google (US) for the keywords and are not the user's: directories, lists, articles,\n    videos, threads, repositories, sorted by the visitors they get from these searches, each with what can honestly\n    be done there. site: the user's own domain, left out. Paid: about 0.005 USD a keyword (0.006 through Glasser)\n    plus 0.012 USD for the search volumes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Keywords",
+            "type": "array"
+          },
+          "site": {
+            "default": "",
+            "title": "Site",
+            "type": "string"
+          }
+        },
+        "required": [
+          "keywords"
+        ],
+        "title": "findArguments"
+      }
+    },
+    {
+      "name": "audit",
+      "description": "The user's own backlink profile: totals, new and lost referring domains by week, backlinks read one by one\n    with the referring domains behind each anchor, site-wide links counted once, the spam score of the sites\n    linking in, and the sites one owner runs among them. Paid: about 0.12 USD, with deep (the full anchor\n    distribution) about 0.16 USD. rows: backlinks read one by one, 1,000 at most (100 cost about 0.03 USD).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "deep": {
+            "default": false,
+            "title": "Deep",
+            "type": "boolean"
+          },
+          "rows": {
+            "default": 1000,
+            "title": "Rows",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "title": "auditArguments"
+      }
+    },
+    {
+      "name": "lost",
+      "description": "The user's backlinks that land on pages of the user's that are gone (404, 410) or redirect, most referring\n    domains first: each dead page with the closest live page in the user's sitemaps to 301 it to, each redirect\n    followed hop by hop and judged. Nothing is redirected. Paid: about 0.06 USD, nothing more after an audit of the\n    same site in the last 7 days.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "title": "lostArguments"
+      }
+    },
+    {
+      "name": "competitors",
+      "description": "Links the user's competitors earned and the user lacks: each rival's referring domains first seen in the\n    last `days` days, and the sites linking to two or more rivals but not to the user, each with a linking page and\n    what to do there. Paid: about 0.025 USD a call, 2N + 2 calls for N rivals (three: about 0.20 USD), never more\n    than max_usd (default 0.30).\n\n    early=True reads their earliest links instead, the channels each used at launch, which take a new site: each\n    rival's first 90 days against the user's site at the same age, the weeks that brought a burst, and the sites\n    two or more rivals got early that do not link to the user (a launch checklist), the first `vetted` of them\n    vetted free. Paid: about 0.06 USD a site, the user's included, plus a linking page call a rival: three rivals\n    about 0.35 USD, never more than max_usd (default 0.50). The free vets take a few minutes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "rivals": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Rivals",
+            "type": "array"
+          },
+          "days": {
+            "default": 7,
+            "title": "Days",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "max_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Max Usd"
+          },
+          "early": {
+            "default": false,
+            "title": "Early",
+            "type": "boolean"
+          },
+          "vetted": {
+            "default": 10,
+            "title": "Vetted",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "domain",
+          "rivals"
+        ],
+        "title": "competitorsArguments"
+      }
+    },
+    {
+      "name": "cited",
+      "description": "Which sites Google's AI Overview cites for each keyword (US, English), whether the user's domain is among\n    them and where it ranks, then the sites cited most: the places to be mentioned on. Paid: 0.002 USD a keyword\n    through AIsa (0.004 when the overview loads late), 0.004 through Glasser (0.006), never more than max_usd.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Keywords",
+            "type": "array"
+          },
+          "max_usd": {
+            "default": 0.1,
+            "title": "Max Usd",
+            "type": "number"
+          }
+        },
+        "required": [
+          "domain",
+          "keywords"
+        ],
+        "title": "citedArguments"
+      }
+    },
+    {
+      "name": "questions",
+      "description": "How buyers would ask an AI assistant for what the user makes: ChatGPT, Claude and Gemini each write `count`\n    questions without searching the web. what: what the user makes, the way a buyer would put it. Paid (AIsa):\n    about 0.01 USD for the three.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "what": {
+            "title": "What",
+            "type": "string"
+          },
+          "count": {
+            "default": 10,
+            "title": "Count",
+            "type": "integer"
+          },
+          "max_usd": {
+            "default": 0.05,
+            "title": "Max Usd",
+            "type": "number"
+          }
+        },
+        "required": [
+          "what"
+        ],
+        "title": "questionsArguments"
+      }
+    },
+    {
+      "name": "asked",
+      "description": "The user's questions put to ChatGPT, Google's AI Mode, Perplexity, Claude and Gemini: what each searched for,\n    the pages it cited, the tools it named and whether it named or cited the user; then the sites and pages cited\n    most. names: other names the answers may call the user by. rank: also look up each search they ran on Google\n    and Bing. Paid (AIsa): about 0.12 USD a question, rank 0.0035 USD a search on each engine, never more than\n    max_usd.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "questions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "names": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Names"
+          },
+          "rank": {
+            "default": false,
+            "title": "Rank",
+            "type": "boolean"
+          },
+          "max_usd": {
+            "default": 1,
+            "title": "Max Usd",
+            "type": "number"
+          }
+        },
+        "required": [
+          "domain",
+          "questions"
+        ],
+        "title": "askedArguments"
+      }
+    }
+  ],
+  "version": "0.11.0",
+  "authorUrl": "https://github.com/zhuyansen",
+  "icon": "🛡️",
+  "tags": [
+    "seo",
+    "backlinks",
+    "link-building",
+    "link-spam"
+  ],
+  "localizations": [
+    {
+      "locale": "zh-CN",
+      "name": "外链检测",
+      "description": "提交之前查外链来源，上线之后查链接，再按 Google 的链接垃圾政策给自己的外链做体检。verify、submissions 免费，vet 加 free=True 只读站点自己的页面、也免费；其余工具通过你自己的 Glasser key（优先推荐）或 AIsa key 按量付费。"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#14264A"/>
+      <stop offset="1" stop-color="#060B17"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#FCD34D" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#F59E0B" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <g transform="translate(512,532)">
+    <circle r="360" fill="none" stroke="#22D3EE" stroke-opacity="0.45" stroke-width="12"/>
+    <circle r="252" fill="none" stroke="#22D3EE" stroke-opacity="0.32" stroke-width="10"/>
+    <circle r="144" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="10"/>
+    <line x1="-372" y1="0" x2="372" y2="0" stroke="#22D3EE" stroke-opacity="0.16" stroke-width="7"/>
+    <line x1="0" y1="-372" x2="0" y2="372" stroke="#22D3EE" stroke-opacity="0.16" stroke-width="7"/>
+    <path d="M0,0 L0,-360 A360,360 0 0,1 311.8,-180 Z" fill="#22D3EE" fill-opacity="0.10"/>
+    <path d="M0,0 L180,-311.8 A360,360 0 0,1 311.8,-180 Z" fill="#22D3EE" fill-opacity="0.22"/>
+    <line x1="0" y1="0" x2="311.8" y2="-180" stroke="#67E8F9" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="167" cy="-199" r="92" fill="url(#glow)"/>
+    <circle cx="167" cy="-199" r="30" fill="#FBBF24"/>
+    <circle cx="-150" cy="120" r="12" fill="#22D3EE" fill-opacity="0.55"/>
+    <circle cx="70" cy="230" r="10" fill="#22D3EE" fill-opacity="0.4"/>
+    <circle r="22" fill="#67E8F9"/>
+  </g>
+</svg>

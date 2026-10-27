@@ -1,0 +1,105 @@
+{
+  "author": "Jason Zhu",
+  "description": "Find the names of new AI models, products and repositories on X, Hugging Face, GitHub and sitemaps before keyword tools list them, and size the search terms behind them with Google Ads volume and DataForSEO Trends: prioritize, watch or skip.",
+  "homepage": "https://github.com/zhuyansen/new-term-radar",
+  "identifier": "zhuyansen-new-term-radar",
+  "name": "New Term Radar",
+  "tools": [
+    {
+      "name": "recent_leads",
+      "description": "Leads the radar kept in the last `days` days (newest first), each with its signals, name\n    score and, once reviewed, whether it rose in DataForSEO Trends; plus the hit rate per signal.\n    Reads the local database only: free and instant. Empty until `sources` or `daily` has run.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "default": 7,
+            "title": "Days",
+            "type": "integer"
+          }
+        },
+        "title": "recent_leadsArguments"
+      }
+    },
+    {
+      "name": "keyword_table",
+      "description": "The keyword table for new names (models, products, repositories), read now: each name and\n    the generic search terms behind it, with estimated searches a day, when it started rising,\n    what it is doing now, and prioritize / watch / skip.\n\n    names: one or two is best, eight at most. repos: optional {\"name\": \"owner/repo\"} so the\n    README is read as evidence. Paid: about $0.05 a name plus $0.09 a call. Slow: 40 to 90\n    seconds a name. `incomplete` is true when a data source failed and the table holds less\n    than it should; the lines under the table say which.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Names",
+            "type": "array"
+          },
+          "repos": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Repos"
+          }
+        },
+        "required": [
+          "names"
+        ],
+        "title": "keyword_tableArguments"
+      }
+    },
+    {
+      "name": "run_radar",
+      "description": "Run the radar once and return its report. command: \"sources\" (X and Hugging Face only;\n    no report when nothing is new) or \"daily\" (every signal, the keyword table, the 14-day\n    review). skip: any of x, hf, breakout, sitemaps, newsites, gsc, review, judge, usecases.\n\n    Paid and slow: `sources` reads every X account in config.json (about 10 seconds and $0.003\n    each); `daily` takes 5 to 15 minutes. It updates the same state the scheduled runs use, so\n    do not call it as a substitute for the schedule.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "default": "sources",
+            "title": "Command",
+            "type": "string"
+          },
+          "skip": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Skip"
+          }
+        },
+        "title": "run_radarArguments"
+      }
+    }
+  ],
+  "version": "0.6.0",
+  "authorUrl": "https://github.com/zhuyansen",
+  "icon": "📡",
+  "tags": [
+    "seo",
+    "keyword-research",
+    "google-trends",
+    "ai-trends"
+  ],
+  "localizations": [
+    {
+      "locale": "zh-CN",
+      "name": "新词雷达",
+      "description": "在 X、Hugging Face、GitHub 和 sitemap 上发现刚出现的 AI 模型、产品和仓库名，赶在关键词工具收录之前；再用 Google Ads 搜索量和 DataForSEO Trends 估算这些名字背后通用搜索词的需求，给出优先、观察或跳过。recent_leads 免费，keyword_table 和 run_radar 通过你自己的 AIsa key 按量付费。"
+    }
+  ]
+}

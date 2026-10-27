@@ -1,0 +1,27 @@
+{
+  "name": "外链检测 Backlink Guard",
+  "name_zh": "外链检测 Backlink Guard",
+  "name_en": "Backlink Guard",
+  "description": "Vet link sources before you submit, verify listings, and audit your backlinks for link spam.",
+  "description_zh": "提交外链前查来源是不是垃圾站，上线后查链接在不在、传不传权重，再给自己的外链做垃圾外链体检。部分工具免费，其余用你自己的 Glasser 或 AIsa key 按量付费，本机需装 uv。",
+  "description_en": "Check a link source before you submit, verify the link once it is live, and audit your own backlinks against Google's link spam policies. Some tools are free; the rest buy data with your own Glasser or AIsa key. Needs uv on the machine.",
+  "source": "backlink-guard",
+  "type": "mcp",
+  "version": "0.11.0",
+  "auth_mode": "token",
+  "minWorkbuddyVersion": "4.24.0",
+  "examples_zh": [
+    "我要把产品提交到几个目录站，先免费帮我查查哪些不该交：（贴上网址）",
+    "看看这个页面有没有链接到我的网站，传不传权重：（页面地址）",
+    "给我的网站做一次外链体检，看看有没有垃圾外链",
+    "我的两个竞品最近拿到了哪些外链，是我还没有的？",
+    "Google 的 AI 概览在我的关键词上都引用了哪些网站？"
+  ],
+  "examples_en": [
+    "I want to submit my product to a few directories. Check for free which ones to skip: (paste the URLs)",
+    "Does this page link to my site, and does the link pass ranking credit? (page URL)",
+    "Audit my site's backlinks for link spam",
+    "Which links did my two competitors get recently that I don't have?",
+    "Which sites do Google's AI Overviews cite for my keywords?"
+  ]
+}

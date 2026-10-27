@@ -1,0 +1,44 @@
+{
+  "title": "外链检测：数据 key",
+  "title_en": "Backlink Guard: data keys",
+  "description": "三个都是选填，只保存在本机（~/.workbuddy 目录下），连接时交给本机的服务器，不经过云端。verify、submissions 和 vet 的免费模式不需要 key；其余工具要 Glasser 或 AIsa 的 key，两个都填时先用 Glasser。下面的注册链接是作者的推荐链接，从各家官网直接拿的 key 用起来完全一样。",
+  "description_en": "All three are optional. They stay on this machine (under ~/.workbuddy) and go to the local server when it starts, never through a cloud. verify, submissions and vet's free mode need no key; the other tools need a Glasser or an AIsa key, and Glasser is used first when both are set. The sign-up links below are the author's referral links; a key from each site directly works the same.",
+  "docUrl": "https://github.com/zhuyansen/backlink-guard/blob/main/README.zh-CN.md#key",
+  "docLabel": "每个 key 管什么、各工具花多少钱",
+  "docLabel_en": "What each key is for, and what each tool costs",
+  "fields": [
+    {
+      "key": "GLASSER_API_KEY",
+      "label": "Glasser API key（推荐）",
+      "label_en": "Glasser API key (recommended)",
+      "type": "password",
+      "required": false,
+      "placeholder": "粘贴你的 Glasser key",
+      "placeholder_en": "Paste your Glasser key",
+      "description": "垃圾分、Google 搜索历史、新增和丢失的引荐域、锚文本、逐条外链、竞品的引荐域、Google AI 概览。注册（作者的推荐链接）：https://link.glasser.ai/JasonZhu",
+      "description_en": "Spam scores, Google search history, new and lost referring domains, anchors, backlinks one by one, competitors' referring domains, Google's AI Overviews. Sign up (the author's referral link): https://link.glasser.ai/JasonZhu"
+    },
+    {
+      "key": "AISA_API_KEY",
+      "label": "AIsa API key",
+      "label_en": "AIsa API key",
+      "type": "password",
+      "required": false,
+      "placeholder": "粘贴你的 AIsa key",
+      "placeholder_en": "Paste your AIsa key",
+      "description": "没有 Glasser key 时查同样的数据；AI 助手的回答（questions、asked）、vet 深查里的 Ahrefs 和 Semrush 数据、site: 搜索只有 AIsa 有。注册（作者的推荐链接）：https://go.aisa.one/yansen-zhu",
+      "description_en": "The same data when there is no Glasser key; and what only AIsa sells here: the AI assistants' answers (questions, asked), the Ahrefs and Semrush numbers of vet's deep mode, and site: searches. Sign up (the author's referral link): https://go.aisa.one/yansen-zhu"
+    },
+    {
+      "key": "GOANYAPI_API_KEY",
+      "label": "GoAnyAPI key（可选）",
+      "label_en": "GoAnyAPI key (optional)",
+      "type": "password",
+      "required": false,
+      "placeholder": "粘贴你的 GoAnyAPI key",
+      "placeholder_en": "Paste your GoAnyAPI key",
+      "description": "站点评分、访问量、收录情况和你自己的外链摘要。注册（作者的推荐链接）：https://goanyapi.com/r/ga-95708898fb",
+      "description_en": "Site ratings, visits, index status and your own backlink summary. Sign up (the author's referral link): https://goanyapi.com/r/ga-95708898fb"
+    }
+  ]
+}

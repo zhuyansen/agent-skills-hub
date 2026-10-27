@@ -1,0 +1,23 @@
+{
+  "name": "新词雷达 New Term Radar",
+  "name_zh": "新词雷达 New Term Radar",
+  "name_en": "New Term Radar",
+  "description": "Find the names of new AI models, products and repositories, and size the search terms behind them.",
+  "description_zh": "找 X、Hugging Face、GitHub 上刚出现的 AI 新名字，用 Google Ads 搜索量和 DataForSEO Trends 判断值不值得做；需付费的 AIsa key 和 uv。",
+  "description_en": "Find the names of new AI models, products and repositories on X, Hugging Face, GitHub and sitemaps, and size the search terms behind them with Google Ads volume and DataForSEO Trends. Needs your own AIsa key (pay as you go) and uv on the machine.",
+  "source": "new-term-radar",
+  "type": "mcp",
+  "version": "0.6.0",
+  "auth_mode": "token",
+  "minWorkbuddyVersion": "4.24.0",
+  "examples_zh": [
+    "研究一下 photocraft 这个新名字背后的搜索词，值不值得做页面",
+    "雷达最近 7 天记下了哪些新词？",
+    "跑一次雷达，看看 X 和 Hugging Face 上冒出了哪些新的 AI 名字"
+  ],
+  "examples_en": [
+    "Research the search terms behind the new name photocraft: is a page worth it?",
+    "Which new terms did the radar keep in the last 7 days?",
+    "Run the radar once and show me the new AI names on X and Hugging Face"
+  ]
+}

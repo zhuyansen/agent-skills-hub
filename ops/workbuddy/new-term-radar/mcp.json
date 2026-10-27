@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "new-term-radar": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--with", "mcp==2.3.0", "new-term-radar==0.6.0", "mcp"],
+      "env": {
+        "AISA_API_KEY": "${AISA_API_KEY}",
+        "GOANYAPI_API_KEY": "${GOANYAPI_API_KEY}",
+        "RADAR_STATE": "${RADAR_STATE}"
+      },
+      "timeout": 300000
+    }
+  }
+}
