@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "7,37 * * * *" # every 30 min (offset to dodge top-of-hour queue)
   workflow_dispatch:
+    inputs:
+      lookback_hours:
+        description: "How far back to look for paid sessions (default 48)"
+        required: false
+        default: "48"
 
 permissions:
   issues: write
@@ -23,4 +28,6 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Empty on scheduled runs; the script then uses its 48 h default.
+          LOOKBACK_HOURS: ${{ inputs.lookback_hours }}
         run: python ops/stripe/poll_stripe.py

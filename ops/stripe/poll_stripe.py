@@ -27,7 +27,13 @@ EMAIL_FROM = os.environ.get("EMAIL_FROM", "")
 ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "m17551076169@gmail.com")
 GH_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GH_REPO = os.environ.get("GITHUB_REPOSITORY", "zhuyansen/agent-skills-hub")
-LOOKBACK_SECONDS = 3 * 3600  # overlap window; dedupe makes re-reads harmless
+# GitHub starts this "every 30 min" job hours late (gaps of 3-7 h on 10-25..27),
+# and a paid session older than the window is never looked at again: with 3 h,
+# about a third of those two days was blind. Look back two days by default; the
+# dedupe against order issues makes re-reads harmless. LOOKBACK_HOURS lets a
+# manual run sweep further back once.
+LOOKBACK_SECONDS = int(os.environ.get("LOOKBACK_HOURS") or 48) * 3600
+SESSION_PAGE = 100  # Stripe's maximum; one page covers the window at our volume
 
 
 def http_json(url: str, headers: dict, data: bytes | None = None, method: str = "GET"):
@@ -39,7 +45,7 @@ def http_json(url: str, headers: dict, data: bytes | None = None, method: str = 
 def stripe_sessions() -> list[dict]:
     since = int(time.time()) - LOOKBACK_SECONDS
     url = (
-        "https://api.stripe.com/v1/checkout/sessions?limit=20&status=complete"
+        f"https://api.stripe.com/v1/checkout/sessions?limit={SESSION_PAGE}&status=complete"
         f"&created[gte]={since}"
     )
     out = http_json(url, {"Authorization": f"Bearer {STRIPE_KEY}"})
