@@ -81,7 +81,9 @@ RETIRED_SNAPSHOTS = (*(f"{site}.json.gz" for site in ("glama", "mcp.so", "skills
                                                       "lobehub-skills", "lobehub-agents", "lobehub-blog")),
                      "new_sites.json.gz")
 EARLY_NOTE = (f"提前命中 = Trends 在雷达第一次报出后至少 {review.EARLY_DAYS} 天才起涨;"
-              "晚到 = 也起来了,但起涨在报出之前或当天")
+              "晚到 = 也起来了,但起涨在报出之前或当天;"
+              f"起点不明 = {review.RECORDING_START:%m-%d} 开始记录那天报出的(之前可能就报过),"
+              "或 Trends 在仓库建立之前就起涨了(这个词原来就有别的用法);提前命中率不算起点不明的")
 # the ① leads the daily report lists from radar_leads; the new sites only once they are shown
 SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW else ())
 # signals with a section of their own in the daily mail (② 单仓爆发 lists every 🆕 repo): their
@@ -89,7 +91,7 @@ SOURCE_KINDS = review.SOURCE_KINDS + (("social",) if social_sites.SOCIAL_SHOW el
 OWN_SECTION = frozenset({"breakout"})
 # optional keys a lead takes from its signal's row: the picks read the first three, and
 # radar_leads.evidence the last two (review.evidence), with a row's `evidence_posts`
-CARRIED = ("what", "window", "checks", "meme", "site")
+CARRIED = ("what", "window", "checks", "meme", "site", "born")
 
 
 def run(name: str, fn, skip: bool) -> dict:
@@ -483,23 +485,27 @@ def _checked_lines(rev: dict) -> list[str]:
     checked = rev.get("checked") or []
     if not checked:
         return [f"今天没有到期的词({rev.get('error') or ('跳过' if rev.get('skipped') else '最早报出的词还不满 14 天')})"]
-    said = [review.outcome(c["verdict"], c["lead_days"]) for c in checked]
+    said = [review.outcome(c["verdict"], c["lead_days"], c.get("unclear", False)) for c in checked]
     n = Counter(said)
     early = [f"- 提前命中 **{c['term']}**:{c['first_seen']} 报出,提前 {c['lead_days']} 天"
              for c, o in zip(checked, said) if o == "early"]
+    vague = f",起点不明 {n['unclear']}" if n["unclear"] else ""
     # the blank line: Python-Markdown (notify.py) reads a list right under a paragraph as more of the paragraph
-    return ([f"今天复盘 {len(checked)} 个:提前命中 {n['early']},晚到 {n['late']},没起来 {n['miss']},没数据 {n['no_data']}。"]
+    return ([f"今天复盘 {len(checked)} 个:提前命中 {n['early']},晚到 {n['late']}{vague},没起来 {n['miss']},没数据 {n['no_data']}。"]
             + (["", *early] if early else []))
 
 
 def _tally_lines(summ: dict) -> list[str]:
     order = [*KINDS, *RETIRED]
     lines = ["", f"近 {summ['window_days']} 天各信号(待复盘 {summ['pending']} 个;{EARLY_NOTE}):", "",
-             "| 信号 | 复盘 | 提前命中 | 晚到 | 没起来 | 没数据 | 提前命中率 | 提前天数中位数 |", "|---|---|---|---|---|---|---|---|"]
+             "| 信号 | 复盘 | 提前命中 | 晚到 | 起点不明 | 没起来 | 没数据 | 提前命中率 | 提前天数中位数 |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for k, s in sorted(summ["by_signal"].items(), key=lambda kv: order.index(kv[0]) if kv[0] in order else len(order)):
         median = s["median_lead"] if s["median_lead"] is not None else "—"
-        lines.append(f"| {KINDS.get(k) or RETIRED.get(k, k)} | {s['checked']} | {s['early']} | {s['late']} | {s['miss']} | "
-                     f"{s['no_data']} | {s['early'] / s['checked']:.0%} | {median} |")
+        judged = s["checked"] - s.get("unclear", 0)
+        rate = f"{s['early'] / judged:.0%}" if judged else "—"
+        lines.append(f"| {KINDS.get(k) or RETIRED.get(k, k)} | {s['checked']} | {s['early']} | {s['late']} | "
+                     f"{s.get('unclear', 0)} | {s['miss']} | {s['no_data']} | {rate} | {median} |")
     return lines
 
 

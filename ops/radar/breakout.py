@@ -111,7 +111,7 @@ def score(repos: list[dict], before: dict[str, int] | None, now: datetime) -> li
         owner, name = r["full_name"].split("/", 1)
         out.append({"repo": r["full_name"], "owner": owner, "name": name, "stars": stars,
                     "velocity": round(velocity), "delta": delta, "age_days": round(age, 1),
-                    "description": (r.get("description") or "")[:120]})
+                    "born": created.date().isoformat(), "description": (r.get("description") or "")[:120]})
     return sorted(out, key=_speed)
 
 
@@ -156,7 +156,7 @@ def _term(row: dict, tok: str) -> dict:
     gain = f",一天 +{row['delta']}" if row["delta"] is not None else ""
     return {"term": row["variants"][0], "recent": 1, "variants": row["variants"], "repo": row["repo"],
             "note": f"GitHub 爆发 {row['repo']} ★{row['stars']}(均 {row['velocity']}/天{gain})",
-            "examples": [f"{row['repo']}: {row['description']}"]}
+            "examples": [f"{row['repo']}: {row['description']}"], "born": row.get("born")}
 
 
 def breakouts(snapshot_dir: Path) -> dict:

@@ -11,9 +11,11 @@ review()   takes up to PER_DAY leads first seen REVIEW_AFTER days ago or earlier
            asks DataForSEO Trends (via AIsa) about each search variant,
            and stores hit / miss / no_data plus how many days the radar was ahead.
 summary()  per signal over the last WINDOW days of verdicts (tally): early hits, late hits,
-           no rise, no data, and the median lead of the early hits. A hit is early when
-           Trends rose EARLY_DAYS or more after the radar first saw the term; the stored
-           verdict stays "hit" either way.
+           unclear hits, no rise, no data, and the median lead of the early hits. A hit is early
+           when Trends rose EARLY_DAYS or more after the radar first saw the term, late when it
+           rose before; unclear when neither can be told (unclear()): the lead was first seen on
+           RECORDING_START, or its rise began before the repository it came from existed. The
+           stored verdict stays "hit" in every case.
 
 Each variant is its own call: in one shared task the values share a 0-100 scale and a
 small term next to a big one reads 0, and the live endpoint runs only the first task of
@@ -40,6 +42,7 @@ only when the lead has something for it.
    "site": {"domain", "registered", "age_days", "authors", "by": {network: people},
             "traffic": {"driven", "shares", "visits", "month", "registered"} or null},
                                                                  new sites people link
+   "born": "YYYY-MM-DD",  the day the repository a breakout lead came from was created (from 2026-10-27)
    "first_by": {signal: "YYYY-MM-DD"}}  the day each signal first reported the lead: which one
                                         came first. Kept from FIRST_BY_SINCE on: a lead first
                                         seen before it has it only for the signals since.
@@ -50,6 +53,7 @@ newest value.
 from __future__ import annotations
 
 import json
+import re
 import statistics
 from datetime import date, timedelta
 
@@ -66,9 +70,18 @@ MAX_VARIANTS = 3
 REVIEW_CALLS_MAX = 60
 RISE_FACTOR, RISE_MIN = 2.0, 10
 # A hit is early only when Trends rose at least this many days after the radar first saw the term. 16 of the
-# 17 hits by 2026-10-21 had risen before or on that day: the radar confirmed them, it did not find them first.
+# 17 hits by 2026-10-21 had risen before or on that day; most of them were unclear (below), not late.
 EARLY_DAYS = 1
-OUTCOMES = ("early", "late", "miss", "no_data")
+OUTCOMES = ("early", "late", "unclear", "miss", "no_data")
+# radar_leads' first day (migration 026). A lead first seen then may have been reported in the days before it, so
+# how early it was cannot be told: 12 of the 54 hits reviewed by 2026-10-27, all of them "late".
+RECORDING_START = date(2026, 10, 3)
+# A rise that began more than this many days before the repository a lead came from existed is the word's older
+# use or noise, not the repository's: 6 of the 29 breakout hits by 2026-10-27 (coucou, opendots, removemacai).
+PRE_EXISTING_DAYS = 1
+# breakout's note, for the leads kept before evidence had "born": stars over stars a day is the repository's age,
+# to the day for 27 of those 29 hits and a day late for 2.
+BORN_NOTE = re.compile(r"GitHub 爆发 \S+ ★(\d+)\(均 (\d+)/天")
 RISE_SHARE = 0.25     # the rise starts where a series first covers this share of base -> peak
 WINDOW = 60
 TOOL = "post_dataforseo_keywords_trends_explore_live"
@@ -92,7 +105,7 @@ EVIDENCE_V = 1
 EVIDENCE_POSTS = 10
 EVIDENCE_EXAMPLES = 10
 POST_CHARS = 280
-EVIDENCE_PARTS = ("meme", "keywords", "site")   # kept as the signal built them
+EVIDENCE_PARTS = ("meme", "keywords", "site", "born")   # kept as the signal built them
 FIRST_BY_SINCE = date(2026, 10, 27)             # the day evidence began to keep which signal reported a lead first
 _EVIDENCE_COLUMN: bool | None = None            # radar_leads.evidence exists (migration 027); asked once a run
 _UPSERT = """
@@ -350,18 +363,35 @@ def review(today: date | None = None) -> dict:
     data, cost = aisa.call_all(calls)
     checked = []
     with engine.begin() as conn:
+        born = _born_held(conn, [p[1] for p in plan])
         for ids, term, first_seen, keys in plan:
             if not all(cid in data for cid in ids):
                 continue   # stays due; tomorrow's run takes it again
             per = {k: rose(settled(_series((data[cid].get("tasks") or [{}])[0]), today), first_seen) for cid, k in zip(ids, keys)}
-            v, lead = verdict(per, first_seen)
-            conn.execute(text("""
-                UPDATE radar_leads SET reviewed_at = now(), verdict = :v, lead_days = :lead,
-                       trends = CAST(:trends AS jsonb) WHERE term = :term
-            """), {"v": v, "lead": lead, "trends": __import__("json").dumps(per), "term": term})
-            checked.append({"term": term, "first_seen": first_seen.isoformat(), "verdict": v, "lead_days": lead})
+            checked.append(_store(conn, term, first_seen, per, born.get(term, (None, None))))
     engine.dispose()
     return {"checked": checked, "cost_micros": cost}
+
+
+def _store(conn, term: str, first_seen: date, per: dict, held: tuple) -> dict:
+    """Writes one lead's verdict; returns it as today's report lists it. held: (evidence "born", notes)."""
+    from sqlalchemy import text
+    v, lead = verdict(per, first_seen)
+    conn.execute(text("""
+        UPDATE radar_leads SET reviewed_at = now(), verdict = :v, lead_days = :lead,
+               trends = CAST(:trends AS jsonb) WHERE term = :term
+    """), {"v": v, "lead": lead, "trends": json.dumps(per), "term": term})
+    vague = v == "hit" and unclear(first_seen, first_rise(per), born_day(*held, first_seen))
+    return {"term": term, "first_seen": first_seen.isoformat(), "verdict": v, "lead_days": lead, "unclear": vague}
+
+
+def _born_held(conn, terms: list[str]) -> dict[str, tuple]:
+    """{term: (its evidence's "born" or None, its notes)}, what born_day() reads."""
+    from sqlalchemy import text
+    born = "evidence->>'born'" if _has_evidence(conn) else "NULL"
+    rows = conn.execute(text(f"SELECT term, {born}, notes FROM radar_leads WHERE term = ANY(:terms)"),
+                        {"terms": terms}).fetchall()
+    return {t: (b, n) for t, b, n in rows}
 
 
 def recent_sources(today: date | None = None, kinds: tuple[str, ...] = SOURCE_KINDS) -> list[dict]:
@@ -383,29 +413,62 @@ def summary(today: date | None = None) -> dict:
     today = today or date.today()
     engine = _engine()
     with engine.connect() as conn:
-        rows = conn.execute(text("""
-            SELECT signals, verdict, lead_days FROM radar_leads
+        born = "evidence->>'born'" if _has_evidence(conn) else "NULL"
+        rows = conn.execute(text(f"""
+            SELECT signals, verdict, lead_days, first_seen, trends, {born}, notes FROM radar_leads
             WHERE reviewed_at >= :since AND verdict IS NOT NULL
         """), {"since": today - timedelta(days=WINDOW)}).fetchall()
         pending = conn.execute(text("SELECT count(*) FROM radar_leads WHERE reviewed_at IS NULL")).scalar()
     engine.dispose()
-    return {"by_signal": tally(rows), "pending": pending, "window_days": WINDOW}
+    judged = [(kinds, said, lead, said == "hit" and unclear(seen, first_rise(trends), born_day(b, notes, seen)))
+              for kinds, said, lead, seen, trends, b, notes in rows]
+    return {"by_signal": tally(judged), "pending": pending, "window_days": WINDOW}
 
 
-def outcome(said: str, lead_days: int | None) -> str:
-    """A stored verdict as the reports count it: a hit is "early" when Trends rose EARLY_DAYS or more
-    after the radar first saw the term, else "late"; "miss" (no rise) and "no_data" stay as they are."""
+def born_day(born: str | None, notes: list[str] | None, first_seen: date) -> date | None:
+    """The day the repository a breakout lead came from was created: the evidence's "born", else its age read
+    off breakout's note (BORN_NOTE); None for a lead from no repository."""
+    if born:
+        return date.fromisoformat(born)
+    for note in notes or []:
+        m = BORN_NOTE.search(note)
+        if m and int(m.group(2)):
+            return first_seen - timedelta(days=round(int(m.group(1)) / int(m.group(2))))
+    return None
+
+
+def first_rise(trends: dict | None) -> date | None:
+    """The earliest day a variant's rise began, as verdict() dated the lead (radar_leads.trends)."""
+    days = [v["first_rise"] for v in (trends or {}).values() if isinstance(v, dict) and v.get("first_rise")]
+    return date.fromisoformat(min(days)) if days else None
+
+
+def unclear(first_seen: date, rise: date | None, born: date | None) -> bool:
+    """Whether a hit's lead says nothing about how early the radar was: first seen on RECORDING_START, or a
+    rise that began more than PRE_EXISTING_DAYS before the repository it came from existed."""
+    if first_seen == RECORDING_START:
+        return True
+    return bool(rise and born and (born - rise).days > PRE_EXISTING_DAYS)
+
+
+def outcome(said: str, lead_days: int | None, vague: bool = False) -> str:
+    """A stored verdict as the reports count it: a hit is "unclear" when `vague` (unclear()), else "early"
+    when Trends rose EARLY_DAYS or more after the radar first saw the term, else "late"; "miss" (no rise)
+    and "no_data" stay as they are."""
     if said == "hit":
+        if vague:
+            return "unclear"
         return "early" if lead_days is not None and lead_days >= EARLY_DAYS else "late"
     return "no_data" if said == "no_data" else "miss"
 
 
 def tally(rows: list[tuple]) -> dict[str, dict]:
-    """{signal: {"checked", "early", "late", "miss", "no_data", "median_lead"}} from (signals, verdict,
-    lead_days) rows; a lead with two signals counts for both. median_lead is the early hits' only."""
+    """{signal: {"checked", "early", "late", "unclear", "miss", "no_data", "median_lead"}} from (signals,
+    verdict, lead_days[, vague]) rows; a lead with two signals counts for both. median_lead is the early
+    hits' only."""
     by: dict[str, dict] = {}
-    for kinds, said, lead_days in rows:
-        got = outcome(said, lead_days)
+    for kinds, said, lead_days, *vague in rows:
+        got = outcome(said, lead_days, bool(vague and vague[0]))
         for k in kinds or ["?"]:
             s = by.setdefault(k, {"checked": 0, **dict.fromkeys(OUTCOMES, 0), "leads": []})
             s["checked"] += 1

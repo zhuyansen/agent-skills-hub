@@ -119,6 +119,14 @@ def test_breakout_flags_a_jump_since_yesterday_even_when_the_average_is_low():
     assert rows and rows[0]["delta"] == 600
 
 
+def test_breakout_keeps_the_day_each_repo_was_created_for_the_review():
+    rows = breakout.score([_repo("Niko1221/Strata", 7734, 9)], None, NOW)
+    assert rows[0]["born"] == "2026-09-24"
+    lead = {"term": "strata", "kinds": [], "signals": [], "examples": [], "variants": [], "posts": []}
+    radar._merge(lead, "breakout", {"term": "strata", "recent": 1, "note": "n", "born": rows[0]["born"]})
+    assert review.evidence(lead, NOW.date())["born"] == "2026-09-24"
+
+
 def test_breakout_variants_include_handle_and_display_name():
     row = {"owner": "Niko1221", "name": "Strata"}
     assert breakout.variants(row, "Niko") == ["strata", "niko1221 strata", "niko strata"]
@@ -234,6 +242,23 @@ def test_review_verdict_takes_the_earliest_variant_that_rose():
 def test_review_verdict_miss_and_no_data():
     assert review.verdict({"a": {"rose": False, "no_data": False}}, SEEN) == ("miss", None)
     assert review.verdict({"a": {"rose": False, "no_data": True}}, SEEN) == ("no_data", None)
+
+
+def test_review_a_hit_is_unclear_when_first_seen_the_day_recording_began_or_risen_before_its_repo():
+    assert review.unclear(review.RECORDING_START, date(2026, 9, 28), None)     # may have been reported the days before
+    later = review.RECORDING_START + timedelta(days=1)
+    assert review.unclear(later, date(2026, 9, 14), date(2026, 9, 27))        # coucou: risen 13 days before its repo
+    assert not review.unclear(later, date(2026, 10, 6), date(2026, 10, 7))    # gridcraft: one day before, kept
+    assert not review.unclear(later, date(2026, 9, 26), None)                 # no repository to compare with
+
+
+def test_review_reads_a_repos_birth_from_the_evidence_else_from_breakouts_note():
+    seen, note = date(2026, 10, 3), "GitHub 爆发 Louis-CFM/coucou ★3137(均 550/天)"
+    assert review.born_day("2026-09-26", [note], seen) == date(2026, 9, 26)           # the evidence wins
+    assert review.born_day(None, ["X 1 个账号 ♥277", note], seen) == date(2026, 9, 27)  # 3137 / 550: 5.7 days old
+    assert review.born_day(None, ["X 1 个账号 ♥277"], seen) is None
+    trends = {"a": {"rose": True, "first_rise": "2026-09-30"}, "b": {"rose": True, "first_rise": "2026-09-27"}, "c": {"rose": False}}
+    assert review.first_rise(trends) == date(2026, 9, 27) and review.first_rise(None) is None
 
 
 # --- the 8-hourly source run --------------------------------------------------------------
@@ -664,6 +689,37 @@ class _FakeDB:
         self.calls.append((str(sql), params))
         held = [("altstream", {"posts": [{"url": "u0", "likes": 99, "text": "old"}]})] if "FOR UPDATE" in str(sql) else []
         return types.SimpleNamespace(first=lambda: (1,) if self.column else None, fetchall=lambda: held)
+
+
+def test_review_marks_todays_hit_unclear_when_it_rose_before_its_repository():
+    held = (None, ["GitHub 爆发 omlahore/RemoveMacAI ★1400(均 200/天)"])                # 7 days old on 10-06
+    per = {"removemacai": {"rose": True, "first_rise": "2026-09-14"}}
+    got = review._store(_FakeDB(True), "removemacai", date(2026, 10, 6), per, held)
+    assert (got["verdict"], got["lead_days"], got["unclear"]) == ("hit", -22, True)
+    assert not review._store(_FakeDB(True), "removemacai", date(2026, 10, 6), {"a": {"rose": False}}, held)["unclear"]
+
+
+class _SummaryDB(_FakeDB):
+    """The reviewed leads summary() reads: one first seen the day recording began, one risen before its
+    repository existed (its age from the note), one early hit whose evidence holds the repository's birth."""
+    ROWS = [(["breakout"], "hit", -19, date(2026, 10, 3), {"coucou": {"rose": True, "first_rise": "2026-09-14"}}, None, []),
+            (["breakout"], "hit", -22, date(2026, 10, 6), {"removemacai": {"rose": True, "first_rise": "2026-09-14"}}, None,
+             ["GitHub 爆发 omlahore/RemoveMacAI ★1400(均 200/天)"]),
+            (["breakout"], "hit", 2, date(2026, 10, 4), {"aw": {"rose": True, "first_rise": "2026-10-06"}}, "2026-10-02", [])]
+
+    def execute(self, sql, params=None):
+        self.calls.append((str(sql), params))
+        return types.SimpleNamespace(first=lambda: (1,), fetchall=lambda: self.ROWS, scalar=lambda: 7)
+
+
+def test_summary_counts_unclear_hits_apart(monkeypatch):
+    db = _SummaryDB(True)
+    monkeypatch.setattr(review, "_engine", lambda: db)
+    monkeypatch.setattr(review, "_EVIDENCE_COLUMN", None)
+    got = review.summary(date(2026, 10, 27))
+    assert got["by_signal"]["breakout"] == {"checked": 3, "early": 1, "late": 0, "unclear": 2, "miss": 0, "no_data": 0,
+                                            "median_lead": 2}
+    assert got["pending"] == 7 and "evidence->>'born'" in next(s for s, _ in db.calls if "lead_days" in s)
 
 
 def test_record_writes_evidence_only_once_the_column_exists(monkeypatch):
