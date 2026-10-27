@@ -1822,7 +1822,8 @@
     "screenshot",
     "image recognition",
     "ocr",
-    "image classification"
+    "image classification",
+    "nsfw"
    ],
    "min_results": 3,
    "max_results": null,
@@ -1942,7 +1943,6 @@
     "Mats2208/qwen-image-local",
     "ShalomObongo/codex-imagegen-mcp",
     "q253595422/prompt-constraints",
-    "Arekejoker/qwen21-nsfw-pose-skill",
     "beatra-ai/ai-logo-maker-skill",
     "beatra-ai/ai-media-generator-skill",
     "liangdabiao/image-prompt-studio",
@@ -1965,7 +1965,8 @@
     "leeguooooo/chatgpt-imagegen",
     "lidge-jun/ima2-gen",
     "wuyoscar/gpt_image_2_skill",
-    "ilovehugetits/codex-images"
+    "ilovehugetits/codex-images",
+    "Arekejoker/qwen21-nsfw-pose-skill"
    ]
   },
   "related": [
