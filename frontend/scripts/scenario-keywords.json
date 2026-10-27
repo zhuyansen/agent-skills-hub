@@ -6518,7 +6518,7 @@
     "prd"
    ],
    "min_results": 5,
-   "max_results": 25,
+   "max_results": 31,
    "featured": [
     "michaelshimeles/ralphy",
     "KhazP/vibe-coding-prompt-template",
@@ -6526,7 +6526,13 @@
     "peterfei/ai-agent-team",
     "Mathews-Tom/armory",
     "evanklem/evanflow",
-    "anombyte93/prd-taskmaster"
+    "anombyte93/prd-taskmaster",
+    "obra/superpowers",
+    "github/spec-kit",
+    "gsd-build/get-shit-done",
+    "eyaltoledano/claude-task-master",
+    "SuperClaude-Org/SuperClaude_Framework",
+    "coleam00/context-engineering-intro"
    ],
    "tag_matches": [
     "vibe-coding"

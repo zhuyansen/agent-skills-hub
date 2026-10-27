@@ -8856,5 +8856,994 @@
     ]
    }
   }
+ },
+ "vibe-coding": {
+  "type": "table",
+  "date": "2026-10-27",
+  "dir": "/best-runs/vibe/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/RESULTS.md",
+  "title": [
+   "Vibe coding tools tested: one sentence and one paragraph, two apps",
+   "实测对比：一句话、一段话，各做一个能用的网页"
+  ],
+  "intro": [
+   "On 26 and 27 October 2026 we gave 14 of these tools the same two requests, written the way someone who cannot code would write them: one sentence for an expense page, and one paragraph for a family ledger with monthly totals, a category chart, a budget warning and an Excel export. Each was installed from its README in a throwaway sandbox and used through its own workflow by Claude Code (Claude Opus 5.5). When a build stopped to ask a question or for approval, it got the same reply, 「我不懂这些，你按你推荐的来，继续做。」 (\"I don't know about this; do what you recommend and carry on\"). Limits: 30 minutes for the page, 45 for the ledger. A separate tester session opened each app in a browser and ran 4 and 8 checks, and we went through every screenshot. Claude Code with no tool did the same as a control.",
+   "2026 年 10 月 26–27 日，我们给其中 14 个工具同样两个需求，照不会写代码的人的说法写：一句话做一个记账小网页；一段话做一个家庭记账本，要按月看收支、分类图、预算提醒和导出 Excel。每个工具在用完即删的沙箱里照 README 安装，由 Claude Code（Claude Opus 5.5）按工具自己的流程使用。中途停下来提问或要求确认时，一律回复「我不懂这些，你按你推荐的来，继续做。」。时间上限：记账网页 30 分钟，记账本 45 分钟。另起一个测试会话在浏览器里打开成品，分别做 4 项和 8 项检查，每张截图我们都看过。不装任何工具的 Claude Code 做同样的题作对照。"
+  ],
+  "finding": [
+   "Claude Code with no tool built both apps and passed all 12 checks, in 0.8 and 4.2 minutes. 11 of the 14 tools passed all 12 as well, taking 1.5 to 7.8 times as long and 1.4 to 5.1 times the usage: a tool added time and usage, not a passed check. 3 ran out of time with work unfinished, at 10.4 to 13.5 times the usage. Every finished app opened by double-click except one ledger that needs a start command.",
+   "不装任何工具的 Claude Code 两个网页都做出来了，12 项检查全过，分别用了 0.8 和 4.2 分钟。14 个工具里有 11 个也是 12 项全过，但耗时是它的 1.5 到 7.8 倍，用量是它的 1.4 到 5.1 倍：装工具多花了时间和用量，没有多过任何一项。3 个到时间还没做完，用量是对照组的 10.4 到 13.5 倍。做完的网页除了一个记账本要先跑启动命令，都能双击打开。"
+  ],
+  "compare": [
+   {
+    "src": "compare-t2.jpg",
+    "w": 2000,
+    "h": 1068,
+    "en": "Every family ledger after the tester entered October's records, the no-tool build first; the number is checks passed of 8.",
+    "zh": "测试员录入 10 月记录后的每个家庭记账本，第一个是不装工具做的；数字是 8 项检查过了几项。"
+   },
+   {
+    "src": "compare-t1.jpg",
+    "w": 2000,
+    "h": 1068,
+    "en": "Every one-sentence expense page after three entries (total 41.50), the no-tool build first.",
+    "zh": "每个一句话记账网页记了三笔之后（合计应为 41.50），第一个是不装工具做的。"
+   }
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "One sentence (4 checks)",
+    "一句话记账（4 项）"
+   ],
+   [
+    "One paragraph (8 checks)",
+    "一段话记账本（8 项）"
+   ],
+   [
+    "How it opens",
+    "怎么打开"
+   ],
+   [
+    "Stopped to ask",
+    "中途问了几次"
+   ],
+   [
+    "Build time (page + ledger)",
+    "做了多久（网页 + 记账本）"
+   ],
+   [
+    "Usage vs no tool",
+    "用量（不装工具 = 1）"
+   ]
+  ],
+  "see": [
+   "See both builds →",
+   "看两次实测 →"
+  ],
+  "evidence": [
+   "Both builds",
+   "两次实测"
+  ],
+  "line_label": [
+   "Vibe coding test, 2026-10-27:",
+   "2026-10-27 实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html",
+   "label": [
+    "See the no-tool run →",
+    "看不装工具的对照 →"
+   ]
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "basis": [
+    "after building two apps with each",
+    "每个都实际做了两个网页之后"
+   ],
+   "more": [
+    "See the test →",
+    "看实测 →"
+   ],
+   "rule": [
+    "Ranked by checks passed on the two apps, then whether a person can open them by double-click, then the minutes you wait, then how often the build stopped to ask, then GitHub stars. One run per tool and request, limits of 30 and 45 minutes; the requests are small apps, not the larger projects these tools are built for.",
+    "排名规则：先看两个网页的检查过了几项，再看能不能双击打开，再看要等多少分钟，再看中途停下来问了几次，最后看 GitHub 星数。每个工具每题只跑一次，时间上限 30 和 45 分钟；题目是小网页，不是这些工具主要面向的大项目。"
+   ],
+   "picks": [
+    {
+     "repo": "SuperClaude-Org/SuperClaude_Framework",
+     "role": [
+      "If you want one installed",
+      "真要装一个"
+     ],
+     "why": [
+      "Every check on both apps, in 7.6 minutes in all (Claude Code with no tool: 5.0), at 1.8 times its usage. It stopped to ask once per app.",
+      "两个网页的检查全过，两题共 7.6 分钟（不装工具是 5.0 分钟），用量是不装工具的 1.8 倍。每题中途问了一次。"
+     ]
+    },
+    {
+     "repo": "KhazP/vibe-coding-prompt-template",
+     "role": [
+      "If you would rather not be asked anything",
+      "不想被问问题"
+     ],
+     "why": [
+      "Every check on both apps without stopping to ask once, in 9.3 minutes in all, at 2.4 times the usage of no tool.",
+      "两个网页的检查全过，一次都没停下来问，两题共 9.3 分钟，用量是不装工具的 2.4 倍。"
+     ]
+    },
+    {
+     "repo": "botingw/rulebook-ai",
+     "role": [
+      "If you want house rules, not a workflow",
+      "只想加几条规矩、不要流程"
+     ],
+     "why": [
+      "It only adds rule files, and stayed closest to no tool: every check, 7.8 minutes, 1.7 times the usage, one question per app.",
+      "它只往项目里加规则文件，表现也最接近不装工具：检查全过，共 7.8 分钟，用量 1.7 倍，每题问了一次。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Out of time before the ledger was finished:",
+    "家庭记账本到时间还没做完："
+   ],
+   "avoid": [
+    {
+     "repo": "gsd-build/get-shit-done",
+     "why": [
+      "2 of 8 at 45 minutes, its first phase of four done",
+      "45 分钟只过 2 项，四个阶段做完一个"
+     ]
+    },
+    {
+     "repo": "anombyte93/prd-taskmaster",
+     "why": [
+      "1 of 4 on the one-sentence page and 3 of 8 on the ledger",
+      "一句话记账过 1 项，记账本过 3 项"
+     ]
+    },
+    {
+     "repo": "nurettincoban/ai-prd-workflow",
+     "why": [
+      "6 of 8, at 13.5 times the usage of no tool",
+      "过 6 项，用量是不装工具的 13.5 倍"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: Claude Code with no tool built both apps in 5 minutes with every check passed, on less usage than any tool. At this size a tool adds steps, questions and usage, not passed checks. Start without one; try a tool when a project outgrows a single request.",
+    "不管选哪个：不装任何工具的 Claude Code 5 分钟就把两个网页都做对了，用量比任何一个工具都少。在这个规模上，装工具多出来的是步骤、提问和用量，不是通过的检查。先别装；等项目大到一句话说不清时再试工具。"
+   ]
+  },
+  "runs": {
+   "SuperClaude-Org/SuperClaude_Framework": {
+    "ran": true,
+    "stars": 23911,
+    "sheet": "SuperClaude-Org__SuperClaude_Framework.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "2.4 + 5.2 min",
+      "2.4 + 5.2 分钟",
+      "num"
+     ],
+     [
+      "×1.8",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 2 times",
+      "中途停下来问了 2 次"
+     ],
+     [
+      "2.4 + 5.2 min, 1.8× the usage of no tool",
+      "2.4 + 5.2 分钟，用量是不装工具的 1.8 倍"
+     ]
+    ]
+   },
+   "botingw/rulebook-ai": {
+    "ran": true,
+    "stars": 609,
+    "sheet": "botingw__rulebook-ai.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "2.0 + 5.8 min",
+      "2.0 + 5.8 分钟",
+      "num"
+     ],
+     [
+      "×1.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 2 times",
+      "中途停下来问了 2 次"
+     ],
+     [
+      "2.0 + 5.8 min, 1.7× the usage of no tool",
+      "2.0 + 5.8 分钟，用量是不装工具的 1.7 倍"
+     ]
+    ]
+   },
+   "KhazP/vibe-coding-prompt-template": {
+    "ran": true,
+    "stars": 3126,
+    "sheet": "KhazP__vibe-coding-prompt-template.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "2.7 + 6.6 min",
+      "2.7 + 6.6 分钟",
+      "num"
+     ],
+     [
+      "×2.4",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "never stopped to ask",
+      "一次都没停下来问"
+     ],
+     [
+      "2.7 + 6.6 min, 2.4× the usage of no tool",
+      "2.7 + 6.6 分钟，用量是不装工具的 2.4 倍"
+     ]
+    ]
+   },
+   "github/spec-kit": {
+    "ran": true,
+    "stars": 142899,
+    "sheet": "github__spec-kit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "4.2 + 11.3 min",
+      "4.2 + 11.3 分钟",
+      "num"
+     ],
+     [
+      "×3.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 2 times",
+      "中途停下来问了 2 次"
+     ],
+     [
+      "4.2 + 11.3 min, 3.7× the usage of no tool",
+      "4.2 + 11.3 分钟，用量是不装工具的 3.7 倍"
+     ]
+    ]
+   },
+   "obra/superpowers": {
+    "ran": true,
+    "stars": 305151,
+    "sheet": "obra__superpowers.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "6",
+      null,
+      "num"
+     ],
+     [
+      "5.8 + 12.6 min",
+      "5.8 + 12.6 分钟",
+      "num"
+     ],
+     [
+      "×4.5",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 6 times",
+      "中途停下来问了 6 次"
+     ],
+     [
+      "5.8 + 12.6 min, 4.5× the usage of no tool",
+      "5.8 + 12.6 分钟，用量是不装工具的 4.5 倍"
+     ]
+    ]
+   },
+   "peterfei/ai-agent-team": {
+    "ran": true,
+    "stars": 443,
+    "sheet": "peterfei__ai-agent-team.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "13.8 + 5.0 min",
+      "13.8 + 5.0 分钟",
+      "num"
+     ],
+     [
+      "×2.5",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "never stopped to ask",
+      "一次都没停下来问"
+     ],
+     [
+      "13.8 + 5.0 min, 2.5× the usage of no tool",
+      "13.8 + 5.0 分钟，用量是不装工具的 2.5 倍"
+     ]
+    ]
+   },
+   "asklokesh/loki-mode": {
+    "ran": true,
+    "stars": 1108,
+    "sheet": "asklokesh__loki-mode.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "10.8 + 11.0 min",
+      "10.8 + 11.0 分钟",
+      "num"
+     ],
+     [
+      "×1.4",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 2 times",
+      "中途停下来问了 2 次"
+     ],
+     [
+      "10.8 + 11.0 min, 1.4× the usage of no tool",
+      "10.8 + 11.0 分钟，用量是不装工具的 1.4 倍"
+     ]
+    ]
+   },
+   "michaelshimeles/ralphy": {
+    "ran": true,
+    "stars": 2975,
+    "sheet": "michaelshimeles__ralphy.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "12.7 + 14.1 min",
+      "12.7 + 14.1 分钟",
+      "num"
+     ],
+     [
+      "×2.4",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "never stopped to ask",
+      "一次都没停下来问"
+     ],
+     [
+      "12.7 + 14.1 min, 2.4× the usage of no tool",
+      "12.7 + 14.1 分钟，用量是不装工具的 2.4 倍"
+     ]
+    ]
+   },
+   "evanklem/evanflow": {
+    "ran": true,
+    "stars": 418,
+    "sheet": "evanklem__evanflow.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "2.8 + 24.7 min",
+      "2.8 + 24.7 分钟",
+      "num"
+     ],
+     [
+      "×2.9",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 4 times",
+      "中途停下来问了 4 次"
+     ],
+     [
+      "2.8 + 24.7 min, 2.9× the usage of no tool",
+      "2.8 + 24.7 分钟，用量是不装工具的 2.9 倍"
+     ]
+    ]
+   },
+   "eyaltoledano/claude-task-master": {
+    "ran": true,
+    "stars": 28276,
+    "sheet": "eyaltoledano__claude-task-master.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "2.5 + 31.9 min",
+      "2.5 + 31.9 分钟",
+      "num"
+     ],
+     [
+      "×5.1",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "never stopped to ask",
+      "一次都没停下来问"
+     ],
+     [
+      "2.5 + 31.9 min, 5.1× the usage of no tool",
+      "2.5 + 31.9 分钟，用量是不装工具的 5.1 倍"
+     ]
+    ]
+   },
+   "coleam00/context-engineering-intro": {
+    "ran": true,
+    "stars": 13891,
+    "sheet": "coleam00__context-engineering-intro.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "8/8",
+      null,
+      "touch-ups"
+     ],
+     [
+      "Page: double-click; ledger: one command first",
+      "记账网页双击就能打开；记账本要先跑一条命令"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "29.7 + 9.4 min",
+      "29.7 + 9.4 分钟",
+      "num"
+     ],
+     [
+      "×3.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 8 of 8",
+      "家庭记账本：8 项过 8 项"
+     ],
+     [
+      "Page: opens by double-click; ledger: needs a start command first",
+      "记账网页双击就能打开；记账本要先跑一条启动命令"
+     ],
+     [
+      "never stopped to ask",
+      "一次都没停下来问"
+     ],
+     [
+      "29.7 + 9.4 min, 3.7× the usage of no tool",
+      "29.7 + 9.4 分钟，用量是不装工具的 3.7 倍"
+     ]
+    ],
+    "note": "The ledger needs a start command first: bash output/start.sh.",
+    "note_zh": "记账本要先运行一条命令：bash output/start.sh。"
+   },
+   "nurettincoban/ai-prd-workflow": {
+    "ran": true,
+    "stars": 298,
+    "sheet": "nurettincoban__ai-prd-workflow.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "6/8",
+      null,
+      "substantial"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "6",
+      null,
+      "num"
+     ],
+     [
+      "30.0 + 45.0 min",
+      "30.0 + 45.0 分钟",
+      "num"
+     ],
+     [
+      "×13.5",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 6 of 8",
+      "家庭记账本：8 项过 6 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 6 times",
+      "中途停下来问了 6 次"
+     ],
+     [
+      "30.0 + 45.0 min, 13.5× the usage of no tool",
+      "30.0 + 45.0 分钟，用量是不装工具的 13.5 倍"
+     ]
+    ],
+    "note": "At the 45-minute limit the ledger had no budget and no export.",
+    "note_zh": "45 分钟时记账本还没有预算和导出。"
+   },
+   "gsd-build/get-shit-done": {
+    "ran": true,
+    "stars": 64514,
+    "sheet": "gsd-build__get-shit-done.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2/8",
+      null,
+      "substantial"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "30.0 + 44.2 min",
+      "30.0 + 44.2 分钟",
+      "num"
+     ],
+     [
+      "×10.4",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 4 of 4 checks",
+      "一句话记账：4 项过 4 项"
+     ],
+     [
+      "family ledger: 2 of 8",
+      "家庭记账本：8 项过 2 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 2 times",
+      "中途停下来问了 2 次"
+     ],
+     [
+      "30.0 + 44.2 min, 10.4× the usage of no tool",
+      "30.0 + 44.2 分钟，用量是不装工具的 10.4 倍"
+     ]
+    ],
+    "note": "Ran out of the 45 minutes on the ledger with only its first phase built.",
+    "note_zh": "家庭记账本 45 分钟里只做完第一阶段。"
+   },
+   "anombyte93/prd-taskmaster": {
+    "ran": true,
+    "stars": 587,
+    "sheet": "anombyte93__prd-taskmaster.html",
+    "cells": [
+     [
+      "1/4",
+      null,
+      "substantial"
+     ],
+     [
+      "3/8",
+      null,
+      "substantial"
+     ],
+     [
+      "Double-click",
+      "双击就能打开"
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "30.0 + 45.0 min",
+      "30.0 + 45.0 分钟",
+      "num"
+     ],
+     [
+      "×11.0",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-sentence page: 1 of 4 checks",
+      "一句话记账：4 项过 1 项"
+     ],
+     [
+      "family ledger: 3 of 8",
+      "家庭记账本：8 项过 3 项"
+     ],
+     [
+      "opens by double-click",
+      "双击就能打开"
+     ],
+     [
+      "stopped to ask 4 times",
+      "中途停下来问了 4 次"
+     ],
+     [
+      "30.0 + 45.0 min, 11.0× the usage of no tool",
+      "30.0 + 45.0 分钟，用量是不装工具的 11.0 倍"
+     ]
+    ],
+    "note": "Still planning and building at both time limits; both pages were unfinished.",
+    "note_zh": "两题都到时间上限还没做完，页面是半成品。"
+   }
+  }
  }
 }

@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>nurettincoban/ai-prd-workflow: vibe coding test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/vibe-coding/">← Vibe coding tools</a></p>
+<h1>nurettincoban/ai-prd-workflow: vibe coding test</h1>
+<p class="mute">Installed from its README in a throwaway sandbox, then used by Claude Code (Claude Opus 5.5) to build two apps from requests
+written the way someone who cannot code would write them. Whenever the build stopped to ask a question or for approval, it got the same reply.
+A separate tester session, with no tool loaded, opened each app in a browser and ran the checks; we went through every screenshot.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/in/prompt.txt">The task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/in/test-t2.md">The tester's checks</a></p>
+<p><b>Install:</b> SETUP: done Claude Code plugin prd-workflow@ai-prd-workflow v3.0.0 (user scope) via `claude plugin marketplace add ~/src` and `claude plugin install prd-workflow@ai-prd-workflow` (repo commit b67f4d3e1161)</p><h2>One sentence: an expense page</h2><p class="mute">The request, word for word: 帮我做一个记账小网页：每次花钱记一笔（花了多少、买了什么），页面上能看到一共花了多少，关掉浏览器再打开，记录还在。</p>
+<p><b>Ran: all 4 checks passed.</b> Opens: double-click.
+Built in 30.0 minutes (limit 30); it stopped to ask 4 time(s); how it ended: out of time.
+Usage at API prices: $5.58 (32.8 times the run with no tool). Packages: none (plain HTML, CSS and JavaScript).</p>
+<p><b>Our note:</b> Stopped four times: its interview, a plan to approve, a question whether to move from localStorage to IndexedDB after its own browser tests saw records go missing, and a second plan. Still working at the 30-minute limit; the page by then passed every check.</p>
+<table><tr><th>Check</th><th>Verdict</th><th>What the tester saw</th><th>Screenshot</th></tr><tr><th>opens</th><td><span class=ok>pass</span></td><td>file:// page shows: &#x27;记账本\n\n一共花了\n¥0.00\n\n金额（元）\n\n买了什么\n\n记一笔\n\n还没有记录&#x27;</td><td><a href='nurettincoban__ai-prd-workflow-t1-open.jpg'><img src='nurettincoban__ai-prd-workflow-t1-open.jpg' alt='open' width='240' loading='lazy'></a></td></tr><tr><th>records an expense</th><td><span class=ok>pass</span></td><td>after adding 25/午饭 page shows: &#x27;记账本\n\n一共花了\n¥25.00\n\n金额（元）\n\n买了什么\n\n记一笔\n2026-10-26 20:04\n午饭\n¥25.00\n删除&#x27;</td><td><a href='nurettincoban__ai-prd-workflow-t1-add.jpg'><img src='nurettincoban__ai-prd-workflow-t1-add.jpg' alt='add' width='240' loading='lazy'></a></td></tr><tr><th>total is right</th><td><span class=ok>pass</span></td><td>total shown: ¥41.50; page: &#x27;记账本\n\n一共花了\n¥41.50\n\n金额（元）\n\n买了什么\n\n记一笔\n2026-10-26 20:04\n地铁\n¥4.00\n删除\n2026-10-26 20:04\n咖啡\n¥12.50\n删除\n2026-10-26 20:04\n午饭\n¥25.00\n删除&#x27;</td><td><a href='nurettincoban__ai-prd-workflow-t1-total.jpg'><img src='nurettincoban__ai-prd-workflow-t1-total.jpg' alt='total' width='240' loading='lazy'></a></td></tr><tr><th>still there after closing and reopening</th><td><span class=ok>pass</span></td><td>after reopen total: ¥41.50; page: &#x27;记账本\n\n一共花了\n¥41.50\n\n金额（元）\n\n买了什么\n\n记一笔\n2026-10-26 20:04\n地铁\n¥4.00\n删除\n2026-10-26 20:04\n咖啡\n¥12.50\n删除\n2026-10-26 20:04\n午饭\n¥25.00\n删除&#x27;</td><td><a href='nurettincoban__ai-prd-workflow-t1-reopen.jpg'><img src='nurettincoban__ai-prd-workflow-t1-reopen.jpg' alt='reopen' width='240' loading='lazy'></a></td></tr></table>
+<h3>Where it stopped, and got the reply 「我不懂这些，你按你推荐的来，继续做。」</h3><ol><li><pre>你好！我是负责这个项目的产品经理。动手做之前，我会分几轮问你一些问题，把需求写成一份产品需求文档（PRD.md），后面所有步骤都按这份文档来做。
+
+你的想法是：一个记账小网页，每花一笔钱记一条（金额、买了什么），页面显示总共花了多少，关掉浏览器再打开，记录还在。
+
+**第一轮问题（关于用途和基本需求）：**
+
+1. **谁在用？** 只有你自己在自己的电脑上用，还是要在多台设备（比如手机和电脑）之间同步，或者和别人（比如家人）一起用？
+2. **你以前有没有用过类似的东西？** 比如一个半成品网页、Excel 表格或者别的 App。如果有，告诉我在哪里（文件路径），我会先看一下。
+3. **记一笔需要哪些信息？** 只要&quot;金额 + 买了什么&quot;就够了吗？要不要自动记下日期，或者加上分类（吃饭、交通等）？
+4. **记错了怎么办？** 是否需要删除或修改已经记下的条目？
+5. **&quot;一共花了多少&quot;怎么算？** 是从第一笔开始的全部总和就行，还是也想看&quot;本月/今天花了多少&quot;？货币是人民币（¥）吗？
+
+请按你自己的想法回答，不确定的直接说&quot;不确定&quot;或&quot;你决定&quot;就行。</pre></li><li><pre>`: the bookkeeping page itself. It is a single file with no internet connection needed, and you open it by double-clicking.
+- `package.json` and `tests/helpers.js`, `tests/rfc-001.test.js`: automatic tests that open the page in a real browser and check it. You won&#x27;t need to use these.
+- `.gitignore`: tells git to ignore the test tool&#x27;s downloaded files.
+
+**Build order:**
+1. The page layout: title, total, the two input boxes, the &quot;记一笔&quot; button and the list.
+2. Checking the input: what counts as a valid amount (full-width digits like &quot;２５&quot; are accepted, the &quot;¥&quot; sign is ignored) and the Chinese error messages.
+3. Saving: records go into the browser&#x27;s local storage. Amounts are stored as whole numbers of fen, so totals never have rounding errors. If the saved data is damaged it is never overwritten, and if saving isn&#x27;t allowed a yellow warning appears.
+4. The 16 automatic tests (T1.1 to T1.16), plus a test run and a check of every acceptance criterion.
+
+**Technical choices:**
+- No framework and no build step, so the delivered file is exactly what runs.
+- The page doesn&#x27;t expose any extra test hooks; the tests only interact with it the way a user would.
+- Risk: the test tool might not work with this computer&#x27;s browser version. If that happens I&#x27;ll stop and tell you rather than quietly switching to another tool.
+
+**Effect on existing work:** none (the project has no code yet).
+
+Do you approve this plan? Reply &quot;同意&quot; (approve) and I&#x27;ll start building, or tell me what you&#x27;d like changed.</pre></li><li><pre>storage (localStorage). Tested in this computer&#x27;s Chrome-type browser with the page opened by double-click, that storage is unreliable:
+- On some openings the page sees an empty list, even though the records still exist.
+- Anything you add during one of those visits is lost. In 55 test openings, 3 entries disappeared for good.
+
+That breaks your main requirement that records are still there after you close and reopen the browser.
+
+**What I recommend:** switch to the browser&#x27;s other built-in storage (IndexedDB). In the same 55 openings it showed every record every time and lost nothing. Nothing changes for you: still one file you double-click, no internet, no account.
+
+**What it costs:**
+- The plan documents need updating (the tool&#x27;s /manage-changes step).
+- The saving part of the page is rewritten.
+- The tests change.
+- How two open tabs stay in sync changes too, but you won&#x27;t notice a difference.
+
+**What&#x27;s done so far:** the page itself (layout, input, Chinese error messages, list, total). 14 of 16 automatic tests pass. The two that fail intermittently are the ones caused by this storage problem. I also found and fixed a small mistake in the plan&#x27;s expected amount for one test.
+
+The tool&#x27;s rules say a change like this needs your approval. **Shall I switch to IndexedDB?** Reply &quot;同意&quot; (approve) and I&#x27;ll update the documents and continue. If you&#x27;d rather keep localStorage, the page will still work, but I would not consider it finished, because records can occasionally go missing.</pre></li><li><pre> page is open in two browser windows, a record added or deleted in one shows up in the other within about a second, and neither window overwrites the other.
+3. **Speed check:** with 10,000 records saved, the page should still open within 1 second, and adding or deleting should take less than 0.2 seconds.
+
+**Files it changes:**
+- `output/index.html` gets the delete button, the cross-tab sync and the faster list redraw.
+- `tests/rfc-002.test.js` is new, with automatic tests T2.1 to T2.10.
+
+**Build order:** delete, then tab sync, then the speed tests, then a full test run (including all the earlier tests).
+
+**Technical choices:**
+- Tabs notify each other with the browser&#x27;s built-in BroadcastChannel; I checked that it works between `file://` pages. As a backup, a tab also reloads the data when you switch back to it.
+- After a delete, the keyboard focus moves to the next record, so you can keep working without the mouse.
+
+**I&#x27;d also fix three test gaps from the RFC-001 review.** The page itself works correctly; these only make the tests stricter:
+- test entries that are saved out of time order;
+- test data that becomes damaged while the page is open (the tab-sync feature relies on this);
+- make the focus-outline check actually check the blue outline.
+
+**Effect on the existing work:** the save/load code from part one is reused as it is, and all 18 earlier tests must still pass.
+
+Do you approve this plan? Reply &quot;同意&quot; (approve) and I&#x27;ll build it, test it and deliver the finished page.</pre></li></ol><h2>One paragraph: a family ledger</h2><p class="mute">The request, word for word: 做一个家庭记账本网页：能记收入和支出（金额、类别、日期、备注），能按月看收入、支出和结余，能看每个类别花了多少（最好有图），可以设每月预算、超了要提醒，还能把记录导出成 Excel 表格。数据存在我电脑上就行。</p>
+<p><b>6 of 8 checks passed.</b> Opens: double-click.
+Built in 45.0 minutes (limit 45); it stopped to ask 2 time(s); how it ended: out of time.
+Usage at API prices: $10.56 (10.3 times the run with no tool). Packages: none (plain HTML, CSS and JavaScript).</p>
+<p><b>Our note:</b> Its interview, then a plan of seven RFCs to approve one by one. At the 45-minute limit the ledger did everything but the budget and the export; its own help text points to backup buttons that are not on the page.</p>
+<table><tr><th>Check</th><th>Verdict</th><th>What the tester saw</th><th>Screenshot</th></tr><tr><th>opens</th><td><span class=ok>pass</span></td><td>file:// page title &#x27;家庭记账本&#x27;, shows 收入/支出/结余 cards, 记一笔 form, 记录 list, 支出构成</td><td><a href='nurettincoban__ai-prd-workflow-t2-open.jpg'><img src='nurettincoban__ai-prd-workflow-t2-open.jpg' alt='open' width='240' loading='lazy'></a></td></tr><tr><th>records income and expenses</th><td><span class=ok>pass</span></td><td>October record list: 2026-10-12 | 支出 · 餐饮 | −¥80.00 | 晚饭 | 2026-10-08 | 支出 · 交通 | −¥30.00 | 地铁 | 2026-10-05 | 支出 · 餐饮 | −¥120.00 | 午饭 | 2026-10-01 | 收入 · 工资 | +¥5000.00 | 十月工资</td><td><a href='nurettincoban__ai-prd-workflow-t2-record.jpg'><img src='nurettincoban__ai-prd-workflow-t2-record.jpg' alt='record' width='240' loading='lazy'></a></td></tr><tr><th>month&#x27;s income, spending and balance</th><td><span class=ok>pass</span></td><td>October 2026 cards: 收入 5000.0, 支出 230.0, 结余 4770.0</td><td><a href='nurettincoban__ai-prd-workflow-t2-month.jpg'><img src='nurettincoban__ai-prd-workflow-t2-month.jpg' alt='month' width='240' loading='lazy'></a></td></tr><tr><th>spending by category</th><td><span class=ok>pass</span></td><td>支出构成 section: 支出构成 | 支出 | 收入 | 餐饮 | ¥200.00 | 87.0% | 交通 | ¥30.00 | 13.0%</td><td><a href='nurettincoban__ai-prd-workflow-t2-category.jpg'><img src='nurettincoban__ai-prd-workflow-t2-category.jpg' alt='category' width='240' loading='lazy'></a></td></tr><tr><th>switches between months</th><td><span class=ok>pass</span></td><td>September: cards (0.0, 999.0, -999.0), list: 2026-09-15 | 支出 · 购物 | −¥999.00 | 衣服; back to October: cards (5000.0, 230.0, 4770.0)</td><td><a href='nurettincoban__ai-prd-workflow-t2-by-month.jpg'><img src='nurettincoban__ai-prd-workflow-t2-by-month.jpg' alt='by-month' width='240' loading='lazy'></a></td></tr><tr><th>warns over budget</th><td><span class=no>fail</span></td><td>The app has no budget feature at all: no monthly or per-category budget input anywhere on the page, in the 类别管理 dialog, or in 年度概览/使用说明 (no text containing 预算). So no budget could be set and no over-budget warning appears. October&#x27;s spending is 230 with no warning. Visible controls: 类别管理, 上一月/下一月, 选择月份, 回到本月, the 记一笔 form (类型/金额/类别/日期/备注/保存), the 类型/类别 filters, 编辑/删除 per record, 支出/收入 toggle on 支出构成, 年度概览, 使用说明.</td><td><a href='nurettincoban__ai-prd-workflow-t2-budget.jpg'><img src='nurettincoban__ai-prd-workflow-t2-budget.jpg' alt='budget' width='240' loading='lazy'></a></td></tr><tr><th>exports a spreadsheet</th><td><span class=no>fail</span></td><td>There is no export button: nothing labelled 导出, Excel or 下载 on the page or in the 类别管理 dialog, so no file was downloaded. The 使用说明 section tells the user to click &quot;备份数据&quot; and &quot;恢复数据&quot;, but neither button exists on the page.</td><td><a href='nurettincoban__ai-prd-workflow-t2-export.jpg'><img src='nurettincoban__ai-prd-workflow-t2-export.jpg' alt='export' width='240' loading='lazy'></a></td></tr><tr><th>still there after closing and reopening</th><td><span class=ok>pass</span></td><td>After closing all tabs and reopening: all 5 records still present (4 in October, 999 in September); October cards (5000.0, 230.0, 4770.0); October list: 2026-10-12 | 支出 · 餐饮 | −¥80.00 | 晚饭 | 2026-10-08 | 支出 · 交通 | −¥30.00 | 地铁 | 2026-10-05 | 支出 · 餐饮 | −¥120.00 | 午饭 | 2026-10-01 | 收入 · 工资 | +¥5000.00 | 十月工资; September list: 2026-09-15 | 支出 · 购物 | −¥999.00 | 衣服</td><td><a href='nurettincoban__ai-prd-workflow-t2-reopen.jpg'><img src='nurettincoban__ai-prd-workflow-t2-reopen.jpg' alt='reopen' width='240' loading='lazy'></a></td></tr></table>
+<h3>Where it stopped, and got the reply 「我不懂这些，你按你推荐的来，继续做。」</h3><ol><li><pre>你好！我是这次项目的产品经理。我用的这个工具（AI PRD Workflow）的第一步是先问你几个问题，把需求写成一份需求文档（PRD.md），之后才开始写代码。下面是第一批问题：
+
+**第一批：基本情况**
+
+1. **谁会用？** 只有你一个人用，还是家里好几个人一起记？如果是几个人，要不要区分&quot;这笔是谁记的/谁花的&quot;？
+2. **在哪儿用？** 只在一台电脑的浏览器里打开就行，还是也想在手机上看或记？（你说&quot;数据存在我电脑上就行&quot;，我理解为不需要联网、不需要登录账号，对吗？）
+3. **有没有现成的东西？** 你现在是用 Excel、某个记账 App 或纸本记账吗？如果有现成的表格或旧数据，需要导入进来吗？（如果有文件，告诉我放在哪里，我去看一下。）
+4. **类别：** 你希望用一套预设好的类别（比如餐饮、交通、房租、工资……），还是自己添加、修改类别？两者都要也可以。
+5. **预算：** &quot;每月预算&quot;是指整个月的总支出预算，还是每个类别分别设预算（比如餐饮每月 2000 元）？超了的时候，在页面上显示醒目的提醒就够了吗？
+
+用中文直接回答就行，不确定的可以说&quot;你帮我定&quot;。</pre></li><li><pre>ones), month arithmetic, and Excel&#x27;s date numbers.
+- `src/core/store.js`: the data layout, the default categories (11 expense, 5 income), and full validity checks.
+- `src/core/storage.js`: the only code that touches browser storage. It handles &quot;storage full&quot;, &quot;storage blocked&quot; and &quot;data unreadable&quot; without ever overwriting your saved data.
+- `src/index.template.html`, `src/styles.css`, `src/ui/app.js`: the basic Chinese page, the help section, the error banner, and the &quot;下载原始数据&quot; button for damaged data.
+- `tests/unit/*.test.js` (money, dates, store, storage, build): tests T1.1–T1.14 from the test plan.
+- `tests/e2e/helpers.js`, `tests/e2e/shell.e2e.js`: open the real `output/index.html` by `file://` in Chromium and check that it makes no network requests (T1.15–T1.16).
+
+**Order:** money and dates → store → storage → build script → page shell → unit tests → browser tests → build and run everything.
+
+**Trade-offs:**
+- Plain scripts instead of modern JavaScript modules. Browsers block modules when a page is opened by double-click, and plain scripts still run under the test tools.
+- If saving fails, your input stays on the page (it is not thrown away) and a warning appears.
+
+**Effect on existing work:** none. There is no code yet.
+
+---
+
+Reply **同意** (approve) and I&#x27;ll start RFC-001. The tool asks for approval again before each of the next 6 RFCs. If you&#x27;d rather not be asked each time, reply **全部同意** (approve all) and I&#x27;ll build them in order, presenting each plan without waiting.</pre></li></ol>
+</main></body></html>

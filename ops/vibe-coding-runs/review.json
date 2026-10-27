@@ -1,0 +1,39 @@
+{
+ "t1/anombyte93/prd-taskmaster": {
+  "note": "The install session registered its Claude Code plugin but not task-master-ai, which the README also lists, so the Auto-Execute mode was not on offer. The tool recommended its Verified Loop, wrote a PRD of 12 tasks and 24 subtasks for the page, and was still working at the 30-minute limit. The page it had by then sent the form as a page reload and recorded nothing (screenshots agree with the tester).",
+  "note_zh": "安装时只注册了它的 Claude Code 插件，没装 README 里也列出的 task-master-ai，所以「自动执行」模式没有出现。它推荐了自己的「验证循环」，为这个网页写了 12 个任务、24 个子任务的 PRD，30 分钟时还没做完；当时的页面点「记一笔」只会整页刷新，什么都记不下（截图与测试员一致）。"
+ },
+ "t1/gsd-build/get-shit-done": {
+  "note": "After its five questions it was still working at the 30-minute limit, with no closing message; the page in output/ by then passed every check.",
+  "note_zh": "问完 5 个问题后一直在走流程，30 分钟时还没结束、没有收尾消息；但那时 output/ 里的页面已通过全部检查。"
+ },
+ "t1/nurettincoban/ai-prd-workflow": {
+  "note": "Stopped four times: its interview, a plan to approve, a question whether to move from localStorage to IndexedDB after its own browser tests saw records go missing, and a second plan. Still working at the 30-minute limit; the page by then passed every check.",
+  "note_zh": "停下来 4 次：需求访谈、批准计划、自己的浏览器测试发现记录偶尔丢失后问要不要从 localStorage 改用 IndexedDB、批准第二份计划。30 分钟时还没结束，但那时的页面已通过全部检查。"
+ },
+ "t2/anombyte93/prd-taskmaster": {
+  "minutes": 45.0,
+  "note": "Two questions, then its Verified Loop. At the 45-minute limit the page recorded entries and exported them, but its month overview read ¥0.00, the category panel held three empty placeholders and the budget panel said 等待实现 (still to be built). The Mac slept for about 90 minutes during this run; the build's limit counts working time only, so it is shown as 45 minutes, not the 137 the clock recorded.",
+  "note_zh": "问了 2 个问题，然后走它的「验证循环」。45 分钟上限时，页面能记账也能导出，但月度概览显示 ¥0.00，分类统计是三个空的占位框，预算面板写着「等待实现...」。这次运行中 Mac 睡眠了约 90 分钟；构建的上限只算工作时间，所以记为 45 分钟，而不是时钟记下的 137 分钟。"
+ },
+ "t2/nurettincoban/ai-prd-workflow": {
+  "note": "Its interview, then a plan of seven RFCs to approve one by one. At the 45-minute limit the ledger did everything but the budget and the export; its own help text points to backup buttons that are not on the page.",
+  "note_zh": "先是需求访谈，然后是 7 份 RFC，要逐份批准。45 分钟上限时，记账本除了预算和导出都能用；它自己的使用说明里提到的备份按钮页面上并没有。"
+ },
+ "t2/coleam00/context-engineering-intro": {
+  "note": "Built as a small project with a start script: there is no index.html to double-click, so a person has to run bash output/start.sh first.",
+  "note_zh": "做成了一个要先启动的小项目：没有可以双击的 index.html，得先运行 bash output/start.sh。"
+ },
+ "t2/asklokesh/loki-mode": {
+  "note": "Run a second time: during the first, the Mac went to sleep, which cut its install session short and let the run's outer limit expire. That attempt is kept in out-void/ and not counted.",
+  "note_zh": "这是第二次运行：第一次运行时 Mac 睡眠了，安装会话被截断，整次运行的外层时限也到了。那次留在 out-void/ 里，不计入结果。"
+ },
+ "t2/gsd-build/get-shit-done": {
+  "note": "After seven questions it built in phases. At 44 minutes it had finished its first phase (recording, a list by day, month switching, edit and delete) and stopped to ask for a manual check of it; with under a minute of the 45 left, the run ended there. Monthly totals, the category chart, the budget and the export had not been built (the tester's verdicts agree with the screenshots).",
+  "note_zh": "问了 7 个问题后分阶段做。到 44 分钟时做完了第一阶段（记账、按天列出、按月翻页、编辑删除），停下来请用户手动验收；45 分钟只剩不到一分钟，测试到此为止。月度汇总、分类图、预算和导出都还没做（测试员结论与截图一致）。"
+ },
+ "t1/coleam00/context-engineering-intro": {
+  "note": "Its own browser checks saw records lost on a local file, so it added a small local server (START.txt) and a banner on the page warning against opening it by double-click. That took most of its 29.7 minutes. The page opened by double-click still passed every check.",
+  "note_zh": "它自己的浏览器检查发现直接打开本地文件时记录会丢，于是加了一个本地服务器（START.txt），并在页面顶部提示别用双击打开，29.7 分钟大多花在这上面。双击打开的页面仍通过了全部检查。"
+ }
+}

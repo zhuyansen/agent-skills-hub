@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>obra/superpowers: vibe coding test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/vibe-coding/">← Vibe coding tools</a></p>
+<h1>obra/superpowers: vibe coding test</h1>
+<p class="mute">Installed from its README in a throwaway sandbox, then used by Claude Code (Claude Opus 5.5) to build two apps from requests
+written the way someone who cannot code would write them. Whenever the build stopped to ask a question or for approval, it got the same reply.
+A separate tester session, with no tool loaded, opened each app in a browser and ran the checks; we went through every screenshot.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/in/prompt.txt">The task</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/in/test-t2.md">The tester's checks</a></p>
+<p><b>Install:</b> SETUP: done superpowers plugin v7.0.1 (user scope, enabled) via `claude plugin marketplace add obra/superpowers-marketplace` then `claude plugin install superpowers@superpowers-marketplace` (repo commit 2ce8aa15d05b)</p><h2>One sentence: an expense page</h2><p class="mute">The request, word for word: 帮我做一个记账小网页：每次花钱记一笔（花了多少、买了什么），页面上能看到一共花了多少，关掉浏览器再打开，记录还在。</p>
+<p><b>Ran: all 4 checks passed.</b> Opens: double-click.
+Built in 5.8 minutes (limit 30); it stopped to ask 3 time(s); how it ended: finished.
+Usage at API prices: $1.93 (11.4 times the run with no tool). Packages: none (plain HTML, CSS and JavaScript).</p>
+
+<table><tr><th>Check</th><th>Verdict</th><th>What the tester saw</th><th>Screenshot</th></tr><tr><th>opens</th><td><span class=ok>pass</span></td><td>file:// page shows: &#x27;记账本\n一共花了 ¥0.00\n记一笔\n\n还没有记录&#x27;</td><td><a href='obra__superpowers-t1-open.jpg'><img src='obra__superpowers-t1-open.jpg' alt='open' width='240' loading='lazy'></a></td></tr><tr><th>records an expense</th><td><span class=ok>pass</span></td><td>after adding 25/午饭 page shows: &#x27;记账本\n一共花了 ¥25.00\n记一笔\n\n午饭\n2026-10-26 20:05\n¥25.00\n删除&#x27;</td><td><a href='obra__superpowers-t1-add.jpg'><img src='obra__superpowers-t1-add.jpg' alt='add' width='240' loading='lazy'></a></td></tr><tr><th>total is right</th><td><span class=ok>pass</span></td><td>total shown: ¥41.50; page: &#x27;记账本\n一共花了 ¥41.50\n记一笔\n\n地铁\n2026-10-26 20:06\n¥4.00\n删除\n咖啡\n2026-10-26 20:05\n¥12.50\n删除\n午饭\n2026-10-26 20:05\n¥25.00\n删除&#x27;</td><td><a href='obra__superpowers-t1-total.jpg'><img src='obra__superpowers-t1-total.jpg' alt='total' width='240' loading='lazy'></a></td></tr><tr><th>still there after closing and reopening</th><td><span class=ok>pass</span></td><td>after reopen total: ¥41.50; entries present: True; page: &#x27;记账本\n一共花了 ¥41.50\n记一笔\n\n地铁\n2026-10-26 20:06\n¥4.00\n删除\n咖啡\n2026-10-26 20:05\n¥12.50\n删除\n午饭\n2026-10-26 20:05\n¥25.00\n删除&#x27;</td><td><a href='obra__superpowers-t1-reopen.jpg'><img src='obra__superpowers-t1-reopen.jpg' alt='reopen' width='240' loading='lazy'></a></td></tr></table>
+<h3>Where it stopped, and got the reply 「我不懂这些，你按你推荐的来，继续做。」</h3><ol><li><pre>我先用自己的话复述一下你的需求，你看对不对：
+
+你想要一个很简单的记账网页。每次花钱后打开它记一笔，填**花了多少钱**和**买了什么**。页面上会显示**一共花了多少**。关掉浏览器再打开，之前记的内容都还在。
+
+我看了一下：你的项目文件夹现在是空的，所以会从零开始做。有一点可能你没想到，但它会影响怎么做：**“记录还在”最简单的做法，是把数据存在当前这台电脑的这个浏览器里。** 这样不用注册账号，不用服务器，双击文件就能打开。代价是换一台设备（比如手机），或者换一个浏览器，就看不到这些记录了。如果你想在手机和电脑上看到同一份账本，就得另做一个需要联网存数据的版本，复杂很多。
+
+我理解得哪里不对，直接告诉我。
+
+我想先问一个问题：**你平时打算在哪台设备上记账？是只用一台电脑，还是希望手机和电脑都能看到同一份记录？**
+
+（如果你不想回答这些问题，想让我直接开始做，也可以说一声。）</pre></li><li><pre>我写好了实施计划，保存在 `docs/superpowers/plans/2026-10-26-expense-tracker.md`，旁边还有一份简短的设计说明 `docs/superpowers/specs/2026-10-26-expense-tracker-design.md`。
+
+计划的内容：
+- **一个网页 `output/index.html`**，双击就能打开。页面上方用大字显示“一共花了 ¥…”。下面填“花了多少”和“买了什么”，点“记一笔”保存。再往下是所有记录，最新的在最上面，每条带日期，还有一个“删除”按钮，记错了可以删掉。
+- **记录存在这台电脑的浏览器里**，关掉浏览器再打开，记录还在。
+- **防止出错**：金额填错（比如空着、写成文字、负数）或者“买了什么”没填，会用中文提示你，不会保存。0.1 加 0.2 这种小数也能算准。
+- 计划里有两项是我自己加的，没有和你商量过：每条记录显示日期，以及“删除”按钮。
+
+这套工具在开工前要你选一种做法：
+- **逐项检查（Subagent-driven）**：每完成一部分，就由另一个独立的检查者看一遍，最后再整体检查一次。最仔细，但花的时间多一些。
+- **直接做（Native）**：我自己把整个都做完，最后由一个检查者整体看一遍。更快，花费也更少。
+
+**我推荐“直接做”**，因为这个计划只有两部分，而且都很小，就算出了错也容易发现和修改。
+
+这个计划是你想要的吗？你想用哪种做法？</pre></li><li><pre>记账网页做好了，所有测试都通过：10 项计算测试全部通过，浏览器自动测试连续跑了 3 次也都通过。浏览器测试会模拟真实使用：记两笔，确认 0.1 + 0.2 显示 ¥0.30；把浏览器完全关掉再打开，确认记录还在；再测试删除。
+
+目前网页放在一个单独的工作副本里，**还没放进 `~/work/output/`**。
+
+**最后检查时修好的两个问题：**
+- 如果同时开了两个网页窗口，其中一个保存时会把另一个刚记的账冲掉。现在不会了。
+- 用中文输入法输入的金额，比如全角的“１２。５”，以前会被拒绝，现在也能识别。
+
+**我替你做的决定：**
+- 只在 Chrome 内核的浏览器里测试过。如果你用 Safari 或 Firefox 直接双击打开，记录可能保存不住，建议在你自己的浏览器里试一下。
+
+**发现了但暂时没处理的小问题：**
+- 如果保存的数据坏了，下次记账时坏掉的部分会被直接覆盖，不会另外留一份备份。
+- 坏数据里如果出现负数金额，也会照样读进来。
+- “买了什么”超过 100 个字会被截掉，而且不会提示。
+- 提示错误的文字，在你改正输入时不会自动消失。
+- 自动测试还有几处可以写得更严谨。
+
+这套工具最后要你选一种处理方式：
+
+```
+Implementation complete. What would you like to do?
+
+1. Merge back to main locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I&#x27;ll handle it later)
+
+Which option?
+```
+
+如果选 **1**，网页会放进你的项目里，`~/work/output/index.html` 就是你可以双击打开的文件。第 2 种需要上传到网上，你这个项目没有设置上传的地方；第 3 种会让文件留在单独的副本里。你选哪个？</pre></li></ol><h2>One paragraph: a family ledger</h2><p class="mute">The request, word for word: 做一个家庭记账本网页：能记收入和支出（金额、类别、日期、备注），能按月看收入、支出和结余，能看每个类别花了多少（最好有图），可以设每月预算、超了要提醒，还能把记录导出成 Excel 表格。数据存在我电脑上就行。</p>
+<p><b>Ran: all 8 checks passed.</b> Opens: double-click.
+Built in 12.6 minutes (limit 45); it stopped to ask 3 time(s); how it ended: finished.
+Usage at API prices: $3.44 (3.3 times the run with no tool). Packages: none (plain HTML, CSS and JavaScript).</p>
+
+<table><tr><th>Check</th><th>Verdict</th><th>What the tester saw</th><th>Screenshot</th></tr><tr><th>opens</th><td><span class=ok>pass</span></td><td>Double-click address (file://…/index.html) shows 家庭记账本, month 2026年10月, 本月收入/支出/结余 ¥0.00, the 记一笔 form, 分类统计 and 每月预算 sections.</td><td><a href='obra__superpowers-t2-open.jpg'><img src='obra__superpowers-t2-open.jpg' alt='open' width='240' loading='lazy'></a></td></tr><tr><th>records income and expenses</th><td><span class=ok>pass</span></td><td>categories used [&#x27;工资&#x27;, &#x27;餐饮&#x27;, &#x27;交通&#x27;, &#x27;餐饮&#x27;]; 本月明细 rows: [&#x27;10月12日 | 支餐饮 | -¥80.00 | 晚饭 | 修改删除&#x27;, &#x27;10月08日 | 支交通 | -¥30.00 | 地铁 | 修改删除&#x27;, &#x27;10月05日 | 支餐饮 | -¥120.00 | 午饭 | 修改删除&#x27;, &#x27;10月01日 | 收工资 | +¥5,000.00 | 十月工资 | 修改删除&#x27;]</td><td><a href='obra__superpowers-t2-record.jpg'><img src='obra__superpowers-t2-record.jpg' alt='record' width='240' loading='lazy'></a></td></tr><tr><th>month&#x27;s income, spending and balance</th><td><span class=ok>pass</span></td><td>2026年10月 收入/支出/结余 = (&#x27;5000.00&#x27;, &#x27;230.00&#x27;, &#x27;4770.00&#x27;)</td><td><a href='obra__superpowers-t2-month.jpg'><img src='obra__superpowers-t2-month.jpg' alt='month' width='240' loading='lazy'></a></td></tr><tr><th>spending by category</th><td><span class=ok>pass</span></td><td>分类统计 (支出 tab) bar chart with labels: 餐饮 ¥200.00 87%, 交通 ¥30.00 13%; &#x27;本月支出合计 ¥230.00，共 2 个类别&#x27;.</td><td><a href='obra__superpowers-t2-category.jpg'><img src='obra__superpowers-t2-category.jpg' alt='category' width='240' loading='lazy'></a></td></tr><tr><th>switches between months</th><td><span class=ok>pass</span></td><td>category 购物; Sept summary (&#x27;0.00&#x27;, &#x27;999.00&#x27;, &#x27;-999.00&#x27;), rows [&#x27;09月15日 | 支购物 | -¥999.00 |  | 修改删除&#x27;]; back to Oct summary (&#x27;5000.00&#x27;, &#x27;230.00&#x27;, &#x27;4770.00&#x27;)</td><td><a href='obra__superpowers-t2-by-month.jpg'><img src='obra__superpowers-t2-by-month.jpg' alt='by-month' width='240' loading='lazy'></a></td></tr><tr><th>warns over budget</th><td><span class=ok>pass</span></td><td>Opened &#x27;设置预算&#x27;, entered 200 in 每月总预算, clicked 保存预算 (toast 预算已保存). A red banner appeared at the top: &#x27;⚠ 预算超支提醒（2026年10月）本月总预算已超支 ¥30.00（预算 ¥200.00，已花 ¥230.00）&#x27;, and the budget card shows &#x27;总预算：¥230.00 / ¥200.00（115%）&#x27; with a red bar and &#x27;超支 ¥30.00&#x27;.</td><td><a href='obra__superpowers-t2-budget.jpg'><img src='obra__superpowers-t2-budget.jpg' alt='budget' width='240' loading='lazy'></a></td></tr><tr><th>exports a spreadsheet</th><td><span class=ok>pass</span></td><td>Downloaded 家庭记账_2026-10.xlsx (real .xlsx, opened with openpyxl). Sheets: &#x27;2026年10月明细&#x27; (4 Oct rows), &#x27;2026年10月汇总&#x27; (收入5000/支出230/结余4770, 餐饮200 87%, 交通30 13%, 总预算200 已花230 超支30.00元), &#x27;全部记录&#x27; with all five records: 5000 工资 2026-10-01 十月工资; 120 餐饮 10-05 午饭; 30 交通 10-08 地铁; 80 餐饮 10-12 晚饭; 999 购物 2026-09-15.</td><td><a href='obra__superpowers-t2-export.jpg'><img src='obra__superpowers-t2-export.jpg' alt='export' width='240' loading='lazy'></a></td></tr><tr><th>still there after closing and reopening</th><td><span class=ok>pass</span></td><td>after restart Oct summary (&#x27;5000.00&#x27;, &#x27;230.00&#x27;, &#x27;4770.00&#x27;), Oct rows [&#x27;10月12日 | 支餐饮 | -¥80.00 | 晚饭 | 修改删除&#x27;, &#x27;10月08日 | 支交通 | -¥30.00 | 地铁 | 修改删除&#x27;, &#x27;10月05日 | 支餐饮 | -¥120.00 | 午饭 | 修改删除&#x27;, &#x27;10月01日 | 收工资 | +¥5,000.00 | 十月工资 | 修改删除&#x27;], Sept rows [&#x27;09月15日 | 支购物 | -¥999.00 |  | 修改删除&#x27;]</td><td><a href='obra__superpowers-t2-reopen.jpg'><img src='obra__superpowers-t2-reopen.jpg' alt='reopen' width='240' loading='lazy'></a></td></tr></table>
+<h3>Where it stopped, and got the reply 「我不懂这些，你按你推荐的来，继续做。」</h3><ol><li><pre>我用 Superpowers 来做这个项目。按它的流程，动手写代码之前要先和你把需求理清楚。
+
+我先用自己的话复述一遍你要的东西：
+
+**一个家庭记账网页，在你自己电脑的浏览器里打开就能用，不用注册，也不用联网。**
+- **记账**：每一笔记收入或支出，填金额、类别（比如餐饮、交通、工资）、日期和备注。
+- **月度汇总**：选一个月份，看到这个月的总收入、总支出和结余（收入减支出）。
+- **分类统计**：看每个类别花了多少，配一张图，比如饼图。
+- **预算提醒**：可以设每月预算，花超了网页上要有明显提醒。
+- **导出 Excel**：把记录导出成 Excel 能打开的表格文件。
+
+有一点需要提前说：这种直接双击打开的网页，数据一般存在浏览器里。好处是简单，不用装任何东西。风险是如果你清理浏览器数据或者换了浏览器，记录可能会丢。所以我打算顺便做一个&quot;备份/恢复&quot;按钮，把数据另存成一个文件放在你电脑上。导出 Excel 也能起到一部分备份作用。
+
+上面哪里理解错了或者漏了，请直接告诉我。
+
+我最想先弄清楚的一个问题是：**预算你想怎么设？是每月只设一个总预算（比如每月最多花 5000），还是每个类别分开设（比如餐饮 2000、购物 1000）？** 这两种的提醒方式和页面做法差别挺大。
+
+如果你不想一项项讨论，想让我直接开始做，也可以直接说。</pre></li><li><pre>计划写好了，存在 `docs/superpowers/plans/2026-10-26-family-ledger.md`。按这个工具的流程，开始写代码之前需要你看一眼计划并确认。计划的正文是写给程序看的英文，下面是简短的中文版：
+
+**做出来的效果：** 双击 `output/index.html` 就能打开，不需要联网。
+- **记一笔**：选收入或支出，填金额、类别、日期和备注。类别有预设的（餐饮、交通、工资等），也可以自己加。记错了可以修改或删除。
+- **每月汇总**：页面顶部可以切换月份，显示当月的收入、支出和结余三个数字。结余是负数时标红。
+- **分类统计**：用一个圆环图显示各类别花了多少、各占百分之几。
+- **预算**：可以设一个每月总预算，也可以给单个类别设预算，每项都有进度条。用到 80% 时黄色提醒，花超了红色提醒，并显示超了多少钱。
+- **导出 Excel**：导出一个 `.xlsx` 文件，里面有本月明细、本月汇总和全部记录三张表。
+- **备份/恢复**：把数据另存成一个文件，换电脑或清理浏览器后可以恢复。
+
+**还有一个选择要你定：怎么完成这些步骤？**
+- **逐项把关**：每一步都由一个新的助手来写，再由另一个助手检查，通过后才做下一步。最稳妥，但耗时和费用更多。
+- **一次做完**：我自己连续做完所有步骤，最后请一个助手整体检查一遍。更快也更省。
+
+我推荐**一次做完**。这个项目一共只有 5 个步骤，而且每一步都配了自动测试，最后还有一次整体检查，已经足够把关。
+
+**计划内容你觉得可以吗？用哪种方式完成？**（如果你回复&quot;可以，按推荐&quot;，我就开始做。）</pre></li><li><pre>记账本已经做好，测试全部通过：32 个功能检查，加上一轮在真实浏览器里的自动操作测试。现在双击 `~/work/output/index.html` 就能打开，可以先试用。
+
+**做了什么：** 记收入和支出，看每月的收入、支出和结余，看各类别花了多少（有图），设每月总预算或单个类别的预算，导出 Excel，以及备份和恢复数据。另外请了一个独立的审查助手检查，它发现的 5 个问题已经修好。其中最重要的一个是：同一个页面开了两个窗口时，后保存的窗口会把另一个窗口记的账覆盖掉。
+
+**需要你知道的几点：**
+- **最好用 Chrome 或 Edge 打开。** 用 Firefox 或 Safari 时，如果把 output 文件夹挪了位置或改了名字，之前的记录会&quot;看不到&quot;。点&quot;恢复备份&quot;可以找回，所以请时常点&quot;备份数据&quot;。Safari 能否长期保存数据我这里没法测试。
+- **导出的 Excel 我这里没有 Excel 软件实际打开过。** 我只能按文件格式检查，结构是对的。如果你打开时 Excel 提示&quot;修复&quot;，告诉我就行。
+- **分类统计图用的是横向条形图，不是饼图。** 类别多的时候条形图更容易看清。想要饼图可以改。
+- **还有几个小问题暂时没改**，平时基本碰不到：
+  - 备注里有极少见的特殊字符时，导出的 Excel 可能出错。
+  - 金额正好在预算附近时，百分比显示会四舍五入。比如实际用了 99.6%，会显示&quot;（100%）快用完了&quot;。
+  - 新增类别时，预算设置里还没点保存的数字会被清空。
+  - 把 &quot;1,2,3&quot; 当成 123 元收下，不会报错。
+  - 浏览器里保存的数据如果损坏，页面会从空白开始，下次保存时就覆盖掉了，不会提醒你。
+  - 类别名正好叫 &quot;total&quot; 或 &quot;__add__&quot; 时会和程序内部用的名字冲突。
+
+按工具的流程，最后一步要由你来决定这些代码怎么处理。你的账本文件已经在 `~/work/output/` 里了，选哪一项都不影响使用。
+
+Implementation complete. What would you like to do?
+
+1. Merge back to main locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I&#x27;ll handle it later)
+
+Which option?</pre></li></ol>
+</main></body></html>
