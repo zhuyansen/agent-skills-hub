@@ -27,6 +27,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
 | GitHub 列表 | ⏳ 10 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、karanb192 #493、MobinX #867(10-26 和 main 冲突,已 rebase 成 039f14a,MERGEABLE/CLEAN)、GetBindu #296、teles #241、ComposioHQ #2328;维护者都没新评论 |
 | buildwithclaude | ✅ #555 10-26 00:07 UTC 合并(davepoon:Listed) | 对方 marketplace.json 里是 0.5.1 @4fd9a0d。#500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
+| DeepSeek Harness 清单 | ⏳ 10-27 两个 PR | Dominic789654/awesome-deepseek-harness#697（MCP Servers 节，两个工具一起，自动检查全过）、0xsline/awesome-deepseek-harness#757（Domain & Specialist Skills）；仓库加了 `deepseek-harness` topic；README 加了 DSH 一节（2b63b8e，DSH 0.2.1-rc.2 实测拿到 3 个工具、skill 出现在斜杠菜单）。beancookie/awesome-dsh-plugin 只收声明 `dsh.bundle` 的插件包，没投；libukai 9-12 后没合过 PR，没投 |
 | github/awesome-copilot | ❌ issue #5578 10-25 被拒 | 理由:建在付费 API 上的 SEO/关键词工具,不是开发者工作流(自动检查当时全过) |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
 | HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五;10-23 那期(416 期)没收 |
@@ -34,6 +35,10 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | punkpeye/awesome-mcp-servers | ⏸ 等 Glama 评分 | PR 进 🎯 Marketing 区 |
 | VoltAgent/awesome-agent-skills | ⏸ 不收刚建的仓库 | 11 月初再提 |
 | hesreallyhim/awesome-claude-code | ⏸ 只收本人在网页表单提交 | |
+
+## 10-27 公开 0.6.0
+
+本地 v0.5 线（0.5.3/0.6.0/0.7.0）清掉站名后并进公开版，加上新站最先排上的词、首页站点注册时间（只记录）和新站信号修复（AIsa 工具路由 10-15 起拒 whois 的数组筛选，改走 REST），以 **0.6.0** 推到 main（e1ce49e，单个提交接在公开版后面，v0.5 的原始提交没上去）。各平台上架的版本要跟着更新：ClawHub、LobeHub、cursor.directory、Skillstore、WorkBuddy 连接器（锁 0.5.2）。
 
 ## 10-26 逐站核查(后台代理,只读)
 
