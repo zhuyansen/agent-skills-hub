@@ -9,6 +9,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 import { CATEGORY_COPY } from "../data/categoryCopy";
+import { useStats } from "../hooks/useStats";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -40,6 +41,10 @@ export function CategoryPage() {
   const [data, setData] = useState<PaginatedSkills | null>(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const { categories } = useStats();
+  // The landing row's per-category total is exact as of the last sync; the
+  // list's own total is PostgREST's estimate above 1,000 rows.
+  const total = categories.find((c) => c.name === slug)?.count ?? data?.total;
 
   const labels = lang === "zh" ? CATEGORY_LABELS_ZH : CATEGORY_LABELS;
   const catLabel =
@@ -120,9 +125,9 @@ export function CategoryPage() {
           </p>
         )}
         <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">
-          {data?.total
+          {total
             ? t("category.summary")
-                .replace("{n}", String(data.total))
+                .replace("{n}", String(total))
                 .replace("{cat}", catLabel.toLowerCase())
             : t("category.loading").replace("{cat}", catLabel.toLowerCase())}
         </p>

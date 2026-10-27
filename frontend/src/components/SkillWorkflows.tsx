@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { sbFetchLandingData } from "../api/supabaseClient";
 import { useI18n } from "../i18n/I18nContext";
 import { supabase } from "../lib/supabase";
 
@@ -100,54 +101,85 @@ const iconPaths: Record<string, string> = {
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 const USE_SUPABASE = !!supabase && !API_BASE;
 
+// Top skills listed per workflow card; a category with fewer is left out.
+const SKILLS_PER_WORKFLOW = 4;
+const MIN_SKILLS_PER_WORKFLOW = 2;
+const WORKFLOW_COLUMNS =
+  "repo_name,repo_full_name,description,stars,score,quality_score,author_name";
+
+interface WorkflowRow {
+  repo_name: string;
+  repo_full_name: string;
+  description: string | null;
+  stars: number;
+  score: number | null;
+  quality_score: number | null;
+  author_name: string;
+}
+
+async function fetchTopSkills(
+  sb: NonNullable<typeof supabase>,
+  cat: string,
+): Promise<WorkflowRow[] | null> {
+  const { data, error } = await sb
+    .from("skills")
+    .select(WORKFLOW_COLUMNS)
+    .eq("category", cat)
+    .order("stars", { ascending: false })
+    .limit(SKILLS_PER_WORKFLOW);
+  return error ? null : (data as unknown as WorkflowRow[] | null);
+}
+
+function toWorkflowSkill(s: WorkflowRow): WorkflowSkill {
+  return {
+    repo_name: s.repo_name,
+    repo_full_name: s.repo_full_name,
+    description: s.description || "",
+    stars: s.stars,
+    score: s.score || s.quality_score || 0,
+    author_name: s.author_name,
+  };
+}
+
+function toWorkflow(
+  cat: string,
+  skills: WorkflowRow[],
+  total: number | undefined,
+): WorkflowData {
+  const meta = WORKFLOW_META[cat];
+  return {
+    id: cat,
+    icon: meta.icon,
+    title_zh: meta.title_zh,
+    title_en: meta.title_en,
+    description_zh: meta.description_zh,
+    description_en: meta.description_en,
+    skill_count: total ?? skills.length,
+    skills: skills.map(toWorkflowSkill),
+  };
+}
+
 async function fetchWorkflowsFromSupabase(): Promise<WorkflowData[]> {
   if (!supabase) return [];
   const sb = supabase;
-
   const categories = Object.keys(WORKFLOW_META);
 
-  // Parallel: 6 requests instead of 12 sequential (skills + count in same query)
-  const results = await Promise.all(
-    categories.map(async (cat) => {
-      const {
-        data: skills,
-        count,
-        error,
-      } = await sb
-        .from("skills")
-        .select(
-          "repo_name,repo_full_name,description,stars,score,quality_score,author_name",
-          { count: "exact" },
-        )
-        .eq("category", cat)
-        .order("stars", { ascending: false })
-        .limit(4);
-      return { cat, skills, count, error };
-    }),
+  // Totals come from the cached landing row (get_landing_data, which the
+  // header loads anyway). A count: "exact" per category here meant six counts
+  // of up to 91K rows on every home view, and they ran past the 3 s statement
+  // timeout whenever a sync or deploy was loading the database (2026-10-27).
+  const [landing, results] = await Promise.all([
+    sbFetchLandingData().catch(() => null),
+    Promise.all(categories.map((cat) => fetchTopSkills(sb, cat))),
+  ]);
+  const totals = new Map(
+    (landing?.stats.categories ?? []).map((c) => [c.name, c.count]),
   );
-
-  const workflows: WorkflowData[] = [];
-  for (const { cat, skills, count, error } of results) {
-    if (error || !skills || skills.length < 2) continue;
-    const meta = WORKFLOW_META[cat];
-    workflows.push({
-      id: cat,
-      icon: meta.icon,
-      title_zh: meta.title_zh,
-      title_en: meta.title_en,
-      description_zh: meta.description_zh,
-      description_en: meta.description_en,
-      skill_count: count ?? skills.length,
-      skills: skills.map((s) => ({
-        repo_name: s.repo_name,
-        repo_full_name: s.repo_full_name,
-        description: s.description || "",
-        stars: s.stars,
-        score: s.score || s.quality_score || 0,
-        author_name: s.author_name,
-      })),
-    });
-  }
+  const workflows = categories.flatMap((cat, i) => {
+    const skills = results[i];
+    if (!skills || skills.length < MIN_SKILLS_PER_WORKFLOW) return [];
+    return [toWorkflow(cat, skills, totals.get(cat))];
+  });
 
   workflows.sort(
     (a, b) =>
