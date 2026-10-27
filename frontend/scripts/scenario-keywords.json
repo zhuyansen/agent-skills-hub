@@ -6518,7 +6518,7 @@
     "prd"
    ],
    "min_results": 5,
-   "max_results": 31,
+   "max_results": 30,
    "featured": [
     "michaelshimeles/ralphy",
     "KhazP/vibe-coding-prompt-template",
@@ -6536,6 +6536,9 @@
    ],
    "tag_matches": [
     "vibe-coding"
+   ],
+   "exclude_repos": [
+    "tradecatlabs/vibe-coding-cn"
    ]
   },
   "related": [
