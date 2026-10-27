@@ -18,13 +18,13 @@ PyPI → 官方 MCP 注册表(Release 触发 workflow 自动发)→ Glama 收录
 | ClawHub | ✅ 0.11.0(10-27,v0.11.0 标签),扫描 CLEAN(scanner.llm.clean,07:58 UTC) | `npx clawhub@0.23.3 publish`,首发 0.10.0 source commit 140a236;**clawhub.ai 走代理 7897 不通、直连通,命令要去掉代理变量**;MIT-0 同雷达 |
 | cursor.directory | ✅ 已公开,10-27 改成 0.11.0(skill 正文 = v0.11.0 SKILL.md,哈希 234e9d77…;MCP 配置锁 0.11.0) | cursor.directory/plugins/backlink-guard:Skill 1 + 手动加的 MCP Server 1,传了 logo;站内能搜到。存后组件 id 会变;未登录打开公开页显示 0.11.0;页面数据 `scan_status: pending`(重扫中) |
 | 魔搭 MCP + Skill | ✅ | modelscope.cn/mcp/servers/JasonZhuyansen/backlink-guard(仅本地可用、中文描述、两个 key 改成选填);modelscope.cn/skills/JasonZhuyansen/backlink-guard(市场推广、MIT、图标换成 logo、自动同步) |
-| Skillstore | ✅ 已上(10-26 核) | skillstore.io/skills/zhuyansen-backlink-guard,安全审计 Safe;10-27 仍是 140a236(0.10.0)快照,没认领,刷新要用户 GitHub 登录 |
+| Skillstore | ✅ 已上(10-26 核) | skillstore.io/skills/zhuyansen-backlink-guard,安全审计 Safe;10-27 用 Submit 页重交仓库 → 更新 PR aiskillstore/marketplace#3964(medium risk,上次 safe;两次理由一样,都是 PyPI 包不在审计范围内),合并后页面才变 |
 | mdskills | ⏳ 3 周内上线 | Plugin / Free / Standard 免费档,名称和描述手填 |
 | mcp.directory | ⏳ 24 小时内 | 表单不填邮箱 |
 | serpapi/awesome-seo-tools #478 / BehiSecc/awesome-claude-skills #990 | ⏳ 10-19 已含 backlink-guard | 和雷达同一个 PR |
 | agenticskills.io | ⏳ 10-19 表单已交 | |
 | Anthropic 插件目录 | ⏳ 10-26 已提交,首次扫描中 | v0.10.1 @0c9a566。Validate 通过但有 8 个 policy hold(锁版本 uvx 必然人工审;「Uses a credential」7 处是各家 key 发给各家自己的主机),所以会转人工审。提交前补了 PRIVACY.md 和 plugin.json 的隐私/支持/文档链接(文档链接原先被取成 README 里的 logo)。选了 GitHub push webhook,但 webhook 还没在仓库设置里加(不加也每 6 小时查一次新提交) |
-| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_b6d687a4c8cb5e92,v0.10.1;类目「商业服务 - 公关/推广/市场调查」「工具 - 信息查询」;包在 `ops/workbuddy/`。开发者主页资料 21:46 已过审(昵称 JasonZhu、官网 jasonzhu.ai)。**10-27 锁 0.11.0 的新包已打好,等用户在 Chrome 登录后上传** |
+| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_b6d687a4c8cb5e92,v0.10.1;类目「商业服务 - 公关/推广/市场调查」「工具 - 信息查询」;包在 `ops/workbuddy/`。开发者主页资料 21:46 已过审(昵称 JasonZhu、官网 jasonzhu.ai)。**10-27 用户定撤回重交**:17:32 撤回 0.10.1、上传 0.11.0 的包(哈希核过,第 2、3 步解析出 0.11.0)后重新提交;列表接口的 currentVersion 还是 versionId 8981 / 0.10.1,看不出审的是不是新包,过审后核对 |
 | LobeHub | ✅ 0.11.0 published(10-27 07:43 UTC `plugin update`,页面显示 0.11.0) | 10-26 `lhm plugin publish` → zhuyansen-backlink-guard@0.10.0,10 个工具,中文名「外链检测」,🛡️;GitHub 授权用完已 `github disconnect`。验证通过前 lobehub.com/mcp/zhuyansen-backlink-guard 显示 Plugin not found;雷达当时同样 not_validated,后来自动变 published |
 
 ### GitHub(后台代理 10-26 开)

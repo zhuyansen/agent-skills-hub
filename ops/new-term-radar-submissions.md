@@ -21,7 +21,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | Jimmy Song AI 原生全景图 | ✅ issue #34 10-21 以 completed 关闭 | landscape.jimmysong.io/projects/new-term-radar/(Tracked) |
 | SkillsMP / skillsdirectory / skillget / skillsllm / agentskillshub.top | ✅ 自动收录 | |
 | Anthropic 插件目录 | ⏳ 等人工审 | v0.5.1 @4fd9a0d「Held by directory policy, with Anthropic」(锁版本 uvx 必然人工审)。10-26 发了 0.5.2(报错原因能到 agent)并补 PRIVACY.md 和隐私/支持/文档链接(0b6b164),目录约每 6 小时扫一次新提交 |
-| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录。**10-27 锁 0.6.0 的新包已打好(`ops/workbuddy/new-term-radar.zip`),两个浏览器里 WorkBuddy 都已退出登录,等用户在 Chrome 登录后上传** |
+| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录。**10-27 用户定撤回重交**:17:36 撤回 0.5.2 的审核、上传 0.6.0 的包(哈希核过,第 2、3 步解析出 0.6.0)后重新提交;但列表接口的 currentVersion 还是 versionId 8984 / 0.5.2,看不出审的是不是新包,过审后核对 |
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
@@ -44,7 +44,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 - **ClawHub** ✅ 3 个 skill 都是 0.6.0（从 v0.6.0 标签发），扫描 CLEAN（VirusTotal / LLM），07:49–07:56 UTC 过审。
 - **LobeHub** ✅ `plugin update` 0.5.2 → 0.6.0，published（07:42 UTC）；页面上「uvx new-term-radar==0.5.2」那句来自它缓存的旧 README（GitHub main 上已没有 0.5.2），等它自己重抓。
 - **cursor.directory** ✅ 3 个 skill 正文改成 0.6.0（ai-listening 6 处版本；new-term-radar、seo-new-keywords-research 补了 page_age/age/year 等字段说明和表头新列），存前存后哈希都对（15c8b18d…/f1ee9920…/c1f183bb…）；未登录打开公开页显示 0.6.0。页面数据 `scan_status: safe`（理由写着 Skills pin PyPI 0.6.0），`status: pending`。
-- **Skillstore** ❌ 还是 10-20 的 r1（3153a4b，0.5.0，Medium Risk），10-26 的认领还在等管理员；Chrome 里 Skillstore 没登录，重新审计要用户 GitHub 登录后操作。
+- **Skillstore** ⏳ 认领还在 Pending review；用户授权后在 Chrome 用 GitHub 登录（已授权过，没输密码），用 Submit 页重交仓库地址 → 机器人开更新 PR aiskillstore/marketplace#3965（3 个 skill，medium risk），合并后页面才变；附加说明留空、没开 GitHub 通知。
 - **WorkBuddy** ⏳ 见上表。
 
 ## 10-26 逐站核查(后台代理,只读)
