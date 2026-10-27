@@ -20,7 +20,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 180 # the first pass inspects about 2,300 URLs at some 3 s each (measured 2026-10-27); later days a few hundred
     steps:
       - uses: actions/checkout@v4
 
