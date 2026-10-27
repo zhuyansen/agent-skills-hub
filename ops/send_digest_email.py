@@ -23,12 +23,17 @@ import requests
 TO_DEFAULT = "m17551076169@gmail.com"
 # The heading ops/new_leads.py opens its file with: new leads, or a failed check.
 LEADS_FLAG = re.compile(r"## (🔔 新留资 \d+ 条|⚠️ 新留资没查成)")
+# new_leads.py always writes its file (empty when there are no leads), so a
+# missing one means it died before writing, e.g. on an import error.
+LEADS_MISSING = "## ⚠️ 新留资没查成(见 Actions 日志)\n"
 
 
 def read_leads(path):
-    """The lead list, or "" when the check found none (empty or missing file)."""
-    if not path or not os.path.exists(path):
+    """The lead list; "" when the check found none, a warning when it never ran."""
+    if not path:
         return ""
+    if not os.path.exists(path):
+        return LEADS_MISSING
     return open(path, encoding="utf-8").read()
 
 
