@@ -5263,5 +5263,20 @@
    "general": 0.1
   },
   "kind": "sdk"
+ },
+ {
+  "repo": "0x7067/jev-browse",
+  "stars": 5,
+  "description": "Browser automation with Jev (TypeSafe) as decision model",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.98,
+   "devtool": 0.84,
+   "sdk": 0.86,
+   "business": 0.04,
+   "consumer": 0.26,
+   "general": 0.13
+  },
+  "kind": "agent"
  }
 ]

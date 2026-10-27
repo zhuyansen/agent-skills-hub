@@ -1,4 +1,12 @@
 {
+ "0x7067/jev-browse": {
+  "repo": "0x7067/jev-browse",
+  "url": "https://raw.githubusercontent.com/0x7067/jev-browse/HEAD/docs/demo.gif",
+  "alt": "jev-browse searching Google Flights at 1× speed, with each action captioned",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 1389647
+ },
  "0xS4N4TG/kinetograph": {
   "repo": "0xS4N4TG/kinetograph",
   "url": "https://raw.githubusercontent.com/0xS4N4TG/kinetograph/HEAD/docs/readme/showcase.gif",
@@ -215,6 +223,14 @@
   "type": "image/png",
   "bytes": 429913
  },
+ "AlexAnsart/demo-studio": {
+  "repo": "AlexAnsart/demo-studio",
+  "url": "https://raw.githubusercontent.com/AlexAnsart/demo-studio/HEAD/docs/assets/hello-demo.gif",
+  "alt": "hello-demo — task app recorded by film-demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4118326
+ },
  "Algorythm-Canada/OpenJevSwift": {
   "repo": "Algorythm-Canada/OpenJevSwift",
   "url": "https://raw.githubusercontent.com/Algorythm-Canada/OpenJevSwift/HEAD/docs/assets/triage-demo.gif",
@@ -294,6 +310,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 5277155
+ },
+ "Arinin77/image2editable-ppt": {
+  "repo": "Arinin77/image2editable-ppt",
+  "url": "https://raw.githubusercontent.com/Arinin77/image2editable-ppt/HEAD/examples/rag-anything/comparison.png",
+  "alt": "RAG-Anything: source image and editable PowerPoint reconstruction",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 534467
  },
  "Arman-Luthra/aftr": {
   "repo": "Arman-Luthra/aftr",
@@ -1447,6 +1471,14 @@
   "type": "image/jpeg",
   "bytes": 54926
  },
+ "aaksa/facecammaxxing": {
+  "repo": "aaksa/facecammaxxing",
+  "url": "https://raw.githubusercontent.com/aaksa/facecammaxxing/HEAD/demo/freeze-frame.webp",
+  "alt": "freeze-frame",
+  "score": 1.15,
+  "type": "image/webp",
+  "bytes": 248954
+ },
  "abhinavshrivastava950/Montara": {
   "repo": "abhinavshrivastava950/Montara",
   "url": "https://raw.githubusercontent.com/abhinavshrivastava950/Montara/HEAD/demos/previews/01-engine-matrix-preview.gif",
@@ -2071,6 +2103,14 @@
   "type": "image/png",
   "bytes": 1863929
  },
+ "derek-zhuolin/motion-skill": {
+  "repo": "derek-zhuolin/motion-skill",
+  "url": "https://raw.githubusercontent.com/derek-zhuolin/motion-skill/HEAD/demo/motion-skill-preview.gif",
+  "alt": "48秒reference动图预览：实拍＋MG动效＋同步字幕",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2887139
+ },
  "devagrawal09/jev-review": {
   "repo": "devagrawal09/jev-review",
   "url": "https://raw.githubusercontent.com/devagrawal09/jev-review/HEAD/docs/dashboard.png",
@@ -2246,6 +2286,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 393735
+ },
+ "ethanplusai/generate-image-skill": {
+  "repo": "ethanplusai/generate-image-skill",
+  "url": "https://raw.githubusercontent.com/ethanplusai/generate-image-skill/HEAD/assets/showcase/codex/product.webp",
+  "alt": "Codex product example",
+  "score": 1.6,
+  "type": "image/webp",
+  "bytes": 8552
  },
  "evergreen-it-dev/folio": {
   "repo": "evergreen-it-dev/folio",
@@ -3079,6 +3127,14 @@
   "type": "image/jpeg",
   "bytes": 503213
  },
+ "lazypay/Archscribe": {
+  "repo": "lazypay/Archscribe",
+  "url": "https://raw.githubusercontent.com/lazypay/Archscribe/HEAD/assets/previews/homepage-panorama.gif",
+  "alt": "Archscribe panorama case",
+  "score": 2.7,
+  "type": "image/gif",
+  "bytes": 1334696
+ },
  "ledbetterljoshua/functional-emotions-video": {
   "repo": "ledbetterljoshua/functional-emotions-video",
   "url": "https://raw.githubusercontent.com/ledbetterljoshua/functional-emotions-video/HEAD/docs/lake-face.jpg",
@@ -3543,6 +3599,14 @@
   "type": "image/gif",
   "bytes": 1772557
  },
+ "oxygenframe/oxframe-sdk": {
+  "repo": "oxygenframe/oxframe-sdk",
+  "url": "https://raw.githubusercontent.com/oxygenframe/oxframe-sdk/main/docs/quickstart.gif",
+  "alt": "Install oxframe-cli, oxframe init my-video, oxframe render, then the rendered sq",
+  "score": 2.25,
+  "type": "image/gif",
+  "bytes": 563227
+ },
  "patraxo/ltx2-vidgen-skill": {
   "repo": "patraxo/ltx2-vidgen-skill",
   "url": "https://raw.githubusercontent.com/patraxo/ltx2-vidgen-skill/HEAD/assets/demo.gif",
@@ -3710,6 +3774,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 117178
+ },
+ "rtadewald/agent-video-editor": {
+  "repo": "rtadewald/agent-video-editor",
+  "url": "https://raw.githubusercontent.com/rtadewald/agent-video-editor/HEAD/docs/revisao.jpg",
+  "alt": "O app de revisão: a revisão por blocos",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 143239
  },
  "sammyteng/illustration-studio": {
   "repo": "sammyteng/illustration-studio",

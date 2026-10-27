@@ -3344,5 +3344,19 @@
    "general": 0.9
   },
   "kind": "general"
+ },
+ {
+  "repo": "Arinin77/image2editable-ppt",
+  "stars": 8,
+  "description": "A Codex skill that rebuilds images, diagrams and paper figures into element-level editable PowerPoint, with attributed examples and visual checks.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.03,
+   "business": 0.16,
+   "convert": 0.11,
+   "general": 0.08
+  },
+  "kind": "pptx"
  }
 ]

@@ -1577,11 +1577,13 @@
     "smixs/pi-durable-telegram",
     "imkofty/Hermuse",
     "Derrors/reelay",
-    "ortegarod/openclaw-vps-deploy"
+    "ortegarod/openclaw-vps-deploy",
+    "azdaev/tgmock"
    ],
    "exclude_repos": [
     "smixs/iva",
-    "siriusforex-ai/telegram_signal_copier"
+    "siriusforex-ai/telegram_signal_copier",
+    "robertelee78/claude-telegram-mirror"
    ]
   },
   "related": [
@@ -1957,7 +1959,8 @@
     "actionow-ai/c2c_img",
     "ybuild-ai/ai-game-art-pipeline-skill",
     "Dogwind221/img2img-studio",
-    "aidenli/gd-image-gen"
+    "aidenli/gd-image-gen",
+    "ethanplusai/generate-image-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3483,7 +3486,8 @@
     "wanghuan9/skill-manager",
     "jiweiyeah/Skills-Manager",
     "wanghuan9/skilldock",
-    "lingbol088-spec/auto-skill-installer"
+    "lingbol088-spec/auto-skill-installer",
+    "The-Utopia-Studio/skills"
    ]
   },
   "related": [
@@ -4770,7 +4774,9 @@
     "spcaeo/toadstone",
     "jgoullet/seo-geo-audit",
     "Pautthead/seo-aeo-agent-skills",
-    "tns-research/fog-agents"
+    "tns-research/fog-agents",
+    "zhtyyx/codex-seo",
+    "rankmyseo/skills"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -6320,7 +6326,8 @@
     "marcusnelson/presentation-writing-claude-skill",
     "tokuhn/confidential-html-deck",
     "ancarmona/keystone",
-    "josezuma/yc-pitch-deck-max"
+    "josezuma/yc-pitch-deck-max",
+    "Arinin77/image2editable-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7719,7 +7726,8 @@
     "ronitgupta138/Local-Jev",
     "ai4curation/jevotron",
     "claudfuen/jev-genui",
-    "LabGuy94/jevtok"
+    "LabGuy94/jevtok",
+    "0x7067/jev-browse"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8188,7 +8196,15 @@
     "liuliu-66-create/ll-video-motion",
     "Ali-Aria/aria-animator",
     "mattypark/Motion-graphics-skill",
-    "Hainrixz/motion-architect"
+    "Hainrixz/motion-architect",
+    "lazypay/Archscribe",
+    "chenjun198711/book-video-generator",
+    "derek-zhuolin/motion-skill",
+    "aaksa/facecammaxxing",
+    "GODGOD126/opus-5-5-86-styles-in-motion",
+    "rtadewald/agent-video-editor",
+    "AlexAnsart/demo-studio",
+    "oxygenframe/oxframe-sdk"
    ],
    "sub_skills": [
     {

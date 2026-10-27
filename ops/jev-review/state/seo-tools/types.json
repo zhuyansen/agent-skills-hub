@@ -4254,5 +4254,37 @@
    "marketing": 0.92
   },
   "kind": "marketing"
+ },
+ {
+  "repo": "zhtyyx/codex-seo",
+  "stars": 7,
+  "description": "Free, open-source SEO audits inside OpenAI Codex CLI. Port of claude-seo: 26 skills, 19 specialist roles, technical SEO / schema / GEO / local / ecommerce.",
+  "scores": {
+   "suite": 0.96,
+   "audit": 0.95,
+   "research": 0.12,
+   "data_mcp": 0.08,
+   "geo": 0.26,
+   "content": 0.15,
+   "links": 0.08,
+   "marketing": 0.07
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "rankmyseo/skills",
+  "stars": 5,
+  "description": "Agent skills for SEO: plan, build, publish, and maintain a website with RankMySEO, Search Console, and GA4. Draft.",
+  "scores": {
+   "suite": 0.96,
+   "audit": 0.18,
+   "research": 0.29,
+   "data_mcp": 0.12,
+   "geo": 0.07,
+   "content": 0.58,
+   "links": 0.04,
+   "marketing": 0.07
+  },
+  "kind": "suite"
  }
 ]

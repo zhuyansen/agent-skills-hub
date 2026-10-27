@@ -3526,5 +3526,19 @@
    "mcp": 0.46
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "ethanplusai/generate-image-skill",
+  "stars": 5,
+  "description": "Give Claude Code image generation with your ChatGPT plan: Claude hands the job to Codex and gets the image back. No API key. Free local FLUX fallback on Apple Silicon. An Agent Skill + CLI.",
+  "scores": {
+   "gpt_image": 0.48,
+   "nano_banana": 0.03,
+   "open_models": 0.26,
+   "editing": 0.03,
+   "design": 0.23,
+   "mcp": 0.64
+  },
+  "kind": "mcp"
  }
 ]

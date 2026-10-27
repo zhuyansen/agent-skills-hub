@@ -3638,5 +3638,19 @@
    "business": 0.05
   },
   "kind": "remote"
+ },
+ {
+  "repo": "azdaev/tgmock",
+  "stars": 5,
+  "description": "Fake Telegram API server for testing bots — pytest plugin + Claude Code MCP server",
+  "scores": {
+   "assistant": 0.06,
+   "remote": 0.35,
+   "framework": 0.48,
+   "utility": 0.07,
+   "fun": 0.06,
+   "business": 0.07
+  },
+  "kind": "framework"
  }
 ]

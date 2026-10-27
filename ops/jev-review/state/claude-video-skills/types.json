@@ -6550,5 +6550,149 @@
    "general": 0.18
   },
   "kind": "promo"
+ },
+ {
+  "repo": "lazypay/Archscribe",
+  "stars": 370,
+  "description": "Premium hand-drawn, dark-background animated architecture & process diagrams. Outputs editable .excalidraw + PNG + genuinely animated GIF. Codex/Claude skill.",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.55,
+   "music": 0.02,
+   "motion": 0.94,
+   "shorts": 0.06,
+   "editing": 0.02,
+   "demo": 0.19,
+   "story": 0.04,
+   "avatar": 0.02,
+   "general": 0.09
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "chenjun198711/book-video-generator",
+  "stars": 14,
+  "description": "《三分钟精读一本书》视频生成器 - Agent Skills 跨平台技能 | 从扣子工作流移植，支持 WorkBuddy、OpenClaw、Codex、TRAE Work、Claude等。",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.95,
+   "music": 0.03,
+   "motion": 0.06,
+   "shorts": 0.09,
+   "editing": 0.05,
+   "demo": 0.16,
+   "story": 0.08,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "aaksa/facecammaxxing",
+  "stars": 6,
+  "description": "Claude Code skill: pro motion-graphics effects on your own talking-head clip - Remotion + GSAP + Three.js over a clean cut-out (text behind your head, 3D card rings, tier lists, kinetic captions, punch-ins)",
+  "scores": {
+   "promo": 0.17,
+   "explainer": 0.3,
+   "music": 0.08,
+   "motion": 0.47,
+   "shorts": 0.94,
+   "editing": 0.78,
+   "demo": 0.41,
+   "story": 0.08,
+   "avatar": 0.05,
+   "general": 0.07
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "GODGOD126/opus-5-5-86-styles-in-motion",
+  "stars": 5,
+  "description": "86 visual styles for code-driven explainer animations. A Codex skill: choose a style, preview 20 seconds, then create the full HTML video.",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.93,
+   "music": 0.04,
+   "motion": 0.58,
+   "shorts": 0.11,
+   "editing": 0.04,
+   "demo": 0.27,
+   "story": 0.08,
+   "avatar": 0.07,
+   "general": 0.58
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "rtadewald/agent-video-editor",
+  "stars": 5,
+  "description": "Meu conjunto de Skills, webapps e workflows para edição de vídeo automatizada com IA",
+  "scores": {
+   "promo": 0.39,
+   "explainer": 0.44,
+   "music": 0.06,
+   "motion": 0.06,
+   "shorts": 0.89,
+   "editing": 0.94,
+   "demo": 0.94,
+   "story": 0.09,
+   "avatar": 0.09,
+   "general": 0.42
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "AlexAnsart/demo-studio",
+  "stars": 5,
+  "description": "Agent skills that turn any web app into a polished, narrated demo video — Playwright capture, smart zooms, ElevenLabs voiceover, Whisper sync and burned captions.",
+  "scores": {
+   "promo": 0.4,
+   "explainer": 0.25,
+   "music": 0.03,
+   "motion": 0.06,
+   "shorts": 0.1,
+   "editing": 0.48,
+   "demo": 0.96,
+   "story": 0.05,
+   "avatar": 0.05,
+   "general": 0.15
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "oxygenframe/oxframe-sdk",
+  "stars": 5,
+  "description": "Motion graphics as Rust code, made for AI agents. A scene is an async fn; oxframe check returns a storyboard and a report that points to the line to fix. Native, deterministic rendering to MP4, WebM, ProRes or PNG — no browser, no Node. Text, code, charts, matrices, formulas, 3D, sound.",
+  "scores": {
+   "promo": 0.67,
+   "explainer": 0.34,
+   "music": 0.08,
+   "motion": 0.38,
+   "shorts": 0.13,
+   "editing": 0.03,
+   "demo": 0.88,
+   "story": 0.13,
+   "avatar": 0.03,
+   "general": 0.83
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "derek-zhuolin/motion-skill",
+  "stars": 8,
+  "description": "不出镜，用文案或录音把想法做成视频。Script- or voice-driven motion graphics with Codex and Remotion: real footage, captions, editable projects and 96 motion studies.",
+  "scores": {
+   "promo": 0.31,
+   "explainer": 0.72,
+   "music": 0.05,
+   "motion": 0.32,
+   "shorts": 0.13,
+   "editing": 0.53,
+   "demo": 0.56,
+   "story": 0.1,
+   "avatar": 0.04,
+   "general": 0.22
+  },
+  "kind": "explainer"
  }
 ]
