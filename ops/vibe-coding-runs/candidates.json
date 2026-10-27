@@ -1,0 +1,107 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": "safe",
+  "source": "control"
+ },
+ {
+  "repo": "obra/superpowers",
+  "kind": "workflow",
+  "stars": 305151,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "github/spec-kit",
+  "kind": "spec",
+  "stars": 142899,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "gsd-build/get-shit-done",
+  "kind": "spec",
+  "stars": 64514,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "eyaltoledano/claude-task-master",
+  "kind": "tasks",
+  "stars": 28276,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "SuperClaude-Org/SuperClaude_Framework",
+  "kind": "workflow",
+  "stars": 23911,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "coleam00/context-engineering-intro",
+  "kind": "template",
+  "stars": 13891,
+  "grade": "safe",
+  "source": "added"
+ },
+ {
+  "repo": "KhazP/vibe-coding-prompt-template",
+  "kind": "template",
+  "stars": 3126,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "michaelshimeles/ralphy",
+  "kind": "loop",
+  "stars": 2975,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "asklokesh/loki-mode",
+  "kind": "loop",
+  "stars": 1108,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "botingw/rulebook-ai",
+  "kind": "template",
+  "stars": 609,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "anombyte93/prd-taskmaster",
+  "kind": "tasks",
+  "stars": 587,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "peterfei/ai-agent-team",
+  "kind": "team",
+  "stars": 443,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "evanklem/evanflow",
+  "kind": "workflow",
+  "stars": 418,
+  "grade": "safe",
+  "source": "page"
+ },
+ {
+  "repo": "nurettincoban/ai-prd-workflow",
+  "kind": "spec",
+  "stars": 298,
+  "grade": "safe",
+  "source": "page"
+ }
+]

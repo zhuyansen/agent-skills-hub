@@ -1,0 +1,8 @@
+I can't code. This is what I want, in my own words:
+
+{BRIEF}
+
+This is the control run: no vibe coding tool is installed. Build it yourself in ~/work (an empty project folder that is already a git repository), with whatever you would normally use on this machine. Do not ask me anything; decide yourself.
+
+- When it is finished I must be able to open it myself, so put it in ~/work/output/. If it opens by double-clicking a file, that file is ~/work/output/index.html. If it needs a command to start, write that one command in ~/work/output/START.txt (it will be run from ~/work).
+- When it is finished, print one line: DELIVERABLE: ~/work/output/

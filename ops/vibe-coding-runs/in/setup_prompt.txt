@@ -1,0 +1,8 @@
+The repository at ~/src is a vibe coding tool for AI coding agents: a Claude Code plugin or skills, a workflow of commands, a task manager, a loop runner, project templates or rules, or an MCP server. Install it the way its own README says, so that a new Claude Code session working in ~/work can use it. ~/work is the project folder: empty, and already a git repository.
+- A plugin: the /plugin slash commands do not work in this session. Use the equivalent commands instead: `claude plugin marketplace add <source>`, then `claude plugin install <name>@<marketplace>`.
+- Skills, commands or agents: put them where the README says Claude Code should load them (~/.claude/... or ~/work/.claude/...).
+- An MCP server: install it and register it with `claude mcp add --scope user ...`.
+- A command-line tool or package: install it. A global npm install may need `sudo`, or a user prefix.
+- A template or installer that sets up the project folder: run it for ~/work, the way the README says.
+If the tool needs a model, use Claude Code itself: this machine is signed in to Claude Code, and there are no other API keys. Do not build anything yet. Do not ask questions; where an installer asks, take its defaults.
+At the end print exactly one line: SETUP: done <what you installed, with the commands> or SETUP: failed <reason>.

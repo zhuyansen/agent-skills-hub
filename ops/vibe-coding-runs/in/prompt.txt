@@ -1,0 +1,10 @@
+I can't code. This is what I want, in my own words:
+
+{BRIEF}
+
+A vibe coding tool from ~/src has been installed on this machine (look in ~/.claude and ~/work/.claude for its skills, commands, agents and plugins, run `claude mcp list` and `claude plugin list`, and check ~/work for files it set up; a command-line tool is on the PATH). Build what I asked for with it, following the tool's own README and workflow, the way its author says to use it. You are working in ~/work, an empty project folder that is already a git repository.
+
+- If the tool's workflow asks me a question or needs my approval, stop and ask me; I will answer. Do not ask me anything the tool does not ask.
+- If the tool cannot be used here (it needs another paid key, an account or a desktop app), stop and say why. Do not build it some other way instead.
+- When it is finished I must be able to open it myself, so put it in ~/work/output/. If it opens by double-clicking a file, that file is ~/work/output/index.html. If it needs a command to start, write that one command in ~/work/output/START.txt (it will be run from ~/work).
+- When it is finished, print one line: DELIVERABLE: ~/work/output/
