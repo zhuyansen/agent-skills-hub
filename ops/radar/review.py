@@ -38,10 +38,14 @@ only when the lead has something for it.
    "keywords": {"rows": [{"phrase", "kind", "per_day", "decision", "now"}],
                 "tails": [str], "cosearch": [str]},          names the keyword table read
    "site": {"domain", "registered", "age_days", "authors", "by": {network: people},
-            "traffic": {"driven", "shares", "visits", "month", "registered"} or null}}
+            "traffic": {"driven", "shares", "visits", "month", "registered"} or null},
                                                                  new sites people link
+   "first_by": {signal: "YYYY-MM-DD"}}  the day each signal first reported the lead: which one
+                                        came first. Kept from FIRST_BY_SINCE on: a lead first
+                                        seen before it has it only for the signals since.
 A lead recorded again merges (merge_evidence): posts are the union by URL, the 10
-most-liked kept; every other key takes the newest value.
+most-liked kept; first_by keeps each signal's earliest day; every other key takes the
+newest value.
 """
 from __future__ import annotations
 
@@ -89,6 +93,7 @@ EVIDENCE_POSTS = 10
 EVIDENCE_EXAMPLES = 10
 POST_CHARS = 280
 EVIDENCE_PARTS = ("meme", "keywords", "site")   # kept as the signal built them
+FIRST_BY_SINCE = date(2026, 10, 27)             # the day evidence began to keep which signal reported a lead first
 _EVIDENCE_COLUMN: bool | None = None            # radar_leads.evidence exists (migration 027); asked once a run
 _UPSERT = """
     INSERT INTO radar_leads (term, first_seen, last_seen, signals, notes, named, variants{col})
@@ -229,7 +234,8 @@ def evidence(row: dict, today: date) -> dict:
     out = {"v": EVIDENCE_V, "updated": today.isoformat(),
            "posts": top_posts([*row.get("posts", []), *row.get("evidence_posts", [])]),
            "examples": [str(e) for e in row.get("examples", []) if e][:EVIDENCE_EXAMPLES],
-           "variants": list(row.get("variants", [])), **{k: row.get(k) for k in EVIDENCE_PARTS}}
+           "variants": list(row.get("variants", [])), **{k: row.get(k) for k in EVIDENCE_PARTS},
+           "first_by": {k: today.isoformat() for k in sorted(set(row.get("kinds") or []))}}
     return {k: v for k, v in out.items() if v not in (None, "", [], {})}
 
 
@@ -239,7 +245,13 @@ def merge_evidence(old: dict | None, new: dict) -> dict:
     old = old if isinstance(old, dict) else {}
     merged = {**old, **{k: v for k, v in new.items() if k != "posts"}}
     merged["posts"] = top_posts([*old.get("posts", []), *new.get("posts", [])])
-    return {k: v for k, v in merged.items() if v != []}
+    merged["first_by"] = earliest(old.get("first_by") or {}, new.get("first_by") or {})
+    return {k: v for k, v in merged.items() if v not in ([], {})}
+
+
+def earliest(a: dict[str, str], b: dict[str, str]) -> dict[str, str]:
+    """{signal: the earlier of its two days}."""
+    return {k: min(d for d in (a.get(k), b.get(k)) if d) for k in sorted(set(a) | set(b))}
 
 
 def top_posts(posts: list[dict]) -> list[dict]:

@@ -637,6 +637,14 @@ def test_evidence_merge_keeps_posts_by_url_and_the_newest_of_the_rest():
     assert review.merge_evidence(None, new) == new
 
 
+def test_evidence_keeps_the_day_each_signal_first_reported_a_lead():
+    first = review.evidence({"kinds": ["x"]}, date(2026, 10, 27))
+    later = review.merge_evidence(first, review.evidence({"kinds": ["hf", "x"]}, date(2026, 10, 29)))
+    assert later["first_by"] == {"hf": "2026-10-29", "x": "2026-10-27"}
+    assert review.merge_evidence(later, review.evidence({"kinds": ["x"]}, date(2026, 10, 25)))["first_by"]["x"] == "2026-10-25"
+    assert "first_by" not in review.evidence({"examples": ["e"]}, date(2026, 10, 27))   # a row with no signal adds none
+
+
 class _FakeDB:
     """Enough of an engine for review.record() and review.review(): the column check, one lead already held, and
     no lead due."""
