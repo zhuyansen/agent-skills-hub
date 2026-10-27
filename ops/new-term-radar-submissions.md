@@ -14,14 +14,14 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 
 | 站 | 状态 | 备注 |
 |---|---|---|
-| PyPI / 官方 MCP 注册表 | ✅ 0.5.2(10-26) | `io.github.zhuyansen/new-term-radar` active latest;0.5.2 = MCP 工具报错原因能到 agent(0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例) |
+| PyPI / 官方 MCP 注册表 | ✅ 0.6.0(10-27) | `io.github.zhuyansen/new-term-radar` active latest;0.5.2 = MCP 工具报错原因能到 agent(0.5.1 = skill 跑锁定版本、付费前等同意、读到的内容只当数据、缺 config 用自带示例) |
 | Claude Code 插件市场(仓库自带)/ skills.sh / ClawHub / Tessl | ✅ | |
 | Glama | ✅ A 评级(10-26 核) | 页面数据带 `author:claimed`,渲染页上没看到认领标记(证据偏弱);punkpeye 的前提可能已满足 |
 | LobeHub / mcpservers.org(Marketing)/ cursor.directory / Agensi / Skillstore / 魔搭(MCP + Skill) | ✅ | |
 | Jimmy Song AI 原生全景图 | ✅ issue #34 10-21 以 completed 关闭 | landscape.jimmysong.io/projects/new-term-radar/(Tracked) |
 | SkillsMP / skillsdirectory / skillget / skillsllm / agentskillshub.top | ✅ 自动收录 | |
 | Anthropic 插件目录 | ⏳ 等人工审 | v0.5.1 @4fd9a0d「Held by directory policy, with Anthropic」(锁版本 uvx 必然人工审)。10-26 发了 0.5.2(报错原因能到 agent)并补 PRIVACY.md 和隐私/支持/文档链接(0b6b164),目录约每 6 小时扫一次新提交 |
-| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录 |
+| WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录。**10-27 锁 0.6.0 的新包已打好(`ops/workbuddy/new-term-radar.zip`),两个浏览器里 WorkBuddy 都已退出登录,等用户在 Chrome 登录后上传** |
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
 | mcp.so | ⏳ issue chatmcp/mcpso#5714 | issue 队列很慢 |
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
@@ -39,6 +39,13 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 ## 10-27 公开 0.6.0
 
 本地 v0.5 线（0.5.3/0.6.0/0.7.0）清掉站名后并进公开版，加上新站最先排上的词、首页站点注册时间（只记录）和新站信号修复（AIsa 工具路由 10-15 起拒 whois 的数组筛选，改走 REST），以 **0.6.0** 推到 main（e1ce49e，单个提交接在公开版后面，v0.5 的原始提交没上去）。各平台上架的版本要跟着更新：ClawHub、LobeHub、cursor.directory、Skillstore、WorkBuddy 连接器（锁 0.5.2）。
+
+10-27 更新结果：
+- **ClawHub** ✅ 3 个 skill 都是 0.6.0（从 v0.6.0 标签发），扫描 CLEAN（VirusTotal / LLM），07:49–07:56 UTC 过审。
+- **LobeHub** ✅ `plugin update` 0.5.2 → 0.6.0，published（07:42 UTC）；页面上「uvx new-term-radar==0.5.2」那句来自它缓存的旧 README（GitHub main 上已没有 0.5.2），等它自己重抓。
+- **cursor.directory** ✅ 3 个 skill 正文改成 0.6.0（ai-listening 6 处版本；new-term-radar、seo-new-keywords-research 补了 page_age/age/year 等字段说明和表头新列），存前存后哈希都对（15c8b18d…/f1ee9920…/c1f183bb…）；未登录打开公开页显示 0.6.0。页面数据 `scan_status: safe`（理由写着 Skills pin PyPI 0.6.0），`status: pending`。
+- **Skillstore** ❌ 还是 10-20 的 r1（3153a4b，0.5.0，Medium Risk），10-26 的认领还在等管理员；Chrome 里 Skillstore 没登录，重新审计要用户 GitHub 登录后操作。
+- **WorkBuddy** ⏳ 见上表。
 
 ## 10-26 逐站核查(后台代理,只读)
 
