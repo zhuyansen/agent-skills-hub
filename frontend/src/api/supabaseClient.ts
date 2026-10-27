@@ -213,6 +213,13 @@ function searchKind(search: string): "words" | "prefix" | "substring" {
   return "prefix";
 }
 
+function substringSearch(query: SkillsQuery, search: string): SkillsQuery {
+  const pat = `%${search}%`;
+  return query.or(
+    `repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`,
+  );
+}
+
 function applySearch(query: SkillsQuery, search: string): SkillsQuery {
   const kind = searchKind(search);
   if (kind === "words") {
@@ -223,10 +230,34 @@ function applySearch(query: SkillsQuery, search: string): SkillsQuery {
       config: "english",
     });
   }
-  const pat = `%${search}%`;
-  return query.or(
-    `repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`,
-  );
+  return substringSearch(query, search);
+}
+
+const QUICK_SEARCH_COLUMNS =
+  "id,repo_full_name,repo_name,repo_url,description,author_name,author_avatar_url,stars,score,category,language,platforms,size_category,repo_size_kb,author_followers,forks,open_issues,total_issues,total_commits,topics,license,star_momentum,project_type,last_commit_at,created_at,last_synced,quality_completeness,quality_clarity,quality_specificity,quality_examples,quality_agent_readiness,quality_score,readme_size,readme_structure_score,estimated_tokens,homepage_url";
+
+/**
+ * Search-as-you-type (header and hero search boxes): every word, the last one
+ * half typed, as a word prefix on search_vector. This ran the substring match
+ * on each keystroke, and a rare fragment ("amzo", "yamax") timed out: most of
+ * the 500s left in the two hours after the list fix (2026-10-27).
+ * Han/kana/Hangul input keeps the substring match.
+ */
+export async function sbQuickSearch(
+  query: string,
+  limit: number,
+): Promise<Skill[]> {
+  const search = query.trim();
+  const words = UNSPACED_SCRIPT.test(search) ? "" : prefixTsQuery(search);
+  const base = skillsQuery(QUICK_SEARCH_COLUMNS);
+  const filtered = words
+    ? base.textSearch("search_vector", words, { config: "english" })
+    : substringSearch(base, search);
+  const { data, error } = await filtered
+    .order("score", { ascending: false })
+    .limit(limit);
+  if (error) throw new Error(error.message);
+  return (data ?? []) as unknown as Skill[];
 }
 
 /** The substring search has no index: even a count capped at 1,000 can read

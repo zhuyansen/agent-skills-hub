@@ -32,6 +32,7 @@ import {
   sbFetchTrendingWeeks,
   sbFetchTrendingHistory,
   sbFetchNewThisWeek,
+  sbQuickSearch,
   sbSubmitSkill,
   sbSubscribe,
   sbVerifyEmail,
@@ -148,22 +149,7 @@ export async function fetchQuickSearch(
   limit = 8,
 ): Promise<Skill[]> {
   if (!query.trim()) return [];
-  if (USE_SUPABASE) {
-    const sb = supabase!;
-    const pat = `%${query}%`;
-    const { data, error } = await sb
-      .from("skills")
-      .select(
-        "id,repo_full_name,repo_name,repo_url,description,author_name,author_avatar_url,stars,score,category,language,platforms,size_category,repo_size_kb,author_followers,forks,open_issues,total_issues,total_commits,topics,license,star_momentum,project_type,last_commit_at,created_at,last_synced,quality_completeness,quality_clarity,quality_specificity,quality_examples,quality_agent_readiness,quality_score,readme_size,readme_structure_score,estimated_tokens,homepage_url",
-      )
-      .or(
-        `repo_name.ilike.${pat},description.ilike.${pat},author_name.ilike.${pat},topics.ilike.${pat}`,
-      )
-      .order("score", { ascending: false })
-      .limit(limit);
-    if (error) throw new Error(error.message);
-    return (data ?? []) as Skill[];
-  }
+  if (USE_SUPABASE) return sbQuickSearch(query, limit);
   return request<Skill[]>(
     `/api/skills?search=${encodeURIComponent(query)}&page_size=${limit}&sort_by=score&sort_order=desc`,
   ).then((r: Skill[] | { items: Skill[] }) => ("items" in r ? r.items : r));
