@@ -63,3 +63,27 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 ## 不投
 
 沿用雷达的「不投」:agentskill.sh、PulseMCP(自动从官方注册表拉)、Cline Marketplace、Smithery、travisvn、navi.tools、各站付费加速档;bmpi-dev/awesome-seo(雷达 #104 以「太新、依赖付费 API」被关,backlink-guard 同样情况)。
+
+## 10-28 复查与 0.11.1
+
+**0.11.1（588ff58）**：buildwithclaude #564 10-28 被关，理由是 skill 第 3 节仍让 agent 直接提交、开 PR；改成「Nothing goes out without the user's yes」（先给用户看去处和原文，等点头；vet 结果不算点头），MCP 服务 instructions 同步，加测试。Release v0.11.1 → PyPI + 官方注册表 0.11.1 latest。`ops/release/propagate.py backlink-guard 0.11.1`：ClawHub 已提交（等安全扫描）、LobeHub 0.11.1 已发、WorkBuddy 本地包换成 0.11.1（审核中，没传）。
+
+| 站 | 10-28 状态 |
+|---|---|
+| buildwithclaude | #564 10-28 关（理由见上）→ **#597**（锁 0.11.1 @588ff58，三项检查过，空配置目录装出 0.11.1 且带新规则） |
+| heilcheng/awesome-agent-skills | **#628**（Marketing 末尾一行，Check submission ✅）。10-27 20:05 的定时任务卡在权限确认没交，10-28 停掉后在会话里交的。对方每周批量合并、原 PR 自动关 |
+| TensorBlock #4603 / raycast #32784 | ✅ 10-27 合并 |
+| DSH 清单 | Dominic789654#697 10-27 合并；0xsline#757 没动（那仓库 10-16 后没合过 PR）；10-28 加了 topic `dsh-plugin`，等社区插件市场扫到 |
+| Anthropic 插件目录 | 仍「Held for: Content policy review」，理由 Runs a pinned npx or uvx package；4 个版本待审，588ff58 会再加一个 |
+| WorkBuddy | 仍审核中，列表版本号还是 0.10.1（versionId 8981），审完核对 |
+| ClawHub | ✅ 0.11.1 已上架（接口 latest 0.11.1，下载 111）；0.11.0 时 VirusTotal clean、LLM benign、SkillSpector CAUTION LOW |
+| LobeHub | 0.11.1 已发（0.11.0 时：A 级、Claimed、4 次安装） |
+| cursor.directory | ✅ 10-28 改成 0.11.1（用户重新登录后在 Chrome 改：正文 sha256 993ad97e…、MCP 锁 0.11.1，存后重开核对过，公开页只剩 0.11.1） |
+| Skillstore | #3964 10-27 合并，但审计 Safe→Medium（PyPI 包不在审计范围）；10-28 Submit 页重交（submission 36fb7bd4）→ 更新 PR aiskillstore/marketplace#3975，审计回到 **safe**，等合并 |
+| Tessl | 停在 140a236（0.10.0），75 分，没有手动刷新入口 |
+| 魔搭 | Skill 10-28 自动同步到 0.11.0（手填简介仍写 0.10.0）；MCP 页 README 还是 0.10.0、启动命令不锁版本 → 要用户登录改 |
+| Agensi | Live，正文还是 `==0.10.0` → 要用户登录改 |
+| mdskills | 整站报错（Application error），看不出 |
+| mcp.directory / agenticskills.io / Glama / mcpservers.org / MCP Market | 都还没有（后三个本来就没投或要用户登录、填邮箱） |
+| 其他 GitHub PR（aitmpl #1277、Awesome-MCP-ZH #854、karanb192 #540、MobinX #948、GetBindu #313、teles #265）和 issue（rootsongjc #36、mcpso #6159、mcpm #489、HelloGitHub #4112、ruanyf #12783） | 都开着、维护者没回复 |
+

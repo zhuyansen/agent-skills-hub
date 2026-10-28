@@ -66,3 +66,25 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 ## 提交前检查(10-13 起)
 
 目标站先过一遍 `~/content/backlink-guard`(`python -m backlink_guard vet <站点>`),结论为 avoid 或触达为 low 的不投。
+
+## 10-28 复查
+
+| 站 | 10-28 状态 |
+|---|---|
+| heilcheng/awesome-agent-skills | **#629**（Marketing 末尾一行，Check submission ✅），和 backlink-guard #628 一起在会话里交（定时任务卡住了） |
+| JackyST0/awesome-agent-skills #127 | ✅ 10-27 合并 |
+| DSH 清单 | Dominic789654#697 10-27 合并（MCP Servers 末尾）；0xsline#757 没动；10-28 加 topic `dsh-plugin` |
+| Anthropic 插件目录 | 仍 Held（Runs a pinned npx or uvx package），10-20 提交至今 7 个版本待审；5ec2c47（只有 skill）Publish 按钮灰，要等整个插件审完 |
+| WorkBuddy | 仍审核中，列表版本号还是 0.5.2（versionId 8984） |
+| ClawHub | 3 个 skill 0.6.0，VirusTotal clean、LLM benign；SkillSpector CAUTION（主 skill MEDIUM 21 分 1 条，另两个 LOW）；下载 211/189/207 |
+| LobeHub | published 0.6.0，旧 README 缓存已刷掉（10-27 20:44 UTC）；A 级、Claimed、16 次安装 |
+| cursor.directory | 公开 0.6.0，scan_status safe；还没 logo（要登录上传） |
+| Skillstore | #3965 10-27 合并：ai-listening、seo-new-keywords-research 变 Safe，主 skill 仍 Medium；认领还没通过 |
+| Tessl | 自己同步到 2b63b8e（SKILL.md 锁 0.5.2，比 0.6.0 落后），分数 75/71/76 |
+| 魔搭 | Skill 10-28 同步到 0.6.0；MCP 页没变（README 有 git clone、启动命令不锁版本）→ 要用户登录改 |
+| Agensi | 在线，正文还是 10-20 版（pip 不锁版本、写着「或 clone」）→ 要用户登录改 |
+| mdskills | 整站报错，看不出 |
+| mcp.directory / MCP Market / AIbase / agenticskills.io | 都还没有 |
+| skills.sh / SkillsMP / skillsdirectory / skillget | 都在；skills.sh 74 次安装（27/24/23）；SkillsMP 数据到 10-24 |
+| GitHub PR（serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328）和 issue（mcpso #5714、mcpm #476、HelloGitHub #4051、ruanyf #12613） | 都开着、维护者没回复（HelloGitHub 只有「邮件已收到」） |
+
