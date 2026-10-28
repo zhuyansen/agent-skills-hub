@@ -1,7 +1,7 @@
 name: Index watch
 
 # Which of our pages Google has indexed, and how many days that took (ops/index/index_watch.py):
-# reads the sitemaps of agentskillshub.top and jasonzhu.ai, takes pages with impressions as
+# reads the sitemaps of agentskillshub.top, jasonzhu.ai and the sites in INDEX_WATCH_EXTRA_SITES, takes pages with impressions as
 # indexed, and spends the URL Inspection quota (2,000 a day per property) on the rest, new pages
 # first. Writes index_pages and index_checks (migration 031). The log prints counts only.
 # Shadow mode from 2026-10-28 for two weeks: it records and alerts nobody.
@@ -40,4 +40,5 @@ jobs:
       - name: Watch
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          INDEX_WATCH_EXTRA_SITES: ${{ secrets.INDEX_WATCH_EXTRA_SITES }} # sites not named in this repo; the log prints "extra site N"
         run: python ops/index/index_watch.py

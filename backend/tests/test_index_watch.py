@@ -59,6 +59,37 @@ def test_the_first_run_dates_nothing_and_later_runs_date_new_urls():
     assert later[f"{HUB}/best/new/"].first_seen == TODAY and later[f"{HUB}/best/new/"].kind == "best"
 
 
+def test_a_site_with_a_known_launch_day_dates_its_first_pages_by_it():
+    first = iw.merge({}, {"https://new.example/": None}, "https://new.example/", TODAY, since=days_ago(1))
+    assert first["https://new.example/"].first_seen == days_ago(1)
+
+
+def test_sites_from_the_secret_come_after_ours_and_print_without_their_address():
+    env = {iw.EXTRA_SITES: '{"https://new.example/": {"sitemap": "https://new.example/sitemap.xml", "since": "2026-10-28"}}'}
+    listed = iw.sites(env)
+    assert [s for s, *_ in listed[:-1]] == list(iw.SITES)
+    assert listed[-1] == ("https://new.example/", "https://new.example/sitemap.xml", date(2026, 10, 28), "extra site 1")
+    assert iw.sites({}) == [(s, r, None, s) for s, r in iw.SITES.items()]
+
+
+def test_a_failing_secret_site_names_neither_itself_nor_stops_the_run(monkeypatch, capsys):
+    env = {iw.EXTRA_SITES: '{"https://new.example/": {"sitemap": "https://new.example/sitemap.xml"}}'}
+    monkeypatch.setattr(iw.os, "environ", env)
+    monkeypatch.setattr(iw.gsc, "get_service", lambda: None)
+    def fake(sess, conn, site, root, today, limit, since=None):
+        if site.startswith("https://new.example"):
+            raise ConnectionError(f"could not reach {root}")
+        return Counter(listed=1)
+    monkeypatch.setattr(iw, "watch", fake)
+    try:
+        iw.main(["--dry-run"])
+    except SystemExit as stop:
+        assert "extra site 1" in str(stop)
+    out = capsys.readouterr().out
+    assert "extra site 1: failed (ConnectionError)" in out and "new.example" not in out
+    assert all(f"{s}: listed 1" in out for s in iw.SITES)
+
+
 def test_a_url_gone_from_the_sitemaps_is_kept_but_marked():
     pages = iw.merge({}, {f"{HUB}/skill/a/b/": None}, SITE, days_ago(1))
     pages = iw.merge(pages, {}, SITE, TODAY)

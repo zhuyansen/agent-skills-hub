@@ -14,6 +14,7 @@ Needs ops/gsc/token.json (webmasters.readonly is enough) and SUPABASE_DB_URL. Sh
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 import time
@@ -34,6 +35,9 @@ SITES = {  # Search Console property → its sitemap
     "sc-domain:agentskillshub.top": "https://agentskillshub.top/sitemap.xml",
     "sc-domain:jasonzhu.ai": "https://jasonzhu.ai/sitemap.xml",
 }
+# more sites, from a secret, never named in this public repo or its logs:
+# {"<property>": {"sitemap": "<url>", "since": "<launch day, YYYY-MM-DD>"}}
+EXTRA_SITES = "INDEX_WATCH_EXTRA_SITES"
 INSPECT = "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect"
 DAILY_BUDGET = 1800        # inspections per property a day: the quota is 2,000, the rest is for checks by hand
 PAUSE = 0.12               # seconds between inspections: the quota is 600 a minute
@@ -120,11 +124,12 @@ def sitemap(root: str, get=fetch) -> dict[str, date | None]:
     return listed
 
 
-def merge(pages: dict[str, Page], listed: dict, site: str, today: date) -> dict[str, Page]:
-    """The pages plus what the sitemaps list today. On a site's first run every listed URL predates the watch."""
+def merge(pages: dict[str, Page], listed: dict, site: str, today: date, since: date | None = None) -> dict[str, Page]:
+    """The pages plus what the sitemaps list today. On a site's first run every listed URL predates the
+    watch, unless the site's launch day is known: then that is the day they appeared."""
     first_run = not pages
     for url, lastmod in listed.items():
-        page = pages.get(url) or Page(url, site, kind(url), first_seen=None if first_run else today)
+        page = pages.get(url) or Page(url, site, kind(url), first_seen=since if first_run else today)
         page.lastmod, page.in_sitemap = lastmod, True
         pages[url] = page
     for url in pages.keys() - listed.keys():
@@ -252,8 +257,8 @@ def save(conn, pages, checks: list[dict]) -> None:
 
 # --- a run ------------------------------------------------------------------------------
 
-def watch(sess, conn, site: str, root: str, today: date, limit: int) -> Counter:
-    pages = merge(load(conn, site), sitemap(root), site, today)
+def watch(sess, conn, site: str, root: str, today: date, limit: int, since: date | None = None) -> Counter:
+    pages = merge(load(conn, site), sitemap(root), site, today, since)
     seen = searched(sess, site, today)
     note_search(pages, seen, today)
     save(conn, pages.values(), [])
@@ -295,14 +300,32 @@ def report(conn) -> None:
         print("\n".join(" | ".join(str(v) for v in row) for row in rows), end="\n\n")
 
 
+def sites(env: dict | None = None) -> list[tuple[str, str, date | None, str]]:
+    """(property, sitemap, launch day, the name the log prints): a site from the secret prints as "extra site N"."""
+    out = [(site, root, None, site) for site, root in SITES.items()]
+    extra = json.loads((os.environ if env is None else env).get(EXTRA_SITES) or "{}")
+    for n, (site, conf) in enumerate(sorted(extra.items()), 1):
+        since = date.fromisoformat(conf["since"]) if conf.get("since") else None
+        out.append((site, conf["sitemap"], since, f"extra site {n}"))
+    return out
+
+
 def main(argv: list[str]) -> None:
     if argv[:1] == ["report"]:
         return report(connect())
     limit = int(argv[argv.index("--limit") + 1]) if "--limit" in argv else DAILY_BUDGET
     conn = None if "--dry-run" in argv else connect()
-    sess, today = gsc.get_service(), date.today()
-    for site, root in SITES.items():
-        print(line(site, watch(sess, conn, site, root, today, limit)), flush=True)
+    sess, today, failed = gsc.get_service(), date.today(), []
+    for site, root, since, name in sites():
+        try:
+            print(line(name, watch(sess, conn, site, root, today, limit, since)), flush=True)
+        except Exception as e:  # noqa: BLE001 - a secret site's traceback would print its address
+            if name == site:
+                raise
+            failed.append(name)
+            print(f"{name}: failed ({type(e).__name__})", flush=True)
+    if failed:
+        sys.exit(f"failed: {', '.join(failed)}")
 
 
 if __name__ == "__main__":
