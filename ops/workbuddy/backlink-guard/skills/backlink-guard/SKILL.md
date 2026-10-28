@@ -13,7 +13,7 @@ examples_en:
   - "Check for free which of these directories I should skip"
   - "Does this page link to my site, and does the link pass ranking credit?"
   - "Audit my site's backlinks for link spam"
-version: "0.11.0"
+version: "0.11.1"
 author: "Jason Zhu"
 ---
 
