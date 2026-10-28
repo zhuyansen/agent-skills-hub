@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-28
+1. patch-gg/anymove — 🆕 从一段 AI 视频给任意生物做动作捕捉，自动读关节、绑骨出动画（95★ 95.0/day）
+2. daveebbelaar/bama — 🆕 用一套智能体技能调研、仿制、设计、构建并测试原生 macOS 应用（205★ 56.1/day）
+3. derek-zhuolin/motion-skill — 🆕 不出镜做视频：用文案或录音驱动 Codex 与 Remotion 生成动态图形短片（82★ 52.9/day）
+4. emanuele-em/kanzo — 🆕 自托管人与智能体共用的看板，单个 4MB 二进制、2 毫秒启动零配置（72★ 28.2/day）
+5. liuhaisi2026212-maker/taishang-laojun — 🆕 帮你做抖音/小红书短视频：拆爆款、定选题、写口播稿与标题、去 AI 味（115★ 20.2/day）
+6. vkorost/screenplink — 🆕 把哑光显示器变成激光空枪射击靶，用普通摄像头侧拍判定命中（61★ 20.1/day）
+7. Seagey/couch-tv — 🆕 自建 Google TV 主屏与手机遥控器，可选接入 Claude 助手帮你配置（23★ 19.7/day）
+8. xming521/WeClone — 用你的聊天记录打造懂你的助手，以及说话像你的数字分身（18332★ 18.3/day）
+9. lucianodiisouza/flecha-browser — 🆕 打造开源 Arc 替代品：面向开发者的 macOS 浏览器，带 Spaces 与命令栏（93★ 17.5/day）
+10. FrigadeHQ/hob — 🆕 在自己电脑上免费用 AI 的开源客户端，替代 Claude 与 ChatGPT 桌面版（159★ 12.1/day）
+🎯 今日趋势：**9 席**标 🆕；视频创作占 **3 席**（anymove、motion-skill、太上老君），macOS 原生应用占 **2 席**（bama、flecha-browser）。
+> 注：去重范围＝repo 内 archive 全部 125 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,251 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 37 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（smhanov/agentloop 52.7h、qybaihe/bla 58.4h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①SAOS-3624/dsh-video-storyboard（39★ 35.4/day）：账号 10-26 新建、仅此 1 仓、1 粉，单仓突起，保守排除；②Phantom-Con-Artist/unparalleled-skillset（33★ 13.3/day）：账号 08-30 新建、4 粉，其余 17 仓 ≤2★，单仓爆星，保守排除；③其余均已在历史榜单出现或 velocity 低于第 10 席。入选项复核（`gh api`）：第 1 席 patch-gg 账号 10-05 新建、6 粉，但名下另有 trompe 172★，实时 186★/17 fork（**轻红旗**，保留）；第 2 席 daveebbelaar 2017 建号、2,969 粉、名下另有 4,677★ 仓；第 3 席 derek-zhuolin 11 粉，名下另有 46★/32★ 仓，fork 15；第 4 席 emanuele-em 115 粉、名下 proxelar 1,089★；第 5 席 liuhaisi2026212-maker 4 粉、仅 2 仓（另一仓 0★），但实时 185★/32 fork 比例正常（**轻红旗**，保留）；第 6 席 vkorost 2018 建号、26 粉、35 仓；第 7 席 Seagey 1 粉、其余仓 0★，24★ 配 8 fork（**轻红旗**，保留）；第 8 席 WeClone 为老牌高星项目，first_seen 为新；第 9 席 lucianodiisouza 2015 建号、999 粉、277 仓；第 10 席 FrigadeHQ 为公司组织，名下另有 1,665★/1,398★ 仓。🆕 判定＝created_at 距今 14 天内，仅 WeClone（1,000.8 天）不标，其余九席命中（hob 13.1 天）。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（anymove 186★、bama 306★、motion-skill 89★、kanzo 78★、taishang-laojun 185★、hob 265★），按红线保留快照值。
+
+---
+
 ## 2026-10-27
 1. andyhuo520/digital-human-koubo — 🆕 一张照片生成数字人口播视频，借 Renoise MCP 出片并配 5 种剪辑风格（483★ 483.0/day）
 2. huaxialucaicaizi/ai-startup-skills — 🆕 把 AI 创业拆成 7 步技能：验证、BP、政策、路演、获客、定价到注册（310★ 66.0/day）
