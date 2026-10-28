@@ -1199,6 +1199,14 @@
   "type": "image/png",
   "bytes": 1564385
  },
+ "RoverEva/eva-video-style": {
+  "repo": "RoverEva/eva-video-style",
+  "url": "https://raw.githubusercontent.com/RoverEva/eva-video-style/HEAD/docs/montage.gif",
+  "alt": "Eva Video Style: 21 templates in 8 seconds",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4077694
+ },
  "SHALINS428/Academic-PPT-Skill": {
   "repo": "SHALINS428/Academic-PPT-Skill",
   "url": "https://raw.githubusercontent.com/SHALINS428/Academic-PPT-Skill/HEAD/examples/twibot20/montage.png",
@@ -1319,6 +1327,14 @@
   "type": "image/gif",
   "bytes": 2394819
  },
+ "SunandBean/paper2video": {
+  "repo": "SunandBean/paper2video",
+  "url": "https://raw.githubusercontent.com/SunandBean/paper2video/HEAD/docs/demo.gif",
+  "alt": "paper2video demo: depth to 3D points, query-based detection, BEV occupancy",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 6077694
+ },
  "Sven-LI-sankyuu/presentation-skills": {
   "repo": "Sven-LI-sankyuu/presentation-skills",
   "url": "https://raw.githubusercontent.com/Sven-LI-sankyuu/presentation-skills/HEAD/demos/web-demo-video-synthesis-financial-agent/assets/preview_en.png",
@@ -1326,6 +1342,14 @@
   "score": 1.4,
   "type": "image/png",
   "bytes": 255103
+ },
+ "SyanChen7/dancing-notes": {
+  "repo": "SyanChen7/dancing-notes",
+  "url": "https://raw.githubusercontent.com/SyanChen7/dancing-notes/HEAD/assets/showcase/dancing-notes-hero.png",
+  "alt": "Dancing Notes：发光小球沿曲谱跳跃的效果示意",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 1713312
  },
  "Tejashmakwana/motionmaxxing": {
   "repo": "Tejashmakwana/motionmaxxing",
@@ -2511,6 +2535,14 @@
   "type": "image/jpeg",
   "bytes": 86575
  },
+ "haiderfarooq3/paper-reel": {
+  "repo": "haiderfarooq3/paper-reel",
+  "url": "https://raw.githubusercontent.com/haiderfarooq3/paper-reel/HEAD/docs/strip.jpg",
+  "alt": "Seven scenes from the example reel",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 485535
+ },
  "hamelsmu/claude-review-loop": {
   "repo": "hamelsmu/claude-review-loop",
   "url": "https://github.com/user-attachments/assets/75af1351-47e6-4b70-a50a-9b3311773be7",
@@ -2574,6 +2606,14 @@
   "score": 1.95,
   "type": "image/jpeg",
   "bytes": 1065142
+ },
+ "hildlabs/openrig-studio": {
+  "repo": "hildlabs/openrig-studio",
+  "url": "https://raw.githubusercontent.com/hildlabs/openrig-studio/HEAD/docs/compare.gif",
+  "alt": "The same backflip prompt from Opus 5.5 and GPT-6-Astra playing in sync in the Co",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 1170253
  },
  "holy-templar/static-to-video-ad": {
   "repo": "holy-templar/static-to-video-ad",
@@ -2862,6 +2902,14 @@
   "score": 2.75,
   "type": "image/gif",
   "bytes": 551351
+ },
+ "isaaclins/demo-video-skill": {
+  "repo": "isaaclins/demo-video-skill",
+  "url": "https://raw.githubusercontent.com/isaaclins/demo-video-skill/HEAD/examples/navigator/preview.gif",
+  "alt": "Example: a few seconds of the demo video",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1202431
  },
  "isabellagreco1997/script-to-video": {
   "repo": "isabellagreco1997/script-to-video",
@@ -3655,6 +3703,14 @@
   "type": "image/gif",
   "bytes": 932997
  },
+ "precious112/demo-director": {
+  "repo": "precious112/demo-director",
+  "url": "https://raw.githubusercontent.com/precious112/demo-director/HEAD/media/harbor-walkthrough.gif",
+  "alt": "Harbor walkthrough",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 3792926
+ },
  "presubmit/ai-reviewer": {
   "repo": "presubmit/ai-reviewer",
   "url": "https://raw.githubusercontent.com/presubmit/ai-reviewer/main/assets/review_example_3.png",
@@ -3710,6 +3766,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 1870062
+ },
+ "rafiimanggala/paper-collage-skill": {
+  "repo": "rafiimanggala/paper-collage-skill",
+  "url": "https://raw.githubusercontent.com/rafiimanggala/paper-collage-skill/HEAD/docs/demo.gif",
+  "alt": "Three example scenes: sleep, gym, travel",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4592132
  },
  "raye-deng/open-code-review": {
   "repo": "raye-deng/open-code-review",
@@ -4454,6 +4518,14 @@
   "score": 1.5,
   "type": "image/png",
   "bytes": 71764
+ },
+ "y-wi/horizon-montage-generic": {
+  "repo": "y-wi/horizon-montage-generic",
+  "url": "https://raw.githubusercontent.com/y-wi/horizon-montage-generic/HEAD/docs/qa_sheet.jpg",
+  "alt": "QA contact sheet of every cut in the rendered film",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 343524
  },
  "ybuild-ai/ai-game-art-pipeline-skill": {
   "repo": "ybuild-ai/ai-game-art-pipeline-skill",

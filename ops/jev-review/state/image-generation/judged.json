@@ -16367,5 +16367,42 @@
   "days": 595,
   "stars_per_day": 0.0773109243697479,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "thinkbytelabs/flux-ai",
+  "name": "flux-ai",
+  "stars": 8,
+  "description": "Self-hosted orchestrator for AI-agent workflows defined in YAML. Single Rust binary; Anthropic, OpenAI-compatible, gRPC and MCP tools.",
+  "topics": [
+   "agentic-ai",
+   "ai-agents",
+   "anthropic",
+   "llm",
+   "mcp",
+   "openai",
+   "orchestration",
+   "rust",
+   "self-hosted",
+   "workflow-engine"
+  ],
+  "created": "2026-07-10",
+  "pushed": "2026-10-25",
+  "source": "topic",
+  "readme_chars": 34117,
+  "names_model": false,
+  "on_subject": 0.02,
+  "is_software": 0.99,
+  "shows_result": 0.82,
+  "one_command_start": 0.84,
+  "specific_outcome": 0.93,
+  "complete_docs": 0.91,
+  "novel_angle": 0.48,
+  "shareable_output": 0.69,
+  "quality": 0.875,
+  "tier": "高",
+  "hit_prior": 0.6633333333333332,
+  "days": 110,
+  "stars_per_day": 0.07272727272727272,
+  "verdict": "off_topic"
  }
 ]

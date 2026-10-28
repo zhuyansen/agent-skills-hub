@@ -3554,5 +3554,47 @@
    "rules": 0.34
   },
   "kind": "detector"
+ },
+ {
+  "repo": "pbakaus/impeccable",
+  "stars": 90934,
+  "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+  "scores": {
+   "writing": 0.08,
+   "detector": 0.81,
+   "chinese": 0.02,
+   "code": 0.31,
+   "design": 0.94,
+   "rules": 0.91
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "Ecow0ker/econ-humanizer-skills",
+  "stars": 5,
+  "description": "经济学论文去AI味与学术润色Skill",
+  "scores": {
+   "writing": 0.33,
+   "detector": 0.77,
+   "chinese": 0.47,
+   "code": 0.06,
+   "design": 0.05,
+   "rules": 0.7
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "pengchenghaoche51/turnitin0_skill",
+  "stars": 5,
+  "description": "Codex / Claude Code skill for Turnitin AI detection, similarity checking, and AI text humanization.  With this skill, you can get Turnitin AI detection and similarity reports before submitting your document — usually within 10 minutes. You can also humanize your text to reduce AI detection scores and make AI-assisted writing sound more natural.",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.89,
+   "chinese": 0.21,
+   "code": 0.08,
+   "design": 0.05,
+   "rules": 0.11
+  },
+  "kind": "detector"
  }
 ]

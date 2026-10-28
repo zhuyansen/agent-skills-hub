@@ -4852,5 +4852,37 @@
   "days": 1,
   "stars_per_day": 58.0,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "pbakaus/impeccable",
+  "name": "impeccable",
+  "stars": 90934,
+  "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+  "topics": [
+   "agent-skills",
+   "ai",
+   "anti-slop",
+   "design",
+   "slop"
+  ],
+  "created": "2025-11-16",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 30620,
+  "names_model": false,
+  "on_subject": 0.92,
+  "is_software": 0.96,
+  "shows_result": 0.83,
+  "one_command_start": 0.84,
+  "specific_outcome": 0.73,
+  "complete_docs": 0.72,
+  "novel_angle": 0.73,
+  "shareable_output": 0.76,
+  "quality": 0.78,
+  "tier": "高",
+  "hit_prior": 0.7733333333333333,
+  "days": 346,
+  "stars_per_day": 262.8150289017341,
+  "verdict": "admit"
  }
 ]

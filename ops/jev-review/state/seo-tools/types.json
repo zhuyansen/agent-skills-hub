@@ -4286,5 +4286,37 @@
    "marketing": 0.07
   },
   "kind": "suite"
+ },
+ {
+  "repo": "ilang-ai/agent-ready-geo",
+  "stars": 6,
+  "description": "Is your site agent-ready? Agent Ready GEO is an agent skill that takes your website to 100/100 on isitagentready.com (Level 5, Agent-Native): llms.txt, Markdown for agents, WebMCP, MCP server card, Agent Skills index, API catalog, OAuth discovery, DNS-AID. Groundwork for GEO (generative engine optimization), AEO and AI SEO. Written in iLang.",
+  "scores": {
+   "suite": 0.22,
+   "audit": 0.2,
+   "research": 0.03,
+   "data_mcp": 0.05,
+   "geo": 0.31,
+   "content": 0.07,
+   "links": 0.02,
+   "marketing": 0.09
+  },
+  "kind": "geo"
+ },
+ {
+  "repo": "Moksa1123/rankmath-seo-wp",
+  "stars": 5,
+  "description": "Rank Math SEO compliant WordPress article writer skill. Battle-tested on moksaweb.com. Compatible with Claude Code, Cursor, Codex CLI, Gemini CLI, Devin Desktop (Windsurf), GitHub Copilot, Continue, and Claude.ai.",
+  "scores": {
+   "suite": 0.14,
+   "audit": 0.07,
+   "research": 0.05,
+   "data_mcp": 0.02,
+   "geo": 0.09,
+   "content": 0.89,
+   "links": 0.02,
+   "marketing": 0.06
+  },
+  "kind": "content"
  }
 ]

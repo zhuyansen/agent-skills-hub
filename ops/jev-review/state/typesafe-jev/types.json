@@ -5278,5 +5278,20 @@
    "general": 0.13
   },
   "kind": "agent"
+ },
+ {
+  "repo": "hiroki-abe-58/sokudan",
+  "stars": 6,
+  "description": "Japanese System One decision model (Jev-style): typed answers and probabilities in one forward pass, no text generation. Includes bench_ja/bench_en and a Laya position-bias repro.",
+  "scores": {
+   "replica": 0.91,
+   "agent": 0.07,
+   "devtool": 0.11,
+   "sdk": 0.78,
+   "business": 0.65,
+   "consumer": 0.13,
+   "general": 0.14
+  },
+  "kind": "replica"
  }
 ]

@@ -106,7 +106,8 @@
    ],
    "exclude_repos": [
     "MoaKK/AI-Code-Reviewer",
-    "n24q02m/better-code-review-graph"
+    "n24q02m/better-code-review-graph",
+    "wdnmd1265/Audison"
    ]
   },
   "related": [
@@ -1583,7 +1584,8 @@
    "exclude_repos": [
     "smixs/iva",
     "siriusforex-ai/telegram_signal_copier",
-    "robertelee78/claude-telegram-mirror"
+    "robertelee78/claude-telegram-mirror",
+    "ChiSonKon/telegram-business-ai-bot"
    ]
   },
   "related": [
@@ -4348,7 +4350,10 @@
     "adhiprib/humanizer-indonesia",
     "leeandev/stop-slop-ko",
     "Bubblegunn/ai-slop-linter",
-    "zkrun/academic-humanizer-zh"
+    "zkrun/academic-humanizer-zh",
+    "pbakaus/impeccable",
+    "Ecow0ker/econ-humanizer-skills",
+    "pengchenghaoche51/turnitin0_skill"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4776,7 +4781,9 @@
     "Pautthead/seo-aeo-agent-skills",
     "tns-research/fog-agents",
     "zhtyyx/codex-seo",
-    "rankmyseo/skills"
+    "rankmyseo/skills",
+    "ilang-ai/agent-ready-geo",
+    "Moksa1123/rankmath-seo-wp"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5255,7 +5262,8 @@
     "KAOPU-XiaoPu/web-design",
     "bergside/typeui.sh",
     "mahmoudilyan/marmoui",
-    "adityarajdigital/designmd"
+    "adityarajdigital/designmd",
+    "mikesheehan54/Claude-Code-Design-AI"
    ]
   },
   "related": [
@@ -7727,7 +7735,8 @@
     "ai4curation/jevotron",
     "claudfuen/jev-genui",
     "LabGuy94/jevtok",
-    "0x7067/jev-browse"
+    "0x7067/jev-browse",
+    "hiroki-abe-58/sokudan"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8204,7 +8213,19 @@
     "GODGOD126/opus-5-5-86-styles-in-motion",
     "rtadewald/agent-video-editor",
     "AlexAnsart/demo-studio",
-    "oxygenframe/oxframe-sdk"
+    "oxygenframe/oxframe-sdk",
+    "haiderfarooq3/paper-reel",
+    "SunandBean/paper2video",
+    "hildlabs/openrig-studio",
+    "Hainrixz/video-editor-architect",
+    "RoverEva/eva-video-style",
+    "rafiimanggala/paper-collage-skill",
+    "mathruffian-dot/claude-motion-explainer-video",
+    "y-wi/horizon-montage-generic",
+    "SyanChen7/dancing-notes",
+    "isaaclins/demo-video-skill",
+    "chenqianshinian/music-mv-studio",
+    "precious112/demo-director"
    ],
    "sub_skills": [
     {

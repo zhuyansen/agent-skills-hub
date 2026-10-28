@@ -6694,5 +6694,221 @@
    "general": 0.22
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "SunandBean/paper2video",
+  "stars": 19,
+  "description": "Claude Code skill: arXiv paper to a narrated, fact-checked explainer video (Three.js scenes, local Kokoro TTS, ffmpeg).",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.07,
+   "shorts": 0.06,
+   "editing": 0.04,
+   "demo": 0.23,
+   "story": 0.04,
+   "avatar": 0.06,
+   "general": 0.04
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Hainrixz/video-editor-architect",
+  "stars": 8,
+  "description": "Clónalo, ábrelo en Claude Code y un agente te guía para entrenar tu propio estilo de edición de reels. Claude dirige, Remotion renderiza. macOS y Windows, ES/EN. Por @soyenriquerocha · tododeia.",
+  "scores": {
+   "promo": 0.59,
+   "explainer": 0.5,
+   "music": 0.06,
+   "motion": 0.09,
+   "shorts": 0.94,
+   "editing": 0.97,
+   "demo": 0.88,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.04
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "RoverEva/eva-video-style",
+  "stars": 7,
+  "description": "Eva Video Style is an open-source AI video editing skill that transforms talking-head videos into professional, engaging content. Featuring ready-to-use templates, cinematic effects, dynamic motion graphics, animated captions, and multiple editing styles. Simply choose a style, apply it to your footage, and let AI do the editing!",
+  "scores": {
+   "promo": 0.37,
+   "explainer": 0.39,
+   "music": 0.14,
+   "motion": 0.14,
+   "shorts": 0.61,
+   "editing": 0.92,
+   "demo": 0.69,
+   "story": 0.06,
+   "avatar": 0.64,
+   "general": 0.07
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "rafiimanggala/paper-collage-skill",
+  "stars": 5,
+  "description": "Claude Code skill for DIY paper collage videos (HyperFrames)",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.2,
+   "music": 0.1,
+   "motion": 0.56,
+   "shorts": 0.92,
+   "editing": 0.12,
+   "demo": 0.2,
+   "story": 0.66,
+   "avatar": 0.06,
+   "general": 0.05
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "mathruffian-dot/claude-motion-explainer-video",
+  "stars": 5,
+  "description": "影片加強版：動畫講原理、照片當證據、MiniMax H3 AI 生成影片帶情緒的原理解說動畫（HyperFrames + 中文旁白）｜Explainer animations with AI video clips",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.97,
+   "music": 0.03,
+   "motion": 0.15,
+   "shorts": 0.2,
+   "editing": 0.1,
+   "demo": 0.22,
+   "story": 0.1,
+   "avatar": 0.06,
+   "general": 0.16
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "y-wi/horizon-montage-generic",
+  "stars": 5,
+  "description": "Claude Code skill: shared-horizon match-cut montage shorts with Remotion, works with any image model",
+  "scores": {
+   "promo": 0.84,
+   "explainer": 0.11,
+   "music": 0.12,
+   "motion": 0.53,
+   "shorts": 0.25,
+   "editing": 0.1,
+   "demo": 0.13,
+   "story": 0.14,
+   "avatar": 0.03,
+   "general": 0.09
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "SyanChen7/dancing-notes",
+  "stars": 5,
+  "description": "Dancing Notes · 跳跃的音符 — A Remotion music visualization Agent Skill by 言说新事.",
+  "scores": {
+   "promo": 0.52,
+   "explainer": 0.16,
+   "music": 0.85,
+   "motion": 0.3,
+   "shorts": 0.08,
+   "editing": 0.06,
+   "demo": 0.58,
+   "story": 0.05,
+   "avatar": 0.02,
+   "general": 0.04
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "isaaclins/demo-video-skill",
+  "stars": 5,
+  "description": "Claude Code skill: turn a website URL into a polished Screen-Studio-style product demo video (Playwright + ElevenLabs + ffmpeg)",
+  "scores": {
+   "promo": 0.72,
+   "explainer": 0.26,
+   "music": 0.05,
+   "motion": 0.11,
+   "shorts": 0.05,
+   "editing": 0.27,
+   "demo": 0.96,
+   "story": 0.05,
+   "avatar": 0.03,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "chenqianshinian/music-mv-studio",
+  "stars": 5,
+  "description": "音乐视频（MV）制作 Agent Skill：把「一首歌 + 一份歌词」做成竖版 MV —— 导演方法 + 跑过七首长片的生成管线 + 像素级质检 + 41 条真实踩坑清单｜Music-video (MV) production skill for AI agents",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.26,
+   "music": 0.94,
+   "motion": 0.06,
+   "shorts": 0.56,
+   "editing": 0.14,
+   "demo": 0.24,
+   "story": 0.41,
+   "avatar": 0.06,
+   "general": 0.07
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "precious112/demo-director",
+  "stars": 5,
+  "description": "A skill for coding agents that plans and renders product demo videos: faithful app walkthroughs and motion-design films, storyboard first.",
+  "scores": {
+   "promo": 0.92,
+   "explainer": 0.21,
+   "music": 0.04,
+   "motion": 0.15,
+   "shorts": 0.1,
+   "editing": 0.06,
+   "demo": 0.92,
+   "story": 0.16,
+   "avatar": 0.03,
+   "general": 0.13
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "hildlabs/openrig-studio",
+  "stars": 9,
+  "description": "Generate Roblox R15 animations with the AI you already pay for: Claude Code, Codex CLI or API keys. Preview, compare models, send to Roblox Studio.",
+  "scores": {
+   "promo": 0.3,
+   "explainer": 0.17,
+   "music": 0.05,
+   "motion": 0.21,
+   "shorts": 0.04,
+   "editing": 0.03,
+   "demo": 0.48,
+   "story": 0.08,
+   "avatar": 0.05,
+   "general": 0.04
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "haiderfarooq3/paper-reel",
+  "stars": 39,
+  "description": "Claude Code skill: faceless 9:16 explainer reels in a cut-paper style. Voice-timed scenes, word-by-word captions. Free, local, no API keys.",
+  "scores": {
+   "promo": 0.23,
+   "explainer": 0.94,
+   "music": 0.03,
+   "motion": 0.59,
+   "shorts": 0.96,
+   "editing": 0.04,
+   "demo": 0.6,
+   "story": 0.12,
+   "avatar": 0.04,
+   "general": 0.04
+  },
+  "kind": "shorts"
  }
 ]
