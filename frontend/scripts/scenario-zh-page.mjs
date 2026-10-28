@@ -25,6 +25,15 @@ export function hreflangTags(enPath) {
 /** Adds the hreflang links to a page's head. */
 export const withHreflang = (html, enPath) => html.replace("</head>", `  ${hreflangTags(enPath)}\n</head>`);
 
+// A visible link between the twins (2026-10-28): 23 of the Chinese twins had no Google
+// impression in 90 days, and the English page reached its twin only through hreflang.
+const zhLink = (enPath) => `<a class="bp-lang-switch" href="${zhPathOf(enPath)}" hreflang="zh" lang="zh-CN">中文版</a>`;
+const enLink = (enPath) => `<a class="bp-lang-switch" href="${enPath}" hreflang="en" lang="en">English</a>`;
+
+/** Ends the breadcrumb of a page that has a Chinese twin with a link to the twin. */
+export const withLangSwitch = (html, enPath) =>
+  html.replace(/(<nav class="bp-breadcrumb">[\s\S]*?)(\s*<\/nav>)/, `$1\n        <span style="margin:0 6px">·</span>\n        ${zhLink(enPath)}$2`);
+
 // Every element carrying data-zh gets its Chinese text written in, the same swap the
 // page script does at runtime (textContent, so nested markup is flattened there too).
 const OPEN_BILINGUAL = /<(\w+)\b[^>]*\bdata-zh="([^"]*)"[^>]*>/g;
@@ -88,5 +97,5 @@ function zhHeading(html) {
 export function zhTwin(enHtml, { enPath, title, description, twinPaths }) {
   const zhTitle = title || zhHeading(enHtml) || "";
   const head = setHead(enHtml, { zhPath: zhPathOf(enPath), title: zhTitle, description });
-  return linkTwins(writeChinese(head), twinPaths);
+  return linkTwins(writeChinese(head), twinPaths).replace(zhLink(enPath), enLink(enPath));
 }

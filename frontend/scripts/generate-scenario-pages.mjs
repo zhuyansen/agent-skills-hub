@@ -26,8 +26,9 @@ import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
 import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
 import { explainerHtml } from "./scenario-explainer.mjs";
 import { cautionHtml } from "./scenario-caution.mjs";
-import { withHreflang, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
+import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
+import { comparisonsHtml } from "./scenario-compare-links.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -924,6 +925,9 @@ ${methodLd(scenario, pageUrl)}
         </div>
       </section>` : ""}
 
+      <!-- Head-to-head comparisons of this page's projects -->
+      ${comparisonsHtml(skills)}
+
       <!-- FAQ -->
       <section style="margin-top:32px" class="bp-faq">
         <h2 class="bp-section-title" style="font-size:18px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
@@ -1047,7 +1051,7 @@ function writeBestPages(built) {
   for (const b of built) {
     const dir = join(DIST, ...b.path.split("/").filter(Boolean));
     mkdirSync(dir, { recursive: true });
-    const enHtml = twinPaths.has(b.path) ? withHreflang(b.html, b.path) : b.html;
+    const enHtml = twinPaths.has(b.path) ? withLangSwitch(withHreflang(b.html, b.path), b.path) : b.html;
     writeFileSync(join(dir, "index.html"), enHtml);
     if (!twinPaths.has(b.path)) continue;
     const zhDir = join(DIST, ...zhPathOf(b.path).split("/").filter(Boolean));
