@@ -96,5 +96,5 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 - `ops/release/propagate.py new-term-radar 0.6.1`：ClawHub 3 个 skill 0.6.1 过扫描已上架；LobeHub 0.6.1 已发；WorkBuddy 本地包换成 0.6.1（审核中，没传）。
 - cursor.directory：3 个 skill 正文改成 0.6.1（只改锁版本处和插入新节），哈希 ai-listening 1452145f… / new-term-radar 18dec570… / seo-new-keywords-research f736f10b…，存后重开核对过，公开页只剩 0.6.1。
 - Skillstore：Submit 页重交（submission 90514185，3 个 skill），等机器人开更新 PR。
-- 没动：buildwithclaude 上还是 #555 锁的 0.5.1（要换得另提 PR）；Agensi、魔搭 MCP 页要用户登录改；Anthropic 目录会自己扫到 3cf6515。
+- buildwithclaude：**#599**「Update new-term-radar to 0.6.1」（锁 3cf6515，三项检查过，空配置目录装出 0.6.1、三个 skill 都有新节）。没动：Agensi、魔搭 MCP 页要用户登录改；Anthropic 目录会自己扫到 3cf6515。
 
