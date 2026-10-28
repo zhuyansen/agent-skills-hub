@@ -114,10 +114,12 @@ function navLink(href, en, zh, isActive) {
   return `<a href="${href}" class="${cls}" ${biAttrs(en, zh)}>${en}</a>`;
 }
 
+/* Phones hide the label (.bp-nav-label in best-pages.css); aria-label keeps the
+ * link named when only the icon shows. */
 function externalNavLink(href, icon, label) {
-  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="bp-nav-link" style="display:flex;align-items:center;gap:4px">
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="bp-nav-link" aria-label="${label}" style="display:flex;align-items:center;gap:4px">
           ${icon}
-          ${label}
+          <span class="bp-nav-label">${label}</span>
         </a>`;
 }
 
