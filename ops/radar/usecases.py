@@ -284,8 +284,14 @@ def volumes(phrases: list[str], location_code: int) -> tuple[dict[str, dict], in
     for r in ((data.get("vol") or {}).get("tasks") or [{}])[0].get("result") or []:
         ms = r.get("monthly_searches") or []
         out[r["keyword"]] = {"volume": int(r.get("search_volume") or 0),
-                             "month": f"{ms[0]['year']}-{ms[0]['month']:02d}" if ms else ""}
+                             "month": f"{ms[0]['year']}-{ms[0]['month']:02d}" if ms else "", "gads": gads(r)}
     return out, cost
+
+
+def gads(r: dict) -> dict:
+    """What the same answer says about the money behind a keyword, kept in shadow (cpc_shadow.py)."""
+    return {"cpc": r.get("cpc"), "bid_low": r.get("low_top_of_page_bid"), "bid_high": r.get("high_top_of_page_bid"),
+            "competition": r.get("competition"), "competition_index": r.get("competition_index")}
 
 
 WORLD = {"unsettled": review.UNSETTLED_DAYS, "window": 30, "factor": review.RISE_FACTOR, "days": 2}
@@ -539,6 +545,7 @@ def run(state: Path, names: list[str], repos: dict[str, str], today: date | None
             "posts_error": "; ".join(f"{n}: {e['error']}" for n, e in ev.items() if e.get("error")),
             "related": use_related, "tails": {n: v for n, v in tails.items() if v}, "cosearch": cosearch,
             "related_errors": related_errors, "geo": c["related_geo"], "country_errors": local_errors,
+            "location_code": c["location_code"],
             "cost_micros": cost + c0 + c2 + c3 + c4}
 
 

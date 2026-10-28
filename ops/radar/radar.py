@@ -56,6 +56,7 @@ ROOT = HERE.parents[1]
 sys.path[:0] = [str(HERE), str(ROOT / "ops/jev-review")]
 import appstore  # noqa: E402
 import breakout  # noqa: E402
+import cpc_shadow  # noqa: E402
 import memes  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
@@ -740,6 +741,8 @@ def keywords(blocks: dict[str, dict], lead: list[dict], keep: list[dict], snaps:
     run("record usecases", lambda: {"recorded": review.record(usecases.leads(blocks["usecases"]))}, no_db)
     # what the table found for each name, into that name's evidence (radar_leads.evidence)
     run("keyword evidence", lambda: {"added": review.add_evidence(usecases.name_evidence(blocks["usecases"]))}, no_db)
+    # Google Ads' cost per click and bids for the same rows, never shown (migration 032)
+    run("record cpc", lambda: {"recorded": cpc_shadow.record(blocks["usecases"])}, no_db)
 
 
 if __name__ == "__main__":
