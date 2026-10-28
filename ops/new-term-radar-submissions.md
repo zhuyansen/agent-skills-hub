@@ -88,3 +88,13 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 | skills.sh / SkillsMP / skillsdirectory / skillget | 都在；skills.sh 74 次安装（27/24/23）；SkillsMP 数据到 10-24 |
 | GitHub PR（serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、karanb192 #493、MobinX #867、GetBindu #296、teles #241、ComposioHQ #2328）和 issue（mcpso #5714、mcpm #476、HelloGitHub #4051、ruanyf #12613） | 都开着、维护者没回复（HelloGitHub 只有「邮件已收到」） |
 
+## 10-28 0.6.1：外发前等用户点头
+
+和 backlink-guard 0.11.1 同一条规则（用户：「雷达也同样改一下，加上提交前等我点头」）。雷达本身只读、不往外发东西；三个 skill 各加一节「Nothing goes out without a yes」：用户让 agent 按结果去发帖、上线页面、提 issue/PR、发邮件、提交网站、买域名或广告之前，先给他看去处和原文（或花费），等他对这一件点头；`prioritize`、强线索、要点子都不算点头。MCP 服务 instructions 同步，测试加断言（删掉规则会失败，验过），152 个测试过。
+
+- 公开 main **3cf6515**（从 origin/main 起的临时 worktree 快进推，本地 v0.5 没动），Tests 绿，Release **v0.6.1** → PyPI + 官方注册表 0.6.1 latest。
+- `ops/release/propagate.py new-term-radar 0.6.1`：ClawHub 3 个 skill 0.6.1 过扫描已上架；LobeHub 0.6.1 已发；WorkBuddy 本地包换成 0.6.1（审核中，没传）。
+- cursor.directory：3 个 skill 正文改成 0.6.1（只改锁版本处和插入新节），哈希 ai-listening 1452145f… / new-term-radar 18dec570… / seo-new-keywords-research f736f10b…，存后重开核对过，公开页只剩 0.6.1。
+- Skillstore：Submit 页重交（submission 90514185，3 个 skill），等机器人开更新 PR。
+- 没动：buildwithclaude 上还是 #555 锁的 0.5.1（要换得另提 PR）；Agensi、魔搭 MCP 页要用户登录改；Anthropic 目录会自己扫到 3cf6515。
+

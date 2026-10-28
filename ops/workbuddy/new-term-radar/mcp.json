@@ -3,7 +3,7 @@
     "new-term-radar": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--with", "mcp==2.3.0", "new-term-radar==0.6.0", "mcp"],
+      "args": ["--with", "mcp==2.3.0", "new-term-radar==0.6.1", "mcp"],
       "env": {
         "AISA_API_KEY": "${AISA_API_KEY}",
         "GOANYAPI_API_KEY": "${GOANYAPI_API_KEY}",

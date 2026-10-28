@@ -13,7 +13,7 @@ examples_en:
   - "Research the search terms behind the new name photocraft"
   - "Which new terms did the radar keep in the last 7 days?"
   - "Run the radar once and show me today's new AI names"
-version: "0.6.0"
+version: "0.6.1"
 author: "Jason Zhu"
 ---
 

@@ -7,7 +7,7 @@
   "description_en": "Find the names of new AI models, products and repositories on X, Hugging Face, GitHub and sitemaps, and size the search terms behind them with Google Ads volume and DataForSEO Trends. Needs your own AIsa key (pay as you go) and uv on the machine.",
   "source": "new-term-radar",
   "type": "mcp",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "auth_mode": "token",
   "minWorkbuddyVersion": "4.24.0",
   "examples_zh": [
