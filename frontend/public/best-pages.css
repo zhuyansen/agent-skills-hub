@@ -604,8 +604,20 @@
   .bp-hero h1 {
     font-size: 22px;
   }
+  /* Header on phones: the logo plus the nav need ~470-500px, so the nav drops to
+     its own row when it does not fit, and GitHub / X keep only their icons.
+     Squeezed into one row, "Agent Skills Hub" wrapped onto three lines and ran
+     into "Home" (2026-10-28). */
+  .bp-header-inner {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
   .bp-nav-links {
     gap: 8px;
+    flex-wrap: wrap;
+  }
+  .bp-nav-label {
+    display: none;
   }
   /* Stack comparison description cards on mobile */
   section[style*="grid-template-columns: 1fr 1fr"],

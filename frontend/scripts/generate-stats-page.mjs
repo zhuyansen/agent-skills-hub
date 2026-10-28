@@ -23,7 +23,7 @@ import { lineChart, barList, dataTable, fmt, pct } from "./stats-charts.mjs";
 import { STATS_DATA_DIR, statsPeriods } from "./stats-live.mjs";
 
 const OUT_DIR = join("dist", "stats");
-const CSS_VERSION = "20261019";
+const CSS_VERSION = "20261028";
 const LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
 const HISTORY_URL = "https://github.com/zhuyansen/agent-skills-hub/tree/main/frontend/public/stats/data";
 const SCAN_POST = "/blog/securing-117k-ai-skills/";
