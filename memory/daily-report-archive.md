@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-29
+1. haydenschmitty/floorplan — 🆕 让 Claude 把代码库画成可交互的白话架构图，看清应用全貌（204★ 115.1/day）
+2. MiniMax-AI/mcode-stack — 🆕 开源 MiniMax Code 团队自用的工作流与技能，装上即可照着用（81★ 68.7/day）
+3. jmanico/grim-prompter — 🆕 让编程智能体给你的仓库做威胁建模，输出有证据可查的风险清单（60★ 60.0/day）
+4. joeseesun/qiaomu-ui-learn-dsh — 🆕 把乔木 UI 学习迁到 DeepSeek Harness，含 1.3 万设计参考与审美测验（54★ 31.4/day）
+5. bjarneo/shoulder — 🆕 用终端界面实时盯住 Claude Code、Codex、Gemini CLI 在项目里的每一步（39★ 27.8/day）
+6. onurozcan/omux — 🆕 并排运行多个 Claude Code 会话的原生 macOS 终端与智能体管理器（40★ 26.7/day）
+7. theNetworkChuck/jev-guide — 🆕 配合 NetworkChuck 视频上手 Jev：在 Playground 试用并学会调用接口（39★ 24.5/day）
+8. Deibler/openskycam — 🆕 全天候录制天空摄像头，录像存在本地并帮你找出飞过的东西（65★ 20.3/day）
+9. globalmpc/nomore — 🆕 找出你反复纠正 Claude Code 的地方，转成有证据支撑的 CLAUDE.md 规则（63★ 12.1/day）
+10. AbadOrangeCat/TheALL — 🆕 打造 Claude Code 与 Codex 共用的原生 macOS AI 工作台，可存对话、切模型（79★ 9.7/day）
+🎯 今日趋势：**10 席全部**标 🆕；管住编程智能体的工具占 **4 席**（shoulder 监控、omux 多会话、nomore 规则、TheALL 工作台），厂商与名人下场 **2 席**（MiniMax、NetworkChuck）。
+> 注：去重范围＝repo 内 archive 全部 126 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,283 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 22 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（yanyan1115/ringringring 48.8h、lemonadesaltbagel/sill 48.9h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①ChannelCooperStart/capri-ai（170★ 125.3/day）：0 粉、仅 2 仓，另一仓 0★，实时 386★ 单仓爆星，保守排除；②noahelhadedy/double-shot（46★ 17.3/day）：security_grade 为 unsafe，不上榜；③herascrape/hikerapi-to-herascrape（50★ 14.3/day）：组织 10-09 新建，内容是把 HikerAPI 调用改写成自家接口的迁移提示词，属厂商引流；④其余均已在历史榜单出现或 velocity 低于第 10 席。入选项复核（`gh api`）：第 1 席 haydenschmitty 账号 10-27 新建，但 54 粉、实时 299★/28 fork（**轻红旗**，保留）；第 2 席 MiniMax-AI 官方组织、8,061 粉；第 3 席 jmanico 2010 建号、570 粉（OWASP 资深作者）；第 4 席 joeseesun 2013 建号、2,291 粉；第 5 席 bjarneo 2012 建号、643 粉、名下 cliamp 4,539★；第 6 席 onurozcan 2013 建号、17 粉、仅此 1 仓、fork 8（**轻红旗**，保留）；第 7 席 theNetworkChuck 4,405 粉；第 8 席 Deibler 2017 建号、5 粉，名下另有 21★ 仓、fork 9；第 9 席 globalmpc 组织 311 粉，但实时 66★ 配 0 fork（**轻红旗**，保留）；第 10 席 AbadOrangeCat 2018 建号、11 粉，实时 82★ 配 0 fork（**轻红旗**，保留）。🆕 判定＝created_at 距今 14 天内，十席全部命中（最老 TheALL 8.1 天）。security_grade：shoulder 为 caution，其余九席为 safe。表中 stars 为数据库快照，部分仓实时更高（floorplan 299★、grim-prompter 88★、omux 58★），按红线保留快照值。
+
+---
+
 ## 2026-10-28
 1. patch-gg/anymove — 🆕 从一段 AI 视频给任意生物做动作捕捉，自动读关节、绑骨出动画（95★ 95.0/day）
 2. daveebbelaar/bama — 🆕 用一套智能体技能调研、仿制、设计、构建并测试原生 macOS 应用（205★ 56.1/day）
