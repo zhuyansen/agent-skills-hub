@@ -3339,5 +3339,18 @@
    "tooling": 0.94
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "aunysillyme/lean-browser-use",
+  "stars": 5,
+  "description": "Cut browser use cost by about 25% in Claude Code: fresh runner subagent, bulk reads, three guards and a token meter. One npx command",
+  "scores": {
+   "hooks": 0.56,
+   "subagents": 0.56,
+   "statusline": 0.02,
+   "collection": 0.75,
+   "tooling": 0.9
+  },
+  "kind": "tooling"
  }
 ]

@@ -10898,5 +10898,31 @@
   "days": 346,
   "stars_per_day": 262.8150289017341,
   "verdict": "admit"
+ },
+ {
+  "repo": "jinhuoooo/dsh-prompt-polish",
+  "name": "dsh-prompt-polish",
+  "stars": 5,
+  "description": "✨ DSH 一键 AI 润色插件 — WorkBuddy humanizer 去AI味原理，支持智谱 GLM-4.5-Flash 等免费模型，无 API 时本地规则降级",
+  "topics": [],
+  "created": "2026-08-16",
+  "pushed": "2026-08-16",
+  "source": "topic",
+  "readme_chars": 12004,
+  "names_model": false,
+  "on_subject": 0.92,
+  "is_software": 0.98,
+  "shows_result": 0.93,
+  "one_command_start": 0.67,
+  "specific_outcome": 0.89,
+  "complete_docs": 0.87,
+  "novel_angle": 0.57,
+  "shareable_output": 0.83,
+  "quality": 0.8400000000000001,
+  "tier": "高",
+  "hit_prior": 0.7766666666666667,
+  "days": 74,
+  "stars_per_day": 0.06756756756756757,
+  "verdict": "admit"
  }
 ]

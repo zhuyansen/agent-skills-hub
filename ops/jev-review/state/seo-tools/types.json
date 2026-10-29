@@ -4318,5 +4318,53 @@
    "marketing": 0.06
   },
   "kind": "content"
+ },
+ {
+  "repo": "seyka-ai/yandex-tools-mcp",
+  "stars": 68,
+  "description": "MCP servers for Yandex APIs: Search, Wordstat, Webmaster, Metrika and Direct. Keyword research, SEO analytics and PPC management for Russian/CIS markets in Claude and other AI assistants.",
+  "scores": {
+   "suite": 0.12,
+   "audit": 0.12,
+   "research": 0.72,
+   "data_mcp": 0.92,
+   "geo": 0.1,
+   "content": 0.09,
+   "links": 0.03,
+   "marketing": 0.42
+  },
+  "kind": "data_mcp"
+ },
+ {
+  "repo": "mlsss333/seo-geo-kit",
+  "stars": 13,
+  "description": "Skill Claude: audit SEO + GEO complet de ton site, correctifs appliques automatiquement, et redaction d'articles optimises pour Google et les IA",
+  "scores": {
+   "suite": 0.95,
+   "audit": 0.76,
+   "research": 0.14,
+   "data_mcp": 0.05,
+   "geo": 0.74,
+   "content": 0.7,
+   "links": 0.08,
+   "marketing": 0.08
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "rocketmandrey/seo-standup",
+  "stars": 5,
+  "description": "SEO без магии: скилл для AI-агента + 15-минутный стендап о проектировании сайта под существующий спрос. Zero paid APIs.",
+  "scores": {
+   "suite": 0.9,
+   "audit": 0.12,
+   "research": 0.9,
+   "data_mcp": 0.08,
+   "geo": 0.06,
+   "content": 0.53,
+   "links": 0.02,
+   "marketing": 0.04
+  },
+  "kind": "suite"
  }
 ]

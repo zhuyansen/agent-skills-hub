@@ -151,6 +151,14 @@
   "type": "image/webp",
   "bytes": 3325266
  },
+ "Acorn2/frame-loom": {
+  "repo": "Acorn2/frame-loom",
+  "url": "https://raw.githubusercontent.com/Acorn2/frame-loom/HEAD/examples/nature-museum-case/previews/highlights.gif",
+  "alt": "FrameLoom 真实案例：开放白板、四阶段图解、自然主题插画与片尾网站入口",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 528772
+ },
  "Addepar/RedFlag": {
   "repo": "Addepar/RedFlag",
   "url": "https://raw.githubusercontent.com/Addepar/RedFlag/main/docs/images/Report-Animated.gif",
@@ -919,6 +927,14 @@
   "type": "image/gif",
   "bytes": 1463389
  },
+ "LLJ99999/jack-codex": {
+  "repo": "LLJ99999/jack-codex",
+  "url": "https://raw.githubusercontent.com/LLJ99999/jack-codex/HEAD/design-previews/jack-codex-react-final.png",
+  "alt": "Jack Codex 苹果式极简界面",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 101959
+ },
  "Lanqiao-Luca/ai-video-marker": {
   "repo": "Lanqiao-Luca/ai-video-marker",
   "url": "https://raw.githubusercontent.com/Lanqiao-Luca/ai-video-marker/HEAD/docs/images/rooftop-preview.gif",
@@ -966,6 +982,14 @@
   "score": 1.65,
   "type": "image/jpeg",
   "bytes": 128295
+ },
+ "Lvyizhuo/MyProject-SDAgent": {
+  "repo": "Lvyizhuo/MyProject-SDAgent",
+  "url": "https://raw.githubusercontent.com/Lvyizhuo/MyProject-SDAgent/HEAD/image-1.png",
+  "alt": "AI政策通 Banner",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 297124
  },
  "M1n-n9/academic-ppt-master": {
   "repo": "M1n-n9/academic-ppt-master",
@@ -1070,6 +1094,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 238667
+ },
+ "MuhammadaliMS/pixel-studio": {
+  "repo": "MuhammadaliMS/pixel-studio",
+  "url": "https://raw.githubusercontent.com/MuhammadaliMS/pixel-studio/HEAD/media/pisa.gif",
+  "alt": "Tower of Pisa collapsing",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1474197
  },
  "Nayjest/Gito": {
   "repo": "Nayjest/Gito",
@@ -1398,6 +1430,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 752936
+ },
+ "UniUni2000/slideblocks-skill": {
+  "repo": "UniUni2000/slideblocks-skill",
+  "url": "https://raw.githubusercontent.com/UniUni2000/slideblocks-skill/HEAD/media/showcase.png",
+  "alt": "16 real SlideBlocks pages with rounded corners, floating shadows and subtle moti",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 1334609
  },
  "Valen-Team/Valen": {
   "repo": "Valen-Team/Valen",
@@ -1751,6 +1791,14 @@
   "type": "image/png",
   "bytes": 161081
  },
+ "aunysillyme/lean-browser-use": {
+  "repo": "aunysillyme/lean-browser-use",
+  "url": "https://raw.githubusercontent.com/aunysillyme/lean-browser-use/HEAD/docs/trailer.gif",
+  "alt": "lean-browser-use: about 25 percent cheaper browser use, two measured runs, why t",
+  "score": 2.75,
+  "type": "image/gif",
+  "bytes": 1534621
+ },
  "avalonreset/legends-geogrid": {
   "repo": "avalonreset/legends-geogrid",
   "url": "https://raw.githubusercontent.com/avalonreset/legends-geogrid/HEAD/assets/why-have-we-never-met-before.png",
@@ -1806,6 +1854,14 @@
   "score": -0.5,
   "type": "image/webp",
   "bytes": 59396
+ },
+ "beatra-ai/ai-storyboard-generator-skill": {
+  "repo": "beatra-ai/ai-storyboard-generator-skill",
+  "url": "https://raw.githubusercontent.com/beatra-ai/ai-storyboard-generator-skill/HEAD/assets/hero.webp",
+  "alt": "A four-shot storyboard for a 15-second ad for a fictional commuter e-bike, Voltl",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 180288
  },
  "beatra-ai/viral-video-remake-skill": {
   "repo": "beatra-ai/viral-video-remake-skill",
@@ -2055,6 +2111,14 @@
   "type": "image/gif",
   "bytes": 1808972
  },
+ "d4niel-fr/shdw-video-editor": {
+  "repo": "d4niel-fr/shdw-video-editor",
+  "url": "https://raw.githubusercontent.com/d4niel-fr/shdw-video-editor/HEAD/docs/screenshots/agent-building.png",
+  "alt": "The agent building scenes while the timeline fills up",
+  "score": 1.65,
+  "type": "image/png",
+  "bytes": 829458
+ },
  "dacnay816y62-hub/FANTASY-ppt-1": {
   "repo": "dacnay816y62-hub/FANTASY-ppt-1",
   "url": "https://raw.githubusercontent.com/dacnay816y62-hub/FANTASY-ppt-1/HEAD/examples/gallery/01-counterpoint-paris.png",
@@ -2126,6 +2190,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 1863929
+ },
+ "denyakortunov/family-travel-editor": {
+  "repo": "denyakortunov/family-travel-editor",
+  "url": "https://raw.githubusercontent.com/denyakortunov/family-travel-editor/HEAD/assets/social-preview.jpg",
+  "alt": "Family Travel Editor: an AI skill for Claude Code and Codex. Three labelled trav",
+  "score": -0.5,
+  "type": "image/jpeg",
+  "bytes": 247602
  },
  "derek-zhuolin/motion-skill": {
   "repo": "derek-zhuolin/motion-skill",
@@ -3399,6 +3471,14 @@
   "type": "image/png",
   "bytes": 808888
  },
+ "missingus3r/friday-showcase": {
+  "repo": "missingus3r/friday-showcase",
+  "url": "https://raw.githubusercontent.com/missingus3r/friday-showcase/HEAD/img/tg-scheduling.png",
+  "alt": "Scheduling & memory",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 88610
+ },
  "mistrysiddh/hermes-brain-template": {
   "repo": "mistrysiddh/hermes-brain-template",
   "url": "https://raw.githubusercontent.com/mistrysiddh/hermes-brain-template/HEAD/assets/graph-view-screenshot.png",
@@ -3558,6 +3638,22 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 6067825
+ },
+ "nugrahalabib/AgentBuff-Presentation-Skills": {
+  "repo": "nugrahalabib/AgentBuff-Presentation-Skills",
+  "url": "https://raw.githubusercontent.com/nugrahalabib/AgentBuff-Presentation-Skills/HEAD/assets/screenshots/block-frame-1.png",
+  "alt": "BlockFrame — slide 1",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 53533
+ },
+ "obie/slopcore": {
+  "repo": "obie/slopcore",
+  "url": "https://raw.githubusercontent.com/obie/slopcore/HEAD/skills/music-video/examples/queso/stills/frame-0.0.jpg",
+  "alt": "The opening frame of Queso",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 93284
  },
  "octopusreview/octopus": {
   "repo": "octopusreview/octopus",
@@ -3886,6 +3982,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 31835
+ },
+ "sevenevesai/riso-windowseat": {
+  "repo": "sevenevesai/riso-windowseat",
+  "url": "https://raw.githubusercontent.com/sevenevesai/riso-windowseat/HEAD/films/window-seat/poster.png",
+  "alt": "Window Seat, dawn from the viaduct",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 2006191
  },
  "severli93/moonland-deck": {
   "repo": "severli93/moonland-deck",

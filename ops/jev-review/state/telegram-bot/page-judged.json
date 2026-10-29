@@ -10708,5 +10708,43 @@
   "days": 27,
   "stars_per_day": 4.888888888888889,
   "verdict": "admit"
+ },
+ {
+  "repo": "missingus3r/friday-showcase",
+  "name": "friday-showcase",
+  "stars": 195,
+  "description": "Friday — A 24/7 AI Assistant Built Entirely on Claude Code. A Tiny Moon Labs product (tinymoonlabs.com).",
+  "topics": [
+   "ai-agents",
+   "ai-assistant",
+   "autonomous-agents",
+   "claude-code",
+   "llm",
+   "memory",
+   "open-source",
+   "personal-assistant",
+   "self-evolving",
+   "telegram-bot",
+   "tiny-moon-labs"
+  ],
+  "created": "2026-04-12",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 21843,
+  "names_model": false,
+  "on_subject": 0.82,
+  "is_software": 0.77,
+  "shows_result": 0.78,
+  "one_command_start": 0.05,
+  "specific_outcome": 0.45,
+  "complete_docs": 0.11,
+  "novel_angle": 0.69,
+  "shareable_output": 0.84,
+  "quality": 0.34750000000000003,
+  "tier": "低",
+  "hit_prior": 0.77,
+  "days": 200,
+  "stars_per_day": 0.975,
+  "verdict": "low_quality"
  }
 ]

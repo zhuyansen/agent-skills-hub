@@ -3358,5 +3358,33 @@
    "general": 0.08
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "UniUni2000/slideblocks-skill",
+  "stars": 81,
+  "description": "SlideBlocks agent skill for creating and improving Slidev presentations",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.26,
+   "convert": 0.86,
+   "general": 0.07
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "nugrahalabib/AgentBuff-Presentation-Skills",
+  "stars": 6,
+  "description": "Agent-agnostic skill for creating presentations and exporting them to HTML, PDF, PNG/JPG, or PPTX (pixel-identical). Usable by any AI coding agent: Claude Code, Codex, Hermes, and more, not just Claude.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.75,
+   "html": 0.89,
+   "business": 0.38,
+   "convert": 0.35,
+   "general": 0.8
+  },
+  "kind": "general"
  }
 ]

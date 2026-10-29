@@ -2686,5 +2686,19 @@
    "general": 0.11
   },
   "kind": "general"
+ },
+ {
+  "repo": "LLJ99999/jack-codex",
+  "stars": 5,
+  "description": "Jack Codex-only desktop installer and Skills manager for Windows",
+  "scores": {
+   "cli": 0.11,
+   "sync": 0.04,
+   "app": 0.91,
+   "registry": 0.04,
+   "team": 0.05,
+   "general": 0.06
+  },
+  "kind": "app"
  }
 ]

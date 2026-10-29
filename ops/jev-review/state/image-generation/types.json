@@ -3540,5 +3540,33 @@
    "mcp": 0.64
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "beatra-ai/ai-storyboard-generator-skill",
+  "stars": 5,
+  "description": "AI storyboard generator agent skill for Claude Code, Cursor, Codex, Windsurf, Cline & OpenClaw: turn a script, scene, or ad brief into a practical shot list and a few storyboard key-frame images for film, ads, animation, and social video. AI分镜生成 · 分镜表",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.02,
+   "design": 0.08,
+   "mcp": 0.28
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "obie/slopcore",
+  "stars": 9,
+  "description": "A Claude Code skill and toolkit for making AI music videos from a finished song: Midjourney stills, Seedance clips, and every lyric drawn in code on the beat.",
+  "scores": {
+   "gpt_image": 0.34,
+   "nano_banana": 0.05,
+   "open_models": 0.07,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.24
+  },
+  "kind": "gpt_image"
  }
 ]

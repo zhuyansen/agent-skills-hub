@@ -3652,5 +3652,33 @@
    "business": 0.07
   },
   "kind": "framework"
+ },
+ {
+  "repo": "missingus3r/friday-showcase",
+  "stars": 195,
+  "description": "Friday — A 24/7 AI Assistant Built Entirely on Claude Code. A Tiny Moon Labs product (tinymoonlabs.com).",
+  "scores": {
+   "assistant": 0.95,
+   "remote": 0.95,
+   "framework": 0.08,
+   "utility": 0.24,
+   "fun": 0.26,
+   "business": 0.1
+  },
+  "kind": "assistant"
+ },
+ {
+  "repo": "KhanbalaRashidov/telepath",
+  "stars": 5,
+  "description": "Send coding tasks to an AI coding agent on your own machine from Telegram. Watch it work in real time, approve risky actions, and get every change as a clean, reviewable git branch. Multi-agent (Claude Code, Gemini, Codex, Aider), cross-platform, written in Go.",
+  "scores": {
+   "assistant": 0.34,
+   "remote": 0.97,
+   "framework": 0.2,
+   "utility": 0.08,
+   "fun": 0.03,
+   "business": 0.04
+  },
+  "kind": "remote"
  }
 ]

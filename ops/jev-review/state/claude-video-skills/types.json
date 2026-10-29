@@ -6910,5 +6910,113 @@
    "general": 0.04
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "sevenevesai/riso-windowseat",
+  "stars": 304,
+  "description": "Procedural risograph films in single HTML files (Window Seat, Roost and more), with the Claude Code skills, docs and tools to make your own.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.1,
+   "music": 0.53,
+   "motion": 0.45,
+   "shorts": 0.05,
+   "editing": 0.04,
+   "demo": 0.09,
+   "story": 0.79,
+   "avatar": 0.02,
+   "general": 0.19
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "denyakortunov/family-travel-editor",
+  "stars": 8,
+  "description": "An AI agent skill for organizing travel footage, planning scenes and revising films in your preferred editor. Not a standalone video editor.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.19,
+   "music": 0.07,
+   "motion": 0.04,
+   "shorts": 0.1,
+   "editing": 0.78,
+   "demo": 0.15,
+   "story": 0.14,
+   "avatar": 0.05,
+   "general": 0.06
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "Acorn2/frame-loom",
+  "stars": 5,
+  "description": "An open-source skill for Coding Agents to turn documents into videos with Remotion.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.89,
+   "music": 0.03,
+   "motion": 0.31,
+   "shorts": 0.08,
+   "editing": 0.05,
+   "demo": 0.37,
+   "story": 0.12,
+   "avatar": 0.05,
+   "general": 0.16
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "d4niel-fr/shdw-video-editor",
+  "stars": 5,
+  "description": "Open-source AI video editor: DaVinci Resolve-style timeline + Claude Code / Codex agent that writes motion graphics in code, edits, grades, captions & exports. Windows + macOS.",
+  "scores": {
+   "promo": 0.71,
+   "explainer": 0.45,
+   "music": 0.14,
+   "motion": 0.13,
+   "shorts": 0.33,
+   "editing": 0.8,
+   "demo": 0.68,
+   "story": 0.18,
+   "avatar": 0.07,
+   "general": 0.23
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "MuhammadaliMS/pixel-studio",
+  "stars": 5,
+  "description": "Make viral pixel-art videos with Claude. A free, dependency-free engine: every pixel, physics beat and sound effect is drawn in code.",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.2,
+   "music": 0.05,
+   "motion": 0.27,
+   "shorts": 0.57,
+   "editing": 0.03,
+   "demo": 0.41,
+   "story": 0.45,
+   "avatar": 0.03,
+   "general": 0.22
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "shaderera/shaderera",
+  "stars": 5,
+  "description": "The programmable era of ads. Video made in code for experts and their AI agents: a film is render(t). Determinism checks, H.264/ProRes rendering, review and per-placement delivery, with an MCP server and agent skills.",
+  "scores": {
+   "promo": 0.76,
+   "explainer": 0.2,
+   "music": 0.74,
+   "motion": 0.25,
+   "shorts": 0.46,
+   "editing": 0.1,
+   "demo": 0.27,
+   "story": 0.19,
+   "avatar": 0.04,
+   "general": 0.7
+  },
+  "kind": "general"
  }
 ]

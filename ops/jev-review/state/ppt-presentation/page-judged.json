@@ -5510,5 +5510,33 @@
   "days": 247,
   "stars_per_day": 0.582995951417004,
   "verdict": "admit"
+ },
+ {
+  "repo": "UniUni2000/slideblocks-skill",
+  "name": "slideblocks-skill",
+  "stars": 81,
+  "description": "SlideBlocks agent skill for creating and improving Slidev presentations",
+  "topics": [],
+  "created": "2026-09-06",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 2387,
+  "names_model": false,
+  "makes_slides": 0.98,
+  "agent_driven": 0.92,
+  "editable_output": 0.93,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.69,
+  "complete_docs": 0.78,
+  "shows_result": 0.82,
+  "specific_outcome": 0.85,
+  "novel_angle": 0.9,
+  "shareable_output": 0.69,
+  "quality": 0.7849999999999999,
+  "tier": "高",
+  "hit_prior": 0.8033333333333333,
+  "days": 53,
+  "stars_per_day": 1.528301886792453,
+  "verdict": "admit"
  }
 ]

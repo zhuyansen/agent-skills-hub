@@ -1579,7 +1579,9 @@
     "imkofty/Hermuse",
     "Derrors/reelay",
     "ortegarod/openclaw-vps-deploy",
-    "azdaev/tgmock"
+    "azdaev/tgmock",
+    "missingus3r/friday-showcase",
+    "KhanbalaRashidov/telepath"
    ],
    "exclude_repos": [
     "smixs/iva",
@@ -1962,7 +1964,9 @@
     "ybuild-ai/ai-game-art-pipeline-skill",
     "Dogwind221/img2img-studio",
     "aidenli/gd-image-gen",
-    "ethanplusai/generate-image-skill"
+    "ethanplusai/generate-image-skill",
+    "obie/slopcore",
+    "beatra-ai/ai-storyboard-generator-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3126,7 +3130,9 @@
     "AIPMAndy/dna-memory",
     "sfrangulov/minirag-mcp",
     "Cashara-io/eunomia",
-    "AlexanderAbramovPav/youtube-advisor"
+    "AlexanderAbramovPav/youtube-advisor",
+    "Lvyizhuo/MyProject-SDAgent",
+    "max-ramas/rms-memory-mcp"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3474,7 +3480,8 @@
     "VictorTomaili/skill-cli",
     "stakpak/paks",
     "klubinskak/skilldex",
-    "Hainrixz/skill-vault"
+    "Hainrixz/skill-vault",
+    "LLJ99999/jack-codex"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4353,7 +4360,8 @@
     "zkrun/academic-humanizer-zh",
     "pbakaus/impeccable",
     "Ecow0ker/econ-humanizer-skills",
-    "pengchenghaoche51/turnitin0_skill"
+    "pengchenghaoche51/turnitin0_skill",
+    "jinhuoooo/dsh-prompt-polish"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4783,7 +4791,10 @@
     "zhtyyx/codex-seo",
     "rankmyseo/skills",
     "ilang-ai/agent-ready-geo",
-    "Moksa1123/rankmath-seo-wp"
+    "Moksa1123/rankmath-seo-wp",
+    "seyka-ai/yandex-tools-mcp",
+    "mlsss333/seo-geo-kit",
+    "rocketmandrey/seo-standup"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -4821,7 +4832,8 @@
     "recomby-ai/recomby-geo",
     "unifapi-agent/skills",
     "usenotra/notra",
-    "AgriciDaniel/codex-seo"
+    "AgriciDaniel/codex-seo",
+    "byteminus/laravel-ai-blog"
    ]
   },
   "related": [
@@ -6335,7 +6347,9 @@
     "tokuhn/confidential-html-deck",
     "ancarmona/keystone",
     "josezuma/yc-pitch-deck-max",
-    "Arinin77/image2editable-ppt"
+    "Arinin77/image2editable-ppt",
+    "UniUni2000/slideblocks-skill",
+    "nugrahalabib/AgentBuff-Presentation-Skills"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8225,7 +8239,13 @@
     "SyanChen7/dancing-notes",
     "isaaclins/demo-video-skill",
     "chenqianshinian/music-mv-studio",
-    "precious112/demo-director"
+    "precious112/demo-director",
+    "sevenevesai/riso-windowseat",
+    "denyakortunov/family-travel-editor",
+    "Acorn2/frame-loom",
+    "d4niel-fr/shdw-video-editor",
+    "MuhammadaliMS/pixel-studio",
+    "shaderera/shaderera"
    ],
    "sub_skills": [
     {
@@ -8745,7 +8765,8 @@
     "PsChina/deepseek-as-subagent",
     "MaxHarfen/crab-band",
     "tmcfarlane/team-avatar",
-    "rootstudioyaml/sprag"
+    "rootstudioyaml/sprag",
+    "aunysillyme/lean-browser-use"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

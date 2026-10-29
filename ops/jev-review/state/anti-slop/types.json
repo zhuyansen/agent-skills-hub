@@ -3596,5 +3596,19 @@
    "rules": 0.11
   },
   "kind": "detector"
+ },
+ {
+  "repo": "jinhuoooo/dsh-prompt-polish",
+  "stars": 5,
+  "description": "✨ DSH 一键 AI 润色插件 — WorkBuddy humanizer 去AI味原理，支持智谱 GLM-4.5-Flash 等免费模型，无 API 时本地规则降级",
+  "scores": {
+   "writing": 0.89,
+   "detector": 0.46,
+   "chinese": 0.93,
+   "code": 0.15,
+   "design": 0.23,
+   "rules": 0.23
+  },
+  "kind": "chinese"
  }
 ]
