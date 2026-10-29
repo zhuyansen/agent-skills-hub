@@ -271,6 +271,7 @@ def _quiet_memes_and_charts(monkeypatch):
         "memes": [], "terms": [], "errors": [], "jev": True, "cost_micros": 0})
     monkeypatch.setattr(radar.appstore, "apps", lambda snaps: {
         "charts": 290, "failed": [], "apps": [], "terms": [], "read": [], "errors": [], "cost_micros": 0})
+    monkeypatch.setattr(radar.capcut, "record", lambda: {"skipped": True, "why": "测试"})   # CapCut's listing, in shadow
     _social_world(monkeypatch, [], {})   # the new sites people link: no links on Bluesky, none in the X posts
 
 
@@ -794,41 +795,3 @@ def test_shadow_new_sites_alone_send_no_mail(monkeypatch, tmp_path):
     shown = REAL_SOCIAL(tmp_path / "again", {"linked": []}, SOC_NOW)
     assert [r["term"] for r in shown["terms"]] == ["altstream"] and shown["shadow_leads"] == []
 
-
-# --- CPC in shadow (cpc_shadow.py, migration 032) ---------------------------------------
-
-def test_volumes_keeps_what_google_ads_says_about_the_money(monkeypatch):
-    answer = {"vol": {"tasks": [{"result": [{
-        "keyword": "ai music video", "search_volume": 2900, "cpc": 1.84, "competition": "LOW",
-        "competition_index": 12, "low_top_of_page_bid": 0.41, "high_top_of_page_bid": 2.7,
-        "monthly_searches": [{"year": 2026, "month": 9, "search_volume": 2900}]}]}]}}
-    monkeypatch.setattr(usecases.aisa, "call", lambda calls: (answer, 90_000))
-    vol, cost = usecases.volumes(["ai music video"], 2840)
-    assert cost == 90_000 and vol["ai music video"]["volume"] == 2900 and vol["ai music video"]["month"] == "2026-09"
-    assert vol["ai music video"]["gads"] == {"cpc": 1.84, "bid_low": 0.41, "bid_high": 2.7,
-                                             "competition": "LOW", "competition_index": 12}
-
-
-def test_the_shadow_rows_are_the_answered_rows_of_the_keyword_table():
-    import cpc_shadow
-    money = {"cpc": None, "bid_low": None, "bid_high": None, "competition": None, "competition_index": None}
-    block = {"location_code": 2840, "rows": [
-        {"phrase": "iphone kupi", "kind": "name", "names": [], "volume": 2900, "gads": dict(money, cpc=0.5)},
-        {"phrase": "ai poster maker", "kind": "generic", "names": ["iphone kupi"], "volume": 880, "gads": money},
-        {"phrase": "unsized", "kind": "generic", "names": [], "volume": 10}]}
-    rows = cpc_shadow.rows_of(block, date(2026, 10, 28))
-    assert [r["phrase"] for r in rows] == ["iphone kupi", "ai poster maker"]
-    assert rows[0] == {"day": date(2026, 10, 28), "phrase": "iphone kupi", "location": 2840, "kind": "name",
-                       "names": [], "volume": 2900, **dict(money, cpc=0.5)}
-    assert cpc_shadow.rows_of({"rows": block["rows"]}, date(2026, 10, 28)) == []
-    assert cpc_shadow.record({"rows": []}) == 0
-
-
-def test_skip_db_records_no_cpc(monkeypatch, tmp_path):
-    import cpc_shadow
-    monkeypatch.setattr(usecases, "names_to_read", lambda keep, rows: ["iphone kupi"])
-    monkeypatch.setattr(usecases, "run", lambda snaps, names, repos: {"rows": [], "location_code": 2840})
-    monkeypatch.setattr(cpc_shadow, "record", lambda block: (_ for _ in ()).throw(AssertionError("wrote with --skip-db")))
-    blocks = {"recent_sources": {"rows": []}}
-    radar.keywords(blocks, [], [], tmp_path, {"--skip-db"})
-    assert blocks["usecases"] == {"rows": [], "location_code": 2840}

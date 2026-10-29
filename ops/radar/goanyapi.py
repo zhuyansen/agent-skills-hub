@@ -1,9 +1,10 @@
 """Optional second data source: GoAnyAPI (goanyapi.com), for what AIsa's tools do not give.
 
-Used for three things: Google Trends' *related queries* for a name, the terms real people
+Used for four things: Google Trends' *related queries* for a name, the terms real people
 searched together with it, and a 30-day daily Trends series for one country, which
-arrives settled up to yesterday (DataForSEO's worldwide series does not); and where a new
-site's visits come from (`traffic`, social_sites.py). Key: GOANYAPI_API_KEY. Without it every caller skips
+arrives settled up to yesterday (DataForSEO's worldwide series does not); where a new
+site's visits come from (`traffic`, social_sites.py); and CapCut's Most Used templates,
+recorded and shown nowhere (capcut.py). Key: GOANYAPI_API_KEY. Without it every caller skips
 this source and the radar runs as before.
 
 One credit is $0.001; a related-queries lookup costs 6 (October 2026). Calls take 20 to
@@ -58,7 +59,8 @@ def call(path: str, *, timeout: int = TIMEOUT, **params) -> tuple[dict, int]:
         data = body.get("data") or {}
         if body.get("code") != "ok":
             raise GoAnyError(str(body.get("message") or body)[:160])
-        return data, int(data.get("costCredits") or 0) * MICROS_PER_CREDIT
+        # the CapCut listing (capcut.py) says creditsUsed where the others say costCredits
+        return data, int(data.get("costCredits") or data.get("creditsUsed") or 0) * MICROS_PER_CREDIT
     raise GoAnyError(error[:160])
 
 
