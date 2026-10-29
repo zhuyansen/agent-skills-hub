@@ -88,6 +88,11 @@
       .article-body > h1 { font-size: 28px; }
       .article-body h2 { font-size: 22px; padding-left: 12px; }
       .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      /* The timeline table needs ~355px, more than a 320-360px phone's column:
+         it scrolls inside the column instead of the page scrolling sideways
+         (2026-10-29). */
+      .table-scroll { overflow-x: auto; margin: 20px 0; }
+      .table-scroll > .flag-table { margin: 0; }
     }
   </style>
 </head>
@@ -152,16 +157,18 @@
 
       <p>This is the calendar I'd actually run for myself today. Each week corresponds to one Tier of the Skill stack:</p>
 
-      <table class="flag-table">
-        <thead><tr><th>Week</th><th>Goal</th><th>Skill Tier</th><th>Output</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Validate idea, find customer pain</td><td>Tier 1: Validation</td><td>1-page PRD draft + 5 customer interview questions</td></tr>
-          <tr><td>2</td><td>Write spec, choose stack</td><td>Tier 2: PRD generation</td><td>Full PRD + tech design + task breakdown</td></tr>
-          <tr><td>3-4</td><td>Build MVP</td><td>Tier 3: Multi-agent team</td><td>Deployed MVP at v0.1</td></tr>
-          <tr><td>5</td><td>Diagnose, iterate, fix PMF</td><td>Tier 4: Business diagnosis</td><td>v0.2 with the right thing fixed</td></tr>
-          <tr><td>6</td><td>Launch, get first 100 users</td><td>Tier 5: GTM execution</td><td>Product Hunt + X/LinkedIn + 100 signups</td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="flag-table">
+          <thead><tr><th>Week</th><th>Goal</th><th>Skill Tier</th><th>Output</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Validate idea, find customer pain</td><td>Tier 1: Validation</td><td>1-page PRD draft + 5 customer interview questions</td></tr>
+            <tr><td>2</td><td>Write spec, choose stack</td><td>Tier 2: PRD generation</td><td>Full PRD + tech design + task breakdown</td></tr>
+            <tr><td>3-4</td><td>Build MVP</td><td>Tier 3: Multi-agent team</td><td>Deployed MVP at v0.1</td></tr>
+            <tr><td>5</td><td>Diagnose, iterate, fix PMF</td><td>Tier 4: Business diagnosis</td><td>v0.2 with the right thing fixed</td></tr>
+            <tr><td>6</td><td>Launch, get first 100 users</td><td>Tier 5: GTM execution</td><td>Product Hunt + X/LinkedIn + 100 signups</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <p>What's different from 2024? In 2024 each week above was a month. The compression comes from one thing — <strong>quality, opinionated, named-author Skills now exist for every step</strong>. They turn "research what to do" into "type a command and get the right answer". Below is what I'd install in each tier.</p>
 

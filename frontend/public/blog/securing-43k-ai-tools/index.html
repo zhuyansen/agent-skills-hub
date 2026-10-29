@@ -108,6 +108,12 @@
       .article-body > h1 { font-size: 28px; }
       .article-body h2 { font-size: 22px; padding-left: 12px; }
       .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      /* The red-flag tables need 350-490px and the phase cards 300px, more than a
+         phone's column: the tables scroll inside the column instead of the page
+         scrolling sideways, and the cards take the column's width (2026-10-29). */
+      .table-scroll { overflow-x: auto; margin: 20px 0; }
+      .table-scroll > .flag-table { margin: 0; }
+      .phase-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -241,24 +247,26 @@ if (readme.match(/\.env/)) grade = "caution";</code></pre>
 
       <h3>The 11 Red-Flag Categories</h3>
 
-      <table class="flag-table">
-        <thead>
-          <tr><th>#</th><th>Category</th><th>What It Catches</th><th>Example Pattern</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Data Exfiltration</td><td>Sending local data to external servers</td><td><code>curl -d $(cat ~/.ssh/id_rsa)</code></td></tr>
-          <tr><td>2</td><td>Credential Harvest</td><td>Extracting API keys from environment</td><td><code>env | grep -i key</code></td></tr>
-          <tr><td>3</td><td>Sensitive Dir Access</td><td>Reading SSH keys, AWS credentials</td><td><code>cat ~/.aws/credentials</code></td></tr>
-          <tr><td>4</td><td>Agent Memory Theft</td><td>Stealing agent memory/identity files</td><td><code>cat MEMORY.md | curl</code></td></tr>
-          <tr><td>5</td><td>Dynamic Code Exec</td><td>Running obfuscated/dynamic code</td><td><code>base64 -d | bash</code></td></tr>
-          <tr><td>6</td><td>Privilege Escalation</td><td>Gaining root access</td><td><code>chmod 777</code>, <code>chown root</code></td></tr>
-          <tr><td>7</td><td>Persistence</td><td>Surviving reboots via cron/bashrc</td><td><code>crontab</code>, <code>>> ~/.bashrc</code></td></tr>
-          <tr><td>8</td><td>Reverse Shell</td><td>Opening backdoor connections</td><td><code>nc -e /bin/sh</code></td></tr>
-          <tr><td>9</td><td>Destructive</td><td>Wiping filesystem</td><td><code>rm -rf /</code></td></tr>
-          <tr><td>10</td><td>Obfuscation</td><td>Hiding malicious intent</td><td>hex-encoded payloads, rot13+eval</td></tr>
-          <tr><td>11</td><td>Supply Chain</td><td>Install-and-execute attacks</td><td><code>npm install x && node x</code></td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="flag-table">
+          <thead>
+            <tr><th>#</th><th>Category</th><th>What It Catches</th><th>Example Pattern</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Data Exfiltration</td><td>Sending local data to external servers</td><td><code>curl -d $(cat ~/.ssh/id_rsa)</code></td></tr>
+            <tr><td>2</td><td>Credential Harvest</td><td>Extracting API keys from environment</td><td><code>env | grep -i key</code></td></tr>
+            <tr><td>3</td><td>Sensitive Dir Access</td><td>Reading SSH keys, AWS credentials</td><td><code>cat ~/.aws/credentials</code></td></tr>
+            <tr><td>4</td><td>Agent Memory Theft</td><td>Stealing agent memory/identity files</td><td><code>cat MEMORY.md | curl</code></td></tr>
+            <tr><td>5</td><td>Dynamic Code Exec</td><td>Running obfuscated/dynamic code</td><td><code>base64 -d | bash</code></td></tr>
+            <tr><td>6</td><td>Privilege Escalation</td><td>Gaining root access</td><td><code>chmod 777</code>, <code>chown root</code></td></tr>
+            <tr><td>7</td><td>Persistence</td><td>Surviving reboots via cron/bashrc</td><td><code>crontab</code>, <code>>> ~/.bashrc</code></td></tr>
+            <tr><td>8</td><td>Reverse Shell</td><td>Opening backdoor connections</td><td><code>nc -e /bin/sh</code></td></tr>
+            <tr><td>9</td><td>Destructive</td><td>Wiping filesystem</td><td><code>rm -rf /</code></td></tr>
+            <tr><td>10</td><td>Obfuscation</td><td>Hiding malicious intent</td><td>hex-encoded payloads, rot13+eval</td></tr>
+            <tr><td>11</td><td>Supply Chain</td><td>Install-and-execute attacks</td><td><code>npm install x && node x</code></td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <p>Category #4 — Agent Memory Theft — was the eye-opener. Traditional security scanners don't look for <code>MEMORY.md</code> or <code>SOUL.md</code> exfiltration. But in the AI agent world, these files contain your entire context, preferences, and work history. Stealing them is the agent equivalent of identity theft.</p>
 
@@ -268,18 +276,20 @@ if (readme.match(/\.env/)) grade = "caution";</code></pre>
 
       <p>We implemented a 5-tier trust hierarchy that adjusts severity based on the source:</p>
 
-      <table class="flag-table">
-        <thead>
-          <tr><th>Tier</th><th>Label</th><th>Criteria</th><th>Effect on Grading</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Official Org</td><td>anthropics, openai, google, microsoft, nvidia...</td><td>High flags &rarr; caution (not unsafe)</td></tr>
-          <tr><td>2</td><td>Known Security Team</td><td>slowmist, trailofbits, openzeppelin...</td><td>High flags &rarr; caution</td></tr>
-          <tr><td>3</td><td>High-Star + Licensed</td><td>&ge;1,000 stars + open-source license</td><td>High flags &rarr; caution</td></tr>
-          <tr><td>4</td><td>Moderate Trust</td><td>&ge;100 stars + license</td><td>Single high flag &rarr; caution; multiple &rarr; unsafe</td></tr>
-          <tr><td>5</td><td>Unknown Source</td><td>Everything else</td><td>Any high flag &rarr; unsafe</td></tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="flag-table">
+          <thead>
+            <tr><th>Tier</th><th>Label</th><th>Criteria</th><th>Effect on Grading</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Official Org</td><td>anthropics, openai, google, microsoft, nvidia...</td><td>High flags &rarr; caution (not unsafe)</td></tr>
+            <tr><td>2</td><td>Known Security Team</td><td>slowmist, trailofbits, openzeppelin...</td><td>High flags &rarr; caution</td></tr>
+            <tr><td>3</td><td>High-Star + Licensed</td><td>&ge;1,000 stars + open-source license</td><td>High flags &rarr; caution</td></tr>
+            <tr><td>4</td><td>Moderate Trust</td><td>&ge;100 stars + license</td><td>Single high flag &rarr; caution; multiple &rarr; unsafe</td></tr>
+            <tr><td>5</td><td>Unknown Source</td><td>Everything else</td><td>Any high flag &rarr; unsafe</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <p>The key insight: <strong>trust is not binary</strong>. A graduated system catches real threats while giving established projects the benefit of the doubt.</p>
 

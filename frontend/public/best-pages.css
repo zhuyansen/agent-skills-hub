@@ -604,6 +604,20 @@
   .bp-hero h1 {
     font-size: 22px;
   }
+  /* Hero chips and scenario card titles wrap on phones. The first chip runs to
+     ~490px ("🔍 Browse 316 browser-use, playwright mcp & ai browser agents
+     tools") and names like ChatGPT_DALL_E_StableDiffusion_Telegram_Bot have no
+     break point: as flex items they ran past the hero or card, and the React
+     stylesheet's html/body overflow-x: clip cut them off (2026-10-29). 17px
+     keeps a one-line chip (32.8px tall) the same pill and gives a wrapped one
+     corners instead of half-circle ends that cut into its text. */
+  .bp-stat-chip {
+    white-space: normal;
+    border-radius: 17px;
+  }
+  .bp-card-title.bp-sc-title {
+    overflow-wrap: anywhere;
+  }
   /* Header on phones: the logo plus the nav need ~470-500px, so the nav drops to
      its own row when it does not fit, and GitHub / X keep only their icons.
      Squeezed into one row, "Agent Skills Hub" wrapped onto three lines and ran
