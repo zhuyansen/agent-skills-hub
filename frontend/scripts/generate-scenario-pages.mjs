@@ -13,7 +13,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import {
   SITE, CATEGORY_LABELS, CATEGORY_LABELS_ZH,
-  esc, starsK, stripMarkdown, parseJsonArray,
+  esc, starsK, parseJsonArray,
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
@@ -29,6 +29,7 @@ import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 import { comparisonsHtml } from "./scenario-compare-links.mjs";
+import { extractQuickStart } from "./scenario-quickstart.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -276,29 +277,6 @@ function matchSkills(scenario, allSkills) {
   if (results.length < min_results) return null;
 
   return results;
-}
-
-/* ── Quick Start extraction ──────────────────────── */
-
-function extractQuickStart(readmeContent) {
-  if (!readmeContent) return null;
-
-  const patterns = [
-    /## (?:Installation|Install|Getting Started|Quick Start|Setup)\s*\n([\s\S]*?)(?=\n## |\n$)/i,
-    /## (?:Usage|How to Use|Examples?)\s*\n([\s\S]*?)(?=\n## |\n$)/i,
-  ];
-
-  for (const pat of patterns) {
-    const match = readmeContent.match(pat);
-    if (match && match[1].trim().length > 30) {
-      const codeMatch = match[1].match(/```[\w]*\n([\s\S]*?)```/);
-      const code = codeMatch ? codeMatch[0] : null;
-      const text = stripMarkdown(match[1]).slice(0, 300);
-      return { text, code };
-    }
-  }
-
-  return null;
 }
 
 /* ── Newsletter CTA (shared) ─────────────────────── */

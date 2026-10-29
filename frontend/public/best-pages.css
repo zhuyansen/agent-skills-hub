@@ -621,10 +621,13 @@
   /* Header on phones: the logo plus the nav need ~470-500px, so the nav drops to
      its own row when it does not fit, and GitHub / X keep only their icons.
      Squeezed into one row, "Agent Skills Hub" wrapped onto three lines and ran
-     into "Home" (2026-10-28). */
+     into "Home" (2026-10-28). column-gap keeps the two apart when they only just
+     fit on one row: at 375px a blog header had 1.4px between "AgentSkillsHub"
+     and "Explore" (2026-10-29). */
   .bp-header-inner {
     flex-wrap: wrap;
     row-gap: 8px;
+    column-gap: 12px;
   }
   .bp-nav-links {
     gap: 8px;
