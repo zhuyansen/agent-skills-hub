@@ -3386,5 +3386,47 @@
    "general": 0.8
   },
   "kind": "general"
+ },
+ {
+  "repo": "AIPMAndy/LivePPT",
+  "stars": 80,
+  "description": "把 Markdown / README 一键变成可翻页、可分享的 HTML 演示页（Claude Code Skill）｜Markdown to web slides",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.39,
+   "convert": 0.91,
+   "general": 0.1
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "dingjq1216/PPT-Knowledge-Skill",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.08,
+   "business": 0.77,
+   "convert": 0.89,
+   "general": 0.82
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kiselas/every-slide-is-code",
+  "stars": 5,
+  "description": "Every slide is code: an Agent Skill for Claude Code, Codex and ChatGPT that builds presentations as one HTML file. Animated charts and diagrams, cinematic transitions, presenter view, PDF/PPTX export and a linter.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.58,
+   "html": 0.97,
+   "business": 0.82,
+   "convert": 0.16,
+   "general": 0.66
+  },
+  "kind": "general"
  }
 ]

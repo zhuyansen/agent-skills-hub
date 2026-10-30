@@ -3610,5 +3610,33 @@
    "rules": 0.23
   },
   "kind": "chinese"
+ },
+ {
+  "repo": "pedrojaques99/visant-skills-public",
+  "stars": 71,
+  "description": "Skills de Claude Code da Visant: auditoria de UI anti-slop, motion, frontend, copy. Com detectores executáveis.",
+  "scores": {
+   "writing": 0.17,
+   "detector": 0.93,
+   "chinese": 0.03,
+   "code": 0.23,
+   "design": 0.91,
+   "rules": 0.63
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "kane50613/native-writing",
+  "stars": 9,
+  "description": "An agent skill that writes and edits app copy, docs, PR descriptions, blogs, and messages so readers follow them on the first read, in English, 台灣繁中, and 简体中文.",
+  "scores": {
+   "writing": 0.84,
+   "detector": 0.07,
+   "chinese": 0.33,
+   "code": 0.09,
+   "design": 0.07,
+   "rules": 0.55
+  },
+  "kind": "writing"
  }
 ]

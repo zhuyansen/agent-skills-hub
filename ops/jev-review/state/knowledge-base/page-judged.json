@@ -43012,5 +43012,31 @@
   "days": 116,
   "stars_per_day": 0.5344827586206896,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "1llu50ry/mcp-reverse",
+  "name": "mcp-reverse",
+  "stars": 419,
+  "description": "MCP (Model Context Protocol) server for game hacking & reverse engineering. A structured knowledge base of 4,100+ skills with full source code archives, specialized agents, and workflow tools -- designed to be plugged into Claude, Cursor, or any MCP-compatible client.",
+  "topics": [],
+  "created": "2026-10-05",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 29673,
+  "names_model": false,
+  "on_subject": 0.84,
+  "is_software": 0.99,
+  "shows_result": 0.08,
+  "one_command_start": 0.4,
+  "specific_outcome": 0.82,
+  "complete_docs": 0.85,
+  "novel_angle": 0.83,
+  "shareable_output": 0.87,
+  "quality": 0.5375,
+  "tier": "中",
+  "hit_prior": 0.5933333333333334,
+  "days": 25,
+  "stars_per_day": 16.76,
+  "verdict": "low_quality"
  }
 ]

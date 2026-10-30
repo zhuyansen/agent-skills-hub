@@ -2201,7 +2201,9 @@
     "Jamie-BitFlight/claude_skills",
     "vasilyu1983/AI-Agents-public",
     "autodesk-platform-services/skills",
-    "mohitagw15856/pm-claude-skills"
+    "mohitagw15856/pm-claude-skills",
+    "Cesarjoquin/Marketing-Skills",
+    "angieruiz17/claude-fintech-skills"
    ]
   },
   "related": [
@@ -2477,7 +2479,10 @@
     "lingbol088-spec/ReiPenFlow",
     "nihe0909/xiaohongshu-ai-workbench",
     "u7079256/paperjury-codex",
-    "sunflower-of-parchman/codex-hygiene"
+    "sunflower-of-parchman/codex-hygiene",
+    "Alice53211/auth-codex-plugin",
+    "Matchameleon/gpt-codex-plugin",
+    "angieruiz17/codex-gpt-plugin"
    ]
   },
   "related": [
@@ -3132,7 +3137,8 @@
     "Cashara-io/eunomia",
     "AlexanderAbramovPav/youtube-advisor",
     "Lvyizhuo/MyProject-SDAgent",
-    "max-ramas/rms-memory-mcp"
+    "max-ramas/rms-memory-mcp",
+    "1llu50ry/mcp-reverse"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3496,7 +3502,8 @@
     "jiweiyeah/Skills-Manager",
     "wanghuan9/skilldock",
     "lingbol088-spec/auto-skill-installer",
-    "The-Utopia-Studio/skills"
+    "The-Utopia-Studio/skills",
+    "gofastskill/fastskill"
    ]
   },
   "related": [
@@ -4361,7 +4368,9 @@
     "pbakaus/impeccable",
     "Ecow0ker/econ-humanizer-skills",
     "pengchenghaoche51/turnitin0_skill",
-    "jinhuoooo/dsh-prompt-polish"
+    "jinhuoooo/dsh-prompt-polish",
+    "pedrojaques99/visant-skills-public",
+    "kane50613/native-writing"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4833,7 +4842,8 @@
     "unifapi-agent/skills",
     "usenotra/notra",
     "AgriciDaniel/codex-seo",
-    "byteminus/laravel-ai-blog"
+    "byteminus/laravel-ai-blog",
+    "Cesarjoquin/Marketing-Skills"
    ]
   },
   "related": [
@@ -5266,7 +5276,8 @@
     "ckryptickunal/OpenDesigner",
     "senlindesign/proof",
     "dgesteves/onsystem",
-    "justskill-ai/justskill-design"
+    "justskill-ai/justskill-design",
+    "pedrojaques99/visant-skills-public"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6349,7 +6360,10 @@
     "josezuma/yc-pitch-deck-max",
     "Arinin77/image2editable-ppt",
     "UniUni2000/slideblocks-skill",
-    "nugrahalabib/AgentBuff-Presentation-Skills"
+    "nugrahalabib/AgentBuff-Presentation-Skills",
+    "AIPMAndy/LivePPT",
+    "dingjq1216/PPT-Knowledge-Skill",
+    "kiselas/every-slide-is-code"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7750,7 +7764,8 @@
     "claudfuen/jev-genui",
     "LabGuy94/jevtok",
     "0x7067/jev-browse",
-    "hiroki-abe-58/sokudan"
+    "hiroki-abe-58/sokudan",
+    "Seheta/netizen"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8245,7 +8260,15 @@
     "Acorn2/frame-loom",
     "d4niel-fr/shdw-video-editor",
     "MuhammadaliMS/pixel-studio",
-    "shaderera/shaderera"
+    "shaderera/shaderera",
+    "AISEO-VirtualabDigital/mcp-video-editor",
+    "Kanvis-chen/kanvis-video",
+    "vawe-hq/vawe",
+    "edotheDev/claude-video-kit",
+    "TheMarco/claude-music-video",
+    "022512db-netizen/rhythm-dancer-video",
+    "miguelcotrinaia/claude-skills-shorts-animados",
+    "deenukhan/story-animator"
    ],
    "sub_skills": [
     {
@@ -8284,7 +8307,9 @@
     "manthanpatelll/leadgenman-video-skills",
     "Dancan254/voiceover-video-skill",
     "minosdevs/cinematic-film",
-    "Miftahul-Islam-Efaz/Motion-graphics-skill"
+    "Miftahul-Islam-Efaz/Motion-graphics-skill",
+    "Vandit1604/vawe",
+    "misbahsy/tiktok-ig-shorts"
    ],
    "tag_matches": [],
    "required_keywords": [

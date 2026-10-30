@@ -15332,5 +15332,36 @@
   "days": 20,
   "stars_per_day": 3.65,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "pedrojaques99/visant-skills-public",
+  "name": "visant-skills-public",
+  "stars": 71,
+  "description": "Skills de Claude Code da Visant: auditoria de UI anti-slop, motion, frontend, copy. Com detectores executáveis.",
+  "topics": [
+   "claude-code",
+   "claude-skills",
+   "design-system",
+   "ui-audit"
+  ],
+  "created": "2026-10-28",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9682,
+  "names_model": false,
+  "on_subject": 0.94,
+  "is_software": 0.98,
+  "shows_result": 0.86,
+  "one_command_start": 0.83,
+  "specific_outcome": 0.91,
+  "complete_docs": 0.91,
+  "novel_angle": 0.77,
+  "shareable_output": 0.83,
+  "quality": 0.8775,
+  "tier": "高",
+  "hit_prior": 0.82,
+  "days": 2,
+  "stars_per_day": 35.5,
+  "verdict": "admit"
  }
 ]

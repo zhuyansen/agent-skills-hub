@@ -7018,5 +7018,149 @@
    "general": 0.7
   },
   "kind": "general"
+ },
+ {
+  "repo": "AISEO-VirtualabDigital/mcp-video-editor",
+  "stars": 72,
+  "description": "Wag na kayo magbayad ng 5k PHP. Ito na — libre. MCP server for CapCut + OpenCut from Cursor, Claude, Codex, Antigravity, OpenCode, KiloCode, Qwen Code and ZCode. 58 tools: timeline, effects catalog, voiceover, Remotion/HyperFrames render. Dry-run safe.",
+  "scores": {
+   "promo": 0.14,
+   "explainer": 0.09,
+   "music": 0.11,
+   "motion": 0.15,
+   "shorts": 0.36,
+   "editing": 0.79,
+   "demo": 0.13,
+   "story": 0.06,
+   "avatar": 0.08,
+   "general": 0.51
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "Kanvis-chen/kanvis-video",
+  "stars": 51,
+  "description": "Kanvis Video: open-source Codex Skills and a local Kanvis Studio workspace for turning long-form content into editable video projects.",
+  "scores": {
+   "promo": 0.13,
+   "explainer": 0.57,
+   "music": 0.04,
+   "motion": 0.07,
+   "shorts": 0.16,
+   "editing": 0.13,
+   "demo": 0.18,
+   "story": 0.11,
+   "avatar": 0.65,
+   "general": 0.17
+  },
+  "kind": "avatar"
+ },
+ {
+  "repo": "vawe-hq/vawe",
+  "stars": 13,
+  "description": "Write one HTML page, get an mp4. Open-source HTML to video framework for coding agents like Claude Code and Codex. A free Remotion alternative.",
+  "scores": {
+   "promo": 0.48,
+   "explainer": 0.39,
+   "music": 0.17,
+   "motion": 0.6,
+   "shorts": 0.26,
+   "editing": 0.03,
+   "demo": 0.51,
+   "story": 0.15,
+   "avatar": 0.04,
+   "general": 0.67
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "edotheDev/claude-video-kit",
+  "stars": 13,
+  "description": "Agents and skills for Claude Code to edit video and make motion films in code: real footage, real type, measured sound.",
+  "scores": {
+   "promo": 0.77,
+   "explainer": 0.43,
+   "music": 0.74,
+   "motion": 0.27,
+   "shorts": 0.58,
+   "editing": 0.72,
+   "demo": 0.57,
+   "story": 0.39,
+   "avatar": 0.06,
+   "general": 0.87
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "TheMarco/claude-music-video",
+  "stars": 6,
+  "description": "Claude Code plugin that makes complete music videos from a song: beat-grid analysis, archive or your own footage, optional AI clips through any video MCP, and a GPU compositor with overlays designed per video.",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.08,
+   "music": 0.95,
+   "motion": 0.03,
+   "shorts": 0.19,
+   "editing": 0.56,
+   "demo": 0.13,
+   "story": 0.15,
+   "avatar": 0.15,
+   "general": 0.04
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "022512db-netizen/rhythm-dancer-video",
+  "stars": 6,
+  "description": "一张角色图 → 绿幕跳舞视频 + 代码搭建的踩点舞台与配乐，渲染成 MP4 的 Agent Skill",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.07,
+   "music": 0.91,
+   "motion": 0.06,
+   "shorts": 0.16,
+   "editing": 0.15,
+   "demo": 0.12,
+   "story": 0.11,
+   "avatar": 0.16,
+   "general": 0.08
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "miguelcotrinaia/claude-skills-shorts-animados",
+  "stars": 5,
+  "description": "Crea shorts animados para TikTok y YouTube con Claude Skills, sin escribir código. Proyecto open source, personalizable y con tutorial paso a paso.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.69,
+   "music": 0.03,
+   "motion": 0.21,
+   "shorts": 0.95,
+   "editing": 0.07,
+   "demo": 0.39,
+   "story": 0.33,
+   "avatar": 0.31,
+   "general": 0.06
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "deenukhan/story-animator",
+  "stars": 5,
+  "description": "Claude Code skill: turn a one-line idea into a narrated 2D animated story video. Every frame drawn in code (Remotion), voiced with ElevenLabs.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.23,
+   "music": 0.05,
+   "motion": 0.07,
+   "shorts": 0.62,
+   "editing": 0.03,
+   "demo": 0.18,
+   "story": 0.96,
+   "avatar": 0.05,
+   "general": 0.05
+  },
+  "kind": "story"
  }
 ]

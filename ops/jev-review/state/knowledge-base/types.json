@@ -5038,5 +5038,19 @@
    "personal": 0.26
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "1llu50ry/mcp-reverse",
+  "stars": 419,
+  "description": "MCP (Model Context Protocol) server for game hacking & reverse engineering. A structured knowledge base of 4,100+ skills with full source code archives, specialized agents, and workflow tools -- designed to be plugged into Claude, Cursor, or any MCP-compatible client.",
+  "scores": {
+   "llm_wiki": 0.2,
+   "rag_platform": 0.17,
+   "mcp": 0.96,
+   "docs_qa": 0.82,
+   "graph": 0.16,
+   "personal": 0.14
+  },
+  "kind": "mcp"
  }
 ]

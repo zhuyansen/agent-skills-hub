@@ -2728,5 +2728,19 @@
    "review": 0.45
   },
   "kind": "ui"
+ },
+ {
+  "repo": "pedrojaques99/visant-skills-public",
+  "stars": 71,
+  "description": "Skills de Claude Code da Visant: auditoria de UI anti-slop, motion, frontend, copy. Com detectores executáveis.",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.77,
+   "tool_mcp": 0.06,
+   "to_code": 0.16,
+   "graphics": 0.08,
+   "review": 0.89
+  },
+  "kind": "ui"
  }
 ]

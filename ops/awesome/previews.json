@@ -111,6 +111,14 @@
   "type": "image/png",
   "bytes": 5538415
  },
+ "AIPMAndy/LivePPT": {
+  "repo": "AIPMAndy/LivePPT",
+  "url": "https://raw.githubusercontent.com/AIPMAndy/LivePPT/HEAD/skills/public/LivePPT/assets/demo.gif",
+  "alt": "LivePPT Demo",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 1172018
+ },
  "AIPMAndy/PPTskill": {
   "repo": "AIPMAndy/PPTskill",
   "url": "https://raw.githubusercontent.com/AIPMAndy/PPTskill/HEAD/docs/assets/screenshots/preview_magazine_garden.png",
@@ -903,6 +911,14 @@
   "type": "image/png",
   "bytes": 367558
  },
+ "Kanvis-chen/kanvis-video": {
+  "repo": "Kanvis-chen/kanvis-video",
+  "url": "https://raw.githubusercontent.com/Kanvis-chen/kanvis-video/HEAD/assets/workbench-preview.png",
+  "alt": "Kanvis Studio 工作台",
+  "score": 1.45,
+  "type": "image/png",
+  "bytes": 139030
+ },
  "Kevinyyy1/image-to-editable-pptx-v2": {
   "repo": "Kevinyyy1/image-to-editable-pptx-v2",
   "url": "https://raw.githubusercontent.com/Kevinyyy1/image-to-editable-pptx-v2/HEAD/examples/images/example-1.png",
@@ -1286,6 +1302,14 @@
   "score": 1.75,
   "type": "image/png",
   "bytes": 320324
+ },
+ "Seheta/netizen": {
+  "repo": "Seheta/netizen",
+  "url": "https://raw.githubusercontent.com/Seheta/netizen/HEAD/docs/header.webp",
+  "alt": "netizen: simulate online reactions",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 55760
  },
  "ShalomObongo/codex-imagegen-mcp": {
   "repo": "ShalomObongo/codex-imagegen-mcp",
@@ -2327,6 +2351,14 @@
   "type": "image/gif",
   "bytes": 1907215
  },
+ "edotheDev/claude-video-kit": {
+  "repo": "edotheDev/claude-video-kit",
+  "url": "https://raw.githubusercontent.com/edotheDev/claude-video-kit/HEAD/docs/examples/slow-story.webp",
+  "alt": "A slow story on archive film with words appearing as they are said",
+  "score": 1.8,
+  "type": "image/webp",
+  "bytes": 1355968
+ },
  "egma-ai/jev-code-reviewer": {
   "repo": "egma-ai/jev-code-reviewer",
   "url": "https://raw.githubusercontent.com/egma-ai/jev-code-reviewer/HEAD/docs/preview.png",
@@ -3159,6 +3191,14 @@
   "type": "image/gif",
   "bytes": 6800910
  },
+ "kiselas/every-slide-is-code": {
+  "repo": "kiselas/every-slide-is-code",
+  "url": "https://raw.githubusercontent.com/kiselas/every-slide-is-code/HEAD/examples/demo/teaser.gif",
+  "alt": "Teaser of the demo deck: a scale read-out tares to zero, the camera feeds down a",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 3848989
+ },
  "kiycoh/silica-core": {
   "repo": "kiycoh/silica-core",
   "url": "https://raw.githubusercontent.com/kiycoh/silica-core/main/assets/quickstart.gif",
@@ -3430,6 +3470,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 277600
+ },
+ "miguelcotrinaia/claude-skills-shorts-animados": {
+  "repo": "miguelcotrinaia/claude-skills-shorts-animados",
+  "url": "https://raw.githubusercontent.com/miguelcotrinaia/claude-skills-shorts-animados/HEAD/docs/demo.gif",
+  "alt": "Video de ejemplo: Sofi y Chispa explican por qué el cielo es azul",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1964099
  },
  "mikelix/gstack-tutorial-5-agi-race-v2": {
   "repo": "mikelix/gstack-tutorial-5-agi-race-v2",
@@ -4414,6 +4462,14 @@
   "score": 4.75,
   "type": "image/gif",
   "bytes": 4221878
+ },
+ "vawe-hq/vawe": {
+  "repo": "vawe-hq/vawe",
+  "url": "https://raw.githubusercontent.com/vawe-hq/vawe/HEAD/assets/vawe-demo.gif",
+  "alt": "A vawe page rendering to a film",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 58252
  },
  "verabravo/diffback": {
   "repo": "verabravo/diffback",

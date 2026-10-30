@@ -5293,5 +5293,20 @@
    "general": 0.14
   },
   "kind": "replica"
+ },
+ {
+  "repo": "Seheta/netizen",
+  "stars": 17,
+  "description": "Simulasi reaksi netizen Indonesia terhadap post/isu (TypeSafe/Jev)",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.09,
+   "devtool": 0.06,
+   "sdk": 0.19,
+   "business": 0.03,
+   "consumer": 0.05,
+   "general": 0.06
+  },
+  "kind": "general"
  }
 ]
