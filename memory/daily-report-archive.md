@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-30
+1. konlu/story-studio — 🆕 从选题一路做到剪映草稿，一站式产出 AI 短视频内容（477★ 113.4/day）
+2. liketrek/TREK — 开源旅行规划器，实时协作管理预订、预算、行李清单与旅行日志（15224★ 67.6/day）
+3. pedrojaques99/visant-skills-public — 🆕 用可执行检测器审查界面的 AI 味，附动效、前端与文案技能（71★ 36.7/day）
+4. XiaoyeCodes/code-animation-prompts — 🆕 打包 341 种代码动画风格提示词与离线挑选器，可渲染成 HTML 视频（33★ 28.7/day）
+5. davidondrej/cloudroom — 搭建开源平台，让上千个智能体同时高效运转（1070★ 25.0/day）
+6. AgenticResourceRegistry/AgenticResourceRegistry — 自托管团队共享与发现编程智能体资源，兼容 Claude Code 等工具（4534★ 21.2/day）
+7. 1llu50ry/mcp-reverse — 把游戏逆向工程知识整理成结构化知识库，经 MCP 交给智能体查询（419★ 16.5/day）
+8. op7418/malfoy-desktop — 🆕 打造住着马尔福小姐的 AI 陪伴桌面，带互动剧情与好感度解锁装扮（32★ 15.1/day）
+9. iamrohithrnair/merman — 🆕 让 Claude Code 在终端里彩色渲染 mermaid 图、表格和代码（33★ 15.1/day）
+10. flohoeller/affectui — 提供展示智能体树、工具调用、追踪与审批的 React 界面组件（383★ 14.3/day）
+🎯 今日趋势：**5 席**标 🆕；视频与动画创作占 **2 席**（story-studio、code-animation-prompts），给智能体做界面与可视化占 **2 席**（merman、affectui），老仓库首次入库占 **5 席**、TREK 以 15,224★ 领跑。
+> 注：去重范围＝repo 内 archive 全部 127 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,303 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 21 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（win4r/video-director 55.8h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①jefferysha0627/agent-office-3d（59★ 53.6/day）：3 粉，另两仓 0★，单仓爆星，保守排除；②Sheernox/cedr（47★ 47.0/day）：组织 09-15 新建、1 粉，另一仓 0★，实时 52★ 配 0 fork，保守排除；③w0ldan/exoproc（62★ 35.5/day）：Windows 进程内存改写与注入工具包，偏外挂用途，与 Agent Skills 无关，不上榜；④AISEO-VirtualabDigital/mcp-video-editor（72★ 18.3/day）：SEO 代理商账号 07-31 新建、4 粉，其余仓全 0★，标题带推广话术，保守排除；⑤NewBeeM4n/codex-overload-fix（117★ 17.8/day）：账号仅此 1 仓、1 粉，单仓突起，保守排除；⑥其余均已在历史榜单出现或 velocity 低于第 10 席（1weiho/skills 12.8/day 第 11）。入选项复核（`gh api`）：第 1 席 konlu 8 粉、名下仅此仓有星，但实时 523★/116 fork 比例正常（**轻红旗**，保留）；第 2 席 TREK 仓库 225 天老、组织 07-18 新建（疑为迁移），实时 1,310 fork；第 3 席 pedrojaques99 2019 建号、36 仓；第 4 席 XiaoyeCodes 1 粉、其余仓 ≤3★，但实时 113★/29 fork（**轻红旗**，保留）；第 5 席 davidondrej 1,238 粉、名下另有 4,193★ 仓；第 6 席组织 10-29 新建但仓库 213 天老（疑为迁移），实时 1,140 fork；第 7 席 1llu50ry 24 粉、实时 453★/86 fork，内容为游戏逆向知识库（**轻红旗**，保留）；第 8 席 op7418（歸藏）5,301 粉；第 9 席 iamrohithrnair 名下另有 545★ 仓；第 10 席 flohoeller 7 粉、实时 393★/18 fork（**轻红旗**，保留）。🆕 判定＝created_at 距今 14 天内：story-studio、visant、code-animation-prompts、malfoy-desktop、merman 命中，其余五席 25–225 天不标。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（story-studio 523★、code-animation-prompts 113★），按红线保留快照值。
+
+---
+
 ## 2026-10-29
 1. haydenschmitty/floorplan — 🆕 让 Claude 把代码库画成可交互的白话架构图，看清应用全貌（204★ 115.1/day）
 2. MiniMax-AI/mcode-stack — 🆕 开源 MiniMax Code 团队自用的工作流与技能，装上即可照着用（81★ 68.7/day）
