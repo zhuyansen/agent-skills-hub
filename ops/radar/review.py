@@ -36,7 +36,11 @@ only when the lead has something for it.
    "examples": [str],  the report's example lines, up to 10
    "variants": [str],  the search terms
    "meme": {"what", "checks", "earliest": "YYYY-MM-DD" or "", "earliest_is_floor": bool,
-            "window": {"peak_days", "age_days", "days_left"}},                AI video trends
+            "window": {"peak_days", "age_days", "days_left"},                AI video trends
+            "slots": {"head": page, "tool": page with "ads": bool, "taken": bool}},
+       a page: {"results", "platforms", "tools": int, "blocks": [str]}, Google's first page for
+       the trend's name (head) and its search term (tool), US English. From 2026-10-31, and only
+       for leads that had the competition check (meme_checks.slots, shadow: shown nowhere).
    "keywords": {"rows": [{"phrase", "kind", "per_day", "decision", "now"}],
                 "tails": [str], "cosearch": [str]},          names the keyword table read
    "site": {"domain", "registered", "age_days", "authors", "by": {network: people},

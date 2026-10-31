@@ -11,7 +11,9 @@ competition()  whether the obvious domains are still free (RDAP via rdap.org, fr
                means nobody holds it) and how many of Google's top 10 for the search
                term are already tool sites (DataForSEO through AIsa, $0.002). On 10-19
                "hotel lobby ai", a September trend, had six; a trend with none, and its
-               domain free, is open.
+               domain free, is open. It also reads the first page of the trend's own name
+               ($0.002 more) and keeps what holds the two pages besides tool sites:
+               slots(), in shadow, shown nowhere until a review backs it.
 """
 from __future__ import annotations
 
@@ -30,6 +32,7 @@ COMMENTS_PER_VIDEO = 50
 COMMENT_CHARS = 120
 MODEL = "claude-sonnet-4-6"
 CROWDED = 4              # tool sites in Google's top 10: past the window (hotel lobby had 6 a month in)
+TAKEN = 0.5              # platforms holding more than this share of the name's top 10 (slots())
 # places that talk about a trend, not tools that make it
 PLATFORMS = re.compile(r"(^|\.)(tiktok|youtube|instagram|facebook|x|twitter|reddit|pinterest|wikipedia|"
                        r"yahoo|msn|medium|quora|linkedin|threads|capcut|knowyourmeme|huggingface|github|"
@@ -113,15 +116,20 @@ def rdap(domain: str) -> dict:
     return {"domain": domain, "free": False, "registered": when}
 
 
-def serp(query: str) -> tuple[list[dict], int]:
+def serp(query: str) -> tuple[dict, int]:
+    """Google's first page for `query`, US English: `top`, its ten organic results, and `blocks`,
+    the other kinds of result on the page (ai_overview, video, short_videos, paid...). The regular
+    endpoint names every kind on the page in item_types, at no extra cost (the 10-11 scenario
+    check: an AI overview on 13 of 14 pages)."""
     data, cost = aisa.call([{"call_id": "s", "tool": SERP_TOOL, "arguments": {"body": [{
         "keyword": query, "location_code": 2840, "language_code": "en", "depth": 10}]}}])
     try:
-        items = data["s"]["tasks"][0]["result"][0]["items"] or []
+        result = data["s"]["tasks"][0]["result"][0] or {}
     except (KeyError, IndexError, TypeError):
-        return [], cost
-    return [{"domain": (i.get("domain") or "").removeprefix("www."), "title": i.get("title") or ""}
-            for i in items if i.get("type") == "organic"][:10], cost
+        result = {}
+    top = [{"domain": (i.get("domain") or "").removeprefix("www."), "title": i.get("title") or ""}
+           for i in result.get("items") or [] if i.get("type") == "organic"][:10]
+    return {"top": top, "blocks": sorted(set(result.get("item_types") or []) - {"organic"})}, cost
 
 
 def is_tool(item: dict, name: str) -> bool:
@@ -131,13 +139,38 @@ def is_tool(item: dict, name: str) -> bool:
     return bool(TOOLISH.search(item["title"])) or (len(base) > 4 and base in item["domain"].replace("-", ""))
 
 
+def page_slots(page: dict, name: str) -> dict:
+    """What holds a first page: how many results are platforms (PLATFORMS) or tool sites, and the
+    other blocks on it."""
+    top = page["top"]
+    return {"results": len(top), "platforms": sum(1 for i in top if PLATFORMS.search(i["domain"])),
+            "tools": sum(1 for i in top if is_tool(i, name)), "blocks": page["blocks"]}
+
+
+def slots(name: str, head: dict, tool: dict) -> dict:
+    """The results pages' own slots, kept in shadow (radar_leads.evidence, meme.slots), shown
+    nowhere. `head` is the page for the trend's name, `tool` the one for its search term ("<name>
+    ai"). `taken`: platforms hold more than half of the name's top 10 and no ads show on the term's
+    page, so searchers want the trend itself and nobody pays for a tool's click. Proposed on 10-31
+    from a song meme whose name's page was held by video platforms, a short-video block and an AI
+    overview: a tool site built for it got no impression on the name. A review against the radar's
+    14-day verdicts decides whether it may ever hold a pick."""
+    h, t = page_slots(head, name), page_slots(tool, name)
+    t["ads"] = "paid" in t["blocks"]
+    return {"head": h, "tool": t, "taken": h["results"] > 0 and h["platforms"] > h["results"] * TAKEN and not t["ads"]}
+
+
 def competition(trend: dict) -> tuple[dict, int]:
     with ThreadPoolExecutor(4) as pool:
         doms = list(pool.map(rdap, domains(trend["name"])))
-    top, cost = serp(trend["query"])
-    tools = [i["domain"] for i in top if is_tool(i, trend["name"])]
-    return {"domains": doms, "free": [d["domain"] for d in doms if d["free"]],
-            "results": len(top), "tools": tools}, cost
+    page, cost = serp(trend["query"])
+    try:   # the name's own page, for slots() only: when it fails, the check keeps its tool count
+        head, more = serp(trend["name"]) if trend["name"] != trend["query"] else (page, 0)
+    except Exception:  # noqa: BLE001
+        head, more = None, 0
+    return {"domains": doms, "free": [d["domain"] for d in doms if d["free"]], "results": len(page["top"]),
+            "tools": [i["domain"] for i in page["top"] if is_tool(i, trend["name"])],
+            "slots": slots(trend["name"], head, page) if head else None}, cost + more
 
 
 def summary(trend: dict) -> str:

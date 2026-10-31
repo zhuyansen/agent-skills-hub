@@ -1,6 +1,7 @@
 """The radar's shadow records, kept for a review and shown nowhere: Google Ads' money figures for the
-keywords it sizes (cpc_shadow.py, migration 032) and CapCut's Most Used templates (capcut.py, migration
-033). No network: test_radar.py's guard and stubs are reused."""
+keywords it sizes (cpc_shadow.py, migration 032), CapCut's Most Used templates (capcut.py, migration
+033) and what holds a meme's results pages (meme_checks.slots, in the lead's evidence). No network:
+test_radar.py's guard and stubs are reused."""
 import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -8,6 +9,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 
 import capcut  # noqa: E402
+import meme_checks  # noqa: E402
+import memes  # noqa: E402
 import radar  # noqa: E402
 import usecases  # noqa: E402
 
@@ -138,3 +141,74 @@ def test_the_source_run_logs_capcut_and_keeps_it_out_of_the_report_and_the_mail(
     radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources"})
     assert "10-29 23 点(北京时间)那张,3 个模板(4 张卡)" in capsys.readouterr().out
     assert not (tmp_path / "sources.md").exists() and not (tmp_path / "sources.picks.md").exists()
+
+
+# --- a meme's results pages in shadow (meme_checks.slots, radar_leads.evidence) ------------
+
+def _serp_answer(results, item_types):
+    items = [{"type": "organic", "domain": d, "title": t} for d, t in results]
+    return {"s": {"tasks": [{"result": [{"items": items, "item_types": item_types}]}]}}
+
+
+def _page(platforms, others, blocks):
+    return {"top": [{"domain": "youtube.com", "title": "clip"}] * platforms
+            + [{"domain": "maker.example", "title": "Free maker"}] * others, "blocks": blocks}
+
+
+def test_serp_names_the_other_blocks_on_the_page(monkeypatch):
+    answer = _serp_answer([("www.youtube.com", "Lobby Song (Official Video)"), ("tiktok.com", "#lobbysong")],
+                          ["ai_overview", "organic", "short_videos", "video"])
+    monkeypatch.setattr(meme_checks.aisa, "call", lambda calls: (answer, 2000))
+    page, cost = meme_checks.serp("lobby song")
+    assert cost == 2000 and page["blocks"] == ["ai_overview", "short_videos", "video"]
+    assert page["top"][0] == {"domain": "youtube.com", "title": "Lobby Song (Official Video)"}
+    monkeypatch.setattr(meme_checks.aisa, "call", lambda calls: ({"s": {"tasks": []}}, 2000))
+    assert meme_checks.serp("lobby song") == ({"top": [], "blocks": []}, 2000)
+
+
+def test_competition_reads_the_names_own_page_and_keeps_its_slots(monkeypatch):
+    pages = {"lobby song ai": _serp_answer([("lobbysong-ai.com", "Lobby Song AI Video Generator"), ("youtube.com", "x")],
+                                           ["organic"]),
+             "lobby song": _serp_answer([("youtube.com", "a"), ("tiktok.com", "b"), ("music.apple.com", "c"),
+                                         ("lyrics.example", "d")], ["ai_overview", "organic", "short_videos"])}
+    asked = []
+
+    def call(calls):
+        asked.append(calls[0]["arguments"]["body"][0]["keyword"])
+        return pages[asked[-1]], 2000
+    monkeypatch.setattr(meme_checks.aisa, "call", call)
+    monkeypatch.setattr(meme_checks, "rdap", lambda d: {"domain": d, "free": True, "registered": ""})
+    co, cost = meme_checks.competition({"name": "lobby song", "query": "lobby song ai"})
+    assert asked == ["lobby song ai", "lobby song"] and cost == 4000
+    assert (co["results"], co["tools"]) == (2, ["lobbysong-ai.com"])          # the mail's count, as before
+    head, tool = co["slots"]["head"], co["slots"]["tool"]
+    assert (head["results"], head["platforms"], head["blocks"]) == (4, 3, ["ai_overview", "short_videos"])
+    assert (tool["tools"], tool["ads"], co["slots"]["taken"]) == (1, False, True)
+
+
+def test_a_failed_name_page_keeps_the_tool_count(monkeypatch):
+    def call(calls):
+        if calls[0]["arguments"]["body"][0]["keyword"] == "lobby song":
+            raise meme_checks.aisa.AisaError("HTTP 500")
+        return _serp_answer([("maker.example", "Lobby Song AI generator")], ["organic", "paid"]), 2000
+    monkeypatch.setattr(meme_checks.aisa, "call", call)
+    monkeypatch.setattr(meme_checks, "rdap", lambda d: {"domain": d, "free": None, "registered": ""})
+    co, cost = meme_checks.competition({"name": "lobby song", "query": "lobby song ai"})
+    assert (co["tools"], co["slots"], cost) == (["maker.example"], None, 2000)
+
+
+def test_ads_or_a_name_page_of_sites_is_not_taken():
+    assert meme_checks.slots("x", _page(8, 2, []), _page(0, 10, []))["taken"]
+    assert not meme_checks.slots("x", _page(8, 2, []), _page(0, 10, ["paid"]))["taken"]   # someone pays for the tool click
+    assert not meme_checks.slots("x", _page(5, 5, ["video"]), _page(0, 10, []))["taken"]  # half is not more than half
+    assert not meme_checks.slots("x", _page(0, 0, []), _page(0, 0, []))["taken"]          # no results, nothing to read
+
+
+def test_slots_stay_out_of_the_mail_and_go_to_the_evidence():
+    slots = meme_checks.slots("x", _page(8, 2, ["ai_overview"]), _page(0, 10, []))
+    co = {"domains": [{"domain": "xai.com", "free": True, "registered": ""}], "free": ["xai.com"], "results": 10,
+          "tools": [], "slots": slots}
+    m = {"name": "x", "what": "w", "competition": co, "earliest": "2026-10-30", "edge": False, "age": 1}
+    assert meme_checks.summary(m) == "xai.com 还空着｜Google 前 10 有 0 个工具站"
+    assert memes.evidence(m)["slots"] == slots
+    assert "slots" not in memes.evidence({**m, "competition": None})

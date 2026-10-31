@@ -283,11 +283,15 @@ _AUTHOR = re.compile(r"(?:tiktok\.com/@|(?:x|twitter)\.com/)([\w.]+)")
 
 def evidence(m: dict) -> dict:
     """The trend's part of its lead's evidence (review.py): what people make, the checks, the
-    first day it showed (a floor when `earliest_is_floor`) and how much of its window is left."""
+    first day it showed (a floor when `earliest_is_floor`) and how much of its window is left;
+    for a lead that had the competition check, `slots`, the results pages read in shadow
+    (meme_checks.slots): kept for its review, shown nowhere."""
     age = m.get("age")
-    return {"what": m["what"], "checks": m.get("checks", ""), "earliest": m.get("earliest", ""),
-            "earliest_is_floor": bool(m.get("edge")),
-            "window": {"peak_days": PEAK_DAYS, "age_days": age, "days_left": None if age is None else PEAK_DAYS - age}}
+    out = {"what": m["what"], "checks": m.get("checks", ""), "earliest": m.get("earliest", ""),
+           "earliest_is_floor": bool(m.get("edge")),
+           "window": {"peak_days": PEAK_DAYS, "age_days": age, "days_left": None if age is None else PEAK_DAYS - age}}
+    slots = (m.get("competition") or {}).get("slots")
+    return {**out, "slots": slots} if slots else out
 
 
 def evidence_posts(m: dict) -> list[dict]:
