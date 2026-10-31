@@ -13,6 +13,7 @@ import type {
 } from "../types/skill";
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
+import { trackSearch } from "../lib/searchLog";
 import {
   sbFetchSkills,
   sbFetchSkillsByIds,
@@ -60,10 +61,32 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
 // ═══ Public API (auto-switches between Supabase and FastAPI) ═══
 
+// The shadow search record counts a list search only when no filter narrows
+// it, so zero results there mean the catalog has nothing for the words.
+function isPlainSearch(
+  p: SkillsQueryParams,
+): p is SkillsQueryParams & { search: string } {
+  return (
+    !!p.search &&
+    !p.category &&
+    !p.platform &&
+    !p.size_category &&
+    !p.quality_tiers &&
+    !p.min_stars &&
+    !p.author
+  );
+}
+
 export async function fetchSkills(
   params: SkillsQueryParams,
 ): Promise<PaginatedSkills> {
-  if (USE_SUPABASE) return sbFetchSkills(params);
+  if (USE_SUPABASE) {
+    const page = sbFetchSkills(params);
+    if (isPlainSearch(params)) {
+      trackSearch("list", params.search, page.then((p) => p.total));
+    }
+    return page;
+  }
   const sp = new URLSearchParams();
   sp.set("page", String(params.page));
   sp.set("page_size", String(params.page_size));
@@ -149,7 +172,11 @@ export async function fetchQuickSearch(
   limit = 8,
 ): Promise<Skill[]> {
   if (!query.trim()) return [];
-  if (USE_SUPABASE) return sbQuickSearch(query, limit);
+  if (USE_SUPABASE) {
+    const rows = sbQuickSearch(query, limit);
+    trackSearch("suggest", query, rows.then((r) => r.length));
+    return rows;
+  }
   return request<Skill[]>(
     `/api/skills?search=${encodeURIComponent(query)}&page_size=${limit}&sort_by=score&sort_order=desc`,
   ).then((r: Skill[] | { items: Skill[] }) => ("items" in r ? r.items : r));
