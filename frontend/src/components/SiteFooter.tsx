@@ -312,8 +312,10 @@ export function SiteFooter() {
       <div className="border-t border-gray-800">
         <div className="max-w-[1440px] mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-500">
           <span>
-            &copy; {new Date().getFullYear()} AgentSkillsHub.{" "}
-            {lang === "zh" ? "保留所有权利" : "All rights reserved"}.
+            &copy; {new Date().getFullYear()} AgentSkillsHub
+            {lang === "zh"
+              ? "，由 GoSailGlobal LLC 运营。保留所有权利。"
+              : ", operated by GoSailGlobal LLC. All rights reserved."}
           </span>
           <span className="flex items-center gap-3">
             {/* Directory-listing badges (reciprocal verification links). */}

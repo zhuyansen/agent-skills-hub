@@ -933,7 +933,7 @@ ${methodLd(scenario, pageUrl)}
           <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Terms" data-zh="条款">Terms</a>
           <a href="https://github.com/ZhuYansen/agent-skills-hub" style="color:var(--bp-text-secondary);text-decoration:none">GitHub</a>
         </div>
-        <p style="margin:0" data-en="© ${year} Agent Skills Hub. Open-source project." data-zh="© ${year} Agent Skills Hub · 开源项目">&copy; ${year} Agent Skills Hub. Open-source project.</p>
+        <p style="margin:0" data-en="© ${year} Agent Skills Hub, operated by GoSailGlobal LLC. Open-source project." data-zh="© ${year} Agent Skills Hub · 由 GoSailGlobal LLC 运营 · 开源项目">&copy; ${year} Agent Skills Hub, operated by GoSailGlobal LLC. Open-source project.</p>
       </footer>
     </div>
 </body>
