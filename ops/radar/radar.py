@@ -9,7 +9,8 @@ The source signals (①) change by the hour, the rest by the day, so they run ap
 mail shows a term once:
   radar-source.yml, every 8 hours with --sources: HF, the AI video trends, the App Store charts
     and the new sites people link, and X once a day (x_block); it also keeps CapCut's Most Used
-    templates for a review, shown nowhere (capcut.py). Its full report, <report.md>,
+    templates and, once a day, the links ten AI video sites put on their homepages, for a review,
+    shown nowhere (capcut.py, homepage_promos.py). Its full report, <report.md>,
     goes to the run's summary only, written when there is a name or an error. The mail,
     <report>.picks.md, holds only the picks no earlier 8-hourly mail sent (mail_new_picks);
     with none, or with only errors, there is no mail.
@@ -59,6 +60,7 @@ import appstore  # noqa: E402
 import breakout  # noqa: E402
 import capcut  # noqa: E402
 import cpc_shadow  # noqa: E402
+import homepage_promos  # noqa: E402
 import memes  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
@@ -656,6 +658,9 @@ def sources_main(report: Path, snaps: Path, flags: set[str]) -> int:
     record_shadow(blocks["social"], "--skip-db" in flags)
     # CapCut's Most Used templates: kept for a review, never shown (capcut.py, migration 033)
     print(capcut.status(run("capcut", capcut.record, "--skip-db" in flags)))
+    # what ten AI video sites link to from their homepages, once a day: kept for a review, never shown
+    # (homepage_promos.py, migration 044)
+    print(homepage_promos.status(run("homepage", homepage_promos.record, "--skip-db" in flags)))
     new = mail_new_picks(report, snaps, blocks)
     print("新的可做词:" + ("、".join(p["term"] for p in new) or "无,不发邮件"))
     if named(lead) or report_errors(blocks):

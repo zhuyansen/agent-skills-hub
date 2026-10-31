@@ -272,6 +272,7 @@ def _quiet_memes_and_charts(monkeypatch):
     monkeypatch.setattr(radar.appstore, "apps", lambda snaps: {
         "charts": 290, "failed": [], "apps": [], "terms": [], "read": [], "errors": [], "cost_micros": 0})
     monkeypatch.setattr(radar.capcut, "record", lambda: {"skipped": True, "why": "测试"})   # CapCut's listing, in shadow
+    monkeypatch.setattr(radar.homepage_promos, "record", lambda: {"skipped": True, "why": "测试"})   # homepages, in shadow
     _social_world(monkeypatch, [], {})   # the new sites people link: no links on Bluesky, none in the X posts
 
 

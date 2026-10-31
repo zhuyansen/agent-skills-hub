@@ -1,14 +1,18 @@
 """The radar's shadow records, kept for a review and shown nowhere: Google Ads' money figures for the
 keywords it sizes (cpc_shadow.py, migration 032), CapCut's Most Used templates (capcut.py, migration
-033) and what holds a meme's results pages (meme_checks.slots, in the lead's evidence). No network:
+033), what holds a meme's results pages (meme_checks.slots, in the lead's evidence) and what ten AI
+video sites link to from their homepages (homepage_promos.py, migration 044). No network:
 test_radar.py's guard and stubs are reused."""
 import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/radar"))
 
 import capcut  # noqa: E402
+import homepage_promos  # noqa: E402
 import meme_checks  # noqa: E402
 import memes  # noqa: E402
 import radar  # noqa: E402
@@ -212,3 +216,79 @@ def test_slots_stay_out_of_the_mail_and_go_to_the_evidence():
     assert meme_checks.summary(m) == "xai.com 还空着｜Google 前 10 有 0 个工具站"
     assert memes.evidence(m)["slots"] == slots
     assert "slots" not in memes.evidence({**m, "competition": None})
+
+
+# --- what ten AI video sites link to from their homepages (homepage_promos.py, migration 044) ---
+
+HP_DAY = date(2026, 10, 31)
+HP_PAGE = """<html><head><title>Maker</title><script>var a = '<a href="/in-script">x</a>';</script></head><body>
+<header><a href="/"><img alt="Maker"></a><nav><a href="/pricing?ref=top">Pricing</a></nav></header>
+<main><a href="https://maker.ai/ai-meme-generator#try"><span>Meme Maker</span> <span>New</span></a>
+<a href="/home"><img src="x.png"></a><a href="/home">Home Home Home</a>
+<a href="https://app.maker.ai/create">Create</a><a href="https://other.example/x">Partner</a>
+<a href="mailto:hi@maker.ai">Mail</a><a href="javascript:void(0)">Menu</a><a href="http://[bad">Bad</a>
+<a href="/pricing">Pricing again</a></main>
+<footer><a href="/terms">Terms</a></footer><a href="/left-open">Left open"""
+
+
+def test_a_homepage_keeps_each_own_link_once_in_the_order_shown():
+    rows = homepage_promos.rows_of(HP_DAY, "maker.ai", "https://maker.ai/en", HP_PAGE)
+    assert [(r["position"], r["link"], r["label"], r["area"]) for r in rows] == [
+        (1, "/", "Maker", "nav"), (2, "/pricing", "Pricing", "nav"),
+        (3, "/ai-meme-generator", "Meme Maker New", "body"), (4, "/home", "Home", "body"),
+        (5, "app.maker.ai/create", "Create", "body"), (6, "/terms", "Terms", "footer"),
+        (7, "/left-open", "Left open", "body")]
+    assert {r["day"] for r in rows} == {HP_DAY} and {r["site"] for r in rows} == {"maker.ai"}
+
+
+class _FakeHomepages:
+    """The ten homepages: a site's (final address, html), or the HTTP status it answers with."""
+    def __init__(self, pages):
+        self.pages, self.read = pages, []
+
+    def __call__(self, url):
+        self.read.append(url)
+        got = self.pages.get(url, 403)
+        if isinstance(got, int):
+            raise homepage_promos.urllib.error.HTTPError(url, got, "Forbidden", {}, None)
+        return got
+
+
+def test_a_run_reads_only_the_sites_not_kept_today_and_counts_the_ones_it_cannot_read(monkeypatch):
+    sites = dict(homepage_promos.SITES)
+    fake = _FakeHomepages({sites["pollo.ai"]: ("https://pollo.ai/", '<a href="/ai-video">AI Video</a>'),
+                           sites["pixverse.ai"]: ("https://pixverse.ai/en", "<main>no links</main>")})
+    monkeypatch.setattr(homepage_promos, "fetch", fake)
+    written = []
+    unread = ("pollo.ai", "pixverse.ai", "leonardo.ai")
+    monkeypatch.setattr(homepage_promos, "_done", lambda engine, day: {s for s in sites if s not in unread})
+    monkeypatch.setattr(homepage_promos, "_write", lambda engine, rows: written.extend(rows))
+    block = homepage_promos._record(None, HP_DAY)
+    assert sorted(fake.read) == sorted(sites[s] for s in unread)
+    assert [(r["site"], r["link"]) for r in written] == [("pollo.ai", "/ai-video")]
+    assert block == {"sites": 10, "already": 7, "read": 1, "links": 1, "failed": {"HTTP 403": 1, "没有链接": 1}}
+    assert homepage_promos.status(block) == ("- 大站首页推荐位(影子记录,不进邮件):读到 1 个站,1 条链接,另 7 个今天已记过"
+                                             ";没读到:HTTP 403 1 个、没有链接 1 个")
+
+
+def test_a_day_already_kept_reads_nothing(monkeypatch):
+    monkeypatch.setattr(homepage_promos, "fetch", lambda url: pytest.fail(f"read {url} again"))
+    monkeypatch.setattr(homepage_promos, "_done", lambda engine, day: {s for s, _ in homepage_promos.SITES})
+    block = homepage_promos._record(None, HP_DAY)
+    assert homepage_promos.status(block) == "- 大站首页推荐位(影子记录,不进邮件):今天 10 个站都记过了"
+    assert homepage_promos.status({"error": "OperationalError: x"}).endswith("没记录(OperationalError: x)")
+
+
+def test_the_source_run_logs_the_homepages_and_keeps_them_out_of_the_mail(monkeypatch, tmp_path, capsys):
+    _quiet_memes_and_charts(monkeypatch)
+    monkeypatch.setattr(radar.source_signals, "x_new", lambda snaps: {"posts": 400, "terms": []})
+    monkeypatch.setattr(radar.source_signals, "hf_new", lambda snaps: {"models": 100, "terms": []})
+    monkeypatch.setattr(radar.homepage_promos, "record", lambda: pytest.fail("read with --skip-db"))
+    radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources", "--skip-db"})
+    assert "大站首页推荐位(影子记录,不进邮件):这轮不记(跳过数据库)" in capsys.readouterr().out
+    block = {"sites": 10, "already": 0, "read": 9, "links": 812, "failed": {"HTTP 403": 1}}
+    monkeypatch.setattr(radar.homepage_promos, "record", lambda: block)
+    monkeypatch.setattr(radar.review, "record", lambda rows: len(rows))
+    radar.sources_main(tmp_path / "sources.md", tmp_path, {"--sources"})
+    assert "读到 9 个站,812 条链接;没读到:HTTP 403 1 个" in capsys.readouterr().out
+    assert not (tmp_path / "sources.md").exists() and not (tmp_path / "sources.picks.md").exists()
