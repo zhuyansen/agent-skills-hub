@@ -184,6 +184,13 @@ def write_stats(rows):
         conn.close()
 
 
+def is_old_name(name, payload):
+    """True when GitHub answered for a repository under another name: `name` is the old name
+    of a renamed or transferred repository, and requests followed the redirect. That row is
+    not live under its own name; backend/renamed_repos.py merges or renames it."""
+    return bool(payload) and payload.get("full_name", "").lower() != name.lower()
+
+
 def probe(token, row):
     """Return (row, status, payload). 404 = gone, 200 = alive, None = unknown.
 
@@ -229,7 +236,7 @@ def main():
     print(f"探测 {len(rows)} 个候选(stars>={args.min_stars},{args.stale_days}天+未同步)…", file=sys.stderr)
 
     token = github_token()
-    dead, alive, unknown = [], 0, 0
+    dead, alive, unknown, moved = [], 0, 0, []
     buckets = {"gone": [], "live": [], "unknown": []}
     fresh = []
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
@@ -244,6 +251,8 @@ def main():
                 dead.append({"repo_full_name": name, "stars": stars,
                              "last_synced": str(synced)})
                 buckets["gone"].append(name)
+            elif status == 200 and is_old_name(name, payload):
+                moved.append(name)
             elif status == 200:
                 alive += 1
                 buckets["live"].append(name)
@@ -257,6 +266,8 @@ def main():
         json.dump(dead, f, indent=2, ensure_ascii=False)
 
     print(f"\n死链 {len(dead)} / 存活 {alive} / 不确定 {unknown}")
+    if moved:
+        print(f"改名仓库的旧名 {len(moved)}(状态不改,交给 backend/renamed_repos.py):{', '.join(moved[:10])}")
     if unknown > len(rows) * 0.1:
         print(f"⚠️ 不确定占比 {unknown/len(rows)*100:.0f}% —— 这轮结果不可信(鉴权或网络问题),别当成'没死链'")
     if dead:
