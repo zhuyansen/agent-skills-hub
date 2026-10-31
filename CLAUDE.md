@@ -151,7 +151,7 @@ Before committing, verify zero occurrences of:
 
 ### Review Triggers
 When modifying these critical files, require extra scrutiny:
-- `supabaseClient.ts` — RLS bypass risk, query correctness
+- `supabaseClient.ts`, `supabaseSearch.ts` — RLS bypass risk, query correctness
 - `email_service.py` — rate limiting, subscriber privacy
 - `sync_runner.py` — GitHub API quota, data integrity
 - Any file in `supabase/migrations/` — irreversible schema changes
