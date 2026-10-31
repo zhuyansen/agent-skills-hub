@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-how-we-grade-page.mjs && node scripts/generate-author-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-sub-skill-pages.mjs && node scripts/generate-audit-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-book-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-daily-pages.mjs && node scripts/generate-search-index.mjs && node scripts/generate-stats-page.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms-txt.mjs && node scripts/submit-indexnow.mjs",
+    "build": "tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/generate-how-we-grade-page.mjs && node scripts/generate-author-pages.mjs && node scripts/generate-skill-pages.mjs && node scripts/generate-sub-skill-pages.mjs && node scripts/generate-skill-redirects.mjs && node scripts/generate-audit-pages.mjs && node scripts/generate-scenario-pages.mjs && node scripts/generate-comparison-pages.mjs && node scripts/generate-book-pages.mjs && node scripts/generate-badges.mjs && node scripts/generate-rss.mjs && node scripts/generate-daily-pages.mjs && node scripts/generate-search-index.mjs && node scripts/generate-stats-page.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms-txt.mjs && node scripts/submit-indexnow.mjs",
     "build:check": "tsc -b && vite build --emptyOutDir false",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:scenarios": "node scripts/test-scenarios.mjs"
+    "test:scenarios": "node scripts/test-scenarios.mjs",
+    "test:redirects": "node --test scripts/skill-redirects.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

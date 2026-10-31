@@ -1,0 +1,89 @@
+name: Renamed repositories
+
+# GitHub answers an old repository name with a redirect, and every client here follows it,
+# so the catalog row under the old name of a renamed or transferred repository was never
+# matched again: on 2026-10-31, 932 rows with 50+ stars were old names, nearly all marked
+# live, their numbers frozen, most next to the row under the new name. backend/renamed_repos.py
+# finds them through GraphQL (which resolves an old name to the repository it became) and
+# keeps one row per repository; skill_redirects (migration 041) records each old name, and
+# the build turns those into redirect pages at the old /skill/ URLs.
+#
+# One GraphQL query per 100 rows, 1 point each, from a budget the sync (REST only) does not
+# use. The script stops itself if a sync is queued or running before it writes.
+#
+# Writes only when the repository variable RENAMED_REPOS_APPLY is "true" or a manual run
+# asks for it; otherwise it reports what it would do. Then the curated /best/ files are
+# checked for old names (frontend/scripts/rename-curated.mjs --check), which fails the run
+# until someone renames them and commits the files.
+
+on:
+  schedule:
+    - cron: "41 2 * * *"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Write the changes (otherwise only report them)"
+        type: boolean
+        default: false
+      min_stars:
+        description: "Only rows with at least this many stars"
+        default: "50"
+
+concurrency:
+  group: renamed-repos
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # readme_backfill (shared pacing and running-sync check) imports app.services.
+      - name: Install deps
+        working-directory: backend
+        run: pip install -r requirements.txt
+
+      - name: Find and merge renamed repositories
+        working-directory: backend
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          ACTIONS_TOKEN: ${{ github.token }}
+          APPLY: ${{ inputs.apply == true || vars.RENAMED_REPOS_APPLY == 'true' }}
+        run: |
+          python renamed_repos.py --min-stars "${{ inputs.min_stars || '50' }}" \
+            $([ "$APPLY" = "true" ] && echo --apply)
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Curated files name no old repository names
+        run: node frontend/scripts/rename-curated.mjs --check
+
+  notify-failure:
+    needs: detect
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Renamed repositories job failed",
+              body: `Either the lookups or writes failed, or a curated /best/ file names an old repository name (run \`node frontend/scripts/rename-curated.mjs\` and commit the files). [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            });

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkillDetail, fetchSkillBySlug } from "../api/client";
+import { fetchSkillRedirect } from "../api/skillRedirects";
 import { useI18n } from "../i18n/I18nContext";
 import { QualityRadar } from "../components/QualityRadar";
 import { ScoreBadge } from "../components/ScoreBadge";
@@ -40,6 +41,7 @@ export function SkillDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Support both /skill/:id (numeric) and /skill/:owner/:repo (slug)
@@ -60,11 +62,20 @@ export function SkillDetailPage() {
     setLoading(true);
     setError(null);
     window.scrollTo(0, 0);
+    let redirected = false;
     fetchPromise
       .then(setDetail)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, [id, owner, repo]);
+      .catch(async (err) => {
+        // An old name of a renamed repository: open the page it has now (backend/renamed_repos.py).
+        const moved = owner && repo ? await fetchSkillRedirect(`${owner}/${repo}`) : null;
+        redirected = moved !== null;
+        if (moved) navigate(`/skill/${moved}/`, { replace: true });
+        else setError(err.message);
+      })
+      .finally(() => {
+        if (!redirected) setLoading(false);
+      });
+  }, [id, owner, repo, navigate]);
 
   if (loading) {
     return (
