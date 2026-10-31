@@ -152,9 +152,10 @@ def slots(name: str, head: dict, tool: dict) -> dict:
     nowhere. `head` is the page for the trend's name, `tool` the one for its search term ("<name>
     ai"). `taken`: platforms hold more than half of the name's top 10 and no ads show on the term's
     page, so searchers want the trend itself and nobody pays for a tool's click. Proposed on 10-31
-    from a song meme whose name's page was held by video platforms, a short-video block and an AI
-    overview: a tool site built for it got no impression on the name. A review against the radar's
-    14-day verdicts decides whether it may ever hold a pick."""
+    from a song meme whose name's page was held by video platforms and an AI overview: a tool site
+    built for it showed for the name only from its third day, a handful of times around seventh
+    place, never clicked; questions about the song brought most of its impressions. A review
+    against the radar's 14-day verdicts decides whether it may ever hold a pick."""
     h, t = page_slots(head, name), page_slots(tool, name)
     t["ads"] = "paid" in t["blocks"]
     return {"head": h, "tool": t, "taken": h["results"] > 0 and h["platforms"] > h["results"] * TAKEN and not t["ads"]}
