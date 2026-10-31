@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-10-31
+1. alchaincyf/huashu-bird-sticker — 🆕 开源覆盖 11,064 种现存鸟类的贴纸库，附 43 种语言名称与结构化数据（197★ 197.0/day）
+2. patch-gg/pixelfx — 🆕 收录 232 种代码写成的像素风特效，附 Claude Code 技能自己造新特效（103★ 103.0/day）
+3. NiazMorshed2007/reanimate — 🆕 让 Claude Code 逐帧逆向任意动画，复刻后再验证动起来一模一样（101★ 57.7/day）
+4. openrobokit/roboskills — 🆕 提供一套精简的机器人开发智能体工作流与工具（25★ 25.0/day）
+5. op7418/dsh-guizang-design — 🆕 给 DeepSeek Harness 装上歸藏设计系统，做网页 PPT、图文卡片并去 AI 味（24★ 24.0/day）
+6. hubastard/speedrun — 🆕 跨平台跑移动端 E2E 自动化测试，主打速度最快，可接入智能体（68★ 10.8/day）
+7. poco-ai/Agentero — 搭建人与智能体协作的科研工作台，带引用的 PDF 问答、资料库与写作（1065★ 9.2/day）
+8. kakao/prevue — 🆕 把 Compose 预览搬进浏览器，保存后一秒重绘，让智能体看见自己写的界面（70★ 8.0/day）
+9. Prism-Shadow/awesome-rsi — 汇编递归自我改进（RSI）方向论文的开放索引，方便追踪前沿研究（546★ 6.9/day）
+10. drawthingsai/local-code-community — 🆕 开源 Local Code：在 Mac、iPad、iPhone 本机跑 DeepSeek 4.1 的私密编程智能体（53★ 5.7/day）
+🎯 今日趋势：**8 席**标 🆕；视觉与动效创作占 **4 席**（鸟类贴纸、pixelfx、reanimate、歸藏设计），DeepSeek 生态占 **2 席**（DSH 插件、本机跑 DeepSeek 4.1），大厂 Kakao 下场做「让智能体看见界面」。
+> 注：去重范围＝repo 内 archive 全部 128 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,324 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 28 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（mutonby/agentring 56.5h、bassnova42/arch-diagram-skill 56.4h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①kingcharleslzy-ai/dsh-purge（3,575★ 243.3/day）：README 自称 DeepSeek Harness「破甲」「无限制模式」插件，用于绕过交互确认与限制，不推荐，且为他人项目的社区维护版；②Gitruck/cli（967★ 7.9/day）：组织 4 粉、其余仓 ≤4★，实时 967★ 只配 2 fork，单仓爆星，保守排除；③khanh020905/my-office（34★ 13.6/day）：4 粉、名下 107 仓其余 ≤1★，单仓突起，保守排除（与 10-30 排除的 agent-office-3d 同类）；④LucasJRamos/spritekiln（75★ 8.1/day）：4 粉、其余仓全 0★，且 security_grade 为 caution，保守排除；⑤其余均已在历史榜单出现或 velocity 低于第 10 席（IceWhaleTech/filens 3.5/day 第 11）。入选项复核（`gh api`）：第 1 席 alchaincyf（花叔）名下多个历史上榜仓；第 2 席 patch-gg 组织 10-05 新建、15 粉，但名下 anymove 441★，实时 297★/32 fork；第 3 席 NiazMorshed2007 2021 建号、165 粉、名下另有 706★ 仓；第 4 席 openrobokit 组织 6 粉、其余仓 ≤6★，实时 27★/2 fork，星数小未成爆星（**轻红旗**，保留）；第 5 席 op7418（歸藏）知名作者；第 6 席 hubastard 2020 建号、30 粉，其余仓 ≤1★，实时 68★/3 fork（**轻红旗**，保留）；第 7 席 poco-ai 组织名下另有 1,356★ 仓，实时 82 fork；第 8 席 kakao 官方组织 655 粉；第 9 席 Prism-Shadow 组织 114 粉、名下另有 3,071★ 仓；第 10 席 drawthingsai（Draw Things）组织 319 粉、名下另有 606★ 仓。🆕 判定＝created_at 距今 14 天内：除 Agentero（115.7 天）、awesome-rsi（78.6 天）外八席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（pixelfx 297★、reanimate 137★），按红线保留快照值。
+
+---
+
 ## 2026-10-30
 1. konlu/story-studio — 🆕 从选题一路做到剪映草稿，一站式产出 AI 短视频内容（477★ 113.4/day）
 2. liketrek/TREK — 开源旅行规划器，实时协作管理预订、预算、行李清单与旅行日志（15224★ 67.6/day）
