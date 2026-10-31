@@ -3352,5 +3352,18 @@
    "tooling": 0.9
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "Isllanrx/status_cli",
+  "stars": 5,
+  "description": "Status line in Rust for Claude Code, Codex  and Antigravity CLI",
+  "scores": {
+   "hooks": 0.04,
+   "subagents": 0.02,
+   "statusline": 0.74,
+   "collection": 0.11,
+   "tooling": 0.95
+  },
+  "kind": "tooling"
  }
 ]

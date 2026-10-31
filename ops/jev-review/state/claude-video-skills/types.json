@@ -7162,5 +7162,131 @@
    "general": 0.05
   },
   "kind": "story"
+ },
+ {
+  "repo": "krisyangdev/motionboard",
+  "stars": 51,
+  "description": "Shot language from Apple and Linear launch films, rebuilt in code for your agent. 38 recipes and a skill for making product launch films.",
+  "scores": {
+   "promo": 0.93,
+   "explainer": 0.25,
+   "music": 0.05,
+   "motion": 0.49,
+   "shorts": 0.11,
+   "editing": 0.07,
+   "demo": 0.29,
+   "story": 0.2,
+   "avatar": 0.06,
+   "general": 0.12
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "artemnovitckii/claude-editing-skills",
+  "stars": 9,
+  "description": "Claude Code skills that edit your talking-head clips into reels: trial reels, behind the person, explainer, split screen, ranking list, storytelling. Rendered locally with HyperFrames.",
+  "scores": {
+   "promo": 0.26,
+   "explainer": 0.53,
+   "music": 0.06,
+   "motion": 0.26,
+   "shorts": 0.94,
+   "editing": 0.95,
+   "demo": 0.49,
+   "story": 0.11,
+   "avatar": 0.06,
+   "general": 0.14
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "deenukhan/stick-figure-shorts",
+  "stars": 8,
+  "description": "Claude Code skill: 20-40 s stick-figure story shorts drawn in code (Remotion) and voiced with ElevenLabs",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.57,
+   "music": 0.05,
+   "motion": 0.15,
+   "shorts": 0.33,
+   "editing": 0.03,
+   "demo": 0.09,
+   "story": 0.93,
+   "avatar": 0.03,
+   "general": 0.05
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "TheNoumanDev/zero-dollar-studio",
+  "stars": 6,
+  "description": "Make YouTube videos with Claude Code for $0: free guides + Claude Code skills (make-video, snipshorts, cartoonsmith)",
+  "scores": {
+   "promo": 0.39,
+   "explainer": 0.77,
+   "music": 0.12,
+   "motion": 0.15,
+   "shorts": 0.95,
+   "editing": 0.53,
+   "demo": 0.86,
+   "story": 0.65,
+   "avatar": 0.79,
+   "general": 0.42
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "Dryxio/effects-skill",
+  "stars": 5,
+  "description": "/effects : 36 effets vidéo pour tes clips face caméra, montés par Claude Code (Remotion + détourage BiRefNet)",
+  "scores": {
+   "promo": 0.24,
+   "explainer": 0.17,
+   "music": 0.08,
+   "motion": 0.41,
+   "shorts": 0.94,
+   "editing": 0.75,
+   "demo": 0.25,
+   "story": 0.05,
+   "avatar": 0.04,
+   "general": 0.28
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "AIBiz-Automatyzacje/maszynka-do-shortsow",
+  "stars": 5,
+  "description": "Maszynka do shortsów: rolki z linku (Claude Code + ElevenLabs + Remotion). Live Akademii Automatyzacji 17.09.2026",
+  "scores": {
+   "promo": 0.31,
+   "explainer": 0.33,
+   "music": 0.05,
+   "motion": 0.2,
+   "shorts": 0.92,
+   "editing": 0.33,
+   "demo": 0.3,
+   "story": 0.15,
+   "avatar": 0.08,
+   "general": 0.05
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "autoip/dreamfab",
+  "stars": 26,
+  "description": "Dreamfab 造夢廠：AI Agent 影音製作框架。一句話，你就是導演和製作人，AI Agent 用 AutoIP + ffmpeg 幫你做出短劇、MV、解說影片。",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.62,
+   "music": 0.91,
+   "motion": 0.06,
+   "shorts": 0.56,
+   "editing": 0.31,
+   "demo": 0.45,
+   "story": 0.79,
+   "avatar": 0.24,
+   "general": 0.86
+  },
+  "kind": "general"
  }
 ]

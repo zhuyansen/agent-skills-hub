@@ -5580,5 +5580,41 @@
   "days": 242,
   "stars_per_day": 0.3305785123966942,
   "verdict": "admit"
+ },
+ {
+  "repo": "pakco77/pakco-html",
+  "name": "pakco-html",
+  "stars": 76,
+  "description": "60+ 风格 · 演示 & 纵向页面 · taste / 图文 · 一键复制 Prompt",
+  "topics": [
+   "agent-skill",
+   "deck",
+   "html-ppt",
+   "presentation",
+   "slides",
+   "templates",
+   "webui"
+  ],
+  "created": "2026-05-29",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 3884,
+  "names_model": false,
+  "makes_slides": 0.94,
+  "agent_driven": 0.95,
+  "editable_output": 0.89,
+  "reusable_tool": 0.97,
+  "one_command_start": 0.71,
+  "complete_docs": 0.37,
+  "shows_result": 0.34,
+  "specific_outcome": 0.67,
+  "novel_angle": 0.9,
+  "shareable_output": 0.78,
+  "quality": 0.5225,
+  "tier": "中",
+  "hit_prior": 0.6733333333333333,
+  "days": 155,
+  "stars_per_day": 0.49032258064516127,
+  "verdict": "admit"
  }
 ]

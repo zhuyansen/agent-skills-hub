@@ -1581,13 +1581,16 @@
     "ortegarod/openclaw-vps-deploy",
     "azdaev/tgmock",
     "missingus3r/friday-showcase",
-    "KhanbalaRashidov/telepath"
+    "KhanbalaRashidov/telepath",
+    "abbosahmad/telegram-premium-emojis"
    ],
    "exclude_repos": [
     "smixs/iva",
     "siriusforex-ai/telegram_signal_copier",
     "robertelee78/claude-telegram-mirror",
-    "ChiSonKon/telegram-business-ai-bot"
+    "ChiSonKon/telegram-business-ai-bot",
+    "nickathens/MyOldMachine",
+    "xluxeq/GPT2-Telegram-Chatbot"
    ]
   },
   "related": [
@@ -3138,7 +3141,8 @@
     "AlexanderAbramovPav/youtube-advisor",
     "Lvyizhuo/MyProject-SDAgent",
     "max-ramas/rms-memory-mcp",
-    "1llu50ry/mcp-reverse"
+    "1llu50ry/mcp-reverse",
+    "poco-ai/Agentero"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4371,7 +4375,10 @@
     "pengchenghaoche51/turnitin0_skill",
     "jinhuoooo/dsh-prompt-polish",
     "pedrojaques99/visant-skills-public",
-    "kane50613/native-writing"
+    "kane50613/native-writing",
+    "forjd/better-writing",
+    "yanstd888/humanizer-lint",
+    "SalZaki/antislop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4810,7 +4817,11 @@
     "Moksa1123/rankmath-seo-wp",
     "seyka-ai/yandex-tools-mcp",
     "mlsss333/seo-geo-kit",
-    "rocketmandrey/seo-standup"
+    "rocketmandrey/seo-standup",
+    "IncomeStreamSurfer/seo-night-skill",
+    "juneadkhan/seo-tool-builder",
+    "JohnWayneeee/free-seo-mcp",
+    "puneetindersingh/bulk-ai-cli-connector"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5284,7 +5295,9 @@
     "senlindesign/proof",
     "dgesteves/onsystem",
     "justskill-ai/justskill-design",
-    "pedrojaques99/visant-skills-public"
+    "pedrojaques99/visant-skills-public",
+    "vmc-inner-circle/k-style-ui-ux",
+    "op7418/dsh-guizang-design"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6370,7 +6383,10 @@
     "nugrahalabib/AgentBuff-Presentation-Skills",
     "AIPMAndy/LivePPT",
     "dingjq1216/PPT-Knowledge-Skill",
-    "kiselas/every-slide-is-code"
+    "kiselas/every-slide-is-code",
+    "pakco77/pakco-html",
+    "smallSheep123/paper-skills",
+    "codezzzsleep/research-ppt-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8275,7 +8291,14 @@
     "TheMarco/claude-music-video",
     "022512db-netizen/rhythm-dancer-video",
     "miguelcotrinaia/claude-skills-shorts-animados",
-    "deenukhan/story-animator"
+    "deenukhan/story-animator",
+    "krisyangdev/motionboard",
+    "autoip/dreamfab",
+    "artemnovitckii/claude-editing-skills",
+    "deenukhan/stick-figure-shorts",
+    "TheNoumanDev/zero-dollar-studio",
+    "Dryxio/effects-skill",
+    "AIBiz-Automatyzacje/maszynka-do-shortsow"
    ],
    "sub_skills": [
     {
@@ -8798,7 +8821,8 @@
     "MaxHarfen/crab-band",
     "tmcfarlane/team-avatar",
     "rootstudioyaml/sprag",
-    "aunysillyme/lean-browser-use"
+    "aunysillyme/lean-browser-use",
+    "Isllanrx/status_cli"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

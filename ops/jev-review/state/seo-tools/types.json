@@ -4366,5 +4366,69 @@
    "marketing": 0.04
   },
   "kind": "suite"
+ },
+ {
+  "repo": "IncomeStreamSurfer/seo-night-skill",
+  "stars": 7,
+  "description": "Free Claude Code / OpenCode skill that fixes AI-slop SEO: one command, one commit per change",
+  "scores": {
+   "suite": 0.96,
+   "audit": 0.42,
+   "research": 0.2,
+   "data_mcp": 0.05,
+   "geo": 0.28,
+   "content": 0.75,
+   "links": 0.04,
+   "marketing": 0.04
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "juneadkhan/seo-tool-builder",
+  "stars": 5,
+  "description": "A Claude Code and Codex skill for finding useful free tools to build, shipping the first page, and checking the SEO. MIT licensed.",
+  "scores": {
+   "suite": 0.19,
+   "audit": 0.09,
+   "research": 0.21,
+   "data_mcp": 0.02,
+   "geo": 0.07,
+   "content": 0.31,
+   "links": 0.03,
+   "marketing": 0.06
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "JohnWayneeee/free-seo-mcp",
+  "stars": 5,
+  "description": "Free keyword research MCP server for Claude and Cursor. Pulls autocomplete, Google Trends, Bing search volume, Reddit threads and competitor sitemaps with no paid API.",
+  "scores": {
+   "suite": 0.06,
+   "audit": 0.05,
+   "research": 0.97,
+   "data_mcp": 0.91,
+   "geo": 0.06,
+   "content": 0.15,
+   "links": 0.03,
+   "marketing": 0.05
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "puneetindersingh/bulk-ai-cli-connector",
+  "stars": 5,
+  "description": "Bulk AI CLI Connector: connect Claude, ChatGPT and MCP agents to WordPress. Bulk edit Yoast and Rank Math SEO meta, JSON-LD schema, redirects and Elementor or Beaver Builder page copy over the REST API, with undo. Free WordPress.org plugin with a bundled MCP server.",
+  "scores": {
+   "suite": 0.08,
+   "audit": 0.05,
+   "research": 0.02,
+   "data_mcp": 0.05,
+   "geo": 0.07,
+   "content": 0.41,
+   "links": 0.02,
+   "marketing": 0.04
+  },
+  "kind": "content"
  }
 ]

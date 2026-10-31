@@ -3680,5 +3680,19 @@
    "business": 0.04
   },
   "kind": "remote"
+ },
+ {
+  "repo": "abbosahmad/telegram-premium-emojis",
+  "stars": 5,
+  "description": "The complete toolkit & AI Agent Skill for Telegram Bot Premium Custom Emojis, Aiogram 3 card UI, inline button custom emoji icons, and pack scanning.",
+  "scores": {
+   "assistant": 0.07,
+   "remote": 0.18,
+   "framework": 0.85,
+   "utility": 0.13,
+   "fun": 0.07,
+   "business": 0.09
+  },
+  "kind": "framework"
  }
 ]

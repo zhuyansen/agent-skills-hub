@@ -3638,5 +3638,47 @@
    "rules": 0.55
   },
   "kind": "writing"
+ },
+ {
+  "repo": "forjd/better-writing",
+  "stars": 50,
+  "description": "An agent skill for prose that sounds clear, specific, and human.",
+  "scores": {
+   "writing": 0.91,
+   "detector": 0.81,
+   "chinese": 0.04,
+   "code": 0.09,
+   "design": 0.05,
+   "rules": 0.46
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "SalZaki/antislop",
+  "stars": 8,
+  "description": "Claude Code plugin with skills for removing AI-generated tells from writing. Humanize prose without losing your voice.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.98,
+   "chinese": 0.05,
+   "code": 0.09,
+   "design": 0.08,
+   "rules": 0.41
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "yanstd888/humanizer-lint",
+  "stars": 16,
+  "description": "A fast linter and style checker to detect AI-generated phrasing, eliminate corporate fluff, and enforce clear, natural, human-like writing across markdown and documentation.",
+  "scores": {
+   "writing": 0.74,
+   "detector": 0.98,
+   "chinese": 0.29,
+   "code": 0.18,
+   "design": 0.1,
+   "rules": 0.51
+  },
+  "kind": "detector"
  }
 ]

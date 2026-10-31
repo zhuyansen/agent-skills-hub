@@ -831,6 +831,14 @@
   "type": "image/gif",
   "bytes": 3290889
  },
+ "Isllanrx/status_cli": {
+  "repo": "Isllanrx/status_cli",
+  "url": "https://raw.githubusercontent.com/Isllanrx/status_cli/HEAD/assets/cli.png",
+  "alt": "status_cli in Codex, Claude Code and the Antigravity CLI",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 1563616
+ },
  "JimLiu/taohuayuan": {
   "repo": "JimLiu/taohuayuan",
   "url": "https://github.com/user-attachments/assets/70dc2698-79a9-4eca-970e-a14f48ead553",
@@ -1431,6 +1439,14 @@
   "type": "image/png",
   "bytes": 124930
  },
+ "TheNoumanDev/zero-dollar-studio": {
+  "repo": "TheNoumanDev/zero-dollar-studio",
+  "url": "https://raw.githubusercontent.com/TheNoumanDev/zero-dollar-studio/HEAD/assets/demo-cartoonsmith.gif",
+  "alt": "Super Sharma Parivaar cartoon: a shocked mom in the kitchen, then the family",
+  "score": 4.5,
+  "type": "image/gif",
+  "bytes": 546691
+ },
  "ThunderOne18/ppt-expert-team": {
   "repo": "ThunderOne18/ppt-expert-team",
   "url": "https://raw.githubusercontent.com/ThunderOne18/ppt-expert-team/HEAD/docs/images/style-picker.png",
@@ -1799,6 +1815,14 @@
   "type": "image/webp",
   "bytes": 41772
  },
+ "artemnovitckii/claude-editing-skills": {
+  "repo": "artemnovitckii/claude-editing-skills",
+  "url": "https://raw.githubusercontent.com/artemnovitckii/claude-editing-skills/HEAD/docs/skills.jpg",
+  "alt": "The six skills, one frame each",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 286531
+ },
  "artifact-kit/html-to-pptx-skill": {
   "repo": "artifact-kit/html-to-pptx-skill",
   "url": "https://raw.githubusercontent.com/artifact-kit/html-to-pptx-skill/HEAD/assets/proof/02-generated-pptx-preview.png",
@@ -1822,6 +1846,14 @@
   "score": 2.75,
   "type": "image/gif",
   "bytes": 1534621
+ },
+ "autoip/dreamfab": {
+  "repo": "autoip/dreamfab",
+  "url": "https://img.youtube.com/vi/ErQCd04OGA8/mqdefault.jpg",
+  "alt": "《黑日聖殿》",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 14070
  },
  "avalonreset/legends-geogrid": {
   "repo": "avalonreset/legends-geogrid",
@@ -2079,6 +2111,14 @@
   "type": "image/png",
   "bytes": 3243452
  },
+ "codezzzsleep/research-ppt-skill": {
+  "repo": "codezzzsleep/research-ppt-skill",
+  "url": "https://raw.githubusercontent.com/codezzzsleep/research-ppt-skill/HEAD/docs/showcase.png",
+  "alt": "效果预览",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 664338
+ },
  "cogine-ai/ai-slide-templates": {
   "repo": "cogine-ai/ai-slide-templates",
   "url": "https://raw.githubusercontent.com/cogine-ai/ai-slide-templates/HEAD/docs/assets/readme/template-gallery-01.png",
@@ -2198,6 +2238,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 729478
+ },
+ "deenukhan/stick-figure-shorts": {
+  "repo": "deenukhan/stick-figure-shorts",
+  "url": "https://raw.githubusercontent.com/deenukhan/stick-figure-shorts/HEAD/assets/preview/three_doors_sheet.jpg",
+  "alt": "Three Doors: one frame every 1.5 s",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 208451
  },
  "deequoique/stashseek": {
   "repo": "deequoique/stashseek",
@@ -2518,6 +2566,14 @@
   "score": 1.95,
   "type": "image/jpeg",
   "bytes": 130265
+ },
+ "forjd/better-writing": {
+  "repo": "forjd/better-writing",
+  "url": "https://raw.githubusercontent.com/forjd/better-writing/HEAD/docs/before-after.gif",
+  "alt": "A 90-word launch email is audited: filler phrases are struck out in red, facts a",
+  "score": 2.85,
+  "type": "image/gif",
+  "bytes": 139577
  },
  "frannkurt/nano-banana-mcp": {
   "repo": "frannkurt/nano-banana-mcp",
@@ -3247,6 +3303,14 @@
   "type": "image/png",
   "bytes": 219851
  },
+ "krisyangdev/motionboard": {
+  "repo": "krisyangdev/motionboard",
+  "url": "https://raw.githubusercontent.com/krisyangdev/motionboard/HEAD/assets/readme/film.gif",
+  "alt": "The Motionboard launch film, built from six recipes",
+  "score": 2.35,
+  "type": "image/gif",
+  "bytes": 7367251
+ },
  "kunkka19xx/lgtm": {
   "repo": "kunkka19xx/lgtm",
   "url": "https://github.com/user-attachments/assets/2c585a09-129f-4377-bfca-ce25ceb2f704",
@@ -3719,6 +3783,14 @@
   "type": "image/webp",
   "bytes": 109066
  },
+ "op7418/dsh-guizang-design": {
+  "repo": "op7418/dsh-guizang-design",
+  "url": "https://raw.githubusercontent.com/op7418/dsh-guizang-design/HEAD/screenshots/1-studio.jpg",
+  "alt": "歸藏设计插件页面",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 113141
+ },
  "op7418/guizang-ppt-skill": {
   "repo": "op7418/guizang-ppt-skill",
   "url": "https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470",
@@ -3839,6 +3911,14 @@
   "type": "image/jpeg",
   "bytes": 21034
  },
+ "poco-ai/Agentero": {
+  "repo": "poco-ai/Agentero",
+  "url": "https://raw.githubusercontent.com/poco-ai/Agentero/HEAD/docs/assets/agent.png",
+  "alt": "PDF 阅读与 Agent 伴读",
+  "score": -0.35,
+  "type": "image/png",
+  "bytes": 1390837
+ },
  "pr-pm/prpm": {
   "repo": "pr-pm/prpm",
   "url": "https://raw.githubusercontent.com/pr-pm/prpm/main/packages/webapp/public/demo.gif",
@@ -3878,6 +3958,14 @@
   "score": -0.3,
   "type": "image/webp",
   "bytes": 251234
+ },
+ "puneetindersingh/bulk-ai-cli-connector": {
+  "repo": "puneetindersingh/bulk-ai-cli-connector",
+  "url": "https://raw.githubusercontent.com/puneetindersingh/bulk-ai-cli-connector/HEAD/assets/banner-1544x500.png",
+  "alt": "Bulk AI CLI Connector: edit pages, SEO and schema with Claude, ChatGPT and MCP a",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 99734
  },
  "pyang5166/gbro-collage-broll": {
   "repo": "pyang5166/gbro-collage-broll",
@@ -4102,6 +4190,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 527775
+ },
+ "smallSheep123/paper-skills": {
+  "repo": "smallSheep123/paper-skills",
+  "url": "https://raw.githubusercontent.com/smallSheep123/paper-skills/HEAD/paper-ppt/styles/domestic/samples/05-method.png",
+  "alt": "",
+  "score": -0.3,
+  "type": "image/png",
+  "bytes": 88400
  },
  "smit-vanani/claude-promo-video": {
   "repo": "smit-vanani/claude-promo-video",
@@ -4526,6 +4622,14 @@
   "score": 1.95,
   "type": "image/webp",
   "bytes": 126830
+ },
+ "vmc-inner-circle/k-style-ui-ux": {
+  "repo": "vmc-inner-circle/k-style-ui-ux",
+  "url": "https://raw.githubusercontent.com/vmc-inner-circle/k-style-ui-ux/HEAD/docs/images/family-trip.jpg",
+  "alt": "가족여행 PRD로 만든 화면",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 158147
  },
  "w1163222589-coder/slide-image-to-editable-pptx": {
   "repo": "w1163222589-coder/slide-image-to-editable-pptx",

@@ -5052,5 +5052,19 @@
    "personal": 0.14
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "poco-ai/Agentero",
+  "stars": 1065,
+  "description": "Unified research workspace for humans & agents — PDF Q&A with citations, Vault, writing. 为人与 Agent 协作的科研工作台；补齐 Zotero 时代的人机上下文断点。",
+  "scores": {
+   "llm_wiki": 0.17,
+   "rag_platform": 0.73,
+   "mcp": 0.83,
+   "docs_qa": 0.74,
+   "graph": 0.22,
+   "personal": 0.56
+  },
+  "kind": "mcp"
  }
 ]

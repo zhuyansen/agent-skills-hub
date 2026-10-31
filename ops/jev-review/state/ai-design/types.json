@@ -2742,5 +2742,33 @@
    "review": 0.89
   },
   "kind": "ui"
+ },
+ {
+  "repo": "vmc-inner-circle/k-style-ui-ux",
+  "stars": 210,
+  "description": "PRD 한 장으로 한국 앱 스타일 모바일 화면 초안을 15분 안팎에 만드는 Claude Code·Codex 플러그인",
+  "scores": {
+   "ui": 0.82,
+   "system": 0.74,
+   "tool_mcp": 0.04,
+   "to_code": 0.09,
+   "graphics": 0.11,
+   "review": 0.58
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "op7418/dsh-guizang-design",
+  "stars": 90,
+  "description": "歸藏设计 · DeepSeek Harness 插件：网页 PPT、图文卡片、网页排版、去 AI 味四个 skill，一套设计系统；作品库、内容生产工作流、语气档案",
+  "scores": {
+   "ui": 0.84,
+   "system": 0.9,
+   "tool_mcp": 0.06,
+   "to_code": 0.13,
+   "graphics": 0.82,
+   "review": 0.22
+  },
+  "kind": "system"
  }
 ]
