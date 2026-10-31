@@ -102,7 +102,8 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 | LobeHub | 0.11.2 已发；清单里 competitors、cited、asked 三个工具的说明换成新说法 |
 | WorkBuddy | 包已换锁 0.11.2（ops/workbuddy/backlink-guard.zip）；连接器还在审 0.11.0，审完再传 |
 | Anthropic 插件目录 | 10-31 点「Check for new commits」，发现 v0.11.2 · d00cd64，扫描中；之后照旧转人工审 |
-| buildwithclaude | 还锁 0.11.1（588ff58，带并发超额）；要换得开新 PR，用户没选 |
+| buildwithclaude | **#622** 换 0.11.2（d00cd64）：validate 改前改后一样、diff --check 干净、空配置目录从分支装出 0.11.2；Schema Validation ✅，集成测试跑着 |
+| Skillstore | 10-31 提交页重交（submission 4e54997e…），审计后机器人在 aiskillstore/marketplace 开更新 PR |
 | DSH | Dominic789654 清单只链仓库、bradeGithub 市场照 README 手动装，都跟着 README 走，不用改 |
 | mcpservers.org | 10-31 免费档提交（Marketing，带注册表名，联系邮箱用户 Gmail），两周内审 |
 | MCP Market | 10-31 免费队列提交（默认勾的 $29 改成 Free Queue），4–6 周 |
