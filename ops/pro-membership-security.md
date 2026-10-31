@@ -106,3 +106,12 @@ Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会�
 - 代价:超时的搜索会少给几行,少多少看缓存冷热;换来的是不再在 8 秒处失败。试用搜索能正常返回就会计入每日限额(超时的会把计数一起回滚)。
 - 权限:`_pro_search_phrase_tier` 不验 key、不限量,已对 PUBLIC/anon/authenticated REVOKE EXECUTE,只在 `_pro_search_tier_ids` 里调用。`pro_search`、`pro_search_trial`、`_pro_search_core` 都没动;key 校验、试用限额、行数上限、返回列都没变;没有新表、新索引、新 policy。
 - 回退:重跑 037 里 `_pro_search_tier_ids` 那一段(`CREATE OR REPLACE`);`_pro_search_phrase_tier` 留着不用也无害。调时限改 038 里的 `c_budget`。
+
+## 试用搜索先查额度、搜完再计数(迁移 040,2026-10-31)
+
+- 原因:`pro_search_trial` 先给计数加 1 再搜索。加 1 用的是 `INSERT ... ON CONFLICT DO UPDATE`,会把这一行锁到整次调用结束;而全站共用一行 `('all', 日期)`,所以每个试用请求在搜索期间都占着这把锁,其他访客的试用请求只能排队。一个慢搜索(038 之后最多约 2.5 秒)就能卡住所有人的试用,同时来一波人就会排队排到 036 的 8 秒超时。
+- 修法:搜索前先用普通读查一下是否已到上限(不加锁),到了就直接 429、不搜索;搜索完成后再给本 IP 和全站各加 1,锁只从加 1 那一刻持续到提交,几毫秒。并发时恰好越过上限的请求,加 1 之后还会再检查一次,超了就 429,整次调用(含结果)回滚,和原来一样。
+- 实测(本地 Postgres 17 装 034–038,并让每次搜索固定耗时 1 秒):5 个不同 IP 同时试用,修复前依次 1.1/2.1/3.1/4.1/5.1 秒(都在等全站那一行),修复后全部 1.07 秒;20 个同时也都在 1.3 秒内。上限在并发下仍准确:某 IP 已用 5/6 时同时来 3 个 → 1 个成功 2 个 429、计数 6;全站 999/1000 时 3 个新 IP 同时来 → 1 个成功、计数 1000;已到上限的请求 0.05 秒就 429,不会去搜索;同一 IP 连续 8 次 → 6 次成功后 429。
+- 权限:只改 `pro_search_trial` 的函数体;签名、返回列、上限(每 IP 每天 6 次、全站每天 1000 次)、429 错误都不变。`CREATE OR REPLACE` 会保留 owner 和 grant,但会替换函数上的 SET 设置,所以 036 的 8 秒 statement_timeout 在 040 里重新写了一遍(上线后已核对 proconfig 里还有它)。没有新表、新索引、新 policy。代价:并发恰好卡在上限时,被拒的那个请求会多跑一次搜索(最多 038 的 2.5 秒)。
+- 上线:2026-10-31 12:25 UTC 单事务应用。提交前核对 owner、grant、签名、SECURITY DEFINER 和两项 SET(search_path、statement_timeout=8s)都与 035 版一致,三个内部函数仍不对 anon/authenticated 开放。之后以 anon 身份用文档保留 IP(203.0.113.x)模拟、事务回滚:新 IP 返回 20 行,本 IP 计数 1、全站 +1;已到上限的 IP 直接 429,两个计数都不动。本机走公开接口(当天额度已用完)返回 HTTP 429。
+- 回退:重跑 035 里 `pro_search_trial` 那一段,再执行 `ALTER FUNCTION pro_search_trial(text, text, text, int) SET statement_timeout = '8s';`。
