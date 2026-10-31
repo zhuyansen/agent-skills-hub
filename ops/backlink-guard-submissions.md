@@ -90,3 +90,21 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 ## 10-29 DSH 社区插件市场收录
 
 10-28 加的 topic `dsh-plugin` 生效，backlink-guard 进了 DSH 最大的社区插件市场。bradeGithub/DSH-Plugins-Marketplace 的插件索引 registry.json 已收录：最晚在 77bcd35（10-28 23:05 UTC 提交，索引 22:44 生成）那版里就有。10-28 10:20 起那轮全量的插件扫描在加 topic（约 10:55）之前就做完了，没赶上。条目：category `tool`（通用工具）、risk_tier `safe`、没有 risk_flags、`installable: manual`（卡片显示「手动安装」：它判定仓库里没有能自动装的内容，要照 README 装；README 里有 DSH 的装法）。它的 skills 索引（skills.json，按 topic agent-skills / claude-skills 收）在 10-28 那轮全量里就收了，也是 safe。按 topic 实时搜的市场（AwesomeHou）加 topic 当时就能搜到。它每 2 小时增量一次、只搜最近 3 天推送过的仓库，另外每天 04:00 UTC 全量一次（实际晚好几个小时）。
+
+## 10-31 0.11.2（d00cd64）与新投稿
+
+**0.11.2**：karanb192 #540 的维护者 10-28 指出 `Budget.ask` 先退回预留、写完缓存才记花费，并发时会超出 `--max-usd`。改成同一把锁里把预留换成实际花费（在写缓存之前），加并发回归测试，帮助/skill/MCP 工具说明/中英 README 改说「按估价卡上限」。Release v0.11.2 → PyPI、官方注册表 latest。10-31 08:41 UTC 在 #540 回复，等重审。
+
+| 站 | 10-31 状态 |
+|---|---|
+| karanb192 #540 | 已修已回复，等维护者重审（重新请求审查要协作者权限，404） |
+| ClawHub | 0.11.2 已提交，等安全扫描后公开 |
+| LobeHub | 0.11.2 已发；清单里 competitors、cited、asked 三个工具的说明换成新说法 |
+| WorkBuddy | 包已换锁 0.11.2（ops/workbuddy/backlink-guard.zip）；连接器还在审 0.11.0，审完再传 |
+| Anthropic 插件目录 | 10-31 点「Check for new commits」，发现 v0.11.2 · d00cd64，扫描中；之后照旧转人工审 |
+| buildwithclaude | 还锁 0.11.1（588ff58，带并发超额）；要换得开新 PR，用户没选 |
+| DSH | Dominic789654 清单只链仓库、bradeGithub 市场照 README 手动装，都跟着 README 走，不用改 |
+| mcpservers.org | 10-31 免费档提交（Marketing，带注册表名，联系邮箱用户 Gmail），两周内审 |
+| MCP Market | 10-31 免费队列提交（默认勾的 $29 改成 Free Queue），4–6 周 |
+| mcp.so | 提交页要登录（没登录只有 $39 付费提交），等用户在内置浏览器登录 |
+| 要用户登录改版本 | cursor.directory、Agensi、魔搭 MCP 页 → 0.11.2 |

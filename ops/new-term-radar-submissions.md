@@ -32,7 +32,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
 | HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五;10-23 那期(416 期)没收 |
 | bmpi-dev/awesome-seo(已改名 i365dev/awesome-seo) | ❌ #104 10-21 被关 | 理由:项目太新、关键词量依赖付费 API |
-| punkpeye/awesome-mcp-servers | ⏸ 等 Glama 评分 | PR 进 🎯 Marketing 区 |
+| punkpeye/awesome-mcp-servers | ⏳ #18157（10-31） | 🎯 Marketing 区（zaialamm 和 zwznco 之间），Glama 已认领、A 级；check-submission 过，标签 has-glama / valid-name；标题没加贡献说明里那串 🤖🤖🤖 |
 | VoltAgent/awesome-agent-skills | ⏸ 不收刚建的仓库 | 11 月初再提 |
 | hesreallyhim/awesome-claude-code | ⏸ 只收本人在网页表单提交 | |
 
