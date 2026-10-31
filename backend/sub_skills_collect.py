@@ -17,7 +17,8 @@ Shares readme_backfill's pacing, quota floor and running-sync check.
 
 Env:  GH_TOKEN; SUPABASE_DB_URL (or backend/.env);
       GITHUB_REPOSITORY + ACTIONS_TOKEN (optional) to see a running sync.
-Args: --min-stars N (500)  --cap N (400)  --minutes N (35)  --repo OWNER/NAME (repeatable)  --dry-run
+Args: --min-stars N (500)  --cap N (400)  --minutes N (35)  --repo OWNER/NAME (repeatable)
+      --refresh (parse unchanged SKILL.md files again, after a parser change)  --dry-run
 """
 from __future__ import annotations
 
@@ -49,12 +50,16 @@ SKILL_FILE = "skill.md"
 SKIP_SEGMENTS = {"node_modules", "vendor", "dist", "build", "fixtures", ".git", "template", "templates",
                  "_template", "skill-template",
                  # drafts and retired skills (mattpocock/skills keeps drafts in skills/in-progress/)
-                 "deprecated", "archive", "archived", "wip", "draft", "drafts", "in-progress"}
+                 "deprecated", "archive", "archived", "wip", "draft", "drafts", "in-progress",
+                 # demos and test data (gemini-cli's packages/sdk/test-data/skills/pirate-skill)
+                 "example", "examples", "test", "tests", "test-data", "testdata", "__tests__"}
 # Translated copies (affaan-m/ECC keeps 700 of its 1,068 SKILL.md files under docs/<language>/).
 LOCALE_FOLDER = re.compile(r"^([a-z]{2})[-_]([a-z]{2}|hans|hant)$", re.I)  # ja-JP, zh-cn, pt_BR, zh-Hans
 LOCALE_PARENTS = {"docs", "doc", "i18n", "l10n", "locales", "locale", "translations", "lang", "languages"}
 LANGUAGES = {"ar", "de", "es", "fr", "id", "it", "ja", "ko", "nl", "pl", "pt", "ru", "th", "tr", "uk", "vi", "zh"}
 RESERVED_SLUGS = {"index", "zh"}
+LIST_MARK = re.compile(r"^\s{0,3}(?:[-*+]|\d+\.)\s+")
+SENTENCE_ENDS = tuple(".!?:;,。！？；：")
 USER_AGENT = "agentskillshub-sub-skills"
 
 CANDIDATE_SQL = (
@@ -175,13 +180,30 @@ def parse_fields(block: str) -> dict:
     return {k: v.strip().strip("\"'") for k, v in re.findall(r"^(name|description):\s*(.+)$", block, re.M)}
 
 
+def close_list_items(text: str) -> str:
+    """Drop list markers and end each item with a full stop, so "Use for: - Test failures - Bugs"
+    does not read "Test failures Bugs" once the lines are joined. Indented lines continue an item."""
+    out: list[str] = []
+    open_item = False
+    for line in text.split("\n"):
+        starts = LIST_MARK.match(line) is not None
+        continues = open_item and not starts and line[:1] in (" ", "\t") and line.strip() != ""
+        if open_item and not continues and not out[-1].rstrip().endswith(SENTENCE_ENDS):
+            out[-1] = out[-1].rstrip() + "."
+        open_item = starts or continues
+        out.append(LIST_MARK.sub("", line) if starts else line)
+    if open_item and not out[-1].rstrip().endswith(SENTENCE_ENDS):
+        out[-1] = out[-1].rstrip() + "."
+    return "\n".join(out)
+
+
 def plain_text(markdown: str) -> str:
     """Prose only: headings, code, tables' rules and slash-command placeholders would run into it."""
     text = re.sub(r"```.*?```", " ", markdown, flags=re.S)
     text = re.sub(r"^\s{0,3}#{1,6}\s.*$|^[\s|:-]{3,}$|\$ARGUMENTS\b", " ", text, flags=re.M)
     text = re.sub(r"<[^>]+>|!\[[^\]]*\]\([^)]*\)", " ", text)
     text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
-    text = re.sub(r"^\s{0,3}([-*+]|\d+\.|>)\s+", "", text, flags=re.M)
+    text = re.sub(r"^\s{0,3}>\s+", "", close_list_items(text), flags=re.M)
     text = re.sub(r"[*`|]+", "", text)
     return re.sub(r"\s+", " ", text).strip()
 
@@ -259,12 +281,12 @@ def grade(text: str, repo: Repo) -> tuple[str, list[str]]:
     return SecurityScanner().scan_single(target)
 
 
-def parse_all(repo: Repo, paths: list[tuple[str, str]], known: dict, pacer: Pacer) -> dict:
+def parse_all(repo: Repo, paths: list[tuple[str, str]], known: dict, pacer: Pacer, refresh: bool) -> dict:
     """folder -> ('keep', stored row) | ('new', (sha, text, name, description, excerpt)). An unchanged
     blob keeps its stored row instead of a new download; so does one whose download failed this time."""
     parsed = {}
     for folder, sha in paths:
-        if folder in known and known[folder][1] == sha:
+        if not refresh and folder in known and known[folder][1] == sha:
             parsed[folder] = ("keep", known[folder])
             continue
         text = download(repo.full_name, folder, pacer)
@@ -275,8 +297,8 @@ def parse_all(repo: Repo, paths: list[tuple[str, str]], known: dict, pacer: Pace
     return parsed
 
 
-def build_rows(repo: Repo, paths: list[tuple[str, str]], known: dict, pacer: Pacer) -> None:
-    parsed = parse_all(repo, paths, known, pacer)
+def build_rows(repo: Repo, paths: list[tuple[str, str]], known: dict, pacer: Pacer, refresh: bool) -> None:
+    parsed = parse_all(repo, paths, known, pacer, refresh)
     stable = {f: known[f][2] for f in parsed if f in known}
     slugs = assign_slugs([(f, v[1][3] if v[0] == "keep" else v[1][2]) for f, v in parsed.items()], stable)
     for folder, (kind, data) in parsed.items():
@@ -306,15 +328,15 @@ def known_rows(conn, full_name: str) -> dict:
         return {r[0]: r for r in cur.fetchall()}
 
 
-def process(conn, repo: Repo, token: str, pacer: Pacer, dry_run: bool) -> tuple[str, int, int]:
+def process(conn, repo: Repo, token: str, pacer: Pacer, args: argparse.Namespace) -> tuple[str, int, int]:
     """(status, SKILL.md files found, quota left) for one repository."""
     status, tree, left = list_tree(repo.full_name, token, pacer)
     if status == "error":
         return status, 0, left
     paths = skill_md_paths(tree.get("tree", [])) if tree else []
     if len(paths) >= MIN_SKILLS:
-        build_rows(repo, paths, known_rows(conn, repo.full_name), pacer)
-    if not dry_run:
+        build_rows(repo, paths, known_rows(conn, repo.full_name), pacer, args.refresh)
+    if not args.dry_run:
         write_repo(conn, repo, tree.get("sha") if tree else None, len(paths), status)
     return status, len(paths), left
 
@@ -342,17 +364,17 @@ def tally(counts: dict, repo: Repo, status: str, found: int) -> None:
         print(f"  {repo.full_name}: {len(repo.rows)} skills", flush=True)
 
 
-def run(conn, targets: list[Repo], token: str, dry_run: bool, minutes: float) -> tuple[dict, str]:
+def run(conn, targets: list[Repo], token: str, args: argparse.Namespace) -> tuple[dict, str]:
     """Stops early, keeping what it wrote, for a running sync, the time budget or the quota floor."""
     pacer = Pacer(MIN_INTERVAL)
-    deadline = time.monotonic() + minutes * 60
+    deadline = time.monotonic() + args.minutes * 60
     counts = {"repos": 0, "multi": 0, "rows": 0, "absent": 0, "moved": 0, "error": 0}
     for i, repo in enumerate(targets):
         if i % 50 == 0 and sync_active():
             return counts, "a sync is queued or running"
         if time.monotonic() > deadline:
-            return counts, f"time budget ({minutes:g} min) used"
-        status, found, left = process(conn, repo, token, pacer, dry_run)
+            return counts, f"time budget ({args.minutes:g} min) used"
+        status, found, left = process(conn, repo, token, pacer, args)
         tally(counts, repo, status, found)
         if quota_exhausted(left):
             return counts, f"GitHub quota {left} under the floor"
@@ -365,6 +387,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--cap", type=int, default=DEFAULT_CAP)
     ap.add_argument("--minutes", type=float, default=DEFAULT_MINUTES, help="time budget")
     ap.add_argument("--repo", action="append", help="this repository only, whatever its last scan (repeatable)")
+    ap.add_argument("--refresh", action="store_true", help="parse every SKILL.md again, unchanged ones too")
     ap.add_argument("--dry-run", action="store_true", help="list and parse, write nothing")
     return ap.parse_args()
 
@@ -376,7 +399,7 @@ def main() -> int:
     conn = psycopg2.connect(db_url(), connect_timeout=30)
     targets = candidates(conn, args.min_stars, args.cap, args.repo)
     print(f"targets: {len(targets)} (>= {args.min_stars} stars, cap {args.cap})", flush=True)
-    counts, stopped = run(conn, targets, token, args.dry_run, args.minutes)
+    counts, stopped = run(conn, targets, token, args)
     conn.close()
     summarize([
         "## Sub-skill collector" + (" (dry run)" if args.dry_run else ""),

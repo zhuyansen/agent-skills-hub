@@ -2,6 +2,7 @@
 from sub_skills_collect import (
     MAX_SKILLS_PER_REPO,
     assign_slugs,
+    close_list_items,
     cut,
     parse_skill_md,
     skill_md_paths,
@@ -18,6 +19,7 @@ def test_skill_md_paths_keeps_skill_files_and_skips_vendored_and_template_folder
         blob("unslop/SKILL.md", "a"), blob("implement/Skill.md", "b"), blob("SKILL.md", "c"),
         blob("node_modules/x/SKILL.md"), blob("templates/SKILL.md"), blob("docs/README.md"),
         blob("skills/in-progress/draft-skill/SKILL.md"), blob("deprecated/old/SKILL.md"),
+        blob("packages/sdk/test-data/skills/pirate/SKILL.md"), blob("docs/examples/demo/SKILL.md"),
         {"path": "interview", "type": "tree", "sha": "t"},
     ]
     assert skill_md_paths(tree) == [("", "c"), ("implement", "b"), ("unslop", "a")]
@@ -82,3 +84,8 @@ def test_list_tree_calls_an_old_name_that_redirects_moved(monkeypatch):
     assert c.list_tree("affaan-m/everything-claude-code", "t", None) == ("moved", None, 4000)
     monkeypatch.setattr(c, "http_get", lambda url, *_: (200, b'{"tree": []}', 4000, url))
     assert c.list_tree("affaan-m/ECC", "t", None) == ("ok", {"tree": []}, 4000)
+
+
+def test_list_items_end_with_a_full_stop_and_keep_their_continuation_lines():
+    text = "Use for:\n- Test failures\n- Bugs in production\n  that recur\n1. Done already.\n\nMore text"
+    assert close_list_items(text) == "Use for:\nTest failures.\nBugs in production\n  that recur.\nDone already.\n\nMore text"
