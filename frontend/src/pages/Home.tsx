@@ -200,13 +200,13 @@ export function Home() {
         {/* Overview Tab */}
         {tab === "overview" && (
           <div className="animate-fade-in-up">
-            {/* Hero: headline + search + trending tags + key stats */}
+            {/* Hero: headline + search + trending tags + key stats.
+                updateParams also switches to Explore. Don't follow it with
+                setTab: a second setSearchParams in the same tick starts from
+                the old URL and drops the search. */}
             <HeroSection
               stats={landingData?.stats ?? stats}
-              onSearch={(query) => {
-                updateParams({ search: query });
-                setTab("explore");
-              }}
+              onSearch={(query) => updateParams({ search: query })}
             />
             <AuditBox />
             {/* Spine order: find (scenarios) → what's hot (trending) → install.
@@ -232,16 +232,12 @@ export function Home() {
             <InstallCliSection />
             <CuratedCollections />
             <EcosystemNav
-              onSelectCategory={(category) => {
-                updateParams({ category });
-                setTab("explore");
-              }}
-              onSelectLayer={(layer) => {
+              onSelectCategory={(category) => updateParams({ category })}
+              onSelectLayer={(layer) =>
                 updateParams({
                   category: getCategoriesForLayer(layer).join(","),
-                });
-                setTab("explore");
-              }}
+                })
+              }
             />
             <ProblemSection />
             <HowItWorksSection />
