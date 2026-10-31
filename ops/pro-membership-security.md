@@ -88,3 +88,12 @@ Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会�
 - 调参:改 035 里的 `c_index_walk_min`(当前 2,000),`CREATE OR REPLACE` 重跑 `_pro_search_core` 即可。
 - 迁移 036:`pro_search`、`pro_search_trial` 两个函数单独把 statement_timeout 设成 8 秒(PostgREST 调用时按函数设置生效,其他 anon 请求仍是 3 秒)。原因是统计信息里没有的中等频率词(估算一律 1,278 行,实际 5k~15k 行)冷启动要 3~6 秒。上线后公开接口复测:22 个冷门词全部 200,'rust' 冷启动 6.3 秒。回退:`ALTER FUNCTION ... RESET statement_timeout`。
 - 可选维护:skills 表 19% 死元组、只有 47% 的页是全可见,手动 `VACUUM (ANALYZE) skills;` 会让 bitmap 扫描少读一些堆页。
+
+## 按星数分档检索(迁移 037,2026-10-31)
+
+- 原因:035 按规划器估算二选一,估错时两条路都慢。估算 < 2,000 的词(统计里没有的中频词一律估成 1,278)走"取全部匹配再排序",每个匹配读一页堆:'rust'(实际 10,003 条)LIMIT 200 读 9,993 页,冷启动 3~6 秒。估算 ≥ 2,000 的词按 stars 倒着走、逐行解压 README 的 tsvector(平均压缩后 13 KB,约 6.5 页/行):'resume' 10,500 页、'prompt injection' 10,169 页。带引号的短语 GIN 判断不了词序,每个候选都要解压:'"best practices"' 11.1 秒、'"skill marketplace"' 18.7 秒。
+- 修法:新增内部函数 `_pro_search_tier_ids`,按星数分档从高往低找(≥10000、1000–9999、100–999、10–99、3–9、2、1、0),凑够就停。这个函数只允许 bitmap 计划(函数级 `enable_indexscan`/`enable_seqscan` 关掉,不影响调用方),每档是 GIN 和 `ix_skills_stars` 的 BitmapAnd,只读档内的匹配行。库里 53% 的仓库 0 星、约 1% 有 1,000 星以上,所以大多数搜索在前一两档就结束。`_pro_search_core` 只在"不是短语、且估算显示走 1,000 行内就能凑够一页"时才按 stars 走('mcp'、'agent' 这类常见词),其余都走分档。
+- 实测(VACUUM (ANALYZE) 之后,在生产事务里装上 037 测完回滚,结果与 035 逐条一致,只有同星数的先后可能不同;页数 = 触碰的缓冲页):'rust' LIMIT 200 从 9,110 页降到 1,174 页(LIMIT 20 降到 181);'prompt injection' 10,169 → 1,309(0.81 → 0.07 秒);'resume' 10,500 → 1,196;'browser automation' 5,824 → 1,460。短语 LIMIT 200:'"best practices"' 7.7 → 0.09 秒(LIMIT 20 时 035 超过 12 秒,037 0.02 秒),'"security audit"' 6.4 → 1.4 秒,'"skill marketplace"' 超过 12 秒 → 4.2 秒。'mcp'、'agent'、'workflow' 等常见词照旧按 stars 走,不变。代价:冷门词多扫几档 GIN('homework' 389 → 1,251 页,0.14 秒),常见短语不再按 stars 走('"agent skill"' LIMIT 200 从 0.02 秒变 0.42 秒)。
+- 仍然慢:三个常见词组成、又很少相邻的短语,比如 '"code review agent"',LIMIT 20 约 1.2 秒(035 约 1.0 秒)、LIMIT 200 约 20 秒(035 也一样)。GIN 不存词的位置,只能逐个解压候选,036 的 8 秒超时对它仍然有用。
+- 权限:`_pro_search_tier_ids` 不验 key、不限量,已对 PUBLIC/anon/authenticated REVOKE EXECUTE,只在 `_pro_search_core` 里调用。key 校验、试用限额、行数上限、返回列都没变;没有新表、新索引、新 policy。
+- 回退:重跑 035 里 `_pro_search_core` 那一段(`CREATE OR REPLACE`)即可;`_pro_search_tier_ids` 留着不用也无害。
