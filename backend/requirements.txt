@@ -9,3 +9,4 @@ python-dotenv==1.0.1
 psycopg2-binary==2.9.9
 scikit-learn>=1.4.0
 openai>=1.0.0
+PyYAML==6.0.3

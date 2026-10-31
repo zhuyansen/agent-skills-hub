@@ -1,0 +1,75 @@
+name: Sub-skill collector
+
+# Lists the SKILL.md files inside repositories that hold several skills and writes
+# one sub_skills row per skill (backend/sub_skills_collect.py, migration 039); the
+# build turns them into /skill/<owner>/<repo>/<slug>/ pages.
+#
+# Once a day, most-starred first. One GitHub trees call per repository from the
+# token the sync uses, so the script stops when that quota falls under the floor
+# readme-backfill keeps for the next sync, stops itself if a sync is queued or
+# running, and stops after 35 minutes (the job is killed at 45); each repository is
+# written as it finishes, so the next run picks up the rest. The SKILL.md files
+# themselves come from raw.githubusercontent.com, which the API quota does not
+# count. A repository is listed again only after new commits or 30 days.
+
+on:
+  schedule:
+    - cron: "47 13 * * *"
+  workflow_dispatch:
+    inputs:
+      cap:
+        description: "Max repositories this run (1 GitHub API call each)"
+        default: "400"
+      min_stars:
+        description: "Only repositories with at least this many stars"
+        default: "500"
+
+concurrency:
+  group: sub-skills
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The scanner that grades each SKILL.md imports app.models, so the backend's own requirements.
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Collect sub-skills
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          ACTIONS_TOKEN: ${{ github.token }}
+        run: python sub_skills_collect.py --cap "${{ inputs.cap || '400' }}" --min-stars "${{ inputs.min_stars || '500' }}"
+
+  notify-failure:
+    needs: collect
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Sub-skill collector failed",
+              body: `Sub-skill collector failed. [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+            });
