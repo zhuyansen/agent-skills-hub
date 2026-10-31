@@ -7,7 +7,7 @@
   "description_en": "Check a link source before you submit, verify the link once it is live, and audit your own backlinks against Google's link spam policies. Some tools are free; the rest buy data with your own Glasser or AIsa key. Needs uv on the machine.",
   "source": "backlink-guard",
   "type": "mcp",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "auth_mode": "token",
   "minWorkbuddyVersion": "4.24.0",
   "examples_zh": [

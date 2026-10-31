@@ -3,7 +3,7 @@
     "backlink-guard": {
       "type": "stdio",
       "command": "uvx",
-      "args": ["--with", "mcp==2.3.0", "backlink-guard==0.11.1", "mcp"],
+      "args": ["--with", "mcp==2.3.0", "backlink-guard==0.11.2", "mcp"],
       "env": {
         "GLASSER_API_KEY": "${GLASSER_API_KEY}",
         "AISA_API_KEY": "${AISA_API_KEY}",
