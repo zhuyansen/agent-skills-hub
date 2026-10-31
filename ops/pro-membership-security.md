@@ -78,3 +78,13 @@ Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会�
 - 新表 `pro_trial_usage`:RLS 开 + 零 policy + REVOKE anon/authenticated,只存 `sha256(ip:日期)` 和计数,不存原始 IP。
 - 上线顺序:① SQL Editor 跑 034 ② 推前端 ③ 线上验证试用能搜、同一 IP 第 7 次返回 429 ④ `--revoke` 旧的公共试用 key ⑤ 删掉 GitHub Secret `VITE_TRIAL_PRO_KEY` 和 `frontend/.env` 里那一行。
 - 调额度:改 034 里的 `c_per_ip_daily` / `c_global_daily` 常量,`CREATE OR REPLACE` 重跑函数即可。
+
+## 宽泛词搜索超时修复(迁移 035,2026-10-31)
+
+- 原因:`pro_search` / `pro_search_trial` 按 `stars DESC NULLS LAST` 排序,现有 `ix_skills_stars` 是升序,倒着扫只能给出 `NULLS FIRST`,用不上。常见词("mcp" 约 10 万行命中)只能把全部命中行读出来再排序,冷启动 10~14 秒,超过 anon 角色 3 秒的 statement_timeout,返回 500。空查询只按分类/评级筛也是全表排序。
+- 修法:两个函数共用 `_pro_search_core`,先用规划器估命中行数:≥ 2,000 行或空查询时允许按 stars 索引倒着走(到 LIMIT 就停);少于 2,000 行沿用 bitmap + 排序。新增 `(category, stars)`、`(security_grade, stars)` 两个索引,带筛选条件时只在该分类/评级里按 stars 走。
+- 实测(线上库事务内试跑后回滚):47 个词 × LIMIT 20/200 + 15 种筛选组合,最慢 0.99 秒(含约 0.23 秒网络往返),结果与旧查询一致。
+- 权限:两个内部函数 `_pro_search_core`、`_pro_search_match_estimate` 不验 key、不限量,已对 PUBLIC/anon/authenticated REVOKE EXECUTE,只能经由 `pro_search` / `pro_search_trial` 调用。key 校验、试用限额、行数上限、返回列都没变。
+- 调参:改 035 里的 `c_index_walk_min`(当前 2,000),`CREATE OR REPLACE` 重跑 `_pro_search_core` 即可。
+- 迁移 036:`pro_search`、`pro_search_trial` 两个函数单独把 statement_timeout 设成 8 秒(PostgREST 调用时按函数设置生效,其他 anon 请求仍是 3 秒)。原因是统计信息里没有的中等频率词(估算一律 1,278 行,实际 5k~15k 行)冷启动要 3~6 秒。上线后公开接口复测:22 个冷门词全部 200,'rust' 冷启动 6.3 秒。回退:`ALTER FUNCTION ... RESET statement_timeout`。
+- 可选维护:skills 表 19% 死元组、只有 47% 的页是全可见,手动 `VACUUM (ANALYZE) skills;` 会让 bitmap 扫描少读一些堆页。
