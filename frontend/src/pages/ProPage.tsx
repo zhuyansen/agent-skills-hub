@@ -6,6 +6,10 @@ import type { Skill } from "../types/skill";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
+import {
+  IncompleteResultsNote,
+  SearchTooSlowNote,
+} from "../components/ProSearchNotes";
 
 const KEY_STORAGE = "pro_key";
 const CATEGORIES = [
@@ -35,7 +39,12 @@ const SHARE_STORAGE = "pro_share_claimed";
 const SHARE_URL = "https://agentskillshub.top/pro/?ref=share";
 
 type GateState =
-  "idle" | "unauthorized" | "trial_exhausted" | "backend_missing" | "error";
+  | "idle"
+  | "unauthorized"
+  | "trial_exhausted"
+  | "too_slow"
+  | "backend_missing"
+  | "error";
 
 interface RpcError {
   code?: string;
@@ -48,6 +57,13 @@ function classifyError(err: RpcError): GateState {
     return "unauthorized";
   if (err.code === "PT429" || msg.includes("trial_exhausted"))
     return "trial_exhausted";
+  // Stopped at the time limit before finding a row (042), or timed out (57014).
+  if (
+    err.code === "PT422" ||
+    err.code === "57014" ||
+    msg.includes("search_incomplete")
+  )
+    return "too_slow";
   if (err.code === "PGRST202" || msg.includes("Could not find the function"))
     return "backend_missing";
   return "error";
@@ -59,8 +75,14 @@ interface SearchFilters {
   grade: string;
 }
 
+const NO_FILTERS: SearchFilters = { query: "", category: "", grade: "" };
+
+// incomplete_results (042): the search stopped at its time limit, so these are
+// only the best-starred matches it found. Every row of a call has the same value.
+type ProRow = Skill & { incomplete_results?: boolean };
+
 interface SearchResult {
-  data: Skill[] | null;
+  data: ProRow[] | null;
   error: RpcError | null;
 }
 
@@ -85,10 +107,10 @@ async function callSearch(
         ...searchArgs(f, MEMBER_RESULT_LIMIT),
       })
     : await client.rpc("pro_search_trial", searchArgs(f, TRIAL_RESULT_LIMIT));
-  return { data: (data ?? null) as Skill[] | null, error };
+  return { data: (data ?? null) as ProRow[] | null, error };
 }
 
-function toCsv(rows: Skill[]): string {
+function toCsv(rows: ProRow[]): string {
   const cols = [
     "repo_full_name",
     "stars",
@@ -97,6 +119,7 @@ function toCsv(rows: Skill[]): string {
     "quality_score",
     "repo_url",
     "description",
+    "incomplete_results",
   ] as const;
   const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
   const lines = rows.map((r) => cols.map((c) => esc(r[c])).join(","));
@@ -347,7 +370,8 @@ export default function ProPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [grade, setGrade] = useState("");
-  const [rows, setRows] = useState<Skill[]>([]);
+  const [rows, setRows] = useState<ProRow[]>([]);
+  const [lastFilters, setLastFilters] = useState(NO_FILTERS);
   const [exportable, setExportable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [gate, setGate] = useState<GateState>("idle");
@@ -381,6 +405,7 @@ export default function ProPage() {
     setLoading(true);
     setGate("idle");
     const filters = { query, category, grade };
+    setLastFilters(filters);
     const { data, error } = await callSearch(supabase, memberKey, filters);
     setLoading(false);
     setSearched(true);
@@ -633,9 +658,19 @@ export default function ProPage() {
             {zh ? "搜索出错,请重试。" : "Search failed — please retry."}
           </p>
         )}
+        {gate === "too_slow" && (
+          <SearchTooSlowNote zh={zh} filters={lastFilters} />
+        )}
 
         {rows.length > 0 && (
           <>
+            {rows.some((r) => r.incomplete_results) && (
+              <IncompleteResultsNote
+                zh={zh}
+                count={rows.length}
+                filters={lastFilters}
+              />
+            )}
             <div className="flex items-center gap-3 mb-2 text-sm">
               <span className="text-gray-500">
                 {rows.length} {zh ? "条结果" : "results"}
