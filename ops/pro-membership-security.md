@@ -70,3 +70,11 @@ Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会�
 | 单页条数 | 20 | **200** |
 | **结果导出 CSV / JSON** | ❌ | ✅ |
 | **API 调用**(脚本/自动化,curl 即用) | ❌ | ✅ |
+
+## 免费试用改为服务端限额(迁移 034,2026-10-31)
+
+- 之前:`/pro/` 把一把共享会员 key(`VITE_TRIAL_PRO_KEY`)打进公开 JS,"免费 3 次"只记在 localStorage,`pro_search` 不计次。读得到 bundle 的人可以拿这把 key 无限调用 `pro_search`(每次最多 500 条)。
+- 现在:没 key 的访客走 `pro_search_trial`(不收 key)。每个 IP 每天 6 次(3 次试用 + 分享奖励 3 次),全站每天 1000 次,每次最多 20 条、不能翻页;超限返回 PT429(HTTP 429,message `trial_exhausted`)。前端试用结果不给导出。
+- 新表 `pro_trial_usage`:RLS 开 + 零 policy + REVOKE anon/authenticated,只存 `sha256(ip:日期)` 和计数,不存原始 IP。
+- 上线顺序:① SQL Editor 跑 034 ② 推前端 ③ 线上验证试用能搜、同一 IP 第 7 次返回 429 ④ `--revoke` 旧的公共试用 key ⑤ 删掉 GitHub Secret `VITE_TRIAL_PRO_KEY` 和 `frontend/.env` 里那一行。
+- 调额度:改 034 里的 `c_per_ip_daily` / `c_global_daily` 常量,`CREATE OR REPLACE` 重跑函数即可。

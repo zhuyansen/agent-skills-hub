@@ -19,13 +19,14 @@ const CATEGORIES = [
 const GRADES = ["safe", "caution", "unsafe", "reject", "unknown"];
 const CLUB_URL = "https://jasonzhu.ai/zh/club";
 
-// Public 3-use trial: visitors with no key of their own get a shared, revocable
-// trial key (VITE_TRIAL_PRO_KEY) and TRIAL_LIMIT free searches, counted in
-// localStorage. Client-side count is a conversion nudge, not a hard wall — the
-// trial key is public-by-design; abuse is capped by revoking that one key.
-const TRIAL_KEY = import.meta.env.VITE_TRIAL_PRO_KEY || "";
+// Free trial: visitors with no key of their own search through the keyless
+// pro_search_trial RPC (migration 034), which caps uses per IP per day and
+// returns at most TRIAL_RESULT_LIMIT rows. The localStorage count below only
+// drives the "N left" nudge; the server is the wall.
 const TRIAL_LIMIT = 3;
 const TRIAL_STORAGE = "pro_trial_used";
+const TRIAL_RESULT_LIMIT = 20;
+const MEMBER_RESULT_LIMIT = 200;
 
 // Share-to-earn: sharing the page once raises the trial cap by SHARE_BONUS.
 // One-time per browser (localStorage), same client-side-nudge philosophy.
@@ -45,9 +46,46 @@ function classifyError(err: RpcError): GateState {
   const msg = err.message ?? "";
   if (err.code === "42501" || msg.includes("invalid_or_expired_key"))
     return "unauthorized";
+  if (err.code === "PT429" || msg.includes("trial_exhausted"))
+    return "trial_exhausted";
   if (err.code === "PGRST202" || msg.includes("Could not find the function"))
     return "backend_missing";
   return "error";
+}
+
+interface SearchFilters {
+  query: string;
+  category: string;
+  grade: string;
+}
+
+interface SearchResult {
+  data: Skill[] | null;
+  error: RpcError | null;
+}
+
+function searchArgs(f: SearchFilters, limit: number) {
+  return {
+    p_query: f.query || null,
+    p_category: f.category || null,
+    p_min_security: f.grade || null,
+    p_limit: limit,
+  };
+}
+
+// Members search with their own key; everyone else gets the capped trial RPC.
+async function callSearch(
+  client: NonNullable<typeof supabase>,
+  memberKey: string,
+  f: SearchFilters,
+): Promise<SearchResult> {
+  const { data, error } = memberKey
+    ? await client.rpc("pro_search", {
+        p_key: memberKey,
+        ...searchArgs(f, MEMBER_RESULT_LIMIT),
+      })
+    : await client.rpc("pro_search_trial", searchArgs(f, TRIAL_RESULT_LIMIT));
+  return { data: (data ?? null) as Skill[] | null, error };
 }
 
 function toCsv(rows: Skill[]): string {
@@ -310,6 +348,7 @@ export default function ProPage() {
   const [category, setCategory] = useState("");
   const [grade, setGrade] = useState("");
   const [rows, setRows] = useState<Skill[]>([]);
+  const [exportable, setExportable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [gate, setGate] = useState<GateState>("idle");
   const [searched, setSearched] = useState(false);
@@ -332,13 +371,8 @@ export default function ProPage() {
       setGate("backend_missing");
       return;
     }
-    // Own key → unlimited. No key → shared trial key, capped at TRIAL_LIMIT.
+    // Own key → unlimited. No key → keyless trial, capped here and on the server.
     const usingTrial = !memberKey;
-    const activeKey = memberKey || TRIAL_KEY;
-    if (!activeKey) {
-      setGate("unauthorized");
-      return;
-    }
     const limit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
     if (usingTrial && trialUsed >= limit) {
       setGate("trial_exhausted");
@@ -346,13 +380,8 @@ export default function ProPage() {
     }
     setLoading(true);
     setGate("idle");
-    const { data, error } = await supabase.rpc("pro_search", {
-      p_key: activeKey,
-      p_query: query || null,
-      p_category: category || null,
-      p_min_security: grade || null,
-      p_limit: 200,
-    });
+    const filters = { query, category, grade };
+    const { data, error } = await callSearch(supabase, memberKey, filters);
     setLoading(false);
     setSearched(true);
     if (error) {
@@ -360,7 +389,8 @@ export default function ProPage() {
       setGate(classifyError(error));
       return;
     }
-    setRows((data ?? []) as Skill[]);
+    setRows(data ?? []);
+    setExportable(!usingTrial);
     if (usingTrial) {
       const n = trialUsed + 1;
       setTrialUsed(n);
@@ -402,7 +432,7 @@ export default function ProPage() {
     [grantShareBonus, zh],
   );
 
-  const trialActive = !memberKey && !!TRIAL_KEY;
+  const trialActive = !memberKey;
   const effectiveLimit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
   const trialLeft = Math.max(0, effectiveLimit - trialUsed);
 
@@ -610,26 +640,36 @@ export default function ProPage() {
               <span className="text-gray-500">
                 {rows.length} {zh ? "条结果" : "results"}
               </span>
-              <button
-                onClick={() =>
-                  download("pro-search.csv", "text/csv", toCsv(rows))
-                }
-                className="text-indigo-600 dark:text-indigo-400 hover:underline"
-              >
-                CSV
-              </button>
-              <button
-                onClick={() =>
-                  download(
-                    "pro-search.json",
-                    "application/json",
-                    JSON.stringify(rows, null, 2),
-                  )
-                }
-                className="text-indigo-600 dark:text-indigo-400 hover:underline"
-              >
-                JSON
-              </button>
+              {exportable ? (
+                <>
+                  <button
+                    onClick={() =>
+                      download("pro-search.csv", "text/csv", toCsv(rows))
+                    }
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    CSV
+                  </button>
+                  <button
+                    onClick={() =>
+                      download(
+                        "pro-search.json",
+                        "application/json",
+                        JSON.stringify(rows, null, 2),
+                      )
+                    }
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    JSON
+                  </button>
+                </>
+              ) : (
+                <span className="text-xs text-gray-400">
+                  {zh
+                    ? `试用最多显示 ${TRIAL_RESULT_LIMIT} 条,导出需要会员 Key`
+                    : `Trial shows up to ${TRIAL_RESULT_LIMIT} results; export needs a member key`}
+                </span>
+              )}
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left text-gray-700 dark:text-gray-300">
