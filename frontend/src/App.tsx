@@ -5,15 +5,17 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { I18nProvider } from "./i18n/I18nContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Home } from "./pages/Home";
+// Not lazy, so it and the list it shares with SkillDetailPage ship in the main bundle. As a lazy
+// page it needed two more chunks; on 2026-10-31 Google's live test failed to fetch one of them
+// (SubSkillList, "other error") and judged the page a soft 404. SkillDetailPage had the same
+// extra chunk on all its pages.
+import { SubSkillPage } from "./pages/SubSkillPage";
 import { CompareBar } from "./components/CompareBar";
 
 const SkillDetailPage = lazy(() =>
   import("./pages/SkillDetailPage").then((m) => ({
     default: m.SkillDetailPage,
   })),
-);
-const SubSkillPage = lazy(() =>
-  import("./pages/SubSkillPage").then((m) => ({ default: m.SubSkillPage })),
 );
 const CategoryPage = lazy(() =>
   import("./pages/CategoryPage").then((m) => ({ default: m.CategoryPage })),
