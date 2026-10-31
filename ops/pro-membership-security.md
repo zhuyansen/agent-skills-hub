@@ -97,3 +97,12 @@ Key 是你的会员凭证,请勿公开分享。到期续费同价(锁定入会�
 - 仍然慢:三个常见词组成、又很少相邻的短语,比如 '"code review agent"',LIMIT 20 约 1.2 秒(035 约 1.0 秒)、LIMIT 200 约 20 秒(035 也一样)。GIN 不存词的位置,只能逐个解压候选,036 的 8 秒超时对它仍然有用。
 - 权限:`_pro_search_tier_ids` 不验 key、不限量,已对 PUBLIC/anon/authenticated REVOKE EXECUTE,只在 `_pro_search_core` 里调用。key 校验、试用限额、行数上限、返回列都没变;没有新表、新索引、新 policy。
 - 回退:重跑 035 里 `_pro_search_core` 那一段(`CREATE OR REPLACE`)即可;`_pro_search_tier_ids` 留着不用也无害。
+
+## 短语按候选分批检查 + 搜索限时(迁移 038,2026-10-31)
+
+- 原因:037 之后还会超时的只剩"由常见词组成、又很少相邻出现"的带引号短语。GIN 不存词的位置,含全部词的每一行都要解压 README 的 tsvector(约 13 KB)才能确认词序。公开接口实测:'"skill marketplace"' LIMIT 200 冷启动 7.8 秒(036 的上限是 8 秒),'"code review agent"' LIMIT 200 约 20 秒、必失败。
+- 修法:① 短语先把词序去掉(`<->` 换成 `&`)在 GIN 里取候选,这一步不解压任何东西;候选按星数从高到低,每次解压 50 个检查词序,凑够就停(新内部函数 `_pro_search_phrase_tier`)。被否定的短语(`-"open source"`)去掉词序会漏行,仍走 037 的做法。② 每次搜索限时 2.5 秒(从这次搜索开始算):到点后不再开新的一档、也不再查下一批候选,直接返回已找到的结果。因为是按星数从高到低找的,返回的就是完整结果的前 N 行,只是更短。
+- 实测(生产只读重放新路径,服务端时间;037 能跑完的,结果都与 037 的前 N 行一致):'"code review agent"' LIMIT 20 从 1.2 秒降到 0.45 秒;LIMIT 200 从约 20 秒失败变成 2.6 秒返回 60 行;'"skill marketplace"' LIMIT 200 从 4.2 秒变成 2.5 秒返回 191/200 行(不限时 2.7 秒全部 200 行);其余常见短语 LIMIT 200 都在 0.1~1.3 秒内返回全部 200 行。不带短语的搜索本来就远在时限内,只多了每档前的时间检查。
+- 代价:超时的搜索会少给几行,少多少看缓存冷热;换来的是不再在 8 秒处失败。试用搜索能正常返回就会计入每日限额(超时的会把计数一起回滚)。
+- 权限:`_pro_search_phrase_tier` 不验 key、不限量,已对 PUBLIC/anon/authenticated REVOKE EXECUTE,只在 `_pro_search_tier_ids` 里调用。`pro_search`、`pro_search_trial`、`_pro_search_core` 都没动;key 校验、试用限额、行数上限、返回列都没变;没有新表、新索引、新 policy。
+- 回退:重跑 037 里 `_pro_search_tier_ids` 那一段(`CREATE OR REPLACE`);`_pro_search_phrase_tier` 留着不用也无害。调时限改 038 里的 `c_budget`。
