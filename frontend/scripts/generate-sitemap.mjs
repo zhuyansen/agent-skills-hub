@@ -25,6 +25,7 @@
 
 import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs";
 import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
+import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -236,6 +237,21 @@ function howWeGradeEntries(today) {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>${lastmodLine(declaredDate(HOW_WE_GRADE_PATH, today))}
   </url>`];
+}
+
+/**
+ * Pages for single skills inside multi-skill repositories: the list generate-sub-skill-pages.mjs
+ * wrote of the pages it actually published (their repositories have 500+ stars, the bar the
+ * skill URLs in sitemap-top.xml meet).
+ */
+function subSkillEntries() {
+  const file = `dist/${SUB_SKILL_MANIFEST}`;
+  if (!existsSync(file)) return [];
+  return JSON.parse(readFileSync(file, "utf-8")).map(({ loc, lastmod }) => `  <url>
+    <loc>${encodeURI(loc)}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>${lastmodLine(lastmod)}
+  </url>`);
 }
 
 async function main() {
@@ -502,8 +518,9 @@ async function main() {
 
   // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
   // declares the xhtml namespace the scenario entries' hreflang links need.
-  writeFileSync("dist/sitemap-top.xml", wrapUrlsetI18n([...hubEntries, ...topEntries]));
-  console.log(`sitemap-top.xml: ${hubEntries.length} hub + ${topSkills.length} skill URLs (stars >= 500)`);
+  const subSkills = subSkillEntries();
+  writeFileSync("dist/sitemap-top.xml", wrapUrlsetI18n([...hubEntries, ...topEntries, ...subSkills]));
+  console.log(`sitemap-top.xml: ${hubEntries.length} hub + ${topSkills.length} skill + ${subSkills.length} sub-skill URLs (stars >= 500)`);
 
   // 7. sitemap.xml (index) — only top-tier to conserve crawl budget
   const sitemapFiles = [

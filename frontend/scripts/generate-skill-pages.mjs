@@ -618,6 +618,7 @@ ${breadcrumbLd}
       <!-- What only this page has comes first: the install command we found, then the scan verdict -->
       ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null)}
       ${verdictBlock}
+      <!--sub-skills: generate-sub-skill-pages.mjs puts this repository's skill list here-->
 
       <!-- Topics -->
       ${topicsHtml}

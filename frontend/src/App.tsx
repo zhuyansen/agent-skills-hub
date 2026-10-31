@@ -12,6 +12,9 @@ const SkillDetailPage = lazy(() =>
     default: m.SkillDetailPage,
   })),
 );
+const SubSkillPage = lazy(() =>
+  import("./pages/SubSkillPage").then((m) => ({ default: m.SubSkillPage })),
+);
 const CategoryPage = lazy(() =>
   import("./pages/CategoryPage").then((m) => ({ default: m.CategoryPage })),
 );
@@ -85,6 +88,10 @@ function App() {
                   <Route
                     path="/skill/:owner/:repo"
                     element={<SkillDetailPage />}
+                  />
+                  <Route
+                    path="/skill/:owner/:repo/:sub"
+                    element={<SubSkillPage />}
                   />
                   <Route path="/category/:slug" element={<CategoryPage />} />
                   <Route path="/compare" element={<ComparePage />} />
