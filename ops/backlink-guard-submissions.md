@@ -107,5 +107,5 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 | DSH | Dominic789654 清单只链仓库、bradeGithub 市场照 README 手动装，都跟着 README 走，不用改 |
 | mcpservers.org | 10-31 免费档提交（Marketing，带注册表名，联系邮箱用户 Gmail），两周内审 |
 | MCP Market | 10-31 免费队列提交（默认勾的 $29 改成 Free Queue），4–6 周 |
-| mcp.so | 提交页要登录（没登录只有 $39 付费提交），等用户在内置浏览器登录 |
+| mcp.so | 网页表单登录后也只有 $39 付费提交（含 dofollow 链接），不付；10-31 在 issue #6159 催了一下（维护者 10-16 批量回过一轮「now listed」，我们的在那之后提的） |
 | 要用户登录改版本 | cursor.directory、Agensi、魔搭 MCP 页 → 0.11.2 |
