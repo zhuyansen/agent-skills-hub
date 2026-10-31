@@ -3982,7 +3982,7 @@
   "slug": "anti-slop",
   "seo_keyword": "humanizer skill",
   "title": "Humanizer & Anti-Slop Skills",
-  "serp_subject": "Humanizer Skills & AI Slop Detectors",
+  "serp_subject": "Unslop, Humanizer & Anti-Slop Skills",
   "github_list": "https://github.com/zhuyansen/awesome-humanizer-skills",
   "description": "Open-source humanizer and anti-slop skills, security-graded: make AI-written text, code and UI read like a person made it (blader/humanizer, Humanizer-zh, taste-skill), and detect AI tells. Vet before you install.",
   "method": {
@@ -4175,6 +4175,7 @@
   "match": {
    "categories": [],
    "primary_keywords": [
+    "unslop",
     "anti-slop",
     "anti slop",
     "humanizer",
@@ -4384,6 +4385,12 @@
    "code-review"
   ],
   "extra_faq": [
+   {
+    "q": "What is unslop?",
+    "a": "unslop is not one tool: more than a dozen open-source agent skills share the name, and they split by what they clean up. Interfaces: heydamir/unslop, which took off in late October 2026, redesigns vibecoded, AI-looking UI; 0design/unslop-skill audits a design your agent generated; felipebasurto/unslop-ui fixes interface and chart copy. Writing: theclaymethod/unslop, MohamedAbdallah-14/unslop, asavvin-pixel/unslop, badmuriss/unslop and woerndl/unsloppify remove AI writing tells. mshumer/unslop finds the defaults a model keeps falling back on and turns them into an instruction file. They share a name, not an author or a method, so check which one you mean before you install it.",
+    "qZh": "unslop 是什么?",
+    "aZh": "unslop 不是某一个工具:十几个开源 agent skill 都叫这个名字,按清理的对象分几类。界面:heydamir/unslop(2026 年 10 月底走红)把 AI 味很重的界面重新设计得有自己的风格;0design/unslop-skill 检查 agent 生成的设计;felipebasurto/unslop-ui 改界面和图表里的文案。文字:theclaymethod/unslop、MohamedAbdallah-14/unslop、asavvin-pixel/unslop、badmuriss/unslop 和 woerndl/unsloppify 去掉写作里的 AI 痕迹。mshumer/unslop 则找出模型反复使用的套路,写成一份指令文件。它们只是同名,作者和做法都不同,安装前先确认你要的是哪一个。"
+   },
    {
     "q": "What is the humanizer skill for Claude?",
     "a": "blader/humanizer is an agent skill that finds and removes signs of AI-generated writing from text; op7418/Humanizer-zh is its Chinese version. Related skills apply the same idea elsewhere: hardikpandya/stop-slop for prose rules, Leonxlnx/taste-skill and Nutlope/hallmark for UI design, peteromallet/desloppify for code.",
