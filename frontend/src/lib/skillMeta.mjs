@@ -11,10 +11,16 @@
  * "<owner/repo> — security grade & quality score | Agent Skills Hub" (React).
  * The part that varies is now the repo's own one-line description, cleaned and
  * cut to what a results page shows.
+ *
+ * 2026-10-31: the title leads with the repo's own name, "<repo> by <owner>: ...".
+ * From 10-02 to 10-29 skill pages averaged position 6-9 with a 1.27% click-through
+ * rate (253 clicks on 19,968 impressions), and queries written as owner/repo were 5%
+ * of their impressions: people search the name, and "owner/repo:" read like a path.
  */
 
-/** Rough results-page budget (~600px); a CJK character takes about two Latin widths. */
-export const TITLE_MAX_WIDTH = 65;
+/** Rough results-page budget (~600px), plus the 3 that " by " takes over "/" (10-31) so the
+ *  description keeps the room it had; a CJK character takes about two Latin widths. */
+export const TITLE_MAX_WIDTH = 68;
 /** The h1 is not cut by a results page; this only keeps it readable. */
 export const HEADING_MAX_WIDTH = 110;
 /** Used when the description gives nothing usable, and for deleted repos. */
@@ -128,11 +134,18 @@ export function fitClause(clause, budget) {
   return tidyEnd(head.slice(0, cutPoint(head, lean.charAt(head.length), budget)).replace(UNCLOSED_PAREN, ""));
 }
 
-/** "<owner/repo>: <description clause>", or the fallback when the description gives nothing usable. */
+/** "theclaymethod/unslop" -> "unslop by theclaymethod": the name people search for comes first. */
+function titleHead(repoFullName) {
+  const [owner, repo] = repoFullName.split("/");
+  return repo ? `${repo} by ${owner}` : repoFullName;
+}
+
+/** "<repo> by <owner>: <description clause>", or the fallback when the description gives nothing usable. */
 export function skillTitle(repoFullName, repoName, description, fallback = TITLE_FALLBACK) {
-  const budget = Math.max(TITLE_MAX_WIDTH - displayWidth(`${repoFullName}: `), MIN_CLAUSE_BUDGET);
+  const head = titleHead(repoFullName);
+  const budget = Math.max(TITLE_MAX_WIDTH - displayWidth(`${head}: `), MIN_CLAUSE_BUDGET);
   const clause = fitClause(cleanDescription(description, repoName), budget);
-  return `${repoFullName}: ${displayWidth(clause) >= MIN_CLAUSE_WIDTH ? clause : fallback}`;
+  return `${head}: ${displayWidth(clause) >= MIN_CLAUSE_WIDTH ? clause : fallback}`;
 }
 
 /** The h1 clause from the same description: all of it when it fits, else its first sentence. */
