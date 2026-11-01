@@ -555,8 +555,8 @@ async function main() {
 }
 
 main().catch((err) => {
-  // Fail LOUD. The build chains with `&&`, so a non-zero exit stops it before
-  // submit-indexnow and keeps the previous good deploy — the opposite of the old
+  // Fail LOUD. The build chains with `&&`, so a non-zero exit stops the build
+  // and keeps the previous good deploy — the opposite of the old
   // `.catch(console.error)`, which printed the error, exited 0, and let a broken
   // or stale sitemap ship as if the build had succeeded.
   console.error(err);

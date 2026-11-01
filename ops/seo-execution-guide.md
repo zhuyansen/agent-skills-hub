@@ -173,7 +173,7 @@
 
 - **D3 IndexNow**
   是什么:向 Bing/Yandex 即时推送新 URL 的协议,收录加速。**⚠️ 不覆盖 Google。**
-  安装:根目录放 key 文件 + build 链末尾挂 `submit-indexnow.mjs`,一次配好零维护。
+  安装:根目录放 key 文件;部署完成后,deploy.yml 的 notify-search-engines 只推新增、改了 lastmod 或撤掉的网址(`frontend/scripts/indexnow-changes.mjs`,11-01 起;之前每次构建全量推约 4,500 条)。手动推指定网址用 `submit-indexnow.mjs --urls`。
 
 - **D4 Google 请求编入索引(补 D3 的 Google 侧空缺)**
   是什么:GSC URL Inspection → Request Indexing,实测显著快于纯等 sitemap 被抓。

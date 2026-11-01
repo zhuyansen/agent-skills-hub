@@ -4,6 +4,11 @@
  * participants (Google does NOT support IndexNow, but Bing/Yandex traffic is
  * non-trivial in CN + Russia). Site verification needs a stable key file.
  *
+ * Builds and deploys no longer run this (2026-11-01): every build used to send all ~4,500
+ * sitemap URLs. After a deploy, the notify-search-engines job in .github/workflows/deploy.yml
+ * sends only the URLs that changed (scripts/indexnow-changes.mjs). This stays for sending
+ * chosen URLs by hand: --urls or --urls-file.
+ *
  * Usage:
  *   node scripts/submit-indexnow.mjs                    # submit all indexed URLs from sitemaps
  *   node scripts/submit-indexnow.mjs --recent 7         # only URLs updated in last 7 days
