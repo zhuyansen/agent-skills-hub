@@ -99,9 +99,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
         <div className="flex items-center justify-between mb-3">
           <div className="min-w-0">
             <Link to="/" className="flex items-center gap-2 group">
-              <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              {/* min-w-0 down the flex chain so the name truncates instead of
+                  running under the icons on the right (11-01: at 375px the
+                  favorites and GitHub icons covered "AgentSkillsHub"). */}
+              <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 min-w-0">
                 <svg
-                  className="w-6 h-6 sm:w-7 sm:h-7"
+                  className="w-6 h-6 sm:w-7 sm:h-7 shrink-0"
                   viewBox="350.95 190.72 133.48 133.48"
                   aria-hidden="true"
                 >
@@ -138,7 +141,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     rx="4.89"
                   />
                 </svg>
-                <span className="truncate group-hover:text-blue-600 transition-colors">
+                <span className="truncate min-w-0 group-hover:text-blue-600 transition-colors">
                   AgentSkillsHub
                 </span>
               </span>
@@ -193,10 +196,10 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             >
               Blog
             </a>
-            {/* Favorites */}
+            {/* Favorites and GitHub: below sm they move into the "···" menu */}
             <Link
               to="/favorites/"
-              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-300"
+              className="hidden sm:flex w-8 h-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-300"
               title={t("header.favorites")}
               aria-label="My favorites"
             >
@@ -209,7 +212,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               href="https://github.com/ZhuYansen/agent-skills-hub"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="hidden sm:flex w-8 h-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
               title="GitHub"
               aria-label="GitHub repository"
             >
