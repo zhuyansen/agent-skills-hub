@@ -1,0 +1,357 @@
+{
+ "schema": 1,
+ "period": "2026-10",
+ "snapshot_at": "2026-11-01T07:05:52Z",
+ "license": "CC-BY-4.0",
+ "totals": {
+  "repos": 257330,
+  "repos_5_stars": 47933,
+  "official": 130,
+  "scanned": 124557
+ },
+ "types": [
+  {
+   "key": "mcp-server",
+   "count": 94726
+  },
+  {
+   "key": "agent-tool",
+   "count": 65184
+  },
+  {
+   "key": "codex-skill",
+   "count": 36344
+  },
+  {
+   "key": "claude-skill",
+   "count": 33688
+  },
+  {
+   "key": "skill",
+   "count": 14446
+  },
+  {
+   "key": "tool",
+   "count": 8535
+  },
+  {
+   "key": "llm-plugin",
+   "count": 4153
+  },
+  {
+   "key": "agent-framework",
+   "count": 253
+  },
+  {
+   "key": "application",
+   "count": 1
+  }
+ ],
+ "growth": [
+  {
+   "month": "2025-10",
+   "total": 1683,
+   "mcp-server": 837,
+   "claude-skill": 184,
+   "codex-skill": 97,
+   "other": 565
+  },
+  {
+   "month": "2025-11",
+   "total": 1841,
+   "mcp-server": 879,
+   "claude-skill": 238,
+   "codex-skill": 65,
+   "other": 659
+  },
+  {
+   "month": "2025-12",
+   "total": 2553,
+   "mcp-server": 1179,
+   "claude-skill": 356,
+   "codex-skill": 167,
+   "other": 851
+  },
+  {
+   "month": "2026-01",
+   "total": 5226,
+   "mcp-server": 1957,
+   "claude-skill": 975,
+   "codex-skill": 467,
+   "other": 1827
+  },
+  {
+   "month": "2026-02",
+   "total": 9598,
+   "mcp-server": 3976,
+   "claude-skill": 1476,
+   "codex-skill": 1030,
+   "other": 3116
+  },
+  {
+   "month": "2026-03",
+   "total": 31803,
+   "mcp-server": 11659,
+   "claude-skill": 5602,
+   "codex-skill": 2918,
+   "other": 11624
+  },
+  {
+   "month": "2026-04",
+   "total": 27749,
+   "mcp-server": 10055,
+   "claude-skill": 4507,
+   "codex-skill": 3121,
+   "other": 10066
+  },
+  {
+   "month": "2026-05",
+   "total": 29391,
+   "mcp-server": 9746,
+   "claude-skill": 4111,
+   "codex-skill": 4692,
+   "other": 10842
+  },
+  {
+   "month": "2026-06",
+   "total": 25910,
+   "mcp-server": 8300,
+   "claude-skill": 3342,
+   "codex-skill": 4749,
+   "other": 9519
+  },
+  {
+   "month": "2026-07",
+   "total": 27116,
+   "mcp-server": 8333,
+   "claude-skill": 3073,
+   "codex-skill": 6003,
+   "other": 9707
+  },
+  {
+   "month": "2026-08",
+   "total": 24556,
+   "mcp-server": 7722,
+   "claude-skill": 2248,
+   "codex-skill": 5392,
+   "other": 9194
+  },
+  {
+   "month": "2026-09",
+   "total": 27467,
+   "mcp-server": 10255,
+   "claude-skill": 2520,
+   "codex-skill": 4278,
+   "other": 10414
+  },
+  {
+   "month": "2026-10",
+   "total": 29603,
+   "mcp-server": 13224,
+   "claude-skill": 4643,
+   "codex-skill": 2960,
+   "other": 8776
+  }
+ ],
+ "security": {
+  "grades": {
+   "caution": 5748,
+   "reject": 1,
+   "safe": 118447,
+   "unsafe": 361
+  },
+  "patterns": [
+   {
+    "key": "sudo_usage",
+    "count": 4755
+   },
+   {
+    "key": "tunnel_service",
+    "count": 508
+   },
+   {
+    "key": "fenced_download_exec",
+    "count": 378
+   },
+   {
+    "key": "env_access",
+    "count": 272
+   },
+   {
+    "key": "cron_persistence",
+    "count": 261
+   },
+   {
+    "key": "agent_memory_theft",
+    "count": 227
+   },
+   {
+    "key": "subprocess_spawn",
+    "count": 187
+   },
+   {
+    "key": "sensitive_env_vars",
+    "count": 160
+   },
+   {
+    "key": "ssl_disabled",
+    "count": 67
+   },
+   {
+    "key": "eval_usage",
+    "count": 54
+   },
+   {
+    "key": "curl_pipe_shell",
+    "count": 46
+   },
+   {
+    "key": "docker_privileged",
+    "count": 46
+   }
+  ]
+ },
+ "licenses": [
+  {
+   "key": "MIT",
+   "count": 125527
+  },
+  {
+   "key": "(none)",
+   "count": 90098
+  },
+  {
+   "key": "Apache-2.0",
+   "count": 18100
+  },
+  {
+   "key": "NOASSERTION",
+   "count": 15277
+  },
+  {
+   "key": "AGPL-3.0",
+   "count": 3085
+  },
+  {
+   "key": "GPL-3.0",
+   "count": 2377
+  },
+  {
+   "key": "CC0-1.0",
+   "count": 527
+  },
+  {
+   "key": "BSD-3-Clause",
+   "count": 381
+  },
+  {
+   "key": "(other)",
+   "count": 1958
+  }
+ ],
+ "platforms": [
+  {
+   "key": "claude-code",
+   "count": 109274
+  },
+  {
+   "key": "python",
+   "count": 99450
+  },
+  {
+   "key": "mcp",
+   "count": 94294
+  },
+  {
+   "key": "node",
+   "count": 68616
+  },
+  {
+   "key": "cli",
+   "count": 54247
+  },
+  {
+   "key": "codex",
+   "count": 49422
+  },
+  {
+   "key": "gemini",
+   "count": 19133
+  },
+  {
+   "key": "browser",
+   "count": 18930
+  },
+  {
+   "key": "rust",
+   "count": 5659
+  },
+  {
+   "key": "go",
+   "count": 5566
+  }
+ ],
+ "cjk_description_share_pct": 6.1,
+ "movers": [
+  {
+   "repo": "Gathin23/cleanyourtv",
+   "week": "2026-10-19",
+   "stars": 34479,
+   "stars_per_day": 4046.1
+  },
+  {
+   "repo": "morluto/rea",
+   "week": "2026-10-26",
+   "stars": 415101,
+   "stars_per_day": 2066.6
+  },
+  {
+   "repo": "heydamir/unslop",
+   "week": "2026-10-26",
+   "stars": 3211,
+   "stars_per_day": 1428.6
+  },
+  {
+   "repo": "NandhaKishorM/laya",
+   "week": "2026-10-05",
+   "stars": 32321,
+   "stars_per_day": 1360.8
+  },
+  {
+   "repo": "DietrichGebert/ponytail",
+   "week": "2026-10-05",
+   "stars": 159815,
+   "stars_per_day": 1310.9
+  },
+  {
+   "repo": "openclaw/openclaw",
+   "week": "2026-10-05",
+   "stars": 391684,
+   "stars_per_day": 1218.2
+  },
+  {
+   "repo": "mattpocock/skills",
+   "week": "2026-10-05",
+   "stars": 265786,
+   "stars_per_day": 1061.1
+  },
+  {
+   "repo": "wheresryan22/anatomy",
+   "week": "2026-10-12",
+   "stars": 10894,
+   "stars_per_day": 1046.0
+  },
+  {
+   "repo": "affaan-m/ECC",
+   "week": "2026-10-05",
+   "stars": 277103,
+   "stars_per_day": 1038.2
+  },
+  {
+   "repo": "Gathin23/tv-vibehack",
+   "week": "2026-10-12",
+   "stars": 1506,
+   "stars_per_day": 1005.4
+  }
+ ]
+}
