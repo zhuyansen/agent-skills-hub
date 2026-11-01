@@ -57,7 +57,7 @@
 - **GSC clicks/曝光**:site 全域、周窗口(周一至周日),`fetch_gsc.py queries` 汇总
 - **品牌词 pos**:"agent skills hub" 精确词,`fetch_gsc.py brand`。**终态验收 = SERP 出现 sitelink**(出现后基本抢不走,每月搜一次截图存档,比位次更硬的护城河信号)
 - **Bing 优质引用域**:Bing Webmaster Backlinks 面板的 referring domains 数(比 Ahrefs 严,当质量口径——部分差异来自 Ahrefs 会计入过期域名注水型外链)
-- **GEO AI 会话**:GA sources 匹配 AI_SRC 元组(chatgpt/openai/perplexity/doubao/gemini/copilot/claude/kimi/deepseek),28 天窗口。**已知盲区**:只捕捉"AI 产生了可归因点击",测不到"被引用但未点击"(pos 6-9 CTR 0.1-0.4% 正是 AI Overviews 吃点击的证据)——引用侧观测靠 Clarity AI Visibility Citation(B3)/ Bing AI Performance(A2)/ Ahrefs AI responses(F5)三免费表互补,升级选项 DataForSEO LLM Mentions
+- **GEO AI 会话**:GA sources 匹配 AI_SRC 元组(chatgpt/openai/perplexity/doubao/gemini/copilot/claude/kimi/deepseek),28 天窗口。**已知盲区**:只捕捉"AI 产生了可归因点击",测不到"被引用但未点击"——引用侧观测靠 Clarity AI Visibility Citation(B3)/ Bing AI Performance(A2)/ Ahrefs AI responses(F5)三免费表互补,升级选项 DataForSEO LLM Mentions
 - **转化事件**:deep_audit_checkout · enterprise_cta_click · install_command_copied · newsletter_subscribe 四件的周计数;checkout 事件带 value/currency 后可看转化金额
 - **死点击**:Clarity dead-click 会话占比,28 天窗口(注:Clarity API 只有 3 天窗,28 天口径实际来自 dashboard)
 
