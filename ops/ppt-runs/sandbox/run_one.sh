@@ -14,8 +14,9 @@ if [ -n "${FORCE_SETUP:-}" ]; then
     --output-format stream-json --verbose > "$OUT/setup.jsonl" 2>> "$OUT/claude.err"
   echo "agent-setup" > "$OUT/install.txt"
 elif [ -z "${NO_PREINSTALL:-}" ]; then
-# Install every SKILL.md folder; a repo may ship several.
-find ~/src -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
+# Install every SKILL.md folder; a repo may ship several. SKILL_DIR=skills/pptx installs one
+# folder of a repo that ships many (anthropics/skills: the official pptx skill, not all 17).
+find ~/src/"${SKILL_DIR:-}" -name SKILL.md -not -path '*/node_modules/*' | while read -r f; do
   d=$(dirname "$f"); n=$(basename "$d"); [ "$d" = ~/src ] && n=$(basename "$REPO")
   cp -r "$d" ~/.claude/skills/"$n"; echo "$n" >> "$OUT/skills.txt"
 done

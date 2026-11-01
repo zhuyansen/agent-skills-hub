@@ -40,7 +40,7 @@ def docker_env(e: dict) -> list[str]:
     # the skill itself only ever sees a placeholder OpenAI key.
     pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
              **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)},
-             **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE") if os.environ.get(k)},
+             **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE", "SKILL_DIR") if os.environ.get(k)},
              # PASS_KEYS=TYPESAFE_API_KEY (the Jev first-run test): named keys from ~/.claude/.env go into the container.
              **{k: e[k] for k in os.environ.get("PASS_KEYS", "").split(",") if k and e.get(k)},
              # Text LLM for tools that need their own key (TEXT_PROXY=1), through the same adapter.
