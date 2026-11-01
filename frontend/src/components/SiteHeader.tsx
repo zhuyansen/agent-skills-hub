@@ -176,22 +176,24 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             </Link>
             <Link
               to="/book/"
-              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
+              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
               title="Skill 蓝皮书 2026 — 100K Skill 数据原生研究"
             >
               Blue Book
             </Link>
-            {/* Static HTML pages — use <a href> not <Link> so browser hard-navigates */}
+            {/* Static HTML pages — use <a href> not <Link> so browser hard-navigates.
+                Blue Book, Daily and Blog wait for xl: from 1024 to ~1165px they
+                squeezed the name to "A…" (11-01); the "···" menu has them below xl. */}
             <a
               href="/daily/"
-              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
               title="Daily — 每日新鲜 skills 精选 Top 10"
             >
               Daily
             </a>
             <a
               href="/blog/"
-              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
               title="Blog — 长文 + 案例 + 深度分析"
             >
               Blog
@@ -225,7 +227,9 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             <ThemeToggle />
             <LanguageToggle />
             {/* Newsletter CTA button + popup */}
-            <div className="relative" ref={nlRef}>
+            {/* Not positioned below sm, so the popup spans the header (16px in
+                from each side) instead of running off the left edge of a phone. */}
+            <div className="sm:relative" ref={nlRef}>
               <button
                 onClick={() => setShowNewsletterPopup(!showNewsletterPopup)}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium cursor-pointer"
@@ -253,7 +257,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                     className="fixed inset-0 z-40"
                     onClick={() => setShowNewsletterPopup(false)}
                   />
-                  <div className="absolute right-0 top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-5 w-80 animate-in fade-in slide-in-from-top-2">
+                  <div className="absolute inset-x-4 top-13 sm:inset-x-auto sm:right-0 sm:top-10 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-5 sm:w-80 animate-in fade-in slide-in-from-top-2">
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                         {t("newsletter.title")}

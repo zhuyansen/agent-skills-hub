@@ -20,7 +20,9 @@ export function HeaderMoreMenu() {
     "flex items-center gap-2.5 px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/60 rounded-lg transition-colors";
 
   return (
-    <div className="relative">
+    // Not positioned below sm: the menu then spans the header, 16px in from each
+    // side. Anchored to this button it ran 21–76px off the left of a phone (11-01).
+    <div className="sm:relative">
       <button
         onClick={() => setOpen(!open)}
         className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-300 cursor-pointer"
@@ -38,16 +40,20 @@ export function HeaderMoreMenu() {
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={close} />
-          <div className="absolute right-0 top-10 z-50 w-60 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-1.5 animate-in fade-in slide-in-from-top-2">
-            {/* Below lg the header's text links (Enterprise / Blue Book / Blog)
-                are hidden to stop the top bar overflowing over the logo — they
-                live here instead. lg:hidden avoids duplication on desktop. */}
-            <div className="lg:hidden border-b border-gray-100 dark:border-gray-700 mb-1.5 pb-1.5">
-              <a href="/enterprise/" className={itemCls}>
+          <div className="absolute inset-x-4 top-13 sm:inset-x-auto sm:right-0 sm:top-10 sm:w-60 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-1.5 animate-in fade-in slide-in-from-top-2">
+            {/* The header's text links live here while the top bar has no room
+                for them: Enterprise below lg, Blue Book / Daily / Blog below xl
+                (from 1024 to ~1165px they squeezed the name to "A…", 11-01).
+                The breakpoints mirror SiteHeader's, so nothing shows twice. */}
+            <div className="xl:hidden border-b border-gray-100 dark:border-gray-700 mb-1.5 pb-1.5">
+              <a href="/enterprise/" className={`${itemCls} lg:hidden`}>
                 🏢 Enterprise
               </a>
               <a href="/book/" className={itemCls}>
                 📘 Blue Book
+              </a>
+              <a href="/daily/" className={itemCls}>
+                📅 Daily
               </a>
               <a href="/blog/" className={itemCls}>
                 ✍️ Blog
