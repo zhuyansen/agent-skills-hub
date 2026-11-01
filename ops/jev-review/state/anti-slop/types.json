@@ -3680,5 +3680,61 @@
    "rules": 0.51
   },
   "kind": "detector"
+ },
+ {
+  "repo": "heydamir/unslop",
+  "stars": 3778,
+  "description": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.3,
+   "chinese": 0.02,
+   "code": 0.13,
+   "design": 0.95,
+   "rules": 0.39
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "mshumer/unslop",
+  "stars": 555,
+  "description": "",
+  "scores": {
+   "writing": 0.21,
+   "detector": 0.78,
+   "chinese": 0.06,
+   "code": 0.14,
+   "design": 0.81,
+   "rules": 0.35
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "felipebasurto/unslop-ui",
+  "stars": 14,
+  "description": "Agent skill that cuts AI tells from interface and chart copy: eyebrow labels, 01/02/03 numbering, botsplaining captions, decorative badges and status dots.",
+  "scores": {
+   "writing": 0.2,
+   "detector": 0.81,
+   "chinese": 0.04,
+   "code": 0.21,
+   "design": 0.95,
+   "rules": 0.74
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "arhamhi/oxfords",
+  "stars": 25,
+  "description": "UI/UX skill for Claude Code, Codex and Cursor. Polished, plain interfaces with no AI slop. Includes a zero-dependency slop checker.",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.75,
+   "chinese": 0.03,
+   "code": 0.29,
+   "design": 0.95,
+   "rules": 0.77
+  },
+  "kind": "design"
  }
 ]

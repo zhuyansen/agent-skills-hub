@@ -111,6 +111,14 @@
   "type": "image/png",
   "bytes": 5538415
  },
+ "AIPMAndy/Andy-Video-Skill": {
+  "repo": "AIPMAndy/Andy-Video-Skill",
+  "url": "https://raw.githubusercontent.com/AIPMAndy/Andy-Video-Skill/HEAD/showcase/assets/images/killer-feature-manim.png",
+  "alt": "Manim output frame — Directors Cut",
+  "score": 1.65,
+  "type": "image/png",
+  "bytes": 807116
+ },
  "AIPMAndy/LivePPT": {
   "repo": "AIPMAndy/LivePPT",
   "url": "https://raw.githubusercontent.com/AIPMAndy/LivePPT/HEAD/skills/public/LivePPT/assets/demo.gif",
@@ -759,6 +767,14 @@
   "type": "image/gif",
   "bytes": 2647575
  },
+ "HamzaAlayed/laravel-claude-agents": {
+  "repo": "HamzaAlayed/laravel-claude-agents",
+  "url": "https://raw.githubusercontent.com/HamzaAlayed/laravel-claude-agents/HEAD/docs/images/console-board-mid-run.png",
+  "alt": "Console board mid-run",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 66630
+ },
  "Hasasasa/claude-skill-html-to-pptx": {
   "repo": "Hasasasa/claude-skill-html-to-pptx",
   "url": "https://raw.githubusercontent.com/Hasasasa/claude-skill-html-to-pptx/HEAD/assets/compare/yanshi2_ours_grid.png",
@@ -790,6 +806,14 @@
   "score": 2.5,
   "type": "image/gif",
   "bytes": 1621163
+ },
+ "HeyChengC/wallstreet-explainer": {
+  "repo": "HeyChengC/wallstreet-explainer",
+  "url": "https://raw.githubusercontent.com/HeyChengC/wallstreet-explainer/HEAD/examples/ai-burn-money/sample.gif",
+  "alt": "样片：《AI 到底有多烧钱》",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 8442303
  },
  "HututuWorks/sci-diagram-pptx": {
   "repo": "HututuWorks/sci-diagram-pptx",
@@ -910,6 +934,14 @@
   "score": 1.7,
   "type": "image/jpeg",
   "bytes": 376410
+ },
+ "JunfengRan/PPTWork": {
+  "repo": "JunfengRan/PPTWork",
+  "url": "https://raw.githubusercontent.com/JunfengRan/PPTWork/HEAD/examples/showcase/showcase-bento.png",
+  "alt": "Two skills bento layout",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 59923
  },
  "KDB-Wind/gpt-image-2-studio": {
   "repo": "KDB-Wind/gpt-image-2-studio",
@@ -1495,6 +1527,14 @@
   "type": "image/gif",
   "bytes": 58252
  },
+ "VangelisHaha/deck-stage": {
+  "repo": "VangelisHaha/deck-stage",
+  "url": "https://raw.githubusercontent.com/VangelisHaha/deck-stage/HEAD/docs/screenshots/library.png",
+  "alt": "稿库",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 112597
+ },
  "VirtusLab/tulip": {
   "repo": "VirtusLab/tulip",
   "url": "https://raw.githubusercontent.com/VirtusLab/tulip/HEAD/screens/code.png",
@@ -1534,6 +1574,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 772658
+ },
+ "YahyaLendani/motionbrief-claude-skills": {
+  "repo": "YahyaLendani/motionbrief-claude-skills",
+  "url": "https://raw.githubusercontent.com/YahyaLendani/motionbrief-claude-skills/HEAD/docs/intro.gif",
+  "alt": "The MotionBrief intro — logo morph, one sentence, the beat grid, same brief same",
+  "score": 0.25,
+  "type": "image/gif",
+  "bytes": 5707768
  },
  "YingYveltal/bento-ppt-skill": {
   "repo": "YingYveltal/bento-ppt-skill",
@@ -1799,6 +1847,14 @@
   "type": "image/png",
   "bytes": 8063
  },
+ "arhamhi/oxfords": {
+  "repo": "arhamhi/oxfords",
+  "url": "https://raw.githubusercontent.com/arhamhi/oxfords/HEAD/docs/v2-settings.gif",
+  "alt": "The workspace settings brief built with Oxfords v1, then v2",
+  "score": 2.6,
+  "type": "image/gif",
+  "bytes": 1206275
+ },
  "arifszn/slide-wright": {
   "repo": "arifszn/slide-wright",
   "url": "https://github.com/user-attachments/assets/6839eba2-a228-4324-8dc0-983e235991f7",
@@ -1814,6 +1870,14 @@
   "score": 0.0,
   "type": "image/webp",
   "bytes": 41772
+ },
+ "artemnovitckii/claude-animation-skills": {
+  "repo": "artemnovitckii/claude-animation-skills",
+  "url": "https://raw.githubusercontent.com/artemnovitckii/claude-animation-skills/HEAD/docs/skills.jpg",
+  "alt": "The six skills, one frame each",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 201429
  },
  "artemnovitckii/claude-editing-skills": {
   "repo": "artemnovitckii/claude-editing-skills",
@@ -1934,6 +1998,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 39690
+ },
+ "beyondtahir/beyondartist": {
+  "repo": "beyondtahir/beyondartist",
+  "url": "https://raw.githubusercontent.com/beyondtahir/beyondartist/HEAD/assets/showcase/front/ideas-dont-behave.jpg",
+  "alt": "Ideas don’t behave — expressive purple and orange mixed-media poster",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 292118
  },
  "billLiao/PPT-Design-Skill": {
   "repo": "billLiao/PPT-Design-Skill",
@@ -2431,6 +2503,14 @@
   "type": "image/jpeg",
   "bytes": 41233
  },
+ "enmerasoftware/ai-design-check": {
+  "repo": "enmerasoftware/ai-design-check",
+  "url": "https://raw.githubusercontent.com/enmerasoftware/ai-design-check/HEAD/examples/unslop-cebbin-swiftui.webp",
+  "alt": "Unslopping a SwiftUI app: the Cebbin home screen before and after",
+  "score": -0.05,
+  "type": "image/webp",
+  "bytes": 29296
+ },
  "erduo1998-cell/erduo-broll-loop-engineering": {
   "repo": "erduo1998-cell/erduo-broll-loop-engineering",
   "url": "https://raw.githubusercontent.com/erduo1998-cell/erduo-broll-loop-engineering/HEAD/docs/images/demos/homepage-showcase.gif",
@@ -2511,6 +2591,14 @@
   "type": "image/jpeg",
   "bytes": 137292
  },
+ "feicaiclub/knowledge-easy": {
+  "repo": "feicaiclub/knowledge-easy",
+  "url": "https://raw.githubusercontent.com/feicaiclub/knowledge-easy/HEAD/assets/showcase/history-question.jpg",
+  "alt": "The central conflict in the Xun Yu film: did supporting Cao Cao still mean suppo",
+  "score": 1.4,
+  "type": "image/jpeg",
+  "bytes": 59953
+ },
  "feitangyuan/onetake": {
   "repo": "feitangyuan/onetake",
   "url": "https://raw.githubusercontent.com/feitangyuan/onetake/HEAD/assets/cases/skill-demo.gif",
@@ -2518,6 +2606,14 @@
   "score": 4.2,
   "type": "image/gif",
   "bytes": 232571
+ },
+ "felipebasurto/unslop-ui": {
+  "repo": "felipebasurto/unslop-ui",
+  "url": "https://raw.githubusercontent.com/felipebasurto/unslop-ui/HEAD/assets/before-after.png",
+  "alt": "The landing example rendered before and after",
+  "score": 1.7,
+  "type": "image/png",
+  "bytes": 283931
  },
  "fengting124/paper-figure-pptx-skill": {
   "repo": "fengting124/paper-figure-pptx-skill",
@@ -2750,6 +2846,14 @@
   "score": 1.7,
   "type": "image/png",
   "bytes": 1912069
+ },
+ "heydamir/unslop": {
+  "repo": "heydamir/unslop",
+  "url": "https://raw.githubusercontent.com/heydamir/unslop/HEAD/skills/unslop/references/refs/story-dashboard-frames.webp",
+  "alt": "A vibecoded dashboard unslopping itself, frame by frame",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 187334
  },
  "heygen-com/hyperframes": {
   "repo": "heygen-com/hyperframes",
@@ -3655,6 +3759,14 @@
   "type": "image/png",
   "bytes": 572881
  },
+ "mromidev/claude-blender-skills": {
+  "repo": "mromidev/claude-blender-skills",
+  "url": "https://raw.githubusercontent.com/mromidev/claude-blender-skills/HEAD/docs/img/thumbnail.jpg",
+  "alt": "Clay vs final render of the night FPV drone shot",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 119610
+ },
  "mucsbr/ppt-agent-workflow-san": {
   "repo": "mucsbr/ppt-agent-workflow-san",
   "url": "https://raw.githubusercontent.com/mucsbr/ppt-agent-workflow-san/HEAD/2.png",
@@ -4159,6 +4271,14 @@
   "type": "image/png",
   "bytes": 207479
  },
+ "shashikantdev3/decision-models-lab": {
+  "repo": "shashikantdev3/decision-models-lab",
+  "url": "https://raw.githubusercontent.com/shashikantdev3/decision-models-lab/HEAD/docs/screenshots/desk-1440-light.png",
+  "alt": "The Triage Desk: tickets as strips on a board, confident ones in team bays, unsu",
+  "score": -2.65,
+  "type": "image/png",
+  "bytes": 126220
+ },
  "shawnzam/keynot": {
   "repo": "shawnzam/keynot",
   "url": "https://raw.githubusercontent.com/shawnzam/keynot/HEAD/assets/zombies-preview.png",
@@ -4399,6 +4519,14 @@
   "type": "image/png",
   "bytes": 153861
  },
+ "thomasunise/casecite": {
+  "repo": "thomasunise/casecite",
+  "url": "https://raw.githubusercontent.com/thomasunise/casecite/HEAD/docs/screenshots/research.png",
+  "alt": "Research view: a question about a liability cap answered with inline citations t",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 204504
+ },
  "threeaus/creator-style-kit": {
   "repo": "threeaus/creator-style-kit",
   "url": "https://raw.githubusercontent.com/threeaus/creator-style-kit/HEAD/docs/preview.gif",
@@ -4430,6 +4558,14 @@
   "score": -0.5,
   "type": "image/png",
   "bytes": 62846
+ },
+ "tmoody1973/pasteup": {
+  "repo": "tmoody1973/pasteup",
+  "url": "https://raw.githubusercontent.com/tmoody1973/pasteup/HEAD/docs/jazz-history-demo.gif",
+  "alt": "A tiny history of jazz, assembled from paper by pasteup",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 8693586
  },
  "tns-research/fog-agents": {
   "repo": "tns-research/fog-agents",
@@ -4790,6 +4926,14 @@
   "score": 1.9,
   "type": "image/jpeg",
   "bytes": 343524
+ },
+ "yan-stone-computer/NexcoreMultimodalSkill": {
+  "repo": "yan-stone-computer/NexcoreMultimodalSkill",
+  "url": "https://raw.githubusercontent.com/yan-stone-computer/NexcoreMultimodalSkill/HEAD/images/local-comfyui.png",
+  "alt": "Private local ComfyUI and Qwen-Image-2.1 workstation",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 1686524
  },
  "ybuild-ai/ai-game-art-pipeline-skill": {
   "repo": "ybuild-ai/ai-game-art-pipeline-skill",

@@ -3470,5 +3470,33 @@
    "general": 0.05
   },
   "kind": "convert"
+ },
+ {
+  "repo": "JunfengRan/PPTWork",
+  "stars": 5,
+  "description": "PPTWork has two portable Anthropic-style Skills for AI agents to plan, author, and export PowerPoint decks. Both work in OpenCode, Claude Code, Cursor, Codex, or any other host that honors the SKILL.md frontmatter convention.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.88,
+   "html": 0.39,
+   "business": 0.52,
+   "convert": 0.21,
+   "general": 0.23
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "VangelisHaha/deck-stage",
+  "stars": 6,
+  "description": "让 Agent 写演示稿，让放映像发布会：HTML 演示稿的 macOS 放映壳（双屏、演讲者视图、手机遥控、投屏友好）",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.18,
+   "html": 0.9,
+   "business": 0.53,
+   "convert": 0.11,
+   "general": 0.08
+  },
+  "kind": "html"
  }
 ]

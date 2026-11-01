@@ -3568,5 +3568,19 @@
    "mcp": 0.24
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "yan-stone-computer/NexcoreMultimodalSkill",
+  "stars": 17,
+  "description": "Give text-only agents vision input plus image generation, editing, video generation, and media analysis in one skill.",
+  "scores": {
+   "gpt_image": 0.05,
+   "nano_banana": 0.03,
+   "open_models": 0.36,
+   "editing": 0.14,
+   "design": 0.02,
+   "mcp": 0.6
+  },
+  "kind": "mcp"
  }
 ]

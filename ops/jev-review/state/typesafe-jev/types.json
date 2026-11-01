@@ -5308,5 +5308,20 @@
    "general": 0.06
   },
   "kind": "general"
+ },
+ {
+  "repo": "shashikantdev3/decision-models-lab",
+  "stars": 5,
+  "description": "Learn decision models by building with them. TypeSafe Jev and Microsoft Decision-1 route support tickets in under a second for about $0.02 per 1,000 calls; Claude handles the hard cases. Interactive site, benchmark, calibration tests and docs.",
+  "scores": {
+   "replica": 0.07,
+   "agent": 0.09,
+   "devtool": 0.51,
+   "sdk": 0.12,
+   "business": 0.76,
+   "consumer": 0.09,
+   "general": 0.46
+  },
+  "kind": "business"
  }
 ]

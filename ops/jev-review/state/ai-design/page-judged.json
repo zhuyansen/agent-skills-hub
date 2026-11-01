@@ -15429,5 +15429,38 @@
   "days": 1,
   "stars_per_day": 90.0,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "beyondtahir/beyondartist",
+  "name": "beyondartist",
+  "stars": 62,
+  "description": "AI design skill for freelancers, content creators and digital marketers. Think like a designer. Execute like an artist.",
+  "topics": [
+   "agent-skills",
+   "art-direction",
+   "carousels",
+   "creative-ai",
+   "design",
+   "thumbnails"
+  ],
+  "created": "2026-10-14",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 11858,
+  "names_model": false,
+  "on_subject": 0.86,
+  "is_software": 0.8,
+  "shows_result": 0.76,
+  "one_command_start": 0.06,
+  "specific_outcome": 0.57,
+  "complete_docs": 0.08,
+  "novel_angle": 0.59,
+  "shareable_output": 0.65,
+  "quality": 0.3675,
+  "tier": "低",
+  "hit_prior": 0.6666666666666666,
+  "days": 18,
+  "stars_per_day": 3.4444444444444446,
+  "verdict": "low_quality"
  }
 ]

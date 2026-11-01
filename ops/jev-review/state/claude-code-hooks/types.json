@@ -3365,5 +3365,31 @@
    "tooling": 0.95
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "HamzaAlayed/laravel-claude-agents",
+  "stars": 12,
+  "description": "A guild of 18 master craftspeople for your Laravel codebase. A production-grade, drop-in team of Claude Code subagents purpose-built for Laravel projects. Covers the full lifecycle — discovery, prioritization, architecture, design, frontend (Blade / Livewire / Inertia / Filament), backend (Eloquent / Form Requests / Policies / API Resources).",
+  "scores": {
+   "hooks": 0.33,
+   "subagents": 0.88,
+   "statusline": 0.02,
+   "collection": 0.97,
+   "tooling": 0.86
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "momenbasel/claude-code-statusline",
+  "stars": 5,
+  "description": "",
+  "scores": {
+   "hooks": 0.1,
+   "subagents": 0.03,
+   "statusline": 0.96,
+   "collection": 0.11,
+   "tooling": 0.94
+  },
+  "kind": "statusline"
  }
 ]

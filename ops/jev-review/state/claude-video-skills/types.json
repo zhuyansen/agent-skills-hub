@@ -7288,5 +7288,149 @@
    "general": 0.86
   },
   "kind": "general"
+ },
+ {
+  "repo": "HeyChengC/wallstreet-explainer",
+  "stars": 420,
+  "description": "华尔街式财经/科技解读短片 skill：设计思路、风格语言，以及找片、截图、配音、渲染和混音工具。",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.96,
+   "music": 0.03,
+   "motion": 0.22,
+   "shorts": 0.41,
+   "editing": 0.55,
+   "demo": 0.21,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "AIPMAndy/Andy-Video-Skill",
+  "stars": 14,
+  "description": "Curated catalog of 12 video-generation Skills for Claude Code — Manim, React Video, Screencast-to-Viral, and more.",
+  "scores": {
+   "promo": 0.51,
+   "explainer": 0.63,
+   "music": 0.11,
+   "motion": 0.34,
+   "shorts": 0.83,
+   "editing": 0.48,
+   "demo": 0.45,
+   "story": 0.12,
+   "avatar": 0.09,
+   "general": 0.93
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "artemnovitckii/claude-animation-skills",
+  "stars": 12,
+  "description": "Six Claude Code skills that make animations for reels, no footage needed: 3D cartoon explainer, stick figure, minimal line art, 3D map route, exploded view, line graph.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.73,
+   "music": 0.1,
+   "motion": 0.69,
+   "shorts": 0.87,
+   "editing": 0.02,
+   "demo": 0.51,
+   "story": 0.2,
+   "avatar": 0.08,
+   "general": 0.26
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "feicaiclub/knowledge-easy",
+  "stars": 12,
+  "description": "Knowledge Easy — One Codex skill for story-driven explainer films in English and Chinese: research, narration, motion graphics, editing, and frame-by-frame review.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.97,
+   "music": 0.04,
+   "motion": 0.09,
+   "shorts": 0.11,
+   "editing": 0.4,
+   "demo": 0.14,
+   "story": 0.24,
+   "avatar": 0.1,
+   "general": 0.09
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "mromidev/claude-blender-skills",
+  "stars": 6,
+  "description": "Free Claude skills for realistic Blender animations: full workflows + the real scripts behind my YouTube videos",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.73,
+   "music": 0.06,
+   "motion": 0.1,
+   "shorts": 0.1,
+   "editing": 0.04,
+   "demo": 0.71,
+   "story": 0.77,
+   "avatar": 0.04,
+   "general": 0.13
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "YahyaLendani/motionbrief-claude-skills",
+  "stars": 5,
+  "description": "A Claude Code skill for motion graphics from a brief your agent can't drift from — validated brief.json, a build checked against it before render, HyperFrames or Remotion, beat-grid music.",
+  "scores": {
+   "promo": 0.76,
+   "explainer": 0.39,
+   "music": 0.27,
+   "motion": 0.72,
+   "shorts": 0.12,
+   "editing": 0.04,
+   "demo": 0.65,
+   "story": 0.1,
+   "avatar": 0.04,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "paullabs/espaco-em-codigo",
+  "stars": 5,
+  "description": "Estúdio de vídeos de espaço e ciência em código: planetas, marés e explosões em 3D (Three.js), câmera de cinema, voz e conferência quadro a quadro. Plugin do Claude Code. Licença própria com marca d'água obrigatória.",
+  "scores": {
+   "promo": 0.15,
+   "explainer": 0.9,
+   "music": 0.03,
+   "motion": 0.54,
+   "shorts": 0.89,
+   "editing": 0.04,
+   "demo": 0.37,
+   "story": 0.09,
+   "avatar": 0.04,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "tmoody1973/pasteup",
+  "stars": 5,
+  "description": "Halftone paper-collage stop-motion for Claude Code. Cut. Paste. Wobble. Deterministic assemble-from-empty motion with the handmade stop-motion wobble built in — no paid video model.",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.84,
+   "music": 0.11,
+   "motion": 0.7,
+   "shorts": 0.39,
+   "editing": 0.03,
+   "demo": 0.46,
+   "story": 0.25,
+   "avatar": 0.03,
+   "general": 0.08
+  },
+  "kind": "explainer"
  }
 ]

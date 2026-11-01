@@ -10526,5 +10526,42 @@
   "days": 94,
   "stars_per_day": 0.10638297872340426,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "vashuteotia123/lazyclaudecode",
+  "name": "lazyclaudecode",
+  "stars": 6,
+  "description": "A lazygit-style terminal UI for Claude Code sessions: projects, branches, forks, search.",
+  "topics": [
+   "ai-tools",
+   "claude",
+   "claude-code",
+   "cli",
+   "developer-tools",
+   "lazygit",
+   "nodejs",
+   "session-manager",
+   "terminal",
+   "tui"
+  ],
+  "created": "2026-10-07",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 11176,
+  "names_model": false,
+  "on_subject": 0.02,
+  "is_software": 0.96,
+  "shows_result": 0.76,
+  "one_command_start": 0.37,
+  "specific_outcome": 0.78,
+  "complete_docs": 0.13,
+  "novel_angle": 0.61,
+  "shareable_output": 0.75,
+  "quality": 0.51,
+  "tier": "中",
+  "hit_prior": 0.7066666666666667,
+  "days": 25,
+  "stars_per_day": 0.24,
+  "verdict": "off_topic"
  }
 ]

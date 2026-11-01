@@ -5066,5 +5066,19 @@
    "personal": 0.56
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "thomasunise/casecite",
+  "stars": 233,
+  "description": "CaseCite is an open-source, self-hosted legal RAG caselaw research & document analysis platform.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.89,
+   "mcp": 0.18,
+   "docs_qa": 0.72,
+   "graph": 0.07,
+   "personal": 0.05
+  },
+  "kind": "rag_platform"
  }
 ]

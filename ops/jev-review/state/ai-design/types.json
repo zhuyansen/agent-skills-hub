@@ -2770,5 +2770,47 @@
    "review": 0.22
   },
   "kind": "system"
+ },
+ {
+  "repo": "beyondtahir/beyondartist",
+  "stars": 62,
+  "description": "AI design skill for freelancers, content creators and digital marketers. Think like a designer. Execute like an artist.",
+  "scores": {
+   "ui": 0.32,
+   "system": 0.1,
+   "tool_mcp": 0.07,
+   "to_code": 0.04,
+   "graphics": 0.78,
+   "review": 0.57
+  },
+  "kind": "graphics"
+ },
+ {
+  "repo": "cychien/ezdesign",
+  "stars": 7,
+  "description": "The best way to design with AI agents.",
+  "scores": {
+   "ui": 0.26,
+   "system": 0.09,
+   "tool_mcp": 0.1,
+   "to_code": 0.37,
+   "graphics": 0.1,
+   "review": 0.17
+  },
+  "kind": "to_code"
+ },
+ {
+  "repo": "enmerasoftware/ai-design-check",
+  "stars": 47,
+  "description": "Design rules and a zero-dependency checker for interfaces built with AI coding agents. English and Turkish.",
+  "scores": {
+   "ui": 0.96,
+   "system": 0.77,
+   "tool_mcp": 0.04,
+   "to_code": 0.08,
+   "graphics": 0.11,
+   "review": 0.94
+  },
+  "kind": "ui"
  }
 ]

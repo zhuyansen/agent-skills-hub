@@ -1969,7 +1969,8 @@
     "aidenli/gd-image-gen",
     "ethanplusai/generate-image-skill",
     "obie/slopcore",
-    "beatra-ai/ai-storyboard-generator-skill"
+    "beatra-ai/ai-storyboard-generator-skill",
+    "yan-stone-computer/NexcoreMultimodalSkill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3142,7 +3143,8 @@
     "Lvyizhuo/MyProject-SDAgent",
     "max-ramas/rms-memory-mcp",
     "1llu50ry/mcp-reverse",
-    "poco-ai/Agentero"
+    "poco-ai/Agentero",
+    "thomasunise/casecite"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4378,7 +4380,11 @@
     "kane50613/native-writing",
     "forjd/better-writing",
     "yanstd888/humanizer-lint",
-    "SalZaki/antislop"
+    "SalZaki/antislop",
+    "heydamir/unslop",
+    "mshumer/unslop",
+    "arhamhi/oxfords",
+    "felipebasurto/unslop-ui"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5297,7 +5303,10 @@
     "justskill-ai/justskill-design",
     "pedrojaques99/visant-skills-public",
     "vmc-inner-circle/k-style-ui-ux",
-    "op7418/dsh-guizang-design"
+    "op7418/dsh-guizang-design",
+    "beyondtahir/beyondartist",
+    "enmerasoftware/ai-design-check",
+    "cychien/ezdesign"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6386,7 +6395,9 @@
     "kiselas/every-slide-is-code",
     "pakco77/pakco-html",
     "smallSheep123/paper-skills",
-    "codezzzsleep/research-ppt-skill"
+    "codezzzsleep/research-ppt-skill",
+    "VangelisHaha/deck-stage",
+    "JunfengRan/PPTWork"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7788,7 +7799,8 @@
     "LabGuy94/jevtok",
     "0x7067/jev-browse",
     "hiroki-abe-58/sokudan",
-    "Seheta/netizen"
+    "Seheta/netizen",
+    "shashikantdev3/decision-models-lab"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8298,7 +8310,15 @@
     "deenukhan/stick-figure-shorts",
     "TheNoumanDev/zero-dollar-studio",
     "Dryxio/effects-skill",
-    "AIBiz-Automatyzacje/maszynka-do-shortsow"
+    "AIBiz-Automatyzacje/maszynka-do-shortsow",
+    "HeyChengC/wallstreet-explainer",
+    "AIPMAndy/Andy-Video-Skill",
+    "artemnovitckii/claude-animation-skills",
+    "feicaiclub/knowledge-easy",
+    "mromidev/claude-blender-skills",
+    "YahyaLendani/motionbrief-claude-skills",
+    "paullabs/espaco-em-codigo",
+    "tmoody1973/pasteup"
    ],
    "sub_skills": [
     {
@@ -8822,7 +8842,9 @@
     "tmcfarlane/team-avatar",
     "rootstudioyaml/sprag",
     "aunysillyme/lean-browser-use",
-    "Isllanrx/status_cli"
+    "Isllanrx/status_cli",
+    "HamzaAlayed/laravel-claude-agents",
+    "momenbasel/claude-code-statusline"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",
@@ -9133,7 +9155,8 @@
     "Dryxio/auto-re-agent",
     "OwenPawl/ghidra-re-skill",
     "tearhacker/UE4Dump_imGui_AnalyseToolsForMCP",
-    "1193776794/frida-mcp"
+    "1193776794/frida-mcp",
+    "Ablation-Tool/ablation"
    ],
    "reviewed_only": true,
    "sort": "stars",
