@@ -9,18 +9,38 @@
 // it can show a real command instead of a generic one (2026-10-21: a maintainer reported the
 // guessed `mcp-remote` command, which pointed at the GitHub page and could never run).
 
+//
+// And the end-to-end tests the skill was in (<meta name="ash:tested">, scripts/skill-tested.mjs),
+// which the React page has no other way to know.
+
+import type { Pair, TestedEntry } from "./testedCopy.mjs";
+
 let description: string | null = null;
 let installs: string[] = [];
+let tested: TestedEntry[] = [];
 let path: string | null = null;
 
-function parseInstalls(json: string | null): string[] {
+function parseList(json: string | null): unknown[] {
   if (!json) return [];
   try {
     const value: unknown = JSON.parse(json);
-    return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
+    return Array.isArray(value) ? value : [];
   } catch {
     return [];
   }
+}
+
+const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null;
+const isPair = (v: unknown): v is Pair => Array.isArray(v) && v.length === 2 && v.every((x) => typeof x === "string");
+const isPick = (v: unknown) => v === null || (isRecord(v) && isPair(v.role) && isPair(v.why));
+const isTop = (v: unknown) => v === null || (isRecord(v) && typeof v.place === "number" && isPair(v.title));
+const isEvidence = (v: unknown) =>
+  isRecord(v) && typeof v.href === "string" && typeof v.image === "boolean" && isPair(v.label);
+
+function isTestedEntry(v: unknown): v is TestedEntry {
+  return isRecord(v) && typeof v.page === "string" && isPair(v.pageTitle) && typeof v.date === "string"
+    && typeof v.tested === "number" && Array.isArray(v.bits) && v.bits.every(isPair)
+    && isPick(v.pick) && isTop(v.top) && isEvidence(v.evidence);
 }
 
 /** Called once in main.tsx, before the static tags are removed. */
@@ -28,9 +48,11 @@ export function rememberPrerenderedPage(
   content: string | null,
   canonical: string | null,
   installJson: string | null = null,
+  testedJson: string | null = null,
 ): void {
   description = content;
-  installs = parseInstalls(installJson);
+  installs = parseList(installJson).filter((v): v is string => typeof v === "string");
+  tested = parseList(testedJson).filter(isTestedEntry);
   // Only a page that names itself as canonical is pre-rendered for that URL. The 404.html
   // fallback boots index.html, whose description belongs to the homepage.
   path = canonical ? new URL(canonical, window.location.origin).pathname : null;
@@ -46,4 +68,9 @@ export function prerenderedDescription(): string | null {
 /** The README install lines of the pre-rendered page while the browser is on it, else []. */
 export function prerenderedInstalls(): string[] {
   return onPrerenderedPage() ? installs : [];
+}
+
+/** The tests the pre-rendered page's skill was in while the browser is on it, else []. */
+export function prerenderedTested(): TestedEntry[] {
+  return onPrerenderedPage() ? tested : [];
 }

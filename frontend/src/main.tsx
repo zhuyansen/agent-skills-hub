@@ -48,6 +48,7 @@ if (!isStaticOnlyPage) {
     staticDescription?.getAttribute("content") ?? null,
     document.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
     document.querySelector('meta[name="ash:install"]')?.getAttribute("content") ?? null,
+    document.querySelector('meta[name="ash:tested"]')?.getAttribute("content") ?? null,
   );
   staticDescription?.remove();
   createRoot(document.getElementById("root")!).render(

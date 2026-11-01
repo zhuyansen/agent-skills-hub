@@ -13,6 +13,7 @@ import { AuditVerdictCard } from "../components/AuditVerdictCard";
 import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { RepoSubSkills } from "../components/SubSkillList";
+import { TestedByUs } from "../components/TestedByUs";
 import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
 import { prerenderedDescription, prerenderedInstalls } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
@@ -300,6 +301,9 @@ export function SkillDetailPage() {
         {/* Grade-first: the audit verdict answers "is this safe to install?"
             before README/stats — the Trust Layer spine of the page. */}
         <AuditVerdictCard skill={detail} />
+
+        {/* The end-to-end tests it was in, as on the static page (scripts/skill-tested.mjs). */}
+        <TestedByUs />
 
         {/* The skills inside a repository that holds several, as on the static page. */}
         <RepoSubSkills repoFullName={detail.repo_full_name} />

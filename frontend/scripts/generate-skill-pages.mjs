@@ -21,6 +21,7 @@
 
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
+import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
@@ -345,6 +346,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   };
   const gradeLabel = GRADE_COPY[security_grade];
 
+  // End-to-end tests this repo was in (scenario-runs.json), under the verdict (skill-tested.mjs).
+  const tested = isGone ? [] : testedEntries(repo_full_name);
   const verdictBlock = (() => {
     if (isGone || !gradeLabel) return "";
     const [fg, bg, br] = GRADE_STYLE[security_grade] || GRADE_STYLE.caution;
@@ -542,7 +545,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   <meta name="referrer" content="strict-origin-when-cross-origin" />${robotsMeta}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />${installs.length ? `
-  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}
+  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}${testedMeta(tested)}
   <meta name="keywords" content="${esc(keywords)}" />
 
   <!-- Open Graph -->
@@ -618,6 +621,7 @@ ${breadcrumbLd}
       <!-- What only this page has comes first: the install command we found, then the scan verdict -->
       ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null)}
       ${verdictBlock}
+      ${testedHtml(tested)}
       <!--sub-skills: generate-sub-skill-pages.mjs puts this repository's skill list here-->
 
       <!-- Topics -->

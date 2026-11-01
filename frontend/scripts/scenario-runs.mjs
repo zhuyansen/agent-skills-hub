@@ -96,8 +96,29 @@ export function runsFor(slug) {
   return RUNS[slug] || null;
 }
 
+/** Every page's test run, by page slug (a skill's own page shows the ones it was in). */
+export function allRuns() {
+  return RUNS;
+}
+
 function part([en, zh]) {
   return `<span ${biAttrs(en, zh)}>${esc(en)}</span>`;
+}
+
+/** What one tested skill's run came to, as [English, Chinese] phrases, by the kind of test. */
+export function runBits(run, r) {
+  const byType = { table: () => r.bits, skillmgr: () => mgrBits(r), slop: () => slopBits(r) };
+  const bits = ((byType[run.type] || (() => pptBits(r)))() || []).filter(Boolean);
+  if (r.extra_claims) bits.push(["added claims not in the brief", "加了测试题里没有的说法"]);
+  if (r.note) bits.unshift([r.note, r.note_zh || r.note]);   // e.g. a converter tested on another skill's deck
+  return bits;
+}
+
+/** The label of the link to a run's evidence (slides, before and after, the run itself). */
+export function seeLabel(run) {
+  if (run.type === "table") return run.see;
+  if (run.type === "skillmgr") return ["See the run →", "看实测过程 →"];
+  return run.type === "slop" ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
 }
 
 /** The "Tested" line for one card, or "" when the skill was not in the run. */
@@ -106,15 +127,9 @@ export function runLineHtml(run, skill) {
   if (!r) return "";
   const label = part(run.line_label || [`Tested ${run.date}:`, `${run.date} 实测：`]);
   if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(run.not_run_line || (run.type === "skillmgr" ? ["Our test could not judge it:", "这轮实测评不了："] : ["Not run in our test:", "未能实测："]))} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
-  const slop = run.type === "slop";
-  const mgr = run.type === "skillmgr";
-  const own = run.type === "table";
-  const bits = (own ? r.bits : mgr ? mgrBits(r) : slop ? slopBits(r) : pptBits(r)).filter(Boolean).map(part);
-  if (r.extra_claims) bits.push(part(["added claims not in the brief", "加了测试题里没有的说法"]));
-  if (r.note) bits.unshift(part([r.note, r.note_zh || r.note]));   // e.g. a converter tested on another skill's deck
-  const [en, zh] = own ? run.see : mgr ? ["See the run →", "看实测过程 →"] : slop ? ["See before and after →", "看改写前后 →"] : ["See the slides →", "看实测幻灯片 →"];
+  const [en, zh] = seeLabel(run);
   const see = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs(en, zh)}>${esc(en)}</a>`;
-  return `<div class="bp-sc-run">🧪 ${label} ${bits.join(" · ")} · ${see}</div>`;
+  return `<div class="bp-sc-run">🧪 ${label} ${runBits(run, r).map(part).join(" · ")} · ${see}</div>`;
 }
 
 // ---- The page's test-results section: every tested skill in one comparable table ----
