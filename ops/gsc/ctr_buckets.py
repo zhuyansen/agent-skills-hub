@@ -25,7 +25,7 @@ from fetch_gsc import arg, get_service, is_operator_query, pick_site, query, sav
 DIMENSIONS = ["query", "page", "country", "device"]
 PAGE_SIZE = 25000          # the API's per-request maximum
 FINAL_DATA_LAG_DAYS = 3    # GSC's final numbers trail by about three days
-BUCKETS = ((1, 3), (4, 6), (7, 10), (11, 20), (21, None))
+BUCKETS = ((1, 3), (4, 7), (8, 10), (11, 20), (21, None))  # the 11-14 review's buckets
 MIN_RATIO_IMPRESSIONS = 200  # below this a cell's few clicks make its "vs site" ratio noise
 SITE_PREFIX = "https://agentskillshub.top"
 
