@@ -15,6 +15,7 @@ import {
   subSkillTitle, subSkillDescription, subSkillPath, subSkillUrl, skillMdUrl, githubFolderUrl, subSkillInstall,
 } from "../src/lib/subSkillMeta.mjs";
 import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
+import { testedSubEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
 
 export const SUB_SKILL_PAGE_CAP = 200;
 export const PER_REPO_PAGE_CAP = 25;
@@ -191,7 +192,7 @@ function socialTags(title, desc, url) {
   <meta name="twitter:site" content="@GoSailGlobal" />`;
 }
 
-function headHtml(sub, parent, assetTags) {
+function headHtml(sub, parent, assetTags, tested) {
   const title = subSkillTitle(sub.repo_full_name, sub.name, sub.description);
   const desc = subSkillDescription(sub.repo_full_name, sub.name, sub.description);
   const url = subSkillUrl(sub.repo_full_name, sub.slug);
@@ -201,7 +202,7 @@ function headHtml(sub, parent, assetTags) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>${esc(title)}</title>
-  <meta name="description" content="${esc(desc)}" />
+  <meta name="description" content="${esc(desc)}" />${testedMeta(tested)}
   ${socialTags(title, desc, url)}
   <link rel="canonical" href="${esc(url)}" />
   ${jsonLd(sub, parent)}
@@ -258,15 +259,17 @@ function heroHtml(sub, parent) {
 
 /** The static page for one sub-skill; React takes over once its bundle loads. */
 export function buildSubSkillHtml(sub, parent, list, assetTags) {
+  const tested = testedSubEntries(sub.repo_full_name, sub.slug);   // our end-to-end tests of this one skill
   return `<!doctype html>
 <html lang="en">
-${headHtml(sub, parent, assetTags)}
+${headHtml(sub, parent, assetTags, tested)}
 <body>
   <div id="root">
     <!-- Static SEO content — replaced by React on hydration -->
     <div style="max-width:800px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
       ${heroHtml(sub, parent)}
       ${gradeHtml(sub)}
+      ${testedHtml(tested)}
       ${installHtml(sub)}
       ${excerptHtml(sub)}
       ${siblingsHtml(sub, list)}

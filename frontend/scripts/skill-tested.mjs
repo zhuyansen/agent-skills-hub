@@ -37,7 +37,7 @@ function entry(slug, run, repo) {
   return {
     page: `/best/${slug}/#test-results`,
     pageTitle: [scenario.title, ZH[slug]?.t || scenario.title],
-    date: run.date,
+    date: r.date || run.date,   // an entry run after the main test carries its own date
     tested: Object.values(run.runs).filter((x) => x.ran).length,
     bits: runBits(run, r),
     pick: pick ? { role: pick.role, why: pick.why } : null,
@@ -46,11 +46,20 @@ function entry(slug, run, repo) {
   };
 }
 
+function entriesWhere(repo, keep) {
+  return Object.entries(allRuns())
+    .filter(([, run]) => run.runs?.[repo]?.ran && keep(run.runs[repo]))
+    .map(([slug, run]) => entry(slug, run, repo));
+}
+
 /** The tests this repository ran in, one entry each; [] for the rest. */
 export function testedEntries(repo) {
-  return Object.entries(allRuns())
-    .filter(([, run]) => run.runs?.[repo]?.ran && !run.runs[repo].sub)
-    .map(([slug, run]) => entry(slug, run, repo));
+  return entriesWhere(repo, (r) => !r.sub);
+}
+
+/** The tests one skill inside a repository ran in (run entries with `sub`), for its own page. */
+export function testedSubEntries(repo, slug) {
+  return entriesWhere(repo, (r) => r.sub === slug);
 }
 
 const P = "margin:0 0 6px;line-height:1.6;font-size:14px;color:#374151";

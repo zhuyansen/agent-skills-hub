@@ -118,6 +118,8 @@ QUERIES = {
             "幻灯片 skill in:name,description",
         ],
         "names_model": r"(?!x)x",   # no model wave on this page
+        # Anthropic's own pptx skill, one folder of anthropics/skills (added 2026-11-01, run in the PPT test).
+        "sub_skill_kinds": {"anthropics/skills/skills/pptx": "pptx"},
     },
     "typesafe-jev": {
         "wave": [],

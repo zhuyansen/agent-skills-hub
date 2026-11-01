@@ -12,6 +12,7 @@
 | irenerachel/visual-style-ppt-skill | 390 | convert | deck.pptx | L0 | 100% | 100% / 100% / 100% / 100% / 100% | one round | yes | 8.1 |
 | GordenSun/GordenSuperPPTSkills | 2044 | pptx | skill-safety-editable.pptx | L1 | 97% | 100% / 83% / 100% / 100% / 100% | touch-ups | yes | 14.0 |
 | likaku/Mck-ppt-design-skill | 295 | business | skill-safety-deck.pptx | L2 | 97% | 100% / 83% / 100% / 100% / 100% | one round | yes | 2.6 |
+| anthropics/skills | 184498 | pptx | skill-safety-brief.pptx | L2 | 96% | 80% / 100% / 100% / 100% / 100% | touch-ups | yes | 2.4 |
 | lewislulu/html-ppt-skill | 8588 | html | index.html | L1 | 96% | 100% / 100% / 100% / 100% / 80% | one round | yes | 3.9 |
 | ningzimu/image-to-editable-ppt-skill | 2781 | pptx | image-deck_edited.pptx | L2 | 96% | 80% / 100% / 100% / 100% / 100% | touch-ups | yes | 10.1 |
 | JuneYaooo/gpt-image2-ppt-skills | 1328 | pptx | Is_This_Skill_Safe_to_Install.pptx | L0 | 96% | 80% / 100% / 100% / 100% / 100% | substantial | yes | 9.6 |

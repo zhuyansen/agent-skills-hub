@@ -26,10 +26,12 @@ LISTS.update({slug: cfg["repo"] for slug, cfg in PAGE_LISTS.items()})
 SLUG = sys.argv[1] if len(sys.argv) > 1 else "claude-video-skills"
 PAGE = f"https://agentskillshub.top/best/{SLUG}/"
 LIST = f"https://raw.githubusercontent.com/{LISTS[SLUG]}/main/data/skills.json"
-# Cards may carry more classes than bp-card / bp-card-title: since 10-07 they are
-# "bp-card bp-sc-card" and "bp-card-title bp-sc-title", and an exact match read every
-# page as empty ("page 0 · list 327" on knowledge-base, 10-07).
-CARD = re.compile(r'<div class="bp-card(?: [^"]*)?" data-kind="([^"]*)"[^>]*>.*?class="bp-card-title(?: [^"]*)?" href="([^"]+)"', re.S)
+# Cards may carry more classes than bp-card: since 10-07 they are "bp-card bp-sc-card",
+# and an exact match read every page as empty ("page 0 · list 327" on knowledge-base, 10-07).
+# Each card is keyed by its GitHub link (bp-sc-gh), which names a sub-skill's folder the way
+# the list does (owner/repo/skills/pptx). The title links to the sub-skill's own page
+# (/skill/owner/repo/pptx/) once it has one, which drops the folder's parent.
+CARD = re.compile(r'<div class="bp-card(?: [^"]*)?" data-kind="([^"]*)"[^>]*>.*?class="bp-sc-gh" href="([^"]+)"', re.S)
 HTTP_TIMEOUT = 30
 
 
@@ -42,9 +44,7 @@ def get(url: str) -> str:
 def on_page(html: str) -> dict:
     found = {}
     for kind, href in CARD.findall(html):
-        key = re.sub(r"^/skill/|/$", "", href) if href.startswith("/skill/") else \
-            re.sub(r"^https://github\.com/|/tree/HEAD", "", href)
-        found[key.lower()] = kind
+        found[re.sub(r"^https://github\.com/|/tree/HEAD", "", href).lower()] = kind
     return found
 
 

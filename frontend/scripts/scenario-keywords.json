@@ -6434,6 +6434,17 @@
     "ppt",
     "presentation",
     "powerpoint"
+   ],
+   "sub_skills": [
+    {
+     "repo": "anthropics/skills",
+     "path": "skills/pptx",
+     "slug": "pptx",
+     "name": "pptx",
+     "added": "2026-11-01",
+     "grade": "safe",
+     "description": "Anthropic's own PowerPoint skill, from anthropics/skills: creates, reads and edits .pptx and .potx files, including templates, layouts, speaker notes and comments. In our test it made an editable deck in 2.4 minutes."
+    }
    ]
   },
   "related": [
@@ -6454,7 +6465,28 @@
     "qZh": "歸藏(guizang)PPT skill 是什么?",
     "aZh": "guizang-ppt-skill(op7418/guizang-ppt-skill)是歸藏做的 agent skill,生成杂志风、瑞士风排版的精美 HTML 幻灯片,并附带配图提示词和社交平台封面。它输出的是网页幻灯片而不是 .pptx 文件;wangzan101/html-to-ppt-pdf 这类项目可以把它的幻灯片转成 PDF 和 PPTX,方便离线演示。本页把它归在「网页幻灯片」一类。"
    }
-  ]
+  ],
+  "focus": {
+   "id": "claude-pptx-skill",
+   "h2": "Claude's own PPT skill: Anthropic's pptx",
+   "h2_zh": "Claude 官方的 PPT skill：Anthropic 的 pptx",
+   "paragraphs": [
+    "Many searches for a \"Claude PPT skill\" mean the one Anthropic publishes itself: pptx, a folder of the anthropics/skills repository. It creates, reads and edits .pptx and .potx files, including templates, layouts, speaker notes and comments.",
+    "We added it to our PPT test on 2026-11-01, with the same brief, agent and judge as the others. Its deck was ready after touch-ups and editable in PowerPoint (editability L2: four native charts or tables, but no layout placeholders), scored 96% on the content rubric and took 2.4 minutes, 9th of 27 decks. ppt-master's deck had more structure (L3) and took 11 minutes. claude-office-skills, which packaged the same skills for Claude Code before Anthropic published them (its author now points to the official repo), scored L2 and 100% in 3.2 minutes."
+   ],
+   "paragraphs_zh": [
+    "很多人搜「Claude PPT skill」，找的是 Anthropic 自己发布的那个：pptx，是 anthropics/skills 仓库里的一个目录。它能新建、读取和修改 .pptx 和 .potx 文件，包括模板、版式、演讲者备注和批注。",
+    "我们在 2026-11-01 把它加进了 PPT 实测，测试题、agent 和评审都和其他 skill 相同。它做的 deck 小修即可交付，能在 PowerPoint 里改（可编辑性 L2：有 4 个原生图表或表格，但没用版式占位符），内容检查单 96%，用时 2.4 分钟，在 27 份里排第 9。ppt-master 的 deck 结构更完整（L3），用了 11 分钟。claude-office-skills 是在 Anthropic 公开之前就把同一套 skill 打包给 Claude Code 用的（作者现在建议改用官方仓库），得分 L2、100%，用时 3.2 分钟。"
+   ],
+   "command": "npx skills add anthropics/skills --skill pptx -a claude-code",
+   "source": {
+    "url": "/skill/anthropics/skills/pptx/",
+    "label": "pptx: its page, the test result and the slides it made →",
+    "label_zh": "pptx：它的页面、实测结果和它做的幻灯片 →"
+   },
+   "match": "claude-office-skills",
+   "limit": 3
+  }
  },
  {
   "slug": "skill-creation-tools",
@@ -7843,18 +7875,20 @@
  },
  {
   "slug": "claude-video-skills",
-  "title": "Remotion & Video Skills for Claude Code",
-  "serp_subject": "Remotion Skills & Claude Code Video Tools",
-  "seo_keyword": "remotion skill",
+  "title": "Claude Video Editing & Remotion Skills",
+  "serp_subject": "Claude Video Editing & Remotion Skills",
+  "seo_keyword": "claude video editing skill",
   "focus": {
    "id": "remotion-skill",
    "h2": "Remotion Skills for Claude Code and Codex",
    "h2_zh": "Claude Code 和 Codex 的 Remotion Skill",
    "paragraphs": [
+    "A Remotion skill is a set of instructions that teaches a coding agent such as Claude Code or Codex to make videos with Remotion, the framework that renders each frame of a video from React code.",
     "When people search for a \"Remotion skill\", they usually mean the official Remotion Agent Skills, which the Remotion team maintains in remotion-dev/skills. It is a set of instruction files for coding agents such as Claude Code, Codex, Kimi Code and Cursor. remotion-best-practices covers everything; narrower ones handle single jobs, such as remotion-create for a new project or composition, remotion-markup for compositions, animation, layout and typography, remotion-studio to open the preview, and remotion-render to export a video or a still.",
     "Install it with the command below; new Remotion projects made with `bun create video` offer the same skills during setup. The official skills teach an agent to write correct Remotion code. They do not decide what your film looks like. The community skills listed after them add that part: ad and promo templates, motion-graphics kits, directing workflows and house styles. Each shows its stars and, where graded, its security grade."
    ],
    "paragraphs_zh": [
+    "Remotion skill 是一组写给 Claude Code、Codex 这类编码 agent 的指令，教它用 Remotion 做视频；Remotion 是用 React 代码逐帧渲染视频的框架。",
     "大家搜「Remotion skill」，通常指的是官方的 Remotion Agent Skills，由 Remotion 团队在 remotion-dev/skills 仓库维护。它是一组写给编码 agent 的指令文件，Claude Code、Codex、Kimi Code、Cursor 都能用。remotion-best-practices 覆盖全部内容；其余几个各管一件事，比如 remotion-create 新建项目或合成，remotion-markup 管合成、动画、布局和字体，remotion-studio 打开预览，remotion-render 导出视频或静帧。",
     "用下面这条命令安装；用 `bun create video` 新建 Remotion 项目时，也会在设置过程中提供同一组 skill。官方 skill 教 agent 把 Remotion 代码写对，不决定片子长什么样。下面列出的社区 skill 补的正是这一块：广告和宣传片模板、动效套件、导演式工作流和各家风格。每一项都标了星数，已评级的标了安全评级。"
    ],
@@ -7865,10 +7899,11 @@
     "label_zh": "GitHub 上的官方 Remotion Agent Skills ↗"
    },
    "match": "^(?!.*\\bno remotion).*remotion",
-   "limit": 8
+   "limit": 8,
+   "after": "explainer"
   },
   "github_list": "https://github.com/zhuyansen/awesome-claude-video-skills",
-  "description": "Remotion skills and other open-source toolkits for making videos in Claude Code: HyperFrames, motion graphics and video-editing agents, including two projects built with Claude Opus 5.5. They run on any Claude or Codex model. Every repo is security-graded.",
+  "description": "Claude Code skills for editing the video you already have and for making new video with Remotion: HyperFrames, motion graphics and video-editing agents, including two projects built with Claude Opus 5.5. They run on any Claude or Codex model. Every repo is security-graded.",
   "video": {
    "id": "1mm5863DyRc",
    "title": "Top 10 AI Video Skills, SAFE-Graded Only (video, in Chinese)",
@@ -8691,6 +8726,41 @@
     "role": "Builds and maintains Agent Skills Hub and the awesome-claude-video-skills list; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
     "role_zh": "Agent Skills Hub 和 awesome-claude-video-skills 合集的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
     "reviewed": "2026-10-11"
+   }
+  },
+  "explainer": {
+   "top": {
+    "h2": "Editing footage you already have: which skill for which job",
+    "h2_zh": "剪辑现成素材：什么活用哪个",
+    "items": [
+     {
+      "repo": "louisedesadeleer/cut-video",
+      "line": "For cutting silences, ums and false starts out of a recording. A Claude Code skill that cuts on word boundaries from a forced aligner, keeps laughs and comedic pauses, shows you the cut plan before it touches the video, and runs on your own machine (built for Apple Silicon).",
+      "line_zh": "去掉录音里的停顿、嗯啊和说错重来的地方。Claude Code skill，按强制对齐得到的字词边界下刀，保留笑声和喜剧停顿，动刀前先给你看剪辑计划，全程在本机跑（为 Apple Silicon 优化）。"
+     },
+     {
+      "repo": "YeJe-cpu/SeeCut",
+      "line": "For turning a talking-head or AI-avatar take into a short with motion graphics. The skill plans and renders the edit, has Gemini watch each version and keeps the better one, and can export a CapCut (JianYing) draft for hand tweaks. It needs Gemini through the Antigravity CLI.",
+      "line_zh": "把真人或数字人口播剪成带动效的短视频。skill 自己编排、渲染，让 Gemini 看每一版、留下更好的那版，还能导出剪映草稿手动微调。需要通过 Antigravity CLI 调用 Gemini。"
+     },
+     {
+      "repo": "AgriciDaniel/claude-shorts",
+      "line": "For cutting a long video into vertical shorts. Claude reads the transcript and scores 8 to 12 candidate segments, you approve them, and Remotion renders 1080x1920 clips with animated captions.",
+      "line_zh": "把长视频剪成竖屏短视频。Claude 读字幕、给 8 到 12 个候选片段打分，你确认后由 Remotion 渲染 1080x1920、带动画字幕的短片。"
+     },
+     {
+      "repo": "0xsline/OpenChatCut",
+      "line": "For an edit you will keep working on by hand. An open-source, local-first video editor with a multitrack timeline; Claude Code and Codex read, edit and export its projects, which stay fully editable.",
+      "line_zh": "要一份之后还能手动接着改的剪辑。开源、本地优先的视频编辑器，带多轨时间线；Claude Code 和 Codex 能读、改、导出它的工程，工程始终可编辑。"
+     },
+     {
+      "repo": "hetpatel-11/Adobe_Premiere_Pro_MCP",
+      "line": "For editing inside Adobe Premiere Pro. An MCP bridge that gives Claude Code, Codex and Claude Desktop 283 Premiere tools through a local CEP panel.",
+      "line_zh": "在 Adobe Premiere Pro 里剪。一个 MCP 桥，通过本地 CEP 面板给 Claude Code、Codex 和 Claude Desktop 提供 283 个 Premiere 工具。"
+     }
+    ],
+    "note": "Picked from this page's Editing type: each is graded SAFE, works with Claude Code and has the most stars among the tools here for its job; what each does is taken from its README. None of them was in our film test, which made new films from a brief.",
+    "note_zh": "从本页「剪辑与后期」类里挑：都是安全评级 SAFE、能在 Claude Code 里用、在本页同类活儿里星数最多；各自做什么按它们的 README 写。它们都没参加我们的成片实测（那次是按简报做新片）。"
    }
   }
  },

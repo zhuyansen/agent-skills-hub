@@ -867,5 +867,36 @@
    "correctness": 1.0,
    "fidelity": 1.0
   }
+ },
+ {
+  "repo": "anthropics/skills",
+  "kind": "pptx",
+  "stars": 184498,
+  "grade": "safe",
+  "ran": true,
+  "minutes": 2.4,
+  "output": "skill-safety-brief.pptx",
+  "editable": "native",
+  "editable_chars": 2461,
+  "self_check": true,
+  "tool_used": true,
+  "image_cost": null,
+  "story": "yes",
+  "layout_system": "yes",
+  "fidelity": "yes",
+  "readability": "yes",
+  "design": 4,
+  "rework": "touch-ups",
+  "rework_what": "Make minor wording refinements before handoff: on slide 3, change “8 hours” to “Every 8 hours” so the refresh claim is immediately unambiguous, and consider slightly enlarging or simplifying the small chart labels on slide 6. Otherwise the content, structure, and visual execution are ready.",
+  "commit": "ca45fc496a34",
+  "pei": 2,
+  "checklist": 0.96,
+  "checklist_dims": {
+   "fundamentals": 0.8,
+   "design": 1.0,
+   "completeness": 1.0,
+   "correctness": 1.0,
+   "fidelity": 1.0
+  }
  }
 ]

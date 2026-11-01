@@ -15,8 +15,8 @@ VERDICT = {
              "排名规则：先看交付前要返工多少，再看可编辑性等级（PEI），最后看内容检查单。"],
     "picks": [
         {"repo": "hugohe3/ppt-master", "role": ["For a PowerPoint file a colleague will edit", "要一份同事能接着改的 PowerPoint"],
-         "why": ["A native, structured PPTX (editability L3) that needed only touch-ups and scored 100% on the content rubric; 11 minutes. For the same in 3 minutes with simpler structure, claude-office-skills (L2, 100%).",
-                 "原生、结构化的 PPTX（可编辑性 L3），小修即可交付，内容检查单 100%；用时 11 分钟。想 3 分钟出一份、结构简单些，选 claude-office-skills（L2，100%）。"]},
+         "why": ["A native, structured PPTX (editability L3) that needed only touch-ups and scored 100% on the content rubric; 11 minutes. For the same in 3 minutes with simpler structure, claude-office-skills (L2, 100%). Anthropic's own pptx skill made one in 2.4 minutes (L2, 96%).",
+                 "原生、结构化的 PPTX（可编辑性 L3），小修即可交付，内容检查单 100%；用时 11 分钟。想 3 分钟出一份、结构简单些，选 claude-office-skills（L2，100%）。Anthropic 官方的 pptx skill 2.4 分钟做出一份（L2，96%）。"]},
         {"repo": "op7418/guizang-ppt-skill", "role": ["For slides you present yourself, in a browser", "自己在浏览器里上台讲"],
          "why": ["Web slides with native tables and animation (L5), touch-ups only, 100% on content. You edit them in code, not in PowerPoint.",
                  "网页幻灯片，带原生表格和动画（L5），小修即可，内容 100%。要改得改代码，不是在 PowerPoint 里改。"]},
@@ -29,8 +29,8 @@ VERDICT = {
         {"repo": "JuneYaooo/gpt-image2-ppt-skills", "why": ["all images, needed substantial rework", "整页图片，要大改"]},
         {"repo": "ningzimu/codex-ppt-skill", "why": ["all images, needed substantial rework", "整页图片，要大改"]},
     ],
-    "caveat": ["Content was not where decks differed: 10 of 26 scored 100% on the rubric. Pick by whether you can edit the result.",
-               "内容不是拉开差距的地方：26 份里 10 份检查单满分。按\"之后能不能改\"来选。"],
+    "caveat": ["Content was not where decks differed: 10 of 27 scored 100% on the rubric. Pick by whether you can edit the result.",
+               "内容不是拉开差距的地方：27 份里 10 份检查单满分。按\"之后能不能改\"来选。"],
 }
 
 

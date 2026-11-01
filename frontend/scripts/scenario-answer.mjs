@@ -10,7 +10,9 @@
  *   "focus": { "id": "frontend-design", "h2": "...", "h2_zh": "...",
  *              "paragraphs": ["..."], "paragraphs_zh": ["..."],
  *              "command": "/plugin install ...", "source": {"url": "...", "label": "...", "label_zh": "..."},
- *              "match": "front-?end|taste", "limit": 8 }
+ *              "match": "front-?end|taste", "limit": 8, "after": "explainer" }
+ *
+ * `after` is optional: the section goes after the caution unless it says "explainer".
  */
 import { SITE, esc, starsK } from "./shared-utils.mjs";
 import { descZh, descEn } from "./scenario-kinds.mjs";
@@ -118,4 +120,12 @@ export function focusHtml(scenario, skills) {
         ${focusSource(f)}
         ${rows.length ? `<ul style="padding-left:20px;margin:8px 0 0">${rows.map(focusRow).join("")}</ul>` : ""}
       </section>`;
+}
+
+/** The focus section if it goes at `place`: after the caution (default), or right after
+ *  the explainer with `"after": "explainer"`. The video page moved its Remotion section
+ *  up there on 11-03: Remotion searches sat at position 9.5 (10-26 to 11-01) while the
+ *  section answering them came after the method section. */
+export function focusAt(place, scenario, skills) {
+  return (scenario.focus?.after || "caution") === place ? focusHtml(scenario, skills) : "";
 }

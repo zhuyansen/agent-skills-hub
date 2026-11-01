@@ -184,5 +184,11 @@
   "kind": "pptx",
   "stars": 904,
   "grade": "safe"
+ },
+ {
+  "repo": "anthropics/skills",
+  "kind": "pptx",
+  "stars": 184498,
+  "grade": "safe"
  }
 ]

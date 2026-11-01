@@ -751,7 +751,8 @@
    "ziqihe10-droid/shuike-pptskill": "pptx",
    "zl190/md-slides": "convert",
    "zouchenzhen/thesis-defense-pptx-skill": "pptx",
-   "zsc58/ustc-ppt-template": "pptx"
+   "zsc58/ustc-ppt-template": "pptx",
+   "anthropics/skills/skills/pptx": "pptx"
   }
  },
  "typesafe-jev": {

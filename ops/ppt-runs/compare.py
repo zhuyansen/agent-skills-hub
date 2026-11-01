@@ -22,6 +22,7 @@ REWORK_RANK = {"touch-ups": 0, "one round": 1, "substantial": 2}
 REWORK = {"touch-ups": "小修即可交付 · touch-ups", "one round": "要改一轮 · one round", "substantial": "要大改 · substantial"}
 REWORK_COLOR = {"touch-ups": (26, 127, 55), "one round": (154, 103, 0), "substantial": (207, 34, 46)}
 SLIDE_FIX: dict[str, int] = {}   # repo -> routes slide number, where the judge's number was off
+NAMES = {"anthropics/skills": "pptx (anthropics/skills)"}   # one skill inside a bigger repo: its own name
 FONT = "/System/Library/Fonts/Hiragino Sans GB.ttc"   # macOS; any CJK font works
 
 
@@ -43,7 +44,7 @@ def tile(img: Path, row: dict, fonts) -> Image.Image:
     t.paste(im, ((TILE_W - im.width) // 2, (TILE_H - im.height) // 2))
     d = ImageDraw.Draw(t)
     d.rectangle([0, 0, TILE_W - 1, TILE_H - 1], outline=(208, 215, 222))
-    name = row["repo"].split("/")[1]
+    name = NAMES.get(row["repo"], row["repo"].split("/")[1])
     d.text((4, TILE_H + 6), f"{name}  ★{row['stars']:,}", fill=(31, 35, 40), font=fonts[0])
     d.text((4, TILE_H + 30), REWORK[row["rework"]], fill=REWORK_COLOR[row["rework"]], font=fonts[1])
     right = f"L{row['pei']} · {round(row['checklist'] * 100)}%"

@@ -125,7 +125,8 @@ export function seeLabel(run) {
 export function runLineHtml(run, skill) {
   const r = run?.runs?.[skill.repo_full_name];
   if (!r) return "";
-  const label = part(run.line_label || [`Tested ${run.date}:`, `${run.date} 实测：`]);
+  const date = r.date || run.date;   // an entry run after the main test carries its own date
+  const label = part(run.line_label || [`Tested ${date}:`, `${date} 实测：`]);
   if (!r.ran) return `<div class="bp-sc-run bp-sc-run--no">🧪 ${part(run.not_run_line || (run.type === "skillmgr" ? ["Our test could not judge it:", "这轮实测评不了："] : ["Not run in our test:", "未能实测："]))} ${part([r.reason, r.reason_zh || r.reason])}</div>`;
   const [en, zh] = seeLabel(run);
   const see = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener" ${biAttrs(en, zh)}>${esc(en)}</a>`;
@@ -135,12 +136,13 @@ export function runLineHtml(run, skill) {
 // ---- The page's test-results section: every tested skill in one comparable table ----
 
 const REWORK_RANK = { "touch-ups": 0, "one round": 1, substantial: 2 };
-const name = (repo) => repo.split("/")[1];
+// r.name: a skill inside a bigger repo shows its own name ("pptx (anthropics/skills)", not "skills").
+const name = (repo, r = {}) => r.name || repo.split("/")[1];
 const cell = (en, zh = en, cls = "") => `<td${cls ? ` class="${cls}"` : ""} ${biAttrs(String(en), String(zh))}>${esc(String(en))}</td>`;
 const cellC = (cls, en, zh = en) => cell(en, zh, cls);
 const head = (cols) => `<tr>${cols.map(([en, zh]) => `<th ${biAttrs(en, zh)}>${esc(en)}</th>`).join("")}</tr>`;
 
-function skillCell(repo, r, shown = name(repo)) {
+function skillCell(repo, r, shown = name(repo, r)) {
   const note = r.note ? `<br><span class="bp-tr-note" ${biAttrs(r.note, r.note_zh || r.note)}>${esc(r.note)}</span>` : "";
   return `<td class="bp-tr-skill"><b>${esc(shown)}</b> <span class="bp-tr-mute">★ ${(r.stars || 0).toLocaleString("en-US")}</span>${note}</td>`;
 }
@@ -151,7 +153,7 @@ function evidenceLink(run, r, [en, zh]) {
 
 function pptRow(run, repo, r, rank) {
   // The thumbnail is the deck's routes slide (r.thumb, from ops/ppt-runs/compare.py), so the column compares like with like.
-  const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + (r.thumb || r.sheet))}" alt="${esc(name(repo))} slides" width="120" height="68" loading="lazy"></a>`;
+  const thumb = `<a href="${esc(run.dir + r.sheet)}" target="_blank" rel="noopener"><img src="${esc(run.dir + "thumbs/" + (r.thumb || r.sheet))}" alt="${esc(name(repo, r))} slides" width="120" height="68" loading="lazy"></a>`;
   return `<tr><td class="bp-tr-rank">${r.note ? "" : rank}</td>${skillCell(repo, r)}
     ${cellC(`bp-tr-${(r.rework || "").replace(" ", "-")}`, ...(REWORK[r.rework] || ["-"]))}${cell(...(r.pei != null ? PEI[r.pei] : EDITABLE[r.editable] || ["-"]))}
     ${cellC("bp-tr-num", r.checklist != null ? pct(r.checklist) : "-")}${cellC("bp-tr-num", `${r.minutes} min`, `${r.minutes} 分钟`)}<td>${thumb}</td></tr>`;
@@ -160,7 +162,7 @@ function pptRow(run, repo, r, rank) {
 function pptTable(run, rows) {
   // A converter (r.note) did another task, so it sits after the ranked rows.
   // Rework first (the cost of handing it over), then editability, then the content rubric:
-  // the rubric barely separates decks (10 of 26 at 100%), editability and rework do.
+  // the rubric barely separates decks (10 of 27 at 100%), editability and rework do.
   rows.sort(([, a], [, b]) => Boolean(a.note) - Boolean(b.note) || (REWORK_RANK[a.rework] ?? 9) - (REWORK_RANK[b.rework] ?? 9)
     || (b.pei ?? -1) - (a.pei ?? -1) || (b.checklist ?? -1) - (a.checklist ?? -1));
   const cols = [["#", "#"], ["Skill", "Skill"], ["Before handing over", "交付前"], ["Editability (PEI)", "可编辑性（PEI）"], ["Content rubric", "内容检查单"], ["Time", "耗时"], ["Slides", "幻灯片"]];
@@ -268,6 +270,16 @@ function notRunHtml(entries, label = ["Not run", "未能实测"]) {
   return `<details class="bp-tr-notrun"><summary ${biAttrs(`${label[0]} (${entries.length})`, `${label[1]}（${entries.length}）`)}>${esc(label[0])} (${entries.length})</summary><ul>${items.join("")}</ul></details>`;
 }
 
+/** Entries run after the main test (r.date), named with their date; ["", ""] when there are none. */
+function laterNote(run, ran) {
+  const later = ran.filter(([, r]) => r.date && r.date !== run.date);
+  if (!later.length) return ["", ""];
+  const names = later.map(([repo, r]) => name(repo, r)).join(", ");
+  const date = later[0][1].date;
+  const verb = later.length > 1 ? "were" : "was";
+  return [` ${names} ${verb} added on ${date}, with the same brief, agent and judge.`, `${names} 于 ${date} 补测，测试题、agent 和评审都相同。`];
+}
+
 /** The "Test results" section: all tested skills side by side, best first; "" without a run. */
 export function runsSectionHtml(run) {
   if (!run) return "";
@@ -282,8 +294,8 @@ export function runsSectionHtml(run) {
   const intro = own ? run.intro : mgr
     ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 test skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
        `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个测试 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
-    : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.`,
-       `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。`];
+    : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.${laterNote(run, ran)[0]}`,
+       `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。${laterNote(run, ran)[1]}`];
   return `<section id="test-results" class="bp-tr">
     <h2 class="bp-section-title" ${biAttrs(...(run.title || ["Test results: the skills side by side", "实测对比：同一任务下的效果"]))}>${esc((run.title || ["Test results: the skills side by side"])[0])}</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>

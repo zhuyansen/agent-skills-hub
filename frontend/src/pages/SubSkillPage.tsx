@@ -14,6 +14,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SecurityBadge } from "../components/SecurityBadge";
 import { CopyablePre } from "../components/CopyableCode";
 import { SubSkillLinks } from "../components/SubSkillList";
+import { TestedByUs } from "../components/TestedByUs";
 
 const SIBLINGS_SHOWN = 20; // SIBLINGS_SHOWN in scripts/sub-skills.mjs
 const CARD = "bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-5 mb-6";
@@ -165,6 +166,7 @@ export function SubSkillPage() {
     <PageShell crumb={data.skill.name}>
       <SubSkillHead skill={data.skill} published={published} />
       <SubSkillHero skill={data.skill} parent={data.parent} />
+      <TestedByUs />
       <SubSkillInstall skill={data.skill} />
       <SubSkillBody skill={data.skill} list={data.list ?? []} />
     </PageShell>

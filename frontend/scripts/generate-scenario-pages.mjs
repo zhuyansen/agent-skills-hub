@@ -25,9 +25,11 @@ import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
 import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
 import { explainerHtml } from "./scenario-explainer.mjs";
+import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
+import { subSkillPath, subSkillUrl, subSkillInstall } from "../src/lib/subSkillMeta.mjs";
 import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
-import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
+import { quickPickHtml, focusAt } from "./scenario-answer.mjs";
 import { comparisonsHtml } from "./scenario-compare-links.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
 import {
@@ -476,6 +478,17 @@ function buildAeoSection(scenario, skills, year) {
  *  audit link and says whose stars it shows. It counts as an entry of the page
  *  (owner's decision) with the grade of its own README and SKILL.md; it has no
  *  stars of its own, so it sorts last and adds nothing to the star total. */
+// Sub-skill pages the build published (generate-sub-skill-pages.mjs runs before this script).
+const SUB_PAGES = (() => {
+  const file = join(DIST, SUB_SKILL_MANIFEST);
+  return new Set(existsSync(file) ? JSON.parse(readFileSync(file, "utf-8")).map((e) => e.loc) : []);
+})();
+
+/** The skill's own page (/skill/owner/repo/slug/) once the build published one, else null. */
+function subSkillPage(x) {
+  return x.slug && SUB_PAGES.has(subSkillUrl(x.repo, x.slug)) ? subSkillPath(x.repo, x.slug) : null;
+}
+
 function subSkillCards(scenario, allSkills) {
   const wanted = scenario.match.sub_skills || [];
   if (!wanted.length) return [];
@@ -485,7 +498,9 @@ function subSkillCards(scenario, allSkills) {
     .map((x) => ({
       ...parents.get(x.repo.toLowerCase()), repo_name: x.name, description: x.description,
       security_grade: x.grade, readme_content: "", created_at: x.added,
-      sub_path: x.path, list_key: `${x.repo}/${x.path}`,
+      sub_path: x.path, list_key: `${x.repo}/${x.path}`, sub_page: subSkillPage(x),
+      // Its own install, not the parent README's (for anthropics/skills that added the whole marketplace).
+      install_commands: [subSkillInstall(x.repo, x.name)],
     }));
 }
 
@@ -736,7 +751,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     const catLabelZh = kind ? kind.zh : CATEGORY_LABELS_ZH[s.category] || "AI 工具";
     const isNew = s.created_at && new Date(s.created_at).getTime() > twoWeeksAgo;
     const githubUrl = `https://github.com/${s.repo_full_name}${s.sub_path ? `/tree/HEAD/${s.sub_path}` : ""}`;
-    const titleUrl = s.sub_path ? githubUrl : `/skill/${s.repo_full_name}/`;
+    // A sub-skill links to its own page when it has one, else to its folder on GitHub.
+    const cardUrl = s.sub_page || `/skill/${s.repo_full_name}/`;
+    const titleUrl = s.sub_page || (s.sub_path ? githubUrl : cardUrl);
     const starsNote = s.sub_path
       ? `<span data-en="&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}" data-zh="&#9733; ${starsK(s.stars)} · 所在仓库 ${esc(s.repo_full_name)}">&#9733; ${starsK(s.stars)} · in ${esc(s.repo_full_name)}</span>`
       : `<span>&#9733; ${starsK(s.stars)}</span>`;
@@ -757,7 +774,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
       : "";
 
     // Classes, not inline styles: see the scenario card rules in best-pages.css.
-    return `<div class="bp-card bp-sc-card"${kindAttrs(scenarioKinds, s)} data-href="/skill/${esc(s.repo_full_name)}/">
+    return `<div class="bp-card bp-sc-card"${kindAttrs(scenarioKinds, s)} data-href="${esc(cardUrl)}">
         <div class="bp-sc-head">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"} bp-sc-rank">${i + 1}</span>
@@ -889,6 +906,8 @@ ${methodLd(scenario, pageUrl)}
 
       ${explainerHtml(scenario, skills)}
 
+      ${focusAt("explainer", scenario, skills)}
+
       ${videoHtml(scenario)}
 
       ${runsSectionHtml(run)}
@@ -897,7 +916,7 @@ ${methodLd(scenario, pageUrl)}
 
       ${cautionHtml(scenario)}
 
-      ${focusHtml(scenario, skills)}
+      ${focusAt("caution", scenario, skills)}
 
       <!-- Skill Cards -->
       <section>
