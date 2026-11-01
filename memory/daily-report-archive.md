@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-01
+1. Pluviobyte/douyin-comments — 🆕 抓取抖音单条视频完整评论区（含楼中楼），复用已登录浏览器的真实请求（247★ 162.9/day）
+2. elayadesign/ai-design-skills — 收录落地页设计等 AI 设计技能，一条命令装进 Claude Code、Cursor 等工具（13094★ 138.0/day）
+3. elvarofficial/teardown — 🆕 让 Claude 把任意机器做成可拆解的 3D 模拟器，离线单页打开就能看懂原理（221★ 124.2/day）
+4. glincker/awesome-selfhosted-ai — 🆕 汇编可自托管的开源 AI 清单，涵盖本地大模型、智能体、MCP 与 RAG（35★ 35.0/day）
+5. yanstd888/humanizer-lint — 🆕 快速检测文本里的 AI 腔与套话，按清晰写作规范逐条指出问题（24★ 15.8/day）
+6. YTruman/better-skill — 🆕 用审计 300+ 官方技能得出的标准，给智能体技能体检、打分和重建（59★ 13.5/day）
+7. jaklimoff/claude-grammar — 🆕 逐条检查发给 Claude Code 的英文提示词，显示改法并攒成复习记录（21★ 9.6/day）
+8. LeoYeAI/agent-master-skills — 汇集 2700+ 个每日更新的智能体技能，覆盖编程、营销、设计与金融（2168★ 8.9/day）
+9. lemonadesaltbagel/veil — 🆕 用本地隐私代理把个人信息和密钥换成化名，不让编程智能体泄给大模型（71★ 6.5/day）
+10. vmc-inner-circle/k-style-ui-ux — 凭一份 PRD 约 15 分钟生成韩国应用风格的移动端界面初稿（226★ 4.3/day）
+🎯 今日趋势：**7 席**标 🆕；「给文字和技能做体检」占 **3 席**（humanizer-lint 查 AI 腔、better-skill 给技能打分、claude-grammar 改英文提示词），设计技能占 **2 席**、ai-design-skills 以 13,094★ 首次入库，自托管与隐私占 **2 席**（awesome-selfhosted-ai、veil）。
+> 注：去重范围＝repo 内 archive 全部 129 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,358 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 149 条、命中历史 31 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（muaaz9329/cheap-ag 54.5h、kyy-logs/code-review-skill 59.6h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①wiva-hq/CodeRail（49★ 49.0/day）：组织 09-06 新建、2 粉，实时 53★ 配 0 fork，保守排除（与 10-30 排除的 cedr 同类）；②YOLOW92/pagesift（175★ 15.3/day）：2 粉，名下其余仓 ≤1★，单仓突起，保守排除；③PegasusPorter/chatgpt-full-unlocked（170★ 8.5/day）：标题堆砌「Free ChatGPT、FraudGPT、WormGPT、No Login」等 SEO 话术，疑为引流或恶意项目，不推荐；④9929y/genai-mesh-gradient（86★ 11.9/day）：11 粉，名下其余仓 ≤3★，单仓突起，保守排除；⑤其余均已在历史榜单出现或 velocity 低于第 10 席（CXP-2024/cxp-character-forge 4.0/day 第 11）。入选项复核（`gh api`）：第 1 席 Pluviobyte 2021 建号、117 粉，名下另有 1,703★ 仓，实时 337★/92 fork；第 2 席 elayadesign 307 粉，名下另有 479★ 仓，实时 971 fork，数据库分类为 uncategorized、描述为空，但 README 明确是设计技能合集，非个人主页，保留；第 3 席 elvarofficial 10-30 新建号、仅此 1 仓，但实时 492★/82 fork 比例正常（**轻红旗**，保留）；第 4 席 glincker 组织 38 粉、名下另有 2,931★ 仓；第 5 席 yanstd888 名下其余仓 26–47★，非单仓爆星；第 6 席 YTruman 10-27 新建号、仅此 1 仓，但已有 70 粉、实时 107★/7 fork（**轻红旗**，保留）；第 7 席 jaklimoff 2013 建号，星数小、无突起；第 8 席 LeoYeAI 86 粉、名下另有 1,051★ 仓，实时 328 fork，README 带 MyClaw.ai 推广（**轻红旗**，保留）；第 9 席 lemonadesaltbagel 2011 建号、105 粉；第 10 席 vmc-inner-circle 组织 1 粉、仅此 1 个实仓，但实时 228★/35 fork 比例正常（**轻红旗**，保留）。🆕 判定＝created_at 距今 14 天内：除 ai-design-skills（94.9 天）、agent-master-skills（244.1 天）、k-style-ui-ux（52.7 天）外七席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（teardown 492★、douyin-comments 337★），按红线保留快照值。
+
+---
+
 ## 2026-10-31
 1. alchaincyf/huashu-bird-sticker — 🆕 开源覆盖 11,064 种现存鸟类的贴纸库，附 43 种语言名称与结构化数据（197★ 197.0/day）
 2. patch-gg/pixelfx — 🆕 收录 232 种代码写成的像素风特效，附 Claude Code 技能自己造新特效（103★ 103.0/day）
