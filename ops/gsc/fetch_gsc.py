@@ -123,9 +123,10 @@ def is_operator_query(q):
 
 
 def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT,
-          include_operators=False, data_state=None):
+          include_operators=False, data_state=None, start_row=0):
     """data_state="all" adds the fresh, not yet final days (about one day behind instead
-    of three). Those numbers are revised later: good for spotting, not for reporting."""
+    of three). Those numbers are revised later: good for spotting, not for reporting.
+    start_row pages past the API's 25,000-row cap (ctr_buckets.py)."""
     from urllib.parse import quote
     body = {
         "startDate": str(start),
@@ -133,6 +134,8 @@ def query(svc, site, start, end, dimensions, filters=None, limit=ROW_LIMIT,
         "dimensions": dimensions,
         "rowLimit": limit,
     }
+    if start_row:
+        body["startRow"] = start_row
     if data_state:
         body["dataState"] = data_state
     if filters:
