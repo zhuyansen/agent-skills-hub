@@ -26,6 +26,7 @@
 import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs";
 import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
 import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
+import { buildSitemapIndex } from "./sitemap-index.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -133,19 +134,6 @@ function wrapUrlsetI18n(entries) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.join("\n")}
 </urlset>`;
-}
-
-function buildSitemapIndex(files) {
-  const today = new Date().toISOString().split("T")[0];
-  const entries = files.map((f) => `  <sitemap>
-    <loc>${SITE}/${f}</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>`);
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${entries.join("\n")}
-</sitemapindex>`;
 }
 
 /**
@@ -553,7 +541,8 @@ async function main() {
   // pages and their internal links are untouched; only the "crawl these first"
   // request is withdrawn.
 
-  writeFileSync("dist/sitemap.xml", buildSitemapIndex(sitemapFiles));
+  // Each sub-sitemap is dated by its newest URL, read back from what was just written.
+  writeFileSync("dist/sitemap.xml", buildSitemapIndex(SITE, sitemapFiles, (f) => readFileSync(`dist/${f}`, "utf-8")));
   console.log(`\nsitemap.xml (index): ${sitemapFiles.length} sub-sitemaps`);
 
   // Count what is actually EMITTED, not what qualified. This line used to add

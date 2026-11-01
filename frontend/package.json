@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test:scenarios": "node scripts/test-scenarios.mjs",
-    "test:redirects": "node --test scripts/skill-redirects.test.mjs"
+    "test:redirects": "node --test scripts/skill-redirects.test.mjs",
+    "test:sitemap": "node --test scripts/sitemap-index.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
