@@ -63,7 +63,7 @@ const scenarios: Scenario[] = [
       },
       {
         name: "anything-to-notebooklm",
-        slug: "joeseesun/anything-to-notebooklm",
+        slug: "joeseesun/qiaomu-anything-to-notebooklm",
         description_zh: "任意内容转换到 NotebookLM",
         description_en: "Convert any content to NotebookLM",
       },

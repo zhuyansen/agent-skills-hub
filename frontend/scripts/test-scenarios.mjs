@@ -228,8 +228,8 @@ if (!ONLY) {
 const GOLDEN = [
   { q: "网页抓取", include: ["browser-use/browser-use", "huginn/huginn"], exclude: [] },
   { q: "抓取网站", include: ["browser-use/browser-use", "huginn/huginn"], exclude: [] },
-  { q: "图像生成", include: [], exclude: ["oobabooga/text-generation-webui"] },
-  { q: "文生图", include: [], exclude: ["oobabooga/text-generation-webui"] },
+  { q: "图像生成", include: [], exclude: ["oobabooga/textgen"] },
+  { q: "文生图", include: [], exclude: ["oobabooga/textgen"] },
 ];
 const catalogHas = (full) => ROWS.some((r) => r.f === full);
 if (!ONLY) {

@@ -11,6 +11,10 @@ name: Renamed repositories
 # One GraphQL query per 100 rows, 1 point each, from a budget the sync (REST only) does not
 # use. The script stops itself if a sync is queued or running before it writes.
 #
+# Daily runs cover rows with 500+ stars, the range approved on 2026-11-02; the 50-499
+# rows (659 old names that day) wait for their own decision: run it by hand with
+# min_stars 50 once they are approved.
+#
 # Writes only when the repository variable RENAMED_REPOS_APPLY is "true" or a manual run
 # asks for it; otherwise it reports what it would do. Then the curated /best/ files are
 # checked for old names (frontend/scripts/rename-curated.mjs --check), which fails the run
@@ -27,7 +31,7 @@ on:
         default: false
       min_stars:
         description: "Only rows with at least this many stars"
-        default: "50"
+        default: "500"
 
 concurrency:
   group: renamed-repos
@@ -61,7 +65,7 @@ jobs:
           ACTIONS_TOKEN: ${{ github.token }}
           APPLY: ${{ inputs.apply == true || vars.RENAMED_REPOS_APPLY == 'true' }}
         run: |
-          python renamed_repos.py --min-stars "${{ inputs.min_stars || '50' }}" \
+          python renamed_repos.py --min-stars "${{ inputs.min_stars || '500' }}" \
             $([ "$APPLY" = "true" ] && echo --apply)
 
       - uses: actions/setup-node@v4
