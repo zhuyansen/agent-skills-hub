@@ -22,6 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
+import { plusThousands, stampHomeCounts } from "./home-counts.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
@@ -921,18 +922,12 @@ async function main() {
   const totalElapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`Total: ${ok + catCount} pages in ${totalElapsed}s`);
 
-  // Update dist/index.html with actual skill count (for SEO meta tags)
+  // The home page's catalog total and graded count, counted from the rows fetched above.
   const indexPath = join(distDir, "index.html");
   try {
-    let indexHtml = readFileSync(indexPath, "utf-8");
-    const countK = Math.floor(skills.length / 1000) * 1000;
-    const countStr = countK.toLocaleString() + "+";
-    // Replace any "X,000+" pattern in meta descriptions
-    const updated = indexHtml.replace(/\d{1,3},000\+/g, countStr);
-    if (updated !== indexHtml) {
-      writeFileSync(indexPath, updated);
-      console.log(`Updated dist/index.html: skill count → ${countStr}`);
-    }
+    const counts = { total: skills.length, graded: skills.filter((s) => gradeState(s) === "graded").length };
+    writeFileSync(indexPath, stampHomeCounts(readFileSync(indexPath, "utf-8"), counts));
+    console.log(`Updated dist/index.html: ${counts.total} indexed → ${plusThousands(counts.total)}, ${counts.graded} graded → ${plusThousands(counts.graded)}`);
   } catch (e) {
     console.warn("Could not update index.html count:", e.message);
   }

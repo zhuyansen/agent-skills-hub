@@ -19,6 +19,9 @@
          main.tsx) — bundled, no external request. Critical for China, where
          fonts.googleapis.com is blocked/throttled. -->
     <title>Agent Skills Hub — Claude Skills Marketplace, Security-Graded</title>
+    <!-- The build writes the live catalog total over the count in the three descriptions and in
+         every span marked data-count="total" below, and the graded count into the one marked
+         data-count="graded" (scripts/home-counts.mjs). Any other number stays as written. -->
     <meta name="description" content="Agent Skills Hub, the Claude skills marketplace: 186,000+ skills, MCP servers & agent tools, every popular one security-graded. Vet before you install." />
     <meta name="keywords" content="claude skills, mcp server list, claude code skills, ai agent directory, agent skills hub" />
 
@@ -224,8 +227,8 @@
     <div id="root">
       <!--SHELL-CONTENT-START-->
       <header>
-        <h1>Agent Skills Hub — Claude Skills Marketplace: 186,000+ AI Agent Tools, Every Popular One Security-Graded</h1>
-        <p>Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of 229,000+ AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against <a href="/how-we-grade/">42 published rules</a>; the main scenario pages add hands-on test runs; 15 of them have an open-source list on GitHub; and the full catalog is published as a citable dataset (DOI 10.5281/zenodo.21292799).</p>
+        <h1>Agent Skills Hub — Claude Skills Marketplace: <span data-count="total">186,000+</span> AI Agent Tools, Every Popular One Security-Graded</h1>
+        <p>Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of <span data-count="total">229,000+</span> AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against <a href="/how-we-grade/">42 published rules</a>; the main scenario pages add hands-on test runs; 15 of them have an open-source list on GitHub; and the full catalog is published as a citable dataset (DOI 10.5281/zenodo.21292799).</p>
         <nav aria-label="Main navigation">
           <ul>
             <li><a href="/">Explore All Skills</a></li>
@@ -272,7 +275,7 @@
         </section>
         <section>
           <h2>Why AgentSkillsHub?</h2>
-          <p><strong>Agent Skills Hub is a security-graded directory of open-source AI agent skills and MCP servers</strong> — it answers "is this safe to install?" before you run a stranger's code inside your agent. It indexes 186,000+ GitHub repositories across MCP servers, Claude skills, Codex skills, AI coding assistants, and agent tools, and security-grades every skill with a fetched README — 24,000+ graded so far, including 93% of skills over 100 stars and 98% over 1,000, growing every 8 hours.</p>
+          <p><strong>Agent Skills Hub is a security-graded directory of open-source AI agent skills and MCP servers</strong> — it answers "is this safe to install?" before you run a stranger's code inside your agent. It indexes <span data-count="total">186,000+</span> GitHub repositories across MCP servers, Claude skills, Codex skills, AI coding assistants, and agent tools, and security-grades every skill with a fetched README — <span data-count="graded">24,000+</span> graded so far, including 93% of skills over 100 stars and 98% over 1,000, growing every 8 hours.</p>
           <h3>Quality Scoring</h3>
           <p><strong>Every tool gets a 0–100 composite score across six dimensions:</strong> completeness, clarity, specificity, examples, README structure, and agent readiness. The score separates production-ready projects from experiments, so you can filter without reading 200 READMEs.</p>
           <h3>Security Grading &amp; Sources</h3>
@@ -304,7 +307,7 @@
         </section>
       </main>
       <footer>
-        <p>AgentSkillsHub — The open-source AI agent tool directory maintained by Jason Zhu. Tracking 186,000+ projects, every popular one security-graded and quality-scored (93% of those over 100 stars). Built for developers building with AI agents, MCP servers, and automation tools.</p>
+        <p>AgentSkillsHub — The open-source AI agent tool directory maintained by Jason Zhu. Tracking <span data-count="total">186,000+</span> projects, every popular one security-graded and quality-scored (93% of those over 100 stars). Built for developers building with AI agents, MCP servers, and automation tools.</p>
         <p>
           <a href="https://turbo0.com/item/agentskillshub" target="_blank" rel="noopener noreferrer">
             <img src="https://img.turbo0.com/badge-listed-dark.svg" alt="Listed on Turbo0" width="162" height="54" style="height: 54px; width: auto;" />
@@ -315,7 +318,7 @@
     </div>
     <noscript>
       <h2>AgentSkillsHub — AI Agent Tools Directory</h2>
-      <p>AgentSkillsHub requires JavaScript to display interactive content. Please enable JavaScript to explore 186,000+ AI agent tools, MCP servers, and developer automation skills.</p>
+      <p>AgentSkillsHub requires JavaScript to display interactive content. Please enable JavaScript to explore <span data-count="total">186,000+</span> AI agent tools, MCP servers, and developer automation skills.</p>
       <p><a href="https://agentskillshub.top/sitemap.xml">Browse our sitemap</a></p>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
