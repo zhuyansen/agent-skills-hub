@@ -10,7 +10,7 @@ const DashboardStats = lazy(() =>
   })),
 );
 import { HeroSection } from "../components/HeroSection";
-import { LazySection } from "../components/LazySection";
+import { LazySection, type Reserve } from "../components/LazySection";
 import { HallOfFame } from "../components/HallOfFame";
 import { RecentlyUpdated } from "../components/RecentlyUpdated";
 import { Pagination } from "../components/Pagination";
@@ -60,6 +60,27 @@ import { useUrlParams } from "../hooks/useUrlParams";
 import { useStats } from "../hooks/useStats";
 import { useLandingData } from "../hooks/useLandingData";
 import type { PaginatedSkills, Skill } from "../types/skill";
+
+/** Space each lazy block holds until it renders (phones, sm, md, lg): 97% of the
+ *  smallest height measured in that range on 11-02 with
+ *  `ops/perf/home_cls.py --heights`. Re-measure when a block's content changes size. */
+const RESERVE = {
+  newThisWeek: [740, 710, 710, 710],
+  categories: [2420, 2360, 1210, 1190],
+  topRated: [1660, 1480, 1480, 790],
+  masters: [7780, 5840, 4070, 3500],
+  newsletter: [420, 340, 300, 180],
+  recent: [320, 640, 640, 640],
+  dashboard: [1010, 920, 920, 580],
+  installGuide: [390, 350, 190, 170],
+  workflows: [880, 840, 340, 320],
+  platforms: [550, 230, 230, 210],
+  faq: [290, 290, 290, 290],
+} as const satisfies Record<string, Reserve>;
+/** The Explore tab's category chips are one "All" button until the stats arrive, then
+ *  202px of chips on a phone (118px at 640, 76px from 768); this holds the row so the
+ *  list below doesn't drop 168px when they do (CLS 0.12 on a slow phone, 11-02). */
+const CHIP_ROW_RESERVE = "min-h-[196px] sm:min-h-[114px] md:min-h-[74px]";
 
 export function Home() {
   const { t, lang } = useI18n();
@@ -226,7 +247,7 @@ export function Home() {
                 />
               )}
             </div>
-            <LazySection>
+            <LazySection reserve={RESERVE.newThisWeek}>
               <NewThisWeek onShowDetail={handleShowDetail} />
             </LazySection>
             <InstallCliSection />
@@ -242,12 +263,12 @@ export function Home() {
             <ProblemSection />
             <HowItWorksSection />
             <div id="categories" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.categories}>
                 <SkillWorkflows />
               </LazySection>
             </div>
             <div id="top-rated" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.topRated}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
                   {landingLoading && !landingData ? (
                     <>
@@ -272,7 +293,7 @@ export function Home() {
               </LazySection>
             </div>
             <div id="masters" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.masters}>
                 {/* Verified Organizations (certified/paid) sit ABOVE the
                     data-driven Organization Builders — clearly distinct. */}
                 <VerifiedOrganizations />
@@ -283,12 +304,12 @@ export function Home() {
               </LazySection>
             </div>
             <div id="newsletter" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.newsletter}>
                 <NewsletterSubscribe />
               </LazySection>
             </div>
             <div id="recent" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.recent}>
                 <RecentlyUpdated
                   onSelect={handleOpenRepo}
                   onShowDetail={handleShowDetail}
@@ -296,7 +317,7 @@ export function Home() {
                 />
               </LazySection>
             </div>
-            <LazySection>
+            <LazySection reserve={RESERVE.dashboard}>
               <Suspense
                 fallback={
                   <div className="h-64 animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl" />
@@ -309,20 +330,20 @@ export function Home() {
                 />
               </Suspense>
             </LazySection>
-            <LazySection>
+            <LazySection reserve={RESERVE.installGuide}>
               <InstallGuide />
             </LazySection>
             <div id="workflows" className="scroll-mt-44">
-              <LazySection>
+              <LazySection reserve={RESERVE.workflows}>
                 <ScenarioWorkflows />
               </LazySection>
             </div>
             <div id="platforms">
-              <LazySection>
+              <LazySection reserve={RESERVE.platforms}>
                 <PlatformRecommendations />
               </LazySection>
             </div>
-            <LazySection>
+            <LazySection reserve={RESERVE.faq}>
               <FAQSection />
             </LazySection>
             <HomePromoCards />
@@ -355,7 +376,7 @@ export function Home() {
 
             {/* Mobile-only inline filters (hidden on lg+) */}
             <div className="lg:hidden">
-              <div className="mb-4">
+              <div className={categories.length ? "mb-4" : `mb-4 ${CHIP_ROW_RESERVE}`}>
                 <CategoryFilter
                   categories={categories}
                   selected={params.category || ""}
@@ -441,12 +462,15 @@ export function Home() {
                   </div>
                 )}
 
-                {/* Loading Skeleton */}
-                {loading && <SkeletonCards count={6} />}
+                {/* Loading: until the first page arrives, a full page of skeletons
+                    from the very first paint; later loads keep the current list,
+                    dimmed, until the next replaces it. An empty first frame showed
+                    the banner above the footer mid-screen, then the list pushed it
+                    away (CLS 0.37 on a slow phone, ops/perf/home_cls.py, 11-02). */}
+                {!data && !error && <SkeletonCards count={params.page_size} />}
 
                 {/* Results */}
-                {!loading &&
-                  data &&
+                {data &&
                   data.items.length > 0 &&
                   (() => {
                     const filteredItems = subcategory
@@ -455,7 +479,10 @@ export function Home() {
                         )
                       : data.items;
                     return (
-                      <>
+                      <div
+                        className={`transition-opacity ${loading ? "opacity-60 pointer-events-none" : ""}`}
+                        aria-busy={loading}
+                      >
                         <div className="text-sm text-gray-400 dark:text-gray-500 mb-3">
                           {t("explore.showing")}{" "}
                           {subcategory ? `${filteredItems.length} / ` : ""}
@@ -487,7 +514,7 @@ export function Home() {
                           totalPages={data.total_pages}
                           onPageChange={setPage}
                         />
-                      </>
+                      </div>
                     );
                   })()}
 
