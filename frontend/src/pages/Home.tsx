@@ -64,8 +64,11 @@ import type { PaginatedSkills, Skill } from "../types/skill";
 /** Space each lazy block holds until it renders (phones, sm, md, lg): 97% of the
  *  smallest height measured in that range on 11-02 with
  *  `ops/perf/home_cls.py --heights`. Re-measure when a block's content changes size.
- *  The dashboard's charts have one fixed height per range, so it holds all of it:
- *  at 97% it still grew 36px when its data came, 0.09 at the foot of a slow phone. */
+ *  The dashboard fills last, often after the visitor has scrolled past it, so it holds
+ *  all of its space: its charts' fixed height plus the 40px margin below them. Short of
+ *  that it grew 36px, then 40px, when its data came (0.09, then 0.05, at the foot of a
+ *  slow phone). The others were measured without that margin; they render ahead of
+ *  the screen, where the 24–48px it adds moves nothing in view. */
 const RESERVE = {
   newThisWeek: [740, 710, 710, 710],
   categories: [2420, 2360, 1210, 1190],
@@ -73,7 +76,7 @@ const RESERVE = {
   masters: [7780, 5840, 4070, 3500],
   newsletter: [420, 340, 300, 180],
   recent: [320, 640, 640, 640],
-  dashboard: [1046, 950, 950, 600],
+  dashboard: [1086, 990, 990, 640],
   installGuide: [390, 350, 190, 170],
   workflows: [880, 840, 340, 320],
   platforms: [550, 230, 230, 210],

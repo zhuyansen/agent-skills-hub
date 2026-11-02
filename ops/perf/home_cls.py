@@ -253,15 +253,22 @@ def grew_on_screen(resizes):
 
 HEIGHT_WIDTHS = [360, 390, 412, 640, 768, 900, 1024, 1280, 1440, 1920]
 HEIGHTS_JS = r"""
-() => [...document.querySelector("main > div").children].map((el, i) => [
-  i, el.id || el.querySelector("h2, h3")?.textContent.trim().slice(0, 24) || el.tagName.toLowerCase(),
-  Math.round(el.getBoundingClientRect().height)])
+() => {
+  const blocks = [...document.querySelector("main > div").children];
+  return blocks.map((el, i) => {
+    const box = el.getBoundingClientRect();
+    const end = blocks[i + 1] ? blocks[i + 1].getBoundingClientRect().top : box.bottom;
+    return [i, el.id || el.querySelector("h2, h3")?.textContent.trim().slice(0, 24) ||
+      el.tagName.toLowerCase(), Math.round(end - box.top)];
+  });
+}
 """
 
 
 def measure_heights(browser, base):
-    """Final height of every home block once all of them have rendered, per width.
-    These set the placeholder heights the home page's lazy blocks hold."""
+    """Final space every home block takes once all of them have rendered, per width:
+    its height plus the margin below it, which arrives with the content, so a
+    placeholder has to hold it too. These set the space the lazy blocks hold."""
     table = {}
     for w in HEIGHT_WIDTHS:
         sc = dict(name=f"h{w}", size=(w, 900), phone=w < 768, net="fast")
