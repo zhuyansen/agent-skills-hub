@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
 import type { WeeklyTrendingEntry, TrendingWeek } from "../types/skill";
 import { formatStars, timeAgo } from "../utils/time";
+import { SkillNameLink } from "./SkillNameLink";
 
 function formatWeekRange(weekStart: string, weekEnd: string): string {
   const start = new Date(weekStart + "T00:00:00");
@@ -208,7 +209,7 @@ export function TrendingSection({ onSelect: _onSelect, onShowDetail, initialHot,
               <h3
                 className="font-semibold text-sm text-gray-900 dark:text-gray-100 truncate hover:text-orange-600 hover:underline transition-colors cursor-pointer"
               >
-                {skill.repo_name}
+                <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
               </h3>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 line-clamp-2">
                 {skill.description || "No description"}

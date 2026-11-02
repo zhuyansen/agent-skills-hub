@@ -5,6 +5,7 @@ import { getTier } from "./ScoreBadge";
 import { ScoreBadge } from "./ScoreBadge";
 import { OfficialBadge } from "./OfficialBadge";
 import { SecurityBadge } from "./SecurityBadge";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   skills: Skill[];
@@ -58,7 +59,7 @@ export function SkillTable({
                   <span
                     className="font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline transition-colors cursor-pointer"
                   >
-                    {skill.repo_name}
+                    <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
                   </span>
                   {isNew(skill.first_seen) && (
                     <span className="px-1 py-0.5 text-[9px] font-bold rounded bg-green-50 dark:bg-green-900/30 text-green-600">

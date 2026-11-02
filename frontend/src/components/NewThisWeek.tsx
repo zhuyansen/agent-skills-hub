@@ -3,6 +3,7 @@ import { fetchNewThisWeek } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
 import { formatStars, timeAgo } from "../utils/time";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   onShowDetail?: (skill: Skill) => void;
@@ -79,7 +80,7 @@ export function NewThisWeek({ onShowDetail }: Props) {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
                 <span className="font-medium text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline transition-colors truncate cursor-pointer">
-                  {skill.repo_name}
+                  <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
                 </span>
                 <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 border border-green-100 dark:border-green-800 shrink-0">
                   NEW

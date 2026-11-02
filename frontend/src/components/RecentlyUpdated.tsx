@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
 import { formatStars, timeAgo } from "../utils/time";
 import { ProjectTypeBadge } from "./ProjectTypeBadge";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   onSelect?: (skill: Skill) => void;
@@ -55,7 +56,7 @@ export function RecentlyUpdated({ onSelect: _onSelect, onShowDetail, initialData
                 <span
                   className="font-semibold text-sm text-gray-900 dark:text-gray-100 hover:text-green-600 hover:underline transition-colors truncate cursor-pointer"
                 >
-                  {skill.repo_name}
+                  <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
                 </span>
                 <ProjectTypeBadge type={skill.project_type} />
                 {skill.language && (

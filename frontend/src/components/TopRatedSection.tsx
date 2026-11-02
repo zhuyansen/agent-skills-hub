@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
 import { formatStars, timeAgo } from "../utils/time";
 import { ScoreBadge } from "./ScoreBadge";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   onSelect?: (skill: Skill) => void;
@@ -57,7 +58,7 @@ export function TopRatedSection({ onSelect: _onSelect, onShowDetail, initialData
               <span
                 className="font-medium text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline transition-colors truncate block cursor-pointer"
               >
-                {skill.repo_name}
+                <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
               </span>
               <span className="text-xs text-gray-400 dark:text-gray-500">{skill.author_name}</span>
             </div>

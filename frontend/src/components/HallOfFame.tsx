@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/I18nContext";
 import type { Skill } from "../types/skill";
 import { formatStars } from "../utils/time";
 import { ScoreBadge } from "./ScoreBadge";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   onSelect?: (skill: Skill) => void;
@@ -62,7 +63,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
               <h3
                 className="font-bold text-gray-900 dark:text-gray-100 truncate hover:text-blue-600 hover:underline cursor-pointer"
               >
-                {skill.repo_name}
+                <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
               </h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{skill.description || "No description"}</p>
               <div className="mt-3 flex items-center gap-1 text-sm">
@@ -90,7 +91,7 @@ export function HallOfFame({ onSelect: _onSelect, onShowDetail, initialData }: P
               <span
                 className="font-medium text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 hover:underline cursor-pointer"
               >
-                {skill.repo_name}
+                <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
               </span>
               <span className="text-xs text-gray-400 dark:text-gray-500 ml-2">{skill.author_name}</span>
             </div>

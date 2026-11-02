@@ -13,6 +13,7 @@ import { SizeBadge } from "./SizeBadge";
 import { VerifiedBadge } from "./VerifiedBadge";
 import { isVerifiedCreator } from "../data/verifiedCreators";
 import { isVerifiedOrgAuthor } from "../data/verifiedOrgs";
+import { SkillNameLink } from "./SkillNameLink";
 
 interface Props {
   skill: Skill;
@@ -92,13 +93,14 @@ export const SkillCard = memo(function SkillCard({
               )}
             </span>
           </div>
-          {/* Title clicks bubble to the card's detail handler. It used to
-              window.open(GitHub) — Clarity showed those clicks registering
-              as dead (popup blockers + pre-hydration), and detail is what a
-              title click means everywhere else on the site. GitHub stays one
-              click away via the card's repo link. */}
+          {/* The title is the card's real link to the detail page (the card's
+              click handler gives Google no href). It used to window.open(GitHub)
+              — Clarity showed those clicks registering as dead (popup blockers
+              + pre-hydration), and detail is what a title click means everywhere
+              else on the site. GitHub stays one click away via the card's repo
+              link. */}
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate group-hover:text-blue-600 transition-colors">
-            {skill.repo_name}
+            <SkillNameLink repo={skill.repo_full_name}>{skill.repo_name}</SkillNameLink>
           </h3>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2 leading-relaxed">
             {skill.description || "No description"}
