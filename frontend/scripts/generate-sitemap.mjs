@@ -27,6 +27,7 @@ import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs
 import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
 import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 import { buildSitemapIndex } from "./sitemap-index.mjs";
+import { MODIFIED_PATH, declaredDateIn } from "./scenario-modified.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -145,14 +146,22 @@ ${entries.join("\n")}
  */
 function declaredDate(path, today) {
   try {
-    const html = readFileSync(`dist${path}index.html`, "utf-8");
-    // Build-date stamps (the SPA shell's own dateModified) are dropped before picking
-    // the latest, so a page's real date is not hidden behind them.
-    const dates = [...html.matchAll(/"(?:dateModified|lastReviewed)"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)]
-      .map((m) => m[1]).filter((d) => d !== today);
-    return dates.sort().at(-1) || null;
+    return declaredDateIn(readFileSync(`dist${path}index.html`, "utf-8"), today);
   } catch {
     return null;
+  }
+}
+
+/**
+ * The day each /best/ page's content last changed, by slug, as generate-scenario-pages.mjs
+ * worked it out (scenario-modified.mjs). The pages' own lastReviewed is a hand-set review
+ * date that new cards and retitles never moved (2026-11-01).
+ */
+function readModified() {
+  try {
+    return JSON.parse(readFileSync(`dist${MODIFIED_PATH}`, "utf-8")).pages || {};
+  } catch {
+    return {};
   }
 }
 
@@ -173,10 +182,11 @@ function isRedirectStub(path) {
  * Sitemap entries for one /best/ page: the English page and, when it has one, its
  * Chinese twin at /best/<slug>/zh/, both carrying reciprocal hreflang (2026-10-14).
  */
-function scenarioEntriesFor(slug, today) {
+function scenarioEntriesFor(slug, today, modified) {
   const en = `/best/${slug}/`;
   const zh = `${en}zh/`;
   const hasZh = existsSync(`dist${zh}index.html`);
+  const date = modified[slug]?.date ?? declaredDate(en, today);
   const alts = hasZh ? `
     <xhtml:link rel="alternate" hreflang="en" href="${SITE}${en}"/>
     <xhtml:link rel="alternate" hreflang="zh" href="${SITE}${zh}"/>
@@ -184,7 +194,7 @@ function scenarioEntriesFor(slug, today) {
   const entry = (path, priority) => `  <url>
     <loc>${SITE}${path}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${priority}</priority>${lastmodLine(declaredDate(en, today))}${alts}
+    <priority>${priority}</priority>${lastmodLine(date)}${alts}
   </url>`;
   return hasZh ? [entry(en, "0.85"), entry(zh, "0.75")] : [entry(en, "0.85")];
 }
@@ -359,10 +369,12 @@ async function main() {
       ).filter((s) => s.retired).map((s) => s.slug),
     );
     const scenarioSlugs = readdirSync("dist/best");
+    const modified = readModified();
+    // Files (index.html, modified.json, dotfiles) sit next to the page directories.
     const scenarioEntries = scenarioSlugs
-      .filter((slug) => !slug.startsWith(".") && slug !== "index.html" && slug !== "zh"
+      .filter((slug) => !slug.includes(".") && slug !== "zh"
                         && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
-      .flatMap((slug) => scenarioEntriesFor(slug, today));
+      .flatMap((slug) => scenarioEntriesFor(slug, today, modified));
     writeFileSync("dist/sitemap-scenarios.xml", wrapUrlsetI18n(scenarioEntries));
     hubEntries.push(...scenarioEntries);
     scenarioCount = scenarioEntries.length;

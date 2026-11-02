@@ -30,6 +30,9 @@ import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-pa
 import { quickPickHtml, focusHtml } from "./scenario-answer.mjs";
 import { comparisonsHtml } from "./scenario-compare-links.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
+import {
+  MODIFIED_PATH, declaredDateIn, fingerprint, loadLiveModified, nextModified,
+} from "./scenario-modified.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -116,6 +119,9 @@ function leadLabel(skills) {
 }
 
 const CSS_VERSION = "20261029";
+/** Bump when a change to this generator changes what every /best/ page says or links
+ *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
+const TEMPLATE_REV = "2026-11-02";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -481,6 +487,35 @@ function subSkillCards(scenario, allSkills) {
       security_grade: x.grade, readme_content: "", created_at: x.added,
       sub_path: x.path, list_key: `${x.repo}/${x.path}`,
     }));
+}
+
+/**
+ * What a reader sees on a /best/ page, for its lastmod: the page's own definition in
+ * scenario-keywords.json (titles, FAQ, method, video, explainer, caution, Chinese text),
+ * its test runs and kinds, and each card's name, descriptions, kind and grade. Not
+ * stars, scores, card order or the NEW badge, which move with every sync or day; not
+ * the comparison links, which follow the card order; not the install line, which goes
+ * blank for a build whose README fetch fails.
+ */
+function pageFingerprint(scenario, skills, allSkills) {
+  const kinds = kindsFor(scenario.slug);
+  const cards = [...skills, ...subSkillCards(scenario, allSkills)].map((s) => JSON.stringify([
+    s.repo_full_name, s.sub_path || "", descEn(s), descZh(s), kinds?.of(s) || "", s.security_grade || "",
+  ])).sort();
+  return fingerprint({
+    rev: TEMPLATE_REV, scenario, runs: runsFor(scenario.slug), kinds: kinds?.kinds ?? null, cards,
+  });
+}
+
+/** Writes dist/best/modified.json: the day each page's fingerprint last changed. */
+async function writeModified(fps, built) {
+  const today = new Date().toISOString().split("T")[0];
+  const declared = new Map(built.map((b) => [b.scenario?.slug, declaredDateIn(b.html, today)]));
+  const live = await loadLiveModified(SITE);
+  const pages = nextModified(live, fps, today, (slug) => declared.get(slug) ?? null);
+  writeFileSync(join(DIST, "best", "modified.json"), JSON.stringify({ version: 1, pages }));
+  const moved = Object.values(pages).filter((p) => p.date === today).length;
+  console.log(`  ✓ ${MODIFIED_PATH}: ${moved} of ${Object.keys(pages).length} pages dated ${today}`);
 }
 
 function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills = []) {
@@ -994,6 +1029,7 @@ async function main() {
   const t0 = Date.now();
 
   const built = [];
+  const fps = {};
   for (const scenario of scenarios) {
     const skills = matchSkills(scenario, allSkills);
     if (!skills) {
@@ -1003,6 +1039,7 @@ async function main() {
     }
 
     scenarioSkillCounts[scenario.slug] = skills.length + subSkillCards(scenario, allSkills).length;
+    fps[scenario.slug] = pageFingerprint(scenario, skills, allSkills); // before the build can touch them
     built.push({ scenario, path: `/best/${scenario.slug}/`, html: buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills) });
     console.log(`  \u2713 /best/${scenario.slug}/ (${skills.length} skills)`);
     generated++;
@@ -1011,6 +1048,7 @@ async function main() {
   console.log(`  \u2713 /best/ (index page, ${Object.keys(scenarioSkillCounts).length} scenarios)`);
   const twins = writeBestPages(built);
   console.log(`  \u2713 ${twins} Chinese twins at /best/<slug>/zh/`);
+  await writeModified(fps, built);
 
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`\nScenario pages: ${generated} generated + 1 index, ${skipped} skipped (${elapsed}s)`);
