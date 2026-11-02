@@ -129,7 +129,7 @@ def _own_table(run: dict, rows: list[tuple[str, dict]], i: int, site: str, w: di
     return out
 
 
-def _own_section(run: dict, slug: str, i: int, site: str, utm: str, w: dict) -> list[str]:
+def _own_section(run: dict, slug: str, i: int, site: str, w: dict) -> list[str]:
     """The Tested section of a "table" run: its intro, finding and one table (or one per group)."""
     ran = [(k, v) for k, v in run["runs"].items() if v.get("ran")]
     out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
@@ -145,7 +145,7 @@ def _own_section(run: dict, slug: str, i: int, site: str, utm: str, w: dict) -> 
     if missing:
         label = (run.get("not_run_label") or [w["not_run"], w["not_run"]])[i]
         out += [f"**{label}:** " + "; ".join(f"{k.split('/')[1]} ({v.get('reason_zh' if i else 'reason') or v.get('reason')})" for k, v in missing), ""]
-    return out + [f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/{utm}#test-results)"]
+    return out + [f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/#test-results)"]
 
 
 def top(slug: str, lang: str) -> list[str]:
@@ -163,14 +163,14 @@ def top(slug: str, lang: str) -> list[str]:
     return ["", "## " + lines[0].removeprefix("### "), "", lead, *lines[1:]]
 
 
-def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
+def section(slug: str, lang: str, site: str) -> list[str]:
     """Markdown lines of the list's Tested section; [] when the page has no test run."""
     run = run_for(slug)
     if not run:
         return []
     w, i, slop, mgr = WORDS[lang], 0 if lang == "en" else 1, run.get("type") == "slop", run.get("type") == "skillmgr"
     if run.get("type") == "table":
-        return _own_section(run, slug, i, site, utm, w)
+        return _own_section(run, slug, i, site, w)
     ran = _order(run)
     key = "mgr" if mgr else "slop" if slop else "ppt"
     intro = w[f"{key}_intro"].format(date=run["date"], n=len(run["runs"]), ran=len(ran), agent=run["agent"], judge=run["judge"])
@@ -190,5 +190,5 @@ def section(slug: str, lang: str, site: str, utm: str) -> list[str]:
     if missing:
         out += ["", f"**{w['not_judged'] if mgr else w['not_run']}:** " + "; ".join(
             f"{k.split('/')[1]} ({v.get('reason_zh' if i else 'reason') or v.get('reason')})" for k, v in missing)]
-    out += ["", f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/{utm}#test-results)"]
+    out += ["", f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/#test-results)"]
     return out
