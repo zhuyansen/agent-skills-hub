@@ -133,14 +133,31 @@ function itemHtml(repo, item) {
   return `<li style="font-size:14px;line-height:1.6"><a href="${esc(href)}"${external} style="color:#4f46e5;font-weight:600;text-decoration:none">${esc(item.name)}</a>${item.description ? ` <span style="color:#64748b">${esc(item.description)}</span>` : ""}</li>`;
 }
 
-/** "Skills in this repository" for the static repository page. */
-export function parentSectionHtml(repo, list) {
+/** The list's words. A repository page written in Chinese (skill-page-copy.mjs) gets the Chinese
+ *  ones, worded as on the React page (src/i18n/subSkillStrings.ts). */
+const LIST_COPY = {
+  en: {
+    title: (n) => `Skills in this repository (${n})`,
+    more: (n, link) => `${n} more in ${link}.`,
+    github: "the repository on GitHub",
+  },
+  zh: {
+    title: (n) => `本仓库里的 Skills（${n}）`,
+    more: (n, link) => `另有 ${n} 个，见 ${link}。`,
+    github: "GitHub 仓库",
+  },
+};
+
+/** "Skills in this repository" for the static repository page, in the page's language. */
+export function parentSectionHtml(repo, list, lang = "en") {
+  const c = LIST_COPY[lang] || LIST_COPY.en;
   const shown = list.slice(0, PARENT_LIST_SHOWN).map((item) => itemHtml(repo, item)).join("\n          ");
+  const link = `<a href="https://github.com/${esc(repo)}" rel="noopener" target="_blank" style="color:#4f46e5">${c.github}</a>`;
   const more = list.length > PARENT_LIST_SHOWN
-    ? `<p style="font-size:13px;color:#64748b;margin:6px 0 0">${list.length - PARENT_LIST_SHOWN} more in <a href="https://github.com/${esc(repo)}" rel="noopener" target="_blank" style="color:#4f46e5">the repository on GitHub</a>.</p>`
+    ? `<p style="font-size:13px;color:#64748b;margin:6px 0 0">${c.more(list.length - PARENT_LIST_SHOWN, link)}</p>`
     : "";
   return `<section style="margin:20px 0">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Skills in this repository (${list.length})</h2>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.title(list.length)}</h2>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:6px">
           ${shown}
         </ul>

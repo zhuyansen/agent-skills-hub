@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { installSectionHtml } from "./skill-install.mjs";
 import { trustBlock } from "./shared-utils.mjs";
+import { parentSectionHtml } from "./sub-skills.mjs";
 
 test("a description written in Chinese makes a Chinese page", () => {
   assert.equal(skillPageLang("艺术动画skill：35种艺术风格、9种解说语法，用代码让画动起来。"), "zh");
@@ -53,6 +54,16 @@ test("the install section keeps its English text and has a Chinese one", () => {
   assert.match(zh, /<h2 [^>]*>怎么安装 tool<\/h2>/);
   assert.match(zh, /命令取自这个项目在 GitHub 上的 README。运行前先看看<a [^>]*>安全审计<\/a>。/);
   assert.equal(installSectionHtml("tool", [], null, "zh"), "");
+});
+
+test("the repository's skill list follows the page's language", () => {
+  const list = Array.from({ length: 52 }, (_, i) => ({ slug: `s${i}`, name: `skill-${i}`, path: `skills/s${i}`, description: "", page: i < 3 }));
+  const en = parentSectionHtml("owner/repo", list);
+  assert.match(en, />Skills in this repository \(52\)<\/h2>/);
+  assert.match(en, /2 more in <a [^>]*>the repository on GitHub<\/a>\./);
+  const zh = parentSectionHtml("owner/repo", list, "zh");
+  assert.match(zh, />本仓库里的 Skills（52）<\/h2>/);
+  assert.match(zh, /另有 2 个，见 <a [^>]*>GitHub 仓库<\/a>。/);
 });
 
 test("the trust block shows Chinese text on a Chinese page and English elsewhere", () => {

@@ -47,7 +47,11 @@ function fillParent(repoFullName, list) {
   writeFileSync(join(dir, "sub-skills.json"), JSON.stringify(list));
   const file = join(dir, "index.html");
   if (!existsSync(file)) return false;
-  const html = withList(readFileSync(file, "utf-8"), parentSectionHtml(repoFullName, list));
+  const page = readFileSync(file, "utf-8");
+  // The list speaks the page's language: generate-skill-pages.mjs writes lang="zh-CN" on the page of
+  // a repo that describes itself in Chinese.
+  const lang = /<html lang="zh-CN">/.test(page) ? "zh" : "en";
+  const html = withList(page, parentSectionHtml(repoFullName, list, lang));
   if (html === null) return false;
   writeFileSync(file, html);
   return true;
