@@ -189,6 +189,30 @@ async function fetchWorkflowsFromSupabase(): Promise<WorkflowData[]> {
   return workflows;
 }
 
+async function loadWorkflows(): Promise<WorkflowData[]> {
+  if (USE_SUPABASE) return fetchWorkflowsFromSupabase();
+  const r = await fetch(`${API_BASE}/api/workflows`);
+  return (await r.json()) as WorkflowData[];
+}
+
+let workflowsRequest: Promise<WorkflowData[]> | null = null;
+
+/** Starts loading the workflows, once per page load, and shares the result with the
+ *  block. Home calls it on load: fetched only when the block neared the screen, the
+ *  six queries could land after a slow phone had scrolled past, and the block opened
+ *  above the visitor (CLS 0.11 at 412px, 11-02). A failed load is retried by the
+ *  next caller. */
+export function prefetchWorkflows(): Promise<WorkflowData[]> {
+  if (!workflowsRequest) {
+    const request = loadWorkflows();
+    workflowsRequest = request;
+    request.catch(() => {
+      if (workflowsRequest === request) workflowsRequest = null;
+    });
+  }
+  return workflowsRequest;
+}
+
 export function SkillWorkflows() {
   const { t, lang } = useI18n();
   const navigate = useNavigate();
@@ -196,22 +220,12 @@ export function SkillWorkflows() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (USE_SUPABASE) {
-      fetchWorkflowsFromSupabase()
-        .then((data) => {
-          setWorkflows(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    } else {
-      fetch(`${API_BASE}/api/workflows`)
-        .then((r) => r.json())
-        .then((data) => {
-          setWorkflows(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    }
+    prefetchWorkflows()
+      .then((data) => {
+        setWorkflows(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading || workflows.length === 0) return null;

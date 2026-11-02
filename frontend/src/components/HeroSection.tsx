@@ -13,6 +13,17 @@ const TRENDING_TAGS = [
   "openai",
 ];
 
+/** Counts shown until the stats arrive, near the live ones (258,645 / 95,449 / 34,347 /
+ *  67,116 on 11-02) so the first paint has as many digits. A 17,000 stand-in put the
+ *  title on one more line on a 412px phone once "258,000+" came, moving the page below
+ *  it 38px (CLS 0.049). Raise one when its count gains a digit: MCP servers at 100,000. */
+const FALLBACK_COUNTS = {
+  total: 258_000,
+  mcp: 95_000,
+  claude: 34_000,
+  agent: 67_000,
+} as const;
+
 interface Props {
   stats: Stats | null;
   onSearch: (query: string) => void;
@@ -82,16 +93,19 @@ export function HeroSection({ stats, onSearch }: Props) {
     onSearch(tag);
   };
 
-  const totalSkills = stats?.total_skills ?? 17000;
+  const totalSkills = stats?.total_skills ?? FALLBACK_COUNTS.total;
   const countDisplay = `${Math.floor(totalSkills / 1000).toLocaleString()},000+`;
 
   // Extract category counts
   const mcpCount =
-    stats?.categories.find((c) => c.name === "mcp-server")?.count ?? 6500;
+    stats?.categories.find((c) => c.name === "mcp-server")?.count ??
+    FALLBACK_COUNTS.mcp;
   const claudeCount =
-    stats?.categories.find((c) => c.name === "claude-skill")?.count ?? 2200;
+    stats?.categories.find((c) => c.name === "claude-skill")?.count ??
+    FALLBACK_COUNTS.claude;
   const agentCount =
-    stats?.categories.find((c) => c.name === "agent-tool")?.count ?? 5000;
+    stats?.categories.find((c) => c.name === "agent-tool")?.count ??
+    FALLBACK_COUNTS.agent;
 
   return (
     <section className="hero-gradient full-bleed px-4 pt-16 pb-12 sm:pt-24 sm:pb-16 mb-8 relative z-20">

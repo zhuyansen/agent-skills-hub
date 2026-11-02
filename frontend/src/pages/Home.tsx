@@ -25,7 +25,7 @@ import { SkillCard } from "../components/SkillCard";
 import { SkillDetailPanel } from "../components/SkillDetailPanel";
 import { SkillTable } from "../components/SkillTable";
 import { ScenarioWorkflows } from "../components/ScenarioWorkflows";
-import { SkillWorkflows } from "../components/SkillWorkflows";
+import { SkillWorkflows, prefetchWorkflows } from "../components/SkillWorkflows";
 import { PlatformRecommendations } from "../components/PlatformRecommendations";
 import { SortControls } from "../components/SortControls";
 import { SkillsMasters } from "../components/SkillsMasters";
@@ -129,6 +129,11 @@ export function Home() {
       cancelled = true;
     };
   }, []);
+
+  // The category workflows' queries start now too (see prefetchWorkflows).
+  useEffect(() => {
+    if (tab === "overview") prefetchWorkflows().catch(() => {});
+  }, [tab]);
 
   // Explore tab data
   const [data, setData] = useState<PaginatedSkills | null>(null);
