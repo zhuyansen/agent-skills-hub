@@ -42,13 +42,15 @@ if (!isStaticOnlyPage) {
   // index.html carries a static <meta name="description"> so non-JS crawlers
   // and og scrapers always see one. Once React mounts, Helmet owns the tag
   // (language-aware zh/en) — drop the static copy or the page serves two. Remember it
-  // first: a pre-rendered /skill/ page reuses it (lib/prerenderedMeta.ts).
+  // first: a pre-rendered /skill/ page reuses it (lib/prerenderedMeta.ts), and keeps its
+  // static body to fall back on if its data request fails.
   const staticDescription = document.querySelector('meta[name="description"]:not([data-rh])');
   rememberPrerenderedPage(
     staticDescription?.getAttribute("content") ?? null,
     document.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
     document.querySelector('meta[name="ash:install"]')?.getAttribute("content") ?? null,
     document.querySelector('meta[name="ash:tested"]')?.getAttribute("content") ?? null,
+    document.getElementById("root")?.innerHTML ?? null,
   );
   staticDescription?.remove();
   createRoot(document.getElementById("root")!).render(

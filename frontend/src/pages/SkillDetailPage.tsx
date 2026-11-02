@@ -15,7 +15,7 @@ import { InstallCommand } from "../components/InstallCommand";
 import { RepoSubSkills } from "../components/SubSkillList";
 import { TestedByUs } from "../components/TestedByUs";
 import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
-import { prerenderedDescription, prerenderedInstalls } from "../lib/prerenderedMeta";
+import { prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -95,8 +95,29 @@ export function SkillDetailPage() {
   }
 
   if (error || !detail) {
+    // A failed or timed-out request on a pre-rendered page keeps that page: its static
+    // title, canonical and robots tags are still in <head>; only the description needs
+    // putting back, since main.tsx removed it for Helmet.
+    const shell = prerenderedShell();
+    if (shell) {
+      const description = prerenderedDescription();
+      return (
+        <>
+          {description && (
+            <Helmet>
+              <meta name="description" content={description} />
+            </Helmet>
+          )}
+          <div dangerouslySetInnerHTML={{ __html: shell }} />
+        </>
+      );
+    }
+    // No static page to fall back on: an error page must not be indexed under this URL.
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+        <Helmet>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <SiteHeader breadcrumb={[{ label: "Error" }]} />
         <div className="flex items-center justify-center py-32">
           <div className="text-center">

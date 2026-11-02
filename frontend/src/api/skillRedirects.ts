@@ -6,6 +6,7 @@
  * file-size limit.
  */
 import { supabase } from "../lib/supabase";
+import { DETAIL_TIMEOUT_MS } from "./supabaseClient";
 
 /** The repository's current owner/repo, or null: no redirect, or none could be read. */
 export async function fetchSkillRedirect(oldName: string): Promise<string | null> {
@@ -14,6 +15,7 @@ export async function fetchSkillRedirect(oldName: string): Promise<string | null
     .from("skill_redirects")
     .select("new_full_name")
     .eq("old_full_name", oldName)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS))
     .maybeSingle<{ new_full_name: string }>();
   if (error) return null;
   return data?.new_full_name ?? null;

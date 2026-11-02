@@ -19,6 +19,7 @@ let description: string | null = null;
 let installs: string[] = [];
 let tested: TestedEntry[] = [];
 let path: string | null = null;
+let shell: string | null = null;
 
 function parseList(json: string | null): unknown[] {
   if (!json) return [];
@@ -49,8 +50,10 @@ export function rememberPrerenderedPage(
   canonical: string | null,
   installJson: string | null = null,
   testedJson: string | null = null,
+  shellHtml: string | null = null,
 ): void {
   description = content;
+  shell = shellHtml;
   installs = parseList(installJson).filter((v): v is string => typeof v === "string");
   tested = parseList(testedJson).filter(isTestedEntry);
   // Only a page that names itself as canonical is pre-rendered for that URL. The 404.html
@@ -73,4 +76,11 @@ export function prerenderedInstalls(): string[] {
 /** The tests the pre-rendered page's skill was in while the browser is on it, else []. */
 export function prerenderedTested(): TestedEntry[] {
   return onPrerenderedPage() ? tested : [];
+}
+
+/** The pre-rendered page body (#root before React mounted) while the browser is on that
+ *  page, else null. A skill page whose data request fails shows this instead of an error,
+ *  so a crawler that hits the failure still gets the full static page. */
+export function prerenderedShell(): string | null {
+  return onPrerenderedPage() ? shell : null;
 }

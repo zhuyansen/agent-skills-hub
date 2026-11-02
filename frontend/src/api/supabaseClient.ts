@@ -21,6 +21,10 @@ import { SKILL_COLUMNS, matchAuthor, skillsQuery } from "./supabaseSearch";
 // crawlers make most of those loads.
 const SKILL_DETAIL_COLUMNS = `${SKILL_COLUMNS},readme_fetched_at,security_flags`;
 
+// A skill page gives up on its row after this long and keeps the pre-rendered
+// page (SkillDetailPage). Without it a stalled request left a spinner forever.
+export const DETAIL_TIMEOUT_MS = 10_000;
+
 function ensureSupabase() {
   if (!supabase) throw new Error("Supabase not configured");
   return supabase;
@@ -220,6 +224,7 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
     .from("skills")
     .select(SKILL_DETAIL_COLUMNS)
     .eq("id", id)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS))
     .single<Skill>();
   if (error) throw new Error(error.message);
 
@@ -229,7 +234,8 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
     .select("compatible_skill_id, compatibility_score, reason")
     .eq("skill_id", id)
     .order("compatibility_score", { ascending: false })
-    .limit(5);
+    .limit(5)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
 
   const compatible_skills = [];
   if (comps && comps.length > 0) {
@@ -237,7 +243,8 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
     const { data: others } = await sb
       .from("skills")
       .select("id, repo_full_name, repo_name, score")
-      .in("id", ids);
+      .in("id", ids)
+      .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
 
     const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
     for (const c of comps) {
@@ -266,6 +273,7 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
     .from("skills")
     .select(SKILL_DETAIL_COLUMNS)
     .eq("repo_full_name", slug)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS))
     .single<Skill>();
   if (error) throw new Error(error.message);
 
@@ -275,7 +283,8 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
     .select("compatible_skill_id, compatibility_score, reason")
     .eq("skill_id", skill.id)
     .order("compatibility_score", { ascending: false })
-    .limit(5);
+    .limit(5)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
 
   const compatible_skills = [];
   if (comps && comps.length > 0) {
@@ -283,7 +292,8 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
     const { data: others } = await sb
       .from("skills")
       .select("id, repo_full_name, repo_name, score")
-      .in("id", ids);
+      .in("id", ids)
+      .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
 
     const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
     for (const c of comps) {
