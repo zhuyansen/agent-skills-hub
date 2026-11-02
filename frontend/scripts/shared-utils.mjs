@@ -478,6 +478,8 @@ export async function fetchAllSkills() {
     "last_commit_at", "created_at", "topics", "tags",
     "quality_score", "platforms", "star_momentum", "estimated_tokens",
     "open_issues", "total_commits", "security_grade", "security_flags",
+    // When the grade was last computed: the audit page's "Audited:" date.
+    "security_scanned_at",
     // Why a row is ungraded (see gradeState below); the marker is written by the sync and the backfill.
     "readme_size", "readme_fetched_at",
   ].join(",");

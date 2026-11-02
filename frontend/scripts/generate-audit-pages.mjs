@@ -220,7 +220,7 @@ ${related.length ? `
       186,000+ open-source AI agent skills and MCP servers, refreshed every 8 hours. A ${g.label} grade is a scan
       result, not a guarantee &mdash; deep 5-dimension audits (code &middot; credentials &middot; vendor &middot;
       supply-chain &middot; operational) are available for <a href="/enterprise/" style="color:#4f46e5">enterprise</a>.
-      Audited: ${formatDate(new Date().toISOString())}.
+      ${skill.security_scanned_at ? `Audited: <time datetime="${skill.security_scanned_at}">${formatDate(skill.security_scanned_at)}</time>.` : ""}
     </p>
   </div>
 </body>
