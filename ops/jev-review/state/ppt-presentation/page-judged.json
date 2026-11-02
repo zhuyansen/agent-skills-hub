@@ -5616,5 +5616,42 @@
   "days": 155,
   "stars_per_day": 0.49032258064516127,
   "verdict": "admit"
+ },
+ {
+  "repo": "glukicov/slideops",
+  "name": "slideops",
+  "stars": 50,
+  "description": "Turn a repository into a slide deck that tells you when it stops matching the code",
+  "topics": [
+   "agent-skills",
+   "claude-code",
+   "claude-skills",
+   "developer-tools",
+   "docs-as-code",
+   "documentation",
+   "presentations",
+   "slides"
+  ],
+  "created": "2026-08-28",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 8494,
+  "names_model": false,
+  "makes_slides": 0.9,
+  "agent_driven": 0.96,
+  "editable_output": 0.86,
+  "reusable_tool": 0.96,
+  "one_command_start": 0.87,
+  "complete_docs": 0.81,
+  "shows_result": 0.97,
+  "specific_outcome": 0.91,
+  "novel_angle": 0.93,
+  "shareable_output": 0.75,
+  "quality": 0.89,
+  "tier": "高",
+  "hit_prior": 0.8833333333333333,
+  "days": 66,
+  "stars_per_day": 0.7575757575757576,
+  "verdict": "admit"
  }
 ]

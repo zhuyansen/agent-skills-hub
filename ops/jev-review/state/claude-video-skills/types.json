@@ -7432,5 +7432,131 @@
    "general": 0.08
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "Jane-xiaoer/paper-collage-ad-codex",
+  "stars": 426,
+  "description": "Codex skill for complete paper-cut collage ad production, local IndexTTS-2 voice cloning, animation, audio and MP4 QC",
+  "scores": {
+   "promo": 0.87,
+   "explainer": 0.18,
+   "music": 0.11,
+   "motion": 0.22,
+   "shorts": 0.29,
+   "editing": 0.15,
+   "demo": 0.17,
+   "story": 0.54,
+   "avatar": 0.06,
+   "general": 0.11
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "leodavincs/kalem",
+  "stars": 27,
+  "description": "Claude Code skill: her sahnenin kendi kalemi var. Videoyu sahnelere böler, her sahneye uygun motoru seçer (Paper.js, PixiJS, HyperFrames, Three.js, Manim).",
+  "scores": {
+   "promo": 0.14,
+   "explainer": 0.68,
+   "music": 0.05,
+   "motion": 0.22,
+   "shorts": 0.09,
+   "editing": 0.04,
+   "demo": 0.27,
+   "story": 0.34,
+   "avatar": 0.04,
+   "general": 0.72
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "mad-helpers/motion-harness",
+  "stars": 12,
+  "description": "Autonomous Programmatic Video & Cognitive Motion Pipeline powered by Claude Sonnet, GSAP, HyperFrames, and Jev System 1",
+  "scores": {
+   "promo": 0.7,
+   "explainer": 0.26,
+   "music": 0.13,
+   "motion": 0.47,
+   "shorts": 0.16,
+   "editing": 0.06,
+   "demo": 0.74,
+   "story": 0.56,
+   "avatar": 0.07,
+   "general": 0.46
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "luminexlabs-io/antigravity-remotion-skill",
+  "stars": 5,
+  "description": "Its remotion for antigravity and ensure claude level remotion here.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.29,
+   "music": 0.13,
+   "motion": 0.68,
+   "shorts": 0.49,
+   "editing": 0.34,
+   "demo": 0.24,
+   "story": 0.09,
+   "avatar": 0.06,
+   "general": 0.16
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "ChrisHKAI/ChrisHKAI-Video",
+  "stars": 5,
+  "description": "Paste a creator's X link, get a short film starring them as a 3D vinyl toy. A video skill for Claude Code, made entirely in code.",
+  "scores": {
+   "promo": 0.11,
+   "explainer": 0.11,
+   "music": 0.32,
+   "motion": 0.11,
+   "shorts": 0.15,
+   "editing": 0.05,
+   "demo": 0.24,
+   "story": 0.92,
+   "avatar": 0.07,
+   "general": 0.04
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "huaxialucaicaizi/opus5.5-video-skills-",
+  "stars": 1,
+  "description": "",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.94,
+   "music": 0.08,
+   "motion": 0.37,
+   "shorts": 0.63,
+   "editing": 0.04,
+   "demo": 0.36,
+   "story": 0.09,
+   "avatar": 0.03,
+   "general": 0.64
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "ghost1412/shorts-generator",
+  "stars": 8,
+  "description": "Self-hosted Opus Clip / Klap / Vizard alternative: turn long videos into captioned 9:16 Shorts with local Whisper, face tracking, active-speaker cuts and Remotion captions. MCP-ready, MIT.",
+  "scores": {
+   "promo": 0.25,
+   "explainer": 0.41,
+   "music": 0.06,
+   "motion": 0.13,
+   "shorts": 0.96,
+   "editing": 0.9,
+   "demo": 0.45,
+   "story": 0.21,
+   "avatar": 0.07,
+   "general": 0.16
+  },
+  "kind": "shorts"
  }
 ]

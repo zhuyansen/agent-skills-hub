@@ -463,6 +463,14 @@
   "type": "image/jpeg",
   "bytes": 105343
  },
+ "ChrisHKAI/ChrisHKAI-Video": {
+  "repo": "ChrisHKAI/ChrisHKAI-Video",
+  "url": "https://raw.githubusercontent.com/ChrisHKAI/ChrisHKAI-Video/HEAD/docs/isnail-intro.jpg",
+  "alt": "蜗牛King",
+  "score": -0.25,
+  "type": "image/jpeg",
+  "bytes": 96413
+ },
  "Codagent-AI/and-scene": {
   "repo": "Codagent-AI/and-scene",
   "url": "https://raw.githubusercontent.com/Codagent-AI/and-scene/HEAD/docs/assets/and-scene-demo.gif",
@@ -574,6 +582,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 397621
+ },
+ "Eronred/designspec": {
+  "repo": "Eronred/designspec",
+  "url": "https://raw.githubusercontent.com/Eronred/designspec/HEAD/site/og.png",
+  "alt": "designspec",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 147205
  },
  "EvilFreelancer/tgfake": {
   "repo": "EvilFreelancer/tgfake",
@@ -2167,6 +2183,14 @@
   "type": "image/png",
   "bytes": 25617
  },
+ "ckryptickunal/OpenWiki": {
+  "repo": "ckryptickunal/OpenWiki",
+  "url": "https://raw.githubusercontent.com/ckryptickunal/OpenWiki/HEAD/site/img/launch-poster.jpg",
+  "alt": "Watch the 49-second OpenWiki commercial",
+  "score": 1.85,
+  "type": "image/jpeg",
+  "bytes": 36124
+ },
  "code-on-sunday/slide-deck-generator": {
   "repo": "code-on-sunday/slide-deck-generator",
   "url": "https://raw.githubusercontent.com/code-on-sunday/slide-deck-generator/HEAD/examples/en-context-engineering.png",
@@ -2551,6 +2575,14 @@
   "type": "image/webp",
   "bytes": 8552
  },
+ "event4u-app/agent-config": {
+  "repo": "event4u-app/agent-config",
+  "url": "https://raw.githubusercontent.com/event4u-app/agent-config/HEAD/docs/media/proof-demo.gif",
+  "alt": "A real run of the proof page: every \"verify it yourself\" command passing",
+  "score": 4.25,
+  "type": "image/gif",
+  "bytes": 29489
+ },
  "evergreen-it-dev/folio": {
   "repo": "evergreen-it-dev/folio",
   "url": "https://raw.githubusercontent.com/evergreen-it-dev/folio/HEAD/docs/images/pdf.png",
@@ -2711,6 +2743,14 @@
   "type": "image/gif",
   "bytes": 321977
  },
+ "ghost1412/shorts-generator": {
+  "repo": "ghost1412/shorts-generator",
+  "url": "https://raw.githubusercontent.com/ghost1412/shorts-generator/HEAD/demos/demo_clipping_active.gif",
+  "alt": "Podcast clip: the crop cuts to whoever is speaking",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 2528816
+ },
  "gitbito/CodeReviewAgent": {
   "repo": "gitbito/CodeReviewAgent",
   "url": "https://i.imgur.com/iUFnfuK.png",
@@ -2726,6 +2766,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 610782
+ },
+ "glukicov/slideops": {
+  "repo": "glukicov/slideops",
+  "url": "https://raw.githubusercontent.com/glukicov/slideops/HEAD/docs/theme-light.png",
+  "alt": "Ledger Light",
+  "score": -0.45,
+  "type": "image/png",
+  "bytes": 187295
  },
  "gnipbao/knowledge-cat-ppt-skill": {
   "repo": "gnipbao/knowledge-cat-ppt-skill",
@@ -2918,6 +2966,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 1038224
+ },
+ "huaxialucaicaizi/opus5.5-video-skills-": {
+  "repo": "huaxialucaicaizi/opus5.5-video-skills-",
+  "url": "https://raw.githubusercontent.com/huaxialucaicaizi/opus5.5-video-skills-/HEAD/examples/ai-explainer-15s/results/contact_sheet.jpg",
+  "alt": "竖屏联系表",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 236904
  },
  "hub-ki/video-generation": {
   "repo": "hub-ki/video-generation",
@@ -3487,6 +3543,14 @@
   "type": "image/png",
   "bytes": 164811
  },
+ "leodavincs/kalem": {
+  "repo": "leodavincs/kalem",
+  "url": "https://raw.githubusercontent.com/leodavincs/kalem/HEAD/ornek/ucan-makine/kontrol.png",
+  "alt": "Uçan makine örneği: altı sahne, altı motor",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 603663
+ },
  "lewislulu/html-ppt-skill": {
   "repo": "lewislulu/html-ppt-skill",
   "url": "https://raw.githubusercontent.com/lewislulu/html-ppt-skill/HEAD/docs/readme/layouts-live.gif",
@@ -3582,6 +3646,14 @@
   "score": -2.55,
   "type": "image/png",
   "bytes": 351994
+ },
+ "mad-helpers/motion-harness": {
+  "repo": "mad-helpers/motion-harness",
+  "url": "https://raw.githubusercontent.com/mad-helpers/motion-harness/HEAD/snapshots/contact-sheet.jpg",
+  "alt": "Contact Sheet",
+  "score": -0.35,
+  "type": "image/jpeg",
+  "bytes": 109229
  },
  "magichourhq/skills": {
   "repo": "magichourhq/skills",

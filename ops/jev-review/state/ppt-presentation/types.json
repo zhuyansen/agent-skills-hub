@@ -3498,5 +3498,47 @@
    "general": 0.08
   },
   "kind": "html"
+ },
+ {
+  "repo": "glukicov/slideops",
+  "stars": 50,
+  "description": "Turn a repository into a slide deck that tells you when it stops matching the code",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.04,
+   "html": 0.82,
+   "business": 0.09,
+   "convert": 0.1,
+   "general": 0.48
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "MaximeRumpler/Make_PPTX",
+  "stars": 5,
+  "description": "Make PPTX: agent skills that turn your notes into a finished PowerPoint deck. Make Clean PPTX for the form; Make Style PPTX for the look and Make Colors PPTX for your brand, in preview.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.85,
+   "html": 0.02,
+   "business": 0.82,
+   "convert": 0.87,
+   "general": 0.09
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "hunkim/slide-skill",
+  "stars": 5,
+  "description": "Agent Skill that makes Claude/Codex build slides people can actually read — one point per slide, Death by PowerPoint principles, pre-ship checklist. No key, no deps.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.18,
+   "html": 0.58,
+   "business": 0.66,
+   "convert": 0.31,
+   "general": 0.52
+  },
+  "kind": "business"
  }
 ]

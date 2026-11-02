@@ -3391,5 +3391,18 @@
    "tooling": 0.94
   },
   "kind": "statusline"
+ },
+ {
+  "repo": "event4u-app/agent-config",
+  "stars": 18,
+  "description": "Skills, rules, slash commands and subagents for Claude Code, routed by intent and compiled into other coding agents — every claim machine-checked, including the artifact counts in these badges.",
+  "scores": {
+   "hooks": 0.52,
+   "subagents": 0.83,
+   "statusline": 0.02,
+   "collection": 0.94,
+   "tooling": 0.8
+  },
+  "kind": "collection"
  }
 ]

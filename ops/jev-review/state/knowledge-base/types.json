@@ -5080,5 +5080,19 @@
    "personal": 0.05
   },
   "kind": "rag_platform"
+ },
+ {
+  "repo": "ckryptickunal/OpenWiki",
+  "stars": 5,
+  "description": "Turn YouTube videos, playlists, channels, blogs & notes into a linked Markdown knowledge base (LLM wiki / second brain). Obsidian-compatible. Gemini, OpenAI, Ollama.",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.18,
+   "mcp": 0.1,
+   "docs_qa": 0.52,
+   "graph": 0.63,
+   "personal": 0.55
+  },
+  "kind": "llm_wiki"
  }
 ]
