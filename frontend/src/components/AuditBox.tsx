@@ -15,7 +15,7 @@ export function AuditBox() {
   const submit = () => {
     const v = value.trim();
     if (!v) return;
-    navigate(`/analyzer?repo=${encodeURIComponent(v)}`, {
+    navigate(`/analyzer/?repo=${encodeURIComponent(v)}`, {
       state: { autorun: true },
     });
   };

@@ -105,7 +105,7 @@ function pageHtml(skill, related = []) {
   const categoryUrl = category ? `/category/${category}/` : "/";
   const pageUrl = `${SITE}/audit/${repo_full_name}/`;
   const skillUrl = `${SITE}/skill/${repo_full_name}/`;
-  const analyzerUrl = `/analyzer?repo=${encodeURIComponent(`https://github.com/${repo_full_name}`)}`;
+  const analyzerUrl = `/analyzer/?repo=${encodeURIComponent(`https://github.com/${repo_full_name}`)}`;
   const flags = parseJsonArray(skill.security_flags);
 
   const title = `Is ${repo_name} Safe? Security Audit of ${repo_full_name} — Agent Skills Hub`;
