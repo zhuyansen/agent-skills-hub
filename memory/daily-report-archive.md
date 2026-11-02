@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-02
+1. microsoft/TokenEconomizer — 用历史经验给编程智能体做黑盒成本控制，微软研究院联合伯克利出品（3774★ 190.3/day）
+2. caru-ini/stack-diagram — 🆕 一句话描述技术栈，自动生成带官方 Logo 的架构图（151★ 151.0/day）
+3. Avarce/ghostty-cursor-fx — 🆕 为 Ghostty 终端加 13 种光标动效，Claude Code 发送和答完时都有提示（67★ 50.4/day）
+4. PoomSmart/ios-logos-tweak — 🆕 教智能体按最佳实践编写 iOS 越狱插件，出自资深越狱开发者（85★ 46.5/day）
+5. lemiur/Game-Decompilation-Skill-For-Claude — 🆕 让 Claude 按字节匹配逆向复原老游戏源码，方法可复用到任意项目（175★ 24.3/day）
+6. Shubhamkumartrichy/claude-trading-skills-india — 🆕 给 Claude Code 装上印度股市技能，覆盖 NSE/BSE、期权策略与技术分析（29★ 23.2/day）
+7. Jumbomuffin777/Frontier-UI — 🆕 给 Open WebUI 加上 ChatGPT 式生成界面，聊天里直接出图片、地图和行程卡片（21★ 21.0/day）
+8. BekirEfeoglu/proof-of-green — 🆕 改了代码却没跑通测试时，阻止 Claude Code 和 Codex 结束回合（23★ 20.0/day）
+9. cynicalight/NeoRead — 提供本地优先的 EPUB/PDF 阅读器，支持批注、对照翻译与 AI 助读（367★ 12.5/day）
+10. wj-sidiss/otopilot — 把一个话题做成完整 YouTube 短视频，脚本、免版权配图、配音字幕一条龙（178★ 9.8/day）
+🎯 今日趋势：**7 席**标 🆕；给编程智能体「省钱、守门、提醒」占 **3 席**（TokenEconomizer 控成本、proof-of-green 拦住没过测试的收尾、ghostty-cursor-fx 答完动效提示），垂直领域专家技能占 **3 席**（iOS 越狱插件、游戏逆向、印度股市），微软 TokenEconomizer 以 3,774★ 首次入库领跑。
+> 注：去重范围＝repo 内 archive 全部 130 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,379 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 148 条、命中历史 32 条；按 first_seen 切回 48h 后剔除可疑项仍有 10 个合格，未放宽到 72h（akari-sora/aave-oracle-lag-arb 56.6h、chatvia/chatvia 56.5h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①N1nEmAn/sapper-v2（416★ 174.8/day）：自动化渗透攻击「军团」，实时 435★ 配 379 fork（87%），fork 比异常且属攻击性工具，保守排除；②Aevonix/FlashAlign（78★ 43.8/day）：README 主打 abliteration「降低拒答」，演示让模型协助做逼真假证件，不推荐；③enmerasoftware/ai-design-check（136★ 28.9/day）：组织 10-21 新建、3 粉，名下另一仓 1★，单仓突起，保守排除；④unitshaperextol/Legion-os（76★ 21.5/day）：09-21 新建号、0 粉、0 fork，描述堆砌「GPT-6、Claude 5.5」，保守排除；⑤zhanghao123vip/ai-manju-skills（38★ 20.3/day）：06-13 新建号、2 粉，其余仓 ≤1★，实时 189★ 单仓突起，保守排除；⑥DreamFekk/Andriod_UnrealMemoryTools_Mcp（20★ 12.2/day）：安卓虚幻引擎游戏内存修改工具，近外挂用途，不推荐；⑦其余均已在历史榜单出现或 velocity 低于第 10 席（akfamily/akshare 8.9/day 第 11）。入选项复核（`gh api`）：第 1 席 microsoft 官方组织，微软研究院与 UC Berkeley 论文配套代码，实时 3,889★/226 fork；第 2 席 caru-ini 2024 建号、49 粉，名下另有 78★ 仓，实时 344★/9 fork；第 3 席 Avarce 6 粉，名下另有 165★ 仓；第 4 席 PoomSmart 2013 建号、1,313 粉的知名越狱开发者；第 5 席 lemiur 4 粉、其余仓 ≤19★，实时 177★/13 fork 比例正常（**轻红旗**，保留）；第 6 席 Shubhamkumartrichy 5 粉、其余仓 ≤1★，但实时仅 32★ 未成爆星（**轻红旗**，保留）；第 7 席 Jumbomuffin777 0 粉、实时 28★/0 fork，星数小（**轻红旗**，保留）；第 8 席 BekirEfeoglu 2016 建号，星数小、无突起；第 9 席 cynicalight 2020 建号、20 粉，仓龄 29 天逐步涨到 367★/28 fork；第 10 席 wj-sidiss 10-14 新建号、17 粉，名下另有 12★ 仓，实时 180★/37 fork 比例正常（**轻红旗**，保留）。🆕 判定＝created_at 距今 14 天内：除 TokenEconomizer（19.8 天）、NeoRead（29.4 天）、otopilot（18.2 天）外七席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（stack-diagram 344★、TokenEconomizer 3,889★），按红线保留快照值。
+
+---
+
 ## 2026-11-01
 1. Pluviobyte/douyin-comments — 🆕 抓取抖音单条视频完整评论区（含楼中楼），复用已登录浏览器的真实请求（247★ 162.9/day）
 2. elayadesign/ai-design-skills — 收录落地页设计等 AI 设计技能，一条命令装进 Claude Code、Cursor 等工具（13094★ 138.0/day）
