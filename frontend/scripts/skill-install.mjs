@@ -58,15 +58,32 @@ export function installCommands(readme, repoName = "") {
 
 const escHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+/** The section's words, English and Chinese (skill-page-copy.mjs decides the language). */
+const INSTALL_COPY = {
+  en: {
+    title: (name) => `How to install ${name}`,
+    source: "Taken from the project's README on GitHub.",
+    check: (link) => ` Check ${link} before running it.`,
+    audit: "the security audit",
+  },
+  zh: {
+    title: (name) => `怎么安装 ${name}`,
+    source: "命令取自这个项目在 GitHub 上的 README。",
+    check: (link) => `运行前先看看${link}。`,
+    audit: "安全审计",
+  },
+};
+
 /** "How to install" section, or "" when the README gave no command. */
-export function installSectionHtml(repoName, commands, auditUrl) {
+export function installSectionHtml(repoName, commands, auditUrl, lang = "en") {
   if (!commands.length) return "";
+  const c = INSTALL_COPY[lang] || INSTALL_COPY.en;
   const check = auditUrl
-    ? ` Check <a href="${escHtml(auditUrl)}" style="color:#4f46e5">the security audit</a> before running it.`
+    ? c.check(`<a href="${escHtml(auditUrl)}" style="color:#4f46e5">${c.audit}</a>`)
     : "";
   return `<section style="margin:20px 0">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">How to install ${escHtml(repoName)}</h2>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.title(escHtml(repoName))}</h2>
         <pre style="background:#0f172a;color:#e2e8f0;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6"><code>${commands.map(escHtml).join("\n")}</code></pre>
-        <p style="color:#64748b;font-size:13px;margin:6px 0 0">Taken from the project's README on GitHub.${check}</p>
+        <p style="color:#64748b;font-size:13px;margin:6px 0 0">${c.source}${check}</p>
       </section>`;
 }

@@ -233,25 +233,30 @@ const CLARITY_SNIPPET = `<script type="text/javascript">(function(c,l,a,r,i,t,y)
 // Wording is lifted verbatim from index.html / /about/ so the claim is
 // identical everywhere — one source of truth, no drift. Bilingual via the
 // data-en/data-zh toggle every static page already ships.
-export function trustBlock() {
+export function trustBlock(lang = "en") {
   const b = (en, zh) => `data-en="${esc(en)}" data-zh="${esc(zh)}"`;
+  // The visible text: English as written below, or the Chinese of the same pair (a /skill/
+  // page for a repo that describes itself in Chinese, skill-page-copy.mjs).
+  const t = (en, zh) => (lang === "zh" ? esc(zh) : en);
   return `<section style="margin:28px 0;padding:16px 18px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:12px;font-size:13px;line-height:1.65;color:#475569">
-    <h2 style="font-size:14px;color:#334155;margin:0 0 8px" ${b("How this security grade is produced", "这个安全评级是怎么来的")}>How this security grade is produced</h2>
+    <h2 style="font-size:14px;color:#334155;margin:0 0 8px" ${b("How this security grade is produced", "这个安全评级是怎么来的")}>${t("How this security grade is produced", "这个安全评级是怎么来的")}</h2>
     <p style="margin:0 0 8px" ${b(
       `Grades come from a rule-based scan built on the SlowMist agent-security taxonomy: ${RULE_COUNT} published rules, covering credential harvesting, data exfiltration, curl | sh installers and more. It is a first-layer scan, not a manual audit — we say so rather than overstate it.`,
       `评级来自基于 SlowMist agent 安全分类法的规则扫描：${RULE_COUNT} 条公开规则，覆盖凭证窃取、数据外泄、curl | sh 安装等。它是第一层扫描，不是人工审计 — 我们如实说明，不夸大。`,
-    )}>Grades come from a rule-based scan built on the SlowMist agent-security taxonomy: ${RULE_COUNT} published rules, covering credential harvesting, data exfiltration, curl | sh installers and more. It is a first-layer scan, not a manual audit — we say so rather than overstate it.</p>
+    )}>${t(`Grades come from a rule-based scan built on the SlowMist agent-security taxonomy: ${RULE_COUNT} published rules, covering credential harvesting, data exfiltration, curl | sh installers and more. It is a first-layer scan, not a manual audit — we say so rather than overstate it.`,
+      `评级来自基于 SlowMist agent 安全分类法的规则扫描：${RULE_COUNT} 条公开规则，覆盖凭证窃取、数据外泄、curl | sh 安装等。它是第一层扫描，不是人工审计 — 我们如实说明，不夸大。`)}</p>
     <p style="margin:0 0 8px" ${b(
       "The scale of the problem is documented independently: Liu et al. (2026), in a study of 31,132 agent skills, report that 26.1% contain security vulnerabilities. Our own full-catalog census is published as a citable open dataset.",
       "问题规模有独立研究佐证：Liu et al. (2026) 对 31,132 个 agent skill 的研究发现，26.1% 含有安全漏洞。我们自己的全目录普查已作为可引用的开放数据集发布。",
-    )}>The scale of the problem is documented independently: Liu et al. (2026), in a study of 31,132 agent skills, report that 26.1% contain security vulnerabilities. Our own full-catalog census is published as a citable open dataset.</p>
-    <p style="margin:0" ${b("Sources & who's responsible:", "信源与负责人：")}>Sources &amp; who's responsible:</p>
+    )}>${t("The scale of the problem is documented independently: Liu et al. (2026), in a study of 31,132 agent skills, report that 26.1% contain security vulnerabilities. Our own full-catalog census is published as a citable open dataset.",
+      "问题规模有独立研究佐证：Liu et al. (2026) 对 31,132 个 agent skill 的研究发现，26.1% 含有安全漏洞。我们自己的全目录普查已作为可引用的开放数据集发布。")}</p>
+    <p style="margin:0" ${b("Sources & who's responsible:", "信源与负责人：")}>${t("Sources &amp; who's responsible:", "信源与负责人：")}</p>
     <ul style="margin:6px 0 0;padding-left:18px">
-      <li><a href="https://github.com/slowmist/Knowledge-Base" rel="noopener" style="color:#4f46e5">SlowMist agent-security taxonomy</a></li>
+      <li><a href="https://github.com/slowmist/Knowledge-Base" rel="noopener" style="color:#4f46e5">${t("SlowMist agent-security taxonomy", "慢雾（SlowMist）agent 安全分类法")}</a></li>
       <li><a href="https://arxiv.org/abs/2601.10338" rel="noopener" style="color:#4f46e5">Liu et al., An Empirical Study of Agent Skill Security (2026)</a></li>
-      <li><a href="https://doi.org/10.5281/zenodo.21292799" rel="noopener" style="color:#4f46e5">Our census dataset (DOI 10.5281/zenodo.21292799)</a> · <a href="https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades" rel="noopener" style="color:#4f46e5">Hugging Face mirror</a></li>
-      <li><a href="${HOW_WE_GRADE_PATH}" style="color:#4f46e5" ${b(`How we grade: all ${RULE_COUNT} rules, the source tiers and known limits`, `评级方法：全部 ${RULE_COUNT} 条规则、来源分档和已知局限`)}>How we grade: all ${RULE_COUNT} rules, the source tiers and known limits</a></li>
-      <li><a href="/about/" style="color:#4f46e5" ${b("Full methodology & the person behind Agent Skills Hub", "完整方法论与 Agent Skills Hub 背后的人")}>Full methodology &amp; who runs this</a></li>
+      <li><a href="https://doi.org/10.5281/zenodo.21292799" rel="noopener" style="color:#4f46e5">${t("Our census dataset (DOI 10.5281/zenodo.21292799)", "我们的普查数据集（DOI 10.5281/zenodo.21292799）")}</a> · <a href="https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades" rel="noopener" style="color:#4f46e5">${t("Hugging Face mirror", "Hugging Face 镜像")}</a></li>
+      <li><a href="${HOW_WE_GRADE_PATH}" style="color:#4f46e5" ${b(`How we grade: all ${RULE_COUNT} rules, the source tiers and known limits`, `评级方法：全部 ${RULE_COUNT} 条规则、来源分档和已知局限`)}>${t(`How we grade: all ${RULE_COUNT} rules, the source tiers and known limits`, `评级方法：全部 ${RULE_COUNT} 条规则、来源分档和已知局限`)}</a></li>
+      <li><a href="/about/" style="color:#4f46e5" ${b("Full methodology & the person behind Agent Skills Hub", "完整方法论与 Agent Skills Hub 背后的人")}>${t("Full methodology &amp; who runs this", "完整方法论与 Agent Skills Hub 背后的人")}</a></li>
     </ul>
   </section>`;
 }

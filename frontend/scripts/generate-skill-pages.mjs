@@ -22,6 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
+import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
@@ -83,10 +84,6 @@ const CHIP_STYLE = "display:inline-block;padding:2px 10px;border-radius:12px;bac
 
 /** The README is background now, not the body of the page: one short paragraph. */
 const README_EXCERPT_CHARS = 400;
-
-/** What the quality number means, shown next to it (backend/app/services/quality_analyzer.py). */
-const QUALITY_NOTE =
-  "The quality score combines nine heuristic checks of the repo and its README: completeness, clarity, specificity, examples, structure, agent readiness, step-by-step content, instruction quality and security notes. It rates how well the project explains itself to an agent, not the code.";
 
 function topicChip(topic) {
   const sc = TOPIC_SCENARIO.get(topic.toLowerCase());
@@ -203,6 +200,11 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
 
   const indexed = isIndexedSkillPage(skill);
   const catLabel = CATEGORY_LABELS[category] || "AI Tool";
+  // A repo that describes itself in Chinese gets a Chinese page (skill-page-copy.mjs);
+  // title, meta description and JSON-LD stay as they are.
+  const lang = skillPageLang(description);
+  const c = skillCopy(lang);
+  const catText = c.catLabel(category);
   const pageUrl = `${SITE}/skill/${repo_full_name}/`;
   // repo_url, not a re-derivation from repo_full_name: the two diverge when a
   // repo's canonical home moves and we retarget the link while freezing the
@@ -215,37 +217,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // pos 4.3 for its own name — and nowhere else on the web answers it. What we
   // owe the visitor is an honest label, not a link that dumps them on a 404.
   const isGone = skill.repo_status === "gone";
-  // Human-readable red-flag names. §20.0 of Google's rater guidelines says a
-  // result that gives "reviews and reputation information" is very helpful for
-  // a URL query, while one offering "usage statistics" usually is not. Naming
-  // what the scan actually found is review information; a star count is not.
-  const FLAG_COPY = {
-    sudo_usage: "sudo usage", service_persistence: "installs a background service",
-    curl_pipe_shell: "curl | sh from an untrusted host", agent_config_theft: "sends agent config files off the machine",
-    fenced_download_exec: "install step in a code block runs a script from an untrusted host",
-    tunnel_service: "opens a tunnel service", eval_usage: "dynamic eval()",
-    sensitive_env_vars: "reads sensitive env vars", agent_memory_theft: "reads agent memory",
-    env_access: "environment access", subprocess_spawn: "spawns subprocesses",
-    cron_persistence: "installs a cron job", sensitive_dir_access: "sensitive directory access",
-    docker_privileged: "privileged Docker", backdoor_install: "backdoor install pattern",
-    chmod_dangerous: "dangerous chmod", ssl_disabled: "disables SSL verification",
-    etc_sensitive_read: "reads /etc secrets",
-    wget_pipe_shell: "wget | sh from an untrusted host", runtime_install_exec: "installs at runtime",
-    powershell_download_exec: "irm | iex from an untrusted host",
-    prompt_injection_covert: "tells the agent to act covertly",
-    credential_harvest: "collects credentials from your environment",
-    exec_import: "runs code it imports at runtime", base64_exec: "runs base64-decoded code",
-    obfuscated_exec: "runs obfuscated code", hex_encoded_payload: "hides a payload as hex",
-    fs_root_access: "reads the root of the filesystem",
-    jailbreak_mode: "jailbreak persona prompt", tool_priority_manipulation: "tells the agent to ignore other tools",
-    credential_in_chat: "asks you to paste credentials into chat",
-    shortener_download: "downloads via a URL shortener", paste_host_download: "downloads from a paste host",
-    leaked_secret: "hardcoded credential in the README",
-    privilege_escalation: "privilege escalation", reverse_shell: "reverse shell",
-    raw_ip_request: "hardcoded IP request", exfil_secrets_combo: "secret-exfiltration combo",
-    rm_rf_root: "rm -rf on root paths", dev_tcp: "/dev/tcp socket", data_exfiltration: "data exfiltration",
-    write_etc: "writes to /etc", shell_rc_inject: "injects into shell rc",
-  };
+  // Human-readable red-flag names (skill-page-copy.mjs says why they are named).
   const flagList = (() => {
     let v = skill.security_flags;
     try {
@@ -254,7 +226,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     } catch { return []; }
     return Array.isArray(v) ? v : [];
   })();
-  const flagNames = flagList.map((f) => FLAG_COPY[f] || f.replace(/_/g, " "));
+  const flagNames = flagList.map((f) => flagName(f, lang));
 
   // The verdict, above the fold. This is the review information §20.0 rewards:
   // what was scanned, what was found, what was not. A SAFE grade with an empty
@@ -290,8 +262,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     : "";
   const goneBanner = isGone
     ? `<div style="margin:16px 0;padding:12px 16px;border:1px solid #fecaca;background:#fef2f2;border-radius:8px;font-size:14px;color:#991b1b">
-        <strong ${biAttrs("Repository no longer available", "仓库已下架")}>Repository no longer available</strong>
-        <span ${biAttrs(goneEn + subEn, goneZh + subZh)}>${esc(goneEn + subEn)}</span>
+        <strong ${biAttrs("Repository no longer available", "仓库已下架")}>${c.goneLabel}</strong>
+        <span ${biAttrs(goneEn + subEn, goneZh + subZh)}>${esc(lang === "zh" ? goneZh + subZh : goneEn + subEn)}</span>
       </div>`
     : "";
   // Link /audit/ only where generate-audit-pages.mjs writes one: the same rule
@@ -349,14 +321,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const verdictBlock = (() => {
     if (isGone || !gradeLabel) return "";
     const [fg, bg, br] = GRADE_STYLE[security_grade] || GRADE_STYLE.caution;
-    const finding = flagNames.length
-      ? `Flagged: ${flagNames.slice(0, 4).map(esc).join(", ")}${flagNames.length > 4 ? ` and ${flagNames.length - 4} more` : ""}.`
-      : `None of the ${RULE_COUNT} rules matched \u2014 no credential harvesting, no data exfiltration, no curl-pipe-shell installer.`;
+    const finding = findingText(c, flagNames, RULE_COUNT);
     const q = typeof quality_score === "number" ? Math.round(quality_score) : null;
+    const rules = `<a href="${HOW_WE_GRADE_PATH}" style="color:${fg}">${c.rulesLink(RULE_COUNT)}</a>`;
     return `<section style="margin:0 0 16px;padding:14px 16px;border:1px solid ${br};background:${bg};border-radius:10px">
-        <h2 style="font-size:16px;color:${fg};margin:0 0 6px">Security audit verdict: ${esc(gradeLabel)}${q !== null ? ` \u00b7 quality ${q}/100` : ""}</h2>
-        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding} Scanned against <a href="${HOW_WE_GRADE_PATH}" style="color:${fg}">${RULE_COUNT} published rules</a> built on the SlowMist agent-security taxonomy, refreshed every 8 hours.${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">Full audit &rarr;</a>` : ""}</p>${q !== null ? `
-        <p style="margin:6px 0 0;line-height:1.6;color:${fg};font-size:13px">${esc(QUALITY_NOTE)}</p>` : ""}
+        <h2 style="font-size:16px;color:${fg};margin:0 0 6px">${c.verdictTitle(security_grade, gradeLabel, q)}</h2>
+        <p style="margin:0;line-height:1.6;color:${fg};font-size:14px">${finding}${c.scanned(rules)}${hasAudit ? ` <a href="${esc(auditUrl)}" style="color:${fg};font-weight:600">${c.fullAudit}</a>` : ""}</p>${q !== null ? `
+        <p style="margin:6px 0 0;line-height:1.6;color:${fg};font-size:13px">${esc(c.qualityNote)}</p>` : ""}
       </section>`;
   })();
   const qualityPart = typeof quality_score === "number"
@@ -457,19 +428,20 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const { scriptTags, linkTags } = assetTags;
 
   // Quick Facts rows — expanded
+  const f = c.facts;
   const factsRows = [
-    `<tr><td>Stars</td><td>${stars.toLocaleString()}</td></tr>`,
-    `<tr><td>Forks</td><td>${(forks || 0).toLocaleString()}</td></tr>`,
-    language ? `<tr><td>Language</td><td>${esc(language)}</td></tr>` : "",
-    `<tr><td>Category</td><td><a href="/category/${esc(category)}/">${esc(catLabel)}</a></td></tr>`,
-    license && license !== "NOASSERTION" ? `<tr><td>License</td><td>${esc(license)}</td></tr>` : "",
-    quality_score ? `<tr><td>Quality Score</td><td>${Math.round(quality_score)}/100</td></tr>` : "",
-    total_commits ? `<tr><td>Total Commits</td><td>${total_commits.toLocaleString()}</td></tr>` : "",
-    open_issues ? `<tr><td>Open Issues</td><td>${open_issues}</td></tr>` : "",
-    last_commit_at ? `<tr><td>Last Updated</td><td>${formatDate(last_commit_at)}</td></tr>` : "",
-    created_at ? `<tr><td>Created</td><td>${formatDate(created_at)}</td></tr>` : "",
-    platformsList.length ? `<tr><td>Platforms</td><td>${esc(platformsList.join(", "))}</td></tr>` : "",
-    estimated_tokens ? `<tr><td>Est. Tokens</td><td>~${(estimated_tokens / 1000).toFixed(0)}k</td></tr>` : "",
+    `<tr><td>${f.stars}</td><td>${stars.toLocaleString()}</td></tr>`,
+    `<tr><td>${f.forks}</td><td>${(forks || 0).toLocaleString()}</td></tr>`,
+    language ? `<tr><td>${f.language}</td><td>${esc(language)}</td></tr>` : "",
+    `<tr><td>${f.category}</td><td><a href="/category/${esc(category)}/">${esc(catText)}</a></td></tr>`,
+    license && license !== "NOASSERTION" ? `<tr><td>${f.license}</td><td>${esc(license)}</td></tr>` : "",
+    quality_score ? `<tr><td>${f.quality}</td><td>${Math.round(quality_score)}/100</td></tr>` : "",
+    total_commits ? `<tr><td>${f.commits}</td><td>${total_commits.toLocaleString()}</td></tr>` : "",
+    open_issues ? `<tr><td>${f.issues}</td><td>${open_issues}</td></tr>` : "",
+    last_commit_at ? `<tr><td>${f.updated}</td><td>${formatDate(last_commit_at)}</td></tr>` : "",
+    created_at ? `<tr><td>${f.created}</td><td>${formatDate(created_at)}</td></tr>` : "",
+    platformsList.length ? `<tr><td>${f.platforms}</td><td>${esc(platformsList.join(", "))}</td></tr>` : "",
+    estimated_tokens ? `<tr><td>${f.tokens}</td><td>~${(estimated_tokens / 1000).toFixed(0)}k</td></tr>` : "",
   ].filter(Boolean).join("\n          ");
 
   // Topics HTML
@@ -480,8 +452,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // Compatible skills HTML
   const compsHtml = compLinks.length > 0
     ? `<section style="margin-top:20px">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Compatible Skills</h2>
-        <p style="color:#64748b;font-size:14px;margin-bottom:8px">These tools work well together with ${esc(repo_name)} for enhanced workflows:</p>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.compatTitle}</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:8px">${c.compatIntro(repo_name)}</p>
         <ul style="list-style:none;padding:0">${compLinks.map((c) => `
           <li style="margin:6px 0"><a href="/skill/${esc(c.slug)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(c.name)}</a> <span style="color:#94a3b8;font-size:13px">— ${esc(c.reason)} (${Math.round(c.score * 100)}%)</span></li>`).join("")}
         </ul>
@@ -492,14 +464,14 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // (exact-phrase match matters for SERP snippets — per aaron-he-zhu audit).
   const alternativesHtml = alternatives.length > 0
     ? `<section style="margin-top:20px">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${esc(repo_name)} alternative? Top ${alternatives.length} similar tools</h2>
-        <p style="color:#64748b;font-size:14px;margin-bottom:12px">Looking for a ${esc(repo_name)} alternative? If you're comparing ${esc(repo_name)} with other ${esc(catLabel.toLowerCase())} tools, these ${alternatives.length} projects are the closest alternatives on Agent Skills Hub — ranked by topic overlap, star count, and community traction.</p>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.altTitle(repo_name, alternatives.length)}</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">${c.altIntro(repo_name, catText, alternatives.length)}</p>
         <ul style="list-style:none;padding:0">${alternatives.map((a) => {
           const altDesc = a.description ? esc(a.description.slice(0, 110)) : "";
           return `
           <li style="margin:8px 0;padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
             <a href="/skill/${esc(a.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:600">${esc(a.repo_name)}</a>
-            <span style="color:#94a3b8;font-size:13px"> by ${esc(a.author_name)} · ⭐ ${starsK(a.stars)}</span>
+            <span style="color:#94a3b8;font-size:13px">${c.byAuthor(a.author_name)} · ⭐ ${starsK(a.stars)}</span>
             ${altDesc ? `<p style="margin:4px 0 0;color:#475569;font-size:13px;line-height:1.5">${altDesc}</p>` : ""}
           </li>`;
         }).join("")}
@@ -510,21 +482,21 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // Same-category links HTML
   const sameCatHtml = sameCatSkills.length > 0
     ? `<section style="margin-top:20px">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">More ${esc(catLabel)} Tools</h2>
-        <p style="color:#64748b;font-size:14px;margin-bottom:8px">Explore other popular ${esc(catLabel.toLowerCase())} tools:</p>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.moreCat(catText)}</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:8px">${c.exploreCat(catText)}</p>
         <ul style="list-style:none;padding:0">${sameCatSkills.map((s) => `
           <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
         </ul>
-        <a href="/category/${esc(category)}/" style="color:#4f46e5;font-size:14px">View all ${esc(catLabel)} tools →</a>
+        <a href="/category/${esc(category)}/" style="color:#4f46e5;font-size:14px">${c.viewAllCat(catText)}</a>
       </section>`
     : "";
 
   // Same-language links HTML
   const sameLangHtml = sameLangSkills.length > 0
     ? `<section style="margin-top:20px">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Popular ${esc(language)} Agent Tools</h2>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.popularLang(language)}</h2>
         <ul style="list-style:none;padding:0">${sameLangSkills.map((s) => `
-          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(CATEGORY_LABELS[s.category] || "AI Tool")}</span></li>`).join("")}
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(c.catLabel(s.category))}</span></li>`).join("")}
         </ul>
       </section>`
     : "";
@@ -535,7 +507,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     : `\n  <meta name="robots" content="noindex, follow" />`;
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${c.htmlLang}">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -586,9 +558,9 @@ ${breadcrumbLd}
     <div style="max-width:800px;margin:40px auto;font-family:system-ui,-apple-system,sans-serif;padding:0 20px;color:#1e293b">
       <!-- Breadcrumb -->
       <nav style="font-size:13px;color:#64748b;margin-bottom:16px">
-        <a href="/" style="color:#4f46e5;text-decoration:none">Home</a>
+        <a href="/" style="color:#4f46e5;text-decoration:none">${c.home}</a>
         <span style="margin:0 6px">&gt;</span>
-        <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
+        <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catText)}</a>
         <span style="margin:0 6px">&gt;</span>
         <span>${esc(repo_name)}</span>
       </nav>
@@ -597,29 +569,29 @@ ${breadcrumbLd}
       <!-- h1 keeps repo_name first so it still matches the query verbatim, then says
            what the repo is in its own words (headingClause), else the page's intent. -->
       <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}${
-        isGone ? " — repository deleted, archived audit" : `: ${esc(h1Clause || intent)}`
+        isGone ? c.goneHeading : `: ${esc(h1Clause || intent)}`
       }</h1>
       ${goneBanner}
       <p style="color:#64748b;margin:0 0 8px">
-        by ${creatorLinkHtml(author_name)}
-        &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catLabel)}</a>
+        ${c.by(creatorLinkHtml(author_name))}
+        &middot; <a href="/category/${esc(category)}/" style="color:#4f46e5;text-decoration:none">${esc(catText)}</a>
         &middot; &#9733; ${starsK(stars)}
       </p>
       <!-- Freshness signal for E-E-A-T -->
       <p style="color:#94a3b8;font-size:13px;margin:0 0 16px">
-        ${last_commit_at ? `Last updated: <time datetime="${last_commit_at}">${formatDate(last_commit_at)}</time> &middot; ` : ""}Indexed by AgentSkillsHub &middot; Auto-synced every 8h
+        ${last_commit_at ? `${c.lastUpdated}<time datetime="${last_commit_at}">${formatDate(last_commit_at)}</time> &middot; ` : ""}${c.synced}
       </p>
       ${hasAudit && !verdictBlock ? `<p style="margin:0 0 16px">
-        <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">&#128274; Is ${esc(repo_name)} safe to install? View the security audit &rarr;</a>
+        <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">${c.auditLink(repo_name)}</a>
       </p>` : ""}
       ${scenariosFeaturing.length ? `<p style="margin:0 0 16px;font-size:14px;color:#475569">
-        Featured in: ${scenariosFeaturing.map((s) => `<a href="/best/${esc(s.slug)}/" style="color:#4f46e5;text-decoration:none">${esc(s.title)}</a>`).join(" &middot; ")}
+        ${c.featuredIn} ${scenariosFeaturing.map((s) => `<a href="/best/${esc(s.slug)}/" style="color:#4f46e5;text-decoration:none">${esc(s.title)}</a>`).join(" &middot; ")}
       </p>` : ""}
 
       <!-- What only this page has comes first: the install command we found, then the scan verdict -->
-      ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null)}
+      ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null, lang)}
       ${verdictBlock}
-      ${testedHtml(tested)}
+      ${testedHtml(tested, lang)}
       <!--sub-skills: generate-sub-skill-pages.mjs puts this repository's skill list here-->
 
       <!-- Topics -->
@@ -627,7 +599,7 @@ ${breadcrumbLd}
 
       <!-- Quick Facts -->
       <section style="margin:20px 0">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">Quick Facts</h2>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.quickFacts}</h2>
         <table style="border-collapse:collapse;width:100%">
           ${factsRows}
         </table>
@@ -635,7 +607,7 @@ ${breadcrumbLd}
 
       <!-- README summary: background, after our own data -->
       <section style="margin:20px 0">
-        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">About ${esc(repo_name)}</h2>
+        <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.about(repo_name)}</h2>
         <p style="line-height:1.6;color:#475569">${esc(excerpt)}</p>
       </section>
 
@@ -652,7 +624,7 @@ ${breadcrumbLd}
       ${sameLangHtml}
 
       <!-- Trust / methodology (E-E-A-T: how the grade is made, who is responsible) -->
-      ${trustBlock()}
+      ${trustBlock(lang)}
 
       <!-- Links -->
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
@@ -660,13 +632,13 @@ ${breadcrumbLd}
           substitute
             ? biAttrs(`View alternative: ${substitute} →`, `查看替代项目:${substitute} →`)
             : biAttrs("View on GitHub →", "在 GitHub 上查看 →")
-        }>${substitute ? `View alternative: ${esc(substitute)} &rarr;` : "View on GitHub &rarr;"}</a>
-        <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">Browse ${esc(catLabel)} tools</a>
+        }>${substitute ? c.viewAlt(substitute) : c.viewGithub}</a>
+        <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">${c.browseCat(catText)}</a>
       </div>
     </div>
   </div>
   <noscript>
-    <p style="text-align:center;padding:20px">Enable JavaScript for the full interactive experience, or browse the content above.</p>
+    <p style="text-align:center;padding:20px">${c.noscript}</p>
   </noscript>
 </body>
 </html>`;

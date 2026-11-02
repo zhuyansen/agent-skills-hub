@@ -54,25 +54,27 @@ export function testedEntries(repo) {
 }
 
 const P = "margin:0 0 6px;line-height:1.6;font-size:14px;color:#374151";
-const para = (pair, style = P) => (pair ? `<p style="${style}">${esc(pair[0])}</p>` : "");
+/** Each copy is an [English, Chinese] pair; `i` picks one (0 or 1). */
+const para = (pair, i, style = P) => (pair ? `<p style="${style}">${esc(pair[i])}</p>` : "");
 
-function entryHtml(e) {
+function entryHtml(e, i) {
   const image = e.evidence.image ? `<a href="${esc(e.evidence.href)}" target="_blank" rel="noopener">`
-    + `<img src="${esc(e.evidence.href)}" alt="${esc(TESTED_IMAGE_ALT[0])}" width="1200" height="675" loading="lazy" `
+    + `<img src="${esc(e.evidence.href)}" alt="${esc(TESTED_IMAGE_ALT[i])}" width="1200" height="675" loading="lazy" `
     + `style="display:block;max-width:100%;height:auto;margin:8px 0;border-radius:8px;border:1px solid #e5e7eb"></a>` : "";
   return `<div style="margin:0 0 8px">
-        ${para(testedIntro(e))}${para(testedTop(e), `${P};font-weight:600`)}${para(testedPick(e))}${para(testedResult(e))}
-        ${image}<p style="${P}"><a href="${esc(e.evidence.href)}" target="_blank" rel="noopener">${esc(e.evidence.label[0])}</a>`
-    + ` · <a href="${esc(e.page)}">${esc(TESTED_SEE_ALL[0])}</a></p>
+        ${para(testedIntro(e), i)}${para(testedTop(e), i, `${P};font-weight:600`)}${para(testedPick(e), i)}${para(testedResult(e), i)}
+        ${image}<p style="${P}"><a href="${esc(e.evidence.href)}" target="_blank" rel="noopener">${esc(e.evidence.label[i])}</a>`
+    + ` · <a href="${esc(e.page)}">${esc(TESTED_SEE_ALL[i])}</a></p>
       </div>`;
 }
 
-/** The static block (English, like the audit verdict above it); "" without entries. */
-export function testedHtml(entries) {
+/** The static block, in the page's language like the audit verdict above it; "" without entries. */
+export function testedHtml(entries, lang = "en") {
   if (!entries.length) return "";
+  const i = lang === "zh" ? 1 : 0;
   return `<section style="margin:0 0 16px;padding:14px 16px;border:1px solid #c7d2fe;background:#f5f7ff;border-radius:10px">
-        <h2 style="font-size:16px;margin:0 0 8px;color:#1e1b4b">🧪 ${esc(TESTED_TITLE[0])}</h2>
-        ${entries.map(entryHtml).join("\n        ")}
+        <h2 style="font-size:16px;margin:0 0 8px;color:#1e1b4b">🧪 ${esc(TESTED_TITLE[i])}</h2>
+        ${entries.map((e) => entryHtml(e, i)).join("\n        ")}
       </section>`;
 }
 
