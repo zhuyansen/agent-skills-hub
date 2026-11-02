@@ -22,7 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
-import { plusThousands, stampHomeCounts } from "./home-counts.mjs";
+import { homeCountTexts, stampHomeCounts } from "./home-counts.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
@@ -922,12 +922,12 @@ async function main() {
   const totalElapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`Total: ${ok + catCount} pages in ${totalElapsed}s`);
 
-  // The home page's catalog total and graded count, counted from the rows fetched above.
+  // The numbers the home page states, counted from the rows fetched above.
   const indexPath = join(distDir, "index.html");
   try {
-    const counts = { total: skills.length, graded: skills.filter((s) => gradeState(s) === "graded").length };
-    writeFileSync(indexPath, stampHomeCounts(readFileSync(indexPath, "utf-8"), counts));
-    console.log(`Updated dist/index.html: ${counts.total} indexed → ${plusThousands(counts.total)}, ${counts.graded} graded → ${plusThousands(counts.graded)}`);
+    const texts = homeCountTexts(skills);
+    writeFileSync(indexPath, stampHomeCounts(readFileSync(indexPath, "utf-8"), texts));
+    console.log(`Updated dist/index.html: ${Object.entries(texts).map(([key, text]) => `${key} ${text}`).join(", ")}`);
   } catch (e) {
     console.warn("Could not update index.html count:", e.message);
   }
