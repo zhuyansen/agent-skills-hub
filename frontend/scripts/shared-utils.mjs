@@ -345,6 +345,45 @@ export const MIN_STARS_TO_INDEX = 500;
 /** Whether a skill page carries no robots noindex. Gone repos follow the same floor. */
 export const isIndexedSkillPage = (skill) => shouldIndex(skill) && skill.stars >= MIN_STARS_TO_INDEX;
 
+// Audit pages (generate-audit-pages.mjs)
+// ── Eligibility (tightened 2026-07-28 on 28-day GSC evidence) ──────────────
+// 8,638 audit pages earned 0 clicks and 1 impression in 28 days, while 85
+// /best/ pages earned 315 clicks. They were also 73% of the sitemap (8,638 /
+// 11,769) — pure crawl-budget drag, and the likeliest cause of the 305
+// "crawled, not indexed" + 422 "discovered, not indexed" backlog.
+//
+// Root cause is Information Gain, not volume: an audit page for an obscure
+// 50-star repo that is SAFE with no flags is ~438 words of pure template —
+// exactly what Google's 2026-03 "scaled content abuse" policy targets
+// (which no longer distinguishes AI-generated from hand-made).
+//
+// So a page must now EARN its existence one of two ways:
+//   1. Real audience — stars >= 500, where "is X safe?" is a query people
+//      actually type; or
+//   2. Real story — any flagged grade (caution/unsafe/reject) at stars >= 50,
+//      where the page carries findings that exist nowhere else.
+// 8,638 → ~2,891 pages (-67%). The long tail stays served by live /analyzer.
+export const MIN_STARS_FOR_AUDIT = 50; // floor for the flagged path
+export const POPULAR_STARS_FOR_AUDIT = 500; // "is X safe?" has real query volume here
+export const FLAGGED_GRADES = new Set(["caution", "unsafe", "reject"]);
+
+function isAuditWorthy(skill) {
+  const stars = skill.stars || 0;
+  if (stars >= POPULAR_STARS_FOR_AUDIT) return true;
+  return stars >= MIN_STARS_FOR_AUDIT && FLAGGED_GRADES.has(skill.security_grade);
+}
+
+const AUDIT_GRADES = new Set(["safe", ...FLAGGED_GRADES]);
+
+/** Whether generate-audit-pages.mjs writes /audit/{repo}/ for this skill. Every
+ *  page that links to an audit page must ask this first, or it links to a 404. */
+export function hasAuditPage(skill) {
+  return AUDIT_GRADES.has(skill.security_grade) &&
+    Boolean(skill.repo_full_name?.includes("/")) &&
+    isAuditWorthy(skill);
+}
+
+
 /** Repos that scenario pages admit under the 50-star floor. Stars say little
  *  about a repo from last week, so a page can admit one on what its README
  *  shows instead: `match.admit_reviewed`, written from the review in

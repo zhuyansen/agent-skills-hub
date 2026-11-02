@@ -31,7 +31,7 @@ import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
   extractAssetTags, shouldIndex, isIndexedSkillPage, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
-  admittedByReview,
+  admittedByReview, hasAuditPage,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -294,11 +294,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
         <span ${biAttrs(goneEn + subEn, goneZh + subZh)}>${esc(goneEn + subEn)}</span>
       </div>`
     : "";
-  // /audit/ page exists only for graded skills (stars >= 50 + a real grade).
-  // Link to it so the audit island gets inbound equity from skill pages.
-  const hasAudit = ["safe", "caution", "unsafe", "reject"].includes(
-    security_grade,
-  );
+  // Link /audit/ only where generate-audit-pages.mjs writes one: the same rule
+  // decides both, so a skill page never links to an audit page that 404s.
+  const hasAudit = hasAuditPage(skill);
   const auditUrl = `/audit/${repo_full_name}/`;
   const scenariosFeaturing =
     FEATURED_IN_SCENARIOS.get(repo_full_name.toLowerCase()) || [];
