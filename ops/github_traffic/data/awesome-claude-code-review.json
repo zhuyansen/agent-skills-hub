@@ -79,6 +79,38 @@
   "2026-10-24": {
    "count": 2,
    "uniques": 2
+  },
+  "2026-10-25": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-26": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-10-27": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-28": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-29": {
+   "count": 12,
+   "uniques": 4
+  },
+  "2026-10-30": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-10-31": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-01": {
+   "count": 4,
+   "uniques": 4
   }
  },
  "clones": {
@@ -161,6 +193,38 @@
   "2026-10-24": {
    "count": 8,
    "uniques": 6
+  },
+  "2026-10-25": {
+   "count": 14,
+   "uniques": 10
+  },
+  "2026-10-26": {
+   "count": 12,
+   "uniques": 8
+  },
+  "2026-10-27": {
+   "count": 5,
+   "uniques": 3
+  },
+  "2026-10-28": {
+   "count": 6,
+   "uniques": 6
+  },
+  "2026-10-29": {
+   "count": 28,
+   "uniques": 17
+  },
+  "2026-10-30": {
+   "count": 22,
+   "uniques": 14
+  },
+  "2026-10-31": {
+   "count": 12,
+   "uniques": 9
+  },
+  "2026-11-01": {
+   "count": 18,
+   "uniques": 10
   }
  },
  "referrers": {
@@ -197,6 +261,23 @@
     "count": 3,
     "uniques": 3
    }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 10,
+    "uniques": 5
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "t.co",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -227,6 +308,23 @@
     "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.md",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-review",
+    "count": 34,
+    "uniques": 24
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.md",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
    }
   ]
  }

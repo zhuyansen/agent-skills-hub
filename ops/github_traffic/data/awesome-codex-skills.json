@@ -83,6 +83,34 @@
   "2026-10-25": {
    "count": 22,
    "uniques": 8
+  },
+  "2026-10-26": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-10-27": {
+   "count": 6,
+   "uniques": 6
+  },
+  "2026-10-28": {
+   "count": 14,
+   "uniques": 6
+  },
+  "2026-10-29": {
+   "count": 14,
+   "uniques": 7
+  },
+  "2026-10-30": {
+   "count": 10,
+   "uniques": 6
+  },
+  "2026-10-31": {
+   "count": 19,
+   "uniques": 6
+  },
+  "2026-11-01": {
+   "count": 12,
+   "uniques": 6
   }
  },
  "clones": {
@@ -169,6 +197,34 @@
   "2026-10-25": {
    "count": 11,
    "uniques": 7
+  },
+  "2026-10-26": {
+   "count": 21,
+   "uniques": 13
+  },
+  "2026-10-27": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-28": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-29": {
+   "count": 27,
+   "uniques": 17
+  },
+  "2026-10-30": {
+   "count": 11,
+   "uniques": 9
+  },
+  "2026-10-31": {
+   "count": 16,
+   "uniques": 12
+  },
+  "2026-11-01": {
+   "count": 19,
+   "uniques": 12
   }
  },
  "referrers": {
@@ -200,6 +256,33 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "github.com",
+    "count": 7,
+    "uniques": 6
+   },
+   {
+    "referrer": "Google",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -225,6 +308,43 @@
     "path": "/zhuyansen/awesome-codex-skills/blob/main/README.zh-CN.md",
     "count": 5,
     "uniques": 4
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-codex-skills",
+    "count": 79,
+    "uniques": 49
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.zh-CN.md",
+    "count": 16,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/branches",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/32a08e641e9c9ef3eb741942eb26736d6d0a9edd/README.md",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main/data",
+    "count": 1,
+    "uniques": 1
    }
   ]
  }

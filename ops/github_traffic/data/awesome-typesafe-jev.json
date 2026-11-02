@@ -143,6 +143,34 @@
   "2026-10-25": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-27": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-28": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-10-29": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-30": {
+   "count": 6,
+   "uniques": 5
+  },
+  "2026-10-31": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-01": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -289,6 +317,34 @@
   "2026-10-25": {
    "count": 7,
    "uniques": 5
+  },
+  "2026-10-26": {
+   "count": 17,
+   "uniques": 12
+  },
+  "2026-10-27": {
+   "count": 15,
+   "uniques": 11
+  },
+  "2026-10-28": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-29": {
+   "count": 20,
+   "uniques": 12
+  },
+  "2026-10-30": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-31": {
+   "count": 12,
+   "uniques": 8
+  },
+  "2026-11-01": {
+   "count": 21,
+   "uniques": 12
   }
  },
  "referrers": {
@@ -310,6 +366,23 @@
    },
    {
     "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "t.co",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "referrer": "Google",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "referrer": "apps.anker-in.com",
     "count": 1,
     "uniques": 1
    }
@@ -378,6 +451,18 @@
     "path": "/zhuyansen/awesome-typesafe-jev/blob/main/README.zh-CN.md",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev",
+    "count": 11,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev/blob/main/README.zh-CN.md",
+    "count": 3,
+    "uniques": 3
    }
   ]
  }

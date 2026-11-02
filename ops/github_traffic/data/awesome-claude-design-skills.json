@@ -143,6 +143,34 @@
   "2026-10-25": {
    "count": 17,
    "uniques": 13
+  },
+  "2026-10-26": {
+   "count": 20,
+   "uniques": 14
+  },
+  "2026-10-27": {
+   "count": 22,
+   "uniques": 18
+  },
+  "2026-10-28": {
+   "count": 13,
+   "uniques": 13
+  },
+  "2026-10-29": {
+   "count": 28,
+   "uniques": 15
+  },
+  "2026-10-30": {
+   "count": 34,
+   "uniques": 18
+  },
+  "2026-10-31": {
+   "count": 21,
+   "uniques": 13
+  },
+  "2026-11-01": {
+   "count": 20,
+   "uniques": 13
   }
  },
  "clones": {
@@ -289,6 +317,34 @@
   "2026-10-25": {
    "count": 31,
    "uniques": 20
+  },
+  "2026-10-26": {
+   "count": 19,
+   "uniques": 15
+  },
+  "2026-10-27": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-10-28": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-29": {
+   "count": 16,
+   "uniques": 14
+  },
+  "2026-10-30": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-10-31": {
+   "count": 36,
+   "uniques": 25
+  },
+  "2026-11-01": {
+   "count": 28,
+   "uniques": 19
   }
  },
  "referrers": {
@@ -344,6 +400,33 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 64,
+    "uniques": 44
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 21,
+    "uniques": 8
+   },
+   {
+    "referrer": "github.com",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 6,
+    "uniques": 3
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -394,6 +477,33 @@
     "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.zh-CN.md",
     "count": 8,
     "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets/previews",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills",
+    "count": 200,
+    "uniques": 129
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.zh-CN.md",
+    "count": 9,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.md",
+    "count": 1,
+    "uniques": 1
    },
    {
     "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets/previews",

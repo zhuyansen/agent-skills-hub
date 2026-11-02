@@ -139,6 +139,34 @@
   "2026-10-25": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-27": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-10-28": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-29": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-10-30": {
+   "count": 8,
+   "uniques": 3
+  },
+  "2026-10-31": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-01": {
+   "count": 9,
+   "uniques": 5
   }
  },
  "clones": {
@@ -281,6 +309,34 @@
   "2026-10-25": {
    "count": 7,
    "uniques": 5
+  },
+  "2026-10-26": {
+   "count": 8,
+   "uniques": 5
+  },
+  "2026-10-27": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-10-28": {
+   "count": 5,
+   "uniques": 4
+  },
+  "2026-10-29": {
+   "count": 25,
+   "uniques": 15
+  },
+  "2026-10-30": {
+   "count": 22,
+   "uniques": 13
+  },
+  "2026-10-31": {
+   "count": 13,
+   "uniques": 9
+  },
+  "2026-11-01": {
+   "count": 4,
+   "uniques": 2
   }
  },
  "referrers": {
@@ -347,6 +403,23 @@
    },
    {
     "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "t.co",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "github.com",
     "count": 1,
     "uniques": 1
    },
@@ -434,6 +507,28 @@
     "path": "/zhuyansen/awesome-obsidian-ai-skills/commit/5e81bb40a445b036e0b54ac8ea2d1f0a3554550e",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills",
+    "count": 27,
+    "uniques": 20
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/commit/5e81bb40a445b036e0b54ac8ea2d1f0a3554550e",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.md",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 1
    }
   ]
  }

@@ -139,6 +139,38 @@
   "2026-10-24": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-25": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-27": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-28": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-29": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-30": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-31": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-01": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -281,6 +313,38 @@
   "2026-10-24": {
    "count": 20,
    "uniques": 13
+  },
+  "2026-10-25": {
+   "count": 15,
+   "uniques": 9
+  },
+  "2026-10-26": {
+   "count": 15,
+   "uniques": 8
+  },
+  "2026-10-27": {
+   "count": 5,
+   "uniques": 3
+  },
+  "2026-10-28": {
+   "count": 17,
+   "uniques": 11
+  },
+  "2026-10-29": {
+   "count": 16,
+   "uniques": 9
+  },
+  "2026-10-30": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-10-31": {
+   "count": 9,
+   "uniques": 6
+  },
+  "2026-11-01": {
+   "count": 20,
+   "uniques": 10
   }
  },
  "referrers": {
@@ -299,6 +363,13 @@
     "referrer": "github.com",
     "count": 3,
     "uniques": 3
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
    }
   ]
  },
@@ -349,6 +420,18 @@
     "path": "/zhuyansen/awesome-llm-wiki/blob/main/README.zh-CN.md",
     "count": 1,
     "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-llm-wiki/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-llm-wiki",
+    "count": 8,
+    "uniques": 5
    },
    {
     "path": "/zhuyansen/awesome-llm-wiki/tree/main/data",

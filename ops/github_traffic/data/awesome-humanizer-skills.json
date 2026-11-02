@@ -139,6 +139,34 @@
   "2026-10-25": {
    "count": 26,
    "uniques": 15
+  },
+  "2026-10-26": {
+   "count": 28,
+   "uniques": 15
+  },
+  "2026-10-27": {
+   "count": 25,
+   "uniques": 18
+  },
+  "2026-10-28": {
+   "count": 39,
+   "uniques": 22
+  },
+  "2026-10-29": {
+   "count": 52,
+   "uniques": 19
+  },
+  "2026-10-30": {
+   "count": 28,
+   "uniques": 17
+  },
+  "2026-10-31": {
+   "count": 18,
+   "uniques": 14
+  },
+  "2026-11-01": {
+   "count": 25,
+   "uniques": 16
   }
  },
  "clones": {
@@ -281,6 +309,34 @@
   "2026-10-25": {
    "count": 8,
    "uniques": 6
+  },
+  "2026-10-26": {
+   "count": 14,
+   "uniques": 9
+  },
+  "2026-10-27": {
+   "count": 23,
+   "uniques": 15
+  },
+  "2026-10-28": {
+   "count": 14,
+   "uniques": 10
+  },
+  "2026-10-29": {
+   "count": 19,
+   "uniques": 13
+  },
+  "2026-10-30": {
+   "count": 15,
+   "uniques": 12
+  },
+  "2026-10-31": {
+   "count": 15,
+   "uniques": 10
+  },
+  "2026-11-01": {
+   "count": 36,
+   "uniques": 21
   }
  },
  "referrers": {
@@ -344,6 +400,43 @@
     "referrer": "agentskillshub.top",
     "count": 4,
     "uniques": 3
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 107,
+    "uniques": 85
+   },
+   {
+    "referrer": "github.com",
+    "count": 17,
+    "uniques": 10
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 7,
+    "uniques": 4
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 5,
+    "uniques": 4
+   },
+   {
+    "referrer": "Bing",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 1,
+    "uniques": 1
    }
   ]
  },
@@ -418,6 +511,58 @@
    {
     "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
     "count": 2,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills",
+    "count": 202,
+    "uniques": 142
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.zh-CN.md",
+    "count": 49,
+    "uniques": 19
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.md",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/assets/previews",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/Bubblegunn__ai-slop-linter.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/IT-Shelter-Labs__Shelter-Humanizer.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/assets",
+    "count": 1,
     "uniques": 1
    }
   ]

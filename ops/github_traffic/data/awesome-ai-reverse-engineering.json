@@ -87,6 +87,34 @@
   "2026-10-25": {
    "count": 17,
    "uniques": 12
+  },
+  "2026-10-26": {
+   "count": 37,
+   "uniques": 22
+  },
+  "2026-10-27": {
+   "count": 49,
+   "uniques": 38
+  },
+  "2026-10-28": {
+   "count": 42,
+   "uniques": 32
+  },
+  "2026-10-29": {
+   "count": 50,
+   "uniques": 33
+  },
+  "2026-10-30": {
+   "count": 42,
+   "uniques": 28
+  },
+  "2026-10-31": {
+   "count": 40,
+   "uniques": 30
+  },
+  "2026-11-01": {
+   "count": 40,
+   "uniques": 28
   }
  },
  "clones": {
@@ -177,6 +205,34 @@
   "2026-10-25": {
    "count": 21,
    "uniques": 14
+  },
+  "2026-10-26": {
+   "count": 25,
+   "uniques": 15
+  },
+  "2026-10-27": {
+   "count": 58,
+   "uniques": 49
+  },
+  "2026-10-28": {
+   "count": 47,
+   "uniques": 44
+  },
+  "2026-10-29": {
+   "count": 52,
+   "uniques": 39
+  },
+  "2026-10-30": {
+   "count": 17,
+   "uniques": 15
+  },
+  "2026-10-31": {
+   "count": 18,
+   "uniques": 15
+  },
+  "2026-11-01": {
+   "count": 35,
+   "uniques": 26
   }
  },
  "referrers": {
@@ -225,6 +281,58 @@
    },
    {
     "referrer": "yandex.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "github.com",
+    "count": 65,
+    "uniques": 52
+   },
+   {
+    "referrer": "Google",
+    "count": 49,
+    "uniques": 43
+   },
+   {
+    "referrer": "link.zhihu.com",
+    "count": 24,
+    "uniques": 20
+   },
+   {
+    "referrer": "yandex.ru",
+    "count": 11,
+    "uniques": 11
+   },
+   {
+    "referrer": "t.co",
+    "count": 7,
+    "uniques": 7
+   },
+   {
+    "referrer": "Bing",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "yandex.com",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "ya.ru",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "com.linkedin.android",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "DuckDuckGo",
     "count": 1,
     "uniques": 1
    }
@@ -326,6 +434,58 @@
    },
    {
     "path": "/zhuyansen/awesome-ai-reverse-engineering/commit/b507dda40f6b44003ef9ca71ac9f963a33f133f3",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering",
+    "count": 313,
+    "uniques": 240
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.zh-CN.md",
+    "count": 41,
+    "uniques": 27
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/data",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/data/skills.json",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/fork",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/assets",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/assets/previews",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blame/main/README.zh-CN.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/commit/b46d1c2c871ecfab696d81918f6c3792a9187492",
     "count": 1,
     "uniques": 1
    }

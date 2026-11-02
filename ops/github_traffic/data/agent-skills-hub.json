@@ -147,6 +147,34 @@
   "2026-10-25": {
    "count": 56,
    "uniques": 41
+  },
+  "2026-10-26": {
+   "count": 47,
+   "uniques": 33
+  },
+  "2026-10-27": {
+   "count": 34,
+   "uniques": 24
+  },
+  "2026-10-28": {
+   "count": 28,
+   "uniques": 21
+  },
+  "2026-10-29": {
+   "count": 31,
+   "uniques": 22
+  },
+  "2026-10-30": {
+   "count": 51,
+   "uniques": 28
+  },
+  "2026-10-31": {
+   "count": 51,
+   "uniques": 26
+  },
+  "2026-11-01": {
+   "count": 28,
+   "uniques": 27
   }
  },
  "clones": {
@@ -297,6 +325,34 @@
   "2026-10-25": {
    "count": 119,
    "uniques": 41
+  },
+  "2026-10-26": {
+   "count": 229,
+   "uniques": 75
+  },
+  "2026-10-27": {
+   "count": 210,
+   "uniques": 66
+  },
+  "2026-10-28": {
+   "count": 174,
+   "uniques": 93
+  },
+  "2026-10-29": {
+   "count": 184,
+   "uniques": 75
+  },
+  "2026-10-30": {
+   "count": 134,
+   "uniques": 42
+  },
+  "2026-10-31": {
+   "count": 1012,
+   "uniques": 58
+  },
+  "2026-11-01": {
+   "count": 224,
+   "uniques": 68
   }
  },
  "referrers": {
@@ -536,6 +592,58 @@
    },
    {
     "referrer": "kaiyuanbang.cn",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "yandex.ru",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "youtube.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "github.com",
+    "count": 105,
+    "uniques": 78
+   },
+   {
+    "referrer": "aocr.org",
+    "count": 75,
+    "uniques": 75
+   },
+   {
+    "referrer": "t.co",
+    "count": 42,
+    "uniques": 37
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 35,
+    "uniques": 18
+   },
+   {
+    "referrer": "Google",
+    "count": 11,
+    "uniques": 8
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "Bing",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "teams.public.onecdn.static.microsoft",
     "count": 1,
     "uniques": 1
    },
@@ -810,6 +918,58 @@
     "path": "/zhuyansen/agent-skills-hub/pulls",
     "count": 8,
     "uniques": 5
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/ZhuYansen/agent-skills-hub",
+    "count": 114,
+    "uniques": 87
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub",
+    "count": 110,
+    "uniques": 96
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md",
+    "count": 25,
+    "uniques": 18
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md",
+    "count": 18,
+    "uniques": 15
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues/26",
+    "count": 15,
+    "uniques": 15
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main",
+    "count": 13,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/b0c63a44/README.md",
+    "count": 10,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/b0c63a44/docs/system-architecture.md",
+    "count": 8,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/RESULTS.md",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/ops/review-runs",
+    "count": 6,
+    "uniques": 2
    }
   ]
  }

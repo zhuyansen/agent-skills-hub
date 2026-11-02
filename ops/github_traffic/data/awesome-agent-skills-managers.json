@@ -143,6 +143,34 @@
   "2026-10-25": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-10-26": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-27": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-28": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-29": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-10-30": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-31": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-01": {
+   "count": 2,
+   "uniques": 1
   }
  },
  "clones": {
@@ -289,6 +317,34 @@
   "2026-10-25": {
    "count": 22,
    "uniques": 12
+  },
+  "2026-10-26": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-10-27": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-10-28": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-10-29": {
+   "count": 22,
+   "uniques": 12
+  },
+  "2026-10-30": {
+   "count": 22,
+   "uniques": 13
+  },
+  "2026-10-31": {
+   "count": 12,
+   "uniques": 9
+  },
+  "2026-11-01": {
+   "count": 14,
+   "uniques": 8
   }
  },
  "referrers": {
@@ -349,6 +405,13 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -402,6 +465,23 @@
    },
    {
     "path": "/zhuyansen/awesome-agent-skills-managers/commit/514f08412c2f2ed81e3f6ddbbdc5b94b7f3dea41",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-02": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/tree/main",
     "count": 1,
     "uniques": 1
    }
