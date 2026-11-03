@@ -109,3 +109,9 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 | MCP Market | 10-31 免费队列提交（默认勾的 $29 改成 Free Queue），4–6 周 |
 | mcp.so | 网页表单登录后也只有 $39 付费提交（含 dofollow 链接），不付；10-31 在 issue #6159 催了一下（维护者 10-16 批量回过一轮「now listed」，我们的在那之后提的） |
 | 要用户登录改版本 | cursor.directory、Agensi、魔搭 MCP 页 → 0.11.2 |
+
+## 11-03 uvx 写清楚、列表进展
+
+- README 的 Quick start 第一行改成 `uvx backlink-guard vet …`（ef780b2），Hub 数据库里这个仓库的 README 11-02 已刷新，下一轮部署后详情页显示 uvx。
+- buildwithclaude #622（0.11.2）已合并；teles/awesome-seo 经批量 PR #288 收录（#265 因此关闭）。
+- VoltAgent 没投：只收有真实社区使用的，等星数再涨。
