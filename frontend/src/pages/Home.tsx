@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { fetchSkills } from "../api/client";
 import { CategoryFilter } from "../components/CategoryFilter";
@@ -59,6 +59,7 @@ import { useI18n } from "../i18n/I18nContext";
 import { useUrlParams } from "../hooks/useUrlParams";
 import { useStats } from "../hooks/useStats";
 import { useLandingData } from "../hooks/useLandingData";
+import { HOME_TITLE, ZH_HOME_PATH, ZH_HOME_TITLE, isZhHomePath } from "../lib/homeMeta.mjs";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 /** Space each lazy block holds until it renders (phones, sm, md, lg): 97% of the
@@ -90,6 +91,7 @@ const CHIP_ROW_RESERVE = "min-h-[196px] sm:min-h-[114px] md:min-h-[74px]";
 export function Home() {
   const { t, lang } = useI18n();
   const navigate = useNavigate();
+  const zhTwin = isZhHomePath(useLocation().pathname);
   const { params, tab, setTab, updateParams, setPage } = useUrlParams();
   const { stats, categories } = useStats();
   const { data: landingData, loading: landingLoading } = useLandingData();
@@ -134,6 +136,11 @@ export function Home() {
   useEffect(() => {
     if (tab === "overview") prefetchWorkflows().catch(() => {});
   }, [tab]);
+
+  // The Chinese twin opens in Chinese (I18nContext); switching to English there goes home.
+  useEffect(() => {
+    if (zhTwin && lang === "en") navigate("/", { replace: true });
+  }, [zhTwin, lang, navigate]);
 
   // Explore tab data
   const [data, setData] = useState<PaginatedSkills | null>(null);
@@ -200,9 +207,7 @@ export function Home() {
             marketplace": 5,400/mo, KD 23 (DataForSEO, US, 10-06); the SERP is mostly
             marketplace homepages, so the homepage carries it. Brand stays first, run
             together as the site name: see the note above <title> in index.html. */}
-        <title>
-          AgentSkillsHub — Claude Skills Marketplace, Security-Graded
-        </title>
+        <title>{zhTwin ? ZH_HOME_TITLE : HOME_TITLE}</title>
         <meta
           name="description"
           content={
@@ -212,12 +217,20 @@ export function Home() {
           }
         />
         {/* index.html no longer hardcodes a canonical (dual-tag fix) — the
-            homepage's lives here like every other page's. */}
-        <link rel="canonical" href="https://agentskillshub.top/" />
-        <meta
-          property="og:title"
-          content="AgentSkillsHub — Claude Skills Marketplace, Security-Graded"
+            homepage's lives here like every other page's. The twins name each
+            other in hreflang, as the /best/ twins do (scenario-zh-page.mjs). */}
+        <link
+          rel="canonical"
+          href={`https://agentskillshub.top${zhTwin ? ZH_HOME_PATH : "/"}`}
         />
+        <link rel="alternate" hrefLang="en" href="https://agentskillshub.top/" />
+        <link
+          rel="alternate"
+          hrefLang="zh"
+          href={`https://agentskillshub.top${ZH_HOME_PATH}`}
+        />
+        <link rel="alternate" hrefLang="x-default" href="https://agentskillshub.top/" />
+        <meta property="og:title" content={zhTwin ? ZH_HOME_TITLE : HOME_TITLE} />
         <meta
           property="og:description"
           content={`Agent Skills Hub: a security-graded Claude skills marketplace — Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours.`}

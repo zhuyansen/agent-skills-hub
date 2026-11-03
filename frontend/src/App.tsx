@@ -86,6 +86,9 @@ function App() {
               <Suspense fallback={PAGE_FALLBACK}>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  {/* The home page's Chinese twin (scripts/generate-home-zh.mjs). */}
+                  <Route path="/zh" element={<Home />} />
+                  <Route path="/zh/" element={<Home />} />
                   <Route path="/skill/:id" element={<SkillDetailPage />} />
                   <Route
                     path="/skill/:owner/:repo"

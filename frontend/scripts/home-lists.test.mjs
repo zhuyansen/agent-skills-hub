@@ -50,6 +50,15 @@ test("a list with nothing above zero is left out", () => {
   assert.equal(homeListsHtml([]), "");
 });
 
+test("the Chinese twin gets Chinese headings over the same skills", () => {
+  const rows = [skill("acme/a"), skill("acme/b", { category: "claude-skill" })];
+  const zh = homeListsHtml(rows, "zh");
+  assert.match(zh, /<h2>正在走红<\/h2>/);
+  assert.match(zh, /<h2>Star 最多的 Claude 技能<\/h2>/);
+  assert.match(zh, /\(1,000 Star\)/);
+  assert.equal(zh.match(/<li>/g).length, homeListsHtml(rows).match(/<li>/g).length);
+});
+
 test("stampHomeLists fills the marker and writes $ sequences as is", () => {
   assert.equal(stampHomeLists(`a${HOME_LISTS_MARKER}b`, "<p>$& $1</p>"), "a<p>$& $1</p>b");
   assert.equal(stampHomeLists("no marker", "<p>x</p>"), "no marker");

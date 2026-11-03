@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { translations, type Lang, type TransKey } from "./translations";
+import { isZhHomePath } from "../lib/homeMeta.mjs";
 
 interface I18nCtx {
   lang: Lang;
@@ -17,7 +18,10 @@ const Ctx = createContext<I18nCtx>(null!);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>(() => {
-    // Explicit user choice always wins; first-time visitors get their
+    // The home page's Chinese twin is Chinese whatever was saved: it is where a Chinese
+    // search lands, and switching to English there goes to the English home page (Home).
+    if (isZhHomePath(window.location.pathname)) return "zh";
+    // Otherwise an explicit user choice always wins; first-time visitors get their
     // browser's language. Clarity data (2026-07-04): the 中文 toggle was the
     // single most-clicked element on the homepage (5.9% of all clicks) —
     // Chinese visitors shouldn't have to hunt for it.

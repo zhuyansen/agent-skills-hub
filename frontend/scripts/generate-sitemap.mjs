@@ -199,6 +199,25 @@ function scenarioEntriesFor(slug, today, modified) {
   return hasZh ? [entry(en, "0.85"), entry(zh, "0.75")] : [entry(en, "0.85")];
 }
 
+/**
+ * The home page, and its Chinese twin at /zh/ with reciprocal hreflang once the build wrote it
+ * (generate-home-zh.mjs, 2026-11-03).
+ */
+function homeEntries(today) {
+  const twin = existsSync("dist/zh/index.html");
+  const alts = twin ? `
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${SITE}/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/>` : "";
+  const entry = (path, priority) => `  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>daily</changefreq>
+    <priority>${priority}</priority>
+    <lastmod>${today}</lastmod>${alts}
+  </url>`;
+  return twin ? [entry("/", "1.0"), entry("/zh/", "0.9")] : [entry("/", "1.0")];
+}
+
 /** `<lastmod>` line for a page, or "" when the page has no real date. */
 const lastmodLine = (date) => (date ? `\n    <lastmod>${date}</lastmod>` : "");
 
@@ -281,12 +300,7 @@ async function main() {
 
   // 1. sitemap-static.xml
   const staticEntries = [
-    `  <url>
-    <loc>${SITE}/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <lastmod>${today}</lastmod>
-  </url>`,
+    ...homeEntries(today),
     `  <url>
     <loc>${SITE}/about/</loc>
     <changefreq>monthly</changefreq>
@@ -313,7 +327,7 @@ async function main() {
     <priority>0.6</priority>
   </url>`,
   ];
-  writeFileSync("dist/sitemap-static.xml", wrapUrlset(staticEntries));
+  writeFileSync("dist/sitemap-static.xml", wrapUrlsetI18n(staticEntries));
   console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);
 
   // 2. sitemap-categories.xml — derive categories from actual data (no hardcoded list)
