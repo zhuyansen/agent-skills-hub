@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-03
+1. Balanov/uncut — 🆕 用一个 7MB 单文件跑无损无头的编程智能体，只有四个工具、纯标准输入输出（382★ 269.1/day）
+2. mhfed/vn-law-check — 🆕 按越南最新数据保护、电商与 AI 法规审计网站合规，适配 Claude Code 等工具（101★ 101.0/day）
+3. wendersoon/radar-cnpj-mcp — 🆕 用巴西公开 CNPJ 数据按行业代码和地区查找企业，提供 MCP 与命令行（75★ 65.7/day）
+4. phuryn/product-engineering — 🆕 带不写代码的人用编程智能体从想法做到付费用户，pm-skills 作者新作（175★ 37.6/day）
+5. YeJe-cpu/easy-jianying — 🆕 让 AI 把剪辑直接做成剪映草稿，打开剪映就能接着改（138★ 36.9/day）
+6. mankidev/codixel — 🆕 教 Claude Code 画好像素画，产出游戏动画精灵和特效（74★ 31.2/day）
+7. Innei/ryugi — 给编程智能体配一套技能和设计工作台，支持实时画板、可批注文档与 TDD 构建（319★ 21.7/day）
+8. lwh0630/TokenBar — 🆕 跨平台监控 Codex、Claude、Cursor 等 50 款 AI 工具的额度用量（201★ 20.5/day）
+9. leodavincs/kalem — 🆕 把视频拆成场景，为每场自动挑选 Three.js、Manim 等合适的动画引擎（31★ 20.4/day）
+10. ehomekevin/personal-ip-workbench-open-source — 🆕 串起选题、成稿、多平台改写、排期与复盘的本地内容创作工作台（34★ 18.6/day）
+🎯 今日趋势：**9 席**标 🆕；视频与视觉创作占 **4 席**（easy-jianying 出剪映草稿、kalem 按场景选动画引擎、codixel 画像素精灵、personal-ip-workbench 多平台发稿），本地化合规与数据占 **2 席**（越南法规审计、巴西企业查询），Balanov/uncut 以 269.1/day 领跑。
+> 注：去重范围＝repo 内 archive 全部 131 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,418 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 148 条、命中历史 31 条；按 first_seen 切回 48h 后剩 81 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①routerhubSI/uncensored-models（54★ 54.0/day）：汇编去审查/abliterated 模型库，与 11-02 排除的 FlashAlign 同类，不推荐；②elhajahmadj/offline-emergency-library（115★ 62.6/day）：2026-04 新建号、0 粉、仅此 1 个实仓，单仓突起，保守排除；③AKamaly/CludeGods（49★ 30.8/day）：0 粉，其余仓均 0★，单仓突起，保守排除；④xxPcy/PharmaLLM-Agent（170★ 22.5/day）：分类为 uncategorized、0 粉，实时 176★ 仅 4 fork，保守排除；⑤其余均已在历史榜单出现或 velocity 低于第 10 席（chipfighter/framekeeper 18.4/day 第 11）。入选项复核（`gh api`）：第 1 席 Balanov 2017 建号、304 粉，名下另有 377★/306★/245★ 仓，实时 575★，但各仓 fork 都极少（uncut 仅 7）（**轻红旗**，保留）；第 2 席 mhfed 2022 建号，实时 195★/49 fork 比例正常；第 3 席 wendersoon 2022 建号、36 粉，实时 107★/11 fork；第 4 席 phuryn 1,261 粉，pm-skills 27,636★ 的作者；第 5 席 YeJe-cpu 27 粉，名下另有 494★/419★ 仓，实时 141★/49 fork；第 6 席 mankidev 3 粉、其余仓 ≤10★，实时 84★/7 fork 比例正常（**轻红旗**，保留）；第 7 席 Innei 3,520 粉，Shiro（4,257★）作者；第 8 席 lwh0630 3 粉，名下另有 142★ 仓，非单仓爆星；第 9 席 leodavincs 2026-06 建号、5 粉，星数小、无突起（**轻红旗**，保留）；第 10 席 ehomekevin 2018 建号，实时 37★/11 fork，星数小。🆕 判定＝created_at 距今 14 天内：除 ryugi（14.7 天）外九席命中。security_grade：uncut、radar-cnpj-mcp、codixel、kalem、personal-ip-workbench 为 safe，其余五席为 unknown（入库约 8h 尚未评级）。表中 stars 为数据库快照，部分仓实时更高（uncut 575★、vn-law-check 195★），按红线保留快照值。
+
+---
+
 ## 2026-11-02
 1. microsoft/TokenEconomizer — 用历史经验给编程智能体做黑盒成本控制，微软研究院联合伯克利出品（3774★ 190.3/day）
 2. caru-ini/stack-diagram — 🆕 一句话描述技术栈，自动生成带官方 Logo 的架构图（151★ 151.0/day）
