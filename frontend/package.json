@@ -14,6 +14,7 @@
     "test:sitemap": "node --test scripts/sitemap-index.test.mjs",
     "test:indexnow": "node --test scripts/indexnow-changes.test.mjs",
     "test:modified": "node --test scripts/scenario-modified.test.mjs",
+    "test:home-lists": "node --test scripts/home-lists.test.mjs",
     "test:skill-copy": "node --test scripts/skill-page-copy.test.mjs",
     "test:home-counts": "node --test scripts/home-counts.test.mjs"
   },

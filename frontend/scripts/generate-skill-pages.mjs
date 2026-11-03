@@ -23,6 +23,7 @@ import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
 import { homeCountTexts, stampHomeCounts } from "./home-counts.mjs";
+import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
@@ -930,6 +931,14 @@ async function main() {
     console.log(`Updated dist/index.html: ${Object.entries(texts).map(([key, text]) => `${key} ${text}`).join(", ")}`);
   } catch (e) {
     console.warn("Could not update index.html count:", e.message);
+  }
+  // Its skill lists, apart from the counts so a row the lists trip on can't cost the page those.
+  try {
+    const lists = homeListsHtml(skills);
+    writeFileSync(indexPath, stampHomeLists(readFileSync(indexPath, "utf-8"), lists));
+    console.log(`Updated dist/index.html: ${(lists.match(/<li>/g) || []).length} skills listed`);
+  } catch (e) {
+    console.warn("Could not write the home lists:", e.message);
   }
 }
 
