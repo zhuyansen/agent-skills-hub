@@ -196,11 +196,12 @@ export function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Helmet>
-        {/* 61 chars — mirrors index.html exactly (SERP truncates ~60-65). "Claude skills
+        {/* 59 chars — mirrors index.html exactly (SERP truncates ~60-65). "Claude skills
             marketplace": 5,400/mo, KD 23 (DataForSEO, US, 10-06); the SERP is mostly
-            marketplace homepages, so the homepage carries it. Brand stays first. */}
+            marketplace homepages, so the homepage carries it. Brand stays first, run
+            together as the site name: see the note above <title> in index.html. */}
         <title>
-          Agent Skills Hub — Claude Skills Marketplace, Security-Graded
+          AgentSkillsHub — Claude Skills Marketplace, Security-Graded
         </title>
         <meta
           name="description"
@@ -215,7 +216,7 @@ export function Home() {
         <link rel="canonical" href="https://agentskillshub.top/" />
         <meta
           property="og:title"
-          content="Agent Skills Hub — Claude Skills Marketplace, Security-Graded"
+          content="AgentSkillsHub — Claude Skills Marketplace, Security-Graded"
         />
         <meta
           property="og:description"
