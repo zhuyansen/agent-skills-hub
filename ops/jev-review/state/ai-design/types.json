@@ -2826,5 +2826,19 @@
    "review": 0.56
   },
   "kind": "system"
+ },
+ {
+  "repo": "seungdori/web-stylebook-mcp",
+  "stars": 76,
+  "description": "MCP server that gives AI coding agents scored design directions, UI-state plans, and WCAG-checked design tokens. Deterministic, offline, no API key.",
+  "scores": {
+   "ui": 0.9,
+   "system": 0.92,
+   "tool_mcp": 0.04,
+   "to_code": 0.14,
+   "graphics": 0.07,
+   "review": 0.74
+  },
+  "kind": "system"
  }
 ]

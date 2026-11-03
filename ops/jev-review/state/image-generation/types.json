@@ -3582,5 +3582,19 @@
    "mcp": 0.6
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "beatra-ai/ai-image-realism-skill",
+  "stars": 5,
+  "description": "AI image realism agent skill for Claude Code, Cursor, Codex, Windsurf, Cline & OpenClaw: make AI portraits, product images, and marketing visuals look more natural by fixing plastic skin, malformed hands and faces, repeated textures, and inconsistent lighting. 去AI味 · AI图片修复",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.79,
+   "design": 0.05,
+   "mcp": 0.32
+  },
+  "kind": "editing"
  }
 ]

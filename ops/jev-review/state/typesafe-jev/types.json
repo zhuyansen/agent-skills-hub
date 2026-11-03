@@ -5323,5 +5323,50 @@
    "general": 0.46
   },
   "kind": "business"
+ },
+ {
+  "repo": "taeold/djev-run",
+  "stars": 586,
+  "description": "Serve the experimental DiffusionGemma-Jev diffusion model on Cloud Run GPUs (vLLM, RTX PRO 6000), with demo apps and published benchmarks.",
+  "scores": {
+   "replica": 0.7,
+   "agent": 0.14,
+   "devtool": 0.12,
+   "sdk": 0.27,
+   "business": 0.02,
+   "consumer": 0.06,
+   "general": 0.13
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "Mushroom-Systems/lichen-v1",
+  "stars": 59,
+  "description": "A local, API-compatible replacement for Jev, TypeSafe's System One model",
+  "scores": {
+   "replica": 0.97,
+   "agent": 0.13,
+   "devtool": 0.18,
+   "sdk": 0.42,
+   "business": 0.3,
+   "consumer": 0.13,
+   "general": 0.24
+  },
+  "kind": "replica"
+ },
+ {
+  "repo": "bodepudimuneendra-netizen/ConsciousDB",
+  "stars": 53,
+  "description": "A database-agnostic Agentic GraphRAG framework using swappable System One models (local Laya / cloud Jev). A plug-and-play intelligence layer featuring a complete 4-phase pipeline, continuous evaluation and custom A* traversal for any graph database.",
+  "scores": {
+   "replica": 0.17,
+   "agent": 0.07,
+   "devtool": 0.27,
+   "sdk": 0.35,
+   "business": 0.12,
+   "consumer": 0.08,
+   "general": 0.23
+  },
+  "kind": "general"
  }
 ]

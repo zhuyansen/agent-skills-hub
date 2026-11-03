@@ -3736,5 +3736,47 @@
    "rules": 0.77
   },
   "kind": "design"
+ },
+ {
+  "repo": "Itskindastrange/fe-design-skill",
+  "stars": 5,
+  "description": "Anti-slop frontend design skill for Claude Code — compiled from design-impeccable, emil-design-eng, and design-taste-frontend-v2",
+  "scores": {
+   "writing": 0.13,
+   "detector": 0.52,
+   "chinese": 0.03,
+   "code": 0.3,
+   "design": 0.96,
+   "rules": 0.9
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "beatra-ai/ai-image-realism-skill",
+  "stars": 5,
+  "description": "AI image realism agent skill for Claude Code, Cursor, Codex, Windsurf, Cline & OpenClaw: make AI portraits, product images, and marketing visuals look more natural by fixing plastic skin, malformed hands and faces, repeated textures, and inconsistent lighting. 去AI味 · AI图片修复",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.07,
+   "chinese": 0.03,
+   "code": 0.05,
+   "design": 0.64,
+   "rules": 0.22
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "JGalego/slopcop",
+  "stars": 5,
+  "description": "Slop stops here 💩✋",
+  "scores": {
+   "writing": 0.04,
+   "detector": 0.74,
+   "chinese": 0.04,
+   "code": 0.16,
+   "design": 0.1,
+   "rules": 0.1
+  },
+  "kind": "detector"
  }
 ]

@@ -7558,5 +7558,95 @@
    "general": 0.16
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "SpeedPainterOrg/explainer-video",
+  "stars": 56,
+  "description": "Codex plugin for turning text, URLs, and documents into narrated hand-drawn explainer videos.",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.95,
+   "music": 0.03,
+   "motion": 0.15,
+   "shorts": 0.13,
+   "editing": 0.04,
+   "demo": 0.38,
+   "story": 0.13,
+   "avatar": 0.05,
+   "general": 0.04
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "threerocks/sweety-statechart-video",
+  "stars": 14,
+  "description": "格物 · 蜡笔状态图：一句话做一部会动的蜡笔状态图短片。3:4、2-3 分钟、四款合成旁白（可加自己的声音）、每章一张海报；支持 Codex、Claude Code、Grok 等，可批量出片。",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.94,
+   "music": 0.03,
+   "motion": 0.47,
+   "shorts": 0.55,
+   "editing": 0.03,
+   "demo": 0.33,
+   "story": 0.21,
+   "avatar": 0.04,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "tmakersas/revid-skills",
+  "stars": 9,
+  "description": "Research what goes viral, make finished short-form videos and post them to TikTok, YouTube, Instagram and X. Revid MCP server plugin and skills for Claude, Cursor, Gemini CLI and Codex.",
+  "scores": {
+   "promo": 0.62,
+   "explainer": 0.28,
+   "music": 0.13,
+   "motion": 0.13,
+   "shorts": 0.89,
+   "editing": 0.19,
+   "demo": 0.23,
+   "story": 0.1,
+   "avatar": 0.21,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "aliangSSS/aliang-knowledge-video",
+  "stars": 5,
+  "description": "Claude Code skill：输入一个主题，自动生成「Vibe 知识大赏」风格的中文知识短片（Remotion，卡点动效 + 拟音）",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.98,
+   "music": 0.47,
+   "motion": 0.14,
+   "shorts": 0.16,
+   "editing": 0.04,
+   "demo": 0.1,
+   "story": 0.19,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "UgurKeskekci/claude-video-kit",
+  "stars": 5,
+  "description": "Konuşma videolarını Claude Code ile kurgulamak için skill'ler: yatay kurgu, Reels, X animasyonu ve kodla animasyon.",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.27,
+   "music": 0.05,
+   "motion": 0.52,
+   "shorts": 0.94,
+   "editing": 0.96,
+   "demo": 0.16,
+   "story": 0.15,
+   "avatar": 0.03,
+   "general": 0.38
+  },
+  "kind": "editing"
  }
 ]

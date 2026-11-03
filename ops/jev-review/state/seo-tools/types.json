@@ -4430,5 +4430,53 @@
    "marketing": 0.04
   },
   "kind": "content"
+ },
+ {
+  "repo": "rdoser13/free-claude-skills",
+  "stars": 6,
+  "description": "15 free Claude marketing skills for Claude Code. SEO, keyword research, CRO, content strategy, landing pages, short-form video, and anti-slop quality gates.",
+  "scores": {
+   "suite": 0.22,
+   "audit": 0.09,
+   "research": 0.15,
+   "data_mcp": 0.04,
+   "geo": 0.08,
+   "content": 0.52,
+   "links": 0.04,
+   "marketing": 0.98
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "JittoJoseph/seo-skills",
+  "stars": 5,
+  "description": "Free, open-source Shopify SEO audit for Claude Code, Codex and Cursor. Check any store or site from its URL: what Google and AI crawlers can read, and what to fix first. No app, no API keys.",
+  "scores": {
+   "suite": 0.61,
+   "audit": 0.91,
+   "research": 0.05,
+   "data_mcp": 0.04,
+   "geo": 0.39,
+   "content": 0.12,
+   "links": 0.03,
+   "marketing": 0.06
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "jayanti-prajapati/research-first-writer",
+  "stars": 5,
+  "description": "Claude Code skill for research-first articles that rank in Google and get cited by ChatGPT, Perplexity & AI Overviews. Real SERP research, a facts ledger, rule checks, no fake \"we tested\".",
+  "scores": {
+   "suite": 0.39,
+   "audit": 0.07,
+   "research": 0.38,
+   "data_mcp": 0.02,
+   "geo": 0.89,
+   "content": 0.85,
+   "links": 0.03,
+   "marketing": 0.08
+  },
+  "kind": "geo"
  }
 ]

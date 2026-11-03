@@ -10563,5 +10563,38 @@
   "days": 25,
   "stars_per_day": 0.24,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "GetResponse/skillcask",
+  "name": "skillcask",
+  "stars": 5,
+  "description": "Lockfile-first package manager for AI agent skills (SKILL.md), backed by Composer repositories",
+  "topics": [
+   "agent-skills",
+   "claude-code",
+   "lockfile",
+   "package-manager",
+   "rust",
+   "supply-chain-security"
+  ],
+  "created": "2026-10-19",
+  "pushed": "2026-11-03",
+  "source": "topic",
+  "readme_chars": 35850,
+  "names_model": false,
+  "on_subject": 0.98,
+  "is_software": 0.99,
+  "shows_result": 0.06,
+  "one_command_start": 0.89,
+  "specific_outcome": 0.79,
+  "complete_docs": 0.15,
+  "novel_angle": 0.69,
+  "shareable_output": 0.74,
+  "quality": 0.47250000000000003,
+  "tier": "低",
+  "hit_prior": 0.49666666666666665,
+  "days": 15,
+  "stars_per_day": 0.3333333333333333,
+  "verdict": "low_quality"
  }
 ]

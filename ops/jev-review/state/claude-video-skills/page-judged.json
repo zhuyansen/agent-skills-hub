@@ -4431,5 +4431,43 @@
   "days": 115,
   "stars_per_day": 3.7043478260869565,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "SpeedPainterOrg/explainer-video",
+  "name": "explainer-video",
+  "stars": 56,
+  "description": "Codex plugin for turning text, URLs, and documents into narrated hand-drawn explainer videos.",
+  "topics": [
+   "claude-skill",
+   "codex-plugin",
+   "explainer-video",
+   "mcp",
+   "mcp-server",
+   "model-context-protocol",
+   "text-to-video",
+   "whiteboard-animation"
+  ],
+  "created": "2026-07-03",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 1919,
+  "names_model": false,
+  "makes_video": 0.98,
+  "agent_driven": 0.97,
+  "code_rendered": 0.15,
+  "reusable_tool": 0.98,
+  "names_opus": 0.03,
+  "shows_result": 0.83,
+  "one_command_start": 0.91,
+  "specific_outcome": 0.58,
+  "complete_docs": 0.77,
+  "novel_angle": 0.82,
+  "shareable_output": 0.37,
+  "quality": 0.7725,
+  "tier": "高",
+  "hit_prior": 0.6733333333333333,
+  "days": 123,
+  "stars_per_day": 0.45528455284552843,
+  "verdict": "admit"
  }
 ]

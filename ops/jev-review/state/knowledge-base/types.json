@@ -5094,5 +5094,75 @@
    "personal": 0.55
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "Minima-AI-Inc/minima",
+  "stars": 1056,
+  "description": "On-premises conversational RAG with configurable containers",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.81,
+   "mcp": 0.42,
+   "docs_qa": 0.76,
+   "graph": 0.09,
+   "personal": 0.22
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "fcakyon/autollm",
+  "stars": 1002,
+  "description": "Ship RAG based LLM web apps in seconds.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.45,
+   "mcp": 0.16,
+   "docs_qa": 0.74,
+   "graph": 0.09,
+   "personal": 0.09
+  },
+  "kind": "docs_qa"
+ },
+ {
+  "repo": "bodepudimuneendra-netizen/ConsciousDB",
+  "stars": 53,
+  "description": "A database-agnostic Agentic GraphRAG framework using swappable System One models (local Laya / cloud Jev). A plug-and-play intelligence layer featuring a complete 4-phase pipeline, continuous evaluation and custom A* traversal for any graph database.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.17,
+   "mcp": 0.31,
+   "docs_qa": 0.42,
+   "graph": 0.97,
+   "personal": 0.08
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "mlimarenko/IronRAG",
+  "stars": 50,
+  "description": "One-click knowledge system for documents, internal bots, and AI agents",
+  "scores": {
+   "llm_wiki": 0.11,
+   "rag_platform": 0.93,
+   "mcp": 0.8,
+   "docs_qa": 0.8,
+   "graph": 0.98,
+   "personal": 0.18
+  },
+  "kind": "graph"
+ },
+ {
+  "repo": "THUboran/china-law-mcp",
+  "stars": 8,
+  "description": "⚖️ 中国法律条文 MCP 服务器 | 378 部法律 · 23,995 条现行法条检索 + 引用核验（防幻觉）| 免费、免注册、免 API key、本地运行 | Chinese statute retrieval + citation verification for LLMs",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.08,
+   "mcp": 0.98,
+   "docs_qa": 0.77,
+   "graph": 0.05,
+   "personal": 0.04
+  },
+  "kind": "mcp"
  }
 ]

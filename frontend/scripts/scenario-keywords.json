@@ -1970,7 +1970,8 @@
     "ethanplusai/generate-image-skill",
     "obie/slopcore",
     "beatra-ai/ai-storyboard-generator-skill",
-    "yan-stone-computer/NexcoreMultimodalSkill"
+    "yan-stone-computer/NexcoreMultimodalSkill",
+    "beatra-ai/ai-image-realism-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2208,7 +2209,8 @@
     "mohitagw15856/pm-claude-skills",
     "Cesarjoquin/Marketing-Skills",
     "angieruiz17/claude-fintech-skills",
-    "LerianStudio/ring"
+    "LerianStudio/ring",
+    "SkylarKitchen/skills"
    ]
   },
   "related": [
@@ -3146,7 +3148,12 @@
     "1llu50ry/mcp-reverse",
     "poco-ai/Agentero",
     "thomasunise/casecite",
-    "ckryptickunal/OpenWiki"
+    "ckryptickunal/OpenWiki",
+    "Minima-AI-Inc/minima",
+    "fcakyon/autollm",
+    "bodepudimuneendra-netizen/ConsciousDB",
+    "mlimarenko/IronRAG",
+    "THUboran/china-law-mcp"
    ],
    "exclude_repos": [
     "FlowElement-xinliuyuansu/m_flow",
@@ -3166,7 +3173,11 @@
     "shenmintao/marginalia",
     "RD945/document-rag",
     "nanzhipro/Karpathy-llm-wiki-bootstrap-skill",
-    "3vilM33pl3/memory"
+    "3vilM33pl3/memory",
+    "BingoWon/apple-rag-mcp",
+    "bodepudimuneendra-netizen/laya-jev-GraphRAG",
+    "dmayboroda/minima",
+    "viddexa/autollm"
    ]
   },
   "related": [
@@ -4386,7 +4397,10 @@
     "heydamir/unslop",
     "mshumer/unslop",
     "arhamhi/oxfords",
-    "felipebasurto/unslop-ui"
+    "felipebasurto/unslop-ui",
+    "Itskindastrange/fe-design-skill",
+    "beatra-ai/ai-image-realism-skill",
+    "JGalego/slopcop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4829,7 +4843,10 @@
     "IncomeStreamSurfer/seo-night-skill",
     "juneadkhan/seo-tool-builder",
     "JohnWayneeee/free-seo-mcp",
-    "puneetindersingh/bulk-ai-cli-connector"
+    "puneetindersingh/bulk-ai-cli-connector",
+    "rdoser13/free-claude-skills",
+    "JittoJoseph/seo-skills",
+    "jayanti-prajapati/research-first-writer"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5308,7 +5325,8 @@
     "beyondtahir/beyondartist",
     "enmerasoftware/ai-design-check",
     "cychien/ezdesign",
-    "Eronred/designspec"
+    "Eronred/designspec",
+    "seungdori/web-stylebook-mcp"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6402,7 +6420,10 @@
     "JunfengRan/PPTWork",
     "glukicov/slideops",
     "MaximeRumpler/Make_PPTX",
-    "hunkim/slide-skill"
+    "hunkim/slide-skill",
+    "taufiquebuilds/nopurple",
+    "grunion-ai/decklet",
+    "PeterKalmstrom/claude-powerpoint-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7836,7 +7857,10 @@
     "0x7067/jev-browse",
     "hiroki-abe-58/sokudan",
     "Seheta/netizen",
-    "shashikantdev3/decision-models-lab"
+    "shashikantdev3/decision-models-lab",
+    "taeold/djev-run",
+    "Mushroom-Systems/lichen-v1",
+    "bodepudimuneendra-netizen/ConsciousDB"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -7850,7 +7874,9 @@
     "Jwuthri/SelfJev",
     "Alex314618-create/JevRev",
     "Valen-Team/Valen",
-    "cmungall/jevotron"
+    "cmungall/jevotron",
+    "BingoWon/apple-rag-mcp",
+    "Mushroom-Systems/lichen"
    ]
   },
   "related": [
@@ -8363,7 +8389,12 @@
     "ghost1412/shorts-generator",
     "luminexlabs-io/antigravity-remotion-skill",
     "ChrisHKAI/ChrisHKAI-Video",
-    "huaxialucaicaizi/opus5.5-video-skills-"
+    "huaxialucaicaizi/opus5.5-video-skills-",
+    "SpeedPainterOrg/explainer-video",
+    "threerocks/sweety-statechart-video",
+    "tmakersas/revid-skills",
+    "aliangSSS/aliang-knowledge-video",
+    "UgurKeskekci/claude-video-kit"
    ],
    "sub_skills": [
     {

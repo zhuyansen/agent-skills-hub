@@ -1175,6 +1175,14 @@
   "type": "image/gif",
   "bytes": 1474197
  },
+ "Mushroom-Systems/lichen-v1": {
+  "repo": "Mushroom-Systems/lichen-v1",
+  "url": "https://raw.githubusercontent.com/Mushroom-Systems/lichen-v1/HEAD/docs/images/stop-sign.jpg",
+  "alt": "A person in a blue dress standing next to a stop sign",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 80818
+ },
  "Nayjest/Gito": {
   "repo": "Nayjest/Gito",
   "url": "https://github.com/user-attachments/assets/4bdfe954-9c0e-4df1-8e9c-4ea8b43b4f79",
@@ -1246,6 +1254,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 2192295
+ },
+ "PeterKalmstrom/claude-powerpoint-skill": {
+  "repo": "PeterKalmstrom/claude-powerpoint-skill",
+  "url": "https://raw.githubusercontent.com/PeterKalmstrom/claude-powerpoint-skill/HEAD/examples/powerpoint-live.gif",
+  "alt": "PowerPoint Live: change highlights, before/after, lint checks, sorter, storyline",
+  "score": 2.9,
+  "type": "image/gif",
+  "bytes": 446644
  },
  "Pikapika260214/rw-consulting-ppt": {
   "repo": "Pikapika260214/rw-consulting-ppt",
@@ -1431,6 +1447,14 @@
   "type": "image/png",
   "bytes": 68047
  },
+ "SpeedPainterOrg/explainer-video": {
+  "repo": "SpeedPainterOrg/explainer-video",
+  "url": "https://raw.githubusercontent.com/SpeedPainterOrg/explainer-video/HEAD/assets/explainer-video-demo-preview.gif",
+  "alt": "Hand-drawn Explainer Video demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1680925
+ },
  "StarryKit/starry-slides": {
   "repo": "StarryKit/starry-slides",
   "url": "https://raw.githubusercontent.com/StarryKit/starry-slides/HEAD/assets/demos/event-design.gif",
@@ -1462,6 +1486,14 @@
   "score": -0.5,
   "type": "image/png",
   "bytes": 1713312
+ },
+ "THUboran/china-law-mcp": {
+  "repo": "THUboran/china-law-mcp",
+  "url": "https://raw.githubusercontent.com/THUboran/china-law-mcp/HEAD/docs/demo.png",
+  "alt": "china-law-mcp 效果示例：检索相邻关系条文、核验民法典第 1254 条、批量核验一段文本中的三条引用",
+  "score": 1.35,
+  "type": "image/png",
+  "bytes": 300588
  },
  "Tejashmakwana/motionmaxxing": {
   "repo": "Tejashmakwana/motionmaxxing",
@@ -1775,6 +1807,14 @@
   "type": "image/gif",
   "bytes": 2270366
  },
+ "aliangSSS/aliang-knowledge-video": {
+  "repo": "aliangSSS/aliang-knowledge-video",
+  "url": "https://raw.githubusercontent.com/aliangSSS/aliang-knowledge-video/HEAD/docs/images/01-montage.jpg",
+  "alt": "开场",
+  "score": -0.05,
+  "type": "image/jpeg",
+  "bytes": 26016
+ },
  "alibaba/open-code-review": {
   "repo": "alibaba/open-code-review",
   "url": "https://raw.githubusercontent.com/alibaba/open-code-review/HEAD/imgs/highlights-en.png",
@@ -1982,6 +2022,14 @@
   "score": 1.6,
   "type": "image/png",
   "bytes": 80414
+ },
+ "beatra-ai/ai-image-realism-skill": {
+  "repo": "beatra-ai/ai-image-realism-skill",
+  "url": "https://raw.githubusercontent.com/beatra-ai/ai-image-realism-skill/HEAD/assets/demo-2.webp",
+  "alt": "Close-up of the same face before and after the repair, showing airbrushed skin a",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 79714
  },
  "beatra-ai/ai-media-generator-skill": {
   "repo": "beatra-ai/ai-media-generator-skill",
@@ -2623,6 +2671,14 @@
   "type": "image/jpeg",
   "bytes": 137292
  },
+ "fcakyon/autollm": {
+  "repo": "fcakyon/autollm",
+  "url": "https://user-images.githubusercontent.com/44926076/278813325-e545319a-4652-43a7-b02b-45ec877bcfdc.png",
+  "alt": "",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 234616
+ },
  "feicaiclub/knowledge-easy": {
   "repo": "feicaiclub/knowledge-easy",
   "url": "https://raw.githubusercontent.com/feicaiclub/knowledge-easy/HEAD/assets/showcase/history-question.jpg",
@@ -2822,6 +2878,14 @@
   "score": 2.5,
   "type": "image/gif",
   "bytes": 6407265
+ },
+ "grunion-ai/decklet": {
+  "repo": "grunion-ai/decklet",
+  "url": "https://raw.githubusercontent.com/grunion-ai/decklet/HEAD/brand/assets/decklet-loader-light.gif",
+  "alt": "",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 36296
  },
  "hahadu4520/newcut-video-clipping-skill": {
   "repo": "hahadu4520/newcut-video-clipping-skill",
@@ -3278,6 +3342,14 @@
   "score": 1.95,
   "type": "image/jpeg",
   "bytes": 106966
+ },
+ "jayanti-prajapati/research-first-writer": {
+  "repo": "jayanti-prajapati/research-first-writer",
+  "url": "https://raw.githubusercontent.com/jayanti-prajapati/research-first-writer/HEAD/docs/screenshots/article-ai-citations.png",
+  "alt": "Rendered example article: How to Get Cited by AI Search",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 977690
  },
  "jiadizhunine/deepPPT": {
   "repo": "jiadizhunine/deepPPT",
@@ -3774,6 +3846,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 820721
+ },
+ "mlimarenko/IronRAG": {
+  "repo": "mlimarenko/IronRAG",
+  "url": "https://raw.githubusercontent.com/mlimarenko/IronRAG/HEAD/docs/assets/readme-flow.gif",
+  "alt": "IronRAG demo in light and dark themes: document upload, graph layouts, and assis",
+  "score": 2.2,
+  "type": "image/gif",
+  "bytes": 5553518
  },
  "molkex/mcp-flow-google": {
   "repo": "molkex/mcp-flow-google",
@@ -4303,6 +4383,14 @@
   "type": "image/png",
   "bytes": 31835
  },
+ "seungdori/web-stylebook-mcp": {
+  "repo": "seungdori/web-stylebook-mcp",
+  "url": "https://raw.githubusercontent.com/seungdori/web-stylebook-mcp/master/docs/example-throughline-hero.png",
+  "alt": "A landing-page hero an AI agent composed using web-stylebook-mcp — a bespoke fee",
+  "score": -0.75,
+  "type": "image/png",
+  "bytes": 436236
+ },
  "sevenevesai/riso-windowseat": {
   "repo": "sevenevesai/riso-windowseat",
   "url": "https://raw.githubusercontent.com/sevenevesai/riso-windowseat/HEAD/films/window-seat/poster.png",
@@ -4535,6 +4623,14 @@
   "type": "image/gif",
   "bytes": 917547
  },
+ "taeold/djev-run": {
+  "repo": "taeold/djev-run",
+  "url": "https://github.com/user-attachments/assets/2e9a5321-f8a9-4734-b6f2-4d6f47193390",
+  "alt": "djev snake",
+  "score": -0.05,
+  "type": "image/gif",
+  "bytes": 1460196
+ },
  "taito-project/taito": {
   "repo": "taito-project/taito",
   "url": "https://raw.githubusercontent.com/taito-project/.github/main/assets/taito-promo.gif",
@@ -4575,6 +4671,14 @@
   "type": "image/gif",
   "bytes": 2396279
  },
+ "taufiquebuilds/nopurple": {
+  "repo": "taufiquebuilds/nopurple",
+  "url": "https://raw.githubusercontent.com/taufiquebuilds/nopurple/HEAD/docs/themes.png",
+  "alt": "Six themes: paper, ink, swiss, forest, sand and mono",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 163366
+ },
  "theolundqvist/justshowme": {
   "repo": "theolundqvist/justshowme",
   "url": "https://raw.githubusercontent.com/theolundqvist/justshowme/HEAD/docs/screenshots/interactive-demo.png",
@@ -4606,6 +4710,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 2068089
+ },
+ "threerocks/sweety-statechart-video": {
+  "repo": "threerocks/sweety-statechart-video",
+  "url": "https://raw.githubusercontent.com/threerocks/sweety-statechart-video/HEAD/docs/images/frame-step.jpg",
+  "alt": "",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 122272
  },
  "timscheuerai/launch-video-kit": {
   "repo": "timscheuerai/launch-video-kit",
