@@ -4478,5 +4478,53 @@
    "marketing": 0.08
   },
   "kind": "geo"
+ },
+ {
+  "repo": "wojcikdominik/openspider",
+  "stars": 5,
+  "description": "The crawler for the agentic era – open-source website crawler & technical SEO auditor for AI agents and humans (macOS, Windows). Rust + Tauri, MCP-native.",
+  "scores": {
+   "suite": 0.23,
+   "audit": 0.91,
+   "research": 0.03,
+   "data_mcp": 0.58,
+   "geo": 0.08,
+   "content": 0.05,
+   "links": 0.04,
+   "marketing": 0.04
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "avalonreset/legends-dataforseo",
+  "stars": 5,
+  "description": "DataForSEO Python client and CLI for coding agents: Google SERP, Google Maps, Google Business Profile lookups, keyword volume research, and saved evidence.",
+  "scores": {
+   "suite": 0.12,
+   "audit": 0.05,
+   "research": 0.88,
+   "data_mcp": 0.6,
+   "geo": 0.12,
+   "content": 0.07,
+   "links": 0.06,
+   "marketing": 0.1
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "getcheapapi/getcheapapi",
+  "stars": 8,
+  "description": "Open-source price router for paid data and media APIs: pick the cheapest provider per call, with budget guards for AI agents.",
+  "scores": {
+   "suite": 0.12,
+   "audit": 0.03,
+   "research": 0.74,
+   "data_mcp": 0.14,
+   "geo": 0.06,
+   "content": 0.08,
+   "links": 0.07,
+   "marketing": 0.49
+  },
+  "kind": "research"
  }
 ]

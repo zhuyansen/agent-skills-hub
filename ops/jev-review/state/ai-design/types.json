@@ -2840,5 +2840,33 @@
    "review": 0.74
   },
   "kind": "system"
+ },
+ {
+  "repo": "kubai087/kubai-icons",
+  "stars": 52,
+  "description": "A Claude skill that draws dynamic icons in one consistent style, with hover motion or as static SVG.",
+  "scores": {
+   "ui": 0.69,
+   "system": 0.69,
+   "tool_mcp": 0.06,
+   "to_code": 0.08,
+   "graphics": 0.93,
+   "review": 0.23
+  },
+  "kind": "graphics"
+ },
+ {
+  "repo": "marcosnovo/unslop-design",
+  "stars": 13,
+  "description": "An agent skill (Claude Code, Codex, Cursor, Copilot, Gemini CLI…) that makes your app or site stop looking AI-generated: 64 numbered design fixes, scripts that measure and score your UI, and a before/after you approve.",
+  "scores": {
+   "ui": 0.96,
+   "system": 0.24,
+   "tool_mcp": 0.06,
+   "to_code": 0.41,
+   "graphics": 0.09,
+   "review": 0.95
+  },
+  "kind": "ui"
  }
 ]

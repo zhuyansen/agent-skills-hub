@@ -303,6 +303,14 @@
   "type": "image/gif",
   "bytes": 2044812
  },
+ "Anakior/atlas-mind": {
+  "repo": "Anakior/atlas-mind",
+  "url": "https://github.com/user-attachments/assets/726ab344-b024-425f-a5ee-f56d97a886c7",
+  "alt": "Atlas Mind viewer",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 395040
+ },
  "Angel-Gril/Kimi-PPT-Skills": {
   "repo": "Angel-Gril/Kimi-PPT-Skills",
   "url": "https://raw.githubusercontent.com/Angel-Gril/Kimi-PPT-Skills/HEAD/docs/images/example-yu7-pptx.png",
@@ -1487,6 +1495,14 @@
   "type": "image/png",
   "bytes": 1713312
  },
+ "SystemSculpt/obsidian-systemsculpt-ai": {
+  "repo": "SystemSculpt/obsidian-systemsculpt-ai",
+  "url": "https://raw.githubusercontent.com/SystemSculpt/obsidian-systemsculpt-ai/main/docs/images/readme-chat-approval.png",
+  "alt": "An example of SystemSculpt asking before a note edit in Ask mode and showing the",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 503999
+ },
  "THUboran/china-law-mcp": {
   "repo": "THUboran/china-law-mcp",
   "url": "https://raw.githubusercontent.com/THUboran/china-law-mcp/HEAD/docs/demo.png",
@@ -1975,6 +1991,14 @@
   "type": "image/jpeg",
   "bytes": 14070
  },
+ "avalonreset/legends-dataforseo": {
+  "repo": "avalonreset/legends-dataforseo",
+  "url": "https://raw.githubusercontent.com/avalonreset/legends-dataforseo/HEAD/assets/banner.webp",
+  "alt": "legends-dataforseo",
+  "score": -2.5,
+  "type": "image/webp",
+  "bytes": 30476
+ },
  "avalonreset/legends-geogrid": {
   "repo": "avalonreset/legends-geogrid",
   "url": "https://raw.githubusercontent.com/avalonreset/legends-geogrid/HEAD/assets/why-have-we-never-met-before.png",
@@ -2366,6 +2390,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 1489013
+ },
+ "dauletbekalim/motion-ui-videos": {
+  "repo": "dauletbekalim/motion-ui-videos",
+  "url": "https://raw.githubusercontent.com/dauletbekalim/motion-ui-videos/HEAD/media/demo.gif",
+  "alt": "The skill",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3977396
  },
  "davidcervinka/vibe-editing": {
   "repo": "davidcervinka/vibe-editing",
@@ -2799,6 +2831,14 @@
   "type": "image/gif",
   "bytes": 321977
  },
+ "getcheapapi/getcheapapi": {
+  "repo": "getcheapapi/getcheapapi",
+  "url": "https://raw.githubusercontent.com/getcheapapi/getcheapapi/HEAD/site/public/og.png",
+  "alt": "getcheapapi: the lowest price for every API call",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 164671
+ },
  "ghost1412/shorts-generator": {
   "repo": "ghost1412/shorts-generator",
   "url": "https://raw.githubusercontent.com/ghost1412/shorts-generator/HEAD/demos/demo_clipping_active.gif",
@@ -2830,6 +2870,14 @@
   "score": -0.45,
   "type": "image/png",
   "bytes": 187295
+ },
+ "gmpetrov/agent-screenplay": {
+  "repo": "gmpetrov/agent-screenplay",
+  "url": "https://raw.githubusercontent.com/gmpetrov/agent-screenplay/HEAD/docs/handoff-storyboard.png",
+  "alt": "Storyboard of an example video",
+  "score": -0.65,
+  "type": "image/png",
+  "bytes": 352146
  },
  "gnipbao/knowledge-cat-ppt-skill": {
   "repo": "gnipbao/knowledge-cat-ppt-skill",
@@ -3046,6 +3094,14 @@
   "score": 0.3,
   "type": "image/gif",
   "bytes": 4323726
+ },
+ "hubeiqiao/og-video-preview": {
+  "repo": "hubeiqiao/og-video-preview",
+  "url": "https://raw.githubusercontent.com/hubeiqiao/og-video-preview/HEAD/social/showcase.gif",
+  "alt": "The og:videos the skill made from the og:images of ycombinator.com, x.ai, deno.c",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 2683877
  },
  "hugohe3/ppt-master": {
   "repo": "hugohe3/ppt-master",
@@ -3439,6 +3495,14 @@
   "type": "image/png",
   "bytes": 530668
  },
+ "karlkfi/claude-bouncer": {
+  "repo": "karlkfi/claude-bouncer",
+  "url": "https://raw.githubusercontent.com/karlkfi/claude-bouncer/HEAD/docs/img/social-preview.png",
+  "alt": "claude-bouncer: five PreToolUse guards for Claude Code, one marketplace",
+  "score": 1.85,
+  "type": "image/png",
+  "bytes": 100106
+ },
  "keanu77/htmlpptskill": {
   "repo": "keanu77/htmlpptskill",
   "url": "https://raw.githubusercontent.com/keanu77/htmlpptskill/HEAD/docs/demo.gif",
@@ -3542,6 +3606,14 @@
   "score": 2.35,
   "type": "image/gif",
   "bytes": 7367251
+ },
+ "kubai087/kubai-icons": {
+  "repo": "kubai087/kubai-icons",
+  "url": "https://raw.githubusercontent.com/kubai087/kubai-icons/HEAD/assets/social.png",
+  "alt": "Kubai Icons, a Claude skill: dynamic icons in one consistent style, every time. ",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 86805
  },
  "kunkka19xx/lgtm": {
   "repo": "kunkka19xx/lgtm",
@@ -3671,6 +3743,14 @@
   "type": "image/png",
   "bytes": 691140
  },
+ "liuhaisi2026212-maker/motion-palette-15": {
+  "repo": "liuhaisi2026212-maker/motion-palette-15",
+  "url": "https://raw.githubusercontent.com/liuhaisi2026212-maker/motion-palette-15/HEAD/docs/readme/films/01.webp",
+  "alt": "赛博 HUD 样片「寻猫雷达」：满屏数据面板、罩在街区地图上的瞄准镜、锁定后变成琥珀色",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 242292
+ },
  "liuliu-66-create/ll-video-edit": {
   "repo": "liuliu-66-create/ll-video-edit",
   "url": "https://raw.githubusercontent.com/liuliu-66-create/ll-video-edit/HEAD/motion-library/previews/multi-point-generic-styleframe-v1.png",
@@ -3734,6 +3814,14 @@
   "score": 4.95,
   "type": "image/gif",
   "bytes": 2015038
+ },
+ "marcosnovo/unslop-design": {
+  "repo": "marcosnovo/unslop-design",
+  "url": "https://raw.githubusercontent.com/marcosnovo/unslop-design/HEAD/assets/refil-mapa.gif",
+  "alt": "Refil map screen, fix by fix: spacing, color, price, then the station card becom",
+  "score": 2.65,
+  "type": "image/gif",
+  "bytes": 1094315
  },
  "matheusfillipe/diffler": {
   "repo": "matheusfillipe/diffler",
@@ -4358,6 +4446,14 @@
   "score": -2.55,
   "type": "image/png",
   "bytes": 1238869
+ },
+ "sanskarprajapati/parallax-doc": {
+  "repo": "sanskarprajapati/parallax-doc",
+  "url": "https://raw.githubusercontent.com/sanskarprajapati/parallax-doc/HEAD/docs/preview.webp",
+  "alt": "Opening of the D-Day example film",
+  "score": 2.0,
+  "type": "image/webp",
+  "bytes": 4764642
  },
  "sedum-dev/sedum": {
   "repo": "sedum-dev/sedum",
@@ -5015,6 +5111,14 @@
   "type": "image/png",
   "bytes": 1519449
  },
+ "wojcikdominik/openspider": {
+  "repo": "wojcikdominik/openspider",
+  "url": "https://raw.githubusercontent.com/wojcikdominik/openspider/HEAD/assets/screenshots/urls-light.jpg",
+  "alt": "URL table filtered to HTML pages with the SERP snippet preview of the selected p",
+  "score": 1.55,
+  "type": "image/jpeg",
+  "bytes": 270351
+ },
  "wong2/diffx": {
   "repo": "wong2/diffx",
   "url": "https://raw.githubusercontent.com/wong2/diffx/main/screenshot.png",
@@ -5103,6 +5207,14 @@
   "type": "image/png",
   "bytes": 71764
  },
+ "xxxd666/special-achievement-report": {
+  "repo": "xxxd666/special-achievement-report",
+  "url": "https://raw.githubusercontent.com/xxxd666/special-achievement-report/HEAD/docs/screenshots/02-palette.jpeg",
+  "alt": "配色总览",
+  "score": -0.3,
+  "type": "image/jpeg",
+  "bytes": 690345
+ },
  "y-wi/horizon-montage-generic": {
   "repo": "y-wi/horizon-montage-generic",
   "url": "https://raw.githubusercontent.com/y-wi/horizon-montage-generic/HEAD/docs/qa_sheet.jpg",
@@ -5142,6 +5254,14 @@
   "score": -0.3,
   "type": "image/png",
   "bytes": 496708
+ },
+ "yerinsabraham/video-edit-skill": {
+  "repo": "yerinsabraham/video-edit-skill",
+  "url": "https://raw.githubusercontent.com/yerinsabraham/video-edit-skill/HEAD/docs/media/what-it-adds.jpg",
+  "alt": "What the skill added: a word behind the speaker, the skill file as a code window",
+  "score": 1.8,
+  "type": "image/jpeg",
+  "bytes": 137955
  },
  "ymybxx/SoloMCN": {
   "repo": "ymybxx/SoloMCN",

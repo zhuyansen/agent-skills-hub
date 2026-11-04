@@ -3404,5 +3404,18 @@
    "tooling": 0.8
   },
   "kind": "collection"
+ },
+ {
+  "repo": "karlkfi/claude-bouncer",
+  "stars": 9,
+  "description": "Guard rails for Claude Code: workspace boundaries, protected branches, production targets, lost exit status, and foreground time.",
+  "scores": {
+   "hooks": 0.98,
+   "subagents": 0.04,
+   "statusline": 0.02,
+   "collection": 0.64,
+   "tooling": 0.78
+  },
+  "kind": "hooks"
  }
 ]

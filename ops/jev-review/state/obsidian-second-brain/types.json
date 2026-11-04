@@ -2078,5 +2078,18 @@
    "sync": 0.84
   },
   "kind": "skill"
+ },
+ {
+  "repo": "SystemSculpt/obsidian-systemsculpt-ai",
+  "stars": 196,
+  "description": "Chat with your Obsidian vault using your own Claude Code or Codex on desktop, or hosted AI. Edit notes with approval modes, transcribe audio and find related notes. Free to start.",
+  "scores": {
+   "skill": 0.14,
+   "mcp": 0.27,
+   "plugin": 0.92,
+   "second_brain": 0.23,
+   "sync": 0.49
+  },
+  "kind": "plugin"
  }
 ]

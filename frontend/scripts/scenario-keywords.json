@@ -3153,7 +3153,10 @@
     "fcakyon/autollm",
     "bodepudimuneendra-netizen/ConsciousDB",
     "mlimarenko/IronRAG",
-    "THUboran/china-law-mcp"
+    "THUboran/china-law-mcp",
+    "sparkplug604/praxis",
+    "ipiton/agent-memory-mcp",
+    "Anakior/atlas-mind"
    ],
    "exclude_repos": [
     "FlowElement-xinliuyuansu/m_flow",
@@ -4400,12 +4403,16 @@
     "felipebasurto/unslop-ui",
     "Itskindastrange/fe-design-skill",
     "beatra-ai/ai-image-realism-skill",
-    "JGalego/slopcop"
+    "JGalego/slopcop",
+    "DevVettel/turkish-humanizer",
+    "tqkqt0/humanizer-jp",
+    "taufiquebuilds/nopurple"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
     "iCodeCraft/anti-slop",
-    "adenaufal/anti-slop-writing"
+    "adenaufal/anti-slop-writing",
+    "Bubblegunn/ai-slop-linter"
    ]
   },
   "related": [
@@ -4846,7 +4853,10 @@
     "puneetindersingh/bulk-ai-cli-connector",
     "rdoser13/free-claude-skills",
     "JittoJoseph/seo-skills",
-    "jayanti-prajapati/research-first-writer"
+    "jayanti-prajapati/research-first-writer",
+    "getcheapapi/getcheapapi",
+    "wojcikdominik/openspider",
+    "avalonreset/legends-dataforseo"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -4885,7 +4895,10 @@
     "usenotra/notra",
     "AgriciDaniel/chatgpt-seo",
     "byteminus/laravel-ai-blog",
-    "Cesarjoquin/Marketing-Skills"
+    "Cesarjoquin/Marketing-Skills",
+    "alphaparkinc/genpark-generative-seo-skill",
+    "alphaparkinc/genpark-seo-metadata-generator-skill",
+    "mlsss333/seo-geo-kit"
    ]
   },
   "related": [
@@ -5326,7 +5339,9 @@
     "enmerasoftware/ai-design-check",
     "cychien/ezdesign",
     "Eronred/designspec",
-    "seungdori/web-stylebook-mcp"
+    "seungdori/web-stylebook-mcp",
+    "kubai087/kubai-icons",
+    "marcosnovo/unslop-design"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6423,7 +6438,8 @@
     "hunkim/slide-skill",
     "taufiquebuilds/nopurple",
     "grunion-ai/decklet",
-    "PeterKalmstrom/claude-powerpoint-skill"
+    "PeterKalmstrom/claude-powerpoint-skill",
+    "xxxd666/special-achievement-report"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7351,7 +7367,8 @@
     "qisehong/wechat-to-obsidian-skill",
     "yejianye/ob-smart-connections-mcp",
     "mistrysiddh/hermes-brain-template",
-    "caibucaiAI/caicai-english-buddy"
+    "caibucaiAI/caicai-english-buddy",
+    "SystemSculpt/obsidian-systemsculpt-ai"
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
@@ -8394,7 +8411,13 @@
     "threerocks/sweety-statechart-video",
     "tmakersas/revid-skills",
     "aliangSSS/aliang-knowledge-video",
-    "UgurKeskekci/claude-video-kit"
+    "UgurKeskekci/claude-video-kit",
+    "gmpetrov/agent-screenplay",
+    "sanskarprajapati/parallax-doc",
+    "yerinsabraham/video-edit-skill",
+    "dauletbekalim/motion-ui-videos",
+    "hubeiqiao/og-video-preview",
+    "liuhaisi2026212-maker/motion-palette-15"
    ],
    "sub_skills": [
     {
@@ -8955,7 +8978,8 @@
     "Isllanrx/status_cli",
     "HamzaAlayed/laravel-claude-agents",
     "momenbasel/claude-code-statusline",
-    "event4u-app/agent-config"
+    "event4u-app/agent-config",
+    "karlkfi/claude-bouncer"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

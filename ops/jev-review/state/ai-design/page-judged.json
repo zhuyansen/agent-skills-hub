@@ -15503,5 +15503,42 @@
   "days": 134,
   "stars_per_day": 0.5671641791044776,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "kubai087/kubai-icons",
+  "name": "kubai-icons",
+  "stars": 52,
+  "description": "A Claude skill that draws dynamic icons in one consistent style, with hover motion or as static SVG.",
+  "topics": [
+   "agent-skills",
+   "animation",
+   "claude",
+   "claude-skill",
+   "design-system",
+   "hover-effects",
+   "icon-set",
+   "icons",
+   "svg",
+   "svg-icons"
+  ],
+  "created": "2026-11-03",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9804,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.98,
+  "shows_result": 0.55,
+  "one_command_start": 0.67,
+  "specific_outcome": 0.9,
+  "complete_docs": 0.85,
+  "novel_angle": 0.73,
+  "shareable_output": 0.86,
+  "quality": 0.7425,
+  "tier": "中",
+  "hit_prior": 0.7133333333333334,
+  "days": 1,
+  "stars_per_day": 52.0,
+  "verdict": "low_quality"
  }
 ]

@@ -7648,5 +7648,113 @@
    "general": 0.38
   },
   "kind": "editing"
+ },
+ {
+  "repo": "sanskarprajapati/parallax-doc",
+  "stars": 5,
+  "description": "Cinematic one-camera history documentaries for Claude Code: layered 2.5D plates, no hard cuts, typed text with one red word, a worn film look.",
+  "scores": {
+   "promo": 0.14,
+   "explainer": 0.85,
+   "music": 0.02,
+   "motion": 0.07,
+   "shorts": 0.1,
+   "editing": 0.06,
+   "demo": 0.21,
+   "story": 0.14,
+   "avatar": 0.04,
+   "general": 0.04
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "yerinsabraham/video-edit-skill",
+  "stars": 5,
+  "description": "Drop your raw clips, type /video-edit, get a finished short-form video. Best takes, kinetic captions, words behind you, logos, UI demos, zooms, sound, grade. Local-first Claude Code + Codex skill.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.21,
+   "music": 0.03,
+   "motion": 0.2,
+   "shorts": 0.94,
+   "editing": 0.97,
+   "demo": 0.49,
+   "story": 0.06,
+   "avatar": 0.05,
+   "general": 0.07
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "dauletbekalim/motion-ui-videos",
+  "stars": 5,
+  "description": "A Claude Code skill that makes product videos from your app's repo: reels, launch films, loops and covers, with the UI rebuilt in code and sound timed to the frame.",
+  "scores": {
+   "promo": 0.94,
+   "explainer": 0.21,
+   "music": 0.06,
+   "motion": 0.31,
+   "shorts": 0.74,
+   "editing": 0.05,
+   "demo": 0.82,
+   "story": 0.07,
+   "avatar": 0.04,
+   "general": 0.2
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "hubeiqiao/og-video-preview",
+  "stars": 5,
+  "description": "Agent skill that turns any approved Open Graph image into a looping og:video. It plays in iMessage, Discord and Telegram link previews, and every other app shows the same still. Tested on 104 real OG images. For Claude Code, Codex and any agent that supports Agent Skills.",
+  "scores": {
+   "promo": 0.6,
+   "explainer": 0.34,
+   "music": 0.02,
+   "motion": 0.89,
+   "shorts": 0.04,
+   "editing": 0.2,
+   "demo": 0.7,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.04
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "liuhaisi2026212-maker/motion-palette-15",
+  "stars": 5,
+  "description": "十五画境·AI 动画手艺书：教 AI 用代码做 MG 动画短片。说想要什么感觉，AI 来定风格、手法和工具：16 种风格卡（赛博 HUD、综艺花字、像素风、3D 软萌、剪纸皮影等），风格不封顶；Canvas、Three.js、Remotion 镜头卡可以混用，导出带配乐 MP4。Claude Code / Codex npx 一行安装，豆包等聊天平台也能用。",
+  "scores": {
+   "promo": 0.54,
+   "explainer": 0.71,
+   "music": 0.13,
+   "motion": 0.95,
+   "shorts": 0.54,
+   "editing": 0.03,
+   "demo": 0.53,
+   "story": 0.4,
+   "avatar": 0.03,
+   "general": 0.34
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "gmpetrov/agent-screenplay",
+  "stars": 12,
+  "description": "Beautiful screen recordings, made by your favorite AI agent.",
+  "scores": {
+   "promo": 0.64,
+   "explainer": 0.68,
+   "music": 0.02,
+   "motion": 0.15,
+   "shorts": 0.12,
+   "editing": 0.52,
+   "demo": 0.94,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.15
+  },
+  "kind": "promo"
  }
 ]
