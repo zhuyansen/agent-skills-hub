@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-04
+1. kubai087/kubai-icons — 🆕 让 Claude 按统一风格画动态图标，可带悬停动效或导出静态 SVG（52★ 52.0/day）
+2. aronhy/marketing-skill-hub — 🆕 汇集中英双语海外营销技能，覆盖 Meta、Google、TikTok 广告文案与 UGC（67★ 37.6/day）
+3. ywEdAi/teachable-figures — 🆕 生成讲清因果的教学图，按预测、动手、解释三步带读者理解（234★ 31.0/day）
+4. taeold/djev-run — 在 Cloud Run GPU 上部署实验性扩散模型 DiffusionGemma-Jev，附演示应用（586★ 13.0/day）
+5. klarluft/pitupitu — 用手机语音指挥任意电脑上的 Claude Code 和 Codex，开源盒子智能体（230★ 12.9/day）
+6. vzoha/dejiny-domu-skill — 🆕 从捷克档案考据房屋与村庄历史，生成带时间轴的网站（57★ 12.9/day）
+7. lemonadesaltbagel/crab — 🆕 只看软件行为不看源码，借 MCP 把任意软件重新做一遍（161★ 12.5/day）
+8. nixesty/pebbly — 🆕 在 Windows 任务栏加入类 One UI 灵动胶囊，实时显示进行中的活动（113★ 10.7/day）
+9. mazulo/leis-mcp — 🆕 让 AI 助手检索并精确引用巴西法律原文，提供 MCP 服务（29★ 10.6/day）
+10. ngocanhnckh/renderlint — 🆕 检查渲染后的界面，揪出文字溢出、低对比、元素重叠和响应式错位（94★ 9.8/day）
+🎯 今日趋势：**8 席**标 🆕；「把视觉产出做对」占 **3 席**（kubai-icons 统一风格图标、teachable-figures 因果教学图、renderlint 检查渲染后界面），非英语本地化占 **2 席**（巴西法律检索、捷克档案考据），kubai-icons 以 52.0/day 领跑。
+> 注：去重范围＝repo 内 archive 全部 132 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,457 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（事务内 `SET LOCAL statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 29 条；按 first_seen 切回 48h 后剩 93 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Balanov/verdict（217★ 150.6/day）：作者连续两日以新仓冲榜首，实时 230★ 却 0 fork（昨日 uncut 也仅 7 fork），保守排除；②exzade/EXZA-Remote（167★ 91.6/day）：1 粉、名下仅此 1 仓，实时 176★/0 fork，单仓突起，且属远程控制电脑类工具，保守排除；③joeseesun/kindle-push-macos（48★ 30.5/day）：是 chasepal/kindle-push-macos 的 fork，按规则排除；④synchopate/llama-modchip 与 synchopate/nemotron-30b-cpu-256k（71★ 12.2/day）：同作者两仓描述完全相同、性能宣称夸张，一仓安全评级 caution，排除；⑤rtmandreyev/construct（107★ 9.8/day，与第 10 席并列）：2026-03 新建号、3 粉，其余仓 ≤2★，单仓突起，保守排除；⑥其余均已在历史榜单出现或 velocity 低于第 10 席（zordhalo/runs-on.dev 7.9/day 已超 48h 窗口）。入选项复核（`gh api`，stargazers 接口本次返回 404 未能抽样）：第 1 席 kubai087 2020 建号、52 粉，名下另有 328★ 仓，实时 105★；第 2 席 aronhy 2026-01 建号、9 粉，名下另有 181★/80★ 仓，实时 122★/23 fork；第 3 席 ywEdAi 2023 建号、34 粉，其余仓 ≤3★，但实时 268★/35 fork 比例正常（**轻红旗**，保留）；第 4 席 taeold 2015 建号、145 粉，实时 586★/39 fork；第 5 席 klarluft 2021 建号、239 粉，名下另有 131★ 仓，但实时 232★ 仅 0 fork（**轻红旗**，保留）；第 6 席 vzoha 4 粉、其余仓 ≤1★，实时 58★/6 fork 星数小（**轻红旗**，保留）；第 7 席 lemonadesaltbagel 2011 建号、124 粉，名下另有 146★/103★ 仓；第 8 席 nixesty 8 粉、名下仅此 1 仓，实时 116★/15 fork 比例正常（**轻红旗**，保留）；第 9 席 mazulo 2012 建号、230 粉；第 10 席 ngocanhnckh 2015 建号、31 粉，实时 134★/23 fork。🆕 判定＝created_at 距今 14 天内：除 djev-run（45.1 天）、pitupitu（17.9 天）外八席命中。security_grade：十席均为 safe。表中 stars 为数据库快照，部分仓实时更高（teachable-figures 268★、kubai-icons 105★、renderlint 134★），按红线保留快照值。
+
+---
+
 ## 2026-11-03
 1. Balanov/uncut — 🆕 用一个 7MB 单文件跑无损无头的编程智能体，只有四个工具、纯标准输入输出（382★ 269.1/day）
 2. mhfed/vn-law-check — 🆕 按越南最新数据保护、电商与 AI 法规审计网站合规，适配 Claude Code 等工具（101★ 101.0/day）
