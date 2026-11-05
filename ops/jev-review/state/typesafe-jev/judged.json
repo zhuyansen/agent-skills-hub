@@ -34651,5 +34651,32 @@
   "days": 27,
   "stars_per_day": 0.18518518518518517,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "royosherove/graphlin",
+  "name": "graphlin",
+  "stars": 5,
+  "description": "Live architecture and activity diagrams for coding agents using JEV and strands decider.",
+  "topics": [],
+  "created": "2026-09-20",
+  "pushed": "2026-10-06",
+  "source": "topic",
+  "readme_chars": 5164,
+  "names_model": false,
+  "uses_jev": 0.81,
+  "is_software": 0.98,
+  "reusable_tool": 0.91,
+  "one_command_start": 0.4,
+  "complete_docs": 0.8,
+  "shows_result": 0.93,
+  "specific_outcome": 0.43,
+  "novel_angle": 0.91,
+  "shareable_output": 0.89,
+  "quality": 0.64,
+  "tier": "中",
+  "hit_prior": 0.91,
+  "days": 46,
+  "stars_per_day": 0.10869565217391304,
+  "verdict": "low_quality"
  }
 ]

@@ -3596,5 +3596,19 @@
    "general": 0.53
   },
   "kind": "business"
+ },
+ {
+  "repo": "cclank/lanshu-html-ppt-templates",
+  "stars": 45,
+  "description": "20 self-contained HTML presentation templates · 226 slides · one reusable AI skill by Lanshu.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.98,
+   "business": 0.92,
+   "convert": 0.67,
+   "general": 0.11
+  },
+  "kind": "html"
  }
 ]

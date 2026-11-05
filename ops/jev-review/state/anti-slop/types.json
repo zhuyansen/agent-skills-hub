@@ -3820,5 +3820,47 @@
    "rules": 0.61
   },
   "kind": "detector"
+ },
+ {
+  "repo": "henmuc/codex-academic-humanizer",
+  "stars": 5,
+  "description": "Codex skill that change writing style",
+  "scores": {
+   "writing": 0.37,
+   "detector": 0.65,
+   "chinese": 0.52,
+   "code": 0.06,
+   "design": 0.06,
+   "rules": 0.73
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "claudiusararu/unslop-ui-skill",
+  "stars": 5,
+  "description": "Stop your AI building generic, AI-looking UI. An anti-slop design skill + a catalog of ~100 AI design tells, for Claude Code, Cursor, v0, and more.",
+  "scores": {
+   "writing": 0.08,
+   "detector": 0.24,
+   "chinese": 0.03,
+   "code": 0.21,
+   "design": 0.96,
+   "rules": 0.96
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "marcosnovo/unslop-design",
+  "stars": 13,
+  "description": "An agent skill (Claude Code, Codex, Cursor, Copilot, Gemini CLI…) that makes your app or site stop looking AI-generated: 64 numbered design fixes, scripts that measure and score your UI, and a before/after you approve.",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.27,
+   "chinese": 0.02,
+   "code": 0.12,
+   "design": 0.95,
+   "rules": 0.6
+  },
+  "kind": "design"
  }
 ]

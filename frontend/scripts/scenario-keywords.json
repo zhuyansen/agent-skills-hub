@@ -1971,7 +1971,8 @@
     "obie/slopcore",
     "beatra-ai/ai-storyboard-generator-skill",
     "yan-stone-computer/NexcoreMultimodalSkill",
-    "beatra-ai/ai-image-realism-skill"
+    "beatra-ai/ai-image-realism-skill",
+    "LunaAI519/motion-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2210,7 +2211,8 @@
     "Cesarjoquin/Marketing-Skills",
     "angieruiz17/claude-fintech-skills",
     "LerianStudio/ring",
-    "SkylarKitchen/skills"
+    "SkylarKitchen/skills",
+    "cbrock84/headcount"
    ]
   },
   "related": [
@@ -4406,7 +4408,10 @@
     "JGalego/slopcop",
     "DevVettel/turkish-humanizer",
     "tqkqt0/humanizer-jp",
-    "taufiquebuilds/nopurple"
+    "taufiquebuilds/nopurple",
+    "marcosnovo/unslop-design",
+    "henmuc/codex-academic-humanizer",
+    "claudiusararu/unslop-ui-skill"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4856,7 +4861,9 @@
     "jayanti-prajapati/research-first-writer",
     "getcheapapi/getcheapapi",
     "wojcikdominik/openspider",
-    "avalonreset/legends-dataforseo"
+    "avalonreset/legends-dataforseo",
+    "iamjeeth/launch-seo-skill",
+    "m4mansoor/seo-agent"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5350,7 +5357,8 @@
     "bergside/typeui.sh",
     "mahmoudilyan/marmoui",
     "adityarajdigital/designmd",
-    "mikesheehan54/Claude-Code-Design-AI"
+    "mikesheehan54/Claude-Code-Design-AI",
+    "tathagat22/plumb-mcp"
    ]
   },
   "related": [
@@ -6250,7 +6258,8 @@
     "seulee26/mckinsey-pptx",
     "gozen3ji/consulting-pptx-skill",
     "mujingquan835/dashiai-ppt-skill",
-    "clearfunction/cf-devtools"
+    "clearfunction/cf-devtools",
+    "MiraclePlus/pre-pp"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -6439,7 +6448,8 @@
     "taufiquebuilds/nopurple",
     "grunion-ai/decklet",
     "PeterKalmstrom/claude-powerpoint-skill",
-    "xxxd666/special-achievement-report"
+    "xxxd666/special-achievement-report",
+    "cclank/lanshu-html-ppt-templates"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8417,7 +8427,18 @@
     "yerinsabraham/video-edit-skill",
     "dauletbekalim/motion-ui-videos",
     "hubeiqiao/og-video-preview",
-    "liuhaisi2026212-maker/motion-palette-15"
+    "liuhaisi2026212-maker/motion-palette-15",
+    "aaitor/skill-video-studio",
+    "WoYun520/pixel-gif-sticker-pack",
+    "Phucanh-MRT/mrtkeyword",
+    "Felpborges/claude-video",
+    "V413havai/vaibhav-video-editor",
+    "david-d2c2/motion-promo-reels",
+    "superyhee/hypr-video-skills",
+    "rocketmandrey/stickman-director",
+    "murathany7/reel-studio",
+    "echoD886/dramacanvas-ai-filmmaking-mcp",
+    "ekomen77/erko-ai-video-engine"
    ],
    "sub_skills": [
     {

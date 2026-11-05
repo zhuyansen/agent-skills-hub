@@ -3596,5 +3596,19 @@
    "mcp": 0.32
   },
   "kind": "editing"
+ },
+ {
+  "repo": "LunaAI519/motion-skill",
+  "stars": 6,
+  "description": "Claude Code skill：一张参考图 → 复古剪贴报风格动画短视频（Nano Banana 关键帧 + Kling 图生视频），内置版权红线自检",
+  "scores": {
+   "gpt_image": 0.03,
+   "nano_banana": 0.7,
+   "open_models": 0.05,
+   "editing": 0.06,
+   "design": 0.07,
+   "mcp": 0.17
+  },
+  "kind": "nano_banana"
  }
 ]
