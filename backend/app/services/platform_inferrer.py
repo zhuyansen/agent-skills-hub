@@ -49,6 +49,14 @@ class PlatformInferrer:
         "mcp-server": "mcp",
     }
 
+    # Short enough to sit inside unrelated words, so matched only as whole words:
+    # "web" in "websites", "cli" in "mcp-client", "aws" in "laws" (11-05).
+    WHOLE_WORD_KEYWORDS = {"web", "cli", "aws"}
+
+    # A topic like gemini-seo or perplexity-geo names an engine the skill optimizes
+    # for, not a runtime it runs on (Akii's SEO plugin was listed under Gemini).
+    OPTIMIZATION_TARGET_TOPIC = re.compile(r"-(?:seo|geo|aeo)$")
+
     NEGATION_PATTERNS = [
         r"not\s+compatible\s+with\s+(\w+)",
         r"without\s+(\w+)\s+support",
@@ -91,20 +99,22 @@ class PlatformInferrer:
         topics = json.loads(skill.topics) if skill.topics else []
         for topic in topics:
             topic_lower = topic.lower()
+            if self.OPTIMIZATION_TARGET_TOPIC.search(topic_lower):
+                continue
             for keyword, platform in self.TOPIC_KEYWORDS.items():
-                if keyword in topic_lower:
+                if self._mentions(keyword, topic_lower):
                     platforms.add(platform)
 
         # From description
         desc_lower = (skill.description or "").lower()
         for keyword, platform in self.TOPIC_KEYWORDS.items():
-            if keyword in desc_lower:
+            if self._mentions(keyword, desc_lower):
                 platforms.add(platform)
 
         # From repo name
         name_lower = skill.repo_name.lower()
         for keyword, platform in self.TOPIC_KEYWORDS.items():
-            if keyword in name_lower:
+            if self._mentions(keyword, name_lower):
                 platforms.add(platform)
 
         # File hints from description + README preview
@@ -126,3 +136,10 @@ class PlatformInferrer:
                         platforms.discard(platform)
 
         return sorted(platforms)
+
+    @classmethod
+    def _mentions(cls, keyword: str, text: str) -> bool:
+        """Whether `text` mentions `keyword`: anywhere, or as a whole word for the short ones."""
+        if keyword not in cls.WHOLE_WORD_KEYWORDS:
+            return keyword in text
+        return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None

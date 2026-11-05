@@ -26,6 +26,10 @@ class DataCleaner:
             "claude code agent", "claude code cli",
             "claude code workflow", "claude code custom",
             "claude desktop", "claudekit", "claude skills",
+            # A Claude Code plugin bundles skills, agents and commands. Without
+            # these, one that says "Claude Code plugin" and is tagged
+            # claude-code-plugin landed in uncategorized (Akii's SEO plugin, 11-05).
+            "claude code plugin", "claude-code-plugin", "claude-plugin",
         ],
         "codex-skill": [
             "codex", "openai-codex", "codex-skill", "codex skill",

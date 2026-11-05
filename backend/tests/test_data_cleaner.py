@@ -112,6 +112,17 @@ class TestClassify:
         result = cleaner.process([repo])[0]
         assert result["category"] == "claude-skill"
 
+    def test_claude_code_plugin(self):
+        cleaner = DataCleaner()
+        repo = _make_repo(
+            full_name="akii-technologies-ltd/akii-seo-ai-search-optimizer",
+            description="Free MIT-licensed Claude Code plugin for SEO, AEO and GEO. "
+                        "Audit websites, plan content, generate schema and check links.",
+            topics=["aeo", "claude-code-plugin", "claude-plugin", "gemini-seo", "seo"],
+        )
+        result = cleaner.process([repo])[0]
+        assert result["category"] == "claude-skill"
+
     def test_agent_tool(self):
         cleaner = DataCleaner()
         repo = _make_repo(
