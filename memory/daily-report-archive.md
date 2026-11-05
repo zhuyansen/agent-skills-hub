@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-05
+1. KKKKhazix/agent-autoloop — 🆕 让命令行智能体在后台自己接活、跟进到底，拿不准时才发卡片找你拍板（2287★ 1271.7/day）
+2. joeseesun/qiaomu-jot — 🆕 按一下快捷键，把想法、选中文字、截图和文件收进 Obsidian 或 Markdown 文件夹（38★ 27.8/day）
+3. Lanqiao-Luca/ai-java-workflow — 🆕 用 AI 辅助 Java 与 Spring Boot 研发，串起需求、实现、测试、审查与交付（87★ 25.2/day）
+4. mohamedbenhandil/kie-claude-skill — 🆕 让 Claude Code 调用 KIE.ai 上任意模型，生成图片、视频、音乐和语音（25★ 25.0/day）
+5. Kemerd/claude-hardware-in-the-loop — 🆕 让 Claude Code 带智能体集群做硬件在环工程，对着真实硬件迭代调试（29★ 23.8/day）
+6. genex-games/genex-desktop — 用 AI 在 Unreal、Unity、Godot 或浏览器里做游戏，智能体自动搭好开发环境（791★ 23.7/day）
+7. MarkIvor/predictorlab — 🆕 自托管表格机器学习，内置数据泄漏防护、保形预测区间与利润最优阈值（67★ 20.2/day）
+8. threerocks/sweety-statechart-video — 🆕 一句话做出会动的蜡笔状态图短片，配合成旁白，每章附一张海报（31★ 17.8/day）
+9. nicobailon/skill-diet — 🆕 给智能体技能瘦身纠错，每次修改走检查清单，臃肿技能有实测瘦身法（187★ 16.7/day）
+10. yorkeccak/globalhackmap — 🆕 在一张地球上实时展示新漏洞、在野利用和数据泄露，并附信息来源（34★ 14.1/day）
+🎯 今日趋势：**9 席**标 🆕；专业工程领域占 **3 席**（Java/Spring Boot 研发流、硬件在环调试、表格机器学习），AI 创作占 **3 席**（KIE.ai 多模态生成、蜡笔状态图短片、AI 做游戏），卡兹克 agent-autoloop 入库约 20h 即 2,287★、以 1271.7/day 领跑。
+> 注：去重范围＝repo 内 archive 全部 133 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,477 个（含路径噪声，只会多剔不会漏剔）。本期只做 1 次单连接查询（连接参数 `statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条、命中历史 28 条；按 first_seen 切回 48h 后剩 87 条，剔除可疑项仍有 10 个合格，未放宽到 72h（JuneYaooo/rea-video 55.8h 因此不在窗口内）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①capri-com/Capri-AI（83★ 61.1/day）：与 77 天前的 capridotcom/Capri-AI 描述完全相同，两仓 `gh api` 均返回 404（已删除或转私有），排除；②GuoZheng-de-BaBa/nursing-research-skills（256★ 46.2/day）：`gh api` 返回 404，无法核实，排除；③feder-cr/Jobs_Applier_AI_Agent_AIHawk（32,385★ 39.4/day）：822 天老仓重新入库，描述改为主打「不被反机器人系统识别」的自动投递，保守排除；④0x45dd/pwner（36★ 13.9/day）：自主渗透攻击工具，安全评级 caution，不推荐；⑤其余均已在历史榜单出现或 velocity 低于第 10 席（data-goblin/claude-code-filetree 10.8/day 第 11）。入选项复核（`gh api`）：第 1 席 KKKKhazix 4,625 粉，名下另有 21,962★/9,570★/4,397★ 仓，实时 2,674★/523 fork；第 2 席 joeseesun 2013 建号、2,340 粉，非 fork；第 3 席 Lanqiao-Luca 0 粉，名下另有 282★ 仓，实时 94★/6 fork（**轻红旗**，保留）；第 4 席 mohamedbenhandil 0 粉、其余仓 ≤1★，但实时仅 26★ 未成爆星（**轻红旗**，保留）；第 5 席 Kemerd 2014 建号，名下另有 30★/25★ 仓，实时 63★；第 6 席 genex-games 组织 2026-09 新建、12 粉，实时 792★/97 fork 比例正常（**轻红旗**，保留）；第 7 席 MarkIvor 2026-03 建号、46 粉，名下另有 58★ 仓；第 8 席 threerocks 471 粉，名下另有 2,610★ 仓；第 9 席 nicobailon 2,143 粉，名下另有 10,795★ 仓；第 10 席 yorkeccak 147 粉，名下另有 910★ 仓，实时 62★/22 fork。🆕 判定＝created_at 距今 14 天内：除 genex-desktop（33.4 天）外九席命中。security_grade：agent-autoloop、qiaomu-jot、claude-hardware-in-the-loop、genex-desktop、sweety-statechart-video、skill-diet、globalhackmap 为 safe，ai-java-workflow、kie-claude-skill、predictorlab 为 unknown（入库约 10h 尚未评级）。qiaomu-jot 分类为 uncategorized，但属捕获工具而非个人主页，保留。表中 stars 为数据库快照，部分仓实时更高（agent-autoloop 2,674★、claude-hardware-in-the-loop 63★），按红线保留快照值。
+
+---
+
 ## 2026-11-04
 1. kubai087/kubai-icons — 🆕 让 Claude 按统一风格画动态图标，可带悬停动效或导出静态 SVG（52★ 52.0/day）
 2. aronhy/marketing-skill-hub — 🆕 汇集中英双语海外营销技能，覆盖 Meta、Google、TikTok 广告文案与 UGC（67★ 37.6/day）
