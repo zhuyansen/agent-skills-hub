@@ -101,3 +101,8 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 ## 10-29 DSH 社区插件市场收录
 
 10-28 加的 topic `dsh-plugin` 生效，new-term-radar 进了 DSH 最大的社区插件市场。bradeGithub/DSH-Plugins-Marketplace 的插件索引 registry.json 已收录：最晚在 77bcd35（10-28 23:05 UTC 提交，索引 22:44 生成）那版里就有。10-28 10:20 起那轮全量的插件扫描在加 topic（约 10:55）之前就做完了，没赶上。条目：category `tool`（通用工具）、risk_tier `safe`、没有 risk_flags、`installable: manual`（卡片显示「手动安装」：它判定仓库里没有能自动装的内容，要照 README 装；README 里有 DSH 的装法）。它的 skills 索引（skills.json，按 topic agent-skills / claude-skills 收）在 10-28 那轮全量里就收了，也是 safe。按 topic 实时搜的市场（AwesomeHou）加 topic 当时就能搜到。它每 2 小时增量一次、只搜最近 3 天推送过的仓库，另外每天 04:00 UTC 全量一次（实际晚好几个小时）。
+
+## 11-05 核对
+
+- MobinX #867 11-04 合并；BehiSecc #990 → 64c4a47 收录（11-01，和外链检测一起，PR 显示「已关闭」）；Awesome-MCP-ZH #805 11-01 合并。
+- 还开着：heilcheng #629（等每周审）、VoltAgent #1338、punkpeye #18157。

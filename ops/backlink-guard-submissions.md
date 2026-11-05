@@ -115,3 +115,10 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 - README 的 Quick start 第一行改成 `uvx backlink-guard vet …`（ef780b2），Hub 数据库里这个仓库的 README 11-02 已刷新，下一轮部署后详情页显示 uvx。
 - buildwithclaude #622（0.11.2）已合并；teles/awesome-seo 经批量 PR #288 收录（#265 因此关闭）。
 - VoltAgent 没投：只收有真实社区使用的，等星数再涨。
+
+## 11-05 核对：维护者直接提交也算收录
+
+- 「已关闭没合并」的三个都收录了，维护者是直接提交进 README 的：MobinX #948 → b8d7704（11-04，外链检测和雷达都在）；heilcheng #628 → d138307（11-02，维护者本人关的）；BehiSecc #990 → 64c4a47（11-01，外链检测和雷达都收了，payment-guard、xhs-cover 不到 61★ 没收）。
+- Awesome-MCP-ZH #854 11-01 合并。
+- buildwithclaude #622 合并时（11-01）davepoon 留言：0.11.2 和 plugin.json 一致；付费调用仍先报美元价、等用户同意；抓来的页面和 AI 回答仍只当数据。#564 当初就是因为不等用户同意被关的。
+- 判断有没有收录要看对方 README，别只看 PR 状态。
