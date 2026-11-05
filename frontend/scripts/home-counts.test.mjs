@@ -1,14 +1,16 @@
 /**
  * scripts/home-counts.mjs: the build counts the catalog total, the graded rows and the graded share
  * of each star tier, writes them only into the places marked for them, and every other number on
- * the home page stays as written.
+ * the home page stays as written. The hero's exact counts go into a JSON slot of their own.
  *
  * Run: node --test scripts/home-counts.test.mjs
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { homeCountTexts, percentDown, plusThousands, stampHomeCounts } from "./home-counts.mjs";
+import {
+  catalogCounts, homeCountTexts, percentDown, plusThousands, stampCatalogCounts, stampHomeCounts,
+} from "./home-counts.mjs";
 
 const TEXTS = { total: "258,000+", graded: "125,000+", "graded-over-100": "99%", "graded-over-1000": "98%" };
 const NUMBER = /\b\d{1,3}(?:,\d{3})+\+|\b\d+(?:\.\d+)?%/g;
@@ -71,4 +73,41 @@ test("on index.html, the only numbers left as written are the Dataset's 130,000+
   const stamped = new Set(Object.values(texts));
   const left = stampHomeCounts(html, texts).match(NUMBER).filter((n) => !stamped.has(n));
   assert.deepEqual(left, ["130,000+", "26.1%"]);
+});
+
+const SLOT = /<script id="catalog-counts" type="application\/json">([^<]*)<\/script>/g;
+const indexHtml = () => readFileSync(new URL("../index.html", import.meta.url), "utf-8");
+
+test("catalogCounts counts every row and the rows in each category", () => {
+  const skills = [
+    ...rows(3, 10, null).map((s) => ({ ...s, category: "mcp-server" })),
+    { stars: 10, category: "claude-skill" }, { stars: 10, category: null },
+  ];
+  assert.deepEqual(catalogCounts(skills), { total: 5, categories: { "mcp-server": 3, "claude-skill": 1 } });
+});
+
+test("index.html's one slot takes the counts as JSON, and nothing else on the page changes", () => {
+  const html = indexHtml();
+  const counts = { total: 258_901, categories: { "mcp-server": 100_123, "claude-skill": 34_500 } };
+  const stamped = stampCatalogCounts(html, counts);
+  const slots = [...stamped.matchAll(SLOT)];
+  assert.equal(slots.length, 1);
+  assert.deepEqual(JSON.parse(slots[0][1]), counts);
+  assert.equal(stamped.replace(slots[0][1], "{}"), html);
+});
+
+test("stamping again replaces the counts in place", () => {
+  const once = stampCatalogCounts(indexHtml(), { total: 1, categories: {} });
+  const twice = stampCatalogCounts(once, { total: 2, categories: {} });
+  assert.deepEqual([...twice.matchAll(SLOT)].map((m) => JSON.parse(m[1])), [{ total: 2, categories: {} }]);
+});
+
+test("no value can close the script element early", () => {
+  const stamped = stampCatalogCounts(indexHtml(), { total: 1, categories: { "</script><b>": 1 } });
+  const [slot] = [...stamped.matchAll(SLOT)];
+  assert.deepEqual(JSON.parse(slot[1]), { total: 1, categories: { "</script><b>": 1 } });
+});
+
+test("a page without the slot fails loudly", () => {
+  assert.throws(() => stampCatalogCounts("<head></head>", { total: 1, categories: {} }), /catalog-counts/);
 });

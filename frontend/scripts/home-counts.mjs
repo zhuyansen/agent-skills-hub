@@ -1,7 +1,8 @@
 /**
  * The numbers the home page states, counted at build time and written into dist/index.html: the
  * catalog total and the graded rows, rounded down to the thousand, and the graded share of the
- * skills above each star tier, rounded down to a whole percent.
+ * skills above each star tier, rounded down to a whole percent. The hero also gets the exact
+ * count of every row and of each category, as JSON in a slot of its own (catalogCounts).
  *
  * Only marked places change: the three description tags, whose count is always the total, and
  * each <span data-count="…">, which takes the text for its marker. Every other number stays as
@@ -26,6 +27,9 @@ const DESCRIPTION_TAGS = [
 ];
 
 const MARKED = /<span data-count="([^"]*)">[^<]*<\/span>/g;
+
+/** Where index.html holds the exact counts the hero paints before the stats arrive (src/lib/catalogCounts.ts). */
+const CATALOG_SLOT = /(<script id="catalog-counts" type="application\/json">)[^<]*(<\/script>)/;
 
 const isGraded = (s) => gradeState(s) === "graded";
 
@@ -59,4 +63,25 @@ export function stampHomeCounts(html, texts) {
     if (!Object.hasOwn(texts, key)) throw new Error(`index.html marks data-count="${key}", which the build does not count`);
     return `<span data-count="${key}">${texts[key]}</span>`;
   });
+}
+
+/**
+ * The catalog's exact counts, every row and the rows in each category: the numbers the hero shows
+ * once the stats arrive (v_stats and v_categories count the same rows). With them in the page the
+ * first paint has as many digits as the live numbers, whichever count gains one next.
+ */
+export function catalogCounts(skills) {
+  const categories = {};
+  for (const { category } of skills) {
+    if (category) categories[category] = (categories[category] ?? 0) + 1;
+  }
+  return { total: skills.length, categories };
+}
+
+/** `html` with `counts` in its catalog-counts slot, which it must have. */
+export function stampCatalogCounts(html, counts) {
+  if (!CATALOG_SLOT.test(html)) throw new Error('index.html has no <script id="catalog-counts"> to hold the counts');
+  // "<" escaped, so no value can close the script element early.
+  const json = JSON.stringify(counts).replace(/</g, "\\u003c");
+  return html.replace(CATALOG_SLOT, (_, open, close) => open + json + close);
 }

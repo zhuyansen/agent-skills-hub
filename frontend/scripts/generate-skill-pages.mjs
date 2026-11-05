@@ -22,7 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
-import { homeCountTexts, stampHomeCounts } from "./home-counts.mjs";
+import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
 import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
 import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
@@ -923,22 +923,31 @@ async function main() {
   const totalElapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`Total: ${ok + catCount} pages in ${totalElapsed}s`);
 
-  // The numbers the home page states, counted from the rows fetched above.
+  // The home page from the rows fetched above, one step at a time so a row one step trips on
+  // can't cost the page the others: the numbers it states, its skill lists, the hero's counts.
   const indexPath = join(distDir, "index.html");
-  try {
+  updateHomePage(indexPath, "Could not update index.html count", (html) => {
     const texts = homeCountTexts(skills);
-    writeFileSync(indexPath, stampHomeCounts(readFileSync(indexPath, "utf-8"), texts));
-    console.log(`Updated dist/index.html: ${Object.entries(texts).map(([key, text]) => `${key} ${text}`).join(", ")}`);
-  } catch (e) {
-    console.warn("Could not update index.html count:", e.message);
-  }
-  // Its skill lists, apart from the counts so a row the lists trip on can't cost the page those.
-  try {
+    return [stampHomeCounts(html, texts), Object.entries(texts).map(([key, text]) => `${key} ${text}`).join(", ")];
+  });
+  updateHomePage(indexPath, "Could not write the home lists", (html) => {
     const lists = homeListsHtml(skills);
-    writeFileSync(indexPath, stampHomeLists(readFileSync(indexPath, "utf-8"), lists));
-    console.log(`Updated dist/index.html: ${(lists.match(/<li>/g) || []).length} skills listed`);
+    return [stampHomeLists(html, lists), `${(lists.match(/<li>/g) || []).length} skills listed`];
+  });
+  updateHomePage(indexPath, "Could not write the catalog counts", (html) => {
+    const counts = catalogCounts(skills);
+    return [stampCatalogCounts(html, counts), `catalog counts, ${counts.total} rows`];
+  });
+}
+
+/** Rewrites dist/index.html with `step`, which returns the new page and what it wrote; a failure is logged and skipped. */
+function updateHomePage(indexPath, failure, step) {
+  try {
+    const [html, wrote] = step(readFileSync(indexPath, "utf-8"));
+    writeFileSync(indexPath, html);
+    console.log(`Updated dist/index.html: ${wrote}`);
   } catch (e) {
-    console.warn("Could not write the home lists:", e.message);
+    console.warn(`${failure}:`, e.message);
   }
 }
 

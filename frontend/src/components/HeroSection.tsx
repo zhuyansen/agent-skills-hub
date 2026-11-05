@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchQuickSearch } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
+import { readCatalogCounts } from "../lib/catalogCounts";
 import type { Skill, Stats } from "../types/skill";
 
 const TRENDING_TAGS = [
@@ -13,16 +14,25 @@ const TRENDING_TAGS = [
   "openai",
 ];
 
-/** Counts shown until the stats arrive, near the live ones (258,645 / 95,449 / 34,347 /
- *  67,116 on 11-02) so the first paint has as many digits. A 17,000 stand-in put the
- *  title on one more line on a 412px phone once "258,000+" came, moving the page below
- *  it 38px (CLS 0.049). Raise one when its count gains a digit: MCP servers at 100,000. */
+/** The real counts as of the last build, shown until the stats arrive: with as many digits
+ *  as the live ones, the first paint keeps its line breaks when they land. A 17,000
+ *  stand-in put the title on one more line on a 412px phone once "258,000+" came, moving
+ *  the page below it 38px (CLS 0.049). */
+const BUILD_COUNTS = readCatalogCounts();
+
+/** Stand-ins for a page without the build's counts (the dev server, or a build whose
+ *  counting step failed), near the live ones on 11-02 (258,645 / 95,449 / 34,347 / 67,116). */
 const FALLBACK_COUNTS = {
   total: 258_000,
   mcp: 95_000,
   claude: 34_000,
   agent: 67_000,
 } as const;
+
+/** A category's count: live once the stats arrive, else as of the last build, else the stand-in. */
+function categoryCount(stats: Stats | null, name: string, fallback: number): number {
+  return stats?.categories.find((c) => c.name === name)?.count ?? BUILD_COUNTS?.categories[name] ?? fallback;
+}
 
 interface Props {
   stats: Stats | null;
@@ -93,19 +103,12 @@ export function HeroSection({ stats, onSearch }: Props) {
     onSearch(tag);
   };
 
-  const totalSkills = stats?.total_skills ?? FALLBACK_COUNTS.total;
+  const totalSkills = stats?.total_skills ?? BUILD_COUNTS?.total ?? FALLBACK_COUNTS.total;
   const countDisplay = `${Math.floor(totalSkills / 1000).toLocaleString()},000+`;
 
-  // Extract category counts
-  const mcpCount =
-    stats?.categories.find((c) => c.name === "mcp-server")?.count ??
-    FALLBACK_COUNTS.mcp;
-  const claudeCount =
-    stats?.categories.find((c) => c.name === "claude-skill")?.count ??
-    FALLBACK_COUNTS.claude;
-  const agentCount =
-    stats?.categories.find((c) => c.name === "agent-tool")?.count ??
-    FALLBACK_COUNTS.agent;
+  const mcpCount = categoryCount(stats, "mcp-server", FALLBACK_COUNTS.mcp);
+  const claudeCount = categoryCount(stats, "claude-skill", FALLBACK_COUNTS.claude);
+  const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
     <section className="hero-gradient full-bleed px-4 pt-16 pb-12 sm:pt-24 sm:pb-16 mb-8 relative z-20">
