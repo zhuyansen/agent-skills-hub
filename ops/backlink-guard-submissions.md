@@ -73,7 +73,7 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 | buildwithclaude | #564 10-28 关（理由见上）→ **#597**（锁 0.11.1 @588ff58，三项检查过，空配置目录装出 0.11.1 且带新规则） |
 | heilcheng/awesome-agent-skills | **#628**（Marketing 末尾一行，Check submission ✅）。10-27 20:05 的定时任务卡在权限确认没交，10-28 停掉后在会话里交的。对方每周批量合并、原 PR 自动关 |
 | TensorBlock #4603 / raycast #32784 | ✅ 10-27 合并 |
-| DSH 清单 | Dominic789654#697 10-27 合并；0xsline#757 没动（那仓库 10-16 后没合过 PR）；10-28 加了 topic `dsh-plugin`，等社区插件市场扫到 |
+| DSH 清单 | Dominic789654#697 10-27 合并；0xsline#757 11-06 合并（中英文 README 都加了）；10-28 加了 topic `dsh-plugin`，等社区插件市场扫到 |
 | Anthropic 插件目录 | 仍「Held for: Content policy review」，理由 Runs a pinned npx or uvx package；4 个版本待审，588ff58 会再加一个 |
 | WorkBuddy | 仍审核中，列表版本号还是 0.10.1（versionId 8981），审完核对 |
 | ClawHub | ✅ 0.11.1 已上架（接口 latest 0.11.1，下载 111）；0.11.0 时 VirusTotal clean、LLM benign、SkillSpector CAUTION LOW |
@@ -122,3 +122,8 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 - Awesome-MCP-ZH #854 11-01 合并。
 - buildwithclaude #622 合并时（11-01）davepoon 留言：0.11.2 和 plugin.json 一致；付费调用仍先报美元价、等用户同意；抓来的页面和 AI 回答仍只当数据。#564 当初就是因为不等用户同意被关的。
 - 判断有没有收录要看对方 README，别只看 PR 状态。
+
+## 11-06 核对
+
+- 0xsline/awesome-deepseek-harness #757 11-06 07:22 UTC 合并（1.3 千★），中英文 README 都有外链检测和雷达。
+- 还开着：karanb192 #540（等重审）、davila7 #1277、GetBindu #313、serpapi #478，11-05 后都没动静。

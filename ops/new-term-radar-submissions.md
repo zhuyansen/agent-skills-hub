@@ -27,13 +27,13 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | TensorBlock/awesome-mcp-servers / Raycast MCP 注册表扩展 | ✅ 10-21 合并 | #4232、raycast/extensions#32578 |
 | GitHub 列表 | ⏳ 10 个 PR 还开着 | serpapi #478、BehiSecc #990、aitmpl #1223、Awesome-MCP-ZH #805、JackyST0 #127(10-26 按维护者三条改完、rebase 成一个提交,检查全过,等复审)、karanb192 #493、MobinX #867(10-26 和 main 冲突,已 rebase 成 039f14a,MERGEABLE/CLEAN)、GetBindu #296、teles #241、ComposioHQ #2328;维护者都没新评论 |
 | buildwithclaude | ✅ #555 10-26 00:07 UTC 合并(davepoon:Listed) | 对方 marketplace.json 里是 0.5.1 @4fd9a0d。#500 于 10-23 被关:要求付费前报价等同意、跑锁定版本不 clone、抓来的内容只当数据;0.5.1 三条都做了 |
-| DeepSeek Harness 清单 | ⏳ 10-27 两个 PR | Dominic789654/awesome-deepseek-harness#697（MCP Servers 节，两个工具一起，自动检查全过）、0xsline/awesome-deepseek-harness#757（Domain & Specialist Skills）；仓库加了 `deepseek-harness` topic；README 加了 DSH 一节（2b63b8e，DSH 0.2.1-rc.2 实测拿到 3 个工具、skill 出现在斜杠菜单）。beancookie/awesome-dsh-plugin 只收声明 `dsh.bundle` 的插件包，没投；libukai 9-12 后没合过 PR，没投 |
+| DeepSeek Harness 清单 | ✅ 两个 PR 都合并：#697 10-27、#757 11-06 | Dominic789654/awesome-deepseek-harness#697（MCP Servers 节，两个工具一起，自动检查全过）、0xsline/awesome-deepseek-harness#757（Domain & Specialist Skills）；仓库加了 `deepseek-harness` topic；README 加了 DSH 一节（2b63b8e，DSH 0.2.1-rc.2 实测拿到 3 个工具、skill 出现在斜杠菜单）。beancookie/awesome-dsh-plugin 只收声明 `dsh.bundle` 的插件包，没投；libukai 9-12 后没合过 PR，没投 |
 | github/awesome-copilot | ❌ issue #5578 10-25 被拒 | 理由:建在付费 API 上的 SEO/关键词工具,不是开发者工作流(自动检查当时全过) |
 | mcpm.sh | ⏳ issue #476 | 机器人没生成 PR |
 | HelloGitHub #4051 / 阮一峰周刊 #12613 | ⏳ 等出刊 | 月刊 28 日 / 周刊周五;10-23 那期(416 期)没收 |
 | bmpi-dev/awesome-seo(已改名 i365dev/awesome-seo) | ❌ #104 10-21 被关 | 理由:项目太新、关键词量依赖付费 API |
 | punkpeye/awesome-mcp-servers | ⏳ #18157（10-31） | 🎯 Marketing 区（zaialamm 和 zwznco 之间），Glama 已认领、A 级；check-submission 过，标签 has-glama / valid-name；标题没加贡献说明里那串 🤖🤖🤖 |
-| VoltAgent/awesome-agent-skills | ⏳ #1338（11-03） | Marketing 末尾，说明 10 词（它只收有真实社区使用的） |
+| VoltAgent/awesome-agent-skills | ✅ #1338 11-05 合并（11-03 提） | Marketing 末尾，说明 10 词（它只收有真实社区使用的） |
 | hesreallyhim/awesome-claude-code | ⏸ 只收本人在网页表单提交 | |
 
 ## 10-27 公开 0.6.0
@@ -73,7 +73,7 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 |---|---|
 | heilcheng/awesome-agent-skills | **#629**（Marketing 末尾一行，Check submission ✅），和 backlink-guard #628 一起在会话里交（定时任务卡住了） |
 | JackyST0/awesome-agent-skills #127 | ✅ 10-27 合并 |
-| DSH 清单 | Dominic789654#697 10-27 合并（MCP Servers 末尾）；0xsline#757 没动；10-28 加 topic `dsh-plugin` |
+| DSH 清单 | Dominic789654#697 10-27 合并（MCP Servers 末尾）；0xsline#757 11-06 合并；10-28 加 topic `dsh-plugin` |
 | Anthropic 插件目录 | 仍 Held（Runs a pinned npx or uvx package），10-20 提交至今 7 个版本待审；5ec2c47（只有 skill）Publish 按钮灰，要等整个插件审完 |
 | WorkBuddy | 仍审核中，列表版本号还是 0.5.2（versionId 8984） |
 | ClawHub | 3 个 skill 0.6.0，VirusTotal clean、LLM benign；SkillSpector CAUTION（主 skill MEDIUM 21 分 1 条，另两个 LOW）；下载 211/189/207 |
@@ -106,3 +106,9 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 
 - MobinX #867 11-04 合并；BehiSecc #990 → 64c4a47 收录（11-01，和外链检测一起，PR 显示「已关闭」）；Awesome-MCP-ZH #805 11-01 合并。
 - 还开着：heilcheng #629（等每周审）、VoltAgent #1338、punkpeye #18157。
+
+## 11-06 核对
+
+- VoltAgent/awesome-agent-skills #1338 11-05 10:39 UTC 合并（3.7 万★），README 里已有雷达。
+- 0xsline/awesome-deepseek-harness #757 11-06 07:22 UTC 合并（1.3 千★），中英文 README 都有雷达和外链检测。
+- 还开着：heilcheng #629、punkpeye #18157；更早的 karanb192 #493、davila7 #1223、ComposioHQ #2328、GetBindu #296、serpapi #478 也都没动静。
