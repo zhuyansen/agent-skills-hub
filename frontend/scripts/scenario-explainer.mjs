@@ -10,9 +10,12 @@
  *
  *   "explainer": {
  *     "what": { "h2": "...", "h2_zh": "...", "text": "...", "text_zh": "..." },
- *     "top": { "h2": "...", "h2_zh": "...", "note": "...", "note_zh": "...",
- *              "items": [{ "repo": "owner/name", "line": "...", "line_zh": "..." }] }
+ *     "top": { "h2": "...", "h2_zh": "...", "note": "...", "note_zh": "...", "numbered": false,
+ *              "items": [{ "repo": "owner/name", "label": "optional shown name", "line": "...", "line_zh": "..." }] }
  *   }
+ *
+ * `numbered: false` drops the "1." in front of each pick: for a list that is not a ranking, such
+ * as the image generation picks, chosen by what each does and not yet run end to end.
  */
 import { SITE, esc, starsK, biAttrs } from "./shared-utils.mjs";
 
@@ -31,18 +34,19 @@ function whatHtml(w) {
 }
 
 // A listed repo the page no longer carries (renamed, removed) is skipped, not linked to a 404.
-function itemHtml(item, i, byRepo) {
-  const s = byRepo.get(item.repo.toLowerCase());
-  if (!s) return "";
-  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);text-decoration:none">${esc(s.repo_name)}</a>`;
+// `label` overrides the shown name when the repo name alone says nothing (scenario-labs/skills is "skills").
+function itemHtml(item, rank, s) {
+  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);text-decoration:none">${esc(item.label || s.repo_name)}</a>`;
   const meta = `<span style="color:var(--bp-text-muted);font-size:13px;font-weight:400"> ★ ${starsK(s.stars)}</span>`;
-  return `<h3 style="${H3_STYLE}">${i + 1}. ${link}${meta}</h3>
+  return `<h3 style="${H3_STYLE}">${rank}${link}${meta}</h3>
         ${para(item.line, item.line_zh)}`;
 }
 
 function topHtml(t, skills) {
   const byRepo = new Map(skills.map((s) => [s.repo_full_name.toLowerCase(), s]));
-  const items = t.items.map((item, i) => itemHtml(item, i, byRepo)).filter(Boolean);
+  // Numbered by position among the picks the page still carries, so a dropped one leaves no gap.
+  const kept = t.items.map((item) => [item, byRepo.get(item.repo.toLowerCase())]).filter(([, s]) => s);
+  const items = kept.map(([item, s], i) => itemHtml(item, t.numbered === false ? "" : `${i + 1}. `, s));
   if (!items.length) return "";
   const note = t.note ? para(t.note, t.note_zh, `${P_STYLE};font-size:13px`) : "";
   return `<section id="top-picks" style="margin:32px 0">

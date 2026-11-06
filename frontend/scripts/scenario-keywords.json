@@ -38,6 +38,14 @@
   "serp_subject": "Claude Code Review Skills & Tools",
   "seo_keyword": "claude code review skill",
   "description": "Claude code review skills and AI code review tools for Claude Code and Codex: PR review bots, local CLI reviewers, security review and multi-agent review. Every one is security-graded before you install it.",
+  "explainer": {
+   "what": {
+    "h2": "What is a Claude Code review skill?",
+    "h2_zh": "Claude Code 代码审查 skill 是什么？",
+    "text": "A Claude Code review skill is an installable package of review instructions (usually a folder with a SKILL.md file, sometimes shipped as a plugin) that tells Claude Code what to check in a diff or pull request, how serious each finding is and how to report it. Other review tools are separate programs that bring their own model and run on every commit or in CI. In our test on the same 12 pull requests, Claude Code with nothing installed already found all 8 planted defects with no false alarm; the 13 tools we ran differed in noise and speed, not in what they caught.",
+    "text_zh": "Claude Code 代码审查 skill 是一个可以安装的审查指令包（通常是一个带 SKILL.md 的文件夹，有时做成插件），告诉 Claude Code 审 diff 或 PR 时查什么、每条发现有多严重、怎么汇报。另一类审查工具是独立程序，自带模型，在每次提交或 CI 里运行。我们用同样的 12 个 PR 实测：不装任何东西的 Claude Code 已经找全 8 个埋入的缺陷、零误报；跑成的 13 个工具差在噪音和速度，不在能不能查出来。"
+   }
+  },
   "match": {
    "categories": [
     "code-review"
@@ -1800,6 +1808,49 @@
   "serp_subject": "Image Generation Skills for Claude Code",
   "github_list": "https://github.com/zhuyansen/awesome-ai-image-skills",
   "description": "Image generation skills and MCP servers for Claude Code, Codex and other agents, security-graded: GPT Image, Nano Banana, Flux, image editing and design assets. Vet before you install.",
+  "explainer": {
+   "what": {
+    "h2": "What is an image generation skill for Claude Code?",
+    "h2_zh": "Claude Code 的生图 skill 是什么？",
+    "text": "An image generation skill is an installable package (a folder with a SKILL.md file, or an MCP server) that lets a coding agent such as Claude Code or Codex call an image model, such as Google's Nano Banana (Gemini), FLUX or GPT Image, to create or edit pictures and save them into your project. The skill supplies the connection to the model and the know-how for prompting it. Most bill you through your own account or API key with the model's provider; ComfyUI-based ones can run open models on your own machine instead.",
+    "text_zh": "生图 skill 是一个可以安装的包（带 SKILL.md 的文件夹，或一个 MCP 服务器），让 Claude Code、Codex 这类编程 agent 调用图像模型，比如谷歌的 Nano Banana（Gemini）、FLUX 或 GPT Image，生成或修改图片并存进你的项目。skill 负责接上模型，并带着写提示词的经验。大多数通过你在模型厂商那里的账号或 API key 计费；基于 ComfyUI 的可以改在你自己的电脑上跑开源模型。"
+   },
+   "top": {
+    "h2": "5 image generation skills to start with in 2026",
+    "h2_zh": "2026 年先从这 5 个生图 skill 开始",
+    "numbered": false,
+    "items": [
+     {
+      "repo": "AgriciDaniel/banana-claude",
+      "line": "For Nano Banana (Gemini) images inside Claude Code. It creates, edits and compares images, and shows the prompt, model, settings and an estimated cost before any paid request. Needs a Gemini API key; runs on macOS and Linux (Windows through WSL).",
+      "line_zh": "在 Claude Code 里用 Nano Banana（Gemini）出图。能生成、修改、对比图片，每次付费请求前先列出提示词、模型、参数和预估费用。需要 Gemini API key；支持 macOS 和 Linux（Windows 走 WSL）。"
+     },
+     {
+      "repo": "black-forest-labs/flux-mcp",
+      "line": "For FLUX, from the company that makes it. Black Forest Labs' official MCP server, hosted at mcp.bfl.ai: sign in with a BFL account and Claude Code or any other MCP client can generate, edit and vary FLUX images and make FLUX 3 videos, billed to that account.",
+      "line_zh": "用 FLUX，就用出品方自己的。Black Forest Labs 官方的 MCP 服务器，托管在 mcp.bfl.ai：用 BFL 账号登录后，Claude Code 或任何 MCP 客户端都能生成、修改、变体 FLUX 图片，还能做 FLUX 3 视频，费用记在这个账号上。"
+     },
+     {
+      "repo": "Comfy-Org/comfy-mcp",
+      "line": "For generating on your own machine. The official ComfyUI MCP lets Claude Code drive the ComfyUI you run locally, from a text prompt or a saved workflow, so local models cost nothing per image. Hosted partner models such as FLUX and Ideogram are optional and spend credits.",
+      "line_zh": "在自己电脑上出图。ComfyUI 官方的 MCP，让 Claude Code 指挥你本机的 ComfyUI，用一句提示词或保存好的工作流出图，本地模型不按张收费。也能选用 FLUX、Ideogram 等托管模型，那部分要花额度。"
+     },
+     {
+      "repo": "scenario-labs/skills",
+      "label": "scenario-labs/skills",
+      "line": "For the widest set in one install. Scenario's skills cover product shots, brand kits, image editing, text overlays and storyboards through the Scenario MCP, plus expert tools for Blender, Unity, Unreal and other 3D and game tools. Needs a Scenario account or API key.",
+      "line_zh": "一次装全，覆盖最广。Scenario 的这套 skill 通过它的 MCP 做产品图、品牌素材、修图、加字和分镜，另有 Blender、Unity、Unreal 等 3D 和游戏工具的专家 skill。需要 Scenario 账号或 API key。"
+     },
+     {
+      "repo": "helloianneo/ian-xiaohei-illustrations",
+      "line": "The most-starred skill on this page, for one job: it turns a point in a Chinese article into a 16:9 hand-drawn illustration starring its \"Xiaohei\" character. A fixed style, not a general image generator; built for Codex.",
+      "line_zh": "本页星数最高，只做一件事：把中文文章里的一个观点画成 16:9 白底手绘配图，主角是「小黑」。画风固定，不是通用生图工具；为 Codex 写的。"
+     }
+    ],
+    "note": "Picked from the 248 on this page by what each one does, security grade (all five rated SAFE) and upkeep (all updated since mid-October 2026). Unlike our PPT and code review pages, we have not run these end to end yet.",
+    "note_zh": "从本页 248 个里按用途、安全评级（5 个都是 SAFE）和维护情况（都在 2026 年 10 月中旬后更新过）挑出。和 PPT、代码审查两页不同，这 5 个我们还没有端到端实跑过。"
+   }
+  },
   "match": {
    "categories": [],
    "primary_keywords": [
