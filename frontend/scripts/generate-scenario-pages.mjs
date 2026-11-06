@@ -123,7 +123,7 @@ function leadLabel(skills) {
 const CSS_VERSION = "20261029";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
-const TEMPLATE_REV = "2026-11-02";
+const TEMPLATE_REV = "2026-11-06";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -434,6 +434,50 @@ ${breadcrumbLd}
 
 /* ── AEO Content Section ────────────────────────────── */
 
+/** Whether `top` has the most `key` ("stars" or "score") of the listed skills; a tie counts. */
+function hasMost(skills, top, key) {
+  return (top?.[key] || 0) > 0 && skills.every((s) => (s[key] || 0) <= top[key]);
+}
+
+// The fewest entries a language needs before the page calls it the list's most common one.
+const COMMON_LANGUAGE_MIN = 2;
+
+/** The language(s) used by the most listed skills, in ranking order; [] when none is shared. */
+function commonestLanguages(skills) {
+  const counts = new Map();
+  for (const s of skills) if (s.language) counts.set(s.language, (counts.get(s.language) || 0) + 1);
+  const most = Math.max(0, ...counts.values());
+  return most < COMMON_LANGUAGE_MIN ? [] : [...counts].filter(([, n]) => n === most).map(([lang]) => lang);
+}
+
+/** ["A", "B", "C"] as "A, B and C" (", " and " and "), or "A、B 和 C" ("、" and " 和 "). */
+function joinList(items, sep, last) {
+  return items.length < 2 ? items.join("") : items.slice(0, -1).join(sep) + last + items[items.length - 1];
+}
+
+/** The "How" paragraph's language tip. It named the first entry's language as the most
+ *  common one: "Awk" on cli-tools, whose ten entries are 4 Rust, 3 TypeScript, 2 Python, 1 Awk (11-06). */
+function languageTip(skills) {
+  const common = commonestLanguages(skills);
+  if (!common.length) return { en: "check that it is written in a language your team uses", zh: "是否使用你团队熟悉的语言" };
+  const en = joinList(common, ", ", " and ");
+  return {
+    en: common.length > 1 ? `the most common languages in this list are ${en}` : `the most common language in this list is ${en}`,
+    zh: `本列表中最常见的语言是 ${joinList(common, "、", " 和 ")}`,
+  };
+}
+
+/** Why the "How" paragraph recommends the first entry, from what the list shows. It always said
+ *  "ranks highest in both star count and quality score": by their tables, true on 4 of 21 pages (11-06). */
+function leadReason(skills) {
+  const stars = hasMost(skills, skills[0], "stars");
+  const score = hasMost(skills, skills[0], "score");
+  if (stars && score) return { en: " — it ranks highest in both star count and quality score", zh: "——它在 Star 数和质量评分上都名列前茅" };
+  if (stars) return { en: " — it has the most GitHub stars on this list", zh: "——它是本列表中 Star 数最多的" };
+  if (score) return { en: " — it has the highest quality score on this list", zh: "——它是本列表中质量评分最高的" };
+  return { en: "", zh: "" };
+}
+
 function buildAeoSection(scenario, skills, year) {
   const scenarioTitle = scenario.title;
   const phrase = subjectPhrase(scenario);      // "Database MCP Servers for Supabase & Postgres"
@@ -442,10 +486,15 @@ function buildAeoSection(scenario, skills, year) {
   const ztTools = /工具$/.test(zt) ? zt : `${zt}工具`;
   // "Open-Source Vibe Coding Tools" + "-related tasks" / " tool" read as "tools tool" (10-06).
   const topic = scenarioTitle.toLowerCase().replace(/\s+(tools?|skills?|servers?)$/, "");
-  const top3 = skills.slice(0, 3).map(leadLabel(skills));
+  const lead = skills.slice(0, 3);
+  const top3 = lead.map(leadLabel(skills));
   const topLanguages = [...new Set(skills.map(s => s.language).filter(Boolean))].slice(0, 3);
-  const avgStars = Math.round(skills.reduce((sum, s) => sum + (s.stars || 0), 0) / skills.length);
+  // The average of the three the "Why" paragraph names. It was the whole list's, given as theirs
+  // (image-generation, 11-06: "average of 320" for three repos of 6.3K-12.9K stars).
+  const leadAvgStars = Math.round(lead.reduce((sum, s) => sum + (s.stars || 0), 0) / lead.length);
   const openSourceCount = skills.filter(s => s.license && s.license !== 'NOASSERTION').length;
+  const lang = languageTip(skills);
+  const reason = leadReason(skills);
 
   return `<!-- AEO: Answer Engine Optimization Section -->
       <section class="bp-aeo-section" style="margin:32px 0;padding:24px;background:var(--bp-bg-alt);border-radius:12px;border:1px solid var(--bp-border)">
@@ -460,13 +509,13 @@ function buildAeoSection(scenario, skills, year) {
         <!-- Why -->
         <div style="margin-bottom:24px">
           <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="为什么需要 ${esc(ztTools)}？" data-en="Why Use ${esc(phrase)}?">Why Use ${esc(phrase)}?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(ztTools)}能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${avgStars.toLocaleString()} 个 GitHub Star，体现了开发者社区的高度认可。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${avgStars.toLocaleString()} GitHub stars, reflecting strong community validation. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="在 ${year} 年，AI Agent 生态系统正在快速成熟。${esc(ztTools)}能够显著提升开发效率：自动化重复任务、减少人为错误、并提供智能建议。排名前三的工具——${top3.join('、')}——平均获得了 ${leadAvgStars.toLocaleString()} 个 GitHub Star。其中 ${openSourceCount} 个工具提供了明确的开源许可证，确保你可以自由使用和修改。" data-en="In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${leadAvgStars.toLocaleString()} GitHub stars. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.">In ${year}, the AI agent ecosystem is maturing rapidly. ${esc(phrase)} can significantly boost development efficiency by automating repetitive tasks, reducing human error, and providing intelligent suggestions. The top 3 tools — ${top3.join(', ')} — have earned an average of ${leadAvgStars.toLocaleString()} GitHub stars. ${openSourceCount} of the listed tools come with clear open-source licenses, ensuring freedom to use and modify.</p>
         </div>
 
         <!-- How -->
         <div>
           <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(ztTools)}？" data-en="How to Choose the Best ${esc(phrase)}?">How to Choose the Best ${esc(phrase)}?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(ztTools)}时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（本列表中最常见的语言是 ${topLanguages[0] || 'Python'}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始——它在 Star 数和质量评分上都名列前茅。" data-en="When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.">When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — the most common language in this list is ${topLanguages[0] || 'Python'}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]} — it ranks highest in both star count and quality score.</p>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(ztTools)}时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（${lang.zh}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始${reason.zh}。" data-en="When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]}${reason.en}.">When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]}${reason.en}.</p>
         </div>
       </section>`;
 }
@@ -671,6 +720,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const nm = leadLabel(skills);
   const top1 = skills[0];
   const top2 = skills[1];
+  // "The most adopted choice" only when the first entry has the most stars: the first is often a
+  // featured pick (11-06, vibe-coding: ralphy at 3.0K "most adopted", its "alternative" at 3.1K).
+  const top1Most = hasMost(skills, top1, "stars");
   // Find first valid related scenario (with a title) for the "difference" FAQ
   const relatedScenario = (scenario.related || [])
     .map((slug) => allScenarios.find((s) => s.slug === slug))
@@ -693,14 +745,14 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
       q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
       a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${itemCount} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
       qZh: `${year} 年最好的${ztTools}有哪些？`,
-      aZh: `${year} 年顶尖的${ztTools}是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 6 个维度）和近期活跃度对 ${skills.length} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
+      aZh: `${year} 年顶尖的${ztTools}是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 6 个维度）和近期活跃度对 ${itemCount} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
     },
     top1 && top2
       ? {
           q: `How do I choose between ${nm(top1)} and ${nm(top2)}?`,
-          a: `${nm(top1)} (${starsK(top1.stars)} stars) is the most adopted choice for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${nm(top2)} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${nm(top1)} — it has the deepest community and the most examples online.`,
+          a: `${nm(top1)} (${starsK(top1.stars)} stars) is ${top1Most ? "the most adopted choice" : "the top-ranked choice on this list"} for general ${scenarioLower} workflows${top1.language ? `, written in ${top1.language}` : ""}. ${nm(top2)} (${starsK(top2.stars)} stars) is a strong alternative${top2.language && top2.language !== top1.language ? ` and uses ${top2.language} instead` : ""}. Pick by your existing stack: match the language and runtime your team already uses to minimize integration cost. If unsure, start with ${nm(top1)}${top1Most ? " — it has the deepest community and the most examples online" : ""}.`,
           qZh: `${nm(top1)} 和 ${nm(top2)} 该怎么选？`,
-          aZh: `${nm(top1)}（${starsK(top1.stars)} stars）是通用${zt}工作流中采用最广的选择${top1.language ? `，用 ${top1.language} 编写` : ""}。${nm(top2)}（${starsK(top2.stars)} stars）是有力的替代${top2.language && top2.language !== top1.language ? `，改用 ${top2.language}` : ""}。按你现有技术栈来选：匹配团队已用的语言和运行时，把集成成本降到最低。拿不准就从 ${nm(top1)} 开始——它社区最深、线上示例最多。`,
+          aZh: `${nm(top1)}（${starsK(top1.stars)} stars）是${top1Most ? `通用${zt}工作流中采用最广` : `本榜单通用${zt}工作流中排名第一`}的选择${top1.language ? `，用 ${top1.language} 编写` : ""}。${nm(top2)}（${starsK(top2.stars)} stars）是有力的替代${top2.language && top2.language !== top1.language ? `，改用 ${top2.language}` : ""}。按你现有技术栈来选：匹配团队已用的语言和运行时，把集成成本降到最低。拿不准就从 ${nm(top1)} 开始${top1Most ? "——它社区最深、线上示例最多" : ""}。`,
         }
       : null,
     {
