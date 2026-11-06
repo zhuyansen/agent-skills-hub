@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-06
+1. anomalyco/opencode — 开源编程智能体，在终端、桌面和编辑器里直接写代码改代码（224745★ 405.5/day）
+2. bmad-code-org/BMAD-METHOD — 用多角色智能体跑敏捷开发，从需求、架构一路推进到交付（55034★ 96.3/day）
+3. JosssphZhou/poki — 🆕 让 AI 智能体操作真实 iPhone，本地 MCP 服务，无需越狱和额外硬件（58★ 58.0/day）
+4. yikart/AiToEarn — 用 AI 批量生成内容并分发到多个社媒平台，帮创作者变现（27304★ 44.1/day）
+5. cclank/lanshu-html-ppt-templates — 🆕 提供 20 套自包含 HTML 演示模板共 226 页，配一个可复用 AI 技能（47★ 40.9/day）
+6. BuilderIO/agent-native — 用框架搭建智能体原生应用，让界面和智能体共用同一套操作（7621★ 32.0/day）
+7. adongwanai/AgentGuide — 系统梳理 AI 智能体开发，覆盖上下文工程、RAG、MCP 与 1.2 万道面试题（11670★ 31.7/day）
+8. len5ky/seatback-cinema — 🆕 每月收录 11 家航司机上片单，配技能帮你挑航班上要看的电影（228★ 30.6/day）
+9. almonk/rexpad — 🆕 用 kitty 图形协议在终端面板里实时画出编程智能体的待办清单（25★ 14.6/day）
+10. shinyobjectz/raea — 告诉 AI 要什么，就用 React 与 TypeScript 渲染出视频、动效、3D 和游戏（230★ 12.5/day）
+🎯 今日趋势：**4 席**是万星老仓首次入库（opencode 22.5 万★、BMAD-METHOD 5.5 万★、AiToEarn 2.7 万★、AgentGuide 1.2 万★），新仓只有 **4 席**标 🆕；同时拦下一个 **18 仓**的刷星集群（同日创建、34–40★、仓名带 rpocket/resp）。
+> 注：去重范围＝repo 内 archive 全部 134 个日期段，并入记忆区 fresh-skills-archive（含 11-06 当期），宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,519 个（含路径噪声，只会多剔不会漏剔）。首次查询未设连接超时、挂起 71 分钟无输出后手动终止，加 `connect_timeout=15` 重试 1 次成功（单连接，`statement_timeout=30000`）：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 106 条、去重后 93 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①WoYun520/pixel-gif-sticker-pack（355★ 355.0/day）：已上 11-06 fresh-skills 榜，按去重规则排除；②18 仓刷星集群（如 NearLegendspirit/build-html-ppt-rpocket-team、BehindProxySolar/exasol-rpocket-agent-skills、AcrossCryrepo/rpocket-AI-Coding-Agent-Toolkit 等）：均 0.6 天前创建、34–40★、随机词账号名、仓名插入 rpocket/resp/resocket，全部排除；③silverdugongenhance/PromptReel（106★ 71.9/day）：2026-09 新号、0 粉、名下仅 2 仓，实时 151★/0 fork，单仓突起，排除；④feder-cr/Jobs_Applier_AI_Agent（32352★ 39.3/day）：即 11-05 已排除的 AIHawk 改名仓，口径一致继续排除；⑤howznguyen/shorts-kit（51★ 39.2/day）：安全评级 caution，排除；⑥FalihPrada/claude-code-gateway（34★ 15.2/day）：0 粉、名下另一仓 0★，实时 33★/0 fork，保守排除。入选项复核（`gh api`）：opencode、BMAD-METHOD 是 11-05 用户点名经 extra_repos 补收的老仓，AiToEarn、AgentGuide 同属本轮首次入库的老仓，fork 比例均正常（opencode 30,326 fork、AgentGuide 1,097 fork）；第 3 席 JosssphZhou 2026-02 建号、69 粉，名下另有 218★/79★ 仓，实时 250★/48 fork；第 5 席 cclank 2017 建号、389 粉，名下另有 2,931★ 仓；第 6 席 BuilderIO 官方组织；第 8 席 len5ky 2019 建号、81 粉，名下另有 291★/206★ 仓，实时 228★ 仅 4 fork（**轻红旗**，保留）；第 9 席 almonk 2009 建号、426 粉，名下另有 482★ 仓；第 10 席 shinyobjectz 2025-02 建号、10 粉，实时 397★/22 fork。🆕 判定＝created_at 距今 14 天内：poki（0.5 天）、lanshu-html-ppt-templates（1.1 天）、seatback-cinema（7.4 天）、rexpad（1.7 天）命中；raea（18.4 天）不标。security_grade：agent-native、seatback-cinema、rexpad 为 safe，其余为 unknown（入库约 9h 尚未评级）。表中 stars 为数据库快照，部分仓实时更高（poki 250★、raea 397★），按红线保留快照值。
+
+---
+
 ## 2026-11-05
 1. KKKKhazix/agent-autoloop — 🆕 让命令行智能体在后台自己接活、跟进到底，拿不准时才发卡片找你拍板（2287★ 1271.7/day）
 2. joeseesun/qiaomu-jot — 🆕 按一下快捷键，把想法、选中文字、截图和文件收进 Obsidian 或 Markdown 文件夹（38★ 27.8/day）
