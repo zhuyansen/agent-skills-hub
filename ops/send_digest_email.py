@@ -26,6 +26,8 @@ LEADS_FLAG = re.compile(r"## (🔔 新留资 \d+ 条|⚠️ 新留资没查成)"
 # new_leads.py always writes its file (empty when there are no leads), so a
 # missing one means it died before writing, e.g. on an import error.
 LEADS_MISSING = "## ⚠️ 新留资没查成(见 Actions 日志)\n"
+DIGEST_FOOTER = """<p style="font-size:12px;color:#888">AgentSkillsHub · Analytics Daily Sweep ·
+原始 JSON 在 GitHub Actions artifact(留 30 天)</p>"""
 
 
 def read_leads(path):
@@ -69,13 +71,18 @@ def main():
     subject = subject_for(md, leads, today)
     text = f"{leads}\n{md}" if leads else md
 
+    rid = send_email(api_key, sender, to, subject, text)
+    print(f"✓ digest emailed to {to} ({subject}) resend_id={rid}")
+
+
+def send_email(api_key, sender, to, subject, text, footer=DIGEST_FOOTER):
+    """Mail `text` as preformatted HTML through Resend and return its email id.
+    Also used by send_weekly_retro.py; exits on a Resend error."""
     # lang="zh" stops Gmail's "this email appears to be in English" banner
     body = f"""<div lang="zh" style="font-family:system-ui,-apple-system,sans-serif;max-width:720px">
 <pre style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap">{html.escape(text)}</pre>
-<p style="font-size:12px;color:#888">AgentSkillsHub · Analytics Daily Sweep ·
-原始 JSON 在 GitHub Actions artifact(留 30 天)</p>
+{footer}
 </div>"""
-
     r = requests.post(
         "https://api.resend.com/emails",
         headers={"Authorization": f"Bearer {api_key}"},
@@ -84,13 +91,11 @@ def main():
     )
     if r.status_code >= 300:
         sys.exit(f"Resend {r.status_code}: {r.text[:300]}")
-    # Log Resend's email id so a lost message can be traced in their dashboard
-    rid = ""
+    # Return Resend's email id so a lost message can be traced in their dashboard
     try:
-        rid = r.json().get("id", "")
+        return r.json().get("id", "")
     except ValueError:
-        pass
-    print(f"✓ digest emailed to {to} ({subject}) resend_id={rid}")
+        return ""
 
 
 if __name__ == "__main__":
