@@ -106,6 +106,11 @@ function parseArchive(md) {
 }
 
 /* ── Shared chrome ── */
+// The share image and large card. The daily X post links its day's page, a new URL each day, so X
+// fetches a fresh card instead of reusing the homepage's (on 11-05/06 that was a cached card
+// without its image, fetched before 11-03). Without these tags X showed no image here either.
+const OG_IMAGE = `${SITE}/og-image.png`;
+
 const HEAD = (title, desc, canonical, ld) => `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8" />
@@ -117,6 +122,17 @@ const HEAD = (title, desc, canonical, ld) => `<!doctype html>
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="${esc(canonical)}" />
+<meta property="og:site_name" content="AgentSkillsHub" />
+<meta property="og:image" content="${OG_IMAGE}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@GoSailGlobal" />
+<meta name="twitter:title" content="${esc(title)}" />
+<meta name="twitter:description" content="${esc(desc)}" />
+<meta name="twitter:image" content="${OG_IMAGE}" />
 <script type="application/ld+json">${ld}</script>
 ${analyticsTags()}
 </head><body style="margin:0;font-family:system-ui,-apple-system,sans-serif;color:#1e293b;background:#fff">
