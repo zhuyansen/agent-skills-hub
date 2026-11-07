@@ -120,7 +120,7 @@ function leadLabel(skills) {
   return (s) => (repeats ? s.repo_full_name : s.repo_name);
 }
 
-const CSS_VERSION = "20261029";
+const CSS_VERSION = "20261107";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
 const TEMPLATE_REV = "2026-11-06";

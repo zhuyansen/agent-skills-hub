@@ -684,3 +684,29 @@
 .bp-copy { flex: none; font-size: 12px; padding: 3px 10px; border-radius: 5px; border: 1px solid rgba(226, 232, 240, 0.3); background: transparent; color: var(--bp-code-text); cursor: pointer; }
 .bp-copy:hover { border-color: var(--bp-code-text); }
 .bp-copy:focus-visible { outline: 2px solid var(--bp-link); outline-offset: 2px; }
+
+/* The same passage, rewritten by each tool (scenario-passages.mjs, 2026-11-07).
+   Removed and added text take the colours of the results table's red and green. */
+.bp-ps { margin: 0 0 22px; }
+.bp-ps:not(.bp-ps-js) .bp-ps-tabs { display: none; }
+.bp-ps-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.bp-ps-tabs button { font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--bp-border); background: var(--bp-bg); color: var(--bp-text-secondary); cursor: pointer; }
+.bp-ps-tabs button[aria-selected="true"] { border-color: var(--bp-link); color: var(--bp-link); font-weight: 600; }
+.bp-ps-tabs button:focus-visible { outline: 2px solid var(--bp-link); outline-offset: 2px; }
+.bp-ps-orig { margin: 0 0 12px; padding: 12px 16px; border-radius: 10px; background: var(--bp-bg-alt); border: 1px solid var(--bp-border); }
+.bp-ps-orig figcaption { font-size: 12px; font-weight: 600; color: var(--bp-text-secondary); margin: 0 0 4px; }
+.bp-ps-orig .bp-tr-note { margin: 6px 0 0; }
+.bp-ps-text { margin: 0; font-size: 14px; line-height: 1.75; color: var(--bp-text); overflow-wrap: anywhere; }
+.bp-ps-same { margin: 0 0 12px; font-size: 13px; line-height: 1.9; color: var(--bp-text-secondary); }
+.bp-ps-same a { color: var(--bp-link); text-decoration: none; font-weight: 600; }
+.bp-ps-list { list-style: none; padding: 0; margin: 0; display: grid; align-items: start; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.bp-ps-list li { border: 1px solid var(--bp-border); border-radius: 10px; padding: 10px 14px; background: var(--bp-card-bg); }
+.bp-ps-list .bp-tr-note { margin: 0 0 6px; }
+.bp-ps-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0 0 6px; font-size: 13px; }
+.bp-ps-head a { font-weight: 600; color: var(--bp-link); text-decoration: none; }
+.bp-ps-score, .bp-ps-badge { color: var(--bp-text-secondary); font-size: 12px; }
+.bp-ps-flag { font-weight: 600; color: var(--bp-text); }
+.bp-ps-text del { color: #cf222e; text-decoration: line-through; }
+.bp-ps-text ins { color: #1a7f37; text-decoration: none; background: rgba(26, 127, 55, 0.1); border-radius: 2px; }
+.dark .bp-ps-text del { color: #f85149; }
+.dark .bp-ps-text ins { color: #3fb950; background: rgba(63, 185, 80, 0.14); }

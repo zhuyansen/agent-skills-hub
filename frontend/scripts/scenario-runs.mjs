@@ -14,6 +14,7 @@ import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { esc, biAttrs } from "./shared-utils.mjs";
+import { passagesFor, passagesHtml } from "./scenario-passages.mjs";
 
 const RUNS_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-runs.json");
 const RUNS = existsSync(RUNS_PATH) ? JSON.parse(readFileSync(RUNS_PATH, "utf-8")) : {};
@@ -93,7 +94,8 @@ function mgrBits(r) {
 
 /** The page's test run, or null. */
 export function runsFor(slug) {
-  return RUNS[slug] || null;
+  const run = RUNS[slug];
+  return run ? { ...run, passages: passagesFor(slug) } : null;
 }
 
 /** Every page's test run, by page slug (a skill's own page shows the ones it was in). */
@@ -300,6 +302,7 @@ export function runsSectionHtml(run) {
     <h2 class="bp-section-title" ${biAttrs(...(run.title || ["Test results: the skills side by side", "实测对比：同一任务下的效果"]))}>${esc((run.title || ["Test results: the skills side by side"])[0])}</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
     ${verdictHtml(run)}
+    ${passagesHtml(run.passages)}
     ${compareHtml(run)}
     ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span>${run.control ? ` <a href="${esc(run.dir + run.control.sheet)}" target="_blank" rel="noopener" ${biAttrs(...(run.control.label || ["See the control run →", "看对照组 →"]))}>${esc((run.control.label || ["See the control run →"])[0])}</a>` : ""}</p>` : ""}
     ${own ? galleryHtml(run) : ""}

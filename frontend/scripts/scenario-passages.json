@@ -1,0 +1,3165 @@
+{
+ "anti-slop": [
+  {
+   "id": "post-en",
+   "label": [
+    "English post, last paragraph",
+    "英文帖最后一段"
+   ],
+   "note": [
+    "A \"not X, it is Y\" turn and a stated lesson.",
+    "「不是 X，而是 Y」的句式，加一句讲明的道理。"
+   ],
+   "original": "The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.",
+   "rows": [
+    {
+     "repo": "seyedehsanhadi/sloptrim",
+     "score": 4.5,
+     "changed": 0.24,
+     "segments": [
+      [
+       "=",
+       "The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production."
+      ],
+      [
+       "-",
+       " A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "eric-tramel/slop-guard",
+     "score": 4.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "miqdadbadjuber/anti-slop",
+     "score": 4.0,
+     "changed": 0.49,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of this"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "meant"
+      ],
+      [
+       "=",
+       " to "
+      ],
+      [
+       "-",
+       "block"
+      ],
+      [
+       "+",
+       "stop"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "experimentation."
+      ],
+      [
+       "+",
+       "people"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "experimenting. The aim"
+      ],
+      [
+       "=",
+       " is to "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility operate"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " like any other software dependency: "
+      ],
+      [
+       "-",
+       "discoverable"
+      ],
+      [
+       "+",
+       "you can find them"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "reviewable"
+      ],
+      [
+       "+",
+       "review them"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "limited"
+      ],
+      [
+       "+",
+       "limit"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "in"
+      ],
+      [
+       "+",
+       "what"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "scope"
+      ],
+      [
+       "+",
+       "they reach"
+      ],
+      [
+       "=",
+       ", and "
+      ],
+      [
+       "-",
+       "observable"
+      ],
+      [
+       "+",
+       "watch them"
+      ],
+      [
+       "=",
+       " in production. A few minutes of "
+      ],
+      [
+       "-",
+       "scrutiny"
+      ],
+      [
+       "+",
+       "checking"
+      ],
+      [
+       "=",
+       " before installation can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an "
+      ],
+      [
+       "-",
+       "agent from turning"
+      ],
+      [
+       "+",
+       "agent's"
+      ],
+      [
+       "=",
+       " trusted access "
+      ],
+      [
+       "-",
+       "into"
+      ],
+      [
+       "+",
+       "from"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "an"
+      ],
+      [
+       "+",
+       "becoming"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "avoidable"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " security "
+      ],
+      [
+       "-",
+       "incident."
+      ],
+      [
+       "+",
+       "incident you could have avoided."
+      ]
+     ]
+    },
+    {
+     "repo": "AIScientists-Dev/academic-humanizer",
+     "score": 3.5,
+     "changed": 0.15,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of this"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "meant"
+      ],
+      [
+       "=",
+       " to block experimentation. "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "The aim"
+      ],
+      [
+       "=",
+       " is to "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility operate"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+     "score": 3.5,
+     "changed": 0.63,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "is"
+      ],
+      [
+       "+",
+       "this"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "stops"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "block"
+      ],
+      [
+       "+",
+       "team"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "experimentation."
+      ],
+      [
+       "+",
+       "from trying new skills."
+      ],
+      [
+       "=",
+       " It "
+      ],
+      [
+       "-",
+       "is to make"
+      ],
+      [
+       "+",
+       "puts"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "operate"
+      ],
+      [
+       "+",
+       "through"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "like"
+      ],
+      [
+       "+",
+       "the same process as"
+      ],
+      [
+       "=",
+       " any other software dependency: "
+      ],
+      [
+       "-",
+       "discoverable"
+      ],
+      [
+       "+",
+       "you know they're installed"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "reviewable"
+      ],
+      [
+       "+",
+       "you've read them"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "limited in"
+      ],
+      [
+       "+",
+       "their"
+      ],
+      [
+       "=",
+       " scope"
+      ],
+      [
+       "+",
+       " is limited"
+      ],
+      [
+       "=",
+       ", and "
+      ],
+      [
+       "-",
+       "observable"
+      ],
+      [
+       "+",
+       "you can see what they do"
+      ],
+      [
+       "=",
+       " in production. "
+      ],
+      [
+       "-",
+       "A"
+      ],
+      [
+       "+",
+       "That review takes a"
+      ],
+      [
+       "=",
+       " few minutes"
+      ],
+      [
+       "+",
+       ","
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "of"
+      ],
+      [
+       "+",
+       "and"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "scrutiny"
+      ],
+      [
+       "+",
+       "it's"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "before"
+      ],
+      [
+       "+",
+       "what"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "installation"
+      ],
+      [
+       "+",
+       "keeps"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "can"
+      ],
+      [
+       "+",
+       "trusted"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "prevent an agent"
+      ],
+      [
+       "+",
+       "access"
+      ],
+      [
+       "=",
+       " from turning "
+      ],
+      [
+       "-",
+       "trusted access "
+      ],
+      [
+       "=",
+       "into "
+      ],
+      [
+       "-",
+       "an avoidable"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "NulightJens/humanizer-stack",
+     "score": 3.5,
+     "missing": true
+    },
+    {
+     "repo": "Aboudjem/humanizer-skill",
+     "score": 3.3,
+     "changed": 0.62,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of this"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "about"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to block"
+      ],
+      [
+       "+",
+       "blocking"
+      ],
+      [
+       "=",
+       " experimentation. "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "Handle agent extensions the way you already handle software dependencies: you know they're there, you've read them, their scope"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "to make agent extensibility operate like any other software dependency: discoverable, reviewable, "
+      ],
+      [
+       "=",
+       "limited"
+      ],
+      [
+       "-",
+       " in scope"
+      ],
+      [
+       "=",
+       ", and "
+      ],
+      [
+       "-",
+       "observable"
+      ],
+      [
+       "+",
+       "you can see what they do"
+      ],
+      [
+       "=",
+       " in production. A few minutes of scrutiny before "
+      ],
+      [
+       "-",
+       "installation"
+      ],
+      [
+       "+",
+       "install"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "can"
+      ],
+      [
+       "+",
+       "is"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "cheap next to cleaning up after"
+      ],
+      [
+       "=",
+       " an agent "
+      ],
+      [
+       "-",
+       "from"
+      ],
+      [
+       "+",
+       "that"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "turning"
+      ],
+      [
+       "+",
+       "turned"
+      ],
+      [
+       "=",
+       " trusted access into "
+      ],
+      [
+       "-",
+       "an avoidable"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "Nanako0129/sepia",
+     "score": 3.0,
+     "changed": 0.19,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of this"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "meant"
+      ],
+      [
+       "=",
+       " to block experimentation. "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "Agent"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "is"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to"
+      ],
+      [
+       "+",
+       "should"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "be"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "agent extensibility operate"
+      ],
+      [
+       "+",
+       "handled"
+      ],
+      [
+       "=",
+       " like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "hardikpandya/stop-slop",
+     "score": 3.0,
+     "changed": 0.25,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "You"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "can"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "is"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "experimenting."
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to block experimentation. It is to make"
+      ],
+      [
+       "+",
+       "Treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility operate"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before "
+      ],
+      [
+       "-",
+       "installation"
+      ],
+      [
+       "+",
+       "you install a skill"
+      ],
+      [
+       "=",
+       " can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "stop"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "MohamedAbdallah-14/unslop",
+     "score": 3.0,
+     "changed": 0.27,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of this"
+      ],
+      [
+       "=",
+       " is "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "about"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to block"
+      ],
+      [
+       "+",
+       "blocking"
+      ],
+      [
+       "=",
+       " experimentation. "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "The point"
+      ],
+      [
+       "=",
+       " is to "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility operate"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " like any other software dependency: discoverable, reviewable, limited in scope"
+      ],
+      [
+       "-",
+       ","
+      ],
+      [
+       "=",
+       " and observable in production. A few minutes of scrutiny before "
+      ],
+      [
+       "-",
+       "installation"
+      ],
+      [
+       "+",
+       "installing"
+      ],
+      [
+       "=",
+       " can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "stop"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into "
+      ],
+      [
+       "-",
+       "an avoidable"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " security "
+      ],
+      [
+       "-",
+       "incident."
+      ],
+      [
+       "+",
+       "incident you could have avoided."
+      ]
+     ]
+    },
+    {
+     "repo": "blader/humanizer",
+     "score": 3.0,
+     "changed": 0.38,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "None"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "of"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "is"
+      ],
+      [
+       "+",
+       "this"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "needs"
+      ],
+      [
+       "=",
+       " to "
+      ],
+      [
+       "-",
+       "block"
+      ],
+      [
+       "+",
+       "stop"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "experimentation."
+      ],
+      [
+       "+",
+       "teams"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "It"
+      ],
+      [
+       "+",
+       "from experimenting. The aim"
+      ],
+      [
+       "=",
+       " is to "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility operate"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " like any other software dependency"
+      ],
+      [
+       "-",
+       ": discoverable"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "reviewable"
+      ],
+      [
+       "+",
+       "one you can discover"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "limited"
+      ],
+      [
+       "+",
+       "review, limit"
+      ],
+      [
+       "=",
+       " in scope, and "
+      ],
+      [
+       "-",
+       "observable"
+      ],
+      [
+       "+",
+       "observe"
+      ],
+      [
+       "=",
+       " in production. A few minutes of scrutiny before installation can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an "
+      ],
+      [
+       "-",
+       "agent"
+      ],
+      [
+       "+",
+       "agent's trusted access"
+      ],
+      [
+       "=",
+       " from turning"
+      ],
+      [
+       "-",
+       " trusted access"
+      ],
+      [
+       "=",
+       " into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "harshaneel/humanize",
+     "score": 3.0,
+     "changed": 0.46,
+     "segments": [
+      [
+       "-",
+       "The"
+      ],
+      [
+       "+",
+       "Teams"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "goal"
+      ],
+      [
+       "+",
+       "should"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "is"
+      ],
+      [
+       "+",
+       "still"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "not"
+      ],
+      [
+       "+",
+       "experiment."
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "to block experimentation. It is to make"
+      ],
+      [
+       "+",
+       "Treat"
+      ],
+      [
+       "=",
+       " agent "
+      ],
+      [
+       "-",
+       "extensibility"
+      ],
+      [
+       "+",
+       "extensions"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "operate"
+      ],
+      [
+       "+",
+       "the"
+      ],
+      [
+       "=",
+       " "
+      ],
+      [
+       "-",
+       "like"
+      ],
+      [
+       "+",
+       "way you'd treat"
+      ],
+      [
+       "=",
+       " any other software dependency"
+      ],
+      [
+       "-",
+       ": discoverable"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "reviewable"
+      ],
+      [
+       "+",
+       "as something you can discover"
+      ],
+      [
+       "=",
+       ", "
+      ],
+      [
+       "-",
+       "limited"
+      ],
+      [
+       "+",
+       "review, limit"
+      ],
+      [
+       "=",
+       " in scope"
+      ],
+      [
+       "-",
+       ","
+      ],
+      [
+       "=",
+       " and "
+      ],
+      [
+       "-",
+       "observable"
+      ],
+      [
+       "+",
+       "observe"
+      ],
+      [
+       "=",
+       " in production. A few minutes of scrutiny before "
+      ],
+      [
+       "-",
+       "installation"
+      ],
+      [
+       "+",
+       "install"
+      ],
+      [
+       "=",
+       " can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into "
+      ],
+      [
+       "-",
+       "an avoidable"
+      ],
+      [
+       "+",
+       "a"
+      ],
+      [
+       "=",
+       " security "
+      ],
+      [
+       "-",
+       "incident."
+      ],
+      [
+       "+",
+       "incident you could have avoided."
+      ]
+     ]
+    },
+    {
+     "repo": "rudra496/StealthHumanizer",
+     "score": 2.3,
+     "changed": 0.16,
+     "segments": [
+      [
+       "=",
+       "The goal "
+      ],
+      [
+       "-",
+       "is not"
+      ],
+      [
+       "+",
+       "isn't"
+      ],
+      [
+       "=",
+       " to "
+      ],
+      [
+       "-",
+       "block"
+      ],
+      [
+       "+",
+       "stop"
+      ],
+      [
+       "=",
+       " experimentation. "
+      ],
+      [
+       "-",
+       "It is"
+      ],
+      [
+       "+",
+       "It's"
+      ],
+      [
+       "=",
+       " to "
+      ],
+      [
+       "-",
+       "make"
+      ],
+      [
+       "+",
+       "treat"
+      ],
+      [
+       "=",
+       " agent extensibility"
+      ],
+      [
+       "-",
+       " operate"
+      ],
+      [
+       "=",
+       " like any other software dependency:"
+      ],
+      [
+       "+",
+       " it should be"
+      ],
+      [
+       "=",
+       " discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can "
+      ],
+      [
+       "-",
+       "prevent"
+      ],
+      [
+       "+",
+       "keep"
+      ],
+      [
+       "=",
+       " an agent from turning trusted access into an avoidable security incident."
+      ]
+     ],
+     "note": [
+      "Ran the whole text into one paragraph; lined up by sentence.",
+      "把全文并成了一段，按句子对齐。"
+     ]
+    },
+    {
+     "repo": "MrGeDiao/shuorenhua",
+     "score": 2.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "devswha/patina",
+     "score": 2.0,
+     "changed": 0.12,
+     "segments": [
+      [
+       "=",
+       "The goal is not to block experimentation. "
+      ],
+      [
+       "-",
+       "It is to make agent"
+      ],
+      [
+       "+",
+       "Agent"
+      ],
+      [
+       "=",
+       " extensibility "
+      ],
+      [
+       "-",
+       "operate"
+      ],
+      [
+       "+",
+       "should be handled"
+      ],
+      [
+       "=",
+       " like any other software dependency:"
+      ],
+      [
+       "+",
+       " it should be"
+      ],
+      [
+       "=",
+       " discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    },
+    {
+     "repo": "DadaNanjesha/AI-Text-Humanizer-App",
+     "score": 1.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "post-zh",
+   "label": [
+    "Chinese post, last paragraph",
+    "中文帖最后一段"
+   ],
+   "note": [
+    "「不是……而是……」 and a tidy moral.",
+    "「不是……而是……」，加一句整齐的总结。"
+   ],
+   "original": "真正成熟的 Agent 治理，不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。",
+   "rows": [
+    {
+     "repo": "Aboudjem/humanizer-skill",
+     "score": 3.3,
+     "changed": 0.49,
+     "segments": [
+      [
+       "-",
+       "真正成熟"
+      ],
+      [
+       "+",
+       "我们要"
+      ],
+      [
+       "=",
+       "的"
+      ],
+      [
+       "-",
+       " Agent 治理，"
+      ],
+      [
+       "=",
+       "不是禁止团队"
+      ],
+      [
+       "-",
+       "使"
+      ],
+      [
+       "=",
+       "用第三方能力，而是"
+      ],
+      [
+       "-",
+       "让"
+      ],
+      [
+       "=",
+       "每次安装都"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "追溯、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "限制、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "监控、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "撤销。把 Skill 当"
+      ],
+      [
+       "-",
+       "作"
+      ],
+      [
+       "+",
+       "成"
+      ],
+      [
+       "=",
+       "代码和供应链组件来管"
+      ],
+      [
+       "-",
+       "理"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "团队才能获得"
+      ],
+      [
+       "=",
+       "自动化"
+      ],
+      [
+       "-",
+       "收益，而"
+      ],
+      [
+       "+",
+       "的好处才拿得到；"
+      ],
+      [
+       "=",
+       "不"
+      ],
+      [
+       "-",
+       "是在"
+      ],
+      [
+       "+",
+       "然"
+      ],
+      [
+       "=",
+       "一次“方便的安装”"
+      ],
+      [
+       "-",
+       "之后"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "为"
+      ],
+      [
+       "+",
+       "换来的可能就是"
+      ],
+      [
+       "=",
+       "凭证泄露或数据外传"
+      ],
+      [
+       "-",
+       "付出代价"
+      ],
+      [
+       "=",
+       "。"
+      ]
+     ]
+    },
+    {
+     "repo": "op7418/Humanizer-zh",
+     "score": 3.0,
+     "changed": 0.15,
+     "segments": [
+      [
+       "-",
+       "真正"
+      ],
+      [
+       "=",
+       "成熟的 Agent 治理"
+      ],
+      [
+       "-",
+       "，"
+      ],
+      [
+       "+",
+       "并"
+      ],
+      [
+       "=",
+       "不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能"
+      ],
+      [
+       "-",
+       "获得"
+      ],
+      [
+       "+",
+       "拿到"
+      ],
+      [
+       "=",
+       "自动化"
+      ],
+      [
+       "-",
+       "收益"
+      ],
+      [
+       "+",
+       "带来的好处"
+      ],
+      [
+       "=",
+       "，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "LifelongLazyLearner/qu-ai-wei",
+     "score": 3.0,
+     "changed": 0.22,
+     "segments": [
+      [
+       "-",
+       "真正"
+      ],
+      [
+       "=",
+       "成熟的 Agent 治理"
+      ],
+      [
+       "-",
+       "，"
+      ],
+      [
+       "+",
+       "并"
+      ],
+      [
+       "=",
+       "不"
+      ],
+      [
+       "-",
+       "是"
+      ],
+      [
+       "=",
+       "禁止团队使用第三方能力，"
+      ],
+      [
+       "-",
+       "而是让"
+      ],
+      [
+       "+",
+       "它要求"
+      ],
+      [
+       "=",
+       "每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能"
+      ],
+      [
+       "-",
+       "获得"
+      ],
+      [
+       "+",
+       "拿到"
+      ],
+      [
+       "=",
+       "自动化"
+      ],
+      [
+       "+",
+       "带来的"
+      ],
+      [
+       "=",
+       "收益，而不"
+      ],
+      [
+       "-",
+       "是"
+      ],
+      [
+       "+",
+       "至于"
+      ],
+      [
+       "=",
+       "在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+     "score": 3.0,
+     "changed": 0.27,
+     "segments": [
+      [
+       "-",
+       "真正成熟的 Agent 治理，不是"
+      ],
+      [
+       "=",
+       "禁止团队使用第三方能力"
+      ],
+      [
+       "+",
+       "解决不了问题"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "而"
+      ],
+      [
+       "+",
+       "要做的"
+      ],
+      [
+       "=",
+       "是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管"
+      ],
+      [
+       "-",
+       "理"
+      ],
+      [
+       "=",
+       "，团队才"
+      ],
+      [
+       "-",
+       "能获"
+      ],
+      [
+       "+",
+       "拿"
+      ],
+      [
+       "=",
+       "得"
+      ],
+      [
+       "+",
+       "到"
+      ],
+      [
+       "=",
+       "自动化"
+      ],
+      [
+       "-",
+       "收益"
+      ],
+      [
+       "+",
+       "的好处"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "而不是在"
+      ],
+      [
+       "+",
+       "免得"
+      ],
+      [
+       "=",
+       "一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "blader/humanizer",
+     "score": 3.0,
+     "changed": 0.44,
+     "segments": [
+      [
+       "-",
+       "真正成熟的"
+      ],
+      [
+       "+",
+       "管好"
+      ],
+      [
+       "=",
+       " Agent "
+      ],
+      [
+       "-",
+       "治理，"
+      ],
+      [
+       "+",
+       "并"
+      ],
+      [
+       "=",
+       "不"
+      ],
+      [
+       "-",
+       "是"
+      ],
+      [
+       "+",
+       "意味着"
+      ],
+      [
+       "=",
+       "禁止团队使用第三方能力，"
+      ],
+      [
+       "-",
+       "而"
+      ],
+      [
+       "+",
+       "要做的"
+      ],
+      [
+       "=",
+       "是让每次安装都"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "追溯、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "限制、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "监控"
+      ],
+      [
+       "-",
+       "、可"
+      ],
+      [
+       "+",
+       "，也能"
+      ],
+      [
+       "=",
+       "撤销。把 Skill 当"
+      ],
+      [
+       "-",
+       "作"
+      ],
+      [
+       "+",
+       "成"
+      ],
+      [
+       "=",
+       "代码和供应链组件来管"
+      ],
+      [
+       "-",
+       "理"
+      ],
+      [
+       "=",
+       "，团队"
+      ],
+      [
+       "-",
+       "才"
+      ],
+      [
+       "+",
+       "既"
+      ],
+      [
+       "=",
+       "能"
+      ],
+      [
+       "-",
+       "获得"
+      ],
+      [
+       "+",
+       "拿到"
+      ],
+      [
+       "=",
+       "自动化"
+      ],
+      [
+       "-",
+       "收益"
+      ],
+      [
+       "+",
+       "的好处"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "而不是在一"
+      ],
+      [
+       "+",
+       "也能避免某"
+      ],
+      [
+       "=",
+       "次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "Nanako0129/sepia",
+     "score": 3.0,
+     "changed": 0.47,
+     "segments": [
+      [
+       "-",
+       "真正成熟的 Agent 治理，"
+      ],
+      [
+       "+",
+       "这样做并"
+      ],
+      [
+       "=",
+       "不是"
+      ],
+      [
+       "+",
+       "要"
+      ],
+      [
+       "=",
+       "禁止团队使用第三方能力"
+      ],
+      [
+       "-",
+       "，而是让"
+      ],
+      [
+       "+",
+       "。"
+      ],
+      [
+       "=",
+       "每次安装都"
+      ],
+      [
+       "+",
+       "应该"
+      ],
+      [
+       "=",
+       "可追溯、可限制、可监控、可撤销"
+      ],
+      [
+       "-",
+       "。把 "
+      ],
+      [
+       "+",
+       "，"
+      ],
+      [
+       "=",
+       "Skill "
+      ],
+      [
+       "+",
+       "要"
+      ],
+      [
+       "=",
+       "当作代码和供应链组件来管"
+      ],
+      [
+       "-",
+       "理，团队才能获得自动化收益，而不是在"
+      ],
+      [
+       "+",
+       "。否则"
+      ],
+      [
+       "=",
+       "一次“方便的安装”之后，"
+      ],
+      [
+       "+",
+       "团队可能要"
+      ],
+      [
+       "=",
+       "为凭证泄露或数据外传付出代价。"
+      ]
+     ],
+     "note": [
+      "Restructured the Chinese post into a numbered list with a firmer summary: more AI-like structure, not less",
+      "把中文文章改成编号清单、总结更重：结构反而更像 AI"
+     ]
+    },
+    {
+     "repo": "Raymondhou0917/speak-human-tw",
+     "score": 3.0,
+     "changed": 0.57,
+     "segments": [
+      [
+       "-",
+       "真正成熟的"
+      ],
+      [
+       "+",
+       "管好"
+      ],
+      [
+       "=",
+       " Agent "
+      ],
+      [
+       "-",
+       "治理"
+      ],
+      [
+       "+",
+       "的目標"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "不是禁止团队使用第三方能力，而"
+      ],
+      [
+       "=",
+       "是讓每次安裝都"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "追溯、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "限制、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "監控、"
+      ],
+      [
+       "-",
+       "可"
+      ],
+      [
+       "+",
+       "能"
+      ],
+      [
+       "=",
+       "撤銷"
+      ],
+      [
+       "+",
+       "，團隊照樣可以用第三方能力"
+      ],
+      [
+       "=",
+       "。把 Skill 當"
+      ],
+      [
+       "-",
+       "作代"
+      ],
+      [
+       "+",
+       "成程式"
+      ],
+      [
+       "=",
+       "碼和供應鏈"
+      ],
+      [
+       "-",
+       "组"
+      ],
+      [
+       "+",
+       "元"
+      ],
+      [
+       "=",
+       "件來管理，團隊才"
+      ],
+      [
+       "-",
+       "能获"
+      ],
+      [
+       "+",
+       "拿"
+      ],
+      [
+       "=",
+       "得"
+      ],
+      [
+       "+",
+       "到"
+      ],
+      [
+       "=",
+       "自動化"
+      ],
+      [
+       "-",
+       "收益"
+      ],
+      [
+       "+",
+       "的好處"
+      ],
+      [
+       "=",
+       "，"
+      ],
+      [
+       "-",
+       "而"
+      ],
+      [
+       "=",
+       "不"
+      ],
+      [
+       "-",
+       "是"
+      ],
+      [
+       "+",
+       "用"
+      ],
+      [
+       "=",
+       "在"
+      ],
+      [
+       "-",
+       "一"
+      ],
+      [
+       "+",
+       "某"
+      ],
+      [
+       "=",
+       "次"
+      ],
+      [
+       "-",
+       "“"
+      ],
+      [
+       "+",
+       "「"
+      ],
+      [
+       "=",
+       "方便的安裝"
+      ],
+      [
+       "-",
+       "”"
+      ],
+      [
+       "+",
+       "」"
+      ],
+      [
+       "=",
+       "之後，為憑證"
+      ],
+      [
+       "+",
+       "外"
+      ],
+      [
+       "=",
+       "洩"
+      ],
+      [
+       "-",
+       "露"
+      ],
+      [
+       "=",
+       "或"
+      ],
+      [
+       "-",
+       "数据"
+      ],
+      [
+       "+",
+       "資料"
+      ],
+      [
+       "=",
+       "外傳付出代價。"
+      ]
+     ],
+     "note": [
+      "Rewrites into Traditional Chinese (Taiwan usage)",
+      "改写成繁体中文（台湾用语）"
+     ]
+    },
+    {
+     "repo": "rudra496/StealthHumanizer",
+     "score": 2.3,
+     "changed": 0.04,
+     "segments": [
+      [
+       "=",
+       "真正成熟的 Agent 治理，不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。"
+      ],
+      [
+       "+",
+       " 只有"
+      ],
+      [
+       "=",
+       "把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ],
+     "note": [
+      "Ran the whole text into one paragraph; lined up by sentence.",
+      "把全文并成了一段，按句子对齐。"
+     ]
+    },
+    {
+     "repo": "MrGeDiao/shuorenhua",
+     "score": 2.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "真正成熟的 Agent 治理，不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+     "score": 2.0,
+     "changed": 0.07,
+     "segments": [
+      [
+       "=",
+       "真正成熟的 Agent 治理，"
+      ],
+      [
+       "-",
+       "不是禁止团队使用第三方能力，而"
+      ],
+      [
+       "=",
+       "是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，而不是在一次“方便的安装”之后，为凭证泄露或数据外传付出代价。"
+      ]
+     ]
+    },
+    {
+     "repo": "devswha/patina",
+     "score": 2.0,
+     "changed": 0.22,
+     "segments": [
+      [
+       "-",
+       "真正成熟的 "
+      ],
+      [
+       "=",
+       "Agent 治理"
+      ],
+      [
+       "-",
+       "，"
+      ],
+      [
+       "+",
+       "的重点"
+      ],
+      [
+       "=",
+       "不是禁止团队使用第三方能力，而是让每次安装都可追溯、可限制、可监控、可撤销。把 Skill 当作代码和供应链组件来管理，团队才能获得自动化收益，"
+      ],
+      [
+       "-",
+       "而不是在"
+      ],
+      [
+       "+",
+       "避免因"
+      ],
+      [
+       "=",
+       "一次“方便的安装”"
+      ],
+      [
+       "-",
+       "之后，为"
+      ],
+      [
+       "+",
+       "而承担"
+      ],
+      [
+       "=",
+       "凭证泄露或数据外传"
+      ],
+      [
+       "-",
+       "付出"
+      ],
+      [
+       "+",
+       "的"
+      ],
+      [
+       "=",
+       "代价。"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "story",
+   "label": [
+    "Story, last two lines",
+    "故事最后两句"
+   ],
+   "note": [
+    "A tidy ending that spells out the feeling.",
+    "把情绪说满的整齐结尾。"
+   ],
+   "original": "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home.",
+   "rows": [
+    {
+     "repo": "seyedehsanhadi/sloptrim",
+     "score": 4.5,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "miqdadbadjuber/anti-slop",
+     "score": 4.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "eric-tramel/slop-guard",
+     "score": 4.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "AIScientists-Dev/academic-humanizer",
+     "score": 3.5,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "realrossmanngroup/no_ai_slop_writing_rules",
+     "score": 3.5,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "NulightJens/humanizer-stack",
+     "score": 3.5,
+     "changed": 0.13,
+     "segments": [
+      [
+       "+",
+       "It stayed silent.\n\n"
+      ],
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room."
+      ],
+      [
+       "-",
+       "\n\n"
+      ],
+      [
+       "+",
+       " "
+      ],
+      [
+       "=",
+       "Just in case"
+      ],
+      [
+       "+",
+       ", she told herself,"
+      ],
+      [
+       "=",
+       " someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "Aboudjem/humanizer-skill",
+     "score": 3.3,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "MohamedAbdallah-14/unslop",
+     "score": 3.0,
+     "changed": 0.06,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered "
+      ],
+      [
+       "-",
+       "beyond"
+      ],
+      [
+       "+",
+       "past"
+      ],
+      [
+       "=",
+       " the horizon, she "
+      ],
+      [
+       "-",
+       "turned"
+      ],
+      [
+       "+",
+       "switched"
+      ],
+      [
+       "=",
+       " it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "blader/humanizer",
+     "score": 3.0,
+     "changed": 0.09,
+     "segments": [
+      [
+       "-",
+       "But"
+      ],
+      [
+       "+",
+       "It stayed silent, but"
+      ],
+      [
+       "=",
+       " whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "harshaneel/humanize",
+     "score": 3.0,
+     "changed": 0.24,
+     "segments": [
+      [
+       "-",
+       "But"
+      ],
+      [
+       "+",
+       "It stayed silent.\n\nStill,"
+      ],
+      [
+       "=",
+       " whenever storms gathered "
+      ],
+      [
+       "-",
+       "beyond"
+      ],
+      [
+       "+",
+       "past"
+      ],
+      [
+       "=",
+       " the horizon, she "
+      ],
+      [
+       "-",
+       "turned"
+      ],
+      [
+       "+",
+       "switched"
+      ],
+      [
+       "=",
+       " it on and let the static fill the "
+      ],
+      [
+       "-",
+       "room.\n\nJust"
+      ],
+      [
+       "+",
+       "room,"
+      ],
+      [
+       "=",
+       " in case someone"
+      ],
+      [
+       "+",
+       " out there"
+      ],
+      [
+       "=",
+       " was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "Nanako0129/sepia",
+     "score": 3.0,
+     "changed": 0.5,
+     "segments": [
+      [
+       "+",
+       "Her father placed the compass beside the lantern window. After that, he talked more—to Mara, mostly, and sometimes even to the gulls.\n\nYears later, when Mara became keeper of Bellwether Light, she kept the old radio on the shelf beneath the lens. It stayed silent. "
+      ],
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the "
+      ],
+      [
+       "-",
+       "room.\n\nJust"
+      ],
+      [
+       "+",
+       "room,"
+      ],
+      [
+       "=",
+       " in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "hardikpandya/stop-slop",
+     "score": 3.0,
+     "changed": 0.54,
+     "segments": [
+      [
+       "-",
+       "But"
+      ],
+      [
+       "+",
+       "Her father set the compass beside the lantern window. After that he talked more, to Mara mostly, and sometimes even to the gulls.\n\nYears later, when Mara became keeper of Bellwether Light, she kept the old radio on the shelf beneath the lens. It stayed silent. Still,"
+      ],
+      [
+       "=",
+       " whenever storms gathered beyond the horizon, she "
+      ],
+      [
+       "-",
+       "turned"
+      ],
+      [
+       "+",
+       "switched"
+      ],
+      [
+       "=",
+       " it on and let the static fill the "
+      ],
+      [
+       "-",
+       "room.\n\nJust"
+      ],
+      [
+       "+",
+       "room,"
+      ],
+      [
+       "=",
+       " in case someone"
+      ],
+      [
+       "+",
+       " out there"
+      ],
+      [
+       "=",
+       " was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "rudra496/StealthHumanizer",
+     "score": 2.3,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room."
+      ],
+      [
+       "-",
+       "\n\n"
+      ],
+      [
+       "+",
+       " "
+      ],
+      [
+       "=",
+       "Just in case someone was still trying to come home."
+      ]
+     ],
+     "note": [
+      "Ran the whole text into one paragraph; lined up by sentence.",
+      "把全文并成了一段，按句子对齐。"
+     ]
+    },
+    {
+     "repo": "devswha/patina",
+     "score": 2.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "MrGeDiao/shuorenhua",
+     "score": 2.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    },
+    {
+     "repo": "DadaNanjesha/AI-Text-Humanizer-App",
+     "score": 1.0,
+     "changed": 0.0,
+     "segments": [
+      [
+       "=",
+       "But whenever storms gathered beyond the horizon, she turned it on and let the static fill the room.\n\nJust in case someone was still trying to come home."
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
