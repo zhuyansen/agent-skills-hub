@@ -2033,6 +2033,18 @@
     "wuyoscar/GPT-Image2-Skill",
     "ilovehugetits/codex-images",
     "Arekejoker/qwen21-nsfw-pose-skill"
+   ],
+   "featured": [
+    "helloianneo/ian-xiaohei-illustrations",
+    "s1dashu/ip-as-logo-skill",
+    "yanliudesign/mono-color-skill",
+    "scenario-labs/skills",
+    "llmsresearch/paperbanana",
+    "jau123/MeiGen-AI-Design-MCP",
+    "liyue-aigc/female-portrait-director",
+    "liangdabiao/ecom-details-image",
+    "op7418/guizang-material-illustration",
+    "AgriciDaniel/banana-claude"
    ]
   },
   "related": [
@@ -4057,7 +4069,7 @@
   "slug": "anti-slop",
   "seo_keyword": "humanizer skill",
   "title": "Humanizer & Anti-Slop Skills",
-  "serp_subject": "Unslop, Humanizer & Anti-Slop Skills",
+  "serp_subject": "Humanizer, Unslop & Anti-Slop Skills",
   "github_list": "https://github.com/zhuyansen/awesome-humanizer-skills",
   "description": "Open-source humanizer and anti-slop skills, security-graded: make AI-written text, code and UI read like a person made it (blader/humanizer, Humanizer-zh, taste-skill), and detect AI tells. Vet before you install.",
   "method": {
@@ -4495,7 +4507,49 @@
     "qZh": "怎么在 Claude Code 或 Codex 里用 humanizer skill?",
     "aZh": "把 skill 文件夹(含 SKILL.md)装进 agent 的 skills 目录,然后让 agent 给一段文字去 AI 味;skill 会提供要找的痕迹和改写规则。本页的所有 humanizer 也收录在 GitHub 开源合集 zhuyansen/awesome-humanizer-skills 里,附安全评级。"
    }
-  ]
+  ],
+  "explainer": {
+   "what": {
+    "h2": "What is a humanizer skill?",
+    "h2_zh": "humanizer skill（去 AI 味 skill）是什么？",
+    "text": "A humanizer skill is an installable package of instructions (usually a folder with a SKILL.md file) that teaches a coding agent such as Claude Code or Codex to rewrite AI-sounding text so it reads like a person wrote it, or to point out the tells: stock phrases, inflated words, em-dash habits, lists of three, tidy summaries. Unslop and anti-slop skills do the same, and some of them work on code or interface design instead of prose. In our test of 23 of them, the rewriters changed wording but none removed the structural tells, such as a stated moral or a tidy ending; that part still needs a human edit.",
+    "text_zh": "humanizer skill 是一个可以安装的指令包（通常是带 SKILL.md 的文件夹），让 Claude Code、Codex 这类编程 agent 把读起来像 AI 写的文字改得像人写的，或者把 AI 痕迹标出来：套话、夸大的用词、爱用破折号、三段式排比、整齐的总结。unslop、anti-slop skill 做的是同一件事，其中有些改的是代码或界面设计，不是文字。我们实测了其中 23 个：改写类都只改了措辞，没有一个去掉结构上的 AI 味，比如讲明的道理、整齐的结尾，这部分还得人来改。"
+   },
+   "top": {
+    "h2": "5 humanizer skills to start with in 2026, from our test",
+    "h2_zh": "2026 年先从这 5 个 humanizer skill 开始（来自我们的实测）",
+    "numbered": false,
+    "items": [
+     {
+      "repo": "seyedehsanhadi/sloptrim",
+      "line": "Best for English text. Its rewrites read the most human in our test, 4.5 of 5 from the judge, with every fact kept, in about a minute per text. Like every rewriter we ran, it changes wording, not structure.",
+      "line_zh": "英文文本首选。实测里它的改写稿读起来最像人写：评审给 4.5/5，事实全保留，每篇约 1 分钟。和我们跑过的所有改写工具一样，它改的是措辞，不是结构。"
+     },
+     {
+      "repo": "miqdadbadjuber/anti-slop",
+      "line": "The runner-up rewriter: 4.0 of 5 with every fact kept, done in under a minute.",
+      "line_zh": "改写类第二名：4.0/5，事实全保留，不到 1 分钟改完。"
+     },
+     {
+      "repo": "op7418/Humanizer-zh",
+      "line": "Best for Chinese text. 3.0 of 5 with every fact kept, level with three other Chinese tools and the most used of them; no Chinese tool scored higher.",
+      "line_zh": "中文文本首选。3.0/5，事实全保留，和另外三个中文工具并列，其中用的人最多；中文类没有得分更高的。"
+     },
+     {
+      "repo": "Aboudjem/humanizer-skill",
+      "line": "To check a text rather than rewrite it. The only detector that flags structure in earnest: 8 of its 38 flags were stated lessons, tidy endings and the like.",
+      "line_zh": "只检查、不改写时用它。唯一认真查结构的检测器：报出的 38 处里有 8 处是讲明的道理、整齐的结尾这类结构问题。"
+     },
+     {
+      "repo": "blader/humanizer",
+      "line": "The best-known humanizer skill and the most-starred one for text. In our test it read 3.0 of 5, mid-pack, with every fact kept: it changes wording, not structure.",
+      "line_zh": "名气最大、星数最多的文字 humanizer skill。实测 3.0/5，排在中间，事实全保留：改的是措辞，不是结构。"
+     }
+    ],
+    "note": "All five ran end to end on 2026-10-07: each rewrote or checked the same three texts (an English post, a Chinese post, a short story) in a throwaway sandbox, driven by Claude Code, and a judge model scored how human each rewrite read. The full table is in the test results below.",
+    "note_zh": "这 5 个都在 2026-10-07 端到端实跑过：每个在用完即删的沙箱里，由 Claude Code 驱动，改写或检查同样三篇文字（一篇英文帖、一篇中文帖、一篇短故事），再由评审模型给改写稿打「像不像人写」的分。完整对比见下方的实测结果。"
+   }
+  }
  },
  {
   "slug": "agent-memory",
