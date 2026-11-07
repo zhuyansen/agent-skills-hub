@@ -109,6 +109,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # How long the action waits for Pages before it cancels the deployment (default
+          # 10 minutes). On 2026-11-06 Pages sat in syncing_files/updating_pages past that in
+          # three of five attempts (97cb0ce once, 8f5fbc2 twice), with the same 76 MB artifact
+          # that published in 2.7 minutes in between; 8f5fbc2 went live only with the next
+          # sync's deploy, 3.5 hours later. A stuck one now holds pages-deploy for 30 minutes.
+          timeout: 1800000
 
   notify-search-engines:
     # IndexNow (Bing, Yandex, Naver and the other engines that share its submissions) hears only
