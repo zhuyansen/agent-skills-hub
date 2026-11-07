@@ -186,6 +186,33 @@ PAGE_LISTS = {
             "design": ("Icons, illustrations, covers, posters and logos.", "图标、插画、封面、海报和 Logo。"),
         },
     },
+    "3d-mcp": {   # 2026-11-07; the owner asked for a name with "skills" in it
+        "repo": "zhuyansen/awesome-3d-skills",
+        "text": _text("Awesome 3D Skills",
+                      ("Open-source **MCP servers and skills that let AI agents work in 3D** for Claude Code, Codex, Cursor and "
+                       "other agents: Blender, Unity, Godot and Unreal, CAD tools such as FreeCAD, Three.js for the web, and 3D "
+                       "model generation.",
+                       "让 AI agent **做 3D** 的开源 MCP 服务和 skill,给 Claude Code、Codex、Cursor 等 agent 用:Blender、Unity、"
+                       "Godot、Unreal,FreeCAD 等 CAD 工具,网页 3D 的 Three.js,以及 3D 模型生成。"),
+                      ("It lets an AI coding agent or assistant do 3D work: drive a 3D, CAD or game-engine application, build 3D "
+                       "scenes for the web, or generate 3D models. A 3D app or game with no agent integration, a model's training "
+                       "code, or a tool that only uses 3D as decoration does not count.",
+                       "它让 AI 编程 agent 或助手做 3D 的事:操作 3D、CAD 软件或游戏引擎,做网页 3D 场景,或生成 3D 模型。"
+                       "没有 agent 集成的 3D 软件或游戏、模型本身的训练代码、只把 3D 当装饰的工具不算。"),
+                      ("What these tools make", "这些工具能做出什么")),
+        "blurb": {
+            "blender": ("Blender add-ons, MCP servers and skills.", "Blender 的插件、MCP 服务和 skill。"),
+            "unity": ("For the Unity Editor.", "给 Unity 编辑器用。"),
+            "godot": ("For the Godot engine.", "给 Godot 引擎用。"),
+            "unreal": ("For Unreal Engine.", "给 Unreal 引擎用。"),
+            "cad": ("CAD and engineering: FreeCAD, OpenSCAD, CadQuery, Fusion 360, SolidWorks, KiCad, text-to-CAD.",
+                    "CAD 与工程设计:FreeCAD、OpenSCAD、CadQuery、Fusion 360、SolidWorks、KiCad、文字生成 CAD。"),
+            "dcc": ("Maya, Houdini, Cinema 4D, 3ds Max, SketchUp, Rhino and Spline.",
+                    "Maya、Houdini、Cinema 4D、3ds Max、SketchUp、Rhino 和 Spline。"),
+            "web3d": ("Three.js, React Three Fiber, Babylon.js, WebGL and WebGPU.", "Three.js、React Three Fiber、Babylon.js、WebGL 与 WebGPU。"),
+            "gen3d": ("3D models and scenes from text or images.", "用文字或图片生成 3D 模型和场景。"),
+        },
+    },
     "claude-code-skills": {
         "repo": "zhuyansen/awesome-claude-code-skills-collections",
         "text": _text("Awesome Claude Code Skills Collections",

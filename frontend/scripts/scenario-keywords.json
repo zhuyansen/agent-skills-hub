@@ -2072,6 +2072,7 @@
   "title": "Blender, Unity & Godot MCP",
   "serp_subject": "Blender, Unity & Godot MCP and 3D Skills",
   "seo_keyword": "blender mcp",
+  "github_list": "https://github.com/zhuyansen/awesome-3d-skills",
   "description": "Open-source MCP servers and skills that let Claude Code, Codex and other agents work in 3D, security-graded: Blender, Unity, Godot, Unreal, CAD, Three.js and 3D model generation. Vet before you install.",
   "match": {
    "categories": [],
