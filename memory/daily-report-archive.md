@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-07
+1. yucezerey/turkish-anti-ai-skill — 🆕 清除土耳其语文本里的 AI 腔、翻译腔和拼写错误，让文字读起来像人写的（222★ 186.4/day）
+2. cactus-compute/cactus — 把智能体、语音和视觉能力压进 50MB 以内，直接跑在手机等终端设备上（14499★ 56.7/day）
+3. tryatlas/atlas — 给编程智能体做版本管理，多个智能体的改动集中追踪、统一查询（9383★ 53.2/day）
+4. a2ui-project/a2ui — 让智能体流式输出界面布局，应用用 React、Flutter、SwiftUI 等原生组件渲染（17001★ 41.7/day）
+5. fantuan-lab/animated-sticker-studio — 🆕 用一张角色图生成整套动态表情包，可直接用于微信、Telegram 和 LINE（41★ 23.8/day）
+6. phuryn/mini-harness — 🆕 用约 1400 行 Python 讲透智能体框架，含目标模式、权限、技能与 MCP（96★ 22.3/day）
+7. globalmpc/backendskills — 🆕 防止 AI 写出演示能跑、上线就崩的后端代码，实测严重错误从 25 次降到 2 次（39★ 21.2/day）
+8. dreamers-laboratory/good-door — 🆕 用简单安全的命令行工具管理密钥，人和智能体都能用（40★ 17.9/day）
+9. bytedance/axion1_0 — 🆕 公开完整训练配方，只靠高质量数据加两轮 SFT 与 RL 练出前沿级智能体能力（60★ 12.4/day）
+10. duyunzhoudyz/dyz-gongwen-skills — 用 AI 写公文，防编造、守保密，按 GB/T 9704 一键排版，覆盖 22 种文书（265★ 11.9/day）
+🎯 今日趋势：**3 席**是近万星以上老仓首次入库（a2ui 1.7 万★、cactus 1.4 万★、atlas 9,383★），新仓 **6 席**标 🆕；同时拦下两个刷量集群：**19 仓**同名 ai-manus 克隆（同时创建、均 44★），以及延续 11-06 的 **18 仓** rpocket/resp 集群。
+> 注：去重范围＝repo 内 archive 全部 135 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,542 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、`statement_timeout=30000`）一次成功：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 115 条、去重后 97 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①HerdBuilderEstimate/roblox-studio-mcp（427★ 427.0/day）：2026-10-16 新号、0 粉、随机词账号名，名下另一仓名为乱码且 0★，实时 427★/260 fork（fork 比 61%，像诱导下载的假仓），排除；②19 仓 ai-manus 克隆（如 osarhiemenaiyevbosa-cloud/ai-manus、monirchemrubd/ai-manus 等）：0.3 天前同时创建、全部 44★、描述一字不差，排除；③rpocket/resp/resocket 集群 18 仓（如 RagnheavenDusk/content-machine-respocket、Galehashoid/flow-map-resp 等，其中 3 仓 11-06 已拦）：约 1.5 天前创建、34–40★、随机词账号名，全部排除；④zengziyu1312007-rgb/claude-antifeng-skill（62★ 49.2/day）：uncategorized，内容为账号防风控，排除；⑤chutingyean/Agent-Cockpit（371★ 33.0/day）：0 粉、名下仅此一仓，实时 394★ 仅 8 fork，单仓突起，保守排除；⑥YKLovePython/halfsize（48★ 14.5/day）：安全评级 caution，排除。入选项复核（`gh api`；本次 stargazers 接口返回 404，只能看账号与 fork）：第 1 席 yucezerey 2025-02 建号、9 粉、名下仅此一仓，实时 228★/15 fork（**轻红旗**：单仓，但 fork 比正常、题材面向土耳其语用户，保留）；第 2–4 席为成熟项目老仓首次入库；第 5 席 fantuan-lab 2020 建号，名下 9 仓；第 6 席 phuryn 1,276 粉，名下另有 2.7 万★ pm-skills；第 7 席 globalmpc 组织 315 粉；第 8 席 dreamers-laboratory 2017 建号组织，名下另有 217★/103★ 仓；第 9 席 bytedance 官方组织；第 10 席 duyunzhoudyz 0 粉，但名下两仓 259★/348★ 体量相近，不属单仓爆星（**轻红旗**，保留）。🆕 判定＝created_at 距今 14 天内：turkish-anti-ai-skill（1.2 天）、animated-sticker-studio（1.7 天）、mini-harness（4.3 天）、backendskills（1.8 天）、good-door（2.2 天）、axion1_0（4.8 天）命中；dyz-gongwen-skills（22.2 天）不标。security_grade：入选 10 仓全部 safe。表中 stars 为数据库快照，部分仓实时略高（good-door 57★、dyz-gongwen-skills 348★），按红线保留快照值。
+
+---
+
 ## 2026-11-06
 1. anomalyco/opencode — 开源编程智能体，在终端、桌面和编辑器里直接写代码改代码（224745★ 405.5/day）
 2. bmad-code-org/BMAD-METHOD — 用多角色智能体跑敏捷开发，从需求、架构一路推进到交付（55034★ 96.3/day）
