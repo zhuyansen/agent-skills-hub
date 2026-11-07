@@ -105,7 +105,7 @@ document.addEventListener("click", function (e) {
 // HOT_SCENARIOS in src/components/ScenarioTagCloud.tsx).
 const POPULAR_SCENARIOS = [
   "ppt-presentation", "claude-video-skills", "typesafe-jev", "claude-code-hooks", "codex-skills",
-  "ai-design", "image-generation", "knowledge-base", "obsidian-second-brain", "anti-slop",
+  "ai-design", "image-generation", "3d-mcp", "knowledge-base", "obsidian-second-brain", "anti-slop",
   "skill-management-tools", "mcp-database", "browser-automation", "code-review",
 ];
 // Copy buttons and the copy_install event keep the visitor on the ranking page

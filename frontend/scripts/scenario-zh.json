@@ -595,5 +595,21 @@
       "rea"
     ],
     "d": "开源的 AI 逆向工程工具,带安全评级:Ghidra MCP、IDA Pro MCP、移动端的 jadx 与 Frida、逆向 Skill、REA,以及用它重建出来的项目。"
+  },
+  "3d-mcp": {
+    "t": "Blender、Unity、Godot MCP 与 3D Skill",
+    "k": [
+      "3d",
+      "blender",
+      "unity",
+      "godot",
+      "unreal",
+      "建模",
+      "游戏引擎",
+      "cad",
+      "three.js",
+      "3d 模型"
+    ],
+    "d": "让 Claude Code、Codex 等 agent 做 3D 的开源 MCP 服务和 skill,带安全评级:Blender、Unity、Godot、Unreal、CAD、Three.js 和 3D 模型生成。安装前先核查。"
   }
 }

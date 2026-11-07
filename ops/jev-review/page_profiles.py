@@ -361,6 +361,50 @@ PAGES = {
                   "imagen", "text-to-image", "text to image", "生图", "图片生成"],
         "also": ["mcp", "agent", "claude", "skill", "codex", "cursor", "llm"],
     },
+    # 2026-11-07 (owner's call: one page with a type filter). Search demand sits on "<app> mcp":
+    # blender mcp 3,600/mo, unity mcp 2,400, godot mcp 1,900, unreal mcp ~1,200, freecad mcp 390 (US).
+    "3d-mcp": {
+        "subject": _q("Is the main purpose of `repo` to let an AI coding agent or assistant do 3D work: drive a 3D, CAD or "
+                      "game-engine application (Blender, Unity, Godot, Unreal, FreeCAD and the like), build 3D scenes for "
+                      "the web (Three.js, WebGL), or generate 3D models?",
+                      "A 3D app, game or engine with no agent or LLM integration, a 3D model's training code, or a tool "
+                      "that only uses 3D as decoration (agents shown as 3D characters, a 3D map of a codebase) does not count."),
+        "types": {
+            "blender": _q("Is `repo` built mainly for Blender?"),
+            "unity": _q("Is `repo` built mainly for the Unity game engine?"),
+            "godot": _q("Is `repo` built mainly for the Godot game engine?"),
+            "unreal": _q("Is `repo` built mainly for Unreal Engine?"),
+            "cad": _q("Is `repo` mainly about CAD or engineering design: FreeCAD, OpenSCAD, CadQuery, Fusion 360, "
+                      "SolidWorks, Onshape, KiCad or text-to-CAD?"),
+            "dcc": _q("Is `repo` built mainly for another 3D application: Maya, Houdini, Cinema 4D, 3ds Max, SketchUp, "
+                      "Rhino or Spline?"),
+            "web3d": _q("Is `repo` mainly about 3D on the web: Three.js, React Three Fiber, Babylon.js, WebGL or WebGPU scenes?"),
+            "gen3d": _q("Is `repo` mainly about generating 3D models or scenes from text or images: Tripo, Meshy, "
+                        "Hunyuan3D, TRELLIS, Gaussian splats?"),
+        },
+        "labels": _labels(("blender", "🟠", "Blender", "Blender"), ("unity", "🎮", "Unity", "Unity"),
+                          ("godot", "🤖", "Godot", "Godot"), ("unreal", "🏰", "Unreal Engine", "Unreal 引擎"),
+                          ("cad", "📐", "CAD & engineering", "CAD 与工程设计"), ("dcc", "🎬", "Other 3D apps", "其他 3D 软件"),
+                          ("web3d", "🌐", "Three.js & web 3D", "Three.js 与网页 3D"),
+                          ("gen3d", "✨", "3D model generation", "3D 模型生成")),
+        "queries": ["blender mcp in:name,description", "blender claude in:name,description", "blender ai agent in:name,description",
+                    "unity mcp in:name,description", "unity skill in:name,description", "godot mcp in:name,description",
+                    "godot skill in:name,description", "unreal mcp in:name,description", "unreal engine claude in:name,description",
+                    "freecad mcp in:name,description", "cad mcp in:name,description", "threejs skill in:name,description",
+                    "three.js claude in:name,description", "3d mcp in:name,description,topics",
+                    "text to 3d mcp in:name,description", "game engine mcp in:name,description"],
+        # Words that are substrings of common words get a leading space: "unity" is in "community".
+        "words": ["blender", " unity", "godot", "unreal", " ue5", "freecad", "openscad", "cadquery", "fusion 360",
+                  "fusion360", "solidworks", "onshape", "kicad", " rhino", " maya ", "houdini", "cinema 4d", " c4d ",
+                  "3ds max", "sketchup", " spline", "three.js", "three js", "threejs", "react three", " r3f ", "webgl", "webgpu",
+                  "babylon", " 3d ", " cad ", " gltf", " glb ", "tripo", "meshy", "hunyuan3d", "gaussian splat"],
+        "also": ["mcp", "agent", "claude", "skill", "codex", "cursor", "llm", "copilot", "gpt", "gemini", " ai "],
+        "strict": True,   # 352 cards at the 0.5 bar (11-07), over the 300 of the 10-03 rule
+        # Under the strict bar, admitted by name (owner's call, 11-07): a 3D architecture editor with
+        # MCP tools (topic 0.73) and agent skills for Godot 4 (0.58). Coding-Solo/godot-mcp (0.76) was
+        # offered too and left out.
+        "owner_admitted": ["pascalorg/editor", "jame581/GodotPrompter"],
+    },
     "knowledge-base": {
         "strict": True,
         "subject": _q("Is the main purpose of `repo` to build, maintain or query a knowledge base with an LLM or AI agent: "

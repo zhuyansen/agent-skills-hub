@@ -159,6 +159,7 @@ export function SiteFooter() {
                 },
                 { slug: "claude-code-hooks", zh: "Claude Code Hooks", en: "Claude Code Hooks" },
                 { slug: "image-generation", zh: "AI 生图", en: "Image Generation" },
+                { slug: "3d-mcp", zh: "3D 与游戏引擎", en: "Blender & 3D MCP" },
                 {
                   slug: "prompt-engineering",
                   zh: "提示工程",

@@ -2068,6 +2068,139 @@
   ]
  },
  {
+  "slug": "3d-mcp",
+  "title": "Blender, Unity & Godot MCP",
+  "serp_subject": "Blender, Unity & Godot MCP and 3D Skills",
+  "seo_keyword": "blender mcp",
+  "description": "Open-source MCP servers and skills that let Claude Code, Codex and other agents work in 3D, security-graded: Blender, Unity, Godot, Unreal, CAD, Three.js and 3D model generation. Vet before you install.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "blender",
+    "unity",
+    "godot",
+    "unreal engine",
+    "freecad",
+    "openscad",
+    "three.js",
+    "threejs",
+    "game engine",
+    "3d model",
+    "text to cad"
+   ],
+   "secondary_keywords": [
+    "webgl",
+    "gltf",
+    "mesh",
+    "sketchup",
+    "maya",
+    "houdini",
+    "rhino",
+    "kicad",
+    "cad"
+   ],
+   "exclude_keywords": [],
+   "min_results": 3,
+   "max_results": null,
+   "tag_matches": [
+    "blender",
+    "3d"
+   ],
+   "topic_matches": [
+    "blender",
+    "blender-mcp",
+    "blender-addon",
+    "unity-mcp",
+    "godot",
+    "godot-engine",
+    "unreal-engine",
+    "freecad",
+    "openscad",
+    "threejs",
+    "three-js",
+    "react-three-fiber"
+   ],
+   "reviewed_only": true,
+   "sort": "stars",
+   "admit_reviewed": [
+    "ABostrom/ushell-skill",
+    "CesiumGS/cesiumjs-ai-starter-app",
+    "DataArche/SSWorld",
+    "EYamanS/chisel",
+    "Guilherme-M-Mateus/keyframe-coach",
+    "LumosLab-Innovation/3D-lab-skills",
+    "MosaicXR-AI/mosaic-bridge",
+    "SamedVossberg/3d-brain-animations",
+    "SmartAI/Chamfer",
+    "TheMarco/godot-game-skills",
+    "codepawl/67.js",
+    "czlonkowski/blender-web-3d-skill",
+    "dennisonbertram/emulsion",
+    "hypersniper05/MCP_Image_to_3D",
+    "leandrodaf/3d-new-era-ai",
+    "mordor-forge/trident-mcp",
+    "nirholas/3d-scene-mcp",
+    "nirholas/blender-mcp",
+    "nocodehack/make-short",
+    "radif/unity-prefabs-claude-code-skill",
+    "tsogjavklann/awwwards-3d"
+   ],
+   "exclude_repos": []
+  },
+  "related": [
+   "image-generation",
+   "claude-video-skills",
+   "ai-design"
+  ],
+  "explainer": {
+   "what": {
+    "h2": "What is a Blender MCP server?",
+    "h2_zh": "Blender MCP 是什么？",
+    "text": "A Blender MCP server lets an AI assistant such as Claude Code, Claude Desktop, Codex or Cursor operate Blender through the Model Context Protocol (MCP). It comes in two parts: an add-on inside Blender that opens a local socket, and an MCP server your assistant launches, which turns its requests into commands: create and edit objects, set materials, run Blender Python, render views to check the result. Unity, Godot and Unreal MCP servers do the same for game engines, and CAD ones for FreeCAD or SolidWorks; most need the app open on your own machine.",
+    "text_zh": "Blender MCP 服务器让 Claude Code、Claude Desktop、Codex、Cursor 这类 AI 助手通过 MCP（Model Context Protocol）操作 Blender。它分两部分：Blender 里的插件在本机开一个端口，你的助手启动的 MCP 服务器把它的请求变成命令：建模、改物体、调材质、跑 Blender 的 Python、渲几张视角图检查结果。Unity、Godot、Unreal 的 MCP 服务器对游戏引擎做同样的事，CAD 类的对 FreeCAD、SolidWorks 做；大多要在你自己的电脑上开着这个软件。"
+   },
+   "top": {
+    "h2": "The 3D MCP servers and skills to start with in 2026",
+    "h2_zh": "2026 年先从这几个 3D MCP 和 skill 开始",
+    "numbered": false,
+    "items": [
+     {
+      "repo": "ahujasid/mcp-for-blender",
+      "label": "MCP for Blender (blender-mcp)",
+      "line": "For Blender. The Blender MCP most people mean, formerly blender-mcp: a Blender add-on plus an MCP server that lets Claude create and edit objects, set materials, run Blender Python and render views to check its work, and bring in Poly Haven, Sketchfab and AI-generated models. A third-party project, not made by Blender.",
+      "line_zh": "Blender 用这个。大家说的 Blender MCP 多半就是它（原名 blender-mcp）：一个 Blender 插件加一个 MCP 服务器，让 Claude 建模、改物体、调材质、跑 Blender 的 Python、渲视角图检查结果，还能导入 Poly Haven、Sketchfab 的素材和 AI 生成的模型。第三方项目，不是 Blender 官方出的。"
+     },
+     {
+      "repo": "CoplayDev/unity-mcp",
+      "label": "MCP for Unity (unity-mcp)",
+      "line": "For Unity. It connects Claude, Codex, VS Code and other MCP clients to the Unity Editor: create scenes and GameObjects, edit C# scripts, manage assets, run tests, profile and build, through 50 tools. Free and MIT-licensed.",
+      "line_zh": "Unity 用这个。它把 Claude、Codex、VS Code 等 MCP 客户端接到 Unity 编辑器：建场景和 GameObject、改 C# 脚本、管资源、跑测试、做性能分析和打包，共 50 个工具。免费，MIT 许可。"
+     },
+     {
+      "repo": "EpicGames/unreal-engine-skills-for-claude-code-plugin",
+      "label": "Unreal Engine Skills for Claude Code (Epic Games)",
+      "line": "For Unreal Engine, from Epic Games. A Claude Code plugin that drives the Unreal Editor over MCP, with hundreds of tools across more than 30 toolsets (actors, Blueprints, materials, Niagara, Sequencer and more). Needs the Editor running with its ModelContextProtocol and AllToolsets plugins enabled.",
+      "line_zh": "Unreal 引擎用 Epic 官方这个。一个 Claude Code 插件，通过 MCP 操作 Unreal 编辑器，30 多组、几百个工具（Actor、蓝图、材质、Niagara、Sequencer 等）。要开着编辑器，并启用它的 ModelContextProtocol 和 AllToolsets 插件。"
+     },
+     {
+      "repo": "neka-nat/freecad-mcp",
+      "label": "FreeCAD MCP",
+      "line": "For CAD. Through an add-on inside FreeCAD, it lets Claude Desktop and other MCP clients create and edit models, run Python scripts, inspect documents and run FEM analyses.",
+      "line_zh": "CAD 用这个。通过 FreeCAD 里的插件，让 Claude Desktop 等 MCP 客户端建模和改模型、跑 Python 脚本、查看文档，还能做有限元（FEM）分析。"
+     },
+     {
+      "repo": "CloudAI-X/threejs-skills",
+      "label": "Three.js Skills for Claude Code",
+      "line": "For 3D on the web. Skill files that give Claude Code current knowledge of three.js r186, React Three Fiber 9.8 and drei 10.7, so the code it writes runs on the release you install, not on one from its training data.",
+      "line_zh": "做网页 3D 用这个。一组 skill 文件，给 Claude Code 补上 three.js r186、React Three Fiber 9.8、drei 10.7 的最新用法，让它写的代码在你装的版本上能跑，而不是照训练数据里的旧版本写。"
+     }
+    ],
+    "note": "One per app, picked from this page by what each does and its security grade (all five rated SAFE). We have not run these end to end.",
+    "note_zh": "每个软件挑一个，依据是用途和安全评级（5 个都是 SAFE）。这些我们还没有端到端实跑过。"
+   }
+  }
+ },
+ {
   "slug": "notification",
   "title": "Notification & Alerting",
   "description": "Find tools for sending notifications, alerts, and messages across multiple channels from AI agents.",

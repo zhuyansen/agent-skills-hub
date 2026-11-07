@@ -1,0 +1,2674 @@
+[
+ {
+  "repo": "ahujasid/mcp-for-blender",
+  "stars": 33499,
+  "description": "Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender Foundation.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.16
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "CoplayDev/unity-mcp",
+  "stars": 15769,
+  "description": "Unity MCP acts as a bridge between AI assistants and your Unity Editor. Give your LLM tools to manage assets, control scenes, edit scripts, and automate tasks within Unity.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "IvanMurzak/Unity-MCP",
+  "stars": 4597,
+  "description": "AI Skills, MCP Tools, and CLI for Unity Engine. Full AI develop and test loop. Use cli for quick setup. Efficient token usage, advanced tools. Any C# method may be turned into a tool by a single line. Works with Claude Code, Gemini, Copilot, Cursor and any other absolutely for free.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "CloudAI-X/threejs-skills",
+  "stars": 4049,
+  "description": "",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.03
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "hi-godot/godot-ai",
+  "stars": 3422,
+  "description": "Production-grade MCP server and AI tools for the Godot engine. A Snap to install. Totally free and fun.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "neka-nat/freecad-mcp",
+  "stars": 3246,
+  "description": "FreeCAD MCP(Model Context Protocol) server",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.08
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "majidmanzarpour/threejs-game-skills",
+  "stars": 2705,
+  "description": "Agent skills for building playable, polished Three.js browser games with gameplay, AAA-style graphics, UI, QA, and optional AI-generated 3D, image, and audio assets.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.05
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "chongdashu/unreal-mcp",
+  "stars": 2111,
+  "description": "Enable AI assistant clients like Cursor, Windsurf and Claude Desktop to control Unreal Engine through natural language using the Model Context Protocol (MCP).",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "CoderGamester/mcp-unity",
+  "stars": 2012,
+  "description": "Model Context Protocol (MCP) plugin to connect with Unity Editor — designed for Cursor, Claude Code, Codex, Windsurf and other IDEs",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "arjun988/blender-skills",
+  "stars": 1998,
+  "description": "94 specialist Blender skills for Cursor, Claude Code, Kiro & Codex -> MCP-powered production pipeline from blockout to engine export.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.1,
+   "godot": 0.08,
+   "unreal": 0.17,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.19
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Besty0728/Unity-Skills",
+  "stars": 1925,
+  "description": "AI automation skills specifically designed for Unity",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "EpicGames/unreal-engine-skills-for-claude-code-plugin",
+  "stars": 1919,
+  "description": "",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "wzyn20051216/solidworks-automation-skill",
+  "stars": 1818,
+  "description": "Reliable AI Skill + MCP toolkit for agent-driven desktop CAD automation.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.04
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "dgreenheck/webgpu-claude-skill",
+  "stars": 1270,
+  "description": "A Claude skill for developing WebGPU applications with Three.js",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.03
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "Unity-Technologies/skills",
+  "stars": 1222,
+  "description": "A collection of reusable skills for AI coding agents — prompts, slash commands, and tools built for Unity workflows",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.97,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "jingcheng-chen/rhinomcp",
+  "stars": 1193,
+  "description": "RhinoMCP connects Rhino 3D to AI Agent through the Model Context Protocol (MCP)",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.93,
+   "dcc": 0.93,
+   "web3d": 0.02,
+   "gen3d": 0.09
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "flopperam/unreal-engine-mcp",
+  "stars": 1116,
+  "description": "This MCP is now owned by Aura! Please try out the most intelligent AI agent for Unreal Engine at https://www.tryaura.dev/?utm_source=youtube&utm_medium=video&utm_campaign=flop",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "viettranx/3dviz-pro-max",
+  "stars": 1056,
+  "description": "Agent skill for creative 3D visualization: turn an idea into a Three.js/Blender scene worth exploring. Claude Code + Codex plugin, 223 recipes, 440 knowledge records, 22 proved kits, 37 runnable studies.",
+  "scores": {
+   "blender": 0.18,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.03,
+   "web3d": 0.78,
+   "gen3d": 0.44
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "ChiR24/Unreal_mcp",
+  "stars": 1022,
+  "description": "A comprehensive Model Context Protocol (MCP) server that enables AI assistants to control Unreal Engine through the native C++ Automation Bridge plugin. Built with TypeScript and C++.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "Natfii/UnrealClaude",
+  "stars": 1009,
+  "description": "Claude Code CLI integration for Unreal Engine 5.7 - Get AI coding assistance with built-in UE5.7 documentation context directly in the editor.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "scottstts/Threejs-Awesome-Graphics-Agent-Skills",
+  "stars": 977,
+  "description": "A three.js agent skills for producing awesome graphics for scenes and games",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "scenario-labs/blender-plugin",
+  "stars": 960,
+  "description": "Scenario for Blender: AI images, video, 3D and PBR materials in the viewport, plus a local MCP server for agents. Blender 5.0+ extension, GPL-3.0-or-later.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.66
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "huggingface/meshgen",
+  "stars": 943,
+  "description": "Use AI Agents directly in Blender.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.08,
+   "dcc": 0.03,
+   "web3d": 0.03,
+   "gen3d": 0.39
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "yurineko73/Godot-MCP-Native",
+  "stars": 873,
+  "description": "一款支持godot开源引擎的的mcp插件，支持常见godot引擎操作，使用Godot原生实现MCPServer，无需安装依赖，开箱即用，支持多种AI工具调用。An MCP plugin that supports the open-source Godot engine, enabling common Godot engine operations. It implements the MCP Server using Godot's native HTTP, requires no dependency installation, is ready to use out of the box, and supports invocation by various AI tools.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "EL4CTEO/blender-skills",
+  "stars": 748,
+  "description": "Professional Blender 5.2 workflows as Agent Skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animation, export and QA.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.07,
+   "godot": 0.06,
+   "unreal": 0.07,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "lhlGitHub/threejs-architecture-effects",
+  "stars": 709,
+  "description": "An Agent Skill for building interactive, self-assembling 3D architecture with Three.js.  一个用 Three.js 生成可交互、可动态建造 3D 建筑的 Agent Skill。",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.16
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "youichi-uda/godot-mcp-pro",
+  "stars": 640,
+  "description": "162 MCP tools for AI-powered Godot 4 development. Scene, animation, 3D, physics, particles, audio, shader, input simulation, runtime analysis, navigation, testing & more. $15 one-time.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "ee0pdt/Godot-MCP",
+  "stars": 621,
+  "description": "An MCP for Godot that lets you create and edit games in the Godot game engine with tools like Claude",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "ghbalf/freecad-ai",
+  "stars": 619,
+  "description": "AI-powered assistant workbench for FreeCAD — generate 3D models from natural language",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.58
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "kvick-games/UnrealMCP",
+  "stars": 615,
+  "description": "MCP to allow AI agents to control Unreal",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "Mixar-AI/mixar-app",
+  "stars": 590,
+  "description": "AI-powered 3D suite built on Blender, with an integrated agent, moodboard, generation tools and layer-based painting",
+  "scores": {
+   "blender": 0.93,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.23
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "DaxianLee/godot-mcp",
+  "stars": 552,
+  "description": "一款支持godot开源引擎的的mcp插件，支持常见godot引擎操作，一键配置服务。This is an MCP plugin that supports the Godot open-source engine, offering support for common Godot engine operations and one-click service configuration.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "AnkleBreaker-Studio/unity-mcp-server",
+  "stars": 536,
+  "description": "Unity MCP Server — 268 tools for AI-assisted game development. Connect Claude, Cursor, or any MCP client to Unity Editor & Unity Hub. Scene management, GameObjects, components, builds, profiling, Shader Graph, Amplify, terrain, physics, NavMesh, animation, MPPM multiplayer & more. Free & open source by AnkleBreaker Studio.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "jackwrichards/UnityMCP",
+  "stars": 526,
+  "description": "",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.97,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "tugcantopaloglu/godot-mcp",
+  "stars": 510,
+  "description": "MCP server for full Godot 4.x engine control: 157 tools for AI-driven game development (GDScript and C#/.NET). Tested with Godot 4.7.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "db-lyon/ue-mcp",
+  "stars": 480,
+  "description": "Complete Unreal Engine development toolkit exposed as MCP tools.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.99,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.01,
+   "gen3d": 0.06
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "tomyud1/godot-mcp",
+  "stars": 451,
+  "description": "MCP Server and Godot Plugin for AI-assisted game development",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "VedantRGosavi/UE5-MCP",
+  "stars": 436,
+  "description": "MCP for Unreal Engine 5",
+  "scores": {
+   "blender": 0.26,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.67,
+   "cad": 0.03,
+   "dcc": 0.05,
+   "web3d": 0.02,
+   "gen3d": 0.26
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "squall01337/mixamo-llm-mocap",
+  "stars": 427,
+  "description": "Turn any video into a Mixamo-rig animation - GVHMR estimator, spec-driven retarget, FK apply in Blender via MCP. Works with any Mixamo character; built to be operated end-to-end by an AI agent.",
+  "scores": {
+   "blender": 0.66,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.06
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "cl0nazepamm/3dsmax-mcp",
+  "stars": 368,
+  "description": "3ds Max MCP server",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.9,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "dcc"
+ },
+ {
+  "repo": "tumourlove/monolith",
+  "stars": 367,
+  "description": "MCP plugin for Unreal Engine 5.7 & 5.8 — gives AI assistants full read/write access to Blueprints, Materials, Niagara, Animation, Mesh, AI, GAS, Logic Driver, ComboGraph, UI, Audio, plus Reflection Intelligence (decision / risk / C++ reflection / replication queries). 1,400+ actions across 25+ namespaces. Native C++, zero Python dependency.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "isuzu-shiranui/UnityMCP",
+  "stars": 340,
+  "description": "Drive the Unity Editor from an AI agent or the terminal. The Editor serves MCP itself over HTTP, so there is no second process to run, and the isuzu-unity-cli command needs no Node or .NET runtime.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "IvanMurzak/Godot-MCP",
+  "stars": 326,
+  "description": "Godot-MCP — Model Context Protocol (MCP) integration for the Godot Engine. AI tools for the Godot Editor in C#, with cloud connection to ai-game.dev. Apache-2.0.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.02,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "apekshik/anyscene",
+  "stars": 325,
+  "description": "Photoreal Blender scenes from a one-paragraph brief, built by AI agents: image→3D props on fal, scripted layout, lighting, camera and grade.",
+  "scores": {
+   "blender": 0.92,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.79
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "instruktlabs/kiln",
+  "stars": 317,
+  "description": "Build and revise procedural 3D assets with your coding agent. Local MCP server, CLI and TypeScript engine with rendered review, editable source and GLB export.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.04,
+   "godot": 0.04,
+   "unreal": 0.02,
+   "cad": 0.09,
+   "dcc": 0.04,
+   "web3d": 0.65,
+   "gen3d": 0.22
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "VxASI/blender-mcp-vxai",
+  "stars": 300,
+  "description": "",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.06,
+   "dcc": 0.02,
+   "web3d": 0.19,
+   "gen3d": 0.58
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "FunplayAI/funplay-unity-mcp",
+  "stars": 286,
+  "description": "The Most Advanced MCP Server for Unity Editor with execute_code, prompts/resources, input simulation, screenshots, and play mode automation.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.08
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "Moh4696/open-3d-skills",
+  "stars": 280,
+  "description": "Eight agent skills for 3D and animated websites: three.js scenes from code, scroll films, transparent video, cursor rigs, exploded views, AI motion assets, browser checks and 60 fps recording. Claude Code, Codex, Cursor, Gemini CLI.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.94,
+   "gen3d": 0.09
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "HaD0Yun/Doyunha-Gopeak",
+  "stars": 270,
+  "description": "GoPeak — The most comprehensive MCP server for Godot Engine. 95+ tools: scene management, GDScript LSP, DAP debugger, screenshot capture, input injection, ClassDB introspection, CC0 asset library. npx gopeak",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "nirholas/three.ws",
+  "stars": 269,
+  "description": "Give your AI agent a 3D body: text or a photo to a rigged GLB avatar, an LLM brain, a Solana wallet and a one-tag embed. Keyless MCP server for Claude, Cursor and Codex. 50k+ models forged.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.55,
+   "gen3d": 0.69
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "spkane/freecad-addon-robust-mcp-server",
+  "stars": 265,
+  "description": "The FreeCAD Robust MCP server and MCP Bridge Workbench/Addon",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "AnkleBreaker-Studio/unity-mcp-plugin",
+  "stars": 258,
+  "description": "Unity MCP Plugin (UPM) — Editor bridge for AI-assisted game development. Enables Claude, Cursor & MCP-compatible AI to control Unity Editor with 268 tools: scenes, GameObjects, components, builds, profiling, Shader Graph, Amplify Shader Editor, terrain, physics, NavMesh & more. Free & open source.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "kevinbadi/blender-skills",
+  "stars": 251,
+  "description": "Blender Skills for Claude Code - 3D product generation and camera animation workflows",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.51
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "codeofaxel/Kiln",
+  "stars": 242,
+  "description": "From idea to object, and every version in between. Kiln is the open-source MCP server for 3D printing: AI agents (ChatGPT, Claude, Codex, Cursor, Gemini, Grok, Hermes Agent, or any MCP client) design, slice and print on Bambu Lab, Creality, Prusa, Elegoo, Klipper, OctoPrint and more. Git-style version control: branch, merge and undo your designs.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.29,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.12
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "861172923/Unity-Skills",
+  "stars": 228,
+  "description": "Unity Skills",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.97,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "bonninr/freecad_mcp",
+  "stars": 228,
+  "description": "FreecadMCP connects Freecad to Claude AI and other MCP-ready tools like Cursor through the Model Context Protocol (MCP), allowing Claude to directly interact with and control Freecad. This integration enables prompt assisted CAD 3d Design.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.98,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "liyingsong99/AIBridge",
+  "stars": 227,
+  "description": "AI Unity development harness that combines project-local workflows, AIBridge Skills, CLI and Runtime tools, code indexing, visual validation, input simulation, Player debugging, and AI-tool integrations into one practical loop around a Unity project",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "softdaddy-o/soft-ue-cli",
+  "stars": 216,
+  "description": "Python CLI + UE plugin that lets Claude Code (AI coding agent) control Unreal Engine in real time. Spawn actors, edit blueprints, call functions, capture screenshots, manage PIE sessions, and more -- all from the terminal. Works with UE5 editor and packaged builds via an in-process HTTP bridge.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "jhacksman/OpenSCAD-MCP-Server",
+  "stars": 215,
+  "description": "Devin's attempt at creating an OpenSCAD MCP Server that takes a user prompt and generates a preview image and 3d file.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.98,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.38
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "per-simmons/unreal-agent-harness",
+  "stars": 209,
+  "description": "AI agents building cities in Unreal Engine 5.8 via the Unreal MCP — free City Sample base + PCG + custom Blender facade kits. Glass city, Paris, Art-Deco, a hand-built Chrysler, and real NYC via Cesium.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.12
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "jdilla1277/agentcad",
+  "stars": 206,
+  "description": "CAD CLI and MCP server for AI agents",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.97,
+   "dcc": 0.02,
+   "web3d": 0.04,
+   "gen3d": 0.23
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "Glade-tool/glade-mcp",
+  "stars": 201,
+  "description": "Connect any MCP-compatible AI client (Claude Code, Cursor, Windsurf) to Unity or Godot. 275+ granular tools, an editor aware system prompt, game design document project context, script semantic search, and skill calibration.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.43,
+   "godot": 0.21,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "HoldMyBeer-gg/blenderwright",
+  "stars": 191,
+  "description": "MCP server for Blender. Hundreds of tools for modeling, materials, rendering and more, driven by Claude, Cursor, Codex, Ollama, llama.cpp, or any MCP client.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.34
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "satelliteoflove/godot-mcp",
+  "stars": 184,
+  "description": "Give your AI assistant eyes and hands in the Godot editor: scene editing, input injection, deterministic playtesting, and live game state for agents",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "ReshefElisha/jarvis-onshape-mcp",
+  "stars": 175,
+  "description": "Jarvis Onshape MCP — Claude Code plugin for driving real Onshape CAD. Vision-decomposition skill + truth-telling + parametric iteration + FeatureScript.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.98,
+   "dcc": 0.03,
+   "web3d": 0.04,
+   "gen3d": 0.11
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "majidmanzarpour/blender-game-skills",
+  "stars": 174,
+  "description": "Claude Code agent skills for game dev in Blender. Turn concept art into rigged, game-ready 3D assets, measured against your references.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.04,
+   "godot": 0.03,
+   "unreal": 0.03,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.67
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "samffprice/loopcut",
+  "stars": 170,
+  "description": "Loopcut: an AI agent that works inside Blender. A fork of Blender (GPL).",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.06
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "RobertCoop/openscad-mcp",
+  "stars": 170,
+  "description": "A Model Context Protocol (MCP) server for OpenSCAD 3D modeling and rendering",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "sato942/game-asset-mcp",
+  "stars": 166,
+  "description": "An MCP server for creating 2D/3D game assets from text using Hugging Face AI models.",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.05,
+   "godot": 0.04,
+   "unreal": 0.03,
+   "cad": 0.04,
+   "dcc": 0.04,
+   "web3d": 0.04,
+   "gen3d": 0.44
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "quazaai/UnityMCPIntegration",
+  "stars": 155,
+  "description": "Enable AI Agents to Control Unity",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "kanaworksai-hue/effekseer-vfx-skill",
+  "stars": 155,
+  "description": "Agent skills that make real-time game VFX: procedural Effekseer effects, video-model flipbooks, or both, played in Godot and Unity (Claude Code, Codex and other Agent Skills hosts).",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.13,
+   "godot": 0.65,
+   "unreal": 0.02,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "GenOrca/unreal-mcp",
+  "stars": 147,
+  "description": "Unreal Engine MCP Server: Control UE5 with Claude & AI Agents. Supports Python and C++ for custom tool development.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "RobLe3/cc-blender-skill",
+  "stars": 146,
+  "description": "Claude Code skill plugin: drive Blender 5.x like a senior 3D artist via natural language. 10 chain-loadable skills (modeling, materials, lighting, cameras, rendering, animation, export, wireframe-to-3d, pro-workflow). Validated on 6 scene classes.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.05,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.28
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "believer-oss/Claireon",
+  "stars": 146,
+  "description": "MCP server for Unreal Editor",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "pzfreo/build123d-mcp",
+  "stars": 143,
+  "description": "MCP server for build123d to improve AI cognition when creating 3D CAD models",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.95,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.09
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "AIGODLIKE/GenesisCore",
+  "stars": 140,
+  "description": "One click installation! BlenderMCP tool that supports DeepSeek, Claude, and others, fully integrated into Blender!",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.18
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "contextform/freecad-mcp",
+  "stars": 139,
+  "description": "FreeCAD MCP - Open-source Model Context Protocol server for FreeCAD automation",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.22
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "Cai-aa/CAD-Agent-Hub",
+  "stars": 137,
+  "description": "MCP servers and automation bridges for CATIA, SolidWorks, Siemens NX, and Autodesk Fusion",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.92,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.04
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "ttiimmaacc/cinema4d-mcp",
+  "stars": 137,
+  "description": "Cinema 4D plugin integrating Claude AI for prompt-driven 3D modeling, scene creation, and manipulation.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.11,
+   "dcc": 0.79,
+   "web3d": 0.02,
+   "gen3d": 0.19
+  },
+  "kind": "dcc"
+ },
+ {
+  "repo": "mintdotgg/mint-threejs-skills",
+  "stars": 126,
+  "description": "Agent guidance for building polished Three.js apps and games with Mint MCP",
+  "scores": {
+   "blender": 0.05,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.98,
+   "gen3d": 0.12
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "dhakalnirajan/blender-open-mcp",
+  "stars": 122,
+  "description": "MCP for Blender Using Open Weights Models",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "IvanMurzak/Unity-AI-Animation",
+  "stars": 121,
+  "description": "MCP Tools for Unity Animation — create and edit clips and animators with AI.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "elithril/blender-kiln",
+  "stars": 120,
+  "description": "Claude Code plugin: describe an object or show a photo, and Claude builds a clean 3D model in Blender, for games, the web, AR or 3D printing. It animates characters too. New in 3.0: Kiln Studio, a local page to view, check and fix your models with Claude.",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.05,
+   "godot": 0.03,
+   "unreal": 0.03,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.12,
+   "gen3d": 0.7
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "runreal/unreal-mcp",
+  "stars": 119,
+  "description": "MCP server for Unreal Engine that uses Unreal Python Remote Execution",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "rtmandreyev/construct",
+  "stars": 116,
+  "description": "Describe a thing, get a hologram, a 3D model and its parts: built by any AI agent, honestly.",
+  "scores": {
+   "blender": 0.12,
+   "unity": 0.03,
+   "godot": 0.03,
+   "unreal": 0.02,
+   "cad": 0.31,
+   "dcc": 0.05,
+   "web3d": 0.59,
+   "gen3d": 0.62
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "jangtrinh/design-os-3d-blender",
+  "stars": 111,
+  "description": "AI agent operating system for Blender 5.2: bpy knowledge base, AGENT_OK execution contract, 3D-print production gate, worked keyboard and desktop-robot builds.",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.87,
+   "dcc": 0.02,
+   "web3d": 0.19,
+   "gen3d": 0.2
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "thrixel/build-world",
+  "stars": 110,
+  "description": "Build interactive 3D worlds with high-quality assets from Thrixel and your AI agent of choice.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.09,
+   "godot": 0.02,
+   "unreal": 0.06,
+   "cad": 0.03,
+   "dcc": 0.04,
+   "web3d": 0.31,
+   "gen3d": 0.32
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "NPGameDev/godot-mcp-toolkit",
+  "stars": 108,
+  "description": "A Godot 4.2+ editor plugin that lets AI coding assistants work inside the editor over the Model Context Protocol. Consolidated tools cover 150+ operations across scenes, scripts, nodes, and playtests, and a GDScript extension API lets any project add its own tools. Pairs with the godot-mcp-server npm bridge; runs locally.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.99,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.01,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "TomLeeLive/openclaw-unity-plugin",
+  "stars": 107,
+  "description": "55 MCP tools to drive the Unity Editor from any MCP-compatible AI agent — scenes, GameObjects, prefabs, assets, tests, and builds. OpenClaw gateway included for remote and chat access.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "ifBars/blender-agent-studio",
+  "stars": 106,
+  "description": "Free, open-source Blender AI plugin for the tools you already use. Codex and Claude Code installers, local MCP tools, editable .blend files and Python source.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.43
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "MRCalderon3D/everything-game-dev-code",
+  "stars": 104,
+  "description": "A universal scaffold for AI-assisted game development. 42 agents, 51 commands, 86 skills. Multi-engine (Unity, Unreal, Godot, HTML). Multi-harness (Claude Code, Codex, Cursor, OpenCode, Kiro).",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.13,
+   "godot": 0.07,
+   "unreal": 0.05,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.11,
+   "gen3d": 0.05
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "3ddelano/gdai-mcp-plugin-godot",
+  "stars": 103,
+  "description": "A MCP server integration for Godot Engine that allows Claude, Cursor, Windsurf, VSCode, etc to perform actions like creating scenes, resources, scripts, reading errors and much more.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "HurtzDonutStudios/ai-forge-mcp",
+  "stars": 101,
+  "description": "565 AI-callable tools across 16 MCP servers. Full-pipeline AAA game asset production. Controls Blender, Substance Suite, Maya, Houdini, and Unreal Engine 5. 50 specialized AI agents. One prompt in, game-ready asset out.",
+  "scores": {
+   "blender": 0.18,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.34,
+   "cad": 0.02,
+   "dcc": 0.21,
+   "web3d": 0.07,
+   "gen3d": 0.17
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "ATOI-Ming/FreeCAD-MCP",
+  "stars": 101,
+  "description": "FreeCAD plugin for automating model creation and control via Model Contro Protocol (MCP). Provides a MCP server,GUl panel, and client for running macros,managing documents, and adjusting views.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "pranav-deshmukh/blender-mcp",
+  "stars": 98,
+  "description": "",
+  "scores": {
+   "blender": 0.95,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.09,
+   "dcc": 0.02,
+   "web3d": 0.05,
+   "gen3d": 0.08
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "bpy-dev/blender-mcp",
+  "stars": 97,
+  "description": "Independent enhanced distribution of Blender Lab MCP: standalone bpy, runtime API documentation, and benchmark tooling",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Erodenn/godot-mcp-runtime",
+  "stars": 96,
+  "description": "A lightweight, zero-footprint TypeScript MCP server that lets AI assistants drive the Godot 4.x game engine.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "3DSceneAgent/Vibe3DScene",
+  "stars": 96,
+  "description": "Create your own 3D scene with words anywhere.",
+  "scores": {
+   "blender": 0.91,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.06,
+   "dcc": 0.02,
+   "web3d": 0.07,
+   "gen3d": 0.64
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "codemaestroai/advanced-unity-mcp",
+  "stars": 95,
+  "description": "Public repository for Advanced Unity MCP by Code Maestro (www.code-maestro.com).",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "JDhruv14/ascii-diorama",
+  "stars": 94,
+  "description": "Claude Code skill for tilt-shift ASCII miniature videos rendered with Three.js",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.97,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "meshy-dev/meshy-mcp-server",
+  "stars": 91,
+  "description": "MCP server for Meshy AI 3D generation platform",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.04,
+   "godot": 0.03,
+   "unreal": 0.03,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.04,
+   "gen3d": 0.95
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "bradypp/godot-mcp",
+  "stars": 90,
+  "description": "A Model Context Protocol (MCP) server for interacting with the Godot game engine.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "armpro24-blip/cad-cae-copilot",
+  "stars": 89,
+  "description": "CAD/CAE Copilot — an AI-native CAD/CAE/CAX workbench for AI agents. Text-to-CAD, text-to-CAE, real build123d/OpenCASCADE geometry, editable parameters, stable topology pointers, deterministic critique, and MCP server tools.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.95,
+   "dcc": 0.03,
+   "web3d": 0.03,
+   "gen3d": 0.22
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "softdaddy-o/yes-ue-mcp",
+  "stars": 88,
+  "description": "Native C++ Model Context Protocol (MCP) plugin for Unreal Engine 5.4+",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "ProfRino/Blender-MCP-Assembly-Skill",
+  "stars": 85,
+  "description": "Blender Assembly is a geometry-building skill for creating reliable 3D models in Blender via MCP. It helps prevent common modelling errors by planning object connections, using correct primitive scaling, avoiding faulty cylinder rotations, verifying overlaps, and auditing final transforms.",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.1,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "aydinfer/spline-mcp-server",
+  "stars": 85,
+  "description": "An MCP server for working with Spline 3D design tool API",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.08,
+   "dcc": 0.94,
+   "web3d": 0.52,
+   "gen3d": 0.04
+  },
+  "kind": "dcc"
+ },
+ {
+  "repo": "seehiong/blender-mcp-bridge",
+  "stars": 84,
+  "description": "Automate Blender 3D modeling with AI via MCP — 93 tools for modeling, sculpting, architecture/MEP, materials, and 3D-print prep. Includes Blender Studio: a visual record/replay session editor with a multi-provider AI assistant (Claude, Gemini, OpenRouter) — drive it from n8n, Claude Code, or standalone.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.13,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "youichi-uda/unity-mcp-pro-plugin",
+  "stars": 83,
+  "description": "147 AI tools for Unity game development via MCP (Model Context Protocol). Connect Claude, Cursor, and AI assistants to your Unity editor.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.99,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "killop/puerts-unity-mcp",
+  "stars": 81,
+  "description": "unity-mcp driven by tencent puerts , invoke js/ts  call c#  in your cell phone and unity editor",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.01
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "remiphilippe/mcp-unreal",
+  "stars": 81,
+  "description": "MCP server that gives AI coding agents (Claude Code, Cursor, etc.) full control over Unreal Engine 5.7 projects — headless builds & tests, Blueprint editing, actor manipulation, procedural mesh generation, and UE API documentation lookup.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "mirno-ehf/ue5-mcp",
+  "stars": 78,
+  "description": "Let AI edit your Unreal Engine Blueprints. MCP server plugin for Claude Code — describe what you want in plain English.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "FishWoWater/trellis_blender",
+  "stars": 78,
+  "description": "Blender plugin for TRELLIS and TRELLIS.2 (3D AIGC Model, Text-to-3D, Image-to-3D)",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.97
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "KirChuvakov/uefn-mcp-server",
+  "stars": 72,
+  "description": "MCP server for controlling UEFN (Unreal Editor for Fortnite) from Claude Code — 22 tools for actors, assets, levels, viewport, and Python execution",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.45,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "Rijalmoneyfinder/mcp-game-asset-forge",
+  "stars": 69,
+  "description": "MCP: Python Tools for Turning AI Prompts into Game Assets",
+  "scores": {
+   "blender": 0.07,
+   "unity": 0.11,
+   "godot": 0.12,
+   "unreal": 0.07,
+   "cad": 0.02,
+   "dcc": 0.04,
+   "web3d": 0.14,
+   "gen3d": 0.51
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "mezallastudio/antigravity-blender-mcp",
+  "stars": 68,
+  "description": "AI-Powered Blender MCP for Antigravity IDE",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.08,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.5
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Show2Instruct/ifc-bonsai-mcp",
+  "stars": 67,
+  "description": "An MCP server that connects LLMs to IFC-based BIM workflows in Blender using the Bonsai add-on.",
+  "scores": {
+   "blender": 0.95,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.57,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.13
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "sunxiayi/make-blender-education-video-skill",
+  "stars": 67,
+  "description": "A Codex and Claude Code skill for creating fact-checked cinematic educational videos with Blender",
+  "scores": {
+   "blender": 0.93,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.06
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "PatrykIti/blender-ai-mcp",
+  "stars": 66,
+  "description": "[Project discontinued] Production-shaped MCP server for Blender with goal-first routing, curated tools, deterministic verification, and vision-assisted 3D modeling workflows.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "zorrobyte/asset-studio",
+  "stars": 66,
+  "description": "Fully local, agent-callable text-to-3D game asset pipeline: Qwen-Image-2512 -> Pixal3D (TRELLIS.2) -> Blender/meshoptimizer, FastAPI + CLI + MCP, Docker Desktop, RTX 5090",
+  "scores": {
+   "blender": 0.16,
+   "unity": 0.1,
+   "godot": 0.13,
+   "unreal": 0.04,
+   "cad": 0.04,
+   "dcc": 0.06,
+   "web3d": 0.04,
+   "gen3d": 0.96
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "Natfii/ue5-mcp-bridge",
+  "stars": 66,
+  "description": "MCP server bridging AI assistants to Unreal Engine 5 editor",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "sandraschi/blender-mcp",
+  "stars": 65,
+  "description": "Headless Blender automation via FastMCP — 41 portmanteau tools (150+ ops). Batch mesh/VSE/Grease Pencil, VRM, Gaussian splats; optional live bridge. For Cursor / Claude Desktop. React dashboard + Tauri app.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.05,
+   "gen3d": 0.25
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "blwfish/freecad-mcp",
+  "stars": 65,
+  "description": "MCP server for FreeCAD — 32 tools for AI-assisted 3D CAD modeling",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.05
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "appleweed/UnrealMCPBridge",
+  "stars": 64,
+  "description": "An Unreal Engine plugin that implements an MCP server allowing MCP clients to access the UE Editor Python API.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.97,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "matthieuhuguet/substance-designer-mcp",
+  "stars": 63,
+  "description": "The first MCP (Model Context Protocol) integration for Adobe Substance 3D Designer. Control SD from Claude, Cursor, or any MCP client.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "chongdashu/threejs-capacitor-ios-game",
+  "stars": 62,
+  "description": "A vibe coded mobile point and click adventure game  using agent skills. ",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.04,
+   "web3d": 0.87,
+   "gen3d": 0.11
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "dcc-mcp/dcc-mcp-blender",
+  "stars": 61,
+  "description": "Blender MCP addon for AI agents to model, edit meshes and UVs, rig, build materials and render scenes through typed tools in the DCC-MCP ecosystem.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Nyxera0x/cutaway",
+  "stars": 61,
+  "description": "A Claude Code skill that turns one picture into a 3D object that takes itself apart: built in three.js from code, checked against the picture, filmed at 60 fps with a synced score.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.02,
+   "web3d": 0.97,
+   "gen3d": 0.86
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "IvanMurzak/Unity-AI-ParticleSystem",
+  "stars": 60,
+  "description": "MCP Tools for Unity Particle System — create and edit particle effects with AI.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "Misterbra/fusion360-claude-ultimate",
+  "stars": 60,
+  "description": "🤖 Control Fusion 360 with natural language through Claude Desktop using MCP (Model Context Protocol). Create, manipulate and modify 3D objects by simply describing what you want to do. French-localized adaptation of Kanbara Tomonori's original concept.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.14
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "WaiGenie/BlenderMCP-AI-AGNO-agent",
+  "stars": 59,
+  "description": "",
+  "scores": {
+   "blender": 0.95,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.38
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "LiShengYang-yiyi/YIUI-UnityMCP",
+  "stars": 58,
+  "description": "",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.97,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "IvanMurzak/Unity-AI-ProBuilder",
+  "stars": 58,
+  "description": "MCP Tools for Unity ProBuilder — model and edit meshes with AI.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.06,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.13
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "IvanMurzak/Unreal-MCP",
+  "stars": 57,
+  "description": "AI Game Developer for Unreal Engine — MCP plugin (C++ editor plugin + .NET bridge), unreal-cli, connects Unreal Editor to AI agents via ai-game.dev or a local MCP server",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "Svetlana-DAO-LLC/cad-agent",
+  "stars": 57,
+  "description": "AI-driven CAD modeling for 3D printing (build123d + MCP)",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.95,
+   "dcc": 0.03,
+   "web3d": 0.03,
+   "gen3d": 0.14
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "always-tinkering/rhinoMcpServer",
+  "stars": 57,
+  "description": "RhinoMCP connects Rhino to Claude AI through the Model Context Protocol (MCP), enabling AI-assisted 3D modeling and architectural design.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.87,
+   "dcc": 0.95,
+   "web3d": 0.02,
+   "gen3d": 0.11
+  },
+  "kind": "dcc"
+ },
+ {
+  "repo": "mromidev/claude-blender-skills",
+  "stars": 56,
+  "description": "Free Claude skills for realistic Blender animations: full workflows + the real scripts behind my YouTube videos",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Derfirm/godot-mcp",
+  "stars": 55,
+  "description": "",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "salvo10f/godotiq",
+  "stars": 55,
+  "description": "The intelligent MCP server for AI-assisted Godot 4 development. 35 tools for spatial intelligence, code understanding, flow tracing, and visual debugging.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "Dokujaa/Godot-MCP",
+  "stars": 54,
+  "description": "An MCP for Godot that leverages Claude ",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.97,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.19
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "hybridindie/godot-mcp",
+  "stars": 53,
+  "description": "Combination of Godot Addon and MCP server for AI driven development — drive a live Godot editor from an AI agent",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "TheArcForge/UniClaude",
+  "stars": 52,
+  "description": "Claude Code, natively inside Unity Editor. A dockable chat window with full project awareness, 60+ MCP tools, and zero alt-tabbing.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "FunplayAI/funplay-godot-mcp",
+  "stars": 52,
+  "description": "The Most Advanced MCP Server for Godot Editor with execute_code, prompts/resources, project maps, runtime inspection, asset workflows, and safe AI automation.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.99,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.01,
+   "web3d": 0.01,
+   "gen3d": 0.03
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "NeonGlay/inventor-mcp",
+  "stars": 52,
+  "description": "MCP server for parametric 3D modeling in Autodesk Inventor - drive Inventor with AI in natural language. Includes Agent Skills and undocumented Inventor 2026 COM API knowledge.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.97,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.14
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "iart-ai/webgl-animation-skills",
+  "stars": 50,
+  "description": "3D motion / WebGL skills for Claude Code — Three.js, GLSL shaders, particle systems, GPU render troubleshooting, and AI video direction, off the core 2D/Lottie path.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.97,
+   "gen3d": 0.04
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "codepawl/67.js",
+  "stars": 49,
+  "description": "A WebGL2 3D engine that AI agents drive",
+  "scores": {
+   "blender": 0.06,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.04,
+   "web3d": 0.98,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "leandrodaf/3d-new-era-ai",
+  "stars": 48,
+  "description": "Open-source home design and floor plan editor in Rust (a Sweet Home 3D alternative) with a built-in MCP server: your AI agent draws walls, furnishes rooms, checks lighting and ergonomics, and renders photos — live, on your own machine.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.24,
+   "dcc": 0.03,
+   "web3d": 0.21,
+   "gen3d": 0.07
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "tsogjavklann/awwwards-3d",
+  "stars": 35,
+  "description": "Awwwards-style scroll-driven 3D website skill for Claude Code (Three.js r170 + GSAP + Lenis)",
+  "scores": {
+   "blender": 0.11,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.04,
+   "web3d": 0.98,
+   "gen3d": 0.03
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "nocodehack/make-short",
+  "stars": 25,
+  "description": "Free Claude Code skill: make animated YouTube Shorts (2D characters in a 3D Blender world) with a critic agent.",
+  "scores": {
+   "blender": 0.86,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.15
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "ABostrom/ushell-skill",
+  "stars": 13,
+  "description": "A Claude Code skill for driving ushell (Epic's CLI for Unreal Engine) end-to-end — usage, channel authoring, UAT/BuildGraph fluency, and goal-directed planning.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.01,
+   "gen3d": 0.01
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "dennisonbertram/emulsion",
+  "stars": 12,
+  "description": "🎞️ Collaborative storyboard blocking for AI filmmaking — a Claude Code skill with its own three.js app. Block shots with Claude live, export motion references, generate films.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.03,
+   "dcc": 0.03,
+   "web3d": 0.9,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "MosaicXR-AI/mosaic-bridge",
+  "stars": 11,
+  "description": "Unity Editor MCP plugin — AI agents drive Unity via Model Context Protocol. Apache 2.0, ~290 domain-specialized tools including procedural generation, simulation, physics, rendering, and AI behavior from published research papers.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "SamedVossberg/3d-brain-animations",
+  "stars": 10,
+  "description": "One-prompt 3D brain-region figures & rotating glow animations from 200+ BrainGlobe atlases (any species), rendered headless in Blender. A low-token Claude Code skill.",
+  "scores": {
+   "blender": 0.7,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.49
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "SmartAI/Chamfer",
+  "stars": 10,
+  "description": "A reliable text/image to CAD Agent harness that supports different MCPs and LLMs",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.98,
+   "dcc": 0.04,
+   "web3d": 0.04,
+   "gen3d": 0.71
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "nirholas/3d-scene-mcp",
+  "stars": 10,
+  "description": "Build and manipulate 3D scenes from natural language via AI agents.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.04,
+   "dcc": 0.04,
+   "web3d": 0.9,
+   "gen3d": 0.84
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "CesiumGS/cesiumjs-ai-starter-app",
+  "stars": 10,
+  "description": "A starter template for building LLM-powered 3D globe applications with CesiumJS and tool calling.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.58,
+   "gen3d": 0.06
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "EYamanS/chisel",
+  "stars": 7,
+  "description": "An MCP server that lets AI agents build, edit, render, and export real 3D models from primitives + boolean CSG. Headless, GPU-free.",
+  "scores": {
+   "blender": 0.05,
+   "unity": 0.05,
+   "godot": 0.05,
+   "unreal": 0.03,
+   "cad": 0.49,
+   "dcc": 0.04,
+   "web3d": 0.05,
+   "gen3d": 0.35
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "LumosLab-Innovation/3D-lab-skills",
+  "stars": 6,
+  "description": "Image-approved, interactive 3D for AI coding agents. Author models in Three.js or Blender MCP; animate both with Three.js. One-command skills for Codex, Claude Code, Grok Build, OpenCode and OMP.",
+  "scores": {
+   "blender": 0.15,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.03,
+   "web3d": 0.93,
+   "gen3d": 0.3
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "radif/unity-prefabs-claude-code-skill",
+  "stars": 6,
+  "description": "A Claude Code skill for generating and editing Unity `.prefab` files using the Claude Code Opus model. The skill provides comprehensive YAML reference knowledge — document structure, component wiring, nested prefabs, UI recipes, and more — so Claude can author and modify prefabs directly without opening the Unity Editor.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.97,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "hypersniper05/MCP_Image_to_3D",
+  "stars": 6,
+  "description": "One image in, one 3D Gaussian-splat .ply out. Self-hosted Docker service with a web gallery, 3D viewer, HTTP API and MCP server.",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.02,
+   "godot": 0.03,
+   "unreal": 0.02,
+   "cad": 0.03,
+   "dcc": 0.04,
+   "web3d": 0.24,
+   "gen3d": 0.97
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "nirholas/blender-mcp",
+  "stars": 5,
+  "description": "Drive the Blender on your machine from any AI agent, headless. Inspect a 3D file, convert between GLB/glTF/FBX/OBJ/STL/PLY/DAE/USD/Alembic/.blend, render a preview that comes back inline so the assistant can see it, run a bpy script against a scene, and generate a model from a text prompt on the free three.ws Forge lane. Meshopt- and Draco-compress",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.06,
+   "dcc": 0.02,
+   "web3d": 0.09,
+   "gen3d": 0.11
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "czlonkowski/blender-web-3d-skill",
+  "stars": 5,
+  "description": "Claude Code skill: build and publish 3D models with headless Blender + Three.js — managed scripts, GLB export, draw-call optimization, and the debugging lessons",
+  "scores": {
+   "blender": 0.48,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.96,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "Guilherme-M-Mateus/keyframe-coach",
+  "stars": 5,
+  "description": "Claude Code skill that animates in Blender like a game animator: walk cycles, audits, and Unity/Unreal/Godot export.",
+  "scores": {
+   "blender": 0.88,
+   "unity": 0.12,
+   "godot": 0.08,
+   "unreal": 0.07,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "TheMarco/godot-game-skills",
+  "stars": 5,
+  "description": "Practical agent skills for building, debugging, and verifying Godot games.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.98,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.04
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "mordor-forge/trident-mcp",
+  "stars": 5,
+  "description": "Unofficial MCP server for the Tripo 3D API (v3): text/image/multiview to 3D, P1/P2 low-poly, texturing, retopology, Smart UV, segmentation, rigging, animation, format conversion, Gaussian splats. Go, stdio, Claude Code plugin.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.05,
+   "godot": 0.03,
+   "unreal": 0.04,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.03,
+   "gen3d": 0.96
+  },
+  "kind": "gen3d"
+ },
+ {
+  "repo": "DataArche/SSWorld",
+  "stars": 5,
+  "description": "Agent-authored 3D worlds on WebGPU with ray tracing, global illumination (GI), real-time reflections and the Lumen Gallery demo.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.97,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "pascalorg/editor",
+  "stars": 25371,
+  "description": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.35,
+   "dcc": 0.03,
+   "web3d": 0.95,
+   "gen3d": 0.05
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "jame581/GodotPrompter",
+  "stars": 932,
+  "description": "Agentic skills framework for Godot 4.x. Domain-specific skills for AI coding agents (Claude Code, Copilot, Antigravity, Cursor)",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.99,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.01,
+   "web3d": 0.02,
+   "gen3d": 0.01
+  },
+  "kind": "godot"
+ }
+]
