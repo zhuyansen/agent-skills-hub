@@ -22,6 +22,7 @@
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
 import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
+import { guidesHtml, guidesIndex, guidesMeta } from "./skill-guides.mjs";
 import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
 import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
@@ -44,23 +45,13 @@ const CATEGORY_COPY = JSON.parse(
   readFileSync(join(dirname(fileURLToPath(import.meta.url)), "category-copy.json"), "utf-8"),
 );
 
-// Reverse index: repo_full_name (lowercased) → scenarios that feature it. Lets
-// each skill page link UP to the /best/ scenario guides it anchors — feeds the
-// scenario pages internal-link equity from the high-star skill catalog. Uses
-// the curated `featured` list (precise, cheap), not the full keyword match.
-const FEATURED_IN_SCENARIOS = (() => {
-  const scenarios = JSON.parse(
-    readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
-  );
-  const map = new Map();
-  for (const sc of scenarios) {
-    for (const repo of sc.match?.featured || []) {
-      const key = repo.toLowerCase();
-      if (!map.has(key)) map.set(key, []);
-      map.get(key).push({ slug: sc.slug, title: sc.title });
-    }
-  }
-  return map;
+// Reverse index: repo_full_name (lowercased) → the /best/ guides that list it, so each
+// skill page links UP to its guides and feeds them internal-link equity from the catalog.
+// A guide's featured repos and, for a reviewed guide, its whole list (skill-guides.mjs).
+const GUIDES = (() => {
+  const read = (name) =>
+    JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), name), "utf-8"));
+  return guidesIndex(read("scenario-keywords.json"), read("scenario-kinds.json"), read("scenario-zh.json"));
 })();
 
 /**
@@ -272,8 +263,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // decides both, so a skill page never links to an audit page that 404s.
   const hasAudit = hasAuditPage(skill);
   const auditUrl = `/audit/${repo_full_name}/`;
-  const scenariosFeaturing =
-    FEATURED_IN_SCENARIOS.get(repo_full_name.toLowerCase()) || [];
+  const guides = GUIDES.get(repo_full_name.toLowerCase()) || [];
   const ogImage = `${SITE}/og-image.png`;
 
   // SEO-optimized title: exact repo_full_name matches brand-name queries
@@ -517,7 +507,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   <meta name="referrer" content="strict-origin-when-cross-origin" />${robotsMeta}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />${installs.length ? `
-  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}${testedMeta(tested)}
+  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}${testedMeta(tested)}${guidesMeta(guides)}
   <meta name="keywords" content="${esc(keywords)}" />
 
   <!-- Open Graph -->
@@ -586,9 +576,7 @@ ${breadcrumbLd}
       ${hasAudit && !verdictBlock ? `<p style="margin:0 0 16px">
         <a href="${esc(auditUrl)}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#4f46e5;text-decoration:none">${c.auditLink(repo_name)}</a>
       </p>` : ""}
-      ${scenariosFeaturing.length ? `<p style="margin:0 0 16px;font-size:14px;color:#475569">
-        ${c.featuredIn} ${scenariosFeaturing.map((s) => `<a href="/best/${esc(s.slug)}/" style="color:#4f46e5;text-decoration:none">${esc(s.title)}</a>`).join(" &middot; ")}
-      </p>` : ""}
+      ${guidesHtml(guides, lang, c.featuredIn)}
 
       <!-- What only this page has comes first: the install command we found, then the scan verdict -->
       ${installSectionHtml(repo_name, installs, hasAudit ? auditUrl : null, lang)}

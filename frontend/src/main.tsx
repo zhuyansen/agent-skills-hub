@@ -51,6 +51,7 @@ if (!isStaticOnlyPage) {
     document.querySelector('meta[name="ash:install"]')?.getAttribute("content") ?? null,
     document.querySelector('meta[name="ash:tested"]')?.getAttribute("content") ?? null,
     document.getElementById("root")?.innerHTML ?? null,
+    document.querySelector('meta[name="ash:best"]')?.getAttribute("content") ?? null,
   );
   staticDescription?.remove();
   createRoot(document.getElementById("root")!).render(

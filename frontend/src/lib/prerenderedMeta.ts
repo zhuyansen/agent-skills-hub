@@ -12,12 +12,22 @@
 //
 // And the end-to-end tests the skill was in (<meta name="ash:tested">, scripts/skill-tested.mjs),
 // which the React page has no other way to know.
+//
+// And the /best/ guides that list the skill (<meta name="ash:best">, scripts/skill-guides.mjs).
 
 import type { Pair, TestedEntry } from "./testedCopy.mjs";
+
+/** A /best/ guide the skill is listed on. */
+export interface GuideLink {
+  slug: string;
+  title: string;
+  titleZh: string;
+}
 
 let description: string | null = null;
 let installs: string[] = [];
 let tested: TestedEntry[] = [];
+let guides: GuideLink[] = [];
 let path: string | null = null;
 let shell: string | null = null;
 
@@ -44,6 +54,14 @@ function isTestedEntry(v: unknown): v is TestedEntry {
     && isPick(v.pick) && isTop(v.top) && isEvidence(v.evidence);
 }
 
+// A slug that is safe to put in a /best/<slug>/ link.
+const SLUG = /^[a-z0-9][a-z0-9-]*$/;
+
+function isGuideLink(v: unknown): v is GuideLink {
+  return isRecord(v) && typeof v.slug === "string" && SLUG.test(v.slug)
+    && typeof v.title === "string" && typeof v.titleZh === "string";
+}
+
 /** Called once in main.tsx, before the static tags are removed. */
 export function rememberPrerenderedPage(
   content: string | null,
@@ -51,11 +69,13 @@ export function rememberPrerenderedPage(
   installJson: string | null = null,
   testedJson: string | null = null,
   shellHtml: string | null = null,
+  guidesJson: string | null = null,
 ): void {
   description = content;
   shell = shellHtml;
   installs = parseList(installJson).filter((v): v is string => typeof v === "string");
   tested = parseList(testedJson).filter(isTestedEntry);
+  guides = parseList(guidesJson).filter(isGuideLink);
   // Only a page that names itself as canonical is pre-rendered for that URL. The 404.html
   // fallback boots index.html, whose description belongs to the homepage.
   path = canonical ? new URL(canonical, window.location.origin).pathname : null;
@@ -76,6 +96,11 @@ export function prerenderedInstalls(): string[] {
 /** The tests the pre-rendered page's skill was in while the browser is on it, else []. */
 export function prerenderedTested(): TestedEntry[] {
   return onPrerenderedPage() ? tested : [];
+}
+
+/** The /best/ guides that list the pre-rendered page's skill while the browser is on it, else []. */
+export function prerenderedGuides(): GuideLink[] {
+  return onPrerenderedPage() ? guides : [];
 }
 
 /** The pre-rendered page body (#root before React mounted) while the browser is on that

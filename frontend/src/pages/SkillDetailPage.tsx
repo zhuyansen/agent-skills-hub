@@ -14,6 +14,7 @@ import { SizeBadge } from "../components/SizeBadge";
 import { InstallCommand } from "../components/InstallCommand";
 import { RepoSubSkills } from "../components/SubSkillList";
 import { TestedByUs } from "../components/TestedByUs";
+import { FeaturedInGuides } from "../components/FeaturedInGuides";
 import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
 import { prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
@@ -318,6 +319,9 @@ export function SkillDetailPage() {
           githubUsername={detail.author_name}
           repoFullName={detail.repo_full_name}
         />
+
+        {/* The /best/ guides that list it, as on the static page (scripts/skill-guides.mjs). */}
+        <FeaturedInGuides />
 
         {/* Grade-first: the audit verdict answers "is this safe to install?"
             before README/stats — the Trust Layer spine of the page. */}
