@@ -1975,7 +1975,7 @@
  "caikankan/cyberbin-ppt-skill": "用于生成本地 HTML 幻灯片的 CyberBin PPT skill",
  "caioross/skilldepot-go": "SkillDepot 的官方 Go SDK，用于 AI Agent 技能市场",
  "caiovicentino/jev-align": "由 Jev 驱动的 LLM 响应和 agent 计划校准对齐验证器",
- "calesthio/OpenMontage": "开源的 agent 视频制作系统：12 条制作流水线、100+ 工具、700+ skill 与知识文件",
+ "OpenMontageInc/OpenMontage": "开源的 agent 视频制作系统：12 条制作流水线、100+ 工具、700+ skill 与知识文件",
  "calesthio/generative-media-skills": "面向 AI coding assistants 的研究型 agent skills 与工具，支持图像、视频、音频、语音及生成媒体制作。",
  "califio/skills": "Calif.io 提供的 Claude Code 插件和 Codex skills，用于 AI 辅助安全研究与代码审计",
  "call518/MCP-PostgreSQL-Ops": "AI助手的30+个PostgreSQL DBA工具：性能分析、膨胀检测、锁/死锁监控、autovacuum与schema检查。无需扩展，支持PG 12-18。",
