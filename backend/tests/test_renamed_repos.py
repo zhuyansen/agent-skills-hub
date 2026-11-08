@@ -155,6 +155,66 @@ def test_fetch_once_retries_a_server_error_and_halts_on_a_refusal(monkeypatch):
         rr.fetch_once(req)
 
 
+class _NoPacing:
+    def wait(self):
+        pass
+
+
+def _refusal(code, retry_after=None):
+    headers = {"Retry-After": retry_after} if retry_after else {}
+    return urllib.error.HTTPError(rr.GRAPHQL_URL, code, "x", headers, None)
+
+
+def _plays(monkeypatch, *steps):
+    """urlopen answers the steps in order: an exception is raised, a dict is the response body.
+    Returns the list the waits (time.sleep) are recorded in."""
+    left, waits = list(steps), []
+
+    def urlopen(req, timeout):
+        step = left.pop(0)
+        if isinstance(step, Exception):
+            raise step
+        return _Answer(json.dumps(step).encode())
+    monkeypatch.setattr(rr.urllib.request, "urlopen", urlopen)
+    monkeypatch.setattr(rr.time, "sleep", waits.append)
+    return waits
+
+
+GOOD = {"data": {"r0": node(ECC), "rateLimit": {"remaining": 4000}}}
+
+
+def test_a_rate_limit_refusal_is_waited_out_and_the_lookup_goes_on(monkeypatch):
+    waits = _plays(monkeypatch, _refusal(403, "7"), GOOD)
+    assert rr.post_graphql("query", "token", _NoPacing()) == GOOD
+    assert waits == [7]
+
+
+def test_a_rate_limit_that_does_not_pass_halts_after_the_waits(monkeypatch):
+    waits = _plays(monkeypatch, *[_refusal(429)] * (rr.THROTTLE_RETRIES + 1))
+    with pytest.raises(rr.Halt, match="HTTP 429"):
+        rr.post_graphql("query", "token", _NoPacing())
+    assert waits == [rr.THROTTLE_WAIT] * rr.THROTTLE_RETRIES
+
+
+def test_a_refused_token_is_not_waited_for(monkeypatch):
+    waits = _plays(monkeypatch, _refusal(401))
+    with pytest.raises(rr.Halt, match="HTTP 401"):
+        rr.post_graphql("query", "token", _NoPacing())
+    assert waits == []
+
+
+def test_a_long_retry_after_is_cut_to_the_longest_wait(monkeypatch):
+    waits = _plays(monkeypatch, _refusal(403, "3600"), GOOD)
+    rr.post_graphql("query", "token", _NoPacing())
+    assert waits == [rr.THROTTLE_MAX_WAIT]
+
+
+def test_a_retry_after_that_is_not_a_number_means_the_default_wait(monkeypatch):
+    waits = _plays(monkeypatch, _refusal(403, "Wed, 21 Oct 2026 07:28:00 GMT"), GOOD)
+    rr.post_graphql("query", "token", _NoPacing())
+    assert waits == [rr.THROTTLE_WAIT]
+
+
 class _Cursor:
     def __init__(self, log, fail_on):
         self.log, self.fail_on = log, fail_on

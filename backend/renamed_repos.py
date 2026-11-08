@@ -20,6 +20,8 @@ skill_redirects (migration 041) records old -> new either way; the build writes 
 page at the old /skill/ URL.
 
 Dry run unless --apply. Stops before writing if a sync is queued or running.
+A 403 or 429 from GitHub is waited out twice (as long as Retry-After says, 60 s when it names
+none, at most 120 s) before the lookups stop; a 401 stops them at once.
 
 Env:  GH_TOKEN; SUPABASE_DB_URL (or backend/.env);
       GITHUB_REPOSITORY + ACTIONS_TOKEN (optional) to see a running sync.
@@ -49,6 +51,10 @@ BACKOFF = 5                 # seconds, times the attempt number
 GRAPHQL_FLOOR = 200         # points of the hour's GraphQL budget to leave
 MAX_ERRORS = 3 * BATCH      # failed lookups after which GitHub is having trouble: stop
 REFUSED = (401, 403, 429)   # token rejected or rate-limited: stop rather than retry
+RATE_LIMITED = (403, 429)   # of those, GitHub's secondary rate limit passes: wait, ask again, then stop
+THROTTLE_RETRIES = 2        # waits before a 403 or 429 stops the run
+THROTTLE_WAIT = 60          # seconds, when GitHub names none
+THROTTLE_MAX_WAIT = 120     # the longest single wait: the 35-minute sweep budget ends before the job's 45
 DEFAULT_MIN_STARS = 50      # the rows with a page (MIN_STARS_FOR_PAGE in the frontend)
 DEFAULT_MINUTES = 35        # sweep budget; the Actions job is killed at 45
 SYNC_CHECK_EVERY = 25       # repositories written between running-sync checks
@@ -156,12 +162,31 @@ class Halt(Exception):
     """GitHub refused the token or rate-limited it: stop looking things up."""
 
 
+class Throttled(Halt):
+    """HTTP 403 or 429, GitHub's rate limit, which passes. `wait`: seconds it asks us to hold off."""
+
+    def __init__(self, code: int, wait: int):
+        super().__init__(f"GitHub answered HTTP {code}")
+        self.wait = wait
+
+
+def retry_wait(headers) -> int:
+    """Retry-After when it is a number of seconds, else THROTTLE_WAIT; at most THROTTLE_MAX_WAIT."""
+    try:
+        wait = int((headers or {}).get("Retry-After", ""))
+    except ValueError:
+        wait = THROTTLE_WAIT
+    return max(1, min(wait, THROTTLE_MAX_WAIT))
+
+
 def fetch_once(req: urllib.request.Request) -> dict | None:
     """The response body, or None for an answer worth retrying."""
     try:
         with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
             body = json.load(r)
     except urllib.error.HTTPError as exc:
+        if exc.code in RATE_LIMITED:
+            raise Throttled(exc.code, retry_wait(exc.headers)) from exc
         if exc.code in REFUSED:
             raise Halt(f"GitHub answered HTTP {exc.code}") from exc
         print(f"  GraphQL: HTTP {exc.code}", flush=True)
@@ -174,13 +199,24 @@ def fetch_once(req: urllib.request.Request) -> dict | None:
     return body
 
 
+def fetch_patiently(req: urllib.request.Request) -> dict | None:
+    """fetch_once, after waiting out up to THROTTLE_RETRIES rate-limit refusals; one more stops the run."""
+    for waited in range(THROTTLE_RETRIES):
+        try:
+            return fetch_once(req)
+        except Throttled as exc:
+            print(f"  {exc}; waiting {exc.wait} s ({waited + 1} of {THROTTLE_RETRIES})", flush=True)
+            time.sleep(exc.wait)
+    return fetch_once(req)
+
+
 def post_graphql(query: str, token: str, pacer: Pacer) -> dict | None:
     """The response body when it carries data, else None after RETRIES attempts."""
     req = urllib.request.Request(GRAPHQL_URL, data=json.dumps({"query": query}).encode(), headers={
         "Authorization": f"Bearer {token}", "Content-Type": "application/json", "User-Agent": USER_AGENT})
     for attempt in range(1, RETRIES + 1):
         pacer.wait()
-        body = fetch_once(req)
+        body = fetch_patiently(req)
         if body and body.get("data"):
             return body
         if body:
