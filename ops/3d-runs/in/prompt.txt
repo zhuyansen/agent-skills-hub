@@ -1,0 +1,9 @@
+A 3D tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools (check `claude mcp list`), or a Blender add-on). Use it, following its own workflow, to build the scene described in ~/work/brief.md and render it.
+
+This machine has Blender 3.4 (`blender`), OpenSCAD (`openscad`), Chromium with Playwright for Python, Node and Python. There is no physical screen; a virtual one runs on DISPLAY=:99, so programs that need a window (Blender with an MCP add-on) can open one. Rendering runs on the CPU, so keep render settings modest. This Blender was built without the OpenImageDenoise denoiser: with Cycles, turn denoising off, or render with Eevee.
+
+Rules:
+- Do not ask me any questions; take the tool's defaults and continue.
+- Save the render as ~/work/output/render.png (1600 x 1200) and the scene in the tool's own format in ~/work/output/ (for example scene.blend, scene.scad, index.html or a .glb).
+- If the tool cannot be installed or used here, stop and say why. Do not build the scene some other way instead.
+- When you finish, print one line: DELIVERABLE: <comma-separated paths of the files you wrote>

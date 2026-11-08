@@ -1,0 +1,6 @@
+The repository at ~/src is a 3D tool for AI coding agents (a Claude Code skill or plugin, an MCP server, a Blender or CAD add-on, a CLI, or similar). Install it so that Claude Code can use it in a new session, following its own README:
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents);
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`;
+- a Blender add-on: install and enable it in Blender (Blender 3.4 is installed as `blender`; a virtual screen runs on DISPLAY=:99, so Blender's window can open);
+- a package or CLI: install it.
+Do not build anything yet. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.

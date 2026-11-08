@@ -1,0 +1,158 @@
+[
+ {
+  "repo": "control",
+  "kind": "control",
+  "stars": 0,
+  "why": "Claude Code with no 3D tool: the same brief and machine"
+ },
+ {
+  "repo": "ahujasid/mcp-for-blender",
+  "kind": "blender",
+  "stars": 33597,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "arjun988/blender-skills",
+  "kind": "blender",
+  "stars": 2169,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "scenario-labs/blender-plugin",
+  "kind": "blender",
+  "stars": 962,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "huggingface/meshgen",
+  "kind": "blender",
+  "stars": 944,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "EL4CTEO/blender-skills",
+  "kind": "blender",
+  "stars": 769,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "apekshik/anyscene",
+  "kind": "blender",
+  "stars": 326,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "VxASI/blender-mcp-vxai",
+  "kind": "blender",
+  "stars": 300,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "kevinbadi/blender-skills",
+  "kind": "blender",
+  "stars": 262,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "HoldMyBeer-gg/blenderwright",
+  "kind": "blender",
+  "stars": 193,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "elithril/blender-kiln",
+  "kind": "blender",
+  "stars": 190,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "majidmanzarpour/blender-game-skills",
+  "kind": "blender",
+  "stars": 174,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "pascalorg/editor",
+  "kind": "web3d",
+  "stars": 25386,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "CloudAI-X/threejs-skills",
+  "kind": "web3d",
+  "stars": 4066,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "majidmanzarpour/threejs-game-skills",
+  "kind": "web3d",
+  "stars": 2729,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "dgreenheck/webgpu-claude-skill",
+  "kind": "web3d",
+  "stars": 1270,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "viettranx/3dviz-pro-max",
+  "kind": "web3d",
+  "stars": 1099,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "scottstts/Threejs-Awesome-Graphics-Agent-Skills",
+  "kind": "web3d",
+  "stars": 977,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "lhlGitHub/threejs-architecture-effects",
+  "kind": "web3d",
+  "stars": 712,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "instruktlabs/kiln",
+  "kind": "web3d",
+  "stars": 318,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "Moh4696/open-3d-skills",
+  "kind": "web3d",
+  "stars": 291,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "jhacksman/OpenSCAD-MCP-Server",
+  "kind": "cad",
+  "stars": 215,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "RobertCoop/openscad-mcp",
+  "kind": "cad",
+  "stars": 170,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "pzfreo/build123d-mcp",
+  "kind": "cad",
+  "stars": 144,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "jdilla1277/agentcad",
+  "kind": "cad",
+  "stars": 208,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ },
+ {
+  "repo": "codeofaxel/Kiln",
+  "kind": "cad",
+  "stars": 242,
+  "why": "top of its kind on /best/3d-mcp/ that can run headless (owner, 11-08: plan A)"
+ }
+]

@@ -18829,5 +18829,1406 @@
     "date": "2026-11-08"
    }
   }
+ },
+ "3d-mcp": {
+  "title": [
+   "3D tools tested: one bakery scene from 25 tools",
+   "实测：25 个 3D 工具做同一个面包店场景"
+  ],
+  "intro": [
+   "We gave 25 3D MCP servers and skills the same brief on 2026-11-08: a wooden shop counter with a round loaf and a wicker basket of three croissants, a hanging sign that reads Morning Loaf, warm light from the left, seen from slightly above, rendered at 1600 x 1200. Each ran in a throwaway Linux sandbox with Blender 3.4, OpenSCAD and a headless Chromium, driven by Claude Code (Claude Opus 5.5). The sign was read by OCR, the croissants counted in each scene file, and the rest checked by gpt-6-astra.",
+   "2026-11-08，我们给 25 个 3D MCP 和 skill 同一份测试题：一个木制店铺柜台，上面一个圆面包和一个装着三个可颂的藤编篮，后面挂一块写着 Morning Loaf 的牌子，左侧暖光，略高的斜侧视角，渲染成 1600 × 1200。每个在用完即删的 Linux 沙箱里（Blender 3.4、OpenSCAD、无界面 Chromium）由 Claude Code（Claude Opus 5.5）调用。招牌文字用 OCR 读，可颂在场景文件里数，其余由 gpt-6-astra 逐项核对。"
+  ],
+  "finding": [
+   "Claude Code with no 3D tool built the whole scene in plain Blender Python in 12.3 minutes ($0.87 at API prices), every item right. 20 of the 20 tools that rendered did too: the sign spelled right in every render and three croissants in every scene file. They took 2.2 to 27.4 minutes. The CAD renders are flat previews with fixed light, so their warm light comes only from the colours.",
+   "不装 3D 工具的 Claude Code 只用 Blender 自带的 Python，12.3 分钟（按 API 价 $0.87）就把整个场景做对了。出了图的 20 个工具里 20 个也全对：每张图的招牌都拼对了，每个场景文件里都正好三个可颂。用时 2.2 到 27.4 分钟。CAD 工具的渲染是固定光源的平面预览，暖光只能靠颜色。"
+  ],
+  "verdict": {
+   "title": [
+    "Which one to use",
+    "用哪个"
+   ],
+   "ranked": false,
+   "picks": [
+    {
+     "repo": "ahujasid/mcp-for-blender",
+     "role": [
+      "For a Blender scene you keep editing",
+      "要能继续在 Blender 里改的场景"
+     ],
+     "why": [
+      "The most starred tool in the test and the fastest, cheapest Blender run: 6.1 minutes and $0.54, every item right, the judge's 5 of 5 for looks. It leaves a .blend file.",
+      "这次实测里星最多的工具，也是最快、最省的 Blender 一组：6.1 分钟、$0.54，全对，评审观感 5/5。留下 .blend 文件。"
+     ]
+    },
+    {
+     "repo": "CloudAI-X/threejs-skills",
+     "role": [
+      "For a scene on a web page, fast",
+      "要快速做成网页里的场景"
+     ],
+     "why": [
+      "The fastest render in the test: 2.2 minutes and $0.56, every item right, 5 of 5 for looks, in one index.html you open in a browser.",
+      "出图的里面最快：2.2 分钟、$0.56，全对，观感 5/5，一个 index.html，浏览器直接打开。"
+     ]
+    },
+    {
+     "repo": "majidmanzarpour/threejs-game-skills",
+     "role": [
+      "For a richer web scene",
+      "要更丰富的网页场景"
+     ],
+     "why": [
+      "Filled in what the brief left open: a window with light falling through, shelves of bread and a gingham cloth in the basket; 10.5 minutes and $1.69, 5 of 5 for looks, saved as a .glb you can reuse.",
+      "把测试题没说的也补上了：一扇透光的窗、摆着面包的搁板、篮子里垫着格子布；10.5 分钟、$1.69，观感 5/5，存成可复用的 .glb。"
+     ]
+    },
+    {
+     "repo": "jhacksman/OpenSCAD-MCP-Server",
+     "role": [
+      "For a model to 3D print",
+      "要能 3D 打印的模型"
+     ],
+     "why": [
+      "The best-looking CAD render (5 of 5), in 6.3 minutes and $0.50; it saves the OpenSCAD source and an STL.",
+      "CAD 里观感最好（5/5），6.3 分钟、$0.50；留下 OpenSCAD 源文件和 STL。"
+     ]
+    },
+    {
+     "repo": "pzfreo/build123d-mcp",
+     "role": [
+      "For a STEP file for engineering CAD",
+      "要工程 CAD 用的 STEP 文件"
+     ],
+     "why": [
+      "The cheapest render in the test, $0.46 in 6.0 minutes, every item right; it saves the build123d script and a STEP file, the format FreeCAD and Fusion open.",
+      "出图的里面最省，$0.46、6.0 分钟，全对；留下 build123d 脚本和 STEP 文件，FreeCAD、Fusion 都能打开。"
+     ]
+    }
+   ],
+   "caveat": [
+    "You don't need a 3D tool for a scene this size: Claude Code with no tool wrote Blender Python and got every item right in 12.3 minutes. The tools made it quicker (17 of 20 finished sooner), not more correct (20 of 20 got every item right too). Pick one by the file you want to keep.",
+    "这么大的场景不需要 3D 工具：不装工具的 Claude Code 自己写 Blender Python，12.3 分钟就全做对了。工具让它更快（20 个里 17 个比它快），但没有更对（20 个里 20 个也全对）。按你要留下的文件来挑。"
+   ],
+   "rule": [
+    "Picked by the file each leaves (a .blend, a web page, a print or CAD file): every item right first, then the judge's looks, then time and cost.",
+    "按留下的文件类型挑（.blend、网页、打印或 CAD 文件）：先看是否全对，再看评审观感，最后看时间和花费。"
+   ]
+  },
+  "compare": [
+   {
+    "src": "renders.webp",
+    "w": 1600,
+    "h": 1290,
+    "count": 20,
+    "en": "Every render, the one made with no 3D tool first (outlined): 20 tools.",
+    "zh": "所有渲染图，第一张（描边）是不装 3D 工具做的；共 20 个工具。"
+   }
+  ],
+  "control": {
+   "sheet": "control.html",
+   "label": [
+    "See the scene Claude Code made with no 3D tool →",
+    "看不装 3D 工具做的场景 →"
+   ]
+  },
+  "name_col": [
+   "Tool and its render",
+   "工具和它的渲染图"
+  ],
+  "filters": [
+   {
+    "id": "all",
+    "label": [
+     "All",
+     "全部"
+    ]
+   },
+   {
+    "id": "blender",
+    "label": [
+     "Blender",
+     "Blender"
+    ]
+   },
+   {
+    "id": "web3d",
+    "label": [
+     "Web 3D (three.js)",
+     "网页 3D（three.js）"
+    ]
+   },
+   {
+    "id": "cad",
+    "label": [
+     "CAD",
+     "CAD"
+    ]
+   }
+  ],
+  "see": [
+   "See the render →",
+   "看渲染图 →"
+  ],
+  "evidence": [
+   "The render",
+   "渲染图"
+  ],
+  "line_label": [
+   "3D test, 2026-11-08:",
+   "2026-11-08 3D 实测："
+  ],
+  "not_run_label": [
+   "No render",
+   "没出图"
+  ],
+  "not_run_line": [
+   "Tried in our 3D test, no render:",
+   "3D 实测时没出图："
+  ],
+  "type": "table",
+  "date": "2026-11-08",
+  "dir": "/best-runs/3d/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/3d-runs/RESULTS.md",
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "gpt-6-astra",
+  "columns": [
+   [
+    "Result",
+    "结果"
+   ],
+   [
+    "Sign, as read",
+    "招牌上读到的字"
+   ],
+   [
+    "Looks (judge)",
+    "观感（评审）"
+   ],
+   [
+    "Time",
+    "耗时"
+   ],
+   [
+    "Cost at API prices",
+    "按 API 价"
+   ],
+   [
+    "Scene file",
+    "场景文件"
+   ]
+  ],
+  "runs": {
+   "CloudAI-X/threejs-skills": {
+    "ran": true,
+    "stars": 4066,
+    "minutes": 2.2,
+    "sheet": "CloudAI-X__threejs-skills.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.2 min",
+      "2.2 分钟",
+      "num"
+     ],
+     [
+      "$0.56",
+      "$0.56",
+      "num"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "2.2 min",
+      "2.2 分钟"
+     ],
+     [
+      "$0.56 at API prices",
+      "按 API 价 $0.56"
+     ]
+    ],
+    "strip": {
+     "src": "CloudAI-X__threejs-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "dgreenheck/webgpu-claude-skill": {
+    "ran": true,
+    "stars": 1270,
+    "minutes": 4.0,
+    "sheet": "dgreenheck__webgpu-claude-skill.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "4.0 min",
+      "4.0 分钟",
+      "num"
+     ],
+     [
+      "$0.88",
+      "$0.88",
+      "num"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "4.0 min",
+      "4.0 分钟"
+     ],
+     [
+      "$0.88 at API prices",
+      "按 API 价 $0.88"
+     ]
+    ],
+    "strip": {
+     "src": "dgreenheck__webgpu-claude-skill-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "lhlGitHub/threejs-architecture-effects": {
+    "ran": true,
+    "stars": 712,
+    "minutes": 5.8,
+    "sheet": "lhlGitHub__threejs-architecture-effects.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "5.8 min",
+      "5.8 分钟",
+      "num"
+     ],
+     [
+      "$1.10",
+      "$1.10",
+      "num"
+     ],
+     [
+      "morning-loaf/index.html",
+      "morning-loaf/index.html",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "5.8 min",
+      "5.8 分钟"
+     ],
+     [
+      "$1.10 at API prices",
+      "按 API 价 $1.10"
+     ]
+    ],
+    "strip": {
+     "src": "lhlGitHub__threejs-architecture-effects-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "ahujasid/mcp-for-blender": {
+    "ran": true,
+    "stars": 33597,
+    "minutes": 6.1,
+    "sheet": "ahujasid__mcp-for-blender.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "6.1 min",
+      "6.1 分钟",
+      "num"
+     ],
+     [
+      "$0.54",
+      "$0.54",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "6.1 min",
+      "6.1 分钟"
+     ],
+     [
+      "$0.54 at API prices",
+      "按 API 价 $0.54"
+     ]
+    ],
+    "strip": {
+     "src": "ahujasid__mcp-for-blender-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "jhacksman/OpenSCAD-MCP-Server": {
+    "ran": true,
+    "stars": 215,
+    "minutes": 6.3,
+    "sheet": "jhacksman__OpenSCAD-MCP-Server.html",
+    "group": "cad",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "6.3 min",
+      "6.3 分钟",
+      "num"
+     ],
+     [
+      "$0.50",
+      "$0.50",
+      "num"
+     ],
+     [
+      "scene.scad, scene.stl",
+      "scene.scad, scene.stl",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "6.3 min",
+      "6.3 分钟"
+     ],
+     [
+      "$0.50 at API prices",
+      "按 API 价 $0.50"
+     ]
+    ],
+    "strip": {
+     "src": "jhacksman__OpenSCAD-MCP-Server-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "EL4CTEO/blender-skills": {
+    "ran": true,
+    "stars": 769,
+    "minutes": 6.5,
+    "sheet": "EL4CTEO__blender-skills.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟",
+      "num"
+     ],
+     [
+      "$0.69",
+      "$0.69",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟"
+     ],
+     [
+      "$0.69 at API prices",
+      "按 API 价 $0.69"
+     ]
+    ],
+    "strip": {
+     "src": "EL4CTEO__blender-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "majidmanzarpour/blender-game-skills": {
+    "ran": true,
+    "stars": 174,
+    "minutes": 7.2,
+    "sheet": "majidmanzarpour__blender-game-skills.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "7.2 min",
+      "7.2 分钟",
+      "num"
+     ],
+     [
+      "$1.04",
+      "$1.04",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "7.2 min",
+      "7.2 分钟"
+     ],
+     [
+      "$1.04 at API prices",
+      "按 API 价 $1.04"
+     ]
+    ],
+    "strip": {
+     "src": "majidmanzarpour__blender-game-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "arjun988/blender-skills": {
+    "ran": true,
+    "stars": 2169,
+    "minutes": 7.8,
+    "sheet": "arjun988__blender-skills.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "7.8 min",
+      "7.8 分钟",
+      "num"
+     ],
+     [
+      "$1.10",
+      "$1.10",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "7.8 min",
+      "7.8 分钟"
+     ],
+     [
+      "$1.10 at API prices",
+      "按 API 价 $1.10"
+     ]
+    ],
+    "strip": {
+     "src": "arjun988__blender-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "kevinbadi/blender-skills": {
+    "ran": true,
+    "stars": 262,
+    "minutes": 9.9,
+    "sheet": "kevinbadi__blender-skills.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "9.9 min",
+      "9.9 分钟",
+      "num"
+     ],
+     [
+      "$1.13",
+      "$1.13",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "9.9 min",
+      "9.9 分钟"
+     ],
+     [
+      "$1.13 at API prices",
+      "按 API 价 $1.13"
+     ]
+    ],
+    "strip": {
+     "src": "kevinbadi__blender-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "majidmanzarpour/threejs-game-skills": {
+    "ran": true,
+    "stars": 2729,
+    "minutes": 10.5,
+    "sheet": "majidmanzarpour__threejs-game-skills.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "10.5 min",
+      "10.5 分钟",
+      "num"
+     ],
+     [
+      "$1.69",
+      "$1.69",
+      "num"
+     ],
+     [
+      "scene.glb",
+      "scene.glb",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "10.5 min",
+      "10.5 分钟"
+     ],
+     [
+      "$1.69 at API prices",
+      "按 API 价 $1.69"
+     ]
+    ],
+    "strip": {
+     "src": "majidmanzarpour__threejs-game-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "Moh4696/open-3d-skills": {
+    "ran": true,
+    "stars": 291,
+    "minutes": 12.9,
+    "sheet": "Moh4696__open-3d-skills.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "12.9 min",
+      "12.9 分钟",
+      "num"
+     ],
+     [
+      "$1.01",
+      "$1.01",
+      "num"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "12.9 min",
+      "12.9 分钟"
+     ],
+     [
+      "$1.01 at API prices",
+      "按 API 价 $1.01"
+     ]
+    ],
+    "strip": {
+     "src": "Moh4696__open-3d-skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "elithril/blender-kiln": {
+    "ran": true,
+    "stars": 190,
+    "minutes": 18.2,
+    "sheet": "elithril__blender-kiln.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "18.2 min",
+      "18.2 分钟",
+      "num"
+     ],
+     [
+      "$2.32",
+      "$2.32",
+      "num"
+     ],
+     [
+      "build_scene.py, scene.blend",
+      "build_scene.py, scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "18.2 min",
+      "18.2 分钟"
+     ],
+     [
+      "$2.32 at API prices",
+      "按 API 价 $2.32"
+     ]
+    ],
+    "strip": {
+     "src": "elithril__blender-kiln-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "RobertCoop/openscad-mcp": {
+    "ran": true,
+    "stars": 170,
+    "minutes": 3.5,
+    "sheet": "RobertCoop__openscad-mcp.html",
+    "group": "cad",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "3.5 min",
+      "3.5 分钟",
+      "num"
+     ],
+     [
+      "$0.70",
+      "$0.70",
+      "num"
+     ],
+     [
+      "scene.scad",
+      "scene.scad",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "3.5 min",
+      "3.5 分钟"
+     ],
+     [
+      "$0.70 at API prices",
+      "按 API 价 $0.70"
+     ]
+    ],
+    "strip": {
+     "src": "RobertCoop__openscad-mcp-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "instruktlabs/kiln": {
+    "ran": true,
+    "stars": 318,
+    "minutes": 5.3,
+    "sheet": "instruktlabs__kiln.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "MORNING LOAF",
+      "MORNING LOAF",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "5.3 min",
+      "5.3 分钟",
+      "num"
+     ],
+     [
+      "$1.39",
+      "$1.39",
+      "num"
+     ],
+     [
+      "scene.glb",
+      "scene.glb",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "5.3 min",
+      "5.3 分钟"
+     ],
+     [
+      "$1.39 at API prices",
+      "按 API 价 $1.39"
+     ]
+    ],
+    "strip": {
+     "src": "instruktlabs__kiln-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "pzfreo/build123d-mcp": {
+    "ran": true,
+    "stars": 144,
+    "minutes": 6.0,
+    "sheet": "pzfreo__build123d-mcp.html",
+    "group": "cad",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "6.0 min",
+      "6.0 分钟",
+      "num"
+     ],
+     [
+      "$0.46",
+      "$0.46",
+      "num"
+     ],
+     [
+      "scene.py, scene.step",
+      "scene.py, scene.step",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "6.0 min",
+      "6.0 分钟"
+     ],
+     [
+      "$0.46 at API prices",
+      "按 API 价 $0.46"
+     ]
+    ],
+    "strip": {
+     "src": "pzfreo__build123d-mcp-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "scottstts/Threejs-Awesome-Graphics-Agent-Skills": {
+    "ran": true,
+    "stars": 977,
+    "minutes": 7.5,
+    "sheet": "scottstts__Threejs-Awesome-Graphics-Agent-Skills.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "7.5 min",
+      "7.5 分钟",
+      "num"
+     ],
+     [
+      "$1.45",
+      "$1.45",
+      "num"
+     ],
+     [
+      "index.html, render.py",
+      "index.html, render.py",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "7.5 min",
+      "7.5 分钟"
+     ],
+     [
+      "$1.45 at API prices",
+      "按 API 价 $1.45"
+     ]
+    ],
+    "strip": {
+     "src": "scottstts__Threejs-Awesome-Graphics-Agent-Skills-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "HoldMyBeer-gg/blenderwright": {
+    "ran": true,
+    "stars": 193,
+    "minutes": 7.9,
+    "sheet": "HoldMyBeer-gg__blenderwright.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "7.9 min",
+      "7.9 分钟",
+      "num"
+     ],
+     [
+      "$1.66",
+      "$1.66",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "7.9 min",
+      "7.9 分钟"
+     ],
+     [
+      "$1.66 at API prices",
+      "按 API 价 $1.66"
+     ]
+    ],
+    "strip": {
+     "src": "HoldMyBeer-gg__blenderwright-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "viettranx/3dviz-pro-max": {
+    "ran": true,
+    "stars": 1099,
+    "minutes": 8.0,
+    "sheet": "viettranx__3dviz-pro-max.html",
+    "group": "web3d",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "8.0 min",
+      "8.0 分钟",
+      "num"
+     ],
+     [
+      "$0.54",
+      "$0.54",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "8.0 min",
+      "8.0 分钟"
+     ],
+     [
+      "$0.54 at API prices",
+      "按 API 价 $0.54"
+     ]
+    ],
+    "strip": {
+     "src": "viettranx__3dviz-pro-max-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "jdilla1277/agentcad": {
+    "ran": true,
+    "stars": 208,
+    "minutes": 11.5,
+    "sheet": "jdilla1277__agentcad.html",
+    "group": "cad",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "11.5 min",
+      "11.5 分钟",
+      "num"
+     ],
+     [
+      "$1.13",
+      "$1.13",
+      "num"
+     ],
+     [
+      "scene.py, scene.step",
+      "scene.py, scene.step",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "11.5 min",
+      "11.5 分钟"
+     ],
+     [
+      "$1.13 at API prices",
+      "按 API 价 $1.13"
+     ]
+    ],
+    "strip": {
+     "src": "jdilla1277__agentcad-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "VxASI/blender-mcp-vxai": {
+    "ran": true,
+    "stars": 300,
+    "minutes": 27.4,
+    "sheet": "VxASI__blender-mcp-vxai.html",
+    "group": "blender",
+    "look": "",
+    "cells": [
+     [
+      "All right",
+      "全对",
+      "touch-ups"
+     ],
+     [
+      "Morning Loaf",
+      "Morning Loaf",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "27.4 min",
+      "27.4 分钟",
+      "num"
+     ],
+     [
+      "$0.71",
+      "$0.71",
+      "num"
+     ],
+     [
+      "scene.blend",
+      "scene.blend",
+      ""
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief in the render",
+      "测试题里的东西全做出来了"
+     ],
+     [
+      "27.4 min",
+      "27.4 分钟"
+     ],
+     [
+      "$0.71 at API prices",
+      "按 API 价 $0.71"
+     ]
+    ],
+    "strip": {
+     "src": "VxASI__blender-mcp-vxai-thumb.webp",
+     "w": 160,
+     "h": 120
+    }
+   },
+   "scenario-labs/blender-plugin": {
+    "ran": false,
+    "stars": 962,
+    "reason": "Needs paid Scenario credits (each blockout priced and approved first) and Blender 5.0 or later.",
+    "reason_zh": "要付费的 Scenario 额度（每个白模先报价再确认），还要 Blender 5.0 以上。"
+   },
+   "huggingface/meshgen": {
+    "ran": false,
+    "stars": 944,
+    "reason": "Timed out: it runs its own language model inside Blender, and on a CPU each step took minutes.",
+    "reason_zh": "超时：它在 Blender 里跑自己的语言模型，CPU 上每一步都要几分钟。"
+   },
+   "apekshik/anyscene": {
+    "ran": false,
+    "stars": 326,
+    "reason": "Needs a fal.ai key (its author puts it at about $1.65 a prop) and Blender 5.0 or later.",
+    "reason_zh": "要 fal.ai 的 key（按作者说法每个道具约 1.65 美元），还要 Blender 5.0 以上。"
+   },
+   "pascalorg/editor": {
+    "ran": false,
+    "stars": 25386,
+    "reason": "Timed out: its design_brief tool ran 24 minutes without an answer.",
+    "reason_zh": "超时：它的 design_brief 工具跑了 24 分钟没有返回。"
+   },
+   "codeofaxel/Kiln": {
+    "ran": false,
+    "stars": 242,
+    "reason": "Asks you to accept its terms of use before it compiles or renders anything; our agent would not accept them for you, so it left an OpenSCAD file and no render.",
+    "reason_zh": "要你先接受它的使用条款才会编译和渲染；我们的 agent 没替你接受，所以只留下一个 OpenSCAD 文件、没有渲染图。"
+   }
+  }
  }
 }

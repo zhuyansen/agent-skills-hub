@@ -1,0 +1,8 @@
+Build the 3D scene described in ~/work/brief.md and render it, with whatever is on this machine.
+
+This machine has Blender 3.4 (`blender`), OpenSCAD (`openscad`), Chromium with Playwright for Python, Node and Python. There is no physical screen; a virtual one runs on DISPLAY=:99. Rendering runs on the CPU, so keep render settings modest. This Blender was built without the OpenImageDenoise denoiser: with Cycles, turn denoising off, or render with Eevee.
+
+Rules:
+- Do not ask me any questions; make the choices yourself and continue.
+- Save the render as ~/work/output/render.png (1600 x 1200) and the scene in its own format in ~/work/output/ (for example scene.blend, scene.scad, index.html or a .glb).
+- When you finish, print one line: DELIVERABLE: <comma-separated paths of the files you wrote>
