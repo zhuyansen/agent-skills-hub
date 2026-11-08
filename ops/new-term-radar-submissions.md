@@ -20,6 +20,7 @@ PyPI → 官方 MCP 注册表 → Glama 收录并认领 → punkpeye/awesome-mcp
 | LobeHub / mcpservers.org(Marketing)/ cursor.directory / Agensi / Skillstore / 魔搭(MCP + Skill) | ✅ | |
 | Jimmy Song AI 原生全景图 | ✅ issue #34 10-21 以 completed 关闭 | landscape.jimmysong.io/projects/new-term-radar/(Tracked) |
 | SkillsMP / skillsdirectory / skillget / skillsllm / agentskillshub.top | ✅ 自动收录 | |
+| Skillselion | ✅ 11-08 上线（10-20 邮件投稿，info@skillselion.com） | 3 个 skill 各一页：skillselion.com/skills/zhuyansen/new-term-radar，另两个在其下 /ai-listening、/seo-new-keywords-research；页面锁 fe67ff1、写 0.6.1；安装数取自 skills.sh（36/33/32）；指向 GitHub 的链接只带 noopener noreferrer，没有 nofollow；对方给了官方徽章，见 11-08 核对 |
 | Anthropic 插件目录 | ⏳ 等人工审 | v0.5.1 @4fd9a0d「Held by directory policy, with Anthropic」(锁版本 uvx 必然人工审)。10-26 发了 0.5.2(报错原因能到 agent)并补 PRIVACY.md 和隐私/支持/文档链接(0b6b164),目录约每 6 小时扫一次新提交 |
 | WorkBuddy 开放平台 | ⏳ 10-26 已提交,审核中 | 连接器 oc_02d71d5619d9802a,v0.5.2;类目同 backlink-guard;表单要 AIsa key 和数据目录。**10-27 用户定撤回重交**:17:36 撤回 0.5.2 的审核、上传 0.6.0 的包(哈希核过,第 2、3 步解析出 0.6.0)后重新提交;但列表接口的 currentVersion 还是 versionId 8984 / 0.5.2,看不出审的是不是新包,过审后核对 |
 | mdskills / MCP Market / mcp.directory / AIbase | ⏳ 已提交,还搜不到 | MCP Market 免费队列 4–6 周 |
@@ -112,3 +113,13 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
 - VoltAgent/awesome-agent-skills #1338 11-05 10:39 UTC 合并（3.7 万★），README 里已有雷达。
 - 0xsline/awesome-deepseek-harness #757 11-06 07:22 UTC 合并（1.3 千★），中英文 README 都有雷达和外链检测。
 - 还开着：heilcheng #629、punkpeye #18157；更早的 karanb192 #493、davila7 #1223、ComposioHQ #2328、GetBindu #296、serpapi #478 也都没动静。
+
+## 11-08 核对
+
+- Skillselion 11-08 04:21 回信：3 个 skill 都已上线。三页逐页核过：
+  - 标题、正文描述、安装命令（`npx skills add https://github.com/zhuyansen/new-term-radar --skill <名>`）都对。
+  - SKILL.md 全文锁 fe67ff1，`uvx new-term-radar==0.6.1` 也对。
+  - 没有 noindex，canonical 指向页面自己。
+  - 小毛病：三页的 meta description 都停在半句（如「…keyword priority table marked.」），页面上的正文是完整的。
+- 官方徽章 `skillselion.com/badge/skills/zhuyansen/new-term-radar.svg`：图上只显示「SKILLSELION ✓ SKILL」，安装数只在悬停提示里。
+- 11-08 定：徽章不加进雷达 README，meta description 的事也不回信。
