@@ -4558,5 +4558,69 @@
    "marketing": 0.07
   },
   "kind": "links"
+ },
+ {
+  "repo": "chenchaoge/seo-ai-link",
+  "stars": 10,
+  "description": "seo-ai-link · 独立站外链全流程 Skill：竞品外链挖掘、外链库管理、AI 自动发外链、收录回访，配可视化报表",
+  "scores": {
+   "suite": 0.08,
+   "audit": 0.03,
+   "research": 0.07,
+   "data_mcp": 0.1,
+   "geo": 0.05,
+   "content": 0.08,
+   "links": 0.97,
+   "marketing": 0.08
+  },
+  "kind": "links"
+ },
+ {
+  "repo": "6t9xstar/one-step-seo",
+  "stars": 5,
+  "description": "One-command SEO & GEO audit with scores and actionable fixes. Zero-dependency Node.js CLI + AI skill.",
+  "scores": {
+   "suite": 0.6,
+   "audit": 0.94,
+   "research": 0.06,
+   "data_mcp": 0.16,
+   "geo": 0.67,
+   "content": 0.13,
+   "links": 0.03,
+   "marketing": 0.12
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "AI-Marketing-OS-LTD/cmo-so-skills",
+  "stars": 5,
+  "description": "Skills for running your marketing with CMO.so and Maggie from Claude Code and other agents, built on the CMO.so MCP server.",
+  "scores": {
+   "suite": 0.46,
+   "audit": 0.09,
+   "research": 0.1,
+   "data_mcp": 0.17,
+   "geo": 0.21,
+   "content": 0.28,
+   "links": 0.06,
+   "marketing": 0.97
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "Canonry/agent-readiness",
+  "stars": 6,
+  "description": "Agent readiness audit library and tool",
+  "scores": {
+   "suite": 0.17,
+   "audit": 0.85,
+   "research": 0.03,
+   "data_mcp": 0.11,
+   "geo": 0.9,
+   "content": 0.12,
+   "links": 0.02,
+   "marketing": 0.07
+  },
+  "kind": "geo"
  }
 ]

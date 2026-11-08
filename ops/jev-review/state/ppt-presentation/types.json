@@ -3610,5 +3610,75 @@
    "general": 0.11
   },
   "kind": "html"
+ },
+ {
+  "repo": "CodingFeng101/slide-alchemy",
+  "stars": 46,
+  "description": "A Claude Code / Codex skill that converts image-based PPTX, slide screenshots and scanned decks into truly editable PowerPoint: real text boxes, native shapes, OCR-measured layout.",
+  "scores": {
+   "image": 0.1,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.55,
+   "convert": 0.06,
+   "general": 0.07
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "alchaincyf/huashu-slide-codex",
+  "stars": 25,
+  "description": "Codex-only AI visual material production skill — slides + WeChat covers + Bilibili/YouTube thumbnails, powered by built-in image_gen (no API fees)",
+  "scores": {
+   "image": 0.57,
+   "pptx": 0.53,
+   "html": 0.88,
+   "business": 0.65,
+   "convert": 0.12,
+   "general": 0.26
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "hustcer/pptx-nova",
+  "stars": 10,
+  "description": "PowerPoint, rebuilt for agents. Not another slide generator. Create, edit, translate, and refurbish truly editable decks with DeckKit design systems, template-aware workflows, and visual QA. Powered by xdoc.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.05,
+   "business": 0.43,
+   "convert": 0.88,
+   "general": 0.1
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "knorq-ai/pptx-mcp-server",
+  "stars": 5,
+  "description": "MCP server for generating professional PowerPoint presentations with McKinsey/Deloitte/Neutral themes",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.94,
+   "convert": 0.16,
+   "general": 0.06
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "HeiGeAi/HeiGe-PPT",
+  "stars": 21,
+  "description": "演讲锻造系统 · 把每一页讲成一句话，把整套 deck 导成一场演出 | Forge the talk, don't pile up slides",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.72,
+   "html": 0.94,
+   "business": 0.86,
+   "convert": 0.66,
+   "general": 0.61
+  },
+  "kind": "general"
  }
 ]

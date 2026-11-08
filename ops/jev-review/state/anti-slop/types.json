@@ -3862,5 +3862,131 @@
    "rules": 0.6
   },
   "kind": "design"
+ },
+ {
+  "repo": "yucezerey/turkish-anti-ai-skill",
+  "stars": 252,
+  "description": "Türkçe metinlerdeki yapay zeka izlerini (AI slop, translationese, çeviri kokan cümle mimarisi ve TDK hatalarını) temizleyen Agent Skill ve Humanizer paketi.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.73,
+   "chinese": 0.01,
+   "code": 0.09,
+   "design": 0.06,
+   "rules": 0.61
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "alchaincyf/tramstop-skill",
+  "stars": 57,
+  "description": "电车站.skill — 人味不是删出来的。Evidence-based de-slop skill: 四层AI味模型+真实素材注入，来自四版本盲测实验",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.85,
+   "chinese": 0.7,
+   "code": 0.09,
+   "design": 0.06,
+   "rules": 0.47
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "dotoridot/korean-humanizer",
+  "stars": 18,
+  "description": "Korean humanizer prompt and skill for removing the usual AI smell from generated writing.",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.13,
+   "chinese": 0.02,
+   "code": 0.07,
+   "design": 0.06,
+   "rules": 0.8
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "avivgerz-hue/unslop",
+  "stars": 10,
+  "description": "Studio-grade UI design systems, Design DNA extractor & Anti-Slop MCP server for AI coding agents (Claude Code, Codex, Cursor, Windsurf).",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.9,
+   "chinese": 0.02,
+   "code": 0.45,
+   "design": 0.95,
+   "rules": 0.69
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "lakshitha-dev/ai-humanizer-skill",
+  "stars": 5,
+  "description": "Claude skill: humanize AI text to pass AI detectors (GPTZero, Originality, Turnitin, Pangram) + before/after detection-risk scorer",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.88,
+   "chinese": 0.04,
+   "code": 0.14,
+   "design": 0.06,
+   "rules": 0.36
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "thecodebeatz/short-humanizer",
+  "stars": 5,
+  "description": "A 2,587-character skill that removes 26 common AI-writing tells. 12x shorter than blader/humanizer, tested against it.",
+  "scores": {
+   "writing": 0.88,
+   "detector": 0.47,
+   "chinese": 0.03,
+   "code": 0.11,
+   "design": 0.07,
+   "rules": 0.85
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "LearnPrompt/vibecoding-humanizer",
+  "stars": 5,
+  "description": "UI 去 AI 味 Agent Skill：13 类界面改进规则，英文原句与中文对照，保留真实任务与必要交互。",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.36,
+   "chinese": 0.08,
+   "code": 0.22,
+   "design": 0.95,
+   "rules": 0.9
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "Harrypatria/tastemaker",
+  "stars": 5,
+  "description": "The anti-slop design layer for AI coding agents",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.94,
+   "chinese": 0.03,
+   "code": 0.47,
+   "design": 0.95,
+   "rules": 0.81
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "MADEVAL/humanizer-ua",
+  "stars": 16,
+  "description": "Редактура українського тексту: прибирає сліди ШІ, канцелярит, суржик і кальки, зберігаючи зміст і голос автора. 63 маркери, 30 заборон, сканер без залежностей.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.89,
+   "chinese": 0.01,
+   "code": 0.07,
+   "design": 0.05,
+   "rules": 0.82
+  },
+  "kind": "writing"
  }
 ]

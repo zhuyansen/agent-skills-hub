@@ -3417,5 +3417,18 @@
    "tooling": 0.78
   },
   "kind": "hooks"
+ },
+ {
+  "repo": "Spobi/context-carwash",
+  "stars": 8,
+  "description": "Context Carwash: ________________  ⟡ full session context size, revealed ⟡ fresh starts with no lost details and no folder clutter ⟡",
+  "scores": {
+   "hooks": 0.67,
+   "subagents": 0.04,
+   "statusline": 0.45,
+   "collection": 0.26,
+   "tooling": 0.86
+  },
+  "kind": "tooling"
  }
 ]

@@ -2868,5 +2868,61 @@
    "review": 0.95
   },
   "kind": "ui"
+ },
+ {
+  "repo": "feimacode/open-design-agent-kit",
+  "stars": 1038,
+  "description": "Make posters, social posts, slides and landing pages in the coding agent or chat you already use (Copilot, Claude, Codex, Cursor), with 198 design systems, checks and PDF/PNG/PowerPoint export.",
+  "scores": {
+   "ui": 0.92,
+   "system": 0.93,
+   "tool_mcp": 0.15,
+   "to_code": 0.68,
+   "graphics": 0.84,
+   "review": 0.88
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "gregkozakiewicz/roast-my-design-system",
+  "stars": 73,
+  "description": "AI design system scanner + mcp server. Scores repos 0-100, writes fix prompts. 30K+ npm downloads.",
+  "scores": {
+   "ui": 0.76,
+   "system": 0.95,
+   "tool_mcp": 0.04,
+   "to_code": 0.07,
+   "graphics": 0.21,
+   "review": 0.78
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "albertirgi/replica",
+  "stars": 51,
+  "description": "Rebuild any UI from a reference and prove it with a score. An Agent Skill for Claude Code and other coding agents: captures a site, screenshot or screen recording, then scores the clone on layout, style, pixels and motion until it passes.",
+  "scores": {
+   "ui": 0.79,
+   "system": 0.22,
+   "tool_mcp": 0.07,
+   "to_code": 0.48,
+   "graphics": 0.06,
+   "review": 0.16
+  },
+  "kind": "ui"
+ },
+ {
+  "repo": "jmlweb/storybook-vrhythm",
+  "stars": 22,
+  "description": "Baseline grid for Storybook that coding agents can run: a measured audit with exact pixel deltas, plus a visual overlay",
+  "scores": {
+   "ui": 0.84,
+   "system": 0.34,
+   "tool_mcp": 0.04,
+   "to_code": 0.07,
+   "graphics": 0.12,
+   "review": 0.55
+  },
+  "kind": "ui"
  }
 ]

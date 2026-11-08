@@ -2670,5 +2670,165 @@
    "gen3d": 0.01
   },
   "kind": "godot"
+ },
+ {
+  "repo": "img2threejs/img2threejs",
+  "stars": 20333,
+  "description": "Rebuild the object in a reference image as a code-only, procedural, quality-gated, animation-ready Three.js model. Token-efficient image-to-3D.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.03,
+   "web3d": 0.98,
+   "gen3d": 0.87
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "kevinpbuckley/VibeUE",
+  "stars": 809,
+  "description": "Unreal Engine Vibe Coding tool",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.03
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "r1n7aro/Locus",
+  "stars": 758,
+  "description": "The open source Unity Dev Agent",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.02
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "anteloc/ldraw-nova",
+  "stars": 528,
+  "description": "Agent tooling for generative LEGO models building, built with Astra and Opus 5.5, powered by Jev",
+  "scores": {
+   "blender": 0.11,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.63,
+   "dcc": 0.04,
+   "web3d": 0.11,
+   "gen3d": 0.59
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "Kai-Jungsthoefel/SOMA",
+  "stars": 452,
+  "description": "Desktop app for designing parametric 3D models in CadQuery together with the coding agent of your choice",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.98,
+   "dcc": 0.03,
+   "web3d": 0.02,
+   "gen3d": 0.16
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "sloemo01/diorama",
+  "stars": 347,
+  "description": "Playbook and Three.js code kit for detailed dioramas: classic pixel art, stroked toon or pixel + stroke; two intake gates for look and model sourcing; free orbit, palette snap and ink; animated toy-scale cast; per-entity frame QA.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.97,
+   "gen3d": 0.12
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "wellingfeng/UltraGameStudio",
+  "stars": 336,
+  "description": "UltraGameStudio - AI coding agent for game development: engine workflows, gameplay code, and asset generation.",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.11,
+   "godot": 0.08,
+   "unreal": 0.16,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.06,
+   "gen3d": 0.11
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "S4US/Roqer",
+  "stars": 193,
+  "description": "An open-source AI agent for Roblox Studio. Builds, scripts, and playtests in your place using your ChatGPT/Claude subscription or custom API.",
+  "scores": {
+   "blender": 0.05,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "codepawl/viz3d",
+  "stars": 148,
+  "description": "An AI agent skill that turns any subject into a 3D film or app",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.06,
+   "dcc": 0.03,
+   "web3d": 0.91,
+   "gen3d": 0.34
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "dcc-mcp/dcc-mcp-core",
+  "stars": 73,
+  "description": "MCP and REST control plane for AI agents to operate creative software: shared Rust/Python runtime, multi-instance gateway, CLI, skill discovery, and studio workflow infrastructure for DCC-MCP.",
+  "scores": {
+   "blender": 0.11,
+   "unity": 0.04,
+   "godot": 0.04,
+   "unreal": 0.04,
+   "cad": 0.07,
+   "dcc": 0.23,
+   "web3d": 0.02,
+   "gen3d": 0.05
+  },
+  "kind": "dcc"
  }
 ]

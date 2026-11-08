@@ -5206,5 +5206,19 @@
    "personal": 0.21
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "gogoymh/auto-ontology-mcp",
+  "stars": 79,
+  "description": "NVIDIA Auto Ontology's semantic layer and a personal knowledge base as an MCP server for Claude, ChatGPT and other MCP clients. No LLM API key needed.",
+  "scores": {
+   "llm_wiki": 0.46,
+   "rag_platform": 0.11,
+   "mcp": 0.95,
+   "docs_qa": 0.64,
+   "graph": 0.87,
+   "personal": 0.69
+  },
+  "kind": "mcp"
  }
 ]

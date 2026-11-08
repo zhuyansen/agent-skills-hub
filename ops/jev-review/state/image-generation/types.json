@@ -3610,5 +3610,19 @@
    "mcp": 0.17
   },
   "kind": "nano_banana"
+ },
+ {
+  "repo": "FireTable/comfy-colab-kit",
+  "stars": 105,
+  "description": "Zero-GPU-idle gateway for running ComfyUI on ephemeral Google Colab VMs with Zero-Trust Access",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.04,
+   "open_models": 0.74,
+   "editing": 0.05,
+   "design": 0.02,
+   "mcp": 0.67
+  },
+  "kind": "open_models"
  }
 ]
