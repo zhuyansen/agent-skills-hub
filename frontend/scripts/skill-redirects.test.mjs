@@ -7,7 +7,7 @@
 import { test, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import {
-  fetchSkillRedirects, stubsToWrite, redirectStubHtml, renameMap, renameNames, curatedJson,
+  fetchSkillRedirects, stubsToWrite, redirectStubHtml, renameMap, renameNames, staleMarkers, curatedJson,
 } from "./skill-redirects.mjs";
 
 const realFetch = globalThis.fetch;
@@ -43,6 +43,25 @@ test("curated names are renamed as values and keys, in any case, and nothing els
   assert.deepEqual(out[0].keywords, ["AIHawk", "aihawk"]);
   assert.equal(out[0].extra_faq[0].a, "Use feder-cr/AIHawk for this.");
   assert.deepEqual(changes, [["feder-cr/aihawk", "feder-cr/invisible_dots"], ["safishamsi/graphify", "Graphify-Labs/graphify"]]);
+});
+
+test("an old name in exclude_repos stays when its page lists the repository, and follows the rename when not", () => {
+  const renames = renameMap([["a/old", "a/new"], ["b/old", "b/new"], ["c/old", "c/new"], ["d/old", "d/new"]]);
+  const kinds = { reviewed: { repos: { "a/new": "x", "d/old": "y" } } };
+  const page = { slug: "reviewed", match: { admit_reviewed: ["B/NEW"], exclude_repos: ["a/old", "b/old", "c/old", "d/old", "z/other"] } };
+  const changes = [];
+  const out = renameNames(page, renames, changes, staleMarkers(page, kinds, renames));
+  // a/old: listed under the new name (kinds). b/old: admitted under the new name, in another case.
+  // d/old: still listed under the old name. c/old: not listed, so the exclusion moves to the new name.
+  assert.deepEqual(out.match.exclude_repos, ["a/old", "b/old", "c/new", "d/old", "z/other"]);
+  assert.deepEqual(changes, [["c/old", "c/new"]]);
+  assert.deepEqual(out.match.admit_reviewed, ["B/NEW"]);
+});
+
+test("without the test, every exclude_repos entry follows the rename", () => {
+  const renames = renameMap([["a/old", "a/new"]]);
+  const out = renameNames({ match: { exclude_repos: ["a/old"], featured: ["a/old"] } }, renames);
+  assert.deepEqual(out, { match: { exclude_repos: ["a/new"], featured: ["a/new"] } });
 });
 
 test("a renamed key keeps its place, and an entry already under the new name wins", () => {

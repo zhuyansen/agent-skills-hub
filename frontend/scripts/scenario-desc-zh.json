@@ -1405,7 +1405,7 @@
  "WireCatLabs/tg-cli": "面向 AI agents 的 Telegram CLI：终端管理整个账户、本地优先搜索、MCP server 和完整 Bot API。",
  "WireTarantulaKnife/r09-travisvn-awesome-claude-skills-datascience": "数据科学与 AI/ML skill 套件，源自 travisvn/awesome-claude-skills。",
  "WiseriaAI/pie-ai-agent": "Chrome 自动化 agent：原生工具调用、skill、CDP 键盘控制，执行前确认。支持 Claude、GPT、Gemini、DeepSeek 及 4…",
- "WoYun520/pixel-gif-sticker-pack": "用于根据角色参考图创建和验证动态 GIF 贴纸包的 Codex skill。",
+ "WoYun520/gif-factory": "用于根据角色参考图创建和验证动态 GIF 贴纸包的 Codex skill。",
  "WorldFlowAI/everything-claude-code": "Claude Code 工具包：用于 AI 辅助开发的 agents、commands、skills、rules 和 hooks",
  "XGenerationLab/xiyan_mcp_server": "一个支持用自然语言查询数据库的 Model Context Protocol (MCP) 服务器",
  "XMihura/Kanvas": "使用 Obsidian Canvas 可视化管理项目，协同人类与 AI agent。",

@@ -104,11 +104,16 @@ function renamed(s, renames, changes) {
   return to;
 }
 
-/** A renamed entry is dropped when the list names its repository already. */
-function renameList(list, renames, changes) {
+const EXCLUDE_KEY = "exclude_repos";
+const keepNone = () => false;
+
+/** A renamed entry is dropped when the list names its repository already. An entry `keep` accepts
+ *  stays as it is. */
+function renameList(list, renames, changes, keep = keepNone) {
   const present = new Set(list.filter((v) => typeof v === "string").map((v) => v.toLowerCase()));
   const out = [];
   for (const v of list) {
+    if (typeof v === "string" && keep(v)) { out.push(v); continue; }
     const next = renameNames(v, renames, changes);
     if (next !== v && typeof next === "string") {
       if (present.has(next.toLowerCase())) continue;
@@ -119,25 +124,49 @@ function renameList(list, renames, changes) {
   return out;
 }
 
-/** A renamed key keeps its place; it is dropped when the object has an entry under the new name. */
-function renameKeys(obj, renames, changes) {
+/** A renamed key keeps its place; it is dropped when the object has an entry under the new name.
+ *  `keep` applies to the entries of an `exclude_repos` list. */
+function renameKeys(obj, renames, changes, keep) {
   const out = {};
   for (const [key, v] of Object.entries(obj)) {
     const next = renamed(key, renames, changes);
     if (next !== key && Object.hasOwn(obj, next)) continue;
-    out[next] = renameNames(v, renames, changes);
+    out[next] = key === EXCLUDE_KEY && Array.isArray(v)
+      ? renameList(v, renames, changes, keep) : renameNames(v, renames, changes, keep);
   }
   return out;
 }
 
 /** `value` with every string that equals an old name (in any case), as a value or a key, replaced
  *  by the new name; `changes` collects the [old, new] pairs. A sentence that mentions a name is
- *  left alone. */
-export function renameNames(value, renames, changes = []) {
+ *  left alone, and so is every `exclude_repos` entry that `keep` accepts (see staleMarkers). */
+export function renameNames(value, renames, changes = [], keep = keepNone) {
   if (typeof value === "string") return renamed(value, renames, changes);
   if (Array.isArray(value)) return renameList(value, renames, changes);
-  if (value && typeof value === "object") return renameKeys(value, renames, changes);
+  if (value && typeof value === "object") return renameKeys(value, renames, changes, keep);
   return value;
+}
+
+/** What a page lists, in lower case: its kinds map, its featured repositories and its admitted ones. */
+function listedNames(page, kinds) {
+  const match = page.match ?? {};
+  const names = [...Object.keys(kinds[page.slug]?.repos ?? {}), ...(match.featured ?? []), ...(match.admit_reviewed ?? [])];
+  return new Set(names.map((n) => n.toLowerCase()));
+}
+
+/** Tells the two kinds of old name in a page's `exclude_repos` apart. One is a repository the page
+ *  leaves out: it must follow the rename. The other is the old name of a repository the page lists
+ *  under its new name, which the daily review pass writes there to hide the second row a renamed
+ *  repository used to leave behind (ops/awesome/daily_video_pass.py, exclude_gone). Renamed, that
+ *  entry would exclude the repository the page lists: on 2026-11-02 the rename took 27 repositories
+ *  off ten /best/ pages, and the pass then listed their old names again. So it stays. Returns the
+ *  test for `renameNames`: true for an old name of a repository this page lists, under either name. */
+export function staleMarkers(page, kinds, renames) {
+  const listed = listedNames(page, kinds);
+  return (name) => {
+    const to = renames.get(name.toLowerCase());
+    return Boolean(to) && (listed.has(name.toLowerCase()) || listed.has(to.toLowerCase()));
+  };
 }
 
 /** A curated file's text, formatted the way the files in the repository are. */

@@ -163,6 +163,18 @@ jobs:
           ACTIONS_TOKEN: ${{ github.token }}
         run: python ops/awesome/daily_video_pass.py "$RUNNER_TEMP/report.md" claude-video-skills=list-repo ppt-presentation=list-ppt typesafe-jev=list-jev skill-management-tools=list-skillmgr telegram-bot=list-telegram ai-design=list-design knowledge-base=list-wiki claude-code-hooks=list-hooks obsidian-second-brain=list-obsidian anti-slop=list-humanizer image-generation=list-image code-review=list-codereview codex-skills=list-codex claude-code-skills=list-ccskills ai-reverse-engineering=list-re seo-tools=list-seo 3d-mcp=list-3d
 
+      # The pass files a repository under the name its state files carry, which can be the old name of one
+      # that was renamed (skill_redirects, kept by renamed-repos.yml). That workflow's check fails on every
+      # old name in these files, and did every day from 11-03 to 11-08. Rename them before the commit; a
+      # failure here leaves the files as the pass wrote them.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Use the current repository names
+        continue-on-error: true
+        run: node frontend/scripts/rename-curated.mjs
+
       - name: Commit the site
         id: site
         run: |
