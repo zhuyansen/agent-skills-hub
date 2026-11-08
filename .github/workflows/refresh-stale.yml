@@ -8,10 +8,14 @@ name: Refresh stale catalog rows
 # were 14+ days stale. "Auto-updated every 8 hours" was only true for repos
 # under active development.
 #
-# This job closes that gap from the other side: it walks the STALEST rows and
-# GETs /repos/{name} directly, which needs no search and no push activity. The
-# same response answers "does this still exist?", so liveness and freshness cost
-# one request between them.
+# This job closes that gap from the other side: it walks the rows probed longest
+# ago (skills.repo_status_checked_at, stamped on every answer; never-probed rows
+# first) and GETs /repos/{name} directly, which needs no search and no push
+# activity. The same response answers "does this still exist?" and "is it still
+# the same repository?" (created_at), so liveness and freshness cost one request
+# between them. A name another repository took over is rewritten and queued in
+# extra_repos for the next sync; more than 25 in one run fail the job instead
+# (ops/probe_dead_repos.py, MAX_REUSED_PER_RUN).
 #
 # Scheduled at 04:47/12:47/20:47 UTC — deliberately offset from sync (00:17/08:17/16:17 UTC) so
 # the two never write concurrently.

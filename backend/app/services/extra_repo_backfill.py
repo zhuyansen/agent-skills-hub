@@ -45,7 +45,10 @@ GIVE_UP_AFTER_SYNCS = 2
 # standing subscription: on 2026-10-03 the page upgrades queued 1,595 of them, every sync fetched
 # each by name from then on, and a sync went from about 80 minutes to 2.5 hours. Once such a
 # row is in skills with a README it is retired here; refresh-stale.yml keeps its numbers current.
-QUEUE_TAGS = ("daily-video-pass",)
+# name-reuse: ops/probe_dead_repos.py found another repository under a catalog row's name (its
+# created_at differs), cleared the row's README and queued the name, so that the sync rewrites
+# the whole row from the new repository and fetches its README.
+QUEUE_TAGS = ("daily-video-pass", "name-reuse")
 # Still not in skills with a README this many days after it was queued: renamed, deleted or
 # without a README. Stop asking GitHub for it on every sync.
 QUEUE_GIVE_UP_DAYS = 7
