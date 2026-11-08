@@ -1,0 +1,13 @@
+# The 3D test (ops/3d-runs): the sandbox (pptrun:1) plus Blender, OpenSCAD and a virtual screen, so add-ons that
+# need Blender's window (most Blender MCP servers) run headless. Debian's Blender 3.4: Blender's own Linux builds
+# are x86-64 only and this machine is arm64. Rendering is on the CPU (Mesa's software OpenGL, Cycles).
+#   docker build -f ops/ppt-runs/sandbox/Dockerfile.3d -t pptrun-3d:1 ops/ppt-runs/sandbox
+FROM pptrun:1
+USER root
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      blender openscad xvfb xauth x11-utils mesa-utils libgl1-mesa-dri \
+    && rm -rf /var/lib/apt/lists/*
+ENV DISPLAY=:99
+COPY --chown=runner start_3d.sh /home/runner/bin/
+USER runner
+ENTRYPOINT ["bash", "/home/runner/bin/start_3d.sh"]

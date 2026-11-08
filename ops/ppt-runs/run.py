@@ -22,7 +22,7 @@ from pathlib import Path
 HERE = Path(os.environ.get("RUNS_DIR") or Path(__file__).parent).resolve()
 # OUT_SUFFIX=-b: a second, independent run of the same candidates (the design test builds each page twice).
 OUT = HERE / ("out" + os.environ.get("OUT_SUFFIX", ""))
-IMAGE = "pptrun:1"
+IMAGE = os.environ.get("SANDBOX_IMAGE", "pptrun:1")   # the 3D test: pptrun-3d:1 (sandbox/Dockerfile.3d)
 RUN_MINUTES = int(os.environ.get("RUN_MINUTES", 30))   # the video test renders, so it asks for more
 GRACE_SECONDS = 600     # render + install time on top of the agent's limit
 
@@ -62,16 +62,21 @@ def docker_env(e: dict) -> list[str]:
     return [x for k, v in pairs.items() for x in ("-e", f"{k}={v}")]
 
 
+def container(out: Path) -> str:
+    """The run's container name, with the test project in it: two projects' "control" runs once collided (11-08)."""
+    return f"pptrun-{HERE.name.lower()}-{out.name.lower()}"[:63]
+
+
 def run(repo: str, e: dict) -> dict:
     out = OUT / repo.replace("/", "__"); out.mkdir(parents=True, exist_ok=True)
-    cmd = ["docker", "run", "--rm", "--name", f"pptrun-{out.name.lower()[:50]}", *docker_env(e),
+    cmd = ["docker", "run", "--rm", "--name", container(out), *docker_env(e),
            "-v", f"{HERE / 'in'}:/in:ro", "-v", f"{out}:/out", IMAGE, repo]
     t0 = time.time()
     try:
         p = subprocess.run(cmd, capture_output=True, text=True, timeout=RUN_MINUTES * 60 + GRACE_SECONDS)
         status = "done" if p.returncode == 0 else f"exit {p.returncode}"
     except subprocess.TimeoutExpired:
-        subprocess.run(["docker", "rm", "-f", f"pptrun-{out.name.lower()[:50]}"], capture_output=True)
+        subprocess.run(["docker", "rm", "-f", container(out)], capture_output=True)
         status = "timeout"
     meta = {"repo": repo, "status": status, "seconds": round(time.time() - t0), "finished": time.strftime("%Y-%m-%d %H:%M")}
     (out / "run.json").write_text(json.dumps(meta, indent=1))
