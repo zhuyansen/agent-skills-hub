@@ -41,6 +41,24 @@ const NAME_MAX = 100;
 const COMPANY_MAX = 200;
 const REASON_MAX = 100;
 
+/**
+ * Whether an address is complete enough to reply to. A browser's
+ * <input type="email"> accepts name@host with no dot and the RPC only checks
+ * for an "@", so a forgotten ".com" went straight through: the first
+ * audit-result lead (2026-11-07) was stored as name@gmail, which bounces, and
+ * synthesised() below named its company "gmail". Both forms call this before
+ * submitting.
+ *
+ * Rule: one "@", a non-empty local part, no whitespace, and a domain made of
+ * non-empty dot-separated labels whose last one is 2+ letters (any script, so
+ * .com and .中国) or punycode (xn--…).
+ */
+const COMPLETE_EMAIL = /^[^\s@]+@(?:[^\s@.]+\.)+(?:\p{L}{2,}|xn--[a-z0-9-]+)$/iu;
+
+export function isCompleteEmail(email: string): boolean {
+  return COMPLETE_EMAIL.test(email);
+}
+
 /** enterprise_leads needs a non-empty name and company (enforced in the RPC).
  *  When the visitor didn't volunteer them, derive both from the email so the
  *  write succeeds without a schema change — sales enriches them on follow-up. */

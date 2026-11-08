@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n/I18nContext";
 import { trackEvent } from "../lib/analytics";
-import { submitEnterpriseLead } from "../lib/enterpriseLead";
+import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 
 /**
  * Enterprise lead capture at the audit result — the only moment on the site
@@ -35,6 +35,7 @@ interface Copy {
   okBody: string;
   privacy: string;
   errMissing: string;
+  errIncompleteEmail: string;
   errGeneric: string;
 }
 
@@ -54,6 +55,7 @@ function copyFor(zh: boolean, risky: boolean, unknown: boolean, owner: string, f
       okBody: "48 小时内发到你的邮箱。急的话在 X 上找 @GoSailGlobal。",
       privacy: "不会分享你的数据。Jason 在 48 小时内人工审核。",
       errMissing: "请填写工作邮箱。",
+      errIncompleteEmail: "请填写完整的邮箱地址(例如 name@company.com)。",
       errGeneric: "提交失败。",
     };
   }
@@ -71,6 +73,7 @@ function copyFor(zh: boolean, risky: boolean, unknown: boolean, owner: string, f
     okBody: "We'll email it within 48h. If urgent, ping @GoSailGlobal on X.",
     privacy: "We'll never share your data. Manual review by Jason within 48h.",
     errMissing: "Please add your work email.",
+    errIncompleteEmail: "Please enter your full email address (for example name@company.com).",
     errGeneric: "Submission failed.",
   };
 }
@@ -93,8 +96,13 @@ export function AuditLeadCapture({
   const [submitted, setSubmitted] = useState(false);
   // The kind, not the text: a resolved string would stay in the old language
   // when the visitor flips 中文/EN with a validation message on screen.
-  const [error, setError] = useState<"missing" | { message: string } | null>(null);
-  const errorText = error === "missing" ? c.errMissing : error?.message ?? null;
+  const [error, setError] = useState<"missing" | "incomplete" | { message: string } | null>(null);
+  const errorText =
+    error === "missing"
+      ? c.errMissing
+      : error === "incomplete"
+        ? c.errIncompleteEmail
+        : error?.message ?? null;
   const root = useRef<HTMLElement>(null);
   const started = useRef(false);
 
@@ -130,6 +138,12 @@ export function AuditLeadCapture({
       // stay distinguishable from "never tried".
       trackEvent("audit_lead_invalid", { missing: "email", grade: g });
       setError("missing");
+      return;
+    }
+    if (!isCompleteEmail(email)) {
+      // Incomplete address (e.g. name@gmail): a reply to it would bounce.
+      trackEvent("audit_lead_invalid", { missing: "email_domain", grade: g });
+      setError("incomplete");
       return;
     }
     setSubmitting(true);

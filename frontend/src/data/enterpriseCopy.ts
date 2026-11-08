@@ -99,6 +99,7 @@ export interface EnterpriseCopy {
     submitting: string;
     privacy: string;
     errMissing: string;
+    errIncompleteEmail: string;
     errGeneric: string;
   };
 }
@@ -441,6 +442,7 @@ export const EN: EnterpriseCopy = {
     privacy:
       "We'll never share your data. Submissions are stored encrypted. Manual review by Jason within 48h.",
     errMissing: "Please add your work email and what you'd like audited.",
+    errIncompleteEmail: "Please enter your full email address (for example name@company.com).",
     errGeneric: "Submission failed.",
   },
 };
@@ -761,6 +763,7 @@ export const ZH: EnterpriseCopy = {
     privacy:
       "我们绝不分享你的数据。提交内容加密存储。Jason 会在 48 小时内人工审阅。",
     errMissing: "请填写工作邮箱和想审计的内容。",
+    errIncompleteEmail: "请填写完整的邮箱地址(例如 name@company.com)。",
     errGeneric: "提交失败。",
   },
 };

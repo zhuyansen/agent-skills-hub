@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
-import { submitEnterpriseLead } from "../lib/enterpriseLead";
+import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
@@ -151,6 +151,12 @@ export function EnterprisePage() {
         ].filter(Boolean).join(","),
       });
       setError(c.form.errMissing);
+      return;
+    }
+    if (!isCompleteEmail(form.email)) {
+      // type="email" lets name@gmail through, and a reply to it would bounce.
+      trackEvent("enterprise_lead_invalid", { missing: "email_domain" });
+      setError(c.form.errIncompleteEmail);
       return;
     }
     // Name/company synthesis, the RPC call and the attempt/submitted/failed
