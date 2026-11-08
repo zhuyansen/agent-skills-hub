@@ -25,6 +25,8 @@ CACHE_ENV = "REPO_ROWS_CACHE"   # the run's cache file: JSON lines {"k": lower-c
 BATCH = 100                     # repos per GraphQL request; a request costs 1 point of the 5,000 an hour
 ATTEMPTS = 2
 RETRY_PAUSE = 5
+GONE_SHARE = 0.02               # more "not found" than this share of a run's names is not believed
+GONE_FLOOR = 20                 # ... unless it is only this many (a hand run of a few names)
 GRAPHQL_TIMEOUT = 120
 FRAGMENT = ("fragment F on Repository { nameWithOwner stargazerCount description createdAt "
             "primaryLanguage { name } licenseInfo { spdxId } }")
@@ -106,16 +108,23 @@ def prefetch(names: list[str]) -> dict:
             continue
         seen.add(name.lower())
         todo.append(name)
+    answers: dict[str, dict | None] = {}
     for start in range(0, len(todo), BATCH):
         chunk = todo[start:start + BATCH]
-        answers = _ask(chunk, stats)
-        stats["asked"] += len(chunk)
-        for name in chunk:
-            if name not in answers:
-                stats["left"] += 1
-                continue
-            put(name, answers[name])
-            stats["gone" if answers[name] is None else "found"] += 1
+        answers.update(_ask(chunk, stats))
+    stats["asked"] = len(todo)
+    gone = [name for name, row in answers.items() if row is None]
+    if len(gone) > max(GONE_FLOOR, GONE_SHARE * len(todo)):
+        # Not 1 repo in 50 vanishing overnight (3 of 4,453 on 11-08): GraphQL is wrong. Believing it would
+        # take them off their pages (exclude_gone) and out of the lists. The one-by-one lookup decides.
+        stats["doubted"] = len(gone)
+        answers = {name: row for name, row in answers.items() if row is not None}
+    for name in todo:
+        if name not in answers:
+            stats["left"] += 1
+            continue
+        put(name, answers[name])
+        stats["gone" if answers[name] is None else "found"] += 1
     return stats
 
 

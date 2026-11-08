@@ -152,6 +152,21 @@ def test_a_failed_batch_leaves_its_names_and_the_next_one_goes_on(cache, monkeyp
     assert stats == {"asked": 3, "found": 0, "gone": 2, "left": 1, "requests": 4}      # b/two was tried twice
 
 
+def test_a_flood_of_not_found_is_not_believed(cache, monkeypatch):
+    names = [f"o/r{i}" for i in range(200)]
+    monkeypatch.setattr(rr, "run_batch", lambda chunk: {n: (None if int(n[3:]) < 30 else row(n)) for n in chunk})
+    stats = rr.prefetch(names)                     # 30 of 200 "not found" is far above 2%
+    assert stats["doubted"] == 30 and stats["gone"] == 0 and stats["found"] == 170 and stats["left"] == 30
+    assert rr.get("o/r0") == (False, None) and rr.get("o/r30") == (True, row("o/r30"))
+
+
+def test_a_few_not_found_are_believed(cache, monkeypatch):
+    names = [f"o/r{i}" for i in range(200)]
+    monkeypatch.setattr(rr, "run_batch", lambda chunk: {n: (None if int(n[3:]) < 3 else row(n)) for n in chunk})
+    stats = rr.prefetch(names)                     # the 3 of 4,453 seen on 11-08
+    assert "doubted" not in stats and stats["gone"] == 3 and rr.get("o/r0") == (True, None)
+
+
 def test_a_name_the_batch_did_not_answer_is_left(cache, monkeypatch):
     monkeypatch.setattr(rr, "run_batch", lambda names: {names[0]: row(names[0])})
     stats = rr.prefetch(["a/one", "b/two"])
