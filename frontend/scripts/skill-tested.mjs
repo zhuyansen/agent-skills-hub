@@ -27,7 +27,7 @@ const same = (a, b) => a.toLowerCase() === b.toLowerCase();
 function topPlace(scenario, repo) {
   const top = scenario.explainer?.top;
   const place = top ? top.items.findIndex((item) => same(item.repo, repo)) + 1 : 0;
-  return place ? { place, title: [top.h2, top.h2_zh || top.h2] } : null;
+  return place ? { place, title: [top.h2, top.h2_zh || top.h2], ranked: top.numbered !== false } : null;
 }
 
 function entry(slug, run, repo) {

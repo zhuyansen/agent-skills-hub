@@ -15,9 +15,11 @@ export function testedIntro(e) {
     `${e.date}，我们在「${e.pageTitle[1]}」页把 ${e.tested} 个工具用同一个任务从头跑了一遍，它是其中之一。`];
 }
 
-/** Its place in the page's list of the best by our test ("The 5 best PPT skills ..."). */
+/** Its place in the page's list of the best by our test ("The 5 best PPT skills ..."). A list that is
+ *  not a ranking (`ranked: false`: the image page's picks by look, the anti-slop picks) names no place. */
 export function testedTop(e) {
   if (!e.top) return null;
+  if (e.top.ranked === false) return [`Picked for "${e.top.title[0]}".`, `入选「${e.top.title[1]}」。`];
   return [`No. ${e.top.place} in "${e.top.title[0]}".`, `「${e.top.title[1]}」第 ${e.top.place} 名。`];
 }
 

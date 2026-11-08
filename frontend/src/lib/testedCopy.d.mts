@@ -9,7 +9,7 @@ export interface TestedEntry {
   tested: number;
   bits: Pair[];
   pick: { role: Pair; why: Pair } | null;
-  top: { place: number; title: Pair } | null;
+  top: { place: number; title: Pair; ranked?: boolean } | null;
   evidence: { href: string; image: boolean; label: Pair };
 }
 
