@@ -1,0 +1,35 @@
+{
+ "_about": "Looks by hand where the automatic checks are unsure or inconsistent. Text: OCR did not find a line as written (text_check.line_verdict sends near misses and lines the judge passed here): per run, poster line index (0-5 as in text_check.LINES) or bag -> true (written correctly) / false (wrong). mascot_text: overrides the judge's 'text on the mascot pictures' (it counted Zzz sleep marks as text on two sets and not on others). Each with a note.",
+ "yanliudesign/mono-color-skill": {
+  "poster": {
+   "0": true
+  },
+  "note": "Morning Loaf: the f sits against the right edge in a condensed bold face; OCR read Loar or Loat, at full size it is Loaf (11-07)."
+ },
+ "TaiT-tt/tait-crt-interface-skill": {
+  "poster": {
+   "5": true
+  },
+  "note": "前一百位顾客送一个可颂: the last glyph is 颂 in a pixel font; OCR read 领 or 烦 (11-08)."
+ },
+ "JuneYaooo/xhs-writer-skill": {
+  "bag": true,
+  "note": "Morning Loaf in a brush script, spelt right; OCR missed it (11-08)."
+ },
+ "dacnay816y62-hub/fantasy-qiqiguaiguai-skill": {
+  "bag": true,
+  "note": "Morning Loaf in a tall serif, spelt right; the bag also carries OUT OF OVEN · 07:00 and a Chinese line the brief did not ask for (11-08)."
+ },
+ "mrafaeldie12/nano-banana-pro-mcp": {
+  "bag": true,
+  "note": "Morning Loaf in a typewriter face, spelt right; OCR missed it (11-08)."
+ },
+ "chujianyun/awesome-gpt-image2-ppt-skills": {
+  "mascot_text": false,
+  "note": "The only marks on the mascots are Zzz over the sleeping one: a sleep symbol, which other sets drew without being flagged, not text (11-08)."
+ },
+ "jinshiqwq/image-first-frontend": {
+  "mascot_text": false,
+  "note": "The only marks on the mascots are Zzz over the sleeping one: a sleep symbol, which other sets drew without being flagged, not text (11-08)."
+ }
+}

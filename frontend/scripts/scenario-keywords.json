@@ -1817,39 +1817,48 @@
     "text_zh": "生图 skill 是一个可以安装的包（带 SKILL.md 的文件夹，或一个 MCP 服务器），让 Claude Code、Codex 这类编程 agent 调用图像模型，比如谷歌的 Nano Banana（Gemini）、FLUX 或 GPT Image，生成或修改图片并存进你的项目。skill 负责接上模型，并带着写提示词的经验。大多数通过你在模型厂商那里的账号或 API key 计费；基于 ComfyUI 的可以改在你自己的电脑上跑开源模型。"
    },
    "top": {
-    "h2": "5 image generation skills to start with in 2026",
-    "h2_zh": "2026 年先从这 5 个生图 skill 开始",
+    "h2": "7 image generation skills with a look of their own (tested 2026)",
+    "h2_zh": "有自己画风的 7 个生图 skill（2026 实测）",
     "numbered": false,
     "items": [
      {
-      "repo": "AgriciDaniel/banana-claude",
-      "line": "For Nano Banana (Gemini) images inside Claude Code. It creates, edits and compares images, and shows the prompt, model, settings and an estimated cost before any paid request. Needs a Gemini API key; runs on macOS and Linux (Windows through WSL).",
-      "line_zh": "在 Claude Code 里用 Nano Banana（Gemini）出图。能生成、修改、对比图片，每次付费请求前先列出提示词、模型、参数和预估费用。需要 Gemini API key；支持 macOS 和 Linux（Windows 走 WSL）。"
+      "repo": "yanliudesign/mono-color-skill",
+      "line": "For a one-colour print look. Every picture came out in blue halftone on cream with oversized type, like a risograph poster, and every rule of the brief held. It drew 28 times to get there, the most of any skill that followed the brief (10.8 minutes, $0.17).",
+      "line_zh": "要单色印刷的感觉。每张都是米色底上的蓝色网点和大号字，像孔版印刷海报，测试题的每条要求也都做到了。为此它画了 28 次，完全照做的 skill 里最多（10.8 分钟，$0.17）。"
      },
      {
-      "repo": "black-forest-labs/flux-mcp",
-      "line": "For FLUX, from the company that makes it. Black Forest Labs' official MCP server, hosted at mcp.bfl.ai: sign in with a BFL account and Claude Code or any other MCP client can generate, edit and vary FLUX images and make FLUX 3 videos, billed to that account.",
-      "line_zh": "用 FLUX，就用出品方自己的。Black Forest Labs 官方的 MCP 服务器，托管在 mcp.bfl.ai：用 BFL 账号登录后，Claude Code 或任何 MCP 客户端都能生成、修改、变体 FLUX 图片，还能做 FLUX 3 视频，费用记在这个账号上。"
+      "repo": "tmchow/illo-skill",
+      "line": "For warm, hand-drawn illustration. It drew the mascot in a cartoon line style and put it on the poster and the bag too, so the six read as one set (9.5 minutes, $0.09).",
+      "line_zh": "要温暖的手绘插画。它用卡通线条画吉祥物，还把吉祥物放进了海报和纸袋，六张像一整套（9.5 分钟，$0.09）。"
      },
      {
-      "repo": "Comfy-Org/comfy-mcp",
-      "line": "For generating on your own machine. The official ComfyUI MCP lets Claude Code drive the ComfyUI you run locally, from a text prompt or a saved workflow, so local models cost nothing per image. Hosted partner models such as FLUX and Ideogram are optional and spend credits.",
-      "line_zh": "在自己电脑上出图。ComfyUI 官方的 MCP，让 Claude Code 指挥你本机的 ComfyUI，用一句提示词或保存好的工作流出图，本地模型不按张收费。也能选用 FLUX、Ideogram 等托管模型，那部分要花额度。"
+      "repo": "BIAsia/voxel-icon",
+      "line": "For a voxel (3D pixel-block) look. The loaf, the mascot and even the bag came out as clean voxel art on white, with the text set plainly below (4.7 minutes, $0.07).",
+      "line_zh": "要体素（3D 像素块）风格。面包、吉祥物连纸袋都做成了白底体素图，字老老实实排在下面（4.7 分钟，$0.07）。"
      },
      {
-      "repo": "scenario-labs/skills",
-      "label": "scenario-labs/skills",
-      "line": "For the widest set in one install. Scenario's skills cover product shots, brand kits, image editing, text overlays and storyboards through the Scenario MCP, plus expert tools for Blender, Unity, Unreal and other 3D and game tools. Needs a Scenario account or API key.",
-      "line_zh": "一次装全，覆盖最广。Scenario 的这套 skill 通过它的 MCP 做产品图、品牌素材、修图、加字和分镜，另有 Blender、Unity、Unreal 等 3D 和游戏工具的专家 skill。需要 Scenario 账号或 API key。"
+      "repo": "james20141606/sci-figure-workflow",
+      "line": "For flat vector graphics. Built for research-paper figures, it drew a sun-and-loaf poster in clean shapes and a line-drawn mascot, closer to an infographic than a photo (7.8 minutes, $0.05).",
+      "line_zh": "要扁平矢量图形。它本来是做论文配图的，画出的是几何形状的太阳和面包海报、线描吉祥物，更像信息图而不是照片（7.8 分钟，$0.05）。"
      },
      {
-      "repo": "helloianneo/ian-xiaohei-illustrations",
-      "line": "The most-starred skill on this page, for one job: it turns a point in a Chinese article into a 16:9 hand-drawn illustration starring its \"Xiaohei\" character. A fixed style, not a general image generator; built for Codex.",
-      "line_zh": "本页星数最高，只做一件事：把中文文章里的一个观点画成 16:9 白底手绘配图，主角是「小黑」。画风固定，不是通用生图工具；为 Codex 写的。"
+      "repo": "dacnay816y62-hub/regional-culture-poster",
+      "line": "For posters built on Chinese lettering. It set a giant calligraphic 晨 (morning) behind the loaf; its mascot and bag stay close to the default photo look (3.6 minutes, $0.05).",
+      "line_zh": "要以中文字为主角的海报。它在面包后面放了一个巨大的书法「晨」字；吉祥物和纸袋仍接近默认的照片风格（3.6 分钟，$0.05）。"
+     },
+     {
+      "repo": "nevertoday/xxd-panel-028",
+      "line": "For little isometric scenes. Built to turn photos into paper miniatures, from the brief alone it stood the mascot in a tiny bakery stall, with props from the same scene on the poster and the bag (4.6 minutes, $0.10).",
+      "line_zh": "要等距视角的小场景。它本来是把照片做成纸模型的，只给需求时，它把吉祥物放进了一个迷你面包摊，海报和纸袋上也摆着同一个场景里的小道具（4.6 分钟，$0.10）。"
+     },
+     {
+      "repo": "dacnay816y62-hub/photo-revival",
+      "line": "For a quiet, minimal look. Built to turn your photos into airy hand-drawn pictures, from the brief alone it drew small subjects in a lot of white space with light type, the opposite of the busy default (6.7 minutes, $0.05).",
+      "line_zh": "要安静、极简的感觉。它本来是把照片转成留白手绘的，只给需求时，画出的是大面积留白里的小主体和细字，和满满当当的默认风格正好相反（6.7 分钟，$0.05）。"
      }
     ],
-    "note": "Picked from the 248 on this page by what each one does, security grade (all five rated SAFE) and upkeep (all updated since mid-October 2026). Unlike our PPT and code review pages, we have not run these end to end yet.",
-    "note_zh": "从本页 248 个里按用途、安全评级（5 个都是 SAFE）和维护情况（都在 2026 年 10 月中旬后更新过）挑出。和 PPT、代码审查两页不同，这 5 个我们还没有端到端实跑过。"
+    "note": "From our 2026-11-08 test of 130 skills: each of these made all six pictures, wrote every line of text right, kept the formats asked for, added no text and drew one consistent mascot, and its set looks different from what Claude Code made with no skill (top). Not ranked; every result is in the test section below.",
+    "note_zh": "出自 2026-11-08 对 130 个 skill 的实测：这几个都交齐六张、每行字都写对、尺寸符合要求、没有多加字、吉祥物前后一致，而且整套图看起来和不装 skill 的（最上面那组）不一样。不分名次；全部结果在下面的实测区。"
    }
   },
   "match": {
@@ -2057,15 +2066,15 @@
   "extra_faq": [
    {
     "q": "Can Claude generate images?",
-    "a": "Claude itself does not output images, but Claude Code can, through a skill or MCP server that calls an image model: ningzimu/codex-ppt-skill and helloianneo/ian-xiaohei-illustrations use GPT Image, AgriciDaniel/banana-claude uses Nano Banana, joenorton/comfyui-mcp-server drives a local ComfyUI.",
+    "a": "Claude itself does not output images, but Claude Code can, by calling an image model's API (GPT Image, Nano Banana, FLUX and others) through a skill, an MCP server or directly with your key. In our November 2026 test, Claude Code with no skill and a GPT Image key made a bakery poster with six exact lines of English and Chinese text, a product photo and four matching mascot pictures in 5.1 minutes, for $0.07.",
     "qZh": "Claude 能生成图片吗?",
-    "aZh": "Claude 本身不直接输出图片,但 Claude Code 可以通过调用图像模型的 skill 或 MCP 服务生成:ningzimu/codex-ppt-skill 和 helloianneo/ian-xiaohei-illustrations 用 GPT Image,AgriciDaniel/banana-claude 用 Nano Banana,joenorton/comfyui-mcp-server 调用本地的 ComfyUI。"
+    "aZh": "Claude 本身不直接输出图片，但 Claude Code 可以调用图像模型的 API（GPT Image、Nano Banana、FLUX 等）出图：通过 skill、MCP 服务，或者直接用你的 key。在我们 2026 年 11 月的实测里，不装 skill 的 Claude Code 只用一把 GPT Image 的 key，5.1 分钟、花 $0.07，就画出了一张六行中英文一字不差的面包店海报、一张商品图和四张同一角色的吉祥物图。"
    },
    {
     "q": "Where are image generation skills and MCP servers on GitHub?",
-    "a": "Besides the ones above: SamurAIGPT/Generative-Media-Skills (multi-modal media skills for Claude Code, Cursor and Gemini CLI), op7418/NanoBanana-PPT-Skills and s1dashu/ip-as-logo-skill (mascot logos). All are in the open-source list zhuyansen/awesome-ai-image-skills on GitHub, grouped by model and use.",
+    "a": "Everything on this page is in the open-source list zhuyansen/awesome-ai-image-skills on GitHub, grouped by model and use. Our test of 130 of them, with every picture each one made, is in the test section above; 20 of those work only with their own service or account, such as Bria, NovelAI, Scenario or Black Forest Labs.",
     "qZh": "GitHub 上哪里能找到生图 skill 和 MCP 服务?",
-    "aZh": "除了上面这些,还有 SamurAIGPT/Generative-Media-Skills(给 Claude Code、Cursor、Gemini CLI 用的多模态媒体 skill)、op7418/NanoBanana-PPT-Skills 和 s1dashu/ip-as-logo-skill(IP 吉祥物 Logo)。它们都收录在 GitHub 开源合集 zhuyansen/awesome-ai-image-skills 里,按模型和用途分组。"
+    "aZh": "本页收录的都在 GitHub 开源合集 zhuyansen/awesome-ai-image-skills 里，按模型和用途分组。我们对其中 130 个的实测，连同每个画出的图，都在上面的实测区；其中 20 个只能接它自家的服务或账号，比如 Bria、NovelAI、Scenario、Black Forest Labs。"
    }
   ]
  },

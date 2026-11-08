@@ -23,5 +23,5 @@ WORKDIR /home/runner/work
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
 USER runner
-COPY --chown=runner run_one.sh render.py image_proxy.py /home/runner/bin/
+COPY --chown=runner run_one.sh render.py image_proxy.py image_routes.py /home/runner/bin/
 ENTRYPOINT ["bash", "/home/runner/bin/run_one.sh"]

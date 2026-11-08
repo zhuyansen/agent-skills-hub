@@ -1,0 +1,14 @@
+An image skill from ~/src has been installed for you in ~/.claude/skills. Use it, following its own workflow and rules, to make one picture.
+
+This skill only makes portraits of women, so it gets its own task instead of the shared brief: a portrait for Morning Loaf, a small bakery opening this Saturday. The owner, a woman in her thirties, stands in the bakery doorway at sunrise holding a round sourdough loaf. Warm morning light. Portrait, 3:4. No text.
+
+Image models on this machine:
+- OpenAI's image API: the official SDKs and https://api.openai.com both work, and OPENAI_BASE_URL / OPENAI_API_KEY are set.
+- Google's Gemini API (Nano Banana): the official SDKs and https://generativelanguage.googleapis.com both work, and GEMINI_API_KEY / GOOGLE_API_KEY are set.
+Whatever model a call names, it is served by the newest model of the same family: OpenAI image calls by GPT Image 2.6, Gemini (Nano Banana) calls by Nano Banana 2.1.
+
+Rules:
+- Do not ask me any questions. Where the skill would ask, take its default or the option that best fits the task.
+- Follow the skill's own workflow: its prompts, styles and checks. If it expects an image tool this machine does not have (for example Codex's built-in image generation, which uses OpenAI's image models), call OpenAI's image API above with exactly the prompt and settings the skill produces.
+- Save the picture as ~/work/output/portrait.png.
+- When you finish, print one line: DELIVERABLE: ~/work/output/

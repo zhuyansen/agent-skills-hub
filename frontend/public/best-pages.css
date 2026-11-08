@@ -677,6 +677,25 @@
 .bp-tr-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; border: 1px solid var(--bp-border); background: #000; }
 .bp-tr-clip figcaption { font-size: 13px; margin-top: 6px; color: var(--bp-text); }
 
+/* The image test (scenario-image-test.mjs, 2026-11-08): each pick's pictures, the model line-up's
+   posters, a strip of pictures per row in the results table and its filter (the passage tabs' pills). */
+.bp-im-pick { margin: 6px 0 14px; }
+.bp-im-pick img { display: block; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--bp-border); }
+.bp-im-pick figcaption { font-size: 13px; margin-top: 6px; color: var(--bp-text-secondary); }
+.bp-im-pick a { color: var(--bp-link); text-decoration: none; }
+.bp-im-thumb img, .bp-im-strip img { max-width: none; height: auto; }
+.bp-im-strip { display: block; margin-top: 6px; width: max-content; }
+.bp-im-table td:nth-child(3) { white-space: nowrap; }
+.bp-im-table .bp-tr-skill { width: 266px; min-width: 266px; }
+.bp-im-table .bp-tr-skill .bp-tr-note { display: block; margin-top: 2px; }
+.bp-im-issue { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: #cf222e; }
+.dark .bp-im-issue { color: #f85149; }
+.bp-im-table tr[hidden] { display: none; }
+.bp-im-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.bp-im-filter button { font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--bp-border); background: var(--bp-bg); color: var(--bp-text-secondary); cursor: pointer; }
+.bp-im-filter button[aria-pressed="true"] { border-color: var(--bp-link); color: var(--bp-link); font-weight: 600; }
+.bp-im-filter button:focus-visible { outline: 2px solid var(--bp-link); outline-offset: 2px; }
+
 /* Install line on scenario cards: copy without leaving the page (2026-10-18).
    Same terminal colours as .bp-code, so it reads as a command in both themes. */
 .bp-sc-install { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 6px 6px 12px; background: var(--bp-code-bg); border-radius: 6px; min-width: 0; }

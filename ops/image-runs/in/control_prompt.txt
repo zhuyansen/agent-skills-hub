@@ -1,0 +1,12 @@
+Make the pictures described in ~/work/brief.md. No skill is installed: use what is on this machine.
+
+Image models on this machine:
+- OpenAI's image API: the official SDKs and https://api.openai.com both work, and OPENAI_BASE_URL / OPENAI_API_KEY are set.
+- Google's Gemini API (Nano Banana): the official SDKs and https://generativelanguage.googleapis.com both work, and GEMINI_API_KEY / GOOGLE_API_KEY are set.
+- FLUX through the OpenAI image API above, with model "flux-3-image".
+Whatever model a call names, it is served by the newest model of the same family: OpenAI image calls by GPT Image 2.6, Gemini (Nano Banana) calls by Nano Banana 2.1, FLUX calls by FLUX 3.
+
+Rules:
+- Do not ask me any questions.
+- Save the six files to ~/work/output/ with the names in the brief.
+- When you finish, print one line: DELIVERABLE: ~/work/output/

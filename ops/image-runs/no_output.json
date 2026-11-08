@@ -1,0 +1,159 @@
+{
+ "_about": "Runs that made none of the six pictures, by why (2026-11-08, from each run's closing message). What the skill needs, not a score. Truncated names in the first candidate list (dreiachse-cyber/image-cockpit-for-codex-work, dacnay816y62-hub/fantasy-dongfang-jianyuehai) were duplicates of repos run under their full names and are left out.",
+ "own_account": {
+  "label": [
+   "Works only with its own service or account",
+   "只能接它自家的服务或账号"
+  ],
+  "repos": {
+   "AndyShaman/gemini-webapi-mcp": [
+    "needs a signed-in Gemini web session (browser cookies)",
+    "要 Gemini 网页版的登录 cookie"
+   ],
+   "BlockRunAI/Claude-Code-GPT-IMAGE2-SeeDance-BlockRun": [
+    "needs a funded BlockRun wallet (USDC on Base)",
+    "要充了值的 BlockRun 钱包（Base 链 USDC）"
+   ],
+   "Bria-AI/bria-skill": [
+    "needs a Bria API key",
+    "要 Bria API key"
+   ],
+   "SamurAIGPT/Generative-Media-Skills": [
+    "needs a MuAPI account and key",
+    "要 MuAPI 账号和 key"
+   ],
+   "awei84/antibanana-mcp": [
+    "needs Antigravity credentials",
+    "要 Antigravity 的登录凭据"
+   ],
+   "black-forest-labs/flux-mcp": [
+    "needs a Black Forest Labs account (the hosted official MCP)",
+    "要 Black Forest Labs 账号（官方托管 MCP）"
+   ],
+   "boteSu/aiChatGptAgent": [
+    "needs ChatGPT web accounts, which it offers to mass-register: against OpenAI's terms, so not done",
+    "要 ChatGPT 网页账号，它提供批量注册，违反 OpenAI 条款，没有用"
+   ],
+   "darkamenosa/codex-imagen": [
+    "needs a ChatGPT or Codex sign-in; it does not take an API key",
+    "要 ChatGPT 或 Codex 登录，不接 API key"
+   ],
+   "jomeswang/agnes-ai-skill": [
+    "needs an Agnes API key",
+    "要 Agnes API key"
+   ],
+   "kodelyx/flow-agent": [
+    "needs a signed-in Google Flow session",
+    "要登录好的 Google Flow"
+   ],
+   "koshimazaki/flux-api-control-surface": [
+    "needs a Black Forest Labs key in the macOS Keychain",
+    "要存在 macOS 钥匙串里的 Black Forest Labs key"
+   ],
+   "luciferfran/nan-mcp-server": [
+    "needs a NaN API key",
+    "要 NaN API key"
+   ],
+   "metavolve-labs/studiomcphub": [
+    "needs paid credits on its hosted server",
+    "要它托管服务器上的付费点数"
+   ],
+   "ningzimu/codex-gpt-image": [
+    "needs a Codex sign-in and says not to use an API key",
+    "要 Codex 登录，并写明不要用 API key"
+   ],
+   "nopnor/SCOPE": [
+    "needs a JD Cloud account",
+    "要京东云账号"
+   ],
+   "runapi-ai/mcp": [
+    "needs a RunAPI account",
+    "要 RunAPI 账号"
+   ],
+   "scenario-labs/skills": [
+    "needs a Scenario account or API key",
+    "要 Scenario 账号或 API key"
+   ],
+   "xinvxueyuan/NovelAI-Image-MCP": [
+    "needs a NovelAI account",
+    "要 NovelAI 账号"
+   ],
+   "andyluu98/ai-image-gpt-mcp": [
+    "needs a ChatGPT sign-in in a browser; it does not read an API key",
+    "要在浏览器里登录 ChatGPT，不读 API key"
+   ],
+   "TamerinTECH/claude-code-generate-images-mcp": [
+    "calls a retired Gemini 2.0 endpoint written into its code, or Azure OpenAI; our sandbox's relay did not serve that endpoint",
+    "代码里写死了已下线的 Gemini 2.0 接口，或 Azure OpenAI；我们沙箱的转接不支持那个接口"
+   ]
+  }
+ },
+ "not_from_scratch": {
+  "label": [
+   "Does another job, not pictures from a brief",
+   "不是按需求从零出图"
+  ],
+  "repos": {
+   "Andy20010101/style-prompt-forger-skill": [
+    "writes reusable style prompts, not pictures",
+    "只写可复用的风格提示词，不出图"
+   ],
+   "Evianis/travel-photo-abstraction": [
+    "needs a travel photo to start from",
+    "要先给一张旅行照片"
+   ],
+   "LueXxxxxxx/architecture-image2-diagram-skill": [
+    "draws architecture diagrams only",
+    "只画架构框图"
+   ],
+   "ShinChven/nano-banana-skills": [
+    "needs existing pictures of the character; makes a three-view sheet",
+    "要先有角色图，出三视图"
+   ],
+   "Vieeeeeee/wibi-style": [
+    "restyles a photo you give it, and its licence is non-commercial only",
+    "把你给的照片转成某种画风，且只许非商用"
+   ],
+   "karem505/character-animation-skill": [
+    "animates a character picture you give it",
+    "把你给的角色图做成动画"
+   ],
+   "op7418/guizang-yingzao-skill": [
+    "covers its own subject only, not ads, products or mascots",
+    "只做它那类题材，不做广告、商品图和吉祥物"
+   ]
+  }
+ },
+ "needs_a_person": {
+  "label": [
+   "Waits for a person first",
+   "要人先回答或先选"
+  ],
+  "repos": {
+   "izscc/cc2image": [
+    "must have a person pick a style in a separate plugin first",
+    "必须先有人在另一个插件里选好画风"
+   ],
+   "Gayaya999/ecommerce-detail-page-generator": [
+    "asks for missing shop details before drawing, and makes text-free product shots only",
+    "缺店铺信息就只会追问，且只出无字商品图"
+   ]
+  }
+ },
+ "timeout_nothing": {
+  "label": [
+   "No picture within 20 minutes",
+   "20 分钟内一张没交"
+  ],
+  "repos": {
+   "JuneYaooo/gpt-image2-ppt-skills": [
+    "a slide-deck workflow: no picture saved in 20 minutes",
+    "做幻灯片的流程，20 分钟没存下一张"
+   ],
+   "helloianneo/ian-handdrawn-ppt": [
+    "a slide-deck workflow: no picture saved in 20 minutes",
+    "做幻灯片的流程，20 分钟没存下一张"
+   ]
+  }
+ }
+}

@@ -61,6 +61,7 @@ function testedPickHtml(verdict, skills, itemCount, subject, scenario) {
 
 export function quickPickHtml(scenario, skills, itemCount, subject, verdict = null) {
   if (!skills.length) return "";
+  if (verdict?.answer) return answerHtml(verdict);
   const tested = verdict?.picks?.length ? testedPickHtml(verdict, skills, itemCount, subject, scenario) : "";
   if (tested) return tested;
   const { pick, safe } = quickPick(scenario, skills);
@@ -79,6 +80,16 @@ export function quickPickHtml(scenario, skills, itemCount, subject, verdict = nu
         <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${desc}</p>
       </div>`;
 }
+/** A test whose answer is not one skill (the image page: no skill beat Claude Code alone on the text,
+ *  so the pick is by look) says so in the box instead: verdict.answer, an [English, Chinese] pair. */
+function answerHtml(verdict) {
+  const [more, moreZh] = verdict.more || ["See the test →", "看实测 →"];
+  return `<div class="bp-quick-pick">
+        <span style="font-size:20px">⚡</span>
+        <p style="flex:1;min-width:200px;margin:0">${bi(...verdict.answer)} <a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${esc(more)}" data-zh="${esc(moreZh)}">${esc(more)}</a></p>
+      </div>`;
+}
+
 function bi(en, zh, style = "") {
   return `<span${style ? ` style="${style}"` : ""} data-en="${esc(en)}" data-zh="${esc(zh)}">${esc(en)}</span>`;
 }

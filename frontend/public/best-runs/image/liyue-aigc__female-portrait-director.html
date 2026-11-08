@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>liyue-aigc/female-portrait-director: image test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/image-generation/">← Image generation skills</a></p>
+<style>.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0}
+.pics figure{margin:0}.pics .big{grid-column:span 2}@media(max-width:520px){.pics .big{grid-column:auto}}
+.pics figcaption{font-size:13px;color:var(--mute);margin-top:4px}</style><h1>liyue-aigc/female-portrait-director: image test, 2026-11-08</h1><p class="mute">The same brief for every skill: a 3:4 poster for a made-up bakery with six exact lines of English and Chinese text, a square photo of a kraft-paper bag printed with the shop's name, and four square pictures of one mascot in four poses. Claude Code (Claude Opus 5.5) made them with the skill in a throwaway sandbox; every image call went to the newest model of the family the skill asked for (GPT Image 2.6, Nano Banana 2.1 or FLUX 3). 1.9 minutes; 1 image calls ($0.009), drawn by gpt-image-2.6-ext. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/image-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/image-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/image-runs/score_image.py">How it is scored</a></p><p>Draws portraits of women only, so it got a portrait brief instead of the bakery set.</p><h2>Result</h2><p><b>Portrait only</b></p><h2>The pictures</h2><div class="pics"><figure class="big"><a href="liyue-aigc__female-portrait-director-portrait.webp"><img src="liyue-aigc__female-portrait-director-portrait.webp" alt="portrait" loading="lazy"></a><figcaption>portrait</figcaption></figure></div><h2>How it went (the session's closing message)</h2><pre>I made the portrait and saved it as `~/work/output/portrait.png`. It&#x27;s 3:4 at 768×1024, smaller than the 1536×2048 I asked the API for.
+
+**What it shows:** a woman in her thirties leans on the wooden doorframe of the bakery at sunrise. She&#x27;s holding a round, floured sourdough loaf in both hands and smiling at the camera. She wears a cream linen shirt and an oatmeal apron with flour on it. Low warm sunlight comes from the side, and behind her are blurred shelves of bread and a floured worktable. Her face, hands and the loaf look right, and there&#x27;s no text, logo or watermark anywhere in the picture.
+
+**How I followed the skill:**
+- **Style:** I used its &quot;clean lifestyle&quot; style (natural, everyday, like a still from a film), which fits a candid doorway shot best.
+- **Prompt:** I wrote it the skill&#x27;s way, in Chinese and in five paragraphs: the person; the moment and pose; clothing and colors; the setting and camera; then light and color grading. The first line sets 3:4 and no text, and the skill&#x27;s list of things to avoid is added at the end.
+- **Your details kept:** her age (thirties, which replaces the skill&#x27;s default of 20–28), the doorway, sunrise, the round sourdough loaf, warm light, 3:4 and no text.
+- **Skill defaults I took:** where your brief was silent, I used the skill&#x27;s defaults. That made her East Asian and gave the picture a warm, soft, low-contrast color grade.
+- **Image call:** OpenAI&#x27;s image API, called as `gpt-image-1` with high quality.
+
+DELIVERABLE: ~/work/output/</pre>
+</main></body></html>

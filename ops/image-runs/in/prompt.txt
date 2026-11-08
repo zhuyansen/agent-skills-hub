@@ -1,0 +1,18 @@
+An image skill or tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools, or a CLI; check `claude mcp list` too). Use it, following its own workflow and rules, to make the pictures described in ~/work/brief.md.
+
+Image models on this machine:
+- OpenAI's image API: the official SDKs and https://api.openai.com both work, and OPENAI_BASE_URL / OPENAI_API_KEY are set.
+- Google's Gemini API (Nano Banana): the official SDKs and https://generativelanguage.googleapis.com both work, and GEMINI_API_KEY / GOOGLE_API_KEY are set.
+- FLUX through the OpenAI image API above, with model "flux-3-image".
+Whatever model a call names, it is served by the newest model of the same family: OpenAI image calls by GPT Image 2.6, Gemini (Nano Banana) calls by Nano Banana 2.1, FLUX calls by FLUX 3.
+There are no other image services or keys (no fal, Replicate, Midjourney, Stability, Scenario, MeiGen cloud or ComfyUI).
+
+Rules:
+- Do not ask me any questions. Where the skill would ask (style, direction, approval of a draft), take its default or the option that best fits the brief, and continue to the finished files.
+- Follow the skill's own workflow: its prompts, styles, templates, models and checks. If it calls an image service listed above, let it.
+- If the skill expects an image tool this machine does not have (for example Codex's built-in image generation, which uses OpenAI's image models), call OpenAI's image API above with exactly the prompts and settings the skill produces. Do not rewrite the skill's prompts.
+- If the skill's own rules conflict with the brief (a fixed character, style, layout or aspect ratio), follow the skill's rules, get as close to the brief as they allow, and say in one line which parts of the brief the skill could not meet.
+- Do not draw the pictures with code (SVG, canvas, HTML) unless the skill itself works that way.
+- Save the six files to ~/work/output/ with the names in the brief.
+- If the skill needs a service or key that is not on this machine (for example a Scenario, MeiGen or fal account), or cannot be installed or used here, stop and say why. Do not make the pictures some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output/

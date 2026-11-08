@@ -15,6 +15,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { esc, biAttrs } from "./shared-utils.mjs";
 import { passagesFor, passagesHtml } from "./scenario-passages.mjs";
+import { imageTableHtml } from "./scenario-image-test.mjs";
 
 const RUNS_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-runs.json");
 const RUNS = existsSync(RUNS_PATH) ? JSON.parse(readFileSync(RUNS_PATH, "utf-8")) : {};
@@ -247,7 +248,7 @@ function ownTables(run, ran) {
 /** "Which one to install": the test's answer, above the table (run.verdict). */
 function verdictHtml(run) {
   const v = run.verdict;
-  if (!v) return "";
+  if (!v?.picks?.length) return "";   // a verdict with only an `answer` (the image page) has its picks in the explainer
   const medals = ["🥇", "🥈", "🥉"];
   // Two picks can share a repo name (mattpocock/skills, anthropics/skills): then both show their owner.
   const names = v.picks.map((p) => name(p.repo));
@@ -268,7 +269,7 @@ function verdictHtml(run) {
 
 function notRunHtml(entries, label = ["Not run", "未能实测"]) {
   if (!entries.length) return "";
-  const items = entries.map(([repo, r]) => `<li><b>${esc(name(repo))}</b>: <span ${biAttrs(r.reason, r.reason_zh || r.reason)}>${esc(r.reason)}</span></li>`);
+  const items = entries.map(([repo, r]) => `<li><b>${esc(name(repo, r))}</b>: <span ${biAttrs(r.reason, r.reason_zh || r.reason)}>${esc(r.reason)}</span></li>`);
   return `<details class="bp-tr-notrun"><summary ${biAttrs(`${label[0]} (${entries.length})`, `${label[1]}（${entries.length}）`)}>${esc(label[0])} (${entries.length})</summary><ul>${items.join("")}</ul></details>`;
 }
 
@@ -306,7 +307,7 @@ export function runsSectionHtml(run) {
     ${compareHtml(run)}
     ${own && run.finding ? `<p class="bp-tr-intro"><strong ${biAttrs("What we found:", "发现：")}>What we found:</strong> <span ${biAttrs(...run.finding)}>${esc(run.finding[0])}</span>${run.control ? ` <a href="${esc(run.dir + run.control.sheet)}" target="_blank" rel="noopener" ${biAttrs(...(run.control.label || ["See the control run →", "看对照组 →"]))}>${esc((run.control.label || ["See the control run →"])[0])}</a>` : ""}</p>` : ""}
     ${own ? galleryHtml(run) : ""}
-    ${own ? ownTables(run, ran) : `<div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>`}
+    ${own ? (run.filters ? imageTableHtml(run, ran) : ownTables(run, ran)) : `<div class="bp-table-wrap"><table class="bp-table bp-tr-table">${table}</table></div>`}
     ${notRunHtml(all.filter(([, r]) => !r.ran), run.not_run_label || (mgr ? ["Ran, but this test could not judge them", "跑了，但这轮实测评不了"] : undefined))}
     <p class="bp-tr-mute"><a href="${esc(run.results)}" target="_blank" rel="noopener" ${biAttrs("All results and scripts →", "全部结果和脚本 →")}>All results and scripts →</a></p>
   </section>`;

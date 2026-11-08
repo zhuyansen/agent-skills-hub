@@ -55,6 +55,14 @@ ops/research/out/
 # Analytics fetch outputs (regenerated; not secrets but noisy)
 ops/*/out/
 
+# The image test (ops/image-runs, 2026-11-08): runs, original pictures (1.7 GB), logs and the compiled
+# OCR stay local; evidence.py publishes web copies to frontend/public/best-runs/image/.
+ops/image-runs/out-*/
+ops/image-runs/models/*
+!ops/image-runs/models/results.json
+ops/image-runs/bin/
+ops/image-runs/*.log
+
 # ── Generated artifacts (regenerable; keep the repo diff honest) ──
 # 2026-07-29: these accumulated to ~15K untracked lines, drowning real code
 # changes in the diff view. They are tool OUTPUT, not source.

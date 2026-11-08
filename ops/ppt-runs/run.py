@@ -35,17 +35,30 @@ def env_file() -> dict:
     return vals
 
 
+def text_env(e: dict, image_key: str | None) -> dict:
+    """The text LLM the adapter forwards chat calls to: FlatRouter, or (TEXT_VIA=image, the image test:
+    owner, 2026-11-07, "use APIMart") the image provider itself, with TEXT_MODEL (default gpt-5.2)."""
+    if os.environ.get("TEXT_VIA") == "image" and image_key:
+        return {"TEXT_API_BASE_URL": e["IMAGE_API_BASE_URL"], "TEXT_API_KEY": image_key,
+                "TEXT_MODEL": os.environ.get("TEXT_MODEL", "gpt-5.2")}
+    return {"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
+            "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")}
+
+
 def docker_env(e: dict) -> list[str]:
     # Image generation goes through the sandbox's adapter (image_proxy.py) to IMAGE_API_*;
     # the skill itself only ever sees a placeholder OpenAI key.
+    # IMAGE_KEY_NAME=APIMART_MULTI_KEY (the image test): a provider key with every image model on it.
+    key = e.get(os.environ.get("IMAGE_KEY_NAME", "IMAGE_API_KEY"))
     pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
-             **{k: e[k] for k in ("IMAGE_API_BASE_URL", "IMAGE_API_KEY") if e.get(k)},
-             **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE", "SKILL_DIR") if os.environ.get(k)},
+             **({"IMAGE_API_BASE_URL": e["IMAGE_API_BASE_URL"], "IMAGE_API_KEY": key} if key and e.get("IMAGE_API_BASE_URL") else {}),
+             **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE", "SKILL_DIR", "IMAGE_ROUTES",
+                                       "IMAGE_FORCE_NEWEST")
+                if os.environ.get(k)},
              # PASS_KEYS=TYPESAFE_API_KEY (the Jev first-run test): named keys from ~/.claude/.env go into the container.
              **{k: e[k] for k in os.environ.get("PASS_KEYS", "").split(",") if k and e.get(k)},
              # Text LLM for tools that need their own key (TEXT_PROXY=1), through the same adapter.
-             **({"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
-                 "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")} if os.environ.get("TEXT_PROXY") else {})}
+             **(text_env(e, key) if os.environ.get("TEXT_PROXY") else {})}
     return [x for k, v in pairs.items() for x in ("-e", f"{k}={v}")]
 
 

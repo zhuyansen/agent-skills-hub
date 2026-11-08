@@ -1,0 +1,968 @@
+[
+ {
+  "label": "GPT Image 1",
+  "model": "gpt-image-1",
+  "status": "completed",
+  "cost": 0.200192,
+  "seconds": 52,
+  "error": "",
+  "file": "gpt-image-1.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": false,
+     "read": "Sourdough £4.50· Croissant £ 20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": false,
+     "read": "前一百位顾客送一个可可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 3,
+   "looks": 5,
+   "note": "Portrait bakery poster with warm morning light and a prominent loaf, but two text lines are not exact."
+  },
+  "ocr_exact": 4,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   false,
+   true,
+   false
+  ]
+ },
+ {
+  "label": "GPT Image 2",
+  "model": "gpt-image-2",
+  "status": "completed",
+  "cost": 0.0085,
+  "seconds": 36,
+  "error": "",
+  "file": "gpt-image-2.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly as specified; no other text is visible."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "GPT Image 2.6",
+  "model": "gpt-image-2.6-ext",
+  "status": "completed",
+  "cost": 0.0085,
+  "seconds": 36,
+  "error": "",
+  "file": "gpt-image-2.6-ext.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly; no other text is visible."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Nano Banana",
+  "model": "gemini-2.5-flash-image-preview",
+  "status": "completed",
+  "cost": 0.008,
+  "seconds": 14,
+  "error": "",
+  "file": "gemini-2.5-flash-image-preview.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": false,
+     "read": "Grand opening • Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": false,
+     "read": "貴光倌酉 • 周六十件灿店更"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": false,
+     "read": "Sourdough £4.50 • Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": false,
+     "read": "前二百位歐案送一个可籠"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 3,
+   "looks": 5,
+   "note": "Portrait bakery poster with warm morning loaf imagery, but several lines contain incorrect characters and bullets instead of middle dots."
+  },
+  "ocr_exact": 4,
+  "ocr_found": [
+   true,
+   true,
+   false,
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Nano Banana 2",
+  "model": "gemini-3.1-flash-image-preview",
+  "status": "completed",
+  "cost": 0.012,
+  "seconds": 14,
+  "error": "",
+  "file": "gemini-3.1-flash-image-preview.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly; the poster shows a loaf in warm morning light with no other text."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Nano Banana Pro",
+  "model": "gemini-3-pro-image-preview",
+  "status": "completed",
+  "cost": 0.02,
+  "seconds": 33,
+  "error": "",
+  "file": "gemini-3-pro-image-preview.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": false,
+     "read": "晨光面包 · 十六早九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": false,
+     "read": "First 100 customers get a free croissant."
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 3,
+   "looks": 5,
+   "note": "Two requested lines are not exact: the Chinese opening line differs, and the final Chinese line is replaced with English."
+  },
+  "ocr_exact": 4,
+  "ocr_found": [
+   true,
+   true,
+   false,
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Nano Banana 2.1",
+  "model": "gemini-nano-banana-2.1-ext",
+  "status": "completed",
+  "cost": 0.012,
+  "seconds": 43,
+  "error": "",
+  "file": "gemini-nano-banana-2.1-ext.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text visible."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "FLUX 2 Pro",
+  "model": "flux-2-pro",
+  "status": "completed",
+  "cost": 0.024,
+  "seconds": 154,
+  "error": "",
+  "file": "flux-2-pro.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": true,
+   "follows_brief": 3,
+   "looks": 5,
+   "note": "All six requested lines appear exactly, but the address is repeated, creating extra text."
+  },
+  "ocr_exact": 4,
+  "ocr_found": [
+   true,
+   true,
+   false,
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "label": "FLUX 3",
+  "model": "flux-3-image",
+  "status": "completed",
+  "cost": 0.0384,
+  "seconds": 31,
+  "error": "",
+  "file": "flux-3-image.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly as specified, with no other text."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Muse",
+  "model": "muse-image-ext",
+  "status": "completed",
+  "cost": 0.0048,
+  "seconds": 53,
+  "error": "",
+  "file": "muse-image-ext.webp",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text; the portrait bakery poster shows a loaf in warm morning light."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Seedream 5 Pro",
+  "model": "seedream-5-0-pro",
+  "status": "completed",
+  "cost": 0.02925,
+  "seconds": 66,
+  "error": "",
+  "file": "seedream-5-0-pro.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six requested text strings appear exactly; the first and sixth wrap across two visual lines."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Qwen-Image 3 Pro",
+  "model": "qwen-image-3.0-pro",
+  "status": "completed",
+  "cost": 0.028572,
+  "seconds": 10,
+  "error": "",
+  "file": "qwen-image-3.0-pro.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text visible. The portrait bakery poster shows a loaf in warm morning light."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Midjourney",
+  "model": "midjourney",
+  "status": "refused 500",
+  "error": "{\"error\": {\"message\": \"model `midjourney` ratio or price is not configured. Please contact the administrator or enable self-use mode (request id: 20261107200158117514333hZrxpsPW)\", \"type\": \"apimart_er"
+ },
+ {
+  "label": "MAI Image 2.6",
+  "model": "mai-image-2.6",
+  "status": "completed",
+  "cost": 0.030032,
+  "seconds": 31,
+  "error": "",
+  "file": "mai-image-2.6.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text."
+  },
+  "ocr_exact": 5,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Hunyuan Image 3.5",
+  "model": "hy-image-v3.5-preview",
+  "status": "completed",
+  "cost": 0.0192,
+  "seconds": 24,
+  "error": "",
+  "file": "hy-image-v3.5-preview.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text visible."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Wan 2.7 Image Pro",
+  "model": "wan2.7-image-pro",
+  "status": "completed",
+  "cost": 0.0544,
+  "seconds": 33,
+  "error": "",
+  "file": "wan2.7-image-pro.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": true,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, but the poster also includes the extra text \"Est. 2024\"."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Z-Image Turbo",
+  "model": "z-image-turbo",
+  "status": "completed",
+  "cost": 0.01,
+  "seconds": 7,
+  "error": "",
+  "file": "z-image-turbo.png",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": true,
+   "follows_brief": 4,
+   "looks": 5,
+   "note": "All six lines are exact, but the address appears twice, creating extra text."
+  },
+  "ocr_exact": 5,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   false,
+   true
+  ]
+ },
+ {
+  "label": "Grok Imagine 2",
+  "model": "grok-imagine-image-2.0",
+  "status": "completed",
+  "cost": 0.048,
+  "seconds": 66,
+  "error": "",
+  "file": "grok-imagine-image-2.0.jpg",
+  "judge": {
+   "lines": [
+    {
+     "line": "Morning Loaf",
+     "exact": true,
+     "read": "Morning Loaf"
+    },
+    {
+     "line": "Grand opening · Saturday 9 am",
+     "exact": true,
+     "read": "Grand opening · Saturday 9 am"
+    },
+    {
+     "line": "晨光面包 · 周六上午九点开业",
+     "exact": true,
+     "read": "晨光面包 · 周六上午九点开业"
+    },
+    {
+     "line": "Sourdough £4.50 · Croissant £2.20",
+     "exact": true,
+     "read": "Sourdough £4.50 · Croissant £2.20"
+    },
+    {
+     "line": "12 Elm Street, Bristol",
+     "exact": true,
+     "read": "12 Elm Street, Bristol"
+    },
+    {
+     "line": "前一百位顾客送一个可颂",
+     "exact": true,
+     "read": "前一百位顾客送一个可颂"
+    }
+   ],
+   "other_text": false,
+   "follows_brief": 5,
+   "looks": 5,
+   "note": "All six lines appear exactly, with no other text visible."
+  },
+  "ocr_exact": 6,
+  "ocr_found": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "label": "Imagen 4",
+  "model": "imagen-4.0-apimart",
+  "status": "failed",
+  "cost": 0,
+  "seconds": 18,
+  "error": "This model couldn't complete your request right now. Please try again in a few minutes. Any deducted quota has been refunded automatically."
+ }
+]
