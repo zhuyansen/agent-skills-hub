@@ -18,6 +18,10 @@ What the maintainer did by hand on 09-27, 09-30 and 10-03, as one job:
 
 The workflow (.github/workflows/video-daily.yml) commits, pushes and deploys.
 
+Before the first page, one GitHub lookup per listed repo for the whole run (repo_rows.py): the pages'
+checks and list builds read it, where they used to ask GitHub three times a repo. Each page ends with a
+log line of the seconds each stage took.
+
 Usage: python ops/awesome/daily_video_pass.py <report.md> <slug>=<list-repo-dir> [...]
 Env:   OPENROUTER_API_KEY (Jev), FLATROUTER_API_KEY + FLATROUTER_BASE_URL (descriptions),
        SUPABASE_DB_URL, GH_TOKEN (gh CLI); GITHUB_REPOSITORY + ACTIONS_TOKEN to see a sync
@@ -29,6 +33,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -36,6 +41,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "ops/jev-review"), str(ROOT / "backend"), str(ROOT / "ops/awesome")]
+import repo_rows  # noqa: E402
 import scenario_gate as gate  # noqa: E402
 
 SLUG = "claude-video-skills"   # the page being processed; main() sets it per page
@@ -74,6 +80,20 @@ def log(msg: str) -> None:
     print(msg, flush=True)
 
 
+def timed(spent: dict[str, float], name: str, fn, *args, clock=time.perf_counter):
+    """fn(*args), with the seconds it took added to spent[name], also when it raises. The job log could
+    not say where 3 hours went (11-04..07): only two lines per page were flushed as they happened."""
+    start = clock()
+    try:
+        return fn(*args)
+    finally:
+        spent[name] = spent.get(name, 0.0) + clock() - start
+
+
+def stage_line(slug: str, spent: dict[str, float]) -> str:
+    return f"[{slug}] {sum(spent.values()):.0f}s: " + ", ".join(f"{k} {v:.0f}" for k, v in spent.items())
+
+
 # ── 0. never alongside a sync ─────────────────────────────────────────────────
 
 def wait_for_sync() -> bool:
@@ -86,6 +106,22 @@ def wait_for_sync() -> bool:
         log("a sync is queued or running; waiting")
         time.sleep(SYNC_POLL_SECONDS)
     return True
+
+
+def start_lookups(slugs: list[str]) -> None:
+    """One GitHub lookup per listed repo for the whole run (repo_rows): the batch now, into a file
+    the list builder shares. A batch that fails only brings back the one-by-one lookups."""
+    if not os.environ.get(repo_rows.CACHE_ENV):
+        os.environ[repo_rows.CACHE_ENV] = str(Path(tempfile.mkdtemp(prefix="repo-rows-")) / "rows.jsonl")
+    kinds = json.loads(KINDS.read_text())
+    names = sorted({n for slug in slugs for n in kinds.get(slug, {}).get("repos", {})})
+    started = time.perf_counter()
+    try:
+        stats = repo_rows.prefetch(names)
+    except Exception as exc:  # noqa: BLE001 — without the batch each lookup is one `gh api` call, as before
+        log(f"repo lookup batch failed: {str(exc)[:160]}")
+        return
+    log(f"repo lookup: {stats} in {time.perf_counter() - started:.0f}s")
 
 
 # ── 1. candidates ─────────────────────────────────────────────────────────────
@@ -278,10 +314,23 @@ def rebuild_list(list_dir: Path) -> str:
                  ["ops/awesome/previews.py", "thumbs", str(PREVIEWS), str(list_dir)],
                  ["ops/awesome/build_video_list.py", str(list_dir), SLUG]):
         done = subprocess.run([py, *args], cwd=ROOT, capture_output=True, text=True)
+        for line in done.stderr.splitlines():
+            if "quota" in line:
+                log(line)   # build_video_list.wait_for_quota says when it sleeps
         if done.returncode:
             raise RuntimeError(f"{args[0]} failed: {done.stderr[-600:]}")
         out.append(done.stdout.strip().splitlines()[-1] if done.stdout.strip() else "")
     return out[-1]
+
+
+def live_name(name: str) -> tuple[str, bool]:
+    """(GitHub's spelling of a listed name, whether GitHub no longer serves it). The run's lookups
+    (repo_rows) answer when they can; a name they lack costs one `gh api` call. ("", False): that call failed."""
+    cached, row = repo_rows.get(name)
+    if cached:
+        return (row["repo_full_name"], False) if row else ("", True)
+    done = subprocess.run(["gh", "api", f"repos/{name}", "--jq", ".full_name"], capture_output=True, text=True)
+    return done.stdout.strip(), bool(done.returncode and "Not Found" in (done.stdout + done.stderr))
 
 
 def exclude_gone() -> list[str]:
@@ -296,11 +345,8 @@ def exclude_gone() -> list[str]:
     lower = {n.lower() for n in listed}
     drop = []
     for name in listed:
-        done = subprocess.run(["gh", "api", f"repos/{name}", "--jq", ".full_name"], capture_output=True, text=True)
-        now = done.stdout.strip()
-        if done.returncode and "Not Found" in (done.stdout + done.stderr):
-            drop.append(name)
-        elif now and now.lower() != name.lower() and now.lower() in lower:
+        now, gone = live_name(name)
+        if gone or (now and now.lower() != name.lower() and now.lower() in lower):
             drop.append(name)
     if not drop:
         return []
@@ -343,28 +389,29 @@ def report(path: Path, ok: list[dict], rows: list[dict], zh: dict, db: dict, lis
     path.write_text("\n".join(lines) + "\n")
 
 
-def run_page(slug: str, list_dir: Path, report_path: Path) -> None:
+def run_page(slug: str, list_dir: Path, report_path: Path, spent: dict[str, float] | None = None) -> None:
     global SLUG
     SLUG = slug
-    before = consistency()
-    fresh = fresh_candidates()
+    spent = {} if spent is None else spent   # seconds per stage; main() logs them when the page is done
+    before = timed(spent, "check", consistency)
+    fresh = timed(spent, "search", fresh_candidates)
     log(f"[{slug}] {len(fresh)} candidates not reviewed before")
-    gate.judge(SLUG)
+    timed(spent, "judge", gate.judge, SLUG)
     ok, rows = admitted(fresh)
     log(f"[{slug}] {len(ok)} pass the page's rules")
     from jev_client import OpenRouter
     jev = OpenRouter()
-    described = {r["repo"]: describe_zh(r, jev) for r in ok}
+    described = {r["repo"]: timed(spent, "describe", describe_zh, r, jev) for r in ok}
     zh = {repo: text for repo, (text, _) in described.items()}
     db = {}
     if ok:
         names = [r["repo"] for r in ok]
         add_to_page(names, zh)
         keep_page_rows(ok)
-        gate.types(SLUG)
-        db = queue_and_grade(names)
-    gone = exclude_gone()
-    list_line = rebuild_list(list_dir)
+        timed(spent, "types", gate.types, SLUG)
+        db = timed(spent, "queue", queue_and_grade, names)
+    gone = timed(spent, "gone-check", exclude_gone)
+    list_line = timed(spent, "list", rebuild_list, list_dir)
     report(report_path, ok, rows, zh, db, list_line, before)
     if gone:
         with report_path.open("a") as f:
@@ -377,14 +424,17 @@ def main() -> int:
     if not wait_for_sync():
         report_path.write_text("## 每日补充\n\n同步一直在运行,今天跳过。\n")
         return 0
+    start_lookups([slug for slug, _ in pages])
     parts = []
     for slug, list_dir in pages:
         part = report_path.with_suffix(f".{slug}.md")
+        spent: dict[str, float] = {}
         try:
-            run_page(slug, Path(list_dir).expanduser(), part)
+            run_page(slug, Path(list_dir).expanduser(), part, spent)
         except Exception as exc:  # noqa: BLE001 — one page failing must not stop the other
             part.write_text(f"## {PAGE_NAMES.get(slug, slug)}每日补充失败\n\n`{type(exc).__name__}: {str(exc)[:400]}`\n")
             log(f"[{slug}] failed: {exc}")
+        log(stage_line(slug, spent))
         parts.append(part.read_text())
     report_path.write_text("\n\n".join(parts))
     log(report_path.read_text())

@@ -30,6 +30,8 @@ import urllib.request
 from datetime import date
 from pathlib import Path
 
+import repo_rows   # the run's lookups, shared with daily_video_pass.py
+
 ROOT = Path(__file__).resolve().parents[2]
 SLUG = "claude-video-skills"
 SITE = "https://agentskillshub.top"
@@ -234,6 +236,18 @@ def catalog_rows(names: list[str]) -> dict:
 
 
 def github_row(name: str) -> dict | None:
+    """The repo's live row, from the run's cache (repo_rows) when the pass already asked GitHub about
+    it. Otherwise from GitHub, and then remembered: the pass builds each list twice and checks every
+    listed repo as well, which was 3 lookups a repo a page (14,000 REST calls a run, 11-08)."""
+    cached, row = repo_rows.get(name)
+    if cached:
+        return row
+    row = _github_row_rest(name)   # raises on a failure; nothing is remembered then
+    repo_rows.put(name, row)
+    return row
+
+
+def _github_row_rest(name: str) -> dict | None:
     """The repo's live metadata, or None when GitHub says it is gone. A rate-limited or
     failed call waits for the quota once, then raises: on 10-05 the daily job ran the
     quota out partway through ten lists, every call failed, every repo read as gone, and
@@ -260,7 +274,11 @@ def wait_for_quota() -> None:
     """Sleep until the core quota resets (at most QUOTA_WAIT_MAX seconds)."""
     out = subprocess.run(["gh", "api", "rate_limit", "--jq", ".resources.core.reset"], capture_output=True, text=True)
     reset = int(out.stdout.strip() or 0)
-    time.sleep(min(max(reset - time.time() + 30, 0), QUOTA_WAIT_MAX))
+    wait = min(max(reset - time.time() + 30, 0), QUOTA_WAIT_MAX)
+    # daily_video_pass.rebuild_list copies this line to the job log. The sleep used to be silent, and
+    # the runs of 11-04..07 lost 22-36 minutes each to what looks like it.
+    print(f"GitHub core quota used up; waiting {wait:.0f}s", file=sys.stderr, flush=True)
+    time.sleep(wait)
 
 
 def entries() -> tuple[list[dict], list[dict]]:
