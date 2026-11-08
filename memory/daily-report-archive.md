@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-08
+1. shanselman/sandbox-mcp — 🆕 一键开出用完即弃的 Windows 沙箱机器，让智能体在里面测试你的应用（171★ 116.5/day）
+2. stubbi/asm — 🆕 给汇编项目做包管理和命令行工具，配 MCP 服务方便 AI 辅助写汇编（595★ 81.7/day）
+3. phone-harness/mcp — 把 AI 智能体接到真实的 iPhone 和安卓手机上，直接操控真机（741★ 46.3/day）
+4. apekshik/anyscene — 🆕 写一段话就由智能体在 Blender 里搭出写实 3D 场景，道具由图生 3D 生成（325★ 38.3/day）
+5. sloemo01/diorama — 提供做精细微缩场景的玩法手册和 Three.js 代码包，支持像素风与描边卡通（347★ 23.3/day）
+6. ethanplusai/sellbird — 用你现有的 Claude 或 ChatGPT 套餐跑开源外联平台，自动找客户、写开发信（4776★ 19.8/day）
+7. gepa-ai/gepa — 用反思式优化自动改进提示词和代码，让 AI 系统越跑越好（7321★ 15.9/day）
+8. alexsergivan/kwant — 把一整队 AI 机器人装进一个自托管程序，支持交接、审批和多账号协作（258★ 15.7/day）
+9. ThinkFlowLab/OpenDirector — 🆕 搭一套易用的智能体视频创作工作流，从构思一路做到成片（160★ 12.6/day）
+10. Riley-Coyote/mnemos-mcp — 🆕 给智能体一份属于它自己的记忆，跨会话保持连续性（129★ 11.4/day）
+🎯 今日趋势：本轮新入库里 **28 仓**与 3D 相关（Blender、Unity、Unreal、Godot 的 MCP 与技能），榜上占 **2 席**（anyscene、diorama）；同时拦下扩大到 **63 仓**的 ai-manus 克隆集群（81–83★、描述一字不差）。
+> 注：去重范围＝repo 内 archive 全部 136 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,573 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次成功：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 125 条、去重后 117 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①63 仓 ai-manus 克隆（如 Adil-Ijaz7/manus-ai、OrbitForge40815/ai--manus、quyetcao/ai-manus 等）：0.9–1.5 天前集中创建、81–83★、描述一字不差、大量随机词账号名，延续 11-07 拦截口径，全部排除；②WoYun520/gif-factory（578★ 187.1/day）：first_seen 约 70h，超出 48h 窗口，且同作者 pixel-gif-sticker-pack 已上 fresh-skills 榜，不入选。入选项复核（`gh api`）：第 1 席 shanselman 2008 建号、1.3 万粉，实时 289★/15 fork；第 2 席 stubbi 2016 建号、57 粉，名下另有 402★/75 fork 的 openclaw-operator，但 asm 实时 595★ 仅 3 fork（**轻红旗**：fork 比偏低，README 与官网 asm.build 完整、属命令行工具类项目，保留）；第 3 席 phone-harness 组织 2026-09 建号，名下另有 4,643★ 仓，实时 748★/61 fork；第 4 席 apekshik 2018 建号，实时 326★/34 fork；第 5 席 sloemo01 2025-06 建号、16 粉，名下其余仓 ≤10★（**轻红旗**：单仓突起，但实时 352★/24 fork 比例正常，保留）；第 6 席 sellbird 实时 4,821★/1,022 fork；第 7 席 gepa-ai 官方组织、612 fork；第 8 席 alexsergivan 2014 建号，实时 294★/20 fork；第 9 席 ThinkFlowLab 组织名下另有 203★/181★ 仓；第 10 席 Riley-Coyote 2023 建号、70 粉，名下另有 186★ 仓。备选 tencentmusic/modus（212★ 9.6/day）列第 11 未入选。🆕 判定＝created_at 距今 14 天内：sandbox-mcp（1.5 天）、asm（7.3 天）、anyscene（8.5 天）、OpenDirector（12.7 天）、mnemos-mcp（11.3 天）命中；diorama（14.9 天）、phone-harness/mcp（16.0 天）、kwant（16.5 天）不标。security_grade：入选 10 仓全部 safe。表中 stars 为数据库快照，部分仓实时更高（sandbox-mcp 289★、kwant 294★），按红线保留快照值。
+
+---
+
 ## 2026-11-07
 1. yucezerey/turkish-anti-ai-skill — 🆕 清除土耳其语文本里的 AI 腔、翻译腔和拼写错误，让文字读起来像人写的（222★ 186.4/day）
 2. cactus-compute/cactus — 把智能体、语音和视觉能力压进 50MB 以内，直接跑在手机等终端设备上（14499★ 56.7/day）
