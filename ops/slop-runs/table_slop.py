@@ -19,6 +19,8 @@ NOT_RUN = {
     "iniwap/AIWriteX": ("not a fit", "A desktop app that writes new articles from trending topics and posts them to WeChat; it cannot rewrite a given file."),
     "alexgreensh/attention-span": ("not a fit", "Changes how Claude writes its own replies; its skills start only when a person types the command."),
     "lynote-ai/humanize-text": ("not run", "Needs a Niutrans translation key besides an LLM key, and always outputs English."),
+    "jinhuoooo/dsh-prompt-polish": ("not a fit", "A plugin for another chat app (DSH) that now shortens prompts instead of rewriting text; it sends the text to Zhipu with a key built into its code, or to the author's own proxy."),
+    "IT-Shelter-Labs/Shelter-Humanizer": ("not a fit", "Russian only: every rule is about editing Russian, and the test texts are English and Chinese."),
 }
 
 
@@ -36,12 +38,22 @@ def file_row(name: str, v: dict) -> dict:
             "evidence": j.get("evidence")}
 
 
+def not_run(c: dict) -> tuple[str, str] | None:
+    """Why a candidate was not run: a reason written after a look (NOT_RUN), or a language the test texts are not in."""
+    if c["repo"] in NOT_RUN:
+        return NOT_RUN[c["repo"]]
+    if c.get("lang"):
+        return ("not run", f"Made for {c['lang']} text; the test texts are English and Chinese.")
+    return None
+
+
 def row(c: dict) -> dict:
     run = OUT / c["repo"].replace("/", "__")
-    base = {"repo": c["repo"], "kind": c["kind"], "stars": c["stars"], "grade": c.get("grade")}
-    if c["repo"] in NOT_RUN:
-        status, reason = NOT_RUN[c["repo"]]
-        return {**base, "ran": False, "status": status, "reason": reason}
+    base = {"repo": c["repo"], "kind": c["kind"], "stars": c["stars"], "grade": c.get("grade"),
+            **({"date": c["date"]} if c.get("date") else {})}   # a candidate added after the main test
+    if not_run(c):
+        status, reason = not_run(c)
+        return {**base, "ran": False, "status": status, "reason": reason, **({"lang": c["lang"]} if c.get("lang") else {})}
     if not (run / "score.json").exists():
         return {**base, "ran": False, "status": "not run", "reason": "no score"}
     s = json.loads((run / "score.json").read_text())

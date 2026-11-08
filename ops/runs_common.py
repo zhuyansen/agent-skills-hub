@@ -77,3 +77,18 @@ def update_method(slug: str, findings: list[dict], did: dict, limits: dict, mark
     m["did"] = [{**did, "ours": True}] + [x for x in m["did"] if not x.get("ours") and not stale(x)]
     m["not_done"] = [{**limits, "ours": True}] + [x for x in m["not_done"] if not stale(x) and not x.get("ours")]
     KEYWORDS_JSON.write_text(json.dumps(pages, indent=1, ensure_ascii=False) + "\n")
+
+
+WEBP_QUALITY = 78
+
+
+def webp_copy(src: Path, dest: Path, width: int, max_height: int | None = None) -> tuple[int, int]:
+    """A WebP copy of a screenshot or render at `width`, its top `max_height` pixels only; returns its size."""
+    from PIL import Image   # only the tests with pictures need it
+    im = Image.open(src).convert("RGB")
+    im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+    if max_height and im.height > max_height:
+        im = im.crop((0, 0, width, max_height))
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    im.save(dest, "WEBP", quality=WEBP_QUALITY)
+    return im.size

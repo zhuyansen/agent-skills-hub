@@ -132,7 +132,8 @@ def _own_table(run: dict, rows: list[tuple[str, dict]], i: int, site: str, w: di
 def _own_section(run: dict, slug: str, i: int, site: str, w: dict) -> list[str]:
     """The Tested section of a "table" run: its intro, finding and one table (or one per group)."""
     ran = [(k, v) for k, v in run["runs"].items() if v.get("ran")]
-    out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
+    anchor = run.get("list_anchor") or ANCHOR   # a further test on the same page has its own (tested-ui)
+    out = ["", f'<a id="{anchor}"></a>', f"## 🧪 {(run.get('list_title') or [w['h'], w['h']])[i]}", "", run["intro"][i], ""]
     if run.get("finding"):
         out += [("**发现:** " if i else "**What we found:** ") + run["finding"][i], ""]
     for c in [*run.get("compare", []), *run.get("list_images", [])]:   # the side-by-side picture, as on the page
@@ -145,7 +146,14 @@ def _own_section(run: dict, slug: str, i: int, site: str, w: dict) -> list[str]:
     if missing:
         label = (run.get("not_run_label") or [w["not_run"], w["not_run"]])[i]
         out += [f"**{label}:** " + "; ".join(f"{k.split('/')[1]} ({v.get('reason_zh' if i else 'reason') or v.get('reason')})" for k, v in missing), ""]
-    return out + [f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/#test-results)"]
+    page = f"{site}/best/{slug}/#{run.get('anchor') or 'test-results'}"
+    return out + [f"[{w['all']}]({run['results']}) · [{page}]({page})"]
+
+
+def extra_sections(slug: str, i: int, site: str, w: dict) -> list[str]:
+    """Further tests shown on the same page (run["page"] == slug): the anti-slop page's interface test."""
+    runs = json.loads(RUNS.read_text()) if RUNS.exists() else {}
+    return [line for run in runs.values() if run.get("page") == slug for line in _own_section(run, slug, i, site, w)]
 
 
 def top(slug: str, lang: str) -> list[str]:
@@ -163,6 +171,21 @@ def top(slug: str, lang: str) -> list[str]:
     return ["", "## " + lines[0].removeprefix("### "), "", lead, *lines[1:]]
 
 
+NAMED_LATER = 3   # as on the page (scenario-runs.mjs): more entries added after the test are counted apart
+
+
+def _later(run: dict, i: int) -> tuple[list[dict], str]:
+    """The main test's entries and the intro's sentence on entries added after it, when there are more than
+    NAMED_LATER (the anti-slop test, 2026-11-08); else every entry and ""."""
+    later = [v for v in run["runs"].values() if v.get("date") and v["date"] != run["date"]]
+    if len(later) <= NAMED_LATER:
+        return list(run["runs"].values()), ""
+    main = [v for v in run["runs"].values() if not (v.get("date") and v["date"] != run["date"])]
+    n, date = sum(bool(v.get("ran")) for v in later), later[0]["date"]
+    return main, (f"{date} 又补充了之后才出现的 {len(later)} 个,测试题、agent 和评审都相同,跑成 {n} 个。" if i else
+                  f" {len(later)} more, first seen after the test, were added on {date} with the same brief, agent and judge; {n} ran.")
+
+
 def section(slug: str, lang: str, site: str) -> list[str]:
     """Markdown lines of the list's Tested section; [] when the page has no test run."""
     run = run_for(slug)
@@ -170,13 +193,14 @@ def section(slug: str, lang: str, site: str) -> list[str]:
         return []
     w, i, slop, mgr = WORDS[lang], 0 if lang == "en" else 1, run.get("type") == "slop", run.get("type") == "skillmgr"
     if run.get("type") == "table":
-        return _own_section(run, slug, i, site, w)
+        return _own_section(run, slug, i, site, w) + extra_sections(slug, i, site, w)
     ran = _order(run)
     key = "mgr" if mgr else "slop" if slop else "ppt"
-    intro = w[f"{key}_intro"].format(date=run["date"], n=len(run["runs"]), ran=len(ran), agent=run["agent"], judge=run["judge"])
-    out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {w['h']}", "", intro, ""]
-    if slop or mgr:
-        out += [w[f"{key}_finding"], ""]
+    main, tail = _later(run, i)
+    intro = w[f"{key}_intro"].format(date=run["date"], n=len(main), ran=sum(bool(v.get("ran")) for v in main), agent=run["agent"], judge=run["judge"])
+    out = ["", f'<a id="{ANCHOR}"></a>', f"## 🧪 {w['h']}", "", intro + tail + (" " + run["also"][i] if run.get("also") else ""), ""]
+    if slop or mgr:   # the counts in a run's own list_finding follow its data; the words here are older
+        out += [(run.get("list_finding") or [w[f"{key}_finding"]] * 2)[i], ""]
     for c in run.get("compare", []):   # side-by-side images: the same slide from every deck
         url = f"{site}{run['dir']}{c['src']}"
         out += [f"[![{c['en']}]({url})]({url})", "", f"*{c['zh'] if i else c['en']}*", ""]
@@ -191,4 +215,4 @@ def section(slug: str, lang: str, site: str) -> list[str]:
         out += ["", f"**{w['not_judged'] if mgr else w['not_run']}:** " + "; ".join(
             f"{k.split('/')[1]} ({v.get('reason_zh' if i else 'reason') or v.get('reason')})" for k, v in missing)]
     out += ["", f"[{w['all']}]({run['results']}) · [{site}/best/{slug}/#test-results]({site}/best/{slug}/#test-results)"]
-    return out
+    return out + extra_sections(slug, i, site, w)

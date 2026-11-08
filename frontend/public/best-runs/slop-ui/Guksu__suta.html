@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Guksu/suta: interface test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/#test-results-ui">← Humanizer &amp; anti-slop skills: the interface test</a></p>
+<style>.pages{display:grid;grid-template-columns:2fr 1fr;gap:12px;align-items:start}@media(max-width:700px){.pages{grid-template-columns:1fr}}figure{margin:0}figcaption{font-size:13px;color:var(--mute);margin:4px 0}</style>
+<h1>Guksu/suta: test run, 2026-11-08</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this tool on an AI-looking landing page, asked to make it look and read like a person
+designed it, keep 11 facts and return one self-contained file. Measured in Chromium at 1440 px and 375 px; judge: gpt-6-astra.
+Repo commit 28513fca6700. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-ui-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-ui-runs/in/prompt.txt">Prompt</a></p>
+<div class="two"><figure><a href="before-fold.webp"><img src="before-fold.webp" alt="Before: the AI-looking page, first screen" width="720" height="450" loading="lazy"></a><figcaption>Before: the AI-looking page, first screen</figcaption></figure><figure><a href="Guksu__suta-fold.webp"><img src="Guksu__suta-fold.webp" alt="After: the first screen" width="720" height="450" loading="lazy"></a><figcaption>After: the first screen</figcaption></figure></div>
+<h2>Measured</h2>
+<table><tr><th>AI tell</th><th>Before</th><th>After</th></tr><tr><td>Purple gradients</td><td>16</td><td>0</td></tr><tr><td>Gradient text</td><td>8</td><td>0</td></tr><tr><td>Frosted-glass blur</td><td>4</td><td>0</td></tr><tr><td>Blurred colour blobs</td><td>3</td><td>0</td></tr><tr><td>Coloured glows</td><td>8</td><td>0</td></tr><tr><td>Emoji</td><td>26</td><td>1</td></tr></table>
+<p>Facts: 11 of 11 kept · Marketing words: 15 → 0 · Headline font: Geist
+· Phone: fits the screen · 5.5 minutes</p>
+<p>Rules broken:</p><ul><li>None</li></ul>
+<p>Judge: 4/5. AI tells it still saw: Generic SaaS hero layout with oversized headline and single primary CTA, Polished but invented dashboard mockup used as a familiar landing-page proof point, Formulaic marketing copy and navigation structure. A restrained, coherent redesign with a clear product identity and credible interface detail; it feels deliberately designed, though still follows recognizable SaaS landing-page conventions.</p>
+<h2>The whole page</h2>
+<div class="pages"><figure><a href="Guksu__suta-desktop.webp"><img src="Guksu__suta-desktop.webp" alt="After, at 1440 px (top of the page)" width="720" height="2154" loading="lazy"></a><figcaption>After, at 1440 px (top of the page)</figcaption></figure><figure><a href="Guksu__suta-mobile.webp"><img src="Guksu__suta-mobile.webp" alt="After, at 375 px (top of the page)" width="375" height="2000" loading="lazy"></a><figcaption>After, at 375 px (top of the page)</figcaption></figure></div>
+</main></body></html>

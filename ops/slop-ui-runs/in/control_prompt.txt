@@ -1,0 +1,7 @@
+~/work/input/index.html is a landing page that looks AI-generated. Fix the page so it looks and reads like a person designed it.
+
+Rules:
+- Do not ask me any questions; make the choices yourself and continue.
+- Keep the product's facts: the name Ledgerly, the price ($12 per month), the 14-day free trial with no card needed, the three features (send an invoice in under a minute, automatic payment reminders, exports for your accountant) and Maya Okafor's quote (she got paid three weeks faster) with her job and city (illustrator, Lisbon). You may cut or rewrite any other copy, and change the layout, type, colours and imagery as you see fit.
+- Write the result to ~/work/output/index.html, one self-contained file (linking web fonts is fine).
+- When you finish, print one line: DELIVERABLE: ~/work/output/index.html

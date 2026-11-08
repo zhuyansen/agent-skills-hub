@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledgerly - AI-Powered Invoicing for Freelancers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0b0b1a; color: #e2e8f0; line-height: 1.6; overflow-x: hidden; }
+  .glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); opacity: 0.45; z-index: 0; }
+  .glow-1 { background: #7c3aed; top: -200px; left: -150px; }
+  .glow-2 { background: #db2777; top: 300px; right: -200px; }
+  .glow-3 { background: #2563eb; top: 1400px; left: 20%; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+  .logo { font-size: 26px; font-weight: 800; background: linear-gradient(90deg, #a78bfa, #f472b6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: #94a3b8; text-decoration: none; font-weight: 500; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 9999px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+  .btn-primary { background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%); color: #fff; box-shadow: 0 0 40px rgba(124, 58, 237, 0.6); }
+  .btn-primary:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 60px rgba(219, 39, 119, 0.7); }
+  .btn-ghost { border: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+  .hero { text-align: center; padding: 100px 0 80px; }
+  .badge { display: inline-block; padding: 8px 18px; border-radius: 9999px; border: 1px solid rgba(167, 139, 250, 0.4); background: rgba(124, 58, 237, 0.15); color: #c4b5fd; font-size: 14px; font-weight: 500; margin-bottom: 28px; }
+  h1 { font-size: 68px; font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
+  .gradient-text { background: linear-gradient(90deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .subtitle { font-size: 20px; color: #94a3b8; max-width: 680px; margin: 0 auto 40px; }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .trust { margin-top: 36px; color: #64748b; font-size: 15px; }
+  .section { padding: 90px 0; }
+  .section-title { text-align: center; font-size: 44px; font-weight: 800; margin-bottom: 16px; }
+  .section-sub { text-align: center; color: #94a3b8; font-size: 18px; margin-bottom: 56px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(16px); border-radius: 24px; padding: 36px; box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15); transition: transform 0.3s ease; }
+  .card:hover { transform: translateY(-6px); }
+  .icon { font-size: 40px; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; border-radius: 18px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(219, 39, 119, 0.3)); margin-bottom: 22px; }
+  .card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .card p { color: #94a3b8; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: center; }
+  .stat-num { font-size: 56px; font-weight: 800; background: linear-gradient(135deg, #a78bfa, #f472b6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { color: #94a3b8; font-weight: 500; }
+  .testimonial { max-width: 760px; margin: 0 auto; text-align: center; }
+  .testimonial blockquote { font-size: 28px; font-weight: 600; line-height: 1.4; margin-bottom: 24px; }
+  .stars { font-size: 22px; margin-bottom: 18px; }
+  .author { color: #94a3b8; }
+  .pricing-card { max-width: 440px; margin: 0 auto; text-align: center; background: linear-gradient(180deg, rgba(124, 58, 237, 0.2), rgba(255, 255, 255, 0.03)); border: 1px solid rgba(167, 139, 250, 0.4); border-radius: 28px; padding: 48px 40px; box-shadow: 0 0 80px rgba(124, 58, 237, 0.25); }
+  .price { font-size: 64px; font-weight: 800; margin: 12px 0; }
+  .price span { font-size: 20px; color: #94a3b8; font-weight: 500; }
+  .features-list { list-style: none; text-align: left; margin: 28px 0 36px; }
+  .features-list li { padding: 8px 0; }
+  .final-cta { text-align: center; padding: 100px 0; }
+  footer { text-align: center; padding: 40px 0; color: #64748b; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+</style>
+</head>
+<body>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<div class="glow glow-3"></div>
+
+<div class="container">
+  <nav>
+    <div class="logo">Ledgerly</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+    </div>
+    <a href="#pricing" class="btn btn-primary">Get Started 🚀</a>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">✨ Now powered by AI</div>
+    <h1>Supercharge Your Invoicing with <span class="gradient-text">AI-Powered Automation</span></h1>
+    <p class="subtitle">Unlock seamless workflows and elevate your freelance business with cutting-edge invoicing that just works. Say goodbye to chasing payments forever!</p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn btn-primary">Start free trial →</a>
+      <a href="#features" class="btn btn-ghost">▶ Watch demo</a>
+    </div>
+    <p class="trust">⭐⭐⭐⭐⭐ Trusted by 10,000+ freelancers worldwide</p>
+  </section>
+
+  <section class="section" id="features">
+    <h2 class="section-title">Everything You Need to <span class="gradient-text">Scale</span> 💡</h2>
+    <p class="section-sub">Powerful features designed to revolutionize the way you get paid.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Lightning-Fast Invoices</h3>
+        <p>Send an invoice in under a minute with our intuitive, AI-driven editor. Effortless from start to finish.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔔</div>
+        <h3>Smart Reminders</h3>
+        <p>Automatic payment reminders go out for you, so you never have to chase a client again.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Accountant-Ready Exports</h3>
+        <p>Exports for your accountant in one click. Tax season, simplified and supercharged.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="stats">
+      <div><div class="stat-num">10x</div><div class="stat-label">Faster Invoicing</div></div>
+      <div><div class="stat-num">99.9%</div><div class="stat-label">Uptime Guaranteed</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Premium Support</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="testimonials">
+    <div class="testimonial">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <blockquote>"Ledgerly is an absolute game-changer! I got paid three weeks faster on my very first project. 🙌"</blockquote>
+      <p class="author">Maya Okafor, illustrator in Lisbon</p>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <h2 class="section-title">Simple, <span class="gradient-text">Transparent</span> Pricing</h2>
+    <p class="section-sub">One plan. Unlimited possibilities.</p>
+    <div class="pricing-card">
+      <h3>Pro ✨</h3>
+      <div class="price">$12<span> per month</span></div>
+      <ul class="features-list">
+        <li>✅ Unlimited invoices</li>
+        <li>✅ Automatic payment reminders</li>
+        <li>✅ Exports for your accountant</li>
+        <li>✅ 14-day free trial, no card required</li>
+      </ul>
+      <a href="#" class="btn btn-primary">Start free trial →</a>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2 class="section-title">Ready to <span class="gradient-text">Revolutionize</span> Your Workflow? 🚀</h2>
+    <p class="section-sub">Join thousands of freelancers who've already transformed their business.</p>
+    <a href="#pricing" class="btn btn-primary">Start free trial →</a>
+  </section>
+
+  <footer>© 2026 Ledgerly. Made with 💜 for freelancers everywhere.</footer>
+</div>
+</body>
+</html>

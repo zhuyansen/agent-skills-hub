@@ -1,0 +1,91 @@
+{
+ "errors": [],
+ "requests": [
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+  "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2"
+ ],
+ "desktop": {
+  "text": "Ledgerly\nFeatures\nPricing\nTestimonials\nGet Started 🚀\n✨ Now powered by AI\nSupercharge Your Invoicing with AI-Powered Automation\n\nUnlock seamless workflows and elevate your freelance business with cutting-edge invoicing that just works. Say goodbye to chasing payments forever!\n\nStart free trial →\n▶ Watch demo\n\n⭐⭐⭐⭐⭐ Trusted by 10,000+ freelancers worldwide\n\nEverything You Need to Scale 💡\n\nPowerful features designed to revolutionize the way you get paid.\n\n⚡\nLightning-Fast Invoices\n\nSend an invoice in under a minute with our intuitive, AI-driven editor. Effortless from start to finish.\n\n🔔\nSmart Reminders\n\nAutomatic payment reminders go out for you, so you never have to chase a client again.\n\n📊\nAccountant-Ready Exports\n\nExports for your accountant in one click. Tax season, simplified and supercharged.\n\n10x\nFaster Invoicing\n99.9%\nUptime Guaranteed\n24/7\nPremium Support\n⭐⭐⭐⭐⭐\n\"Ledgerly is an absolute game-changer! I got paid three weeks faster on my very first project. 🙌\"\n\nMaya Okafor, illustrator in Lisbon\n\nSimple, Transparent Pricing\n\nOne plan. Unlimited possibilities.\n\nPro ✨\n$12 per month\n✅ Unlimited invoices\n✅ Automatic payment reminders\n✅ Exports for your accountant\n✅ 14-day free trial, no card required\nStart free trial →\nReady to Revolutionize Your Workflow? 🚀\n\nJoin thousands of freelancers who've already transformed their business.\n\nStart free trial →\n© 2026 Ledgerly. Made with 💜 for freelancers everywhere.",
+  "fonts": {
+   "Inter": 1370
+  },
+  "textColors": {
+   "rgb(226, 232, 240)": 472,
+   "rgb(148, 163, 184)": 708,
+   "rgb(255, 255, 255)": 68,
+   "rgb(196, 181, 253)": 19,
+   "rgb(100, 116, 139)": 103
+  },
+  "bgColors": {
+   "rgb(124, 58, 237)": 360000,
+   "rgb(219, 39, 119)": 360000,
+   "rgb(37, 99, 235)": 360000,
+   "rgba(124, 58, 237, 0.15)": 7654.0234375,
+   "rgba(255, 255, 255, 0.05)": 9962.57373046875,
+   "rgba(255, 255, 255, 0.04)": 317805.75
+  },
+  "gradientEls": 16,
+  "gradientText": 8,
+  "purpleGradient": 16,
+  "blurEls": 4,
+  "shadowEls": 4,
+  "roundCards": 7,
+  "emoji": 26,
+  "blurBlobs": 3,
+  "glowEls": 8,
+  "h1": 1,
+  "heroCentered": true,
+  "buttons": [
+   {
+    "text": "Features",
+    "top": 38
+   },
+   {
+    "text": "Pricing",
+    "top": 38
+   },
+   {
+    "text": "Testimonials",
+    "top": 38
+   },
+   {
+    "text": "Get Started 🚀",
+    "top": 24
+   },
+   {
+    "text": "Start free trial →",
+    "top": 579.578125
+   },
+   {
+    "text": "▶ Watch demo",
+    "top": 579.578125
+   },
+   {
+    "text": "Start free trial →",
+    "top": 2757.5625
+   },
+   {
+    "text": "Start free trial →",
+    "top": 3221.34375
+   }
+  ],
+  "accent": "rgb(255, 255, 255)",
+  "bodyBg": "rgb(11, 11, 26)",
+  "h1Font": "Inter",
+  "svg": 0,
+  "img": 0,
+  "scrollWidth": 1640,
+  "innerWidth": 1440,
+  "height": 3482,
+  "sections": [
+   "div",
+   "div",
+   "div",
+   "div"
+  ]
+ },
+ "mobile": {
+  "scrollWidth": 675,
+  "innerWidth": 375
+ }
+}

@@ -154,5 +154,188 @@
   "kind": "detector",
   "stars": 115,
   "grade": "safe"
+ },
+ {
+  "repo": "mshumer/unslop",
+  "kind": "writing",
+  "stars": 562,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "yanstd888/humanizer-lint",
+  "kind": "detector",
+  "stars": 99,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "phuryn/work-humanizer",
+  "kind": "writing",
+  "stars": 96,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "FeedHive/ai-slop-detector",
+  "kind": "detector",
+  "stars": 31,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "SummerRiversound/human-readable-reports",
+  "kind": "writing",
+  "stars": 13,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "junbolian/Academic-Humanizer",
+  "kind": "writing",
+  "stars": 9,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "kane50613/native-writing",
+  "kind": "writing",
+  "stars": 9,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "arslanr-com/writehuman",
+  "kind": "detector",
+  "stars": 8,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "ismilewolf-eng/sloptrim-zh",
+  "kind": "chinese",
+  "stars": 8,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "hellogit2021/avoid-ai-writing-cn",
+  "kind": "chinese",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "JGalego/slopcop",
+  "kind": "detector",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "kjmagnan1s/anti-slop",
+  "kind": "detector",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "zkrun/academic-humanizer-zh",
+  "kind": "chinese",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "jinhuoooo/dsh-prompt-polish",
+  "kind": "chinese",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "IT-Shelter-Labs/Shelter-Humanizer",
+  "kind": "writing",
+  "stars": 24,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "why": "first seen after the 2026-10-07 test (owner, 11-07: test the newer unslop skills)"
+ },
+ {
+  "repo": "adhiprib/humanizer-indonesia",
+  "kind": "other-language",
+  "stars": 150,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Indonesian",
+  "why": "first seen after the 2026-10-07 test; made for Indonesian text, which the test texts are not in"
+ },
+ {
+  "repo": "leeandev/stop-slop-ko",
+  "kind": "other-language",
+  "stars": 38,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Korean",
+  "why": "first seen after the 2026-10-07 test; made for Korean text, which the test texts are not in"
+ },
+ {
+  "repo": "onesoira/humanizer-bahasa-indonesia",
+  "kind": "other-language",
+  "stars": 16,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Indonesian",
+  "why": "first seen after the 2026-10-07 test; made for Indonesian text, which the test texts are not in"
+ },
+ {
+  "repo": "JulienSnsnCode/anti-slop-fr",
+  "kind": "other-language",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "French",
+  "why": "first seen after the 2026-10-07 test; made for French text, which the test texts are not in"
+ },
+ {
+  "repo": "tqkqt0/humanizer-jp",
+  "kind": "other-language",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Japanese",
+  "why": "first seen after the 2026-10-07 test; made for Japanese text, which the test texts are not in"
+ },
+ {
+  "repo": "williamkho77/claude-humanizer-id",
+  "kind": "other-language",
+  "stars": 5,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Indonesian",
+  "why": "first seen after the 2026-10-07 test; made for Indonesian text, which the test texts are not in"
+ },
+ {
+  "repo": "DevVettel/turkish-humanizer",
+  "kind": "other-language",
+  "stars": 3,
+  "grade": "safe",
+  "date": "2026-11-08",
+  "lang": "Turkish",
+  "why": "first seen after the 2026-10-07 test; made for Turkish text, which the test texts are not in"
  }
 ]

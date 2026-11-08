@@ -724,14 +724,14 @@
      ]
     },
     {
-     "repo": "op7418/Humanizer-zh",
+     "repo": "zkrun/academic-humanizer-zh",
      "role": [
       "For Chinese text",
       "中文文本"
      ],
      "why": [
-      "3.0 of 5 with every fact kept, level with three other Chinese tools; the most used of them. None of the Chinese tools scored higher.",
-      "3.0/5，事实全保留，和另外三个中文工具并列；其中用的人最多。中文类没有得分更高的。"
+      "4 of 5 on the Chinese post with every fact kept, the best of the Chinese tools (added on 2026-11-08). op7418/Humanizer-zh, the most used, scored 3 and left the closing \"not X but Y\" (不是……而是……) line as it was.",
+      "中文稿 4/5，事实全保留，中文类里最好（2026-11-08 补测）。用的人最多的 op7418/Humanizer-zh 得 3 分，结尾那句「不是……而是……」原样留着。"
      ]
     },
     {
@@ -760,17 +760,25 @@
     }
    ],
    "caveat": [
-    "No tool rewrote the structure away: across 40 rewrites the stated lesson survived 26 of 26 times and the tidy ending 28 of 28. Cut the moral, leave the ending open and name specifics yourself.",
-    "没有一个工具改掉结构上的 AI 味：40 份改写里，讲明的道理 26/26 留着，整齐的结尾 28/28 留着。删道理、留结尾、把泛指换成具体名字，得自己动手。"
+    "No tool rewrote the structure away: across 67 rewrites the stated lesson survived 43 of 43 times and the tidy ending 46 of 46. Cut the moral, leave the ending open and name specifics yourself.",
+    "没有一个工具改掉结构上的 AI 味：67 份改写里，讲明的道理 43/43 留着，整齐的结尾 46/46 留着。删道理、留结尾、把泛指换成具体名字，得自己动手。"
    ]
   },
   "type": "slop",
+  "list_finding": [
+   "**What we found:** none rewrote the structure away. Across 67 rewrites the stated lesson survived 43/43, the tidy ending 46/46, the single track 67/67; 31 of 34 changed wording, not structure. No fact was lost.",
+   "**发现:** 没有一个把结构上的 AI 味改掉。67 份改写里,讲明的道理 43/43 留着,整齐的结尾 46/46 留着,单线论证 67/67 没动;34 个改写类里 31 个只改了措辞。没有一份改丢事实。"
+  ],
   "date": "2026-10-07",
   "agent": "Claude Code (Claude Opus 5.5)",
   "judge": "gpt-6-astra",
   "brief": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt",
   "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md",
   "dir": "/best-runs/slop/",
+  "also": [
+   "Not tested: 7 humanizers added since for other languages (3 for Indonesian, one each for French, Japanese, Korean and Turkish); the test texts are English and Chinese.",
+   "未测：之后新增的 7 个其他语言去 AI 味工具（印尼语 3 个，法语、日语、韩语、土耳其语各 1 个）；测试稿是英文和中文。"
+  ],
   "runs": {
    "blader/humanizer": {
     "ran": true,
@@ -1047,6 +1055,165 @@
      "phrasing": 8,
      "structure": 2
     }
+   },
+   "mshumer/unslop": {
+    "ran": true,
+    "stars": 562,
+    "minutes": 1.3,
+    "sheet": "mshumer__unslop.html",
+    "date": "2026-11-08",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "yanstd888/humanizer-lint": {
+    "ran": true,
+    "stars": 99,
+    "minutes": 2.2,
+    "sheet": "yanstd888__humanizer-lint.html",
+    "date": "2026-11-08",
+    "reads_human": 2.3,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "phuryn/work-humanizer": {
+    "ran": true,
+    "stars": 96,
+    "minutes": 1.1,
+    "sheet": "phuryn__work-humanizer.html",
+    "date": "2026-11-08",
+    "reads_human": 2.5,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "FeedHive/ai-slop-detector": {
+    "ran": true,
+    "stars": 31,
+    "minutes": 0.8,
+    "sheet": "FeedHive__ai-slop-detector.html",
+    "date": "2026-11-08",
+    "reads_human": 3.5,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "SummerRiversound/human-readable-reports": {
+    "ran": true,
+    "stars": 13,
+    "minutes": 1.1,
+    "sheet": "SummerRiversound__human-readable-reports.html",
+    "date": "2026-11-08",
+    "reads_human": 3.0,
+    "deepest": "structure",
+    "structure_removed": 1,
+    "facts_kept": true,
+    "note": "Turns a post into a report with headings and bullet lists: the English post read better (4 of 5), the Chinese one more like AI (2 of 5), with an added \"three things\" opening and a closing summary",
+    "note_zh": "把文章改成带小标题和列表的报告：英文稿读着更好（4/5），中文稿更像 AI（2/5），还加了「三件事」开头和「结语」"
+   },
+   "junbolian/Academic-Humanizer": {
+    "ran": true,
+    "stars": 9,
+    "minutes": 1.5,
+    "sheet": "junbolian__Academic-Humanizer.html",
+    "date": "2026-11-08",
+    "reads_human": 3.3,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "kane50613/native-writing": {
+    "ran": true,
+    "stars": 9,
+    "minutes": 0.9,
+    "sheet": "kane50613__native-writing.html",
+    "date": "2026-11-08",
+    "reads_human": 3.7,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "arslanr-com/writehuman": {
+    "ran": true,
+    "stars": 8,
+    "minutes": 3.6,
+    "sheet": "arslanr-com__writehuman.html",
+    "date": "2026-11-08",
+    "reads_human": 4.0,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "ismilewolf-eng/sloptrim-zh": {
+    "ran": true,
+    "stars": 8,
+    "minutes": 1.0,
+    "sheet": "ismilewolf-eng__sloptrim-zh.html",
+    "date": "2026-11-08",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "hellogit2021/avoid-ai-writing-cn": {
+    "ran": true,
+    "stars": 5,
+    "minutes": 0.8,
+    "sheet": "hellogit2021__avoid-ai-writing-cn.html",
+    "date": "2026-11-08",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "JGalego/slopcop": {
+    "ran": true,
+    "stars": 5,
+    "minutes": 7.5,
+    "sheet": "JGalego__slopcop.html",
+    "date": "2026-11-08",
+    "reads_human": 3.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "kjmagnan1s/anti-slop": {
+    "ran": true,
+    "stars": 5,
+    "minutes": 3.1,
+    "sheet": "kjmagnan1s__anti-slop.html",
+    "date": "2026-11-08",
+    "reads_human": 3.5,
+    "deepest": "phrasing",
+    "structure_removed": 1,
+    "facts_kept": true
+   },
+   "zkrun/academic-humanizer-zh": {
+    "ran": true,
+    "stars": 5,
+    "minutes": 0.9,
+    "sheet": "zkrun__academic-humanizer-zh.html",
+    "date": "2026-11-08",
+    "reads_human": 4.0,
+    "deepest": "phrasing",
+    "structure_removed": 0,
+    "facts_kept": true
+   },
+   "jinhuoooo/dsh-prompt-polish": {
+    "ran": false,
+    "stars": 5,
+    "reason": "A plugin for another chat app (DSH) that now shortens prompts instead of rewriting text; it sends the text to Zhipu with a key built into its code, or to the author's own proxy.",
+    "reason_zh": "是另一个聊天应用（DSH）的插件，现在只压缩提示词、不改写文章；还会用写在代码里的智谱 key 或作者自己的代理发送原文。",
+    "date": "2026-11-08"
+   },
+   "IT-Shelter-Labs/Shelter-Humanizer": {
+    "ran": false,
+    "stars": 24,
+    "reason": "Russian only: every rule is about editing Russian, and the test texts are English and Chinese.",
+    "reason_zh": "只支持俄语：规则全是俄语编辑规范，测试稿是英文和中文。",
+    "date": "2026-11-08"
    }
   }
  },
@@ -16761,6 +16928,1905 @@
     "name": "JuneYaooo/gpt-image2-ppt-skills",
     "reason": "No picture within 20 minutes: a slide-deck workflow: no picture saved in 20 minutes.",
     "reason_zh": "20 分钟内一张没交：做幻灯片的流程，20 分钟没存下一张。"
+   }
+  }
+ },
+ "anti-slop-ui": {
+  "type": "table",
+  "page": "anti-slop",
+  "anchor": "test-results-ui",
+  "date": "2026-11-08",
+  "dir": "/best-runs/slop-ui/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-ui-runs/RESULTS.md",
+  "list_anchor": "tested-ui",
+  "list_title": [
+   "Tested end to end: interfaces",
+   "端到端实测：界面"
+  ],
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "gpt-6-astra",
+  "title": [
+   "Test results: making an AI-looking page look designed",
+   "实测：把一个 AI 味网页改得像人做的"
+  ],
+  "intro": [
+   "We gave 29 interface skills the same AI-looking landing page on 2026-11-08: purple gradients, glowing buttons, emoji icons, \"Supercharge your invoicing\" copy, 65 AI tells in all. Each was asked, in a throwaway sandbox driven by Claude Code (Claude Opus 5.5), to make it look and read like a person designed it, keep 11 facts about the product, and return one self-contained file. We measured what was left in a browser, and gpt-6-astra compared the first screens.",
+   "2026-11-08，我们把同一个 AI 味很重的落地页交给 29 个界面类 skill：紫色渐变、发光按钮、emoji 图标、「Supercharge your invoicing」式文案，一共 65 处 AI 痕迹。每个在用完即删的沙箱里由 Claude Code（Claude Opus 5.5）调用，要求改得像人设计的、保留产品的 11 条事实、交回一个自包含文件。改完在浏览器里量还剩什么，gpt-6-astra 对比首屏。"
+  ],
+  "finding": [
+   "Claude Code with no skill already does it: in 1.2 minutes it took the page from 65 AI tells to 2, kept all 11 facts and got 5 of 5 from the judge; 15 of the 27 skills that made a page also got 5. Every page that came back kept the facts and dropped the 15 marketing words. What many fixes share is a new look: 9 of 27, and the page with no skill, moved to the same warm off-white \"paper\", each with a mock invoice beside the headline, most with a serif headline.",
+   "不装 skill 的 Claude Code 就能做到：1.2 分钟把 65 处 AI 痕迹降到 2 处，11 条事实全保留，评审 5/5；交回页面的 27 个 skill 里也有 15 个拿到 5 分。交回来的页面全都保住了事实、删掉了 15 个营销词。不少改法换上了同一种新样子：27 个里有 9 个（还有不装 skill 的那页）改成了同样的米白「纸张」底，标题旁都放一张示意发票，多数用衬线标题。"
+  ],
+  "verdict": {
+   "title": [
+    "Which one to use",
+    "用哪个"
+   ],
+   "ranked": false,
+   "picks": [
+    {
+     "repo": "Nutlope/hallmark",
+     "role": [
+      "For a soft, product-shot look",
+      "要柔和的产品照风格"
+     ],
+     "why": [
+      "A soft grey gradient under a black top bar, a heavy black headline and the invoice card set like a product shot; the judge gave it 5 of 5 with 1 AI tell left, in 7.6 minutes.",
+      "黑色顶栏下是柔和的灰色渐变，粗黑标题，发票卡片像产品照一样摆着；评审 5/5，只剩 1 处 AI 痕迹，用了 7.6 分钟。"
+     ]
+    },
+    {
+     "repo": "pbakaus/impeccable",
+     "role": [
+      "For a bold, print-style page",
+      "要醒目的印刷风"
+     ],
+     "why": [
+      "A CMYK colour bar and crop marks like a print proof, a heavy black headline, the invoice as a ruled table and the total in a magenta block; the judge gave it 5 of 5 with 1 AI tell left, in 10.1 minutes.",
+      "顶上一条 CMYK 色条加裁切标记，像印刷打样；粗黑标题，发票做成带线表格，应付总额放在品红色块里；评审 5/5，只剩 1 处 AI 痕迹，用了 10.1 分钟。"
+     ]
+    },
+    {
+     "repo": "agiwhitelist/auteur",
+     "role": [
+      "For a full-colour first screen",
+      "要整屏大色块"
+     ],
+     "why": [
+      "Deep green from edge to edge, a large white headline and two paper invoices laid over it; the judge gave it 5 of 5 with 1 AI tell left, in 10.5 minutes.",
+      "整屏深绿，大号白色标题，上面叠两张纸质发票；评审 5/5，只剩 1 处 AI 痕迹，用了 10.5 分钟。"
+     ]
+    },
+    {
+     "repo": "0xNyk/unmachined",
+     "role": [
+      "For a quick, plain fix",
+      "要快、要简洁"
+     ],
+     "why": [
+      "Mint background and a heavy sans headline with no invoice picture, in 2.3 minutes; 1 AI tell left, and the judge gave it 4 of 5.",
+      "薄荷绿底配粗无衬线标题，没放发票图，2.3 分钟；只剩 1 处 AI 痕迹，评审 4/5。"
+     ]
+    },
+    {
+     "repo": "arhamhi/oxfords",
+     "role": [
+      "For a plain page with one strong accent",
+      "要素净页面加一处重色"
+     ],
+     "why": [
+      "A white page with the invoice set in a dark teal frame and an orange paid tag, in 5.1 minutes; 1 AI tell left, and the judge gave it 4 of 5.",
+      "白底，发票放在深青色框里，配一个橙色已付标签，5.1 分钟；只剩 1 处 AI 痕迹，评审 4/5。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Skip:",
+    "别用："
+   ],
+   "avoid": [
+    {
+     "repo": "felipebasurto/unslop-ui",
+     "why": [
+      "kept the dark navy, the purple button and the centred headline: the closest to the AI page",
+      "保留了深蓝底、紫色按钮和居中标题：和原来的 AI 页最像"
+     ]
+    },
+    {
+     "repo": "Yu-369/VibeCurb",
+     "why": [
+      "its phone layout is 11 px too wide and scrolls sideways",
+      "手机版宽出 11 像素，能左右滑"
+     ]
+    }
+   ],
+   "caveat": [
+    "Do you need a skill to make an AI-looking page look designed? Not for this one: Claude Code alone did as well as the best skills. Pick a skill for a look other than the warm-paper one most of them land on.",
+    "要把 AI 味网页改得像人做的，需要 skill 吗？这个页面不需要：只用 Claude Code 就和最好的 skill 一样。想要大多数 skill 改出来的米白纸张风以外的样子，才值得挑一个 skill。"
+   ],
+   "rule": [
+    "Picked, by measurement, for a first screen unlike the warm paper or white most fixes landed on (another background, or strong colour over 5% of it), on a page that kept every rule of the brief.",
+    "按测量挑选：首屏不是多数改法用的米白或白底（换了底色，或有超过 5% 的面积是浓重色块），并且守住测试题全部规则。"
+   ]
+  },
+  "compare": [
+   {
+    "src": "before-and-control.webp",
+    "w": 1452,
+    "h": 450,
+    "en": "Before, and after Claude Code with no skill (1.2 minutes): the first screen.",
+    "zh": "改前，和不装 skill 的 Claude Code 改后（1.2 分钟）的首屏。"
+   },
+   {
+    "src": "first-screens.webp",
+    "w": 1440,
+    "h": 840,
+    "count": 27,
+    "en": "All 27 skills' first screens, after the original (red) and the page made with no skill (blue).",
+    "zh": "27 个 skill 改出的首屏，排在原页（红框）和不装 skill 的那页（蓝框）之后。"
+   }
+  ],
+  "control": {
+   "sheet": "control.html",
+   "label": [
+    "See the page Claude Code made with no skill →",
+    "看不装 skill 改出的页面 →"
+   ]
+  },
+  "name_col": [
+   "Skill and its first screen",
+   "Skill 和它改出的首屏"
+  ],
+  "columns": [
+   [
+    "Result",
+    "结果"
+   ],
+   [
+    "AI tells left (of 65)",
+    "剩余 AI 痕迹（原 65）"
+   ],
+   [
+    "Phone",
+    "手机"
+   ],
+   [
+    "Look",
+    "样子"
+   ],
+   [
+    "Judge",
+    "评审"
+   ],
+   [
+    "Time",
+    "耗时"
+   ]
+  ],
+  "filters": [
+   {
+    "id": "all",
+    "label": [
+     "All",
+     "全部"
+    ]
+   },
+   {
+    "id": "clean",
+    "label": [
+     "Rules kept",
+     "守住规则"
+    ]
+   },
+   {
+    "id": "rule",
+    "label": [
+     "Broke a rule",
+     "破了规则"
+    ]
+   },
+   {
+    "id": "own",
+    "label": [
+     "A look of its own",
+     "有自己的样子"
+    ]
+   }
+  ],
+  "see": [
+   "See before and after →",
+   "看改前改后 →"
+  ],
+  "evidence": [
+   "Before / after",
+   "改前改后"
+  ],
+  "line_label": [
+   "Interface test, 2026-11-08:",
+   "2026-11-08 界面实测："
+  ],
+  "not_run_label": [
+   "Made no page",
+   "没交页面"
+  ],
+  "not_run_line": [
+   "Tried in our interface test, no page:",
+   "界面实测时没交页面："
+  ],
+  "runs": {
+   "heydamir/unslop": {
+    "ran": true,
+    "stars": 11485,
+    "minutes": 3.0,
+    "sheet": "heydamir__unslop.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "3.0 min",
+      "3.0 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "3.0 min",
+      "3.0 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "heydamir__unslop-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "marcosnovo/unslop-design": {
+    "ran": true,
+    "stars": 14,
+    "minutes": 3.5,
+    "sheet": "marcosnovo__unslop-design.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · sans",
+      "米白纸色 · 无衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "3.5 min",
+      "3.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "3.5 min",
+      "3.5 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "marcosnovo__unslop-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "pedrojaques99/visant-skills-public": {
+    "ran": true,
+    "stars": 84,
+    "minutes": 5.3,
+    "sheet": "pedrojaques99__visant-skills-public.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "5.3 min",
+      "5.3 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "5.3 min",
+      "5.3 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "pedrojaques99__visant-skills-public-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "Nutlope/hallmark": {
+    "ran": true,
+    "stars": 48536,
+    "minutes": 7.6,
+    "sheet": "Nutlope__hallmark.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "own",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Gradient · sans",
+      "渐变 · 无衬线",
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "7.6 min",
+      "7.6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "7.6 min",
+      "7.6 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "Nutlope__hallmark-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "pbakaus/impeccable": {
+    "ran": true,
+    "stars": 105698,
+    "minutes": 10.1,
+    "sheet": "pbakaus__impeccable.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "own",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "10.1 min",
+      "10.1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "10.1 min",
+      "10.1 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "pbakaus__impeccable-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "agiwhitelist/auteur": {
+    "ran": true,
+    "stars": 1022,
+    "minutes": 10.5,
+    "sheet": "agiwhitelist__auteur.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "own",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Colour · sans",
+      "彩色底 · 无衬线",
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "10.5 min",
+      "10.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "10.5 min",
+      "10.5 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "agiwhitelist__auteur-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "kmaida/deslop-skills": {
+    "ran": true,
+    "stars": 10,
+    "minutes": 1.2,
+    "sheet": "kmaida__deslop-skills.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "2",
+      "2",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "1.2 min",
+      "1.2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 2",
+      "AI 痕迹 65 → 2"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "1.2 min",
+      "1.2 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "kmaida__deslop-skills-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "phazurlabs/sumi": {
+    "ran": true,
+    "stars": 58,
+    "minutes": 2.7,
+    "sheet": "phazurlabs__sumi.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "2",
+      "2",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.7 min",
+      "2.7 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 2",
+      "AI 痕迹 65 → 2"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "2.7 min",
+      "2.7 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "phazurlabs__sumi-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "Ferousco-dev/anti-slop-design": {
+    "ran": true,
+    "stars": 14,
+    "minutes": 2.4,
+    "sheet": "Ferousco-dev__anti-slop-design.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "3",
+      "3",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.4 min",
+      "2.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 3",
+      "AI 痕迹 65 → 3"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "2.4 min",
+      "2.4 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "Ferousco-dev__anti-slop-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "joeseesun/qiaomu-design": {
+    "ran": true,
+    "stars": 675,
+    "minutes": 4.8,
+    "sheet": "joeseesun__qiaomu-design.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "4",
+      "4",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "4.8 min",
+      "4.8 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 4",
+      "AI 痕迹 65 → 4"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "4.8 min",
+      "4.8 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "joeseesun__qiaomu-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "2389-research/landing-page-design": {
+    "ran": true,
+    "stars": 37,
+    "minutes": 2.0,
+    "sheet": "2389-research__landing-page-design.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "5",
+      "5",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.0 min",
+      "2.0 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 5",
+      "AI 痕迹 65 → 5"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "2.0 min",
+      "2.0 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "2389-research__landing-page-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "tasteskill/tasteskill": {
+    "ran": true,
+    "stars": 245,
+    "minutes": 2.0,
+    "sheet": "tasteskill__tasteskill.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "6",
+      "6",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Warm paper · serif",
+      "米白纸色 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.0 min",
+      "2.0 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 6",
+      "AI 痕迹 65 → 6"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "2.0 min",
+      "2.0 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "tasteskill__tasteskill-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "felipebasurto/unslop-ui": {
+    "ran": true,
+    "stars": 17,
+    "minutes": 1.2,
+    "sheet": "felipebasurto__unslop-ui.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Dark · sans",
+      "深色 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "1.2 min",
+      "1.2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "1.2 min",
+      "1.2 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "felipebasurto__unslop-ui-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "yetone/kill-ai-slop": {
+    "ran": true,
+    "stars": 1192,
+    "minutes": 1.3,
+    "sheet": "yetone__kill-ai-slop.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "1.3 min",
+      "1.3 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "1.3 min",
+      "1.3 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "yetone__kill-ai-slop-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "Gesso-Build/skills": {
+    "ran": true,
+    "stars": 91,
+    "minutes": 1.7,
+    "sheet": "Gesso-Build__skills.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · serif",
+      "白底 · 衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "1.7 min",
+      "1.7 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "1.7 min",
+      "1.7 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "Gesso-Build__skills-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "nickture/skills": {
+    "ran": true,
+    "stars": 21,
+    "minutes": 1.9,
+    "sheet": "nickture__skills.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "1.9 min",
+      "1.9 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "1.9 min",
+      "1.9 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "nickture__skills-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "0xNyk/unmachined": {
+    "ran": true,
+    "stars": 10,
+    "minutes": 2.3,
+    "sheet": "0xNyk__unmachined.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "own",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Tinted · sans",
+      "浅色底 · 无衬线",
+      "touch-ups"
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "2.3 min",
+      "2.3 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "2.3 min",
+      "2.3 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "0xNyk__unmachined-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "educlopez/ui-craft": {
+    "ran": true,
+    "stars": 435,
+    "minutes": 4.5,
+    "sheet": "educlopez__ui-craft.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "4.5 min",
+      "4.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "4.5 min",
+      "4.5 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "educlopez__ui-craft-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "arhamhi/oxfords": {
+    "ran": true,
+    "stars": 26,
+    "minutes": 5.1,
+    "sheet": "arhamhi__oxfords.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "own",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      "touch-ups"
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "5.1 min",
+      "5.1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "5.1 min",
+      "5.1 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "arhamhi__oxfords-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "Guksu/suta": {
+    "ran": true,
+    "stars": 18,
+    "minutes": 5.5,
+    "sheet": "Guksu__suta.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "5.5 min",
+      "5.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "5.5 min",
+      "5.5 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "Guksu__suta-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "Laith0003/ux-skill": {
+    "ran": true,
+    "stars": 90,
+    "minutes": 10.4,
+    "sheet": "Laith0003__ux-skill.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "10.4 min",
+      "10.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "10.4 min",
+      "10.4 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "Laith0003__ux-skill-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "funboy322/avoid-ai-design": {
+    "ran": true,
+    "stars": 80,
+    "minutes": 2.5,
+    "sheet": "funboy322__avoid-ai-design.html",
+    "date": "2026-11-08",
+    "group": "clean",
+    "look": "",
+    "cells": [
+     [
+      "Rules kept",
+      "守住规则",
+      "touch-ups"
+     ],
+     [
+      "2",
+      "2",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "2.5 min",
+      "2.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 2",
+      "AI 痕迹 65 → 2"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "2.5 min",
+      "2.5 分钟"
+     ]
+    ],
+    "strip": {
+     "src": "funboy322__avoid-ai-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    }
+   },
+   "codeswithroh/tastemaker": {
+    "ran": true,
+    "stars": 450,
+    "minutes": 6.5,
+    "sheet": "codeswithroh__tastemaker.html",
+    "date": "2026-11-08",
+    "group": "rule",
+    "look": "",
+    "cells": [
+     [
+      "Broke a rule",
+      "破了规则",
+      "substantial"
+     ],
+     [
+      "2",
+      "2",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Tinted · sans",
+      "浅色底 · 无衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 2",
+      "AI 痕迹 65 → 2"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟"
+     ],
+     [
+      "Loads files from cdnjs.cloudflare.com",
+      "从 cdnjs.cloudflare.com 加载文件"
+     ]
+    ],
+    "strip": {
+     "src": "codeswithroh__tastemaker-thumb.webp",
+     "w": 160,
+     "h": 100
+    },
+    "issues": [
+     "Loads files from cdnjs.cloudflare.com",
+     "从 cdnjs.cloudflare.com 加载文件"
+    ]
+   },
+   "sva-admin/sv-academy-prom-design": {
+    "ran": true,
+    "stars": 29,
+    "minutes": 3.4,
+    "sheet": "sva-admin__sv-academy-prom-design.html",
+    "date": "2026-11-08",
+    "group": "rule",
+    "look": "",
+    "cells": [
+     [
+      "Broke a rule",
+      "破了规则",
+      "substantial"
+     ],
+     [
+      "3",
+      "3",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Tinted · serif",
+      "浅色底 · 衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "3.4 min",
+      "3.4 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 3",
+      "AI 痕迹 65 → 3"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "3.4 min",
+      "3.4 分钟"
+     ],
+     [
+      "Loads files from images.unsplash.com",
+      "从 images.unsplash.com 加载文件"
+     ]
+    ],
+    "strip": {
+     "src": "sva-admin__sv-academy-prom-design-thumb.webp",
+     "w": 160,
+     "h": 100
+    },
+    "issues": [
+     "Loads files from images.unsplash.com",
+     "从 images.unsplash.com 加载文件"
+    ]
+   },
+   "Yu-369/VibeCurb": {
+    "ran": true,
+    "stars": 981,
+    "minutes": 3.3,
+    "sheet": "Yu-369__VibeCurb.html",
+    "date": "2026-11-08",
+    "group": "rule",
+    "look": "",
+    "cells": [
+     [
+      "Broke a rule",
+      "破了规则",
+      "substantial"
+     ],
+     [
+      "5",
+      "5",
+      "num"
+     ],
+     [
+      "Scrolls sideways",
+      "能左右滑",
+      "substantial"
+     ],
+     [
+      "Gradient · sans",
+      "渐变 · 无衬线",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "3.3 min",
+      "3.3 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 5",
+      "AI 痕迹 65 → 5"
+     ],
+     [
+      "judge 5/5",
+      "评审 5/5"
+     ],
+     [
+      "3.3 min",
+      "3.3 分钟"
+     ],
+     [
+      "Phone layout scrolls sideways",
+      "手机上能左右滑"
+     ]
+    ],
+    "strip": {
+     "src": "Yu-369__VibeCurb-thumb.webp",
+     "w": 160,
+     "h": 100
+    },
+    "issues": [
+     "Phone layout scrolls sideways",
+     "手机上能左右滑"
+    ]
+   },
+   "h3nryprod01/design-taste": {
+    "ran": true,
+    "stars": 59,
+    "minutes": 3.2,
+    "sheet": "h3nryprod01__design-taste.html",
+    "date": "2026-11-08",
+    "group": "rule",
+    "look": "",
+    "cells": [
+     [
+      "Broke a rule",
+      "破了规则",
+      "substantial"
+     ],
+     [
+      "1",
+      "1",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "White · sans",
+      "白底 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "3.2 min",
+      "3.2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 1",
+      "AI 痕迹 65 → 1"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "3.2 min",
+      "3.2 分钟"
+     ],
+     [
+      "Loads files from fastly.picsum.photos, picsum.photos, unpkg.com",
+      "从 fastly.picsum.photos, picsum.photos, unpkg.com 加载文件"
+     ]
+    ],
+    "strip": {
+     "src": "h3nryprod01__design-taste-thumb.webp",
+     "w": 160,
+     "h": 100
+    },
+    "issues": [
+     "Loads files from fastly.picsum.photos, picsum.photos, unpkg.com",
+     "从 fastly.picsum.photos, picsum.photos, unpkg.com 加载文件"
+    ]
+   },
+   "Leonxlnx/taste-skill": {
+    "ran": true,
+    "stars": 111735,
+    "minutes": 20.8,
+    "sheet": "Leonxlnx__taste-skill.html",
+    "date": "2026-11-08",
+    "group": "rule",
+    "look": "",
+    "cells": [
+     [
+      "Broke a rule",
+      "破了规则",
+      "substantial"
+     ],
+     [
+      "3",
+      "3",
+      "num"
+     ],
+     [
+      "Fits",
+      "不溢出",
+      ""
+     ],
+     [
+      "Dark · sans",
+      "深色 · 无衬线",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "20.8 min",
+      "20.8 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "AI tells 65 → 3",
+      "AI 痕迹 65 → 3"
+     ],
+     [
+      "judge 4/5",
+      "评审 4/5"
+     ],
+     [
+      "20.8 min",
+      "20.8 分钟"
+     ],
+     [
+      "Split into 23 files, not one",
+      "拆成 23 个文件，不是一个"
+     ]
+    ],
+    "strip": {
+     "src": "Leonxlnx__taste-skill-thumb.webp",
+     "w": 160,
+     "h": 100
+    },
+    "issues": [
+     "Split into 23 files, not one",
+     "拆成 23 个文件，不是一个"
+    ]
+   },
+   "Mutakisa/game-slop-purge": {
+    "ran": false,
+    "stars": 73,
+    "reason": "Not a design tool: the folders its README describes do not exist, its links point to a download, and its web page is a block of encoded data with a script to decode it. We ran nothing from it.",
+    "reason_zh": "不是设计工具：README 里说的文件夹并不存在，链接指向一个下载，网页是一段编码数据加解码脚本。我们没运行它的任何东西。",
+    "date": "2026-11-08"
+   },
+   "stevembarclay/pencilplaybook": {
+    "ran": false,
+    "stars": 50,
+    "reason": "Needs the Pencil.dev desktop app open with its MCP server, and it edits .pen canvas files, not web pages.",
+    "reason_zh": "要开着 Pencil.dev 桌面应用并连上它的 MCP，而且它改的是 .pen 画布文件，不是网页。",
+    "date": "2026-11-08"
    }
   }
  }

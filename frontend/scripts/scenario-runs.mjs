@@ -99,7 +99,13 @@ export function runsFor(slug) {
   return run ? { ...run, passages: passagesFor(slug) } : null;
 }
 
-/** Every page's test run, by page slug (a skill's own page shows the ones it was in). */
+/** Further tests shown on the same page, under its own (run.page): the anti-slop page's interface test. */
+export function extraRunsFor(slug) {
+  return Object.values(RUNS).filter((run) => run.page === slug);
+}
+
+/** Every test run, by key: a page's slug, or for a further test on a page its own key (run.page names the page).
+ *  A skill's own page shows the ones it was in. */
 export function allRuns() {
   return RUNS;
 }
@@ -249,7 +255,7 @@ function ownTables(run, ran) {
 function verdictHtml(run) {
   const v = run.verdict;
   if (!v?.picks?.length) return "";   // a verdict with only an `answer` (the image page) has its picks in the explainer
-  const medals = ["🥇", "🥈", "🥉"];
+  const medals = v.ranked === false ? [] : ["🥇", "🥈", "🥉"];   // picks by look, not a ranking: bullets
   // Two picks can share a repo name (mattpocock/skills, anthropics/skills): then both show their owner.
   const names = v.picks.map((p) => name(p.repo));
   const shown = (repo) => (names.filter((n) => n === name(repo)).length > 1 ? repo : name(repo));
@@ -273,12 +279,28 @@ function notRunHtml(entries, label = ["Not run", "未能实测"]) {
   return `<details class="bp-tr-notrun"><summary ${biAttrs(`${label[0]} (${entries.length})`, `${label[1]}（${entries.length}）`)}>${esc(label[0])} (${entries.length})</summary><ul>${items.join("")}</ul></details>`;
 }
 
+const NAMED_LATER = 3;   // more entries added later than this are counted apart from the main test, not named
+
+/** Entries added after the main test (r.date), ran or not, when there are more than NAMED_LATER; else null. */
+function laterGroup(run, all) {
+  const later = all.filter(([, r]) => r.date && r.date !== run.date);
+  return later.length > NAMED_LATER ? later : null;
+}
+
+/** The intro's sentence on a later group: how many were added, when, and how many ran. */
+function laterCount(later) {
+  const date = later[0][1].date;
+  const n = later.filter(([, r]) => r.ran).length;
+  return [` ${later.length} more, first seen after the test, were added on ${date} with the same brief, agent and judge; ${n} ran.`,
+    `${date} 又补充了之后才出现的 ${later.length} 个，测试题、agent 和评审都相同，跑成 ${n} 个。`];
+}
+
 /** Entries run after the main test (r.date), named with their date; ["", ""] when there are none. */
 function laterNote(run, ran) {
   const later = ran.filter(([, r]) => r.date && r.date !== run.date);
   if (!later.length) return ["", ""];
-  const names = later.map(([repo, r]) => name(repo, r)).join(", ");
   const date = later[0][1].date;
+  const names = later.map(([repo, r]) => name(repo, r)).join(", ");
   const verb = later.length > 1 ? "were" : "was";
   return [` ${names} ${verb} added on ${date}, with the same brief, agent and judge.`, `${names} 于 ${date} 补测，测试题、agent 和评审都相同。`];
 }
@@ -288,6 +310,11 @@ export function runsSectionHtml(run) {
   if (!run) return "";
   const all = Object.entries(run.runs);
   const ran = all.filter(([, r]) => r.ran);
+  // Many entries added later (anti-slop, 11-08): the intro counts the main test and the later group apart.
+  const later = laterGroup(run, all);
+  const main = later ? all.filter((e) => !later.includes(e)) : all;
+  const mainRan = main.filter(([, r]) => r.ran);
+  const tail = later ? laterCount(later) : laterNote(run, ran);
   const mgr = run.type === "skillmgr";
   const own = run.type === "table";
   const table = own ? "" : mgr ? mgrTable(run, ran) : run.type === "slop" ? slopTable(run, ran) : pptTable(run, ran);
@@ -297,9 +324,9 @@ export function runsSectionHtml(run) {
   const intro = own ? run.intro : mgr
     ? [`We ran ${all.length} of these tools on ${run.date}; ${ran.length} could be judged. Each got the same job in a throwaway sandbox, driven by ${run.agent}: install 20 test skills, install one more that ships a curl | sh setup script, remove all but five, and give those five to Codex. What is on disk and how many tokens Claude Code loads were measured after each step.`,
        `${run.date} 我们实跑了其中 ${all.length} 个，${ran.length} 个可以评判。每个在用完即删的沙箱里由 ${run.agent} 调用，做同一件事：装 20 个测试 skill，再装一个带 curl | sh 安装脚本的 skill，然后删到只剩 5 个，并把这 5 个同步给 Codex。每一步之后都测了磁盘上有什么、Claude Code 加载了多少 token。`]
-    : [`We ran ${all.length} of these skills on ${run.date} and ${ran.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.${laterNote(run, ran)[0]}`,
-       `${run.date} 我们实跑了其中 ${all.length} 个，跑成 ${ran.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。${laterNote(run, ran)[1]}`];
-  return `<section id="test-results" class="bp-tr">
+    : [`We ran ${main.length} of these skills on ${run.date} and ${mainRan.length} ran: ${what} in a throwaway sandbox, driven by ${run.agent}, judged by ${run.judge}.${tail[0]}${run.also ? ` ${run.also[0]}` : ""}`,
+       `${run.date} 我们实跑了其中 ${main.length} 个，跑成 ${mainRan.length} 个：${whatZh}，在用完即删的沙箱里由 ${run.agent} 调用，${run.judge} 评审。${tail[1]}${run.also ? run.also[1] : ""}`];
+  return `<section id="${esc(run.anchor || "test-results")}" class="bp-tr">
     <h2 class="bp-section-title" ${biAttrs(...(run.title || ["Test results: the skills side by side", "实测对比：同一任务下的效果"]))}>${esc((run.title || ["Test results: the skills side by side"])[0])}</h2>
     <p class="bp-tr-intro" ${biAttrs(...intro)}>${esc(intro[0])}</p>
     ${verdictHtml(run)}

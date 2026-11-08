@@ -23,7 +23,7 @@ import { installCommands } from "./skill-install.mjs";
 import { kindsFor, kindAttrs, kindLabel, kindBarHtml, KIND_SCRIPT, descZh, descEn } from "./scenario-kinds.mjs";
 import { videoHtml, videoLd } from "./scenario-video.mjs";
 import { methodHtml, methodLd, hasMethod } from "./scenario-method.mjs";
-import { runsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
+import { runsFor, extraRunsFor, runLineHtml, runsSectionHtml } from "./scenario-runs.mjs";
 import { explainerHtml } from "./scenario-explainer.mjs";
 import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 import { subSkillPath, subSkillUrl, subSkillInstall } from "../src/lib/subSkillMeta.mjs";
@@ -567,7 +567,9 @@ function pageFingerprint(scenario, skills, allSkills) {
     s.repo_full_name, s.sub_path || "", descEn(s), descZh(s), kinds?.of(s) || "", s.security_grade || "",
   ])).sort();
   return fingerprint({
-    rev: TEMPLATE_REV, scenario, runs: runsFor(scenario.slug), kinds: kinds?.kinds ?? null, cards,
+    // A page with a further test hashes it too; the other pages' fingerprints stay as they were.
+    rev: TEMPLATE_REV, scenario, runs: extraRunsFor(scenario.slug).length ? [runsFor(scenario.slug), ...extraRunsFor(scenario.slug)] : runsFor(scenario.slug),
+    kinds: kinds?.kinds ?? null, cards,
   });
 }
 
@@ -793,6 +795,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const scenarioKinds = kindsFor(scenario.slug);
   const cards = [...skills, ...subCards];
   const run = runsFor(scenario.slug);   // end-to-end test results, when the page has them
+  const extraRuns = extraRunsFor(scenario.slug);   // further tests on the page (anti-slop: the interface test)
   const skillCardsHtml = cards.map((s, i) => {
     // A reviewed page labels each card with its reviewed kind, which names the
     // page's topic ("Editable PPTX"), and drops the language tag: repeated on
@@ -839,7 +842,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
           </div>
         </div>
         <p class="bp-card-desc bp-sc-desc" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
-        ${runLineHtml(run, s)}
+        ${[run, ...extraRuns].map((x) => runLineHtml(x, s)).join("")}
         ${installHtml}
         ${qsHtml}
         <div class="bp-sc-foot">
@@ -962,7 +965,7 @@ ${methodLd(scenario, pageUrl)}
 
       ${videoHtml(scenario)}
 
-      ${runsSectionHtml(run)}
+      ${runsSectionHtml(run)}${extraRuns.map(runsSectionHtml).join("")}
 
       ${hasMethod(scenario, scenarioKinds) ? methodHtml(scenario, cards, scenarioKinds) : buildAeoSection(scenario, skills, year)}
 

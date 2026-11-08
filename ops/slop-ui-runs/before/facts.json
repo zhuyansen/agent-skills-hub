@@ -1,0 +1,30 @@
+{
+ "tells": {
+  "purpleGradient": 16,
+  "gradientText": 8,
+  "blurEls": 4,
+  "blurBlobs": 3,
+  "glowEls": 8,
+  "emoji": 26
+ },
+ "hero_centred": true,
+ "h1_font": "Inter",
+ "stock_font": true,
+ "buzzwords": 15,
+ "facts": {
+  "name": true,
+  "price": true,
+  "trial": true,
+  "no card": true,
+  "a minute": true,
+  "reminders": true,
+  "accountant": true,
+  "Maya Okafor": true,
+  "illustrator": true,
+  "Lisbon": true,
+  "three weeks": true
+ },
+ "sideways": true,
+ "errors": [],
+ "outside": []
+}

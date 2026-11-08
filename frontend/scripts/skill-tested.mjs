@@ -30,12 +30,13 @@ function topPlace(scenario, repo) {
   return place ? { place, title: [top.h2, top.h2_zh || top.h2], ranked: top.numbered !== false } : null;
 }
 
-function entry(slug, run, repo) {
+function entry(key, run, repo) {
   const r = run.runs[repo];
+  const slug = run.page || key;   // a further test on a page (the anti-slop page's interface test) names its page
   const scenario = SCENARIOS.get(slug) || { title: slug };
   const pick = run.verdict?.picks?.find((p) => same(p.repo, repo));
   return {
-    page: `/best/${slug}/#test-results`,
+    page: `/best/${slug}/#${run.anchor || "test-results"}`,
     pageTitle: [scenario.title, ZH[slug]?.t || scenario.title],
     date: r.date || run.date,   // an entry run after the main test carries its own date
     tested: Object.values(run.runs).filter((x) => x.ran).length,
@@ -49,7 +50,7 @@ function entry(slug, run, repo) {
 function entriesWhere(repo, keep) {
   return Object.entries(allRuns())
     .filter(([, run]) => run.runs?.[repo]?.ran && keep(run.runs[repo]))
-    .map(([slug, run]) => entry(slug, run, repo));
+    .map(([key, run]) => entry(key, run, repo));
 }
 
 /** The tests this repository ran in, one entry each; [] for the rest. */

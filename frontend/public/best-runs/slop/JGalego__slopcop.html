@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>JGalego/slopcop: humanizer test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}.mute{color:var(--mute);font-size:13px}
+.verdict{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0 12px;font-size:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.col h3{font-size:13px;margin:0 0 6px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+pre{white-space:pre-wrap;word-wrap:break-word;margin:0;padding:12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);font:14px/1.6 -apple-system,'PingFang SC',sans-serif;max-height:640px;overflow:auto}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:0 8px;margin:2px 4px 2px 0}
+.left{border-color:var(--bad);color:var(--bad)}.gone{border-color:var(--ok);color:var(--ok);text-decoration:line-through}</style></head><body><main>
+<p class="mute"><a href="/best/anti-slop/">← Humanizer &amp; anti-slop skills</a></p>
+<h1>JGalego/slopcop: test run, 2026-11-08</h1>
+<p class="mute">Claude Code (Claude Opus 5.5) used this skill on three texts written by gpt-6-astra, asked to make them read as
+human-written and keep every fact. Judge: gpt-6-astra, comparing original and rewrite on StoryScope's structure features
+(<a href="https://arxiv.org/abs/2604.03136">COLM 2026</a>). Repo commit 55f5981e7360.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/in/prompt.txt">Prompt</a></p>
+<h2>English post</h2>
+<div class="verdict"><b>Layer reached:</b> phrasing · <b>Reads human:</b> 3/5 · <b>Meaning kept:</b> yes · facts kept 3/3
+ · AI tells 1→1 · em-dashes 6→0<br>
+<b>AI-leaning structure</b> (red: still there, struck: removed): <span class="tag left">States its lesson</span><span class="tag left">Tidy ending</span><span class="tag left">Never addresses the reader</span><span class="tag left">One single track</span><br>
+<span class="mute">Judge: The rewrite changes “more useful—and more connected” to “more useful, and more connected,” and changes “not just the marketing description” from a dash construction to a comma. It also changes “including credential harvesting...” to parenthetical wording and “support—not replace—human review” to “support human review, not replace it,” without changing the argument or structure.</span></div>
+<div class="cols"><div class="col"><h3>Original</h3><pre># Review AI Agent Skills Before You Install Them
+
+AI agents are becoming more useful—and more connected. Teams can now extend an agent with third-party skills, `SKILL.md` folders, MCP servers, plugins, and other integrations that let it browse systems, call APIs, modify files, and automate operational work.
+
+That flexibility also creates a new software supply-chain risk. An agent extension may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses, and where that data goes. Engineering managers should make review mandatory before any third-party skill is installed in a development or production environment.
+
+The risk is not limited to obviously malicious code. A skill can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files, or install dependencies from an untrusted source. MCP servers and plugins may also have access to credentials, internal APIs, source code, customer records, or local development environments. A compromised repository, maintainer account, or dependency can turn a seemingly harmless productivity tool into an entry point for a broader incident.
+
+Review should begin with provenance and scope. Identify who maintains the project, how long it has existed, whether its releases are signed or reviewed, and whether its dependencies are pinned. Read the entire `SKILL.md`, setup instructions, installation scripts, and configuration examples—not just the marketing description. Look for requested permissions, network destinations, shell commands, credential handling, filesystem access, and instructions that tell the agent to bypass safeguards or conceal actions from users.
+
+Automated screening can provide a useful first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories—including credential harvesting, data exfiltration, and `curl | sh` installers—and refreshes every 8 hours. Such a service can help teams discover suspicious patterns at scale, but a score should support—not replace—human review. Context matters, and a clean result is not a guarantee that a skill is safe.
+
+Create a lightweight approval process with clear ownership. For low-risk skills, require repository review, a permission check, and testing in a sandbox. For anything that can access production systems, secrets, customer data, or financial operations, involve security and require explicit approval. Use least-privilege tokens, isolated runtimes, restricted network access, and separate credentials for testing. Log agent actions and monitor unusual outbound requests, file access, and command execution.
+
+Teams should also define an exit plan. Know how to uninstall a skill, revoke its credentials, remove cached data, and identify systems it may have touched. Reassess extensions when they change owners, dependencies, permissions, or installation methods.
+
+The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.
+</pre></div>
+<div class="col"><h3>Rewrite</h3><pre># Review AI Agent Skills Before You Install Them
+
+AI agents are becoming more useful, and more connected. Teams can now extend an agent with third-party skills, `SKILL.md` folders, MCP servers, plugins, and other integrations that let it browse systems, call APIs, modify files, and automate operational work.
+
+That flexibility also creates a new software supply-chain risk. An agent extension may look like a small configuration file or a convenient GitHub repository, but it can influence what the agent executes, what data it accesses, and where that data goes. Engineering managers should make review mandatory before any third-party skill is installed in a development or production environment.
+
+The risk is not limited to obviously malicious code. A skill can contain unsafe instructions, request excessive permissions, encourage an agent to upload sensitive files, or install dependencies from an untrusted source. MCP servers and plugins may also have access to credentials, internal APIs, source code, customer records, or local development environments. A compromised repository, maintainer account, or dependency can turn a seemingly harmless productivity tool into an entry point for a broader incident.
+
+Review should begin with provenance and scope. Identify who maintains the project, how long it has existed, whether its releases are signed or reviewed, and whether its dependencies are pinned. Read the entire `SKILL.md`, setup instructions, installation scripts, and configuration examples, not just the marketing description. Look for requested permissions, network destinations, shell commands, credential handling, filesystem access, and instructions that tell the agent to bypass safeguards or conceal actions from users.
+
+Automated screening can provide a useful first pass. Agent Skills Hub indexes more than 186,000 GitHub repositories, grades skills against 11 red-flag categories (including credential harvesting, data exfiltration, and `curl | sh` installers), and refreshes every 8 hours. Such a service can help teams discover suspicious patterns at scale, but a score should support human review, not replace it. Context matters, and a clean result is not a guarantee that a skill is safe.
+
+Create a lightweight approval process with clear ownership. For low-risk skills, require repository review, a permission check, and testing in a sandbox. For anything that can access production systems, secrets, customer data, or financial operations, involve security and require explicit approval. Use least-privilege tokens, isolated runtimes, restricted network access, and separate credentials for testing. Log agent actions and monitor unusual outbound requests, file access, and command execution.
+
+Teams should also define an exit plan. Know how to uninstall a skill, revoke its credentials, remove cached data, and identify systems it may have touched. Reassess extensions when they change owners, dependencies, permissions, or installation methods.
+
+The goal is not to block experimentation. It is to make agent extensibility operate like any other software dependency: discoverable, reviewable, limited in scope, and observable in production. A few minutes of scrutiny before installation can prevent an agent from turning trusted access into an avoidable security incident.
+</pre></div></div></main></body></html>
