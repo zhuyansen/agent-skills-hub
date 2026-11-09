@@ -66,7 +66,7 @@ const GRADES = {
       ["Don't install it.", "别装。"],
     ],
     [
-      ["**Unaudited**", "**Unaudited**\n未审核"],
+      ["**Unaudited**", "**Unaudited**\n未评级"],
       ["Not graded yet: GitHub has no README for it, or its README has not been fetched or graded yet (the next sync grades it).", "还没有评级：GitHub 上没有它的 README，或者它的 README 还没抓取、还没评级（下一次同步会评）。"],
       ["Treat it as unknown, not as safe.", "当作未知，而不是安全。"],
     ],
