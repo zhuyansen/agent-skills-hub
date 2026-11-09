@@ -895,6 +895,14 @@
   "type": "image/gif",
   "bytes": 10178973
  },
+ "GoRenku/studio": {
+  "repo": "GoRenku/studio",
+  "url": "https://raw.githubusercontent.com/GoRenku/studio/HEAD/docs/screenshots/codex-and-renku.png",
+  "alt": "Codex directing a scene alongside Renku Studio, with Blender previs and generate",
+  "score": 1.7,
+  "type": "image/png",
+  "bytes": 612473
+ },
  "GongRzhe/Office-PowerPoint-MCP-Server": {
   "repo": "GongRzhe/Office-PowerPoint-MCP-Server",
   "url": "https://github.com/user-attachments/assets/90633c97-f373-4c85-bc9c-a1d7b891c344",
@@ -2079,6 +2087,22 @@
   "type": "image/png",
   "bytes": 119082
  },
+ "XliuXjianX/blender-production-skills": {
+  "repo": "XliuXjianX/blender-production-skills",
+  "url": "https://raw.githubusercontent.com/XliuXjianX/blender-production-skills/HEAD/assets/showcases/corridor-doorway.jpg",
+  "alt": "走廊与门",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 101769
+ },
+ "XuHo-IT/Content-Agent-Kit": {
+  "repo": "XuHo-IT/Content-Agent-Kit",
+  "url": "https://raw.githubusercontent.com/XuHo-IT/Content-Agent-Kit/HEAD/examples/gallery/gallery-opus.jpg",
+  "alt": "Opus 5.5 Style Recipes",
+  "score": 1.6,
+  "type": "image/jpeg",
+  "bytes": 80316
+ },
  "YIAN6557/eian-riso-broll": {
   "repo": "YIAN6557/eian-riso-broll",
   "url": "https://raw.githubusercontent.com/YIAN6557/eian-riso-broll/HEAD/demo/number.gif",
@@ -2182,6 +2206,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 4867727
+ },
+ "achimala/dream-loop": {
+  "repo": "achimala/dream-loop",
+  "url": "https://raw.githubusercontent.com/achimala/dream-loop/HEAD/assets/vesper-preview.gif",
+  "alt": "Vesper demo: an isometric fantasy scene",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 6976947
  },
  "actionow-ai/c2c_img": {
   "repo": "actionow-ai/c2c_img",
@@ -2583,6 +2615,14 @@
   "type": "image/png",
   "bytes": 80414
  },
+ "beatra-ai/ai-image-generator-skill": {
+  "repo": "beatra-ai/ai-image-generator-skill",
+  "url": "https://raw.githubusercontent.com/beatra-ai/ai-image-generator-skill/HEAD/assets/demo-2.webp",
+  "alt": "The generated pour-over set used as a reference for a new composition: a square ",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 267922
+ },
  "beatra-ai/ai-image-realism-skill": {
   "repo": "beatra-ai/ai-image-realism-skill",
   "url": "https://raw.githubusercontent.com/beatra-ai/ai-image-realism-skill/HEAD/assets/demo-2.webp",
@@ -2630,6 +2670,14 @@
   "score": 1.9,
   "type": "image/jpeg",
   "bytes": 292118
+ },
+ "bibinprathap/VeritasGraph": {
+  "repo": "bibinprathap/VeritasGraph",
+  "url": "https://raw.githubusercontent.com/bibinprathap/VeritasGraph/restored-main/demos/policy-compliance/demo.gif",
+  "alt": "VeritasGraph + VeritasReason policy-compliance demo",
+  "score": 4.35,
+  "type": "image/gif",
+  "bytes": 2835675
  },
  "billLiao/PPT-Design-Skill": {
   "repo": "billLiao/PPT-Design-Skill",
@@ -2902,6 +2950,14 @@
   "score": 1.9,
   "type": "image/png",
   "bytes": 664338
+ },
+ "codie1982/chorono-editor": {
+  "repo": "codie1982/chorono-editor",
+  "url": "https://raw.githubusercontent.com/codie1982/chorono-editor/HEAD/examples/first-animation/preview.png",
+  "alt": "An editable Chorono scene with a headline and three colored circles",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 90513
  },
  "cogine-ai/ai-slide-templates": {
   "repo": "cogine-ai/ai-slide-templates",
@@ -3374,6 +3430,14 @@
   "score": -0.2,
   "type": "image/webp",
   "bytes": 59812
+ },
+ "ezpeezee/beta-version-toon-studio": {
+  "repo": "ezpeezee/beta-version-toon-studio",
+  "url": "https://raw.githubusercontent.com/ezpeezee/beta-version-toon-studio/HEAD/docs/banner.png",
+  "alt": "Beta Version Toon Studio",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 374994
  },
  "fabriziosalmi/brutal-coding-tool": {
   "repo": "fabriziosalmi/brutal-coding-tool",
@@ -3895,6 +3959,14 @@
   "type": "image/gif",
   "bytes": 1416259
  },
+ "huynhcongdac/story-video-skill": {
+  "repo": "huynhcongdac/story-video-skill",
+  "url": "https://raw.githubusercontent.com/huynhcongdac/story-video-skill/HEAD/docs/preview.gif",
+  "alt": "Trích đoạn video làm bằng skill này",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1959389
+ },
  "hyhmrright/brooks-lint": {
   "repo": "hyhmrright/brooks-lint",
   "url": "https://raw.githubusercontent.com/hyhmrright/brooks-lint/HEAD/assets/demo.gif",
@@ -3926,6 +3998,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 1407674
+ },
+ "iamajmeena/pro-motion-editor-skill": {
+  "repo": "iamajmeena/pro-motion-editor-skill",
+  "url": "https://raw.githubusercontent.com/iamajmeena/pro-motion-editor-skill/HEAD/media/explainer-muse-vpn.gif",
+  "alt": "",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 436129
  },
  "iart-ai/ad-video-skills": {
   "repo": "iart-ai/ad-video-skills",
@@ -4255,6 +4335,14 @@
   "type": "image/png",
   "bytes": 2840759
  },
+ "jjietay/clayducation": {
+  "repo": "jjietay/clayducation",
+  "url": "https://raw.githubusercontent.com/jjietay/clayducation/main/gallery/png/clay-cancel.png",
+  "alt": "The clay mascot pushes a cart on a spring while two terms of the formula above a",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 245257
+ },
  "jjietay/kaleidoscope": {
   "repo": "jjietay/kaleidoscope",
   "url": "https://raw.githubusercontent.com/jjietay/kaleidoscope/HEAD/gallery/png/clay-cancel.png",
@@ -4503,6 +4591,14 @@
   "type": "image/gif",
   "bytes": 5743552
  },
+ "kwhi6693-web/photo-abstract-editorial": {
+  "repo": "kwhi6693-web/photo-abstract-editorial",
+  "url": "https://raw.githubusercontent.com/kwhi6693-web/photo-abstract-editorial/HEAD/assets/readme/comparisons/original-horizon/v3-result.png",
+  "alt": "Actual V3 output from the same source",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 382873
+ },
  "lainshao/modern-ppt": {
   "repo": "lainshao/modern-ppt",
   "url": "https://raw.githubusercontent.com/lainshao/modern-ppt/HEAD/assets/demo.gif",
@@ -4631,6 +4727,14 @@
   "type": "image/png",
   "bytes": 691140
  },
+ "lisamsung/agent-meme-forge": {
+  "repo": "lisamsung/agent-meme-forge",
+  "url": "https://raw.githubusercontent.com/lisamsung/agent-meme-forge/HEAD/docs/assets/ai-mascot-shoudao-lixian.gif",
+  "alt": "HR已读",
+  "score": 2.65,
+  "type": "image/gif",
+  "bytes": 270985
+ },
  "liuhaisi2026212-maker/motion-palette-15": {
   "repo": "liuhaisi2026212-maker/motion-palette-15",
   "url": "https://raw.githubusercontent.com/liuhaisi2026212-maker/motion-palette-15/HEAD/docs/readme/films/01.webp",
@@ -4702,6 +4806,14 @@
   "score": -0.25,
   "type": "image/png",
   "bytes": 265673
+ },
+ "mackswendhell/motion-code": {
+  "repo": "mackswendhell/motion-code",
+  "url": "https://raw.githubusercontent.com/mackswendhell/motion-code/HEAD/docs/vitrine/prancha-viva.gif",
+  "alt": "",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 2898568
  },
  "mad-helpers/motion-harness": {
   "repo": "mad-helpers/motion-harness",
@@ -4854,6 +4966,14 @@
   "score": 2.2,
   "type": "image/gif",
   "bytes": 5553518
+ },
+ "moguzbulbul/blueprint-animation": {
+  "repo": "moguzbulbul/blueprint-animation",
+  "url": "https://raw.githubusercontent.com/moguzbulbul/blueprint-animation/HEAD/media/preview.gif",
+  "alt": "Blueprint Before/After example",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 7137500
  },
  "molkex/mcp-flow-google": {
   "repo": "molkex/mcp-flow-google",
@@ -5455,6 +5575,14 @@
   "type": "image/webp",
   "bytes": 4764642
  },
+ "sayiyla/sayiyla-seo-ajan": {
+  "repo": "sayiyla/sayiyla-seo-ajan",
+  "url": "https://raw.githubusercontent.com/sayiyla/sayiyla-seo-ajan/HEAD/docs/gorseller/metrikler.png",
+  "alt": "sayiyla-seo-ajan hangi metriklere bakıyor: web sayfası, sosyal açıklama, derlenm",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 471231
+ },
  "scenario-labs/blender-plugin": {
   "repo": "scenario-labs/blender-plugin",
   "url": "https://raw.githubusercontent.com/scenario-labs/blender-plugin/HEAD/docs/images/panel-image.png",
@@ -5678,6 +5806,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 5558350
+ },
+ "stephenlzc/codex-image-gen": {
+  "repo": "stephenlzc/codex-image-gen",
+  "url": "https://raw.githubusercontent.com/stephenlzc/codex-image-gen/HEAD/docs/gallery/scenes-and-illustrations/image.png",
+  "alt": "Scenes & illustrations",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 1927935
  },
  "stevenjinlong/awesome-ppt-skills": {
   "repo": "stevenjinlong/awesome-ppt-skills",
@@ -6134,6 +6270,14 @@
   "score": 1.95,
   "type": "image/webp",
   "bytes": 126830
+ },
+ "vinhhien112/img2obj": {
+  "repo": "vinhhien112/img2obj",
+  "url": "https://raw.githubusercontent.com/vinhhien112/img2obj/HEAD/assets/tower-ship-demo.png",
+  "alt": "Procedural Three.js Tower Ship demo generated from an attached reference image",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 2680191
  },
  "vmc-inner-circle/k-style-ui-ux": {
   "repo": "vmc-inner-circle/k-style-ui-ux",

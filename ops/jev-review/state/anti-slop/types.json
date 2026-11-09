@@ -3988,5 +3988,33 @@
    "rules": 0.82
   },
   "kind": "writing"
+ },
+ {
+  "repo": "LilMGenius/paperthin",
+  "stars": 1379,
+  "description": "The skillbook for recursive self-improvement (RSI). NVIDIA's latest proof, unpacked with timeless engineering. Distilled from the OpenAI harness engineering hackathon winner's zero-touch method.",
+  "scores": {
+   "writing": 0.29,
+   "detector": 0.26,
+   "chinese": 0.06,
+   "code": 0.61,
+   "design": 0.14,
+   "rules": 0.27
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "LemonFace0309/charles-skills",
+  "stars": 31,
+  "description": "Agent skills: unslop, polish, unreasonable craft, storage cleanup, Claude editing and arcade motion",
+  "scores": {
+   "writing": 0.11,
+   "detector": 0.26,
+   "chinese": 0.04,
+   "code": 0.2,
+   "design": 0.94,
+   "rules": 0.27
+  },
+  "kind": "design"
  }
 ]

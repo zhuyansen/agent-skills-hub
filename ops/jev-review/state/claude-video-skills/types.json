@@ -8386,5 +8386,203 @@
    "general": 0.07
   },
   "kind": "motion"
+ },
+ {
+  "repo": "moguzbulbul/blueprint-animation",
+  "stars": 432,
+  "description": "Claude Design skill: animated before → after UX redesign, explained step by step through a blueprint drawing. By @moguzbulbul.",
+  "scores": {
+   "promo": 0.25,
+   "explainer": 0.81,
+   "music": 0.02,
+   "motion": 0.78,
+   "shorts": 0.16,
+   "editing": 0.08,
+   "demo": 0.83,
+   "story": 0.07,
+   "avatar": 0.02,
+   "general": 0.03
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "lisamsung/agent-meme-forge",
+  "stars": 99,
+  "description": "Codex skill that turns one image or text concept into a WeChat-ready Chinese sticker pack people will actually send. Sendability-gated, 4-keypose → 16-frame, no model-drawn text.",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.08,
+   "music": 0.02,
+   "motion": 0.98,
+   "shorts": 0.03,
+   "editing": 0.04,
+   "demo": 0.21,
+   "story": 0.09,
+   "avatar": 0.04,
+   "general": 0.04
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "jjietay/clayducation",
+  "stars": 7,
+  "description": "Claude Code skill that makes narrated teaching videos in a soft 3D clay look with a silent mascot. One agent checks the script before the voice is made.",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.99,
+   "music": 0.04,
+   "motion": 0.11,
+   "shorts": 0.11,
+   "editing": 0.03,
+   "demo": 0.16,
+   "story": 0.08,
+   "avatar": 0.06,
+   "general": 0.31
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "alireza12t/foldline",
+  "stars": 6,
+  "description": "Render HTML canvas animations to MP4 fast on a Mac, with WebCodecs hardware H.264 in headless Chrome (8.4 min 1080p60 in 161 s instead of 426 s). MCP server for Claude Code, Codex and Cursor. Ships 66 code-made film styles from LemoLab's lemo-opuscar. Free for non-commercial use.",
+  "scores": {
+   "promo": 0.34,
+   "explainer": 0.6,
+   "music": 0.18,
+   "motion": 0.17,
+   "shorts": 0.22,
+   "editing": 0.05,
+   "demo": 0.56,
+   "story": 0.37,
+   "avatar": 0.06,
+   "general": 0.29
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "iamajmeena/pro-motion-editor-skill",
+  "stars": 5,
+  "description": "Pro-Motion Editor: Claude Code skill for promo videos, reels, YouTube videos and motion graphics (onetake-based; camera moves, 3D tilt, glass UI)",
+  "scores": {
+   "promo": 0.73,
+   "explainer": 0.62,
+   "music": 0.07,
+   "motion": 0.62,
+   "shorts": 0.86,
+   "editing": 0.19,
+   "demo": 0.78,
+   "story": 0.1,
+   "avatar": 0.14,
+   "general": 0.41
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "HibaBenzahra/HibAi-Editing-Studio",
+  "stars": 5,
+  "description": "🎬 HibAI Studio — a Claude skill that turns your talking video into a ready-to-post reel: silences cut, Darija/Arabic word-by-word captions, motion graphics in your brand colours. By Hiba @hibssssi 💚",
+  "scores": {
+   "promo": 0.43,
+   "explainer": 0.26,
+   "music": 0.04,
+   "motion": 0.35,
+   "shorts": 0.94,
+   "editing": 0.97,
+   "demo": 0.6,
+   "story": 0.08,
+   "avatar": 0.05,
+   "general": 0.05
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "mackswendhell/motion-code",
+  "stars": 5,
+  "description": "Vídeos animados feitos 100% em código, com voz por IA, e um editor para os vídeos que você grava (Studio, em Remotion). Estilos 2D em Canvas e 3D no Blender, conduzidos pelo Claude Code.",
+  "scores": {
+   "promo": 0.36,
+   "explainer": 0.74,
+   "music": 0.1,
+   "motion": 0.27,
+   "shorts": 0.76,
+   "editing": 0.33,
+   "demo": 0.4,
+   "story": 0.68,
+   "avatar": 0.07,
+   "general": 0.71
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "XuHo-IT/Content-Agent-Kit",
+  "stars": 5,
+  "description": "Autonomous content & 9:16 video production toolkit for agentic IDEs (Claude Code, Antigravity). End-to-end pipeline: crawl → SEO/GEO drafting → review gate → social publishing + video generation (104 HTML templates). Zero dependencies, MIT.",
+  "scores": {
+   "promo": 0.23,
+   "explainer": 0.44,
+   "music": 0.05,
+   "motion": 0.18,
+   "shorts": 0.94,
+   "editing": 0.26,
+   "demo": 0.37,
+   "story": 0.09,
+   "avatar": 0.08,
+   "general": 0.36
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "GoRenku/studio",
+  "stars": 5,
+  "description": "Open-source, local-first film studio you direct through Codex or Claude Code. Screenplay, cast, locations, shot plans, Blender previs and AI-generated footage in one project on your computer.",
+  "scores": {
+   "promo": 0.68,
+   "explainer": 0.5,
+   "music": 0.09,
+   "motion": 0.05,
+   "shorts": 0.11,
+   "editing": 0.12,
+   "demo": 0.72,
+   "story": 0.56,
+   "avatar": 0.08,
+   "general": 0.14
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "huynhcongdac/story-video-skill",
+  "stars": 5,
+  "description": "Skill cho AI agent: tạo video truyện kể chuyện 3–5 phút bằng ảnh AI, nhân vật giữ nguyên mặt qua mọi cảnh.",
+  "scores": {
+   "promo": 0.04,
+   "explainer": 0.09,
+   "music": 0.02,
+   "motion": 0.04,
+   "shorts": 0.84,
+   "editing": 0.06,
+   "demo": 0.1,
+   "story": 0.95,
+   "avatar": 0.08,
+   "general": 0.04
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "codie1982/chorono-editor",
+  "stars": 5,
+  "description": "Open-source 2D animation editor. Create with Claude Code or Codex via MCP, then refine layers and keyframes visually.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.22,
+   "music": 0.11,
+   "motion": 0.78,
+   "shorts": 0.1,
+   "editing": 0.04,
+   "demo": 0.28,
+   "story": 0.13,
+   "avatar": 0.04,
+   "general": 0.09
+  },
+  "kind": "motion"
  }
 ]

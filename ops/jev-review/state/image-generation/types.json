@@ -3624,5 +3624,61 @@
    "mcp": 0.67
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "kwhi6693-web/photo-abstract-editorial",
+  "stars": 125,
+  "description": "Turn photos into source-faithful editorial artworks with an Agent Skill — adaptive layouts, controlled abstraction, and a Strict Fidelity composition path.",
+  "scores": {
+   "gpt_image": 0.09,
+   "nano_banana": 0.04,
+   "open_models": 0.13,
+   "editing": 0.12,
+   "design": 0.11,
+   "mcp": 0.26
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "CreativeClawCo/creative-claw-marketplace",
+  "stars": 5,
+  "description": "Creative Claw: AI video, image and voiceover generation inside ChatGPT, Claude, Codex and Cursor. Seedance 2.5, Gemini Omni, Nano Banana 2, voice cloning. Pay as you go.",
+  "scores": {
+   "gpt_image": 0.05,
+   "nano_banana": 0.24,
+   "open_models": 0.05,
+   "editing": 0.1,
+   "design": 0.07,
+   "mcp": 0.92
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "stephenlzc/codex-image-gen",
+  "stars": 5,
+  "description": "Agent skill that generates images through your locally installed, OAuth-authenticated Codex CLI — no API keys, exact-size enforcement, and full prompt archiving for reproducibility.",
+  "scores": {
+   "gpt_image": 0.22,
+   "nano_banana": 0.02,
+   "open_models": 0.08,
+   "editing": 0.02,
+   "design": 0.04,
+   "mcp": 0.2
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "beatra-ai/ai-image-generator-skill",
+  "stars": 5,
+  "description": "AI image generator agent skill for Claude Code, Cursor, Codex, Windsurf, Cline & OpenClaw: generate, compose, and edit product images, brand visuals, posters, social graphics, illustrations, and photo variations. AI图片生成 · 文生图 · AI修图",
+  "scores": {
+   "gpt_image": 0.14,
+   "nano_banana": 0.03,
+   "open_models": 0.05,
+   "editing": 0.19,
+   "design": 0.45,
+   "mcp": 0.57
+  },
+  "kind": "mcp"
  }
 ]

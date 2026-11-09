@@ -2830,5 +2830,101 @@
    "gen3d": 0.05
   },
   "kind": "dcc"
+ },
+ {
+  "repo": "achimala/dream-loop",
+  "stars": 1846,
+  "description": "Agent skill for impressive 3D visuals using Blender + image gen + subagent critic",
+  "scores": {
+   "blender": 0.35,
+   "unity": 0.03,
+   "godot": 0.03,
+   "unreal": 0.02,
+   "cad": 0.05,
+   "dcc": 0.04,
+   "web3d": 0.59,
+   "gen3d": 0.4
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "vinhhien112/img2obj",
+  "stars": 1692,
+  "description": "Codex plugin that turns attached object images into code-only, animation-ready procedural Three.js models.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.06,
+   "dcc": 0.03,
+   "web3d": 0.97,
+   "gen3d": 0.86
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "XliuXjianX/blender-production-skills",
+  "stars": 282,
+  "description": "面向 Codex 的 Blender 生产级技能套件，包含原生建模、几何节点、模拟、材质、拓扑与场景验证，以及参考图重建工作流。",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.06
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "icesixgod/awesome-astra-blender-characters",
+  "stars": 126,
+  "description": "An agent skill for Blender character creation and repair, with nine-view references, face and hair workflows, and visual validation.",
+  "scores": {
+   "blender": 0.97,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.3
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "sixtysevenlf/dsh-skill-blender-modeling",
+  "stars": 71,
+  "description": "DSH skill v1.0 · Blender 建模与装配流程：多 Agent 分工范式（冻结 spec/写作用域/接口表）、参考图形体还原、六条必踩的坑、十道数值门装配审计；23 条配方；配套插件 dsh-blender-plugin v1.0.0",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.1,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "ezpeezee/beta-version-toon-studio",
+  "stars": 5,
+  "description": "Turn an idea or your own script into a 9:16 animated cartoon short with Claude Code and Blender.",
+  "scores": {
+   "blender": 0.82,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "blender"
  }
 ]

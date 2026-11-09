@@ -10122,5 +10122,31 @@
   "days": 945,
   "stars_per_day": 0.2074074074074074,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "SherwinQ/karpathy-wiki",
+  "name": "karpathy-wiki",
+  "stars": 121,
+  "description": "基于 [Andrej Karpathy]提出的 [LLM Wiki 模式]构建的 Agent Skill，通过四阶段流水线将碎片化信息转化为结构化、可检索、持续增长的个人知识库。",
+  "topics": [],
+  "created": "2026-04-05",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 8313,
+  "names_model": false,
+  "on_subject": 0.81,
+  "is_software": 0.96,
+  "shows_result": 0.04,
+  "one_command_start": 0.14,
+  "specific_outcome": 0.51,
+  "complete_docs": 0.65,
+  "novel_angle": 0.68,
+  "shareable_output": 0.78,
+  "quality": 0.335,
+  "tier": "低",
+  "hit_prior": 0.5,
+  "days": 218,
+  "stars_per_day": 0.555045871559633,
+  "verdict": "low_quality"
  }
 ]

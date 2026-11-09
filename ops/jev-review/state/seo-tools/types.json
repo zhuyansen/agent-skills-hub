@@ -4622,5 +4622,101 @@
    "marketing": 0.07
   },
   "kind": "geo"
+ },
+ {
+  "repo": "thebeastco/seobeast-audit",
+  "stars": 8,
+  "description": "Full-site SEO audit — 140+ rules, 20 categories. Claude Code skill + @seobeast/seo-audit npm library. TypeScript, ESM, no browser required.",
+  "scores": {
+   "suite": 0.35,
+   "audit": 0.96,
+   "research": 0.03,
+   "data_mcp": 0.15,
+   "geo": 0.2,
+   "content": 0.06,
+   "links": 0.03,
+   "marketing": 0.06
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "ibangtam/skill-seo-co-ban",
+  "stars": 5,
+  "description": "3 skill Claude cho SEO tiếng Việt: nghiên cứu từ khoá → dàn ý → viết bài. Không cần công cụ trả phí.",
+  "scores": {
+   "suite": 0.11,
+   "audit": 0.04,
+   "research": 0.48,
+   "data_mcp": 0.02,
+   "geo": 0.15,
+   "content": 0.93,
+   "links": 0.02,
+   "marketing": 0.04
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "skills-sh/claude-seo",
+  "stars": 5,
+  "description": "Skill de Claude Code con 13 comandos SEO — auditorías técnicas, contenido y agente automático",
+  "scores": {
+   "suite": 0.99,
+   "audit": 0.93,
+   "research": 0.13,
+   "data_mcp": 0.05,
+   "geo": 0.08,
+   "content": 0.32,
+   "links": 0.04,
+   "marketing": 0.06
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "TrendTweekers/article-autopilot",
+  "stars": 5,
+  "description": "Drop-in Claude Code skill bundle for AI-resistant SEO article generation — research → write → E-E-A-T audit, configurable for any site or language.",
+  "scores": {
+   "suite": 0.36,
+   "audit": 0.05,
+   "research": 0.17,
+   "data_mcp": 0.02,
+   "geo": 0.07,
+   "content": 0.88,
+   "links": 0.02,
+   "marketing": 0.09
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "sayiyla/sayiyla-seo-ajan",
+  "stars": 5,
+  "description": "Türkçe öncelikli SEO, AEO ve GEO ajanları: web metni düzeltici, Instagram/TikTok/YouTube açıklama yazıcı, site denetçisi. Claude Code eklentisi + bağımsız Node araçları. MIT.",
+  "scores": {
+   "suite": 0.87,
+   "audit": 0.43,
+   "research": 0.03,
+   "data_mcp": 0.1,
+   "geo": 0.74,
+   "content": 0.75,
+   "links": 0.02,
+   "marketing": 0.14
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "XuHo-IT/Content-Agent-Kit",
+  "stars": 5,
+  "description": "Autonomous content & 9:16 video production toolkit for agentic IDEs (Claude Code, Antigravity). End-to-end pipeline: crawl → SEO/GEO drafting → review gate → social publishing + video generation (104 HTML templates). Zero dependencies, MIT.",
+  "scores": {
+   "suite": 0.31,
+   "audit": 0.05,
+   "research": 0.07,
+   "data_mcp": 0.07,
+   "geo": 0.18,
+   "content": 0.41,
+   "links": 0.03,
+   "marketing": 0.42
+  },
+  "kind": "marketing"
  }
 ]

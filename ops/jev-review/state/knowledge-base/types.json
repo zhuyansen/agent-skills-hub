@@ -5220,5 +5220,19 @@
    "personal": 0.69
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "bibinprathap/VeritasGraph",
+  "stars": 326,
+  "description": "VeritasGraph — open-source Knowledge Graph & GraphRAG framework on GitHub. Build multi-hop reasoning, ontology-aware retrieval, and verifiable attribution over your own data. Nodes, edges, RDF, linked-data — runs locally or in the cloud.",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.83,
+   "mcp": 0.67,
+   "docs_qa": 0.43,
+   "graph": 0.99,
+   "personal": 0.08
+  },
+  "kind": "graph"
  }
 ]

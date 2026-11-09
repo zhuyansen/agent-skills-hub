@@ -3680,5 +3680,19 @@
    "general": 0.61
   },
   "kind": "general"
+ },
+ {
+  "repo": "Skywalkerjieee/paper-sharing-ppt",
+  "stars": 5,
+  "description": "用于制作组会论文分享ppt的skill",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.02,
+   "convert": 0.96,
+   "general": 0.04
+  },
+  "kind": "convert"
  }
 ]

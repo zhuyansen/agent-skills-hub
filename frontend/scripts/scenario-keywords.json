@@ -2035,7 +2035,11 @@
     "yan-stone-computer/NexcoreMultimodalSkill",
     "beatra-ai/ai-image-realism-skill",
     "LunaAI519/motion-skill",
-    "FireTable/comfy-colab-kit"
+    "FireTable/comfy-colab-kit",
+    "kwhi6693-web/photo-abstract-editorial",
+    "CreativeClawCo/creative-claw-marketplace",
+    "stephenlzc/codex-image-gen",
+    "beatra-ai/ai-image-generator-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2166,7 +2170,13 @@
     "wellingfeng/UltraGameStudio",
     "S4US/Roqer",
     "codepawl/viz3d",
-    "dcc-mcp/dcc-mcp-core"
+    "dcc-mcp/dcc-mcp-core",
+    "achimala/dream-loop",
+    "vinhhien112/img2obj",
+    "XliuXjianX/blender-production-skills",
+    "icesixgod/awesome-astra-blender-characters",
+    "sixtysevenlf/dsh-skill-blender-modeling",
+    "ezpeezee/beta-version-toon-studio"
    ],
    "exclude_repos": []
   },
@@ -3378,7 +3388,8 @@
     "sparkplug604/praxis",
     "ipiton/agent-memory-mcp",
     "Anakior/atlas-mind",
-    "gogoymh/auto-ontology-mcp"
+    "gogoymh/auto-ontology-mcp",
+    "bibinprathap/VeritasGraph"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4640,7 +4651,9 @@
     "lakshitha-dev/ai-humanizer-skill",
     "thecodebeatz/short-humanizer",
     "LearnPrompt/vibecoding-humanizer",
-    "Harrypatria/tastemaker"
+    "Harrypatria/tastemaker",
+    "LilMGenius/paperthin",
+    "LemonFace0309/charles-skills"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5140,7 +5153,13 @@
     "chenchaoge/seo-ai-link",
     "Canonry/agent-readiness",
     "6t9xstar/one-step-seo",
-    "AI-Marketing-OS-LTD/cmo-so-skills"
+    "AI-Marketing-OS-LTD/cmo-so-skills",
+    "thebeastco/seobeast-audit",
+    "ibangtam/skill-seo-co-ban",
+    "skills-sh/claude-seo",
+    "TrendTweekers/article-autopilot",
+    "sayiyla/sayiyla-seo-ajan",
+    "XuHo-IT/Content-Agent-Kit"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5183,7 +5202,8 @@
     "Cesarjoquin/Marketing-Skills",
     "alphaparkinc/genpark-generative-seo-skill",
     "alphaparkinc/genpark-seo-metadata-generator-skill",
-    "mlsss333/seo-geo-kit"
+    "mlsss333/seo-geo-kit",
+    "seobeast-co/seobeast-audit"
    ]
   },
   "related": [
@@ -6736,7 +6756,8 @@
     "alchaincyf/huashu-slide-codex",
     "HeiGeAi/HeiGe-PPT",
     "hustcer/pptx-nova",
-    "knorq-ai/pptx-mcp-server"
+    "knorq-ai/pptx-mcp-server",
+    "Skywalkerjieee/paper-sharing-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7668,7 +7689,8 @@
     "yejianye/ob-smart-connections-mcp",
     "mistrysiddh/hermes-brain-template",
     "caibucaiAI/caicai-english-buddy",
-    "SystemSculpt/obsidian-systemsculpt-ai"
+    "SystemSculpt/obsidian-systemsculpt-ai",
+    "SherwinQ/karpathy-wiki"
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
@@ -8753,7 +8775,18 @@
     "Shugar86/vids-studio",
     "jjietay/kaleidoscope",
     "wzslr321/fixtape",
-    "YanKaFei/ascii-h3-director"
+    "YanKaFei/ascii-h3-director",
+    "moguzbulbul/blueprint-animation",
+    "lisamsung/agent-meme-forge",
+    "jjietay/clayducation",
+    "alireza12t/foldline",
+    "iamajmeena/pro-motion-editor-skill",
+    "HibaBenzahra/HibAi-Editing-Studio",
+    "mackswendhell/motion-code",
+    "XuHo-IT/Content-Agent-Kit",
+    "GoRenku/studio",
+    "huynhcongdac/story-video-skill",
+    "codie1982/chorono-editor"
    ],
    "sub_skills": [
     {
@@ -8796,7 +8829,8 @@
     "Vandit1604/vawe",
     "misbahsy/tiktok-ig-shorts",
     "JuneYaooo/cheap-claude-video",
-    "blixvip/easyedit"
+    "blixvip/easyedit",
+    "jjietay/kaleidoscope"
    ],
    "tag_matches": [],
    "required_keywords": [
