@@ -4,6 +4,7 @@
  */
 
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
+import { isFeaturedRepo } from "./featured-repos.mjs";
 
 export const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 export const SUPABASE_ANON_KEY =
@@ -347,8 +348,11 @@ export const MIN_STARS_FOR_PAGE = 50;
  */
 export const MIN_STARS_TO_INDEX = 500;
 
-/** Whether a skill page carries no robots noindex. Gone repos follow the same floor. */
-export const isIndexedSkillPage = (skill) => shouldIndex(skill) && skill.stars >= MIN_STARS_TO_INDEX;
+/** Whether a skill page carries no robots noindex. Gone repos follow the same floor. A repo a
+ *  live /best/ guide tested or recommends is indexed from the page floor up (featured-repos.mjs):
+ *  its page carries the test result or the pick, which no other page has. */
+export const isIndexedSkillPage = (skill) =>
+  shouldIndex(skill) && (skill.stars >= MIN_STARS_TO_INDEX || isFeaturedRepo(skill.repo_full_name));
 
 // Audit pages (generate-audit-pages.mjs)
 // ── Eligibility (tightened 2026-07-28 on 28-day GSC evidence) ──────────────

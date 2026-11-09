@@ -7,4 +7,8 @@ Disallow: /*?tab=
 Disallow: /*?page=
 Disallow: /*?sort=
 
+# Evidence pages behind the /best/ test sections: one noindex page per tested tool (358 on
+# 2026-11-09). Their images and videos stay open: the guides show them.
+Disallow: /best-runs/*.html$
+
 Sitemap: https://agentskillshub.top/sitemap.xml

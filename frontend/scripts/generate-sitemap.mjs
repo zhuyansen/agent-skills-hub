@@ -28,6 +28,7 @@ import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
 import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 import { buildSitemapIndex } from "./sitemap-index.mjs";
 import { MODIFIED_PATH, declaredDateIn } from "./scenario-modified.mjs";
+import { isFeaturedRepo } from "./featured-repos.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -295,8 +296,10 @@ async function main() {
   // Tightened threshold from 100 → 500 to redirect Google's crawl budget to
   // the top ~1,500 pages instead of spreading across 4,000+ similar-looking
   // template pages. Expected effect: indexing rate 30% → 60-70% within 30 days.
-  const topSkills = indexedSkills.filter((s) => s.stars >= 500);
-  const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 500);
+  // 2026-11-10: a page a live guide tested or recommends is indexed under 500 stars too, so it is
+  // offered here with them (featured-repos.mjs, shared-utils.mjs isIndexedSkillPage).
+  const topSkills = indexedSkills.filter((s) => s.stars >= 500 || isFeaturedRepo(s.repo_full_name));
+  const midSkills = indexedSkills.filter((s) => s.stars >= 50 && s.stars < 500 && !isFeaturedRepo(s.repo_full_name));
 
   // 1. sitemap-static.xml
   const staticEntries = [
@@ -534,7 +537,8 @@ async function main() {
   // declares the xhtml namespace the scenario entries' hreflang links need.
   const subSkills = subSkillEntries();
   writeFileSync("dist/sitemap-top.xml", wrapUrlsetI18n([...hubEntries, ...topEntries, ...subSkills]));
-  console.log(`sitemap-top.xml: ${hubEntries.length} hub + ${topSkills.length} skill + ${subSkills.length} sub-skill URLs (stars >= 500)`);
+  const featuredUnder = topSkills.filter((s) => s.stars < 500).length;
+  console.log(`sitemap-top.xml: ${hubEntries.length} hub + ${topSkills.length} skill (${featuredUnder} under 500★, tested or recommended on a guide) + ${subSkills.length} sub-skill URLs`);
 
   // 7. sitemap.xml (index) — only top-tier to conserve crawl budget
   const sitemapFiles = [
