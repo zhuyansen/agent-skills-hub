@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-09
+1. kunchenguid/headless — 🆕 一步步通过 SSH 配好无头 Mac、Linux 或 Windows 机器，全程不用看屏幕（56★ 32.0/day）
+2. pireel/pireel — 开源剪映替代品，任何 AI 智能体都能通过 MCP 驱动剪片（1358★ 12.2/day）
+3. zuiho-kai/bothouse — 把 Claude Code、Codex、Gemini 拉进一个群，共享记忆、自己分活（170★ 9.2/day）
+4. andrewboldi/tmux-restore — 🆕 重启也不丢 tmux 会话、布局与滚动记录，编码智能体会话一并恢复（64★ 7.9/day）
+5. beyondtahir/beyondsumi — 给 YouTube 创作者做水墨风叙事视频，配旁白、音效直出高清成片（101★ 7.2/day）
+6. google/three-live — 用 AI 优先的运行时在安卓、iOS 与 XR 上跑原生 3D 与 CAD，谷歌官方出品（214★ 5.7/day）
+7. squall01337/mixamo-llm-mocap — 把任意视频转成 Mixamo 骨骼动画，经 MCP 在 Blender 里套用（428★ 5.1/day）
+8. samffprice/loopcut — 在 Blender 里内置一个 AI 智能体，直接帮你建模改场景（170★ 3.4/day）
+9. mrbizarro/Phosphene — 在 Mac 上离线生成 AI 视频、图片、语音和歌曲，免费开源（333★ 1.7/day）
+10. Cai-aa/CAD-Agent-Hub — 用 MCP 把智能体接进 CATIA、SolidWorks、NX 与 Fusion 做自动化（138★ 1.3/day）
+🎯 今日趋势：3D 与 CAD 占 **4 席**（three-live、mixamo-llm-mocap、loopcut、CAD-Agent-Hub，其中 2 席跑在 Blender 里），视频生产占 **3 席**（pireel、beyondsumi、Phosphene）；ai-manus 克隆集群继续扩大，72h 窗口里又有 **55 仓**，全部拦下。
+> 注：去重范围＝repo 内 archive 全部 137 个日期段，并入记忆区 fresh-skills-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 5,594 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、事务内 `SET LOCAL statement_timeout=30000`、NullPool）一次成功：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 112 条、去重后 101 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①ai-manus 克隆集群：48h 内 43 仓、72h 内 55 仓（如 Infernogoldep/ai--manus、proteus1121/manus-ai、Abdul-Rehman7826/ai-manus 等），1.7–2.3 天前集中创建、54–82★、描述一字不差、大量随机词账号名，延续 11-07/11-08 拦截口径，全部排除；②dotslashsimran/simcraft（140★ 44.8/day，本可居第 1）：描述只有「my claude skills for everyday work」属私用仓，且作者名下其余仓全为 0–1★、一次从 2★ 跳到 140★，单仓突起，排除；③nengong/download-anything（81★ 17.7/day，本可居第 3）：账号 2026-06 建、0 粉、名下仅此 1 仓，实时 114★ 仅 1 fork，排除；④cloudishai/skills（116★ 3.1/day）：实时星数掉到 95★（-21），GitHub 清理虚假 star 的典型信号，排除；⑤bpy-dev/blender-mcp（97★ 1.6/day）：组织 09-09 建、0 粉，且为他人 Blender Lab MCP 的再分发版，排除；⑥per-simmons/unreal-agent-harness（209★ 1.5/day）：6 月底起再无推送、无 LICENSE，排除；⑦flopperam/unreal-engine-mcp（1116★ 2.4/day）：建仓 460 天的老库首次收录，描述为 Aura 产品导流，排除；⑧gogoymh/auto-ontology-mcp（188★ 75.0/day）：first_seen 约 56h，超出 48h 窗口。入选项复核（`gh api`）：第 1 席 kunchenguid 2013 建号、7,037 粉，名下 firstmate 8,699★、gnhf 4,264★，实时 132★/8 fork/19 issue（**与 09-19 已推荐的 kunchenguid/vision 同作者不同仓**）；第 2 席 pireel 组织 2026-07 建、9 粉、名下 2 仓（**轻红旗**：新组织单仓承星，但实时 1,359★ 对 115 fork、47MB、AGPL-3.0、今日仍推送，保留；建仓 112 天，本期首次收录，velocity 取生涯均值）；第 3 席 zuiho-kai 2017 建号、27 粉，名下 bot_civ 45★，实时 172★/15 fork/22 issue；第 4 席 andrewboldi 2020 建号、0 粉，但名下 72 仓为连贯的学习与科研轨迹，实时 70★/3 fork（**轻红旗**，保留）；第 5 席 beyondtahir 2026-03 建号、298 粉，名下 beyondseo 255★、beyondwords 158★、beyondartist 67★ 分布承星，实时 101★/21 fork；第 6 席 google 官方组织，实时 223★/32 fork；第 7 席 squall01337 2023 建号、15 粉，名下另有 55★ 仓，实时 434★/87 fork（最后推送停在 09-26，**轻红旗**，保留）；第 8 席 samffprice 2023 建号、9 粉，其余仓 ≤3★（**轻红旗**：单仓突起，但实时 170★/22 fork、为 Blender 的 GPL 衍生改造而非镜像，保留）；第 9 席 mrbizarro 2025-05 建号、30 粉，实时 335★/53 fork/10 issue、MIT；第 10 席 Cai-aa 2020 建号、213 粉，名下 CAE-Agent-Hub 1,299★、abaqus-mcp 326★，实时 139★/23 fork。🆕 判定＝created_at 距今 14 天内：headless（1.7 天）、tmux-restore（8.1 天）命中；beyondsumi（14.0 天，超出 14 天约 13 分钟）、bothouse（18.5 天）及其余 6 席不标。security_grade：入选 10 仓全部 safe。表中 stars 为数据库快照，部分仓实时更高（headless 132★、tmux-restore 70★），按红线保留快照值。
+
+---
+
 ## 2026-11-08
 1. shanselman/sandbox-mcp — 🆕 一键开出用完即弃的 Windows 沙箱机器，让智能体在里面测试你的应用（171★ 116.5/day）
 2. stubbi/asm — 🆕 给汇编项目做包管理和命令行工具，配 MCP 服务方便 AI 辅助写汇编（595★ 81.7/day）
