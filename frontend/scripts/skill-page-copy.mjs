@@ -38,6 +38,7 @@ const FLAG_NAMES = {
   curl_pipe_shell: ["curl | sh from an untrusted host", "从陌生主机 curl | sh"],
   agent_config_theft: ["sends agent config files off the machine", "把 agent 配置文件发出本机"],
   fenced_download_exec: ["install step in a code block runs a script from an untrusted host", "代码块里的安装步骤会运行陌生主机的脚本"],
+  pages_download_lure: ["download button leads to the author's own GitHub Pages site", "下载按钮指向作者自己的 GitHub Pages 页面"],
   tunnel_service: ["opens a tunnel service", "开启隧道服务"],
   eval_usage: ["dynamic eval()", "动态 eval()"],
   sensitive_env_vars: ["reads sensitive env vars", "读取敏感环境变量"],

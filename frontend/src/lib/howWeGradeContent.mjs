@@ -90,6 +90,7 @@ const GRADES = {
 
 const HIGH_RISK = [
   ["*Download and execute from an untrusted host, written in the README's prose:* `curl … | sh`, `wget … | sh`, PowerShell `irm … | iex`. Fetching from the project itself (its GitHub owner, the same repository under another owner after a move or as a fork's upstream, its own website), from the GitHub of a tier 1 or 2 organisation (see the tiers below) or from a well-known installer host does not count, and neither does an example address such as example.com, localhost or a private IP.", "**从不受信任的主机下载并执行（写在 README 正文里）：**`curl … | sh`、`wget … | sh`、PowerShell 的 `irm … | iex`。下载来源是项目自己（它的 GitHub 所有者、迁移后或作为 fork 上游的同名仓库、项目自己的网站）、第 1、2 档组织的 GitHub（分档见下文）或知名安装器主机的，不算；example.com、localhost、内网 IP 这类示例地址也不算。"],
+  ["*A download button that leads to the author's own GitHub Pages site:* an image button saying download that links to `<owner>.github.io` instead of a release, a package or install steps. Fake repositories use it to send readers to a page that serves the download; the button is the only part of them a README shows. A text link to a project's own download page does not count, and neither does a badge counting downloads.", "**下载按钮指向作者自己的 GitHub Pages：**写着下载的图片按钮链到 `<owner>.github.io`，而不是发布页、软件包或安装步骤。假仓库靠它把人引到发放下载的页面，README 里能看到的只有这个按钮。用文字链接指向项目自己的下载页不算，统计下载量的徽章也不算。"],
   ["*Remote access:* a reverse shell, or a connection through `/dev/tcp`.", "**远程访问：**反弹 shell（reverse shell），或通过 `/dev/tcp` 建立的连接。"],
   ["*Taking credentials or agent data:* reading SSH or cloud credentials and sending them off the machine; harvesting credentials from environment variables; reading an agent's configuration, session or credential files and sending them out; reading an agent's memory or identity files; reading the system password file; posting local data to an outside server.", "**窃取凭证或 agent 数据：**读取 SSH 或云服务凭证并发出本机；从环境变量里收集凭证；读取 agent 的配置、会话或凭证文件并发出去；读取 agent 的记忆或身份文件；读取系统密码文件；把本地数据发到外部服务器。"],
   ["*Hidden execution:* base64 data decoded straight into execution, hex-encoded payloads, obfuscated Python, executing dynamically imported code, installing a package and running it in the same breath.", "**隐蔽执行：**base64 数据解码后直接执行、十六进制编码的载荷、混淆过的 Python、执行动态导入的代码、装完一个包立刻运行它。"],
@@ -182,7 +183,7 @@ const SECTIONS = [
         ["Secrets piped to a network tool.", "把密钥通过管道交给网络工具。"],
         ["A downloaded payload written into a shell startup file or a cron job.", "把下载来的载荷写进 shell 启动文件或 cron 任务。"],
       ] },
-      { type: "h3", text: ["High risk (21)", "高风险（21 条）"] },
+      { type: "h3", text: ["High risk (22)", "高风险（22 条）"] },
       { type: "ul", items: HIGH_RISK },
       { type: "h3", text: ["Medium risk (19)", "中风险（19 条）"] },
       { type: "ul", items: MEDIUM_RISK },

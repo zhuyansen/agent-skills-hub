@@ -258,13 +258,18 @@ const MED_PATTERNS: PatternDef[] = [
 // A download-and-execute from an untrusted host inside a code block weighs as medium risk: there it is
 // usually someone else's install step (backend FENCED_DOWNLOAD_FLAG). Never matched as a pattern itself.
 const FENCED_DOWNLOAD: PatternDef = [/(?!)/, "fenced_download_exec", "medium", "An install step in a code block downloads and runs a script from an untrusted source"];
+// An image button saying download that links to the owner's own GitHub Pages site: the call to action of
+// the fake-repo lures found 2026-11-09 (backend PAGES_DOWNLOAD_FLAG says why). Never matched as a pattern itself.
+const PAGES_DOWNLOAD: PatternDef = [/(?!)/, "pages_download_lure", "high", "Its download button leads to a page on the author's own GitHub Pages site instead of a release, a package or install steps"];
+// [![alt](image)](target): the image markdown is group 1, the link target group 2.
+const IMAGE_BUTTON = /\[(!\[[^\]]*\]\([^)\s]*\))\]\((https?:\/\/[^)\s]+)\)/g;
 
 const REJECT_NAMES = new Set(REJECT_PATTERNS.map(p => p[1]));
-const HIGH_NAMES = new Set([...HIGH_PATTERNS, ...PIPE_PATTERNS].map(p => p[1]));
+const HIGH_NAMES = new Set([...HIGH_PATTERNS, ...PIPE_PATTERNS, PAGES_DOWNLOAD].map(p => p[1]));
 const MED_NAMES = new Set([...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD].map(p => p[1]));
 
 // All patterns indexed by flag name for description lookup
-const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD];
+const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD, PAGES_DOWNLOAD];
 const DESC_MAP = new Map(ALL_PATTERNS.map(([, name, sev, desc]) => [name, { severity: sev, description: desc }]));
 
 export interface ScanContext {
@@ -478,6 +483,20 @@ function pipeToShellFlags(text: string, ctx: ScanContext): string[] {
   return found;
 }
 
+// "downloads" is a counter badge, not a button; a button shown inside code is documented, not offered.
+// Mirrors the backend's _pages_download_lure_flags.
+function pagesDownloadLureFlags(text: string, ctx: ScanContext): string[] {
+  const owner = (ctx.repoFullName ?? "").toLowerCase().split("/")[0];
+  if (!owner) return [];
+  for (const m of text.matchAll(IMAGE_BUTTON)) {
+    const [, label, target] = m;
+    const pos = m.index ?? 0;
+    if (!label.includes("download") || label.includes("downloads") || hostOf(target) !== `${owner}.github.io`) continue;
+    if (!isInCodeBlock(text, pos) && !isInlineCode(text, pos)) return [PAGES_DOWNLOAD[1]];
+  }
+  return [];
+}
+
 function agentMediumFlags(text: string): string[] {
   const found: string[] = [];
   for (const [re, name] of AGENT_MED_PATTERNS) {
@@ -560,7 +579,7 @@ export function scanReadme(
   }
 
   // Download-and-execute (destination-aware), agent-era patterns, leaked secrets
-  flags.push(...pipeToShellFlags(text, context), ...agentMediumFlags(text), ...secretFlags(original));
+  flags.push(...pipeToShellFlags(text, context), ...pagesDownloadLureFlags(text, context), ...agentMediumFlags(text), ...secretFlags(original));
 
   // Grade determination with trust hierarchy
   const highFlags = flags.filter(f => HIGH_NAMES.has(f));

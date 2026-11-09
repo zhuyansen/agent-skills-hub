@@ -273,7 +273,29 @@ _MIN_OWNER_DOMAIN_MATCH = 5
 _REPO_NAME_AFFIXES = frozenset({"skill", "skills", "mcp", "cli", "server", "plugin", "agent", "app", "sdk",
                                 "claude", "code"})
 
-HIGH_RISK_FLAG_NAMES = {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS}
+# ══════════════════════════════════════════════════════════════════════
+# PAGES DOWNLOAD LURE — a download button that leads to the author's own GitHub Pages site
+# ══════════════════════════════════════════════════════════════════════
+# Mutakisa/game-slop-purge was graded safe and listed on /best/anti-slop/ (found 2026-11-08). Its README
+# sells a skill whose folders do not exist. The one call to action is a "Download" image button to
+# mutakisa.github.io/game-slop-purge, a page of hidden encoded blocks and a script that decodes them, and a
+# randomly named workflow commits random two-word messages every hour so the repo looks maintained. None
+# of that is in the README, and the README has no command for the other rules to read. Its shape is
+# there: an image button that says download, linked to the owner's own <owner>.github.io.
+# The 2026-11-09 dry run read every catalog README naming both github.io and download (4,343). 236 have
+# such a button and all 236 were lures: 173 with the fake-commit workflow, 33 already removed by GitHub,
+# 30 copies of real projects that point at the same kind of page. The 53 real projects in that set that
+# have a download page on their own GitHub Pages link it as text ("[Download](https://aofp.github.io/yume)")
+# or show a "downloads" counter badge, so neither counts.
+PAGES_DOWNLOAD_FLAG = "pages_download_lure"
+PAGES_DOWNLOAD_DESC = ("Its download button leads to a page on the author's own GitHub Pages site "
+                       "instead of a release, a package or install steps")
+# [![alt](image)](target): the image markdown is group 1, the link target group 2.
+_IMAGE_BUTTON = re.compile(r"\[(!\[[^\]]*\]\([^)\s]*\))\]\((https?://[^)\s]+)\)")
+
+HIGH_RISK_FLAG_NAMES = (
+    {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS} | {PAGES_DOWNLOAD_FLAG}
+)
 
 # ══════════════════════════════════════════════════════════════════════
 # MEDIUM-RISK PATTERNS (2+ → caution)
@@ -752,6 +774,22 @@ def _untrusted_download(skill: Skill, text: str, pattern: re.Pattern) -> str:
     return "fenced" if fenced else ""
 
 
+def _pages_download_lure_flags(skill: Skill, text: str) -> list[str]:
+    """PAGES_DOWNLOAD_FLAG once if an image button saying download links to the owner's own
+    GitHub Pages site. "downloads" is a counter badge (PyPI downloads, PDF downloads), not a
+    button; a button shown inside code is being documented, not offered."""
+    owner = (getattr(skill, "repo_full_name", "") or "").lower().partition("/")[0]
+    if not owner:
+        return []
+    for match in _IMAGE_BUTTON.finditer(text):
+        label, target = match.group(1), match.group(2)
+        if "download" not in label or "downloads" in label or _host(target) != f"{owner}.github.io":
+            continue
+        if not _is_in_code_block(text, match.start()) and not _is_inline_code(text, match.start()):
+            return [PAGES_DOWNLOAD_FLAG]
+    return []
+
+
 def _agent_medium_flags(text: str) -> list[str]:
     """Flags from AGENT_MEDIUM_PATTERNS, skipping code blocks, quoted examples
     and negated advice.
@@ -838,6 +876,7 @@ class SecurityScanner:
         # ── Download-and-execute (destination-aware), agent-era patterns, secrets ──
         # Secrets need the original-case README (key formats are case-sensitive).
         flags.extend(_pipe_to_shell_flags(skill, readme_lower))
+        flags.extend(_pages_download_lure_flags(skill, readme_lower))
         flags.extend(_agent_medium_flags(readme_lower))
         flags.extend(_secret_flags(readme))
 
@@ -889,6 +928,8 @@ class SecurityScanner:
         """Get human-readable description for a flag name."""
         if flag_name == FENCED_DOWNLOAD_FLAG:
             return FENCED_DOWNLOAD_DESC
+        if flag_name == PAGES_DOWNLOAD_FLAG:
+            return PAGES_DOWNLOAD_DESC
         for patterns in [HIGH_RISK_PATTERNS, PIPE_TO_SHELL_PATTERNS, MEDIUM_RISK_PATTERNS,
                          AGENT_MEDIUM_PATTERNS, SECRET_PATTERNS, REJECT_PATTERNS]:
             for _pat, name, desc in patterns:

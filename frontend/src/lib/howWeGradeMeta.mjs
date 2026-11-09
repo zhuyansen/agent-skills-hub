@@ -14,10 +14,10 @@ export const HOW_WE_GRADE_URL = `https://agentskillshub.top${HOW_WE_GRADE_PATH}`
 /** Anchor of the section that explains each grade; the badge links there. */
 export const GRADES_ANCHOR = "the-grades";
 /**
- * Distinct flags the scanner can raise (backend security_scanner.py: 2 reject, 21 high,
+ * Distinct flags the scanner can raise (backend security_scanner.py: 2 reject, 22 high,
  * 19 medium). Every "N rules" on the site reads this; change it with the scanner.
  */
-export const RULE_COUNT = 42;
+export const RULE_COUNT = 43;
 
 /** First published. */
 export const HOW_WE_GRADE_PUBLISHED = "2026-10-22";
@@ -26,7 +26,7 @@ export const HOW_WE_GRADE_PUBLISHED = "2026-10-22";
  * and used as the Article dateModified, which the sitemap reads as lastmod: bump it
  * whenever the text changes, never on a rebuild.
  */
-export const HOW_WE_GRADE_UPDATED = "2026-10-22";
+export const HOW_WE_GRADE_UPDATED = "2026-11-09";
 
 export const HOW_WE_GRADE_META = {
   en: {

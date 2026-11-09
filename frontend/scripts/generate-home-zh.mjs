@@ -61,7 +61,7 @@ const categoryLinks = (enHtml) => [...enHtml.matchAll(/<li><a href="\/category\/
 function shellHtml(enHtml, total, lists) {
   return `      <header>
         <h1>AgentSkillsHub —— Claude Skills 市场：收录 ${total} 个 Claude 技能、MCP 服务器与 Agent 工具，热门的全部做了安全评级</h1>
-        <p>AgentSkillsHub（Agent Skills Hub，agentskillshub.top）是开源的 AI 智能体技能目录，收录 Claude Skills、MCP 服务器、Codex 技能和 Agent 工具，每 8 小时从 GitHub 刷新一次。热门条目都按 <a href="/how-we-grade/">42 条公开规则</a>做了安全评级，装之前先查。</p>
+        <p>AgentSkillsHub（Agent Skills Hub，agentskillshub.top）是开源的 AI 智能体技能目录，收录 Claude Skills、MCP 服务器、Codex 技能和 Agent 工具，每 8 小时从 GitHub 刷新一次。热门条目都按 <a href="/how-we-grade/">43 条公开规则</a>做了安全评级，装之前先查。</p>
         <nav aria-label="主导航"><ul>
           <li><a href="/" hreflang="en" lang="en">English</a></li>
           <li><a href="/compare/">对比工具</a></li>
