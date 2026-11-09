@@ -14,6 +14,7 @@
 - [Daily new skills](https://agentskillshub.top/daily/): top 10 new AI agent skills every day, ranked by star velocity, security-graded
 - [Security Analyzer](https://agentskillshub.top/analyzer): free live scan of any GitHub repo (the same 43 published rules)
 - [How we grade](https://agentskillshub.top/how-we-grade/): the 43 rules behind every security grade, the five source tiers, quality scores and known limits
+- [Directories compared](https://agentskillshub.top/agent-skills-directories/): where to find agent skills and MCP servers, the main directories compared from their own pages, ours included
 - [Scenario guides](https://agentskillshub.top/best/): curated best-of lists by use case, with security grades
 - [Security audits](https://agentskillshub.top/audit/): per-repo "is X safe to install?" pages
 - [Enterprise](https://agentskillshub.top/enterprise/): 5-dimension deep audits & compliance evidence

@@ -25,6 +25,7 @@
 
 import { writeFileSync, readdirSync, existsSync, rmSync, readFileSync } from "fs";
 import { HOW_WE_GRADE_PATH } from "../src/lib/howWeGradeMeta.mjs";
+import { DIRECTORIES_PATH } from "../src/lib/directoriesMeta.mjs";
 import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 import { buildSitemapIndex } from "./sitemap-index.mjs";
 import { MODIFIED_PATH, declaredDateIn } from "./scenario-modified.mjs";
@@ -244,16 +245,19 @@ function statsEntries(today) {
 }
 
 /**
- * /how-we-grade/ (2026-10-22): how grades and scores are made, a top-level page like /stats/,
- * so it goes into sitemap-top.xml, the one sub-sitemap Google reads. Its lastmod is the
- * Article dateModified the page declares, bumped only when its text changes.
+ * Top-level article pages, like /stats/: /how-we-grade/ (2026-10-22), how grades and scores are
+ * made, and /agent-skills-directories/ (2026-11-10), the directories compared. They go into
+ * sitemap-top.xml, the one sub-sitemap Google reads. Each one's lastmod is the Article
+ * dateModified the page declares, bumped only when its text changes.
  */
-function howWeGradeEntries(today) {
-  if (!existsSync(`dist${HOW_WE_GRADE_PATH}index.html`)) return [];
+const ARTICLE_PATHS = [HOW_WE_GRADE_PATH, DIRECTORIES_PATH];
+
+function articleEntries(path, today) {
+  if (!existsSync(`dist${path}index.html`)) return [];
   return [`  <url>
-    <loc>${SITE}${HOW_WE_GRADE_PATH}</loc>
+    <loc>${SITE}${path}</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>${lastmodLine(declaredDate(HOW_WE_GRADE_PATH, today))}
+    <priority>0.8</priority>${lastmodLine(declaredDate(path, today))}
   </url>`];
 }
 
@@ -529,9 +533,11 @@ async function main() {
   const stats = statsEntries(today);
   hubEntries.push(...stats);
   if (stats.length) console.log(`/stats/: ${stats.length} URLs into sitemap-top.xml`);
-  const howWeGrade = howWeGradeEntries(today);
-  hubEntries.push(...howWeGrade);
-  if (howWeGrade.length) console.log(`${HOW_WE_GRADE_PATH}: into sitemap-top.xml`);
+  for (const path of ARTICLE_PATHS) {
+    const entries = articleEntries(path, today);
+    hubEntries.push(...entries);
+    if (entries.length) console.log(`${path}: into sitemap-top.xml`);
+  }
 
   // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
   // declares the xhtml namespace the scenario entries' hreflang links need.

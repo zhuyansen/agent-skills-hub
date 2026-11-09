@@ -1,8 +1,9 @@
 /**
- * The text of /how-we-grade/, English and Chinese side by side, and the helpers both
- * renderers use: the static generator (scripts/generate-how-we-grade-page.mjs) and the
- * React page (src/pages/HowWeGradePage.tsx). One copy of the text, so the page that
- * crawlers read and the page Google renders say the same thing.
+ * The text of /how-we-grade/, English and Chinese side by side. Both renderers read it: the
+ * static generator (scripts/generate-how-we-grade-page.mjs) and the React page
+ * (src/pages/HowWeGradePage.tsx), through the parts all long-form pages share
+ * (src/lib/proseContent.mjs). One copy of the text, so the page that crawlers read and the
+ * page Google renders say the same thing.
  *
  * Every claim was checked (2026-10-21/22) against backend/app/services/security_scanner.py
  * (rules, tiers, the grade table, what is not counted), grade_refresh.py (when grades are
@@ -11,9 +12,9 @@
  * Change a number here only after changing it there.
  *
  * Text is `[english, chinese]`, or one string when both languages read the same (grade
- * names, tier numbers, percentages). Inline markup: **bold**, *italic*, `code`,
- * [label](href) and \n for a line break; see inlineTokens().
+ * names, tier numbers, percentages), with the inline markup proseContent.mjs describes.
  */
+import { COMPARED_COUNT, DIRECTORIES_PATH } from "./directoriesMeta.mjs";
 import { GRADES_ANCHOR, HOW_WE_GRADE_LINK, RULE_COUNT } from "./howWeGradeMeta.mjs";
 
 /**
@@ -32,23 +33,6 @@ export const CODE_BLOCKS = {
     "**Other risky commands inside code blocks are not counted.** A reverse shell or a credential grab shown as a fenced example passes, unless the README also asks for it in its prose. Download-and-execute commands are the exception, and only as medium risk: on its own, a fenced install script from an unknown host makes a tier 5 project Caution and leaves tiers 1 to 4 Safe.",
     "**代码块里的其他高危命令不计入。**以代码块示例形式出现的反弹 shell 或凭证窃取命令能通过，除非 README 的正文里也要求这么做。下载即执行的命令是例外，但只算中风险：单单一条写在代码块里、来自陌生主机的安装脚本，会让第 5 档项目变成 Caution，第 1 到 4 档仍是 Safe。",
   ],
-};
-
-/** Tailwind classes shared by both renderers, so the pre-rendered page looks like the React one. */
-export const CLASSES = {
-  page: "min-h-screen bg-gray-50 dark:bg-gray-950",
-  main: "max-w-3xl mx-auto px-4 py-8",
-  crumbs: "text-sm text-gray-400 dark:text-gray-500 mb-4",
-  crumbLink: "text-indigo-500 hover:text-indigo-600",
-  crumbSep: "mx-2",
-  crumbHere: "text-gray-600 dark:text-gray-300",
-  header: "mb-8 pb-6 border-b border-gray-200 dark:border-gray-700",
-  h1: "text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight",
-  updated: "mt-3 text-sm text-gray-400 dark:text-gray-500",
-  article: "book-prose break-words",
-  section: "scroll-mt-24",
-  list: "list-disc",
-  tableWrap: "overflow-x-auto",
 };
 
 // minRem 28: on a 360–430px phone the next column still shows at the edge of the box,
@@ -172,6 +156,7 @@ const SECTIONS = [
         ["**The project's standing**: owner, stars, license and homepage.", "**项目本身的情况**：所有者、星数、许可证和主页。"],
       ] },
       { type: "p", text: ["We do **not** run the code, and we do not read the repository's other files. A grade describes what the README tells you, or your agent, to do.", "我们**不**运行代码，也不读仓库里的其他文件。评级描述的是 README 让你（或你的 agent）去做什么。"] },
+      { type: "p", text: [`How other directories check skills, and what each one reads: [${COMPARED_COUNT} directories compared](${DIRECTORIES_PATH}).`, `其他目录怎么检查 skill、各自读什么：见[${COMPARED_COUNT} 个目录对比](${DIRECTORIES_PATH})。`] },
       { type: "p", text: ["Grades refresh during the catalog sync, every 8 hours. A repository is graded again when its README, stars, license or homepage change. When we change the rules, the whole catalog is graded again, and every grade is stored with the version of the rules that produced it.", "评级随目录同步刷新，每 8 小时一次。仓库的 README、星数、许可证或主页有变化，就会重新评级。规则一改，整个目录都会重新评级；每个评级都和产生它的那一版规则一起保存。"] },
     ],
   },
@@ -264,33 +249,3 @@ export const HOW_WE_GRADE = {
   ],
   sections: SECTIONS,
 };
-
-/** The text in `lang`: a pair is [english, chinese], a plain string reads the same in both. */
-export function pick(text, lang) {
-  if (typeof text === "string") return text;
-  return lang === "zh" ? text[1] : text[0];
-}
-
-// **bold** | *italic* | `code` | [label](href) | line break — no nesting, which this text never needs.
-const INLINE = /\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|\[([^\]]+)\]\(([^)\s]+)\)|\n/g;
-
-function tokenOf(m) {
-  if (m[1] !== undefined) return { kind: "strong", text: m[1] };
-  if (m[2] !== undefined) return { kind: "em", text: m[2] };
-  if (m[3] !== undefined) return { kind: "code", text: m[3] };
-  if (m[4] !== undefined) return { kind: "link", text: m[4], href: m[5] };
-  return { kind: "br", text: "" };
-}
-
-/** Splits one line of inline markup into plain-text and formatted tokens, in order. */
-export function inlineTokens(text) {
-  const tokens = [];
-  let last = 0;
-  for (const m of text.matchAll(INLINE)) {
-    if (m.index > last) tokens.push({ kind: "text", text: text.slice(last, m.index) });
-    tokens.push(tokenOf(m));
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) tokens.push({ kind: "text", text: text.slice(last) });
-  return tokens;
-}

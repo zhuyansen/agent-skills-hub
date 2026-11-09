@@ -67,6 +67,9 @@ const FavoritesPage = lazy(() =>
 const HowWeGradePage = lazy(() =>
   import("./pages/HowWeGradePage").then((m) => ({ default: m.HowWeGradePage })),
 );
+const DirectoriesPage = lazy(() =>
+  import("./pages/DirectoriesPage").then((m) => ({ default: m.DirectoriesPage })),
+);
 const ProPage = lazy(() => import("./pages/ProPage"));
 const ProBoardPage = lazy(() => import("./pages/ProBoardPage"));
 
@@ -104,6 +107,14 @@ function App() {
                   <Route path="/analyzer/" element={<AnalyzerPage />} />
                   <Route path="/how-we-grade" element={<HowWeGradePage />} />
                   <Route path="/how-we-grade/" element={<HowWeGradePage />} />
+                  <Route
+                    path="/agent-skills-directories"
+                    element={<DirectoriesPage />}
+                  />
+                  <Route
+                    path="/agent-skills-directories/"
+                    element={<DirectoriesPage />}
+                  />
                   <Route path="/org-audit" element={<OrgAuditPage />} />
                   <Route path="/org-audit/" element={<OrgAuditPage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />

@@ -14,7 +14,8 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { analyticsTags, esc, replaceShellContent } from "./shared-utils.mjs";
 import { HOW_WE_GRADE_LINK, HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
-import { pick, QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
+import { QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
+import { pick } from "../src/lib/proseContent.mjs";
 
 const DIST = "dist";
 const SERVICES = "https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services";
