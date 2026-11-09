@@ -17,6 +17,7 @@
     "test:home-lists": "node --test scripts/home-lists.test.mjs",
     "test:skill-copy": "node --test scripts/skill-page-copy.test.mjs",
     "test:home-counts": "node --test scripts/home-counts.test.mjs",
+    "test:agent-file-counts": "node --test scripts/agent-file-counts.test.mjs",
     "test:guides": "node --test scripts/skill-guides.test.mjs"
   },
   "dependencies": {

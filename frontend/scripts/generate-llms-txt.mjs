@@ -8,9 +8,14 @@
  * 23 Chinese scenario twins had no Google impression in 90 days, and agents reading this
  * file had no way to reach them. Runs after generate-sitemap.mjs; reads only dist/, so it
  * needs no database.
+ *
+ * Since 2026-11-09 it also gives llms.txt and dist/skill.md the catalog numbers the home page
+ * states, read from the markers generate-skill-pages.mjs stamped into dist/index.html, and the
+ * CLI index size from dist/search-index-meta.json (see agent-file-counts.mjs).
  */
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { homeCounts, llmsRules, skillMdRules, stampRules } from "./agent-file-counts.mjs";
 
 const SITE = "https://agentskillshub.top";
 const DIST = "dist";
@@ -63,6 +68,14 @@ function sectionLines({ title, sitemap, keep }) {
   return lines.length ? [`## ${title}`, "", ...lines, ""] : [];
 }
 
+const counts = homeCounts(readFileSync(join(DIST, "index.html"), "utf8"));
+const indexCount = JSON.parse(readFileSync(join(DIST, "search-index-meta.json"), "utf8")).count;
+
 const generated = SECTIONS.flatMap(sectionLines);
-writeFileSync(join(DIST, "llms.txt"), [readFileSync(SOURCE, "utf8").trimEnd(), "", ...generated].join("\n"));
+const header = stampRules(readFileSync(SOURCE, "utf8").trimEnd(), llmsRules(counts), "llms.txt");
+writeFileSync(join(DIST, "llms.txt"), [header, "", ...generated].join("\n"));
 console.log(`llms.txt: ${generated.filter((line) => line.startsWith("- [")).length} pages listed`);
+
+const SKILL_MD = join(DIST, "skill.md");
+writeFileSync(SKILL_MD, stampRules(readFileSync(SKILL_MD, "utf8"), skillMdRules(counts, indexCount), "skill.md"));
+console.log(`llms.txt and skill.md: ${counts.total} skills, ${counts.graded} graded, CLI index ${indexCount}`);
