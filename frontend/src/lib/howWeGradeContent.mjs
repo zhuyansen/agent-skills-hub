@@ -53,7 +53,8 @@ export const CLASSES = {
 
 // minRem 28: on a 360–430px phone the next column still shows at the edge of the box,
 // so it reads as a table that scrolls rather than one that ends (measured 2026-10-22).
-// The Chinese grade names go on a second line: "Caution（需注意）" broke inside the bracket.
+// The Chinese grade names go on a second line: "Caution（注意）" broke inside the bracket.
+// They are the names the grade cards use (security.* in src/i18n/translations.ts): 安全 / 注意 / 风险 / 拒绝.
 const GRADES = {
   type: "table",
   label: ["Security grades", "安全评级"],
@@ -66,17 +67,17 @@ const GRADES = {
       ["Install as you would any open-source tool: still read what it asks for.", "像安装任何开源工具一样安装，但仍要看清它要你做什么。"],
     ],
     [
-      ["**Caution**", "**Caution**\n需注意"],
+      ["**Caution**", "**Caution**\n注意"],
       ["The README asks for something risky: elevated rights, persistence, credentials, opaque downloads. Or a serious pattern turned up in a project whose track record keeps it from Unsafe.", "README 要求做有风险的事：提升权限、常驻后台、提供凭证、下载来源不透明的文件。或者查到了严重的模式，但项目的资历让它没有被评为 Unsafe。"],
       ["Read the flagged lines before installing, and run it somewhere it cannot reach your keys.", "安装前先读被标记的那几行，并在碰不到你密钥的环境里运行。"],
     ],
     [
-      ["**Unsafe**", "**Unsafe**\n不安全"],
+      ["**Unsafe**", "**Unsafe**\n风险"],
       ["Serious patterns, such as download-and-execute from an unknown host, a reverse shell or sending credentials off the machine, in a project without the track record to offset them.", "查到严重的模式，比如从陌生主机下载并执行、反弹 shell、把凭证发出本机，而项目没有足以抵消这些的资历。"],
       ["Don't install it on a machine that matters unless you have read every line it runs.", "除非你读过它要运行的每一行，否则别装在重要的机器上。"],
     ],
     [
-      ["**Reject**", "**Reject**\n拒收"],
+      ["**Reject**", "**Reject**\n拒绝"],
       ["A combination that only makes sense as an attack: piping your secrets to a network tool, or writing a downloaded payload into your shell startup files or cron.", "只有攻击才会这样组合：把你的密钥通过管道交给网络工具，或者把下载来的载荷写进你的 shell 启动文件或 cron。"],
       ["Don't install it.", "别装。"],
     ],

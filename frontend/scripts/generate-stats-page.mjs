@@ -45,9 +45,9 @@ const TYPES = {
 };
 const GRADES = [
   { key: "safe", label: "🟢 Safe", zh: "🟢 安全", color: "var(--st-good)" },
-  { key: "caution", label: "🟡 Caution", zh: "🟡 需注意", color: "var(--st-warning)" },
-  { key: "unsafe", label: "🔴 Unsafe", zh: "🔴 不安全", color: "var(--st-critical)" },
-  { key: "reject", label: "⛔ Reject", zh: "⛔ 拒收", color: "var(--st-critical)" },
+  { key: "caution", label: "🟡 Caution", zh: "🟡 注意", color: "var(--st-warning)" },
+  { key: "unsafe", label: "🔴 Unsafe", zh: "🔴 风险", color: "var(--st-critical)" },
+  { key: "reject", label: "⛔ Reject", zh: "⛔ 拒绝", color: "var(--st-critical)" },
 ];
 // The scanner's own rule descriptions (backend/app/services/security_scanner.py).
 const PATTERNS = {
