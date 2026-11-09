@@ -12,10 +12,29 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { analyticsTags, replaceShellContent } from "./shared-utils.mjs";
-import { RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
+import { analyticsTags, esc, replaceShellContent } from "./shared-utils.mjs";
+import { HOW_WE_GRADE_LINK, HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
+import { pick, QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
 
 const DIST = "dist";
+const SERVICES = "https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services";
+const QUALITY_DIMENSIONS = QUALITY_WEIGHTS.rows.length;
+
+/** One row of the How-we-grade weights table ("Name: what it covers", weight) as an /about/ list item. */
+function dimensionHtml([dimension, weight], lang) {
+  const [name, covers] = pick(dimension, lang).split(lang === "zh" ? "：" : ": ");
+  return lang === "zh"
+    ? `<strong>${name}（${weight}）</strong>——${covers}`
+    : `<strong>${name} (${weight})</strong> — ${covers}`;
+}
+
+/** The quality score's dimensions, with the names and weights /how-we-grade/ shows. */
+function qualityItems() {
+  return QUALITY_WEIGHTS.rows.map((row) => {
+    const en = dimensionHtml(row, "en");
+    return `<li data-en="${esc(en)}" data-zh="${esc(dimensionHtml(row, "zh"))}">${en}</li>`;
+  }).join("\n          ");
+}
 
 // SPA routes that need a real 200 status (own title/description/canonical)
 // instead of relying on the 404.html fallback. The shell meta is English for
@@ -38,7 +57,7 @@ const SHELLS = [
     title:
       "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
     description:
-      "Audit 186,000+ open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
+      "Audit open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
   },
   {
     // Core free tool — was missing a shell, so GitHub Pages served 404.html for
@@ -82,7 +101,7 @@ const SHELLS = [
     path: "pro",
     title: "Pro Deep Search — Agent Skills Hub",
     description:
-      "Member-only deep search: full README-text search across 186,000+ agent skills and MCP servers, 200 results per page, CSV/JSON export, and API access.",
+      "Member-only deep search: full README-text search across the catalog's agent skills and MCP servers, 200 results per page, CSV/JSON export, and API access.",
     noindex: true,
   },
   {
@@ -200,7 +219,7 @@ const aboutHtml = `<!doctype html>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>About &amp; Methodology — AgentSkillsHub</title>
   ${analyticsTags()}
-  <meta name="description" content="AgentSkillsHub is built by Jason Zhu, an independent researcher tracking open-source AI agent ecosystems. Learn about the team, 10-dimension quality scoring methodology, and editorial principles." />
+  <meta name="description" content="AgentSkillsHub is built by Jason Zhu, an independent researcher tracking open-source AI agent ecosystems. Learn about the team, how the quality and ranking scores work, and editorial principles." />
   <meta name="keywords" content="agentskillshub about, jason zhu, claude skills methodology, skill quality scoring, editorial team" />
   <link rel="canonical" href="https://agentskillshub.top/about/" />
 
@@ -306,11 +325,11 @@ const aboutHtml = `<!doctype html>
     <section>
       <h2 data-en="What we track" data-zh="我们追踪什么">What we track</h2>
       <div class="metrics">
-        <div class="metric"><div class="num">186,000+</div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
+        <div class="metric"><div class="num"><span data-count="total">267,000+</span></div><div class="label" data-en="indexed skills" data-zh="已收录技能">indexed skills</div></div>
         <div class="metric"><div class="num">7</div><div class="label" data-en="categories" data-zh="分类">categories</div></div>
         <div class="metric"><div class="num">58</div><div class="label" data-en="scenario pages" data-zh="场景页">scenario pages</div></div>
         <div class="metric"><div class="num">8h</div><div class="label" data-en="refresh cadence" data-zh="刷新频率">refresh cadence</div></div>
-        <div class="metric"><div class="num">10</div><div class="label" data-en="quality dimensions" data-zh="质量维度">quality dimensions</div></div>
+        <div class="metric"><div class="num">${QUALITY_DIMENSIONS}</div><div class="label" data-en="quality dimensions" data-zh="质量维度">quality dimensions</div></div>
         <div class="metric"><div class="num">MIT</div><div class="label" data-en="source license" data-zh="源码许可">source license</div></div>
       </div>
       <p data-en="Every GitHub repository matching our search patterns flows through a 6-phase pipeline every 8 hours: search → metadata enrichment → README fetch → quality scoring → category classification → composability analysis. No manual curation is applied to ranking — all signals are data-driven to avoid editorial bias." data-zh="每个匹配搜索模式的 GitHub 仓库每 8 小时流经一条 6 阶段流水线：搜索 → 元数据增强 → README 抓取 → 质量评分 → 分类归类 → 可组合性分析。排名不做人工干预——所有信号皆数据驱动，以避免编辑偏见。">Every GitHub repository matching our search patterns flows through a 6-phase pipeline every 8 hours: search → metadata enrichment → README fetch → quality scoring → category classification → composability analysis. No manual curation is applied to ranking — all signals are data-driven to avoid editorial bias.</p>
@@ -319,17 +338,13 @@ const aboutHtml = `<!doctype html>
     <section>
       <h2 data-en="Editorial methodology" data-zh="编辑方法论">Editorial methodology</h2>
       <div class="card">
-        <h3 data-en="The 10-dimension quality score" data-zh="10 维质量评分">The 10-dimension quality score</h3>
-        <p data-en="Every skill receives a composite <strong>quality score (0-100)</strong> based on ten weighted signals. The formula and weights are fully documented in <a href='https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services/scorer.py'>services/scorer.py</a>:" data-zh="每个技能基于十个加权信号获得一个综合<strong>质量分（0-100）</strong>。公式与权重完整记录在 <a href='https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services/scorer.py'>services/scorer.py</a>：">Every skill receives a composite <strong>quality score (0-100)</strong> based on ten weighted signals. The formula and weights are fully documented in <a href="https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services/scorer.py">services/scorer.py</a>:</p>
+        <h3 data-en="The quality score" data-zh="质量分">The quality score</h3>
+        <p data-en="Every skill gets a <strong>quality score (0–100)</strong>: how well its README and metadata prepare a person or an agent to use it. It weighs ${QUALITY_DIMENSIONS} dimensions, set in <a href='${SERVICES}/quality_analyzer.py'>services/quality_analyzer.py</a>:" data-zh="每个技能都有一个<strong>质量分（0–100）</strong>，衡量它的 README 和元数据能不能让人或 agent 顺利用上它。它按 ${QUALITY_DIMENSIONS} 个维度加权，权重写在 <a href='${SERVICES}/quality_analyzer.py'>services/quality_analyzer.py</a>：">Every skill gets a <strong>quality score (0–100)</strong>: how well its README and metadata prepare a person or an agent to use it. It weighs ${QUALITY_DIMENSIONS} dimensions, set in <a href="${SERVICES}/quality_analyzer.py">services/quality_analyzer.py</a>:</p>
         <ul>
-          <li data-en="<strong>Completeness (15%)</strong> — README depth, license, description, stars" data-zh="<strong>完整度（15%）</strong>——README 深度、许可、描述、Star 数"><strong>Completeness (15%)</strong> — README depth, license, description, stars</li>
-          <li data-en="<strong>Clarity (15%)</strong> — description quality, topic tags, naming conventions" data-zh="<strong>清晰度（15%）</strong>——描述质量、主题标签、命名规范"><strong>Clarity (15%)</strong> — description quality, topic tags, naming conventions</li>
-          <li data-en="<strong>Specificity (15%)</strong> — language + topic count + category + size" data-zh="<strong>专指度（15%）</strong>——语言 + 主题数 + 分类 + 体量"><strong>Specificity (15%)</strong> — language + topic count + category + size</li>
-          <li data-en="<strong>Examples (12%)</strong> — code samples, commit frequency, contributor count" data-zh="<strong>示例（12%）</strong>——代码样例、提交频率、贡献者数"><strong>Examples (12%)</strong> — code samples, commit frequency, contributor count</li>
-          <li data-en="<strong>README structure (23%)</strong> — sections, code blocks, badges, TOC" data-zh="<strong>README 结构（23%）</strong>——小节、代码块、徽章、目录"><strong>README structure (23%)</strong> — sections, code blocks, badges, TOC</li>
-          <li data-en="<strong>Agent readiness (20%)</strong> — SKILL.md presence, install command, MCP compliance" data-zh="<strong>Agent 就绪度（20%）</strong>——SKILL.md、安装命令、MCP 合规"><strong>Agent readiness (20%)</strong> — SKILL.md presence, install command, MCP compliance</li>
+          ${qualityItems()}
         </ul>
-        <p data-en="On top of the quality score, a separate <strong>composite score</strong> weighs nine additional signals including stars, recency, forks, commit velocity, issue resolution rate, star momentum (Z-score normalized), author followers, and a size bonus favoring atomic skills. See <a href='https://github.com/ZhuYansen/agent-skills-hub#3-evaluation'>the full methodology</a>." data-zh="在质量分之上，另有一个<strong>综合分</strong>权衡九个额外信号，包括 Star、近期活跃、Fork、提交速度、issue 解决率、Star 动量（Z 分数归一化）、作者粉丝数，以及偏好原子化技能的体量加分。详见<a href='https://github.com/ZhuYansen/agent-skills-hub#3-evaluation'>完整方法论</a>。">On top of the quality score, a separate <strong>composite score</strong> weighs nine additional signals including stars, recency, forks, commit velocity, issue resolution rate, star momentum (Z-score normalized), author followers, and a size bonus favoring atomic skills. See <a href="https://github.com/ZhuYansen/agent-skills-hub#3-evaluation">the full methodology</a>.</p>
+        <h3 data-en="The ranking score" data-zh="排名分">The ranking score</h3>
+        <p data-en="Rankings use a separate <strong>ranking score (0–100)</strong> that blends ten weighted signals: stars, forks, the author's followers, resolved issues, commits, recency, the quality score above, recent star momentum, size and a bonus for specialised domains. The weights are in <a href='${SERVICES}/scorer.py'>services/scorer.py</a> and on <a href='${HOW_WE_GRADE_PATH}#how-lists-are-ordered'>${HOW_WE_GRADE_LINK.en}</a>." data-zh="排名用的是另一个<strong>排名分（0–100）</strong>，综合十个加权信号：星数、fork 数、作者的关注者数、已解决的 issue、提交数、最近更新、上面的质量分、近期涨星势头、体量，以及细分领域加分。权重见 <a href='${SERVICES}/scorer.py'>services/scorer.py</a> 和<a href='${HOW_WE_GRADE_PATH}#how-lists-are-ordered'>${HOW_WE_GRADE_LINK.zh}</a>页。">Rankings use a separate <strong>ranking score (0–100)</strong> that blends ten weighted signals: stars, forks, the author's followers, resolved issues, commits, recency, the quality score above, recent star momentum, size and a bonus for specialised domains. The weights are in <a href="${SERVICES}/scorer.py">services/scorer.py</a> and on <a href="${HOW_WE_GRADE_PATH}#how-lists-are-ordered">${HOW_WE_GRADE_LINK.en}</a>.</p>
 
         <h3 data-en="Daily &amp; weekly curation" data-zh="日报与周报精选">Daily &amp; weekly curation</h3>
         <p data-en="Daily reports feature skills newly indexed in the last 48 hours with at least 20 GitHub stars. The weekly 'Trending' list ranks by <code>star_velocity</code> (stars per day over the last 7 days). Both are automated but the final Top 10 is human-reviewed to exclude obvious forks, batch spam accounts, and misclassified non-skills." data-zh="日报精选过去 48 小时内新收录、且至少 20 个 GitHub Star 的技能。周报“趋势榜”按 <code>star_velocity</code>（过去 7 天每日 Star 增量）排序。两者均自动化，但最终 Top 10 经人工复核，剔除明显的 fork、批量刷号与误分类的非技能项目。">Daily reports feature skills newly indexed in the last 48 hours with at least 20 GitHub stars. The weekly "Trending" list ranks by <code>star_velocity</code> (stars per day over the last 7 days). Both are automated but the final Top 10 is human-reviewed to exclude obvious forks, batch spam accounts, and misclassified non-skills.</p>
@@ -339,7 +354,7 @@ const aboutHtml = `<!doctype html>
         <ol>
           <li data-en="<strong>Category classification corrections</strong> — when keyword inference misfires" data-zh="<strong>分类归类修正</strong>——当关键词推断出错时"><strong>Category classification corrections</strong> — when keyword inference misfires</li>
           <li data-en="<strong>Spam &amp; batch-farming exclusion</strong> — documented in <a href='https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/discover_candidates.py'>discover_candidates.py</a>" data-zh="<strong>垃圾与批量刷号剔除</strong>——记录在 <a href='https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/discover_candidates.py'>discover_candidates.py</a>"><strong>Spam &amp; batch-farming exclusion</strong> — documented in <a href="https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/discover_candidates.py">discover_candidates.py</a></li>
-          <li data-en="<strong>Verified Creator decisions</strong> (Q2 2026 launch) — criteria and outcomes logged publicly" data-zh="<strong>认证创作者决策</strong>（2026 Q2 上线）——标准与结果公开记录"><strong>Verified Creator decisions</strong> (Q2 2026 launch) — criteria and outcomes logged publicly</li>
+          <li data-en="<strong>Verified Creator decisions</strong> — authors <a href='/verified-creator/apply/'>apply</a>, and each application is reviewed by hand within 5 business days" data-zh="<strong>认证创作者决策</strong>——作者<a href='/verified-creator/apply/'>提交申请</a>，每份申请都在 5 个工作日内人工审核"><strong>Verified Creator decisions</strong> — authors <a href="/verified-creator/apply/">apply</a>, and each application is reviewed by hand within 5 business days</li>
         </ol>
         <p data-en="Every other ranking decision is purely data-driven and reproducible from the open-source codebase." data-zh="其余所有排名决策纯由数据驱动，可从开源代码库复现。">Every other ranking decision is purely data-driven and reproducible from the open-source codebase.</p>
       </div>
@@ -367,7 +382,7 @@ const aboutHtml = `<!doctype html>
     </section>
 
     <footer>
-      <p data-en="Last updated: 2026-04-24 · Published by Jason Zhu · MIT licensed · <a href='/'>Back to Home</a>" data-zh="最后更新：2026-04-24 · 发布者 Jason Zhu · MIT 许可 · <a href='/'>返回首页</a>">Last updated: 2026-04-24 · Published by Jason Zhu · MIT licensed · <a href="/">Back to Home</a></p>
+      <p data-en="Last updated: 2026-11-09 · Published by Jason Zhu · MIT licensed · <a href='/'>Back to Home</a>" data-zh="最后更新：2026-11-09 · 发布者 Jason Zhu · MIT 许可 · <a href='/'>返回首页</a>">Last updated: 2026-11-09 · Published by Jason Zhu · MIT licensed · <a href="/">Back to Home</a></p>
     </footer>
   </div>
   <script>(function(){var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');document.documentElement.lang=l==='zh'?'zh-CN':'en';var b=document.getElementById('lang-toggle');if(b)b.textContent=l==='zh'?'EN':'中文';if(l==='zh')document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=el.getAttribute('data-zh')});})();</script>

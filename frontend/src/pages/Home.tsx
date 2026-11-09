@@ -212,7 +212,7 @@ export function Home() {
           name="description"
           content={
             lang === "zh"
-              ? `Agent Skills Hub —— Claude Skills 市场,收录 ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具,每个热门的都已安全评级(100★+ 的 93%),装前先查,每 8 小时刷新。`
+              ? `Agent Skills Hub —— Claude Skills 市场,收录 ${skillCount} 个 Claude 技能、MCP 服务器与 Agent 工具,每个热门的都已安全评级,装前先查,每 8 小时刷新。`
               : `Agent Skills Hub, the Claude skills marketplace: ${skillCount} skills, MCP servers & agent tools, every popular one security-graded. Vet any skill before you install.`
           }
         />

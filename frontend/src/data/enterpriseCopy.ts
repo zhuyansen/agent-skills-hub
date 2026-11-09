@@ -120,7 +120,7 @@ export const EN: EnterpriseCopy = {
     title:
       "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
     description:
-      "Security-grade the open-source agent-skill & MCP ecosystem — 186,000+ indexed, 24,000+ graded — and deep-audit any of them before it touches production. Deploy-time security scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and audit-ready evidence — SOC 2, ISO 42001, EU AI Act.",
+      "Security-grade the open-source agent-skill & MCP ecosystem and deep-audit any of them before it touches production. Deploy-time security scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and audit-ready evidence — SOC 2, ISO 42001, EU AI Act.",
   },
   hero: {
     badge: "The Trust Layer for AI Agent & MCP Deployment",
@@ -128,7 +128,7 @@ export const EN: EnterpriseCopy = {
     h1b: "Without the Audit Panic.",
     sub: "Deploy-time security scanning, sandbox validation, and audit-ready compliance evidence for every MCP server and agent skill you ship — mapped to SOC 2, ISO/IEC 42001, and the EU AI Act.",
     ctaPrimary: "Get a free security audit →",
-    ctaSecondary: "Browse 186,000+ skills free",
+    ctaSecondary: "Browse the full catalog free",
     note: "No slides, no sales theater · We email you 3 real risks in your stack, graded, within 48h",
   },
   band: {
@@ -151,9 +151,9 @@ export const EN: EnterpriseCopy = {
       sub: "of agent skills, per Liu et al. 2026 (arXiv:2601.10338, n=31,132) — the risk your team inherits",
     },
     {
-      stat: "186,000+",
-      label: "Skills under continuous scanning",
-      sub: "re-scanned every 8 hours across the open-source ecosystem",
+      stat: "8h",
+      label: "Grade refresh cycle",
+      sub: "each sync re-grades the skills whose README, stars, license or homepage changed",
     },
     {
       stat: "Open",
@@ -281,8 +281,8 @@ export const EN: EnterpriseCopy = {
         price: "$0",
         unit: "Forever · no card",
         features: [
-          "Browse the full 186K skill catalog",
-          "Quality score + 6-dimension breakdown",
+          "Browse the full skill catalog",
+          "Quality score + per-dimension breakdown",
           "Basic security scan per skill",
           "Scenario & comparison pages",
           "Newsletter (weekly trending)",
@@ -325,7 +325,7 @@ export const EN: EnterpriseCopy = {
   },
   creator: {
     h2: "Are you a skill creator, not a buyer?",
-    sub: "The Verified Creator program certifies serious skill authors — audited, trusted, and surfaced above the 186K-skill noise.",
+    sub: "The Verified Creator program certifies serious skill authors — audited, trusted, and surfaced above the noise of the full catalog.",
     benefits: [
       "Authenticated ✓ badge on your skill pages and cards",
       "Featured slot in Verified Organizations (rankings stay objective, never paid)",
@@ -345,7 +345,7 @@ export const EN: EnterpriseCopy = {
       },
       {
         title: "Continuous, not point-in-time",
-        body: "We re-scan the entire corpus every 8 hours. A new CVE in a skill you depend on surfaces within hours, not at your next quarterly review.",
+        body: "The catalog syncs every 8 hours, and a skill is graded again whenever its README, stars, license or homepage change. A risky change in a skill you depend on surfaces within hours, not at your next quarterly review.",
       },
       {
         title: "We complement Snyk, we don't replace it",
@@ -451,7 +451,7 @@ export const ZH: EnterpriseCopy = {
   meta: {
     title: "企业版 · AI Agent 与 MCP 部署的信任层 | Agent Skills Hub",
     description:
-      "对开源 agent skill 与 MCP 生态做安全评级 —— 已收录 186,000+、已评级 24,000+ —— 并在进入生产前对任意一个做深度审计。部署前安全扫描、沙箱验证、许可证/SBOM 合规、企业内网镜像、审计级证据包 —— 对齐 SOC 2、ISO 42001、欧盟 AI 法案。",
+      "对开源 agent skill 与 MCP 生态做安全评级，并在进入生产前对任意一个做深度审计。部署前安全扫描、沙箱验证、许可证/SBOM 合规、企业内网镜像、审计级证据包 —— 对齐 SOC 2、ISO 42001、欧盟 AI 法案。",
   },
   hero: {
     badge: "AI Agent 与 MCP 部署的信任层",
@@ -459,7 +459,7 @@ export const ZH: EnterpriseCopy = {
     h1b: "不用再为审计提心吊胆。",
     sub: "为你上线的每个 MCP server 与 agent skill 提供部署前安全扫描、沙箱验证、审计级合规证据 —— 对齐 SOC 2、ISO/IEC 42001 与欧盟 AI 法案。",
     ctaPrimary: "免费领安全审计报告 →",
-    ctaSecondary: "免费浏览 186,000+ skill",
+    ctaSecondary: "免费浏览完整目录",
     note: "没有 PPT,没有销售套路 · 48 小时内邮件给你指出技术栈里 3 个真实风险",
   },
   band: {
@@ -481,9 +481,9 @@ export const ZH: EnterpriseCopy = {
       sub: "开源 agent skill 的占比,据 Liu et al. 2026(arXiv:2601.10338,n=31,132)—— 这是你团队继承的风险",
     },
     {
-      stat: "186,000+",
-      label: "持续扫描中的 skill",
-      sub: "覆盖整个开源生态,每 8 小时重扫一次",
+      stat: "8h",
+      label: "评级刷新周期",
+      sub: "每次同步都会给 README、星数、许可证或主页有变化的 skill 重新评级",
     },
     {
       stat: "开放",
@@ -611,8 +611,8 @@ export const ZH: EnterpriseCopy = {
         price: "$0",
         unit: "永久 · 无需信用卡",
         features: [
-          "浏览完整 186K skill 目录",
-          "质量分 + 6 维拆解",
+          "浏览完整 skill 目录",
+          "质量分 + 分维度拆解",
           "每个 skill 基础安全扫描",
           "场景页与对比页",
           "周报订阅(每周热门)",
@@ -655,7 +655,7 @@ export const ZH: EnterpriseCopy = {
   },
   creator: {
     h2: "你是 skill 作者,不是采购方?",
-    sub: "Verified Creator 计划为严肃的 skill 作者做认证 —— 审计过、可信、在 186K skill 的噪音里被看见。",
+    sub: "Verified Creator 计划为严肃的 skill 作者做认证 —— 审计过、可信、在整个目录的噪音里被看见。",
     benefits: [
       "Skill 详情页与卡片带认证 ✓ 徽章",
       "进入 Verified Organizations 展示位(排名始终客观、不接受付费)",
@@ -675,7 +675,7 @@ export const ZH: EnterpriseCopy = {
       },
       {
         title: "持续扫描,而非一次性",
-        body: "我们每 8 小时重扫整个语料库。你依赖的 skill 出新 CVE,几小时内浮现,而不是等下个季度复审。",
+        body: "目录每 8 小时同步一次,skill 的 README、星数、许可证或主页一有变化就重新评级。你依赖的 skill 出现有风险的改动,几小时内就会浮现,而不是等下个季度复审。",
       },
       {
         title: "我们补足 Snyk,不替代它",

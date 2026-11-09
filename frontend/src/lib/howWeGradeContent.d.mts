@@ -57,6 +57,7 @@ export declare const CLASSES: Readonly<
     string
   >
 >;
+export declare const QUALITY_WEIGHTS: TableBlock;
 export declare const HOW_WE_GRADE: HowWeGradePage;
 export declare function pick(text: Text, lang: HowWeGradeLang): string;
 export declare function inlineTokens(text: string): InlineToken[];

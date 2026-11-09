@@ -2,17 +2,17 @@
   "mcp-server": {
     "title": "Best Open-Source MCP Servers ({year}) — Security-Graded",
     "heading": "MCP Servers, Security-Graded Before You Connect",
-    "intro": "An MCP server hands an AI agent real capabilities — and often real credentials. Every server here is scored on 10 quality signals and carries a security grade (SAFE / CAUTION / UNSAFE), so you know what you're wiring into your agent before you connect it."
+    "intro": "An MCP server hands an AI agent real capabilities — and often real credentials. Every server here is scored on 10 signals and, once its README has been read, graded Safe, Caution, Unsafe or Reject (Unaudited until then), so you know what you're wiring into your agent before you connect it."
   },
   "claude-skill": {
     "title": "Best Claude Skills ({year}) — Open-Source, Quality-Scored",
     "heading": "Claude Skills That Are Safe to Drop Into Claude Code",
-    "intro": "A Claude Skill runs with your agent's full permissions, so trust matters as much as usefulness. These are the top open-source Claude Skills, each quality-scored on documentation and structure and security-graded before you add it to Claude Code or Cursor."
+    "intro": "A Claude Skill runs with your agent's full permissions, so trust matters as much as usefulness. These are the top open-source Claude Skills, each quality-scored on documentation and structure, and security-graded once its README has been read, so you can check it before you add it to Claude Code or Cursor."
   },
   "codex-skill": {
     "title": "OpenClaw Ecosystem Skills ({year}) — Open-Source & Graded",
     "heading": "OpenClaw & Codex Ecosystem Skills, Trust-Checked",
-    "intro": "Tools built for the OpenClaw and Codex agent runtimes, indexed from GitHub and refreshed every 8 hours. Each is quality-scored and security-graded so you can extend your coding agent without importing a black box."
+    "intro": "Tools built for the OpenClaw and Codex agent runtimes, indexed from GitHub and refreshed every 8 hours. Each is quality-scored, and security-graded once its README has been read, so you can extend your coding agent without importing a black box."
   },
   "agent-tool": {
     "title": "Best AI Agent Tools ({year}) — Open-Source, Security-Graded",
@@ -27,6 +27,6 @@
   "ai-coding-assistant": {
     "title": "Best AI Coding Assistants — Open-Source, Compared",
     "heading": "Open-Source AI Coding Assistants, Head to Head",
-    "intro": "Agent frameworks and assistants that write, review, and ship code. Each is quality-scored and security-graded, and you can compare any two side by side before you commit your workflow to one."
+    "intro": "Agent frameworks and assistants that write, review, and ship code. Each is quality-scored and, once its README has been read, security-graded; you can compare any two side by side before you commit your workflow to one."
   }
 }

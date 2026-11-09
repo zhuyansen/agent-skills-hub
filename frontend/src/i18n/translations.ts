@@ -165,7 +165,7 @@ export const translations = {
       "粘贴任意 GitHub 仓库地址，立即查看安全评级、红旗信号和质量分 —— 装之前先审。",
     "audit.cta": "免费检查",
     "audit.hint":
-      "免费 · 无需注册 · 已覆盖 186,000+ 个 AI agent skill 与 MCP server",
+      "免费 · 无需注册 · 任意公开 GitHub 仓库都能查",
 
     // Audit verdict card (skill detail page)
     "auditCard.title": "安全审计结论",
@@ -178,7 +178,7 @@ export const translations = {
       "被标记为不安全 —— 不要用真实凭证或生产数据运行它。",
     "auditCard.verdict.reject": "已拒绝 —— 存在已知严重问题，请避开。",
     "auditCard.verdict.unknown":
-      "尚无人审计过它 —— 它是个黑盒。在信任它之前，请检查代码、它索要的凭证，以及维护者是谁。",
+      "还没有评级 —— 当作未知，而不是安全。在信任它之前，请检查代码、它索要的凭证，以及维护者是谁。",
     "auditCard.check.credentials": "它要什么凭证？凭证存在哪里？",
     "auditCard.check.maintainer": "维护者可识别吗？仓库还在活跃维护吗？",
     "auditCard.check.code": "装之前读一遍代码 —— 尤其是安装脚本和网络请求。",
@@ -283,7 +283,7 @@ export const translations = {
     // Hero
     "hero.title": "Claude Skills 市场：{count} 个 Skill、MCP Server 与 Agent 工具",
     "hero.subtitle":
-      "开源目录 · 安全评级 · 10 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
+      "开源目录 · 安全评级 · 9 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
     "hero.trending": "热门",
     "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
@@ -338,10 +338,10 @@ export const translations = {
     "faq.title": "常见问题",
     "faq.q1": "什么是 Agent Skills Hub（AgentSkillsHub）？",
     "faq.a1":
-      "Agent Skills Hub（AgentSkillsHub，网址 agentskillshub.top）是开源的 AI Agent 工具目录：收录 229,000+ 个 Agent Skills、MCP 服务器和工具，每 8 小时从 GitHub 更新。热门条目都按 43 条公开规则做了安全评级；主要场景页附实测结果；其中 15 个在 GitHub 上有开源合集；全量数据以可引用的数据集公开（DOI 10.5281/zenodo.21292799）。",
+      "Agent Skills Hub（AgentSkillsHub，网址 agentskillshub.top）是开源的 AI Agent 工具目录：收录 Agent Skills、MCP 服务器和工具，每 8 小时从 GitHub 更新。热门条目都按 43 条公开规则做了安全评级；主要场景页附实测结果；其中 15 个在 GitHub 上有开源合集；全量数据以可引用的数据集公开（DOI 10.5281/zenodo.21292799）。",
     "faq.q2": "质量评分是如何计算的？",
     "faq.a2":
-      "质量评分基于 8 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容和指令质量。每个维度都有不同权重，综合计算得出 0-100 的评分。",
+      "质量评分基于 9 个维度：完整性、清晰度、具体性、示例质量、README 结构、Agent 适配度、程序性内容、指令质量和安全意识。每个维度都有不同权重，综合计算得出 0-100 的评分。",
     "faq.q3": "如何提交我的项目？",
     "faq.a3":
       "在首页底部的「提交一个 Skill」区域，粘贴你的 GitHub 仓库链接并提交。我们的团队会进行审核，通过后会自动收录并计算评分。",
@@ -559,7 +559,7 @@ export const translations = {
       "Paste any GitHub repo URL to get its security grade, red flags, and quality score — before you install.",
     "audit.cta": "Check it — free",
     "audit.hint":
-      "Free · No signup · Covers 186,000+ AI agent skills & MCP servers",
+      "Free · No signup · Works on any public GitHub repo",
 
     // Audit verdict card (skill detail page)
     "auditCard.title": "Security audit verdict",
@@ -572,7 +572,7 @@ export const translations = {
       "Flagged unsafe — do NOT run against real credentials or production data.",
     "auditCard.verdict.reject": "Rejected — known serious problems. Avoid.",
     "auditCard.verdict.unknown":
-      "Never audited by anyone — it's a black box. Check the code, the credentials it asks for, and who maintains it before you trust it.",
+      "Not graded yet — treat it as unknown, not as safe. Check the code, the credentials it asks for, and who maintains it before you trust it.",
     "auditCard.check.credentials":
       "What credentials does it ask for, and where are they stored?",
     "auditCard.check.maintainer":
@@ -687,7 +687,7 @@ export const translations = {
     // Hero
     "hero.title": "Claude Skills Marketplace: {count} Skills & MCP Servers",
     "hero.subtitle":
-      "The open-source directory. Security-graded, quality-scored on 10 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
+      "The open-source directory. Security-graded, quality-scored on 9 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
     "hero.trending": "Trending",
     "hero.searchPlaceholder":
       "Search AI agent tools, MCP servers, automation skills...",
@@ -741,10 +741,10 @@ export const translations = {
     "faq.title": "Frequently Asked Questions",
     "faq.q1": "What is Agent Skills Hub (AgentSkillsHub)?",
     "faq.a1":
-      "Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of 229,000+ AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against 43 published rules, the main scenario pages add hands-on test runs, 15 of them have an open-source list on GitHub, and the full catalog is a citable dataset (DOI 10.5281/zenodo.21292799).",
+      "Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against 43 published rules, the main scenario pages add hands-on test runs, 15 of them have an open-source list on GitHub, and the full catalog is a citable dataset (DOI 10.5281/zenodo.21292799).",
     "faq.q2": "How are quality scores calculated?",
     "faq.a2":
-      "Quality scores are based on 8 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, and instruction quality. Each dimension has different weights, producing a 0-100 composite score.",
+      "Quality scores are based on 9 dimensions: completeness, clarity, specificity, examples, README structure, agent readiness, procedural content, instruction quality, and security awareness. Each dimension has different weights, producing a 0-100 score.",
     "faq.q3": "How do I submit my project?",
     "faq.a3":
       "Use the 'Submit a Skill' section at the bottom of the homepage. Paste your GitHub repo URL and submit. Our team will review it, and approved projects will be automatically indexed and scored.",

@@ -401,7 +401,7 @@ ${analyticsTags()}
 
     <!-- CTA -->
     <div style="margin:32px 0;text-align:center">
-      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部技能" data-en="Explore All Skills on Agent Skills Hub">Explore All Skills on Agent Skills Hub</a>
     </div>
 
     <!-- Footer -->
@@ -497,7 +497,7 @@ ${analyticsTags()}
     </section>
     ${buildNewsletterCta()}
     <div style="margin:32px 0;text-align:center">
-      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部技能" data-en="Explore All Skills on Agent Skills Hub">Explore All Skills on Agent Skills Hub</a>
     </div>
 
     <!-- Footer -->

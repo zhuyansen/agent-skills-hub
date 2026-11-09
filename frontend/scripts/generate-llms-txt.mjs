@@ -11,11 +11,14 @@
  *
  * Since 2026-11-09 it also gives llms.txt and dist/skill.md the catalog numbers the home page
  * states, read from the markers generate-skill-pages.mjs stamped into dist/index.html, and the
- * CLI index size from dist/search-index-meta.json (see agent-file-counts.mjs).
+ * CLI index size from dist/search-index-meta.json (see agent-file-counts.mjs). The same numbers go
+ * into the marked places of dist/about/index.html, which generate-static-pages.mjs writes before
+ * the catalog is counted: until 2026-11-09 /about/ stated a count months older than the home page's.
  */
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { homeCounts, llmsRules, skillMdRules, stampRules } from "./agent-file-counts.mjs";
+import { stampHomeCounts } from "./home-counts.mjs";
 
 const SITE = "https://agentskillshub.top";
 const DIST = "dist";
@@ -79,3 +82,7 @@ console.log(`llms.txt: ${generated.filter((line) => line.startsWith("- [")).leng
 const SKILL_MD = join(DIST, "skill.md");
 writeFileSync(SKILL_MD, stampRules(readFileSync(SKILL_MD, "utf8"), skillMdRules(counts, indexCount), "skill.md"));
 console.log(`llms.txt and skill.md: ${counts.total} skills, ${counts.graded} graded, CLI index ${indexCount}`);
+
+const ABOUT = join(DIST, "about", "index.html");
+writeFileSync(ABOUT, stampHomeCounts(readFileSync(ABOUT, "utf8"), counts));
+console.log(`/about/: ${counts.total} skills`);

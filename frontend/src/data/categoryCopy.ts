@@ -26,9 +26,9 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
     heading: "MCP Servers, Security-Graded Before You Connect",
     headingZh: "MCP 服务器 —— 连接前先看安全评级",
     intro:
-      "An MCP server hands an AI agent real capabilities — and often real credentials. Every server here is scored on 10 quality signals and carries a security grade (SAFE / CAUTION / UNSAFE), so you know what you're wiring into your agent before you connect it.",
+      "An MCP server hands an AI agent real capabilities — and often real credentials. Every server here is scored on 10 signals and, once its README has been read, graded Safe, Caution, Unsafe or Reject (Unaudited until then), so you know what you're wiring into your agent before you connect it.",
     introZh:
-      "一个 MCP 服务器给 AI agent 的是真实能力 —— 往往还有真实凭证。这里每个服务器都按 10 项质量信号评分并带安全评级(SAFE / CAUTION / UNSAFE),让你在接进 agent 之前就知道自己接的是什么。",
+      "一个 MCP 服务器给 AI agent 的是真实能力 —— 往往还有真实凭证。这里每个服务器都按 10 项信号评分,README 读过之后还会被评为 Safe、Caution、Unsafe 或 Reject(在那之前显示 Unaudited),让你在接进 agent 之前就知道自己接的是什么。",
   },
   "claude-skill": {
     title: "Best Claude Skills ({year}) — Open-Source, Quality-Scored",
@@ -36,9 +36,9 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
     heading: "Claude Skills That Are Safe to Drop Into Claude Code",
     headingZh: "可以放心装进 Claude Code 的 Claude Skills",
     intro:
-      "A Claude Skill runs with your agent's full permissions, so trust matters as much as usefulness. These are the top open-source Claude Skills, each quality-scored on documentation and structure and security-graded before you add it to Claude Code or Cursor.",
+      "A Claude Skill runs with your agent's full permissions, so trust matters as much as usefulness. These are the top open-source Claude Skills, each quality-scored on documentation and structure, and security-graded once its README has been read, so you can check it before you add it to Claude Code or Cursor.",
     introZh:
-      "一个 Claude Skill 以你 agent 的完整权限运行,所以可信度和好用同样重要。这里是顶级开源 Claude Skills,每个都按文档与结构做了质量评分,并在你装进 Claude Code / Cursor 之前完成安全评级。",
+      "一个 Claude Skill 以你 agent 的完整权限运行,所以可信度和好用同样重要。这里是顶级开源 Claude Skills,每个都按文档与结构做了质量评分,README 读过之后还有安全评级,让你在装进 Claude Code / Cursor 之前先查一查。",
   },
   "codex-skill": {
     title: "OpenClaw Ecosystem Skills ({year}) — Open-Source & Graded",
@@ -46,9 +46,9 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
     heading: "OpenClaw & Codex Ecosystem Skills, Trust-Checked",
     headingZh: "OpenClaw 与 Codex 生态 Skills,附信任检查",
     intro:
-      "Tools built for the OpenClaw and Codex agent runtimes, indexed from GitHub and refreshed every 8 hours. Each is quality-scored and security-graded so you can extend your coding agent without importing a black box.",
+      "Tools built for the OpenClaw and Codex agent runtimes, indexed from GitHub and refreshed every 8 hours. Each is quality-scored, and security-graded once its README has been read, so you can extend your coding agent without importing a black box.",
     introZh:
-      "面向 OpenClaw 与 Codex agent 运行时的工具,从 GitHub 收录、每 8 小时刷新。每个都有质量评分与安全评级,让你扩展编程 agent 时不必引入一个黑盒。",
+      "面向 OpenClaw 与 Codex agent 运行时的工具,从 GitHub 收录、每 8 小时刷新。每个都有质量评分,README 读过之后还有安全评级,让你扩展编程 agent 时不必引入一个黑盒。",
   },
   "agent-tool": {
     title: "Best AI Agent Tools ({year}) — Open-Source, Security-Graded",
@@ -76,9 +76,9 @@ export const CATEGORY_COPY: Record<string, CategoryCopy> = {
     heading: "Open-Source AI Coding Assistants, Head to Head",
     headingZh: "开源 AI 编程助手,正面对比",
     intro:
-      "Agent frameworks and assistants that write, review, and ship code. Each is quality-scored and security-graded, and you can compare any two side by side before you commit your workflow to one.",
+      "Agent frameworks and assistants that write, review, and ship code. Each is quality-scored and, once its README has been read, security-graded; you can compare any two side by side before you commit your workflow to one.",
     introZh:
-      "会写代码、审代码、发代码的 agent 框架与助手。每个都有质量评分与安全评级,你还能把任意两个并排对比,再决定把工作流押在哪一个上。",
+      "会写代码、审代码、发代码的 agent 框架与助手。每个都有质量评分,README 读过之后还有安全评级;你还能把任意两个并排对比,再决定把工作流押在哪一个上。",
   },
   uncategorized: {
     title: "AI Tools & Agent Skills — Open-Source Directory",

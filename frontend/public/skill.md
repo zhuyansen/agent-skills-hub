@@ -42,7 +42,7 @@ Add `--json` to `search`, `audit`, or `install` for structured output to parse p
 ## Reading the output
 
 - **Security grade**: 🟢 SAFE · 🟡 CAUTION · 🔴 UNSAFE · ⛔ REJECT · ⚪ UNAUDITED.
-  ⚪ UNAUDITED means *no one has ever audited it* — treat it as a black box, not as "probably fine". 97%+ of the wider catalog is unaudited; surface this honestly to the user.
+  ⚪ UNAUDITED means *not graded yet*: GitHub has no README for it, or its README has not been fetched or graded yet. Treat it as unknown, not as "probably fine". Many low-star skills in the wider catalog are still unaudited; surface this honestly to the user.
 - **Quality score** (0-100): documentation, maintenance, examples, structure — not stars.
 - **`~Nk tok`**: rough context cost when loaded (omitted when the upstream estimate is implausible).
 - **✓ official**: published by a verified official org account.

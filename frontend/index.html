@@ -26,16 +26,18 @@
          markup below carry the same name; the Organization keeps "Agent Skills Hub", the
          Knowledge Graph entity (/g/11zctvktck) that already resolves to this domain. -->
     <title>AgentSkillsHub — Claude Skills Marketplace, Security-Graded</title>
-    <!-- The build writes the live catalog total over the count in the three descriptions and in
-         every span marked data-count="total" below; the other data-count spans get the graded
-         count and the graded share per star tier (scripts/home-counts.mjs). Any other number
-         stays as written. -->
-    <meta name="description" content="Agent Skills Hub, the Claude skills marketplace: 186,000+ skills, MCP servers & agent tools, every popular one security-graded. Vet before you install." />
+    <!-- The build writes the live catalog total over the count in the description and in every
+         span marked data-count="total" below; the other data-count spans get the graded count
+         and the graded share per star tier (scripts/home-counts.mjs). Any other number stays as
+         written. The og and twitter descriptions carry no count: the SPA shells, author pages
+         and /how-we-grade/ are copied from this file before the catalog is counted, and some
+         keep those two tags as written (a months-old count stayed on them until 2026-11-09). -->
+    <meta name="description" content="Agent Skills Hub, the Claude skills marketplace: 267,000+ skills, MCP servers & agent tools, every popular one security-graded. Vet before you install." />
     <meta name="keywords" content="claude skills, mcp server list, claude code skills, ai agent directory, agent skills hub" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="AgentSkillsHub — Claude Skills Marketplace, Security-Graded" />
-    <meta property="og:description" content="Agent Skills Hub, the Claude skills marketplace: 186,000+ skills, MCP servers & agent tools, every popular one security-graded. Vet before you install." />
+    <meta property="og:description" content="Agent Skills Hub: a security-graded Claude skills marketplace — Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://agentskillshub.top/" />
     <meta property="og:site_name" content="AgentSkillsHub" />
@@ -47,7 +49,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="AgentSkillsHub — Claude Skills Marketplace, Security-Graded" />
-    <meta name="twitter:description" content="Agent Skills Hub, the Claude skills marketplace: 186,000+ skills, MCP servers & agent tools, every popular one security-graded. Vet before you install." />
+    <meta name="twitter:description" content="Agent Skills Hub: a security-graded Claude skills marketplace — Claude skills, MCP servers & agent tools — vet any skill before you install. Quality-scored, refreshed every 8 hours." />
     <meta name="twitter:site" content="@GoSailGlobal" />
     <meta name="twitter:image" content="https://agentskillshub.top/og-image.png" />
     <meta name="twitter:image:alt" content="Agent Skills Hub — security-graded Claude Skills & MCP server directory" />
@@ -157,7 +159,7 @@
       "@context": "https://schema.org",
       "@type": "Dataset",
       "name": "AI Agent Skills Security Grades (130K)",
-      "description": "Security grades (SAFE / CAUTION / UNSAFE / REJECT), red flags and quality scores for 130,000+ open-source AI agent skills and MCP servers indexed from GitHub.",
+      "description": "Security grades (Safe / Caution / Unsafe / Reject), red flags and quality scores for 130,000+ open-source AI agent skills and MCP servers indexed from GitHub.",
       "identifier": "https://doi.org/10.5281/zenodo.21292799",
       "url": "https://doi.org/10.5281/zenodo.21292799",
       "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -239,8 +241,8 @@
     <div id="root">
       <!--SHELL-CONTENT-START-->
       <header>
-        <h1>AgentSkillsHub — Claude Skills Marketplace: <span data-count="total">186,000+</span> AI Agent Tools, Every Popular One Security-Graded</h1>
-        <p>Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of <span data-count="total">229,000+</span> AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against <a href="/how-we-grade/">43 published rules</a>; the main scenario pages add hands-on test runs; 15 of them have an open-source list on GitHub; and the full catalog is published as a citable dataset (DOI 10.5281/zenodo.21292799).</p>
+        <h1>AgentSkillsHub — Claude Skills Marketplace: <span data-count="total">267,000+</span> AI Agent Tools, Every Popular One Security-Graded</h1>
+        <p>Agent Skills Hub (AgentSkillsHub, at agentskillshub.top) is an open-source directory of <span data-count="total">267,000+</span> AI agent skills, MCP servers and agent tools, refreshed from GitHub every 8 hours. Every popular entry is security-graded against <a href="/how-we-grade/">43 published rules</a>; the main scenario pages add hands-on test runs; 15 of them have an open-source list on GitHub; and the full catalog is published as a citable dataset (DOI 10.5281/zenodo.21292799).</p>
         <nav aria-label="Main navigation">
           <ul>
             <li><a href="/">Explore All Skills</a></li>
@@ -292,11 +294,11 @@
         <!--HOME-LISTS-->
         <section>
           <h2>Why AgentSkillsHub?</h2>
-          <p><strong>Agent Skills Hub is a security-graded directory of open-source AI agent skills and MCP servers</strong> — it answers "is this safe to install?" before you run a stranger's code inside your agent. It indexes <span data-count="total">186,000+</span> GitHub repositories across MCP servers, Claude skills, Codex skills, AI coding assistants, and agent tools, and security-grades every skill with a fetched README — <span data-count="graded">24,000+</span> graded so far, including <span data-count="graded-over-100">93%</span> of skills over 100 stars and <span data-count="graded-over-1000">98%</span> over 1,000, growing every 8 hours.</p>
+          <p><strong>Agent Skills Hub is a security-graded directory of open-source AI agent skills and MCP servers</strong> — it answers "is this safe to install?" before you run a stranger's code inside your agent. It indexes <span data-count="total">267,000+</span> GitHub repositories across MCP servers, Claude skills, Codex skills, AI coding assistants, and agent tools, and security-grades every skill with a fetched README — <span data-count="graded">132,000+</span> graded so far, including <span data-count="graded-over-100">99%</span> of skills over 100 stars and <span data-count="graded-over-1000">99%</span> over 1,000, growing every 8 hours.</p>
           <h3>Quality Scoring</h3>
-          <p><strong>Every tool gets a 0–100 composite score across six dimensions:</strong> completeness, clarity, specificity, examples, README structure, and agent readiness. The score separates production-ready projects from experiments, so you can filter without reading 200 READMEs.</p>
+          <p><strong>Every tool gets a 0–100 quality score from nine weighted dimensions:</strong> agent readiness, README structure, completeness, clarity, examples, specificity, procedural content, instruction quality and security awareness. The score separates production-ready projects from experiments, so you can filter without reading 200 READMEs. Rankings use a separate score of ten weighted signals, the quality score among them.</p>
           <h3>Security Grading &amp; Sources</h3>
-          <p><strong>Every indexed repository carries a security grade — SAFE, CAUTION, UNSAFE, or UNAUDITED.</strong> Grades come from a rule-based scan built on the <a href="https://github.com/slowmist/Knowledge-Base" rel="noopener">SlowMist</a> agent-security taxonomy: <a href="/how-we-grade/">43 published rules</a>, covering credential harvesting, data exfiltration, <code>curl | sh</code> installers and more.</p>
+          <p><strong>Every repository with a README gets a security grade: Safe, Caution, Unsafe or Reject.</strong> One not graded yet shows Unaudited: GitHub has no README for it, or its README has not been fetched or graded yet. Grades come from a rule-based scan built on the <a href="https://github.com/slowmist/Knowledge-Base" rel="noopener">SlowMist</a> agent-security taxonomy: <a href="/how-we-grade/">43 published rules</a>, covering credential harvesting, data exfiltration, <code>curl | sh</code> installers and more.</p>
           <p>The scale of the problem is documented in independent research. As <a href="https://arxiv.org/abs/2601.10338" rel="noopener">Liu et al. (2026)</a> report in their study of 31,132 agent skills:</p>
           <blockquote cite="https://arxiv.org/abs/2601.10338">
             <p>"26.1% of agent skills contain security vulnerabilities."</p>
@@ -319,12 +321,12 @@
           <p>AgentSkillsHub is built and maintained by <strong>Jason Zhu</strong> (<a href="https://x.com/GoSailGlobal" rel="author">@GoSailGlobal</a>), an independent researcher tracking open-source AI agent ecosystems since 2024. Jason is also the author of the <a href="https://github.com/zhuyansen/skill-blue-book">Blue Book of Agent Skills 2026</a>, an in-depth analysis of the Claude Skills / MCP / Codex ecosystem published openly on GitHub.</p>
           <p>The Hub runs as a solo project, designed to be transparent and reproducible: every scoring dimension is documented, every data snapshot is archived, and the entire source code is open under MIT on <a href="https://github.com/ZhuYansen/agent-skills-hub">GitHub</a>. The goal is not to rank skills by popularity alone, but to help developers find tools that are actually production-ready.</p>
           <h3>Editorial Methodology</h3>
-          <p>Every indexed repository passes through a 6-phase pipeline running every 8 hours: GitHub search → metadata enrichment → README fetch → quality scoring (10 weighted dimensions) → category classification → composability analysis. No manual curation is applied to ranking — signals are purely data-driven to avoid editorial bias.</p>
+          <p>Every indexed repository passes through a 6-phase pipeline running every 8 hours: GitHub search → metadata enrichment → README fetch → scoring (a quality score from 9 dimensions, a ranking score from 10 signals) → category classification → composability analysis. No manual curation is applied to ranking — signals are purely data-driven to avoid editorial bias.</p>
           <p>Daily reports of new skills and weekly trending lists are selected according to transparent rules documented in the repository. When human judgement is needed (such as for "Verified Creator" decisions), the reasoning and criteria are written down publicly, not hidden behind a pay-for-placement system.</p>
         </section>
       </main>
       <footer>
-        <p>AgentSkillsHub — The open-source AI agent tool directory maintained by Jason Zhu. Tracking <span data-count="total">186,000+</span> projects, every popular one security-graded and quality-scored (<span data-count="graded-over-100">93%</span> of those over 100 stars). Built for developers building with AI agents, MCP servers, and automation tools.</p>
+        <p>AgentSkillsHub — The open-source AI agent tool directory maintained by Jason Zhu. Tracking <span data-count="total">267,000+</span> projects, every popular one security-graded and quality-scored (<span data-count="graded-over-100">99%</span> of those over 100 stars). Built for developers building with AI agents, MCP servers, and automation tools.</p>
         <p>
           <a href="https://turbo0.com/item/agentskillshub" target="_blank" rel="noopener noreferrer">
             <img src="https://img.turbo0.com/badge-listed-dark.svg" alt="Listed on Turbo0" width="162" height="54" style="height: 54px; width: auto;" />
@@ -333,9 +335,11 @@
       </footer>
       <!--SHELL-CONTENT-END-->
     </div>
+    <!-- No count in this block: every page copied from this file keeps it, and the SPA shells,
+         author pages and /how-we-grade/ are copied before the build counts the catalog. -->
     <noscript>
       <h2>AgentSkillsHub — AI Agent Tools Directory</h2>
-      <p>AgentSkillsHub requires JavaScript to display interactive content. Please enable JavaScript to explore <span data-count="total">186,000+</span> AI agent tools, MCP servers, and developer automation skills.</p>
+      <p>AgentSkillsHub requires JavaScript to display interactive content. Please enable JavaScript to explore AI agent tools, MCP servers, and developer automation skills.</p>
       <p><a href="https://agentskillshub.top/sitemap.xml">Browse our sitemap</a></p>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>

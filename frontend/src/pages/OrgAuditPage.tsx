@@ -39,7 +39,7 @@ const GRADE_META: Record<
     dot: "bg-red-700",
   },
   unknown: {
-    label: "Not graded",
+    label: "Unaudited",
     labelZh: "未评级",
     color: "text-gray-500 dark:text-gray-400",
     dot: "bg-gray-400",

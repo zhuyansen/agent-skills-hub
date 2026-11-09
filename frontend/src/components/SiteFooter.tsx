@@ -105,7 +105,7 @@ export function SiteFooter() {
             </Link>
             <p className="text-xs text-gray-500 leading-relaxed">
               {lang === "zh"
-                ? "Claude Skills、MCP 服务器、Agent 工具的开源目录 —— 数据来自 GitHub，10 维质量评分，每 8 小时刷新。"
+                ? "Claude Skills、MCP 服务器、Agent 工具的开源目录 —— 数据来自 GitHub，按 10 项信号评分，每 8 小时刷新。"
                 : "The open directory of Claude Skills, MCP Servers, and Agent Tools — sourced from GitHub, scored on 10 signals, refreshed every 8 hours."}
             </p>
           </div>

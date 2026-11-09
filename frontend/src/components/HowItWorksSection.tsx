@@ -7,9 +7,9 @@ const STEPS = [
     titleEn: "Auto-Collect",
     titleZh: "自动采集",
     descEn:
-      "Our crawler continuously scans GitHub for new AI agent tools, MCP servers, and Claude skills across 186,000+ repositories.",
+      "Our crawler continuously scans GitHub for new AI agent tools, MCP servers, and Claude skills.",
     descZh:
-      "爬虫持续扫描 GitHub 上 186,000+ 仓库中的新 AI Agent 工具、MCP 服务器和 Claude 技能。",
+      "爬虫持续扫描 GitHub，收录新的 AI Agent 工具、MCP 服务器和 Claude 技能。",
   },
   {
     num: "02",
@@ -17,9 +17,9 @@ const STEPS = [
     titleEn: "Quality Scoring",
     titleZh: "质量评分",
     descEn:
-      "10 weighted signals — stars, maintenance, documentation, code quality — combined into a single 0-100 composite score.",
+      "A 0-100 quality score from 9 README and metadata dimensions, blended with stars, forks and upkeep into a 10-signal ranking score.",
     descZh:
-      "10 项加权指标——Star 数、维护活跃度、文档质量、代码质量——综合为 0-100 的质量评分。",
+      "按 README 与元数据的 9 个维度算出 0-100 的质量分，再和 Star 数、Fork 数、维护情况一起合成 10 项信号的排名分。",
   },
   {
     num: "03",

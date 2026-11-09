@@ -138,7 +138,8 @@ const DECISION = {
   ],
 };
 
-const QUALITY_WEIGHTS = {
+/** The quality score's dimensions and weights. The /about/ page lists them from here too. */
+export const QUALITY_WEIGHTS = {
   type: "table",
   label: ["Quality score weights", "质量分权重"],
   head: [["Dimension", "维度"], ["Weight", "权重"]],

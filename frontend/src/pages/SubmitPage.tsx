@@ -93,7 +93,7 @@ export function SubmitPage() {
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-gray-500 dark:text-gray-500">
             <span>
-              {isZh ? "已收录 186,000+ skill" : "186,000+ skills indexed"}
+              {isZh ? "从 GitHub 自动收录" : "Indexed from GitHub"}
             </span>
             <span className="w-1 h-1 bg-gray-300 dark:bg-gray-700 rounded-full" />
             <span>{isZh ? "每 8 小时刷新" : "refreshed every 8h"}</span>

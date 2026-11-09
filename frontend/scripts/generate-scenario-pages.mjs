@@ -123,7 +123,7 @@ function leadLabel(skills) {
 const CSS_VERSION = "20261107";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
-const TEMPLATE_REV = "2026-11-08";
+const TEMPLATE_REV = "2026-11-09";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -425,7 +425,7 @@ ${breadcrumbLd}
     ${groupsHtml}
     ${buildNewsletterCta()}
     <div style="margin:32px 0;text-align:center">
-      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+      <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部技能" data-en="Explore All Skills on Agent Skills Hub">Explore All Skills on Agent Skills Hub</a>
     </div>
   </div>
 </body>
@@ -515,7 +515,7 @@ function buildAeoSection(scenario, skills, year) {
         <!-- How -->
         <div>
           <h3 style="font-size:17px;font-weight:600;color:var(--bp-text);margin-bottom:8px" data-zh="如何选择最佳 ${esc(ztTools)}？" data-en="How to Choose the Best ${esc(phrase)}?">How to Choose the Best ${esc(phrase)}?</h3>
-          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(ztTools)}时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（${lang.zh}）；4️⃣ 质量评分（Agent Skills Hub 的综合评分考量了代码质量、文档完整性和维护活跃度）。我们的推荐是从 ${top3[0]} 开始${reason.zh}。" data-en="When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]}${reason.en}.">When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's composite score evaluates code quality, documentation completeness, and maintenance activity. Our recommendation: start with ${top3[0]}${reason.en}.</p>
+          <p style="color:var(--bp-text-secondary);line-height:1.8;font-size:15px" data-zh="选择 ${esc(ztTools)}时，建议考虑以下因素：1️⃣ 社区活跃度（GitHub Star 数和最近提交频率）；2️⃣ 集成方式（是否支持 MCP、Claude 或你使用的 Agent 框架）；3️⃣ 编程语言兼容性（${lang.zh}）；4️⃣ 质量评分（Agent Skills Hub 的质量分按 9 个维度衡量文档完整度、结构和对 agent 的友好度，不看代码）。我们的推荐是从 ${top3[0]} 开始${reason.zh}。" data-en="When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's 9-dimension quality score rates documentation completeness, structure and agent readiness, not the code. Our recommendation: start with ${top3[0]}${reason.en}.">When choosing among ${esc(phrase)}, consider these factors: 1) Community activity — GitHub stars and recent commit frequency indicate reliability; 2) Integration method — check if it supports MCP, Claude, or your preferred agent framework; 3) Language compatibility — ${lang.en}; 4) Quality score — Agent Skills Hub's 9-dimension quality score rates documentation completeness, structure and agent readiness, not the code. Our recommendation: start with ${top3[0]}${reason.en}.</p>
         </div>
       </section>`;
 }
@@ -745,9 +745,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     ...(scenario.extra_faq || []),
     {
       q: `What are the best ${scenarioToolsPhrase} in ${year}?`,
-      a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${itemCount} options by GitHub stars, quality score (6 dimensions including completeness, examples, and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
+      a: `The top ${scenarioToolsPhrase} in ${year} are ${top3Names}. Agent Skills Hub ranks ${itemCount} options by GitHub stars, quality score (9 dimensions, including completeness, examples and agent readiness), and recent activity. The list is rebuilt every 8 hours from live GitHub data.`,
       qZh: `${year} 年最好的${ztTools}有哪些？`,
-      aZh: `${year} 年顶尖的${ztTools}是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 6 个维度）和近期活跃度对 ${itemCount} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
+      aZh: `${year} 年顶尖的${ztTools}是 ${top3Names}。Agent Skills Hub 按 GitHub Star、质量分（含完整度、示例、agent 就绪度等 9 个维度）和近期活跃度对 ${itemCount} 个选项排序，每 8 小时基于实时 GitHub 数据重建。`,
     },
     top1 && top2
       ? {
@@ -1030,7 +1030,7 @@ ${methodLd(scenario, pageUrl)}
 
       <!-- CTA -->
       <div style="margin:32px 0;text-align:center">
-        <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部 25,000+ 技能" data-en="Explore All 25,000+ Skills on Agent Skills Hub">Explore All 25,000+ Skills on Agent Skills Hub</a>
+        <a href="/" class="bp-newsletter-btn cta-btn" style="display:inline-block;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px" data-zh="探索全部技能" data-en="Explore All Skills on Agent Skills Hub">Explore All Skills on Agent Skills Hub</a>
       </div>
 
       <!-- Footer -->
@@ -1129,7 +1129,7 @@ async function main() {
 }
 
 // The /best/ index in Chinese: its English description is built in the template.
-const INDEX_ZH_DESC = "按使用场景整理的开源 AI agent skill、MCP 服务器和工具，每个都带安全评级，每 8 小时更新。";
+const INDEX_ZH_DESC = "按使用场景整理的开源 AI agent skill、MCP 服务器和工具，附安全评级，每 8 小时更新。";
 
 /**
  * Writes every /best/ page and, for live (not retired) ones, its Chinese twin at
