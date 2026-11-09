@@ -157,7 +157,7 @@ function securitySection(d) {
   const flagged = (g.caution || 0) + (g.unsafe || 0) + (g.reject || 0);
   const rows = GRADES.filter((x) => g[x.key]).map((x) => ({ ...x, value: g[x.key] }));
   const en = `${fmt(scanned)} repositories (${pct(scanned, repos)}% of the catalog) have been through the security scan. ${pct(flagged, scanned)}% were graded caution or worse, and ${fmt(g.unsafe || 0)} were graded unsafe. The rest of the catalog is unaudited and is not counted as safe.`;
-  const zh = `已有 ${fmt(scanned)} 个仓库（占目录 ${pct(scanned, repos)}%）做过安全扫描，其中 ${pct(flagged, scanned)}% 被评为需注意或更差，${fmt(g.unsafe || 0)} 个被评为不安全。其余仓库还没审，不算作安全。`;
+  const zh = `已有 ${fmt(scanned)} 个仓库（占目录 ${pct(scanned, repos)}%）做过安全扫描，其中 ${pct(flagged, scanned)}% 被评为「注意」或更差，${fmt(g.unsafe || 0)} 个被评为「风险」。其余仓库还没审，不算作安全。`;
   const caveat = p(`A pattern hit is a lead, not proof: when we reviewed flagged repositories, ${MENTION_SHARE}% of hits were text that mentions a pattern (docs, warnings) rather than code that does it. Grades weigh the hits.`, `命中规则只是线索，不是证据：复核被标记的仓库时，${MENTION_SHARE}% 的命中只是文字提到（文档、警告），不是代码真的这么做。评级会综合权衡这些命中。`, "st-note");
   return `<section class="st-section">${h2("Security scan", "安全扫描")}${p(en, zh)}${barList(rows, { total: scanned })}
     ${biSpan("Most common risky patterns", "最常见的风险模式", { tag: "h3" })}
