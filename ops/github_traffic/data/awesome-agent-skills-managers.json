@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 2,
    "uniques": 1
+  },
+  "2026-11-02": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-03": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-04": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-08": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 14,
    "uniques": 8
+  },
+  "2026-11-02": {
+   "count": 33,
+   "uniques": 18
+  },
+  "2026-11-03": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-11-04": {
+   "count": 19,
+   "uniques": 11
+  },
+  "2026-11-05": {
+   "count": 20,
+   "uniques": 12
+  },
+  "2026-11-06": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-07": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-08": {
+   "count": 18,
+   "uniques": 9
   }
  },
  "referrers": {
@@ -407,6 +463,13 @@
    }
   ],
   "2026-11-02": [
+   {
+    "referrer": "Google",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
    {
     "referrer": "Google",
     "count": 1,
@@ -479,6 +542,23 @@
     "path": "/zhuyansen/awesome-agent-skills-managers",
     "count": 2,
     "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/tree/main",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 3,
+    "uniques": 3
    },
    {
     "path": "/zhuyansen/awesome-agent-skills-managers/tree/main",

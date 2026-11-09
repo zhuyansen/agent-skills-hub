@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 20,
    "uniques": 13
+  },
+  "2026-11-02": {
+   "count": 86,
+   "uniques": 45
+  },
+  "2026-11-03": {
+   "count": 78,
+   "uniques": 49
+  },
+  "2026-11-04": {
+   "count": 69,
+   "uniques": 41
+  },
+  "2026-11-05": {
+   "count": 42,
+   "uniques": 32
+  },
+  "2026-11-06": {
+   "count": 49,
+   "uniques": 33
+  },
+  "2026-11-07": {
+   "count": 43,
+   "uniques": 24
+  },
+  "2026-11-08": {
+   "count": 56,
+   "uniques": 33
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 28,
    "uniques": 19
+  },
+  "2026-11-02": {
+   "count": 28,
+   "uniques": 22
+  },
+  "2026-11-03": {
+   "count": 25,
+   "uniques": 17
+  },
+  "2026-11-04": {
+   "count": 21,
+   "uniques": 17
+  },
+  "2026-11-05": {
+   "count": 24,
+   "uniques": 19
+  },
+  "2026-11-06": {
+   "count": 26,
+   "uniques": 22
+  },
+  "2026-11-07": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-11-08": {
+   "count": 18,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -427,6 +483,33 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 259,
+    "uniques": 182
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 42,
+    "uniques": 16
+   },
+   {
+    "referrer": "github.com",
+    "count": 12,
+    "uniques": 10
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 10,
+    "uniques": 10
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 6,
+    "uniques": 3
+   }
   ]
  },
  "paths": {
@@ -507,6 +590,58 @@
    },
    {
     "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets/previews",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills",
+    "count": 536,
+    "uniques": 344
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.zh-CN.md",
+    "count": 12,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.md",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets/previews",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/data",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main",
+    "count": 4,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/data/skills.json",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/tos-cn-i-ik7evvg4ik/rc/supertask/66ec4d83e71747fb91080ace6bdd48de~tplv-a9rns2rl98-image.image",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/assets/previews/ABC-xiaoxuan__award-level-web-design.jpg",
     "count": 1,
     "uniques": 1
    }

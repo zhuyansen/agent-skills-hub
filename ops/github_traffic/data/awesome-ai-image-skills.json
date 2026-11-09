@@ -139,6 +139,34 @@
   "2026-11-01": {
    "count": 18,
    "uniques": 4
+  },
+  "2026-11-02": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-11-03": {
+   "count": 9,
+   "uniques": 7
+  },
+  "2026-11-04": {
+   "count": 13,
+   "uniques": 8
+  },
+  "2026-11-05": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-11-06": {
+   "count": 8,
+   "uniques": 8
+  },
+  "2026-11-07": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-11-08": {
+   "count": 12,
+   "uniques": 9
   }
  },
  "clones": {
@@ -281,6 +309,34 @@
   "2026-11-01": {
    "count": 9,
    "uniques": 7
+  },
+  "2026-11-02": {
+   "count": 25,
+   "uniques": 17
+  },
+  "2026-11-03": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-11-04": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-11-05": {
+   "count": 16,
+   "uniques": 9
+  },
+  "2026-11-06": {
+   "count": 16,
+   "uniques": 10
+  },
+  "2026-11-07": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-08": {
+   "count": 7,
+   "uniques": 4
   }
  },
  "referrers": {
@@ -348,6 +404,33 @@
    },
    {
     "referrer": "Bing",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 38,
+    "uniques": 35
+   },
+   {
+    "referrer": "github.com",
+    "count": 11,
+    "uniques": 9
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "referrer": "Bing",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
     "count": 1,
     "uniques": 1
    }
@@ -428,6 +511,58 @@
    },
    {
     "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/KDB-Wind__gpt-image-2-studio.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills",
+    "count": 125,
+    "uniques": 94
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/README.zh-CN.md",
+    "count": 10,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/tree/main/assets/previews",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/index.json",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/LICENSE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/README.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/Arekejoker__qwen21-nsfw-pose-skill.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/AtlasCloudAI__cli.gif",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/AtlasCloudAI__cli.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/JuneLearn__dsh-image2-draw.jpg",
     "count": 1,
     "uniques": 1
    }

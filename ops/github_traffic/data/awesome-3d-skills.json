@@ -1,0 +1,135 @@
+{
+ "views": {
+  "2026-10-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-27": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-28": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-29": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-30": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-31": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-01": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-02": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-07": {
+   "count": 3,
+   "uniques": 1
+  },
+  "2026-11-08": {
+   "count": 1,
+   "uniques": 1
+  }
+ },
+ "clones": {
+  "2026-10-26": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-27": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-28": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-29": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-30": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-10-31": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-01": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-02": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-07": {
+   "count": 18,
+   "uniques": 15
+  },
+  "2026-11-08": {
+   "count": 23,
+   "uniques": 14
+  }
+ },
+ "referrers": {
+  "2026-11-09": []
+ },
+ "paths": {
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-3d-skills",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/blob/main/LICENSE",
+    "count": 1,
+    "uniques": 1
+   }
+  ]
+ }
+}

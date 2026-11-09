@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-02": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-05": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-06": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-11-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-08": {
+   "count": 1,
+   "uniques": 1
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 21,
    "uniques": 12
+  },
+  "2026-11-02": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-03": {
+   "count": 23,
+   "uniques": 13
+  },
+  "2026-11-04": {
+   "count": 6,
+   "uniques": 5
+  },
+  "2026-11-05": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-06": {
+   "count": 12,
+   "uniques": 8
+  },
+  "2026-11-07": {
+   "count": 6,
+   "uniques": 5
+  },
+  "2026-11-08": {
+   "count": 18,
+   "uniques": 10
   }
  },
  "referrers": {
@@ -380,6 +436,23 @@
     "referrer": "Google",
     "count": 2,
     "uniques": 1
+   },
+   {
+    "referrer": "apps.anker-in.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 2
    },
    {
     "referrer": "apps.anker-in.com",
@@ -463,6 +536,18 @@
     "path": "/zhuyansen/awesome-typesafe-jev/blob/main/README.zh-CN.md",
     "count": 3,
     "uniques": 3
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev",
+    "count": 14,
+    "uniques": 13
+   },
+   {
+    "path": "/zhuyansen/awesome-typesafe-jev/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
    }
   ]
  }

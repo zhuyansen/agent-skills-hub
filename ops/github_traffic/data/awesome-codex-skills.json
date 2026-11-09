@@ -111,6 +111,34 @@
   "2026-11-01": {
    "count": 12,
    "uniques": 6
+  },
+  "2026-11-02": {
+   "count": 6,
+   "uniques": 2
+  },
+  "2026-11-03": {
+   "count": 10,
+   "uniques": 2
+  },
+  "2026-11-04": {
+   "count": 11,
+   "uniques": 3
+  },
+  "2026-11-05": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-06": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-07": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-08": {
+   "count": 4,
+   "uniques": 3
   }
  },
  "clones": {
@@ -225,6 +253,34 @@
   "2026-11-01": {
    "count": 19,
    "uniques": 12
+  },
+  "2026-11-02": {
+   "count": 37,
+   "uniques": 21
+  },
+  "2026-11-03": {
+   "count": 13,
+   "uniques": 9
+  },
+  "2026-11-04": {
+   "count": 23,
+   "uniques": 15
+  },
+  "2026-11-05": {
+   "count": 17,
+   "uniques": 11
+  },
+  "2026-11-06": {
+   "count": 6,
+   "uniques": 6
+  },
+  "2026-11-07": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-11-08": {
+   "count": 8,
+   "uniques": 5
   }
  },
  "referrers": {
@@ -283,6 +339,23 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "github.com",
+    "count": 10,
+    "uniques": 7
+   },
+   {
+    "referrer": "Google",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -320,6 +393,43 @@
     "path": "/zhuyansen/awesome-codex-skills/blob/main/README.zh-CN.md",
     "count": 16,
     "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/branches",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/32a08e641e9c9ef3eb741942eb26736d6d0a9edd/README.md",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-codex-skills",
+    "count": 74,
+    "uniques": 50
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.zh-CN.md",
+    "count": 35,
+    "uniques": 12
    },
    {
     "path": "/zhuyansen/awesome-codex-skills/branches",

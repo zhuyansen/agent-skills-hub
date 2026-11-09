@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-02": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-06": {
+   "count": 3,
+   "uniques": 1
+  },
+  "2026-11-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-08": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 20,
    "uniques": 10
+  },
+  "2026-11-02": {
+   "count": 24,
+   "uniques": 15
+  },
+  "2026-11-03": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-11-04": {
+   "count": 33,
+   "uniques": 15
+  },
+  "2026-11-05": {
+   "count": 5,
+   "uniques": 3
+  },
+  "2026-11-06": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-07": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-08": {
+   "count": 8,
+   "uniques": 5
   }
  },
  "referrers": {
@@ -368,6 +424,18 @@
   "2026-11-02": [
    {
     "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
     "count": 1,
     "uniques": 1
    }
@@ -435,6 +503,18 @@
    },
    {
     "path": "/zhuyansen/awesome-llm-wiki/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-llm-wiki",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-llm-wiki/blob/main/README.zh-CN.md",
     "count": 1,
     "uniques": 1
    }

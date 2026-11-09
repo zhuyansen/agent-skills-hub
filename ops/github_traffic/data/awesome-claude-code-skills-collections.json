@@ -111,6 +111,34 @@
   "2026-11-01": {
    "count": 13,
    "uniques": 1
+  },
+  "2026-11-02": {
+   "count": 4,
+   "uniques": 3
+  },
+  "2026-11-03": {
+   "count": 4,
+   "uniques": 1
+  },
+  "2026-11-04": {
+   "count": 8,
+   "uniques": 5
+  },
+  "2026-11-05": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-06": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-07": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-08": {
+   "count": 3,
+   "uniques": 2
   }
  },
  "clones": {
@@ -225,6 +253,34 @@
   "2026-11-01": {
    "count": 16,
    "uniques": 12
+  },
+  "2026-11-02": {
+   "count": 28,
+   "uniques": 15
+  },
+  "2026-11-03": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-11-04": {
+   "count": 20,
+   "uniques": 17
+  },
+  "2026-11-05": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-11-06": {
+   "count": 18,
+   "uniques": 13
+  },
+  "2026-11-07": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-11-08": {
+   "count": 12,
+   "uniques": 9
   }
  },
  "referrers": {
@@ -272,6 +328,28 @@
     "referrer": "perplexity.ai",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "github.com",
+    "count": 9,
+    "uniques": 7
+   },
+   {
+    "referrer": "Google",
+    "count": 8,
+    "uniques": 7
+   },
+   {
+    "referrer": "t.co",
+    "count": 5,
+    "uniques": 4
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 4,
+    "uniques": 3
    }
   ]
  },
@@ -339,6 +417,58 @@
    {
     "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/README.zh-CN.md",
     "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/charlie947__motion-graphics-skills.gif",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/charlie947__motion-graphics-skills.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections",
+    "count": 44,
+    "uniques": 35
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/tree/main/data",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/data/skills.json",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/tree/main/assets/previews",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/tree/main",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/index.json",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/openqa-cn__codexqa.jpg",
+    "count": 2,
     "uniques": 1
    },
    {

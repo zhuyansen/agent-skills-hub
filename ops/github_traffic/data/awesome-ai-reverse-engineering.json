@@ -115,6 +115,34 @@
   "2026-11-01": {
    "count": 40,
    "uniques": 28
+  },
+  "2026-11-02": {
+   "count": 67,
+   "uniques": 46
+  },
+  "2026-11-03": {
+   "count": 121,
+   "uniques": 81
+  },
+  "2026-11-04": {
+   "count": 115,
+   "uniques": 62
+  },
+  "2026-11-05": {
+   "count": 65,
+   "uniques": 45
+  },
+  "2026-11-06": {
+   "count": 100,
+   "uniques": 78
+  },
+  "2026-11-07": {
+   "count": 116,
+   "uniques": 92
+  },
+  "2026-11-08": {
+   "count": 92,
+   "uniques": 49
   }
  },
  "clones": {
@@ -233,6 +261,34 @@
   "2026-11-01": {
    "count": 35,
    "uniques": 26
+  },
+  "2026-11-02": {
+   "count": 132,
+   "uniques": 112
+  },
+  "2026-11-03": {
+   "count": 95,
+   "uniques": 75
+  },
+  "2026-11-04": {
+   "count": 47,
+   "uniques": 41
+  },
+  "2026-11-05": {
+   "count": 58,
+   "uniques": 41
+  },
+  "2026-11-06": {
+   "count": 37,
+   "uniques": 31
+  },
+  "2026-11-07": {
+   "count": 59,
+   "uniques": 56
+  },
+  "2026-11-08": {
+   "count": 37,
+   "uniques": 27
   }
  },
  "referrers": {
@@ -335,6 +391,58 @@
     "referrer": "DuckDuckGo",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "github.com",
+    "count": 138,
+    "uniques": 108
+   },
+   {
+    "referrer": "t.co",
+    "count": 137,
+    "uniques": 120
+   },
+   {
+    "referrer": "Google",
+    "count": 98,
+    "uniques": 84
+   },
+   {
+    "referrer": "link.zhihu.com",
+    "count": 42,
+    "uniques": 35
+   },
+   {
+    "referrer": "yandex.ru",
+    "count": 15,
+    "uniques": 14
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 10,
+    "uniques": 4
+   },
+   {
+    "referrer": "ya.ru",
+    "count": 9,
+    "uniques": 2
+   },
+   {
+    "referrer": "Bing",
+    "count": 7,
+    "uniques": 6
+   },
+   {
+    "referrer": "l.instagram.com",
+    "count": 4,
+    "uniques": 2
+   },
+   {
+    "referrer": "l.threads.com",
+    "count": 3,
+    "uniques": 3
    }
   ]
  },
@@ -486,6 +594,58 @@
    },
    {
     "path": "/zhuyansen/awesome-ai-reverse-engineering/commit/b46d1c2c871ecfab696d81918f6c3792a9187492",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering",
+    "count": 807,
+    "uniques": 571
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.zh-CN.md",
+    "count": 111,
+    "uniques": 66
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/data/skills.json",
+    "count": 13,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/fork",
+    "count": 11,
+    "uniques": 11
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.md",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/data",
+    "count": 7,
+    "uniques": 7
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/assets/previews",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/assets",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/issues",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/tos-cn-i-ik7evvg4ik/rc/supertask/51daad7331d94a79bd414722dc863c53~tplv-a9rns2rl98-image.image",
     "count": 1,
     "uniques": 1
    }

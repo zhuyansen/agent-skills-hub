@@ -111,6 +111,34 @@
   "2026-11-01": {
    "count": 4,
    "uniques": 4
+  },
+  "2026-11-02": {
+   "count": 6,
+   "uniques": 3
+  },
+  "2026-11-03": {
+   "count": 7,
+   "uniques": 7
+  },
+  "2026-11-04": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-05": {
+   "count": 14,
+   "uniques": 6
+  },
+  "2026-11-06": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-07": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-08": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -225,6 +253,34 @@
   "2026-11-01": {
    "count": 18,
    "uniques": 10
+  },
+  "2026-11-02": {
+   "count": 18,
+   "uniques": 9
+  },
+  "2026-11-03": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-04": {
+   "count": 21,
+   "uniques": 13
+  },
+  "2026-11-05": {
+   "count": 18,
+   "uniques": 10
+  },
+  "2026-11-06": {
+   "count": 8,
+   "uniques": 8
+  },
+  "2026-11-07": {
+   "count": 6,
+   "uniques": 5
+  },
+  "2026-11-08": {
+   "count": 6,
+   "uniques": 3
   }
  },
  "referrers": {
@@ -278,6 +334,28 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 8,
+    "uniques": 3
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -320,6 +398,23 @@
     "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.md",
     "count": 3,
     "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-review",
+    "count": 55,
+    "uniques": 34
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.md",
+    "count": 4,
+    "uniques": 4
    },
    {
     "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.zh-CN.md",

@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-02": {
+   "count": 5,
+   "uniques": 3
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-08": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 16,
    "uniques": 9
+  },
+  "2026-11-02": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-11-03": {
+   "count": 11,
+   "uniques": 9
+  },
+  "2026-11-04": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-11-05": {
+   "count": 113,
+   "uniques": 101
+  },
+  "2026-11-06": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-07": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-08": {
+   "count": 7,
+   "uniques": 4
   }
  },
  "referrers": {
@@ -381,6 +437,23 @@
     "referrer": "github.com",
     "count": 2,
     "uniques": 2
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "github.com",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "Google",
+    "count": 1,
+    "uniques": 1
    },
    {
     "referrer": "l.meta.ai",
@@ -434,6 +507,28 @@
     "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/README.zh-CN.md",
     "count": 3,
     "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/assets/previews/Moviw__codex-statusline.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/assets/previews/awesomezun__claude-statusline.gif",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks",
+    "count": 10,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
    },
    {
     "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/assets/previews/Moviw__codex-statusline.jpg",

@@ -111,6 +111,34 @@
   "2026-11-01": {
    "count": 2,
    "uniques": 2
+  },
+  "2026-11-02": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-03": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-04": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-05": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-06": {
+   "count": 16,
+   "uniques": 10
+  },
+  "2026-11-07": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-11-08": {
+   "count": 4,
+   "uniques": 4
   }
  },
  "clones": {
@@ -225,6 +253,34 @@
   "2026-11-01": {
    "count": 24,
    "uniques": 15
+  },
+  "2026-11-02": {
+   "count": 24,
+   "uniques": 16
+  },
+  "2026-11-03": {
+   "count": 27,
+   "uniques": 16
+  },
+  "2026-11-04": {
+   "count": 13,
+   "uniques": 9
+  },
+  "2026-11-05": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-11-06": {
+   "count": 7,
+   "uniques": 7
+  },
+  "2026-11-07": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-11-08": {
+   "count": 13,
+   "uniques": 11
   }
  },
  "referrers": {
@@ -262,6 +318,28 @@
     "referrer": "github.com",
     "count": 4,
     "uniques": 4
+   },
+   {
+    "referrer": "t.co",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 33,
+    "uniques": 25
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 5,
+    "uniques": 3
+   },
+   {
+    "referrer": "github.com",
+    "count": 3,
+    "uniques": 3
    },
    {
     "referrer": "t.co",
@@ -363,6 +441,53 @@
    },
    {
     "path": "/zhuyansen/awesome-claude-seo-skills/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills",
+    "count": 56,
+    "uniques": 39
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/README.md",
+    "count": 8,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/README.zh-CN.md",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/0f0ac687c8220dca58320be998687f4dc7ac7a32/README.md",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/0f0ac687c8220dca58320be998687f4dc7ac7a32/LICENSE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/projects",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/0f0ac687c8220dca58320be998687f4dc7ac7a32/assets",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/0f0ac687c8220dca58320be998687f4dc7ac7a32/data",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/main",
     "count": 1,
     "uniques": 1
    }

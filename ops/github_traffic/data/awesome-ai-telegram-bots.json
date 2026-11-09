@@ -171,6 +171,34 @@
   "2026-11-01": {
    "count": 2,
    "uniques": 1
+  },
+  "2026-11-02": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-03": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-04": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-05": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-06": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-07": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-08": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -345,6 +373,34 @@
   "2026-11-01": {
    "count": 9,
    "uniques": 6
+  },
+  "2026-11-02": {
+   "count": 28,
+   "uniques": 16
+  },
+  "2026-11-03": {
+   "count": 24,
+   "uniques": 14
+  },
+  "2026-11-04": {
+   "count": 18,
+   "uniques": 11
+  },
+  "2026-11-05": {
+   "count": 9,
+   "uniques": 6
+  },
+  "2026-11-06": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-11-07": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-08": {
+   "count": 9,
+   "uniques": 5
   }
  },
  "referrers": {
@@ -387,6 +443,23 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-09": [
+   {
+    "referrer": "perplexity.ai",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "github.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -418,6 +491,13 @@
     "path": "/zhuyansen/awesome-ai-telegram-bots",
     "count": 7,
     "uniques": 6
+   }
+  ],
+  "2026-11-09": [
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots",
+    "count": 8,
+    "uniques": 7
    }
   ]
  }
