@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-10
+1. ruvnet/RuView — 用普通 WiFi 信号做实时空间感知、生命体征监测与在场检测，全程不用摄像头（103320★ 198.3/day）
+2. Pluviobyte/saas-growth-agents — 🆕 把新词雷达、找站、竞品外链、目录投稿等 SaaS 增长杂活交给智能体（422★ 40.3/day）
+3. bnlqn/overlook — 🆕 把整个家庭实验室的服务汇总到一页面板上，自动排好布局（234★ 18.7/day）
+4. openBitFun/OpenBitFun — 用 Rust 写的高性能智能体运行时配桌面应用，既能写代码也能干通用活（3989★ 14.2/day）
+5. chenhg5/myco — 🆕 跨机器连起 Claude Code、Codex 等智能体，互相发现、分派任务并回传结果（58★ 11.3/day）
+6. LilMGenius/paperthin — 提供一本递归自我改进的技能手册，提炼黑客松冠军的零干预工程方法（1379★ 9.6/day）
+7. mikecann/threadbear — 在 Mac 上用现有订阅管理 Claude Code 与 Codex 会话，附 iPhone 端和全部源码（112★ 7.6/day）
+8. nanocodexyz/nanocode — 提供开发套件，把前沿模型智能体嵌进你自己的产品里（655★ 5.6/day）
+9. bighadj22/Wocart — 搭建面向阿尔及利亚、货到付款优先的开源电商与配送平台，原生支持智能体（410★ 5.0/day）
+10. godwit-email/godwit — 开源 AI 桌面邮件客户端，数据先在本地脱敏再交给模型处理（109★ 3.4/day）
+🎯 今日趋势：多智能体编排占 **3 席**（OpenBitFun、myco、threadbear 都在管多个 Claude Code / Codex 会话）；48h 新入库 ≥20★ 只有 **40 仓**（昨天 112 仓），ai-manus 克隆集群 48h 内 **0 新增**。
+> 注：去重范围＝repo 内 archive 全部 138 个日期段，并入记忆区 fresh-skills-archive 与记忆区 daily-report-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 6,450 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、事务内 `SET LOCAL statement_timeout=30000`、NullPool）一次成功：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 40 条、去重后 34 条，剔除可疑项仍有 10 个合格，未放宽到 72h（72h 段内 48 个 ai-manus 克隆均为 59h 前入库，不在窗口）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①Nanoutrolley/roblox-studio-mcp（280★ 280.0/day，本可居第 1）：账号 10-18 建、0 粉、名下 2 仓，建仓不到 1 天即 281★/215 fork，fork 比异常，疑似诱导或刷量，排除；②stevenmichaelthomas/numbrone（75★ 60.6/day）：security_grade=unsafe，且作者其余仓 ≤1★、单仓突起，排除；③kyy-logs/code-review-gate-skill（443★ 37.5/day）：账号 0 粉，实时 457★ 仅 6 fork，其余仓 ≤8★，刷星嫌疑，排除；④wanshuiyin/SuperARIS（57★ 29.7/day）：作者可信（名下 ARIS 1.9 万★），但 security_grade=unsafe，按红线排除；⑤ZenlixAI/skill-dock（488★ 4.7/day）：实时 494★ 却 0 fork，组织 2026-03 建、9 粉，排除。入选项复核（`gh api`）：第 1 席 ruvnet 2012 建号、1.2 万粉，实时 103,540★/13,413 fork/558 issue（建仓 521 天的老库本期首次收录，velocity 取生涯均值）；第 2 席 Pluviobyte 2021 建号、122 粉，名下另有 1,735★、704★ 仓，实时 430★/106 fork；第 3 席 bnlqn 2012 建号、0 粉、名下 3 仓（**轻红旗**：单仓承星，但实时 237★/12 fork/13 issue 有真实使用痕迹，保留）；第 4 席 openBitFun 组织 2026-03 建、2 粉（**轻红旗**），但实时 3,995★/303 fork/134 issue，保留；第 5 席 chenhg5 2013 建号、614 粉，名下另有 16,302★ 仓；第 6 席 LilMGenius 2022 建号，实时 1,402★/122 fork；第 7 席 mikecann 2010 建号、256 粉，实时 114★/172 fork（fork 多于星，抽查最新 8 个 fork 均为真实用户当天 fork，项目鼓励自行 fork 构建，保留）；第 8 席 nanocodexyz 组织 10-28 建、1 粉（**轻红旗**：仓库 07-15 建、后转入新组织），实时 662★/99 fork，保留；第 9 席 bighadj22 2023 建号、75 粉，实时 411★/67 fork；第 10 席 godwit-email 组织 10-08 建，实时 110★/15 fork/13 issue。备选 citizenhicks/mobius（356★ 3.3/day，实时 384★ 仅 6 fork）未入选。🆕 判定＝created_at 距今 14 天内：saas-growth-agents（10.5 天）、overlook（12.5 天）、myco（5.1 天）命中；threadbear（14.7 天）及其余不标。security_grade：RuView、overlook、paperthin、threadbear、Wocart 为 safe，saas-growth-agents、OpenBitFun、myco、nanocode、godwit 尚未评级（unknown），无 unsafe。表中 stars 为数据库快照，部分仓实时略高，按红线保留快照值。
+
+---
+
 ## 2026-11-09
 1. kunchenguid/headless — 🆕 一步步通过 SSH 配好无头 Mac、Linux 或 Windows 机器，全程不用看屏幕（56★ 32.0/day）
 2. pireel/pireel — 开源剪映替代品，任何 AI 智能体都能通过 MCP 驱动剪片（1358★ 12.2/day）
