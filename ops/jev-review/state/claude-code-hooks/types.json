@@ -3430,5 +3430,31 @@
    "tooling": 0.86
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "me2resh/apexyard",
+  "stars": 544,
+  "description": "Your AI engineering org, governed. Ship agent-built code safely to production.",
+  "scores": {
+   "hooks": 0.64,
+   "subagents": 0.48,
+   "statusline": 0.02,
+   "collection": 0.98,
+   "tooling": 0.75
+  },
+  "kind": "collection"
+ },
+ {
+  "repo": "SanderMuller/claude-statusline",
+  "stars": 5,
+  "description": "A two-row, color-coded status line for Claude Code: model, context %, skills/workflow counts, and 5h/7d rate-limit windows with progress bars. One-line install.",
+  "scores": {
+   "hooks": 0.06,
+   "subagents": 0.02,
+   "statusline": 0.97,
+   "collection": 0.16,
+   "tooling": 0.93
+  },
+  "kind": "statusline"
  }
 ]

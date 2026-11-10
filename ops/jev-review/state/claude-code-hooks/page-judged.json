@@ -18119,5 +18119,43 @@
   "days": 260,
   "stars_per_day": 0.4230769230769231,
   "verdict": "admit"
+ },
+ {
+  "repo": "me2resh/apexyard",
+  "name": "apexyard",
+  "stars": 544,
+  "description": "Your AI engineering org, governed. Ship agent-built code safely to production.",
+  "topics": [
+   "agentic-coding",
+   "ai-agents",
+   "ai-governance",
+   "claude-code",
+   "claude-code-hooks",
+   "claude-code-skills",
+   "code-review",
+   "developer-tools",
+   "multi-agent",
+   "sdlc",
+   "software-engineering"
+  ],
+  "created": "2026-04-05",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 28886,
+  "names_model": false,
+  "on_subject": 0.85,
+  "is_software": 0.93,
+  "shows_result": 0.1,
+  "one_command_start": 0.15,
+  "specific_outcome": 0.68,
+  "complete_docs": 0.18,
+  "novel_angle": 0.7,
+  "shareable_output": 0.7,
+  "quality": 0.2775,
+  "tier": "低",
+  "hit_prior": 0.5,
+  "days": 219,
+  "stars_per_day": 2.4840182648401825,
+  "verdict": "low_quality"
  }
 ]

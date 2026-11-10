@@ -5368,5 +5368,20 @@
    "general": 0.23
   },
   "kind": "general"
+ },
+ {
+  "repo": "Enntity/sparkscore",
+  "stars": 9,
+  "description": "Typed, calibrated decisions on one NVIDIA DGX Spark: d3-ultra 27B NVFP4 on Atlas, JevBench public 90.9% at p50 146 ms, every question in one engine pass.",
+  "scores": {
+   "replica": 0.87,
+   "agent": 0.08,
+   "devtool": 0.16,
+   "sdk": 0.67,
+   "business": 0.2,
+   "consumer": 0.06,
+   "general": 0.15
+  },
+  "kind": "replica"
  }
 ]

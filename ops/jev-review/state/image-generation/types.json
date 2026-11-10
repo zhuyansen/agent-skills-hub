@@ -3680,5 +3680,19 @@
    "mcp": 0.57
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "absolument-ai/trop",
+  "stars": 5,
+  "description": "TROP turns creative briefs into art-directed AI image prompts. Claude Skill and Custom GPT setup.",
+  "scores": {
+   "gpt_image": 0.13,
+   "nano_banana": 0.03,
+   "open_models": 0.09,
+   "editing": 0.02,
+   "design": 0.11,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
  }
 ]

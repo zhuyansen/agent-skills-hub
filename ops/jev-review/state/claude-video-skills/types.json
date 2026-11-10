@@ -8584,5 +8584,113 @@
    "general": 0.09
   },
   "kind": "motion"
+ },
+ {
+  "repo": "Vibha-Ramprakash/claude-video-effects",
+  "stars": 836,
+  "description": "51 free video effects for Claude Code: drop in a talking-head clip, type /effects orbit. Face tracking, behind-your-head layers. From Hop Studio by @vibha.in.progress",
+  "scores": {
+   "promo": 0.5,
+   "explainer": 0.24,
+   "music": 0.06,
+   "motion": 0.17,
+   "shorts": 0.88,
+   "editing": 0.91,
+   "demo": 0.21,
+   "story": 0.06,
+   "avatar": 0.08,
+   "general": 0.5
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "Moh4696/cinematic-skill",
+  "stars": 55,
+  "description": "Agent skill for narrated cinematic films built entirely from code: one continuous camera over photos, maps and cards, timed to the voice. Claude Code, Codex, Cursor, Gemini CLI.",
+  "scores": {
+   "promo": 0.4,
+   "explainer": 0.91,
+   "music": 0.05,
+   "motion": 0.27,
+   "shorts": 0.14,
+   "editing": 0.04,
+   "demo": 0.27,
+   "story": 0.17,
+   "avatar": 0.03,
+   "general": 0.17
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "rjmahesh/ui-redline-walkthrough",
+  "stars": 47,
+  "description": "Claude skill: turn before/after UI screenshots into an animated redline walkthrough video (red ink marks, morphing UI, MP4 export)",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.4,
+   "music": 0.02,
+   "motion": 0.76,
+   "shorts": 0.09,
+   "editing": 0.07,
+   "demo": 0.89,
+   "story": 0.1,
+   "avatar": 0.02,
+   "general": 0.04
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "frankShan001/CutVoke",
+  "stars": 30,
+  "description": "Open-source, local-first video editor your AI agent can drive over MCP (Claude Code, Codex, Cursor). Windows · macOS · Linux. The AI makes the cut; you finish it on the same timeline.",
+  "scores": {
+   "promo": 0.53,
+   "explainer": 0.36,
+   "music": 0.09,
+   "motion": 0.06,
+   "shorts": 0.7,
+   "editing": 0.95,
+   "demo": 0.62,
+   "story": 0.06,
+   "avatar": 0.07,
+   "general": 0.21
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "DbgKinggg/plotbeat",
+  "stars": 5,
+  "description": "HyperFrames-native data visualization templates and AI skill for deterministic chart videos.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.29,
+   "music": 0.05,
+   "motion": 0.36,
+   "shorts": 0.17,
+   "editing": 0.04,
+   "demo": 0.45,
+   "story": 0.05,
+   "avatar": 0.06,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "AnmolChandiok/claude-after-effects-skill",
+  "stars": 5,
+  "description": "Claude skill: turn a video made with code (canvas, JS, Python) into a fully editable After Effects project — live text, shape layers, precomps, a keyframed camera, audio. Like a layered PSD, for AE.",
+  "scores": {
+   "promo": 0.24,
+   "explainer": 0.44,
+   "music": 0.13,
+   "motion": 0.32,
+   "shorts": 0.1,
+   "editing": 0.14,
+   "demo": 0.42,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.13
+  },
+  "kind": "general"
  }
 ]

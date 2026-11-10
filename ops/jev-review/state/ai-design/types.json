@@ -2924,5 +2924,33 @@
    "review": 0.55
   },
   "kind": "ui"
+ },
+ {
+  "repo": "precious112/caret-desktop",
+  "stars": 50,
+  "description": "Caret — a design canvas over your real code. Click a headline and retype it, pick a colour, drag an edge: every change lands in your source files. Free, open source, runs on your machine.",
+  "scores": {
+   "ui": 0.17,
+   "system": 0.27,
+   "tool_mcp": 0.2,
+   "to_code": 0.59,
+   "graphics": 0.55,
+   "review": 0.1
+  },
+  "kind": "to_code"
+ },
+ {
+  "repo": "KunalKumarkkr01/design-system-extractor",
+  "stars": 5,
+  "description": "Reverse-engineer any live website's design system into an implementation-ready design.md + screenshots, by driving a real browser with the Chrome DevTools MCP. Ships as an agent skill, a Claude Code plugin, and an npx installer.",
+  "scores": {
+   "ui": 0.83,
+   "system": 0.97,
+   "tool_mcp": 0.06,
+   "to_code": 0.09,
+   "graphics": 0.08,
+   "review": 0.1
+  },
+  "kind": "system"
  }
 ]

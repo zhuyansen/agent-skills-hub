@@ -4718,5 +4718,53 @@
    "marketing": 0.42
   },
   "kind": "marketing"
+ },
+ {
+  "repo": "Pluviobyte/saas-growth-agents",
+  "stars": 452,
+  "description": "Hand your SaaS growth chores to an agent: new-term radar, keyword-to-site discovery, competitor backlinks, directory submissions, plus a social analysis pack with a Douyin comments skill. Works with Grok Bot, Muse, Dot, Hermes, OpenClaw, Claude Code and Codex.",
+  "scores": {
+   "suite": 0.42,
+   "audit": 0.06,
+   "research": 0.64,
+   "data_mcp": 0.1,
+   "geo": 0.17,
+   "content": 0.18,
+   "links": 0.35,
+   "marketing": 0.88
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "tymoshenko-dmytro/claude-marketing-skills",
+  "stars": 5,
+  "description": "Claude marketing skills: AI agents for marketing in Claude Code. Competitor research, ad libraries, an SEO team (Search Console, technical audits, Ahrefs keyword research), GA4, funnel screenshots, ad images, a video studio and a copy critic. Free Claude Code plugin, MIT.",
+  "scores": {
+   "suite": 0.58,
+   "audit": 0.17,
+   "research": 0.35,
+   "data_mcp": 0.15,
+   "geo": 0.14,
+   "content": 0.19,
+   "links": 0.05,
+   "marketing": 0.98
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "cihantopac/searvex",
+  "stars": 5,
+  "description": "Understand Search. Fix What Matters. Open-source SEO + AI-search (GEO) auditor for websites and repositories: root-cause grouping, repair prompts for coding agents and safe code fixes with rollback. CLI + Claude Code plugin.",
+  "scores": {
+   "suite": 0.36,
+   "audit": 0.9,
+   "research": 0.06,
+   "data_mcp": 0.25,
+   "geo": 0.43,
+   "content": 0.08,
+   "links": 0.03,
+   "marketing": 0.04
+  },
+  "kind": "audit"
  }
 ]

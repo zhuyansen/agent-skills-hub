@@ -4016,5 +4016,19 @@
    "rules": 0.27
   },
   "kind": "design"
+ },
+ {
+  "repo": "Dodaios/ste80-humanizer",
+  "stars": 177,
+  "description": "STE80 Humanizer: agent skill that removes AI tells and rewrites text 80% of the way to ASD-STE100 (Simplified Technical English), the method Andrej Karpathy shared.",
+  "scores": {
+   "writing": 0.9,
+   "detector": 0.14,
+   "chinese": 0.03,
+   "code": 0.11,
+   "design": 0.06,
+   "rules": 0.38
+  },
+  "kind": "writing"
  }
 ]

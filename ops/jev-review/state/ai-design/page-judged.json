@@ -15669,5 +15669,43 @@
   "days": 6,
   "stars_per_day": 8.5,
   "verdict": "admit"
+ },
+ {
+  "repo": "precious112/caret-desktop",
+  "name": "caret-desktop",
+  "stars": 50,
+  "description": "Caret — a design canvas over your real code. Click a headline and retype it, pick a colour, drag an edge: every change lands in your source files. Free, open source, runs on your machine.",
+  "topics": [
+   "ai",
+   "ai-design",
+   "design-as-code",
+   "design-systems",
+   "design-to-code",
+   "design-tool",
+   "desktop-app",
+   "electron",
+   "frontend",
+   "mcp",
+   "react"
+  ],
+  "created": "2026-06-19",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 11422,
+  "names_model": false,
+  "on_subject": 0.92,
+  "is_software": 0.98,
+  "shows_result": 0.7,
+  "one_command_start": 0.15,
+  "specific_outcome": 0.87,
+  "complete_docs": 0.28,
+  "novel_angle": 0.75,
+  "shareable_output": 0.85,
+  "quality": 0.5,
+  "tier": "中",
+  "hit_prior": 0.7666666666666666,
+  "days": 144,
+  "stars_per_day": 0.3472222222222222,
+  "verdict": "low_quality"
  }
 ]

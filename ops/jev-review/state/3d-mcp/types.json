@@ -2926,5 +2926,101 @@
    "gen3d": 0.07
   },
   "kind": "blender"
+ },
+ {
+  "repo": "sixtysevenlf/dsh-blender-plugin",
+  "stars": 1937,
+  "description": "DSH x Blender direct realtime plugin v2.0 — an AI drives Blender over a direct TCP channel (no MCP): 16 tools, 28 families / 186 ops (viewport frames, click-to-pick, render profiling, headless offload) + a right-sidebar panel (live only) with click-to-context & @-mentions. Addon: DSH Blender Bridge. skill: sixtysevenlf/dsh-skill-blender-modeling",
+  "scores": {
+   "blender": 0.96,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.13,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.12
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "AirsupHQ/machine-skill",
+  "stars": 621,
+  "description": "Describe any machine in one line. Claude builds a photoreal, physics based, interactive simulation of it in one HTML file, plus the film to post it. An open source Claude Code skill.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.16,
+   "dcc": 0.02,
+   "web3d": 0.96,
+   "gen3d": 0.46
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "SpatiaOS/Procedura",
+  "stars": 460,
+  "description": "Agentic 3D Modeling with Procedural Control — turns a text prompt into an editable parametric program, with optional per-part materials and articulation.",
+  "scores": {
+   "blender": 0.08,
+   "unity": 0.03,
+   "godot": 0.03,
+   "unreal": 0.03,
+   "cad": 0.93,
+   "dcc": 0.04,
+   "web3d": 0.04,
+   "gen3d": 0.9
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "CoplayDev/coplay-unity-plugin",
+  "stars": 164,
+  "description": "Unity plugin for Coplay",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.98,
+   "godot": 0.01,
+   "unreal": 0.04,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.03
+  },
+  "kind": "unity"
+ },
+ {
+  "repo": "FreedomIntelligence/BlenderLore",
+  "stars": 98,
+  "description": "BlenderLore: Learning 3D Coding from Internet Tutorial Videos.",
+  "scores": {
+   "blender": 0.95,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.09
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "CheshireJCat/blender",
+  "stars": 75,
+  "description": "DeepSeek Harness plugin for complete Blender 3D modeling, reconstruction, rendering, validation, and export workflows",
+  "scores": {
+   "blender": 0.95,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.18
+  },
+  "kind": "blender"
  }
 ]

@@ -2039,7 +2039,8 @@
     "kwhi6693-web/photo-abstract-editorial",
     "CreativeClawCo/creative-claw-marketplace",
     "stephenlzc/codex-image-gen",
-    "beatra-ai/ai-image-generator-skill"
+    "beatra-ai/ai-image-generator-skill",
+    "absolument-ai/trop"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2176,7 +2177,13 @@
     "XliuXjianX/blender-production-skills",
     "icesixgod/awesome-astra-blender-characters",
     "sixtysevenlf/dsh-skill-blender-modeling",
-    "ezpeezee/beta-version-toon-studio"
+    "ezpeezee/beta-version-toon-studio",
+    "sixtysevenlf/dsh-blender-plugin",
+    "AirsupHQ/machine-skill",
+    "SpatiaOS/Procedura",
+    "CoplayDev/coplay-unity-plugin",
+    "FreedomIntelligence/BlenderLore",
+    "CheshireJCat/blender"
    ],
    "exclude_repos": []
   },
@@ -3389,7 +3396,9 @@
     "ipiton/agent-memory-mcp",
     "Anakior/atlas-mind",
     "gogoymh/auto-ontology-mcp",
-    "bibinprathap/VeritasGraph"
+    "bibinprathap/VeritasGraph",
+    "Marker-Inc-Korea/AutoRAG",
+    "917Dhj/DeepPaperNote"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3743,7 +3752,8 @@
     "stakpak/paks",
     "klubinskak/skilldex",
     "Hainrixz/skill-vault",
-    "LLJ99999/jack-codex"
+    "LLJ99999/jack-codex",
+    "777genius/universal-agent-plugins"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4653,7 +4663,8 @@
     "LearnPrompt/vibecoding-humanizer",
     "Harrypatria/tastemaker",
     "LilMGenius/paperthin",
-    "LemonFace0309/charles-skills"
+    "LemonFace0309/charles-skills",
+    "Dodaios/ste80-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5159,7 +5170,10 @@
     "skills-sh/claude-seo",
     "TrendTweekers/article-autopilot",
     "sayiyla/sayiyla-seo-ajan",
-    "XuHo-IT/Content-Agent-Kit"
+    "XuHo-IT/Content-Agent-Kit",
+    "Pluviobyte/saas-growth-agents",
+    "tymoshenko-dmytro/claude-marketing-skills",
+    "cihantopac/searvex"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5650,7 +5664,9 @@
     "feimacode/open-design-agent-kit",
     "gregkozakiewicz/roast-my-design-system",
     "albertirgi/replica",
-    "jmlweb/storybook-vrhythm"
+    "jmlweb/storybook-vrhythm",
+    "precious112/caret-desktop",
+    "KunalKumarkkr01/design-system-extractor"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6757,7 +6773,8 @@
     "HeiGeAi/HeiGe-PPT",
     "hustcer/pptx-nova",
     "knorq-ai/pptx-mcp-server",
-    "Skywalkerjieee/paper-sharing-ppt"
+    "Skywalkerjieee/paper-sharing-ppt",
+    "dminghao12-dotcom/bluewhite-ppt-skills"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8198,7 +8215,8 @@
     "shashikantdev3/decision-models-lab",
     "taeold/djev-run",
     "Mushroom-Systems/lichen-v1",
-    "bodepudimuneendra-netizen/ConsciousDB"
+    "bodepudimuneendra-netizen/ConsciousDB",
+    "Enntity/sparkscore"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8786,7 +8804,13 @@
     "XuHo-IT/Content-Agent-Kit",
     "GoRenku/studio",
     "huynhcongdac/story-video-skill",
-    "codie1982/chorono-editor"
+    "codie1982/chorono-editor",
+    "Vibha-Ramprakash/claude-video-effects",
+    "Moh4696/cinematic-skill",
+    "rjmahesh/ui-redline-walkthrough",
+    "frankShan001/CutVoke",
+    "DbgKinggg/plotbeat",
+    "AnmolChandiok/claude-after-effects-skill"
    ],
    "sub_skills": [
     {
@@ -9353,7 +9377,9 @@
     "momenbasel/claude-code-statusline",
     "event4u-app/agent-config",
     "karlkfi/claude-bouncer",
-    "Spobi/context-carwash"
+    "Spobi/context-carwash",
+    "me2resh/apexyard",
+    "SanderMuller/claude-statusline"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

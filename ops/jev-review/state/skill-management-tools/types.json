@@ -2700,5 +2700,19 @@
    "general": 0.06
   },
   "kind": "app"
+ },
+ {
+  "repo": "777genius/universal-agent-plugins",
+  "stars": 16,
+  "description": "Multi-agent CLI to install, update, repair, and remove Agent Plugins 1.0 and Agent Skills across Codex/ChatGPT, Claude, Cursor, Gemini, Copilot, Qoder, Pi, OpenCode, and more. 1,500+ plugins. SDK for universal plugins (hooks, detect, install/manage)",
+  "scores": {
+   "cli": 0.9,
+   "sync": 0.73,
+   "app": 0.14,
+   "registry": 0.42,
+   "team": 0.41,
+   "general": 0.41
+  },
+  "kind": "cli"
  }
 ]

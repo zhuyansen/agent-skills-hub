@@ -5234,5 +5234,33 @@
    "personal": 0.08
   },
   "kind": "graph"
+ },
+ {
+  "repo": "Marker-Inc-Korea/AutoRAG",
+  "stars": 5489,
+  "description": "Your Personal Librarian Agent. Ask anything on your computer, organize files, remember important info and files.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.57,
+   "mcp": 0.56,
+   "docs_qa": 0.43,
+   "graph": 0.1,
+   "personal": 0.77
+  },
+  "kind": "personal"
+ },
+ {
+  "repo": "917Dhj/DeepPaperNote",
+  "stars": 1329,
+  "description": "Turn one dense paper into an Obsidian note worth keeping: read the way its field reads it, linked to the papers already in your vault, and aimed at your own research. Agent skills for Claude Code, Codex, Cursor, and any agent that supports skills.",
+  "scores": {
+   "llm_wiki": 0.93,
+   "rag_platform": 0.05,
+   "mcp": 0.43,
+   "docs_qa": 0.7,
+   "graph": 0.22,
+   "personal": 0.43
+  },
+  "kind": "llm_wiki"
  }
 ]
