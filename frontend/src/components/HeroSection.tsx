@@ -14,6 +14,15 @@ const TRENDING_TAGS = [
   "openai",
 ];
 
+/** The guides shown at the top of the hero: the three with a test of our own that people search most. */
+const TOP_GUIDES = [
+  { slug: "image-generation", icon: "🎨", zh: "AI 生图", en: "AI Image Generation" },
+  { slug: "ppt-presentation", icon: "📊", zh: "PPT 生成", en: "PPT & Slides" },
+  { slug: "claude-video-skills", icon: "🎬", zh: "Claude 视频", en: "Claude Video" },
+] as const;
+
+const guideHref = (slug: string, zh: boolean) => `/best/${slug}/${zh ? "zh/" : ""}`;
+
 /** The real counts as of the last build, shown until the stats arrive: with as many digits
  *  as the live ones, the first paint keeps its line breaks when they land. A 17,000
  *  stand-in put the title on one more line on a 412px phone once "258,000+" came, moving
@@ -86,8 +95,33 @@ export function HeroSection({ stats, onSearch }: Props) {
   const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
-    <section className="hero-gradient full-bleed px-4 pt-16 pb-12 sm:pt-24 sm:pb-16 mb-8 relative z-20">
+    <section className="hero-gradient full-bleed px-4 pt-6 pb-12 sm:pt-10 sm:pb-16 mb-8 relative z-20">
       <div className="max-w-3xl mx-auto text-center relative z-10">
+        {/* The three guides with our own test results, in the space the hero used to leave empty:
+            the row and the smaller top padding add up to the old padding, so nothing below moves. */}
+        <nav
+          aria-label={isZh ? "热门场景" : "Popular guides"}
+          className="flex flex-wrap items-center justify-center gap-2 mb-5"
+        >
+          <span className="hidden sm:inline text-xs text-[var(--text-3)]">{isZh ? "热门场景:" : "Popular:"}</span>
+          {TOP_GUIDES.map((g) => (
+            <a
+              key={g.slug}
+              href={guideHref(g.slug, isZh)}
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full text-[13px] sm:text-sm font-medium bg-[var(--bg-card)]/70 backdrop-blur text-[var(--text-1)] border border-[var(--border)] hover:border-indigo-400/60 transition-colors"
+            >
+              <span aria-hidden="true">{g.icon}</span>
+              {isZh ? g.zh : g.en}
+            </a>
+          ))}
+          <a
+            href={isZh ? "/best/zh/" : "/best/"}
+            className="hidden sm:inline text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            {isZh ? "全部场景 →" : "All guides →"}
+          </a>
+        </nav>
+
         {/* B-path: thin enterprise banner — high signal, doesn't touch H1/SEO */}
         <a
           href="/enterprise/"
