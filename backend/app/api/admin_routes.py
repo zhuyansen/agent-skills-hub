@@ -23,6 +23,7 @@ from app.schemas.admin import (
     SkillUpdateAdmin,
 )
 from app.schemas.skill import SkillResponse
+from app.services import extra_repo_state
 
 logger = logging.getLogger(__name__)
 admin_router = APIRouter(prefix="/api/admin")
@@ -143,7 +144,9 @@ def create_extra_repo(
     existing = db.query(ExtraRepo).filter(ExtraRepo.full_name == data.full_name).first()
     if existing:
         raise HTTPException(400, f"Repo '{data.full_name}' already exists")
-    repo = ExtraRepo(full_name=data.full_name)
+    # Added by an admin, so already reviewed: active, not the column defaults (pending but active).
+    repo = ExtraRepo(full_name=data.full_name, **extra_repo_state.columns(extra_repo_state.State.ACTIVE),
+                     reviewed_at=datetime.now(timezone.utc))
     db.add(repo)
     db.commit()
     db.refresh(repo)
@@ -174,9 +177,7 @@ def approve_extra_repo(
     repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
     if not repo:
         raise HTTPException(404, "Repo not found")
-    repo.status = "approved"
-    repo.is_active = True
-    repo.reviewed_at = datetime.now(timezone.utc)
+    extra_repo_state.apply(repo, extra_repo_state.Event.APPROVE)
     db.commit()
     return {"message": f"Repo '{repo.full_name}' approved and will be included in next sync"}
 
@@ -191,9 +192,7 @@ def reject_extra_repo(
     repo = db.query(ExtraRepo).filter(ExtraRepo.id == repo_id).first()
     if not repo:
         raise HTTPException(404, "Repo not found")
-    repo.status = "rejected"
-    repo.is_active = False
-    repo.reviewed_at = datetime.now(timezone.utc)
+    extra_repo_state.apply(repo, extra_repo_state.Event.REJECT)
     db.commit()
     return {"message": f"Repo '{repo.full_name}' rejected"}
 
@@ -627,7 +626,7 @@ def approve_master_application(
             full_name = match.group(1).rstrip(".git")
             existing_repo = db.query(ExtraRepo).filter(ExtraRepo.full_name == full_name).first()
             if not existing_repo:
-                repo = ExtraRepo(full_name=full_name, is_active=True, status="approved")
+                repo = ExtraRepo(full_name=full_name, **extra_repo_state.columns(extra_repo_state.State.ACTIVE))
                 db.add(repo)
 
     db.commit()

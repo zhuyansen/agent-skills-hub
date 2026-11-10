@@ -22,6 +22,7 @@ from app.schemas.skill import (
     SortOrder,
     StatsResponse,
 )
+from app.services import extra_repo_state
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api")
@@ -694,7 +695,7 @@ def submit_skill(
         logger.debug("Pre-scan skipped for %s: %s", full_name, scan_err)
 
     # Add to extra repos with 'pending' status for admin review
-    new_extra = ExtraRepo(full_name=full_name, is_active=False, status="pending")
+    new_extra = ExtraRepo(full_name=full_name, **extra_repo_state.columns(extra_repo_state.State.PENDING))
     db.add(new_extra)
     db.commit()
     db.refresh(new_extra)
