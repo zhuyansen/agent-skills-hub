@@ -2,26 +2,48 @@ import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { useQuickSearch } from "../hooks/useQuickSearch";
+import { trackEvent } from "../lib/analytics";
 import { readCatalogCounts } from "../lib/catalogCounts";
 import type { Skill, Stats } from "../types/skill";
 
-const TRENDING_TAGS = [
-  "mcp-server",
-  "claude-skill",
-  "langchain",
-  "browser-use",
-  "coding-agent",
-  "openai",
-];
+interface Guide {
+  slug: string;
+  zh: string;
+  en: string;
+  icon?: string;
+}
 
-/** The guides shown at the top of the hero: the three with a test of our own that people search most. */
-const TOP_GUIDES = [
+/** The guides at the top of the hero: the three with a test of our own that search sends the
+ *  most people to (GSC, 28 days to 2026-11-08: 1,642 / 839 / 84 clicks). */
+const TOP_GUIDES: readonly Guide[] = [
   { slug: "image-generation", icon: "🎨", zh: "AI 生图", en: "AI Image Generation" },
   { slug: "ppt-presentation", icon: "📊", zh: "PPT 生成", en: "PPT & Slides" },
   { slug: "claude-video-skills", icon: "🎬", zh: "Claude 视频", en: "Claude Video" },
-] as const;
+];
+
+/** Under the search box: the next six guides by the same clicks (54 down to 17). These were
+ *  search keywords (mcp-server, langchain, …) that opened a result list, not a guide. */
+const MORE_GUIDES: readonly Guide[] = [
+  { slug: "telegram-bot", zh: "Telegram 机器人", en: "Telegram Bots" },
+  { slug: "code-review", zh: "代码审查", en: "Code Review" },
+  { slug: "anti-slop", zh: "去 AI 味", en: "Anti-Slop" },
+  { slug: "skill-management-tools", zh: "Skill 管理", en: "Skill Managers" },
+  { slug: "ai-design", zh: "AI 设计", en: "AI Design" },
+  { slug: "codex-skills", zh: "Codex 技能", en: "Codex Skills" },
+];
 
 const guideHref = (slug: string, zh: boolean) => `/best/${slug}/${zh ? "zh/" : ""}`;
+
+/** How many tools the guide's own test covers, counted at build time (vite.config.ts). */
+function testedLabel(slug: string, zh: boolean): string | null {
+  const n = __GUIDE_TESTED__[slug];
+  if (!n) return null;
+  return zh ? `· 实测 ${n} 个` : `· ${n} tested`;
+}
+
+/** Which hero guide links get clicked, to judge the two rows and pick who stays (GA4). */
+const trackGuideClick = (slug: string, row: "top" | "more") =>
+  trackEvent("hero_guide_click", { guide: slug, row });
 
 /** The real counts as of the last build, shown until the stats arrive: with as many digits
  *  as the live ones, the first paint keeps its line breaks when they land. A 17,000
@@ -82,11 +104,6 @@ export function HeroSection({ stats, onSearch }: Props) {
     else search.move(e.key === "ArrowDown" ? 1 : -1);
   };
 
-  const handleTagClick = (tag: string) => {
-    setQuery(tag);
-    onSearch(tag);
-  };
-
   const totalSkills = stats?.total_skills ?? BUILD_COUNTS?.total ?? FALLBACK_COUNTS.total;
   const countDisplay = `${Math.floor(totalSkills / 1000).toLocaleString()},000+`;
 
@@ -95,47 +112,35 @@ export function HeroSection({ stats, onSearch }: Props) {
   const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
-    <section className="hero-gradient full-bleed px-4 pt-6 pb-12 sm:pt-10 sm:pb-16 mb-8 relative z-20">
+    <section className="hero-gradient full-bleed px-4 pt-8 pb-12 sm:pt-20 sm:pb-16 mb-8 relative z-20">
       <div className="max-w-3xl mx-auto text-center relative z-10">
-        {/* The three guides with our own test results, in the space the hero used to leave empty:
-            the row and the smaller top padding add up to the old padding, so nothing below moves. */}
+        {/* The three guides with our own test results, where the hero used to open with empty
+            padding and an enterprise banner (Enterprise stays in the header and below the search). */}
         <nav
           aria-label={isZh ? "热门场景" : "Popular guides"}
-          className="flex flex-wrap items-center justify-center gap-2 mb-5"
+          className="flex flex-wrap items-center justify-center gap-2 mb-8"
         >
           <span className="hidden sm:inline text-xs text-[var(--text-3)]">{isZh ? "热门场景:" : "Popular:"}</span>
           {TOP_GUIDES.map((g) => (
             <a
               key={g.slug}
               href={guideHref(g.slug, isZh)}
+              onClick={() => trackGuideClick(g.slug, "top")}
               className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full text-[13px] sm:text-sm font-medium bg-[var(--bg-card)]/70 backdrop-blur text-[var(--text-1)] border border-[var(--border)] hover:border-indigo-400/60 transition-colors"
             >
               <span aria-hidden="true">{g.icon}</span>
               {isZh ? g.zh : g.en}
+              <span className="hidden md:inline text-xs font-normal text-[var(--text-3)]">{testedLabel(g.slug, isZh)}</span>
             </a>
           ))}
           <a
             href={isZh ? "/best/zh/" : "/best/"}
+            onClick={() => trackGuideClick("all", "top")}
             className="hidden sm:inline text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             {isZh ? "全部场景 →" : "All guides →"}
           </a>
         </nav>
-
-        {/* B-path: thin enterprise banner — high signal, doesn't touch H1/SEO */}
-        <a
-          href="/enterprise/"
-          className="group inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full text-xs font-medium bg-[var(--bg-card)]/70 backdrop-blur text-[var(--text-2)] border border-[var(--border)] hover:border-indigo-400/60 transition-colors"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-          <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-            New
-          </span>
-          Enterprise audit packages now available
-          <span className="text-[var(--text-3)] transition-transform group-hover:translate-x-0.5">
-            →
-          </span>
-        </a>
 
         {/* Main headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.05] mb-5">
@@ -265,19 +270,20 @@ export function HeroSection({ stats, onSearch }: Props) {
           </Link>
         </div>
 
-        {/* Trending tags */}
+        {/* More guides */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">
-            {t("hero.trending")}:
+            {isZh ? "更多场景" : "More guides"}:
           </span>
-          {TRENDING_TAGS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => handleTagClick(tag)}
+          {MORE_GUIDES.map((g) => (
+            <a
+              key={g.slug}
+              href={guideHref(g.slug, isZh)}
+              onClick={() => trackGuideClick(g.slug, "more")}
               className="px-3 py-1 text-xs font-medium bg-white/80 dark:bg-gray-800/80 text-gray-500 dark:text-gray-300 rounded-full border border-gray-200/80 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all cursor-pointer"
             >
-              {tag}
-            </button>
+              {isZh ? g.zh : g.en}
+            </a>
           ))}
         </div>
 
