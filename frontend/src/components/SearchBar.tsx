@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchQuickSearch } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
+import { useQuickSearch } from "../hooks/useQuickSearch";
 import { useRecentSearches } from "../hooks/useRecentSearches";
 import type { Skill } from "../types/skill";
 
@@ -11,123 +11,68 @@ interface Props {
 }
 
 const HOT_KEYWORDS = ["mcp-server", "claude", "agent", "codex", "python", "typescript"];
+const ON_CHANGE_DEBOUNCE_MS = 400;
 
 export function SearchBar({ value, onChange }: Props) {
   const { t } = useI18n();
   const navigate = useNavigate();
   const { searches: recentSearches, addSearch, clearSearches } = useRecentSearches();
   const [local, setLocal] = useState(value);
-  const [results, setResults] = useState<Skill[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(-1);
-  const [searching, setSearching] = useState(false);
+  const search = useQuickSearch();
+  const { view, items: results, active: activeIdx, containerRef } = search;
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const searchTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setLocal(value);
   }, [value]);
 
-  // Cleanup timers on unmount
-  useEffect(() => () => {
-    clearTimeout(timer.current);
-    clearTimeout(searchTimer.current);
-  }, []);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setShowDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  const doQuickSearch = useCallback((query: string) => {
-    clearTimeout(searchTimer.current);
-    if (!query.trim()) {
-      setResults([]);
-      setSearching(false);
-      return;
-    }
-    setSearching(true);
-    searchTimer.current = setTimeout(() => {
-      fetchQuickSearch(query, 6)
-        .then((items) => {
-          setResults(items);
-          setSearching(false);
-        })
-        .catch(() => {
-          setSearching(false);
-        });
-    }, 200);
-  }, []);
+  useEffect(() => () => clearTimeout(timer.current), []);
 
   const handleChange = (v: string) => {
     setLocal(v);
-    setActiveIdx(-1);
-    setShowDropdown(true);
     clearTimeout(timer.current);
-    timer.current = setTimeout(() => onChange(v), 400);
-    doQuickSearch(v);
+    timer.current = setTimeout(() => onChange(v), ON_CHANGE_DEBOUNCE_MS);
+    search.type(v);
   };
 
   const handleClear = () => {
     setLocal("");
-    setResults([]);
-    setShowDropdown(false);
+    search.clear();
     clearTimeout(timer.current);
     onChange("");
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!showDropdown || results.length === 0) {
-      if (e.key === "Enter") {
-        setShowDropdown(false);
-        // Record search
-        if (local.trim()) addSearch(local.trim());
-      }
-      return;
-    }
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setActiveIdx((prev) => Math.min(prev + 1, results.length - 1));
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setActiveIdx((prev) => Math.max(prev - 1, -1));
-        break;
-      case "Enter":
-        e.preventDefault();
-        if (activeIdx >= 0 && activeIdx < results.length) {
-          navigate(`/skill/${results[activeIdx].repo_full_name}/`);
-          setShowDropdown(false);
-          addSearch(results[activeIdx].repo_name);
-        } else {
-          setShowDropdown(false);
-          if (local.trim()) addSearch(local.trim());
-        }
-        break;
-      case "Escape":
-        setShowDropdown(false);
-        break;
-    }
+  const openSkill = (skill: Skill) => {
+    navigate(`/skill/${skill.repo_full_name}/`);
+    search.close();
+    addSearch(skill.repo_name);
   };
 
-  const handleFocus = () => {
-    setShowDropdown(true);
+  const submitTyped = () => {
+    search.close();
+    if (local.trim()) addSearch(local.trim());
+  };
+
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (view !== "results") return submitTyped();
+    e.preventDefault();
+    if (search.activeItem) openSkill(search.activeItem);
+    else submitTyped();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") return handleEnter(e);
+    if (e.key === "Escape") return search.close();
+    if (view !== "results" || (e.key !== "ArrowDown" && e.key !== "ArrowUp")) return;
+    e.preventDefault();
+    search.move(e.key === "ArrowDown" ? 1 : -1);
   };
 
   const handleHotKeyword = (keyword: string) => {
     setLocal(keyword);
     onChange(keyword);
-    doQuickSearch(keyword);
-    setShowDropdown(true);
+    search.type(keyword);
     addSearch(keyword);
     inputRef.current?.focus();
   };
@@ -153,7 +98,7 @@ export function SearchBar({ value, onChange }: Props) {
         value={local}
         onChange={(e) => handleChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
+        onFocus={search.open}
         placeholder={t("explore.search")}
         aria-label="Search skills"
         className="w-full pl-10 pr-9 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -171,10 +116,10 @@ export function SearchBar({ value, onChange }: Props) {
       )}
 
       {/* Dropdown */}
-      {showDropdown && (
+      {view !== "closed" && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden z-50">
           {/* Recent searches when empty */}
-          {!local.trim() && recentSearches.length > 0 && (
+          {view === "empty" && recentSearches.length > 0 && (
             <div className="px-3 py-2 border-b border-gray-100 dark:border-gray-700">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-wide">{t("search.recent")}</span>
@@ -206,7 +151,7 @@ export function SearchBar({ value, onChange }: Props) {
           )}
 
           {/* Hot keywords when empty */}
-          {!local.trim() && (
+          {view === "empty" && (
             <div className="px-3 py-2.5 border-b border-gray-100 dark:border-gray-700">
               <span className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-wide">{t("search.hotKeywords")}</span>
               <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -224,24 +169,20 @@ export function SearchBar({ value, onChange }: Props) {
           )}
 
           {/* Loading */}
-          {searching && local.trim() && (
+          {view === "searching" && (
             <div className="px-3 py-4 text-center">
               <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
             </div>
           )}
 
           {/* Results */}
-          {!searching && results.length > 0 && (
+          {view === "results" && (
             <div className="max-h-72 overflow-y-auto">
               {results.map((skill, i) => (
                 <div
                   key={skill.id}
-                  onClick={() => {
-                    navigate(`/skill/${skill.repo_full_name}/`);
-                    setShowDropdown(false);
-                    addSearch(skill.repo_name);
-                  }}
-                  onMouseEnter={() => setActiveIdx(i)}
+                  onClick={() => openSkill(skill)}
+                  onMouseEnter={() => search.hover(i)}
                   className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${
                     i === activeIdx ? "bg-blue-50 dark:bg-blue-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-700"
                   }`}
@@ -279,14 +220,14 @@ export function SearchBar({ value, onChange }: Props) {
           )}
 
           {/* No results */}
-          {!searching && local.trim() && results.length === 0 && (
+          {view === "none" && (
             <div className="px-3 py-4 text-center text-sm text-gray-400 dark:text-gray-500">
               {t("explore.noResults")}
             </div>
           )}
 
           {/* Keyboard hint */}
-          {results.length > 0 && (
+          {view === "results" && (
             <div className="px-3 py-1.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center gap-3 text-[10px] text-gray-400 dark:text-gray-500">
               <span className="flex items-center gap-1">
                 <kbd className="px-1 py-0.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded text-[9px]">↑↓</kbd>

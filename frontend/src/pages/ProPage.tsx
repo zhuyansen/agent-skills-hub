@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useReducer, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
@@ -10,6 +10,10 @@ import {
   IncompleteResultsNote,
   SearchTooSlowNote,
 } from "../components/ProSearchNotes";
+import {
+  PRO_SEARCH_IDLE, classifyProSearchError, proSearchReducer, proSearchView,
+  type ProSearchEvent, type ProSearchFilters, type ProSearchState,
+} from "../lib/proSearchState.mjs";
 
 const KEY_STORAGE = "pro_key";
 const CATEGORIES = [
@@ -38,48 +42,21 @@ const SHARE_BONUS = 3;
 const SHARE_STORAGE = "pro_share_claimed";
 const SHARE_URL = "https://agentskillshub.top/pro/?ref=share";
 
-type GateState =
-  | "idle"
-  | "unauthorized"
-  | "trial_exhausted"
-  | "too_slow"
-  | "backend_missing"
-  | "error";
-
 interface RpcError {
   code?: string;
   message?: string;
 }
 
-function classifyError(err: RpcError): GateState {
-  const msg = err.message ?? "";
-  if (err.code === "42501" || msg.includes("invalid_or_expired_key"))
-    return "unauthorized";
-  if (err.code === "PT429" || msg.includes("trial_exhausted"))
-    return "trial_exhausted";
-  // Stopped at the time limit before finding a row (042), or timed out (57014).
-  if (
-    err.code === "PT422" ||
-    err.code === "57014" ||
-    msg.includes("search_incomplete")
-  )
-    return "too_slow";
-  if (err.code === "PGRST202" || msg.includes("Could not find the function"))
-    return "backend_missing";
-  return "error";
-}
-
-interface SearchFilters {
-  query: string;
-  category: string;
-  grade: string;
-}
-
-const NO_FILTERS: SearchFilters = { query: "", category: "", grade: "" };
+type SearchFilters = ProSearchFilters;
 
 // incomplete_results (042): the search stopped at its time limit, so these are
 // only the best-starred matches it found. Every row of a call has the same value.
 type ProRow = Skill & { incomplete_results?: boolean };
+
+type SearchState = ProSearchState<ProRow>;
+const IDLE: SearchState = PRO_SEARCH_IDLE;
+const reduceSearch = (state: SearchState, event: ProSearchEvent<ProRow>): SearchState =>
+  proSearchReducer(state, event);
 
 interface SearchResult {
   data: ProRow[] | null;
@@ -370,12 +347,8 @@ export default function ProPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [grade, setGrade] = useState("");
-  const [rows, setRows] = useState<ProRow[]>([]);
-  const [lastFilters, setLastFilters] = useState(NO_FILTERS);
-  const [exportable, setExportable] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [gate, setGate] = useState<GateState>("idle");
-  const [searched, setSearched] = useState(false);
+  const [search, dispatch] = useReducer(reduceSearch, IDLE);
+  const { loading, gate, rows, exportable, rowFilters, refusedFilters, nothingFound } = proSearchView(search);
   const [trialUsed, setTrialUsed] = useState(() =>
     Number(localStorage.getItem(TRIAL_STORAGE) || 0),
   );
@@ -391,36 +364,19 @@ export default function ProPage() {
   };
 
   const runSearch = useCallback(async () => {
-    if (!supabase) {
-      setGate("backend_missing");
-      return;
-    }
+    if (!supabase) return dispatch({ type: "held", reason: "backend_missing" });
     // Own key → unlimited. No key → keyless trial, capped here and on the server.
     const usingTrial = !memberKey;
     const limit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
-    if (usingTrial && trialUsed >= limit) {
-      setGate("trial_exhausted");
-      return;
-    }
-    setLoading(true);
-    setGate("idle");
+    if (usingTrial && trialUsed >= limit) return dispatch({ type: "held", reason: "trial_exhausted" });
+    dispatch({ type: "started" });
     const filters = { query, category, grade };
-    setLastFilters(filters);
     const { data, error } = await callSearch(supabase, memberKey, filters);
-    setLoading(false);
-    setSearched(true);
-    if (error) {
-      setRows([]);
-      setGate(classifyError(error));
-      return;
-    }
-    setRows(data ?? []);
-    setExportable(!usingTrial);
-    if (usingTrial) {
-      const n = trialUsed + 1;
-      setTrialUsed(n);
-      localStorage.setItem(TRIAL_STORAGE, String(n));
-    }
+    if (error) return dispatch({ type: "refused", reason: classifyProSearchError(error), filters });
+    dispatch({ type: "succeeded", rows: data ?? [], filters, exportable: !usingTrial });
+    if (!usingTrial) return;
+    setTrialUsed(trialUsed + 1);
+    localStorage.setItem(TRIAL_STORAGE, String(trialUsed + 1));
   }, [memberKey, query, category, grade, trialUsed, shareClaimed]);
 
   // Bonus is credited on copying the share link (the universal action before
@@ -435,11 +391,11 @@ export default function ProPage() {
     }
     setShareClaimed(true);
     localStorage.setItem(SHARE_STORAGE, "1");
-    if (gate === "trial_exhausted") setGate("idle");
+    dispatch({ type: "bonus_granted" });
     setShareMsg(
       zh ? "已复制链接 · +3 次已到账 🎉" : "Link copied · +3 added 🎉",
     );
-  }, [shareClaimed, gate, zh]);
+  }, [shareClaimed, zh]);
 
   // Grant regardless (the link is visible for manual copy) — copy is a nudge,
   // not a wall. If the copy call itself failed, nudge the manual shortcut.
@@ -659,7 +615,7 @@ export default function ProPage() {
           </p>
         )}
         {gate === "too_slow" && (
-          <SearchTooSlowNote zh={zh} filters={lastFilters} />
+          <SearchTooSlowNote zh={zh} filters={refusedFilters} />
         )}
 
         {rows.length > 0 && (
@@ -668,7 +624,7 @@ export default function ProPage() {
               <IncompleteResultsNote
                 zh={zh}
                 count={rows.length}
-                filters={lastFilters}
+                filters={rowFilters}
               />
             )}
             <div className="flex items-center gap-3 mb-2 text-sm">
@@ -726,7 +682,7 @@ export default function ProPage() {
             </div>
           </>
         )}
-        {searched && rows.length === 0 && gate === "idle" && (
+        {nothingFound && (
           <p className="text-sm text-gray-500 mt-6">
             {zh ? "没有命中结果。" : "No results."}
           </p>

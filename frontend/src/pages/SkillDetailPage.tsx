@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { fetchSkillDetail, fetchSkillBySlug } from "../api/client";
-import { fetchSkillRedirect } from "../api/skillRedirects";
+import { useSkillPage } from "../hooks/useSkillPage";
 import { useI18n } from "../i18n/I18nContext";
 import { QualityRadar } from "../components/QualityRadar";
 import { ScoreBadge } from "../components/ScoreBadge";
@@ -30,7 +29,6 @@ import {
   getVerifiedCreator,
   isVerifiedCreator,
 } from "../data/verifiedCreators";
-import type { SkillDetail } from "../types/skill";
 
 export function SkillDetailPage() {
   const { t } = useI18n();
@@ -39,47 +37,10 @@ export function SkillDetailPage() {
     owner?: string;
     repo?: string;
   }>();
-  const [detail, setDetail] = useState<SkillDetail | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const page = useSkillPage(id, owner, repo);
   const [contactOpen, setContactOpen] = useState(false);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Support both /skill/:id (numeric) and /skill/:owner/:repo (slug)
-    let fetchPromise: Promise<SkillDetail>;
-    if (owner && repo) {
-      fetchPromise = fetchSkillBySlug(`${owner}/${repo}`);
-    } else if (id) {
-      // Check if id is numeric → fetch by ID, otherwise try as slug
-      if (/^\d+$/.test(id)) {
-        fetchPromise = fetchSkillDetail(Number(id));
-      } else {
-        fetchPromise = fetchSkillBySlug(id);
-      }
-    } else {
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    window.scrollTo(0, 0);
-    let redirected = false;
-    fetchPromise
-      .then(setDetail)
-      .catch(async (err) => {
-        // An old name of a renamed repository: open the page it has now (backend/renamed_repos.py).
-        const moved = owner && repo ? await fetchSkillRedirect(`${owner}/${repo}`) : null;
-        redirected = moved !== null;
-        if (moved) navigate(`/skill/${moved}/`, { replace: true });
-        else setError(err.message);
-      })
-      .finally(() => {
-        if (!redirected) setLoading(false);
-      });
-  }, [id, owner, repo, navigate]);
-
-  if (loading) {
+  if (page.kind === "loading" || page.kind === "redirecting") {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
         <SiteHeader breadcrumb={[{ label: "..." }]} />
@@ -95,7 +56,7 @@ export function SkillDetailPage() {
     );
   }
 
-  if (error || !detail) {
+  if (page.kind === "failed") {
     // A failed or timed-out request on a pre-rendered page keeps that page: its static
     // title, canonical and robots tags are still in <head>; only the description needs
     // putting back, since main.tsx removed it for Helmet.
@@ -136,7 +97,7 @@ export function SkillDetailPage() {
               />
             </svg>
             <h2 className="text-lg font-medium text-gray-700 dark:text-gray-200">
-              {error || "Skill not found"}
+              {page.message || "Skill not found"}
             </h2>
             <Link
               to="/"
@@ -162,6 +123,8 @@ export function SkillDetailPage() {
       </div>
     );
   }
+
+  const { detail } = page;
 
   // Same title and description as the static page (scripts/generate-skill-pages.mjs).
   // Google renders this page, so these are what it indexes; deleted repos keep the old

@@ -1,7 +1,7 @@
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchQuickSearch } from "../api/client";
 import { useI18n } from "../i18n/I18nContext";
+import { useQuickSearch } from "../hooks/useQuickSearch";
 import { readCatalogCounts } from "../lib/catalogCounts";
 import type { Skill, Stats } from "../types/skill";
 
@@ -44,58 +44,33 @@ export function HeroSection({ stats, onSearch }: Props) {
   const isZh = lang === "zh";
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<Skill[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(-1);
-  const [searching, setSearching] = useState(false);
-  const searchTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const search = useQuickSearch();
+  const { view, items: results, active: activeIdx, containerRef } = search;
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const doSearch = useCallback((q: string) => {
-    clearTimeout(searchTimer.current);
-    if (!q.trim()) {
-      setResults([]);
-      setSearching(false);
-      return;
-    }
-    setSearching(true);
-    searchTimer.current = setTimeout(() => {
-      fetchQuickSearch(q, 6)
-        .then((items) => {
-          setResults(items);
-          setSearching(false);
-        })
-        .catch(() => setSearching(false));
-    }, 200);
-  }, []);
 
   const handleChange = (v: string) => {
     setQuery(v);
-    setActiveIdx(-1);
-    setShowDropdown(true);
-    doSearch(v);
+    search.type(v);
+  };
+
+  const openSkill = (skill: Skill) => {
+    navigate(`/skill/${skill.repo_full_name}/`);
+    search.close();
+  };
+
+  const handleEnter = () => {
+    if (search.activeItem) return openSkill(search.activeItem);
+    if (!query.trim()) return;
+    onSearch(query);
+    search.close();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (activeIdx >= 0 && activeIdx < results.length) {
-        navigate(`/skill/${results[activeIdx].repo_full_name}/`);
-        setShowDropdown(false);
-      } else if (query.trim()) {
-        onSearch(query);
-        setShowDropdown(false);
-      }
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActiveIdx((p) => Math.min(p + 1, results.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActiveIdx((p) => Math.max(p - 1, -1));
-    } else if (e.key === "Escape") {
-      setShowDropdown(false);
-    }
+    if (e.key === "Escape") return search.close();
+    if (e.key !== "Enter" && e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    e.preventDefault();
+    if (e.key === "Enter") handleEnter();
+    else search.move(e.key === "ArrowDown" ? 1 : -1);
   };
 
   const handleTagClick = (tag: string) => {
@@ -157,9 +132,7 @@ export function HeroSection({ stats, onSearch }: Props) {
             value={query}
             onChange={(e) => handleChange(e.target.value)}
             onKeyDown={handleKeyDown}
-            onFocus={() => {
-              if (query.trim() || results.length > 0) setShowDropdown(true);
-            }}
+            onFocus={search.open}
             placeholder={t("hero.searchPlaceholder")}
             aria-label="Search skills"
             className="w-full pl-12 pr-12 py-4 border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
@@ -168,8 +141,7 @@ export function HeroSection({ stats, onSearch }: Props) {
             <button
               onClick={() => {
                 setQuery("");
-                setResults([]);
-                setShowDropdown(false);
+                search.clear();
               }}
               className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer z-10"
               aria-label="Clear"
@@ -186,23 +158,20 @@ export function HeroSection({ stats, onSearch }: Props) {
           )}
 
           {/* Dropdown */}
-          {showDropdown && (query.trim() || results.length > 0) && (
+          {view !== "closed" && view !== "empty" && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl overflow-hidden z-50">
-              {searching && (
+              {view === "searching" && (
                 <div className="px-4 py-4 text-center">
                   <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
                 </div>
               )}
-              {!searching && results.length > 0 && (
+              {view === "results" && (
                 <div className="max-h-72 overflow-y-auto">
                   {results.map((skill, i) => (
                     <div
                       key={skill.id}
-                      onClick={() => {
-                        navigate(`/skill/${skill.repo_full_name}/`);
-                        setShowDropdown(false);
-                      }}
-                      onMouseEnter={() => setActiveIdx(i)}
+                      onClick={() => openSkill(skill)}
+                      onMouseEnter={() => search.hover(i)}
                       className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${i === activeIdx ? "bg-indigo-50 dark:bg-indigo-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-700"}`}
                     >
                       <img
@@ -241,7 +210,7 @@ export function HeroSection({ stats, onSearch }: Props) {
                   ))}
                 </div>
               )}
-              {!searching && query.trim() && results.length === 0 && (
+              {view === "none" && (
                 <div className="px-4 py-4 text-center text-sm text-gray-500">
                   {t("explore.noResults")}
                 </div>
