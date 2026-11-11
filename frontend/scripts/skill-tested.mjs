@@ -9,7 +9,7 @@
  * <meta name="ash:tested"> for the React page Google renders (src/lib/prerenderedMeta.ts).
  * A run entry with `sub` tested one skill inside the repo, not the repo, so it is left out.
  */
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { esc } from "./shared-utils.mjs";
@@ -22,12 +22,33 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const SCENARIOS = new Map(JSON.parse(readFileSync(join(HERE, "scenario-keywords.json"), "utf-8")).map((s) => [s.slug, s]));
 const ZH = JSON.parse(readFileSync(join(HERE, "scenario-zh.json"), "utf-8"));
 const IMAGE = /\.(jpe?g|png|webp)$/i;
+const PUBLIC = join(HERE, "..", "public");
+const SHEET_SHOT = { w: 1200, h: 675 };   // the PPT test's slide sheets
+/** Tests whose result is something to look at: the picture saved beside each tool's result page
+ *  (its name with this suffix) and the size the block shows it at. */
+const SHOTS = {
+  "claude-video-skills": { suffix: ".jpg", w: 640, h: 360 },    // a frame of the film
+  "3d-mcp": { suffix: ".webp", w: 640, h: 480 },                // the render (1200x900)
+  "anti-slop-ui": { suffix: "-fold.webp", w: 640, h: 400 },     // the redone page's first screen (720x450)
+};
+const STRIP_SCALE = 2;   // a strip (the image test's six pictures in a row) is saved at twice its listed size
 const same = (a, b) => a.toLowerCase() === b.toLowerCase();
 
 function topPlace(scenario, repo) {
   const top = scenario.explainer?.top;
   const place = top ? top.items.findIndex((item) => same(item.repo, repo)) + 1 : 0;
   return place ? { place, title: [top.h2, top.h2_zh || top.h2], ranked: top.numbered !== false } : null;
+}
+
+/** What the tool made, to show in the block: { src, w, h }, or null when the test left no picture. */
+export function shotFor(key, run, r, exists = existsSync) {
+  if (IMAGE.test(r.sheet || "")) return { src: run.dir + r.sheet, ...SHEET_SHOT };
+  const rule = SHOTS[key];
+  if (rule && r.sheet) {
+    const src = run.dir + r.sheet.replace(/\.html$/, rule.suffix);
+    return exists(join(PUBLIC, src)) ? { src, w: rule.w, h: rule.h } : null;
+  }
+  return r.strip ? { src: run.dir + r.strip.src, w: r.strip.w * STRIP_SCALE, h: r.strip.h * STRIP_SCALE } : null;
 }
 
 function entry(key, run, repo) {
@@ -43,7 +64,7 @@ function entry(key, run, repo) {
     bits: runBits(run, r),
     pick: pick ? { role: pick.role, why: pick.why } : null,
     top: topPlace(scenario, repo),
-    evidence: { href: run.dir + r.sheet, image: IMAGE.test(r.sheet || ""), label: seeLabel(run) },
+    evidence: { href: run.dir + r.sheet, image: IMAGE.test(r.sheet || ""), shot: shotFor(key, run, r), label: seeLabel(run) },
   };
 }
 
@@ -68,8 +89,9 @@ const P = "margin:0 0 6px;line-height:1.6;font-size:14px;color:#374151";
 const para = (pair, i, style = P) => (pair ? `<p style="${style}">${esc(pair[i])}</p>` : "");
 
 function entryHtml(e, i) {
-  const image = e.evidence.image ? `<a href="${esc(e.evidence.href)}" target="_blank" rel="noopener">`
-    + `<img src="${esc(e.evidence.href)}" alt="${esc(TESTED_IMAGE_ALT[i])}" width="1200" height="675" loading="lazy" `
+  const shot = e.evidence.shot;
+  const image = shot ? `<a href="${esc(e.evidence.href)}" target="_blank" rel="noopener">`
+    + `<img src="${esc(shot.src)}" alt="${esc(TESTED_IMAGE_ALT[i])}" width="${shot.w}" height="${shot.h}" loading="lazy" `
     + `style="display:block;max-width:100%;height:auto;margin:8px 0;border-radius:8px;border:1px solid #e5e7eb"></a>` : "";
   return `<div style="margin:0 0 8px">
         ${para(testedIntro(e), i)}${para(testedTop(e), i, `${P};font-weight:600`)}${para(testedPick(e), i)}${para(testedResult(e), i)}

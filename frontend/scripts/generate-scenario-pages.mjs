@@ -17,6 +17,7 @@ import {
   extractAssetTags, shouldIndex, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE,
   analyticsTags, trustBlock, buildStaticHeader, biSpan, admittedByReview,
 } from "./shared-utils.mjs";
+import { githubListChip } from "./github-list-chip.mjs";
 import { statsPeriods } from "./stats-live.mjs";
 import { RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { installCommands } from "./skill-install.mjs";
@@ -948,10 +949,10 @@ ${methodLd(scenario, pageUrl)}
         <h1 data-zh="${titleHasSkillWord || /工具$/.test(scenario.zhTitle || "") ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${esc(h1En)}">${esc(h1En)}</h1>
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
+          ${githubListChip(scenario, allSkills)}
           <a class="bp-stat-chip" href="#kind-cards" style="text-decoration:none" data-zh="🔍 浏览 ${itemCount} 个${esc(scenario.zhTitle)}${/工具$/.test(scenario.zhTitle || "") ? "" : "工具"}" data-en="🔍 Browse ${itemCount} ${esc(descSubject)}">🔍 Browse ${itemCount} ${esc(descSubject)}</a>
           <span class="bp-stat-chip" data-zh="⭐ 共 ${starsK(totalStars)} stars" data-en="⭐ ${starsK(totalStars)} total stars">⭐ ${starsK(totalStars)} total stars</span>
           <span class="bp-stat-chip" data-zh="🔄 每 8 小时自动刷新" data-en="🔄 Refreshed every 8h">🔄 Refreshed every 8h</span>
-          ${scenario.github_list ? `<a class="bp-stat-chip" href="${esc(scenario.github_list)}" target="_blank" rel="noopener" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="⭐ GitHub 上的开源合集 ↗" data-en="⭐ Open-source list on GitHub ↗">⭐ Open-source list on GitHub ↗</a>` : ""}
           ${scenario.see_also ? `<a class="bp-stat-chip" href="/best/${esc(scenario.see_also.slug)}/" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="${esc(scenario.see_also.zh)}" data-en="${esc(scenario.see_also.en)}">${esc(scenario.see_also.en)}</a>` : ""}
         </div>` : ""}
       </div>

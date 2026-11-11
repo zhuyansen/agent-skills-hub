@@ -10,7 +10,8 @@ export interface TestedEntry {
   bits: Pair[];
   pick: { role: Pair; why: Pair } | null;
   top: { place: number; title: Pair; ranked?: boolean } | null;
-  evidence: { href: string; image: boolean; label: Pair };
+  /** `shot` is what the tool made, at the size to show it; null when the test left no picture. */
+  evidence: { href: string; image: boolean; shot?: { src: string; w: number; h: number } | null; label: Pair };
 }
 
 export declare const TESTED_TITLE: Pair;

@@ -10,16 +10,23 @@ interface Guide {
   slug: string;
   zh: string;
   en: string;
-  icon?: string;
+  /** The card picture: something a tool made in the guide's test (public/home-guides/<img>.webp). */
+  img?: string;
 }
 
 /** The guides at the top of the hero: the three with a test of our own that search sends the
- *  most people to (GSC, 28 days to 2026-11-08: 1,642 / 839 / 84 clicks). */
+ *  most people to (GSC, 28 days to 2026-11-08: 1,642 / 839 / 84 clicks). Each card shows what
+ *  the test produced: two of the image test's mascots, the first slide of the PPT test's top
+ *  pick, and a frame of the video test's top pick. */
 const TOP_GUIDES: readonly Guide[] = [
-  { slug: "image-generation", icon: "🎨", zh: "AI 生图", en: "AI Image Generation" },
-  { slug: "ppt-presentation", icon: "📊", zh: "PPT 生成", en: "PPT & Slides" },
-  { slug: "claude-video-skills", icon: "🎬", zh: "Claude 视频", en: "Claude Video" },
+  { slug: "image-generation", img: "image", zh: "AI 生图", en: "AI Image Generation" },
+  { slug: "ppt-presentation", img: "ppt", zh: "PPT 生成", en: "PPT & Slides" },
+  { slug: "claude-video-skills", img: "video", zh: "Claude 视频", en: "Claude Video" },
 ];
+
+/** The card pictures are 480x240 files; the attributes reserve the 2:1 box before they load. */
+const CARD_IMG_WIDTH = 480;
+const CARD_IMG_HEIGHT = 240;
 
 /** Under the search box: the next six guides by the same clicks (54 down to 17). These were
  *  search keywords (mcp-server, langchain, …) that opened a result list, not a guide. */
@@ -38,7 +45,7 @@ const guideHref = (slug: string, zh: boolean) => `/best/${slug}/${zh ? "zh/" : "
 function testedLabel(slug: string, zh: boolean): string | null {
   const n = __GUIDE_TESTED__[slug];
   if (!n) return null;
-  return zh ? `· 实测 ${n} 个` : `· ${n} tested`;
+  return zh ? `实测 ${n} 个` : `${n} tested`;
 }
 
 /** Which hero guide links get clicked, to judge the two rows and pick who stays (GA4). */
@@ -63,6 +70,31 @@ const FALLBACK_COUNTS = {
 /** A category's count: live once the stats arrive, else as of the last build, else the stand-in. */
 function categoryCount(stats: Stats | null, name: string, fallback: number): number {
   return stats?.categories.find((c) => c.name === name)?.count ?? BUILD_COUNTS?.categories[name] ?? fallback;
+}
+
+/** One of the three guide cards: a picture from the guide's test, its name, how many it tested. */
+function GuideCard({ guide, zh }: { guide: Guide; zh: boolean }) {
+  const title = zh ? guide.zh : guide.en;
+  return (
+    <a
+      href={guideHref(guide.slug, zh)}
+      onClick={() => trackGuideClick(guide.slug, "top")}
+      className="block overflow-hidden rounded-xl text-left bg-[var(--bg-card)]/70 backdrop-blur border border-[var(--border)] hover:border-indigo-400/60 transition-colors"
+    >
+      <img
+        src={`/home-guides/${guide.img}.webp`}
+        alt={zh ? `「${title}」实测里做出来的东西` : `Made in our ${title} test`}
+        width={CARD_IMG_WIDTH}
+        height={CARD_IMG_HEIGHT}
+        decoding="async"
+        className="block w-full h-auto aspect-[2/1] object-cover"
+      />
+      <span className="block px-2 py-1.5 sm:px-3 sm:py-2">
+        <span className="block text-[13px] sm:text-sm font-medium leading-tight text-[var(--text-1)]">{title}</span>
+        <span className="block mt-0.5 text-[11px] sm:text-xs text-[var(--text-3)]">{testedLabel(guide.slug, zh)}</span>
+      </span>
+    </a>
+  );
 }
 
 interface Props {
@@ -116,27 +148,16 @@ export function HeroSection({ stats, onSearch }: Props) {
       <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* The three guides with our own test results, where the hero used to open with empty
             padding and an enterprise banner (Enterprise stays in the header and below the search). */}
-        <nav
-          aria-label={isZh ? "热门场景" : "Popular guides"}
-          className="flex flex-wrap items-center justify-center gap-2 mb-8"
-        >
-          <span className="hidden sm:inline text-xs text-[var(--text-3)]">{isZh ? "热门场景:" : "Popular:"}</span>
-          {TOP_GUIDES.map((g) => (
-            <a
-              key={g.slug}
-              href={guideHref(g.slug, isZh)}
-              onClick={() => trackGuideClick(g.slug, "top")}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full text-[13px] sm:text-sm font-medium bg-[var(--bg-card)]/70 backdrop-blur text-[var(--text-1)] border border-[var(--border)] hover:border-indigo-400/60 transition-colors"
-            >
-              <span aria-hidden="true">{g.icon}</span>
-              {isZh ? g.zh : g.en}
-              <span className="hidden md:inline text-xs font-normal text-[var(--text-3)]">{testedLabel(g.slug, isZh)}</span>
-            </a>
-          ))}
+        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-8">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {TOP_GUIDES.map((g) => (
+              <GuideCard key={g.slug} guide={g} zh={isZh} />
+            ))}
+          </div>
           <a
             href={isZh ? "/best/zh/" : "/best/"}
             onClick={() => trackGuideClick("all", "top")}
-            className="hidden sm:inline text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="inline-block mt-3 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             {isZh ? "全部场景 →" : "All guides →"}
           </a>

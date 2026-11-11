@@ -7,17 +7,16 @@ import {
 
 const P = "text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-1.5";
 const LINK = "text-indigo-600 dark:text-indigo-400 hover:underline";
-const EVIDENCE_WIDTH = 1200; // the PPT test's slide sheets (public/best-runs/ppt/*.jpg)
-const EVIDENCE_HEIGHT = 675;
 
 function TestedItem({ entry, say }: { entry: TestedEntry; say: (pair: Pair) => string }) {
   const lines = [testedIntro(entry), testedTop(entry), testedPick(entry), testedResult(entry)];
+  const shot = entry.evidence.shot; // what the tool made in the test (scripts/skill-tested.mjs)
   return (
     <div className="mb-2">
       {lines.map((line, i) => line && <p key={i} className={i === 1 ? `${P} font-semibold` : P}>{say(line)}</p>)}
-      {entry.evidence.image && (
+      {shot && (
         <a href={entry.evidence.href} target="_blank" rel="noopener noreferrer">
-          <img src={entry.evidence.href} alt={say(TESTED_IMAGE_ALT)} width={EVIDENCE_WIDTH} height={EVIDENCE_HEIGHT}
+          <img src={shot.src} alt={say(TESTED_IMAGE_ALT)} width={shot.w} height={shot.h}
             loading="lazy" className="block max-w-full h-auto my-2 rounded-lg border border-gray-200 dark:border-gray-700" />
         </a>
       )}
