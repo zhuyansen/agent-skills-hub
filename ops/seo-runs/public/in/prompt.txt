@@ -1,0 +1,12 @@
+An SEO tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools, or a CLI; check `claude mcp list` too). Audit a website with that tool, following its own workflow. If it has several skills or commands, use the one meant for auditing a site.
+
+The site is https://lumentea-test.vercel.app/, a small online tea shop (a public test copy). Audit the whole site for SEO problems. It is new, so Search Console, analytics and keyword databases have no data for it.
+
+Write the tool's report to ~/work/output/report.md: every problem it raises, with the page URL and the severity or priority the tool gives it. If the tool writes its own report files, copy them into ~/work/output/ too.
+- Report the tool's findings, not your own: do not add problems the tool did not raise, and do not drop ones it did. If the tool is a skill that tells you how to audit, follow it and write down what that audit produces.
+
+Rules:
+- Do not ask me any questions; where the tool would ask, take its default.
+- Do not change the site.
+- If the tool needs an API key or account it does not have, or cannot reach the site, stop and say why. Do not audit the site some other way instead.
+- When you finish, print one line: DELIVERABLE: ~/work/output

@@ -10,13 +10,21 @@ titles and descriptions, one H1, a self canonical, lang, viewport, alt text, val
 that answer 200. So a report that calls one of those broken is wrong, and we can check it.
 """
 import json
+import os
 import struct
 import zlib
 from pathlib import Path
 
 HERE = Path(__file__).parent
-SITE = HERE / "in/site"
-HOST = "http://lumentea.test"
+# The public copy (public/, 2026-11-12) is the same site at another host, deployed to Vercel, which adds the
+# 301 chain and the X-Robots-Tag header from vercel.json: SEO_FIXTURE_HOST=https://... SEO_FIXTURE_OUT=public/site.
+SITE = Path(os.environ.get("SEO_FIXTURE_OUT") or HERE / "in/site")
+HOST = os.environ.get("SEO_FIXTURE_HOST", "http://lumentea.test")
+VERCEL = {"trailingSlash": True,
+          "redirects": [{"source": "/shop/", "destination": "/store/", "statusCode": 301},
+                        {"source": "/store/", "destination": "/teas/", "statusCode": 301}],
+          "headers": [{"source": "/teas/bai-mudan/", "headers": [{"key": "X-Robots-Tag", "value": "noindex"}]},
+                      {"source": "/teas/bai-mudan/index.html", "headers": [{"key": "X-Robots-Tag", "value": "noindex"}]}]}
 IMG = {"hero": ((176, 196, 160), 1200, 630), "jasmine": ((226, 222, 196), 800, 800),
        "peony": ((214, 200, 170), 800, 800), "brew": ((150, 170, 120), 1200, 800),
        "team": ((190, 170, 150), 1200, 800), "icon": ((60, 90, 60), 64, 64)}
@@ -106,7 +114,7 @@ def ld(obj: dict) -> str:
     return json.dumps(obj, ensure_ascii=False)
 
 
-PRODUCT_BAD_LD = """{"@context": "https://schema.org", "@type": "Product", "name": "Jasmine Silver Needle", "image": "http://lumentea.test/img/jasmine.png",
+PRODUCT_BAD_LD = """{"@context": "https://schema.org", "@type": "Product", "name": "Jasmine Silver Needle", "image": "{HOST}/img/jasmine.png",
  "description": "White tea buds scented seven times with fresh jasmine flowers.", "sku": "LT-JSN-50",
  "offers": {"@type": "Offer", "price": "18.00", "priceCurrency": "GBP", "availability": "https://schema.org/InStock",},
 }"""
@@ -161,7 +169,7 @@ def pages() -> dict[str, str]:
 <h2>How to brew</h2>
 <p>Use 3 grams of leaf for 250 ml of water at 80 °C and steep for 3 minutes. In a gaiwan, use 5 grams for 100 ml and pour off after 40 seconds, adding 15 seconds for each infusion after that.</p>
 <p>Compare it with our <a href="/teas/bai-mudan/">Bai Mudan</a>, or see <a href="/teas/">all our teas</a>.</p>""",
-        robots="noindex, follow", ld=PRODUCT_BAD_LD, image="jasmine", og_type="product")
+        robots="noindex, follow", ld=PRODUCT_BAD_LD.replace("{HOST}", HOST), image="jasmine", og_type="product")
     p["/teas/bai-mudan/"] = page(
         "/teas/bai-mudan/", "Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea",
         "Bai Mudan, or White Peony: a bud and two leaves from the Chen family farm near Fu'an. Honeyed, full and hard to over-brew. 50 g pouch, £12.",
@@ -250,7 +258,10 @@ def main() -> None:
     (SITE / "sitemap.xml").write_text(sitemap())
     (SITE / "404.html").write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Not found | Lumen Tea</title>'
                                    '<meta name="robots" content="noindex"></head><body><h1>Page not found</h1><p><a href="/">Lumen Tea home</a></p></body></html>\n')
-    (HERE / "truth.json").write_text(json.dumps({"host": HOST, "defects": TRUTH, "facts": FACTS}, indent=1) + "\n")
+    if "SEO_FIXTURE_OUT" in os.environ:
+        (SITE / "vercel.json").write_text(json.dumps(VERCEL, indent=1) + "\n")
+    else:
+        (HERE / "truth.json").write_text(json.dumps({"host": HOST, "defects": TRUTH, "facts": FACTS}, indent=1) + "\n")
     print(f"{len(pages())} pages, {len(TRUTH)} planted defects -> {SITE}")
 
 

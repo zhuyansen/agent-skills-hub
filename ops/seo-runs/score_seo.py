@@ -19,15 +19,15 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).parent
-OUT = HERE / "out"
-SITE = HERE / "in/site"
+# SEO_RUN=public: the rerun on the public copy (public/), the same pages at https://lumentea-test.vercel.app/.
+PUBLIC = os.environ.get("SEO_RUN") == "public"
+OUT = HERE / ("public/out" if PUBLIC else "out")
+SITE = HERE / ("public/site" if PUBLIC else "in/site")
 TRUTH = json.loads((HERE / "truth.json").read_text())
-MARKS = json.loads((HERE / "marks.json").read_text()) if (HERE / "marks.json").exists() else {}
+MARKS = json.loads((HERE / ("public/marks.json" if PUBLIC else "marks.json")).read_text()) if (HERE / ("public/marks.json" if PUBLIC else "marks.json")).exists() else {}
 PASSES, WORKERS, REPORT_MAX = 3, 3, 60000
 
-PROMPT = """You score an SEO audit of a small test website. Return JSON only, no prose, no code fence.
-
-THE SITE (served at http://lumentea.test/; this is everything on it):
+LOCAL = """THE SITE (served at http://lumentea.test/; this is everything on it):
 {site}
 
 Server behaviour (Python's http.server): /shop/ answers 301 -> /store/, which answers 301 -> /teas/. /teas/bai-mudan/ is
@@ -37,7 +37,20 @@ slash (/about, /teas) answers 301 -> the slash version. /img/*.png images answer
 (including /teas/white-peony/, /teas/dragon-well/, /zh/, /llms.txt, /favicon.ico). Every 404 response carries the body of
 /404.html (a small page with <title>Not found | Lumen Tea</title> and <meta name="robots" content="noindex">). Responses carry Content-Type with
 charset=utf-8, no compression, no cache headers, HTTP/1.0. Only lumentea.test resolves (no www host).
-Plain HTTP only (no HTTPS) because it is a sandbox; the auditor was told to ignore HTTPS.
+Plain HTTP only (no HTTPS) because it is a sandbox; the auditor was told to ignore HTTPS."""
+VERCEL = """THE SITE (served at https://lumentea-test.vercel.app/ on Vercel; this is everything on it):
+{site}
+
+Server behaviour (Vercel, vercel.json): /shop/ answers 301 -> /store/, which answers 301 -> /teas/. /teas/bai-mudan/ is
+sent with the response header X-Robots-Tag: noindex; no other page has that header. /index.html answers 200 with the home
+page's HTML; a path without the trailing slash (/about, /teas) answers 308 -> the slash version. /img/*.png images answer
+200. Any other path answers 404 (including /teas/white-peony/, /teas/dragon-well/, /zh/, /llms.txt, /favicon.ico) with the
+body of /404.html (a small page with <title>Not found | Lumen Tea</title> and <meta name="robots" content="noindex">).
+HTTPS with HSTS, brotli/gzip compression, Cache-Control: public, max-age=0, must-revalidate, HTTP/2. No www host."""
+
+PROMPT = """You score an SEO audit of a small test website. Return JSON only, no prose, no code fence.
+
+{where}
 
 PLANTED DEFECTS (the answer key):
 {defects}
@@ -119,7 +132,7 @@ def score(run: Path) -> dict:
         result = {"reported": False, "run": json.loads((run / "run.json").read_text())}
         (run / "score.json").write_text(json.dumps(result, indent=1))
         return result
-    prompt = PROMPT.format(site=site_text(), defects=defects(), report=report,
+    prompt = PROMPT.format(where=(VERCEL if PUBLIC else LOCAL).format(site=site_text()), defects=defects(), report=report,
                            ids=", ".join(d["id"] for d in TRUTH["defects"]))
     votes = [ask(prompt) for _ in range(PASSES)]
     found = {}

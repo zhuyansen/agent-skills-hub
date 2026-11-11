@@ -5442,8 +5442,8 @@
    ],
    "findings": [
     {
-     "item": "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 4 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 4 of 13 could not run on a private address or without an account.",
-     "item_zh": "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：4 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；13 个里有 4 个在内网地址上或没有账号时跑不起来。",
+     "item": "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 6 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 3 refuse private addresses outright, so they could only audit a public copy.",
+     "item_zh": "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：6 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；还有 3 个一律拒绝内网地址，只能审公网副本。",
      "ours": true
     },
     {
@@ -5490,8 +5490,8 @@
    ],
    "not_done": [
     {
-     "item": "One run per tool, on a small test site we built and served inside the sandbox, so tools that only crawl from their own servers or read Search Console data (the GSC and DataForSEO servers among them) could not be judged; nor could tools that refuse private addresses. A planted problem is not a ranking forecast.",
-     "item_zh": "每个工具只跑一次，测试站是我们自己搭的、放在沙箱里，所以只能从自家服务器抓取或只读 Search Console 数据的工具（包括 GSC 和 DataForSEO 那几个）评不了，拒绝内网地址的工具也评不了。埋入的问题不等于排名预测。",
+     "item": "One run per tool, on a small test site we built. Servers that read Search Console or DataForSEO data, or that need an account or API key (OpenSEO, a PageSpeed key), were not judged. A planted problem is not a ranking forecast.",
+     "item_zh": "每个工具只跑一次，测试站是我们自己搭的。读 Search Console 或 DataForSEO 数据的服务，以及需要账号或 API key 的（OpenSEO、PageSpeed key），都没有评。埋入的问题不等于排名预测。",
      "ours": true
     },
     {

@@ -1,0 +1,7 @@
+This is the control run: no SEO tool is installed. Audit the site yourself, as you normally would.
+
+The site is https://lumentea-test.vercel.app/, a small online tea shop (a public test copy). Audit the whole site for SEO problems. It is new, so Search Console, analytics and keyword databases have no data for it.
+
+Write your findings to ~/work/output/report.md: every problem, with the page URL and a severity (high, medium or low).
+
+Rules: do not ask me any questions; do not change the site. When you finish, print one line: DELIVERABLE: ~/work/output

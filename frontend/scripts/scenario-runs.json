@@ -20241,8 +20241,8 @@
    "实测对比：同一个测试站，埋了 16 个 SEO 问题"
   ],
   "intro": [
-   "On 2026-11-11 we ran 13 of these tools and 9 produced an audit. Each audited the same test shop, nine pages served inside a throwaway sandbox, with 16 planted problems: robots.txt blocking the blog, a noindex in a meta tag and another in an HTTP header, a canonical pointing at the home page, a missing title, duplicate titles and descriptions, a broken link, a 404 in the sitemap, invalid JSON-LD, a missing alt, a missing H1, a missing viewport, a two-hop redirect on the main menu, an orphan page and an hreflang to a 404. Claude Code (Claude Opus 5.5) installed each tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked each report, and every false claim was checked by hand. Claude Code with no tool did the same job as a control.",
-   "2026-11-11 我们实跑了其中 13 个，9 个交出了审计报告。每个审同一个测试网店：9 个页面，放在用完即删的沙箱里，埋了 16 个问题：robots.txt 屏蔽整个博客、一个 meta 里的 noindex 和一个 HTTP 头里的 noindex、canonical 指向首页、缺 title、标题和描述重复、断链、sitemap 里有 404、JSON-LD 格式错误、图片缺 alt、缺 H1、缺 viewport、主菜单链接两跳重定向、孤立页、hreflang 指向 404。由 Claude Code（Claude Opus 5.5）按各自 README 安装并跑审计；评审是 Claude Opus 5.5，拿到整个站点，三遍取多数，每一处说错都人工核对过。不装任何工具的 Claude Code 做了同样的事，作为对照。"
+   "On 2026-11-11 we ran 13 of these tools and 11 produced an audit. Each audited the same test shop, nine pages served inside a throwaway sandbox (for the three tools that refuse private addresses, a public copy on 2026-11-12), with 16 planted problems: robots.txt blocking the blog, a noindex in a meta tag and another in an HTTP header, a canonical pointing at the home page, a missing title, duplicate titles and descriptions, a broken link, a 404 in the sitemap, invalid JSON-LD, a missing alt, a missing H1, a missing viewport, a two-hop redirect on the main menu, an orphan page and an hreflang to a 404. Claude Code (Claude Opus 5.5) installed each tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked each report, and every false claim was checked by hand. Claude Code with no tool did the same job as a control.",
+   "2026-11-11 我们实跑了其中 13 个，11 个交出了审计报告。每个审同一个测试网店：9 个页面，放在用完即删的沙箱里（拒绝内网地址的 3 个工具在 2026-11-12 改审公网副本），埋了 16 个问题：robots.txt 屏蔽整个博客、一个 meta 里的 noindex 和一个 HTTP 头里的 noindex、canonical 指向首页、缺 title、标题和描述重复、断链、sitemap 里有 404、JSON-LD 格式错误、图片缺 alt、缺 H1、缺 viewport、主菜单链接两跳重定向、孤立页、hreflang 指向 404。由 Claude Code（Claude Opus 5.5）按各自 README 安装并跑审计；评审是 Claude Opus 5.5，拿到整个站点，三遍取多数，每一处说错都人工核对过。不装任何工具的 Claude Code 做了同样的事，作为对照。"
   ],
   "name_col": [
    "Tool",
@@ -20279,8 +20279,8 @@
    "报告原文"
   ],
   "finding": [
-   "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 4 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 4 of 13 could not run on a private address or without an account.",
-   "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：4 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；13 个里有 4 个在内网地址上或没有账号时跑不起来。"
+   "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 6 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 3 refuse private addresses outright, so they could only audit a public copy.",
+   "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：6 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；还有 3 个一律拒绝内网地址，只能审公网副本。"
   ],
   "control": {
    "sheet": "control.html"
@@ -20357,8 +20357,8 @@
     }
    ],
    "caveat": [
-    "Whichever you pick: Claude Code with nothing installed found all 16 in two minutes. Before you trust a tool on a staging site, check that it can reach one: 4 of 13 could not run on a private address or without an account.",
-    "不管选哪个：什么都不装的 Claude Code 两分钟就找全了 16 个。拿工具审预发布站之前，先确认它连得上：13 个里有 4 个在内网地址上或没有账号时跑不起来。"
+    "Whichever you pick: Claude Code with nothing installed found all 16 in two minutes. Before you point a tool at a staging site, check that it can reach one: 3 of 13 refuse private addresses outright.",
+    "不管选哪个：什么都不装的 Claude Code 两分钟就找全了 16 个。拿工具审预发布站之前，先确认它连得上：13 个里有 3 个一律拒绝内网地址。"
    ]
   },
   "runs": {
@@ -20408,6 +20408,53 @@
     ],
     "note": "A 120-skill marketing plugin; its site-audit route ran. Its fetch scripts refuse private addresses unless their built-in allow-private option is on, which the run turned on.",
     "note_zh": "一个含 120 个 skill 的营销插件，跑的是它的站点审计流程。它的抓取脚本默认拒绝内网地址，要打开脚本自带的允许内网选项，这次运行打开了。"
+   },
+   "Bhanunamikaze/Agentic-SEO-Skill": {
+    "stars": 1046,
+    "sheet": "Bhanunamikaze__Agentic-SEO-Skill.html",
+    "ran": true,
+    "cells": [
+     [
+      "16/16",
+      null,
+      "touch-ups"
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "44",
+      null,
+      "num"
+     ],
+     [
+      "18 min",
+      "18 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 16 of 16 planted problems",
+      "找到 16 个埋入问题中的 16 个"
+     ],
+     [
+      "2 false claims about the site",
+      "说错 2 处"
+     ],
+     [
+      "44 problems raised",
+      "共报 44 条"
+     ],
+     [
+      "18 min",
+      "18 分钟"
+     ]
+    ],
+    "note": "It refuses private addresses, so it ran on 2026-11-12 on a public copy of the same site; Claude Code with no tool found all 16 there too. It took the /shop/ redirect for a duplicate of /teas/ and counted no product links on /teas/, which has two.",
+    "note_zh": "它拒绝内网地址，所以 2026-11-12 改在同一个站的公网副本上跑；不装工具的 Claude Code 在那里也找全了 16 个。它把 /shop/ 重定向当成 /teas/ 的重复页，还说 /teas/ 上没有商品链接，其实有两个。"
    },
    "coreyhaines31/marketingskills": {
     "stars": 59621,
@@ -20691,6 +20738,53 @@
     "note": "It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. Its summary then said every page has a viewport tag and that titles and descriptions are unique, which the blog pages contradict. Ten specialist agents, a score of 61/100.",
     "note_zh": "它遵守 robots.txt，没有读测试里被屏蔽的两个博客页，漏掉了那里的四个问题；屏蔽本身它报了。它的总结却说每页都有 viewport、标题和描述都不重复，而博客页正好违反这两条。共 10 个专项 agent，给了 61/100。"
    },
+   "Auriti-Labs/geo-optimizer-skill": {
+    "stars": 1278,
+    "sheet": "Auriti-Labs__geo-optimizer-skill.html",
+    "ran": true,
+    "cells": [
+     [
+      "9/16",
+      null,
+      ""
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "37",
+      null,
+      "num"
+     ],
+     [
+      "6 min",
+      "6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 9 of 16 planted problems",
+      "找到 16 个埋入问题中的 9 个"
+     ],
+     [
+      "3 false claims about the site",
+      "说错 3 处"
+     ],
+     [
+      "37 problems raised",
+      "共报 37 条"
+     ],
+     [
+      "6 min",
+      "6 分钟"
+     ]
+    ],
+    "note": "It refuses private addresses, so it ran on 2026-11-12 on a public copy of the same site; Claude Code with no tool found all 16 there too. A GEO scorer page by page: it missed the robots.txt block and the redirect chain, reported 0 broken links on the article that has one, and said the contact page has no contact details.",
+    "note_zh": "它拒绝内网地址，所以 2026-11-12 改在同一个站的公网副本上跑；不装工具的 Claude Code 在那里也找全了 16 个。它按页给 GEO 打分：漏了 robots.txt 屏蔽和重定向链，说有断链的那篇文章断链为 0，还说联系页没有联系方式。"
+   },
    "seo-skills/seo-audit-skill": {
     "stars": 667,
     "sheet": "seo-skills__seo-audit-skill.html",
@@ -20785,26 +20879,12 @@
     "note": "It checks files for AI agents at the site root (llms.txt, robots rules for AI crawlers); it does not crawl pages, so page problems are outside what it looks at.",
     "note_zh": "它检查站点根目录下给 AI agent 看的文件（llms.txt、针对 AI 爬虫的 robots 规则），不抓页面，页面上的问题不在它的检查范围内。"
    },
-   "Bhanunamikaze/Agentic-SEO-Skill": {
-    "stars": 1046,
-    "sheet": "Bhanunamikaze__Agentic-SEO-Skill.html",
-    "ran": false,
-    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
-   },
-   "Auriti-Labs/geo-optimizer-skill": {
-    "stars": 1278,
-    "sheet": "Auriti-Labs__geo-optimizer-skill.html",
-    "ran": false,
-    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
-   },
    "JeffLi1993/seo-audit-skill": {
     "stars": 785,
     "sheet": "JeffLi1993__seo-audit-skill.html",
     "ran": false,
-    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
+    "reason": "It refuses private addresses, so it ran on the public copy, where its site audit stopped: it requires a Google PageSpeed Insights API key, which we did not give it.",
+    "reason_zh": "它拒绝内网地址，所以改在公网副本上跑；在那里它的站点审计停了：必须有 Google PageSpeed Insights API key，我们没给。"
    },
    "every-app/open-seo": {
     "stars": 26663,

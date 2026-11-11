@@ -1,0 +1,6 @@
+The repository at ~/src is an SEO tool for AI coding agents (a Claude Code skill or plugin, an MCP server, a CLI, or similar). Install it so that it can be used in a new Claude Code session, following its own README:
+- a skill or plugin: put it where Claude Code loads it (~/.claude/skills, ~/.claude/commands, ~/.claude/agents), the way its README or install script does;
+- an MCP server: install its dependencies and register it with `claude mcp add --scope user ...`;
+- a package or CLI: install it and configure it.
+It has no API keys or accounts (no Anthropic, OpenAI, Google, DataForSEO, Ahrefs or other keys). Where a key is optional, leave it unset; where one is required, install what you can and say so.
+Do not audit anything yet. Do not ask questions. At the end print exactly one line: SETUP: done <what you installed> or SETUP: failed <reason>.

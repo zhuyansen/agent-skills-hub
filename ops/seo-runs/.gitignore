@@ -1,3 +1,4 @@
 out*/
 *.log
 __pycache__/
+public/site/.vercel/

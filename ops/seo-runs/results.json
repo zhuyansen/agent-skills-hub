@@ -25,6 +25,19 @@
   "commit": "18671fc54b72"
  },
  {
+  "repo": "Bhanunamikaze/Agentic-SEO-Skill",
+  "kind": "suite",
+  "stars": 1046,
+  "grade": "safe",
+  "ran": true,
+  "found": 16,
+  "problems": 44,
+  "false": 2,
+  "minutes": 18,
+  "missed": [],
+  "commit": "445c46c268d9"
+ },
+ {
   "repo": "coreyhaines31/marketingskills",
   "kind": "marketing",
   "stars": 59621,
@@ -126,6 +139,27 @@
   "commit": "734998e5fdbb"
  },
  {
+  "repo": "Auriti-Labs/geo-optimizer-skill",
+  "kind": "geo",
+  "stars": 1278,
+  "grade": "safe",
+  "ran": true,
+  "found": 9,
+  "problems": 37,
+  "false": 3,
+  "minutes": 6,
+  "missed": [
+   "D1",
+   "D5",
+   "D6",
+   "D11",
+   "D14",
+   "D15",
+   "D16"
+  ],
+  "commit": "16a99f935db8"
+ },
+ {
   "repo": "seo-skills/seo-audit-skill",
   "kind": "audit",
   "stars": 667,
@@ -177,35 +211,13 @@
   "commit": "939dd486d75e"
  },
  {
-  "repo": "Bhanunamikaze/Agentic-SEO-Skill",
-  "kind": "suite",
-  "stars": 1046,
-  "grade": "safe",
-  "ran": false,
-  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
-  "minutes": 1,
-  "commit": "445c46c268d9"
- },
- {
-  "repo": "Auriti-Labs/geo-optimizer-skill",
-  "kind": "geo",
-  "stars": 1278,
-  "grade": "safe",
-  "ran": false,
-  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
-  "minutes": 1,
-  "commit": "16a99f935db8"
- },
- {
   "repo": "JeffLi1993/seo-audit-skill",
   "kind": "audit",
   "stars": 785,
   "grade": "safe",
   "ran": false,
-  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
+  "reason": "It refuses private addresses, so it ran on the public copy, where its site audit stopped: it requires a Google PageSpeed Insights API key, which we did not give it.",
+  "reason_zh": "它拒绝内网地址，所以改在公网副本上跑；在那里它的站点审计停了：必须有 Google PageSpeed Insights API key，我们没给。",
   "minutes": 1,
   "commit": "523bdfb2c94f"
  },

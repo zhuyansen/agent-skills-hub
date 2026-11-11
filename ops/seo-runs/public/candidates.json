@@ -1,0 +1,20 @@
+[
+ {
+  "repo": "Bhanunamikaze/Agentic-SEO-Skill",
+  "kind": "suite",
+  "stars": 1046,
+  "grade": "safe"
+ },
+ {
+  "repo": "Auriti-Labs/geo-optimizer-skill",
+  "kind": "geo",
+  "stars": 1278,
+  "grade": "safe"
+ },
+ {
+  "repo": "JeffLi1993/seo-audit-skill",
+  "kind": "audit",
+  "stars": 785,
+  "grade": "safe"
+ }
+]

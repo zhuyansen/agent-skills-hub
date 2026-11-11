@@ -1,0 +1,35 @@
+{
+ "trailingSlash": true,
+ "redirects": [
+  {
+   "source": "/shop/",
+   "destination": "/store/",
+   "statusCode": 301
+  },
+  {
+   "source": "/store/",
+   "destination": "/teas/",
+   "statusCode": 301
+  }
+ ],
+ "headers": [
+  {
+   "source": "/teas/bai-mudan/",
+   "headers": [
+    {
+     "key": "X-Robots-Tag",
+     "value": "noindex"
+    }
+   ]
+  },
+  {
+   "source": "/teas/bai-mudan/index.html",
+   "headers": [
+    {
+     "key": "X-Robots-Tag",
+     "value": "noindex"
+    }
+   ]
+  }
+ ]
+}

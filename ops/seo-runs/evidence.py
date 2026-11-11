@@ -15,6 +15,12 @@ from runs_common import PUBLIC as PUBLIC_ROOT, REPO_URL as REPO_ROOT, esc, final
 
 HERE = Path(__file__).parent
 OUT = HERE / "out"
+# The public rerun (public/, 2026-11-12): the same site at https://lumentea-test.vercel.app/, for the tools that refuse
+# private addresses, plus a control there. Their rows come from public/out.
+PUBLIC_OUT = HERE / "public/out"
+PUBLIC_DATE = "2026-11-12"
+PUBLIC_HOST = "https://lumentea-test.vercel.app/"
+RERUN = ("Bhanunamikaze/Agentic-SEO-Skill", "Auriti-Labs/geo-optimizer-skill", "JeffLi1993/seo-audit-skill")
 PUBLIC = PUBLIC_ROOT / "seo"
 REPO_URL = REPO_ROOT + "seo-runs/"
 TRUTH = json.loads((HERE / "truth.json").read_text())
@@ -23,18 +29,21 @@ CONTROL = "control"
 DATE = "2026-11-11"
 BACK = ("/best/seo-tools/", "Claude SEO skills & SEO MCP servers")
 # Read from each run by hand: why a tool produced no audit, and what a reader should know beside the numbers.
-PRIVATE = ("It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
-           "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。")
 NOT_RUN = {
-    "Bhanunamikaze/Agentic-SEO-Skill": PRIVATE,
-    "Auriti-Labs/geo-optimizer-skill": PRIVATE,
-    "JeffLi1993/seo-audit-skill": PRIVATE,
+    "JeffLi1993/seo-audit-skill": ("It refuses private addresses, so it ran on the public copy, where its site audit stopped: it requires a Google PageSpeed Insights API key, which we did not give it.",
+                                   "它拒绝内网地址，所以改在公网副本上跑；在那里它的站点审计停了：必须有 Google PageSpeed Insights API key，我们没给。"),
     "every-app/open-seo": ("Its audit runs on OpenSEO's servers and needs an OpenSEO account sign-in, so it cannot audit a site that is not on the public internet.",
                            "它的审计在 OpenSEO 自己的服务器上跑，还要登录 OpenSEO 账号，所以审不了不在公网上的站点。"),
 }
 ROBOTS_NOTE = "It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block."
 ROBOTS_NOTE_ZH = "它遵守 robots.txt，没有读测试里被屏蔽的两个博客页，漏掉了那里的四个问题；屏蔽本身它报了。"
+RERUN_NOTE = (f"It refuses private addresses, so it ran on {PUBLIC_DATE} on a public copy of the same site; Claude Code with no tool found all 16 there too.",
+              f"它拒绝内网地址，所以 {PUBLIC_DATE} 改在同一个站的公网副本上跑；不装工具的 Claude Code 在那里也找全了 16 个。")
 NOTES = {
+    "Bhanunamikaze/Agentic-SEO-Skill": (RERUN_NOTE[0] + " It took the /shop/ redirect for a duplicate of /teas/ and counted no product links on /teas/, which has two.",
+                                        RERUN_NOTE[1] + "它把 /shop/ 重定向当成 /teas/ 的重复页，还说 /teas/ 上没有商品链接，其实有两个。"),
+    "Auriti-Labs/geo-optimizer-skill": (RERUN_NOTE[0] + " A GEO scorer page by page: it missed the robots.txt block and the redirect chain, reported 0 broken links on the article that has one, and said the contact page has no contact details.",
+                                        RERUN_NOTE[1] + "它按页给 GEO 打分：漏了 robots.txt 屏蔽和重定向链，说有断链的那篇文章断链为 0，还说联系页没有联系方式。"),
     "aaron-he-zhu/aaron-marketing-skills": ("A 120-skill marketing plugin; its site-audit route ran. Its fetch scripts refuse private addresses unless their built-in allow-private option is on, which the run turned on.",
                                             "一个含 120 个 skill 的营销插件，跑的是它的站点审计流程。它的抓取脚本默认拒绝内网地址，要打开脚本自带的允许内网选项，这次运行打开了。"),
     "squirrelscan/squirrelscan": ("A crawler CLI with 310+ rules, run in its offline mode: its cloud service cannot reach a private site.",
@@ -75,13 +84,13 @@ VERDICT = {
         {"repo": "tigerless-labs/seo-ops", "why": ["passed robots.txt and redirect checks the site fails", "robots.txt 和重定向两项检查判了通过，其实测试站都不合格"]},
         {"repo": "AgriciDaniel/claude-seo", "why": ["skipped the robots-blocked blog, then said every page has a viewport tag", "跳过了被 robots 屏蔽的博客，又说每页都有 viewport"]},
     ],
-    "caveat": [f"Whichever you pick: Claude Code with nothing installed found all {PLANTED} in two minutes. Before you trust a tool on a staging site, check that it can reach one: 4 of 13 could not run on a private address or without an account.",
-               f"不管选哪个：什么都不装的 Claude Code 两分钟就找全了 {PLANTED} 个。拿工具审预发布站之前，先确认它连得上：13 个里有 4 个在内网地址上或没有账号时跑不起来。"],
+    "caveat": [f"Whichever you pick: Claude Code with nothing installed found all {PLANTED} in two minutes. Before you point a tool at a staging site, check that it can reach one: 3 of 13 refuse private addresses outright.",
+               f"不管选哪个：什么都不装的 Claude Code 两分钟就找全了 {PLANTED} 个。拿工具审预发布站之前，先确认它连得上：13 个里有 3 个一律拒绝内网地址。"],
 }
 TEXT = {
     "title": [f"SEO skills and MCP servers tested: one test site, {PLANTED} planted problems", f"实测对比：同一个测试站，埋了 {PLANTED} 个 SEO 问题"],
-    "intro": [f"On {DATE} we ran 13 of these tools and 9 produced an audit. Each audited the same test shop, nine pages served inside a throwaway sandbox, with {PLANTED} planted problems: robots.txt blocking the blog, a noindex in a meta tag and another in an HTTP header, a canonical pointing at the home page, a missing title, duplicate titles and descriptions, a broken link, a 404 in the sitemap, invalid JSON-LD, a missing alt, a missing H1, a missing viewport, a two-hop redirect on the main menu, an orphan page and an hreflang to a 404. Claude Code (Claude Opus 5.5) installed each tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked each report, and every false claim was checked by hand. Claude Code with no tool did the same job as a control.",
-              f"{DATE} 我们实跑了其中 13 个，9 个交出了审计报告。每个审同一个测试网店：9 个页面，放在用完即删的沙箱里，埋了 {PLANTED} 个问题：robots.txt 屏蔽整个博客、一个 meta 里的 noindex 和一个 HTTP 头里的 noindex、canonical 指向首页、缺 title、标题和描述重复、断链、sitemap 里有 404、JSON-LD 格式错误、图片缺 alt、缺 H1、缺 viewport、主菜单链接两跳重定向、孤立页、hreflang 指向 404。由 Claude Code（Claude Opus 5.5）按各自 README 安装并跑审计；评审是 Claude Opus 5.5，拿到整个站点，三遍取多数，每一处说错都人工核对过。不装任何工具的 Claude Code 做了同样的事，作为对照。"],
+    "intro": [f"On {DATE} we ran 13 of these tools and 11 produced an audit. Each audited the same test shop, nine pages served inside a throwaway sandbox (for the three tools that refuse private addresses, a public copy on {PUBLIC_DATE}), with {PLANTED} planted problems: robots.txt blocking the blog, a noindex in a meta tag and another in an HTTP header, a canonical pointing at the home page, a missing title, duplicate titles and descriptions, a broken link, a 404 in the sitemap, invalid JSON-LD, a missing alt, a missing H1, a missing viewport, a two-hop redirect on the main menu, an orphan page and an hreflang to a 404. Claude Code (Claude Opus 5.5) installed each tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked each report, and every false claim was checked by hand. Claude Code with no tool did the same job as a control.",
+              f"{DATE} 我们实跑了其中 13 个，11 个交出了审计报告。每个审同一个测试网店：9 个页面，放在用完即删的沙箱里（拒绝内网地址的 3 个工具在 {PUBLIC_DATE} 改审公网副本），埋了 {PLANTED} 个问题：robots.txt 屏蔽整个博客、一个 meta 里的 noindex 和一个 HTTP 头里的 noindex、canonical 指向首页、缺 title、标题和描述重复、断链、sitemap 里有 404、JSON-LD 格式错误、图片缺 alt、缺 H1、缺 viewport、主菜单链接两跳重定向、孤立页、hreflang 指向 404。由 Claude Code（Claude Opus 5.5）按各自 README 安装并跑审计；评审是 Claude Opus 5.5，拿到整个站点，三遍取多数，每一处说错都人工核对过。不装任何工具的 Claude Code 做了同样的事，作为对照。"],
     "name_col": ["Tool", "工具"],
     "columns": [[f"Planted problems found (of {PLANTED})", f"找到埋入问题（共 {PLANTED} 个）"], ["False claims", "说错几处"], ["Problems raised", "报出问题数"], ["Time", "耗时"]],
     "line_label": [f"SEO audit test, {DATE}:", f"{DATE} 实测："],
@@ -110,8 +119,20 @@ def setup_seconds(run: Path) -> float:
     return total
 
 
+def row_at(c: dict, run: Path) -> dict:
+    """A row read from a given run folder (the public copy's control)."""
+    score = load(run, "score.json")
+    meta = load(run, "run.json") or {}
+    return {**c, "ran": True, "found": score["found"], "problems": score["problems"], "false": len(score["false_claims"]),
+            "minutes": max(1, round(meta.get("seconds", 0) / 60)), "missed": [d for d, v in score["defects"].items() if not v["hit"]], "commit": None}
+
+
+def run_dir(repo: str) -> Path:
+    return (PUBLIC_OUT if repo in RERUN else OUT) / key(repo)
+
+
 def row(c: dict) -> dict:
-    run = OUT / key(c["repo"])
+    run = run_dir(c["repo"])
     score = load(run, "score.json")
     meta = load(run, "run.json") or {}
     minutes = max(1, round((meta.get("seconds", 0) - setup_seconds(run)) / 60))
@@ -146,10 +167,15 @@ def report_files(run: Path) -> str:
     return "".join(out) or "<p class='mute'>No report file.</p>"
 
 
-def sheet(r: dict) -> str:
-    run = OUT / key(r["repo"])
+def sheet(r: dict, run: Path | None = None) -> str:
+    run = run or run_dir(r["repo"])
+    public = run.parent == PUBLIC_OUT
     name = "Control: Claude Code with no SEO tool" if r["repo"] == CONTROL else r["repo"]
-    intro = (f"<p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, "
+    name += " (public copy)" if public and r["repo"] == CONTROL else ""
+    where = (f"a public copy of the test shop at {PUBLIC_HOST} ({PUBLIC_DATE}), the same pages as the sandbox one"
+             if public else "a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox")
+    date = PUBLIC_DATE if public else DATE
+    intro = (f"<p class='mute'>The same task for every tool: audit {where}, "
              f"with {PLANTED} planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; "
              f"a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand."
              f"{' Repo commit ' + esc(r['commit']) + '.' if r.get('commit') else ''} "
@@ -157,11 +183,11 @@ def sheet(r: dict) -> str:
              f"<a href='{REPO_URL}in/prompt.txt'>Task</a></p>")
     note = f"<p>{esc(NOTES[r['repo']][0])}</p>" if r["repo"] in NOTES else ""
     if not r["ran"]:
-        body = f"<h1>{esc(name)}: test run, {DATE}</h1>{intro}<p><b>No audit:</b> {esc(r['reason'])}</p>{note}"
+        body = f"<h1>{esc(name)}: test run, {date}</h1>{intro}<p><b>No audit:</b> {esc(r['reason'])}</p>{note}"
         return shell(f"{name}: SEO audit test", BACK, body + f"<h2>The session's closing message</h2><pre>{esc(final_message(run / 'transcript.jsonl')[:5000])}</pre>")
     score = load(run, "score.json")
     false = "".join(f"<li>{esc(c.get('claim'))}<br><span class='mute'>{esc(c.get('why'))}</span></li>" for c in score["false_claims"]) or "<li>None.</li>"
-    body = f"""<h1>{esc(name)}: test run, {DATE}</h1>{intro}
+    body = f"""<h1>{esc(name)}: test run, {date}</h1>{intro}
 <p><b>Found {r['found']} of {PLANTED} planted problems</b>; {r['false']} false claim{'s' if r['false'] != 1 else ''} about the site; {r['problems']} problems raised in all; {r['minutes']} min.</p>{note}
 <h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr>{defect_rows(score)}</table>
 <h2>False claims (checked by hand)</h2><ul>{false}</ul>
@@ -199,6 +225,15 @@ def markdown(control: dict, rows: list[dict]) -> str:
     return "\n".join(out) + "\n"
 
 
+def public_md(c: dict) -> str:
+    return (f"\n## Public copy, {PUBLIC_DATE}\n\nThe three tools that refuse private addresses ran again on {PUBLIC_HOST} (Vercel; public/site, "
+            f"public/run_all.sh): the same pages with that host in their URLs, and the same 301 chain, X-Robots-Tag header and 404s "
+            f"(vercel.json). Their rows above come from that run. The control ran there too: found {c['found']}/{PLANTED}, "
+            f"{c['false']} false claim (a summary line calling the article's title fine; it had reported the missing title), "
+            f"{c['problems']} problems, {c['minutes']} min. The copy has no noindex added: a site-wide noindex would have hidden "
+            f"the two planted ones (D2, D13), so it stays up only for the test and is then to be taken down.\n")
+
+
 def main() -> None:
     PUBLIC.mkdir(parents=True, exist_ok=True)
     cands = json.loads((HERE / "candidates.json").read_text())
@@ -206,14 +241,16 @@ def main() -> None:
     rows = sorted((row(c) for c in cands), key=lambda r: (not r["ran"], -r.get("found", 0), r.get("false", 0), r.get("minutes", 0)))
     for r in [control, *rows]:
         (PUBLIC / (key(r["repo"]) + ".html")).write_text(sheet(r))
+    public_control = row_at({"repo": CONTROL, "kind": "control", "stars": 0}, PUBLIC_OUT / CONTROL)
+    (PUBLIC / "control-public.html").write_text(sheet(public_control, PUBLIC_OUT / CONTROL))
     (HERE / "results.json").write_text(json.dumps([control, *rows], indent=1, ensure_ascii=False) + "\n")
-    (HERE / "RESULTS.md").write_text(markdown(control, rows))
+    (HERE / "RESULTS.md").write_text(markdown(control, rows) + public_md(public_control))
     ran = [r for r in rows if r["ran"]]
     n = {"level": sum(r["found"] == PLANTED and not r["false"] for r in ran), "wrong": sum(r["false"] > 0 for r in ran),
          "robots": sum(r["repo"] in NOTES and NOTES[r["repo"]][0].startswith(ROBOTS_NOTE) for r in ran), "no": len(rows) - len(ran),
          "all": len(rows), "ran": len(ran), "min": control["minutes"]}
-    finding = [f"No tool beat the control. Claude Code with nothing installed found all {PLANTED} planted problems in about {n['min']} minutes with no false claim; {n['level']} tool matched it and none did better. What separates the tools: {n['wrong']} stated things about the site that are false, most often a clean bill for a check it fails; {n['robots']} obey robots.txt and so missed the four problems on the blocked blog; and {n['no']} of {n['all']} could not run on a private address or without an account.",
-               f"没有工具超过对照组。什么都不装的 Claude Code 约 {n['min']} 分钟找全 {PLANTED} 个埋入问题，没说错一处；{n['level']} 个工具和它打平，没有更好的。工具之间的差别在于：{n['wrong']} 个说错了站点上的事实，最常见的是把不合格的检查判成通过；{n['robots']} 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；{n['all']} 个里有 {n['no']} 个在内网地址上或没有账号时跑不起来。"]
+    finding = [f"No tool beat the control. Claude Code with nothing installed found all {PLANTED} planted problems in about {n['min']} minutes with no false claim; {n['level']} tool matched it and none did better. What separates the tools: {n['wrong']} stated things about the site that are false, most often a clean bill for a check it fails; {n['robots']} obey robots.txt and so missed the four problems on the blocked blog; and 3 refuse private addresses outright, so they could only audit a public copy.",
+               f"没有工具超过对照组。什么都不装的 Claude Code 约 {n['min']} 分钟找全 {PLANTED} 个埋入问题，没说错一处；{n['level']} 个工具和它打平，没有更好的。工具之间的差别在于：{n['wrong']} 个说错了站点上的事实，最常见的是把不合格的检查判成通过；{n['robots']} 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；还有 3 个一律拒绝内网地址，只能审公网副本。"]
     write_runs("seo-tools", {
         "type": "table", "date": DATE, "dir": "/best-runs/seo/", "results": REPO_URL + "RESULTS.md",
         **TEXT, "finding": finding, "control": {"sheet": key(CONTROL) + ".html"}, "verdict": VERDICT, "runs": {r["repo"]: card(r) for r in rows}})
@@ -225,8 +262,8 @@ def main() -> None:
          "item_zh": f"守规矩的爬虫看到的少：遵守 robots.txt 的 {n['robots']} 个报了博客被屏蔽，却看不到屏蔽后面的问题。审自己的站时，也要忽略 robots 规则再跑一遍。"},
     ], {"item": f"Ran {n['all']} tools on {DATE}: each installed from its README in a throwaway sandbox and run on the same nine-page test shop with {PLANTED} planted problems, plus Claude Code with no tool as a control. A judge (Claude Opus 5.5, three passes) marked each report against the planted problems; every false claim was read by hand.",
         "item_zh": f"{DATE} 实跑了 {n['all']} 个工具：每个在用完即删的沙箱里按 README 安装，审同一个埋了 {PLANTED} 个问题的 9 页测试网店，另有不装工具的 Claude Code 作对照。评审（Claude Opus 5.5，三遍）按埋入问题给每份报告打分，每一处说错都人工核对。"},
-       {"item": "One run per tool, on a small test site we built and served inside the sandbox, so tools that only crawl from their own servers or read Search Console data (the GSC and DataForSEO servers among them) could not be judged; nor could tools that refuse private addresses. A planted problem is not a ranking forecast.",
-        "item_zh": "每个工具只跑一次，测试站是我们自己搭的、放在沙箱里，所以只能从自家服务器抓取或只读 Search Console 数据的工具（包括 GSC 和 DataForSEO 那几个）评不了，拒绝内网地址的工具也评不了。埋入的问题不等于排名预测。"},
+       {"item": "One run per tool, on a small test site we built. Servers that read Search Console or DataForSEO data, or that need an account or API key (OpenSEO, a PageSpeed key), were not judged. A planted problem is not a ranking forecast.",
+        "item_zh": "每个工具只跑一次，测试站是我们自己搭的。读 Search Console 或 DataForSEO 数据的服务，以及需要账号或 API key 的（OpenSEO、PageSpeed key），都没有评。埋入的问题不等于排名预测。"},
        marker="No tool beat the control. Claude Code with nothing installed found all", replaces=("We did not run these tools against a site",))
     print(markdown(control, rows))
 
