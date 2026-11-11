@@ -1,0 +1,890 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>iannuttall/seo: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>iannuttall/seo: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit bd4921e12b82. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 12 of 16 planted problems</b>; 0 false claims about the site; 16 problems raised in all; 1 min.</p><p>It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. Its MCP crawl failed with a parameter error (Unrecognized key: &quot;saveReport&quot;), so the run used its CLI, which needed no account.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.<br><span class='mute'>“&quot;2 URLs disallowed SEO-Skill/0.17.5 in robots.txt.&quot; The blocked URLs are http://lumentea.test/blog/ and http://lumentea.test/blog/how-to-brew-green-tea/, matched by `Disallow: /blog/` in http://lumentea.test/robots.txt. The tool marks them &quot;coverage-affecting&quot;”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.<br><span class='mute'>“Noindex found (`noindex`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Meta robots noindex”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.<br><span class='mute'>“Canonicalized page (`canonicalized_page`) | Low | http://lumentea.test/teas/ | Canonical points to http://lumentea.test/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.</td><td><span class="no">missed</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).</td><td><span class="no">missed</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).</td><td><span class="no">missed</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.<br><span class='mute'>“Client error (`client_error`) | **High** | http://lumentea.test/teas/white-peony/ | Returns HTTP 404”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.<br><span class='mute'>“Invalid JSON-LD (`jsonld_invalid`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | 1 invalid JSON-LD block”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.<br><span class='mute'>“Images lack alt attributes (`image_missing_alt`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | 1 of 1 images has no alt”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.<br><span class='mute'>“Missing H1 (`h1_missing`) | Low | http://lumentea.test/contact/ | No H1 found”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).<br><span class='mute'>“Redirect chain (`redirect_chain`) | Medium | http://lumentea.test/shop/ | 2 hops to http://lumentea.test/teas/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).</td><td><span class="no">missed</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.<br><span class='mute'>“X-Robots-Tag noindex (`x_robots_noindex`) | Medium | http://lumentea.test/teas/bai-mudan/ | The `X-Robots-Tag: noindex` response header”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.<br><span class='mute'>“No observed internal links / orphan page (`orphan_page`) | Low | http://lumentea.test/guides/storing-tea/ | No internal links point to this page”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).<br><span class='mute'>“Hreflang missing self reference (`hreflang_incomplete`) | Low | http://lumentea.test/ | Has hreflang `en` but no entry pointing to the page itself”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).<br><span class='mute'>“Duplicate title (`title_duplicate`) | Medium | http://lumentea.test/ ; http://lumentea.test/guides/storing-tea/ | Both pages have the title &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;”</span></td><td><span class="ok">found</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>None.</li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO audit: http://lumentea.test/
+
+**Tool:** `seo` (SEO Skill) v0.17.5, command `seo crawl --url http://lumentea.test/` (full technical crawl, default settings, no sign-in).
+The MCP tool `seo_crawl` returned a parameter error (`Unrecognized key: &quot;saveReport&quot;`), so I ran the same crawl through the tool&#x27;s CLI.
+Search Console, Analytics and keyword data were not used: the site has none. That is why the tool says &quot;No joined GSC visibility&quot; for every finding.
+
+**What was crawled:** 11 URLs discovered, 8 crawled (7 returned 200, 1 returned 404), 2 skipped because robots.txt blocks them. 5 pages are indexable and 3 are not. The tool&#x27;s totals are 1 high, 14 medium and 10 low issues.
+The soft-404 check passed: made-up URLs return a real 404.
+
+The tool&#x27;s own output is in this folder: `seo-crawl.md` (its markdown ticket report) and `seo-crawl.json` (full JSON).
+
+## Implementation tickets (the tool&#x27;s ranked fixes)
+
+| # | Problem (rule) | Severity | Affected URL(s) | Detail from tool |
+|---|---|---|---|---|
+| 1 | Client error (`client_error`) | **High** | http://lumentea.test/teas/white-peony/ | Returns HTTP 404 |
+| 2 | Page is not served over HTTPS (`http_not_secure`) | Medium | http://lumentea.test/ , /about/ , /contact/ , /guides/storing-tea/ , /teas/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ (7 URLs) | Sandbox only has HTTP; you said to ignore HTTPS. Listed here because the tool raised it |
+| 3 | Duplicate title (`title_duplicate`) | Medium | http://lumentea.test/ ; http://lumentea.test/guides/storing-tea/ | Both pages have the title &quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot; |
+| 4 | Images lack alt attributes (`image_missing_alt`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | 1 of 1 images has no alt |
+| 5 | Invalid JSON-LD (`jsonld_invalid`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | 1 invalid JSON-LD block |
+| 6 | Redirect chain (`redirect_chain`) | Medium | http://lumentea.test/shop/ | 2 hops to http://lumentea.test/teas/ |
+| 7 | Missing H1 (`h1_missing`) | Low | http://lumentea.test/contact/ | No H1 found |
+| 8 | Hreflang missing self reference (`hreflang_incomplete`) | Low | http://lumentea.test/ | Has hreflang `en` but no entry pointing to the page itself |
+
+## Review observations (the tool says to check these before treating them as work)
+
+| Problem (rule) | Severity | Affected URL(s) | Detail from tool |
+|---|---|---|---|
+| Noindex found (`noindex`) | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Meta robots noindex |
+| X-Robots-Tag noindex (`x_robots_noindex`) | Medium | http://lumentea.test/teas/bai-mudan/ | The `X-Robots-Tag: noindex` response header |
+| No llms.txt (`llms_txt_missing`) | Low | http://lumentea.test/llms.txt | /llms.txt returned HTTP 404 |
+| No Markdown copy of the pages (`markdown_missing`) | Low | http://lumentea.test/ | A request with Accept: text/markdown got HTML back, and none of the 5 public pages links to a Markdown copy |
+| No structured data detected (`structured_data_missing`) | Low | http://lumentea.test/contact/ ; http://lumentea.test/guides/storing-tea/ ; http://lumentea.test/teas/ | No structured data on these pages |
+| Canonicalized page (`canonicalized_page`) | Low | http://lumentea.test/teas/ | Canonical points to http://lumentea.test/ |
+| No observed internal links / orphan page (`orphan_page`) | Low | http://lumentea.test/guides/storing-tea/ | No internal links point to this page |
+| URL redirects (`redirected_url`) | Low | http://lumentea.test/shop/ | Ends at http://lumentea.test/teas/ |
+
+## Crawl warning (no severity given)
+
+- &quot;2 URLs disallowed SEO-Skill/0.17.5 in robots.txt.&quot; The blocked URLs are http://lumentea.test/blog/ and http://lumentea.test/blog/how-to-brew-green-tea/, matched by `Disallow: /blog/` in http://lumentea.test/robots.txt. The tool marks them &quot;coverage-affecting&quot;, so it did not audit those pages.
+</pre></details><details><summary>seo-crawl.json</summary><pre>{
+  &quot;id&quot;: &quot;crawl_32c33c86360e411f86e11561e4558ad2&quot;,
+  &quot;definitionId&quot;: &quot;crawl_def_eab01ab3ef30c06ecdfb&quot;,
+  &quot;generatedAt&quot;: &quot;2026-11-11T12:40:42.757Z&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;configHash&quot;: &quot;846993ef818407c8&quot;,
+  &quot;config&quot;: {
+    &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;mode&quot;: &quot;site&quot;,
+    &quot;strategy&quot;: &quot;full&quot;,
+    &quot;urls&quot;: [],
+    &quot;maxPages&quot;: 500,
+    &quot;maxDepth&quot;: 16,
+    &quot;concurrency&quot;: 8,
+    &quot;timeoutMs&quot;: 20000,
+    &quot;include&quot;: [],
+    &quot;exclude&quot;: [],
+    &quot;respectRobots&quot;: true,
+    &quot;useSitemap&quot;: true,
+    &quot;checkExternal&quot;: true,
+    &quot;js&quot;: &quot;auto&quot;,
+    &quot;refresh&quot;: false,
+    &quot;fetchRate&quot;: {
+      &quot;concurrency&quot;: 8
+    }
+  },
+  &quot;access&quot;: {
+    &quot;crawler&quot;: {
+      &quot;name&quot;: &quot;SEO Skill&quot;,
+      &quot;robotsToken&quot;: &quot;SEO-Skill&quot;,
+      &quot;version&quot;: &quot;0.17.5&quot;,
+      &quot;userAgent&quot;: &quot;SEO-Skill/0.17.5 (+https://seoskill.dev)&quot;,
+      &quot;documentationUrl&quot;: &quot;https://seoskill.dev/docs/crawler/&quot;
+    },
+    &quot;blockedRequests&quot;: 0,
+    &quot;providers&quot;: {},
+    &quot;samples&quot;: [],
+    &quot;sampleLimit&quot;: 10,
+    &quot;truncated&quot;: false
+  },
+  &quot;summary&quot;: {
+    &quot;totalPages&quot;: 8,
+    &quot;statusOnlyPages&quot;: 0,
+    &quot;indexablePages&quot;: 5,
+    &quot;nonIndexablePages&quot;: 3,
+    &quot;statusErrors&quot;: 1,
+    &quot;discoveredUrls&quot;: 11,
+    &quot;queuedUrls&quot;: 11,
+    &quot;crawledUrls&quot;: 8,
+    &quot;skippedUrls&quot;: 2,
+    &quot;skipReasons&quot;: [
+      {
+        &quot;reason&quot;: &quot;robots-disallowed&quot;,
+        &quot;impact&quot;: &quot;coverage-affecting&quot;,
+        &quot;count&quot;: 2
+      }
+    ],
+    &quot;skippedUrlsByImpact&quot;: {
+      &quot;coverageAffecting&quot;: 2,
+      &quot;nonImpacting&quot;: 0
+    },
+    &quot;failedUrls&quot;: 0,
+    &quot;observedInternalLinks&quot;: 51,
+    &quot;pageLimitReached&quot;: false,
+    &quot;attemptedRequests&quot;: 11,
+    &quot;responseRequests&quot;: 9,
+    &quot;failedRequests&quot;: 0,
+    &quot;abortedRequests&quot;: 0,
+    &quot;extractionFailures&quot;: 0,
+    &quot;requestByStatus&quot;: {
+      &quot;200&quot;: 8,
+      &quot;404&quot;: 1,
+      &quot;robots-disallowed&quot;: 2
+    },
+    &quot;avgRequestMs&quot;: 17,
+    &quot;highIssues&quot;: 1,
+    &quot;mediumIssues&quot;: 14,
+    &quot;lowIssues&quot;: 10,
+    &quot;avgResponseMs&quot;: 16,
+    &quot;byStatus&quot;: {
+      &quot;200&quot;: 7,
+      &quot;404&quot;: 1
+    },
+    &quot;byCategory&quot;: {
+      &quot;response&quot;: 3,
+      &quot;security&quot;: 7,
+      &quot;metadata&quot;: 2,
+      &quot;international&quot;: 1,
+      &quot;headings&quot;: 1,
+      &quot;structured-data&quot;: 4,
+      &quot;links&quot;: 1,
+      &quot;indexability&quot;: 3,
+      &quot;images&quot;: 1,
+      &quot;agents&quot;: 2
+    }
+  },
+  &quot;requestEvidenceStatus&quot;: &quot;available&quot;,
+  &quot;requests&quot;: [
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 16,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 4,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/blog/&quot;,
+      &quot;outcome&quot;: &quot;skipped&quot;,
+      &quot;reason&quot;: &quot;robots-disallowed&quot;,
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: false,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200,
+        &quot;matchedLine&quot;: &quot;Disallow: /blog/&quot;
+      },
+      &quot;extraction&quot;: &quot;not-applicable&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;outcome&quot;: &quot;skipped&quot;,
+      &quot;reason&quot;: &quot;robots-disallowed&quot;,
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: false,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200,
+        &quot;matchedLine&quot;: &quot;Disallow: /blog/&quot;
+      },
+      &quot;extraction&quot;: &quot;not-applicable&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/contact/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/contact/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 16,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 12,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/shop/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 30,
+      &quot;redirectChain&quot;: [
+        {
+          &quot;url&quot;: &quot;http://lumentea.test/shop/&quot;,
+          &quot;status&quot;: 301,
+          &quot;location&quot;: &quot;http://lumentea.test/store/&quot;
+        },
+        {
+          &quot;url&quot;: &quot;http://lumentea.test/store/&quot;,
+          &quot;status&quot;: 301,
+          &quot;location&quot;: &quot;http://lumentea.test/teas/&quot;
+        }
+      ],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 17,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 23,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 15,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    },
+    {
+      &quot;requestedUrl&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+      &quot;outcome&quot;: &quot;response&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+      &quot;status&quot;: 404,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;durationMs&quot;: 23,
+      &quot;redirectChain&quot;: [],
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;extraction&quot;: &quot;complete&quot;
+    }
+  ],
+  &quot;pages&quot;: [
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;responseHeaders&quot;: {
+        &quot;content-length&quot;: &quot;3571&quot;,
+        &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;,
+        &quot;date&quot;: &quot;Wed, 11 Nov 2026 12:40:39 GMT&quot;,
+        &quot;last-modified&quot;: &quot;Wed, 11 Nov 2026 12:38:19 GMT&quot;,
+        &quot;server&quot;: &quot;SimpleHTTP/0.6 Python/3.11.2&quot;
+      },
+      &quot;responseTimeMs&quot;: 16,
+      &quot;sizeBytes&quot;: 3571,
+      &quot;usedJs&quot;: false,
+      &quot;fetchSource&quot;: &quot;network&quot;,
+      &quot;cacheState&quot;: &quot;miss&quot;,
+      &quot;fetchDiagnostics&quot;: {
+        &quot;source&quot;: &quot;network&quot;,
+        &quot;cache&quot;: &quot;miss&quot;,
+        &quot;fetched&quot;: true,
+        &quot;rendered&quot;: false,
+        &quot;blocked&quot;: false,
+        &quot;durationMs&quot;: 16,
+        &quot;retries&quot;: 0,
+        &quot;rateLimit&quot;: {
+          &quot;host&quot;: &quot;lumentea.test&quot;,
+          &quot;concurrency&quot;: 8,
+          &quot;intervalCap&quot;: 4,
+          &quot;intervalMs&quot;: 1000
+        },
+        &quot;backpressure&quot;: {
+          &quot;host&quot;: &quot;lumentea.test&quot;,
+          &quot;status&quot;: &quot;ok&quot;,
+          &quot;delayMs&quot;: 0,
+          &quot;consecutiveSlow&quot;: 0,
+          &quot;consecutiveBlocked&quot;: 0,
+          &quot;consecutiveErrors&quot;: 0,
+          &quot;recentP95Ms&quot;: 16
+        },
+        &quot;robotsTxt&quot;: {
+          &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+          &quot;cache&quot;: &quot;hit&quot;,
+          &quot;allowed&quot;: true,
+          &quot;availability&quot;: &quot;available&quot;,
+          &quot;status&quot;: 200
+        },
+        &quot;redirectChain&quot;: [],
+        &quot;rendering&quot;: {
+          &quot;mode&quot;: &quot;auto&quot;,
+          &quot;status&quot;: &quot;not-needed&quot;,
+          &quot;raw&quot;: {
+            &quot;source&quot;: &quot;network&quot;,
+            &quot;cache&quot;: &quot;miss&quot;,
+            &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+            &quot;finalUrl&quot;: &quot;http://lumentea.test/&quot;,
+            &quot;status&quot;: 200
+          }
+        }
+      },
+      &quot;blocked&quot;: false,
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+      &quot;metaDescription&quot;: &quot;Loose leaf white and jasmine teas from three family farms in Fujian, packed by hand in small batches in Bristol and shipped across the UK.&quot;,
+      &quot;canonical&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;canonicalRaw&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;canonicalStatus&quot;: &quot;single&quot;,
+      &quot;canonicalCandidates&quot;: [
+        {
+          &quot;source&quot;: &quot;html-head&quot;,
+          &quot;raw&quot;: &quot;http://lumentea.test/&quot;,
+          &quot;resolved&quot;: &quot;http://lumentea.test/&quot;
+        }
+      ],
+      &quot;h1&quot;: &quot;Small-batch loose leaf tea from Fujian&quot;,
+      &quot;h1Count&quot;: 1,
+      &quot;h2Count&quot;: 3,
+      &quot;h3Count&quot;: 0,
+      &quot;indexable&quot;: true,
+      &quot;extractionStatus&quot;: &quot;complete&quot;,
+      &quot;wordCount&quot;: 244,
+      &quot;contentExtraction&quot;: {
+        &quot;requested&quot;: &quot;crawler&quot;,
+        &quot;used&quot;: &quot;crawler&quot;,
+        &quot;fallback&quot;: false,
+        &quot;wordCountSource&quot;: &quot;local_cjk_aware&quot;,
+        &quot;baseUrl&quot;: &quot;http://lumentea.test/&quot;
+      },
+      &quot;warnings&quot;: [],
+      &quot;contentHash&quot;: &quot;485115af488b915d57ef848146fbcee90596c3c2af4c3770fd844050072d30e5&quot;,
+      &quot;mainContentHash&quot;: &quot;1757a56c4d91e3b4bab11148d7afa128e4e52804d929005bb920b6074e18c46a&quot;,
+      &quot;textRatio&quot;: 0.3596294216732173,
+      &quot;contentSample&quot;: &quot;Small-batch loose leaf tea from Fujian Lumen Tea buys from three family farms in Fuding and Fu&#x27;an, in the north of Fujian province, where white tea was first made. We visit every spring, taste each lot before we buy it, and pack it ourselves in Bristol in batches small enough to sell within a few mo&quot;,
+      &quot;contentSketch&quot;: {
+        &quot;version&quot;: 1,
+        &quot;wordCount&quot;: 246,
+        &quot;shingleSize&quot;: 5,
+        &quot;sampledShingles&quot;: 32,
+        &quot;hashes&quot;: [
+          &quot;040d9b97561cebf1&quot;,
+          &quot;284b3519c3d45a9e&quot;,
+          &quot;1bda66402296272d&quot;,
+          &quot;3eb68bb5ccdace93&quot;,
+          &quot;4746b7dd20900e4c&quot;,
+          &quot;c05d36209bd1c89f&quot;,
+          &quot;b4c5cae9a1140af0&quot;,
+          &quot;abe9b872ce2de9c2&quot;,
+          &quot;d4a09fcc83e3aa1f&quot;,
+          &quot;62e880a7bf843906&quot;,
+          &quot;e398b78414a107ae&quot;,
+          &quot;52627f19224996c3&quot;,
+          &quot;e479b5841d543ce3&quot;,
+          &quot;870456baec673d29&quot;,
+          &quot;1d22818d16ebfa89&quot;,
+          &quot;bc0c1b5ee41c04cf&quot;,
+          &quot;0403142d8013d5c4&quot;,
+          &quot;31e6e822cf6d73fb&quot;,
+          &quot;be38b3d882353b16&quot;,
+          &quot;94edcade2aefb951&quot;,
+          &quot;d79dd03a6309001a&quot;,
+          &quot;4f2ac63cc45adaab&quot;,
+          &quot;7c0b6a280d7a7c07&quot;,
+          &quot;b9081df89a385993&quot;,
+          &quot;3c8223446e128896&quot;,
+          &quot;566e40a4364dc956&quot;,
+          &quot;8a1baa4cdbf39eae&quot;,
+          &quot;90090823efe6ade3&quot;,
+          &quot;6bb71384f2109300&quot;,
+          &quot;e2c485739e89bffb&quot;,
+          &quot;98d7b2bc52fe6bb3&quot;,
+          &quot;b714c270207f20a7&quot;
+        ]
+      },
+      &quot;lang&quot;: &quot;en&quot;,
+      &quot;hasViewport&quot;: true,
+      &quot;isHttps&quot;: false,
+      &quot;hasHsts&quot;: false,
+      &quot;hreflang&quot;: [
+        {
+          &quot;hreflang&quot;: &quot;zh-CN&quot;,
+          &quot;href&quot;: &quot;http://lumentea.test/zh/&quot;
+        }
+      ],
+      &quot;mixedContentCount&quot;: 0,
+      &quot;mixedContentSamples&quot;: [],
+      &quot;imagesTotal&quot;: 1,
+      &quot;imagesMissingAlt&quot;: 0,
+      &quot;oversizedImageCandidates&quot;: [],
+      &quot;outgoingInternalCount&quot;: 9,
+      &quot;outgoingExternalCount&quot;: 0,
+      &quot;sampleInternalLinks&quot;: [
+        &quot;http://lumentea.test/&quot;,
+        &quot;http://lumentea.test/about/&quot;,
+        &quot;http://lumentea.test/blog/&quot;,
+        &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+        &quot;http://lumentea.test/contact/&quot;,
+        &quot;http://lumentea.test/shop/&quot;,
+        &quot;http://lumentea.test/teas/&quot;,
+        &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+        &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;
+      ],
+      &quot;sampleExternalLinks&quot;: [],
+      &quot;internalAnchorSamples&quot;: [
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/&quot;,
+          &quot;text&quot;: &quot;Lumen Tea&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/shop/&quot;,
+          &quot;text&quot;: &quot;Shop&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/blog/&quot;,
+          &quot;text&quot;: &quot;Journal&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/about/&quot;,
+          &quot;text&quot;: &quot;About&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/contact/&quot;,
+          &quot;text&quot;: &quot;Contact&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+          &quot;text&quot;: &quot;Jasmine Silver Needle&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+          &quot;text&quot;: &quot;Bai Mudan&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/teas/&quot;,
+          &quot;text&quot;: &quot;the tea page&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+          &quot;text&quot;: &quot;How to brew green tea&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/about/&quot;,
+          &quot;text&quot;: &quot;About us&quot;
+        },
+        {
+          &quot;href&quot;: &quot;http://lumentea.test/teas/&quot;,
+          &quot;text&quot;: &quot;All teas&quot;
+        }
+      ],
+      &quot;externalAnchorSamples&quot;: [],
+      &quot;markdownAlternates&quot;: [],
+      &quot;describedBy&quot;: [],
+      &quot;schemaTypes&quot;: [
+        &quot;Organization&quot;,
+        &quot;PostalAddress&quot;,
+        &quot;WebSite&quot;
+      ],
+      &quot;structuredDataFormats&quot;: [
+        &quot;json-ld&quot;
+      ],
+      &quot;googleRichResults&quot;: [],
+      &quot;googleRichResultsSelection&quot;: {
+        &quot;limit&quot;: 50,
+        &quot;eligible&quot;: 0,
+        &quot;returned&quot;: 0,
+        &quot;omitted&quot;: 0,
+        &quot;partial&quot;: false,
+        &quot;eligibleByStatus&quot;: {
+          &quot;no-required-properties&quot;: 0,
+          &quot;required-properties-observed&quot;: 0,
+          &quot;missing-required-properties&quot;: 0,
+          &quot;retired&quot;: 0,
+          &quot;not-assessed&quot;: 0
+        },
+        &quot;returnedByStatus&quot;: {
+          &quot;no-required-properties&quot;: 0,
+          &quot;required-properties-observed&quot;: 0,
+          &quot;missing-required-properties&quot;: 0,
+          &quot;retired&quot;: 0,
+          &quot;not-assessed&quot;: 0
+        },
+        &quot;omittedByStatus&quot;: {
+          &quot;no-required-properties&quot;: 0,
+          &quot;required-properties-observed&quot;: 0,
+          &quot;missing-required-properties&quot;: 0,
+          &quot;retired&quot;: 0,
+          &quot;not-assessed&quot;: 0
+        }
+      },
+      &quot;schemaSameAs&quot;: [],
+      &quot;schemaSameAsEvidence&quot;: [],
+      &quot;invalidSchemaSameAs&quot;: [],
+      &quot;socialProfileLinks&quot;: [],
+      &quot;invalidJsonLdCount&quot;: 0,
+      &quot;invalidJsonLdSamples&quot;: [],
+      &quot;unrecognizedJsonLdTypes&quot;: [],
+      &quot;openGraphTitle&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+      &quot;openGraphDescription&quot;: &quot;Loose leaf white and jasmine teas from three family farms in Fujian, packed by hand in small batches in Bristol and shipped across the UK.&quot;,
+      &quot;openGraphImage&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+      &quot;twitterCard&quot;: &quot;summary_large_image&quot;,
+      &quot;hasDate&quot;: false,
+      &quot;geo&quot;: {
+        &quot;semanticHtml&quot;: true,
+        &quot;structuredData&quot;: true,
+        &quot;hasAuthor&quot;: false,
+        &quot;hasDate&quot;: false,
+        &quot;questionHeadings&quot;: 0,
+        &quot;listCount&quot;: 0,
+        &quot;tableCount&quot;: 0,
+        &quot;structuredBlocks&quot;: 0,
+        &quot;answerable&quot;: true,
+        &quot;hasFaqSchema&quot;: false,
+        &quot;hasQapageSchema&quot;: false,
+        &quot;hasLlmsTxt&quot;: false,
+        &quot;llmsTxtUrl&quot;: &quot;http://lumentea.test/llms.txt&quot;,
+        &quot;llmsTxtStatus&quot;: 404
+      },
+      &quot;declaredIndexability&quot;: &quot;indexable-candidate&quot;,
+      &quot;crawlDepth&quot;: 0,
+      &quot;contentAuditAllowed&quot;: true,
+      &quot;internalInlinkCount&quot;: 8,
+      &quot;internalLinkAuthorityScore&quot;: 57
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;finalUrl&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;status&quot;: 200,
+      &quot;contentType&quot;: &quot;text/html; charset=utf-8&quot;,
+      &quot;responseHeaders&quot;: {
+        &quot;content-length&quot;: &quot;2842&quot;,
+        &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;,
+        &quot;date&quot;: &quot;Wed, 11 Nov 2026 12:40:39 GMT&quot;,
+        &quot;last-modified&quot;: &quot;Wed, 11 Nov 2026 12:38:19 GMT&quot;,
+        &quot;server&quot;: &quot;SimpleHTTP/0.6 Python/3.11.2&quot;
+      },
+      &quot;responseTimeMs&quot;: 4,
+      &quot;sizeBytes&quot;: 2842,
+      &quot;usedJs&quot;: false,
+      &quot;fetchSource&quot;: &quot;network&quot;,
+      &quot;cacheState&quot;: &quot;miss&quot;,
+      &quot;fetchDiagnostics&quot;: {
+        &quot;source&quot;: &quot;network&quot;,
+        &quot;cache&quot;: &quot;miss&quot;,
+        &quot;fetched&quot;: true,
+        &quot;rendered&quot;: false,
+        &quot;blocked&quot;: false,
+        &quot;durationMs&quot;: 4,
+        &quot;retries&quot;: 0,
+        &quot;rateLimit&quot;: {
+          &quot;host&quot;: &quot;lumentea.test&quot;,
+          &quot;concurrency&quot;: 8,
+          &quot;intervalCap&quot;: 4,
+          &quot;intervalMs&quot;: 1000
+        },
+        &quot;backpressure&quot;: {
+          &quot;host&quot;: &quot;lumentea.test&quot;,
+          &quot;status&quot;: &quot;ok&quot;,
+          &quot;delayMs&quot;: 0,
+          &quot;consecutiveSlow&quot;: 0,
+          &quot;consecutiveBlocked&quot;: 0,
+          &quot;consecutiveErrors&quot;: 0,
+          &quot;recentP95Ms&quot;: 4
+        },
+        &quot;robotsTxt&quot;: {
+          &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+          &quot;cache&quot;: &quot;hit&quot;,
+          &quot;allowed&quot;: true,
+          &quot;availability&quot;: &quot;available&quot;,
+          &quot;status&quot;: 200
+        },
+        &quot;redirectChain&quot;: [],
+        &quot;rendering&quot;: {
+          &quot;mode&quot;: &quot;auto&quot;,
+          &quot;status&quot;: &quot;not-needed&quot;,
+          &quot;raw&quot;: {
+            &quot;source&quot;: &quot;network&quot;,
+            &quot;cache&quot;: &quot;miss&quot;,
+            &quot;url&quot;: &quot;http://lumentea.test/about/&quot;,
+            &quot;finalUrl&quot;: &quot;http://lumentea.test/about/&quot;,
+            &quot;status&quot;: 200
+          }
+        }
+      },
+      &quot;blocked&quot;: false,
+      &quot;robotsTxt&quot;: {
+        &quot;url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+        &quot;allowed&quot;: true,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;status&quot;: 200
+      },
+      &quot;title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;,
+      &quot;metaDescription&quot;: &quot;Lumen Tea is two people in Bristol who buy white tea directly from three family farms in Fujian and pack it in small batches.&quot;,
+      &quot;canonical&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;canonicalRaw&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;canonicalStatus&quot;: &quot;single&quot;,
+      &quot;canonicalCandidates&quot;: [
+        {
+          &quot;source&quot;: &quot;html-head&quot;,
+          &quot;raw&quot;: &quot;http://lumentea.test/about/&quot;,
+          &quot;resolved&quot;: &quot;http://lumentea.test/about/&quot;
+        }
+      ],
+      &quot;h1&quot;: &quot;About Lumen Tea&quot;,
+      &quot;h1Count&quot;: 1,
+      &quot;h2Count&quot;: 2,
+      &quot;h3Count&quot;: 0,
+      &quot;indexable&quot;: true,
+      &quot;extractionStatus&quot;: &quot;complete&quot;,
+      &quot;wordCount&quot;: 210,
+      &quot;contentExtraction&quot;: {
+        &quot;requested&quot;: &quot;crawler&quot;,
+        &quot;used&quot;: &quot;crawler&quot;,
+        &quot;fallback&quot;: false,
+        &quot;wordCountSource&quot;: &quot;local_cjk_aware&quot;,
+        &quot;baseUrl&quot;: &quot;http://lumentea.test/about/&quot;
+      },
+      &quot;warnings&quot;: [],
+      &quot;contentHash&quot;: &quot;5de45447271f9ecf42abe95e211b87ba8ca1d17cd73784f9c2bcc14fed1d593a&quot;,
+      &quot;mainContentHash&quot;: &quot;336a4cbcebbd303a074e4879798d6351d925500364bdc2dd2c8edc59a2258a9a&quot;,
+      &quot;textRatio&quot;: 0.3803810868031052,
+      &quot;contentSample&quot;: &quot;About Lumen Tea Lumen Tea is Mei and Tom Harding. Mei grew up in Fuzhou and spent ten years buying tea for a London importer; Tom ran a coffee roastery in Bristol. We started Lumen Tea in 2021 because the white tea we could buy in the UK was usually two or t</pre></details><details><summary>seo-crawl.md</summary><pre># Crawl Implementation Tickets
+
+Source: http://lumentea.test/
+Report: crawl_ebf7f49790704d349eceaf98fecc7850
+Status: completed
+Strategy: full
+Crawler: SEO-Skill/0.17.5 (+https://seoskill.dev)
+
+## Warnings
+
+- 2 URLs disallowed SEO-Skill/0.17.5 (+https://seoskill.dev)/ in robots.txt. If the audit should reach them, allow the SEO-Skill token on only those public paths.
+
+## 1. Client error
+
+- [ ] Fix 1 affected URL
+- Severity: high
+- Rule: client_error
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 5000; 1 URL is affected; estimated effort is medium.
+- Plain-English fix: Restore the page, update links to the correct URL, or add one direct 301 to the best replacement.
+- Verify: Re-run the crawl and confirm the URL returns a 2xx status or redirects once to a useful replacement.
+- Command: seo crawl http://lumentea.test/ --severity high --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/teas/white-peony/
+
+## 2. Page is not served over HTTPS
+
+- [ ] Fix 7 affected URLs
+- Severity: medium
+- Rule: http_not_secure
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 1200; 7 URLs are affected; estimated effort is medium.
+- Plain-English fix: Install TLS, serve the page on HTTPS, and redirect the HTTP URL to the HTTPS version with a permanent redirect.
+- Verify: Re-run the crawl and confirm finalUrl starts with https:// and isHttps is true.
+- Command: seo crawl http://lumentea.test/ --severity medium --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/
+- http://lumentea.test/about/
+- http://lumentea.test/contact/
+- http://lumentea.test/guides/storing-tea/
+- http://lumentea.test/teas/
+- http://lumentea.test/teas/bai-mudan/
+- http://lumentea.test/teas/jasmine-silver-needle/
+
+## 3. Duplicate title
+
+- [ ] Fix 2 affected URLs
+- Severity: medium
+- Rule: title_duplicate
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 1200; 2 URLs are affected; estimated effort is low.
+- Plain-English fix: Rewrite each title so it reflects the specific page, including the unique entity, intent, location, product, or angle.
+- Verify: Re-run the crawl and confirm this title appears on only one indexable URL.
+- Command: seo crawl http://lumentea.test/ --severity medium --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/
+- http://lumentea.test/guides/storing-tea/
+
+## 4. Images lack alt attributes
+
+- [ ] Fix 1 affected URL
+- Severity: medium
+- Rule: image_missing_alt
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 1200; 1 URL is affected; estimated effort is medium.
+- Plain-English fix: Add concise alt text to meaningful images that currently have no alt attribute. Keep alt=&quot;&quot; on decorative images.
+- Verify: Re-run the crawl and confirm imagesMissingAlt is zero. Decorative images can keep an empty alt attribute.
+- Command: seo crawl http://lumentea.test/ --severity medium --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/teas/jasmine-silver-needle/
+
+## 5. Invalid JSON-LD
+
+- [ ] Fix 1 affected URL
+- Severity: medium
+- Rule: jsonld_invalid
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 1200; 1 URL is affected; estimated effort is medium.
+- Plain-English fix: Fix the JSON syntax in each application/ld+json script. Validate quotes, commas, braces, and any server-rendered values inserted into the block.
+- Verify: Re-run the crawl and confirm invalidJsonLdCount is zero, then validate the page with a structured data tester.
+- Command: seo crawl http://lumentea.test/ --severity medium --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/teas/jasmine-silver-needle/
+
+## 6. Redirect chain
+
+- [ ] Fix 1 affected URL
+- Severity: medium
+- Rule: redirect_chain
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 1200; 1 URL is affected; estimated effort is medium.
+- Plain-English fix: Point internal links, canonicals, and sitemap URLs directly at the final destination. Keep only one necessary 301 from old URLs.
+- Verify: Re-run the crawl and confirm fetchDiagnostics.redirectChain has zero or one hop.
+- Command: seo crawl http://lumentea.test/ --severity medium --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/shop/
+
+## 7. Missing H1
+
+- [ ] Fix 1 affected URL
+- Severity: low
+- Rule: h1_missing
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 100; 1 URL is affected; estimated effort is low.
+- Plain-English fix: Add one clear H1 near the top of the main content. Make it describe the specific page, not just a generic section label.
+- Verify: Re-run the crawl and confirm an H1 describes the page’s main visible topic.
+- Command: seo crawl http://lumentea.test/ --severity low --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/contact/
+
+## 8. Hreflang missing self reference
+
+- [ ] Fix 1 affected URL
+- Severity: low
+- Rule: hreflang_incomplete
+- Why this ranks: No joined GSC visibility is available for these affected URLs; Search Console evidence is skipped. This ranks as a fix. Severity is 100; 1 URL is affected; estimated effort is low.
+- Plain-English fix: Add one hreflang entry that points to this page&#x27;s final URL. Keep x-default as an additional fallback only where it is useful.
+- Verify: Re-run the crawl and confirm one hreflang href matches the fetched final URL.
+- Command: seo crawl http://lumentea.test/ --severity low --max-pages 100
+
+Affected URLs:
+- http://lumentea.test/
+
+## Review observations
+
+These are not implementation tickets. Check the evidence before deciding whether to work on them.
+
+- Noindex found (medium, 1 URL): Remove the noindex directive if the page should rank. Leave it in place only for intentionally private or low-value pages.
+  - First URL: http://lumentea.test/teas/jasmine-silver-needle/
+- X-Robots-Tag noindex (medium, 1 URL): Remove the noindex directive from server, CDN, or framework response headers if the page should rank.
+  - First URL: http://lumentea.test/teas/bai-mudan/
+- No llms.txt (low, 1 URL): Publish /llms.txt as plain text with a one-line summary and sections of links to the main pages.
+  - First URL: http://lumentea.test/llms.txt
+- No Markdown copy of the pages (low, 1 URL): Serve a Markdown copy of each page, linked from the page with &lt;link rel=&quot;alternate&quot; type=&quot;text/markdown&quot;&gt;, and return it for Accept: text/markdown with Vary: Accept.
+  - First URL: http://lumentea.test/
+- No structured data detected (low, 3 URLs): Add structured data only where a schema type genuinely describes the page, for example an article page describing its article. Validate the markup after adding it, and leave pages without a fitting schema type unmarked.
+  - First URL: http://lumentea.test/contact/
+- Canonicalized page (low, 1 URL): If this URL should rank, make the canonical self-referencing. If another URL is preferred, make internal links and sitemap entries point to that preferred URL.
+  - First URL: http://lumentea.test/teas/
+- No observed internal links (low, 1 URL): Check the page in a complete crawl and in the sitemap. If it is meant to be discovered, add a relevant link from a hub, navigation path, related page, or template.
+  - First URL: http://lumentea.test/guides/storing-tea/
+- URL redirects (low, 1 URL): Check why the old URL was requested. Update internal links, canonicals, and sitemap entries to the final URL when appropriate. Keep one direct 301 when the old URL must remain supported.
+  - First URL: http://lumentea.test/shop/
+
+</pre></details>
+<h2>The session's closing message</h2><pre>I audited the site with the installed `seo` tool&#x27;s crawl and wrote its findings to `~/work/output/report.md`. The tool&#x27;s own markdown and JSON reports are copied alongside it as `seo-crawl.md` and `seo-crawl.json`.
+
+**How it ran:** the tool&#x27;s crawl through its MCP connection failed with a parameter error (`Unrecognized key: &quot;saveReport&quot;`), so I ran the same crawl through its command-line version. It needed no account or key. It crawled 8 of 11 URLs. The other 2, `/blog/` and `/blog/how-to-brew-green-tea/`, are blocked by `Disallow: /blog/` in robots.txt, so the tool did not audit them and gave only a warning.
+
+**What it found:** 1 high, 14 medium and 10 low issues in total.
+- **High:** `/teas/white-peony/` returns a 404.
+- **Medium:**
+  - `/` and `/guides/storing-tea/` have the same title.
+  - `/teas/jasmine-silver-needle/` has an image with no alt text, invalid structured data (JSON-LD) and a noindex tag.
+  - `/teas/bai-mudan/` is set to noindex by a response header.
+  - `/shop/` goes through a 2-hop redirect before reaching `/teas/`.
+  - 7 pages are flagged as not served over HTTPS. I kept these in the report because the tool raised them, with a note that you asked to ignore HTTPS.
+- **Low:**
+  - `/contact/` has no H1.
+  - The home page&#x27;s language tag (hreflang) doesn&#x27;t include itself.
+  - The site has no `llms.txt` and no Markdown copies of its pages.
+  - `/contact/`, `/guides/storing-tea/` and `/teas/` have no structured data.
+  - `/teas/` names the home page as its canonical.
+  - `/guides/storing-tea/` has no internal links pointing to it.
+  - `/shop/` redirects.
+
+The tool&#x27;s markdown and JSON files come from two separate runs of the same crawl. Every finding in the markdown appears in the JSON too, and both show the same 8 crawled pages.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

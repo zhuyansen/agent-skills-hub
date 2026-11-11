@@ -1,0 +1,1353 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>squirrelscan/squirrelscan: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>squirrelscan/squirrelscan: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit 5c69ace6a3e9. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 15 of 16 planted problems</b>; 0 false claims about the site; 33 problems raised in all; 2 min.</p><p>A crawler CLI with 310+ rules, run in its offline mode: its cloud service cannot reach a private site.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.<br><span class='mute'>“/blog/how-to-brew-green-tea/ (BlogPosting, blocked by robots.txt) ... Blocked by: robots.txt:disallowed”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.<br><span class='mute'>“1 noindexed page(s) found in sitemap | /teas/jasmine-silver-needle/; Page is set to noindex via robots meta tag ... /teas/jasmine-silver-needle/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.<br><span class='mute'>“http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.<br><span class='mute'>“Missing document title; Missing page title | /blog/how-to-brew-green-tea/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).<br><span class='mute'>“1 duplicate description(s) found across 2 pages | /blog/, /teas/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).<br><span class='mute'>“http://lumentea.test/teas/dragon-well/ (404), linked in the page content (on: /blog/how-to-brew-green-tea/)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.<br><span class='mute'>“1 sitemap URL(s) return 4XX | /teas/white-peony/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.<br><span class='mute'>“Invalid JSON-LD syntax | /teas/jasmine-silver-needle/ ... JSON Parse error”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.<br><span class='mute'>“1 image(s) missing alt text | http://lumentea.test/img/jasmine.png (on: /teas/jasmine-silver-needle/)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.<br><span class='mute'>“No H1 tag found | /contact/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).<br><span class='mute'>“1 link target(s) point to redirecting URLs ... http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200) (header link on all 10 pages)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).<br><span class='mute'>“Missing viewport meta tag | /blog/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.<br><span class='mute'>“Page is set to noindex via X-Robots-Tag header | /teas/bai-mudan/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.<br><span class='mute'>“3 orphan page(s) with &lt;2 incoming links | /guides/storing-tea/, ...”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).</td><td><span class="no">missed</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).<br><span class='mute'>“1 duplicate title(s) affecting 2 pages | /, /guides/storing-tea/”</span></td><td><span class="ok">found</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>None.</li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO audit: http://lumentea.test/ (squirrelscan)
+
+Tool: squirrelscan CLI v0.0.177 via the `audit-website` skill. Command: `squirrel audit http://lumentea.test/ --level full --offline --format llm` (plus `--format json`). Audit date 2026-11-11T12:28:57.929Z; 12 URLs crawled (10 HTML pages from the sitemap plus 2 that returned 404). Run offline because the site is not on the public internet; HTTPS-only rules were marked not applicable by the tool (private host).
+
+**Overall score: 71 / grade C**  
+Summary: {&quot;passed&quot;: 1052, &quot;warnings&quot;: 61, &quot;failed&quot;: 10, &quot;skipped&quot;: 0}
+
+Severities are squirrelscan&#x27;s: `error` &gt; `warning` &gt; `info`. Pages are listed exactly as the tool reports them (full lists from the JSON report; the LLM text report truncates some lists).
+
+## Findings overview
+
+| # | Severity | Rule | Category | Finding | Pages |
+|---|---|---|---|---|---|
+| 1 | error | `crawl/schema-noindex-conflict` | Crawlability | 2 page(s) have rich schema but are blocked from indexing | /blog/how-to-brew-green-tea/ (BlogPosting, blocked by robots.txt), /teas/bai-mudan/ (Product, blocked by X-Robots-Tag noindex header) |
+| 2 | error | `core/meta-title` | Core SEO | Missing document title; Missing page title | /blog/how-to-brew-green-tea/ |
+| 3 | error | `core/h1` | Core SEO | No H1 tag found | /contact/ |
+| 4 | error | `links/broken-links` | Reliability | 1 broken internal link(s) (4xx/5xx) | /blog/how-to-brew-green-tea/ |
+| 5 | error | `mobile/viewport` | Mobile | Missing viewport meta tag | /blog/ |
+| 6 | warning | `crawl/sitemap-4xx` | Crawlability | 1 sitemap URL(s) return 4XX | /teas/white-peony/ |
+| 7 | warning | `crawl/canonical-chain` | Crawlability | Page redirects before content is served | /shop/ |
+| 8 | warning | `crawl/noindex-in-sitemap` | Crawlability | 1 noindexed page(s) found in sitemap | /teas/jasmine-silver-needle/ |
+| 9 | warning | `crawl/redirect-chain` | Crawlability | 1 page(s) have redirect chains &gt;2 hops | /shop/ |
+| 10 | warning | `core/canonical` | Core SEO | http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index | /shop/, /teas/ |
+| 11 | warning | `core/robots-meta` | Core SEO | Page is set to noindex via X-Robots-Tag header; Page is set to noindex via robots meta tag | /teas/bai-mudan/, /teas/jasmine-silver-needle/ |
+| 12 | warning | `core/title-unique` | Core SEO | 1 duplicate title(s) affecting 2 pages | /, /guides/storing-tea/ |
+| 13 | warning | `security/csp` | Security | No Content-Security-Policy header | site-wide |
+| 14 | warning | `security/x-frame-options` | Security | No clickjacking protection | site-wide |
+| 15 | warning | `security/security-txt` | Security | No security.txt at /.well-known/security.txt (RFC 9116 vulnerability-disclosure contact) | site-wide |
+| 16 | warning | `security/version-disclosure` | Security | Server header reveals a software version: SimpleHTTP/0.6 Python/3.11.2 | /, /about/, /blog/, /blog/how-to-brew-green-tea/, /contact/, /guides/storing-tea/, /shop/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/ |
+| 17 | warning | `links/orphan-pages` | Links | 3 orphan page(s) with &lt;2 incoming links | /guides/storing-tea/, /teas/dragon-well/, /teas/white-peony/ |
+| 18 | warning | `links/no-contextual-inbound` | Links | 3 page(s) are linked only from sitewide chrome | /about/, /blog/, /shop/ |
+| 19 | warning | `links/redirect-chains` | Links | 1 link target(s) point to redirecting URLs; 1 page(s) redirect to another URL | /shop/ (header link on all 10 pages: /, /about/, /blog/, /blog/how-to-brew-green-tea/, /contact/, /guides/storing-tea/, /shop/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/) |
+| 20 | warning | `links/weak-internal-links` | Links | 1 page(s) have only 1 internal link | /teas/dragon-well/ |
+| 21 | warning | `content/duplicate-title` | Content | 1 duplicate title(s) found across 2 pages | /, /guides/storing-tea/ |
+| 22 | warning | `content/duplicate-description` | Content | 1 duplicate description(s) found across 2 pages | /blog/, /teas/ |
+| 23 | warning | `content/keyword-stuffing` | Content | 1 to 2 word(s) may be overused | /, /about/, /blog/how-to-brew-green-tea/, /guides/storing-tea/ |
+| 24 | warning | `content/article-links` | Content | short article has 0 external links (min 1) | /blog/, /blog/how-to-brew-green-tea/ |
+| 25 | warning | `content/word-count` | Content | Thin content: 132 to 277 words (min 300) | /, /about/, /blog/, /contact/, /guides/storing-tea/, /shop/, /teas/ |
+| 26 | warning | `schema/json-ld-valid` | Structured Data | Invalid JSON-LD syntax | /teas/jasmine-silver-needle/ |
+| 27 | warning | `schema/entity-authors` | Structured Data | 1 of 1 Person entity has no url and no sameAs | /blog/how-to-brew-green-tea/ |
+| 28 | warning | `images/alt-text` | Images | 1 image(s) missing alt text | /teas/jasmine-silver-needle/ |
+| 29 | warning | `perf/lcp-hints` | Performance | Likely-LCP image loaded without preload | /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/ |
+| 30 | warning | `perf/lcp-fetchpriority` | Performance | Hero/LCP image loaded eagerly without fetchpriority=&#x27;high&#x27; or preload | /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/ |
+| 31 | warning | `social/og-url-match` | Social Media | og:url does not match canonical URL | /shop/, /teas/ |
+| 32 | warning | `a11y/link-text` | Accessibility | 1 link(s) with generic text | /, /about/, /blog/, /blog/how-to-brew-green-tea/, /contact/, /guides/storing-tea/, /shop/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/ |
+| 33 | warning | `eeat/author-byline` | E-E-A-T | Only 33% of content pages have author attribution | site-wide |
+| 34 | warning | `eeat/privacy-policy` | E-E-A-T | No Privacy Policy page found | site-wide |
+| 35 | warning | `legal/privacy-policy` | Legal Compliance | No privacy policy link found across site | site-wide |
+| 36 | info | `i18n/hreflang` | Internationalization | No self-referencing hreflang found; No x-default hreflang found | / |
+| 37 | info | `ax/llms-txt` | Agent Experience | No /llms.txt found — consider adding one so AI agents can discover your key content | site-wide |
+| 38 | info | `ax/markdown-response` | Agent Experience | No Markdown response — consider honoring Accept: text/markdown or publishing a .md variant so agents get clean content | site-wide |
+
+## Details
+
+### 1. [ERROR] Schema + Noindex Conflict (`crawl/schema-noindex-conflict`)
+
+Category: Crawlability · Docs: https://docs.squirrelscan.com/rules/crawl/schema-noindex-conflict
+
+- **2 page(s) have rich schema but are blocked from indexing** (status: fail)
+  - Detail: /blog/how-to-brew-green-tea/ /  Schema: BlogPosting /  Blocked by: robots.txt:disallowed / / /teas/bai-mudan/ /  Schema: Product /  Blocked by: header:noindex
+
+Tool&#x27;s recommended fix: Pages with rich result schemas (Article, Product, Recipe, Event, etc.) should be indexed so search engines can display rich results. Having schema markup on noindexed pages wastes effort and prevents rich results from appearing. Remove noindex directive or remove schema markup if page shouldn&#x27;t be indexed.
+
+### 2. [ERROR] Meta Title (`core/meta-title`)
+
+Category: Core SEO · Docs: https://docs.squirrelscan.com/rules/core/meta-title
+
+- **Missing document title** (status: fail)
+  - Pages: /blog/how-to-brew-green-tea/
+- **Missing page title** (status: fail)
+  - Pages: /blog/how-to-brew-green-tea/
+
+Tool&#x27;s recommended fix: Every page needs a unique, descriptive title tag between 30-75 characters. Titles appear in browser tabs, search results, and social shares. Write titles that accurately describe the page content while including your primary keyword near the beginning. If your title is too short, add more descriptive context. If too long, prioritize the most important information first and trim secondary details. Avoid keyword stuffing or duplicate titles across pages.
+
+### 3. [ERROR] H1 Tag (`core/h1`)
+
+Category: Core SEO · Docs: https://docs.squirrelscan.com/rules/core/h1
+
+- **No H1 tag found** (status: fail)
+  - Pages: /contact/
+
+Tool&#x27;s recommended fix: Each page should have exactly one H1 tag that clearly describes the main topic. The H1 is the primary heading users and search engines see, and it should align with the page title while being more detailed. If missing, add an H1 at the top of your main content. If you have multiple H1s, demote extras to H2 or lower. Ensure the H1 is descriptive and contains relevant keywords naturally.
+
+### 4. [ERROR] Broken Links (`links/broken-links`)
+
+Category: Reliability · Docs: https://docs.squirrelscan.com/rules/links/broken-links
+
+- **1 broken internal link(s) (4xx/5xx)** (status: fail)
+  - Pages: /blog/how-to-brew-green-tea/
+  - Item: http://lumentea.test/teas/dragon-well/ (404), linked in the page content (on: /blog/how-to-brew-green-tea/)
+
+Tool&#x27;s recommended fix: Broken links hurt user experience and waste crawl budget. Regularly audit links using tools or crawlers. Fix or remove broken links. Set up 301 redirects for moved content. For external links, consider using nofollow and regularly verifying they still work. Implement custom 404 pages that help users find content.
+
+### 5. [ERROR] Viewport Meta (`mobile/viewport`)
+
+Category: Mobile · Docs: https://docs.squirrelscan.com/rules/mobile/viewport
+
+- **Missing viewport meta tag** (status: fail)
+  - Pages: /blog/
+
+Tool&#x27;s recommended fix: The viewport meta tag is essential for responsive design. Use: &lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;. This ensures proper scaling on mobile devices. Without it, mobile browsers render at desktop width and zoom out. Required for mobile-first indexing.
+
+### 6. [WARNING] 4XX Pages in Sitemap (`crawl/sitemap-4xx`)
+
+Category: Crawlability · Docs: https://docs.squirrelscan.com/rules/crawl/sitemap-4xx
+
+- **1 sitemap URL(s) return 4XX** (status: warn)
+  - Pages: /teas/white-peony/
+  - Item: http://lumentea.test/teas/white-peony/
+
+Tool&#x27;s recommended fix: Sitemaps should only list URLs that return 200 and are intended for indexing. Remove 4XX URLs from the sitemap or fix them by restoring the content or redirecting to a valid page. Keep sitemap entries clean to avoid wasting crawl budget.
+
+### 7. [WARNING] Canonical Chain (`crawl/canonical-chain`)
+
+Category: Crawlability · Docs: https://docs.squirrelscan.com/rules/crawl/canonical-chain
+
+- **Page redirects before content is served** (status: warn)
+  - Pages: /shop/
+  - Item: http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200) (on: /shop/)
+
+Tool&#x27;s recommended fix: Canonical URLs should point directly to the final destination, not through redirects. Redirect chains waste crawl budget and dilute link equity. If your canonical URL redirects, update it to point to the final URL. Check that canonical URLs use the preferred protocol (https) and www/non-www version. Self-referencing canonicals should match the page URL exactly.
+
+### 8. [WARNING] Noindex in Sitemap (`crawl/noindex-in-sitemap`)
+
+Category: Crawlability · Docs: https://docs.squirrelscan.com/rules/crawl/noindex-in-sitemap
+
+- **1 noindexed page(s) found in sitemap** (status: warn)
+  - Pages: /teas/jasmine-silver-needle/
+  - Item: http://lumentea.test/teas/jasmine-silver-needle/
+
+Tool&#x27;s recommended fix: Pages with noindex meta tags should not be in your sitemap. Sitemaps tell search engines which pages to index, while noindex tells them not to. Having both sends mixed signals. Remove noindexed pages from your sitemap, or remove the noindex directive if you want them indexed. Use a sitemap generator that respects robots directives.
+
+### 9. [WARNING] Redirect Chains (`crawl/redirect-chain`)
+
+Category: Crawlability · Docs: https://docs.squirrelscan.com/rules/crawl/redirect-chain
+
+- **1 page(s) have redirect chains &gt;2 hops** (status: warn)
+  - Pages: /shop/
+  - Item: 3 hops
+
+Tool&#x27;s recommended fix: Each redirect hop adds latency and consumes crawl budget. Search engines may stop following after 5+ hops. Consolidate redirect chains to a single hop by updating the source URL to point directly to the final destination. Common causes: HTTP→HTTPS→www→trailing slash combinations, or legacy domain migrations.
+
+### 10. [WARNING] Canonical URL (`core/canonical`)
+
+Category: Core SEO · Docs: https://docs.squirrelscan.com/rules/core/canonical
+
+- **http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index** (status: fail)
+  - Pages: /shop/, /teas/
+
+Tool&#x27;s recommended fix: Canonical URLs tell search engines which version of a page is the &quot;master&quot; copy, preventing duplicate content issues. Every page should specify a canonical URL, typically pointing to itself. Add a &lt;link rel=&quot;canonical&quot; href=&quot;...&quot;&gt; tag in the head section. Use absolute URLs and ensure consistency (with or without trailing slash, www vs non-www). For paginated content, point to the main page or use rel=&quot;prev/next&quot;.
+
+### 11. [WARNING] Robots Meta (`core/robots-meta`)
+
+Category: Core SEO · Docs: https://docs.squirrelscan.com/rules/core/robots-meta
+
+- **Page is set to noindex via X-Robots-Tag header** (status: warn)
+  - Pages: /teas/bai-mudan/
+- **Page is set to noindex via robots meta tag** (status: warn)
+  - Pages: /teas/jasmine-silver-needle/
+
+Tool&#x27;s recommended fix: The robots meta tag and the X-Robots-Tag response header control how search engines index and follow links on a page. Common directives include noindex, nofollow, noarchive, and nosnippet. If your page has noindex, it won&#x27;t appear in search results. Review whether this is intentional; the report names the source, and a header set by a CDN, proxy or server config does not appear in the page source. For pages that should be indexed, remove the noindex directive or change it to &quot;index, follow&quot;. Be careful with nofollow as it prevents link equity from flowing to linked pages.
+
+### 12. [WARNING] Title Uniqueness (`core/title-unique`)
+
+Category: Core SEO · Docs: https://docs.squirrelscan.com/rules/core/title-unique
+
+- **1 duplicate title(s) affecting 2 pages** (status: warn)
+  - Pages: /, /guides/storing-tea/
+  - Item: &quot;lumen tea | small-batch loose leaf tea f...&quot; (2 pages) (on: /, /guides/storing-tea/)
+
+Tool&#x27;s recommended fix: Each page should have a unique title that accurately describes its content. Duplicate titles confuse search engines and users about which page to display. Use a pattern like &#x27;Page Topic | Brand Name&#x27; to ensure uniqueness. CMS often generate duplicate titles - audit and customize them.
+
+### 13. [WARNING] Content Security Policy (`security/csp`)
+
+Category: Security · Docs: https://docs.squirrelscan.com/rules/security/csp
+
+- **No Content-Security-Policy header** (status: warn)
+  - Detail: Site vulnerable to XSS without CSP
+
+Tool&#x27;s recommended fix: CSP prevents XSS attacks by restricting which resources can load. Start with a report-only policy to identify issues. Key directives: default-src &#x27;self&#x27;, script-src (avoid &#x27;unsafe-inline&#x27;), img-src, style-src, frame-ancestors. Use nonces or hashes instead of &#x27;unsafe-inline&#x27; for scripts. Test thoroughly as strict CSP can break functionality.
+
+### 14. [WARNING] X-Frame-Options (`security/x-frame-options`)
+
+Category: Security · Docs: https://docs.squirrelscan.com/rules/security/x-frame-options
+
+- **No clickjacking protection** (status: warn)
+  - Detail: Add X-Frame-Options: DENY or CSP frame-ancestors
+
+Tool&#x27;s recommended fix: X-Frame-Options prevents your site from being embedded in iframes, protecting against clickjacking attacks. Set: X-Frame-Options: DENY (no framing) or SAMEORIGIN (same origin only). For modern browsers, CSP frame-ancestors is preferred: Content-Security-Policy: frame-ancestors &#x27;self&#x27;. Use both for maximum compatibility.
+
+### 15. [WARNING] security.txt (`security/security-txt`)
+
+Category: Security · Docs: https://docs.squirrelscan.com/rules/security/security-txt
+
+- **No security.txt at /.well-known/security.txt (RFC 9116 vulnerability-disclosure contact)** (status: warn)
+  - Detail: missing
+
+Tool&#x27;s recommended fix: Publish a security.txt at /.well-known/security.txt with at least a Contact and an Expires field, served as plain text. Keep Expires in the future (renew it yearly). Sign the file with PGP if you can, and do not serve an HTML page at that path.
+
+### 16. [WARNING] Version-Revealing Headers (`security/version-disclosure`)
+
+Category: Security · Docs: https://docs.squirrelscan.com/rules/security/version-disclosure
+
+- **Server header reveals a software version: SimpleHTTP/0.6 Python/3.11.2** (status: warn)
+  - Pages: /, /about/, /blog/, /blog/how-to-brew-green-tea/, /contact/, /guides/storing-tea/, /shop/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+  - Item: Server: SimpleHTTP/0.6 Python/3.11.2
+
+Tool&#x27;s recommended fix: Remove the version from these headers. Nginx: server_tokens off; Apache: ServerTokens Prod and ServerSignature Off; PHP: expose_php = Off in php.ini; ASP.NET: drop X-AspNet-Version and X-AspNetMvc-Version (httpRuntime enableVersionHeader=&quot;false&quot;, MvcHandler.DisableMvcResponseHeader = true); remove X-Powered-By and X-Generator at the framework or proxy. Product names without a version are harmless.
+
+### 17. [WARNING] Orphan Pages (`links/orphan-pages`)
+
+Category: Links · Docs: https://docs.squirrelscan.com/rules/links/orphan-pages
+
+- **3 orphan page(s) with &lt;2 incoming links** (status: warn)
+  - Pages: /guides/storing-tea/, /teas/dragon-well/, /teas/white-peony/
+  - Item: http://lumentea.test/guides/storing-tea/
+  - Item: http://lumentea.test/teas/dragon-well/
+  - Item: http://lumentea.test/teas/white-peony/
+
+Tool&#x27;s recommended fix: Orphan pages have no internal links and are hard for search engines to discover. They may not get indexed or rank well. Add internal links from relevant pages. Include in navigation or sidebar. Add to sitemap. Create contextual links from related content. If intentionally orphaned (e.g., landing pages), ensure they&#x27;re accessible via sitemap.
+
+### 18. [WARNING] No Contextual Inbound Links (`links/no-contextual-inbound`)
+
+Category: Links · Docs: https://docs.squirrelscan.com/rules/links/no-contextual-inbound
+
+- **3 page(s) are linked only from sitewide chrome** (status: warn)
+  - Pages: /about/, /blog/, /shop/
+  - Item: http://lumentea.test/about/, linked only from the footer and the header
+  - Item: http://lumentea.test/blog/, linked only from the header
+  - Item: http://lumentea.test/shop/, linked only from the header
+
+Tool&#x27;s recommended fix: These pages look well-linked but receive no editorial support: every link pointing at them is repeated on every page of the site, so it carries no signal about what the page is about or how important it is. Add links from the body copy of related articles, hub pages, or category descriptions using descriptive anchor text. Sitewide navigation links help discovery, but contextual links are what pass topical relevance and internal link equity.
+
+### 19. [WARNING] Redirect Chains (`links/redirect-chains`)
+
+Category: Links · Docs: https://docs.squirrelscan.com/rules/links/redirect-chains
+
+- **1 link target(s) point to redirecting URLs** (status: warn)
+  - Pages: /, /about/, /blog/, /blog/how-to-brew-green-tea/, /contact/, /guides/storing-tea/, /shop/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+  - Item: http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)
+- **1 page(s) redirect to another URL** (status: warn)
+  - Pages: /shop/
+  - Item: http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)
+
+Tool&#x27;s recommended fix: Redirects add latency and waste crawl budget, especially when chained. Make sure every internal link hits the final destination directly, not the intermediate redirect, and consult the chain context emitted </pre></details><details><summary>squirrel-full.json</summary><pre>{
+  &quot;meta&quot;: {
+    &quot;version&quot;: &quot;0.0.177&quot;,
+    &quot;schemaVersion&quot;: &quot;1.11&quot;,
+    &quot;baseUrl&quot;: &quot;http://lumentea.test&quot;,
+    &quot;timestamp&quot;: &quot;2026-11-11T12:28:57.929Z&quot;,
+    &quot;totalPages&quot;: 12,
+    &quot;maxPages&quot;: 500
+  },
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;score&quot;: {
+    &quot;overall&quot;: 71,
+    &quot;grade&quot;: &quot;C&quot;,
+    &quot;groups&quot;: [
+      {
+        &quot;group&quot;: &quot;seo&quot;,
+        &quot;name&quot;: &quot;SEO&quot;,
+        &quot;score&quot;: 71,
+        &quot;passed&quot;: 785,
+        &quot;warnings&quot;: 42,
+        &quot;failed&quot;: 9,
+        &quot;total&quot;: 836
+      },
+      {
+        &quot;group&quot;: &quot;performance&quot;,
+        &quot;name&quot;: &quot;Performance&quot;,
+        &quot;score&quot;: 75,
+        &quot;passed&quot;: 191,
+        &quot;warnings&quot;: 10,
+        &quot;failed&quot;: 1,
+        &quot;total&quot;: 202
+      },
+      {
+        &quot;group&quot;: &quot;security&quot;,
+        &quot;name&quot;: &quot;Security&quot;,
+        &quot;score&quot;: 83,
+        &quot;passed&quot;: 45,
+        &quot;warnings&quot;: 5,
+        &quot;failed&quot;: 0,
+        &quot;total&quot;: 50
+      },
+      {
+        &quot;group&quot;: &quot;ai&quot;,
+        &quot;name&quot;: &quot;Agents&quot;,
+        &quot;score&quot;: 100,
+        &quot;passed&quot;: 31,
+        &quot;warnings&quot;: 0,
+        &quot;failed&quot;: 0,
+        &quot;total&quot;: 31
+      }
+    ],
+    &quot;categories&quot;: [
+      {
+        &quot;name&quot;: &quot;Core SEO&quot;,
+        &quot;score&quot;: 88
+      },
+      {
+        &quot;name&quot;: &quot;Crawlability&quot;,
+        &quot;score&quot;: 79
+      },
+      {
+        &quot;name&quot;: &quot;Structured Data&quot;,
+        &quot;score&quot;: 94
+      },
+      {
+        &quot;name&quot;: &quot;Reliability&quot;,
+        &quot;score&quot;: 55
+      },
+      {
+        &quot;name&quot;: &quot;Mobile&quot;,
+        &quot;score&quot;: 96
+      },
+      {
+        &quot;name&quot;: &quot;Images&quot;,
+        &quot;score&quot;: 99
+      },
+      {
+        &quot;name&quot;: &quot;Content&quot;,
+        &quot;score&quot;: 59
+      },
+      {
+        &quot;name&quot;: &quot;Performance&quot;,
+        &quot;score&quot;: 82
+      },
+      {
+        &quot;name&quot;: &quot;Accessibility&quot;,
+        &quot;score&quot;: 85
+      },
+      {
+        &quot;name&quot;: &quot;Links&quot;,
+        &quot;score&quot;: 77
+      },
+      {
+        &quot;name&quot;: &quot;Security&quot;,
+        &quot;score&quot;: 83
+      },
+      {
+        &quot;name&quot;: &quot;E-E-A-T&quot;,
+        &quot;score&quot;: 82
+      },
+      {
+        &quot;name&quot;: &quot;Social Media&quot;,
+        &quot;score&quot;: 96
+      },
+      {
+        &quot;name&quot;: &quot;Legal Compliance&quot;,
+        &quot;score&quot;: 44
+      },
+      {
+        &quot;name&quot;: &quot;Agent Experience&quot;,
+        &quot;score&quot;: 100
+      },
+      {
+        &quot;name&quot;: &quot;Analytics&quot;,
+        &quot;score&quot;: 100
+      },
+      {
+        &quot;name&quot;: &quot;Internationalization&quot;,
+        &quot;score&quot;: 100
+      },
+      {
+        &quot;name&quot;: &quot;Site Integrity&quot;,
+        &quot;score&quot;: 100
+      },
+      {
+        &quot;name&quot;: &quot;Local SEO&quot;,
+        &quot;score&quot;: 100
+      },
+      {
+        &quot;name&quot;: &quot;URL Structure&quot;,
+        &quot;score&quot;: 100
+      }
+    ]
+  },
+  &quot;summary&quot;: {
+    &quot;passed&quot;: 1052,
+    &quot;warnings&quot;: 61,
+    &quot;failed&quot;: 10,
+    &quot;skipped&quot;: 0
+  },
+  &quot;issues&quot;: [
+    {
+      &quot;ruleId&quot;: &quot;crawl/schema-noindex-conflict&quot;,
+      &quot;name&quot;: &quot;Schema + Noindex Conflict&quot;,
+      &quot;description&quot;: &quot;Detects pages with rich result schema that are blocked from indexing&quot;,
+      &quot;solution&quot;: &quot;Pages with rich result schemas (Article, Product, Recipe, Event, etc.) should be indexed so search engines can display rich results. Having schema markup on noindexed pages wastes effort and prevents rich results from appearing. Remove noindex directive or remove schema markup if page shouldn&#x27;t be indexed.&quot;,
+      &quot;category&quot;: &quot;Crawlability&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;schema-noindex&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;2 page(s) have rich schema but are blocked from indexing&quot;,
+          &quot;affectedPages&quot;: [],
+          &quot;affectedPagesCount&quot;: 0,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;legacyValue&quot;: &quot;/blog/how-to-brew-green-tea/\n  Schema: BlogPosting\n  Blocked by: robots.txt:disallowed\n\n/teas/bai-mudan/\n  Schema: Product\n  Blocked by: header:noindex&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;core/meta-title&quot;,
+      &quot;name&quot;: &quot;Meta Title&quot;,
+      &quot;description&quot;: &quot;Validates page title presence and length&quot;,
+      &quot;solution&quot;: &quot;Every page needs a unique, descriptive title tag between 30-75 characters. Titles appear in browser tabs, search results, and social shares. Write titles that accurately describe the page content while including your primary keyword near the beginning. If your title is too short, add more descriptive context. If too long, prioritize the most important information first and trim secondary details. Avoid keyword stuffing or duplicate titles across pages.&quot;,
+      &quot;category&quot;: &quot;Core SEO&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;document-title&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;Missing document title&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false
+        },
+        {
+          &quot;name&quot;: &quot;meta-title&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;Missing page title&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;core/h1&quot;,
+      &quot;name&quot;: &quot;H1 Tag&quot;,
+      &quot;description&quot;: &quot;Validates H1 tag presence and uniqueness&quot;,
+      &quot;solution&quot;: &quot;Each page should have exactly one H1 tag that clearly describes the main topic. The H1 is the primary heading users and search engines see, and it should align with the page title while being more detailed. If missing, add an H1 at the top of your main content. If you have multiple H1s, demote extras to H2 or lower. Ensure the H1 is descriptive and contains relevant keywords naturally.&quot;,
+      &quot;category&quot;: &quot;Core SEO&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;h1&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;No H1 tag found&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/contact/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;legacyValue&quot;: &quot;0&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;links/broken-links&quot;,
+      &quot;name&quot;: &quot;Broken Links&quot;,
+      &quot;description&quot;: &quot;Detects links returning 404 or 5xx errors&quot;,
+      &quot;solution&quot;: &quot;Broken links hurt user experience and waste crawl budget. Regularly audit links using tools or crawlers. Fix or remove broken links. Set up 301 redirects for moved content. For external links, consider using nofollow and regularly verifying they still work. Implement custom 404 pages that help users find content.&quot;,
+      &quot;category&quot;: &quot;Reliability&quot;,
+      &quot;group&quot;: &quot;performance&quot;,
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;broken-links&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;1 broken internal link(s) (4xx/5xx)&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;items&quot;: [
+            {
+              &quot;id&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;,
+              &quot;label&quot;: &quot;http://lumentea.test/teas/dragon-well/ (404), linked in the page content&quot;,
+              &quot;sourcePages&quot;: [
+                &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+              ],
+              &quot;sources&quot;: [
+                {
+                  &quot;page&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+                  &quot;links&quot;: 1,
+                  &quot;sections&quot;: {
+                    &quot;content&quot;: 1
+                  }
+                }
+              ],
+              &quot;regions&quot;: {
+                &quot;content&quot;: 1
+              },
+              &quot;meta&quot;: {
+                &quot;statusCode&quot;: 404,
+                &quot;sections&quot;: {
+                  &quot;content&quot;: 1
+                },
+                &quot;linkedFrom&quot;: 1
+              }
+            }
+          ],
+          &quot;details&quot;: {
+            &quot;linkTargets&quot;: 10,
+            &quot;unfetchedTargets&quot;: 0,
+            &quot;probedTargets&quot;: 0,
+            &quot;refusedTargets&quot;: 0,
+            &quot;rateLimitedTargets&quot;: 0,
+            &quot;notFetched&quot;: {}
+          }
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;mobile/viewport&quot;,
+      &quot;name&quot;: &quot;Viewport Meta&quot;,
+      &quot;description&quot;: &quot;Checks for proper viewport meta tag&quot;,
+      &quot;solution&quot;: &quot;The viewport meta tag is essential for responsive design. Use: &lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;. This ensures proper scaling on mobile devices. Without it, mobile browsers render at desktop width and zoom out. Required for mobile-first indexing.&quot;,
+      &quot;category&quot;: &quot;Mobile&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;viewport&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;Missing viewport meta tag&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/blog/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;legacyValue&quot;: &quot;Add: &lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;i18n/hreflang&quot;,
+      &quot;name&quot;: &quot;Hreflang Tags&quot;,
+      &quot;description&quot;: &quot;Checks for hreflang link elements&quot;,
+      &quot;solution&quot;: &quot;Hreflang tags tell search engines about language and regional variations of pages, preventing duplicate content issues and ensuring users see the right version. Add hreflang link tags for each language/region version of a page. Include x-default for the fallback. Every page referenced should link back to all variants (bidirectional). Use correct ISO language and country codes.&quot;,
+      &quot;category&quot;: &quot;Internationalization&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;info&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;hreflang-self&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;No self-referencing hreflang found&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false
+        },
+        {
+          &quot;name&quot;: &quot;hreflang-xdefault&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;No x-default hreflang found&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;ax/llms-txt&quot;,
+      &quot;name&quot;: &quot;llms.txt&quot;,
+      &quot;description&quot;: &quot;Detects /llms.txt (and /llms-full.txt) at the domain root and checks its basic Markdown format — an emerging standard giving AI agents a curated, machine-readable map of your site&quot;,
+      &quot;solution&quot;: &quot;llms.txt (llmstxt.org) is a Markdown file at your domain root that points AI agents and answer engines at your most useful, clean content. Add a /llms.txt with an H1 title, a short summary, and sections of Markdown links to key pages; optionally add /llms-full.txt with that content inlined. This is a recommendation only — it never affects your score.&quot;,
+      &quot;category&quot;: &quot;Agent Experience&quot;,
+      &quot;group&quot;: &quot;ai&quot;,
+      &quot;severity&quot;: &quot;info&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;llms-txt-present&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;No /llms.txt found — consider adding one so AI agents can discover your key content&quot;,
+          &quot;affectedPages&quot;: [],
+          &quot;affectedPagesCount&quot;: 0,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;legacyValue&quot;: &quot;absent&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;ax/markdown-response&quot;,
+      &quot;name&quot;: &quot;Markdown Response&quot;,
+      &quot;description&quot;: &quot;Checks whether the site serves text/markdown via content negotiation (Accept: text/markdown) or exposes a .md variant of the homepage — agents increasingly prefer clean Markdown over rendered HTML&quot;,
+      &quot;solution&quot;: &quot;Agents and answer engines parse Markdown more reliably than rendered HTML. Serve a Markdown representation of your key pages: honor `Accept: text/markdown` via content negotiation, and/or publish a `.md` variant (e.g. /index.md). This is a recommendation only — it never affects your score.&quot;,
+      &quot;category&quot;: &quot;Agent Experience&quot;,
+      &quot;group&quot;: &quot;ai&quot;,
+      &quot;severity&quot;: &quot;info&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;markdown-response&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;No Markdown response — consider honoring Accept: text/markdown or publishing a .md variant so agents get clean content&quot;,
+          &quot;affectedPages&quot;: [],
+          &quot;affectedPagesCount&quot;: 0,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;details&quot;: {
+            &quot;negotiatedContentType&quot;: &quot;text/html; charset=utf-8&quot;,
+            &quot;mdVariantContentType&quot;: &quot;text/html; charset=utf-8&quot;
+          },
+          &quot;legacyValue&quot;: &quot;absent&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;crawl/sitemap-4xx&quot;,
+      &quot;name&quot;: &quot;4XX Pages in Sitemap&quot;,
+      &quot;description&quot;: &quot;Checks for sitemap URLs returning 4XX status codes&quot;,
+      &quot;solution&quot;: &quot;Sitemaps should only list URLs that return 200 and are intended for indexing. Remove 4XX URLs from the sitemap or fix them by restoring the content or redirecting to a valid page. Keep sitemap entries clean to avoid wasting crawl budget.&quot;,
+      &quot;category&quot;: &quot;Crawlability&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;warning&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;sitemap-4xx&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;1 sitemap URL(s) return 4XX&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/teas/white-peony/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;items&quot;: [
+            {
+              &quot;id&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+              &quot;meta&quot;: {
+                &quot;status&quot;: &quot;404&quot;
+              }
+            }
+          ],
+          &quot;details&quot;: {
+            &quot;total&quot;: 1
+          }
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;crawl/canonical-chain&quot;,
+      &quot;name&quot;: &quot;Canonical Chain&quot;,
+      &quot;description&quot;: &quot;Checks for redirect chains on canonical URLs&quot;,
+      &quot;solution&quot;: &quot;Canonical URLs should point directly to the final destination, not through redirects. Redirect chains waste crawl budget and dilute link equity. If your canonical URL redirects, update it to point to the final URL. Check that canonical URLs use the preferred protocol (https) and www/non-www version. Self-referencing canonicals should match the page URL exactly.&quot;,
+      &quot;category&quot;: &quot;Crawlability&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;warning&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;page-redirect-chain&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;Page redirects before content is served&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/shop/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;items&quot;: [
+            {
+              &quot;id&quot;: &quot;http://lumentea.test/shop/&quot;,
+              &quot;label&quot;: &quot;http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)&quot;,
+              &quot;meta&quot;: {
+                &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+                &quot;chain&quot;: {
+                  &quot;sourceUrl&quot;: &quot;http://lumentea.test/shop/&quot;,
+                  &quot;finalUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+                  &quot;hops&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://lumentea.test/shop/&quot;,
+                      &quot;statusCode&quot;: 301,
+                      &quot;type&quot;: &quot;http&quot;
+                    },
+                    {
+                      &quot;url&quot;: &quot;http://lumentea.test/store/&quot;,
+                      &quot;statusCode&quot;: 301,
+                      &quot;type&quot;: &quot;http&quot;
+                    },
+                    {
+                      &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+                      &quot;statusCode&quot;: 200,
+                      &quot;type&quot;: &quot;http&quot;
+                    }
+                  ],
+                  &quot;chainLength&quot;: 2,
+                  &quot;isLoop&quot;: false,
+                  &quot;endsInError&quot;: false,
+                  &quot;httpsToHttp&quot;: false,
+                  &quot;httpToHttps&quot;: false
+                }
+              },
+              &quot;sourcePages&quot;: [
+                &quot;http://lumentea.test/shop/&quot;
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;crawl/noindex-in-sitemap&quot;,
+      &quot;name&quot;: &quot;Noindex in Sitemap&quot;,
+      &quot;description&quot;: &quot;Checks for noindexed pages listed in sitemap&quot;,
+      &quot;solution&quot;: &quot;Pages with noindex meta tags should not be in your sitemap. Sitemaps tell search engines which pages to index, while noindex tells them not to. Having both sends mixed signals. Remove noindexed pages from your sitemap, or remove the noindex directive if you want them indexed. Use a sitemap generator that respects robots directives.&quot;,
+      &quot;category&quot;: &quot;Crawlability&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;warning&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;noindex-in-sitemap&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;1 noindexed page(s) found in sitemap&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;items&quot;: [
+            {
+              &quot;id&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;
+            }
+          ]
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;crawl/redirect-chain&quot;,
+      &quot;name&quot;: &quot;Redirect Chains&quot;,
+      &quot;description&quot;: &quot;Detects multi-hop redirect chains that waste crawl budget&quot;,
+      &quot;solution&quot;: &quot;Each redirect hop adds latency and consumes crawl budget. Search engines may stop following after 5+ hops. Consolidate redirect chains to a single hop by updating the source URL to point directly to the final destination. Common causes: HTTP→HTTPS→www→trailing slash combinations, or legacy domain migrations.&quot;,
+      &quot;category&quot;: &quot;Crawlability&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;warning&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;redirect-chain&quot;,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;message&quot;: &quot;1 page(s) have redirect chains &gt;2 hops&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/shop/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 1,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;items&quot;: [
+            {
+              &quot;id&quot;: &quot;http://lumentea.test/shop/&quot;,
+              &quot;label&quot;: &quot;3 hops&quot;,
+              &quot;meta&quot;: {
+                &quot;hops&quot;: 3,
+                &quot;chain&quot;: &quot;/shop/ (301) → /store/ (301) → /teas/ (200)&quot;
+              }
+            }
+          ],
+          &quot;details&quot;: {
+            &quot;total&quot;: 1,
+            &quot;maxHops&quot;: 2
+          },
+          &quot;legacyValue&quot;: &quot;/shop/ (3 hops)&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;core/canonical&quot;,
+      &quot;name&quot;: &quot;Canonical URL&quot;,
+      &quot;description&quot;: &quot;Validates canonical URL presence and format&quot;,
+      &quot;solution&quot;: &quot;Canonical URLs tell search engines which version of a page is the \&quot;master\&quot; copy, preventing duplicate content issues. Every page should specify a canonical URL, typically pointing to itself. Add a &lt;link rel=\&quot;canonical\&quot; href=\&quot;...\&quot;&gt; tag in the head section. Use absolute URLs and ensure consistency (with or without trailing slash, www vs non-www). For paginated content, point to the main page or use rel=\&quot;prev/next\&quot;.&quot;,
+      &quot;category&quot;: &quot;Core SEO&quot;,
+      &quot;group&quot;: &quot;seo&quot;,
+      &quot;severity&quot;: &quot;warning&quot;,
+      &quot;checks&quot;: [
+        {
+          &quot;name&quot;: &quot;canonical-to-homepage&quot;,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;message&quot;: &quot;http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index&quot;,
+          &quot;affectedPages&quot;: [
+            &quot;http://lumentea.test/shop/&quot;,
+            &quot;http://lumentea.test/teas/&quot;
+          ],
+          &quot;affectedPagesCount&quot;: 2,
+          &quot;affectedPagesHasMore&quot;: false,
+          &quot;details&quot;: {
+            &quot;pageUrl&quot;: &quot;http://lumentea.test/teas/&quot;,
+            &quot;canonical&quot;: &quot;http://lumentea.test/&quot;,
+            &quot;source&quot;: &quot;tag&quot;
+          },
+          &quot;legacyValue&quot;: &quot;http://lumentea.test/&quot;
+        }
+      ]
+    },
+    {
+      &quot;ruleId&quot;: &quot;core/robots-meta&quot;,
+      &quot;name&quot;: &quot;Robots Meta&quot;,
+      &quot;description&quot;: &quot;Checks the robots meta tag and X-Robots-Tag header for indexing directives&quot;,
+      &quot;solution&quot;: &quot;The robots meta tag and the X-Robots-Tag response header control how search engines i</pre></details><details><summary>squirrel-full.llm.txt</summary><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;audit version=&quot;0.0.177&quot;&gt;
+&lt;site url=&quot;http://lumentea.test&quot; crawled=&quot;12&quot; date=&quot;2026-11-11T12:28:57.929Z&quot;/&gt;
+&lt;outcome exit-code=&quot;0&quot; status=&quot;completed&quot; publish=&quot;skipped&quot; publish-reason=&quot;non-public-host&quot;/&gt;
+&lt;render requested=&quot;false&quot; mode=&quot;http&quot; pages-rendered=&quot;0&quot; pages-fetched-plain=&quot;1&quot;/&gt;
+&lt;score overall=&quot;71&quot; grade=&quot;C&quot;&gt;
+ &lt;group name=&quot;SEO&quot; score=&quot;71&quot; errors=&quot;9&quot; warnings=&quot;42&quot;/&gt;
+ &lt;group name=&quot;Performance&quot; score=&quot;75&quot; errors=&quot;1&quot; warnings=&quot;10&quot;/&gt;
+ &lt;group name=&quot;Security&quot; score=&quot;83&quot; errors=&quot;0&quot; warnings=&quot;5&quot;/&gt;
+ &lt;group name=&quot;Agents&quot; score=&quot;100&quot; errors=&quot;0&quot; warnings=&quot;0&quot;/&gt;
+ &lt;cat name=&quot;Core SEO&quot; score=&quot;88&quot;/&gt;
+ &lt;cat name=&quot;Crawlability&quot; score=&quot;79&quot;/&gt;
+ &lt;cat name=&quot;Structured Data&quot; score=&quot;94&quot;/&gt;
+ &lt;cat name=&quot;Reliability&quot; score=&quot;55&quot;/&gt;
+ &lt;cat name=&quot;Mobile&quot; score=&quot;96&quot;/&gt;
+ &lt;cat name=&quot;Images&quot; score=&quot;99&quot;/&gt;
+ &lt;cat name=&quot;Content&quot; score=&quot;59&quot;/&gt;
+ &lt;cat name=&quot;Performance&quot; score=&quot;82&quot;/&gt;
+ &lt;cat name=&quot;Accessibility&quot; score=&quot;85&quot;/&gt;
+ &lt;cat name=&quot;Links&quot; score=&quot;77&quot;/&gt;
+ &lt;cat name=&quot;Security&quot; score=&quot;83&quot;/&gt;
+ &lt;cat name=&quot;E-E-A-T&quot; score=&quot;82&quot;/&gt;
+ &lt;cat name=&quot;Social Media&quot; score=&quot;96&quot;/&gt;
+ &lt;cat name=&quot;Legal Compliance&quot; score=&quot;44&quot;/&gt;
+ &lt;cat name=&quot;Agent Experience&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Analytics&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Internationalization&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Site Integrity&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Local SEO&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;URL Structure&quot; score=&quot;100&quot;/&gt;
+&lt;/score&gt;
+&lt;summary passed=&quot;1052&quot; warnings=&quot;61&quot; failed=&quot;10&quot;/&gt;
+&lt;scan-scope origin=&quot;cli&quot; crawled=&quot;12&quot; max-pages=&quot;500&quot; capped=&quot;false&quot;/&gt;
+&lt;audit-level level=&quot;full&quot; based-on=&quot;full&quot; changes=&quot;&quot; pages=&quot;500&quot; offline=&quot;true&quot; cloud-checks=&quot;false&quot; render=&quot;off&quot; external-links=&quot;false&quot;/&gt;
+&lt;scripts-evaluated count=&quot;0&quot;/&gt;
+&lt;rules-cache pages-replayed=&quot;9&quot; pages-evaluated=&quot;1&quot;/&gt;
+&lt;issues&gt;
+ &lt;rule id=&quot;crawl/schema-noindex-conflict&quot; severity=&quot;error&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/schema-noindex-conflict&quot;&gt;
+  2 page(s) have rich schema but are blocked from indexing
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/meta-title&quot; severity=&quot;error&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/meta-title&quot;&gt;
+  Missing document title; Missing page title
+  Pages (1): /blog/how-to-brew-green-tea/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/h1&quot; severity=&quot;error&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/h1&quot;&gt;
+  No H1 tag found
+  Pages (1): /contact/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/broken-links&quot; severity=&quot;error&quot; category=&quot;Reliability&quot; group=&quot;performance&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/broken-links&quot;&gt;
+  1 broken internal link(s) (4xx/5xx), found on 1 page
+  Pages (1): /blog/how-to-brew-green-tea/
+  Items (1):
+   - /teas/dragon-well/ (http://lumentea.test/teas/dragon-well/ (404), linked in the page content) [statusCode: 404, sections: {&amp;quot;content&amp;quot;:1}, linkedFrom: 1] (from: /blog/how-to-brew-green-tea/ (in the page content))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;mobile/viewport&quot; severity=&quot;error&quot; category=&quot;Mobile&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/mobile/viewport&quot;&gt;
+  Missing viewport meta tag
+  Pages (1): /blog/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;i18n/hreflang&quot; severity=&quot;info&quot; category=&quot;Internationalization&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/i18n/hreflang&quot;&gt;
+  No self-referencing hreflang found; No x-default hreflang found
+  Pages (1): /
+ &lt;/rule&gt;
+ &lt;rule id=&quot;ax/llms-txt&quot; severity=&quot;info&quot; category=&quot;Agent Experience&quot; group=&quot;ai&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/ax/llms-txt&quot;&gt;
+  No /llms.txt found — consider adding one so AI agents can discover your key content
+ &lt;/rule&gt;
+ &lt;rule id=&quot;ax/markdown-response&quot; severity=&quot;info&quot; category=&quot;Agent Experience&quot; group=&quot;ai&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/ax/markdown-response&quot;&gt;
+  No Markdown response — consider honoring Accept: text/markdown or publishing a .md variant so agents get clean content
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/sitemap-4xx&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/sitemap-4xx&quot;&gt;
+  1 sitemap URL(s) return 4XX
+  Pages (1): /teas/white-peony/
+  Items (1):
+   - /teas/white-peony/ [status: 404]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/canonical-chain&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/canonical-chain&quot;&gt;
+  Page redirects before content is served
+  Pages (1): /shop/
+  Items (1):
+   - /shop/ (http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)) [finalUrl: http://lumentea.test/teas/, chain: {&amp;quot;sourceUrl&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;finalUrl&amp;quot;:&amp;quot;http://lumentea.test/teas/&amp;quot;,&amp;quot;hops&amp;quot;:[{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;statusCode&amp;quot;:301,&amp;quot;type&amp;quot;:&amp;quot;http&amp;quot;},{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/store/&amp;quot;,&amp;quot;sta…] (from: /shop/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/noindex-in-sitemap&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/noindex-in-sitemap&quot;&gt;
+  1 noindexed page(s) found in sitemap
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/redirect-chain&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/redirect-chain&quot;&gt;
+  1 page(s) have redirect chains &amp;gt;2 hops
+  Pages (1): /shop/
+  Items (1):
+   - /shop/ (3 hops) [hops: 3, chain: /shop/ (301) → /store/ (301) → /teas/ (200)]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/canonical&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/canonical&quot;&gt;
+  http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index
+  Pages (2): /shop/, /teas/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/robots-meta&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/robots-meta&quot;&gt;
+  Page is set to noindex via X-Robots-Tag header; Page is set to noindex via robots meta tag
+  Pages (2): /teas/bai-mudan/, /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/title-unique&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/title-unique&quot;&gt;
+  1 duplicate title(s) affecting 2 pages
+  Pages (2): /, /guides/storing-tea/
+  Items (1):
+   - lumen tea | small-batch loose leaf tea from fujian (&amp;quot;lumen tea | small-batch loose leaf tea f...&amp;quot; (2 pages)) [pageCount: 2] (from: /, /guides/storing-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/csp&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/csp&quot;&gt;
+  No Content-Security-Policy header
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/x-frame-options&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/x-frame-options&quot;&gt;
+  No clickjacking protection
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/security-txt&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/security-txt&quot;&gt;
+  No security.txt at /.well-known/security.txt (RFC 9116 vulnerability-disclosure contact)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/version-disclosure&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/version-disclosure&quot;&gt;
+  Server header reveals a software version: SimpleHTTP/0.6 Python/3.11.2
+  Pages (5/10): /, /about/, /blog/, /contact/, /shop/
+  Site-wide (10 of 12 pages): Server: SimpleHTTP/0.6 Python/3.11.2 (except: /teas/dragon-well/, /teas/white-peony/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/orphan-pages&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/orphan-pages&quot;&gt;
+  3 orphan page(s) with &amp;lt;2 incoming links
+  Pages (3): /guides/storing-tea/, /teas/dragon-well/, /teas/white-peony/
+  Items (3):
+   - /guides/storing-tea/
+   - /teas/dragon-well/
+   - /teas/white-peony/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/no-contextual-inbound&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/no-contextual-inbound&quot;&gt;
+  3 page(s) are linked only from sitewide chrome
+  Pages (3): /about/, /blog/, /shop/
+  Items (3):
+   - /about/ (http://lumentea.test/about/, linked only from the footer and the header) [sections: {&amp;quot;header&amp;quot;:10,&amp;quot;footer&amp;quot;:10}]
+   - /blog/ (http://lumentea.test/blog/, linked only from the header) [sections: {&amp;quot;header&amp;quot;:10}]
+   - /shop/ (http://lumentea.test/shop/, linked only from the header) [sections: {&amp;quot;header&amp;quot;:10}]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/redirect-chains&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/redirect-chains&quot;&gt;
+  1 link target(s) point to redirecting URLs, found on 10 pages; 1 page(s) redirect to another URL
+  Pages (1): /shop/
+  Items (2):
+   - /shop/ (http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)) [targetUrl: http://lumentea.test/teas/, chain: {&amp;quot;sourceUrl&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;finalUrl&amp;quot;:&amp;quot;http://lumentea.test/teas/&amp;quot;,&amp;quot;hops&amp;quot;:[{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;statusCode&amp;quot;:301,&amp;quot;type&amp;quot;:&amp;quot;http&amp;quot;},{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/store/&amp;quot;,&amp;quot;sta…, sections: {&amp;quot;header&amp;quot;:10}] (in the site header, on 10 of 10 pages)
+   - /shop/ (http://lumentea.test/shop/ (301) → http://lumentea.test/store/ (301) → http://lumentea.test/teas/ (200)) [targetUrl: http://lumentea.test/teas/, chain: {&amp;quot;sourceUrl&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;finalUrl&amp;quot;:&amp;quot;http://lumentea.test/teas/&amp;quot;,&amp;quot;hops&amp;quot;:[{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/shop/&amp;quot;,&amp;quot;statusCode&amp;quot;:301,&amp;quot;type&amp;quot;:&amp;quot;http&amp;quot;},{&amp;quot;url&amp;quot;:&amp;quot;http://lumentea.test/store/&amp;quot;,&amp;quot;sta…]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/weak-internal-links&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/weak-internal-links&quot;&gt;
+  1 page(s) have only 1 internal link
+  Pages (1): /teas/dragon-well/
+  Items (1):
+   - /teas/dragon-well/ (http://lumentea.test/teas/dragon-well/, linked in the page content) [sections: {&amp;quot;content&amp;quot;:1}]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/duplicate-title&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/duplicate-title&quot;&gt;
+  1 duplicate title(s) found across 2 pages
+  Pages (2): /, /guides/storing-tea/
+  Items (1):
+   - lumen tea | small-batch loose leaf tea from fujian (&amp;quot;lumen tea | small-batch loose leaf tea f...&amp;quot; (2 pages)) [pageCount: 2] (from: /, /guides/storing-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/duplicate-description&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/duplicate-description&quot;&gt;
+  1 duplicate description(s) found across 2 pages
+  Pages (2): /blog/, /teas/
+  Items (1):
+   - browse every loose leaf tea we sell: white and jasmine teas  (&amp;quot;browse every loose leaf tea we sell: whi...&amp;quot; (2 pages)) [pageCount: 2] (from: /blog/, /teas/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/keyword-stuffing&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/keyword-stuffing&quot;&gt;
+  1 to 2 word(s) may be overused
+  Pages (4): /, /about/, /blog/how-to-brew-green-tea/, /guides/storing-tea/
+  Items (2):
+   - tea (&amp;quot;tea&amp;quot; (4.6%)) [count: 9, density: 4.591836734693878] (from: /, /about/, /blog/how-to-brew-green-tea/, /guides/storing-tea/)
+   - water (&amp;quot;water&amp;quot; (3.2%)) [count: 7, density: 3.2407407407407405] (from: /blog/how-to-brew-green-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/article-links&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/article-links&quot;&gt;
+  short article has 0 external links (min 1)
+  Pages (2): /blog/, /blog/how-to-brew-green-tea/
+  Items (2):
+   - /blog/ (short article has 0 external links (min 1))
+   - /blog/how-to-brew-green-tea/ (short article has 0 external links (min 1))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/word-count&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/word-count&quot;&gt;
+  Thin content: 132 to 277 words (min 300)
+  Pages (5/7): /, /about/, /blog/, /contact/, /shop/
+  Items (5/7):
+   - / (Thin content: 277 words (min 300))
+   - /about/ (Thin content: 243 words (min 300))
+   - /blog/ (Thin content: 132 words (min 300))
+   - /contact/ (Thin content: 150 words (min 300))
+   - /guides/storing-tea/ (Thin content: 227 words (min 300))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;schema/json-ld-valid&quot; severity=&quot;warning&quot; category=&quot;Structured Data&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/schema/json-ld-valid&quot;&gt;
+  Invalid JSON-LD syntax
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - parse-0 (Invalid JSON-LD: JSON Parse error: Property name must be a string literal) (from: /teas/jasmine-silver-needle/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;schema/entity-authors&quot; severity=&quot;warning&quot; category=&quot;Structured Data&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/schema/entity-authors&quot;&gt;
+  1 of 1 Person entity has no url and no sameAs
+  Pages (1): /blog/how-to-brew-green-tea/
+  Items (1):
+   - syn:Person|name:mei harding (Mei Harding (Person)) [types: [&amp;quot;Person&amp;quot;], pages: 1, occurrences: 1] (from: /blog/how-to-brew-green-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;images/alt-text&quot; severity=&quot;warning&quot; category=&quot;Images&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/images/alt-text&quot;&gt;
+  1 image(s) missing alt text
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - /img/jasmine.png (from: /teas/jasmine-silver-needle/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;perf/lcp-hints&quot; severity=&quot;warning&quot; category=&quot;Performance&quot; group=&quot;performance&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/perf/lcp-hints&quot;&gt;
+  Likely-LCP image loaded without preload
+  Pages (5): /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;perf/lcp-fetchpriority&quot; severity=&quot;warning&quot; category=&quot;Performance&quot; group=&quot;performance&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/perf/lcp-fetchpriority&quot;&gt;
+  Hero/LCP image loaded eagerly without fetchpriority=&amp;apos;high&amp;apos; or preload
+  Pages (5): /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+  Items (5):
+   - /img/brew.png (brew.png) | &amp;lt;img src=&amp;quot;/img/brew.png&amp;quot;&amp;gt; (from: /blog/how-to-brew-green-tea/)
+   - /img/hero.png (hero.png) | &amp;lt;img src=&amp;quot;/img/hero.png&amp;quot;&amp;gt; (from: /)
+   - /img/jasmine.png (jasmine.png) | &amp;lt;img src=&amp;quot;/img/jasmine.png&amp;quot;&amp;gt; (from: /teas/jasmine-silver-needle/)
+   - /img/peony.png (peony.png) | &amp;lt;img src=&amp;quot;/img/peony.png&amp;quot;&amp;gt; (from: /teas/bai-mudan/)
+   - /img/team.png (team.png) | &amp;lt;img src=&amp;quot;/img/team.png&amp;quot;&amp;gt; (from: /about/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;social/og-url-match&quot; severity=&quot;warning&quot; category=&quot;Social Media&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/social/og-url-match&quot;&gt;
+  og:url does not match canonical URL
+  Pages (2): /shop/, /teas/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;a11y/link-text&quot; severity=&quot;warning&quot; category=&quot;Accessibility&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/a11y/link-text&quot;&gt;
+  1 link(s) with generic text, found on 10 pages
+  &lt;fix-once pages=&quot;10&quot;&gt;Fix once in the navigation: link text &amp;quot;shop&amp;quot; is generic, 10 pages: /, /about/, /blog/ (+7 more) [nav &amp;gt; a:2]&lt;/fix-once&gt;
+ &lt;/rule&gt;
+ &lt;rule id=&quot;eeat/author-byline&quot; severity=&quot;warning&quot; category=&quot;E-E-A-T&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/eeat/author-byline&quot;&gt;
+  Only 33% of content pages have author attribution
+ &lt;/rule&gt;
+ &lt;rule id=&quot;eeat/privacy-policy&quot; severity=&quot;warning&quot; category=&quot;E-E-A-T&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/eeat/privacy-policy&quot;&gt;
+  No Privacy Policy page found
+ &lt;/rule&gt;
+ &lt;rule id=&quot;legal/privacy-policy&quot; severity=&quot;warning&quot; category=&quot;Legal Compliance&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/legal/privacy-policy&quot;&gt;
+  No privacy policy link found across site
+ &lt;/rule&gt;
+&lt;/issues&gt;
+&lt;not-applicable reason=&quot;private-target&quot; count=&quot;9&quot;&gt;
+ Local or private-network host: 9 transport and delivery rules do not apply here and are not scored (Cache Headers, Compression, HSTS Header, HTTP to HTTPS Redirect, HTTP/2, HTTPS, TLS Certificate, Uncompressed Assets, Weak Caching (site-wide)).
+ &lt;rule id=&quot;perf/cache-headers&quot; name=&quot;Cache Headers&quot;/&gt;
+ &lt;rule id=&quot;perf/compression&quot; name=&quot;Compression&quot;/&gt;
+ &lt;rule id=&quot;security/hsts&quot; name=&quot;HSTS Header&quot;/&gt;
+ &lt;rule id=&quot;security/http-to-https&quot; name=&quot;HTTP to HTTPS Redirect&quot;/&gt;
+ &lt;rule id=&quot;perf/http2&quot; name=&quot;HTTP/2&quot;/&gt;
+ &lt;rule id=&quot;security/https&quot; name=&quot;HTTPS&quot;/&gt;
+ &lt;rule id=&quot;security/tls-certificate&quot; name=&quot;TLS Certificate&quot;/&gt;
+ &lt;rule id=&quot;perf/asset-compression&quot; name=&quot;Uncompressed Assets&quot;/&gt;
+ &lt;rule id=&quot;perf/bad-caching&quot; name=&quot;Weak Caching (site-wide)&quot;/&gt;
+&lt;/not-applicable&gt;
+&lt;entities count=&quot;7&quot; references=&quot;2&quot; dangling=&quot;0&quot; conflicts=&quot;0&quot; without-id=&quot;0&quot; stable-id-share=&quot;0&quot; pages-without-entities=&quot;5&quot;&gt;
+ &lt;entity type=&quot;Offer&quot; name=&quot;(unnamed Offer)&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;AboutPage&quot; name=&quot;About Lumen Tea&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;BlogPosting&quot; name=&quot;How to brew green tea without the bitterness&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Organization&quot; name=&quot;Lumen Tea Co.&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Person&quot; name=&quot;Mei Harding&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Product&quot; name=&quot;Bai Mudan (White Peony)&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;WebSite&quot; name=&quot;Lumen Tea&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+&lt;/entities&gt;
+&lt;report-detail&gt;
+ &lt;not-checked count=&quot;1&quot;&gt;
+  &lt;rule id=&quot;links/broken-external-links&quot; name=&quot;Broken External Links&quot; check=&quot;broken-external-links&quot; reason=&quot;external-links-not-checked&quot;&gt;Not checked: Broken External Links. External link checking was off for this audit, so external links were not checked. Turn external link checks on to check them: in the CLI pass --external-links (or drop --no-external-links, --offline, or external_links.enabled = false); in the cloud they are a website setting.&lt;/rule&gt;
+ &lt;/not-checked&gt;
+ &lt;page-structure pages=&quot;10&quot; links=&quot;98&quot; chrome-share=&quot;0.816&quot;&gt;
+  Page types: 1 about page, 1 blog post, 1 contact page, 1 homepage; 6 not classified.
+  82% of internal links sit in the header, footer, navigation and sidebar; 18% in the page content.
+  98 links counted.
+  &lt;section name=&quot;header&quot; pages=&quot;10&quot; links=&quot;50&quot;/&gt;
+  &lt;section name=&quot;footer&quot; pages=&quot;10&quot; links=&quot;30&quot;/&gt;
+  &lt;section name=&quot;content&quot; pages=&quot;8&quot; links=&quot;18&quot;/&gt;
+ &lt;/page-structure&gt;
+&lt;/report-detail&gt;
+&lt;/audit&gt;</pre></details><details><summary>squirrel-quick.llm.txt</summary><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;audit version=&quot;0.0.177&quot;&gt;
+&lt;site url=&quot;http://lumentea.test&quot; crawled=&quot;10&quot; date=&quot;2026-11-11T12:28:52.804Z&quot;/&gt;
+&lt;outcome exit-code=&quot;0&quot; status=&quot;completed&quot; publish=&quot;skipped&quot; publish-reason=&quot;non-public-host&quot;/&gt;
+&lt;render requested=&quot;false&quot; mode=&quot;http&quot; pages-rendered=&quot;0&quot; pages-fetched-plain=&quot;9&quot;/&gt;
+&lt;score overall=&quot;73&quot; grade=&quot;C&quot;&gt;
+ &lt;group name=&quot;SEO&quot; score=&quot;74&quot; errors=&quot;8&quot; warnings=&quot;34&quot;/&gt;
+ &lt;group name=&quot;Performance&quot; score=&quot;73&quot; errors=&quot;1&quot; warnings=&quot;10&quot;/&gt;
+ &lt;group name=&quot;Security&quot; score=&quot;80&quot; errors=&quot;0&quot; warnings=&quot;5&quot;/&gt;
+ &lt;group name=&quot;Agents&quot; score=&quot;100&quot; errors=&quot;0&quot; warnings=&quot;0&quot;/&gt;
+ &lt;cat name=&quot;Core SEO&quot; score=&quot;88&quot;/&gt;
+ &lt;cat name=&quot;Crawlability&quot; score=&quot;82&quot;/&gt;
+ &lt;cat name=&quot;Structured Data&quot; score=&quot;94&quot;/&gt;
+ &lt;cat name=&quot;Reliability&quot; score=&quot;55&quot;/&gt;
+ &lt;cat name=&quot;Mobile&quot; score=&quot;96&quot;/&gt;
+ &lt;cat name=&quot;Images&quot; score=&quot;98&quot;/&gt;
+ &lt;cat name=&quot;Content&quot; score=&quot;58&quot;/&gt;
+ &lt;cat name=&quot;Performance&quot; score=&quot;81&quot;/&gt;
+ &lt;cat name=&quot;Accessibility&quot; score=&quot;98&quot;/&gt;
+ &lt;cat name=&quot;Security&quot; score=&quot;79&quot;/&gt;
+ &lt;cat name=&quot;E-E-A-T&quot; score=&quot;82&quot;/&gt;
+ &lt;cat name=&quot;Links&quot; score=&quot;87&quot;/&gt;
+ &lt;cat name=&quot;Legal Compliance&quot; score=&quot;44&quot;/&gt;
+ &lt;cat name=&quot;Social Media&quot; score=&quot;97&quot;/&gt;
+ &lt;cat name=&quot;Agent Experience&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Analytics&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Internationalization&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Site Integrity&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;Local SEO&quot; score=&quot;100&quot;/&gt;
+ &lt;cat name=&quot;URL Structure&quot; score=&quot;100&quot;/&gt;
+&lt;/score&gt;
+&lt;summary passed=&quot;953&quot; warnings=&quot;53&quot; failed=&quot;9&quot;/&gt;
+&lt;scan-scope origin=&quot;cli&quot; crawled=&quot;10&quot; max-pages=&quot;25&quot; capped=&quot;false&quot;/&gt;
+&lt;audit-level level=&quot;quick&quot; based-on=&quot;quick&quot; changes=&quot;&quot; pages=&quot;25&quot; offline=&quot;true&quot; cloud-checks=&quot;false&quot; render=&quot;off&quot; external-links=&quot;false&quot;/&gt;
+&lt;scripts-evaluated count=&quot;0&quot;/&gt;
+&lt;rules-cache pages-replayed=&quot;0&quot; pages-evaluated=&quot;9&quot;/&gt;
+&lt;issues&gt;
+ &lt;rule id=&quot;crawl/schema-noindex-conflict&quot; severity=&quot;error&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/schema-noindex-conflict&quot;&gt;
+  2 page(s) have rich schema but are blocked from indexing
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/meta-title&quot; severity=&quot;error&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/meta-title&quot;&gt;
+  Missing document title; Missing page title
+  Pages (1): /blog/how-to-brew-green-tea/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/h1&quot; severity=&quot;error&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/h1&quot;&gt;
+  No H1 tag found
+  Pages (1): /contact/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/broken-links&quot; severity=&quot;error&quot; category=&quot;Reliability&quot; group=&quot;performance&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/broken-links&quot;&gt;
+  1 broken internal link(s) (4xx/5xx), found on 1 page
+  Pages (1): /blog/how-to-brew-green-tea/
+  Items (1):
+   - /teas/dragon-well/ (http://lumentea.test/teas/dragon-well/ (404), linked in the page content) [statusCode: 404, sections: {&amp;quot;content&amp;quot;:1}, linkedFrom: 1, probed: true] (from: /blog/how-to-brew-green-tea/ (in the page content))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;mobile/viewport&quot; severity=&quot;error&quot; category=&quot;Mobile&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/mobile/viewport&quot;&gt;
+  Missing viewport meta tag
+  Pages (1): /blog/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;i18n/hreflang&quot; severity=&quot;info&quot; category=&quot;Internationalization&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/i18n/hreflang&quot;&gt;
+  No self-referencing hreflang found; No x-default hreflang found
+  Pages (1): /
+ &lt;/rule&gt;
+ &lt;rule id=&quot;ax/llms-txt&quot; severity=&quot;info&quot; category=&quot;Agent Experience&quot; group=&quot;ai&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/ax/llms-txt&quot;&gt;
+  No /llms.txt found — consider adding one so AI agents can discover your key content
+ &lt;/rule&gt;
+ &lt;rule id=&quot;ax/markdown-response&quot; severity=&quot;info&quot; category=&quot;Agent Experience&quot; group=&quot;ai&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/ax/markdown-response&quot;&gt;
+  No Markdown response — consider honoring Accept: text/markdown or publishing a .md variant so agents get clean content
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/sitemap-4xx&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/sitemap-4xx&quot;&gt;
+  1 sitemap URL(s) return 4XX
+  Pages (1): /teas/white-peony/
+  Items (1):
+   - /teas/white-peony/ [status: 404]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;crawl/noindex-in-sitemap&quot; severity=&quot;warning&quot; category=&quot;Crawlability&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/crawl/noindex-in-sitemap&quot;&gt;
+  1 noindexed page(s) found in sitemap
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/canonical&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/canonical&quot;&gt;
+  http://lumentea.test/teas/ declares the homepage as its canonical (http://lumentea.test/): search engines read the page as a duplicate of the home page and may drop it from the index
+  Pages (1): /teas/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/robots-meta&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/robots-meta&quot;&gt;
+  Page is set to noindex via X-Robots-Tag header; Page is set to noindex via robots meta tag
+  Pages (2): /teas/bai-mudan/, /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;core/title-unique&quot; severity=&quot;warning&quot; category=&quot;Core SEO&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/core/title-unique&quot;&gt;
+  1 duplicate title(s) affecting 2 pages
+  Pages (2): /, /guides/storing-tea/
+  Items (1):
+   - lumen tea | small-batch loose leaf tea from fujian (&amp;quot;lumen tea | small-batch loose leaf tea f...&amp;quot; (2 pages)) [pageCount: 2] (from: /, /guides/storing-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/csp&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/csp&quot;&gt;
+  No Content-Security-Policy header
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/x-frame-options&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/x-frame-options&quot;&gt;
+  No clickjacking protection
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/security-txt&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/security-txt&quot;&gt;
+  No security.txt at /.well-known/security.txt (RFC 9116 vulnerability-disclosure contact)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;security/version-disclosure&quot; severity=&quot;warning&quot; category=&quot;Security&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/security/version-disclosure&quot;&gt;
+  Server header reveals a software version: SimpleHTTP/0.6 Python/3.11.2
+  Pages (5/9): /, /about/, /blog/, /contact/, /teas/
+  Site-wide (9 of 10 pages): Server: SimpleHTTP/0.6 Python/3.11.2 (except: /teas/white-peony/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/orphan-pages&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/orphan-pages&quot;&gt;
+  2 orphan page(s) with &amp;lt;2 incoming links
+  Pages (2): /guides/storing-tea/, /teas/white-peony/
+  Items (2):
+   - /guides/storing-tea/
+   - /teas/white-peony/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;links/no-contextual-inbound&quot; severity=&quot;warning&quot; category=&quot;Links&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/links/no-contextual-inbound&quot;&gt;
+  2 page(s) are linked only from sitewide chrome
+  Pages (2): /about/, /blog/
+  Items (2):
+   - /about/ (http://lumentea.test/about/, linked only from the footer and the header) [sections: {&amp;quot;header&amp;quot;:9,&amp;quot;footer&amp;quot;:9}]
+   - /blog/ (http://lumentea.test/blog/, linked only from the header) [sections: {&amp;quot;header&amp;quot;:9}]
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/duplicate-title&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/duplicate-title&quot;&gt;
+  1 duplicate title(s) found across 2 pages
+  Pages (2): /, /guides/storing-tea/
+  Items (1):
+   - lumen tea | small-batch loose leaf tea from fujian (&amp;quot;lumen tea | small-batch loose leaf tea f...&amp;quot; (2 pages)) [pageCount: 2] (from: /, /guides/storing-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/duplicate-description&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/duplicate-description&quot;&gt;
+  1 duplicate description(s) found across 2 pages
+  Pages (2): /blog/, /teas/
+  Items (1):
+   - browse every loose leaf tea we sell: white and jasmine teas  (&amp;quot;browse every loose leaf tea we sell: whi...&amp;quot; (2 pages)) [pageCount: 2] (from: /blog/, /teas/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/keyword-stuffing&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/keyword-stuffing&quot;&gt;
+  1 to 2 word(s) may be overused
+  Pages (4): /, /about/, /blog/how-to-brew-green-tea/, /guides/storing-tea/
+  Items (2):
+   - tea (&amp;quot;tea&amp;quot; (4.6%)) [count: 9, density: 4.591836734693878] (from: /, /about/, /blog/how-to-brew-green-tea/, /guides/storing-tea/)
+   - water (&amp;quot;water&amp;quot; (3.2%)) [count: 7, density: 3.2407407407407405] (from: /blog/how-to-brew-green-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/article-links&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/article-links&quot;&gt;
+  short article has 0 external links (min 1)
+  Pages (2): /blog/, /blog/how-to-brew-green-tea/
+  Items (2):
+   - /blog/ (short article has 0 external links (min 1))
+   - /blog/how-to-brew-green-tea/ (short article has 0 external links (min 1))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;content/word-count&quot; severity=&quot;warning&quot; category=&quot;Content&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/content/word-count&quot;&gt;
+  Thin content: 132 to 277 words (min 300)
+  Pages (5/6): /, /about/, /blog/, /contact/, /teas/
+  Items (5/6):
+   - / (Thin content: 277 words (min 300))
+   - /about/ (Thin content: 243 words (min 300))
+   - /blog/ (Thin content: 132 words (min 300))
+   - /contact/ (Thin content: 150 words (min 300))
+   - /guides/storing-tea/ (Thin content: 227 words (min 300))
+ &lt;/rule&gt;
+ &lt;rule id=&quot;schema/json-ld-valid&quot; severity=&quot;warning&quot; category=&quot;Structured Data&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/schema/json-ld-valid&quot;&gt;
+  Invalid JSON-LD syntax
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - parse-0 (Invalid JSON-LD: JSON Parse error: Property name must be a string literal) (from: /teas/jasmine-silver-needle/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;schema/entity-authors&quot; severity=&quot;warning&quot; category=&quot;Structured Data&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/schema/entity-authors&quot;&gt;
+  1 of 1 Person entity has no url and no sameAs
+  Pages (1): /blog/how-to-brew-green-tea/
+  Items (1):
+   - syn:Person|name:mei harding (Mei Harding (Person)) [types: [&amp;quot;Person&amp;quot;], pages: 1, occurrences: 1] (from: /blog/how-to-brew-green-tea/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;images/alt-text&quot; severity=&quot;warning&quot; category=&quot;Images&quot; group=&quot;seo&quot; status=&quot;fail&quot; docs=&quot;https://docs.squirrelscan.com/rules/images/alt-text&quot;&gt;
+  1 image(s) missing alt text
+  Pages (1): /teas/jasmine-silver-needle/
+  Items (1):
+   - /img/jasmine.png (from: /teas/jasmine-silver-needle/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;perf/lcp-hints&quot; severity=&quot;warning&quot; category=&quot;Performance&quot; group=&quot;performance&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/perf/lcp-hints&quot;&gt;
+  Likely-LCP image loaded without preload
+  Pages (5): /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;perf/lcp-fetchpriority&quot; severity=&quot;warning&quot; category=&quot;Performance&quot; group=&quot;performance&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/perf/lcp-fetchpriority&quot;&gt;
+  Hero/LCP image loaded eagerly without fetchpriority=&amp;apos;high&amp;apos; or preload
+  Pages (5): /, /about/, /blog/how-to-brew-green-tea/, /teas/bai-mudan/, /teas/jasmine-silver-needle/
+  Items (5):
+   - /img/brew.png (brew.png) | &amp;lt;img src=&amp;quot;/img/brew.png&amp;quot;&amp;gt; (from: /blog/how-to-brew-green-tea/)
+   - /img/hero.png (hero.png) | &amp;lt;img src=&amp;quot;/img/hero.png&amp;quot;&amp;gt; (from: /)
+   - /img/jasmine.png (jasmine.png) | &amp;lt;img src=&amp;quot;/img/jasmine.png&amp;quot;&amp;gt; (from: /teas/jasmine-silver-needle/)
+   - /img/peony.png (peony.png) | &amp;lt;img src=&amp;quot;/img/peony.png&amp;quot;&amp;gt; (from: /teas/bai-mudan/)
+   - /img/team.png (team.png) | &amp;lt;img src=&amp;quot;/img/team.png&amp;quot;&amp;gt; (from: /about/)
+ &lt;/rule&gt;
+ &lt;rule id=&quot;social/og-url-match&quot; severity=&quot;warning&quot; category=&quot;Social Media&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/social/og-url-match&quot;&gt;
+  og:url does not match canonical URL
+  Pages (1): /teas/
+ &lt;/rule&gt;
+ &lt;rule id=&quot;a11y/link-text&quot; severity=&quot;warning&quot; category=&quot;Accessibility&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/a11y/link-text&quot;&gt;
+  1 link(s) with generic text, found on 9 pages
+  &lt;fix-once pages=&quot;9&quot;&gt;Fix once in the navigation: link text &amp;quot;shop&amp;quot; is generic, 9 pages: /, /about/, /blog/ (+6 more) [nav &amp;gt; a:2]&lt;/fix-once&gt;
+ &lt;/rule&gt;
+ &lt;rule id=&quot;eeat/author-byline&quot; severity=&quot;warning&quot; category=&quot;E-E-A-T&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/eeat/author-byline&quot;&gt;
+  Only 33% of content pages have author attribution
+ &lt;/rule&gt;
+ &lt;rule id=&quot;eeat/privacy-policy&quot; severity=&quot;warning&quot; category=&quot;E-E-A-T&quot; group=&quot;seo&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/eeat/privacy-policy&quot;&gt;
+  No Privacy Policy page found
+ &lt;/rule&gt;
+ &lt;rule id=&quot;legal/privacy-policy&quot; severity=&quot;warning&quot; category=&quot;Legal Compliance&quot; group=&quot;security&quot; status=&quot;warn&quot; docs=&quot;https://docs.squirrelscan.com/rules/legal/privacy-policy&quot;&gt;
+  No privacy policy link found across site
+ &lt;/rule&gt;
+&lt;/issues&gt;
+&lt;not-applicable reason=&quot;private-target&quot; count=&quot;9&quot;&gt;
+ Local or private-network host: 9 transport and delivery rules do not apply here and are not scored (Cache Headers, Compression, HSTS Header, HTTP to HTTPS Redirect, HTTP/2, HTTPS, TLS Certificate, Uncompressed Assets, Weak Caching (site-wide)).
+ &lt;rule id=&quot;perf/cache-headers&quot; name=&quot;Cache Headers&quot;/&gt;
+ &lt;rule id=&quot;perf/compression&quot; name=&quot;Compression&quot;/&gt;
+ &lt;rule id=&quot;security/hsts&quot; name=&quot;HSTS Header&quot;/&gt;
+ &lt;rule id=&quot;security/http-to-https&quot; name=&quot;HTTP to HTTPS Redirect&quot;/&gt;
+ &lt;rule id=&quot;perf/http2&quot; name=&quot;HTTP/2&quot;/&gt;
+ &lt;rule id=&quot;security/https&quot; name=&quot;HTTPS&quot;/&gt;
+ &lt;rule id=&quot;security/tls-certificate&quot; name=&quot;TLS Certificate&quot;/&gt;
+ &lt;rule id=&quot;perf/asset-compression&quot; name=&quot;Uncompressed Assets&quot;/&gt;
+ &lt;rule id=&quot;perf/bad-caching&quot; name=&quot;Weak Caching (site-wide)&quot;/&gt;
+&lt;/not-applicable&gt;
+&lt;entities count=&quot;7&quot; references=&quot;2&quot; dangling=&quot;0&quot; conflicts=&quot;0&quot; without-id=&quot;0&quot; stable-id-share=&quot;0&quot; pages-without-entities=&quot;5&quot;&gt;
+ &lt;entity type=&quot;Offer&quot; name=&quot;(unnamed Offer)&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;AboutPage&quot; name=&quot;About Lumen Tea&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;BlogPosting&quot; name=&quot;How to brew green tea without the bitterness&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Organization&quot; name=&quot;Lumen Tea Co.&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Person&quot; name=&quot;Mei Harding&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;Product&quot; name=&quot;Bai Mudan (White Peony)&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+ &lt;entity type=&quot;WebSite&quot; name=&quot;Lumen Tea&quot; occurrences=&quot;1&quot; pages=&quot;1&quot;/&gt;
+&lt;/entities&gt;
+&lt;report-detail&gt;
+ &lt;not-checked count=&quot;1&quot;&gt;
+  &lt;rule id=&quot;links/broken-external-links&quot; name=&quot;Broken External Links&quot; check=&quot;broken-external-links&quot; reason=&quot;external-links-not-checked&quot;&gt;Not checked: Broken External Links. External link checking was off for this audit, so external links were not checked. Turn external link checks on to check them: in the CLI pass --external-links (or drop --no-external-links, --offline, or external_links.enabled = false); in the cloud they are a website setting.&lt;/rule&gt;
+ &lt;/not-checked&gt;
+ &lt;page-structure pages=&quot;9&quot; links=&quot;87&quot; chrome-share=&quot;0.828&quot;&gt;
+  Page types: 1 about page, 1 blog post, 1 contact page, 1 homepage; 5 not classified.
+  83% of internal links sit in the header, footer, navigation and sidebar; 17% in the page content.
+  87 links counted.
+  &lt;section name=&quot;header&quot; pages=&quot;9&quot; links=&quot;45&quot;/&gt;
+  &lt;section name=&quot;footer&quot; pages=&quot;9&quot; links=&quot;27&quot;/&gt;
+  &lt;section name=&quot;content&quot; pages=&quot;7&quot; links=&quot;15&quot;/&gt;
+ &lt;/page-structure&gt;
+&lt;/report-detail&gt;
+&lt;/audit&gt;</pre></details>
+<h2>The session's closing message</h2><pre>I audited the site with squirrelscan&#x27;s `audit-website` skill, using the local `squirrel` CLI (v0.0.177) in offline mode, since the cloud service can&#x27;t reach the site. I ran a quick pass first, then a full-level crawl of 12 URLs: the 10 pages in the sitemap and 2 pages that return 404. The site scored **71 out of 100 (grade C)**, and the tool raised **38 issues: 5 errors, 30 warnings and 3 info notes**.
+
+**Errors:**
+- **Rich schema on pages blocked from indexing:** `/blog/how-to-brew-green-tea/` is blocked by robots.txt, and `/teas/bai-mudan/` has a noindex header.
+- **Missing title:** `/blog/how-to-brew-green-tea/` has no page title.
+- **Missing H1:** `/contact/` has no H1 heading.
+- **Broken link:** `/blog/how-to-brew-green-tea/` links to `/teas/dragon-well/`, which returns 404.
+- **Missing viewport tag:** `/blog/` has no mobile viewport meta tag.
+
+**Main warnings:**
+- **Sitemap and indexing:** `/teas/white-peony/` is in the sitemap but returns 404, and `/teas/jasmine-silver-needle/` is in the sitemap but set to noindex.
+- **Redirect chain:** `/shop/` redirects to `/store/`, which redirects to `/teas/`.
+- **Wrong canonical:** `/teas/` (and `/shop/`, which redirects there) declares the homepage as its canonical URL.
+- **Duplicates:** `/` and `/guides/storing-tea/` share a title, and `/blog/` and `/teas/` share a description.
+- **Broken structured data:** the JSON-LD on `/teas/jasmine-silver-needle/` is invalid, and the same page has an image with no alt text.
+- **Other warnings:** thin content on 7 pages, orphan pages, missing image preload hints, missing security headers, and no privacy policy page.
+
+`report.md` lists every issue with its severity, page URLs and the tool&#x27;s recommended fix. Some page lists are cut short in the tool&#x27;s text report, so I took the full lists from its JSON report.
+
+The skill normally goes on to fix the issues and re-audit; I skipped that part because you asked me not to change the site. The tool did not check external links because the run was offline. It also marked 9 HTTPS, compression and caching rules as not applicable because the site is on a private host.
+
+Files are in `~/work/output/`:
+- report.md
+- squirrel-full.llm.txt
+- squirrel-full.json
+- squirrel-quick.llm.txt
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

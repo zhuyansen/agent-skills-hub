@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /blog/
+
+Sitemap: http://lumentea.test/sitemap.xml

@@ -1,0 +1,2485 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>aaron-he-zhu/aaron-marketing-skills: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>aaron-he-zhu/aaron-marketing-skills: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit 18671fc54b72. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 16 of 16 planted problems</b>; 0 false claims about the site; 33 problems raised in all; 5 min.</p><p>A 120-skill marketing plugin; its site-audit route ran. Its fetch scripts refuse private addresses unless their built-in allow-private option is on, which the run turned on.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.<br><span class='mute'>“`robots.txt` has `Disallow: /blog/`, which blocks the whole Journal. Both URLs are in the sitemap and linked from the main nav and the homepage.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.<br><span class='mute'>“`&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;` on the best-selling product page, which is also listed in the sitemap.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.<br><span class='mute'>“The canonical points to the homepage (`&lt;link rel=&quot;canonical&quot; href=&quot;http://lumentea.test/&quot;&gt;`), so the category page is canonicalised away.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.<br><span class='mute'>“The `&lt;title&gt;` tag is missing (title_length 0). Only `og:title` is present.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).<br><span class='mute'>“The meta description is copied from `/teas/` (&quot;Browse every loose leaf tea we sell…&quot;). It is a duplicate and does not describe the Journal page.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).<br><span class='mute'>“Broken internal link to a 404 page (&quot;see Dragon Well&quot;).”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.<br><span class='mute'>“Listed in the sitemap but returns **404**.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.<br><span class='mute'>“The Product JSON-LD is invalid JSON because of trailing commas ... The Product/Offer markup cannot be parsed.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.<br><span class='mute'>“The main product image `/img/jasmine.png` has no `alt` attribute.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.<br><span class='mute'>“No H1 (h1_count 0). The page starts at H2.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).<br><span class='mute'>“Redirect chain: `/shop/` → 301 `/store/` → 301 `/teas/` (2 hops).”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).<br><span class='mute'>“`&lt;meta name=&quot;viewport&quot;&gt;` is missing, so the page fails the mobile-friendliness check.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.<br><span class='mute'>“`X-Robots-Tag: noindex` HTTP header on a product page that is listed in the sitemap.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.<br><span class='mute'>“**Orphan page.** It is in the sitemap, but no page links to it, so the crawl never reached it.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).<br><span class='mute'>“The `hreflang=&quot;zh-CN&quot;` alternate points to a 404 page. There is also no return tag, no self-referencing hreflang and no `x-default`.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).<br><span class='mute'>“Duplicate title: it reuses the homepage title &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;”</span></td><td><span class="ok">found</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>None.</li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO audit: http://lumentea.test/ (Lumen Tea)
+
+**Tool:** Aaron Marketing Skills (`aaron-marketing` plugin, v20.2.0). Entry point: `/aaron-marketing:seo-geo http://lumentea.test/ --phase tune --full`, the plugin&#x27;s site-audit route. Per the command, the Tune phase runs these skills:
+
+- `technical-seo-checker`
+- `on-page-seo-checker` (bulk mode, because the site has more than 5 URLs)
+- `site-structure-optimizer` (linking mode)
+- `content-quality-auditor`: the CORE-EEAT gate, run through the typed scorer `scripts/rubric-score.py`
+
+**Observed:** 2026-11-11. **Pages audited:** 13 URLs. These are the union of the crawl, `sitemap.xml`, the links found and the hreflang targets:
+
+- 8 return 200
+- 1 is a redirect (`/shop/`)
+- 3 return 404 (`/teas/dragon-well/`, `/teas/white-peony/`, `/zh/`)
+- `/store/` is a redirect hop
+
+**Severity scale (the tool&#x27;s own):**
+
+| Level | Meaning |
+|---|---|
+| **P0** | Blocks indexing or revenue |
+| **P1** | Suppresses performance |
+| **P2** | Hygiene |
+
+The on-page rubric also labels WCAG 2.2 AA failures **HIGH**.
+
+**Evidence labels:** Measured = output of the tool&#x27;s connector scripts. Estimated = judgement under the skill&#x27;s checklist. Calculated = the tool&#x27;s scoring formula.
+
+&gt; **How the tool was run.** The plugin&#x27;s bundled fetch helpers block non-public addresses (SSRF guard), and `lumentea.test` resolves to 127.0.0.1. So `crawl.py`, `robots.py`, `sitemap.py`, `onpage.py` and `schema_lint.py` were run unmodified through a small wrapper that only turns on their built-in `allow_private` option (`~/work/audit/scripts/run_local.py`). `linkgraph.py` and `rubric-score.py` need no network. All raw tool outputs are in `tool-output/`.
+&gt;
+&gt; Some checks need Google&#x27;s servers or public-web data, so the tool marks them **N/A**:
+&gt; - Core Web Vitals (`psi.py` uses Google PageSpeed)
+&gt; - Backlinks, brand and knowledge-graph signals
+&gt; - SERP and competitor comparisons
+&gt;
+&gt; HTTPS was excluded as instructed.
+
+---
+
+## 1. Priority queue (all issues raised)
+
+| # | Priority | URL(s) | Issue | Skill / evidence |
+|---|---|---|---|---|
+| 1 | **P0** | http://lumentea.test/blog/, http://lumentea.test/blog/how-to-brew-green-tea/ | `robots.txt` has `Disallow: /blog/`, which blocks the whole Journal. Both URLs are in the sitemap and linked from the main nav and the homepage. `crawl.py` logged &quot;skip (robots)&quot; for both. | technical (Measured: robots.py, crawl.py) |
+| 2 | **P0** | http://lumentea.test/teas/jasmine-silver-needle/ | `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;` on the best-selling product page, which is also listed in the sitemap. | technical / indexability (Measured: onpage.py) |
+| 3 | **P0** | http://lumentea.test/teas/bai-mudan/ | `X-Robots-Tag: noindex` HTTP header on a product page that is listed in the sitemap. | technical / indexability (Measured: onpage.py `x_robots_tag`) |
+| 4 | **P0** | http://lumentea.test/teas/ (also reached via /shop/) | The canonical points to the homepage (`&lt;link rel=&quot;canonical&quot; href=&quot;http://lumentea.test/&quot;&gt;`), so the category page is canonicalised away. | technical / indexability (Measured: onpage.py) |
+| 5 | **P0** (on-page) | http://lumentea.test/blog/how-to-brew-green-tea/ | The `&lt;title&gt;` tag is missing (title_length 0). Only `og:title` is present. | on-page step 2 (Measured: onpage.py) |
+| 6 | P1 | http://lumentea.test/sitemap.xml | The sitemap lists non-indexable URLs: `/teas/white-peony/` (404), the two noindexed product pages, and the two robots-blocked `/blog/` URLs. | technical / sitemap (Measured: sitemap.py + per-URL status) |
+| 7 | P1 | http://lumentea.test/teas/white-peony/ | Listed in the sitemap but returns **404**. It duplicates the Bai Mudan (White Peony) product, which lives at `/teas/bai-mudan/`. | technical / indexability (Measured) |
+| 8 | P1 | http://lumentea.test/shop/ (linked from the header nav on every page) | Redirect chain: `/shop/` → 301 `/store/` → 301 `/teas/` (2 hops). | technical / URL structure (Measured: onpage.py redirect chain, curl) |
+| 9 | P1 | http://lumentea.test/blog/how-to-brew-green-tea/ → http://lumentea.test/teas/dragon-well/ | Broken internal link to a 404 page (&quot;see Dragon Well&quot;). | technical, on-page step 7, site-structure step 5 (Measured: crawl.py status 404) |
+| 10 | P1 | http://lumentea.test/ → http://lumentea.test/zh/ | The `hreflang=&quot;zh-CN&quot;` alternate points to a 404 page. There is also no return tag, no self-referencing hreflang and no `x-default`. | technical / international (Measured: onpage.py hreflang, status 404) |
+| 11 | P1 | http://lumentea.test/guides/storing-tea/ | **Orphan page.** It is in the sitemap, but no page links to it, so the crawl never reached it. | site-structure step 2 / technical crawlability (Measured: crawl vs sitemap diff) |
+| 12 | P1 | http://lumentea.test/teas/jasmine-silver-needle/ | The Product JSON-LD is invalid JSON because of trailing commas (&quot;Expecting property name enclosed in double quotes: line 3 column 118&quot;). The Product/Offer markup cannot be parsed. | technical step 7 (Measured: schema_lint.py) |
+| 13 | P1 | http://lumentea.test/blog/ | `&lt;meta name=&quot;viewport&quot;&gt;` is missing, so the page fails the mobile-friendliness check. | technical step 4 (Estimated from raw HTML) |
+| 14 | P1 | http://lumentea.test/guides/storing-tea/ | Duplicate title: it reuses the homepage title &quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot; (also in `og:title`). The title does not describe the page topic. | on-page step 2 (Measured: onpage.py) |
+| 15 | P1 | http://lumentea.test/blog/ | The meta description is copied from `/teas/` (&quot;Browse every loose leaf tea we sell…&quot;). It is a duplicate and does not describe the Journal page. | on-page step 3 (Measured: onpage.py) |
+| 16 | P1 | http://lumentea.test/teas/ | The title promises &quot;White, **Green** and Jasmine Tea&quot;, but the page and the homepage say only two white teas are sold. The title does not match the content. | on-page step 2 (Estimated) |
+| 17 | P1 | http://lumentea.test/contact/ | No H1 (h1_count 0). The page starts at H2. | on-page step 4 (Measured: onpage.py) |
+| 18 | **HIGH** (WCAG 1.1.1) | http://lumentea.test/teas/jasmine-silver-needle/ | The main product image `/img/jasmine.png` has no `alt` attribute. | on-page step 8 / accessibility overlay (Estimated from raw HTML) |
+| 19 | P2 | http://lumentea.test/blog/how-to-brew-green-tea/ | BlogPosting schema is missing the recommended `dateModified` and `publisher`. | technical step 7 (Measured: schema_lint.py) |
+| 20 | P2 | http://lumentea.test/teas/bai-mudan/ | Product schema is missing the recommended `brand`, `aggregateRating` and `review`. | technical step 7 (Measured: schema_lint.py) |
+| 21 | P2 | http://lumentea.test/ | Organization schema is missing the recommended `sameAs`. | technical step 7 (Measured: schema_lint.py) |
+| 22 | P2 | http://lumentea.test/teas/, /blog/, /contact/, /guides/storing-tea/ (and site-wide) | No JSON-LD on these pages. Unused opportunities: ItemList/CollectionPage on `/teas/`, Article on `/guides/storing-tea/`, LocalBusiness/ContactPage on `/contact/`, and BreadcrumbList site-wide. | technical step 7 (Measured: schema_lint.py blocks_found 0) |
+| 23 | P2 | http://lumentea.test/sitemap.xml | Every `&lt;lastmod&gt;` is the same date (2026-10-01), so the dates cannot be trusted. For example, the blog post was published 2026-09-12. | technical / sitemap check &quot;lastmod trustworthy&quot; (Measured) |
+| 24 | P2 | http://lumentea.test/robots.txt, http://lumentea.test/llms.txt | robots.txt makes no explicit decision about AI crawlers. GPTBot, ClaudeBot, Google-Extended, CCBot, PerplexityBot and Bytespider all fall through to `*` (and so are also blocked from `/blog/`). `llms.txt` returns 404. By the skill&#x27;s default, the stance is treated as default-open. | technical / LLM crawler handling (Measured: robots.py --check-ai-bots) |
+| 25 | P2 | All 200 pages | Response headers include no security headers (e.g. X-Content-Type-Options, Content-Security-Policy, Referrer-Policy). HTTPS/HSTS excluded as instructed. | technical step 5 (Measured: response headers) |
+| 26 | P2 | /about/ (45 chars), /teas/jasmine-silver-needle/ (49 chars) | Title shorter than the rubric&#x27;s 50–60 characters. | on-page step 2 (Measured) |
+| 27 | P2 | / (138), /about/ (125), /blog/ (130), /contact/ (146), /guides/storing-tea/ (144), /teas/ (130), /teas/bai-mudan/ (139), /teas/jasmine-silver-needle/ (145) | Meta description shorter than the rubric&#x27;s 150–160 characters. | on-page step 3 (Measured) |
+| 28 | P2 | /blog/how-to-brew-green-tea/ (307 words), /guides/storing-tea/ (228 words) | Content length is &quot;Poor&quot; for informational queries under the rubric (&lt;500 words). The skill&#x27;s guardrail says short is not automatically thin. | on-page step 5 (Measured word_count) |
+| 29 | P2 | /teas/bai-mudan/ (178 words) | Content length is &quot;Poor&quot; for a transactional page (&lt;200 words). `/teas/jasmine-silver-needle/` (209) is &quot;Partial&quot;. | on-page step 5 (Measured word_count) |
+| 30 | P2 | /about/, /contact/, /blog/, /guides/storing-tea/ | Below the rubric minimum of 2 contextual internal links for pages under 500 words. About has 1, Blog index 1, Contact 0, Storing guide 0. | on-page step 7 (Estimated from raw HTML) |
+| 31 | P2 | Site-wide | No external links to authoritative sources on any page. | on-page step 7 (Estimated) |
+| 32 | P2 | Site-wide (`/img/hero.png`, `team.png`, `brew.png`, `peony.png`, `jasmine.png`) | Images are PNG, not WebP/AVIF. Some filenames are generic (`hero.png`, `team.png`). File sizes are fine (3–4 KB). | on-page step 8 (Measured: image fetch) |
+| 33 | P2 | /about/, /blog/ | No inbound contextual links: they are reached only through nav and footer links. | site-structure step 1 (Calculated) |
+
+## 2. Technical SEO scorecard (`technical-seo-checker`)
+
+| Area | Status | Top blocker | First fix |
+|---|---|---|---|
+| 1 Crawlability | ❌ | `Disallow: /blog/` blocks the Journal; orphan `/guides/storing-tea/` | Remove the `/blog/` disallow; link the storing guide |
+| 2 Indexability | ❌ | noindex on both product pages (meta + X-Robots-Tag); `/teas/` canonicalised to `/` | Remove the noindex directives; self-canonical on `/teas/` |
+| 3 Performance / CWV | N/A | `psi.py` needs Google PageSpeed, which cannot reach a non-public host | Run PSI/Lighthouse once the site is public |
+| 4 Mobile | ⚠️ | `/blog/` missing viewport | Add the viewport meta |
+| 5 Security | ⚠️ (HTTPS excluded) | No security headers | Add the basic headers |
+| 6 URL structure | ⚠️ | `/shop/` → `/store/` → `/teas/` chain | Link to `/teas/` directly; make it a single 301 |
+| 7 Structured data | ❌ | Invalid JSON-LD on Jasmine Silver Needle | Fix the trailing commas; add the missing recommended properties |
+| 8 International | ❌ | hreflang zh-CN → 404 | Remove it, or publish `/zh/` with return tags and x-default |
+| Sitemap | ❌ | 404, noindexed and blocked URLs listed; uniform lastmod | List only indexable 200 URLs with real lastmod |
+
+Status: **DONE_WITH_CONCERNS**. CWV, CrUX and GSC coverage are N/A.
+
+## 3. On-page summary (`on-page-seo-checker`, bulk mode)
+
+No target keyword was given, so the skill&#x27;s fallback inferred them from H1s and titles:
+
+- Home: &quot;loose leaf tea&quot;
+- `/teas/`: &quot;white tea&quot;
+- The two product pages: their product names
+- Blog post: &quot;how to brew green tea&quot;
+- Storing guide: &quot;how to store loose leaf tea&quot;
+
+These inferred keywords are *Estimated* and still need volume validation. This is an open loop, so the status is **DONE_WITH_CONCERNS**.
+
+Pattern-level findings are items 5 and 13–18 and 26–32 above. Elements that passed:
+
+- Every other page has exactly one H1 with no skipped heading levels.
+- The other titles are unique and inside or near the target length.
+- Every image except the Jasmine one has descriptive alt text plus width and height.
+- Canonical tags are present (but `/teas/` is wrong).
+- Open Graph and Twitter tags are on all 200 pages.
+
+## 4. Site structure (`site-structure-optimizer`, linking mode)
+
+`linkgraph.py` measured the crawl (robots overridden to `--own-site` so the whole site was mapped):
+
+- 9 crawled nodes, 46 internal links
+- Max click depth 2
+- No orphans among crawled pages
+
+The sitemap diff adds **1 orphan: `/guides/storing-tea/`**. The `/guides/` section has no hub and no nav or footer entry.
+
+**Structure score (Calculated): 75/100.** Deductions:
+
+- −10 for the orphan
+- −5 because `/guides/storing-tea/` has no inbound contextual link
+- −5 because `/about/` has none
+- −5 because `/blog/` has none
+
+Broken target: `/teas/dragon-well/` (404), which goes to the content gate as an R10 remediable link finding, not a veto.
+
+## 5. CORE-EEAT content gate (`content-quality-auditor`)
+
+Run on the main editorial artifact, http://lumentea.test/blog/how-to-brew-green-tea/ (profile `how-to-guide`, market GB, live). It was scored with `scripts/rubric-score.py` (`tool-output/gate/`).
+
+```
+## CORE-EEAT Audit
+Status: NEEDS_INPUT
+Verdict: UNDECIDED
+Score state: NOT_SCORED
+Profile / target / observed: how-to-guide / http://lumentea.test/blog/how-to-brew-green-tea/ / 2026-11-11
+Raw score: omitted   Final score: omitted   (score interval 42–47)
+Confidence: not_scored
+Evidence coverage: 89%  · Vetoes failed: 0 (C01 pass, R10 pass, T04 N/A)
+```
+
+Items whose state is `unknown`:
+
+- CORE-EEAT-A01: `unknown`
+- CORE-EEAT-A05: `unknown`
+- CORE-EEAT-A07: `unknown`
+- CORE-EEAT-A08: `unknown`
+- CORE-EEAT-A10: `unknown`
+- CORE-EEAT-E06: `unknown`
+- CORE-EEAT-E08: `unknown`
+- CORE-EEAT-T03: `unknown` (HTTPS out of scope)
+
+Main failing items, in order of points lost:
+
+- **Content:** C05 no scope statement; C06 no audience statement; C09 no FAQ.
+- **Organisation:** O02 no TL;DR; O03 brew parameters are not in a table; O07 no emphasis; O08 no table of contents.
+- **Research:** R02/R03 no citations or sources; R05 method not documented.
+- **Exclusivity:** E01–E05, E07, E09 and E10 have no original data, framework, visuals or tools.
+- **Experience:** Exp01, Exp05, Exp07, Exp09 and Exp10.
+- **Expertise:** Ept05, Ept07, Ept09; Ept10 no reviewed-by label.
+- **Authority:** A02–A04, A06 and A09 show no off-site proof.
+- **Trust (site-wide):** T01 no Privacy Policy or Terms linked anywhere; T05 no editorial policy; T06 no corrections policy; T09 no reviews or review-authenticity signals.
+
+Partial items:
+
+- C04, C08, C10
+- O05 (schema missing dateModified and publisher)
+- O10 (no image caption)
+- R04, R06 (no updated date)
+- R08 (broken Dragon Well link)
+- R09 (no `&lt;article&gt;`/`&lt;time&gt;`/`&lt;figure&gt;`)
+- Exp02, Exp04, Exp08
+- Ept01 (byline without bio), Ept02, Ept08
+
+The gate verdict stays UNDECIDED until backlink, brand and SERP evidence exists.
+
+## 6. Tool notes (informational, not problems)
+
+- `schema_lint.py` printed &quot;AboutPage / WebSite not in linter ruleset — only generic checks applied&quot; (warnings on `/about/` and `/`).
+- `schema_lint.py` reported `other_formats_detected: rdfa` on every page. The likely trigger is the `property=&quot;og:*&quot;` attributes. It recommends running Google&#x27;s Rich Results Test as the final check.
+- 404 pages (`/teas/dragon-well/`, `/teas/white-peony/`, `/zh/`, `/llms.txt`) correctly return 404 with `noindex`.
+
+## Handoff summary
+
+```yaml
+status: DONE_WITH_CONCERNS
+objective: Tune-phase full audit of http://lumentea.test/ (technical, on-page bulk, site structure, CORE-EEAT gate)
+key_findings:
+  - P0 robots.txt blocks /blog/ (Journal + brewing guide)
+  - P0 noindex on both product pages (meta robots on Jasmine Silver Needle, X-Robots-Tag on Bai Mudan)
+  - P0 /teas/ canonical points to homepage
+  - P0 blog post has no &lt;title&gt;
+  - P1 sitemap lists 404/noindex/blocked URLs; /shop/ 2-hop redirect chain; broken /teas/dragon-well/ link; hreflang to 404 /zh/; orphan /guides/storing-tea/; invalid JSON-LD on Jasmine Silver Needle
+  - CORE-EEAT gate on blog post NEEDS_INPUT/UNDECIDED (interval 42–47, no vetoes)
+evidence:
+  - type: measured
+    ref: tool-output/ (crawl, robots, sitemap, onpage, schema_lint, linkgraph, rubric-score)
+    observed_at: 2026-11-11
+assumptions:
+  - Target keywords inferred from page content (Estimated)
+  - AI-crawler stance defaulted (no user answer)
+  - HTTPS excluded per instructions
+open_loops:
+  - Confirm target keywords with volume data
+  - Core Web Vitals N/A (PSI cannot reach host)
+  - CORE-EEAT unknowns A01, A05, A07, A08, A10, E06, E08, T03
+recommended_next_skill: on-page-seo-checker → content-writer for fixes
+```
+</pre></details><details><summary>tool-output/crawl.json</summary><pre>[
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 0,
+    &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/teas/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/about/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/contact/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Contact Lumen Tea | Orders, Wholesale and Questions&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Jasmine Silver Needle White Tea, 50 g | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  }
+]
+</pre></details><details><summary>tool-output/crawl_ownsite.json</summary><pre>[
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 0,
+    &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/teas/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/blog/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;The Lumen Tea Journal | Brewing Guides and Farm Notes&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/about/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/contact/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Contact Lumen Tea | Orders, Wholesale and Questions&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Jasmine Silver Needle White Tea, 50 g | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+    &quot;status&quot;: 200,
+    &quot;depth&quot;: 1,
+    &quot;title&quot;: &quot;&quot;,
+    &quot;links_out&quot;: [
+      &quot;http://lumentea.test/&quot;,
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/blog/&quot;,
+      &quot;http://lumentea.test/about/&quot;,
+      &quot;http://lumentea.test/contact/&quot;,
+      &quot;http://lumentea.test/teas/dragon-well/&quot;,
+      &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ]
+  },
+  {
+    &quot;url&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;,
+    &quot;status&quot;: 404,
+    &quot;depth&quot;: 2,
+    &quot;title&quot;: &quot;&quot;,
+    &quot;links_out&quot;: []
+  }
+]
+</pre></details><details><summary>tool-output/gate/result_blog.json</summary><pre>{
+  &quot;advisory&quot;: true,
+  &quot;cap_applied&quot;: false,
+  &quot;catalog_version&quot;: &quot;20.2.0&quot;,
+  &quot;context&quot;: {
+    &quot;content_type&quot;: &quot;how-to-guide&quot;,
+    &quot;market&quot;: &quot;GB&quot;,
+    &quot;publication_state&quot;: &quot;live&quot;
+  },
+  &quot;dimension_coverage&quot;: {
+    &quot;A&quot;: 50,
+    &quot;C&quot;: 100,
+    &quot;E&quot;: 80,
+    &quot;Ept&quot;: 100,
+    &quot;Exp&quot;: 100,
+    &quot;O&quot;: 100,
+    &quot;R&quot;: 100,
+    &quot;T&quot;: 87
+  },
+  &quot;evidence_coverage&quot;: 89,
+  &quot;external_validity&quot;: &quot;advisory-until-outcome-calibrated&quot;,
+  &quot;flags&quot;: [],
+  &quot;framework&quot;: &quot;CORE-EEAT&quot;,
+  &quot;gaps&quot;: [
+    {
+      &quot;id&quot;: &quot;A01&quot;,
+      &quot;reason&quot;: &quot;backlink data unavailable (site not on public internet)&quot;
+    },
+    {
+      &quot;id&quot;: &quot;A05&quot;,
+      &quot;reason&quot;: &quot;brand recognition not observable in sandbox&quot;
+    },
+    {
+      &quot;id&quot;: &quot;A07&quot;,
+      &quot;reason&quot;: &quot;knowledge-graph presence not observable for a non-public host&quot;
+    },
+    {
+      &quot;id&quot;: &quot;A08&quot;,
+      &quot;reason&quot;: &quot;cross-web entity consistency not observable&quot;
+    },
+    {
+      &quot;id&quot;: &quot;A10&quot;,
+      &quot;reason&quot;: &quot;community standing not observable&quot;
+    },
+    {
+      &quot;id&quot;: &quot;E06&quot;,
+      &quot;reason&quot;: &quot;requires competitor SERP comparison (no SERP data available in sandbox)&quot;
+    },
+    {
+      &quot;id&quot;: &quot;E08&quot;,
+      &quot;reason&quot;: &quot;requires competitor depth comparison (no SERP data available)&quot;
+    },
+    {
+      &quot;id&quot;: &quot;T03&quot;,
+      &quot;reason&quot;: &quot;HTTPS out of scope (sandbox served over HTTP by design)&quot;
+    }
+  ],
+  &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+  &quot;profile&quot;: &quot;how-to-guide&quot;,
+  &quot;schema_version&quot;: &quot;3.0&quot;,
+  &quot;score_confidence&quot;: &quot;not_scored&quot;,
+  &quot;score_interval&quot;: [
+    42,
+    47
+  ],
+  &quot;score_state&quot;: &quot;NOT_SCORED&quot;,
+  &quot;status&quot;: &quot;NEEDS_INPUT&quot;,
+  &quot;target&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+  &quot;verdict&quot;: &quot;UNDECIDED&quot;,
+  &quot;veto_count&quot;: 0,
+  &quot;veto_items_failed&quot;: []
+}
+</pre></details><details><summary>tool-output/gate/run_blog.json</summary><pre>{
+ &quot;framework&quot;: &quot;CORE-EEAT&quot;,
+ &quot;profile&quot;: &quot;how-to-guide&quot;,
+ &quot;target&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+ &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+ &quot;context&quot;: {
+  &quot;content_type&quot;: &quot;how-to-guide&quot;,
+  &quot;market&quot;: &quot;GB&quot;,
+  &quot;publication_state&quot;: &quot;live&quot;
+ },
+ &quot;items&quot;: [
+  {
+   &quot;id&quot;: &quot;C01&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;H1/meta promise (brew green tea without bitterness) is delivered&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C02&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;core answer (too hot / too long) in first paragraph&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C03&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;temperature, amount, steep time, vessel, troubleshooting intents answered&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C04&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;gaiwan and tannins used without definition&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C05&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no explicit scope statement&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C06&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no audience statement&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C07&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;logical flow&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C08&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;mug/teapot/gaiwan options but no decision framework&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C09&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no FAQ section&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;C10&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;no closing summary; ends with product cross-sell&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O01&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;H1&gt;H2, no skipped levels&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O02&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no TL;DR / key takeaways&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O03&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;temperatures/amounts/times not in a table&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O04&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;troubleshooting uses a list&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O05&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;BlogPosting JSON-LD present; schema_lint: missing recommended dateModified, publisher&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;measured&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O06&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;single-topic sections&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O07&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no key concepts emphasised&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O08&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no table of contents&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O09&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;no filler, consistent terms&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;O10&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;image has alt text but no caption&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R01&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;&gt;=5 precise data points with units (75-80 C, 2-3 g/250 ml, 2 min, 5 g/500 ml, 4 g/100 ml, 30 s)&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;measured&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R02&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no citations&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R03&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no sources&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R04&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;claims (tannins/caffeine extraction) not backed by evidence&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R05&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no method documented for the recommended parameters&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R06&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;published 2026-09-12 shown; no last-updated / version note&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R07&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;full names (Mei Harding, Dragon Well, Bai Mudan)&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R08&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;descriptive anchors, but one internal link targets a 404 (/teas/dragon-well/)&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;measured&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R09&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;no &lt;article&gt;/&lt;time&gt;/&lt;figure&gt; on the post&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;R10&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;no material internal factual contradiction within the article&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E01&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no first-party data&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E02&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no named framework&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E03&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no primary research&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E04&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no contrarian evidence-backed view&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E05&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no original infographic/diagram&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E06&quot;,
+   &quot;state&quot;: &quot;unknown&quot;,
+   &quot;reason&quot;: &quot;requires competitor SERP comparison (no SERP data available in sandbox)&quot;
+  },
+  {
+   &quot;id&quot;: &quot;E07&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no downloadable tool/checklist&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E08&quot;,
+   &quot;state&quot;: &quot;unknown&quot;,
+   &quot;reason&quot;: &quot;requires competitor depth comparison (no SERP data available)&quot;
+  },
+  {
+   &quot;id&quot;: &quot;E09&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no cross-domain synthesis&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;E10&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no forward insights&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp01&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no first-person testing narrative&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp02&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;~6 sensory words (bitter, thin, flat, grassy, sharp, sweet)&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp03&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;step-by-step brewing with timings&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp04&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;one photo, no timestamp&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp05&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no usage duration&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp06&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;three cup problems with fixes&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp07&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no before/after comparison&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp08&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;quantities and times, no outcome metrics&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp09&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no repeated testing&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Exp10&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no limitations stated&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept01&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;byline (Mei Harding) without avatar/bio on the article&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept02&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;credentials (10 years buying tea) only on About page, not on article&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept03&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;accurate tea vocabulary&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept04&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;actionable parameters&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept05&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;method not reproducible/documented&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept06&quot;,
+   &quot;state&quot;: &quot;pass&quot;,
+   &quot;reason&quot;: &quot;exceptions: Japanese greens 70 C, white tea&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept07&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no historical context&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept08&quot;,
+   &quot;state&quot;: &quot;partial&quot;,
+   &quot;reason&quot;: &quot;some reasoning (unroasted leaf), no tradeoffs&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept09&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no cross-domain integration&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;Ept10&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no reviewed-by / fact-checked label&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;A01&quot;,
+   &quot;state&quot;: &quot;unknown&quot;,
+   &quot;reason&quot;: &quot;backlink data unavailable (site not on public internet)&quot;
+  },
+  {
+   &quot;id&quot;: &quot;A02&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no media mentions shown&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;A03&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no awards shown&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of http://lumentea.test/blog/how-to-brew-green-tea/ + site pages (about, contact)&quot;,
+    &quot;observed_at&quot;: &quot;2026-11-11&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;
+   }
+  },
+  {
+   &quot;id&quot;: &quot;A04&quot;,
+   &quot;state&quot;: &quot;fail&quot;,
+   &quot;reason&quot;: &quot;no publishing record&quot;,
+   &quot;evidence&quot;: {
+    &quot;type&quot;: &quot;estimated&quot;,
+    &quot;source&quot;: &quot;raw HTML fetch of</pre></details><details><summary>tool-output/linkgraph.json</summary><pre>{
+  &quot;summary&quot;: {
+    &quot;pages&quot;: 9,
+    &quot;orphans&quot;: 0,
+    &quot;deep_pages&quot;: 0,
+    &quot;max_depth&quot;: 2,
+    &quot;total_internal_links&quot;: 46
+  },
+  &quot;depth_histogram&quot;: {
+    &quot;0&quot;: 1,
+    &quot;1&quot;: 7,
+    &quot;2&quot;: 1
+  },
+  &quot;orphans&quot;: [],
+  &quot;deep_pages&quot;: [],
+  &quot;degrees&quot;: {
+    &quot;http://lumentea.test/&quot;: {
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 7
+    },
+    &quot;http://lumentea.test/teas/&quot;: {
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 7
+    },
+    &quot;http://lumentea.test/blog/&quot;: {
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 5
+    },
+    &quot;http://lumentea.test/about/&quot;: {
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 4
+    },
+    &quot;http://lumentea.test/contact/&quot;: {
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 4
+    },
+    &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;: {
+      &quot;in&quot;: 3,
+      &quot;out&quot;: 6
+    },
+    &quot;http://lumentea.test/teas/bai-mudan/&quot;: {
+      &quot;in&quot;: 4,
+      &quot;out&quot;: 6
+    },
+    &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;: {
+      &quot;in&quot;: 3,
+      &quot;out&quot;: 7
+    },
+    &quot;http://lumentea.test/teas/dragon-well/&quot;: {
+      &quot;in&quot;: 1,
+      &quot;out&quot;: 0
+    }
+  },
+  &quot;pagerank&quot;: {
+    &quot;http://lumentea.test/&quot;: 0.154704,
+    &quot;http://lumentea.test/teas/&quot;: 0.154704,
+    &quot;http://lumentea.test/blog/&quot;: 0.148281,
+    &quot;http://lumentea.test/about/&quot;: 0.143084,
+    &quot;http://lumentea.test/contact/&quot;: 0.143084,
+    &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;: 0.067871,
+    &quot;http://lumentea.test/teas/bai-mudan/&quot;: 0.076617,
+    &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;: 0.082225,
+    &quot;http://lumentea.test/teas/dragon-well/&quot;: 0.029431
+  },
+  &quot;top&quot;: [
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;pagerank&quot;: 0.154704,
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 7,
+      &quot;depth&quot;: 0,
+      &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/teas/&quot;,
+      &quot;pagerank&quot;: 0.154704,
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 7,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/blog/&quot;,
+      &quot;pagerank&quot;: 0.148281,
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 5,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;The Lumen Tea Journal | Brewing Guides and Farm Notes&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;pagerank&quot;: 0.143084,
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 4,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/contact/&quot;,
+      &quot;pagerank&quot;: 0.143084,
+      &quot;in&quot;: 7,
+      &quot;out&quot;: 4,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;Contact Lumen Tea | Orders, Wholesale and Questions&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;pagerank&quot;: 0.082225,
+      &quot;in&quot;: 3,
+      &quot;out&quot;: 7,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;pagerank&quot;: 0.076617,
+      &quot;in&quot;: 4,
+      &quot;out&quot;: 6,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;pagerank&quot;: 0.067871,
+      &quot;in&quot;: 3,
+      &quot;out&quot;: 6,
+      &quot;depth&quot;: 1,
+      &quot;title&quot;: &quot;Jasmine Silver Needle White Tea, 50 g | Lumen Tea&quot;
+    },
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;,
+      &quot;pagerank&quot;: 0.029431,
+      &quot;in&quot;: 1,
+      &quot;out&quot;: 0,
+      &quot;depth&quot;: 2,
+      &quot;title&quot;: &quot;&quot;
+    }
+  ]
+}
+</pre></details><details><summary>tool-output/onpage/about.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/about/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/about/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;,
+  &quot;title_length&quot;: 45,
+  &quot;meta_description&quot;: &quot;Lumen Tea is two people in Bristol who buy white tea directly from three family farms in Fujian and pack it in small batches.&quot;,
+  &quot;meta_description_length&quot;: 125,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/about/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;About Lumen Tea&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;Where our tea comes from&quot;,
+      &quot;What we do not do&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;About Lumen Tea | Who We Are and Where We Buy&quot;,
+    &quot;og:description&quot;: &quot;Lumen Tea is two people in Bristol who buy white tea directly from three family farms in Fujian and pack it in small batches.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/about/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 1,
+    &quot;parsed_ok&quot;: 1,
+    &quot;types&quot;: [
+      &quot;AboutPage&quot;
+    ]
+  },
+  &quot;word_count&quot;: 245
+}
+</pre></details><details><summary>tool-output/onpage/blog.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/blog/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/blog/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;The Lumen Tea Journal | Brewing Guides and Farm Notes&quot;,
+  &quot;title_length&quot;: 53,
+  &quot;meta_description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+  &quot;meta_description_length&quot;: 130,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/blog/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 1,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;The Lumen Tea Journal&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;How to brew green tea without the bitterness&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;The Lumen Tea Journal | Brewing Guides and Farm Notes&quot;,
+    &quot;og:description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/blog/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 133
+}
+</pre></details><details><summary>tool-output/onpage/blog_how-to-brew-green-tea.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;&quot;,
+  &quot;title_length&quot;: 0,
+  &quot;meta_description&quot;: &quot;How to brew green tea without bitterness: the right water temperature, how much leaf, steeping times for a mug, teapot and gaiwan, and fixes for a bad cup.&quot;,
+  &quot;meta_description_length&quot;: 155,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 3,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;How to brew green tea without the bitterness&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;Water temperature&quot;,
+      &quot;How much leaf and how long&quot;,
+      &quot;When the cup is wrong&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;How to brew green tea without the bitterness&quot;,
+    &quot;og:description&quot;: &quot;How to brew green tea without bitterness: the right water temperature, how much leaf, steeping times for a mug, teapot and gaiwan, and fixes for a bad cup.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/brew.png&quot;,
+    &quot;og:type&quot;: &quot;article&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 1,
+    &quot;parsed_ok&quot;: 1,
+    &quot;types&quot;: [
+      &quot;BlogPosting&quot;,
+      &quot;Person&quot;
+    ]
+  },
+  &quot;word_count&quot;: 307
+}
+</pre></details><details><summary>tool-output/onpage/contact.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/contact/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/contact/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;Contact Lumen Tea | Orders, Wholesale and Questions&quot;,
+  &quot;title_length&quot;: 51,
+  &quot;meta_description&quot;: &quot;Contact Lumen Tea about an order, wholesale prices for cafés and shops, or a question about brewing. We answer every message within a working day.&quot;,
+  &quot;meta_description_length&quot;: 146,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/contact/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 0,
+    &quot;h2_count&quot;: 4,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [],
+    &quot;h2&quot;: [
+      &quot;Get in touch&quot;,
+      &quot;Orders and returns&quot;,
+      &quot;Wholesale&quot;,
+      &quot;Visit&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;Contact Lumen Tea | Orders, Wholesale and Questions&quot;,
+    &quot;og:description&quot;: &quot;Contact Lumen Tea about an order, wholesale prices for cafés and shops, or a question about brewing. We answer every message within a working day.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/contact/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 151
+}
+</pre></details><details><summary>tool-output/onpage/guides_storing-tea.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+  &quot;title_length&quot;: 50,
+  &quot;meta_description&quot;: &quot;How to store loose leaf white and green tea at home: airtight, dark and cool, away from strong smells, and how long each kind keeps its flavour.&quot;,
+  &quot;meta_description_length&quot;: 144,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;How to store loose leaf tea&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;The four rules&quot;,
+      &quot;How long it keeps&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+    &quot;og:description&quot;: &quot;How to store loose leaf white and green tea at home: airtight, dark and cool, away from strong smells, and how long each kind keeps its flavour.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 228
+}
+</pre></details><details><summary>tool-output/onpage/home.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+  &quot;title_length&quot;: 50,
+  &quot;meta_description&quot;: &quot;Loose leaf white and jasmine teas from three family farms in Fujian, packed by hand in small batches in Bristol and shipped across the UK.&quot;,
+  &quot;meta_description_length&quot;: 138,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/&quot;,
+  &quot;hreflang&quot;: [
+    {
+      &quot;hreflang&quot;: &quot;zh-CN&quot;,
+      &quot;href&quot;: &quot;http://lumentea.test/zh/&quot;
+    }
+  ],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 3,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Small-batch loose leaf tea from Fujian&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;Our teas&quot;,
+      &quot;How we brew it&quot;,
+      &quot;Shipping&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;,
+    &quot;og:description&quot;: &quot;Loose leaf white and jasmine teas from three family farms in Fujian, packed by hand in small batches in Bristol and shipped across the UK.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 1,
+    &quot;parsed_ok&quot;: 1,
+    &quot;types&quot;: [
+      &quot;Organization&quot;,
+      &quot;PostalAddress&quot;,
+      &quot;WebSite&quot;
+    ]
+  },
+  &quot;word_count&quot;: 281
+}
+</pre></details><details><summary>tool-output/onpage/shop.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/shop/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: true,
+    &quot;redirect_chain&quot;: [
+      &quot;http://lumentea.test/shop/&quot;,
+      &quot;http://lumentea.test/teas/&quot;
+    ],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+  &quot;title_length&quot;: 51,
+  &quot;meta_description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+  &quot;meta_description_length&quot;: 130,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;All our teas&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;White tea&quot;,
+      &quot;Choosing a tea&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;og:description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 180
+}
+</pre></details><details><summary>tool-output/onpage/teas.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+  &quot;title_length&quot;: 51,
+  &quot;meta_description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+  &quot;meta_description_length&quot;: 130,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;All our teas&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;White tea&quot;,
+      &quot;Choosing a tea&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot;,
+    &quot;og:description&quot;: &quot;Browse every loose leaf tea we sell: white and jasmine teas from three family farms in Fujian, packed in small batches each month.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/teas/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/hero.png&quot;,
+    &quot;og:type&quot;: &quot;website&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 180
+}
+</pre></details><details><summary>tool-output/onpage/teas_bai-mudan.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;noindex&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea&quot;,
+  &quot;title_length&quot;: 51,
+  &quot;meta_description&quot;: &quot;Bai Mudan, or White Peony: a bud and two leaves from the Chen family farm near Fu&#x27;an. Honeyed, full and hard to over-brew. 50 g pouch, £12.&quot;,
+  &quot;meta_description_length&quot;: 139,
+  &quot;meta_robots&quot;: &quot;&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Bai Mudan (White Peony)&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;Tasting notes&quot;,
+      &quot;How to brew&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;Bai Mudan (White Peony) White Tea, 50 g | Lumen Tea&quot;,
+    &quot;og:description&quot;: &quot;Bai Mudan, or White Peony: a bud and two leaves from the Chen family farm near Fu&#x27;an. Honeyed, full and hard to over-brew. 50 g pouch, £12.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/peony.png&quot;,
+    &quot;og:type&quot;: &quot;product&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 1,
+    &quot;parsed_ok&quot;: 1,
+    &quot;types&quot;: [
+      &quot;Product&quot;,
+      &quot;Offer&quot;
+    ]
+  },
+  &quot;word_count&quot;: 178
+}
+</pre></details><details><summary>tool-output/onpage/teas_dragon-well.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;,
+    &quot;status&quot;: 404,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;text/html; charset=utf-8&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: &quot;HTTP 404&quot;
+  },
+  &quot;title&quot;: &quot;Not found | Lumen Tea&quot;,
+  &quot;title_length&quot;: 21,
+  &quot;meta_description&quot;: &quot;&quot;,
+  &quot;meta_description_length&quot;: 0,
+  &quot;meta_robots&quot;: &quot;noindex&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 0,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Page not found&quot;
+    ],
+    &quot;h2&quot;: [],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {},
+  &quot;twitter&quot;: {},
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 6
+}
+</pre></details><details><summary>tool-output/onpage/teas_jasmine-silver-needle.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+    &quot;status&quot;: 200,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: null
+  },
+  &quot;title&quot;: &quot;Jasmine Silver Needle White Tea, 50 g | Lumen Tea&quot;,
+  &quot;title_length&quot;: 49,
+  &quot;meta_description&quot;: &quot;Jasmine Silver Needle: downy white tea buds from Fuding scented seven times with fresh jasmine flowers. Sweet, clean and floral. 50 g pouch, £18.&quot;,
+  &quot;meta_description_length&quot;: 145,
+  &quot;meta_robots&quot;: &quot;noindex, follow&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 2,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Jasmine Silver Needle&quot;
+    ],
+    &quot;h2&quot;: [
+      &quot;Tasting notes&quot;,
+      &quot;How to brew&quot;
+    ],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {
+    &quot;og:title&quot;: &quot;Jasmine Silver Needle White Tea, 50 g | Lumen Tea&quot;,
+    &quot;og:description&quot;: &quot;Jasmine Silver Needle: downy white tea buds from Fuding scented seven times with fresh jasmine flowers. Sweet, clean and floral. 50 g pouch, £18.&quot;,
+    &quot;og:url&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+    &quot;og:image&quot;: &quot;http://lumentea.test/img/jasmine.png&quot;,
+    &quot;og:type&quot;: &quot;product&quot;
+  },
+  &quot;twitter&quot;: {
+    &quot;twitter:card&quot;: &quot;summary_large_image&quot;
+  },
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 1,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 209
+}
+</pre></details><details><summary>tool-output/onpage/teas_white-peony.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+    &quot;status&quot;: 404,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;text/html; charset=utf-8&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: &quot;HTTP 404&quot;
+  },
+  &quot;title&quot;: &quot;Not found | Lumen Tea&quot;,
+  &quot;title_length&quot;: 21,
+  &quot;meta_description&quot;: &quot;&quot;,
+  &quot;meta_description_length&quot;: 0,
+  &quot;meta_robots&quot;: &quot;noindex&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 0,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Page not found&quot;
+    ],
+    &quot;h2&quot;: [],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {},
+  &quot;twitter&quot;: {},
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 6
+}
+</pre></details><details><summary>tool-output/onpage/zh.json</summary><pre>{
+  &quot;fetch&quot;: {
+    &quot;mode&quot;: &quot;url&quot;,
+    &quot;requested_url&quot;: &quot;http://lumentea.test/zh/&quot;,
+    &quot;final_url&quot;: &quot;http://lumentea.test/zh/&quot;,
+    &quot;status&quot;: 404,
+    &quot;redirected&quot;: false,
+    &quot;redirect_chain&quot;: [],
+    &quot;content_type&quot;: &quot;text/html; charset=utf-8&quot;,
+    &quot;x_robots_tag&quot;: &quot;&quot;,
+    &quot;error&quot;: &quot;HTTP 404&quot;
+  },
+  &quot;title&quot;: &quot;Not found | Lumen Tea&quot;,
+  &quot;title_length&quot;: 21,
+  &quot;meta_description&quot;: &quot;&quot;,
+  &quot;meta_description_length&quot;: 0,
+  &quot;meta_robots&quot;: &quot;noindex&quot;,
+  &quot;tdm_reservation&quot;: &quot;&quot;,
+  &quot;canonical&quot;: &quot;&quot;,
+  &quot;hreflang&quot;: [],
+  &quot;headings&quot;: {
+    &quot;h1_count&quot;: 1,
+    &quot;h2_count&quot;: 0,
+    &quot;h3_count&quot;: 0,
+    &quot;h1&quot;: [
+      &quot;Page not found&quot;
+    ],
+    &quot;h2&quot;: [],
+    &quot;h3&quot;: []
+  },
+  &quot;open_graph&quot;: {},
+  &quot;twitter&quot;: {},
+  &quot;json_ld&quot;: {
+    &quot;block_count&quot;: 0,
+    &quot;parsed_ok&quot;: 0,
+    &quot;types&quot;: []
+  },
+  &quot;word_count&quot;: 6
+}
+</pre></details><details><summary>tool-output/robots.json</summary><pre>{
+  &quot;robots_url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+  &quot;fetched_url&quot;: &quot;http://lumentea.test/robots.txt&quot;,
+  &quot;status&quot;: 200,
+  &quot;error&quot;: null,
+  &quot;groups&quot;: 1,
+  &quot;rules_total&quot;: 1,
+  &quot;sitemaps&quot;: [
+    &quot;http://lumentea.test/sitemap.xml&quot;
+  ],
+  &quot;user_agent_evaluated&quot;: &quot;*&quot;,
+  &quot;crawl_delay&quot;: null,
+  &quot;ai_bots&quot;: [
+    {
+      &quot;bot&quot;: &quot;GPTBot&quot;,
+      &quot;owner_note&quot;: &quot;OpenAI — model training crawler&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    },
+    {
+      &quot;bot&quot;: &quot;ClaudeBot&quot;,
+      &quot;owner_note&quot;: &quot;Anthropic — model training crawler&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    },
+    {
+      &quot;bot&quot;: &quot;Google-Extended&quot;,
+      &quot;owner_note&quot;: &quot;Google — Gemini/Vertex AI training opt-out token&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    },
+    {
+      &quot;bot&quot;: &quot;CCBot&quot;,
+      &quot;owner_note&quot;: &quot;Common Crawl — open web corpus (feeds many LLMs)&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    },
+    {
+      &quot;bot&quot;: &quot;PerplexityBot&quot;,
+      &quot;owner_note&quot;: &quot;Perplexity — answer-engine crawler&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    },
+    {
+      &quot;bot&quot;: &quot;Bytespider&quot;,
+      &quot;owner_note&quot;: &quot;ByteDance — crawler associated with AI training&quot;,
+      &quot;path&quot;: &quot;/&quot;,
+      &quot;allowed&quot;: true,
+      &quot;matched_rule&quot;: null,
+      &quot;matched_group&quot;: [
+        &quot;*&quot;
+      ],
+      &quot;crawl_delay&quot;: null
+    }
+  ]
+}
+</pre></details><details><summary>tool-output/schema/about.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/about/&quot;,
+  &quot;blocks_found&quot;: 1,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [
+    {
+      &quot;@type&quot;: &quot;AboutPage&quot;,
+      &quot;recognized&quot;: false,
+      &quot;missing_required&quot;: [],
+      &quot;missing_recommended&quot;: [],
+      &quot;warnings&quot;: [
+        &quot;@type AboutPage not in linter ruleset — only generic checks applied&quot;
+      ],
+      &quot;sanity_issues&quot;: []
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 1,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 1
+  },
+  &quot;notes&quot;: [
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/blog.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/blog/&quot;,
+  &quot;blocks_found&quot;: 0,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;No JSON-LD found, but rdfa markup was detected. Microdata/RDFa validation is out of scope for this linter — convert to JSON-LD or use the Rich Results Test UI.&quot;,
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/blog_how-to-brew-green-tea.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+  &quot;blocks_found&quot;: 1,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [
+    {
+      &quot;@type&quot;: &quot;BlogPosting&quot;,
+      &quot;recognized&quot;: true,
+      &quot;missing_required&quot;: [],
+      &quot;missing_recommended&quot;: [
+        &quot;dateModified&quot;,
+        &quot;publisher&quot;
+      ],
+      &quot;warnings&quot;: [],
+      &quot;sanity_issues&quot;: []
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 1,
+    &quot;recognized&quot;: 1,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 2
+  },
+  &quot;notes&quot;: [
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/contact.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/contact/&quot;,
+  &quot;blocks_found&quot;: 0,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;No JSON-LD found, but rdfa markup was detected. Microdata/RDFa validation is out of scope for this linter — convert to JSON-LD or use the Rich Results Test UI.&quot;,
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/guides_storing-tea.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+  &quot;blocks_found&quot;: 0,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;No JSON-LD found, but rdfa markup was detected. Microdata/RDFa validation is out of scope for this linter — convert to JSON-LD or use the Rich Results Test UI.&quot;,
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/home.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/&quot;,
+  &quot;blocks_found&quot;: 1,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [
+    {
+      &quot;@type&quot;: &quot;Organization&quot;,
+      &quot;recognized&quot;: true,
+      &quot;missing_required&quot;: [],
+      &quot;missing_recommended&quot;: [
+        &quot;sameAs&quot;
+      ],
+      &quot;warnings&quot;: [],
+      &quot;sanity_issues&quot;: []
+    },
+    {
+      &quot;@type&quot;: &quot;WebSite&quot;,
+      &quot;recognized&quot;: false,
+      &quot;missing_required&quot;: [],
+      &quot;missing_recommended&quot;: [],
+      &quot;warnings&quot;: [
+        &quot;@type WebSite not in linter ruleset — only generic checks applied&quot;
+      ],
+      &quot;sanity_issues&quot;: []
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 2,
+    &quot;recognized&quot;: 1,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 2
+  },
+  &quot;notes&quot;: [
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/shop.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/teas/&quot;,
+  &quot;blocks_found&quot;: 0,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;No JSON-LD found, but rdfa markup was detected. Microdata/RDFa validation is out of scope for this linter — convert to JSON-LD or use the Rich Results Test UI.&quot;,
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/teas.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/teas/&quot;,
+  &quot;blocks_found&quot;: 0,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;No JSON-LD found, but rdfa markup was detected. Microdata/RDFa validation is out of scope for this linter — convert to JSON-LD or use the Rich Results Test UI.&quot;,
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/teas_bai-mudan.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+  &quot;blocks_found&quot;: 1,
+  &quot;parse_errors&quot;: [],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [
+    {
+      &quot;@type&quot;: &quot;Product&quot;,
+      &quot;recognized&quot;: true,
+      &quot;missing_required&quot;: [],
+      &quot;missing_recommended&quot;: [
+        &quot;aggregateRating&quot;,
+        &quot;review&quot;,
+        &quot;brand&quot;
+      ],
+      &quot;warnings&quot;: [],
+      &quot;sanity_issues&quot;: []
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 1,
+    &quot;recognized&quot;: 1,
+    &quot;errors&quot;: 0,
+    &quot;warnings&quot;: 3
+  },
+  &quot;notes&quot;: [
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/teas_dragon-well.json</summary><pre>{&quot;tool&quot;: &quot;schema_lint&quot;, &quot;source&quot;: &quot;http://lumentea.test/teas/dragon-well/&quot;, &quot;error&quot;: &quot;HTTP 404&quot;, &quot;status&quot;: 404}
+</pre></details><details><summary>tool-output/schema/teas_jasmine-silver-needle.json</summary><pre>{
+  &quot;tool&quot;: &quot;schema_lint&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;source&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+  &quot;blocks_found&quot;: 1,
+  &quot;parse_errors&quot;: [
+    {
+      &quot;block&quot;: 0,
+      &quot;error&quot;: &quot;invalid JSON: Expecting property name enclosed in double quotes: line 3 column 118 (char 356)&quot;
+    }
+  ],
+  &quot;other_formats_detected&quot;: [
+    &quot;rdfa&quot;
+  ],
+  &quot;objects&quot;: [],
+  &quot;summary&quot;: {
+    &quot;objects&quot;: 0,
+    &quot;recognized&quot;: 0,
+    &quot;errors&quot;: 1,
+    &quot;warnings&quot;: 0
+  },
+  &quot;notes&quot;: [
+    &quot;Google&#x27;s Rich Results Test has no public API. This linter catches common issues locally; run the Rich Results Test UI as the final eligibility check.&quot;
+  ]
+}
+</pre></details><details><summary>tool-output/schema/teas_white-peony.json</summary><pre>{&quot;tool&quot;: &quot;schema_lint&quot;, &quot;source&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;, &quot;error&quot;: &quot;HTTP 404&quot;, &quot;status&quot;: 404}
+</pre></details><details><summary>tool-output/schema/zh.json</summary><pre>{&quot;tool&quot;: &quot;schema_lint&quot;, &quot;source&quot;: &quot;http://lumentea.test/zh/&quot;, &quot;error&quot;: &quot;HTTP 404&quot;, &quot;status&quot;: 404}
+</pre></details><details><summary>tool-output/sitemap.json</summary><pre>{
+  &quot;input&quot;: &quot;http://lumentea.test/sitemap.xml&quot;,
+  &quot;resolved_url&quot;: &quot;http://lumentea.test/sitemap.xml&quot;,
+  &quot;type&quot;: &quot;sitemap&quot;,
+  &quot;url_count&quot;: 10,
+  &quot;limit&quot;: 5000,
+  &quot;truncated&quot;: false,
+  &quot;urls&quot;: [
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/about/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/teas/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/teas/bai-mudan/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/teas/white-peony/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/blog/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/blog/how-to-brew-green-tea/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/contact/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    },
+    {
+      &quot;loc&quot;: &quot;http://lumentea.test/guides/storing-tea/&quot;,
+      &quot;lastmod&quot;: &quot;2026-10-01&quot;
+    }
+  ],
+  &quot;child_sitemaps_fetched&quot;: 0,
+  &quot;sources&quot;: [
+    {
+      &quot;url&quot;: &quot;http://lumentea.test/sitemap.xml&quot;,
+      &quot;status&quot;: 200,
+      &quot;depth&quot;: 0,
+      &quot;kind&quot;: &quot;urlset&quot;,
+      &quot;found&quot;: 10
+    }
+  ],
+  &quot;errors&quot;: [],
+  &quot;budget&quot;: {
+    &quot;max_fetches&quot;: 200,
+    &quot;max_queue&quot;: 500,
+    &quot;max_total_bytes&quot;: 25000000,
+    &quot;max_gzip_work&quot;: 25000000,
+    &quot;max_seconds&quot;: 60.0,
+    &quot;fetches_used&quot;: 1,
+    &quot;queue_entries_used&quot;: 1,
+    &quot;bytes_used&quot;: 969,
+    &quot;gzip_work_used&quot;: 0,
+    &quot;elapsed_seconds&quot;: 0.002502
+  }
+}
+</pre></details>
+<h2>The session's closing message</h2><pre>I ran the Aaron Marketing plugin&#x27;s site-audit route (`/aaron-marketing:seo-geo http://lumentea.test/ --phase tune --full`). It produced 33 problems across 13 URLs, now in `~/work/output/report.md` with each page URL and the tool&#x27;s priority. The site was not changed.
+
+**How the tool was run:** the plugin&#x27;s own fetch scripts refuse private addresses as a security guard, and `lumentea.test` resolves to 127.0.0.1. I ran those scripts unchanged through a small wrapper (`~/work/audit/scripts/run_local.py`). It only switches on their built-in option to allow private hosts. The tool did all the crawling and analysis; I did not audit the site any other way.
+
+**Top problems (P0 means the tool says it blocks indexing or sales):**
+- **P0:** `robots.txt` blocks `/blog/`, so search engines can&#x27;t crawl the Journal or the brewing guide, even though both are in the sitemap and the main menu.
+- **P0:** both product pages are set to noindex: Jasmine Silver Needle in a meta tag, Bai Mudan in an HTTP header.
+- **P0:** the `/teas/` page names the homepage as its canonical (preferred) version.
+- **P0:** the blog post has no `&lt;title&gt;`.
+- **P1:**
+  - The sitemap lists pages that are missing, noindexed or blocked.
+  - The Shop link in the menu goes through two redirects (`/shop/` → `/store/` → `/teas/`).
+  - The blog post links to `/teas/dragon-well/`, which returns 404.
+  - The homepage&#x27;s Chinese-language version (`/zh/`) returns 404.
+  - `/guides/storing-tea/` has no links pointing to it.
+  - The Jasmine Silver Needle structured data is invalid JSON.
+  - `/blog/` has no mobile viewport tag.
+  - Some titles and descriptions are duplicated or don&#x27;t match their page.
+  - `/contact/` has no H1.
+- **HIGH (the tool&#x27;s accessibility label):** the main Jasmine Silver Needle image has no alt text.
+- **P2:** missing structured data, sitemap dates that are all the same, no stated policy on AI crawlers, missing security headers, short titles, descriptions and pages, few internal links, and PNG images.
+
+The site-structure score is 75/100. The tool&#x27;s content-quality check, run on the blog post, came back undecided with no score (range 42–47) and no hard failures. That&#x27;s because some evidence can&#x27;t exist for a site that isn&#x27;t on the public internet, such as backlinks, brand recognition and search-result comparisons.
+
+The tool also couldn&#x27;t measure Core Web Vitals (page-speed scores), because that check runs on Google&#x27;s servers and can&#x27;t reach this host. I left HTTPS out as you asked.
+
+The tool doesn&#x27;t write its own report files, so `~/work/output/tool-output/` holds its raw output instead.
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

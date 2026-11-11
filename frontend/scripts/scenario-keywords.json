@@ -5437,10 +5437,25 @@
     "做 SEO 时的行为"
    ],
    "h3_findings": [
-    "What the review found",
-    "审核中发现了什么"
+    "What our test and the research found",
+    "实测和研究发现了什么"
    ],
    "findings": [
+    {
+     "item": "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 4 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 4 of 13 could not run on a private address or without an account.",
+     "item_zh": "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：4 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；13 个里有 4 个在内网地址上或没有账号时跑不起来。",
+     "ours": true
+    },
+    {
+     "item": "False claims were mostly clean bills: \"a viewport tag on every page\", \"robots.txt allows AI crawlers\", \"redirect hops ≤1\", on a site that fails each one. A report that says a check passes needs checking as much as one that says it fails.",
+     "item_zh": "说错的大多是「判通过」：「每页都有 viewport」「robots.txt 放行 AI 爬虫」「重定向不超过 1 跳」，而测试站这几项都不合格。报告说某项通过，和说某项不合格一样需要核实。",
+     "ours": true
+    },
+    {
+     "item": "Tools that crawl politely see less: the 3 that obey robots.txt reported the blog block but none of the problems behind it. On your own site, audit with robots rules ignored as well.",
+     "item_zh": "守规矩的爬虫看到的少：遵守 robots.txt 的 3 个报了博客被屏蔽，却看不到屏蔽后面的问题。审自己的站时，也要忽略 robots 规则再跑一遍。",
+     "ours": true
+    },
     {
      "item": "Copies are common in this field: 20 repositories repeated popular skill collections under new names ending in -seo. They are left out.",
      "item_zh": "这个领域复制品很多：有 20 个仓库照搬热门 skill 合集，改名并加上 -seo 后缀，都没有收录。"
@@ -5456,6 +5471,11 @@
    ],
    "did": [
     {
+     "item": "Ran 13 tools on 2026-11-11: each installed from its README in a throwaway sandbox and run on the same nine-page test shop with 16 planted problems, plus Claude Code with no tool as a control. A judge (Claude Opus 5.5, three passes) marked each report against the planted problems; every false claim was read by hand.",
+     "item_zh": "2026-11-11 实跑了 13 个工具：每个在用完即删的沙箱里按 README 安装，审同一个埋了 16 个问题的 9 页测试网店，另有不装工具的 Claude Code 作对照。评审（Claude Opus 5.5，三遍）按埋入问题给每份报告打分，每一处说错都人工核对。",
+     "ours": true
+    },
+    {
      "item": "Found 651 candidates on GitHub (every star count) and in our catalog, then had Jev, TypeSafe's decision model, read each README against the questions above; 247 are listed.",
      "item_zh": "在 GitHub（不限星数）和我们的目录里找到 651 个候选，再让 TypeSafe 的决策模型 Jev 按上面的问题逐个读 README；收录 247 个。"
     },
@@ -5470,8 +5490,9 @@
    ],
    "not_done": [
     {
-     "item": "We did not run these tools against a site, so nothing here compares their findings or results.",
-     "item_zh": "我们没有拿这些工具去跑真实站点，所以这里不比较它们的结论和效果。"
+     "item": "One run per tool, on a small test site we built and served inside the sandbox, so tools that only crawl from their own servers or read Search Console data (the GSC and DataForSEO servers among them) could not be judged; nor could tools that refuse private addresses. A planted problem is not a ranking forecast.",
+     "item_zh": "每个工具只跑一次，测试站是我们自己搭的、放在沙箱里，所以只能从自家服务器抓取或只读 Search Console 数据的工具（包括 GSC 和 DataForSEO 那几个）评不了，拒绝内网地址的工具也评不了。埋入的问题不等于排名预测。",
+     "ours": true
     },
     {
      "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",

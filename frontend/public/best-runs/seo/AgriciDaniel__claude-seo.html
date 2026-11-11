@@ -1,0 +1,1104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>AgriciDaniel/claude-seo: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>AgriciDaniel/claude-seo: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit 734998e5fdbb. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 12 of 16 planted problems</b>; 3 false claims about the site; 44 problems raised in all; 6 min.</p><p>It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. Its summary then said every page has a viewport tag and that titles and descriptions are unique, which the blog pages contradict. Ten specialist agents, a score of 61/100.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.<br><span class='mute'>“robots.txt `Disallow: /blog/` blocks the brewing guide. The guide is linked from the nav, from `/` and from `/teas/`, and it is listed in the sitemap.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.<br><span class='mute'>“`/teas/jasmine-silver-needle/` has `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`, yet the homepage calls it the best-selling product.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.<br><span class='mute'>“The canonical on `/teas/` points to the homepage (`http://lumentea.test/`).”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.</td><td><span class="no">missed</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).</td><td><span class="no">missed</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).</td><td><span class="no">missed</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.<br><span class='mute'>“http://lumentea.test/teas/white-peony/ | Listed in the sitemap but returns 404.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.<br><span class='mute'>“Product JSON-LD is invalid JSON: trailing commas after `&quot;InStock&quot;,` and after the offers object. Parsers drop the whole block”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.<br><span class='mute'>“Product image `/img/jasmine.png` has no `alt` attribute”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.<br><span class='mute'>“http://lumentea.test/contact/ | No H1 (the page starts at `&lt;h2&gt;Get in touch&lt;/h2&gt;`)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).<br><span class='mute'>“http://lumentea.test/shop/ (nav link on every page) | Two-hop redirect chain: `/shop/` 301 → `/store/` 301 → `/teas/`”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).</td><td><span class="no">missed</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.<br><span class='mute'>“`/teas/bai-mudan/` sends an `X-Robots-Tag: noindex` HTTP header, so neither product can be indexed.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.<br><span class='mute'>“Orphan page: no crawled page links to it, only the sitemap.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).<br><span class='mute'>“hreflang `zh-CN` points to `/zh/`, which returns 404. There is no self-referencing or x-default entry and no return link”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).<br><span class='mute'>“`&lt;title&gt;` and `og:title` copy the homepage&#x27;s (&quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;) and don&#x27;t match the H1”</span></td><td><span class="ok">found</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>Pages are static, server-rendered HTML with a viewport tag on every page.<br><span class='mute'>/blog/ has no &lt;meta name=&quot;viewport&quot;&gt; tag.</span></li><li>Titles and descriptions are unique and a sensible length everywhere except `/guides/storing-tea/` (also content.md: &#x27;Meta descriptions and titles are unique (apart from #3)&#x27;).<br><span class='mute'>/teas/ and /blog/ have the same meta description, and /blog/how-to-brew-green-tea/ has no &lt;title&gt; at all.</span></li><li>Bai Mudan: Product JSON-LD valid ... and indexable<br><span class='mute'>/teas/bai-mudan/ is sent with an X-Robots-Tag: noindex header, so it is not indexable (the report itself says so elsewhere).</span></li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO Audit Report: http://lumentea.test/
+
+- **Tool:** claude-seo `seo-audit` skill (full-site audit workflow)
+- **Date:** 2026-11-11
+- **Business type detected:** E-commerce. It is a small UK online shop for loose-leaf tea: 2 products, 1 category page, and a packing room in Bristol that is open for collection.
+- **Pages crawled:** 8 URLs fetched (7 × 200 and 1 × 404), plus 2 redirects. robots.txt blocks `/blog/` and `/blog/how-to-brew-green-tea/` for `*`, so the crawl did not fetch them.
+- **Specialists run:** seo-technical, seo-content, seo-schema, seo-sitemap, seo-performance, seo-visual, seo-geo, seo-agentic, seo-ecommerce and seo-sxo.
+- **Specialists not run:**
+  - seo-google, seo-matomo and seo-dataforseo were skipped because no credentials or MCP are configured.
+  - seo-backlinks, seo-local, seo-maps, seo-drift and seo-cluster were skipped: the site is not public, the business is not local-service, there is no drift baseline, and there is no blog to cluster that can be crawled.
+- **Scope note:** the site is plain HTTP only because the sandbox has no certificate, so HTTPS was ignored as instructed.
+- **Access note:** the tool&#x27;s URL-safety layer refuses private IPs by default. The audit used its documented opt-in `CLAUDE_SEO_LOCAL_TARGETS=lumentea.test` for local and staging targets.
+
+## Executive Summary
+
+**SEO Health Score: 61 / 100**
+
+| Category | Weight | Score | Source |
+|---|---|---|---|
+| Technical SEO | 22% | 52 | seo-technical |
+| Content Quality | 23% | 70 | seo-content |
+| On-Page SEO | 20% | 52 | seo-content |
+| Schema / Structured Data | 10% | 45 | seo-schema |
+| Performance (CWV) | 10% | 98 | seo-performance (local Lighthouse lab run) |
+| AI Search Readiness | 10% | 47 | seo-geo |
+| Images | 5% | 90 | seo-performance (seo-ecommerce scored images 55) |
+
+Other scores the specialists reported:
+- E-E-A-T 72.
+- AI citation readiness 60.
+- E-commerce overall 58.
+- SXO Gap score: `/` 60, `/teas/` 30, `/teas/bai-mudan/` 54, `/teas/jasmine-silver-needle/` 46, `/guides/storing-tea/` 33.
+
+### Top 5 critical issues
+1. `/teas/jasmine-silver-needle/` has `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`, yet the homepage calls it the best-selling product.
+2. `/teas/bai-mudan/` sends an `X-Robots-Tag: noindex` HTTP header, so neither product can be indexed.
+3. The canonical on `/teas/` points to the homepage (`http://lumentea.test/`).
+4. robots.txt `Disallow: /blog/` blocks the brewing guide. The guide is linked from the nav, from `/` and from `/teas/`, and it is listed in the sitemap.
+5. No add-to-cart, basket or checkout exists on any product page.
+
+### Top 5 quick wins
+1. Remove the noindex meta tag from Jasmine Silver Needle and the noindex header from Bai Mudan.
+2. Make the `/teas/` canonical point to itself.
+3. Remove the two trailing commas in the Jasmine Silver Needle Product JSON-LD.
+4. Give `/guides/storing-tea/` its own `&lt;title&gt;` and `og:title`.
+5. Clean up the sitemap: remove the 404, the robots-blocked and the noindexed URLs. Point the nav &quot;Shop&quot; link straight at `/teas/`.
+
+## All Findings
+
+The **Severity** column gives the highest severity any specialist gave the issue. The **Raised by** column lists each specialist and the severity it gave.
+
+| # | Severity | URL | Issue | Raised by (severity) |
+|---|---|---|---|---|
+| 1 | Critical | http://lumentea.test/teas/jasmine-silver-needle/ | Best-selling product page is set to `noindex, follow` with a meta robots tag, and is still listed in the sitemap | technical (Critical), content (Critical), ecommerce (Critical), geo (Critical), sxo (Critical), sitemap (High: noindex URL in sitemap), schema (Info: blocks Product rich result) |
+| 2 | Critical | http://lumentea.test/teas/bai-mudan/ | `X-Robots-Tag: noindex` HTTP header that doesn&#x27;t show in the HTML. It is a key product page and is in the sitemap | technical (Critical), geo (Critical), sxo (Critical) |
+| 3 | Critical | http://lumentea.test/teas/ | Canonical points to `http://lumentea.test/` (the homepage), while og:url is `/teas/` | technical (Critical), content (High), sitemap (High), ecommerce (High), geo (High), sxo (High), visual (Low), schema (Info), performance (Info) |
+| 4 | Critical | http://lumentea.test/blog/ , http://lumentea.test/blog/how-to-brew-green-tea/ (rule in http://lumentea.test/robots.txt) | `Disallow: /blog/` blocks every crawler, AI search crawlers included, from the brewing guide. The guide is still linked from the nav, `/` and `/teas/`, and listed in the sitemap | geo (Critical), technical (Medium), sitemap (Medium), content (Medium), sxo (Medium), agentic (Low) |
+| 5 | Critical | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ (all pages) | No add-to-cart, size selector, basket or checkout. No forms or buttons anywhere, and contact is mailto and phone only, so agents cannot buy or enquire | sxo (Critical), ecommerce (High), agentic (Medium) |
+| 6 | High | http://lumentea.test/teas/jasmine-silver-needle/ | Product JSON-LD is invalid JSON: trailing commas after `&quot;InStock&quot;,` and after the offers object. Parsers drop the whole block | schema (High), technical (High), content (High), ecommerce (High), sxo (Critical, combined with #1), geo (Medium) |
+| 7 | High | http://lumentea.test/teas/white-peony/ | Listed in the sitemap but returns 404. It is the English name for Bai Mudan, so it should 301 to `/teas/bai-mudan/` or be removed | technical (High), sitemap (High), ecommerce (Medium), agentic (Medium), content (Low), sxo (Info) |
+| 8 | High | http://lumentea.test/ | hreflang `zh-CN` points to `/zh/`, which returns 404. There is no self-referencing or x-default entry and no return link | technical (High), geo (Medium), agentic (Low), content (Low) |
+| 9 | High | http://lumentea.test/sitemap.xml | 5 of 10 listed URLs cannot be indexed: one 404, two robots-blocked and two noindexed. Every `lastmod` is the same (2026-10-01), so the dates are unreliable | technical (High), geo (Medium), sitemap (Low: identical lastmod) |
+| 10 | High | http://lumentea.test/guides/storing-tea/ | `&lt;title&gt;` and `og:title` copy the homepage&#x27;s (&quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot;) and don&#x27;t match the H1 | content (High), sxo (High), technical (Medium), geo (Medium), schema (Info) |
+| 11 | High | http://lumentea.test/teas/ | Category page is thin, at 140–153 words. It is text only: no product images, no buy buttons, no stock or delivery information | sxo (High), technical (Medium), ecommerce (Medium), content (Medium, thin), geo (Low, no images) |
+| 12 | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Product image `/img/jasmine.png` has no `alt` attribute | technical (High, with #6), content (Medium), ecommerce (Medium), visual (Medium), geo (Low), sxo (Low), performance (Low) |
+| 13 | Medium | http://lumentea.test/shop/ (nav link on every page) | Two-hop redirect chain: `/shop/` 301 → `/store/` 301 → `/teas/` | technical (Medium), content (Medium), ecommerce (Medium), agentic (Medium), sxo (Medium), geo (Low), sitemap (Info) |
+| 14 | Medium | http://lumentea.test/guides/storing-tea/ | Orphan page: no crawled page links to it, only the sitemap. It also ends without a link to any tea | technical (Medium), sitemap (Medium), content (Medium), sxo (Medium) |
+| 15 | Medium | http://lumentea.test/teas/ , http://lumentea.test/ | The `/teas/` title promises &quot;White, Green and Jasmine Tea&quot;, but the shop sells only two white teas. The homepage promotes a green-tea brewing guide | technical (Medium), content (Medium), ecommerce (Medium), geo (Medium), sxo (Medium) |
+| 16 | Medium | http://lumentea.test/contact/ | No H1 (the page starts at `&lt;h2&gt;Get in touch&lt;/h2&gt;`) | technical (Medium), content (Medium), geo (Low), sxo (Low) |
+| 17 | Medium | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Product schema lacks `brand`, `offers.url`, `shippingDetails` and `hasMerchantReturnPolicy` | schema (Medium), ecommerce (Medium), geo (Medium) |
+| 18 | Medium | http://lumentea.test/teas/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ , /guides/storing-tea/ | No breadcrumbs and no BreadcrumbList schema | schema (Medium), ecommerce (Medium) |
+| 19 | Medium | http://lumentea.test/guides/storing-tea/ (also /teas/, /) | No author, date or Article schema. The guide is short (203 words) and has no image | schema (Medium), content (Medium), geo (Medium), sxo (Medium) |
+| 20 | Medium | http://lumentea.test/ (and /about/) | Organization schema is thin: no `@id`, `sameAs`, `contactPoint`, founder or telephone, and the logo is a favicon-type icon | schema (Medium), geo (Medium) |
+| 21 | Medium | http://lumentea.test/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ , /teas/ , /contact/ | Pages are thin for their type: `/` 241 words, Bai Mudan 132, Jasmine 160, `/teas/` 140, `/contact/` 109. No page has question-style headings, an FAQ or answer blocks of 130–170 words | content (Medium), geo (Medium) |
+| 22 | Medium | http://lumentea.test/ (and product pages) | Homepage offers 50 g or 100 g pouches, but product pages offer only 50 g | sxo (Medium), content (Low), ecommerce (Low) |
+| 23 | Medium | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Free delivery and the 30-day refund policy appear only on `/` and `/contact/`, not on product pages. No reviews anywhere | sxo (Medium) |
+| 24 | Medium | http://lumentea.test/ | No primary call to action, only text links | visual (Medium), sxo (Medium) |
+| 25 | Low | http://lumentea.test/ | Organization name &quot;Lumen Tea Co.&quot; and WebSite name &quot;Lumen Tea&quot; differ and aren&#x27;t linked by `@id`. WebSite has no publisher | schema (Low), geo (Medium, with #20) |
+| 26 | Low | http://lumentea.test/teas/ | No CollectionPage or ItemList schema, and no Product markup for the listed teas | schema (Low), ecommerce (Medium, with #11), agentic (Low) |
+| 27 | Low | http://lumentea.test/contact/ | No ContactPage schema or Organization `contactPoint`. Wholesale section has no way to request the price list | schema (Low), geo (Low), sxo (Low) |
+| 28 | Low | http://lumentea.test/about/ | AboutPage schema is bare: no `isPartOf`, `publisher` or `about`. Founders Mei and Tom Harding have no Person markup | schema (Low), content (Low), geo (Medium, with #20) |
+| 29 | Low | http://lumentea.test/teas/ | Cup count is inconsistent: &quot;50 grams, about 25 cups&quot; against 3 g per cup (about 16 cups) | content (Low) |
+| 30 | Low | http://lumentea.test/ | Nav is inline links with &quot;·&quot; separators and no padding, so touch targets are probably under 48 px on mobile | visual (Low) |
+| 31 | Low | http://lumentea.test/ , /about/ (all images) | No `fetchpriority=&quot;high&quot;` on the likely LCP hero image, and no `loading` attribute on any image | technical (Low), performance (Low) |
+| 32 | Low | all pages | Server sends no Cache-Control, ETag or compression, and serves HTTP/1.0 with no keep-alive | technical (Low), performance (Low) |
+| 33 | Low | http://lumentea.test/favicon.ico | Returns 404. Pages declare `/img/icon.png` as the icon instead | technical (Low) |
+| 34 | Low | /teas/bai-mudan/ , /teas/jasmine-silver-needle/ (and /, /about/) | Images are 800×800 PNG with no WebP/AVIF or `srcset`. They are probably placeholders | ecommerce (Low), performance (Info) |
+| 35 | Low | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Only one product image per product | sxo (Low) |
+| 36 | Low | http://lumentea.test/blog/how-to-brew-green-tea/ | The linked guide is about green tea, which the shop doesn&#x27;t sell. Its status is unverified because robots.txt blocks it | ecommerce (Low) |
+| 37 | Low | http://lumentea.test/teas/jasmine-silver-needle/ | Copy gives an April 2026 harvest but says scenting happens &quot;in June&quot;. Confirm which date the harvest refers to | ecommerce (Low) |
+| 38 | Low | http://lumentea.test/llms.txt | Missing (404). llms-full.txt is also 404 | geo (Low), agentic (Info) |
+| 39 | Low | http://lumentea.test/ , /guides/storing-tea/ | Factual claims cite no sources | geo (Low) |
+| 40 | Low | site-wide | Little content beyond text: no video, tables or images on `/teas/` | geo (Low) |
+| 41 | Info | http://lumentea.test/robots.txt | No Content-Signal line, and no RSL licensing declared | agentic (Info), geo (Info) |
+| 42 | Info | site-wide | No Markdown delivery, `ai-catalog.json`, /.well-known discovery files (API catalog, OAuth, A2A, UCP) or WebMCP. These are opportunities, not defects | agentic (Info) |
+| 43 | Info | /teas/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ | No stylesheet, so default browser styling applies. 1200-px and 800-px images may overflow a 375-px mobile screen (not confirmed by rendering) | visual (Info) |
+| 44 | Info | /teas/jasmine-silver-needle/ , /about/ | Strong origin and E-E-A-T material (farms, founders, seven-night scenting) should be shown more on product pages | sxo (Info) |
+
+### Limitations the tool reported
+- **seo-visual:** Playwright screenshots failed with `net::ERR_FAILED` on every URL, so there are no screenshots and no rendered above-the-fold check. Visual findings come from the HTML only.
+- **seo-agentic:** the Lighthouse Agentic Browsing fraction wasn&#x27;t measured. PSI cannot reach the sandbox (it returned HTTP 429), and the Playwright agent-UX check failed the same way.
+- **seo-performance:** results come from a local Lighthouse lab run. All five pages scored 100, with LCP 0.6 s, CLS 0 and TBT 0 ms. INP can&#x27;t be measured in the lab, and there is no CrUX field data.
+- **No external data:** there is no Search Console, analytics, backlink, brand-mention or SERP-feature data for the site.
+
+### What works
+- Pages are static, server-rendered HTML with a viewport tag on every page. Real 404s are returned, with no soft 404s.
+- Titles and descriptions are unique and a sensible length everywhere except `/guides/storing-tea/`.
+- Bai Mudan Product schema is valid, and the visible prices match the schema.
+- The writing is original and first-hand, with Flesch scores of 70–91 and no AI-pattern or filler signals.
+- The address is the same everywhere (NAP consistency).
+- Performance is excellent: tiny pages, no JavaScript or CSS, and width and height set on every image.
+
+## Specialist reports
+Full per-category findings are in `findings/` (technical, content, schema, sitemap, performance, visual, geo, agentic, ecommerce, sxo).
+</pre></details><details><summary>ACTION-PLAN.md</summary><pre># Action Plan: http://lumentea.test/ (SEO Health Score 61/100)
+
+## Critical (fix immediately)
+1. Remove `noindex` meta from /teas/jasmine-silver-needle/ and the `X-Robots-Tag: noindex` header from /teas/bai-mudan/.
+2. Change /teas/ canonical to http://lumentea.test/teas/.
+3. Remove `Disallow: /blog/` from robots.txt (or drop /blog/ links and sitemap entries if blocking is intended).
+4. Add a purchase path (add-to-cart / basket / checkout) on product pages.
+
+## High (within 1 week)
+5. Fix trailing commas in Jasmine Silver Needle Product JSON-LD; add alt text to /img/jasmine.png.
+6. 301 /teas/white-peony/ to /teas/bai-mudan/ (or remove from sitemap).
+7. Fix or remove hreflang zh-CN -&gt; /zh/ (404); add self-referencing + x-default if kept.
+8. Sitemap: list only indexable 200 URLs; use real lastmod dates.
+9. Unique title/og:title for /guides/storing-tea/.
+10. Expand /teas/: product images, prices/stock/delivery, buy buttons, ItemList schema.
+
+## Medium (within 1 month)
+11. Point nav &quot;Shop&quot; at /teas/ directly; collapse /shop/ -&gt; /store/ -&gt; /teas/ to one 301.
+12. Link /guides/storing-tea/ internally; link it to the teas.
+13. Fix &quot;Green&quot; in /teas/ title; reconsider green-tea guide focus.
+14. Add H1 to /contact/.
+15. Product schema: brand, offers.url, shippingDetails, hasMerchantReturnPolicy; BreadcrumbList site-wide.
+16. Author, date, Article schema on guides; Organization @id/sameAs/contactPoint; Person for founders.
+17. Expand thin pages; add question headings/FAQ; show delivery/returns on product pages; resolve 50/100 g inconsistency; add a primary CTA on home.
+
+## Low (backlog)
+18. Org/WebSite name consistency; CollectionPage/ContactPage/AboutPage enrichment.
+19. fetchpriority on hero; caching/compression/HTTP2 in production; /favicon.ico.
+20. WebP/AVIF + srcset; more product images; nav touch-target spacing.
+21. Fix cup-count and harvest/scenting date inconsistencies; cite sources.
+22. Optional: llms.txt, Content-Signal, discovery files.
+</pre></details><details><summary>FULL-AUDIT-REPORT.md</summary><pre># SEO Audit Report: http://lumentea.test/
+
+- **Tool:** claude-seo `seo-audit` skill (full-site audit workflow)
+- **Date:** 2026-11-11
+- **Business type detected:** E-commerce. It is a small UK online shop for loose-leaf tea: 2 products, 1 category page, and a packing room in Bristol that is open for collection.
+- **Pages crawled:** 8 URLs fetched (7 × 200 and 1 × 404), plus 2 redirects. robots.txt blocks `/blog/` and `/blog/how-to-brew-green-tea/` for `*`, so the crawl did not fetch them.
+- **Specialists run:** seo-technical, seo-content, seo-schema, seo-sitemap, seo-performance, seo-visual, seo-geo, seo-agentic, seo-ecommerce and seo-sxo.
+- **Specialists not run:**
+  - seo-google, seo-matomo and seo-dataforseo were skipped because no credentials or MCP are configured.
+  - seo-backlinks, seo-local, seo-maps, seo-drift and seo-cluster were skipped: the site is not public, the business is not local-service, there is no drift baseline, and there is no blog to cluster that can be crawled.
+- **Scope note:** the site is plain HTTP only because the sandbox has no certificate, so HTTPS was ignored as instructed.
+- **Access note:** the tool&#x27;s URL-safety layer refuses private IPs by default. The audit used its documented opt-in `CLAUDE_SEO_LOCAL_TARGETS=lumentea.test` for local and staging targets.
+
+## Executive Summary
+
+**SEO Health Score: 61 / 100**
+
+| Category | Weight | Score | Source |
+|---|---|---|---|
+| Technical SEO | 22% | 52 | seo-technical |
+| Content Quality | 23% | 70 | seo-content |
+| On-Page SEO | 20% | 52 | seo-content |
+| Schema / Structured Data | 10% | 45 | seo-schema |
+| Performance (CWV) | 10% | 98 | seo-performance (local Lighthouse lab run) |
+| AI Search Readiness | 10% | 47 | seo-geo |
+| Images | 5% | 90 | seo-performance (seo-ecommerce scored images 55) |
+
+Other scores the specialists reported:
+- E-E-A-T 72.
+- AI citation readiness 60.
+- E-commerce overall 58.
+- SXO Gap score: `/` 60, `/teas/` 30, `/teas/bai-mudan/` 54, `/teas/jasmine-silver-needle/` 46, `/guides/storing-tea/` 33.
+
+### Top 5 critical issues
+1. `/teas/jasmine-silver-needle/` has `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`, yet the homepage calls it the best-selling product.
+2. `/teas/bai-mudan/` sends an `X-Robots-Tag: noindex` HTTP header, so neither product can be indexed.
+3. The canonical on `/teas/` points to the homepage (`http://lumentea.test/`).
+4. robots.txt `Disallow: /blog/` blocks the brewing guide. The guide is linked from the nav, from `/` and from `/teas/`, and it is listed in the sitemap.
+5. No add-to-cart, basket or checkout exists on any product page.
+
+### Top 5 quick wins
+1. Remove the noindex meta tag from Jasmine Silver Needle and the noindex header from Bai Mudan.
+2. Make the `/teas/` canonical point to itself.
+3. Remove the two trailing commas in the Jasmine Silver Needle Product JSON-LD.
+4. Give `/guides/storing-tea/` its own `&lt;title&gt;` and `og:title`.
+5. Clean up the sitemap: remove the 404, the robots-blocked and the noindexed URLs. Point the nav &quot;Shop&quot; link straight at `/teas/`.
+
+## All Findings
+
+The **Severity** column gives the highest severity any specialist gave the issue. The **Raised by** column lists each specialist and the severity it gave.
+
+| # | Severity | URL | Issue | Raised by (severity) |
+|---|---|---|---|---|
+| 1 | Critical | http://lumentea.test/teas/jasmine-silver-needle/ | Best-selling product page is set to `noindex, follow` with a meta robots tag, and is still listed in the sitemap | technical (Critical), content (Critical), ecommerce (Critical), geo (Critical), sxo (Critical), sitemap (High: noindex URL in sitemap), schema (Info: blocks Product rich result) |
+| 2 | Critical | http://lumentea.test/teas/bai-mudan/ | `X-Robots-Tag: noindex` HTTP header that doesn&#x27;t show in the HTML. It is a key product page and is in the sitemap | technical (Critical), geo (Critical), sxo (Critical) |
+| 3 | Critical | http://lumentea.test/teas/ | Canonical points to `http://lumentea.test/` (the homepage), while og:url is `/teas/` | technical (Critical), content (High), sitemap (High), ecommerce (High), geo (High), sxo (High), visual (Low), schema (Info), performance (Info) |
+| 4 | Critical | http://lumentea.test/blog/ , http://lumentea.test/blog/how-to-brew-green-tea/ (rule in http://lumentea.test/robots.txt) | `Disallow: /blog/` blocks every crawler, AI search crawlers included, from the brewing guide. The guide is still linked from the nav, `/` and `/teas/`, and listed in the sitemap | geo (Critical), technical (Medium), sitemap (Medium), content (Medium), sxo (Medium), agentic (Low) |
+| 5 | Critical | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ (all pages) | No add-to-cart, size selector, basket or checkout. No forms or buttons anywhere, and contact is mailto and phone only, so agents cannot buy or enquire | sxo (Critical), ecommerce (High), agentic (Medium) |
+| 6 | High | http://lumentea.test/teas/jasmine-silver-needle/ | Product JSON-LD is invalid JSON: trailing commas after `&quot;InStock&quot;,` and after the offers object. Parsers drop the whole block | schema (High), technical (High), content (High), ecommerce (High), sxo (Critical, combined with #1), geo (Medium) |
+| 7 | High | http://lumentea.test/teas/white-peony/ | Listed in the sitemap but returns 404. It is the English name for Bai Mudan, so it should 301 to `/teas/bai-mudan/` or be removed | technical (High), sitemap (High), ecommerce (Medium), agentic (Medium), content (Low), sxo (Info) |
+| 8 | High | http://lumentea.test/ | hreflang `zh-CN` points to `/zh/`, which returns 404. There is no self-referencing or x-default entry and no return link | technical (High), geo (Medium), agentic (Low), content (Low) |
+| 9 | High | http://lumentea.test/sitemap.xml | 5 of 10 listed URLs cannot be indexed: one 404, two robots-blocked and two noindexed. Every `lastmod` is the same (2026-10-01), so the dates are unreliable | technical (High), geo (Medium), sitemap (Low: identical lastmod) |
+| 10 | High | http://lumentea.test/guides/storing-tea/ | `&lt;title&gt;` and `og:title` copy the homepage&#x27;s (&quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot;) and don&#x27;t match the H1 | content (High), sxo (High), technical (Medium), geo (Medium), schema (Info) |
+| 11 | High | http://lumentea.test/teas/ | Category page is thin, at 140–153 words. It is text only: no product images, no buy buttons, no stock or delivery information | sxo (High), technical (Medium), ecommerce (Medium), content (Medium, thin), geo (Low, no images) |
+| 12 | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Product image `/img/jasmine.png` has no `alt` attribute | technical (High, with #6), content (Medium), ecommerce (Medium), visual (Medium), geo (Low), sxo (Low), performance (Low) |
+| 13 | Medium | http://lumentea.test/shop/ (nav link on every page) | Two-hop redirect chain: `/shop/` 301 → `/store/` 301 → `/teas/` | technical (Medium), content (Medium), ecommerce (Medium), agentic (Medium), sxo (Medium), geo (Low), sitemap (Info) |
+| 14 | Medium | http://lumentea.test/guides/storing-tea/ | Orphan page: no crawled page links to it, only the sitemap. It also ends without a link to any tea | technical (Medium), sitemap (Medium), content (Medium), sxo (Medium) |
+| 15 | Medium | http://lumentea.test/teas/ , http://lumentea.test/ | The `/teas/` title promises &quot;White, Green and Jasmine Tea&quot;, but the shop sells only two white teas. The homepage promotes a green-tea brewing guide | technical (Medium), content (Medium), ecommerce (Medium), geo (Medium), sxo (Medium) |
+| 16 | Medium | http://lumentea.test/contact/ | No H1 (the page starts at `&lt;h2&gt;Get in touch&lt;/h2&gt;`) | technical (Medium), content (Medium), geo (Low), sxo (Low) |
+| 17 | Medium | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Product schema lacks `brand`, `offers.url`, `shippingDetails` and `hasMerchantReturnPolicy` | schema (Medium), ecommerce (Medium), geo (Medium) |
+| 18 | Medium | http://lumentea.test/teas/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ , /guides/storing-tea/ | No breadcrumbs and no BreadcrumbList schema | schema (Medium), ecommerce (Medium) |
+| 19 | Medium | http://lumentea.test/guides/storing-tea/ (also /teas/, /) | No author, date or Article schema. The guide is short (203 words) and has no image | schema (Medium), content (Medium), geo (Medium), sxo (Medium) |
+| 20 | Medium | http://lumentea.test/ (and /about/) | Organization schema is thin: no `@id`, `sameAs`, `contactPoint`, founder or telephone, and the logo is a favicon-type icon | schema (Medium), geo (Medium) |
+| 21 | Medium | http://lumentea.test/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ , /teas/ , /contact/ | Pages are thin for their type: `/` 241 words, Bai Mudan 132, Jasmine 160, `/teas/` 140, `/contact/` 109. No page has question-style headings, an FAQ or answer blocks of 130–170 words | content (Medium), geo (Medium) |
+| 22 | Medium | http://lumentea.test/ (and product pages) | Homepage offers 50 g or 100 g pouches, but product pages offer only 50 g | sxo (Medium), content (Low), ecommerce (Low) |
+| 23 | Medium | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Free delivery and the 30-day refund policy appear only on `/` and `/contact/`, not on product pages. No reviews anywhere | sxo (Medium) |
+| 24 | Medium | http://lumentea.test/ | No primary call to action, only text links | visual (Medium), sxo (Medium) |
+| 25 | Low | http://lumentea.test/ | Organization name &quot;Lumen Tea Co.&quot; and WebSite name &quot;Lumen Tea&quot; differ and aren&#x27;t linked by `@id`. WebSite has no publisher | schema (Low), geo (Medium, with #20) |
+| 26 | Low | http://lumentea.test/teas/ | No CollectionPage or ItemList schema, and no Product markup for the listed teas | schema (Low), ecommerce (Medium, with #11), agentic (Low) |
+| 27 | Low | http://lumentea.test/contact/ | No ContactPage schema or Organization `contactPoint`. Wholesale section has no way to request the price list | schema (Low), geo (Low), sxo (Low) |
+| 28 | Low | http://lumentea.test/about/ | AboutPage schema is bare: no `isPartOf`, `publisher` or `about`. Founders Mei and Tom Harding have no Person markup | schema (Low), content (Low), geo (Medium, with #20) |
+| 29 | Low | http://lumentea.test/teas/ | Cup count is inconsistent: &quot;50 grams, about 25 cups&quot; against 3 g per cup (about 16 cups) | content (Low) |
+| 30 | Low | http://lumentea.test/ | Nav is inline links with &quot;·&quot; separators and no padding, so touch targets are probably under 48 px on mobile | visual (Low) |
+| 31 | Low | http://lumentea.test/ , /about/ (all images) | No `fetchpriority=&quot;high&quot;` on the likely LCP hero image, and no `loading` attribute on any image | technical (Low), performance (Low) |
+| 32 | Low | all pages | Server sends no Cache-Control, ETag or compression, and serves HTTP/1.0 with no keep-alive | technical (Low), performance (Low) |
+| 33 | Low | http://lumentea.test/favicon.ico | Returns 404. Pages declare `/img/icon.png` as the icon instead | technical (Low) |
+| 34 | Low | /teas/bai-mudan/ , /teas/jasmine-silver-needle/ (and /, /about/) | Images are 800×800 PNG with no WebP/AVIF or `srcset`. They are probably placeholders | ecommerce (Low), performance (Info) |
+| 35 | Low | http://lumentea.test/teas/bai-mudan/ , http://lumentea.test/teas/jasmine-silver-needle/ | Only one product image per product | sxo (Low) |
+| 36 | Low | http://lumentea.test/blog/how-to-brew-green-tea/ | The linked guide is about green tea, which the shop doesn&#x27;t sell. Its status is unverified because robots.txt blocks it | ecommerce (Low) |
+| 37 | Low | http://lumentea.test/teas/jasmine-silver-needle/ | Copy gives an April 2026 harvest but says scenting happens &quot;in June&quot;. Confirm which date the harvest refers to | ecommerce (Low) |
+| 38 | Low | http://lumentea.test/llms.txt | Missing (404). llms-full.txt is also 404 | geo (Low), agentic (Info) |
+| 39 | Low | http://lumentea.test/ , /guides/storing-tea/ | Factual claims cite no sources | geo (Low) |
+| 40 | Low | site-wide | Little content beyond text: no video, tables or images on `/teas/` | geo (Low) |
+| 41 | Info | http://lumentea.test/robots.txt | No Content-Signal line, and no RSL licensing declared | agentic (Info), geo (Info) |
+| 42 | Info | site-wide | No Markdown delivery, `ai-catalog.json`, /.well-known discovery files (API catalog, OAuth, A2A, UCP) or WebMCP. These are opportunities, not defects | agentic (Info) |
+| 43 | Info | /teas/ , /teas/bai-mudan/ , /teas/jasmine-silver-needle/ | No stylesheet, so default browser styling applies. 1200-px and 800-px images may overflow a 375-px mobile screen (not confirmed by rendering) | visual (Info) |
+| 44 | Info | /teas/jasmine-silver-needle/ , /about/ | Strong origin and E-E-A-T material (farms, founders, seven-night scenting) should be shown more on product pages | sxo (Info) |
+
+### Limitations the tool reported
+- **seo-visual:** Playwright screenshots failed with `net::ERR_FAILED` on every URL, so there are no screenshots and no rendered above-the-fold check. Visual findings come from the HTML only.
+- **seo-agentic:** the Lighthouse Agentic Browsing fraction wasn&#x27;t measured. PSI cannot reach the sandbox (it returned HTTP 429), and the Playwright agent-UX check failed the same way.
+- **seo-performance:** results come from a local Lighthouse lab run. All five pages scored 100, with LCP 0.6 s, CLS 0 and TBT 0 ms. INP can&#x27;t be measured in the lab, and there is no CrUX field data.
+- **No external data:** there is no Search Console, analytics, backlink, brand-mention or SERP-feature data for the site.
+
+### What works
+- Pages are static, server-rendered HTML with a viewport tag on every page. Real 404s are returned, with no soft 404s.
+- Titles and descriptions are unique and a sensible length everywhere except `/guides/storing-tea/`.
+- Bai Mudan Product schema is valid, and the visible prices match the schema.
+- The writing is original and first-hand, with Flesch scores of 70–91 and no AI-pattern or filler signals.
+- The address is the same everywhere (NAP consistency).
+- Performance is excellent: tiny pages, no JavaScript or CSS, and width and height set on every image.
+
+## Specialist reports
+Full per-category findings are in `findings/` (technical, content, schema, sitemap, performance, visual, geo, agentic, ecommerce, sxo).
+</pre></details><details><summary>audit-data.json</summary><pre>{
+  &quot;summary&quot;: {
+    &quot;health_score&quot;: 61,
+    &quot;business_type&quot;: &quot;E-commerce (small UK loose-leaf tea shop)&quot;,
+    &quot;top_findings&quot;: [
+      &quot;/teas/jasmine-silver-needle/ meta noindex&quot;,
+      &quot;/teas/bai-mudan/ X-Robots-Tag noindex&quot;,
+      &quot;/teas/ canonical points to homepage&quot;,
+      &quot;robots.txt Disallow /blog/ blocks linked brewing guide&quot;,
+      &quot;No add-to-cart/checkout on product pages&quot;
+    ],
+    &quot;quick_wins&quot;: [
+      &quot;Remove noindex from both products&quot;,
+      &quot;Self-canonical on /teas/&quot;,
+      &quot;Fix Jasmine JSON-LD trailing commas&quot;,
+      &quot;Unique title for /guides/storing-tea/&quot;,
+      &quot;Clean sitemap; link nav Shop to /teas/&quot;
+    ]
+  },
+  &quot;categories&quot;: [
+    {
+      &quot;name&quot;: &quot;Technical SEO&quot;,
+      &quot;score&quot;: 52,
+      &quot;what_works&quot;: [
+        &quot;Static SSR HTML&quot;,
+        &quot;Real 404s&quot;,
+        &quot;Viewport on all pages&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;Product pages noindexed (meta + X-Robots-Tag)&quot;,
+          &quot;severity&quot;: &quot;Critical&quot;,
+          &quot;description&quot;: &quot;/teas/jasmine-silver-needle/ meta noindex; /teas/bai-mudan/ X-Robots-Tag noindex&quot;,
+          &quot;recommendation&quot;: &quot;Remove noindex&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/teas/ canonical points to homepage&quot;,
+          &quot;severity&quot;: &quot;Critical&quot;,
+          &quot;description&quot;: &quot;canonical=http://lumentea.test/&quot;,
+          &quot;recommendation&quot;: &quot;Self-canonical&quot;
+        },
+        {
+          &quot;title&quot;: &quot;robots.txt blocks /blog/ (linked, in sitemap)&quot;,
+          &quot;severity&quot;: &quot;Critical&quot;,
+          &quot;description&quot;: &quot;Disallow: /blog/&quot;,
+          &quot;recommendation&quot;: &quot;Unblock or delist&quot;
+        },
+        {
+          &quot;title&quot;: &quot;hreflang zh-CN -&gt; /zh/ 404&quot;,
+          &quot;severity&quot;: &quot;High&quot;,
+          &quot;description&quot;: &quot;No self/x-default&quot;,
+          &quot;recommendation&quot;: &quot;Fix or remove&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/teas/white-peony/ 404 in sitemap&quot;,
+          &quot;severity&quot;: &quot;High&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;301 to /teas/bai-mudan/&quot;
+        },
+        {
+          &quot;title&quot;: &quot;Sitemap lists 5 non-indexable URLs; identical lastmod&quot;,
+          &quot;severity&quot;: &quot;High&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/shop/ two-hop redirect chain&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;/shop/-&gt;/store/-&gt;/teas/&quot;,
+          &quot;recommendation&quot;: &quot;Link /teas/ directly&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/guides/storing-tea/ orphan&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No cache/compression headers; /favicon.ico 404; no fetchpriority on hero&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;Content Quality&quot;,
+      &quot;score&quot;: 70,
+      &quot;what_works&quot;: [
+        &quot;Original first-hand copy&quot;,
+        &quot;Flesch 70-91&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;Thin pages&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;/ 241, products 132/160, /teas/ 140, /contact/ 109 words&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No author/date/Article on guide&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;/guides/storing-tea/&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;Pack size &amp; cup count inconsistencies&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;On-Page SEO&quot;,
+      &quot;score&quot;: 52,
+      &quot;what_works&quot;: [
+        &quot;Unique titles/descriptions elsewhere&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;Duplicate homepage title on /guides/storing-tea/&quot;,
+          &quot;severity&quot;: &quot;High&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/teas/ title promises green tea&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;/contact/ no H1&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;Schema / Structured Data&quot;,
+      &quot;score&quot;: 45,
+      &quot;what_works&quot;: [
+        &quot;Bai Mudan Product valid&quot;,
+        &quot;Organization/WebSite/AboutPage valid&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;Jasmine Product JSON-LD invalid (trailing commas)&quot;,
+          &quot;severity&quot;: &quot;High&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;Product schema missing brand/offers.url/shipping/returns&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No BreadcrumbList&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;Organization thin; name mismatch&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No ItemList/ContactPage; bare AboutPage&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;Performance (CWV)&quot;,
+      &quot;score&quot;: 98,
+      &quot;what_works&quot;: [
+        &quot;Lighthouse 100 on 5 pages; LCP 0.6s; CLS 0&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;No caching/compression; HTTP/1.0&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No fetchpriority on LCP image&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;AI Search Readiness&quot;,
+      &quot;score&quot;: 47,
+      &quot;what_works&quot;: [
+        &quot;SSR&quot;,
+        &quot;Specific verifiable facts&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;/blog/ blocked for AI crawlers&quot;,
+          &quot;severity&quot;: &quot;Critical&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No question headings/FAQ&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;llms.txt missing&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;No sources cited&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;Images&quot;,
+      &quot;score&quot;: 90,
+      &quot;what_works&quot;: [
+        &quot;width/height set&quot;
+      ],
+      &quot;findings&quot;: [
+        {
+          &quot;title&quot;: &quot;Jasmine product image missing alt&quot;,
+          &quot;severity&quot;: &quot;Medium&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        },
+        {
+          &quot;title&quot;: &quot;PNG only, no srcset&quot;,
+          &quot;severity&quot;: &quot;Low&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;recommendation&quot;: &quot;&quot;
+        }
+      ]
+    }
+  ],
+  &quot;action_plan&quot;: {
+    &quot;phases&quot;: [
+      {
+        &quot;name&quot;: &quot;Phase 1: Critical Fixes&quot;,
+        &quot;timeframe&quot;: &quot;Week 1&quot;,
+        &quot;items&quot;: [
+          &quot;Remove noindex on products&quot;,
+          &quot;Self-canonical /teas/&quot;,
+          &quot;Unblock /blog/&quot;,
+          &quot;Add purchase path&quot;
+        ]
+      },
+      {
+        &quot;name&quot;: &quot;Phase 2: High-Impact Improvements&quot;,
+        &quot;timeframe&quot;: &quot;Weeks 2-3&quot;,
+        &quot;items&quot;: [
+          &quot;Fix Jasmine JSON-LD + alt&quot;,
+          &quot;Fix white-peony 404&quot;,
+          &quot;Fix hreflang&quot;,
+          &quot;Clean sitemap&quot;,
+          &quot;Unique guide title&quot;,
+          &quot;Expand /teas/&quot;
+        ]
+      },
+      {
+        &quot;name&quot;: &quot;Phase 3: Content &amp; Authority&quot;,
+        &quot;timeframe&quot;: &quot;Month 2&quot;,
+        &quot;items&quot;: [
+          &quot;Author/date/Article&quot;,
+          &quot;Expand thin pages, FAQ&quot;,
+          &quot;Enrich Organization/Product schema, breadcrumbs&quot;
+        ]
+      },
+      {
+        &quot;name&quot;: &quot;Phase 4: Monitoring &amp; Iteration&quot;,
+        &quot;timeframe&quot;: &quot;Ongoing&quot;,
+        &quot;items&quot;: [
+          &quot;Real lastmod&quot;,
+          &quot;Caching/compression in production&quot;,
+          &quot;llms.txt optional&quot;
+        ]
+      }
+    ]
+  },
+  &quot;artifacts&quot;: {
+    &quot;findings_dir&quot;: &quot;findings/&quot;,
+    &quot;screenshots_dir&quot;: &quot;screenshots/&quot;
+  }
+}</pre></details><details><summary>findings/agentic.md</summary><pre># Agent readiness: http://lumentea.test/ (checked 2026-11-11, sandbox, plain HTTP)
+
+## Lighthouse Agentic Browsing
+Not available: PSI returned HTTP 429 (quota) for mobile and desktop; no local Lighthouse run. No X/N reported.
+
+## Agent-UX heuristic
+Score: unavailable (status unavailable). Playwright failed: net::ERR_FAILED on goto. HTML-only fallback: 12 anchors, 0 buttons, 4 landmarks (header, nav, main, footer), 0 inputs, 0 forms, 0 div-onclick widgets, 0 unlabeled inputs.
+
+## Findings
+- Medium: /teas/white-peony/ listed in http://lumentea.test/sitemap.xml returns 404 (crawled copy is a 221-byte &quot;Not found&quot; page). Agents following the sitemap hit a dead product. Fix: restore the page or remove the entry.
+- Medium: Nav on every page links to http://lumentea.test/shop/, which redirects 301 /shop/ -&gt; /store/ -&gt; /teas/ (two hops). Fix: link directly to /teas/.
+- Medium: No machine-usable purchase or enquiry path. 0 forms, no cart/checkout, no button elements on any crawled page; product pages show price and stock (and Product JSON-LD) but no way to buy; contact is mailto/phone only. An agent can read but not act. Fix: if the shop sells online, add a real form/cart flow with labelled controls.
+- Low: http://lumentea.test/sitemap.xml lists /blog/ and /blog/how-to-brew-green-tea/ while robots.txt has &quot;Disallow: /blog/&quot; (the pages return 200). Contradictory signal; nav also links to /blog/. Decide which is intended.
+- Low: Home has hreflang zh-CN alternate http://lumentea.test/zh/, which returns 404. Remove or publish.
+- Low: Product JSON-LD present only on home, about, bai-mudan, jasmine-silver-needle; absent on /teas/ and white-peony (404). Minor consistency gap.
+- Info: robots.txt has a single &quot;*&quot; group (Disallow: /blog/); no named AI groups, no Content-Signal (draft/preference, checked 2026-09-23). Optional.
+- Info: Primary content server-rendered (290 words without JS, no JS shell); unknown URLs return a real 404. Pass.
+- Info (opportunity, not defect): no llms.txt (404), no Markdown delivery (no Accept negotiation, no alternate, no .md sibling), no ai-catalog.json, api-catalog, OAuth, A2A, UCP well-known files (all 404), no WebMCP (0 registerTool, 0 forms; WebMCP is a W3C CG draft, Chrome origin trial, checked 2026-09-23).
+
+## Access policy (robots.txt)
+- Training (GPTBot, ClaudeBot, CCBot, Google-Extended, Applebot-Extended): allowed via &quot;*&quot; (only /blog/ disallowed).
+- Search (OAI-SearchBot, Claude-SearchBot, PerplexityBot): allowed via &quot;*&quot; except /blog/.
+- User-triggered (ChatGPT-User, Claude-User, Perplexity-User, Google-Agent): allowed in robots.txt; Claude-User honours it, Perplexity-User and Google-Agent generally ignore it, ChatGPT-User may not apply.
+
+## Notes
+No UA-matrix testing run. Site not modified. Web Bot Auth, Content-Signal, ai-catalog and WebMCP are drafts/proposals (vendor-matrix checked 2026-09-23).
+</pre></details><details><summary>findings/content.md</summary><pre># Content Quality and On-Page Findings: http://lumentea.test/
+
+Scope: 7 indexable-candidate pages (/, /about/, /contact/, /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/, /guides/storing-tea/), plus /teas/white-peony/ (404) and /shop/, /store/ (301). /blog/ was not fetched (robots.txt disallow). HTTPS ignored (sandbox).
+Sources: saved HTML in pages/, crawl.json, metadata_template.py (site-wide), content_quality.py, and a local Flesch calculation run on the `&lt;main&gt;` text.
+
+## Scores
+
+| Area | Score |
+|---|---|
+| Content Quality | 70/100 |
+| On-Page SEO | 52/100 |
+| AI Citation Readiness | 60/100 |
+| E-E-A-T (internal model) | 72/100 |
+
+E-E-A-T breakdown: Experience 17/20 (named farms, families and villages; harvest dates; buying trips; reject rate of about one lot in three). Expertise 18/25 (Mei&#x27;s 10 years as a tea buyer is stated on /about/ but there is no byline on the guide and no Person markup). Authoritativeness 12/25 (no reviews, press, awards, external citations or outbound references). Trustworthiness 25/30 (full address, phone, email, hours, 30-day refund policy, Organization schema).
+
+## Findings
+
+| # | Severity | URL | Finding | Evidence |
+|---|---|---|---|---|
+| 1 | Critical | http://lumentea.test/teas/jasmine-silver-needle/ | The best-selling product is set to noindex | `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`. The homepage calls it &quot;Our best seller&quot;, and its canonical points to itself. The page will drop out of the index. |
+| 2 | High | http://lumentea.test/teas/ | The category page canonicalises to the homepage | `&lt;link rel=&quot;canonical&quot; href=&quot;http://lumentea.test/&quot;&gt;` while og:url is /teas/. The content is different from the homepage, so this asks Google to drop the only listing page. /shop/ and /store/ also redirect here. |
+| 3 | High | http://lumentea.test/guides/storing-tea/ | The title tag duplicates the homepage title | Title and og:title are &quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot;, the same as /. The H1 &quot;How to store loose leaf tea&quot; and the meta description are unique, so the title looks like a template default that was never replaced. |
+| 4 | High | http://lumentea.test/teas/jasmine-silver-needle/ | Product JSON-LD does not parse | Trailing commas: `&quot;availability&quot;: &quot;https://schema.org/InStock&quot;,},` and `},\n}`. crawl.json reports schema_invalid count 1. This product has no usable Product or Offer data. |
+| 5 | Medium | http://lumentea.test/contact/ | No H1 | The page starts at `&lt;h2&gt;Get in touch&lt;/h2&gt;`. The H2s are Get in touch, Orders and returns, Wholesale and Visit. |
+| 6 | Medium | http://lumentea.test/ , http://lumentea.test/teas/ (nav on all pages) | Internal links point to content blocked by robots.txt | The sitewide nav links &quot;Journal&quot; to /blog/. In the body text, / links to /blog/how-to-brew-green-tea/ (&quot;How to brew green tea&quot;) and /teas/ links to it as &quot;our brewing guide&quot;. Both are disallowed, so the brewing guide the copy relies on cannot be crawled. |
+| 7 | Medium | http://lumentea.test/guides/storing-tea/ | Orphan page | None of the 7 crawled pages links to /guides/storing-tea/. The page is useful (storage rules, shelf life by tea type) but cannot be reached through links. |
+| 8 | Medium | http://lumentea.test/teas/ , http://lumentea.test/ | Title and copy do not match what the shop sells | The /teas/ title says &quot;White, Green and Jasmine Tea&quot;, but the page lists only 2 white teas and the homepage says &quot;We sell two teas for now, both white&quot;. The home H2 &quot;How we brew it&quot; is about green tea. &quot;Green&quot; in the title sets a search intent the page cannot meet. |
+| 9 | Medium | Sitewide (nav) to http://lumentea.test/shop/ | The &quot;Shop&quot; nav link goes through a 2-hop redirect chain | /shop/ 301 to /store/, then /store/ 301 to /teas/. This link is in the header of every page. |
+| 10 | Medium | http://lumentea.test/ , /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/, /contact/ | Thin content relative to page-type floors | Main-content words: / 241 (floor 500), /teas/bai-mudan/ 132 and /teas/jasmine-silver-needle/ 160 (floor 300), /teas/ 140, /contact/ 109. The copy is dense and specific; it is only short. Gaps include origin and processing detail, caffeine, shelf life, a link to the storage guide, and FAQs. Word count is not a ranking factor in itself. |
+| 11 | Medium | http://lumentea.test/guides/storing-tea/ | The guide has no author, date or Article markup | No byline, no published or updated date, no schema. The founder&#x27;s buying expertise from /about/ is not attributed to the guidance. This weakens Expertise and freshness signals and lowers the page&#x27;s value as an AI citation. |
+| 12 | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Product image has no alt attribute | `&lt;img src=&quot;/img/jasmine.png&quot; width=&quot;800&quot; height=&quot;800&quot;&gt;` |
+| 13 | Low | http://lumentea.test/teas/white-peony/ | The English-name product URL returns 404 | White Peony is the English name of Bai Mudan (/teas/bai-mudan/). A plain 404 page with noindex. If this URL ever existed or is linked from elsewhere, it should 301 to /teas/bai-mudan/. No crawled page links to it. |
+| 14 | Low | http://lumentea.test/ | Pack sizes contradict the product pages | The homepage says &quot;a resealable foil pouch of 50 or 100 grams&quot;, but both product pages, their titles and their schema only offer 50 g. |
+| 15 | Low | http://lumentea.test/teas/ | The cup count contradicts the brewing instructions | &quot;Prices are for 50 grams, about 25 cups&quot;, but the product pages say 3 g per 250 ml, which is about 16 first infusions. The 25 figure only works if re-steeps are counted. |
+| 16 | Low | http://lumentea.test/ | hreflang zh-CN has no self-reference and could not be checked | `&lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;` appears on / only. There is no en or x-default self-reference, and /zh/ was not in the crawl, so the return link is unconfirmed. |
+| 17 | Low | http://lumentea.test/about/ | Founder expertise is not in structured data | AboutPage schema has only name and url. Mei and Tom Harding (buyer and roaster) are not marked up as Person or linked as founders on the Organization. |
+| 18 | Info | Sitewide | Metadata templating check passed | metadata_template.py over 7 pairs: site_risk low, templated_ratio 0.0, shared_cta_phrases none, no flags. This check does not compare titles across pages, so the duplicate in #3 was found by hand. |
+| 19 | Info | Sitewide | No low-quality AI content markers | content_quality.py: filler 0 and ai_pattern 0 on all pages, overall 74 to 92. The copy is specific and first-hand (Lin family in Diantou, Chen family near Fu&#x27;an, Panxi cooperative, 85 °C for 3 to 4 min, harvest April 2026). |
+| 20 | Info | Sitewide | Readability is good | Flesch Reading Ease 70 to 91, averaging 9 to 17 words per sentence. |
+| 21 | Info | Sitewide | Meta descriptions and titles are unique (apart from #3) and within length | Titles 45 to 51 characters, descriptions 125 to 146 characters, each a specific summary of its page. |
+
+## Structured findings (audit-data.json, category &quot;Content Quality&quot;)
+
+```json
+[
+ {&quot;id&quot;:&quot;CQ-01&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Best-selling product set to noindex&quot;,&quot;evidence&quot;:&quot;meta robots noindex, follow&quot;},
+ {&quot;id&quot;:&quot;CQ-02&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Category canonical points to homepage&quot;,&quot;evidence&quot;:&quot;canonical href=http://lumentea.test/&quot;},
+ {&quot;id&quot;:&quot;CQ-03&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Title duplicates homepage title&quot;,&quot;evidence&quot;:&quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;},
+ {&quot;id&quot;:&quot;CQ-04&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Product JSON-LD does not parse&quot;,&quot;evidence&quot;:&quot;trailing commas; schema_invalid count 1&quot;},
+ {&quot;id&quot;:&quot;CQ-05&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/contact/&quot;,&quot;title&quot;:&quot;Missing H1&quot;,&quot;evidence&quot;:&quot;first heading is h2 &#x27;Get in touch&#x27;&quot;},
+ {&quot;id&quot;:&quot;CQ-06&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;Internal links to robots-disallowed /blog/ content&quot;,&quot;evidence&quot;:&quot;nav Journal -&gt; /blog/; body links to /blog/how-to-brew-green-tea/ from / and /teas/&quot;},
+ {&quot;id&quot;:&quot;CQ-07&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Orphan page&quot;,&quot;evidence&quot;:&quot;0 inbound internal links among crawled pages&quot;},
+ {&quot;id&quot;:&quot;CQ-08&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Title promises green tea the shop does not sell&quot;,&quot;evidence&quot;:&quot;&#x27;White, Green and Jasmine Tea&#x27; vs &#x27;two teas for now, both white&#x27;&quot;},
+ {&quot;id&quot;:&quot;CQ-09&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/shop/&quot;,&quot;title&quot;:&quot;Nav link through 2-hop redirect chain&quot;,&quot;evidence&quot;:&quot;/shop/ 301 /store/ 301 /teas/&quot;},
+ {&quot;id&quot;:&quot;CQ-10&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;Thin content vs page-type floors&quot;,&quot;evidence&quot;:&quot;/ 241, bai-mudan 132, jasmine 160, /teas/ 140, /contact/ 109 words&quot;},
+ {&quot;id&quot;:&quot;CQ-11&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Guide lacks author, date, Article schema&quot;,&quot;evidence&quot;:&quot;no byline/date/JSON-LD&quot;},
+ {&quot;id&quot;:&quot;CQ-12&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Product image missing alt&quot;,&quot;evidence&quot;:&quot;&lt;img src=/img/jasmine.png&gt; no alt&quot;},
+ {&quot;id&quot;:&quot;CQ-13&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/white-peony/&quot;,&quot;title&quot;:&quot;English-name product URL 404s&quot;,&quot;evidence&quot;:&quot;404; should 301 to /teas/bai-mudan/&quot;},
+ {&quot;id&quot;:&quot;CQ-14&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;Pack size contradiction&quot;,&quot;evidence&quot;:&quot;&#x27;50 or 100 grams&#x27; vs 50 g only on products&quot;},
+ {&quot;id&quot;:&quot;CQ-15&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Cup count contradicts brewing ratio&quot;,&quot;evidence&quot;:&quot;&#x27;50 grams, about 25 cups&#x27; vs 3 g per cup&quot;},
+ {&quot;id&quot;:&quot;CQ-16&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;hreflang zh-CN without self-reference; target unverified&quot;,&quot;evidence&quot;:&quot;only zh-CN alternate; /zh/ not crawled&quot;},
+ {&quot;id&quot;:&quot;CQ-17&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/about/&quot;,&quot;title&quot;:&quot;Founders not in structured data&quot;,&quot;evidence&quot;:&quot;AboutPage has name/url only&quot;},
+ {&quot;id&quot;:&quot;CQ-18&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;sitewide&quot;,&quot;title&quot;:&quot;No templated metadata&quot;,&quot;evidence&quot;:&quot;site_risk low, templated_ratio 0.0, no shared CTA&quot;},
+ {&quot;id&quot;:&quot;CQ-19&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;sitewide&quot;,&quot;title&quot;:&quot;No low-quality AI content markers&quot;,&quot;evidence&quot;:&quot;filler 0, ai_pattern 0&quot;},
+ {&quot;id&quot;:&quot;CQ-20&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;sitewide&quot;,&quot;title&quot;:&quot;Readability good&quot;,&quot;evidence&quot;:&quot;Flesch 70-91&quot;}
+]
+```
+</pre></details><details><summary>findings/ecommerce.md</summary><pre># E-commerce SEO: http://lumentea.test/ (On-page analysis, static; no marketplace data, none exists)
+
+Scores: Schema 55/100 | Images 55/100 | Content 80/100 | Internal linking 55/100 | Overall 58/100
+
+## Findings
+1. Critical - /teas/jasmine-silver-needle/ - meta robots &quot;noindex, follow&quot; on the best-selling product (homepage calls it best seller). Page cannot rank or earn rich results. Remove if unintended.
+2. High - /teas/jasmine-silver-needle/ - Product JSON-LD is invalid JSON (trailing commas after &quot;InStock&quot; and after offers). Parsers drop the block. Remove both commas.
+3. High - /teas/ - canonical points to http://lumentea.test/ (og:url says /teas/). The category page asks to be deduplicated into the homepage. Set canonical to /teas/.
+4. High - /teas/jasmine-silver-needle/, /teas/bai-mudan/ - no add-to-cart, buy button, or cart/checkout link found in the saved HTML of any page. Cannot confirm a purchase path exists; if it is JS-injected, verify with a render. Offers claim InStock.
+5. Medium - /teas/jasmine-silver-needle/ - product image /img/jasmine.png has no alt attribute (Bai Mudan&#x27;s has good alt). Add descriptive alt.
+6. Medium - both product pages - Product schema lacks brand, offers.url, shippingDetails, hasMerchantReturnPolicy (needed for merchant listing eligibility). Site text supports it: free UK delivery over £30, 30-day refund/replace (/contact/). No aggregateRating/review (none exist; do not fabricate). Also no gtin/mpn (optional).
+7. Medium - both product pages - no breadcrumb navigation or BreadcrumbList; only footer/body links back to /teas/.
+8. Medium - Nav &quot;Shop&quot; (/shop/) 301s to /store/ which 301s to /teas/ (redirect chain, on every page). Link nav directly to /teas/.
+9. Medium - /teas/white-peony/ is a 404 that is listed in the sitemap (per crawl). Remove from sitemap or 301 to /teas/bai-mudan/ (Bai Mudan is the White Peony product; people may search that name).
+10. Medium - /teas/ - category page has no product images, no CollectionPage/ItemList schema, and no price/stock structure beyond text. Add thumbnails (with alt) and ItemList.
+11. Medium - /teas/ - title and meta description mention &quot;Green&quot; tea (&quot;White, Green and Jasmine Tea&quot;) but no green tea is sold (site says two white teas). Misleading; align with the range.
+12. Low - home and /teas/ - copy says pouches come in &quot;50 or 100 grams&quot;, but only 50 g is offered on product pages/schema. Clarify or add the 100 g variant (separate Offer/sku).
+13. Low - product images - PNG, 800x800 (meets the 800px minimum, no larger). No WebP/AVIF, no srcset, no loading attribute. Consider WebP and 1200px+ sources for Google image eligibility. Actual file sizes not checked.
+14. Low - /teas/ and home link to /blog/how-to-brew-green-tea/ and nav links /blog/; both appear in crawl &quot;blocked&quot; list, so status is unverified. The guide is about green tea while the range is white tea.
+15. Low - Jasmine page copy: harvest &quot;April 2026&quot; but scenting &quot;in June&quot;; confirm that harvest date refers to the base tea. Product copy is otherwise original (not manufacturer copy), 4 sections each.
+16. Info - Bai Mudan: Product JSON-LD valid (name, image, description, sku, price 12.00 GBP, InStock URL) and indexable; price in schema matches visible price (£12.00). Jasmine price (£18.00) also matches.
+17. Info - Titles/descriptions on both product pages are unique, include size and price; internal cross-links between the two products and to /teas/ exist. Product schema is server-rendered in raw HTML (no JS needed).
+18. Info - Marketplace, Shopping, pricing-competitiveness analysis skipped (not public, no data; no DataForSEO calls made).
+</pre></details><details><summary>findings/geo.md</summary><pre># GEO / AI Search Readiness: http://lumentea.test/
+
+Audit date: 2026-11-11. Sandbox site on plain HTTP, so HTTPS was not assessed. No external brand-mention or AI-visibility lookups were made because the site is not public. Sources: the crawled HTML in `pages/`, `crawl.json`, and live fetches of robots.txt, llms.txt, sitemap.xml and the RSL paths using `render_page.py`.
+
+## GEO score: 47 / 100
+
+| Dimension | Weight | Score | Weighted |
+|---|---|---|---|
+| Citability | 25% | 55 | 13.8 |
+| Structural Readability | 20% | 70 | 14.0 |
+| Multi-Modal Content | 15% | 35 | 5.3 |
+| Authority &amp; Brand Signals | 20% | 35 | 7.0 |
+| Technical Accessibility | 20% | 35 | 7.0 |
+| **Total** | | | **47** |
+
+Platform estimates (on-site signals only): Google AI Overviews 40, ChatGPT Search 45, Perplexity 45, Bing Copilot 40.
+
+## AI crawler access (robots.txt: `User-agent: *` / `Disallow: /blog/`)
+
+No crawler has its own group, so every bot follows `*`. Everything is allowed except `/blog/`.
+
+| Crawler | What it governs | Status |
+|---|---|---|
+| OAI-SearchBot | ChatGPT Search | Allowed, except /blog/ |
+| Claude-SearchBot | Claude search | Allowed, except /blog/ |
+| PerplexityBot | Perplexity search | Allowed, except /blog/ |
+| Googlebot | Google Search and AI Overviews | Allowed, except /blog/ |
+| Bingbot | Bing and Copilot grounding | Allowed, except /blog/ |
+| Applebot | Siri, Spotlight and Safari | Allowed, except /blog/ |
+| GPTBot | OpenAI training | Allowed, except /blog/ |
+| ClaudeBot | Anthropic training | Allowed, except /blog/ |
+| Google-Extended | Gemini/Vertex training and grounding | Allowed, except /blog/ |
+| Applebot-Extended | Apple Intelligence training | Allowed, except /blog/ |
+| CCBot, cohere-ai | Training | Allowed, except /blog/ |
+
+- llms.txt: missing (404). llms-full.txt is also 404.
+- RSL 1.0: none found. /license.xml and /.well-known/rsl.xml return 404, and robots.txt has no License directive.
+- Rendering: all pages are server-rendered static HTML with no JS dependency (`is_spa=false`), so they are fully readable without JavaScript.
+
+## Findings
+
+### Critical
+1. **The brewing guide is blocked for every AI search crawler.** URL: http://lumentea.test/robots.txt, which affects /blog/ and /blog/how-to-brew-green-tea/. `Disallow: /blog/` under `User-agent: *` keeps out OAI-SearchBot, Claude-SearchBot, PerplexityBot, Googlebot and Bingbot. &quot;How to brew green tea&quot; is the site&#x27;s main how-to page. It is linked from / and /teas/, and how-to content is the type most likely to be cited by AI search. Fix: remove the Disallow, or add explicit Allow groups for the search crawlers.
+2. **The best-selling product page is set to noindex.** URL: http://lumentea.test/teas/jasmine-silver-needle/. It has `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`. That removes it from the Google index, so it cannot appear in AI Overviews, and from the Bing index used by Copilot. Index-based AI search is also likely to skip it.
+3. **The other product page is noindexed by an HTTP header.** URL: http://lumentea.test/teas/bai-mudan/. The server sends `X-Robots-Tag: noindex`, which you can&#x27;t see in the HTML. Together with finding 2, both of the shop&#x27;s only two product pages are excluded from search indexes.
+
+### High
+4. **The tea listing page points its canonical at the homepage.** URL: http://lumentea.test/teas/. It has `&lt;link rel=&quot;canonical&quot; href=&quot;http://lumentea.test/&quot;&gt;`. That merges the listing page into the homepage, which risks dropping it and its &quot;Choosing a tea&quot; comparison passage. That passage is the most citable answer to &quot;which white tea should I start with&quot; on the site.
+
+### Medium
+5. **Product schema on the Jasmine Silver Needle page is invalid.** URL: http://lumentea.test/teas/jasmine-silver-needle/. The JSON-LD has trailing commas (the parse fails at line 3, column 118), so the Product and Offer data can&#x27;t be read.
+6. **The storing-tea guide reuses the homepage title.** URL: http://lumentea.test/guides/storing-tea/. Its `&lt;title&gt;` and og:title are &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;, the same as /. AI answers that cite this page would show the homepage label instead of &quot;How to store loose leaf tea&quot;.
+7. **Content pages have no author, date or Article schema.** URLs: /guides/storing-tea/, /teas/, /. No page shows an author byline or a published or updated date. The site&#x27;s real expertise is on /about/ (Mei Harding grew up in Fuzhou and spent ten years buying tea for a London importer), but it isn&#x27;t attached to any guide. The tool&#x27;s `publication_date=2026-01-01` comes from the &quot;© 2026&quot; footer, not a real date.
+8. **The organization&#x27;s entity data is thin.** URLs: /, /about/. The Organization schema has no `sameAs`, `telephone`, `email`, `founder` or `foundingDate`, although the site states 2021, 0117 496 0123 and the founders&#x27; names. The AboutPage schema has no Person entities for Mei and Tom Harding. The name is inconsistent: &quot;Lumen Tea Co.&quot; in the Organization schema and &quot;Lumen Tea&quot; in the WebSite schema. The site links to no social, YouTube, Reddit or LinkedIn profiles, so AI systems have nothing to connect the brand to.
+9. **Product schema is incomplete.** URLs: /teas/bai-mudan/ and /teas/jasmine-silver-needle/. It has no `brand`, `offers.url`, `shippingDetails` or `hasMerchantReturnPolicy`, although the site states free UK delivery over £30, same-day dispatch before 2 pm and 30-day refunds. It also has no reviews or ratings.
+10. **The site&#x27;s description of what it sells is inconsistent.** URLs: /teas/, /. The /teas/ title says &quot;White, Green and Jasmine Tea&quot; and the homepage promotes a green-tea brewing guide, but the site sells only two white teas. AI answers could wrongly say Lumen sells green tea.
+11. **The sitemap includes URLs that can&#x27;t be indexed.** URL: http://lumentea.test/sitemap.xml. It lists /teas/white-peony/ (404), /blog/ and /blog/how-to-brew-green-tea/ (blocked by robots.txt) and both noindexed product pages. Every entry has the same lastmod, 2026-10-01, which is not a real change date.
+12. **The hreflang tag points to a missing page.** URL: http://lumentea.test/. It declares `hreflang=&quot;zh-CN&quot;` for /zh/, which returns 404, and there is no return tag.
+13. **Passages are short and headings are not phrased as questions.** All pages. The text is direct and factual (for example &quot;3 g / 250 ml / 85 °C / 3–4 min&quot; and &quot;Harvest: April 2026&quot;), and the paragraphs make sense on their own. But no H2 or H3 is a question, there is no FAQ, and every page is under 250 words, so no answer block reaches the roughly 130–170-word length that third-party studies favour. Product pages run 142–173 words and /contact/ 117.
+
+### Low
+14. **The Jasmine Silver Needle product image has no alt text.** URL: http://lumentea.test/teas/jasmine-silver-needle/. The `&lt;img src=&quot;/img/jasmine.png&quot;&gt;` tag has no `alt`. The other images have good descriptive alt text.
+15. **There is little content beyond text.** URLs: /teas/ (no images at all) and all other pages (one image each). The site has no video and no tables. The brewing temperatures, amounts and times, and the storage times, would read well as tables.
+16. **The contact page has no H1, and its contact details are not in schema.** URL: http://lumentea.test/contact/. The page starts at H2 and has no ContactPoint or LocalBusiness schema. The Saturday collection hours at 18 Harbour Lane are not marked up as opening hours.
+17. **The Shop link in the main navigation goes through two redirects.** URL: /shop/ redirects with a 301 to /store/, which redirects with a 301 to /teas/. This link is on every page.
+18. **Factual claims cite no sources.** URLs: /, /guides/storing-tea/. Examples are &quot;where white tea was first made&quot; and &quot;aged white tea is prized in Fujian&quot;. There are no outbound citations.
+19. **llms.txt is missing.** URL: http://lumentea.test/llms.txt (404). No major AI search engine is confirmed to use it, so the priority is low.
+
+### Info
+20. RSL 1.0 licensing is not declared.
+21. Training crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended, Applebot-Extended, cohere-ai) are all allowed except /blog/. Whether to allow them is a business choice, and it does not affect AI search visibility.
+22. Brand mentions on Wikipedia, Reddit, YouTube and LinkedIn were not assessed because this is a non-public sandbox.
+23. Strengths: server-side rendering, clean H1/H2 structure on most pages, specific and verifiable facts (named farms, harvest dates, prices, brewing parameters), named founders with relevant experience, and a consistent address on every page and in the schema.
+
+## Top 5 changes
+1. Remove `Disallow: /blog/`, or allow the search crawlers. Effort: 5 minutes.
+2. Remove the noindex meta tag from /teas/jasmine-silver-needle/ and the `X-Robots-Tag: noindex` header from /teas/bai-mudan/. Effort: 15 minutes.
+3. Change the /teas/ canonical to point to /teas/ itself, and remove the trailing commas from the Jasmine JSON-LD. Effort: 10 minutes.
+4. Add author bylines with Person schema linked to /about/, visible &quot;Updated&quot; dates, and Article schema to the guides. Give /guides/storing-tea/ its own title. Effort: 1–2 hours.
+5. Add question-phrased H2s and 130–170-word answer blocks, an FAQ section, and brewing and storage tables. Fill out the Organization schema (sameAs, founder, telephone, foundingDate) and the Product schema (brand, shipping, returns). Clean up the sitemap. Effort: half a day to a day.
+
+## Structured findings (audit-data.json, category &quot;AI Search Readiness&quot;)
+
+```json
+{&quot;category&quot;:&quot;AI Search Readiness&quot;,&quot;score&quot;:47,
+ &quot;dimensions&quot;:{&quot;citability&quot;:55,&quot;structural_readability&quot;:70,&quot;multimodal&quot;:35,&quot;authority_brand&quot;:35,&quot;technical_accessibility&quot;:35},
+ &quot;platforms&quot;:{&quot;google_aio&quot;:40,&quot;chatgpt&quot;:45,&quot;perplexity&quot;:45,&quot;bing_copilot&quot;:40},
+ &quot;llms_txt&quot;:&quot;missing&quot;,&quot;rsl&quot;:&quot;missing&quot;,
+ &quot;findings&quot;:[
+  {&quot;id&quot;:&quot;geo-01&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;http://lumentea.test/robots.txt&quot;,&quot;title&quot;:&quot;Disallow: /blog/ blocks all AI search crawlers from the brewing guide&quot;},
+  {&quot;id&quot;:&quot;geo-02&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Best-selling product page has meta robots noindex&quot;},
+  {&quot;id&quot;:&quot;geo-03&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/bai-mudan/&quot;,&quot;title&quot;:&quot;Product page has X-Robots-Tag: noindex HTTP header&quot;},
+  {&quot;id&quot;:&quot;geo-04&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Canonical points to homepage&quot;},
+  {&quot;id&quot;:&quot;geo-05&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Invalid Product JSON-LD (trailing commas)&quot;},
+  {&quot;id&quot;:&quot;geo-06&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Title/og:title duplicates homepage&quot;},
+  {&quot;id&quot;:&quot;geo-07&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;No author, dates or Article schema on content pages&quot;},
+  {&quot;id&quot;:&quot;geo-08&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;Thin Organization entity: no sameAs/founder/telephone; no Person schema; name inconsistency&quot;},
+  {&quot;id&quot;:&quot;geo-09&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/bai-mudan/&quot;,&quot;title&quot;:&quot;Product schema lacks brand, shipping, return policy, offers.url, reviews&quot;},
+  {&quot;id&quot;:&quot;geo-10&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Claims green tea in title/guide but sells only white teas&quot;},
+  {&quot;id&quot;:&quot;geo-11&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/sitemap.xml&quot;,&quot;title&quot;:&quot;Sitemap lists 404, robots-blocked and noindex URLs; uniform lastmod&quot;},
+  {&quot;id&quot;:&quot;geo-12&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;hreflang zh-CN points to 404 /zh/&quot;},
+  {&quot;id&quot;:&quot;geo-13&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;No question headings/FAQ; all pages under 250 words&quot;},
+  {&quot;id&quot;:&quot;geo-14&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Product image missing alt&quot;},
+  {&quot;id&quot;:&quot;geo-15&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/teas/&quot;,&quot;title&quot;:&quot;Little content beyond text: no images on listing, no video or tables&quot;},
+  {&quot;id&quot;:&quot;geo-16&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/contact/&quot;,&quot;title&quot;:&quot;No H1; no ContactPoint/LocalBusiness schema&quot;},
+  {&quot;id&quot;:&quot;geo-17&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/shop/&quot;,&quot;title&quot;:&quot;Main-navigation link goes through a two-hop 301 chain&quot;},
+  {&quot;id&quot;:&quot;geo-18&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/guides/storing-tea/&quot;,&quot;title&quot;:&quot;No source attribution for factual claims&quot;},
+  {&quot;id&quot;:&quot;geo-19&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;http://lumentea.test/llms.txt&quot;,&quot;title&quot;:&quot;llms.txt missing&quot;},
+  {&quot;id&quot;:&quot;geo-20&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;No RSL 1.0 license&quot;},
+  {&quot;id&quot;:&quot;geo-21&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;http://lumentea.test/robots.txt&quot;,&quot;title&quot;:&quot;Training crawlers allowed (business choice)&quot;},
+  {&quot;id&quot;:&quot;geo-22&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;Brand mentions not assessable (non-public sandbox)&quot;},
+  {&quot;id&quot;:&quot;geo-23&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;http://lumentea.test/&quot;,&quot;title&quot;:&quot;All pages server-rendered; no JS dependency&quot;}
+ ]}
+```
+</pre></details><details><summary>findings/performance.md</summary><pre># Performance findings - lumentea.test (lab only; no CrUX/PSI field data available)
+Method: local Lighthouse (headless Chromium, default mobile emulation, performance category only), curl timing/headers, raw HTML and image inspection. Single lab runs per page, so no 75th-percentile field assessment is possible.
+
+## Lab results (all five pages)
+| Page | Score | FCP | LCP | CLS | TBT (INP proxy) | TTFB |
+|---|---|---|---|---|---|---|
+| / | 100 | 0.6s | 0.6s | 0 | 0 ms | &lt;1 ms |
+| /teas/ | 100 | 0.6s | 0.6s | 0 | 0 ms | &lt;1 ms |
+| /teas/bai-mudan/ | 100 | 0.6s | 0.6s | 0 | 0 ms | &lt;1 ms |
+| /teas/jasmine-silver-needle/ | 100 | 0.6s | 0.6s | 0 | 0 ms | &lt;1 ms |
+| /about/ | 100 | 0.6s | 0.6s | 0 | 0 ms | &lt;1 ms |
+
+CWV lab status: LCP pass, CLS pass, INP not measurable in lab (no JS on any page; TBT 0 ms, so low risk). The FCP/LCP of 0.6s is mostly Lighthouse&#x27;s simulated throttling; localhost latency is negligible.
+
+## Findings
+- Info, all pages: No CSS, JS, web fonts or third-party scripts. HTML is 2.2-3.6 KB per page. No render-blocking resources.
+- Info, /, /teas/bai-mudan/, /teas/jasmine-silver-needle/, /about/: Images are tiny (hero.png 3.2 KB 1200x630, peony.png 3.1 KB 800x800, jasmine.png 3.1 KB 800x800, team.png 4.0 KB 1200x800, icon.png 136 B). Total image weight is under 5 KB per page. They are PNG, likely placeholders. Real photos in PNG would be heavy, so serve WebP/AVIF/JPEG when real photography replaces them.
+- Info, /, /teas/bai-mudan/, /teas/jasmine-silver-needle/, /about/: Every &lt;img&gt; has explicit width/height, so there is no CLS risk. None are lazy-loaded, which is correct for the LCP image.
+- Low, /, /about/ (LCP image): No fetchpriority=&quot;high&quot; on the likely LCP image. It is discoverable in the HTML, so the impact is negligible now. It becomes worthwhile if the image grows.
+- Low, all pages: The server sends no Cache-Control or ETag, only Last-Modified, and no Content-Encoding (gzip/br). HTTP/1.0 with no keep-alive (Python SimpleHTTP). Impact is negligible at these sizes. Production should set long-lived immutable caching for /img/*, short or revalidated caching for HTML, compression, and HTTP/2+.
+- Low, /teas/jasmine-silver-needle/: The &lt;img&gt; has no alt attribute. This is an accessibility and SEO issue, not a performance issue.
+- Info, /teas/: rel=canonical points to http://lumentea.test/ rather than /teas/. This is an SEO issue outside the performance scope; flagged for the SEO audit.
+- Info, /teas/white-peony/: Returns a small 404 page (221 B). shop.html and store.html are empty (0 bytes) in the saved pages. Nothing to optimise.
+
+## Scores
+- Performance: 98/100. All pages score 100 in lab; 2 points are deducted for missing caching/compression headers and the missing fetchpriority hint. Lab-only, with no field validation.
+- Images: 90/100. Weight is excellent and dimensions are declared. Points are deducted for PNG-only format, no responsive srcset/modern formats, and a missing alt on the jasmine image.
+</pre></details><details><summary>findings/schema.md</summary><pre># Schema audit: http://lumentea.test/ (from saved raw HTML; JSON-LD only, no Microdata/RDFa anywhere)
+
+Schema score: 45/100
+
+## Detection
+- / : JSON-LD array [Organization, WebSite] - valid JSON
+- /about/ : AboutPage - valid JSON
+- /teas/bai-mudan/ : Product + Offer - valid JSON
+- /teas/jasmine-silver-needle/ : Product + Offer - INVALID JSON (trailing commas)
+- /teas/, /contact/, /guides/storing-tea/ : none
+- /teas/white-peony/ is a 404 page, no schema
+
+## Findings
+1. High - /teas/jasmine-silver-needle/ - Product JSON-LD is unparseable. Trailing commas after &quot;availability&quot; value inside offers (`&quot;InStock&quot;,}`) and after the offers object (`},\n}`). json.loads fails; parsers will drop the whole block. Fix: remove both commas. Note the page also has meta robots noindex, so confirm intent (best seller per homepage copy).
+2. Info - /teas/jasmine-silver-needle/ - Page is noindex,follow, so its Product markup yields no rich result until noindex is removed.
+3. Medium - /teas/bai-mudan/ (and Jasmine once fixed) - Product lacks recommended merchant-listing properties: brand, offers.url, offers.shippingDetails, offers.hasMerchantReturnPolicy (page text elsewhere states 30-day returns on /contact/, free UK delivery over £30), priceValidUntil optional. No review/aggregateRating present; do not add without real reviews.
+4. Medium - / - Organization is minimal: no @id, sameAs, contactPoint/email/telephone (hello@lumentea.test, 0117 496 0123 appear on /contact/). Logo (/img/icon.png) is a favicon-type asset; confirm it is at least 112x112 and suitable.
+5. Low - / - Name inconsistency: Organization &quot;Lumen Tea Co.&quot; vs WebSite &quot;Lumen Tea&quot;. Link entities with @id and add publisher on WebSite. WebSite has no potentialAction (SearchAction not needed; no search seen).
+6. Medium - all pages except / - No BreadcrumbList on /teas/, /teas/&lt;product&gt;/, /guides/storing-tea/ (hierarchy is clear in URLs).
+7. Medium - /guides/storing-tea/ - No Article/BlogPosting markup. No visible author or date on the page, so supply real datePublished/author from the CMS rather than inventing them.
+8. Low - /teas/ - No CollectionPage/ItemList for the two products listed.
+9. Low - /contact/ - No ContactPage schema; Organization contactPoint would fit. Collection hours (Sat 10-1) exist but it is a packing room, so LocalBusiness is not recommended unless it is genuinely a public pickup point.
+10. Low - /about/ - AboutPage is minimal (no isPartOf/publisher/about); founders Mei and Tom Harding could be Person nodes (optional).
+11. Info - /teas/ - Related non-schema issue noticed: canonical points to http://lumentea.test/ (og:url is /teas/). Wrong canonical would also undermine any schema added here. Also /guides/storing-tea/ reuses the homepage title/og:title.
+12. Info - Deprecated types (HowTo, FAQPage, SpecialAnnouncement) not present. Good.
+
+## Passing
+- @context is https://schema.org everywhere; URLs absolute; Bai Mudan Product has name, image, description, sku, offer with price 12.00, GBP, InStock availability URL (valid for Product snippet).
+
+## Suggested fix (Jasmine)
+Remove the two trailing commas; then add brand, offers.url, and return/shipping policy as in Bai Mudan recommendations.
+</pre></details><details><summary>findings/sitemap.md</summary><pre># Sitemap findings: http://lumentea.test/
+
+Passed: sitemap.xml valid urlset (200, 969 bytes, 10 URLs, no duplicates, no invalid locs, no cross-host, no tokens); declared in robots.txt; no priority/changefreq check needed from tool output; 8 of 10 URLs return 200.
+
+| Severity | URL | Finding |
+|---|---|---|
+| High | /teas/white-peony/ | Returns 404 but listed in sitemap. Remove or restore page. |
+| High | /teas/jasmine-silver-needle/ | Meta robots noindex but listed in sitemap. Remove from sitemap, or drop noindex if it should rank. |
+| High | /teas/ | Canonical points to http://lumentea.test/ (not self). Conflicting signal; fix canonical to self or remove from sitemap. |
+| Medium | /blog/, /blog/how-to-brew-green-tea/ | Listed in sitemap but Disallowed in robots.txt (/blog/). Contradictory: either remove from sitemap or unblock in robots.txt. |
+| Medium | /guides/storing-tea/ | Orphan: in sitemap but not linked from any crawled page. Add internal links. |
+| Low | all 10 URLs | Every lastmod is 2026-10-01 (identical share 1.0); likely not reflecting real changes. Use true per-page dates. (Date is in the past relative to 2026-11-11, so valid.) |
+| Info | /shop/ -&gt; /store/ -&gt; /teas/ | Redirect chain; not in sitemap, so no sitemap action. Collapse to one 301 to /teas/. |
+| Info | sitemap_index.xml, sitemap-index.xml, wp-sitemap.xml | 404; not needed, single sitemap is sufficient. |
+| Info | sitemap | Location page gates not triggered (no location pages). |
+
+Clean sitemap would contain: /, /about/, /contact/, /teas/bai-mudan/, /guides/storing-tea/, plus /teas/ once canonical is fixed (and /blog/ URLs if robots unblocked).
+Missing from sitemap (crawl vs sitemap): none identified from the data provided.
+</pre></details><details><summary>findings/sxo.md</summary><pre># SXO Analysis: http://lumentea.test/ (sandbox, plain HTTP)
+
+The SXO Gap Score is reported separately from the SEO Health Score.
+
+**Method:** Pages were fetched with `claude-seo run render_page.py --mode always` after setting `CLAUDE_SEO_LOCAL_TARGETS`. Playwright failed with net::ERR_FAILED, so the raw fetch was used instead. `is_spa=false` and the pages contain no JS, so the raw DOM is what users see. The saved HTML in `pages/` and `crawl.json` was also read. For SERP evidence, only generic queries were searched (listed below). No site content was sent outside the sandbox. The site has no real search data.
+
+## Headline finding: the site matches the SERP page types, but people cannot buy from it, and the aligned pages are excluded from the index
+
+The commercial SERPs for this site&#x27;s queries are made up almost entirely of product pages and collection pages. Lumen Tea has the right kinds of pages for those queries. However:
+1. No page has an add-to-cart button, basket, checkout, form or `&lt;button&gt;`. A grep across all pages found zero matches.
+2. Both product pages are excluded from the index: Bai Mudan through an `X-Robots-Tag: noindex` header, and Jasmine through meta `noindex`.
+3. The category page&#x27;s canonical points to the homepage.
+
+So none of the pages whose type matches the SERP can rank, and a visitor who arrives anyway still cannot buy.
+
+## SERP consensus (WebSearch, top results, 2026-11-11)
+
+| Target query | Lumen page | SERP dominant type | Consensus | Target type | Mismatch |
+|---|---|---|---|---|---|
+| buy loose leaf white tea UK | /teas/ | Product (category/collection listings: theteamakers x9, boropantry, tea-and-coffee, realfoods PDP) | ~90% Product/listing, 1 guide (greysteas &quot;how to buy&quot;) | Product listing (thin, no buy CTA) | MEDIUM (type aligned, but required elements missing; canonical sends it to /) |
+| bai mudan / white peony tea buy | /teas/bai-mudan/ | Product (all top results are PDPs with price: sevencups, easternleaves, inpursuitoftea, allenteas...) | ~100% Product | Product with no purchase CTA | HIGH (required &quot;purchase CTA&quot; missing) |
+| jasmine silver needle tea | /teas/jasmine-silver-needle/ | Product (bellocq, harney, jingtea, artfultea, teasource...) plus 1 journal post and 1 review aggregator | ~85% Product | Product with no purchase CTA | HIGH |
+| how to store loose leaf tea | /guides/storing-tea/ | Blog Post, mostly on tea retailer blogs (artfultea, pathofcha, nioteas, teabloom, uptontea, borntea) | ~100% Blog Post | Blog Post with no byline/date | ALIGNED on type, with depth and trust gaps |
+| small-batch loose leaf tea UK (brand/home) | / | Mixed retailer homepages and collections | n/a | Hybrid (content + links) | ALIGNED, weak CTA |
+
+SERP features could not be seen (see Limitations). Two signals were visible: commercial snippets that include prices per 25-50 g, and storage results that disagree about keeping tea in the fridge.
+
+## Findings
+
+| # | Severity | URL | Finding | Fix |
+|---|---|---|---|---|
+| 1 | Critical | /teas/bai-mudan/, /teas/jasmine-silver-needle/ (sitewide) | No purchase path. There is no add-to-cart button, quantity/size selector, basket or checkout anywhere. The taxonomy requires a &quot;purchase CTA&quot; on Product pages, and every competitor on the product SERPs has one. A buyer who wants to act hits a dead end. | Add an &quot;Add to basket - £12.00&quot; button and a 50 g / 100 g selector next to the price line, above the fold. |
+| 2 | Critical | /teas/bai-mudan/ | `X-Robots-Tag: noindex` HTTP header. The only page that matches its SERP type and has valid Product markup cannot appear in results. | Remove the header. |
+| 3 | Critical | /teas/jasmine-silver-needle/ | `meta robots noindex, follow` on the page the homepage calls the &quot;best seller&quot;. It cannot rank for a query whose results are about 85% PDPs. The Product JSON-LD is also invalid (trailing commas), so no price or stock rich snippet is possible even after the noindex is removed. | Remove the noindex and fix the JSON-LD. |
+| 4 | High | /teas/ | Canonical points to http://lumentea.test/. The page whose type matches &quot;buy loose leaf white tea UK&quot; (collection SERP) asks Google to fold it into the homepage. | Make the canonical self-referencing. |
+| 5 | High | /teas/ | The listing is text-only: no product images (0 img), no buy buttons, no per-product stock, and no shipping or returns information. Competitor collection pages show thumbnails, price, size and &quot;add&quot; on each card. | Add product cards: image, name, price per 50 g, a short taste line, &quot;Add to basket&quot; and &quot;View tea&quot;. |
+| 6 | High | /guides/storing-tea/ | The title tag and og:title copy the homepage (&quot;Lumen Tea \| Small-Batch Loose Leaf Tea from Fujian&quot;). On a 100% how-to SERP, the result would look like a shop homepage and would not match what the searcher is looking for. | Use the title &quot;How to Store Loose Leaf Tea: 4 Rules and How Long It Keeps \| Lumen Tea&quot;. |
+| 7 | Medium | /guides/storing-tea/ | Orphan page: it is linked from nowhere, and the nav &quot;Journal&quot; link goes to robots-blocked /blog/. The guide also has no next step for the reader. It mentions pouches with harvest dates but links to no tea, while competing retailer guides link to their tins and teas. | Link the guide from /teas/, both PDPs and nav. Add a closing CTA: &quot;Shop teas with the harvest date on every pouch&quot; -&gt; /teas/. |
+| 8 | Medium | /guides/storing-tea/ | It is thin for the SERP (203 words, no image) and has no author byline or date. Every top result is a retailer blog with a byline or date. The SERP disagrees about using the fridge, which gives the page a chance to stand out with an explained position. | Add an author (Mei Harding, tea buyer), a published/updated date, a &quot;Should you keep tea in the fridge?&quot; H2 that explains why not, a photo of the resealable pouch, and a storage-time table by tea type. |
+| 9 | Medium | / , /teas/ | Promise vs offer mismatch. The /teas/ title says &quot;White, Green and Jasmine Tea&quot;, and the homepage and /teas/ send users to a &quot;How to brew green tea&quot; guide, but the shop sells no green tea, and the guide sits under /blog/, which robots.txt blocks. A searcher for green tea lands with nothing to buy, and the brewing link may not be indexable. | Remove &quot;Green&quot; from the /teas/ title. Retitle or move the guide to /guides/how-to-brew-white-tea/ and make it crawlable. |
+| 10 | Medium | /teas/bai-mudan/, /teas/jasmine-silver-needle/ | Decision-stage trust information is missing from the PDPs. Free UK delivery over £30 and same-day dispatch appear only on /. The 30-day no-return refund appears only on /contact/. There are no reviews or ratings anywhere, while product SERPs show ratings. | Add a delivery and returns strip under the price. Collect real reviews before marking any up. |
+| 11 | Medium | /teas/bai-mudan/, /teas/jasmine-silver-needle/ | Size inconsistency. The homepage says pouches come in &quot;50 or 100 grams&quot;, but the PDPs and schema only offer 50 g. | Offer a 100 g variant on the PDP, or correct the homepage text. |
+| 12 | Medium | / (nav, sitewide) | The primary &quot;Shop&quot; nav link goes through a two-hop redirect (/shop/ -&gt; /store/ -&gt; /teas/). The homepage has no button-style primary CTA, only inline text links. | Point &quot;Shop&quot; at /teas/. Add a hero CTA &quot;Shop white tea&quot; -&gt; /teas/. |
+| 13 | Low | /teas/bai-mudan/, /teas/jasmine-silver-needle/ | Each PDP has only one image. Competitor PDPs show dry leaf, wet leaf, liquor and packaging. The Jasmine image has no alt text. | Add 3-4 images: dry leaf, brewed cup, pouch with harvest-date label, and spent leaf. Add alt text to the Jasmine image. |
+| 14 | Low | /contact/ | No H1 (the page starts at H2 &quot;Get in touch&quot;). The wholesale content (500 g/1 kg, samples) has no way to act on it, such as a request form or a mailto link with a preset subject. | Add the H1 &quot;Contact Lumen Tea&quot;. Add a &quot;Request the wholesale price list&quot; link. |
+| 15 | Info | /about/, /teas/jasmine-silver-needle/ | Strength: the provenance and expertise are stronger than most SERP competitors&#x27;. The pages name farms (Lin family, Diantou; Chen family, Fu&#x27;an), a buyer with ten years of experience, a seven-night jasmine scenting process and April 2026 harvest dates. The jasmine SERP disagrees about origin (Fujian vs Yunnan), and these pages answer that clearly. | Surface this on the PDPs and /teas/, e.g. an &quot;Origin&quot; line linking to /about/. |
+| 16 | Info | /teas/white-peony/ | Returns 404. Searchers often use &quot;white peony&quot; as a synonym for Bai Mudan. | 301 it to /teas/bai-mudan/. |
+
+## User stories (from SERP signals)
+
+1. **Decision.** &quot;As a UK shopper who already knows I want Bai Mudan, I want to see the price, size and delivery cost and buy it in one step, so I don&#x27;t have to order from a US store.&quot; Signals: the Bai Mudan SERP is all PDPs with prices; US retailers show &quot;free shipping over $99/$200&quot; in their titles. Status: price shown, purchase impossible.
+2. **Consideration.** &quot;As someone comparing UK white tea sellers, I want to compare prices per gram and check stock, so I know I&#x27;m paying a fair price.&quot; Signals: the UK white tea SERP is dominated by theteamakers collection filters with per-25 g prices, and the snippets warn about &quot;sold out&quot; listings and shipping/VAT. Status: /teas/ shows prices per 50 g but is canonicalised away and has no stock or shipping information.
+3. **Consideration.** &quot;As a white tea beginner, I want to know which tea to start with and how to brew it, so my first cup isn&#x27;t bitter.&quot; Signals: competitor PDPs give brewing parameters (180°F, 3 min), and Seven Cups calls Bai Mudan a &quot;staple everyday&quot; tea. Status: answered well on /teas/ and the PDP (&quot;start with Bai Mudan&quot;, 85 °C, 3-4 min).
+4. **Consideration.** &quot;As a jasmine tea buyer, I want to know where it comes from and how it&#x27;s scented, so I can trust it isn&#x27;t flavoured.&quot; Signals: SERP sources disagree about origin (Fujian vs Yunnan) and the number of scenting days, and a Jing Tea journal &quot;deep dive&quot; ranks. Status: well answered on the PDP, but the page is noindexed.
+5. **Awareness.** &quot;As someone with a cupboard of tea, I want quick rules for storing it and to know if the fridge is OK, so it doesn&#x27;t go stale.&quot; Signals: the storage SERP is 100% retailer blog posts, with conflicting advice about the fridge. Status: the page gives clear rules but has the wrong title, is orphaned, and has no date or author.
+
+## SXO Gap Score per key page
+
+| Dimension | / | /teas/ | /teas/bai-mudan/ | /teas/jasmine-silver-needle/ | /guides/storing-tea/ |
+|---|---|---|---|---|---|
+| Page Type (15) | 10 | 7 | 9 | 9 | 11 |
+| Content Depth (15) | 10 | 7 | 10 | 11 | 7 |
+| UX Signals (15) | 7 | 5 | 5 | 5 | 7 |
+| Schema (15) | 10 | 0 | 9 | 2 | 0 |
+| Media (15) | 8 | 0 | 6 | 4 | 0 |
+| Authority (15) | 9 | 6 | 7 | 7 | 6 |
+| Freshness (10) | 6 | 5 | 8 | 8 | 2 |
+| **SXO Gap Score** | **60** | **30** | **54** | **46** | **33** |
+
+What the scores rest on:
+- **Page Type:** the PDPs score 9 rather than 15 because they have no buy CTA. The guide scores 11 because it has no byline or date.
+- **Content Depth:** word counts are 255 (/), 153, 152, 181 and 203.
+- **UX Signals:** the site has no buttons. The guide&#x27;s title mismatch and orphan status also cost points.
+- **Schema:** Bai Mudan&#x27;s Product schema is valid but minimal. Jasmine&#x27;s JSON-LD is invalid. /teas/ and the guide have none.
+- **Media:** /teas/ and the guide have no images, and the PDPs have one each.
+- **Authority:** named farms and founders help, but there are no reviews and no author on the guide.
+- **Freshness:** the PDPs show an April 2026 harvest date. The guide has no date.
+
+Indexability overrides these scores: today the Bai Mudan, Jasmine and /teas/ pages have zero effective visibility, whatever their score.
+
+## Persona scores
+
+| Persona (SERP evidence) | Page scored | Relevance | Clarity | Trust | Action | Total | Rating |
+|---|---|---|---|---|---|---|---|
+| UK Price Comparer (UK collection SERP, per-25 g prices, VAT/shipping caveats) | /teas/ | 15 | 14 | 12 | 6 | 47 | Needs Work |
+| Storage Searcher (100% blog SERP, fridge disagreement) | /guides/storing-tea/ | 20 | 18 | 8 | 5 | 51 | Needs Work |
+| Ready Buyer (all-PDP Bai Mudan SERP) | /teas/bai-mudan/ | 20 | 18 | 12 | 2 | 52 | Needs Work |
+| Jasmine Origin Evaluator (origin disagreement, Jing deep dive) | /teas/jasmine-silver-needle/ | 22 | 18 | 15 | 2 | 57 | Needs Work |
+| White Tea Beginner (brewing guidance in PDP snippets, &quot;everyday&quot; framing) | /teas/ + /teas/bai-mudan/ | 20 | 17 | 14 | 8 | 59 | Needs Work |
+
+- **Weakest persona: UK Price Comparer (47).** Shipping cost, the free-delivery threshold and the returns policy are not on /teas/, there are no images, and there is no buy action. Fix: add a strip under the H1 reading &quot;Free UK delivery over £30 · Dispatched same day before 2 pm · 30-day refunds, no need to return&quot;. Add product cards with a price per 50 g and per 100 g and an &quot;Add to basket&quot; button.
+- **Systemic issue: Action** averages 4.6/25. No page lets anyone buy, and the content pages lead nowhere. Fix the purchase path first (Finding 1). After that, add a CTA at the end of each content page.
+- **Systemic issue: Trust** sits at 8-15/25. Delivery and returns information sits on the wrong pages, there are no reviews, and the guide has no author or date.
+
+## Limitations
+- Playwright rendering failed (ERR_FAILED), so the raw HTML fetch was used. The pages are static with no JS (`is_spa=false`), so this has little effect. The screenshots folders are empty, so the above-the-fold view was inferred from DOM order.
+- WebSearch returns result links and summaries, not the Google SERP itself. Shopping carousels, PAA, ads, AI Overviews and local packs could not be seen. Results are US-weighted except for the UK query. Page types were classified from URLs, titles and snippets, not by fetching competitor pages. Competitor word counts are estimates.
+- There is no ranking, Search Console or traffic data for the sandbox, so persona weights by search volume are qualitative.
+- /blog/ and /blog/how-to-brew-green-tea/ are blocked by robots.txt and were not fetched.
+- Cross-skill follow-ups: `/seo schema` (Jasmine JSON-LD, merchant fields, Article on the guide), `/seo content` (guide E-E-A-T), `/seo page` (/teas/ depth).
+
+## Structured findings (Search Experience)
+```json
+{&quot;category&quot;:&quot;Search Experience&quot;,&quot;sxo_gap_scores&quot;:{&quot;/&quot;:60,&quot;/teas/&quot;:30,&quot;/teas/bai-mudan/&quot;:54,&quot;/teas/jasmine-silver-needle/&quot;:46,&quot;/guides/storing-tea/&quot;:33},
+&quot;findings&quot;:[
+{&quot;id&quot;:&quot;sxo-1&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;/teas/bai-mudan/; /teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;No purchase CTA / cart anywhere on product-type pages&quot;},
+{&quot;id&quot;:&quot;sxo-2&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;/teas/bai-mudan/&quot;,&quot;title&quot;:&quot;X-Robots-Tag noindex on SERP-aligned product page&quot;},
+{&quot;id&quot;:&quot;sxo-3&quot;,&quot;severity&quot;:&quot;Critical&quot;,&quot;url&quot;:&quot;/teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Best seller PDP noindexed; Product JSON-LD invalid&quot;},
+{&quot;id&quot;:&quot;sxo-4&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;/teas/&quot;,&quot;title&quot;:&quot;Category canonical points to homepage&quot;},
+{&quot;id&quot;:&quot;sxo-5&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;/teas/&quot;,&quot;title&quot;:&quot;Text-only listing; no images, buy buttons, shipping info&quot;},
+{&quot;id&quot;:&quot;sxo-6&quot;,&quot;severity&quot;:&quot;High&quot;,&quot;url&quot;:&quot;/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Homepage title on how-to guide&quot;},
+{&quot;id&quot;:&quot;sxo-7&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Orphan guide with no product CTA&quot;},
+{&quot;id&quot;:&quot;sxo-8&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/guides/storing-tea/&quot;,&quot;title&quot;:&quot;Thin, no author/date vs 100% blog SERP&quot;},
+{&quot;id&quot;:&quot;sxo-9&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/; /teas/&quot;,&quot;title&quot;:&quot;Green tea promised/linked but not sold; brew guide robots-blocked&quot;},
+{&quot;id&quot;:&quot;sxo-10&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/teas/bai-mudan/; /teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Shipping/returns/reviews absent from PDPs&quot;},
+{&quot;id&quot;:&quot;sxo-11&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/teas/bai-mudan/; /teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;100 g size promised on home, only 50 g offered&quot;},
+{&quot;id&quot;:&quot;sxo-12&quot;,&quot;severity&quot;:&quot;Medium&quot;,&quot;url&quot;:&quot;/&quot;,&quot;title&quot;:&quot;Shop nav via 2-hop redirect; no hero CTA&quot;},
+{&quot;id&quot;:&quot;sxo-13&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;/teas/bai-mudan/; /teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Single image per PDP; Jasmine image missing alt&quot;},
+{&quot;id&quot;:&quot;sxo-14&quot;,&quot;severity&quot;:&quot;Low&quot;,&quot;url&quot;:&quot;/contact/&quot;,&quot;title&quot;:&quot;No H1; wholesale has no action path&quot;},
+{&quot;id&quot;:&quot;sxo-15&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;/about/; /teas/jasmine-silver-needle/&quot;,&quot;title&quot;:&quot;Strong provenance/expertise, under-surfaced&quot;},
+{&quot;id&quot;:&quot;sxo-16&quot;,&quot;severity&quot;:&quot;Info&quot;,&quot;url&quot;:&quot;/teas/white-peony/&quot;,&quot;title&quot;:&quot;404 on synonym URL; redirect to Bai Mudan&quot;}]}
+```
+
+Generate a PDF report? Use `/seo google report`.
+</pre></details><details><summary>findings/technical.md</summary><pre># Technical SEO findings: http://lumentea.test/ (HTTPS/HSTS excluded by brief)
+Score: 52/100
+
+## Critical
+- /teas/jasmine-silver-needle/ : meta robots &quot;noindex, follow&quot; on a key product page, which is also listed in the sitemap.
+- /teas/bai-mudan/ : X-Robots-Tag: noindex HTTP header (not visible in HTML) on a key product page, also in the sitemap.
+- /teas/ : canonical points to http://lumentea.test/ (homepage), so the category page asks to be deduplicated into the homepage.
+
+## High
+- /teas/jasmine-silver-needle/ : Product JSON-LD is invalid JSON (trailing commas after &quot;InStock&quot; and after the offers object). Parser reports schema_invalid=1, so there is no Product rich result. The image also has no alt attribute.
+- /zh/ (hreflang target from /) : returns 404. Homepage declares hreflang zh-CN -&gt; /zh/, which does not exist. No self-referencing en/x-default entry and no return link. Hreflang is ignored or invalid.
+- /teas/white-peony/ : 404 listed in sitemap.xml. Not linked internally. Remove it, or 301 to /teas/bai-mudan/ if that is the same product.
+- Sitemap : includes noindex URLs (jasmine, bai-mudan) and robots-blocked URLs (/blog/, /blog/how-to-brew-green-tea/) alongside the 404, so 5 of 10 entries are non-indexable. Sitemap itself is valid (200, urlset, declared in robots.txt). All lastmod values are identical (2026-10-01), which looks unreliable.
+
+## Medium
+- /shop/ : 301 -&gt; /store/ -&gt; 301 -&gt; /teas/, a two-hop chain. The &quot;Shop&quot; link in the nav on every page points to /shop/. Link directly to /teas/ and redirect /shop/ to /teas/ in one hop.
+- /blog/ and /blog/how-to-brew-green-tea/ : robots.txt &quot;Disallow: /blog/&quot; blocks them (not fetched, by instruction). They are linked from the nav (&quot;Journal&quot;), the homepage and /teas/, and listed in the sitemap. Blocked pages can still be indexed as URL-only, and their content and meta robots cannot be seen. Allow crawling if they should rank.
+- /guides/storing-tea/ : title is the homepage title (&quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;), duplicated from / and mismatched with the page content and H1 &quot;How to store loose leaf tea&quot;. og:title is the same. The page is also an orphan: no crawled page links to it, only the sitemap.
+- /contact/ : no H1 (the page starts at H2).
+- /teas/ : no Product/ItemList schema, no images, thin listing (153 words). Title mentions &quot;Green&quot; tea, but the meta description says only white and jasmine.
+
+## Low
+- /teas/jasmine-silver-needle/ and the other pages: images have no loading attribute. The images have width/height, so CLS risk is low. The hero (/ , 1200x630) is probably the LCP element and is correctly not lazy-loaded; consider fetchpriority=&quot;high&quot;.
+- All pages: no cache-control, ETag or compression headers (Python SimpleHTTP server). Revisit on production hosting.
+- /favicon.ico : 404. Pages declare /img/icon.png via link rel=icon, so this is minor.
+- /about/ and /: Organization/WebSite/AboutPage schema is present and valid. No Product offers for shipping or returns (priceValidUntil, shippingDetails) on /teas/bai-mudan/. Optional enhancement.
+
+## Info
+- robots.txt : valid, declares the sitemap. Only /blog/ is disallowed and no AI crawler rules are set.
+- Mobile : viewport meta present on all pages, lang=&quot;en&quot; set. No render-blocking CSS or JS beyond JSON-LD. Pages are static HTML (SSR), with no JS rendering dependency.
+- Core Web Vitals (source inspection only, no field data): pages are 2 to 4 KB with no external CSS or JS. Low LCP, INP and CLS risk.
+- 404 handling : /teas/white-peony/ and /zh/ return real 404 status codes with a noindex page. No soft 404.
+- /teas/bai-mudan/ : Product schema is valid and the image has alt text.
+- Titles, meta descriptions and canonicals are unique and well formed on /, /about/, /contact/, /teas/jasmine..., /teas/bai-mudan/.
+</pre></details><details><summary>findings/visual.md</summary><pre># Visual findings: lumentea.test
+
+## Capture status: FAILED (no screenshots saved)
+All 8 captures (desktop + mobile, 4 URLs; tablet and laptop also failed) failed in capture_screenshot.py with
+`Page.goto: net::ERR_FAILED` (waiting until networkidle). Retried desktop alone with a 60s timeout: same error.
+curl and render_page.py reach the site (HTTP 200, host resolves to 127.0.0.1), so the failure is in the managed
+Chromium navigation to the .test host, not in the site. Cause not determined. No visual claims below are verified
+by rendering; they come from the HTML source only. The accessibility tree was null.
+
+## Source-based observations (not render-verified)
+- [Medium] http://lumentea.test/ : No primary CTA in the markup. Only text links in the nav and body; no button. Above-the-fold CTA cannot be confirmed.
+- [Info] All pages: no stylesheet or &lt;style&gt; seen on /teas/, /teas/bai-mudan/, /teas/jasmine-silver-needle/ (home not checked), so default browser styling is likely. Mobile layout and 16px text depend on defaults; unverified.
+- [Info] All pages: viewport meta present (width=device-width, initial-scale=1). Good for mobile.
+- [Low] http://lumentea.test/ nav: inline links separated by &quot;·&quot; with no padding. Touch targets are likely under 48x48px on mobile. Unverified.
+- [Info] http://lumentea.test/ hero image: width/height set (1200x630), which limits layout shift. With no CSS it may overflow a 375px viewport (fixed 1200 intrinsic width). Unverified.
+- [Info] /teas/bai-mudan/ and /teas/jasmine-silver-needle/: 800x800 images with no CSS may overflow a 375px viewport and cause horizontal scroll. Unverified.
+- [Medium] http://lumentea.test/teas/jasmine-silver-needle/ : hero image /img/jasmine.png has no alt attribute.
+- [Info] /teas/ has an H1 (&quot;All our teas&quot;) and no &lt;img&gt; in the markup.
+- [Low] http://lumentea.test/teas/ : canonical points to http://lumentea.test/ (not /teas/). This is SEO rather than visual.
+
+## Next step
+Fix the Chromium navigation to .test (browser-level name resolution or blocklist), then rerun the captures.
+</pre></details>
+<h2>The session's closing message</h2><pre>I audited the site with the claude-seo `seo-audit` skill. It gives the site an **SEO Health Score of 61/100** and raises 44 distinct issues. The report is at `~/work/output/report.md` and lists each issue with its page URL and severity. It also shows which of the tool&#x27;s checks raised it, since some checks rated the same issue differently.
+
+**Reaching the site:** the tool refuses private addresses by default, and `lumentea.test` resolves to 127.0.0.1. I set the tool&#x27;s own documented switch for local test sites (`CLAUDE_SEO_LOCAL_TARGETS=lumentea.test`), so the audit could reach it. Nothing on the site was changed.
+
+**What was covered:** the crawl reached 8 pages and 2 redirects. robots.txt blocks `/blog/` and the guide inside it, so those two pages were not fetched. Ten of the tool&#x27;s specialist checks ran. The others need Google, Matomo or DataForSEO accounts, a public site, a local business or a saved baseline, so they were skipped.
+
+**Critical issues:**
+- **`/teas/jasmine-silver-needle/`:** set to noindex in the page, though the homepage calls it the best seller.
+- **`/teas/bai-mudan/`:** set to noindex by an HTTP header, so neither product can be indexed.
+- **`/teas/`:** its canonical points to the homepage.
+- **`/blog/`:** blocked by robots.txt, though it is linked from the menu and pages and listed in the sitemap.
+- **Product pages:** there is no add-to-cart, basket or checkout anywhere.
+
+**High issues:**
+- The Jasmine product&#x27;s structured data is invalid JSON (trailing commas).
+- `/teas/white-peony/` returns 404 but is in the sitemap.
+- The homepage&#x27;s Chinese-language link points to `/zh/`, which returns 404.
+- Half the sitemap&#x27;s URLs can&#x27;t be indexed.
+- `/guides/storing-tea/` reuses the homepage title.
+- `/teas/` is thin, with no images or buy buttons.
+
+**Gaps in the tool&#x27;s own coverage:**
+- **Screenshots and mobile view:** the screenshot browser failed on every page, so these findings come from the HTML only.
+- **Agent-browsing score:** not measured. One check sent the site&#x27;s URL to Google PageSpeed, which can&#x27;t reach it and returned a quota error.
+- **Performance:** a local Lighthouse run only, with no real-user data.
+- **Search check:** it ran generic web searches for the tea names. It did not send any of the site&#x27;s content out.
+
+Files are in `~/work/output/`:
+- `report.md`
+- `FULL-AUDIT-REPORT.md`
+- `ACTION-PLAN.md`
+- `audit-data.json`
+- `Google-SEO-Report-lumentea.test-full.pdf`
+- `findings/` (one file per check)
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

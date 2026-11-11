@@ -1,0 +1,5 @@
+# The SEO test (ops/seo-runs): the sandbox (pptrun:1) with an entry that serves the test site first.
+#   docker build -f ops/ppt-runs/sandbox/Dockerfile.seo -t seorun:1 ops/ppt-runs/sandbox
+FROM pptrun:1
+COPY --chown=runner start_seo.sh /home/runner/bin/
+ENTRYPOINT ["bash", "/home/runner/bin/start_seo.sh"]

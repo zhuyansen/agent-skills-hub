@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>JeffLi1993/seo-audit-skill: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>JeffLi1993/seo-audit-skill: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit 523bdfb2c94f. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p><p><b>No audit:</b> It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.</p><h2>The session's closing message</h2><pre>I stopped without auditing the site, because the SEO tool can&#x27;t reach it.
+
+The tool (seo-audit-skill, installed as the `seo-audit` and `seo-audit-full` skills) blocks any address that points to the local machine. `lumentea.test` resolves to `127.0.0.1`, so every script that fetches pages refused to connect: `fetch-page.py`, `check-page.py` and `check-site.py`, in both skills. None of them has a setting to turn this off. Following your rules, I didn&#x27;t patch the tool or check the site another way.
+
+`seo-audit-full` has a second blocker: it requires a Google PageSpeed Insights API key and stops without one. No key is set, and PageSpeed couldn&#x27;t reach a site that isn&#x27;t on the public internet anyway.
+
+The tool raised no SEO problems for the site, so `report.md` lists no findings. The raw script output does contain two statuses that look like findings but aren&#x27;t:
+- **Sitemap &quot;fail&quot;**: the tool&#x27;s request was blocked before it was sent, so it never actually checked the sitemap.
+- **Staging-subdomain &quot;pass&quot;**: test hosts like `test.lumentea.test` didn&#x27;t resolve, so this says nothing about the site.
+
+Files are in `~/work/output/`:
+- `report.md`: explains the block, with no findings
+- `raw/`: the JSON the scripts returned
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

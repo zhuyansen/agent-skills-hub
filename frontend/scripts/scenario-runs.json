@@ -20230,5 +20230,589 @@
     "reason_zh": "要你先接受它的使用条款才会编译和渲染；我们的 agent 没替你接受，所以只留下一个 OpenSCAD 文件、没有渲染图。"
    }
   }
+ },
+ "seo-tools": {
+  "type": "table",
+  "date": "2026-11-11",
+  "dir": "/best-runs/seo/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md",
+  "title": [
+   "SEO skills and MCP servers tested: one test site, 16 planted problems",
+   "实测对比：同一个测试站，埋了 16 个 SEO 问题"
+  ],
+  "intro": [
+   "On 2026-11-11 we ran 13 of these tools and 9 produced an audit. Each audited the same test shop, nine pages served inside a throwaway sandbox, with 16 planted problems: robots.txt blocking the blog, a noindex in a meta tag and another in an HTTP header, a canonical pointing at the home page, a missing title, duplicate titles and descriptions, a broken link, a 404 in the sitemap, invalid JSON-LD, a missing alt, a missing H1, a missing viewport, a two-hop redirect on the main menu, an orphan page and an hreflang to a 404. Claude Code (Claude Opus 5.5) installed each tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked each report, and every false claim was checked by hand. Claude Code with no tool did the same job as a control.",
+   "2026-11-11 我们实跑了其中 13 个，9 个交出了审计报告。每个审同一个测试网店：9 个页面，放在用完即删的沙箱里，埋了 16 个问题：robots.txt 屏蔽整个博客、一个 meta 里的 noindex 和一个 HTTP 头里的 noindex、canonical 指向首页、缺 title、标题和描述重复、断链、sitemap 里有 404、JSON-LD 格式错误、图片缺 alt、缺 H1、缺 viewport、主菜单链接两跳重定向、孤立页、hreflang 指向 404。由 Claude Code（Claude Opus 5.5）按各自 README 安装并跑审计；评审是 Claude Opus 5.5，拿到整个站点，三遍取多数，每一处说错都人工核对过。不装任何工具的 Claude Code 做了同样的事，作为对照。"
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "Planted problems found (of 16)",
+    "找到埋入问题（共 16 个）"
+   ],
+   [
+    "False claims",
+    "说错几处"
+   ],
+   [
+    "Problems raised",
+    "报出问题数"
+   ],
+   [
+    "Time",
+    "耗时"
+   ]
+  ],
+  "line_label": [
+   "SEO audit test, 2026-11-11:",
+   "2026-11-11 实测："
+  ],
+  "see": [
+   "See every report →",
+   "看每份报告 →"
+  ],
+  "evidence": [
+   "The reports",
+   "报告原文"
+  ],
+  "finding": [
+   "No tool beat the control. Claude Code with nothing installed found all 16 planted problems in about 2 minutes with no false claim; 1 tool matched it and none did better. What separates the tools: 4 stated things about the site that are false, most often a clean bill for a check it fails; 3 obey robots.txt and so missed the four problems on the blocked blog; and 4 of 13 could not run on a private address or without an account.",
+   "没有工具超过对照组。什么都不装的 Claude Code 约 2 分钟找全 16 个埋入问题，没说错一处；1 个工具和它打平，没有更好的。工具之间的差别在于：4 个说错了站点上的事实，最常见的是把不合格的检查判成通过；3 个遵守 robots.txt，因而漏掉了被屏蔽的博客上的四个问题；13 个里有 4 个在内网地址上或没有账号时跑不起来。"
+  ],
+  "control": {
+   "sheet": "control.html"
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "rule": [
+    "Ranked by planted problems found, then false claims, then time. One run per tool, on a test site we built. This set does not rank tools above the control: Claude Code with nothing installed found all 16 in two minutes with no false claim.",
+    "排名规则：先看找到几个埋入问题，再看说错几处，最后看耗时。每个工具跑一次，测试站是我们自己搭的。这套题排不出比对照组更好的工具：什么都不装的 Claude Code 两分钟找全 16 个、没说错一处。"
+   ],
+   "picks": [
+    {
+     "repo": "aaron-he-zhu/aaron-marketing-skills",
+     "role": [
+      "If you want an SEO audit skill at all",
+      "只想装一个 SEO 审计 skill"
+     ],
+     "why": [
+      "The only tool to find all 16 planted problems, the X-Robots-Tag header and the orphan page among them, with no false claim. That equals Claude Code with nothing installed, in five minutes instead of two; what it adds is a fixed audit route and a prioritised report.",
+      "唯一一个找全 16 个埋入问题的工具，包括 HTTP 头里的 noindex 和孤立页，没说错一处。这和什么都不装的 Claude Code 打平，用时 5 分钟而不是 2 分钟；它多给的是固定的审计流程和分好优先级的报告。"
+     ]
+    },
+    {
+     "repo": "squirrelscan/squirrelscan",
+     "role": [
+      "If you want a crawler you can rerun",
+      "想要能反复跑的爬虫"
+     ],
+     "why": [
+      "Found 15 of 16 with no false claim in about a minute and a half, from a local CLI with 310+ fixed rules, so the next run checks the same things. It missed the hreflang pointing at a 404.",
+      "约一分半钟找到 16 个里的 15 个，没说错一处；是本地命令行工具，310 多条固定规则，下次跑查的还是同样的东西。漏掉的是指向 404 的 hreflang。"
+     ]
+    },
+    {
+     "repo": "coreyhaines31/marketingskills",
+     "role": [
+      "If you want the lightest install",
+      "想装得最轻"
+     ],
+     "why": [
+      "Its seo-audit skill is a checklist that Claude Code follows with curl: 15 of 16 with no false claim in about a minute. It missed the noindex sent in an HTTP header.",
+      "它的 seo-audit skill 是一份清单，由 Claude Code 照着用 curl 检查：约一分钟找到 16 个里的 15 个，没说错一处。漏掉的是写在 HTTP 头里的 noindex。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Check these reports against the pages:",
+    "这几个的报告要对照页面核实："
+   ],
+   "avoid": [
+    {
+     "repo": "seo-skills/seo-audit-skill",
+     "why": [
+      "6 false claims among 64 items, such as a redirect taken for a duplicate page",
+      "64 条里说错 6 处，例如把重定向当成重复页面"
+     ]
+    },
+    {
+     "repo": "tigerless-labs/seo-ops",
+     "why": [
+      "passed robots.txt and redirect checks the site fails",
+      "robots.txt 和重定向两项检查判了通过，其实测试站都不合格"
+     ]
+    },
+    {
+     "repo": "AgriciDaniel/claude-seo",
+     "why": [
+      "skipped the robots-blocked blog, then said every page has a viewport tag",
+      "跳过了被 robots 屏蔽的博客，又说每页都有 viewport"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: Claude Code with nothing installed found all 16 in two minutes. Before you trust a tool on a staging site, check that it can reach one: 4 of 13 could not run on a private address or without an account.",
+    "不管选哪个：什么都不装的 Claude Code 两分钟就找全了 16 个。拿工具审预发布站之前，先确认它连得上：13 个里有 4 个在内网地址上或没有账号时跑不起来。"
+   ]
+  },
+  "runs": {
+   "aaron-he-zhu/aaron-marketing-skills": {
+    "stars": 3123,
+    "sheet": "aaron-he-zhu__aaron-marketing-skills.html",
+    "ran": true,
+    "cells": [
+     [
+      "16/16",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "33",
+      null,
+      "num"
+     ],
+     [
+      "5 min",
+      "5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 16 of 16 planted problems",
+      "找到 16 个埋入问题中的 16 个"
+     ],
+     [
+      "0 false claims about the site",
+      "说错 0 处"
+     ],
+     [
+      "33 problems raised",
+      "共报 33 条"
+     ],
+     [
+      "5 min",
+      "5 分钟"
+     ]
+    ],
+    "note": "A 120-skill marketing plugin; its site-audit route ran. Its fetch scripts refuse private addresses unless their built-in allow-private option is on, which the run turned on.",
+    "note_zh": "一个含 120 个 skill 的营销插件，跑的是它的站点审计流程。它的抓取脚本默认拒绝内网地址，要打开脚本自带的允许内网选项，这次运行打开了。"
+   },
+   "coreyhaines31/marketingskills": {
+    "stars": 59621,
+    "sheet": "coreyhaines31__marketingskills.html",
+    "ran": true,
+    "cells": [
+     [
+      "15/16",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "25",
+      null,
+      "num"
+     ],
+     [
+      "1 min",
+      "1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 15 of 16 planted problems",
+      "找到 16 个埋入问题中的 15 个"
+     ],
+     [
+      "0 false claims about the site",
+      "说错 0 处"
+     ],
+     [
+      "25 problems raised",
+      "共报 25 条"
+     ],
+     [
+      "1 min",
+      "1 分钟"
+     ]
+    ],
+    "note": "Its seo-audit skill is a written checklist: Claude Code followed it with curl. It missed the noindex sent in an HTTP header.",
+    "note_zh": "它的 seo-audit skill 是一份成文的检查清单，由 Claude Code 照着用 curl 检查。漏掉的是写在 HTTP 响应头里的 noindex。"
+   },
+   "squirrelscan/squirrelscan": {
+    "stars": 311,
+    "sheet": "squirrelscan__squirrelscan.html",
+    "ran": true,
+    "cells": [
+     [
+      "15/16",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "33",
+      null,
+      "num"
+     ],
+     [
+      "2 min",
+      "2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 15 of 16 planted problems",
+      "找到 16 个埋入问题中的 15 个"
+     ],
+     [
+      "0 false claims about the site",
+      "说错 0 处"
+     ],
+     [
+      "33 problems raised",
+      "共报 33 条"
+     ],
+     [
+      "2 min",
+      "2 分钟"
+     ]
+    ],
+    "note": "A crawler CLI with 310+ rules, run in its offline mode: its cloud service cannot reach a private site.",
+    "note_zh": "一个带 310 多条规则的爬虫命令行工具，用的是离线模式：它的云服务连不到内网站点。"
+   },
+   "tigerless-labs/seo-ops": {
+    "stars": 986,
+    "sheet": "tigerless-labs__seo-ops.html",
+    "ran": true,
+    "cells": [
+     [
+      "13/16",
+      null,
+      ""
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "24",
+      null,
+      "num"
+     ],
+     [
+      "2 min",
+      "2 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 13 of 16 planted problems",
+      "找到 16 个埋入问题中的 13 个"
+     ],
+     [
+      "2 false claims about the site",
+      "说错 2 处"
+     ],
+     [
+      "24 problems raised",
+      "共报 24 条"
+     ],
+     [
+      "2 min",
+      "2 分钟"
+     ]
+    ],
+    "note": "30 fixed checks. It passed \"robots.txt allows AI crawlers\" and \"redirect hops ≤1\" although the blog is blocked for every crawler and the main menu link takes two hops.",
+    "note_zh": "30 项固定检查。它判「robots.txt 允许 AI 爬虫」和「重定向不超过 1 跳」通过，但博客对所有爬虫都被屏蔽，主菜单链接要跳两次。"
+   },
+   "iannuttall/seo": {
+    "stars": 616,
+    "sheet": "iannuttall__seo.html",
+    "ran": true,
+    "cells": [
+     [
+      "12/16",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "16",
+      null,
+      "num"
+     ],
+     [
+      "1 min",
+      "1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 12 of 16 planted problems",
+      "找到 16 个埋入问题中的 12 个"
+     ],
+     [
+      "0 false claims about the site",
+      "说错 0 处"
+     ],
+     [
+      "16 problems raised",
+      "共报 16 条"
+     ],
+     [
+      "1 min",
+      "1 分钟"
+     ]
+    ],
+    "note": "It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. Its MCP crawl failed with a parameter error (Unrecognized key: \"saveReport\"), so the run used its CLI, which needed no account.",
+    "note_zh": "它遵守 robots.txt，没有读测试里被屏蔽的两个博客页，漏掉了那里的四个问题；屏蔽本身它报了。它的 MCP 抓取报参数错误（Unrecognized key: \"saveReport\"），所以改用它的命令行版本，不需要账号。"
+   },
+   "zubair-trabzada/geo-seo-claude": {
+    "stars": 11602,
+    "sheet": "zubair-trabzada__geo-seo-claude.html",
+    "ran": true,
+    "cells": [
+     [
+      "12/16",
+      null,
+      ""
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "48",
+      null,
+      "num"
+     ],
+     [
+      "5 min",
+      "5 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 12 of 16 planted problems",
+      "找到 16 个埋入问题中的 12 个"
+     ],
+     [
+      "2 false claims about the site",
+      "说错 2 处"
+     ],
+     [
+      "48 problems raised",
+      "共报 48 条"
+     ],
+     [
+      "5 min",
+      "5 分钟"
+     ]
+    ],
+    "note": "It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. It also said the guides have no author, byline or Article schema; the blog post has all three, but it had not read it.",
+    "note_zh": "它遵守 robots.txt，没有读测试里被屏蔽的两个博客页，漏掉了那里的四个问题；屏蔽本身它报了。它还说指南类内容没有作者、署名和 Article 结构化数据；博客文章其实三样都有，只是它没读。"
+   },
+   "AgriciDaniel/claude-seo": {
+    "stars": 27956,
+    "sheet": "AgriciDaniel__claude-seo.html",
+    "ran": true,
+    "cells": [
+     [
+      "12/16",
+      null,
+      ""
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "44",
+      null,
+      "num"
+     ],
+     [
+      "6 min",
+      "6 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 12 of 16 planted problems",
+      "找到 16 个埋入问题中的 12 个"
+     ],
+     [
+      "3 false claims about the site",
+      "说错 3 处"
+     ],
+     [
+      "44 problems raised",
+      "共报 44 条"
+     ],
+     [
+      "6 min",
+      "6 分钟"
+     ]
+    ],
+    "note": "It obeys robots.txt, so it did not read the two blog pages the test blocks and missed the four problems on them; it did report the block. Its summary then said every page has a viewport tag and that titles and descriptions are unique, which the blog pages contradict. Ten specialist agents, a score of 61/100.",
+    "note_zh": "它遵守 robots.txt，没有读测试里被屏蔽的两个博客页，漏掉了那里的四个问题；屏蔽本身它报了。它的总结却说每页都有 viewport、标题和描述都不重复，而博客页正好违反这两条。共 10 个专项 agent，给了 61/100。"
+   },
+   "seo-skills/seo-audit-skill": {
+    "stars": 667,
+    "sheet": "seo-skills__seo-audit-skill.html",
+    "ran": true,
+    "cells": [
+     [
+      "9/16",
+      null,
+      ""
+     ],
+     [
+      "6",
+      null,
+      "num"
+     ],
+     [
+      "64",
+      null,
+      "num"
+     ],
+     [
+      "1 min",
+      "1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 9 of 16 planted problems",
+      "找到 16 个埋入问题中的 9 个"
+     ],
+     [
+      "6 false claims about the site",
+      "说错 6 处"
+     ],
+     [
+      "64 problems raised",
+      "共报 64 条"
+     ],
+     [
+      "1 min",
+      "1 分钟"
+     ]
+    ],
+    "note": "SEOmator's CLI. It took the /shop/ redirect for a second page and reported a duplicate title, H1 and content with /teas/, and read the home page's JSON-LD array as having no @type. It missed the robots.txt block.",
+    "note_zh": "SEOmator 的命令行工具。它把 /shop/ 这个重定向当成另一个页面，报它和 /teas/ 标题、H1、内容重复；还把首页的 JSON-LD 数组读成没有 @type。robots.txt 屏蔽博客它漏了。"
+   },
+   "addyosmani/agentic-seo": {
+    "stars": 333,
+    "sheet": "addyosmani__agentic-seo.html",
+    "ran": true,
+    "cells": [
+     [
+      "0/16",
+      null,
+      "substantial"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "5",
+      null,
+      "num"
+     ],
+     [
+      "1 min",
+      "1 分钟",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "found 0 of 16 planted problems",
+      "找到 16 个埋入问题中的 0 个"
+     ],
+     [
+      "0 false claims about the site",
+      "说错 0 处"
+     ],
+     [
+      "5 problems raised",
+      "共报 5 条"
+     ],
+     [
+      "1 min",
+      "1 分钟"
+     ]
+    ],
+    "note": "It checks files for AI agents at the site root (llms.txt, robots rules for AI crawlers); it does not crawl pages, so page problems are outside what it looks at.",
+    "note_zh": "它检查站点根目录下给 AI agent 看的文件（llms.txt、针对 AI 爬虫的 robots 规则），不抓页面，页面上的问题不在它的检查范围内。"
+   },
+   "Bhanunamikaze/Agentic-SEO-Skill": {
+    "stars": 1046,
+    "sheet": "Bhanunamikaze__Agentic-SEO-Skill.html",
+    "ran": false,
+    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
+   },
+   "Auriti-Labs/geo-optimizer-skill": {
+    "stars": 1278,
+    "sheet": "Auriti-Labs__geo-optimizer-skill.html",
+    "ran": false,
+    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
+   },
+   "JeffLi1993/seo-audit-skill": {
+    "stars": 785,
+    "sheet": "JeffLi1993__seo-audit-skill.html",
+    "ran": false,
+    "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+    "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。"
+   },
+   "every-app/open-seo": {
+    "stars": 26663,
+    "sheet": "every-app__open-seo.html",
+    "ran": false,
+    "reason": "Its audit runs on OpenSEO's servers and needs an OpenSEO account sign-in, so it cannot audit a site that is not on the public internet.",
+    "reason_zh": "它的审计在 OpenSEO 自己的服务器上跑，还要登录 OpenSEO 账号，所以审不了不在公网上的站点。"
+   }
+  }
  }
 }

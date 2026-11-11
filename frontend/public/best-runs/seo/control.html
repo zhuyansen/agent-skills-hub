@@ -1,0 +1,190 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Control: Claude Code with no SEO tool: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>Control: Claude Code with no SEO tool: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 16 of 16 planted problems</b>; 0 false claims about the site; 26 problems raised in all; 2 min.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.<br><span class='mute'>“`Disallow: /blog/` blocks crawling of the whole Journal”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.<br><span class='mute'>“`&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;` on the best-selling product”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.<br><span class='mute'>“Canonical points to the homepage (`http://lumentea.test/`)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.<br><span class='mute'>“No `&lt;title&gt;` element”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).<br><span class='mute'>“Meta description (and og:description) copied from /teas/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).<br><span class='mute'>“Broken internal link to /teas/dragon-well/ (404)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.<br><span class='mute'>“The sitemap lists /teas/white-peony/, which returns 404.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.<br><span class='mute'>“Product JSON-LD is invalid JSON (trailing commas)”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.<br><span class='mute'>“Main product image has no alt attribute”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.<br><span class='mute'>“The page starts with `&lt;h2&gt;Get in touch&lt;/h2&gt;` and has no H1.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).<br><span class='mute'>“The &quot;Shop&quot; link in the header of every page points to /shop/, which 301s to /store/, which 301s to /teas/.”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).<br><span class='mute'>“Missing viewport meta: http://lumentea.test/blog/”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.<br><span class='mute'>“`X-Robots-Tag: noindex` HTTP header on a product page”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.<br><span class='mute'>“Orphan page: no internal links point to it”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).<br><span class='mute'>“hreflang zh-CN points to /zh/, which returns 404; no self-reference or x-default”</span></td><td><span class="ok">found</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).<br><span class='mute'>“The title and og:title are &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;, the same as the homepage.”</span></td><td><span class="ok">found</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>None.</li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO Audit: http://lumentea.test/
+
+Audit date: 2026-11-11. Method: I fetched robots.txt and sitemap.xml, crawled every linked URL, checked HTTP status codes and response headers, read each page&#x27;s HTML, `&lt;head&gt;` tags and JSON-LD, and checked the image files. HTTPS was not checked, as instructed.
+
+Pages found: 9 HTML pages that return 200, 1 URL in the sitemap that returns 404, 2 broken URLs linked from pages (`/zh/`, `/teas/dragon-well/`), and a 2-step redirect chain (`/shop/` → `/store/` → `/teas/`).
+
+## Summary
+
+| # | Severity | URL | Problem |
+|---|---|---|---|
+| 1 | High | http://lumentea.test/teas/jasmine-silver-needle/ | `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;` on the best-selling product |
+| 2 | High | http://lumentea.test/teas/bai-mudan/ | `X-Robots-Tag: noindex` HTTP header on a product page |
+| 3 | High | http://lumentea.test/robots.txt (affects /blog/, /blog/how-to-brew-green-tea/) | `Disallow: /blog/` blocks crawling of the whole Journal |
+| 4 | High | http://lumentea.test/teas/ | Canonical points to the homepage (`http://lumentea.test/`) |
+| 5 | High | http://lumentea.test/blog/how-to-brew-green-tea/ | No `&lt;title&gt;` element |
+| 6 | High | http://lumentea.test/guides/storing-tea/ | Title (and og:title) copied from the homepage |
+| 7 | Medium | http://lumentea.test/guides/storing-tea/ | Orphan page: no internal links point to it |
+| 8 | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Product JSON-LD is invalid JSON (trailing commas) |
+| 9 | Medium | http://lumentea.test/sitemap.xml (http://lumentea.test/teas/white-peony/) | Sitemap lists a URL that returns 404 |
+| 10 | Medium | http://lumentea.test/sitemap.xml | Sitemap lists noindexed and robots-blocked URLs |
+| 11 | Medium | All pages (nav link to http://lumentea.test/shop/) | Sitewide &quot;Shop&quot; link goes through a 2-hop 301 chain |
+| 12 | Medium | http://lumentea.test/blog/how-to-brew-green-tea/ | Broken internal link to /teas/dragon-well/ (404) |
+| 13 | Medium | http://lumentea.test/ | hreflang zh-CN points to /zh/, which returns 404; no self-reference or x-default |
+| 14 | Medium | http://lumentea.test/blog/ | Meta description (and og:description) copied from /teas/ |
+| 15 | Medium | http://lumentea.test/blog/ | No viewport meta tag |
+| 16 | Medium | http://lumentea.test/contact/ | No `&lt;h1&gt;` |
+| 17 | Medium | http://lumentea.test/teas/jasmine-silver-needle/ | Main product image has no alt attribute |
+| 18 | Low | http://lumentea.test/teas/ | Title says &quot;White, Green and Jasmine Tea&quot; but no green tea is sold |
+| 19 | Low | http://lumentea.test/sitemap.xml | Every lastmod has the same placeholder date (2026-10-01) |
+| 20 | Low | http://lumentea.test/index.html | Duplicate of the homepage served with 200 |
+| 21 | Low | http://lumentea.test/teas/, /blog/, /contact/, /guides/storing-tea/ | No structured data (ItemList, Blog, ContactPage/LocalBusiness, Article, BreadcrumbList) |
+| 22 | Low | http://lumentea.test/blog/how-to-brew-green-tea/ | BlogPosting is missing recommended fields (dateModified, publisher, description) |
+| 23 | Low | http://lumentea.test/teas/jasmine-silver-needle/, /teas/bai-mudan/ | Product schema is missing brand (and itemCondition, priceValidUntil, shipping/returns) |
+| 24 | Low | http://lumentea.test/favicon.ico | Returns 404 |
+| 25 | Low | Site-wide (server) | HTTP/1.0, no compression, no Cache-Control headers |
+| 26 | Low | http://lumentea.test/blog/how-to-brew-green-tea/ | Top content targets &quot;green tea&quot;, which the shop does not sell |
+
+---
+
+## Details
+
+### High
+
+**1. Best-selling product is noindexed: http://lumentea.test/teas/jasmine-silver-needle/**
+The `&lt;head&gt;` contains `&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;`. The homepage calls this the best seller, yet it will be dropped from search results. The page also declares a self-referencing canonical, which sends the opposite signal.
+Fix: remove the noindex.
+
+**2. Product page noindexed by an HTTP header: http://lumentea.test/teas/bai-mudan/**
+The response includes `X-Robots-Tag: noindex`. It is easy to miss because the HTML looks fine. With #1, neither of the two products the shop sells can appear in search results.
+Fix: remove the header from the server config.
+
+**3. robots.txt blocks the Journal: http://lumentea.test/robots.txt**
+`Disallow: /blog/` stops crawlers from fetching http://lumentea.test/blog/ and http://lumentea.test/blog/how-to-brew-green-tea/, the site&#x27;s main informational content. Both URLs are still in the sitemap. Blocked URLs can be indexed without a snippet or not at all, and the internal links in them (for example to /teas/bai-mudan/) pass no value.
+Fix: remove the Disallow line.
+
+**4. Wrong canonical on the category page: http://lumentea.test/teas/**
+`&lt;link rel=&quot;canonical&quot; href=&quot;http://lumentea.test/&quot;&gt;` tells search engines that /teas/ is a duplicate of the homepage, so the &quot;all teas&quot; page will probably not be indexed. Its own og:url is /teas/, which contradicts the canonical.
+Fix: make the canonical `http://lumentea.test/teas/`.
+
+**5. Missing `&lt;title&gt;`: http://lumentea.test/blog/how-to-brew-green-tea/**
+The page has no `&lt;title&gt;` element (only og:title), so search engines must generate a title.
+Fix: add `&lt;title&gt;How to Brew Green Tea Without the Bitterness | Lumen Tea&lt;/title&gt;`.
+
+**6. Duplicate title: http://lumentea.test/guides/storing-tea/**
+The title and og:title are &quot;Lumen Tea | Small-Batch Loose Leaf Tea from Fujian&quot;, the same as the homepage. They do not describe the page, whose H1 is &quot;How to store loose leaf tea&quot;, and they compete with the homepage.
+Fix: use something like &quot;How to Store Loose Leaf Tea | Lumen Tea&quot;.
+
+### Medium
+
+**7. Orphan page: http://lumentea.test/guides/storing-tea/**
+No page links to it (not the nav, footer, Journal, or product pages). It can only be found through the sitemap, so it gets no internal link equity. It is also the only page under /guides/ while all other articles live under /blog/.
+Fix: link to it from the Journal index and the product pages (&quot;how to store it&quot;). Consider moving it under /blog/ with a 301.
+
+**8. Invalid Product JSON-LD: http://lumentea.test/teas/jasmine-silver-needle/**
+The JSON-LD has trailing commas (`&quot;availability&quot;: &quot;https://schema.org/InStock&quot;,}` and `},\n}`). JSON parsers reject it, so the Product, price and stock data is ignored and the page cannot get product rich results.
+Fix: remove the trailing commas and validate the markup.
+
+**9. 404 URL in the sitemap: http://lumentea.test/teas/white-peony/**
+The sitemap lists /teas/white-peony/, which returns 404. White Peony is Bai Mudan, so this looks like an old product URL that was renamed without a redirect.
+Fix: remove it from the sitemap and 301-redirect /teas/white-peony/ to /teas/bai-mudan/ in case it has old links or traffic.
+
+**10. Sitemap lists URLs that cannot be indexed: http://lumentea.test/sitemap.xml**
+The sitemap includes /teas/jasmine-silver-needle/ (meta noindex), /teas/bai-mudan/ (X-Robots-Tag noindex), /blog/ and /blog/how-to-brew-green-tea/ (blocked by robots.txt), and /teas/ (canonicalised to another URL). A sitemap should list only 200, indexable, canonical URLs. Fixing #1–#4 and #9 resolves this.
+
+**11. Redirect chain in the main navigation: http://lumentea.test/shop/ (linked from every page)**
+The &quot;Shop&quot; link in the header of every page points to /shop/, which 301s to /store/, which 301s to /teas/. That is two hops on the most important sitewide link.
+Fix: link directly to `/teas/`, and make /shop/ and /store/ each redirect to /teas/ in one hop.
+
+**12. Broken internal link: http://lumentea.test/blog/how-to-brew-green-tea/**
+The link &quot;see Dragon Well&quot; points to http://lumentea.test/teas/dragon-well/, which returns 404 (the page says the tea is not stocked yet).
+Fix: remove the link until the product exists.
+
+**13. Broken hreflang: http://lumentea.test/**
+`&lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;` points to a 404. There is also no self-referencing `hreflang=&quot;en&quot;` (or en-GB) and no `x-default`, and the annotation exists on only one page, so the alternate could not return the link anyway.
+Fix: remove it until a Chinese version exists, or add complete, reciprocal hreflang sets on every page.
+
+**14. Duplicate meta description: http://lumentea.test/blog/**
+The meta description and og:description (&quot;Browse every loose leaf tea we sell: white and jasmine teas…&quot;) are copied from /teas/ and do not describe the Journal.
+Fix: write a unique description about brewing guides and farm notes.
+
+**15. Missing viewport meta: http://lumentea.test/blog/**
+This is the only page without `&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;`. It will render at desktop width on phones, which hurts mobile usability under mobile-first indexing.
+Fix: add the viewport tag.
+
+**16. Missing H1: http://lumentea.test/contact/**
+The page starts with `&lt;h2&gt;Get in touch&lt;/h2&gt;` and has no H1.
+Fix: change the first heading to an H1, for example &quot;Contact Lumen Tea&quot;.
+
+**17. Product image has no alt text: http://lumentea.test/teas/jasmine-silver-needle/**
+`&lt;img src=&quot;/img/jasmine.png&quot; width=&quot;800&quot; height=&quot;800&quot;&gt;` has no alt attribute. Every other content image has descriptive alt text.
+Fix: add something like `alt=&quot;Jasmine Silver Needle white tea buds&quot;`.
+
+### Low
+
+**18. Title doesn&#x27;t match the products: http://lumentea.test/teas/**
+The title &quot;All Teas | White, Green and Jasmine Tea | Lumen Tea&quot; mentions green tea, but the page lists only two white teas. This can mislead searchers and raise bounce rate.
+
+**19. Placeholder lastmod values: http://lumentea.test/sitemap.xml**
+All 10 entries have `&lt;lastmod&gt;2026-10-01&lt;/lastmod&gt;`, including a post published 2026-09-12 and a URL that is a 404. Identical lastmods look auto-filled and search engines tend to ignore them. Emit real modification dates.
+
+**20. Duplicate homepage URL: http://lumentea.test/index.html**
+It returns 200 with the homepage content. The canonical points to `/`, which reduces the damage. A 301 from /index.html to / is cleaner.
+
+**21. Pages without structured data**
+http://lumentea.test/teas/ (could use ItemList), http://lumentea.test/blog/ (Blog), http://lumentea.test/contact/ (ContactPage, or LocalBusiness/Store with address, phone and the Saturday collection hours), and http://lumentea.test/guides/storing-tea/ (Article). No page has BreadcrumbList markup or visible breadcrumbs.
+
+**22. Incomplete BlogPosting: http://lumentea.test/blog/how-to-brew-green-tea/**
+It is missing `dateModified`, `publisher` (Organization with logo), `description` and `mainEntityOfPage`. Adding them improves eligibility for article features.
+
+**23. Incomplete Product schema: http://lumentea.test/teas/jasmine-silver-needle/, http://lumentea.test/teas/bai-mudan/**
+No `brand`. The offers have no `itemCondition`, `priceValidUntil`, `shippingDetails` or `hasMerchantReturnPolicy`, although the site states free UK shipping over £30 and 30-day refunds. These are recommended for merchant listing results.
+
+**24. /favicon.ico returns 404: http://lumentea.test/favicon.ico**
+Pages declare `&lt;link rel=&quot;icon&quot; href=&quot;/img/icon.png&quot;&gt;`, so browsers are covered. Some crawlers and tools still request /favicon.ico directly. The icon is also only 64×64; search results favicons should be at least 48×48 and ideally a multiple of 48 (for example 96 or 192).
+
+**25. Server performance headers: site-wide**
+The server answers with HTTP/1.0 (Python SimpleHTTP), ignores `Accept-Encoding: gzip` and sends no `Cache-Control` or `ETag`. The pages are small, so the impact is minor today, but production hosting should use HTTP/2 or HTTP/3, compression and caching headers.
+
+**26. Content–product mismatch: http://lumentea.test/blog/how-to-brew-green-tea/**
+The only Journal article targets &quot;how to brew green tea&quot;, but the shop sells only white teas. Traffic from that query has no matching product. Consider a white-tea brewing guide, or retitle this one to cover green and white tea, since the article already says the temperatures apply to both.
+
+---
+
+## Checked and found OK
+- All pages except the blog post have a unique `&lt;title&gt;`, and all have a meta description. Apart from #6 and #14 there are no duplicates.
+- Canonicals are self-referencing on every page except /teas/.
+- URLs without a trailing slash (/about, /teas, /blog) 301 to the slash version in one hop.
+- Unknown URLs return a real 404 with `noindex` (no soft 404s).
+- `lang=&quot;en&quot;`, charset and Open Graph/Twitter tags are present on every page.
+- Every `&lt;img&gt;` has width and height that match the real image size, so there is no layout shift.
+- Organization and WebSite JSON-LD on the homepage is valid.
+- Heading hierarchy is sensible everywhere except /contact/.
+</pre></details>
+<h2>The session's closing message</h2><pre>I wrote the audit to `~/work/output/report.md`. It lists 26 problems, each with the page URL and a severity: 6 high, 11 medium and 9 low. I crawled every page the sitemap and internal links lead to and checked status codes, response headers, the page HTML, structured data and images. I did not change the site.
+
+The high-severity problems:
+- **Products hidden from search:** Jasmine Silver Needle has a `noindex` meta tag, and Bai Mudan is set to `noindex` by a server header that you can&#x27;t see in the page source. Together these keep both of the shop&#x27;s products out of search results.
+- **Journal blocked:** `robots.txt` blocks crawling of everything under `/blog/`.
+- **Wrong canonical:** `/teas/` tells search engines the homepage is the real version of the page.
+- **Bad titles:** the brewing guide has no `&lt;title&gt;`, and `/guides/storing-tea/` reuses the homepage&#x27;s title.
+
+The medium-severity problems include:
+- invalid product structured data on the jasmine page
+- a sitemap that lists a URL returning 404 (`/teas/white-peony/`) and pages that can&#x27;t be indexed
+- a two-step redirect chain on the &quot;Shop&quot; link in the header of every page
+- a broken link to `/teas/dragon-well/`
+- a link to a Chinese version of the homepage that doesn&#x27;t exist
+- a storage guide that no page links to
+- a copied meta description on `/blog/`
+- no mobile viewport tag on `/blog/`
+- no H1 on `/contact/`
+- no alt text on the jasmine product image
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>

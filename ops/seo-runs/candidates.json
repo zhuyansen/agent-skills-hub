@@ -1,0 +1,80 @@
+[
+ {
+  "repo": "AgriciDaniel/claude-seo",
+  "kind": "suite",
+  "stars": 27956,
+  "grade": "safe"
+ },
+ {
+  "repo": "coreyhaines31/marketingskills",
+  "kind": "marketing",
+  "stars": 59621,
+  "grade": "safe"
+ },
+ {
+  "repo": "zubair-trabzada/geo-seo-claude",
+  "kind": "geo",
+  "stars": 11602,
+  "grade": "safe"
+ },
+ {
+  "repo": "Bhanunamikaze/Agentic-SEO-Skill",
+  "kind": "suite",
+  "stars": 1046,
+  "grade": "safe"
+ },
+ {
+  "repo": "tigerless-labs/seo-ops",
+  "kind": "audit",
+  "stars": 986,
+  "grade": "safe"
+ },
+ {
+  "repo": "seo-skills/seo-audit-skill",
+  "kind": "audit",
+  "stars": 667,
+  "grade": "safe"
+ },
+ {
+  "repo": "Auriti-Labs/geo-optimizer-skill",
+  "kind": "geo",
+  "stars": 1278,
+  "grade": "safe"
+ },
+ {
+  "repo": "squirrelscan/squirrelscan",
+  "kind": "audit",
+  "stars": 311,
+  "grade": "safe"
+ },
+ {
+  "repo": "JeffLi1993/seo-audit-skill",
+  "kind": "audit",
+  "stars": 785,
+  "grade": "safe"
+ },
+ {
+  "repo": "addyosmani/agentic-seo",
+  "kind": "geo",
+  "stars": 333,
+  "grade": "safe"
+ },
+ {
+  "repo": "aaron-he-zhu/aaron-marketing-skills",
+  "kind": "marketing",
+  "stars": 3123,
+  "grade": "safe"
+ },
+ {
+  "repo": "every-app/open-seo",
+  "kind": "data_mcp",
+  "stars": 26663,
+  "grade": "safe"
+ },
+ {
+  "repo": "iannuttall/seo",
+  "kind": "data_mcp",
+  "stars": 616,
+  "grade": "safe"
+ }
+]

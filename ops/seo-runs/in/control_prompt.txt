@@ -1,0 +1,7 @@
+This is the control run: no SEO tool is installed. Audit the site yourself, as you normally would.
+
+The site is http://lumentea.test/, a small online tea shop. Audit the whole site for SEO problems. It is served over plain HTTP only because this sandbox has no certificate: ignore HTTPS. It is not on the public internet, so services that fetch pages from their own servers cannot reach it, and Search Console, analytics and keyword databases have no data for it.
+
+Write your findings to ~/work/output/report.md: every problem, with the page URL and a severity (high, medium or low).
+
+Rules: do not ask me any questions; do not change the site. When you finish, print one line: DELIVERABLE: ~/work/output

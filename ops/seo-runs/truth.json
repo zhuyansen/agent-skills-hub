@@ -1,0 +1,99 @@
+{
+ "host": "http://lumentea.test",
+ "defects": [
+  {
+   "id": "D1",
+   "where": "/robots.txt",
+   "defect": "robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page."
+  },
+  {
+   "id": "D2",
+   "where": "/teas/jasmine-silver-needle/",
+   "defect": "The best-selling product page has <meta name=\"robots\" content=\"noindex, follow\">, so it is kept out of search results although it is in the sitemap and linked from the home page."
+  },
+  {
+   "id": "D3",
+   "where": "/teas/",
+   "defect": "The tea category page's canonical points to the home page (http://lumentea.test/) instead of itself."
+  },
+  {
+   "id": "D4",
+   "where": "/blog/how-to-brew-green-tea/",
+   "defect": "The blog article has no <title> element at all."
+  },
+  {
+   "id": "D5",
+   "where": "/teas/ and /blog/",
+   "defect": "/teas/ and /blog/ have the same meta description (duplicate descriptions)."
+  },
+  {
+   "id": "D6",
+   "where": "/blog/how-to-brew-green-tea/",
+   "defect": "The article links to /teas/dragon-well/, which answers 404 (broken internal link)."
+  },
+  {
+   "id": "D7",
+   "where": "/sitemap.xml",
+   "defect": "The sitemap lists /teas/white-peony/, which answers 404."
+  },
+  {
+   "id": "D8",
+   "where": "/teas/jasmine-silver-needle/",
+   "defect": "The product page's Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed."
+  },
+  {
+   "id": "D9",
+   "where": "/teas/jasmine-silver-needle/",
+   "defect": "The product page's main product image has no alt attribute."
+  },
+  {
+   "id": "D10",
+   "where": "/contact/",
+   "defect": "The contact page has no H1 heading."
+  },
+  {
+   "id": "D11",
+   "where": "site navigation",
+   "defect": "The 'Shop' link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link)."
+  },
+  {
+   "id": "D12",
+   "where": "/blog/",
+   "defect": "The blog index page has no <meta name=\"viewport\"> tag (not mobile friendly)."
+  },
+  {
+   "id": "D13",
+   "where": "/teas/bai-mudan/",
+   "defect": "The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it."
+  },
+  {
+   "id": "D14",
+   "where": "/guides/storing-tea/",
+   "defect": "/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it."
+  },
+  {
+   "id": "D15",
+   "where": "/ (home)",
+   "defect": "The home page declares <link rel=\"alternate\" hreflang=\"zh-CN\" href=\"http://lumentea.test/zh/\">, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference)."
+  },
+  {
+   "id": "D16",
+   "where": "/ and /guides/storing-tea/",
+   "defect": "/guides/storing-tea/ has the same <title> as the home page (duplicate titles)."
+  }
+ ],
+ "facts": [
+  "Every page except the blog article has a <title> of 35-60 characters; titles are unique except / and /guides/storing-tea/.",
+  "Every page has a meta description of 120-160 characters; only /teas/ and /blog/ share one.",
+  "Every page except /teas/ has a canonical pointing to its own URL. Only the home page has hreflang (zh-CN -> /zh/, a 404).",
+  "Every page except /contact/ has exactly one H1.",
+  "Every page has <html lang=\"en\">, a UTF-8 charset, Open Graph tags (og:title, og:description, og:url, og:image) and twitter:card.",
+  "Every page except /blog/ has a viewport meta tag.",
+  "Every image has an alt attribute and width/height except the jasmine product image (no alt).",
+  "Home has valid Organization + WebSite JSON-LD; /teas/bai-mudan/ has valid Product JSON-LD; the article has valid BlogPosting JSON-LD; /about/ has valid AboutPage JSON-LD.",
+  "Internal links all answer 200 except /teas/dragon-well/ (404) and /shop/ (301 chain). /guides/storing-tea/ is linked from nowhere.",
+  "robots.txt allows everything except /blog/ and names the sitemap. The sitemap lists the 9 real pages plus /teas/white-peony/ (404).",
+  "No page has a noindex except /teas/jasmine-silver-needle/ (meta robots) and /teas/bai-mudan/ (X-Robots-Tag header only).",
+  "The site is served over plain HTTP inside the sandbox (no certificate); the prompt says to ignore HTTPS."
+ ]
+}

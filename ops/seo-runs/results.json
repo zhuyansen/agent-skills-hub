@@ -1,0 +1,223 @@
+[
+ {
+  "repo": "control",
+  "kind": "control",
+  "stars": 0,
+  "ran": true,
+  "found": 16,
+  "problems": 26,
+  "false": 0,
+  "minutes": 2,
+  "missed": [],
+  "commit": null
+ },
+ {
+  "repo": "aaron-he-zhu/aaron-marketing-skills",
+  "kind": "marketing",
+  "stars": 3123,
+  "grade": "safe",
+  "ran": true,
+  "found": 16,
+  "problems": 33,
+  "false": 0,
+  "minutes": 5,
+  "missed": [],
+  "commit": "18671fc54b72"
+ },
+ {
+  "repo": "coreyhaines31/marketingskills",
+  "kind": "marketing",
+  "stars": 59621,
+  "grade": "safe",
+  "ran": true,
+  "found": 15,
+  "problems": 25,
+  "false": 0,
+  "minutes": 1,
+  "missed": [
+   "D13"
+  ],
+  "commit": "3e729622e3de"
+ },
+ {
+  "repo": "squirrelscan/squirrelscan",
+  "kind": "audit",
+  "stars": 311,
+  "grade": "safe",
+  "ran": true,
+  "found": 15,
+  "problems": 33,
+  "false": 0,
+  "minutes": 2,
+  "missed": [
+   "D15"
+  ],
+  "commit": "5c69ace6a3e9"
+ },
+ {
+  "repo": "tigerless-labs/seo-ops",
+  "kind": "audit",
+  "stars": 986,
+  "grade": "safe",
+  "ran": true,
+  "found": 13,
+  "problems": 24,
+  "false": 2,
+  "minutes": 2,
+  "missed": [
+   "D1",
+   "D11",
+   "D14"
+  ],
+  "commit": "777bde405d2d"
+ },
+ {
+  "repo": "iannuttall/seo",
+  "kind": "data_mcp",
+  "stars": 616,
+  "grade": "safe",
+  "ran": true,
+  "found": 12,
+  "problems": 16,
+  "false": 0,
+  "minutes": 1,
+  "missed": [
+   "D4",
+   "D5",
+   "D6",
+   "D12"
+  ],
+  "commit": "bd4921e12b82"
+ },
+ {
+  "repo": "zubair-trabzada/geo-seo-claude",
+  "kind": "geo",
+  "stars": 11602,
+  "grade": "safe",
+  "ran": true,
+  "found": 12,
+  "problems": 48,
+  "false": 2,
+  "minutes": 5,
+  "missed": [
+   "D4",
+   "D5",
+   "D6",
+   "D12"
+  ],
+  "commit": "989cae01e8eb"
+ },
+ {
+  "repo": "AgriciDaniel/claude-seo",
+  "kind": "suite",
+  "stars": 27956,
+  "grade": "safe",
+  "ran": true,
+  "found": 12,
+  "problems": 44,
+  "false": 3,
+  "minutes": 6,
+  "missed": [
+   "D4",
+   "D5",
+   "D6",
+   "D12"
+  ],
+  "commit": "734998e5fdbb"
+ },
+ {
+  "repo": "seo-skills/seo-audit-skill",
+  "kind": "audit",
+  "stars": 667,
+  "grade": "safe",
+  "ran": true,
+  "found": 9,
+  "problems": 64,
+  "false": 6,
+  "minutes": 1,
+  "missed": [
+   "D1",
+   "D4",
+   "D6",
+   "D7",
+   "D14",
+   "D15",
+   "D16"
+  ],
+  "commit": "fac4b75f2059"
+ },
+ {
+  "repo": "addyosmani/agentic-seo",
+  "kind": "geo",
+  "stars": 333,
+  "grade": "safe",
+  "ran": true,
+  "found": 0,
+  "problems": 5,
+  "false": 0,
+  "minutes": 1,
+  "missed": [
+   "D1",
+   "D2",
+   "D3",
+   "D4",
+   "D5",
+   "D6",
+   "D7",
+   "D8",
+   "D9",
+   "D10",
+   "D11",
+   "D12",
+   "D13",
+   "D14",
+   "D15",
+   "D16"
+  ],
+  "commit": "939dd486d75e"
+ },
+ {
+  "repo": "Bhanunamikaze/Agentic-SEO-Skill",
+  "kind": "suite",
+  "stars": 1046,
+  "grade": "safe",
+  "ran": false,
+  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
+  "minutes": 1,
+  "commit": "445c46c268d9"
+ },
+ {
+  "repo": "Auriti-Labs/geo-optimizer-skill",
+  "kind": "geo",
+  "stars": 1278,
+  "grade": "safe",
+  "ran": false,
+  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
+  "minutes": 1,
+  "commit": "16a99f935db8"
+ },
+ {
+  "repo": "JeffLi1993/seo-audit-skill",
+  "kind": "audit",
+  "stars": 785,
+  "grade": "safe",
+  "ran": false,
+  "reason": "It refuses any address on a private network and has no setting to allow one, so it cannot audit a local or staging site; our test site was one.",
+  "reason_zh": "它拒绝访问任何内网地址，也没有开关可以放行，所以审不了本地或预发布站点；我们的测试站就是这种。",
+  "minutes": 1,
+  "commit": "523bdfb2c94f"
+ },
+ {
+  "repo": "every-app/open-seo",
+  "kind": "data_mcp",
+  "stars": 26663,
+  "grade": "safe",
+  "ran": false,
+  "reason": "Its audit runs on OpenSEO's servers and needs an OpenSEO account sign-in, so it cannot audit a site that is not on the public internet.",
+  "reason_zh": "它的审计在 OpenSEO 自己的服务器上跑，还要登录 OpenSEO 账号，所以审不了不在公网上的站点。",
+  "minutes": 1,
+  "commit": "46b815be3472"
+ }
+]

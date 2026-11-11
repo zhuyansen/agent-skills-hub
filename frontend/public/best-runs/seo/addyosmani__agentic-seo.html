@@ -1,0 +1,578 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>addyosmani/agentic-seo: SEO audit test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/seo-tools/">← Claude SEO skills &amp; SEO MCP servers</a></p>
+<h1>addyosmani/agentic-seo: test run, 2026-11-11</h1><p class='mute'>The same task for every tool: audit a 9-page test shop at http://lumentea.test/, served inside a throwaway sandbox, with 16 planted SEO problems. Claude Code (Claude Opus 5.5) installed the tool from its README and ran its audit; a judge (Claude Opus 5.5, three passes, given the whole site) marked the report, and every false claim was checked by hand. Repo commit 939dd486d75e. <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/RESULTS.md'>All results</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/make_fixture.py'>The test site</a> · <a href='https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/seo-runs/in/prompt.txt'>Task</a></p>
+<p><b>Found 0 of 16 planted problems</b>; 0 false claims about the site; 5 problems raised in all; 1 min.</p><p>It checks files for AI agents at the site root (llms.txt, robots rules for AI crawlers); it does not crawl pages, so page problems are outside what it looks at.</p>
+<h2>The planted problems</h2><table><tr><th>Planted problem</th><th>Result</th></tr><tr><td><b>D1</b> /robots.txt<br>robots.txt has `Disallow: /blog/`, so crawlers may not fetch the whole blog, although the blog pages are in the sitemap and linked from every page.</td><td><span class="no">missed</span></td></tr><tr><td><b>D2</b> /teas/jasmine-silver-needle/<br>The best-selling product page has &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;, so it is kept out of search results although it is in the sitemap and linked from the home page.</td><td><span class="no">missed</span></td></tr><tr><td><b>D3</b> /teas/<br>The tea category page&#x27;s canonical points to the home page (http://lumentea.test/) instead of itself.</td><td><span class="no">missed</span></td></tr><tr><td><b>D4</b> /blog/how-to-brew-green-tea/<br>The blog article has no &lt;title&gt; element at all.</td><td><span class="no">missed</span></td></tr><tr><td><b>D5</b> /teas/ and /blog/<br>/teas/ and /blog/ have the same meta description (duplicate descriptions).</td><td><span class="no">missed</span></td></tr><tr><td><b>D6</b> /blog/how-to-brew-green-tea/<br>The article links to /teas/dragon-well/, which answers 404 (broken internal link).</td><td><span class="no">missed</span></td></tr><tr><td><b>D7</b> /sitemap.xml<br>The sitemap lists /teas/white-peony/, which answers 404.</td><td><span class="no">missed</span></td></tr><tr><td><b>D8</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s Product JSON-LD is not valid JSON (a trailing comma), so the structured data cannot be parsed.</td><td><span class="no">missed</span></td></tr><tr><td><b>D9</b> /teas/jasmine-silver-needle/<br>The product page&#x27;s main product image has no alt attribute.</td><td><span class="no">missed</span></td></tr><tr><td><b>D10</b> /contact/<br>The contact page has no H1 heading.</td><td><span class="no">missed</span></td></tr><tr><td><b>D11</b> site navigation<br>The &#x27;Shop&#x27; link in the navigation on every page goes to /shop/, which redirects 301 to /store/, which redirects 301 to /teas/ (a redirect chain on an internal link).</td><td><span class="no">missed</span></td></tr><tr><td><b>D12</b> /blog/<br>The blog index page has no &lt;meta name=&quot;viewport&quot;&gt; tag (not mobile friendly).</td><td><span class="no">missed</span></td></tr><tr><td><b>D13</b> /teas/bai-mudan/<br>The Bai Mudan product page is sent with an HTTP header X-Robots-Tag: noindex, so it is kept out of search results; its HTML has no robots meta, so only the response header shows it.</td><td><span class="no">missed</span></td></tr><tr><td><b>D14</b> /guides/storing-tea/<br>/guides/storing-tea/ is an orphan page: it is in the sitemap and answers 200, but no page on the site links to it.</td><td><span class="no">missed</span></td></tr><tr><td><b>D15</b> / (home)<br>The home page declares &lt;link rel=&quot;alternate&quot; hreflang=&quot;zh-CN&quot; href=&quot;http://lumentea.test/zh/&quot;&gt;, and /zh/ answers 404 (a broken hreflang alternate; there is also no x-default or self reference).</td><td><span class="no">missed</span></td></tr><tr><td><b>D16</b> / and /guides/storing-tea/<br>/guides/storing-tea/ has the same &lt;title&gt; as the home page (duplicate titles).</td><td><span class="no">missed</span></td></tr></table>
+<h2>False claims (checked by hand)</h2><ul><li>None.</li></ul>
+<h2>The report</h2><details open><summary>report.md</summary><pre># SEO audit of http://lumentea.test/ using agentic-seo v1.0.0
+
+**Tool:** `agentic-seo` (from ~/src), a CLI that audits for &quot;Agentic Engine Optimization&quot; (how ready a site is for AI agents). It does not run a classic search-engine SEO audit.
+**Command:** `agentic-seo --url http://lumentea.test/ --verbose` (and `--json`)
+**Score:** 9/100, grade **F**. 1 check passed, 6 gave warnings, 3 failed (10 checks in total).
+
+| Category | Score |
+|---|---|
+| Discovery | 8/25 (32%) |
+| Content Structure | 0/25 (0%) |
+| Token Economics | 0/25 (0%) |
+| Capability Signaling | 1/15 (7%) |
+| UX Bridge | 0/10 (0%) |
+
+In URL mode the tool only fetches root files (robots.txt, llms.txt, agent-permissions.json). It does not crawl or analyse any HTML pages. All of its findings are site-level, so each is reported against the site root, http://lumentea.test/.
+
+## Findings (every finding the tool raised, with the severity it gave)
+
+| # | Severity | Page URL | Check | Finding | Tool&#x27;s suggested fix |
+|---|---|---|---|---|---|
+| 1 | Error | http://lumentea.test/ (llms.txt) | llms.txt Discovery Index (llms-txt) | No llms.txt found at site root. | Create a llms.txt file at your site root (see https://llmstxt.org). |
+| 2 | Error | http://lumentea.test/ | AGENTS.md / CLAUDE.md (agents-md) | Cannot scan for AGENTS.md in URL-only mode. | Create an AGENTS.md in your repo root. |
+| 3 | Error | http://lumentea.test/ | Capability Signaling (skill.md) | Cannot scan for skill.md files in URL-only mode. | Create skill.md files for your APIs and services. |
+| 4 | Warning | http://lumentea.test/robots.txt | Robots.txt AI Access (robots-txt) | No AI crawlers are explicitly allowed in robots.txt. | Add explicit Allow rules for AI crawlers such as ClaudeBot, GPTBot, PerplexityBot. |
+| 5 | Warning | http://lumentea.test/ | Content Structure Quality | No local directory available to analyze content structure. | none given |
+| 6 | Warning | http://lumentea.test/ | Markdown Content Availability | No local directory available to analyze Markdown availability. | none given |
+| 7 | Warning | http://lumentea.test/ | Token Budget Analysis | No local directory available to analyze token counts. | none given |
+| 8 | Warning | http://lumentea.test/ | AI-Friendly Meta Tags | No local directory available to analyze meta tags. | none given |
+| 9 | Warning | http://lumentea.test/ | Copy for AI UX | No local directory available to analyze copy-for-AI affordances. | none given |
+| 10 | Info | http://lumentea.test/robots.txt | Robots.txt AI Access | robots.txt found. | none |
+| 11 | Info | http://lumentea.test/robots.txt | Robots.txt AI Access | No known AI crawlers are explicitly blocked. | none |
+| 12 | Info | http://lumentea.test/agent-permissions.json | Agent Permissions Configuration | No agent-permissions.json found. | none |
+
+## Notes on what the tool covered
+- Findings 2, 3 and 5–9 do not describe problems found on the site. They say the tool **could not run** those checks, because in `--url` mode it has no local source directory. The tool still scores them as errors or warnings, and they are listed above as the tool reported them.
+- The tool did not look at titles, meta descriptions, headings, links, canonicals, sitemaps or any individual page, so this report has no per-page findings.
+
+## Files
+- `agentic-seo-output.txt`: the tool&#x27;s console report
+- `agentic-seo-results.json`: the tool&#x27;s full JSON output
+</pre></details><details><summary>agentic-seo-output.txt</summary><pre>- Detecting framework...
+✔ URL mode
+- Running AEO checks...
+
+  AEO Audit Report
+  Agentic Engine Optimization Score
+
+  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  F 9/100 (9%)
+
+  Category Breakdown
+
+  ✗ Discovery              ██████░░░░░░░░░░░░░░   8/25 (32%)
+  ✗ Content Structure      ░░░░░░░░░░░░░░░░░░░░   0/25 (0%)
+  ✗ Token Economics        ░░░░░░░░░░░░░░░░░░░░   0/25 (0%)
+  ✗ Capability Signaling   █░░░░░░░░░░░░░░░░░░░   1/15 (7%)
+  ✗ UX Bridge              ░░░░░░░░░░░░░░░░░░░░   0/10 (0%)
+
+  Errors (3)
+
+  ✗ [llms.txt Discovery Index] No llms.txt found at site root.
+    Fix: Create a llms.txt file at your site root. This acts as a sitemap for AI agents.
+  ✗ [AGENTS.md / CLAUDE.md] Cannot scan for AGENTS.md in URL-only mode.
+    Fix: Create an AGENTS.md in your repo root. This is the entry point for AI coding agents.
+  ✗ [Capability Signaling (skill.md)] Cannot scan for skill.md files in URL-only mode.
+    Fix: Create skill.md files for your APIs and services. These tell agents what your product can DO, not just how to call it.
+
+  Warnings (6)
+
+  △ [Robots.txt AI Access] No AI crawlers are explicitly allowed in robots.txt.
+    Fix: Add explicit Allow rules for AI crawlers like ClaudeBot, GPTBot, PerplexityBot.
+  △ [Content Structure Quality] No local directory available to analyze content structure.
+  △ [Markdown Content Availability] No local directory available to analyze Markdown availability.
+  △ [Token Budget Analysis] No local directory available to analyze token counts.
+  △ [AI-Friendly Meta Tags] No local directory available to analyze meta tags.
+  △ [Copy for AI UX] No local directory available to analyze copy-for-AI affordances.
+
+  Info (3)
+
+  ℹ [Robots.txt AI Access] robots.txt found.
+  ℹ [Robots.txt AI Access] No known AI crawlers are explicitly blocked.
+  ℹ [Agent Permissions Configuration] No agent-permissions.json found.
+
+
+  1 passed · 6 warnings · 3 failed · 10 checks total
+
+  Run with --verbose for full details, or --json for CI output.
+
+</pre></details><details><summary>agentic-seo-results.json</summary><pre>{
+  &quot;score&quot;: 9,
+  &quot;maxScore&quot;: 100,
+  &quot;percentage&quot;: 9,
+  &quot;grade&quot;: &quot;F&quot;,
+  &quot;categories&quot;: {
+    &quot;discovery&quot;: {
+      &quot;name&quot;: &quot;Discovery&quot;,
+      &quot;description&quot;: &quot;Can agents find your documentation?&quot;,
+      &quot;score&quot;: 8,
+      &quot;maxScore&quot;: 25,
+      &quot;percentage&quot;: 32,
+      &quot;results&quot;: [
+        {
+          &quot;id&quot;: &quot;robots-txt&quot;,
+          &quot;name&quot;: &quot;Robots.txt AI Access&quot;,
+          &quot;category&quot;: &quot;discovery&quot;,
+          &quot;score&quot;: 8,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;pass&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;info&quot;,
+              &quot;message&quot;: &quot;robots.txt found.&quot;
+            },
+            {
+              &quot;severity&quot;: &quot;info&quot;,
+              &quot;message&quot;: &quot;No known AI crawlers are explicitly blocked.&quot;
+            },
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No AI crawlers are explicitly allowed in robots.txt.&quot;,
+              &quot;fix&quot;: &quot;Add explicit Allow rules for AI crawlers like ClaudeBot, GPTBot, PerplexityBot.&quot;
+            }
+          ]
+        },
+        {
+          &quot;id&quot;: &quot;llms-txt&quot;,
+          &quot;name&quot;: &quot;llms.txt Discovery Index&quot;,
+          &quot;category&quot;: &quot;discovery&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;error&quot;,
+              &quot;message&quot;: &quot;No llms.txt found at site root.&quot;,
+              &quot;fix&quot;: &quot;Create a llms.txt file at your site root. This acts as a sitemap for AI agents.\nSee: https://llmstxt.org for the specification.&quot;
+            }
+          ]
+        },
+        {
+          &quot;id&quot;: &quot;agents-md&quot;,
+          &quot;name&quot;: &quot;AGENTS.md / CLAUDE.md&quot;,
+          &quot;category&quot;: &quot;discovery&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 5,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;error&quot;,
+              &quot;message&quot;: &quot;Cannot scan for AGENTS.md in URL-only mode.&quot;,
+              &quot;fix&quot;: &quot;Create an AGENTS.md in your repo root. This is the entry point for AI coding agents.\nInclude: project structure, key file locations, API docs links, dev environment setup, and coding conventions.&quot;
+            }
+          ]
+        }
+      ]
+    },
+    &quot;content-structure&quot;: {
+      &quot;name&quot;: &quot;Content Structure&quot;,
+      &quot;description&quot;: &quot;Is content machine-readable and well-organized?&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 25,
+      &quot;percentage&quot;: 0,
+      &quot;results&quot;: [
+        {
+          &quot;id&quot;: &quot;content-structure&quot;,
+          &quot;name&quot;: &quot;Content Structure Quality&quot;,
+          &quot;category&quot;: &quot;content-structure&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 15,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No local directory available to analyze content structure.&quot;
+            }
+          ]
+        },
+        {
+          &quot;id&quot;: &quot;markdown-availability&quot;,
+          &quot;name&quot;: &quot;Markdown Content Availability&quot;,
+          &quot;category&quot;: &quot;content-structure&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No local directory available to analyze Markdown availability.&quot;
+            }
+          ]
+        }
+      ]
+    },
+    &quot;token-economics&quot;: {
+      &quot;name&quot;: &quot;Token Economics&quot;,
+      &quot;description&quot;: &quot;Does content fit within agent context windows?&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 25,
+      &quot;percentage&quot;: 0,
+      &quot;results&quot;: [
+        {
+          &quot;id&quot;: &quot;token-budget&quot;,
+          &quot;name&quot;: &quot;Token Budget Analysis&quot;,
+          &quot;category&quot;: &quot;token-economics&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 15,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No local directory available to analyze token counts.&quot;
+            }
+          ]
+        },
+        {
+          &quot;id&quot;: &quot;meta-tags&quot;,
+          &quot;name&quot;: &quot;AI-Friendly Meta Tags&quot;,
+          &quot;category&quot;: &quot;token-economics&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No local directory available to analyze meta tags.&quot;
+            }
+          ]
+        }
+      ]
+    },
+    &quot;capability-signaling&quot;: {
+      &quot;name&quot;: &quot;Capability Signaling&quot;,
+      &quot;description&quot;: &quot;Can agents understand what your APIs do?&quot;,
+      &quot;score&quot;: 1,
+      &quot;maxScore&quot;: 15,
+      &quot;percentage&quot;: 7,
+      &quot;results&quot;: [
+        {
+          &quot;id&quot;: &quot;skill-md&quot;,
+          &quot;name&quot;: &quot;Capability Signaling (skill.md)&quot;,
+          &quot;category&quot;: &quot;capability-signaling&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;fail&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;error&quot;,
+              &quot;message&quot;: &quot;Cannot scan for skill.md files in URL-only mode.&quot;,
+              &quot;fix&quot;: &quot;Create skill.md files for your APIs and services. These tell agents what your product can DO, not just how to call it.\nInclude: capabilities list, required inputs, constraints, and links to detailed docs.&quot;
+            }
+          ]
+        },
+        {
+          &quot;id&quot;: &quot;agent-permissions&quot;,
+          &quot;name&quot;: &quot;Agent Permissions Configuration&quot;,
+          &quot;category&quot;: &quot;capability-signaling&quot;,
+          &quot;score&quot;: 1,
+          &quot;maxScore&quot;: 5,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;info&quot;,
+              &quot;message&quot;: &quot;No agent-permissions.json found.&quot;,
+              &quot;fix&quot;: &quot;Consider creating an agent-permissions.json to define access rules for automated clients.\nThis emerging standard lets you specify allowed interactions, rate limits, and human-in-the-loop requirements.&quot;
+            }
+          ]
+        }
+      ]
+    },
+    &quot;ux-bridge&quot;: {
+      &quot;name&quot;: &quot;UX Bridge&quot;,
+      &quot;description&quot;: &quot;Does the UX support human-agent workflows?&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;percentage&quot;: 0,
+      &quot;results&quot;: [
+        {
+          &quot;id&quot;: &quot;copy-for-ai&quot;,
+          &quot;name&quot;: &quot;Copy for AI UX&quot;,
+          &quot;category&quot;: &quot;ux-bridge&quot;,
+          &quot;score&quot;: 0,
+          &quot;maxScore&quot;: 10,
+          &quot;status&quot;: &quot;warn&quot;,
+          &quot;findings&quot;: [
+            {
+              &quot;severity&quot;: &quot;warning&quot;,
+              &quot;message&quot;: &quot;No local directory available to analyze copy-for-AI affordances.&quot;
+            }
+          ]
+        }
+      ]
+    }
+  },
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: &quot;robots-txt&quot;,
+      &quot;name&quot;: &quot;Robots.txt AI Access&quot;,
+      &quot;category&quot;: &quot;discovery&quot;,
+      &quot;score&quot;: 8,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;info&quot;,
+          &quot;message&quot;: &quot;robots.txt found.&quot;
+        },
+        {
+          &quot;severity&quot;: &quot;info&quot;,
+          &quot;message&quot;: &quot;No known AI crawlers are explicitly blocked.&quot;
+        },
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No AI crawlers are explicitly allowed in robots.txt.&quot;,
+          &quot;fix&quot;: &quot;Add explicit Allow rules for AI crawlers like ClaudeBot, GPTBot, PerplexityBot.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;llms-txt&quot;,
+      &quot;name&quot;: &quot;llms.txt Discovery Index&quot;,
+      &quot;category&quot;: &quot;discovery&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;fail&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;error&quot;,
+          &quot;message&quot;: &quot;No llms.txt found at site root.&quot;,
+          &quot;fix&quot;: &quot;Create a llms.txt file at your site root. This acts as a sitemap for AI agents.\nSee: https://llmstxt.org for the specification.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;agents-md&quot;,
+      &quot;name&quot;: &quot;AGENTS.md / CLAUDE.md&quot;,
+      &quot;category&quot;: &quot;discovery&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 5,
+      &quot;status&quot;: &quot;fail&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;error&quot;,
+          &quot;message&quot;: &quot;Cannot scan for AGENTS.md in URL-only mode.&quot;,
+          &quot;fix&quot;: &quot;Create an AGENTS.md in your repo root. This is the entry point for AI coding agents.\nInclude: project structure, key file locations, API docs links, dev environment setup, and coding conventions.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;content-structure&quot;,
+      &quot;name&quot;: &quot;Content Structure Quality&quot;,
+      &quot;category&quot;: &quot;content-structure&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 15,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No local directory available to analyze content structure.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;markdown-availability&quot;,
+      &quot;name&quot;: &quot;Markdown Content Availability&quot;,
+      &quot;category&quot;: &quot;content-structure&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No local directory available to analyze Markdown availability.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;token-budget&quot;,
+      &quot;name&quot;: &quot;Token Budget Analysis&quot;,
+      &quot;category&quot;: &quot;token-economics&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 15,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No local directory available to analyze token counts.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;meta-tags&quot;,
+      &quot;name&quot;: &quot;AI-Friendly Meta Tags&quot;,
+      &quot;category&quot;: &quot;token-economics&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No local directory available to analyze meta tags.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;skill-md&quot;,
+      &quot;name&quot;: &quot;Capability Signaling (skill.md)&quot;,
+      &quot;category&quot;: &quot;capability-signaling&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;fail&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;error&quot;,
+          &quot;message&quot;: &quot;Cannot scan for skill.md files in URL-only mode.&quot;,
+          &quot;fix&quot;: &quot;Create skill.md files for your APIs and services. These tell agents what your product can DO, not just how to call it.\nInclude: capabilities list, required inputs, constraints, and links to detailed docs.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;agent-permissions&quot;,
+      &quot;name&quot;: &quot;Agent Permissions Configuration&quot;,
+      &quot;category&quot;: &quot;capability-signaling&quot;,
+      &quot;score&quot;: 1,
+      &quot;maxScore&quot;: 5,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;info&quot;,
+          &quot;message&quot;: &quot;No agent-permissions.json found.&quot;,
+          &quot;fix&quot;: &quot;Consider creating an agent-permissions.json to define access rules for automated clients.\nThis emerging standard lets you specify allowed interactions, rate limits, and human-in-the-loop requirements.&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;copy-for-ai&quot;,
+      &quot;name&quot;: &quot;Copy for AI UX&quot;,
+      &quot;category&quot;: &quot;ux-bridge&quot;,
+      &quot;score&quot;: 0,
+      &quot;maxScore&quot;: 10,
+      &quot;status&quot;: &quot;warn&quot;,
+      &quot;findings&quot;: [
+        {
+          &quot;severity&quot;: &quot;warning&quot;,
+          &quot;message&quot;: &quot;No local directory available to analyze copy-for-AI affordances.&quot;
+        }
+      ]
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;errors&quot;: 3,
+    &quot;warnings&quot;: 6,
+    &quot;infos&quot;: 3,
+    &quot;passed&quot;: 1,
+    &quot;warned&quot;: 6,
+    &quot;failed&quot;: 3,
+    &quot;errored&quot;: 0
+  },
+  &quot;findings&quot;: {
+    &quot;errors&quot;: [
+      {
+        &quot;severity&quot;: &quot;error&quot;,
+        &quot;message&quot;: &quot;No llms.txt found at site root.&quot;,
+        &quot;fix&quot;: &quot;Create a llms.txt file at your site root. This acts as a sitemap for AI agents.\nSee: https://llmstxt.org for the specification.&quot;,
+        &quot;checker&quot;: &quot;llms-txt&quot;,
+        &quot;checkerName&quot;: &quot;llms.txt Discovery Index&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;error&quot;,
+        &quot;message&quot;: &quot;Cannot scan for AGENTS.md in URL-only mode.&quot;,
+        &quot;fix&quot;: &quot;Create an AGENTS.md in your repo root. This is the entry point for AI coding agents.\nInclude: project structure, key file locations, API docs links, dev environment setup, and coding conventions.&quot;,
+        &quot;checker&quot;: &quot;agents-md&quot;,
+        &quot;checkerName&quot;: &quot;AGENTS.md / CLAUDE.md&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;error&quot;,
+        &quot;message&quot;: &quot;Cannot scan for skill.md files in URL-only mode.&quot;,
+        &quot;fix&quot;: &quot;Create skill.md files for your APIs and services. These tell agents what your product can DO, not just how to call it.\nInclude: capabilities list, required inputs, constraints, and links to detailed docs.&quot;,
+        &quot;checker&quot;: &quot;skill-md&quot;,
+        &quot;checkerName&quot;: &quot;Capability Signaling (skill.md)&quot;
+      }
+    ],
+    &quot;warnings&quot;: [
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No AI crawlers are explicitly allowed in robots.txt.&quot;,
+        &quot;fix&quot;: &quot;Add explicit Allow rules for AI crawlers like ClaudeBot, GPTBot, PerplexityBot.&quot;,
+        &quot;checker&quot;: &quot;robots-txt&quot;,
+        &quot;checkerName&quot;: &quot;Robots.txt AI Access&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No local directory available to analyze content structure.&quot;,
+        &quot;checker&quot;: &quot;content-structure&quot;,
+        &quot;checkerName&quot;: &quot;Content Structure Quality&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No local directory available to analyze Markdown availability.&quot;,
+        &quot;checker&quot;: &quot;markdown-availability&quot;,
+        &quot;checkerName&quot;: &quot;Markdown Content Availability&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No local directory available to analyze token counts.&quot;,
+        &quot;checker&quot;: &quot;token-budget&quot;,
+        &quot;checkerName&quot;: &quot;Token Budget Analysis&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No local directory available to analyze meta tags.&quot;,
+        &quot;checker&quot;: &quot;meta-tags&quot;,
+        &quot;checkerName&quot;: &quot;AI-Friendly Meta Tags&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;warning&quot;,
+        &quot;message&quot;: &quot;No local directory available to analyze copy-for-AI affordances.&quot;,
+        &quot;checker&quot;: &quot;copy-for-ai&quot;,
+        &quot;checkerName&quot;: &quot;Copy for AI UX&quot;
+      }
+    ],
+    &quot;infos&quot;: [
+      {
+        &quot;severity&quot;: &quot;info&quot;,
+        &quot;message&quot;: &quot;robots.txt found.&quot;,
+        &quot;checker&quot;: &quot;robots-txt&quot;,
+        &quot;checkerName&quot;: &quot;Robots.txt AI Access&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;info&quot;,
+        &quot;message&quot;: &quot;No known AI crawlers are explicitly blocked.&quot;,
+        &quot;checker&quot;: &quot;robots-txt&quot;,
+        &quot;checkerName&quot;: &quot;Robots.txt AI Access&quot;
+      },
+      {
+        &quot;severity&quot;: &quot;info&quot;,
+        &quot;message&quot;: &quot;No agent-permissions.json found.&quot;,
+        &quot;fix&quot;: &quot;Consider creating an agent-permissions.json to define access rules for automated clients.\nThis emerging standard lets you specify allowed interactions, rate limits, and human-in-the-loop requirements.&quot;,
+        &quot;checker&quot;: &quot;agent-permissions&quot;,
+        &quot;checkerName&quot;: &quot;Agent Permissions Configuration&quot;
+      }
+    ]
+  }
+}
+</pre></details>
+<h2>The session's closing message</h2><pre>I ran the installed tool on http://lumentea.test/. It scored the site **9/100, grade F**: 3 errors, 6 warnings and 3 info notes.
+
+The tool is `agentic-seo`. It checks how ready a site is for AI agents, not classic search-engine SEO. When given a URL it only fetches files at the site root and doesn&#x27;t crawl any pages. So it found nothing about titles, meta descriptions, headings or links, and none of its findings point to a specific page.
+
+**Real problems it found:**
+- **Error:** there is no `llms.txt` file at the site root.
+- **Warning:** `robots.txt` doesn&#x27;t explicitly allow any AI crawlers.
+- **Info:** `robots.txt` exists, no known AI crawlers are blocked, and there is no `agent-permissions.json` file.
+
+**Checks it couldn&#x27;t run:** 7 of the 10 checks need the site&#x27;s source files, which a URL audit doesn&#x27;t have. The tool still counted them against the site: 2 as errors (`AGENTS.md`, `skill.md`) and 5 as warnings (content structure, Markdown availability, token budget, meta tags, copy-for-AI). The report lists them as the tool gave them and notes that they mean &quot;not checked&quot;, not &quot;found broken&quot;.
+
+The report has all 12 findings with URL and severity. The tool&#x27;s console and JSON output are copied into the same folder.
+
+Files are in ~/work/output:
+- report.md
+- agentic-seo-output.txt
+- agentic-seo-results.json
+
+DELIVERABLE: ~/work/output</pre>
+</main></body></html>
