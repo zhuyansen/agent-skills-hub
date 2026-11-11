@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-11
+1. JDhruv14/line-art-animation — 🆕 用会走路、会反应的线稿小人做 SVG 动画组件，附 Claude Skill 和 TS 库（77★ 77.0/day）
+2. Vibha-Ramprakash/claude-video-effects — 给口播视频一键加 51 种特效，在 Claude Code 里输入 /effects 即可（836★ 42.6/day）
+3. permitzip/mutinybim — 🆕 在浏览器里让多人和多个智能体同时编辑同一个 BIM 建筑模型（44★ 35.5/day）
+4. Moh4696/cinematic-skill — 🆕 纯用代码把照片和地图串成一镜到底、带旁白的电影短片（55★ 32.7/day）
+5. tommy0103/blackhole — 🆕 把 Claude Code 关进只挂当前目录的 Linux 容器，隔离本机文件与网络（67★ 31.1/day）
+6. codepawl/creator-generalist — 🆕 让智能体像 2D、3D 全能美术一样做模型、地图和短视频素材（91★ 21.4/day）
+7. beluga-labs/beluga — 在一个桌面应用里并行跑多个智能体任务，还能请朋友的智能体帮忙（491★ 19.3/day）
+8. threerocks/article2media — 🆕 把一篇文章或视频一键做成小红书图文、公众号排版和配音口播短视频（50★ 18.7/day）
+9. yusuke-114/claude-xcode-agent — 🆕 在 Xcode 27 里把 Claude Code 设成编码智能体，用自己的 API key 驱动（30★ 18.1/day）
+10. kilolonion/agent-vscreen — 🆕 让安卓 AI 智能体在后台虚拟屏上操作应用，不占你的前台屏幕（47★ 14.0/day）
+🎯 今日趋势：内容创作占 **5 席**（line-art-animation、claude-video-effects、cinematic-skill、creator-generalist、article2media，其中 3 席直接出视频）；48h 新入库 ≥20★ 回升到 **108 仓**（昨天 40 仓），10 席里 **8 席**是 14 天内新建仓库。
+> 注：去重范围＝repo 内 archive 全部 139 个日期段，并入记忆区 fresh-skills-archive 与记忆区 daily-report-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 6,481 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、事务内 `SET LOCAL statement_timeout=30000`、NullPool）一次成功：`first_seen ≥72h`、stars ≥20，得 145 条；按 first_seen 切回 48h 剩 108 条、去重后 93 条，剔除可疑项仍有 10 个合格，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①liujiaqi2024/Free-ClaudeOpus-5.5（71★ 60.8/day，本可居第 2）、Pickardt/Chat-GPT-Astra-6.1（29★ 24.3/day）：无描述或泛化描述、标题蹭模型名，`gh api` 查询仓库已 404（被删或被封），排除；②bookleme/bookleme（71★ 38.0/day）：组织 11-09 建、名下仅此 1 仓，实时 106★ 却 0 fork，排除；③DevCrabs-Inc/yandex-metrika-mcp（127★ 28.2/day）：组织 0 粉、名下仅此 1 仓，实时 127★ 仅 1 fork，保守排除；④SparkofSpike/Brain4Agent（64★ 21.7/day）：实时 92★ 却 0 fork，作者其余 13 仓 ≤7★，单仓突起，排除；⑤zengziyu1312007-rgb/exobrain-skill（76★ 14.5/day）：描述为「我的外脑」个人工具合集，且 velocity 已落到第 11，未入选。入选项复核（`gh api`）：第 1 席 JDhruv14 2022 建号、68 粉，名下 ascii-diorama 96★、Win-Codex 22★，实时 164★/11 fork；第 2 席 Vibha-Ramprakash 2026-04 建号、116 粉、42 仓，实时 851★/205 fork（主页带 `?source=effects-repo` 导流到作者的视频工作室，**轻红旗**，项目本身可用，保留）；第 3 席 permitzip 2021 建组织，实时 50★/7 fork/37 issue，作者自家生产在用；第 4 席 Moh4696 2022 建号、158 粉，名下多仓 100–373★，实时 141★/8 fork；第 5 席 tommy0103 2018 建号、245 粉，实时 79★/10 fork；第 6 席 codepawl 组织 2026-03 建、35 粉，名下 67.js 441★、viz3d 164★，实时 124★/8 fork；第 7 席 beluga-labs 组织 11-10 才建、0 粉（**轻红旗**：仓库 25 天前建、后转入新组织，提供 Mac/Linux/Windows 安装包），实时 506★/51 fork/6 issue，保留；第 8 席 threerocks 2016 建号、476 粉，名下 hand-drawn-styles 2,660★，实时 59★/17 fork；第 9 席 yusuke-114 2026-08 建号、18 粉，名下 LongScreenShot 75★，实时 44★ 但 0 fork（**轻红旗**：Xcode 插件多为直接安装，保留）；第 10 席 kilolonion 2024 建号，名下 etymology-site 28★、cursor-cpa-plugin 16★，实时 49★/7 fork。🆕 判定＝created_at 距今 14 天内：line-art-animation（0.6 天）、mutinybim（1.2 天）、cinematic-skill（1.7 天）、blackhole（2.2 天）、creator-generalist（4.2 天）、article2media（2.7 天）、claude-xcode-agent（1.7 天）、agent-vscreen（3.4 天）命中；claude-video-effects（19.6 天）、beluga（25.5 天）不标。security_grade：入选 10 仓全部 safe。表中 stars 为数据库快照，多数仓实时更高（如 line-art-animation 164★、cinematic-skill 141★），按红线保留快照值。
+
+---
+
 ## 2026-11-10
 1. ruvnet/RuView — 用普通 WiFi 信号做实时空间感知、生命体征监测与在场检测，全程不用摄像头（103320★ 198.3/day）
 2. Pluviobyte/saas-growth-agents — 🆕 把新词雷达、找站、竞品外链、目录投稿等 SaaS 增长杂活交给智能体（422★ 40.3/day）
