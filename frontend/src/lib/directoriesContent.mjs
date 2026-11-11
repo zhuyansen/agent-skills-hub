@@ -181,6 +181,7 @@ const DISCLOSURE = {
 
 const LEAD = [
   DISCLOSURE,
+  { type: "p", text: [`In short: Agent Skills Hub is for broad discovery across GitHub, with a first-pass grade from ${RULE_COUNT} published rules on each popular repository. To vet one skill before you install it, look it up where its contents are checked: the skills.sh partner results, ClawHub, Tessl or Skillstore, and Glama for MCP servers.`, `一句话：Agent Skills Hub 适合在整个 GitHub 范围里找工具，每个热门仓库都有按 ${RULE_COUNT} 条公开规则给出的初筛评级。装某个 skill 之前想细查，去会检查其内容的目录：skills.sh 的合作方结果、ClawHub、Tessl 或 Skillstore；MCP 服务器看 Glama。`] },
   { type: "p", text: [`Agent skills and MCP servers are listed on many sites. They differ in what they list, how they count, what their security check reads and what they charge for. This page sets those facts side by side for ${COMPARED_COUNT} directories, taken from each site's own pages.`, `收录 agent skill 和 MCP 服务器的网站很多。它们收录的东西不同，计数方式不同，安全检查读的内容不同，收费的项目也不同。本页根据各站自己的页面，把 ${COMPARED_COUNT} 个目录的这些事实放在一起对比。`] },
   { type: "p", text: ["For each directory we record:", "每个目录我们记录这几项："] },
   { type: "ul", items: [

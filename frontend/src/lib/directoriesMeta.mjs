@@ -26,7 +26,7 @@ export const DIRECTORIES_PUBLISHED = "2026-11-10";
  * The Article's dateModified, which the sitemap reads as lastmod: bump it whenever the text
  * changes, never on a rebuild.
  */
-export const DIRECTORIES_UPDATED = "2026-11-10";
+export const DIRECTORIES_UPDATED = "2026-11-11";
 
 /** The page's heading; its title adds the site name. */
 export const DIRECTORIES_HEADLINE = {
