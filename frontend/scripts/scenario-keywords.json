@@ -1591,7 +1591,10 @@
     "azdaev/tgmock",
     "missingus3r/friday-showcase",
     "KhanbalaRashidov/telepath",
-    "abbosahmad/telegram-premium-emojis"
+    "abbosahmad/telegram-premium-emojis",
+    "turmyshevd/openclawgotchi",
+    "1995parham/ELBoT",
+    "nguyencaotai1969/telegram-bot-router"
    ],
    "exclude_repos": [
     "smixs/iva",
@@ -2040,7 +2043,9 @@
     "CreativeClawCo/creative-claw-marketplace",
     "stephenlzc/codex-image-gen",
     "beatra-ai/ai-image-generator-skill",
-    "absolument-ai/trop"
+    "absolument-ai/trop",
+    "MiniMax-AI/MiniMax-H3-Image",
+    "krowten/claude-media-generation"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2183,7 +2188,15 @@
     "SpatiaOS/Procedura",
     "CoplayDev/coplay-unity-plugin",
     "FreedomIntelligence/BlenderLore",
-    "CheshireJCat/blender"
+    "CheshireJCat/blender",
+    "htdt/godogen",
+    "k-telux/OpticalModeler",
+    "DmitriyGolub/threejs-devtools-mcp",
+    "op7418/guizang-game-skill",
+    "ColtonWilley/ue-llm-toolkit",
+    "icejyzy0430/open-model-workbench",
+    "undeadpickle/image-to-3d-rebuild",
+    "wolffe/three.js-skills"
    ],
    "exclude_repos": []
   },
@@ -3398,7 +3411,12 @@
     "gogoymh/auto-ontology-mcp",
     "bibinprathap/VeritasGraph",
     "Marker-Inc-Korea/AutoRAG",
-    "917Dhj/DeepPaperNote"
+    "917Dhj/DeepPaperNote",
+    "HiveForensics-AI/knolo-core",
+    "hoangsonww/RAG-LangChain-AI-System",
+    "botAGI/AGmind",
+    "kapillamba4/code-memory",
+    "lemoncloud-io/doki"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3753,7 +3771,9 @@
     "klubinskak/skilldex",
     "Hainrixz/skill-vault",
     "LLJ99999/jack-codex",
-    "777genius/universal-agent-plugins"
+    "777genius/universal-agent-plugins",
+    "rohitg00/skillkit",
+    "javimosch/supercli"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4664,7 +4684,9 @@
     "Harrypatria/tastemaker",
     "LilMGenius/paperthin",
     "LemonFace0309/charles-skills",
-    "Dodaios/ste80-humanizer"
+    "Dodaios/ste80-humanizer",
+    "anhnx000/viet-nhu-nguoi",
+    "cdrcthv/deslop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5173,7 +5195,12 @@
     "XuHo-IT/Content-Agent-Kit",
     "Pluviobyte/saas-growth-agents",
     "tymoshenko-dmytro/claude-marketing-skills",
-    "cihantopac/searvex"
+    "cihantopac/searvex",
+    "danishashko/geo-aeo-tracker",
+    "noelceta/content-engine",
+    "RomeoSEO/seo-skills",
+    "vamsireddy4/search-os",
+    "Anas660/claude-seo-desk"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5687,7 +5714,9 @@
     "albertirgi/replica",
     "jmlweb/storybook-vrhythm",
     "precious112/caret-desktop",
-    "KunalKumarkkr01/design-system-extractor"
+    "KunalKumarkkr01/design-system-extractor",
+    "carrapido/rob-janoff-design",
+    "obaid1dev/dea"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6277,7 +6306,7 @@
    "min_results": 5,
    "max_results": 25,
    "featured": [
-    "kepano/obsidian-skills",
+    "obsidianmd/obsidian-skills",
     "YishenTu/claudian",
     "Ar9av/obsidian-wiki",
     "SamurAIGPT/llm-wiki-agent",
@@ -6795,7 +6824,11 @@
     "hustcer/pptx-nova",
     "knorq-ai/pptx-mcp-server",
     "Skywalkerjieee/paper-sharing-ppt",
-    "dminghao12-dotcom/bluewhite-ppt-skills"
+    "dminghao12-dotcom/bluewhite-ppt-skills",
+    "wendaokeliu-sys/ppt-builder",
+    "Cennyk-learner/ppt-cinematic-animation",
+    "JamieJustTang/svg2pptx-skill",
+    "HututuWorks/journal-club-ppt"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7684,7 +7717,7 @@
    "min_results": 5,
    "max_results": null,
    "featured": [
-    "kepano/obsidian-skills",
+    "obsidianmd/obsidian-skills",
     "YishenTu/claudian",
     "codexu/note-gen",
     "AgriciDaniel/claude-obsidian",
@@ -7728,13 +7761,16 @@
     "mistrysiddh/hermes-brain-template",
     "caibucaiAI/caicai-english-buddy",
     "SystemSculpt/obsidian-systemsculpt-ai",
-    "SherwinQ/karpathy-wiki"
+    "SherwinQ/karpathy-wiki",
+    "obsidianmd/obsidian-skills",
+    "lemoncloud-io/doki"
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
     "bitbonsai/mcp-obsidian",
     "fxa3bah/OneBrain",
-    "caibucaiAI/obsidian-speaking-practice"
+    "caibucaiAI/obsidian-speaking-practice",
+    "kepano/obsidian-skills"
    ]
   },
   "related": [
@@ -8831,7 +8867,32 @@
     "rjmahesh/ui-redline-walkthrough",
     "frankShan001/CutVoke",
     "DbgKinggg/plotbeat",
-    "AnmolChandiok/claude-after-effects-skill"
+    "AnmolChandiok/claude-after-effects-skill",
+    "nexu-io/openmotion",
+    "cclank/lanshu-animated-architecture-diagram",
+    "JDhruv14/line-art-animation",
+    "iart-ai/javascript-animation-skills",
+    "howoneai/xiaolin-explainer-packaging",
+    "kasfulk/effectcraft-motion-skills",
+    "zakariaf/cinecode",
+    "fendouai/ViralForge",
+    "thuann-vn/claude-3d-animated-shorts",
+    "huypham85/app-3d-video-skill",
+    "iart-ai/ecommerce-video-skills",
+    "useapi/muse-api",
+    "Matteoikarieth96/cartoon-shorts-skill",
+    "deenukhan/animation-styles",
+    "Abhinav-murugan1/Aria",
+    "yenceesanjeev/2d-character-sketch",
+    "SyedBahjat/claude-stickman-shorts",
+    "bassimeledath/manimate",
+    "neurolena1/video-effects-pack",
+    "10291124jcjc-dotcom/motion-reel",
+    "jabbarlee/open-papertrail",
+    "clipugc/ClipUGC-CLI",
+    "AlbertPine/vibe-knowledge-video-director",
+    "antropos17/chatgpt-gif-cinema",
+    "zenitlab/video-as-code"
    ],
    "sub_skills": [
     {
@@ -9400,7 +9461,8 @@
     "karlkfi/claude-bouncer",
     "Spobi/context-carwash",
     "me2resh/apexyard",
-    "SanderMuller/claude-statusline"
+    "SanderMuller/claude-statusline",
+    "Rylaa/fable5.2-opus5.5-orchestrator"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

@@ -4030,5 +4030,33 @@
    "rules": 0.38
   },
   "kind": "writing"
+ },
+ {
+  "repo": "anhnx000/viet-nhu-nguoi",
+  "stars": 44,
+  "description": "Viết như người: chống giọng văn AI cho tiếng Việt (human voice, Vietnamese humanizer). Skill Claude Code sửa bài ChatGPT/Claude viết cho tự nhiên như người viết: bỏ văn dịch, giọng công văn, lời chatbot. Kèm máy quét 0-100 và công cụ kiểm số liệu.",
+  "scores": {
+   "writing": 0.96,
+   "detector": 0.92,
+   "chinese": 0.02,
+   "code": 0.09,
+   "design": 0.08,
+   "rules": 0.8
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "cdrcthv/deslop",
+  "stars": 5,
+  "description": "Stop AI slop before it hits your PR. Agent skill + commands for small, human-reviewable code.",
+  "scores": {
+   "writing": 0.1,
+   "detector": 0.35,
+   "chinese": 0.05,
+   "code": 0.85,
+   "design": 0.12,
+   "rules": 0.75
+  },
+  "kind": "code"
  }
 ]

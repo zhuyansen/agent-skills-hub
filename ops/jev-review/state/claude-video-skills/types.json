@@ -8692,5 +8692,455 @@
    "general": 0.13
   },
   "kind": "general"
+ },
+ {
+  "repo": "nexu-io/openmotion",
+  "stars": 9558,
+  "description": "The open-source full-stack studio for Opus 5.5 motion video. Reverse engineering for any video. Code video with HTML: recreate, edit and render. BYOA + BYOK · Motion.md · Images, Video, Music & Voice.",
+  "scores": {
+   "promo": 0.61,
+   "explainer": 0.49,
+   "music": 0.18,
+   "motion": 0.19,
+   "shorts": 0.43,
+   "editing": 0.31,
+   "demo": 0.7,
+   "story": 0.4,
+   "avatar": 0.17,
+   "general": 0.66
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "stars": 1037,
+  "description": "Premium hand-drawn animated architecture diagram Codex skill",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.33,
+   "music": 0.02,
+   "motion": 0.96,
+   "shorts": 0.04,
+   "editing": 0.03,
+   "demo": 0.12,
+   "story": 0.04,
+   "avatar": 0.02,
+   "general": 0.05
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "JDhruv14/line-art-animation",
+  "stars": 77,
+  "description": "A Claude skill and TypeScript library for animated line-art SVG components: ink figures that walk and react, scenes with a day/night cycle.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.19,
+   "music": 0.03,
+   "motion": 0.37,
+   "shorts": 0.07,
+   "editing": 0.04,
+   "demo": 0.42,
+   "story": 0.23,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "iart-ai/javascript-animation-skills",
+  "stars": 60,
+  "description": "Every frame drawn in JavaScript — the Opus 5.5-style animation technique as agent skills: hand-drawn canvas animation, zero image assets, code-synthesized soundtrack, A/V sync check.",
+  "scores": {
+   "promo": 0.38,
+   "explainer": 0.68,
+   "music": 0.23,
+   "motion": 0.3,
+   "shorts": 0.15,
+   "editing": 0.03,
+   "demo": 0.32,
+   "story": 0.78,
+   "avatar": 0.04,
+   "general": 0.32
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "howoneai/xiaolin-explainer-packaging",
+  "stars": 39,
+  "description": "小Lin说风格讲解视频包装 skill：Remotion 版式组件、关键词计时分镜、混音、逐帧质检、资料检索（非官方）",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.96,
+   "music": 0.03,
+   "motion": 0.13,
+   "shorts": 0.08,
+   "editing": 0.65,
+   "demo": 0.26,
+   "story": 0.08,
+   "avatar": 0.07,
+   "general": 0.1
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "kasfulk/effectcraft-motion-skills",
+  "stars": 31,
+  "description": "Claude Code skill: JSON spec to vertical 9:16 motion graphics/infographics via effectcraft-cli, themed, with text-derived timing",
+  "scores": {
+   "promo": 0.17,
+   "explainer": 0.3,
+   "music": 0.11,
+   "motion": 0.79,
+   "shorts": 0.79,
+   "editing": 0.03,
+   "demo": 0.17,
+   "story": 0.13,
+   "avatar": 0.05,
+   "general": 0.18
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "zakariaf/cinecode",
+  "stars": 22,
+  "description": "Animated films made entirely by code: a Claude Code plugin. Describe a film, and Claude writes, animates, scores and renders it.",
+  "scores": {
+   "promo": 0.17,
+   "explainer": 0.72,
+   "music": 0.09,
+   "motion": 0.04,
+   "shorts": 0.06,
+   "editing": 0.03,
+   "demo": 0.33,
+   "story": 0.74,
+   "avatar": 0.09,
+   "general": 0.22
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "fendouai/ViralForge",
+  "stars": 20,
+  "description": "Agent-native viral video studio: one-click replicate viral short videos, deconstruct video hooks and scripts into a Viral DNA report, and ship 10 costed variants. Skill + MCP + CLI. Apache-2.0.",
+  "scores": {
+   "promo": 0.57,
+   "explainer": 0.23,
+   "music": 0.06,
+   "motion": 0.06,
+   "shorts": 0.87,
+   "editing": 0.39,
+   "demo": 0.78,
+   "story": 0.24,
+   "avatar": 0.13,
+   "general": 0.08
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "thuann-vn/claude-3d-animated-shorts",
+  "stars": 17,
+  "description": "Claude skill: vertical 3D animated story Shorts (three.js) in the RicksClips style — real 3D characters, office/home sets, no AI video",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.31,
+   "music": 0.04,
+   "motion": 0.25,
+   "shorts": 0.93,
+   "editing": 0.08,
+   "demo": 0.25,
+   "story": 0.95,
+   "avatar": 0.09,
+   "general": 0.04
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "huypham85/app-3d-video-skill",
+  "stars": 17,
+  "description": "Claude Code skills: a 20 s 3D promo video for your iOS app (SceneKit iPhone, a mascot that presses your UI, original score), rendered entirely on your Mac.",
+  "scores": {
+   "promo": 0.96,
+   "explainer": 0.09,
+   "music": 0.55,
+   "motion": 0.49,
+   "shorts": 0.55,
+   "editing": 0.04,
+   "demo": 0.84,
+   "story": 0.19,
+   "avatar": 0.04,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "useapi/muse-api",
+  "stars": 12,
+  "description": "Meta Muse API examples (muse.ai) and a hosted MCP server with 37 tools for Claude Code, Cursor and VS Code. Images and 10-second videos with sound on your Muse subscription, free plan included. Chat with the Muse agent, restore old photos, make a photo talk, swap a person in a video. Node.js, Python, n8n, agent skill. By useapi.net, third-party.",
+  "scores": {
+   "promo": 0.41,
+   "explainer": 0.69,
+   "music": 0.07,
+   "motion": 0.14,
+   "shorts": 0.81,
+   "editing": 0.18,
+   "demo": 0.85,
+   "story": 0.23,
+   "avatar": 0.62,
+   "general": 0.14
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "deenukhan/animation-styles",
+  "stars": 6,
+  "description": "39 animation styles drawn in code with Remotion, as a Claude Code skill. One 5-second chai film in every style, ready to retell with your own story.",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.17,
+   "music": 0.02,
+   "motion": 0.8,
+   "shorts": 0.58,
+   "editing": 0.03,
+   "demo": 0.32,
+   "story": 0.45,
+   "avatar": 0.02,
+   "general": 0.41
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "Abhinav-murugan1/Aria",
+  "stars": 6,
+  "description": "Aria: Claude Code skills that make finished videos with expressive voices from code. Emotion-tagged narration, word-timed captions, GPU-rendered 2D/3D scenes, music in code, export checks, slash commands.",
+  "scores": {
+   "promo": 0.72,
+   "explainer": 0.51,
+   "music": 0.22,
+   "motion": 0.12,
+   "shorts": 0.83,
+   "editing": 0.09,
+   "demo": 0.49,
+   "story": 0.28,
+   "avatar": 0.08,
+   "general": 0.58
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "yenceesanjeev/2d-character-sketch",
+  "stars": 6,
+  "description": "Agent skill: build simple 2D cartoon characters, make them talk, and render short sketch videos. Drawn in code, rendered locally.",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.11,
+   "music": 0.02,
+   "motion": 0.19,
+   "shorts": 0.1,
+   "editing": 0.04,
+   "demo": 0.2,
+   "story": 0.92,
+   "avatar": 0.1,
+   "general": 0.04
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "SyedBahjat/claude-stickman-shorts",
+  "stars": 5,
+  "description": "Claude Code skill that makes stick-figure 'You Decide' story shorts and clones ANY video format (explainers, top-10s, quizzes, stories, long-form) for YouTube Shorts, TikTok & Reels. Script, animation, AI voices, captions, copyright-free SFX. Remotion.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.27,
+   "music": 0.07,
+   "motion": 0.13,
+   "shorts": 0.94,
+   "editing": 0.16,
+   "demo": 0.24,
+   "story": 0.93,
+   "avatar": 0.04,
+   "general": 0.34
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "bassimeledath/manimate",
+  "stars": 5,
+  "description": "Generate diagram/animation videos from natural language using Manim. Agent skill for Claude Code, Codex, and other AI coding agents.",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.87,
+   "music": 0.03,
+   "motion": 0.61,
+   "shorts": 0.1,
+   "editing": 0.03,
+   "demo": 0.21,
+   "story": 0.07,
+   "avatar": 0.03,
+   "general": 0.15
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "neurolena1/video-effects-pack",
+  "stars": 5,
+  "description": "47 video effects for vertical video as an Agent Skill (Claude, Codex, Antigravity) and a CLI. By NeuroLena.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.18,
+   "music": 0.06,
+   "motion": 0.42,
+   "shorts": 0.87,
+   "editing": 0.74,
+   "demo": 0.54,
+   "story": 0.05,
+   "avatar": 0.21,
+   "general": 0.13
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "10291124jcjc-dotcom/motion-reel",
+  "stars": 5,
+  "description": "Claude Code skill: one sentence → code-rendered motion graphics video with beat-synced music (9:16 / 1:1 / 16:9). 一句话生成逐帧代码绘制的动态广告视频。",
+  "scores": {
+   "promo": 0.86,
+   "explainer": 0.14,
+   "music": 0.35,
+   "motion": 0.75,
+   "shorts": 0.58,
+   "editing": 0.03,
+   "demo": 0.3,
+   "story": 0.16,
+   "avatar": 0.03,
+   "general": 0.22
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "jabbarlee/open-papertrail",
+  "stars": 5,
+  "description": "Vertical videos drawn entirely in code. Claude Code writes and animates them; the voice runs on your Mac. Four styles, six free voices, no servers.",
+  "scores": {
+   "promo": 0.14,
+   "explainer": 0.49,
+   "music": 0.05,
+   "motion": 0.2,
+   "shorts": 0.92,
+   "editing": 0.04,
+   "demo": 0.24,
+   "story": 0.75,
+   "avatar": 0.05,
+   "general": 0.27
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "clipugc/ClipUGC-CLI",
+  "stars": 5,
+  "description": "Official CLI, MCP server and Claude Code plugin for ClipUGC. Make UGC videos for mobile apps with an AI influencer who keeps the same face, with your app's screen recording inside. Hosted MCP: clipugc.com/mcp",
+  "scores": {
+   "promo": 0.57,
+   "explainer": 0.19,
+   "music": 0.04,
+   "motion": 0.05,
+   "shorts": 0.82,
+   "editing": 0.27,
+   "demo": 0.32,
+   "story": 0.1,
+   "avatar": 0.76,
+   "general": 0.03
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "AlbertPine/vibe-knowledge-video-director",
+  "stars": 5,
+  "description": "A Codex skill for researched, story-first Chinese knowledge videos with continuous motion graphics, semantic on-screen text, and render-level QA.",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.97,
+   "music": 0.02,
+   "motion": 0.18,
+   "shorts": 0.18,
+   "editing": 0.11,
+   "demo": 0.09,
+   "story": 0.34,
+   "avatar": 0.07,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "antropos17/chatgpt-gif-cinema",
+  "stars": 5,
+  "description": "Turn GPT-generated GIFs into short films. A Codex and Claude Code skill for reviewing cuts, reshooting scenes, and exporting MP4. Includes a no-key demo.",
+  "scores": {
+   "promo": 0.23,
+   "explainer": 0.28,
+   "music": 0.06,
+   "motion": 0.63,
+   "shorts": 0.15,
+   "editing": 0.4,
+   "demo": 0.42,
+   "story": 0.62,
+   "avatar": 0.04,
+   "general": 0.34
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "zenitlab/video-as-code",
+  "stars": 1,
+  "description": "Make videos by writing code with Claude Opus 5.5: research, script, voiceover, music, edit and auto-check, then export vertical cuts for Douyin, Xiaohongshu and WeChat Channels.",
+  "scores": {
+   "promo": 0.83,
+   "explainer": 0.73,
+   "music": 0.09,
+   "motion": 0.13,
+   "shorts": 0.86,
+   "editing": 0.11,
+   "demo": 0.67,
+   "story": 0.38,
+   "avatar": 0.23,
+   "general": 0.9
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Matteoikarieth96/cartoon-shorts-skill",
+  "stars": 8,
+  "description": "Claude Code skill: interview-first animated cartoon shorts (9:16) for YouTube Shorts, TikTok and Reels, rendered locally with SVG, headless Chrome and ffmpeg",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.54,
+   "music": 0.08,
+   "motion": 0.11,
+   "shorts": 0.86,
+   "editing": 0.03,
+   "demo": 0.16,
+   "story": 0.69,
+   "avatar": 0.04,
+   "general": 0.06
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "iart-ai/ecommerce-video-skills",
+  "stars": 16,
+  "description": "Generate ecommerce / product video — product demos, sale promos, and photo slideshows — straight from your screenshots, prices, and image folders.",
+  "scores": {
+   "promo": 0.87,
+   "explainer": 0.09,
+   "music": 0.28,
+   "motion": 0.29,
+   "shorts": 0.12,
+   "editing": 0.12,
+   "demo": 0.83,
+   "story": 0.07,
+   "avatar": 0.05,
+   "general": 0.12
+  },
+  "kind": "promo"
  }
 ]

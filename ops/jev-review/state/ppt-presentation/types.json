@@ -3708,5 +3708,61 @@
    "general": 0.53
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "wendaokeliu-sys/ppt-builder",
+  "stars": 6,
+  "description": "把方案、报告、手册一键生成可编辑 PPT 的 Skill，全程 DeepSeek，国内直接可用",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.71,
+   "convert": 0.95,
+   "general": 0.4
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "Cennyk-learner/ppt-cinematic-animation",
+  "stars": 6,
+  "description": "An agent skill that turns static PowerPoint slides into cinematic, still-editable animated slides: photo-real plates, loop GIFs, native animation & Morph. 让 AI 把 PPT 做成电影感动画页。",
+  "scores": {
+   "image": 0.12,
+   "pptx": 0.96,
+   "html": 0.02,
+   "business": 0.16,
+   "convert": 0.09,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "JamieJustTang/svg2pptx-skill",
+  "stars": 5,
+  "description": "Turn a flat AI-generated SVG into a fully-editable, native PowerPoint (DrawingML) — then export to PDF/Keynote/Slides. One command; agent-friendly skill. Extracted & adapted from ppt-master (MIT).",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.36,
+   "convert": 0.06,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "HututuWorks/journal-club-ppt",
+  "stars": 5,
+  "description": "A Codex skill for editable journal-club presentations from research PDFs, with evidence checks, four themes, and one PPTX deliverable.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.03,
+   "convert": 0.92,
+   "general": 0.04
+  },
+  "kind": "pptx"
  }
 ]

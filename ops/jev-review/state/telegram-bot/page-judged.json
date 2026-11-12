@@ -10746,5 +10746,41 @@
   "days": 200,
   "stars_per_day": 0.975,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "turmyshevd/openclawgotchi",
+  "name": "openclawgotchi",
+  "stars": 53,
+  "description": "(▰˘◡˘▰) - AI Tamagotchi on Raspberry Pi. Agentic life-form with an E-Ink face",
+  "topics": [
+   "agentic-ai",
+   "ai",
+   "ai-agents",
+   "ai-tamagotchi",
+   "e-ink-display",
+   "moltbook",
+   "openclaw",
+   "openclaw-skills",
+   "telegram-bot-ai-assistant"
+  ],
+  "created": "2026-02-09",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 14779,
+  "names_model": false,
+  "on_subject": 0.61,
+  "is_software": 0.92,
+  "shows_result": 0.58,
+  "one_command_start": 0.07,
+  "specific_outcome": 0.64,
+  "complete_docs": 0.1,
+  "novel_angle": 0.8,
+  "shareable_output": 0.81,
+  "quality": 0.3475,
+  "tier": "低",
+  "hit_prior": 0.73,
+  "days": 276,
+  "stars_per_day": 0.19202898550724637,
+  "verdict": "low_quality"
  }
 ]

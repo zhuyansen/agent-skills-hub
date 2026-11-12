@@ -2104,5 +2104,31 @@
    "sync": 0.55
   },
   "kind": "skill"
+ },
+ {
+  "repo": "obsidianmd/obsidian-skills",
+  "stars": 51658,
+  "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
+  "scores": {
+   "skill": 0.98,
+   "mcp": 0.12,
+   "plugin": 0.11,
+   "second_brain": 0.12,
+   "sync": 0.36
+  },
+  "kind": "skill"
+ },
+ {
+  "repo": "lemoncloud-io/doki",
+  "stars": 5,
+  "description": "AI second brain vault for Obsidian — an agent compiles web clippings into a cited Markdown wiki. Claude Code + Git, model-neutral. 옵시디언 기반 AI 지식관리(PKM) 템플릿",
+  "scores": {
+   "skill": 0.91,
+   "mcp": 0.22,
+   "plugin": 0.1,
+   "second_brain": 0.91,
+   "sync": 0.94
+  },
+  "kind": "sync"
  }
 ]

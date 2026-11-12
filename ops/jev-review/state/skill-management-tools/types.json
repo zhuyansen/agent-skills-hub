@@ -2714,5 +2714,33 @@
    "general": 0.41
   },
   "kind": "cli"
+ },
+ {
+  "repo": "rohitg00/skillkit",
+  "stars": 1578,
+  "description": "Supercharge AI coding agents with portable skills. Install, translate & share skills across Claude Code, Cursor, Codex, Copilot & 40 more",
+  "scores": {
+   "cli": 0.96,
+   "sync": 0.84,
+   "app": 0.21,
+   "registry": 0.55,
+   "team": 0.21,
+   "general": 0.14
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "javimosch/supercli",
+  "stars": 57,
+  "description": "Unified CLI plugin manager for AI agents and developers - discover, install, and orchestrate thousands of command-line tools",
+  "scores": {
+   "cli": 0.75,
+   "sync": 0.23,
+   "app": 0.07,
+   "registry": 0.67,
+   "team": 0.15,
+   "general": 0.27
+  },
+  "kind": "cli"
  }
 ]

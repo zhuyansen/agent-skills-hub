@@ -3694,5 +3694,33 @@
    "mcp": 0.08
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "MiniMax-AI/MiniMax-H3-Image",
+  "stars": 250,
+  "description": "MiniMax-H3-Image, an open-weight model for 16-megapixel image generation and editing.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.13,
+   "editing": 0.17,
+   "design": 0.11,
+   "mcp": 0.11
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "krowten/claude-media-generation",
+  "stars": 5,
+  "description": "Image, SVG and video generation for Claude Code: GPT Image 2.5, Nano Banana, Recraft, MiniMax H3, Kling, Seedance and Veo via fal.ai",
+  "scores": {
+   "gpt_image": 0.2,
+   "nano_banana": 0.22,
+   "open_models": 0.04,
+   "editing": 0.13,
+   "design": 0.39,
+   "mcp": 0.45
+  },
+  "kind": "mcp"
  }
 ]

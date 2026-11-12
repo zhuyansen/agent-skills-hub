@@ -3694,5 +3694,47 @@
    "business": 0.09
   },
   "kind": "framework"
+ },
+ {
+  "repo": "turmyshevd/openclawgotchi",
+  "stars": 53,
+  "description": "(▰˘◡˘▰) - AI Tamagotchi on Raspberry Pi. Agentic life-form with an E-Ink face",
+  "scores": {
+   "assistant": 0.67,
+   "remote": 0.69,
+   "framework": 0.18,
+   "utility": 0.12,
+   "fun": 0.82,
+   "business": 0.05
+  },
+  "kind": "fun"
+ },
+ {
+  "repo": "1995parham/ELBoT",
+  "stars": 9,
+  "description": "A personal Telegram secretary for people and AI agents: a user-mode MTProto client with an MCP server, several accounts, drafts, reminders, tags and a rule watcher",
+  "scores": {
+   "assistant": 0.38,
+   "remote": 0.36,
+   "framework": 0.33,
+   "utility": 0.83,
+   "fun": 0.04,
+   "business": 0.06
+  },
+  "kind": "utility"
+ },
+ {
+  "repo": "nguyencaotai1969/telegram-bot-router",
+  "stars": 5,
+  "description": "Control Claude Code from Telegram: one bot, one group, each topic drives Claude Code in its own project folder. Photos & files both ways.",
+  "scores": {
+   "assistant": 0.89,
+   "remote": 0.98,
+   "framework": 0.11,
+   "utility": 0.22,
+   "fun": 0.04,
+   "business": 0.05
+  },
+  "kind": "remote"
  }
 ]

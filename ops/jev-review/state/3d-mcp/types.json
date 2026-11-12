@@ -3022,5 +3022,133 @@
    "gen3d": 0.18
   },
   "kind": "blender"
+ },
+ {
+  "repo": "htdt/godogen",
+  "stars": 7320,
+  "description": "Autonomous game development for Godot, Bevy, and Babylon.js with Claude Code and Codex",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.46,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.22,
+   "gen3d": 0.07
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "k-telux/OpticalModeler",
+  "stars": 136,
+  "description": "Evidence-gated Agent Skill for reconstructing 2D photonics schematics as physically auditable Blender optical tables with CAD, beam-path, mechanics, and render proof.",
+  "scores": {
+   "blender": 0.92,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.21,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.44
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "DmitriyGolub/threejs-devtools-mcp",
+  "stars": 129,
+  "description": "Three.js MCP server — inspect and edit scenes, materials, shaders, lights in real time from any AI agent",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.02
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "op7418/guizang-game-skill",
+  "stars": 117,
+  "description": "歸藏 Game Skill：让 AI 从零做出能在浏览器里玩的 3D 动作游戏，附可玩演示《雾锁山门》。Agent skill for Claude Code / Codex that builds a playable browser 3D action game with AI-generated assets (three.js, single-HTML). Playable demo included.",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.02,
+   "web3d": 0.96,
+   "gen3d": 0.13
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "ColtonWilley/ue-llm-toolkit",
+  "stars": 104,
+  "description": "A set of tools allowing LLMs to see inside Unreal Engine 5 projects.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.98,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.02
+  },
+  "kind": "unreal"
+ },
+ {
+  "repo": "icejyzy0430/open-model-workbench",
+  "stars": 70,
+  "description": "开箱即用的 3D 模型构图工作台 Codex Skill。",
+  "scores": {
+   "blender": 0.03,
+   "unity": 0.02,
+   "godot": 0.02,
+   "unreal": 0.02,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.87,
+   "gen3d": 0.04
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "undeadpickle/image-to-3d-rebuild",
+  "stars": 5,
+  "description": "Claude Code skill: turn an image into a polished, animated 3D asset (AI scan as reference, clean Godot rebuild, baked paint, web viewer)",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.02,
+   "godot": 0.88,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.03,
+   "web3d": 0.22,
+   "gen3d": 0.68
+  },
+  "kind": "godot"
+ },
+ {
+  "repo": "wolffe/three.js-skills",
+  "stars": 5,
+  "description": "Specialist Three.js skills for Cursor, Claude Code, Codex. Geometry, shaders, materials, particles, fluids, and more.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.04
+  },
+  "kind": "web3d"
  }
 ]

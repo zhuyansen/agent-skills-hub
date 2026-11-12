@@ -5262,5 +5262,75 @@
    "personal": 0.43
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "HiveForensics-AI/knolo-core",
+  "stars": 66,
+  "description": "The open framework AI agents use to share knowledge with one another. Pack knowledge into a portable, verifiable Knowledge Image, pin it by digest, mount it locally over MCP, and prove what was used. Local-first, deterministic, no vector DB required.",
+  "scores": {
+   "llm_wiki": 0.13,
+   "rag_platform": 0.2,
+   "mcp": 0.71,
+   "docs_qa": 0.63,
+   "graph": 0.28,
+   "personal": 0.09
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "hoangsonww/RAG-LangChain-AI-System",
+  "stars": 52,
+  "description": "🧠 A production-grade, agentic RAG platform for portfolio intelligence, combining LangChain, Chroma/FAISS, Hugging Face embeddings, and Ollama with dynamic entity extraction, backend API tool-chaining, and a real-time interactive assistant across deploy-ready frontend, backend, and infrastructure stacks.",
+  "scores": {
+   "llm_wiki": 0.09,
+   "rag_platform": 0.81,
+   "mcp": 0.22,
+   "docs_qa": 0.76,
+   "graph": 0.11,
+   "personal": 0.08
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "botAGI/AGmind",
+  "stars": 50,
+  "description": "Private LLM/RAG platform in one command for NVIDIA DGX Spark / GB10 (arm64). Validated on real hardware.",
+  "scores": {
+   "llm_wiki": 0.16,
+   "rag_platform": 0.8,
+   "mcp": 0.17,
+   "docs_qa": 0.55,
+   "graph": 0.15,
+   "personal": 0.07
+  },
+  "kind": "rag_platform"
+ },
+ {
+  "repo": "kapillamba4/code-memory",
+  "stars": 50,
+  "description": "MCP server with local vector search for your codebase. Smart indexing, semantic search, Git history — all offline.",
+  "scores": {
+   "llm_wiki": 0.04,
+   "rag_platform": 0.11,
+   "mcp": 0.95,
+   "docs_qa": 0.67,
+   "graph": 0.1,
+   "personal": 0.07
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "lemoncloud-io/doki",
+  "stars": 5,
+  "description": "AI second brain vault for Obsidian — an agent compiles web clippings into a cited Markdown wiki. Claude Code + Git, model-neutral. 옵시디언 기반 AI 지식관리(PKM) 템플릿",
+  "scores": {
+   "llm_wiki": 0.98,
+   "rag_platform": 0.44,
+   "mcp": 0.62,
+   "docs_qa": 0.76,
+   "graph": 0.58,
+   "personal": 0.86
+  },
+  "kind": "llm_wiki"
  }
 ]

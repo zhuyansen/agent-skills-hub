@@ -3456,5 +3456,18 @@
    "tooling": 0.93
   },
   "kind": "statusline"
+ },
+ {
+  "repo": "Rylaa/fable5.2-opus5.5-orchestrator",
+  "stars": 79,
+  "description": "Keep Claude Fable 5 in the chair all day without draining your usage limit — token-frugal multi-agent orchestration plugin for Claude Code: tier routing (Sonnet 5 does the work), Requirements Ledger, enforced guard hooks, automatic teammate reaping",
+  "scores": {
+   "hooks": 0.83,
+   "subagents": 0.65,
+   "statusline": 0.02,
+   "collection": 0.74,
+   "tooling": 0.85
+  },
+  "kind": "tooling"
  }
 ]

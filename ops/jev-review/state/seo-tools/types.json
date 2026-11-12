@@ -4766,5 +4766,85 @@
    "marketing": 0.04
   },
   "kind": "audit"
+ },
+ {
+  "repo": "danishashko/geo-aeo-tracker",
+  "stars": 326,
+  "description": "Open-source AI visibility tracker and AEO checker. Track how ChatGPT, Perplexity, Gemini and Google AI Mode mention and cite your brand. MCP server + CLI. Self-hosted, MIT.",
+  "scores": {
+   "suite": 0.03,
+   "audit": 0.04,
+   "research": 0.11,
+   "data_mcp": 0.13,
+   "geo": 0.98,
+   "content": 0.07,
+   "links": 0.02,
+   "marketing": 0.08
+  },
+  "kind": "geo"
+ },
+ {
+  "repo": "noelceta/content-engine",
+  "stars": 8,
+  "description": "Replace Outrank with Claude Code + DataForSEO: keyword research, briefs, drafts, an editor agent and WordPress publishing",
+  "scores": {
+   "suite": 0.13,
+   "audit": 0.03,
+   "research": 0.32,
+   "data_mcp": 0.07,
+   "geo": 0.05,
+   "content": 0.88,
+   "links": 0.02,
+   "marketing": 0.08
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "RomeoSEO/seo-skills",
+  "stars": 6,
+  "description": "48 free SEO, AEO, LLM SEO, GEO and parasite SEO skills for Claude Code, Codex and AI agents. MIT.",
+  "scores": {
+   "suite": 0.89,
+   "audit": 0.17,
+   "research": 0.21,
+   "data_mcp": 0.03,
+   "geo": 0.76,
+   "content": 0.23,
+   "links": 0.08,
+   "marketing": 0.09
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "vamsireddy4/search-os",
+  "stars": 6,
+  "description": "One Claude Code skill for SEO, AEO, GEO and AI visibility. Get found in Google, Bing, ChatGPT, Claude, Perplexity and AI Overviews. Built with claude-watch.",
+  "scores": {
+   "suite": 0.98,
+   "audit": 0.33,
+   "research": 0.25,
+   "data_mcp": 0.04,
+   "geo": 0.54,
+   "content": 0.43,
+   "links": 0.09,
+   "marketing": 0.2
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "Anas660/claude-seo-desk",
+  "stars": 5,
+  "description": "Is your site ready for AI search? Open-source SEO, AEO & GEO audits: AI crawler access, llms.txt, answer-ready pages, AI visibility, and an AI analyst's to-do list. CLI, GitHub Action, Claude Code plugin, MCP server.",
+  "scores": {
+   "suite": 0.87,
+   "audit": 0.89,
+   "research": 0.18,
+   "data_mcp": 0.74,
+   "geo": 0.94,
+   "content": 0.08,
+   "links": 0.02,
+   "marketing": 0.05
+  },
+  "kind": "geo"
  }
 ]

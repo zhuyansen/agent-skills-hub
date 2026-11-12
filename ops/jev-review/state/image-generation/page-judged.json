@@ -10006,5 +10006,38 @@
   "days": 92,
   "stars_per_day": 1.358695652173913,
   "verdict": "admit"
+ },
+ {
+  "repo": "MiniMax-AI/MiniMax-H3-Image",
+  "name": "MiniMax-H3-Image",
+  "stars": 250,
+  "description": "MiniMax-H3-Image, an open-weight model for 16-megapixel image generation and editing.",
+  "topics": [
+   "agent-skills",
+   "diffusion-models",
+   "image-editing",
+   "image-generation",
+   "minimax-h3-image",
+   "text-to-image"
+  ],
+  "created": "2026-11-09",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 41824,
+  "names_model": false,
+  "on_subject": 0.68,
+  "is_software": 0.89,
+  "shows_result": 0.66,
+  "one_command_start": 0.4,
+  "specific_outcome": 0.65,
+  "complete_docs": 0.55,
+  "novel_angle": 0.48,
+  "shareable_output": 0.89,
+  "quality": 0.5650000000000001,
+  "tier": "中",
+  "hit_prior": 0.6766666666666667,
+  "days": 3,
+  "stars_per_day": 83.33333333333333,
+  "verdict": "admit"
  }
 ]

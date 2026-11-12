@@ -39,6 +39,14 @@
   "type": "image/jpeg",
   "bytes": 64218
  },
+ "10291124jcjc-dotcom/motion-reel": {
+  "repo": "10291124jcjc-dotcom/motion-reel",
+  "url": "https://raw.githubusercontent.com/10291124jcjc-dotcom/motion-reel/HEAD/docs/compare.gif",
+  "alt": "有 skill vs 无 skill",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 2305577
+ },
  "10291124jcjc-dotcom/xp-desktop-mv": {
   "repo": "10291124jcjc-dotcom/xp-desktop-mv",
   "url": "https://raw.githubusercontent.com/10291124jcjc-dotcom/xp-desktop-mv/HEAD/examples/apt/comparison.webp",
@@ -199,6 +207,14 @@
   "type": "image/gif",
   "bytes": 84148
  },
+ "Abhinav-murugan1/Aria": {
+  "repo": "Abhinav-murugan1/Aria",
+  "url": "https://raw.githubusercontent.com/Abhinav-murugan1/Aria/HEAD/assets/cover.png",
+  "alt": "Aria",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 287639
+ },
  "AbubakrChan/product-launch-motion": {
   "repo": "AbubakrChan/product-launch-motion",
   "url": "https://raw.githubusercontent.com/AbubakrChan/product-launch-motion/HEAD/examples/one-shape-loop.webp",
@@ -350,6 +366,14 @@
   "score": -0.25,
   "type": "image/png",
   "bytes": 395040
+ },
+ "Anas660/claude-seo-desk": {
+  "repo": "Anas660/claude-seo-desk",
+  "url": "https://raw.githubusercontent.com/Anas660/claude-seo-desk/main/docs/assets/hero.png",
+  "alt": "SEO Desk: is your site ready for AI search? SEO, AEO and GEO scores, AI crawler ",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 557408
  },
  "Angel-Gril/Kimi-PPT-Skills": {
   "repo": "Angel-Gril/Kimi-PPT-Skills",
@@ -518,6 +542,14 @@
   "score": -2.5,
   "type": "image/jpeg",
   "bytes": 66897
+ },
+ "Cennyk-learner/ppt-cinematic-animation": {
+  "repo": "Cennyk-learner/ppt-cinematic-animation",
+  "url": "https://raw.githubusercontent.com/Cennyk-learner/ppt-cinematic-animation/HEAD/assets/lighthouse.webp",
+  "alt": "灯塔演示页：雨夜光束扫过、推近、雾转场到清晨、航线画出",
+  "score": 1.75,
+  "type": "image/webp",
+  "bytes": 3715664
  },
  "CesiumGS/cesiumjs-ai-starter-app": {
   "repo": "CesiumGS/cesiumjs-ai-starter-app",
@@ -718,6 +750,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 962156
+ },
+ "DmitriyGolub/threejs-devtools-mcp": {
+  "repo": "DmitriyGolub/threejs-devtools-mcp",
+  "url": "https://raw.githubusercontent.com/DmitriyGolub/threejs-devtools-mcp/HEAD/docs/images/example.png",
+  "alt": "Overlay panel",
+  "score": 1.75,
+  "type": "image/png",
+  "bytes": 647673
  },
  "Dodaios/ste80-humanizer": {
   "repo": "Dodaios/ste80-humanizer",
@@ -1143,6 +1183,14 @@
   "type": "image/png",
   "bytes": 396877
  },
+ "HututuWorks/journal-club-ppt": {
+  "repo": "HututuWorks/journal-club-ppt",
+  "url": "https://raw.githubusercontent.com/HututuWorks/journal-club-ppt/HEAD/assets/readme/journal-club-ppt-banner.png",
+  "alt": "Journal Club PPT：从科研论文到可编辑的中文组会汇报，支持单篇精读、多篇比较与原文证据整理",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1026106
+ },
  "HututuWorks/sci-diagram-pptx": {
   "repo": "HututuWorks/sci-diagram-pptx",
   "url": "https://raw.githubusercontent.com/HututuWorks/sci-diagram-pptx/HEAD/docs/cases/municipal-solid-waste-ghg-accounting-framework.png",
@@ -1222,6 +1270,22 @@
   "score": 1.45,
   "type": "image/gif",
   "bytes": 583301
+ },
+ "JDhruv14/line-art-animation": {
+  "repo": "JDhruv14/line-art-animation",
+  "url": "https://raw.githubusercontent.com/JDhruv14/line-art-animation/HEAD/media/walker.gif",
+  "alt": "The walker example: a man with a briefcase and a red scarf walking past a lamp p",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 247506
+ },
+ "JamieJustTang/svg2pptx-skill": {
+  "repo": "JamieJustTang/svg2pptx-skill",
+  "url": "https://raw.githubusercontent.com/JamieJustTang/svg2pptx-skill/HEAD/docs/before-after.png",
+  "alt": "Before and after: a flat SVG becomes native, editable PowerPoint shapes",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 215151
  },
  "JimLiu/taohuayuan": {
   "repo": "JimLiu/taohuayuan",
@@ -1487,6 +1551,14 @@
   "type": "image/png",
   "bytes": 704574
  },
+ "Matteoikarieth96/cartoon-shorts-skill": {
+  "repo": "Matteoikarieth96/cartoon-shorts-skill",
+  "url": "https://raw.githubusercontent.com/Matteoikarieth96/cartoon-shorts-skill/HEAD/references/styles/comic.jpg",
+  "alt": "comic",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 124358
+ },
  "Matteoikarieth96/whiteboard-video-skill": {
   "repo": "Matteoikarieth96/whiteboard-video-skill",
   "url": "https://raw.githubusercontent.com/Matteoikarieth96/whiteboard-video-skill/HEAD/docs/demo.gif",
@@ -1526,6 +1598,14 @@
   "score": -0.15,
   "type": "image/png",
   "bytes": 285659
+ },
+ "MiniMax-AI/MiniMax-H3-Image": {
+  "repo": "MiniMax-AI/MiniMax-H3-Image",
+  "url": "https://raw.githubusercontent.com/MiniMax-AI/MiniMax-H3-Image/HEAD/assets/showcase/tiles/multi-ref-group-a-output.jpg",
+  "alt": "Sixteen people, six scenes",
+  "score": 1.5,
+  "type": "image/jpeg",
+  "bytes": 41234
  },
  "Moessif/code-video-showcase": {
   "repo": "Moessif/code-video-showcase",
@@ -2030,6 +2110,14 @@
   "score": -0.5,
   "type": "image/png",
   "bytes": 1713312
+ },
+ "SyedBahjat/claude-stickman-shorts": {
+  "repo": "SyedBahjat/claude-stickman-shorts",
+  "url": "https://raw.githubusercontent.com/SyedBahjat/claude-stickman-shorts/HEAD/assets/lasttrain-p1.gif",
+  "alt": "",
+  "score": 2.65,
+  "type": "image/gif",
+  "bytes": 463916
  },
  "SystemSculpt/obsidian-systemsculpt-ai": {
   "repo": "SystemSculpt/obsidian-systemsculpt-ai",
@@ -2543,6 +2631,14 @@
   "type": "image/jpeg",
   "bytes": 161552
  },
+ "anhnx000/viet-nhu-nguoi": {
+  "repo": "anhnx000/viet-nhu-nguoi",
+  "url": "https://raw.githubusercontent.com/anhnx000/viet-nhu-nguoi/HEAD/assets/vi-du-slide.png",
+  "alt": "Tiêu đề slide. Bộ AI làm, 48/100: Chuyển đổi số: Hành trình kiến tạo giá trị; Tổ",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 145210
+ },
  "animspark/animspark": {
   "repo": "animspark/animspark",
   "url": "https://raw.githubusercontent.com/animspark/animspark/HEAD/docs/assets/preview.png",
@@ -2558,6 +2654,14 @@
   "score": 2.0,
   "type": "image/jpeg",
   "bytes": 421040
+ },
+ "antropos17/chatgpt-gif-cinema": {
+  "repo": "antropos17/chatgpt-gif-cinema",
+  "url": "https://raw.githubusercontent.com/antropos17/chatgpt-gif-cinema/HEAD/docs/assets/stroke-reveal/preview.gif",
+  "alt": "Three authored strokes reveal a heart, an underline and a sparkle. Local renderi",
+  "score": 4.4,
+  "type": "image/gif",
+  "bytes": 152836
  },
  "apekshik/anyscene": {
   "repo": "apekshik/anyscene",
@@ -2726,6 +2830,14 @@
   "score": 1.65,
   "type": "image/jpeg",
   "bytes": 103702
+ },
+ "bassimeledath/manimate": {
+  "repo": "bassimeledath/manimate",
+  "url": "https://raw.githubusercontent.com/bassimeledath/manimate/HEAD/public/manimate-intro.gif",
+  "alt": "How manimate works",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1296190
  },
  "bbylw/hyperframes-cn": {
   "repo": "bbylw/hyperframes-cn",
@@ -2911,6 +3023,14 @@
   "type": "image/png",
   "bytes": 633093
  },
+ "cclank/lanshu-animated-architecture-diagram": {
+  "repo": "cclank/lanshu-animated-architecture-diagram",
+  "url": "https://raw.githubusercontent.com/cclank/lanshu-animated-architecture-diagram/HEAD/assets/previews/claude-loops.gif",
+  "alt": "Claude Loops animated architecture diagram",
+  "score": 0.2,
+  "type": "image/gif",
+  "bytes": 7740963
+ },
  "cclank/lanshu-html-ppt-templates": {
   "repo": "cclank/lanshu-html-ppt-templates",
   "url": "https://raw.githubusercontent.com/cclank/lanshu-html-ppt-templates/HEAD/docs/media/lanshu-showcase-v1.gif",
@@ -3022,6 +3142,14 @@
   "score": 1.85,
   "type": "image/jpeg",
   "bytes": 36124
+ },
+ "clipugc/ClipUGC-CLI": {
+  "repo": "clipugc/ClipUGC-CLI",
+  "url": "https://raw.githubusercontent.com/clipugc/ClipUGC-CLI/HEAD/docs/images/reaction.gif",
+  "alt": "A silent reaction clip, the AI influencer glances down at the phone, back up to ",
+  "score": 2.9,
+  "type": "image/gif",
+  "bytes": 1086234
  },
  "code-on-sunday/slide-deck-generator": {
   "repo": "code-on-sunday/slide-deck-generator",
@@ -3254,6 +3382,14 @@
   "score": -0.4,
   "type": "image/png",
   "bytes": 569782
+ },
+ "deenukhan/animation-styles": {
+  "repo": "deenukhan/animation-styles",
+  "url": "https://raw.githubusercontent.com/deenukhan/animation-styles/HEAD/media/thumbs/05_notepad_doodle.webp",
+  "alt": "Notepad doodle animation style",
+  "score": 1.9,
+  "type": "image/webp",
+  "bytes": 196142
  },
  "deenukhan/stick-figure-shorts": {
   "repo": "deenukhan/stick-figure-shorts",
@@ -3639,6 +3775,14 @@
   "type": "image/png",
   "bytes": 283931
  },
+ "fendouai/ViralForge": {
+  "repo": "fendouai/ViralForge",
+  "url": "https://raw.githubusercontent.com/fendouai/ViralForge/HEAD/docs/en/demo-glow.jpg",
+  "alt": "Watch the 15-second GLOW LAB English demo",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 109269
+ },
  "fengting124/paper-figure-pptx-skill": {
   "repo": "fengting124/paper-figure-pptx-skill",
   "url": "https://raw.githubusercontent.com/fengting124/paper-figure-pptx-skill/HEAD/docs/assets/effect-comparison.png",
@@ -3991,6 +4135,14 @@
   "type": "image/gif",
   "bytes": 1170253
  },
+ "hoangsonww/RAG-LangChain-AI-System": {
+  "repo": "hoangsonww/RAG-LangChain-AI-System",
+  "url": "https://raw.githubusercontent.com/hoangsonww/RAG-LangChain-AI-System/HEAD/resources/RAG_System_Diagram.JPG",
+  "alt": "RAG System Diagram",
+  "score": -2.5,
+  "type": "image/jpeg",
+  "bytes": 433053
+ },
  "holy-templar/static-to-video-ad": {
   "repo": "holy-templar/static-to-video-ad",
   "url": "https://raw.githubusercontent.com/holy-templar/static-to-video-ad/HEAD/examples/teens-poster.jpg",
@@ -4007,6 +4159,14 @@
   "type": "image/gif",
   "bytes": 7017418
  },
+ "howoneai/xiaolin-explainer-packaging": {
+  "repo": "howoneai/xiaolin-explainer-packaging",
+  "url": "https://raw.githubusercontent.com/howoneai/xiaolin-explainer-packaging/HEAD/docs/demo_wall.gif",
+  "alt": "卡片墙动效：镜头跟到当前项，当前项亮起，其余压暗并虚化",
+  "score": 4.95,
+  "type": "image/gif",
+  "bytes": 2904180
+ },
  "howseen-ai/claude-motion-design": {
   "repo": "howseen-ai/claude-motion-design",
   "url": "https://raw.githubusercontent.com/howseen-ai/claude-motion-design/HEAD/examples/howseen-launch/preview.gif",
@@ -4022,6 +4182,14 @@
   "score": 2.0,
   "type": "image/webp",
   "bytes": 36652
+ },
+ "htdt/godogen": {
+  "repo": "htdt/godogen",
+  "url": "https://img.youtube.com/vi/eUz19GROIpY/maxresdefault.jpg",
+  "alt": "Watch the video",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 40180
  },
  "huashu996/PPT-Framework-Skill": {
   "repo": "huashu996/PPT-Framework-Skill",
@@ -4167,6 +4335,14 @@
   "type": "image/gif",
   "bytes": 6786224
  },
+ "iart-ai/ecommerce-video-skills": {
+  "repo": "iart-ai/ecommerce-video-skills",
+  "url": "https://raw.githubusercontent.com/iart-ai/ecommerce-video-skills/HEAD/showcase.gif",
+  "alt": "E-Commerce Video Skills — animated showcase",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4007764
+ },
  "iart-ai/explainer-video-skills": {
   "repo": "iart-ai/explainer-video-skills",
   "url": "https://raw.githubusercontent.com/iart-ai/explainer-video-skills/HEAD/showcase.gif",
@@ -4174,6 +4350,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 3372389
+ },
+ "iart-ai/javascript-animation-skills": {
+  "repo": "iart-ai/javascript-animation-skills",
+  "url": "https://raw.githubusercontent.com/iart-ai/javascript-animation-skills/HEAD/showcase.gif",
+  "alt": "JavaScript Animation Skills: \"I only asked you to fix one line\", a 30-second fil",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 3095476
  },
  "iart-ai/kinetic-typography-skills": {
   "repo": "iart-ai/kinetic-typography-skills",
@@ -4238,6 +4422,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 2966294
+ },
+ "icejyzy0430/open-model-workbench": {
+  "repo": "icejyzy0430/open-model-workbench",
+  "url": "https://raw.githubusercontent.com/icejyzy0430/open-model-workbench/HEAD/docs/model-workbench-preview.png",
+  "alt": "3D 模型构图工作台",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 265938
  },
  "icgma/slide-skill": {
   "repo": "icgma/slide-skill",
@@ -4398,6 +4590,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 5594680
+ },
+ "jabbarlee/open-papertrail": {
+  "repo": "jabbarlee/open-papertrail",
+  "url": "https://raw.githubusercontent.com/jabbarlee/open-papertrail/HEAD/examples/flat-grain/walk-poster.jpg",
+  "alt": "",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 65408
  },
  "jackwrichards/UnityMCP": {
   "repo": "jackwrichards/UnityMCP",
@@ -4566,6 +4766,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 3353155
+ },
+ "k-telux/OpticalModeler": {
+  "repo": "k-telux/OpticalModeler",
+  "url": "https://raw.githubusercontent.com/k-telux/OpticalModeler/HEAD/assets/readme/formal-optics-detail.jpg",
+  "alt": "A fresh camera-rendered detail of mounted relay optics and existing optical path",
+  "score": -0.05,
+  "type": "image/jpeg",
+  "bytes": 219137
  },
  "kaisersong/slide-creator": {
   "repo": "kaisersong/slide-creator",
@@ -4798,6 +5006,14 @@
   "score": 0.35,
   "type": "image/jpeg",
   "bytes": 57845
+ },
+ "lemoncloud-io/doki": {
+  "repo": "lemoncloud-io/doki",
+  "url": "https://raw.githubusercontent.com/lemoncloud-io/doki/HEAD/docs/assets/viewer-read-light.webp",
+  "alt": "볼트 뷰어로 연 예시 위키 — 왼쪽 문서 트리, 가운데",
+  "score": -0.35,
+  "type": "image/webp",
+  "bytes": 117706
  },
  "lemonteaau/smartisan-ui-skill": {
   "repo": "lemonteaau/smartisan-ui-skill",
@@ -5231,6 +5447,14 @@
   "type": "image/png",
   "bytes": 846588
  },
+ "neurolena1/video-effects-pack": {
+  "repo": "neurolena1/video-effects-pack",
+  "url": "https://raw.githubusercontent.com/neurolena1/video-effects-pack/HEAD/docs/effects-grid-47.webp",
+  "alt": "All 47 effects, a 20-second animation",
+  "score": -0.05,
+  "type": "image/webp",
+  "bytes": 5147502
+ },
  "new-xp/ultrademo": {
   "repo": "new-xp/ultrademo",
   "url": "https://raw.githubusercontent.com/new-xp/ultrademo/HEAD/docs/notion-tracker-2026-07-10.gif",
@@ -5238,6 +5462,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 5262732
+ },
+ "nexu-io/openmotion": {
+  "repo": "nexu-io/openmotion",
+  "url": "https://raw.githubusercontent.com/nexu-io/openmotion/HEAD/docs/readme/live-templates/many-possible-futures.gif",
+  "alt": "Build a story from multiple scenes",
+  "score": 4.35,
+  "type": "image/gif",
+  "bytes": 1510425
  },
  "nghiahsgs/skills-slides": {
   "repo": "nghiahsgs/skills-slides",
@@ -5319,6 +5551,14 @@
   "type": "image/png",
   "bytes": 53533
  },
+ "obaid1dev/dea": {
+  "repo": "obaid1dev/dea",
+  "url": "https://raw.githubusercontent.com/obaid1dev/dea/HEAD/examples/lumen-demo/compare/side-by-side.png",
+  "alt": "A reference design on the left and a different brand built only from the extract",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 299732
+ },
  "obie/slopcore": {
   "repo": "obie/slopcore",
   "url": "https://raw.githubusercontent.com/obie/slopcore/HEAD/skills/music-video/examples/queso/stills/frame-0.0.jpg",
@@ -5350,6 +5590,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 113141
+ },
+ "op7418/guizang-game-skill": {
+  "repo": "op7418/guizang-game-skill",
+  "url": "https://raw.githubusercontent.com/op7418/guizang-game-skill/HEAD/media/demo.gif",
+  "alt": "雾锁山门战斗演示",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 7552048
  },
  "op7418/guizang-ppt-skill": {
   "repo": "op7418/guizang-ppt-skill",
@@ -5678,6 +5926,14 @@
   "score": -2.7,
   "type": "image/jpeg",
   "bytes": 348410
+ },
+ "rohitg00/skillkit": {
+  "repo": "rohitg00/skillkit",
+  "url": "https://raw.githubusercontent.com/rohitg00/skillkit/HEAD/docs/img/skillkit-ui.png",
+  "alt": "SkillKit interactive TUI",
+  "score": -1.0,
+  "type": "image/png",
+  "bytes": 95962
  },
  "rootstudioyaml/sprag": {
   "repo": "rootstudioyaml/sprag",
@@ -6183,6 +6439,14 @@
   "type": "image/jpeg",
   "bytes": 122272
  },
+ "thuann-vn/claude-3d-animated-shorts": {
+  "repo": "thuann-vn/claude-3d-animated-shorts",
+  "url": "https://raw.githubusercontent.com/thuann-vn/claude-3d-animated-shorts/HEAD/references/images/office-set.png",
+  "alt": "office set",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1923257
+ },
  "timscheuerai/launch-video-kit": {
   "repo": "timscheuerai/launch-video-kit",
   "url": "https://raw.githubusercontent.com/timscheuerai/launch-video-kit/HEAD/assets/preview.gif",
@@ -6319,6 +6583,14 @@
   "type": "image/gif",
   "bytes": 3780730
  },
+ "turmyshevd/openclawgotchi": {
+  "repo": "turmyshevd/openclawgotchi",
+  "url": "https://raw.githubusercontent.com/turmyshevd/openclawgotchi/HEAD/docs/assets/demo.gif",
+  "alt": "OpenClawGotchi Demo",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 921283
+ },
  "tuuject/surowan": {
   "repo": "tuuject/surowan",
   "url": "https://raw.githubusercontent.com/tuuject/surowan/HEAD/assets/readme/author-notes.png",
@@ -6359,6 +6631,14 @@
   "type": "image/gif",
   "bytes": 923032
  },
+ "undeadpickle/image-to-3d-rebuild": {
+  "repo": "undeadpickle/image-to-3d-rebuild",
+  "url": "https://raw.githubusercontent.com/undeadpickle/image-to-3d-rebuild/HEAD/media/demo.gif",
+  "alt": "Treasure chest demo: tap to open, coins and gems with real physics, vacuum close",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 5591687
+ },
  "undsky/doudou-remotion-whiteboard-skill": {
   "repo": "undsky/doudou-remotion-whiteboard-skill",
   "url": "https://raw.githubusercontent.com/undsky/doudou-remotion-whiteboard-skill/HEAD/whiteboard_demo.gif",
@@ -6374,6 +6654,14 @@
   "score": 4.75,
   "type": "image/gif",
   "bytes": 4221878
+ },
+ "vamsireddy4/search-os": {
+  "repo": "vamsireddy4/search-os",
+  "url": "https://raw.githubusercontent.com/vamsireddy4/search-os/HEAD/assets/demo-files.png",
+  "alt": "SearchOS listing its reference files, scripts and built-in rules inside Claude C",
+  "score": 1.55,
+  "type": "image/png",
+  "bytes": 636224
  },
  "vawe-hq/vawe": {
   "repo": "vawe-hq/vawe",
@@ -6543,6 +6831,14 @@
   "type": "image/jpeg",
   "bytes": 270351
  },
+ "wolffe/three.js-skills": {
+  "repo": "wolffe/three.js-skills",
+  "url": "https://raw.githubusercontent.com/wolffe/three.js-skills/HEAD/_assets/social-preview.png",
+  "alt": "Three.js Skills",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 378473
+ },
  "wong2/diffx": {
   "repo": "wong2/diffx",
   "url": "https://raw.githubusercontent.com/wong2/diffx/main/screenshot.png",
@@ -6687,6 +6983,14 @@
   "type": "image/png",
   "bytes": 496708
  },
+ "yenceesanjeev/2d-character-sketch": {
+  "repo": "yenceesanjeev/2d-character-sketch",
+  "url": "https://raw.githubusercontent.com/yenceesanjeev/2d-character-sketch/HEAD/examples/tea.gif",
+  "alt": "A four-shot sketch with two characters",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1324695
+ },
  "yerinsabraham/video-edit-skill": {
   "repo": "yerinsabraham/video-edit-skill",
   "url": "https://raw.githubusercontent.com/yerinsabraham/video-edit-skill/HEAD/docs/media/what-it-adds.jpg",
@@ -6719,6 +7023,14 @@
   "type": "image/png",
   "bytes": 131546
  },
+ "zakariaf/cinecode": {
+  "repo": "zakariaf/cinecode",
+  "url": "https://raw.githubusercontent.com/zakariaf/cinecode/HEAD/docs/images/solar-saturn.jpg",
+  "alt": "Our Solar System: nine Earths side by side across Saturn",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 52964
+ },
  "zanetworker/highstakes": {
   "repo": "zanetworker/highstakes",
   "url": "https://raw.githubusercontent.com/zanetworker/highstakes/HEAD/docs/images/treemap-view.png",
@@ -6734,6 +7046,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 80964
+ },
+ "zenitlab/video-as-code": {
+  "repo": "zenitlab/video-as-code",
+  "url": "https://raw.githubusercontent.com/zenitlab/video-as-code/HEAD/docs/images/showcase.gif",
+  "alt": "五支成片的开场合集",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 2100354
  },
  "zenstory-ai/video-recap-skills": {
   "repo": "zenstory-ai/video-recap-skills",

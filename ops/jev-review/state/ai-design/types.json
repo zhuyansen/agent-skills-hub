@@ -2952,5 +2952,33 @@
    "review": 0.1
   },
   "kind": "system"
+ },
+ {
+  "repo": "obaid1dev/dea",
+  "stars": 6,
+  "description": "Design Engineer Anything: give your agent any website and it extracts the full design system (colors, type, spacing, motion, components) so you can build or redesign anything in that style.",
+  "scores": {
+   "ui": 0.95,
+   "system": 0.97,
+   "tool_mcp": 0.07,
+   "to_code": 0.87,
+   "graphics": 0.14,
+   "review": 0.3
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "carrapido/rob-janoff-design",
+  "stars": 20,
+  "description": "Agent Skill for logo design with Rob Janoff's method from \"Taking a Bite out of the Apple\": design, critique and refresh logos as three one-ink SVG concepts built from a golden series, measured and rendered at 256, 48 and 16 px before they are shown.",
+  "scores": {
+   "ui": 0.09,
+   "system": 0.12,
+   "tool_mcp": 0.06,
+   "to_code": 0.06,
+   "graphics": 0.88,
+   "review": 0.78
+  },
+  "kind": "graphics"
  }
 ]
