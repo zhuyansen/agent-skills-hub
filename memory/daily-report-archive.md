@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-12
+1. obsidianmd/obsidian-skills — Obsidian 官方技能包，教智能体用 Obsidian CLI 读写笔记、Bases 和画布（51658★ 165.0/day）
+2. alexeyw/lot-map — 🆕 在对话旁实时画出 Claude Code 的工具调用、钩子、技能和子智能体动向（258★ 116.6/day）
+3. nexu-io/openmotion — 开源全栈动态视频工作室，能拆解任意视频并用代码重做动效（9511★ 51.5/day）
+4. ferhatcore/claude-codex-project-os — 🆕 让 Claude Code 和 Codex 共用任务文件、分开发与测试角色，关键步骤等人批准（41★ 41.0/day）
+5. nevertoday/xxd-pstack — 🆕 逼 AI 先自己验证再说「修好了」，零代码上手，支持 10 种语言（54★ 29.7/day）
+6. mdiri-ai/SoduWork — 🆕 自托管的团队协作引擎，人和多个智能体在同一处分工干活（306★ 22.0/day）
+7. mintlify/agent-traffic — 🆕 区分访问你网站的是智能体、AI 爬虫、搜索爬虫还是真人（29★ 15.0/day）
+8. nschurmann/hola-ai — 按极限编程流程从需求到结对编程，用 AI 写软件又不丢方向盘（237★ 10.9/day）
+9. Remocn/remocn — 提供可直接上线的 Remotion 动画、转场、背景和场景组件（1697★ 7.8/day）
+10. pulyavin/agentic-sdlc — 🆕 用免费图解书讲清在自己仓库搭智能体开发流程：AGENTS.md、技能、MCP 和测试（37★ 6.8/day）
+🎯 今日趋势：「管住智能体」占 **4 席**（lot-map 看它在做什么、project-os 等人批准、pstack 先自测再交差、hola-ai 不放手方向盘）；48h 新入库 ≥20★ **99 仓**（昨天 108 仓），10 席里 **6 席**是 14 天内新建仓库。
+> 注：去重范围＝repo 内 archive 全部 140 个日期段，并入记忆区 fresh-skills-archive 与记忆区 daily-report-archive，宽松正则提取所有 owner/repo 字符串后小写去重，比对基数 6,512 个（含路径噪声，只会多剔不会漏剔）。单连接查询（`connect_timeout=15`、事务内 `SET LOCAL statement_timeout=30000`、NullPool）：`first_seen ≥72h`、stars ≥20，得 150 条；按 first_seen 切回 48h 剩 99 条、去重后 85 条，剔除可疑项仍有 10 个合格，未放宽到 72h（第一次运行因本地 Python 时区相减报错，查询本身已返回，修正脚本后重跑一次，未出现数据库错误）。velocity = stars ÷ max(距 created_at 天数, 1)。**排除项**：①QiYueran-source/waymark（107★ 13.5/day，本可居第 8）：作者 5 粉，其余 37 仓 ≤3★，单仓突起且 75 fork/107★ 比例异常，排除；②0xgh0stri13y/Clean-Your-Mobile（48★ 8.2/day）：作者其余仓 ≤8★，单仓突起，保守排除；③opencraft-app/opencraft（106★ 6.8/day）：组织 2 粉、名下仅此 1 仓，实时 140★ 仅 1 fork，排除；④StaysUp/agentbus（32★ 6.2/day）：组织 11-06 才建、0 粉，实时 37★ 0 fork，排除；⑤smilewilson1999/blueprint（51★ 6.1/day）：作者其余仓 ≤6★，实时 56★ 仅 1 fork，排除；⑥sunreview/anti-claude（138★ 6.7/day）：内容为「Claude 防封号」经验，规避平台风控，不推荐。入选项复核（`gh api`）：第 1 席 obsidianmd 2020 建组织、1.5 万粉，实时 51,713★/3,662 fork（建仓 313 天的官方库本期首次收录，velocity 取生涯均值）；第 2 席 alexeyw 2012 建号、10 粉，名下另有 51★ 仓，实时 397★/43 fork（**轻红旗**：粉丝少，但 fork 比正常，保留）；第 3 席 nexu-io 组织名下另有 10.7 万★ 仓，实时 9,524★/904 fork/86 issue；第 4 席 ferhatcore 2025-11 建号、63 粉、名下 2 仓（**轻红旗**），实时 59★/7 fork/9 issue 有真实使用痕迹，保留；第 5 席 nevertoday 2009 建号、444 粉，名下另有 1,503★、1,231★ 仓；第 6 席 mdiri-ai 组织 10-14 建、1 粉、名下仅此 1 仓（**轻红旗**），实时 323★/54 fork/22 issue，保留；第 7 席 mintlify 官方组织 1,760 粉；第 8 席 nschurmann 2013 建号、1,963 粉，名下另有 403★ 仓；第 9 席 Remocn 组织名下另有 227★ 仓，实时 1,698★/86 fork；第 10 席 pulyavin 2014 建号、75 粉，名下另有 29★、22★ 仓，实时 40★/3 fork（俄文图解书）。备选 n8n-io/nod（266★ 5.6/day，n8n 官方）velocity 列第 13，未入选。🆕 判定＝created_at 距今 14 天内：lot-map（2.2 天）、claude-codex-project-os（0.5 天）、xxd-pstack（1.8 天）、SoduWork（13.9 天）、agent-traffic（1.9 天）、agentic-sdlc（5.5 天）命中；obsidian-skills、openmotion、hola-ai（21.8 天）、remocn 不标。security_grade：入选 10 仓全部 safe。表中 stars 为数据库快照，部分仓实时更高（如 lot-map 397★、mintlify/agent-traffic 62★），按红线保留快照值。
+
+---
+
 ## 2026-11-11
 1. JDhruv14/line-art-animation — 🆕 用会走路、会反应的线稿小人做 SVG 动画组件，附 Claude Skill 和 TS 库（77★ 77.0/day）
 2. Vibha-Ramprakash/claude-video-effects — 给口播视频一键加 51 种特效，在 Claude Code 里输入 /effects 即可（836★ 42.6/day）
