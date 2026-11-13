@@ -2045,7 +2045,8 @@
     "beatra-ai/ai-image-generator-skill",
     "absolument-ai/trop",
     "MiniMax-AI/MiniMax-H3-Image",
-    "krowten/claude-media-generation"
+    "krowten/claude-media-generation",
+    "klarkxy/ai-gallery"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2196,7 +2197,20 @@
     "ColtonWilley/ue-llm-toolkit",
     "icejyzy0430/open-model-workbench",
     "undeadpickle/image-to-3d-rebuild",
-    "wolffe/three.js-skills"
+    "wolffe/three.js-skills",
+    "codepawl/creator-generalist",
+    "precygtrucqui1981/blender-ai-copilot-lab",
+    "fumbdendade19718/blender-ai-copilot-desk",
+    "racdeufindurch198812/Blender-AI-MCP-Studio",
+    "hitkeeen/blender-ai-mcp-addon",
+    "baiblinocun1986/blender-ai-copilot-hub",
+    "tiobeharxi1987/blender-ai-copilot-flow",
+    "credoksopho1984/blender-ai-copilot-studio",
+    "findavoulot1973/Blender-AI-MCP-Suite",
+    "Doug-218/blender-ai-copilot-forge",
+    "zovulrira1974/blender-ai-copilot-assets",
+    "benzgasfuncring197110/blender-ai-copilot-bridge",
+    "ezpeezee/beta-version-blox-studio"
    ],
    "exclude_repos": []
   },
@@ -3416,7 +3430,9 @@
     "hoangsonww/RAG-LangChain-AI-System",
     "botAGI/AGmind",
     "kapillamba4/code-memory",
-    "lemoncloud-io/doki"
+    "lemoncloud-io/doki",
+    "crow-hq/llm-wiki-v2",
+    "The-40-Thieves/reliquary-tc"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3773,7 +3789,8 @@
     "LLJ99999/jack-codex",
     "777genius/universal-agent-plugins",
     "rohitg00/skillkit",
-    "javimosch/supercli"
+    "javimosch/supercli",
+    "phillarmonic/repertoire-ai"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4686,7 +4703,8 @@
     "LemonFace0309/charles-skills",
     "Dodaios/ste80-humanizer",
     "anhnx000/viet-nhu-nguoi",
-    "cdrcthv/deslop"
+    "cdrcthv/deslop",
+    "geonwoo-jeong/japanese-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4694,7 +4712,8 @@
     "adenaufal/anti-slop-writing",
     "Bubblegunn/ai-slop-linter",
     "dotoricode/korean-humanizer",
-    "Mutakisa/game-slop-purge"
+    "Mutakisa/game-slop-purge",
+    "tasteskill/tasteskill"
    ]
   },
   "related": [
@@ -5200,7 +5219,8 @@
     "noelceta/content-engine",
     "RomeoSEO/seo-skills",
     "vamsireddy4/search-os",
-    "Anas660/claude-seo-desk"
+    "Anas660/claude-seo-desk",
+    "micaelgomestavares/aeo-geo-bestpractices"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5716,7 +5736,8 @@
     "precious112/caret-desktop",
     "KunalKumarkkr01/design-system-extractor",
     "carrapido/rob-janoff-design",
-    "obaid1dev/dea"
+    "obaid1dev/dea",
+    "superdesigndev/superdesign-prompts"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -8892,7 +8913,14 @@
     "clipugc/ClipUGC-CLI",
     "AlbertPine/vibe-knowledge-video-director",
     "antropos17/chatgpt-gif-cinema",
-    "zenitlab/video-as-code"
+    "zenitlab/video-as-code",
+    "codepawl/creator-generalist",
+    "mrpaidsocial/mrpaidsocial-video-editor-agent",
+    "zhouyuechuan2025-ui/aipacking",
+    "pedroxcardoso/maquina-cortes-gta",
+    "BusyBee3333/viral-video-edit-skills",
+    "krishnagoswami52/stickman-skill",
+    "fahmid-juboraj/reelforge"
    ],
    "sub_skills": [
     {
@@ -8936,7 +8964,9 @@
     "misbahsy/tiktok-ig-shorts",
     "JuneYaooo/cheap-claude-video",
     "blixvip/easyedit",
-    "jjietay/kaleidoscope"
+    "jjietay/kaleidoscope",
+    "krusemediallc/video-editor-agent",
+    "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill"
    ],
    "tag_matches": [],
    "required_keywords": [

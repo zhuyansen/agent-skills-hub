@@ -4058,5 +4058,19 @@
    "rules": 0.75
   },
   "kind": "code"
+ },
+ {
+  "repo": "geonwoo-jeong/japanese-humanizer",
+  "stars": 5,
+  "description": "AI文や翻訳調の日本語を、意味を保ったまま自然な日本語へ整える Agent Skill 配布リポジトリ。",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.43,
+   "chinese": 0.02,
+   "code": 0.08,
+   "design": 0.06,
+   "rules": 0.78
+  },
+  "kind": "writing"
  }
 ]

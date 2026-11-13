@@ -5332,5 +5332,33 @@
    "personal": 0.86
   },
   "kind": "llm_wiki"
+ },
+ {
+  "repo": "crow-hq/llm-wiki-v2",
+  "stars": 255,
+  "description": "Turn your documents into a Markdown wiki you can read, that answers with citations. Works with any LLM provider, Ollama included. CROW: 99.5% right note read vs 79%, 1.6× faster ingest, 63% fewer LLM tokens, no scaling limit.",
+  "scores": {
+   "llm_wiki": 0.94,
+   "rag_platform": 0.88,
+   "mcp": 0.36,
+   "docs_qa": 0.72,
+   "graph": 0.18,
+   "personal": 0.77
+  },
+  "kind": "llm_wiki"
+ },
+ {
+  "repo": "The-40-Thieves/reliquary-tc",
+  "stars": 13,
+  "description": "Obsidian Turbocharged — governed, agent-ready Obsidian MCP server. Multi-vault native, pluggable embeddings, OAuth-ready HTTP. TypeScript + Rust. AGPL-3.0-only.",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.15,
+   "mcp": 0.94,
+   "docs_qa": 0.7,
+   "graph": 0.72,
+   "personal": 0.17
+  },
+  "kind": "mcp"
  }
 ]

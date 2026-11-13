@@ -2742,5 +2742,19 @@
    "general": 0.27
   },
   "kind": "cli"
+ },
+ {
+  "repo": "phillarmonic/repertoire-ai",
+  "stars": 10,
+  "description": "The lockfile for agent skills. A package manager with named catalogs, a digest per target, and a manifest you commit. 30+ agents, no telemetry.",
+  "scores": {
+   "cli": 0.9,
+   "sync": 0.87,
+   "app": 0.07,
+   "registry": 0.15,
+   "team": 0.82,
+   "general": 0.1
+  },
+  "kind": "cli"
  }
 ]

@@ -3150,5 +3150,213 @@
    "gen3d": 0.04
   },
   "kind": "web3d"
+ },
+ {
+  "repo": "codepawl/creator-generalist",
+  "stars": 169,
+  "description": "AI agent skills to be professional at 2D and 3D",
+  "scores": {
+   "blender": 0.29,
+   "unity": 0.05,
+   "godot": 0.05,
+   "unreal": 0.04,
+   "cad": 0.03,
+   "dcc": 0.04,
+   "web3d": 0.24,
+   "gen3d": 0.15
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "precygtrucqui1981/blender-ai-copilot-lab",
+  "stars": 75,
+  "description": "An AI lab for Blender where manager–worker–reviewer agent teams run multi-step scene briefs as supervised experiments—a live task board, review findings, one correction attempt per blocked task, named undo, and a built-in MCP server. · blender-ai-copilot-lab · blender · blender 3d · blender addon · blender plugin · blender extension",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.19
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "fumbdendade19718/blender-ai-copilot-desk",
+  "stars": 73,
+  "description": "A visual AI desk for Blender—chat, scene objects, viewport snapshots, approvals and a live task board in one companion window, backed by your choice of models and a built-in MCP server. · blender-ai-copilot-desk · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation · blender mcp",
+  "scores": {
+   "blender": 0.99,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.12
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "racdeufindurch198812/Blender-AI-MCP-Studio",
+  "stars": 73,
+  "description": "Blender AI MCP Studio is an AI assistant and built-in Model Context Protocol MCP server for Blender that turns plain-language briefs into inspected, approved and reversible 3D scene operations — with a visual chat workspace, multi-agent teams and your choice of AI models. · blender ai mcp studio · mcp-for-blender · mcp for blender pro",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.31
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "hitkeeen/blender-ai-mcp-addon",
+  "stars": 72,
+  "description": "AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "baiblinocun1986/blender-ai-copilot-hub",
+  "stars": 72,
+  "description": "A multi-provider AI copilot hub for Blender—bring OpenAI, Anthropic Claude, Google Gemini, OpenRouter, OpenCode Zen, Ollama and custom endpoints into one hub of saved connections, with 27 supervised scene tools and a built-in MCP server. · blender-ai-copilot-hub · blender · blender 3d · blender addon · blender plugin · blender extension",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "tiobeharxi1987/blender-ai-copilot-flow",
+  "stars": 72,
+  "description": "A controlled AI workflow for Blender: every copilot edit is a supervised tool call—proposed, approved, executed in sequence, cancellable after the current step and undoable by name—inside a visual studio with a built-in MCP server. · blender-ai-copilot-flow · blender · blender 3d · blender addon · blender plugin · blender extension",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.08
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "credoksopho1984/blender-ai-copilot-studio",
+  "stars": 71,
+  "description": "An AI copilot and MCP server for Blender that turns plain-language briefs into scene operations—inside a visual chat studio with multi-agent teams, your choice of AI models, and 27 built-in scene tools. · blender-ai-copilot-studio · blender ai · ai for blender · blender copilot · blender ai copilot · blender ai assistant · blender mcp server",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.33
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "findavoulot1973/Blender-AI-MCP-Suite",
+  "stars": 70,
+  "description": "Blender AI MCP Suite is an AI assistant and built-in Model Context Protocol MCP server for Blender that turns plain-language briefs into inspected, approved and reversible 3D scene operations — with a visual Studio workspace, multi-agent teams, 21+ scene tools and your choice of AI models. · blender ai mcp suite · blender ai mcp · ai for blender",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.25
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "Doug-218/blender-ai-copilot-forge",
+  "stars": 69,
+  "description": "A scene-forging AI copilot for Blender—describe the layout and watch primitives, cameras, lights, materials and parenting assemble in ordered steps, with approvals, named undo and a built-in MCP server. · blender-ai-copilot-forge · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.56
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "zovulrira1974/blender-ai-copilot-assets",
+  "stars": 68,
+  "description": "An asset-savvy AI copilot for Blender—search Poly Haven, Sketchfab and Poly Pizza mid-conversation, check what fits, import after your confirmation, with 27 scene tools and a built-in MCP server alongside. · blender-ai-copilot-assets · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting · blender automation",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.08
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "benzgasfuncring197110/blender-ai-copilot-bridge",
+  "stars": 67,
+  "description": "An MCP bridge for Blender that exposes 27 supervised scene tools to OpenCode and any compatible client—authenticated Streamable HTTP on a local endpoint, with the visual chat studio and agent teams on the inside. · blender-ai-copilot-bridge · blender · blender 3d · blender addon · blender plugin · blender extension · blender scripting",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.04,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.07
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "ezpeezee/beta-version-blox-studio",
+  "stars": 5,
+  "description": "Turn an idea or your own script into a 9:16 blocky 3D animated short with Claude Code and Blender.",
+  "scores": {
+   "blender": 0.84,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.18
+  },
+  "kind": "blender"
  }
 ]

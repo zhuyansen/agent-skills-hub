@@ -2980,5 +2980,19 @@
    "review": 0.78
   },
   "kind": "graphics"
+ },
+ {
+  "repo": "superdesigndev/superdesign-prompts",
+  "stars": 70,
+  "description": "128 usage-ranked, vision-curated UI design prompts (full design specs + live previews) that stop your AI coding agent from shipping generic AI-slop UI. Powered by superdesign.dev",
+  "scores": {
+   "ui": 0.95,
+   "system": 0.61,
+   "tool_mcp": 0.22,
+   "to_code": 0.19,
+   "graphics": 0.08,
+   "review": 0.45
+  },
+  "kind": "ui"
  }
 ]

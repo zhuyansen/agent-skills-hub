@@ -4846,5 +4846,21 @@
    "marketing": 0.05
   },
   "kind": "geo"
+ },
+ {
+  "repo": "micaelgomestavares/aeo-geo-bestpractices",
+  "stars": 5,
+  "description": "AI agent skill (Claude Code, Cursor, Antigravity) that optimizes websites for SEO, AEO & GEO — get found on Google, ChatGPT, Perplexity and Gemini — and score 100 on Google Lighthouse 13.",
+  "scores": {
+   "suite": 0.52,
+   "audit": 0.65,
+   "research": 0.04,
+   "data_mcp": 0.02,
+   "geo": 0.75,
+   "content": 0.16,
+   "links": 0.02,
+   "marketing": 0.09
+  },
+  "kind": "geo"
  }
 ]

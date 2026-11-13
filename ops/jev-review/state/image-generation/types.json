@@ -3722,5 +3722,19 @@
    "mcp": 0.45
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "klarkxy/ai-gallery",
+  "stars": 5,
+  "description": "Agent skill: fetch pose / depth / costume / face reference images from AI reference galleries (POSE-DB-01/02, COSTUME-DB-01, あぎ face DB, CC0 shisei) for GPT Image, Nano Banana, ComfyUI, H3.",
+  "scores": {
+   "gpt_image": 0.23,
+   "nano_banana": 0.19,
+   "open_models": 0.15,
+   "editing": 0.03,
+   "design": 0.06,
+   "mcp": 0.35
+  },
+  "kind": "mcp"
  }
 ]

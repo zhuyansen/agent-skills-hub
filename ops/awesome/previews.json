@@ -519,6 +519,14 @@
   "type": "image/gif",
   "bytes": 198571
  },
+ "BusyBee3333/viral-video-edit-skills": {
+  "repo": "BusyBee3333/viral-video-edit-skills",
+  "url": "https://raw.githubusercontent.com/BusyBee3333/viral-video-edit-skills/HEAD/demo/gifs/subject_kaleido.gif",
+  "alt": "the person folds into a kaleidoscope of themselves while the background is compl",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1489086
+ },
  "Canonry/agent-readiness": {
   "repo": "Canonry/agent-readiness",
   "url": "https://raw.githubusercontent.com/Canonry/canonry/main/docs/images/readme/site-health.png",
@@ -3183,6 +3191,14 @@
   "type": "image/webp",
   "bytes": 73260
  },
+ "codepawl/creator-generalist": {
+  "repo": "codepawl/creator-generalist",
+  "url": "https://raw.githubusercontent.com/codepawl/creator-generalist/HEAD/assets/mill.gif",
+  "alt": "A 3D water mill cutaway with the wheel, gears and water moving",
+  "score": 2.75,
+  "type": "image/gif",
+  "bytes": 2324907
+ },
  "codepawl/viz3d": {
   "repo": "codepawl/viz3d",
   "url": "https://raw.githubusercontent.com/codepawl/viz3d/HEAD/docs/images/self-review.jpg",
@@ -3262,6 +3278,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 8151994
+ },
+ "crow-hq/llm-wiki-v2": {
+  "repo": "crow-hq/llm-wiki-v2",
+  "url": "https://raw.githubusercontent.com/crow-hq/llm-wiki-v2/main/docs/assets/demo.gif",
+  "alt": "Twenty-two documents dropped on the brain of an empty wiki are filed in folders ",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 4145861
  },
  "cymcymcymcym/notes-to-video": {
   "repo": "cymcymcymcym/notes-to-video",
@@ -3703,6 +3727,14 @@
   "type": "image/webp",
   "bytes": 59812
  },
+ "ezpeezee/beta-version-blox-studio": {
+  "repo": "ezpeezee/beta-version-blox-studio",
+  "url": "https://raw.githubusercontent.com/ezpeezee/beta-version-blox-studio/HEAD/docs/gallery.png",
+  "alt": "Stills from shorts made with Blox Studio",
+  "score": 1.55,
+  "type": "image/png",
+  "bytes": 952389
+ },
  "ezpeezee/beta-version-toon-studio": {
   "repo": "ezpeezee/beta-version-toon-studio",
   "url": "https://raw.githubusercontent.com/ezpeezee/beta-version-toon-studio/HEAD/docs/banner.png",
@@ -3718,6 +3750,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 712104
+ },
+ "fahmid-juboraj/reelforge": {
+  "repo": "fahmid-juboraj/reelforge",
+  "url": "https://raw.githubusercontent.com/fahmid-juboraj/reelforge/HEAD/assets/showreel.gif",
+  "alt": "ReelForge showreel: kinetic typography, animation principles, liquid SDF morphin",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 8869831
  },
  "fangyuanopus/literature-report-ppt-builder": {
   "repo": "fangyuanopus/literature-report-ppt-builder",
@@ -3886,6 +3926,14 @@
   "score": -0.2,
   "type": "image/png",
   "bytes": 1278047
+ },
+ "geonwoo-jeong/japanese-humanizer": {
+  "repo": "geonwoo-jeong/japanese-humanizer",
+  "url": "https://raw.githubusercontent.com/geonwoo-jeong/japanese-humanizer/HEAD/assets/social-preview.png",
+  "alt": "japanese-humanizer — スキル未使用とスキル使用の比較",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 143023
  },
  "get-tmonier/argot": {
   "repo": "get-tmonier/argot",
@@ -4134,6 +4182,14 @@
   "score": 2.95,
   "type": "image/gif",
   "bytes": 1170253
+ },
+ "hitkeeen/blender-ai-mcp-addon": {
+  "repo": "hitkeeen/blender-ai-mcp-addon",
+  "url": "https://raw.githubusercontent.com/hitkeeen/blender-ai-mcp-addon/HEAD/docs/images/studio.png",
+  "alt": "AI chat workspace with a live Blender scene preview",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 136874
  },
  "hoangsonww/RAG-LangChain-AI-System": {
   "repo": "hoangsonww/RAG-LangChain-AI-System",
@@ -4871,6 +4927,14 @@
   "type": "image/gif",
   "bytes": 5370775
  },
+ "klarkxy/ai-gallery": {
+  "repo": "klarkxy/ai-gallery",
+  "url": "https://raw.githubusercontent.com/klarkxy/ai-gallery/HEAD/assets/demo.jpg",
+  "alt": "demo",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 168939
+ },
  "klsoen/opus-js-animations": {
   "repo": "klsoen/opus-js-animations",
   "url": "https://raw.githubusercontent.com/klsoen/opus-js-animations/HEAD/docs/shaml-opening-2.8s.gif",
@@ -5254,6 +5318,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 277600
+ },
+ "micaelgomestavares/aeo-geo-bestpractices": {
+  "repo": "micaelgomestavares/aeo-geo-bestpractices",
+  "url": "https://raw.githubusercontent.com/micaelgomestavares/aeo-geo-bestpractices/HEAD/assets/banner.png",
+  "alt": "aeo-geo-bestpractices — SEO · AEO · GEO · Lighthouse 100",
+  "score": -2.6,
+  "type": "image/png",
+  "bytes": 712264
  },
  "miguelcotrinaia/claude-skills-shorts-animados": {
   "repo": "miguelcotrinaia/claude-skills-shorts-animados",
@@ -5703,6 +5775,14 @@
   "type": "image/webp",
   "bytes": 1473454
  },
+ "pedroxcardoso/maquina-cortes-gta": {
+  "repo": "pedroxcardoso/maquina-cortes-gta",
+  "url": "https://raw.githubusercontent.com/pedroxcardoso/maquina-cortes-gta/HEAD/assets/banner.png",
+  "alt": "máquina-cortes-gta: um vídeo longo vira vários cortes de Shorts sobre GTA 6",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1172925
+ },
  "persiyanov/herdr-reviewr": {
   "repo": "persiyanov/herdr-reviewr",
   "url": "https://raw.githubusercontent.com/persiyanov/herdr-reviewr/HEAD/assets/demo.gif",
@@ -5710,6 +5790,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 228233
+ },
+ "phillarmonic/repertoire-ai": {
+  "repo": "phillarmonic/repertoire-ai",
+  "url": "https://raw.githubusercontent.com/phillarmonic/repertoire-ai/HEAD/docs/images/repertoire500.png",
+  "alt": "Repertoire logo",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 49262
  },
  "phuryn/work-humanizer": {
   "repo": "phuryn/work-humanizer",
@@ -6310,6 +6398,14 @@
   "score": 2.75,
   "type": "image/gif",
   "bytes": 1775301
+ },
+ "superdesigndev/superdesign-prompts": {
+  "repo": "superdesigndev/superdesign-prompts",
+  "url": "https://raw.githubusercontent.com/superdesigndev/superdesign-prompts/HEAD/prompts/hyperspeed-background/preview.gif",
+  "alt": "Hyperspeed Background",
+  "score": 4.15,
+  "type": "image/gif",
+  "bytes": 2330176
  },
  "superyhee/hypr-video-skills": {
   "repo": "superyhee/hypr-video-skills",
@@ -7094,6 +7190,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 199131
+ },
+ "zhouyuechuan2025-ui/aipacking": {
+  "repo": "zhouyuechuan2025-ui/aipacking",
+  "url": "https://raw.githubusercontent.com/zhouyuechuan2025-ui/aipacking/HEAD/docs/assets/aipacking-3/branch.png",
+  "alt": "从分镜分流到预览与整片",
+  "score": 1.85,
+  "type": "image/png",
+  "bytes": 955860
  },
  "zhuyansen/awesome-codex-ppt-skills": {
   "repo": "zhuyansen/awesome-codex-ppt-skills",
