@@ -4862,5 +4862,21 @@
    "marketing": 0.09
   },
   "kind": "geo"
+ },
+ {
+  "repo": "aivisibilitycensus/geo-skills",
+  "stars": 5,
+  "description": "9 open Claude skills for GEO / AEO: check if AI search can read a page, collect and analyze how often AI engines name a brand (with confidence ranges), plus schema parity, AI crawler log checks and migration guards. From the AI Visibility Census.",
+  "scores": {
+   "suite": 0.09,
+   "audit": 0.8,
+   "research": 0.04,
+   "data_mcp": 0.09,
+   "geo": 0.98,
+   "content": 0.04,
+   "links": 0.02,
+   "marketing": 0.11
+  },
+  "kind": "geo"
  }
 ]

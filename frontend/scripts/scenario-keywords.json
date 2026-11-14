@@ -2046,7 +2046,8 @@
     "absolument-ai/trop",
     "MiniMax-AI/MiniMax-H3-Image",
     "krowten/claude-media-generation",
-    "klarkxy/ai-gallery"
+    "klarkxy/ai-gallery",
+    "niobium617/prompt-reverse-engineer-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3790,7 +3791,8 @@
     "777genius/universal-agent-plugins",
     "rohitg00/skillkit",
     "javimosch/supercli",
-    "phillarmonic/repertoire-ai"
+    "phillarmonic/repertoire-ai",
+    "onur-aslan/sdd"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -5220,7 +5222,8 @@
     "RomeoSEO/seo-skills",
     "vamsireddy4/search-os",
     "Anas660/claude-seo-desk",
-    "micaelgomestavares/aeo-geo-bestpractices"
+    "micaelgomestavares/aeo-geo-bestpractices",
+    "aivisibilitycensus/geo-skills"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5737,7 +5740,8 @@
     "KunalKumarkkr01/design-system-extractor",
     "carrapido/rob-janoff-design",
     "obaid1dev/dea",
-    "superdesigndev/superdesign-prompts"
+    "superdesigndev/superdesign-prompts",
+    "JimLiu/open-artifacts"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -5747,7 +5751,8 @@
     "mahmoudilyan/marmoui",
     "adityarajdigital/designmd",
     "mikesheehan54/Claude-Code-Design-AI",
-    "tathagat22/plumb-mcp"
+    "tathagat22/plumb-mcp",
+    "JimLiu/baoyu-design"
    ]
   },
   "related": [
@@ -6648,7 +6653,8 @@
     "gozen3ji/consulting-pptx-skill",
     "mujingquan835/dashiai-ppt-skill",
     "clearfunction/cf-devtools",
-    "MiraclePlus/pre-pp"
+    "MiraclePlus/pre-pp",
+    "andyluu98/slidefly"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -8920,7 +8926,10 @@
     "pedroxcardoso/maquina-cortes-gta",
     "BusyBee3333/viral-video-edit-skills",
     "krishnagoswami52/stickman-skill",
-    "fahmid-juboraj/reelforge"
+    "fahmid-juboraj/reelforge",
+    "nocodehack/nocodehack-roblox-engine",
+    "lewislf/claude-code-video-studio",
+    "Tu-Zhenzhao/pocketworld"
    ],
    "sub_skills": [
     {

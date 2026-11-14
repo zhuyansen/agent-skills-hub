@@ -1295,6 +1295,14 @@
   "type": "image/png",
   "bytes": 215151
  },
+ "JimLiu/open-artifacts": {
+  "repo": "JimLiu/open-artifacts",
+  "url": "https://raw.githubusercontent.com/JimLiu/open-artifacts/HEAD/assets/screenshots/claude-motion-player.webp",
+  "alt": "A 56-second film about Motion, made with Motion, open in the claude-motion playe",
+  "score": 1.65,
+  "type": "image/webp",
+  "bytes": 40560
+ },
  "JimLiu/taohuayuan": {
   "repo": "JimLiu/taohuayuan",
   "url": "https://github.com/user-attachments/assets/70dc2698-79a9-4eca-970e-a14f48ead553",
@@ -2214,6 +2222,14 @@
   "score": -2.75,
   "type": "image/png",
   "bytes": 752936
+ },
+ "Tu-Zhenzhao/pocketworld": {
+  "repo": "Tu-Zhenzhao/pocketworld",
+  "url": "https://raw.githubusercontent.com/Tu-Zhenzhao/pocketworld/HEAD/examples/juggler/loop.gif",
+  "alt": "A native pixel character juggling three balls beside a tree and bench",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 1983655
  },
  "UniUni2000/slideblocks-skill": {
   "repo": "UniUni2000/slideblocks-skill",
@@ -5095,6 +5111,14 @@
   "type": "image/png",
   "bytes": 603663
  },
+ "lewislf/claude-code-video-studio": {
+  "repo": "lewislf/claude-code-video-studio",
+  "url": "https://raw.githubusercontent.com/lewislf/claude-code-video-studio/media/player.gif",
+  "alt": "Watch: Who holds the key to your mind? (13:15)",
+  "score": 2.8,
+  "type": "image/gif",
+  "bytes": 4440599
+ },
  "lewislulu/html-ppt-skill": {
   "repo": "lewislulu/html-ppt-skill",
   "url": "https://raw.githubusercontent.com/lewislulu/html-ppt-skill/HEAD/docs/readme/layouts-live.gif",
@@ -5598,6 +5622,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 266274
+ },
+ "nocodehack/nocodehack-roblox-engine": {
+  "repo": "nocodehack/nocodehack-roblox-engine",
+  "url": "https://raw.githubusercontent.com/nocodehack/nocodehack-roblox-engine/HEAD/docs/img/r1.gif",
+  "alt": "The Flush: a kid hides a bad grade from his mom",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 1191024
  },
  "nolangz/pixel2motion": {
   "repo": "nolangz/pixel2motion",

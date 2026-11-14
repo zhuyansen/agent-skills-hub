@@ -2994,5 +2994,19 @@
    "review": 0.45
   },
   "kind": "ui"
+ },
+ {
+  "repo": "JimLiu/open-artifacts",
+  "stars": 6425,
+  "description": "Run Claude Design locally as an Agent Skill — Cursor, Codex, DeepSeek Harness & more. Produce polished UI mockups, prototypes, decks & wireframes as self-contained HTML, without claude.ai/design. Best with Opus or Claude.",
+  "scores": {
+   "ui": 0.71,
+   "system": 0.55,
+   "tool_mcp": 0.28,
+   "to_code": 0.32,
+   "graphics": 0.57,
+   "review": 0.2
+  },
+  "kind": "ui"
  }
 ]

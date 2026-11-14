@@ -3736,5 +3736,19 @@
    "mcp": 0.35
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "niobium617/prompt-reverse-engineer-skill",
+  "stars": 10,
+  "description": "多模态 Prompt 逆向工程 Skill：把文本/图片/视频/剧本拆解还原为可复用 Prompt，适配 Midjourney V8.2 / Stable Diffusion 3.5 / FLUX.2 / GPT Image 2.5（文生图·复刻·编辑·参考图·合成五模式）/ Nano Banana Pro / GPT-5.5·Claude 5.5 / DeepSeek V4.1 / Sora 2 / Runway Gen-4.5 / Veo 3.1 十种模型，支持 Claude Code / Cursor / Codex / DeepSeek Harness / 豆包五平台，附百分制六维评分（剧本可逐场景出图）",
+  "scores": {
+   "gpt_image": 0.07,
+   "nano_banana": 0.05,
+   "open_models": 0.19,
+   "editing": 0.05,
+   "design": 0.04,
+   "mcp": 0.12
+  },
+  "kind": "open_models"
  }
 ]

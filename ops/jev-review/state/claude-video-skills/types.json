@@ -9268,5 +9268,59 @@
    "general": 0.1
   },
   "kind": "editing"
+ },
+ {
+  "repo": "nocodehack/nocodehack-roblox-engine",
+  "stars": 13,
+  "description": "Claude Code skill that makes animated Roblox-style Shorts from one line: story, animation, camera, sound. Free.",
+  "scores": {
+   "promo": 0.26,
+   "explainer": 0.23,
+   "music": 0.08,
+   "motion": 0.13,
+   "shorts": 0.9,
+   "editing": 0.04,
+   "demo": 0.52,
+   "story": 0.96,
+   "avatar": 0.11,
+   "general": 0.06
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "lewislf/claude-code-video-studio",
+  "stars": 9,
+  "description": "Narrated explainer videos made 100% locally with Claude Code: OmniVoice, MusicGen, HyperFrames, SDXL",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.96,
+   "music": 0.07,
+   "motion": 0.14,
+   "shorts": 0.11,
+   "editing": 0.11,
+   "demo": 0.31,
+   "story": 0.14,
+   "avatar": 0.07,
+   "general": 0.12
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Tu-Zhenzhao/pocketworld",
+  "stars": 5,
+  "description": "One sentence, one image, a living pixel world. An agent skill for GIFs, videos and transparent web components.",
+  "scores": {
+   "promo": 0.25,
+   "explainer": 0.16,
+   "music": 0.03,
+   "motion": 0.81,
+   "shorts": 0.12,
+   "editing": 0.04,
+   "demo": 0.37,
+   "story": 0.72,
+   "avatar": 0.03,
+   "general": 0.15
+  },
+  "kind": "motion"
  }
 ]

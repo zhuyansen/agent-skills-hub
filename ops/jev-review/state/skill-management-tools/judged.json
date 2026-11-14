@@ -11665,5 +11665,38 @@
   "days": 174,
   "stars_per_day": 0.3218390804597701,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "onur-aslan/sdd",
+  "name": "sdd",
+  "stars": 10,
+  "description": "Spec-driven development (SDD) workflows and AI coding agent skills for Claude Code, Codex, Cursor, and OpenCode. Plan, implement, and verify features, bug fixes, and enhancements.",
+  "topics": [
+   "ai-agents",
+   "claude",
+   "sdd",
+   "skills",
+   "software-engineering",
+   "spec-driven-development"
+  ],
+  "created": "2026-07-22",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7657,
+  "names_model": false,
+  "on_subject": 0.6,
+  "is_software": 0.99,
+  "shows_result": 0.03,
+  "one_command_start": 0.84,
+  "specific_outcome": 0.89,
+  "complete_docs": 0.24,
+  "novel_angle": 0.44,
+  "shareable_output": 0.65,
+  "quality": 0.5,
+  "tier": "中",
+  "hit_prior": 0.37333333333333335,
+  "days": 115,
+  "stars_per_day": 0.08695652173913043,
+  "verdict": "admit"
  }
 ]
