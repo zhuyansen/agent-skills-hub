@@ -9322,5 +9322,41 @@
    "general": 0.15
   },
   "kind": "motion"
+ },
+ {
+  "repo": "rocksstarcode/hyperframes-video-polish",
+  "stars": 5,
+  "description": "Agent skill by @AdiCoSto: polish Hyperframes videos and verify the exported MP4.",
+  "scores": {
+   "promo": 0.79,
+   "explainer": 0.28,
+   "music": 0.04,
+   "motion": 0.2,
+   "shorts": 0.11,
+   "editing": 0.31,
+   "demo": 0.37,
+   "story": 0.08,
+   "avatar": 0.23,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "AmadeusBio-ai/Molecular_Animation",
+  "stars": 5,
+  "description": "Molecular and protein animation in Blender: an open-source Python pipeline that turns a brief and PDB/mmCIF or AlphaFold structures into labelled MP4/WebM science films, with literature-rate thermal motion, per-beat evidence levels and an AI-agent workflow (Claude Code + Blender MCP).",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.86,
+   "music": 0.02,
+   "motion": 0.25,
+   "shorts": 0.11,
+   "editing": 0.06,
+   "demo": 0.2,
+   "story": 0.09,
+   "avatar": 0.02,
+   "general": 0.04
+  },
+  "kind": "explainer"
  }
 ]

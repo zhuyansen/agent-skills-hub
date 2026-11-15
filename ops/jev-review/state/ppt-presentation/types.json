@@ -3764,5 +3764,19 @@
    "general": 0.04
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "Meyt1n/web-to-editable-slides",
+  "stars": 5,
+  "description": "从网页版大纲与逐页参考图重建可编辑PPT的中文Skill，包含imagegen素材流程、交接规范、检查脚本与虚构示例。",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.03,
+   "business": 0.24,
+   "convert": 0.45,
+   "general": 0.13
+  },
+  "kind": "pptx"
  }
 ]

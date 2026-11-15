@@ -2047,7 +2047,8 @@
     "MiniMax-AI/MiniMax-H3-Image",
     "krowten/claude-media-generation",
     "klarkxy/ai-gallery",
-    "niobium617/prompt-reverse-engineer-skill"
+    "niobium617/prompt-reverse-engineer-skill",
+    "walkskysu/digital-human-koubo-comfyui"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2158,7 +2159,6 @@
     "SamedVossberg/3d-brain-animations",
     "SmartAI/Chamfer",
     "TheMarco/godot-game-skills",
-    "codepawl/67.js",
     "czlonkowski/blender-web-3d-skill",
     "dennisonbertram/emulsion",
     "hypersniper05/MCP_Image_to_3D",
@@ -2211,9 +2211,13 @@
     "Doug-218/blender-ai-copilot-forge",
     "zovulrira1974/blender-ai-copilot-assets",
     "benzgasfuncring197110/blender-ai-copilot-bridge",
-    "ezpeezee/beta-version-blox-studio"
+    "ezpeezee/beta-version-blox-studio",
+    "codepawl/crucible",
+    "duosheng/threejs-to-3d-model"
    ],
-   "exclude_repos": []
+   "exclude_repos": [
+    "codepawl/67.js"
+   ]
   },
   "related": [
    "image-generation",
@@ -5752,7 +5756,8 @@
     "adityarajdigital/designmd",
     "mikesheehan54/Claude-Code-Design-AI",
     "tathagat22/plumb-mcp",
-    "JimLiu/baoyu-design"
+    "JimLiu/baoyu-design",
+    "JimLiu/open-artifacts"
    ]
   },
   "related": [
@@ -6855,7 +6860,8 @@
     "wendaokeliu-sys/ppt-builder",
     "Cennyk-learner/ppt-cinematic-animation",
     "JamieJustTang/svg2pptx-skill",
-    "HututuWorks/journal-club-ppt"
+    "HututuWorks/journal-club-ppt",
+    "Meyt1n/web-to-editable-slides"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8300,7 +8306,8 @@
     "taeold/djev-run",
     "Mushroom-Systems/lichen-v1",
     "bodepudimuneendra-netizen/ConsciousDB",
-    "Enntity/sparkscore"
+    "Enntity/sparkscore",
+    "ddfeyes/jev-mode"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8929,7 +8936,9 @@
     "fahmid-juboraj/reelforge",
     "nocodehack/nocodehack-roblox-engine",
     "lewislf/claude-code-video-studio",
-    "Tu-Zhenzhao/pocketworld"
+    "Tu-Zhenzhao/pocketworld",
+    "rocksstarcode/hyperframes-video-polish",
+    "AmadeusBio-ai/Molecular_Animation"
    ],
    "sub_skills": [
     {

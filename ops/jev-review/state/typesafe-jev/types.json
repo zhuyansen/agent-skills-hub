@@ -5383,5 +5383,20 @@
    "general": 0.15
   },
   "kind": "replica"
+ },
+ {
+  "repo": "ddfeyes/jev-mode",
+  "stars": 5,
+  "description": "I kept watching coding agents burn context on decisions that aren't hard - triage 400 tickets, tag 600 files, route to one of six teams. jev-mode moves those verdicts to a typed-judgment model. I A/B'd it: 78% fewer tokens, 16x less work-attributable input, accuracy 96.1% vs 93.7%. Python, no deps, MIT.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.06,
+   "devtool": 0.94,
+   "sdk": 0.83,
+   "business": 0.84,
+   "consumer": 0.12,
+   "general": 0.18
+  },
+  "kind": "devtool"
  }
 ]

@@ -3358,5 +3358,37 @@
    "gen3d": 0.18
   },
   "kind": "blender"
+ },
+ {
+  "repo": "codepawl/crucible",
+  "stars": 648,
+  "description": "3D engine that AI agents drive",
+  "scores": {
+   "blender": 0.06,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.04,
+   "web3d": 0.93,
+   "gen3d": 0.09
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "duosheng/threejs-to-3d-model",
+  "stars": 5,
+  "description": "Agent Skill: 用文字描述生成带骨骼动画的 3D 模型（Three.js 代码 → GLB/FBX），直接导入 Unity / Unreal / Godot / Cocos / Web",
+  "scores": {
+   "blender": 0.12,
+   "unity": 0.16,
+   "godot": 0.05,
+   "unreal": 0.04,
+   "cad": 0.03,
+   "dcc": 0.05,
+   "web3d": 0.75,
+   "gen3d": 0.66
+  },
+  "kind": "web3d"
  }
 ]

@@ -335,6 +335,14 @@
   "type": "image/png",
   "bytes": 1644571
  },
+ "AmadeusBio-ai/Molecular_Animation": {
+  "repo": "AmadeusBio-ai/Molecular_Animation",
+  "url": "https://raw.githubusercontent.com/AmadeusBio-ai/Molecular_Animation/HEAD/docs/media/template-gfp.jpg",
+  "alt": "Template output for PDB 1EMA: the GFP chromophore in a cutaway, labelled",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 93739
+ },
  "AmazingAng/ccvideo": {
   "repo": "AmazingAng/ccvideo",
   "url": "https://raw.githubusercontent.com/AmazingAng/ccvideo/HEAD/assets/XApiElon.gif",
@@ -1598,6 +1606,14 @@
   "score": 5.0,
   "type": "image/gif",
   "bytes": 1432068
+ },
+ "Meyt1n/web-to-editable-slides": {
+  "repo": "Meyt1n/web-to-editable-slides",
+  "url": "https://raw.githubusercontent.com/Meyt1n/web-to-editable-slides/HEAD/examples/auto-workshop/preview.jpg",
+  "alt": "Codex 自动制作的四页「修补日」PowerPoint 实际预览",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 341821
  },
  "Miftahul-Islam-Efaz/Motion-graphics-skill": {
   "repo": "Miftahul-Islam-Efaz/Motion-graphics-skill",
@@ -3215,6 +3231,14 @@
   "type": "image/gif",
   "bytes": 2324907
  },
+ "codepawl/crucible": {
+  "repo": "codepawl/crucible",
+  "url": "https://crucible.codepawl.com/previews/hero-classroom.webp",
+  "alt": "A sunlit classroom with wooden desks and chairs, a chalkboard and tall windows w",
+  "score": -2.5,
+  "type": "image/webp",
+  "bytes": 161466
+ },
  "codepawl/viz3d": {
   "repo": "codepawl/viz3d",
   "url": "https://raw.githubusercontent.com/codepawl/viz3d/HEAD/docs/images/self-review.jpg",
@@ -3582,6 +3606,14 @@
   "score": 1.4,
   "type": "image/webp",
   "bytes": 242400
+ },
+ "duosheng/threejs-to-3d-model": {
+  "repo": "duosheng/threejs-to-3d-model",
+  "url": "https://raw.githubusercontent.com/duosheng/threejs-to-3d-model/HEAD/docs/images/brood-tyrant-walk.jpg",
+  "alt": "裂甲虫后 · 行走",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 308388
  },
  "dy-hashiqi/VibeDS-skill": {
   "repo": "dy-hashiqi/VibeDS-skill",
@@ -6039,6 +6071,14 @@
   "type": "image/jpeg",
   "bytes": 226873
  },
+ "rocksstarcode/hyperframes-video-polish": {
+  "repo": "rocksstarcode/hyperframes-video-polish",
+  "url": "https://raw.githubusercontent.com/rocksstarcode/hyperframes-video-polish/HEAD/assets/leadsthatmatter-preview.gif",
+  "alt": "Highlights from the LeadsThatMatter product film: hook, AI agent diagram, prospe",
+  "score": 2.3,
+  "type": "image/gif",
+  "bytes": 1760589
+ },
  "rocsgh/ppt-zen": {
   "repo": "rocsgh/ppt-zen",
   "url": "https://raw.githubusercontent.com/rocsgh/ppt-zen/HEAD/assets/hero-portolan.jpg",
@@ -6894,6 +6934,14 @@
   "score": 4.5,
   "type": "image/gif",
   "bytes": 330979
+ },
+ "walkskysu/digital-human-koubo-comfyui": {
+  "repo": "walkskysu/digital-human-koubo-comfyui",
+  "url": "https://raw.githubusercontent.com/walkskysu/digital-human-koubo-comfyui/HEAD/docs/gifs/local-b-five-styles.gif",
+  "alt": "风格 B 网红花字口播成片预览",
+  "score": 4.8,
+  "type": "image/gif",
+  "bytes": 4908862
  },
  "welingtondesosa/video-motion": {
   "repo": "welingtondesosa/video-motion",
