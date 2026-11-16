@@ -263,7 +263,7 @@ def main() -> int:
     in48 = [r for r in rows if utc(r["first_seen"]) >= cut48]
     fresh48 = [r for r in in48 if r["repo_full_name"].lower() not in seen]
     widened = len(fresh48) < 10
-    base = [r for r in rows if r["repo_full_name"].lower() not in seen] if widened else fresh48
+    base = [r for r in rows if r["repo_full_name"].lower() not in seen] if widened else list(fresh48)
     base.sort(key=lambda r: r["velocity"], reverse=True)
     log(f"查库 72h {len(rows)} 条 · 48h {len(in48)} 条 · 去重后 {len(fresh48)} 条{' → 不足 10 个，放宽到 72h（' + str(len(base)) + ' 条）' if widened else ''}")
     if not base:
@@ -340,7 +340,7 @@ def main() -> int:
     note = (f"> 注：GitHub Actions 自动生成（{MODEL} 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 {days} 个日期段，"
             f"比对 {len(seen):,} 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次："
             f"`first_seen ≥72h`、stars ≥20 得 {len(rows)} 条；切回 48h 剩 {len(in48)} 条、去重后 {len(fresh48)} 条，"
-            f"{'不足 10 个，放宽到 72h（' + str(len(base)) + ' 条）' if widened else '未放宽到 72h'}。velocity = stars ÷ max(距 created_at 天数, 1)，"
+            f"{'过了硬规则的不足 20 个，放宽到 72h（去重后共 ' + str(len(base)) + ' 条）' if widened else '未放宽到 72h'}。velocity = stars ÷ max(距 created_at 天数, 1)，"
             f"按 velocity 往下用 `gh api` 抽查 {checked} 个。**代码硬规则剔除**：{hard_txt}。**模型排除项**：{ex_txt}。"
             f"{'**轻红旗**（保留）：' + flags + '。' if flags else ''}🆕 判定＝created_at 距今 14 天内：{new_hit}。"
             f"security_grade：入选 {len(picks)} 仓为 {'/'.join(grades)}。表中 stars 为数据库快照。")
