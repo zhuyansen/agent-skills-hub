@@ -55,6 +55,30 @@
   "2026-11-08": {
    "count": 1,
    "uniques": 1
+  },
+  "2026-11-09": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-10": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-11": {
+   "count": 19,
+   "uniques": 12
+  },
+  "2026-11-12": {
+   "count": 8,
+   "uniques": 7
+  },
+  "2026-11-13": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-11-14": {
+   "count": 24,
+   "uniques": 13
   }
  },
  "clones": {
@@ -113,10 +137,61 @@
   "2026-11-08": {
    "count": 23,
    "uniques": 14
+  },
+  "2026-11-09": {
+   "count": 9,
+   "uniques": 8
+  },
+  "2026-11-10": {
+   "count": 27,
+   "uniques": 18
+  },
+  "2026-11-11": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-12": {
+   "count": 12,
+   "uniques": 9
+  },
+  "2026-11-13": {
+   "count": 21,
+   "uniques": 18
+  },
+  "2026-11-14": {
+   "count": 16,
+   "uniques": 14
   }
  },
  "referrers": {
-  "2026-11-09": []
+  "2026-11-09": [],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 12,
+    "uniques": 9
+   },
+   {
+    "referrer": "github.com",
+    "count": 9,
+    "uniques": 7
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 2,
+    "uniques": 1
+   }
+  ]
  },
  "paths": {
   "2026-11-09": [
@@ -124,6 +199,38 @@
     "path": "/zhuyansen/awesome-3d-skills",
     "count": 3,
     "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/blob/main/LICENSE",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-3d-skills",
+    "count": 52,
+    "uniques": 39
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/blob/main/README.zh-CN.md",
+    "count": 8,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/blob/main/README.md",
+    "count": 5,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/commit/13de347879865a35439e824078a7d86090b9671f",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-3d-skills/tree/main",
+    "count": 2,
+    "uniques": 1
    },
    {
     "path": "/zhuyansen/awesome-3d-skills/blob/main/LICENSE",

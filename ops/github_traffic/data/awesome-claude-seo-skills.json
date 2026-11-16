@@ -139,6 +139,30 @@
   "2026-11-08": {
    "count": 4,
    "uniques": 4
+  },
+  "2026-11-09": {
+   "count": 4,
+   "uniques": 3
+  },
+  "2026-11-10": {
+   "count": 13,
+   "uniques": 7
+  },
+  "2026-11-11": {
+   "count": 22,
+   "uniques": 5
+  },
+  "2026-11-12": {
+   "count": 13,
+   "uniques": 7
+  },
+  "2026-11-13": {
+   "count": 4,
+   "uniques": 4
+  },
+  "2026-11-14": {
+   "count": 9,
+   "uniques": 3
   }
  },
  "clones": {
@@ -281,6 +305,30 @@
   "2026-11-08": {
    "count": 13,
    "uniques": 11
+  },
+  "2026-11-09": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-11-10": {
+   "count": 19,
+   "uniques": 12
+  },
+  "2026-11-11": {
+   "count": 23,
+   "uniques": 16
+  },
+  "2026-11-12": {
+   "count": 11,
+   "uniques": 8
+  },
+  "2026-11-13": {
+   "count": 17,
+   "uniques": 13
+  },
+  "2026-11-14": {
+   "count": 26,
+   "uniques": 18
   }
  },
  "referrers": {
@@ -343,6 +391,28 @@
    },
    {
     "referrer": "t.co",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 51,
+    "uniques": 30
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 14,
+    "uniques": 5
+   },
+   {
+    "referrer": "github.com",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
     "count": 1,
     "uniques": 1
    }
@@ -488,6 +558,38 @@
    },
    {
     "path": "/zhuyansen/awesome-claude-seo-skills/tree/main",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills",
+    "count": 93,
+    "uniques": 48
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/README.md",
+    "count": 9,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/main",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/projects",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-seo-skills/tree/main/data",
     "count": 1,
     "uniques": 1
    }

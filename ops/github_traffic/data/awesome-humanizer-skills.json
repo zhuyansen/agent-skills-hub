@@ -195,6 +195,30 @@
   "2026-11-08": {
    "count": 16,
    "uniques": 10
+  },
+  "2026-11-09": {
+   "count": 26,
+   "uniques": 16
+  },
+  "2026-11-10": {
+   "count": 21,
+   "uniques": 14
+  },
+  "2026-11-11": {
+   "count": 11,
+   "uniques": 10
+  },
+  "2026-11-12": {
+   "count": 27,
+   "uniques": 15
+  },
+  "2026-11-13": {
+   "count": 11,
+   "uniques": 9
+  },
+  "2026-11-14": {
+   "count": 27,
+   "uniques": 13
   }
  },
  "clones": {
@@ -393,6 +417,30 @@
   "2026-11-08": {
    "count": 13,
    "uniques": 10
+  },
+  "2026-11-09": {
+   "count": 7,
+   "uniques": 6
+  },
+  "2026-11-10": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-11-11": {
+   "count": 15,
+   "uniques": 9
+  },
+  "2026-11-12": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-11-13": {
+   "count": 11,
+   "uniques": 7
+  },
+  "2026-11-14": {
+   "count": 13,
+   "uniques": 10
   }
  },
  "referrers": {
@@ -525,6 +573,43 @@
     "referrer": "Bing",
     "count": 2,
     "uniques": 2
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 2,
+    "uniques": 2
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 85,
+    "uniques": 70
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 9,
+    "uniques": 7
+   },
+   {
+    "referrer": "github.com",
+    "count": 9,
+    "uniques": 5
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 7,
+    "uniques": 5
+   },
+   {
+    "referrer": "Bing",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 5,
+    "uniques": 4
    },
    {
     "referrer": "l.meta.ai",
@@ -707,6 +792,58 @@
    },
    {
     "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills",
+    "count": 189,
+    "uniques": 144
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.zh-CN.md",
+    "count": 31,
+    "uniques": 20
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/issues",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/assets/previews",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/data",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/alchaincyf__tramstop-skill.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/sva-admin__sv-academy-prom-design.jpg",
     "count": 1,
     "uniques": 1
    }

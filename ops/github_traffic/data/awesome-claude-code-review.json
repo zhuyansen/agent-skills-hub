@@ -139,6 +139,30 @@
   "2026-11-08": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-09": {
+   "count": 8,
+   "uniques": 3
+  },
+  "2026-11-10": {
+   "count": 8,
+   "uniques": 4
+  },
+  "2026-11-11": {
+   "count": 9,
+   "uniques": 8
+  },
+  "2026-11-12": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-13": {
+   "count": 8,
+   "uniques": 5
+  },
+  "2026-11-14": {
+   "count": 3,
+   "uniques": 3
   }
  },
  "clones": {
@@ -281,6 +305,30 @@
   "2026-11-08": {
    "count": 6,
    "uniques": 3
+  },
+  "2026-11-09": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-10": {
+   "count": 8,
+   "uniques": 6
+  },
+  "2026-11-11": {
+   "count": 20,
+   "uniques": 10
+  },
+  "2026-11-12": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-11-13": {
+   "count": 24,
+   "uniques": 14
+  },
+  "2026-11-14": {
+   "count": 22,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -356,6 +404,28 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 19,
+    "uniques": 14
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 8,
+    "uniques": 5
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "github.com",
+    "count": 1,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -420,6 +490,43 @@
     "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.zh-CN.md",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-review",
+    "count": 68,
+    "uniques": 47
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.md",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/README.zh-CN.md",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/tree/main/assets/previews",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/tree/main/data",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/2a0f56d80c67bc283cc587f94ae3a846745b8e05/README.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-review/blob/main/data/skills.json",
+    "count": 1,
+    "uniques": 1
    }
   ]
  }

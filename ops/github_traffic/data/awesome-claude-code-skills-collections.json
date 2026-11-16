@@ -139,6 +139,30 @@
   "2026-11-08": {
    "count": 3,
    "uniques": 2
+  },
+  "2026-11-09": {
+   "count": 3,
+   "uniques": 2
+  },
+  "2026-11-10": {
+   "count": 9,
+   "uniques": 8
+  },
+  "2026-11-11": {
+   "count": 12,
+   "uniques": 7
+  },
+  "2026-11-12": {
+   "count": 4,
+   "uniques": 3
+  },
+  "2026-11-13": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-11-14": {
+   "count": 8,
+   "uniques": 6
   }
  },
  "clones": {
@@ -281,6 +305,30 @@
   "2026-11-08": {
    "count": 12,
    "uniques": 9
+  },
+  "2026-11-09": {
+   "count": 18,
+   "uniques": 10
+  },
+  "2026-11-10": {
+   "count": 13,
+   "uniques": 9
+  },
+  "2026-11-11": {
+   "count": 18,
+   "uniques": 13
+  },
+  "2026-11-12": {
+   "count": 11,
+   "uniques": 8
+  },
+  "2026-11-13": {
+   "count": 16,
+   "uniques": 13
+  },
+  "2026-11-14": {
+   "count": 24,
+   "uniques": 18
   }
  },
  "referrers": {
@@ -350,6 +398,38 @@
     "referrer": "perplexity.ai",
     "count": 4,
     "uniques": 3
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 29,
+    "uniques": 23
+   },
+   {
+    "referrer": "github.com",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "youtube.com",
+    "count": 2,
+    "uniques": 1
    }
   ]
  },
@@ -478,6 +558,58 @@
    },
    {
     "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/charlie947__motion-graphics-skills.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections",
+    "count": 61,
+    "uniques": 46
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/data/skills.json",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/README.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/README.zh-CN.md",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/tree/main",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/tree/main/data",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/openqa-cn__codexqa.jpg",
+    "count": 2,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/charlie947__motion-graphics-skills.gif",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/charlie947__motion-graphics-skills.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-code-skills-collections/blob/main/assets/previews/iart-ai__motion-design-skills.jpg",
     "count": 1,
     "uniques": 1
    }

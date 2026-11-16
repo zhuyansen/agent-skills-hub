@@ -199,6 +199,30 @@
   "2026-11-08": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-09": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-10": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-11": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-12": {
+   "count": 9,
+   "uniques": 1
+  },
+  "2026-11-13": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-14": {
+   "count": 6,
+   "uniques": 3
   }
  },
  "clones": {
@@ -401,6 +425,30 @@
   "2026-11-08": {
    "count": 9,
    "uniques": 5
+  },
+  "2026-11-09": {
+   "count": 7,
+   "uniques": 6
+  },
+  "2026-11-10": {
+   "count": 15,
+   "uniques": 11
+  },
+  "2026-11-11": {
+   "count": 15,
+   "uniques": 8
+  },
+  "2026-11-12": {
+   "count": 7,
+   "uniques": 5
+  },
+  "2026-11-13": {
+   "count": 24,
+   "uniques": 15
+  },
+  "2026-11-14": {
+   "count": 22,
+   "uniques": 14
   }
  },
  "referrers": {
@@ -460,6 +508,23 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "perplexity.ai",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "referrer": "github.com",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 2,
+    "uniques": 2
+   }
   ]
  },
  "paths": {
@@ -498,6 +563,58 @@
     "path": "/zhuyansen/awesome-ai-telegram-bots",
     "count": 8,
     "uniques": 7
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots",
+    "count": 13,
+    "uniques": 9
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/.github/ISSUE_TEMPLATE/add-a-repo.yml",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/README.zh-CN.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/assets/previews/EvilFreelancer__tgfake.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/assets/previews/SouravBeraAkaSpeed__xiryn.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/assets/previews/smixs__pi-durable-telegram.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/blob/main/data/skills.json",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/tree/main/assets/previews",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-telegram-bots/tree/main/data",
+    "count": 1,
+    "uniques": 1
    }
   ]
  }

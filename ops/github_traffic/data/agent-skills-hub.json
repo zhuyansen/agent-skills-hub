@@ -203,6 +203,30 @@
   "2026-11-08": {
    "count": 37,
    "uniques": 18
+  },
+  "2026-11-09": {
+   "count": 46,
+   "uniques": 34
+  },
+  "2026-11-10": {
+   "count": 61,
+   "uniques": 35
+  },
+  "2026-11-11": {
+   "count": 73,
+   "uniques": 23
+  },
+  "2026-11-12": {
+   "count": 38,
+   "uniques": 30
+  },
+  "2026-11-13": {
+   "count": 58,
+   "uniques": 37
+  },
+  "2026-11-14": {
+   "count": 26,
+   "uniques": 20
   }
  },
  "clones": {
@@ -409,6 +433,30 @@
   "2026-11-08": {
    "count": 1685,
    "uniques": 63
+  },
+  "2026-11-09": {
+   "count": 221,
+   "uniques": 67
+  },
+  "2026-11-10": {
+   "count": 140,
+   "uniques": 41
+  },
+  "2026-11-11": {
+   "count": 544,
+   "uniques": 63
+  },
+  "2026-11-12": {
+   "count": 133,
+   "uniques": 44
+  },
+  "2026-11-13": {
+   "count": 750,
+   "uniques": 100
+  },
+  "2026-11-14": {
+   "count": 719,
+   "uniques": 22
   }
  },
  "referrers": {
@@ -749,6 +797,58 @@
     "referrer": "aocr.org",
     "count": 3,
     "uniques": 3
+   },
+   {
+    "referrer": "youtube.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "github.com",
+    "count": 118,
+    "uniques": 95
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 45,
+    "uniques": 25
+   },
+   {
+    "referrer": "t.co",
+    "count": 24,
+    "uniques": 23
+   },
+   {
+    "referrer": "Google",
+    "count": 8,
+    "uniques": 8
+   },
+   {
+    "referrer": "aocr.org",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "Baidu",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "Bing",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "goodailist.com",
+    "count": 1,
+    "uniques": 1
    },
    {
     "referrer": "youtube.com",
@@ -1120,6 +1220,58 @@
     "path": "/zhuyansen/agent-skills-hub/blob/main/ops/review-runs/RESULTS.md",
     "count": 5,
     "uniques": 4
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/agent-skills-hub",
+    "count": 178,
+    "uniques": 133
+   },
+   {
+    "path": "/ZhuYansen/agent-skills-hub",
+    "count": 128,
+    "uniques": 117
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md",
+    "count": 33,
+    "uniques": 28
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main",
+    "count": 24,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/slop-runs/RESULTS.md",
+    "count": 20,
+    "uniques": 14
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/issues/26",
+    "count": 9,
+    "uniques": 9
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/.claude",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/blob/main/ops/vibe-coding-runs/RESULTS.md",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/.agents",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/agent-skills-hub/tree/main/docs",
+    "count": 5,
+    "uniques": 5
    }
   ]
  }

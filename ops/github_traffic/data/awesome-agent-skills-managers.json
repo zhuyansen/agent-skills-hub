@@ -199,6 +199,30 @@
   "2026-11-08": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-09": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-10": {
+   "count": 7,
+   "uniques": 4
+  },
+  "2026-11-11": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-12": {
+   "count": 7,
+   "uniques": 3
+  },
+  "2026-11-13": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-14": {
+   "count": 3,
+   "uniques": 1
   }
  },
  "clones": {
@@ -401,6 +425,30 @@
   "2026-11-08": {
    "count": 18,
    "uniques": 9
+  },
+  "2026-11-09": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-10": {
+   "count": 11,
+   "uniques": 9
+  },
+  "2026-11-11": {
+   "count": 19,
+   "uniques": 11
+  },
+  "2026-11-12": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-11-13": {
+   "count": 11,
+   "uniques": 7
+  },
+  "2026-11-14": {
+   "count": 19,
+   "uniques": 12
   }
  },
  "referrers": {
@@ -470,6 +518,23 @@
    }
   ],
   "2026-11-09": [
+   {
+    "referrer": "Google",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "agentskillshub.top",
+    "count": 4,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 3,
+    "uniques": 2
+   },
    {
     "referrer": "Google",
     "count": 1,
@@ -563,6 +628,28 @@
    {
     "path": "/zhuyansen/awesome-agent-skills-managers/tree/main",
     "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers",
+    "count": 13,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/README.zh-CN.md",
+    "count": 7,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/tree/main",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-agent-skills-managers/blob/main/data/skills.json",
+    "count": 2,
     "uniques": 1
    }
   ]

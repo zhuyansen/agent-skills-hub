@@ -139,6 +139,30 @@
   "2026-11-08": {
    "count": 4,
    "uniques": 3
+  },
+  "2026-11-09": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-10": {
+   "count": 6,
+   "uniques": 5
+  },
+  "2026-11-11": {
+   "count": 15,
+   "uniques": 10
+  },
+  "2026-11-12": {
+   "count": 25,
+   "uniques": 11
+  },
+  "2026-11-13": {
+   "count": 13,
+   "uniques": 10
+  },
+  "2026-11-14": {
+   "count": 10,
+   "uniques": 6
   }
  },
  "clones": {
@@ -281,6 +305,30 @@
   "2026-11-08": {
    "count": 8,
    "uniques": 5
+  },
+  "2026-11-09": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-11-10": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-11-11": {
+   "count": 15,
+   "uniques": 10
+  },
+  "2026-11-12": {
+   "count": 15,
+   "uniques": 10
+  },
+  "2026-11-13": {
+   "count": 23,
+   "uniques": 15
+  },
+  "2026-11-14": {
+   "count": 8,
+   "uniques": 6
   }
  },
  "referrers": {
@@ -353,6 +401,28 @@
    },
    {
     "referrer": "DuckDuckGo",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "Google",
+    "count": 29,
+    "uniques": 26
+   },
+   {
+    "referrer": "github.com",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "agentskillshub.top",
     "count": 1,
     "uniques": 1
    }
@@ -453,6 +523,43 @@
    },
    {
     "path": "/zhuyansen/awesome-codex-skills/tree/main/data",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-codex-skills",
+    "count": 73,
+    "uniques": 56
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.zh-CN.md",
+    "count": 36,
+    "uniques": 15
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/README.md",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main/data",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/tree/main/assets/previews",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-skills/blob/main/data/skills.json",
     "count": 1,
     "uniques": 1
    }

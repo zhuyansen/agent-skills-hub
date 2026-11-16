@@ -195,6 +195,30 @@
   "2026-11-08": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-09": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-10": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-11": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-12": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-13": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-14": {
+   "count": 7,
+   "uniques": 2
   }
  },
  "clones": {
@@ -393,6 +417,30 @@
   "2026-11-08": {
    "count": 8,
    "uniques": 5
+  },
+  "2026-11-09": {
+   "count": 15,
+   "uniques": 9
+  },
+  "2026-11-10": {
+   "count": 19,
+   "uniques": 10
+  },
+  "2026-11-11": {
+   "count": 17,
+   "uniques": 10
+  },
+  "2026-11-12": {
+   "count": 6,
+   "uniques": 4
+  },
+  "2026-11-13": {
+   "count": 15,
+   "uniques": 11
+  },
+  "2026-11-14": {
+   "count": 23,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -503,6 +551,33 @@
    },
    {
     "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "referrer": "github.com",
+    "count": 4,
+    "uniques": 1
+   },
+   {
+    "referrer": "Bing",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "Google",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "perplexity.ai",
     "count": 1,
     "uniques": 1
    }
@@ -623,6 +698,23 @@
    {
     "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.md",
     "count": 3,
+    "uniques": 1
+   }
+  ],
+  "2026-11-16": [
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills",
+    "count": 29,
+    "uniques": 19
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.zh-CN.md",
+    "count": 13,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.md",
+    "count": 1,
     "uniques": 1
    }
   ]
