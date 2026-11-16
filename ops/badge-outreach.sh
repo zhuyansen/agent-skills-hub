@@ -59,7 +59,7 @@ echo ""
 cat << 'TEMPLATE'
 Hi! 👋
 
-[Agent Skills Hub](https://agentskillshub.top) is an open-source directory of 42,000+ AI agent tools, MCP servers, and Claude Code skills.
+[Agent Skills Hub](https://agentskillshub.top) is an open-source directory of 267,000+ AI agent tools, MCP servers, and Claude Code skills (with 132,000+ security-graded against 43 published rules).
 
 Your project is listed and ranked on our platform. This PR adds a badge to your README that links to your project's page on Agent Skills Hub, where users can discover your tool alongside related alternatives.
 

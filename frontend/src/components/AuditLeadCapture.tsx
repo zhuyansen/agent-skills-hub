@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n/I18nContext";
 import { trackEvent } from "../lib/analytics";
-import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
+import {
+  HOW_FOUND_OPTIONS,
+  isCompleteEmail,
+  submitEnterpriseLead,
+} from "../lib/enterpriseLead";
 
 /**
  * Enterprise lead capture at the audit result — the only moment on the site
@@ -29,6 +33,7 @@ interface Copy {
   headline: string;
   pitch: string;
   placeholder: string;
+  howFoundLabel: string;
   submit: string;
   submitting: string;
   okTitle: string;
@@ -49,6 +54,7 @@ function copyFor(zh: boolean, risky: boolean, unknown: boolean, owner: string, f
           : `这个是干净的 —— 你们跑的其他 MCP server 呢?`,
       pitch: `留下工作邮箱,48 小时内收到一份分级安全审计:${owner} 名下的仓库,加上你们自己的 MCP/agent 栈里的主要风险。不约电话,不做 PPT。`,
       placeholder: "工作邮箱",
+      howFoundLabel: "从哪找到我们的？(可选)",
       submit: "把审计发我 →",
       submitting: "提交中…",
       okTitle: "收到 —— 审计在路上。",
@@ -67,6 +73,7 @@ function copyFor(zh: boolean, risky: boolean, unknown: boolean, owner: string, f
         : "This one's clean — what about the other MCP servers you run?",
     pitch: `Leave a work email and get a graded security audit within 48h: the repos under ${owner}, plus the top risks in your own MCP/agent stack. No call, no slides.`,
     placeholder: "Work email",
+    howFoundLabel: "How did you find us? (optional)",
     submit: "Email me the audit →",
     submitting: "Submitting…",
     okTitle: "Thanks — your audit is on its way.",
@@ -92,6 +99,7 @@ export function AuditLeadCapture({
   const owner = repo.split("/")[0];
   const c = copyFor(lang === "zh", RISKY_GRADES.has(g), g === "unknown", owner, flagCount);
   const [email, setEmail] = useState("");
+  const [howFound, setHowFound] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   // The kind, not the text: a resolved string would stay in the old language
@@ -153,6 +161,7 @@ export function AuditLeadCapture({
         {
           email,
           use_case: `Org audit for ${owner} — requested after scanning ${repo} (grade ${g}, ${flagCount} flags)`,
+          how_found: howFound,
         },
         "audit_result",
         EVENTS,
@@ -191,6 +200,18 @@ export function AuditLeadCapture({
               aria-label={c.placeholder}
               className="flex-1 min-w-0 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
+            <select
+              value={howFound}
+              onChange={(e) => setHowFound(e.target.value)}
+              aria-label={c.howFoundLabel}
+              className="sm:w-56 px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-sm text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              {HOW_FOUND_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt || c.howFoundLabel}
+                </option>
+              ))}
+            </select>
             <button
               type="submit"
               disabled={submitting}

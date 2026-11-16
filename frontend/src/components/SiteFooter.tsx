@@ -268,6 +268,10 @@ export function SiteFooter() {
             {lang === "zh" ? "关于我们" : "About"}
           </a>
           <span className="text-gray-700">·</span>
+          <a href="/ai-info/" className="hover:text-white transition-colors">
+            {lang === "zh" ? "AI 事实页" : "AI Info"}
+          </a>
+          <span className="text-gray-700">·</span>
           <HowWeGradeLink className="hover:text-white transition-colors" />
           <span className="text-gray-700">·</span>
           {__STATS_LIVE__ && (

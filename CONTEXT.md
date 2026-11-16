@@ -57,7 +57,7 @@ The fourth edge of the商业化三角 (Blue Book Ch9). Hub's primary value prop:
 _Avoid_: "promotion", "marketing".
 
 **IndexNow**:
-The Bing/Yandex protocol Hub uses to push fresh URLs after every deploy. Stable key in `public/{key}.txt`, never regenerate.
+The Bing/Yandex protocol Hub uses to push fresh URLs after every deploy. Active key file used by `.github/workflows/deploy.yml`: `frontend/public/a52f1d0890354e5b84d0e4e1ba17bd84.txt` (legacy verification key `frontend/public/4feb542e77e2a524af6866396ee21657.txt` is retained for backwards compatibility; never regenerate the active key).
 _Avoid_: "submit to search engines" (vague).
 
 **Newsletter** vs **日报** vs **周报**:

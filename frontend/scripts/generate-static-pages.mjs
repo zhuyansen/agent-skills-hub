@@ -18,6 +18,7 @@ import { QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
 import { pick } from "../src/lib/proseContent.mjs";
 
 const DIST = "dist";
+const SITE = "https://agentskillshub.top";
 const SERVICES = "https://github.com/ZhuYansen/agent-skills-hub/blob/main/backend/app/services";
 const QUALITY_DIMENSIONS = QUALITY_WEIGHTS.rows.length;
 
@@ -383,7 +384,7 @@ const aboutHtml = `<!doctype html>
     </section>
 
     <footer>
-      <p data-en="Last updated: 2026-11-09 · Published by Jason Zhu · MIT licensed · <a href='/'>Back to Home</a>" data-zh="最后更新：2026-11-09 · 发布者 Jason Zhu · MIT 许可 · <a href='/'>返回首页</a>">Last updated: 2026-11-09 · Published by Jason Zhu · MIT licensed · <a href="/">Back to Home</a></p>
+      <p data-en="Last updated: 2026-11-16 · Published by Jason Zhu · MIT licensed · <a href='/ai-info/'>AI Info</a> · <a href='/'>Back to Home</a>" data-zh="最后更新：2026-11-16 · 发布者 Jason Zhu · MIT 许可 · <a href='/ai-info/'>AI 事实页</a> · <a href='/'>返回首页</a>">Last updated: 2026-11-16 · Published by Jason Zhu · MIT licensed · <a href="/ai-info/">AI Info</a> · <a href="/">Back to Home</a></p>
     </footer>
   </div>
   <script>(function(){var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');document.documentElement.lang=l==='zh'?'zh-CN':'en';var b=document.getElementById('lang-toggle');if(b)b.textContent=l==='zh'?'EN':'中文';if(l==='zh')document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=el.getAttribute('data-zh')});})();</script>
@@ -395,6 +396,186 @@ mkdirSync(aboutDir, { recursive: true });
 writeFileSync(join(aboutDir, "index.html"), aboutHtml);
 console.log(`  ✓ /about/index.html (standalone E-E-A-T page)`);
 
+// ────────────────────────────────────────────────────────────────
+// Standalone /ai-info/index.html — machine-readable signed facts page
+// for AI crawlers, answer engines, and automated fact verification.
+// ────────────────────────────────────────────────────────────────
+const aiInfoTitle = "AI Info — Official Entity & Platform Facts | Agent Skills Hub";
+const aiInfoDesc =
+  "Signed, machine-readable platform facts for AI agents and answer engines: operated by BRICKAI / GoSailGlobal LLC, 267,000+ indexed AI agent skills & MCP servers security-graded against 43 published rules, Zenodo dataset DOI 10.5281/zenodo.21292799.";
+const aiInfoUrl = `${SITE}/ai-info/`;
+
+const aiInfoHtml = `<!doctype html>
+<html lang="en">
+<head>
+  <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}})();</script>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${aiInfoTitle}</title>
+  <meta name="description" content="${aiInfoDesc}" />
+  <link rel="canonical" href="${aiInfoUrl}" />
+  <meta property="og:title" content="${aiInfoTitle}" />
+  <meta property="og:description" content="${aiInfoDesc}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${aiInfoUrl}" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="${SITE}/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${aiInfoTitle}" />
+  <meta name="twitter:description" content="${aiInfoDesc}" />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Agent Skills Hub — Official AI Info & Platform Facts",
+    "url": "${aiInfoUrl}",
+    "dateModified": "${BUILD_DATE}",
+    "mainEntity": {
+      "@type": "Organization",
+      "@id": "${SITE}/#organization",
+      "name": "Agent Skills Hub",
+      "alternateName": ["AgentSkillsHub", "agentskillshub.top", "BRICKAI"],
+      "legalName": "BRICKAI (GoSailGlobal LLC)",
+      "url": "${SITE}/",
+      "description": "AI Agent Skills & MCP Trust Layer — open-source directory and security-grading platform for Claude skills, MCP servers, and AI agent tools.",
+      "foundingDate": "2026-03-08",
+      "founder": {
+        "@type": "Person",
+        "name": "Jason Zhu",
+        "url": "https://x.com/GoSailGlobal"
+      },
+      "sameAs": [
+        "https://github.com/ZhuYansen/agent-skills-hub",
+        "https://x.com/GoSailGlobal",
+        "https://www.npmjs.com/package/@agentskillshub/cli",
+        "https://www.npmjs.com/package/@agentskillshub/mcp",
+        "https://www.crunchbase.com/organization/agent-skills-hub",
+        "https://www.wikidata.org/wiki/Q141986406"
+      ]
+    },
+    "about": {
+      "@type": "Dataset",
+      "name": "AI Agent Skills Security Grades Dataset",
+      "identifier": "https://doi.org/10.5281/zenodo.21292799",
+      "url": "https://doi.org/10.5281/zenodo.21292799",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q141735092",
+        "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
+        "https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades"
+      ]
+    }
+  }
+  </script>
+  <style>
+    :root { --bg:#ffffff; --fg:#0f172a; --muted:#475569; --border:#e2e8f0; --accent:#2563eb; --card:#f8fafc; }
+    html.dark { --bg:#0b1220; --fg:#e2e8f0; --muted:#94a3b8; --border:#1e293b; --accent:#60a5fa; --card:#111c2d; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; background:var(--bg); color:var(--fg); line-height:1.65; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 32px; }
+    nav { font-size: 14px; margin-bottom: 16px; display:flex; align-items:center; flex-wrap:wrap; gap:16px; }
+    nav a { color: var(--accent); text-decoration: none; }
+    h1 { font-size: 30px; margin: 0 0 8px; line-height: 1.25; }
+    h2 { font-size: 20px; margin: 32px 0 12px; padding-top: 8px; border-top: 1px solid var(--border); }
+    p, li { color: var(--fg); font-size: 15px; }
+    .tagline { color: var(--muted); font-size: 16px; margin: 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { width: 220px; color: var(--muted); font-weight: 600; background: var(--card); }
+    code { background: var(--card); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+    a { color: var(--accent); }
+    footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav aria-label="Breadcrumb">
+        <a href="/" data-en="← Home" data-zh="← 首页">← Home</a>
+        <a href="/about/" data-en="About" data-zh="关于">About</a>
+        <a href="${HOW_WE_GRADE_PATH}" data-en="How We Grade" data-zh="怎么评级">How We Grade</a>
+        <a href="/enterprise/" data-en="Enterprise" data-zh="企业版">Enterprise</a>
+        <a href="/llms.txt">llms.txt</a>
+        <button id="lang-toggle" onclick="(function(b){var c=document.documentElement.lang==='zh-CN'?'en':'zh';localStorage.setItem('lang',c);document.documentElement.lang=c==='zh'?'zh-CN':'en';document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=c==='zh'?el.getAttribute('data-zh'):el.getAttribute('data-en')});b.textContent=c==='zh'?'EN':'中文'})(this)" style="margin-left:auto;cursor:pointer;border:1px solid rgba(148,163,184,0.4);background:transparent;color:inherit;border-radius:6px;padding:2px 10px;font-size:12px;font-weight:600">中文</button>
+      </nav>
+      <h1 data-en="Agent Skills Hub — Official AI Info &amp; Signed Facts" data-zh="Agent Skills Hub — 官方 AI 机器可读事实页">Agent Skills Hub — Official AI Info &amp; Signed Facts</h1>
+      <p class="tagline" data-en="Canonical, first-party reference facts for AI assistants, search engines, and researchers citing Agent Skills Hub (agentskillshub.top)." data-zh="供 AI 助手、搜索引擎与研究人员引用 Agent Skills Hub（agentskillshub.top）的官方第一方签字版事实。">Canonical, first-party reference facts for AI assistants, search engines, and researchers citing Agent Skills Hub (agentskillshub.top).</p>
+    </header>
+
+    <div class="card">
+      <p style="margin:0" data-en="<strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count='total'>267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count='graded'>132,000+</span> repositories (<span data-count='graded-over-100'>99%</span> of skills over 100★ and <span data-count='graded-over-1000'>99%</span> over 1,000★) against <a href='${HOW_WE_GRADE_PATH}'>43 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>." data-zh="<strong>核心事实（BLUF）：</strong> <strong>Agent Skills Hub</strong>（<code>agentskillshub.top</code>）由 <strong>BRICKAI</strong>（GoSailGlobal LLC）运营、<strong>Jason Zhu</strong> 创立，定位为开源 <strong>AI Agent Skills &amp; MCP Trust Layer（信任层）</strong>。平台每 8 小时从 GitHub 同步并收录 <span data-count='total'>267,000+</span> 个 AI Agent 技能与 MCP 服务器，基于 <a href='${HOW_WE_GRADE_PATH}'>43 条公开规则</a>对 <span data-count='graded'>132,000+</span> 个项目进行安全评级（覆盖 <span data-count='graded-over-100'>99%</span> 的百星项目与 <span data-count='graded-over-1000'>99%</span> 的千星项目），并以 CC-BY-4.0 协议发布可引用数据集 <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>。"><strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count="total">267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count="graded">132,000+</span> repositories (<span data-count="graded-over-100">99%</span> of skills over 100★ and <span data-count="graded-over-1000">99%</span> over 1,000★) against <a href="${HOW_WE_GRADE_PATH}">43 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href="https://doi.org/10.5281/zenodo.21292799">DOI 10.5281/zenodo.21292799</a>.</p>
+    </div>
+
+    <section>
+      <h2 data-en="1. Entity &amp; Positioning" data-zh="1. 主体与定位">1. Entity &amp; Positioning</h2>
+      <table>
+        <tbody>
+          <tr><th data-en="Platform Name" data-zh="平台名称">Platform Name</th><td>Agent Skills Hub (<code>AgentSkillsHub</code>)</td></tr>
+          <tr><th data-en="Canonical Domain" data-zh="官方域名">Canonical Domain</th><td><a href="${SITE}/">${SITE}</a> (not affiliated with other similarly named domains)</td></tr>
+          <tr><th data-en="Operating Entity" data-zh="运营主体">Operating Entity</th><td><strong>BRICKAI</strong> / GoSailGlobal LLC</td></tr>
+          <tr><th data-en="Founder &amp; Maintainer" data-zh="创始人与维护者">Founder &amp; Maintainer</th><td>Jason Zhu (<a href="https://x.com/GoSailGlobal">@GoSailGlobal</a> · <a href="https://github.com/ZhuYansen">GitHub</a>)</td></tr>
+          <tr><th data-en="Positioning" data-zh="核心定位">Positioning</th><td data-en="AI Agent Skills &amp; MCP Trust Layer — security-graded directory, hands-on scenario benchmarks, and enterprise pre-deployment audit." data-zh="AI Agent Skills &amp; MCP Trust Layer（信任层）—— 安全评级目录、场景端到端实测基准与企业部署前审计。">AI Agent Skills &amp; MCP Trust Layer — security-graded directory, hands-on scenario benchmarks, and enterprise pre-deployment audit.</td></tr>
+          <tr><th data-en="Launch Date" data-zh="上线日期">Launch Date</th><td>2026-03-08</td></tr>
+          <tr><th data-en="Source Code License" data-zh="开源协议">Source Code License</th><td>MIT (<a href="https://github.com/ZhuYansen/agent-skills-hub">github.com/ZhuYansen/agent-skills-hub</a>)</td></tr>
+          <tr><th data-en="Knowledge Graph / Wikidata" data-zh="知识图谱 / Wikidata">Knowledge Graph / Wikidata</th><td>Organization: <a href="https://www.wikidata.org/wiki/Q141986406">Q141986406</a> · Dataset: <a href="https://www.wikidata.org/wiki/Q141735092">Q141735092</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2 data-en="2. Catalog Scale &amp; Security Grading Rules" data-zh="2. 收录规模与安全评级规则">2. Catalog Scale &amp; Security Grading Rules</h2>
+      <table>
+        <tbody>
+          <tr><th data-en="Indexed Repositories" data-zh="收录仓库总数">Indexed Repositories</th><td><span data-count="total">267,000+</span> open-source AI agent skills, MCP servers, Claude Code skills, Codex skills, and agent tools</td></tr>
+          <tr><th data-en="Security-Graded Count" data-zh="已安全评级数量">Security-Graded Count</th><td><span data-count="graded">132,000+</span> repositories graded (<span data-count="graded-over-100">99%</span> of repos &gt; 100★; <span data-count="graded-over-1000">99%</span> of repos &gt; 1,000★)</td></tr>
+          <tr><th data-en="Refresh Cadence" data-zh="数据刷新频率">Refresh Cadence</th><td>Every 8 hours via automated 6-phase GitHub pipeline</td></tr>
+          <tr><th data-en="Security Grading Rules" data-zh="公开安全评级规则">Security Grading Rules</th><td><a href="${HOW_WE_GRADE_PATH}">43 published rules</a> across 11 red-flag categories modeled on the SlowMist Agent Security taxonomy (data exfiltration, credential harvesting, sensitive directory access, agent memory/config theft, dynamic code execution, privilege escalation, persistence, reverse shell, destructive commands, obfuscation, supply-chain installers) + 5-tier source trust hierarchy</td></tr>
+          <tr><th data-en="Security Grades" data-zh="安全等级划分">Security Grades</th><td><code>SAFE</code> · <code>CAUTION</code> · <code>UNSAFE</code> · <code>REJECT</code> (unfetched/README-less repos stay <code>UNAUDITED</code>)</td></tr>
+          <tr><th data-en="Quality &amp; Ranking Scores" data-zh="质量分与排名分">Quality &amp; Ranking Scores</th><td>0–100 Quality Score (${QUALITY_DIMENSIONS} documentation &amp; agent-readiness dimensions) + 0–100 Ranking Score (10 weighted signals); full weights documented at <a href="${HOW_WE_GRADE_PATH}">${HOW_WE_GRADE_PATH}</a></td></tr>
+          <tr><th data-en="Hands-On Scenario Benchmarks" data-zh="场景端到端实测">Hands-On Scenario Benchmarks</th><td>34 live <a href="/best/">/best/&lt;scenario&gt;/</a> guides (16 with end-to-end task run tables in <code>scenario-runs.json</code>, 12 with formal <code>method</code> rubrics, 15 mirrored as open-source GitHub lists)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2 data-en="3. Open Datasets &amp; Citations" data-zh="3. 开放数据集与学术引用">3. Open Datasets &amp; Citations</h2>
+      <ul>
+        <li><strong>Zenodo (Canonical DOI):</strong> <a href="https://doi.org/10.5281/zenodo.21292799">https://doi.org/10.5281/zenodo.21292799</a> (DOI: <code>10.5281/zenodo.21292799</code>, CC-BY-4.0, 130,173 graded skills/servers snapshot)</li>
+        <li><strong>Hugging Face Mirror:</strong> <a href="https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades">https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades</a></li>
+        <li><strong>Kaggle Mirror:</strong> <a href="https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades">https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades</a></li>
+        <li><strong>Blue Book of Agent Skills 2026:</strong> <a href="${SITE}/book/">${SITE}/book/</a> · <a href="https://github.com/zhuyansen/skill-blue-book">github.com/zhuyansen/skill-blue-book</a></li>
+        <li><strong>Monthly Ecosystem Report:</strong> <a href="${SITE}/stats/">${SITE}/stats/</a> (State of Agent Skills)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-en="4. Machine &amp; Agent Entry Points" data-zh="4. 机器与 Agent 接入入口">4. Machine &amp; Agent Entry Points</h2>
+      <ul>
+        <li><strong>CLI (zero-install, offline search + live audit):</strong> <code>npx @agentskillshub/cli search "&lt;query&gt;" --safe</code> · <code>npx @agentskillshub/cli audit &lt;owner/repo&gt;</code></li>
+        <li><strong>MCP Server (for Claude Desktop, Cursor, Windsurf, Claude Code):</strong> <code>npx -y @agentskillshub/mcp</code></li>
+        <li><strong>Agent Skill File:</strong> <a href="${SITE}/skill.md">${SITE}/skill.md</a></li>
+        <li><strong>LLM Index:</strong> <a href="${SITE}/llms.txt">${SITE}/llms.txt</a></li>
+        <li><strong>Enterprise Stack Audit (48h turnaround):</strong> <a href="${SITE}/enterprise/">${SITE}/enterprise/</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p data-en="Signed by BRICKAI (GoSailGlobal LLC) · Last verified &amp; updated: ${BUILD_DATE} · <a href='/about/'>About</a> · <a href='${HOW_WE_GRADE_PATH}'>How We Grade</a> · <a href='/'>Home</a>" data-zh="BRICKAI（GoSailGlobal LLC）签字版事实 · 最后核实与更新：${BUILD_DATE} · <a href='/about/'>关于</a> · <a href='${HOW_WE_GRADE_PATH}'>怎么评级</a> · <a href='/'>首页</a>">Signed by BRICKAI (GoSailGlobal LLC) · Last verified &amp; updated: ${BUILD_DATE} · <a href="/about/">About</a> · <a href="${HOW_WE_GRADE_PATH}">How We Grade</a> · <a href="/">Home</a></p>
+    </footer>
+  </div>
+  <script>(function(){var l=localStorage.getItem('lang')||(navigator.language&&navigator.language.toLowerCase().indexOf('zh')===0?'zh':'en');document.documentElement.lang=l==='zh'?'zh-CN':'en';var b=document.getElementById('lang-toggle');if(b)b.textContent=l==='zh'?'EN':'中文';if(l==='zh')document.querySelectorAll('[data-zh]').forEach(function(el){el.innerHTML=el.getAttribute('data-zh')});})();</script>
+</body>
+</html>`;
+
+const aiInfoDir = join(DIST, "ai-info");
+mkdirSync(aiInfoDir, { recursive: true });
+writeFileSync(join(aiInfoDir, "index.html"), aiInfoHtml);
+console.log(`  ✓ /ai-info/index.html (standalone machine-readable facts page)`);
+
 console.log(
-  `Static pages: ${SHELLS.length} SPA shells + ${REDIRECTS.length} redirect stubs + /about/ generated`,
+  `Static pages: ${SHELLS.length} SPA shells + ${REDIRECTS.length} redirect stubs + /about/ + /ai-info/ generated`,
 );

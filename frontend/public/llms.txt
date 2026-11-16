@@ -4,6 +4,7 @@
 
 ## For AI agents
 
+- [ai-info](https://agentskillshub.top/ai-info/): signed, machine-readable company & platform facts (entity BRICKAI / GoSailGlobal LLC, catalog & security-grading scale, 43 published rules, Zenodo DOI `10.5281/zenodo.21292799`, key update dates)
 - [skill.md](https://agentskillshub.top/skill.md): teaches an agent to search, audit, and install skills with the security grade checked BEFORE installing
 - MCP server: `npx -y @agentskillshub/mcp` — tools: search_skills, audit_skill, get_skill_install
 - CLI: `npx @agentskillshub/cli search <query>` — static CDN index, works offline after first run
@@ -11,6 +12,7 @@
 ## Key pages
 
 - [Home](https://agentskillshub.top/): search the full catalog
+- [AI Info (Official Facts)](https://agentskillshub.top/ai-info/): verified platform facts for AI assistants, search engines, and citation engines
 - [Daily new skills](https://agentskillshub.top/daily/): top 10 new AI agent skills every day, ranked by star velocity, security-graded
 - [Security Analyzer](https://agentskillshub.top/analyzer): free live scan of any GitHub repo (the same 43 published rules)
 - [How we grade](https://agentskillshub.top/how-we-grade/): the 43 rules behind every security grade, the five source tiers, quality scores and known limits
@@ -21,5 +23,5 @@
 
 ## Data & research
 
-- [Dataset on HuggingFace](https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades): 130,173 graded skills/servers, CC BY 4.0 — cite freely
+- [Dataset on Zenodo (DOI: 10.5281/zenodo.21292799)](https://doi.org/10.5281/zenodo.21292799) & [HuggingFace mirror](https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades): 130,173 graded skills/servers, CC BY 4.0 — cite freely
 - [Security survey write-up](https://agentskillshub.top/blog/securing-117k-ai-skills/): method + the long-tail risk finding (unsafe rate ~9× higher below 20 stars)

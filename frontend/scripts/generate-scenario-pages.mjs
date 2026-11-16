@@ -947,6 +947,8 @@ ${methodLd(scenario, pageUrl)}
       <!-- Hero -->
       <div class="bp-hero">
         <h1 data-zh="${titleHasSkillWord || /工具$/.test(scenario.zhTitle || "") ? `最佳 ${esc(scenario.zhTitle)} (${year})` : `最佳 ${esc(scenario.zhTitle)} AI 工具 (${year})`}" data-en="${esc(h1En)}">${esc(h1En)}</h1>
+        <!-- Quick Pick: the BLUF direct answer, right under H1 so it sits in the first 50-100 words -->
+        ${quickPickHtml(scenario, skills, itemCount, descSubject, run?.verdict, run ? Object.keys(run.runs || {}).length : 0)}
         <p data-en="${esc(scenario.description)}" data-zh="${esc(scenario.zhDesc)}">${esc(scenario.description)}</p>
         ${itemCount > 0 ? `<div class="bp-hero-stats">
           ${githubListChip(scenario, allSkills)}
@@ -956,9 +958,6 @@ ${methodLd(scenario, pageUrl)}
           ${scenario.see_also ? `<a class="bp-stat-chip" href="/best/${esc(scenario.see_also.slug)}/" style="text-decoration:none;color:var(--bp-link);border-color:var(--bp-border-accent)" data-zh="${esc(scenario.see_also.zh)}" data-en="${esc(scenario.see_also.en)}">${esc(scenario.see_also.en)}</a>` : ""}
         </div>` : ""}
       </div>
-
-      <!-- Quick Pick: the answer, first -->
-      ${quickPickHtml(scenario, skills, itemCount, descSubject, run?.verdict)}
 
       ${explainerHtml(scenario, skills, run)}
 
@@ -1038,6 +1037,7 @@ ${methodLd(scenario, pageUrl)}
       <footer style="margin-top:48px;padding:24px 0;border-top:1px solid var(--bp-border);text-align:center;font-size:13px;color:var(--bp-text-muted)">
         <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:8px">
           <a href="/about/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="About" data-zh="关于">About</a>
+          <a href="/ai-info/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="AI Info" data-zh="AI 事实页">AI Info</a>
           <a href="/blog/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Blog" data-zh="博客">Blog</a>
           <a href="/privacy/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Privacy" data-zh="隐私">Privacy</a>
           <a href="/terms/" style="color:var(--bp-text-secondary);text-decoration:none" data-en="Terms" data-zh="条款">Terms</a>

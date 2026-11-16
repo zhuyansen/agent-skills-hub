@@ -2,7 +2,7 @@
 
 | # | 进水口 | 谁 | 动作 | 状态 |
 |---|---|---|---|---|
-| 1 | ~~**Awesome 列表 PR** ×3~~ | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
+| 1 | ~~**Awesome 列表 PR** ×3~~ | 🤖 我全自动 | fork→按格式加条目→PR(awesome-mcp-servers + Claude 系两个),一列表一 PR 不群发 | ✅ 07-10:新 PR ×2(travisvn [#965](https://github.com/travisvn/awesome-claude-skills/pull/965) · BehiSecc [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445))+ 刷新存量 ×2(punkpeye [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) 后因未先在 Glama 认领被关，雷达已重提 [#18157](https://github.com/punkpeye/awesome-mcp-servers/pull/18157) · Composio [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 均更到 130K+安全分级);wong2 互动受限、hesreallyhim 暂停收件(详见 §Awesome PR 战报) |
 | 2 | ~~**Tier 1 自助收录** ~17 站~~ | 🤖 我跑大半 | 无头浏览器逐站提交(MCP 群/Skills 群/导航群);要登录/验证码的留人工 | ✅ 07-10 清完我这半:**libhunt 已收录**([页面](https://www.libhunt.com/r/agent-skills-hub),自动过审)· deepwiki ✅ · SKILL.md 已挂进 MCP 仓库(喂 3 个被动爬取站)· 5 站确认死站/无入口划掉 · **剩 6 站需你人工**(见 §Tier 1 战报,文案已备)|
 | 3 | ~~**Zenodo DOI**~~ | 🧑 你 10 分钟 | ✅ 07-10 发布:[10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799)(CC-BY-4.0);已回填论文 §Availability + HF 卡片(HF 推送待网络恢复)+ sameAs | ✅ |
 | 4 | ~~**Wikidata 实体**~~（**2026-08-09 被 Wikidata 以不符合知名度政策删除**，sameAs 已于 10-14 撤下） | 🧑 你 15 分钟 | ✅ 07-10 全绿:[Q140478987](https://www.wikidata.org/wiki/Q140478987) — P31=website(带 reference)· P856=agentskillshub.top · P571=2026;站点 sameAs 双向确认已上线 | ✅ |
@@ -61,7 +61,7 @@
 | 1 | **arXiv**(cs.CR 发论文) | 学术引用源 | DR 90+ | dofollow(PDF/HTML 内链) | 需 endorser + 真论文 | 中 | ✅ 高(看内容不看域名) | 已有 130K 数据集论文草稿。最高权威 + "study 不是 tool" 定位,被后续论文/媒体反复引 |
 | 2 | **Hugging Face Datasets** | 数据集托管 | DR 90+ | dofollow(dataset card 内链) | 免费,传 parquet+card | 低 | ✅ 高 | 已有 `hf-dataset-card.md` + 导出好的 parquet/csv。card 内链回站,HF 页本身进 Google+被 LLM 抓 |
 | 3 | **GitHub `awesome-claude-skills` 系列 PR** | awesome list | 各 repo DR 中-高 | nofollow(GitHub) | 提 PR | 低 | ✅ 高 | 真实存在多个:travisvn / ComposioHQ / BehiSecc / mingrath / GetBindu / Chat2AnyLLM。开发者精准 + GEO 高(LLM 训练重 awesome-list) |
-| 4 | **GitHub `awesome-mcp-servers` / 官方 servers PR** | awesome list | DR 高 | nofollow | 提 PR | 低 | ✅ 高 | punkpeye #9142 ⏳ / 官方 #4060 ⏳ / wong2 ❌双关闭。状态见 §Tier1-A |
+| 4 | **GitHub `awesome-mcp-servers` / 官方 servers PR** | awesome list | DR 高 | nofollow | 提 PR | 低 | ✅ 高 | punkpeye #9142 ❌(未先在 Glama 认领被关) → 雷达重提 #18157 ⏳ / 官方 #4060 ⏳ / wong2 ❌双关闭。状态见 §Tier1-A |
 | 5 | **Hacker News — Show HN** | 社区讨论 | DR 90 | nofollow | 需账号+硬故事 | 中 | ✅ 高 | 用"审计了 13 万 skill,83% 无人审计"这个数据故事发,不是"看我的目录"。前 6h 全程回帖 |
 | 6 | **Product Hunt** | 工具目录/发布 | DR 90 | dofollow(产品页) | 需账号+发布日 | 中 | ✅ 高 | 单日流量+dofollow 大爆发;择 hunter、按 launch-playbook 走 |
 | 7 | **Reddit** r/ClaudeAI · r/mcp · r/LocalLLaMA · r/ChatGPTCoding | 社区讨论 | DR 90 | nofollow | 需养号真回答 | 中 | ✅ 高 | GEO 极高(ChatGPT ~12% / Perplexity ~18% 引 Reddit)。搜 "where find MCP servers" 类真问题作答 |
@@ -291,13 +291,14 @@ Happy to share the open dataset or a longer quote.
 ### A. GitHub awesome 列表 PR(状态版,07-10 大清点后)
 
 **在途(周一复盘 `gh pr list` 逐个查)**
-- [x] `punkpeye/awesome-mcp-servers` → PR #9142(4月开,07-10 刷新 130K)⏳
+- [x] `punkpeye/awesome-mcp-servers` → PR #18157(雷达重提;原 PR #9142 因未先在 Glama 认领被关)⏳
 - [x] `modelcontextprotocol/servers`(官方)→ PR #4060 ⏳
 - [x] `travisvn/awesome-claude-skills`(14K★)→ PR #965 ⏳
 - [x] `ComposioHQ/awesome-claude-skills`(67K★)→ PR #747(4月开,07-10 刷新)⏳
 - [x] `BehiSecc/awesome-claude-skills`(9.8K★)→ PR #445 ⏳
 
 **判死 / 暂缓(别再花时间)**
+- [x] ❌ `punkpeye/awesome-mcp-servers` PR #9142 — 因未先在 Glama 认领服务器,挂起 6 周后被维护者关闭(已在 Glama 认领并由雷达重提 #18157)
 - [x] ❌ `wong2/awesome-mcp-servers` — PR+issue 双关闭,只出不进
 - [x] ⏸ `hesreallyhim/awesome-claude-code`(49.7K★)— 暂停收件,重开后走 Web 表单(见战报)
 - [x] ❌ `e2b-dev/awesome-ai-agents` — agent 项目档案体,目录站不合格式
@@ -389,7 +390,7 @@ Happy to share the open dataset or a longer quote.
 |---|---|---|---|
 | travisvn/awesome-claude-skills | 14K | 新 PR [#965](https://github.com/travisvn/awesome-claude-skills/pull/965),Tools 区,"searchable directory…security grade" | ⏳ 待 merge |
 | BehiSecc/awesome-claude-skills | 9.8K | 新 PR [#445](https://github.com/BehiSecc/awesome-claude-skills/pull/445),Collections 区(agentskill.sh 旁),"open directory…" | ⏳ 待 merge |
-| punkpeye/awesome-mcp-servers | 最大 MCP 列表 | 存量 [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) 刷新:117K→130K(条目+标题) | ⏳ 待 merge(4 月开的) |
+| punkpeye/awesome-mcp-servers | 最大 MCP 列表 | 原存量 [#9142](https://github.com/punkpeye/awesome-mcp-servers/pull/9142) 因未先在 Glama 认领服务器被关；雷达已重提 [#18157](https://github.com/punkpeye/awesome-mcp-servers/pull/18157) | ❌ #9142 已关闭 → ⏳ #18157 在途 |
 | ComposioHQ/awesome-claude-skills | 67K | 存量 [#747](https://github.com/ComposioHQ/awesome-claude-skills/pull/747) 刷新:67K→130K + 安全分级定位(条目+PR 描述) | ⏳ 待 merge(4 月开的) |
 | modelcontextprotocol/servers(官方) | — | 存量 [#4060](https://github.com/modelcontextprotocol/servers/pull/4060) 仍 OPEN | ⏳ 待 merge |
 | wong2/awesome-mcp-servers | 4.2K | ❌ 07-10 实锤:仓库 **PR 和 issue 双关闭**("An owner has disabled the ability to open pull requests"),列表只出不进、纯站长自选 —— 划掉,不再碰 | ❌ 无路 |
@@ -404,7 +405,7 @@ Happy to share the open dataset or a longer quote.
 |---|---|---|---|---|---|
 | 2026-07-10 | travisvn/awesome-claude-skills | awesome PR | "searchable directory…SAFE/CAUTION/UNSAFE" | pending | PR #965 |
 | 2026-07-10 | BehiSecc/awesome-claude-skills | awesome PR | "open directory of 130,000+…" | pending | PR #445 |
-| 2026-07-10 | punkpeye #9142 / Composio #747 | 存量刷新 | 117K/67K → 130K + 安全分级 | pending | 数字保鲜 |
+| 2026-07-10 | punkpeye #9142 / Composio #747 | 存量刷新 | 117K/67K → 130K + 安全分级 | #9142 closed (未先认领 Glama，雷达重提 #18157) / #747 pending | 数字保鲜 |
 | 2026-07-10 | deepwiki.com | 自动收录 | 仓库页已存在(200) | ✅ | Tier1 划掉 |
 | 2026-07-10 | Zenodo | 数据集 DOI | [10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799) | ✅ live | DR 90+ · 可引用文献 |
 | 2026-07-10 | Dev.to | 教程文(2 dofollow) | [how-to-vet-an-mcp-server](https://dev.to/yansen_zhu_9b0dae1c4cc0da/how-to-vet-an-mcp-server-before-you-install-it-i-graded-130000-to-find-out-2gh6) | ✅ live | DR 90 |

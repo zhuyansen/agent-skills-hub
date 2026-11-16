@@ -166,17 +166,42 @@ def _meta(s: str, pattern: str) -> str:
     return html.unescape(m.group(1)).strip() if m else ""
 
 
+TABLE_CELLS_MIN = 30
+BOLD_MIN = 5
+H2_MIN, H2_MAX = 6, 12
+_BLUF_RE = re.compile(
+    r"\b(?:the\s+best\b[^.!?]{1,120}\b(?:is|are|depends\s+on)|our\s+(?:top\s+)?pick\b[^.!?]{0,80}\bis|top\s+pick\b)",
+    re.I,
+)
+_URL_YEAR_RE = re.compile(r"/best/[^/]*\b20\d{2}\b[^/]*/")
+_DATE_RE = re.compile(r"\b(20\d{2}-\d{2}-\d{2})\b")
+_YEAR_RE = re.compile(r"\b(20\d{2})\b")
+
+
 def parse(s: str) -> dict:
     body = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", s, flags=re.S | re.I)
     text = html.unescape(re.sub(r"<[^>]+>", " ", body))
     imgs = re.findall(r"<img\b[^>]*>", s, re.I)
+    words = _WORD.findall(text.lower())
+    ld_dates = re.findall(r'"(?:dateModified|lastReviewed)"\s*:\s*"(\d{4}-\d{2}-\d{2})"', s)
+    vis_dates = re.findall(
+        r"(?:Reviewed|Tested|Updated|Last\s+reviewed|Last\s+updated|实测|复核|更新)[^<\n]{0,40}?(\d{4}-\d{2}-\d{2})",
+        s,
+        re.I,
+    )
     return {
         "title": _meta(s, r"<title[^>]*>(.*?)</title>"),
         "description": _meta(s, r'<meta[^>]+name="description"[^>]+content="([^"]*)"'),
         "canonical": _meta(s, r'<link[^>]+rel="canonical"[^>]+href="([^"]*)"'),
         "robots": _meta(s, r'<meta[^>]+name="robots"[^>]+content="([^"]*)"'),
         "h1": [html.unescape(re.sub(r"<[^>]+>", "", h)).strip() for h in re.findall(r"<h1\b[^>]*>(.*?)</h1>", s, re.S | re.I)],
-        "words": _WORD.findall(text.lower()),
+        "h2": len(re.findall(r"<h2\b", body, re.I)),
+        "table_cells": len(re.findall(r"<t[dh]\b", body, re.I)),
+        "bold_spans": len(re.findall(r"<(?:strong|b)\b", body, re.I)),
+        "first_100_text": " ".join(text.split()[:100]),
+        "ld_dates": sorted(set(ld_dates)),
+        "vis_dates": sorted(set(vis_dates)),
+        "words": words,
         "kb": len(s.encode()) // 1024,
         "jsonld": len(re.findall(r'type="application/ld\+json"', s)),
         "imgs_bad": sum(1 for i in imgs if not re.search(r"\balt=", i) or not re.search(r"\bwidth=", i)),
@@ -227,6 +252,51 @@ def core(kw: str) -> str:
     return " ".join(words) or kw
 
 
+def _freshness_check(p: dict, today: date | None = None) -> tuple[str, str, str]:
+    """Check title year vs JSON-LD dateModified/lastReviewed & visible review dates."""
+    today = today or date.today()
+    today_iso = today.isoformat()
+    cur_year = today.year
+    title_years = [int(y) for y in _YEAR_RE.findall(p["title"] + " " + " ".join(p["h1"]))]
+    all_dates = sorted(set(p.get("ld_dates", []) + p.get("vis_dates", [])))
+    future = [d for d in all_dates if d > today_iso]
+    if future:
+        return ("标题年份与更新日期一致", "fail", f"存在未来日期: {', '.join(future)} (今天 {today_iso})")
+    if title_years and any(y > cur_year for y in title_years):
+        return ("标题年份与更新日期一致", "fail", f"标题含未来年份 {max(title_years)} (当前 {cur_year})")
+    if title_years and any(y < cur_year for y in title_years):
+        return ("标题年份与更新日期一致", "warn", f"标题含旧年份 {min(title_years)} (当前 {cur_year})")
+    if all_dates and title_years:
+        latest_year = int(all_dates[-1][:4])
+        if latest_year != max(title_years):
+            return ("标题年份与更新日期一致", "warn", f"标题 {max(title_years)} vs 页面日期 {all_dates[-1]}")
+    detail = f"标题 {max(title_years) if title_years else '无年份'} · 日期 {all_dates[-1] if all_dates else '动态刷新'}"
+    return ("标题年份与更新日期一致", "ok", detail)
+
+
+def _structure_checks(p: dict, url: str, today: date | None = None) -> list[tuple[str, str, str]]:
+    """Suski citation-structure metrics + URL/title freshness checks."""
+    cells = p.get("table_cells", 0)
+    bolds = p.get("bold_spans", 0)
+    h2s = p.get("h2", 0)
+    first100 = p.get("first_100_text", " ".join(p.get("words", [])[:100]))
+    has_bluf = bool(_BLUF_RE.search(first100))
+    url_has_year = bool(_URL_YEAR_RE.search(url))
+    return [
+        ("对比表单元格数", "ok" if cells >= TABLE_CELLS_MIN else "warn" if cells > 0 else "fail",
+         f"{cells} 格(目标 ≥{TABLE_CELLS_MIN})"),
+        ("加粗 verdict/span 数", "ok" if bolds >= BOLD_MIN else "warn",
+         f"{bolds} 处(目标 ≥{BOLD_MIN})"),
+        ("H2 数量", "ok" if H2_MIN <= h2s <= H2_MAX else "warn",
+         f"{h2s} 个(目标 {H2_MIN}–{H2_MAX}, ~8)"),
+        ("首 100 词直答(BLUF)", "ok" if has_bluf else "warn",
+         "首屏含肯定句直答" if has_bluf else "首 100 词缺 The best ... is / our pick is 直答"),
+        ("URL 不含年份", "fail" if url_has_year else "ok",
+         "URL 含年份(换年成死资产)" if url_has_year else url),
+        _freshness_check(p, today),
+    ]
+
+
 def _content_checks(p: dict, kw: str) -> list[tuple[str, str, str]]:
     n = len(p["words"])
     rank, top = ngram_rank(p["words"], core(kw))
@@ -241,9 +311,9 @@ def _content_checks(p: dict, kw: str) -> list[tuple[str, str, str]]:
     ]
 
 
-def checks(p: dict, kw: str, url: str) -> list[tuple[str, str, str]]:
+def checks(p: dict, kw: str, url: str, today: date | None = None) -> list[tuple[str, str, str]]:
     """(name, ok/warn/fail, detail) per check."""
-    return _meta_checks(p, kw, url) + _content_checks(p, kw)
+    return _meta_checks(p, kw, url) + _content_checks(p, kw) + _structure_checks(p, url, today)
 
 
 def score(results: list[tuple[str, str, str]]) -> int:

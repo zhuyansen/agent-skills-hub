@@ -92,6 +92,7 @@ export interface EnterpriseCopy {
     okTitle: string;
     okBody: string;
     fields: Record<string, string>;
+    howFoundOptions: string[];
     teamSizes: string[];
     timelines: string[];
     budgets: string[];
@@ -417,10 +418,19 @@ export const EN: EnterpriseCopy = {
       compliancePlaceholder: "SOC 2, ISO 42001, EU AI Act, HIPAA…",
       timeline: "Timeline",
       budget: "Estimated budget",
+      howFound: "How did you find us?",
       message: "Anything else?",
       messagePlaceholder:
         "Context, urgency, specific risks you're worried about…",
     },
+    howFoundOptions: [
+      "",
+      "ChatGPT / AI Search (Perplexity, Claude, Gemini)",
+      "Google / Bing Search",
+      "GitHub",
+      "X / Social",
+      "Other",
+    ],
     teamSizes: ["", "1–10", "10–50", "50–200", "200–1,000", "1,000+"],
     timelines: [
       "",
@@ -745,9 +755,18 @@ export const ZH: EnterpriseCopy = {
       compliancePlaceholder: "SOC 2、ISO 42001、欧盟 AI 法案、HIPAA…",
       timeline: "时间线",
       budget: "预算区间",
+      howFound: "你是从哪里找到我们的？ (How did you find us?)",
       message: "还有什么?",
       messagePlaceholder: "背景、紧迫度、你担心的具体风险…",
     },
+    howFoundOptions: [
+      "",
+      "ChatGPT / AI Search (Perplexity, Claude, Gemini)",
+      "Google / Bing Search",
+      "GitHub",
+      "X / Social",
+      "Other",
+    ],
     teamSizes: ["", "1–10", "10–50", "50–200", "200–1,000", "1,000+"],
     timelines: ["", "立即(本季度)", "1–3 个月", "3–6 个月", "只是了解"],
     budgets: [

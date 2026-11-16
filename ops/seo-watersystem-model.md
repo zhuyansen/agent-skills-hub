@@ -29,7 +29,7 @@
 | 构件 | v5 新增规则 | 出处 |
 |---|---|---|
 | ①a 传统权威 | 10-06 起停止购买 dofollow 外链;"平台捐赠页提权"作废(Stripe 回链是 ugc nofollow);读外链报告分清"失效外链"(指向我们失效网址的外链,3 条)和"站内失效页"(1.27 万,来自自己的链接) | 10-06 决定;07-24 实测;10-14 DataForSEO |
-| ①b GEO/AI 引用 | AI 引用的是文档、定价页和 GitHub,不是博客(20 题实测:skill 类 GitHub 43%,API 类文档+定价 63%);各家 AI 来源不同,ChatGPT 0/20,来访主要来自 Gemini 和豆包;水位加"搜索实测出现率" | `ops/research/geo-fanout-2026-10-14.md` |
+| ①b GEO/AI 引用 | AI 引用的是文档、定价页和 GitHub,不是博客(20 题实测:skill 类 GitHub 43%,API 类文档+定价 63%);各家 AI 来源不同,ChatGPT 0/20,来访主要来自 Gemini 和豆包;水位加"搜索实测出现率" | `ops/research/geo-fanout-2026-10-14.md`(10-14 实测纪要) |
 | ①c 平台原生 | GitHub 合集同时是 GEO 渠道;合集脚本生成、每日自动更新,署名带域名 | 同上 + `video-daily.yml` |
 | ② 品牌实体 | 同名分流(6 家叫 Agent Skills Hub,同名站排第一)→ alternateName + 对外统一写"品牌(域名)";**sameAs 只放同一个实体**,数据集单独建 Dataset;网站的 Wikidata 条目 08-09 因知名度被删,有 DOI 的数据集条目更站得住(Q141735092);Crunchbase 已上线 | 10-14/15 |
 | ③ 架构 | 先知道 N(计划收录多少页);关键词地图一个词组一个网址(/skill/ 管"是什么/怎么装/替代品",/audit/ 管"安不安全");多语言用独立网址 + hreflang,不靠脚本切换(Google 只读得到默认语言) | 10-14 N/M/X 复盘 |

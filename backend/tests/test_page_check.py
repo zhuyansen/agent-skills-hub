@@ -2,6 +2,7 @@
 import json
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ops/seo"))
@@ -67,6 +68,58 @@ def test_checks_flag_a_page_whose_card_text_outranks_its_keyword():
     assert results["词频榜(核心词)"] != "ok" and results["标题长度"] == "ok" and results["canonical"] == "ok"
 
 
+# --- Suski citation structure & freshness checks ------------------------------------------
+
+def test_structure_checks_pass_with_bluf_table_bold_h2_and_valid_dates():
+    cells = "".join("<td>cell</td>" for _ in range(36))
+    bolds = "".join("<strong>verdict</strong> " for _ in range(6))
+    h2s = "".join(f"<h2>Section {i}</h2>" for i in range(8))
+    html = (
+        f'<html><head><title>Code Review Skills: 180 Graded (2026)</title>'
+        f'<meta name="description" content="{"x" * 100}">'
+        f'<link rel="canonical" href="{PAGE.format("code-review")}">'
+        f'<script type="application/ld+json">{{"dateModified": "2026-10-08"}}</script>'
+        f'</head><body><h1>Best Code Review Skills in 2026</h1>'
+        f'<div class="bp-quick-pick">The best code review skills in 2026 is code-review-skill — best for PR review.</div>'
+        f'{bolds}{h2s}<table><tr>{cells}</tr></table></body></html>'
+    )
+    results = dict((n, s) for n, s, _ in pc.checks(
+        pc.parse(html), "code review skills", PAGE.format("code-review"), today=date(2026, 11, 16)
+    ))
+    assert results["对比表单元格数"] == "ok"
+    assert results["加粗 verdict/span 数"] == "ok"
+    assert results["H2 数量"] == "ok"
+    assert results["首 100 词直答(BLUF)"] == "ok"
+    assert results["URL 不含年份"] == "ok"
+    assert results["标题年份与更新日期一致"] == "ok"
+
+
+def test_structure_checks_flag_missing_bluf_url_year_and_stale_or_future_dates():
+    html_stale = (
+        '<html><head><title>Best Tools in 2025</title></head>'
+        '<body><h1>Best Tools in 2025</h1><p>Welcome to our directory of tools.</p></body></html>'
+    )
+    res_stale = dict((n, s) for n, s, _ in pc.checks(
+        pc.parse(html_stale), "best tools", PAGE.format("tools-2026"), today=date(2026, 11, 16)
+    ))
+    assert res_stale["对比表单元格数"] == "fail"
+    assert res_stale["加粗 verdict/span 数"] == "warn"
+    assert res_stale["H2 数量"] == "warn"
+    assert res_stale["首 100 词直答(BLUF)"] == "warn"
+    assert res_stale["URL 不含年份"] == "fail"
+    assert res_stale["标题年份与更新日期一致"] == "warn"
+
+    html_future = (
+        '<html><head><title>Best Tools (2026)</title>'
+        '<script type="application/ld+json">{"lastReviewed": "2026-12-31"}</script></head>'
+        '<body><h1>Best Tools (2026)</h1></body></html>'
+    )
+    res_future = dict((n, s) for n, s, _ in pc.checks(
+        pc.parse(html_future), "best tools", PAGE.format("tools"), today=date(2026, 11, 16)
+    ))
+    assert res_future["标题年份与更新日期一致"] == "fail"
+
+
 # --- which pages a deploy changed ----------------------------------------------------------
 
 def _repo(tmp_path, pages, desc):
@@ -99,3 +152,4 @@ def test_a_changed_generator_means_every_live_page(tmp_path, monkeypatch):
     (tmp_path / pc.SHARED_FILES[0]).write_text("// new layout")
     head = _repo(tmp_path, pages, {})
     assert pc.changed_slugs(base, head) == ["a", "b"]
+

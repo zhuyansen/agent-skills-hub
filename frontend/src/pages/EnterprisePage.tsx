@@ -36,6 +36,7 @@ interface FormState {
   compliance_requirements: string;
   timeline: string;
   estimated_budget: string;
+  how_found: string;
   message: string;
 }
 
@@ -58,6 +59,7 @@ const EMPTY_FORM: FormState = {
   compliance_requirements: "",
   timeline: "",
   estimated_budget: "",
+  how_found: "",
   message: "",
 };
 
@@ -570,6 +572,14 @@ export function EnterprisePage() {
                     onChange={(v) => onChange("use_case", v)}
                     required
                     maxLength={2000}
+                  />
+
+                  <FormSelect
+                    label={c.form.fields.howFound}
+                    value={form.how_found}
+                    onChange={(v) => onChange("how_found", v)}
+                    options={c.form.howFoundOptions}
+                    lang={lang}
                   />
 
                   {error && (

@@ -1,6 +1,6 @@
 ---
 title: We security-graded 117,854 AI agent skills. Here's what we found.
-published: false
+published: true
 description: Only 17.7% of the catalog is popular enough to be graded, 1 in 32 graded skills is unsafe, and the risk lives in the long tail — plus a new agent-native attack surface.
 tags: ai, security, opensource, mcp
 canonical_url: https://agentskillshub.top/blog/securing-117k-ai-skills/

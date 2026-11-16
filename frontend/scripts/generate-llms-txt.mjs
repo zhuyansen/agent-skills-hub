@@ -86,3 +86,9 @@ console.log(`llms.txt and skill.md: ${counts.total} skills, ${counts.graded} gra
 const ABOUT = join(DIST, "about", "index.html");
 writeFileSync(ABOUT, stampHomeCounts(readFileSync(ABOUT, "utf8"), counts));
 console.log(`/about/: ${counts.total} skills`);
+
+const AI_INFO = join(DIST, "ai-info", "index.html");
+if (existsSync(AI_INFO)) {
+  writeFileSync(AI_INFO, stampHomeCounts(readFileSync(AI_INFO, "utf8"), counts));
+  console.log(`/ai-info/: ${counts.total} skills, ${counts.graded} graded`);
+}

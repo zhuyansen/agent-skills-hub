@@ -39,39 +39,62 @@ function quickPick(scenario, skills) {
 }
 /** A page with an end-to-end test names the test's first pick (run.verdict), with the
  *  reason, not the most-starred entry: the two disagreed on the skill managers page. */
-function testedPickHtml(verdict, skills, itemCount, subject, scenario) {
+function testedPickHtml(verdict, skills, itemCount, subject, scenario, testedCount = 0) {
   const first = verdict.picks[0];
   const pick = skills.find((s) => s.repo_full_name.toLowerCase() === first.repo.toLowerCase());
   if (!pick) return "";
   // The pick is for a situation ("For a PowerPoint file a colleague will edit"), so the sentence says which.
   // verdict.basis: how we got there when it was not a run (the Telegram page read the source).
-  const [how, howZh] = verdict.basis || ["after testing them", "实测后"];
-  const lead = bi(`Of the ${itemCount} ${subject} here, our pick ${how} is `, `这 ${itemCount} 个${scenario.zhTitle}里，${howZh}的首选是 `);
-  const tail = bi(` (★ ${starsK(pick.stars)}). `, `（★ ${starsK(pick.stars)}）。`);
-  const why = bi(`${first.role[0]}: ${first.why[0]}`, `${first.role[1]}：${first.why[1]}`, "color:var(--bp-text-secondary);font-size:13px");
+  const [how, howZh] = verdict.basis || [
+    testedCount ? `after testing ${testedCount} of ${itemCount} tools` : `after testing ${itemCount} tools`,
+    testedCount ? `从 ${itemCount} 个工具中实测 ${testedCount} 个后` : `实测 ${itemCount} 个工具后`,
+  ];
+  const safeN = skills.filter((s) => s.security_grade === "safe").length;
+  const lead = bi(
+    `The best ${subject} in 2026 is `,
+    `2026 年最佳${scenario.zhTitle}是 `,
+  );
+  const roleEn = first.role[0].replace(/\.$/, "");
+  const roleZh = first.role[1].replace(/。$/, "");
+  const mid = bi(
+    ` (★ ${starsK(pick.stars)}, ${how}, ${safeN} of ${itemCount} rated SAFE) — best for: ${roleEn}. `,
+    `（★ ${starsK(pick.stars)}，${howZh}，${safeN}/${itemCount} 个通过 SAFE 安全评级）—— 适用人群/场景：${roleZh}。`,
+  );
+  const why = bi(first.why[0], first.why[1], "color:var(--bp-text-secondary);font-size:13px");
   const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${verdict.more?.[0] || "See the test →"}" data-zh="${verdict.more?.[1] || "看实测 →"}">${verdict.more?.[0] || "See the test →"}</a>`;
   // A name other entries share (several collections are called "skills") is shown with its owner.
   const shared = skills.filter((s) => s.repo_name === pick.repo_name).length > 1;
   const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(shared ? pick.repo_full_name : pick.repo_name)}</a>`;
   return `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
-        <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${why} ${more}</p>
+        <p style="flex:1;min-width:200px;margin:0">${lead}${link}${mid}${why} ${more}</p>
       </div>`;
 }
 
-export function quickPickHtml(scenario, skills, itemCount, subject, verdict = null) {
+export function quickPickHtml(scenario, skills, itemCount, subject, verdict = null, testedCount = 0) {
   if (!skills.length) return "";
-  if (verdict?.answer) return answerHtml(verdict);
-  const tested = verdict?.picks?.length ? testedPickHtml(verdict, skills, itemCount, subject, scenario) : "";
+  if (verdict?.answer) return answerHtml(verdict, subject, scenario, skills, itemCount);
+  const tested = verdict?.picks?.length
+    ? testedPickHtml(verdict, skills, itemCount, subject, scenario, testedCount)
+    : "";
   if (tested) return tested;
   const { pick, safe } = quickPick(scenario, skills);
   const stars = `★ ${starsK(pick.stars)}`;
+  const safeN = skills.filter((s) => s.security_grade === "safe").length;
   // The language toggle replaces each [data-zh] element's text, so the link stays
   // outside the translated pieces.
-  const lead = bi(`Of the ${itemCount} ${subject} here, the best one to start with is `,
-    `这 ${itemCount} 个${scenario.zhTitle}里，首选 `);
-  const tail = bi(safe ? ` (rated SAFE by our security scan, ${stars}).` : ` (${stars}).`,
-    safe ? `（安全扫描评级 SAFE，${stars}）。` : `（${stars}）。`);
+  const lead = bi(
+    `The best ${subject} in 2026 is `,
+    `2026 年最佳${scenario.zhTitle}是 `,
+  );
+  const tail = bi(
+    safe
+      ? ` (rated SAFE by our security scan, ${stars}; ${safeN} of ${itemCount} tools rated SAFE) — best for developers and AI agents needing ${subject.toLowerCase()}.`
+      : ` (${stars}; ${safeN} of ${itemCount} tools rated SAFE) — best for developers and AI agents needing ${subject.toLowerCase()}.`,
+    safe
+      ? `（安全扫描评级 SAFE，${stars}；共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`
+      : `（${stars}；共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`,
+  );
   const desc = bi(" " + descEn(pick).slice(0, QUICK_PICK_DESC),
     " " + (descZh(pick) || descEn(pick)).slice(0, QUICK_PICK_DESC), "color:var(--bp-text-secondary);font-size:13px");
   const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
@@ -82,11 +105,18 @@ export function quickPickHtml(scenario, skills, itemCount, subject, verdict = nu
 }
 /** A test whose answer is not one skill (the image page: no skill beat Claude Code alone on the text,
  *  so the pick is by look) says so in the box instead: verdict.answer, an [English, Chinese] pair. */
-function answerHtml(verdict) {
+function answerHtml(verdict, subject = "", scenario = {}, skills = [], itemCount = 0) {
   const [more, moreZh] = verdict.more || ["See the test →", "看实测 →"];
+  const safeN = skills.filter((s) => s.security_grade === "safe").length;
+  const prefix = subject
+    ? bi(
+        `The best ${subject} in 2026 depends on the visual style you want (${safeN} of ${itemCount} rated SAFE): `,
+        `2026 年最佳${scenario.zhTitle || subject}取决于你想要的画风（${itemCount} 个中 ${safeN} 个通过 SAFE 评级）：`,
+      )
+    : "";
   return `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
-        <p style="flex:1;min-width:200px;margin:0">${bi(...verdict.answer)} <a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${esc(more)}" data-zh="${esc(moreZh)}">${esc(more)}</a></p>
+        <p style="flex:1;min-width:200px;margin:0">${prefix}${bi(...verdict.answer)} <a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${esc(more)}" data-zh="${esc(moreZh)}">${esc(more)}</a></p>
       </div>`;
 }
 

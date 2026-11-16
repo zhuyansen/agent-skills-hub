@@ -14,6 +14,15 @@ import { trackEvent } from "./analytics";
  */
 export type LeadSource = "enterprise_page" | "audit_result";
 
+export const HOW_FOUND_OPTIONS = [
+  "",
+  "ChatGPT / AI Search (Perplexity, Claude, Gemini)",
+  "Google / Bing Search",
+  "GitHub",
+  "X / Social",
+  "Other",
+] as const;
+
 export interface LeadInput {
   email: string;
   use_case: string;
@@ -27,6 +36,7 @@ export interface LeadInput {
   message?: string;
   timeline?: string;
   estimated_budget?: string;
+  how_found?: string;
 }
 
 export interface LeadEvents {
@@ -78,10 +88,21 @@ export async function submitEnterpriseLead(
   events: LeadEvents,
   params: EventParams = {},
 ): Promise<void> {
-  trackEvent(events.attempt, params);
+  const howFound = input.how_found?.trim() || "";
+  const eventParams: EventParams = {
+    ...params,
+    how_found: howFound || "unset",
+  };
+  trackEvent(events.attempt, eventParams);
   try {
     if (!supabase) throw new Error("Supabase not configured.");
     const fallback = synthesised(input.email);
+    const combinedMessage = [
+      howFound ? `[How found: ${howFound}]` : "",
+      input.message?.trim() || "",
+    ]
+      .filter(Boolean)
+      .join("\n");
     const { error } = await supabase.rpc("submit_enterprise_lead", {
       p_full_name: input.full_name || fallback.name,
       p_email: input.email,
@@ -92,15 +113,16 @@ export async function submitEnterpriseLead(
       p_industry: input.industry || null,
       p_current_stack: input.current_stack || null,
       p_compliance_requirements: input.compliance_requirements || null,
-      p_message: input.message || null,
+      p_message: combinedMessage || null,
       p_timeline: input.timeline || null,
       p_estimated_budget: input.estimated_budget || null,
-      p_source: source,
+      p_source: howFound ? `${source}:${howFound}` : source,
     });
     if (error) throw error;
-    trackEvent(events.submitted, params);
+    trackEvent(events.submitted, eventParams);
   } catch (e) {
     trackEvent(events.failed, {
+      ...eventParams,
       reason: e instanceof Error ? e.message.slice(0, REASON_MAX) : "unknown",
     });
     throw e;
