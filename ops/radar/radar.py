@@ -47,6 +47,7 @@ Writes <report.md> and a JSON copy beside it.
 from __future__ import annotations
 
 import json
+import re
 import sys
 import urllib.parse
 from collections import Counter
@@ -61,6 +62,7 @@ import breakout  # noqa: E402
 import capcut  # noqa: E402
 import cpc_shadow  # noqa: E402
 import homepage_promos  # noqa: E402
+import meme_window  # noqa: E402
 import memes  # noqa: E402
 import review  # noqa: E402
 import signals  # noqa: E402
@@ -273,12 +275,21 @@ def _meme_picks(b: dict[str, dict], uc: dict[str, dict], today: date) -> tuple[l
     return out, held
 
 
+def _window(checks: str) -> str:
+    """The 做站体检 part of a lead's checks, without its label: '窗口正开,教程/模版 11-01 起成批出现 2 天'."""
+    found = re.search(re.escape(meme_window.LABEL) + r"([^｜]+)", checks or "")
+    return found.group(1) if found else ""
+
+
 def _meme_held(info: dict, t: dict, today: date) -> str:
     """Why a trend over Jev's bar is not a pick today; empty when it is one."""
     if t.get("now") == "fading":   # Trends already says it is falling, whatever the posts say
         return "Trends 在回落"
     if "已经挤了" in info["checks"]:   # four or more tool sites in Google's top 10 (meme_checks.CROWDED)
         return "Google 前 10 已经挤了"
+    window = _window(info["checks"])
+    if window and not window.startswith(meme_window.MAILED):   # the how-to wave is days old, or no AI version
+        return "体检:" + window
     if info["earliest"] is None:
         return "只在 YouTube 出现,看不出日期" if info["where"] == "YouTube" else "没有记下出现日期"
     if (today - info["earliest"]).days >= memes.PEAK_DAYS:
@@ -288,6 +299,18 @@ def _meme_held(info: dict, t: dict, today: date) -> str:
 
 def _meme_line(r: dict, info: dict, t: dict, today: date) -> str:
     left = memes.PEAK_DAYS - (today - info["earliest"]).days
+    window = _window(info["checks"])
+    checks = "｜".join(x for x in info["checks"].split("｜") if x and not x.startswith(meme_window.LABEL))
+    if window.startswith("窗口正开"):
+        when = f"窗口:{meme_window.LABEL}{window},**今天上线**。"
+    elif window.startswith("还早"):
+        when = (f"窗口:{meme_window.LABEL}{window}。**先备好模版,教程一成批出来就上线**;"
+                f"复查:`python3 ~/content/memetree/check.py \"{r['term']}\"`。")
+    else:
+        when = f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。"
+    w = r.get("window") or {}
+    detail = ";".join(x for x in (f"主要语种 {w['langs']}" if w.get("langs") else "", f"工具 {w['tools']}" if w.get("tools") else "",
+                                  "高频说法 " + "、".join(f"“{p}”" for p in w["phrases"][:2]) if w.get("phrases") else "") if x)
     demand = f",Google 估算日搜 {t['per_day']},{usecases.NOW_ZH.get(t.get('now'), '')}" if t.get("per_day") else ""
     what = r.get("what") or info["what"]
     top = next((p["url"] for p in r.get("posts", []) if p.get("url")), "")   # the most-liked post (memes.py)
@@ -295,8 +318,9 @@ def _meme_line(r: dict, info: dict, t: dict, today: date) -> str:
     return (f"**{r['term']}**:{kind}{',' + what if what else ''}。  \n"
             f"{memes.age_text(info['earliest'], info['edge'], today)};{info['where']} {info['posts']} 帖,"
             f"Jev 机会 {r['named']:.2f}{demand}。  \n"
-            + (f"{info['checks']}。  \n" if info["checks"] else "")
-            + f"窗口:梗约 {memes.PEAK_DAYS} 天见顶,还剩约 {left} 天,**今天上线**。{MEME_HOW[info['format'] if info['format'] in memes.FORMATS else '']}"
+            + (f"{checks}。  \n" if checks else "")
+            + (f"{detail}。  \n" if detail else "")
+            + f"{when}{MEME_HOW[info['format'] if info['format'] in memes.FORMATS else '']}"
             + _link("最热一条", top))
 
 

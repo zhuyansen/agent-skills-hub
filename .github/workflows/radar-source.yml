@@ -22,7 +22,9 @@ name: New-term radar · sources
 # AIsa: X once a day, 35 accounts at $0.003, about $0.105 a day; the trend searches about
 # $0.011 a run, $0.03 a day, plus one model call and Jev; for up to five new trends a run, the
 # comments under their top TikTok videos and Google's top 10 (meme_checks.py, about $0.02 a
-# run); Xiaohongshu and Douyin for three new apps a run, about $0.06 a run, $0.18 a day. The
+# run); the 做站体检 for up to five new leads a run (meme_window.py: when how-to posts came in numbers;
+# only 还早 and 窗口正开 are mailed), about $0.02 a lead, a term checked within 12 hours free;
+# Xiaohongshu and Douyin for three new apps a run, about $0.06 a run, $0.18 a day. The
 # charts are free (about 3 minutes and 190 Apolu pages a run). The new sites' Bluesky search,
 # t.co expansions and RDAP lookups are free; GoAnyAPI tags at most 10 of them a run with where
 # their visits come from ($0.002 each, at most $0.06 a day). The X vocabulary, HF's list and

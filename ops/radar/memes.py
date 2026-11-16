@@ -33,6 +33,7 @@ from pathlib import Path
 
 import aisa
 import meme_checks
+import meme_window
 
 WINDOW_DAYS = 7
 STATE = "memes.json.gz"
@@ -47,6 +48,7 @@ RISE_VALUE = 20          # a hashtag curve point at or above this has started ri
 WHAT = "做什么:"          # labels the trend's description in a lead's note (lead_note, read_note)
 MAX_MEMES = 12
 CHECKS_MAX = 5           # trends a run that get the comment and competition checks (meme_checks.py)
+WINDOW_CHECKS_MAX = CHECKS_MAX   # leads a run that get the 做站体检 (meme_window.py), about $0.02 each
 POST_CHARS = 160
 POSTS_PER_SOURCE = 25
 TAGS = 100
@@ -467,7 +469,7 @@ def memes(snaps: Path, today: date | None = None) -> dict:
     except Exception as exc:  # noqa: BLE001 — the trends still go out without it
         errors.append(f"评论:{' '.join(str(exc).split())[:80]}")
 
-    client, terms = jev(), []
+    client, terms, windows = jev(), [], 0
     for m in found:
         it = m.get("intent")
         m["score"] = opportunity(client, {"trend": m["name"], "what": m["what"], "today": today.isoformat(),
@@ -486,11 +488,21 @@ def memes(snaps: Path, today: date | None = None) -> dict:
                 except Exception as exc:  # noqa: BLE001
                     errors.append(f"{m['name']} 竞争:{' '.join(str(exc).split())[:60]}")
             m["checks"] = meme_checks.summary(m)
+            # Is the window open, by when how-to posts came in numbers (meme_window.py)? The mail
+            # keeps only 还早 and 窗口正开 (radar._meme_held); an error leaves the lead unchecked.
+            if windows < WINDOW_CHECKS_MAX:
+                windows += 1
+                try:
+                    m["window"], c = meme_window.check(m["query"], snaps, today)
+                    cost += c
+                    m["checks"] = "｜".join(x for x in (m["checks"], m["window"]["line"]) if x)
+                except Exception as exc:  # noqa: BLE001
+                    errors.append(f"{m['name']} 体检:{' '.join(str(exc).split())[:60]}")
             top = max(m["posts"], key=lambda p: p["likes"] or p["views"] / 50, default=None)
             # `named` carries Jev's opportunity score: radar.judge() skips meme rows, so it is
             # what radar_leads keeps and the daily report's picks read back (radar.picks)
             terms.append({"term": m["query"], "recent": len(m["posts"]), "named": m["score"], "what": m["what"],
-                          "checks": m["checks"], "format": m["format"],
+                          "checks": m["checks"], "format": m["format"], "window": m.get("window"),
                           # the daily picks get only this note back from radar_leads (read_note)
                           "note": lead_note(m),
                           "examples": [m["what"], *(p["text"] for p in m["posts"][:2])], "variants": [m["query"], m["name"]],
@@ -543,7 +555,7 @@ def section(b: dict) -> list[str]:
             f"{m['score']:.2f}" if m["score"] is not None else "—"
         kind = {"image": "图片", "video": "视频"}.get(m.get("format") or guess_format(m["name"], m["what"]), "看不出")
         lines.append(f"| {'🆕 ' if m['new'] else ''}**{m['name']}** | {kind} | {m['query']} | {m['what'].replace('|', '/')} | {where} | "
-                     f"{hot} | {curve} | {score} | {meme_checks.summary(m) or '—'} | {_first_cell(m, today)} |")
+                     f"{hot} | {curve} | {score} | {(m.get('checks') or meme_checks.summary(m) or '—').replace('|', '/')} | {_first_cell(m, today)} |")
     lines += ["", "Jev 机会 = Jev 判断“现在做一个单功能站或应用让人做自己的版本，这周能不能卖出去”。"
               f"梗大约 {PEAK_DAYS} 天见顶，85% 的钱在头 72 小时(Bulin 47 的复盘),看到就要当天动手。" + AGE_NOTE]
     return lines
