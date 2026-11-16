@@ -65,6 +65,17 @@ uvicorn app.main:app --reload
 # Manual data sync
 cd backend && python sync_runner.py
 
+# Backend tests (pytest, from backend/ with venv active) — not run in CI, run them yourself
+cd backend && source venv/bin/activate
+python -m pytest tests/                                  # all
+python -m pytest tests/test_scorer.py -k <test_name>     # single file / single testruff check .                                             # lint (config: backend/ruff.toml)
+# Tests for ops/radar/* also live in backend/tests (test_radar*.py); they add ops/radar to sys.path.
+
+# Frontend script tests (node:test, one npm script per area — see package.json "test:*")
+cd frontend && npm run test:redirects
+cd frontend && node --test scripts/home-counts.test.mjs  # any single test file
+cd frontend && npm run test:scenarios                    # scenario-search regression check
+
 # Newsletter (only sends on Mondays; use --force for testing)
 cd backend && python newsletter_runner.py --force
 ```
@@ -79,11 +90,13 @@ cd backend && python newsletter_runner.py --force
 
 ### Frontend (`frontend/`)
 - React 19 + React Router 7 + Tailwind CSS 4 + Vite
-- Pages: Home, SkillDetailPage, CategoryPage, ComparePage, VerifyEmailPage, Admin
+- Pages live in `src/pages/` (Home, SkillDetail, SubSkill, Category, Compare, Author, Book, Pro, Submit, Directories, admin/…)
+- Data access: `src/api/supabaseClient.ts` (reads), `supabaseSearch.ts` (search), `supabaseWrite.ts` (the few anon-allowed writes)
 - Dark mode: class-based via `@custom-variant dark (&:where(.dark, .dark *))` in `index.css`
 - i18n: Chinese/English via `src/i18n/`
-- SEO: Build-time sitemap generation (5 XML files) + pre-rendered skill pages via `scripts/`
 - All category/skill URLs must use trailing slashes (GitHub Pages redirects without them → 301)
+
+**Two rendering layers.** The SPA is only half the site. After `vite build`, `npm run build` runs ~19 `scripts/generate-*.mjs` scripts that query Supabase and write static HTML into `dist/` (skill pages, sub-skill pages, author/audit/scenario/comparison/book/daily pages, zh home, badges, RSS, search index, sitemaps, `llms.txt`). Static pages use `bp-`-prefixed CSS classes. If a change affects what crawlers see on a skill/category page, it usually belongs in a generator script, not (only) in a React component. `generate-sitemap.mjs` must run after every page generator; keep that order in `package.json`.
 
 ### Backend (`backend/`)
 - FastAPI with SQLAlchemy 2.0, entry point: `app/main.py`
@@ -106,6 +119,16 @@ Important: No `star_velocity` column on `skills` — compute as `(stars - prev_s
 - `sync.yml`: Every 8 hours, tops up the `extra_repos` backfill queue (`backfill_extra_repos.py`), then runs `sync_runner.py` against Supabase
 - `deploy.yml`: On push to main (or after sync), builds frontend and deploys to GitHub Pages
 - `newsletter.yml`: Mondays 9:00 UTC, sends weekly trending email to verified subscribers
+- ~20 other scheduled jobs (daily report, radar, README backfill, renamed repos, stale refresh, sub-skills, page checks, SEO scoreboard, analytics…). Each workflow's header comment explains its schedule and side effects — read it before changing the script it runs.
+
+### Ops (`ops/`)
+Operational scripts and working docs that are not part of the site build: the new-term radar (`ops/radar/radar.py`, run by `radar-daily.yml` / `radar-source.yml`, mails via Resend and writes only `radar_leads`), analytics/GSC digests, monthly reports, outreach and SEO playbooks. `ops/SEO-README.md` says which SEO doc wins when they conflict. Many `ops/*-runs/` dirs are run artifacts, not code.
+
+### Migrations
+`supabase/migrations/NNN_description.sql`, numbered sequentially; take the next number. See Review Triggers / Hard Stops below.
+
+### Vocabulary
+`CONTEXT.md` pins the project's terms (Skill vs Repo, Score vs Quality Score, Star Velocity, Master, Verified Creator…). Use those words in code, copy and commits.
 
 ## Environment
 

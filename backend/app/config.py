@@ -31,7 +31,9 @@ class Settings(BaseSettings):
     email_from: str = "Agent Skills Hub <noreply@agentskillshub.top>"
     site_url: str = "https://agentskillshub.top"
 
-    model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    # extra="ignore": backend/.env also holds keys read straight from os.environ by scripts that
+    # don't go through Settings (e.g. TYPESAFE_API_KEY in services/cold_start_prior.py).
+    model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
 settings = Settings()
