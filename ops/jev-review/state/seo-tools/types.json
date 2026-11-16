@@ -4878,5 +4878,37 @@
    "marketing": 0.11
   },
   "kind": "geo"
+ },
+ {
+  "repo": "tipsai/product-seo",
+  "stars": 20,
+  "description": "SEO skill for Claude Code and Codex: grow signups from search using your own Search Console data. Built from real work, not a checklist.",
+  "scores": {
+   "suite": 0.83,
+   "audit": 0.1,
+   "research": 0.23,
+   "data_mcp": 0.03,
+   "geo": 0.13,
+   "content": 0.62,
+   "links": 0.06,
+   "marketing": 0.04
+  },
+  "kind": "suite"
+ },
+ {
+  "repo": "Advance-Labs/aeo-toolkit",
+  "stars": 5,
+  "description": "Open-source suite of ten AEO / technical-SEO / AI-visibility tools — a TypeScript monorepo (crawl→parse→score engine + MCP servers + content agents).",
+  "scores": {
+   "suite": 0.45,
+   "audit": 0.9,
+   "research": 0.05,
+   "data_mcp": 0.31,
+   "geo": 0.98,
+   "content": 0.07,
+   "links": 0.05,
+   "marketing": 0.2
+  },
+  "kind": "geo"
  }
 ]

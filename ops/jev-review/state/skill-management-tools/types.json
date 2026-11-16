@@ -2770,5 +2770,47 @@
    "general": 0.17
   },
   "kind": "cli"
+ },
+ {
+  "repo": "yourconscience/tackroom",
+  "stars": 9,
+  "description": "Dotfiles for your AI agents: one ~/.agents repo for skills, MCP servers, hooks, agent roles and memory, synced natively into 15 coding agents (Claude Code, Codex, Antigravity CLI, Cursor, Pi, OpenCode and more). Commit-pinned, audited externals.",
+  "scores": {
+   "cli": 0.55,
+   "sync": 0.96,
+   "app": 0.52,
+   "registry": 0.06,
+   "team": 0.18,
+   "general": 0.96
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "avalonreset/cto-legends",
+  "stars": 7,
+  "description": "Agent skills manager that registers one router skill with Claude Code, Codex or another coding agent, routes plain-English goals to 21 open-source modules and previews every hub change until --apply.",
+  "scores": {
+   "cli": 0.79,
+   "sync": 0.33,
+   "app": 0.08,
+   "registry": 0.68,
+   "team": 0.09,
+   "general": 0.15
+  },
+  "kind": "cli"
+ },
+ {
+  "repo": "Ramtoi/skill-tree",
+  "stars": 5,
+  "description": "A skill registry and project linker for Claude Code, Codex, Pi, and opencode — one canonical home for your agent skills, organised into bundles and synced to every project. CLI + Tauri desktop app.",
+  "scores": {
+   "cli": 0.45,
+   "sync": 0.66,
+   "app": 0.91,
+   "registry": 0.63,
+   "team": 0.14,
+   "general": 0.86
+  },
+  "kind": "general"
  }
 ]

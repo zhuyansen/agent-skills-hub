@@ -9358,5 +9358,203 @@
    "general": 0.04
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "YKLovePython/halfsize",
+  "stars": 105,
+  "description": "Compress any video to an exact size (Discord 20 MB, WeChat 20 MB, WhatsApp 16 MB) locally with FFmpeg. HDR is tone-mapped to SDR, VMAF/SSIM prove the quality, and it runs as an MCP server for AI agents.",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.09,
+   "music": 0.03,
+   "motion": 0.02,
+   "shorts": 0.04,
+   "editing": 0.15,
+   "demo": 0.14,
+   "story": 0.03,
+   "avatar": 0.03,
+   "general": 0.08
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "garycaogan/gary-pixel-diary",
+  "stars": 22,
+  "description": "用代码复刻“像素角色 + 对话框”类爆款视频：分集 JSON → HyperFrames 出片，附 Claude Code 复刻方法 skill",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.5,
+   "music": 0.08,
+   "motion": 0.15,
+   "shorts": 0.1,
+   "editing": 0.05,
+   "demo": 0.4,
+   "story": 0.71,
+   "avatar": 0.2,
+   "general": 0.06
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "qualixar/brief2mp4",
+  "stars": 8,
+  "description": "Text to motion graphics for Claude Code and Codex: write a brief, get a checked MP4. 2D explainers, Shorts, maths, 3D products, editing. macOS, Windows, Linux. MIT.",
+  "scores": {
+   "promo": 0.46,
+   "explainer": 0.74,
+   "music": 0.08,
+   "motion": 0.39,
+   "shorts": 0.57,
+   "editing": 0.06,
+   "demo": 0.61,
+   "story": 0.43,
+   "avatar": 0.06,
+   "general": 0.65
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "suiyang-meta/sui-motion-graphic-reel",
+  "stars": 7,
+  "description": "用代码做出有设计感的动画 Reel：一个 Claude Code skill（design system → 分镜 → 渲染前审片 → 出片）· by @asksui.ai",
+  "scores": {
+   "promo": 0.6,
+   "explainer": 0.4,
+   "music": 0.08,
+   "motion": 0.79,
+   "shorts": 0.8,
+   "editing": 0.03,
+   "demo": 0.24,
+   "story": 0.16,
+   "avatar": 0.06,
+   "general": 0.11
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "itwanger/one-minute-remotion",
+  "stars": 5,
+  "description": "Vibe 知识大赏｜把数理化生与 AI 知识做成 1–2 分钟中文科普视频的 Agent Skill。写稿、配音、Remotion 动画、逐章审片与 MP4 出片，支持暖米几何和孟菲斯画风。",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.44,
+   "shorts": 0.09,
+   "editing": 0.1,
+   "demo": 0.11,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "nxrskyaa/motionite",
+  "stars": 5,
+  "description": "Motionite by NxrLabs — motion design skill for AI agents (Remotion). 15 NxrStyles, 70 techniques.",
+  "scores": {
+   "promo": 0.65,
+   "explainer": 0.49,
+   "music": 0.18,
+   "motion": 0.55,
+   "shorts": 0.48,
+   "editing": 0.04,
+   "demo": 0.49,
+   "story": 0.13,
+   "avatar": 0.06,
+   "general": 0.64
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "itwanger/vibe-science",
+  "stars": 5,
+  "description": "VibeScience · 让知识动起来。面向 Claude Code、Codex、DeepSeek Harness 的中文数理化生科普视频 Skill，含 Remotion 动画与可运行样例。",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.98,
+   "music": 0.03,
+   "motion": 0.61,
+   "shorts": 0.12,
+   "editing": 0.07,
+   "demo": 0.39,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.21
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "jdrurka/explainer-skill",
+  "stars": 5,
+  "description": "Claude Code skill: turn any topic into a narrated, captioned explainer video, voiced by Fish Audio Drama 3",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.36,
+   "shorts": 0.89,
+   "editing": 0.04,
+   "demo": 0.22,
+   "story": 0.11,
+   "avatar": 0.05,
+   "general": 0.04
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "manoletre/explainer-video",
+  "stars": 5,
+  "description": "Claude Code skill: narrated, 3Blue1Brown-style explainer videos of papers, animated with ManimGX and voiced locally by LFM2.5-Audio",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.17,
+   "shorts": 0.08,
+   "editing": 0.04,
+   "demo": 0.21,
+   "story": 0.05,
+   "avatar": 0.04,
+   "general": 0.12
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "shasshhaank/ClipIt",
+  "stars": 5,
+  "description": "ClipIt: a Claude skill that turns long videos into short-form clips and clean, beat-synced fan edits (9:16)",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.12,
+   "music": 0.62,
+   "motion": 0.15,
+   "shorts": 0.96,
+   "editing": 0.98,
+   "demo": 0.2,
+   "story": 0.09,
+   "avatar": 0.04,
+   "general": 0.1
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "dan2756/ReelForge",
+  "stars": 5,
+  "description": "ReelForge lets Claude Code or Codex make faceless short videos for TikTok, YouTube Shorts, Instagram Reels and X, then shows you how each one does once you've posted it.",
+  "scores": {
+   "promo": 0.4,
+   "explainer": 0.5,
+   "music": 0.11,
+   "motion": 0.11,
+   "shorts": 0.86,
+   "editing": 0.05,
+   "demo": 0.77,
+   "story": 0.13,
+   "avatar": 0.06,
+   "general": 0.13
+  },
+  "kind": "shorts"
  }
 ]

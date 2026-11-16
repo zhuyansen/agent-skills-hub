@@ -15790,5 +15790,39 @@
   "days": 160,
   "stars_per_day": 40.15625,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "diego3g/craft",
+  "name": "craft",
+  "stars": 55,
+  "description": "Design skills for AI agents: /craft-setup writes your design brief, /craft designs screens with every state from your design system and reviews them. Works with Paper, Figma or HTML.",
+  "topics": [
+   "agent-skills",
+   "claude-code",
+   "claude-code-plugin",
+   "design-system",
+   "figma",
+   "paper",
+   "ui-design"
+  ],
+  "created": "2026-11-15",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7491,
+  "names_model": false,
+  "on_subject": 0.98,
+  "is_software": 0.98,
+  "shows_result": 0.1,
+  "one_command_start": 0.72,
+  "specific_outcome": 0.79,
+  "complete_docs": 0.37,
+  "novel_angle": 0.54,
+  "shareable_output": 0.79,
+  "quality": 0.495,
+  "tier": "低",
+  "hit_prior": 0.47666666666666674,
+  "days": 1,
+  "stars_per_day": 55.0,
+  "verdict": "low_quality"
  }
 ]

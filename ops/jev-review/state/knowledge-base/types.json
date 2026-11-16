@@ -5360,5 +5360,33 @@
    "personal": 0.17
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "1llu50ry/Decompile",
+  "stars": 574,
+  "description": "MCP (Model Context Protocol) server for game hacking & reverse engineering. A structured knowledge base of 4,100+ skills with full source code archives, specialized agents, and workflow tools -- designed to be plugged into Claude, Cursor, or any MCP-compatible client.",
+  "scores": {
+   "llm_wiki": 0.19,
+   "rag_platform": 0.19,
+   "mcp": 0.95,
+   "docs_qa": 0.8,
+   "graph": 0.17,
+   "personal": 0.13
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "scub-france/docling-Studio",
+  "stars": 277,
+  "description": "Chunkless RAG for AI agents, powered by Docling. Parse your PDFs, inspect every title, table and box on the page, then let any MCP client (Claude, Cursor…) read only the sections it needs under a token budget and cite exact, server-verified passages. No chunks, no embeddings, no vector store.",
+  "scores": {
+   "llm_wiki": 0.05,
+   "rag_platform": 0.67,
+   "mcp": 0.71,
+   "docs_qa": 0.9,
+   "graph": 0.12,
+   "personal": 0.08
+  },
+  "kind": "docs_qa"
  }
 ]

@@ -4072,5 +4072,103 @@
    "rules": 0.78
   },
   "kind": "writing"
+ },
+ {
+  "repo": "erkamyaman/unslopovich",
+  "stars": 143,
+  "description": "Your app looks AI-generated. Dr. Unslopovich noticed. An agent skill that finds and fixes AI-looking UI and UX in mobile apps, web apps, and websites.",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.58,
+   "chinese": 0.02,
+   "code": 0.15,
+   "design": 0.94,
+   "rules": 0.8
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "weijt606/anti-vibe-writing",
+  "stars": 135,
+  "description": "Make AI writing sound human, in English and 中文. A Claude Code / Codex / any-agent skill that strips templated phrasing, consultant-speak, markdown clutter, em-dashes, and copy-paste model residue while keeping the meaning.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.36,
+   "chinese": 0.49,
+   "code": 0.12,
+   "design": 0.09,
+   "rules": 0.93
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "AvCompDev/humanizer-en",
+  "stars": 8,
+  "description": "Claude skill: edit English prose to remove filler and templated phrasing while preserving facts and voice. English adaptation of op7418/humanizer-zh.",
+  "scores": {
+   "writing": 0.8,
+   "detector": 0.06,
+   "chinese": 0.05,
+   "code": 0.06,
+   "design": 0.05,
+   "rules": 0.93
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "adrianhaj/ste80",
+  "stars": 6,
+  "description": "STE80 Humanizer: agent skill",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.55,
+   "chinese": 0.03,
+   "code": 0.13,
+   "design": 0.05,
+   "rules": 0.72
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "kimhons/humanize",
+  "stars": 5,
+  "description": "Anti-slop framework for Claude Code: skill + scorer + agent + hook + always-on rule. 38 AI-writing patterns, domain-aware (academic / docs / blog / commit). Extends @blader/humanizer.",
+  "scores": {
+   "writing": 0.82,
+   "detector": 0.98,
+   "chinese": 0.05,
+   "code": 0.16,
+   "design": 0.06,
+   "rules": 0.87
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "wwewtech/anti-slop-design",
+  "stars": 5,
+  "description": "Anti-slop frontend & UI/UX engineering skill for AI agents. Cures vibe-coded software from AI design clichés, enforces 1-to-3 UX hierarchy, tactile micro-interactions, and 7-axis pre-emit quality gating.",
+  "scores": {
+   "writing": 0.12,
+   "detector": 0.3,
+   "chinese": 0.02,
+   "code": 0.49,
+   "design": 0.95,
+   "rules": 0.89
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "etodanik/deslop",
+  "stars": 5,
+  "description": "Use psycholinguistics to deslop your agent's sloppy prose",
+  "scores": {
+   "writing": 0.94,
+   "detector": 0.97,
+   "chinese": 0.04,
+   "code": 0.21,
+   "design": 0.06,
+   "rules": 0.87
+  },
+  "kind": "detector"
  }
 ]

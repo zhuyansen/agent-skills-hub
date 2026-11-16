@@ -3764,5 +3764,19 @@
    "mcp": 0.14
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "AlbertAZ1992/image-skillbook",
+  "stars": 5,
+  "description": "Open-source AI image Skills and GPT Image prompt recipes for Codex—turn photos into doodle stories, crayon art, enamel keepsakes, rubber stamps, editorial paintings, and impasto worlds.",
+  "scores": {
+   "gpt_image": 0.8,
+   "nano_banana": 0.02,
+   "open_models": 0.06,
+   "editing": 0.11,
+   "design": 0.06,
+   "mcp": 0.08
+  },
+  "kind": "gpt_image"
  }
 ]

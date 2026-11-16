@@ -1594,7 +1594,8 @@
     "abbosahmad/telegram-premium-emojis",
     "turmyshevd/openclawgotchi",
     "1995parham/ELBoT",
-    "nguyencaotai1969/telegram-bot-router"
+    "nguyencaotai1969/telegram-bot-router",
+    "hlibsuslov/telegram-bot-ui"
    ],
    "exclude_repos": [
     "smixs/iva",
@@ -2048,7 +2049,8 @@
     "krowten/claude-media-generation",
     "klarkxy/ai-gallery",
     "niobium617/prompt-reverse-engineer-skill",
-    "walkskysu/digital-human-koubo-comfyui"
+    "walkskysu/digital-human-koubo-comfyui",
+    "AlbertAZ1992/image-skillbook"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2213,10 +2215,15 @@
     "benzgasfuncring197110/blender-ai-copilot-bridge",
     "ezpeezee/beta-version-blox-studio",
     "codepawl/crucible",
-    "duosheng/threejs-to-3d-model"
+    "duosheng/threejs-to-3d-model",
+    "HRuiCcc/RuiC-card-skill",
+    "BetaVersionHQ/beta-version-toon-studio",
+    "BetaVersionHQ/beta-version-blox-studio"
    ],
    "exclude_repos": [
-    "codepawl/67.js"
+    "codepawl/67.js",
+    "ezpeezee/beta-version-blox-studio",
+    "ezpeezee/beta-version-toon-studio"
    ]
   },
   "related": [
@@ -3415,7 +3422,6 @@
     "AlexanderAbramovPav/youtube-advisor",
     "Lvyizhuo/MyProject-SDAgent",
     "max-ramas/rms-memory-mcp",
-    "1llu50ry/mcp-reverse",
     "poco-ai/Agentero",
     "thomasunise/casecite",
     "ckryptickunal/OpenWiki",
@@ -3437,7 +3443,9 @@
     "kapillamba4/code-memory",
     "lemoncloud-io/doki",
     "crow-hq/llm-wiki-v2",
-    "The-40-Thieves/reliquary-tc"
+    "The-40-Thieves/reliquary-tc",
+    "1llu50ry/Decompile",
+    "scub-france/docling-Studio"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -3462,7 +3470,8 @@
     "bodepudimuneendra-netizen/laya-jev-GraphRAG",
     "dmayboroda/minima",
     "viddexa/autollm",
-    "xingranya/GitHub-Stars-AI-Tools"
+    "xingranya/GitHub-Stars-AI-Tools",
+    "1llu50ry/mcp-reverse"
    ]
   },
   "related": [
@@ -3796,7 +3805,10 @@
     "rohitg00/skillkit",
     "javimosch/supercli",
     "phillarmonic/repertoire-ai",
-    "onur-aslan/sdd"
+    "onur-aslan/sdd",
+    "yourconscience/tackroom",
+    "avalonreset/cto-legends",
+    "Ramtoi/skill-tree"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4710,7 +4722,14 @@
     "Dodaios/ste80-humanizer",
     "anhnx000/viet-nhu-nguoi",
     "cdrcthv/deslop",
-    "geonwoo-jeong/japanese-humanizer"
+    "geonwoo-jeong/japanese-humanizer",
+    "erkamyaman/unslopovich",
+    "weijt606/anti-vibe-writing",
+    "AvCompDev/humanizer-en",
+    "adrianhaj/ste80",
+    "kimhons/humanize",
+    "wwewtech/anti-slop-design",
+    "etodanik/deslop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5227,7 +5246,9 @@
     "vamsireddy4/search-os",
     "Anas660/claude-seo-desk",
     "micaelgomestavares/aeo-geo-bestpractices",
-    "aivisibilitycensus/geo-skills"
+    "aivisibilitycensus/geo-skills",
+    "tipsai/product-seo",
+    "Advance-Labs/aeo-toolkit"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5745,7 +5766,8 @@
     "carrapido/rob-janoff-design",
     "obaid1dev/dea",
     "superdesigndev/superdesign-prompts",
-    "JimLiu/open-artifacts"
+    "JimLiu/open-artifacts",
+    "diego3g/craft"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6861,7 +6883,8 @@
     "Cennyk-learner/ppt-cinematic-animation",
     "JamieJustTang/svg2pptx-skill",
     "HututuWorks/journal-club-ppt",
-    "Meyt1n/web-to-editable-slides"
+    "Meyt1n/web-to-editable-slides",
+    "jernejk/talk-deck-template"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8938,7 +8961,18 @@
     "lewislf/claude-code-video-studio",
     "Tu-Zhenzhao/pocketworld",
     "rocksstarcode/hyperframes-video-polish",
-    "AmadeusBio-ai/Molecular_Animation"
+    "AmadeusBio-ai/Molecular_Animation",
+    "YKLovePython/halfsize",
+    "garycaogan/gary-pixel-diary",
+    "qualixar/brief2mp4",
+    "suiyang-meta/sui-motion-graphic-reel",
+    "itwanger/one-minute-remotion",
+    "nxrskyaa/motionite",
+    "itwanger/vibe-science",
+    "jdrurka/explainer-skill",
+    "manoletre/explainer-video",
+    "shasshhaank/ClipIt",
+    "dan2756/ReelForge"
    ],
    "sub_skills": [
     {
@@ -8984,7 +9018,8 @@
     "blixvip/easyedit",
     "jjietay/kaleidoscope",
     "krusemediallc/video-editor-agent",
-    "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill"
+    "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill",
+    "garycaogan/pixel-diary"
    ],
    "tag_matches": [],
    "required_keywords": [

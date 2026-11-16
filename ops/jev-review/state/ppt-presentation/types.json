@@ -3778,5 +3778,19 @@
    "general": 0.13
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "jernejk/talk-deck-template",
+  "stars": 5,
+  "description": "AI-first talk decks in plain HTML: your coding agent builds the slides, QA checks every one, and it all runs offline.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.18,
+   "convert": 0.14,
+   "general": 0.12
+  },
+  "kind": "html"
  }
 ]

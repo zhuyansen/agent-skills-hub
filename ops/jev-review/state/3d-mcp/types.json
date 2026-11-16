@@ -3390,5 +3390,53 @@
    "gen3d": 0.66
   },
   "kind": "web3d"
+ },
+ {
+  "repo": "HRuiCcc/RuiC-card-skill",
+  "stars": 672,
+  "description": "全息闪卡通用 Agent Skill，不挑宿主、多模态模型都能用：一句话生成可拖转、会流光、带层次景深的 3D 闪卡网页，附可编辑 Blender 工程 · A host-agnostic Agent Skill: turn one sentence into an interactive 3D holographic card page with layered parallax, plus an editable Blender project.",
+  "scores": {
+   "blender": 0.29,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.05,
+   "dcc": 0.02,
+   "web3d": 0.89,
+   "gen3d": 0.31
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "BetaVersionHQ/beta-version-toon-studio",
+  "stars": 12,
+  "description": "Turn an idea or your own script into a 9:16 animated cartoon short with Claude Code and Blender.",
+  "scores": {
+   "blender": 0.66,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.09
+  },
+  "kind": "blender"
+ },
+ {
+  "repo": "BetaVersionHQ/beta-version-blox-studio",
+  "stars": 8,
+  "description": "Turn an idea or your own script into a 9:16 blocky 3D animated short with Claude Code and Blender.",
+  "scores": {
+   "blender": 0.84,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.03,
+   "gen3d": 0.19
+  },
+  "kind": "blender"
  }
 ]

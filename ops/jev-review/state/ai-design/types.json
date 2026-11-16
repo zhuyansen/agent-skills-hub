@@ -3008,5 +3008,19 @@
    "review": 0.2
   },
   "kind": "ui"
+ },
+ {
+  "repo": "diego3g/craft",
+  "stars": 55,
+  "description": "Design skills for AI agents: /craft-setup writes your design brief, /craft designs screens with every state from your design system and reviews them. Works with Paper, Figma or HTML.",
+  "scores": {
+   "ui": 0.89,
+   "system": 0.91,
+   "tool_mcp": 0.46,
+   "to_code": 0.43,
+   "graphics": 0.11,
+   "review": 0.77
+  },
+  "kind": "system"
  }
 ]

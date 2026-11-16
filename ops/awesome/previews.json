@@ -239,6 +239,14 @@
   "type": "image/gif",
   "bytes": 6278613
  },
+ "Advance-Labs/aeo-toolkit": {
+  "repo": "Advance-Labs/aeo-toolkit",
+  "url": "https://raw.githubusercontent.com/Advance-Labs/aeo-toolkit/HEAD/brand/aeo-toolkit-mark-256.png",
+  "alt": "AEO Toolkit mark: a faceted sphere in dusk and ink",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 18176
+ },
  "Aestheticsuraj234/chai-ai-code-reviewer": {
   "repo": "Aestheticsuraj234/chai-ai-code-reviewer",
   "url": "https://raw.githubusercontent.com/Aestheticsuraj234/chai-ai-code-reviewer/HEAD/public/93506170-1cba-4fd5-b466-a1348ad9bd3a.png",
@@ -302,6 +310,14 @@
   "score": -1.35,
   "type": "image/png",
   "bytes": 429913
+ },
+ "AlbertAZ1992/image-skillbook": {
+  "repo": "AlbertAZ1992/image-skillbook",
+  "url": "https://raw.githubusercontent.com/AlbertAZ1992/image-skillbook/HEAD/assets/examples/source-sunset.webp",
+  "alt": "Source photograph of a city skyline under a coral sunset",
+  "score": -0.1,
+  "type": "image/webp",
+  "bytes": 126772
  },
  "AlexAnsart/demo-studio": {
   "repo": "AlexAnsart/demo-studio",
@@ -510,6 +526,22 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 7010853
+ },
+ "BetaVersionHQ/beta-version-blox-studio": {
+  "repo": "BetaVersionHQ/beta-version-blox-studio",
+  "url": "https://raw.githubusercontent.com/BetaVersionHQ/beta-version-blox-studio/HEAD/docs/gallery.png",
+  "alt": "Stills from shorts made with Blox Studio",
+  "score": 1.55,
+  "type": "image/png",
+  "bytes": 952389
+ },
+ "BetaVersionHQ/beta-version-toon-studio": {
+  "repo": "BetaVersionHQ/beta-version-toon-studio",
+  "url": "https://raw.githubusercontent.com/BetaVersionHQ/beta-version-toon-studio/HEAD/docs/gallery.png",
+  "alt": "Stills from shorts made with Toon Studio",
+  "score": 1.55,
+  "type": "image/png",
+  "bytes": 1433192
  },
  "BingoWon/apple-rag-mcp": {
   "repo": "BingoWon/apple-rag-mcp",
@@ -1078,6 +1110,14 @@
   "score": 4.65,
   "type": "image/gif",
   "bytes": 46291
+ },
+ "HRuiCcc/RuiC-card-skill": {
+  "repo": "HRuiCcc/RuiC-card-skill",
+  "url": "https://raw.githubusercontent.com/HRuiCcc/RuiC-card-skill/HEAD/assets/demo-before.gif",
+  "alt": "调整前效果",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1839001
  },
  "HRuiCcc/RuiC-motion-reel": {
   "repo": "HRuiCcc/RuiC-motion-reel",
@@ -1879,6 +1919,14 @@
   "type": "image/png",
   "bytes": 2063518
  },
+ "Ramtoi/skill-tree": {
+  "repo": "Ramtoi/skill-tree",
+  "url": "https://raw.githubusercontent.com/Ramtoi/skill-tree/HEAD/docs/screenshots/library.png",
+  "alt": "The Skill Tree library: global and portable skills, MCP servers, and bundles",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 709930
+ },
  "ReviewStage/stage-cli": {
   "repo": "ReviewStage/stage-cli",
   "url": "https://raw.githubusercontent.com/ReviewStage/stage-cli/main/assets/screenshot.png",
@@ -2351,6 +2399,14 @@
   "type": "image/gif",
   "bytes": 772658
  },
+ "YKLovePython/halfsize": {
+  "repo": "YKLovePython/halfsize",
+  "url": "https://raw.githubusercontent.com/YKLovePython/halfsize/main/docs/card.webp",
+  "alt": "halfsize: 23.2 MB to 1.99 MB, 12x smaller, VMAF 84.4",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 246634
+ },
  "YahyaLendani/motionbrief-claude-skills": {
   "repo": "YahyaLendani/motionbrief-claude-skills",
   "url": "https://raw.githubusercontent.com/YahyaLendani/motionbrief-claude-skills/HEAD/docs/intro.gif",
@@ -2814,6 +2870,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 14070
+ },
+ "avalonreset/cto-legends": {
+  "repo": "avalonreset/cto-legends",
+  "url": "https://raw.githubusercontent.com/avalonreset/cto-legends/HEAD/assets/banner.webp",
+  "alt": "cto-legends agent skills router: one skill for 21 open-source modules, every cha",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 17040
  },
  "avalonreset/legends-dataforseo": {
   "repo": "avalonreset/legends-dataforseo",
@@ -3367,6 +3431,14 @@
   "type": "image/png",
   "bytes": 731462
  },
+ "dan2756/ReelForge": {
+  "repo": "dan2756/ReelForge",
+  "url": "https://raw.githubusercontent.com/dan2756/ReelForge/HEAD/docs/demos/rubber-duck.webp",
+  "alt": "What if a rubber duck doubled in size every 2 seconds?",
+  "score": -0.15,
+  "type": "image/webp",
+  "bytes": 930718
+ },
  "daniel-style/magic-slide": {
   "repo": "daniel-style/magic-slide",
   "url": "https://raw.githubusercontent.com/daniel-style/magic-slide/HEAD/assets/readme/magic-slide-promo.png",
@@ -3727,6 +3799,14 @@
   "type": "image/gif",
   "bytes": 4536200
  },
+ "erkamyaman/unslopovich": {
+  "repo": "erkamyaman/unslopovich",
+  "url": "https://raw.githubusercontent.com/erkamyaman/unslopovich/HEAD/docs/before-after.png",
+  "alt": "Before: a purple gradient dashboard with sparkles, an AI promo, invented stats, ",
+  "score": -2.85,
+  "type": "image/png",
+  "bytes": 812825
+ },
  "eternityspring/reelbench-skills": {
   "repo": "eternityspring/reelbench-skills",
   "url": "https://raw.githubusercontent.com/eternityspring/reelbench-skills/HEAD/skills/video-shots/assets/report.png",
@@ -3958,6 +4038,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 218230
+ },
+ "garycaogan/gary-pixel-diary": {
+  "repo": "garycaogan/gary-pixel-diary",
+  "url": "https://raw.githubusercontent.com/garycaogan/gary-pixel-diary/HEAD/docs/demo.jpg",
+  "alt": "单人版",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 154468
  },
  "garycaogan/pixel-diary": {
   "repo": "garycaogan/pixel-diary",
@@ -4238,6 +4326,14 @@
   "score": 1.8,
   "type": "image/png",
   "bytes": 136874
+ },
+ "hlibsuslov/telegram-bot-ui": {
+  "repo": "hlibsuslov/telegram-bot-ui",
+  "url": "https://raw.githubusercontent.com/hlibsuslov/telegram-bot-ui/HEAD/docs/assets/demo.gif",
+  "alt": "Demo: one sentence to the coding agent turns a cluttered bot menu into a clean s",
+  "score": 4.55,
+  "type": "image/gif",
+  "bytes": 2688362
  },
  "hoangsonww/RAG-LangChain-AI-System": {
   "repo": "hoangsonww/RAG-LangChain-AI-System",
@@ -4695,6 +4791,22 @@
   "type": "image/gif",
   "bytes": 5594680
  },
+ "itwanger/one-minute-remotion": {
+  "repo": "itwanger/one-minute-remotion",
+  "url": "https://raw.githubusercontent.com/itwanger/one-minute-remotion/HEAD/docs/media/science/newton-first-law.gif",
+  "alt": "牛顿第一定律：斜面逐渐放缓，小球为了回到原高度需要滚得更远",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 577990
+ },
+ "itwanger/vibe-science": {
+  "repo": "itwanger/vibe-science",
+  "url": "https://raw.githubusercontent.com/itwanger/vibe-science/HEAD/skills/one-minute-remotion/references/approved-memphis/opening.png",
+  "alt": "孟菲斯首帧：完整四色拼图和彩色题字",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 137015
+ },
  "jabbarlee/open-papertrail": {
   "repo": "jabbarlee/open-papertrail",
   "url": "https://raw.githubusercontent.com/jabbarlee/open-papertrail/HEAD/examples/flat-grain/walk-poster.jpg",
@@ -4758,6 +4870,14 @@
   "score": -0.05,
   "type": "image/jpeg",
   "bytes": 34284
+ },
+ "jernejk/talk-deck-template": {
+  "repo": "jernejk/talk-deck-template",
+  "url": "https://raw.githubusercontent.com/jernejk/talk-deck-template/HEAD/docs/scooter.jpg",
+  "alt": "A pixel-art rider on an e-scooter at dusk while a checklist ticks off a tighter ",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 325073
  },
  "jiadizhunine/deepPPT": {
   "repo": "jiadizhunine/deepPPT",
@@ -5311,6 +5431,14 @@
   "type": "image/gif",
   "bytes": 2015038
  },
+ "manoletre/explainer-video": {
+  "repo": "manoletre/explainer-video",
+  "url": "https://raw.githubusercontent.com/manoletre/explainer-video/HEAD/docs/search.jpg",
+  "alt": "Search algorithms explainer",
+  "score": -0.05,
+  "type": "image/jpeg",
+  "bytes": 46787
+ },
  "marcosnovo/unslop-design": {
   "repo": "marcosnovo/unslop-design",
   "url": "https://raw.githubusercontent.com/marcosnovo/unslop-design/HEAD/assets/refil-mapa.gif",
@@ -5687,6 +5815,14 @@
   "type": "image/png",
   "bytes": 53533
  },
+ "nxrskyaa/motionite": {
+  "repo": "nxrskyaa/motionite",
+  "url": "https://raw.githubusercontent.com/nxrskyaa/motionite/HEAD/assets/styles-grid.png",
+  "alt": "The 15 NxrStyles",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 175552
+ },
  "obaid1dev/dea": {
   "repo": "obaid1dev/dea",
   "url": "https://raw.githubusercontent.com/obaid1dev/dea/HEAD/examples/lumen-demo/compare/side-by-side.png",
@@ -5975,6 +6111,14 @@
   "type": "image/png",
   "bytes": 119182
  },
+ "qualixar/brief2mp4": {
+  "repo": "qualixar/brief2mp4",
+  "url": "https://raw.githubusercontent.com/qualixar/brief2mp4/HEAD/assets/example08-five-worlds.webp",
+  "alt": "Example 08: the words of a brief lift off the page into a 3D city of light, the ",
+  "score": 1.6,
+  "type": "image/webp",
+  "bytes": 5642738
+ },
  "quazaai/UnityMCPIntegration": {
   "repo": "quazaai/UnityMCPIntegration",
   "url": "https://raw.githubusercontent.com/quazaai/UnityMCPIntegration/HEAD/mcpInspector.png",
@@ -6182,6 +6326,14 @@
   "score": 1.65,
   "type": "image/jpeg",
   "bytes": 1162160
+ },
+ "scub-france/docling-Studio": {
+  "repo": "scub-france/docling-Studio",
+  "url": "https://raw.githubusercontent.com/scub-france/docling-Studio/HEAD/docs/screenshots/mcp-demo.gif",
+  "alt": "Docling Studio parses a PDF, then Claude answers from it over MCP, with cited so",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 3239635
  },
  "sedum-dev/sedum": {
   "repo": "sedum-dev/sedum",
@@ -6431,6 +6583,14 @@
   "type": "image/gif",
   "bytes": 949664
  },
+ "suiyang-meta/sui-motion-graphic-reel": {
+  "repo": "suiyang-meta/sui-motion-graphic-reel",
+  "url": "https://raw.githubusercontent.com/suiyang-meta/sui-motion-graphic-reel/HEAD/examples/v7-near-final.jpg",
+  "alt": "一支 15 秒开场的联络表",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 797236
+ },
  "sujunmin/agy-ppt": {
   "repo": "sujunmin/agy-ppt",
   "url": "https://raw.githubusercontent.com/sujunmin/agy-ppt/HEAD/assets/agy-ppt-teaser.gif",
@@ -6622,6 +6782,14 @@
   "score": 2.5,
   "type": "image/gif",
   "bytes": 6280296
+ },
+ "tipsai/product-seo": {
+  "repo": "tipsai/product-seo",
+  "url": "https://raw.githubusercontent.com/tipsai/product-seo/HEAD/docs/banner.png",
+  "alt": "product-seo",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 374000
  },
  "tirth8205/code-review-graph": {
   "repo": "tirth8205/code-review-graph",
@@ -6942,6 +7110,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 4908862
+ },
+ "weijt606/anti-vibe-writing": {
+  "repo": "weijt606/anti-vibe-writing",
+  "url": "https://raw.githubusercontent.com/weijt606/anti-vibe-writing/HEAD/anti-vibe-writing-before-after.png",
+  "alt": "Before and after: a 73-word AI-drafted launch tweet full of emoji, an em-dash, m",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 152229
  },
  "welingtondesosa/video-motion": {
   "repo": "welingtondesosa/video-motion",

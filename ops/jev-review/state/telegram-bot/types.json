@@ -3736,5 +3736,19 @@
    "business": 0.05
   },
   "kind": "remote"
+ },
+ {
+  "repo": "hlibsuslov/telegram-bot-ui",
+  "stars": 11,
+  "description": "Telegram bot UI/UX skill for Claude Code, Codex, Cursor, Gemini CLI and Copilot: messages, keyboards, buttons, navigation, streaming AI replies with Stop, Rich Messages, HTML widgets, premium emoji, channel publishing and agent-operated bots. Updated for every new Bot API release.",
+  "scores": {
+   "assistant": 0.14,
+   "remote": 0.93,
+   "framework": 0.83,
+   "utility": 0.08,
+   "fun": 0.06,
+   "business": 0.23
+  },
+  "kind": "remote"
  }
 ]

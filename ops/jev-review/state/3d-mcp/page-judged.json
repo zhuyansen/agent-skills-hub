@@ -10281,5 +10281,41 @@
   "days": 38,
   "stars_per_day": 17.05263157894737,
   "verdict": "admit"
+ },
+ {
+  "repo": "HRuiCcc/RuiC-card-skill",
+  "name": "RuiC-card-skill",
+  "stars": 672,
+  "description": "全息闪卡通用 Agent Skill，不挑宿主、多模态模型都能用：一句话生成可拖转、会流光、带层次景深的 3D 闪卡网页，附可编辑 Blender 工程 · A host-agnostic Agent Skill: turn one sentence into an interactive 3D holographic card page with layered parallax, plus an editable Blender project.",
+  "topics": [
+   "agent-skill",
+   "agent-skills",
+   "blender",
+   "collectible-card",
+   "holographic",
+   "multimodal",
+   "skills",
+   "threejs",
+   "webgl"
+  ],
+  "created": "2026-09-07",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 5695,
+  "names_model": false,
+  "on_subject": 0.91,
+  "is_software": 0.98,
+  "shows_result": 0.94,
+  "one_command_start": 0.11,
+  "specific_outcome": 0.94,
+  "complete_docs": 0.84,
+  "novel_angle": 0.81,
+  "shareable_output": 0.91,
+  "quality": 0.7075,
+  "tier": "中",
+  "hit_prior": 0.8866666666666667,
+  "days": 70,
+  "stars_per_day": 9.6,
+  "verdict": "low_quality"
  }
 ]
