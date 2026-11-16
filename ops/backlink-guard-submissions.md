@@ -127,3 +127,9 @@ heilcheng/awesome-agent-skills(要 ≥20★,**10-26 晚已 23★,门槛满足**)
 
 - 0xsline/awesome-deepseek-harness #757 11-06 07:22 UTC 合并（1.3 千★），中英文 README 都有外链检测和雷达。
 - 还开着：karanb192 #540（等重审）、davila7 #1277、GetBindu #313、serpapi #478，11-05 后都没动静。
+
+## 11-09 周复盘核对同步
+
+- `GetBindu/awesome-claude-code-and-skills` **#313** 已于 **11-07 合并**。
+- 仍 open 的列表 PR：`karanb192 #540`（0.11.2 已修并发超预算 bug 并回复，等重审）、`davila7 #1277`、`serpapi #478`。
+

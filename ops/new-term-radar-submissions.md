@@ -123,3 +123,10 @@ Smithery(10-31 起停止服务)、travisvn(不收需要付费 API 的 skill)、n
   - 小毛病：三页的 meta description 都停在半句（如「…keyword priority table marked.」），页面上的正文是完整的。
 - 官方徽章 `skillselion.com/badge/skills/zhuyansen/new-term-radar.svg`：图上只显示「SKILLSELION ✓ SKILL」，安装数只在悬停提示里。
 - 11-08 定：徽章不加进雷达 README，meta description 的事也不回信。
+
+## 11-09 周复盘核对同步
+
+- `GetBindu/awesome-claude-code-and-skills` **#296** 已于 **11-07 合并**。
+- `heilcheng/awesome-agent-skills` **#629** 已于 **11-02** 经维护者批量提交 `d138307` 收录（原 PR 关闭）。
+- 仍 open 的列表 PR：`punkpeye #18157`、`karanb192 #493`、`davila7 #1223`、`ComposioHQ #2328`、`serpapi #478`。
+

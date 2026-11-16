@@ -293,15 +293,18 @@ def rose(points: list[tuple[date, int]], first_seen: date) -> dict:
     if not values or max(values) == 0:
         return {"rose": False, "no_data": True}
     before = [v for d, v in points if d < first_seen]
-    after = [v for d, v in points if d >= first_seen]
+    after_pts = [(d, v) for d, v in points if d >= first_seen]
+    after = [v for _, v in after_pts]
     base = statistics.mean(before) if before else 0.0
     peak_after = max(after, default=0)
-    peak = max(values)
     out = {"base": round(base, 1), "peak_after": peak_after, "no_data": False,
            "rose": peak_after >= max(base * RISE_FACTOR, base + RISE_MIN)}
     if out["rose"]:
-        line = base + RISE_SHARE * (peak - base)
-        out["first_rise"] = next(d for d, v in points if v >= max(line, 1) and v > base).isoformat()
+        line = base + RISE_SHARE * (peak_after - base)
+        out["first_rise"] = next(d for d, v in after_pts if v >= max(line, 1) and v > base).isoformat()
+        earliest = next(d for d, v in points if v >= max(line, 1) and v > base).isoformat()
+        if earliest != out["first_rise"]:
+            out["earliest_rise"] = earliest
     return out
 
 
@@ -443,7 +446,8 @@ def born_day(born: str | None, notes: list[str] | None, first_seen: date) -> dat
 
 def first_rise(trends: dict | None) -> date | None:
     """The earliest day a variant's rise began, as verdict() dated the lead (radar_leads.trends)."""
-    days = [v["first_rise"] for v in (trends or {}).values() if isinstance(v, dict) and v.get("first_rise")]
+    days = [v.get("earliest_rise") or v["first_rise"] for v in (trends or {}).values()
+            if isinstance(v, dict) and v.get("first_rise")]
     return date.fromisoformat(min(days)) if days else None
 
 
