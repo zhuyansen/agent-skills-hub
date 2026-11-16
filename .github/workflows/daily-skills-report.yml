@@ -1,0 +1,122 @@
+name: AgentSkillsHub 日报 Top 10
+
+# 2026-11-16 起替代本机 Claude 桌面版的定时任务 daily-skills-report（要电脑开机、App 开着；11-12 之后一次没跑）。
+# 北京 08:10：ops/daily_skills_report.py 去重、查库、抽查、让模型挑 10 个写中文描述，代码核对后插进
+# memory/daily-report-archive.md → 提交 → 触发部署（GITHUB_TOKEN 推的提交不会自己触发 deploy.yml）→
+# 等 /daily/<日期>/ 页面能打开 → 把 X 文案发邮件给 Jason（不自动发帖）。
+# 今天的段已经在归档里就跳过（手动补过、或者重跑），不会重复写。
+on:
+  schedule:
+    - cron: "10 0 * * *"   # 北京 08:10；GitHub 定时常晚几小时，晚了也照样出当天的
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "补跑某天（YYYY-MM-DD，北京日期）；留空 = 今天"
+        default: ""
+      dry:
+        description: "只看结果不写入（填 1）"
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: daily-skills-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -q sqlalchemy==2.0.36 psycopg2-binary==2.9.9
+
+      - name: 生成日报
+        id: gen
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
+          FLATROUTER_API_KEY: ${{ secrets.FLATROUTER_API_KEY }}
+          FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
+          REPORT_DATE: ${{ inputs.date }}
+          OUT_DIR: ${{ runner.temp }}/daily
+        run: |
+          set -o pipefail
+          python3 ops/daily_skills_report.py ${{ inputs.dry == '1' && '--dry' || '' }} | tee "$RUNNER_TEMP/gen.log"
+          if grep -q "^ALREADY" "$RUNNER_TEMP/gen.log"; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
+          if [ -f "$OUT_DIR/summary.md" ]; then cat "$OUT_DIR/summary.md" >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: 提交并触发部署
+        id: push
+        if: steps.gen.outputs.skip != 'true' && inputs.dry != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add memory/daily-report-archive.md
+          if git diff --cached --quiet; then echo "没有变化"; echo "pushed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          DAY=$(grep -m1 -oE '^## [0-9]{4}-[0-9]{2}-[0-9]{2}$' memory/daily-report-archive.md | cut -c4-)
+          git commit -q -m "content(daily): $DAY report"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
+          gh workflow run deploy.yml --ref main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+
+      - name: 等当天页面上线，再发 X 文案邮件
+        if: steps.push.outputs.pushed == 'true'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
+          DAY: ${{ steps.push.outputs.day }}
+          OUT_DIR: ${{ runner.temp }}/daily
+        run: |
+          # X 拿帖子里第一个链接做卡片，页面没上线时发帖会缓存一张空卡片：最多等 45 分钟（部署一般 20–35 分钟）
+          URL="https://agentskillshub.top/daily/$DAY/"
+          STATUS=000
+          for i in $(seq 1 45); do
+            STATUS=$(curl -s -o /dev/null -w '%{http_code}' "$URL" || echo 000)
+            [ "$STATUS" = "200" ] && break
+            sleep 60
+          done
+          echo "当天页 $URL → $STATUS"
+          export STATUS
+          python3 - <<'PY'
+          import json, os, urllib.request
+          day, status = os.environ["DAY"], os.environ.get("STATUS", "")
+          post = open(os.path.join(os.environ["OUT_DIR"], "x-post.txt"), encoding="utf-8").read()
+          head = "当天页已上线，可以直接复制发 X。" if status == "200" else f"⚠️ 当天页还没上线（{status}），能打开再发；太早发，X 会缓存一张空卡片。"
+          html = f"<p>{head}</p><p><a href='https://agentskillshub.top/daily/{day}/'>agentskillshub.top/daily/{day}/</a></p><pre style='font-size:14px;white-space:pre-wrap'>{post.replace('&','&amp;').replace('<','&lt;')}</pre>"
+          to = [x.strip() for x in os.environ["EMAIL_TO"].split(",") if x.strip()]
+          req = urllib.request.Request("https://api.resend.com/emails", method="POST",
+              data=json.dumps({"from": os.environ["EMAIL_FROM"], "to": to, "subject": f"AgentSkillsHub 日报 {day} · X 文案", "html": html}).encode(),
+              headers={"Authorization": "Bearer " + os.environ["RESEND_API_KEY"], "Content-Type": "application/json", "User-Agent": "agentskillshub-daily"})
+          print(urllib.request.urlopen(req, timeout=30).read().decode())
+          PY
+      - name: 失败告警
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          to = [x.strip() for x in os.environ["EMAIL_TO"].split(",") if x.strip()]
+          req = urllib.request.Request("https://api.resend.com/emails", method="POST",
+              data=json.dumps({"from": os.environ["EMAIL_FROM"], "to": to, "subject": "⚠️ AgentSkillsHub 日报没生成",
+                               "html": f"<p>今天的日报任务失败了，归档没有写入。</p><p><a href='{os.environ['RUN_URL']}'>看运行日志</a></p>"}).encode(),
+              headers={"Authorization": "Bearer " + os.environ["RESEND_API_KEY"], "Content-Type": "application/json", "User-Agent": "agentskillshub-daily"})
+          print(urllib.request.urlopen(req, timeout=30).read().decode())
+          PY
