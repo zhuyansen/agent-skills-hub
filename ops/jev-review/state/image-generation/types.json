@@ -3778,5 +3778,19 @@
    "mcp": 0.08
   },
   "kind": "gpt_image"
+ },
+ {
+  "repo": "PotionUI/PotionUI",
+  "stars": 62,
+  "description": "Self-hosted AI studio for images, video and music on your own GPU. Multi-user with logins and limits, no node graphs, drivable over MCP.",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.02,
+   "open_models": 0.61,
+   "editing": 0.1,
+   "design": 0.02,
+   "mcp": 0.56
+  },
+  "kind": "open_models"
  }
 ]

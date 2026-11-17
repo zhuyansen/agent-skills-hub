@@ -5388,5 +5388,19 @@
    "personal": 0.08
   },
   "kind": "docs_qa"
+ },
+ {
+  "repo": "alpha03123/vsummary",
+  "stars": 276,
+  "description": "视频 AI 总结与本地知识库：B站 / YouTube / 抖音 / 本地视频转写，生成章节纪要、思维导图和知识卡片，支持跨视频问答",
+  "scores": {
+   "llm_wiki": 0.07,
+   "rag_platform": 0.64,
+   "mcp": 0.33,
+   "docs_qa": 0.61,
+   "graph": 0.11,
+   "personal": 0.35
+  },
+  "kind": "rag_platform"
  }
 ]

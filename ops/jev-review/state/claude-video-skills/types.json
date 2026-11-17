@@ -9556,5 +9556,149 @@
    "general": 0.13
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "10291124jcjc-dotcom/guiji-marble-video",
+  "stars": 12,
+  "description": "Codex Skill for music-synced 3D marble videos in Blender",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.11,
+   "music": 0.91,
+   "motion": 0.21,
+   "shorts": 0.78,
+   "editing": 0.07,
+   "demo": 0.21,
+   "story": 0.08,
+   "avatar": 0.02,
+   "general": 0.03
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "Fardeen26/launch-video-kit",
+  "stars": 9,
+  "description": "Claude Code skill + Remotion template for fast, meme-native product launch videos made from real product recordings, beat-synced music and SFX. The workflow behind the Rotware launch film.",
+  "scores": {
+   "promo": 0.98,
+   "explainer": 0.13,
+   "music": 0.26,
+   "motion": 0.12,
+   "shorts": 0.65,
+   "editing": 0.82,
+   "demo": 0.71,
+   "story": 0.24,
+   "avatar": 0.09,
+   "general": 0.08
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "ocepkejepintu-droid/claude-launch",
+  "stars": 7,
+  "description": "Turn your product into a calm launch video, right from Claude Code. /launch → 1080p 60fps film with ambient music, from one config file.",
+  "scores": {
+   "promo": 0.98,
+   "explainer": 0.17,
+   "music": 0.1,
+   "motion": 0.17,
+   "shorts": 0.05,
+   "editing": 0.04,
+   "demo": 0.86,
+   "story": 0.11,
+   "avatar": 0.04,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Jadouminou/final-phase-lite",
+  "stars": 6,
+  "description": "A free window for the videos you make with Claude Code or OpenCode: watch the AI work, play the video without rendering, circle anything and say what to change.",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.44,
+   "music": 0.11,
+   "motion": 0.16,
+   "shorts": 0.36,
+   "editing": 0.79,
+   "demo": 0.39,
+   "story": 0.14,
+   "avatar": 0.06,
+   "general": 0.05
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "TurkiHassan/arabic-launch-video",
+  "stars": 5,
+  "description": "إعلانات فيديو عربية بتعليق صوتي فصيح من محادثة واحدة مع Claude Code — وإضافة تعليق عربي على أي فيديو | Arabic launch videos with a فصحى voiceover",
+  "scores": {
+   "promo": 0.96,
+   "explainer": 0.14,
+   "music": 0.06,
+   "motion": 0.22,
+   "shorts": 0.81,
+   "editing": 0.33,
+   "demo": 0.43,
+   "story": 0.09,
+   "avatar": 0.06,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "codewithsiddique-04/3d-video-studio",
+  "stars": 5,
+  "description": "Free Claude Code skill: 3D animated cartoon Shorts made entirely in code (three.js), with review gates at every stage and Cartesia voiceover",
+  "scores": {
+   "promo": 0.09,
+   "explainer": 0.21,
+   "music": 0.05,
+   "motion": 0.17,
+   "shorts": 0.89,
+   "editing": 0.07,
+   "demo": 0.21,
+   "story": 0.97,
+   "avatar": 0.07,
+   "general": 0.05
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "BetaVersionHQ/beta-version-blox-studio",
+  "stars": 8,
+  "description": "Turn an idea or your own script into a 9:16 blocky 3D animated short with Claude Code and Blender.",
+  "scores": {
+   "promo": 0.41,
+   "explainer": 0.41,
+   "music": 0.12,
+   "motion": 0.1,
+   "shorts": 0.9,
+   "editing": 0.04,
+   "demo": 0.83,
+   "story": 0.92,
+   "avatar": 0.12,
+   "general": 0.07
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "BetaVersionHQ/beta-version-toon-studio",
+  "stars": 12,
+  "description": "Turn an idea or your own script into a 9:16 animated cartoon short with Claude Code and Blender.",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.5,
+   "music": 0.1,
+   "motion": 0.1,
+   "shorts": 0.93,
+   "editing": 0.07,
+   "demo": 0.76,
+   "story": 0.81,
+   "avatar": 0.09,
+   "general": 0.08
+  },
+  "kind": "shorts"
  }
 ]

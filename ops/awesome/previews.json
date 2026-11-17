@@ -287,6 +287,14 @@
   "type": "image/jpeg",
   "bytes": 633671
  },
+ "AgriciDaniel/dataforseo-agent": {
+  "repo": "AgriciDaniel/dataforseo-agent",
+  "url": "https://raw.githubusercontent.com/AgriciDaniel/dataforseo-agent/HEAD/docs/screenshots/serp.png",
+  "alt": "Top 10 Google results for best crm software in the US, as a table of rank, domai",
+  "score": 1.6,
+  "type": "image/png",
+  "bytes": 189342
+ },
  "AgriciDaniel/jev-seo": {
   "repo": "AgriciDaniel/jev-seo",
   "url": "https://raw.githubusercontent.com/AgriciDaniel/jev-seo/HEAD/docs/assets/preview-jev.jpg",
@@ -1895,6 +1903,14 @@
   "type": "image/webp",
   "bytes": 26312
  },
+ "PotionUI/PotionUI": {
+  "repo": "PotionUI/PotionUI",
+  "url": "https://raw.githubusercontent.com/PotionUI/PotionUI/HEAD/docs/media/readme-generate-video.webp",
+  "alt": "An LTX-2.5 video rendering, with a live preview, step progress and the form besi",
+  "score": 1.4,
+  "type": "image/webp",
+  "bytes": 58164
+ },
  "ProfRino/Blender-MCP-Assembly-Skill": {
   "repo": "ProfRino/Blender-MCP-Assembly-Skill",
   "url": "https://raw.githubusercontent.com/ProfRino/Blender-MCP-Assembly-Skill/HEAD/Before%20vs%20After.png",
@@ -2295,6 +2311,14 @@
   "type": "image/gif",
   "bytes": 1983655
  },
+ "TurkiHassan/arabic-launch-video": {
+  "repo": "TurkiHassan/arabic-launch-video",
+  "url": "https://raw.githubusercontent.com/TurkiHassan/arabic-launch-video/HEAD/media/qudrah-academy.jpg",
+  "alt": "إعلان أكاديمية قُدرة — صُنع بهذه الأداة",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 173215
+ },
  "UniUni2000/slideblocks-skill": {
   "repo": "UniUni2000/slideblocks-skill",
   "url": "https://raw.githubusercontent.com/UniUni2000/slideblocks-skill/HEAD/media/showcase.png",
@@ -2694,6 +2718,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 158264
+ },
+ "alpha03123/vsummary": {
+  "repo": "alpha03123/vsummary",
+  "url": "https://raw.githubusercontent.com/alpha03123/vsummary/HEAD/assets/showcase-mcp-recording-summary.gif",
+  "alt": "MCP 处理并总结本地录音",
+  "score": 4.25,
+  "type": "image/gif",
+  "bytes": 1212499
  },
  "alxnddr/reviewer": {
   "repo": "alxnddr/reviewer",
@@ -5839,6 +5871,14 @@
   "type": "image/jpeg",
   "bytes": 93284
  },
+ "ocepkejepintu-droid/claude-launch": {
+  "repo": "ocepkejepintu-droid/claude-launch",
+  "url": "https://raw.githubusercontent.com/ocepkejepintu-droid/claude-launch/HEAD/demo/preview.gif",
+  "alt": "claude-launch demo: click to watch the full film",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 7499717
+ },
  "octopusreview/octopus": {
   "repo": "octopusreview/octopus",
   "url": "https://raw.githubusercontent.com/octopusreview/octopus/HEAD/apps/web/public/brand/octopus-mark.png",
@@ -6406,6 +6446,14 @@
   "score": 1.7,
   "type": "image/png",
   "bytes": 621433
+ },
+ "shariefabdelmonem/interactive-html-presentation": {
+  "repo": "shariefabdelmonem/interactive-html-presentation",
+  "url": "https://raw.githubusercontent.com/shariefabdelmonem/interactive-html-presentation/HEAD/assets/preview-present-simple.jpg",
+  "alt": "Present Simple deck preview",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 157662
  },
  "sharon-laicc/viral-video-decomposer": {
   "repo": "sharon-laicc/viral-video-decomposer",

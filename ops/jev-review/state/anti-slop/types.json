@@ -4170,5 +4170,19 @@
    "rules": 0.87
   },
   "kind": "detector"
+ },
+ {
+  "repo": "gretchenfitze/anti-slop",
+  "stars": 5,
+  "description": "Agent skills that keep AI-written TypeScript and React code in check: measure which anti-slop checks a repo needs (strict tsc, sonarjs, knip, jscpd, react-doctor, Stryker, CI gates), plan them as small PRs, and roll them out one at a time. Claude Code / Codex / Cursor.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.4,
+   "chinese": 0.02,
+   "code": 0.54,
+   "design": 0.08,
+   "rules": 0.19
+  },
+  "kind": "code"
  }
 ]

@@ -2050,7 +2050,8 @@
     "klarkxy/ai-gallery",
     "niobium617/prompt-reverse-engineer-skill",
     "walkskysu/digital-human-koubo-comfyui",
-    "AlbertAZ1992/image-skillbook"
+    "AlbertAZ1992/image-skillbook",
+    "PotionUI/PotionUI"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2223,7 +2224,8 @@
    "exclude_repos": [
     "codepawl/67.js",
     "ezpeezee/beta-version-blox-studio",
-    "ezpeezee/beta-version-toon-studio"
+    "ezpeezee/beta-version-toon-studio",
+    "hitkeeen/blender-ai-mcp-addon"
    ]
   },
   "related": [
@@ -2487,7 +2489,8 @@
     "angieruiz17/claude-fintech-skills",
     "LerianStudio/ring",
     "SkylarKitchen/skills",
-    "cbrock84/headcount"
+    "cbrock84/headcount",
+    "replicate/skills"
    ]
   },
   "related": [
@@ -3445,7 +3448,8 @@
     "crow-hq/llm-wiki-v2",
     "The-40-Thieves/reliquary-tc",
     "1llu50ry/Decompile",
-    "scub-france/docling-Studio"
+    "scub-france/docling-Studio",
+    "alpha03123/vsummary"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4729,7 +4733,8 @@
     "adrianhaj/ste80",
     "kimhons/humanize",
     "wwewtech/anti-slop-design",
-    "etodanik/deslop"
+    "etodanik/deslop",
+    "gretchenfitze/anti-slop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5248,7 +5253,9 @@
     "micaelgomestavares/aeo-geo-bestpractices",
     "aivisibilitycensus/geo-skills",
     "tipsai/product-seo",
-    "Advance-Labs/aeo-toolkit"
+    "Advance-Labs/aeo-toolkit",
+    "AgriciDaniel/dataforseo-agent",
+    "becomezain/ai-website-system"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5292,7 +5299,8 @@
     "alphaparkinc/genpark-generative-seo-skill",
     "alphaparkinc/genpark-seo-metadata-generator-skill",
     "mlsss333/seo-geo-kit",
-    "seobeast-co/seobeast-audit"
+    "seobeast-co/seobeast-audit",
+    "zainsaeeed/ai-website-system"
    ]
   },
   "related": [
@@ -6884,7 +6892,8 @@
     "JamieJustTang/svg2pptx-skill",
     "HututuWorks/journal-club-ppt",
     "Meyt1n/web-to-editable-slides",
-    "jernejk/talk-deck-template"
+    "jernejk/talk-deck-template",
+    "shariefabdelmonem/interactive-html-presentation"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8972,7 +8981,15 @@
     "jdrurka/explainer-skill",
     "manoletre/explainer-video",
     "shasshhaank/ClipIt",
-    "dan2756/ReelForge"
+    "dan2756/ReelForge",
+    "10291124jcjc-dotcom/guiji-marble-video",
+    "BetaVersionHQ/beta-version-toon-studio",
+    "Fardeen26/launch-video-kit",
+    "BetaVersionHQ/beta-version-blox-studio",
+    "ocepkejepintu-droid/claude-launch",
+    "Jadouminou/final-phase-lite",
+    "TurkiHassan/arabic-launch-video",
+    "codewithsiddique-04/3d-video-studio"
    ],
    "sub_skills": [
     {
@@ -9019,7 +9036,8 @@
     "jjietay/kaleidoscope",
     "krusemediallc/video-editor-agent",
     "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill",
-    "garycaogan/pixel-diary"
+    "garycaogan/pixel-diary",
+    "aaronyi97/image-story-video-wizard"
    ],
    "tag_matches": [],
    "required_keywords": [

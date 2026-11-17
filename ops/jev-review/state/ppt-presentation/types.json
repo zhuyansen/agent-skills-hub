@@ -3792,5 +3792,19 @@
    "general": 0.12
   },
   "kind": "html"
+ },
+ {
+  "repo": "shariefabdelmonem/interactive-html-presentation",
+  "stars": 11,
+  "description": "Claude skill: build animated, interactive HTML presentations for workshops and classrooms",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.01,
+   "html": 0.98,
+   "business": 0.06,
+   "convert": 0.08,
+   "general": 0.09
+  },
+  "kind": "html"
  }
 ]
