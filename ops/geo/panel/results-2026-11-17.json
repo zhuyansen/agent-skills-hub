@@ -1,0 +1,282 @@
+{
+  "date": "2026-11-17",
+  "tool": "geosearchconsole.co Citation Gap (authorized submit)",
+  "tool_url": "https://geosearchconsole.co/ai-citation-gap-tool",
+  "engines": {
+    "ChatGPT": "gpt-6, answered",
+    "Claude": "unavailable at run time",
+    "Gemini": "answered"
+  },
+  "brand": "AgentSkillsHub / Agent Skills Hub / agentskillshub (agentskillshub.top)",
+  "competitor": "Smithery (smithery.ai)",
+  "results": [
+    {
+      "engine": "ChatGPT",
+      "model": "gpt-6",
+      "question_id": null,
+      "question": "What are the best Claude code review skills?",
+      "status": "answered",
+      "pages_cited": 15,
+      "citations": [
+        "https://archestack.com/best-of-vibe-coding/skills-plugins/",
+        "https://annie.agnt.gg/articles/agents/100-best-claude-code-skills",
+        "https://docs.arantic.com/claude-code/skills",
+        "https://curso-claude.p113.io/claude/en/03-skills/index.html",
+        "https://www.antonioblago.com/blog/best-claude-code-skills-developers",
+        "https://kipt.me/guides/best-claude-code-skills",
+        "https://handicraftm.com/blog/claude-code-skills/",
+        "https://trailhq.com/blog/best-claude-code-skills",
+        "https://claude.com/resources/articles/steering-claude-code-skills-hooks-rules-subagents-and-more?fcdaa149_sort_Plus+ancien=asc&product=claude-cowork",
+        "https://blog.laozhang.ai/en/posts/claude-code-best-skills",
+        "https://timewell.jp/en/columns/claude-code-skills-45",
+        "https://github.com/belchman/claude-skills",
+        "https://platform.claude.com/docs/en/managed-agents/skills",
+        "https://support.claude.com/en/articles/14553517-claude-code-common-developer-use-cases",
+        "https://verifyaiskills.com/skills/"
+      ],
+      "searches_ran": [
+        "best Claude Code code review skills plugins slash commands GitHub 2026",
+        "Claude Code official skills code review skill repository"
+      ],
+      "tool_flags": {
+        "named": "no",
+        "site_cited": "0",
+        "tone": ""
+      },
+      "scores": {
+        "page_cited": false,
+        "site_cited": false,
+        "named": false,
+        "first_pick": false
+      }
+    },
+    {
+      "engine": "Claude",
+      "question": "What are the best Claude code review skills?",
+      "status": "Claude isn't available right now.",
+      "scores": null
+    },
+    {
+      "engine": "Gemini",
+      "model": "",
+      "question_id": null,
+      "question": "What are the best Claude code review skills?",
+      "status": "answered",
+      "pages_cited": 3,
+      "citations": [
+        "https://www.reddit.com/r/ClaudeCode/comments/1wcgxuf/any_tipsbeat_practices_for_code_review/",
+        "https://code.claude.com/docs/en/code-review",
+        "https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf"
+      ],
+      "searches_ran": [],
+      "tool_flags": {
+        "named": "no",
+        "site_cited": "0",
+        "tone": ""
+      },
+      "scores": {
+        "page_cited": false,
+        "site_cited": false,
+        "named": false,
+        "first_pick": false
+      }
+    },
+    {
+      "engine": "ChatGPT",
+      "model": "gpt-6",
+      "question_id": null,
+      "question": "Best directory of Claude Skills and MCP servers with security grades?",
+      "status": "answered",
+      "pages_cited": 35,
+      "citations": [
+        "https://ariesviewsecurity.com/mcp-servers",
+        "https://pipelab.org/learn/mcp-security-tools/",
+        "https://whathetech.net/claude-skills/methodology",
+        "https://agentsecurityindex.com/compare/mcp-security-scanners/",
+        "https://devhunt.org/mcp/security",
+        "https://agentatlas.dev/mcp/category/security",
+        "https://uvik.net/blog/mcp-security-directory/",
+        "https://www.skillsdirectory.com/blog/claude-skills-statistics",
+        "https://www.skillsdirectory.com/blog/claude-skills-security-report",
+        "https://updates.snyk.io/snyk-api-and-web-mcp-server/",
+        "https://labs.snyk.io/resources/detect-tool-poisoning-mcp-server-security/",
+        "https://invariantlabs.ai/blog/introducing-mcp-scan",
+        "https://suedeai.directory/security/",
+        "https://skills.suedeai.ai/directory/security/",
+        "https://mcpsafe.org/",
+        "https://socketlist.com/",
+        "https://mcp.market/server/snyk-mcp",
+        "https://invariantlabs-ai.github.io/docs/mcp-scan/scanning/",
+        "https://github.com/invariantlabs-ai/docs/blob/main/docs/mcp-scan/index.md",
+        "https://github.com/L3G5/mcp-scan",
+        "https://github.com/cyber43/mcp-scan",
+        "https://github.com/Wa7N1/mcp-scan",
+        "https://github.com/iflow-mcp/invariantlabs-ai-mcp-scan",
+        "https://github.com/snyk/studio-mcp",
+        "https://github.com/macoughl/invariant-mcp-scan",
+        "https://github.com/driphub/mcp-scan",
+        "https://mcpobservatory.com/servers",
+        "https://mcpskills.io/",
+        "https://majorlabs.co/registry",
+        "https://mcpyp.com/",
+        "https://invariantlabs.ai/docs/mcp-scan",
+        "https://snyk.io/articles/claude-desktop-and-snyk-mcp/",
+        "https://toolverse.pl/en/mcp?category=auth-security",
+        "https://mymcptools.com/category/security",
+        "https://agentcat.com/guides/security-tests-mcp-server-endpoints/"
+      ],
+      "searches_ran": [
+        "Claude Skills directory security ratings grades skill security scanner skills.sh 2026",
+        "MCP server directory security scores grades registry scanner mcp security 2026",
+        "Invariant Labs mcp-scan tool security MCP servers official",
+        "Snyk MCP security scanner MCP server security official"
+      ],
+      "tool_flags": {
+        "named": "no",
+        "site_cited": "0",
+        "tone": ""
+      },
+      "scores": {
+        "page_cited": false,
+        "site_cited": false,
+        "named": false,
+        "first_pick": false
+      }
+    },
+    {
+      "engine": "Claude",
+      "question": "Best directory of Claude Skills and MCP servers with security grades?",
+      "status": "Claude isn't available right now.",
+      "scores": null
+    },
+    {
+      "engine": "Gemini",
+      "model": "",
+      "question_id": null,
+      "question": "Best directory of Claude Skills and MCP servers with security grades?",
+      "status": "answered",
+      "pages_cited": 2,
+      "citations": [
+        "https://www.skillsdirectory.com/security",
+        "https://agentskillshub.top/how-we-grade/"
+      ],
+      "searches_ran": [],
+      "tool_flags": {
+        "named": "yes",
+        "site_cited": "1",
+        "tone": "Neutral"
+      },
+      "scores": {
+        "page_cited": false,
+        "site_cited": true,
+        "named": true,
+        "first_pick": false
+      }
+    }
+  ],
+  "summary_table": "| engine | n | page_cited | site_cited | named | first_pick |\n|---|---|---|---|---|---|\n| ChatGPT | 2 | 0/2 | 0/2 | 0/2 | 0/2 |\n| Gemini | 2 | 0/2 | 1/2 | 1/2 | 0/2 |",
+  "tool_brand_summary": {
+    "AgentSkillsHub": {
+      "named_answers": "1/4",
+      "site_cited": "1/4",
+      "cited_pages_naming_it": "1/46",
+      "visibility_score": 25,
+      "tone": "Neutral"
+    },
+    "Smithery": {
+      "named_answers": "0/4",
+      "site_cited": "0/4",
+      "cited_pages_naming_it": "2/46",
+      "visibility_score": 0
+    }
+  },
+  "cited_page_groups": {
+    "Names a competitor, not you": 2,
+    "Names you": 1,
+    "Names none of these brands": 43,
+    "Your own page": 1,
+    "Couldn't read": 7
+  },
+  "gap_pages_name_rival_not_us": [
+    "https://mcpskills.io/",
+    "https://mcpyp.com/"
+  ],
+  "pages_naming_us": [
+    "https://docs.arantic.com/claude-code/skills"
+  ],
+  "our_cited_page": [
+    "https://agentskillshub.top/how-we-grade/"
+  ],
+  "unreadable_cited_pages": [
+    "https://www.reddit.com/r/ClaudeCode/comments/1wcgxuf/any_tipsbeat_practices_for_code_review/",
+    "https://ariesviewsecurity.com/mcp-servers",
+    "https://mcpobservatory.com/servers",
+    "https://agentatlas.dev/mcp/category/security",
+    "https://mymcptools.com/category/security",
+    "https://annie.agnt.gg/articles/agents/100-best-claude-code-skills",
+    "https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf"
+  ],
+  "pitch_top10": [
+    {
+      "address": "https://www.skillsdirectory.com/security",
+      "score": 73,
+      "way_in": "Advertise",
+      "way_in_address": "https://www.skillsdirectory.com/advertise"
+    },
+    {
+      "address": "https://archestack.com/best-of-vibe-coding/skills-plugins/",
+      "score": 68,
+      "way_in": "",
+      "way_in_address": ""
+    },
+    {
+      "address": "https://pipelab.org/learn/mcp-security-tools/",
+      "score": 63,
+      "way_in": "Contact page",
+      "way_in_address": "https://pipelab.org/contact/"
+    },
+    {
+      "address": "https://code.claude.com/docs/en/code-review",
+      "score": 63,
+      "way_in": "Affiliate or partner",
+      "way_in_address": "https://claude.com/partners/mcp"
+    },
+    {
+      "address": "https://mcpskills.io/",
+      "score": 54,
+      "way_in": "Affiliate or partner",
+      "way_in_address": "https://mcpskills.io/partners/workshops"
+    },
+    {
+      "address": "https://curso-claude.p113.io/claude/en/03-skills/index.html",
+      "score": 53,
+      "way_in": "Write for us",
+      "way_in_address": "https://curso-claude.p113.io/claude/en/CODE_OF_CONDUCT.html"
+    },
+    {
+      "address": "https://www.antonioblago.com/blog/best-claude-code-skills-developers",
+      "score": 51,
+      "way_in": "Affiliate or partner",
+      "way_in_address": "https://www.antonioblago.com/blog/tag/affiliate-marketing"
+    },
+    {
+      "address": "https://trailhq.com/blog/best-claude-code-skills",
+      "score": 48,
+      "way_in": "Affiliate or partner",
+      "way_in_address": "https://trailhq.com/partnerships"
+    },
+    {
+      "address": "https://handicraftm.com/blog/claude-code-skills/",
+      "score": 48,
+      "way_in": "Contact page",
+      "way_in_address": "https://handicraftm.com/contact/"
+    },
+    {
+      "address": "https://www.skillsdirectory.com/blog/claude-skills-statistics",
+      "score": 48,
+      "way_in": "Advertise",
+      "way_in_address": "https://www.skillsdirectory.com/advertise"
+    }
+  ],
+  "caliber_note": "named/site_cited take the tool's answer-level flags (it opens every cited page); page_cited/first_pick derived from citation order vs kit target_url. Answer full text not exported by tool; citations + searches are. Claude engine down at run time: 4 answers not 6."
+}
