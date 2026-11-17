@@ -10,7 +10,9 @@ Supported client_reference_id prefixes:
   - `pro--...`        → Pro Deep Search membership (`$29/yr` / `$49/yr`)
   - `cigate--...`     → Team CI Skill Gate (`$49/mo` + bundled Team `ash_pro_` key)
   - `fasttrack--...`  → 48h Fast-Track Security Review (`$49`)
-  - anything else     → Deep Audit order (`$49`, backwards compatible)
+The Stripe account is shared with other products, so a session is only handled
+when it comes from one of PAYMENT_LINK_SKUS, carries metadata
+source=agentskillshub, or has one of the prefixes above. Everything else is skipped.
 
 Env:
   STRIPE_RESTRICTED_KEY       restricted key, read-only on Checkout Sessions
@@ -56,6 +58,13 @@ ISSUE_SECRET = os.environ.get("AGENTSKILLSHUB_ISSUE_SECRET", "")
 LOOKBACK_SECONDS = int(os.environ.get("LOOKBACK_HOURS") or 48) * 3600
 SESSION_PAGE = 100
 
+# Live Payment Links created 2026-11-17 (each also carries metadata source=agentskillshub + sku).
+PAYMENT_LINK_SKUS = {
+    "plink_1UchmqC0OZ4h2np2kGFSR5Qr": "pro",  # $29/yr early bird
+    "plink_1UchmwC0OZ4h2np2J1kAJkOW": "fasttrack",  # $49 one-time
+    "plink_1UchmyC0OZ4h2np253XNPeHj": "cigate",  # $49/mo
+}
+
 
 def http_json(url: str, headers: dict[str, str], data: bytes | None = None, method: str = "GET"):
     req = urllib.request.Request(url, data=data, headers=headers, method=method)
@@ -100,8 +109,24 @@ def mask_email(email: str) -> str:
     return f"{local[:1]}***@{domain}"
 
 
-def classify_session(session: dict) -> tuple[str, str]:
-    """Return (sku, target_label) from metadata / client_reference_id / mode."""
+def is_ours(session: dict) -> bool:
+    """The Stripe account also sells other products; only fulfill sessions that are provably ours."""
+    meta = session.get("metadata") or {}
+    ref = (session.get("client_reference_id") or "").strip()
+    return (
+        session.get("payment_link") in PAYMENT_LINK_SKUS
+        or meta.get("source") == "agentskillshub"
+        or ref.startswith(("pro--", "cigate--", "fasttrack--"))
+    )
+
+
+def classify_session(session: dict) -> tuple[str, str] | None:
+    """Return (sku, target_label) from metadata / client_reference_id / payment link.
+
+    Returns None for sessions that belong to other products on the same account.
+    """
+    if not is_ours(session):
+        return None
     meta = session.get("metadata") or {}
     ref = (session.get("client_reference_id") or "").strip()
     meta_sku = str(meta.get("sku") or "").lower()
@@ -111,21 +136,21 @@ def classify_session(session: dict) -> tuple[str, str]:
         target = ref.split("--", 1)[1].replace("--", "/") if "--" in ref else (ref or "(self-serve)")
         return sku, target
 
-    if ref.startswith("pro--") or ref == "pro":
+    if ref.startswith("pro--"):
         target = ref.removeprefix("pro--").replace("--", "/") or "pro-member"
         return "pro", target
-    if ref.startswith("cigate--") or ref == "cigate":
+    if ref.startswith("cigate--"):
         target = ref.removeprefix("cigate--").replace("--", "/") or "team-ci-gate"
         return "cigate", target
     if ref.startswith("fasttrack--"):
         target = ref.removeprefix("fasttrack--").replace("--", "/") or "(not provided)"
         return "fasttrack", target
 
-    if session.get("mode") == "subscription":
-        return "cigate", ref.replace("--", "/") if ref else "team-ci-gate"
-
-    target = ref.replace("--", "/") if ref else "(not provided)"
-    return "deep_audit", target
+    link_sku = PAYMENT_LINK_SKUS.get(session.get("payment_link") or "")
+    if link_sku:
+        defaults = {"pro": "pro-member", "cigate": "team-ci-gate", "fasttrack": "(not provided)"}
+        return link_sku, ref.replace("--", "/") if ref else defaults[link_sku]
+    return None
 
 
 def issue_member_key(session: dict, sku: str, buyer_email: str) -> dict | None:
@@ -328,7 +353,10 @@ def main() -> int:
     if not STRIPE_KEY:
         print("STRIPE_RESTRICTED_KEY not set — skipping (add the secret to activate).")
         return 0
-    sessions = stripe_sessions()
+    paid = stripe_sessions()
+    sessions = [s for s in paid if classify_session(s)]
+    if len(paid) > len(sessions):
+        print(f"Skipped {len(paid) - len(sessions)} paid session(s) from other products on this account.")
     if not sessions:
         print("No paid sessions in lookback window.")
         return 0
