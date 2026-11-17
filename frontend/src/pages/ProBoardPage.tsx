@@ -7,7 +7,6 @@ import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 
 const KEY_STORAGE = "pro_key";
-const CLUB_URL = "https://jasonzhu.ai/club";
 
 interface BoardRow {
   submission_id: number;
@@ -153,14 +152,12 @@ export default function ProBoardPage() {
               {zh
                 ? "提名和投票是会员权益。"
                 : "Nominating and voting are member benefits."}{" "}
-              <a
-                href={CLUB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/pro/"
                 className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"
               >
-                {zh ? "加入会员 →" : "Join the club →"}
-              </a>
+                {zh ? "开通 Pro（$29/yr）→" : "Go Pro ($29/yr) →"}
+              </Link>
             </p>
           )}
           <input

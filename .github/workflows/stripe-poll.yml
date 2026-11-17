@@ -28,6 +28,9 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          AGENTSKILLSHUB_ISSUE_SECRET: ${{ secrets.AGENTSKILLSHUB_ISSUE_SECRET }}
           # Empty on scheduled runs; the script then uses its 48 h default.
           LOOKBACK_HOURS: ${{ inputs.lookback_hours }}
         run: python ops/stripe/poll_stripe.py

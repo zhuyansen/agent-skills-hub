@@ -70,6 +70,18 @@ export function DeepAuditOffer({
             ? "用 Pro 深挖 —— 免费试 3 次 →"
             : "Vet deeper with Pro — 3 free tries →"}
         </Link>
+        <Link
+          to="/ci-gate/"
+          onClick={() =>
+            trackEvent("audit_cigate_upsell_click", {
+              grade: g,
+              repo: repo || undefined,
+            })
+          }
+          className="inline-flex items-center px-4 py-2.5 rounded-lg border border-indigo-300 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300 text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition-colors"
+        >
+          {zh ? "团队 CI PR 门禁 ($49/月) →" : "Team CI PR Gate ($49/mo) →"}
+        </Link>
         <span className="text-xs text-[var(--text-3)]">
           {zh ? "基础扫描永远免费" : "Basic scan stays free"}
         </span>

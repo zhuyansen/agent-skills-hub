@@ -72,6 +72,9 @@ const DirectoriesPage = lazy(() =>
 );
 const ProPage = lazy(() => import("./pages/ProPage"));
 const ProBoardPage = lazy(() => import("./pages/ProBoardPage"));
+const CiGatePage = lazy(() =>
+  import("./pages/CiGatePage").then((m) => ({ default: m.CiGatePage })),
+);
 
 const PAGE_FALLBACK = (
   <div className="flex items-center justify-center min-h-[60vh]">
@@ -117,6 +120,8 @@ function App() {
                   />
                   <Route path="/org-audit" element={<OrgAuditPage />} />
                   <Route path="/org-audit/" element={<OrgAuditPage />} />
+                  <Route path="/ci-gate" element={<CiGatePage />} />
+                  <Route path="/ci-gate/" element={<CiGatePage />} />
                   <Route path="/verify-email" element={<VerifyEmailPage />} />
                   <Route
                     path="/verified-creator"

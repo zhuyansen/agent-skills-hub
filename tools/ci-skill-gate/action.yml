@@ -1,0 +1,53 @@
+name: "Agent Skills Hub — CI Skill Gate"
+description: "Scan SKILL.md, AGENTS.md, CLAUDE.md, .cursorrules, and mcp.json files in pull requests against 43+ SlowMist & agent-era rules."
+branding:
+  icon: "shield"
+  color: "indigo"
+
+inputs:
+  paths:
+    description: "Space-separated paths or directories to scan (leave empty for auto-discovery)"
+    required: false
+    default: ""
+  fail-on:
+    description: "Minimum grade that fails the PR check: reject, unsafe, or caution"
+    required: false
+    default: "unsafe"
+  allowlist:
+    description: "Path to .agentskillshub-allowlist.json"
+    required: false
+    default: ".agentskillshub-allowlist.json"
+  sarif-out:
+    description: "Optional path to write SARIF v2.1.0 report for GitHub Code Scanning"
+    required: false
+    default: ""
+  gate-key:
+    description: "Optional Team CI Gate key (secrets.ASH_GATE_KEY)"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Run Agent Skills Hub CI Gate
+      shell: bash
+      env:
+        ASH_GATE_KEY: ${{ inputs.gate-key }}
+      run: |
+        ARGS=(
+          --root "${{ github.workspace }}"
+          --repo "${{ github.repository }}"
+          --fail-on "${{ inputs.fail-on }}"
+          --allowlist "${{ inputs.allowlist }}"
+          --annotations
+        )
+        if [ -n "${{ inputs.sarif-out }}" ]; then
+          ARGS+=(--sarif-out "${{ inputs.sarif-out }}")
+        fi
+        # shellcheck disable=SC2086
+        python3 "${{ github.action_path }}/scan_gate.py" "${ARGS[@]}" ${{ inputs.paths }}

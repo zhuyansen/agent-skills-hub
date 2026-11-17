@@ -26,6 +26,7 @@ export interface Tier {
   unit: string;
   features: string[];
   cta: string;
+  href?: string;
   highlight?: boolean;
 }
 export interface QA {
@@ -292,24 +293,40 @@ export const EN: EnterpriseCopy = {
       },
       {
         name: "Pro",
-        price: "From ¥199/yr",
-        unit: "· annual membership",
+        price: "$29/yr",
+        unit: "· early supporter (standard $49/yr)",
+        href: "/pro/",
         features: [
           "Everything in Free",
           "Full README-text deep search",
           "200 results/page · CSV/JSON export",
-          "API access",
+          "CLI & MCP API key",
           "Email support",
         ],
-        cta: "See Pro →",
+        cta: "Go Pro ($29/yr) →",
+      },
+      {
+        name: "Team CI Gate",
+        price: "$49/mo",
+        unit: "· 3–20 engineers · self-serve",
+        href: "/ci-gate/",
+        features: [
+          "Everything in Pro (for your team)",
+          "GitHub Action PR skill & MCP gate",
+          "43 SlowMist-aligned security checks",
+          "Repo allowlist policy (.agentskillshub-allowlist.json)",
+          "8-hour upstream change / risk alerts",
+        ],
+        cta: "Set up CI Gate →",
       },
       {
         name: "Enterprise",
         price: "$10K–$30K",
         unit: "/year / department",
+        href: "#demo-form",
         highlight: true,
         features: [
-          "Everything in Pro",
+          "Everything in Team CI Gate",
           "SSO/SCIM (Okta, Auth0, Azure AD)",
           "Pre-deployment sandbox",
           "Compliance evidence pack",
@@ -631,24 +648,40 @@ export const ZH: EnterpriseCopy = {
       },
       {
         name: "Pro",
-        price: "¥199/年起",
-        unit: "· 年度会员",
+        price: "$29/年",
+        unit: "· 早鸟价（标准价 $49/年）",
+        href: "/pro/",
         features: [
           "免费版全部功能",
           "README 全文深度检索",
           "200 条/页 · CSV/JSON 导出",
-          "API 访问",
+          "CLI & MCP API Key",
           "邮件支持",
         ],
-        cta: "了解 Pro →",
+        cta: "开通 Pro ($29/年) →",
+      },
+      {
+        name: "团队 CI 门禁",
+        price: "$49/月",
+        unit: "· 3–20 人工程团队 · 自助开通",
+        href: "/ci-gate/",
+        features: [
+          "包含 Pro 全部团队权限",
+          "GitHub Action PR 自动安全门禁",
+          "43 条 SlowMist 规则自动扫描",
+          "团队白名单策略（.agentskillshub-allowlist.json）",
+          "每 8 小时上游变更与风险告警",
+        ],
+        cta: "配置 CI 门禁 →",
       },
       {
         name: "企业版",
         price: "$10K–$30K",
         unit: "/年 / 部门",
+        href: "#demo-form",
         highlight: true,
         features: [
-          "Pro 全部功能",
+          "团队 CI 门禁全部功能",
           "SSO/SCIM(Okta、Auth0、Azure AD)",
           "部署前沙箱",
           "合规证据包",

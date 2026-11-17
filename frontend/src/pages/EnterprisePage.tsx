@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
 import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
@@ -65,6 +65,7 @@ const EMPTY_FORM: FormState = {
 
 export function EnterprisePage() {
   const { lang } = useI18n();
+  const navigate = useNavigate();
   const c = lang === "zh" ? ZH : EN;
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [submitting, setSubmitting] = useState(false);
@@ -438,35 +439,22 @@ export function EnterprisePage() {
               <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
                 {c.pricing.sub}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
                 {c.pricing.tiers.map((tier) => {
-                  // Pro used to point at a mailto:. Most browsers have no mail
-                  // client configured, so the click did nothing at all — and it
-                  // still fired enterprise_cta_click, which is part of why 28
-                  // days produced 13 clicks from 11 people and ZERO rows in
-                  // enterprise_leads. The lead form is the only capture path
-                  // that exists, so every paid tier routes to it.
-                  const isPaid = tier.highlight || tier.name === "Pro";
-                  const ctaHref = isPaid ? "#demo-form" : "/";
+                  const ctaHref = tier.href ?? (tier.highlight ? "#demo-form" : "/");
+                  const isDemoForm = ctaHref === "#demo-form";
+                  const isPaid = ctaHref !== "/";
                   return (
                   <div
                     key={tier.name}
                     onClick={(e) => {
-                      // Whole card → its CTA. Clarity: pricing feature bullets
-                      // were the top /enterprise/ dead-click cluster (35%);
-                      // clicking a feature = "I want this tier". Inner <a>
-                      // (the CTA button) wins via the guard.
                       if ((e.target as HTMLElement).closest("a")) return;
-                      // Only paid tiers count as purchase intent. Firing
-                      // enterprise_cta_click on the Free card mixed "I want the
-                      // free catalog" into the one metric that is supposed to
-                      // mean "I might pay", making the funnel unreadable.
                       trackEvent(
                         isPaid ? "enterprise_cta_click" : "free_tier_click",
                         { cta: "pricing-card", tier: tier.name },
                       );
-                      if (isPaid) goToForm(e);
-                      else window.location.href = ctaHref;
+                      if (isDemoForm) goToForm(e);
+                      else navigate(ctaHref);
                     }}
                     className={
                       tier.highlight
@@ -499,23 +487,38 @@ export function EnterprisePage() {
                         <li key={f}>✓ {f}</li>
                       ))}
                     </ul>
-                    <a
-                      href={ctaHref}
-                      onClick={(e) => {
-                        trackEvent(
-                          isPaid ? "enterprise_cta_click" : "free_tier_click",
-                          { cta: "pricing", tier: tier.name },
-                        );
-                        if (isPaid) goToForm(e);
-                      }}
-                      className={
-                        tier.highlight
-                          ? "block w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
-                          : "block w-full text-center py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:border-indigo-400 transition-colors"
-                      }
-                    >
-                      {tier.cta}
-                    </a>
+                    {isDemoForm ? (
+                      <a
+                        href={ctaHref}
+                        onClick={(e) => {
+                          trackEvent("enterprise_cta_click", {
+                            cta: "pricing",
+                            tier: tier.name,
+                          });
+                          goToForm(e);
+                        }}
+                        className={
+                          tier.highlight
+                            ? "block w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
+                            : "block w-full text-center py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:border-indigo-400 transition-colors"
+                        }
+                      >
+                        {tier.cta}
+                      </a>
+                    ) : (
+                      <Link
+                        to={ctaHref}
+                        onClick={() =>
+                          trackEvent(
+                            isPaid ? "enterprise_cta_click" : "free_tier_click",
+                            { cta: "pricing", tier: tier.name },
+                          )
+                        }
+                        className="block w-full text-center py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:border-indigo-400 transition-colors font-medium"
+                      >
+                        {tier.cta}
+                      </Link>
+                    )}
                   </div>
                   );
                 })}

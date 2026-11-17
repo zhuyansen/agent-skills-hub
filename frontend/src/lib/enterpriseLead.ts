@@ -12,7 +12,12 @@ import { trackEvent } from "./analytics";
  * Each surface keeps its own event family (enterprise_lead_* vs audit_lead_*)
  * so the daily digest can print two funnels without a GA custom dimension.
  */
-export type LeadSource = "enterprise_page" | "audit_result";
+export type LeadSource =
+  | "enterprise_page"
+  | "audit_result"
+  | "pro_checkout"
+  | "submit_fasttrack"
+  | "ci_gate_page";
 
 export const HOW_FOUND_OPTIONS = [
   "",

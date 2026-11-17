@@ -48,7 +48,6 @@ const GRADE_META: Record<
 
 const GRADE_ORDER = ["unsafe", "reject", "caution", "safe", "unknown"];
 const FREE_ROWS = 8;
-const CLUB_URL = "https://jasonzhu.ai/zh/club";
 
 function gradeKey(g: string | null): string {
   const k = (g || "unknown").toLowerCase();
@@ -351,9 +350,9 @@ export function OrgAuditPage() {
                 ? `评级来自装前静态扫描(SlowMist 分类法,${RULE_COUNT} 条公开规则),不是人工深审。数据每 8 小时刷新。`
                 : `Grades come from a pre-install static scan (SlowMist taxonomy, ${RULE_COUNT} published rules), not a manual deep audit. Data refreshes every 8h.`}
               {" "}
-              <a href={CLUB_URL} className="text-indigo-600 dark:text-indigo-400 hover:underline" target="_blank" rel="noopener noreferrer">
+              <Link to="/pro/" className="text-indigo-600 dark:text-indigo-400 hover:underline">
                 {zh ? "关于 Pro" : "About Pro"}
-              </a>
+              </Link>
             </p>
           </>
         )}

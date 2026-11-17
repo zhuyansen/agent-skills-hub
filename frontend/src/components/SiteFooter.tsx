@@ -297,6 +297,13 @@ export function SiteFooter() {
           </a>
           <span className="text-gray-700">·</span>
           <a
+            href="/ci-gate/"
+            className="hover:text-indigo-400 transition-colors"
+          >
+            {lang === "zh" ? "CI 安全门禁" : "CI Skill Gate"}
+          </a>
+          <span className="text-gray-700">·</span>
+          <a
             href="mailto:m17551076169@gmail.com"
             className="hover:text-white transition-colors"
           >

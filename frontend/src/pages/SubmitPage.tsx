@@ -6,6 +6,14 @@ import { SiteFooter } from "../components/SiteFooter";
 import { submitSkill } from "../api/client";
 import { WorkflowComposeModal } from "../components/WorkflowComposeModal";
 import { useI18n } from "../i18n/I18nContext";
+import {
+  CHECKOUT_LINKS,
+  USD_PRICING,
+  buildStripeCheckoutUrl,
+  sanitizeStripeRef,
+} from "../lib/checkout";
+import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
+import { trackEvent } from "../lib/analytics";
 
 const GITHUB_URL_RE = /^https?:\/\/github\.com\/[\w.-]+\/[\w.-]+\/?$/i;
 
@@ -15,20 +23,99 @@ type SubmitState =
   | { kind: "success"; message: string }
   | { kind: "error"; message: string };
 
+function extractRepoSlug(url: string): string {
+  const m = url.trim().match(/github\.com\/([^/]+\/[^/]+?)(?:\.git|\/)?$/i);
+  return m ? m[1] : url.trim();
+}
+
 export function SubmitPage() {
   const { lang } = useI18n();
   const isZh = lang === "zh";
   const [repoUrl, setRepoUrl] = useState("");
   const [urlTouched, setUrlTouched] = useState(false);
+  const [reviewLane, setReviewLane] = useState<"free" | "fasttrack">("free");
+  const [requesterEmail, setRequesterEmail] = useState("");
   const [submitState, setSubmitState] = useState<SubmitState>({ kind: "idle" });
   const [workflowOpen, setWorkflowOpen] = useState(false);
 
   const urlValid = GITHUB_URL_RE.test(repoUrl.trim());
   const showUrlError = urlTouched && repoUrl.length > 0 && !urlValid;
+  const hasFastTrackStripe = CHECKOUT_LINKS.fasttrack.length > 0;
+  const fastTrackCheckoutHref =
+    urlValid && hasFastTrackStripe
+      ? buildStripeCheckoutUrl(CHECKOUT_LINKS.fasttrack, {
+          clientReferenceId: sanitizeStripeRef(
+            extractRepoSlug(repoUrl),
+            "fasttrack",
+          ),
+          prefilledEmail: requesterEmail,
+        })
+      : "";
 
   async function handleSkillSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!urlValid || submitState.kind === "submitting") return;
+
+    if (reviewLane === "fasttrack") {
+      if (!isCompleteEmail(requesterEmail.trim())) {
+        setSubmitState({
+          kind: "error",
+          message: isZh
+            ? "加急审计需要填写完整邮箱以便接收 48h 报告。"
+            : "Please enter a complete email address for your 48h report.",
+        });
+        return;
+      }
+      setSubmitState({ kind: "submitting" });
+      const slug = extractRepoSlug(repoUrl);
+      try {
+        // Also queue in extra_repos if not already tracked (ignore already_tracked errors).
+        await submitSkill(repoUrl.trim()).catch(() => null);
+        await submitEnterpriseLead(
+          {
+            email: requesterEmail.trim(),
+            use_case: `Fast-Track Security Review (${USD_PRICING.fastTrack}): ${slug}`,
+            estimated_budget: USD_PRICING.fastTrack,
+            timeline: "48h priority turnaround",
+            message: `Repo URL: ${repoUrl.trim()}`,
+          },
+          "submit_fasttrack",
+          {
+            attempt: "fasttrack_submit_attempt",
+            submitted: "fasttrack_submit_ok",
+            failed: "fasttrack_submit_fail",
+          },
+          { repo: slug },
+        );
+        if (hasFastTrackStripe && fastTrackCheckoutHref) {
+          window.open(fastTrackCheckoutHref, "_blank", "noopener,noreferrer");
+        }
+        setSubmitState({
+          kind: "success",
+          message: hasFastTrackStripe
+            ? isZh
+              ? `已登记 ${slug} 加急审计并打开 Stripe 结账页,付款后 48 小时内发报告至邮箱。`
+              : `Fast-Track queued for ${slug} and Stripe checkout opened. Report arrives within 48h of payment.`
+            : isZh
+              ? `已收到 ${slug} 的加急审计请求(${USD_PRICING.fastTrack}),我们将尽快发 Stripe 付款链接并在 48 小时内交付报告。`
+              : `Fast-Track request recorded for ${slug} (${USD_PRICING.fastTrack}). We'll send your Stripe checkout link and deliver your report within 48h.`,
+        });
+        setRepoUrl("");
+        setUrlTouched(false);
+      } catch (err) {
+        setSubmitState({
+          kind: "error",
+          message:
+            err instanceof Error
+              ? err.message
+              : isZh
+                ? "提交失败。"
+                : "Submission failed.",
+        });
+      }
+      return;
+    }
+
     setSubmitState({ kind: "submitting" });
     const okMsg = isZh
       ? "已提交,我们会在 24 小时内审核。"
@@ -126,45 +213,144 @@ export function SubmitPage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {isZh ? "提交一个 Skill" : "Submit a Skill"}
                 </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   {isZh
-                    ? "发现或做了一个不错的 Claude Skill、MCP server 或 Codex Skill?贴上 GitHub 链接 —— 我们会在 24 小时内审核并收录。"
-                    : "Found or built a great Claude Skill, MCP server, or Codex Skill? Paste the GitHub URL — we'll review and index it within 24 hours."}
+                    ? "发现或做了一个不错的 Claude Skill、MCP server 或 Codex Skill?贴上 GitHub 链接 —— 可选免费排队收录,或加急 48 小时输出完整安全审计与实测结论。"
+                    : "Found or built a great Claude Skill, MCP server, or Codex Skill? Paste the GitHub URL — queue for free indexing, or pick Fast-Track for a 48h priority security review."}
                 </p>
-                <form
-                  onSubmit={handleSkillSubmit}
-                  className="flex flex-col sm:flex-row gap-2"
-                >
-                  <input
-                    type="url"
-                    value={repoUrl}
-                    onChange={(e) => setRepoUrl(e.target.value)}
-                    onBlur={() => setUrlTouched(true)}
-                    placeholder="https://github.com/owner/repo"
-                    className={`flex-1 px-4 py-2.5 bg-white dark:bg-gray-950 border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 outline-none transition-all ${
-                      showUrlError
-                        ? "border-red-400 focus:border-red-500"
-                        : "border-gray-200 dark:border-gray-800 focus:border-indigo-600"
-                    }`}
-                  />
+
+                {/* Review lane selector */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
                   <button
-                    type="submit"
-                    disabled={!urlValid || submitState.kind === "submitting"}
-                    className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
-                      urlValid && submitState.kind !== "submitting"
-                        ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-                        : "bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                    type="button"
+                    onClick={() => {
+                      setReviewLane("free");
+                      setSubmitState({ kind: "idle" });
+                    }}
+                    className={`text-left p-3 rounded-lg border transition-colors cursor-pointer ${
+                      reviewLane === "free"
+                        ? "border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/40"
+                        : "border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700"
                     }`}
                   >
-                    {submitState.kind === "submitting"
-                      ? isZh
-                        ? "提交中…"
-                        : "Submitting…"
-                      : isZh
-                        ? "提交"
-                        : "Submit"}
+                    <div className="flex items-center justify-between text-sm font-semibold text-gray-900 dark:text-white">
+                      <span>{isZh ? "标准免费队列" : "Standard Queue"}</span>
+                      <span className="text-xs text-emerald-600 dark:text-emerald-400">
+                        {isZh ? "免费" : "Free"}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {isZh
+                        ? "常规审核排队 · 需 ≥10 stars 或活跃提交"
+                        : "Community queue · requires ≥10 stars or active commits"}
+                    </p>
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setReviewLane("fasttrack");
+                      setSubmitState({ kind: "idle" });
+                      trackEvent("fasttrack_lane_select");
+                    }}
+                    className={`text-left p-3 rounded-lg border transition-colors cursor-pointer ${
+                      reviewLane === "fasttrack"
+                        ? "border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/40"
+                        : "border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-sm font-semibold text-gray-900 dark:text-white">
+                      <span>{isZh ? "加急安全初审" : "Fast-Track Review"}</span>
+                      <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                        {USD_PRICING.fastTrack} · 48h
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      {isZh
+                        ? "优先收录评估 + 43 规则报告 + 实测卡片（不卖评分）"
+                        : "48h priority admission + 43-rule report + verdict card (scores stay objective)"}
+                    </p>
+                  </button>
+                </div>
+
+                <form onSubmit={handleSkillSubmit} className="space-y-2.5">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="url"
+                      value={repoUrl}
+                      onChange={(e) => setRepoUrl(e.target.value)}
+                      onBlur={() => setUrlTouched(true)}
+                      placeholder="https://github.com/owner/repo"
+                      className={`flex-1 px-4 py-2.5 bg-white dark:bg-gray-950 border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-600/20 outline-none transition-all ${
+                        showUrlError
+                          ? "border-red-400 focus:border-red-500"
+                          : "border-gray-200 dark:border-gray-800 focus:border-indigo-600"
+                      }`}
+                    />
+                    {reviewLane === "free" && (
+                      <button
+                        type="submit"
+                        disabled={!urlValid || submitState.kind === "submitting"}
+                        className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
+                          urlValid && submitState.kind !== "submitting"
+                            ? "bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer"
+                            : "bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                        }`}
+                      >
+                        {submitState.kind === "submitting"
+                          ? isZh
+                            ? "提交中…"
+                            : "Submitting…"
+                          : isZh
+                            ? "免费提交"
+                            : "Submit free"}
+                      </button>
+                    )}
+                  </div>
+
+                  {reviewLane === "fasttrack" && (
+                    <div className="p-3.5 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900/60 space-y-2.5">
+                      <div className="flex flex-col sm:flex-row gap-2">
+                        <input
+                          type="email"
+                          required
+                          value={requesterEmail}
+                          onChange={(e) => setRequesterEmail(e.target.value)}
+                          placeholder={
+                            isZh
+                              ? "接收 48h 审计报告的邮箱 *"
+                              : "Email for your 48h review report *"
+                          }
+                          className="flex-1 px-3.5 py-2 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-400"
+                        />
+                        <button
+                          type="submit"
+                          disabled={!urlValid || submitState.kind === "submitting"}
+                          className={`px-5 py-2 text-sm font-semibold rounded-lg transition-colors whitespace-nowrap ${
+                            urlValid && submitState.kind !== "submitting"
+                              ? "bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer"
+                              : "bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                          }`}
+                        >
+                          {submitState.kind === "submitting"
+                            ? "…"
+                            : hasFastTrackStripe
+                              ? isZh
+                                ? `支付 ${USD_PRICING.fastTrack} 加急审核 →`
+                                : `Pay ${USD_PRICING.fastTrack} & Expedite →`
+                              : isZh
+                                ? `申请加急审核 (${USD_PRICING.fastTrack}) →`
+                                : `Request Fast-Track (${USD_PRICING.fastTrack}) →`}
+                        </button>
+                      </div>
+                      <p className="text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {isZh
+                          ? "原则声明：付费仅用于缩短排队与 48h 实测交付速度，绝不出售高分或掩盖安全标记；若触发规则仍如实标注 CAUTION / UNSAFE 并附修复建议。"
+                          : "Neutrality pledge: Fast-Track expedites queue turnaround only. Scores and safety grades (SAFE / CAUTION / UNSAFE) are never for sale; any triggered flags are reported transparently with remediation notes."}
+                      </p>
+                    </div>
+                  )}
                 </form>
+
                 {showUrlError && (
                   <p className="text-xs text-red-500 mt-2">
                     {isZh

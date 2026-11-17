@@ -86,6 +86,13 @@ const SHELLS = [
     noindex: true,
   },
   {
+    path: "ci-gate",
+    title:
+      "Team CI Skill Gate — Block Risky AI Skills & MCP Configs in PRs · Agent Skills Hub",
+    description:
+      "GitHub Action + SARIF security gate for SKILL.md, AGENTS.md, CLAUDE.md, .cursorrules, and .mcp.json. Built on 43 SlowMist & agent-era rules.",
+  },
+  {
     path: "submit",
     title: "Submit to the Hub — AgentSkillsHub",
     description:
