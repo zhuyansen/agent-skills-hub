@@ -1,5 +1,19 @@
 # Daily Report Archive
 
+## 2026-11-17
+1. onehumanbeing/esp32-iphone-agent — 让 AI 通过低成本 ESP32 操控真实 iPhone，免越狱完成视觉交互（5008★ 137.1/day）
+2. dabingfy-dot/solo-to-team-skills — 🆕 组织多智能体角色、模板与交接流程，让一人统筹团队协作（904★ 88.1/day）
+3. AFangTeam/PrintLab — 🆕 串联创意、CAD、切片与记录，协助 Codex 完成 3D 打印工作流（323★ 51.6/day）
+4. langfuse/langfuse — 统一观测 AI 调用、评测智能体并管理提示词与技能，支持自托管（37499★ 29.3/day）
+5. OpenTodoApp/OpenTodo — 搭建本地优先任务管理器，让智能体协助组织个人待办（481★ 12.6/day）
+6. bertel2020/HA-Housekeeper — 排查 Home Assistant 断链与孤立实体，确认后修复并支持撤销（184★ 4.5/day）
+7. sugarforever/chat-ollama — 运行本地或托管模型，构建可对话的开源智能体应用（3527★ 3.5/day）
+8. flymysql/dsh-remote — 连接远程 SSH 工作区，让智能体跨主机浏览、编辑、构建项目（298★ 3.1/day）
+🎯 今日趋势：入选项目集中在让智能体进入真实工作流：多智能体协作、设备控制、远程开发、观测与家庭自动化。
+> 注：GitHub Actions 自动生成（gpt-6-astra 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 141 个日期段，比对 1,401 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 40 条、去重后 40 条，过了硬规则的不足 20 个，放宽到 72h（去重后共 150 条）。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 28 个。**代码硬规则剔除**：21 个 Gemini-Config-Checker-（同名仓库出现在 21 个不同账号下，批量账号站群）；Outpostkrewhirl86/Capri-AI：仓库已删除或不可访问；omagents/omagents：刷星嫌疑：359★ 却 0 个 fork；77 个 ai--manus2.0（同名仓库出现在 77 个不同账号下，批量账号站群）；15 个 GitHub-Copilot-app（同名仓库出现在 15 个不同账号下，批量账号站群）；andy-wells-73/microsoft-outlook-desktop：刷星嫌疑：365★ 却 0 个 fork；azure-fossil-maker/serum-2-desktop：名字或描述像破解 / 激活 / 外挂类诱饵；alicebrown323/pro-tools-desktop：名字或描述像破解 / 激活 / 外挂类诱饵；5 个 ai--manus（同名仓库出现在 5 个不同账号下，批量账号站群）。**模型排除项**：①janestreet/agent_skills（9496★ 696.9/day）：描述仅为“Agent skills”，过于空泛，不符合推荐要求；②BigPizzaV3/ClaudeMom（522★ 103.8/day）：涉及绕过 Claude 账号并解锁桌面版功能，属于不应推荐的规避与解锁内容；③nexu-io/html-video（4846★ 27.8/day）：security_grade 为 unknown，不满足必须为 safe 的要求；④rubenhassid1/remake（344★ 18.5/day）：security_grade 为 unknown，不满足必须为 safe 的要求；⑤liguozheng-ac/Lingbo-Desk（217★ 16.0/day）：security_grade 为 unknown，且账号仅有 2 个粉丝，风险信号较明显；⑥edisonmbli/refactoring-ui-skill（472★ 5.3/day）：security_grade 为 unknown，不满足必须为 safe 的要求；⑦secfoo-com/secfoo（310★ 3.6/day）：组织仅有 1 个公开仓库、2 个粉丝且创建较新，符合账号刷星疑点，跳过。**轻红旗**（保留）：dabingfy-dot/solo-to-team-skills：账号项目数较少，但有 115 个 fork 和 24 个 issue，存在真实使用痕迹；OpenTodoApp/OpenTodo：组织创建较新且其他项目星数较低，但有 49 个 fork 和 76 个 issue。🆕 判定＝created_at 距今 14 天内：solo-to-team-skills（10.3 天）、PrintLab（6.3 天）。security_grade：入选 8 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-12
 1. obsidianmd/obsidian-skills — Obsidian 官方技能包，教智能体用 Obsidian CLI 读写笔记、Bases 和画布（51658★ 165.0/day）
 2. alexeyw/lot-map — 🆕 在对话旁实时画出 Claude Code 的工具调用、钩子、技能和子智能体动向（258★ 116.6/day）
