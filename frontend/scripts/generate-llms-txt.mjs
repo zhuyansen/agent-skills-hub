@@ -19,6 +19,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { homeCounts, llmsRules, skillMdRules, stampRules } from "./agent-file-counts.mjs";
 import { stampHomeCounts } from "./home-counts.mjs";
+import { buildLlmsFull, htmlToText } from "./llms-full.mjs";
 
 const SITE = "https://agentskillshub.top";
 const DIST = "dist";
@@ -78,6 +79,32 @@ const generated = SECTIONS.flatMap(sectionLines);
 const header = stampRules(readFileSync(SOURCE, "utf8").trimEnd(), llmsRules(counts), "llms.txt");
 writeFileSync(join(DIST, "llms.txt"), [header, "", ...generated].join("\n"));
 console.log(`llms.txt: ${generated.filter((line) => line.startsWith("- [")).length} pages listed`);
+
+// llms-full.txt (2026-11-16): the same pages in full text, the SOP pair to the index.
+// Key prose pages first, then every section page llms.txt lists (EN + zh scenarios).
+const KEY_PATHS = ["/about/", "/how-we-grade/", "/ai-info/", "/agent-skills-directories/", "/enterprise/", "/best/", "/book/"];
+const fullPaths = [...new Set([
+  ...KEY_PATHS,
+  ...SECTIONS.flatMap(({ sitemap, keep }) => {
+    const file = join(DIST, sitemap);
+    if (!existsSync(file)) return [];
+    return [...readFileSync(file, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)]
+      .map((m) => m[1].replace(SITE, ""))
+      .filter((path) => !SKIPPED.has(path) && keep(path));
+  }),
+])];
+const fullPages = fullPaths.flatMap((path) => {
+  const file = join(DIST, ...path.split("/").filter(Boolean), "index.html");
+  if (!existsSync(file)) return [];
+  const html = readFileSync(file, "utf8");
+  const rawTitle = html.match(/<title>([^<]*)<\/title>/)?.[1];
+  const text = htmlToText(html);
+  if (!rawTitle || !text.trim()) return [];
+  return [{ path, title: decode(rawTitle).replace(/ \| Agent Skills Hub$/, ""), text }];
+});
+const full = buildLlmsFull(SITE, fullPages);
+writeFileSync(join(DIST, "llms-full.txt"), full);
+console.log(`llms-full.txt: ${fullPages.length} pages, ${(full.length / 1024).toFixed(0)} KB`);
 
 const SKILL_MD = join(DIST, "skill.md");
 writeFileSync(SKILL_MD, stampRules(readFileSync(SKILL_MD, "utf8"), skillMdRules(counts, indexCount), "skill.md"));

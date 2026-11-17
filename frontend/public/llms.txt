@@ -6,6 +6,7 @@
 
 - [ai-info](https://agentskillshub.top/ai-info/): signed, machine-readable company & platform facts (entity BRICKAI / GoSailGlobal LLC, catalog & security-grading scale, 43 published rules, Zenodo DOI `10.5281/zenodo.21292799`, key update dates)
 - [skill.md](https://agentskillshub.top/skill.md): teaches an agent to search, audit, and install skills with the security grade checked BEFORE installing
+- [llms-full.txt](https://agentskillshub.top/llms-full.txt): the full text of every scenario guide, comparison, category, blog post and key page in one file, as a non-JS crawler reads it
 - MCP server: `npx -y @agentskillshub/mcp` — tools: search_skills, audit_skill, get_skill_install
 - CLI: `npx @agentskillshub/cli search <query>` — static CDN index, works offline after first run
 

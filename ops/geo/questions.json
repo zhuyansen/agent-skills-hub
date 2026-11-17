@@ -1,0 +1,325 @@
+{
+  "generated": "2026-11-16",
+  "source": "frontend/scripts/scenario-keywords.json (active) + brand set",
+  "brand_strings": [
+    "AgentSkillsHub",
+    "Agent Skills Hub",
+    "agentskillshub"
+  ],
+  "questions": [
+    {
+      "id": "best-web-scraping",
+      "slug": "web-scraping",
+      "question": "What are the best web scraping tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/web-scraping/",
+      "target_url_zh": "https://agentskillshub.top/best/web-scraping/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-code-review",
+      "slug": "code-review",
+      "question": "What are the best claude code review skill?",
+      "target_url": "https://agentskillshub.top/best/code-review/",
+      "target_url_zh": "https://agentskillshub.top/best/code-review/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-mcp-database",
+      "slug": "mcp-database",
+      "question": "What are the best database mcp?",
+      "target_url": "https://agentskillshub.top/best/mcp-database/",
+      "target_url_zh": "https://agentskillshub.top/best/mcp-database/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-mcp-api",
+      "slug": "mcp-api",
+      "question": "What are the best mcp api tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/mcp-api/",
+      "target_url_zh": "https://agentskillshub.top/best/mcp-api/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-secret-detection",
+      "slug": "secret-detection",
+      "question": "What are the best secret detection tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/secret-detection/",
+      "target_url_zh": "https://agentskillshub.top/best/secret-detection/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-content-writing",
+      "slug": "content-writing",
+      "question": "What are the best content writing tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/content-writing/",
+      "target_url_zh": "https://agentskillshub.top/best/content-writing/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-browser-automation",
+      "slug": "browser-automation",
+      "question": "What are the best browser automation tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/browser-automation/",
+      "target_url_zh": "https://agentskillshub.top/best/browser-automation/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-prompt-engineering",
+      "slug": "prompt-engineering",
+      "question": "What are the best prompt engineering tool?",
+      "target_url": "https://agentskillshub.top/best/prompt-engineering/",
+      "target_url_zh": "https://agentskillshub.top/best/prompt-engineering/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-telegram-bot",
+      "slug": "telegram-bot",
+      "question": "What are the best open source telegram bot?",
+      "target_url": "https://agentskillshub.top/best/telegram-bot/",
+      "target_url_zh": "https://agentskillshub.top/best/telegram-bot/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-refactoring",
+      "slug": "refactoring",
+      "question": "What are the best code refactoring tool?",
+      "target_url": "https://agentskillshub.top/best/refactoring/",
+      "target_url_zh": "https://agentskillshub.top/best/refactoring/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-image-generation",
+      "slug": "image-generation",
+      "question": "What are the best Image Generation Skills for Claude Code?",
+      "target_url": "https://agentskillshub.top/best/image-generation/",
+      "target_url_zh": "https://agentskillshub.top/best/image-generation/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-3d-mcp",
+      "slug": "3d-mcp",
+      "question": "What are the best blender mcp?",
+      "target_url": "https://agentskillshub.top/best/3d-mcp/",
+      "target_url_zh": "https://agentskillshub.top/best/3d-mcp/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-cli-tools",
+      "slug": "cli-tools",
+      "question": "What are the best cli tools tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/cli-tools/",
+      "target_url_zh": "https://agentskillshub.top/best/cli-tools/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-authentication",
+      "slug": "authentication",
+      "question": "What are the best authentication tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/authentication/",
+      "target_url_zh": "https://agentskillshub.top/best/authentication/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-claude-code-skills",
+      "slug": "claude-code-skills",
+      "question": "What are the best claude code skills?",
+      "target_url": "https://agentskillshub.top/best/claude-code-skills/",
+      "target_url_zh": "https://agentskillshub.top/best/claude-code-skills/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-codex-skills",
+      "slug": "codex-skills",
+      "question": "What are the best codex skill?",
+      "target_url": "https://agentskillshub.top/best/codex-skills/",
+      "target_url_zh": "https://agentskillshub.top/best/codex-skills/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-multi-agent",
+      "slug": "multi-agent",
+      "question": "What are the best multi agent orchestration?",
+      "target_url": "https://agentskillshub.top/best/multi-agent/",
+      "target_url_zh": "https://agentskillshub.top/best/multi-agent/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-local-llm",
+      "slug": "local-llm",
+      "question": "What are the best local llm tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/local-llm/",
+      "target_url_zh": "https://agentskillshub.top/best/local-llm/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-mcp-for-github",
+      "slug": "mcp-for-github",
+      "question": "What are the best github mcp?",
+      "target_url": "https://agentskillshub.top/best/mcp-for-github/",
+      "target_url_zh": "https://agentskillshub.top/best/mcp-for-github/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-mcp-for-google",
+      "slug": "mcp-for-google",
+      "question": "What are the best mcp for google tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/mcp-for-google/",
+      "target_url_zh": "https://agentskillshub.top/best/mcp-for-google/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-knowledge-base",
+      "slug": "knowledge-base",
+      "question": "What are the best LLM Wiki & AI Knowledge Base Tools?",
+      "target_url": "https://agentskillshub.top/best/knowledge-base/",
+      "target_url_zh": "https://agentskillshub.top/best/knowledge-base/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-skill-management-tools",
+      "slug": "skill-management-tools",
+      "question": "What are the best claude skills manager?",
+      "target_url": "https://agentskillshub.top/best/skill-management-tools/",
+      "target_url_zh": "https://agentskillshub.top/best/skill-management-tools/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-anti-slop",
+      "slug": "anti-slop",
+      "question": "What are the best humanizer skill?",
+      "target_url": "https://agentskillshub.top/best/anti-slop/",
+      "target_url_zh": "https://agentskillshub.top/best/anti-slop/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-seo-tools",
+      "slug": "seo-tools",
+      "question": "What are the best claude seo skill?",
+      "target_url": "https://agentskillshub.top/best/seo-tools/",
+      "target_url_zh": "https://agentskillshub.top/best/seo-tools/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-ai-design",
+      "slug": "ai-design",
+      "question": "What are the best claude design skills?",
+      "target_url": "https://agentskillshub.top/best/ai-design/",
+      "target_url_zh": "https://agentskillshub.top/best/ai-design/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-voice-agent",
+      "slug": "voice-agent",
+      "question": "What are the best voice agent tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/voice-agent/",
+      "target_url_zh": "https://agentskillshub.top/best/voice-agent/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-content-syndication",
+      "slug": "content-syndication",
+      "question": "What are the best content syndication tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/content-syndication/",
+      "target_url_zh": "https://agentskillshub.top/best/content-syndication/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-ppt-presentation",
+      "slug": "ppt-presentation",
+      "question": "What are the best ppt presentation tools for AI agents?",
+      "target_url": "https://agentskillshub.top/best/ppt-presentation/",
+      "target_url_zh": "https://agentskillshub.top/best/ppt-presentation/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-vibe-coding",
+      "slug": "vibe-coding",
+      "question": "What are the best vibe coding tool?",
+      "target_url": "https://agentskillshub.top/best/vibe-coding/",
+      "target_url_zh": "https://agentskillshub.top/best/vibe-coding/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-obsidian-second-brain",
+      "slug": "obsidian-second-brain",
+      "question": "What are the best obsidian mcp?",
+      "target_url": "https://agentskillshub.top/best/obsidian-second-brain/",
+      "target_url_zh": "https://agentskillshub.top/best/obsidian-second-brain/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-typesafe-jev",
+      "slug": "typesafe-jev",
+      "question": "What are the best jev skill?",
+      "target_url": "https://agentskillshub.top/best/typesafe-jev/",
+      "target_url_zh": "https://agentskillshub.top/best/typesafe-jev/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-claude-video-skills",
+      "slug": "claude-video-skills",
+      "question": "What are the best claude video editing skill?",
+      "target_url": "https://agentskillshub.top/best/claude-video-skills/",
+      "target_url_zh": "https://agentskillshub.top/best/claude-video-skills/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-claude-code-hooks",
+      "slug": "claude-code-hooks",
+      "question": "What are the best claude code hooks?",
+      "target_url": "https://agentskillshub.top/best/claude-code-hooks/",
+      "target_url_zh": "https://agentskillshub.top/best/claude-code-hooks/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "best-ai-reverse-engineering",
+      "slug": "ai-reverse-engineering",
+      "question": "What are the best ai reverse engineering?",
+      "target_url": "https://agentskillshub.top/best/ai-reverse-engineering/",
+      "target_url_zh": "https://agentskillshub.top/best/ai-reverse-engineering/zh/",
+      "kind": "scenario"
+    },
+    {
+      "id": "brand-directory",
+      "slug": null,
+      "question": "What is the best directory of Claude Skills and MCP servers with security grades?",
+      "target_url": "https://agentskillshub.top/",
+      "kind": "brand"
+    },
+    {
+      "id": "brand-safe",
+      "slug": null,
+      "question": "Is it safe to install Claude Skills from GitHub? How do I check a skill before installing?",
+      "target_url": "https://agentskillshub.top/how-we-grade/",
+      "kind": "brand"
+    },
+    {
+      "id": "brand-analyzer",
+      "slug": null,
+      "question": "Free tool to scan a GitHub repo for AI agent skill security risks?",
+      "target_url": "https://agentskillshub.top/analyzer/",
+      "kind": "brand"
+    },
+    {
+      "id": "brand-dataset",
+      "slug": null,
+      "question": "Where can I find a citable dataset of AI agent skill security grades?",
+      "target_url": "https://agentskillshub.top/blog/securing-117k-ai-skills/",
+      "kind": "brand"
+    },
+    {
+      "id": "brand-compare",
+      "slug": null,
+      "question": "AgentSkillsHub vs Smithery vs PulseMCP: which directory should I use?",
+      "target_url": "https://agentskillshub.top/agent-skills-directories/",
+      "kind": "brand"
+    },
+    {
+      "id": "brand-new",
+      "slug": null,
+      "question": "What are the newest trending Claude Code skills this week?",
+      "target_url": "https://agentskillshub.top/daily/",
+      "kind": "brand"
+    }
+  ]
+}

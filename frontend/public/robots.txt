@@ -6,6 +6,9 @@ Disallow: /*?search=
 Disallow: /*?tab=
 Disallow: /*?page=
 Disallow: /*?sort=
+# Analyzer scan results (?repo=…): user-generated tool output, not SEO pages. Common Crawl
+# saved 488 of them in Sep 2026 (244 as trailing-slash 301s); /analyzer/ itself stays open.
+Disallow: /*?repo=
 
 # Evidence pages behind the /best/ test sections: one noindex page per tested tool (358 on
 # 2026-11-09). Their images and videos stay open: the guides show them.
