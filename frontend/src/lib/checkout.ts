@@ -16,6 +16,7 @@ export const USD_PRICING = {
 } as const;
 
 export const CHECKOUT_LINKS = {
+  proStandard: (import.meta.env.VITE_STRIPE_PRO_STANDARD_PAYMENT_LINK || "").trim(),
   pro: (import.meta.env.VITE_STRIPE_PRO_PAYMENT_LINK || "").trim(),
   fasttrack: (import.meta.env.VITE_STRIPE_FASTTRACK_PAYMENT_LINK || "").trim(),
   cigate: (import.meta.env.VITE_STRIPE_CIGATE_PAYMENT_LINK || "").trim(),

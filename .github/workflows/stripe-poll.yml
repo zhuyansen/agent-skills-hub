@@ -5,10 +5,18 @@ on:
     - cron: "7,37 * * * *" # every 30 min (offset to dodge top-of-hour queue)
   workflow_dispatch:
     inputs:
+      test_notification:
+        description: "Send only a clearly labeled operator test email (no orders or charges)"
+        type: boolean
+        default: false
       lookback_hours:
         description: "How far back to look for paid sessions (default 48)"
         required: false
         default: "48"
+
+concurrency:
+  group: stripe-order-poll
+  cancel-in-progress: false
 
 permissions:
   issues: write
@@ -33,4 +41,10 @@ jobs:
           AGENTSKILLSHUB_ISSUE_SECRET: ${{ secrets.AGENTSKILLSHUB_ISSUE_SECRET }}
           # Empty on scheduled runs; the script then uses its 48 h default.
           LOOKBACK_HOURS: ${{ inputs.lookback_hours }}
-        run: python ops/stripe/poll_stripe.py
+          TEST_NOTIFICATION: ${{ inputs.test_notification }}
+        run: |
+          if [ "$TEST_NOTIFICATION" = "true" ]; then
+            python ops/stripe/poll_stripe.py --test-notification
+          else
+            python ops/stripe/poll_stripe.py
+          fi

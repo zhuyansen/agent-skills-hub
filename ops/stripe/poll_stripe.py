@@ -15,7 +15,7 @@ when it comes from one of PAYMENT_LINK_SKUS, carries metadata
 source=agentskillshub, or has one of the prefixes above. Everything else is skipped.
 
 Env:
-  STRIPE_RESTRICTED_KEY       restricted key, read-only on Checkout Sessions
+  STRIPE_RESTRICTED_KEY       restricted key, read-only on Checkout Sessions and Subscriptions
   RESEND_API_KEY / EMAIL_FROM notification & buyer delivery email
   GITHUB_TOKEN / GITHUB_REPOSITORY  issue creation (provided by Actions)
   ALERT_EMAIL                 where to send operator alerts
@@ -30,6 +30,9 @@ emails, NEVER into the public GitHub issue (this repository is public).
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
+from html import escape
+from urllib.parse import urlencode
 import os
 import sys
 import time
@@ -57,9 +60,14 @@ ISSUE_SECRET = os.environ.get("AGENTSKILLSHUB_ISSUE_SECRET", "")
 
 LOOKBACK_SECONDS = int(os.environ.get("LOOKBACK_HOURS") or 48) * 3600
 SESSION_PAGE = 100
+GRACE_SECONDS = 3 * 24 * 3600
+EARLY_BIRD_LIMIT = 100
+EARLY_BIRD_LINK = "plink_1UchmqC0OZ4h2np2kGFSR5Qr"
+EARLY_BIRD_SOLD = 0
 
 # Live Payment Links created 2026-11-17 (each also carries metadata source=agentskillshub + sku).
 PAYMENT_LINK_SKUS = {
+    "plink_1Uci7YC0OZ4h2np2hIc1ZLGo": "pro",  # $49/yr standard
     "plink_1UchmqC0OZ4h2np2kGFSR5Qr": "pro",  # $29/yr early bird
     "plink_1UchmwC0OZ4h2np2J1kAJkOW": "fasttrack",  # $49 one-time
     "plink_1UchmyC0OZ4h2np253XNPeHj": "cigate",  # $49/mo
@@ -67,6 +75,7 @@ PAYMENT_LINK_SKUS = {
 
 
 def http_json(url: str, headers: dict[str, str], data: bytes | None = None, method: str = "GET"):
+    headers = {"User-Agent": "AgentSkillsHub/1.0", **headers}
     req = urllib.request.Request(url, data=data, headers=headers, method=method)
     with urllib.request.urlopen(req, timeout=30) as resp:
         raw = resp.read().decode()
@@ -74,13 +83,56 @@ def http_json(url: str, headers: dict[str, str], data: bytes | None = None, meth
 
 
 def stripe_sessions() -> list[dict]:
-    since = int(time.time()) - LOOKBACK_SECONDS
-    url = (
-        f"https://api.stripe.com/v1/checkout/sessions?limit={SESSION_PAGE}&status=complete"
-        f"&created[gte]={since}"
-    )
-    out = http_json(url, {"Authorization": f"Bearer {STRIPE_KEY}"})
-    return [s for s in out.get("data", []) if s.get("payment_status") == "paid"]
+    # Include old sessions: renewals/cancellations must still update old keys.
+    params = {"limit": SESSION_PAGE, "status": "complete", "expand[]": "data.subscription"}
+    sessions = []
+    while True:
+        out = http_json("https://api.stripe.com/v1/checkout/sessions?" + urlencode(params),
+                        {"Authorization": f"Bearer {STRIPE_KEY}"})
+        page = out.get("data", [])
+        sessions.extend(s for s in page if s.get("payment_status") == "paid")
+        if not out.get("has_more"):
+            return sessions
+        if not page:
+            raise RuntimeError("Stripe returned an empty page with has_more")
+        params["starting_after"] = page[-1]["id"]
+
+
+def subscription_expiry(sub: dict) -> str:
+    status = sub.get("status")
+    items = (sub.get("items") or {}).get("data") or [sub]
+    starts = [i.get("current_period_start") or sub.get("current_period_start") for i in items]
+    ends = [i.get("current_period_end") or sub.get("current_period_end") for i in items]
+    if status in {"canceled", "unpaid", "incomplete_expired", "paused", "incomplete"}:
+        stamp = sub.get("ended_at") or int(time.time())
+    elif status == "past_due" and all(starts):
+        stamp = min(starts) + GRACE_SECONDS
+    elif status in {"active", "trialing"} and all(ends):
+        stamp = min(ends) + (0 if sub.get("cancel_at_period_end") else GRACE_SECONDS)
+        if sub.get("cancel_at"):
+            stamp = min(stamp, sub["cancel_at"])
+    else:
+        raise ValueError("Missing subscription period or unsupported status")
+    return datetime.fromtimestamp(stamp, timezone.utc).isoformat()
+
+
+def sync_subscriptions(sessions: list[dict]) -> None:
+    items = []
+    for session in sessions:
+        if not classify_session(session) or session.get("mode") != "subscription":
+            continue
+        sub = session.get("subscription")
+        if not isinstance(sub, dict):
+            raise ValueError("Subscription expansion missing; check Stripe read permissions")
+        items.append({"order_id": session["id"], "expires_at": subscription_expiry(sub)})
+    for offset in range(0, len(items), 1000):
+        out = http_json(f"{SUPABASE_URL}/rest/v1/rpc/sync_member_key_expiry",
+                        {"apikey": SUPABASE_ANON_KEY, "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
+                         "Content-Type": "application/json"},
+                        json.dumps({"p_secret": ISSUE_SECRET, "p_items": items[offset:offset + 1000]}).encode(), "POST")
+        if out.get("status") != "ok":
+            raise RuntimeError("Subscription sync failed")
+        print(f"Subscription sync: {out['received']} checked, {out['updated']} updated.")
 
 
 def existing_order_ids() -> set[str]:
@@ -88,10 +140,15 @@ def existing_order_ids() -> set[str]:
         f"https://api.github.com/repos/{GH_REPO}/issues"
         "?labels=order&state=all&per_page=100"
     )
-    issues = http_json(
-        url,
-        {"Authorization": f"Bearer {GH_TOKEN}", "Accept": "application/vnd.github+json"},
-    )
+    issues = []
+    page = 1
+    while True:
+        batch = http_json(url + f"&page={page}",
+                          {"Authorization": f"Bearer {GH_TOKEN}", "Accept": "application/vnd.github+json"})
+        issues.extend(batch)
+        if len(batch) < SESSION_PAGE:
+            break
+        page += 1
     ids: set[str] = set()
     for issue in issues:
         body = issue.get("body") or ""
@@ -163,7 +220,9 @@ def issue_member_key(session: dict, sku: str, buyer_email: str) -> dict | None:
     amount_cents = session.get("amount_total") or 0
     if sku == "cigate":
         note = "cigate-team-49"
-    elif amount_cents <= 3000:
+    elif session.get("payment_link") == EARLY_BIRD_LINK or (
+        not session.get("payment_link") and amount_cents <= 3000
+    ):
         note = "pro-usd-29"
     else:
         note = "pro-usd-49"
@@ -301,22 +360,25 @@ def create_issue(session: dict, sku: str, target: str, key_status: str) -> str:
 
 def send_alert(session: dict, sku: str, target: str, issue_url: str, key_status: str) -> None:
     if not (RESEND_KEY and EMAIL_FROM):
-        return
+        raise RuntimeError("Operator email configuration missing")
     amount = (session.get("amount_total") or 0) / 100
     email = (session.get("customer_details") or {}).get("email", "(none)")
+    currency = (session.get("currency") or "usd").upper()
+    target, email, key_status = map(escape, (target, email, key_status))
     html = (
-        f'<div lang="zh"><h2>💰 有人付款了!${amount:.2f}（{sku}）</h2>'
+        f'<div lang="zh"><h2>💰 有人付款了!{amount:.2f} {currency}（{sku}）</h2>'
         f"<p><b>目标/团队</b>:{target}<br>"
         f"<b>客户邮箱</b>:{email}<br>"
         f"<b>自动发码状态</b>:{key_status}<br>"
         f"<b>Session</b>:{session['id']}</p>"
-        f'<p>交付工单:<a href="{issue_url}">{issue_url}</a></p>'
+        f'<p>订单详情:<a href="{issue_url}">{issue_url}</a></p>'
+        f"<p>美元早鸟已售：{EARLY_BIRD_SOLD}/{EARLY_BIRD_LIMIT}。</p>"
         f"<p>按工单 checklist 交付即可。</p></div>"
     )
     payload = json.dumps({
         "from": EMAIL_FROM,
         "to": [ALERT_EMAIL],
-        "subject": f"💰 ${amount:.0f} [{sku}] 成交:{target}",
+        "subject": f"💰 {amount:.2f} {currency} [{sku}] 成交:{target}",
         "html": html,
     }).encode()
     http_json(
@@ -344,32 +406,45 @@ def process_session(session: dict) -> str:
     elif sku in {"pro", "cigate"}:
         key_status = "pending_manual_issue"
 
+    sync_subscriptions([session])
+    send_alert(session, sku, target, "https://dashboard.stripe.com/payments", key_status)
     issue_url = create_issue(session, sku, target, key_status)
-    send_alert(session, sku, target, issue_url, key_status)
     return issue_url
 
 
+def send_test_notification() -> int:
+    if not (RESEND_KEY and EMAIL_FROM):
+        raise RuntimeError("Operator email configuration missing")
+    payload = {"from": EMAIL_FROM, "to": [ALERT_EMAIL],
+               "subject": "【测试】Agent Skills Hub Stripe 收款通知已启用",
+               "html": "<p>这是一封通知通道测试邮件，没有产生扣款或订单。</p>"
+                       "<p>订单提醒每 30 分钟检查一次，包含金额、产品、发码状态和早鸟销量。</p>"}
+    out = http_json("https://api.resend.com/emails",
+                    {"Authorization": f"Bearer {RESEND_KEY}", "Content-Type": "application/json"},
+                    json.dumps(payload).encode(), "POST")
+    if not out.get("id"):
+        raise RuntimeError("Resend did not acknowledge test notification")
+    print("Test notification accepted by Resend (no charge or order created).")
+    return 0
+
+
 def main() -> int:
+    global EARLY_BIRD_SOLD
     if not STRIPE_KEY:
-        print("STRIPE_RESTRICTED_KEY not set — skipping (add the secret to activate).")
-        return 0
+        raise RuntimeError("STRIPE_RESTRICTED_KEY not set")
     paid = stripe_sessions()
     sessions = [s for s in paid if classify_session(s)]
-    if len(paid) > len(sessions):
-        print(f"Skipped {len(paid) - len(sessions)} paid session(s) from other products on this account.")
-    if not sessions:
-        print("No paid sessions in lookback window.")
-        return 0
-    seen = existing_order_ids()
-    new = [s for s in sessions if s["id"] not in seen]
-    if not new:
-        print(f"{len(sessions)} paid session(s), all already ticketed.")
-        return 0
+    EARLY_BIRD_SOLD = sum(s.get("payment_link") == EARLY_BIRD_LINK for s in sessions)
+    sync_subscriptions(sessions)
+    seen = existing_order_ids() if sessions else set()
+    cutoff = int(time.time()) - LOOKBACK_SECONDS
+    new = [s for s in sessions if s["id"] not in seen and s.get("created", 0) >= cutoff]
     for session in new:
         issue_url = process_session(session)
         print(f"NEW ORDER: {session['id']} → {issue_url}")
+    print(f"Orders: {len(new)} new; early bird: {EARLY_BIRD_SOLD}/{EARLY_BIRD_LIMIT}.")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(send_test_notification() if "--test-notification" in sys.argv else main())

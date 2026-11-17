@@ -15,12 +15,13 @@ import {
   type ProSearchEvent, type ProSearchFilters, type ProSearchState,
 } from "../lib/proSearchState.mjs";
 import {
-  CHECKOUT_LINKS,
   USD_PRICING,
   buildStripeCheckoutUrl,
 } from "../lib/checkout";
 import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 import { trackEvent } from "../lib/analytics";
+
+import { useProOffer } from "../hooks/useProOffer";
 
 const KEY_STORAGE = "pro_key";
 const CATEGORIES = [
@@ -121,17 +122,19 @@ function download(name: string, mime: string, content: string): void {
 function UpgradeCard({
   zh,
   exhausted = false,
+  offer,
 }: {
   zh: boolean;
   exhausted?: boolean;
+  offer: ReturnType<typeof useProOffer>;
 }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
   const [errMsg, setErrMsg] = useState("");
-  const hasStripe = CHECKOUT_LINKS.pro.length > 0;
+  const hasStripe = offer.link.length > 0;
 
   const checkoutHref = hasStripe
-    ? buildStripeCheckoutUrl(CHECKOUT_LINKS.pro, {
+    ? buildStripeCheckoutUrl(offer.link, {
         clientReferenceId: "pro--web",
         prefilledEmail: email,
       })
@@ -151,8 +154,8 @@ function UpgradeCard({
       await submitEnterpriseLead(
         {
           email: clean,
-          use_case: `Pro Search (${USD_PRICING.proEarly})`,
-          estimated_budget: USD_PRICING.proEarly,
+          use_case: `Pro Search (${offer.price})`,
+          estimated_budget: offer.price,
           timeline: "Immediate self-serve",
         },
         "pro_checkout",
@@ -161,7 +164,7 @@ function UpgradeCard({
           submitted: "pro_checkout_submitted",
           failed: "pro_checkout_failed",
         },
-        { price: USD_PRICING.proEarly },
+        { price: offer.price },
       );
       setStatus("sent");
     } catch (err) {
@@ -196,14 +199,14 @@ function UpgradeCard({
           : "Full README search · 200 results/page · CSV/JSON export · CLI & MCP API key"}
       </p>
       <p className="text-lg font-semibold my-3 text-indigo-700 dark:text-indigo-300">
-        {zh
-          ? `早鸟特惠 ${USD_PRICING.proEarly}`
-          : `Early supporter: ${USD_PRICING.proEarly}`}
-        <span className="ml-2 text-sm font-normal">
+        {offer.soldOut ? `Pro ${offer.price}` : zh
+          ? `早鸟特惠 ${offer.price}（限前 100 单）`
+          : `Early supporter: ${offer.price} (first 100 orders)`}
+        {!offer.soldOut && <span className="ml-2 text-sm font-normal">
           {zh
             ? `之后 ${USD_PRICING.proStandard}`
             : `then ${USD_PRICING.proStandard}`}
-        </span>
+        </span>}
       </p>
       <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
         {zh
@@ -224,12 +227,12 @@ function UpgradeCard({
             href={checkoutHref}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("pro_checkout_click", { price: USD_PRICING.proEarly })}
+            onClick={() => trackEvent("pro_checkout_click", { price: offer.price })}
             className="inline-block w-full px-6 py-2.5 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-500 transition-colors"
           >
             {zh
-              ? `开通 Pro (${USD_PRICING.proEarly}) · Stripe 结账 →`
-              : `Get Pro Key (${USD_PRICING.proEarly}) via Stripe →`}
+              ? `开通 Pro (${offer.price}) · Stripe 结账 →`
+              : `Get Pro Key (${offer.price}) via Stripe →`}
           </a>
           <p className="text-[11px] text-gray-500 dark:text-gray-400">
             {zh
@@ -262,8 +265,8 @@ function UpgradeCard({
               {status === "submitting"
                 ? "…"
                 : zh
-                  ? `开通 (${USD_PRICING.proEarly})`
-                  : `Get Pro (${USD_PRICING.proEarly}) →`}
+                  ? `开通 (${offer.price})`
+                  : `Get Pro (${offer.price}) →`}
             </button>
           </div>
           {status === "error" && (
@@ -461,6 +464,7 @@ function ResultRow({ s }: { s: Skill }) {
 }
 
 export default function ProPage() {
+  const offer = useProOffer();
   const { lang } = useI18n();
   const zh = lang === "zh";
   const [memberKey, setMemberKey] = useState(
@@ -595,7 +599,7 @@ export default function ProPage() {
                       href="#pro-checkout"
                       className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
                     >
-                      开通 Pro ({USD_PRICING.proEarly}) →
+                      开通 Pro ({offer.price}) →
                     </a>
                   </>
                 ) : (
@@ -606,7 +610,7 @@ export default function ProPage() {
                       href="#pro-checkout"
                       className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
                     >
-                      Go Pro ({USD_PRICING.proEarly}) →
+                      Go Pro ({offer.price}) →
                     </a>
                   </>
                 )
@@ -693,10 +697,10 @@ export default function ProPage() {
           </button>
         </div>
 
-        {gate === "unauthorized" && <UpgradeCard zh={zh} />}
+        {gate === "unauthorized" && <UpgradeCard offer={offer} zh={zh} />}
         {gate === "trial_exhausted" && (
           <>
-            <UpgradeCard zh={zh} exhausted />
+            <UpgradeCard offer={offer} zh={zh} exhausted />
             {!shareClaimed && (
               <div className="mt-3 flex flex-col items-center">
                 <button
@@ -808,7 +812,7 @@ export default function ProPage() {
 
         <UsageHelp zh={zh} />
         {trialActive && gate !== "unauthorized" && gate !== "trial_exhausted" && (
-          <UpgradeCard zh={zh} />
+          <UpgradeCard offer={offer} zh={zh} />
         )}
       </main>
       <SiteFooter />

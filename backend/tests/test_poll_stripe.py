@@ -17,8 +17,8 @@ def test_classify_session_skus():
     assert poll_stripe.classify_session({"client_reference_id": "pro--hub-member"}) == ("pro", "hub-member")
     assert poll_stripe.classify_session({"client_reference_id": "cigate--acme--skills"}) == ("cigate", "acme/skills")
     assert poll_stripe.classify_session({"client_reference_id": "fasttrack--foo--bar"}) == ("fasttrack", "foo/bar")
-    assert poll_stripe.classify_session({"client_reference_id": "owner--repo"}) == ("deep_audit", "owner/repo")
-    assert poll_stripe.classify_session({"mode": "subscription"}) == ("cigate", "team-ci-gate")
+    assert poll_stripe.classify_session({"client_reference_id": "owner--repo"}) is None
+    assert poll_stripe.classify_session({"mode": "subscription"}) is None
 
 
 def test_pro_fulfillment_redacts_key_and_email_from_public_issue(monkeypatch):
@@ -74,3 +74,89 @@ def test_pro_fulfillment_redacts_key_and_email_from_public_issue(monkeypatch):
     assert "alice@acme.com" not in issue_body
     assert "a***@acme.com" in issue_body
     assert "issued_and_emailed" in issue_body
+
+
+def test_standard_link_classified():
+    assert poll_stripe.classify_session({"payment_link": "plink_1Uci7YC0OZ4h2np2hIc1ZLGo"}) == ("pro", "pro-member")
+
+
+def test_subscription_periods_and_cancellation():
+    from datetime import datetime
+    def stamp(sub):
+        return datetime.fromisoformat(poll_stripe.subscription_expiry(sub)).timestamp()
+    sub = {"status": "active", "items": {"data": [{"current_period_start": 1800000000, "current_period_end": 1802592000}]}}
+    assert stamp(sub) == 1802592000 + poll_stripe.GRACE_SECONDS
+    assert stamp(dict(sub, cancel_at_period_end=True)) == 1802592000
+    assert stamp(dict(sub, cancel_at=1802000000)) == 1802000000
+    assert stamp(dict(sub, status="past_due")) == 1800000000 + poll_stripe.GRACE_SECONDS
+    assert stamp(dict(sub, status="canceled", ended_at=1801000000)) == 1801000000
+    assert stamp({"status": "active", "current_period_end": 1802592000}) == 1802592000 + poll_stripe.GRACE_SECONDS
+
+
+def test_missing_subscription_period_fails_closed():
+    import pytest
+    with pytest.raises(ValueError):
+        poll_stripe.subscription_expiry({"status": "active"})
+
+
+def test_stripe_pagination_includes_old_sessions(monkeypatch):
+    urls = []
+    def fake_http(url, headers):
+        urls.append(url)
+        if len(urls) == 1:
+            return {"data": [{"id": "cs_old", "created": 1, "payment_status": "paid"}], "has_more": True}
+        return {"data": [{"id": "cs_new", "payment_status": "paid"}], "has_more": False}
+    monkeypatch.setattr(poll_stripe, "http_json", fake_http)
+    assert len(poll_stripe.stripe_sessions()) == 2
+    assert "starting_after=cs_old" in urls[1]
+    assert "created" not in urls[0]
+
+
+def test_sync_ignores_other_products(monkeypatch):
+    bodies = []
+    def fake_http(url, headers, data, method):
+        body = json.loads(data)
+        bodies.append(body)
+        return {"status": "ok", "received": len(body["p_items"]), "updated": 1}
+    monkeypatch.setattr(poll_stripe, "http_json", fake_http)
+    sub = {"status": "active", "current_period_end": 1802592000}
+    poll_stripe.sync_subscriptions([
+        {"id": "cs_ours", "mode": "subscription", "client_reference_id": "cigate--team", "subscription": sub},
+        {"id": "cs_other", "mode": "subscription", "subscription": sub},
+    ])
+    assert [i["order_id"] for i in bodies[0]["p_items"]] == ["cs_ours"]
+
+
+def test_old_ticketed_order_still_synced(monkeypatch):
+    old = {"id": "cs_old", "created": 1, "client_reference_id": "pro--old"}
+    synced = []
+    monkeypatch.setattr(poll_stripe, "STRIPE_KEY", "test")
+    monkeypatch.setattr(poll_stripe, "stripe_sessions", lambda: [old])
+    monkeypatch.setattr(poll_stripe, "existing_order_ids", lambda: {"cs_old"})
+    monkeypatch.setattr(poll_stripe, "sync_subscriptions", lambda sessions: synced.extend(sessions))
+    monkeypatch.setattr(poll_stripe, "process_session", lambda s: (_ for _ in ()).throw(AssertionError("old order replayed")))
+    assert poll_stripe.main() == 0
+    assert synced == [old]
+
+
+def test_alert_failure_does_not_mark_order_done(monkeypatch):
+    import pytest
+    monkeypatch.setattr(poll_stripe, "issue_member_key", lambda *a: None)
+    monkeypatch.setattr(poll_stripe, "sync_subscriptions", lambda *a: None)
+    monkeypatch.setattr(poll_stripe, "send_alert", lambda *a: (_ for _ in ()).throw(TimeoutError()))
+    monkeypatch.setattr(poll_stripe, "create_issue", lambda *a: (_ for _ in ()).throw(AssertionError("marked done")))
+    with pytest.raises(TimeoutError):
+        poll_stripe.process_session({"id": "cs_test", "client_reference_id": "fasttrack--repo"})
+
+
+def test_discounted_standard_price_not_counted_as_early(monkeypatch):
+    bodies = []
+    monkeypatch.setattr(poll_stripe, "SUPABASE_URL", "https://example.test")
+    monkeypatch.setattr(poll_stripe, "SUPABASE_ANON_KEY", "test")
+    monkeypatch.setattr(poll_stripe, "ISSUE_SECRET", "test")
+    def fake_http(url, headers, data, method):
+        bodies.append(json.loads(data))
+        return {"status": "already_issued"}
+    monkeypatch.setattr(poll_stripe, "http_json", fake_http)
+    poll_stripe.issue_member_key({"id": "cs_discount", "payment_link": "plink_1Uci7YC0OZ4h2np2hIc1ZLGo", "amount_total": 2400}, "pro", "a@example.com")
+    assert bodies[0]["p_note"] == "pro-usd-49"
