@@ -89,14 +89,15 @@ const fieldItem = (entry, key) => both((lang) => labelled(LABEL[key], factText(e
 const GOOD_FOR = ["Good for", "适合"];
 const goodForText = (entry) => both((lang) => labelled(GOOD_FOR, pick(entry.goodFor, lang), lang));
 
-const SOURCES = [`Sources, read ${FACTS_READ_ON}`, `来源（${FACTS_READ_ON} 读取）`];
+const sourcesLabel = (readOn) => [`Sources, read ${readOn}`, `来源（${readOn} 读取）`];
 /** "https://www.skills.sh/docs/api" → "www.skills.sh/docs/api": a source's address as its link text. */
 const shortUrl = (url) => url.replace(/^https:\/\//, "").replace(/\/$/, "");
 
 function sourcesText(entry) {
+  const label = sourcesLabel(entry.readOn ?? FACTS_READ_ON);
   return both((lang) => {
     const links = entry.sources.map((url) => `[${shortUrl(url)}](${url})`).join(PUNCT[lang].join);
-    return labelled(SOURCES, links, lang);
+    return labelled(label, links, lang);
   });
 }
 
@@ -210,7 +211,7 @@ const HOW_TO_CHOOSE = {
   title: ["How to choose", "怎么选"],
   blocks: [
     { type: "ul", items: [
-      ["**To vet one skill before you install it**, look it up where its contents are checked: the skills.sh partner results, ClawHub, Tessl or Skillstore. For an MCP server, Glama runs it in a sandbox. Then read what it will run on your machine.", "**装某个 skill 之前想细查**，就去会检查其内容的目录查：skills.sh 的合作方结果、ClawHub、Tessl 或 Skillstore。MCP 服务器可以看 Glama 在沙箱里运行的结果。然后还是要自己读一遍它会在你机器上运行什么。"],
+      ["**To vet one skill before you install it**, look it up where its contents are checked: the skills.sh partner results, ClawHub, Tessl or Skillstore. For an MCP server, Glama runs it in a sandbox, and MCPYP probes public remote endpoints for liveness and live tool behaviour. Then read what it will run on your machine.", "**装某个 skill 之前想细查**，就去会检查其内容的目录查：skills.sh 的合作方结果、ClawHub、Tessl 或 Skillstore。MCP 服务器可以看 Glama 在沙箱里运行的结果，远程端点可以看 MCPYP 对公开接口做的存活性和工具实测。然后还是要自己读一遍它会在你机器上运行什么。"],
       ["**For broad discovery under published rules**, use a wide index such as Agent Skills Hub, and treat its grade as a first pass, not an audit.", "**想按公开规则大范围找工具**，用 Agent Skills Hub 这类覆盖面广的索引，把它的评级当作初筛，而不是审计。"],
       ["**If you use one agent platform**, start with its own marketplace: Anthropic's for Claude, ClawHub for OpenClaw.", "**如果你固定用一个 agent 平台**，先看它自己的市场：Claude 看 Anthropic 的，OpenClaw 看 ClawHub。"],
       ["**If an agent will do the searching**, pick a directory with an MCP server, a CLI or an API, and check whether it needs a key.", "**如果让 agent 去搜**，挑有 MCP 服务器、CLI 或 API 的目录，并看清要不要 key。"],
@@ -230,6 +231,7 @@ const SECURITY_ANSWER = [
   ["**Skillget**: a Pass or Fail audit of health, code and permissions, with no method page.", "**Skillget**：检查健康度、代码和权限，给 Pass 或 Fail，没有方法说明页。"],
   [`**Agent Skills Hub**: Safe, Caution, Unsafe or Reject from ${RULE_COUNT} published rules applied to the first 15,000 characters of the README, without running code. The rules are at [${HOW_WE_GRADE_PATH}](${HOW_WE_GRADE_PATH}).`, `**Agent Skills Hub**：用 ${RULE_COUNT} 条公开规则读 README 的前 15,000 个字符，给出安全、注意、风险或拒绝，不运行代码。规则见[评级方法](${HOW_WE_GRADE_PATH})页。`],
   ["**Glama**: no security grade, but it runs MCP servers in a sandbox and shows “Risky” findings on the listing.", "**Glama**：没有安全等级，但会在沙箱里运行 MCP 服务器，把 “Risky” 的发现显示在条目页上。"],
+  ["**MCPYP**: no safety certification; publishes dated liveness and live tool-run evidence (Verified, Stable, Trial or Untested) aligned with OWASP MCP Top 10 and NIST AI RMF.", "**MCPYP**：不做安全认证；发布带日期的存活性与工具实测证据（Verified、Stable、Trial 或 Untested），对齐 OWASP MCP Top 10 与 NIST AI RMF。"],
   ["**Anthropic**: a security scan and a review before listing, with no grade on each item; its docs say “Verification isn't a security audit.”", "**Anthropic**：上架前做安全扫描和审核，条目上没有评级；它的文档自己说，验证不等于安全审计（“Verification isn't a security audit.”）。"],
   ["**Skillselion** and **mcp.so** show results from the partners skills.sh uses. **Claude Marketplaces** shows none, and **agentskillshub.dev** shows letters it calls catalog metadata.", "**Skillselion** 和 **mcp.so** 显示的是 skills.sh 那几家合作方的结果。**Claude Marketplaces** 没有安全结果；**agentskillshub.dev** 的字母等级，它自己说是目录元数据。"],
 ];
@@ -237,6 +239,7 @@ const SECURITY_ANSWER = [
 const PAID_ANSWER = [
   ["**Agent Skills Hub**: no paid placement. We sell Enterprise audits on a [separate page](/enterprise/).", "**Agent Skills Hub**：没有付费排位。我们在[另一个页面](/enterprise/)出售企业审计。"],
   ["**Glama**: Boost at $49 a month per listing and sponsored cards at $200 a month per category; it says payment does not affect its scores.", "**Glama**：Boost 每个条目每月 $49，赞助卡片每个分类每月 $200；它说付费不影响评分。"],
+  ["**MCPYP**: free listing, never for sale; sells manual pre-integration checks (Pilot) and labelled sponsored placement, which it says never buys scores or ranks.", "**MCPYP**：收录永久免费且不出售；出售人工接入前核验试点和明确标注的赞助展示，站方写明付费不会买到评分或排名。"],
   ["**mcp.so**: $39 once to publish without review, with a “Verified” badge and priority placement; sponsor slots at $699 and $1,299 a month.", "**mcp.so**：一次性 $39 免审上线，附 “Verified” 徽章和优先展示；赞助位每月 $699 和 $1,299。"],
   ["**Skills Directory**: Pro at $19 once or $4 a month; sponsor slots at $399 and $999 a month. Prices may differ by country.", "**Skills Directory**：Pro 一次性 $19 或每月 $4；赞助位每月 $399 和 $999。不同国家的价格可能不同。"],
   ["**SkillsLLM**: featured placement at $49 or $99 per 30 days, for listings that pass its scan.", "**SkillsLLM**：推荐位 30 天 $49 或 $99，限扫描通过的条目。"],
@@ -250,7 +253,7 @@ const PAID_ANSWER = [
 ];
 
 const AGENT_ANSWER = [
-  ["**No key or token needed**: ClawHub (read API), Skillselion (API and MCP server), Skillstore (MCP server), Tessl (search through its MCP server) and Agent Skills Hub (MCP server and CLI). ClawHub and Tessl also have a CLI.", "**不需要 key 或令牌**：ClawHub（读 API）、Skillselion（API 和 MCP 服务器）、Skillstore（MCP 服务器）、Tessl（通过 MCP 服务器搜索）和 Agent Skills Hub（MCP 服务器和 CLI）。ClawHub 和 Tessl 也有 CLI。"],
+  ["**No key or token needed**: ClawHub (read API), MCPYP (REST API and Meta-MCP server), Skillselion (API and MCP server), Skillstore (MCP server), Tessl (search through its MCP server) and Agent Skills Hub (MCP server and CLI). ClawHub and Tessl also have a CLI.", "**不需要 key 或令牌**：ClawHub（读 API）、MCPYP（REST API 与 Meta-MCP 服务器）、Skillselion（API 和 MCP 服务器）、Skillstore（MCP 服务器）、Tessl（通过 MCP 服务器搜索）和 Agent Skills Hub（MCP 服务器和 CLI）。ClawHub 和 Tessl 也有 CLI。"],
   ["**A key or token needed**: Glama (API key, attribution required), Skills Directory (API key, 100 requests a day free; MCP for Pro members) and skills.sh (a Vercel OIDC token).", "**需要 key 或令牌**：Glama（API key，要求注明出处）、Skills Directory（API key，免费每天 100 次；Pro 会员有 MCP）和 skills.sh（Vercel 的 OIDC 令牌）。"],
   ["**A public API and CLI, key not stated**: Skillget, 60 requests per 15 minutes.", "**有公开 API 和 CLI，没说要不要 key**：Skillget，每 15 分钟 60 次。"],
   ["**Other routes**: Anthropic's catalog is a public file on GitHub, and Claude Marketplaces has an llms.txt.", "**其他途径**：Anthropic 的目录是 GitHub 上的一个公开文件；Claude Marketplaces 有 llms.txt。"],
@@ -306,10 +309,10 @@ const SOURCES_SECTION = {
   blocks: [
     { type: "ul", items: [
       ["Every fact on this page comes from the directory's own public pages, docs, llms.txt, GitHub repositories or npm packages. Each directory's section links the pages it draws on.", "本页每条事实都来自该目录自己的公开页面、文档、llms.txt、GitHub 仓库或 npm 包。每个目录的小节都附上了所依据页面的链接。"],
-      [`Every page was read on ${FACTS_READ_ON}, without signing in. We left out the visitor counts and SEO metrics some sites print about themselves.`, `所有页面都在 ${FACTS_READ_ON} 读取，没有登录。有些网站会公布自己的访问量或 SEO 指标，我们没有收录。`],
+      [`Every page was read on ${FACTS_READ_ON} (mcpyp.com added and read on 2026-11-17), without signing in. We left out the visitor counts and SEO metrics some sites print about themselves.`, `所有页面都在 ${FACTS_READ_ON} 读取（mcpyp.com 于 2026-11-17 补入并读取），没有登录。有些网站会公布自己的访问量或 SEO 指标，我们没有收录。`],
       ["Sites change often. If something here is wrong or out of date, open an issue at [github.com/zhuyansen/agent-skills-hub](https://github.com/zhuyansen/agent-skills-hub/issues) with the page that shows it.", "网站变化很快。如果这里有错或者过时，请在 [github.com/zhuyansen/agent-skills-hub](https://github.com/zhuyansen/agent-skills-hub/issues) 开一个 issue，附上能说明问题的页面。"],
     ] },
-    { type: "p", text: [`**Last checked:** ${FACTS_READ_ON}.`, `**核对日期：**${FACTS_READ_ON}。`] },
+    { type: "p", text: [`**Last checked:** ${FACTS_READ_ON} (mcpyp.com: 2026-11-17).`, `**核对日期：**${FACTS_READ_ON}（mcpyp.com：2026-11-17）。`] },
   ],
 };
 

@@ -421,6 +421,36 @@ const CLAWHUB = {
   ],
 };
 
+const MCPYP = {
+  id: "mcpyp-com",
+  kind: "mcp",
+  domain: "mcpyp.com",
+  home: "https://mcpyp.com/",
+  readOn: "2026-11-17",
+  heading: ["MCP Yellow Pages (mcpyp.com)", "MCP Yellow Pages（mcpyp.com）"],
+  tag: "MCPYP",
+  runBy: fact(["Oasis Education Inc., per the site footer", "Oasis Education Inc.（见网站页脚）"]),
+  lists: fact(["Remote MCP servers with public endpoints", "有公开端点的远程 MCP 服务器"], ["Its Why page explains that a server with no public endpoint cannot be independently probed, so it is not listed.", "Why 页面说明，没有公开端点的服务器无法独立探测，因此不予收录。"]),
+  size: fact(["12,754 listed and probed servers (read 2026-11-17)", "12,754 个已收录并探测的服务器（2026-11-17 读取）"], ["Its Why page also records 46,933 servers in its census, 161,533 tools measured and 200,199 checks recorded.", "Why 页面还记录了普查库 46,933 个服务器、161,533 个已测工具和 200,199 次检查记录。"]),
+  security: fact(["No safety certification; publishes dated liveness and tool-run evidence", "不做安全认证；发布带日期的存活性与工具实测证据"], ["Listings carry Verified, Stable, Trial or Untested badges from protocol-level liveness and live tool runs. Its Why page says: “we never certify a server ‘safe’. We present risk evidence; the decision stays yours”, aligned with OWASP MCP Top 10, NIST AI RMF, MITRE ATLAS and ISO/IEC 42001.", "条目按协议级存活性和工具实测显示 Verified、Stable、Trial 或 Untested 徽章。Why 页面写明：“we never certify a server ‘safe’. We present risk evidence; the decision stays yours”，框架对齐 OWASP MCP Top 10、NIST AI RMF、MITRE ATLAS 与 ISO/IEC 42001。"]),
+  ranking: fact(["Measured order, tool count or random; sponsored placement kept separate", "按实测顺序、工具数量或随机排序；赞助展示单列"], ["Its Why page states: “Payment never buys a score, a label, or a rank. Sponsored placement is labelled and kept out of the measured ranking.”", "Why 页面写明：“Payment never buys a score, a label, or a rank. Sponsored placement is labelled and kept out of the measured ranking.”"]),
+  listing: fact(["Free reviewed submission; paid pre-integration checks and sponsored placement", "免费审核上架；提供付费接入前核验与标注赞助位"], ["Its Publish and Services pages state listing is free and never for sale. Paid options include a manual pre-integration check pilot, labelled sponsored visibility, and a planned Intelligence API and enterprise admission service.", "Publish 与 Services 页说明收录永久免费且不出售；付费项包括人工交付的接入前核验试点、标明出处的赞助展示，以及规划中的 Intelligence API 和企业准入服务。"]),
+  agents: fact(["Free REST API and remote Meta-MCP server, no key needed", "免费 REST API 与远程 Meta-MCP 服务器，不需要 key"], ["Its Search for machines panel lists `https://api.mcpyp.com/v1/find` and the streamable-HTTP Meta-MCP endpoint `https://api.mcpyp.com/mcp` with six query tools; responses cap `limit` and `offset` at 100.", "“Search for machines” 面板提供 `https://api.mcpyp.com/v1/find` 与流式 HTTP Meta-MCP 端点 `https://api.mcpyp.com/mcp`（6 个只读工具）；返回结果 `limit` 与 `offset` 上限为 100。"]),
+  openness: fact(["Methodology and definitions open; measured data not open for bulk redistribution", "方法与定义公开；实测历史数据禁止批量抓取或再分发"], ["Its Why page says “Our standards and definitions are open for anyone to audit”, while Terms section 3 forbids bulk scraping or catalog redistribution. No site code repo is linked.", "Why 页面写着标准和定义向所有人公开审计，Terms 第 3 条禁止批量抓取或再分发目录数据。站内未链接网站源码仓库。"]),
+  updates: fact(["“re-tested continuously”; “measured history is earned daily”", "连续复测；“measured history is earned daily”"]),
+  languages: fact(["3: English, Chinese, French", "3 种：英文、中文、法文"]),
+  goodFor: ["Checking whether a remote MCP server is actually alive, how its tools behave when probed, and getting copy-paste client configs without a key.", "在接入远程 MCP 服务器前核对真实存活性和工具实测表现，以及免 key 获取可直接粘贴的客户端配置。"],
+  sources: [
+    "https://mcpyp.com/",
+    "https://mcpyp.com/#/why",
+    "https://mcpyp.com/#/find",
+    "https://mcpyp.com/#/publish",
+    "https://mcpyp.com/#/services",
+    "https://mcpyp.com/#/terms",
+    "https://mcpyp.com/#/ecosystem",
+  ],
+};
+
 /** In no particular order: the page groups them by kind and sorts each group by domain. */
 export const DIRECTORY_ENTRIES = [
   AGENTSKILLSHUB_DEV,
@@ -435,6 +465,7 @@ export const DIRECTORY_ENTRIES = [
   TESSL,
   GLAMA,
   MCP_SO,
+  MCPYP,
   CLAUDE_COM,
   CLAWHUB,
 ];

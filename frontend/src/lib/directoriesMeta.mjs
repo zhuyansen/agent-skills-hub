@@ -14,7 +14,7 @@ export const DIRECTORIES_URL = `https://agentskillshub.top${DIRECTORIES_PATH}`;
  * How many directories the page compares, as its title states. scripts/directories-content.test.mjs
  * checks it against the entries in directoryEntries.mjs: change both together.
  */
-export const COMPARED_COUNT = 14;
+export const COMPARED_COUNT = 15;
 
 /** The day each directory's own pages were read. Re-read them all before changing it. */
 export const FACTS_READ_ON = "2026-11-09";
@@ -26,7 +26,7 @@ export const DIRECTORIES_PUBLISHED = "2026-11-10";
  * The Article's dateModified, which the sitemap reads as lastmod: bump it whenever the text
  * changes, never on a rebuild.
  */
-export const DIRECTORIES_UPDATED = "2026-11-11";
+export const DIRECTORIES_UPDATED = "2026-11-17";
 
 /** The page's heading; its title adds the site name. */
 export const DIRECTORIES_HEADLINE = {

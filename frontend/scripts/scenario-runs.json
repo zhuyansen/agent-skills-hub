@@ -2329,8 +2329,8 @@
     {
      "repo": "awesome-skills/code-review-skill",
      "role": [
-      "If you want a review skill at all",
-      "只想加一个审查 skill"
+      "developers who want a structured SKILL.md review checklist (matches raw Claude Code's 8/8 defect recall)",
+      "需要成文审查清单的开发者（与裸跑 Claude Code 8/8 缺陷检出率持平）"
      ],
      "why": [
       "Found all eight planted defects with no false alarm on the clean pull requests, in about a minute and under two findings per pull request. That equals Claude Code with nothing installed: it adds a written checklist and a fixed report format, not detection.",
@@ -2361,8 +2361,8 @@
     }
    ],
    "avoid_label": [
-    "Know what these do not look for:",
-    "先弄清这几个不查什么："
+    "Blind spots in our 12-PR code-review test (what these tools miss):",
+    "12 个 PR 代码审查实测盲区（这些工具不查什么）："
    ],
    "avoid": [
     {

@@ -23,6 +23,8 @@ Form at https://pipelab.org/contact/ — use draft §5 base article angle. Not a
 
 HOLD: check whether /advertise is paid placement. If paid, apply the link-buy red-line check first (DR, real traffic, relevance, network footprint). If editorial, send draft §3.
 
-## 5. mcpyp.com / archestack.com
+## 5. mcpyp.com (REPLIED — Ollie added us on mcpyp.com/#/ecosystem)
 
-No contact route found yet (panel pitch scores 39 / 68). Revisit via site footer/GitHub/WHOIS or skip.
+- Verified live on `https://mcpyp.com/#/ecosystem` (`<a href="https://agentskillshub.top" target="_blank" rel="noopener">Agent Skills Hub</a>`, added `2026-11-17`).
+- Added `MCPYP` (`mcpyp.com`) to `/agent-skills-directories/#mcpyp-com` (`directoryEntries.mjs` + `directoriesContent.mjs`).
+- Reply to Ollie once pushed/deployed with `https://agentskillshub.top/agent-skills-directories/#mcpyp-com`.
