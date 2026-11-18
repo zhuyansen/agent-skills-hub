@@ -465,9 +465,20 @@ const aiInfoHtml = `<!doctype html>
     "about": {
       "@type": "Dataset",
       "name": "AI Agent Skills Security Grades Dataset",
+      "description": "Security grades (Safe / Caution / Unsafe / Reject), red flags and quality scores for 130,173 open-source AI agent skills and MCP servers indexed from GitHub (CC BY 4.0 snapshot).",
       "identifier": "https://doi.org/10.5281/zenodo.21292799",
       "url": "https://doi.org/10.5281/zenodo.21292799",
       "license": "https://creativecommons.org/licenses/by/4.0/",
+      "datePublished": "2026-07-10",
+      "creator": {
+        "@type": "Person",
+        "name": "Jason Zhu",
+        "url": "https://x.com/GoSailGlobal"
+      },
+      "publisher": {
+        "@id": "${SITE}/#organization"
+      },
+      "isAccessibleForFree": true,
       "sameAs": [
         "https://www.wikidata.org/wiki/Q141735092",
         "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
