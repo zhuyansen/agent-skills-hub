@@ -148,29 +148,45 @@ def main():
         save("pages", rows)
 
     if cmd in ("dimensions", "dump"):
-        # Growth breakdown matrix (diagram #11): page_type x device x country -> visitors & key conversions
+        # Growth breakdown matrix (diagram #11): first-touch entry_page_type x device x country
+        # plus S2S purchase buyers & revenue joined by distinct_id.
         rows = hogql(
             sess,
             f"""
+            WITH
+                purchases AS (
+                    SELECT
+                        distinct_id,
+                        count() AS orders,
+                        sum(toFloatOrZero(toString(properties.revenue))) AS revenue_usd
+                    FROM events
+                    WHERE timestamp >= now() - INTERVAL {days} DAY
+                      AND event = 'purchase_completed'
+                    GROUP BY distinct_id
+                )
             SELECT
-                coalesce(nullIf(properties.page_type, ''), 'unknown') AS page_type,
+                coalesce(nullIf(properties.entry_page_type, ''), nullIf(properties.page_type, ''), 'unknown') AS page_type,
                 coalesce(nullIf(properties.$device_type, ''), 'unknown') AS device,
                 coalesce(nullIf(properties.$geoip_country_code, ''), '??') AS country,
                 uniqExact($session_id) AS sessions,
                 uniqExactIf($session_id, event = 'audit_run') AS audit_sessions,
-                uniqExactIf($session_id, event IN ('enterprise_cta_click', 'enterprise_lead_submitted', 'pro_checkout_click', 'ci_gate_hero_cta', 'org_audit_pro_click')) AS commercial_sessions,
-                uniqExactIf($session_id, event IN ('install_command_copied', 'copy_install')) AS install_copy_sessions
+                uniqExactIf($session_id, event IN ('enterprise_cta_click', 'enterprise_lead_submitted', 'pro_checkout_click', 'cigate_checkout_click', 'fasttrack_checkout_click', 'ci_gate_hero_cta', 'org_audit_pro_click')) AS commercial_sessions,
+                uniqExactIf($session_id, event IN ('install_command_copied', 'copy_install')) AS install_copy_sessions,
+                uniqExactIf(events.distinct_id, p.orders > 0) AS buyers,
+                round(sumIf(p.revenue_usd, p.orders > 0) / greatest(uniqExactIf(events.distinct_id, p.orders > 0), 1), 2) AS avg_rev_hint
             FROM events
+            LEFT JOIN purchases AS p ON events.distinct_id = p.distinct_id
             WHERE timestamp >= now() - INTERVAL {days} DAY
               AND event IN (
                 '$pageview', 'audit_run', 'enterprise_cta_click',
                 'enterprise_lead_submitted', 'pro_checkout_click',
+                'cigate_checkout_click', 'fasttrack_checkout_click',
                 'ci_gate_hero_cta', 'org_audit_pro_click',
                 'install_command_copied', 'copy_install'
               )
             GROUP BY page_type, device, country
-            HAVING sessions >= 5
-            ORDER BY commercial_sessions DESC, audit_sessions DESC, sessions DESC
+            HAVING sessions >= 5 OR buyers > 0
+            ORDER BY buyers DESC, commercial_sessions DESC, audit_sessions DESC, sessions DESC
             LIMIT 50
             """,
             name="dimensions",
@@ -186,7 +202,8 @@ def main():
                 count() AS events_28d,
                 uniqExact(distinct_id) AS users_28d,
                 countIf(timestamp >= now() - INTERVAL 7 DAY) AS events_7d,
-                uniqExactIf(distinct_id, timestamp >= now() - INTERVAL 7 DAY) AS users_7d
+                uniqExactIf(distinct_id, timestamp >= now() - INTERVAL 7 DAY) AS users_7d,
+                round(sumIf(toFloatOrZero(toString(properties.revenue)), event = 'purchase_completed'), 2) AS revenue_28d_usd
             FROM events
             WHERE timestamp >= now() - INTERVAL {days} DAY
               AND event IN (
@@ -209,10 +226,13 @@ def main():
                 'enterprise_lead_attempt',
                 'enterprise_lead_submitted',
                 'pro_checkout_click',
+                'cigate_checkout_click',
+                'fasttrack_checkout_click',
                 'ci_gate_hero_cta',
                 'ci_gate_copy_snippet',
                 'org_audit_run',
-                'org_audit_pro_click'
+                'org_audit_pro_click',
+                'purchase_completed'
               )
             GROUP BY event
             ORDER BY users_28d DESC

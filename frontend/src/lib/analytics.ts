@@ -12,6 +12,7 @@ declare global {
     gtag?: (command: "event", eventName: string, params?: EventParams) => void;
     posthog?: {
       capture?: (eventName: string, params?: EventParams) => void;
+      get_distinct_id?: () => string;
     };
   }
 }

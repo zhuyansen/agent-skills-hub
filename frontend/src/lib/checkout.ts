@@ -27,6 +27,21 @@ export function sanitizeStripeRef(raw: string, prefix?: string): string {
   return combined.replace(/[^a-zA-Z0-9_-]/g, "--").slice(0, 200);
 }
 
+export function getPostHogDistinctId(): string {
+  if (typeof window === "undefined") return "";
+  const raw = window.posthog?.get_distinct_id?.();
+  if (typeof raw !== "string") return "";
+  return raw.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 80);
+}
+
+export function appendPostHogRef(baseRef: string, distinctId = getPostHogDistinctId()): string {
+  const cleanBase = baseRef.replace(/__ph_.*$/, "");
+  if (!distinctId) return cleanBase.slice(0, 200);
+  const suffix = `__ph_${distinctId}`;
+  const headLimit = Math.max(1, 200 - suffix.length);
+  return `${cleanBase.slice(0, headLimit)}${suffix}`;
+}
+
 export function buildStripeCheckoutUrl(
   baseUrl: string,
   opts?: { clientReferenceId?: string; prefilledEmail?: string },
@@ -35,7 +50,7 @@ export function buildStripeCheckoutUrl(
   if (!trimmed) return "";
   const params = new URLSearchParams();
   if (opts?.clientReferenceId) {
-    params.set("client_reference_id", opts.clientReferenceId.slice(0, 200));
+    params.set("client_reference_id", appendPostHogRef(opts.clientReferenceId));
   }
   if (opts?.prefilledEmail?.trim()) {
     params.set("prefilled_email", opts.prefilledEmail.trim());

@@ -29,6 +29,7 @@ emails, NEVER into the public GitHub issue (this repository is public).
 
 from __future__ import annotations
 
+import hashlib
 import json
 from datetime import datetime, timezone
 from html import escape
@@ -45,6 +46,14 @@ EMAIL_FROM = os.environ.get("EMAIL_FROM", "")
 ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "m17551076169@gmail.com")
 GH_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GH_REPO = os.environ.get("GITHUB_REPOSITORY", "zhuyansen/agent-skills-hub")
+
+POSTHOG_PROJECT_KEY = os.environ.get(
+    "POSTHOG_PROJECT_KEY", "phc_wCjMwyvaJQAHodWWKMeBWxoCmwo8puNJdyxKtomET8j5"
+).strip()
+POSTHOG_CAPTURE_URL = os.environ.get(
+    "POSTHOG_CAPTURE_URL", "https://us.i.posthog.com/capture/"
+).strip()
+SUMMARY_OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "summary.json")
 
 SUPABASE_URL = (
     os.environ.get("AGENTSKILLSHUB_SUPABASE_URL")
@@ -166,10 +175,19 @@ def mask_email(email: str) -> str:
     return f"{local[:1]}***@{domain}"
 
 
+def split_client_ref(raw_ref: str) -> tuple[str, str]:
+    """Extract (clean_ref, posthog_distinct_id) from client_reference_id."""
+    ref = (raw_ref or "").strip()
+    if "__ph_" in ref:
+        base, ph_id = ref.split("__ph_", 1)
+        return base.strip(), ph_id.strip()
+    return ref, ""
+
+
 def is_ours(session: dict) -> bool:
     """The Stripe account also sells other products; only fulfill sessions that are provably ours."""
     meta = session.get("metadata") or {}
-    ref = (session.get("client_reference_id") or "").strip()
+    ref, _ = split_client_ref(session.get("client_reference_id") or "")
     return (
         session.get("payment_link") in PAYMENT_LINK_SKUS
         or meta.get("source") == "agentskillshub"
@@ -185,7 +203,7 @@ def classify_session(session: dict) -> tuple[str, str] | None:
     if not is_ours(session):
         return None
     meta = session.get("metadata") or {}
-    ref = (session.get("client_reference_id") or "").strip()
+    ref, _ = split_client_ref(session.get("client_reference_id") or "")
     meta_sku = str(meta.get("sku") or "").lower()
 
     if meta_sku in {"pro", "fasttrack", "cigate", "deep_audit"}:
@@ -389,6 +407,106 @@ def send_alert(session: dict, sku: str, target: str, issue_url: str, key_status:
     )
 
 
+def send_posthog_purchase(session: dict, sku: str) -> bool:
+    """Server-to-server PostHog `purchase_completed` event (no PII, deduped via $insert_id)."""
+    if not (POSTHOG_PROJECT_KEY and POSTHOG_CAPTURE_URL):
+        return False
+    _, ph_id = split_client_ref(session.get("client_reference_id") or "")
+    distinct_id = ph_id or ("stripe_" + hashlib.sha256(session["id"].encode()).hexdigest()[:16])
+    amount_cents = int(session.get("amount_total") or 0)
+    created_ts = int(session.get("created") or time.time())
+    iso_ts = datetime.fromtimestamp(created_ts, timezone.utc).isoformat()
+    payload = {
+        "api_key": POSTHOG_PROJECT_KEY,
+        "event": "purchase_completed",
+        "distinct_id": distinct_id,
+        "timestamp": iso_ts,
+        "properties": {
+            "sku": sku,
+            "revenue": round(amount_cents / 100, 2),
+            "amount_cents": amount_cents,
+            "currency": (session.get("currency") or "usd").upper(),
+            "is_early_bird": session.get("payment_link") == EARLY_BIRD_LINK,
+            "attributed_to_session": bool(ph_id),
+            "source": "stripe_s2s",
+            "$insert_id": session["id"],
+        },
+    }
+    try:
+        http_json(
+            POSTHOG_CAPTURE_URL,
+            {"Content-Type": "application/json"},
+            data=json.dumps(payload).encode(),
+            method="POST",
+        )
+        return True
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+        print(f"WARNING: PostHog S2S capture failed for {session['id']}: {type(exc).__name__}")
+        return False
+
+
+def write_summary(sessions: list[dict]) -> dict:
+    """Write strictly aggregate, zero-PII Stripe order & revenue summary for analytics_digest.py."""
+    now = int(time.time())
+    cut_7d = now - 7 * 86400
+    cut_28d = now - 28 * 86400
+    by_sku: dict[str, dict] = {}
+    tot_orders = 0
+    tot_cents = 0
+    orders_7d = 0
+    cents_7d = 0
+    orders_28d = 0
+    cents_28d = 0
+    attributed_28d = 0
+
+    for s in sessions:
+        classified = classify_session(s)
+        if not classified:
+            continue
+        sku, _ = classified
+        cents = int(s.get("amount_total") or 0)
+        created = int(s.get("created") or 0)
+        _, ph_id = split_client_ref(s.get("client_reference_id") or "")
+
+        row = by_sku.setdefault(
+            sku,
+            {"orders_all": 0, "revenue_all_usd": 0.0, "orders_28d": 0, "revenue_28d_usd": 0.0},
+        )
+        row["orders_all"] += 1
+        row["revenue_all_usd"] = round(row["revenue_all_usd"] + cents / 100, 2)
+        tot_orders += 1
+        tot_cents += cents
+
+        if created >= cut_28d:
+            orders_28d += 1
+            cents_28d += cents
+            row["orders_28d"] += 1
+            row["revenue_28d_usd"] = round(row["revenue_28d_usd"] + cents / 100, 2)
+            if ph_id:
+                attributed_28d += 1
+        if created >= cut_7d:
+            orders_7d += 1
+            cents_7d += cents
+
+    summary = {
+        "generated_at": datetime.fromtimestamp(now, timezone.utc).isoformat(),
+        "total_orders": tot_orders,
+        "total_revenue_usd": round(tot_cents / 100, 2),
+        "orders_7d": orders_7d,
+        "revenue_7d_usd": round(cents_7d / 100, 2),
+        "orders_28d": orders_28d,
+        "revenue_28d_usd": round(cents_28d / 100, 2),
+        "attributed_28d": attributed_28d,
+        "early_bird_sold": sum(s.get("payment_link") == EARLY_BIRD_LINK for s in sessions),
+        "early_bird_limit": EARLY_BIRD_LIMIT,
+        "by_sku": by_sku,
+    }
+    os.makedirs(os.path.dirname(SUMMARY_OUT), exist_ok=True)
+    with open(SUMMARY_OUT, "w") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=1)
+    return summary
+
+
 def process_session(session: dict) -> str:
     sku, target = classify_session(session)
     buyer_email = (session.get("customer_details") or {}).get("email", "")
@@ -407,6 +525,7 @@ def process_session(session: dict) -> str:
         key_status = "pending_manual_issue"
 
     sync_subscriptions([session])
+    send_posthog_purchase(session, sku)
     send_alert(session, sku, target, "https://dashboard.stripe.com/payments", key_status)
     issue_url = create_issue(session, sku, target, key_status)
     return issue_url
@@ -431,10 +550,20 @@ def send_test_notification() -> int:
 def main() -> int:
     global EARLY_BIRD_SOLD
     if not STRIPE_KEY:
+        if "--summary-only" in sys.argv:
+            print("STRIPE_RESTRICTED_KEY 未设置，跳过 Stripe 汇总。")
+            return 0
         raise RuntimeError("STRIPE_RESTRICTED_KEY not set")
     paid = stripe_sessions()
     sessions = [s for s in paid if classify_session(s)]
     EARLY_BIRD_SOLD = sum(s.get("payment_link") == EARLY_BIRD_LINK for s in sessions)
+    summary = write_summary(sessions)
+    if "--summary-only" in sys.argv:
+        print(
+            f"Stripe summary: 28d={summary['orders_28d']} orders (${summary['revenue_28d_usd']:.2f}), "
+            f"early_bird={summary['early_bird_sold']}/{EARLY_BIRD_LIMIT}."
+        )
+        return 0
     sync_subscriptions(sessions)
     seen = existing_order_ids() if sessions else set()
     cutoff = int(time.time()) - LOOKBACK_SECONDS

@@ -41,6 +41,23 @@
     capture_pageview: "history_change",
     capture_pageleave: true,
     autocapture: true,
+    loaded: function (ph) {
+      var pt = pageType(window.location.pathname);
+      var sp = new URLSearchParams(window.location.search);
+      var refHost = "";
+      if (document.referrer) {
+        try {
+          var u = new URL(document.referrer);
+          if (u.hostname !== window.location.hostname) refHost = u.hostname;
+        } catch (e) {}
+      }
+      ph.register_once({
+        entry_page_type: pt,
+        entry_path: window.location.pathname,
+        entry_source: sp.get("utm_source") || refHost || "(direct)",
+        entry_medium: sp.get("utm_medium") || (refHost ? "referral" : "(none)")
+      });
+    },
     before_send: function (ev) {
       if (!ev) return ev;
       ev.properties = ev.properties || {};

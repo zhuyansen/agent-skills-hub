@@ -41,16 +41,6 @@ export function SubmitPage() {
   const urlValid = GITHUB_URL_RE.test(repoUrl.trim());
   const showUrlError = urlTouched && repoUrl.length > 0 && !urlValid;
   const hasFastTrackStripe = CHECKOUT_LINKS.fasttrack.length > 0;
-  const fastTrackCheckoutHref =
-    urlValid && hasFastTrackStripe
-      ? buildStripeCheckoutUrl(CHECKOUT_LINKS.fasttrack, {
-          clientReferenceId: sanitizeStripeRef(
-            extractRepoSlug(repoUrl),
-            "fasttrack",
-          ),
-          prefilledEmail: requesterEmail,
-        })
-      : "";
 
   async function handleSkillSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -87,8 +77,15 @@ export function SubmitPage() {
           },
           { repo: slug },
         );
-        if (hasFastTrackStripe && fastTrackCheckoutHref) {
-          window.open(fastTrackCheckoutHref, "_blank", "noopener,noreferrer");
+        if (hasFastTrackStripe) {
+          const liveUrl = buildStripeCheckoutUrl(CHECKOUT_LINKS.fasttrack, {
+            clientReferenceId: sanitizeStripeRef(slug, "fasttrack"),
+            prefilledEmail: requesterEmail,
+          });
+          if (liveUrl) {
+            trackEvent("fasttrack_checkout_click", { sku: "fasttrack", price: USD_PRICING.fastTrack });
+            window.open(liveUrl, "_blank", "noopener,noreferrer");
+          }
         }
         setSubmitState({
           kind: "success",

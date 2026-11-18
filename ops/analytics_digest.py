@@ -180,7 +180,8 @@ def main():
             "install_command_copied", "audit_run", "enterprise_cta_click",
             "newsletter_subscribe", "audit_pro_upsell_click",
             "audit_cigate_upsell_click", "free_tier_click",
-            "pro_checkout_click", "ci_gate_hero_cta", "ci_gate_copy_snippet",
+            "pro_checkout_click", "cigate_checkout_click", "fasttrack_checkout_click",
+            "ci_gate_hero_cta", "ci_gate_copy_snippet",
             "org_audit_run", "org_audit_pro_click",
             "hero_guide_click", "fasttrack_lane_select",
             "enterprise_form_viewed", "enterprise_form_started",
@@ -267,6 +268,23 @@ def main():
         for r in ga_bd[:8]:
             print(f"| {r['country']} | {r['deviceCategory']} | {r['sessions']} | {r['engagedSessions']} | {r['activeUsers']} |")
 
+    # ── Stripe (source-of-truth revenue & orders, zero PII) ──
+    st = load("stripe/out/summary.json")
+    if st:
+        section("Stripe · 付费真相 (06 源头)")
+        print(f"- **7 天**: {st.get('orders_7d', 0)} 单 / **${st.get('revenue_7d_usd', 0):.2f}** · "
+              f"**28 天**: {st.get('orders_28d', 0)} 单 / **${st.get('revenue_28d_usd', 0):.2f}** · "
+              f"**累计**: {st.get('total_orders', 0)} 单 / ${st.get('total_revenue_usd', 0):.2f}")
+        print(f"- **美元早鸟**: {st.get('early_bird_sold', 0)}/{st.get('early_bird_limit', 100)} · "
+              f"**28 天会话归因覆盖**: {st.get('attributed_28d', 0)}/{st.get('orders_28d', 0)} 单带 PostHog `distinct_id`")
+        by_sku = st.get("by_sku") or {}
+        if by_sku:
+            print("\n| SKU | 28天订单 | 28天收入 | 累计订单 | 累计收入 |")
+            print("|---|--:|--:|--:|--:|")
+            for sku, row in sorted(by_sku.items()):
+                print(f"| `{sku}` | {row.get('orders_28d', 0)} | ${row.get('revenue_28d_usd', 0):.2f} | "
+                      f"{row.get('orders_all', 0)} | ${row.get('revenue_all_usd', 0):.2f} |")
+
     # ── PostHog (anti-adblock first-party proxy + product funnel + #11 breakdown) ──
     ph_ov = load("posthog/out/overview.json")
     ph_src = load("posthog/out/sources.json")
@@ -287,16 +305,18 @@ def main():
                 print(f"- {r.get('source')} / {r.get('medium')} — {r.get('sessions')} sessions ({r.get('visitors')} visitors)")
         if ph_fun:
             print("\n**PostHog 产品事件 (7天 / 28天去重人数)**:")
-            for r in ph_fun[:12]:
+            for r in ph_fun[:15]:
                 if r.get("event") == "$pageview":
                     continue
-                print(f"- `{r.get('event')}`: 7d {r.get('users_7d', 0)} 人 ({r.get('events_7d', 0)} 次) · 28d {r.get('users_28d', 0)} 人 ({r.get('events_28d', 0)} 次)")
+                rev = float(r.get("revenue_28d_usd") or 0)
+                rev_txt = f" · 收入 ${rev:.2f}" if rev > 0 else ""
+                print(f"- `{r.get('event')}`: 7d {r.get('users_7d', 0)} 人 ({r.get('events_7d', 0)} 次) · 28d {r.get('users_28d', 0)} 人 ({r.get('events_28d', 0)} 次){rev_txt}")
         if ph_dim:
-            print("\n**增长拆解 (页面类型 × 端 × 国家 → 商业/审计/复制转化)**:\n")
-            print("| 页面类型 | 端 | 国家 | 会话 | audit | 商业意图 | 复制安装 |")
-            print("|---|---|---|--:|--:|--:|--:|")
+            print("\n**增长拆解 (首触落地页 × 端 × 国家 → 付费/意图/复制)**:\n")
+            print("| 首触落地页 | 端 | 国家 | 会话 | audit | 商业意图 | 复制安装 | 付费人数 |")
+            print("|---|---|---|--:|--:|--:|--:|--:|")
             for r in ph_dim[:12]:
-                print(f"| {r.get('page_type')} | {r.get('device')} | {r.get('country')} | {r.get('sessions', 0)} | {r.get('audit_sessions', 0)} | {r.get('commercial_sessions', 0)} | {r.get('install_copy_sessions', 0)} |")
+                print(f"| {r.get('page_type')} | {r.get('device')} | {r.get('country')} | {r.get('sessions', 0)} | {r.get('audit_sessions', 0)} | {r.get('commercial_sessions', 0)} | {r.get('install_copy_sessions', 0)} | {r.get('buyers', 0)} |")
 
     # ── Clarity ──
     ov = load("clarity/out/overview.json")

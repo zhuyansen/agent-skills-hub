@@ -61,15 +61,6 @@ export function CiGatePage() {
   const [error, setError] = useState<string | null>(null);
 
   const hasStripeLink = CHECKOUT_LINKS.cigate.length > 0;
-  const stripeHref = hasStripeLink
-    ? buildStripeCheckoutUrl(CHECKOUT_LINKS.cigate, {
-        clientReferenceId: sanitizeStripeRef(
-          githubOrg.trim() || "team",
-          "cigate",
-        ),
-        prefilledEmail: email,
-      })
-    : "";
 
   const copyText = (text: string, which: "yaml" | "allowlist") => {
     navigator.clipboard.writeText(text).then(() => {
@@ -117,8 +108,18 @@ export function CiGatePage() {
         },
         { policy: failPolicy },
       );
-      if (hasStripeLink && stripeHref) {
-        window.open(stripeHref, "_blank", "noopener,noreferrer");
+      if (hasStripeLink) {
+        const liveUrl = buildStripeCheckoutUrl(CHECKOUT_LINKS.cigate, {
+          clientReferenceId: sanitizeStripeRef(
+            githubOrg.trim() || "team",
+            "cigate",
+          ),
+          prefilledEmail: email,
+        });
+        if (liveUrl) {
+          trackEvent("cigate_checkout_click", { sku: "cigate", price: USD_PRICING.ciGate });
+          window.open(liveUrl, "_blank", "noopener,noreferrer");
+        }
       }
       setSubmitted(true);
     } catch (err) {

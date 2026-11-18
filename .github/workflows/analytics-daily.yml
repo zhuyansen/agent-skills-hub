@@ -71,6 +71,11 @@ jobs:
       - name: Clarity
         run: python ops/clarity/fetch_clarity.py dump || true
 
+      - name: Stripe summary
+        env:
+          STRIPE_RESTRICTED_KEY: ${{ secrets.STRIPE_RESTRICTED_KEY }}
+        run: python ops/stripe/poll_stripe.py --summary-only || true
+
       - name: Build digest → Step Summary
         run: |
           python ops/analytics_digest.py > digest.md

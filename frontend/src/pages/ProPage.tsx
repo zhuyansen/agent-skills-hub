@@ -227,7 +227,14 @@ function UpgradeCard({
             href={checkoutHref}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("pro_checkout_click", { price: offer.price })}
+            onClick={(e) => {
+              const liveHref = buildStripeCheckoutUrl(offer.link, {
+                clientReferenceId: "pro--web",
+                prefilledEmail: email,
+              });
+              if (liveHref) e.currentTarget.href = liveHref;
+              trackEvent("pro_checkout_click", { sku: "pro", price: offer.price });
+            }}
             className="inline-block w-full px-6 py-2.5 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-500 transition-colors"
           >
             {zh
