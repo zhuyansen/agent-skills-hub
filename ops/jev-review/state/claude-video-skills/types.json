@@ -9700,5 +9700,77 @@
    "general": 0.08
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "staryone/motlab",
+  "stars": 159,
+  "description": "Video as code: canvas scenes rendered with WebCodecs in headless Chrome, a review viewer, and agent skills that build the video from your references.",
+  "scores": {
+   "promo": 0.63,
+   "explainer": 0.43,
+   "music": 0.14,
+   "motion": 0.31,
+   "shorts": 0.16,
+   "editing": 0.07,
+   "demo": 0.86,
+   "story": 0.19,
+   "avatar": 0.05,
+   "general": 0.79
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "kjagsadvisors/keeran.ai",
+  "stars": 59,
+  "description": "Free Claude Code skills by Keeran (Keeran Jagadesan, @keeran.ai) that make finished assets: video sales letters, lead magnets, reels and launch videos.",
+  "scores": {
+   "promo": 0.85,
+   "explainer": 0.27,
+   "music": 0.86,
+   "motion": 0.44,
+   "shorts": 0.92,
+   "editing": 0.8,
+   "demo": 0.27,
+   "story": 0.11,
+   "avatar": 0.08,
+   "general": 0.8
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "STARDUSTLC666/dsh-remotion",
+  "stars": 38,
+  "description": "DeepSeek Harness React 视频创作工作台：内置官方 Remotion 技能、工程检索、模板库、素材排序、Studio 预览与本地 MP4 导出，支持原生清透 / 米白纸感 / Claude 暖书卷 / 8-Bit 像素 / 晴空薄荷五套明亮工作台主题。欢迎提交 issues 和 PR。",
+  "scores": {
+   "promo": 0.23,
+   "explainer": 0.27,
+   "music": 0.15,
+   "motion": 0.21,
+   "shorts": 0.18,
+   "editing": 0.1,
+   "demo": 0.83,
+   "story": 0.13,
+   "avatar": 0.06,
+   "general": 0.5
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "dovudhusan/viral-hook-reels-skill",
+  "stars": 7,
+  "description": "Agent skill: paste a viral video link, get a finished hook-breakdown reel. Script, AI voice, captions, edit and cover in about five minutes. Works with Claude Code, Codex, Cursor, Gemini CLI. By PostAxis.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.81,
+   "music": 0.03,
+   "motion": 0.1,
+   "shorts": 0.97,
+   "editing": 0.92,
+   "demo": 0.27,
+   "story": 0.05,
+   "avatar": 0.06,
+   "general": 0.03
+  },
+  "kind": "shorts"
  }
 ]

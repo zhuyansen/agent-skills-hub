@@ -3792,5 +3792,19 @@
    "mcp": 0.56
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "alfeusaditya/claude-codex-connector",
+  "stars": 6,
+  "description": "Claude-Codex Connector: let Claude Code use Codex (ChatGPT subscription) to generate images, review code and give second opinions. Skills + installer + docs.",
+  "scores": {
+   "gpt_image": 0.44,
+   "nano_banana": 0.02,
+   "open_models": 0.03,
+   "editing": 0.03,
+   "design": 0.03,
+   "mcp": 0.7
+  },
+  "kind": "mcp"
  }
 ]

@@ -4942,5 +4942,53 @@
    "marketing": 0.11
   },
   "kind": "content"
+ },
+ {
+  "repo": "boringmarketer/boring-marketing-skills",
+  "stars": 587,
+  "description": "32 free marketing skills for your AI agent: research, positioning, copy, pages, SEO, AI search, ads, email and content, plus a deep local-business pack. MIT.",
+  "scores": {
+   "suite": 0.79,
+   "audit": 0.12,
+   "research": 0.14,
+   "data_mcp": 0.03,
+   "geo": 0.22,
+   "content": 0.45,
+   "links": 0.03,
+   "marketing": 0.98
+  },
+  "kind": "marketing"
+ },
+ {
+  "repo": "sethblack/black-seo-analyzer",
+  "stars": 61,
+  "description": "Technical SEO crawler and site audit tool, with an MCP server for Claude, ChatGPT and other AI assistants.",
+  "scores": {
+   "suite": 0.08,
+   "audit": 0.95,
+   "research": 0.03,
+   "data_mcp": 0.88,
+   "geo": 0.11,
+   "content": 0.05,
+   "links": 0.03,
+   "marketing": 0.03
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "rob1-alt/refine-seo-geo",
+  "stars": 10,
+  "description": "Claude Code skill — End-to-end SEO + GEO (Generative Engine Optimization) playbook for any brand. Rank on Google AND get cited by ChatGPT, Claude, Gemini, Perplexity.",
+  "scores": {
+   "suite": 0.9,
+   "audit": 0.32,
+   "research": 0.2,
+   "data_mcp": 0.06,
+   "geo": 0.96,
+   "content": 0.48,
+   "links": 0.17,
+   "marketing": 0.11
+  },
+  "kind": "geo"
  }
 ]

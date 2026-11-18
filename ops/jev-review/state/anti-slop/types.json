@@ -4184,5 +4184,19 @@
    "rules": 0.19
   },
   "kind": "code"
+ },
+ {
+  "repo": "imMamdouhaboammar/anti-slop-engineering",
+  "stars": 5,
+  "description": "Your AI agent is quietly sabotaging your codebase. Stop the slop with 217 battle-tested anti-patterns, Google SRE enforcement, and a zero-trust diff guard, An Engineering Discipline Playbook & Guard System for AI Coding Agents. Prevent, detect, and audit AI slop and regression.",
+  "scores": {
+   "writing": 0.08,
+   "detector": 0.9,
+   "chinese": 0.02,
+   "code": 0.67,
+   "design": 0.23,
+   "rules": 0.25
+  },
+  "kind": "detector"
  }
 ]

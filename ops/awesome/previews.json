@@ -1095,6 +1095,14 @@
   "type": "image/jpeg",
   "bytes": 869515
  },
+ "Guan0923/Praxis-RAG": {
+  "repo": "Guan0923/Praxis-RAG",
+  "url": "https://raw.githubusercontent.com/Guan0923/Praxis-RAG/HEAD/docs/images/console-search.gif",
+  "alt": "Console 检索 X7 终端的 E03 故障码并显示手册原文与来源章节",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 71964
+ },
  "Guilherme-M-Mateus/keyframe-coach": {
   "repo": "Guilherme-M-Mateus/keyframe-coach",
   "url": "https://raw.githubusercontent.com/Guilherme-M-Mateus/keyframe-coach/HEAD/assets/compare-test1.gif",
@@ -1278,6 +1286,14 @@
   "score": -0.45,
   "type": "image/png",
   "bytes": 148821
+ },
+ "Ihor-Zakharov/deck-workflow": {
+  "repo": "Ihor-Zakharov/deck-workflow",
+  "url": "https://raw.githubusercontent.com/Ihor-Zakharov/deck-workflow/HEAD/docs/screenshots/blueprint-09-entrance.gif",
+  "alt": "The vicious circle draws itself",
+  "score": 2.6,
+  "type": "image/gif",
+  "bytes": 1275089
  },
  "Integral-Healthcare/robin-ai-reviewer": {
   "repo": "Integral-Healthcare/robin-ai-reviewer",
@@ -1991,6 +2007,14 @@
   "type": "image/png",
   "bytes": 226711
  },
+ "STARDUSTLC666/dsh-remotion": {
+  "repo": "STARDUSTLC666/dsh-remotion",
+  "url": "https://raw.githubusercontent.com/STARDUSTLC666/dsh-remotion/master/docs/assets/intro/screen-zh.webp",
+  "alt": "Remotion workbench",
+  "score": -0.2,
+  "type": "image/webp",
+  "bytes": 162762
+ },
  "SallyRS/video-director": {
   "repo": "SallyRS/video-director",
   "url": "https://raw.githubusercontent.com/SallyRS/video-director/HEAD/docs/images/storyboard-walkthrough.gif",
@@ -2663,6 +2687,14 @@
   "type": "image/gif",
   "bytes": 1214662
  },
+ "alfeusaditya/claude-codex-connector": {
+  "repo": "alfeusaditya/claude-codex-connector",
+  "url": "https://raw.githubusercontent.com/alfeusaditya/claude-codex-connector/HEAD/docs/assets/banner.png",
+  "alt": "Claude and Codex connected by a cable carrying image, code review and chat icons",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1409419
+ },
  "algerchen2024/image-to-editable-pptx": {
   "repo": "algerchen2024/image-to-editable-pptx",
   "url": "https://raw.githubusercontent.com/algerchen2024/image-to-editable-pptx/HEAD/docs/showcase/promo-video-teaser.gif",
@@ -2958,6 +2990,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 510841
+ },
+ "baney75/smoothstone": {
+  "repo": "baney75/smoothstone",
+  "url": "https://raw.githubusercontent.com/baney75/smoothstone/HEAD/docs/gallery.jpg",
+  "alt": "Twelve parts built by stone from its recipes, rendered in Blender",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 177587
  },
  "bangtutorial/bang-motion": {
   "repo": "bangtutorial/bang-motion",
@@ -3695,6 +3735,14 @@
   "type": "image/jpeg",
   "bytes": 265462
  },
+ "dovudhusan/viral-hook-reels-skill": {
+  "repo": "dovudhusan/viral-hook-reels-skill",
+  "url": "https://raw.githubusercontent.com/dovudhusan/viral-hook-reels-skill/HEAD/examples/1-the-cut.gif",
+  "alt": "The source video plays, freezes, and the view count stacks up word by word",
+  "score": 2.8,
+  "type": "image/gif",
+  "bytes": 2030632
+ },
  "dtunai/cu-Jev": {
   "repo": "dtunai/cu-Jev",
   "url": "https://raw.githubusercontent.com/dtunai/cu-Jev/HEAD/assets/starfighter.gif",
@@ -3974,6 +4022,14 @@
   "score": 1.7,
   "type": "image/png",
   "bytes": 283931
+ },
+ "felixbfx/MuleCreate": {
+  "repo": "felixbfx/MuleCreate",
+  "url": "https://raw.githubusercontent.com/felixbfx/MuleCreate/HEAD/docs/example_alpaca_monowheel.png",
+  "alt": "Example scene Alpaca Monowheel: the sketch and the two finished models",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 1088371
  },
  "fendouai/ViralForge": {
   "repo": "fendouai/ViralForge",
@@ -6415,6 +6471,14 @@
   "type": "image/png",
   "bytes": 372167
  },
+ "sethblack/black-seo-analyzer": {
+  "repo": "sethblack/black-seo-analyzer",
+  "url": "https://www.sethserver.com/static/images/black-seo-analyzer.png",
+  "alt": "Black SEO Analyzer",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 70863
+ },
  "seungdori/web-stylebook-mcp": {
   "repo": "seungdori/web-stylebook-mcp",
   "url": "https://raw.githubusercontent.com/seungdori/web-stylebook-mcp/master/docs/example-throughline-hero.png",
@@ -6590,6 +6654,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 5558350
+ },
+ "staryone/motlab": {
+  "repo": "staryone/motlab",
+  "url": "https://raw.githubusercontent.com/staryone/motlab/HEAD/assets/demo.avif",
+  "alt": "The motlab ad: a prompt asks the agent for a coffee shop promo, the agent builds",
+  "score": 2.0,
+  "type": "image/avif",
+  "bytes": 2097752
  },
  "stephenlzc/codex-image-gen": {
   "repo": "stephenlzc/codex-image-gen",

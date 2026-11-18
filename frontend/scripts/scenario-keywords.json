@@ -1604,7 +1604,8 @@
     "ChiSonKon/telegram-business-ai-bot",
     "nickathens/MyOldMachine",
     "xluxeq/GPT2-Telegram-Chatbot",
-    "evgenyigumnov/ai-agent-telegram-bot"
+    "evgenyigumnov/ai-agent-telegram-bot",
+    "zalogarcia/leash"
    ]
   },
   "related": [
@@ -2051,7 +2052,8 @@
     "niobium617/prompt-reverse-engineer-skill",
     "walkskysu/digital-human-koubo-comfyui",
     "AlbertAZ1992/image-skillbook",
-    "PotionUI/PotionUI"
+    "PotionUI/PotionUI",
+    "alfeusaditya/claude-codex-connector"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2219,7 +2221,9 @@
     "duosheng/threejs-to-3d-model",
     "HRuiCcc/RuiC-card-skill",
     "BetaVersionHQ/beta-version-toon-studio",
-    "BetaVersionHQ/beta-version-blox-studio"
+    "BetaVersionHQ/beta-version-blox-studio",
+    "baney75/smoothstone",
+    "felixbfx/MuleCreate"
    ],
    "exclude_repos": [
     "codepawl/67.js",
@@ -3449,7 +3453,9 @@
     "The-40-Thieves/reliquary-tc",
     "1llu50ry/Decompile",
     "scub-france/docling-Studio",
-    "alpha03123/vsummary"
+    "alpha03123/vsummary",
+    "databrickslabs/ontobricks",
+    "Guan0923/Praxis-RAG"
    ],
    "exclude_repos": [
     "FlowElement-ai/m_flow",
@@ -4734,7 +4740,8 @@
     "kimhons/humanize",
     "wwewtech/anti-slop-design",
     "etodanik/deslop",
-    "gretchenfitze/anti-slop"
+    "gretchenfitze/anti-slop",
+    "imMamdouhaboammar/anti-slop-engineering"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5255,7 +5262,10 @@
     "tipsai/product-seo",
     "Advance-Labs/aeo-toolkit",
     "AgriciDaniel/dataforseo-agent",
-    "becomezain/ai-website-system"
+    "becomezain/ai-website-system",
+    "boringmarketer/boring-marketing-skills",
+    "sethblack/black-seo-analyzer",
+    "rob1-alt/refine-seo-geo"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -6893,7 +6903,9 @@
     "HututuWorks/journal-club-ppt",
     "Meyt1n/web-to-editable-slides",
     "jernejk/talk-deck-template",
-    "shariefabdelmonem/interactive-html-presentation"
+    "shariefabdelmonem/interactive-html-presentation",
+    "John-20260101/zgs-ppt",
+    "Ihor-Zakharov/deck-workflow"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8995,7 +9007,11 @@
     "ocepkejepintu-droid/claude-launch",
     "Jadouminou/final-phase-lite",
     "TurkiHassan/arabic-launch-video",
-    "codewithsiddique-04/3d-video-studio"
+    "codewithsiddique-04/3d-video-studio",
+    "staryone/motlab",
+    "kjagsadvisors/keeran.ai",
+    "STARDUSTLC666/dsh-remotion",
+    "dovudhusan/viral-hook-reels-skill"
    ],
    "sub_skills": [
     {

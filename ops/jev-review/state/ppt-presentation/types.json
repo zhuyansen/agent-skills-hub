@@ -3806,5 +3806,33 @@
    "general": 0.09
   },
   "kind": "html"
+ },
+ {
+  "repo": "John-20260101/zgs-ppt",
+  "stars": 5,
+  "description": "全国大学生职业规划大赛（第四届）展示 PPT 生成技能：17 种页型、阅读型版面（12 页起）、双层审计与 PDF 预览，参考上一届金奖结构",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.95,
+   "html": 0.02,
+   "business": 0.07,
+   "convert": 0.91,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Ihor-Zakharov/deck-workflow",
+  "stars": 5,
+  "description": "End-to-end Claude Code skill for reference-quality HTML presentations: two standard decks, 3–4 image loop, Apple-grade motion, screenshot-verified",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.05,
+   "html": 0.97,
+   "business": 0.13,
+   "convert": 0.06,
+   "general": 0.11
+  },
+  "kind": "html"
  }
 ]

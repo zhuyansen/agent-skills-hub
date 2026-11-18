@@ -10317,5 +10317,40 @@
   "days": 70,
   "stars_per_day": 9.6,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "baney75/smoothstone",
+  "name": "smoothstone",
+  "stars": 72,
+  "description": "A skill and CLI that lets small local models like LFM3-1.7B make 3D printable parts, from words or a picture, even through context compaction.",
+  "topics": [
+   "3d-printing",
+   "agent-skills",
+   "cad",
+   "lfm3",
+   "llama-cpp",
+   "local-llm",
+   "openscad",
+   "small-language-models"
+  ],
+  "created": "2026-11-15",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7391,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.98,
+  "shows_result": 0.88,
+  "one_command_start": 0.06,
+  "specific_outcome": 0.97,
+  "complete_docs": 0.17,
+  "novel_angle": 0.8,
+  "shareable_output": 0.91,
+  "quality": 0.52,
+  "tier": "中",
+  "hit_prior": 0.8633333333333333,
+  "days": 3,
+  "stars_per_day": 24.0,
+  "verdict": "low_quality"
  }
 ]

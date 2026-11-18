@@ -3438,5 +3438,37 @@
    "gen3d": 0.19
   },
   "kind": "blender"
+ },
+ {
+  "repo": "baney75/smoothstone",
+  "stars": 72,
+  "description": "A skill and CLI that lets small local models like LFM3-1.7B make 3D printable parts, from words or a picture, even through context compaction.",
+  "scores": {
+   "blender": 0.04,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.94,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.59
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "felixbfx/MuleCreate",
+  "stars": 33,
+  "description": "Sketch in 3D space with lines – and hand the sketch to an AI that builds it in Houdini or Blender. Alpha.",
+  "scores": {
+   "blender": 0.11,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.13,
+   "dcc": 0.15,
+   "web3d": 0.02,
+   "gen3d": 0.16
+  },
+  "kind": "gen3d"
  }
 ]
