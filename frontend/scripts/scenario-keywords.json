@@ -6945,6 +6945,12 @@
   ],
   "extra_faq": [
    {
+    "q": "How do I make a PowerPoint with Claude?",
+    "a": "Claude writes a real, editable .pptx with Anthropic's pptx skill. On Claude.ai's paid plans it is built in; in Claude Code, run /plugin marketplace add anthropics/skills, then /plugin install document-skills@anthropic-agent-skills, and ask for the deck from a one-page brief. In our test it made a 9-slide deck in 2.4 minutes. Step-by-step tutorial: https://agentskillshub.top/blog/make-powerpoint-with-claude/",
+    "qZh": "怎么用 Claude 做 PowerPoint?",
+    "aZh": "Claude 用 Anthropic 官方的 pptx skill 写出真正能改的 .pptx。Claude.ai 付费版已内置;Claude Code 里先运行 /plugin marketplace add anthropics/skills,再运行 /plugin install document-skills@anthropic-agent-skills,然后按一页 brief 让它做。实测 2.4 分钟做出 9 页。分步教程:https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/"
+   },
+   {
     "q": "Where can I find PPT skills on GitHub?",
     "a": "The most-starred PPT skills on GitHub are hugohe3/ppt-master (native, editable PowerPoint decks from documents or a topic), zarazhangrui/frontend-slides (web slides built with a coding agent's frontend skills), op7418/guizang-ppt-skill (HTML decks in editorial-magazine and Swiss layouts) and ningzimu/codex-ppt-skill (image-based decks with GPT Image 2 in Codex). Every repo on this page is also in the open-source list zhuyansen/awesome-codex-ppt-skills on GitHub, grouped by type and security-graded.",
     "qZh": "GitHub 上哪里能找到 PPT skill?",

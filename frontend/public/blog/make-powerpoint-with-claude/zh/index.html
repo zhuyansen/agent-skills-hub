@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用 Claude 做 PowerPoint：一步步教程（2026） | Agent Skills Hub</title>
+  <meta name="description" content="五步用 Claude 做出一份能直接改的 PowerPoint：写 brief、装 Anthropic 官方 pptx skill、下指令、检查每一页、在 PowerPoint 里收尾。附我们实测 32 个 PPT skill 的结果。" />
+  <meta name="keywords" content="Claude PPT, Claude PowerPoint, Claude 做 PPT, pptx skill, AI 做 PPT, PPT 教程, Claude Code" />
+  <meta property="og:title" content="用 Claude 做 PowerPoint：一步步教程（2026）" />
+  <meta property="og:description" content="从一份 brief 到可编辑的 .pptx，五步走完；附 32 个 PPT skill 在同一份 brief 上的实测。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/best-runs/ppt/anthropics__skills.jpg" />
+  <meta property="article:published_time" content="2026-11-18" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="用 Claude 做 PowerPoint：一步步教程（2026）" />
+  <meta name="twitter:description" content="从一份 brief 到可编辑的 .pptx，五步走完；附 32 个 PPT skill 在同一份 brief 上的实测。" />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer src="/ph.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "用 Claude 做 PowerPoint：一步步教程（2026）", "description": "五步用 Claude 做出一份能直接改的 PowerPoint：写 brief、装 Anthropic 官方 pptx skill、下指令、检查每一页、在 PowerPoint 里收尾。附我们实测 32 个 PPT skill 的结果。", "datePublished": "2026-11-18", "dateModified": "2026-11-18", "inLanguage": "zh-CN", "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"}, "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top/"}, "image": "https://agentskillshub.top/best-runs/ppt/anthropics__skills.jpg", "mainEntityOfPage": "https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Claude 能做 PowerPoint 吗？", "acceptedAnswer": {"@type": "Answer", "text": "能。Claude 用 Anthropic 官方的 pptx skill 直接写出 .pptx 文件。Claude.ai 付费版已经自带这个 skill，直接让它做 PPT、下载文件即可；Claude Code 里用 /plugin install document-skills@anthropic-agent-skills 装一次就行。"}}, {"@type": "Question", "name": "Claude 做的 PPT 能改吗？", "acceptedAnswer": {"@type": "Answer", "text": "用 pptx skill 做的可以：实测里它写的是原生幻灯片，文本框、表格、图表都能在 PowerPoint 里直接改。有些社区 skill 是把每页画成一张图，看着好看，但改一个字就得重做那一页。"}}, {"@type": "Question", "name": "要多久？", "acceptedAnswer": {"@type": "Answer", "text": "2026 年 10 月的实测里，官方 pptx skill 把一页 brief 做成 9 页 deck 用了 2.4 分钟。跑通的 28 个 PPT skill，大约在 2 到 16 分钟之间。"}}, {"@type": "Question", "name": "哪个 PPT skill 最好？", "acceptedAnswer": {"@type": "Answer", "text": "看下一个碰这份 deck 的人是谁。要同事接着改的 PowerPoint，ppt-master 结构最完整；要自己在浏览器里讲的，guizang-ppt-skill；要最快拿到一份能改的，官方 pptx skill 或 claude-office-skills。完整排名在 PPT skill 精选页。"}}]}</script>
+  <style>
+    /* ── P1 typography upgrade ─────────────────────────────────── */
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+
+    .article-body > h1 { font-size: 36px; line-height: 1.25; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 16px; color: var(--bp-text); }
+
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.35; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: normal; font-size: 17px; color: var(--bp-text); line-height: 1.78; }
+
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: rgba(91, 95, 233, 0.06); border: 1px solid var(--bp-border-accent); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; border: none; }
+    .lang-toggle a:hover { color: var(--bp-text); border: none; }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+
+    .ref-card { display: block; padding: 16px 20px; margin: 12px 0; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .ref-card:hover { border-color: var(--bp-link); text-decoration: none; transform: translateY(-1px); border-bottom-color: var(--bp-link); }
+    .ref-card-title { font-size: 15px; font-weight: 600; color: var(--bp-text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .ref-card-desc { font-size: 14px; color: var(--bp-text-secondary); margin-top: 6px; line-height: 1.65; }
+    .ref-card-stars { font-size: 12px; color: var(--bp-link); margin-top: 6px; font-weight: 500; }
+
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/book/" class="bp-nav-link">Blue Book</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">首页</a> &gt; <a href="/blog/zh/">博客</a> &gt; <span>用 Claude 做 PowerPoint</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/make-powerpoint-with-claude/" >EN</a>
+          <a href="/blog/make-powerpoint-with-claude/zh/" class="active">中文</a>
+        </div>
+      </div>
+
+      <h1>用 Claude 做 PowerPoint：一步步教程（2026）</h1>
+
+      <div class="article-meta">
+        <span>作者 <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>2026 年 11 月 18 日</span>
+        <span>&middot;</span>
+        <span class="article-tag">教程</span>
+        <span>&middot;</span>
+        <span>约 8 分钟</span>
+      </div>
+
+      <blockquote><p><strong>简短回答：</strong>Claude 用 Anthropic 官方的 pptx skill 写出真正能改的 .pptx。Claude.ai 付费版自带，直接让它做 PPT 再下载；Claude Code 里先运行 <code>/plugin marketplace add anthropics/skills</code> 和 <code>/plugin install document-skills@anthropic-agent-skills</code>，再下指令。实测它把一页 brief 做成 9 页 deck 用了 2.4 分钟。</p></blockquote>
+
+      <p>大多数 PowerPoint 教程教的是按钮在哪。这篇讲另一种做法：你写清楚这份 deck 要说什么，Claude 做出文件，你把时间花在最后 10% 的修改上。下面的内容都来自我们 2026 年 10 月的一次实测：同一份 brief，让 Claude Code 分别用 <a href="/best/ppt-presentation/zh/">32 个 PPT skill</a> 各做一份，逐份打分。</p>
+
+      <p>这是官方 pptx skill 按我们的 brief 做出来的 deck，没有改过：</p>
+
+      <p><img src="/best-runs/ppt/anthropics__skills.jpg" alt="Claude 用官方 pptx skill 做的九页幻灯片：封面、问题、产品介绍、四级安全评级、覆盖率图表、带柱状图的案例、三步选型" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <h2>用 Claude.ai 还是 Claude Code？</h2>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th></th><th>Claude.ai（付费版）</th><th>Claude Code</th></tr>
+        <tr><td>准备</td><td>不用：pptx skill 已内置</td><td>装一次 skill（第 2 步）</td></tr>
+        <tr><td>适合</td><td>偶尔做一份</td><td>用本地文件做、经常做、想换别的 PPT skill</td></tr>
+        <tr><td>得到</td><td>一个可下载的 .pptx</td><td>文件夹里的 .pptx，加上生成它的脚本</td></tr>
+      </table></div>
+
+      <p>两边步骤一样。Claude Code 能看到更多过程，所以下面按它来讲。</p>
+
+      <h2>第 1 步：写一页 brief</h2>
+
+      <p>一份能直接用的 deck 和一份要重做的 deck，最大的差别在 brief。我们的 brief 一页纸，写清了四件事：</p>
+
+      <ul>
+        <li><strong>给谁看、他们要做什么决定：</strong>"决定团队能装哪些开源 AI agent skill 的工程经理"。</li>
+        <li><strong>篇幅和语气：</strong>"8 到 10 页，清楚、讲事实、不夸张"。</li>
+        <li><strong>按顺序列出每一节</strong>，以及每节要说明的点。</li>
+        <li><strong>所有数字，原样写出</strong>，包括一张小表格。</li>
+      </ul>
+
+      <p>数字要你给，别让 Claude 自己补。实测跑通的 28 个 skill 里，有 8 个至少加了一条 brief 里没有的说法。brief 里写死真实数字，就少了这种空间，也方便核对。</p>
+
+      <h2>第 2 步：装 pptx skill（Claude Code）</h2>
+
+      <p>Claude 生成文件用的 skill，Anthropic 开源在 <a href="https://github.com/anthropics/skills">anthropics/skills</a>。在 Claude Code 里运行：</p>
+
+      <pre style="background:var(--bp-bg-alt);padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:14px"><code>/plugin marketplace add anthropics/skills
+/plugin install document-skills@anthropic-agent-skills</code></pre>
+
+      <p>这会一起装上 pptx 以及 Word、Excel、PDF 三个 skill。用 Claude.ai 可以跳过这一步。</p>
+
+      <h2>第 3 步：下指令</h2>
+
+      <p>把 brief 存成项目文件夹里的 <code>brief.md</code>，只要一个文件，并在最后要求它自查：</p>
+
+      <pre style="background:var(--bp-bg-alt);padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:14px;white-space:pre-wrap"><code>用 pptx skill 按 brief.md 做这份 deck，存成 deck.pptx。
+所有数字与 brief 保持一致。
+做完后把每页渲染成图片看一遍，
+修掉被截断、互相重叠或没对齐的地方。</code></pre>
+
+      <p>最后一句很重要。让 Claude 看自己做的每一页，常见问题（标题折成三行、图表标签出界）在你打开文件前就修掉了。</p>
+
+      <h2>第 4 步：检查每一页</h2>
+
+      <p>打开 deck，用五个问题过一遍，这也是我们给每份 deck 打分的检查单：</p>
+
+      <ol>
+        <li><strong>基本功：</strong>一页一个意思，字看得清，没有被截断。</li>
+        <li><strong>设计：</strong>从头到尾一套版式。</li>
+        <li><strong>完整：</strong>brief 里的每一节都在。</li>
+        <li><strong>正确：</strong>每个数字都和 brief 一致。</li>
+        <li><strong>忠实：</strong>没有加 brief 里没说的内容。</li>
+      </ol>
+
+      <p>官方 pptx skill 在这份检查单上拿了 96%。内容很少是拉开差距的地方：28 份 deck 里 10 份满分。真正拉开差距的，是做出来的东西能不能改。</p>
+
+      <h2>第 5 步：在 PowerPoint 里收尾</h2>
+
+      <p>原生 .pptx 意味着每个标题、要点、表格、图表都是真正的 PowerPoint 对象。改个字、换主题色、挪个图表，和你手做的 deck 一样。实测里我们把这叫可编辑性等级：官方 skill 到了 L2（原生文字和图形），结构最完整的 ppt-master 到了 L3；图片路线的 skill 是 L0，每页都是一张图。</p>
+
+      <p>预期是小修，不是重做：官方 skill 做的这份，小改几处就能交出去。</p>
+
+      <h2>什么时候换别的 PPT skill</h2>
+
+      <p>官方 skill 是合适的默认选择。我们收录的 205 个 PPT skill 走三条路线，各自适合不同的下一步：</p>
+
+      <p><img src="/best-runs/ppt/compare-routes.jpg" alt="同一页 '205 个 PPT skill、三条路线'，26 个 skill 各做一份并排对比" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th>这份 deck 接下来给…</th><th>用</th><th>实测</th></tr>
+        <tr><td>要接着改的同事</td><td><a href="https://github.com/hugohe3/ppt-master">ppt-master</a></td><td>原生、结构最完整（L3），小修即可，100%，11 分钟</td></tr>
+        <tr><td>赶时间的人</td><td><a href="https://github.com/tfriedel/claude-office-skills">claude-office-skills</a></td><td>原生（L2），小修即可，100%，3.2 分钟</td></tr>
+        <tr><td>你自己，在浏览器里讲</td><td><a href="https://github.com/op7418/guizang-ppt-skill">guizang-ppt-skill</a></td><td>网页幻灯片，带表格和动画，小修即可，100%</td></tr>
+        <tr><td>大屏，要视觉冲击</td><td><a href="https://github.com/Pikapika260214/rw-consulting-ppt">rw-consulting-ppt</a></td><td>好看，但每页都是图片：改一个字就得重做</td></tr>
+      </table></div>
+
+      <p>完整排名、每份 deck 和每次运行的证据，都在 <a href="/best/ppt-presentation/zh/">PPT skill 精选页</a>。</p>
+
+      <h2>装之前先查一下</h2>
+
+      <p>skill 以你的 agent 的权限运行，所以先查一下。被我们标成 CAUTION 或 UNSAFE 的 PPT skill，全部是因为安装方式（sudo、<code>curl | sh</code>），没有一个是因为做幻灯片时的行为。在<a href="/">搜索框</a>里粘贴任意 GitHub 链接就能看到它的评级。</p>
+
+      <h2>常见问题</h2>
+      <h3>Claude 能做 PowerPoint 吗？</h3>
+      <p>能。Claude 用 Anthropic 官方的 pptx skill 直接写出 .pptx 文件。Claude.ai 付费版已经自带这个 skill，直接让它做 PPT、下载文件即可；Claude Code 里用 /plugin install document-skills@anthropic-agent-skills 装一次就行。</p>
+      <h3>Claude 做的 PPT 能改吗？</h3>
+      <p>用 pptx skill 做的可以：实测里它写的是原生幻灯片，文本框、表格、图表都能在 PowerPoint 里直接改。有些社区 skill 是把每页画成一张图，看着好看，但改一个字就得重做那一页。</p>
+      <h3>要多久？</h3>
+      <p>2026 年 10 月的实测里，官方 pptx skill 把一页 brief 做成 9 页 deck 用了 2.4 分钟。跑通的 28 个 PPT skill，大约在 2 到 16 分钟之间。</p>
+      <h3>哪个 PPT skill 最好？</h3>
+      <p>看下一个碰这份 deck 的人是谁。要同事接着改的 PowerPoint，ppt-master 结构最完整；要自己在浏览器里讲的，guizang-ppt-skill；要最快拿到一份能改的，官方 pptx skill 或 claude-office-skills。完整排名在 PPT skill 精选页。</p>
+
+      <h2>从这里开始</h2>
+      <a class="ref-card" href="/best/ppt-presentation/zh/">
+        <div class="ref-card-title">Claude 最佳 PPT 与演示 skill</div>
+        <div class="ref-card-desc">205 个 PPT skill，全部做了安全评级，附 32 个在同一份 brief 上的并排实测。</div>
+      </a>
+
+    </article>
+  </main>
+
+  <script>
+    // Reading progress bar — 阅读进度条，跟着滚动更新
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>

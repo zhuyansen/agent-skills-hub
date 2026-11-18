@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Make a PowerPoint with Claude: Step-by-Step Tutorial (2026) | Agent Skills Hub</title>
+  <meta name="description" content="Make a real, editable PowerPoint with Claude in five steps: write a brief, add Anthropic's pptx skill, prompt, check the slides, finish in PowerPoint. With results from our test of 32 PPT skills." />
+  <meta name="keywords" content="claude powerpoint, claude pptx skill, make a powerpoint with claude, powerpoint tutorial, how to make a powerpoint, ai powerpoint, claude code slides" />
+  <meta property="og:title" content="How to Make a PowerPoint with Claude: Step-by-Step Tutorial (2026)" />
+  <meta property="og:description" content="Five steps from a brief to an editable .pptx, with what 32 PPT skills did on the same brief." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/best-runs/ppt/anthropics__skills.jpg" />
+  <meta property="article:published_time" content="2026-11-18" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Make a PowerPoint with Claude: Step-by-Step Tutorial (2026)" />
+  <meta name="twitter:description" content="Five steps from a brief to an editable .pptx, with what 32 PPT skills did on the same brief." />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/make-powerpoint-with-claude/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer src="/ph.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Make a PowerPoint with Claude: Step-by-Step Tutorial (2026)", "description": "Make a real, editable PowerPoint with Claude in five steps: write a brief, add Anthropic's pptx skill, prompt, check the slides, finish in PowerPoint. With results from our test of 32 PPT skills.", "datePublished": "2026-11-18", "dateModified": "2026-11-18", "inLanguage": "en", "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"}, "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top/"}, "image": "https://agentskillshub.top/best-runs/ppt/anthropics__skills.jpg", "mainEntityOfPage": "https://agentskillshub.top/blog/make-powerpoint-with-claude/"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can Claude make a PowerPoint?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Claude writes a real .pptx file with Anthropic's pptx skill. On Claude.ai's paid plans the skill is already there: ask for a PowerPoint and download the file. In Claude Code you add it once with /plugin install document-skills@anthropic-agent-skills."}}, {"@type": "Question", "name": "Is the PowerPoint Claude makes editable?", "acceptedAnswer": {"@type": "Answer", "text": "With the pptx skill, yes: in our test it wrote native slides with real text boxes, tables and charts you can change in PowerPoint. Some community skills paint each slide as a picture instead; those look striking but you cannot change a word without redoing the slide."}}, {"@type": "Question", "name": "How long does it take?", "acceptedAnswer": {"@type": "Answer", "text": "In our October 2026 test, Anthropic's pptx skill turned a one-page brief into a 9-slide deck in 2.4 minutes. Across the 28 PPT skills that ran, the range was about 2 to 16 minutes."}}, {"@type": "Question", "name": "Which PPT skill is best for Claude?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on who touches the deck next. For a PowerPoint a colleague will edit, ppt-master gave the most structured file; for slides you present in a browser, guizang-ppt-skill; for the quickest editable deck, Anthropic's own pptx skill or claude-office-skills. The full ranking is on our PPT skills page."}}]}</script>
+  <style>
+    /* ── P1 typography upgrade ─────────────────────────────────── */
+    /* Reading progress bar (top thin line, scroll-driven) */
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+
+    /* Article wrapper */
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+
+    /* Title — bigger, tighter */
+    .article-body > h1 { font-size: 36px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin: 32px 0 16px; color: var(--bp-text); }
+
+    /* Section heading — accent left-border + bigger */
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); letter-spacing: -0.01em; }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+
+    /* Body — ~16px / 1.78 (matches book-prose) */
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+
+    /* Lists */
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+
+    /* Inline code */
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    /* Blockquote — pull-quote style */
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; font-size: 17px; color: var(--bp-text); line-height: 1.7; }
+
+    /* Links */
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+
+    /* Meta row */
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+
+    /* Language toggle */
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: rgba(91, 95, 233, 0.06); border: 1px solid var(--bp-border-accent); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; border: none; }
+    .lang-toggle a:hover { color: var(--bp-text); border: none; }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+
+    /* Ref card — bigger padding, hover lift */
+    .ref-card { display: block; padding: 16px 20px; margin: 12px 0; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .ref-card:hover { border-color: var(--bp-link); text-decoration: none; transform: translateY(-1px); border-bottom-color: var(--bp-link); }
+    .ref-card-title { font-size: 15px; font-weight: 600; color: var(--bp-text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .ref-card-desc { font-size: 14px; color: var(--bp-text-secondary); margin-top: 6px; line-height: 1.55; }
+    .ref-card-stars { font-size: 12px; color: var(--bp-link); margin-top: 6px; font-weight: 500; }
+
+    /* Table */
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.5; }
+
+    /* Mobile tightening */
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      /* The timeline table needs ~355px, more than a 320-360px phone's column:
+         it scrolls inside the column instead of the page scrolling sideways
+         (2026-10-29). */
+      .table-scroll { overflow-x: auto; margin: 20px 0; }
+      .table-scroll > .flag-table { margin: 0; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/book/" class="bp-nav-link">Blue Book</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">Home</a> &gt; <a href="/blog/">Blog</a> &gt; <span>Make a PowerPoint with Claude</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/make-powerpoint-with-claude/" class="active">EN</a>
+          <a href="/blog/make-powerpoint-with-claude/zh/" >中文</a>
+        </div>
+      </div>
+
+      <h1>How to Make a PowerPoint with Claude: Step-by-Step Tutorial (2026)</h1>
+
+      <div class="article-meta">
+        <span>By <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>November 18, 2026</span>
+        <span>&middot;</span>
+        <span class="article-tag">Tutorial</span>
+        <span>&middot;</span>
+        <span>8 min read</span>
+      </div>
+
+      <blockquote><p><strong>Short answer:</strong> Claude makes a real, editable .pptx with Anthropic's pptx skill. On Claude.ai's paid plans it is built in: ask for a PowerPoint and download it. In Claude Code, run <code>/plugin marketplace add anthropics/skills</code> and <code>/plugin install document-skills@anthropic-agent-skills</code>, then ask. In our test it turned a one-page brief into a 9-slide deck in 2.4 minutes.</p></blockquote>
+
+      <p>Most PowerPoint tutorials teach you where the buttons are. This one is for the other way of working: you write what the deck should say, Claude builds the file, and you spend your time on the last 10% in PowerPoint. Everything below comes from a test we ran in October 2026, where Claude Code built the same deck with <a href="/best/ppt-presentation/">32 different PPT skills</a> and we graded every result.</p>
+
+      <p>Here is the deck Anthropic's own pptx skill made from our brief, untouched:</p>
+
+      <p><img src="/best-runs/ppt/anthropics__skills.jpg" alt="Nine slides made by Claude with Anthropic's pptx skill: cover, problem, what the product does, four security grades, coverage chart, a worked example with a bar chart, and a three-step guide" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <h2>Claude.ai or Claude Code?</h2>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th></th><th>Claude.ai (paid plan)</th><th>Claude Code</th></tr>
+        <tr><td>Setup</td><td>None: the pptx skill is built in</td><td>Install the skill once (Step 2)</td></tr>
+        <tr><td>Best for</td><td>A one-off deck</td><td>Decks from your files, repeat decks, other PPT skills</td></tr>
+        <tr><td>You get</td><td>A .pptx to download</td><td>A .pptx in your folder, plus the scripts that made it</td></tr>
+      </table></div>
+
+      <p>The steps are the same either way. Claude Code shows more of what happens, so the tutorial follows it.</p>
+
+      <h2>Step 1: Write a one-page brief</h2>
+
+      <p>The single biggest difference between a deck you can use and one you redo is the brief. Ours fit on one page and said four things:</p>
+
+      <ul>
+        <li><strong>Who it is for and what they decide:</strong> "engineering managers deciding which open-source AI agent skills their team may install".</li>
+        <li><strong>Length and tone:</strong> "8 to 10 slides. Clear, factual, no hype."</li>
+        <li><strong>The sections, in order</strong>, each with its point.</li>
+        <li><strong>Every number, exactly</strong>, including a small table.</li>
+      </ul>
+
+      <p>Give Claude the numbers rather than letting it fill them in. In our test, 8 of the 28 skills that ran added at least one claim that was not in the brief. A brief with the real figures leaves less room for that, and makes it easy to check.</p>
+
+      <h2>Step 2: Add the pptx skill (Claude Code)</h2>
+
+      <p>Anthropic publishes the skill that powers Claude's file creation in <a href="https://github.com/anthropics/skills">anthropics/skills</a>. In Claude Code:</p>
+
+      <pre style="background:var(--bp-bg-alt);padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:14px"><code>/plugin marketplace add anthropics/skills
+/plugin install document-skills@anthropic-agent-skills</code></pre>
+
+      <p>That installs the pptx skill along with its Word, Excel and PDF siblings. On Claude.ai you can skip this step.</p>
+
+      <h2>Step 3: Ask for the deck</h2>
+
+      <p>Save the brief as <code>brief.md</code> in your project folder and ask for one file, with a check at the end:</p>
+
+      <pre style="background:var(--bp-bg-alt);padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:14px;white-space:pre-wrap"><code>Use the pptx skill to build the deck described in brief.md.
+Save it as deck.pptx. Keep every number exactly as in the brief.
+When it is done, render each slide to an image, look at them,
+and fix anything cut off, overlapping or off the grid.</code></pre>
+
+      <p>The last line matters. Asking Claude to look at its own slides catches the usual problems (a title that wraps onto three lines, a chart label running off the edge) before you open the file.</p>
+
+      <h2>Step 4: Check the slides</h2>
+
+      <p>Open the deck and go through it with five questions. They are the rubric we graded every deck on:</p>
+
+      <ol>
+        <li><strong>Fundamentals:</strong> one idea per slide, readable type, nothing cut off.</li>
+        <li><strong>Design:</strong> one layout system the whole way through.</li>
+        <li><strong>Completeness:</strong> every section of the brief is there.</li>
+        <li><strong>Correctness:</strong> every number matches the brief.</li>
+        <li><strong>Fidelity:</strong> nothing added that the brief did not say.</li>
+      </ol>
+
+      <p>Anthropic's pptx skill scored 96% on this rubric. Content was rarely where decks differed: 10 of the 28 decks scored 100%. What separated them was whether you could edit the result.</p>
+
+      <h2>Step 5: Finish in PowerPoint</h2>
+
+      <p>A native .pptx means every title, bullet, table and chart is a real PowerPoint object. Change a word, swap the theme colours, move a chart: it behaves like a deck you built by hand. Our test called this the editability level. The official skill reached level 2 (native text and shapes); the best-structured file, from ppt-master, reached level 3. Image-first skills sit at level 0: every slide is a picture.</p>
+
+      <p>Expect touch-ups, not a rebuild: Anthropic's deck needed only small fixes before we would hand it over.</p>
+
+      <h2>When to use another PPT skill</h2>
+
+      <p>The official skill is the right default. The 205 PPT skills we index take one of three routes, and each suits a different next step:</p>
+
+      <p><img src="/best-runs/ppt/compare-routes.jpg" alt="The same slide, '205 PPT skills, three routes', as made by each of 26 skills, side by side" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th>If the deck goes to…</th><th>Use</th><th>In our test</th></tr>
+        <tr><td>A colleague who will edit it</td><td><a href="https://github.com/hugohe3/ppt-master">ppt-master</a></td><td>Native, most structured (level 3), touch-ups only, 100%, 11 min</td></tr>
+        <tr><td>Someone, fast</td><td><a href="https://github.com/tfriedel/claude-office-skills">claude-office-skills</a></td><td>Native (level 2), touch-ups only, 100%, 3.2 min</td></tr>
+        <tr><td>You, presenting in a browser</td><td><a href="https://github.com/op7418/guizang-ppt-skill">guizang-ppt-skill</a></td><td>Web slides with tables and animation, touch-ups only, 100%</td></tr>
+        <tr><td>A screen, for visual impact</td><td><a href="https://github.com/Pikapika260214/rw-consulting-ppt">rw-consulting-ppt</a></td><td>Striking, but every slide is an image: changing a word means a redo</td></tr>
+      </table></div>
+
+      <p>The full ranking, every deck and the evidence for each run are on <a href="/best/ppt-presentation/">the PPT skills page</a>.</p>
+
+      <h2>Check a skill before you install it</h2>
+
+      <p>A skill runs with your agent's permissions, so look it up first. Of the PPT skills our scan flagged CAUTION or UNSAFE, every one was flagged for how it installs (sudo, <code>curl | sh</code>), none for what it does while making slides. Paste any GitHub URL into the <a href="/">search box</a> to see its grade.</p>
+
+      <h2>FAQ</h2>
+      <h3>Can Claude make a PowerPoint?</h3>
+      <p>Yes. Claude writes a real .pptx file with Anthropic's pptx skill. On Claude.ai's paid plans the skill is already there: ask for a PowerPoint and download the file. In Claude Code you add it once with /plugin install document-skills@anthropic-agent-skills.</p>
+      <h3>Is the PowerPoint Claude makes editable?</h3>
+      <p>With the pptx skill, yes: in our test it wrote native slides with real text boxes, tables and charts you can change in PowerPoint. Some community skills paint each slide as a picture instead; those look striking but you cannot change a word without redoing the slide.</p>
+      <h3>How long does it take?</h3>
+      <p>In our October 2026 test, Anthropic's pptx skill turned a one-page brief into a 9-slide deck in 2.4 minutes. Across the 28 PPT skills that ran, the range was about 2 to 16 minutes.</p>
+      <h3>Which PPT skill is best for Claude?</h3>
+      <p>It depends on who touches the deck next. For a PowerPoint a colleague will edit, ppt-master gave the most structured file; for slides you present in a browser, guizang-ppt-skill; for the quickest editable deck, Anthropic's own pptx skill or claude-office-skills. The full ranking is on our PPT skills page.</p>
+
+      <h2>Where to start</h2>
+      <a class="ref-card" href="/best/ppt-presentation/">
+        <div class="ref-card-title">Best PPT &amp; presentation skills for Claude</div>
+        <div class="ref-card-desc">205 PPT skills, security-graded, with our side-by-side test of 32 on one brief.</div>
+      </a>
+
+    </article>
+  </main>
+
+  <script>
+    // Reading progress bar — updates as the user scrolls the article.
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>
