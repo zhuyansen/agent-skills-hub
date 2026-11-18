@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-18
+1. erkamyaman/rust-anything — 🆕 渐进式重写应用并用行为回放验证 Rust 迁移结果（691★ 383.8/day）
+2. nexu-io/html-video — 让编码智能体把 HTML 数据渲染成可编辑 MP4 视频（4850★ 27.7/day）
+3. rubenhassid1/remake — 用 Claude Code 像素级复刻网站并继续定制（344★ 17.5/day）
+4. edisonmbli/refactoring-ui-skill — 借助设计规则诊断界面并生成 Tailwind 设计令牌（472★ 5.2/day）
+5. oil-oil/oil-icon — 批量生成风格统一的 AI 图标并适配 Claude Code（343★ 2.5/day）
+6. oil-oil/video-publisher-skill — 准备多平台视频草稿并支持断点续传至发布前（281★ 2.2/day）
+7. databrickslabs/ontobricks — 把 Unity Catalog 表转成知识图谱供智能体推理（475★ 2.1/day）
+8. lukapiskorec/craftbot — 让编码智能体用可执行 CAD 代码设计建筑（180★ 2.0/day）
+9. W17ant/Claude-Office — 可视化展示 Claude 智能体的实时协作与工作状态（375★ 1.5/day）
+10. captivus/chrome-agent — 让编码智能体通过 DevTools Protocol 操作 Chrome（309★ 1.4/day）
+🎯 今日趋势：入选项目集中在让智能体直接操作浏览器、视频、设计与工程流程，**从对话走向可执行产出**。
+> 注：GitHub Actions 自动生成（gpt-6-astra 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 142 个日期段，比对 1,409 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 22 条、去重后 22 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 22 个。**代码硬规则剔除**：chaw1/datakeel：刷星嫌疑：作者 5 粉、其余仓库最高 1★，181★ 只有 1 个 fork；omagents/omagents：刷星嫌疑：360★ 却 0 个 fork。**模型排除项**：①DuskBotAI/duskbot（289★ 23.2/day）：组织仅有 2 个粉丝和 2 个仓库，其他仓库为 0 星，存在突然爆星嫌疑；②liguozheng-ac/Lingbo-Desk（217★ 14.9/day）：作者仅 2 个粉丝、项目无 issue 且只有 8 个 fork，账号较新，爆星可信度不足；③finnmckenty/NTSCRT（504★ 4.1/day）：内容是视频和图像复古效果处理，与 AI 智能体或开发者工具关系不大；④TsinHzl/kiro2cc-proxy（355★ 1.9/day）：属于模型服务代理工具，描述还堆砌大量模型和版本名称，不纳入推荐；⑤alpha03123/vsummary（276★ 1.2/day）：作者仅 4 个粉丝且其他仓库只有 1、1、0 星，项目 280 星存在刷星嫌疑。**轻红旗**（保留）：edisonmbli/refactoring-ui-skill：作者仅 3 个粉丝且其他仓库均为 0 星，但账号较早且有 31 个 fork；lukapiskorec/craftbot：作者其他项目星数较低，但有 29 个 fork 且账号存续较久；W17ant/Claude-Office：作者仅 11 个粉丝且其他仓库星数较低，但项目有 92 个 fork。🆕 判定＝created_at 距今 14 天内：rust-anything（1.8 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-17
 1. onehumanbeing/esp32-iphone-agent — 让 AI 通过低成本 ESP32 操控真实 iPhone，免越狱完成视觉交互（5008★ 137.1/day）
 2. dabingfy-dot/solo-to-team-skills — 🆕 组织多智能体角色、模板与交接流程，让一人统筹团队协作（904★ 88.1/day）
