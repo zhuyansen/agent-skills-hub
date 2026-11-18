@@ -95,6 +95,7 @@ document.addEventListener("click", function (e) {
     if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, fallback);
     else fallback();
     if (window.gtag) window.gtag("event", "copy_install", { repo: copy.dataset.repo || "" });
+    if (window.posthog && typeof window.posthog.capture === "function") window.posthog.capture("copy_install", { repo: copy.dataset.repo || "" });
     return;
   }
   if (e.target.closest("a, button")) return;

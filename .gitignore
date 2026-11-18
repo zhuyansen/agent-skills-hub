@@ -45,9 +45,13 @@ token.json
 # GA MCP ADC credentials — NEVER commit
 ops/ga/adc.json
 
-# Plausible / Clarity API keys — NEVER commit
+# Plausible / Clarity / PostHog API keys — NEVER commit
 ops/plausible/.api_key
 ops/clarity/.api_token
+ops/posthog/.api_key
+ops/posthog/.project_id
+ops/posthog/.host
+ops/posthog/proxy/.wrangler/
 
 ops/smithery/.api_key
 ops/research/out/

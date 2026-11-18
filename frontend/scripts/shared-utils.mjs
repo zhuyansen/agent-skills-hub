@@ -271,7 +271,8 @@ export function analyticsTags() {
     gtag('js', new Date());
     gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });
   </script>
-  ${CLARITY_SNIPPET}`;
+  ${CLARITY_SNIPPET}
+  <script defer src="/ph.js"></script>`;
 }
 
 export function extractAssetTags(html) {

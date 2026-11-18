@@ -210,6 +210,13 @@ def main():
         geo = run_report(sess, ["eventName", "country"], ["eventCount"],
                          days, order_metric="eventCount", limit=200)
         save("events_geo", geo)
+    if cmd in ("breakdown", "dump"):
+        print("── 端 × 国家拆解 ──")
+        rows = run_report(sess, ["deviceCategory", "country"],
+                          ["sessions", "engagedSessions", "activeUsers"],
+                          days, order_metric="sessions", limit=40)
+        table(rows, "country", ["deviceCategory", "sessions", "engagedSessions"])
+        save("breakdown", rows)
 
 
 if __name__ == "__main__":

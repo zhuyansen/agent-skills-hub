@@ -43,12 +43,10 @@ jobs:
         env:
           GSC_TOKEN_JSON: ${{ secrets.GSC_TOKEN_JSON }}
           GA_ADC_JSON: ${{ secrets.GA_ADC_JSON }}
-          PLAUSIBLE_API_KEY: ${{ secrets.PLAUSIBLE_API_KEY }}
           CLARITY_API_TOKEN: ${{ secrets.CLARITY_API_TOKEN }}
         run: |
           printf '%s' "$GSC_TOKEN_JSON" > ops/gsc/token.json
           printf '%s' "$GA_ADC_JSON" > ops/ga/adc.json
-          printf '%s' "$PLAUSIBLE_API_KEY" > ops/plausible/.api_key
           printf '%s' "$CLARITY_API_TOKEN" > ops/clarity/.api_token
 
       # No proxy env set: requests/AuthorizedSession reach googleapis directly.
@@ -63,8 +61,12 @@ jobs:
       - name: Google Analytics
         run: python ops/ga/fetch_ga.py dump --days 28 || true
 
-      - name: Plausible
-        run: python ops/plausible/fetch_plausible.py dump || true
+      - name: PostHog
+        env:
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          POSTHOG_PROJECT_ID: ${{ secrets.POSTHOG_PROJECT_ID }}
+          POSTHOG_HOST: ${{ secrets.POSTHOG_HOST }}
+        run: python ops/posthog/fetch_posthog.py dump --days 28 || true
 
       - name: Clarity
         run: python ops/clarity/fetch_clarity.py dump || true

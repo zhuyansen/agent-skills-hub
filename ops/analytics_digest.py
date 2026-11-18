@@ -91,17 +91,6 @@ def main():
             f"\n> ⚠️ **数据源未出数:{', '.join(down)}** — 这是抓取失败(凭证过期 or 网络超时,查 CI 日志定性),"
             f"不是指标为 0。相关板块缺失/转化数不可信,先修凭证再解读。\n"
         )
-    # Plausible is a PAID source, and the site has been locked (API 402 "missing
-    # active subscription") since the free trial lapsed ~2026-08-03. That is a
-    # billing state, not an infra failure — kept apart from the list above so the
-    # digest stops sending anyone to "check CI logs / fix credentials" every day
-    # for something only a subscription renewal (or retiring the source) fixes.
-    if not (load("plausible/out/sources.json") or load("plausible/out/source.json")):
-        print(
-            "\n> ℹ️ **Plausible 未出数:订阅到期、站点被锁**(API 402,非凭证/网络问题)。"
-            "付费源,GA4/GSC/Clarity 已覆盖同类流量/来源指标;恢复须在 plausible.io 续订,"
-            "否则建议从日报管道退役。\n"
-        )
 
     # ── GSC ──
     q = load("gsc/out/queries.json")
@@ -190,7 +179,10 @@ def main():
         watch = {
             "install_command_copied", "audit_run", "enterprise_cta_click",
             "newsletter_subscribe", "audit_pro_upsell_click",
-            "free_tier_click",
+            "audit_cigate_upsell_click", "free_tier_click",
+            "pro_checkout_click", "ci_gate_hero_cta", "ci_gate_copy_snippet",
+            "org_audit_run", "org_audit_pro_click",
+            "hero_guide_click", "fasttrack_lane_select",
             "enterprise_form_viewed", "enterprise_form_started",
             "enterprise_lead_attempt", "enterprise_lead_submitted",
             "enterprise_lead_invalid", "enterprise_lead_failed",
@@ -267,17 +259,44 @@ def main():
         if missing:
             print(f"- 未触发: {', '.join(sorted(missing))}")
 
-    # ── Plausible (rows are {metrics:[visitors,pageviews], dimensions:[name]}) ──
-    pl = load("plausible/out/sources.json") or load("plausible/out/source.json")
-    if pl:
-        section("Plausible · 来源")
-        for r in pl[:8]:
-            try:
-                name = r["dimensions"][0]
-                v = r["metrics"][0]
-            except (KeyError, IndexError, TypeError):
-                continue
-            print(f"- {name}: {v} visitors")
+    ga_bd = load("ga/out/breakdown.json")
+    if ga_bd:
+        section("GA · 端 × 国家分布 (Top 8)")
+        print("| 国家 | 端 | 会话 | 互动会话 | 活跃用户 |")
+        print("|---|---|--:|--:|--:|")
+        for r in ga_bd[:8]:
+            print(f"| {r['country']} | {r['deviceCategory']} | {r['sessions']} | {r['engagedSessions']} | {r['activeUsers']} |")
+
+    # ── PostHog (anti-adblock first-party proxy + product funnel + #11 breakdown) ──
+    ph_ov = load("posthog/out/overview.json")
+    ph_src = load("posthog/out/sources.json")
+    ph_fun = load("posthog/out/funnel.json")
+    ph_dim = load("posthog/out/dimensions.json")
+    if any((ph_ov, ph_src, ph_fun, ph_dim)):
+        section("PostHog · 无拦截流量与产品漏斗 (反代)")
+        if ph_ov:
+            tot_v = sum(int(r.get("visitors", 0) or 0) for r in ph_ov)
+            tot_pv = sum(int(r.get("pageviews", 0) or 0) for r in ph_ov)
+            tot_s = sum(int(r.get("sessions", 0) or 0) for r in ph_ov)
+            last_day = ph_ov[-1]
+            print(f"- **近 {len(ph_ov)} 天汇总**: {tot_s:,} sessions · {tot_v:,} visitors · {tot_pv:,} pageviews"
+                  f"（最新 {last_day.get('day')}: {last_day.get('sessions', 0)} sessions / {last_day.get('pageviews', 0)} pv）")
+        if ph_src:
+            print("\n**PostHog 来源 Top 6**（含被广告拦截的开发者流量）:")
+            for r in ph_src[:6]:
+                print(f"- {r.get('source')} / {r.get('medium')} — {r.get('sessions')} sessions ({r.get('visitors')} visitors)")
+        if ph_fun:
+            print("\n**PostHog 产品事件 (7天 / 28天去重人数)**:")
+            for r in ph_fun[:12]:
+                if r.get("event") == "$pageview":
+                    continue
+                print(f"- `{r.get('event')}`: 7d {r.get('users_7d', 0)} 人 ({r.get('events_7d', 0)} 次) · 28d {r.get('users_28d', 0)} 人 ({r.get('events_28d', 0)} 次)")
+        if ph_dim:
+            print("\n**增长拆解 (页面类型 × 端 × 国家 → 商业/审计/复制转化)**:\n")
+            print("| 页面类型 | 端 | 国家 | 会话 | audit | 商业意图 | 复制安装 |")
+            print("|---|---|---|--:|--:|--:|--:|")
+            for r in ph_dim[:12]:
+                print(f"| {r.get('page_type')} | {r.get('device')} | {r.get('country')} | {r.get('sessions', 0)} | {r.get('audit_sessions', 0)} | {r.get('commercial_sessions', 0)} | {r.get('install_copy_sessions', 0)} |")
 
     # ── Clarity ──
     ov = load("clarity/out/overview.json")

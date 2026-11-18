@@ -1,0 +1,13 @@
+name = "agentskillshub-posthog-proxy"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Change to eu.i.posthog.com / eu-assets.i.posthog.com if you choose EU Cloud
+POSTHOG_API_HOST = "us.i.posthog.com"
+POSTHOG_ASSET_HOST = "us-assets.i.posthog.com"
+
+# Optional once DNS is proxied on Cloudflare (otherwise *.workers.dev works out of the box):
+# routes = [
+#   { pattern = "e.agentskillshub.top/*", zone_name = "agentskillshub.top" }
+# ]
