@@ -14,6 +14,8 @@ import type {
 import { supabase } from "../lib/supabase";
 import { trackEvent } from "../lib/analytics";
 import { trackSearch } from "../lib/searchLog";
+import { correctTerm, githubRepoFromInput } from "../lib/searchAssist.mjs";
+import SEARCH_ASSIST from "../data/search-assist.json";
 import {
   sbFetchSkills,
   sbFetchSkillsByIds,
@@ -77,11 +79,29 @@ function isPlainSearch(
   );
 }
 
+/**
+ * A pasted GitHub URL searches as its owner/repo, and a plain search that finds
+ * nothing is retried once with its typos corrected (lib/searchAssist.mjs).
+ */
+async function assistedSearch(params: SkillsQueryParams): Promise<PaginatedSkills> {
+  const repo = githubRepoFromInput(params.search);
+  if (repo) {
+    const page = await sbFetchSkills({ ...params, search: repo });
+    return { ...page, github_repo: repo };
+  }
+  const page = await sbFetchSkills(params);
+  if (page.total > 0 || params.page !== 1 || !isPlainSearch(params)) return page;
+  const fixed = correctTerm(params.search ?? "", SEARCH_ASSIST.vocab);
+  if (!fixed) return page;
+  const retry = await sbFetchSkills({ ...params, search: fixed });
+  return retry.total > 0 ? { ...retry, corrected_to: fixed } : page;
+}
+
 export async function fetchSkills(
   params: SkillsQueryParams,
 ): Promise<PaginatedSkills> {
   if (USE_SUPABASE) {
-    const page = sbFetchSkills(params);
+    const page = assistedSearch(params);
     if (isPlainSearch(params)) {
       trackSearch("list", params.search, page.then((p) => p.total));
     }
@@ -173,7 +193,7 @@ export async function fetchQuickSearch(
 ): Promise<Skill[]> {
   if (!query.trim()) return [];
   if (USE_SUPABASE) {
-    const rows = sbQuickSearch(query, limit);
+    const rows = sbQuickSearch(githubRepoFromInput(query) ?? query, limit);
     trackSearch("suggest", query, rows.then((r) => r.length));
     return rows;
   }

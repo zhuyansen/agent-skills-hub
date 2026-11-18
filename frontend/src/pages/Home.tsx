@@ -25,6 +25,7 @@ import { SkillCard } from "../components/SkillCard";
 import { SkillDetailPanel } from "../components/SkillDetailPanel";
 import { SkillTable } from "../components/SkillTable";
 import { ScenarioWorkflows } from "../components/ScenarioWorkflows";
+import { SearchAssistNotes } from "../components/SearchAssistNotes";
 import { SkillWorkflows, prefetchWorkflows } from "../components/SkillWorkflows";
 import { PlatformRecommendations } from "../components/PlatformRecommendations";
 import { SortControls } from "../components/SortControls";
@@ -492,6 +493,10 @@ export function Home() {
                     the banner above the footer mid-screen, then the list pushed it
                     away (CLS 0.37 on a slow phone, ops/perf/home_cls.py, 11-02). */}
                 {!data && !error && <SkeletonCards count={params.page_size} />}
+
+                {data && params.search && (
+                  <SearchAssistNotes data={data} search={params.search} zh={lang === "zh"} />
+                )}
 
                 {/* Results */}
                 {data &&

@@ -2229,9 +2229,9 @@
    ]
   },
   "related": [
+   "animation-skills",
    "image-generation",
-   "claude-video-skills",
-   "ai-design"
+   "claude-video-skills"
   ],
   "explainer": {
    "what": {
@@ -5791,9 +5791,9 @@
    ]
   },
   "related": [
+   "animation-skills",
    "image-generation",
-   "anti-slop",
-   "ppt-presentation"
+   "anti-slop"
   ],
   "extra_faq": [
    {
@@ -9053,9 +9053,9 @@
    "sort": "stars"
   },
   "related": [
+   "animation-skills",
    "image-generation",
-   "ppt-presentation",
-   "ai-design"
+   "ppt-presentation"
   ],
   "extra_faq": [
    {
@@ -10215,5 +10215,83 @@
     "reviewed": "2026-10-13"
    }
   }
+ },
+ {
+  "slug": "animation-skills",
+  "title": "Animation Skills",
+  "serp_subject": "Claude Code Animation Skills",
+  "seo_keyword": "claude animation skill",
+  "description": "Animation skills for Claude Code and Codex: GSAP and UI motion, Lottie and SVG animation, game sprite sheets, rigging and 3D animation, animated diagrams and Manim. Every one is security-graded before you install it.",
+  "match": {
+   "categories": [],
+   "primary_keywords": [
+    "animation skill",
+    "animation skills",
+    "gsap",
+    "lottie",
+    "sprite sheet",
+    "spritesheet",
+    "manim",
+    "motion design",
+    "framer motion",
+    "animated icons",
+    "pixel art animation",
+    "skeletal animation"
+   ],
+   "secondary_keywords": [
+    "animation",
+    "animated",
+    "keyframe",
+    "sprite",
+    "micro-interaction",
+    "rigging",
+    "live2d",
+    "spine"
+   ],
+   "topic_matches": [
+    "animation",
+    "gsap",
+    "lottie",
+    "manim",
+    "sprite",
+    "spritesheet",
+    "motion-design",
+    "framer-motion"
+   ],
+   "min_results": 5,
+   "max_results": null,
+   "featured": [
+    "greensock/gsap-skills",
+    "diffusionstudio/lottie",
+    "0x0funky/agent-sprite-forge",
+    "LottieFiles/motion-design-skill",
+    "aldegad/sprite-gen",
+    "adithya-s-k/manim_skill",
+    "kylezantos/design-motion-principles",
+    "Avijit07x/animateicons"
+   ],
+   "reviewed_only": true,
+   "sort": "stars"
+  },
+  "related": [
+   "claude-video-skills",
+   "ai-design",
+   "3d-mcp"
+  ],
+  "extra_faq": [
+   {
+    "q": "What is the best animation skill for Claude Code?",
+    "a": "For web and UI animation, greensock/gsap-skills is the official GSAP skill and the most starred; LottieFiles/motion-design-skill teaches timing and easing, and kylezantos/design-motion-principles audits motion you already have. For Lottie files use diffusionstudio/lottie, for game sprite sheets 0x0funky/agent-sprite-forge or aldegad/sprite-gen, and for 3Blue1Brown-style math animation adithya-s-k/manim_skill.",
+    "qZh": "Claude Code 最好用的动画 skill 是哪个?",
+    "aZh": "做网页和界面动画:greensock/gsap-skills 是 GSAP 官方 skill,星数最高;LottieFiles/motion-design-skill 教时间曲线和缓动,kylezantos/design-motion-principles 用来审查已有动效。做 Lottie 文件用 diffusionstudio/lottie,做游戏精灵图用 0x0funky/agent-sprite-forge 或 aldegad/sprite-gen,做 3Blue1Brown 风格的数学动画用 adithya-s-k/manim_skill。"
+   },
+   {
+    "q": "Animation skills or video skills: which do I need?",
+    "a": "This page lists skills whose output is the animation itself: motion in a web page or app, a Lottie or SVG file, a sprite sheet, a rigged character, an animated diagram. If what you want is a finished MP4 (a promo, an explainer, a short), see Claude Video Editing & Remotion Skills instead.",
+    "qZh": "动画 skill 和视频 skill,我该用哪个?",
+    "aZh": "本页收的 skill,产出的就是动画本身:网页或 App 里的动效、Lottie 或 SVG 文件、精灵图、绑好骨骼的角色、动态图解。如果你要的是一个成片 MP4(宣传片、讲解视频、短视频),请看 Claude 做视频与 Remotion skill 那一页。"
+   }
+  ],
+  "quick_pick": "greensock/gsap-skills"
  }
 ]

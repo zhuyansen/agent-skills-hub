@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test:scenarios": "node scripts/test-scenarios.mjs",
+    "test:search-assist": "node --test scripts/search-assist.test.mjs",
     "test:redirects": "node --test scripts/skill-redirects.test.mjs",
     "test:sitemap": "node --test scripts/sitemap-index.test.mjs",
     "test:indexnow": "node --test scripts/indexnow-changes.test.mjs",

@@ -611,5 +611,10 @@
       "3d 模型"
     ],
     "d": "让 Claude Code、Codex 等 agent 做 3D 的开源 MCP 服务和 skill,带安全评级:Blender、Unity、Godot、Unreal、CAD、Three.js 和 3D 模型生成。安装前先核查。"
+  },
+  "animation-skills": {
+    "t": "动画 Skill",
+    "k": ["动画", "动效", "gsap", "lottie", "精灵图", "像素动画", "manim", "骨骼动画", "动态图标", "微交互"],
+    "d": "Claude Code 和 Codex 的动画 skill,带安全评级:GSAP 网页动效、Lottie 与 SVG 动画、游戏精灵图、骨骼与 3D 动画、动态图解和 Manim 数学动画。安装前先核查。"
   }
 }

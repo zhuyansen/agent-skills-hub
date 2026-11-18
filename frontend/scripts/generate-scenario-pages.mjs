@@ -105,7 +105,7 @@ document.addEventListener("click", function (e) {
 // The /best/ index's first group, in this order (keep in step with the homepage's
 // HOT_SCENARIOS in src/components/ScenarioTagCloud.tsx).
 const POPULAR_SCENARIOS = [
-  "ppt-presentation", "claude-video-skills", "typesafe-jev", "claude-code-hooks", "codex-skills",
+  "ppt-presentation", "claude-video-skills", "animation-skills", "typesafe-jev", "claude-code-hooks", "codex-skills",
   "ai-design", "image-generation", "3d-mcp", "knowledge-base", "obsidian-second-brain", "anti-slop",
   "skill-management-tools", "mcp-database", "browser-automation", "code-review",
 ];

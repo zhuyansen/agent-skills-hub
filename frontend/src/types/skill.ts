@@ -82,6 +82,10 @@ export interface PaginatedSkills {
   page: number;
   page_size: number;
   total_pages: number;
+  /** The search found nothing as typed; these results are for this spelling instead. */
+  corrected_to?: string;
+  /** The search was a GitHub URL; it ran as this owner/repo. */
+  github_repo?: string;
 }
 
 export interface CategoryCount {
