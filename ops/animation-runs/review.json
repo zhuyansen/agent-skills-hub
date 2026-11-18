@@ -1,0 +1,57 @@
+{
+ "_note": "Corrections by hand (11-18) where the judge, seeing 8 frames, missed short events. Checked on the full recording: blinks by dark eye pixels per frame, the loaf's squash by its width-to-height ratio per frame, and the sheets and frame sheets by eye.",
+ "lottie/control": {
+  "loaf_drops_and_squashes": true,
+  "steam_rises_in_turn": true,
+  "why": "The loaf enters from the top (the judge read it as cut off) and widens to 2.03 from 1.45 as it lands; the steam lines appear one after another."
+ },
+ "lottie/diffusionstudio__lottie": {
+  "loaf_drops_and_squashes": true,
+  "steam_rises_in_turn": true,
+  "why": "Drops in from the top and widens to 1.68 from 1.45 on landing; steam lines in turn."
+ },
+ "lottie/nolangz__pixel2motion": {
+  "loaf_drops_and_squashes": false,
+  "steam_rises_in_turn": true,
+  "why": "Drops in from the top, but no squash measured on landing; steam lines in turn. Delivered an animated SVG, not Lottie."
+ },
+ "rig/control": {
+  "blink_seen": true,
+  "why": "Eyes close at frames 44-46 (about 1.5 s)."
+ },
+ "rig/img2threejs__img2threejs": {
+  "blink_seen": true,
+  "why": "Eyes close at frames 44-46 (about 1.5 s)."
+ },
+ "sprite/0x0funky__agent-sprite-forge": {
+  "idle_breathes": true,
+  "why": "The idle body widens and narrows across its 4 frames."
+ },
+ "sprite/aldegad__sprite-gen": {
+  "idle_breathes": true,
+  "why": "The idle body rises and settles across its 4 frames."
+ },
+ "sprite/control": {
+  "idle_breathes": true,
+  "faces_right": false,
+  "why": "The walk faces the viewer with the legs shuffling: it does not walk to the right. The idle breathes."
+ },
+ "web/LottieFiles__motion-design-skill": {
+  "logo_draws_in": true,
+  "headline_word_by_word": true,
+  "three_cards_staggered": true,
+  "why": "Checked in the page's code: the logo draws in, the headline is split into words with staggered delays, the cards rise one after another; the 8 sampled frames fall between these steps."
+ },
+ "web/control": {
+  "logo_draws_in": true,
+  "headline_word_by_word": true,
+  "three_cards_staggered": true,
+  "why": "Checked in the page's code: the logo draws in, the headline is split into words with staggered delays, the cards rise one after another; the 8 sampled frames fall between these steps."
+ },
+ "web/greensock__gsap-skills": {
+  "logo_draws_in": true,
+  "headline_word_by_word": true,
+  "three_cards_staggered": true,
+  "why": "Checked in the page's code: the logo draws in, the headline is split into words with staggered delays, the cards rise one after another; the 8 sampled frames fall between these steps."
+ }
+}

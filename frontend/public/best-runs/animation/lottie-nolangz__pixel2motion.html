@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>nolangz/pixel2motion: animation test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/animation-skills/#test-results">← Animation skills</a></p>
+<h1>nolangz/pixel2motion</h1>
+<p class="mute">Animation test, 2026-11-18 · Lottie, SVG &amp; animated icons · driven by Claude Code (Claude Opus 5.5) in a throwaway sandbox</p>
+<p><b>The brief:</b> Animate the bakery&#x27;s logo as a 2-second Lottie loop: the loaf drops in and squashes, the steam rises line by line, the name fades in, and it loops without a jump. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/animation-runs/lottie/in/brief.md">Full brief →</a></p>
+<video controls playsinline preload="metadata" poster="lottie-nolangz__pixel2motion.jpg" style="width:100%;max-width:960px;border-radius:8px"><source src="lottie-nolangz__pixel2motion.mp4" type="video/mp4"></video>
+<h2>What was checked</h2><ul style="list-style:none;padding:0"><li class="no">✗ loaf drops and squashes</li><li class="ok">✓ steam in turn</li><li class="ok">✓ name fades in</li><li class="ok">✓ logo kept</li><li class="no">✗ a Lottie file</li></ul>
+<p class="mute">Checked by hand on the full recording: Drops in from the top, but no squash measured on landing; steam lines in turn. Delivered an animated SVG, not Lottie.</p>
+<p class="mute">The recording: 512 x 512, 30.0 fps, 4.0 s. Judge (gpt-6-astra, 8 frames): follows the brief 4/5, looks 4/5; noted: leftmost loaf is partially cut off at the frame edge.</p>
+<p class="mute">Time 4.6 min (installing the tool included) · 21 turns · $0.57 at API prices · files: logo.svg, logo_motion.html, motion.css, motion_spec.md, outputs/final_render.png, outputs/fit_iterations/01_source_svg_overlay.png, outputs/fit_metrics.json, outputs/logo_static.svg, outputs/motion_frames/frame_000000ms.png, outputs/motion_frames/frame_000200ms.png, outputs/motion_frames/frame_000480ms.png, outputs/motion_frames/frame_000600ms.png</p>
+<h2>The 8 frames the judge saw</h2><img src="lottie-nolangz__pixel2motion-frames.jpg" alt="8 frames from the recording" loading="lazy">
+<h2>The agent's last words</h2><pre>
+- Chromium only ran here with its sandbox turned off, so I used a small wrapper for that.
+
+Files are in `~/work/output/`:
+- `logo.svg` (the deliverable)
+- `preview.mp4`
+- `logo_motion.html`, an interactive demo page with replay and speed controls
+- `motion_spec.md`, the timing and design notes
+- `motion.css`, the animation code built into the SVG
+- `outputs/`, the check images and frame strips
+
+DELIVERABLE: /home/runner/work/output/logo.svg,/home/runner/work/output/preview.mp4,/home/runner/work/output/logo_motion.html,/home/runner/work/output/motion_spec.md,/home/runner/work/output/motion.css</pre>
+</main></body></html>

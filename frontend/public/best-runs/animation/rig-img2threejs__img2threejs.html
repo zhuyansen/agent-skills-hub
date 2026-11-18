@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>img2threejs/img2threejs: animation test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/animation-skills/#test-results">← Animation skills</a></p>
+<h1>img2threejs/img2threejs</h1>
+<p class="mute">Animation test, 2026-11-18 · Characters, rigging &amp; 3D · driven by Claude Code (Claude Opus 5.5) in a throwaway sandbox</p>
+<p><b>The brief:</b> Make the bread mascot wave: the right arm rises and waves twice, the body bobs, the eyes blink once, and it ends where it started. <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/animation-runs/rig/in/brief.md">Full brief →</a></p>
+<video controls playsinline preload="metadata" poster="rig-img2threejs__img2threejs.jpg" style="width:100%;max-width:960px;border-radius:8px"><source src="rig-img2threejs__img2threejs.mp4" type="video/mp4"></video>
+<h2>What was checked</h2><ul style="list-style:none;padding:0"><li class="ok">✓ the mascot</li><li class="ok">✓ right arm waves</li><li class="ok">✓ body bobs</li><li class="ok">✓ blinks</li><li class="ok">✓ ends in the start pose</li></ul>
+<p class="mute">Checked by hand on the full recording: Eyes close at frames 44-46 (about 1.5 s).</p>
+<p class="mute">The recording: 1080 x 1080, 30.0 fps, 3.0 s. Judge (gpt-6-astra, 8 frames): follows the brief 4/5, looks 5/5.</p>
+<p class="mute">Time 2.4 min (installing the tool included) · 20 turns · $0.69 at API prices · files: morning-loaf-threejs/bundle.js, morning-loaf-threejs/index.html, morning-loaf-threejs/object-sculpt-spec.json, morning-loaf-threejs/render-frame0.png, morning-loaf-threejs/src/createMorningLoafModel.js, morning-loaf-threejs/src/main.js, preview.mp4</p>
+<h2>The 8 frames the judge saw</h2><img src="rig-img2threejs__img2threejs-frames.jpg" alt="8 frames from the recording" loading="lazy">
+<h2>The agent's last words</h2><pre>af-threejs/object-sculpt-spec.json` — the tool&#x27;s spec for the mascot
+- `morning-loaf-threejs/render-frame0.png` — the first frame, for comparing with the original
+
+DELIVERABLE: /home/runner/work/output/morning-loaf-threejs/index.html, /home/runner/work/output/morning-loaf-threejs/bundle.js, /home/runner/work/output/morning-loaf-threejs/src/createMorningLoafModel.js, /home/runner/work/output/morning-loaf-threejs/src/main.js, /home/runner/work/output/morning-loaf-threejs/object-sculpt-spec.json, /home/runner/work/output/morning-loaf-threejs/render-frame0.png, /home/runner/work/output/preview.mp4</pre>
+</main></body></html>

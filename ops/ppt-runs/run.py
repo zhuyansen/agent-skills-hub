@@ -50,7 +50,12 @@ def docker_env(e: dict) -> list[str]:
     # the skill itself only ever sees a placeholder OpenAI key.
     # IMAGE_KEY_NAME=APIMART_MULTI_KEY (the image test): a provider key with every image model on it.
     key = e.get(os.environ.get("IMAGE_KEY_NAME", "IMAGE_API_KEY"))
-    pairs = {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"], "RUN_MINUTES": str(RUN_MINUTES),
+    # CLAUDE_VIA=api (the animation test, owner 11-18): the subscription token is refused (403
+    # oauth_not_allowed_for_organization), so Claude Code reaches the model through CLAUDE_RUN_BASE_URL
+    # with CLAUDE_RUN_API_KEY, billed per token, instead of the OAuth token.
+    claude = ({"ANTHROPIC_BASE_URL": e["CLAUDE_RUN_BASE_URL"], "ANTHROPIC_API_KEY": e["CLAUDE_RUN_API_KEY"]}
+              if os.environ.get("CLAUDE_VIA") == "api" else {"CLAUDE_CODE_OAUTH_TOKEN": e["CLAUDE_CODE_OAUTH_TOKEN"]})
+    pairs = {**claude, "RUN_MINUTES": str(RUN_MINUTES),
              **({"IMAGE_API_BASE_URL": e["IMAGE_API_BASE_URL"], "IMAGE_API_KEY": key} if key and e.get("IMAGE_API_BASE_URL") else {}),
              **{k: os.environ[k] for k in ("NO_PREINSTALL", "NO_RENDER", "FORCE_SETUP", "ASK_MODE", "SKILL_DIR", "IMAGE_ROUTES",
                                        "IMAGE_FORCE_NEWEST")
@@ -90,7 +95,10 @@ def pending() -> list[str]:
 
 def main() -> None:
     e = env_file()
-    if not e.get("CLAUDE_CODE_OAUTH_TOKEN"):
+    if os.environ.get("CLAUDE_VIA") == "api":
+        if not (e.get("CLAUDE_RUN_API_KEY") and e.get("CLAUDE_RUN_BASE_URL")):
+            sys.exit("CLAUDE_RUN_API_KEY or CLAUDE_RUN_BASE_URL missing from ~/.claude/.env")
+    elif not e.get("CLAUDE_CODE_OAUTH_TOKEN"):
         sys.exit("CLAUDE_CODE_OAUTH_TOKEN missing from ~/.claude/.env (run `claude setup-token`)")
     repos = pending() if sys.argv[1:] == ["--all"] else sys.argv[1:]
     for repo in repos:

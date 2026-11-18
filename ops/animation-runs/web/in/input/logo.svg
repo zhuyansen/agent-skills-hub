@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <g id="steam" fill="none" stroke="#C9B8A6" stroke-width="10" stroke-linecap="round">
+    <path id="steam-1" d="M196 150c-14-18 14-30 0-50"/>
+    <path id="steam-2" d="M256 140c-14-18 14-30 0-50"/>
+    <path id="steam-3" d="M316 150c-14-18 14-30 0-50"/>
+  </g>
+  <g id="loaf">
+    <path d="M136 300c0-70 54-118 120-118s120 48 120 118v26c0 12-10 22-22 22H158c-12 0-22-10-22-22z" fill="#D9893B"/>
+    <path d="M196 232l-14 34M256 222v36M316 232l14 34" stroke="#F4D3A2" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text id="wordmark" x="256" y="418" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#5A3A1E">Morning Loaf</text>
+</svg>

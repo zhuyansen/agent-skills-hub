@@ -20894,5 +20894,965 @@
     "reason_zh": "它的审计在 OpenSEO 自己的服务器上跑，还要登录 OpenSEO 账号，所以审不了不在公网上的站点。"
    }
   }
+ },
+ "animation-skills": {
+  "type": "table",
+  "date": "2026-11-18",
+  "dir": "/best-runs/animation/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/animation-runs/RESULTS.md",
+  "agent": "Claude Code (Claude Opus 5.5)",
+  "judge": "gpt-6-astra",
+  "title": [
+   "Animation skills tested: six briefs, the top tools of each kind",
+   "实测：六类动画，每类头部工具做同一道题"
+  ],
+  "intro": [
+   "On 2026-11-18 we gave the two most-starred tools of each kind on this page one brief for their kind, and gave Claude Code with no animation tool the same briefs as a control: a landing page's motion, an animated logo, game sprite sheets, a waving mascot, an animated diagram and an explainer, all for a made-up bakery, Morning Loaf. Each ran in a throwaway Linux sandbox, driven by Claude Code (Claude Opus 5.5), and recorded its animation. 11 of the 12 tools made one. Each item of a brief was checked from the recording by gpt-6-astra, from the file itself where a file can say (a Lottie file's fields, a sheet's size, the page's reduced-motion rule), and by hand on the full recording where 8 sampled frames could miss a short event such as a blink.",
+   "2026-11-18，我们给本页每一类星数最高的两个工具各出一道本类的题，并让不装动画工具的 Claude Code 做同样的题作为对照：落地页动效、动态 logo、游戏精灵图、挥手的吉祥物、动态流程图和讲解动画，都围绕一家虚构的面包店 Morning Loaf。每个都在用完即删的 Linux 沙箱里由 Claude Code（Claude Opus 5.5）调用，并录下做出的动画。12 个工具里 11 个做出来了。测试题的每一项由 gpt-6-astra 看录像判断；文件本身能回答的（Lottie 字段、图集尺寸、页面的减少动态规则）直接查文件；8 帧抽样可能漏掉的短动作（比如眨眼），我们在完整录像上人工核对。"
+  ],
+  "finding": [
+   "Claude Code with no animation tool met every item of the brief in 5 of 6 kinds, in 0.9 to 4 minutes. The tools mattered in two places: sprites, where both sprite tools drew a side-on walk to the right and the no-tool run drew the mascot walking towards the viewer; and format, where pixel2motion delivered animated SVG instead of Lottie and mesh-avatar-studio could not wave an arm at all. Otherwise pick a tool for its look and the code it leaves you: gsap-skills writes GSAP, the Lottie skill writes a real Lottie file.",
+   "不装动画工具的 Claude Code 在 6 类里有 5 类把测试题全部做到，每次 0.9 到 4 分钟。工具真正拉开差距的地方有两处：精灵图，两个精灵图工具都画出了侧身向右走，不装工具的画成了面朝镜头走；以及格式，pixel2motion 交的是动态 SVG 而不是 Lottie，mesh-avatar-studio 根本做不了挥手。除此之外，按观感和它留给你的代码来选：gsap-skills 写的是 GSAP，Lottie skill 交的是真正的 Lottie 文件。"
+  ],
+  "gallery": {
+   "width": 640,
+   "height": 360,
+   "note": [
+    "Every recording, the control first in each kind. They play on the page.",
+    "每一段录像，每类第一个是对照组。可以直接在页面上播放。"
+   ],
+   "groups": [
+    {
+     "id": "web",
+     "title": [
+      "Web & UI motion",
+      "网页与界面动效"
+     ]
+    },
+    {
+     "id": "lottie",
+     "title": [
+      "Lottie, SVG & animated icons",
+      "Lottie、SVG 与动态图标"
+     ]
+    },
+    {
+     "id": "sprite",
+     "title": [
+      "Game sprites & pixel art",
+      "游戏精灵图与像素动画"
+     ]
+    },
+    {
+     "id": "rig",
+     "title": [
+      "Characters, rigging & 3D",
+      "角色、骨骼与 3D 动画"
+     ]
+    },
+    {
+     "id": "diagram",
+     "title": [
+      "Animated diagrams",
+      "动态图解"
+     ]
+    },
+    {
+     "id": "art",
+     "title": [
+      "Code art & math animation (Manim)",
+      "代码艺术与数学动画 (Manim)"
+     ]
+    }
+   ],
+   "items": [
+    {
+     "name": "No tool (control)",
+     "src": "web-control.mp4",
+     "poster": "web-control.jpg",
+     "group": "web",
+     "caption": [
+      "9/9 · 2.4 min",
+      "9/9 · 2.4 分钟"
+     ]
+    },
+    {
+     "name": "gsap-skills",
+     "src": "web-greensock__gsap-skills.mp4",
+     "poster": "web-greensock__gsap-skills.jpg",
+     "group": "web",
+     "caption": [
+      "9/9 · 1.9 min",
+      "9/9 · 1.9 分钟"
+     ]
+    },
+    {
+     "name": "motion-design-skill",
+     "src": "web-LottieFiles__motion-design-skill.mp4",
+     "poster": "web-LottieFiles__motion-design-skill.jpg",
+     "group": "web",
+     "caption": [
+      "9/9 · 2.2 min",
+      "9/9 · 2.2 分钟"
+     ]
+    },
+    {
+     "name": "No tool (control)",
+     "src": "lottie-control.mp4",
+     "poster": "lottie-control.jpg",
+     "group": "lottie",
+     "caption": [
+      "5/5 · 1.9 min",
+      "5/5 · 1.9 分钟"
+     ]
+    },
+    {
+     "name": "lottie",
+     "src": "lottie-diffusionstudio__lottie.mp4",
+     "poster": "lottie-diffusionstudio__lottie.jpg",
+     "group": "lottie",
+     "caption": [
+      "5/5 · 5.6 min",
+      "5/5 · 5.6 分钟"
+     ]
+    },
+    {
+     "name": "pixel2motion",
+     "src": "lottie-nolangz__pixel2motion.mp4",
+     "poster": "lottie-nolangz__pixel2motion.jpg",
+     "group": "lottie",
+     "caption": [
+      "3/5 · 4.6 min",
+      "3/5 · 4.6 分钟"
+     ]
+    },
+    {
+     "name": "No tool (control)",
+     "src": "sprite-control.mp4",
+     "poster": "sprite-control.jpg",
+     "group": "sprite",
+     "caption": [
+      "7/8 · 2.0 min",
+      "7/8 · 2.0 分钟"
+     ]
+    },
+    {
+     "name": "sprite-gen",
+     "src": "sprite-aldegad__sprite-gen.mp4",
+     "poster": "sprite-aldegad__sprite-gen.jpg",
+     "group": "sprite",
+     "caption": [
+      "8/8 · 6.2 min",
+      "8/8 · 6.2 分钟"
+     ]
+    },
+    {
+     "name": "agent-sprite-forge",
+     "src": "sprite-0x0funky__agent-sprite-forge.mp4",
+     "poster": "sprite-0x0funky__agent-sprite-forge.jpg",
+     "group": "sprite",
+     "caption": [
+      "8/8 · 7.7 min",
+      "8/8 · 7.7 分钟"
+     ]
+    },
+    {
+     "name": "No tool (control)",
+     "src": "rig-control.mp4",
+     "poster": "rig-control.jpg",
+     "group": "rig",
+     "caption": [
+      "5/5 · 0.9 min",
+      "5/5 · 0.9 分钟"
+     ]
+    },
+    {
+     "name": "img2threejs",
+     "src": "rig-img2threejs__img2threejs.mp4",
+     "poster": "rig-img2threejs__img2threejs.jpg",
+     "group": "rig",
+     "caption": [
+      "5/5 · 2.4 min",
+      "5/5 · 2.4 分钟"
+     ]
+    },
+    {
+     "name": "No tool (control)",
+     "src": "diagram-control.mp4",
+     "poster": "diagram-control.jpg",
+     "group": "diagram",
+     "caption": [
+      "6/6 · 1.4 min",
+      "6/6 · 1.4 分钟"
+     ]
+    },
+    {
+     "name": "SeeCode",
+     "src": "diagram-Aryanutkarsh__SeeCode.mp4",
+     "poster": "diagram-Aryanutkarsh__SeeCode.jpg",
+     "group": "diagram",
+     "caption": [
+      "6/6 · 2.7 min",
+      "6/6 · 2.7 分钟"
+     ]
+    },
+    {
+     "name": "lanshu-animated-architecture-diagram",
+     "src": "diagram-cclank__lanshu-animated-architecture-diagram.mp4",
+     "poster": "diagram-cclank__lanshu-animated-architecture-diagram.jpg",
+     "group": "diagram",
+     "caption": [
+      "6/6 · 3.9 min",
+      "6/6 · 3.9 分钟"
+     ]
+    },
+    {
+     "name": "No tool (control)",
+     "src": "art-control.mp4",
+     "poster": "art-control.jpg",
+     "group": "art",
+     "caption": [
+      "5/5 · 4.0 min",
+      "5/5 · 4.0 分钟"
+     ]
+    },
+    {
+     "name": "anidoodle",
+     "src": "art-alexgreensh__anidoodle.mp4",
+     "poster": "art-alexgreensh__anidoodle.jpg",
+     "group": "art",
+     "caption": [
+      "5/5 · 7.2 min",
+      "5/5 · 7.2 分钟"
+     ]
+    },
+    {
+     "name": "huashu-art-motion",
+     "src": "art-alchaincyf__huashu-art-motion.mp4",
+     "poster": "art-alchaincyf__huashu-art-motion.jpg",
+     "group": "art",
+     "caption": [
+      "5/5 · 7.6 min",
+      "5/5 · 7.6 分钟"
+     ]
+    }
+   ]
+  },
+  "groups": [
+   {
+    "id": "web",
+    "title": [
+     "Web & UI motion",
+     "网页与界面动效"
+    ]
+   },
+   {
+    "id": "lottie",
+    "title": [
+     "Lottie, SVG & animated icons",
+     "Lottie、SVG 与动态图标"
+    ]
+   },
+   {
+    "id": "sprite",
+    "title": [
+     "Game sprites & pixel art",
+     "游戏精灵图与像素动画"
+    ]
+   },
+   {
+    "id": "rig",
+    "title": [
+     "Characters, rigging & 3D",
+     "角色、骨骼与 3D 动画"
+    ]
+   },
+   {
+    "id": "diagram",
+    "title": [
+     "Animated diagrams",
+     "动态图解"
+    ]
+   },
+   {
+    "id": "art",
+    "title": [
+     "Code art & math animation (Manim)",
+     "代码艺术与数学动画 (Manim)"
+    ]
+   }
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "Brief items met",
+    "做到的要求"
+   ],
+   [
+    "Delivered",
+    "交付"
+   ],
+   [
+    "Looks (judge)",
+    "观感（评审）"
+   ],
+   [
+    "Time",
+    "耗时"
+   ],
+   [
+    "Cost at API prices",
+    "按 API 价"
+   ]
+  ],
+  "see": [
+   "Watch it and see what was checked →",
+   "看录像和检查结果 →"
+  ],
+  "evidence": [
+   "The recording",
+   "录像"
+  ],
+  "line_label": [
+   "Animation test, 2026-11-18:",
+   "2026-11-18 动画实测："
+  ],
+  "not_run_label": [
+   "No animation",
+   "没做出来"
+  ],
+  "not_run_line": [
+   "Tried in our animation test, no animation:",
+   "动画实测时没做出来："
+  ],
+  "control": {
+   "sheet": "web-control.html",
+   "label": [
+    "See the landing page Claude Code made with no tool →",
+    "看不装工具做的落地页 →"
+   ]
+  },
+  "verdict": {
+   "title": [
+    "Which one to use",
+    "用哪个"
+   ],
+   "ranked": false,
+   "picks": [
+    {
+     "repo": "greensock/gsap-skills",
+     "role": [
+      "For web motion you will keep building on",
+      "要接着往下做的网页动效"
+     ],
+     "why": [
+      "Every item of the brief in 1.9 minutes, written with GSAP's own ScrollTrigger, SplitText and DrawSVG, so the next animation uses the same tools.",
+      "1.9 分钟做到测试题全部要求，用的是 GSAP 自己的 ScrollTrigger、SplitText 和 DrawSVG，下一个动效可以接着用同一套。"
+     ]
+    },
+    {
+     "repo": "diffusionstudio/lottie",
+     "role": [
+      "For a Lottie file",
+      "要一个 Lottie 文件"
+     ],
+     "why": [
+      "A valid 512 x 512 Lottie loop with every item of the brief, the squash included. pixel2motion made an animated SVG instead.",
+      "交付了合规的 512 x 512 Lottie 循环，测试题全部做到，压扁也有。pixel2motion 交的是动态 SVG。"
+     ]
+    },
+    {
+     "repo": "aldegad/sprite-gen",
+     "role": [
+      "For game sprites",
+      "做游戏精灵图"
+     ],
+     "why": [
+      "A side-on walk to the right and a breathing idle, the right sizes and transparent, in 6.2 minutes; agent-sprite-forge did as well in 7.7. Claude Code with no tool drew the mascot walking towards the viewer.",
+      "侧身向右走、待机呼吸，尺寸和透明背景都对，用时 6.2 分钟；agent-sprite-forge 同样全对，用了 7.7 分钟。不装工具的 Claude Code 画成了面朝镜头走。"
+     ]
+    },
+    {
+     "repo": "img2threejs/img2threejs",
+     "role": [
+      "For a character that moves",
+      "让角色动起来"
+     ],
+     "why": [
+      "Every item of the brief in 2.4 minutes, and the judge's 5 of 5 for looks. Claude Code with no tool did the same in 0.9 minutes.",
+      "2.4 分钟做到全部要求，评审观感 5/5。不装工具的 Claude Code 0.9 分钟也做到了。"
+     ]
+    },
+    {
+     "repo": "Aryanutkarsh/SeeCode",
+     "role": [
+      "For an animated diagram",
+      "做动态图解"
+     ],
+     "why": [
+      "All seven steps, the travelling dots and the retry loop, the judge's 5 of 5 for looks, in 2.7 minutes.",
+      "七个步骤、移动的点和重试回环都有，评审观感 5/5，用时 2.7 分钟。"
+     ]
+    },
+    {
+     "repo": "alexgreensh/anidoodle",
+     "role": [
+      "For an explainer animation",
+      "做讲解动画"
+     ],
+     "why": [
+      "Every item of the brief and the judge's 5 of 5 for looks, in a hand-drawn style. huashu-art-motion made the richest scene (a bowl on a counter) in 7.6 minutes.",
+      "做到全部要求，评审观感 5/5，手绘风格。huashu-art-motion 的画面最丰富（台面上的一碗面团），用了 7.6 分钟。"
+     ]
+    }
+   ],
+   "caveat": [
+    "Claude Code alone met the brief in most kinds, so a tool earns its place by its look, its format or the code it leaves, not by getting the job done.",
+    "多数类别里只用 Claude Code 也能做到测试题要求，所以工具的价值在观感、格式和留下的代码，而不是能不能做成。"
+   ],
+   "rule": [
+    "One pick per kind, from these runs: every item of the brief first, then the judge's looks, then time.",
+    "每类选一个，依据这次实测：先看测试题是否全部做到，再看评审观感，最后看耗时。"
+   ]
+  },
+  "runs": {
+   "greensock/gsap-skills": {
+    "ran": true,
+    "stars": 18678,
+    "minutes": 1.9,
+    "sheet": "web-greensock__gsap-skills.html",
+    "group": "web",
+    "cells": [
+     [
+      "9/9",
+      "9/9",
+      "touch-ups"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "1.9 min",
+      "1.9 分钟",
+      "num"
+     ],
+     [
+      "$0.57",
+      "$0.57",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "1.9 min",
+      "1.9 分钟"
+     ],
+     [
+      "$0.57 at API prices",
+      "按 API 价 $0.57"
+     ]
+    ]
+   },
+   "LottieFiles/motion-design-skill": {
+    "ran": true,
+    "stars": 3319,
+    "minutes": 2.2,
+    "sheet": "web-LottieFiles__motion-design-skill.html",
+    "group": "web",
+    "cells": [
+     [
+      "9/9",
+      "9/9",
+      "touch-ups"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "2.2 min",
+      "2.2 分钟",
+      "num"
+     ],
+     [
+      "$0.40",
+      "$0.40",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "2.2 min",
+      "2.2 分钟"
+     ],
+     [
+      "$0.40 at API prices",
+      "按 API 价 $0.40"
+     ]
+    ]
+   },
+   "diffusionstudio/lottie": {
+    "ran": true,
+    "stars": 5780,
+    "minutes": 5.6,
+    "sheet": "lottie-diffusionstudio__lottie.html",
+    "group": "lottie",
+    "cells": [
+     [
+      "5/5",
+      "5/5",
+      "touch-ups"
+     ],
+     [
+      "Lottie (.json)",
+      "Lottie（.json）",
+      ""
+     ],
+     [
+      "3/5",
+      "3/5",
+      "num"
+     ],
+     [
+      "5.6 min",
+      "5.6 分钟",
+      "num"
+     ],
+     [
+      "$0.61",
+      "$0.61",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "5.6 min",
+      "5.6 分钟"
+     ],
+     [
+      "$0.61 at API prices",
+      "按 API 价 $0.61"
+     ]
+    ]
+   },
+   "nolangz/pixel2motion": {
+    "ran": true,
+    "stars": 2677,
+    "minutes": 4.6,
+    "sheet": "lottie-nolangz__pixel2motion.html",
+    "group": "lottie",
+    "cells": [
+     [
+      "3/5",
+      "3/5",
+      "one round"
+     ],
+     [
+      "Animated SVG",
+      "动态 SVG",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "4.6 min",
+      "4.6 分钟",
+      "num"
+     ],
+     [
+      "$0.57",
+      "$0.57",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "missed: loaf drops and squashes, a Lottie file",
+      "没做到：面包落下并压扁、交付 Lottie 文件"
+     ],
+     [
+      "4.6 min",
+      "4.6 分钟"
+     ],
+     [
+      "$0.57 at API prices",
+      "按 API 价 $0.57"
+     ]
+    ]
+   },
+   "aldegad/sprite-gen": {
+    "ran": true,
+    "stars": 4141,
+    "minutes": 6.2,
+    "sheet": "sprite-aldegad__sprite-gen.html",
+    "group": "sprite",
+    "cells": [
+     [
+      "8/8",
+      "8/8",
+      "touch-ups"
+     ],
+     [
+      "Two PNG sheets",
+      "两张 PNG 图集",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "6.2 min",
+      "6.2 分钟",
+      "num"
+     ],
+     [
+      "$0.84",
+      "$0.84",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "6.2 min",
+      "6.2 分钟"
+     ],
+     [
+      "$0.84 at API prices",
+      "按 API 价 $0.84"
+     ]
+    ]
+   },
+   "0x0funky/agent-sprite-forge": {
+    "ran": true,
+    "stars": 5821,
+    "minutes": 7.7,
+    "sheet": "sprite-0x0funky__agent-sprite-forge.html",
+    "group": "sprite",
+    "cells": [
+     [
+      "8/8",
+      "8/8",
+      "touch-ups"
+     ],
+     [
+      "Two PNG sheets",
+      "两张 PNG 图集",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "7.7 min",
+      "7.7 分钟",
+      "num"
+     ],
+     [
+      "$0.68",
+      "$0.68",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "7.7 min",
+      "7.7 分钟"
+     ],
+     [
+      "$0.68 at API prices",
+      "按 API 价 $0.68"
+     ]
+    ]
+   },
+   "img2threejs/img2threejs": {
+    "ran": true,
+    "stars": 21559,
+    "minutes": 2.4,
+    "sheet": "rig-img2threejs__img2threejs.html",
+    "group": "rig",
+    "cells": [
+     [
+      "5/5",
+      "5/5",
+      "touch-ups"
+     ],
+     [
+      "morning-loaf-threejs/",
+      "morning-loaf-threejs/",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.4 min",
+      "2.4 分钟",
+      "num"
+     ],
+     [
+      "$0.69",
+      "$0.69",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "2.4 min",
+      "2.4 分钟"
+     ],
+     [
+      "$0.69 at API prices",
+      "按 API 价 $0.69"
+     ]
+    ]
+   },
+   "Aryanutkarsh/SeeCode": {
+    "ran": true,
+    "stars": 982,
+    "minutes": 2.7,
+    "sheet": "diagram-Aryanutkarsh__SeeCode.html",
+    "group": "diagram",
+    "cells": [
+     [
+      "6/6",
+      "6/6",
+      "touch-ups"
+     ],
+     [
+      "index.html",
+      "index.html",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "2.7 min",
+      "2.7 分钟",
+      "num"
+     ],
+     [
+      "$0.49",
+      "$0.49",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "2.7 min",
+      "2.7 分钟"
+     ],
+     [
+      "$0.49 at API prices",
+      "按 API 价 $0.49"
+     ]
+    ]
+   },
+   "cclank/lanshu-animated-architecture-diagram": {
+    "ran": true,
+    "stars": 1044,
+    "minutes": 3.9,
+    "sheet": "diagram-cclank__lanshu-animated-architecture-diagram.html",
+    "group": "diagram",
+    "cells": [
+     [
+      "6/6",
+      "6/6",
+      "touch-ups"
+     ],
+     [
+      "index.html, morning-loaf.excalidraw",
+      "index.html, morning-loaf.excalidraw",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "3.9 min",
+      "3.9 分钟",
+      "num"
+     ],
+     [
+      "$0.85",
+      "$0.85",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "3.9 min",
+      "3.9 分钟"
+     ],
+     [
+      "$0.85 at API prices",
+      "按 API 价 $0.85"
+     ]
+    ]
+   },
+   "alexgreensh/anidoodle": {
+    "ran": true,
+    "stars": 1813,
+    "minutes": 7.2,
+    "sheet": "art-alexgreensh__anidoodle.html",
+    "group": "art",
+    "cells": [
+     [
+      "5/5",
+      "5/5",
+      "touch-ups"
+     ],
+     [
+      "loaf.html, loaf/",
+      "loaf.html, loaf/",
+      ""
+     ],
+     [
+      "5/5",
+      "5/5",
+      "num"
+     ],
+     [
+      "7.2 min",
+      "7.2 分钟",
+      "num"
+     ],
+     [
+      "$0.97",
+      "$0.97",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "7.2 min",
+      "7.2 分钟"
+     ],
+     [
+      "$0.97 at API prices",
+      "按 API 价 $0.97"
+     ]
+    ]
+   },
+   "alchaincyf/huashu-art-motion": {
+    "ran": true,
+    "stars": 7181,
+    "minutes": 7.6,
+    "sheet": "art-alchaincyf__huashu-art-motion.html",
+    "group": "art",
+    "cells": [
+     [
+      "5/5",
+      "5/5",
+      "touch-ups"
+     ],
+     [
+      "deliver/, source/",
+      "deliver/, source/",
+      ""
+     ],
+     [
+      "4/5",
+      "4/5",
+      "num"
+     ],
+     [
+      "7.6 min",
+      "7.6 分钟",
+      "num"
+     ],
+     [
+      "$1.28",
+      "$1.28",
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "every item of the brief",
+      "测试题要求全部做到"
+     ],
+     [
+      "7.6 min",
+      "7.6 分钟"
+     ],
+     [
+      "$1.28 at API prices",
+      "按 API 价 $1.28"
+     ]
+    ]
+   },
+   "shinshin86/mesh-avatar-studio": {
+    "ran": false,
+    "stars": 2440,
+    "reason": "Its runtime only moves small parts near the face, so it cannot raise and wave an arm; the agent stopped and said so rather than change the tool.",
+    "reason_zh": "它的运行时只能动脸附近的小部件，抬不起手臂挥手；agent 说明原因后停下，没有去改这个工具。"
+   }
+  }
  }
 }

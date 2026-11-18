@@ -1,0 +1,12 @@
+An animation tool from ~/src has been installed for you (a skill in ~/.claude/skills, a plugin command or agent, MCP tools (check `claude mcp list`), or a package). Use it, following its own workflow, to make the animation described in ~/work/brief.md. Your input files are in ~/work/input/.
+
+If the tool cannot be installed or used here, stop and say why. Do not make the animation some other way instead.
+
+This machine has Node 22, Python 3 (pip install works), Chromium (/usr/bin/chromium) with Playwright for Python, ffmpeg, ImageMagick and Blender 3.4 (`blender`); `sudo apt-get install` works too. There is no physical screen; a virtual one runs on DISPLAY=:99. Everything runs on the CPU.
+
+Rules:
+- Do not ask me any questions; make reasonable choices yourself and continue.
+- You have 30 minutes in all. Save a working version of the deliverable and preview.mp4 early, then improve them if time allows.
+- Save what you make in ~/work/output/, in its own format (the brief names what to deliver).
+- Also save ~/work/output/preview.mp4: a recording of the animation playing, exactly as the brief describes it (H.264, 30 fps). Make it with tools on this machine.
+- When you finish, print one line: DELIVERABLE: <comma-separated paths of the files you wrote>

@@ -22,6 +22,8 @@ PROJECT = (ROOT / os.environ["RUNS_DIR"]).resolve()
 OUT, LIMITED = PROJECT / "out", PROJECT / "out-limited"
 LIMIT = re.compile(r"usage limit|hit your (usage )?limit|limit reached|rate_limit_error|overloaded_error|resets? (at|in) ", re.I)
 DOCKER_DOWN = re.compile(r"Cannot connect to the Docker daemon|docker: command not found|Is the docker daemon running", re.I)
+# Out of credit on a per-token route (CLAUDE_VIA=api): every later run would fail the same way, so stop.
+MONEY = re.compile(r"insufficient (balance|credit|funds|quota)|credit balance is too low|余额不足|\b402\b|payment required|quota exceeded", re.I)
 RETRIES, LIMIT_WAIT_SECONDS = 3, 30 * 60
 
 
@@ -50,7 +52,7 @@ def run_text(folder: Path) -> str:
 
 
 def run_one(repo: str) -> str:
-    """Run one repo; returns "ok", "limit" (moved aside, retry later) or "docker" (stop)."""
+    """Run one repo; returns "ok", "limit" (moved aside, retry later), "money" or "docker" (stop)."""
     proc = subprocess.run([sys.executable, "ops/ppt-runs/run.py", repo], cwd=ROOT, capture_output=True, text=True)
     log(f"{repo}: {(proc.stdout.strip().splitlines() or ['?'])[-1]}")
     folder = OUT / repo.replace("/", "__")
@@ -58,6 +60,9 @@ def run_one(repo: str) -> str:
     if DOCKER_DOWN.search(said):
         shutil.rmtree(folder, ignore_errors=True)
         return "docker"
+    if MONEY.search(said):
+        shutil.rmtree(folder, ignore_errors=True)
+        return "money"
     if LIMIT.search(said):
         LIMITED.mkdir(exist_ok=True)
         shutil.move(str(folder), str(LIMITED / f"{folder.name}-{int(time.time())}"))
@@ -70,6 +75,9 @@ def main() -> None:
     while (todo := pending()):
         repo = todo[0]
         outcome = run_one(repo)
+        if outcome == "money":
+            log("out of credit on the API route: stopping (the run is cleared and will run again)")
+            break
         if outcome == "docker":
             log("Docker is not running: stopping")
             break

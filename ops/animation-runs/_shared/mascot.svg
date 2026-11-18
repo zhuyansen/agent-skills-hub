@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  <g id="left-leg" stroke="#5A3A1E" stroke-width="14" stroke-linecap="round"><path d="M220 400v60"/><path d="M220 460h-22"/></g>
+  <g id="right-leg" stroke="#5A3A1E" stroke-width="14" stroke-linecap="round"><path d="M292 400v60"/><path d="M292 460h22"/></g>
+  <g id="left-arm" stroke="#5A3A1E" stroke-width="14" stroke-linecap="round"><path d="M160 300l-46 40"/></g>
+  <g id="right-arm" stroke="#5A3A1E" stroke-width="14" stroke-linecap="round"><path d="M352 300l46 40"/></g>
+  <g id="body">
+    <path d="M150 290c0-80 48-140 106-140s106 60 106 140v84c0 18-14 30-30 30H180c-16 0-30-12-30-30z" fill="#D9893B"/>
+  </g>
+  <g id="face">
+    <circle id="eye-left" cx="226" cy="268" r="11" fill="#2B1A0C"/>
+    <circle id="eye-right" cx="286" cy="268" r="11" fill="#2B1A0C"/>
+    <path id="mouth" d="M236 306q20 18 40 0" fill="none" stroke="#2B1A0C" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="204" cy="298" r="12" fill="#F08A6C" opacity=".6"/><circle cx="308" cy="298" r="12" fill="#F08A6C" opacity=".6"/>
+  </g>
+  <path id="baker-hat" d="M196 168c-30 0-40-40-10-52 6-30 46-38 70-18 24-20 64-12 70 18 30 12 20 52-10 52z" fill="#FFFFFF" stroke="#5A3A1E" stroke-width="6"/>
+</svg>
