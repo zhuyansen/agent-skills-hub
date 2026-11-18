@@ -7,7 +7,7 @@ import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
-import { EN, ZH, ENTERPRISE_ORGS } from "../data/enterpriseCopy";
+import { EN, ZH, ENTERPRISE_ORGS } from "../data/enterpriseCopy.mjs";
 
 /**
  * /enterprise/ — the single B2B inbound surface (bilingual).
@@ -15,7 +15,7 @@ import { EN, ZH, ENTERPRISE_ORGS } from "../data/enterpriseCopy";
  * Consolidates the former /enterprise/ (audit), /business/ (license/SBOM/mirror),
  * and /verified-creator/ (creator certification) into one page. /business/ and
  * /verified-creator/ now redirect here; the creator APPLY flow stays at
- * /verified-creator/apply/. All copy lives in ../data/enterpriseCopy.ts.
+ * /verified-creator/apply/. All copy lives in ../data/enterpriseCopy.mjs.
  *
  * HONESTY RULE (load-bearing): zero paying customers, zero testimonials, SOC 2
  * in progress (not certified). Frameworks are what Hub AUDITS AGAINST. The vuln
