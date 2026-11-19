@@ -12,6 +12,7 @@ export declare function skillTitle(
   description: string | null | undefined,
   fallback?: string,
 ): string;
+export declare function fallbackTitle(head: string, fallback?: string): string;
 export declare function headingClause(repoName: string, description: string | null | undefined): string;
 export declare function skillDescription(
   repoName: string,

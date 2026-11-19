@@ -153,7 +153,14 @@ export function skillTitle(repoFullName, repoName, description, fallback = TITLE
   const head = titleHead(repoFullName);
   const budget = Math.max(TITLE_MAX_WIDTH - displayWidth(`${head}: `), MIN_CLAUSE_BUDGET);
   const clause = fitClause(cleanDescription(description, repoName), budget);
-  return `${head}: ${displayWidth(clause) >= MIN_CLAUSE_WIDTH ? clause : fallback}`;
+  return displayWidth(clause) >= MIN_CLAUSE_WIDTH ? `${head}: ${clause}` : fallbackTitle(head, fallback);
+}
+
+/** "<head>: what it is & alternatives", or ": alternatives" when that would run past the
+ *  results page: 469 skill titles did, with no usable description (scan of 2026-11-19). */
+export function fallbackTitle(head, fallback = TITLE_FALLBACK) {
+  const full = `${head}: ${fallback}`;
+  return displayWidth(full) <= TITLE_MAX_WIDTH ? full : `${head}: alternatives`;
 }
 
 /** The h1 clause from the same description: all of it when it fits, else its first sentence. */

@@ -14,7 +14,7 @@ import { InstallCommand } from "../components/InstallCommand";
 import { RepoSubSkills } from "../components/SubSkillList";
 import { TestedByUs } from "../components/TestedByUs";
 import { FeaturedInGuides } from "../components/FeaturedInGuides";
-import { skillTitle, skillDescription, TITLE_FALLBACK } from "../lib/skillMeta.mjs";
+import { skillTitle, skillDescription, fallbackTitle } from "../lib/skillMeta.mjs";
 import { prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
@@ -132,7 +132,7 @@ export function SkillDetailPage() {
   // install command found in the README); after a client-side hop it is rebuilt without it.
   const pageTitle =
     detail.repo_status === "gone"
-      ? `${detail.repo_full_name}: ${TITLE_FALLBACK}`
+      ? fallbackTitle(detail.repo_full_name)
       : skillTitle(detail.repo_full_name, detail.repo_name, detail.description);
   const metaDescription =
     prerenderedDescription() ?? skillDescription(detail.repo_name, detail.description);

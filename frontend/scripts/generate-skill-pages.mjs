@@ -26,7 +26,7 @@ import { guidesHtml, guidesIndex, guidesMeta } from "./skill-guides.mjs";
 import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
 import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
-import { skillTitle, headingClause, skillDescription, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
+import { skillTitle, headingClause, skillDescription, fallbackTitle, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
@@ -286,7 +286,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // 2026-10-18: the part that varies is the repo's own description (skillMeta.mjs),
   // the same function the React page uses for its <title>. Deleted repos keep the old
   // title: /skill/Manavarya09/design-extract/ earns its CTR with it.
-  const title = isGone ? `${repo_full_name}: ${TITLE_FALLBACK}` : skillTitle(repo_full_name, repo_name, description);
+  const title = isGone ? fallbackTitle(repo_full_name) : skillTitle(repo_full_name, repo_name, description);
   const h1Clause = isGone ? "" : headingClause(repo_name, description);
   // Lead the snippet with the VERDICT, not the repo's own blurb.
   //
