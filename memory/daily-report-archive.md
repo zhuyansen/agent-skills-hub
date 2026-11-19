@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-19
+1. boringmarketer/boring-marketing-skills — 🆕 覆盖市场研究、定位、文案与投放，让智能体一站式完成营销（587★ 219.5/day）
+2. ysunyang4/Nexus — 🆕 连接本地文件、终端与桌面工具，让网页智能体安全调用资源（404★ 70.5/day）
+3. staryone/motlab — 🆕 用代码生成可审阅视频场景，让智能体把参考素材变成成片（188★ 68.8/day）
+4. joeseesun/subcast — 🆕 提供播客与 YouTube 双语字幕、精读和 AI 问答，提升输入效率（152★ 53.7/day）
+5. ysunyang4/webagent — 🆕 连接 ChatGPT 等网页对话与本地 MCP 工具，扩展智能体能力（158★ 19.2/day）
+6. baney75/smoothstone — 🆕 驱动小型本地模型按文字或图片生成可打印 3D 零件（73★ 17.4/day）
+7. software-mansion/argent — 控制并调试 iOS、Android、桌面和电视设备，加速智能体测试（3210★ 11.9/day）
+8. fazxes/rex-durable — 🆕 保持 Rex 标签页中的程序和对话跨重启恢复，减少工作中断（66★ 11.8/day）
+9. inevolin/claude-code-usage-analysis — 🆕 分析 Claude Code 用量与压缩策略，帮助优化不同开发工作流（59★ 10.9/day）
+10. neubauerwilli/gta6-skill — 🆕 批量把 GTA 6 直播素材剪成短片，支持德语 Claude 技能工作流（45★ 9.2/day）
+🎯 今日趋势：**本地优先**的 MCP 与 Agent 技能走强，视频生成、开发环境和工作流自动化成为共同方向。
+> 注：GitHub Actions 自动生成（gpt-6-astra 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 143 个日期段，比对 1,419 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 115 条、去重后 112 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 34 个。**代码硬规则剔除**：Ravindra-2006/trion-protocol：名字或描述像破解 / 激活 / 外挂类诱饵；Wilfriedbkt/interview-copilot-edtech-app：刷星嫌疑：153★ 却 0 个 fork；mackzyfiston-cmd/html-ppt-generator：刷星嫌疑：153★ 却 0 个 fork；FIlIP-C3/events-tracker：刷星嫌疑：153★ 却 0 个 fork；SamaEk111/exasol-agent-skills：刷星嫌疑：153★ 却 0 个 fork；buiquangvu235/antigravity-skills-engine：刷星嫌疑：153★ 却 0 个 fork；24 个 GitHub-Copilot-app（同名仓库出现在 8 个不同账号下，批量账号站群）；13 个 manus--ai（同名仓库出现在 13 个不同账号下，批量账号站群）；15 个 ai--manus（同名仓库出现在 15 个不同账号下，批量账号站群）；3 个 ai-manus（同名仓库出现在 3 个不同账号下，批量账号站群）；petekp/coordinator：security_grade 为 caution；Markbase-Team/Markbase：刷星嫌疑：作者 1 粉、其余仓库最高 0★，66★ 只有 0 个 fork；chaw1/datakeel：刷星嫌疑：作者 4 粉、其余仓库最高 1★，200★ 只有 1 个 fork；laulauraluo/looks-good-to-ai：刷星嫌疑：作者 11 粉、其余仓库最高 2★，94★ 只有 0 个 fork。**模型排除项**：①JimLiu/open-artifact（47★ 21.3/day）：描述仅为“coming soon”，且分类为 uncategorized，无法确认实际内容与智能体工具的关联；②davimatosms/Arara-voice（105★ 19.7/day）：账号粉丝仅 14、其他仓库最高 1 星，却有 105 星，存在明显异常爆星嫌疑；③oriliz/agent-crop（48★ 9.6/day）：账号 0 粉丝且仓库 0 fork，却有 48 星，其他仓库最高 214 星，缺少真实使用痕迹。**轻红旗**（保留）：ysunyang4/Nexus：账号粉丝仅 3，但有 72 个 fork 和 4 个 issue，仍有使用痕迹；ysunyang4/webagent：账号粉丝仅 3，但有 40 个 fork 和 3 个 issue，且与 Nexus 形成配套；baney75/smoothstone：账号粉丝仅 14、其他仓库星数较低，但有 4 个 fork 和 12 个 issue；neubauerwilli/gta6-skill：账号粉丝仅 5、其他仓库最高 16 星，虽有 9 个 fork 和 2 个 issue。🆕 判定＝created_at 距今 14 天内：boring-marketing-skills（2.7 天）、Nexus（5.7 天）、motlab（2.7 天）、subcast（2.8 天）、webagent（8.2 天）、smoothstone（4.2 天）、rex-durable（5.6 天）、claude-code-usage-analysis（5.4 天）、gta6-skill（4.9 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-18
 1. erkamyaman/rust-anything — 🆕 渐进式重写应用并用行为回放验证 Rust 迁移结果（691★ 383.8/day）
 2. nexu-io/html-video — 让编码智能体把 HTML 数据渲染成可编辑 MP4 视频（4850★ 27.7/day）
