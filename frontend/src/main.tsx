@@ -5,6 +5,7 @@ import "@fontsource-variable/inter/index.css"; // self-hosted Inter (bundled; wo
 import "./index.css";
 import App from "./App.tsx";
 import { rememberPrerenderedPage } from "./lib/prerenderedMeta";
+import { registerWebMcpTools } from "./lib/webmcp";
 
 // ── Resilience against browser translation extensions ────────────────────────
 // Chrome Translate / 沉浸式翻译 (Immersive Translate) wrap and relocate text
@@ -36,6 +37,8 @@ if (typeof Node === "function" && Node.prototype) {
 
 // Don't hydrate on static-only pages (pre-rendered at build time)
 // These pages have their own HTML and don't need React
+registerWebMcpTools();
+
 const isStaticOnlyPage = window.location.pathname.startsWith("/best/");
 
 if (!isStaticOnlyPage) {
@@ -45,15 +48,19 @@ if (!isStaticOnlyPage) {
   // first: a pre-rendered /skill/ page reuses it (lib/prerenderedMeta.ts), and keeps its
   // static body to fall back on if its data request fails.
   const staticDescription = document.querySelector('meta[name="description"]:not([data-rh])');
+  const staticCanonical = document.querySelector('link[rel="canonical"]:not([data-rh])');
   rememberPrerenderedPage(
     staticDescription?.getAttribute("content") ?? null,
-    document.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
+    staticCanonical?.getAttribute("href") ?? null,
     document.querySelector('meta[name="ash:install"]')?.getAttribute("content") ?? null,
     document.querySelector('meta[name="ash:tested"]')?.getAttribute("content") ?? null,
     document.getElementById("root")?.innerHTML ?? null,
     document.querySelector('meta[name="ash:best"]')?.getAttribute("content") ?? null,
   );
   staticDescription?.remove();
+  if (staticCanonical?.getAttribute("href") === "https://agentskillshub.top/") {
+    staticCanonical.remove();
+  }
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <HelmetProvider>

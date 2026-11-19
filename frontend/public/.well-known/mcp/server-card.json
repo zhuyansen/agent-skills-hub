@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "name": "agentskillshub",
+  "description": "Search, security-audit, and get install commands for 267,000+ open-source AI agent skills, Claude Skills, and MCP servers indexed by Agent Skills Hub (agentskillshub.top).",
+  "endpoint": "https://agentskillshub.top/mcp",
+  "documentationUrl": "https://github.com/zhuyansen/agentskillshub-mcp",
+  "iconUrl": "https://agentskillshub.top/favicon.svg",
+  "serverInfo": {
+    "name": "agentskillshub",
+    "title": "Agent Skills Hub MCP Server",
+    "version": "0.3.0"
+  },
+  "transport": {
+    "type": "stdio",
+    "endpoint": "https://agentskillshub.top/mcp",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentskillshub/mcp"
+    ]
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  },
+  "tools": [
+    {
+      "name": "search_skills",
+      "description": "Find open-source AI agent skills and MCP servers by natural-language query with optional category, platform, star, quality, and security grade filters."
+    },
+    {
+      "name": "audit_skill",
+      "description": "Run a free security trust check for a skill returning security grade (safe, caution, unsafe, reject, unaudited), plain-English verdict, and quality score."
+    },
+    {
+      "name": "get_skill_install",
+      "description": "Get install commands and a pre-install safety verification checklist for an indexed skill."
+    },
+    {
+      "name": "pro_search",
+      "description": "Deep search across full README text of 130K+ skills with category and security-grade filters (requires ASH_PRO_KEY)."
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@agentskillshub/mcp",
+      "version": "0.3.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

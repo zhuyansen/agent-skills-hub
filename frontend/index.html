@@ -128,6 +128,14 @@
         "description": "Independent researcher tracking open-source AI agent ecosystems since 2024. Author of the Blue Book of Agent Skills 2026."
       },
       "legalName": "BRICKAI (GoSailGlobal LLC)",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "30 N Gould St, Ste N",
+        "addressLocality": "Sheridan",
+        "addressRegion": "WY",
+        "postalCode": "82801",
+        "addressCountry": "US"
+      },
       "foundingDate": "2026-03-08",
       "knowsAbout": [
         "Claude Skills",
@@ -213,6 +221,10 @@
          hero's first paint has the real numbers before the stats arrive (src/lib/catalogCounts.ts). -->
     <script id="catalog-counts" type="application/json">{}</script>
 
+    <!-- Agent & Markdown discovery links -->
+    <link rel="alternate" type="text/markdown" href="https://agentskillshub.top/index.md" title="AgentSkillsHub (Markdown)" />
+    <link rel="describedby" type="text/plain" href="https://agentskillshub.top/llms.txt" title="LLMs.txt" />
+
     <!-- Preconnect for faster Supabase queries -->
     <link rel="preconnect" href="https://vknzzecmzsfmohglpfgm.supabase.co" />
     <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
@@ -264,6 +276,11 @@
             <li><a href="/zh/" hreflang="zh" lang="zh-CN">中文版</a></li>
           </ul>
         </nav>
+        <form action="/" method="get" role="search" toolname="search_skills" tooldescription="Search AgentSkillsHub's security-graded directory of AI agent skills, Claude skills, and MCP servers.">
+          <input type="hidden" name="tab" value="explore" />
+          <input type="search" name="search" aria-label="Search AI agent skills and MCP servers" toolparamdescription="Keyword or natural-language query for skills or MCP servers." />
+          <button type="submit">Search Skills</button>
+        </form>
       </header>
       <main>
         <section>
@@ -337,6 +354,9 @@
         </section>
       </main>
       <footer>
+        <nav aria-label="Footer navigation">
+          <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a> · <a href="/ai-info/">AI Info</a> · <a href="/llms.txt">llms.txt</a>
+        </nav>
         <p>AgentSkillsHub — The open-source AI agent tool directory maintained by Jason Zhu. Tracking <span data-count="total">267,000+</span> projects, every popular one security-graded and quality-scored (<span data-count="graded-over-100">99%</span> of those over 100 stars). Built for developers building with AI agents, MCP servers, and automation tools.</p>
         <p>
           <a href="https://turbo0.com/item/agentskillshub" target="_blank" rel="noopener noreferrer">

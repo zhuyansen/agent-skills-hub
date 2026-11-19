@@ -305,7 +305,7 @@ export function SiteFooter() {
           </a>
           <span className="text-gray-700">·</span>
           <a
-            href="mailto:m17551076169@gmail.com"
+            href="/contact/"
             className="hover:text-white transition-colors"
           >
             {lang === "zh" ? "联系我们" : "Contact"}

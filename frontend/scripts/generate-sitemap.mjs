@@ -321,6 +321,11 @@ async function main() {
     <priority>0.8</priority>
   </url>`,
     `  <url>
+    <loc>${SITE}/contact/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>`,
+    `  <url>
     <loc>${SITE}/privacy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

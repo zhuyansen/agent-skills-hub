@@ -182,6 +182,14 @@ function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
 
 /* ── build HTML for one skill ──────────────────── */
 
+/** How many repos with a page share a name and description (filled in main()). */
+const SHARED_DESCRIPTION = new Map();
+// Same repo name and same description: two unrelated repos can share a generic description.
+const descriptionKey = (name, d) => {
+  const text = (d || "").trim().toLowerCase().replace(/\s+/g, " ");
+  return text.length < 20 ? "" : `${(name || "").toLowerCase()}\n${text}`;
+};
+
 function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
   const {
     repo_full_name, repo_url, repo_name, author_name, author_avatar_url,
@@ -351,6 +359,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   let metaDesc = isGone ? verdict : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
   if (!isGone) metaDesc = skillDescription(repo_name, description, installs);
+  // Copies of a repo keep its name and description word for word, so their pages had the same
+  // meta description (OpenSEO audit 2026-11-19: anthropics/claude-code and two copies). Which
+  // one is the original cannot be told from stars (clone campaigns buy them), so every page in
+  // such a group names its owner instead of the bare repo name.
+  if (!isGone && (SHARED_DESCRIPTION.get(descriptionKey(repo_name, description)) || 0) > 1) {
+    metaDesc = skillDescription(repo_full_name, description, installs);
+  }
 
   // README excerpt: a short summary below our own data (see the file header)
   const readmeText = stripMarkdown(readme_content);
@@ -870,6 +885,11 @@ async function main() {
   for (const name of reviewedOnlyRepos(scenarioDefs)) admitted.add(name);
   /** Whether this run writes a /skill/ page for the repo; links elsewhere must agree. */
   const hasPage = (s) => s.stars >= MIN_STARS_FOR_PAGE || admitted.has(s.repo_full_name.toLowerCase());
+
+  for (const s of skills) {
+    const k = descriptionKey(s.repo_name, s.description);
+    if (k && hasPage(s)) SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
+  }
 
   // Generate skill pages
   let ok = 0;

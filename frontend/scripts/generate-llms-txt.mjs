@@ -20,6 +20,7 @@ import { join } from "path";
 import { homeCounts, llmsRules, skillMdRules, stampRules } from "./agent-file-counts.mjs";
 import { stampHomeCounts } from "./home-counts.mjs";
 import { buildLlmsFull, htmlToText } from "./llms-full.mjs";
+import { buildHomeMarkdown, stampHomeCanonical } from "./home-markdown.mjs";
 
 const SITE = "https://agentskillshub.top";
 const DIST = "dist";
@@ -119,3 +120,14 @@ if (existsSync(AI_INFO)) {
   writeFileSync(AI_INFO, stampHomeCounts(readFileSync(AI_INFO, "utf8"), counts));
   console.log(`/ai-info/: ${counts.total} skills, ${counts.graded} graded`);
 }
+
+const HOME_INDEX = join(DIST, "index.html");
+writeFileSync(HOME_INDEX, stampHomeCanonical(readFileSync(HOME_INDEX, "utf8"), SITE));
+const homeMd = buildHomeMarkdown({
+  site: SITE,
+  counts,
+  indexCount,
+  generatedDate: new Date().toISOString().slice(0, 10),
+});
+writeFileSync(join(DIST, "index.md"), homeMd);
+console.log(`index.html canonical stamped; index.md written (${(homeMd.length / 1024).toFixed(1)} KB)`);

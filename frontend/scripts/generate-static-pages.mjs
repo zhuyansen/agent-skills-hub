@@ -109,6 +109,27 @@ function analyzerBody() {
       <p><a href="/">Browse the graded catalog</a> · <a href="/best/">Best tools by use case</a></p>`;
 }
 
+/**
+ * Pre-hydration body for /verified-creator/apply/: the form only exists after React mounts,
+ * so the shell was the h1 and one line (26 words, thin in the OpenSEO audit of 2026-11-19).
+ * What it says is what VerifiedCreatorApplicationPage.tsx and enterpriseCopy.mjs say.
+ */
+function applyBody(c) {
+  return `<h1>Apply for Verified Creator</h1>
+      <p><strong>Verified Creator is Agent Skills Hub's badge for serious agent skill and MCP server authors.</strong> ${esc(c.creator.sub)} Tell us who you are, what you build and how to reach you; the review is manual and takes up to 5 business days.</p>
+      <h2>What you get</h2>
+      <ul>${c.creator.benefits.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+      <h2>What we ask</h2>
+      <ul>
+        <li>Your name, contact email and GitHub account.</li>
+        <li>One to three categories that best represent your work, and the problem you solve best.</li>
+        <li>Whether teams may contact you for custom skill development.</li>
+      </ul>
+      <h2>How we review</h2>
+      <p>Our review team looks at your GitHub contributions and the skills of yours indexed on the Hub. The badge goes to authors with sustained quality and clear documentation. ${esc(c.creator.note)}</p>
+      <p><a href="/book/ch10-verified-creator/">Why Verified Creator exists (Skill Blue Book, chapter 10)</a> · <a href="${HOW_WE_GRADE_PATH}">How we grade</a> · <a href="/">Browse the catalog</a></p>`;
+}
+
 const SHELLS = [
   {
     path: "enterprise",
@@ -159,6 +180,7 @@ const SHELLS = [
     title: "Apply for Verified Creator — AgentSkillsHub",
     description:
       "Apply for the AgentSkillsHub Verified Creator badge. For serious Skill authors who want recognition, trending boost, and consulting matchmaking.",
+    body: applyBody(ENTERPRISE),
   },
   // Member (noindex) pages — shells only for a clean 200 on direct links; the
   // page itself carries robots=noindex so these don't enter the index.
