@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>nexu-io/openmotion: video test</title><style>:root{--bg:#fff;--fg:#1f2328;--mute:#59636e;--line:#d0d7de;--card:#f6f8fa;--ok:#1a7f37;--no:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--mute:#9198a1;--line:#30363d;--card:#161b22;--ok:#3fb950;--no:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,'PingFang SC',sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}a{color:#0969da}img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 8px}.mute{color:var(--mute);font-size:13px}.ok{color:var(--ok);font-weight:600}.no{color:var(--no);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}pre{white-space:pre-wrap;word-wrap:break-word;margin:6px 0 0;padding:12px;border:1px solid var(--line);
+border-radius:8px;background:var(--card);font:13px/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}summary{cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.two{grid-template-columns:1fr}}</style></head><body><main>
+<p class="mute"><a href="/best/claude-motion-alternatives/">← Claude Motion alternatives</a></p>
+<h1>nexu-io/openmotion: test run, 2026-11-19</h1>
+<p class="mute">The video test's brief: a 15-second promo for a made-up app, five fixed lines of on-screen copy, 1920 x 1080 at 30 frames per second. Claude Code (Claude Opus 5.5) made it with the tool
+in a throwaway sandbox with no API keys for video, image or voice models. 12.9 minutes; sound: yes. The other tools ran the same brief on 2026-10-11.
+<a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md">All results</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/in/brief.md">The brief</a> · <a href="https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/score_video.py">How it is checked</a></p><p>Installs a local studio and MCP server; drew a coastline of beach dots, a status circle under rain and a timer ring, with music made in code.</p>
+<video controls preload="metadata" poster="nexu-io__openmotion.jpg" style="width:100%;border-radius:8px;border:1px solid var(--line)"><source src="nexu-io__openmotion.mp4" type="video/mp4"></video>
+<h2>The four checks</h2><table><tr><th>Renders to a playable file</th><td><span class=ok>pass</span></td><td>H.264</td></tr><tr><th>Length, size and frame rate as asked</th><td><span class=ok>pass</span></td><td>15.02 s, 1920x1080, 30.0 fps</td></tr><tr><th>All five lines readable</th><td><span class=ok>pass</span></td><td>5 of 5</td></tr><tr><th>The picture moves</th><td><span class=ok>pass</span></td><td>10% of sampled frame pairs held still</td></tr></table>
+<h2>Frames sampled twice a second</h2><a href="nexu-io__openmotion-frames.jpg"><img src="nexu-io__openmotion-frames.jpg" alt="nexu-io/openmotion: frames sampled at two per second"></a>
+<h2>How it was made (the session's closing message)</h2><pre>I made the 15-second Tidepool promo with OpenMotion, the video tool installed from `~/src`. It rendered and passed OpenMotion&#x27;s file checks: H.264, 1920×1080, 30 fps, 15.0 s, 450 frames, with an AAC music track. I also looked through frames from the final file, and all five copy lines appear in order, word for word, and are readable.
+
+**What it shows** (all drawn in code, no other text or logos):
+1. **0–2.8 s:** &quot;Know before you swim.&quot; rises up through a moving waterline at sunrise.
+2. **2.8–6.6 s:** &quot;Water quality at 2,400 beaches, checked every morning.&quot; A coastline of beach dots lights up as a dawn light sweeps across it, then the camera zooms into one dot.
+3. **6.6–9.4 s:** That dot becomes a large circle that turns green, amber, then red as &quot;Good.&quot; &quot;Fair.&quot; &quot;Stay out.&quot; land one by one.
+4. **9.4–12.4 s:** &quot;Rain warnings tell you how long to wait.&quot; Rain falls on the red circle while a ring around it runs down like a timer. The rain thins and the circle goes back to green.
+5. **12.4–15 s:** The ring shrinks into a tide-pool mark next to &quot;Tidepool.&quot;, and a &quot;Check my beach.&quot; button is tapped.
+
+There&#x27;s no voice-over. The soft synth music was generated in Python on this machine.
+
+**Things to know:**
+- **Setup:** I installed OpenMotion from the local source and registered its server in Claude Code. Its tools only load when a session starts, so I called the same server through a small script (`~/work/tools/mcp.mjs`) for every step: creating the project, saving, previewing and exporting. To use the tools directly in a future session, reconnect `openmotion` in `/mcp`.
+- **Studio preview:** the editable preview is at `http://localhost:4173/?session=f1ec3b43-ade1-44c5-83d6-80f73329a5f9&amp;project=651b11c3-3dd2-4b1f-a586-812da0afad3e`. This terminal can&#x27;t show a browser panel, so I checked it loads in a headless browser: the project opens with all five scenes and the music track, paused at 0:00.
+- **What I checked:** I reviewed still frames and audio levels, not normal-speed playback, so how smooth the motion looks and how the music sounds still need a human to watch and listen.
+- **Project:** `~/work/project` is a copy of the exact version that was rendered. The live project OpenMotion edits is in `~/openmotion-data/projects/651b11c3-…`, and my working notes are in `~/work/notes/STATE.md`.
+
+DELIVERABLE: ~/work/output/video.mp4</pre>
+</main></body></html>
