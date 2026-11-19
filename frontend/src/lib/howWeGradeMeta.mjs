@@ -30,7 +30,7 @@ export const HOW_WE_GRADE_UPDATED = "2026-11-18";
 
 export const HOW_WE_GRADE_META = {
   en: {
-    title: "How we grade skills: security grades and quality scores | Agent Skills Hub",
+    title: "How We Grade Skills: Security Grades & Quality Scores",
     description:
       `The ${RULE_COUNT} rules behind every Agent Skills Hub security grade, what Safe, Caution, Unsafe, Reject and Unaudited mean, the five source tiers and known limits.`,
   },

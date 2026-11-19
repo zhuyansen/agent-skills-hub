@@ -18,9 +18,10 @@
  * of their impressions: people search the name, and "owner/repo:" read like a path.
  */
 
-/** Rough results-page budget (~600px), plus the 3 that " by " takes over "/" (10-31) so the
- *  description keeps the room it had; a CJK character takes about two Latin widths. */
-export const TITLE_MAX_WIDTH = 68;
+/** What a results page shows before cutting (~580px, about 60 Latin characters); a CJK
+ *  character takes about two Latin widths. 68 until 2026-11-19, when the OpenSEO audit found
+ *  989 skill titles at 61-70 that Google would cut mid-word. */
+export const TITLE_MAX_WIDTH = 60;
 /** The h1 is not cut by a results page; this only keeps it readable. */
 export const HEADING_MAX_WIDTH = 110;
 /** Used when the description gives nothing usable, and for deleted repos. */
@@ -31,7 +32,7 @@ export const DESCRIPTION_LIMIT = 155;
 /** A clause narrower than this reads as a fragment. */
 const MIN_CLAUSE_WIDTH = 12;
 /** Long repo names still get a short clause; the results page cuts the rest. */
-const MIN_CLAUSE_BUDGET = 28;
+const MIN_CLAUSE_BUDGET = 16;
 /** A phrase break is only worth cutting at if it keeps this share of the budget. */
 const PHRASE_KEEP_RATIO = 0.5;
 /** How many dangling words to drop from the end at most ("... that lives in your"). */
