@@ -2229,7 +2229,8 @@
     "codepawl/67.js",
     "ezpeezee/beta-version-blox-studio",
     "ezpeezee/beta-version-toon-studio",
-    "hitkeeen/blender-ai-mcp-addon"
+    "hitkeeen/blender-ai-mcp-addon",
+    "nocodehack/make-short"
    ]
   },
   "related": [
@@ -3818,7 +3819,8 @@
     "onur-aslan/sdd",
     "yourconscience/tackroom",
     "avalonreset/cto-legends",
-    "Ramtoi/skill-tree"
+    "Ramtoi/skill-tree",
+    "DBAAZzz/skill-stow"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -3834,7 +3836,8 @@
     "wanghuan9/skilldock",
     "lingbol088-spec/auto-skill-installer",
     "The-Utopia-Studio/skills",
-    "gofastskill/fastskill"
+    "gofastskill/fastskill",
+    "robertoatila/jarvis-skill-registry"
    ]
   },
   "related": [
@@ -9011,7 +9014,14 @@
     "staryone/motlab",
     "kjagsadvisors/keeran.ai",
     "STARDUSTLC666/dsh-remotion",
-    "dovudhusan/viral-hook-reels-skill"
+    "dovudhusan/viral-hook-reels-skill",
+    "Viprasol-Tech/claude-video-editing-skills",
+    "lemomo-ai/lemo-animi",
+    "Felpborges/motion-3d-por-referencia",
+    "ekanshvcpkg/VBASE",
+    "cmak34/claude-remotion-skill",
+    "OrrrGE/autoRecording",
+    "OrrrGE/autoDemoRecordingSkill"
    ],
    "sub_skills": [
     {
@@ -9059,7 +9069,10 @@
     "krusemediallc/video-editor-agent",
     "zhouyuechuan2025-ui/ai-self-media-video-packaging-skill",
     "garycaogan/pixel-diary",
-    "aaronyi97/image-story-video-wizard"
+    "aaronyi97/image-story-video-wizard",
+    "OrrrGE/autoDemoRecordingSkill",
+    "nocodehack/make-short",
+    "nocodehack/nocodehack-roblox-engine"
    ],
    "tag_matches": [],
    "required_keywords": [
@@ -9585,7 +9598,8 @@
     "Spobi/context-carwash",
     "me2resh/apexyard",
     "SanderMuller/claude-statusline",
-    "Rylaa/fable5.2-opus5.5-orchestrator"
+    "Rylaa/fable5.2-opus5.5-orchestrator",
+    "thingineeer/claude-cat"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

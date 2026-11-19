@@ -3469,5 +3469,18 @@
    "tooling": 0.85
   },
   "kind": "tooling"
+ },
+ {
+  "repo": "thingineeer/claude-cat",
+  "stars": 10,
+  "description": "🐾 Claude Code status line for usage limits — weekly limit, Fable usage, 5-hour session, cost & context % with a cute cat. Offline-first.",
+  "scores": {
+   "hooks": 0.08,
+   "subagents": 0.03,
+   "statusline": 0.97,
+   "collection": 0.11,
+   "tooling": 0.91
+  },
+  "kind": "statusline"
  }
 ]

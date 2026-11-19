@@ -13659,5 +13659,31 @@
   "days": 32,
   "stars_per_day": 0.15625,
   "verdict": "admit"
+ },
+ {
+  "repo": "kira1752/sobis-youtube-skills",
+  "name": "sobis-youtube-skills",
+  "stars": 8,
+  "description": "Skill kustom Muse dari Divisi YouTube: naskah Shorts anti-slop + kemasan video dengan gerbang mutu",
+  "topics": [],
+  "created": "2026-11-18",
+  "pushed": "2026-11-18",
+  "source": "topic",
+  "readme_chars": 9047,
+  "names_model": false,
+  "on_subject": 0.76,
+  "is_software": 0.89,
+  "shows_result": 0.02,
+  "one_command_start": 0.05,
+  "specific_outcome": 0.67,
+  "complete_docs": 0.09,
+  "novel_angle": 0.66,
+  "shareable_output": 0.69,
+  "quality": 0.20750000000000002,
+  "tier": "低",
+  "hit_prior": 0.4566666666666666,
+  "days": 1,
+  "stars_per_day": 8.0,
+  "verdict": "low_quality"
  }
 ]

@@ -9772,5 +9772,131 @@
    "general": 0.03
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "Viprasol-Tech/claude-video-editing-skills",
+  "stars": 37,
+  "description": "40 free Claude Code skills that turn a raw clip into a finished video edit: auto captions, jump cuts, text behind the speaker, motion graphics for reels, shorts, YouTube and podcasts.",
+  "scores": {
+   "promo": 0.43,
+   "explainer": 0.43,
+   "music": 0.09,
+   "motion": 0.2,
+   "shorts": 0.91,
+   "editing": 0.97,
+   "demo": 0.2,
+   "story": 0.07,
+   "avatar": 0.06,
+   "general": 0.83
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "Felpborges/motion-3d-por-referencia",
+  "stars": 12,
+  "description": "Skill do Claude Code: motion graphics 3D em three.js a partir de uma referência, com Atlas de 18 estilos",
+  "scores": {
+   "promo": 0.28,
+   "explainer": 0.24,
+   "music": 0.1,
+   "motion": 0.71,
+   "shorts": 0.24,
+   "editing": 0.03,
+   "demo": 0.34,
+   "story": 0.15,
+   "avatar": 0.04,
+   "general": 0.08
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "ekanshvcpkg/VBASE",
+  "stars": 7,
+  "description": "VBASE — a Claude Code plugin that edits your videos. Raw take in, edited video out: cuts, captions, 3D in your hands, camera moves, review room.",
+  "scores": {
+   "promo": 0.69,
+   "explainer": 0.53,
+   "music": 0.06,
+   "motion": 0.07,
+   "shorts": 0.78,
+   "editing": 0.97,
+   "demo": 0.78,
+   "story": 0.1,
+   "avatar": 0.37,
+   "general": 0.19
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "cmak34/claude-remotion-skill",
+  "stars": 5,
+  "description": "Claude Skill - Generate video using remotion.",
+  "scores": {
+   "promo": 0.45,
+   "explainer": 0.38,
+   "music": 0.1,
+   "motion": 0.23,
+   "shorts": 0.16,
+   "editing": 0.12,
+   "demo": 0.63,
+   "story": 0.1,
+   "avatar": 0.05,
+   "general": 0.41
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "OrrrGE/autoRecording",
+  "stars": 5,
+  "description": "A Claude Code skill that records, renders and narrates polished demo videos of web apps.",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.37,
+   "music": 0.02,
+   "motion": 0.06,
+   "shorts": 0.05,
+   "editing": 0.31,
+   "demo": 0.97,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.09
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "OrrrGE/autoDemoRecordingSkill",
+  "stars": 5,
+  "description": "A Claude Code skill that records, renders and narrates polished demo videos of web apps.",
+  "scores": {
+   "promo": 0.28,
+   "explainer": 0.36,
+   "music": 0.02,
+   "motion": 0.07,
+   "shorts": 0.05,
+   "editing": 0.32,
+   "demo": 0.97,
+   "story": 0.05,
+   "avatar": 0.04,
+   "general": 0.08
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "lemomo-ai/lemo-animi",
+  "stars": 35,
+  "description": "Stop-motion shorts from one line, made with Codex: eight material styles, puppets drawn by an image model and moved frame by frame in code. 一句话，用 Codex 做一支定格动画短片。",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.14,
+   "music": 0.05,
+   "motion": 0.14,
+   "shorts": 0.08,
+   "editing": 0.03,
+   "demo": 0.19,
+   "story": 0.95,
+   "avatar": 0.03,
+   "general": 0.04
+  },
+  "kind": "story"
  }
 ]

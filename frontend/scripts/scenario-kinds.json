@@ -125,6 +125,7 @@
    "Fardeen26/launch-video-kit": "promo",
    "FavioVazquez/showtime": "general",
    "Felpborges/claude-video": "motion",
+   "Felpborges/motion-3d-por-referencia": "motion",
    "Finderchangchang/promo-video-skill": "promo",
    "FireRedTeam/FireRed-OpenStoryline": "editing",
    "GODGOD126/opus-5-5-86-styles-in-motion": "explainer",
@@ -181,6 +182,7 @@
    "Nealsun1993/talk-workbench": "explainer",
    "Neelshah1810/Claude-Video-Skills": "general",
    "OnurGumus/codebase-video": "explainer",
+   "OrrrGE/autoRecording": "promo",
    "PHANTOMTONYT/motion-design-skills": "general",
    "Phantomlau3674/voxstylehub-steven": "explainer",
    "Phucanh-MRT/mrtkeyword": "shorts",
@@ -212,6 +214,7 @@
    "V413havai/vaibhav-video-editor": "shorts",
    "VasiniDevi/motion-skills": "general",
    "Vibha-Ramprakash/claude-video-effects": "editing",
+   "Viprasol-Tech/claude-video-editing-skills": "general",
    "WhiteTowerAI/cut-as-code": "general",
    "Win-Hao/music-mv": "music",
    "WoYun520/gif-factory": "motion",
@@ -279,6 +282,7 @@
    "chrisopal/narrated-video-studio": "general",
    "chuspeeism/dashi-animationstyle": "explainer",
    "clipugc/ClipUGC-CLI": "shorts",
+   "cmak34/claude-remotion-skill": "general",
    "cocolayuan/videoclip-AI-skill": "editing",
    "codepawl/creator-generalist": "general",
    "codewithsiddique-04/3d-video-studio": "story",
@@ -314,6 +318,7 @@
    "echris6/motion-video-kit": "promo",
    "edenfunf/reelmimic": "story",
    "edotheDev/claude-video-kit": "general",
+   "ekanshvcpkg/VBASE": "editing",
    "ekomen77/erko-ai-video-engine": "explainer",
    "erduo1998-cell/erduo-broll-loop-engineering": "editing",
    "erduo1998-cell/video-script-builder": "craft",
@@ -423,6 +428,7 @@
    "lazypay/Archscribe": "motion",
    "leancoderkavy/premiere-pro-mcp": "editing",
    "ledbetterljoshua/functional-emotions-video": "music",
+   "lemomo-ai/lemo-animi": "story",
    "lemomo-ai/lemo-opuscar": "story",
    "leodavincs/kalem": "general",
    "leosssvip-dot/remotion-ad-video-skill": "promo",
@@ -471,8 +477,6 @@
    "nexu-io/openmotion": "general",
    "ninestonelee/youtube-shorts-factory": "shorts",
    "noamdorr/saas-product-demo-video": "promo",
-   "nocodehack/make-short": "story",
-   "nocodehack/nocodehack-roblox-engine": "story",
    "nolangz/pixel2motion": "motion",
    "nomicsadmin/editor-video-ia": "editing",
    "norahe0304-art/30x-video": "promo",
@@ -1338,6 +1342,7 @@
    "Brattlof/skillet": "general",
    "CoderAndyLee/skills-manager": "general",
    "ComeOnOliver/skillshub": "registry",
+   "DBAAZzz/skill-stow": "app",
    "Dimillian/CodexSkillManager": "app",
    "EYH0602/skillshub": "cli",
    "EfanWang/skills-manager": "cli",
@@ -1467,7 +1472,6 @@
    "qufei1993/skills-hub": "app",
    "razbakov/skill-mix": "app",
    "reorx/skm": "cli",
-   "robertoatila/jarvis-skill-registry": "general",
    "robotbird/skillkit": "app",
    "rohitg00/skillkit": "cli",
    "rolecraft-sh/rolecraft": "cli",
@@ -3555,6 +3559,7 @@
    "taras-mrtn/ccbar": "statusline",
    "tarekziade/claude-tools": "hooks",
    "tenondecrpc/cc-statusline": "statusline",
+   "thingineeer/claude-cat": "statusline",
    "ticpu/ccusage-statusline-rs": "tooling",
    "tintinweb/pi-subagents": "tooling",
    "tmcfarlane/team-avatar": "collection",
@@ -6198,7 +6203,6 @@
    "nirholas/3d-scene-mcp": "web3d",
    "nirholas/blender-mcp": "blender",
    "nirholas/three.ws": "gen3d",
-   "nocodehack/make-short": "blender",
    "op7418/guizang-game-skill": "web3d",
    "pascalorg/editor": "web3d",
    "per-simmons/unreal-agent-harness": "unreal",
@@ -6369,46 +6373,46 @@
    "Yusuke710/manim-skill": "art"
   }
  },
-  "claude-motion-alternatives": {
-    "kinds": [
-      {
-        "id": "studio",
-        "icon": "🎬",
-        "en": "Studios: brief in, MP4 out",
-        "zh": "一站式工作室：输入需求，输出 MP4"
-      },
-      {
-        "id": "engine",
-        "icon": "⚙️",
-        "en": "Render engines your agent writes for",
-        "zh": "渲染引擎：agent 写代码，它出视频"
-      },
-      {
-        "id": "skill",
-        "icon": "🧩",
-        "en": "Motion skills for your agent",
-        "zh": "给 agent 装的动效 Skill"
-      }
-    ],
-    "repos": {
-      "nexu-io/openmotion": "studio",
-      "OpenMontageInc/OpenMontage": "studio",
-      "FavioVazquez/showtime": "studio",
-      "digitalsamba/claude-code-video-toolkit": "studio",
-      "heygen-com/hyperframes": "engine",
-      "remotion-dev/remotion": "engine",
-      "0xS4N4TG/kinetograph": "engine",
-      "remotion-dev/skills": "skill",
-      "iart-ai/motion-skills": "skill",
-      "feitangyuan/onetake": "skill",
-      "bangtutorial/bang-motion": "skill",
-      "charlie947/motion-graphics-skills": "skill",
-      "echris6/motion-video-kit": "skill",
-      "Tejashmakwana/motionmaxxing": "skill",
-      "howseen-ai/claude-motion-design": "skill",
-      "op7418/guizang-product-video-skill": "skill",
-      "geekjourneyx/hyperframes-motion-director": "skill",
-      "vibe-motion/skills": "skill"
-    }
+ "claude-motion-alternatives": {
+  "kinds": [
+   {
+    "id": "studio",
+    "icon": "🎬",
+    "en": "Studios: brief in, MP4 out",
+    "zh": "一站式工作室：输入需求，输出 MP4"
+   },
+   {
+    "id": "engine",
+    "icon": "⚙️",
+    "en": "Render engines your agent writes for",
+    "zh": "渲染引擎：agent 写代码，它出视频"
+   },
+   {
+    "id": "skill",
+    "icon": "🧩",
+    "en": "Motion skills for your agent",
+    "zh": "给 agent 装的动效 Skill"
+   }
+  ],
+  "repos": {
+   "nexu-io/openmotion": "studio",
+   "OpenMontageInc/OpenMontage": "studio",
+   "FavioVazquez/showtime": "studio",
+   "digitalsamba/claude-code-video-toolkit": "studio",
+   "heygen-com/hyperframes": "engine",
+   "remotion-dev/remotion": "engine",
+   "0xS4N4TG/kinetograph": "engine",
+   "remotion-dev/skills": "skill",
+   "iart-ai/motion-skills": "skill",
+   "feitangyuan/onetake": "skill",
+   "bangtutorial/bang-motion": "skill",
+   "charlie947/motion-graphics-skills": "skill",
+   "echris6/motion-video-kit": "skill",
+   "Tejashmakwana/motionmaxxing": "skill",
+   "howseen-ai/claude-motion-design": "skill",
+   "op7418/guizang-product-video-skill": "skill",
+   "geekjourneyx/hyperframes-motion-director": "skill",
+   "vibe-motion/skills": "skill"
   }
+ }
 }

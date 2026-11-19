@@ -21620,5 +21620,38 @@
   "days": 14,
   "stars_per_day": 0.35714285714285715,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Carol-lyh/Jeveration",
+  "name": "Jeveration",
+  "stars": 20,
+  "description": "[arXiv] Jeveration: System One Models Now Generate. https://arxiv.org/abs/2611.24738",
+  "topics": [
+   "dense-prediction",
+   "image-generation",
+   "image-to-image",
+   "pytorch",
+   "text-to-image",
+   "vision-language-model"
+  ],
+  "created": "2026-11-18",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 5027,
+  "names_model": false,
+  "on_subject": 0.45,
+  "is_software": 0.98,
+  "shows_result": 0.87,
+  "one_command_start": 0.35,
+  "specific_outcome": 0.92,
+  "complete_docs": 0.96,
+  "novel_angle": 0.66,
+  "shareable_output": 0.87,
+  "quality": 0.775,
+  "tier": "高",
+  "hit_prior": 0.7999999999999999,
+  "days": 1,
+  "stars_per_day": 20.0,
+  "verdict": "off_topic"
  }
 ]

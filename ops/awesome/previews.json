@@ -735,6 +735,14 @@
   "type": "image/png",
   "bytes": 526672
  },
+ "DBAAZzz/skill-stow": {
+  "repo": "DBAAZzz/skill-stow",
+  "url": "https://raw.githubusercontent.com/DBAAZzz/skill-stow/HEAD/docs/screenshots/en/add.png",
+  "alt": "Add Skills: pick skills from a folder, with their check results",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 214469
+ },
  "DSY-Xueai/image2editable": {
   "repo": "DSY-Xueai/image2editable",
   "url": "https://raw.githubusercontent.com/DSY-Xueai/image2editable/HEAD/docs/images/demo-source-1.png",
@@ -1862,6 +1870,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 6377089
+ },
+ "OrrrGE/autoRecording": {
+  "repo": "OrrrGE/autoRecording",
+  "url": "https://raw.githubusercontent.com/OrrrGE/autoRecording/HEAD/docs/media/demo-poster.png",
+  "alt": "1-minute demo — click to watch",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 65086
  },
  "PHANTOMTONYT/motion-design-skills": {
   "repo": "PHANTOMTONYT/motion-design-skills",
@@ -3815,6 +3831,14 @@
   "type": "image/png",
   "bytes": 146675
  },
+ "ekanshvcpkg/VBASE": {
+  "repo": "ekanshvcpkg/VBASE",
+  "url": "https://raw.githubusercontent.com/ekanshvcpkg/VBASE/HEAD/docs/images/vbase-review-room.gif",
+  "alt": "Pinning a note on a frame, leaving a whole-film note, resolving a note and sendi",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 1034427
+ },
  "ekomen77/erko-ai-video-engine": {
   "repo": "ekomen77/erko-ai-video-engine",
   "url": "https://raw.githubusercontent.com/ekomen77/erko-ai-video-engine/HEAD/assets/demo_tr.gif",
@@ -5318,6 +5342,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 56392
+ },
+ "lemomo-ai/lemo-animi": {
+  "repo": "lemomo-ai/lemo-animi",
+  "url": "https://raw.githubusercontent.com/lemomo-ai/lemo-animi/HEAD/docs/readme/cards/clay-en.webp",
+  "alt": "01 · Clay Stop-motion: Oil-clay characters and sets with big squash-and-stretch ",
+  "score": 1.95,
+  "type": "image/webp",
+  "bytes": 27976
  },
  "lemomo-ai/lemo-opuscar": {
   "repo": "lemomo-ai/lemo-opuscar",
@@ -6854,6 +6886,14 @@
   "score": 1.95,
   "type": "image/png",
   "bytes": 254680
+ },
+ "thingineeer/claude-cat": {
+  "repo": "thingineeer/claude-cat",
+  "url": "https://raw.githubusercontent.com/thingineeer/claude-cat/HEAD/assets/screenshots/configure-wizard.gif",
+  "alt": "configure wizard demo",
+  "score": 4.55,
+  "type": "image/gif",
+  "bytes": 193719
  },
  "thmsgo18/presentation-forge": {
   "repo": "thmsgo18/presentation-forge",

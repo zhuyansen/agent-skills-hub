@@ -2812,5 +2812,19 @@
    "general": 0.86
   },
   "kind": "general"
+ },
+ {
+  "repo": "DBAAZzz/skill-stow",
+  "stars": 5,
+  "description": "Mac app for the skills of every AI agent (Claude Code, Codex, Cursor, Gemini CLI and 28 more): security check before install, per-agent on/off, updates with a diff, usage stats. Free, offline, no telemetry.",
+  "scores": {
+   "cli": 0.06,
+   "sync": 0.49,
+   "app": 0.96,
+   "registry": 0.18,
+   "team": 0.07,
+   "general": 0.12
+  },
+  "kind": "app"
  }
 ]
