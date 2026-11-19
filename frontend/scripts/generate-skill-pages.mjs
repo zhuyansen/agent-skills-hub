@@ -184,11 +184,9 @@ function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
 
 /** How many repos with a page share a name and description (filled in main()). */
 const SHARED_DESCRIPTION = new Map();
-// Same repo name and same description: two unrelated repos can share a generic description.
-const descriptionKey = (name, d) => {
-  const text = (d || "").trim().toLowerCase().replace(/\s+/g, " ");
-  return text.length < 20 ? "" : `${(name || "").toLowerCase()}\n${text}`;
-};
+// Two pages collide when their meta descriptions would read the same: same repo name, and a
+// description that is equal, missing, or only differs past the cut at DESCRIPTION_LIMIT.
+const descriptionKey = (name, d) => skillDescription(name || "", d || "");
 
 function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
   const {
@@ -356,7 +354,9 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const clause = isGone
     ? ` Archived record of ${repo_full_name} on Agent Skills Hub.`
     : ` Independent audit of ${repo_full_name} against ${RULE_COUNT} published rules.`;
-  let metaDesc = isGone ? verdict : "";
+  // A deleted repo's description is the verdict, which leaves no room for its name: three
+  // deleted repos shared one description (OpenSEO audit 2026-11-19). The name goes first.
+  let metaDesc = isGone ? truncate(`${repo_full_name}: ${verdict}`, LIMIT - 3) : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
   if (!isGone) metaDesc = skillDescription(repo_name, description, installs);
   // Copies of a repo keep its name and description word for word, so their pages had the same
@@ -888,7 +888,7 @@ async function main() {
 
   for (const s of skills) {
     const k = descriptionKey(s.repo_name, s.description);
-    if (k && hasPage(s)) SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
+    if (hasPage(s)) SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
   }
 
   // Generate skill pages
