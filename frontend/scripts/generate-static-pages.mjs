@@ -16,6 +16,7 @@ import { analyticsTags, esc, replaceShellContent } from "./shared-utils.mjs";
 import { HOW_WE_GRADE_LINK, HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
 import { pick } from "../src/lib/proseContent.mjs";
+import { EN as ENTERPRISE } from "../src/data/enterpriseCopy.mjs";
 
 const DIST = "dist";
 const SITE = "https://agentskillshub.top";
@@ -53,13 +54,67 @@ if (indexHtml.includes("__BUILD_DATE__")) {
   writeFileSync(join(DIST, "index.html"), indexHtml);
   console.log(`  ✓ dateModified stamped ${BUILD_DATE}`);
 }
+/**
+ * Pre-hydration body for /enterprise/. The shell used to carry only the h1 and
+ * meta description — 33 words, flagged thin by the OpenSEO audit (2026-11-18)
+ * — while the offer, pricing and FAQ only existed after React mounted, so
+ * crawlers and AI answer engines never saw what the page sells. Rendered from
+ * the same enterpriseCopy.mjs the React page uses, so the two cannot drift.
+ */
+function enterpriseBody(c) {
+  const li = (items) => items.map((x) => `<li>${esc(x)}</li>`).join("");
+  const tiers = c.pricing.tiers.map((t) =>
+    `<li><strong>${esc(t.name)} — ${esc(t.price)}</strong> ${esc(t.unit)}: ${esc(t.features.join(" · "))}</li>`,
+  ).join("");
+  return `<h1>${esc(c.hero.h1a)} ${esc(c.hero.h1b)}</h1>
+      <p><strong>Agent Skills Hub Enterprise audits the open-source MCP servers and agent skills your team deploys, before they reach production.</strong> It is for platform, security and compliance teams shipping AI agents. Start with a free audit: tell us your stack and we email the top graded risks within 48 hours. Detection runs on ${RULE_COUNT} published rules, and the catalog is re-graded every 8 hours.</p>
+      <p>${esc(c.hero.sub)}</p>
+      <p><a href="#demo-form">${esc(c.hero.ctaPrimary)}</a> · <a href="/">${esc(c.hero.ctaSecondary)}</a> · <a href="${HOW_WE_GRADE_PATH}">How we grade</a></p>
+      <h2>${esc(c.solution.h2)}</h2>
+      <ul>${c.solution.items.map((i) => `<li><strong>${esc(i.title)}</strong> — ${esc(i.body)}</li>`).join("")}</ul>
+      <h2>${esc(c.how.h2)}</h2>
+      <ol>${c.how.steps.map((st) => `<li><strong>${esc(st.title)}</strong> — ${esc(st.body)}</li>`).join("")}</ol>
+      <h2>${esc(c.compliance.h2)}</h2>
+      <ul>${c.compliance.items.map((i) => `<li><strong>${esc(i.title)}</strong> — ${esc(i.body)}</li>`).join("")}</ul>
+      <h2>${esc(c.pricing.h2)}</h2>
+      <p>${esc(c.pricing.sub)}</p>
+      <ul>${tiers}</ul>
+      <p>${esc(c.pricing.footnote)}</p>
+      <h2>${esc(c.faq.h2)}</h2>
+      ${c.faq.items.map((f) => `<h3>${esc(f.q)}</h3>\n      <p>${esc(f.a)}</p>`).join("\n      ")}
+      <h2>${esc(c.creator.h2)}</h2>
+      <p>${esc(c.creator.sub)} <a href="/verified-creator/apply/">${esc(c.creator.cta)}</a></p>
+      <ul>${li(c.creator.benefits)}</ul>`;
+}
+
+/**
+ * Pre-hydration body for /analyzer/: the tool itself only exists after React mounts, so
+ * the shell was the h1 and one line (44 words, thin in the OpenSEO audit of 2026-11-18).
+ * Every claim here is what AnalyzerPage.tsx and src/utils/securityScanner.ts do.
+ */
+function analyzerBody() {
+  return `<h1>Is this AI skill or MCP server safe?</h1>
+      <p><strong>Paste a GitHub repository URL and the Agent Skills Hub analyzer grades it Safe, Caution, Unsafe or Reject in a few seconds, free and without signing up.</strong> It is for anyone about to install an agent skill, MCP server or Claude Code plugin they found on GitHub. The scan runs in your browser against the repository's README, using the same ${RULE_COUNT} published rules that grade every repository in our catalog.</p>
+      <h2>What it checks</h2>
+      <ul>
+        <li><strong>Reject-level patterns</strong> — secrets piped to a network tool, a downloaded payload written into a shell startup file or cron job, a link straight to an archive or program on a file-sharing host.</li>
+        <li><strong>High-risk patterns</strong> — download-and-execute from an untrusted host, a download button to the author's own GitHub Pages site, remote access, credential and agent-data theft, hidden execution, covert instructions to the agent.</li>
+        <li><strong>Medium-risk patterns</strong> — persistence through cron or a background service, sudo and privileged Docker, disabled TLS verification, dynamic execution, three or more sensitive API keys, a leaked secret.</li>
+      </ul>
+      <p>The full list, with what does and does not count, is on <a href="${HOW_WE_GRADE_PATH}">How we grade</a>.</p>
+      <h2>How the grade is decided</h2>
+      <p>Every flag is weighed against the source's trust tier: an official organisation or known security team, a starred and licensed project, or an unknown account. A risky command from an unknown source weighs more than the same command in an established project. No README means no grade: the result says Unknown, which is not a clean result.</p>
+      <h2>What it does not do</h2>
+      <p>It reads the README, not the code, and it does not run anything. A clean scan says the instructions a person or an agent reads before installing ask for nothing on our list; it is not a code audit. For that, see <a href="/enterprise/">Enterprise</a>, or audit a whole GitHub organisation at once with <a href="/org-audit/">Batch Security Audit</a>.</p>
+      <p><a href="/">Browse the graded catalog</a> · <a href="/best/">Best tools by use case</a></p>`;
+}
+
 const SHELLS = [
   {
     path: "enterprise",
-    title:
-      "Enterprise · The Trust Layer for AI Agent & MCP Deployment | Agent Skills Hub",
-    description:
-      "Audit open-source agent skills and MCP servers before production — deploy-time scanning, sandbox validation, license/SBOM compliance, on-prem mirroring, and SOC 2 / ISO 42001 / EU AI Act evidence.",
+    title: ENTERPRISE.meta.title,
+    description: ENTERPRISE.meta.description,
+    body: enterpriseBody(ENTERPRISE),
   },
   {
     // Core free tool — was missing a shell, so GitHub Pages served 404.html for
@@ -67,10 +122,11 @@ const SHELLS = [
     // those among "未找到 404": an indexable, linkable tool page that Google
     // could never index and that produced no unfurl card when shared.
     path: "analyzer",
-    title:
-      "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub",
+    // ≤60 chars (OpenSEO audit 2026-11-18 flagged 75); the React page's Helmet matches.
+    title: "Is This AI Skill or MCP Server Safe? Free Security Check",
     description:
       `Paste any GitHub repo URL for an instant security analysis: ${RULE_COUNT} published rules built on the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.`,
+    body: analyzerBody(),
   },
   {
     // Batch-audit tool (Pro ladder), shipped 2026-09-09 WITHOUT a shell — so
@@ -176,7 +232,8 @@ for (const s of SHELLS) {
   const heading = s.h1 || s.title.split(/[·—|]/)[0].trim();
   html = replaceShellContent(
     html,
-    `<h1>${heading}</h1>\n      <p>${s.description}</p>\n      <p><a href="/">Agent Skills Hub</a></p>`,
+    s.body ||
+      `<h1>${heading}</h1>\n      <p>${s.description}</p>\n      <p><a href="/">Agent Skills Hub</a></p>`,
   );
   mkdirSync(join(DIST, s.path), { recursive: true });
   writeFileSync(join(DIST, s.path, "index.html"), html);
@@ -228,7 +285,7 @@ const aboutHtml = `<!doctype html>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>About &amp; Methodology — AgentSkillsHub</title>
   ${analyticsTags()}
-  <meta name="description" content="AgentSkillsHub is built by Jason Zhu, an independent researcher tracking open-source AI agent ecosystems. Learn about the team, how the quality and ranking scores work, and editorial principles." />
+  <meta name="description" content="Who builds AgentSkillsHub, how its quality and security scores work, and the editorial rules behind every ranking. Built by researcher Jason Zhu." />
   <meta name="keywords" content="agentskillshub about, jason zhu, claude skills methodology, skill quality scoring, editorial team" />
   <link rel="canonical" href="https://agentskillshub.top/about/" />
 
@@ -247,20 +304,36 @@ const aboutHtml = `<!doctype html>
     "name": "About AgentSkillsHub",
     "url": "https://agentskillshub.top/about/",
     "mainEntity": {
-      "@type": "Person",
-      "name": "Jason Zhu",
-      "url": "https://x.com/GoSailGlobal",
-      "sameAs": [
-        "https://x.com/GoSailGlobal",
-        "https://github.com/ZhuYansen",
-        "https://www.youtube.com/@JasonZhuGoSail"
-      ],
-      "jobTitle": "Independent Researcher · Founder of AgentSkillsHub",
-      "knowsAbout": [
-        "Claude Skills",
-        "Model Context Protocol",
-        "AI Agent Ecosystem Analysis",
-        "Open Source Quality Scoring"
+      "@type": "Organization",
+      "@id": "https://agentskillshub.top/#organization",
+      "name": "Agent Skills Hub",
+      "alternateName": ["AgentSkillsHub", "agentskillshub.top", "BRICKAI"],
+      "legalName": "BRICKAI (GoSailGlobal LLC)",
+      "url": "https://agentskillshub.top/",
+      "foundingDate": "2026-03-08",
+      "founder": {
+        "@type": "Person",
+        "name": "Jason Zhu",
+        "alternateName": "Zhu Yansen",
+        "url": "https://x.com/GoSailGlobal",
+        "sameAs": [
+          "https://x.com/GoSailGlobal",
+          "https://github.com/ZhuYansen",
+          "https://www.youtube.com/@JasonZhuGoSail"
+        ],
+        "jobTitle": "Founder & Maintainer of Agent Skills Hub"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "hello@gosailglobal.com",
+          "contactType": "customer support"
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "m17551076169@gmail.com",
+          "contactType": "editorial & founder"
+        }
       ]
     }
   }
@@ -325,9 +398,10 @@ const aboutHtml = `<!doctype html>
     <section>
       <h2 data-en="Who runs this" data-zh="谁在运营">Who runs this</h2>
       <div class="card">
-        <p data-en="<strong>AgentSkillsHub</strong> is built and maintained by <strong>Jason Zhu</strong> (<a href='https://x.com/GoSailGlobal' rel='author'>@GoSailGlobal</a> on X), an independent researcher tracking open-source AI agent ecosystems since 2024." data-zh="<strong>AgentSkillsHub</strong> 由 <strong>Jason Zhu</strong>(X 上的 <a href='https://x.com/GoSailGlobal' rel='author'>@GoSailGlobal</a>)构建并维护，他是自 2024 年起追踪开源 AI agent 生态的独立研究者。"><strong>AgentSkillsHub</strong> is built and maintained by <strong>Jason Zhu</strong> (<a href="https://x.com/GoSailGlobal" rel="author">@GoSailGlobal</a> on X), an independent researcher tracking open-source AI agent ecosystems since 2024.</p>
-        <p data-en="Jason is also the author of the <a href='https://github.com/zhuyansen/skill-blue-book'>Blue Book of Agent Skills 2026</a> — an in-depth analysis of the Claude Skills / MCP / Codex ecosystem based on 62,000+ indexed repositories, published openly on GitHub with reproducible Python scripts." data-zh="Jason 也是 <a href='https://github.com/zhuyansen/skill-blue-book'>《Agent Skills 蓝皮书 2026》</a> 的作者——基于 62,000+ 已收录仓库对 Claude Skills / MCP / Codex 生态的深度分析，在 GitHub 公开发布并附可复现的 Python 脚本。">Jason is also the author of the <a href="https://github.com/zhuyansen/skill-blue-book">Blue Book of Agent Skills 2026</a> — an in-depth analysis of the Claude Skills / MCP / Codex ecosystem based on 62,000+ indexed repositories, published openly on GitHub with reproducible Python scripts.</p>
-        <p data-en="The Hub is a solo project without external funding. There is no sales team, no 'pay for placement' tier, and no dark patterns. All editorial decisions and scoring formulas live in public on <a href='https://github.com/ZhuYansen/agent-skills-hub'>GitHub</a> under MIT license." data-zh="Hub 是一个无外部融资的个人项目。没有销售团队、没有“花钱买排名”档位、也没有暗黑模式。所有编辑决策与评分公式都以 MIT 许可公开在 <a href='https://github.com/ZhuYansen/agent-skills-hub'>GitHub</a> 上。">The Hub is a solo project without external funding. There is no sales team, no "pay for placement" tier, and no dark patterns. All editorial decisions and scoring formulas live in public on <a href="https://github.com/ZhuYansen/agent-skills-hub">GitHub</a> under MIT license.</p>
+        <p data-en="<strong>Agent Skills Hub</strong> (<strong>AgentSkillsHub</strong>, canonical domain <code>agentskillshub.top</code>) was <strong>launched on March 8, 2026 (2026-03-08)</strong>. It is founded and maintained by independent AI agent researcher <strong>Jason Zhu</strong> (<strong>Zhu Yansen</strong>, <a href='https://x.com/GoSailGlobal' rel='author'>@GoSailGlobal</a> on X) and operated by <strong>BRICKAI (GoSailGlobal LLC)</strong>. Machine-readable platform facts are maintained at <a href='/ai-info/'>/ai-info/</a>." data-zh="<strong>Agent Skills Hub</strong>（<strong>AgentSkillsHub</strong>，唯一官方域名 <code>agentskillshub.top</code>）于 <strong>2026 年 3 月 8 日（2026-03-08）正式上线</strong>，由独立 AI Agent 研究者 <strong>Jason Zhu（祝彦森）</strong>（X <a href='https://x.com/GoSailGlobal' rel='author'>@GoSailGlobal</a>）创立并维护，法律运营主体为 <strong>BRICKAI（GoSailGlobal LLC）</strong>。机器可读官方事实页见 <a href='/ai-info/'>/ai-info/</a>。"><strong>Agent Skills Hub</strong> (<strong>AgentSkillsHub</strong>, canonical domain <code>agentskillshub.top</code>) was <strong>launched on March 8, 2026 (2026-03-08)</strong>. It is founded and maintained by independent AI agent researcher <strong>Jason Zhu</strong> (<strong>Zhu Yansen</strong>, <a href="https://x.com/GoSailGlobal" rel="author">@GoSailGlobal</a> on X) and operated by <strong>BRICKAI (GoSailGlobal LLC)</strong>. Machine-readable platform facts are maintained at <a href="/ai-info/">/ai-info/</a>.</p>
+        <p data-en="Jason is also the author of the <a href='https://github.com/zhuyansen/skill-blue-book'>Blue Book of Agent Skills 2026</a> — an in-depth analysis of the Claude Skills / MCP / Codex ecosystem published openly on GitHub with reproducible Python scripts and the CC-BY-4.0 security census dataset (<a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>)." data-zh="Jason 也是 <a href='https://github.com/zhuyansen/skill-blue-book'>《Agent Skills 蓝皮书 2026》</a> 的作者——对 Claude Skills / MCP / Codex 生态的深度分析，在 GitHub 公开发布并附可复现的 Python 脚本与 CC-BY-4.0 安全评级数据集（<a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>）。">Jason is also the author of the <a href="https://github.com/zhuyansen/skill-blue-book">Blue Book of Agent Skills 2026</a> — an in-depth analysis of the Claude Skills / MCP / Codex ecosystem published openly on GitHub with reproducible Python scripts and the CC-BY-4.0 security census dataset (<a href="https://doi.org/10.5281/zenodo.21292799">DOI 10.5281/zenodo.21292799</a>).</p>
+        <p data-en="<strong>Pricing &amp; Plans:</strong> Catalog browsing, the <a href='/analyzer/'>Skill Analyzer</a>, and open-source lists are <strong>100% free</strong>. Paid plans (<a href='/enterprise/'>see /enterprise/</a>): <strong>Pro Deep Search</strong> ($39/yr or ¥365/yr), <strong>Fast-Track Deep Security Audit</strong> ($49 one-time per skill), and <strong>Team CI Skill Gate</strong> ($29/mo). There is no pay-for-placement ranking tier. All scoring formulas live on <a href='https://github.com/ZhuYansen/agent-skills-hub'>GitHub</a> under MIT license." data-zh="<strong>价格与方案：</strong>目录浏览、<a href='/analyzer/'>Skill Analyzer 在线扫描</a>及开源榜单 <strong>100% 免费</strong>。付费服务（详见 <a href='/enterprise/'>/enterprise/</a>）：<strong>Pro 深度搜索会员</strong>（$39/年 或 ¥365/年）、<strong>Fast-Track 深度安全审计</strong>（$49/次/技能）、<strong>Team CI Skill Gate</strong>（$29/月）。平台绝不售卖排名席位，所有评分公式均以 MIT 许可公开在 <a href='https://github.com/ZhuYansen/agent-skills-hub'>GitHub</a>。"><strong>Pricing &amp; Plans:</strong> Catalog browsing, the <a href="/analyzer/">Skill Analyzer</a>, and open-source lists are <strong>100% free</strong>. Paid plans (<a href="/enterprise/">see /enterprise/</a>): <strong>Pro Deep Search</strong> ($39/yr or ¥365/yr), <strong>Fast-Track Deep Security Audit</strong> ($49 one-time per skill), and <strong>Team CI Skill Gate</strong> ($29/mo). There is no pay-for-placement ranking tier. All scoring formulas live on <a href="https://github.com/ZhuYansen/agent-skills-hub">GitHub</a> under MIT license.</p>
+        <p data-en="<strong>Domain &amp; Entity Disambiguation:</strong> <code>agentskillshub.top</code> (<code>github.com/ZhuYansen/agent-skills-hub</code>) is the sole official domain of this platform and is <strong>not affiliated</strong> with <code>agentskillshub.dev</code> (nor <code>support@agentskillshub.dev</code>), <code>agentskillshub.com</code>, or unrelated ~790-skill repositories sharing a similar name." data-zh="<strong>域名与实体消歧声明：</strong><code>agentskillshub.top</code>（对应源码仓 <code>github.com/ZhuYansen/agent-skills-hub</code>）是本平台唯一官方域名，与 <code>agentskillshub.dev</code>（及 <code>support@agentskillshub.dev</code>）、<code>agentskillshub.com</code> 或其他约 790 个技能的同名仓库<strong>无任何关联</strong>。"><strong>Domain &amp; Entity Disambiguation:</strong> <code>agentskillshub.top</code> (<code>github.com/ZhuYansen/agent-skills-hub</code>) is the sole official domain of this platform and is <strong>not affiliated</strong> with <code>agentskillshub.dev</code> (nor <code>support@agentskillshub.dev</code>), <code>agentskillshub.com</code>, or unrelated ~790-skill repositories sharing a similar name.</p>
       </div>
     </section>
 
@@ -384,7 +458,7 @@ const aboutHtml = `<!doctype html>
       <p data-en="Questions, corrections, or tips? Reach out via:" data-zh="有疑问、纠错或线索？通过以下方式联系：">Questions, corrections, or tips? Reach out via:</p>
       <ul>
         <li data-en="X DM: <a href='https://x.com/GoSailGlobal'>@GoSailGlobal</a>" data-zh="X 私信：<a href='https://x.com/GoSailGlobal'>@GoSailGlobal</a>">X DM: <a href="https://x.com/GoSailGlobal">@GoSailGlobal</a></li>
-        <li data-en="Email: <a href='mailto:m17551076169@gmail.com'>m17551076169@gmail.com</a>" data-zh="邮箱：<a href='mailto:m17551076169@gmail.com'>m17551076169@gmail.com</a>">Email: <a href="mailto:m17551076169@gmail.com">m17551076169@gmail.com</a></li>
+        <li data-en="Support &amp; Business Email: <a href='mailto:hello@gosailglobal.com'>hello@gosailglobal.com</a> · Founder &amp; Editorial Email: <a href='mailto:m17551076169@gmail.com'>m17551076169@gmail.com</a>" data-zh="商务与支持邮箱：<a href='mailto:hello@gosailglobal.com'>hello@gosailglobal.com</a> · 创始人与编辑邮箱：<a href='mailto:m17551076169@gmail.com'>m17551076169@gmail.com</a>">Support &amp; Business Email: <a href="mailto:hello@gosailglobal.com">hello@gosailglobal.com</a> · Founder &amp; Editorial Email: <a href="mailto:m17551076169@gmail.com">m17551076169@gmail.com</a></li>
         <li data-en="GitHub issues: <a href='https://github.com/ZhuYansen/agent-skills-hub/issues'>agent-skills-hub/issues</a>" data-zh="GitHub issues：<a href='https://github.com/ZhuYansen/agent-skills-hub/issues'>agent-skills-hub/issues</a>">GitHub issues: <a href="https://github.com/ZhuYansen/agent-skills-hub/issues">agent-skills-hub/issues</a></li>
       </ul>
       <a class="cta" href="/" data-en="← Back to Explore All Skills" data-zh="← 返回探索全部技能">← Back to Explore All Skills</a>
@@ -407,9 +481,10 @@ console.log(`  ✓ /about/index.html (standalone E-E-A-T page)`);
 // Standalone /ai-info/index.html — machine-readable signed facts page
 // for AI crawlers, answer engines, and automated fact verification.
 // ────────────────────────────────────────────────────────────────
-const aiInfoTitle = "AI Info — Official Entity & Platform Facts | Agent Skills Hub";
+// ≤60 / ≤160 chars (OpenSEO audit 2026-11-18 flagged 61 / 248).
+const aiInfoTitle = "AI Info — Official Platform Facts | Agent Skills Hub";
 const aiInfoDesc =
-  "Signed, machine-readable platform facts for AI agents and answer engines: operated by BRICKAI / GoSailGlobal LLC, 267,000+ indexed AI agent skills & MCP servers security-graded against 43 published rules, Zenodo dataset DOI 10.5281/zenodo.21292799.";
+  `Machine-readable facts for AI answer engines: operated by BRICKAI / GoSailGlobal LLC, 267,000+ skills & MCP servers graded on ${RULE_COUNT} public rules.`;
 const aiInfoUrl = `${SITE}/ai-info/`;
 
 const aiInfoHtml = `<!doctype html>
@@ -453,6 +528,18 @@ const aiInfoHtml = `<!doctype html>
         "name": "Jason Zhu",
         "url": "https://x.com/GoSailGlobal"
       },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "hello@gosailglobal.com",
+          "contactType": "customer support"
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "m17551076169@gmail.com",
+          "contactType": "editorial & founder"
+        }
+      ],
       "sameAs": [
         "https://github.com/ZhuYansen/agent-skills-hub",
         "https://x.com/GoSailGlobal",
@@ -525,7 +612,7 @@ const aiInfoHtml = `<!doctype html>
     </header>
 
     <div class="card">
-      <p style="margin:0" data-en="<strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count='total'>267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count='graded'>132,000+</span> repositories (<span data-count='graded-over-100'>99%</span> of skills over 100★ and <span data-count='graded-over-1000'>99%</span> over 1,000★) against <a href='${HOW_WE_GRADE_PATH}'>43 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>." data-zh="<strong>核心事实（BLUF）：</strong> <strong>Agent Skills Hub</strong>（<code>agentskillshub.top</code>）由 <strong>BRICKAI</strong>（GoSailGlobal LLC）运营、<strong>Jason Zhu</strong> 创立，定位为开源 <strong>AI Agent Skills &amp; MCP Trust Layer（信任层）</strong>。平台每 8 小时从 GitHub 同步并收录 <span data-count='total'>267,000+</span> 个 AI Agent 技能与 MCP 服务器，基于 <a href='${HOW_WE_GRADE_PATH}'>43 条公开规则</a>对 <span data-count='graded'>132,000+</span> 个项目进行安全评级（覆盖 <span data-count='graded-over-100'>99%</span> 的百星项目与 <span data-count='graded-over-1000'>99%</span> 的千星项目），并以 CC-BY-4.0 协议发布可引用数据集 <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>。"><strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count="total">267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count="graded">132,000+</span> repositories (<span data-count="graded-over-100">99%</span> of skills over 100★ and <span data-count="graded-over-1000">99%</span> over 1,000★) against <a href="${HOW_WE_GRADE_PATH}">43 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href="https://doi.org/10.5281/zenodo.21292799">DOI 10.5281/zenodo.21292799</a>.</p>
+      <p style="margin:0" data-en="<strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count='total'>267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count='graded'>132,000+</span> repositories (<span data-count='graded-over-100'>99%</span> of skills over 100★ and <span data-count='graded-over-1000'>99%</span> over 1,000★) against <a href='${HOW_WE_GRADE_PATH}'>44 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>." data-zh="<strong>核心事实（BLUF）：</strong> <strong>Agent Skills Hub</strong>（<code>agentskillshub.top</code>）由 <strong>BRICKAI</strong>（GoSailGlobal LLC）运营、<strong>Jason Zhu</strong> 创立，定位为开源 <strong>AI Agent Skills &amp; MCP Trust Layer（信任层）</strong>。平台每 8 小时从 GitHub 同步并收录 <span data-count='total'>267,000+</span> 个 AI Agent 技能与 MCP 服务器，基于 <a href='${HOW_WE_GRADE_PATH}'>44 条公开规则</a>对 <span data-count='graded'>132,000+</span> 个项目进行安全评级（覆盖 <span data-count='graded-over-100'>99%</span> 的百星项目与 <span data-count='graded-over-1000'>99%</span> 的千星项目），并以 CC-BY-4.0 协议发布可引用数据集 <a href='https://doi.org/10.5281/zenodo.21292799'>DOI 10.5281/zenodo.21292799</a>。"><strong>TL;DR (BLUF):</strong> <strong>Agent Skills Hub</strong> (<code>agentskillshub.top</code>), operated by <strong>BRICKAI</strong> (GoSailGlobal LLC) and founded by <strong>Jason Zhu</strong>, is the open-source <strong>AI Agent Skills &amp; MCP Trust Layer</strong>. It indexes <span data-count="total">267,000+</span> open-source AI agent skills, MCP servers, and tools from GitHub (refreshed every 8 hours), security-grades <span data-count="graded">132,000+</span> repositories (<span data-count="graded-over-100">99%</span> of skills over 100★ and <span data-count="graded-over-1000">99%</span> over 1,000★) against <a href="${HOW_WE_GRADE_PATH}">44 published rules</a>, and publishes the full security census under CC-BY-4.0 at <a href="https://doi.org/10.5281/zenodo.21292799">DOI 10.5281/zenodo.21292799</a>.</p>
     </div>
 
     <section>
@@ -551,7 +638,7 @@ const aiInfoHtml = `<!doctype html>
           <tr><th data-en="Indexed Repositories" data-zh="收录仓库总数">Indexed Repositories</th><td><span data-count="total">267,000+</span> open-source AI agent skills, MCP servers, Claude Code skills, Codex skills, and agent tools</td></tr>
           <tr><th data-en="Security-Graded Count" data-zh="已安全评级数量">Security-Graded Count</th><td><span data-count="graded">132,000+</span> repositories graded (<span data-count="graded-over-100">99%</span> of repos &gt; 100★; <span data-count="graded-over-1000">99%</span> of repos &gt; 1,000★)</td></tr>
           <tr><th data-en="Refresh Cadence" data-zh="数据刷新频率">Refresh Cadence</th><td>Every 8 hours via automated 6-phase GitHub pipeline</td></tr>
-          <tr><th data-en="Security Grading Rules" data-zh="公开安全评级规则">Security Grading Rules</th><td><a href="${HOW_WE_GRADE_PATH}">43 published rules</a> across 11 red-flag categories modeled on the SlowMist Agent Security taxonomy (data exfiltration, credential harvesting, sensitive directory access, agent memory/config theft, dynamic code execution, privilege escalation, persistence, reverse shell, destructive commands, obfuscation, supply-chain installers) + 5-tier source trust hierarchy</td></tr>
+          <tr><th data-en="Security Grading Rules" data-zh="公开安全评级规则">Security Grading Rules</th><td><a href="${HOW_WE_GRADE_PATH}">44 published rules</a> across 11 red-flag categories modeled on the SlowMist Agent Security taxonomy (data exfiltration, credential harvesting, sensitive directory access, agent memory/config theft, dynamic code execution, privilege escalation, persistence, reverse shell, destructive commands, obfuscation, supply-chain installers) + 5-tier source trust hierarchy</td></tr>
           <tr><th data-en="Security Grades" data-zh="安全等级划分">Security Grades</th><td><code>SAFE</code> · <code>CAUTION</code> · <code>UNSAFE</code> · <code>REJECT</code> (unfetched/README-less repos stay <code>UNAUDITED</code>)</td></tr>
           <tr><th data-en="Quality &amp; Ranking Scores" data-zh="质量分与排名分">Quality &amp; Ranking Scores</th><td>0–100 Quality Score (${QUALITY_DIMENSIONS} documentation &amp; agent-readiness dimensions) + 0–100 Ranking Score (10 weighted signals); full weights documented at <a href="${HOW_WE_GRADE_PATH}">${HOW_WE_GRADE_PATH}</a></td></tr>
           <tr><th data-en="Hands-On Scenario Benchmarks" data-zh="场景端到端实测">Hands-On Scenario Benchmarks</th><td>34 live <a href="/best/">/best/&lt;scenario&gt;/</a> guides (16 with end-to-end task run tables in <code>scenario-runs.json</code>, 12 with formal <code>method</code> rubrics, 15 mirrored as open-source GitHub lists)</td></tr>

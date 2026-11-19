@@ -85,6 +85,49 @@ function synthesised(email: string): { name: string; company: string } {
   };
 }
 
+declare global {
+  interface Window {
+    __ashAttribution?: () => {
+      distinct_id?: string;
+      entry_page_type?: string;
+      entry_path?: string;
+      entry_source?: string;
+      entry_medium?: string;
+      page_type?: string;
+      path?: string;
+    };
+  }
+}
+
+const MESSAGE_MAX = 2000;
+
+function readAttribution(): { line: string; props: EventParams } {
+  if (typeof window === "undefined") return { line: "", props: {} };
+  const raw = window.__ashAttribution?.();
+  const distinctId = (raw?.distinct_id || window.posthog?.get_distinct_id?.() || "")
+    .replace(/[^a-zA-Z0-9_-]/g, "")
+    .slice(0, 80);
+  const entryType = (raw?.entry_page_type || "").slice(0, 40);
+  const entryPath = (raw?.entry_path || "").slice(0, 120);
+  const entrySource = (raw?.entry_source || "").slice(0, 80);
+  const currentPath = (raw?.path || window.location.pathname || "").slice(0, 120);
+  const parts = [
+    entryType ? `entry=${entryType}` : "",
+    entryPath ? `entry_path=${entryPath}` : "",
+    entrySource ? `src=${entrySource}` : "",
+    currentPath ? `page=${currentPath}` : "",
+    distinctId ? `ph=${distinctId}` : "",
+  ].filter(Boolean);
+  return {
+    line: parts.length ? `[Attribution: ${parts.join(" | ")}]` : "",
+    props: {
+      ...(entryType ? { entry_page_type: entryType } : {}),
+      ...(entrySource ? { entry_source: entrySource } : {}),
+      has_ph_id: Boolean(distinctId),
+    },
+  };
+}
+
 /** Writes the lead and fires attempt → submitted, or attempt → failed. Throws
  *  after firing `failed`, so a broken write can never look like no demand. */
 export async function submitEnterpriseLead(
@@ -94,20 +137,27 @@ export async function submitEnterpriseLead(
   params: EventParams = {},
 ): Promise<void> {
   const howFound = input.how_found?.trim() || "";
+  const attr = readAttribution();
   const eventParams: EventParams = {
     ...params,
+    ...attr.props,
     how_found: howFound || "unset",
   };
   trackEvent(events.attempt, eventParams);
   try {
     if (!supabase) throw new Error("Supabase not configured.");
     const fallback = synthesised(input.email);
-    const combinedMessage = [
-      howFound ? `[How found: ${howFound}]` : "",
-      input.message?.trim() || "",
-    ]
+    const prefix = [howFound ? `[How found: ${howFound}]` : "", input.message?.trim() || ""]
       .filter(Boolean)
       .join("\n");
+    const suffix = attr.line;
+    let combinedMessage = [prefix, suffix].filter(Boolean).join("\n");
+    if (combinedMessage.length > MESSAGE_MAX) {
+      const budget = Math.max(0, MESSAGE_MAX - suffix.length - 1);
+      combinedMessage = suffix
+        ? [prefix.slice(0, budget), suffix].filter(Boolean).join("\n").slice(0, MESSAGE_MAX)
+        : prefix.slice(0, MESSAGE_MAX);
+    }
     const { error } = await supabase.rpc("submit_enterprise_lead", {
       p_full_name: input.full_name || fallback.name,
       p_email: input.email,

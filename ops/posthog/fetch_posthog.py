@@ -161,7 +161,7 @@ def main():
                         sum(toFloatOrZero(toString(properties.revenue))) AS revenue_usd
                     FROM events
                     WHERE timestamp >= now() - INTERVAL {days} DAY
-                      AND event = 'purchase_completed'
+                      AND event IN ('purchase_completed', 'b2b_deal_won')
                     GROUP BY distinct_id
                 )
             SELECT
@@ -203,7 +203,7 @@ def main():
                 uniqExact(distinct_id) AS users_28d,
                 countIf(timestamp >= now() - INTERVAL 7 DAY) AS events_7d,
                 uniqExactIf(distinct_id, timestamp >= now() - INTERVAL 7 DAY) AS users_7d,
-                round(sumIf(toFloatOrZero(toString(properties.revenue)), event = 'purchase_completed'), 2) AS revenue_28d_usd
+                round(sumIf(toFloatOrZero(toString(properties.revenue)), event IN ('purchase_completed', 'b2b_deal_won')), 2) AS revenue_28d_usd
             FROM events
             WHERE timestamp >= now() - INTERVAL {days} DAY
               AND event IN (
@@ -232,7 +232,8 @@ def main():
                 'ci_gate_copy_snippet',
                 'org_audit_run',
                 'org_audit_pro_click',
-                'purchase_completed'
+                'purchase_completed',
+                'b2b_deal_won'
               )
             GROUP BY event
             ORDER BY users_28d DESC

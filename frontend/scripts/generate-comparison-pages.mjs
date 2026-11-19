@@ -117,15 +117,24 @@ function friendlyName(repoName) {
 
 function buildComparisonHtml(pair, skillA, skillB, assetTags, allPairs) {
   const year = new Date().getFullYear();
-  const nameA = skillA.repo_name;
-  const nameB = skillB.repo_name;
+  // Optional display names in comparison-pairs.json: some repo names say
+  // nothing on their own ("servers" for modelcontextprotocol/servers).
+  const nameA = pair.nameA || skillA.repo_name;
+  const nameB = pair.nameB || skillB.repo_name;
   const catLabelA = CATEGORY_LABELS[skillA.category] || "AI Tool";
   const catLabelB = CATEGORY_LABELS[skillB.category] || "AI Tool";
   const pageUrl = `${SITE}/compare/${pair.slug}/`;
   const ogImage = `${SITE}/og-image.png`;
 
-  const title = `${nameA} vs ${nameB}: Which AI Tool to Choose in ${year}?`;
-  const metaDesc = `Compare ${nameA} and ${nameB} side by side. Stars, language, license, quality score, and community activity. Find the best ${pair.keywords[0] || "AI tool"} for your project.`;
+  // ≤60-char title / ≤160-char description (OpenSEO audit 2026-11-18 flagged
+  // 2 titles at 62–64 and 7 descriptions at 161–184): drop the clause that
+  // doesn't fit rather than let search engines cut mid-word.
+  const longTitle = `${nameA} vs ${nameB}: Which AI Tool to Choose in ${year}?`;
+  const title = [longTitle, `${nameA} vs ${nameB}: Which to Choose in ${year}?`]
+    .find((t) => t.length <= 60) || `${nameA} vs ${nameB} (${year})`;
+  const descCore = `Compare ${nameA} and ${nameB} side by side: stars, language, license, and quality score.`;
+  const descCta = ` Find the best ${pair.keywords[0] || "AI tool"} for your project.`;
+  const metaDesc = (descCore + descCta).length <= 160 ? descCore + descCta : descCore;
   const keywords = [...pair.keywords, nameA, nameB, "comparison", "AI tools", "agent skills"].join(", ");
 
   const { linkTags } = assetTags;

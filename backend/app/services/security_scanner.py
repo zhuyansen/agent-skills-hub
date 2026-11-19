@@ -293,6 +293,29 @@ PAGES_DOWNLOAD_DESC = ("Its download button leads to a page on the author's own 
 # [![alt](image)](target): the image markdown is group 1, the link target group 2.
 _IMAGE_BUTTON = re.compile(r"\[(!\[[^\]]*\]\([^)\s]*\))\]\((https?://[^)\s]+)\)")
 
+# The same lure, served from a file host instead of GitHub Pages. 2026-11-18: a campaign of
+# ~900 copies of real projects (Simpleyyt/ai-manus' README under "ai--manus", "manus--ai",
+# "ai--manus2.0"…, the GitHub Copilot app's under "GitHub-Copilot-app"), each from a throwaway
+# account with 50–680 bought stars, all graded safe: the README is the original's, plus a
+# "GET — Manus" button straight to a .rar on Dropbox. Dry run over every catalog README naming a
+# file host (1,219): 870 link a file host to an archive or executable, and all 870 were the
+# campaign (four Dropbox archives between them). Real projects link their binaries to GitHub
+# releases or their own site. Reject, not high: the copies carry the original's license and
+# bought stars, which is exactly what the trust tiers soften a high-risk flag for — at high,
+# 697 of the 891 would have stayed at caution.
+FILE_HOST_FLAG = "file_host_archive_lure"
+FILE_HOST_DESC = ("Links straight to an archive or program on a file-sharing host (Dropbox, MediaFire, "
+                  "MEGA…) instead of a release, a package or install steps")
+FILE_HOSTS = frozenset({
+    "dropbox.com", "dropboxusercontent.com", "mediafire.com", "mega.nz", "mega.io", "gofile.io",
+    "pixeldrain.com", "anonfiles.com", "1drv.ms", "onedrive.live.com", "sendspace.com",
+    "workupload.com", "terabox.com", "wetransfer.com", "we.tl", "catbox.moe", "krakenfiles.com",
+    "qiwi.gg", "drive.google.com", "transfer.sh",
+})
+_ARCHIVE_PATH = re.compile(r"\.(?:rar|zip|7z|exe|msi|dmg|pkg|scr|bat|apk)$")
+# A link target: markdown "](url)" or an HTML href.
+_LINK_TARGET = re.compile(r"(?:\]\(|href=[\"'])(https?://[^)\s\"'>]+)")
+
 HIGH_RISK_FLAG_NAMES = (
     {p[1] for p in HIGH_RISK_PATTERNS} | {p[1] for p in PIPE_TO_SHELL_PATTERNS} | {PAGES_DOWNLOAD_FLAG}
 )
@@ -520,7 +543,7 @@ REJECT_PATTERNS: list[tuple[re.Pattern, str, str]] = [
      "backdoor_install", "Writes a downloaded payload into a shell startup file or cron job"),
 ]
 
-REJECT_FLAG_NAMES = {p[1] for p in REJECT_PATTERNS}
+REJECT_FLAG_NAMES = {p[1] for p in REJECT_PATTERNS} | {FILE_HOST_FLAG}
 
 
 def _is_in_code_block(text: str, match_pos: int) -> bool:
@@ -790,6 +813,22 @@ def _pages_download_lure_flags(skill: Skill, text: str) -> list[str]:
     return []
 
 
+def _file_host_lure_flags(text: str) -> list[str]:
+    """FILE_HOST_FLAG once if a link (not one shown as code) points at an archive or program
+    on a file-sharing host. The path must end in the file's extension: a folder or a share
+    page on the same host is how real projects publish datasets and slides."""
+    for match in _LINK_TARGET.finditer(text):
+        target = urlparse(match.group(1))
+        host = (target.hostname or "").lower()
+        if not any(host == h or host.endswith("." + h) for h in FILE_HOSTS):
+            continue
+        if not _ARCHIVE_PATH.search(target.path.lower()):
+            continue
+        if not _is_in_code_block(text, match.start()) and not _is_inline_code(text, match.start()):
+            return [FILE_HOST_FLAG]
+    return []
+
+
 def _agent_medium_flags(text: str) -> list[str]:
     """Flags from AGENT_MEDIUM_PATTERNS, skipping code blocks, quoted examples
     and negated advice.
@@ -839,6 +878,8 @@ class SecurityScanner:
             if any(not _is_cited_or_negated(readme_lower, m.start(), flag_name)
                    for m in pattern.finditer(readme_lower)):
                 flags.append(flag_name)
+
+        flags.extend(_file_host_lure_flags(readme_lower))
 
         if any(f in REJECT_FLAG_NAMES for f in flags):
             # Even Tier 1 orgs get flagged for reject patterns, but downgrade to unsafe
@@ -930,6 +971,8 @@ class SecurityScanner:
             return FENCED_DOWNLOAD_DESC
         if flag_name == PAGES_DOWNLOAD_FLAG:
             return PAGES_DOWNLOAD_DESC
+        if flag_name == FILE_HOST_FLAG:
+            return FILE_HOST_DESC
         for patterns in [HIGH_RISK_PATTERNS, PIPE_TO_SHELL_PATTERNS, MEDIUM_RISK_PATTERNS,
                          AGENT_MEDIUM_PATTERNS, SECRET_PATTERNS, REJECT_PATTERNS]:
             for _pat, name, desc in patterns:

@@ -21854,5 +21854,941 @@
     "reason_zh": "它的运行时只能动脸附近的小部件，抬不起手臂挥手；agent 说明原因后停下，没有去改这个工具。"
    }
   }
+ },
+ "claude-motion-alternatives": {
+  "type": "table",
+  "date": "2026-11-19",
+  "dir": "/best-runs/video/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/video-runs/RESULTS.md",
+  "title": [
+   "Claude Motion alternatives tested: the same 15-second film",
+   "实测对比：同一条 15 秒片子"
+  ],
+  "intro": [
+   "We had 12 of these tools make the same film in a throwaway sandbox, driven by Claude Code (Claude Opus 5.5): a 15-second promo for a made-up app, with five fixed lines of on-screen copy, at 1920 x 1080 and 30 frames per second, on a machine with no API keys for video, image or voice models. OpenMotion ran on 2026-11-19; the other 11 are from our video skill test of 2026-10-11, as is the control, Claude Code with no tool. Four things were checked from each file: it plays, it is the length and size asked for, every line of copy can be read in frames sampled twice a second, and the picture moves. How good a film looks is not scored. Claude Motion itself was not run: it is for Team and Enterprise plans only.",
+   "我们让其中 12 个工具在用完即删的沙箱里由 Claude Code（Claude Opus 5.5）调用，做同一条片子：给一个虚构应用做 15 秒宣传片，五句固定的画面文案，1920 x 1080、每秒 30 帧，机器上没有任何视频、图像或语音模型的密钥。OpenMotion 是 2026-11-19 跑的；其余 11 个和对照（不装工具的 Claude Code）来自我们 2026-10-11 的视频 skill 实测。每个文件查四件事：能播放、时长和尺寸符合要求、每句文案在每秒抽两帧的画面里都读得到、画面在动。片子好不好看不打分。Claude Motion 本身没有跑：它只开放给 Team 和 Enterprise 套餐。"
+  ],
+  "finding": [
+   "All 12 rendered a film that passed all four checks, with no line of copy missing and nothing added, and so did Claude Code with no tool, in 4.4 minutes. OpenMotion took 12.9 minutes and added music. Across the 12, time ran from 4.4 to 23.5 minutes, 8 added sound, and 9 have a look of their own, by our eye.",
+   "12 个全部渲染出了通过四项检查的成片，文案一句没少、也没有多加内容；不装工具的 Claude Code 也一样，用了 4.4 分钟。OpenMotion 用了 12.9 分钟，加了配乐。12 个里耗时从 4.4 到 23.5 分钟，8 个加了声音，按我们的眼睛看 9 个有自己的样子。"
+  ],
+  "gallery": {
+   "width": 960,
+   "height": 540,
+   "groups": [
+    {
+     "id": "control",
+     "title": [
+      "No skill installed (the control)",
+      "不装 skill（对照）"
+     ]
+    },
+    {
+     "id": "own",
+     "title": [
+      "A look of their own",
+      "有自己的样子"
+     ]
+    },
+    {
+     "id": "default",
+     "title": [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    }
+   ],
+   "items": [
+    {
+     "name": "No skill",
+     "src": "octocat__Hello-World.mp4",
+     "poster": "octocat__Hello-World.jpg",
+     "group": "control",
+     "caption": [
+      "4.4 min · sound",
+      "4.4 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "skills",
+     "src": "vibe-motion__skills.mp4",
+     "poster": "vibe-motion__skills.jpg",
+     "group": "own",
+     "caption": [
+      "4.4 min · sound",
+      "4.4 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "skills",
+     "src": "remotion-dev__skills.mp4",
+     "poster": "remotion-dev__skills.jpg",
+     "group": "default",
+     "caption": [
+      "4.5 min · no sound",
+      "4.5 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "claude-code-video-toolkit",
+     "src": "digitalsamba__claude-code-video-toolkit.mp4",
+     "poster": "digitalsamba__claude-code-video-toolkit.jpg",
+     "group": "default",
+     "caption": [
+      "5.5 min · sound",
+      "5.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-skills",
+     "src": "iart-ai__motion-skills.mp4",
+     "poster": "iart-ai__motion-skills.jpg",
+     "group": "own",
+     "caption": [
+      "6.5 min · sound",
+      "6.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-graphics-skills",
+     "src": "charlie947__motion-graphics-skills.mp4",
+     "poster": "charlie947__motion-graphics-skills.jpg",
+     "group": "default",
+     "caption": [
+      "7.0 min · sound",
+      "7.0 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "claude-motion-design",
+     "src": "howseen-ai__claude-motion-design.mp4",
+     "poster": "howseen-ai__claude-motion-design.jpg",
+     "group": "own",
+     "caption": [
+      "7.9 min · sound",
+      "7.9 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "onetake",
+     "src": "feitangyuan__onetake.mp4",
+     "poster": "feitangyuan__onetake.jpg",
+     "group": "own",
+     "caption": [
+      "8.5 min · sound",
+      "8.5 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "OpenMontage",
+     "src": "calesthio__OpenMontage.mp4",
+     "poster": "calesthio__OpenMontage.jpg",
+     "group": "own",
+     "caption": [
+      "8.6 min · no sound",
+      "8.6 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "guizang-product-video-skill",
+     "src": "op7418__guizang-product-video-skill.mp4",
+     "poster": "op7418__guizang-product-video-skill.jpg",
+     "group": "own",
+     "caption": [
+      "8.6 min · sound",
+      "8.6 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "openmotion",
+     "src": "nexu-io__openmotion.mp4",
+     "poster": "nexu-io__openmotion.jpg",
+     "group": "own",
+     "caption": [
+      "12.9 min · sound",
+      "12.9 分钟 · 有声音"
+     ]
+    },
+    {
+     "name": "motion-video-kit",
+     "src": "echris6__motion-video-kit.mp4",
+     "poster": "echris6__motion-video-kit.jpg",
+     "group": "own",
+     "caption": [
+      "21.8 min · no sound",
+      "21.8 分钟 · 无声音"
+     ]
+    },
+    {
+     "name": "hyperframes",
+     "src": "heygen-com__hyperframes.mp4",
+     "poster": "heygen-com__hyperframes.jpg",
+     "group": "own",
+     "caption": [
+      "23.5 min · no sound",
+      "23.5 分钟 · 无声音"
+     ]
+    }
+   ],
+   "note": [
+    "The films, side by side. Press play on any of them; each is 15 seconds.",
+    "成片并排放在这里。点任意一条播放，每条 15 秒。"
+   ]
+  },
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "Checks passed (of 4)",
+    "通过检查（共 4 项）"
+   ],
+   [
+    "Lines of copy readable (of 5)",
+    "读得到的文案（共 5 句）"
+   ],
+   [
+    "Sound",
+    "声音"
+   ],
+   [
+    "Look, by eye",
+    "观感（肉眼判断）"
+   ],
+   [
+    "Time to make",
+    "制作耗时"
+   ],
+   [
+    "Tested",
+    "测试日期"
+   ]
+  ],
+  "see": [
+   "Watch it and see the frames →",
+   "看成片和抽帧 →"
+  ],
+  "evidence": [
+   "The film",
+   "成片"
+  ],
+  "line_label": [
+   "Claude Motion alternatives test:",
+   "Claude Motion 平替实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html"
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "basis": [
+    "after having each make the same film",
+    "让每个都做同一条片子之后"
+   ],
+   "more": [
+    "Watch the films →",
+    "看成片 →"
+   ],
+   "rule": [
+    "Not ranked: all 12 tools, and Claude Code with no tool, passed the same four checks (a playable file, the length and size asked for, all five lines of copy readable, a picture that moves). OpenMotion ran on 2026-11-19, the rest on 2026-10-11. Claude Motion itself was not tested: it is for Team and Enterprise plans only.",
+    "不排名次：12 个工具和不装工具的 Claude Code 都通过了同样的四项检查（能播放的文件、时长和尺寸符合要求、五句文案都读得到、画面在动）。OpenMotion 是 2026-11-19 跑的，其余是 2026-10-11。Claude Motion 本身没有测：它只开放给 Team 和 Enterprise 套餐。"
+   ],
+   "picks": [
+    {
+     "repo": "nexu-io/openmotion",
+     "role": [
+      "For a Claude Motion-style studio you run yourself",
+      "想要自己能跑的 Claude Motion 式工作室"
+     ],
+     "why": [
+      "It passed every check in 12.9 minutes with music made in code and a look of its own, and leaves an editable project in a local studio. It installs a studio and an MCP server, so setup is heavier than a skill.",
+      "12.9 分钟通过全部检查，配乐用代码生成，有自己的样子，还留下一个能在本机工作室里接着改的项目。它要装工作室和 MCP 服务，比装一个 skill 重。"
+     ]
+    },
+    {
+     "repo": "remotion-dev/skills",
+     "role": [
+      "To build your own design in Remotion",
+      "想用 Remotion 做自己的设计"
+     ],
+     "why": [
+      "Remotion's own skills: reliable rendering in 4.5 minutes. The film it makes unprompted is close to the default, so bring your own design direction.",
+      "Remotion 官方的 skill：渲染稳定，4.5 分钟。不给方向时它做出的片子接近默认风格，所以设计方向要你自己给。"
+     ]
+    },
+    {
+     "repo": "feitangyuan/onetake",
+     "role": [
+      "For a film with one idea running through it",
+      "想要一个贯穿全片的创意"
+     ],
+     "why": [
+      "A single drop of water carries all five lines with no cuts.",
+      "一滴水不切镜地带出全部五句。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Know before you pick:",
+    "选之前要知道："
+   ],
+   "avoid": [
+    {
+     "repo": "heygen-com/hyperframes",
+     "why": [
+      "the most-starred renderer here took 23.5 minutes on a 15-second brief",
+      "这里星数最高的渲染器，15 秒的需求做了 23.5 分钟"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: you may not need one for a simple promo. Claude Code with no tool made a film that passed every check in 4.4 minutes. A tool earns its place with a look, a workflow, or footage to edit.",
+    "不管选哪个：简单的宣传片可能根本不需要工具。不装工具的 Claude Code 用 4.4 分钟做出了一条通过全部检查的成片。工具的价值在于风格、流程，或者处理你已有的素材。"
+   ]
+  },
+  "runs": {
+   "vibe-motion/skills": {
+    "ran": true,
+    "stars": 1315,
+    "sheet": "vibe-motion__skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "4.4 min",
+      "4.4 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 4.4 min (2026-10-11)",
+      "4.4 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "remotion-dev/skills": {
+    "ran": true,
+    "stars": 5005,
+    "sheet": "remotion-dev__skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "4.5 min",
+      "4.5 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 4.5 min (2026-10-11)",
+      "4.5 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ],
+    "note": "Remotion's own skills: a solid film in 4.5 minutes, no sound.",
+    "note_zh": "Remotion 官方的 skill：4.5 分钟出一条扎实的成片，没有声音。"
+   },
+   "digitalsamba/claude-code-video-toolkit": {
+    "ran": true,
+    "stars": 2198,
+    "sheet": "digitalsamba__claude-code-video-toolkit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "5.5 min",
+      "5.5 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 5.5 min (2026-10-11)",
+      "5.5 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "iart-ai/motion-skills": {
+    "ran": true,
+    "stars": 610,
+    "sheet": "iart-ai__motion-skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "6.5 min",
+      "6.5 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 6.5 min (2026-10-11)",
+      "6.5 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "A drawn beach scene whose weather changes with the copy; music made in code.",
+    "note_zh": "一个手绘海滩场景，天气随文案变化；配乐用代码生成。"
+   },
+   "charlie947/motion-graphics-skills": {
+    "ran": true,
+    "stars": 174,
+    "sheet": "charlie947__motion-graphics-skills.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "Close to the no-skill film",
+      "接近不装 skill 的成片",
+      ""
+     ],
+     [
+      "7.0 min",
+      "7.0 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 7.0 min (2026-10-11)",
+      "7.0 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "close to the no-skill film",
+      "接近不装 skill 的成片"
+     ]
+    ]
+   },
+   "howseen-ai/claude-motion-design": {
+    "ran": true,
+    "stars": 408,
+    "sheet": "howseen-ai__claude-motion-design.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "7.9 min",
+      "7.9 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 7.9 min (2026-10-11)",
+      "7.9 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "feitangyuan/onetake": {
+    "ran": true,
+    "stars": 2080,
+    "sheet": "feitangyuan__onetake.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.5 min",
+      "8.5 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.5 min (2026-10-11)",
+      "8.5 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "One drop of water carries the whole film from line to line, with no cuts.",
+    "note_zh": "一滴水贯穿全片，从一句带到下一句，没有切镜。"
+   },
+   "calesthio/OpenMontage": {
+    "ran": true,
+    "stars": 64239,
+    "sheet": "calesthio__OpenMontage.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.6 min",
+      "8.6 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.6 min (2026-10-11)",
+      "8.6 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Runs a whole production pipeline and still needed no paid model for this brief; bold colour blocks.",
+    "note_zh": "跑的是一整条制作流水线，这条需求仍然没用到付费模型；大色块风格。"
+   },
+   "op7418/guizang-product-video-skill": {
+    "ran": true,
+    "stars": 762,
+    "sheet": "op7418__guizang-product-video-skill.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "8.6 min",
+      "8.6 分钟",
+      "num"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 8.6 min (2026-10-11)",
+      "8.6 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ]
+   },
+   "nexu-io/openmotion": {
+    "ran": true,
+    "stars": 11972,
+    "sheet": "nexu-io__openmotion.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "Yes",
+      "有"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "12.9 min",
+      "12.9 分钟",
+      "num"
+     ],
+     [
+      "2026-11-19",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 12.9 min (2026-11-19)",
+      "12.9 分钟做出 15 秒测试片（2026-11-19）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "with sound",
+      "带声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Installs a local studio and MCP server; drew a coastline of beach dots, a status circle under rain and a timer ring, with music made in code.",
+    "note_zh": "会在本机装一个工作室和 MCP 服务；画了一条亮起的海滩点海岸线、雨中的状态圆和倒计时环，配乐用代码生成。"
+   },
+   "echris6/motion-video-kit": {
+    "ran": true,
+    "stars": 1080,
+    "sheet": "echris6__motion-video-kit.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "21.8 min",
+      "21.8 分钟",
+      "substantial"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 21.8 min (2026-10-11)",
+      "21.8 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "The fullest picture here, with drawn scenes and a phone mock-up; it took 21.8 minutes.",
+    "note_zh": "这里画面最满的一条，有手绘场景和手机样机；用了 21.8 分钟。"
+   },
+   "heygen-com/hyperframes": {
+    "ran": true,
+    "stars": 60291,
+    "sheet": "heygen-com__hyperframes.html",
+    "cells": [
+     [
+      "4/4",
+      null,
+      "touch-ups"
+     ],
+     [
+      "5/5",
+      null
+     ],
+     [
+      "No",
+      "无"
+     ],
+     [
+      "A look of its own",
+      "有自己的样子",
+      "touch-ups"
+     ],
+     [
+      "23.5 min",
+      "23.5 分钟",
+      "substantial"
+     ],
+     [
+      "2026-10-11",
+      null
+     ]
+    ],
+    "bits": [
+     [
+      "made the 15-second test film in 23.5 min (2026-10-11)",
+      "23.5 分钟做出 15 秒测试片（2026-10-11）"
+     ],
+     [
+      "all four checks passed",
+      "四项检查全部通过"
+     ],
+     [
+      "no sound",
+      "没有声音"
+     ],
+     [
+      "a look of its own",
+      "有自己的样子"
+     ]
+    ],
+    "note": "Cream paper and thin lines: the sparest film here, and the slowest to make at 23.5 minutes.",
+    "note_zh": "米白底、细线条：这里最克制的一条，也是做得最慢的，23.5 分钟。"
+   }
+  }
  }
 }

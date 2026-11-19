@@ -51,12 +51,25 @@
           if (u.hostname !== window.location.hostname) refHost = u.hostname;
         } catch (e) {}
       }
-      ph.register_once({
+      var ft = {
         entry_page_type: pt,
         entry_path: window.location.pathname,
         entry_source: sp.get("utm_source") || refHost || "(direct)",
         entry_medium: sp.get("utm_medium") || (refHost ? "referral" : "(none)")
-      });
+      };
+      ph.register_once(ft);
+      window.__ashAttribution = function () {
+        var gp = typeof ph.get_property === "function" ? function (k) { return ph.get_property(k); } : function () { return ""; };
+        return {
+          distinct_id: typeof ph.get_distinct_id === "function" ? (ph.get_distinct_id() || "") : "",
+          entry_page_type: gp("entry_page_type") || ft.entry_page_type,
+          entry_path: gp("entry_path") || ft.entry_path,
+          entry_source: gp("entry_source") || ft.entry_source,
+          entry_medium: gp("entry_medium") || ft.entry_medium,
+          page_type: pageType(window.location.pathname),
+          path: window.location.pathname
+        };
+      };
     },
     before_send: function (ev) {
       if (!ev) return ev;

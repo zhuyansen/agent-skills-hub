@@ -5,6 +5,7 @@
 
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { isFeaturedRepo } from "./featured-repos.mjs";
+import { withoutCloneCampaigns } from "./clone-campaigns.mjs";
 
 export const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 export const SUPABASE_ANON_KEY =
@@ -336,6 +337,13 @@ export function shouldIndex(skill) {
   return false;
 }
 
+/**
+ * Category pages with fewer entries than this are emitted noindex, follow and
+ * left out of the sitemaps: a 1-entry category is a thin list page (OpenSEO
+ * audit 2026-11-18: /category/education/ at 125 words).
+ */
+export const MIN_CATEGORY_INDEX = 10;
+
 /** Minimum stars to generate a static page at all */
 export const MIN_STARS_FOR_PAGE = 50;
 
@@ -522,7 +530,7 @@ export async function fetchAllSkills() {
     );
   }
   console.log(`  ✓ fetchAllSkills: ${skills.length} rows`);
-  return skills;
+  return withoutCloneCampaigns(skills);
 }
 
 /**

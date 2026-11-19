@@ -616,5 +616,19 @@
     "t": "动画 Skill",
     "k": ["动画", "动效", "gsap", "lottie", "精灵图", "像素动画", "manim", "骨骼动画", "动态图标", "微交互"],
     "d": "Claude Code 和 Codex 的动画 skill,带安全评级:GSAP 网页动效、Lottie 与 SVG 动画、游戏精灵图、骨骼与 3D 动画、动态图解和 Manim 数学动画。安装前先核查。"
-  }
+  },
+    "claude-motion-alternatives": {
+        "t": "Claude Motion 平替",
+        "k": [
+            "claude motion",
+            "claude motion 平替",
+            "claude motion 替代",
+            "动效视频",
+            "代码做视频",
+            "hyperframes",
+            "remotion",
+            "openmotion"
+        ],
+        "d": "不开 Team 套餐也能用的 Claude Motion 开源平替：OpenMotion、HyperFrames、Remotion 及配套 agent skill，用代码把文字、图表和图片做成 MP4，每个都附安全评级。"
+    }
 }

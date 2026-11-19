@@ -165,10 +165,11 @@ const SECTIONS = [
     title: ["What we look for", "我们查什么"],
     blocks: [
       { type: "p", text: [`${RULE_COUNT} rules in three levels.`, `${RULE_COUNT} 条规则，分三级。`] },
-      { type: "h3", text: ["Reject (2)", "Reject 级（2 条）"] },
+      { type: "h3", text: ["Reject (3)", "Reject 级（3 条）"] },
       { type: "ul", items: [
         ["Secrets piped to a network tool.", "把密钥通过管道交给网络工具。"],
         ["A downloaded payload written into a shell startup file or a cron job.", "把下载来的载荷写进 shell 启动文件或 cron 任务。"],
+        ["A link straight to an archive or program on a file-sharing host (Dropbox, MediaFire, MEGA and the like) instead of a release, a package or install steps. Copies of real projects with bought stars use it to hand out malware; stars and a license don't soften it, because those are what the copies fake. A shared folder or page on the same host does not count, and neither does a link shown as code.", "直接链到网盘上的压缩包或程序（Dropbox、MediaFire、MEGA 之类），而不是发布页、软件包或安装步骤。刷了星的真项目仿冒仓库用它分发恶意软件；星数和许可证不会让它降级，因为这两样正是仿冒品伪造的。同一网盘上的共享文件夹或页面不算，写在代码里展示的链接也不算。"],
       ] },
       { type: "h3", text: ["High risk (22)", "高风险（22 条）"] },
       { type: "ul", items: HIGH_RISK },

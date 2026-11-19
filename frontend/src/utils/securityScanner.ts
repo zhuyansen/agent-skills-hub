@@ -263,13 +263,26 @@ const FENCED_DOWNLOAD: PatternDef = [/(?!)/, "fenced_download_exec", "medium", "
 const PAGES_DOWNLOAD: PatternDef = [/(?!)/, "pages_download_lure", "high", "Its download button leads to a page on the author's own GitHub Pages site instead of a release, a package or install steps"];
 // [![alt](image)](target): the image markdown is group 1, the link target group 2.
 const IMAGE_BUTTON = /\[(!\[[^\]]*\]\([^)\s]*\))\]\((https?:\/\/[^)\s]+)\)/g;
+// A link straight to an archive or program on a file-sharing host: the ai--manus / GitHub-Copilot-app
+// clone campaign found 2026-11-18 (backend FILE_HOST_FLAG says why). Never matched as a pattern itself.
+const FILE_HOST: PatternDef = [/(?!)/, "file_host_archive_lure", "critical", "Links straight to an archive or program on a file-sharing host (Dropbox, MediaFire, MEGA…) instead of a release, a package or install steps"];
+const FILE_HOSTS = [
+  "dropbox.com", "dropboxusercontent.com", "mediafire.com", "mega.nz", "mega.io", "gofile.io",
+  "pixeldrain.com", "anonfiles.com", "1drv.ms", "onedrive.live.com", "sendspace.com",
+  "workupload.com", "terabox.com", "wetransfer.com", "we.tl", "catbox.moe", "krakenfiles.com",
+  "qiwi.gg", "drive.google.com", "transfer.sh",
+];
+const ARCHIVE_PATH = /\.(?:rar|zip|7z|exe|msi|dmg|pkg|scr|bat|apk)$/;
+// A link target: markdown "](url)" or an HTML href.
+const LINK_TARGET = /(?:\]\(|href=["'])(https?:\/\/[^)\s"'>]+)/g;
 
-const REJECT_NAMES = new Set(REJECT_PATTERNS.map(p => p[1]));
+// file_host_archive_lure is reject-level too (backend FILE_HOST_FLAG says why).
+const REJECT_NAMES = new Set([...REJECT_PATTERNS, FILE_HOST].map(p => p[1]));
 const HIGH_NAMES = new Set([...HIGH_PATTERNS, ...PIPE_PATTERNS, PAGES_DOWNLOAD].map(p => p[1]));
 const MED_NAMES = new Set([...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD].map(p => p[1]));
 
 // All patterns indexed by flag name for description lookup
-const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD, PAGES_DOWNLOAD];
+const ALL_PATTERNS = [...REJECT_PATTERNS, ...HIGH_PATTERNS, ...PIPE_PATTERNS, ...MED_PATTERNS, ...AGENT_MED_PATTERNS, ...SECRET_PATTERNS, FENCED_DOWNLOAD, PAGES_DOWNLOAD, FILE_HOST];
 const DESC_MAP = new Map(ALL_PATTERNS.map(([, name, sev, desc]) => [name, { severity: sev, description: desc }]));
 
 export interface ScanContext {
@@ -497,6 +510,28 @@ function pagesDownloadLureFlags(text: string, ctx: ScanContext): string[] {
   return [];
 }
 
+function isFileHostArchive(target: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(target);
+  } catch {
+    return false;
+  }
+  const host = url.hostname.toLowerCase();
+  return FILE_HOSTS.some(h => host === h || host.endsWith(`.${h}`)) && ARCHIVE_PATH.test(url.pathname.toLowerCase());
+}
+
+// A folder or share page on the same host is how real projects publish data, so only a path ending in
+// the file's extension counts. Mirrors the backend's _file_host_lure_flags.
+function fileHostLureFlags(text: string): string[] {
+  for (const m of text.matchAll(LINK_TARGET)) {
+    const pos = m.index ?? 0;
+    if (!isFileHostArchive(m[1])) continue;
+    if (!isInCodeBlock(text, pos) && !isInlineCode(text, pos)) return [FILE_HOST[1]];
+  }
+  return [];
+}
+
 function agentMediumFlags(text: string): string[] {
   const found: string[] = [];
   for (const [re, name] of AGENT_MED_PATTERNS) {
@@ -548,6 +583,7 @@ export function scanReadme(
   for (const [re, name] of REJECT_PATTERNS) {
     if (firstUncited(re, text, name) !== -1) flags.push(name);
   }
+  flags.push(...fileHostLureFlags(text));
 
   if (flags.some(f => REJECT_NAMES.has(f))) {
     const grade = trustTier <= 2 ? "unsafe" : "reject";

@@ -44,9 +44,10 @@ const COMPARE_ROWS = 20; // rows in the comparison table
 // The card's title and body already open the skill page ("View Details" x 209 led the
 // page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
 // A subject that already names its kind of thing ("AI Design Tools", "Database MCP Servers").
+// "alternatives" names its kind too ("Claude Motion Alternatives", 11-18).
 // "bots" plural only: "Open-Source Telegram Bots for Fun & AI" is complete, a singular
 // title like "Discord Bot" still reads "Discord Bot Tools".
-const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?|bots)\b/i;
+const SUBJECT_NOUN = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?|bots|alternatives)\b/i;
 
 /** The words the page competes for: `serp_subject` when set, else the title. The <title>,
  *  H1, guide headings, meta description and ItemList all use it, so they name one thing
@@ -670,10 +671,10 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // ("best postgres mcp 2026"), so a long subject drops the count before the year.
   const heads = canClaim
     ? [`${subject}: ${itemCount} Security-Graded (${year})`, `${subject}: ${itemCount} Graded (${year})`,
-       `${subject}: Graded (${year})`, `${subject}: ${itemCount} Graded`]
+       `${subject}: Graded (${year})`, `${subject}: ${itemCount} Graded`, `${subject} (${year})`]
     : [`${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`,
        `${subject}: ${itemCount} Compared (${year})`, `${subject}: Compared (${year})`,
-       `${subject}: ${itemCount} Compared`];
+       `${subject}: ${itemCount} Compared`, `${subject} (${year})`];
   const head = heads.find((h) => h.length <= TITLE_MAX) || heads[heads.length - 1];
   const branded = `${head} | Agent Skills Hub`;
   const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");
@@ -1116,7 +1117,7 @@ async function main() {
 
     scenarioSkillCounts[scenario.slug] = skills.length + subSkillCards(scenario, allSkills).length;
     fps[scenario.slug] = pageFingerprint(scenario, skills, allSkills); // before the build can touch them
-    built.push({ scenario, path: `/best/${scenario.slug}/`, html: buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills) });
+    built.push({ scenario, count: scenarioSkillCounts[scenario.slug], path: `/best/${scenario.slug}/`, html: buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills) });
     console.log(`  \u2713 /best/${scenario.slug}/ (${skills.length} skills)`);
     generated++;
   }
@@ -1128,6 +1129,17 @@ async function main() {
 
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`\nScenario pages: ${generated} generated + 1 index, ${skipped} skipped (${elapsed}s)`);
+}
+
+/**
+ * Meta description for a Chinese twin. Most scenario-zh.json `d` lines are a
+ * one-clause tagline (23–69 chars; OpenSEO audit 2026-11-18 flagged them under
+ * the 70 minimum), so lines under 70 get the page's facts appended: how many
+ * projects it lists and that each is graded. Under 70 + ~62 stays below 160.
+ */
+function zhMetaDescription(d, count) {
+  if (d.length >= 70 || !count) return d;
+  return `${d}共收录 ${count} 个开源 skill、MCP 服务器与工具，每个都附安全评级（Safe / Caution / Unsafe）与质量评分，每 8 小时更新。`;
 }
 
 // The /best/ index in Chinese: its English description is built in the template.
@@ -1149,7 +1161,7 @@ function writeBestPages(built) {
     const zhDir = join(DIST, ...zhPathOf(b.path).split("/").filter(Boolean));
     mkdirSync(zhDir, { recursive: true });
     writeFileSync(join(zhDir, "index.html"),
-      zhTwin(enHtml, { enPath: b.path, description: b.scenario ? b.scenario.zhDesc : INDEX_ZH_DESC, twinPaths }));
+      zhTwin(enHtml, { enPath: b.path, description: b.scenario ? zhMetaDescription(b.scenario.zhDesc, b.count) : INDEX_ZH_DESC, twinPaths }));
   }
   return live.length;
 }

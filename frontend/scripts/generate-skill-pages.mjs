@@ -34,7 +34,7 @@ import { fileURLToPath } from "url";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
-  extractAssetTags, shouldIndex, isIndexedSkillPage, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, trustBlock, gradeState,
+  extractAssetTags, shouldIndex, isIndexedSkillPage, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, MIN_CATEGORY_INDEX, trustBlock, gradeState,
   admittedByReview, hasAuditPage,
 } from "./shared-utils.mjs";
 
@@ -636,16 +636,33 @@ ${breadcrumbLd}
 
 /* ── build category page ──────────────────────── */
 
-function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
+const TITLE_MAX = 60;
+const BRAND_SUFFIX = " | Agent Skills Hub";
+/** Append the brand suffix only when the whole title still fits TITLE_MAX. */
+function withBrandSuffix(base) {
+  return base.length + BRAND_SUFFIX.length <= TITLE_MAX ? base + BRAND_SUFFIX : base;
+}
+
+function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories, hasPage) {
   const catLabel = CATEGORY_LABELS[catSlug] || "AI Tool";
   const pageUrl = `${SITE}/category/${catSlug}/`;
   const copy = CATEGORY_COPY[catSlug];
-  const title = copy
-    ? `${copy.title.replace("{year}", new Date().getFullYear())} | Agent Skills Hub`
-    : `Best ${catLabel} — ${catSkills.length}+ Open-Source Skills & MCP Servers | Agent Skills Hub`;
+  // Titles ≤60 chars and descriptions ≤160 (OpenSEO audit 2026-11-18 flagged
+  // 9 category titles at 71–77 and 4 descriptions at 226–307): the brand
+  // suffix is only added when it still fits, and curated categories carry a
+  // separate metaDescription so the long intro stays on-page only.
+  const baseTitle = copy
+    ? copy.title.replace("{year}", new Date().getFullYear())
+    : `Best ${catLabel} — ${catSkills.length}+ Graded Skills & MCP Servers`;
+  const title = withBrandSuffix(baseTitle);
   const metaDesc = copy
-    ? copy.intro
+    ? copy.metaDescription || copy.intro
     : `Browse ${catSkills.length}+ open-source ${catLabel} — quality-scored, ranked by stars, compared side-by-side. Updated every 8 hours.`;
+  // A category with a handful of entries is a thin list page (education had 1
+  // → 125 words). Keep it reachable, but out of the index until it fills up.
+  const robotsMeta = catSkills.length < MIN_CATEGORY_INDEX
+    ? `\n  <meta name="robots" content="noindex, follow" />`
+    : "";
   const catHeading = copy ? copy.heading : `Best ${catLabel}`;
 
   const { scriptTags, linkTags } = assetTags;
@@ -679,9 +696,15 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
 
   const skillRows = catSkills.slice(0, 100).map((s, i) => {
     const desc = s.description ? esc(s.description.slice(0, 100)) : "";
+    // Small categories reach below the 50-star page floor, and those repos have
+    // no /skill/ page: linking there was 18 of the 27 broken internal links in
+    // the OpenSEO audit of 2026-11-18. They link to GitHub instead.
+    const href = hasPage(s)
+      ? `/skill/${esc(s.repo_full_name)}/`
+      : `https://github.com/${esc(s.repo_full_name)}" rel="nofollow noopener" target="_blank`;
     return `<tr>
         <td style="padding:8px 4px;font-size:14px;color:#64748b">${i + 1}</td>
-        <td style="padding:8px"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
+        <td style="padding:8px"><a href="${href}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
         <td style="padding:8px;text-align:right;white-space:nowrap;font-size:14px">&#9733; ${starsK(s.stars)}</td>
         <td style="padding:8px;color:#64748b;font-size:13px">${esc(s.language || "")}</td>
       </tr>`;
@@ -699,7 +722,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories) {
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(title)}</title>
-  <meta name="description" content="${esc(metaDesc)}" />
+  <meta name="description" content="${esc(metaDesc)}" />${robotsMeta}
   <meta name="keywords" content="${esc(catLabel)}, Agent Skills, open source, AI tools, ${catSlug}" />
 
   <meta property="og:title" content="${esc(title)}" />
@@ -845,6 +868,8 @@ async function main() {
   // A reviewed-only page lists every repo its review kept, under the floor too, not only the
   // ones in `admit_reviewed`: /best/seo-tools/ linked 7 of them to 404s (2026-10-17).
   for (const name of reviewedOnlyRepos(scenarioDefs)) admitted.add(name);
+  /** Whether this run writes a /skill/ page for the repo; links elsewhere must agree. */
+  const hasPage = (s) => s.stars >= MIN_STARS_FOR_PAGE || admitted.has(s.repo_full_name.toLowerCase());
 
   // Generate skill pages
   let ok = 0;
@@ -862,7 +887,7 @@ async function main() {
 
     // Phase 2.1: Only generate pages for skills worth crawling (stars >= MIN_STARS_FOR_PAGE)
     const indexed = isIndexedSkillPage(skill);
-    if (skill.stars < MIN_STARS_FOR_PAGE && !admitted.has(skill.repo_full_name.toLowerCase())) {
+    if (!hasPage(skill)) {
       skipped++;
       continue;
     }
@@ -900,7 +925,7 @@ async function main() {
     mkdirSync(dir, { recursive: true });
     writeFileSync(
       join(dir, "index.html"),
-      buildCategoryHtml(catSlug, catSkills, assetTags, allCategories),
+      buildCategoryHtml(catSlug, catSkills, assetTags, allCategories, hasPage),
     );
     catCount++;
   }

@@ -15,6 +15,7 @@
 | feitangyuan/onetake | 2080 | 4 | 5 | 15.0 | 1920x1080 @ 30.0 | yes | 45% | - | 8.5 |
 | calesthio/OpenMontage | 64239 | 4 | 5 | 15.0 | 1920x1080 @ 30.0 | no | 14% | - | 8.6 |
 | op7418/guizang-product-video-skill | 762 | 4 | 5 | 15.0 | 1920x1080 @ 30.0 | yes | 7% | - | 8.6 |
+| nexu-io/openmotion | 11972 | 4 | 5 | 15.02 | 1920x1080 @ 30.0 | yes | 10% | - | 12.9 |
 | echris6/motion-video-kit | 1080 | 4 | 5 | 15.0 | 1920x1080 @ 30.0 | no | 3% | - | 21.8 |
 | heygen-com/hyperframes | 60291 | 4 | 5 | 15.0 | 1920x1080 @ 30.0 | no | 38% | - | 23.5 |
 

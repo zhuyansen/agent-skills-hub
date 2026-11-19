@@ -304,7 +304,7 @@ export function AnalyzerPage() {
         <title>
           {isZh
             ? "这个 AI Skill / MCP Server 安全吗？免费安全检查 — Agent Skills Hub"
-            : "Is This AI Skill or MCP Server Safe? Free Security Check — Agent Skills Hub"}
+            : "Is This AI Skill or MCP Server Safe? Free Security Check"}
         </title>
         <meta
           name="description"

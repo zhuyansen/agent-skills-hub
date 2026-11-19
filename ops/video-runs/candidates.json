@@ -94,5 +94,11 @@
   "kind": "promo",
   "stars": 174,
   "grade": "safe"
+ },
+ {
+  "repo": "nexu-io/openmotion",
+  "kind": "general",
+  "stars": 11972,
+  "why": "added 2026-11-19 for the Claude Motion page and episode: the open-source Claude Motion alternative, same Tidepool brief"
  }
 ]

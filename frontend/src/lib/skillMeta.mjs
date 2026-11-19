@@ -135,9 +135,16 @@ export function fitClause(clause, budget) {
 }
 
 /** "theclaymethod/unslop" -> "unslop by theclaymethod": the name people search for comes first. */
+// 2026-11-18 (OpenSEO audit, 1,000 skill titles over 60): 94% ran 61–68, inside the budget
+// above; the 6% beyond it were long repo names, where " by <owner>" pushed the minimum clause
+// past the results page ("datamodel-code-generator by datamodel-code-generator: …", 81).
+// The owner goes when it repeats the repo name or leaves the clause no room.
 function titleHead(repoFullName) {
   const [owner, repo] = repoFullName.split("/");
-  return repo ? `${repo} by ${owner}` : repoFullName;
+  if (!repo) return repoFullName;
+  const full = `${repo} by ${owner}`;
+  const crowded = displayWidth(`${full}: `) + MIN_CLAUSE_BUDGET > TITLE_MAX_WIDTH;
+  return owner.toLowerCase() === repo.toLowerCase() || crowded ? repo : full;
 }
 
 /** "<repo> by <owner>: <description clause>", or the fallback when the description gives nothing usable. */

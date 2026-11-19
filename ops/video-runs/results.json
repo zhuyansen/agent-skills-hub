@@ -423,5 +423,30 @@
   "still_share": 0.28,
   "minutes": 7.0,
   "commit": "dfc4284d9f2d"
+ },
+ {
+  "repo": "nexu-io/openmotion",
+  "kind": "general",
+  "stars": 11972,
+  "why": "added 2026-11-19 for the Claude Motion page and episode: the open-source Claude Motion alternative, same Tidepool brief",
+  "ran": true,
+  "checks": {
+   "playable": true,
+   "spec": true,
+   "copy": true,
+   "moves": true
+  },
+  "passed": 4,
+  "lines_readable": 5,
+  "missing_lines": [],
+  "other_text": [],
+  "seconds": 15.02,
+  "size": "1920x1080",
+  "fps": 30.0,
+  "audio": true,
+  "mean_change": 0.0296,
+  "still_share": 0.1,
+  "minutes": 12.9,
+  "commit": "76c3efcd0d62"
  }
 ]

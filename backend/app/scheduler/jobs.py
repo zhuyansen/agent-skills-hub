@@ -826,6 +826,19 @@ async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool =
             logger.warning("Case-dedup skipped: %s", dedup_exc)
             db.rollback()
 
+        # Clone-campaign backstop: the search queries re-find the copies on every
+        # sync, so they are removed after every upsert (rule in clone_campaigns.py).
+        try:
+            from app.services import clone_campaigns
+            raw = db.connection().connection.cursor()
+            removed = clone_campaigns.delete(raw)
+            db.commit()
+            if removed:
+                logger.info("Clone-campaign cleanup removed %d rows", removed)
+        except Exception as clone_exc:
+            logger.warning("Clone-campaign cleanup skipped: %s", clone_exc)
+            db.rollback()
+
         # Refresh DB connection before scoring — the upsert phase may have
         # taken minutes and PgBouncer could have closed the connection.
         try:

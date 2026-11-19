@@ -6368,5 +6368,47 @@
    "xixicc186/clawd-emotes-skill": "lottie",
    "Yusuke710/manim-skill": "art"
   }
- }
+ },
+  "claude-motion-alternatives": {
+    "kinds": [
+      {
+        "id": "studio",
+        "icon": "🎬",
+        "en": "Studios: brief in, MP4 out",
+        "zh": "一站式工作室：输入需求，输出 MP4"
+      },
+      {
+        "id": "engine",
+        "icon": "⚙️",
+        "en": "Render engines your agent writes for",
+        "zh": "渲染引擎：agent 写代码，它出视频"
+      },
+      {
+        "id": "skill",
+        "icon": "🧩",
+        "en": "Motion skills for your agent",
+        "zh": "给 agent 装的动效 Skill"
+      }
+    ],
+    "repos": {
+      "nexu-io/openmotion": "studio",
+      "OpenMontageInc/OpenMontage": "studio",
+      "FavioVazquez/showtime": "studio",
+      "digitalsamba/claude-code-video-toolkit": "studio",
+      "heygen-com/hyperframes": "engine",
+      "remotion-dev/remotion": "engine",
+      "0xS4N4TG/kinetograph": "engine",
+      "remotion-dev/skills": "skill",
+      "iart-ai/motion-skills": "skill",
+      "feitangyuan/onetake": "skill",
+      "bangtutorial/bang-motion": "skill",
+      "charlie947/motion-graphics-skills": "skill",
+      "echris6/motion-video-kit": "skill",
+      "Tejashmakwana/motionmaxxing": "skill",
+      "howseen-ai/claude-motion-design": "skill",
+      "op7418/guizang-product-video-skill": "skill",
+      "geekjourneyx/hyperframes-motion-director": "skill",
+      "vibe-motion/skills": "skill"
+    }
+  }
 }

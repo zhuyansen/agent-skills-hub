@@ -51,7 +51,8 @@ test("every directory states every field, with English and Chinese", () => {
 
 test("the title's count is the number of directories compared", () => {
   assert.equal(COMPARED_COUNT, DIRECTORY_ENTRIES.length);
-  assert.match(DIRECTORIES_META.en.title, new RegExp(`: ${COMPARED_COUNT} Directories Compared \\(\\d{4}\\) \\| Agent Skills Hub$`));
+  assert.match(DIRECTORIES_META.en.title, new RegExp(`: ${COMPARED_COUNT} Compared \\(\\d{4}\\)$`));
+  assert.ok(DIRECTORIES_META.en.title.length <= 60, DIRECTORIES_META.en.title);
   assert.match(DIRECTORIES_META.zh.title, new RegExp(`：${COMPARED_COUNT} 个目录对比（\\d{4}） \\| Agent Skills Hub$`));
 });
 

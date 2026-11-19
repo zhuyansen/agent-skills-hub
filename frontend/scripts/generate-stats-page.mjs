@@ -61,6 +61,7 @@ const PATTERNS = {
   curl_pipe_shell: ["Pipes a downloaded script into a shell (curl | sh)", "把下载的脚本直接交给 shell 执行（curl | sh）"],
   fenced_download_exec: ["An install step in a code block runs a script from an untrusted host", "代码块里的安装步骤会从不受信任的主机下载并执行脚本"],
   pages_download_lure: ["A download button leads to the author's own GitHub Pages site", "下载按钮指向作者自己的 GitHub Pages 页面"],
+  file_host_archive_lure: ["A link goes straight to an archive on a file-sharing host", "链接直接指向网盘上的压缩包"],
   ssl_disabled: ["Turns off TLS certificate checks", "关闭 TLS 证书校验"],
   eval_usage: ["Runs code with eval()", "用 eval() 动态执行代码"],
   docker_privileged: ["Runs Docker in privileged mode", "以特权模式运行 Docker"],

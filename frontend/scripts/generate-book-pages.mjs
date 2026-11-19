@@ -285,14 +285,24 @@ async function main() {
   console.log(`  ✓ /book/index.html`);
 
   // 2. Each chapter
-  for (const c of CHAPTERS) {
+  // Chapter shells carried only the chapter prose, so the crawler found no way
+  // out of any chapter (OpenSEO audit 2026-11-18: 16 pages with no outgoing
+  // links). A contents / previous / next strip closes the loop.
+  const chapterNav = (i) => {
+    const prev = CHAPTERS[i - 1], next = CHAPTERS[i + 1];
+    return `<nav aria-label="章节导航"><p><a href="/book/">← 全书目录</a>` +
+      (prev ? ` · <a href="/book/${prev.slug}/">上一章：${esc(prev.title)}</a>` : "") +
+      (next ? ` · <a href="/book/${next.slug}/">下一章：${esc(next.title)}</a>` : "") +
+      ` · <a href="/">Agent Skills Hub 首页</a></p></nav>`;
+  };
+  for (const [i, c] of CHAPTERS.entries()) {
     const mdPath = join(BOOK_DIR, `${c.slug}.md`);
     if (!existsSync(mdPath)) {
       console.warn(`  ⚠ Missing ${mdPath}, skipping`);
       continue;
     }
     const md = readFileSync(mdPath, "utf-8");
-    const noscriptBody = mdToHtml(md);
+    const noscriptBody = `${mdToHtml(md)}\n${chapterNav(i)}`;
     const title = `第 ${c.number} 章 · ${c.title} · Skill 蓝皮书 2026`;
     const html = customizeHtml(baseHtml, {
       title,

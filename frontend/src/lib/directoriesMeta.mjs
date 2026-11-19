@@ -28,7 +28,7 @@ export const DIRECTORIES_PUBLISHED = "2026-11-10";
  */
 export const DIRECTORIES_UPDATED = "2026-11-17";
 
-/** The page's heading; its title adds the site name. */
+/** The page's heading; the Chinese title adds the site name, the English one is shorter. */
 export const DIRECTORIES_HEADLINE = {
   en: `Where to Find Agent Skills and MCP Servers: ${COMPARED_COUNT} Directories Compared (${YEAR})`,
   zh: `去哪找 Agent Skills 和 MCP 服务器：${COMPARED_COUNT} 个目录对比（${YEAR}）`,
@@ -36,7 +36,8 @@ export const DIRECTORIES_HEADLINE = {
 
 export const DIRECTORIES_META = {
   en: {
-    title: `${DIRECTORIES_HEADLINE.en} | Agent Skills Hub`,
+    // Not the headline plus the site name: that ran 93 characters (OpenSEO audit 2026-11-18).
+    title: `Agent Skills & MCP Server Directories: ${COMPARED_COUNT} Compared (${YEAR})`,
     description: `${COMPARED_COUNT} directories of agent skills and MCP servers, ours included, compared from their own pages: what each lists, what its security check reads, paid options and agent access.`,
   },
   zh: {

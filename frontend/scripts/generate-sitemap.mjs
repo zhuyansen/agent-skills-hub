@@ -30,6 +30,8 @@ import { SUB_SKILL_MANIFEST } from "./sub-skills.mjs";
 import { buildSitemapIndex } from "./sitemap-index.mjs";
 import { MODIFIED_PATH, declaredDateIn } from "./scenario-modified.mjs";
 import { isFeaturedRepo } from "./featured-repos.mjs";
+import { MIN_CATEGORY_INDEX } from "./shared-utils.mjs";
+import { withoutCloneCampaigns } from "./clone-campaigns.mjs";
 
 const SUPABASE_URL = "https://vknzzecmzsfmohglpfgm.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -70,7 +72,7 @@ async function fetchAllSkills() {
   // forced a sort + skip on every page and exceeded Supabase's statement_timeout
   // (57014), failing deploys. Ordering by the indexed `id` PK keeps each page O(limit).
   while (true) {
-    const url = `${SUPABASE_URL}/rest/v1/skills?select=id,repo_full_name,stars,last_commit_at,category,description,readme_size&order=id.asc&id=gt.${lastId}&limit=${limit}`;
+    const url = `${SUPABASE_URL}/rest/v1/skills?select=id,repo_full_name,author_name,created_at,stars,last_commit_at,category,description,readme_size&order=id.asc&id=gt.${lastId}&limit=${limit}`;
     // Retry a single page before giving up: Supabase timeout (57014) and 402
     // blips are transient, and one flaky page must not abort the whole sitemap.
     // If every retry fails we throw — main() turns that into a non-zero exit so
@@ -81,7 +83,7 @@ async function fetchAllSkills() {
     lastId = data[data.length - 1].id;
     if (data.length < limit) break;
   }
-  return skills;
+  return withoutCloneCampaigns(skills);
 }
 
 async function fetchPage(url, lastId) {
@@ -343,7 +345,10 @@ async function main() {
   console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);
 
   // 2. sitemap-categories.xml — derive categories from actual data (no hardcoded list)
-  const catsWithSkills = [...new Set(allSkills.map((s) => s.category))].filter(Boolean);
+  const catSizes = new Map();
+  for (const s of allSkills) if (s.category) catSizes.set(s.category, (catSizes.get(s.category) || 0) + 1);
+  // Same cut as generate-skill-pages.mjs: small categories ship noindex, so they stay out of here.
+  const catsWithSkills = [...catSizes].filter(([, n]) => n >= MIN_CATEGORY_INDEX).map(([cat]) => cat);
   const catEntries = catsWithSkills.map((cat) => `  <url>
     <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
