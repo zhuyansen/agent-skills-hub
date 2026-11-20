@@ -1,5 +1,17 @@
 # Daily Report Archive
 
+## 2026-11-20
+1. howznguyen/phonedesk — 🆕 把旧手机变成电脑控制面板，无需安装应用或上云（40★ 19.6/day）
+2. haczen/ai-dialog-manage — 🆕 统一检索和编辑编程助手会话，跨工具接续工作（36★ 12.6/day）
+3. zfkarl/MedJev — 🆕 利用视觉语言决策模型，快速理解医学图像内容（58★ 9.8/day）
+4. lemomo-ai/lemo-animi — 🆕 将一句话生成定格动画短片，用代码逐帧驱动角色（35★ 8.6/day）
+5. eclipse-theia/theia — 构建浏览器与桌面开发环境，集成可定制智能体能力（21774★ 6.1/day）
+6. earayu/Mingle — 🆕 把智能体接入常用聊天应用，本地运行无需服务器（51★ 5.7/day）
+🎯 今日趋势：入选项目更重视把 AI 能力落到实际工作中，围绕**本地交互、会话衔接与内容生成**减少操作成本。
+> 注：GitHub Actions 自动生成（gpt-6-astra 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 144 个日期段，比对 1,429 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 101 条、去重后 94 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 30 个。**代码硬规则剔除**：bookwjitchieni1986/blender-ai-mcp-addon：刷星嫌疑：作者 0 粉、其余仓库最高 0★，126★ 只有 1 个 fork；FIlIP-C3/events-tracker：刷星嫌疑：153★ 却 0 个 fork；ntu0831/RAG-MCP-Server：刷星嫌疑：账号 2026-10-27 才注册、0 粉，0 个 fork；hovocope135-tech/DSH-projects：刷星嫌疑：账号 2026-11-17 才注册、0 粉，0 个 fork；Markbase-Team/Markbase：刷星嫌疑：作者 1 粉、其余仓库最高 0★，66★ 只有 0 个 fork。**模型排除项**：①Bodila51/gtavi-claudecode（562★ 362.1/day）：抽查数据中 security_grade 为 unknown，不满足仅推荐 safe 的硬规则。；②setyamickala/airdrop-agent（76★ 76.0/day）：抽查数据中 security_grade 为 unknown，安全评级未达到推荐要求。；③yibie/claude-best-practices-zh（88★ 40.1/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；④pixel-agents-hq/pixel-agents（10296★ 36.2/day）：虽然有 1756 个 fork 和 122 个 issue，但 security_grade 为 unknown，仍须按硬规则跳过。；⑤INK-Q/agy-fast（25★ 22.9/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；⑥Carol-lyh/Jeveration（39★ 18.8/day）：category 为 uncategorized，且 security_grade 为 unknown，未通过安全准入要求。；⑦intincrab/blueprint（48★ 17.0/day）：仓库创建仅 2.8 天已达 51 星，作者其他最高星项目仅为 7、7、2 星，符合单仓突增的刷星疑点。；⑧oriliz/agent-crop（93★ 15.5/day）：实时已有 139 星却为 0 fork，作者也为 0 粉，命中高星几乎无 fork 的刷星嫌疑规则。；⑨PapilotAI/papilot（377★ 15.1/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；⑩HyunSeob/iphone-cli（109★ 11.3/day）：虽然作者有其他正常项目且仓库有 23 个 fork，但 security_grade 为 unknown，仍不符合硬规则。；11.JL-GUO/skill-siphon（25★ 11.2/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；12.vossashtonai/gta6-clipper（22★ 11.2/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；13.nihal4/macsweep（49★ 7.2/day）：虽然标为 agent-tool，但描述实际是清理缓存、卸载应用的 Mac 清理器，未体现智能体或开发者工具用途。；14.globalmpc/vibe-bill（52★ 6.5/day）：抽查数据中 security_grade 为 unknown，不满足 safe 准入要求。；15.fblgit/artifacts-done-properly（48★ 6.4/day）：描述仅泛称复用成果和保留价值，虽提及 ArtifactDataProtocol，却未说明具体功能或使用方式，属于描述空泛。。**轻红旗**（保留）：haczen/ai-dialog-manage：作者仅有 2 位粉丝，但有 17 个 fork，其他项目也有 34 星。。🆕 判定＝created_at 距今 14 天内：phonedesk（2.0 天）、ai-dialog-manage（2.9 天）、MedJev（5.9 天）、lemo-animi（4.1 天）、Mingle（9.0 天）。security_grade：入选 6 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-19
 1. boringmarketer/boring-marketing-skills — 🆕 覆盖市场研究、定位、文案与投放，让智能体一站式完成营销（587★ 219.5/day）
 2. ysunyang4/Nexus — 🆕 连接本地文件、终端与桌面工具，让网页智能体安全调用资源（404★ 70.5/day）
