@@ -4198,5 +4198,19 @@
    "rules": 0.25
   },
   "kind": "detector"
+ },
+ {
+  "repo": "noobarafat/research-paper-humanizer",
+  "stars": 5,
+  "description": "Evidence-based Claude skill to humanize AI-assisted research papers and lower Turnitin, GPTZero and Originality.ai AI-detection scores without changing meaning, citations or academic quality.",
+  "scores": {
+   "writing": 0.31,
+   "detector": 0.25,
+   "chinese": 0.03,
+   "code": 0.08,
+   "design": 0.05,
+   "rules": 0.81
+  },
+  "kind": "rules"
  }
 ]

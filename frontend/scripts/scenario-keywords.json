@@ -2223,7 +2223,8 @@
     "BetaVersionHQ/beta-version-toon-studio",
     "BetaVersionHQ/beta-version-blox-studio",
     "baney75/smoothstone",
-    "felixbfx/MuleCreate"
+    "felixbfx/MuleCreate",
+    "bookwjitchieni1986/blender-ai-mcp-addon"
    ],
    "exclude_repos": [
     "codepawl/67.js",
@@ -4744,7 +4745,8 @@
     "wwewtech/anti-slop-design",
     "etodanik/deslop",
     "gretchenfitze/anti-slop",
-    "imMamdouhaboammar/anti-slop-engineering"
+    "imMamdouhaboammar/anti-slop-engineering",
+    "noobarafat/research-paper-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5268,7 +5270,8 @@
     "becomezain/ai-website-system",
     "boringmarketer/boring-marketing-skills",
     "sethblack/black-seo-analyzer",
-    "rob1-alt/refine-seo-geo"
+    "rob1-alt/refine-seo-geo",
+    "itsryanarmani/usegeoaeo"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5788,7 +5791,8 @@
     "obaid1dev/dea",
     "superdesigndev/superdesign-prompts",
     "JimLiu/open-artifacts",
-    "diego3g/craft"
+    "diego3g/craft",
+    "jakob-meyer/unaverage"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6702,7 +6706,8 @@
     "mujingquan835/dashiai-ppt-skill",
     "clearfunction/cf-devtools",
     "MiraclePlus/pre-pp",
-    "andyluu98/slidefly"
+    "andyluu98/slidefly",
+    "taufiquebuilds/nopurple"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -6908,7 +6913,10 @@
     "jernejk/talk-deck-template",
     "shariefabdelmonem/interactive-html-presentation",
     "John-20260101/zgs-ppt",
-    "Ihor-Zakharov/deck-workflow"
+    "Ihor-Zakharov/deck-workflow",
+    "techwithtk/nopurple",
+    "khalil-wu/academic-image-to-editable-ppt",
+    "isatimur/presentation-md"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8360,7 +8368,8 @@
     "Mushroom-Systems/lichen-v1",
     "bodepudimuneendra-netizen/ConsciousDB",
     "Enntity/sparkscore",
-    "ddfeyes/jev-mode"
+    "ddfeyes/jev-mode",
+    "Todmy/jevqa"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -8378,7 +8387,8 @@
     "cmungall/jevotron",
     "BingoWon/apple-rag-mcp",
     "Mushroom-Systems/lichen",
-    "chuloontop4-code/jev-instance-review"
+    "chuloontop4-code/jev-instance-review",
+    "Bodila51/grok-bot-jev"
    ]
   },
   "related": [
@@ -9021,7 +9031,13 @@
     "ekanshvcpkg/VBASE",
     "cmak34/claude-remotion-skill",
     "OrrrGE/autoRecording",
-    "OrrrGE/autoDemoRecordingSkill"
+    "OrrrGE/autoDemoRecordingSkill",
+    "kaomei/stickman-video-director",
+    "ffroliva/gflow-cli",
+    "0xpratzyy/subtle",
+    "kvrancic/cutroom",
+    "syydaniel/juzu",
+    "leeguooooo/motion-use"
    ],
    "sub_skills": [
     {
@@ -9072,7 +9088,9 @@
     "aaronyi97/image-story-video-wizard",
     "OrrrGE/autoDemoRecordingSkill",
     "nocodehack/make-short",
-    "nocodehack/nocodehack-roblox-engine"
+    "nocodehack/nocodehack-roblox-engine",
+    "kvrancic/oneshot-video",
+    "luminexlabs-io/antigravity-remotion-skill"
    ],
    "tag_matches": [],
    "required_keywords": [

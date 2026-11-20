@@ -4990,5 +4990,21 @@
    "marketing": 0.11
   },
   "kind": "geo"
+ },
+ {
+  "repo": "itsryanarmani/usegeoaeo",
+  "stars": 47,
+  "description": "Scores a site 0-100 and generates GEO/AEO files for owners who want AI citations.",
+  "scores": {
+   "suite": 0.28,
+   "audit": 0.64,
+   "research": 0.03,
+   "data_mcp": 0.13,
+   "geo": 0.84,
+   "content": 0.15,
+   "links": 0.03,
+   "marketing": 0.16
+  },
+  "kind": "geo"
  }
 ]

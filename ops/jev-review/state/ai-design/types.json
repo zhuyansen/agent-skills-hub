@@ -3022,5 +3022,19 @@
    "review": 0.77
   },
   "kind": "system"
+ },
+ {
+  "repo": "jakob-meyer/unaverage",
+  "stars": 7,
+  "description": "Design skill for Claude, Claude Code and Codex that aims for studio-level results instead of the generic AI look: websites, product UI, decks, social posts, ads and brand. Asks about your world first, shows ranked directions as mockups, then measures and reviews its work.",
+  "scores": {
+   "ui": 0.92,
+   "system": 0.2,
+   "tool_mcp": 0.18,
+   "to_code": 0.55,
+   "graphics": 0.86,
+   "review": 0.79
+  },
+  "kind": "ui"
  }
 ]

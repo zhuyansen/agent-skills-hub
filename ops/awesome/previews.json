@@ -23,6 +23,14 @@
   "type": "image/gif",
   "bytes": 1667978
  },
+ "0xpratzyy/subtle": {
+  "repo": "0xpratzyy/subtle",
+  "url": "https://raw.githubusercontent.com/0xpratzyy/subtle/HEAD/docs/stills/styles.jpg",
+  "alt": "All 35 styles on one frame",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 560410
+ },
  "0xsline/OpenChatCut": {
   "repo": "0xsline/OpenChatCut",
   "url": "https://raw.githubusercontent.com/0xsline/OpenChatCut/HEAD/assets/readme-pic/07-lut.png",
@@ -2335,6 +2343,14 @@
   "type": "image/png",
   "bytes": 76230
  },
+ "Todmy/jevqa": {
+  "repo": "Todmy/jevqa",
+  "url": "https://raw.githubusercontent.com/Todmy/jevqa/HEAD/docs/demo.gif",
+  "alt": "jevqa run: checklist, exploration, flags, report.md",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 141491
+ },
  "TryWorld2026/paper-algorithm": {
   "repo": "TryWorld2026/paper-algorithm",
   "url": "https://raw.githubusercontent.com/TryWorld2026/paper-algorithm/HEAD/examples/cordis-paper/cover_4x3.png",
@@ -3142,6 +3158,14 @@
   "score": 1.8,
   "type": "image/png",
   "bytes": 1334642
+ },
+ "bookwjitchieni1986/blender-ai-mcp-addon": {
+  "repo": "bookwjitchieni1986/blender-ai-mcp-addon",
+  "url": "https://raw.githubusercontent.com/bookwjitchieni1986/blender-ai-mcp-addon/HEAD/docs/images/studio.png",
+  "alt": "AI chat workspace with a live Blender scene preview",
+  "score": 1.8,
+  "type": "image/png",
+  "bytes": 136874
  },
  "borjaperfra/beatdeck": {
   "repo": "borjaperfra/beatdeck",
@@ -4071,6 +4095,14 @@
   "type": "image/png",
   "bytes": 2035070
  },
+ "ffroliva/gflow-cli": {
+  "repo": "ffroliva/gflow-cli",
+  "url": "https://raw.githubusercontent.com/ffroliva/gflow-cli/main/docs/assets/example-run.gif",
+  "alt": "gflow image t2i runs a single 9:16 prompt, streams structlog output, and writes ",
+  "score": 2.0,
+  "type": "image/gif",
+  "bytes": 1187030
+ },
  "ficooooo/Paper2ScholarSlides": {
   "repo": "ficooooo/Paper2ScholarSlides",
   "url": "https://raw.githubusercontent.com/ficooooo/Paper2ScholarSlides/HEAD/assets/gallery/poster_template_preview_contact_sheet.png",
@@ -4887,6 +4919,14 @@
   "type": "image/gif",
   "bytes": 3595923
  },
+ "isatimur/presentation-md": {
+  "repo": "isatimur/presentation-md",
+  "url": "https://raw.githubusercontent.com/isatimur/presentation-md/HEAD/docs/hero-demo.gif",
+  "alt": "Six decks the pack rendered — pitch, brand, pricing, keynote — cycling to show t",
+  "score": 2.25,
+  "type": "image/gif",
+  "bytes": 330791
+ },
  "ismailperim/briefd": {
   "repo": "ismailperim/briefd",
   "url": "https://raw.githubusercontent.com/ismailperim/briefd/HEAD/docs/assets/briefd-demo.gif",
@@ -4934,6 +4974,14 @@
   "score": -0.45,
   "type": "image/gif",
   "bytes": 7492002
+ },
+ "jakob-meyer/unaverage": {
+  "repo": "jakob-meyer/unaverage",
+  "url": "https://raw.githubusercontent.com/jakob-meyer/unaverage/HEAD/docs/images/readme-header-light.png",
+  "alt": "unaverage design: AI design without the AI look.",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 216008
  },
  "jammaru/launch-video-craft": {
   "repo": "jammaru/launch-video-craft",
@@ -5135,6 +5183,14 @@
   "type": "image/png",
   "bytes": 82651
  },
+ "kaomei/stickman-video-director": {
+  "repo": "kaomei/stickman-video-director",
+  "url": "https://cdn.jsdelivr.net/gh/kaomei/stickman-video-director@2697fac5e0466f44098148a52c9648697521b3d6/assets/readme/previews/dark-theme-demo.gif",
+  "alt": "Classic black-and-white stickman animation: white lines on black for dynamic exp",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 2008500
+ },
  "karlkfi/claude-bouncer": {
   "repo": "karlkfi/claude-bouncer",
   "url": "https://raw.githubusercontent.com/karlkfi/claude-bouncer/HEAD/docs/img/social-preview.png",
@@ -5174,6 +5230,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 8434795
+ },
+ "khalil-wu/academic-image-to-editable-ppt": {
+  "repo": "khalil-wu/academic-image-to-editable-ppt",
+  "url": "https://raw.githubusercontent.com/khalil-wu/academic-image-to-editable-ppt/HEAD/examples/live/preview.png",
+  "alt": "Live 原图",
+  "score": 1.9,
+  "type": "image/png",
+  "bytes": 720034
  },
  "kimsh-1/deck-factory": {
   "repo": "kimsh-1/deck-factory",
@@ -5278,6 +5342,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 979223
+ },
+ "kvrancic/cutroom": {
+  "repo": "kvrancic/cutroom",
+  "url": "https://raw.githubusercontent.com/kvrancic/cutroom/HEAD/docs/media/demo.gif",
+  "alt": "Left: a 34-minute GTA VI stream with the player",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 4325109
  },
  "kvrancic/oneshot-video": {
   "repo": "kvrancic/oneshot-video",
@@ -6874,6 +6946,14 @@
  "taufiquebuilds/nopurple": {
   "repo": "taufiquebuilds/nopurple",
   "url": "https://raw.githubusercontent.com/taufiquebuilds/nopurple/HEAD/docs/themes.png",
+  "alt": "Six themes: paper, ink, swiss, forest, sand and mono",
+  "score": -0.15,
+  "type": "image/png",
+  "bytes": 163366
+ },
+ "techwithtk/nopurple": {
+  "repo": "techwithtk/nopurple",
+  "url": "https://raw.githubusercontent.com/techwithtk/nopurple/HEAD/docs/themes.png",
   "alt": "Six themes: paper, ink, swiss, forest, sand and mono",
   "score": -0.15,
   "type": "image/png",

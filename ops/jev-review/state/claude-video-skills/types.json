@@ -9898,5 +9898,113 @@
    "general": 0.04
   },
   "kind": "story"
+ },
+ {
+  "repo": "kaomei/stickman-video-director",
+  "stars": 7107,
+  "description": "AI Agent Skill (Claude Code, Codex & more): Turn any script into animated stickman videos for faceless YouTube, Shorts & TikTok. 14+ styles with voiceover, captions & SFX. Free & open-source (MIT).",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.48,
+   "music": 0.14,
+   "motion": 0.1,
+   "shorts": 0.88,
+   "editing": 0.06,
+   "demo": 0.25,
+   "story": 0.7,
+   "avatar": 0.08,
+   "general": 0.17
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "ffroliva/gflow-cli",
+  "stars": 420,
+  "description": "MCP server and CLI for Google Flow: generate Veo 3.1 and Omni video and Nano Banana / Imagen images from Claude Code, Claude Desktop, Cursor, Codex or the terminal. Free, MIT, on PyPI. Independent project, not affiliated with Google.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.15,
+   "music": 0.1,
+   "motion": 0.14,
+   "shorts": 0.3,
+   "editing": 0.07,
+   "demo": 0.2,
+   "story": 0.55,
+   "avatar": 0.08,
+   "general": 0.14
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "0xpratzyy/subtle",
+  "stars": 34,
+  "description": "Local animated captions and beat-synced lyric videos. 26 styles for Codex, Claude Code and the command line.",
+  "scores": {
+   "promo": 0.13,
+   "explainer": 0.17,
+   "music": 0.31,
+   "motion": 0.27,
+   "shorts": 0.57,
+   "editing": 0.88,
+   "demo": 0.36,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.21
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "kvrancic/cutroom",
+  "stars": 8,
+  "description": "Any stream in, the clips worth posting out. A Claude Code plugin that cuts long videos into captioned 9:16 clips, edits whole talks and makes narrated videos, locally on your Mac.",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.37,
+   "music": 0.54,
+   "motion": 0.12,
+   "shorts": 0.95,
+   "editing": 0.94,
+   "demo": 0.46,
+   "story": 0.11,
+   "avatar": 0.07,
+   "general": 0.2
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "syydaniel/juzu",
+  "stars": 6,
+  "description": "剧组 juzu：从改文案到出片，一个人的 B 站知识视频剧组（Claude Code skill）。A skill for AI coding assistants: a one-person crew that takes a Bilibili explainer video from script to finished 4K film.",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.97,
+   "music": 0.04,
+   "motion": 0.04,
+   "shorts": 0.02,
+   "editing": 0.09,
+   "demo": 0.28,
+   "story": 0.07,
+   "avatar": 0.5,
+   "general": 0.09
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "leeguooooo/motion-use",
+  "stars": 5,
+  "description": "Promo and explainer videos from JSON briefs, rendered locally with HyperFrames. CLI and agent skill in the use-family.",
+  "scores": {
+   "promo": 0.9,
+   "explainer": 0.62,
+   "music": 0.13,
+   "motion": 0.25,
+   "shorts": 0.34,
+   "editing": 0.08,
+   "demo": 0.64,
+   "story": 0.58,
+   "avatar": 0.08,
+   "general": 0.37
+  },
+  "kind": "promo"
  }
 ]

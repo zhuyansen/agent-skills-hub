@@ -11935,5 +11935,37 @@
   "days": 3,
   "stars_per_day": 1.6666666666666667,
   "verdict": "admit"
+ },
+ {
+  "repo": "btmux-dev/btmux",
+  "name": "btmux",
+  "stars": 15,
+  "description": "A persistent terminal workspace and session manager for desktop, browser, and mobile. tmux-style UI, built-in dev tools, and coding agent support.",
+  "topics": [
+   "agent-orchestration",
+   "agents",
+   "terminal",
+   "tmux",
+   "vim"
+  ],
+  "created": "2026-06-25",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 2880,
+  "names_model": false,
+  "on_subject": 0.04,
+  "is_software": 0.99,
+  "shows_result": 0.07,
+  "one_command_start": 0.92,
+  "specific_outcome": 0.72,
+  "complete_docs": 0.51,
+  "novel_angle": 0.67,
+  "shareable_output": 0.79,
+  "quality": 0.555,
+  "tier": "中",
+  "hit_prior": 0.51,
+  "days": 148,
+  "stars_per_day": 0.10135135135135136,
+  "verdict": "off_topic"
  }
 ]

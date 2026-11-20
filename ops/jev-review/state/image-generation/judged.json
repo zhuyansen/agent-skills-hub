@@ -21653,5 +21653,37 @@
   "days": 1,
   "stars_per_day": 20.0,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "treeleaves30760/pixelcanvas",
+  "name": "pixelcanvas",
+  "stars": 6,
+  "description": "Agent Skill that lets Claude Code, Codex & any LLM draw images with code (numpy + Pillow): posters, wallpapers, landscapes, exact text, editable PSD layers. No image model needed. Install: npx skills add treeleaves30760/pixelcanvas",
+  "topics": [
+   "agent-skill",
+   "ai-art",
+   "claude-code",
+   "claude-skills",
+   "text-to-image"
+  ],
+  "created": "2026-10-30",
+  "pushed": "2026-11-19",
+  "source": "topic",
+  "readme_chars": 14881,
+  "names_model": false,
+  "on_subject": 0.4,
+  "is_software": 0.99,
+  "shows_result": 0.1,
+  "one_command_start": 0.2,
+  "specific_outcome": 0.95,
+  "complete_docs": 0.95,
+  "novel_angle": 0.78,
+  "shareable_output": 0.88,
+  "quality": 0.5499999999999999,
+  "tier": "中",
+  "hit_prior": 0.5866666666666667,
+  "days": 21,
+  "stars_per_day": 0.2857142857142857,
+  "verdict": "off_topic"
  }
 ]

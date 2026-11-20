@@ -3470,5 +3470,21 @@
    "gen3d": 0.16
   },
   "kind": "gen3d"
+ },
+ {
+  "repo": "bookwjitchieni1986/blender-ai-mcp-addon",
+  "stars": 126,
+  "description": "AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
+  "scores": {
+   "blender": 0.98,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.01,
+   "web3d": 0.02,
+   "gen3d": 0.1
+  },
+  "kind": "blender"
  }
 ]
