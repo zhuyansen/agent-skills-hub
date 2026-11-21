@@ -15,7 +15,7 @@ Zero cost: pure regex/string matching, no external API calls.
 
 import logging
 import re
-from urllib.parse import urlparse
+from urllib.parse import ParseResult, urlparse
 
 
 from app.models.skill import Skill
@@ -646,8 +646,21 @@ def _is_cited_or_negated(text: str, start: int, flag_name: str) -> bool:
     return flag_name not in _NEGATION_EXEMPT and _is_negated(text, start)
 
 
+def _parse(url: str) -> ParseResult | None:
+    """urlparse, or None for an address it rejects. READMEs write placeholder hosts in brackets
+    (https://[region].posthog.com/…), and urlparse raises ValueError("Invalid IPv6 URL") on them:
+    from 2026-11-19 that one error stopped every sync's scan (crbnos/carbon, id 70894)."""
+    try:
+        return urlparse(url)
+    except ValueError:
+        return None
+
+
 def _host(url: str) -> str:
-    return urlparse(url).netloc.lower().split(":")[0]
+    """Lower-case host without the port; "" for an address that cannot be parsed, which
+    _is_placeholder reads as a stand-in and nothing trusts."""
+    parsed = _parse(url)
+    return parsed.netloc.lower().split(":")[0] if parsed else ""
 
 
 def _registrable_domain(host: str) -> str:
@@ -734,7 +747,8 @@ def _is_trusted_install_source(url: str, skill: Skill) -> bool:
     if host in TRUSTED_INSTALLER_HOSTS:
         return True
     owner, _, repo_name = (getattr(skill, "repo_full_name", "") or "").lower().partition("/")
-    path = urlparse(url).path.lower().lstrip("/")
+    parsed = _parse(url)
+    path = parsed.path.lower().lstrip("/") if parsed else ""
     if host in _GITHUB_CONTENT_HOSTS:
         return _trusted_github_path(path, owner, repo_name)
     if host in _JSDELIVR_HOSTS and path.startswith(_JSDELIVR_GITHUB_PREFIX):
@@ -818,8 +832,8 @@ def _file_host_lure_flags(text: str) -> list[str]:
     on a file-sharing host. The path must end in the file's extension: a folder or a share
     page on the same host is how real projects publish datasets and slides."""
     for match in _LINK_TARGET.finditer(text):
-        target = urlparse(match.group(1))
-        host = (target.hostname or "").lower()
+        target = _parse(match.group(1))
+        host = (target.hostname or "").lower() if target else ""
         if not any(host == h or host.endswith("." + h) for h in FILE_HOSTS):
             continue
         if not _ARCHIVE_PATH.search(target.path.lower()):
