@@ -342,12 +342,23 @@ const aboutHtml = `<!doctype html>
       "foundingDate": "2026-03-08",
       "founder": {
         "@type": "Person",
+        "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
         "alternateName": "Zhu Yansen",
-        "url": "https://x.com/GoSailGlobal",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0000-2894-6285",
+          "url": "https://orcid.org/0009-0000-2894-6285"
+        },
+        "url": "https://jasonzhu.ai/en",
         "sameAs": [
+          "https://jasonzhu.ai",
+          "https://orcid.org/0009-0000-2894-6285",
           "https://x.com/GoSailGlobal",
           "https://github.com/ZhuYansen",
+          "https://huggingface.co/jasonzhuyansen",
+          "https://www.kaggle.com/yansenzhu",
           "https://www.youtube.com/@JasonZhuGoSail"
         ],
         "jobTitle": "Founder & Maintainer of Agent Skills Hub"
@@ -554,8 +565,15 @@ const aiInfoHtml = `<!doctype html>
       "foundingDate": "2026-03-08",
       "founder": {
         "@type": "Person",
+        "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "url": "https://x.com/GoSailGlobal"
+        "alternateName": "Zhu Yansen",
+        "url": "https://jasonzhu.ai/en",
+        "sameAs": [
+          "https://jasonzhu.ai",
+          "https://x.com/GoSailGlobal",
+          "https://github.com/ZhuYansen"
+        ]
       },
       "contactPoint": [
         {
@@ -580,6 +598,7 @@ const aiInfoHtml = `<!doctype html>
     },
     "about": {
       "@type": "Dataset",
+      "@id": "${SITE}/#dataset",
       "name": "AI Agent Skills Security Grades Dataset",
       "description": "Security grades (Safe / Caution / Unsafe / Reject), red flags and quality scores for 130,173 open-source AI agent skills and MCP servers indexed from GitHub (CC BY 4.0 snapshot).",
       "identifier": "https://doi.org/10.5281/zenodo.21292799",
@@ -588,12 +607,17 @@ const aiInfoHtml = `<!doctype html>
       "datePublished": "2026-07-10",
       "creator": {
         "@type": "Person",
+        "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "url": "https://x.com/GoSailGlobal"
+        "url": "https://jasonzhu.ai/en"
       },
       "publisher": {
         "@id": "${SITE}/#organization"
       },
+      "isBasedOn": "${SITE}/how-we-grade/",
+      "citation": [
+        "https://doi.org/10.5281/zenodo.24387074"
+      ],
       "isAccessibleForFree": true,
       "sameAs": [
         "https://www.wikidata.org/wiki/Q141735092",

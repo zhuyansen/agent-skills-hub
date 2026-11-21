@@ -78,17 +78,13 @@
         "priceCurrency": "USD"
       },
       "author": {
-        "@type": "Organization",
-        "name": "Agent Skills Hub",
-        "url": "https://github.com/ZhuYansen/agent-skills-hub"
+        "@id": "https://agentskillshub.top/#organization"
       },
       "datePublished": "2026-03-08",
       "dateModified": "__BUILD_DATE__",
       "isAccessibleForFree": true,
       "creator": {
-        "@type": "Person",
-        "name": "Jason Zhu",
-        "url": "https://x.com/GoSailGlobal"
+        "@id": "https://jasonzhu.ai/#person"
       }
     }
     </script>
@@ -118,14 +114,26 @@
       "logo": "https://agentskillshub.top/logo.svg",
       "founder": {
         "@type": "Person",
+        "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "url": "https://x.com/GoSailGlobal",
+        "alternateName": "Zhu Yansen",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0000-2894-6285",
+          "url": "https://orcid.org/0009-0000-2894-6285"
+        },
+        "url": "https://jasonzhu.ai/en",
         "sameAs": [
+          "https://jasonzhu.ai",
+          "https://orcid.org/0009-0000-2894-6285",
           "https://x.com/GoSailGlobal",
           "https://github.com/ZhuYansen",
+          "https://huggingface.co/jasonzhuyansen",
+          "https://www.kaggle.com/yansenzhu",
           "https://www.youtube.com/@JasonZhuGoSail"
         ],
-        "description": "Independent researcher tracking open-source AI agent ecosystems since 2024. Author of the Blue Book of Agent Skills 2026."
+        "description": "Independent AI agent ecosystem researcher, founder of Agent Skills Hub (launched 2026-03-08), and author of the Blue Book of Agent Skills 2026."
       },
       "legalName": "BRICKAI (GoSailGlobal LLC)",
       "address": {
@@ -175,14 +183,19 @@
     {
       "@context": "https://schema.org",
       "@type": "Dataset",
+      "@id": "https://agentskillshub.top/#dataset",
       "name": "AI Agent Skills Security Grades (130K)",
       "description": "Security grades (Safe / Caution / Unsafe / Reject), red flags and quality scores for 130,000+ open-source AI agent skills and MCP servers indexed from GitHub.",
       "identifier": "https://doi.org/10.5281/zenodo.21292799",
       "url": "https://doi.org/10.5281/zenodo.21292799",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "datePublished": "2026-07-10",
-      "creator": { "@type": "Person", "name": "Jason Zhu" },
+      "creator": { "@id": "https://jasonzhu.ai/#person" },
       "publisher": { "@id": "https://agentskillshub.top/#organization" },
+      "isBasedOn": "https://agentskillshub.top/how-we-grade/",
+      "citation": [
+        "https://doi.org/10.5281/zenodo.24387074"
+      ],
       "isAccessibleForFree": true,
       "sameAs": [
         "https://www.wikidata.org/wiki/Q141735092",
@@ -195,9 +208,13 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://jasonzhu.ai/#person",
       "name": "Jason Zhu",
-      "url": "https://agentskillshub.top/about/",
+      "alternateName": "Zhu Yansen",
+      "url": "https://jasonzhu.ai/en",
       "sameAs": [
+        "https://jasonzhu.ai",
+        "https://agentskillshub.top/about/",
         "https://x.com/GoSailGlobal",
         "https://github.com/ZhuYansen",
         "https://www.youtube.com/@JasonZhuGoSail"
@@ -210,9 +227,7 @@
         "Open Source Quality Scoring"
       ],
       "worksFor": {
-        "@type": "Organization",
-        "name": "Agent Skills Hub",
-        "url": "https://agentskillshub.top/"
+        "@id": "https://agentskillshub.top/#organization"
       }
     }
     </script>
@@ -346,7 +361,7 @@
         </section>
         <section id="about">
           <h2>About the Editor</h2>
-          <p>AgentSkillsHub is built and maintained by <strong>Jason Zhu</strong> (<a href="https://x.com/GoSailGlobal" rel="author">@GoSailGlobal</a>), an independent researcher tracking open-source AI agent ecosystems since 2024. Jason is also the author of the <a href="https://github.com/zhuyansen/skill-blue-book">Blue Book of Agent Skills 2026</a>, an in-depth analysis of the Claude Skills / MCP / Codex ecosystem published openly on GitHub.</p>
+          <p>Agent Skills Hub (<code>agentskillshub.top</code>, launched <strong>2026-03-08</strong>; operated by BRICKAI / GoSailGlobal LLC and unaffiliated with <code>agentskillshub.dev</code>) is founded and maintained by <strong>Jason Zhu</strong> (<a href="https://jasonzhu.ai/en" rel="author">jasonzhu.ai</a> · <a href="https://x.com/GoSailGlobal" rel="author">@GoSailGlobal</a>), an independent AI agent researcher and author of the <a href="https://github.com/zhuyansen/skill-blue-book">Blue Book of Agent Skills 2026</a>.</p>
           <p>The Hub runs as a solo project, designed to be transparent and reproducible: every scoring dimension is documented, every data snapshot is archived, and the entire source code is open under MIT on <a href="https://github.com/ZhuYansen/agent-skills-hub">GitHub</a>. The goal is not to rank skills by popularity alone, but to help developers find tools that are actually production-ready.</p>
           <h3>Editorial Methodology</h3>
           <p>Every indexed repository passes through a 6-phase pipeline running every 8 hours: GitHub search → metadata enrichment → README fetch → scoring (a quality score from 9 dimensions, a ranking score from 10 signals) → category classification → composability analysis. No manual curation is applied to ranking — signals are purely data-driven to avoid editorial bias.</p>

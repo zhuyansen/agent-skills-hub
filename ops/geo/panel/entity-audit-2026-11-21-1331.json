@@ -1,0 +1,248 @@
+{
+  "timestamp_utc": "2026-11-21T13:31:58Z",
+  "domain": "agentskillshub.top",
+  "mode": "molecule",
+  "layer_A_entity_molecule": [
+    {
+      "node": "1_Entity_Home_Connected_Graph",
+      "status": "PARTIAL",
+      "shared_at_ids_across_pages": {
+        "https://agentskillshub.top/#organization": [
+          "https://agentskillshub.top/",
+          "https://agentskillshub.top/about/",
+          "https://agentskillshub.top/ai-info/",
+          "https://agentskillshub.top/contact/"
+        ]
+      },
+      "home_signals": {
+        "org_id_present": true,
+        "cross_site_person_id_present": false,
+        "dataset_id_present": false,
+        "disambiguation_visible": true,
+        "doi_21292799_present": true,
+        "doi_24387074_present": false,
+        "no_2024_founding_ambiguity": false
+      },
+      "pages": [
+        {
+          "url": "https://agentskillshub.top/",
+          "http_status": 200,
+          "blocks": 5,
+          "parse_errors": 0,
+          "types": [
+            "ContactPoint",
+            "Dataset",
+            "Offer",
+            "Organization",
+            "Person",
+            "PostalAddress",
+            "SearchAction",
+            "WebApplication",
+            "WebSite"
+          ],
+          "at_ids": [
+            "https://agentskillshub.top/#organization"
+          ],
+          "same_as_count": 14,
+          "has_disambiguation_dev": true,
+          "has_doi_21292799": true,
+          "has_doi_24387074": false,
+          "has_wikidata_q141986406": true
+        },
+        {
+          "url": "https://agentskillshub.top/about/",
+          "http_status": 200,
+          "blocks": 1,
+          "parse_errors": 0,
+          "types": [
+            "AboutPage",
+            "ContactPoint",
+            "Organization",
+            "Person"
+          ],
+          "at_ids": [
+            "https://agentskillshub.top/#organization"
+          ],
+          "same_as_count": 3,
+          "has_disambiguation_dev": true,
+          "has_doi_21292799": true,
+          "has_doi_24387074": false,
+          "has_wikidata_q141986406": false
+        },
+        {
+          "url": "https://agentskillshub.top/ai-info/",
+          "http_status": 200,
+          "blocks": 1,
+          "parse_errors": 0,
+          "types": [
+            "AboutPage",
+            "ContactPoint",
+            "Dataset",
+            "Organization",
+            "Person"
+          ],
+          "at_ids": [
+            "https://agentskillshub.top/#organization"
+          ],
+          "same_as_count": 9,
+          "has_disambiguation_dev": false,
+          "has_doi_21292799": true,
+          "has_doi_24387074": false,
+          "has_wikidata_q141986406": true
+        },
+        {
+          "url": "https://agentskillshub.top/contact/",
+          "http_status": 200,
+          "blocks": 1,
+          "parse_errors": 0,
+          "types": [
+            "ContactPage",
+            "ContactPoint",
+            "Organization",
+            "PostalAddress"
+          ],
+          "at_ids": [
+            "https://agentskillshub.top/#organization"
+          ],
+          "same_as_count": 0,
+          "has_disambiguation_dev": false,
+          "has_doi_21292799": false,
+          "has_doi_24387074": false,
+          "has_wikidata_q141986406": false
+        }
+      ]
+    },
+    {
+      "node": "2_Wikidata_Knowledge_Graph",
+      "status": "PARTIAL_NEEDS_REINFORCEMENT",
+      "items": {
+        "organization": {
+          "qid": "Q141986406",
+          "alive": true,
+          "label_en": "AgentSkillsHub",
+          "claims_count": 7,
+          "claims": [
+            "P1324",
+            "P275",
+            "P31",
+            "P407",
+            "P571",
+            "P856",
+            "P921"
+          ],
+          "sitelinks_count": 0,
+          "recommended_additions": [
+            "P112:founder",
+            "P2037:GitHub_username",
+            "P154:logo"
+          ]
+        },
+        "dataset": {
+          "qid": "Q141735092",
+          "alive": true,
+          "label_en": "AI Agent Skills Security Grades (130K)",
+          "claims_count": 11,
+          "claims": [
+            "P123",
+            "P144",
+            "P1476",
+            "P2093",
+            "P275",
+            "P31",
+            "P356",
+            "P407",
+            "P577",
+            "P921",
+            "P973"
+          ],
+          "sitelinks_count": 0,
+          "recommended_additions": []
+        }
+      }
+    },
+    {
+      "node": "3_CERN_Zenodo_DataCite_OpenAlex",
+      "status": "PARTIAL_MISSING_BACKLINK_EDGE",
+      "records": [
+        {
+          "doi": "10.5281/zenodo.21292799",
+          "datacite_http": 200,
+          "openalex_http": 200,
+          "openalex_title": "AI Agent Skills Security Grades (130K)",
+          "related_identifiers": [
+            {
+              "relationType": "IsVersionOf",
+              "relatedIdentifier": "10.5281/zenodo.21292798",
+              "relatedIdentifierType": "DOI"
+            }
+          ],
+          "has_ash_backlink_edge": false
+        },
+        {
+          "doi": "10.5281/zenodo.24387074",
+          "datacite_http": 200,
+          "openalex_http": 200,
+          "openalex_title": "Open-Source AI Agent Skills and MCP Servers Supply-Chain Security Audit Dataset (105,000+ Indexed Skills, 2026)",
+          "related_identifiers": [
+            {
+              "relationType": "IsDocumentedBy",
+              "relatedIdentifier": "https://jasonzhu.ai/en/blog/agent-skill-security-audit-200",
+              "resourceTypeGeneral": "JournalArticle",
+              "relatedIdentifierType": "URL"
+            },
+            {
+              "relationType": "IsSupplementTo",
+              "relatedIdentifier": "https://agentskillshub.top",
+              "resourceTypeGeneral": "Software",
+              "relatedIdentifierType": "URL"
+            },
+            {
+              "relationType": "IsVersionOf",
+              "relatedIdentifier": "10.5281/zenodo.24387073",
+              "relatedIdentifierType": "DOI"
+            }
+          ],
+          "has_ash_backlink_edge": true
+        }
+      ]
+    },
+    {
+      "node": "4_GitHub_Developer_Node",
+      "status": "VERIFIED",
+      "repo": {
+        "full_name": "zhuyansen/agent-skills-hub",
+        "homepage": "https://agentskillshub.top",
+        "stars": 503,
+        "description": "AgentSkillsHub (agentskillshub.top) — security-graded directory of open-source Claude skills, MCP servers & AI agent tools, refreshed every 8 hours"
+      },
+      "profile_readme_mentions_ash": true,
+      "profile_readme_cites_21292799": false
+    },
+    {
+      "node": "5_Package_MCP_Ecosystem",
+      "status": "VERIFIED",
+      "npm_packages": {
+        "@agentskillshub/cli": {
+          "http_status": 200,
+          "latest": "0.5.0"
+        },
+        "@agentskillshub/mcp": {
+          "http_status": 200,
+          "latest": "0.3.0"
+        }
+      },
+      "mcp_server_card_http": 200,
+      "llms_txt_http": 200,
+      "llms_txt_cites_24387074": false
+    },
+    {
+      "node": "6_Edge_Agent_Readiness",
+      "status": "PARTIAL_EDGE_WORKER_PENDING",
+      "robots_has_content_signal": true,
+      "markdown_negotiation_content_type": "text/html; charset=utf-8",
+      "rfc8288_link_header_present": false,
+      "server_header": "GitHub.com"
+    }
+  ],
+  "verified_receipt": "Verified: Audited 6 live molecule nodes for agentskillshub.top | Statuses: 1_Entity_Home_Connected_Graph=PARTIAL, 2_Wikidata_Knowledge_Graph=PARTIAL_NEEDS_REINFORCEMENT, 3_CERN_Zenodo_DataCite_OpenAlex=PARTIAL_MISSING_BACKLINK_EDGE, 4_GitHub_Developer_Node=VERIFIED, 5_Package_MCP_Ecosystem=VERIFIED, 6_Edge_Agent_Readiness=PARTIAL_EDGE_WORKER_PENDING | Timestamp: 2026-11-21T13:31:58Z"
+}
