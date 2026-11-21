@@ -71,13 +71,13 @@ export function stubsToWrite(redirects, hasPage) {
   return redirects.filter(([from, to]) => from.toLowerCase() !== to.toLowerCase() && !hasPage(from));
 }
 
-/** The page at an old /skill/ URL: an instant meta refresh (Google reads it as a permanent
- *  redirect), a canonical pointing the same way, and a script for visitors. Unlike the other
- *  redirect pages (generate-static-pages.mjs) it has no robots noindex: the redirect takes the
- *  old URL out of the index by itself, and a noindex next to it could stop Google from passing
- *  the old URL's signals on to the new one. */
-export function redirectStubHtml(newName) {
-  const path = `/skill/${newName}/`;
+/** The page at an old /skill/ URL (or /audit/, `section`): an instant meta refresh (Google reads
+ *  it as a permanent redirect), a canonical pointing the same way, and a script for visitors.
+ *  Unlike the other redirect pages (generate-static-pages.mjs) it has no robots noindex: the
+ *  redirect takes the old URL out of the index by itself, and a noindex next to it could stop
+ *  Google from passing the old URL's signals on to the new one. */
+export function redirectStubHtml(newName, section = "skill") {
+  const path = `/${section}/${newName}/`;
   return `<!doctype html>
 <html lang="en">
 <head>

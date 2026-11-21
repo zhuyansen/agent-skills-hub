@@ -103,3 +103,12 @@ test("a failing read is retried, then fails the build", async () => {
   await assert.rejects(fetchSkillRedirects(), /skill_redirects: HTTP 503/);
   assert.equal(calls, 3);
 });
+
+test("an audit redirect page points at the new audit URL", () => {
+  const html = redirectStubHtml("ahujasid/mcp-for-blender", "audit");
+  assert.match(html, /<link rel="canonical" href="https:\/\/agentskillshub\.top\/audit\/ahujasid\/mcp-for-blender\/" \/>/);
+  assert.match(html, /content="0; url=\/audit\/ahujasid\/mcp-for-blender\/"/);
+  assert.match(html, /location\.replace\("\/audit\/ahujasid\/mcp-for-blender\/"\)/);
+  assert.ok(!html.includes("/skill/"));
+  assert.ok(!html.includes("noindex"));
+});

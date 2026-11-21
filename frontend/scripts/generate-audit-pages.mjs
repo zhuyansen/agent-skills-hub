@@ -30,6 +30,7 @@ import {
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
 import { auditDescription, auditSitemap, auditTitle, sharedRepoNames } from "./audit-meta.mjs";
+import { fetchSkillRedirects, redirectStubHtml, stubsToWrite } from "./skill-redirects.mjs";
 
 const GRADES = {
   safe: {
@@ -284,6 +285,22 @@ async function main() {
   // not indexed", withdraw it again.
   writeFileSync(join(distDir, "sitemap-audit.xml"), auditSitemap(graded, SITE));
   console.log(`  ✓ sitemap-audit.xml: ${graded.length} URLs`);
+
+  // Old names of renamed repositories (skill-redirects.mjs). Their /skill/ URLs have had redirect
+  // pages since 2026-11-01; their /audit/ URLs had none and answered 404. Search Console, 08-18
+  // to 11-18: 185 audit URLs that no longer have a page drew 46 clicks and 2,182 impressions, most
+  // of them old names (/audit/MCPBlender/blender-mcp/ alone: 430 impressions). An old name gets a
+  // redirect page when its new name has an audit page in this build. Not in the sitemap above,
+  // which lists catalog rows only.
+  const auditPage = (name) => join(distDir, "audit", ...name.split("/"), "index.html");
+  const redirects = await fetchSkillRedirects();
+  const stubs = stubsToWrite(redirects, (name) => existsSync(auditPage(name)))
+    .filter(([, to]) => existsSync(auditPage(to)));
+  for (const [from, to] of stubs) {
+    mkdirSync(join(distDir, "audit", ...from.split("/")), { recursive: true });
+    writeFileSync(auditPage(from), redirectStubHtml(to, "audit"));
+  }
+  console.log(`  ✓ ${stubs.length} audit redirect pages at old repository names (${redirects.length} redirects)`);
 }
 
 main().catch((err) => {
