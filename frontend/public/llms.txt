@@ -15,11 +15,11 @@
 - [Home](https://agentskillshub.top/): search the full catalog
 - [AI Info (Official Facts)](https://agentskillshub.top/ai-info/): verified platform facts for AI assistants, search engines, and citation engines
 - [Daily new skills](https://agentskillshub.top/daily/): top 10 new AI agent skills every day, ranked by star velocity, security-graded
-- [Security Analyzer](https://agentskillshub.top/analyzer): free live scan of any GitHub repo (the same 44 published rules)
+- [Security Analyzer](https://agentskillshub.top/analyzer/): free live scan of any GitHub repo (the same 44 published rules)
 - [How we grade](https://agentskillshub.top/how-we-grade/): the 44 rules behind every security grade, the five source tiers, quality scores and known limits
 - [Directories compared](https://agentskillshub.top/agent-skills-directories/): where to find agent skills and MCP servers, the main directories compared from their own pages, ours included
 - [Scenario guides](https://agentskillshub.top/best/): curated best-of lists by use case, with security grades
-- [Security audits](https://agentskillshub.top/audit/): per-repo "is X safe to install?" pages
+- Security audits: per-repo "is X safe to install?" pages at `https://agentskillshub.top/audit/<owner>/<repo>/`, for graded repos with 500+ stars and flagged ones with 50+ (there is no index page; for any other repo use the analyzer)
 - [Enterprise](https://agentskillshub.top/enterprise/): 5-dimension deep audits & compliance evidence
 
 ## Data & research

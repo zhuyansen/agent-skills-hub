@@ -55,7 +55,7 @@ export function buildHomeMarkdown({ site, counts, indexCount, generatedDate }) {
     `- [How We Grade](${site}/how-we-grade/) — 44 published security rules, 9-dimension quality score, and known limits`,
     `- [Scenario Guides](${site}/best/) — Curated, hands-on tested best-of lists by workflow`,
     `- [Daily New Skills](${site}/daily/) — Top 10 new AI agent skills daily by star velocity`,
-    `- [Security Audits](${site}/audit/) — Per-repository "is X safe to install?" pages`,
+    `- Security Audits — Per-repository "is X safe to install?" pages at \`${site}/audit/<owner>/<repo>/\`, for graded repositories with 500+ stars and flagged ones with 50+ (there is no index page)`,
     `- [Compare Tools](${site}/compare/) — Head-to-head skill and MCP server comparisons`,
     `- [Enterprise & Pro](${site}/enterprise/) — Pro Deep Search ($39/yr), Fast-Track Audit ($49), CI Skill Gate ($29/mo)`,
     "",
