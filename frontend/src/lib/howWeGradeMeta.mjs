@@ -26,7 +26,7 @@ export const HOW_WE_GRADE_PUBLISHED = "2026-10-22";
  * and used as the Article dateModified, which the sitemap reads as lastmod: bump it
  * whenever the text changes, never on a rebuild.
  */
-export const HOW_WE_GRADE_UPDATED = "2026-11-18";
+export const HOW_WE_GRADE_UPDATED = "2026-11-21";
 
 export const HOW_WE_GRADE_META = {
   en: {

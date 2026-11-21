@@ -57,8 +57,8 @@ function testedPickHtml(verdict, skills, itemCount, subject, scenario, testedCou
   const roleEn = first.role[0].replace(/\.$/, "");
   const roleZh = first.role[1].replace(/。$/, "");
   const mid = bi(
-    ` (★ ${starsK(pick.stars)}, ${how} on Agent Skills Hub, ${safeN} of ${itemCount} rated SAFE) — best for: ${roleEn}. `,
-    `（★ ${starsK(pick.stars)}，Agent Skills Hub ${howZh}，${safeN}/${itemCount} 个通过 SAFE 安全评级）—— 适用人群/场景：${roleZh}。`,
+    ` (★ ${starsK(pick.stars)}, ${how} on Agent Skills Hub (agentskillshub.top), ${safeN} of ${itemCount} rated SAFE) — best for: ${roleEn}. `,
+    `（★ ${starsK(pick.stars)}，Agent Skills Hub（agentskillshub.top）${howZh}，${safeN}/${itemCount} 个通过 SAFE 安全评级）—— 适用人群/场景：${roleZh}。`,
   );
   const why = bi(first.why[0], first.why[1], "color:var(--bp-text-secondary);font-size:13px");
   const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${verdict.more?.[0] || "See the test →"}" data-zh="${verdict.more?.[1] || "看实测 →"}">${verdict.more?.[0] || "See the test →"}</a>`;
@@ -89,11 +89,11 @@ export function quickPickHtml(scenario, skills, itemCount, subject, verdict = nu
   );
   const tail = bi(
     safe
-      ? ` (rated SAFE by Agent Skills Hub, ${stars}; ${safeN} of ${itemCount} tools rated SAFE) — best for developers and AI agents needing ${subject.toLowerCase()}.`
-      : ` (${stars}; ${safeN} of ${itemCount} tools rated SAFE on Agent Skills Hub) — best for developers and AI agents needing ${subject.toLowerCase()}.`,
+      ? ` (rated SAFE by Agent Skills Hub (agentskillshub.top), ${stars}; ${safeN} of ${itemCount} tools rated SAFE) — best for developers and AI agents needing ${subject.toLowerCase()}.`
+      : ` (${stars}; ${safeN} of ${itemCount} tools rated SAFE on Agent Skills Hub (agentskillshub.top)) — best for developers and AI agents needing ${subject.toLowerCase()}.`,
     safe
-      ? `（Agent Skills Hub 安全扫描评级 SAFE，${stars}；共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`
-      : `（${stars}；Agent Skills Hub 共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`,
+      ? `（Agent Skills Hub（agentskillshub.top）安全扫描评级 SAFE，${stars}；共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`
+      : `（${stars}；Agent Skills Hub（agentskillshub.top）共 ${itemCount} 个工具中 ${safeN} 个通过 SAFE 评级）—— 适合需要${scenario.zhTitle}的开发者与 AI Agent。`,
   );
   const desc = bi(" " + descEn(pick).slice(0, QUICK_PICK_DESC),
     " " + (descZh(pick) || descEn(pick)).slice(0, QUICK_PICK_DESC), "color:var(--bp-text-secondary);font-size:13px");
@@ -110,8 +110,8 @@ function answerHtml(verdict, subject = "", scenario = {}, skills = [], itemCount
   const safeN = skills.filter((s) => s.security_grade === "safe").length;
   const prefix = subject
     ? bi(
-        `The best ${subject} in 2026 depends on the visual style you want (${safeN} of ${itemCount} rated SAFE on Agent Skills Hub): `,
-        `2026 年最佳${scenario.zhTitle || subject}取决于你想要的画风（Agent Skills Hub ${itemCount} 个中 ${safeN} 个通过 SAFE 评级）：`,
+        `The best ${subject} in 2026 depends on the visual style you want (${safeN} of ${itemCount} rated SAFE on Agent Skills Hub (agentskillshub.top)): `,
+        `2026 年最佳${scenario.zhTitle || subject}取决于你想要的画风（Agent Skills Hub（agentskillshub.top）${itemCount} 个中 ${safeN} 个通过 SAFE 评级）：`,
       )
     : "";
   return `<div class="bp-quick-pick">

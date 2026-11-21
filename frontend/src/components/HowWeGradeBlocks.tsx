@@ -92,15 +92,16 @@ function Table({ table, lang }: LangProps & { table: TableBlock }) {
   );
 }
 
-function List({ items, lang }: LangProps & { items: readonly Text[] }) {
+function List({ items, lang, ordered = false }: LangProps & { items: readonly Text[]; ordered?: boolean }) {
+  const Tag = ordered ? "ol" : "ul";
   return (
-    <ul className={CLASSES.list}>
+    <Tag className={ordered ? CLASSES.orderedList : CLASSES.list}>
       {items.map((item, i) => (
         <li key={i}>
           <Inline text={item} lang={lang} />
         </li>
       ))}
-    </ul>
+    </Tag>
   );
 }
 
@@ -123,6 +124,7 @@ function BlockView({ block, lang }: LangProps & { block: Block }) {
     return <h3 id={block.id} className={anchor}><Inline text={block.text} lang={lang} /></h3>;
   }
   if (block.type === "ul") return <List items={block.items} lang={lang} />;
+  if (block.type === "ol") return <List items={block.items} lang={lang} ordered />;
   if (block.type === "note") return <Note note={block} lang={lang} />;
   return <Table table={block} lang={lang} />;
 }

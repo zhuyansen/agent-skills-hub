@@ -30,6 +30,7 @@ export const CLASSES = {
   article: "book-prose break-words",
   section: "scroll-mt-24",
   list: "list-disc",
+  orderedList: "list-decimal",
   tableWrap: "overflow-x-auto",
   /**
    * Added to the box of a table too wide for the 48rem column: on laptop and desktop screens it

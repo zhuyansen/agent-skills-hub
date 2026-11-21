@@ -52,7 +52,11 @@ ${rows}
 </div>`;
 }
 
-const listHtml = (items, rel) => `<ul class="${CLASSES.list}">${items.map((item) => `<li>${inline(item, rel)}</li>`).join("")}</ul>`;
+const listHtml = (items, rel, ordered = false) => {
+  const tag = ordered ? "ol" : "ul";
+  const cls = ordered ? CLASSES.orderedList : CLASSES.list;
+  return `<${tag} class="${cls}">${items.map((item) => `<li>${inline(item, rel)}</li>`).join("")}</${tag}>`;
+};
 
 function noteHtml(note, rel) {
   const title = plain(note.title);
@@ -68,6 +72,7 @@ function blockHtml(block, rel) {
   if (block.type === "p") return `<p>${inline(block.text, rel)}</p>`;
   if (block.type === "h3") return h3Html(block, rel);
   if (block.type === "ul") return listHtml(block.items, rel);
+  if (block.type === "ol") return listHtml(block.items, rel, true);
   if (block.type === "note") return noteHtml(block, rel);
   return tableHtml(block, rel);
 }

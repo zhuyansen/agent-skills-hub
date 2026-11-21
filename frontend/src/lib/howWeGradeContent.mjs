@@ -232,6 +232,18 @@ const SECTIONS = [
     ],
   },
   {
+    id: "how-to-verify",
+    title: ["How to verify a skill before installing", "安装前如何验证一个 skill"],
+    blocks: [
+      { type: "p", text: ["Before adding any third-party skill or MCP server to Claude Code, Cursor or Codex, run through three checks:", "在把任意第三方 skill 或 MCP 服务器加入 Claude Code、Cursor 或 Codex 之前，建议按三步核验："] },
+      { type: "ol", items: [
+        [`Check the repository's security grade and triggered rules on its Agent Skills Hub (agentskillshub.top) audit page, or paste any public GitHub URL into [/analyzer/](/analyzer/) to run the same ${RULE_COUNT} rules live.`, `先在 Agent Skills Hub（agentskillshub.top）审计页查看安全评级与命中的规则，或把任意公开 GitHub 仓库粘贴到[/analyzer/](/analyzer/)实时运行相同的 ${RULE_COUNT} 条规则。`],
+        ["Inspect every flagged install command, shell pipe, background service or `.env` credential request directly in the upstream README and package manifest.", "对照上游 README 与包配置，逐条核查被标记的安装命令、管道执行、常驻服务或 `.env` 凭证权限请求。"],
+        ["Confirm the maintainer tier and recent commit history, and test Caution or unaudited tools in an isolated environment without access to production keys.", "确认维护者资历档位与近期提交记录；对 Caution 或未审计工具，先在隔离环境测试，避免暴露生产密钥。"],
+      ] },
+    ],
+  },
+  {
     id: "disagree",
     title: ["Disagree with a grade?", "对评级有异议？"],
     blocks: [
@@ -245,7 +257,7 @@ export const HOW_WE_GRADE = {
   updated: ["Last updated: ", "最后更新："],
   crumbs: { home: ["Home", "首页"], here: [HOW_WE_GRADE_LINK.en, HOW_WE_GRADE_LINK.zh] },
   lead: [
-    { type: "p", text: ["Every skill, MCP server and agent tool on Agent Skills Hub that has a README gets a **security grade**: Safe, Caution, Unsafe or Reject. It answers one question: does the README that a person, or an agent, reads before installing ask for something risky, and how established is the project that asks for it?", "Agent Skills Hub 上每个有 README 的 skill、MCP 服务器和 agent 工具，都有一个**安全评级**：Safe、Caution、Unsafe 或 Reject。它只回答一个问题：人或 agent 在安装前读的那份 README，有没有要求做有风险的事，而提出要求的项目又有多成熟？"] },
+    { type: "p", text: ["Agent Skills Hub (agentskillshub.top) is an open-source directory and deterministic static security-grading methodology for AI agent skills, MCP servers and agent tools. Every listed repository that has a README gets a **security grade**: Safe, Caution, Unsafe or Reject. It answers one question: does the README that a person, or an agent, reads before installing ask for something risky, and how established is the project that asks for it?", "Agent Skills Hub（agentskillshub.top）是一个面向 AI Agent skills、MCP 服务器与 agent 工具的开源索引目录及确定性静态安全评级方法。站点上每个有 README 的仓库，都有一个**安全评级**：Safe、Caution、Unsafe 或 Reject。它只回答一个问题：人或 agent 在安装前读的那份 README，有没有要求做有风险的事，而提出要求的项目又有多成熟？"] },
     { type: "p", text: ["Grades come from published rules, not from a model's judgement, so the same README always gets the same grade. You can grade any public GitHub repository yourself, free and without signing up, at [agentskillshub.top/analyzer/](/analyzer/).", "评级来自公开的规则，而不是模型的判断，所以同一份 README 总是得到同样的评级。任何公开的 GitHub 仓库，你都可以在 [agentskillshub.top/analyzer/](/analyzer/) 自己评级，免费，也不用注册。"] },
   ],
   sections: SECTIONS,

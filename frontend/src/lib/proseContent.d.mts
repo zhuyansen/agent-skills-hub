@@ -31,6 +31,7 @@ export type Block =
   | { type: "p"; text: Text }
   | { type: "h3"; text: Text; id?: string }
   | { type: "ul"; items: readonly Text[] }
+  | { type: "ol"; items: readonly Text[] }
   | NoteBlock
   | TableBlock;
 
@@ -68,6 +69,7 @@ export declare const CLASSES: Readonly<
     | "article"
     | "section"
     | "list"
+    | "orderedList"
     | "tableWrap"
     | "tableWide"
     | "anchor"
