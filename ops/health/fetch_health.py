@@ -61,7 +61,7 @@ def check_workflows() -> list[dict]:
             )
             r.raise_for_status()
             runs = r.json().get("workflow_runs") or []
-            done = [x for x in runs if x.get("status") == "completed"]
+            done = [x for x in runs if x.get("status") == "completed" and x.get("conclusion") != "cancelled"]
             in_prog = [x for x in runs if x.get("status") in ("in_progress", "queued")]
             last = done[0] if done else None
             at_cst = ""
