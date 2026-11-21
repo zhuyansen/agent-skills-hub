@@ -1,8 +1,19 @@
 name = "agentskillshub-edge-proxy"
 main = "worker.js"
 compatibility_date = "2026-11-01"
+workers_dev = false
 
 routes = [
   { pattern = "agentskillshub.top/", zone_name = "agentskillshub.top" },
-  { pattern = "agentskillshub.top/index.html", zone_name = "agentskillshub.top" }
+  { pattern = "agentskillshub.top/index.html", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/best/*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/audit/*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/how-we-grade*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/ai-info*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/llms*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/sitemap*", zone_name = "agentskillshub.top" }
 ]
+
+[[kv_namespaces]]
+binding = "AI_CRAWL_KV"
+id = "129a42bc278d452cb8f950b8e8acf1af"

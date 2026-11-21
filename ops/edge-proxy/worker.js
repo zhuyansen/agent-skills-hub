@@ -1,18 +1,54 @@
 /**
  * Cloudflare Worker edge proxy for agentskillshub.top.
  *
- * Adds two agent-readiness capabilities that GitHub Pages cannot provide directly:
+ * Capabilities:
  *   1. RFC 8288 Link response headers on the homepage pointing to /llms.txt,
  *      /index.md, and /.well-known/mcp/server-card.json.
  *   2. Content negotiation for `Accept: text/markdown` on `/` (serves /index.md
  *      with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`).
+ *   3. Lightweight AI crawler & AI referral edge telemetry (inspired by
+ *      yaojingang/GEOInflow, MIT) with official IPv4 CIDR verification and
+ *      daily deduplicated KV logging for Sitemap blind-spot auditing.
  */
+
+import { OFFICIAL_BOT_CIDRS } from "./bot-ranges.js";
 
 const HOME_LINK_HEADER = [
   '</llms.txt>; rel="describedby"; type="text/plain"',
   '</index.md>; rel="alternate"; type="text/markdown"',
   '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
 ].join(", ");
+
+const THIRTY_DAYS_SECONDS = 60 * 60 * 24 * 30;
+
+const AI_CRAWLER_RULES = [
+  { pattern: /OAI-SearchBot/i, bot: "OAI-SearchBot", provider: "OpenAI", purpose: "ai_search" },
+  { pattern: /ChatGPT-User/i, bot: "ChatGPT-User", provider: "OpenAI", purpose: "user_triggered" },
+  { pattern: /GPTBot/i, bot: "GPTBot", provider: "OpenAI", purpose: "training" },
+  { pattern: /Perplexity-User/i, bot: "Perplexity-User", provider: "Perplexity", purpose: "user_triggered" },
+  { pattern: /PerplexityBot/i, bot: "PerplexityBot", provider: "Perplexity", purpose: "ai_search" },
+  { pattern: /Claude-SearchBot/i, bot: "Claude-SearchBot", provider: "Anthropic", purpose: "ai_search" },
+  { pattern: /Claude-User/i, bot: "Claude-User", provider: "Anthropic", purpose: "user_triggered" },
+  { pattern: /ClaudeBot|anthropic-ai/i, bot: "ClaudeBot", provider: "Anthropic", purpose: "training" },
+  { pattern: /Google-Extended/i, bot: "Google-Extended", provider: "Google", purpose: "training" },
+  { pattern: /Googlebot/i, bot: "Googlebot", provider: "Google", purpose: "search_engine" },
+  { pattern: /Bingbot/i, bot: "Bingbot", provider: "Microsoft", purpose: "search_engine" },
+  { pattern: /Applebot-Extended/i, bot: "Applebot-Extended", provider: "Apple", purpose: "training" },
+  { pattern: /Bytespider/i, bot: "Bytespider", provider: "ByteDance", purpose: "training" },
+  { pattern: /meta-externalagent/i, bot: "Meta-ExternalAgent", provider: "Meta", purpose: "ai_search" },
+];
+
+const AI_REFERRAL_HOSTS = [
+  { pattern: /(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$/i, engine: "chatgpt" },
+  { pattern: /(^|\.)perplexity\.ai$/i, engine: "perplexity" },
+  { pattern: /(^|\.)claude\.ai$/i, engine: "claude" },
+  { pattern: /(^|\.)gemini\.google\.com$/i, engine: "gemini" },
+  { pattern: /(^|\.)copilot\.microsoft\.com$/i, engine: "copilot" },
+  { pattern: /(^|\.)chat\.deepseek\.com$/i, engine: "deepseek" },
+  { pattern: /(^|\.)doubao\.com$/i, engine: "doubao" },
+  { pattern: /(^|\.)kimi\.moonshot\.cn$|(^|\.)kimi\.ai$/i, engine: "kimi" },
+  { pattern: /(^|\.)grok\.com$/i, engine: "grok" },
+];
 
 /** Parses Accept header quality values to decide whether the client wants Markdown. */
 export function prefersMarkdown(acceptHeader) {
@@ -29,6 +65,149 @@ export function prefersMarkdown(acceptHeader) {
     if (media === "text/html") htmlQuality = Math.max(htmlQuality, quality);
   }
   return mdQuality > 0 && mdQuality >= htmlQuality;
+}
+
+export function classifyAiCrawler(userAgent) {
+  if (!userAgent) return null;
+  for (const rule of AI_CRAWLER_RULES) {
+    if (rule.pattern.test(userAgent)) {
+      return { bot: rule.bot, provider: rule.provider, purpose: rule.purpose };
+    }
+  }
+  return null;
+}
+
+export function classifyAiReferral(referer) {
+  if (!referer) return null;
+  try {
+    const host = new URL(referer).hostname;
+    for (const rule of AI_REFERRAL_HOSTS) {
+      if (rule.pattern.test(host)) return { engine: rule.engine, host };
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function ipv4ToInt(ip) {
+  if (!ip || typeof ip !== "string") return null;
+  const parts = ip.trim().split(".");
+  if (parts.length !== 4) return null;
+  let out = 0;
+  for (const part of parts) {
+    if (!/^\d{1,3}$/.test(part)) return null;
+    const n = Number(part);
+    if (n < 0 || n > 255) return null;
+    out = (out << 8) | n;
+  }
+  return out >>> 0;
+}
+
+export function isIpv4InCidrs(ip, cidrs) {
+  const ipInt = ipv4ToInt(ip);
+  if (ipInt === null || !Array.isArray(cidrs) || cidrs.length === 0) return false;
+  for (const cidr of cidrs) {
+    const [net, bitsStr] = cidr.split("/");
+    const netInt = ipv4ToInt(net);
+    const bits = Number(bitsStr);
+    if (netInt === null || !Number.isInteger(bits) || bits < 0 || bits > 32) continue;
+    const mask = bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0;
+    if ((ipInt & mask) === (netInt & mask)) return true;
+  }
+  return false;
+}
+
+export function verifyBotIp(botName, clientIp) {
+  const entry = OFFICIAL_BOT_CIDRS[botName];
+  if (!entry || !entry.prefixes || entry.prefixes.length === 0) return "no_cidr_list";
+  if (!clientIp) return "unknown_ip";
+  if (clientIp.includes(":")) return "ipv6_unchecked";
+  return isIpv4InCidrs(clientIp, entry.prefixes) ? "verified" : "unverified_ip";
+}
+
+function normalizePath(pathname) {
+  if (!pathname) return "/";
+  const clean = pathname.length > 180 ? pathname.slice(0, 180) : pathname;
+  return clean === "/index.html" ? "/" : clean;
+}
+
+function utcDay(now = new Date()) {
+  return now.toISOString().slice(0, 10);
+}
+
+/**
+ * Deduplicated daily KV logging: checks KV.get() first (100K/day free reads)
+ * before KV.put() (1K/day free writes), guaranteeing at most 1 write per
+ * (day, bot/engine, path) while preserving exact Sitemap coverage & blind spots.
+ */
+export async function logEdgeSignal(kv, signal) {
+  if (!kv) return false;
+  try {
+    const existing = await kv.get(signal.key);
+    if (existing !== null) return false;
+    await kv.put(signal.key, JSON.stringify(signal.payload), {
+      expirationTtl: THIRTY_DAYS_SECONDS,
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function scheduleTelemetry(env, ctx, request, url, response) {
+  const kv = env && env.AI_CRAWL_KV;
+  if (!kv) return;
+  const ua = request.headers.get("User-Agent") || "";
+  const referer = request.headers.get("Referer") || "";
+  const clientIp = request.headers.get("CF-Connecting-IP") || "";
+  const day = utcDay();
+  const path = normalizePath(url.pathname);
+  const status = response.status;
+  const ct = (response.headers.get("Content-Type") || "").split(";")[0].trim();
+
+  const tasks = [];
+  const crawler = classifyAiCrawler(ua);
+  if (crawler) {
+    const ipStatus = verifyBotIp(crawler.bot, clientIp);
+    const key = `crawl|${day}|${crawler.bot}|${path}`;
+    tasks.push(
+      logEdgeSignal(kv, {
+        key,
+        payload: {
+          ts: new Date().toISOString(),
+          bot: crawler.bot,
+          provider: crawler.provider,
+          purpose: crawler.purpose,
+          ip_status: ipStatus,
+          status,
+          ct,
+          path,
+        },
+      }),
+    );
+  }
+
+  const ref = classifyAiReferral(referer);
+  if (ref) {
+    const key = `ref|${day}|${ref.engine}|${path}`;
+    tasks.push(
+      logEdgeSignal(kv, {
+        key,
+        payload: {
+          ts: new Date().toISOString(),
+          engine: ref.engine,
+          host: ref.host,
+          status,
+          path,
+        },
+      }),
+    );
+  }
+
+  if (tasks.length > 0 && ctx && typeof ctx.waitUntil === "function") {
+    ctx.waitUntil(Promise.allSettled(tasks));
+  }
 }
 
 function estimateTokens(markdown) {
@@ -67,24 +246,32 @@ async function serveMarkdownHome(request, url) {
 }
 
 export default {
-  async fetch(request) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const isRead = request.method === "GET" || request.method === "HEAD";
     if (isRead && isHomepagePath(url.pathname) && prefersMarkdown(request.headers.get("Accept"))) {
       const mdResponse = await serveMarkdownHome(request, url);
-      if (mdResponse) return mdResponse;
+      if (mdResponse) {
+        scheduleTelemetry(env, ctx, request, url, mdResponse);
+        return mdResponse;
+      }
     }
 
     const originResponse = await fetch(request);
-    if (!isHomepagePath(url.pathname)) return originResponse;
+    if (!isHomepagePath(url.pathname)) {
+      scheduleTelemetry(env, ctx, request, url, originResponse);
+      return originResponse;
+    }
 
     const headers = new Headers(originResponse.headers);
     headers.set("Link", HOME_LINK_HEADER);
     appendVaryAccept(headers);
-    return new Response(originResponse.body, {
+    const finalResp = new Response(originResponse.body, {
       status: originResponse.status,
       statusText: originResponse.statusText,
       headers,
     });
+    scheduleTelemetry(env, ctx, request, url, finalResp);
+    return finalResp;
   },
 };
