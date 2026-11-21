@@ -10006,5 +10006,95 @@
    "general": 0.37
   },
   "kind": "promo"
+ },
+ {
+  "repo": "mografy/mografy",
+  "stars": 60,
+  "description": "Create, preview, and export Canvas motion graphics with Claude Code or Codex. Local-first and open source, with MP4, Lottie, and SVGA export.",
+  "scores": {
+   "promo": 0.73,
+   "explainer": 0.43,
+   "music": 0.1,
+   "motion": 0.79,
+   "shorts": 0.16,
+   "editing": 0.06,
+   "demo": 0.87,
+   "story": 0.2,
+   "avatar": 0.04,
+   "general": 0.27
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "archerzjp-dev/lyric-mv-kit",
+  "stars": 29,
+  "description": "代码 MV 创作包：用 Suno v6 写歌，用 HyperFrames 做逐字踩拍的歌词 MV（起步工程 + 工具 + Claude Code 导演技能 + 教程）",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.52,
+   "music": 0.97,
+   "motion": 0.09,
+   "shorts": 0.1,
+   "editing": 0.03,
+   "demo": 0.5,
+   "story": 0.3,
+   "avatar": 0.04,
+   "general": 0.08
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "daiyixiang666/hat9-motion",
+  "stars": 5,
+  "description": "九帽动效 · 一条口播变成 AE 级动效成片（横屏 16:9 + 竖屏 9:16）— agent skill for Claude Code / Codex, rendered with HyperFrames, zero API keys",
+  "scores": {
+   "promo": 0.34,
+   "explainer": 0.76,
+   "music": 0.05,
+   "motion": 0.55,
+   "shorts": 0.81,
+   "editing": 0.13,
+   "demo": 0.31,
+   "story": 0.11,
+   "avatar": 0.05,
+   "general": 0.65
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "artemiimillier/cartoon-skill",
+  "stars": 5,
+  "description": "Cartoon skill for Claude Code: word-driven vertical animated explainers with Remotion",
+  "scores": {
+   "promo": 0.27,
+   "explainer": 0.77,
+   "music": 0.07,
+   "motion": 0.66,
+   "shorts": 0.91,
+   "editing": 0.06,
+   "demo": 0.86,
+   "story": 0.21,
+   "avatar": 0.15,
+   "general": 0.06
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "jpooksy/remotion-claude-template",
+  "stars": 5,
+  "description": "Programmatic product showcase videos: Remotion + Claude Code agent workflow, design-system-as-source-of-truth UI recreation, narrated talking-head cuts",
+  "scores": {
+   "promo": 0.82,
+   "explainer": 0.78,
+   "music": 0.03,
+   "motion": 0.17,
+   "shorts": 0.67,
+   "editing": 0.3,
+   "demo": 0.82,
+   "story": 0.07,
+   "avatar": 0.06,
+   "general": 0.21
+  },
+  "kind": "promo"
  }
 ]

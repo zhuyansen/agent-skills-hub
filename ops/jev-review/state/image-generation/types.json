@@ -3806,5 +3806,19 @@
    "mcp": 0.7
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "scumble-app/scumble",
+  "stars": 182,
+  "description": "Free, open-source desktop editor for AI inpainting: select, prompt, get a colour-matched layer. FLUX 3 Image, FLUX.2, GPT Image, Nano Banana, Seedream and Qwen through your API key or your own ComfyUI. Layers, PSD export, MCP.",
+  "scores": {
+   "gpt_image": 0.08,
+   "nano_banana": 0.06,
+   "open_models": 0.87,
+   "editing": 0.87,
+   "design": 0.02,
+   "mcp": 0.4
+  },
+  "kind": "open_models"
  }
 ]

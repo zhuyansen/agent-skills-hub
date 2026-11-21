@@ -3482,5 +3482,18 @@
    "tooling": 0.91
   },
   "kind": "statusline"
+ },
+ {
+  "repo": "liuyejinghong/Claude-workflow",
+  "stars": 6,
+  "description": "Claude Code 主控 + GPT-6 / GLM-5.3 原生 subagent 的多模型委托与编排方案（via CLIProxyAPI）",
+  "scores": {
+   "hooks": 0.11,
+   "subagents": 0.65,
+   "statusline": 0.02,
+   "collection": 0.8,
+   "tooling": 0.71
+  },
+  "kind": "collection"
  }
 ]

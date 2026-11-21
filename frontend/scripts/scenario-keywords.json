@@ -2054,7 +2054,8 @@
     "walkskysu/digital-human-koubo-comfyui",
     "AlbertAZ1992/image-skillbook",
     "PotionUI/PotionUI",
-    "alfeusaditya/claude-codex-connector"
+    "alfeusaditya/claude-codex-connector",
+    "scumble-app/scumble"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2063,7 +2064,8 @@
     "lidge-jun/ima2-gen",
     "wuyoscar/gpt_image_2_skill",
     "ilovehugetits/codex-images",
-    "Arekejoker/qwen21-nsfw-pose-skill"
+    "Arekejoker/qwen21-nsfw-pose-skill",
+    "DenRakEiw/scumble"
    ],
    "featured": [
     "helloianneo/ian-xiaohei-illustrations",
@@ -3461,7 +3463,6 @@
     "Guan0923/Praxis-RAG"
    ],
    "exclude_repos": [
-    "FlowElement-ai/m_flow",
     "Laurent00TT/pharos",
     "Lyra-stellAI/BYO-WIKI",
     "Mark393295827/third-brain-v5-skills",
@@ -3484,7 +3485,8 @@
     "dmayboroda/minima",
     "viddexa/autollm",
     "xingranya/GitHub-Stars-AI-Tools",
-    "1llu50ry/mcp-reverse"
+    "1llu50ry/mcp-reverse",
+    "FlowElement-xinliuyuansu/m_flow"
    ]
   },
   "related": [
@@ -3822,7 +3824,8 @@
     "yourconscience/tackroom",
     "avalonreset/cto-legends",
     "Ramtoi/skill-tree",
-    "DBAAZzz/skill-stow"
+    "DBAAZzz/skill-stow",
+    "kheif/quiver"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4747,7 +4750,8 @@
     "etodanik/deslop",
     "gretchenfitze/anti-slop",
     "imMamdouhaboammar/anti-slop-engineering",
-    "noobarafat/research-paper-humanizer"
+    "noobarafat/research-paper-humanizer",
+    "techwithtk/nopurple"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4756,7 +4760,8 @@
     "Bubblegunn/ai-slop-linter",
     "dotoricode/korean-humanizer",
     "Mutakisa/game-slop-purge",
-    "tasteskill/tasteskill"
+    "tasteskill/tasteskill",
+    "taufiquebuilds/nopurple"
    ]
   },
   "related": [
@@ -8370,7 +8375,9 @@
     "bodepudimuneendra-netizen/ConsciousDB",
     "Enntity/sparkscore",
     "ddfeyes/jev-mode",
-    "Todmy/jevqa"
+    "Todmy/jevqa",
+    "glud123/jev-assist",
+    "caiovicentino/jev-shield"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -9038,7 +9045,12 @@
     "0xpratzyy/subtle",
     "kvrancic/cutroom",
     "syydaniel/juzu",
-    "leeguooooo/motion-use"
+    "leeguooooo/motion-use",
+    "mografy/mografy",
+    "archerzjp-dev/lyric-mv-kit",
+    "daiyixiang666/hat9-motion",
+    "artemiimillier/cartoon-skill",
+    "jpooksy/remotion-claude-template"
    ],
    "sub_skills": [
     {
@@ -9091,7 +9103,8 @@
     "nocodehack/make-short",
     "nocodehack/nocodehack-roblox-engine",
     "kvrancic/oneshot-video",
-    "luminexlabs-io/antigravity-remotion-skill"
+    "luminexlabs-io/antigravity-remotion-skill",
+    "zz41354899/mografy"
    ],
    "tag_matches": [],
    "required_keywords": [
@@ -9618,7 +9631,8 @@
     "me2resh/apexyard",
     "SanderMuller/claude-statusline",
     "Rylaa/fable5.2-opus5.5-orchestrator",
-    "thingineeer/claude-cat"
+    "thingineeer/claude-cat",
+    "liuyejinghong/Claude-workflow"
    ],
    "exclude_repos": [
     "Astro-Han/claude-lens",

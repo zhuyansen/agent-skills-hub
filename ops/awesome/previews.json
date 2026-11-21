@@ -2911,6 +2911,14 @@
   "type": "image/webp",
   "bytes": 79678
  },
+ "artemiimillier/cartoon-skill": {
+  "repo": "artemiimillier/cartoon-skill",
+  "url": "https://raw.githubusercontent.com/artemiimillier/cartoon-skill/HEAD/docs/strip.jpg",
+  "alt": "English demo frames",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 284135
+ },
  "artemiimillier/skill-multik": {
   "repo": "artemiimillier/skill-multik",
   "url": "https://raw.githubusercontent.com/artemiimillier/skill-multik/HEAD/docs/strip.jpg",
@@ -3534,6 +3542,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 3783814
+ },
+ "daiyixiang666/hat9-motion": {
+  "repo": "daiyixiang666/hat9-motion",
+  "url": "https://raw.githubusercontent.com/daiyixiang666/hat9-motion/HEAD/assets/previews/wall.webp",
+  "alt": "16 种风格的示例成片同时在播：上面两排横屏 16:9，下面一排竖屏 9:16",
+  "score": 1.75,
+  "type": "image/webp",
+  "bytes": 2109704
  },
  "dakjdakd/PPT-Design-DNA": {
   "repo": "dakjdakd/PPT-Design-DNA",
@@ -5127,6 +5143,14 @@
   "type": "image/png",
   "bytes": 611303
  },
+ "jpooksy/remotion-claude-template": {
+  "repo": "jpooksy/remotion-claude-template",
+  "url": "https://img.youtube.com/vi/gEtm-MJKJoA/maxresdefault.jpg",
+  "alt": "How I Make SaaS Product Demos in Code",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 131661
+ },
  "jsliapark/preflight": {
   "repo": "jsliapark/preflight",
   "url": "https://github.com/user-attachments/assets/2f7c402b-7886-42a3-8243-48c22388b339",
@@ -5782,6 +5806,14 @@
   "score": 2.2,
   "type": "image/gif",
   "bytes": 5553518
+ },
+ "mografy/mografy": {
+  "repo": "mografy/mografy",
+  "url": "https://raw.githubusercontent.com/mografy/mografy/main/docs/media/mografy-intro.gif",
+  "alt": "Watch the twelve-second Mografy intro",
+  "score": 2.95,
+  "type": "image/gif",
+  "bytes": 861289
  },
  "moguzbulbul/blueprint-animation": {
   "repo": "moguzbulbul/blueprint-animation",
@@ -6534,6 +6566,14 @@
   "score": 4.7,
   "type": "image/gif",
   "bytes": 3239635
+ },
+ "scumble-app/scumble": {
+  "repo": "scumble-app/scumble",
+  "url": "https://raw.githubusercontent.com/scumble-app/scumble/HEAD/docs/images/colour-match.jpg",
+  "alt": "Colour match: the same result layer at Match 0 % with a visible cold rectangle, ",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 150881
  },
  "sedum-dev/sedum": {
   "repo": "sedum-dev/sedum",

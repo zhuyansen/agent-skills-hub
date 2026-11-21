@@ -5413,5 +5413,35 @@
    "general": 0.06
   },
   "kind": "agent"
+ },
+ {
+  "repo": "glud123/jev-assist",
+  "stars": 5,
+  "description": "Don't burn your model's context on a search flood — pipe it in and read above the cut line: one calibrated number per candidate, ~30 rows whether the pool is 40 or 4,000. It doesn't search; it decides what each hit is.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.05,
+   "devtool": 0.98,
+   "sdk": 0.25,
+   "business": 0.03,
+   "consumer": 0.2,
+   "general": 0.12
+  },
+  "kind": "devtool"
+ },
+ {
+  "repo": "caiovicentino/jev-shield",
+  "stars": 5,
+  "description": "Semantic MCP firewall powered by Jev — screens every tool call, tool result, and tool description with calibrated System One verification. 94% block recall, 0 false positives, ~$0.00002/check.",
+  "scores": {
+   "replica": 0.04,
+   "agent": 0.06,
+   "devtool": 0.78,
+   "sdk": 0.78,
+   "business": 0.03,
+   "consumer": 0.12,
+   "general": 0.11
+  },
+  "kind": "devtool"
  }
 ]

@@ -2826,5 +2826,19 @@
    "general": 0.12
   },
   "kind": "app"
+ },
+ {
+  "repo": "kheif/quiver",
+  "stars": 5,
+  "description": "Skill manager for AI coding assistants: one library of agent skills, served over MCP to Claude Code, Codex, Cursor and others, in layers, with always-on skills in every session.",
+  "scores": {
+   "cli": 0.36,
+   "sync": 0.56,
+   "app": 0.06,
+   "registry": 0.14,
+   "team": 0.11,
+   "general": 0.12
+  },
+  "kind": "sync"
  }
 ]
