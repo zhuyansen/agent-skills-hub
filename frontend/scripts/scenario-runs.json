@@ -21316,6 +21316,10 @@
    "rule": [
     "One pick per kind, from these runs: every item of the brief first, then the judge's looks, then time.",
     "每类选一个，依据这次实测：先看测试题是否全部做到，再看评审观感，最后看耗时。"
+   ],
+   "answer": [
+    "We gave 12 animation skills and Claude Code with no skill the same six briefs. With no skill it met the brief in 5 of 6 kinds, for $1.77 in total; every skill cost more and only 2 were faster. So install one for a look, a file format or code you will keep: sprite-gen for game sprites, diffusionstudio/lottie for a real Lottie file, gsap-skills for web motion you keep building on.",
+    "我们让 12 个动画 skill 和不装 skill 的 Claude Code 做同样的六道题。不装 skill 的 6 类里 5 类全部达标，一共 $1.77；每个 skill 都更贵，只有 2 个更快。所以装 skill 是为了风格、格式或留下的代码：游戏精灵图用 sprite-gen，要真正的 Lottie 文件用 diffusionstudio/lottie，要接着往下做的网页动效用 gsap-skills。"
    ]
   },
   "runs": {

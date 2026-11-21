@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>怎么让 Claude 做的动画不千篇一律（2026）</title>
+  <meta name="description" content="Claude 做的动画为什么都长一个样，以及五个办法：给参考、写风格说明、用风格包、把时间集中在一处、看帧检查。来自我们对 12 个动画 skill 的实测。" />
+  <meta name="keywords" content="Claude 动画, Claude 动画 skill, 用 Claude 做动画, 动态图形, Claude Code 动画, Remotion" />
+  <meta property="og:title" content="怎么让 Claude 做的动画不千篇一律（2026）" />
+  <meta property="og:description" content="同一份 brief，同一个长相：我们的动画实测看到了什么，以及让 Claude 的动画有自己样子的五个办法。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/zh/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg" />
+  <meta property="article:published_time" content="2026-11-21" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="怎么让 Claude 做的动画不千篇一律（2026）" />
+  <meta name="twitter:description" content="同一份 brief，同一个长相：我们的动画实测看到了什么，以及让 Claude 的动画有自己样子的五个办法。" />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/zh/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer src="/ph.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "怎么让 Claude 做的动画不千篇一律（2026）", "description": "Claude 做的动画为什么都长一个样，以及五个办法：给参考、写风格说明、用风格包、把时间集中在一处、看帧检查。来自我们对 12 个动画 skill 的实测。", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "inLanguage": "zh-CN", "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"}, "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top/"}, "image": "https://agentskillshub.top/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg", "mainEntityOfPage": "https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/zh/"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "不装 skill，Claude 能做动画吗？", "acceptedAnswer": {"@type": "Answer", "text": "大多数能。我们 2026-11-18 的实测里，不装任何动画 skill 的 Claude Code（Claude Opus 5.5）在 6 类题里有 5 类全部达标，每题 0.9 到 4 分钟，6 题一共 $1.77。差在游戏精灵图：它把走路画成了正面朝向观众。"}}, {"@type": "Question", "name": "为什么我做出来的动画不如网上看到的？", "acceptedAnswer": {"@type": "Answer", "text": "通常是因为 brief 只写了要发生什么，没写要长成什么样。网上那些作品，背后有参考图、选定的配色和字体，还有好几轮修改。把这些交给 Claude，结果会跟着变。"}}, {"@type": "Question", "name": "做电影感动画或动态图形，用哪个 skill？", "acceptedAnswer": {"@type": "Answer", "text": "要出视频的，看 remotion-dev/skills（Remotion 官方 skill）、lemomo-ai/lemo-opuscar（现成的影片风格）、Moh4696/cinematic-skill 或 smixs/visual-skills（电影感的镜头与叙事）。它们都在我们动画 skill 页的「动画视频与动态图形」一组里，带安全评级。"}}]}</script>
+  <style>
+    /* ── P1 typography upgrade ─────────────────────────────────── */
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+
+    .article-body > h1 { font-size: 36px; line-height: 1.25; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 16px; color: var(--bp-text); }
+
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.35; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.85; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: normal; font-size: 17px; color: var(--bp-text); line-height: 1.78; }
+
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: rgba(91, 95, 233, 0.06); border: 1px solid var(--bp-border-accent); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; border: none; }
+    .lang-toggle a:hover { color: var(--bp-text); border: none; }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+
+    .ref-card { display: block; padding: 16px 20px; margin: 12px 0; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .ref-card:hover { border-color: var(--bp-link); text-decoration: none; transform: translateY(-1px); border-bottom-color: var(--bp-link); }
+    .ref-card-title { font-size: 15px; font-weight: 600; color: var(--bp-text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .ref-card-desc { font-size: 14px; color: var(--bp-text-secondary); margin-top: 6px; line-height: 1.65; }
+    .ref-card-stars { font-size: 12px; color: var(--bp-link); margin-top: 6px; font-weight: 500; }
+
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/book/" class="bp-nav-link">Blue Book</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">首页</a> &gt; <a href="/blog/zh/">博客</a> &gt; <span>让 Claude 的动画不千篇一律</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/make-claude-animations-that-dont-look-alike/" >EN</a>
+          <a href="/blog/make-claude-animations-that-dont-look-alike/zh/" class="active">中文</a>
+        </div>
+      </div>
+
+      <h1>怎么让 Claude 做的动画不千篇一律</h1>
+
+      <div class="article-meta">
+        <span>作者 <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>2026 年 11 月 21 日</span>
+        <span>&middot;</span>
+        <span class="article-tag">教程</span>
+        <span>&middot;</span>
+        <span>约 7 分钟</span>
+      </div>
+
+      <blockquote><p><strong>简短回答：</strong>不靠任何帮助，Claude 也能做出像样的动画：我们实测里它 6 类题有 5 类全部达标，一共花了 $1.77。让它和别人做的一个样的，是一份只写了「要发生什么」的 brief。给它参考图、风格说明（配色、字体、缓动、转场）或者风格包；把所有时间点集中放在一处，改起来就便宜；每一轮都看帧检查。</p></blockquote>
+
+      <p>「我让 Claude 照着做一个类似的，效果就是没那么好。」这句话来自 <a href="https://www.reddit.com/r/ClaudeAI/comments/1xdwfec/">Reddit 上一个 849 赞、137 条评论的帖子</a>，高赞回复点出了差在哪：「字体和转场」。<a href="https://www.reddit.com/r/ClaudeCode/comments/1wtuhdc/">另一个帖子</a>说得更直接：「做出来的每一样东西都长一个样。」</p>
+
+      <p>我们自己的实测也看到了同样的事。2026-11-18，我们给 Claude Code 每类动画各出一道题（落地页动效、动态 logo、精灵图、挥手的吉祥物、动态流程图、讲解动画），分别在装和不装星数最高的动画 skill 的情况下做。所有结果都在<a href="/best/animation-skills/zh/">动画 skill 页</a>。</p>
+
+      <h2>同一份 brief，同一个长相</h2>
+
+      <p>这是讲解题（「面团每小时长大一倍」：一团变大的面、一个钟、一条曲线、一句结尾）在不装 skill 的 Claude Code 下做出来的样子：</p>
+
+      <p><img src="/best-runs/animation/art-control-frames.jpg" alt="不装 skill 的 Claude Code 做的讲解动画八帧：奶油色背景上，面团放在木板上，旁边一个钟和一条增长曲线" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>这是装了一个我们测过的 skill 做的。并排放着，很难分出哪个是哪个：同样的奶油色背景，面团在左边的木板上，钟在中间，曲线在右边，结尾同样是一条深色字幕条。</p>
+
+      <p><img src="/best-runs/animation/art-alexgreensh__anidoodle-frames.jpg" alt="用 anidoodle skill 做的同一道讲解题八帧：布局和不装 skill 的几乎一样" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>第三个，huashu-art-motion，走了另一条路：面团放进了厨房台面上的搅拌碗，墙上挂着钟，图表钉在墙上。它花的时间更久（7.6 分钟），也是三个里唯一一个像个「地方」的：</p>
+
+      <p><img src="/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg" alt="用 huashu-art-motion 做的同一道讲解题八帧：面团在厨房台面的碗里发起来，墙上有钟，图表钉在墙上" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>brief 只写了要发生什么，没写要长成什么样，所以前两个填上了同样稳妥的默认值。第三个自带了一套风格。下面几个办法做的都是同一件事：在 Claude 之前，先把长相定下来。</p>
+
+      <h2>1. 给它参考图</h2>
+
+      <p>一位说自己用 Claude 做的动画累计播放超过 260 万的作者，把参考放在第一位：「找视觉参考——这大概是最重要的一步」（<a href="https://www.reddit.com/r/Claudeopus/comments/1xg1h1v/">原帖</a>）。另一个帖子抱怨：「带源代码的高质量动画范例很难找」（<a href="https://www.reddit.com/r/ClaudeDesign/comments/1xhwe1m/">原帖</a>）。</p>
+
+      <p>把两三张你喜欢的画面放进项目文件夹，告诉 Claude 每张取什么：这张取配色，那张取字体和节奏。说出来的参考胜过没有参考；Claude 能直接看到的参考更好。</p>
+
+      <h2>2. 写风格说明，不只写内容说明</h2>
+
+      <p>我们的 brief 一步步写了要发生什么。风格说明补上的是那些本来会交给默认值的决定：</p>
+
+      <ul>
+        <li><strong>配色：</strong>三到五个颜色，写成色值。</li>
+        <li><strong>字体：</strong>标题一种，标注一种。</li>
+        <li><strong>运动：</strong>缓动（「快出、慢停」）、元素怎么进场、场景之间固定用哪一种转场。</li>
+        <li><strong>场景：</strong>事情发生在哪里。「在厨房台面的碗里」，正是上面第三个和前两个的区别。</li>
+        <li><strong>一个标志性细节</strong>，每个镜头都出现。</li>
+      </ul>
+
+      <h2>3. 没有参考？从风格包开始</h2>
+
+      <p>有几个 skill 本身就是风格合集，而不是引擎：<a href="https://github.com/GODGOD126/opus-5-5-86-styles-in-motion">opus-5-5-86-styles-in-motion</a>（代码讲解动画的 86 种视觉风格）、<a href="https://github.com/lemomo-ai/lemo-opuscar">lemo-opuscar</a>（用代码做的影片风格工具箱，99 种可直接用）、<a href="https://github.com/Hype-yolo/claude-motion-skill">claude-motion-skill</a>（47 个开源案例，场景可编辑）。按名字挑一种风格，就是从别人有意选过的长相开始。它们都列在<a href="/best/animation-skills/zh/">动画 skill 页</a>「动画视频与动态图形」一组里，带安全评级。</p>
+
+      <h2>4. 把所有时间点放在一处</h2>
+
+      <p>改稿最贵的往往不是画，而是时间。上面那个帖子里有条回复说，有个做法「让 Claude 不用每次都手动重新对时间，以前每改一次要花 20 分钟」。让 Claude 把每个开始时间和时长都放在一张列表里（时间表），各个场景从这里读。改一次就只动一行，不用每个场景都改。</p>
+
+      <h2>5. 看帧，不看代码</h2>
+
+      <p>检查的是动画本身，不是声称能做出动画的代码。我们每次先看八帧拼图，再看完整录屏，因为拼图会漏掉眨眼这种很短的动作。每轮之间也这样做：让 Claude 录下动画、排出帧，你看着画面说要改什么。</p>
+
+      <h2>哪种动画，用什么</h2>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th>你要做的</th><th>从这里开始</th></tr>
+        <tr><td>网页上的动效</td><td>Claude 自己就行；要接着往下做，用 gsap-skills</td></tr>
+        <tr><td>Lottie 文件</td><td>diffusionstudio/lottie：交出的是真正的 Lottie，不是动态 SVG</td></tr>
+        <tr><td>游戏精灵图</td><td>sprite-gen：实测里不装 skill 的把走路画成了正面朝向观众</td></tr>
+        <tr><td>动画视频或动态图形</td><td>remotion-dev/skills，或第 3 步的风格包</td></tr>
+        <tr><td>动态流程图</td><td>SeeCode</td></tr>
+      </table></div>
+
+      <p>每个推荐、每段录屏和每次运行的花费，都在<a href="/best/animation-skills/zh/">动画 skill 页</a>。</p>
+
+      <h2>常见问题</h2>
+      <h3>不装 skill，Claude 能做动画吗？</h3>
+      <p>大多数能。我们 2026-11-18 的实测里，不装任何动画 skill 的 Claude Code（Claude Opus 5.5）在 6 类题里有 5 类全部达标，每题 0.9 到 4 分钟，6 题一共 $1.77。差在游戏精灵图：它把走路画成了正面朝向观众。</p>
+      <h3>为什么我做出来的动画不如网上看到的？</h3>
+      <p>通常是因为 brief 只写了要发生什么，没写要长成什么样。网上那些作品，背后有参考图、选定的配色和字体，还有好几轮修改。把这些交给 Claude，结果会跟着变。</p>
+      <h3>做电影感动画或动态图形，用哪个 skill？</h3>
+      <p>要出视频的，看 remotion-dev/skills（Remotion 官方 skill）、lemomo-ai/lemo-opuscar（现成的影片风格）、Moh4696/cinematic-skill 或 smixs/visual-skills（电影感的镜头与叙事）。它们都在我们动画 skill 页的「动画视频与动态图形」一组里，带安全评级。</p>
+
+      <h2>从这里开始</h2>
+      <a class="ref-card" href="/best/animation-skills/zh/">
+        <div class="ref-card-title">Claude 动画与动态图形 skill</div>
+        <div class="ref-card-desc">Claude Code 的动画 skill，全部做了安全评级，附 12 个 skill 和不装 skill 的 Claude 的对照实测。</div>
+      </a>
+
+    </article>
+  </main>
+
+  <script>
+    // Reading progress bar — 阅读进度条，跟着滚动更新
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>

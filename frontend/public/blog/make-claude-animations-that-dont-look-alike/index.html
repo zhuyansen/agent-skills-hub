@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Make Claude Animations That Don't All Look Alike</title>
+  <meta name="description" content="Why Claude's animations all look the same, and five fixes: references, a style brief, a style pack, one timing list and frame checks. From our animation test." />
+  <meta name="keywords" content="claude animation, claude animation skill, how to make animation with claude, claude motion graphics, cinematic claude, claude code animation, remotion claude" />
+  <meta property="og:title" content="How to Make Claude Animations That Don't All Look Alike" />
+  <meta property="og:description" content="Same brief, same look: what our animation test showed, and five ways to make Claude's animations your own." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <meta property="og:site_name" content="Agent Skills Hub" />
+  <meta property="og:image" content="https://agentskillshub.top/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg" />
+  <meta property="article:published_time" content="2026-11-21" />
+  <meta property="article:author" content="Jason Zhu" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Make Claude Animations That Don't All Look Alike" />
+  <meta name="twitter:description" content="Same brief, same look: what our animation test showed, and five ways to make Claude's animations your own." />
+  <meta name="twitter:site" content="@GoSailGlobal" />
+  <link rel="canonical" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <link rel="alternate" hreflang="en" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <link rel="alternate" hreflang="zh" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/" />
+  <link rel="stylesheet" href="/best-pages.css" />
+  <script defer src="/ph.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Make Claude Animations That Don't All Look Alike", "description": "Why Claude's animations all look the same, and five fixes: references, a style brief, a style pack, one timing list and frame checks. From our animation test.", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "inLanguage": "en", "author": {"@type": "Person", "name": "Jason Zhu", "url": "https://x.com/GoSailGlobal"}, "publisher": {"@type": "Organization", "name": "Agent Skills Hub", "url": "https://agentskillshub.top/"}, "image": "https://agentskillshub.top/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg", "mainEntityOfPage": "https://agentskillshub.top/blog/make-claude-animations-that-dont-look-alike/"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can Claude make animations without a skill?", "acceptedAnswer": {"@type": "Answer", "text": "Mostly, yes. In our test on 2026-11-18, Claude Code (Claude Opus 5.5) with no animation skill met every item of the brief in 5 of 6 kinds, in 0.9 to 4 minutes, for $1.77 across all six. It fell short on game sprites, where it drew the walk facing the viewer."}}, {"@type": "Question", "name": "Why do my Claude animations look worse than the ones I see online?", "acceptedAnswer": {"@type": "Answer", "text": "Usually because the brief says what should happen but not how it should look. The animations you see online were made with references, a chosen palette and typefaces, and several rounds of review. Give Claude those and the result moves with them."}}, {"@type": "Question", "name": "Which skill should I use for cinematic animation or motion graphics?", "acceptedAnswer": {"@type": "Answer", "text": "For video output, look at remotion-dev/skills (Remotion's own skills), lemomo-ai/lemo-opuscar (ready-made film styles) and Moh4696/cinematic-skill or smixs/visual-skills (cinematic direction). All of them are in the Animated video & motion graphics group of our animation skills page, with their security grades."}}]}</script>
+  <style>
+    /* ── P1 typography upgrade ─────────────────────────────────── */
+    /* Reading progress bar (top thin line, scroll-driven) */
+    .reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--bp-link); z-index: 100; transition: width 0.05s linear; }
+
+    /* Article wrapper */
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 20px 96px; }
+
+    /* Title — bigger, tighter */
+    .article-body > h1 { font-size: 36px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em; margin: 32px 0 16px; color: var(--bp-text); }
+
+    /* Section heading — accent left-border + bigger */
+    .article-body h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin: 56px 0 20px; padding: 4px 0 6px 16px; border-left: 4px solid var(--bp-link); border-bottom: none; color: var(--bp-text); letter-spacing: -0.01em; }
+    .article-body h3 { font-size: 19px; font-weight: 600; margin: 32px 0 12px; color: var(--bp-text); }
+
+    /* Body — ~16px / 1.78 (matches book-prose) */
+    .article-body p { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; font-size: 16.5px; }
+    .article-body strong { color: var(--bp-text); font-weight: 600; }
+    .article-body em { color: var(--bp-text); font-style: italic; }
+
+    /* Lists */
+    .article-body ul, .article-body ol { color: var(--bp-text-secondary); line-height: 1.78; margin: 0 0 18px; padding-left: 24px; font-size: 16.5px; }
+    .article-body li { margin-bottom: 8px; }
+
+    /* Inline code */
+    .article-body code { background: var(--bp-bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 14px; color: var(--bp-link); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    /* Blockquote — pull-quote style */
+    .article-body blockquote { border-left: 4px solid var(--bp-link); padding: 18px 24px; margin: 24px 0; background: var(--bp-bg-alt); border-radius: 0 12px 12px 0; }
+    .article-body blockquote p { margin: 0; font-style: italic; font-size: 17px; color: var(--bp-text); line-height: 1.7; }
+
+    /* Links */
+    .article-body a { color: var(--bp-link); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .article-body a:hover { border-bottom-color: var(--bp-link); text-decoration: none; }
+
+    /* Meta row */
+    .article-meta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0 40px; font-size: 14px; color: var(--bp-text-muted); }
+    .article-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bp-badge-purple-bg); color: var(--bp-badge-purple-text); }
+
+    /* Language toggle */
+    .lang-toggle { display: inline-flex; gap: 4px; padding: 3px; background: rgba(91, 95, 233, 0.06); border: 1px solid var(--bp-border-accent); border-radius: 999px; }
+    .lang-toggle a { padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--bp-text-muted); text-decoration: none; border: none; }
+    .lang-toggle a:hover { color: var(--bp-text); border: none; }
+    .lang-toggle a.active { background: var(--bp-link); color: white; }
+
+    /* Ref card — bigger padding, hover lift */
+    .ref-card { display: block; padding: 16px 20px; margin: 12px 0; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .ref-card:hover { border-color: var(--bp-link); text-decoration: none; transform: translateY(-1px); border-bottom-color: var(--bp-link); }
+    .ref-card-title { font-size: 15px; font-weight: 600; color: var(--bp-text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .ref-card-desc { font-size: 14px; color: var(--bp-text-secondary); margin-top: 6px; line-height: 1.55; }
+    .ref-card-stars { font-size: 12px; color: var(--bp-link); margin-top: 6px; font-weight: 500; }
+
+    /* Table */
+    .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .flag-table th { text-align: left; padding: 10px 12px; background: var(--bp-bg-alt); color: var(--bp-text); font-weight: 600; border-bottom: 2px solid var(--bp-border); }
+    .flag-table td { padding: 10px 12px; border-bottom: 1px solid var(--bp-border); color: var(--bp-text-secondary); line-height: 1.5; }
+
+    /* Mobile tightening */
+    @media (max-width: 640px) {
+      .article-body { padding: 0 16px 72px; }
+      .article-body > h1 { font-size: 28px; }
+      .article-body h2 { font-size: 22px; padding-left: 12px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 16px; }
+      /* The timeline table needs ~355px, more than a 320-360px phone's column:
+         it scrolls inside the column instead of the page scrolling sideways
+         (2026-10-29). */
+      .table-scroll { overflow-x: auto; margin: 20px 0; }
+      .table-scroll > .flag-table { margin: 0; }
+    }
+  </style>
+</head>
+<body class="bp-body">
+  <header id="site-header" class="bp-header">
+    <div class="bp-header-inner">
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <span class="bp-brand">AgentSkillsHub</span>
+      </a>
+      <nav class="bp-nav-links">
+        <a href="/" class="bp-nav-link">Explore</a>
+        <a href="/enterprise/" class="bp-nav-link">Enterprise</a>
+        <a href="/book/" class="bp-nav-link">Blue Book</a>
+        <a href="/blog/" class="bp-nav-link bp-nav-link--active">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    (function(){
+      var t=localStorage.getItem('theme');
+      if(t!=='light'){
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <main class="bp-main">
+    <div style="max-width:720px;margin:0 auto;padding:0 20px">
+      <nav class="bp-breadcrumb" style="margin-top:16px;font-size:13px;color:var(--bp-text-muted)">
+        <a href="/">Home</a> &gt; <a href="/blog/">Blog</a> &gt; <span>Claude animations that don't look alike</span>
+      </nav>
+    </div>
+
+    <article class="article-body">
+      <div style="display:flex;justify-content:flex-end;margin:24px 0 0">
+        <div class="lang-toggle">
+          <a href="/blog/make-claude-animations-that-dont-look-alike/" class="active">EN</a>
+          <a href="/blog/make-claude-animations-that-dont-look-alike/zh/" >中文</a>
+        </div>
+      </div>
+
+      <h1>How to Make Claude Animations That Don't All Look Alike</h1>
+
+      <div class="article-meta">
+        <span>By <a href="https://x.com/GoSailGlobal">Jason Zhu</a></span>
+        <span>&middot;</span>
+        <span>November 21, 2026</span>
+        <span>&middot;</span>
+        <span class="article-tag">Tutorial</span>
+        <span>&middot;</span>
+        <span>7 min read</span>
+      </div>
+
+      <blockquote><p><strong>Short answer:</strong> Claude makes a decent animation without any help: in our test it met the brief in 5 of 6 kinds for $1.77 in total. What makes it look like everyone else's is a brief that only says what should happen. Give it visual references, a style brief (palette, typefaces, easing, transitions), or a style pack; keep every timing in one place so revisions are cheap; and check the frames each round.</p></blockquote>
+
+      <p>"When I ask Claude to generate a similar one it doesn't do that good of a job." That line opened <a href="https://www.reddit.com/r/ClaudeAI/comments/1xdwfec/">a Reddit thread</a> with 849 upvotes and 137 comments, and one of the most-liked replies named exactly what was missing: "typography and transitions". In <a href="https://www.reddit.com/r/ClaudeCode/comments/1wtuhdc/">another thread</a> someone put it more bluntly: "Every Single Damn Thing Looks The Same."</p>
+
+      <p>We saw the same thing in our own test. On 2026-11-18 we gave Claude Code one brief per kind of animation (a landing page's motion, an animated logo, sprite sheets, a waving mascot, an animated diagram, an explainer) with and without the most-starred animation skills. All the runs are on <a href="/best/animation-skills/">our animation skills page</a>.</p>
+
+      <h2>Same brief, same look</h2>
+
+      <p>Here is the explainer brief ("dough doubles every hour": a growing ball of dough, a clock, a curve, an end line) made by Claude Code with no skill:</p>
+
+      <p><img src="/best-runs/animation/art-control-frames.jpg" alt="Eight frames of an explainer made by Claude Code with no skill: a ball of dough on a board, a clock and a growth curve on a cream background" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>And by one of the skills we tested. Put them side by side and you would struggle to tell which is which: the same cream background, the dough on a board at the left, the clock in the middle, the curve on the right, the same dark caption bar at the end.</p>
+
+      <p><img src="/best-runs/animation/art-alexgreensh__anidoodle-frames.jpg" alt="Eight frames of the same explainer made with the anidoodle skill: almost the same layout as the no-skill run" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>A third run, with huashu-art-motion, went somewhere else: it put the dough in a mixing bowl on a kitchen counter, with a wall clock and the chart pinned to the wall. It took longer (7.6 minutes), and it is the only one of the three that looks like a place:</p>
+
+      <p><img src="/best-runs/animation/art-alchaincyf__huashu-art-motion-frames.jpg" alt="Eight frames of the same explainer made with huashu-art-motion: the dough rises in a bowl on a kitchen counter, with a wall clock and a chart pinned to the wall" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--bp-border)" /></p>
+
+      <p>The brief said what should happen and nothing about how it should look, so the first two runs filled in the same safe defaults. The third had a style of its own built in. The fixes below all do the same thing: they decide the look before Claude does.</p>
+
+      <h2>1. Give it visual references</h2>
+
+      <p>A creator who says their Claude animations have passed 2.6M views put references first: "Find visual references — This is probably the most important part" (<a href="https://www.reddit.com/r/Claudeopus/comments/1xg1h1v/">thread</a>). Another post complained that "high-quality animation examples with source code are hard to find" (<a href="https://www.reddit.com/r/ClaudeDesign/comments/1xhwe1m/">thread</a>).</p>
+
+      <p>Put two or three frames you like in the project folder and tell Claude what to take from each: the palette from one, the type and pacing from another. A reference you describe is better than none; a reference Claude can look at is better still.</p>
+
+      <h2>2. Write a style brief, not only a content brief</h2>
+
+      <p>Our brief listed what happens, step by step. A style brief adds the decisions the defaults would otherwise make:</p>
+
+      <ul>
+        <li><strong>Palette:</strong> three to five colours, as hex codes.</li>
+        <li><strong>Typefaces:</strong> one for headlines, one for labels.</li>
+        <li><strong>Motion:</strong> the easing ("fast out, slow settle"), how elements enter, and the one transition you use between scenes.</li>
+        <li><strong>Setting:</strong> where the scene happens. "In a bowl on a kitchen counter" is what separated the third run above from the first two.</li>
+        <li><strong>One signature detail</strong> that should appear in every shot.</li>
+      </ul>
+
+      <h2>3. No references? Start from a style pack</h2>
+
+      <p>Several skills are collections of styles rather than engines: <a href="https://github.com/GODGOD126/opus-5-5-86-styles-in-motion">opus-5-5-86-styles-in-motion</a> (86 visual styles for code-driven explainers), <a href="https://github.com/lemomo-ai/lemo-opuscar">lemo-opuscar</a> (a toolbox of film styles made in code, 99 ready to use) and <a href="https://github.com/Hype-yolo/claude-motion-skill">claude-motion-skill</a> (47 open-source cases with editable scenes). Pick a style by name and you start from a look someone chose on purpose. They are listed, with their security grades, in the Animated video &amp; motion graphics group on <a href="/best/animation-skills/">the animation skills page</a>.</p>
+
+      <h2>4. Keep every timing in one place</h2>
+
+      <p>The most expensive part of a revision is often the timing, not the drawing. One reply in the thread above described a setup that "prevents Claude from needing to manually retime your scene, which took 20 minutes for every single revision". Ask Claude to keep every start time and duration in one list (a cue sheet) that the scenes read from. A revision then changes one line instead of every scene.</p>
+
+      <h2>5. Check frames, not code</h2>
+
+      <p>Look at the animation, not the code that claims to make it. We checked each run on a sheet of eight frames and then on the full recording, because a sheet of frames misses short events such as a blink. Do the same between rounds: ask Claude to record the animation and lay out frames, and say what to change about what you see.</p>
+
+      <h2>Which kind of animation, which tool</h2>
+
+      <div class="table-scroll"><table class="flag-table">
+        <tr><th>You want</th><th>Start with</th></tr>
+        <tr><td>Motion on a web page</td><td>Claude alone, or gsap-skills if you will keep building on it</td></tr>
+        <tr><td>A Lottie file</td><td>diffusionstudio/lottie: a real Lottie file, not animated SVG</td></tr>
+        <tr><td>Game sprites</td><td>sprite-gen: in our test the no-skill run drew the walk facing the viewer</td></tr>
+        <tr><td>An animated video or motion graphics</td><td>remotion-dev/skills, or a style pack from step 3</td></tr>
+        <tr><td>An animated diagram</td><td>SeeCode</td></tr>
+      </table></div>
+
+      <p>Every pick, every recording and the cost of each run are on <a href="/best/animation-skills/">the animation skills page</a>.</p>
+
+      <h2>FAQ</h2>
+      <h3>Can Claude make animations without a skill?</h3>
+      <p>Mostly, yes. In our test on 2026-11-18, Claude Code (Claude Opus 5.5) with no animation skill met every item of the brief in 5 of 6 kinds, in 0.9 to 4 minutes, for $1.77 across all six. It fell short on game sprites, where it drew the walk facing the viewer.</p>
+      <h3>Why do my Claude animations look worse than the ones I see online?</h3>
+      <p>Usually because the brief says what should happen but not how it should look. The animations you see online were made with references, a chosen palette and typefaces, and several rounds of review. Give Claude those and the result moves with them.</p>
+      <h3>Which skill should I use for cinematic animation or motion graphics?</h3>
+      <p>For video output, look at remotion-dev/skills (Remotion's own skills), lemomo-ai/lemo-opuscar (ready-made film styles) and Moh4696/cinematic-skill or smixs/visual-skills (cinematic direction). All of them are in the Animated video & motion graphics group of our animation skills page, with their security grades.</p>
+
+      <h2>Where to start</h2>
+      <a class="ref-card" href="/best/animation-skills/">
+        <div class="ref-card-title">Claude animation &amp; motion graphics skills</div>
+        <div class="ref-card-desc">Animation skills for Claude Code, security-graded, with our test of 12 of them against Claude on its own.</div>
+      </a>
+
+    </article>
+  </main>
+
+  <script>
+    // Reading progress bar — updates as the user scrolls the article.
+    (function () {
+      var bar = document.getElementById("reading-progress");
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+        bar.style.width = (Math.min(1, Math.max(0, scrolled)) * 100).toFixed(1) + "%";
+      }
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>
