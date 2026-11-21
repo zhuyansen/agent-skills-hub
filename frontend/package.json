@@ -29,6 +29,7 @@
     "test:home-markdown": "node --test scripts/home-markdown.test.mjs",
     "test:video": "node --test scripts/scenario-video.test.mjs",
     "test:shell-meta": "node --test scripts/shell-meta.test.mjs",
+    "test:daily-meta": "node --test scripts/daily-meta.test.mjs",
     "test:zh-twin": "node --test scripts/scenario-zh-page.test.mjs"
   },
   "dependencies": {
