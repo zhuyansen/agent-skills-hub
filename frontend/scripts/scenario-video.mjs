@@ -7,8 +7,13 @@
  * youtube-nocookie.com.
  *
  *   "video": { "id": "T0keDFpa5i8", "title": "...", "titleZh": "...",
- *              "description": "...", "uploadDate": "2026-10-06", "duration": "PT2M4S",
- *              "inLanguage": "zh" }
+ *              "description": "...", "uploadDate": "2026-10-06T00:36:34-07:00",
+ *              "duration": "PT2M4S", "inLanguage": "zh" }
+ *
+ * uploadDate is the moment YouTube published the video, with its UTC offset: the watch page
+ * states it in <meta itemprop="uploadDate">. A bare date ("2026-10-06") made Search Console
+ * report "uploadDate is missing a timezone" and "Invalid datetime value" on the two busiest
+ * pages of the site (URL Inspection, 2026-11-20).
  */
 import { esc, biAttrs } from "./shared-utils.mjs";
 
@@ -49,17 +54,34 @@ export function videoHtml(scenario) {
       ${PLAY_SCRIPT}`;
 }
 
+/** Date, time and UTC offset: "2026-10-06T00:36:34-07:00", also with ".000" seconds, "Z" or "+0000". */
+const FULL_TIMESTAMP = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})$/;
+const BARE_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/**
+ * uploadDate as Google reads it: date, time and UTC offset. A full timestamp passes through; a
+ * bare date becomes midnight UTC, so an entry written the old way still ships valid markup.
+ * null for anything else: the markup then goes without the date, which a build can survive.
+ */
+export function videoUploadDate(value) {
+  if (FULL_TIMESTAMP.test(value)) return value;
+  if (BARE_DATE.test(value)) return `${value}T00:00:00+00:00`;
+  return null;
+}
+
 /** VideoObject JSON-LD, or "" when the scenario has no video. */
 export function videoLd(scenario) {
   const v = scenario.video;
   if (!v) return "";
+  const uploadDate = videoUploadDate(v.uploadDate);
+  if (!uploadDate) console.warn(`  ! /best/${scenario.slug}/: video.uploadDate ${JSON.stringify(v.uploadDate)} is not a date; left out of the VideoObject`);
   const data = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: v.titleZh || v.title,
     description: v.description || v.title,
     thumbnailUrl: [THUMB(v.id), `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`],
-    uploadDate: v.uploadDate,
+    ...(uploadDate ? { uploadDate } : {}),
     duration: v.duration,
     embedUrl: `https://www.youtube.com/embed/${v.id}`,
     url: WATCH(v.id),
