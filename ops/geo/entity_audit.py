@@ -169,9 +169,12 @@ def audit_wikidata() -> dict[str, Any]:
             all_alive = False
         gaps = []
         if role == "organization":
-            for prop, label in [("P112", "founder"), ("P2037", "GitHub_username"), ("P154", "logo")]:
+            for prop, label in [("P112", "founder"), ("P2037", "GitHub_username")]:
                 if prop not in claims:
                     gaps.append(f"{prop}:{label}")
+            p856_refs = sum(len(c.get("references", [])) for c in ent.get("claims", {}).get("P856", []))
+            if p856_refs < 2:
+                gaps.append(f"P856:refs<2(now={p856_refs})")
         items[role] = {
             "qid": qid,
             "alive": not missing,

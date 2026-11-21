@@ -2,8 +2,7 @@ name = "agentskillshub-edge-proxy"
 main = "worker.js"
 compatibility_date = "2026-11-01"
 
-# Attach to agentskillshub.top once DNS is proxied through Cloudflare:
-# routes = [
-#   { pattern = "agentskillshub.top/", zone_name = "agentskillshub.top" },
-#   { pattern = "agentskillshub.top/index.html", zone_name = "agentskillshub.top" }
-# ]
+routes = [
+  { pattern = "agentskillshub.top/", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/index.html", zone_name = "agentskillshub.top" }
+]
