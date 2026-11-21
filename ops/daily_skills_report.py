@@ -38,7 +38,7 @@ NOW = dt.datetime.now(dt.timezone.utc)
 TODAY = os.getenv("REPORT_DATE") or NOW.astimezone(BJ).strftime("%Y-%m-%d")
 DRY = "--dry" in sys.argv
 OUT = Path(os.getenv("OUT_DIR") or ".")
-MODEL = os.getenv("FLATROUTER_MODEL", "gpt-6-astra")
+MODEL = os.getenv("FLATROUTER_MODEL", "gemini-4-hydrogen")
 REPO_RE = re.compile(r"^\d{1,2}\. ([A-Za-z0-9._-]+/[A-Za-z0-9._-]+)", re.M)
 
 
@@ -202,7 +202,7 @@ PROMPT = """你在为 Agent Skills Hub（agentskillshub.top，收录 AI 智能�
 
 
 def ask(prompt: str) -> dict:
-    body = {"model": MODEL, "temperature": 0.2, "response_format": {"type": "json_object"},
+    body = {"model": MODEL, "temperature": 0.2, "stream": False, "response_format": {"type": "json_object"},
             "messages": [{"role": "user", "content": prompt}]}
     base = os.environ["FLATROUTER_BASE_URL"].rstrip("/")
     req = urllib.request.Request(base + "/chat/completions", data=json.dumps(body).encode(), headers={

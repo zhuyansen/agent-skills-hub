@@ -42,7 +42,7 @@ def text_env(e: dict, image_key: str | None) -> dict:
         return {"TEXT_API_BASE_URL": e["IMAGE_API_BASE_URL"], "TEXT_API_KEY": image_key,
                 "TEXT_MODEL": os.environ.get("TEXT_MODEL", "gpt-5.2")}
     return {"TEXT_API_BASE_URL": e["FLATROUTER_BASE_URL"], "TEXT_API_KEY": e["FLATROUTER_API_KEY"],
-            "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gpt-6-astra")}
+            "TEXT_MODEL": e.get("FLATROUTER_MODEL", "gemini-4-hydrogen")}
 
 
 def docker_env(e: dict) -> list[str]:

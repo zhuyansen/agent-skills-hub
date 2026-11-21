@@ -88,7 +88,7 @@ def data_uri(p: Path) -> str:
 def ask(e: dict, question: str, images: list[Path]) -> dict:
     content = [{"type": "text", "text": question + STRICT}]
     content += [{"type": "image_url", "image_url": {"url": data_uri(p)}} for p in images]
-    body = {"model": e.get("FLATROUTER_MODEL", "gpt-6-astra"), "messages": [{"role": "user", "content": content}],
+    body = {"model": e.get("FLATROUTER_MODEL", "gemini-4-hydrogen"), "stream": False, "messages": [{"role": "user", "content": content}],
             "response_format": {"type": "json_object"}, "temperature": 0}
     req = urllib.request.Request(e["FLATROUTER_BASE_URL"] + "/chat/completions", data=json.dumps(body).encode(),
                                  headers={"Authorization": "Bearer " + e["FLATROUTER_API_KEY"], "Content-Type": "application/json"})

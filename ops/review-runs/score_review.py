@@ -49,7 +49,7 @@ def env() -> dict:
 
 
 def ask(e: dict, text: str) -> dict:
-    body = {"model": e.get("FLATROUTER_MODEL", "gpt-6-astra"), "temperature": 0, "response_format": {"type": "json_object"},
+    body = {"model": e.get("FLATROUTER_MODEL", "gemini-4-hydrogen"), "temperature": 0, "stream": False, "response_format": {"type": "json_object"},
             "messages": [{"role": "user", "content": text}]}
     req = urllib.request.Request(e["FLATROUTER_BASE_URL"] + "/chat/completions", data=json.dumps(body).encode(),
                                  headers={"Authorization": "Bearer " + e["FLATROUTER_API_KEY"], "Content-Type": "application/json"})

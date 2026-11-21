@@ -58,7 +58,7 @@ PAGE_NAMES = {"claude-video-skills": "视频页", "ppt-presentation": "PPT 页",
 QUEUE_TAG = "daily-video-pass"
 # FlatRouter stopped serving gpt-5.6 by 10-17 (404 model_not_found), so every description failed
 # and pages kept English. The model is now read from the environment, with the one it serves.
-DESC_MODEL = os.environ.get("FLATROUTER_MODEL") or "gpt-6-astra"
+DESC_MODEL = os.environ.get("FLATROUTER_MODEL") or "gemini-4-hydrogen"
 DESC_MAX = 80
 FAITHFUL_MIN = 0.5   # Jev: good translations scored 0.72-0.78, embellished or wrong 0.01-0.03 (10-03)
 FAITHFUL = {
@@ -220,7 +220,7 @@ def describe_zh(row: dict, jev) -> tuple[str, float]:
 
 
 def translate(text: str, prompt: str = DESC_PROMPT, max_len: int = DESC_MAX) -> str:
-    body = {"model": DESC_MODEL, "temperature": 0, "messages": [
+    body = {"model": DESC_MODEL, "temperature": 0, "stream": False, "messages": [
         {"role": "system", "content": prompt}, {"role": "user", "content": text}]}
     req = urllib.request.Request(os.environ["FLATROUTER_BASE_URL"].rstrip("/") + "/chat/completions",
                                  data=json.dumps(body).encode(), headers={

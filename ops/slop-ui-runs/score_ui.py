@@ -78,7 +78,7 @@ def ask(e: dict, before: Path, after: Path) -> dict:
     uri = lambda p: "data:image/png;base64," + base64.b64encode(p.read_bytes()).decode()  # noqa: E731
     content = [{"type": "text", "text": JUDGE_Q}, {"type": "image_url", "image_url": {"url": uri(before)}},
                {"type": "image_url", "image_url": {"url": uri(after)}}]
-    body = {"model": e.get("FLATROUTER_MODEL", "gpt-6-astra"), "messages": [{"role": "user", "content": content}],
+    body = {"model": e.get("FLATROUTER_MODEL", "gemini-4-hydrogen"), "stream": False, "messages": [{"role": "user", "content": content}],
             "response_format": {"type": "json_object"}, "temperature": 0}
     req = urllib.request.Request(e["FLATROUTER_BASE_URL"] + "/chat/completions", data=json.dumps(body).encode(),
                                  headers={"Authorization": "Bearer " + e["FLATROUTER_API_KEY"], "Content-Type": "application/json"})
