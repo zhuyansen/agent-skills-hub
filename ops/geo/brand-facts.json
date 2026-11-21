@@ -1,0 +1,105 @@
+{
+  "_about": "Ledger for the fact-consistency node of entity_audit.py. Live facts must agree on every node; snapshot facts may differ from the live count but must sit next to their DOI or report name. Edit this file when a fact really changes. Two live counts exist: directory_size (indexed, from the homepage, loose tolerance for hand-rounded copy) and graded_count (security-graded, from /ai-info/, tight tolerance). A number may match either.",
+  "live": {
+    "directory_size": {
+      "canonical_source": "site_home",
+      "canonical_pattern": "(\\d[\\d,]*)\\+?\\s*(?:AI agent tools|AI Agent Tools|projects|indexed)",
+      "min_count": 10000,
+      "tolerance": 0.2
+    },
+    "launch_date": {
+      "value": "2026-03-08"
+    },
+    "security_rules": {
+      "value": 44
+    },
+    "founder_names": [
+      "Jason Zhu",
+      "Yansen Zhu",
+      "Zhu Yansen",
+      "祝彦森"
+    ],
+    "operator_names": [
+      "GoSailGlobal",
+      "BRICKAI"
+    ],
+    "graded_count": {
+      "canonical_source": "site_ai_info",
+      "canonical_pattern": "Security-Graded Count\\s*(\\d[\\d,]*)",
+      "min_count": 10000,
+      "tolerance": 0.05
+    }
+  },
+  "snapshots": [
+    {
+      "name": "Security Grades dataset (130K)",
+      "count": 130000,
+      "anchors": [
+        "21292799",
+        "Security Grades (130K)",
+        "Q141735092"
+      ]
+    },
+    {
+      "name": "Supply-chain audit dataset (105K)",
+      "count": 105000,
+      "anchors": [
+        "24387074",
+        "24420920",
+        "Supply-Chain"
+      ]
+    },
+    {
+      "name": "Security-grading blog (117,854)",
+      "count": 117854,
+      "anchors": [
+        "securing-117k",
+        "We Security-Graded",
+        "security-graded 117,854"
+      ]
+    },
+    {
+      "name": "Dev.to audit (138K)",
+      "count": 138000,
+      "anchors": [
+        "dev.to",
+        "we-audited-138000"
+      ]
+    },
+    {
+      "name": "Pivot blog (86,000 indexed)",
+      "count": 86000,
+      "anchors": [
+        "pivot-to-trust-layer"
+      ]
+    },
+    {
+      "name": "Securing blog (43,000+)",
+      "count": 43000,
+      "anchors": [
+        "securing-43k"
+      ]
+    }
+  ],
+  "foreign_domains": [
+    "agentskillshub.dev",
+    "agentskillshub.com"
+  ],
+  "snapshot_sources": [
+    "zenodo_21292799",
+    "zenodo_24387074",
+    "wikidata_dataset"
+  ],
+  "other_counts": [
+    {
+      "count": 31132,
+      "context": "Liu et al",
+      "why": "third-party study"
+    },
+    {
+      "count": 20000,
+      "context": "stars ≥ 5",
+      "why": "npm cli offline catalog subset"
+    }
+  ]
+}

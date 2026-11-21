@@ -8,6 +8,9 @@ Usage:
   python3 ops/geo/entity_audit.py --mode molecule          # Layer A live audit (free, no keys)
   python3 ops/geo/entity_audit.py --mode full              # Layer A + B (GoAnyAPI) + C (AIsa)
   python3 ops/geo/entity_audit.py --mode molecule --no-save
+
+Node 7 (fact consistency) checks that the nodes agree on the facts in
+brand-facts.json; run it alone with `python3 ops/geo/fact_consistency.py`.
 """
 from __future__ import annotations
 
@@ -365,6 +368,8 @@ def main() -> int:
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     tag = datetime.now(timezone.utc).strftime("%Y-%m-%d-%H%M")
 
+    from fact_consistency import audit_fact_consistency  # sibling module; script dir is on sys.path
+
     eco, edge = audit_ecosystem_and_edge()
     nodes = [
         audit_entity_home(),
@@ -373,6 +378,7 @@ def main() -> int:
         audit_github_node(),
         eco,
         edge,
+        audit_fact_consistency(http_get),
     ]
     report: dict[str, Any] = {
         "timestamp_utc": ts,
@@ -380,7 +386,7 @@ def main() -> int:
         "mode": args.mode,
         "layer_A_entity_molecule": nodes,
         "verified_receipt": (
-            f"Verified: Audited 6 live molecule nodes for agentskillshub.top | "
+            f"Verified: Audited {len(nodes)} live molecule nodes for agentskillshub.top | "
             f"Statuses: {', '.join(n['node'] + '=' + n['status'] for n in nodes)} | Timestamp: {ts}"
         ),
     }
@@ -397,6 +403,8 @@ def main() -> int:
     print("=== AgentSkillsHub Entity Molecule Scoreboard ===")
     for n in nodes:
         print(f"  [{n['status']:28s}] {n['node']}")
+    for c in nodes[-1].get("conflicts", []):
+        print(f"      - {c['fact']} @ {c['source']}: found '{c['found']}' ({c['why']})")
     if "saved_snapshot" in report:
         print(f"\nSnapshot saved: {report['saved_snapshot']}")
     print(report["verified_receipt"])
