@@ -230,8 +230,12 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
             {/* Not positioned below sm, so the popup spans the header (16px in
                 from each side) instead of running off the left edge of a phone. */}
             <div className="sm:relative" ref={nlRef}>
+              {/* Below sm the label is hidden and only the icon shows, so the name a screen
+                  reader announces comes from aria-label (Lighthouse "button-name", 2026-11-20). */}
               <button
                 onClick={() => setShowNewsletterPopup(!showNewsletterPopup)}
+                aria-label={t("header.newsletter")}
+                aria-expanded={showNewsletterPopup}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium cursor-pointer"
               >
                 <svg
@@ -239,6 +243,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -264,6 +269,7 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                       </h4>
                       <button
                         onClick={() => setShowNewsletterPopup(false)}
+                        aria-label={t("search.close")}
                         className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                       >
                         <svg
