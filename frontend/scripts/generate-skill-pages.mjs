@@ -20,7 +20,7 @@
  */
 
 import { installCommands, installSectionHtml } from "./skill-install.mjs";
-import { reviewedOnlyRepos } from "./scenario-kinds.mjs";
+import { skillPageRule } from "./skill-page-rule.mjs";
 import { testedEntries, testedHtml, testedMeta } from "./skill-tested.mjs";
 import { guidesHtml, guidesIndex, guidesMeta } from "./skill-guides.mjs";
 import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
@@ -35,7 +35,7 @@ import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
   extractAssetTags, shouldIndex, isIndexedSkillPage, fetchAllSkills, fetchReadmeMap, MIN_STARS_FOR_PAGE, MIN_CATEGORY_INDEX, trustBlock, gradeState,
-  admittedByReview, hasAuditPage,
+  hasAuditPage,
 } from "./shared-utils.mjs";
 
 // Hand-written per-category copy (mirror of src/data/categoryCopy.ts); the
@@ -879,12 +879,9 @@ async function main() {
   const scenarioDefs = JSON.parse(
     readFileSync(join(dirname(fileURLToPath(import.meta.url)), "scenario-keywords.json"), "utf-8"),
   );
-  const admitted = admittedByReview(scenarioDefs);
-  // A reviewed-only page lists every repo its review kept, under the floor too, not only the
-  // ones in `admit_reviewed`: /best/seo-tools/ linked 7 of them to 404s (2026-10-17).
-  for (const name of reviewedOnlyRepos(scenarioDefs)) admitted.add(name);
-  /** Whether this run writes a /skill/ page for the repo; links elsewhere must agree. */
-  const hasPage = (s) => s.stars >= MIN_STARS_FOR_PAGE || admitted.has(s.repo_full_name.toLowerCase());
+  /** Whether this run writes a /skill/ page for the repo; links elsewhere must agree
+   *  (skill-page-rule.mjs, shared with the creator pages). */
+  const hasPage = skillPageRule(scenarioDefs);
 
   for (const s of skills) {
     const k = descriptionKey(s.repo_name, s.description);

@@ -5,7 +5,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How We Secure 43,000+ AI Agent Tools as a Solo Developer</title>
-  <meta name="description" content="From zero security to 27 detection rules, 5-tier trust hierarchy, and LLM-powered analysis. How one developer built a multi-layered security system for the largest AI agent tool directory." />
+  <meta name="description" content="From zero security to 27 detection rules, a 5-tier trust hierarchy and LLM-powered analysis: how one developer secured the largest AI agent tool directory." />
   <meta name="keywords" content="AI agent security, MCP server security, agent skills safety, SlowMist, trust hierarchy, RLS, supply chain security" />
   <meta property="og:title" content="How We Secure 43,000+ AI Agent Tools | Agent Skills Hub" />
   <meta property="og:description" content="From zero security to 27 detection rules and 5-tier trust hierarchy. A solo developer's security journey." />
@@ -91,7 +91,7 @@
 
     .phase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 20px 0; }
     .phase-card { padding: 20px; background: var(--bp-card-bg); border: 1px solid var(--bp-border); border-radius: 12px; }
-    .phase-card h4 { margin: 0 0 8px; font-size: 16px; color: var(--bp-text); }
+    .phase-card h3 { margin: 0 0 8px; font-size: 16px; font-weight: 700; color: var(--bp-text); }
     .phase-card p { margin: 0; font-size: 14px; color: var(--bp-text-secondary); line-height: 1.6; }
 
     .flag-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
@@ -334,19 +334,19 @@ SELECT subscribe('user@example.com');
 
       <div class="phase-grid">
         <div class="phase-card">
-          <h4>Layer 1: Rule Engine</h4>
+          <h3>Layer 1: Rule Engine</h3>
           <p>27 regex patterns across 3 severity levels (critical/high/medium). Pure string matching, zero API calls. Runs in &lt;10ms per repo. Available both server-side (Python) and client-side (TypeScript).</p>
         </div>
         <div class="phase-card">
-          <h4>Layer 2: Trust Hierarchy</h4>
+          <h3>Layer 2: Trust Hierarchy</h3>
           <p>5-tier source reputation system. Adjusts severity grades based on author org, star count, and license presence. Prevents false positives on established projects.</p>
         </div>
         <div class="phase-card">
-          <h4>Layer 3: LLM Analysis</h4>
+          <h3>Layer 3: LLM Analysis</h3>
           <p>Semantic deep-dive for flagged repos. Understands context, identifies false positives, returns structured findings with confidence scores.</p>
         </div>
         <div class="phase-card">
-          <h4>Layer 4: Database RLS</h4>
+          <h3>Layer 4: Database RLS</h3>
           <p>SECURITY DEFINER RPC functions for all write operations. Zero direct table access from frontend. Anon key is truly read-only.</p>
         </div>
       </div>

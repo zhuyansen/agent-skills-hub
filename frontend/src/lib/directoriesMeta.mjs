@@ -38,7 +38,7 @@ export const DIRECTORIES_META = {
   en: {
     // Not the headline plus the site name: that ran 93 characters (OpenSEO audit 2026-11-18).
     title: `Agent Skills & MCP Server Directories: ${COMPARED_COUNT} Compared (${YEAR})`,
-    description: `${COMPARED_COUNT} directories of agent skills and MCP servers, ours included, compared from their own pages: what each lists, what its security check reads, paid options and agent access.`,
+    description: `${COMPARED_COUNT} directories of agent skills and MCP servers, ours included, compared from their own pages: listings, security checks, paid options and agent access.`,
   },
   zh: {
     title: `${DIRECTORIES_HEADLINE.zh} | Agent Skills Hub`,

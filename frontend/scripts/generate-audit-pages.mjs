@@ -19,7 +19,7 @@
  * Run: node scripts/generate-audit-pages.mjs  (after vite build)
  */
 
-import { mkdirSync, writeFileSync, existsSync, rmSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import {
   SITE, CATEGORY_LABELS, esc, starsK, formatDate, parseJsonArray,
@@ -28,6 +28,8 @@ import {
   hasAuditPage, FLAGGED_GRADES, MIN_STARS_FOR_AUDIT, POPULAR_STARS_FOR_AUDIT,
 } from "./shared-utils.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
+import { TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
+import { auditDescription, auditSitemap, auditTitle, sharedRepoNames } from "./audit-meta.mjs";
 
 const GRADES = {
   safe: {
@@ -95,7 +97,7 @@ function flagLabel(f) {
   return String(f).replace(/[_-]+/g, " ");
 }
 
-function pageHtml(skill, related = []) {
+function pageHtml(skill, related = [], sharedNames = new Set()) {
   const {
     repo_full_name, repo_name, author_name, description, stars, category,
     language, license, last_commit_at, quality_score, security_grade,
@@ -108,11 +110,8 @@ function pageHtml(skill, related = []) {
   const analyzerUrl = `/analyzer/?repo=${encodeURIComponent(`https://github.com/${repo_full_name}`)}`;
   const flags = parseJsonArray(skill.security_flags);
 
-  const title = `Is ${repo_name} Safe? Security Audit of ${repo_full_name} — Agent Skills Hub`;
-  const metaDesc = `${repo_full_name} security audit: graded ${g.label} by AgentSkillsHub's rule-based security scan. ${
-    flags.length ? `${flags.length} flag${flags.length > 1 ? "s" : ""} found. ` : "No dangerous patterns found. "
-  }Quality score ${Math.round(quality_score || 0)}/100.`;
-
+  const title = auditTitle(skill, sharedNames);
+  const metaDesc = auditDescription(skill, g.label, flags.length);
 
   const breadcrumbLd = JSON.stringify({
     "@context": "https://schema.org",
@@ -251,6 +250,9 @@ async function main() {
     arr.sort((a, b) => (b.stars || 0) - (a.stars || 0));
   }
 
+  // Repo names used by more than one audited repo: their titles keep the owner.
+  const sharedNames = sharedRepoNames(graded);
+
   const distDir = "dist";
   let written = 0;
   for (const skill of graded) {
@@ -259,34 +261,29 @@ async function main() {
       .slice(0, RELATED_COUNT);
     const dir = join(distDir, "audit", ...skill.repo_full_name.split("/"));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, "index.html"), pageHtml(skill, related));
+    writeFileSync(join(dir, "index.html"), pageHtml(skill, related, sharedNames));
     written++;
   }
   console.log(`  ✓ ${written} audit pages → dist/audit/`);
+  // A title only stays over the limit when the owner/repo alone does not fit.
+  const titles = graded.map((s) => auditTitle(s, sharedNames));
+  const tooLong = titles.filter((t) => displayWidth(t) > TITLE_MAX_WIDTH).length;
+  const repeated = titles.length - new Set(titles.map((t) => t.toLowerCase())).size;
+  console.log(`  titles: ${tooLong} over ${TITLE_MAX_WIDTH} characters, ${repeated} repeated`);
 
-  // No sitemap for audit pages, deliberately.
+  // The audit sitemap, back on 2026-11-21 (owner's call).
   //
-  // 90-day GSC measurement (2026-08-16): 3,194 audit URLs were submitted and
-  // earned 9 impressions and 0 clicks between them. Over the same window 43
-  // /best/ scenario pages produced 867 clicks — 71% of the site's total. The
-  // audit set is a large share of the 5,582 URLs Google reports as
-  // "discovered – currently not indexed": we were spending crawl budget asking
-  // it to prioritise pages it had already judged, and that judgement is a
-  // site-wide quality signal, not a per-page one.
-  //
-  // The pages STAY. They are the badge landing target and part of the trust
-  // narrative, they remain internally linked from every skill page, and Google
-  // can still crawl them. We just stop asking it to go first. If audit pages
-  // ever develop real search demand, re-add the file here and register it in
-  // generate-sitemap.mjs.
-  //
-  // Remove any file left by an earlier build, or the stale copy in dist/ keeps
-  // being served and registered after this change.
-  const staleAuditSitemap = join(distDir, "sitemap-audit.xml");
-  if (existsSync(staleAuditSitemap)) {
-    rmSync(staleAuditSitemap);
-    console.log("  ✓ removed stale sitemap-audit.xml");
-  }
+  // It was withdrawn on 2026-08-16: over the 90 days before, 3,194 submitted audit URLs earned
+  // 9 impressions and 0 clicks while /best/ pages brought 71% of the site's clicks, and the set
+  // was a large share of Google's "discovered – currently not indexed". By 2026-11-20 the pages
+  // had found their searches without it: Search Console, 08-18 to 11-18, credited 1,454 audit
+  // URLs with 322 clicks on 14,438 impressions, mostly a repo's own name or "is <repo> safe".
+  // 1,269 of them are pages this script still writes (273 clicks, 12,137 impressions); most of
+  // the other 185 are old names of renamed repos (OpenSEO audit follow-up, 2026-11-21). Look at
+  // the page indexing report again around 2026-12-19; if the set slides back into "discovered –
+  // not indexed", withdraw it again.
+  writeFileSync(join(distDir, "sitemap-audit.xml"), auditSitemap(graded, SITE));
+  console.log(`  ✓ sitemap-audit.xml: ${graded.length} URLs`);
 }
 
 main().catch((err) => {

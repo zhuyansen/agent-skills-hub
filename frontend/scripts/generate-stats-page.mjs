@@ -285,7 +285,8 @@ function head({ title, desc, canonical, ld, cssLinks }) {
 }
 
 const titleOf = (d) => `State of Agent Skills, ${monthEn(d.period)} | Agent Skills Hub`;
-const descOf = (d) => `Monthly data on ${fmt(d.totals.repos)} open-source agent skill and MCP server repositories: growth, security grades, licenses and platforms. Free to cite and download (CC BY 4.0).`;
+// "repos", not "repositories": the long form put this at 164 characters (OpenSEO audit, 2026-11-20).
+const descOf = (d) => `Monthly data on ${fmt(d.totals.repos)} open-source agent skill and MCP server repos: growth, security grades, licenses and platforms. Free to cite and download (CC BY 4.0).`;
 
 function pageHtml(d, issues, { canonical, permalink, cssLinks }) {
   const intro = p("Monthly numbers on the open-source agent skill and MCP server repositories on GitHub that Agent Skills Hub indexes: how fast they grow, how they fare in our security scan, what licenses they carry and which agents they target.", "Agent Skills Hub 收录的 GitHub 开源 agent skill 与 MCP 服务器仓库，每月一期：增长多快、安全扫描结果如何、带什么许可证、面向哪些 agent。");

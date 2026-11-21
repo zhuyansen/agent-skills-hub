@@ -131,6 +131,24 @@ function applyBody(c) {
       <p><a href="/book/ch10-verified-creator/">Why Verified Creator exists (Skill Blue Book, chapter 10)</a> · <a href="${HOW_WE_GRADE_PATH}">How we grade</a> · <a href="/">Browse the catalog</a></p>`;
 }
 
+/**
+ * Pre-hydration body for /submit/: the three cards only exist after React mounts, so the shell
+ * was the h1 and one line (26 words, thin in the OpenSEO audit of 2026-11-20). What it says is
+ * what SubmitPage.tsx says. No price and no rule count here: both live in the React page.
+ */
+function submitBody() {
+  return `<h1>Submit to the Hub</h1>
+      <p><strong>Three ways to contribute to Agent Skills Hub</strong>, the security-graded directory of open-source AI agent skills and MCP servers. The catalog is indexed from GitHub and refreshed every 8 hours.</p>
+      <h2>Submit a Skill</h2>
+      <p>Found or built a great Claude Skill, MCP server or Codex Skill? Paste its GitHub URL. The standard queue is free; inclusion requires a README, a license, and at least 10 stars or active commits. Fast-Track is a paid 48-hour priority review that returns the full rule report and a verdict card.</p>
+      <p>Fast-Track only shortens the wait. Scores and safety grades (SAFE, CAUTION, UNSAFE) are never for sale; any flag the scan raises is reported as it is, with notes on how to fix it.</p>
+      <h2>Submit a Workflow</h2>
+      <p>Built a multi-skill agent workflow? Document the steps, the tools and the use case in a multi-step form that takes about 5 minutes. We feature the best ones on the site.</p>
+      <h2>Apply for Verified Creator</h2>
+      <p>For serious skill authors: a verified badge, a trending boost, creator analytics and consulting matchmaking. Applications are reviewed within 5 days. <a href="/verified-creator/apply/">Start an application</a>.</p>
+      <p><a href="${HOW_WE_GRADE_PATH}">How we grade</a> · <a href="/enterprise/">Enterprise: security audits, SBOM, compliance tags, private mirrors</a> · <a href="/">Browse the catalog</a></p>`;
+}
+
 const SHELLS = [
   {
     path: "enterprise",
@@ -146,8 +164,9 @@ const SHELLS = [
     path: "analyzer",
     // ≤60 chars (OpenSEO audit 2026-11-18 flagged 75); the React page's Helmet matches.
     title: "Is This AI Skill or MCP Server Safe? Free Security Check",
+    // 190 characters until 2026-11-20 (the OpenSEO audit's line is 160).
     description:
-      `Paste any GitHub repo URL for an instant security analysis: ${RULE_COUNT} published rules built on the SlowMist agent-security framework, trust tier, and quality score. Runs in your browser, no signup.`,
+      `Paste any GitHub repo URL for an instant security grade, red flags and quality score: ${RULE_COUNT} published rules, run in your browser. Free, no signup.`,
     body: analyzerBody(),
   },
   {
@@ -175,6 +194,7 @@ const SHELLS = [
     title: "Submit to the Hub — AgentSkillsHub",
     description:
       "Submit a Skill, compose a Workflow, or apply for Verified Creator. Three ways to contribute to the AgentSkillsHub directory.",
+    body: submitBody(),
   },
   {
     path: "verified-creator/apply",

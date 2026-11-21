@@ -10,6 +10,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 import { isVerifiedOrgAuthor } from "../data/verifiedOrgs";
+import { authorDescription, authorTitle } from "../lib/authorMeta.mjs";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const PAGE_SIZE = 30;
@@ -208,9 +209,16 @@ export function AuthorPage() {
     ? `npx @agentskillshub/cli install ${profile.topRepos.slice(0, 3).join(" ")}`
     : "";
   // Name-search intent (LobeHub pattern): lead with the creator's name + the
-  // security angle only we can claim.
-  const title = `${displayName} — Top ${total || ""} AI Agent Skills${profile?.safeCount ? " (Security-Graded)" : ""} · Agent Skills Hub`;
-  const description = `${displayName}'s AI agent skills: ${total} open-source skills & MCP servers${profile?.safeCount ? `, ${profile.safeCount} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
+  // security angle only we can claim. Shared with the static page (authorMeta.mjs).
+  const title = authorTitle(displayName, total, profile?.safeCount ?? 0);
+  // The star total is only complete when every skill is on this page.
+  const allLoaded = total > 0 && total <= PAGE_SIZE;
+  const description = authorDescription(
+    displayName,
+    total,
+    profile?.safeCount ?? 0,
+    allLoaded ? profile?.totalStars : undefined,
+  );
   const personLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": entityIsOrg ? "Organization" : "Person",

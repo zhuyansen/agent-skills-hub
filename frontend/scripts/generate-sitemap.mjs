@@ -19,6 +19,8 @@
  *   dist/sitemap-comparisons.xml — /compare/{slug}/ pages
  *   (no author sitemap — pages stay live and linked, just not prioritised for crawl)
  *   dist/sitemap-book.xml      — /book/ + 12 chapters + 4 appendices
+ *   dist/sitemap-audit.xml     — /audit/{owner}/{repo}/, written by generate-audit-pages.mjs and
+ *                                registered here (withdrawn 2026-08-16, back 2026-11-21)
  *
  * Run: node scripts/generate-sitemap.mjs
  */
@@ -204,6 +206,26 @@ function scenarioEntriesFor(slug, today, modified) {
 }
 
 /**
+ * The /best/ hub and its Chinese twin at /best/zh/, with the same reciprocal hreflang the pages
+ * carry. Both are indexable; sitemap-scenarios.xml listed every scenario page but not the hub
+ * that links to them (OpenSEO audit, 2026-11-20).
+ */
+function bestHubEntries(today) {
+  if (!existsSync("dist/best/index.html")) return [];
+  const twin = existsSync("dist/best/zh/index.html");
+  const alts = twin ? `
+    <xhtml:link rel="alternate" hreflang="en" href="${SITE}/best/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${SITE}/best/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/best/"/>` : "";
+  const entry = (path, priority) => `  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>${lastmodLine(declaredDate(path, today))}${alts}
+  </url>`;
+  return twin ? [entry("/best/", "0.9"), entry("/best/zh/", "0.8")] : [entry("/best/", "0.9")];
+}
+
+/**
  * The home page, and its Chinese twin at /zh/ with reciprocal hreflang once the build wrote it
  * (generate-home-zh.mjs, 2026-11-03).
  */
@@ -345,6 +367,18 @@ async function main() {
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>`,
+    // Indexable and linked from every page, but in no sitemap until the OpenSEO audit of
+    // 2026-11-20 listed them (/analyzer/ is the free security check, the site's main tool).
+    `  <url>
+    <loc>${SITE}/analyzer/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>`,
+    `  <url>
+    <loc>${SITE}/submit/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>`,
   ];
   writeFileSync("dist/sitemap-static.xml", wrapUrlsetI18n(staticEntries));
   console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);
@@ -407,10 +441,13 @@ async function main() {
     const scenarioSlugs = readdirSync("dist/best");
     const modified = readModified();
     // Files (index.html, modified.json, dotfiles) sit next to the page directories.
-    const scenarioEntries = scenarioSlugs
-      .filter((slug) => !slug.includes(".") && slug !== "zh"
-                        && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
-      .flatMap((slug) => scenarioEntriesFor(slug, today, modified));
+    const scenarioEntries = [
+      ...bestHubEntries(today),
+      ...scenarioSlugs
+        .filter((slug) => !slug.includes(".") && slug !== "zh"
+                          && !retiredSlugs.has(slug) && !isRedirectStub(`/best/${slug}/`))
+        .flatMap((slug) => scenarioEntriesFor(slug, today, modified)),
+    ];
     writeFileSync("dist/sitemap-scenarios.xml", wrapUrlsetI18n(scenarioEntries));
     hubEntries.push(...scenarioEntries);
     scenarioCount = scenarioEntries.length;
@@ -586,11 +623,15 @@ async function main() {
   if (existsSync("dist/sitemap-daily.xml")) {
     sitemapFiles.push("sitemap-daily.xml");
   }
-  // sitemap-audit.xml is deliberately NOT generated or registered any more —
-  // 3,194 submitted URLs earned 9 impressions and 0 clicks over 90 days while
-  // consuming crawl budget. See the note in generate-audit-pages.mjs. The
-  // pages and their internal links are untouched; only the "crawl these first"
-  // request is withdrawn.
+  // sitemap-audit.xml is written by generate-audit-pages.mjs, which runs first. Withdrawn
+  // 2026-08-16 (9 impressions and 0 clicks in 90 days), back 2026-11-21 (322 clicks on 14,438
+  // impressions from 08-18 to 11-18); the reasons are in that file.
+  const auditCount = existsSync("dist/sitemap-audit.xml")
+    ? (readFileSync("dist/sitemap-audit.xml", "utf-8").match(/<url>/g) || []).length
+    : 0;
+  if (auditCount > 0) {
+    sitemapFiles.push("sitemap-audit.xml");
+  }
 
   // Each sub-sitemap is dated by its newest URL, read back from what was just written.
   writeFileSync("dist/sitemap.xml", buildSitemapIndex(SITE, sitemapFiles, (f) => readFileSync(`dist/${f}`, "utf-8")));
@@ -600,9 +641,9 @@ async function main() {
   // midSkills (6,963 URLs deliberately skipped) into the "indexed" total and
   // reported 9,896 when 2,974 were submitted — a build log that overstates the
   // ask by 3.3x is how crawl-budget problems stay invisible.
-  const totalUrls = 1 + catsWithSkills.length + topSkills.length + scenarioCount + comparisonCount + authorCount + bookCount;
-  console.log(`Total sitemap URLs SUBMITTED: ${totalUrls} (top ${topSkills.length} + categories ${catsWithSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount} + book ${bookCount})`);
-  console.log(`  withheld on purpose: mid ${midSkills.length} (50-499★) + audit + authors — pages stay live, just not prioritised for crawl`);
+  const totalUrls = 1 + catsWithSkills.length + topSkills.length + scenarioCount + comparisonCount + authorCount + bookCount + auditCount;
+  console.log(`Total sitemap URLs SUBMITTED: ${totalUrls} (top ${topSkills.length} + categories ${catsWithSkills.length} + scenarios ${scenarioCount} + comparisons ${comparisonCount} + authors ${authorCount} + book ${bookCount} + audit ${auditCount})`);
+  console.log(`  withheld on purpose: mid ${midSkills.length} (50-499★) + authors — pages stay live, just not prioritised for crawl`);
 }
 
 main().catch((err) => {

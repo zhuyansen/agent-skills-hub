@@ -31,7 +31,10 @@
     "test:shell-meta": "node --test scripts/shell-meta.test.mjs",
     "test:daily-meta": "node --test scripts/daily-meta.test.mjs",
     "test:related": "node --test scripts/scenario-related.test.mjs",
-    "test:zh-twin": "node --test scripts/scenario-zh-page.test.mjs"
+    "test:zh-twin": "node --test scripts/scenario-zh-page.test.mjs",
+    "test:audit-meta": "node --test scripts/audit-meta.test.mjs",
+    "test:author-meta": "node --test scripts/author-meta.test.mjs",
+    "test:skill-page-rule": "node --test scripts/skill-page-rule.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",

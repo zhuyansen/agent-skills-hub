@@ -13,7 +13,15 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { SUPABASE_URL, SUPABASE_ANON_KEY, SITE, esc, starsK, analyticsTags, replaceShellContent } from "./shared-utils.mjs";
+import {
+  SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS, esc, starsK, formatDate, analyticsTags,
+  replaceShellContent, hasAuditPage,
+} from "./shared-utils.mjs";
+import { cleanDescription, fitClause } from "../src/lib/skillMeta.mjs";
+import {
+  THIN_AUTHOR_MAX_SKILLS, countNoun, authorDescription, authorIndexable, authorTitle,
+} from "../src/lib/authorMeta.mjs";
+import { skillPageRule } from "./skill-page-rule.mjs";
 
 const DIST = "dist";
 // Tightened to stop thin author pages from diluting crawl budget. GSC showed
@@ -28,6 +36,23 @@ const AUTHOR_LIMIT = 500;              // hard cap on pre-rendered authors
 const MIN_SKILLS = 3;                  // multi-skill authors need ≥3 skills…
 const MIN_TOTAL_STARS = 300;           // …AND ≥300 cumulative stars
 const SOLO_STAR_FLOOR = 1000;          // OR a single famous author (≥1000 stars)
+// The pre-hydration list: the first page AuthorPage.tsx shows once React mounts (its PAGE_SIZE).
+// 8 until 2026-11-20, which left a creator's other repos reachable only through "related" links.
+const SHELL_SKILLS = 30;
+const SHELL_DESCRIPTION_WIDTH = 140;
+const SHELL_LANGUAGES = 3;
+// What a repo of each category is called in a sentence: [one, many].
+const CATEGORY_NOUNS = {
+  "mcp-server": ["MCP server", "MCP servers"],
+  "claude-skill": ["Claude skill", "Claude skills"],
+  "codex-skill": ["Codex skill", "Codex skills"],
+  "agent-tool": ["agent tool", "agent tools"],
+  "ai-skill": ["AI skill", "AI skills"],
+  "llm-plugin": ["LLM plugin", "LLM plugins"],
+  "youmind-plugin": ["YouMind plugin", "YouMind plugins"],
+  education: ["education resource", "education resources"],
+  uncategorized: ["AI tool", "AI tools"],
+};
 
 /** Fetch verified masters + org builders (the same RPCs the SPA uses) so
  *  creator pages can be enriched LobeHub-style: real display name, bio, X
@@ -74,6 +99,20 @@ async function fetchCreatorProfiles() {
   return { masterMap, orgSet };
 }
 
+// A Skill under the 50-star floor has no /skill/ page (skill-page-rule.mjs). Until 2026-11-20
+// every listed Skill linked to one: 308 dead links on 170 of the 500 author pages.
+const hasSkillPage = skillPageRule();
+
+/** Where a Skill's name leads: its /skill/ page when the build writes one, else the Repo on GitHub. */
+function repoUrl(s) {
+  return hasSkillPage(s) ? `${SITE}/skill/${s.repo_full_name}/` : (s.repo_url || `https://github.com/${s.repo_full_name}`);
+}
+
+function repoLink(s) {
+  const outside = hasSkillPage(s) ? "" : ' rel="nofollow noopener" target="_blank"';
+  return `<a href="${esc(repoUrl(s))}"${outside}>${esc(s.repo_name)}</a>`;
+}
+
 /** Person/Organization JSON-LD — the entity signal LobeHub-style collection
  *  pages feed Google/LLMs. sameAs ties the page to GitHub + X profiles. */
 function buildCreatorJsonLd(group, master, isOrg) {
@@ -101,7 +140,7 @@ function buildCreatorJsonLd(group, master, isOrg) {
       "@type": "ListItem",
       position: i + 1,
       name: s.repo_name,
-      url: `${SITE}/skill/${s.repo_full_name}/`,
+      url: repoUrl(s),
     })),
   };
   return `\n  <script type="application/ld+json">\n${JSON.stringify(entity, null, 2)}\n  </script>\n  <script type="application/ld+json">\n${JSON.stringify(list, null, 2)}\n  </script>`;
@@ -185,8 +224,11 @@ function groupByAuthor(skills, forceInclude = new Set()) {
 }
 
 /** Build the author's own pre-hydration shell content. Unique per author
- *  (intro + trust summary + 8 skills) so Google has a reason to index it, not
- *  a thin near-duplicate list.
+ *  (intro + trust summary + what the repos have in common + up to SHELL_SKILLS
+ *  skills, each with its kind, language and audit link) so Google has a reason
+ *  to index it, not a thin near-duplicate list. 2026-11-20: the OpenSEO audit
+ *  counted under 150 words on 97 of the 165 creator pages it reached; with one
+ *  or two repos a page stays short, there is no more to say about them.
  *
  *  This used to be wrapped in <noscript>, which meant real visitors never saw
  *  it — they saw the HOMEPAGE copy that came along with index.html (its own
@@ -197,28 +239,43 @@ function groupByAuthor(skills, forceInclude = new Set()) {
  *  hydration had already replaced. Rendering it for real also stops every
  *  author page from shipping a duplicate homepage <h1> and body. */
 function buildSeoNoScript(group, master = null, isOrg = false) {
-  const top = group.skills.slice(0, 8);
-  const listItems = top
+  const count = group.skills.length;
+  const listItems = group.skills
+    .slice(0, SHELL_SKILLS)
     .map((s) => {
       const safe = esc(s.repo_full_name);
-      const desc = esc((s.description || "").slice(0, 140));
+      const kind = [CATEGORY_LABELS[s.category], s.language].filter(Boolean).join(", ");
+      const desc = esc(fitClause(cleanDescription(s.description, s.repo_name), SHELL_DESCRIPTION_WIDTH));
+      const what = [kind && esc(kind), desc].filter(Boolean).join(". ");
       const q = typeof s.quality_score === "number" ? ` · quality ${Math.round(s.quality_score)}/100` : "";
-      const grade = s.security_grade && s.security_grade !== "unknown" ? ` · security: ${esc(s.security_grade)}` : "";
-      return `<li><a href="${SITE}/skill/${safe}/">${esc(s.repo_name)}</a> — ${desc} (${starsK(s.stars || 0)}★${q}${grade})</li>`;
+      // The grade links to the repo's audit page where one exists (generate-audit-pages.mjs
+      // applies the same hasAuditPage rule later in the build).
+      const graded = s.security_grade && s.security_grade !== "unknown";
+      const grade = !graded
+        ? ""
+        : hasAuditPage(s)
+          ? ` · <a href="${SITE}/audit/${safe}/">security audit: ${esc(s.security_grade)}</a>`
+          : ` · security: ${esc(s.security_grade)}`;
+      return `<li>${repoLink(s)}${what ? ` — ${what}` : ""} (${starsK(s.stars || 0)}★${q}${grade})</li>`;
     })
     .join("");
   // trust summary
-  const cats = [...new Set(group.skills.map((s) => s.category).filter(Boolean))].slice(0, 4).join(", ");
   const safeN = group.skills.filter((s) => s.security_grade === "safe").length;
   // Author pages list long tails; only claim "security-graded" for what actually is.
   const gradedN = group.skills.filter((s) => s.security_grade && s.security_grade !== "unknown").length;
-  const gradedPhrase = gradedN === group.skills.length
-    ? "security-graded"
-    : `security-graded where a README exists (${gradedN} of ${group.skills.length})`;
+  const gradedPhrase = count === 1
+    ? (gradedN ? `security-graded${safeN ? " — verified safe" : ""}` : "has no security grade yet")
+    : `${gradedN === count ? "security-graded" : `security-graded where a README exists (${gradedN} of ${count})`}${safeN ? ` — ${safeN} verified safe` : ""}`;
   const scored = group.skills.filter((s) => typeof s.quality_score === "number");
   const avgQ = scored.length ? Math.round(scored.reduce((a, s) => a + s.quality_score, 0) / scored.length) : 0;
   const displayName = master?.name || group.author_name;
   const who = isOrg ? "organization behind" : "author of";
+  const breakdown = kindBreakdown(group.skills);
+  const stars = `${group.total_stars.toLocaleString("en-US")}+ GitHub stars`;
+  const made = count === 1
+    ? `1 open-source ${CATEGORY_NOUNS[group.skills[0].category]?.[0] || "AI agent skill or MCP server"}, with ${stars}`
+    : `${count} open-source AI agent skills and MCP servers${breakdown ? ` (${breakdown})` : ""}, with a combined ${stars}`;
+  const scoredPhrase = count === 1 ? `it is quality-scored (${avgQ}/100)` : `each is quality-scored (avg ${avgQ}/100)`;
   const verifiedLine = master?.is_verified
     ? ` ${esc(displayName)} is a <strong>Verified Creator</strong> on AgentSkillsHub.`
     : "";
@@ -226,16 +283,53 @@ function buildSeoNoScript(group, master = null, isOrg = false) {
   const xLink = master?.x_handle
     ? ` · <a href="https://x.com/${esc(String(master.x_handle).replace(/^@/, ""))}" rel="noopener">Follow on X</a>`
     : "";
+  const more = count > SHELL_SKILLS ? `<p>${SHELL_SKILLS} of ${count} shown, most-starred first.</p>` : "";
   return `
-      <h1>${esc(displayName)} — ${group.skills.length} Open-Source AI Agent Skills</h1>
-      <p><strong>${esc(displayName)}</strong> is the ${who} ${group.skills.length} open-source AI agent skills and MCP servers${cats ? ` spanning ${esc(cats)}` : ""}, with a combined ${group.total_stars.toLocaleString()}+ GitHub stars. On AgentSkillsHub each is quality-scored (avg ${avgQ}/100) and ${gradedPhrase}${safeN ? ` — ${safeN} verified safe` : ""}.${verifiedLine}</p>
+      <h1>${esc(displayName)} — ${countNoun(count, "Open-Source AI Agent Skill", "Open-Source AI Agent Skills")}</h1>
+      <p><strong>${esc(displayName)}</strong> is the ${who} ${made}. On AgentSkillsHub ${scoredPhrase} and ${gradedPhrase}.${verifiedLine}</p>
       ${bioLine}
-      <h2>Top skills by ${esc(displayName)}</h2>
+      ${factsLine(group)}
+      <h2>${count === 1 ? "Skill" : "Top skills"} by ${esc(displayName)}</h2>
       <ul>${listItems}</ul>
+      ${more}
       <p><a href="https://github.com/${esc(group.author_name)}">View ${esc(group.author_name)} on GitHub</a>${xLink} · <a href="${SITE}/">Explore audited agent skills</a></p>`;
 }
 
-/** Generate HTML file for one author. */
+/** "4 MCP servers, 2 agent tools, 1 Claude skill": what the repos are, most common first. */
+function kindBreakdown(skills) {
+  const counts = new Map();
+  for (const s of skills) {
+    if (CATEGORY_NOUNS[s.category]) counts.set(s.category, (counts.get(s.category) || 0) + 1);
+  }
+  return [...counts]
+    .sort((a, b) => b[1] - a[1])
+    .map(([category, n]) => countNoun(n, ...CATEGORY_NOUNS[category]))
+    .join(", ");
+}
+
+/** What the repos have in common, from the catalog's own fields: most-starred repo, languages,
+ *  latest commit. Empty when none of the three is known. */
+function factsLine(group) {
+  const facts = [];
+  const [top] = group.skills;
+  if (group.skills.length > 1 && top) {
+    facts.push(`Most starred: ${repoLink(top)} (${starsK(top.stars || 0)}★).`);
+  }
+  const byLanguage = new Map();
+  for (const s of group.skills) {
+    if (s.language) byLanguage.set(s.language, (byLanguage.get(s.language) || 0) + 1);
+  }
+  const languages = [...byLanguage].sort((a, b) => b[1] - a[1]).slice(0, SHELL_LANGUAGES);
+  if (languages.length) {
+    const named = languages.map(([name, n]) => (group.skills.length > 1 ? `${esc(name)} (${n})` : esc(name))).join(", ");
+    facts.push(`${languages.length === 1 ? "Language" : "Languages"}: ${named}.`);
+  }
+  const latest = group.skills.map((s) => s.last_commit_at).filter(Boolean).sort().pop();
+  if (latest) facts.push(`Latest commit: <time datetime="${esc(latest)}">${formatDate(latest)}</time>.`);
+  return facts.length ? `<p>${facts.join(" ")}</p>` : "";
+}
+
+/** Generate HTML file for one author. Returns whether the page asks to be indexed. */
 function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   const key = String(group.author_name).toLowerCase();
   const master = masterMap.get(key) || null;
@@ -243,10 +337,10 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
   const displayName = master?.name || group.author_name;
   // Name-search intent title (LobeHub pattern: "Guizang – Top 3 AI Agent
   // Skills"): people Google the creator's NAME — lead with it, add the
-  // security angle only we can claim.
-  const safeCountForTitle = group.skills.filter((s) => s.security_grade === "safe").length;
-  const title = `${displayName} — Top ${group.skills.length} AI Agent Skills${safeCountForTitle ? " (Security-Graded)" : ""} · Agent Skills Hub`;
-  const description = `${displayName}'s AI agent skills: ${group.skills.length} open-source skills & MCP servers, ${group.total_stars.toLocaleString()}+ GitHub stars${safeCountForTitle ? `, ${safeCountForTitle} security-verified safe` : ""}. Quality-scored on AgentSkillsHub.`;
+  // security angle only we can claim. Cut to what a results page shows in authorMeta.mjs.
+  const safeCount = group.skills.filter((s) => s.security_grade === "safe").length;
+  const title = authorTitle(displayName, group.skills.length, safeCount);
+  const description = authorDescription(displayName, group.skills.length, safeCount, group.total_stars);
   // Orgs live at /organization/{name}/ (their canonical); people at /author/.
   const ns = isOrg ? "organization" : "author";
   const canonical = `${SITE}/${ns}/${group.author_name}/`;
@@ -294,6 +388,13 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
     );
   }
 
+  // One or two Skills and nobody wrote about the Author: live, linked, not indexed
+  // (authorIndexable in authorMeta.mjs). index.html carries no robots tag of its own.
+  const indexable = authorIndexable(group.skills.length, master);
+  if (!indexable) {
+    html = html.replace("</head>", '<meta name="robots" content="noindex, follow" />\n</head>');
+  }
+
   // Inject Person/Organization + ItemList JSON-LD + analytics before </head>.
   // Author pages derive from index.html but stripped GA — see analyticsTags()
   // note (2026-07-29).
@@ -323,6 +424,7 @@ ${analyticsTags()}
 </head><body><p>Moved to <a href="${canonical}">${canonical}</a></p></body></html>`,
     );
   }
+  return indexable;
 }
 
 /** Static per-creator data snapshot → dist/creator-data/{name}.json.
@@ -389,9 +491,10 @@ async function main() {
   console.log(`  Qualified authors: ${groups.length} (≥${MIN_SKILLS} skills & ≥${MIN_TOTAL_STARS}★, or ≥${SOLO_STAR_FLOOR}★ solo, or curated master/org; cap ${AUTHOR_LIMIT})`);
 
   let generated = 0;
+  const noindexed = new Set();
   for (const g of groups) {
     try {
-      writeAuthorHtml(g, baseHtml, profiles);
+      if (!writeAuthorHtml(g, baseHtml, profiles)) noindexed.add(g.author_name);
       writeCreatorJson(g, profiles);
       generated++;
     } catch (err) {
@@ -400,6 +503,7 @@ async function main() {
   }
 
   console.log(`✅ Generated ${generated} author pages (+ creator-data JSON) → dist/`);
+  console.log(`  ${noindexed.size} noindex: ${THIN_AUTHOR_MAX_SKILLS} Skills or fewer, no Master bio or Verified Creator badge`);
 
   // Write author list for sitemap generator to consume
   const sitemapList = groups.map((g) => ({
@@ -407,6 +511,7 @@ async function main() {
     total_stars: g.total_stars,
     skill_count: g.skills.length,
     is_org: profiles.orgSet.has(String(g.author_name).toLowerCase()),
+    indexable: !noindexed.has(g.author_name),
   }));
   writeFileSync(
     join(DIST, "_authors-manifest.json"),
