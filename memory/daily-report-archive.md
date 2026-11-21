@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-21
+1. danielwh2/sprite-stacking — 🆕 将四视图像素画自动转为可旋转伪 3D 精灵，适配多款 AI 编程助手。（193★ 193.0/day）
+2. nestjs/agent-skills — 🆕 提供 NestJS 框架专属智能体技能，辅助高效编写规范的 Node.js 代码。（61★ 52.7/day）
+3. beyondtahir/beyondgtaclips — 🆕 自动将 GTA 6 长直播剪成 9:16 竖屏短视频，支持 Claude 本地免费调用。（108★ 47.2/day）
+4. krispuckett/rounds — 🆕 聚合展示 Claude Code 会话生成的全部内容，用本地画布理清开发产物。（34★ 26.8/day）
+5. yibie/claude-best-practices-zh — 🆕 汇集 Claude 最佳实践中文译文与 LLM Wiki 知识图谱，方便系统检索学习。（88★ 26.1/day）
+6. ronyfadel/lochness — 🆕 查询 Mac 本地构建的苹果官方译文库，让 Claude Code 精准完成应用本地化。（33★ 21.1/day）
+7. piomin/ai-software-factory — 🆕 搭建基于 Kubernetes、Tekton 与 vLLM 的 AI 软件工厂，自动化推进软件研发。（41★ 16.2/day）
+8. 0xpratzyy/subtle — 🆕 生成 26 种本地动态字幕与卡点歌词视频，无缝衔接 Codex 与 Claude Code。（45★ 12.5/day）
+9. pasqualevitiello/plotter — 生成可编辑蓝图插画与动画，借助视觉语法和智能体技能快速出图。（224★ 10.8/day）
+10. stdevMac/orb-audio — 🆕 将文本描述直接转为 48 kHz 音频，用轻量引擎帮智能体实现声音代码化。（29★ 7.5/day）
+🎯 今日趋势：近 48 小时新收录的 94 个仓库里，**视觉与音视频创作**正加速接入 Claude Code 与 Codex，同时垂直框架与**本地化开发工作流**依然扎实。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 145 个日期段，比对 1,435 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 94 条、去重后 94 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 32 个。**代码硬规则剔除**：Bodila51/gtavi-claudecode：仓库已删除或不可访问；prajwaljeevan50-web/openclaw-personal-workspace：刷星嫌疑：153★ 却 0 个 fork；zavi2997-droid/claude-code-agent-workspace：刷星嫌疑：152★ 却 0 个 fork；marketzy/codex-cli-repo-workbench：刷星嫌疑：150★ 却 0 个 fork；kenzz-devv/open-webui-talora-ai-workspace：刷星嫌疑：152★ 却 0 个 fork；aether-aiagent/aether：刷星嫌疑：账号 2026-11-20 才注册、0 粉，1 个 fork；ntu0831/RAG-MCP-Server：刷星嫌疑：账号 2026-10-27 才注册、0 粉，0 个 fork；Gabriel-Operator/domain-specific-agent-harness-spec：名字或描述像破解 / 激活 / 外挂类诱饵。**模型排除项**：①bookwjitchieni1986/blender-ai-mcp-addon（126★ 67.5/day）：作者0粉丝且名下仅1个仓库，live_stars达1911但仅31个fork，且描述堆砌大量模型名与SEO词，刷星嫌疑明显。；②ai-timon/timon（647★ 43.9/day）：组织账号仅7粉丝且另一仓库为0星，本项目却高达657星，存在刷星嫌疑。；③setyamickala/airdrop-agent（76★ 35.3/day）：涉及多身份与社媒账号自动撸空投操作，存在灰产及规避平台风控风险。；④AI4XE/ai4ai（25★ 25.0/day）：live_stars达77但0个fork、0个issue，且作者仅2粉丝，存在刷星疑点。；⑤hey-pu/Willow（34★ 24.4/day）：作者其余仓库最高仅1星且只有2粉丝，本项目34星却0个fork、0个issue，符合突兀涨星特征。；⑥Samokoto/Gemini-Config-Checker-（56★ 14.9/day）：用于扫描可访问Gemini的代理配置并抗DPI检测，属翻墙代理工具且与另一账号仓库重复。；⑦lloweryfn-rgb/Gemini-Config-Checker-（56★ 14.9/day）：与Samokoto仓库名称、描述及涨星数据完全一致，属重复搬运且为翻墙代理检测工具。；⑧oxbaimao/whitecat-tg-assistant-commercial-build（27★ 11.3/day）：主打Telegram多账号群发、AI炒群与养号防封等灰产营销，且作者0粉丝、其余仓库均0星。；⑨Johnson-Durui/ApexCluster（24★ 9.9/day）：作者0粉丝且为2026年新建账号，本项目0个issue，结合账号背景存在刷星疑点。。**轻红旗**（保留）：0xpratzyy/subtle：作者仅2粉丝且0个issue，但2020年账号另有54星项目且本项目有24个fork。🆕 判定＝created_at 距今 14 天内：sprite-stacking（0.9 天）、agent-skills（1.2 天）、beyondgtaclips（2.3 天）、rounds（1.3 天）、claude-best-practices-zh（3.4 天）、lochness（1.6 天）、ai-software-factory（2.5 天）、subtle（3.6 天）、orb-audio（3.8 天）。security_grade：入选 10 仓为 unknown。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-20
 1. howznguyen/phonedesk — 🆕 把旧手机变成电脑控制面板，无需安装应用或上云（40★ 19.6/day）
 2. haczen/ai-dialog-manage — 🆕 统一检索和编辑编程助手会话，跨工具接续工作（36★ 12.6/day）
