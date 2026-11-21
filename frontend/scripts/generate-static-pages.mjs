@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { analyticsTags, esc, replaceShellContent } from "./shared-utils.mjs";
+import { shellHead } from "./shell-meta.mjs";
 import { HOW_WE_GRADE_LINK, HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { QUALITY_WEIGHTS } from "../src/lib/howWeGradeContent.mjs";
 import { pick } from "../src/lib/proseContent.mjs";
@@ -226,25 +227,11 @@ const indexHtmlWithCanonical = indexHtml.includes('rel="canonical"')
   : indexHtml.replace("</head>", '<link rel="canonical" href="__CANONICAL__" />\n</head>');
 
 for (const s of SHELLS) {
-  let html = indexHtmlWithCanonical
-    .replace(/<title>[^<]+<\/title>/, `<title>${s.title}</title>`)
-    .replace(
-      /<meta name="description" content="[^"]+"/,
-      `<meta name="description" content="${s.description}"`,
-    )
-    .replace(
-      /<link rel="canonical" href="[^"]+"/,
-      `<link rel="canonical" href="https://agentskillshub.top/${s.path}/"`,
-    );
-  // Member pages want a clean 200 (they're linked to directly) but must NOT be
-  // indexed — bake robots=noindex into the raw shell so non-JS crawlers obey it
-  // too, not only the Helmet tag after hydration.
-  if (s.noindex) {
-    html = html.replace(
-      "</head>",
-      '<meta name="robots" content="noindex" />\n</head>',
-    );
-  }
+  // Title, description, canonical and share card are the shell's own (shell-meta.mjs). Member
+  // pages want a clean 200 (they're linked to directly) but must NOT be indexed: `noindex`
+  // bakes robots=noindex into the raw shell so non-JS crawlers obey it too, not only the
+  // Helmet tag after hydration.
+  let html = shellHead(indexHtmlWithCanonical, s);
   // Give the shell its OWN pre-hydration content. Without this it is a verbatim
   // copy of index.html, so /analyzer/, /pro/ and /enterprise/ each painted the
   // homepage — its <h1>, category grid and scenario list — until React mounted

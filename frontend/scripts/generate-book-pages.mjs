@@ -212,7 +212,10 @@ function customizeHtml(baseHtml, { title, description, canonical, ogImage, noscr
     .replace(
       /<meta property="og:url" content="[^"]+"/,
       `<meta property="og:url" content="${canonical}"`,
-    );
+    )
+    // X reads its own two tags before the og ones; they were left as the home page's (2026-11-20).
+    .replace(/<meta name="twitter:title" content="[^"]+"/, () => `<meta name="twitter:title" content="${esc(title)}"`)
+    .replace(/<meta name="twitter:description" content="[^"]+"/, () => `<meta name="twitter:description" content="${esc(description)}"`);
 
   if (ogImage) {
     html = html.replace(

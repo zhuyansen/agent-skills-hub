@@ -79,6 +79,9 @@ function setHead(html, { zhPath, title, description }) {
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(description)}$2`)
     .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(title)}$2`)
     .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(description)}$2`)
+    // X reads its own two tags before the og ones; they were left in English (2026-11-20).
+    .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${esc(title)}$2`)
+    .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${esc(description)}$2`)
     .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
     .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`);
 }

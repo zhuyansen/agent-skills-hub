@@ -281,7 +281,11 @@ function writeAuthorHtml(group, baseHtml, { masterMap, orgSet }) {
     .replace(
       /<meta property="og:url" content="[^"]+"/,
       `<meta property="og:url" content="${canonical}"`,
-    );
+    )
+    // X reads its own two tags before the og ones. Until 2026-11-20 they stayed the home
+    // page's, so a creator page shared on X showed the home page's title and description.
+    .replace(/<meta name="twitter:title" content="[^"]+"/, () => `<meta name="twitter:title" content="${esc(title)}"`)
+    .replace(/<meta name="twitter:description" content="[^"]+"/, () => `<meta name="twitter:description" content="${esc(description)}"`);
 
   if (group.author_avatar_url) {
     html = html.replace(
