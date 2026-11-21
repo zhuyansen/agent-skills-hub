@@ -283,7 +283,7 @@ export const translations = {
     // Hero
     "hero.title": "Claude Skills 市场：{count} 个 Skill、MCP Server 与 Agent 工具",
     "hero.subtitle":
-      "开源目录 · 安全评级 · 9 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
+      "Agent Skills Hub · 开源目录 · 安全评级 · 9 维质量评分 · 每 8 小时刷新 · 30 秒内安全上手",
     "hero.trending": "热门",
     "hero.searchPlaceholder": "搜索 AI Agent 工具、MCP 服务器、自动化技能...",
 
@@ -687,7 +687,7 @@ export const translations = {
     // Hero
     "hero.title": "Claude Skills Marketplace: {count} Skills & MCP Servers",
     "hero.subtitle":
-      "The open-source directory. Security-graded, quality-scored on 9 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
+      "Agent Skills Hub: the open-source directory. Security-graded, quality-scored on 9 dimensions. Refreshed every 8 hours. Find, compare, install safely.",
     "hero.trending": "Trending",
     "hero.searchPlaceholder":
       "Search AI agent tools, MCP servers, automation skills...",
