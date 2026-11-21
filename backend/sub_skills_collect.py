@@ -317,7 +317,7 @@ def write_repo(conn, repo: Repo, tree_sha: str | None, count: int, status: str) 
         # Prune first: a skill whose folder moved keeps its slug, which the old row still holds.
         cur.execute(PRUNE_SQL, (repo.full_name, [r[1] for r in repo.rows]))
         for row in repo.rows:
-            cur.execute(UPSERT_SQL, row)
+            cur.execute(UPSERT_SQL, tuple(v.replace("\x00", "") if isinstance(v, str) else v for v in row))
         cur.execute(SCAN_SQL, (repo.full_name, tree_sha, count, status))
 
 

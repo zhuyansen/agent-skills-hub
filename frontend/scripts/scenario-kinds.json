@@ -2895,7 +2895,7 @@
    "databrickslabs/ontobricks": "graph",
    "ddsyasas/llm-wiki": "llm_wiki",
    "decodingai-magazine/llm-wiki-workshop": "llm_wiki",
-   "decodingai-magazine/second-brain-ai-assistant-course": "docs_qa",
+   "itsdecodingai/second-brain-ai-assistant-course": "docs_qa",
    "deequoique/stashseek": "personal",
    "dimknaf/braindb": "graph",
    "dkedar7/embedchain-fastdash": "docs_qa",
@@ -6265,6 +6265,12 @@
  "animation-skills": {
   "kinds": [
    {
+    "id": "video",
+    "icon": "🎬",
+    "en": "Animated video & motion graphics",
+    "zh": "动画视频与动态图形"
+   },
+   {
     "id": "web",
     "icon": "🌀",
     "en": "Web & UI motion",
@@ -6380,7 +6386,31 @@
    "WU-HAOTIAN34/2dimg2motion": "sprite",
    "XiaoyeCodes/code-animation-prompts": "art",
    "xixicc186/clawd-emotes-skill": "lottie",
-   "Yusuke710/manim-skill": "art"
+   "Yusuke710/manim-skill": "art",
+   "bangtutorial/bang-motion": "video",
+   "artemnovitckii/claude-animation-skills": "video",
+   "remotion-dev/skills": "video",
+   "Moh4696/cinematic-skill": "video",
+   "lemomo-ai/lemo-opuscar": "video",
+   "nexu-io/openmotion": "video",
+   "adunext/adu-motion-video": "video",
+   "echris6/motion-video-kit": "video",
+   "Barty-Bart/motion-graphics": "video",
+   "0xS4N4TG/kinetograph": "video",
+   "kelano86/what-if-animation": "video",
+   "buildwithhanif/claude-animation-skill": "video",
+   "GODGOD126/opus-5-5-86-styles-in-motion": "video",
+   "Tejashmakwana/motionmaxxing": "video",
+   "Hype-yolo/claude-motion-skill": "video",
+   "blixvip/NullMotion": "video",
+   "smixs/visual-skills": "video",
+   "JohnHeibel/ClaudeAnimationBase": "video",
+   "Liamrjohnston/remotion-motion-graphics-skill": "video",
+   "charlie947/motion-graphics-skills": "video",
+   "Mort1d/motion-graphics-skills": "video",
+   "liyue-aigc/xianxia-cinematic-video-director": "video",
+   "iart-ai/motion-design-skills": "video",
+   "vibe-motion/skills": "video"
   }
  },
  "claude-motion-alternatives": {
