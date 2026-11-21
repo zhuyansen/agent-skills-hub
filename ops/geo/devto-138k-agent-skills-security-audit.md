@@ -65,7 +65,7 @@ Every scanned repository on **Agent Skills Hub (agentskillshub.top)** receives o
 ## Open Data & Reproducibility
 
 - **Directory & Live Grades**: [agentskillshub.top](https://agentskillshub.top/) (276,000+ indexed, 138,000+ graded, 8-hour GitHub sync)
-- **43 Published Grading Rules**: [agentskillshub.top/how-we-grade/](https://agentskillshub.top/how-we-grade/)
+- **44 Published Grading Rules**: [agentskillshub.top/how-we-grade/](https://agentskillshub.top/how-we-grade/)
 - **Free GitHub Repo Pre-Install Scanner**: [agentskillshub.top/analyzer/](https://agentskillshub.top/analyzer/)
 - **Open Research Dataset (CC BY 4.0)**: [CERN Zenodo DOI 10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799)
 - **Open-Source Code**: [github.com/zhuyansen/agent-skills-hub](https://github.com/zhuyansen/agent-skills-hub)
