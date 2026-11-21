@@ -645,8 +645,8 @@
   },
   "related": [
    "mcp-database",
-   "mcp-browser",
-   "workflow-automation"
+   "mcp-for-github",
+   "mcp-for-google"
   ]
  },
  {
@@ -819,8 +819,9 @@
    ]
   },
   "related": [
-   "security-audit",
-   "code-review"
+   "authentication",
+   "code-review",
+   "ai-reverse-engineering"
   ]
  },
  {
@@ -1747,8 +1748,8 @@
   },
   "related": [
    "code-review",
-   "code-completion",
-   "debugging"
+   "cli-tools",
+   "vibe-coding"
   ]
  },
  {
@@ -2332,9 +2333,9 @@
    ]
   },
   "related": [
-   "workflow-automation",
-   "git-tools",
-   "debugging"
+   "mcp-for-github",
+   "refactoring",
+   "claude-code-skills"
   ]
  },
  {
@@ -2360,9 +2361,9 @@
    ]
   },
   "related": [
-   "security-audit",
    "secret-detection",
-   "mcp-api"
+   "mcp-api",
+   "mcp-for-google"
   ]
  },
  {
@@ -3130,8 +3131,8 @@
    "max_results": 10
   },
   "related": [
-   "ai-agent-framework",
-   "workflow-automation",
+   "claude-code-hooks",
+   "local-llm",
    "prompt-engineering"
   ]
  },
@@ -3167,9 +3168,9 @@
    "max_results": 10
   },
   "related": [
-   "ai-agent-framework",
+   "multi-agent",
    "prompt-engineering",
-   "model-evaluation"
+   "voice-agent"
   ]
  },
  {
@@ -3235,9 +3236,9 @@
    ]
   },
   "related": [
-   "git-tools",
+   "cli-tools",
    "code-review",
-   "ci-cd"
+   "mcp-for-google"
   ]
  },
  {
@@ -3275,8 +3276,8 @@
   },
   "related": [
    "mcp-api",
-   "email-automation",
-   "workflow-automation"
+   "mcp-for-github",
+   "seo-tools"
   ]
  },
  {
@@ -6190,9 +6191,9 @@
    ]
   },
   "related": [
-   "text-to-speech",
-   "speech-to-text",
-   "ai-agent-framework"
+   "local-llm",
+   "multi-agent",
+   "telegram-bot"
   ]
  },
  {
@@ -6334,8 +6335,8 @@
   },
   "related": [
    "telegram-bot",
-   "slack-integration",
-   "rss-monitoring"
+   "content-writing",
+   "seo-tools"
   ]
  },
  {
@@ -7179,9 +7180,9 @@
    ]
   },
   "related": [
-   "business-diagnosis",
    "claude-code-skills",
-   "agent-governance"
+   "codex-skills",
+   "cli-tools"
   ]
  },
  {
@@ -9946,9 +9947,9 @@
    ]
   },
   "related": [
-   "agent-security",
-   "security-audit",
-   "code-review"
+   "secret-detection",
+   "code-review",
+   "authentication"
   ],
   "serp_subject": "Ghidra & IDA Pro MCP + AI Reverse Engineering",
   "github_list": "https://github.com/zhuyansen/awesome-ai-reverse-engineering",

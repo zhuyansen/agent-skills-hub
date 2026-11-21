@@ -32,6 +32,7 @@ import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusAt } from "./scenario-answer.mjs";
 import { comparisonsHtml } from "./scenario-compare-links.mjs";
+import { relatedScenarios } from "./scenario-related.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
 import {
   MODIFIED_PATH, declaredDateIn, fingerprint, loadLiveModified, nextModified,
@@ -728,10 +729,9 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // "The most adopted choice" only when the first entry has the most stars: the first is often a
   // featured pick (11-06, vibe-coding: ralphy at 3.0K "most adopted", its "alternative" at 3.1K).
   const top1Most = hasMost(skills, top1, "stars");
-  // Find first valid related scenario (with a title) for the "difference" FAQ
-  const relatedScenario = (scenario.related || [])
-    .map((slug) => allScenarios.find((s) => s.slug === slug))
-    .find((s) => s && s.title);
+  // The first page this one recommends, for the "difference" FAQ (scenario-related.mjs: a live
+  // page compares itself with a live page, never a retired one).
+  const [relatedScenario] = relatedScenarios(scenario, allScenarios);
 
   // Avoid double "tools tools" / "tool tool" when title already contains tools/servers/etc.
   const titleHasNoun = /\b(tools?|servers?|frameworks?|platforms?|integrations?|skills?)\b/i.test(scenario.title);
@@ -868,13 +868,8 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   }).join("\n        ");
 
   // Related scenarios
-  const relatedHtml = (scenario.related || [])
-    .map((slug) => {
-      const rel = allScenarios.find((s) => s.slug === slug);
-      if (!rel) return null;
-      return `<a href="/best/${esc(slug)}/" class="bp-related-tag" data-en="${esc(rel.title)}" data-zh="${esc(rel.zhTitle || rel.title)}">${esc(rel.title)}</a>`;
-    })
-    .filter(Boolean)
+  const relatedHtml = relatedScenarios(scenario, allScenarios)
+    .map((rel) => `<a href="/best/${esc(rel.slug)}/" class="bp-related-tag" data-en="${esc(rel.title)}" data-zh="${esc(rel.zhTitle || rel.title)}">${esc(rel.title)}</a>`)
     .join("\n        ");
 
   // FAQ HTML
