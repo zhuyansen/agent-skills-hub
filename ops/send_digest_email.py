@@ -44,7 +44,9 @@ def subject_for(md, leads, today):
     # whether the funnel moved without even opening the mail. If a source fetch
     # failed (banner present), a "0" would be a lie — flag the outage instead
     # of reporting a false all-clear (07-12 GA-token-expiry scar).
-    if "⚠️ **数据源未出数" in md:
+    if "## ⚠️ 任务或渠道异常" in md:
+        subject = f"📊 数据日报 {today} · ⚠️ 任务或余额异常(见正文)"
+    elif "⚠️ **数据源未出数" in md:
         subject = f"📊 数据日报 {today} · ⚠️ 数据源故障(见正文)"
     else:
         conv = md.count("🎯 **")

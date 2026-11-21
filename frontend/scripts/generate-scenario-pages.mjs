@@ -31,6 +31,7 @@ import { subSkillPath, subSkillUrl, subSkillInstall } from "../src/lib/subSkillM
 import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusAt } from "./scenario-answer.mjs";
+import { localeNotesHtml } from "./scenario-locale-notes.mjs";
 import { comparisonsHtml } from "./scenario-compare-links.mjs";
 import { relatedScenarios } from "./scenario-related.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
@@ -1017,6 +1018,7 @@ ${methodLd(scenario, pageUrl)}
         <h2 class="bp-section-title" style="font-size:18px" data-zh="常见问题" data-en="Frequently Asked Questions">Frequently Asked Questions</h2>
       ${faqHtml}
       </section>
+      ${localeNotesHtml(scenario)}
 
       <!-- Trust / methodology: every scenario page now shows SAFE/CAUTION
            counts, so every one makes a security claim and must explain it. -->

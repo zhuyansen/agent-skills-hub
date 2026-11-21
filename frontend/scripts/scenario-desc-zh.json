@@ -5252,5 +5252,7 @@
  "zxkane/aws-skills": "Claude Code 插件和 agent skills，支持 AWS 开发：IaC（CDK/SST）、serverless、成本运营和 Bedrock Ag…",
  "zyz254009-crypto/script-to-shootable-storyboard": "剧本转可拍分镜 Skill，使用 Codex 开发，支持 Seedance、真人/混合制作与二次开发。",
  "zz41354899/mografy": "使用 Claude Code 或 Codex 创建、预览并导出 Canvas 动态图形，支持 MP4、Lottie 和 SVGA 导出，优先本地运行且开源。",
- "zzsong1023/jev-market-reflex": "使用 TypeSafe AI Jev 在实时加密市场上快速做出类型安全的 AI 决策。"
+ "zzsong1023/jev-market-reflex": "使用 TypeSafe AI Jev 在实时加密市场上快速做出类型安全的 AI 决策。",
+ "kelano86/what-if-animation": "免费的 Claude Code / OpenCode skill(免费模型也能跑):一句「如果……会怎样」的设想,做成带配音的动画短片",
+ "blixvip/NullMotion": "动态图形广告:成片和生成它的几版草稿同步播放,看清每一步改了什么"
 }

@@ -76,6 +76,16 @@ jobs:
           STRIPE_RESTRICTED_KEY: ${{ secrets.STRIPE_RESTRICTED_KEY }}
         run: python ops/stripe/poll_stripe.py --summary-only || true
 
+      - name: Task & API balance health check
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
+          FLATROUTER_API_KEY: ${{ secrets.FLATROUTER_API_KEY }}
+          FLATROUTER_BASE_URL: ${{ secrets.FLATROUTER_BASE_URL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          AISA_API_KEY: ${{ secrets.AISA_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: python ops/health/fetch_health.py || true
+
       - name: Build digest → Step Summary
         run: |
           python ops/analytics_digest.py > digest.md

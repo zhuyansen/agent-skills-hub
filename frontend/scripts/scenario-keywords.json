@@ -10274,9 +10274,9 @@
  {
   "slug": "animation-skills",
   "title": "Animation Skills",
-  "serp_subject": "Claude Code Animation Skills",
+  "serp_subject": "Claude Animation & Motion Graphics Skills",
   "seo_keyword": "claude animation skill",
-  "description": "Animation skills for Claude Code and Codex: GSAP and UI motion, Lottie and SVG animation, game sprite sheets, rigging and 3D animation, animated diagrams and Manim. Every one is security-graded before you install it.",
+  "description": "Tested: Claude Code with no animation skill met the brief in 5 of 6 kinds, for $1.77 in total, so a skill here earns its place by its look, its format or the code it leaves. Claude animation skills for cinematic animated video and motion graphics (Remotion), GSAP web motion, Lottie, game sprite sheets, 3D characters and Manim, every one security-graded before you install it.",
   "match": {
    "categories": [],
    "primary_keywords": [
@@ -10291,7 +10291,11 @@
     "framer motion",
     "animated icons",
     "pixel art animation",
-    "skeletal animation"
+    "skeletal animation",
+    "motion graphics",
+    "remotion",
+    "cinematic",
+    "animated video"
    ],
    "secondary_keywords": [
     "animation",
@@ -10335,19 +10339,55 @@
   ],
   "extra_faq": [
    {
+    "q": "Can Claude make animations without a skill?",
+    "a": "Mostly, yes. In our test on 2026-11-18, Claude Code (Claude Opus 5.5) with no animation skill met every item of the brief in 5 of 6 kinds (web motion, a Lottie logo, a waving mascot, an animated diagram and an explainer) in 0.9 to 4 minutes, for $1.77 across all six. It fell short on game sprites, where it drew the walk facing the viewer. A skill is worth installing for a look, a file format or code you will keep building on.",
+    "qZh": "不装 skill,Claude 能做动画吗?",
+    "aZh": "大多数能。我们 2026-11-18 的实测里,不装任何动画 skill 的 Claude Code(Claude Opus 5.5)在 6 类题里有 5 类全部达标(网页动效、Lottie 标志、挥手的吉祥物、动态图解和讲解动画),每题 0.9 到 4 分钟,6 题一共 $1.77。差在游戏精灵图:它把走路画成了正面朝向观众。装 skill 的价值在于特定风格、文件格式,或者留下可以接着改的代码。"
+   },
+   {
     "q": "What is the best animation skill for Claude Code?",
     "a": "For web and UI animation, greensock/gsap-skills is the official GSAP skill and the most starred; LottieFiles/motion-design-skill teaches timing and easing, and kylezantos/design-motion-principles audits motion you already have. For Lottie files use diffusionstudio/lottie, for game sprite sheets 0x0funky/agent-sprite-forge or aldegad/sprite-gen, and for 3Blue1Brown-style math animation adithya-s-k/manim_skill.",
     "qZh": "Claude Code 最好用的动画 skill 是哪个?",
     "aZh": "做网页和界面动画:greensock/gsap-skills 是 GSAP 官方 skill,星数最高;LottieFiles/motion-design-skill 教时间曲线和缓动,kylezantos/design-motion-principles 用来审查已有动效。做 Lottie 文件用 diffusionstudio/lottie,做游戏精灵图用 0x0funky/agent-sprite-forge 或 aldegad/sprite-gen,做 3Blue1Brown 风格的数学动画用 adithya-s-k/manim_skill。"
    },
    {
+    "q": "How do I make cinematic animations or motion graphics with Claude?",
+    "a": "Use a skill built for video output, in the Animated video & motion graphics group on this page: remotion-dev/skills (Remotion's own skills) for programmatic video, lemomo-ai/lemo-opuscar for ready-made film styles, Moh4696/cinematic-skill or smixs/visual-skills for cinematic direction, and bangtutorial/bang-motion for motion graphics in the browser.",
+    "qZh": "怎么用 Claude 做电影感动画或动态图形?",
+    "aZh": "用为视频产出设计的 skill,在本页「动画视频与动态图形」一组里:用代码做视频用 remotion-dev/skills(Remotion 官方 skill),现成的影片风格用 lemomo-ai/lemo-opuscar,电影感的镜头与叙事用 Moh4696/cinematic-skill 或 smixs/visual-skills,在浏览器里做动态图形用 bangtutorial/bang-motion。"
+   },
+   {
     "q": "Animation skills or video skills: which do I need?",
-    "a": "This page lists skills whose output is the animation itself: motion in a web page or app, a Lottie or SVG file, a sprite sheet, a rigged character, an animated diagram. If what you want is a finished MP4 (a promo, an explainer, a short), see Claude Video Editing & Remotion Skills instead.",
+    "a": "This page lists skills whose output is an animation: an animated video or motion graphics, motion in a web page or app, a Lottie or SVG file, a sprite sheet, a rigged character, an animated diagram. For editing footage, subtitles and short-form video in general, see Claude Video Editing & Remotion Skills.",
     "qZh": "动画 skill 和视频 skill,我该用哪个?",
-    "aZh": "本页收的 skill,产出的就是动画本身:网页或 App 里的动效、Lottie 或 SVG 文件、精灵图、绑好骨骼的角色、动态图解。如果你要的是一个成片 MP4(宣传片、讲解视频、短视频),请看 Claude 做视频与 Remotion skill 那一页。"
+    "aZh": "本页收的 skill,产出的是动画:动画视频和动态图形、网页或 App 里的动效、Lottie 或 SVG 文件、精灵图、绑好骨骼的角色、动态图解。如果要剪辑素材、加字幕或做一般的短视频,请看 Claude 做视频与 Remotion skill 那一页。"
    }
   ],
-  "quick_pick": "greensock/gsap-skills"
+  "quick_pick": "greensock/gsap-skills",
+  "locale_notes": [
+   {
+    "lang": "id",
+    "heading": "Skill animasi Claude: ringkasan dalam Bahasa Indonesia",
+    "paragraphs": [
+     "Halaman ini mengumpulkan skill animasi untuk Claude Code dan Codex: video animasi dan motion graphics (Remotion), animasi web (GSAP), Lottie, sprite game, karakter 3D, dan Manim. Setiap skill sudah dinilai keamanannya sebelum Anda memasangnya.",
+     "Kami juga mengujinya pada 18 November 2026: Claude Code tanpa skill animasi apa pun memenuhi seluruh brief di 5 dari 6 jenis animasi, dengan total biaya $1,77. Jadi sebuah skill layak dipasang karena gaya visualnya, format filenya, atau kode yang bisa Anda kembangkan lagi."
+    ],
+    "faq": [
+     {
+      "q": "Apakah Claude bisa membuat animasi tanpa skill?",
+      "a": "Bisa, untuk sebagian besar jenis. Dalam uji kami, Claude Code tanpa skill animasi memenuhi seluruh brief untuk animasi web, logo Lottie, maskot yang melambai, diagram animasi, dan video penjelasan, masing-masing dalam 0,9 sampai 4 menit. Yang kurang hanya sprite game: arah jalannya menghadap ke penonton, bukan ke samping."
+     },
+     {
+      "q": "Skill Claude apa yang dipakai untuk video animasi?",
+      "a": "Lihat kelompok «Animated video & motion graphics» di halaman ini, misalnya remotion-dev/skills (skill resmi Remotion), lemomo-ai/lemo-opuscar (kumpulan gaya film siap pakai), dan bangtutorial/bang-motion (motion graphics di browser)."
+     },
+     {
+      "q": "Apakah skill animasi Claude gratis dan aman?",
+      "a": "Semua skill di sini berasal dari repositori GitHub publik dan gratis dipasang; yang Anda bayar hanya pemakaian Claude-nya. Setiap skill sudah melewati pemindaian keamanan berbasis aturan kami, dan hasilnya tampil di setiap kartu."
+     }
+    ]
+   }
+  ]
  },
  {
   "slug": "claude-motion-alternatives",

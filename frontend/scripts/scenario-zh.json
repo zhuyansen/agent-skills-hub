@@ -614,8 +614,8 @@
   },
   "animation-skills": {
     "t": "动画 Skill",
-    "k": ["动画", "动效", "gsap", "lottie", "精灵图", "像素动画", "manim", "骨骼动画", "动态图标", "微交互"],
-    "d": "Claude Code 和 Codex 的动画 skill,带安全评级:GSAP 网页动效、Lottie 与 SVG 动画、游戏精灵图、骨骼与 3D 动画、动态图解和 Manim 数学动画。安装前先核查。"
+    "k": ["动画", "动效", "动态图形", "动画视频", "电影感", "remotion", "gsap", "lottie", "精灵图", "像素动画", "manim", "骨骼动画", "动态图标", "微交互"],
+    "d": "实测:不装任何动画 skill 的 Claude Code,6 类题里 5 类全部达标,总共花了 $1.77;所以这里的 skill 值不值得装,看它的风格、格式和留下的代码。收录 Claude 动画 skill:电影感动画视频与动态图形(Remotion)、GSAP 网页动效、Lottie、游戏精灵图、3D 角色和 Manim,每个都做过安全评级。"
   },
     "claude-motion-alternatives": {
         "t": "Claude Motion 平替",

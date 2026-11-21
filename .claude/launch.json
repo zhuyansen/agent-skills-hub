@@ -4,16 +4,93 @@
     {
       "name": "frontend",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 5173,
       "cwd": "frontend"
     },
     {
       "name": "backend",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "source venv/bin/activate && uvicorn app.main:app --reload --port 8000"],
+      "runtimeArgs": [
+        "-c",
+        "source venv/bin/activate && uvicorn app.main:app --reload --port 8000"
+      ],
       "port": 8000,
       "cwd": "backend"
+    },
+    {
+      "name": "xrf-fixture",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766",
+        "--directory",
+        "/Users/zhuyansen/content/x-reply-filter"
+      ],
+      "port": 8766
+    },
+    {
+      "name": "dist-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8771",
+        "--directory",
+        "/Users/zhuyansen/content/agent-skills-hub/frontend/dist"
+      ],
+      "port": 8771
+    },
+    {
+      "name": "getpptskills",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/zhuyansen/content/getpptskills",
+        "dev"
+      ],
+      "port": 3000
+    },
+    {
+      "name": "jasonzhu-ai",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/zhuyansen/出海/jasonzhu.ai",
+        "run",
+        "dev",
+        "--",
+        "-p",
+        "3100"
+      ],
+      "port": 3100
+    },
+    {
+      "name": "iphonekupi",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/zhuyansen/content/mkfast-app-wt-kupi && VITE_MEME=iphone-kupi VITE_ENABLE_IMAGE_GENERATION=true pnpm exec vite dev --port 3210 --strictPort"
+      ],
+      "port": 3210
+    },
+    {
+      "name": "jasonzhu-ai-toc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/zhuyansen/出海/jasonzhu.ai/.claude/worktrees/go-global-markets",
+        "run",
+        "dev",
+        "--",
+        "-p",
+        "3101"
+      ],
+      "port": 3101
     }
   ]
 }
