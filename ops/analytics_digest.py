@@ -26,6 +26,22 @@ def section(title):
     print(f"\n## {title}\n")
 
 
+def print_fact_todos(todos):
+    """Edits first, then the ones that only wait for a deploy or a publish."""
+    def where(t):
+        return " · ".join(f"`{w['file']}:{w['line']}`" if w.get("line") else f"`{w['file']}`" for w in t["where"])
+    act = [t for t in todos if t["where"]]
+    wait = [t for t in todos if not t["where"]]
+    for t in act:
+        print(f"- [ ] **{t['source']}** 写的是「{t['found']}」→ 改成 **{t['replace_with']}**")
+        print(f"  - 改哪里: {where(t)}")
+        print(f"  - 改完: {t['then']}" + (f" · {t['note']}" if t["note"] else ""))
+    if wait:
+        print(("\n" if act else "") + "**不用改,等着就行:**")
+        for t in wait:
+            print(f"- {t['source']}「{t['found']}」— {t['note'] or t['then']}")
+
+
 def print_fact_consistency():
     """Entity-audit node 7: do the site, npm, GitHub, Wikidata and Zenodo state the same facts?
 
@@ -42,9 +58,15 @@ def print_fact_consistency():
         return
     conflicts = fc.get("conflicts") or []
     if conflicts:
-        print(f"\n## ⚠️ 品牌事实不一致 {len(conflicts)} 处(数字/日期过期,改文案)\n")
-        for c in conflicts:
-            print(f"- **{c['source']}** `{c['fact']}`: 写的是 {c['found']},应为 {c['expected']} — {c['url']}")
+        todos = fc.get("todos")
+        n_edit = sum(1 for t in todos if t["where"]) if todos else len(conflicts)
+        tail = f"{n_edit} 处要改文案" if n_edit else "都只等部署/发布"
+        print(f"\n## ⚠️ 品牌事实不一致 {len(todos or conflicts)} 处({tail})\n")
+        if todos:
+            print_fact_todos(todos)
+        else:
+            for c in conflicts:
+                print(f"- **{c['source']}** `{c['fact']}`: 写的是 {c['found']},应为 {c['expected']} — {c['url']}")
         print("\n> 账本在 `ops/geo/brand-facts.json`;快照数(数据集 DOI、旧博文)旁边带出处就不算错。")
     section("🧾 品牌事实一致性")
     errs = fc.get("fetch_errors") or {}
@@ -52,6 +74,8 @@ def print_fact_consistency():
     print(f"- {state} · 核了 {fc.get('sources_checked', 0)} 个节点"
           f"(实时:收录 {num(fc.get('live_directory_size'))} / 已评级 {num(fc.get('live_graded_count'))})"
           + (f" · ⚠️ {len(errs)} 个节点没抓到: {', '.join(errs)}" if errs else ""))
+    if fc.get("counts_skipped"):
+        print("- ⚠️ 实时数没读到,今天**没核数字**(只核了日期、规则数、创始人、仿冒域名)。明天再看;连着几天都这样就查抓取。")
 
 
 # GA counting more than this multiple of Clarity's human sessions means bots

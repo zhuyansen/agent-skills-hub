@@ -41,6 +41,11 @@ class CheckTests(unittest.TestCase):
         self.assertEqual(r["live_graded_count"], 140000)
         self.assertEqual(r["conflicts"], [])
 
+    def test_unread_live_count_skips_counts_only(self):
+        r = check_texts({"site_ai_info": AI_INFO, "npm_mcp": ("u", "281,000+ skills; checked against 40 security rules")}, LEDGER)
+        self.assertIn("directory_size", r["counts_skipped"])
+        self.assertEqual(facts(r), [("security_rules", "npm_mcp")])
+
     def test_stale_count_is_flagged(self):
         self.assertIn(("skill_count", "npm_mcp"), facts(run(npm_mcp="a directory of 100K+ skills")))
 

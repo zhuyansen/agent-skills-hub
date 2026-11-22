@@ -153,6 +153,9 @@ def check_texts(texts: dict[str, tuple[str, str]], ledger: dict[str, Any]) -> di
     size_spec = live["directory_size"]
     live_values = {f: live_count(texts, ledger, f) for f in LIVE_COUNTS if f in live}
     live_size = live_values.get("directory_size")
+    # A count is judged against both live counts; with either unread (its page did not load),
+    # every correct number for it would read as stale. Skip the counts, say so, check the rest.
+    unread = [f for f, v in live_values.items() if not v]
     expected_counts = " or ".join(f"~{v:,}+ ({f})" for f, v in live_values.items() if v) or "live counts unreadable"
     conflicts: list[dict[str, Any]] = []
     snapshot_hits: list[dict[str, Any]] = []
@@ -169,7 +172,7 @@ def check_texts(texts: dict[str, tuple[str, str]], ledger: dict[str, Any]) -> di
         counts_seen: list[int] = []
 
         # 1. directory size
-        for m in COUNT_RE.finditer(text):
+        for m in ([] if unread else COUNT_RE.finditer(text)):
             value = parse_count(m.group(1))
             if value < size_spec["min_count"]:
                 continue
@@ -222,6 +225,7 @@ def check_texts(texts: dict[str, tuple[str, str]], ledger: dict[str, Any]) -> di
     return {
         "live_directory_size": live_size,
         "live_graded_count": live_values.get("graded_count"),
+        "counts_skipped": (f"live count unread: {', '.join(unread)}" if unread else ""),
         "conflicts": conflicts,
         "snapshot_mentions_ok": snapshot_hits,
         "sources": per_source,
@@ -245,7 +249,7 @@ def audit_fact_consistency(http_get: Callable[..., tuple[int, dict[str, str], st
     result = check_texts(texts, ledger)
     if result["conflicts"]:
         status = "CONFLICTS_FOUND"
-    elif fetch_errors or not result["live_directory_size"]:
+    elif fetch_errors or result["counts_skipped"]:
         status = "PARTIAL_FETCH"
     else:
         status = "VERIFIED"
@@ -287,6 +291,8 @@ def main() -> int:
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
     node = audit_fact_consistency(http_get)
+    from fact_todos import build_todos, github_has_via
+    node["todos"] = build_todos(node, GEO_DIR.parents[1], github_has_via(http_get))
     if args.json:
         print(json.dumps(node, ensure_ascii=False, indent=2))
     else:
