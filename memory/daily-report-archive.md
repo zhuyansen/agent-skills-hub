@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-22
+1. w01fb0ss/PiBot — 🆕 拉起本地多 Agent 桌面团队，支持群聊、浏览器操作及 MCP 审批。（179★ 179.0/day）
+2. benjitaylor/skills — 加载即用型 AI 编程技能包，直接拓展编码智能体的实战能力。（3960★ 146.5/day）
+3. EL4CTEO/fast-anything — 🆕 定位应用性能瓶颈并交由智能体精准改写，验证等价后即可提速。（108★ 108.0/day）
+4. xikhar/papercraft — 🆕 赋予智能体立体折纸风开发能力，一键生成游戏、网页与交互动画。（72★ 57.2/day）
+5. WhiteBr1ck/agy-powertools — 🆕 增强 Antigravity 2.0 界面，提供汉化、会话分支与本地用量监控。（129★ 24.0/day）
+6. GetStream/Agents — 构建文本、语音与视频智能体，提供多语言 SDK 及记忆沙箱等后端能力。（8218★ 17.6/day）
+7. EL4CTEO/godot-skills — 🆕 辅助智能体开发 Godot 4.7 项目，支持精准查 API、改场景与编译检查。（31★ 11.0/day）
+8. hehehai/AudioSmith — 实现 Mac 本地零成本语音合成、配音、有声书制作及音频转录。（252★ 6.4/day）
+9. Leonxlnx/sable — 🆕 统一管理 Claude Code 与 Codex 工作流，提供专注智能体的桌面开发环境。（35★ 5.5/day）
+10. chekusu/yomado — 创建原生 macOS 虚拟屏幕供视觉智能体使用，隔离并管理其桌面操作空间。（219★ 5.1/day）
+🎯 今日趋势：智能体工具正在向**本地桌面协同**与**垂直工程工作流**延伸，覆盖多智能体调度、性能热点改写及视觉隔离环境。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 146 个日期段，比对 1,445 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 104 条、去重后 95 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 36 个。**代码硬规则剔除**：prajwaljeevan50-web/openclaw-personal-workspace：刷星嫌疑：151★ 却 0 个 fork；zavi2997-droid/claude-code-agent-workspace：刷星嫌疑：150★ 却 0 个 fork；marketzy/codex-cli-repo-workbench：刷星嫌疑：148★ 却 0 个 fork；kenzz-devv/open-webui-talora-ai-workspace：刷星嫌疑：150★ 却 0 个 fork；aether-aiagent/aether：security_grade 为 caution；lloweryfn-rgb/Gemini-Config-Checker-：security_grade 为 reject；Samokoto/Gemini-Config-Checker-：security_grade 为 reject；Gabriel-Operator/domain-specific-agent-harness-spec：名字或描述像破解 / 激活 / 外挂类诱饵；seira-bot/seira：security_grade 为 caution；baseguard/hangar：security_grade 为 caution；HuangShengZeBlueSky/dsh-harness-evolution：刷星嫌疑：104★ 却 0 个 fork；Invariant0x/hornhoof：刷星嫌疑：作者 0 粉、其余仓库最高 0★，90★ 只有 1 个 fork。**模型排除项**：①XinaTian/MROffice（1500★ 130.1/day）：security_grade 为 unknown（非 safe），且作者 0 粉丝、名下仅此 1 个仓库，缺少其他项目与 issue 佐证。；②ai-timon/timon（661★ 42.5/day）：组织账号刚建且粉丝仅 8 人，名下仅 2 个仓库且另一个为 0 星，存在刷星疑点。；③imuratalpay/ui-diff（106★ 30.8/day）：作者仅 1 粉且其余仓库均个位数星（1、0 星），此仓库突然涨到 115 星，符合刷星特征。；④hey-pu/Willow（34★ 15.5/day）：实时 34 星但 0 fork、0 issue，作者仅 2 粉且其余仓库最高仅 1 星，缺乏真实使用痕迹。；⑤AI4XE/ai4ai（25★ 14.0/day）：实时 132 星但 0 fork、0 issue，作者仅 2 粉，符合百星以上几乎零 fork 的刷星特征。；⑥oxbaimao/whitecat-tg-assistant-commercial-build（27★ 8.5/day）：主打 Telegram 营销群发、采集与养号防封（涉及规避平台风控），且作者 0 粉、其余仓库均 0 星。；⑦Johnson-Durui/ApexCluster（24★ 7.5/day）：作者 0 粉丝且 0 open issue，其余仓库星数断层严重（550、2、0），存在可疑信号。；⑧7sen1ot/ClawGod_Y（157★ 6.8/day）：旨在让模型绕过安全限制（bypass restrictions），属于规避风控限制类工具，不予推荐。；⑨lonely-dance-lab/self-media-guide（45★ 6.4/day）：核心为自媒体起号与二创方法论指南（近似个人笔记），且 0 open issue、账号仅 6 粉。；⑩afurmanov/harness-profiler（41★ 6.2/day）：security_grade 为 unknown（非 safe），且作者其余仓库最高仅 5 星，按规则跳过。。**轻红旗**（保留）：WhiteBr1ck/agy-powertools：作者粉丝仅 5 人，但有 9 个 fork、5 个 issue 及多个正常历史项目。🆕 判定＝created_at 距今 14 天内：PiBot（1.0 天）、fast-anything（0.7 天）、papercraft（1.3 天）、agy-powertools（5.4 天）、godot-skills（2.8 天）、sable（6.4 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-21
 1. danielwh2/sprite-stacking — 🆕 将四视图像素画自动转为可旋转伪 3D 精灵，适配多款 AI 编程助手。（193★ 193.0/day）
 2. nestjs/agent-skills — 🆕 提供 NestJS 框架专属智能体技能，辅助高效编写规范的 Node.js 代码。（61★ 52.7/day）
