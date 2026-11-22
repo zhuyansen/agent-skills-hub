@@ -48,6 +48,8 @@ def subject_for(md, leads, today):
         subject = f"📊 数据日报 {today} · ⚠️ 任务或余额异常(见正文)"
     elif "⚠️ **数据源未出数" in md:
         subject = f"📊 数据日报 {today} · ⚠️ 数据源故障(见正文)"
+    elif "## ⚠️ 学术索引有问题" in md:
+        subject = f"📊 数据日报 {today} · ⚠️ 论文/数据集收录有问题(见正文)"
     elif "## ⚠️ 品牌事实不一致" in md:
         subject = f"📊 数据日报 {today} · ⚠️ 品牌事实不一致(见正文)"
     else:

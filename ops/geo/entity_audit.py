@@ -11,6 +11,8 @@ Usage:
 
 Node 7 (fact consistency) checks that the nodes agree on the facts in
 brand-facts.json; run it alone with `python3 ops/geo/fact_consistency.py`.
+Node 8 (academic index) checks that every DOI on the ORCID record resolves and is filed under us at
+DataCite and OpenAlex; run it alone with `python3 ops/geo/academic_index.py`.
 """
 from __future__ import annotations
 
@@ -368,7 +370,8 @@ def main() -> int:
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     tag = datetime.now(timezone.utc).strftime("%Y-%m-%d-%H%M")
 
-    from fact_consistency import audit_fact_consistency  # sibling module; script dir is on sys.path
+    from academic_index import audit_academic_index    # sibling modules; script dir is on sys.path
+    from fact_consistency import audit_fact_consistency
 
     eco, edge = audit_ecosystem_and_edge()
     nodes = [
@@ -379,6 +382,7 @@ def main() -> int:
         eco,
         edge,
         audit_fact_consistency(http_get),
+        audit_academic_index(http_get),
     ]
     report: dict[str, Any] = {
         "timestamp_utc": ts,
@@ -403,8 +407,11 @@ def main() -> int:
     print("=== AgentSkillsHub Entity Molecule Scoreboard ===")
     for n in nodes:
         print(f"  [{n['status']:28s}] {n['node']}")
-    for c in nodes[-1].get("conflicts", []):
+    by_name = {n["node"]: n for n in nodes}
+    for c in by_name["7_Fact_Consistency"].get("conflicts", []):
         print(f"      - {c['fact']} @ {c['source']}: found '{c['found']}' ({c['why']})")
+    for i in by_name["8_Academic_Index"].get("issues", []):
+        print(f"      - {i['kind']} {i['doi']}: {i['detail']}")
     if "saved_snapshot" in report:
         print(f"\nSnapshot saved: {report['saved_snapshot']}")
     print(report["verified_receipt"])

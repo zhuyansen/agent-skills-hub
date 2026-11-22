@@ -93,6 +93,14 @@ jobs:
           mkdir -p ops/geo/out
           python ops/geo/fact_consistency.py --json > ops/geo/out/fact-consistency.json || rm -f ops/geo/out/fact-consistency.json
 
+      # Entity-audit node 8: every DOI on the ORCID record resolves and is filed under us at
+      # DataCite and OpenAlex. ORCID, doi.org, DataCite, OpenAlex, Semantic Scholar and Wikidata are
+      # public, no secrets. ~40 seconds: Semantic Scholar takes one request a second without a key.
+      - name: Academic index
+        run: |
+          mkdir -p ops/geo/out
+          python ops/geo/academic_index.py --json > ops/geo/out/academic-index.json || rm -f ops/geo/out/academic-index.json
+
       - name: Build digest → Step Summary
         run: |
           python ops/analytics_digest.py > digest.md

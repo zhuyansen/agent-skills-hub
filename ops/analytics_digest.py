@@ -78,6 +78,35 @@ def print_fact_consistency():
         print("- ⚠️ 实时数没读到,今天**没核数字**(只核了日期、规则数、创始人、仿冒域名)。明天再看;连着几天都这样就查抓取。")
 
 
+def print_academic_index():
+    """Entity-audit node 8: our papers and datasets in DataCite / OpenAlex / Semantic Scholar / Wikidata.
+
+    Not yet indexed is coverage and only counted. An issue is something to fix: a DOI that does not
+    resolve after two days, an author named twice or without the ORCID, a work OpenAlex files under
+    someone else. A missing file means the check did not run.
+    """
+    ai = load("geo/out/academic-index.json")
+    if not ai:
+        print("\n## ⚠️ 学术索引没核成\n")
+        print("- 学术索引检查没出结果(查 Actions 日志里 Academic index 这一步)。")
+        return
+    issues = ai.get("issues") or []
+    if issues:
+        print(f"\n## ⚠️ 学术索引有问题 {len(issues)} 处(论文/数据集的 DOI、署名)\n")
+        for i in issues:
+            print(f"- [ ] **{i['kind']}** {i.get('doi') or ''}: {i['detail']}")
+            print(f"  - 怎么修: {i['fix']}")
+    section("🎓 学术索引(论文和数据集被收录了没有)")
+    c = ai.get("coverage") or {}
+    n = c.get("works", 0)
+    print(f"- ORCID 上 {n} 个作品 · doi.org 能解析 {c.get('doi_resolves', 0)}/{n} · OpenAlex {c.get('openalex', 0)}/{n}"
+          f" · Semantic Scholar {c.get('semantic_scholar', 0)}/{n} · Wikidata {c.get('wikidata', 0)}/{n}")
+    print(f"- OpenAlex 里挂着你 ORCID 的作者页: {ai.get('openalex_orcid_author') or '还没有'}")
+    for w in ai.get("works") or []:
+        for note in w.get("notes") or []:
+            print(f"- {w['doi']}: {note}")
+
+
 # GA counting more than this multiple of Clarity's human sessions means bots
 # are still in the numbers. Before the automation filter it was 4.1x.
 GA_TO_HUMAN_ALARM = 2.0
@@ -149,6 +178,7 @@ def main():
             print(f"- {icon} **{c['channel']}** ({c['used_by']}): {c.get('status_text', '')}")
 
     print_fact_consistency()
+    print_academic_index()
 
     # Health banner: a missing source means its fetcher FAILED (auth/quota),
     # NOT that the metric is zero. Silent truncation once let a digest report
