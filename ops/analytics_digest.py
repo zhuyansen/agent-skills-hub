@@ -26,6 +26,34 @@ def section(title):
     print(f"\n## {title}\n")
 
 
+def print_fact_consistency():
+    """Entity-audit node 7: do the site, npm, GitHub, Wikidata and Zenodo state the same facts?
+
+    The catalog grows every sync, so any count frozen into copy (a package README, a
+    listing) drifts. ops/geo/fact_consistency.py reads the live counts and flags copy
+    that has fallen more than its tolerance behind. A missing file means the check did
+    not run, not that everything agrees.
+    """
+    num = lambda n: f"{n:,}" if isinstance(n, int) else "?"
+    fc = load("geo/out/fact-consistency.json")
+    if not fc:
+        print("\n## ⚠️ 品牌事实没核成\n")
+        print("- 事实一致性检查没出结果(查 Actions 日志里 Brand facts 这一步),不代表各处都一致。")
+        return
+    conflicts = fc.get("conflicts") or []
+    if conflicts:
+        print(f"\n## ⚠️ 品牌事实不一致 {len(conflicts)} 处(数字/日期过期,改文案)\n")
+        for c in conflicts:
+            print(f"- **{c['source']}** `{c['fact']}`: 写的是 {c['found']},应为 {c['expected']} — {c['url']}")
+        print("\n> 账本在 `ops/geo/brand-facts.json`;快照数(数据集 DOI、旧博文)旁边带出处就不算错。")
+    section("🧾 品牌事实一致性")
+    errs = fc.get("fetch_errors") or {}
+    state = "✅ 一致" if not conflicts else f"⚠️ {len(conflicts)} 处不一致"
+    print(f"- {state} · 核了 {fc.get('sources_checked', 0)} 个节点"
+          f"(实时:收录 {num(fc.get('live_directory_size'))} / 已评级 {num(fc.get('live_graded_count'))})"
+          + (f" · ⚠️ {len(errs)} 个节点没抓到: {', '.join(errs)}" if errs else ""))
+
+
 # GA counting more than this multiple of Clarity's human sessions means bots
 # are still in the numbers. Before the automation filter it was 4.1x.
 GA_TO_HUMAN_ALARM = 2.0
@@ -95,6 +123,8 @@ def main():
         for c in chs:
             icon = "🔌" if c.get("ok") else "⚠️"
             print(f"- {icon} **{c['channel']}** ({c['used_by']}): {c.get('status_text', '')}")
+
+    print_fact_consistency()
 
     # Health banner: a missing source means its fetcher FAILED (auth/quota),
     # NOT that the metric is zero. Silent truncation once let a digest report

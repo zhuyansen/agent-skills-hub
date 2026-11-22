@@ -86,6 +86,13 @@ jobs:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
         run: python ops/health/fetch_health.py || true
 
+      # Entity-audit node 7: do the site, npm, GitHub, Wikidata and Zenodo state the
+      # same counts, dates and names? Public pages and free APIs only, no secrets.
+      - name: Brand facts
+        run: |
+          mkdir -p ops/geo/out
+          python ops/geo/fact_consistency.py --json > ops/geo/out/fact-consistency.json || rm -f ops/geo/out/fact-consistency.json
+
       - name: Build digest → Step Summary
         run: |
           python ops/analytics_digest.py > digest.md
