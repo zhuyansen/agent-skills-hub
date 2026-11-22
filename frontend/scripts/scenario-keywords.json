@@ -1606,7 +1606,8 @@
     "nickathens/MyOldMachine",
     "xluxeq/GPT2-Telegram-Chatbot",
     "evgenyigumnov/ai-agent-telegram-bot",
-    "zalogarcia/leash"
+    "zalogarcia/leash",
+    "Mr-SxR/Xmnit-range-forwarder-bot"
    ]
   },
   "related": [
@@ -2055,7 +2056,8 @@
     "AlbertAZ1992/image-skillbook",
     "PotionUI/PotionUI",
     "alfeusaditya/claude-codex-connector",
-    "scumble-app/scumble"
+    "scumble-app/scumble",
+    "adamd9/skill-image-gen"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2227,7 +2229,8 @@
     "BetaVersionHQ/beta-version-blox-studio",
     "baney75/smoothstone",
     "felixbfx/MuleCreate",
-    "bookwjitchieni1986/blender-ai-mcp-addon"
+    "bookwjitchieni1986/blender-ai-mcp-addon",
+    "Guten-Morgen1302/prismbox"
    ],
    "exclude_repos": [
     "codepawl/67.js",
@@ -3460,7 +3463,8 @@
     "scub-france/docling-Studio",
     "alpha03123/vsummary",
     "databrickslabs/ontobricks",
-    "Guan0923/Praxis-RAG"
+    "Guan0923/Praxis-RAG",
+    "zenoyang-ai/nihaixia-knowledge-graph"
    ],
    "exclude_repos": [
     "Laurent00TT/pharos",
@@ -5277,7 +5281,8 @@
     "boringmarketer/boring-marketing-skills",
     "sethblack/black-seo-analyzer",
     "rob1-alt/refine-seo-geo",
-    "itsryanarmani/usegeoaeo"
+    "itsryanarmani/usegeoaeo",
+    "WordRocket/claude-seo-skills"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -9050,7 +9055,9 @@
     "archerzjp-dev/lyric-mv-kit",
     "daiyixiang666/hat9-motion",
     "artemiimillier/cartoon-skill",
-    "jpooksy/remotion-claude-template"
+    "jpooksy/remotion-claude-template",
+    "gnipbao/vibe-zhishi",
+    "Marwanenoudouar10/motion-explainer"
    ],
    "sub_skills": [
     {

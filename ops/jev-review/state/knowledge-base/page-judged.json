@@ -43871,5 +43871,38 @@
   "days": 225,
   "stars_per_day": 2.111111111111111,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "zenoyang-ai/nihaixia-knowledge-graph",
+  "name": "nihaixia-knowledge-graph",
+  "stars": 102,
+  "description": "倪海厦中医（人纪）与天纪知识图谱：在线图谱网站 + Obsidian 双链笔记 + AI 语料包 + 分章阅读资料",
+  "topics": [
+   "agent-skills",
+   "knowledge-graph",
+   "nihaixia",
+   "obsidian",
+   "rag",
+   "tcm"
+  ],
+  "created": "2026-06-07",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 6989,
+  "names_model": false,
+  "on_subject": 0.94,
+  "is_software": 0.87,
+  "shows_result": 0.71,
+  "one_command_start": 0.37,
+  "specific_outcome": 0.8,
+  "complete_docs": 0.78,
+  "novel_angle": 0.73,
+  "shareable_output": 0.83,
+  "quality": 0.665,
+  "tier": "中",
+  "hit_prior": 0.7566666666666667,
+  "days": 168,
+  "stars_per_day": 0.6071428571428571,
+  "verdict": "low_quality"
  }
 ]

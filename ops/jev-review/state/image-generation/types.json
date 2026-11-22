@@ -3820,5 +3820,19 @@
    "mcp": 0.4
   },
   "kind": "open_models"
+ },
+ {
+  "repo": "adamd9/skill-image-gen",
+  "stars": 5,
+  "description": "AI image generation skill for Claude Code, GitHub Copilot CLI, and VS Code — powered by OpenAI and Google Gemini",
+  "scores": {
+   "gpt_image": 0.34,
+   "nano_banana": 0.18,
+   "open_models": 0.04,
+   "editing": 0.03,
+   "design": 0.25,
+   "mcp": 0.53
+  },
+  "kind": "mcp"
  }
 ]

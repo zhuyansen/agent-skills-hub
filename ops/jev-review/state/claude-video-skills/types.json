@@ -10096,5 +10096,41 @@
    "general": 0.21
   },
   "kind": "promo"
+ },
+ {
+  "repo": "gnipbao/vibe-zhishi",
+  "stars": 8,
+  "description": "Vibe知识大赏 风格抖音知识短片 Skill：选题、查证、卡点文案、HyperFrames 代码成片、音效、逐帧审片与全平台发布包。",
+  "scores": {
+   "promo": 0.06,
+   "explainer": 0.97,
+   "music": 0.64,
+   "motion": 0.23,
+   "shorts": 0.94,
+   "editing": 0.06,
+   "demo": 0.16,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "Marwanenoudouar10/motion-explainer",
+  "stars": 5,
+  "description": "A Claude Code skill for making narrated motion-graphics explainer videos entirely in code with Remotion: research, fact-check, voice, chapter-by-chapter build with polish agents, captions, sound, QA, render.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.96,
+   "music": 0.12,
+   "motion": 0.23,
+   "shorts": 0.73,
+   "editing": 0.05,
+   "demo": 0.18,
+   "story": 0.1,
+   "avatar": 0.07,
+   "general": 0.27
+  },
+  "kind": "explainer"
  }
 ]

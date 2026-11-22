@@ -1647,6 +1647,14 @@
   "type": "image/png",
   "bytes": 881419
  },
+ "Marwanenoudouar10/motion-explainer": {
+  "repo": "Marwanenoudouar10/motion-explainer",
+  "url": "https://raw.githubusercontent.com/Marwanenoudouar10/motion-explainer/HEAD/docs/example-frames.jpg",
+  "alt": "Frames from One Cell to Birth, a vertical motion-graphics explainer made with th",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 141078
+ },
  "Mats2208/qwen-image-local": {
   "repo": "Mats2208/qwen-image-local",
   "url": "https://raw.githubusercontent.com/Mats2208/qwen-image-local/HEAD/assets/screen-edit.png",
@@ -4302,6 +4310,14 @@
   "score": 0.0,
   "type": "image/png",
   "bytes": 2024894
+ },
+ "gnipbao/vibe-zhishi": {
+  "repo": "gnipbao/vibe-zhishi",
+  "url": "https://raw.githubusercontent.com/gnipbao/vibe-zhishi/HEAD/docs/showcase.jpg",
+  "alt": "九期成片的封面：道·十层宇宙、落款、傅里叶变换、联想、叹气、意义、五音、冬冬鼓、你是哪一型",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 235175
  },
  "gnuhpc/ppt-master-plus": {
   "repo": "gnuhpc/ppt-master-plus",

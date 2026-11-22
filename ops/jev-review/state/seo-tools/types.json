@@ -5006,5 +5006,21 @@
    "marketing": 0.16
   },
   "kind": "geo"
+ },
+ {
+  "repo": "WordRocket/claude-seo-skills",
+  "stars": 5,
+  "description": "9 free SEO skills for Claude: audits, local SEO pages, AI Overviews visibility, backlinks, recovery plans, publish with WordRocket",
+  "scores": {
+   "suite": 0.93,
+   "audit": 0.78,
+   "research": 0.26,
+   "data_mcp": 0.11,
+   "geo": 0.35,
+   "content": 0.42,
+   "links": 0.13,
+   "marketing": 0.1
+  },
+  "kind": "suite"
  }
 ]

@@ -5430,5 +5430,19 @@
    "personal": 0.12
   },
   "kind": "rag_platform"
+ },
+ {
+  "repo": "zenoyang-ai/nihaixia-knowledge-graph",
+  "stars": 102,
+  "description": "倪海厦中医（人纪）与天纪知识图谱：在线图谱网站 + Obsidian 双链笔记 + AI 语料包 + 分章阅读资料",
+  "scores": {
+   "llm_wiki": 0.27,
+   "rag_platform": 0.25,
+   "mcp": 0.47,
+   "docs_qa": 0.7,
+   "graph": 0.97,
+   "personal": 0.33
+  },
+  "kind": "graph"
  }
 ]

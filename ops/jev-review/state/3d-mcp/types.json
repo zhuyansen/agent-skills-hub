@@ -3486,5 +3486,21 @@
    "gen3d": 0.1
   },
   "kind": "blender"
+ },
+ {
+  "repo": "Guten-Morgen1302/prismbox",
+  "stars": 7,
+  "description": "",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.03,
+   "dcc": 0.02,
+   "web3d": 0.98,
+   "gen3d": 0.02
+  },
+  "kind": "web3d"
  }
 ]
