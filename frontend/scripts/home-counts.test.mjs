@@ -58,6 +58,14 @@ test("a marked span takes the text for its marker", () => {
   );
 });
 
+test("a marker inside an attribute (single quotes) is stamped too", () => {
+  const html = `<p data-en="grades <span data-count='graded'>132,000+</span> repos">grades <span data-count="graded">132,000+</span> repos</p>`;
+  assert.equal(
+    stampHomeCounts(html, TEXTS),
+    `<p data-en="grades <span data-count='graded'>125,000+</span> repos">grades <span data-count="graded">125,000+</span> repos</p>`,
+  );
+});
+
 test("an unmarked number stays as written", () => {
   const html = '"description": "Security grades for 130,000+ skills", over 1,000+ stars, 26.1% flawed, <h1>186,000+ tools</h1>';
   assert.equal(stampHomeCounts(html, TEXTS), html);

@@ -26,7 +26,10 @@ const DESCRIPTION_TAGS = [
   /(<meta name="twitter:description" content=")([^"]*)(")/,
 ];
 
-const MARKED = /<span data-count="([^"]*)">[^<]*<\/span>/g;
+// A marker inside a data-en / data-zh attribute is written with single quotes (the attribute
+// takes the double ones). Until 2026-11-22 only the double-quoted form was stamped, so the
+// /ai-info/ TL;DR kept the 132,000+ it was written with while the table below it went live.
+const MARKED = /<span data-count=(["'])([^"']*)\1>[^<]*<\/span>/g;
 
 /** Where index.html holds the exact counts the hero paints before the stats arrive (src/lib/catalogCounts.ts). */
 const CATALOG_SLOT = /(<script id="catalog-counts" type="application\/json">)[^<]*(<\/script>)/;
@@ -59,9 +62,9 @@ export function stampHomeCounts(html, texts) {
     (out, tag) => out.replace(tag, (_, open, content, close) => open + content.replace(COUNT, texts.total) + close),
     html,
   );
-  return described.replace(MARKED, (_, key) => {
+  return described.replace(MARKED, (_, quote, key) => {
     if (!Object.hasOwn(texts, key)) throw new Error(`index.html marks data-count="${key}", which the build does not count`);
-    return `<span data-count="${key}">${texts[key]}</span>`;
+    return `<span data-count=${quote}${key}${quote}>${texts[key]}</span>`;
   });
 }
 

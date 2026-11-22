@@ -51,7 +51,7 @@
     },
     {
       "name": "pro_search",
-      "description": "Deep search across full README text of 130K+ skills with category and security-grade filters (requires ASH_PRO_KEY)."
+      "description": "Deep search across the full README text of the indexed catalog, with category and security-grade filters (requires ASH_PRO_KEY)."
     }
   ],
   "packages": [

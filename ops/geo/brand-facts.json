@@ -97,9 +97,9 @@
       "why": "third-party study"
     },
     {
-      "count": 20000,
+      "count": 50000,
       "context": "stars ≥ 5",
-      "why": "npm cli offline catalog subset"
+      "why": "npm cli offline catalog (stars >= 5); 52,237 on 2026-11-21, see /search-index-meta.json"
     }
   ]
 }

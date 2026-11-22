@@ -156,7 +156,7 @@ Live index → agentskillshub.top
 对 travisvn / ComposioHQ / BehiSecc / mingrath 各提一个 PR,加到 "Directories / Resources" 区(**别加到 skill 列表主体,会被拒**):
 ```markdown
 - [Agent Skills Hub](https://agentskillshub.top/) — Searchable directory of
-  130K+ open-source Claude skills & MCP servers, each with a quality score and
+  280K+ open-source Claude skills & MCP servers, each with a quality score and
   a SAFE/CAUTION/UNSAFE security grade checked before you install.
 ```
 PR 描述:
@@ -228,11 +228,11 @@ maintenance doesn't.
 ### 草稿 6 — Product Hunt(#6)· 产品页文案(dofollow · 🔴 真人发布日 · 通过率 高)
 Tagline:
 ```
-Find and vet 130K+ AI agent skills — with a security grade before you install
+Find and vet 280K+ AI agent skills — with a security grade before you install
 ```
 Description:
 ```
-Agent Skills Hub indexes 130K+ open-source Claude skills and MCP servers.
+Agent Skills Hub indexes 280K+ open-source Claude skills and MCP servers.
 Every result carries an automated quality score and a SAFE/CAUTION/UNSAFE
 security grade — so you vet before you install, instead of after. Search by
 scenario, compare alternatives, and grab the ash CLI (npx @agentskillshub/cli)
@@ -250,7 +250,7 @@ flagged?
 
 ### 草稿 7 — AlternativeTo(#10)· 提交(多 nofollow · 🔴 真人账号 · 通过率 高)
 - **Name**: Agent Skills Hub
-- **Short description**: `Searchable directory of 130K+ open-source AI agent skills and MCP servers, each with a quality score and a SAFE/CAUTION/UNSAFE security grade checked before install.`
+- **Short description**: `Searchable directory of 280K+ open-source AI agent skills and MCP servers, each with a quality score and a SAFE/CAUTION/UNSAFE security grade checked before install.`
 - **Listed as alternative to**: LobeHub, mcp.so, Smithery, Glama
 - **Categories**: AI Tools, Developer Tools, Directory
 - **Tags**: mcp, claude, ai-agents, security, directory
@@ -263,7 +263,7 @@ flagged?
 - **Tool name**: Agent Skills Hub
 - **URL**: https://agentskillshub.top
 - **Category**: Developer Tools / AI Agents
-- **One-liner**: `Directory of 130K+ AI agent skills & MCP servers with a security grade before you install.`
+- **One-liner**: `Directory of 280K+ AI agent skills & MCP servers with a security grade before you install.`
 - **Longer**: 同 PH description。
 > `.top` 可能被审慎对待;若被拒,转投 Futurepedia(#9)+ SaaSHub(#13),话术同款。
 
