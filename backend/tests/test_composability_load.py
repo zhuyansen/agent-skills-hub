@@ -10,7 +10,7 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import Session
 
 from app.services import composability
-from app.services.composability import ComposabilityEngine, candidates_query
+from app.services.composability import ComposabilityEngine, candidates_query, load_candidates
 
 
 def test_query_selects_only_light_columns():
@@ -38,3 +38,33 @@ def test_compute_all_works_on_light_rows(monkeypatch):
     assert count == len(added) > 0
     assert {c.skill_id for c in added} == {1}
     assert {c.compatible_skill_id for c in added} <= {2, 3, 4, 5, 6}
+
+
+def test_load_candidates_paginates_by_id(monkeypatch):
+    r1 = Row(10, "a1", "d1", "[]", "cat", "[]", "Python", 10, 50, "r1")
+    r2 = Row(20, "a2", "d2", "[]", "cat", "[]", "Python", 10, 50, "r2")
+    r3 = Row(30, "a3", "d3", "[]", "cat", "[]", "Python", 10, 50, "r3")
+    batches = [[r1, r2], [r3]]
+    seen_limits = []
+
+    class FakeQuery:
+        def __init__(self, batch_idx=0):
+            self.batch_idx = batch_idx
+
+        def order_by(self, *args):
+            return self
+
+        def filter(self, *args):
+            return FakeQuery(self.batch_idx + 1)
+
+        def limit(self, n):
+            seen_limits.append(n)
+            return self
+
+        def all(self):
+            return batches[self.batch_idx]
+
+    monkeypatch.setattr(composability, "candidates_query", lambda db: FakeQuery())
+    result = load_candidates(MagicMock(), batch_size=2)
+    assert result == [r1, r2, r3]
+    assert seen_limits == [2, 2]

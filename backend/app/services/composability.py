@@ -16,6 +16,9 @@ logger = logging.getLogger(__name__)
 
 # EcosystemAnalyzer reads only the first 3,000 characters of a README.
 README_PREVIEW_CHARS = 3000
+# Fetching 52k+ rows with TOASTed readme_content previews in one SELECT can blow past
+# Supabase's 120s statement_timeout; keyset-paginate in 2,000-row chunks (~8.8s/batch).
+CANDIDATE_BATCH_SIZE = 2000
 
 
 def candidates_query(db: Session):
@@ -42,8 +45,21 @@ def candidates_query(db: Session):
     )
 
 
-def load_candidates(db: Session) -> list:
-    return candidates_query(db).all()
+def load_candidates(db: Session, batch_size: int = CANDIDATE_BATCH_SIZE) -> list:
+    """Load composability candidates in keyset-paginated batches."""
+    rows: list = []
+    last_id: int | None = None
+    base_query = candidates_query(db).order_by(Skill.id)
+    while True:
+        query = base_query if last_id is None else base_query.filter(Skill.id > last_id)
+        batch = query.limit(batch_size).all()
+        if not batch:
+            break
+        rows.extend(batch)
+        if len(batch) < batch_size:
+            break
+        last_id = batch[-1].id
+    return rows
 
 
 class ComposabilityEngine:
