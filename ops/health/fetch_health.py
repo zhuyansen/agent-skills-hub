@@ -1,17 +1,19 @@
-"""定时任务运行状态 + API 渠道与余额监控（AgentSkillsHub 每日巡检）。
+"""定时任务运行状态 + API 渠道与余额 + 线上站点可用性监控（AgentSkillsHub 每日巡检）。
 
 输出：ops/health/out/health.json
 1. 检查本仓库全部定时任务（WORKFLOWS）最近一次完成状态，任何非 success/skipped 都进 alerts。
-2. 检查核心外部 API 通道连通性与余额：
-   - APIMart（FLATROUTER_API_KEY / gemini-4-hydrogen）：模型连通性 + /v1/balance 额度与累计已用
+2. 检查核心外部 API 通道真实连通性与余额：
+   - APIMart（FLATROUTER_API_KEY / gemini-4-hydrogen）：最小推理连通性 + /v1/balance 额度与累计已用
    - OpenRouter（OPENROUTER_API_KEY）：GET /api/v1/credits 剩余美元余额（< $2 告警）与周限额剩余
    - AIsa（AISA_API_KEY）：GET /v1/credits/balance 剩余美元余额（< $1 告警）
-   - TypeSafe Jev（TYPESAFE_API_KEY）：GET /v1/models 连通性
+   - TypeSafe Jev（TYPESAFE_API_KEY）：POST /v1/systemone 微型选择题真推理探测（校验返回 answers）
+3. 检查线上站点关键入口真实可用性（SITES）：首页 HTML、sitemap.xml、llms.txt 状态码、内容标记与延迟。
 """
 from __future__ import annotations
 
 import json
 import os
+import time
 from datetime import datetime, timedelta, timezone
 
 import requests
@@ -21,6 +23,12 @@ OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 REPO = os.environ.get("GITHUB_REPOSITORY") or "zhuyansen/agent-skills-hub"
 MIN_AISA_USD = 1.0
 MIN_OR_USD = 2.0
+
+SITES = (
+    {"id": "home", "label": "官网首页", "url": "https://agentskillshub.top/", "marker": "AgentSkillsHub"},
+    {"id": "sitemap", "label": "sitemap.xml", "url": "https://agentskillshub.top/sitemap.xml", "marker": "<loc>"},
+    {"id": "llms", "label": "llms.txt", "url": "https://agentskillshub.top/llms.txt", "marker": "AgentSkillsHub"},
+)
 
 WORKFLOWS = {
     "sync.yml": "技能库同步 (Sync)",
@@ -94,17 +102,20 @@ def check_channels() -> list[dict]:
     fr_model = (os.environ.get("FLATROUTER_MODEL") or "gemini-4-hydrogen").strip()
     if fr_key:
         try:
+            t0 = time.monotonic()
             r = requests.post(
                 f"{fr_base}/chat/completions",
                 headers={"Authorization": f"Bearer {fr_key}"},
                 json={"model": fr_model, "max_tokens": 8, "stream": False, "messages": [{"role": "user", "content": "hi"}]},
                 timeout=45,
             )
+            ms = round((time.monotonic() - t0) * 1000)
             ok = r.status_code == 200
             checks.append({
                 "channel": "APIMart（主力 LLM）",
                 "used_by": "日报 Top 10 + 专题卡片翻译",
-                "status_text": f"{fr_model} 正常" if ok else f"{fr_model} HTTP {r.status_code}",
+                "status_text": f"{fr_model} 正常 ({ms}ms)" if ok else f"{fr_model} HTTP {r.status_code}",
+                "latency_ms": ms,
                 "ok": ok,
                 "detail": "" if ok else r.text[:140],
             })
@@ -174,16 +185,37 @@ def check_channels() -> list[dict]:
             checks.append({"channel": "AIsa 余额", "used_by": "新词雷达 (X / YouTube 检索)",
                            "status_text": "查询失败", "ok": False, "detail": f"{type(e).__name__}: {e}"[:140]})
 
-    # 4. TypeSafe Jev (TYPESAFE_API_KEY)
+    # 4. TypeSafe Jev (TYPESAFE_API_KEY) — real inference probe via /v1/systemone
     ts_key = (os.environ.get("TYPESAFE_API_KEY") or "").strip()
     if ts_key:
         try:
-            rt = requests.get("https://api.typesafe.ai/v1/models", headers={"Authorization": f"Bearer {ts_key}"}, timeout=30)
-            ok = rt.status_code == 200
+            t0 = time.monotonic()
+            rt = requests.post(
+                "https://api.typesafe.ai/v1/systemone",
+                headers={"Authorization": f"Bearer {ts_key}"},
+                json={
+                    "model": "jev-latest",
+                    "state": "Card c1: Acme raised $5M in a closed seed round.",
+                    "questions": {
+                        "c1": {
+                            "type": "choice",
+                            "instructions": "What does c1 describe?",
+                            "criteria": {"done": "A completed funding round", "rumor": "Only rumored"},
+                        }
+                    },
+                },
+                timeout=45,
+            )
+            ms = round((time.monotonic() - t0) * 1000)
+            body = rt.json() if rt.status_code == 200 else {}
+            ok = rt.status_code == 200 and isinstance(body, dict) and "answers" in body
             checks.append({
                 "channel": "TypeSafe Jev 官方",
                 "used_by": "新词雷达 + 专题页门禁评测",
-                "status_text": "jev-latest 正常" if ok else f"HTTP {rt.status_code}",
+                "status_text": f"jev-latest 推理正常 ({ms}ms)" if ok else (
+                    "返回缺少 answers" if rt.status_code == 200 else f"HTTP {rt.status_code}"
+                ),
+                "latency_ms": ms,
                 "ok": ok,
                 "detail": "" if ok else rt.text[:140],
             })
@@ -194,22 +226,71 @@ def check_channels() -> list[dict]:
     return checks
 
 
+def check_sites() -> list[dict]:
+    out = []
+    for spec in SITES:
+        url = spec["url"]
+        marker = spec.get("marker", "")
+        try:
+            t0 = time.monotonic()
+            r = requests.get(url, timeout=20, headers={"User-Agent": "AgentSkillsHub-HealthCheck/1.0"})
+            ms = round((time.monotonic() - t0) * 1000)
+            has_marker = (not marker) or (marker in r.text)
+            ok = r.status_code == 200 and len(r.text.strip()) > 0 and has_marker
+            if ok:
+                detail = ""
+                status_text = f"HTTP 200 ({ms}ms)"
+            elif r.status_code != 200:
+                status_text = f"HTTP {r.status_code}"
+                detail = f"期望 200，实际 {r.status_code}"
+            else:
+                status_text = "内容标记缺失"
+                detail = f"响应缺少预期内容 `{marker}`"
+            out.append({
+                "id": spec["id"],
+                "label": spec["label"],
+                "url": url,
+                "status_code": r.status_code,
+                "latency_ms": ms,
+                "status_text": status_text,
+                "ok": ok,
+                "detail": detail,
+            })
+        except Exception as e:  # noqa: BLE001
+            out.append({
+                "id": spec["id"],
+                "label": spec["label"],
+                "url": url,
+                "status_code": 0,
+                "status_text": "连接失败",
+                "ok": False,
+                "detail": f"{type(e).__name__}: {e}"[:140],
+            })
+    return out
+
+
 def main() -> None:
     os.makedirs(OUT_DIR, exist_ok=True)
     wfs = check_workflows()
     chs = check_channels()
+    sites = check_sites()
     payload = {
         "fetched_at": datetime.now(CST).isoformat(timespec="seconds"),
         "workflows": wfs,
         "channels": chs,
+        "sites": sites,
     }
     out_path = os.path.join(OUT_DIR, "health.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     bad_wf = [w["label"] for w in wfs if not w.get("ok")]
     bad_ch = [c["channel"] for c in chs if not c.get("ok")]
-    print(f"✓ health check written to {out_path} ({len(wfs)} workflows, {len(chs)} channels, "
-          f"bad_wf={len(bad_wf)}, bad_ch={len(bad_ch)})")
+    bad_site = [s["label"] for s in sites if not s.get("ok")]
+    print(
+        f"✓ health check written to {out_path} "
+        f"({len(wfs)} workflows, {len(chs)} channels, {len(sites)} sites, "
+        f"bad_wf={len(bad_wf)}, bad_ch={len(bad_ch)}, bad_site={len(bad_site)})"
+    )
 
 
 if __name__ == "__main__":

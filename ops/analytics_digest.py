@@ -155,21 +155,29 @@ def print_ga_exclusion():
 def main():
     print("# 数据四件套日报 · Analytics Daily Digest")
 
-    # ── 0. 任务运行状态 + API 渠道与余额监控 ──
+    # ── 0. 任务运行状态 + API 渠道与余额 + 站点可用性监控 ──
     hl = load("health/out/health.json")
     if hl:
         wfs = hl.get("workflows") or []
         chs = hl.get("channels") or []
+        sites = hl.get("sites") or []
         bad_wf = [w for w in wfs if not w.get("ok")]
         bad_ch = [c for c in chs if not c.get("ok")]
-        if bad_wf or bad_ch:
+        bad_site = [s for s in sites if not s.get("ok")]
+        if bad_wf or bad_ch or bad_site:
             print("\n## ⚠️ 任务或渠道异常（需处理）\n")
+            for s in bad_site:
+                print(f"- 🚨 **站点不可用 · {s['label']}** (`{s['url']}`): {s.get('status_text', '')} {s.get('detail', '')}")
             for w in bad_wf:
                 err = w.get("error") or f"最近一次 {w.get('conclusion')} ({w.get('at', '')}) {w.get('url', '')}"
                 print(f"- ❌ **任务失败 · {w['label']}** (`{w['file']}`): {err}")
             for c in bad_ch:
                 print(f"- ⚠️ **渠道/余额告警 · {c['channel']}** ({c['used_by']}): {c.get('status_text', '')} {c.get('detail', '')}")
         section("🩺 任务运行状态 & 渠道余额监控")
+        if sites:
+            ok_site = [s for s in sites if s.get("ok")]
+            print(f"- **线上站点 ({len(ok_site)}/{len(sites)} 正常)**: " + " · ".join(
+                f"{'✅' if s.get('ok') else '❌'} {s['label']} ({s.get('status_text', '')})" for s in sites))
         ok_wf = [w for w in wfs if w.get("ok")]
         print(f"- **定时任务 ({len(ok_wf)}/{len(wfs)} 正常)**: " + " · ".join(
             f"✅ {w['label']} ({w['at'] or '运行中'})" for w in ok_wf))
