@@ -5,12 +5,45 @@ import time
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill, SkillComposition
 from app.services.ecosystem_analyzer import EcosystemAnalyzer
 
 logger = logging.getLogger(__name__)
+
+
+# EcosystemAnalyzer reads only the first 3,000 characters of a README.
+README_PREVIEW_CHARS = 3000
+
+
+def candidates_query(db: Session):
+    """Skills with >= 5 stars, with only the columns composability reads.
+
+    Loading whole Skill rows pulled every README and LLM analysis; on 2026-11-21 that
+    query ran past the 120 s statement timeout and failed the sync. The rows returned
+    here expose the same attribute names, so the scoring code is unchanged.
+    """
+    return (
+        db.query(
+            Skill.id,
+            Skill.author_name,
+            Skill.description,
+            Skill.topics,
+            Skill.category,
+            Skill.platforms,
+            Skill.language,
+            Skill.stars,
+            Skill.quality_score,
+            func.substr(Skill.readme_content, 1, README_PREVIEW_CHARS).label("readme_content"),
+        )
+        .filter(Skill.stars >= 5)
+    )
+
+
+def load_candidates(db: Session) -> list:
+    return candidates_query(db).all()
 
 
 class ComposabilityEngine:
@@ -38,7 +71,7 @@ class ComposabilityEngine:
             db.query(SkillComposition).delete()
             db.flush()
 
-        skills = db.query(Skill).filter(Skill.stars >= 5).all()
+        skills = load_candidates(db)
         if not skills:
             db.commit()
             return 0
