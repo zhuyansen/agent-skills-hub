@@ -1,0 +1,57 @@
+# Machine-readable citation (https://citation-file-format.github.io). GitHub shows it as "Cite this repository".
+# No catalog sizes, versions or dates here on purpose: they change, and this file should stay true without edits.
+cff-version: 1.2.0
+message: "If you use Agent Skills Hub or its security grades, please cite it as below."
+type: software
+title: "Agent Skills Hub"
+abstract: >-
+  Security-graded directory of open-source AI agent skills, Claude Code skills and MCP servers.
+  Popular repositories are graded against published static rules (https://agentskillshub.top/how-we-grade/)
+  and the catalog is refreshed every 8 hours.
+authors:
+  - family-names: Zhu
+    given-names: Jason
+    alias: "祝彦森"
+    orcid: "https://orcid.org/0009-0000-2894-6285"
+    affiliation: "GoSailGlobal LLC"
+    website: "https://jasonzhu.ai/en"
+url: "https://agentskillshub.top"
+repository-code: "https://github.com/zhuyansen/agent-skills-hub"
+license: MIT
+keywords:
+  - AI agent skills
+  - MCP servers
+  - Claude Code
+  - software supply chain security
+references:
+  - type: data
+    title: "AI Agent Skills Security Grades (130K)"
+    authors:
+      - family-names: Zhu
+        given-names: Jason
+        orcid: "https://orcid.org/0009-0000-2894-6285"
+    doi: 10.5281/zenodo.21292799
+    year: 2026
+    publisher:
+      name: Zenodo
+  - type: data
+    title: "Open-Source AI Agent Skills and MCP Servers Supply-Chain Security Audit Dataset (105,000+ Indexed Skills, 2026)"
+    authors:
+      - family-names: Zhu
+        given-names: Jason
+        orcid: "https://orcid.org/0009-0000-2894-6285"
+    doi: 10.5281/zenodo.24387074
+    year: 2026
+    publisher:
+      name: Zenodo
+  - type: report
+    title: "Supply-Chain Security in Open-Source AI Agent Ecosystems: Empirical Evidence and a Five-Dimension Audit Framework Across 105,000+ Indexed Agent Skills and Model Context Protocol (MCP) Servers"
+    authors:
+      - family-names: Zhu
+        given-names: Jason
+        orcid: "https://orcid.org/0009-0000-2894-6285"
+    doi: 10.5281/zenodo.24420920
+    year: 2026
+    publisher:
+      name: Zenodo
+    url: "https://jasonzhu.ai/en/research/ai-agent-skills-mcp-supply-chain-security-2026"
