@@ -3829,7 +3829,9 @@
     "avalonreset/cto-legends",
     "Ramtoi/skill-tree",
     "DBAAZzz/skill-stow",
-    "kheif/quiver"
+    "kheif/quiver",
+    "enulus/OpenPackage",
+    "nodemode-dev/formskills"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4755,7 +4757,8 @@
     "gretchenfitze/anti-slop",
     "imMamdouhaboammar/anti-slop-engineering",
     "noobarafat/research-paper-humanizer",
-    "techwithtk/nopurple"
+    "techwithtk/nopurple",
+    "erkamyaman/unslop-anything"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -4765,7 +4768,8 @@
     "dotoricode/korean-humanizer",
     "Mutakisa/game-slop-purge",
     "tasteskill/tasteskill",
-    "taufiquebuilds/nopurple"
+    "taufiquebuilds/nopurple",
+    "erkamyaman/unslopovich"
    ]
   },
   "related": [
@@ -5282,7 +5286,10 @@
     "sethblack/black-seo-analyzer",
     "rob1-alt/refine-seo-geo",
     "itsryanarmani/usegeoaeo",
-    "WordRocket/claude-seo-skills"
+    "WordRocket/claude-seo-skills",
+    "trackee-API/skills",
+    "GroMarketing/keyword-planner-mcp",
+    "cheng-sir-0038/seo-diagnosis-agent"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5803,7 +5810,8 @@
     "superdesigndev/superdesign-prompts",
     "JimLiu/open-artifacts",
     "diego3g/craft",
-    "jakob-meyer/unaverage"
+    "jakob-meyer/unaverage",
+    "maxritter/open-claude-artifacts"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -9057,7 +9065,10 @@
     "artemiimillier/cartoon-skill",
     "jpooksy/remotion-claude-template",
     "gnipbao/vibe-zhishi",
-    "Marwanenoudouar10/motion-explainer"
+    "Marwanenoudouar10/motion-explainer",
+    "whystrohm/shotkit",
+    "kodlaciz/yumurta-stili",
+    "ctskool/claude-edit"
    ],
    "sub_skills": [
     {

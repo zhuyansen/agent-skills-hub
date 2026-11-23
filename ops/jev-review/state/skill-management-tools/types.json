@@ -2840,5 +2840,33 @@
    "general": 0.12
   },
   "kind": "sync"
+ },
+ {
+  "repo": "enulus/OpenPackage",
+  "stars": 621,
+  "description": "The open, universal, coding agent skills, agents, rules, and commands organizer and package manager.",
+  "scores": {
+   "cli": 0.93,
+   "sync": 0.6,
+   "app": 0.06,
+   "registry": 0.22,
+   "team": 0.22,
+   "general": 0.9
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "nodemode-dev/formskills",
+  "stars": 5,
+  "description": "FormSkills - every FormAI app's released agent skills in one place, from the FormAI family. Read them, download them, keep your own edited copies & install them into Claude Code, Codex or Cursor. Runs locally, no account. Free & open-source under GPL-3.0.",
+  "scores": {
+   "cli": 0.53,
+   "sync": 0.2,
+   "app": 0.84,
+   "registry": 0.94,
+   "team": 0.08,
+   "general": 0.09
+  },
+  "kind": "registry"
  }
 ]

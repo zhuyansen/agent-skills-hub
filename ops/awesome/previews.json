@@ -1111,6 +1111,14 @@
   "type": "image/jpeg",
   "bytes": 869515
  },
+ "GroMarketing/keyword-planner-mcp": {
+  "repo": "GroMarketing/keyword-planner-mcp",
+  "url": "https://raw.githubusercontent.com/GroMarketing/keyword-planner-mcp/main/.github/social-preview.png",
+  "alt": "keyword-planner-mcp: Google Keyword Planner MCP server and CLI",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 100303
+ },
  "Guan0923/Praxis-RAG": {
   "repo": "Guan0923/Praxis-RAG",
   "url": "https://raw.githubusercontent.com/Guan0923/Praxis-RAG/HEAD/docs/images/console-search.gif",
@@ -3295,6 +3303,14 @@
   "type": "image/png",
   "bytes": 182770
  },
+ "cheng-sir-0038/seo-diagnosis-agent": {
+  "repo": "cheng-sir-0038/seo-diagnosis-agent",
+  "url": "https://raw.githubusercontent.com/cheng-sir-0038/seo-diagnosis-agent/HEAD/docs/screenshots/24-healthcare-seo-handoff.png",
+  "alt": "完整提问、医药与 SEO 专员的交接顺序、核对结论和来源",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 226923
+ },
  "chengzi2333/html-report-skill": {
   "repo": "chengzi2333/html-report-skill",
   "url": "https://raw.githubusercontent.com/chengzi2333/html-report-skill/HEAD/assets/hero.png",
@@ -3518,6 +3534,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 4145861
+ },
+ "ctskool/claude-edit": {
+  "repo": "ctskool/claude-edit",
+  "url": "https://raw.githubusercontent.com/ctskool/claude-edit/HEAD/media/longform.webp",
+  "alt": "Three frames from a 16:9 long-form video: a big number with a bar under it, a ve",
+  "score": 1.45,
+  "type": "image/webp",
+  "bytes": 52746
  },
  "cymcymcymcym/notes-to-video": {
   "repo": "cymcymcymcym/notes-to-video",
@@ -3950,6 +3974,14 @@
   "score": 4.65,
   "type": "image/gif",
   "bytes": 4536200
+ },
+ "erkamyaman/unslop-anything": {
+  "repo": "erkamyaman/unslop-anything",
+  "url": "https://raw.githubusercontent.com/erkamyaman/unslop-anything/HEAD/docs/before-after.png",
+  "alt": "Before: a purple gradient dashboard with sparkles, an AI promo, invented stats, ",
+  "score": -2.85,
+  "type": "image/png",
+  "bytes": 812825
  },
  "erkamyaman/unslopovich": {
   "repo": "erkamyaman/unslopovich",
@@ -5703,6 +5735,14 @@
   "type": "image/gif",
   "bytes": 5194524
  },
+ "maxritter/open-claude-artifacts": {
+  "repo": "maxritter/open-claude-artifacts",
+  "url": "https://raw.githubusercontent.com/maxritter/open-claude-artifacts/HEAD/docs/media/examples/app.webp",
+  "alt": "A desktop and mobile Usage and Limits settings screen laid out side by side on a",
+  "score": -0.3,
+  "type": "image/webp",
+  "bytes": 132100
+ },
  "mberneti/clab": {
   "repo": "mberneti/clab",
   "url": "https://raw.githubusercontent.com/mberneti/clab/HEAD/demo/detected-issue.png",
@@ -6030,6 +6070,14 @@
   "score": 2.95,
   "type": "image/gif",
   "bytes": 1191024
+ },
+ "nodemode-dev/formskills": {
+  "repo": "nodemode-dev/formskills",
+  "url": "https://raw.githubusercontent.com/nodemode-dev/formskills/HEAD/docs/images/formskills-search.png",
+  "alt": "Search results for the word mask across every app",
+  "score": 1.55,
+  "type": "image/png",
+  "bytes": 874868
  },
  "nolangz/pixel2motion": {
   "repo": "nolangz/pixel2motion",
@@ -7446,6 +7494,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 267378
+ },
+ "whystrohm/shotkit": {
+  "repo": "whystrohm/shotkit",
+  "url": "https://raw.githubusercontent.com/whystrohm/shotkit/HEAD/docs/images/demo.webp",
+  "alt": "Shotkit demo: a brief typed in Claude Code, every shot planned and every frame c",
+  "score": -0.5,
+  "type": "image/webp",
+  "bytes": 4304930
  },
  "wiltonesten-web/codeximage-to-editable-ppt-v1": {
   "repo": "wiltonesten-web/codeximage-to-editable-ppt-v1",

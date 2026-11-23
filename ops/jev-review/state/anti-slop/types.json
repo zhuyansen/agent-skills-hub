@@ -4226,5 +4226,19 @@
    "rules": 0.54
   },
   "kind": "detector"
+ },
+ {
+  "repo": "erkamyaman/unslop-anything",
+  "stars": 304,
+  "description": "Your app looks AI-generated. unslop-anything noticed. An agent skill that finds and fixes AI-looking UI and UX in mobile apps, web apps, and websites.",
+  "scores": {
+   "writing": 0.07,
+   "detector": 0.63,
+   "chinese": 0.02,
+   "code": 0.16,
+   "design": 0.94,
+   "rules": 0.77
+  },
+  "kind": "design"
  }
 ]

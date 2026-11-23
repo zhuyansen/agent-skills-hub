@@ -7100,5 +7100,43 @@
   "days": 249,
   "stars_per_day": 0.2289156626506024,
   "verdict": "admit"
+ },
+ {
+  "repo": "enulus/OpenPackage",
+  "name": "OpenPackage",
+  "stars": 621,
+  "description": "The open, universal, coding agent skills, agents, rules, and commands organizer and package manager.",
+  "topics": [
+   "agents",
+   "ai",
+   "cli",
+   "coding",
+   "commands",
+   "openpackage",
+   "opkg",
+   "package-manager",
+   "plugins",
+   "rules",
+   "skills"
+  ],
+  "created": "2025-10-15",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 12404,
+  "names_model": false,
+  "on_subject": 0.95,
+  "is_software": 0.93,
+  "shows_result": 0.55,
+  "one_command_start": 0.79,
+  "specific_outcome": 0.52,
+  "complete_docs": 0.76,
+  "novel_angle": 0.49,
+  "shareable_output": 0.65,
+  "quality": 0.655,
+  "tier": "中",
+  "hit_prior": 0.5633333333333334,
+  "days": 404,
+  "stars_per_day": 1.5371287128712872,
+  "verdict": "admit"
  }
 ]

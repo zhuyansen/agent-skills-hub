@@ -3036,5 +3036,19 @@
    "review": 0.79
   },
   "kind": "ui"
+ },
+ {
+  "repo": "maxritter/open-claude-artifacts",
+  "stars": 44,
+  "description": "Claude Artifacts CLI and UI workflows for coding agents, part of QualityLayer. Create, render locally, and sync Design canvases, Slides decks, Design Systems, Data dashboards, Whiteboards, and pages.",
+  "scores": {
+   "ui": 0.37,
+   "system": 0.69,
+   "tool_mcp": 0.13,
+   "to_code": 0.19,
+   "graphics": 0.2,
+   "review": 0.14
+  },
+  "kind": "system"
  }
 ]

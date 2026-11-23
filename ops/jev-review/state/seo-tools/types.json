@@ -5022,5 +5022,53 @@
    "marketing": 0.1
   },
   "kind": "suite"
+ },
+ {
+  "repo": "trackee-API/skills",
+  "stars": 5,
+  "description": "Trackee agent skills for AI visibility and SEO tracking via MCP and REST.",
+  "scores": {
+   "suite": 0.64,
+   "audit": 0.16,
+   "research": 0.33,
+   "data_mcp": 0.1,
+   "geo": 0.95,
+   "content": 0.11,
+   "links": 0.14,
+   "marketing": 0.44
+  },
+  "kind": "geo"
+ },
+ {
+  "repo": "GroMarketing/keyword-planner-mcp",
+  "stars": 5,
+  "description": "Google Keyword Planner MCP server and CLI: a free keyword research tool for AI agents. Keyword search volume, 24-month history, year-over-year trend, seasonality, competition and bids. Read-only.",
+  "scores": {
+   "suite": 0.03,
+   "audit": 0.02,
+   "research": 0.89,
+   "data_mcp": 0.46,
+   "geo": 0.05,
+   "content": 0.1,
+   "links": 0.01,
+   "marketing": 0.08
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "cheng-sir-0038/seo-diagnosis-agent",
+  "stars": 5,
+  "description": "SEO diagnosis agent with a read-only tool loop and web workspace",
+  "scores": {
+   "suite": 0.82,
+   "audit": 0.63,
+   "research": 0.26,
+   "data_mcp": 0.09,
+   "geo": 0.27,
+   "content": 0.6,
+   "links": 0.08,
+   "marketing": 0.29
+  },
+  "kind": "suite"
  }
 ]

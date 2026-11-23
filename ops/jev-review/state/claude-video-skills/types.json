@@ -10132,5 +10132,59 @@
    "general": 0.27
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "whystrohm/shotkit",
+  "stars": 85,
+  "description": "Ship on-brand video at scale. Plan every shot on a board, check every frame, render every size. A Claude Code plugin and Canvas for Mac.",
+  "scores": {
+   "promo": 0.57,
+   "explainer": 0.34,
+   "music": 0.17,
+   "motion": 0.09,
+   "shorts": 0.7,
+   "editing": 0.77,
+   "demo": 0.73,
+   "story": 0.26,
+   "avatar": 0.09,
+   "general": 0.26
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "kodlaciz/yumurta-stili",
+  "stars": 34,
+  "description": "3B dünyada 2B yumurta kafalı karakterler: Claude ile koddan, ölçülmüş stil. three.js + Canvas 2D, Remotion yok.",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.36,
+   "music": 0.09,
+   "motion": 0.34,
+   "shorts": 0.91,
+   "editing": 0.08,
+   "demo": 0.17,
+   "story": 0.96,
+   "avatar": 0.07,
+   "general": 0.05
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "ctskool/claude-edit",
+  "stars": 6,
+  "description": "A Claude Code skill that edits your talking-head videos beat by beat. Raw take in, your notes at the exact second, a 4K final out. Shorts in six looks, plus 16:9 long-form.",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.33,
+   "music": 0.03,
+   "motion": 0.09,
+   "shorts": 0.94,
+   "editing": 0.98,
+   "demo": 0.57,
+   "story": 0.06,
+   "avatar": 0.02,
+   "general": 0.04
+  },
+  "kind": "editing"
  }
 ]
