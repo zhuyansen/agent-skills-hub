@@ -45,12 +45,12 @@ references:
     publisher:
       name: Zenodo
   - type: report
-    title: "Supply-Chain Security in Open-Source AI Agent Ecosystems: Empirical Evidence and a Five-Dimension Audit Framework Across 105,000+ Indexed Agent Skills and Model Context Protocol (MCP) Servers"
+    title: "Supply-Chain Security in Open-Source AI Agent Ecosystems: Security-Grade Coverage in a June 2026 Snapshot of 105,000+ Agent Skills and MCP Servers, and a Five-Dimension Review Checklist"
     authors:
       - family-names: Zhu
         given-names: Jason
         orcid: "https://orcid.org/0009-0000-2894-6285"
-    doi: 10.5281/zenodo.24420920
+    doi: 10.5281/zenodo.24432858
     year: 2026
     publisher:
       name: Zenodo
