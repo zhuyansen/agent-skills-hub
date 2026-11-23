@@ -223,6 +223,38 @@
   "2026-11-14": {
    "count": 0,
    "uniques": 0
+  },
+  "2026-11-15": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-16": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-17": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-18": {
+   "count": 1,
+   "uniques": 1
+  },
+  "2026-11-19": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-20": {
+   "count": 0,
+   "uniques": 0
+  },
+  "2026-11-21": {
+   "count": 2,
+   "uniques": 2
+  },
+  "2026-11-22": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -449,6 +481,38 @@
   "2026-11-14": {
    "count": 21,
    "uniques": 15
+  },
+  "2026-11-15": {
+   "count": 19,
+   "uniques": 12
+  },
+  "2026-11-16": {
+   "count": 13,
+   "uniques": 8
+  },
+  "2026-11-17": {
+   "count": 22,
+   "uniques": 14
+  },
+  "2026-11-18": {
+   "count": 12,
+   "uniques": 9
+  },
+  "2026-11-19": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-11-20": {
+   "count": 32,
+   "uniques": 18
+  },
+  "2026-11-21": {
+   "count": 26,
+   "uniques": 17
+  },
+  "2026-11-22": {
+   "count": 16,
+   "uniques": 11
   }
  },
  "referrers": {
@@ -515,7 +579,8 @@
     "count": 1,
     "uniques": 1
    }
-  ]
+  ],
+  "2026-11-23": []
  },
  "paths": {
   "2026-10-03": [],
@@ -606,6 +671,13 @@
     "path": "/zhuyansen/awesome-claude-code-hooks/blob/main/README.zh-CN.md",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-claude-code-hooks",
+    "count": 4,
+    "uniques": 4
    }
   ]
  }

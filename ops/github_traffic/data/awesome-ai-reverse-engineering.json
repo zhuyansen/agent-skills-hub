@@ -167,6 +167,38 @@
   "2026-11-14": {
    "count": 82,
    "uniques": 56
+  },
+  "2026-11-15": {
+   "count": 78,
+   "uniques": 51
+  },
+  "2026-11-16": {
+   "count": 51,
+   "uniques": 45
+  },
+  "2026-11-17": {
+   "count": 45,
+   "uniques": 35
+  },
+  "2026-11-18": {
+   "count": 68,
+   "uniques": 52
+  },
+  "2026-11-19": {
+   "count": 52,
+   "uniques": 40
+  },
+  "2026-11-20": {
+   "count": 67,
+   "uniques": 34
+  },
+  "2026-11-21": {
+   "count": 48,
+   "uniques": 39
+  },
+  "2026-11-22": {
+   "count": 61,
+   "uniques": 39
   }
  },
  "clones": {
@@ -337,6 +369,38 @@
   "2026-11-14": {
    "count": 41,
    "uniques": 30
+  },
+  "2026-11-15": {
+   "count": 25,
+   "uniques": 21
+  },
+  "2026-11-16": {
+   "count": 45,
+   "uniques": 32
+  },
+  "2026-11-17": {
+   "count": 37,
+   "uniques": 27
+  },
+  "2026-11-18": {
+   "count": 28,
+   "uniques": 23
+  },
+  "2026-11-19": {
+   "count": 26,
+   "uniques": 21
+  },
+  "2026-11-20": {
+   "count": 41,
+   "uniques": 30
+  },
+  "2026-11-21": {
+   "count": 38,
+   "uniques": 28
+  },
+  "2026-11-22": {
+   "count": 42,
+   "uniques": 32
   }
  },
  "referrers": {
@@ -543,6 +607,58 @@
     "referrer": "Bing",
     "count": 5,
     "uniques": 5
+   }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "Google",
+    "count": 207,
+    "uniques": 175
+   },
+   {
+    "referrer": "github.com",
+    "count": 111,
+    "uniques": 72
+   },
+   {
+    "referrer": "t.co",
+    "count": 93,
+    "uniques": 78
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 21,
+    "uniques": 12
+   },
+   {
+    "referrer": "yandex.ru",
+    "count": 18,
+    "uniques": 10
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 17,
+    "uniques": 7
+   },
+   {
+    "referrer": "link.zhihu.com",
+    "count": 16,
+    "uniques": 14
+   },
+   {
+    "referrer": "Bing",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "yandex.com",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "l.instagram.com",
+    "count": 3,
+    "uniques": 1
    }
   ]
  },
@@ -790,6 +906,58 @@
     "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main",
     "count": 6,
     "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/actions",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/assets/previews/NOTICE.md",
+    "count": 2,
+    "uniques": 2
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering",
+    "count": 868,
+    "uniques": 585
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.zh-CN.md",
+    "count": 90,
+    "uniques": 60
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/README.md",
+    "count": 12,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main",
+    "count": 9,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/data",
+    "count": 9,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/tree/main/assets/previews",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/blob/main/data/skills.json",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-reverse-engineering/fork",
+    "count": 3,
+    "uniques": 3
    },
    {
     "path": "/zhuyansen/awesome-ai-reverse-engineering/actions",

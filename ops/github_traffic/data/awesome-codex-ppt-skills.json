@@ -223,6 +223,38 @@
   "2026-11-14": {
    "count": 26,
    "uniques": 21
+  },
+  "2026-11-15": {
+   "count": 12,
+   "uniques": 10
+  },
+  "2026-11-16": {
+   "count": 59,
+   "uniques": 35
+  },
+  "2026-11-17": {
+   "count": 33,
+   "uniques": 23
+  },
+  "2026-11-18": {
+   "count": 41,
+   "uniques": 31
+  },
+  "2026-11-19": {
+   "count": 47,
+   "uniques": 36
+  },
+  "2026-11-20": {
+   "count": 19,
+   "uniques": 15
+  },
+  "2026-11-21": {
+   "count": 19,
+   "uniques": 13
+  },
+  "2026-11-22": {
+   "count": 21,
+   "uniques": 16
   }
  },
  "clones": {
@@ -449,6 +481,38 @@
   "2026-11-14": {
    "count": 15,
    "uniques": 11
+  },
+  "2026-11-15": {
+   "count": 13,
+   "uniques": 11
+  },
+  "2026-11-16": {
+   "count": 33,
+   "uniques": 23
+  },
+  "2026-11-17": {
+   "count": 16,
+   "uniques": 12
+  },
+  "2026-11-18": {
+   "count": 22,
+   "uniques": 17
+  },
+  "2026-11-19": {
+   "count": 22,
+   "uniques": 18
+  },
+  "2026-11-20": {
+   "count": 32,
+   "uniques": 26
+  },
+  "2026-11-21": {
+   "count": 17,
+   "uniques": 13
+  },
+  "2026-11-22": {
+   "count": 18,
+   "uniques": 15
   }
  },
  "referrers": {
@@ -713,6 +777,58 @@
    },
    {
     "referrer": "github.zhidongli.top",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "Google",
+    "count": 116,
+    "uniques": 86
+   },
+   {
+    "referrer": "note.com",
+    "count": 38,
+    "uniques": 32
+   },
+   {
+    "referrer": "t.co",
+    "count": 27,
+    "uniques": 20
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 20,
+    "uniques": 16
+   },
+   {
+    "referrer": "github.com",
+    "count": 18,
+    "uniques": 15
+   },
+   {
+    "referrer": "Bing",
+    "count": 8,
+    "uniques": 7
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "Yahoo",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "l.meta.ai",
     "count": 1,
     "uniques": 1
    }
@@ -1000,6 +1116,58 @@
    },
    {
     "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/assets/previews/2654400439__Paper2Seminar.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills",
+    "count": 323,
+    "uniques": 240
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/README.zh-CN.md",
+    "count": 68,
+    "uniques": 43
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/README.md",
+    "count": 60,
+    "uniques": 47
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main",
+    "count": 13,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/tree/main/assets/previews",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/pulls",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/actions",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/c928d522571724faaa50e333024b0c2c9f9e9a2b/assets/previews/NOTICE.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/LICENSE",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-codex-ppt-skills/blob/main/assets/previews/2slides__mcp-2slides.jpg",
     "count": 1,
     "uniques": 1
    }

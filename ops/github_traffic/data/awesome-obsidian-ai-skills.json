@@ -219,6 +219,38 @@
   "2026-11-14": {
    "count": 7,
    "uniques": 2
+  },
+  "2026-11-15": {
+   "count": 13,
+   "uniques": 3
+  },
+  "2026-11-16": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-17": {
+   "count": 10,
+   "uniques": 5
+  },
+  "2026-11-18": {
+   "count": 10,
+   "uniques": 7
+  },
+  "2026-11-19": {
+   "count": 3,
+   "uniques": 3
+  },
+  "2026-11-20": {
+   "count": 2,
+   "uniques": 1
+  },
+  "2026-11-21": {
+   "count": 5,
+   "uniques": 1
+  },
+  "2026-11-22": {
+   "count": 0,
+   "uniques": 0
   }
  },
  "clones": {
@@ -441,6 +473,38 @@
   "2026-11-14": {
    "count": 23,
    "uniques": 15
+  },
+  "2026-11-15": {
+   "count": 10,
+   "uniques": 8
+  },
+  "2026-11-16": {
+   "count": 22,
+   "uniques": 14
+  },
+  "2026-11-17": {
+   "count": 56,
+   "uniques": 10
+  },
+  "2026-11-18": {
+   "count": 22,
+   "uniques": 14
+  },
+  "2026-11-19": {
+   "count": 13,
+   "uniques": 10
+  },
+  "2026-11-20": {
+   "count": 22,
+   "uniques": 18
+  },
+  "2026-11-21": {
+   "count": 26,
+   "uniques": 16
+  },
+  "2026-11-22": {
+   "count": 25,
+   "uniques": 16
   }
  },
  "referrers": {
@@ -581,6 +645,23 @@
     "count": 1,
     "uniques": 1
    }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "github.com",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "t.co",
+    "count": 2,
+    "uniques": 1
+   }
   ]
  },
  "paths": {
@@ -714,6 +795,38 @@
    },
    {
     "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.md",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills",
+    "count": 51,
+    "uniques": 22
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/data/skills.json",
+    "count": 3,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/README.zh-CN.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/blob/main/assets/previews/index.json",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/tree/main",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-obsidian-ai-skills/tree/main/data",
     "count": 1,
     "uniques": 1
    }

@@ -191,6 +191,38 @@
   "2026-11-14": {
    "count": 8,
    "uniques": 8
+  },
+  "2026-11-15": {
+   "count": 21,
+   "uniques": 14
+  },
+  "2026-11-16": {
+   "count": 39,
+   "uniques": 27
+  },
+  "2026-11-17": {
+   "count": 26,
+   "uniques": 14
+  },
+  "2026-11-18": {
+   "count": 52,
+   "uniques": 22
+  },
+  "2026-11-19": {
+   "count": 33,
+   "uniques": 21
+  },
+  "2026-11-20": {
+   "count": 20,
+   "uniques": 18
+  },
+  "2026-11-21": {
+   "count": 26,
+   "uniques": 14
+  },
+  "2026-11-22": {
+   "count": 21,
+   "uniques": 16
   }
  },
  "clones": {
@@ -385,6 +417,38 @@
   "2026-11-14": {
    "count": 5,
    "uniques": 5
+  },
+  "2026-11-15": {
+   "count": 8,
+   "uniques": 8
+  },
+  "2026-11-16": {
+   "count": 9,
+   "uniques": 7
+  },
+  "2026-11-17": {
+   "count": 5,
+   "uniques": 4
+  },
+  "2026-11-18": {
+   "count": 7,
+   "uniques": 7
+  },
+  "2026-11-19": {
+   "count": 7,
+   "uniques": 7
+  },
+  "2026-11-20": {
+   "count": 16,
+   "uniques": 15
+  },
+  "2026-11-21": {
+   "count": 5,
+   "uniques": 5
+  },
+  "2026-11-22": {
+   "count": 9,
+   "uniques": 8
   }
  },
  "referrers": {
@@ -506,6 +570,33 @@
    },
    {
     "referrer": "perplexity.ai",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "Google",
+    "count": 134,
+    "uniques": 113
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 19,
+    "uniques": 17
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 7,
+    "uniques": 7
+   },
+   {
+    "referrer": "github.com",
+    "count": 6,
+    "uniques": 4
+   },
+   {
+    "referrer": "Bing",
     "count": 1,
     "uniques": 1
    }
@@ -690,6 +781,53 @@
    },
    {
     "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/JuneLearn__dsh-image2-draw.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills",
+    "count": 270,
+    "uniques": 186
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/README.zh-CN.md",
+    "count": 18,
+    "uniques": 10
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/data/skills.json",
+    "count": 11,
+    "uniques": 11
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/README.md",
+    "count": 5,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/tree/main",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blame/main/README.md",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/blob/main/assets/previews/FireTable__comfy-colab-kit.gif",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/tree/main/assets/previews",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-ai-image-skills/upload/main",
     "count": 1,
     "uniques": 1
    }

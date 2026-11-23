@@ -223,6 +223,38 @@
   "2026-11-14": {
    "count": 35,
    "uniques": 24
+  },
+  "2026-11-15": {
+   "count": 52,
+   "uniques": 38
+  },
+  "2026-11-16": {
+   "count": 74,
+   "uniques": 51
+  },
+  "2026-11-17": {
+   "count": 96,
+   "uniques": 57
+  },
+  "2026-11-18": {
+   "count": 75,
+   "uniques": 54
+  },
+  "2026-11-19": {
+   "count": 67,
+   "uniques": 49
+  },
+  "2026-11-20": {
+   "count": 85,
+   "uniques": 49
+  },
+  "2026-11-21": {
+   "count": 76,
+   "uniques": 60
+  },
+  "2026-11-22": {
+   "count": 143,
+   "uniques": 100
   }
  },
  "clones": {
@@ -449,6 +481,38 @@
   "2026-11-14": {
    "count": 22,
    "uniques": 17
+  },
+  "2026-11-15": {
+   "count": 20,
+   "uniques": 18
+  },
+  "2026-11-16": {
+   "count": 33,
+   "uniques": 28
+  },
+  "2026-11-17": {
+   "count": 43,
+   "uniques": 28
+  },
+  "2026-11-18": {
+   "count": 47,
+   "uniques": 35
+  },
+  "2026-11-19": {
+   "count": 22,
+   "uniques": 19
+  },
+  "2026-11-20": {
+   "count": 53,
+   "uniques": 41
+  },
+  "2026-11-21": {
+   "count": 49,
+   "uniques": 37
+  },
+  "2026-11-22": {
+   "count": 32,
+   "uniques": 27
   }
  },
  "referrers": {
@@ -597,6 +661,58 @@
    },
    {
     "referrer": "kagi.com",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "Google",
+    "count": 498,
+    "uniques": 418
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 39,
+    "uniques": 22
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 20,
+    "uniques": 19
+   },
+   {
+    "referrer": "github.com",
+    "count": 15,
+    "uniques": 12
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "referrer": "Bing",
+    "count": 3,
+    "uniques": 1
+   },
+   {
+    "referrer": "DuckDuckGo",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "claude.ai",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "kagi.com",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "scira.ai",
     "count": 1,
     "uniques": 1
    }
@@ -786,6 +902,58 @@
     "path": "/tos-cn-i-ik7evvg4ik/rc/supertask/66ec4d83e71747fb91080ace6bdd48de~tplv-a9rns2rl98-image.image",
     "count": 1,
     "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills",
+    "count": 884,
+    "uniques": 662
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.zh-CN.md",
+    "count": 25,
+    "uniques": 15
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/README.md",
+    "count": 21,
+    "uniques": 16
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main",
+    "count": 20,
+    "uniques": 11
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets/previews",
+    "count": 15,
+    "uniques": 12
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/data",
+    "count": 9,
+    "uniques": 8
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/.github/ISSUE_TEMPLATE",
+    "count": 7,
+    "uniques": 7
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/assets",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/blob/main/data/skills.json",
+    "count": 4,
+    "uniques": 4
+   },
+   {
+    "path": "/zhuyansen/awesome-claude-design-skills/tree/main/.github",
+    "count": 3,
+    "uniques": 3
    }
   ]
  }

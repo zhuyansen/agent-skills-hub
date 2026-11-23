@@ -219,6 +219,38 @@
   "2026-11-14": {
    "count": 27,
    "uniques": 13
+  },
+  "2026-11-15": {
+   "count": 20,
+   "uniques": 19
+  },
+  "2026-11-16": {
+   "count": 26,
+   "uniques": 14
+  },
+  "2026-11-17": {
+   "count": 17,
+   "uniques": 14
+  },
+  "2026-11-18": {
+   "count": 35,
+   "uniques": 21
+  },
+  "2026-11-19": {
+   "count": 26,
+   "uniques": 20
+  },
+  "2026-11-20": {
+   "count": 15,
+   "uniques": 12
+  },
+  "2026-11-21": {
+   "count": 21,
+   "uniques": 12
+  },
+  "2026-11-22": {
+   "count": 17,
+   "uniques": 13
   }
  },
  "clones": {
@@ -441,6 +473,38 @@
   "2026-11-14": {
    "count": 13,
    "uniques": 10
+  },
+  "2026-11-15": {
+   "count": 16,
+   "uniques": 14
+  },
+  "2026-11-16": {
+   "count": 43,
+   "uniques": 27
+  },
+  "2026-11-17": {
+   "count": 31,
+   "uniques": 18
+  },
+  "2026-11-18": {
+   "count": 27,
+   "uniques": 18
+  },
+  "2026-11-19": {
+   "count": 14,
+   "uniques": 10
+  },
+  "2026-11-20": {
+   "count": 39,
+   "uniques": 24
+  },
+  "2026-11-21": {
+   "count": 35,
+   "uniques": 24
+  },
+  "2026-11-22": {
+   "count": 27,
+   "uniques": 19
   }
  },
  "referrers": {
@@ -615,6 +679,53 @@
     "referrer": "l.meta.ai",
     "count": 2,
     "uniques": 2
+   }
+  ],
+  "2026-11-23": [
+   {
+    "referrer": "Google",
+    "count": 107,
+    "uniques": 88
+   },
+   {
+    "referrer": "github.com",
+    "count": 21,
+    "uniques": 12
+   },
+   {
+    "referrer": "search.brave.com",
+    "count": 7,
+    "uniques": 6
+   },
+   {
+    "referrer": "agentskillshub.top",
+    "count": 5,
+    "uniques": 5
+   },
+   {
+    "referrer": "Bing",
+    "count": 5,
+    "uniques": 3
+   },
+   {
+    "referrer": "perplexity.ai",
+    "count": 3,
+    "uniques": 3
+   },
+   {
+    "referrer": "yandex.ru",
+    "count": 2,
+    "uniques": 2
+   },
+   {
+    "referrer": "instagram.com",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "referrer": "l.meta.ai",
+    "count": 1,
+    "uniques": 1
    }
   ]
  },
@@ -844,6 +955,58 @@
    },
    {
     "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/sva-admin__sv-academy-prom-design.jpg",
+    "count": 1,
+    "uniques": 1
+   }
+  ],
+  "2026-11-23": [
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills",
+    "count": 231,
+    "uniques": 187
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.zh-CN.md",
+    "count": 34,
+    "uniques": 23
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/data",
+    "count": 7,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/tree/main/assets/previews",
+    "count": 6,
+    "uniques": 6
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/data/skills.json",
+    "count": 6,
+    "uniques": 5
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/README.md",
+    "count": 4,
+    "uniques": 3
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/alchaincyf__tramstop-skill.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/blob/main/assets/previews/sva-admin__sv-academy-prom-design.jpg",
+    "count": 1,
+    "uniques": 1
+   },
+   {
+    "path": "/zhuyansen/awesome-humanizer-skills/issues",
     "count": 1,
     "uniques": 1
    }
