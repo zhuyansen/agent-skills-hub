@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-23
+1. Leobai03/t3code-quota-ui — 🆕 优化 T3 Code 的界面，并排展示多账号配额与上下文消耗（26★ 26.0/day）
+2. deeeeone/Anvil — 🆕 提供 macOS 原生编程智能体，支持多模型、检查点与模拟器操控（36★ 23.8/day）
+3. mitaku/andon — 调度智能体自动领任务、评审并合并，仅关键决策时呼叫人工（201★ 11.0/day）
+4. gogoymh/git-ontology-agent — 🆕 用 git 分支管理智能体中途对话，借本体规则自动决定重做或合并（20★ 9.7/day）
+5. jasonmello/pocket-design-mcp — 🆕 提供免费的前端设计 MCP 服务，内置图标字体、组件库与对比度检查（21★ 7.5/day）
+6. thiagopatzdorf/nota-aberta — 🆕 开具巴西电子税务发票并计算税改税额，提供面板、API 与 MCP 接口（39★ 7.4/day）
+7. afurmanov/harness-profiler — 🆕 记录 Claude Code 会话每次调用，追踪上下文共享关系与 token 成本（41★ 5.4/day）
+8. daoif/tokless — 🆕 生成零依赖 AST 代码骨架并拦截盲读，帮编程智能体审计 token 账单（26★ 5.0/day）
+9. arxhr007/lxask — 运行本地 1.5B 模型离线解答 Linux 命令，依据官方手册秒级校验输出（119★ 4.1/day）
+10. amalucelli/dffy — 🆕 提供极速终端 git 差异查看与评审体验，无缝衔接现有编程智能体（34★ 4.1/day）
+🎯 今日趋势：去重后的 80 个候选里，入选项目高度聚焦于**编程智能体工程化辅助**，从配额监控、Token 审计到 Git 分支与评审协同，正把 AI 编码工具链补得更扎实。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 147 个日期段，比对 1,455 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 91 条、去重后 80 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 29 个。**代码硬规则剔除**：kylesantos-dev91v9/delta-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；lukeking1991g4/fluxus-executor-pc-x64：名字或描述像破解 / 激活 / 外挂类诱饵；matt-n-lab01b9/cryptic-executor-pc-x64：名字或描述像破解 / 激活 / 外挂类诱饵；mark-m-hq2090u5/jjsploit-v8-executor-win11：名字或描述像破解 / 激活 / 外挂类诱饵；prajwaljeevan50-web/openclaw-personal-workspace：刷星嫌疑：151★ 却 0 个 fork；Samokoto/Gemini-Config-Checker-：security_grade 为 reject；lloweryfn-rgb/Gemini-Config-Checker-：security_grade 为 reject；ChristianAlmurr/context-hub：security_grade 为 caution。**模型排除项**：①XinaTian/MROffice（1809★ 143.9/day）：作者仅1粉1仓且0个issue却有2474★，刷星嫌疑大，且描述未提及AI或智能体；②pritamux/gridlines（164★ 89.9/day）：作者0粉且另一仓库为0★，此仓库1.8天突增至197★，符合刷星特征；③imuratalpay/ui-diff（119★ 26.6/day）：作者仅1粉且其余仓库仅0至1★，此仓库4.5天内突增至121★，存在刷星嫌疑；④deusyu/harness-engineering（6311★ 25.8/day）：仓库内容为概念笔记与中文学习档案，属于个人学习记录而非智能体技能或工具；⑤shnfatih-hash/devlet-arsivleri-soykutugu（21★ 21.0/day）：作者仅6粉且名下只有1个仓库、0个issue，上线不足1天即获125★，异常涨星且场景过窄；⑥byttrade/free-crypto-trading-bot（55★ 20.4/day）：账号新注册且0个issue，主页含商业UTM引流链接，推广加密货币平台嫌疑较高；⑦howznguyen/nookdeck（45★ 8.9/day）：用于将旧手机变成PC控制面板，描述未提及任何AI、智能体或MCP能力，与定位无关；⑧oxbaimao/whitecat-tg-assistant-commercial-build（27★ 6.4/day）：涉及Telegram养号防封与群发营销等规避平台风控内容，且作者0粉、其余仓库均0★；⑨zhaoyang51/vpn-tizi-fanqiang（45★ 5.5/day）：属于VPN翻墙梯子及机场防风控IP推广，属于不可推荐的规避风控与代理订阅内容；⑩stillhunter/stillhunter（47★ 5.0/day）：组织账号刚建立、0粉丝且名下仅此1个仓库，符合刷星特征；11.yoshitakagiii/natural-slides（43★ 4.8/day）：作者账号刚建立、0粉丝且名下仅此1个仓库，符合刷星特征；12.azrinaldi/gemini-stealth-bridge（163★ 4.3/day）：针对Gemini网页版的隐身反代与多账号池工具，涉及规避平台接口限制与风控。**轻红旗**（保留）：deeeeone/Anvil：上线仅1.5天尚无fork和issue，但作者有27粉和132★项目；gogoymh/git-ontology-agent：描述末尾有重复的模型名列举，但作者有538★项目及7个fork。🆕 判定＝created_at 距今 14 天内：t3code-quota-ui（0.9 天）、Anvil（1.5 天）、git-ontology-agent（2.1 天）、pocket-design-mcp（2.8 天）、nota-aberta（5.3 天）、harness-profiler（7.6 天）、tokless（5.2 天）、dffy（8.3 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-22
 1. w01fb0ss/PiBot — 🆕 拉起本地多 Agent 桌面团队，支持群聊、浏览器操作及 MCP 审批。（179★ 179.0/day）
 2. benjitaylor/skills — 加载即用型 AI 编程技能包，直接拓展编码智能体的实战能力。（3960★ 146.5/day）
